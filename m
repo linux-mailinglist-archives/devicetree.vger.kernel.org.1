@@ -1,154 +1,400 @@
-Return-Path: <devicetree+bounces-274372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274374-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YOYYCsoPsmkvIQAAu9opvQ
-	(envelope-from <devicetree+bounces-274372-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 01:58:50 +0100
+	id 4N89JfMPsmkvIQAAu9opvQ
+	(envelope-from <devicetree+bounces-274374-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 01:59:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8479726BCF2
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 01:58:49 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC26426BD19
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 01:59:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7524C31190EE
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 00:58:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 89C433061629
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 00:58:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D172347524;
-	Thu, 12 Mar 2026 00:58:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A82234750E;
+	Thu, 12 Mar 2026 00:58:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="oSbNLybD"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="XSmm664+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-181.mta0.migadu.com (out-181.mta0.migadu.com [91.218.175.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f51.google.com (mail-yx1-f51.google.com [74.125.224.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B3E63264D2
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 00:58:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.181
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773277090; cv=none; b=A/iYv5e/lGXGldo+3DuQah5MnS65CquS1E7F9YVIsob93zDAM+h6vreKrqm6cCklp6jEV3wqckXZGSLFS+i9VL/VT5U5zp/w6kEYRjIpdSQ2leq+a05EF8Jaum2RDTmza0p5Wqrh3eESLpXSEu5dYiY1vXjb8VYwBexY3/mwhhg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773277090; c=relaxed/simple;
-	bh=KLGJUjz5sg/Q4Fg5EfUjCn3JO4fg1VjNIOzOrd20dJc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=tppkfO2JoFoOheB4GGnr5CqBuB0WIua66ACdCfvniJA0/dmAu11i0EZDzr7xH7ghjrcYA8YP07vSLkSF08o61nWkZ+jDNSVKPaPYHikBovfLzZ2Ygu8gq56JtIwLLwSyAhim/ZB9C4sJDE5W6KfjhliBvWaDgC8F7EJe+0pJNSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=oSbNLybD; arc=none smtp.client-ip=91.218.175.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
-	s=key1; t=1773277085;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2CioL+3mGv+qdGBiMKwi58K8rdc7pcS3HJI4wKWNgDs=;
-	b=oSbNLybDNMMkq1JfsBgTrGi1Ypa6Buf+Bv+ffimGvVITzLiCor5hCIh0h4xAPZ8Rh1Ypjr
-	C6e4/LDw7uojEv3tTcnVBh0lccmwjFtWsl60YyiCSbmA51F7hGimkmzc70opDeqSyhYFXS
-	PhFTAf/wLW5r/dPaj1714ZUUj0YM1xeLTV9KCuTheWxWvQPnc+sUwvH4nNZC+eHNzlQhf3
-	v9zShQ/GEctvdjELD/UDY19H2jEUHpzXo/wQCZ3O0FOhufgRsG/OSvf9MyNKsLiidneR92
-	DWNScYX8NUKc1KbzrUJJL2mB3puAU/vEFsKDAxR0OwBWHb1VHe4fxN7aarwOqg==
-From: Val Packett <val@packett.cool>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Laurentiu Tudor <laurentiu.tudor1@dell.com>,
-	Val Packett <val@packett.cool>,
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Abel Vesa <abel.vesa@oss.qualcomm.com>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] arm64: dts: qcom: x1-dell-thena: remove i2c20 (battery SMBus) and reserve its pins
-Date: Wed, 11 Mar 2026 21:53:37 -0300
-Message-ID: <20260312005731.12488-2-val@packett.cool>
-In-Reply-To: <20260312005731.12488-1-val@packett.cool>
-References: <20260312005731.12488-1-val@packett.cool>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 869DA3264D2
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 00:58:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.224.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773277139; cv=pass; b=NvWvmQMKmU6/1iYwavWGni5eThJ7H1nPlvtB5kNZ1qcS6twqS6uxTXPqIk21oWT33pfqQnw4ns+gZmwRAfkrC3yH6TAFqfW1G3jQ0wExXPBhH3iznm1wXuPVLbsKcc6Bq3lJi3hILc4ubXbqwofAQOd7TsUn7edb8uWBSb2Guxc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773277139; c=relaxed/simple;
+	bh=/U4y6zMTaicCXSRzWDrp1+5aO6aDI934v4bGAGFBGSg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FG1pRHup9QoqTwRy2ZYxdLWv2kDbW9LBNBQYVwv1Lh880WWNTSY8OKPOLVhzbmNRIVqzzbItUpMf3CbVSnyGSTPs3KPqB5d3iG81yww+oXJMFy6dlbO+VEFrhf9GzxDbk1twopHyi55xHtbThbwVDLoBI0TnddeAKVdzIqoutrk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=XSmm664+; arc=pass smtp.client-ip=74.125.224.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-yx1-f51.google.com with SMTP id 956f58d0204a3-64ad79dfb7cso638352d50.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 17:58:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773277136; cv=none;
+        d=google.com; s=arc-20240605;
+        b=MaDtk7XWlbXsBh0Zlx3QWSW8Kc5dCmWQNXpzuiOPbesl7OPBRYAy3yMELIrCBMQrBh
+         xWRrcrXhtDPrr504k/uSxuk6zJ+fqMorRBN/Y3oJfPPjjfjR+5NadO7rmpIZQnjSRcot
+         Bj2t8YUw0OcEuPGpaspWyxybapYPbm3SeqfUkhtL1pnQdaDpiBD2EH68XvFPZ6QemIZr
+         m6FC7V0o+mBClhjg+afn0KcZTkbBZS1INDQVhJ4P84U6g7TXsu/z/Q5U8WohrLVpsKJV
+         QK6DbFL+jC1gatKAmWkeW6PhM/5PErCEqxV28Oy54+yZqPNF84UiYrAvJ/BftJSak977
+         7UBQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=hm+lu25xFH5D13LzOfbqgKLYsmGame8eJlz+wGxK40k=;
+        fh=WmJXcxP47NCKq6vsG8BlA4ZloTLt/GZ+nVKjz+BQWPk=;
+        b=GXXQmfWUD6qHO0gdjgP/y9BLBE90q3vHJnvTz5kzSdEJq59WIO4pSG1ip20Qa6LXBM
+         JRKabBClKrT3Q53zDf5kGiFjwY64rvBgGHFX9BkQndl/dDAoWFd9n/AL8P0D0FpUBtIY
+         rtrRjzD81G1o3Q9THThy0EA8Vr91rZEETkuldVN19FntdPIGYB2vMI+qSGNEeziQDWdI
+         00+vbzjlvYRRTVqS6OukAXA40hZ7SuvphsD6LJuZamd8fxtuPb0Om2zhypOGspoqht7X
+         3PH4X9rsa888rsWtlfPqB2X30Xjg8YtneaUqYDXdxGD0v82E80KAfNoRFEsU2R11jCX/
+         T42A==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1773277136; x=1773881936; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hm+lu25xFH5D13LzOfbqgKLYsmGame8eJlz+wGxK40k=;
+        b=XSmm664+cpfOX++b/WASYI+HDr/mXw8VjWvr3goVQdJDMsHcwWVhGVp3VlY2/EOq/e
+         cOCptFmrJaJRPR10fWmyzHERv4q0vwvKrRIGsdPPih2/sO+jNybIXpQmlNawq3p66aNm
+         UoIlxrsSumXnUivwq7Cc9bLkwhBiOc7ktlyyE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773277136; x=1773881936;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=hm+lu25xFH5D13LzOfbqgKLYsmGame8eJlz+wGxK40k=;
+        b=kSBd/daEJRuFgEeFm0fTrMmrd5ni1qpbeXZdV/QppPP0GK+chsx7vzDnOGmKN5iFcT
+         QCQlU86C2KXGDHnLs0Dmp0ATjnROWlzLSc1JWYWlkvTaAae4hfLl9v1aBob2qHICyKOQ
+         bwZLsw1n8BnQ3h8cHzkTfWxx9qKiuHN3vGOfUIT8RuslMBbNRakm/VLu55kD3btlU+Wf
+         YHAhhPUnllGhbFCek5/veA6BZQsHpCvbtrsO2p72rOM1B4p+PW02eBR16/F3UFxF2NEf
+         fCjcCh3wHqyQwWzw99hY/7kEsCkEcr95Q3o/HtUU4GeYY7hWZPFT2XchZPJNn5YsvNeh
+         zArA==
+X-Forwarded-Encrypted: i=1; AJvYcCU7XXnCXPPBOX7DvKK5YFEj7DatK8OylzwXBKJInjNTMzUQCVxcxDJXRA7aj924DkM4DBrSp1uGDSCa@vger.kernel.org
+X-Gm-Message-State: AOJu0YwY6lI5Qu5q3tEwsKaBpPCrPIeRkQljtz1xDtURRxgLzv03PI15
+	/ynBYBt14JxZzr+3HEJnVeLDCogQJVecYGnLK/1aIVuXLpBnanQlx4Weg8YEsd/dmcPhk6G9hWC
+	PSNOBr9SuL5eD6RME+8V9Md/R1iLd5BuP6j9TmGCd
+X-Gm-Gg: ATEYQzw/zYCfUWLlS7R/2jOp8CiEsqk67WyzXg1iV3yxKBWqB1YhPqnQlhTEHjp4Qum
+	swtIdPviD+GACeP5ubNUH10+h1G8UY7138gi27YKtdj668lnB+5MvDZicgrayne0rD3BAlEQLNV
+	uTGh1yXHtJjs/JHwCAH+9OcTUCQISapsoN38Ziqi2Nf5WwxoDt3cxGL7E2gqAnBGB75HogmUDPY
+	Tt2uPyOdhSpsMcTQTgwTDx3xgnMiqkBzSXWtFV7orVjeBqaehFZ8lkJM6ozWDquHO0cK21Cq5Mf
+	sUKcvKrSBNi3Z7T7Q55SqNwTBwN74EKxuiIF371L
+X-Received: by 2002:a53:ee54:0:b0:644:60d9:8648 with SMTP id
+ 956f58d0204a3-64d6587b0dbmr3375090d50.87.1773277136581; Wed, 11 Mar 2026
+ 17:58:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Spamd-Result: default: False [0.84 / 15.00];
+References: <20260303-send-upstream-v1-0-1515ba218f3d@chromium.org>
+ <20260303-send-upstream-v1-9-1515ba218f3d@chromium.org> <CAL_JsqKN45FswZjo+27OzoHMeM7ec3hS7piF7SKNykmXNSmA0g@mail.gmail.com>
+ <CAEe3GZHSqepvjjopLwrWX3_n4+RnCeVVQnAO=Swixgu2z3OpUw@mail.gmail.com>
+In-Reply-To: <CAEe3GZHSqepvjjopLwrWX3_n4+RnCeVVQnAO=Swixgu2z3OpUw@mail.gmail.com>
+From: Jingyuan Liang <jingyliang@chromium.org>
+Date: Wed, 11 Mar 2026 17:58:45 -0700
+X-Gm-Features: AaiRm52dLVPqyen2q9prIqB7vkYq8vC1PiQ2eD_fJkVgOSB27JkdvvaCBQOmlW4
+Message-ID: <CAEe3GZE_79Lqtzv4ZRi6zWuV_DgkCREBDcZJjpR+X9OaGZCA2g@mail.gmail.com>
+Subject: Fwd: [PATCH 09/12] dt-bindings: input: Document hid-over-spi DT schema
+To: Rob Herring <robh@kernel.org>
+Cc: Jiri Kosina <jikos@kernel.org>, Benjamin Tissoires <bentiss@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Mark Brown <broonie@kernel.org>, 
+	Steven Rostedt <rostedt@goodmis.org>, Masami Hiramatsu <mhiramat@kernel.org>, 
+	Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org, 
+	linux-doc@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
+	linux-spi@vger.kernel.org, linux-trace-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Henry Barnor <hbarnor@chromium.org>, 
+	Dmitry Antipov <dmanti@microsoft.com>, Jarrett Schultz <jaschultz@microsoft.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[packett.cool,quarantine];
-	R_DKIM_ALLOW(-0.20)[packett.cool:s=key1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-274372-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274374-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_CC(0.00)[kernel.org,lwn.net,goodmis.org,efficios.com,gmail.com,vger.kernel.org,chromium.org,microsoft.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[val@packett.cool,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[packett.cool:+];
+	FROM_NEQ_ENVFROM(0.00)[jingyliang@chromium.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[chromium.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[packett.cool:dkim,packett.cool:email,packett.cool:mid,0.0.0.0:email,qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8479726BCF2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,chromium.org:dkim,chromium.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url]
+X-Rspamd-Queue-Id: EC26426BD19
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-i2c20 is used by the battmgr service on the ADSP to communicate with the
-SBS interface of the battery. Initializing it from Linux would break the
-battmgr functionality when booted in EL2. Mark those pins as reserved.
+(Resending to the list. Apologies, I accidentally dropped the CCs on
+my initial reply!)
 
-Fixes: e7733b42111c ("arm64: dts: qcom: Add support for Dell Inspiron 7441 / Latitude 7455")
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Reviewed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Signed-off-by: Val Packett <val@packett.cool>
----
-v4: Pull R-b
-v3: https://lore.kernel.org/all/20260228205818.13016-2-val@packett.cool/
-v2: https://lore.kernel.org/all/20260210175001.7691-2-val@packett.cool/
-v1: doesn't exist. oops, at v1 this wasn't a series, just the PCIe GPIO patch
----
- arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi | 7 +------
- 1 file changed, 1 insertion(+), 6 deletions(-)
+On Tue, Mar 3, 2026 at 5:53=E2=80=AFAM Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Mar 3, 2026 at 12:14=E2=80=AFAM Jingyuan Liang <jingyliang@chromi=
+um.org> wrote:
+> >
+> > Documentation describes the required and optional properties for
+> > implementing Device Tree for a Microsoft G6 Touch Digitizer that
+> > supports HID over SPI Protocol 1.0 specification.
+> >
+> > The properties are common to HID over SPI.
+> >
+> > Signed-off-by: Dmitry Antipov <dmanti@microsoft.com>
+> > Signed-off-by: Jarrett Schultz <jaschultz@microsoft.com>
+> > Signed-off-by: Jingyuan Liang <jingyliang@chromium.org>
+> > ---
+> >  .../devicetree/bindings/input/hid-over-spi.yaml    | 153 +++++++++++++=
+++++++++
+> >  1 file changed, 153 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/input/hid-over-spi.yaml =
+b/Documentation/devicetree/bindings/input/hid-over-spi.yaml
+> > new file mode 100644
+> > index 000000000000..b623629ed9d3
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/input/hid-over-spi.yaml
+> > @@ -0,0 +1,153 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/input/hid-over-spi.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: HID over SPI Devices
+> > +
+> > +maintainers:
+> > +  - Benjamin Tissoires <benjamin.tissoires@redhat.com>
+> > +  - Jiri Kosina <jkosina@suse.cz>
+> > +
+> > +description: |+
+> > +  HID over SPI provides support for various Human Interface Devices ov=
+er the
+> > +  SPI bus. These devices can be for example touchpads, keyboards, touc=
+h screens
+> > +  or sensors.
+> > +
+> > +  The specification has been written by Microsoft and is currently ava=
+ilable here:
+> > +  https://www.microsoft.com/en-us/download/details.aspx?id=3D103325
+> > +
+> > +  If this binding is used, the kernel module spi-hid will handle the c=
+ommunication
+> > +  with the device and the generic hid core layer will handle the proto=
+col.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - items:
+> > +          - enum:
+> > +              - microsoft,g6-touch-digitizer
+> > +          - const: hid-over-spi
+> > +      - description: Just "hid-over-spi" alone is allowed, but not rec=
+ommended.
+> > +        const: hid-over-spi
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +    description:
+> > +      GPIO specifier for the digitizer's reset pin (active low). The l=
+ine must
+> > +      be flagged with GPIO_ACTIVE_LOW.
+> > +
+> > +  vdd-supply:
+> > +    description:
+> > +      Regulator for the VDD supply voltage.
+>
+> Is this part of the spec? This won't scale for multiple devices with
+> different power rails.
 
-diff --git a/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi b/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
-index d5018fdbdedb..967535b2bce7 100644
---- a/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
-@@ -982,12 +982,6 @@ &i2c8 {
- 	status = "okay";
- };
- 
--&i2c20 {
--	clock-frequency = <400000>;
--
--	status = "okay";
--};
--
- &lpass_tlmm {
- 	spkr_01_sd_n_active: spkr-01-sd-n-active-state {
- 		pins = "gpio12";
-@@ -1308,6 +1302,7 @@ right_tweeter: speaker@0,1 {
- &tlmm {
- 	gpio-reserved-ranges = <44 4>,  /* SPI11 (TPM) */
- 			       <76 4>,  /* SPI19 (TZ Protected) */
-+			       <80 2>,  /* I2C20 (Battery SMBus) */
- 			       <238 1>; /* UFS Reset */
- 
- 	cam_rgb_default: cam-rgb-default-state {
--- 
-2.52.0
+This is not part of the spec but is needed for power management. Is it okay=
+ I
+mark it as optional? Thank you.
 
+>
+> > +
+> > +  input-report-header-address:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    minimum: 0
+> > +    maximum: 0xffffff
+> > +    description:
+> > +      A value to be included in the Read Approval packet, listing an a=
+ddress of
+> > +      the input report header to be put on the SPI bus. This address h=
+as 24
+> > +      bits.
+> > +
+> > +  input-report-body-address:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    minimum: 0
+> > +    maximum: 0xffffff
+> > +    description:
+> > +     A value to be included in the Read Approval packet, listing an ad=
+dress of
+> > +      the input report body to be put on the SPI bus. This address has=
+ 24 bits.
+> > +
+> > +  output-report-address:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    minimum: 0
+> > +    maximum: 0xffffff
+> > +    description:
+> > +      A value to be included in the Output Report sent by the host, li=
+sting an
+> > +      address where the output report on the SPI bus is to be written =
+to. This
+> > +      address has 24 bits.
+> > +
+> > +  post-power-on-delay-ms:
+> > +    description:
+> > +      Optional time in ms required by the device after enabling its re=
+gulators
+> > +      or powering it on, before it is ready for communication.
+>
+> Drop. This should be implied by the compatible.
+
+Thank you, I will fix this in v2.
+
+>
+> > +
+> > +  minimal-reset-delay-ms:
+> > +    description:
+> > +      Optional minimum amount of time in ms that device needs to be in=
+ reset
+> > +      state for the reset to take effect.
+>
+> Drop. This should be implied by the compatible.
+
+I will fix this in v2.
+
+>
+> > +
+> > +  read-opcode:
+> > +  $ref: /schemas/types.yaml#/definitions/uint8
+> > +    description:
+> > +      Value to be used in Read Approval packets. 1 byte.
+> > +
+> > +  write-opcode:
+> > +  $ref: /schemas/types.yaml#/definitions/uint8
+> > +    description:
+> > +      Value to be used in Write Approval packets. 1 byte.
+>
+> Why are these and the address properties above not defined by the
+> spec? Do they vary for a specific device? If not, then they should be
+> implied by the compatible.
+
+These properties are not defined by the spec:
+
+"The Input Report Address (header or body) and READ opcode are retrieved
+from ACPI."
+
+Same for the output report address and write opcode. I will drop these in v=
+2.
+
+>
+> > +
+> > +  hid-over-spi-flags:
+> > +  $ref: /schemas/types.yaml#/definitions/uint16
+> > +    description:
+> > +      16 bits.
+> > +      Bits 0-12 - Reserved (must be 0)
+> > +      Bit 13 - SPI Write Mode. Possible values -
+> > +        * 0b0- Writes are carried out in Single-SPI mode
+> > +        * 0b1- Writes are carried out in the Multi-SPI mode specified =
+by bits
+> > +               14-15
+> > +      Bits 14-15 - Multi-SPI Mode. Possible values -
+> > +        * 0b00- Single SPI
+> > +        * 0b01- Dual SPI
+> > +        * 0b10- Quad SPI
+>
+> We already have SPI properties to define the bus width for read and write=
+.
+
+Will fix this in v2.
+
+>
+> > +
+> > +required:
+> > +  - compatible
+> > +  - interrupts
+> > +  - reset-gpios
+> > +  - vdd-supply
+> > +  - input-report-header-address
+> > +  - input-report-body-address
+> > +  - output-report-address
+> > +  - read-opcode
+> > +  - write-opcode
+> > +  - hid-over-spi-flags
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    spi {
+> > +      #address-cells =3D <1>;
+> > +      #size-cells =3D <0>;
+> > +
+> > +      hid@0 {
+> > +        compatible =3D "hid-over-spi";
+> > +        reg =3D <0x0>;
+> > +        interrupts-extended =3D <&gpio 42 IRQ_TYPE_EDGE_FALLING>;
+> > +        reset-gpios =3D <&gpio 27 GPIO_ACTIVE_LOW>;
+> > +        vdd-supply =3D <&pm8350c_l3>;
+> > +        pinctrl-names =3D "default";
+> > +        pinctrl-0 =3D <&ts_d6_reset_assert &ts_d6_int_bias>;
+> > +        input-report-header-address =3D <0x1000>;
+> > +        input-report-body-address =3D <0x1004>;
+> > +        output-report-address =3D <0x2000>;
+> > +        read-opcode =3D <0x0b>;
+> > +        write-opcode =3D <0x02>;
+> > +        hid-over-spi-flags =3D <0x0000>;
+> > +        post-power-on-delay-ms =3D <5>;
+> > +        minimal-reset-delay-ms =3D <5>;
+> > +      };
+> > +    };
+> > \ No newline at end of file
+>
+> Fix this.
+
+Will fix this in v2.
+
+>
+> Rob
 
