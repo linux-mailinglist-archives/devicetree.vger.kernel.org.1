@@ -1,183 +1,151 @@
-Return-Path: <devicetree+bounces-274532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274533-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OBOHLcemsmnwOQAAu9opvQ
-	(envelope-from <devicetree+bounces-274532-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 12:43:03 +0100
+	id CJsxHGylsmnwOQAAu9opvQ
+	(envelope-from <devicetree+bounces-274533-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 12:37:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E3742712CE
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 12:43:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB014271160
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 12:37:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1949332A88B2
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 11:28:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C97253230759
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 11:30:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FD203C9454;
-	Thu, 12 Mar 2026 11:25:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA5273BF67C;
+	Thu, 12 Mar 2026 11:29:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="xU6tvrqw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZRAyWZLC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ixit.cz [185.100.197.86])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E72A63C945A;
-	Thu, 12 Mar 2026 11:25:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.100.197.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C130A39D6EA;
+	Thu, 12 Mar 2026 11:29:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773314753; cv=none; b=j5F6ZsXceuoeGAmQyRt0LofTZVrAPH/S/IXb1JKk1+dTJxqcMiV+yDigiSOVG6k6Xq8rQ+NQ92o8ogWLd+JmJy81579rhPasI410JuYkEZv4BqnNzU1NAeTwTNzPJFiIhdxEs3HBVPTMMkC2UH7EFN8XFRnvnF0SZ3JLF010Dfo=
+	t=1773314941; cv=none; b=kNH2jK3mcu+KDoRho98bHcHrc76m0gjEGiv6FEyNDzZa21LHv7TJBXMcmI37Y2raRPlkh5Mg6ZMh3EqYTtYZgA9Q22v1rUYfTURSZu1I5d2fK3W0GITkGc/m970t2cLPwEE08Gv4m22Cym93nlfTTv/Sgu4n+jSafZE3FM3ae0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773314753; c=relaxed/simple;
-	bh=Rj9R/w5TQZVEOVlu8IN/GrbnhZ2/MLTMI1kLN4xob4o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CMSJuDGagsdk0NykBMurFd1+q7DUSw4BnK0vYWx753+1eQbLWH/+M4+86UMRsjKhhGkq7HIAeYVuALEe9dmDO8hswxDIl0F6aJ/yfE6/6ajW4JAMacqMghCiLSpKH5Y74AzlkKdmIMWExdVU2B+rucmw92Zykf7pHFBSfmYBd1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=xU6tvrqw; arc=none smtp.client-ip=185.100.197.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [IPV6:2a02:f000:10bd:e301::1d7] (unknown [IPv6:2a02:f000:10bd:e301::1d7])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id E5E0F5340902;
-	Thu, 12 Mar 2026 12:25:45 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1773314746;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=beJppJ0vqUAp1ABTbz2DxlfFA+mOM5wX8wTOItZJ5zQ=;
-	b=xU6tvrqweDLU/sgEygB2bYRySO0ymtQvuCWs+JIq4u4fcTqEhhG+l/Re2hkcyqvHEMrKtP
-	388NVQlS8530fwwt8sDytTgBzo6PpFBiBp05wd0zhUi98VWMTmn0x0/OBuAptMSlXWmfL9
-	KLbw1lX67Z8sPNehW92s37nsMXdHhCY=
-Message-ID: <137c19a3-136a-4e0e-b4ea-8cc474172d81@ixit.cz>
-Date: Thu, 12 Mar 2026 12:25:45 +0100
+	s=arc-20240116; t=1773314941; c=relaxed/simple;
+	bh=I3jwJdCsHstSRrFGSH1oMaY/GRHwpkyvBFzK3V5Esg4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fkyY7eLZjU/BWI3PUpNCcmsBSboI+Xo3nLw8zUP2fpkF5R+l476QMbXRi9rsASMJrkyHetO53HzzP1X4e6wR334jm4O7QEXqlCltagDL5ucaZPN3iotaSzzoA+1GE41x8Z8RRSC1k5G6I5THX4JxO28BIbm2jOClgeuwnHjp0Uo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZRAyWZLC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B00FEC4CEF7;
+	Thu, 12 Mar 2026 11:29:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773314941;
+	bh=I3jwJdCsHstSRrFGSH1oMaY/GRHwpkyvBFzK3V5Esg4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZRAyWZLCtwhisWSIXGIBgkFyqGlK3d2PUxqdwBm7VoWQdRQC2OeiR+7DdCgy6VYmu
+	 TqJ1XEIw7CFONs70RY9lvFnMxNll6VONm0YfESkI2DFSyIKNPz5LZET9EEAk7H6Wzp
+	 SoHSYdG5J0OXj9A/YOvAlT5Nyk0D0J6LMDMqfTCyyBuu/RWBLEqd8CFKjZ5XAPgJA3
+	 H+L/umWKH9zRxubbgiqTjoQAaMDO1Uct2u69UiVuAqP4zCZenoo2g3Y4RW0njhWUxi
+	 NFBhXLvDBIwNn+/SsWmQOVA9l8PPwZiQj/GCfA4qeEMteNyoC/Nyu7IJffJOjvzy0v
+	 5LVI8dotSIsgw==
+Date: Thu, 12 Mar 2026 19:28:58 +0800
+From: Yixun Lan <dlan@kernel.org>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Junzhong Pan <junzhong.pan@spacemit.com>,
+	Guodong Xu <guodong@riscstar.com>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: soc: spacemit: k3: Decouple composite
+ reset lines
+Message-ID: <20260312112858-GKH302167@kernel.org>
+References: <20260312-01-k3-reset-usb-pci-v1-0-022b24b7340f@kernel.org>
+ <20260312-01-k3-reset-usb-pci-v1-1-022b24b7340f@kernel.org>
+ <0abfd76f49e5cedf7bfc84eb4d9a0a1d7543f6f8.camel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sdm845-xiaomi-beryllium-tianma:
- Disable MDSS
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- phone-devel@vger.kernel.org, Petr Hodina <petr.hodina@protonmail.com>
-References: <20260311-beryllium-fb-v1-0-408a580d125e@ixit.cz>
- <20260311-beryllium-fb-v1-2-408a580d125e@ixit.cz>
- <t4uhjpxdvjxda4dxkoxktv6xlxg3xvzyslgerluu3t2dzxv33v@k46gvwv4uf22>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <t4uhjpxdvjxda4dxkoxktv6xlxg3xvzyslgerluu3t2dzxv33v@k46gvwv4uf22>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0abfd76f49e5cedf7bfc84eb4d9a0a1d7543f6f8.camel@pengutronix.de>
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
-	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,protonmail.com];
-	TAGGED_FROM(0.00)[bounces-274532-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274533-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[ixit.cz:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,protonmail.com:email]
-X-Rspamd-Queue-Id: 4E3742712CE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,checkpatch.pl:url]
+X-Rspamd-Queue-Id: CB014271160
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 12/03/2026 03:46, Dmitry Baryshkov wrote:
-> On Wed, Mar 11, 2026 at 07:44:30PM +0100, David Heidelberg via B4 Relay wrote:
->> From: Petr Hodina <petr.hodina@protonmail.com>
->>
->> Currently the panel driver for tianma is broken.
+Hi Philipp,
+
+On 12:09 Thu 12 Mar     , Philipp Zabel wrote:
+> On Do, 2026-03-12 at 10:34 +0000, Yixun Lan wrote:
+> > Instead of grouping several different reset lines into one composite
+> > reset, decouple them to individual ones which make it more aligned
+> > with underlying hardware.
+> >
+> > The DWC3 USB host controller in K3 SoC has three reset lines - AHB, VCC,
+> > PHY. The PCIe controller also has three reset lines - DBI, Slave, Master.
+> > 
+> > Signed-off-by: Yixun Lan <dlan@kernel.org>
+> > ---
+> >  include/dt-bindings/reset/spacemit,k3-resets.h | 42 ++++++++++++++++++++------
+> >  1 file changed, 32 insertions(+), 10 deletions(-)
+> > 
+> > diff --git a/include/dt-bindings/reset/spacemit,k3-resets.h b/include/dt-bindings/reset/spacemit,k3-resets.h
+> > index 79ac1c22b7b5..c12f8bd32047 100644
+> > --- a/include/dt-bindings/reset/spacemit,k3-resets.h
+> > +++ b/include/dt-bindings/reset/spacemit,k3-resets.h
+> > @@ -97,11 +97,7 @@
+> >  #define RESET_APMU_SDH0          13
+> >  #define RESET_APMU_SDH1          14
+> >  #define RESET_APMU_SDH2          15
+> > -#define RESET_APMU_USB2          16
+> > -#define RESET_APMU_USB3_PORTA    17
+> > -#define RESET_APMU_USB3_PORTB    18
+> > -#define RESET_APMU_USB3_PORTC    19
+> > -#define RESET_APMU_USB3_PORTD    20
 > 
-> How broken? Can it be fixed instead?
-
-No output to the panel. Definitely can be fixed, but current situation is that 
-we don't have anyone who has available time or device to tackle the problem.
-
-I know it's not optimal, but on a way to achieve working mainline phones, my 
-thinking is better to mark it as broken in mainline until someone fixes 
-(assuming Fixes tag and backport) then just going black display (when we have at 
-least framebuffer now).
-
-David
-
+> This is backwards incompatible.
+> Are there any device trees using the APMU resets yet?
+> If not, I wonder if we should just renumber all APMU resets into a
+> contiguous range and try to get it into v7.0 as a fix.
 > 
->> Disable MDSS to prevent DRM taking over the framebuffer.
->>
->> Signed-off-by: Petr Hodina <petr.hodina@protonmail.com>
->> Signed-off-by: David Heidelberg <david@ixit.cz>
->> ---
->>   arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts | 10 ++++++++++
->>   1 file changed, 10 insertions(+)
->>
+No, there is currently no consumers, so I could rework them into a contiguous
+version, thanks for the suggestion
 
-[...]
+> Also, this breaks bisectability.
+> reset-spacemit-k3.c will fail to compile between patches 1 and 2.
+> 
+I've tried a first version to squash the two patches, but got a checkpatch.pl complait
+for binding should follow into a separate patch.
+
+I can combine these two patches into one, is this Ok for you?
+
+-- 
+Yixun Lan (dlan)
 
