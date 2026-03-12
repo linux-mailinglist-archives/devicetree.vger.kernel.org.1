@@ -1,232 +1,220 @@
-Return-Path: <devicetree+bounces-274680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274683-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OEmAA43gsmncQQAAu9opvQ
-	(envelope-from <devicetree+bounces-274680-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:49:33 +0100
+	id GNlmFrrgsmncQQAAu9opvQ
+	(envelope-from <devicetree+bounces-274683-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:50:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62025274D9B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:49:32 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC84A274DE5
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:50:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C537D30BDF38
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:47:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 36A91300DCC9
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:50:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2020E3E9F76;
-	Thu, 12 Mar 2026 15:47:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A1A63B4EB7;
+	Thu, 12 Mar 2026 15:50:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="z1CgqqrH"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="MhOXyCHF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF9A03EAC7E;
-	Thu, 12 Mar 2026 15:47:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE217397E90
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 15:50:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773330465; cv=none; b=C+ZEEccE8xuHBL+FoMaFzBGhY5ataPN3is2N3hUYzRcbwL+z7p8D+1iZMtgRT11jg9lTaVvJKsrGPW9fwkSnWifCd+Ny0xVmZrOIXQ7czqnZylKUntkDkFJOH0p5lw4M4hFGhhxw/sb9fN81vgZopXySMYm4/Sg6GEDqLAn3iwY=
+	t=1773330615; cv=none; b=s9k3Vay7ZPoIQKhV09x9FkhepwWPvCrhrO40zcZA/0CUVyqTBFDbDQfDS5CodFS24EUnYoOs/sryQjRIjqOx9gZBOFfUW8Qhayo4ThfnY/XLQ2Z2q65va7o2sp9D6Tsh+MCbHNSJNZU4U3JrWYWZ+eRi06Gqha0xIseSjdgMCsw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773330465; c=relaxed/simple;
-	bh=5ULr6tJJzyY/DrcbWDQ0hkJZQDSafRCCnWgh54WBlH0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
-	 References:In-Reply-To; b=dctSXxgBUTJHTflW8J1Dt+t67Xl3R7ExBR3N3uX841BUKUxSfXP1WrMGqlXkziUC6CskJPVe6Xoy+7uXcusqN5mFwhIf5QIJ320XtQtbJlspMhe4bVlAbaTrQABv/VhHfMd9Pa6LErGpGJiPpQJHWfqU0yE+rrcZBTxNFekaYNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=z1CgqqrH; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 875E1C415AB;
-	Thu, 12 Mar 2026 15:48:00 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id BE9836001B;
-	Thu, 12 Mar 2026 15:47:38 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BD33E10369581;
-	Thu, 12 Mar 2026 16:47:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1773330457; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=PT5kIaEDNi9/vOuV4B9O1BBff9a0zdlhj//IW73rDP4=;
-	b=z1CgqqrHXgfJP3ikQMvIN1lXwJbF31afdY/+Bs/ZevuP6M9m67f4KsjjAeI/8A50sXWq7U
-	KFoAmiQyuKj/b8IiSUmqirkt6AB0o8e2/e7bi/i1QDD/Sz3bh08eKCOCxQt+a7SBLgAsac
-	vvf5XEBWeYBQSYJH+1RmcwFN6p4QXusRJ30dM0u/JrcQnb2o0T9ShOvtTcl4y7Tb2EceM5
-	a6jiVhah/32vREcm7yTMRdwoEvxQL9pSn86Q/MnMN7XtfPCjtPAakPa2aBbHtcmwNzqFCz
-	ntZTuBcahSQ5ulqTgUf/+aaK99ggPSxfi6paY6e7QLk/xzTr0dqWV3cq6LgL/g==
+	s=arc-20240116; t=1773330615; c=relaxed/simple;
+	bh=6jsNMOL+D8KolGRI7DunLwHkPvgs8sfX18pRqxzELco=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=V8rDzIbWhmlh+r+axlqyiktjNDq8Lt7uGCKMcb9xBxP0NsmZ0xO5+Qd4m4WwkOxSO+qmxM0hQNIKIqczRjJooSdsRpDcfZ27Vj3ceefE28nf6GoxIJKOvLdoNlaHiWXhY3GlX5CIm2oLbFev2N/fajOolF0gxgFIjugbVuMExkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=MhOXyCHF; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-485409ab264so8461855e9.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 08:50:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1773330607; x=1773935407; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KeehGpxCmRtRJHUVE1AIUDSSmmOUpqcmolBf5xwx4fM=;
+        b=MhOXyCHF4a1KmI1jIGuDWgNsWEtL3+v8pOGYrt011h/sQC/g1jwEGWqYZ0kwJWeDQW
+         iQfdi1qnS8ycNxAuotBQLVppoBWphQ2rfLyWgTadsOsVP/v0KbHWX+oR9xnMiB7cHGN9
+         p2C9rGxeJKLYjBGAIxnA3o+gwV9gZmwA71e/NqPiwfOIzrn0WKimDWSXlUFEpodovssr
+         AwErWjD0mg0x/nxjArnAfMZ34h1DqS47mgcJkYMVow4WrEdJsgGTqf2iNxRTzSi56D9r
+         BG7ATsaZzZdV9TTLNIBDjymUF00jsS62A0gXuXEkJTZXlrRfhiU/SaUC0Xf32jsVbleI
+         SqkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773330607; x=1773935407;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KeehGpxCmRtRJHUVE1AIUDSSmmOUpqcmolBf5xwx4fM=;
+        b=B/5u92pysHB/LbIjEiKdzA+MVWKBXmlsherWSjO/kgLW5E1gzsimFFjQNQr3qhlzum
+         MATFoWjj+kKKddqYHgFXJ8BcLl/VLfOVsEUekO05r9MONRPxCpgbqX9Kbag1peFN9p1d
+         6LdM5rMahhVYG+JaKGuC65F0AF0BJgTVvZE6YgMjQQCwpBxsk/ue2adof3ajNqaZw32B
+         wxGsW29Es/bTx5zANKosBDc3CulaBIEwfkk12S/Z1vJ1gKHN226ClkA8uEUDRnMuNsqH
+         9zMANu7rNDsXiOScUQvAkaeiT538QzovVIO9EsrRpmf6Jl4bwBvMyVbHyl4LpcYQuU6d
+         Fc1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUEytUvJ5jY9EYdlo0fBwLtIaXg2avhzGMMNFQXK/EXDNK2Tgep734YVsT9F8Ir48A4ZB+fDen3PsBo@vger.kernel.org
+X-Gm-Message-State: AOJu0YyyZnNlUx6fxWunzucj761fOEZDY/dPzicJy6wBj+j6+Lb2HVGL
+	6EkpjqW0s7TiUorxy6B7apP/DNlDbAtmb/8Jq5ztYSnupmQcUmcxLHCNmim21uijhkY=
+X-Gm-Gg: ATEYQzwy4xoL/yJQclk/kePIKTz4dAVxBlWxDUsquQQ2rnFHUQS1xFPb/BdkQeLubPw
+	kkktpgiJsh0j1yqF3ThKoFsLkPdPmTMH5eFezI1ZTEQYRfKg84UCwhQP7FB0z+CFeFS+BaxtM38
+	rJ5QNALkXgbNf7jRArUeS/TdUkrrrhteRfGMIRz0D0KF9UV5yO3KpdaaxGdUM0JGx/Pwjs+LyGy
+	qJ0E+QQGNwODduT+5OzL7NHUwQ10V95A9P8Yf/liwgRFavzezIDcWXxDJPeQI0js/z47EW6r9Bz
+	pAZ4CW/uVbdJ1Zg66JYQiVG8bNg7omz1T/kagCZLGUODjS7q/YYTjLKo4ToWl6f1MpiufkN7//q
+	nS9wmWWJ5NKukX08TDu3yYcAO+F3tYmV9HRHMekgLDXwhZCWnM6uihPljCOGssy6mGBq/8jyBPx
+	9M7JEOOTHvnVn0U2bbttWq
+X-Received: by 2002:a05:600c:1f0f:b0:485:3f58:da2 with SMTP id 5b1f17b1804b1-48555b4b087mr2534445e9.16.1773330606655;
+        Thu, 12 Mar 2026 08:50:06 -0700 (PDT)
+Received: from localhost ([2001:4090:a244:8139:5278:cf5a:3494:5e80])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4854e67ea40sm98150185e9.7.2026.03.12.08.50.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Mar 2026 08:50:06 -0700 (PDT)
+From: "Markus Schneider-Pargmann (TI)" <msp@baylibre.com>
+Subject: [PATCH v2 0/8] arm64: dts: ti: k3-am62a7-sk: Split r5f memory
+ region
+Date: Thu, 12 Mar 2026 16:48:54 +0100
+Message-Id: <20260312-topic-am62a-ioddr-dt-v6-19-v2-0-37cb7ceec658@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 12 Mar 2026 16:47:33 +0100
-Message-Id: <DH0X6JQP0ZIW.3F4LJLIEMWH8M@bootlin.com>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-Subject: Re: [PATCH v2 2/2] drm: bridge: ti-sn65dsi83: Add support for
- dual-link LVDS video mode
-Cc: <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
- <jernej.skrabec@gmail.com>, <maarten.lankhorst@linux.intel.com>,
- <mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
- <simona@ffwll.ch>, <robh@kernel.org>, <krzk+dt@kernel.org>,
- <conor+dt@kernel.org>, <marex@denx.de>, <valentin@compulab.co.il>,
- <philippe.schenker@toradex.com>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-To: "Sudarshan Shetty" <tessolveupstream@gmail.com>,
- <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>
-X-Mailer: aerc 0.20.1
-References: <20260312043743.261475-1-tessolveupstream@gmail.com>
- <20260312043743.261475-3-tessolveupstream@gmail.com>
-In-Reply-To: <20260312043743.261475-3-tessolveupstream@gmail.com>
-X-Last-TLS-Session-Version: TLSv1.3
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGbgsmkC/33NQQ6CMBCF4auQrh0zHQxVV97DsGjpIJOIJS1pJ
+ IS7W3Hv8n+L760qcRRO6lqtKnKWJOFVgg6V6gb7ejCIL60IqUHSCHOYpAM7NmRBgvcR/Ay5AX0
+ B9NYYTXjW3qgCTJF7ee/4vS09SJpDXPavrL/rj62x/sdmDQiaejbk3Ak93ZxdnuIiH7swqnbbt
+ g/0ods9xwAAAA==
+X-Change-ID: 20260210-topic-am62a-ioddr-dt-v6-19-0da7712081d7
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Suman Anna <s-anna@ti.com>, 
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Tero Kristo <kristo@kernel.org>
+Cc: Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Dhruva Gole <d-gole@ti.com>, Sebin Francis <sebin.francis@ti.com>, 
+ Kendall Willis <k-willis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>, 
+ linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ "Markus Schneider-Pargmann (TI)" <msp@baylibre.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3504; i=msp@baylibre.com;
+ h=from:subject:message-id; bh=6jsNMOL+D8KolGRI7DunLwHkPvgs8sfX18pRqxzELco=;
+ b=owGbwMvMwCXWejAsc4KoVzDjabUkhsxNDzJ+ra8/MHX3rUrnxOPRp/fzLI+3fvHEc2HpyWdtO
+ wKEtVTjOkpZGMS4GGTFFFk6E0PT/svvPJa8aNlmmDmsTCBDGLg4BWAiTKsYGS7lfJ/59qBRTkvn
+ i/IstgU3F/IY9c+6tudMDJOCWI1/vAgjw+LiT/8V0hneBy2T2mG/LCLIwaFvmfVThzN71CpLXQ9
+ 1MgMA
+X-Developer-Key: i=msp@baylibre.com; a=openpgp;
+ fpr=BADD88DB889FDC3E8A3D5FE612FA6A01E0A45B41
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274680-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274683-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,intel.com,linaro.org,kernel.org];
-	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,denx.de,compulab.co.il,toradex.com,lists.freedesktop.org,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	DMARC_NA(0.00)[baylibre.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[msp@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:mid,bootlin.com:url]
-X-Rspamd-Queue-Id: 62025274D9B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,baylibre.com:email,baylibre.com:mid,baylibre-com.20230601.gappssmtp.com:dkim]
+X-Rspamd-Queue-Id: EC84A274DE5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello Sudarshan,
+Hi,
 
-On Thu Mar 12, 2026 at 5:37 AM CET, Sudarshan Shetty wrote:
-> Some LVDS panels operating in dual-link mode require adjusted
-> horizontal timing parameters when programmed into the SN65DSI84
-> bridge. According to TI documentation, horizontal timing values
-> must be divided by two when operating in dual-link mode. Without
-> this adjustment, the panel may fail to display or produce corrupted
-> output.
->
-> Add support for an optional DT property "ti,dual-link-video-mode"
-> to enable configuration required for dual-link LVDS operation.
-> These settings ensure correct LVDS output for panels that require
-> this mode of operation.
->
-> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
-> ---
->  drivers/gpu/drm/bridge/ti-sn65dsi83.c | 52 ++++++++++++++++++++++++---
->  1 file changed, 48 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/brid=
-ge/ti-sn65dsi83.c
-> index f6736b4457bb..9b7d35487bd8 100644
-> --- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-> +++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-> @@ -164,6 +164,7 @@ struct sn65dsi83 {
->  	int				irq;
->  	struct delayed_work		monitor_work;
->  	struct work_struct		reset_work;
-> +	bool				dual_link_video_mode;
+Split the firmware memory region in more specific parts so it is better
+described where which information is stored. Specifically the LPM metadata
+region is important as bootloader software like U-Boot has to know where
+that data is to be able to read that data and resume from RAM.
 
-As said in the reply to patch 1, there is already 'bool lvds_dual_link'
-carrying the same info.
+IO+DDR is a deep sleep state in which a few pins are set to be sensitive
+for wakeup while the DDR is kept in self refresh. Everything else is
+powered off.
 
->  static const struct regmap_range sn65dsi83_readable_ranges[] =3D {
-> @@ -667,8 +668,43 @@ static void sn65dsi83_atomic_pre_enable(struct drm_b=
-ridge *bridge,
->  		     mode->hsync_start - mode->hdisplay);
->  	regmap_write(ctx->regmap, REG_VID_CHA_VERTICAL_FRONT_PORCH,
->  		     mode->vsync_start - mode->vdisplay);
-> -	regmap_write(ctx->regmap, REG_VID_CHA_TEST_PATTERN, 0x00);
->
-> +	/*
-> +	 * In dual-link LVDS mode, the SN65DSI84 requires the horizontal
-> +	 * timing parameters to be adjusted before being programmed into
-> +	 * the device. According to TI documentation, the horizontal timing
-> +	 * values must be divided by two when operating in dual-link mode.
-> +	 * Without this adjustment, the connected panel may fail to light up
-> +	 * or display corrupted output.
-> +	 *
-> +	 * TI also provides recommended register settings for this mode,
-> +	 * which were derived using the TI DSI-Tuner tool. When the optional
-> +	 * DT property "ti,dual-link-video-mode" is present, apply these
-> +	 * configuration settings to ensure correct dual-link LVDS operation.
-> +	 */
-> +	if (ctx->dual_link_video_mode) {
-> +		regmap_write(ctx->regmap, REG_RC_LVDS_PLL, 0x05);
-> +		regmap_write(ctx->regmap, REG_RC_PLL_EN, 0x00);
-> +		regmap_write(ctx->regmap, REG_DSI_CLK, 0x53);
-> +		regmap_write(ctx->regmap, REG_LVDS_FMT, 0x6f);
-> +		regmap_write(ctx->regmap, REG_LVDS_VCOM, 0x00);
-> +		regmap_write(ctx->regmap,
-> +			     REG_VID_CHA_VERTICAL_DISPLAY_SIZE_LOW, 0x00);
-> +		regmap_write(ctx->regmap,
-> +			     REG_VID_CHA_VERTICAL_DISPLAY_SIZE_HIGH, 0x00);
-> +		regmap_write(ctx->regmap,
-> +			     REG_VID_CHA_HSYNC_PULSE_WIDTH_LOW, 0x10);
-> +		regmap_write(ctx->regmap,
-> +			     REG_VID_CHA_HORIZONTAL_BACK_PORCH, 0x28);
-> +		regmap_write(ctx->regmap,
-> +			     REG_VID_CHA_VERTICAL_BACK_PORCH, 0x00);
-> +		regmap_write(ctx->regmap,
-> +			     REG_VID_CHA_HORIZONTAL_FRONT_PORCH, 0x00);
-> +		regmap_write(ctx->regmap,
-> +			     REG_VID_CHA_VERTICAL_FRONT_PORCH, 0x00);
-> +	}
+The changes in this series were suggested as part of the IO+DDR u-boot series:
+  https://lore.kernel.org/r/814c211f-a9eb-4311-bb84-165b1a69755f@ti.com
 
-I guess these hard-coded values are sepcific to your panel. They must
-instead be computed based on the timings in order to work for every panel.
+There are currently no real users of the memory-region that is split in
+this series. The size of the memory-region in total stays the same.
+The new layout is derived from the software running on the r5f
+processor:
+  https://github.com/TexasInstruments/mcupsdk-core-k3/blob/k3_main/examples/drivers/ipc/ipc_rpmsg_echo_linux/am62ax-sk/r5fss0-0_freertos/ti-arm-clang/linker.cmd#L172
+  https://github.com/TexasInstruments/mcupsdk-core-k3/blob/k3_main/source/drivers/device_manager/sciclient.h#L459
 
-> +
-> +	regmap_write(ctx->regmap, REG_VID_CHA_TEST_PATTERN, 0x00);
->  	/* Enable PLL */
->  	regmap_write(ctx->regmap, REG_RC_PLL_EN, REG_RC_PLL_EN_PLL_EN);
->  	usleep_range(3000, 4000);
-> @@ -965,9 +1001,15 @@ static int sn65dsi83_host_attach(struct sn65dsi83 *=
-ctx)
->
->  	dsi->lanes =3D dsi_lanes;
->  	dsi->format =3D MIPI_DSI_FMT_RGB888;
-> -	dsi->mode_flags =3D MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-> -			  MIPI_DSI_MODE_VIDEO_NO_HFP | MIPI_DSI_MODE_VIDEO_NO_HBP |
-> -			  MIPI_DSI_MODE_VIDEO_NO_HSA | MIPI_DSI_MODE_NO_EOT_PACKET;
-> +	if (ctx->dual_link_video_mode)
-> +		dsi->mode_flags =3D MIPI_DSI_MODE_VIDEO;
-> +	else
-> +		dsi->mode_flags =3D MIPI_DSI_MODE_VIDEO |
-> +				  MIPI_DSI_MODE_VIDEO_BURST |
-> +				  MIPI_DSI_MODE_VIDEO_NO_HFP |
-> +				  MIPI_DSI_MODE_VIDEO_NO_HBP |
-> +				  MIPI_DSI_MODE_VIDEO_NO_HSA |
-> +				  MIPI_DSI_MODE_NO_EOT_PACKET;
+Additionally the two important devicetree nodes for resuming from IO+DDR
+have the bootph-pre-ram flag added as this data needs to be read before
+the RAM is in use.
 
-There is no explanation about this, can you elaborate on why?
+Best
+Markus
 
-I'm working on bringing up a dual-LVDS panel on a board with the SN65DSI84,
-and the removing MIPI_DSI_MODE_VIDEO_BURST seems to help, but I still have
-no idea why. Should you have any info, maybe from TI, it would be very
-interesting.
+Signed-off-by: Markus Schneider-Pargmann (TI) <msp@baylibre.com>
+---
+Changes in v2:
+- Make memory-region-names required if memory-region is present
+- Fixup memory-region and memory-region-names conditions. Require either
+  2 or 6 regions for memory-region and memory-region-names
+- Reword and restructure the binding documentation for memory-region and
+  memory-region-names
+- Add memory-region-names to all uses of memory-region
+- Link to v1: https://lore.kernel.org/r/20260303-topic-am62a-ioddr-dt-v6-19-v1-0-12fe72bb40d2@baylibre.com
 
-Luca
+---
+Markus Schneider-Pargmann (TI) (8):
+      dt-bindings: remoteproc: k3-r5f: Split up memory regions
+      dt-bindings: remoteproc: k3-r5f: Add memory-region-names
+      arm64: dts: ti: k3-am62a7-sk: Split r5f memory region
+      arm64: dts: ti: k3-am62p5-sk: Split r5f memory region
+      arm64: dts: ti: k3-am62a7-sk: Add r5f nodes to pre-ram bootphase
+      arm64: dts: ti: k3-am62p5-sk: Add r5f nodes to pre-ram bootphase
+      arm64: dts: ti: k3: Use memory-region-names for r5f
+      dt-bindings: remoteproc: k3-r5f: Require memory-region-names
 
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+ .../bindings/remoteproc/ti,k3-r5f-rproc.yaml       | 55 ++++++++++++++++++----
+ .../arm64/boot/dts/ti/k3-am62-ti-ipc-firmware.dtsi |  1 +
+ .../boot/dts/ti/k3-am62a-ti-ipc-firmware.dtsi      |  2 +
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts            | 42 ++++++++++++++++-
+ .../boot/dts/ti/k3-am62p-ti-ipc-firmware.dtsi      |  2 +
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts            | 42 ++++++++++++++++-
+ .../arm64/boot/dts/ti/k3-am64-ti-ipc-firmware.dtsi |  4 ++
+ .../arm64/boot/dts/ti/k3-am65-ti-ipc-firmware.dtsi |  2 +
+ .../boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi      |  4 ++
+ .../boot/dts/ti/k3-j721e-ti-ipc-firmware.dtsi      |  6 +++
+ .../boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi     |  6 +++
+ .../boot/dts/ti/k3-j722s-ti-ipc-firmware.dtsi      |  3 ++
+ .../k3-j784s4-j742s2-ti-ipc-firmware-common.dtsi   |  8 ++++
+ 13 files changed, 163 insertions(+), 14 deletions(-)
+---
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+change-id: 20260210-topic-am62a-ioddr-dt-v6-19-0da7712081d7
+
+Best regards,
+-- 
+Markus Schneider-Pargmann (TI) <msp@baylibre.com>
+
 
