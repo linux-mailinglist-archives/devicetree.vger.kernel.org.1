@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-274743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274746-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +IhlMtYAs2mQRQAAu9opvQ
-	(envelope-from <devicetree+bounces-274743-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 19:07:18 +0100
+	id 6BUBKfX/smmQRQAAu9opvQ
+	(envelope-from <devicetree+bounces-274746-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 19:03:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FB9B277002
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 19:07:18 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AD80276F44
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 19:03:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 286233007F6B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:03:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 508943076483
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:03:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A38A83FB06F;
-	Thu, 12 Mar 2026 18:03:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77E623FEB2E;
+	Thu, 12 Mar 2026 18:03:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="UMh1lMPj"
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="vn0a2vs+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 572783F99CC;
-	Thu, 12 Mar 2026 18:03:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BDD83F0AB2;
+	Thu, 12 Mar 2026 18:03:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773338595; cv=none; b=Nb+SeQKRDxgyirx8FiKm4KIJXf6hk5bGVCGobAhhJUdMXXgrOV8O7JgtxiDRQYoxLnHXUSUMEBG9qDi4iIIaKvnTn8Hf6e9XxYVzkoSlKBEYK9SFrAAk4ZAzb8ONghCBR3sSWNczhE5FTD0WrXxOUUvNTd4TlLSnIN8SC4YODdU=
+	t=1773338596; cv=none; b=OVW7qi8FuO70JgZhjWsUTyjgGwlCFiwQSf0m53gkzYELA8LsspYGgfMzUotp7ssulAYwWVRxOCwnJiTLa25dmXe2Nm8XBY3a3icl0N5/06d0tWY32IyXb3vdyhjoPfQf0GZCX+LBjzk/cgiyFRNV3M1hYneP1+0OXqITHXOYTXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773338595; c=relaxed/simple;
-	bh=IcACeMg0kt3M488B3RO6EQz0azJ/9JETPLl4xl/Uxok=;
+	s=arc-20240116; t=1773338596; c=relaxed/simple;
+	bh=n1FmeZJ0LAJrVH+JNC8lQlQ+2wXSuPOhvL9O4T64vBs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=R5q+E/GRHB2Ml6VCfd28VMQhhOp97/1BVJGS8iF3IpY1hfVrKLT+Gfx0x2aBG5Lvnm9MTPqxgt06vnaISn3U4KMWlFn1Rw44gsvM/hIoXJLpaLivJtbM9TXDUQ+6el06rencZ/8K8Bi4U4Cp2uJ8jm7IlNN1xT6/tiwqAqMJeLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=fail (0-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=UMh1lMPj reason="key not found in DNS"; arc=none smtp.client-ip=162.243.120.170
+	 MIME-Version; b=s+RoT/BVq0D2nJ37xAxfGK396h3lFgrpnpqnYzH1bqXQgSEszxk4+1yy5E/sAgKke4yuPQKAKZ/Cy3u04dyXPGols5drVUwFmnn1am0uWxuyTuHrFWPr9Q2m54ns5LXsBN0n7SwB2/x5BKZXMov/HOX3aoccw4sLlcqMzGVAJjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=fail (0-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=vn0a2vs+ reason="key not found in DNS"; arc=none smtp.client-ip=162.243.120.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
 	; s=default; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject
 	:Cc:To:From:subject:date:message-id:reply-to;
-	bh=771mNE44sHQhC5rmXckx2CaBH1T0oXxmMruW/wkQt0o=; b=UMh1lMPjQBQYsTSLf3MUG0Xw4x
-	WRhhPsI3rPMDOqRsYjnSOjN1wY1GO/fVEVqIK8Vk6t5VNYQy+p16cQWyypzfq3sfP7xwhG4qBC8DH
-	utCIax06mi4t97EmuCLymZIm4W3nY39hFod7MYvy2E+ni6WsY/EDQkG2oGoNuSPeoStg=;
+	bh=YIoIaMLukKrJmxdba5RsTgmbYSp25mplp/E+QiIZI9I=; b=vn0a2vs++I//3Jb8kibo9O0B5G
+	jW7cIwvT2Db800xcCpVl+k13w/i7g27cjxsL31MIbKC0XSFP29FDRojsU5DlkFuYCa9upPclAetpq
+	1pm9mwetJpsSzlq+mX42XRahAcS2TZHQuyZyDfTEcGSUQOID300D2nfNqZwbJ2FMkHvQ=;
 Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168] helo=pettiford.lan)
 	by mail.hugovil.com with esmtpa (Exim 4.98.2)
 	(envelope-from <hugo@hugovil.com>)
-	id 1w0kNL-000000008Fl-0QLo;
-	Thu, 12 Mar 2026 14:03:11 -0400
+	id 1w0kNM-000000008Fl-1kOZ;
+	Thu, 12 Mar 2026 14:03:12 -0400
 From: Hugo Villeneuve <hugo@hugovil.com>
 To: robin@protonic.nl,
 	andy@kernel.org,
@@ -67,9 +67,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org,
 	hugo@hugovil.com
-Subject: [PATCH v5 2/4] dt-bindings: input: add settling-time-us common property
-Date: Thu, 12 Mar 2026 14:00:56 -0400
-Message-ID: <20260312180304.3865850-3-hugo@hugovil.com>
+Subject: [PATCH v5 3/4] dt-bindings: input: add GPIO charlieplex keypad
+Date: Thu, 12 Mar 2026 14:00:57 -0400
+Message-ID: <20260312180304.3865850-4-hugo@hugovil.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260312180304.3865850-1-hugo@hugovil.com>
 References: <20260312180304.3865850-1-hugo@hugovil.com>
@@ -87,19 +87,19 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCPT_COUNT_TWELVE(0.00)[21];
-	TAGGED_FROM(0.00)[bounces-274743-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274746-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[hugovil.com];
 	RCVD_COUNT_THREE(0.00)[4];
 	R_DKIM_PERMFAIL(0.00)[hugovil.com:s=default];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[protonic.nl,kernel.org,linux-m68k.org,gmail.com,dimonoff.com,collabora.com,blala.de];
-	NEURAL_SPAM(0.00)[0.156];
+	NEURAL_SPAM(0.00)[0.495];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
@@ -109,41 +109,137 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[hugovil.com:mid,dimonoff.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0FB9B277002
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[hugovil.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 5AD80276F44
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-Add common property that can be reused by other bindings.
+Add DT bindings for GPIO charlieplex keypad.
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 ---
- Documentation/devicetree/bindings/input/input.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ .../input/gpio-charlieplex-keypad.yaml        | 108 ++++++++++++++++++
+ 1 file changed, 108 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
 
-diff --git a/Documentation/devicetree/bindings/input/input.yaml b/Documentation/devicetree/bindings/input/input.yaml
-index 502e0b7eb500a..64d1c46cb2f2a 100644
---- a/Documentation/devicetree/bindings/input/input.yaml
-+++ b/Documentation/devicetree/bindings/input/input.yaml
-@@ -66,6 +66,14 @@ properties:
-       reset automatically. Device with key pressed reset feature can specify
-       this property.
- 
-+  settling-time-us:
-+    description:
-+      Delay, in microseconds, when activating an output line/col/row before
-+      we can reliably read other input lines that maybe affected by this
-+      output. This can be the case for an output with a RC circuit that affects
-+      ramp-up/down times.
-+    default: 0
+diff --git a/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml b/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
+new file mode 100644
+index 0000000000000..c085de6dab854
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
+@@ -0,0 +1,108 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
 +
- dependencies:
-   linux,input-type: [ "linux,code" ]
- 
++$id: http://devicetree.org/schemas/input/gpio-charlieplex-keypad.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: GPIO charlieplex keypad
++
++maintainers:
++  - Hugo Villeneuve <hvilleneuve@dimonoff.com>
++
++description: |
++  The charlieplex keypad supports N^2)-N different key combinations (where N is
++  the number of I/O lines). Key presses and releases are detected by configuring
++  only one line as output at a time, and reading other line states. This process
++  is repeated for each line. Diodes are required to ensure current flows in only
++  one direction between any pair of pins, as well as pull-up or pull-down
++  resistors on all I/O lines.
++  This mechanism doesn't allow to detect simultaneous key presses.
++
++  Wiring example for 3 lines keyboard with 6 switches and 3 diodes (pull-up/down
++  resistors not shown but needed on L0, L1 and L2):
++
++  L0  --+---------------------+----------------------+
++        |                     |                      |
++  L1  -------+-----------+---------------------+     |
++        |    |           |    |                |     |
++  L2  -------------+----------------+-----+    |     |
++        |    |     |     |    |     |     |    |     |
++        |    |     |     |    |     |     |    |     |
++        |  S1 \  S2 \    |  S3 \  S4 \    |  S5 \  S6 \
++        |    |     |     |    |     |     |    |     |
++        |    +--+--+     |    +--+--+     |    +--+--+
++        |       |        |       |        |       |
++        |    D1 v        |    D2 v        |    D3 v
++        |       - (k)    |       - (k)    |       - (k)
++        |       |        |       |        |       |
++        +-------+        +-------+        +-------+
++
++  L: GPIO line
++  S: switch
++  D: diode (k indicates cathode)
++
++allOf:
++  - $ref: input.yaml#
++  - $ref: /schemas/input/matrix-keymap.yaml#
++
++properties:
++  compatible:
++    const: gpio-charlieplex-keypad
++
++  autorepeat: true
++
++  debounce-delay-ms:
++    default: 5
++
++  line-gpios:
++    description:
++      List of GPIOs used as lines. The gpio specifier for this property
++      depends on the gpio controller to which these lines are connected.
++
++  linux,keymap: true
++
++  poll-interval: true
++
++  settling-time-us: true
++
++  wakeup-source: true
++
++required:
++  - compatible
++  - line-gpios
++  - linux,keymap
++  - poll-interval
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/input/input.h>
++
++    keyboard {
++        compatible = "gpio-charlieplex-keypad";
++        debounce-delay-ms = <20>;
++        poll-interval = <5>;
++        settling-time-us = <2>;
++
++        line-gpios = <&gpio2 25 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)
++                      &gpio2 26 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)
++                      &gpio2 27 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
++
++        /* MATRIX_KEY(output, input, key-code) */
++        linux,keymap = <
++            /*
++             * According to wiring diagram above, if L1 is configured as
++             * output and HIGH, and we detect a HIGH level on input L0,
++             * then it means S1 is pressed: MATRIX_KEY(L1, L0, KEY...)
++             */
++            MATRIX_KEY(1, 0, KEY_F1) /* S1 */
++            MATRIX_KEY(2, 0, KEY_F2) /* S2 */
++            MATRIX_KEY(0, 1, KEY_F3) /* S3 */
++            MATRIX_KEY(2, 1, KEY_F4) /* S4 */
++            MATRIX_KEY(1, 2, KEY_F5) /* S5 */
++            MATRIX_KEY(0, 2, KEY_F6) /* S6 */
++        >;
++    };
 -- 
 2.47.3
 
