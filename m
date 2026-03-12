@@ -1,239 +1,302 @@
-Return-Path: <devicetree+bounces-274711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274712-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qAx6MGnpsmljQwAAu9opvQ
-	(envelope-from <devicetree+bounces-274711-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:27:21 +0100
+	id AAOXBizrsmnAQwAAu9opvQ
+	(envelope-from <devicetree+bounces-274712-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:34:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6734D275919
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:27:21 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21917275ABD
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:34:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C834A300D77C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:27:20 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5EC763064D96
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:29:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8F0B3F87E6;
-	Thu, 12 Mar 2026 16:27:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D3E13246EB;
+	Thu, 12 Mar 2026 16:29:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NPxyPH1U"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pudbPVFV";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XsllUISW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B23463F7E64
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 16:27:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773332837; cv=pass; b=ZFkSkal/J4hXeVPLdonDZBzlQzkv3+KGEyMKPAwQbtMikplNsRL2SPOt5DIHzWlG1YXe5OHaJKlksHsMzpevMunIwyT16OCqjd3mZtueOPWJkQGC66RYnhgO8fD8mxHEJihyBZFSka8jIkEmnkF7q9pXXk0nLxoTL69MJzqjGMM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773332837; c=relaxed/simple;
-	bh=uJhH0lI1sVgit2CkGLU8u1v8dwsbJYGM2kBA3mKuxJ4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IhuZoQlqekcCCv93f5/JUIgKdtR22jVoaLnVcQQj8IJfyDwreIwBg7Lcesv8X9qGXHorc+AidxI+iV2WUYHli5lRN2Hkas/IiwmBWEmjTPIENJSGsnagh8w/WwMom1DVUIwL/MX2f5hng9ca3gGFyhSvlaJXD34y1Hu0cHPskQ0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NPxyPH1U; arc=pass smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-439b94a19fdso1200187f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 09:27:11 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773332830; cv=none;
-        d=google.com; s=arc-20240605;
-        b=IFSCszenKKM9rRMPa6uZS4WOG4ACVgbr6gJv3P2q1RxcR1EEQME/w3/5dclFuQqdrW
-         TN6GKzqxf9ksw/p62gYeYdFSvB08WMiJzPemfA2F23aBZHwRHx9axP/BCyZnymbn5Njb
-         8LK3pTCzZL6lxziAfjGSkKePtoC/NfzX5UFr1ABdoqRDbkKF4ZriWnQoLTij2nfTq1Ff
-         o+d7EY01Z+Odnaudo+KXpjxIkzPvmedZqQMneIuvmqhanyTsChWei5R6bUIQqHM1Ct3+
-         gNu45PVDThTp9HggjFcGs3CkJjrYsbDfN8ZkxoMZqEyHTN41v4tBkXHytBrSDIHyynoI
-         U8og==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=I7Vb1PKX3Lf9CJi8XSxHNY/kA1vBSZWZueHJy5RvI9M=;
-        fh=KY49T0NUqKI6pYXBeyUZXimOHHL4y2n9Ce/aTlSINs8=;
-        b=lLrW4hmpM/4ZyfJIULiyBZkDe9eYLmiMHQteCPxTurECbZyNLTJyjWGIIdyZvS2KDP
-         baKvJnFX+Ed0dyoxHwEFNBEyxp911MBUpTo2QjQx+HUujQT29ne8M0MdGzRLyICxpif4
-         O3FHHHLg/RxYWFKaeYZchyhzlK45+RZX6tQzC63wVGNLwNJDWLUGvaSV9/UAlngZl8MI
-         Ro7ZgrfJN8aglrxjAawQluJsFF89DeF6t+oGHXQV/QG/bRJ4iNtX9USFcayMu8edvh26
-         L02QWWvKG0K367hHAMar31Zdbd7Q+zAMRCmPj99LB5zVIHqPvgx0jnzd/tYrvXb9Pwj8
-         aBIA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 262E23F99D3
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 16:29:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773332976; cv=none; b=oNLtCHpdwDDoRpFt2hJnCbW3/Oh27bGY1g3XakKWDt7e0lzSAXdhvHpYHBaZJmbq7FpkoMepDF0jpXWeBp1bqF27QdLlrjlHc2vVf2K+yoa4ZFut3vxpG+QoQk2/ZxC5duLaR3ayE/LAoPEL5hb426dzs8Ci4NZBrbgivjZNj2Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773332976; c=relaxed/simple;
+	bh=vDJh9D+J/f126swwFBr0k9vo1Zcg9E6qqLIgFAnXEyw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=dr5WvRN0ZD6pGB48Yc4bdgMJu8STjGKri5JUM2McQ3czJAje22s3bnhCt086SY7on/ovFiCgvXoFI8vqyTwDh6kFEkVL2oXHGD2zmPjRjlU8VxeLiHsaP2IU66fVZvBpyNtJ3Zg+yVOC8K4Mx+fm/FPgwnoUao2QG8omBfZI6H8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pudbPVFV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XsllUISW; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62C9w1nc3666500
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 16:29:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	z1pAuYDK8sre9nhu6GxcwknUeONHyMaKI9ugJiqJNXA=; b=pudbPVFV0/hXzm3n
+	JNYF1RDINA8xCAOMBHUbxF5PHAqERkuY8xxN260r+gJl+cswCNtAUkHrnuQnjq9g
+	rLWy+pqXcZctLV+VcBy1jcdzaRHlsod8TBMC9v715Kn58+Fk1QCTd48YdMy99dY1
+	BtY7DET58QNbUF28ixDJ/zXtLCE9CvFrmy0x0sz8V5ZhitvwREyTapjbJ1UGidrs
+	YHQf64blDjaL7d7nVUwg1SD0XWb4bsB0g4InLoc+NeDvpS4tz9g6qGrXZt3jNITk
+	MawKJ7mCIiSPAPNjs/YWSP2CoO5ANKLsFjL2Rxrr+hpuniBaqttnyJblebhNuTeB
+	wVt5Xg==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cuh60ju83-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 16:29:29 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-5091782ab06so171511091cf.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 09:29:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773332830; x=1773937630; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I7Vb1PKX3Lf9CJi8XSxHNY/kA1vBSZWZueHJy5RvI9M=;
-        b=NPxyPH1UQiE56iO1J+Krg8QUq3kWeZN7ewAXlAKDSXLmD9rc8hiJXV6zw0tU7/4eTb
-         7K2JV4eNu1HVViAEQvcpPHamtWMW9R/RN8dUfZRT/xFaWFh9ziB0R5y2vk9d81IG3Wql
-         edW3lf6vaRoQETYACb7EsiIPOLgLy+DXqMWa/ba0Ly/gq0fFrd4Fe251t/u+qF2R0qAx
-         WlxFEbxFqV3HI7hNcrpjKS/KmbHQAInOSmxq7YsBwBCt9UwCRd33E91N2vZYjjCu+I2n
-         vM/xSlfa1htcXHU0nvfP4y6p4mEtMIFjElfxdykA5Ty1zJkkklrZKn+EyInyIw2oLdX5
-         IGUA==
+        d=oss.qualcomm.com; s=google; t=1773332969; x=1773937769; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=z1pAuYDK8sre9nhu6GxcwknUeONHyMaKI9ugJiqJNXA=;
+        b=XsllUISWoxrc+oDpkl3nOVYL46NVxCmKFXf4QfGCj0+9mTZCey0jxnhrSaYyozCV2h
+         qmk14t5xCSqQTo9mnPTpeRdXavc8uPTzl6Po38QvlZh6gPv+CVUDnIUUKOA6mBydZ1go
+         QSOjUX0iMThIdM1rQxlkKQzbpzYCYBWpIdUCnhoXG86s4ukWBM3z4Gdw1wqjKntYq0dO
+         LYslgeyf1GWPiQ37FkuvXlE5ONAzmoRywRJhNHj0hQsw1XHDansc/IZd97F0cN008tvo
+         KMqxWJVPGtRECgqRB2a393G02YzGtmnXz7X67lndsna6czP3bPyzNFKuo+TZ0VhcKY34
+         3p/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773332830; x=1773937630;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=I7Vb1PKX3Lf9CJi8XSxHNY/kA1vBSZWZueHJy5RvI9M=;
-        b=j3nRBh+2e7HnW3ugq1E7xuSuaeBUs/bnUu0KiYoj98kEWyN3nS54jiE5nlNE5FKQds
-         diBzOA1aEXnc/QwkaLQVeZHpQEdzaBQubbq3UG5yv2uatg0S6wB+Iln5oUVAfIp4njy4
-         KTFLQ2c3gc9i5R2F8kzReG4/o55WoxznnmxzL4KZVguJb9ekzTlBShkasbFm4fXUzI1R
-         LigpqLAn//x/ExpyMfCDoGWCGassID63e98/hOQKJRaduOTrUlyyRExPaXBirN7erfND
-         zvi/gCSiFUiZkvO65Qc8R17qdD1uWn0uJuaPgJZVbfIS5z5VOiKIFXCIDAjgUC6I3lm/
-         CTGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU4mvtNPtYQvkPlf4w0PkEpwhHFUslIASL28egdYwj/mGdKwri7AH3jmpH2Wh52eAl6Mnl1aPr1inom@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNToYmXcNSG2n9hjzPrZXO8mPe0R0JtDrzre4wfZrSrIMXWBF3
-	pRhL4wf3PfXI0S47GnXlULls2xgZInV197ePl3VoIp79O5WT7X6dhiqz3fPO+KJMS0XiYA4hG5t
-	4GXT/gm/h8lPCO6xRGG4S86a/wDCFO0Q=
-X-Gm-Gg: ATEYQzxvxgpAi9WtRwdhWHxlLMtUFYthF6p4e6+3LCXnTUWR8alNp2odZevEGkDx1Ew
-	MvfHPMKeiqlyuD0neAqEb96eZh7wkVJY79kQk4Iy2QINql9UpP1es1LsCfLa1n9uF6LfwA9GpMw
-	OGkJOc9zqprVfPG8/LksnA4ZE0QkWSrLapc8Q4/G7GfDGNehrdSEDAeA7zg/TJe4ezjMpJiZTjN
-	3asLDXZoHOgPr9lBCm0W8kQE3Nfu9dv5160NKKBrQvBNVBFxw/cFJjTf1XHGZ+NLru6ifaOepXV
-	faUMZLkk
-X-Received: by 2002:a5d:5f88:0:b0:439:b671:1d8f with SMTP id
- ffacd0b85a97d-43a04dc0ba5mr539681f8f.45.1773332829453; Thu, 12 Mar 2026
- 09:27:09 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1773332969; x=1773937769;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=z1pAuYDK8sre9nhu6GxcwknUeONHyMaKI9ugJiqJNXA=;
+        b=H5uL8qy/xs7CuCSr0oa/uXqOXhr1QxkOdZkcKty3QEtkBWtCilX8pajgP7JeD8M0mp
+         N2hd1hWUXej8rmcRFQkQBrauVSCJDzyoOVDkokq++33n6WVMUvEFtf/xSkUI5DY+/CT0
+         LJHHrFyxssYYPXk+85eOKrSo/LQeWRNMFAz5qn7UHUQ6yzwss3RN4ZJ4yM/vlnwEKg90
+         9NXQqTjZtyhApBZCNGUGBjtU/ltJCax6RrhSOe27/TLPFsvlUIVROqsuNY/ffIpxFOxI
+         5rDTnqrG2ZZUTm+uyYDHQK6jELSCnI5Bvs3KcawI2bMhsYeZxWDIajhPQzghMDRw2QHG
+         W/GQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXmso4CAwR54gN/rqDdOgBAzJSEqapslTpnTlMUilmSj/r4zxN0emt5mqWCV4+2za+2gzm6m3x3IUrf@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3+PLLrSh291rgH7DcRNEWTmvxAX33UMsHyj2ih9pgLi7juWEa
+	H7QYgrhFKnHWZcibjCx1IoDM8g+GMOIu0fNzZgA7aGmsRpJSTlbs6KroUqMaxjsZ+U2O2puJP9O
+	EgcTJYHECxErkWp+yHHN8ljlOYIeiWgeVc9kRXnPaZW3nPJtiLNQc638ag0b2nm3c
+X-Gm-Gg: ATEYQzwVMwpu1+c3Rm3XqkSuaag4RRyJJHB7HPizDfvXeiiNktAG7PaiJCPV6d5hatV
+	cUrmIHz66E0E1ZkOFkuaQf084kFZuc2qc1p40vauFT/wcA/PbqPJCzDTcjNFc0WPy2oobsYqHbT
+	O6wfq2uIqubs1ZvNisVrCNIlyEfUxKwvreGb0NSPK5puebSQauYZSPrtp9sk2gq89l8MeXWeMDD
+	wTM7raK8CzuwNJm5snfiKfh1OYXn+ljnFcOJEy1oQLXUolf4Ez42W19qqxJpc6Hqx9A7wUuZ98k
+	wCAE4YX4Qo7u4VhoP8gy7LDQqMmyvThs6Xt6RK9Jjcb4u8DF7R/ESWtcaBh4g5A+y2Wi0KJlXxJ
+	7zwFX+9BtIS01sRyJfUJHA63auKtPBGGi+9WWrG1J32V0O9eA
+X-Received: by 2002:a05:620a:2981:b0:8cd:98c1:762e with SMTP id af79cd13be357-8cdb5bb0b34mr40579185a.63.1773332969137;
+        Thu, 12 Mar 2026 09:29:29 -0700 (PDT)
+X-Received: by 2002:a05:620a:2981:b0:8cd:98c1:762e with SMTP id af79cd13be357-8cdb5bb0b34mr40575185a.63.1773332968636;
+        Thu, 12 Mar 2026 09:29:28 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.219.94])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439fe23afc5sm10571864f8f.39.2026.03.12.09.29.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Mar 2026 09:29:27 -0700 (PDT)
+Message-ID: <800fc82c-1b2f-4330-9a25-e1d067dc83ac@oss.qualcomm.com>
+Date: Thu, 12 Mar 2026 17:29:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260312085258.11431-1-clamor95@gmail.com> <20260312085258.11431-3-clamor95@gmail.com>
- <20260312152057.GA3156966-robh@kernel.org> <CAPVz0n2GFgsrqo4_MkvNwd9t=DMU4ZGQzrpNjU+PZ4_Ysx_jcg@mail.gmail.com>
- <CAL_JsqKP-uYZf3MLFd5JrrsZ1+pxj-y+te_3uiM9N+5Xu4phUQ@mail.gmail.com>
-In-Reply-To: <CAL_JsqKP-uYZf3MLFd5JrrsZ1+pxj-y+te_3uiM9N+5Xu4phUQ@mail.gmail.com>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Thu, 12 Mar 2026 18:26:57 +0200
-X-Gm-Features: AaiRm51Esg3lleAiftngJqOtXTsbfFUPZvmyUsPO32KC3v38pJrGNn7u4Fa_N7g
-Message-ID: <CAPVz0n0aTEkmb6tFn72f7O=BvJzvkJ6ri+_TmQbnroNrWQppzQ@mail.gmail.com>
-Subject: Re: [PATCH v4 2/5] dt-bindings: pinctrl: pinctrl-max77620: convert to
- DT schema
-To: Rob Herring <robh@kernel.org>
-Cc: Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, 
-	Chanwoo Choi <cw00.choi@samsung.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	linux-rtc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: PCI: fsl,imx6q-pcie: Switch to
+ undeprecated reset-gpios
+To: Sherry Sun <sherry.sun@nxp.com>, Hongxing Zhu <hongxing.zhu@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Frank Li <frank.li@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
+        "bartosz.golaszewski@linaro.org" <bartosz.golaszewski@linaro.org>
+References: <20260311154955.145120-3-krzysztof.kozlowski@oss.qualcomm.com>
+ <VI0PR04MB12114361EE728C74CEE500FED9244A@VI0PR04MB12114.eurprd04.prod.outlook.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@oss.qualcomm.com; keydata=
+ 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
+ cwzYbmi/Et7T2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <VI0PR04MB12114361EE728C74CEE500FED9244A@VI0PR04MB12114.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: mPX9_QDro6rTcK4w2egDmueecNT0_yBk
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEyMDEzMyBTYWx0ZWRfXybAWes3kRqx6
+ 5IYIkuUf8WjL3JUG8tWR+pJQkSmM+rqP7W/wibYUbKt6/gYeji1cbuk+7Tyqw8ir883NlnLqASq
+ jrej2fGZB6F/35dHQnU84UoxzXdAAUBqd6UCqEEtwz5Tpkq8efA80OrolX/LleYcrZIJDXVEHgl
+ XNiaDGq/1vwaW9Bj1yBv/px4kpjFotdI4BhiseXyJzknWMz/8dsra9SMxrkIVdBruOk/mybX2uq
+ IT6t8HGycXQKnQSRii8CzxJsvih7/wQcC3W/wiDQkabYjA0mWNkLLmUhpSm4rO+IgPt28brUnrn
+ gWNxd+7PpqZ1INTyHY/jAH0cb6p+MgfBC5LV6F9IqOUcFW/jaddsYA+akUtUUQwpp8r+mxrlSaM
+ j3Tbw+MZnIs0ex9sdSwHMFE6ndtjuCoII2xOESD0laux/8P7lmR1kBMJ5/Ei3eh0XpX5peQ2Bzz
+ WBJTBf0oplF+4R8wGsA==
+X-Authority-Analysis: v=2.4 cv=DsRbOW/+ c=1 sm=1 tr=0 ts=69b2e9e9 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=gOEeR9iKwsj33Yj5oN/cWg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
+ a=EUspDBNiAAAA:8 a=fcfTcuGm4GDwl_1-7aMA:9 a=QEXdDO2ut3YA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-GUID: mPX9_QDro6rTcK4w2egDmueecNT0_yBk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-12_02,2026-03-12_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 priorityscore=1501 impostorscore=0 suspectscore=0 adultscore=0
+ clxscore=1015 bulkscore=0 spamscore=0 phishscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603120133
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274711-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-274712-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,intel.com,arm.com,samsung.com,bootlin.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_TO(0.00)[nxp.com,pengutronix.de,kernel.org,google.com,gmail.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,linaro.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzysztof.kozlowski@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 6734D275919
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 21917275ABD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-=D1=87=D1=82, 12 =D0=B1=D0=B5=D1=80. 2026=E2=80=AF=D1=80. =D0=BE 17:39 Rob =
-Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Thu, Mar 12, 2026 at 10:34=E2=80=AFAM Svyatoslav Ryhel <clamor95@gmail=
-.com> wrote:
-> >
-> > =D1=87=D1=82, 12 =D0=B1=D0=B5=D1=80. 2026=E2=80=AF=D1=80. =D0=BE 17:20 =
-Rob Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
-> > >
-> > > On Thu, Mar 12, 2026 at 10:52:55AM +0200, Svyatoslav Ryhel wrote:
-> > > > Convert pinctrl-max77620 devicetree bindings for the MAX77620 PMIC =
-from
-> > > > TXT to YAML format. This patch does not change any functionality; t=
-he
-> > > > bindings remain the same.
-> > > >
-> > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > > > ---
-> > > >  .../pinctrl/maxim,max77620-pinctrl.yaml       |  97 +++++++++++++
-> > > >  .../bindings/pinctrl/pinctrl-max77620.txt     | 127 --------------=
-----
-> > > >  2 files changed, 97 insertions(+), 127 deletions(-)
-> > > >  create mode 100644 Documentation/devicetree/bindings/pinctrl/maxim=
-,max77620-pinctrl.yaml
-> > > >  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinct=
-rl-max77620.txt
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/pinctrl/maxim,max776=
-20-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/maxim,max77620-=
-pinctrl.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..4e5f997317ca
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/pinctrl/maxim,max77620-pinc=
-trl.yaml
-> > > > @@ -0,0 +1,97 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/pinctrl/maxim,max77620-pinctrl.=
-yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Pinmux controller function for Maxim MAX77620 Power managem=
-ent IC
-> > > > +
-> > > > +maintainers:
-> > > > +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> > > > +
-> > > > +description:
-> > > > +  Device has 8 GPIO pins which can be configured as GPIO as well a=
-s the
-> > > > +  special IO functions.
-> > > > +
-> > > > +allOf:
-> > > > +  - $ref: /schemas/pinctrl/pincfg-node.yaml
-> > > > +  - $ref: /schemas/pinctrl/pinmux-node.yaml
-> > >
-> > > Don't these properties apply to the child nodes?
-> > >
-> >
-> > They do, but not all properties defined in those schema files are
-> > applicable for this binding. I have marked those which can be applied
-> > in the node patterns.
->
-> Then additionalProperties is appropriate.
->
-> > > > +
-> > > > +patternProperties:
-> > > > +  "^(pin|gpio).":
-> > > > +    type: object
-> > >
-> > >        additionalProperties: false
-> >
-> > I will move additionalProperties here then.
->
-> No, moving it is wrong. You need it here AND in the parent node.
->
+On 12/03/2026 10:18, Sherry Sun wrote:
+>> Subject: [PATCH 1/2] dt-bindings: PCI: fsl,imx6q-pcie: Switch to undeprecated
+>> reset-gpios
+>>
+>> GPIOs with "gpio" suffix were long time ago deprecated, thus "reset-gpios" should
+>> be used.  Linux kernel supports both, referenced schema snps,dw-pcie-
+>> common.yaml lists both as well and this schema uses
+>> unevaluatedProperties:false, thus change has no impact except code readability
+>> and removing deprecated patterns.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+>> ---
+>>  Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml | 5 -----
+>>  1 file changed, 5 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+>> b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+>> index 12a01f7a5744..b9ba938c6239 100644
+>> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+>> @@ -58,11 +58,6 @@ properties:
+>>        - const: msi
+>>        - const: dma
+>>
+>> -  reset-gpio:
+>> -    description: Should specify the GPIO for controlling the PCI bus device
+>> -      reset signal. It's not polarity aware and defaults to active-low reset
+>> -      sequence (L=reset state, H=operation state) (optional required).
+>> -
+> 
+> Add Dmitry and Bartosz.
+> 
+> Hi Krzysztof,
+> Seems this property is still handled in gpiolib-of.c, see commit b8b80348c57b
+> ("gpiolib: of: add polarity quirk for Freescale PCIe controller").
+> Maybe need to change the quirk gpio_propname here too.
 
-Oh, yes, you are right, it seems that I did not notice while
-converting from txt. Thanks!
+Oh, I missed that completely. Thanks for mentioning it.
 
-> Rob
+1. Having this property in drivers/gpio/gpiolib-of.c means we should
+keep it in the schema as deprecated, because each ABI should be documented.
+
+2. I can drop reset-gpio-active-high from DTS as well, because
+reset-gpios have proper flag.
+
+3. We don't need to update gpiolib-of.c, because standard flag from
+reset-gpios will be used.
+
+> 
+> 
+>>    reset-gpio-active-high:
+>>      description: If present then the reset sequence using the GPIO
+>>        specified in the "reset-gpio" property is reversed (H=reset state,
+> 
+>  Also change the "reset-gpio" to "reset-gpios" in this description.
+> 
+
+Also here - no need to update, because this will be used only for
+reset-gpio.
+
+
+Best regards,
+Krzysztof
 
