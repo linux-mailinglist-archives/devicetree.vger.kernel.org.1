@@ -1,222 +1,153 @@
-Return-Path: <devicetree+bounces-274648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274649-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kCxBFqTZsmkAQQAAu9opvQ
-	(envelope-from <devicetree+bounces-274648-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:20:04 +0100
+	id YHXwOTLYsmlDQAAAu9opvQ
+	(envelope-from <devicetree+bounces-274649-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:13:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B12DC274351
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:20:03 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B43127408B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:13:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6C5B230BA413
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:12:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0130C303C4E2
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:13:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24AA73C7E0C;
-	Thu, 12 Mar 2026 15:12:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bo506PWq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C25E397E94;
+	Thu, 12 Mar 2026 15:12:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F28863C1966;
-	Thu, 12 Mar 2026 15:12:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E00CD34EEFC
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 15:12:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773328350; cv=none; b=Mof5pHBAB76LroKlR56H0TwuaZ+icLj90rsfSj7E6rFamGg/jQsasPPjknWkjAcYvmUW0jKLs0sekv288P3G4jPxtsd5SwWiMLe5y2GKkPUwGgZlJK0Uj45pH6vkgN7E3FUUnEc9LJaOivd6XpSMSbZjFVeRVZZleOTomzLWZM8=
+	t=1773328365; cv=none; b=A49UCKmYmQVJbAXwgtHGBInVQ+OS/hqCUiCjaiqaAoabIK+DUBpRUkRstFbgbqJ2gQQNR6V1W4y5g+S7edd+pgs8NydNNDyv/NHew/q9600g2Q8wJSpk6xKbnu31nc4cl8tb37lO94luaj6YoigFgsBuq2cxYBXxEJI/y8hU4I8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773328350; c=relaxed/simple;
-	bh=OFQkSwxZOQTDuacP85eO/H76W4BsofYz+Vr8zvUhZss=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lNqzb/CE8Kwme9sGejW0oGq4Z8gZ2LSum9iDQjA9+JVoah6xkXFpt2NTO+XEup/Nfg42L+/Xo0m7oUX8ZArPquu6SgkruT2j/hiKMFSTDld0xiOFhH3v3OvBIX9B2WTgSS+f43gZiT2ajGHKZVVq4lswrwYImKqABbu+w7ATaUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bo506PWq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DE37C2BC86;
-	Thu, 12 Mar 2026 15:12:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773328349;
-	bh=OFQkSwxZOQTDuacP85eO/H76W4BsofYz+Vr8zvUhZss=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bo506PWqIcT26ISjH6rrBUPGkXjhgqjAHzoarDnOYVpQsajPlcZiwwN/9V76E6z0u
-	 LHZZXtz207GTup8BM5hEvD1fNuZ+bsa0maUCc01JFbscA1fGZo7Ndu34koaw7NS4nW
-	 OsZXqmq5ByCJGcgcKY5inFwW+7p3k3cZ3HgDuPqVhfgcMGnawXSP0MEJo65OLa/mb7
-	 7DqNOMSD7EyKmxloJzEk8iJxCS+dXWm85d8sIn2RsmdE1p0hnXaDLsTZsrQmeqw/yZ
-	 dcuHyKTYnDhNF8A+9m7kjkj6DmSmjDtzmh1AlIv7uph1rGH9XYcADRTAC/LvfGtczf
-	 TdA50RewHETyg==
-Date: Thu, 12 Mar 2026 10:12:28 -0500
-From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Juan Yescas <jyescas@google.com>,
-	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v7 04/10] dt-bindings: soc: google: gs101-pmu: allow
- power domains as children
-Message-ID: <20260312151228.GA3136988-robh@kernel.org>
-References: <20260306-gs101-pd-v7-0-03f7c7965ba5@linaro.org>
- <20260306-gs101-pd-v7-4-03f7c7965ba5@linaro.org>
+	s=arc-20240116; t=1773328365; c=relaxed/simple;
+	bh=xL8m87uKS9y7aocchYesBcn3/kaLnfg9HDUZiyM5xYA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GWi070AhiJRmk+3AoTCnhTJa6AvYlj53f15BOX7CwiCoMn4Ligg4+jT4/8GkPPHFNjjq7u4f5SyXCDen24RFc6gW3Mh4mMI6zUNWwgvSEr2lgQ19FJ8rwHsE7yX44+mqJr4duOJ+DTk/lzKGBrl6Mwgmi+CPhC1+QbVfvYVjl9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-79885f4a8ffso10530587b3.3
+        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 08:12:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773328363; x=1773933163;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=xL8m87uKS9y7aocchYesBcn3/kaLnfg9HDUZiyM5xYA=;
+        b=N/lB1Jfvm6H8QhQ3/nE0wBFqtpOneFDO+Ke82zoDTAMlOcHPhidZ5OLOp3TmjCvBPk
+         8cf56owV9Hilt6A/q0JKa35Mki6l2JHsYtbCCR28LYwhJaESHg4/SZxxW7wuN5BvBwqR
+         bOl1nGXXf/yzeN2Ka+F415FJII/pYXAEmsbRO4cq77C18Of2gv54ajKA1OKCfqshkrwg
+         77ArOE3MZXGXOl+1+bEF8rTDlZeLbamGwloUChyuAeX4NT35FymPOc5baqjVl9neV5vW
+         hVPUHcEU8YeZ/aVf1GFNEh98Blw5iDyZayUe0NqPgWxejkiVNeA6V9sT1gLS5+NmgN/9
+         QGaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVopwV4jIdc/bgfqErLIjm85EUydVh+Y6hWr36vBvfcO/s7kKu3AP3aInksiDIa7WtF0vNtTC1UeeO2@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCDBNSnKbfKIz6Vg8mM8xLuSEfo3Uu/bjMSU/PBNv3cIi1T+3q
+	pLG+oyMrkxm/+K/cwOHC3VpBbPetpICEQ9i0fvg+jMj3uplfXzjRgfP1djCPrra9nmu88Q==
+X-Gm-Gg: ATEYQzxTkKE+Hu6oDAlBM/rcWeLdezKShMGJouxFLhD0fJSuDtnuOqvW+uRSfh/FkOm
+	9BefXLdP0KgF71roDIFOwpLblSYp4lqYq4OSu7KxuRoFQZH7UgYBbNlZF+uZ2skJZMS5iikVXzQ
+	Aa7s+Owsvsyd5LtnkIurYqE+T7wjtQMr1mYVXUOQ3JR1pufZS4OfaNPBh0KJa9UknhhOq4e7wxo
+	8+Dbw2V6bk81NmTN5nUtPEnazjCg84YxKRRY08YEB3IWELHsGzkc5LMtc+GyNpqpTw4J96WIXUe
+	mZKvRRenXJ/UugIuPthxZ/kXx88RmLST+xICq9f1wgXBAFuAmDn9Pr62X328AwdOW1neV3Xr3B1
+	ihXfW8ICQp3Ka9Smz6sAjKcPlUk8Qcu9MYriRjDlP8kI7VHvYU/akVTHsN7aAAXxeJG9V7RMUYe
+	X8C+XtGn6sy74l1IC2C04SgoVRyv/DqaBnHAHYMBSc6NcsUws6VK6eyeyRh3Tm
+X-Received: by 2002:a05:690c:6:b0:798:2723:ab40 with SMTP id 00721157ae682-79917ecc38fmr64268477b3.22.1773328362580;
+        Thu, 12 Mar 2026 08:12:42 -0700 (PDT)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-79917f0846csm33499417b3.39.2026.03.12.08.12.41
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Mar 2026 08:12:41 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-7986fb839f5so11184067b3.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 08:12:41 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUmlB1QCamzHjcJ+T5Cz6R/OTL5RFWLV5muyJ2Foe3beRxdTo+iT7rqrdzJ5LsapMuMSWASFZnRKxcE@vger.kernel.org
+X-Received: by 2002:a05:690c:498e:b0:794:cd8e:3616 with SMTP id
+ 00721157ae682-79917ecc0ecmr62120677b3.21.1773328361720; Thu, 12 Mar 2026
+ 08:12:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260306-gs101-pd-v7-4-03f7c7965ba5@linaro.org>
-X-Spamd-Result: default: False [0.34 / 15.00];
+References: <20260311224044.21480-1-email@sirat.me> <abLNbGUmaA7K0s68@ashevche-desk.local>
+In-Reply-To: <abLNbGUmaA7K0s68@ashevche-desk.local>
+From: Sirat <email@sirat.me>
+Date: Thu, 12 Mar 2026 21:12:30 +0600
+X-Gmail-Original-Message-ID: <CANn+LW+F2bVMAGwoF8q9yBpF3x5r_hWDqvE3_JYjcLd16A_cEA@mail.gmail.com>
+X-Gm-Features: AaiRm52FISbjek1ffTmmZvvhnepNiWW88rSSPxALXAFJ0Q2YHDic6R6kDrORw6w
+Message-ID: <CANn+LW+F2bVMAGwoF8q9yBpF3x5r_hWDqvE3_JYjcLd16A_cEA@mail.gmail.com>
+Subject: Re: [PATCH v3 0/2] iio: proximity: add driver for ST VL53L1X ToF sensor
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, jic23@kernel.org, 
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,samsung.com,linaro.org,gmail.com,google.com,android.com,lists.infradead.org,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-274648-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linaro.org:email,0.0.7.208:email,1e00:email,1.10.107.32:email]
-X-Rspamd-Queue-Id: B12DC274351
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[sirat.me];
+	TAGGED_FROM(0.00)[bounces-274649-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[email@sirat.me,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:email,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 8B43127408B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 06, 2026 at 10:29:55AM +0000, André Draszik wrote:
-> The power domains are a property of / implemented in the PMU. As such,
-> they should be modelled as child nodes of the PMU.
-> 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
-> ---
-> v7:
-> - really be consistent with quoting (Krzysztof)
-> - drop invalid tested-by tag (Krzysztof)
-> 
-> v4:
-> - consistent quoting using " (Krzysztof)
-> - add samsung,dtzpc to example
-> 
-> Note:
-> Because the properties added are 'required', this commit breaks DT
-> validation of the existing DT for Pixel 6, but a) that's simply because
-> the DT is incomplete and b) a DT update will be posted once the binding
-> is accepted.
-> It is not possible to write the binding such that it supports old
-> (incomplete) DTs in addition to the full version, but as per above
-> it's not required to keep supporting old DTs.
+On Thu, Mar 12, 2026 at 8:28=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@intel.com> wrote:
+>
+> On Thu, Mar 12, 2026 at 04:40:35AM +0600, Siratul Islam wrote:
+...
+> > ---
+> > Changes in v3:
+> > - Merge DT binding into existing st,vl53l0x.yaml (per Krzysztof).
+> > - Use "reset-gpios" in the binding but xshut_gpio in the driver since t=
+hat's the actual pin name.
+>
+> But why is it "reset" in the bindings? If it's a power rail or enable pin=
+, why
+> not call it as a such in the bindings? The connection on PCB level is dif=
+ferent story.
+>
+In v2, I actually used a separate st,vl53l1x.yaml binding with
+`xshut-gpios` and a required `vdd-supply`.
+But Krzysztof pointed out that they share the same pins so the
+existing st,vl53l0x.yaml should suffice,
+using reset as the xshut pin.
 
-This information needs to go in the commit msg.
+I think a choice has to be made here:
+1. Either I use the st,vl53l0x.yaml binding with wrong pin name and
+optional vdd-supply to not break existing code.
+2. Or use a separate binding st,vl53l1x.yaml with 1. correct pin name,
+and 2. require vdd-supply
 
-> ---
->  .../bindings/soc/google/google,gs101-pmu.yaml      | 41 ++++++++++++++++++++++
->  1 file changed, 41 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/google/google,gs101-pmu.yaml b/Documentation/devicetree/bindings/soc/google/google,gs101-pmu.yaml
-> index a06bd8ec3c20..dfe6f87e5949 100644
-> --- a/Documentation/devicetree/bindings/soc/google/google,gs101-pmu.yaml
-> +++ b/Documentation/devicetree/bindings/soc/google/google,gs101-pmu.yaml
-> @@ -16,6 +16,14 @@ properties:
->    reg:
->      maxItems: 1
->  
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +  ranges: true
-> +
->    reboot-mode:
->      $ref: /schemas/power/reset/syscon-reboot-mode.yaml
->      type: object
-> @@ -39,9 +47,23 @@ properties:
->      description:
->        Phandle to PMU interrupt generation interface.
->  
-> +patternProperties:
-> +  "^power-domain@[0-9a-f]+$":
-> +    type: object
-> +    description: Child node describing one power domain within the PMU
-> +
-> +    additionalProperties: true
-> +
-> +    properties:
-> +      compatible:
-> +        const: google,gs101-pd
-> +
->  required:
->    - compatible
->    - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - ranges
->    - google,pmu-intr-gen-syscon
->  
->  additionalProperties: false
-> @@ -51,6 +73,25 @@ examples:
->      system-controller@17460000 {
->          compatible = "google,gs101-pmu";
->          reg = <0x17460000 0x10000>;
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges;
->  
->          google,pmu-intr-gen-syscon = <&pmu_intr_gen>;
-> +
-> +        pd_g3d: power-domain@1e00 {
-> +            compatible = "google,gs101-pd";
-> +            reg = <0x1e00 0x80>;
-
-I'm assuming 0x1e00 is an offset from 0x17460000. That's not what ranges 
-says though. It says both addresses are in the same address space 
-(system-controller@17460000 parent's address space). You need:
-
-ranges = <0x0 0x17460000 0x10000>;
-
-
-> +            #power-domain-cells = <0>;
-> +            label = "g3d";
-> +            samsung,dtzpc = <&pd_g3d>;
-> +        };
-> +
-> +        power-domain@2000 {
-> +            compatible = "google,gs101-pd";
-> +            reg = <0x2000 0x80>;
-> +            #power-domain-cells = <0>;
-> +            power-domains = <&pd_g3d>;
-> +            label = "embedded_g3d";
-> +        };
->      };
-> 
-> -- 
-> 2.53.0.473.g4a7958ca14-goog
-> 
+Krzysztof, do you have a preference on how we should handle this?
+>
+>
 
