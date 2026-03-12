@@ -1,69 +1,61 @@
-Return-Path: <devicetree+bounces-274740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274741-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KFr9OW39smmQRQAAu9opvQ
-	(envelope-from <devicetree+bounces-274740-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:52:45 +0100
+	id MD7DIyD+smmQRQAAu9opvQ
+	(envelope-from <devicetree+bounces-274741-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:55:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64571276D4C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:52:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3C14276E0B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:55:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 61D5F301F79E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:52:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 05939307EFE0
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:54:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CCED3FE366;
-	Thu, 12 Mar 2026 17:52:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DD5B3FE662;
+	Thu, 12 Mar 2026 17:54:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rPJz/bB6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rOEVFbXi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 594E4390CA9;
-	Thu, 12 Mar 2026 17:52:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE7D13FD154;
+	Thu, 12 Mar 2026 17:54:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773337963; cv=none; b=OWkRNTr8Q7w+RqdICsOShrBTvegXocCuizsqd1oAa02MeK2R7KXE3/jv+Kj8KcQBDiEIpju1F76NYgVs/5KcqKe6esyWcnAa/UJTH5dTRpslmHxWO94utNK3LT7Q+tlGxYzbkNVkBnCiuHF0gIvsRUo4a1rrkQpFZGQ85XNwWbk=
+	t=1773338059; cv=none; b=OVSXX450ebEtEMNky1c1NVW5RbmtonxAn7OSdnw66Qr8c6d9ayTiHetsQin31CLOg5RyvCBgrr4v5asV0cD2ppsYdv4vzLwBSuiszHS1Rrob2bGr/C+KRFJkrXO2YEjomNsI/IERvKt9+LtYaaCOhl6m1ooDaZ2BBDgq8an5R6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773337963; c=relaxed/simple;
-	bh=juOBK+JARNjtYHa7J953QFJ72MkXtnPKnRQL0PoJjKQ=;
+	s=arc-20240116; t=1773338059; c=relaxed/simple;
+	bh=iHA+mfGwcVcD2Rn+abYlORqPhdvUyx65/E0KTynstd8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aTby3fVfY0FMllLMh9QXavDQez8TW+hTq1pwgfrd6JpbI1C9DckCKhKrIehqlPCA3RvNczwTlbDWo86gm0SAq4wFvHkfInnUUe5ZWzXohDBWVZY3DQaySpHJdCG1KkABD0R2WxlhT2Er4XiHefK9EZ3CG6DasSLgXOzrtnIFFbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rPJz/bB6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5449C4CEF7;
-	Thu, 12 Mar 2026 17:52:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fc5S9g8D0fqvCsEkxbJoLs2EBBauJt+8tzFa2thGBQEWmSGV+sDB3aD5StVTW4ozOxvFnncV38A80oJu52VetbhlbpLVgrecESR+EYpeq1iwWk3AcK+8G3pLfa5Dc8gMB6VG7/o8nw3/e/YxTwcOh3gqze3Cgj5/soKBVCqrTq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rOEVFbXi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1AD6C4CEF7;
+	Thu, 12 Mar 2026 17:54:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773337963;
-	bh=juOBK+JARNjtYHa7J953QFJ72MkXtnPKnRQL0PoJjKQ=;
+	s=k20201202; t=1773338059;
+	bh=iHA+mfGwcVcD2Rn+abYlORqPhdvUyx65/E0KTynstd8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rPJz/bB6+glHH73SLx8hGVkx0l9tUzG4IFNHUsdfn+5UCoebZ+uR4mv6v1CnqPIoz
-	 +B2pxRgvYNrsL/0J23iTIW9Zlr/htHthdACzdZAMooiqtbicFqzZ4X7jx18CuwAiWs
-	 Tug1XH6nyPGz4KBj+gWi0FbyZQPHv21fOSan6TYRqPC7GU0x7JzvkvVKeaxCn6ghqi
-	 4+I9gEJ6s9YY0QNQ4BiOZA1smBIBW7wcRDmbXcHHny97X3nIEHKHPP+VPFTmxZVLSs
-	 SaPwreBDXUS2iGNaCuxJnS0FhCu7ATagW8j7ocQLb+M73YP28zMsfhf9OgAVce+iYa
-	 b1C4M1bG1AQmQ==
-Date: Thu, 12 Mar 2026 17:52:36 +0000
+	b=rOEVFbXiY/K5m0CDM5tKQKPBkcX7HpGKp8xiiCbSemrsuGJV1RTQ9NGfgKVDhEb9b
+	 Jeb6B7I2Udw3jyhNtSrQ97wkJhXwWkOoyil9kyEuV5yhROOk08rtbsqIOe19Ab/mDL
+	 jWgcKBEEthr5uC8XaJY2A0K3J7rDt7IUllNSjrbeJKPd9q/TH4yWCKvtFSNMvZL1xQ
+	 QbmFd2Pjaee1qqX0a/PIUfi9Q2opQiXeOlvbcf+9geYUKwI1w2LlnwPphPRCuIh9nP
+	 mCfrEA0YlAzKQjKp73p2g7o4cLVet/nRYdwEfP/xR8uGLfSNYUxDcXW2mVeh58ekZo
+	 dXH6y1nCpVSYw==
+Date: Thu, 12 Mar 2026 17:54:15 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Adrian Hunter <adrian.hunter@intel.com>
-Cc: Manikandan Muralidharan <manikandan.m@microchip.com>,
-	alexandre.belloni@bootlin.com, Frank.Li@nxp.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
-	linux@armlinux.org.uk, mturquette@baylibre.com, sboyd@kernel.org,
-	ardb@kernel.org, ebiggers@google.com, martin.petersen@oracle.com,
-	tytso@mit.edu, cristian.birsan@microchip.com,
-	jarkko.nikula@linux.intel.com, kees@kernel.org, npitre@baylibre.com,
-	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v3 3/5] i3c: mipi-i3c-hci: add microchip sama7d65 SoC
- compatible with the appropriate quirk
-Message-ID: <20260312-ricotta-unusable-44c25a03eff8@spud>
-References: <20260312042056.309237-1-manikandan.m@microchip.com>
- <20260312042056.309237-4-manikandan.m@microchip.com>
- <a41378a0-d2f1-4fa4-ac6d-1d0916590b47@intel.com>
+To: xianwei.zhao@amlogic.com
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pwm: amlogic: Document A4 A5 and T7 PWM
+Message-ID: <20260312-perfume-afternoon-da62000ff87c@spud>
+References: <20260312-pwm_binding-v1-1-515cb65add98@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,125 +63,111 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="aXc9ewpzkSl2ifoe"
+	protocol="application/pgp-signature"; boundary="90r8pBONFMd7ikMz"
 Content-Disposition: inline
-In-Reply-To: <a41378a0-d2f1-4fa4-ac6d-1d0916590b47@intel.com>
+In-Reply-To: <20260312-pwm_binding-v1-1-515cb65add98@amlogic.com>
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274740-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-274741-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[25];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 64571276D4C
+X-Rspamd-Queue-Id: F3C14276E0B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---aXc9ewpzkSl2ifoe
+--90r8pBONFMd7ikMz
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 12, 2026 at 11:29:25AM +0200, Adrian Hunter wrote:
-> On 12/03/2026 06:20, Manikandan Muralidharan wrote:
-> > Add support for microchip sama7d65 SoC I3C HCI master only IP
-> > with additional clock support to enable bulk clock acquisition
-> > for Microchip platforms using HCI_QUIRK_CLK_SUPPORT quirk.
-> > Introduce MCHP_I3C_CLK_IDX to define the maximum peripheral
-> > clock index
-> >=20
-> > Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
-> > ---
-> > Changes in v3:
-> > - Make use of existing HCI_QUIRK_* code base
-> > - Introduce HCI_QUIRK_CLK_SUPPORT to handle/enable the required Periphe=
-ral
-> > and system generic clk in bulk
-> >=20
-> > Changes in v2:
-> > - Platform specific changes are integrated in the existing mipi-i3c-hci
-> > driver by introducing separate MCHP_HCI_QUIRK_* quirks and vendor
-> > specific quirk files
-> >=20
-> > ---
-> >  drivers/i3c/master/mipi-i3c-hci/core.c | 12 ++++++++++++
-> >  drivers/i3c/master/mipi-i3c-hci/hci.h  |  4 ++++
-> >  2 files changed, 16 insertions(+)
-> >=20
-> > diff --git a/drivers/i3c/master/mipi-i3c-hci/core.c b/drivers/i3c/maste=
-r/mipi-i3c-hci/core.c
-> > index 5879bba78164..6b7716bd517e 100644
-> > --- a/drivers/i3c/master/mipi-i3c-hci/core.c
-> > +++ b/drivers/i3c/master/mipi-i3c-hci/core.c
-> > @@ -8,6 +8,7 @@
-> >   */
-> > =20
-> >  #include <linux/bitfield.h>
-> > +#include <linux/clk.h>
-> >  #include <linux/device.h>
-> >  #include <linux/errno.h>
-> >  #include <linux/i3c/master.h>
-> > @@ -918,6 +919,7 @@ static int i3c_hci_probe(struct platform_device *pd=
-ev)
-> >  {
-> >  	const struct mipi_i3c_hci_platform_data *pdata =3D pdev->dev.platform=
-_data;
-> >  	struct i3c_hci *hci;
-> > +	struct clk_bulk_data *clks;
-> >  	int irq, ret;
-> > =20
-> >  	hci =3D devm_kzalloc(&pdev->dev, sizeof(*hci), GFP_KERNEL);
-> > @@ -946,6 +948,13 @@ static int i3c_hci_probe(struct platform_device *p=
-dev)
-> >  	if (!hci->quirks && platform_get_device_id(pdev))
-> >  		hci->quirks =3D platform_get_device_id(pdev)->driver_data;
-> > =20
-> > +	if (hci->quirks & HCI_QUIRK_CLK_SUPPORT) {
-> > +		ret =3D devm_clk_bulk_get_all_enabled(&pdev->dev, &clks);
-> > +		if (ret < MCHP_I3C_CLK_IDX)
+On Thu, Mar 12, 2026 at 03:10:28AM +0000, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 >=20
-> Is MCHP_I3C_CLK_IDX really needed?  Why not just:
+> Document amlogic,a4-pwm amlogic,a5-pwm and amlogic,t7-pwm
+> compatible, which falls back to the meson-s4-pwm group.
 >=20
-> 		if (ret <=3D 0)
->=20
-> i.e. don't you anyway have to assume DT has the clocks defined
-> correctly.
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+> After the clock module is merged, the PWM node will be submitted
+> together with the nodes of other modules. For now, we submit the
+> PWM DT binding first.
 
-Ye, I think this is kinda silly. Trust dtbs_check to have the correct
-number for your platform set, and let this be specific.
+I dunno what you mean by this.
+Are you talking about submitting the dts user of these compatibles?
 
---aXc9ewpzkSl2ifoe
+patch is
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+pw-bot: not-applicable
+
+>  Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Doc=
+umentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> index cc3ebd4deeb6..c337d85da40f 100644
+> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> @@ -39,7 +39,10 @@ properties:
+>            - amlogic,meson-s4-pwm
+>        - items:
+>            - enum:
+> +              - amlogic,a4-pwm
+> +              - amlogic,a5-pwm
+>                - amlogic,c3-pwm
+> +              - amlogic,t7-pwm
+>                - amlogic,meson-a1-pwm
+>            - const: amlogic,meson-s4-pwm
+>        - items:
+>=20
+> ---
+> base-commit: e3194dfb772304a1b7ca3bcfccacefec3468b7bf
+> change-id: 20260312-pwm_binding-ae847cd0c70f
+>=20
+> Best regards,
+> --=20
+> Xianwei Zhao <xianwei.zhao@amlogic.com>
+>=20
+>=20
+
+--90r8pBONFMd7ikMz
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabL9ZAAKCRB4tDGHoIJi
-0mFzAQD8sb5isGyPPaQE3kYoakuj+6ep/IS3t3IZhJUaZ7Z3dAD/Vw8LKqh45H8H
-HpMjIeSZSkof2M251PwPTxeNv7o5Bwk=
-=LkO0
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabL9xwAKCRB4tDGHoIJi
+0klwAP9XxUiVZqCnyB6nSdN1wWR2JQvNI/1gg74vr2SOUf6iyAD5ATAWXUCMOWRQ
+w+YIlDBXtCDpFqOhLZseMtG+Emaytgs=
+=c0tV
 -----END PGP SIGNATURE-----
 
---aXc9ewpzkSl2ifoe--
+--90r8pBONFMd7ikMz--
 
