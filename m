@@ -1,85 +1,57 @@
-Return-Path: <devicetree+bounces-274562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274563-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yA2iKJatsmlGOwAAu9opvQ
-	(envelope-from <devicetree+bounces-274562-lists+devicetree=lfdr.de@vger.kernel.org>)
+	id EDPTG5atsmlGOwAAu9opvQ
+	(envelope-from <devicetree+bounces-274563-lists+devicetree=lfdr.de@vger.kernel.org>)
 	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 13:12:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 045E32717BE
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 735B22717BD
 	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 13:12:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0E4CA307094E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 12:11:17 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5C2C8301E48C
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 12:11:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C86B73BF676;
-	Thu, 12 Mar 2026 12:10:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 367AB37267C;
+	Thu, 12 Mar 2026 12:11:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="g4JdTgZL"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="xOqDPRj5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011033.outbound.protection.outlook.com [40.107.130.33])
+Received: from ixit.cz (ixit.cz [185.100.197.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC8D531F997;
-	Thu, 12 Mar 2026 12:10:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.33
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773317441; cv=fail; b=r2UdgRtzOXqzTH0ybYJKIDiLwK5H26GuCkHFrYV11fvxTc8+jxXOeaagvvMHBTm6CEcLLzaH/qBdDSxanDkNYLQauOMiApSl7DMpp8BMJcmqm/srllJTpTv80/S0Ajz0GRfPLPMOY98Te/fTa2Z4w0GYPHC6conE3a9QvjbDM04=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773317441; c=relaxed/simple;
-	bh=HrmUt4H5be2vlehkJZbfPwcBvjH+ghG7zw8wUgQAAdg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=mc/0M634To6W2/U/bQ9Hq7uXcDrITX5pAEm4YdvW3cnYoqnN/ntPTrr0PMAulq9cSLRdAUrZslKZrq6pDNEDn9Ruvq0rsHyT0ZAEI1MIxOSrfa91HdryMdvjOck+HhhrNvzYp1qHKp/ebCtCsOzoEgB+GyAnKkyOor/YdYp9edI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=g4JdTgZL; arc=fail smtp.client-ip=40.107.130.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LwwFk3gdZtFI7OS0im0EDFH2MDB7imvgANGxl2VCv6DFKPjZlQtTxzx5pLVcCVf3MFbp5tQ6d+MKez58Gfd4m3H2qK0QShZtWMXGP9S1BPUS/Ko28lVBk3mN6KeFh8swP403KeNJ6eiwrwwe9/Tk25iS6qXJ3aSzGIv2mzEVVhC4fq1FZ+60lTLypk02pDjzClE/5KicuvV14TtlGfq3q3SFq+j1XCDm+CAFd0uYROrK72zkczVJRCVNypeIT+oI2HWA0272EU7zzwJpdisMcWOcHMowThq2cZQ3HEr7VnvJyfezVsbw5TLjtzvafOLq1CBYJisvFH6hwOI+ib/3Fg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5SP9tbqSAbZOTl7IkJ5Lu7yLKFV+r3s9kSp5RAVzkYE=;
- b=iTwqvqbz5XzTl3mMwWK6bIli4PIsn7zs4WEjUVGyEDEWKuiPUjWrXx9qGYPgvfohTyPbpdEMGeqga8KrLLpXoaheoAqfj2N7cMQ20tws5gcAQlx6tq9R6ndsA/LY1+3znuP65vDv4zbMSt0KyO76iiO+uo2UkJ+WpJ4q1DvarQ8azRsCJXcQ5BXKBAzT0bFrHuADhvg6+70h7OJGVGevV9cUkNO0VbqeLrBsc2xCYEx5fSAc94YKfhiHJFilFUxG8ZLtjM5OF7K2gQlDB+TmfQGz3LM/nESxb82Fj2bCkdVXM0VG3Q/3Z4lGiWkVN+GA6nZ9mNtP7zNdPYwwEDeA8g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.60) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5SP9tbqSAbZOTl7IkJ5Lu7yLKFV+r3s9kSp5RAVzkYE=;
- b=g4JdTgZLNxOsxB+KaT5/N2LHq3shbx3MFQn0Jcmr4Ovi8DhtJcpseoNVASPRoAXkR4u09xjEm119rc95zTdtVeLtWiKCDmml6OPFghVDKX9DklXSh4jhfl7V13hxKnhGu4ZTuYuElXZ2SJ4ixnCKmTjEHjIfutJ5I9xJLQLVWOxmvDU12v1nvDk2EhFa5w07lsdq1LBFxTZoxa1cKjTdGd3PXwE0QoZSx5MeRtvmqa2af6arH8L6KHvA5v8MaRRol4v0F5/2Uya51IUEjBrf7GR9h/G7T/tKGh1ApWFAGWutOn7duuEn/CAjFan7BECoDTKdO4oLxX/4au9ad4x7Jw==
-Received: from DUZPR01CA0149.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:4bd::25) by AM0PR10MB9583.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:6fd::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Thu, 12 Mar
- 2026 12:10:32 +0000
-Received: from DB5PEPF00014B8F.eurprd02.prod.outlook.com
- (2603:10a6:10:4bd:cafe::9a) by DUZPR01CA0149.outlook.office365.com
- (2603:10a6:10:4bd::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.27 via Frontend Transport; Thu,
- 12 Mar 2026 12:10:26 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.60)
- smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.60; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.60) by
- DB5PEPF00014B8F.mail.protection.outlook.com (10.167.8.203) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18 via Frontend Transport; Thu, 12 Mar 2026 12:10:31 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
- (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Thu, 12 Mar
- 2026 13:12:46 +0100
-Received: from [10.48.86.79] (10.48.86.79) by STKDAG1NODE2.st.com
- (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Thu, 12 Mar
- 2026 13:10:30 +0100
-Message-ID: <521dc906-e26c-4a47-af07-137ce00b176d@foss.st.com>
-Date: Thu, 12 Mar 2026 13:10:29 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DD97388E47;
+	Thu, 12 Mar 2026 12:10:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.100.197.86
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773317462; cv=none; b=jh1HM435IIbPVd82QOnVVExQ0ciPMegfSrSKr9TNG8yDTnTva358jUx/Kc5jgBJTo1fkuVoBhm28w3n/adyF0dr1bRArry3SE6LsGyK1gLsALRoWwRh0hgEqfQiXkMqwcW3WR0sB6f7zeV6WW6ta5rilt3hYgV8W6MVsGHU4rcc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773317462; c=relaxed/simple;
+	bh=HRLEhaUN0mz8wj7Z5lOno+QS4SMY5r1ux0+x4z4wwVo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qhTDzRtrc+7BKMRozvFAJLGd2toc2TfrifiWlBl3qIdZP6B2ouh93WKhd/RrnM8tOL3yAu4z6My7q+sfbd2qxTSPGb41bEIO8TvXXq/t5ZndR6X8BeMftCBxeXx6S2dGdyZ/qSZQPkNY+6banv0w2R9HNaKwe2F65HebFstI+OI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=xOqDPRj5; arc=none smtp.client-ip=185.100.197.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [IPV6:2a02:f000:10bd:e301::1d7] (unknown [IPv6:2a02:f000:10bd:e301::1d7])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id BBFB1534013D;
+	Thu, 12 Mar 2026 13:10:55 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1773317455;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=Tvq7GQJwl/j3BUAgZ1VOMmT4Qpydp7UKM1IKuxDlQQc=;
+	b=xOqDPRj54kOMDCm6khK6Egma7GyPbPlhwksAoctT0nMJS1PTKGx4p+Zu0rIDOtqUr9MHHv
+	H3xgn6lLW6e2jQ8LJYakgZXpsljoiIIXvLf5tJTxJxDptE/4pChs45RrxB5dVV5yvyiz99
+	OBsyakgzTtlSRJCNXpIwiJUozk3PU+E=
+Message-ID: <29621ceb-b95f-4123-8237-e1465c02c8df@ixit.cz>
+Date: Thu, 12 Mar 2026 13:10:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,110 +59,150 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 00/12] bus: add stm32 debug bus and coresight support
- for stm32mp1x platforms
-To: Linus Walleij <linusw@kernel.org>
-CC: Gatien Chevallier <gatien.chevallier@foss.st.com>, Suzuki K Poulose
-	<suzuki.poulose@arm.com>, Mike Leach <mike.leach@linaro.org>, James Clark
-	<james.clark@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Mathieu Poirier
-	<mathieu.poirier@linaro.org>, Leo Yan <leo.yan@linux.dev>,
-	=?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>, "Maxime
- Coquelin" <mcoquelin.stm32@gmail.com>, <cristian.marussi@arm.com>,
-	<jens.wiklander@linaro.org>, <etienne.carriere@foss.st.com>, Sudeep Holla
-	<sudeep.holla@kernel.org>, <coresight@lists.linaro.org>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>, Antonio Borneo
-	<antonio.borneo@foss.st.com>
-References: <20260226-debug_bus-v6-0-5d794697798d@foss.st.com>
- <ed019efc-d1e0-4e77-bf9c-79da40f0c707@foss.st.com>
- <CAD++jLkkVcRrT=NRyFD6s9=MYaOQSWun0v4z3z01BZoQ2tTvDA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] drm: panel: Add Samsung S6E8FCO DSI controller for
+ M1906F9 panel
+To: Yedaya Katsman <yedaya.ka@gmail.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Kamil_Go=C5=82da?=
+ <kamil.golda@protonmail.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: phone-devel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20260312-panel-patches-v3-0-6ed8c006d0be@gmail.com>
+ <20260312-panel-patches-v3-2-6ed8c006d0be@gmail.com>
 Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <CAD++jLkkVcRrT=NRyFD6s9=MYaOQSWun0v4z3z01BZoQ2tTvDA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <20260312-panel-patches-v3-2-6ed8c006d0be@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
- (10.75.128.133)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB5PEPF00014B8F:EE_|AM0PR10MB9583:EE_
-X-MS-Office365-Filtering-Correlation-Id: 19df66d8-90b8-48fa-7fe6-08de80305bb4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700016|82310400026|1800799024|7416014|376014|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info:
-	e7DwyLvanSAM7Z3lixpfV/146yNRKTbcaqUPYCoE9fEoMtuyWMsDldRhuKDqBLJqnS8MGEZFZMZ1rXmLsckcxKu0QGPHHQ6DzCsAK521x+qiQgDhveRE0q1LOoqMLVaeh7E7FOFD9zTMvKu5KQJv+5ktaWWB6rfqF6kDaiMLInS0ArQTTQmxGvMqun4P0a/C3EgRKbRQpmExEOagXanE5tZo/ZXBOVq79JaJEYD8FdJX+6ZK0p6UFDoBoM73LkMD1Z4w73a7ppy9qlG+axjYlkVq101NWZT6+H1S7wtCl55DTTXXoe6Wzc/Eim3Z3pRK2ZYqwlpPVEHFkMOPB24koIUK+vwamI+z7yOVA8LVIPoRMOOE9uTSus2x38ekqOL2kUUcFshoWGrE5e9PXka4RW9iZL4A454XiSqILb/GrRK/BWkap96nOMxFGKpzTgENXiahRCDTrMHJ4xEyMPMXBr6WreByVpOLDASZ16Zcbhzhqdy1f0qOJ6Sh9YEm/34wd536T57l0xeFKNx4cRKWPTy4exCcPVLhLb9XHcEFT252n7xh+8tgE/ZrPPAkDpG9au564aZskQckdq6gsUx07YIqq3+PfkhcckVMVWVvRmKxeY3BIC5RiRnOYHV1HJzcPMhMjUEy89TKeM0m1doYTeiUuCiCqCj6GDijgYd6Z0w7Y5zQYQ/QCZPCPFMeSBeI/NT2vN3JZkLbKKoNplFZPo4sBBVro5WvY4394APYN6s5v5I6oFZp8DBK6nEz00mrFgQ7fzz1jN03Wi1rZoXa8Q==
-X-Forefront-Antispam-Report:
-	CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(82310400026)(1800799024)(7416014)(376014)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	o/8/wizWjvk21fAFxvva3W00B+MtIYhrhlHDjwLkdw1j1RWKebVOfOo8uAztDtNWUrCvyOLHpCeBZuVn6YaVmyLJPTOXHZT+lSUBO5VAC6kj/sOs0TjHsFLcz+dv/F+mNKZXv9esY5Q7NeZDIbRbj7/YqAY6h580XnbQvPC4uTOwRoDdcIUPLi/FXpfrU6hAltdoULsKtOBgsTII4Pp67B29XP8FVw2sCZzV+OCCaqdJ2xN1pR+Ps+MI8JsIW/2tuj1t8D6FLjjPRc+XmXM9pNYfXZJK9z/MZXyA2xJ2xW0k/WnSrGGM4DzaZ1qsZ8HQ/FBda2pjwJrEd8dCMGkpDYZecdCibH2HjGMumb89BMMQ7ZCeoApBKvC5kMlcsptLjO1IPLlqW0m7MjNAddyEaZAU+j6TnjpuCzD+H41igvYCy/ZhHbz+JPGzL/nfayuI
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2026 12:10:31.7411
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 19df66d8-90b8-48fa-7fe6-08de80305bb4
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DB5PEPF00014B8F.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB9583
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[foss.st.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
+	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274562-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[foss.st.com,arm.com,linaro.org,kernel.org,linux.dev,gmail.com,lists.linaro.org,lists.infradead.org,vger.kernel.org,st-md-mailman.stormreply.com];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[foss.st.com:dkim,foss.st.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,st.com:email];
+	TAGGED_FROM(0.00)[bounces-274563-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,linaro.org,ffwll.ch,linux.intel.com,kernel.org,suse.de,protonmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexandre.torgue@foss.st.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[foss.st.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ixit.cz:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 045E32717BE
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[protonmail.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,ixit.cz:dkim,ixit.cz:email,ixit.cz:mid]
+X-Rspamd-Queue-Id: 735B22717BD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
-
-On 3/11/26 10:28, Linus Walleij wrote:
-> On Tue, Mar 10, 2026 at 10:07 AM Alexandre TORGUE
-> <alexandre.torgue@foss.st.com> wrote:
+On 12/03/2026 12:55, Yedaya Katsman wrote:
+> Add driver for Samsung S6E8FCO DSI controller for M1906F9 video mode panel,
+> found in Xiaomi Mi A3 mobile phone.
 > 
->> Patch 1 to 11 applied on stm32-next. Linus, let me know if I take the
->> pinctrl one or you prefer to take it.
+> Co-developed-by: Kamil Gołda <kamil.golda@protonmail.com>
+> Signed-off-by: Kamil Gołda <kamil.golda@protonmail.com>
+> Signed-off-by: Yedaya Katsman <yedaya.ka@gmail.com>
+> ---
+>   MAINTAINERS                                        |   1 +
+>   drivers/gpu/drm/panel/Kconfig                      |  13 +
+>   drivers/gpu/drm/panel/Makefile                     |   1 +
+>   .../gpu/drm/panel/panel-samsung-s6e8fco-m1906f9.c  | 302 +++++++++++++++++++++
+>   4 files changed, 317 insertions(+)
 > 
-> AFAIU you *have* to take it because there are compile-time dependencies?
-> 
-> I provided my Reviewed-by so go ahead and apply it!
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index d7aee8dab903cd42c245fea3cf8971dcd99b2196..d00775a09445a8a1bd626ecfd27903471d08d33a 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -8187,6 +8187,7 @@ DRM DRIVER FOR SAMSUNG S6E8FCO PANELS
+>   M:	Yedaya Katsman <yedaya.ka@gmail.com>
+>   S:	Maintained
+>   F:	Documentation/devicetree/bindings/display/panel/samsung,s6e8fco-m1906f9.yaml
+> +F:	drivers/gpu/drm/panel/panel-samsung-s6e8fco-m1906f9.c
+>   
+>   DRM DRIVER FOR SAMSUNG SOFEF00 DDIC
+>   M:	David Heidelberg <david@ixit.cz>
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> index 7a83804fedca1b688ce6fbe4295ec9009007e693..ee9cc6939f2ac1dc4542563fd73f68ac5f9ee371 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+> @@ -893,6 +893,19 @@ config DRM_PANEL_SAMSUNG_S6E8AA5X01_AMS561RA01
+>   	  ~5.6 inch AMOLED display, and the controller is driven by the MIPI
+>   	  DSI protocol with 4 lanes.
+>   
+> +config DRM_PANEL_SAMSUNG_S6E8FCO_M1906F9
+> +	tristate "Samsung M1906F9 panel with S6E8FCO DSI controller"
+> +	depends on OF
+> +	depends on BACKLIGHT_CLASS_DEVICE
+> +	select DRM_MIPI_DSI
+> +	select VIDEOMODE_HELPERS
 
-Ok done.
+one more small nit - please double check you need VIDEOMODE_HELPERS
 
-Thanks Linus.
+David
 
-alex
-
-> 
-> Yours,
-> Linus Walleij
+[...]
+-- 
+David Heidelberg
 
 
