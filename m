@@ -1,67 +1,71 @@
-Return-Path: <devicetree+bounces-274373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274372-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YL/TINoPsmkvIQAAu9opvQ
-	(envelope-from <devicetree+bounces-274373-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 01:59:06 +0100
+	id YOYYCsoPsmkvIQAAu9opvQ
+	(envelope-from <devicetree+bounces-274372-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 01:58:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E609F26BD08
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 01:59:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8479726BCF2
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 01:58:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 97DCD3135A6B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 00:58:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7524C31190EE
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 00:58:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C398346E46;
-	Thu, 12 Mar 2026 00:58:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D172347524;
+	Thu, 12 Mar 2026 00:58:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="S7LqeOHJ"
+	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="oSbNLybD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-183.mta0.migadu.com (out-183.mta0.migadu.com [91.218.175.183])
+Received: from out-181.mta0.migadu.com (out-181.mta0.migadu.com [91.218.175.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C40833EAFF
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 00:58:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B3E63264D2
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 00:58:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773277094; cv=none; b=SjHYoihXscOyuBwYBcrpNIMmK1Ow5z+XAnfJhFk8p9bhaJLj8s5Ajnt6aeGHeWyaXRuIvVd9nKNepZjTRn2omeVNx6GkcaTbAexZB+ojUJDv4oxULvzmph1bgk8rEtCoggVA+15TWoouu5nEwHoNIm3lYCGWBWR2X8kvBZ9owMk=
+	t=1773277090; cv=none; b=A/iYv5e/lGXGldo+3DuQah5MnS65CquS1E7F9YVIsob93zDAM+h6vreKrqm6cCklp6jEV3wqckXZGSLFS+i9VL/VT5U5zp/w6kEYRjIpdSQ2leq+a05EF8Jaum2RDTmza0p5Wqrh3eESLpXSEu5dYiY1vXjb8VYwBexY3/mwhhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773277094; c=relaxed/simple;
-	bh=5j1fTAzIzTyDm4mJFuenzXRLI7D/yJIw1wKubbj18iM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=eogtrAuaeBikBZBAksKZpQhDvqnXv9IOwdEPD31NcQYeQaFLva6bkqG/7tLOwGpaQN12PV3oPbquqWswZRt+UsIW85b7XLo85Riwu7ww86J8HshGxu3OrID4dWw9bFjZ9i24+1v6hza6Iz10Z5oVUDIA2IXEiS93qAVrJ4+NFwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=S7LqeOHJ; arc=none smtp.client-ip=91.218.175.183
+	s=arc-20240116; t=1773277090; c=relaxed/simple;
+	bh=KLGJUjz5sg/Q4Fg5EfUjCn3JO4fg1VjNIOzOrd20dJc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=tppkfO2JoFoOheB4GGnr5CqBuB0WIua66ACdCfvniJA0/dmAu11i0EZDzr7xH7ghjrcYA8YP07vSLkSF08o61nWkZ+jDNSVKPaPYHikBovfLzZ2Ygu8gq56JtIwLLwSyAhim/ZB9C4sJDE5W6KfjhliBvWaDgC8F7EJe+0pJNSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=oSbNLybD; arc=none smtp.client-ip=91.218.175.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
-	s=key1; t=1773277080;
+	s=key1; t=1773277085;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=TNAWwfxkPMye03SAC4Kj95WA029lpFpYh72qae6pZPI=;
-	b=S7LqeOHJ4p6Kj9hBApnC9J7Kog676eBxdLfAqRmW926eJvxejy33+hCLeoXmyN6xI135wN
-	veal+hbjaWFW+MyQt4wtJLkZCDovAhO+9S1/mDm7MBbRB1HsCf5m8pQjl+9kK+afJ67nn6
-	kfQPBYUIz0EOAlgREUPyhKY3dVPumvUqV92t+aofIlbJfu/1QOlHU/roXK6beBG9aw89t/
-	PWcv9g92Y53dm0eIODlAvf8csCD8ZMZwAa8GrhqP0Q6phaTaU/t2exlGD+AA1ExLi6IFlr
-	i+jjhviK6yYOGsA7hv0qFSisY2aGVah1KO0ooU/S9jL6D/fel0KVWKhM5RROFg==
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=2CioL+3mGv+qdGBiMKwi58K8rdc7pcS3HJI4wKWNgDs=;
+	b=oSbNLybDNMMkq1JfsBgTrGi1Ypa6Buf+Bv+ffimGvVITzLiCor5hCIh0h4xAPZ8Rh1Ypjr
+	C6e4/LDw7uojEv3tTcnVBh0lccmwjFtWsl60YyiCSbmA51F7hGimkmzc70opDeqSyhYFXS
+	PhFTAf/wLW5r/dPaj1714ZUUj0YM1xeLTV9KCuTheWxWvQPnc+sUwvH4nNZC+eHNzlQhf3
+	v9zShQ/GEctvdjELD/UDY19H2jEUHpzXo/wQCZ3O0FOhufgRsG/OSvf9MyNKsLiidneR92
+	DWNScYX8NUKc1KbzrUJJL2mB3puAU/vEFsKDAxR0OwBWHb1VHe4fxN7aarwOqg==
 From: Val Packett <val@packett.cool>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Val Packett <val@packett.cool>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Laurentiu Tudor <laurentiu.tudor1@dell.com>,
+	Val Packett <val@packett.cool>,
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
 	Abel Vesa <abel.vesa@oss.qualcomm.com>,
 	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 1/2] arm64: dts: qcom: x1-dell-thena: Move PERST and Wake GPIOs to PCIe port nodes
-Date: Wed, 11 Mar 2026 21:53:36 -0300
-Message-ID: <20260312005731.12488-1-val@packett.cool>
+Subject: [PATCH v4 2/2] arm64: dts: qcom: x1-dell-thena: remove i2c20 (battery SMBus) and reserve its pins
+Date: Wed, 11 Mar 2026 21:53:37 -0300
+Message-ID: <20260312005731.12488-2-val@packett.cool>
+In-Reply-To: <20260312005731.12488-1-val@packett.cool>
+References: <20260312005731.12488-1-val@packett.cool>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,24 +74,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[packett.cool,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[packett.cool:s=key1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274373-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-274372-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[val@packett.cool,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
@@ -95,77 +100,54 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.0:email,packett.cool:dkim,packett.cool:email,packett.cool:mid,qualcomm.com:email]
-X-Rspamd-Queue-Id: E609F26BD08
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[packett.cool:dkim,packett.cool:email,packett.cool:mid,0.0.0.0:email,qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8479726BCF2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Recently the DTs for most Hamoa-based devices received this change, but
-the Thena dtsi (common for Dell Latitude and Inspiron SKUs) was skipped.
-Apply the change to it.
+i2c20 is used by the battmgr service on the ADSP to communicate with the
+SBS interface of the battery. Initializing it from Linux would break the
+battmgr functionality when booted in EL2. Mark those pins as reserved.
 
-Fixes: 960609b22be5 ("arm64: dts: qcom: hamoa: Move PHY, PERST, and Wake GPIOs to PCIe port nodes and add port Nodes for all PCIe ports")
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Fixes: e7733b42111c ("arm64: dts: qcom: Add support for Dell Inspiron 7441 / Latitude 7455")
 Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 Reviewed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
 Signed-off-by: Val Packett <val@packett.cool>
 ---
-v4: Pull R-b and actually use the correct 'reset-gpios' instead of 'perst-gpios'
-    (oops! 3 reviews and now I spotted it while reviewing a different patch)
-v3: https://lore.kernel.org/all/20260228205818.13016-1-val@packett.cool/
-v2: https://lore.kernel.org/all/20260210175001.7691-1-val@packett.cool/
-v1: https://lore.kernel.org/all/20260114203600.5617-1-val@packett.cool/
+v4: Pull R-b
+v3: https://lore.kernel.org/all/20260228205818.13016-2-val@packett.cool/
+v2: https://lore.kernel.org/all/20260210175001.7691-2-val@packett.cool/
+v1: doesn't exist. oops, at v1 this wasn't a series, just the PCIe GPIO patch
 ---
- arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
+ arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi b/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
-index bf04a12b16bc..d5018fdbdedb 100644
+index d5018fdbdedb..967535b2bce7 100644
 --- a/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
 +++ b/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
-@@ -1081,9 +1081,6 @@ &mdss_dp3_phy {
- };
- 
- &pcie4 {
--	perst-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
--
- 	pinctrl-0 = <&pcie4_default>;
- 	pinctrl-names = "default";
- 
-@@ -1098,6 +1095,9 @@ &pcie4_phy {
- };
- 
- &pcie4_port0 {
-+	reset-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-+
- 	wifi@0 {
- 		compatible = "pci17cb,1107";
- 		reg = <0x10000 0x0 0x0 0x0 0x0>;
-@@ -1115,9 +1115,6 @@ wifi@0 {
- };
- 
- &pcie6a {
--	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
--
- 	vddpe-3v3-supply = <&vreg_nvme>;
- 
- 	pinctrl-0 = <&pcie6a_default>;
-@@ -1133,6 +1130,11 @@ &pcie6a_phy {
+@@ -982,12 +982,6 @@ &i2c8 {
  	status = "okay";
  };
  
-+&pcie6a_port0 {
-+	reset-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-+};
-+
- &pm8550_gpios {
- 	rtmr0_default: rtmr0-reset-n-active-state {
- 		pins = "gpio10";
+-&i2c20 {
+-	clock-frequency = <400000>;
+-
+-	status = "okay";
+-};
+-
+ &lpass_tlmm {
+ 	spkr_01_sd_n_active: spkr-01-sd-n-active-state {
+ 		pins = "gpio12";
+@@ -1308,6 +1302,7 @@ right_tweeter: speaker@0,1 {
+ &tlmm {
+ 	gpio-reserved-ranges = <44 4>,  /* SPI11 (TPM) */
+ 			       <76 4>,  /* SPI19 (TZ Protected) */
++			       <80 2>,  /* I2C20 (Battery SMBus) */
+ 			       <238 1>; /* UFS Reset */
+ 
+ 	cam_rgb_default: cam-rgb-default-state {
 -- 
 2.52.0
 
