@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-274406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274407-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mPqwB0g+smk6KQAAu9opvQ
-	(envelope-from <devicetree+bounces-274406-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:17:12 +0100
+	id cAyxCVk+smk6KQAAu9opvQ
+	(envelope-from <devicetree+bounces-274407-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:17:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B6E026D004
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:17:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBEF726D030
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:17:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5334C306965E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 04:16:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 654FB304A215
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 04:16:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 936C639659B;
-	Thu, 12 Mar 2026 04:16:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2B823976AB;
+	Thu, 12 Mar 2026 04:16:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZoBY3Yy2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GHu5Zr+1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 383D7396598
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 04:16:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12DF039769C
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 04:16:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773288979; cv=none; b=c8LoOI7ZFh5gMbPKnd+8oX+HxdQ6Q/BO+ZbQzag7UT9tCb88CEEcPSp7O5bQE0lMZsqo4jNvbIp/hyeY+ccf7+hjbdZsDnxCmGckP/wM9HNS3266XZ9tkr1K6utXwOkPzwTi5nMKhLzYMFDxlnhVbomfjQPO0aUdqOa2BeccIgc=
+	t=1773288982; cv=none; b=XLHk+4rbVYdItp06udhQWRG54i4g27lUJPzAMZCVmul8U3io5OpfgbSWFKC1o0p3rycZTtclMgvVsqb+Y9Ya949xSd7X8HvuS51V7WHJW/pKNe+arDPJ9+h4ZhlioF28lYV/P5Hj5lyT1e6Y8Vh/k1BEF2pwKfTvu8N5wNxOyKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773288979; c=relaxed/simple;
-	bh=plo3cdLp0mM/REsTKnMKP+T7Zcgsn/lfKl8OdWSoeXw=;
+	s=arc-20240116; t=1773288982; c=relaxed/simple;
+	bh=51ki8Jz6kreuFXzwCafh/1IS/D4CLIjxbKU84GMKd2k=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KUzWVZIzOvbYna3g9BZ1e672R9hCN7Bsdo324FMgezmo2nzT7J4GxThhPsF3KOtJzbm0iGb6ZHP+8LX9LZY10jx3EOWwBXaeE91MWVbrmXJtl+xvlNvA4LN0wusEKJuhYqktqjZHDHQNcqHUXqcnt59kMC336L4ySEaKPpjV7L8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZoBY3Yy2; arc=none smtp.client-ip=209.85.216.42
+	 MIME-Version; b=SWxksaPUOJxa3RZTQWmVtmfMN+x/6csj0fKc/TSNPgbQxDSqcgJXmdVy72gwji7m6YXc2o10hho1q1DnxZn22HBSEObntz9DcGJemDYkh2y6u9Vuvsh0nIawCOM/1Xf34CXyXweoEd5NFgzfSmiNGzwyhwqEWwCc5Fr4/7JU5+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GHu5Zr+1; arc=none smtp.client-ip=209.85.216.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-35a04d6aeb0so350157a91.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 21:16:17 -0700 (PDT)
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-358d80f60ccso334738a91.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 21:16:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773288976; x=1773893776; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1773288980; x=1773893780; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=W/9M/lTT6d/B4Kv1sMdY42lBtxyscWWx3kEUkACbugI=;
-        b=ZoBY3Yy2qfVpJRv/D238K5ceqnOQg0tpLV7IHc237SqlJbWf/BQsNaMmATDYJNJksY
-         q1kxLV5GxPVGKHiDEqs9PqfhdXfWZR/CdpRPttvY/OLC54o21Xgp+FIepEb5KtwUan9I
-         MO6qD5sSpgx9ydp2bKbIBbfWe2ugs6/0+cII+TdLFtP1AfONkMcCwlhhJ1v2O0XYLeP4
-         nLaQYxx7MlIOO8mjW+iCvahWxdT+iYGxqH8rxT0GAjnqRdTIsn+YJpjpDN7B7xi7AGeD
-         RhIqZIJCPzGHBudElG5rT3Jy1wGikaNItHow/3XtBTxx9wMiTlOlvHH/PNfMafJ+AncV
-         GB7w==
+        bh=aZ55cAz0uNCrHrnWbm2bWX9AINXdiqVYlgBemqEfZdI=;
+        b=GHu5Zr+1o3TC4xozbTnzzbr/S39PrEBZwr83NSjiKuLWsgXWM7iNnhOi+nbJ6YmC8Q
+         tYmBRmjgBINN+fCCP3T83EyH2eKnD0QKOZvdWzTfQUjzpbKujcbXmL8qoFVxTteUmwuD
+         7y7p/U9sU9yerUDs8s9V0GjwMBVnwkqcP06Jt//SrObnbFGfH8bBb+rquRtCFPMbD3H2
+         k8N8u5buXMMHs/NycZv1uoWB3zC7ESTsgxnayBdit7weziiN3KKnXAi5rQFhEPH4OuOb
+         QlSFXY6nQMHsSNPOTsEUXE28BlmI4FI2wWVoMO3v/NdSgZ7CANNgPhROoxi8nX4HEHHY
+         Acnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773288976; x=1773893776;
+        d=1e100.net; s=20230601; t=1773288980; x=1773893780;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=W/9M/lTT6d/B4Kv1sMdY42lBtxyscWWx3kEUkACbugI=;
-        b=Zfr4geysR7Q4HHA7D3tEc/De2pa1ybqAGOgd2GPZMOmIEaIQQzEePyyVSV01O9qZgN
-         4Monpqv+xqMXR0mL4lhwWhoZ1XEBIpyXMFIjWY8ontwHw4v1MHystpJBndrxjhcrWvDQ
-         LQ4UB7DMFcK/wZE/QUYLnpLJBn9itsmaY58MXVYCLAEuQPm7YNj4j8MXKglHUqsvrPi4
-         4r/h7uPM4XvN//HgLwgxHYQzOvRYHX19uMg2cLmRfijjs4hs0Zi13lpsZUfCIgcGaQwi
-         NpqMlWqXJTgiLWXCqGI+DcDQ7XePFGCXI/GsGLShIcW/9FW3dpT/Ar5x+ZNI+ktDqaeY
-         /xMQ==
-X-Gm-Message-State: AOJu0YzqVwGMRtneI3V0hdtVRUhTR15Mn+hcFPvTFLEg1DwKtXiPNuY9
-	O3IEI+BG/oU0SQKUtTtCHFPVOKiCTbk044n8wQgEWHcIEnLNCsB4fjW5
-X-Gm-Gg: ATEYQzws4q8sGPnagjM5KkIxWM2xBBRuZRUzofeLMsei9jpq/8PkElOqqGP996BUSb/
-	xpGnVvpNh3y2ALcJuIVMyLc2C6GKE+5pOoj5etp4nT9IDwRCQTimnR3p25ZSuaKo7D+X9RP/aNY
-	y7Ealr8WysBSa2ONxLSOMqpNtDCU38vCn5SZEY1gBgIx5vUFEpNFhETYtYXNQ/4Z18Y6TjRFwf/
-	hlvDr31p5CdLlDLz7daVWLXu/DcG3pe+oNA5U0GYe/gXzem+vEBE9q2q09tbUhc0tPPsJguBskm
-	YbYUuV6r0zKbCMsmakSILTKa0s51eTWYDDj/WZoLGsW4z6CP0kK0wdkW+UaDP+DE/l48/iY8aGa
-	H75ImH2inF+epHJTBNvVA0C1kyGSU/xa9f2t6IJWnC04chMgyd28MCsXhpVkCwKybhOLKnJBBaw
-	E7T7rewjVapyW6sfB9zUbtV5g1QE2DZbRCSDNVuEUQLCNdfBVE93X9RsfMt9KlPxVyk0yCIRjdg
-	lRP+qM=
-X-Received: by 2002:a17:90b:3c06:b0:343:7714:4ca8 with SMTP id 98e67ed59e1d1-35a01201d6fmr4340930a91.15.1773288976536;
-        Wed, 11 Mar 2026 21:16:16 -0700 (PDT)
+        bh=aZ55cAz0uNCrHrnWbm2bWX9AINXdiqVYlgBemqEfZdI=;
+        b=tpyx2U67avgtqRxEekBnCDT6VyUrvU+SlKQOM0S7h+r6QOZw5wWkokjzwMl+L5qL38
+         Pb5eE4TegjeX5P9bs6Z7Opzz2vzA5dHkLIA4uvx2WVLytjPWK7vPs4U1rCBNKINTfFiH
+         o83RWfdmpMYrJSCxkLnIfctxBB0rQUeHBSVcZuI9Fam2Q069h0Co+TUPuYUeI73DyM6M
+         yuoHl9yU8rx9DqT7oa98EUNAygb+jkebapmqYv1rPtFoy9pAMDUrk5S7R8KejGXJNm2/
+         AFCz6Gv9ZpT6ZDKcHpSoWdeWggiz5waBhgUvCsYLIa0WbHp7fcH1ajNW0s228foKiDJA
+         mfiA==
+X-Gm-Message-State: AOJu0Yyvkt7eRg//JUeYcbgUo712XqgbNzrBO05cBV8+uZYfS+cnEaip
+	VobpLGsohVian0jSyjh+J7I2EohbHFD+igfqfn4mQfav4BQ4bb+Yrtqv
+X-Gm-Gg: ATEYQzwh92jFCWl0yeiOUje6dYLo3UwrT7S5R9DmEV8xvKUHfo+rj5NKg5+HzAO8I98
+	zl+tbls0ZmV4agUPJIWM3732ZLlSW5e7SGl/KwunacBLfjd1KFZwFJOCo/5AdbdbJYHFi43jckD
+	nADKMvmZItY6tY7jqtAH07z1+Xvatqs2XPArAnj6uKJxZIf9Y+2xNzuyRfAmVfaNg4sOGtq8I+t
+	THl/2njfZQly75r4UV06IMZ7helWKMv9Ynq5ClJjETNFN62FyXVAQn46xf50kv9x4JENRFpKPF3
+	CmElcdGX3SJ0hwiHH7nhnx1tG7T6i/FL7fC3BL53QWl7QbbuCTtx4vUfDUaWsQQrIvRyqm/87R8
+	fBTmCf3LnUsVsvD5YDxfaHt3it78qmJLK+Fznf/fFhWDPUNESQtNLCDEapyJQeNfwhgESQPbIyq
+	503VBFdqGXJdTdoE9awD1ekhXlmsAJt3FeCvR+u3YElbZBCnF0QysP6Xbucw3fBmTG8ri4dWd2j
+	I+n5Hk=
+X-Received: by 2002:a17:90a:d60e:b0:359:f4de:8084 with SMTP id 98e67ed59e1d1-35a01323af3mr4560816a91.23.1773288980433;
+        Wed, 11 Mar 2026 21:16:20 -0700 (PDT)
 Received: from buffalo-ssd.taila54753.ts.net (M014013071096.v4.enabler.ne.jp. [14.13.71.96])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35a02fca40bsm5018229a91.10.2026.03.11.21.16.12
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35a02fca40bsm5018229a91.10.2026.03.11.21.16.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Mar 2026 21:16:16 -0700 (PDT)
+        Wed, 11 Mar 2026 21:16:20 -0700 (PDT)
 From: Akari Tsuyukusa <akkun11.open@gmail.com>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -105,9 +105,9 @@ Cc: devicetree@vger.kernel.org,
 	seiya.wang@mediatek.com,
 	tinghan.shen@mediatek.com,
 	Akari Tsuyukusa <akkun11.open@gmail.com>
-Subject: [PATCH 3/6] arm64: dts: mediatek: mt7986a: Fix gpio-ranges pin count
-Date: Thu, 12 Mar 2026 13:15:30 +0900
-Message-ID: <20260312041533.187553-4-akkun11.open@gmail.com>
+Subject: [PATCH 4/6] pinctrl: mediatek: mt6779: Fix include guard comment in the header
+Date: Thu, 12 Mar 2026 13:15:31 +0900
+Message-ID: <20260312041533.187553-5-akkun11.open@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260312041533.187553-1-akkun11.open@gmail.com>
 References: <20260312041533.187553-1-akkun11.open@gmail.com>
@@ -131,7 +131,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[28];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-274406-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274407-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,mediatek.com,collabora.com,linaro.org,milecki.pl,baylibre.com,gmail.com];
 	MIME_TRACE(0.00)[0:+];
@@ -149,33 +149,28 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9B6E026D004
+X-Rspamd-Queue-Id: DBEF726D030
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The gpio-ranges in the MT7986A pinctrl node were incorrectly defined,
-therefore, pin 100 cannot be used.
-Correct the range count to match the driver.
+Correct the mismatched macro name in the #endif comment.
 
-Fixes: c3a064a32ed9 ("arm64: dts: mediatek: add pinctrl support for mt7986a")
+Fixes: 920e469e15c8 ("pinctrl: mediatek: add pinctrl support for MT6779 SoC")
 Signed-off-by: Akari Tsuyukusa <akkun11.open@gmail.com>
 ---
- arch/arm64/boot/dts/mediatek/mt7986a.dtsi | 2 +-
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt6779.h | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-index 9693f62fd013..9ebc196107e5 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-@@ -187,7 +187,7 @@ pio: pinctrl@1001f000 {
- 				    "iocfg_lb", "iocfg_tr", "iocfg_tl", "eint";
- 			gpio-controller;
- 			#gpio-cells = <2>;
--			gpio-ranges = <&pio 0 0 100>;
-+			gpio-ranges = <&pio 0 0 101>;
- 			interrupt-controller;
- 			interrupts = <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-parent = <&gic>;
+diff --git a/drivers/pinctrl/mediatek/pinctrl-mtk-mt6779.h b/drivers/pinctrl/mediatek/pinctrl-mtk-mt6779.h
+index 0a48d6686ebb..d9404c9f6479 100644
+--- a/drivers/pinctrl/mediatek/pinctrl-mtk-mt6779.h
++++ b/drivers/pinctrl/mediatek/pinctrl-mtk-mt6779.h
+@@ -2082,4 +2082,4 @@ static const struct mtk_pin_desc mtk_pins_mt6779[] = {
+ 	),
+ };
+ 
+-#endif /* __PINCTRL-MTK-MT6779_H */
++#endif /* __PINCTRL_MTK_MT6779_H */
 -- 
 2.53.0
 
