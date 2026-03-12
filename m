@@ -1,148 +1,183 @@
-Return-Path: <devicetree+bounces-274725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274727-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8JDrLjf1smmLRAAAu9opvQ
-	(envelope-from <devicetree+bounces-274725-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:17:43 +0100
+	id MHeAN074smmLRAAAu9opvQ
+	(envelope-from <devicetree+bounces-274727-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:30:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BDE52767B8
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:17:43 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59CB0276911
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:30:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 906D630470F4
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:17:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AA8C5301F48F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:30:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF9B73F0A9A;
-	Thu, 12 Mar 2026 17:16:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADD3D358383;
+	Thu, 12 Mar 2026 17:30:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="NODXxHQy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V9KRHsRi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-4322.protonmail.ch (mail-4322.protonmail.ch [185.70.43.22])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C57003FE356;
-	Thu, 12 Mar 2026 17:16:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89DCF242D97;
+	Thu, 12 Mar 2026 17:30:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773335797; cv=none; b=AdeNCYnItOZr4patbCGTXXmwIu1kV2144n7XdDdMriTT46CWB3Nvft+qneweBtnrdJi+MGaCV41CDoUPJSbGzBFZKIyrMakvCml3RgnjcrG+Yhydo2CI8+92iPC24oVElFJfRBftko/AjK0aEtJ8lU5git/9Qr0SSpvk6MP18d4=
+	t=1773336651; cv=none; b=jXKBAldkXQoiQ9lKC2YsnyRMr4TgDeX8EVo/bSaxpzzL/6cUWLimha58MYwO7AJo9GjBKDVW1tQsxQZQObGcFDdnyEC+B/ozknLdoR6A+x7EkUhyEajaYIztlh7JFWVWGTBdw+UTLwl14Ky1K0Zquo6lFs4+4OqnFCiUW5xxuBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773335797; c=relaxed/simple;
-	bh=VHwg5MUxzEK7wOWuAbvHaAaBfbz4LN/tW8AFhcKVB/g=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DKWE2EhLmXhlbStmV9K0W1weq6WNi6sOHkpuTGr1bf8v12nHcvtQ83n5qMtHfmQ8b7jCz6YQYjkNoTuvHl0IENJLgPZc7Gqdqb27yyHjskB8hHJFvzUavD9HWqVdd3UTiBCMzbqFUKx+UXa/pf7iEL/a9rRDVw82KjeND13dUxI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=NODXxHQy; arc=none smtp.client-ip=185.70.43.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pm.me
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
-	s=protonmail3; t=1773335792; x=1773594992;
-	bh=4G2O0xmDvSeKaWNCXXRz8HN+oJP7MY3SAgRZC2ST2Tw=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=NODXxHQykYDsDcXzAMdeEZhwjHqOVshfV8bDJ95pUVA1drFBqU/JKIcSN0+bHm6y3
-	 j/4kSW9Cd8LZsdi9HiLXLYBXOQUNlmnPAVr2mE9SC6+VfkMmWiAzPFM55j7dvXaaqP
-	 lTNkb97OMatcwPlBTbuyl3mGpzyFzi32V7mXPhd8l4OlkcMgflh7qZXtLbPh6RDvV+
-	 6NWBPtHOSW2cW3AQOf3eM2G3qnfK5rNfuZTGkBtnwVoSMZzxytp5drzQ/jdKeuIBJ9
-	 xBbDCiYN51IM8lRmzxtqfdE4Vm15HROduUpRB3Sf/q4JbTL41FormizEbr+lVtFo8o
-	 5LldWh8USioTg==
-Date: Thu, 12 Mar 2026 17:16:28 +0000
-To: Sakari Ailus <sakari.ailus@linux.intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Ben Kao <ben.kao@intel.com>
-From: Alexander Koskovich <akoskovich@pm.me>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Mauro Carvalho Chehab <mchehab+samsung@kernel.org>, Alexander Koskovich <akoskovich@pm.me>
-Subject: [PATCH v3 3/3] media: i2c: ov8856: parse and register V4L2 device tree properties
-Message-ID: <20260312-ov8856-v4l2-props-v3-3-3771ab40a4c0@pm.me>
-In-Reply-To: <20260312-ov8856-v4l2-props-v3-0-3771ab40a4c0@pm.me>
-References: <20260312-ov8856-v4l2-props-v3-0-3771ab40a4c0@pm.me>
-Feedback-ID: 37836894:user:proton
-X-Pm-Message-ID: 133d3e790956b494aa640149e14cd0411ce1317f
+	s=arc-20240116; t=1773336651; c=relaxed/simple;
+	bh=W6tGZ3NCS57fycGB4Z6FjTao9Hr+IRejW/1XW8Q2EbY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q0UC+DRzXZLcweRIW5hPiEX44CXU5RuXS8KWKa5PmBtKHEDtItQq/KC+AA7s0qm0hZGYqyLReWp68Gmj9kK7rnK/6iyLcuCvLJay5oaO8RtljKpT5jc6soxz10huBlSoLl+/W3YJKco9UO/mC2PLlVI618PqKsRbfDKOOjYhw8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V9KRHsRi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05248C19424;
+	Thu, 12 Mar 2026 17:30:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773336651;
+	bh=W6tGZ3NCS57fycGB4Z6FjTao9Hr+IRejW/1XW8Q2EbY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=V9KRHsRiqVMm1UsQicox1Kr9qVSuXsJ98bMYR51K/SnUhXS1yx0aTqGt4Nm6p6XD4
+	 jRsZfPwgNxkSy1hFZEp9kv3Z9rNst9vugRPBg7pVI1nhuiGFHj67PxTHHnR8TBH2et
+	 JWZmBtLsGZhq53JfLKB5Js7T6bgp1OZlRmloKHrd207TrQq075Q+h/H/FHVjpl697C
+	 tsFPToxalvLUwM9gHDjtJ+bNoBj9ItAqDLNANw9GHpXSAH3PhAgxA2Xvd6JXe7U+fm
+	 IPum2fqKPaEib0tDzoI6TUFDKzGfWmOwnNJKR0GWUIj2baKBy7uGWCWO0xvtzi/KXs
+	 DCHoa+oZnEOxw==
+Date: Thu, 12 Mar 2026 17:30:46 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Yixun Lan <dlan@kernel.org>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Junzhong Pan <junzhong.pan@spacemit.com>,
+	Guodong Xu <guodong@riscstar.com>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: soc: spacemit: k3: Decouple composite
+ reset lines
+Message-ID: <20260312-legume-unstitch-129b278e14d6@spud>
+References: <20260312-01-k3-reset-usb-pci-v1-0-022b24b7340f@kernel.org>
+ <20260312-01-k3-reset-usb-pci-v1-1-022b24b7340f@kernel.org>
+ <0abfd76f49e5cedf7bfc84eb4d9a0a1d7543f6f8.camel@pengutronix.de>
+ <20260312112858-GKH302167@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7Ay2qMKpijP+JeF+"
+Content-Disposition: inline
+In-Reply-To: <20260312112858-GKH302167@kernel.org>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[pm.me,quarantine];
-	R_DKIM_ALLOW(-0.20)[pm.me:s=protonmail3];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-274727-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274725-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[akoskovich@pm.me,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[pm.me:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,samsung];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pm.me:dkim,pm.me:email,pm.me:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3BDE52767B8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 59CB0276911
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Parse V4L2 device tree properties and register controls for them.
 
-Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
----
- drivers/media/i2c/ov8856.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+--7Ay2qMKpijP+JeF+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/media/i2c/ov8856.c b/drivers/media/i2c/ov8856.c
-index dd01e1d515ff..8bedb47cd7cf 100644
---- a/drivers/media/i2c/ov8856.c
-+++ b/drivers/media/i2c/ov8856.c
-@@ -1887,12 +1887,14 @@ static const struct v4l2_ctrl_ops ov8856_ctrl_ops =
-=3D {
-=20
- static int ov8856_init_controls(struct ov8856 *ov8856)
- {
-+=09struct i2c_client *client =3D v4l2_get_subdevdata(&ov8856->sd);
-+=09struct v4l2_fwnode_device_properties props;
- =09struct v4l2_ctrl_handler *ctrl_hdlr;
- =09s64 exposure_max, h_blank;
- =09int ret;
-=20
- =09ctrl_hdlr =3D &ov8856->ctrl_handler;
--=09ret =3D v4l2_ctrl_handler_init(ctrl_hdlr, 8);
-+=09ret =3D v4l2_ctrl_handler_init(ctrl_hdlr, 10);
- =09if (ret)
- =09=09return ret;
-=20
-@@ -1956,6 +1958,15 @@ static int ov8856_init_controls(struct ov8856 *ov885=
-6)
- =09=09goto err_ctrl_handler_free;
- =09}
-=20
-+=09ret =3D v4l2_fwnode_device_parse(&client->dev, &props);
-+=09if (ret)
-+=09=09goto err_ctrl_handler_free;
-+
-+=09ret =3D v4l2_ctrl_new_fwnode_properties(ctrl_hdlr, &ov8856_ctrl_ops,
-+=09=09=09=09=09      &props);
-+=09if (ret)
-+=09=09goto err_ctrl_handler_free;
-+
- =09ov8856->sd.ctrl_handler =3D ctrl_hdlr;
-=20
- =09return 0;
+On Thu, Mar 12, 2026 at 07:28:58PM +0800, Yixun Lan wrote:
+> Hi Philipp,
+>=20
+> On 12:09 Thu 12 Mar     , Philipp Zabel wrote:
+> > On Do, 2026-03-12 at 10:34 +0000, Yixun Lan wrote:
+> > > Instead of grouping several different reset lines into one composite
+> > > reset, decouple them to individual ones which make it more aligned
+> > > with underlying hardware.
+> > >
+> > > The DWC3 USB host controller in K3 SoC has three reset lines - AHB, V=
+CC,
+> > > PHY. The PCIe controller also has three reset lines - DBI, Slave, Mas=
+ter.
+> > >=20
+> > > Signed-off-by: Yixun Lan <dlan@kernel.org>
+> > > ---
+> > >  include/dt-bindings/reset/spacemit,k3-resets.h | 42 ++++++++++++++++=
+++++------
+> > >  1 file changed, 32 insertions(+), 10 deletions(-)
+> > >=20
+> > > diff --git a/include/dt-bindings/reset/spacemit,k3-resets.h b/include=
+/dt-bindings/reset/spacemit,k3-resets.h
+> > > index 79ac1c22b7b5..c12f8bd32047 100644
+> > > --- a/include/dt-bindings/reset/spacemit,k3-resets.h
+> > > +++ b/include/dt-bindings/reset/spacemit,k3-resets.h
+> > > @@ -97,11 +97,7 @@
+> > >  #define RESET_APMU_SDH0          13
+> > >  #define RESET_APMU_SDH1          14
+> > >  #define RESET_APMU_SDH2          15
+> > > -#define RESET_APMU_USB2          16
+> > > -#define RESET_APMU_USB3_PORTA    17
+> > > -#define RESET_APMU_USB3_PORTB    18
+> > > -#define RESET_APMU_USB3_PORTC    19
+> > > -#define RESET_APMU_USB3_PORTD    20
+> >=20
+> > This is backwards incompatible.
+> > Are there any device trees using the APMU resets yet?
+> > If not, I wonder if we should just renumber all APMU resets into a
+> > contiguous range and try to get it into v7.0 as a fix.
+> >=20
+> No, there is currently no consumers, so I could rework them into a contig=
+uous
+> version, thanks for the suggestion
 
---=20
-2.53.0
+Only as long as it goes into 7.0, IMO, as a fix.
 
+> > Also, this breaks bisectability.
+> > reset-spacemit-k3.c will fail to compile between patches 1 and 2.
+> >=20
+> I've tried a first version to squash the two patches, but got a checkpatc=
+h.pl complait
+> for binding should follow into a separate patch.
+>=20
+> I can combine these two patches into one, is this Ok for you?
 
+Be very very very clear about why they're going together, otherwise you'll
+get yelled at!
+
+--7Ay2qMKpijP+JeF+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabL4RgAKCRB4tDGHoIJi
+0lFCAQC8R0krTCJ3h8LENWd4AYu7AGIS+9Kr+nwqeEhqxLlJ6gEA9efqzwnlJkD2
+xl++M7pPu/XyyZgMduLa1mwL6FPpUgs=
+=uTkh
+-----END PGP SIGNATURE-----
+
+--7Ay2qMKpijP+JeF+--
 
