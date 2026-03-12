@@ -1,130 +1,177 @@
-Return-Path: <devicetree+bounces-274468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274469-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AJXuKz9wsmmuMgAAu9opvQ
-	(envelope-from <devicetree+bounces-274468-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 08:50:23 +0100
+	id sGVBIQ9xsmmuMgAAu9opvQ
+	(envelope-from <devicetree+bounces-274469-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 08:53:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5557026E73C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 08:50:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0D1226E80E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 08:53:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B58A2301CC89
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 07:50:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 93647305C284
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 07:51:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84723B27D9;
-	Thu, 12 Mar 2026 07:50:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E97643B3C19;
+	Thu, 12 Mar 2026 07:51:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9AA6303CA0;
-	Thu, 12 Mar 2026 07:50:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A3693B3BE4
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 07:51:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773301818; cv=none; b=hvjUuoEckeqtpJvaN6nf/suUt+pEu7NdlhfuRxtS+cqEOhPTLKinvGWmy+jPmpkh6YezkQMi39dMfzfy1fUEB8jeqfd8U3U/zumnECoc35lT7X9SvxLh5WaX2z5e05pvr+MA4pmx8h25qk1Kox6hqyrRVAHmYe0e76/k6rtamto=
+	t=1773301909; cv=none; b=gXvTuRYel+ge06c0L3lQQdsPByCpvTnNeC+VUqR3hjFw+jPjuxoS+zjE4sHnGVNrIx8wN93cn/jM4wQW4WiWV50F+ic3MaGnXLbrlLN9sLS5H+12hsC9YSasfS2A4SbeHn3yxildXphbiPpj642MuQtEbKk2qLtIri8KTjyNggA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773301818; c=relaxed/simple;
-	bh=G9iOh8MH53BV8yifyGIrscGOuqRgXXDAZ+PHM0PPFrA=;
+	s=arc-20240116; t=1773301909; c=relaxed/simple;
+	bh=O0W4dyeZXINL1xMPgfaiUp8T/xt+gRpsnXCZ1iL32IQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BNE7VOM1RAg6W6bo+3ucTGim4GKJFDSUn87oMlVoJMTJ6Sz3YEKluEdco+3ezIcCITyqlKGj3YYcNbmpgETUeF2V6eA1yISAyTMnWv5vJcgSH+75ioQIYzlNwq9omb4lvCgYoPqcWwgaiiNWDEfhl4whO8mCbWw7p0AwLZ+zJDc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; arc=none smtp.client-ip=92.121.34.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 021B71A0542;
-	Thu, 12 Mar 2026 08:50:16 +0100 (CET)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id DE62A1A06DE;
-	Thu, 12 Mar 2026 08:50:15 +0100 (CET)
-Received: from lsv051416.swis.nl-cdc01.nxp.com (lsv051416.swis.nl-cdc01.nxp.com [10.168.48.122])
-	by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id AF65E20263;
-	Thu, 12 Mar 2026 08:50:15 +0100 (CET)
-Date: Thu, 12 Mar 2026 08:50:15 +0100
-From: Jan Petrous <jan.petrous@oss.nxp.com>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Jan Petrous via B4 Relay <devnull+jan.petrous.oss.nxp.com@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	rmk+kernel@armlinux.org.uk, vladimir.oltean@nxp.com,
-	boon.khai.ng@altera.com
-Subject: Re: [PATCH v8 1/5] net: stmmac: Use helper macro for loop over
- queue-based arrays
-Message-ID: <abJwN5bulKxQpI+K@lsv051416.swis.nl-cdc01.nxp.com>
-References: <20260309-dwmac_multi_irq-v8-0-f0cc5bc811a7@oss.nxp.com>
- <20260309-dwmac_multi_irq-v8-1-f0cc5bc811a7@oss.nxp.com>
- <20260311203707.1d5ba94c@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=pSGRTGDYCRzyf8uCg+CAOGNoviZCFqWB131AqhvthGITs+uez9p9oEkF4LSG454WNHEwTlyqj5nPeaDf0/ZOdmKdaozd7ai31+nCNJc5BcsyS+kdTTk4M8KKa8UpCGRDLwPO00YapOP5Iksv2rV5Rkp8krQdRaRrTthtM8suYsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1w0apM-0000j6-G5; Thu, 12 Mar 2026 08:51:28 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1w0apK-004zEN-11;
+	Thu, 12 Mar 2026 08:51:27 +0100
+Received: from pengutronix.de (p4ffb2dc6.dip0.t-ipconnect.de [79.251.45.198])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 4A4814FF6DF;
+	Thu, 12 Mar 2026 07:51:27 +0000 (UTC)
+Date: Thu, 12 Mar 2026 08:51:26 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, mani@kernel.org, thomas.kopp@microchip.com, mailhol@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org, 
+	konradybcio@kernel.org, linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, mukesh.savaliya@oss.qualcomm.com, 
+	anup.kulkarni@oss.qualcomm.com
+Subject: Re: [PATCH v1 2/2] arm64: dts: qcom: qcs6490-rb3gen2: Enable CAN bus
+ controller
+Message-ID: <20260312-fragrant-blond-velociraptor-bf449f-mkl@pengutronix.de>
+X-AI: stop_reason: "refusal"
+References: <n6affntgff5wy4xmm255v5h2ejpepicpz2cybcuvsxmry5td6u@jucskv7zrzvv>
+ <5cdfe5a5-3c78-45a2-886c-768b224ad776@oss.qualcomm.com>
+ <wbx2qrkhpsntggzqkzkpi4sa6qv3buhkjbwmjoa7zgw2oc4b7u@qugyhcxb6qrh>
+ <316fa702-6cd8-4842-aecf-c176a5a53e2e@oss.qualcomm.com>
+ <qvuokwiqllm6zmlzj3pfvziylrr5krjya5rnf3ojeycdoutlro@fl5qukh4vorm>
+ <5486697e-d02e-4b12-9a60-99d0de343515@oss.qualcomm.com>
+ <2ho25tzct6t7gsuyufyg7m4a2ikmblhukb4uddwc7p35wd6yne@heippz3lh4kj>
+ <465ab63f-3d0c-46f7-a08e-cdc5fc26b600@oss.qualcomm.com>
+ <73nfsa3r3isf2shizemroctjpleya4wnnel634g7b5qyvvmze5@vre6wrdxxpet>
+ <0bf0a64c-0f05-49ea-b7a2-e1b1345a3d7f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="sukssa3pp322mpwk"
 Content-Disposition: inline
-In-Reply-To: <20260311203707.1d5ba94c@kernel.org>
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Spamd-Result: default: False [0.14 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+In-Reply-To: <0bf0a64c-0f05-49ea-b7a2-e1b1345a3d7f@oss.qualcomm.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spamd-Result: default: False [-2.56 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	FREEMAIL_CC(0.00)[kernel.org,lunn.ch,davemloft.net,google.com,redhat.com,gmail.com,foss.st.com,suse.com,oss.nxp.com,nxp.com,pengutronix.de,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,lists.linux.dev,armlinux.org.uk,altera.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-274469-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274468-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	DMARC_NA(0.00)[pengutronix.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jan.petrous@oss.nxp.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mkl@pengutronix.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
 	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,jan.petrous.oss.nxp.com,netdev,dt,kernel];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5557026E73C
+	NEURAL_HAM(-0.00)[-0.995];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,pengutronix.de:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D0D1226E80E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 11, 2026 at 08:37:07PM -0700, Jakub Kicinski wrote:
-> On Mon, 09 Mar 2026 18:55:20 +0100 Jan Petrous via B4 Relay wrote:
-> > The stmmac driver contains similar pattern for processing queue-based
-> > arrays, ie. interrupt lines, etc. Factor out the for loop and provide
-> > a macro STMMAC_FOREACH_MTL_QUEUE(var, limit).
-> 
-> This is macro is neither shorter nor more readable.
-> I really don't see any benefit here..
 
-TBH me neither. Or, I see only "descriptive" benefit, what, of course,
-is nothing must-to-have.
+--sukssa3pp322mpwk
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v1 2/2] arm64: dts: qcom: qcs6490-rb3gen2: Enable CAN bus
+ controller
+MIME-Version: 1.0
 
-I will prepare v11 without this.
+On 12.03.2026 12:04:47, Viken Dadhaniya wrote:
+> I measured the standby pin voltage with only XSTBYEN=3D1 set
+> (TRIS0 left at reset default of 1 =3D input): the pin is HIGH
+> (~3.3V), meaning the transceiver remains in standby.
+>
+> The root cause is that after reset TRIS0=3D1 (input direction),
+> so the pin is not driven. XSTBYEN=3D1 alone has no effect while
+> the pin is configured as input.
+>
+> Clearing TRIS0=3D0 (output) atomically with XSTBYEN=3D1 fixes this:
+>
+>   regmap_update_bits(priv->map_reg, MCP251XFD_REG_IOCON,
+>                      MCP251XFD_REG_IOCON_XSTBYEN |
+>                      MCP251XFD_REG_IOCON_TRIS0   |
+>                      MCP251XFD_REG_IOCON_LAT0,
+>                      MCP251XFD_REG_IOCON_XSTBYEN);
+>
+> After the above change: pin is LOW (~0V), IOCON =3D 0x03020042,
+> transceiver active, CAN communication works. Verified on RB3
+> Gen2 with PCAN-USB FD.
+>
+> Should I send a patch implementing this, gated on a DT property
+> such as "microchip,xstbyen"?
 
-Thanks.
-/Jan
+Sounds good, make it so.
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--sukssa3pp322mpwk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQSl+MghEFFAdY3pYJLMOmT6rpmt0gUCabJwfAAKCRDMOmT6rpmt
+0i+VAQD/pM/3ElXgQQT6o0izqhNruQmbv9GQ2oAKqT8CSu6uHwD/dlMVovtUZD8A
+tingrin1tghEh/0VWtmoLpd/EOwCsgw=
+=er+K
+-----END PGP SIGNATURE-----
+
+--sukssa3pp322mpwk--
 
