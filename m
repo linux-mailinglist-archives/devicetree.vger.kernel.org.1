@@ -1,70 +1,65 @@
-Return-Path: <devicetree+bounces-274609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274610-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WJ87MWbEsmmvPAAAu9opvQ
-	(envelope-from <devicetree+bounces-274609-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:49:26 +0100
+	id +KSMCAzIsmmvPAAAu9opvQ
+	(envelope-from <devicetree+bounces-274610-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:05:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F5F3272E2C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:49:26 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAE2127310A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:04:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D9383300F9DB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 13:49:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9BEC23056E51
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:00:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA8CD34F481;
-	Thu, 12 Mar 2026 13:49:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2561B241695;
+	Thu, 12 Mar 2026 14:00:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EiZrR55R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jMGT4feG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81C582D97B7;
-	Thu, 12 Mar 2026 13:49:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1C1312B94;
+	Thu, 12 Mar 2026 14:00:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773323363; cv=none; b=SjT67BygvpscOlFqcqMoo8J8ZX0ZMXdi4Wj0veCABCjIs0PAzCUaxJLrfzmlEX3vLZO7OYK9FnlMzvLY6zROx36oOGvcE976tl9WkoWaRlRbthL5uEj1zavT7k9Fhk5mi6e95ivj7qLDKfsqFh+89TMG4NGTmtq7tffgQb/tU1w=
+	t=1773324035; cv=none; b=e4OBsJ4KnFdI9Zgjms1csp89i1cYxZHyFobZ3G7hQRmTVZUPt93eYF5WJRcQ35rRXbYSCuJlvYuhKMG4PAmHUxxRqZCHeOu6MNQ74721rptnhnj00oh2erTQq9n0Ygq2iZ8g5xCHla3P1i3HdeJP+Ji5leSWcUd8o0xN+JP9DAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773323363; c=relaxed/simple;
-	bh=QDMPR7U4L7mnN7ggql5N7UaT6DsoORGTULdo7gqhKxY=;
+	s=arc-20240116; t=1773324035; c=relaxed/simple;
+	bh=lgzAwmcia1bIMN1GXKk0zq/eE3MT5qXplE1hzEEEs5I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZGQR/TfZkjoIqoas904Gklh5a7aSAqJgxjWa+ueX35eTdMSkVM5L1EKzzG5nPHTDOfuvNdhMJF0rvWPyCv463pI8soLcKCyf/O4vXQaf/XWItLLgAj1g6EhYR6QKjIxqglXEqMPONH1HRZvgtBsXRTGOdY7SPpind9qRuSAG3sc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EiZrR55R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0473EC4CEF7;
-	Thu, 12 Mar 2026 13:49:22 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=upDUmoxgapZiPhov0P3hXtR2Bre2g/XQ194BD7rVDs00aGqM+jbsp7eqBUS0V75mVdQ5dUaZVNlHGGf7v/QuiRsKC8oSYkzb4wHSkZD+A7RjDwq4xt0/mk0dzv/ER2nBy3Ce2ma8ZP1+uDVpnllvIz10seBRU+RrKFtYUdp+JRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jMGT4feG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52F01C19424;
+	Thu, 12 Mar 2026 14:00:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773323363;
-	bh=QDMPR7U4L7mnN7ggql5N7UaT6DsoORGTULdo7gqhKxY=;
+	s=k20201202; t=1773324034;
+	bh=lgzAwmcia1bIMN1GXKk0zq/eE3MT5qXplE1hzEEEs5I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EiZrR55RyFPgwrqfon6RNjN+art4S8H/cUBWF1w086oZjsRzI1XP/wRBznlcPlxx9
-	 qlGLdvtVSFX9BCA/+VWHxBKp/dAP+Y06TK1yAw9D518gKoLKDbxnWiDpsmV1jryt+T
-	 oxzwd3ueEYatfH/z+lfCS1wQtASjujE9fnljImS/9FoJqamCjWklPuN9FXbh6cYeZK
-	 p5ib7EA36vzAGQDqF6W7i11u95ByA4tA1xMPzRdXtsVl5x6XEf9e2ZR2aqNOZYRj3f
-	 kg7a0kgjRsK6YflhdnZrsbuj3Zv9bLDDXtcBZTEZQX7cA1Zv0jDtGJYAc6dp5XJTxX
-	 Ym1lqrWdud7Iw==
-Date: Thu, 12 Mar 2026 08:49:22 -0500
+	b=jMGT4feG0qm/dNmC0kI18hsGyvHTMrmIX0kDEHPHWL7UB352oMdTlgIKXYfNNew7/
+	 1Xt9zSHmZZ/JnC+6zzuRVbhkrzYhPdlqfoEaP8aISQ3Dxu3RhidELIayZ4HIND+jcx
+	 guvMUahvzZmxPvxcjNZLhkMzdwHIWNNrToo0BO0cTp0FaZxPQU3C3AqjsH8UKPdOyQ
+	 iA1w7hcVWmk5qorI3J1lBD9Jcjr1AeG/v+NSt+eodGpbQPXf9X285jYMjEzfxteKuy
+	 7lKup7ivdS2jWbgw0ZELBGgsTNGUXlxJ5gB5Q6QbQb9qm+VqLX4+I84in/oOUTfV2f
+	 fI5xq2q+JgNwA==
+Date: Thu, 12 Mar 2026 09:00:32 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Biju <biju.das.au@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	David Airlie <airlied@gmail.com>, linux-renesas-soc@vger.kernel.org,
-	Simona Vetter <simona@ffwll.ch>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 1/4] dt-bindings: gpu: mali-bifrost: Add compatible for
- RZ/G3L SoC
-Message-ID: <177332336177.2902176.2580675840603611415.robh@kernel.org>
-References: <20260304134845.267030-1-biju.das.jz@bp.renesas.com>
- <20260304134845.267030-2-biju.das.jz@bp.renesas.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pm@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
+	Ion Agorria <ion@agorria.com>, linux-leds@vger.kernel.org,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	linux-input@vger.kernel.org, Sebastian Reichel <sre@kernel.org>,
+	=?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/7] dt-bindings: embedded-controller: document ASUS
+ Transformer EC
+Message-ID: <177332403209.2914211.14156950861343429723.robh@kernel.org>
+References: <20260304185751.83494-1-clamor95@gmail.com>
+ <20260304185751.83494-2-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,56 +68,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260304134845.267030-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20260304185751.83494-2-clamor95@gmail.com>
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274609-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274610-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,suse.de,gmail.com,bp.renesas.com,ffwll.ch,linux.intel.com,glider.be,lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,agorria.com,gmail.com,rere.qmqm.pl];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:email]
-X-Rspamd-Queue-Id: 2F5F3272E2C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: CAE2127310A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Wed, 04 Mar 2026 13:48:36 +0000, Biju wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
+On Wed, 04 Mar 2026 20:57:45 +0200, Svyatoslav Ryhel wrote:
+> Document embedded controller used in ASUS Transformer device series.
 > 
-> Add a compatible string for the Renesas RZ/G3L SoC variants that include a
-> Mali-G31 GPU. These variants share the same restrictions on interrupts,
-> clocks, and power domains as the RZ/G2L SoC, so extend the existing schema
-> validation accordingly.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
->  Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../asus,tf201-ec-pad.yaml                    | 119 ++++++++++++++++++
+>  1 file changed, 119 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/embedded-controller/asus,tf201-ec-pad.yaml
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
