@@ -1,36 +1,37 @@
-Return-Path: <devicetree+bounces-274598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274599-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wMHWH1G/smmvPAAAu9opvQ
-	(envelope-from <devicetree+bounces-274598-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:27:45 +0100
+	id 6PO+LWO/smmvPAAAu9opvQ
+	(envelope-from <devicetree+bounces-274599-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:28:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 256652727B7
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:27:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 702252727D6
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:28:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A0557301945C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 13:27:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B040D3053762
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 13:27:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1FBA37EFF0;
-	Thu, 12 Mar 2026 13:27:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5855B322DAF;
+	Thu, 12 Mar 2026 13:27:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87F23238C1B;
-	Thu, 12 Mar 2026 13:27:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EEA623ABAA;
+	Thu, 12 Mar 2026 13:27:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773322063; cv=none; b=AOYkOSn/EXQ9IIHfGwOneiGYdNTgHPEw+6e9kNGWJS0qn8VJwFIqdGwB6SFN/VUTl+tU9gv4EBSRxo4yTCWHugPBr4XIbALjeCvjeHQmFwKgDyK1k6HoWbq8eTzfBGLlFrr2s/f+NQ4Ew+zmZ+6699XH5AvQxGv96YInlYeurLk=
+	t=1773322066; cv=none; b=moXgrNAkxtAtcnfkwCPtUO+zdpX3fNfX4zxV0TS9WXUq9UXZfjNYATb/Dau+k/GyoQUjJcTOepecfP1hfMqV0wGtSAU/5CCC/xmLgS29eMlPkwKUiaq49wWhPHRctPKg4adeMt1SdRlBfUxT+EiQWma0gTbr9nmOVL+UkpeS0lc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773322063; c=relaxed/simple;
-	bh=Fk3SurwGUN+jgIYQeLRRYUGd/wZxa5s7LHDzmEnFBqw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=K9imos3knmaLQB1t60wC35IOcG8YhUutch7ISBw8qeOH4mpeIKNgfP/t69TyaEYNGSZCtqIhJRQlEoFRc4MTdVL7XUx3txQ5Ee3g1/Q20bJEEBIYJuHBu2AZWglYvEzwJjLBzeI3YuNDG9KHfa1qaGyCEJ5RWsvZME+I2Iz+lY0=
+	s=arc-20240116; t=1773322066; c=relaxed/simple;
+	bh=PMuq0d619zLnf605dOIgYWaoWO3YMKevU3rSbsPzSFM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=RsHjIkRQUOiI2gaSg/xveB1hpVbmqSBwMpIzxqu2wOBzGmEPc8wqBdy51SHGv3Z59aJZzcQcI4MkywOBHcQ4N/+uiV0qQX1DncsmDjUkr65JaBNkAYQdg2VAZru2rt2pBagjnO+ysdcRRokotulXrrNcWzI8S8WDrzcwsmYlQCw=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D67BC4CEF7;
-	Thu, 12 Mar 2026 13:27:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 957E8C19424;
+	Thu, 12 Mar 2026 13:27:43 +0000 (UTC)
 From: Geert Uytterhoeven <geert+renesas@glider.be>
 To: Stefan Eichenberger <eichest@gmail.com>,
 	Andrew Lunn <andrew+netdev@lunn.ch>,
@@ -45,10 +46,12 @@ Cc: netdev@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
 	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 0/2] dt-bindings: net: micrel: Fix KSZ8041RNLI dtbs_check warnings
-Date: Thu, 12 Mar 2026 14:27:34 +0100
-Message-ID: <cover.1773321267.git.geert+renesas@glider.be>
+Subject: [PATCH 1/2] dt-bindings: net: micrel: Sort lists
+Date: Thu, 12 Mar 2026 14:27:35 +0100
+Message-ID: <013afe74bef9a4d4af8b5a204cb4891518f7274d.1773321267.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <cover.1773321267.git.geert+renesas@glider.be>
+References: <cover.1773321267.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,7 +63,7 @@ X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -69,54 +72,59 @@ X-Spamd-Result: default: False [0.54 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274598-lists,devicetree=lfdr.de,renesas];
+	TAGGED_FROM(0.00)[bounces-274599-lists,devicetree=lfdr.de,renesas];
 	FREEMAIL_TO(0.00)[gmail.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FROM_NEQ_ENVFROM(0.00)[geert@glider.be,devicetree@vger.kernel.org];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.986];
+	NEURAL_HAM(-0.00)[-0.993];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,netdev,dt,renesas];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,glider.be:mid]
-X-Rspamd-Queue-Id: 256652727B7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[glider.be:email,glider.be:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 702252727D6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-	Hi all,
+Sort lists of PHY models and compatible values alphabetically.
 
-"make dtbs_check" reports several warnings due to some KSZ8041RNLI PHY
-nodes having the "micrel,led-mode" property, while the DT bindings
-prohibit this.
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ Documentation/devicetree/bindings/net/micrel.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Apparently the DT bindings are incorrect, so this patch series fixes
-that, after a customary cleanup.
-
-Thanks for your comments!
-
-Geert Uytterhoeven (2):
-  dt-bindings: net: micrel: Sort lists
-  dt-bindings: net: micrel: KSZ8041RNLI supports LED mode
-
- Documentation/devicetree/bindings/net/micrel.yaml | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/net/micrel.yaml b/Documentation/devicetree/bindings/net/micrel.yaml
+index ecc00169ef805dc2..5d25f0d0a508a6df 100644
+--- a/Documentation/devicetree/bindings/net/micrel.yaml
++++ b/Documentation/devicetree/bindings/net/micrel.yaml
+@@ -51,9 +51,9 @@ properties:
+       bits that are currently supported:
+ 
+       KSZ8001: register 0x1e, bits 15..14
+-      KSZ8041: register 0x1e, bits 15..14
+       KSZ8021: register 0x1f, bits 5..4
+       KSZ8031: register 0x1f, bits 5..4
++      KSZ8041: register 0x1e, bits 15..14
+       KSZ8051: register 0x1f, bits 5..4
+       KSZ8081: register 0x1f, bits 5..4
+       KSZ8091: register 0x1f, bits 5..4
+@@ -80,9 +80,9 @@ allOf:
+             contains:
+               enum:
+                 - ethernet-phy-id0022.1510
++                - ethernet-phy-id0022.1550
+                 - ethernet-phy-id0022.1555
+                 - ethernet-phy-id0022.1556
+-                - ethernet-phy-id0022.1550
+                 - ethernet-phy-id0022.1560
+                 - ethernet-phy-id0022.161a
+     then:
 -- 
 2.43.0
 
-Gr{oetje,eeting}s,
-
-						Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-							    -- Linus Torvalds
 
