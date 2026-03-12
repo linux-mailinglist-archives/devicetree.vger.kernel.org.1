@@ -1,331 +1,134 @@
-Return-Path: <devicetree+bounces-274714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274715-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uH17EmPusmnAQwAAu9opvQ
-	(envelope-from <devicetree+bounces-274714-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:48:35 +0100
+	id oMWlF4HtsmnAQwAAu9opvQ
+	(envelope-from <devicetree+bounces-274715-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:44:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5E5A275EB8
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:48:34 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDFCC275D65
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:44:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DD25330C401A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:42:19 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 63948302D9D3
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:44:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 619F93DC4B6;
-	Thu, 12 Mar 2026 16:42:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABBEC3932E5;
+	Thu, 12 Mar 2026 16:44:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FswO7ROd"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="hiPkHQ9F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD4FF391852
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 16:42:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71BAD38C424;
+	Thu, 12 Mar 2026 16:44:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773333730; cv=none; b=D3kVmO6HfMckFF7lcFYvinX8wCYnSfaZV9uLWLytHIvmkYVPVkRqrko9w6N7CVPolPwy+IjWIANEORE8OsjlRUpX4vCiCpzQP0Haye5AXmVUkf6luAGqUwSLyt/FLwHx2uHLcGuu8xswIOUUApnMUcHFrcj5djbiEUvmD/V1sDY=
+	t=1773333886; cv=none; b=dZ9gMc20AHmfhVX4HQLY6w6n92URp16hftB3PS/GOTv5lyuxmSTo1fLtvdT6RM0IpbwJ0inqxAtY/TKfWAEf5hkroITv9xpsjCi/nEKRVYvo1C0jsQSeypTjD2TbzKpYWSRl9KKgV40DJrAGncaAqLbO/fswtOE/VmY7lHTjtgE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773333730; c=relaxed/simple;
-	bh=Dnru2orojmNkrv/RLfc/YG3q8++TJoYKXqNovIMFAvA=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=pPQTieXSkOAxXG4/AqvnRBhhgQy/HzUmBS5pm5KEG7m/Mv2rDY4Hwn2+XB0nCcnaAsVdjer+8dlEuVtN/gOMtGJd6W8cwJj27ah4FtUXk9gwMjSzNFQhWtcTIbA+WALyinLCBjQ8i7o95XseG5zgLOVTSLYJT53LTbP99Spqwi0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FswO7ROd; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 3CCA31A2E14;
-	Thu, 12 Mar 2026 16:42:07 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 03A3C6001B;
-	Thu, 12 Mar 2026 16:42:07 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3719810369E3A;
-	Thu, 12 Mar 2026 17:41:58 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1773333725; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=B0FmF+DsXQX7GOkjZHLkLGAuMKOJtSb12a+vbzhQook=;
-	b=FswO7ROdPc4bZ3FXD4JYr3MHBPxofY/AMnw70L6CzfVcXCjar5dW7hRC57P83dRVeJx+pj
-	BjPuPR1Af/NkNEK9rOhLZRTb9gdGg3jDtU+eKmhui8hFss66u2UvEtonwU1iIYXaDfJbyj
-	yf0l6m2iPSvIdvse2U3VJrigTFfKdPZ+CRVJ4Vmg1dv2QTP8KreuNhCLnD0NiXcSmsuEiC
-	75WsxRv05LcBWrDGgUC1Z3gOcRegLK9bG7HCFjWmUdgm2DU9iF+Tb6ou22OIq/9m23PjRC
-	lF9MdP3nyeyIYVtshqQerqIqx7/36XmJABnakwd1d8BtHsCYJ8cd2zPWrhrCRg==
+	s=arc-20240116; t=1773333886; c=relaxed/simple;
+	bh=42B7XAkpeV90MrK3M3+y91kCKaxZnDDDwpE+SUerCO8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=D8Ki+19n6OY24+XJjSe/QzeAukX/GrNXGitL0LMgyqt3dAUy4Nzbnv5VcqL5L020I509eSFjDtiQtRJsL1DkuFACftzp2YDQz38rcEP4rVrvXIgybjrrhfXFKLRSjUqkH4eP4gOAECkk9IoduYEDftcidYUlGS/veDGQclSz/pY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=hiPkHQ9F; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 74B8A2C71F7;
+	Thu, 12 Mar 2026 17:44:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1773333882; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=+5GeguiV+FH3mTRjunVs6nNfagcSzReqIpN01V+GjKY=;
+	b=hiPkHQ9F6yu7jD8VQWt2tNeGoD63jAYByo4qmPIE+V4zvmDvD4t+VEqf8S3LxtJYK4s2ov
+	a9WgPs83qBImZKh7NIEvFmWruqTQRYHdiuAVS2dDzIOxcnx2KUQ03yO8vgCKkzYNtgTws7
+	jdH3RR1ZzH0EcN9wd0KBCCsYPy/ZHA+XEYX5l/dMxZ+GpNMQrPU5FJqzNWmjnPI38U0sQl
+	ColWovK/PBKol8ARGAXWJorbwTd4f63AVdS3cPyoia7KWvca4f+4bTPAIVu6aICRtEtvbw
+	/GUVo1El834TOvWKMbdxARa5LAYco+YCKkuKBNqruUQuHVLV5rJ7Wi8DsiaTQA==
+From: Caleb James DeLisle <cjd@cjdns.fr>
+To: linux-phy@lists.infradead.org
+Cc: naseefkm@gmail.com,
+	vkoul@kernel.org,
+	neil.armstrong@linaro.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-mips@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Caleb James DeLisle <cjd@cjdns.fr>
+Subject: [PATCH 0/2] phy: econet: Add PCIe PHY driver for EcoNet SoCs
+Date: Thu, 12 Mar 2026 16:44:30 +0000
+Message-Id: <20260312164432.569566-1-cjd@cjdns.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 12 Mar 2026 17:41:58 +0100
-Message-Id: <DH0YC7M9YFU7.31DSHCPV381WC@bootlin.com>
-Subject: Re: [PATCH v11 2/3] drm/bridge: imx: Add i.MX93 parallel display
- format configuration support
-Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Shawn Guo"
- <shawnguo@kernel.org>, "Sascha Hauer" <s.hauer@pengutronix.de>,
- "Pengutronix Kernel Team" <kernel@pengutronix.de>, "Fabio Estevam"
- <festevam@gmail.com>, "Peng Fan" <peng.fan@nxp.com>, "Andrzej Hajda"
- <andrzej.hajda@intel.com>, "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Robert Foss" <rfoss@kernel.org>, "Laurent Pinchart"
- <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman" <jonas@kwiboo.se>,
- "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Frank Li"
- <Frank.Li@nxp.com>, <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
- <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <dri-devel@lists.freedesktop.org>
-To: "Liu Ying" <victor.liu@nxp.com>, "Marco Felsch"
- <m.felsch@pengutronix.de>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-X-Mailer: aerc 0.20.1
-References: <20260303-v6-18-topic-imx93-parallel-display-v11-0-1b03733c8461@pengutronix.de> <20260303-v6-18-topic-imx93-parallel-display-v11-2-1b03733c8461@pengutronix.de> <33e09cc9-69bd-468b-8361-b92a50686f74@nxp.com> <DGZ2XYTVUR28.16ITKRM9S2ACV@bootlin.com> <ot5qypkeirkiweicjijholt2hwfpnnfhrcm3d6euqfnupptsab@din4bkq2sh5h> <ccce0f8c-88bf-4cd8-a806-b62049606cfe@nxp.com>
-In-Reply-To: <ccce0f8c-88bf-4cd8-a806-b62049606cfe@nxp.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
+	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,linux.intel.com,suse.de,ffwll.ch,vger.kernel.org,lists.linux.dev,lists.infradead.org,lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,linaro.org,vger.kernel.org,cjdns.fr];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-274715-lists,devicetree=lfdr.de];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274714-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_TWELVE(0.00)[27];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[cjdns.fr:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: B5E5A275EB8
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: EDFCC275D65
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello Marco, Liu,
+Add EcoNet EN751221 and EN7528 PCIe PHY support.
 
-On Thu Mar 12, 2026 at 10:15 AM CET, Liu Ying wrote:
-> On Wed, Mar 11, 2026 at 08:45:25PM +0100, Marco Felsch wrote:
->> Hi Liu, Luca,
->
-> Hi,
->
->>
->> sorry for the delayed response, I was at the EW26.
->
-> Np at all, it's good to go out to meet people sometimes :)
->
->>
->> On 26-03-10, Luca Ceresoli wrote:
->>> Hi Liu, Marco,
->>>
->>> On Tue Mar 10, 2026 at 3:57 AM CET, Liu Ying wrote:
->>>> Hi Marco, Luca,
->>>>
->>>> On Tue, Mar 03, 2026 at 11:34:27AM +0100, Marco Felsch wrote:
->>>>
->>>> [...]
->>>>
->>>>> +	next_bridge =3D devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
->>>>> +	if (IS_ERR(next_bridge))
->>>>> +		return dev_err_probe(dev, PTR_ERR(next_bridge),
->>>>> +				     "failed to get next bridge\n");
->>>>> +	pdfc->dev =3D dev;
->>>>> +	pdfc->bridge.of_node =3D dev->of_node;
->>>>> +	pdfc->bridge.type =3D DRM_MODE_CONNECTOR_DPI;
->>>>> +	pdfc->bridge.next_bridge =3D next_bridge;
->>>>
->>>> When I was reviewing another patch[1], I was aware of the necessity of
->>>> calling drm_bridge_get() for next_bridge to balance the next bridge's
->>>> refcount put from __drm_bridge_free() for this bridge.  I'd be good if
->>>> Luca may confirm this is correct.  Sorry for bringing this up late.
->>>
->>> Indeed you have a good point.
->>
->> At which stage did you faced this issue? During driver probe, because of
->> EPROBE_DEFER?
->
-> I just want to balance the get/put for the next bridge's refcount by
-> calling drm_bridge_get() for next_bridge, as I said above.  There could
-> be some way to trigger some particular Use-After-Free issues if you don't
-> do that.  I did take some time today to try to trigger UAF, but no luck,
-> though I found a potential bug in encoder_bridges_show() and generated a
-> fix[1](Cc'ed Marco) when I played with debugfs to read the refcounts.
+This is split from a larger PCIe patchset which crossed multiple
+subsystems. I'm not labeling this a v3 because it's a new patchset, but
+I'm keeping the historical record anyway.
 
-The whole need for refcounting DRM bridges exists if such bridges can be
-removed when other parts of the kernel still have a pointer (=3D a referenc=
-e)
-to them. This is not the case with current DRM because you cannot remove
-some bridges without removing the whole pipeline (card). However I am
-working since a long time to suppor hardware where the last part of the
-display pipeline is hot-pluggable, causing DRM bridges to be added and
-removed at runtime without removal of the initial part of the pipeline
-(CRCT, encoder and 0 or more bridges).
+Changes from econet-pcie v2: none relevant to this patch set
+* econet-pcie v2: https://lore.kernel.org/linux-mips/20260309131818.74467-1-cjd@cjdns.fr
 
-See these links for more background info:
+Changes from econet-pcie v1:
+* econet,en751221-pcie-phy.yaml Refer to PHYs as "gen1" and "gen2"
+* econet-pcie v1: https://lore.kernel.org/linux-mips/20260303190948.694783-1-cjd@cjdns.fr/
 
- * ELCE 2025:
-   - https://www.youtube.com/watch?v=3DC8dEQ4OzMnc
-   - https://bootlin.com/pub/conferences/2025/elce/ceresoli-hotplug-status.=
-pdf
- * Lots of links in the slides about previous activity
- * LPC 2024 has a general description fo the use case:
-   - https://lpc.events/event/18/contributions/1696/
+Caleb James DeLisle (2):
+  dt-bindings: phy: Document PCIe PHY in EcoNet EN751221 and EN7528
+  phy: econet: Add PCIe PHY driver for EcoNet EN751221 and EN7528 SoCs.
 
-> My idea to trigger UAF is to remove imx_lcdif/imx93_pdfc/simple_panel
-> modules when doing pageflips.  Dunno if EPROBE_DEFER may trigger UAF.
+ .../phy/econet,en751221-pcie-phy.yaml         |  50 +++++
+ MAINTAINERS                                   |   7 +
+ drivers/phy/Kconfig                           |  12 ++
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/phy-econet-pcie.c                 | 180 ++++++++++++++++++
+ 5 files changed, 250 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/econet,en751221-pcie-phy.yaml
+ create mode 100644 drivers/phy/phy-econet-pcie.c
 
-Perhaps there is some possible UAF on probe errors or deferrals, but the
-typical case is when removing the final part of a pipeline, including 1+
-bridges. This was discussed in detail in [0], but here's an excerpt with
-the typical UAF scenario with hotplug:
 
-  1. pipeline: encoder --> bridge A --> bridge B --> bridge C
-  2. encoder takes a reference to bridge B
-     using devm_drm_of_find_bridge() or other means
-  3. bridge B takes a next_bridge reference to bridge C
-     using devm_drm_of_find_bridge()
-  4. encoder calls (bridge B)->foo(), which in turns references
-     next_bridge, e.g.:
+base-commit: 3fa5e5702a82d259897bd7e209469bc06368bf31
+-- 
+2.39.5
 
-       b_foo() {
-           bar(b->next_bridge);
-       }
-
-If bridges B and C are removed, bridge C can be freed but B is still
-allocated because the encoder holds a ref. So when step 4 happens, 'b->c'
-would be a use-after-free (or NULL deref if b.remove cleared it, which is
-just as bad).
-
-[0] https://lore.kernel.org/all/DEH2CVQV21Z2.25PJBAQAKFJSG@bootlin.com/
-
->> That's the reason for having the local next_bridge variable since I
->> faced with the same issue. In other words this driver is correct and
->> it's on purpose to not assign it directly. Albeit I could/should have
->> added a comment.
->
-> What's the issue your faced?  How would using next_bridge variable impact=
-?
-> Without knowing these info, I presume that you still need to call
-> drm_bridge_get() for next_bridge, since it's kind of obvious if you take
-> a look at __drm_bridge_free().
-
-Exactly. The idea in a nutshell is: every pointer to a drm_bridge stored
-somewhere is a reference to a bridge. So:
-
- * When you take a reference (=3D you set a pointer to the address of a
-   bridge) you need to call drm_bridge_get() to increment the
-   refcount.
- * When you clear a reference (set it to NULL) or the pointer becomes
-   unreachable (the device goes away, the struct holding it is not
-   reachable anymore, etc) you need to call drm_bridge_put() to decrement
-   the refcount.
-
-This way the struct drm_bridge (or, typically, the private driver struct
-embedding it) will be freed only when the refcount goes to 0, avoiding UAF.
-
-I have been converting most of the accessors returning a drm_bridge pointer
-in order to drm_bridge_get() the bridge before returning it. A few random
-examples:
-
- - https://lore.kernel.org/lkml/20250620-drm-bridge-alloc-getput-drm-bridge=
--c-v9-0-ca53372c9a84@bootlin.com/
- - https://lore.kernel.org/lkml/20250709-drm-bridge-alloc-getput-drm_bridge=
-_get_prev_bridge-v1-0-34ba6f395aaa@bootlin.com/
- - https://lore.kernel.org/lkml/20260109-drm-bridge-alloc-getput-drm_of_fin=
-d_bridge-2-v2-4-8bad3ef90b9f@bootlin.com/
-
-I hope this clarifies the general refcount topic. Now to *_of_get_bridge().
-
->>> After re-checking devm_drm_of_get_bridge(), as I wrote on the other thr=
-ead
->>> you pointed to, you should call drm_bridge_get():
->>>
->>> -	pdfc->bridge.next_bridge =3D next_bridge;
->>> +	pdfc->bridge.next_bridge =3D drm_bridge_get(next_bridge);
->>>
->>> Marco, you can keep my R-by if you resend with just this change.
->>>
->>> Sorry about the confusion here.
->>>
->>> As mention on the other thread, devm_drm_of_get_bridge() is unable to
->>> support bridge hotplug. So it should be deprecated, but as of now there=
- is
->>> no alternative.
->>
->> Sorry I need a bit more context. What's the issue?
-
-The issue with devm_drm_of_get_bridge(MYDEV, ...) (similarly for other
-*_of_get_bridge() functions) is it can return one of:
-
- A) an existing bridge, returned by drm_of_find_panel_or_bridge() in the
-    &bridge parameter
- B) a panel_bridge it creates on the fly calling
-    devm_drm_panel_bridge_add(MYDEV) based on the panel returned by
-    drm_of_find_panel_or_bridge() in the &panel parameter
-
-The caller of devm_drm_of_get_bridge() gets a drm_bridge pointer but
-doesn't know whether case A or B happened.
-
-This is not a problem if the entire card is torn down at once because
-devm/drmm will take care or the removal. Even easier if the card is not
-torn down at all.
-
-Now imagine adding hotplug so you can keep MYDEV present but remove any
-bridges after MYDEV and the panel. The devm action added by
-devm_drm_of_get_bridge() won't trigger (because MYDEV is not going
-away). The caller of devm_drm_of_get_bridge(), i.e. the MYDEV driver,
-should remove the panel_bridge in case B but it has no way to know whether
-case A or B happened.
-
-So, this is tricky. The good news for you is you're not supposed to fix
-it. The *_of_get_bridge() API is just unable to handle hotplug, that will
-be fixed at some point. For now just ensure you get a reference for every
-bridge pointer you store, and to put it when that reference goes away.
-
->> How can I trigger the
->> issue?
-
-See the example above.
-
->> Why is bridge hotplug required at this stage?
-
-Because there is hot-pluggable hardware we want to support, see the ELCE
-and even better the LPC links above.
-
->> Why is only this
->> bridge affecte by the hotplug issue?
-
-It's not only this driver. Hotplug can potentially be used on any hardware,
-so I'm working to implement it in a general way in the DRM common code, but
-all drviers need to at least do the refcounting on their side. I'm trying
-to catch all patches involving bridge pointers and check whether they do
-refcounting right. This is just one of many patches I have commented about
-in the past months.
-
-I hope this clarified a bit.
-
-Best regards,
-Luca
-
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
