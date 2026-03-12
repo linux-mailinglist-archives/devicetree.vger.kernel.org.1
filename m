@@ -1,325 +1,319 @@
-Return-Path: <devicetree+bounces-274506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274507-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wCbWC4eIsml4NQAAu9opvQ
-	(envelope-from <devicetree+bounces-274506-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 10:33:59 +0100
+	id GH8mOMCJsml4NQAAu9opvQ
+	(envelope-from <devicetree+bounces-274507-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 10:39:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0F5E26FA3A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 10:33:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3002426FB5A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 10:39:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EA16E30C1902
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 09:30:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B4E5B305F7DE
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 09:39:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A6973B777C;
-	Thu, 12 Mar 2026 09:29:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D32E519EED3;
+	Thu, 12 Mar 2026 09:39:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ueq7Ejhe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PRhkGwo7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDF103BE629;
-	Thu, 12 Mar 2026 09:29:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C4DA3064B2
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 09:39:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.128.176
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773307782; cv=fail; b=kBKjq9nZ6tMi3wBbkgTQbN6O42UF0yX+romYdaj8CqhqBdfjDN7/O6y1Pm/BNwMvmf7Bnyi+TsNgxanNsVOdy/3k+Z5sm1DwUW41k9Cjd/KDhEpef+gU5GHHZtGdj0RsBJrc9cVINt6cfii+36MT3y4JDgwoDlX+mlQbNEY1MH4=
+	t=1773308341; cv=pass; b=bRrUtVFTVbBDNMtOq5VsBj2lKPtTyIaRfEJPKC3FDNHAaE1waYUx/aBWTsUzZAWgz9QRc3eH5P1LBNWDU17ASzTJuNvm093Va2mlh1m1t/RcYwrYUs6pz7d94Y6PeIkgzzYSRH4eNOyHa38byWq2qt1N4eCT0suPmMDYlO4Cw+A=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773307782; c=relaxed/simple;
-	bh=ZCHQFh5O+8sPr7K+jLNQWXnEfxJAK3V/dHBt/anCj6M=;
-	h=Message-ID:Date:Subject:To:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=rKO51V4tqXS0aqk3z+4BvxiG3gAfTLbDp86g1XNXHBBI0Yt0MW6ik/DemeSnS3J/0lwDt9lBjUkI3wmmh7kOrPEAXUk/cr8s0Hjoh5j/SoMMzy236/Hg+8fzlXUc/O59iSfs8/HXrbdaNUIXIBwwxtluaSe8Etaa/FJl1ve4vrI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ueq7Ejhe; arc=fail smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773307780; x=1804843780;
-  h=message-id:date:subject:to:references:from:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=ZCHQFh5O+8sPr7K+jLNQWXnEfxJAK3V/dHBt/anCj6M=;
-  b=Ueq7Ejhee/uT3wBmVa2P+qsg+fTYmTgws9jqsHiQ8jgG4Z2GJ8bV++Ks
-   CHAxkE0+eH6z5LH/dGVSg33aVvkLvgbWRjWiMd5aoQJJDX++Wr/rpY0jG
-   lpWmKnq2K/Dd7ooTncJHNil+c7pqJTgrqCEzXFp5tT21eoZaSWlkQhNAb
-   /iC5tIchclX9xm5CEoMetT417TcnwU0hLlZLhU1ZnjwhQdiEB3te/Yxlw
-   z+M8Iv4VF1BjsjKpPx+Ei3uwprnbz9G4slb4C6PdVLdtTAeyR2CZVMc++
-   4ro0+C56ypV+5ubvOdksqFp6F8y7Aegzbm8+1SC6WzmtnfVNn6cQlpfPC
-   A==;
-X-CSE-ConnectionGUID: cGCPrnTSRDS3tQsUo60Ekw==
-X-CSE-MsgGUID: A//wKpt9RBSSyFfWC66H3A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="91963760"
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; 
-   d="scan'208";a="91963760"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2026 02:29:39 -0700
-X-CSE-ConnectionGUID: 2ruhvwJSRx+HjCgFZjg3ew==
-X-CSE-MsgGUID: EaboEkwzTbe1+cfNKQSYyA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; 
-   d="scan'208";a="224908389"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
-  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2026 02:29:38 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 12 Mar 2026 02:29:36 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 12 Mar 2026 02:29:36 -0700
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.48)
- by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 12 Mar 2026 02:29:36 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UFJurOr2bhSTUPAqyBBd7nX63ujG4jbZNesAEVZj3zu9sU1QKbNQ0XBHKCi6pFsuUmc3ni+FODuwunrLlYsrwssKuwzFlJEpq8RopHaZ25mWmTaToeILykUksa15xwWpViNbrcxrMsbLOzbVtmi17xwHEPDrNB6C2rZ925yHy6bzmUPajaM74pKPmbHKMJIei1Z3g7HDKwfiPgc4VJg+jAEnEIZCK66g1i7bAc1mvrarXKxCACcFlKo4GPuaIuoqq94O2mIIBrqtsYrVX0hIjqwmsCOA/2/MrTVzfvV5jB/RmXYyrP6iCN5R/05SquXaJ8biAVUy6XHvLNzlICJR5Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UbN3p00zTnbIdBvU9E9fKU/3C3PjYne108v8XGFniB0=;
- b=YNRv7cpEbG5V0vZBI3xSvIbkeanTfcJGM1xlNgBX+StA2IPuZwE6zPkf+1Eqm23UETmmmpbgIr2rXZjJIk+6qVCEF+H+I6m9nuZ9VglcnuZNQFHWKvdwnaM0U4K8aQ04znhvQ6ygXc6bXVzYuREpxprO+Y919e2jzEcrlKitZrsciZHFHiTNnwhWp2wNescTJdUZTitdxZsGEEbIfZeoyQtwK8U/sqHQoKjdImzjw2XCstCcRVbfbvY1eL6TY2JpX5Lz9Sy9pI821zkDTFo8f9tfAURgkvQbfi9I90sAjmlfBgnOYmN26bhCvjYqKoZw94kkGz53uSKiI1SxW0ncBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA1PR11MB7198.namprd11.prod.outlook.com (2603:10b6:208:419::15)
- by CY8PR11MB7108.namprd11.prod.outlook.com (2603:10b6:930:50::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.4; Thu, 12 Mar
- 2026 09:29:33 +0000
-Received: from IA1PR11MB7198.namprd11.prod.outlook.com
- ([fe80::2c4e:e92a:4fa:a456]) by IA1PR11MB7198.namprd11.prod.outlook.com
- ([fe80::2c4e:e92a:4fa:a456%6]) with mapi id 15.20.9723.000; Thu, 12 Mar 2026
- 09:29:33 +0000
-Message-ID: <a41378a0-d2f1-4fa4-ac6d-1d0916590b47@intel.com>
-Date: Thu, 12 Mar 2026 11:29:25 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/5] i3c: mipi-i3c-hci: add microchip sama7d65 SoC
- compatible with the appropriate quirk
-To: Manikandan Muralidharan <manikandan.m@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <Frank.Li@nxp.com>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-	<claudiu.beznea@tuxon.dev>, <linux@armlinux.org.uk>,
-	<mturquette@baylibre.com>, <sboyd@kernel.org>, <ardb@kernel.org>,
-	<ebiggers@google.com>, <martin.petersen@oracle.com>, <tytso@mit.edu>,
-	<cristian.birsan@microchip.com>, <jarkko.nikula@linux.intel.com>,
-	<kees@kernel.org>, <npitre@baylibre.com>, <linux-i3c@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-clk@vger.kernel.org>
-References: <20260312042056.309237-1-manikandan.m@microchip.com>
- <20260312042056.309237-4-manikandan.m@microchip.com>
-Content-Language: en-US
-From: Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: c/o Alberga Business Park,
- 6 krs, Bertel Jungin Aukio 5, 02600 Espoo, Business Identity Code: 0357606 -
- 4, Domiciled in Helsinki
-In-Reply-To: <20260312042056.309237-4-manikandan.m@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: DU7P189CA0025.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:10:552::32) To IA1PR11MB7198.namprd11.prod.outlook.com
- (2603:10b6:208:419::15)
+	s=arc-20240116; t=1773308341; c=relaxed/simple;
+	bh=anD1VyMEVEgbX5EIAi4s0UBnKZ1U9xE2QUYdli0kx3A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=redJbbfmXhcLv1hxAJgOx9sKX/wpJQl3ulOIlYcB1aHRkATu0o927wqBMMdN2fWoh9Pn0YwkpDsn+SMVZWZ/wjcPQNkGn5nhJ+ie27/EZuCmbBRq3NHfXjL1xqJRoPJTdqWgQijZUN62RoIQmBsbDAtw4il2yAovaUl9cyj/0KM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PRhkGwo7; arc=pass smtp.client-ip=209.85.128.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-79827d28fc4so7445107b3.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 02:39:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773308339; cv=none;
+        d=google.com; s=arc-20240605;
+        b=hRvR/sck/Rs+Lde29ye8MwU+U1ZKKH4FsM6sy919TmHRYiicyG3AMDu7scydma9wlw
+         qkb1sA3MFk1gDLYGIRv/lY9AsilBXcTGAyhVH+DStc00fDHrB94BGUjiiqjOoX5h5JN2
+         lR8ZRitl7PPIrQrQZvsK6DCyDBt+9nzunvBs0KBuF2xvA3izn7+mP+kx02j+s3tZz04f
+         CEdFgLQBjU7PKALcuPdY4FEdQ0VC5egjPoehPu6Z0bBO3zVMtQlRmwblO7CaL3SHEQJc
+         BIM18J/7sAQlDM1GHIERrlpkWLoZOFjNL5bcsyv4P2yYifOjpDGumb4HasgG+oBvB6Ko
+         1Pmg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=d645qq1RHXY2ZEXrCIAd8Z57nQOQnqeihh5RHWfjYUk=;
+        fh=ilY/qVpdC8Q59cRMc4drNQmnz0xbU3PweaXN/dd51mg=;
+        b=RZ8/daWf4vJRfxn1ELvYmq02V5e3frusub1eBqGmmNfdJlvcTV6Si3A4tyBkuv+QqP
+         KlJ12OY5nUuOhLLb7kfF2qB6rAWmYpO934wS8rSh+OSRoUMROcRUpU3PblbDyIfBu5P7
+         Ur1lpfNmvvFnBgt67qdYOozowXhrR3k0oB7+v2yjpILDJnZnZoy9dCxkSShmrL8NWMEP
+         nuNgIj9KwAxauo18NHxNTkhc2TfsCUIOC/KvrQkoyEqEBh+GqT0EFjeWZpOJ4g8E1zx3
+         YZzIU8bT+B+EXwZB4512n7WuxHK3Ayd1rDuB3GRGiYtChxibScG5OsJqw5aCxiji+Bes
+         Ae0w==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773308339; x=1773913139; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=d645qq1RHXY2ZEXrCIAd8Z57nQOQnqeihh5RHWfjYUk=;
+        b=PRhkGwo7GWPjBr9vitNuynWQF8r/kY/5aYYMGQZEls7s5EbCqHflLdTlkgeAeWtRd0
+         62a9rYheh63mPOpJQn09CqfR7g44Qsn1BODxGQ6V0O5APzbIhQnRKzJOJ+p9Con3So1c
+         Lb88vjXwCAlLobOzIrakiTP/t6hCseXCpB41WatfaSoXsrDfINAoS9zEL9iV6vph5+nl
+         OMKB2nwOMhjNmIl8o6iGJCT9lySZ/3p+3e6z0hoE040YWM+2NkZu57qhGRANVezOgyT4
+         SV700xPei1KXTtoeLUC/FYz+RZy8dHr32Mf/1fzQQey22CeVR6vZ8TziP7d1Qkw5lL3G
+         7ExA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773308339; x=1773913139;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=d645qq1RHXY2ZEXrCIAd8Z57nQOQnqeihh5RHWfjYUk=;
+        b=aOEEolvjICrSWCzbrRF5fu/o/MdqIWze6tQXjD6iGWxclgPH26Ss2zj+3iFdrYR35x
+         kT8YoWlxHSiX1hcsBgCT7L3jj/coCM8h1XU8jc9UMZ8Ds5eEn4fzx7oQTbofsP+wX3+H
+         OItX+6gXfAiw/dhdv72eYKCNn29gMCJ17g4YBqMMAyUHlZa1g9S3/l/bJ6vE5mjlDYhg
+         E4nHoKiP6Afs6TzZlKitshzH8el6kVc50/fW7LMoFtLx36SBuoFwNlkCw2YmPa+z5u+8
+         UsKECikkL28sohDl44w+mU9OGO2dFgIKckNW7HBqzyMas60f/HWYU5pj8PPuSn8WZ8so
+         qbzA==
+X-Forwarded-Encrypted: i=1; AJvYcCVS9FfgHJj3i0durm5/Wy8GUKt2zRezJatsJUsoAp74bpXcHbsuaUIes0Y+BFFe61WlaFCo/zUzZOJR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxbxg4SCkpyybUCQV5iNb+0ZqBixM92rfH31ZGsl/n7ABrV4L9d
+	cNVIG61E+A4vL3jethfR77CFTgG6IMZymJQDBY6m1Mk3ObOmcGfkVgVCo2f/vCcpJpsPyOuZscA
+	BARSm7zGJOojvePmg6MZZmgRX4ZQRbfo=
+X-Gm-Gg: ATEYQzzQuNxSeAcitS9oXTfZFvOD/Jz/ZP4Kmr1TYFrxhv4qgTSkFoib/4fnFsUM/q6
+	DwcSNrn3ogrIcB+OSVppiZECqqg9WTICUq7VGvntLV6bgSREVWCRJmcqf28khR4qLduuLXB84hb
+	JdD5bIXy5ZYR76yi3hOy2hOWoyzW9vgNT25N16339EFygA9hB+e0ouOpuyi6Y0C9bdqkWL5DBu3
+	VgmqsLjAQvx8iGUZ7Sx1FOEXZ7eu+32EWhVnbFfdV0nSYoR5rFWPUE+tFepj+yoXwPdGnaXedXo
+	3tcg+Lc=
+X-Received: by 2002:a05:690c:6d82:b0:799:1af1:6c69 with SMTP id
+ 00721157ae682-7991af16fbamr45243437b3.26.1773308339300; Thu, 12 Mar 2026
+ 02:38:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR11MB7198:EE_|CY8PR11MB7108:EE_
-X-MS-Office365-Filtering-Correlation-Id: 35df1209-c3aa-4b14-ff76-08de8019de96
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024|7053199007|18002099003|18082099003|18092099006|22082099003|56012099003|921020;
-X-Microsoft-Antispam-Message-Info: I0+pXA0VcfiPXIcwtNterRCEXRyPQRdiP8bNWDQqMhAOViwZJVl1thKDP5p1oOdNx4jv/DqtEAWaqn9AmjYwehKsg2JxbX6ki7P1azUN1jzEvH6y2T5zAAq/KQctlcAOsj3NnYhQOJr/hpQ8NBv0LL3sJhUwJs9QDk7vpHN1MNv1shS9d9JvolCZ4lrTiSmStgGJWM8LnNloB109a4gEwV5Weg5JUyZsHxlx5f0fellmoyY/WZ64PbaImts3emGgjKqzc4KeR2VYfPbiBtGq3EujPkX+4PHzxdQhCwUP5fY9N/osqs5D8wXOIi8POMaRWaRd9K96Y9pp+WBp5t6TzMgndZM6DCTvr+q0HQ1XkvloU9CSiWO7aVBrZiGkgeKyCc1+FohawWMVCgiHyLeAnao6tnzIcly5C+Qt7sY0ZOD9dgjqdrVXDKIj0RbuNIDmCfFrdj/g8cBYgSIlRGiM7u4MOO2u5oszpcbmSMTHULN84k3FEVLHkSl4gDvNQhkiRkl5wZQ9NxWSgvQbG57sduqco5NctsyuzyjULG5iRHOHP3gY89Q8BUV2o6Y+VtxG72KgkrQtkhsQmG/nmAPOICgPNIntXWyIujGJiwZwwb4QEjbqpPCwVuWEek2wJm1HY0PoZwla/iJL4kt7R+w3jyahXpG4ToXnVQCZCIjgelAhxhgmS589kzmNYG/zF8fvstvoCiOnxOHUkxPR/cXAAjSYd230kXvyyIR7ovXeypDcCPvRikWgd0q1Qu9a2jlUquYd0s9tQwiRLtCcrOmjsQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR11MB7198.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(7053199007)(18002099003)(18082099003)(18092099006)(22082099003)(56012099003)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Mm94ZzhrTjdPN3ptRzF5V1JxQnpzUlQvUkdWY0d4ZUF3S0s1ZmRsS0VNNTUx?=
- =?utf-8?B?aEh5Z3FoMzhXbFZUMHNTV3hzcUhrdDlWOTZQdWpoMFJrZjk5aERpNGp1RSt5?=
- =?utf-8?B?SUhZVnliYTlsOE5iZyt4ajQyM3Y5VFh3akFHM2FqdkJxUFA4VkE2K2hkVkxL?=
- =?utf-8?B?L2NTTnVqSEtySjU4d3c3dVNJdklOd0xkZUNXamt6eCszUFZCcmJPZVpLZ1Z1?=
- =?utf-8?B?VVc3KzdoSUZFeHd1Z20yaHZTY1FDWHNEb3lTc3NPTHhycC9jNmY3SHBIM3Jm?=
- =?utf-8?B?L3o4R044ZUpHdEdPNVo3eGNiZjVWMFFYUnIrVUpwbzJjTUZoRlJzc052Z0lQ?=
- =?utf-8?B?cmVzNkJESllta2RJbHBiWHNhUHYrcHVYdGlBc291Q2t2OStkZ3FJOEgxVC83?=
- =?utf-8?B?Njk5UGRCNGgrMVJFWm96R2J4K2JnU1MwbzlsenNoWi9xN2kxUnV0TWJmQnlq?=
- =?utf-8?B?SG9aWEhGM3JwRlJQcys4THhrSzFhSE9PQm50OG9TSVlrYTJmdVNEZzhYTVFO?=
- =?utf-8?B?TFkwVnl0cDRKeG9FNEZoVzRkMnRiTmRTcU1LWlN6MmxDUjlacVY5cEVEZW5K?=
- =?utf-8?B?UjlqZjF4RnRRUXY3ejhoWG1nbkpwRmkzMnRPUzdhd2pIRDRZWG1QMDRxeDdE?=
- =?utf-8?B?ck14d1VzN1NVdXlOeGZKaElseTdVYXNEVDhOUU9pSTlXeDZjbGtIM2R4Z0hV?=
- =?utf-8?B?VGJOQmRPZGEvbGZXRGpUaVdIRXg0eTJ5SmRMR2hMSFBKcENTV0Z4WHhZaEhB?=
- =?utf-8?B?SlQrd3pQaGdMUmhxU3JvZWMyeDYyU0VnM1BFRDlPMGlqenpvVlhzUXpNUFBu?=
- =?utf-8?B?TVhsT0ViNGY4UlFyWnhJUVdxbVJGS1dTZVN0ZEg5R2N1VWg0eFczak80b0Nm?=
- =?utf-8?B?ZHhqTVhwUXdqNXlJeWxYbXoxclZKUzhURU0vby9LalpxR0lmMUhZYnhKdUNX?=
- =?utf-8?B?WWZuc3Z4MFJZdk1sZTUralI1emNNQ2R4ekRVcXRYYWsvcTNmOUpQNVdMVkE0?=
- =?utf-8?B?NUt6anVSbXg2REJ4SWFnL1lnalZxUjJkMm01cG9WQjJIeEs1cG4rQVQzb2ww?=
- =?utf-8?B?T2JBUXdHNjR5cEFpUXF1ZDBHNWVxYWpDRXJIZ1U0RU9vWmg0T3VpV0NrcHpO?=
- =?utf-8?B?bjJoLzZVZWNzRDBhL3RPa3RvcWFwcWIvQU51WGVnNmNjVXNZRmQxazM5Y1FM?=
- =?utf-8?B?ZmlJUHNCR1R5UmVEU3JQbzl4aFR4NUFVbDdJNllnRmhaMktlUWlFM05UbzB5?=
- =?utf-8?B?SEM3RFd1djYrTWFia0ZVOEZ5WWxWdTY4NTZmaHlnVm0rUjU2dDRld3Z3Z1pN?=
- =?utf-8?B?cjlFbGoyUGxXd2FkSVlPWE9UU2lncEx3eFZ5QndYcFI2TFBxZzBLZjFmT3Zr?=
- =?utf-8?B?aFJvZnZhc3BISmxyQ0FxbThqRGwvdTBUcFl3bFZRNEd2b1NjZmMycVo0VDVB?=
- =?utf-8?B?dGNJU2ZQTjVRN0M4QjFlajcvM2pyUS8vS2ZnK3U1WlFKSEhSZFd2Skptc2tF?=
- =?utf-8?B?SHAvalhOVVhERnpSbXU2QjhJUUhuSE9sU3BJcDUzblU1dERHR3dxT2MxalVs?=
- =?utf-8?B?bkRweXNtenpwR3ZEVlJiZi9KeFRabE1taVVFWHRCTlplSFdXd2VCTTRFam9i?=
- =?utf-8?B?QktHV29lSWtRZmY0NFlNVzh6cmRqclhpb2VHcytSeDhxd0Z1NnBqYVhPTXJ6?=
- =?utf-8?B?dWhPTXBGejBSVnMzcG5lVHlrZ0R5aEc4ZTBuSjJPUGxXRnZXNXFXS2RldkxI?=
- =?utf-8?B?VWc2UzYrMGtmb1N6WUsxNUd6c1lta3d0QjdYSTVadDJicGhUbTBnZmcwY3hh?=
- =?utf-8?B?ZXdqOVg5TmVTYlpHbnBhcFRuNC9hYkw1UnluNHRSdHVNWDR6NmhnYkcwV3c2?=
- =?utf-8?B?ZUY0OFU0dldOT0ovVlVqTmgrSW1jR05odWx5dU9VdkJhb29qVUplZ1pVVk80?=
- =?utf-8?B?N0NFZ0djR1BFUFBGNnFkay83ZXBxNkxkQ29KVjJhVk9XTmZ6VGUrRElQcnRq?=
- =?utf-8?B?SmdZVGNZSVZyNnR5YUlpcjVMYldNNFY4b1cxQTA4cnZqbGVSQ0EwUGdGVWRH?=
- =?utf-8?B?d0piTGF1VlRFeHFCZWw5ZkFVOGN6dGF0emFhV3c0RlhOT3QwUWV0dk9nRldC?=
- =?utf-8?B?VkwyUVlvNEZmZGZVMmhBOUlxbmZTMzdzNXZ6V3lhajNpWDNSMEhaa05NMHRL?=
- =?utf-8?B?NjFkQTZYVHViS3dsVmQ4aHR5bVR4NTBRdFY4aU9PUjkvcmptYVAzN0tMZjAr?=
- =?utf-8?B?VGdXdVJhUkx1R1FtMERxdFNjTStXZUJFdnc5dEZ3MTNIaUVtVTF5MzQzdU9s?=
- =?utf-8?B?ODl6VURCOGlDZVZveUlYVU9qZnBlbVlob0xWR3Z1TUErdFoyck5GdWhaWWJK?=
- =?utf-8?Q?U/kxqPE/VvcKlw44=3D?=
-X-Exchange-RoutingPolicyChecked: DTt2vIlyglQ96SV0V/HdLACYqJDfqJCBe1s5GW6Bp1eoQ7Yc48jZrjaJeKVLg2z3MGTI2VGcTCr6i2z4FhvZBVLQLWs0Gy6y5/CiTAepOBDQGT1Z1eaQwQtEJKVbd6F+ZG+ip/rNdRAuiXORoZwHNBycfBq2e76ZhNsj6VWr05lzUAK4tvt0gAY8X5kNjeZvxLbCCG/yHBDl/96bqm+QdfDH7LHKqSfiD1glRaOnZj0xZZQRF6IKdqhUx8xujomQ26ZnmEykRKPW0j0lIAjmVHLdaPCISSBsO+5bgHUEWpvob0GFTl220iZaC0BNFSZt9fiZdX2W0W+kwBvONB6dtQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 35df1209-c3aa-4b14-ff76-08de8019de96
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB7198.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2026 09:29:33.3408
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oZbU5WmpqvQPQYh3pUxwqUDSuE6gnbTn3lJYpVgLWz45LUboSGZ9wdB4+ZzMkoWvXi37Mt7legwxwfo91/KTIg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7108
-X-OriginatorOrg: intel.com
-X-Spamd-Result: default: False [1.34 / 15.00];
+References: <20260309-orangepi-sd-card-uhs-v2-0-5bb2b574df5d@gmail.com>
+ <20260309-orangepi-sd-card-uhs-v2-2-5bb2b574df5d@gmail.com> <20260309132219-GKE302167@kernel.org>
+In-Reply-To: <20260309132219-GKE302167@kernel.org>
+From: Iker Pedrosa <ikerpedrosam@gmail.com>
+Date: Thu, 12 Mar 2026 10:38:48 +0100
+X-Gm-Features: AaiRm52BiCFPbC8nIFwrdrDzkLisJX7YfgLkKCTQywgdqQlIVQj3SZM1LgN_fKc
+Message-ID: <CABdCQ=PpA4u+pY-pZgggHPNnDMJUVmgqofMf7O6YMrB+2aDkww@mail.gmail.com>
+Subject: Re: [PATCH v2 2/7] mmc: sdhci-of-k1: add regulator and pinctrl
+ voltage switching support
+To: Yixun Lan <dlan@kernel.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Adrian Hunter <adrian.hunter@intel.com>, Paul Walmsley <pjw@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Michael Opdenacker <michael.opdenacker@rootcommit.com>, 
+	Javier Martinez Canillas <javierm@redhat.com>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274506-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:dkim,intel.com:mid,microchip.com:email];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	TAGGED_FROM(0.00)[bounces-274507-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[adrian.hunter@intel.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ikerpedrosam@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: E0F5E26FA3A
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3002426FB5A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 12/03/2026 06:20, Manikandan Muralidharan wrote:
-> Add support for microchip sama7d65 SoC I3C HCI master only IP
-> with additional clock support to enable bulk clock acquisition
-> for Microchip platforms using HCI_QUIRK_CLK_SUPPORT quirk.
-> Introduce MCHP_I3C_CLK_IDX to define the maximum peripheral
-> clock index
-> 
-> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
-> ---
-> Changes in v3:
-> - Make use of existing HCI_QUIRK_* code base
-> - Introduce HCI_QUIRK_CLK_SUPPORT to handle/enable the required Peripheral
-> and system generic clk in bulk
-> 
-> Changes in v2:
-> - Platform specific changes are integrated in the existing mipi-i3c-hci
-> driver by introducing separate MCHP_HCI_QUIRK_* quirks and vendor
-> specific quirk files
-> 
-> ---
->  drivers/i3c/master/mipi-i3c-hci/core.c | 12 ++++++++++++
->  drivers/i3c/master/mipi-i3c-hci/hci.h  |  4 ++++
->  2 files changed, 16 insertions(+)
-> 
-> diff --git a/drivers/i3c/master/mipi-i3c-hci/core.c b/drivers/i3c/master/mipi-i3c-hci/core.c
-> index 5879bba78164..6b7716bd517e 100644
-> --- a/drivers/i3c/master/mipi-i3c-hci/core.c
-> +++ b/drivers/i3c/master/mipi-i3c-hci/core.c
-> @@ -8,6 +8,7 @@
->   */
->  
->  #include <linux/bitfield.h>
-> +#include <linux/clk.h>
->  #include <linux/device.h>
->  #include <linux/errno.h>
->  #include <linux/i3c/master.h>
-> @@ -918,6 +919,7 @@ static int i3c_hci_probe(struct platform_device *pdev)
->  {
->  	const struct mipi_i3c_hci_platform_data *pdata = pdev->dev.platform_data;
->  	struct i3c_hci *hci;
-> +	struct clk_bulk_data *clks;
->  	int irq, ret;
->  
->  	hci = devm_kzalloc(&pdev->dev, sizeof(*hci), GFP_KERNEL);
-> @@ -946,6 +948,13 @@ static int i3c_hci_probe(struct platform_device *pdev)
->  	if (!hci->quirks && platform_get_device_id(pdev))
->  		hci->quirks = platform_get_device_id(pdev)->driver_data;
->  
-> +	if (hci->quirks & HCI_QUIRK_CLK_SUPPORT) {
-> +		ret = devm_clk_bulk_get_all_enabled(&pdev->dev, &clks);
-> +		if (ret < MCHP_I3C_CLK_IDX)
+El lun, 9 mar 2026 a las 14:22, Yixun Lan (<dlan@kernel.org>) escribi=C3=B3=
+:
+>
+> Hi Iker,
+>
+> On 12:40 Mon 09 Mar     , Iker Pedrosa wrote:
+> > Add voltage switching infrastructure for UHS-I modes by integrating bot=
+h
+> > regulator framework (for supply voltage control) and pinctrl state
+> > switching (for pin drive strength optimization).
+> >
+> > - Add regulator supply parsing and voltage switching callback
+> > - Add optional pinctrl state switching between "default" (3.3V) and
+> >   "state_uhs" (1.8V) configurations
+> > - Enable coordinated voltage and pin configuration changes for UHS mode=
+s
+> >
+> > This provides complete voltage switching support while maintaining
+> > backward compatibility when pinctrl states are not defined.
+> >
+> > Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
+> > ---
+> >  drivers/mmc/host/sdhci-of-k1.c | 59 ++++++++++++++++++++++++++++++++++=
+++++++++
+> >  1 file changed, 59 insertions(+)
+> >
+> > diff --git a/drivers/mmc/host/sdhci-of-k1.c b/drivers/mmc/host/sdhci-of=
+-k1.c
+> > index 585c7eca6ebf253aac466dd37cef029deb63f692..8af117a8e271c04a80d8dc7=
+bb5ce12075652dd7a 100644
+> > --- a/drivers/mmc/host/sdhci-of-k1.c
+> > +++ b/drivers/mmc/host/sdhci-of-k1.c
+> > @@ -15,6 +15,7 @@
+> >  #include <linux/module.h>
+> >  #include <linux/of.h>
+> >  #include <linux/of_device.h>
+> > +#include <linux/pinctrl/consumer.h>
+> >  #include <linux/platform_device.h>
+> >
+> >  #include "sdhci.h"
+> > @@ -70,6 +71,9 @@
+> >  struct spacemit_sdhci_host {
+> >       struct clk *clk_core;
+> >       struct clk *clk_io;
+> > +     struct pinctrl *pinctrl;
+> > +     struct pinctrl_state *pinctrl_default;
+> > +     struct pinctrl_state *pinctrl_uhs;
+> >  };
+> >
+> >  /* All helper functions will update clr/set while preserve rest bits *=
+/
+> > @@ -218,6 +222,42 @@ static void spacemit_sdhci_pre_hs400_to_hs200(stru=
+ct mmc_host *mmc)
+> >                              SPACEMIT_SDHC_PHY_CTRL_REG);
+> >  }
+> >
+> > +static void spacemit_sdhci_voltage_switch(struct sdhci_host *host)
+> > +{
+> > +     struct sdhci_pltfm_host *pltfm_host =3D sdhci_priv(host);
+> > +     struct spacemit_sdhci_host *sdhst =3D sdhci_pltfm_priv(pltfm_host=
+);
+> > +     struct mmc_ios *ios =3D &host->mmc->ios;
+> > +     struct pinctrl_state *state;
+> > +     int ret;
+> > +
+> > +     /* Select appropriate pinctrl state based on signal voltage */
+> > +     if (sdhst->pinctrl) {
+> do a sanity check, then abort it early, the advantage is that you can get=
+ rid of
+> one indetation for next code..
+>
+>         if (!sdhst->pinctrl)
+>                 return;
+>
 
-Is MCHP_I3C_CLK_IDX really needed?  Why not just:
+Makes sense. I'll get it ready for the next version.
 
-		if (ret <= 0)
+>
+> > +             switch (ios->signal_voltage) {
+> > +             case MMC_SIGNAL_VOLTAGE_330:
+> > +                     state =3D sdhst->pinctrl_default;
+> > +                     break;
+> > +             case MMC_SIGNAL_VOLTAGE_180:
+> > +                     state =3D sdhst->pinctrl_uhs;
+> > +                     break;
+> > +             default:
+> > +                     dev_warn(mmc_dev(host->mmc), "unsupported voltage=
+ %d\n",
+> > +                              ios->signal_voltage);
+> > +                     return;
+> > +             }
+> > +
+> > +             if (state) {
+> > +                     ret =3D pinctrl_select_state(sdhst->pinctrl, stat=
+e);
+> > +                     if (ret) {
+> > +                             dev_warn(mmc_dev(host->mmc),
+> > +                                      "failed to select pinctrl state:=
+ %d\n", ret);
+> > +                             return;
+> > +                     }
+> > +                     dev_dbg(mmc_dev(host->mmc), "switched to %s pinct=
+rl state\n",
+> > +                             ios->signal_voltage =3D=3D MMC_SIGNAL_VOL=
+TAGE_180 ? "UHS" : "default");
+> > +             }
+> > +     }
+> > +}
+> > +
+> >  static inline int spacemit_sdhci_get_clocks(struct device *dev,
+> >                                           struct sdhci_pltfm_host *pltf=
+m_host)
+> >  {
+> > @@ -242,6 +282,7 @@ static const struct sdhci_ops spacemit_sdhci_ops =
+=3D {
+> >       .set_bus_width          =3D sdhci_set_bus_width,
+> >       .set_clock              =3D spacemit_sdhci_set_clock,
+> >       .set_uhs_signaling      =3D spacemit_sdhci_set_uhs_signaling,
+> > +     .voltage_switch         =3D spacemit_sdhci_voltage_switch,
+> >  };
+> >
+> >  static const struct sdhci_pltfm_data spacemit_sdhci_k1_pdata =3D {
+> > @@ -293,6 +334,24 @@ static int spacemit_sdhci_probe(struct platform_de=
+vice *pdev)
+> >
+> >       host->mmc->caps |=3D MMC_CAP_NEED_RSP_BUSY;
+> >
+> > +     sdhst =3D sdhci_pltfm_priv(pltfm_host);
+> ..
+> > +     sdhst->pinctrl =3D devm_pinctrl_get(dev);
+> > +     if (!IS_ERR(sdhst->pinctrl)) {
+> > +             sdhst->pinctrl_default =3D pinctrl_lookup_state(sdhst->pi=
+nctrl, "default");
+> > +             if (IS_ERR(sdhst->pinctrl_default))
+> > +                     sdhst->pinctrl_default =3D NULL;
+> > +
+> > +             sdhst->pinctrl_uhs =3D pinctrl_lookup_state(sdhst->pinctr=
+l, "state_uhs");
+> > +             if (IS_ERR(sdhst->pinctrl_uhs))
+> > +                     sdhst->pinctrl_uhs =3D NULL;
+> > +
+> > +             dev_dbg(dev, "pinctrl setup: default=3D%p, uhs=3D%p\n",
+> > +                     sdhst->pinctrl_default, sdhst->pinctrl_uhs);
+> > +     } else {
+> > +             sdhst->pinctrl =3D NULL;
+> > +             dev_dbg(dev, "pinctrl not available, voltage switching wi=
+ll work without it\n");
+> > +     }
+> > +
+> how about creating a function spacemit_sdhci_get_pins()? similar as get
+> resource for clock, will more readable.
 
-i.e. don't you anyway have to assume DT has the clocks defined
-correctly.
+Yes, I'll do that. Thank you for the feedback.
 
-> +			return dev_err_probe(&pdev->dev, ret,
-> +					     "Failed to get clocks\n");
-> +	}
-> +
->  	ret = i3c_hci_init(hci);
->  	if (ret)
->  		return ret;
-> @@ -971,6 +980,9 @@ static void i3c_hci_remove(struct platform_device *pdev)
->  
->  static const __maybe_unused struct of_device_id i3c_hci_of_match[] = {
->  	{ .compatible = "mipi-i3c-hci", },
-> +	{ .compatible = "microchip,sama7d65-i3c-hci",
-> +	  .data = (void *)(HCI_QUIRK_PIO_MODE | HCI_QUIRK_OD_PP_TIMING |
-> +			   HCI_QUIRK_RESP_BUF_THLD | HCI_QUIRK_CLK_SUPPORT) },
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, i3c_hci_of_match);
-> diff --git a/drivers/i3c/master/mipi-i3c-hci/hci.h b/drivers/i3c/master/mipi-i3c-hci/hci.h
-> index 337b7ab1cb06..2571ef6374ce 100644
-> --- a/drivers/i3c/master/mipi-i3c-hci/hci.h
-> +++ b/drivers/i3c/master/mipi-i3c-hci/hci.h
-> @@ -140,12 +140,16 @@ struct i3c_hci_dev_data {
->  	void *ibi_data;
->  };
->  
-> +#define MCHP_I3C_CLK_IDX		2 /* Max peripheral clock index for Microchip platforms */
-> +
->  /* list of quirks */
->  #define HCI_QUIRK_RAW_CCC	BIT(1)	/* CCC framing must be explicit */
->  #define HCI_QUIRK_PIO_MODE	BIT(2)  /* Set PIO mode for AMD platforms */
->  #define HCI_QUIRK_OD_PP_TIMING		BIT(3)  /* Set OD and PP timings for AMD platforms */
->  #define HCI_QUIRK_RESP_BUF_THLD		BIT(4)  /* Set resp buf thld to 0 for AMD platforms */
->  #define HCI_QUIRK_RPM_ALLOWED		BIT(5)  /* Runtime PM allowed */
-> +#define HCI_QUIRK_CLK_SUPPORT		BIT(6)  /* Enable Clocks for Microchip platforms*/
-
-Without MCHP_I3C_CLK_IDX this becomes a generic quirk that others can use
-
-> +
->  
->  /* global functions */
->  void mipi_i3c_hci_resume(struct i3c_hci *hci);
-
+>
+> >       ret =3D spacemit_sdhci_get_clocks(dev, pltfm_host);
+> >       if (ret)
+> >               goto err_pltfm;
+> >
+> > --
+> > 2.53.0
+> >
+>
+> --
+> Yixun Lan (dlan)
 
