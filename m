@@ -1,178 +1,181 @@
-Return-Path: <devicetree+bounces-274731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274732-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id zF/jGxz7smmQRQAAu9opvQ
-	(envelope-from <devicetree+bounces-274731-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:42:52 +0100
+	id AApQIxv6smmLRAAAu9opvQ
+	(envelope-from <devicetree+bounces-274732-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:38:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EAE5276B3A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:42:52 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C208276A39
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:38:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8F8453251AFA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:37:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 95A0C3065AF4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:38:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F67B3DC4AB;
-	Thu, 12 Mar 2026 17:37:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DFA33FE65A;
+	Thu, 12 Mar 2026 17:37:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ff4qP7P0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f50.google.com (mail-yx1-f50.google.com [74.125.224.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19A763FE356
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 17:37:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBE803FE646;
+	Thu, 12 Mar 2026 17:37:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773337061; cv=none; b=kbRQZ4PD0nM/Cyvh4TbmuNqNGiWMamsBnZWNibmx7PdLteR3tWpToUNI3d2dS/w/dAjeiAofrFyGxg0A4VGZhZT2yq67mbMWCnjdIEjLGA3OABGnCVFeocyTmS7jiI54lEPkvFbwpUkLg6AnQY7e9E4c8wRdHklSrnPbGbaKq0Y=
+	t=1773337076; cv=none; b=r4E+YYct6ET42FBe7YwBs8iZxsxL9HZOoTic86qXiEnA/WoIkFQ/fjuNJ6tIZZEf4QN6NpKTWSWqtXgbZYdAKB96WMnfggW9Sgh0k5o6ubhSkeY8Fyl4Q4QooQXFOFThzklPfeoymTpB50PU46Wcik5tp5ntjigs10EP0HM07Kk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773337061; c=relaxed/simple;
-	bh=RsnSHv78qpaLqwvgdzM6cPidFSNlfTQ2Kmz1fO7Ie7I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MaU2u/DjHBbQyC/Fng5FoZEr1KmZWk5rqOPKuqkzjC3ri05lzjeyjGSVkwCgzlWSeCytHkzgcXOnyM4r4VMYUBgNkyeVfnNvqzO3DXk/7SUCLSKzMop3AyKFONJmZ2R/KbymgBkUTVO+VD+aqLDpzHKeWWUuKm+TqIxzjK7mdQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=74.125.224.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yx1-f50.google.com with SMTP id 956f58d0204a3-64ca9ec3ee7so1530261d50.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 10:37:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773337059; x=1773941859;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=+0AhCYVaWd9XEdWYnJomiFHtpEOu8tGpu+mSNsVNTfo=;
-        b=BzSWzUToBhYXSVtOMlSZc1qHGpVzTlJqAS2xhIEtVqknbB2YhNwmvcsvkE4dn8D18V
-         qCTqFJropj+FhbGtrbUt82/s+zOOxBwNS4/nrgVFQ4W0Zp+0t4fH0h7IuMlqPPv/iDYW
-         Ga3c6NpXhbXqFfkpYWnX3Y4LIK9t9lj9hO3r1TqoJO1iEZtF3d0epjxbhSOCeHMrOESj
-         YQtz3z342Cq8g1849fIodaKZ13lpjzJ+83VrhWDkAsb/QQreTLw0fQw3vuRt9woeg/4E
-         rXu83PTCObxgSTn1f0F7xqN79ebgeQ5VzLAZ3TpxaVFzsI5kmNpMgTyvQvwbhJI2ESeF
-         sS2w==
-X-Forwarded-Encrypted: i=1; AJvYcCWHy1KP1/UF4quqkGTA2daC3zECf2ILFfkkQEnYwLNtrile4w1WccQKRr7/1HHX267LpLW1mUBrdWqk@vger.kernel.org
-X-Gm-Message-State: AOJu0YzcsLyny8WQHG9QzlbHffUtgW0/oMole3XiBPhXGXmf4scoyl1a
-	jMA7DW6GGIOqW3B0f4FflHyWChRk0szUJgbPDLQdqumoZ66VX+QiANJFU3VNceIX/iHBkg==
-X-Gm-Gg: ATEYQzy2ky4XiKuqir8rYk20bnP5q3g3HuNyHklD+CiH2T33MJwZtWQnHM3ksWLkjBk
-	hdEbZ0BhkeQDPyJQKCIra3TJpzFdsn7Fb7tC0T4VvtZN28JjxFj09+cfT0Xx9Ysp9G/dXnblYa8
-	vgnx/46S5p4Z/iV6h392BOET8jwpSfHjBP2nTwPHe0bsGo6dxwTKCxMa368RFVTSXQf72WZoIB2
-	hI+TaVRARajSglZ1mdOaxXBjOse9eB8aptP/CMj30yIN4SfZxbkq0fgl9xLFa/Yv+HoEPyNOrVG
-	G312e5NHm+3j7GaYsUKz2NYdgktvLJAYi2896lFW4H/e1p7bisq2Wde8FdWKzUeL50ytM9jIxTS
-	Sd/2Z+QALOGvF0aD580NmIgFZMGhQkmy0n01yERbrXrzywabJBoO5/yYFgCRGf85OStmwbcBX+i
-	8sM36wLSzvCy46r0036Wy7RoPh7xFrzC+DyUu6pyF/pGLn1BOElBU8tYNlTFpA
-X-Received: by 2002:a05:690e:1202:b0:64c:aab6:65ad with SMTP id 956f58d0204a3-64e62fec647mr410753d50.40.1773337058897;
-        Thu, 12 Mar 2026 10:37:38 -0700 (PDT)
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
-        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-64d6511564fsm3567285d50.13.2026.03.12.10.37.38
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Mar 2026 10:37:38 -0700 (PDT)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-79900d6dc3cso13356197b3.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 10:37:38 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXq2xsvEZ2kGQaAi95qvLX8bgNes1YPo5WTJlDtpYpVB7ogMNfK+roMlTUlTEJG/aW1wqwtbEva4en5@vger.kernel.org
-X-Received: by 2002:a05:690c:34c9:b0:798:da13:7141 with SMTP id
- 00721157ae682-79a1c2182b8mr4592247b3.63.1773337057869; Thu, 12 Mar 2026
- 10:37:37 -0700 (PDT)
+	s=arc-20240116; t=1773337076; c=relaxed/simple;
+	bh=aFQX/mwVXIQpPQX7qxE0nuMOaK4qcK/SeR4LGJuFsa8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LbNXwss0sM1Pm7epOEarWnYCaAYCAQV9tnH/PInodP/Oaq/xVfO2hoji/3+7V9wmX7Etbyli0USO+wy3kcNsV1V87eJrvzVsX8zsaxUo2pDEBgVYjTIEeJWFqRGxC9unkPqXYG3gvLviFUUmpDkn4+WFxQY0DRQLOFW22L+nT/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ff4qP7P0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1704C4CEF7;
+	Thu, 12 Mar 2026 17:37:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773337076;
+	bh=aFQX/mwVXIQpPQX7qxE0nuMOaK4qcK/SeR4LGJuFsa8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ff4qP7P0InVUnBUhM3Vtq96wZ0ILUUgkGrxZYHaddnDcFs6PP+8gyhTAdIIQHPk2Y
+	 bOfSGdMdcc2cBbuQ1gxKzvzr5buWAShjm7rNFD+OvKTMrfvtiTh58eoQjFMc6UksGQ
+	 6zzbiroo7h6rEQLex6MVQrAvRvw10XGGSbYCdRFNCe5ixJdrzrfagC7rKEuIvs9Umd
+	 g/k72i7MWJ+/ClO8ORAOF7wiAw9nYo+oC9RiMeYljmAL/vq+NvPZzSSyBDxHdAFgKE
+	 l31FhuKTIMQ1Yw6UGKNFZfHhTNYdEkMlfRmpiagxyWcWqUt28APqTDRU5v/lENzIFo
+	 se6GtOW65l5aQ==
+Date: Thu, 12 Mar 2026 17:37:51 +0000
+From: Conor Dooley <conor@kernel.org>
+To: florin.leotescu@oss.nxp.com
+Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Shych <michaelsh@nvidia.com>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	daniel.baluta@nxp.com, viorel.suman@nxp.com,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	festevam@gmail.com, Florin Leotescu <florin.leotescu@nxp.com>
+Subject: Re: [RFC PATCH v2 1/2] dt-bindings: hwmon: emc2305: Add
+ fan-shutdown-percent property
+Message-ID: <20260312-triage-shallot-1b3d9f07d250@spud>
+References: <20260312122248.1281572-1-florin.leotescu@oss.nxp.com>
+ <20260312122248.1281572-2-florin.leotescu@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260311224044.21480-1-email@sirat.me> <20260311224044.21480-3-email@sirat.me>
- <abLUgxivQnz2ISeY@ashevche-desk.local>
-In-Reply-To: <abLUgxivQnz2ISeY@ashevche-desk.local>
-From: Sirat <email@sirat.me>
-Date: Thu, 12 Mar 2026 23:37:26 +0600
-X-Gmail-Original-Message-ID: <CANn+LW+mg9Ridm3aMrVhy7cgvmJO0JNV_s_myfRCW8gPv7Ggkg@mail.gmail.com>
-X-Gm-Features: AaiRm53b54paoY7bohUQnhAoqD1uMqiR4vU46Vf3xd6gKJBBdHGtUpnfKfsDxCc
-Message-ID: <CANn+LW+mg9Ridm3aMrVhy7cgvmJO0JNV_s_myfRCW8gPv7Ggkg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] iio: proximity: add driver for ST VL53L1X ToF sensor
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, jic23@kernel.org, 
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [0.04 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="oDbvumbCQdRDhubR"
+Content-Disposition: inline
+In-Reply-To: <20260312122248.1281572-2-florin.leotescu@oss.nxp.com>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-274732-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274731-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DMARC_NA(0.00)[sirat.me];
+	FREEMAIL_CC(0.00)[roeck-us.net,kernel.org,nvidia.com,vger.kernel.org,nxp.com,lists.infradead.org,lists.linux.dev,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[email@sirat.me,devicetree@vger.kernel.org];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	R_DKIM_NA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 0EAE5276B3A
+X-Rspamd-Queue-Id: 0C208276A39
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 12, 2026 at 8:58=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@intel.com> wrote:
->
-> On Thu, Mar 12, 2026 at 04:40:37AM +0600, Siratul Islam wrote:
-> > Add support for the STMicroelectronics VL53L1X Time-of-Flight
-> > ranging sensor with I2C interface.
-> ...
->
-> > +static const struct regmap_config vl53l1x_regmap_config =3D {
-> > +     .reg_bits =3D 16,
-> > +     .val_bits =3D 8,
->
-> No cache?
->
-The result registers change on every measurement, so caching doesn't
-apply well here.
-Will add .cache_type =3D REGCACHE_NONE  with a comment to clarify.
-> > +};
->
-> ...
-> > +
-> > +     reinit_completion(&data->completion);
->
-> > +     wait_for_completion_timeout(&data->completion, HZ / 10);
->
-> No error condition check?
->
-This is only a short drain to make sure any pending IRQ has been
-handled before we stop
-the device and clear the interrupt line. A timeout here is not treated
-as a failure and the device
-is being shut down anyway, so I intentionally do not check the return value=
-.
->
-> ...
->
-> > +     data->xshut_gpio =3D devm_gpiod_get_optional(dev, "reset", GPIOD_=
-OUT_HIGH);
-> > +     if (IS_ERR(data->xshut_gpio))
-> > +             return dev_err_probe(dev, PTR_ERR(data->xshut_gpio),
-> > +                                  "Cannot get reset GPIO\n");
->
-> If it's a reset (semantically), use reset-gpio driver and reset APIs here=
-.
->
-The XSHUT pin is a shutdown/enable pin rather than a true reset line,
-and the existing shared st,vl53l0x.yaml
-binding already defines it as reset-gpios. So I am keeping the GPIO
-consumer API here.
->
->
 
-Sending v4 with all other fixes from your review, shortly.
+--oDbvumbCQdRDhubR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
-Sirat
+On Thu, Mar 12, 2026 at 02:22:47PM +0200, florin.leotescu@oss.nxp.com wrote:
+> From: Florin Leotescu <florin.leotescu@nxp.com>
+>=20
+> The EMC2305 fan controller supports multiple independent PWM fan
+> outputs. Some systems require fans to enter a defined safe state
+> during system shutdown or reboot handoff, until firmware or the next
+> boot stage reconfigures the controller.
+>=20
+> Add an optional "fan-shutdown-percent" property to fan child nodes
+> allowing the shutdown fan speed to be configured per fan output.
+>=20
+> Signed-off-by: Florin Leotescu <florin.leotescu@nxp.com>
+> ---
+>  .../devicetree/bindings/hwmon/microchip,emc2305.yaml      | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/hwmon/microchip,emc2305.ya=
+ml b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+> index d3f06ebc19fa..7bcadfab9fc4 100644
+> --- a/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+> @@ -54,6 +54,12 @@ patternProperties:
+>            The fan number used to determine the associated PWM channel.
+>          maxItems: 1
+> =20
+> +      fan-shutdown-percent:
+> +        description:
+> +          Fan RPM in percent set during shutdown.
+
+This sounds like something generic, that other devices might need and
+should be in fan-common.yaml?
+
+> +        minimum: 0
+> +        maximum: 100
+> +
+>      required:
+>        - reg
+> =20
+> @@ -80,12 +86,14 @@ examples:
+>              fan@0 {
+>                  reg =3D <0x0>;
+>                  pwms =3D <&fan_controller 26000 PWM_POLARITY_INVERTED 1>;
+> +                fan-shutdown-percent =3D <100>;
+>                  #cooling-cells =3D <2>;
+>              };
+> =20
+>              fan@1 {
+>                  reg =3D <0x1>;
+>                  pwms =3D <&fan_controller 26000 0 1>;
+> +                fan-shutdown-percent =3D <50>;
+>                  #cooling-cells =3D <2>;
+>              };
+> =20
+> --=20
+> 2.34.1
+>=20
+
+--oDbvumbCQdRDhubR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabL57wAKCRB4tDGHoIJi
+0noHAP9z/fCiq8hV4ZCCK6xJrtd6hvHbeRv80Hgr1bMapjuwoAD/QTtp9v/Ab3J9
+3q1keEgHBJviuIq0kTxW0wHKYbkL+g0=
+=Y6RW
+-----END PGP SIGNATURE-----
+
+--oDbvumbCQdRDhubR--
 
