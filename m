@@ -1,195 +1,259 @@
-Return-Path: <devicetree+bounces-274379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274381-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EHooOdwVsmkCIgAAu9opvQ
-	(envelope-from <devicetree+bounces-274379-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 02:24:44 +0100
+	id EFcrNm4ZsmmpIgAAu9opvQ
+	(envelope-from <devicetree+bounces-274381-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 02:39:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C906E26BEC5
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 02:24:44 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3133D26BF68
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 02:39:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CCC70303B188
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 01:24:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3C3AC3015152
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 01:39:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D7DA36AB53;
-	Thu, 12 Mar 2026 01:23:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4327D1A6832;
+	Thu, 12 Mar 2026 01:39:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I11zMDhP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UtK95c2p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E083E364036
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 01:23:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773278619; cv=none; b=AgWmNYiZs8P2j6Np7Vl+IozArrMB/+KGbICZpT78jKmUs/+c2DQEn9AXVQRH++IM/ESGMWTeylDioqdRSDnHqx7+1dJTCsJ1AUbWpqHROqsY+M02U6LVE14j2E9XpNvy43E+EWjXIuy+H+S8nQtTZRxm+GTXLIEfGmpLRCa7vY8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773278619; c=relaxed/simple;
-	bh=3McREo9Kk2UYPLjGgyLNM8Spss7Ow8fhuceAlqV3l6Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dSanr3w3d94pCTYOOSbzR42pIEdR2IpPmH5Xln7HPmHySAMWV+IfbQ5FDAgr9ySDUVY0Dhb9K1gfchSWIWQ2cGUp8RqZg70FQvOVD7kg9ShVHggfGFxZ2gop5Cx1m21kyx0Tp7aYo4ZYDpnUfIY0x/SVZz0RM7lOs6enMmB3B0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I11zMDhP; arc=none smtp.client-ip=209.85.219.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4C24374E76
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 01:39:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.49
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773279593; cv=pass; b=htgPdrJ5bMdcHDGkED18KAq6nMXs0rXhTrZcfkQ7hRjsReha85gI2E1A2PuWp0HKBEwMiwqMjNO/ASHJqVVOt7M+x8V4oZTXCna0677cwxdAtOZ1KclT+Gl0HxGYq26A4Mx3J8SiMml69DMx7urYgOCHt/0JhxwjwERBUFbRnP8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773279593; c=relaxed/simple;
+	bh=0SXtsTgT9IuFByxCXdT7M5qT+FlB3U/D69kQlXMNq3A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tx6KxX/AiWsD4zPyQPz3h9UOJk6O9uKkQ/fwekoSlnmt8wCGC83rkrll2M6vOHThf2VFy8E4IZHJBLYdJ0u4fFFYemYVu3P4LSV6fQpg3y/OuD4109+SXcJVDNHR1QGmzXaCTIf/l1OxzaO+0ttdKP1syI/D2udy6gf0dlxQwvQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UtK95c2p; arc=pass smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-899f27df3d1so4714926d6.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 18:23:34 -0700 (PDT)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-59e4a04f059so590611e87.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 18:39:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773279589; cv=none;
+        d=google.com; s=arc-20240605;
+        b=kPYySLGmGy4OLmsNXKX1eTMn8Xg3aFrp60Pfnwp7vGEEv/tZs2cTnXU3a+xtZ3EEws
+         aZtxHymLfx3r5OBlu6AHO0jobqJyVZN5FB+NRvTq3zKDmaldOvCwdihfgN2GNq9MHgtT
+         LkltRzEEnlBoe+wgzHNoUidNZisN4KjqvDm1qRQjZrqqIJQBdqUlIZxOvaWI0gBcNNU8
+         mYfpaATCJB5K8jvWZy+K2CmMxIfczM+XEfgIVcxeKfU07FH0+sWnhLPFxwyldBEDWnYp
+         7JYvCnkACnMy9KV3TQd0VSnvrP/0BYOoFyD5c12YEQJMwyzfgH/y6BX5wY6cEoAYtBXh
+         rvPA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=FM7n91Oq4EMi0Qsnljin2+dvXPrnJtrAjN4kRXM5Rvw=;
+        fh=HxxWCE0TkHd8vx/niE5H6xD/tGKnRmx28BuvmFHvAW8=;
+        b=kLnLTSQ34kGoiuaMcgph/9kXidPtry7f9VzPFY26xz7WGM+y09IBN2uUriSOwm6PMA
+         Sr3XlOPxBoojpsZeiZzKal92NEOjEbo55K6RMbXvBDQC7OIvym14eRlAppxVUATglaaa
+         W1lzBbCDYsPEvPLSDZv6RRxNa7GHCLWX6ngfUjtB/Vb8vsCD3bHMb0sNIIN/ZqbL71X0
+         q+unmaTIdoPtgUN0wmWEy8DUcXM69LrUtFr9XthBmj/djKaVZCY706BjVHsrtTPpbXau
+         qJYoy8CbcDbWofrQAT5/0MzRUgCiDIXU0EqxGgRWNIfnYffbJ8LU2aV02JbEObW5vwvX
+         o+kw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773278614; x=1773883414; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1773279589; x=1773884389; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=iB9g5jx+x167tNjxcGl7Z3iDMBhQp91ckzQQIEVj78E=;
-        b=I11zMDhPIl7kXdTTvuou3vYKcmATOKWtpAfCABWr3LoMrRdeF744HjgYF8O/zGj6br
-         ukFcOGmkVr45RtkEwMyoQ1a+OulRfG8IxZdxwAodW9Caecmr/obUC7XE0QgPollYltJq
-         NPJ7qvP5k/L8yOevLEKfkX84V+TOlsF5iQyMQ2sNOtu1RsdCHsjwFbK4s86ui4Rx6uuW
-         hyg14Rim9CK0/f5iV/AAFf+vunvS4QDeiLTJXUXaU6vkHXCENDWfnkeGqO+LUDp87iqe
-         XT1b6/7/O2U/fvbOc5Xdecq5kJEAiw+0EgcTFKNgG/ZiB6XKbP48b38eqhf44Oprzqim
-         3Ruw==
+        bh=FM7n91Oq4EMi0Qsnljin2+dvXPrnJtrAjN4kRXM5Rvw=;
+        b=UtK95c2p5qR/qa8g2OXqWTT4RMKj2K4XsxGsVd59x2ENuoVoY0Nsbezd5i7HRLqBOT
+         fcL5/WlxjH4gR2onlkHKoahzY1rknH4VYmvJpKrIaeZf3e6AvmwcKeZ0/Cor7TB4m/8E
+         ONgGSF8fIm8ObHCjUsodq3W5flktmXAk7fHT4Bj6epQKFwM2B6dFrgioIbNGXN2Z6nJp
+         CY/dHic+PbHM0kuFlGJhLFmEvgAIf7M0H6tmOtzQvhOerFTTnNhWbA0wYEEuy0gLo2MR
+         nTJhBwyGUO3VRL1Ik1zLyPiCXFmJd+A+TgHX7gbvN8Pwpp4ZQkskIniz/sV5vWyAgdi9
+         NPXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773278614; x=1773883414;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+        d=1e100.net; s=20230601; t=1773279589; x=1773884389;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=iB9g5jx+x167tNjxcGl7Z3iDMBhQp91ckzQQIEVj78E=;
-        b=VwAXnSTsHq1BSfi8n85jM0OIUB1acJhNIhEdHCcQzQVAnGzix/OwDjEd8uTx1XVjgH
-         4CNKEw2IsCb8sCQLx3pwQgifpQOuoB82sFfUwR0nV/r+tSpEMdP//8xOAgBFzC5vAXwu
-         +aQa1TSaqtGGRolIatrBgWmqagkSxiL1+XAi/gEJcWCWX1Oj8NSc10vNw/5M9uykm4iK
-         /bvJ03FcQDM2jav/G/vR9qfE8anT4EVIbeRwMcjuu7zEQzV3wUG0wU8jqW3iEzAx7TSZ
-         aCmJ4qM24IjzeocrfTPnIZ958Cn/ZXqm3WLzVFWQe1kSHVOMnf21OIup7/U01EU/HJVQ
-         1C9A==
-X-Forwarded-Encrypted: i=1; AJvYcCUvWY1cxfAmTOTeEVRGgeKmN1u5BGil+aoHcl9kMJJ1lCo4SwclJtz+QxXvzM64c3rWUHSbAzqi7lKQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/47riY9Z/3zYJzBGIho3RMa19L36gcKOdRzVRYcY1waaMe2+X
-	/U9Q/0RgqcehNIcEL+kNSsf+JKkOauBTEM8aqQHfZ5THkBTQjNnRlCku
-X-Gm-Gg: ATEYQzyYhfpesitiIQ/CqUsI4w8YCxUkUnNKpRNhsXT4qUM400Tphgh07SeLD77XrIh
-	UttFaHNTpDBc4PBBn+EIJq0Lo2WZ1leIGgibfFG6PT45aATGrWGYb4yAg1OvV9dore4bCq6AG3H
-	UDRTzz3tXVHBx7KpmWkjRFqjWvE7dByUd29yGoBud2WZCamevTcfkL2NAOtXE1AkLs4tNV+v4Gf
-	zZPmJ71KANuWe1yq5AX3TSd1kqMHuJKGEhd8c1G81oFB8Tm3ehtOjIQ8dM3tCYLizOCPhyh47Jb
-	Gc3w+bSVRuA5GU1pdfdvHJfjqmEFMfcwXwyYCD/viLpKIrJVUnXr1eW7myflQ1YeBi0qeUYXKft
-	eeA+Gbk84HiE4YtDNlaBumfLuA5QnzxofMpPOwtFzMRJpPDrGTOJ8tL9Rfhi0ameMpPZqW4SGQh
-	woVFGdcxxTu7aVJ1s6w8Q3zlx0DR1utXs4ug==
-X-Received: by 2002:a05:6214:2305:b0:89a:717:1e48 with SMTP id 6a1803df08f44-89a66ae1ce8mr61425926d6.58.1773278613817;
-        Wed, 11 Mar 2026 18:23:33 -0700 (PDT)
-Received: from localhost ([2001:19f0:8001:1b2d:5400:5ff:fefa:a95d])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-89a65beb4b3sm25165286d6.14.2026.03.11.18.23.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Mar 2026 18:23:33 -0700 (PDT)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Yixun Lan <dlan@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Yao Zi <me@ziyao.cc>,
-	Yanteng Si <siyanteng@cqsoftware.com.cn>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Shangjuan Wei <weishangjuan@eswincomputing.com>,
-	Boon Khai Ng <boon.khai.ng@altera.com>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>
-Subject: [PATCH net-next v9 4/4] MAINTAINERS: add entry for SpacemiT DWMAC glue layer
-Date: Thu, 12 Mar 2026 09:22:26 +0800
-Message-ID: <20260312012232.373713-5-inochiama@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260312012232.373713-1-inochiama@gmail.com>
-References: <20260312012232.373713-1-inochiama@gmail.com>
+        bh=FM7n91Oq4EMi0Qsnljin2+dvXPrnJtrAjN4kRXM5Rvw=;
+        b=tC6KRj52vOC09STkXMa8QJSyQ+tIdKvSSADeClSrw6Jdf8zxEjD2izhNx20mzmVDB3
+         4wxCtqSrl3Yi8FEZSHzfY6U0qclzorHq/LiufrG+C2n13yollHiAuNLq3fFcOXAP7X1y
+         d5N1KBvJeal5siB1IaM/gdtOJiNCbK4eO9fGhWZXUSpaFh08WnSU1iPU6y4fYt3n7znu
+         zuvxMkVjuSlWP4NamH6IGZSRKJKv82ltrRjjajfVzeTTWxEcUW3iE900o75s/mhesCxt
+         Htg/ZItFUFdqVx7uwNsVcarYu7tI0nCTKmFKunx0MoAMl8crcnL3QfCv02IcWInybALU
+         ACtA==
+X-Forwarded-Encrypted: i=1; AJvYcCXdIS2Z6rnQJyMYugev9MEZFqR8nizAVIaxnoKbXXxro6BlGK29Ygtp8s30BU8VQKyYAALta2FTfXqf@vger.kernel.org
+X-Gm-Message-State: AOJu0YzySJvFSp8gc4uD3/La69BhG/Ed4NAq0m7FQeJMJ53Caotxo1XE
+	QXHvYvj2CwO+hXTct5YMM0bycina3PCRTUnEPZnXQN9BNSkwFn1mmbKuapLodWT28Taho9HSQGM
+	f/NB1kKDD3vukJVTmzQ0bwJc1ZSpRFJA=
+X-Gm-Gg: ATEYQzz51yGBzQD1D6LQ1JZj/vUK1xgJQH6CkcGOb/wPTwU4amWwzRfA0cYWvNxduQV
+	kaKk2R1RKAVTnxrYukFWrssCiitHG7IP7XGvHQEWiKfERZmt4yNhZAFQbyWxYYve1/cOE4EUIMZ
+	lL1x+Z5dqPdO/yRcNVWhaiog5loZt4/EkRxJ92Iu1Xd95d3k7kXmt+bdwsscFv+q0lNhnzbTYjM
+	2tmqzMRgYI5KcCVwsxZ3skzI6R0kjOhQV96ibKu08FbUmCTv9Y9cSDLBrjRtwOOIcdw7Gt4ghUV
+	Dedk29DUSBUDdtUD1Dt38srWlphYShsg/rUnMauOwFsLToMvfSZAXh/CZAPqHK5gOcXR
+X-Received: by 2002:a2e:b892:0:b0:38a:56cc:628b with SMTP id
+ 38308e7fff4ca-38a67e6565amr15562361fa.29.1773279588636; Wed, 11 Mar 2026
+ 18:39:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+References: <20260311-ayn-qcs8550-v2-0-e66986e0f0cb@gmail.com>
+ <20260311-ayn-qcs8550-v2-2-e66986e0f0cb@gmail.com> <4757fd22-fe9f-4228-a0a5-11d9309549ac@packett.cool>
+In-Reply-To: <4757fd22-fe9f-4228-a0a5-11d9309549ac@packett.cool>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Wed, 11 Mar 2026 20:39:37 -0500
+X-Gm-Features: AaiRm52jcRebLOKGRG6II1wULJvyLW9QFFSf8ozsKj12tdfaNCNcaE5_33htURY
+Message-ID: <CALHNRZ_RU+uHXfUtSO+8pKOYfBuK9jbYgqWE70WMQ=5Qz2MvvQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] arm64: dts: qcom: Add AYN QCS8550 Common
+To: Val Packett <val@packett.cool>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Teguh Sobirin <teguh@sobir.in>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274379-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,armlinux.org.uk,ziyao.cc,cqsoftware.com.cn,nxp.com,bp.renesas.com,bootlin.com,eswincomputing.com,altera.com,cherry.de,st.com,synopsys.com];
-	RCPT_COUNT_TWELVE(0.00)[38];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com,gentoo.org,gmail.com];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-274381-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
-	NEURAL_HAM(-0.00)[-0.998];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,spacemit.com:email,linuxtv.org:url]
-X-Rspamd-Queue-Id: C906E26BEC5
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[webgeek1234@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[packett.cool:email,mail.gmail.com:mid,sobir.in:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3133D26BF68
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add a MAINTAINERS entry for the SpacemiT DWMAC glue layer driver and
-its DT binding.
+On Wed, Mar 11, 2026 at 7:49=E2=80=AFPM Val Packett <val@packett.cool> wrot=
+e:
+>
+> On 3/11/26 2:44 PM, Aaron Kling wrote:
+>
+> > From: Teguh Sobirin <teguh@sobir.in>
+> >
+> > This adds a base dtb of everything common between the AYN QCS8550
+> > devices. It is intended to be extended by device specific overlays.
+> >
+> > Signed-off-by: Teguh Sobirin <teguh@sobir.in>
+> > Co-developed-by: Aaron Kling <webgeek1234@gmail.com>
+> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> > ---
+> >   arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+> >   arch/arm64/boot/dts/qcom/qcs8550-ayntec-common.dts | 1777 +++++++++++=
++++++++++
+> >   2 files changed, 1778 insertions(+)
+> > [=E2=80=A6]
+> > +/ {
+> > +     model =3D "AYN QCS8550 Common";
+> > +     compatible =3D "ayntec,qcs8550-common", "qcom,qcs8550", "qcom,sm8=
+550";
+>
+> Huh?.. All existing -common files are .dtsi includes without their own
+> model/compatible, and the compile-time "dtbo" support is only used for
+> EL2 where we want to apply the same thing to many many devices without
+> polluting the tree with extra glue files. I don't see why this should be
+> a "common device" with its own compatible string, and not just a dtsi.
 
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+My use case for these devices is Android, using a single base dtb and
+variant dtbo's in a single software build. Given the aosp boot image
+v4 setup, using individual dtb's would require different vendor_boot
+images, which would require multiple build targets. This setup allows
+for my use case, while also having individual dtb targets for a
+standard Linux use case. To my knowledge, the final device specific
+dtb from this is the same as a dtb using a common dtsi.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2265e2c9bfbe..dd72d26ac837 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -24834,6 +24834,12 @@ W:	https://linuxtv.org
- Q:	http://patchwork.linuxtv.org/project/linux-media/list/
- F:	drivers/media/dvb-frontends/sp2*
- 
-+SPACEMIT DWMAC GLUE LAYER
-+M:	Inochi Amaoto <inochiama@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml
-+F:	drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c
-+
- SPACEMIT K1 I2C DRIVER
- M:	Troy Mitchell <troy.mitchell@linux.spacemit.com>
- S:	Maintained
--- 
-2.53.0
+> > [=E2=80=A6]
+> > +&gpu {
+> > +     status =3D "okay";
+> > +
+> > +     zap-shader {
+> > +             firmware-name =3D "qcom/sm8550/a740_zap.mbn";
+> > +     };
+> > +};
+>
+> Please use the &gpu_zap_shader label.
 
+Ack.
+
+> And does the generic zap actually just work?
+
+The devices boot and the gpu works, so whatever code path is being
+used works. These devices are unfused, and based on what I understand
+a zap shader to be, switching a gpu from secure mode to non-secure,
+I'm not sure it's needed at all. I have not tested just not setting,
+though.
+
+> > [=E2=80=A6]
+> > +&i2c0 {
+> > +     clock-frequency =3D <400000>;
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&i2c4 {
+> > +     clock-frequency =3D <400000>;
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&i2c12 {
+> > +     clock-frequency =3D <400000>;
+> > +     status =3D "okay";
+> > +};
+> If the individual devices actually use these busses, better to enable
+> them inside of their .dts as well I think?
+
+I can move them. I think the idea was that all variants do use these,
+but for different hardware, so might as well commonize this part. This
+part existed before I started working on the devices, so I can't say
+for sure.
+
+> > +&iris {
+> > +     status =3D "okay";
+> > +};
+> Works with generic firmware?
+
+I have not been able to verify this. Unfortunately, there is not an
+aidl v4l2 c2 hal for aosp. If the expectation is that device specific
+firmware is needed, even for unfused devices, I can drop this section
+until I am able to use it. Or maybe Teguh could chime in if this works
+on ROCKNIX.
+
+> > [=E2=80=A6]
+> > +&pcie0 {
+> > +     wake-gpios =3D <&tlmm 96 GPIO_ACTIVE_HIGH>;
+> > +     perst-gpios =3D <&tlmm 94 GPIO_ACTIVE_LOW>;
+> Current binding is to put these inside of the &pcieportN (renaming
+> 'perst' to 'reset' which I just noticed I failed to do for one of my own
+> files :D), see x1e78100-lenovo-thinkpad-t14s.dtsi for an example.
+
+Ack.
+
+> > [=E2=80=A6]
+>
+> Thanks for this work, very cool overall!
+>
+> ~val
+
+Aaron
 
