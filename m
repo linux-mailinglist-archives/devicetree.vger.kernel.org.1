@@ -1,147 +1,202 @@
-Return-Path: <devicetree+bounces-274671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274670-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6PoZMAPcsmlMQQAAu9opvQ
-	(envelope-from <devicetree+bounces-274671-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:30:11 +0100
+	id aB27D1jcsmlMQQAAu9opvQ
+	(envelope-from <devicetree+bounces-274670-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:31:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B1C12747C4
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:30:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98F50274823
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:31:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 25B353291E67
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:25:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 314C3328DC95
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:25:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B2A7391856;
-	Thu, 12 Mar 2026 15:24:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B3C5386446;
+	Thu, 12 Mar 2026 15:24:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rtbr6A+m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 020523B27DD
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 15:24:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0752233263F;
+	Thu, 12 Mar 2026 15:24:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773329089; cv=none; b=QJLqN+JMvSlyNQcV+vxbvgNeU4RqKzvC38rHRBkYVssXKr5brs7tq+OQJKMgQiigboPWM0VTcKCMLWVWqiKiIajY3MasWNrwneGQ3mghZ9tTNIgmRumBnnniq3e2avHAkKzOpqPIcGmnxjVC3jIcCwCXQQN34RKuGBmwHNk9AHQ=
+	t=1773329079; cv=none; b=fOMBXenVzz9Z+32yd2RdRVxXlDIAgY2JWW4dWtjBfZ1duxZq0SFtjyiyaBgKnIZHjR1yeYOeuvW5h/Ptq4eAGE/EvRYC/4Hb0XEew6yug2dJ+rh0PjeRAEMvw9wpCZe2CFLRTQGH9tz7YzpGfNIkCC5njcWhWHDBh5g9WKf7LDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773329089; c=relaxed/simple;
-	bh=gAhoZZtaU0dLQM0X7vjE0h9pHAa9S+Tp5bClV1KsDUU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ZmtojN34bG1BcAlwNJXHM0P93rH1/hHPPy2FOBJUykgwnQwP728Roj7Mf02cZDu0RaSqmqgOTYH04GLCRjQOM9gQmh1aEFMu5rmweZPzWLeMtcMfIVVPXZnXr1LGZfl7IkaXfmo90rbkYq20mCxQPpHwn5So0jJjEMJU+41/fko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1w0htl-0004bz-BF; Thu, 12 Mar 2026 16:24:29 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1w0htj-0052iJ-0c;
-	Thu, 12 Mar 2026 16:24:28 +0100
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1w0htk-00000000Cdx-1r4T;
-	Thu, 12 Mar 2026 16:24:28 +0100
-Message-ID: <37f389274e5c0e33c0e8fad8ffed0237b0127b07.camel@pengutronix.de>
-Subject: Re: [PATCH v8 4/5] reset: rzv2h-usb2phy: Keep PHY clock enabled for
- entire device lifetime
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, 
-	tomm.merciai@gmail.com, peda@axentia.se
-Cc: linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com, Fabrizio
- Castro <fabrizio.castro.jz@renesas.com>, Lad Prabhakar
- <prabhakar.mahadev-lad.rj@bp.renesas.com>,  Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,  Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Josua Mayer
- <josua@solid-run.com>, Arnd Bergmann <arnd@arndb.de>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-Date: Thu, 12 Mar 2026 16:24:28 +0100
-In-Reply-To: <6584aed8dc4fddb28c2184c83b92b4f3b419bc31.1773319566.git.tommaso.merciai.xr@bp.renesas.com>
-References: <cover.1773319566.git.tommaso.merciai.xr@bp.renesas.com>
-	 <6584aed8dc4fddb28c2184c83b92b4f3b419bc31.1773319566.git.tommaso.merciai.xr@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1773329079; c=relaxed/simple;
+	bh=FC1xOthI+Hgr5ZInoBGAY+I22tfeLRPBkTrAlsfMr/s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ob9b650M8tNIa5Zqjgbo31UNIr+5lZg9wCm8U7XCeltV4bv53Wozm1FVSGep9jEMvQEutD6CC5NPf+/FXTr0gS++6vxZDUAuwcl3w19W6f/Jprcy8IrMADHTbjmSfk0zkmcFcNixD/Q2I8T/kDPMQ60Zjs6dGRBzTRpVhdkTfiQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rtbr6A+m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D4ADC4CEF7;
+	Thu, 12 Mar 2026 15:24:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773329078;
+	bh=FC1xOthI+Hgr5ZInoBGAY+I22tfeLRPBkTrAlsfMr/s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Rtbr6A+mfmIb8HoIMT4umPsG/5YEEzDzixaL/4ba1ufpe7Vs1TvfNL78geSRJF3Ju
+	 pym92WhPr0eMi4otqccX+9IN74+06ZV8P97VVM5LgcNW35WFPZVDP4Yf3Lt4UgqBn+
+	 teQS420h1OQ7f/XJ9eCi1Ms/BJCpKNXmJ4hRCGZIyEjUO2S/w5CJje2+h3UW/sJZSC
+	 jnK9Mhae/Suy7dOCzokVn3mN5I7HTMG7LM1uQgECVFQpQurwMPe1xCuxKfT7wsJhur
+	 hp6HxyIihyyMFJhipy8X9tGgRULS8UzADKJKmyEsMYDdSxoOtV69I+HZ5jR4cakP4v
+	 WBgnF5On5Perg==
+Date: Thu, 12 Mar 2026 10:24:37 -0500
+From: Rob Herring <robh@kernel.org>
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: usb: st,st-ehci-300x: convert to DT schema
+Message-ID: <20260312152437.GA3161241-robh@kernel.org>
+References: <20260307-st-ehci-v1-1-3801a99ae913@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spamd-Result: default: False [0.04 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260307-st-ehci-v1-1-3801a99ae913@gmail.com>
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274671-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274670-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	FREEMAIL_TO(0.00)[bp.renesas.com,gmail.com,axentia.se];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,bp.renesas.com,renesas.com,kernel.org,glider.be,gmail.com,linaro.org,linuxfoundation.org,solid-run.com,arndb.de];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.993];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:email,pengutronix.de:email,pengutronix.de:mid]
-X-Rspamd-Queue-Id: 4B1C12747C4
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,fe203e00:email,devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 98F50274823
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Do, 2026-03-12 at 15:50 +0100, Tommaso Merciai wrote:
-> The driver was disabling the USB2 PHY clock immediately after register
-> initialization in probe() and after each reset operation. This left the
-> PHY unclocked even though it must remain active for USB functionality.
->=20
-> The behavior appeared to work only when another driver
-> (e.g., USB controller) had already enabled the clock, making operation
-> unreliable and hardware-dependent. In configurations where this driver
-> is the sole clock user, USB functionality would fail.
->=20
-> Fix this by:
-> - Enabling the clock once in probe() via pm_runtime_resume_and_get()
-> - Removing all pm_runtime_put() calls from assert/deassert/status
-> - Registering a devm cleanup action to release the clock at removal
-> - Removed rzv2h_usbphy_assert_helper() and its call in
->   rzv2h_usb2phy_reset_probe()
->=20
-> This ensures the PHY clock remains enabled for the entire device lifetime=
-,
-> preventing instability and aligning with hardware requirements.
->=20
-> Cc: stable@vger.kernel.org
-> Fixes: e3911d7f865b ("reset: Add USB2PHY port reset driver for Renesas RZ=
-/V2H(P)")
-> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+On Sat, Mar 07, 2026 at 07:31:42AM +0000, Charan Pedumuru wrote:
+> Convert STMicroelectronics USB EHCI Controller binding to DT schema.
+> 
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/usb/ehci-st.txt  | 38 ---------
+>  .../devicetree/bindings/usb/st,st-ehci-300x.yaml   | 95 ++++++++++++++++++++++
+>  2 files changed, 95 insertions(+), 38 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/ehci-st.txt b/Documentation/devicetree/bindings/usb/ehci-st.txt
+> deleted file mode 100644
+> index d6f2bdee20fc..000000000000
+> --- a/Documentation/devicetree/bindings/usb/ehci-st.txt
+> +++ /dev/null
+> @@ -1,38 +0,0 @@
+> -ST USB EHCI controller
+> -
+> -Required properties:
+> - - compatible		: must be "st,st-ehci-300x"
+> - - reg			: physical base addresses of the controller and length of memory mapped
+> -			  region
+> - - interrupts		: one EHCI interrupt should be described here
+> - - pinctrl-names	: a pinctrl state named "default" must be defined
+> - - pinctrl-0		: phandle referencing pin configuration of the USB controller
+> -See: Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+> - - clocks		: phandle list of usb clocks
+> - - clock-names		: should be "ic" for interconnect clock and "clk48"
+> -See: Documentation/devicetree/bindings/clock/clock-bindings.txt
+> -
+> - - phys			: phandle for the PHY device
+> - - phy-names		: should be "usb"
+> - - resets		: phandle + reset specifier pairs to the powerdown and softreset lines
+> -			  of the USB IP
+> - - reset-names		: should be "power" and "softreset"
+> -See: Documentation/devicetree/bindings/reset/st,stih407-powerdown.yaml
+> -See: Documentation/devicetree/bindings/reset/reset.txt
+> -
+> -Example:
+> -
+> -	ehci1: usb@fe203e00 {
+> -		compatible = "st,st-ehci-300x";
+> -		reg = <0xfe203e00 0x100>;
+> -		interrupts = <GIC_SPI 148 IRQ_TYPE_NONE>;
+> -		pinctrl-names = "default";
+> -		pinctrl-0 = <&pinctrl_usb1>;
+> -		clocks = <&clk_s_a1_ls 0>;
+> -		phys = <&usb2_phy>;
+> -		phy-names = "usb";
+> -
+> -		resets = <&powerdown STIH416_USB1_POWERDOWN>,
+> -			 <&softreset STIH416_USB1_SOFTRESET>;
+> -		reset-names = "power", "softreset";
+> -	};
+> diff --git a/Documentation/devicetree/bindings/usb/st,st-ehci-300x.yaml b/Documentation/devicetree/bindings/usb/st,st-ehci-300x.yaml
+> new file mode 100644
+> index 000000000000..0cd625cd003b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/st,st-ehci-300x.yaml
+> @@ -0,0 +1,95 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/st,st-ehci-300x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STMicroelectronics USB EHCI Controller (ST EHCI 300x)
+> +
+> +maintainers:
+> +  - Peter Griffin <peter.griffin@linaro.org>
+> +
+> +description:
+> +  The STMicroelectronics EHCI 300x controller is a USB 2.0 Enhanced Host
+> +  Controller Interface used in several ST SoCs. It provides high-speed USB
+> +  host functionality and interfaces with an external USB PHY. The controller
+> +  requires clock, reset, interrupt, and pin control configuration along with
+> +  PHY connection information to operate correctly.
+> +
+> +allOf:
+> +  - $ref: usb-hcd.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: st,st-ehci-300x
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
 
-Given the Cc: stable tag I assume I can apply this first, independently
-of the other patches?
+> +  pinctrl-names:
+> +    const: default
+> +
+> +  pinctrl-0:
+> +    maxItems: 1
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+These can be dropped as pinctrl properties are always allowed.
 
-regards
-Philipp
+With that,
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
