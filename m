@@ -1,129 +1,385 @@
-Return-Path: <devicetree+bounces-274600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274603-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id INATFXe/smmvPAAAu9opvQ
-	(envelope-from <devicetree+bounces-274600-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:28:23 +0100
+	id uC72GJbCsmmvPAAAu9opvQ
+	(envelope-from <devicetree+bounces-274603-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:41:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A9302727FC
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:28:22 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8145272C6D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:41:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A0DA630432EA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 13:27:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B39A0308646A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 13:33:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BDD23A3E95;
-	Thu, 12 Mar 2026 13:27:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89A363C7DE6;
+	Thu, 12 Mar 2026 13:32:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E6A23ABAA;
-	Thu, 12 Mar 2026 13:27:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 438E1374752;
+	Thu, 12 Mar 2026 13:32:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773322069; cv=none; b=JOAi0nExeV1wUZWXQ2kciwUuTFbYbT2Zbfc9IPBZZFvtJNfUJG/mezbxcJKRykGBO3KTGOTDb9nDCn0M/IrEN6TBZCM7ZoSZePt/PgZjyrc3zIhj7pKZVC6Kp99js3RuuieZNhX7vKMQvNO2uN8qLoLbrrWywMAbhxwZLeSR1jo=
+	t=1773322343; cv=none; b=L4j+FO3rYcj/G5N7YARFl2xfbiLY44NRJCLQ4nt5Yo5WD0NZQSbF48aCRFaVyVG7hKnj5LxjgxoKm+PccC8kfiTybH1rOVbXYIYopHvirZXAMcHKpxjPxIuOwS1yTjLusF+atz+7YsuSwRrmBmcq6PbzbcluHYeBxMwlWXdIdN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773322069; c=relaxed/simple;
-	bh=235BRwd3Pxj/NQnpnHqGP0r6TpefiVuAekr1ybYj0d0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uoUwt78FjZsedfPbpYwimMFB8x1rnnvMv2mZWJKAxg12s7R7nf7HInyPwzSZdd9gzV/Au9cWcLfmE9/R9juECBXunQo/Kv5w2oh5HBp33Y8rgs3EZ6uAuV1bsDWis1qm6B0gQqQWQLXeS3Mnfl43nFKvrf5lKEHyKRr5XzMn5mk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A73BC19424;
-	Thu, 12 Mar 2026 13:27:46 +0000 (UTC)
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Stefan Eichenberger <eichest@gmail.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 2/2] dt-bindings: net: micrel: KSZ8041RNLI supports LED mode
-Date: Thu, 12 Mar 2026 14:27:36 +0100
-Message-ID: <6ccda7a00f250e87b0457e276ac1070cb0708d71.1773321267.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1773321267.git.geert+renesas@glider.be>
-References: <cover.1773321267.git.geert+renesas@glider.be>
+	s=arc-20240116; t=1773322343; c=relaxed/simple;
+	bh=Ikesyzyrgnu8tBVH7g+5vVOUWXdUkCWgc0hPe5ake7k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PYmOYpPQNPG9xDh1rDqxMm7EI5Jvh0MnhEzKfJ7JiBh3pojn64IcNFz2PP+2GYYJU2svr8aRc4epojRs2i7c+ENBt5SymYbHrXEEUpbGtdQcH6aYpTh6cdE1xnh1+fnbeS4vGv/5lsDBjG5SFNSj4Jkp66P5YCpGRtAUEcabAhQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from duge-virtual-machine (unknown [183.192.221.67])
+	by APP-03 (Coremail) with SMTP id rQCowACnx949wLJpA8N1Cg--.52691S2;
+	Thu, 12 Mar 2026 21:31:43 +0800 (CST)
+Date: Thu, 12 Mar 2026 21:31:41 +0800
+From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+To: Adrian Hunter <adrian.hunter@intel.com>, krzk@kernel.org,
+	ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	gaohan@iscas.ac.cn, me@ziyao.cc
+Subject: Re: [PATCH v3 2/3] mmc: sdhci-dwcmshc: Add Canaan K230 DWCMSHC
+ controller support
+Message-ID: <abLAPc13t1+ik4R0@duge-virtual-machine>
+References: <20260310064513.140093-1-jiayu.riscv@isrc.iscas.ac.cn>
+ <20260310064513.140093-3-jiayu.riscv@isrc.iscas.ac.cn>
+ <5cac60f7-46cb-45c8-9435-3ae88545ce4d@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5cac60f7-46cb-45c8-9435-3ae88545ce4d@intel.com>
+X-CM-TRANSID:rQCowACnx949wLJpA8N1Cg--.52691S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3XryDCFyfXr13WFWxXw1UZFb_yoWDGr47pF
+	WUAayYkr4DtF4Fgwn7Kan0vasIgrnIqr93K3s3G3yxtFs2kw1UWFyj9rWYyFyrZr4kAw17
+	Xr1qq345ur9Ik37anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
+	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
+	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
+	c7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
+	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
+	14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
+	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
+	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
+	IFyTuYvjxUqiFxDUUUU
+X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
 X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[glider.be];
 	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[iscas.ac.cn];
 	RCVD_COUNT_THREE(0.00)[4];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274600-lists,devicetree=lfdr.de,renesas];
-	FREEMAIL_TO(0.00)[gmail.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-274603-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FROM_NEQ_ENVFROM(0.00)[geert@glider.be,devicetree@vger.kernel.org];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.947];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,renesas];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[glider.be:email,glider.be:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.1:email]
-X-Rspamd-Queue-Id: 8A9302727FC
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jiayu.riscv@isrc.iscas.ac.cn,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,iscas.ac.cn:email]
+X-Rspamd-Queue-Id: D8145272C6D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Micrel KSZ8041RNLI supports LED mode, just like KSZ8041.
+On Wed, Mar 11, 2026 at 04:04:03PM +0200, Adrian Hunter wrote:
+> On 10/03/2026 08:45, Jiayu Du wrote:
+> > Add SDHCI controller driver for Canaan k230 SoC. Implement custom
+> > sdhci_ops for set_clock, phy init, init and reset.
+> > 
+> > Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+> > ---
+> >  drivers/mmc/host/sdhci-of-dwcmshc.c | 287 ++++++++++++++++++++++++++++
+> >  1 file changed, 287 insertions(+)
+> > 
+> > diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdhci-of-dwcmshc.c
+> > index 2b75a36c096b..39d28574cfa8 100644
+> > --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
+> > +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
+> > @@ -128,9 +128,11 @@
+> >  #define PHY_CNFG_PHY_PWRGOOD_MASK	BIT_MASK(1) /* bit [1] */
+> >  #define PHY_CNFG_PAD_SP_MASK		GENMASK(19, 16) /* bits [19:16] */
+> >  #define PHY_CNFG_PAD_SP			0x0c /* PMOS TX drive strength */
+> > +#define PHY_CNFG_PAD_SP_k230		0x09 /* PMOS TX drive strength for k230 */
+> >  #define PHY_CNFG_PAD_SP_SG2042		0x09 /* PMOS TX drive strength for SG2042 */
+> >  #define PHY_CNFG_PAD_SN_MASK		GENMASK(23, 20) /* bits [23:20] */
+> >  #define PHY_CNFG_PAD_SN			0x0c /* NMOS TX drive strength */
+> > +#define PHY_CNFG_PAD_SN_k230		0x08 /* NMOS TX drive strength for k230 */
+> >  #define PHY_CNFG_PAD_SN_SG2042		0x08 /* NMOS TX drive strength for SG2042 */
+> >  
+> >  /* PHY command/response pad settings */
+> > @@ -153,14 +155,22 @@
+> >  #define PHY_PAD_RXSEL_3V3		0x2 /* Receiver type select for 3.3V */
+> >  
+> >  #define PHY_PAD_WEAKPULL_MASK		GENMASK(4, 3) /* bits [4:3] */
+> > +#define PHY_PAD_WEAKPULL_DISABLED	0x0 /* Weak pull up and pull down disabled */
+> >  #define PHY_PAD_WEAKPULL_PULLUP		0x1 /* Weak pull up enabled */
+> >  #define PHY_PAD_WEAKPULL_PULLDOWN	0x2 /* Weak pull down enabled */
+> >  
+> >  #define PHY_PAD_TXSLEW_CTRL_P_MASK	GENMASK(8, 5) /* bits [8:5] */
+> >  #define PHY_PAD_TXSLEW_CTRL_P		0x3 /* Slew control for P-Type pad TX */
+> > +#define PHY_PAD_TXSLEW_CTRL_P_k230_VAL2	0x2 /* Slew control for P-Type pad TX for k230 */
+> >  #define PHY_PAD_TXSLEW_CTRL_N_MASK	GENMASK(12, 9) /* bits [12:9] */
+> >  #define PHY_PAD_TXSLEW_CTRL_N		0x3 /* Slew control for N-Type pad TX */
+> >  #define PHY_PAD_TXSLEW_CTRL_N_SG2042	0x2 /* Slew control for N-Type pad TX for SG2042 */
+> > +#define PHY_PAD_TXSLEW_CTRL_N_k230_VAL2	0x2 /* Slew control for N-Type pad TX for k230 */
+> > +#define PHY_PAD_TXSLEW_CTRL_N_k230_VAL1	0x1 /* Slew control for N-Type pad TX for k230 */
+> > +
+> > +/* PHY Common DelayLine config settings */
+> > +#define PHY_COMMDL_CNFG			(DWC_MSHC_PTR_PHY_R + 0x1c)
+> > +#define PHY_COMMDL_CNFG_DLSTEP_SEL	BIT(0) /* DelayLine outputs on PAD enabled */
+> >  
+> >  /* PHY CLK delay line settings */
+> >  #define PHY_SDCLKDL_CNFG_R		(DWC_MSHC_PTR_PHY_R + 0x1d)
+> > @@ -174,7 +184,10 @@
+> >  #define PHY_SDCLKDL_DC_HS400		0x18 /* delay code for HS400 mode */
+> >  
+> >  #define PHY_SMPLDL_CNFG_R		(DWC_MSHC_PTR_PHY_R + 0x20)
+> > +#define PHY_SMPLDL_CNFG_EXTDLY_EN	BIT(0)
+> >  #define PHY_SMPLDL_CNFG_BYPASS_EN	BIT(1)
+> > +#define PHY_SMPLDL_CNFG_INPSEL_MASK	GENMASK(3, 2) /* bits [3:2] */
+> > +#define PHY_SMPLDL_CNFG_INPSEL		0x3 /* delay line input source */
+> >  
+> >  /* PHY drift_cclk_rx delay line configuration setting */
+> >  #define PHY_ATDL_CNFG_R			(DWC_MSHC_PTR_PHY_R + 0x21)
+> > @@ -227,6 +240,14 @@
+> >  /* SMC call for BlueField-3 eMMC RST_N */
+> >  #define BLUEFIELD_SMC_SET_EMMC_RST_N	0x82000007
+> >  
+> > +/* Canaan specific Registers */
+> > +#define SD0_CTRL			0x00
+> > +#define SD0_HOST_REG_VOL_STABLE		BIT(4)
+> > +#define SD0_CARD_WRITE_PROT		BIT(6)
+> > +#define SD1_CTRL			0x08
+> > +#define SD1_HOST_REG_VOL_STABLE		BIT(0)
+> > +#define SD1_CARD_WRITE_PROT		BIT(2)
+> > +
+> >  /* Eswin specific Registers */
+> >  #define EIC7700_CARD_CLK_STABLE		BIT(28)
+> >  #define EIC7700_INT_BCLK_STABLE		BIT(16)
+> > @@ -268,6 +289,12 @@ struct eic7700_priv {
+> >  	unsigned int drive_impedance;
+> >  };
+> >  
+> > +struct k230_priv  {
+> > +	/* Kendryte k230 specific */
+> > +	struct regmap *hi_sys_regmap;
+> > +	const struct dwcmshc_k230_match_data *match_data;
+> > +};
+> > +
+> >  #define DWCMSHC_MAX_OTHER_CLKS 3
+> >  
+> >  struct dwcmshc_priv {
+> > @@ -275,6 +302,7 @@ struct dwcmshc_priv {
+> >  	int vendor_specific_area1; /* P_VENDOR_SPECIFIC_AREA1 reg */
+> >  	int vendor_specific_area2; /* P_VENDOR_SPECIFIC_AREA2 reg */
+> >  
+> > +	const void *match_data;
+> >  	int num_other_clks;
+> >  	struct clk_bulk_data other_clks[DWCMSHC_MAX_OTHER_CLKS];
+> >  
+> > @@ -284,12 +312,34 @@ struct dwcmshc_priv {
+> >  };
+> >  
+> >  struct dwcmshc_pltfm_data {
+> > +	const void *match_data;
+> >  	const struct sdhci_pltfm_data pdata;
+> >  	const struct cqhci_host_ops *cqhci_host_ops;
+> >  	int (*init)(struct device *dev, struct sdhci_host *host, struct dwcmshc_priv *dwc_priv);
+> >  	void (*postinit)(struct sdhci_host *host, struct dwcmshc_priv *dwc_priv);
+> >  };
+> >  
+> > +struct dwcmshc_k230_match_data {
+> > +	bool is_emmc;
+> > +	u32 ctrl_reg;
+> > +	u32 vol_stable_bit;
+> > +	u32 write_prot_bit;
+> > +};
+> > +
+> > +static const struct dwcmshc_k230_match_data k230_emmc_match_data = {
+> > +	.is_emmc = true,
+> > +	.ctrl_reg = SD0_CTRL,
+> > +	.vol_stable_bit = SD0_HOST_REG_VOL_STABLE,
+> > +	.write_prot_bit = SD0_CARD_WRITE_PROT,
+> > +};
+> > +
+> > +static const struct dwcmshc_k230_match_data k230_sdio_match_data = {
+> > +	.is_emmc = false,
+> > +	.ctrl_reg = SD1_CTRL,
+> > +	.vol_stable_bit = SD1_HOST_REG_VOL_STABLE,
+> > +	.write_prot_bit = SD1_CARD_WRITE_PROT,
+> > +};
+> > +
+> >  static void dwcmshc_enable_card_clk(struct sdhci_host *host)
+> >  {
+> >  	u16 ctrl;
+> > @@ -1656,6 +1706,205 @@ static int eic7700_init(struct device *dev, struct sdhci_host *host, struct dwcm
+> >  	return 0;
+> >  }
+> >  
+> > +static void dwcmshc_k230_sdhci_set_clock(struct sdhci_host *host, unsigned int clock)
+> > +{
+> > +	u16 clk;
+> > +
+> > +	sdhci_set_clock(host, clock);
+> > +
+> > +	clk = sdhci_readw(host, SDHCI_CLOCK_CONTROL);
+> > +	/*
+> > +	 * It is necessary to enable SDHCI_PROG_CLOCK_MODE. This is a
+> > +	 * vendor-specific quirk. If this is not done, the eMMC will be
+> > +	 * unable to read or write.
+> > +	 */
+> > +	clk |= SDHCI_PROG_CLOCK_MODE;
+> > +	sdhci_writew(host, clk, SDHCI_CLOCK_CONTROL);
+> > +}
+> > +
+> > +static void sdhci_k230_config_phy_delay(struct sdhci_host *host)
+> > +{
+> > +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> > +	struct dwcmshc_priv *dwc_priv = sdhci_pltfm_priv(pltfm_host);
+> > +	u32 val;
+> > +
+> > +	sdhci_writeb(host, PHY_COMMDL_CNFG_DLSTEP_SEL, PHY_COMMDL_CNFG);
+> > +	sdhci_writeb(host, 0x0, PHY_SDCLKDL_CNFG_R);
+> > +	sdhci_writeb(host, PHY_SDCLKDL_DC_INITIAL,
+> > +		     PHY_SDCLKDL_DC_R);
+> 
+> Here and elsewhere.  Please avoid unnecessary line wrapping.
+> You can use 100 columns.
 
-This fixes (a.o.) the following "make dtbs_check" warning:
+Thank you. I will correct all unnecessary line wrapping.
 
-    arch/arm/boot/dts/renesas/r8a7791-koelsch.dtb: ethernet-phy@1 (ethernet-phy-id0022.1537): False schema does not allow 1
-	    from schema $id: http://devicetree.org/schemas/net/micrel.yaml
+> > +
+> > +	val = PHY_SMPLDL_CNFG_EXTDLY_EN;
+> > +	val |= FIELD_PREP(PHY_SMPLDL_CNFG_INPSEL_MASK,
+> > +			  PHY_SMPLDL_CNFG_INPSEL);
+> > +	sdhci_writeb(host, val, PHY_SMPLDL_CNFG_R);
+> > +
+> > +	sdhci_writeb(host, FIELD_PREP(PHY_ATDL_CNFG_INPSEL_MASK,
+> > +		     PHY_ATDL_CNFG_INPSEL), PHY_ATDL_CNFG_R);
+> 
+> Can keep FIELD_PREP() all on one line:
+> 
+> 	sdhci_writeb(host, FIELD_PREP(PHY_ATDL_CNFG_INPSEL_MASK, PHY_ATDL_CNFG_INPSEL),
+> 		     PHY_ATDL_CNFG_R);
+> 
+> > +
+> > +	ret = read_poll_timeout(sdhci_readl, reg,
+> > +				(reg & FIELD_PREP(
+> > +					PHY_CNFG_PHY_PWRGOOD_MASK, 1)),
+> 
+> Need not line wrap after "FIELD_PREP("
+> 
+> > +	if (mask == SDHCI_RESET_ALL) {
+> 
+> Can reduce the indent by instead:
+> 
+> 	if (mask != SDHCI_RESET_ALL)
+> 		return;
+> 
+> Then the remaining lines in this function do not need to be
+> wrapped.
+> 
+> > @@ -1834,6 +2092,26 @@ static const struct dwcmshc_pltfm_data sdhci_dwcmshc_eic7700_pdata = {
+> >  	.init = eic7700_init,
+> >  };
+> >  
+> > +static const struct dwcmshc_pltfm_data sdhci_dwcmshc_k230_emmc_pdata = {
+> > +	.pdata = {
+> > +		.ops = &sdhci_dwcmshc_k230_ops,
+> > +		.quirks = SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN |
+> > +			  SDHCI_QUIRK_MULTIBLOCK_READ_ACMD12,
+> > +	},
+> > +	.init = dwcmshc_k230_init,
+> > +	.match_data = (void *)&k230_emmc_match_data,
+> > +};
+> 
+> Just an option if you like it:
+> An alternative is to define your own platform data e.g.
+> 
+> struct k230_pltfm_data {
+> 	struct dwcmshc_pltfm_data dwcmshc_pdata;
+> 	bool is_emmc;
+> 	u32 ctrl_reg;
+> 	u32 vol_stable_bit;
+> 	u32 write_prot_bit;
+> };
+> 
+> static const struct k230_pltfm_data k230_emmc_data = {
+> 	.dwcmshc_pdata = {
+> 		.pdata = {
+> 			.ops = &sdhci_dwcmshc_k230_ops,
+> 			.quirks = SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN |
+> 				  SDHCI_QUIRK_MULTIBLOCK_READ_ACMD12,
+> 		},
+> 		.init = dwcmshc_k230_init,
+> 	},
+> 	.is_emmc = true,
+> 	.ctrl_reg = SD0_CTRL,
+> 	.vol_stable_bit = SD0_HOST_REG_VOL_STABLE,
+> 	.write_prot_bit = SD0_CARD_WRITE_PROT,
+> };
+> 
+> static const struct k230_pltfm_data k230_sdio_data = {
+> 	.dwcmshc_pdata = {
+> 		.pdata = {
+> 			.ops = &sdhci_dwcmshc_k230_ops,
+> 			.quirks = SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN |
+> 				  SDHCI_QUIRK_MULTIBLOCK_READ_ACMD12,
+> 		},
+> 		.init = dwcmshc_k230_init,
+> 	},
+> 	.is_emmc = false,
+> 	.ctrl_reg = SD1_CTRL,
+> 	.vol_stable_bit = SD1_HOST_REG_VOL_STABLE,
+> 	.write_prot_bit = SD1_CARD_WRITE_PROT,
+> };
+> 
+> Then:
+> 		.compatible = "canaan,k230-emmc",
+> 		.data = &k230_emmc_data.dwcmshc_pdata,
+> and
+> 		.compatible = "canaan,k230-sdio",
+> 		.data = &k230_sdio_data.dwcmshc_pdata,
+> 
+> Although you would still need to add a pointer 
+> to struct dwcmshc_pltfm_data from struct dwcmshc_priv,
+> but then you could access it like:
+> 
+> #define to_k230_pdata(pd) container_of(pd, struct k230_pltfm_data, pd)
+> 
+> 	struct dwcmshc_priv *dwc_priv = sdhci_pltfm_priv(pltfm_host);
+> 	struct dwcmshc_pltfm_data *dwcmshc_pdata = dwc_priv->dwcmshc_pdata;
+> 	struct k230_pltfm_data *k230_pdata = to_k230_pdata(dwcmshc_pdata);
+> 
+Thank you for your suggestion. This looks better. I will make the changes.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- Documentation/devicetree/bindings/net/micrel.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/micrel.yaml b/Documentation/devicetree/bindings/net/micrel.yaml
-index 5d25f0d0a508a6df..7fb61c78d16cd801 100644
---- a/Documentation/devicetree/bindings/net/micrel.yaml
-+++ b/Documentation/devicetree/bindings/net/micrel.yaml
-@@ -54,6 +54,7 @@ properties:
-       KSZ8021: register 0x1f, bits 5..4
-       KSZ8031: register 0x1f, bits 5..4
-       KSZ8041: register 0x1e, bits 15..14
-+      KSZ8041RLNI: register 0x1e, bits 15..14
-       KSZ8051: register 0x1f, bits 5..4
-       KSZ8081: register 0x1f, bits 5..4
-       KSZ8091: register 0x1f, bits 5..4
-@@ -80,6 +81,7 @@ allOf:
-             contains:
-               enum:
-                 - ethernet-phy-id0022.1510
-+                - ethernet-phy-id0022.1537
-                 - ethernet-phy-id0022.1550
-                 - ethernet-phy-id0022.1555
-                 - ethernet-phy-id0022.1556
--- 
-2.43.0
+Grateful regards,
+Jiayu Du
 
 
