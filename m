@@ -1,142 +1,171 @@
-Return-Path: <devicetree+bounces-274804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274805-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ZJHfBKEus2nYSwAAu9opvQ
-	(envelope-from <devicetree+bounces-274804-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 22:22:41 +0100
+	id mK4VHAlDs2l6TgAAu9opvQ
+	(envelope-from <devicetree+bounces-274805-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 23:49:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58CD0279F32
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 22:22:40 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 167F727B1DB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 23:49:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CECAB3044804
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 21:22:37 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8633B30162B6
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 22:49:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC2103B7B63;
-	Thu, 12 Mar 2026 21:22:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF7DC3B6375;
+	Thu, 12 Mar 2026 22:49:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="h7EhDaTl"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="hU2e/Jlu";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="tR7big1g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5AF140DFAB;
-	Thu, 12 Mar 2026 21:22:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8A4B326928;
+	Thu, 12 Mar 2026 22:49:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773350555; cv=none; b=iN1UueB+ot6Yqd/4oY8kZaEgLU6I3C6wfBlS9EEbKfjB7ug4rSpkuRYPRX7dHUuGEFb4o2uP219+hYvXMNmbAC95SN5bhOekyKihEKGzgHin3xPILMfu1UN7IKew7l+UsUMEzzCbKve9yaj/yMFVQ/ICUNn+sqqi7aKFQ8Cv5OQ=
+	t=1773355781; cv=none; b=vEhCdmeN+I3UKlqrO25YJPXkR4DRVymMwUCAXf2gGeyBjL2/cWcHbOVbhRsPcUTK642T8CxOzsod5URsoknZMg2BFGGgBbEdEcQIE3owOZaHtxvlgj+YIu4jWZrgfiLXQzNq0yc4IVMTsBgieXhrFeQ+vql0GL26o+4ypUKy/2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773350555; c=relaxed/simple;
-	bh=/zvtEPkxlEgdmnFalEG1U3RoR4ZCdTxr1BmmuBoEV4k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ch00F50x8RTfZ35KvjNuN/m9e2MGt6/iNbq24fp7JLyTYHDcL1hehsQmtRgO1K9vYFVuyB/WyYBSJkeGee4x0Ae4P4bm0CM9gTWfTLVAC86cktUxLeWh3BZPwjbR6+yaK9IMi3gl7f7t6fBFE8doqod3y0rU+lP5xggGeS9O91c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=h7EhDaTl; arc=none smtp.client-ip=198.137.202.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-	bh=VaKdAPIhRe7hUwa3N1bm3F+VQZ/SJ2cN2wS/xw5qz0k=; b=h7EhDaTljoHRTEjOZc23S/5KX1
-	67fuWmr68q4OpVVEWejRDeGdUwEubyfUX3WGmb6LNbRFZ8FNgnMT52AbcszdNLZk5dPNinuLVIkZd
-	ls00q1AqcLhKFTrjeXMUS06rIFeVT6Ow3mMSyQ9nwNcvEzwyeGh+T1an87tZz0pfjisySSMsFsQAW
-	Bw7VVIPwGb9xyP16iOBQSyocTX8Ps57n+aTQQuJQhcql65gMeeZfDIQ50d1++RF3xeX2UObuDighS
-	Uojif8vfPU8i28PkCfsvr+/3xilstFm+t7lqo7HoDp6Dda+gnNuWJ66hBE27RvQ777VpRda0Jd/UN
-	NOsTHncg==;
-Received: from [50.53.43.113] (helo=[192.168.254.34])
-	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w0nUE-0000000FRw7-1uEG;
-	Thu, 12 Mar 2026 21:22:30 +0000
-Message-ID: <b60ce38c-e4c8-4fd3-b1cd-6b1b5cd04cfc@infradead.org>
-Date: Thu, 12 Mar 2026 14:22:29 -0700
+	s=arc-20240116; t=1773355781; c=relaxed/simple;
+	bh=SPYlkGlzcRTZp+SchLjy4dTRJNBK6DMGNOC3k3ofL5g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XfuxSLGBRL1weYgKs+B7Le587+jtDhUVSaLx9B0jxt1OqelccK3Rls3ESyVANAFrAtPesJUOvexPgHuFBnco7bpGcYh0t3fnDNdIOA6HX7q1vyN01AfOfiWnvw16wn3FaFqcR8WeOgLKll5vM0gdLDhcC5poJfGADCaVnADfm98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=hU2e/Jlu; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=tR7big1g; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4fX2qZ4M9Zz9sjG;
+	Thu, 12 Mar 2026 23:49:30 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1773355770;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=BrMJ1rwOOlJZeWOhtfl5114396LYytDQ1D6kbadPMDM=;
+	b=hU2e/Jlu1IYttT88I8Rd3IXPx9GUoIX5HmRFj6/MyOWuFMG6dC3mDTDI+7tZ/AdIToZ1iX
+	sK7JMxaKcylLa63HnqDN0PZ/VUgwUW7tiaU2gAXZXY2Ehc1U4/u9IduvhNqQoQFvWFL2Kb
+	X9qMQlASg4Ez7ojcLL7iWwIXFW7+DK5p340hQF4WiTkQqyUC8VsdDjVcvRHsclx1AHcUou
+	oAM2Yzseq8e5fL03kUIepmZCOoSdi9NdF2TIK3hB7vXLFL2fa+inHMzKAdKKqlaF8FCy6k
+	kyo6iZymAQeyfdiPNvEShK0AJZp6tEeTktykoqA6T+98wEUAnKWFEM9/ny1Pfg==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=tR7big1g;
+	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1773355768;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=BrMJ1rwOOlJZeWOhtfl5114396LYytDQ1D6kbadPMDM=;
+	b=tR7big1g2fylDeqiS5oZPnRl8V09dC3kK4LStT5pJXVncakUeHr5xvvWheoo/FCGMjYRVG
+	y1uXSxZ/SaIAqsqH8IUjIcpqUhPPJObfhYtZTAlie4eQhLTltBE1rXNNu7M+XiI8Nb0Fcx
+	XTWoENBh1JFYCP+UPfAQBErfLAT/uIlWy73EbvqmV8ttlzbX7Ws4zMrewCvCx8sUMbxX5H
+	7Yrx9R7Ce3cyeNaOoOE3lRwf0BMaaGcJrE2OaSDK0r6aG/oyiwKyeMSOavHspBW543hwq+
+	DMYqukrQkDLsmwOg5dmUMKARzNnAin/oTuF4VghD2tnca0HJieHjAxzy7H45Bg==
+To: devicetree@vger.kernel.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Job Noorman <job@noorman.info>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	linux-input@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH] dt-bindings: touchscreen: trivial-touch: Move allOf: after required:
+Date: Thu, 12 Mar 2026 23:49:01 +0100
+Message-ID: <20260312224925.186077-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 1/5] docs: driver-api: gpio: rpmsg gpio driver over
- rpmsg bus
-To: Shenwei Wang <shenwei.wang@nxp.com>, Linus Walleij <linusw@kernel.org>,
- Bartosz Golaszewski <brgl@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, arnaud.pouliquen@foss.st.com
-Cc: Shuah Khan <skhan@linuxfoundation.org>, linux-gpio@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
- devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com
-References: <20260312192957.1978329-1-shenwei.wang@nxp.com>
- <20260312192957.1978329-2-shenwei.wang@nxp.com>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20260312192957.1978329-2-shenwei.wang@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: g8inqgxx61bp6qgxh48fr6dhjsusrk41
+X-MBO-RS-ID: 8ad9291e0188dee46cc
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[infradead.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[infradead.org:s=bombadil.20210309];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linuxfoundation.org,vger.kernel.org,pengutronix.de,gmail.com,nxp.com,lists.linux.dev,lists.infradead.org];
+	FREEMAIL_CC(0.00)[mailbox.org,kernel.org,gmail.com,nxp.com,noorman.info,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-274804-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274805-lists,devicetree=lfdr.de,renesas];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rdunlap@infradead.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[infradead.org:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 58CD0279F32
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:dkim,mailbox.org:email,mailbox.org:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 167F727B1DB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Majority of schemas place allOf: after required: . Documentation
+Documentation/devicetree/bindings/writing-schema.rst also hints at
+this ordering. Trivially update this schema. No functional change.
 
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+---
+NOTE: This comes from https://lore.kernel.org/all/20260117-grinning-heavy-crab-11f245@quoll/
+      where krzk comments "allOf: should be placed after required: block."
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Frank Li <Frank.Li@nxp.com>
+Cc: Job Noorman <job@noorman.info>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-input@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+ .../bindings/input/touchscreen/trivial-touch.yaml           | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-On 3/12/26 12:29 PM, Shenwei Wang wrote:
-> diff --git a/Documentation/driver-api/gpio/gpio-rpmsg.rst b/Documentation/driver-api/gpio/gpio-rpmsg.rst
-> new file mode 100644
-> index 000000000000..b2daa387143d
-> --- /dev/null
-> +++ b/Documentation/driver-api/gpio/gpio-rpmsg.rst
-> @@ -0,0 +1,266 @@
-> +.. SPDX-License-Identifier: GPL-2.0-or-later
-> +
-> +GPIO RPMSG (Remote Processor Messaging) Protocol
-> +===================
-
-'make htmldocs' build warning:
-
-Documentation/driver-api/gpio/gpio-rpmsg.rst:4: WARNING: Title underline too short.
-
-GPIO RPMSG (Remote Processor Messaging) Protocol
-=================== [docutils]
-
-The "underline" must be at least as long as the heading text line.
-
-> +
-> +The GPIO RPMSG transport protocol is used for communication and interaction
-> +with GPIO controllers located on remote cores on the RPMSG bus.
-
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml b/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml
+index 6441d21223caf..6316a8d32f39b 100644
+--- a/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml
++++ b/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml
+@@ -53,14 +53,14 @@ properties:
+ 
+   wakeup-source: true
+ 
+-allOf:
+-  - $ref: touchscreen.yaml
+-
+ required:
+   - compatible
+   - reg
+   - interrupts
+ 
++allOf:
++  - $ref: touchscreen.yaml
++
+ unevaluatedProperties: false
+ 
+ examples:
 -- 
-~Randy
+2.51.0
 
 
