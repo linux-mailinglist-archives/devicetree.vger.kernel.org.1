@@ -1,83 +1,67 @@
-Return-Path: <devicetree+bounces-274625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274626-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OFVMNSzQsmnrPwAAu9opvQ
-	(envelope-from <devicetree+bounces-274625-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:39:40 +0100
+	id yLzPLdfPsmmPPwAAu9opvQ
+	(envelope-from <devicetree+bounces-274626-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:38:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5414327382C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:39:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16BDC2737D4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:38:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E47653057C54
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:33:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 791C3309F0A8
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:34:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0671C36D51B;
-	Thu, 12 Mar 2026 14:33:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B56D3371D04;
+	Thu, 12 Mar 2026 14:34:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ftwlmJE/"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="X/wF4OuN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 506CF36E497;
-	Thu, 12 Mar 2026 14:33:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8F35370D63;
+	Thu, 12 Mar 2026 14:34:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773326001; cv=none; b=s0PO9FatkYRpq2yoXjvLDI6dOMsCkJpfKgN3yTkn0ejlk0QsGlfJCNJ1bNPDdadwfpcVwkw5hliELObUhaQUdiBPr5uOKnXr3NKMxduijygqLu9IezPabngQNdXoDuIDRnzmrApn+YV0arKDkWzszgk+48lxWVG32mTk7g2LVkU=
+	t=1773326054; cv=none; b=nm8n2rMlA9+un3PM4eMER7qIxj2fNSufaKn509/07NbzHwZjBq0vBAqDIfvSPruuUAw7fJyAB6ln6k09l7VSWC3xN/nKcU6yXaiKeHEtALWsR8xrK6osKzWqFJ/v0yca3TTBuF9Etc6t8FW0YMPIlpqfxqY8t7/olF7VAP2x1Cs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773326001; c=relaxed/simple;
-	bh=fhlPBbs4jJTobU8nQyTuiy6+oSyhjV0Tppox2lNl0gs=;
+	s=arc-20240116; t=1773326054; c=relaxed/simple;
+	bh=DOXA6QtsfzkZPROElG3yAh0IASFe2LRsfsSO4JQZbbk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EGyjo99P+9rXCL2gKonvQJ9+MvuF0M+A1/QnB2dReEQu83nfjJMYCMu9OUsEIwOWvpjNvc+kEeJUQKjY7dbx4nEZNvGxmN7lHKiQuK3fq0LVSKcLPNWo9GfDUD7LFdkvSPyqP5kHX9lDHYsgXhoDNUwYpGxsRwS0BxoM9fx5snw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ftwlmJE/; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773326001; x=1804862001;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=fhlPBbs4jJTobU8nQyTuiy6+oSyhjV0Tppox2lNl0gs=;
-  b=ftwlmJE/ViGICB7jcv4ZL6ylLhzpcGsHPEYDUSIOoL0GSTvE3CU0X5w5
-   iEToopu3ZhmgKwO7YqBRfAhJGOyCZ+4jsLwjH3iOqDFhVyMLynmeVR2uA
-   98tbQRGmkewraHjJwOVBmE0qbOnGE5o1ulpQFz5aqXXekcZKYK3DJytYD
-   UN/7IbG5m1ibAElzsZSRBttR5tpetp3pio0GKjXZZ12pjcOvsEQFYRQBW
-   akIx8LRUdo99VC9elndwD9QWW57ole2dXTA0gH5zvfwLQPjzjzOho55+I
-   3HGpM4Ptn+ZcLN6HcfW7nmk1T3f8OSY+LzM4r/r6fsICKxjX8+BRGwNAf
-   Q==;
-X-CSE-ConnectionGUID: 5vATxfbITIy4qt0ADq28vQ==
-X-CSE-MsgGUID: r0dEWAJhSV6+w0W4q7ahDg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74119696"
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; 
-   d="scan'208";a="74119696"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2026 07:33:20 -0700
-X-CSE-ConnectionGUID: m0gqWl34Sda/5v6fT6h3+w==
-X-CSE-MsgGUID: +SeNNHWMSKeNJ9PoUg1y9Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; 
-   d="scan'208";a="215891351"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.112])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2026 07:33:17 -0700
-Date: Thu, 12 Mar 2026 16:33:14 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Erikas Bitovtas <xerikasxx@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=VmsHR79g/5RpkUlve7gYUFhylyMuQ/vNSA2wFWkjuJnnFqtud3mTK8+n/KnxbTzHYze4nPT9gkx+XcqvjkJcpK49UOF9geQ5mIZ06dkXsgNO3Z5Y+K0Ky9pO8mo9TlfldSUXeeiTzh5xRmGESgT3PFtt+oNoJWsW5rdjYvpPQ2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=X/wF4OuN; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id B3F48C415B4;
+	Thu, 12 Mar 2026 14:34:31 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id F10485FDEB;
+	Thu, 12 Mar 2026 14:34:09 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1D4E510369D8B;
+	Thu, 12 Mar 2026 15:34:08 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1773326049; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=IBs7k57OeLZl/WMHraT3wf8w2tDAH3Uvkw+ViJVliHE=;
+	b=X/wF4OuNChjYf6mq9RusOsq+XlL7gpw5GZCEQCwbd6pRxOuxqqVIts4CnqBhy/aWl8uMDb
+	dlUGmPIXCP/4k0r8QJ+vCO/Cshsgau8fY9M9kktiaDCPtO5ndFe+uoisB5xDpJZ7Kr/cRK
+	KkIzOmqp+VKMPWRt8bMx6QK5Yl0mMrpuJjMq3aWebtUX1e/jgk7KqJAnS2MaI3xK5j7ndn
+	G6a5YFC9HGul9Kni9og7/uPJ7U40H4tuZxW+67qE8vzxXIwuHC5fn2WAWoCxn5jQftt0rX
+	LNE8IwGd3qSmWIEDolv5JDf3edvfXpVVZIhZmd6h4shFDOnA1Nq9Rjok+kEQAw==
+Date: Thu, 12 Mar 2026 15:34:07 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: linux-rtc@vger.kernel.org, Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Peter Meerwald <pmeerw@pmeerw.net>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] iio: light: vcnl4000: move client->dev in probe
- into a variable
-Message-ID: <abLOqkVVeGiUkF8I@ashevche-desk.local>
-References: <20260312-vcnl4000-regulators-v2-0-2bdebbcbb58a@gmail.com>
- <20260312-vcnl4000-regulators-v2-3-2bdebbcbb58a@gmail.com>
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] dt-bindings: rtc: mpfs-rtc: permit resets
+Message-ID: <177332604245.2624597.12073186352013045323.b4-ty@bootlin.com>
+References: <20260303-flounder-slate-dd69766990ce@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,81 +70,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260312-vcnl4000-regulators-v2-3-2bdebbcbb58a@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+In-Reply-To: <20260303-flounder-slate-dd69766990ce@spud>
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274625-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274626-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexandre.belloni@bootlin.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ashevche-desk.local:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: 5414327382C
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:mid,bootlin.com:url]
+X-Rspamd-Queue-Id: 16BDC2737D4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 12, 2026 at 01:53:14PM +0200, Erikas Bitovtas wrote:
-> Move client->dev into a variable of its own and replace all instances of
-> client->dev being used by it.
+On Tue, 03 Mar 2026 16:36:33 +0000, Conor Dooley wrote:
+> The RTC on mpfs and pic64gx has a reset pin, but until now this has been
+> undocumented because platform firmware takes the RTC out of reset on
+> first-party boards (or those using modified versions of the vendor
+> firmware), but not all boards may take this approach. Permit providing a
+> reset in devicetree for Linux, or other devicetree-consuming software,
+> to use.
+> 
+> [...]
 
-...
+Applied, thanks!
 
-> +	struct device *dev = &client->dev;
+[1/1] dt-bindings: rtc: mpfs-rtc: permit resets
+      https://git.kernel.org/abelloni/c/cbf39bfd4bf9
 
-This should be done in the previous patch to reduce churn...
-
-
-> -	ret = devm_regulator_bulk_get_enable(&client->dev,
-> +	ret = devm_regulator_bulk_get_enable(dev,
-
-...like this one.
-
->  				      ARRAY_SIZE(regulator_names),
->  				      regulator_names);
-
-...
-
-> +		ret = devm_request_threaded_irq(dev, client->irq, NULL,
-> +						data->chip_spec->irq_thread,
->  						IRQF_TRIGGER_FALLING |
->  						IRQF_ONESHOT,
->  						"vcnl4000_irq",
->  						indio_dev);
-
->  		if (ret < 0) {
-> -			dev_err(&client->dev, "irq request failed\n");
-> +			dev_err(dev, "irq request failed\n");
->  			return ret;
->  		}
-
-This should be another patch to remove the dup message completely before doing
-struct device conversion.
+Best regards,
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
