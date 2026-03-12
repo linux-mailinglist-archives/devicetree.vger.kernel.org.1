@@ -1,245 +1,136 @@
-Return-Path: <devicetree+bounces-274498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274499-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qAGXKOeEsmkeNQAAu9opvQ
-	(envelope-from <devicetree+bounces-274498-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 10:18:31 +0100
+	id kOElJwmGsml4NQAAu9opvQ
+	(envelope-from <devicetree+bounces-274499-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 10:23:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40B6126F771
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 10:18:31 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13CA426F7C2
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 10:23:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5B2C93017DC6
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 09:18:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2DE26301AABB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 09:23:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F619282F1C;
-	Thu, 12 Mar 2026 09:18:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 053EB3B0AEB;
+	Thu, 12 Mar 2026 09:23:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="iajWcZLw"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="oFx5tPLA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010067.outbound.protection.outlook.com [52.101.84.67])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9F9E1C5D44;
-	Thu, 12 Mar 2026 09:18:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.67
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773307109; cv=fail; b=osg4ruzmu2DPU/S8XiKnbQzcfdPEhcXi0ZYQvPv2LMdHu6L7ObbNaWycuPfCQf2jLhdg7ql1vXbMqkf/6JO3x8BStypOwNKg+g0throlXfeW/fcGD510+057TSr2FwWhgct/9/ax0Np6X/r9IPWSJrX2GwPnAtkIAzFneOWdkvA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773307109; c=relaxed/simple;
-	bh=igS98f4G9B7LSa/y/RpyIaHEhor3ZujsO3x1+rQ3TUQ=;
-	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=s2g1PLnHfcUkl2Bmu3JH5QIC6rOQBWBU9VMNvHQALXR643dc4nVLgM2pOXKOsbBdW6DRYTXszI8mQDanoDD2l2c+YzPs9ffvMn+nyLcO9iaZm4/qP4yIrflZpwuYRdNWGUMvlOaLWU58W+hacfR/Q+Pv9n7MCAPrt8apM+aVbV0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=iajWcZLw; arc=fail smtp.client-ip=52.101.84.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=H25qrLOQwbUthzspiWAjrBl96+gN2jzp/jH2EEhtUGmet4K1S5tVZ7ceJwasVP77tBmpTToyK5XbUopdWwiCHc6lvdq7ux0rlxqP/QSSxhmhVI7icgdK7xMp2ywGSFLbWiGabNjQ/yrNVadnk94By2rw5jXxGqpAIwTBi495gSoU5EAf5mKZYLADKRcuPouxb/oVHLjo3hz97ij11//gOSiABnT6cdYSLTz/dM6iLfau1xPMVMQzrp8x6KITwn6i2GwinD+TUpKDn6iPR7MjTXjQ3JhV+r3zlmTuSCaxxapJpyyAuzg2y3Yw1/97n3z6s2PquSombbTXL90gfKH/FQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gQ8ybzARtDLqEBHzfA1A0T2hs3btCq9Ycx69XFmASr4=;
- b=k6VxWvYkQkZjgXr/xRrNcufLQ7BZlQPUzsNmNa9IqGJhZeA5mt5jASm+2G1hUgCEKaZePCebRp4uksxh2pq2Qhf8Zd3VvWFkw+6URKpBZIAD1Zpu/LskmdUDwgRbg4FoznFiXxk8MjjX5l+1snwmC4eTuqGdESsrAWPDv3DVy+Brz38kk2oQXOhIUj35e5/ETLKVmB2KsuLntc0wWEs4ZTefzu8x88z3ZIk/rkKj7YrUOB2H1KT1MuytCU0AVt2xEmJ4QrfMJmVgmT7WVtsi6AmQorgzir+VZmc/Mx1DCXaT7yTkc8NqDawxBGEHDw5Cf8fDX/bN71reoo3TaPckOA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gQ8ybzARtDLqEBHzfA1A0T2hs3btCq9Ycx69XFmASr4=;
- b=iajWcZLwBZbkfGZw/pX4pIh2w3oE13IyEYp0SyflULlGr+wj3WBlpBix+3voL0M6rlhksEK69E8yQxkVc+2q4TC2G93o3lV/QRETrlHAup9ngB68E6KzlwlOdoP13gTu7SLi5V1N1h9/l/EKs+Ri4qjCJVO5MO2c89tv8pWMh2xL5udE013FNyMCy4Fd1mHjrugV2KxdmcfhlRn0kLN5d+cCWePDaYjiVB88rjoJ6QkP6Xnvj3TKgS9+76xNJswWgCWSCTCwheyqfKJEOXWB/CCZLoWfnp4JxukVp0YYbP1csPOPp2LAkm5mQjm0foBnY7nxERMNlxYsclXRN6VMOw==
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- (2603:10a6:800:315::13) by AS1PR04MB9582.eurprd04.prod.outlook.com
- (2603:10a6:20b:471::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Thu, 12 Mar
- 2026 09:18:22 +0000
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::feda:fd0e:147f:f994]) by VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::feda:fd0e:147f:f994%5]) with mapi id 15.20.9700.010; Thu, 12 Mar 2026
- 09:18:23 +0000
-From: Sherry Sun <sherry.sun@nxp.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, Hongxing Zhu
-	<hongxing.zhu@nxp.com>, Lucas Stach <l.stach@pengutronix.de>, Lorenzo
- Pieralisi <lpieralisi@kernel.org>, =?iso-8859-2?Q?Krzysztof_Wilczy=F1ski?=
-	<kwilczynski@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, Rob
- Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li
-	<frank.li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel
- Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Jingoo Han
-	<jingoohan1@gmail.com>, Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "imx@lists.linux.dev"
-	<imx@lists.linux.dev>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "dmitry.torokhov@gmail.com"
-	<dmitry.torokhov@gmail.com>, "bartosz.golaszewski@linaro.org"
-	<bartosz.golaszewski@linaro.org>
-Subject: RE: [PATCH 1/2] dt-bindings: PCI: fsl,imx6q-pcie: Switch to
- undeprecated reset-gpios
-Thread-Topic: [PATCH 1/2] dt-bindings: PCI: fsl,imx6q-pcie: Switch to
- undeprecated reset-gpios
-Thread-Index: AQHcsW7d48vBoCVWE0O6svvFjRVGRrWqnDDA
-Date: Thu, 12 Mar 2026 09:18:23 +0000
-Message-ID:
- <VI0PR04MB12114361EE728C74CEE500FED9244A@VI0PR04MB12114.eurprd04.prod.outlook.com>
-References: <20260311154955.145120-3-krzysztof.kozlowski@oss.qualcomm.com>
-In-Reply-To: <20260311154955.145120-3-krzysztof.kozlowski@oss.qualcomm.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: VI0PR04MB12114:EE_|AS1PR04MB9582:EE_
-x-ms-office365-filtering-correlation-id: 820a181c-be63-4c67-8773-08de80184fb9
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|19092799006|1800799024|7416014|376014|56012099003|22082099003|18002099003|38070700021|921020;
-x-microsoft-antispam-message-info:
- AWWLgicox4/z3zHB3uNPEOYZHf/GUB77St3bkRCt4aOUX6P1ePv+c9QHEw8MJRkcswOYf8cojqyiTjud5LXYToY67K4PKfZy0PT8Meu3zqjFrv0RDe1lMasP/doLGw/D1M90YKqBUa0cHjFKSdvF3c63/zokdAIhzDJHFAZUwgfC6r+6LnzJHrwESGtchSKnIzfOLk41giRU0bCTFh1jhMx+aalycy5JVi6kRuh1DC35YpgfYTQErJrE7Qp42dSQFfD2rQg4cqL1OxMPnSSNUPlwqguyQ41gZgtd1TIFOR/Up43xY4OsSU1esqxt6c1HTQPuhOaTQs1xjOSr/8T6MBsZpIS4u+c3ZFKpjDXruOKA/l6l0rVbI2/EqYXQj1pipqD66beBpBWwysGWt2KVn+a8G6iGMXcKvVLkX1A1/99VtO6nO8htVr5fhGANqs5JsLEiRxddLjuI1oxCLoWmqHFcD8ilBbqvTe0KRpN1b8lZik6SlkvyZ7yRNT86vxng61OvPY3uSpX/jSo20ie1MBZYkH0xJyAYfHEeUDQWpRx7jgofTc874sndlGjMJ/xi/0bVr4TC/Anp3YztYlzLDYF0qUTMDtOEPjO8KaODkr4ZTKyER0jQVQgVta3wNFA3McunLU5RWWHaeUMNlR0BQvIV6gLoj7VKQgM8nvZlV3yFKNJb8Ocymq3Dv+mKesEZyTHUjG+p5HKf54wh05Ua8iwNy4Hj+TDTn4nWJkzgR06ogNyb7R9aZHhvN0ILNvo79c5Gv8lyFgncnViFHv8lhBhvXJVJ894EnWnaKLlJoUEEPHxSlimy84otWsNuC5i4
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(1800799024)(7416014)(376014)(56012099003)(22082099003)(18002099003)(38070700021)(921020);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-2?Q?Ky/8JV2UpEjW3AVALECMEdD+gFlaiNu5JxPOjmCLj2a/Dmhlrx6R9iIA73?=
- =?iso-8859-2?Q?svT//xcrGUH8EMzPgNjg+FD7cJzD2z76dBvpJx65EF1QaOOUKvFzT5aK3F?=
- =?iso-8859-2?Q?ccESVs+ubhxYOr/gzTgr569pjmLIGVZ1ykPRATDDOVgKo60uqR5vwybIT7?=
- =?iso-8859-2?Q?jZAyr+mA87R2cVEN5w0murbCy1Y0wVSRQqwZZ5tEiusUK7I/jWYi3r0ch7?=
- =?iso-8859-2?Q?eBeL6fgFDnjYyBbG9KdejW9c27wcpTWPo9psW00noK2AKriqo60rQRS0F8?=
- =?iso-8859-2?Q?OcZuFCNmiKlDTC3s+A6TZgj/wCEjY9toRMkCyZEJQLf2RICQ6kSmhCEKAv?=
- =?iso-8859-2?Q?EoFoJcraJVXZEhh4UAgvWEby4Uidfo0UTl7xQc6Cga0yES24dD1Jk91tZd?=
- =?iso-8859-2?Q?Ab0XJ+tK59Y2MQkmw1/zkLh1Jlm3Dp0MgePtKT/KfTJ50ZYvm/2XPu8Y+e?=
- =?iso-8859-2?Q?Ph5EDrkFTy9HMqicsAP9rDwaLROi54ribOimHEZRcEbsrb3+hrphgAqB5e?=
- =?iso-8859-2?Q?GnLXrBBxKo4fA7ve5EauyALexEEaOf2zBr6IPDhZY1JWH7c6ny4TE+QczR?=
- =?iso-8859-2?Q?oeo6qNJTMv/K3ToIqiafnV8cwCuDMKNxDKDJzYOudT0icszEgxFwWtd1UO?=
- =?iso-8859-2?Q?YVZdPSRjgf90SPgXFkWKuCSp9FlghrCdrkMAyfp18696QrER65ZvaT7qOe?=
- =?iso-8859-2?Q?RYSXNEqXhNVnjWhSXYjLx//3x46+bTuPSbzFXYpd9jdLhZDIos3AMCmgnj?=
- =?iso-8859-2?Q?IxnORLBygf4inosWdi3mVOn1q3Exn3zv88Kofoq/uZ/X9j/My4EkG72qKz?=
- =?iso-8859-2?Q?olYX8BZ9TKcLl7J5pdDpSvmjHrLsTTRX2k+AUtzbOSwTNkp9Twx9Jw/J1J?=
- =?iso-8859-2?Q?AvObrgCRi1GLfJ/DM6x5Ovp4kh0HVtq4FBdgNkXTqooGgZWW0DXKCQUj/9?=
- =?iso-8859-2?Q?jFvtnzKuT5eqYFMSuscgiNj64AUkUhZU7mWWI2eFLp4+TCfmDM7iBuZGrH?=
- =?iso-8859-2?Q?PYz3idyXUjt5exW8WmT+FW7VKaEjp6MhhY4FzVSdfDijeL/EMOz3E9/N9S?=
- =?iso-8859-2?Q?+onqyyO4wfNzp7W3OMHov5tFqYdqgq4Fz5DTEvnfTZQqwOqOPs41co2H6/?=
- =?iso-8859-2?Q?wmVY/vuhxO2UPddnknCk48OL76Te2xXo1L9kujYzVkaJ5TEYeF/1CQqe3p?=
- =?iso-8859-2?Q?6mAc4E4VPs9eYgdpXgJE5+W9CE3aLKIcV8Y3rtJ8JfBM+T8UR2QkGHmxet?=
- =?iso-8859-2?Q?8Dv0t2hooXqRkO3m7H3a3eed+d5nOga7s+7Los4FDFsmWCifBkFmedN0PA?=
- =?iso-8859-2?Q?x5IKCOhq1TPT10GSbND/NmYeQjrDiV7YL/JCOiUhbmHdES/g3u63eChPLq?=
- =?iso-8859-2?Q?5uYcz949c8a20CnR526Fdhi9kZzDLYQ75i90y3Jd8hAjcdtrDnADy15uu3?=
- =?iso-8859-2?Q?ilHftBm7WWKnbGokuaM+0RBvYNogZCDlRjZ/stgLxOpgptjchC3wKlaiwb?=
- =?iso-8859-2?Q?F1eyDScOhhrwMLb4BOQy/1UD7XUIz+J1TmECAYq6a7wAZERPJwhBiJp0Vj?=
- =?iso-8859-2?Q?BLjvkd8BaIbjhhoCYCu28YpU3XaoLzCznzM8HWENsSoeW5/ptbRlT/Glqa?=
- =?iso-8859-2?Q?viFGtqrtOxrz8vXw0KT48R/wklGMrHeKwVYo/xGLVmE4AXnAXvVsrPk8mr?=
- =?iso-8859-2?Q?AecsaN/VNv/RNO0s0+7nToRKWKWj8Rk5wWZlqcndL4zNxL3qJLmG6X+Iaf?=
- =?iso-8859-2?Q?XwTSDugUNwK+TjXoe53PJqEN/6vmYZc2clvPHtkAx8q0iE?=
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFCF13AF655;
+	Thu, 12 Mar 2026 09:23:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773307397; cv=none; b=SbLFGzOnaG6GZZM3ydzmBEBJd1vg3/YzHxeCPClNPbtRIBNgTs87prvn0YTbFJbu6CocicU3fjhXT9FXG0EqJ2tlSPD8/2T3gsv+9/4DCtdWP4nywYjCDHwsCySZJhGgQn4vCiZmj+f+iTYQV2eaQ2HDZ81YQN/LW2jCTo5pNnY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773307397; c=relaxed/simple;
+	bh=cUcEOqZqCTExnyY9I7uulz6Z/aK8JirtFa2WcNoqC5c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FZK9kkW0r2aWGu4N5exJBZI47Oy3FyvvXVh5HEjOPfrP/r9I3q0gCP4OsmwBsJpKhTaayL9uhYCARu/sc5qxqeXHfXeLxXRl40ghr11WgeBHZ+roHV/VkdqO3QG24BaZDzwbU7XFFDE0ltUJyJMwhIwo5UTE6YznOuwUP/Ov/HY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=oFx5tPLA; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773307397; x=1804843397;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=cUcEOqZqCTExnyY9I7uulz6Z/aK8JirtFa2WcNoqC5c=;
+  b=oFx5tPLAVb8yN+mwL7UGYgCvGBm/nDlrKCTz0uDdOXNA5Tg7mmt9y8bM
+   olCdBMFQ6khyJjcJbdpFhdqXzOXEgJgD53Nss0rNP7XIjzqoxejWcns3E
+   Eb/eL6PC1Z//fhisNdczZVD8ylOEs3uEMN0Vo+HToaB4xeeBkmhwEvzNZ
+   uyIft16tu7kqmu6nqBj6ERJjFx5ukRWkbkOCwvA45tjVZX4CNItz+dq8n
+   0oxmPhWQYOFUx0IpCsvm9VhDa1IPfMkz/0G2zNB3feor7hbE841E3rPHy
+   iXwfeib2t/1X4ADYK15I1EPeiJpGlTTiiDbBk78hV2SFuyxDZWCORB9R4
+   w==;
+X-CSE-ConnectionGUID: +jgyzNHZRNK0yeNE78T8hQ==
+X-CSE-MsgGUID: lUKIceZjSJWIZI0qkg2MtQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="91772808"
+X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; 
+   d="scan'208";a="91772808"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2026 02:23:16 -0700
+X-CSE-ConnectionGUID: 7v2YHPbnScmfOD/dr+C72g==
+X-CSE-MsgGUID: nHB2NdKUQgexoBQt02s/fQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; 
+   d="scan'208";a="225464186"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.112])
+  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2026 02:23:14 -0700
+Date: Thu, 12 Mar 2026 11:23:11 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Randy Dunlap <rdunlap@infradead.org>
+Subject: Re: [PATCH v1 0/2] bus: Remove Baikal SoC pieces
+Message-ID: <abKF_1WR5_nc2xpL@ashevche-desk.local>
+References: <20260227072726.1142944-1-andriy.shevchenko@linux.intel.com>
+ <20260311224356.GA1078900-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 820a181c-be63-4c67-8773-08de80184fb9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Mar 2026 09:18:23.8288
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jWahPEmjt2Khrhv9h033a2rEfTMuRY4F48SZoFSPr6SysreqgbpnGHCtSFjne8/17OOD6DDnd637evq4DM+4sg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9582
-X-Spamd-Result: default: False [1.34 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260311224356.GA1078900-robh@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274498-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,nxp.com,pengutronix.de,kernel.org,google.com,gmail.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,linaro.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-274499-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,nxp.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,VI0PR04MB12114.eurprd04.prod.outlook.com:mid]
-X-Rspamd-Queue-Id: 40B6126F771
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,ashevche-desk.local:mid]
+X-Rspamd-Queue-Id: 13CA426F7C2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-> Subject: [PATCH 1/2] dt-bindings: PCI: fsl,imx6q-pcie: Switch to undeprec=
-ated
-> reset-gpios
->=20
-> GPIOs with "gpio" suffix were long time ago deprecated, thus "reset-gpios=
-" should
-> be used.  Linux kernel supports both, referenced schema snps,dw-pcie-
-> common.yaml lists both as well and this schema uses
-> unevaluatedProperties:false, thus change has no impact except code readab=
-ility
-> and removing deprecated patterns.
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> ---
->  Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml | 5 -----
->  1 file changed, 5 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> index 12a01f7a5744..b9ba938c6239 100644
-> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> @@ -58,11 +58,6 @@ properties:
->        - const: msi
->        - const: dma
->=20
-> -  reset-gpio:
-> -    description: Should specify the GPIO for controlling the PCI bus dev=
-ice
-> -      reset signal. It's not polarity aware and defaults to active-low r=
-eset
-> -      sequence (L=3Dreset state, H=3Doperation state) (optional required=
-).
-> -
+On Wed, Mar 11, 2026 at 05:43:56PM -0500, Rob Herring wrote:
+> On Fri, Feb 27, 2026 at 08:26:24AM +0100, Andy Shevchenko wrote:
+> > Baikal SoC and platform support won't be finalised, remove stale pieces.
+> > 
+> > Andy Shevchenko (2):
+> >   bus: Remove not-going-to-be-supported code for Baikal SoC
+> >   dt-bindings: bus: Remove unused bindings
+> 
+> As there doesn't seem to be a maintainer for drivers/bus/, I just took 
+> both patches.
 
-Add Dmitry and Bartosz.
+Merci!
 
-Hi Krzysztof,
-Seems this property is still handled in gpiolib-of.c, see commit b8b80348c5=
-7b
-("gpiolib: of: add polarity quirk for Freescale PCIe controller").
-Maybe need to change the quirk gpio_propname here too.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-
->    reset-gpio-active-high:
->      description: If present then the reset sequence using the GPIO
->        specified in the "reset-gpio" property is reversed (H=3Dreset stat=
-e,
-
- Also change the "reset-gpio" to "reset-gpios" in this description.
-
-Best Regards
-Sherry
-> --
-> 2.51.0
->=20
 
 
