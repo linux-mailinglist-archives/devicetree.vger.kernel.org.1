@@ -1,182 +1,196 @@
-Return-Path: <devicetree+bounces-274416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274417-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iHoPDFNCsmlFKgAAu9opvQ
-	(envelope-from <devicetree+bounces-274416-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:34:27 +0100
+	id CPHcC+hCsmlFKgAAu9opvQ
+	(envelope-from <devicetree+bounces-274417-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:36:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50F0126D1F5
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:34:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFACC26D24A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:36:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 451DA302D97E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 04:34:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 748A13037C22
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 04:36:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7CCB37C922;
-	Thu, 12 Mar 2026 04:34:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE018396598;
+	Thu, 12 Mar 2026 04:36:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="icdKWQ8p"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FMjyh3dt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A34F435958;
-	Thu, 12 Mar 2026 04:34:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773290063; cv=none; b=N/nF44TUwUBFibS2ejFU202Ocihklw6gaYA4K9I7/x2jKZPuOTxPWp4QZqyqTDM6liKzKaR08qeu4HYPuZ+70VGt8oddqT59SJF8vq5eXXqZlxGFoYsVa6DxFpVwmsqaRTtyqWramlUt9zqjGNCDSYOc1j554J8qa/8CkFNRtfg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773290063; c=relaxed/simple;
-	bh=qWdaTZywDpPIoOzNarPuu2OlEmR7YYww5wg9IkJLbEs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oci8g5SiA/Q1KQSChWu3QyVimF3eD3QS2SS4xFq7EFJwsi0fEjYiTdWu/b/Oebo+6Gb+JpFT/cj8EmEYpqvoJ9BRsg+1uFlR5vZq3Sl4E/UljhCTo4btVKpIMFGjtO/rD4EBoWrPfb+KMRzHCdci5v3cP4ID7+cZ5RJQNXdbN6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=icdKWQ8p; arc=none smtp.client-ip=198.137.202.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-	bh=W/GdNouIWyw/Hxd+Cg8eyY6MPPfVnuc4KC8I179/6Oo=; b=icdKWQ8pM7+BfYu6G/Y782mRO3
-	ZX3/3xRZ9+vCXzzSlrbsiZVR7HH4GWF/miznAlW4YdW0B+VOUA/Hu8SmAyIVK9mlkRz0C3rd5S1oK
-	6uVWDOjBPgZ7l9f5N2V/h6V7x61cwzmp6c0knIkykh+vUWtKrpx9bAwcWSVoTjaOdFdc9oPf9r1i1
-	fvV/WCMCscSDcOuE7AD4/vKXaQZAqSQg3yhEOECDAmsmi9Q279WdIBbrfdM3q0wUg8BqI2J7tEBN/
-	eNC51BScMZXvhdWygSXkDxNWWGThaGq8c7RkkfIbyPpT0s2CVD2O1neaXgrP/SSJM8OdqCtnCxHR6
-	8/3/7IHw==;
-Received: from [50.53.43.113] (helo=[192.168.254.34])
-	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1w0Xk8-0000000DGZs-2BrU;
-	Thu, 12 Mar 2026 04:33:52 +0000
-Message-ID: <1418e495-8725-45fb-a865-b75fb87477f6@infradead.org>
-Date: Wed, 11 Mar 2026 21:33:50 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99721397682
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 04:36:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.219.45
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773290208; cv=pass; b=r/tsvlDDgULvc+1ErtcEfz70xD7wHzJtvbGsTjFZjLeVTD8Ka9WnNAZ9XfsrZ39DpLI/SDjjPcSIRwf+Xxkl2u7/W9k8bvruD8ZQBzTVjumj3p/Amem1I2GYRiOfngplSv07asow7YqwMlRV28IyeXkJkI4QYI1BydhNzzGrVi0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773290208; c=relaxed/simple;
+	bh=cr6QRlE97B26XWoApElcaPZVstrR5FuQHwzvCKtLY3s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tHadG1o435qutFGQitXEpLKp9bUNwRuXg82uBvaQKWqZuoQ5FRiefCcbBYuz6o5TB0+LDf9Py1pFkHvTllXmtDwYgpj02YS/ecnZTcNQY5ApSMMptDcRJisx7sdMf66h446hPsCvuY76HKW0EJ7yPnNvZhZWXRAc6ECXcbMuM9E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FMjyh3dt; arc=pass smtp.client-ip=209.85.219.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-89a0ece9f14so7246026d6.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 21:36:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773290206; cv=none;
+        d=google.com; s=arc-20240605;
+        b=J4UXo9f4qf1PFfTkO5j8Poeck/PXeyNcpo+/N+hwlqsbIa3oe2Y9iqVB1QTLwCAoME
+         awpO4UClR3RkXYq/5mt4rE9YjvYyA5qNo0qkLPEs89Gx0BafgM4mFvha1K7SjmziBv5c
+         bXRNtCOpVVieCwp8K5w18mzi2giIMp0bptZr4GluFV4BbGPjVeoOoJ4cvUCCNrA7m4vz
+         Fp5WcI1TuAOLjb7xPlnHR+7818fduT+EdwTftDs4eBRHtDI/A8DWxV7Pu2HsMCbBTHRK
+         PEzSGNBtcsB4m06ZL5tUN7URd9lC/C4mtJTyS3jMr3MVCJ4HYbGDcR4uJKbFc0+wAFG3
+         mu5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=cr6QRlE97B26XWoApElcaPZVstrR5FuQHwzvCKtLY3s=;
+        fh=2n319zc/IKjnt2nByAXSZPryITzJmFJz3hYqsvCEIGI=;
+        b=I6LfcnF2Tzo5V6EGhzfvwiCSisKl56k6DrOoC0LrtO4N4NdqnoPLkz1Hx/W2oc01NR
+         X8AGC1i6jN2EipPXNd1orT4wjr12pnYQUBlbtfmpdv6QyK9A7ZHCzZi8PZqgraKLSFX9
+         bjjVYUos9PMatusMZBxFIQNqh6CABaW4odBbCVT7N4ptWheJtqJvdwtEUWghSg4GYI8G
+         hKlW08IxQFt4uGb7VbpPjzyHzT601HbSOX+t7zSCXZ86LhdymWby0jSB0Sc8RiJh1u7F
+         AnY6hHWK3BAJque/ZIzBXb4wmIBBhpePhtFhchJWl0VtmUc7JVVDKgugr61S1HJ14Esg
+         iFzw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773290206; x=1773895006; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cr6QRlE97B26XWoApElcaPZVstrR5FuQHwzvCKtLY3s=;
+        b=FMjyh3dtN2oHj3I54Kqz02eZJ6i0M6hL5EOEoYhXDU8JpNxQ1J+qFlpWaKwkTl7vtT
+         Yb+R/ycqDtA1Xy4h74UGCZ9pjOXIookwQSpsQ07REkWnK6EqOj6BvoL467537iMvR+af
+         pbNOQ2JQ87o/VX0HBiM4BRO9tnIDeFmo4dHp79RIftZEkNYqZmyZ9LLpdzLyTjwpLZAx
+         BMjudBbjG8qbIQCWrtsLNo480tH3XZwwCsbe2b+jfHm6UZweq/wf6LBOOOyYiQbQVOV1
+         ilIajVyEOz2HpgB0yUTbbfRgTn+SDtY3KXqcvOLZPzJWyPhnNGCHMM0W0CTtOY8dgeUs
+         a8YQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773290206; x=1773895006;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=cr6QRlE97B26XWoApElcaPZVstrR5FuQHwzvCKtLY3s=;
+        b=OYgcEeGyVi7K5IVTqfe/QuD95fTjGdF3+X1y71BtGUg7uMxGjxjnLwx5OQxQjaYdLX
+         U/Rh60b0pIKbuqkcGRJmt68enQgwc3OAADW4+SjIAa+7Kv2YMktYu2ZwYr5RkcXNuoMI
+         EDu8gXWPivZ+/Nq4CVEU8ZNK65bzN7uSB5H6wkPoxIVzUg/j3gDS9JwNghP568B/TtLg
+         N4Wu+NomSDsXqXje/wrKHLsQ3wsat/1uy8P6xTWK5me9AA0nSh/XYFBnzdns4yI0rgXG
+         d3UoCwvVlW9UCtAq2PkVlSwAV4FixgG5Px/aE5XU9l/PCLDePEvQ7QXecPCMqF1rdPIA
+         7T6A==
+X-Forwarded-Encrypted: i=1; AJvYcCXkJoyx1XfkEDHVSZw+Wdg2+F4in7XnpVYQdY9tL+25NgQIvLSWnAk5ECLHWlK4W2pz8OMEyVmGTlFG@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJKud+xWBpRPCk6o/LZ7XU0h5j7oc5pxe03hSnVkKo4gKEedzc
+	k7xtSeznTjMZp39LXzH8Vhv2PC0Q6lHW5N79MrplddTRhXlRbxsMWODXrCGqGl2ySi7M+42E2yk
+	4Le7E7esfyMN8YgC/gCNYmHdiYb0CZXc=
+X-Gm-Gg: ATEYQzzRJI/oOmyk2CJCPu9WsbPU1Ew8opZPJr3sUn43WCqWFWzMw5KeViOhdkTL1OC
+	OIx0o3WOn8YOd/GPbsD4nEC3dbz6lOvyZB4tY49E3/3iR16fK3CVs1Q9we5iBcNqDo9q6viRwYw
+	LZi4sc0dTPdEp5ZjNN45xBMZevtM3Bw52eZIPWuBb7qIXWGd4pDlr4sTA+K31SPDhDJzwFm4nQy
+	oWyYeMBJCflsDQBvrxAuEix3K6NuVvpKhS4IJ3WGKBaRNSHt93RL526EP++m++mApqedOq8nFUJ
+	C8B0TYgKl6l982OPwP2AqoUXpQ==
+X-Received: by 2002:a05:622a:1921:b0:509:17e4:ceff with SMTP id
+ d75a77b69052e-5093a0c6df7mr62767181cf.31.1773290206588; Wed, 11 Mar 2026
+ 21:36:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/25] kernel: Introduce meminspect
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- Eugen Hristev <eugen.hristev@linaro.org>, Arnd Bergmann <arnd@arndb.de>,
- Dennis Zhou <dennis@kernel.org>, Tejun Heo <tj@kernel.org>,
- Christoph Lameter <cl@gentwo.org>, Andrew Morton
- <akpm@linux-foundation.org>, Thomas Gleixner <tglx@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>,
- Anna-Maria Behnsen <anna-maria@linutronix.de>,
- Frederic Weisbecker <frederic@kernel.org>, Ingo Molnar <mingo@redhat.com>,
- Juri Lelli <juri.lelli@redhat.com>,
- Vincent Guittot <vincent.guittot@linaro.org>,
- Dietmar Eggemann <dietmar.eggemann@arm.com>,
- Steven Rostedt <rostedt@goodmis.org>, Ben Segall <bsegall@google.com>,
- Mel Gorman <mgorman@suse.de>, Valentin Schneider <vschneid@redhat.com>,
- David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- Kees Cook <kees@kernel.org>, Brendan Jackman <jackmanb@google.com>,
- Johannes Weiner <hannes@cmpxchg.org>, Zi Yan <ziy@nvidia.com>,
- Chris Li <chrisl@kernel.org>, Kairui Song <kasong@tencent.com>,
- Kemeng Shi <shikemeng@huaweicloud.com>, Nhat Pham <nphamcs@gmail.com>,
- Baoquan He <bhe@redhat.com>, Barry Song <baohua@kernel.org>,
- Youngjun Park <youngjun.park@lge.com>, Petr Mladek <pmladek@suse.com>,
- John Ogness <john.ogness@linutronix.de>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Saravana Kannan <saravanak@kernel.org>
-Cc: workflows@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
- linux-mm@kvack.org, linux-arm-msm@vger.kernel.org,
- linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20260311-minidump-v2-v2-0-f91cedc6f99e@oss.qualcomm.com>
- <20260311-minidump-v2-v2-1-f91cedc6f99e@oss.qualcomm.com>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20260311-minidump-v2-v2-1-f91cedc6f99e@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260304192417.818211-1-akkun11.open@gmail.com>
+ <20260304192417.818211-3-akkun11.open@gmail.com> <94465ca7-b3dc-4736-9d58-4024f2494e54@collabora.com>
+ <CAKr_iV5cmE-GBp679Q-=bZi+186BvMvD41ctxnxNC3mTKEzuRw@mail.gmail.com> <0994fef0-88f2-4277-aa46-0b6a33c53bfa@collabora.com>
+In-Reply-To: <0994fef0-88f2-4277-aa46-0b6a33c53bfa@collabora.com>
+From: Akari Tsuyukusa <akkun11.open@gmail.com>
+Date: Thu, 12 Mar 2026 13:36:36 +0900
+X-Gm-Features: AaiRm52b3iO4YllKLxTy076zO5CoI8gqzYjvZNNALgsMyNPOjlsY9BPqBID541M
+Message-ID: <CAKr_iV6tVkT1be8EjXoNjMerTek0s79W2-n2shzt-wrmB1bYgA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm: dts: mediatek: mt6589: add basic support for
+ Lenovo B8000-F
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, sean.wang@mediatek.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[infradead.org,none];
-	R_DKIM_ALLOW(-0.20)[infradead.org:s=bombadil.20210309];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274416-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,lwn.net,linuxfoundation.org,linaro.org,arndb.de,kernel.org,gentwo.org,linux-foundation.org,infradead.org,linutronix.de,redhat.com,arm.com,goodmis.org,google.com,suse.de,oracle.com,suse.com,cmpxchg.org,nvidia.com,tencent.com,huaweicloud.com,gmail.com,lge.com,chromium.org];
+	TAGGED_FROM(0.00)[bounces-274417-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[infradead.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,mediatek.com,vger.kernel.org,lists.infradead.org];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[57];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rdunlap@infradead.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[akkun11open@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,infradead.org:dkim,infradead.org:mid]
-X-Rspamd-Queue-Id: 50F0126D1F5
+	RCPT_COUNT_SEVEN(0.00)[10];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BFACC26D24A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Fri, Mar 6, 2026 at 11:06=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+> Ouch. Well, it's mostly done then, hopefully sooner than later :-)
 
+Thank you for your consideration.
 
-On 3/10/26 1:15 PM, Mukesh Ojha wrote:
-> diff --git a/kernel/meminspect/Kconfig b/kernel/meminspect/Kconfig
-> new file mode 100644
-> index 000000000000..fa2b5a84b251
-> --- /dev/null
-> +++ b/kernel/meminspect/Kconfig
-> @@ -0,0 +1,19 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +
-> +config MEMINSPECT
-> +	bool "Allow the kernel to register memory regions for inspection purpose"
+> > - PWRAP and MT6320 PMIC RTC
+> Start upstreaming the RTC (and MFD parts) right now maybe?
+> That all depends on the actual state of things, of course.
+>
+> Remember that you can upstream whatever is clean and works fine, that doe=
+sn't
+> have hard dependencies on other components.
 
-	                                                                 purposes"
+mediatek,mt6397.yaml says that "regulators are needed",
+so I have to complete the regulator driver.
+It will be completed soon.
 
-> +	help
-> +	  Inspection mechanism allows registration of a specific memory
-> +	  area(or object) for later inspection purpose.
+> > - Power Domains (scpsys)
+>
+> The power domains should be handled by mtk-pm-domains.c - not sure what y=
+ou wrote
+> but if you did it on mtk-scpsys.c that's wrong.
 
-	  area (or object)                     purposes.
+Ohno! I wrote in mtk-scpsys.c, thank you for telling me about this.
 
-> +	  Ranges are being added into an inspection table, which can be
+> > - eMMC/SD (MSDC)
+> I can confirm that the MSDC controller in MT6589 will work with mtk-sd, t=
+here may
+> be some very small modifications to be done.... if any.
+> The mtk-sd driver does support "very old" SoCs already :-)
 
-	         are added
+I forgot to add "CONFIG_REGULATOR_FIXED_VOLTAGE=3Dy".
+SD is working and can boot from it.
+However, increasing the frequency causes errors,
+so adjustments are necessary.
 
-> +	  requested and analyzed by specific drivers.
-> +	  Drivers would interface any hardware mechanism that will allow
-> +	  inspection of the data, including but not limited to: dumping
-> +	  for debugging, creating a coredump, analysis, or statistical
-> +	  information.
-> +	  Inspection table is created ahead of time such that it can be later
+> Keep up the good work!
 
-	  The inspection table
+I will continue to do my best!
+Further news will be sent via patch.
 
-> +	  used regardless of the state of the kernel (running, frozen, crashed,
-> +	  or any particular state).
-> +
-> +	  Note that modules using this feature must be rebuilt if option
-
-	                                                       if this option
-
-> +	  changes.
-
--- 
-~Randy
-
+Best regards,
+Akari
 
