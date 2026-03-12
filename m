@@ -1,276 +1,221 @@
-Return-Path: <devicetree+bounces-274402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274403-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IO/yKoE3smnlJgAAu9opvQ
-	(envelope-from <devicetree+bounces-274402-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 04:48:17 +0100
+	id kX1GHQo+smk6KQAAu9opvQ
+	(envelope-from <devicetree+bounces-274403-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:16:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49B1226CDE0
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 04:48:17 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4AA526CFB9
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:16:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2AF2730240B7
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 03:48:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B34D1302A197
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 04:16:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C758E388E5A;
-	Thu, 12 Mar 2026 03:48:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93BC73932DF;
+	Thu, 12 Mar 2026 04:16:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="fdGH4kMQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LVnf3XYp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010057.outbound.protection.outlook.com [52.101.69.57])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E7D13845C7;
-	Thu, 12 Mar 2026 03:48:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.57
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773287286; cv=fail; b=nfG2T40cTsPJHpfEgzbieiNcXpQdX3F64o1SwQM+g1zRNkvgxONjzLEBj8/h7foo9yMKR8Pbew/SXwU7LvXkc3UuWzXajFR5C1P5FIMviBpZXl4EisHmCPW7gAvp3nehMsskEe4HJ3RLKTPIPNyLre3emz69pNlNVuHDlLGhgg0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773287286; c=relaxed/simple;
-	bh=j7uDLVfi/70/h1xAlNpYQgE0PStw3EnMSMnh7Zp+6Nc=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=g/aolQVSgOKvKwkEnXPPiXgcrTOMaDJ8mNSCXMFDmHwd7owE1RUVxjo6X7pkajoRp69sqslx0E10aQR28ck1lfdtqg/cr1xbkMDUdmF4gGI5r81VkErn1vuVENObSppxwRDK7mrvF/juH3EANoVPSWVoToWEWvo6oISUyH6ZCUQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=fdGH4kMQ; arc=fail smtp.client-ip=52.101.69.57
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=V8oduM5S7hQGMD3cnuCJifoGPNUa1HGwHIf7Xfquf/lmCkpTDoYoI1GcR3FE//sz1bs1CBHuRPtpFFgRyvw1izBV8eaw+TzmgvsT+ZL4PGoZ2L7SotZorWCIzEE1WjumPLP3Z6SRWuzqiKIDMJz7a0gaeL/zDjp5QN14cG7IML+UvU5iQqCQhE5nBhaeZpdGyEAVsnIF20N7HNH6jl4u9z0tJcnnM3p1O5jhJCZbPygibj2tWqQZlsw+Zpj3ov1Me0E2JslwnwGna0svZDbnaay/JslBykfUOinooPak8qnTV0R2UGam5Tmo8YS1Po+q5TOdn0uSXfpFr9PL0r3aoA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cQx30goStKkLKXd9n3mIbq56HMFm9Mds3/8OSiRJ0Nc=;
- b=K0KtYS1spK1SIbeqUPANXvlFYqo+sVze24oQbUlAgPyasD6kvtA6k+d1MoWoQNVGRR0Puhi+ippP6IJxqus8oj6DRzGZds5ZbUQjVVz75FwR/BExn6h54znsLRb44LFMpZyJp6m2gbSkSgiv0uEU1YaEd/np64lUxpCj2jDMhMCHm2ZyN8b0dqi5dSaX3abwQHYI2eln21oOtNJKMWARWMtmDkUpJom15L3aX7KO8FcMWiqbR67DRvDIOpKWkOeWvQotwCU6OvmEe5yCbde7lteLjwJeo1b4cpWpVlHaA+D6+IEfty8nEKpVfvOhfkr5yZf8ad0bfxpryexp+n5mGw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cQx30goStKkLKXd9n3mIbq56HMFm9Mds3/8OSiRJ0Nc=;
- b=fdGH4kMQJymknsKl3d5Mtwog/ApDiVp5DS4pjh5Zbv2+L9aFEoViVZiWc2/r8ghNTSRoFi1fWdK99hSZ84DWi7jY88G4ZZz0v78SQWuGRa/oPVA7ww5iNrCb7zqFgRZ3rccY7MBatnSQA6zckMLJXbsU36WM4RU8An0L9v76LccV3Gd7tKtBxsWVKPLitqj2G0rlFoyoPthi6y99bbUdUAZxdpF5pSnDo1XjGFNdXvnKl2GTSuKbtLR+2hUuv9U5n/ohivHgacNkX7L8oDVJym9n0WYjplNDy2sHOZepp/BrGOe959l59jEYtZPhHMgZYM3tn3rrdUzgcEJOis+ZdQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB7044.eurprd04.prod.outlook.com (2603:10a6:208:191::20)
- by AM9PR04MB7636.eurprd04.prod.outlook.com (2603:10a6:20b:281::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.15; Thu, 12 Mar
- 2026 03:47:58 +0000
-Received: from AM0PR04MB7044.eurprd04.prod.outlook.com
- ([fe80::bab2:d15c:fcf8:ef2b]) by AM0PR04MB7044.eurprd04.prod.outlook.com
- ([fe80::bab2:d15c:fcf8:ef2b%3]) with mapi id 15.20.9700.013; Thu, 12 Mar 2026
- 03:48:00 +0000
-From: Shengjiu Wang <shengjiu.wang@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ACB01A681C
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 04:16:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773288966; cv=none; b=bYMpeR8Y/ab4+umj5Dz/krixw1OGwtS3vJnRca6wZFHgP4Msj8QuQC6m8lyh/Rtrl0dZn8VJUdTVnprcuT+2DaJ1z8p3MbHpZQloV2RrZDk2CkDlj0tK8kG9oCbDIJt1Jksm3nM0QNbpapyq9nu2Z/SWdf8n36l2aOoKUsWey94=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773288966; c=relaxed/simple;
+	bh=cC+zW/Sj9PJ7nLrSakL9rgqT9FTttPmJVG/fATkFEO8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=I4CEIq0Fs1HoEFIRRA9e7s4QZo0leRkApX261Ca+1zHZt+sdOsT8o97QC6VF7S2qZhpgkZ4v/H+vKC+ov5YvUkH5ALtH4YBLEtoDcXFhm2kdKCe70fKxZF9eaRZMoSwj3fUHVUIBsD4lHw4YNs6+G2hVOo128Qb2Wmyq11c7aNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LVnf3XYp; arc=none smtp.client-ip=209.85.216.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-35a132767c3so192123a91.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 21:16:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773288965; x=1773893765; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/CLgwAizLdgwnVah8slW2Wa5Fqh07xJoE9OJwqSRCXM=;
+        b=LVnf3XYpZwL26vx6/rSfkI5dHpHWNFcRQmOfmcmBw+fmXeSvOTrxA6dWKZ6dAusVN9
+         Bd7LCCcfHKbO8arCpA5Rl2706pzE2A2R/Tnns8Tx3g4Cs/6pDEjhDnEg7/5Pu7Et/hn+
+         QfBWn4gorzuDlurq7dv2f+nb1nvJ5WmFpFnYy+pkzrTCsjXIA2AlmGjxl9lM6An71cat
+         Jo6pOvm+cLmOanRGtlKCquirntlJb76omw4TPMXG8gVLqGDfhGmrxQ7Q3IEJKr5O3jsi
+         QkEJN/0H7Q4IkbQQ8SXj5elwcEXOgaR/yFbB4yvFx7sTgiBBjyt8VdC69WiW3hOyQUuc
+         OK+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773288965; x=1773893765;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/CLgwAizLdgwnVah8slW2Wa5Fqh07xJoE9OJwqSRCXM=;
+        b=MmIEyrRP8gmUJkxdw0A0515rE3n+jkKyQAzXdAfvwEe7fSOReFIuIbdQPYJdPXIxXy
+         TNakebOv4fWl3JZxt34FhhNwZwP+l+oMHgzZoCmDqiU3h1p/vJ05DvL4xkinULSOII+V
+         /cpEs6HHH8j6kq5n9cPcc46Z7jPlFRUTsuM1PXqf1MTmSF3iaCtaX5V5TBk/GqhcyJ6L
+         ttDKxneOaIHG9RNliznJgh1oif7H7uLcOJrDkU6v8YpD5mSeQBOFmp/V5aO1M05YFuoh
+         DF4t7SO9hPLu8gJ0mVNLbgrnF3CxHDaqki00sUpZzptjIXck6fHrEbJkXDY3ZZ3adKhq
+         in1g==
+X-Gm-Message-State: AOJu0Yxj1VBHgvXU52mF9d59/o7JI5ILUrkgGZIvibBAtEOm6oRkGVnV
+	3Vm/hYE0WmwjLodPMACUw+xB2J3bBXktoKmqNug5ckF4aBOsdupB+DPl
+X-Gm-Gg: ATEYQzyRidmCvgMQr7/j6iV3Ta5dmd1bbOzjkwRzkgnFI4huIGAkEcXkHsXYwXG39Sh
+	v3IdvhgY3NRk9D9w+O03Q5ibuqqMEVrvy2dX4BZwQM26kQf29v1nSBzyyBeag+EvPgqWYtdb3Jd
+	wko3CSetPj2CSqqXlyHfJrSCAaWaHzyshFI1aPpNB5yivUpcuitP509c+Q4BJk7MNCcVKQoRH39
+	bgRVQE1XfkycRvsmbxLYW597/kbU+37tQiPSI+66fGWbIDX4adVmPDRZeVp/KkQ+JYyv/FgZSGM
+	WFT1r4OR/t7P5P982mMHUZUSksf2LQKUkBPPDrB6Jo/y12kwYUcYJOQEnVg1fZRTKeseAloCB0X
+	dhk4oTGNpk5ZfLiCW8BTnTWaUGzeR16EqbkzUFK+V8MsV25rLGYNiVgHOiY1FdSqgbpo0nCHljn
+	9O9gryYZzpEM1fimej9U2fiaDdo1mWyCsBexGcukCzFPYYdSKvVm4ZARwB/ZENQcn/WgpXvdS8Y
+	u5dims=
+X-Received: by 2002:a17:90b:5445:b0:359:7a1f:1b83 with SMTP id 98e67ed59e1d1-35a01323909mr4580458a91.26.1773288964582;
+        Wed, 11 Mar 2026 21:16:04 -0700 (PDT)
+Received: from buffalo-ssd.taila54753.ts.net (M014013071096.v4.enabler.ne.jp. [14.13.71.96])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35a02fca40bsm5018229a91.10.2026.03.11.21.16.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Mar 2026 21:16:04 -0700 (PDT)
+From: Akari Tsuyukusa <akkun11.open@gmail.com>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
-	Frank.Li@nxp.com,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	sean.wang@kernel.org,
+	linusw@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: imx952-evk: Add PDM microphone sound card support
-Date: Thu, 12 Mar 2026 11:49:12 +0800
-Message-Id: <20260312034912.4007057-5-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20260312034912.4007057-1-shengjiu.wang@nxp.com>
-References: <20260312034912.4007057-1-shengjiu.wang@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: MA5PR01CA0014.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:177::11) To AM0PR04MB7044.eurprd04.prod.outlook.com
- (2603:10a6:208:191::20)
+	linux-mediatek@lists.infradead.org,
+	linux-gpio@vger.kernel.org,
+	hui.liu@mediatek.com,
+	nfraprado@collabora.com,
+	linus.walleij@linaro.org,
+	mars.cheng@mediatek.com,
+	andy.teng@mediatek.com,
+	hanks.chen@mediatek.com,
+	sam.shih@mediatek.com,
+	rafal@milecki.pl,
+	ben.ho@mediatek.com,
+	erin.lo@mediatek.com,
+	zhiyong.tao@mediatek.com,
+	Jason-ch.Chen@mediatek.com,
+	amergnat@baylibre.com,
+	seiya.wang@mediatek.com,
+	tinghan.shen@mediatek.com,
+	Akari Tsuyukusa <akkun11.open@gmail.com>
+Subject: [PATCH 0/6] pinctrl: mediatek: Fix gpio-ranges and include guard issues
+Date: Thu, 12 Mar 2026 13:15:27 +0900
+Message-ID: <20260312041533.187553-1-akkun11.open@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB7044:EE_|AM9PR04MB7636:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8b18d4f4-ed0f-47f0-7fa2-08de7fea27d3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|19092799006|7416014|52116014|376014|1800799024|38350700014|921020|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	kXsOTTp149FxJlSBDcvkFJoBhvXn4c3azgSBD0NkiK1uB697EwMwrwTuAX1V4vOOkdzWk96ki7cvIYbHy3B5AnYKRBJ9WrYff9+M60JgQ9JgCuRBxAeQajJ/VIe7GRbKnrzI2C/BTrVWTESV0A/Yey7ZG+vKMOrTC4VliYSAjhpQosR6uwZ7Xl2FxWwJff/kFfbt0nk8T10VNplDP/NmF9O9kjfJ9KrAXdcW6uI7OormmQyceSeKb1aQyfP2uh7l+QQReld69r1+ZL6dTu1E5bZCwOwtDei1xK97WDwXg9XzEiI+xCiO6xseMdnLFlIe8vVUOamCxSLvbfp5TM3rapnNSPeNOEFZvuKpL4O9osgjjRd7UmMTR62KxF5syQXDV/nLMAcPuJHsac4rQl9E52eZajgl8tj5REoS7+PSrloCctiDB2IuFaRTcPN/mPTBNOUVcJSnK8cLY4bcbm8n11lY1Pz+DMVjpf/R/oEPauHiJ/OwjM2K3Lcm5QdNthnPpre1QmsON+KE3mJOXUkpzLj8IS04Hj9OoO7B6AhiyY463D9kQydsgrl3TdQekc5jah1G5pJZO9cXcvoBpxNyYV8Mu2qfnt4tVJsudHmhjEZ+6RpOw8Uv7LXRlylq26sNiJqmnMKRJvZvrUvgERoPeDGMXJpIe1piAnELY3L2kr+9pgG+khJXjYcDvs0+cvcgqP3eZXCELXdq7JbUhh4eLiqlePHGgM30CNUiR20dlrc8/r+wX8IEYYveBZaxBDIKQJbeyo6iw0olpc1j65cTsHE5WnpZoKAedGpIjcYAk1E=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB7044.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(7416014)(52116014)(376014)(1800799024)(38350700014)(921020)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?YWdJV/5PNIH0bhb7+sHKfpq9dNOsxr8CDk81TXjiHmKc8MjMUtipuBR/KjyV?=
- =?us-ascii?Q?vxog0OcePyGDK9zopuNqYrtEsATkudBm5gSIFEim873AOmhB8HbHH1FsFwSO?=
- =?us-ascii?Q?PoJphlqYXGco7wScf/8ZMTYo+UGjvGwJXbzBXOVlmGlcJVj4fkHCBZCwMf94?=
- =?us-ascii?Q?9eWCIHdVwKXnqV4GhTBNT8cGDbgUpCItuvVxKVzae0crrfngO4KnxzVX0juS?=
- =?us-ascii?Q?cJCmFOan8TodDVNXvrHCGqOemC8upBKbtAa66psC2ZuWc50gcFHJJRJ5Y2hV?=
- =?us-ascii?Q?yR+feJDLB/GhFrjf1T9Cel2mVAevw7iOEjRCNDbxIqF/BSUY/iAwCkStgUz5?=
- =?us-ascii?Q?ERpIjT8jug22WpGwEsj2xdSXmm5GchcrMR8nBOBOFvm2GkFDE8TD0BvxSdtW?=
- =?us-ascii?Q?fMpc4xvN20a3kCKzPlqIjWh1t7uXaXTmbXRB0y8ASrvQXJFjMPvoJU/0AQQX?=
- =?us-ascii?Q?omQqXrDKoEXQXqNAzmDgFgLTDSdhFSavExdISSKoXwmL0RiklEk8T4J0LrK2?=
- =?us-ascii?Q?+u4pIGQzCa34HG89ViQc5tV2sTMSNLLjpuuCq3Ecsskg//+1mWldSZkaC+fY?=
- =?us-ascii?Q?zucI7oYnk0FjTSg9SSu4Wq53PRgMlAMHNSfppUDfom/jTBR9579zM5nMdux7?=
- =?us-ascii?Q?z23hYguaHu1pdW48MZ3GTVMYEcB9X9GDdme35X0ZED9nSU5ibQ/gOLh/Hix2?=
- =?us-ascii?Q?BwPE/WHry3rj7BoRoiaVfG3c1FPU3s8d+d4E5MQrhGF4jc9VV/CwP+l8cIOz?=
- =?us-ascii?Q?n/xjtQumbn27a+WAcw9oRVOcvJ4uzDgZshUgiMqRMVAbYVdOfpJXbeWwVvzm?=
- =?us-ascii?Q?DjtjPezX6U6C9kjskencSxxekVJ4MTB7IbSZjGoyuPOZGo1sBEFjkHcXNkgw?=
- =?us-ascii?Q?0rmKU2MJZcfpF8LlYIFFZgW+lXy2Knu7pbRWsOwiYcO6k9uRak7PAFWW1s7g?=
- =?us-ascii?Q?DIBDiW13NBIrgZe4GNbUYX3yaWn0St4pzbGdZSx5bIiX+cvtiUC4XbhAtsWv?=
- =?us-ascii?Q?TuqTHj2PGIOSc7UMlFOlmquJ10KApoGMTO9BpvJ6/pJgqlz13ncrho9u9Ra0?=
- =?us-ascii?Q?N0SbDraRQjwM+dgjtF1k7b93csv/mWEqrgryWYTmAd++0dI1rhmyOB4XXYR4?=
- =?us-ascii?Q?u0i3oWBk64F1UhM1iQsjr9Ykk07dpCU3WU+FSZYZt4Nsu91tKs60aEFZ6Jx4?=
- =?us-ascii?Q?Hq4DcQ9JjnqRIS3h4+v9nGx8cX8ya2QYmy396DRV0g0A68dkUg3VGExIS6gt?=
- =?us-ascii?Q?j6Y0jI7Kfe6tiKKlUMwyYzwgOe3xMtZUmTWotEc1bFJbhjS5F80FmpJi0XAM?=
- =?us-ascii?Q?pW8JT7l2Ox5hzXR6nVOyS2QtKg5nG61WIngBFKoN3VhViqQY3FO7ekSuQMpB?=
- =?us-ascii?Q?2KxVPLPiY0OZy9tdvpW6CCXlm+4YLm9k3bPU3yWASHJIw+8i5n32O04KWHSL?=
- =?us-ascii?Q?n+izVsFxHTywWbdfpw73+Qch+GIdDuW1/kUD2Wf0XyGFkofmufxMZ90GQK5P?=
- =?us-ascii?Q?Aj+Jt4TErbYWGo9Rr3zr3Vg8LFGaaigoyVFcytWCDugEr5kbG4QDTiyq3yAi?=
- =?us-ascii?Q?p+Oz8x3O+cGnbQPHe/MX/1RhIOoXe1M3MeCXdLvSYw6EX4s+ZKLg9nSC7/1I?=
- =?us-ascii?Q?bckyvH4Hy2yBUOiVVu2hThWNi0YGYtuJxhutcpwBBLVK5OB7LioXJlAY13ZX?=
- =?us-ascii?Q?UegfwLIkM2ONb/WIprIKQ5gz4Uq6966Tu40Jj5AOn49jp2+4+42hxen/tYY0?=
- =?us-ascii?Q?MijCIFeNyw=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b18d4f4-ed0f-47f0-7fa2-08de7fea27d3
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB7044.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2026 03:48:00.2715
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: D1q7LuTm519RJ3XSsgvB7/OTZuhBPgL388o/TrJN+BYRtQ/+a8jq7+N7G3fUbkeJV7HvRySlq2Y3vzeYFfGlPA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB7636
-X-Spamd-Result: default: False [2.84 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274402-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-274403-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,mediatek.com,collabora.com,linaro.org,milecki.pl,baylibre.com,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shengjiu.wang@nxp.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[akkun11open@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:dkim,nxp.com:email,nxp.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,4.196.180.0:email]
-X-Rspamd-Queue-Id: 49B1226CDE0
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D4AA526CFB9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add PDM micphone sound card support, configure the pinmux.
+While looking at MediaTek's Pinctrl driver and device tree, I discovered
+that on some SoCs, the gpio-ranges count was a little less than the pins
+defined. This means that the last pin will no longer be available.
 
-This sound card supports recording sound from PDM microphone
-and convert the PDM format data to PCM data.
+And fixing this issue, I also discovered that the #endif comment in the
+include guard for some header files was different from the macro name at
+the beginning. These issues do not affect the compiled kernel, but they
+affect the readability and consistency of the code.
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx952-evk.dts | 54 ++++++++++++++++++++
- 1 file changed, 54 insertions(+)
+This series addresses the cases that can be confirmed correct without
+requiring datasheet verification:
 
-diff --git a/arch/arm64/boot/dts/freescale/imx952-evk.dts b/arch/arm64/boot/dts/freescale/imx952-evk.dts
-index 2615fbb63145..62d1c1c7c501 100644
---- a/arch/arm64/boot/dts/freescale/imx952-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx952-evk.dts
-@@ -52,6 +52,12 @@ chosen {
- 		stdout-path = &lpuart1;
- 	};
- 
-+	dmic: dmic {
-+		compatible = "dmic-codec";
-+		#sound-dai-cells = <0>;
-+		num-channels = <2>;
-+	};
-+
- 	memory@80000000 {
- 		device_type = "memory";
- 		reg = <0x0 0x80000000 0 0x80000000>;
-@@ -164,6 +170,24 @@ btcpu: simple-audio-card,cpu {
- 		};
- 	};
- 
-+	sound-micfil {
-+		compatible = "fsl,imx-audio-card";
-+		model = "micfil-audio";
-+
-+		pri-dai-link {
-+			format = "i2s";
-+			link-name = "micfil hifi";
-+
-+			codec {
-+				sound-dai = <&dmic>;
-+			};
-+
-+			cpu {
-+				sound-dai = <&micfil>;
-+			};
-+		};
-+	};
-+
- 	sound-wm8962 {
- 		compatible = "fsl,imx-audio-wm8962";
- 		audio-asrc = <&asrc1>;
-@@ -411,6 +435,22 @@ &lpspi7 {
- 	status = "okay";
- };
- 
-+&micfil {
-+	assigned-clocks = <&scmi_clk IMX952_CLK_AUDIOPLL1_VCO>,
-+			  <&scmi_clk IMX952_CLK_AUDIOPLL2_VCO>,
-+			  <&scmi_clk IMX952_CLK_AUDIOPLL1>,
-+			  <&scmi_clk IMX952_CLK_AUDIOPLL2>,
-+			  <&scmi_clk IMX952_CLK_PDM>;
-+	assigned-clock-parents = <0>, <0>, <0>, <0>,
-+				<&scmi_clk IMX952_CLK_AUDIOPLL1>;
-+	assigned-clock-rates = <3932160000>, <3612672000>,
-+			       <393216000>, <361267200>, <49152000>;
-+	pinctrl-0 = <&pinctrl_pdm>;
-+	pinctrl-1 = <&pinctrl_pdm_sleep>;
-+	pinctrl-names = "default", "sleep";
-+	status = "okay";
-+};
-+
- &sai1 {
- 	assigned-clocks = <&scmi_clk IMX952_CLK_AUDIOPLL1_VCO>,
- 			  <&scmi_clk IMX952_CLK_AUDIOPLL2_VCO>,
-@@ -604,6 +644,20 @@ IMX952_PAD_GPIO_IO36__WAKEUPMIX_TOP_GPIO5_IO_16		0x31e
- 		>;
- 	};
- 
-+	pinctrl_pdm: pdmgrp {
-+		fsl,pins = <
-+			IMX952_PAD_PDM_CLK__AONMIX_TOP_PDM_CLK				0x31e
-+			IMX952_PAD_PDM_BIT_STREAM0__AONMIX_TOP_PDM_BIT_STREAM_0		0x31e
-+		>;
-+	};
-+
-+	pinctrl_pdm_sleep: pdmsleepgrp {
-+		fsl,pins = <
-+			IMX952_PAD_PDM_CLK__AONMIX_TOP_GPIO1_IO_8		0x31e
-+			IMX952_PAD_PDM_BIT_STREAM0__AONMIX_TOP_GPIO1_IO_9	0x31e
-+		>;
-+	};
-+
- 	pinctrl_ptn5110: ptn5110grp {
- 		fsl,pins = <
- 			IMX952_PAD_GPIO_IO34__WAKEUPMIX_TOP_GPIO5_IO_14		     0x31e
+- mt6795 : gpio-ranges 196 -> 197
+- mt7981b: gpio-ranges 56 -> 57
+- mt7986a: gpio-ranges 100 -> 101
+- mt6779 : include guard #endif comment fix
+- mt8188 : include guard #endif comment fix (two files)
+
+The following additional issues were identified during this investigation
+but are not included in this series as they require further analysis
+or datasheet confirmation:
+
+MT6779: gpio-ranges = <&pio 0 0 210>;
+    This matches the number of pins, but GPIO203 to 209 don't have
+    GPIO function, and the driver also has no control over those pins.
+    Probably needs to be fixed to "gpio-ranges = <&pio 0 0 203>;"
+
+MT8183: gpio-ranges = <&pio 0 0 192>;
+    This seems correct because it matches "pinctrl-mtk-mt8183.h".
+    But, mode/dir/di/do are defined from pin 0 to 192.
+    "pinctrl-mt8183.c" looks wrong.
+
+MT8188: gpio-ranges = <&pio 0 0 176>;
+    According to "pinctrl-mtk-mt8188.h", GPIO0 to 176 have GPIO function,
+    and GPIO177 to 189 are EINT only pin, but mode/dir/di/do are defined
+    from pin 0 to 177. "pinctrl-mt8188.c" is likely to be wrong.
+    At least "176" is wrong, probably "gpio-ranges = <&pio 0 0 177>;"
+
+MT8192: gpio-ranges = <&pio 0 0 220>;
+    "pinctrl-mtk-mt8192.h" defines GPIO0 to 227 which have GPIO function,
+    but mode/dir/di/do are defined from pin 0 to 228.
+    "pinctrl-mt8192.c" looks wrong.
+    Also, probably "gpio-ranges = <&pio 0 0 229>;"
+
+MT8195: gpio-ranges = <&pio 0 0 144>;
+    Like MT8188, GPIO144 to 164 don't have GPIO function,
+    but mode/dir/di/do are defined from pin 0 to pin 144.
+    "pinctrl-mt8195.c" is likely to be wrong.
+
+
+Akari Tsuyukusa (6):
+  arm64: dts: mediatek: mt6795: Fix gpio-ranges pin count
+  arm64: dts: mediatek: mt7981b: Fix gpio-ranges pin count
+  arm64: dts: mediatek: mt7986a: Fix gpio-ranges pin count
+  pinctrl: mediatek: mt6779: Fix include guard comment in the header
+  pinctrl: mediatek: mt8188: Fix include guard comment in the header
+  dt-bindings: pinctrl: mediatek: mt8188: Fix include guard comment
+
+ arch/arm64/boot/dts/mediatek/mt6795.dtsi              | 2 +-
+ arch/arm64/boot/dts/mediatek/mt7981b.dtsi             | 2 +-
+ arch/arm64/boot/dts/mediatek/mt7986a.dtsi             | 2 +-
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt6779.h         | 2 +-
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt8188.h         | 2 +-
+ include/dt-bindings/pinctrl/mediatek,mt8188-pinfunc.h | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
+
 -- 
-2.34.1
+2.53.0
 
 
