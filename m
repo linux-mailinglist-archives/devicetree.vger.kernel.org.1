@@ -1,193 +1,115 @@
-Return-Path: <devicetree+bounces-274793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274794-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SNR/MXQas2mDSAAAu9opvQ
-	(envelope-from <devicetree+bounces-274793-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 20:56:36 +0100
+	id 8OuxCMEbs2mDSAAAu9opvQ
+	(envelope-from <devicetree+bounces-274794-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 21:02:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F8A22785EF
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 20:56:36 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 943C427869D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 21:02:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D6770310F1EA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 19:56:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 73AE7301C6C1
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 20:02:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E273838D686;
-	Thu, 12 Mar 2026 19:56:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4231B401A1E;
+	Thu, 12 Mar 2026 20:02:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NdvyO2d2"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="SkgWdm7R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE0F2DDCD;
-	Thu, 12 Mar 2026 19:56:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A40ED26C3BD;
+	Thu, 12 Mar 2026 20:01:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773345393; cv=none; b=rTc+YS/2Sp0pSlkmuLa1V1hdBzUpkovMdVOD1jCh20sIuGKeweqANsK1hA9NDeN77vLfHm9PMrvEoNM7PSeOI+NZr4H76tirwRMxq7OU7dseqm5XKDh0Ui23DNG+KABel8d/lga+vFxp+YmXHFDVzX2EjedWXL1rGqd93silk68=
+	t=1773345724; cv=none; b=cL5gRyuy4jOC/0vfJflSAkqz/XORfn9mZ/0tc+7Ax6zkojISveF0RQwMhjS3Py1LR/oSbVAxS60OKKqOLt2k2byK4mB9/tgLkFT/wKMgYb4nIaRiQIhfYBTzFcr3VknIFkw4quF1M4EHkf5fkym0qLMWq3Ma2tONkW9u9Ar7Mzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773345393; c=relaxed/simple;
-	bh=NjMdNKX+/UxCnp6e7j2/bWlIiNwme1uhQHNWdLdMGHM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CCEf57eTbmSo1JirnAZlutDKVwQoov32HBJqZDP0aY9v6xpxsGcHA8gvqW7ZQYlyIe6F8rbyIthtwAejAiajz/uHsQ/IQ4ROT1DEtMRCGWYfinZRAK0tZ77BROYrYXExLbINT4fEorwyCF+KZ23TanDAtDzocRApq8LyvCuOy4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NdvyO2d2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBACCC4CEF7;
-	Thu, 12 Mar 2026 19:56:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773345393;
-	bh=NjMdNKX+/UxCnp6e7j2/bWlIiNwme1uhQHNWdLdMGHM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NdvyO2d2s9QKkc7zTkMLibjVOoIYJtCKSZ83dnNUdA1CrZ5NvtMXO/NuD3Z6nUAFz
-	 p47JxUKmFdvYjXFsizhE08OWzj1bm7gYGOJWSJWHA7ICqf98ZiGeG37kkbn40Jj3gb
-	 8kIOMIDMLi0CwKBeXUXshYVfUBEunfHsV5VlRm4Wy4xliKxwDpshx5a9Te29k+D50o
-	 OtYEmUUtEYkF1sG55kNFyW/hpZWen8E0mtiOMW01TrkbxxF2qhpmVLXzklLb3ey65q
-	 ea8byQMIC1plQcvxuuKOUVrhieyGahOf4hbo6+u/7gx/dsIzup4qGOJO+Q04MOumU9
-	 aaRLNmr44vG+w==
-Date: Thu, 12 Mar 2026 19:56:26 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Niranjan H Y <niranjan.hy@ti.com>
-Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	lee@kernel.org, linusw@kernel.org, lgirdwood@gmail.com,
-	perex@perex.cz, tiwai@suse.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, nb@tipi-net.de, navada@ti.com,
-	v-hampiholi@ti.com, sandeepk@ti.com, baojun.xu@ti.com,
-	shenghao-ding@ti.com
-Subject: Re: [PATCH v1 7/8] ASoC: tac5x1x: Add TI TAC5x1x codec driver
-Message-ID: <a13f104d-f8b0-4e23-baac-ecf5d6d0fc13@sirena.org.uk>
-References: <20260312184833.263-1-niranjan.hy@ti.com>
- <20260312184833.263-8-niranjan.hy@ti.com>
+	s=arc-20240116; t=1773345724; c=relaxed/simple;
+	bh=vYH3B6K37XlC0p6soe0fXJhzuWEA7a/tKsBpaSAj4Zc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UirfwlgHZXp9OCDIpe5QZkJXMGCCFxXmelBvWppnQZ879euzy2dTS7XP0F98oLLY4XXuCpRpVGBdcwSl+4KbWg3B3xLuscu8Y4tepygSr6L0fg8zEnFLGN2MgKKoJ6Q5ucV3/3fN9BzENYkm+lrKosZSKwOYqpZAMzgO8ZMlL/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=SkgWdm7R; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=qgyqOHCPScAfR4PRcc+4ddmSV9FhJ0HZJ8pbHHXAdu8=; b=SkgWdm7RdLobc009NpMp0Wmyr2
+	iBA+7oe4KL9k/yQ3Y9C42IDxyK/u03CLbpB9tNrJcxSyNIq+6S5JnjP2yzzUdRCCpY7brm5rpMWr+
+	iOdFCqyiLoqX77ioib2rVNovayg7Ar6cpUOuvRDSpZ0QTPc6GJS43FJb+q1FUxu+LwUeiXx2se892
+	a7l8zqRbkMCsam365uDYQAwQe/naWgBO2n2oKMs4qfrqFhSTufR/Lb8/0kbDaEJVFZvMPTKPn0Wnq
+	o4uCDJxwpjb5Vr+AbFpi+i1WZM0YPCV+N5lQc3tgs1+nnNQasuwXQ8h7YvSYDKSnNSawHD3+m2Zh8
+	p7OZuFnw==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexey Charkov <alchark@flipper.net>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Add analog audio switches to RK3576 EVB1
+Date: Thu, 12 Mar 2026 21:00:56 +0100
+Message-ID: <177334565370.2520391.4310192190507174351.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260311-evb1-audio-switches-v1-1-0e0199e56c80@flipper.net>
+References: <20260311-evb1-audio-switches-v1-1-0e0199e56c80@flipper.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="LjM/NfYqjLgygBG1"
-Content-Disposition: inline
-In-Reply-To: <20260312184833.263-8-niranjan.hy@ti.com>
-X-Cookie: I feel better about world problems now!
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274793-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,gmail.com,perex.cz,suse.com,tipi-net.de,ti.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-274794-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[sntech.de:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 2F8A22785EF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sntech.de:dkim,sntech.de:email,sntech.de:mid]
+X-Rspamd-Queue-Id: 943C427869D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---LjM/NfYqjLgygBG1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Wed, 11 Mar 2026 20:25:02 +0400, Alexey Charkov wrote:
+> These allow selective muting/unmuting of inputs and outputs, as well as
+> setting mutually-exclusive rules in ALSA UCM.
+> 
+> 
 
-On Fri, Mar 13, 2026 at 12:18:32AM +0530, Niranjan H Y wrote:
+Applied, thanks!
 
-> +/* ADC Analog source Selection */
-> +static const char *const tac5x1x_input_analog_sel_text[] = {
-> +	"Differential",
-> +	"Single-ended",
-> +	"Single-ended mux INxP",
-> +	"Single-ended mux INxM",
-> +};
-> +
-> +static const char *const tac5x1x_input_analog2_sel_text[] = {
-> +	"Differential",
-> +	"Single-ended",
-> +};
+[1/1] arm64: dts: rockchip: Add analog audio switches to RK3576 EVB1
+      commit: 9d28af133ef2de00239dc8a8b7878aa4f1b3ecb1
 
-Should these be configurd from DT given that they'll likely depend on
-wiring (I know a lot of drivers, especially old ones) make them runtime
-configurable)?
-
-> +static s32 tac5x1x_add_ip_diag_controls(struct snd_soc_component *component)
-> +{
-> +	struct tac5x1x_priv *tac5x1x_priv =
-> +	    snd_soc_component_get_drvdata(component);
-> +	struct tac5x1x *tac5x1x = tac5x1x_priv->tac5x1x;
-> +	struct tac5x1x_input_diag_config *input_diag_config =
-> +	    &tac5x1x_priv->tac5x1x->input_diag_config;
-> +	s32 ret = 0;
-> +
-> +	switch (tac5x1x->codec_type) {
-> +	case TAA5212:
-> +		break;
-> +	case TAA5412:
-> +	case TAC5301:
-> +	case TAC5311:
-> +	case TAC5312:
-> +	case TAC5411:
-> +	case TAC5412:
-> +		if (input_diag_config->in_ch_en) {
-> +			ret = snd_soc_add_component_controls(component,
-> +							     taa_ip_controls,
-> +							     ARRAY_SIZE(taa_ip_controls));
-
-These...
-
-> +static s32 tac5x1x_add_controls(struct snd_soc_component *component)
-> +{
-
-> +	case TAA5412:
-> +		ret =
-> +		    snd_soc_add_component_controls(component, tolerance_ctrls,
-> +						   ARRAY_SIZE(tolerance_ctrls));
-> +		if (ret)
-> +			return ret;
-> +		ret =
-> +		    snd_soc_add_component_controls(component,
-> +						   taa_ip_controls,
-> +						   ARRAY_SIZE(taa_ip_controls));
-
-..are also added unconditionally here which will fail due to duplciate
-registration?
-
-> +static int tac5x1x_soc_resume(struct snd_soc_component *component)
-> +{
-> +	return 0;
-> +}
-
-Just delete the function if there's nothig to do.
-
---LjM/NfYqjLgygBG1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmzGmkACgkQJNaLcl1U
-h9AWuwf+O2I1VNKLNMp5FX2IxevKnTF1iTGdgzWNXtHQGsOzC0Z44+H+UmHj9Y7L
-uVwyZGSzeQptrApPRux7LTV8+NWdrH5gwRVnK8eRn/3De1jmaOGDT/SZgXfm3Bxh
-CV4lDziszjZa7qWgIhfme/H+pVLurja4eBbOhx5O9nyLnEJYaHFu3G8/o+I0SByY
-UytItHTikJ77REQklov3gt0CwMmCqSrdoX+tSUadsciwsXCTvuQJdrAnvU9AW4AH
-yDzndpELdUkKk1Xj3ebs95syZg1OSeYsNDgQ5mPQUjMgq3Z7ygT0//nsuff96MAH
-DOttvzmM70nJTlTDGlFmizKlBi1Z+g==
-=Xpge
------END PGP SIGNATURE-----
-
---LjM/NfYqjLgygBG1--
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
