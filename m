@@ -1,200 +1,139 @@
-Return-Path: <devicetree+bounces-274523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274524-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cDs1C+KWsmmKNwAAu9opvQ
-	(envelope-from <devicetree+bounces-274523-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 11:35:14 +0100
+	id 6FslKESZsmnENwAAu9opvQ
+	(envelope-from <devicetree+bounces-274524-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 11:45:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2016F2705F3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 11:35:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0665B270762
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 11:45:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9EFC9301805D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 10:34:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6F11130A54C0
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 10:44:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF9273BAD9D;
-	Thu, 12 Mar 2026 10:34:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA8523B9613;
+	Thu, 12 Mar 2026 10:44:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FMiq6hNu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fhzuj9Go"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC0B436921B;
-	Thu, 12 Mar 2026 10:34:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C781B30BBAE;
+	Thu, 12 Mar 2026 10:44:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773311680; cv=none; b=U+RT7caWWgxi84eYIffDxBrlwwVSuhqbbpSCiwC/V0VKIF960i2XRGrpbfHOePONXXNXhomg/K0m2fsscZ2QFbwHw4lEfsi1zvb/mYDPz0Qac4UpHdSvbzRlRNYH890uyP0cYcVrBmfoabY7yyTo9at25/499AdmWAu10mZYTuI=
+	t=1773312257; cv=none; b=iRIwlqJNN0n0OqMvhNytk0Gnp82fNkIinscWSyTgL1nNogf2pgS2Xd9s0jLj/aNgg6EB4/ckSIRbI4AXjy188WaooiG7bNtQsKnUtMjNJWfTNQIlDuoDwBRAEAMIeF2AodygcnX2kTzXlQBo7FlmG78BTXnCSBMQMbAhtyx+3+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773311680; c=relaxed/simple;
-	bh=4vJ6d7QV3xPwTiykwfhRJzRwAyeVmoWsLoGPFgfmzm8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cYbJ44QPW7f0LMNBwXcoErsdftS8On2BFRBu+xC9tchpdLR0EpN4a1XuJrq7voLTtw0eBIETmf3HNuR9JaiDDo2yIR+YeXjcHCR3ewaQSC7OdWaFYPf8XJY9SBP9u4Zdk2jPjv9gShkvtW3sWXo5DYNJmDef27RTl2KSz8hVYsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FMiq6hNu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 359DDC4CEF7;
-	Thu, 12 Mar 2026 10:34:37 +0000 (UTC)
+	s=arc-20240116; t=1773312257; c=relaxed/simple;
+	bh=RQl4cQHw2vxOHj/N4vk9xIw7gKGsxB7Usr3ddtX/tvw=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Q7pOtqb23g1IIIRdoNeaxlrj97XR9/mwZpQmCdNP+6yGqdZj1NABEOcC0gHKHhMZfiJTDVojzUkjJWS84TxpLelPfQghTVKwFCcLK+0aGiqqMajZ4iz7me7Fl3GxlbLqBZsnbZw6pcHygoppzxhcDHSkaujzN7vO4JK02NyYhQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fhzuj9Go; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5997BC4CEF7;
+	Thu, 12 Mar 2026 10:44:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773311680;
-	bh=4vJ6d7QV3xPwTiykwfhRJzRwAyeVmoWsLoGPFgfmzm8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=FMiq6hNu2fSPkZAoChA+OY3rsaeClBJUNjaGrA4OoxLhg19MOS96dCTbyvEiCK52+
-	 3o3Sz7O1hxxZShzlfuTGBRV+G4REkXSBzLoWWqk+5olXaCx7Wssh4rql0Uj7R5TLCF
-	 L6XPs+OGAkkM6lAKeGdFcExvL55rdr4D5IlCyCbeHBCTdUkM9pICKTU9ub0FjgXc+2
-	 8FEKAP+xbRWjkYDllEhUMRaUVUPvEXnlfmXM1wRvXLVDBVZ3speZLlXtrFa7n0xbJk
-	 62ZZtTFClbn2cLobTWHH5ibaei+7PdV737TTkTM3gMUOJxH9UyzNTNGm8TIz1L03h1
-	 lWYz+j+M4D4GQ==
-From: Yixun Lan <dlan@kernel.org>
-Date: Thu, 12 Mar 2026 10:34:20 +0000
-Subject: [PATCH 2/2] reset: spacemit: k3: Add individual reset lines for
- USB, PCIe
+	s=k20201202; t=1773312257;
+	bh=RQl4cQHw2vxOHj/N4vk9xIw7gKGsxB7Usr3ddtX/tvw=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=fhzuj9GoOcmoPJcmUUcRslcJSQfckwLBQ1Jgf4L5koKTh75ABGBhXKwOrPjehOdZK
+	 ClO0a1C4iFvqM6T9d8u6K007ArLx0wY9d7W2Nncn6S9SQPepFW/D82GPB6rgltzggw
+	 T3fCLKjUZmiXOLtHfdlO6pTsAva/y6ZLDruqjlunqPBrEXj6szHZjMgHt00/48yobK
+	 I74euXIRstW0EiNFRdGh0PG5aCazhLUGl0N0vu9p2kD7uGqEWutimdydBnJwJ6DwHM
+	 41PfVXY+9tQcfT4lYHwGoxOCvp+kNi3/lyaWCofBp9ltS4QQsLO79u8fAmxyTyAiXP
+	 hR/0K0f2TNClg==
+Date: Thu, 12 Mar 2026 05:44:16 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260312-01-k3-reset-usb-pci-v1-2-022b24b7340f@kernel.org>
-References: <20260312-01-k3-reset-usb-pci-v1-0-022b24b7340f@kernel.org>
-In-Reply-To: <20260312-01-k3-reset-usb-pci-v1-0-022b24b7340f@kernel.org>
-To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Junzhong Pan <junzhong.pan@spacemit.com>, 
- Guodong Xu <guodong@riscstar.com>, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Yixun Lan <dlan@kernel.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4967; i=dlan@kernel.org;
- h=from:subject:message-id; bh=4vJ6d7QV3xPwTiykwfhRJzRwAyeVmoWsLoGPFgfmzm8=;
- b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpspaz/pVzM7e18puyPKELV6xMhE3HoSQ8uC9B+
- Nwrv+1mIFCJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCabKWsxsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
- maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
- QACgkQMarqR1lNu+1ZrA//RzGpjGigz45qGwFV2To8lsLhZ64SokRG5vKKj1vwOKA5eXHCbQlwW
- t2HLAeIABB6ic2Iug2CRXyQrDy6V+gX1oN6GfGDZnSQTQZqlIuJmYD1YILMiB0naqt5i7hUQqPU
- /fouQamRSwrgsZQtghRiSo1x6QVWezC1n0epVY2Esxd8A9A2yQ9iiGfUjZ/rUzz76Tqbx6G/6b+
- y3Aa8rAB8076KpMqzwe6Z+2ae/uy/J1XmR19+Pq9Eu69x0a2EQ/g+OwDbbDt9K8mJZ/BdJIAjcF
- tQA4jehxhhMDrRd6esOdYwxfIvZs+XIra3HvAMiJJ57PQMLI1SiCMeVykkaQmQG700waeuPUP9u
- 403YrOPm8sRRRvLAAN3uQRAg++hEWuEtC4l8/EMmJQ32/wwy+6lu1oXespixWsxB57JzhKkPrqT
- SL/lUzHfENqqDTLn/gBrALlRYl5ONGLYZidLZF8T8vVTdmtwGipYNIq092V+sIv1nWOkpn0d7+l
- Yv7zyaFzAT2Cq6DcLK5ANT238aNc7gDhkn6/YKXtJhnSJd1UiNNU7gayrl4ybb2Yakm48BOBQqM
- YTaSgcQ1xxGKBsII+bKCDrVzFO9Fj0YsFfaB4Vv7G8k+6Ppm0Rj8PF2fYIUpJILoNnx4B4E+zP/
- fQTcFGOjotbGOfgVCcGP0BNzxwSXzg=
-X-Developer-Key: i=dlan@kernel.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
-X-Spamd-Result: default: False [-0.66 / 15.00];
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: festevam@gmail.com, mani@kernel.org, bhelgaas@google.com, 
+ l.stach@pengutronix.de, kernel@pengutronix.de, linux-kernel@vger.kernel.org, 
+ kwilczynski@kernel.org, linux-pci@vger.kernel.org, s.hauer@pengutronix.de, 
+ lpieralisi@kernel.org, imx@lists.linux.dev, conor+dt@kernel.org, 
+ krzk+dt@kernel.org, frank.li@nxp.com, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org
+To: Richard Zhu <hongxing.zhu@nxp.com>
+In-Reply-To: <20260312092745.295578-3-hongxing.zhu@nxp.com>
+References: <20260312092745.295578-1-hongxing.zhu@nxp.com>
+ <20260312092745.295578-3-hongxing.zhu@nxp.com>
+Message-Id: <177331225647.2535696.15664490600606531279.robh@kernel.org>
+Subject: Re: [PATCH v5 2/5] dt-bindings: PCI: imx6q-pcie: Add i.MX94 and
+ i.MX943 PCIe compatible strings
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274523-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,google.com,pengutronix.de,vger.kernel.org,lists.linux.dev,nxp.com,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-274524-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2016F2705F3
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0665B270762
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The DWC3 USB host controller in K3 SoC has three reset lines - AHB,
-VCC, PHY. The PCIe controller also has three reset lines - DBI, Slave,
-Master. So, decouple USB and PCIe reset line to individual ones.
 
-Signed-off-by: Yixun Lan <dlan@kernel.org>
----
- drivers/reset/spacemit/reset-spacemit-k3.c | 50 ++++++++++++++++++------------
- 1 file changed, 30 insertions(+), 20 deletions(-)
+On Thu, 12 Mar 2026 17:27:42 +0800, Richard Zhu wrote:
+> Add i.MX94 and i.MX943 PCIe compatible strings and fallback to
+> i.MX95 PCIe compatible string.
+> 
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> ---
+>  .../bindings/pci/fsl,imx6q-pcie-ep.yaml       |  6 ++++
+>  .../bindings/pci/fsl,imx6q-pcie.yaml          | 28 ++++++++++++-------
+>  2 files changed, 24 insertions(+), 10 deletions(-)
+> 
 
-diff --git a/drivers/reset/spacemit/reset-spacemit-k3.c b/drivers/reset/spacemit/reset-spacemit-k3.c
-index e9e32e4c1ba5..9f58526b0119 100644
---- a/drivers/reset/spacemit/reset-spacemit-k3.c
-+++ b/drivers/reset/spacemit/reset-spacemit-k3.c
-@@ -112,16 +112,21 @@ static const struct ccu_reset_data k3_apmu_resets[] = {
- 	[RESET_APMU_SDH0]	= RESET_DATA(APMU_SDH0_CLK_RES_CTRL,	0, BIT(1)),
- 	[RESET_APMU_SDH1]	= RESET_DATA(APMU_SDH1_CLK_RES_CTRL,	0, BIT(1)),
- 	[RESET_APMU_SDH2]	= RESET_DATA(APMU_SDH2_CLK_RES_CTRL,	0, BIT(1)),
--	[RESET_APMU_USB2]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
--				BIT(1)|BIT(2)|BIT(3)),
--	[RESET_APMU_USB3_PORTA]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
--				BIT(5)|BIT(6)|BIT(7)),
--	[RESET_APMU_USB3_PORTB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
--				BIT(9)|BIT(10)|BIT(11)),
--	[RESET_APMU_USB3_PORTC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
--				BIT(13)|BIT(14)|BIT(15)),
--	[RESET_APMU_USB3_PORTD]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
--				BIT(17)|BIT(18)|BIT(19)),
-+	[RESET_APMU_USB2_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(1)),
-+	[RESET_APMU_USB2_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(2)),
-+	[RESET_APMU_USB2_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(3)),
-+	[RESET_APMU_USB3_A_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(5)),
-+	[RESET_APMU_USB3_A_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(6)),
-+	[RESET_APMU_USB3_A_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(7)),
-+	[RESET_APMU_USB3_B_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(9)),
-+	[RESET_APMU_USB3_B_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(10)),
-+	[RESET_APMU_USB3_B_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(11)),
-+	[RESET_APMU_USB3_C_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(13)),
-+	[RESET_APMU_USB3_C_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(14)),
-+	[RESET_APMU_USB3_C_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(15)),
-+	[RESET_APMU_USB3_D_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(17)),
-+	[RESET_APMU_USB3_D_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(18)),
-+	[RESET_APMU_USB3_D_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(19)),
- 	[RESET_APMU_QSPI]	= RESET_DATA(APMU_QSPI_CLK_RES_CTRL,	0, BIT(1)),
- 	[RESET_APMU_QSPI_BUS]	= RESET_DATA(APMU_QSPI_CLK_RES_CTRL,	0, BIT(0)),
- 	[RESET_APMU_DMA]	= RESET_DATA(APMU_DMA_CLK_RES_CTRL,	0, BIT(0)),
-@@ -164,16 +169,21 @@ static const struct ccu_reset_data k3_apmu_resets[] = {
- 	[RESET_APMU_UFS_ACLK]	= RESET_DATA(APMU_UFS_CLK_RES_CTRL,	0, BIT(0)),
- 	[RESET_APMU_EDP0]	= RESET_DATA(APMU_LCD_EDP_CTRL,		0, BIT(0)),
- 	[RESET_APMU_EDP1]	= RESET_DATA(APMU_LCD_EDP_CTRL,		0, BIT(16)),
--	[RESET_APMU_PCIE_PORTA]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0,
--				BIT(5) | BIT(4) | BIT(3)),
--	[RESET_APMU_PCIE_PORTB]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0,
--				BIT(5) | BIT(4) | BIT(3)),
--	[RESET_APMU_PCIE_PORTC]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0,
--				BIT(5) | BIT(4) | BIT(3)),
--	[RESET_APMU_PCIE_PORTD]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0,
--				BIT(5) | BIT(4) | BIT(3)),
--	[RESET_APMU_PCIE_PORTE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0,
--				BIT(5) | BIT(4) | BIT(3)),
-+	[RESET_APMU_PCIE_A_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0, BIT(3)),
-+	[RESET_APMU_PCIE_A_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0, BIT(4)),
-+	[RESET_APMU_PCIE_A_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0, BIT(5)),
-+	[RESET_APMU_PCIE_B_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0, BIT(3)),
-+	[RESET_APMU_PCIE_B_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0, BIT(4)),
-+	[RESET_APMU_PCIE_B_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0, BIT(5)),
-+	[RESET_APMU_PCIE_C_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0, BIT(3)),
-+	[RESET_APMU_PCIE_C_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0, BIT(4)),
-+	[RESET_APMU_PCIE_C_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0, BIT(5)),
-+	[RESET_APMU_PCIE_D_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0, BIT(3)),
-+	[RESET_APMU_PCIE_D_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0, BIT(4)),
-+	[RESET_APMU_PCIE_D_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0, BIT(5)),
-+	[RESET_APMU_PCIE_E_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0, BIT(3)),
-+	[RESET_APMU_PCIE_E_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0, BIT(4)),
-+	[RESET_APMU_PCIE_E_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0, BIT(5)),
- 	[RESET_APMU_EMAC0]	= RESET_DATA(APMU_EMAC0_CLK_RES_CTRL,	0, BIT(1)),
- 	[RESET_APMU_EMAC1]	= RESET_DATA(APMU_EMAC1_CLK_RES_CTRL,	0, BIT(1)),
- 	[RESET_APMU_EMAC2]	= RESET_DATA(APMU_EMAC2_CLK_RES_CTRL,	0, BIT(1)),
+My bot found errors running 'make dt_binding_check' on your patch:
 
--- 
-2.53.0
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml:39:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
+
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20260312092745.295578-3-hongxing.zhu@nxp.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
