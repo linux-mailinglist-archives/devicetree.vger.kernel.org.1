@@ -1,253 +1,337 @@
-Return-Path: <devicetree+bounces-274420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274421-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QJI9BGpDsmlFKgAAu9opvQ
-	(envelope-from <devicetree+bounces-274420-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:39:06 +0100
+	id GBpHHWhFsml/KwAAu9opvQ
+	(envelope-from <devicetree+bounces-274421-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:47:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD6E026D28E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:39:05 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBB2E26D338
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:47:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 039F630387FD
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 04:39:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0A77D3030EF2
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 04:47:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 598CE3976BA;
-	Thu, 12 Mar 2026 04:39:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9AEF32ED55;
+	Thu, 12 Mar 2026 04:47:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="It57tpGn"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="VnyGzRoG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10411373BE8
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 04:38:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A98E9258EC2;
+	Thu, 12 Mar 2026 04:47:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773290340; cv=none; b=AILVs1ySbNnVIEY4snJwZipmIqJkgc3aJMToqyV4cAClG5ZDd+D477MpI2X/xbzRo2tJyNMuoZIKD0qAeGlL4ZKc+K2qfoY+BNI9HPXPndVtt+RwZ2GLQs8jumCx5/DE5Hr3RXG37AL9vEwznkjVR4uJ8nOkbzDFYFx8sYhmJbg=
+	t=1773290845; cv=none; b=uFtaH0gaA2a2xasa16XkCaIg6d9ZHojCubSoGLy/Y84sTW4DHR+sw9Iw3wx+XcF4P0QzenCi19q6LIWX8wO1x047xWjC9SB/qYlZpArEufVwptzG/Od0WyXMyPMlVdx5Zm45v+byveiDJfSCdPWy1vLr/IUimhAqqVAlHSM4rS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773290340; c=relaxed/simple;
-	bh=VxDRO5AJDmFc1BJYwDmYf30k2WBNqk0WnoVJS2LIewc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=BM6gRCkENpw11w770CzZwYi42Kb4GgGjzeZA2v42hf6+TfBCz20KPFIJvbbBNMh/Gl/EbUiUGg3MKQqP2f8+diG30YFUqOoqPq6OrfYx/ilk/fKm212HVDqh/aCsYTAJ+Z8nou+tMlTvIxS6gNeNsDZgoX/L2ht04GrfodsEPvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=It57tpGn; arc=none smtp.client-ip=209.85.216.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-35a08ce49dcso515385a91.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 21:38:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773290337; x=1773895137; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BA5hockTvoyEWmo1vDE20MMnx+5hM0Z4ohhNVG+T9i0=;
-        b=It57tpGnx7Ub28oT4ikpbSijfQ7yzWcTyTt6dtjqneZeTxaHYqI4fvv/Cu2lhCJHI9
-         GsaU4fcYzPJHRoMHBPrIJU6Lhzo6SCttfCrqCKupaDNvmLBx2yD+mi068nkDXsmGwDdT
-         uckb1t2YTMygFK0UV2nlHgzmWAmmnpCpM4P8FuMYjp66H6A4PZsEGYfS4FWBTS/u2d/v
-         D+KwMavWLbuMPKJd0ZP28vd20gcHm2YwpRUrHTTpxPkIZzvk4EqKPrIr2y8u7rIE5RC1
-         PQKl2JY3KcSXC2UHfuTxvyZbExAQc2I9cWMw/3CINy4jCwf/cnM2q4nZp9XNRqsT4oUl
-         KDKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773290337; x=1773895137;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=BA5hockTvoyEWmo1vDE20MMnx+5hM0Z4ohhNVG+T9i0=;
-        b=XLBWsmF3HwrXYD3WidDQIZtlf0mZ4+Jzc1wtyBjgrcSC9fcwIiCAnCXrUOllVPkFFs
-         zRFepp4aaGR5D/LfwcfiBjqGel8Ff9olerwv1MzdEbxv3iTQmV/wQkEbAu5mqgDUDY5Y
-         OwzVjT/IWAyl00s4aGu8rR53q7oFbsXszlzTdDTO50db0RR3g9TUX6QAihibCS9uweeE
-         lwuDWLRv/Gsk1S8Dscco9bY7b5qiWqyYjRp/CBmdgq9o/t75q1qiNwhfapBjlHIDUKla
-         7akYSm+ed/qJ9OF44LyW9qy7t59XcHsgL+IqJG1SLoLwFj4cyNsnZ4kuyZATVtG6wQkf
-         +DJA==
-X-Forwarded-Encrypted: i=1; AJvYcCVwsh0oVMLJppof5ivhCct/W/c/jQzpuDW7eOlnGxOVnx1aq52P7+1hSQs+howb9D/Wx8Fpa4R985Q5@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOBVF+Nx37XDhUqVn1nebRSzV33lso8AEi2mTnsUiUKhFXwYkc
-	pra6lxe2WYlBoUiDriKonoIAuzYYniYld/Jm+Oakqr+6fFKOkDjC40f8
-X-Gm-Gg: ATEYQzwg9J2YZ0kNUnZ6q4CSlrBDvgA3xG4fGta8l88c9IE+NwAUzEWbnIqOZ0icO+N
-	M/iDQHVLnMTl1iNg6D/aXl0WUONuyrd4v6P7tA93++8FeUBMXekoEI2pRqHP8F9tbIvw3Pu/ErZ
-	0/RhfjNMCQOteVRRrE55sxCCKKcW07ke54RNz2vKDbYzVIncVh7GiczAeFmPzj2LFN4Vfjfo3U1
-	y2fRN9wWmGc6+nbEJ/tjSS7TrA3NGmchYkiFFSF01051+Vv99M0JacY1izsup+zxskl0AKm7kKe
-	bmNwXpVLHlByzrT3OnKb55CK4pZznPAz8teaiSAnfHLs1QumqGOU7W144NkuOxFdw704rdyhBU8
-	rSuge26LhZCxN5FY6L9W0jMXXlMJ8onqvQVDqgdMymKBWQlaJCmp3JRvGRwH/ZmK8Ab2M8R3W5T
-	LG/SbV6w16LkMy0/Ygo7NM6XwgQF3gGt0hAfQ0kPLKBYuVqzHF
-X-Received: by 2002:a17:90a:e7d2:b0:359:fa1e:2bc3 with SMTP id 98e67ed59e1d1-35a011a566fmr5084635a91.6.1773290337293;
-        Wed, 11 Mar 2026 21:38:57 -0700 (PDT)
-Received: from test-HP-Desktop-Pro-G3.. ([103.218.174.23])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35a030490b9sm3793460a91.17.2026.03.11.21.38.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Mar 2026 21:38:56 -0700 (PDT)
-From: Sudarshan Shetty <tessolveupstream@gmail.com>
-To: andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org,
-	rfoss@kernel.org
-Cc: Laurent.pinchart@ideasonboard.com,
-	jonas@kwiboo.se,
-	jernej.skrabec@gmail.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	marex@denx.de,
-	valentin@compulab.co.il,
-	philippe.schenker@toradex.com,
-	dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Sudarshan Shetty <tessolveupstream@gmail.com>
-Subject: [PATCH v2 2/2] drm: bridge: ti-sn65dsi83: Add support for dual-link LVDS video mode
-Date: Thu, 12 Mar 2026 10:07:43 +0530
-Message-Id: <20260312043743.261475-3-tessolveupstream@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260312043743.261475-1-tessolveupstream@gmail.com>
-References: <20260312043743.261475-1-tessolveupstream@gmail.com>
+	s=arc-20240116; t=1773290845; c=relaxed/simple;
+	bh=Gp54JLvaaOIECrVsI9+uHuFT4IiNN9InE0F4T3empxQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NlZ1MvD82XOGl6+aJ0bHEgxUqygOpR0ZJO9jNM1DTjeCQujMEwtZT7FpXADXKO7d0waPzYueMby1WnhxWSnur+WgvzwKqaxu1h2LEBDcVRjv33qwcjmeQ0J3/zmakK1MWnfR5pzv0wY5/Qw1DXfLtsbdrb2jzd34tIgtQFjhPrg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=VnyGzRoG; arc=none smtp.client-ip=198.137.202.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+	bh=A2SvhJ+b53Uvh0SW06/h2KPYmtALDs9kOKOYcwwDLA0=; b=VnyGzRoGzkd8sAAvVV3Y/W6ZN0
+	tKjKqCKmOocvgGs2WMlfWDZKSsXB8ZVZckIdwVxx+isq7qvFLGieQAcdQINeeSI0U5lmzoeckjN1P
+	fpOlTWJ9/v6707emE9rHLMZBDNwcmeIh42L5g3RJRUZ5PluWGXtKUDSp+15rNVwAY6n28KPynzvip
+	8M+n2m480sEjG8LOTrXHMf9kL4AvUVoAinWEFH2hdIxCwt12t7vNVuvMadKGy49cneNMRZ86dUuvn
+	kKk0L70BiK14w69z6fOhbwVFm7woPVZnv9og0y56U9VuASYMSZf/o5lXdue2UIhgTKAlsYSpxvMcM
+	lBafm1tw==;
+Received: from [50.53.43.113] (helo=[192.168.254.34])
+	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1w0Xwo-0000000DI74-3YB5;
+	Thu, 12 Mar 2026 04:47:00 +0000
+Message-ID: <e398475e-4db2-40ed-baeb-89c2bbf6a0d5@infradead.org>
+Date: Wed, 11 Mar 2026 21:46:57 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 01/25] kernel: Introduce meminspect
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ Eugen Hristev <eugen.hristev@linaro.org>, Arnd Bergmann <arnd@arndb.de>,
+ Dennis Zhou <dennis@kernel.org>, Tejun Heo <tj@kernel.org>,
+ Christoph Lameter <cl@gentwo.org>, Andrew Morton
+ <akpm@linux-foundation.org>, Thomas Gleixner <tglx@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Anna-Maria Behnsen <anna-maria@linutronix.de>,
+ Frederic Weisbecker <frederic@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ Juri Lelli <juri.lelli@redhat.com>,
+ Vincent Guittot <vincent.guittot@linaro.org>,
+ Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ Steven Rostedt <rostedt@goodmis.org>, Ben Segall <bsegall@google.com>,
+ Mel Gorman <mgorman@suse.de>, Valentin Schneider <vschneid@redhat.com>,
+ David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Kees Cook <kees@kernel.org>, Brendan Jackman <jackmanb@google.com>,
+ Johannes Weiner <hannes@cmpxchg.org>, Zi Yan <ziy@nvidia.com>,
+ Chris Li <chrisl@kernel.org>, Kairui Song <kasong@tencent.com>,
+ Kemeng Shi <shikemeng@huaweicloud.com>, Nhat Pham <nphamcs@gmail.com>,
+ Baoquan He <bhe@redhat.com>, Barry Song <baohua@kernel.org>,
+ Youngjun Park <youngjun.park@lge.com>, Petr Mladek <pmladek@suse.com>,
+ John Ogness <john.ogness@linutronix.de>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Saravana Kannan <saravanak@kernel.org>
+Cc: workflows@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
+ linux-mm@kvack.org, linux-arm-msm@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20260311-minidump-v2-v2-0-f91cedc6f99e@oss.qualcomm.com>
+ <20260311-minidump-v2-v2-1-f91cedc6f99e@oss.qualcomm.com>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20260311-minidump-v2-v2-1-f91cedc6f99e@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[infradead.org,none];
+	R_DKIM_ALLOW(-0.20)[infradead.org:s=bombadil.20210309];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,denx.de,compulab.co.il,toradex.com,lists.freedesktop.org,vger.kernel.org];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	TAGGED_FROM(0.00)[bounces-274420-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tessolveupstream@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-274421-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,lwn.net,linuxfoundation.org,linaro.org,arndb.de,kernel.org,gentwo.org,linux-foundation.org,infradead.org,linutronix.de,redhat.com,arm.com,goodmis.org,google.com,suse.de,oracle.com,suse.com,cmpxchg.org,nvidia.com,tencent.com,huaweicloud.com,gmail.com,lge.com,chromium.org];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[infradead.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[57];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[rdunlap@infradead.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: AD6E026D28E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,infradead.org:dkim,infradead.org:mid]
+X-Rspamd-Queue-Id: EBB2E26D338
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Some LVDS panels operating in dual-link mode require adjusted
-horizontal timing parameters when programmed into the SN65DSI84
-bridge. According to TI documentation, horizontal timing values
-must be divided by two when operating in dual-link mode. Without
-this adjustment, the panel may fail to display or produce corrupted
-output.
 
-Add support for an optional DT property "ti,dual-link-video-mode"
-to enable configuration required for dual-link LVDS operation.
-These settings ensure correct LVDS output for panels that require
-this mode of operation.
 
-Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
----
- drivers/gpu/drm/bridge/ti-sn65dsi83.c | 52 ++++++++++++++++++++++++---
- 1 file changed, 48 insertions(+), 4 deletions(-)
+On 3/10/26 1:15 PM, Mukesh Ojha wrote:
+> diff --git a/Documentation/dev-tools/meminspect.rst b/Documentation/dev-tools/meminspect.rst
+> new file mode 100644
+> index 000000000000..d0c7222bdcd7
+> --- /dev/null
+> +++ b/Documentation/dev-tools/meminspect.rst
+> @@ -0,0 +1,144 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +==========
+> +meminspect
+> +==========
+> +
+> +This document provides information about the meminspect feature.
+> +
+> +Overview
+> +========
+> +
+> +meminspect is a mechanism that allows the kernel to register a chunk of
+> +memory into a table, to be used at a later time for a specific
+> +inspection purpose like debugging, memory dumping or statistics.
+> +
+> +meminspect allows drivers to traverse the inspection table on demand,
+> +or to register a notifier to be called whenever a new entry is being added
 
-diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-index f6736b4457bb..9b7d35487bd8 100644
---- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-+++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-@@ -164,6 +164,7 @@ struct sn65dsi83 {
- 	int				irq;
- 	struct delayed_work		monitor_work;
- 	struct work_struct		reset_work;
-+	bool				dual_link_video_mode;
- };
- 
- static const struct regmap_range sn65dsi83_readable_ranges[] = {
-@@ -667,8 +668,43 @@ static void sn65dsi83_atomic_pre_enable(struct drm_bridge *bridge,
- 		     mode->hsync_start - mode->hdisplay);
- 	regmap_write(ctx->regmap, REG_VID_CHA_VERTICAL_FRONT_PORCH,
- 		     mode->vsync_start - mode->vdisplay);
--	regmap_write(ctx->regmap, REG_VID_CHA_TEST_PATTERN, 0x00);
- 
-+	/*
-+	 * In dual-link LVDS mode, the SN65DSI84 requires the horizontal
-+	 * timing parameters to be adjusted before being programmed into
-+	 * the device. According to TI documentation, the horizontal timing
-+	 * values must be divided by two when operating in dual-link mode.
-+	 * Without this adjustment, the connected panel may fail to light up
-+	 * or display corrupted output.
-+	 *
-+	 * TI also provides recommended register settings for this mode,
-+	 * which were derived using the TI DSI-Tuner tool. When the optional
-+	 * DT property "ti,dual-link-video-mode" is present, apply these
-+	 * configuration settings to ensure correct dual-link LVDS operation.
-+	 */
-+	if (ctx->dual_link_video_mode) {
-+		regmap_write(ctx->regmap, REG_RC_LVDS_PLL, 0x05);
-+		regmap_write(ctx->regmap, REG_RC_PLL_EN, 0x00);
-+		regmap_write(ctx->regmap, REG_DSI_CLK, 0x53);
-+		regmap_write(ctx->regmap, REG_LVDS_FMT, 0x6f);
-+		regmap_write(ctx->regmap, REG_LVDS_VCOM, 0x00);
-+		regmap_write(ctx->regmap,
-+			     REG_VID_CHA_VERTICAL_DISPLAY_SIZE_LOW, 0x00);
-+		regmap_write(ctx->regmap,
-+			     REG_VID_CHA_VERTICAL_DISPLAY_SIZE_HIGH, 0x00);
-+		regmap_write(ctx->regmap,
-+			     REG_VID_CHA_HSYNC_PULSE_WIDTH_LOW, 0x10);
-+		regmap_write(ctx->regmap,
-+			     REG_VID_CHA_HORIZONTAL_BACK_PORCH, 0x28);
-+		regmap_write(ctx->regmap,
-+			     REG_VID_CHA_VERTICAL_BACK_PORCH, 0x00);
-+		regmap_write(ctx->regmap,
-+			     REG_VID_CHA_HORIZONTAL_FRONT_PORCH, 0x00);
-+		regmap_write(ctx->regmap,
-+			     REG_VID_CHA_VERTICAL_FRONT_PORCH, 0x00);
-+	}
-+
-+	regmap_write(ctx->regmap, REG_VID_CHA_TEST_PATTERN, 0x00);
- 	/* Enable PLL */
- 	regmap_write(ctx->regmap, REG_RC_PLL_EN, REG_RC_PLL_EN_PLL_EN);
- 	usleep_range(3000, 4000);
-@@ -965,9 +1001,15 @@ static int sn65dsi83_host_attach(struct sn65dsi83 *ctx)
- 
- 	dsi->lanes = dsi_lanes;
- 	dsi->format = MIPI_DSI_FMT_RGB888;
--	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
--			  MIPI_DSI_MODE_VIDEO_NO_HFP | MIPI_DSI_MODE_VIDEO_NO_HBP |
--			  MIPI_DSI_MODE_VIDEO_NO_HSA | MIPI_DSI_MODE_NO_EOT_PACKET;
-+	if (ctx->dual_link_video_mode)
-+		dsi->mode_flags = MIPI_DSI_MODE_VIDEO;
-+	else
-+		dsi->mode_flags = MIPI_DSI_MODE_VIDEO |
-+				  MIPI_DSI_MODE_VIDEO_BURST |
-+				  MIPI_DSI_MODE_VIDEO_NO_HFP |
-+				  MIPI_DSI_MODE_VIDEO_NO_HBP |
-+				  MIPI_DSI_MODE_VIDEO_NO_HSA |
-+				  MIPI_DSI_MODE_NO_EOT_PACKET;
- 
- 	ret = devm_mipi_dsi_attach(dev, dsi);
- 	if (ret < 0) {
-@@ -1021,6 +1063,8 @@ static int sn65dsi83_probe(struct i2c_client *client)
- 	if (ret)
- 		return ret;
- 
-+	ctx->dual_link_video_mode =
-+		of_property_read_bool(dev->of_node, "ti,dual-link-video-mode");
- 	ctx->regmap = devm_regmap_init_i2c(client, &sn65dsi83_regmap_config);
- 	if (IS_ERR(ctx->regmap))
- 		return dev_err_probe(dev, PTR_ERR(ctx->regmap), "failed to get regmap\n");
+  preferably...                                                is added
+
+> +or removed.
+> +
+> +The reasoning for meminspect is also to minimize the required information
+> +in case of a kernel problem. For example a traditional debug method involves
+> +dumping the whole kernel memory and then inspecting it. Meminspect allows the
+> +users to select which memory is of interest, in order to help this specific
+> +use case in production, where memory and connectivity are limited.
+> +
+> +Although the kernel has multiple internal mechanisms, meminspect fits
+> +a particular model which is not covered by the others.
+> +
+> +meminspect Internals
+> +====================
+> +
+> +API
+> +---
+> +
+> +Static memory can be registered at compile time, by instructing the compiler
+> +to create a separate section with annotation info.
+> +For each such annotated memory (variables usually), a dedicated struct
+> +is being created with the required information.
+
+   is created
+
+> +To achieve this goal, some basic APIs are available:
+> +
+> +* MEMINSPECT_ENTRY(idx, sym, sz)
+> +  is the basic macro that takes an ID, the symbol, and a size.
+> +
+> +To make it easier, some wrappers are also defined
+> +
+> +* MEMINSPECT_SIMPLE_ENTRY(sym)
+> +  will use the dedicated MEMINSPECT_ID_##sym with a size equal to sizeof(sym)
+
+     uses the dedicated
+
+> +
+> +* MEMINSPECT_NAMED_ENTRY(name, sym)
+> +  will be a simple entry that has an id that cannot be derived from the sym,
+
+     is a simple entry that
+
+> +  so a name has to be provided
+> +
+> +* MEMINSPECT_AREA_ENTRY(sym, sz)
+> +  this will register sym, but with the size given as sz, useful for e.g.
+
+     registers sym, but with
+
+> +  arrays which do not have a fixed size at compile time.
+> +
+> +For dynamically allocated memory, or for other cases, the following APIs
+> +are being defined::
+
+   are defined::
+
+> +
+> +  meminspect_register_id_pa(enum meminspect_uid id, phys_addr_t zone,
+> +                            size_t size, unsigned int type);
+> +
+> +which takes the ID and the physical address.
+> +
+> +Similarly there are variations:
+> +
+> + * meminspect_register_pa() omits the ID
+> + * meminspect_register_id_va() requires the ID but takes a virtual address
+> + * meminspect_register_va() omits the ID and requires a virtual address
+> +
+> +If the ID is not given, the next avialable dynamic ID is allocated.
+
+                                    available
+
+> +
+> +To unregister a dynamic entry, some APIs are being defined:
+
+                                            are defined:
+
+> + * meminspect_unregister_pa(phys_addr_t zone, size_t size);
+> + * meminspect_unregister_id(enum meminspect_uid id);
+> + * meminspect_unregister_va(va, size);
+> +
+> +All of the above have a lock variant that ensures the lock on the table
+> +is taken.
+> +
+> +
+> +meminspect drivers
+> +------------------
+> +
+> +Drivers are free to traverse the table by using a dedicated function::
+> +
+> + meminspect_traverse(void *priv, MEMINSPECT_ITERATOR_CB cb)
+> +
+> +The callback will be called for each entry in the table.
+
+maybe           is called
+
+> +
+> +Drivers can also register a notifier with meminspect_notifier_register()
+> +and unregister with meminspect_notifier_unregister() to be called when a new
+> +entry is being added or removed.
+
+         is added or removed.
+
+> +
+> +Data structures
+> +---------------
+> +
+> +The regions are being stored in a simple fixed size array. It avoids
+
+               are stored
+
+> +memory allocation overhead. This is not performance critical nor does
+> +allocating a few hundred entries create a memory consumption problem.
+> +
+> +The static variables registered into meminspect are being annotated into
+
+                                                   are annotated into
+
+> +a dedicated .inspect_table memory section. This is then walked by meminspect> +at a later time and each variable is then copied to the whole inspect table.
+> +
+> +meminspect Initialization
+> +-------------------------
+> +
+> +At any time, meminspect will be ready to accept region registration
+
+                meminspect is ready
+
+> +from any part of the kernel. The table does not require any initialization.
+> +In case CONFIG_CRASH_DUMP is enabled, meminspect will create an ELF header
+
+                                         meminspect creates an ELF header
+
+> +corresponding to a core dump image, in which each region is added as a
+> +program header. In this scenario, the first region is this ELF header, and
+> +the second region is the vmcoreinfo ELF note.
+> +By using this mechanism, all the meminspect table, if dumped, can be
+> +concatenated to obtain a core image that is loadable with the `crash` tool.
+> +
+> +meminspect example
+> +==================
+> +
+> +A simple scenario for meminspect is the following:
+> +The kernel registers the linux_banner variable into meminspect with
+> +a simple annotation like::
+> +
+> +  MEMINSPECT_SIMPLE_ENTRY(linux_banner);
+> +
+> +The meminspect late initcall will parse the compilation time created table
+
+maybe...                                       compile-time
+
+> +and copy the entry information into the inspection table.
+> +At a later point, any interested driver can call the traverse function to
+> +find out all entries in the table.
+> +A specific driver will then note into a specific table the address of the
+> +banner and the size of it.
+> +The specific table is then written to a shared memory area that can be
+> +read by upper level firmware.
+> +When the kernel freezes (hypothetically), the kernel will no longer feed
+> +the watchdog. The watchdog will trigger a higher exception level interrupt
+> +which will be handled by the upper level firmware. This firmware will then
+> +read the shared memory table and find an entry with the start and size of
+> +the banner. It will then copy it for debugging purpose. The upper level
+> +firmware will then be able to provide useful debugging information,
+> +like in this example, the banner.
+> +
+> +As seen here, meminspect facilitates the interaction between the kernel
+> +and a specific firmware.
+
+
 -- 
-2.34.1
+~Randy
 
 
