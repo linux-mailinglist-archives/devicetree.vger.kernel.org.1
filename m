@@ -1,183 +1,154 @@
-Return-Path: <devicetree+bounces-274727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274728-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MHeAN074smmLRAAAu9opvQ
-	(envelope-from <devicetree+bounces-274727-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:30:54 +0100
+	id mIhFHFf5smmLRAAAu9opvQ
+	(envelope-from <devicetree+bounces-274728-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:35:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59CB0276911
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:30:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6F6B276991
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:35:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AA8C5301F48F
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:30:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DAD97306F782
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:34:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADD3D358383;
-	Thu, 12 Mar 2026 17:30:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FD193FE340;
+	Thu, 12 Mar 2026 17:34:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V9KRHsRi"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="Z+0B417l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89DCF242D97;
-	Thu, 12 Mar 2026 17:30:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2BDE3F87E4;
+	Thu, 12 Mar 2026 17:34:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773336651; cv=none; b=jXKBAldkXQoiQ9lKC2YsnyRMr4TgDeX8EVo/bSaxpzzL/6cUWLimha58MYwO7AJo9GjBKDVW1tQsxQZQObGcFDdnyEC+B/ozknLdoR6A+x7EkUhyEajaYIztlh7JFWVWGTBdw+UTLwl14Ky1K0Zquo6lFs4+4OqnFCiUW5xxuBA=
+	t=1773336875; cv=none; b=FBdfW8/jWo2bPVmu3mvxVbTcQ59YP6+KaYaOmMqZP1CHYrqtTxV+Z0lVCWLly5hk8CX3u6SeWJewFiWadyp7Ja+6waVmqfvF39JfGZf9tY3/cq5rvLDprqpsRMOqJitihImfDDrvK8Yg64uYrqtIT04tLmwu+Ct4bNUWQujd4V8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773336651; c=relaxed/simple;
-	bh=W6tGZ3NCS57fycGB4Z6FjTao9Hr+IRejW/1XW8Q2EbY=;
+	s=arc-20240116; t=1773336875; c=relaxed/simple;
+	bh=VGtXHilX3UlaPfPfilvV8r1wHZFmWNithjQkgVtRITw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q0UC+DRzXZLcweRIW5hPiEX44CXU5RuXS8KWKa5PmBtKHEDtItQq/KC+AA7s0qm0hZGYqyLReWp68Gmj9kK7rnK/6iyLcuCvLJay5oaO8RtljKpT5jc6soxz10huBlSoLl+/W3YJKco9UO/mC2PLlVI618PqKsRbfDKOOjYhw8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V9KRHsRi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05248C19424;
-	Thu, 12 Mar 2026 17:30:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773336651;
-	bh=W6tGZ3NCS57fycGB4Z6FjTao9Hr+IRejW/1XW8Q2EbY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V9KRHsRiqVMm1UsQicox1Kr9qVSuXsJ98bMYR51K/SnUhXS1yx0aTqGt4Nm6p6XD4
-	 jRsZfPwgNxkSy1hFZEp9kv3Z9rNst9vugRPBg7pVI1nhuiGFHj67PxTHHnR8TBH2et
-	 JWZmBtLsGZhq53JfLKB5Js7T6bgp1OZlRmloKHrd207TrQq075Q+h/H/FHVjpl697C
-	 tsFPToxalvLUwM9gHDjtJ+bNoBj9ItAqDLNANw9GHpXSAH3PhAgxA2Xvd6JXe7U+fm
-	 IPum2fqKPaEib0tDzoI6TUFDKzGfWmOwnNJKR0GWUIj2baKBy7uGWCWO0xvtzi/KXs
-	 DCHoa+oZnEOxw==
-Date: Thu, 12 Mar 2026 17:30:46 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Yixun Lan <dlan@kernel.org>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Junzhong Pan <junzhong.pan@spacemit.com>,
-	Guodong Xu <guodong@riscstar.com>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: soc: spacemit: k3: Decouple composite
- reset lines
-Message-ID: <20260312-legume-unstitch-129b278e14d6@spud>
-References: <20260312-01-k3-reset-usb-pci-v1-0-022b24b7340f@kernel.org>
- <20260312-01-k3-reset-usb-pci-v1-1-022b24b7340f@kernel.org>
- <0abfd76f49e5cedf7bfc84eb4d9a0a1d7543f6f8.camel@pengutronix.de>
- <20260312112858-GKH302167@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=LMCVdYMz8Y1YwfwFhMOMg2Bib/xMAekzEkoBWkbrJU1Cr+V6PNJTwda5WwqALO8Yxn8+blR3giGbt8rafNgeTzYOq7rIr+Gl7bgApVWP15u9+/zRE49GeV2URZ6CAdpPW/orr4WLSmplnY+RmuGgpr965AwLSsN606HA2F0eLBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=Z+0B417l; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 5909322831;
+	Thu, 12 Mar 2026 18:34:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1773336863;
+	bh=fmtlnhSTjgOoQaF3XdzpaQYVg6I7U+e/byYCHILShjg=; h=From:To:Subject;
+	b=Z+0B417l9p71c9g2467dWy9UgcuD70ES35DaANtN0imwURTZU/GPr25LH+b5eQ6ym
+	 0hVsZhSnAJUU+RVHvGSUx+CMOWrr9b2F4DVMWTVphdX0DP/GRwUn61FTHAp9jUl6tC
+	 oCNGIxNG1N0CODjGoX0qFYW4Q+SeYau8/Ta3jzwoE9eiOyI0Ggn54oBoF9nA2/5qCQ
+	 zyNIj16+riOjZYIm70/XvM2xZAF6ZIW67O49FwbCDgCphk2melEEoB9awSAIKjGRIM
+	 yMc9HpZiPhvaMcw5R9TguGnDUDO2I3fUxmwPrQil1l7fnVLrsiN7+2OySDqguMHfTM
+	 zACt1/KiYryLg==
+Date: Thu, 12 Mar 2026 18:34:18 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: ming.qian@oss.nxp.com
+Cc: linux-media@vger.kernel.org, mchehab@kernel.org,
+	hverkuil-cisco@xs4all.nl, nicolas@ndufresne.ca,
+	benjamin.gaignard@collabora.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
+	sebastian.fricke@collabora.com, shawnguo@kernel.org,
+	ulf.hansson@linaro.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, m.felsch@pengutronix.de,
+	fra.schnyder@gmail.com, linux-imx@nxp.com, l.stach@pengutronix.de,
+	Frank.li@nxp.com, peng.fan@nxp.com, eagle.zhou@nxp.com,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, regressions@lists.linux.dev
+Subject: Re: [PATCH v4] media: verisilicon: Fix kernel panic due to
+ __initconst misuse
+Message-ID: <20260312173349.GA137045@francesco-nb>
+References: <20260306031059.801-1-ming.qian@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7Ay2qMKpijP+JeF+"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260312112858-GKH302167@kernel.org>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+In-Reply-To: <20260306031059.801-1-ming.qian@oss.nxp.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[dolcini.it,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[dolcini.it:s=default];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274727-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274728-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,xs4all.nl,ndufresne.ca,collabora.com,pengutronix.de,linaro.org,gmail.com,nxp.com,lists.linux.dev,lists.infradead.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[francesco@dolcini.it,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[dolcini.it:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 59CB0276911
+	RCPT_COUNT_TWELVE(0.00)[29];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dolcini.it:dkim,toradex.com:email,nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,pengutronix.de:email,qualcomm.com:email]
+X-Rspamd-Queue-Id: C6F6B276991
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Hello,
 
---7Ay2qMKpijP+JeF+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, Mar 06, 2026 at 11:10:57AM +0800, ming.qian@oss.nxp.com wrote:
+> From: Ming Qian <ming.qian@oss.nxp.com>
+> 
+> Fix a kernel panic when probing the driver as a module:
+> 
+>   Unable to handle kernel paging request at virtual address
+>   ffffd9c18eb05000
+>   of_find_matching_node_and_match+0x5c/0x1a0
+>   hantro_probe+0x2f4/0x7d0 [hantro_vpu]
+> 
+> The imx8mq_vpu_shared_resources array is referenced by variant
+> structures through their shared_devices field. When built as a
+> module, __initconst causes this data to be freed after module
+> init, but it's later accessed during probe, causing a page fault.
+> 
+> The imx8mq_vpu_shared_resources is referenced from non-init code,
+> so keeping __initconst or __initconst_or_module here is wrong.
+> 
+> Drop the __initconst annotation and let it live in the normal .rodata
+> section.
+> 
+> A bug of __initconst called from regular non-init probe code
+> leading to bugs during probe deferrals or during unbind-bind cycles.
+> 
+> Reported-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Closes: https://lore.kernel.org/all/68ef934f-baa0-4bf6-93d8-834bbc441e66@kernel.org/
+> Reported-by: Franz Schnyder <franz.schnyder@toradex.com>
+> Closes: https://lore.kernel.org/all/n3qmcb62tepxltoskpf7ws6yiirc2so62ia23b42rj3wlmpl67@rvkbuirx7kkp/
+> Fixes: e0203ddf9af7 ("media: verisilicon: Avoid G2 bus error while decoding H.264 and HEVC")
+> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Suggested-by: Marco Felsch <m.felsch@pengutronix.de>
+> Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+> Signed-off-by: Ming Qian <ming.qian@oss.nxp.com>
 
-On Thu, Mar 12, 2026 at 07:28:58PM +0800, Yixun Lan wrote:
-> Hi Philipp,
->=20
-> On 12:09 Thu 12 Mar     , Philipp Zabel wrote:
-> > On Do, 2026-03-12 at 10:34 +0000, Yixun Lan wrote:
-> > > Instead of grouping several different reset lines into one composite
-> > > reset, decouple them to individual ones which make it more aligned
-> > > with underlying hardware.
-> > >
-> > > The DWC3 USB host controller in K3 SoC has three reset lines - AHB, V=
-CC,
-> > > PHY. The PCIe controller also has three reset lines - DBI, Slave, Mas=
-ter.
-> > >=20
-> > > Signed-off-by: Yixun Lan <dlan@kernel.org>
-> > > ---
-> > >  include/dt-bindings/reset/spacemit,k3-resets.h | 42 ++++++++++++++++=
-++++------
-> > >  1 file changed, 32 insertions(+), 10 deletions(-)
-> > >=20
-> > > diff --git a/include/dt-bindings/reset/spacemit,k3-resets.h b/include=
-/dt-bindings/reset/spacemit,k3-resets.h
-> > > index 79ac1c22b7b5..c12f8bd32047 100644
-> > > --- a/include/dt-bindings/reset/spacemit,k3-resets.h
-> > > +++ b/include/dt-bindings/reset/spacemit,k3-resets.h
-> > > @@ -97,11 +97,7 @@
-> > >  #define RESET_APMU_SDH0          13
-> > >  #define RESET_APMU_SDH1          14
-> > >  #define RESET_APMU_SDH2          15
-> > > -#define RESET_APMU_USB2          16
-> > > -#define RESET_APMU_USB3_PORTA    17
-> > > -#define RESET_APMU_USB3_PORTB    18
-> > > -#define RESET_APMU_USB3_PORTC    19
-> > > -#define RESET_APMU_USB3_PORTD    20
-> >=20
-> > This is backwards incompatible.
-> > Are there any device trees using the APMU resets yet?
-> > If not, I wonder if we should just renumber all APMU resets into a
-> > contiguous range and try to get it into v7.0 as a fix.
-> >=20
-> No, there is currently no consumers, so I could rework them into a contig=
-uous
-> version, thanks for the suggestion
+What's the plan to merge this? It fixes a quite severe regression,
+a boot failure.
 
-Only as long as it goes into 7.0, IMO, as a fix.
+#regzbot introduced: e0203ddf9af7
 
-> > Also, this breaks bisectability.
-> > reset-spacemit-k3.c will fail to compile between patches 1 and 2.
-> >=20
-> I've tried a first version to squash the two patches, but got a checkpatc=
-h.pl complait
-> for binding should follow into a separate patch.
->=20
-> I can combine these two patches into one, is this Ok for you?
+Thanks,
+Francesco
 
-Be very very very clear about why they're going together, otherwise you'll
-get yelled at!
-
---7Ay2qMKpijP+JeF+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabL4RgAKCRB4tDGHoIJi
-0lFCAQC8R0krTCJ3h8LENWd4AYu7AGIS+9Kr+nwqeEhqxLlJ6gEA9efqzwnlJkD2
-xl++M7pPu/XyyZgMduLa1mwL6FPpUgs=
-=uTkh
------END PGP SIGNATURE-----
-
---7Ay2qMKpijP+JeF+--
 
