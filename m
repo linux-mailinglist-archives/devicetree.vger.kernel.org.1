@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-274745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274743-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SPlYM+cAs2mQRQAAu9opvQ
-	(envelope-from <devicetree+bounces-274745-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 19:07:35 +0100
+	id +IhlMtYAs2mQRQAAu9opvQ
+	(envelope-from <devicetree+bounces-274743-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 19:07:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 359ED27702A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 19:07:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FB9B277002
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 19:07:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6C16F3049739
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:03:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 286233007F6B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 18:03:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CABB93FEB03;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A38A83FB06F;
 	Thu, 12 Mar 2026 18:03:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="pkRqJJlY"
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="UMh1lMPj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 571E33F1644;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 572783F99CC;
 	Thu, 12 Mar 2026 18:03:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773338595; cv=none; b=S4k3wGD2bTeROEVR9uQf8wuAEFzyehFtufR+2sm2h2A9so+o1oUc4leG4y+5ZHgVV9ZLzIzRwzqL9KzJHHuf8hTNWOFLI8VOVrCqfs3J3TKWYwDMTcPyurMbHUQS5tcZB0S+xUCz+NMerQ2AhTAq28pC9nz2jpGsEuYUXDxVrPA=
+	t=1773338595; cv=none; b=Nb+SeQKRDxgyirx8FiKm4KIJXf6hk5bGVCGobAhhJUdMXXgrOV8O7JgtxiDRQYoxLnHXUSUMEBG9qDi4iIIaKvnTn8Hf6e9XxYVzkoSlKBEYK9SFrAAk4ZAzb8ONghCBR3sSWNczhE5FTD0WrXxOUUvNTd4TlLSnIN8SC4YODdU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1773338595; c=relaxed/simple;
-	bh=kEXxkuOtlby15gNOWH0fvqecd3a2UWZIvUrzwcltfl8=;
+	bh=IcACeMg0kt3M488B3RO6EQz0azJ/9JETPLl4xl/Uxok=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=OwiSh0Xo2E3gkx1IG4XCsD1THei+FA1ahPrsv+54+TT3ztn3CO+ft2YJ1D98BlsVbi2+x14yWcONjTypK7coD4V63Jie+1Yo/tJKLJwlGSeP6fAkZsUpo8RqTUyuOUgyuYy5tKTbSFfDhPvJPePvQanUu6bdyTDxvi5zeZedoZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=fail (0-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=pkRqJJlY reason="key not found in DNS"; arc=none smtp.client-ip=162.243.120.170
+	 MIME-Version; b=R5q+E/GRHB2Ml6VCfd28VMQhhOp97/1BVJGS8iF3IpY1hfVrKLT+Gfx0x2aBG5Lvnm9MTPqxgt06vnaISn3U4KMWlFn1Rw44gsvM/hIoXJLpaLivJtbM9TXDUQ+6el06rencZ/8K8Bi4U4Cp2uJ8jm7IlNN1xT6/tiwqAqMJeLo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=fail (0-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=UMh1lMPj reason="key not found in DNS"; arc=none smtp.client-ip=162.243.120.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
 	; s=default; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject
 	:Cc:To:From:subject:date:message-id:reply-to;
-	bh=QP65QPw5R6QEOwFP1EXlhwulSaa9GL5K/VwO1HQfsdo=; b=pkRqJJlYzzTix2dnjDsKhHXPji
-	erlS1V36ljnu/PE0eI/X3dCtjCe085U7PEjldnYGxisozy13kaOQuMl9KS4kLBKzZclWlgioWSSa0
-	e1IeFMQZQr/g3Eg/g7EGc0FjBoxnc4LH7QjA+jTNLptHe/Yxc7dfNPtnYLEI1cm8AvwY=;
+	bh=771mNE44sHQhC5rmXckx2CaBH1T0oXxmMruW/wkQt0o=; b=UMh1lMPjQBQYsTSLf3MUG0Xw4x
+	WRhhPsI3rPMDOqRsYjnSOjN1wY1GO/fVEVqIK8Vk6t5VNYQy+p16cQWyypzfq3sfP7xwhG4qBC8DH
+	utCIax06mi4t97EmuCLymZIm4W3nY39hFod7MYvy2E+ni6WsY/EDQkG2oGoNuSPeoStg=;
 Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168] helo=pettiford.lan)
 	by mail.hugovil.com with esmtpa (Exim 4.98.2)
 	(envelope-from <hugo@hugovil.com>)
-	id 1w0kNJ-000000008Fl-3z1K;
-	Thu, 12 Mar 2026 14:03:10 -0400
+	id 1w0kNL-000000008Fl-0QLo;
+	Thu, 12 Mar 2026 14:03:11 -0400
 From: Hugo Villeneuve <hugo@hugovil.com>
 To: robin@protonic.nl,
 	andy@kernel.org,
@@ -67,9 +67,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org,
 	hugo@hugovil.com
-Subject: [PATCH v5 1/4] dt-bindings: input: add debounce-delay-ms common property
-Date: Thu, 12 Mar 2026 14:00:55 -0400
-Message-ID: <20260312180304.3865850-2-hugo@hugovil.com>
+Subject: [PATCH v5 2/4] dt-bindings: input: add settling-time-us common property
+Date: Thu, 12 Mar 2026 14:00:56 -0400
+Message-ID: <20260312180304.3865850-3-hugo@hugovil.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260312180304.3865850-1-hugo@hugovil.com>
 References: <20260312180304.3865850-1-hugo@hugovil.com>
@@ -87,19 +87,19 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCPT_COUNT_TWELVE(0.00)[21];
-	TAGGED_FROM(0.00)[bounces-274745-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274743-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[hugovil.com];
 	RCVD_COUNT_THREE(0.00)[4];
 	R_DKIM_PERMFAIL(0.00)[hugovil.com:s=default];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[protonic.nl,kernel.org,linux-m68k.org,gmail.com,dimonoff.com,collabora.com,blala.de];
-	NEURAL_SPAM(0.00)[0.198];
+	NEURAL_SPAM(0.00)[0.156];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
@@ -109,143 +109,41 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dimonoff.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,hugovil.com:mid]
-X-Rspamd-Queue-Id: 359ED27702A
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[hugovil.com:mid,dimonoff.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0FB9B277002
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-A few bindings are already defining a debounce-delay-ms property, so
-add it to the input binding to reduce redundant redefines.
+Add common property that can be reused by other bindings.
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 ---
- .../devicetree/bindings/auxdisplay/holtek,ht16k33.yaml    | 5 ++---
- .../devicetree/bindings/input/cirrus,ep9307-keypad.yaml   | 7 +++----
- .../devicetree/bindings/input/gpio-matrix-keypad.yaml     | 5 ++---
- Documentation/devicetree/bindings/input/input.yaml        | 8 ++++++++
- .../devicetree/bindings/input/mediatek,mt6779-keypad.yaml | 1 +
- Documentation/devicetree/bindings/mfd/fsl,mc13xxx.yaml    | 2 --
- 6 files changed, 16 insertions(+), 12 deletions(-)
+ Documentation/devicetree/bindings/input/input.yaml | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-index b90eec2077b4b..c46a2471f8b10 100644
---- a/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-+++ b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-@@ -10,6 +10,7 @@ maintainers:
-   - Robin van der Gracht <robin@protonic.nl>
- 
- allOf:
-+  - $ref: /schemas/input/input.yaml#
-   - $ref: /schemas/input/matrix-keymap.yaml#
- 
- properties:
-@@ -33,9 +34,7 @@ properties:
-   interrupts:
-     maxItems: 1
- 
--  debounce-delay-ms:
--    maxItems: 1
--    description: Debouncing interval time in milliseconds
-+  debounce-delay-ms: true
- 
-   linux,keymap: true
- 
-diff --git a/Documentation/devicetree/bindings/input/cirrus,ep9307-keypad.yaml b/Documentation/devicetree/bindings/input/cirrus,ep9307-keypad.yaml
-index a0d2460c55ab6..25b8b29c87d70 100644
---- a/Documentation/devicetree/bindings/input/cirrus,ep9307-keypad.yaml
-+++ b/Documentation/devicetree/bindings/input/cirrus,ep9307-keypad.yaml
-@@ -10,6 +10,7 @@ maintainers:
-   - Alexander Sverdlin <alexander.sverdlin@gmail.com>
- 
- allOf:
-+  - $ref: input.yaml#
-   - $ref: /schemas/input/matrix-keymap.yaml#
- 
- description:
-@@ -37,10 +38,8 @@ properties:
-   clocks:
-     maxItems: 1
- 
--  debounce-delay-ms:
--    description: |
--          Time in microseconds that key must be pressed or
--          released for state change interrupt to trigger.
-+  # Time for state change interrupt to trigger
-+  debounce-delay-ms: true
- 
-   cirrus,prescale:
-     description: row/column counter pre-scaler load value
-diff --git a/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml b/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
-index ebfff9e42a365..69df24a5ae701 100644
---- a/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
-+++ b/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
-@@ -18,6 +18,7 @@ description:
-   report the event using GPIO interrupts to the cpu.
- 
- allOf:
-+  - $ref: input.yaml#
-   - $ref: /schemas/input/matrix-keymap.yaml#
- 
- properties:
-@@ -46,9 +47,7 @@ properties:
-       Force GPIO polarity to active low.
-       In the absence of this property GPIOs are treated as active high.
- 
--  debounce-delay-ms:
--    description: Debounce interval in milliseconds.
--    default: 0
-+  debounce-delay-ms: true
- 
-   col-scan-delay-us:
-     description:
 diff --git a/Documentation/devicetree/bindings/input/input.yaml b/Documentation/devicetree/bindings/input/input.yaml
-index 94f7942189e8c..502e0b7eb500a 100644
+index 502e0b7eb500a..64d1c46cb2f2a 100644
 --- a/Documentation/devicetree/bindings/input/input.yaml
 +++ b/Documentation/devicetree/bindings/input/input.yaml
-@@ -14,6 +14,14 @@ properties:
-     description: Enable autorepeat when key is pressed and held down.
-     type: boolean
+@@ -66,6 +66,14 @@ properties:
+       reset automatically. Device with key pressed reset feature can specify
+       this property.
  
-+  debounce-delay-ms:
++  settling-time-us:
 +    description:
-+      Debounce delay in milliseconds. This is the time during which the key
-+      press or release signal must remain stable before it is considered valid.
-+    minimum: 0
-+    maximum: 999
++      Delay, in microseconds, when activating an output line/col/row before
++      we can reliably read other input lines that maybe affected by this
++      output. This can be the case for an output with a RC circuit that affects
++      ramp-up/down times.
 +    default: 0
 +
-   linux,keycodes:
-     description:
-       Specifies an array of numeric keycode values to be used for reporting
-diff --git a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
-index e365413732e7b..914dd3283df33 100644
---- a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
-+++ b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
-@@ -10,6 +10,7 @@ maintainers:
-   - Mattijs Korpershoek <mkorpershoek@kernel.org>
+ dependencies:
+   linux,input-type: [ "linux,code" ]
  
- allOf:
-+  - $ref: input.yaml#
-   - $ref: /schemas/input/matrix-keymap.yaml#
- 
- description: |
-diff --git a/Documentation/devicetree/bindings/mfd/fsl,mc13xxx.yaml b/Documentation/devicetree/bindings/mfd/fsl,mc13xxx.yaml
-index d2886f2686a8d..542ba51144243 100644
---- a/Documentation/devicetree/bindings/mfd/fsl,mc13xxx.yaml
-+++ b/Documentation/devicetree/bindings/mfd/fsl,mc13xxx.yaml
-@@ -76,8 +76,6 @@ properties:
-           debounce-delay-ms:
-             enum: [0, 30, 150, 750]
-             default: 30
--            description:
--              Sets the debouncing delay in milliseconds.
- 
-           active-low:
-             description: Set active when pin is pulled low.
 -- 
 2.47.3
 
