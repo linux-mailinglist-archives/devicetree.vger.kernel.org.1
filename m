@@ -1,130 +1,130 @@
-Return-Path: <devicetree+bounces-274467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274468-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CJ5wB9lssmkpMgAAu9opvQ
-	(envelope-from <devicetree+bounces-274467-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 08:35:53 +0100
+	id AJXuKz9wsmmuMgAAu9opvQ
+	(envelope-from <devicetree+bounces-274468-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 08:50:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70F0A26E614
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 08:35:52 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5557026E73C
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 08:50:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2B6E7305F3EF
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 07:35:51 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B58A2301CC89
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 07:50:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 219A11990C7;
-	Thu, 12 Mar 2026 07:35:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="SKKLHEjC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84723B27D9;
+	Thu, 12 Mar 2026 07:50:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-4319.protonmail.ch (mail-4319.protonmail.ch [185.70.43.19])
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1F6629A2;
-	Thu, 12 Mar 2026 07:35:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9AA6303CA0;
+	Thu, 12 Mar 2026 07:50:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773300950; cv=none; b=rPGEleC6hrASi/ROXqGkrjekAS49DKbIudnIZZCzHGys+1zj/TiLrAul2xIoYGeEwVxAvD7ULO22MMbPzHA9SbSk+PfeU+EWPELnPkKmZ4LSLzVTqvBjRHyjCo0iT+GYhP3o4wBTTHCKXZX6dJKZTyNBMH0v5kZTLX1NH37X10U=
+	t=1773301818; cv=none; b=hvjUuoEckeqtpJvaN6nf/suUt+pEu7NdlhfuRxtS+cqEOhPTLKinvGWmy+jPmpkh6YezkQMi39dMfzfy1fUEB8jeqfd8U3U/zumnECoc35lT7X9SvxLh5WaX2z5e05pvr+MA4pmx8h25qk1Kox6hqyrRVAHmYe0e76/k6rtamto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773300950; c=relaxed/simple;
-	bh=n22ZdnCiNz1FqB7pAYtwypL6C/yoAP2gROmFXtvKlKk=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FFOt/pm3HWPgh43P+uyNFZyh0SuAbEB8cnYewUSAvgTVG+7whTITSktJUwUQkikvy80WDVkGM3yuAz7N5HJeK16XKmuq+wQQ9eSIMq2E0TG/4+3Pg2UtVMMzEJ8DJZTBCvmd6qWWZMIYpySdh9G7nEtJKu54xcjjVOzy3r6zlWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=SKKLHEjC; arc=none smtp.client-ip=185.70.43.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1773300939; x=1773560139;
-	bh=W4fSxbreWSN8hJqz6ykGJtj382cjYeRiSHXDVM35kNY=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=SKKLHEjCwvhBxSV0RlMIqdcQ+OyzgiHq85MbOuoYElqLaDQLdSoCHNrMO/5Etsxx4
-	 jdUDwRq6/cSGir3QzIV+bPMDnZIE1+L34GiPBLoioQL5TdvBv4qICNaMwKVasWGabe
-	 NTC3ocNEGl2pM/WBeo8Q9KvOVaVKD9ywJigwJUtR2OuHE9sx/6TkqD1Lk8cZV8baQ7
-	 EKt9Gx7TrQFKT6xiYVvVMVXUUX3KYXLY6AeCXv7O4Xbkths4zv4+MU4aEVONaJ4Oty
-	 DmkDiqYUt6a8uBP5KfZmPQE5Aibn/zjOf+SGtuCUJFTt2HGoCnfa0PAkWAijRMgwxN
-	 wEvz1LUxTNBUQ==
-Date: Thu, 12 Mar 2026 07:35:32 +0000
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-From: cristian_ci <cristian_ci@protonmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: msm8953-flipkart-rimob: Enable touchscreen
-Message-ID: <OlPwFMhd0APrPSzuNA5HLquFco9civ4jOCF8caWC3eRMSAZq1AcFdFBhrT5o2-kyjAzeUEqT_ZSvtYRdaeoyrzt-0EgjKJ6eRsumlPTU2s0=@protonmail.com>
-In-Reply-To: <1ca4cdaf-d8f7-43c5-9087-b0394036c461@oss.qualcomm.com>
-References: <20260308-rimob-new-features-v1-0-aa2c330572c0@protonmail.com> <20260308-rimob-new-features-v1-5-aa2c330572c0@protonmail.com> <f6029a8f-07d7-4872-813a-ff98fd11b5af@oss.qualcomm.com> <zqVKBYSFu9Qsyz7CKpxCBliYAzh1QjVqyTi24YLuiZy_muAh81pAHgkTWsEaAJsRbMlG_UewopTzYleJCypPrbukpTaBZSpuBtmG5QIKMPs=@protonmail.com> <1ca4cdaf-d8f7-43c5-9087-b0394036c461@oss.qualcomm.com>
-Feedback-ID: 27475468:user:proton
-X-Pm-Message-ID: 3b1689991cc4bee5e0359733a34ed752bfaa4c1c
+	s=arc-20240116; t=1773301818; c=relaxed/simple;
+	bh=G9iOh8MH53BV8yifyGIrscGOuqRgXXDAZ+PHM0PPFrA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BNE7VOM1RAg6W6bo+3ucTGim4GKJFDSUn87oMlVoJMTJ6Sz3YEKluEdco+3ezIcCITyqlKGj3YYcNbmpgETUeF2V6eA1yISAyTMnWv5vJcgSH+75ioQIYzlNwq9omb4lvCgYoPqcWwgaiiNWDEfhl4whO8mCbWw7p0AwLZ+zJDc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; arc=none smtp.client-ip=92.121.34.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 021B71A0542;
+	Thu, 12 Mar 2026 08:50:16 +0100 (CET)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id DE62A1A06DE;
+	Thu, 12 Mar 2026 08:50:15 +0100 (CET)
+Received: from lsv051416.swis.nl-cdc01.nxp.com (lsv051416.swis.nl-cdc01.nxp.com [10.168.48.122])
+	by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id AF65E20263;
+	Thu, 12 Mar 2026 08:50:15 +0100 (CET)
+Date: Thu, 12 Mar 2026 08:50:15 +0100
+From: Jan Petrous <jan.petrous@oss.nxp.com>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Jan Petrous via B4 Relay <devnull+jan.petrous.oss.nxp.com@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+	NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	rmk+kernel@armlinux.org.uk, vladimir.oltean@nxp.com,
+	boon.khai.ng@altera.com
+Subject: Re: [PATCH v8 1/5] net: stmmac: Use helper macro for loop over
+ queue-based arrays
+Message-ID: <abJwN5bulKxQpI+K@lsv051416.swis.nl-cdc01.nxp.com>
+References: <20260309-dwmac_multi_irq-v8-0-f0cc5bc811a7@oss.nxp.com>
+ <20260309-dwmac_multi_irq-v8-1-f0cc5bc811a7@oss.nxp.com>
+ <20260311203707.1d5ba94c@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260311203707.1d5ba94c@kernel.org>
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Spamd-Result: default: False [0.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[protonmail.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[protonmail.com:s=protonmail3];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274467-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	FREEMAIL_CC(0.00)[kernel.org,lunn.ch,davemloft.net,google.com,redhat.com,gmail.com,foss.st.com,suse.com,oss.nxp.com,nxp.com,pengutronix.de,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,lists.linux.dev,armlinux.org.uk,altera.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[protonmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org,lists.sr.ht];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274468-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cristian_ci@protonmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[protonmail.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,protonmail.com:dkim,protonmail.com:mid]
-X-Rspamd-Queue-Id: 70F0A26E614
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jan.petrous@oss.nxp.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,jan.petrous.oss.nxp.com,netdev,dt,kernel];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 5557026E73C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wednesday, March 11th, 2026 at 14:03, Konrad Dybcio <konrad.dybcio@oss.q=
-ualcomm.com> wrote:
-> >
-> >> does /proc/interrupts differ?
-> >
-> > When interrupts-extended is defined:
-> >
-> > ...
-> >  50:        318          0          0          0          0          0 =
-         0          0  msmgpio  65 Edge      gt5688
-> > ...
-> >  54:       3141          0          0          0          0          0 =
-         0          0 GIC-0  65 Level     gpu-irq
-> > ...
-> >
-> > Instead, when interrupts-extended is removed/commented out, I see just:
-> >
-> > ...
-> >  53:       2404          0          0          0          0          0 =
-         0          0 GIC-0  65 Level     gpu-irq
-> > ...
->=20
-> Hm, that's odd - I don't see the irq handler being registered anywhere,
-> or anything requesting that name. Do you have out-of-tree changes to that
-> driver?
-
-Tested on linux-next without changes to goodix.c.
-
-> Konrad
+On Wed, Mar 11, 2026 at 08:37:07PM -0700, Jakub Kicinski wrote:
+> On Mon, 09 Mar 2026 18:55:20 +0100 Jan Petrous via B4 Relay wrote:
+> > The stmmac driver contains similar pattern for processing queue-based
+> > arrays, ie. interrupt lines, etc. Factor out the for loop and provide
+> > a macro STMMAC_FOREACH_MTL_QUEUE(var, limit).
 > 
+> This is macro is neither shorter nor more readable.
+> I really don't see any benefit here..
+
+TBH me neither. Or, I see only "descriptive" benefit, what, of course,
+is nothing must-to-have.
+
+I will prepare v11 without this.
+
+Thanks.
+/Jan
 
