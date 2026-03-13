@@ -1,184 +1,209 @@
-Return-Path: <devicetree+bounces-275017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275019-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oFp5CWbOs2mBbAAAu9opvQ
-	(envelope-from <devicetree+bounces-275017-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:44:22 +0100
+	id 0HS0GvTOs2n2awAAu9opvQ
+	(envelope-from <devicetree+bounces-275019-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:46:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 882E627FE56
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:44:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9C3527FECD
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:46:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EEF503175376
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:42:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C4373302AC36
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:46:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1C4E38425D;
-	Fri, 13 Mar 2026 08:42:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44D67351C0D;
+	Fri, 13 Mar 2026 08:46:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BHBsCtvP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fG39ZvNl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4C5F384227;
-	Fri, 13 Mar 2026 08:42:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C46ED1F1518
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 08:46:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773391329; cv=none; b=a+pXCyUJc/G+jeCGQSwkgZDhFSokGyP/xdoTzBKwCrqomsDlqJ1ngwHxRCkZFngW9Cm3d7C+0JZFwexh891L1pz99Q4pWNQb69kNPpMBnbo9O89MVFxtTjeIzdmwTp1/Gkbddu9Y+Zg+iT4zheuEUEGWPiy3g04ws9YQ4UrtSM0=
+	t=1773391585; cv=none; b=KfKXhAfj0HAmpxD8hxpSM3CmSWsBbFtUHypzHvHm0D0KiAaIdLfyO0uK8KprZnArr5JqD1nv3sqlTdohkOxnB9CnFYJ/Ox3Ckjej0/SXOc/CciKPOxvnn9TJLtAkPIXpRa8YYheltlPQPA2RFFRQqSukrGeY77n6FCOlZqDBvq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773391329; c=relaxed/simple;
-	bh=1BGpCFeezFhYWThtfEkwtt5+v6fPLutlyZCa8gT6haM=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Bij5CkmYOlpoPMcePhJfWs+T/2tRCmwNN5/QDu5QYhxsAlO1+2Q8lXs5VhONTdclDpC85BtYhzr6sB3Eu7x/XV+oPSVPvhElcj0YFHtgifftHKruqKJDZ+hvBmrAWk5cd82aR8I33nUnHLZTzVfQFKpSm1WWQNVNZEDti62nSRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BHBsCtvP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13CCEC19421;
-	Fri, 13 Mar 2026 08:42:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773391329;
-	bh=1BGpCFeezFhYWThtfEkwtt5+v6fPLutlyZCa8gT6haM=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=BHBsCtvPZGUOZKxyjIbGdZfzprFOY6igsPFbzZs2W21qn4PvAXlvHc+ZsY2M0q4Wt
-	 0cHmXOCSQIqzO9RqS9631sj6RwRGlWtDBHxVJg8t7yYfZE8WgYnWoFiiUgqd/lJvKj
-	 J0GpseeFDnxbVLC6IeKGQ4FaBOYfjgVGYa9CU7IWFOxv57AN0/4UlC3PhllJDeLAHx
-	 TG5f2UZE5w9TcElGFWUOfwNl8M0GvkNJnz5taXKt+rUtPBrfOHsAv7C0k45fcxajWX
-	 TnN1lcIdlYRXs6u2zmlMeinsqblzma0YTT4NPsNWY4rHBilIuwCRtptghANQhomfb8
-	 7ouhKp4aEcoDg==
-Message-ID: <ea1c0d7d-3698-413b-a15f-72ca8c99802c@kernel.org>
-Date: Fri, 13 Mar 2026 09:42:05 +0100
+	s=arc-20240116; t=1773391585; c=relaxed/simple;
+	bh=siaWA9fambhLhdRJMuYrNcsuGhtY/HuCITcJEe7nDa0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HGKGfGtKsiJonli1a8dLM8obvUSgRgZS3VO/1EMcePcTNu+PEEW/gVWxeoC5leZxKsEYKgvyiM8HhgsOtF143AoD185phHNbk3I7L8DjF00LFPBizR5lq+uFnSVd+VqXrCnycB2nPxJtNgPBJ157YDRCgKJziTUwvJLVqV2BiSM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fG39ZvNl; arc=none smtp.client-ip=209.85.219.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-89a00e8dc04so18920806d6.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 01:46:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773391583; x=1773996383; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7TviLKLZnSD0EBSvZ7PGeEHJcczKtDOcwFZJjbpr/G8=;
+        b=fG39ZvNltJtdhLKk6rXeGPKycq9xDzNxaIatUcGOonHwkZk7bX60LEdCVeor6dKX9+
+         6NozrpI22+40n1qxaW/2kfjQ3BUPS9U9Hx8TYkR5CoOVGoqgmSah////rP0OGmHVjBHf
+         W+NOvOpYES/bCqQYdZXM0F43MlXAbpGMRuEHHsVAkOBLlFtd31aEqhD/uGw1B4tUBmnb
+         UNEJump8KJNv4oRKYGYsHeMhNo+y+38fXb7UDcq9ukJlfxWwYqcuwmYtFE8BIyPDWJW8
+         q9W6F940C8q1NzTHkXTLTIMdMCoGSsKIsHs00YS/zUydYI6DcykCMcVxN+XUz021mPuE
+         8isA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773391583; x=1773996383;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7TviLKLZnSD0EBSvZ7PGeEHJcczKtDOcwFZJjbpr/G8=;
+        b=o1++kZS1GsVHST/nVnoDQWBWCHGDzD781RMT2BAlU9QgG3XnjJKAW73oCicKpJ8tLS
+         OOwhNImt1LKKzI3qQhldyf5OPZtlJomYdVLz4y2Qw77P8qJiOGPlgFU31TOZ4L0nZFpA
+         TPt8SGzzgz+LtBxQooiFmmV7UA7aBuf4OL2nLtq+ExEAWT6Pr0y8fysDI6BrmvZcIFeg
+         UmWi2+CD5x56Kgh4KAqgvpwwqL6HnZmngXp811r2A0efDBffWfYjK7VgnOm5qRCZD2at
+         ZpekgY8UlPTVt2W+ccUyhhHKbqdfhcEOerhky5t2WRpj2bxxVrYwHKmvTE+ZoJWPpdL8
+         Y0dQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXT9afhP6Bway5S/ZOoZAwmSYS4BaCG7QxRaKWU8hq5Q0IZ5SeeIYLox+402cInvgzRT2R57cgfcuIl@vger.kernel.org
+X-Gm-Message-State: AOJu0YxW1iqG/9XeGFQYkd8xGS8aFNSt+JYRX5KMSvp1ZX7BAzHlkDo/
+	MQ2JXkwOXaLTG8fjAH82vuMI58rD6RdbWprCXs8bBCUdqQV/Kyn19ZSD
+X-Gm-Gg: ATEYQzzcUOyWvlzOopD11DGAelRjYsNkuduCGGE1p1oDR3A7sY3ifPpCoR1aMCAjzRl
+	5i+vFdK9X8kkVDUewhMq5wHDNrt+T9RqMvHLs9v6wURTsikqgzNRyubkVhx997ciM0qFInho7+x
+	2xUqlhGAaK94qpKBtfQTCte0vUrQjiH4MkaLy83CYwfN+buu1fooSgm4YOCpLcnd5xVtthqTEp5
+	mWgYpOnpJvXUAug24yBj9n7tNdf0Nj9tEog2dyNiB5VcM9Oy3KBdMR5CWef42fmWiqSi0uNRZkA
+	YXCnNrRoYG9Prb1eiLbM7arsALpGBmgiOTiElbeONxFIewD0PIOJ1vr+Mu7/ACoNL+ixJZK5zW6
+	//zoLrniy+etg+GTX0QmOZlLUH44lOLkvOx5kr8NDZgXnsX3xlsduXUZ7xNYGz2eLMc2Kdch0yQ
+	76IGU0XzOV/Bo/HvezeMGg/IcYB1xhC7jU/xo=
+X-Received: by 2002:a05:6214:c41:b0:899:d6d2:4b96 with SMTP id 6a1803df08f44-89a81f730acmr40516186d6.34.1773391582639;
+        Fri, 13 Mar 2026 01:46:22 -0700 (PDT)
+Received: from m91p.airy.home ([172.92.174.155])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-89a65beb131sm50142206d6.13.2026.03.13.01.46.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Mar 2026 01:46:21 -0700 (PDT)
+From: Bo Gan <ganboing@gmail.com>
+To: linux-riscv@lists.infradead.org,
+	samuel.holland@sifive.com,
+	david@redhat.com,
+	palmer@dabbelt.com,
+	pjw@kernel.org,
+	gaohan@iscas.ac.cn,
+	me@ziyao.cc
+Cc: lizhi2@eswincomputing.com,
+	hal.feng@starfivetech.com,
+	marcel@ziswiler.com,
+	conor@kernel.org,
+	kernel@esmil.dk,
+	devicetree@vger.kernel.org
+Subject: [RFC PATCH 0/6] riscv: support EIC770X/JH7110 noncoherent devices with XPbmtUC
+Date: Fri, 13 Mar 2026 01:44:01 -0700
+Message-Id: <20260313084407.29669-1-ganboing@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/5] arm64: dts: qcom: Add AYN Odin 2 Mini
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Aaron Kling <webgeek1234@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Teguh Sobirin <teguh@sobir.in>
-References: <20260311-ayn-qcs8550-v2-0-e66986e0f0cb@gmail.com>
- <20260311-ayn-qcs8550-v2-3-e66986e0f0cb@gmail.com>
- <20260313-romantic-spry-badger-7d7acc@quoll>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260313-romantic-spry-badger-7d7acc@quoll>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275017-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-275019-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_NEQ_ENVFROM(0.00)[ganboing@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	PRECEDENCE_BULK(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
+	TO_DN_NONE(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_RCPT(0.00)[devicetree];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,sobir.in:email]
-X-Rspamd-Queue-Id: 882E627FE56
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C9C3527FECD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 13/03/2026 09:39, Krzysztof Kozlowski wrote:
-> On Wed, Mar 11, 2026 at 12:44:39PM -0500, Aaron Kling wrote:
->> From: Teguh Sobirin <teguh@sobir.in>
->>
->> The AYN Odin 2 Mini is a high-performance Android-based handheld gaming
->> console powered by the Qualcomm Snapdragon 8 Gen 2 processor featuring a
->> 5-inch mini-led touchscreen.
->>
->> Signed-off-by: Teguh Sobirin <teguh@sobir.in>
->> Co-developed-by: Aaron Kling <webgeek1234@gmail.com>
->> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
->> ---
->>  arch/arm64/boot/dts/qcom/Makefile                  |   2 +
->>  .../boot/dts/qcom/qcs8550-ayntec-odin2mini.dtso    | 147 +++++++++++++++++++++
-> 
-> NAK
-> 
-> overlays are not for boards. I think I was clear in the past.
+Starfive JH7110 and ESWIN EIC770X both have non cache-coherent
+peripherals. On JH7110[1], GPU/VOUT/VPU/ISP are routed to the sys port,
+making them not cache-coherent. On EIC770X, all peripherals are routed
+to the sys port, and none is cache-coherent. To make drivers work on
+such platforms, the standard solution is to use Svpbmt and map the DMA
+buffer as uncacheable. However, neither SoC supports Svpbmt. Instead,
+they map the system memory twice, as cached and uncached. The uncached
+alias implicitly applies the uncacheable PMA. To support such platform,
+a special form of Svpbmt, namely "XPbmtUC" is introduced in this patch.
+It's a synthetical PTE format where a single bit (UC) is controlling
+the cacheability and the bit position can be configured at runtime. It
+is intended to model the physical memory aliasing with minimal effort.
 
+On JH7110, it aligns perfectly with the HW, as the aliased UC region
+happens to be offsetted by 2^34. Thus, configuring the XPbmtUC with
+bit=32 (PPN is shifted by 2) is all that needs to be done.
 
-Here for example - response to your posting:
+On EIC770X, the aliased UC region is put to a awkward offset, and given
+there can be 2 NUMA node (dual-die) with 2 separate memory regions and
+their UC alias counterpart, we instead ask the firmware to provide a
+thin-layer hypervisor to re-arrange the memory map. The XPbmtUC will be
+enabled with bit=38, thus map all UC pages to 2^40 (the upper-half of
+2^41), and the underlaying hypervisor will re-map the 2^40+ addresses
+to the appropriate UC alias regions. (See description in PATCH 1/6)
 
-https://lore.kernel.org/all/487e4605-0a21-48d6-8b77-9ce2799ad212@kernel.org/
+We chose bit 38 (PPN bit 40) to make the 2-stage translation efficient.
+Hypervisor can utilize Sv39x4 G-stage scheme, and map all pages as 1GB
+huge page, consuming only the first-level page table (16KB total), and
+several TLB entries. In practice, it's the firmware/bootloader that
+configures XPbmtUC through device-tree, based on firmware capabilities,
+and skip the enablement on stock firmware. This is tested on Hifive
+Premier P550 with the modified OpenSBI[2]. It runs the host Linux in VS
+mode, and provide the aforementioned remapping. The performance penalty
+(if not running KVM in Linux) is minimal, as the CPU is never switched
+to HS mode. A very slight, unavoidable, slow down is with the external
+interrupt delivery. Due to the lack of AIA in EIC770X, all device irq
+now needs to trap to M mode first, before forwarding to VS mode. The
+overhead of running KVM in such setup is yet unknown, and may well be
+noticeable, as all HS-qualified instructions will trap to M mode, and
+there's also the extra cost of flushing G/VS-stage TLBs. I'm analyzing
+it in parallel.
 
-I don't accept changing known and widely accepted DTS style to match
-broken Android boot processes. We don't take that downstream approach
-here. We pushed against such Android crap in the past and we will be
-pushing further, till Android finally starts working with upstream.
+I'm aware there's an ongoing series that Samuel sent for physical
+memory aliases. I haven't been following too closely, but if you're
+worried about it touching to many areas, I hope my series can shed some
+light on the problem. My change is very minimal and local, also fairly
+easy to remove if we later decide deprecating it down the road.
 
-> 
-> Please carry:
-> 
-> Nacked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+[1] https://github.com/starfive-tech/JH7100_Docs/blob/main/JH7100%20Cache%20Coherence%20V1.0.pdf
+[2] https://github.com/ganboing/opensbi/tree/eic77x-vspt-physalias-wip
 
+Bo Gan (6):
+  riscv: Add a custom, simplified version of Svpbmt "XPbmtUC"
+  riscv: alternatives: support auipc+load pair
+  riscv: apply page table attribute bits for XPbmtUC
+  riscv: select RISCV_ISA_XPBMTUC in STARFIVE and ESWIN SoC
+  riscv: dts: starfive: jh7110: activate XPbmtUC
+  [TESTING-ONLY] riscv: dts: eswin: eic7700: activate XPbmtUC
 
-Best regards,
-Krzysztof
+ arch/riscv/Kconfig                       | 12 ++++++++++++
+ arch/riscv/Kconfig.socs                  |  2 ++
+ arch/riscv/boot/dts/eswin/eic7700.dtsi   |  1 +
+ arch/riscv/boot/dts/starfive/jh7110.dtsi |  1 +
+ arch/riscv/include/asm/errata_list.h     | 17 +++++++++++++++--
+ arch/riscv/include/asm/hwcap.h           |  1 +
+ arch/riscv/include/asm/insn.h            |  8 ++++++++
+ arch/riscv/include/asm/pgtable-64.h      | 17 ++++++++++++++++-
+ arch/riscv/kernel/alternative.c          | 11 ++++++-----
+ arch/riscv/kernel/cpufeature.c           |  8 ++++++++
+ arch/riscv/mm/pgtable.c                  |  7 +++++++
+ 11 files changed, 77 insertions(+), 8 deletions(-)
+
+-- 
+2.34.1
+
 
