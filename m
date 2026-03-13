@@ -1,205 +1,200 @@
-Return-Path: <devicetree+bounces-275370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275361-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YGbAN64ttGlmigAAu9opvQ
-	(envelope-from <devicetree+bounces-275370-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:30:54 +0100
+	id iJPvIdwstGkEigAAu9opvQ
+	(envelope-from <devicetree+bounces-275361-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:27:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A62D3286050
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:30:49 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68C32285F05
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:27:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CEDCA308D767
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:22:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 486C5300B18A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:20:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 617EB3AB289;
-	Fri, 13 Mar 2026 15:20:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4BDB3AB26F;
+	Fri, 13 Mar 2026 15:20:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="M+SZhaXk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nplko2XC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011013.outbound.protection.outlook.com [40.107.130.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 196513AD521;
-	Fri, 13 Mar 2026 15:20:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.13
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773415255; cv=fail; b=EVJF9C3jDQPcyXwMkPKwWgmX+2oPwc3LPy5uHgz0FyWBS3/VR7eaKHH4zCT0ZmunqUgMZp0YGAL7j89De4O38b2O3wZ74zTchkow3nWn3/UpKXKEjWDYzv0iv2FcYQnpu9RsZ6Z6vcwzRgN4cOIAn43v0Mn1HvvfFeNv5qOvvRg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773415255; c=relaxed/simple;
-	bh=mOP/Lnp/6dkZOoBZfbCfK1135gnq+c6OllJLwGHE+Es=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=bU8IA92RotlRYonPzQ4LJF7dLxQnlUlGXaQY/a3jbtSwRxv0cqkvoZ1XtogQZ1kupNb8DFkHb75HodGOpoNU8qJsenduToKP6XsdebA5Pgrav7hPhFBrryS7OP39kbbG4a2/+egXoBOtktv7KqgmCB0JTKDvgYMpbBpYhDip+Ls=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=M+SZhaXk; arc=fail smtp.client-ip=40.107.130.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eOIEyZaK1sS0ccLegetBWe75FWPtpGs+YrCVfoRS5a+HzBKgKEFvteKkfn575tcbIW3N2zWN93mYcDIDekWzhFnKPjk1CvtwLeF3Ztj/twZ7kz2WycVzgUlYnK3nxsVQ4zj4glveR0jVwYBxU1wjdd3CmSYP8yiIcCFG+Q7VinTv1ft4RglwZE39la3GbiA0lVOgm13MwudtfD0VNV/xWjW4oWGJiUtYA+yJxP8z7rF+n2ooP/wjAd7PxWgGJAETTC1uerbfMnYO4A4UU6mR5ea3lCBWJUiaXI0BPqJ6kt/C+7vKemNPrYHKWesLo6qr5s+aFgTeKXdjMxhXQSDTfg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mOP/Lnp/6dkZOoBZfbCfK1135gnq+c6OllJLwGHE+Es=;
- b=Q2oKb7DlviU/8hwNEi2F7qcqbnrGqCqh2xpZIxF3EGwmElf9daNrRXBn0wl0ID+UUevGMMeO17dvC4cGCdoW4YRzmNIiprXYG1pD5rLRDhFJwFxPs4djEn01XChe/J0iELzxWM3t/KcsvuWlyf2W9ZxHr57XrEARAP+L1RCOgtoxuzuVTBBtQXNtKuXedJNkBCM3L6d2tRG0iY2MtMrtbpSEtgDaf5jzfVE/MJFX13IJHllgqV4UZvA+btQYBK7bsZexiFnJvLEFLo3TA5aM9hL0Nl3OcPomDyd4AyiSgis8Je0n483pYPIqJLrIteEmrNzZPqPMCwQRg5CPyUwgNA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mOP/Lnp/6dkZOoBZfbCfK1135gnq+c6OllJLwGHE+Es=;
- b=M+SZhaXkkR/vWiSjYUp5nZLS4ooUgKXAW7YQxN+dKyDK8w/bGWCb/i/R0fp3/uNUVZKSIghZpWnWhqKI6oZ76r0wRovtcq9SORAHQygz9szK6aHWVxW65tud9dSOwW3C6pCacCicPHVnuqoXvSnoK/vnuWvBmRFX3R8OfwmPZEmQwXfnlnm1c2Pi5u0CtnTvKEmRMDl9bBgy7Dbj4Vih1CZSxSSuuBSFESOKQNZaMeVfRveFjmj6OMX6tZxo1yv7asui47J1pLDs7X//9Jf6k7f1Wen7yUkq7Fex26Tuqx4C8phAmg1DsCKDOfzrmKV3Po476oGoPRBNeETU/wrxZg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by VI2PR04MB10265.eurprd04.prod.outlook.com (2603:10a6:800:221::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.15; Fri, 13 Mar
- 2026 15:20:45 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9700.010; Fri, 13 Mar 2026
- 15:20:48 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Frank Li <Frank.Li@nxp.com>,
-	linux@ew.tq-group.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: tqma9352-mba93xx*: Fix Ethernet PHY IRQ support
-Date: Fri, 13 Mar 2026 11:20:32 -0400
-Message-ID: <177341516342.72297.4793680692027111093.b4-ty@nxp.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260305111040.1899965-1-alexander.stein@ew.tq-group.com>
-References: <20260305111040.1899965-1-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PH8PR02CA0011.namprd02.prod.outlook.com
- (2603:10b6:510:2d0::10) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C3A43A6B8C;
+	Fri, 13 Mar 2026 15:20:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773415246; cv=none; b=QTBqNDEyoyLRNquo8Go2jAw4m7eDOOg16qcyBSfrK/EmNlj0fgaenB5YiOcvMAVxLLiLWrgHGJaHR74VKwvJWyt12dJtCwOAKIyjFmiZVdYNv9lqRkqycaMKbKx8zW4RRK9nVKESLdD/bLw04Mo5aDnE0QYQlXIe/I4WM9IFHIk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773415246; c=relaxed/simple;
+	bh=fA0XSaPbu/0YVoBoDhWzlwA8+Y4Naq/u9fbi/LssJ1k=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Ue9p0MGPll0oWDty+9HDxk1JtTRIwslSSGDCbCzeI8ZMbYo/jXh+0C3cIpTMIGaCG/CQtr3ZCBATN13i+q6C0CvMvDyECSk6T5bPx6M1LSpOZONrUdmqJUhh8HbXBXqGWIN2ZjwSKPNjpWLK6JXWMzgtlzk7zs0ujSU+hb9cYL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nplko2XC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 28715C19425;
+	Fri, 13 Mar 2026 15:20:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773415246;
+	bh=fA0XSaPbu/0YVoBoDhWzlwA8+Y4Naq/u9fbi/LssJ1k=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=nplko2XCiIw0eOEIC92USwdyGSA2Fg0nIOoiGXkClS+0GGcDaITXTw/4s2SkB6xC1
+	 Yn0hBJTP5168aC4S/Oks7jbRG/v+OTv9xWeNzALVrLmnfHO8RU3pQuxOS9girvnBjY
+	 nQYIjs9hQL/WJWdLlpI1suZhpem3lXXq/+w/nWMJbqD1ussnxvb9ltJtkRROAcK0bX
+	 /MN1TK4e9A19LV5+PzZ+4NNf+Y5daCd4/PUI/2UmpCWsY84HOTFEf1rKZybypaa8uU
+	 mCdXx8pIl0omLhBzUlzI9I0otdES+ZxnuvkEreb8QcjPwqvu95HpvajuSxyGOgsTRI
+	 SKpwmyHMePZ8w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 180E3105F797;
+	Fri, 13 Mar 2026 15:20:46 +0000 (UTC)
+From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
+Subject: [PATCH 0/9] media: rockchip: rkcif: add support for rk3588 vicap
+Date: Fri, 13 Mar 2026 16:20:42 +0100
+Message-Id: <20250430-rk3588-vicap-v1-0-b3bddf749914@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|VI2PR04MB10265:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7438b03d-2df8-42ee-f712-08de81141a77
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|1800799024|366016|376014|52116014|7416014|38350700014|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info:
-	sqZAnUzmIGkZFIEAILIEB2O6z/Y5sTx7SPy0E7neDaTlgH3F6e5FojpxE4yPCv8rJXrzlaJKOHM+IL3tYnAgHQdWG6iswN8WUa3qM9+8Leij+Rox1sMqTj0AogulRdTGcengQLHhI++zm6njeBlBRvH7GsQEDeaaFKd9aV5vwUJbkFoNcsyW+Dh7aoTQ5JUqzaRZZBB2/llQHS8rxXytyEu0WkqWA5V2B8mggiIXE92fnXeBJMyOMTb/b2ny/dKEjjsnXtdpo9HTov4hfu2yx8yTCCuHjfz6OZ5CX3t8CoUG5/JaNCJnuLe+JO2cbgAVhQriDbvPNh89u16UBPl0aZsijyeOTvjCl4rsE8Wm8U+rwZhEwzS0npxeWMkPkXpT60V5XU2UvmNKnPqMpb/i3e8ePXbIU4UXxklErmRsBo33LMaIjg7SdeljIDcsSdPUppp2yHO2/APkA08keXZ3dkmATzEN2YcQNCXQyPeO4Al4ItCEQHWzwtH9iWDVHHSGVSRCB6WDdyHmsoMfi5B7j4617/4xSajOXU2DW6Y3yg1nGckKcxY5VmqdT1bqD7s8RdhIi3lC/RqHWHRhvcjo9T3875cbJYZylyY0eduhjJI35VqPMTT0E8JNyRm1uNN7ocoJ+xMeEbyDV//UNywk4Kh3Fw8BiMEv+Lkh2euiGwG4Lcbr5xOEbpVyg3YIMJDxF9QXd7asQElNSDMwlQoLGyDklUdu30CmkFffiC5EwNas4SojbVpcyIwETHBvKyeiqEAeoAI5xZbtT/0jzeVbYgy1tL/6+LJQh0aubzBG/qA=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(366016)(376014)(52116014)(7416014)(38350700014)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?dXBFRFVJdlFZQjlEaVVuYkt0c0F2Q2VibHBTSmJRUkNTU1dleDlGWEt3UWlB?=
- =?utf-8?B?MStlamhHcVdjRUtnT3orcTEvcG9EdG9EaTZBdnY4TGlaWGdpWE16SkJtOERs?=
- =?utf-8?B?bUJLV0QyTVBuRStRMjRtYlZ5bEpreWNidTkwWlI3RTl3MXptSnRIR2hNcUlp?=
- =?utf-8?B?TGxPRHhaNU1JK0t4dXpLdStNb3JxS2lYa3RlbmRsYkRkTnBVNjVYM0FsVjZH?=
- =?utf-8?B?U2lyZk5BdUFKUjg3aytWYWNsdzV0OG1pNUJHUTkyTjRqSlRaSGZxZVBqdUtT?=
- =?utf-8?B?WjZMMWVxeDdHcFd2YVNHKy94Y3JDUzVPTUxLQkxXVkE4clJzNDdYeFlGTFpX?=
- =?utf-8?B?VmcvQlNVdmdGWEZSWFR5cE1FUVhyTGRhbUtibEdBUFZuaU95UGpkaC83ZWRR?=
- =?utf-8?B?bE5uRDNVdWhHd0dtaTJOWW9pVWJrRW4xQWc2ZmhuTmpYRGhIbEVSQmloN0dW?=
- =?utf-8?B?VGRzQjBnY2xuanpLd3hsVjZkejJ0bTNYUUVzNGJ2NllwYzhqcndZN1YwRUJK?=
- =?utf-8?B?eGZyemM2dEprV0tkTnBoTGZKTkVCaGxPYmhDSFZNTTlRdFhUMnVRamx3cnd4?=
- =?utf-8?B?NndFWGhBcmsvaUY3MUtSQUtKdmg4OEcxcm9FS05GU044bGpwVi96bG5LZllv?=
- =?utf-8?B?T3ZmWkltVExpWkZHWGVBQkF3aC9jNEx2SUpoQWx5amgvWGdRS1lXTytvdDhP?=
- =?utf-8?B?NDJIMU81U1ZSSW5wUE1WQytHdHZQblBHYW5RK0hUQVRFTDYzU1J0aDRaUEd0?=
- =?utf-8?B?WGVRWURDanNjQ2d3ODUwTEhxSi9SaXZXUG9IdFhGY3prQXlBZ0NmeE9KbElR?=
- =?utf-8?B?cG4yaktaR1k5MXVNalg2bld0SUxvY1M0Q1krVTB1NHFtdURkZDh5QmhDWExL?=
- =?utf-8?B?alVlSFhsVUYxVllsMm90NEw0MUE0VmhLY0MyeFNOcFJEUk5Yek10KzVieFJl?=
- =?utf-8?B?aVZMNjhreUtRRDBrazF0eWlRa0IrUkh3T0tNSEFiVVRDUGM0S1phR1BrTURw?=
- =?utf-8?B?VmJHcWVEdXZqZUFScFlkVUhLNlZmd1JnWTZENmhOQWRLZE5zYVJRSmtKa2RP?=
- =?utf-8?B?Q0VSSGUyRC9JZmJGQnZNODUzcmpuZ1lxUkRlMHZWVXFsSSs5SVJDbnVyWXRm?=
- =?utf-8?B?cW80bmg1NEJsN3k0TkRpQTJudnQ1T3ZSaGdhdW00b1huSGhzbVhqOTlKMDl4?=
- =?utf-8?B?Rmcvd2Yrb3I3c04zQlptdkNHNnBxeXlMeGlwcWk1WEpISVlaL0MvNHpwRUp5?=
- =?utf-8?B?SDl4VmdKcEdCQ1FEbjdUSE9sb0ptc3k1cHNQZ0V6dWZ1SUdaa1lwb0k2L2Zu?=
- =?utf-8?B?dDZmZGthQzZEOUN0dlJCYnVzWTBHRDJxR08yb1llNDNYbFVFOTBhbmdsUnEv?=
- =?utf-8?B?Tys3ZEoyTWhra0MwOS9tRTA1ZndFdld5OVIxa0g0cit3aHQ4cVpNTmcwS0xa?=
- =?utf-8?B?d3YwcEtRMkM1MDZTZzRhdTN0VFhhV2tFQU5uc0JtQmNaOUJiaXRnNWtXVTJ4?=
- =?utf-8?B?RXlrQ01qNXdXRk5vY0x3R1JtaUtsaFRrNUdGZzZiRHNWcjc5MUhZU2pSaDNL?=
- =?utf-8?B?RzlmUU9qQjNMYTYwNzZiMzBWcW92eW44V0tLR3FpOExhWVRQelFKdForN3BK?=
- =?utf-8?B?RXpGM3VQaFh4YnZBRWJQRm4xSE5PV2VPNStqQmF3OGR1aXpNU1I1TzBFSVVx?=
- =?utf-8?B?VS9xVmxvdytYb1ppRmZoOGQrK2xObmthY1hiOWR5UUdyOE1Ea1NPZWJQK2pn?=
- =?utf-8?B?dnFYNGd3SWk3dTJFMlZxQzh5RnlFNkEyY3MzZnllWFV2K3JYT29iNXpuZVpI?=
- =?utf-8?B?c1dlTkJuSjUySWthcy9WOXVSS1lsRTk3WFYvUi95TERyeDRGYTZoaElyTE16?=
- =?utf-8?B?U25aK2FKY3lPOVhwVGc5YTdBMFNFSzRuMFl5bUxSbjlRWnQ2UEtqSjhPZlhO?=
- =?utf-8?B?Vm9DTktsT3A0Q0t0LzQxbytYMHNXMDJ0TE1BOGQrelRDZDBHSzlSeEowa2N1?=
- =?utf-8?B?azlobUZWU29KNUg5ejJkcUNNKzl4TmZENDFtRk92WUhFUU10MHRRblc0QUtO?=
- =?utf-8?B?UWJHekdENjJtRjNENG9kZ0I1V0RIcElSMHhpWHY5cnE3ak56QkluekkvNC8y?=
- =?utf-8?B?Y1J5aUVjdXBNNUpaam0xZEFzcitjSlFJMHhPRFJ2ZUVOZk1YUTNYRjdHWTcr?=
- =?utf-8?B?ODVnUEMxajZsL3BJZWJIaFQySmlzeVJqWDhKeW1sdzFmaklSWGllK1BLSkhi?=
- =?utf-8?B?SW5LQUVRMGx0Q2E2dklOWk0zRGZrTjJpQXh2TDUwVlZzeHhpRk44V212cFVs?=
- =?utf-8?Q?5DUcA581jzvSNY6Ohx?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7438b03d-2df8-42ee-f712-08de81141a77
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 15:20:47.9629
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ML1J/7By/K3aenow2aLCyy4dHZjw9x8DW6IG/ehAYmsGgOfvr7soW1kedjxeNPKKVGw4XhowfI7Td7MKXWWPFg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR04MB10265
-X-Spamd-Result: default: False [1.34 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEortGkC/03OSwrCMBgE4KuUf20gb5NcRbpI87BBqDXRoJTe3
+ dBSdDkD8zELlJBTKGC6BXKoqaT71AI5deBGO10DSr5loJgKzBlG+caEUqgmZ2ekPZHcKUGVPUO
+ bzDnE9N64S7/nHB6vpj738oearpEcU7qT8iAHPbCoNRWRc1MV/B/ZNgJLIo8briTk5/GDnA6eW
+ s+d19FUAv26fgFrtVKh3AAAAA==
+To: Mehdi Djait <mehdi.djait@linux.intel.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Kever Yang <kever.yang@rock-chips.com>, 
+ Jagan Teki <jagan@amarulasolutions.com>, 
+ =?utf-8?q?=D0=9A=D1=83=D0=B7=D0=BD=D0=B5=D1=86=D0=BE=D0=B2_=D0=9C=D0=B8=D1=85=D0=B0=D0=B8=D0=BB?= <mai.kuznetsov.misha@gmail.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Collabora Kernel Team <kernel@collabora.com>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Michael Riesch <michael.riesch@collabora.com>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773415244; l=3521;
+ i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
+ bh=fA0XSaPbu/0YVoBoDhWzlwA8+Y4Naq/u9fbi/LssJ1k=;
+ b=R9TyBuoWMeuKHTcCTnYQAdIjt4L+FqBVAqLReZVZ04CZPxf7YF7WEkLaxO6+RTTc7EM95LdhK
+ MdjNRTJb8tDAzBAXlhLFCw43vJHfbbx7/tzAmcfDn1QpNvAAbX9M1AL
+X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
+ pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
+X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
+ with auth_id=371
+X-Original-From: Michael Riesch <michael.riesch@collabora.com>
+Reply-To: michael.riesch@collabora.com
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-275370-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com,ew.tq-group.com];
-	SURBL_MULTI_FAIL(0.00)[nxp.com:query timed out];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275361-lists,devicetree=lfdr.de,michael.riesch.collabora.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[linux.intel.com,ideasonboard.com,kernel.org,sntech.de,rock-chips.com,amarulasolutions.com,gmail.com,collabora.com];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:dkim,nxp.com:email,nxp.com:mid]
-X-Rspamd-Queue-Id: A62D3286050
+	HAS_REPLYTO(0.00)[michael.riesch@collabora.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,collabora.com:email,collabora.com:replyto,collabora.com:mid]
+X-Rspamd-Queue-Id: 68C32285F05
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Habidere,
 
-On Thu, 05 Mar 2026 12:10:36 +0100, Alexander Stein wrote:
-> Ethernet PHY interrupt mode is level triggered. Adjust the mode
-> accordingly.
->
->
+The RK3588 Video Capture (VICAP) constitutes an essential piece of the
+RK3588 camera interface with one DVP, six MIPI CSI-2 receivers,
+scale/crop units, and a data path multiplexer (to scaler units, to ISP,
+...). This series introduces basic support for the RK3588 VICAP unit
+to the rkcif driver, thus paving the way for video capture in general
+and for camera sensor image processing in particular.
 
-Applied, thanks!
+The changes have been tested successfully on a Radxa ROCK 5B+ with two
+Radxa 4K cameras attached to it. The raw images from the sensors can
+be streamed after configuring the hardware pipeline with
 
-[1/2] arm64: dts: tqma9352-mba93xx*: Fix Ethernet PHY IRQ support
-[2/2] arm64: dts: tqma9352-mba91xxca: Fix Ethernet PHY IRQ support
+media-ctl -d 0 --set-v4l2 '"dw-mipi-csi2rx fdd30000.csi":0 \
+  [fmt:SGBRG10_1X10/3864x2192 field:none colorspace:raw xfer:none]'
+media-ctl -d 0 --set-v4l2 '"rkcif-mipi2":0 \
+  [fmt:SGBRG10_1X10/3864x2192 field:none colorspace:raw xfer:none]'
+media-ctl -d 0 --set-v4l2 '"dw-mipi-csi2rx fdd50000.csi":0 \
+  [fmt:SGBRG10_1X10/3864x2192 field:none colorspace:raw xfer:none]'
+media-ctl -d 0 --set-v4l2 '"rkcif-mipi4":0 \ 
+  [fmt:SGBRG10_1X10/3864x2192 field:none colorspace:raw xfer:none]'
 
-Change both subject to "Change Ethernet PHY IRQ to IRQ_TYPE_LEVEL_LOW"
+and using e.g., GStreamer
+
+gst-launch-1.0 v4l2src \
+  device=/dev/v4l/by-path/platform-fdce0000.video-capture-video-index0 \
+  ! video/x-bayer,format=gbrg10le,width=3864,height=2192 ! bayer2rgb \
+  ! ...
+(or -index4 for the other camera sensor).
+
+Note that this series requires the RK3588 MIPI CSI-2 receiver patches
+[0]. I included them here to provide the possibility to test the changes
+without any nasty merge conflicts.
+
+Looking forward to your comments!
+
+[0] https://lore.kernel.org/all/20260305-rk3588-csi2rx-v2-0-79d01b615486@collabora.com
+
+Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+---
+Michael Riesch (9):
+      Documentation: admin-guide: media: add rk3588 vicap
+      media: dt-bindings: add rockchip rk3588 vicap
+      media: rockchip: rkcif: add support for rk3588 vicap mipi capture
+      [DONOTMERGE] media: dt-bindings: rockchip,rk3568-mipi-csi2: add rk3588 compatible
+      [DONOTMERGE] arm64: dts: rockchip: add mipi csi-2 receiver nodes to rk3588
+      arm64: dts: rockchip: add vicap node to rk3588
+      arm64: dts: rockchip: add radxa camera 4k on rock 5b+ cam0
+      arm64: dts: rockchip: add radxa camera 4k on rock 5b+ cam1
+      arm64: defconfig: enable designware mipi csi-2 receiver
+
+ .../admin-guide/media/rkcif-rk3588-vicap.dot       |  29 +++
+ Documentation/admin-guide/media/rkcif.rst          |  32 +++
+ .../bindings/media/rockchip,rk3568-mipi-csi2.yaml  |   8 +-
+ .../bindings/media/rockchip,rk3588-vicap.yaml      | 256 +++++++++++++++++++++
+ MAINTAINERS                                        |   1 +
+ arch/arm64/boot/dts/rockchip/Makefile              |   7 +
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      | 139 +++++++++++
+ .../rk3588-rock-5b-plus-radxa-cam4k-cam0.dtso      |  89 +++++++
+ .../rk3588-rock-5b-plus-radxa-cam4k-cam1.dtso      |  89 +++++++
+ arch/arm64/configs/defconfig                       |   1 +
+ .../platform/rockchip/rkcif/rkcif-capture-mipi.c   | 136 +++++++++++
+ .../platform/rockchip/rkcif/rkcif-capture-mipi.h   |   1 +
+ .../media/platform/rockchip/rkcif/rkcif-common.h   |   2 +-
+ drivers/media/platform/rockchip/rkcif/rkcif-dev.c  |  18 ++
+ 14 files changed, 805 insertions(+), 3 deletions(-)
+---
+base-commit: f6390408a846aacc2171c17d88b062e202d84e86
+change-id: 20250430-rk3588-vicap-9d164c8528a7
 
 Best regards,
---
-Frank Li <Frank.Li@nxp.com>
+-- 
+Michael Riesch <michael.riesch@collabora.com>
+
+
 
