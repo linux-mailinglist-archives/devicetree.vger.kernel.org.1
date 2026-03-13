@@ -1,180 +1,152 @@
-Return-Path: <devicetree+bounces-275537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275538-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id psr2IhpmtGm4nQAAu9opvQ
-	(envelope-from <devicetree+bounces-275537-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:31:38 +0100
+	id sMgvAn9mtGm4nQAAu9opvQ
+	(envelope-from <devicetree+bounces-275538-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:33:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF6E32894DA
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:31:37 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0448D28950D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:33:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A16023070355
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:31:36 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 058B6301731A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:33:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEE313DEAD6;
-	Fri, 13 Mar 2026 19:31:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3B063CCFD1;
+	Fri, 13 Mar 2026 19:33:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k/6zInrm"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="fJTnOia1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8747D32D45C
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 19:31:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.170
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773430293; cv=pass; b=FqgvlpwxwIAvbP4yLAeUAuRrD3uT0ihiSWUNdrUS1YYqSzAcEyjaMZ2UDnSe1NAh47//njLm+tjQ0+NyfIpSRZf19UJWQ0F8KJ9zeMPlg/T/ZjhNgr/zM0Rsxh1vxlvMBa5bO5iHDIVluStKeATPr9Z2708atxHaOOGr944Xr+E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773430293; c=relaxed/simple;
-	bh=7qk9o5w5pN/whF6xyjkdP2hsByxiZCU1yFYz//xI0dw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fbZvYORmiq0G5DR4mGERvugxi0WRvKtGVurjSV4Fx8iy7Xg/qAsznQkhnXI2rzi5CwGRnYEihUb+aYEYCpW2EQwMFqUFF6NKlFlhwU22/jwb2u2bzAKK2Vc97xwbA18TWm5ZEtdRNy+7vboKuJezQq08ew30+GM2QhPeSwgezVY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k/6zInrm; arc=pass smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-38a3066b68bso24032341fa.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 12:31:32 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773430291; cv=none;
-        d=google.com; s=arc-20240605;
-        b=JxOzBzGGv/3gcvrhd1dn8MGxcEWB01pWPb4BCnIFvbVYrnbvd13NWnoAUzDRXTvlu+
-         LcSU6Ii7Wmg7qErOoHbjeHO8b/Fgl2/Uiu7usumCAv5xKZaMEGWC2XIiHKYydTtq5eod
-         5Ar3GRxr6q7kXLSFCDoSS7GqbonQFXvWPfAxFDRdg3RDFJkcKYKEICucN4SierB01i2m
-         ah/iJT3WxmZRknjfcs+fDwznZMrlhxTzk9O3UuTBtkgXsmvb3IafcJi2xernTPHBi0l7
-         8Xz2Mv1NeZ+NAMUx4k51eNJXMUM+3Y6CjlTBvRqPL806ILwey/PGepAgs1jd3eIbYnDt
-         kCaw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=7qk9o5w5pN/whF6xyjkdP2hsByxiZCU1yFYz//xI0dw=;
-        fh=J9vOx8qJ5k4i/nNex/D6nKwmhoWDTzww/D6uBDdzOY0=;
-        b=ijeolhnhEgYXGERHGBHfC8wsbeR+2EJiw24foZfOqulFApTel34HEXbGAoK37NeJBv
-         kb/f++BgY8PQs8DpGA2CxFJ14hql4R1dgvhGEQQ6yA2X6nX0Jxb586KVN8+stgTmn47W
-         dKq9u3KvnoPWAKIfEjql8uEwxicM/CkrMQV0fIltP8xdRA0uhBYrQ+U2C3AqZ7D667vs
-         myDL5QJ2WVrNoa2RTqBkFT7VUAJoQJ1Y/Vf89pwswWu/LzN8CKh5DHKXbnVjPm+hVpRU
-         cHRuXa91mKMojcnTOJ3NOEkt/j+0zdBwhlHFGawhXAxOUuSHnrDbCpkgJkY/g5ltxttq
-         JfsA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773430291; x=1774035091; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7qk9o5w5pN/whF6xyjkdP2hsByxiZCU1yFYz//xI0dw=;
-        b=k/6zInrm5mxO4+N+QlxsMCqDdgyyNi/LxEdxUf6BQTSEJMNBL49Oxh6zpwY1JiKZHu
-         jT5d3nb9FjzNWtK1ermPvSEtnWGw55lPoUubmnCw5YeE04yL0tC4nO342neVyHg4hZ/D
-         nN+2cFNGnK36g/k9Fxl17iVJMBR1T0LHlCrXGLkDNfLmhmyePkEeHdtgYeNpx0zb0OCM
-         WubRTgXUh2Ha9SHTqEFsOtLTqitxrv9d8cUAjcxjvACxDqrQ4XVouoAwD9UGvrTr7ugk
-         5DzFriUfusmHrf5MLuS0R10n9uiPJf9sqI6k2yHC5Vqj22HzjLyTHYniMJFhCrp1m+3o
-         EeIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773430291; x=1774035091;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=7qk9o5w5pN/whF6xyjkdP2hsByxiZCU1yFYz//xI0dw=;
-        b=aGj3nIOJ516WxbFgO2ePPWWGza9XcRulYjBfsI1hOrvfxi8N0X1JCDGOuAjfdhLwbX
-         egk6I++CYJd5hWbT0s49zg7gL24ib8R9SEPJKKxTbNo+siJ9WOdRYbBj+3khnN7AOIC0
-         tv6ofopkaOBvawmTwYIIKbzwlE+ec10glfn6BtSyblV2CagjGWLcqv59lO4fWqu/vbZ7
-         /lQBWCLSYvO1eu6yL0yZNMDNAHDYKfPzPnUN+FaMm6HU7GIOnN9SG7TXnX9/03iMpZxo
-         Q7/hHY7mwV87UwwOLOX20xZniCvv7oAXqO+VAtthG5vRYTcDZvwde7Rd2MKWTknrksep
-         UIQA==
-X-Gm-Message-State: AOJu0YyrH3locg9dEmT8InwVkQWO/t2nPJO6qNHgZTEB0y7ZTePREtEb
-	0rKVwzXzH1YLcs/C/aHcvWy965VzPGiHLhGonOSklwjEbidbVV8nCsrz54xSH5v92Zni/6WikUl
-	H4EshWLiHCrk1tljWYWtX1ZmzSoH4C6M=
-X-Gm-Gg: ATEYQzwXAhQp2Q+uVsb8XVq0pXHT0M4dxj78bz5yrpDXxL0HukrkzE+CA9Mq5ft696w
-	0t9JfjIgttvpLRZB3LOuG9fijOBalaiha32dE6Q1nlvX/gJ6QTORG+1umD5nMXIrM0HGs6GTDM4
-	kA5WfmFl+0KjA62+pHJYGiDdKWwwFL/bOsolJOm6ze+5teh8U7N9acfFqcFjCgpuzGTRvfWX/3s
-	n69OasV/fCtT7i+i8P9/CTKbVxjwuPUc++o3gscrZHXmjgKE1bO2DUalgWZIERMpITnZmWHVAA9
-	Q1tnIntVwr50Z0Btc91pr+af49hTZ+jEg/cygRSs/C0gstLqDTo3LICCowvqoAbh6HWgPR3ncAg
-	DJHnUSa8=
-X-Received: by 2002:a2e:a36c:0:b0:38a:1a50:d843 with SMTP id
- 38308e7fff4ca-38a8981c174mr11402461fa.36.1773430290368; Fri, 13 Mar 2026
- 12:31:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 702CB36308A;
+	Fri, 13 Mar 2026 19:33:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773430391; cv=none; b=Ye1uON8wCuarn+nPqRtVHSu8yXdM+m0hZ8Uy4Zo9lKsND4aqSSOmytZd/EaX30iyhRYlVYUUFAQiKQY4ignT/xu+K+8FlyGF2SmU5Xsdz6jDMQpSTekNvvzTlWBRTwyfm+T6yDd/KBPp4h0pqb5BfctPtO+e7AmUHu90WrM854g=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773430391; c=relaxed/simple;
+	bh=ojwFUsM/iT2lF91PBJe00tHmWNmES2FQ7zwsljgOW0c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ajd4TXm0nLJZwZKwEtEEYoenfhyf1eMrIQa4GI0r7niEykMI3yagtN+UAdPE6QSvgH+50MYvdbZ4VXUq8VUe1xy7ewwrYYN+brrVsreEO5hmB8pJ7XpPWYzLK7tjqcxY0jgrj21R7WTf6nrLjfvxO4+XfHXY7+fzlsRPc3nfx0k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=fJTnOia1; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1773430388;
+	bh=ojwFUsM/iT2lF91PBJe00tHmWNmES2FQ7zwsljgOW0c=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=fJTnOia1iWfEb5R5IrGx6ImRr+cbw44K2coEHIRJfQJVVCEG/9dTLaulsPB3ySHrd
+	 OaqAye+2edYmHwHzbrsk2DtjHYriPjSPliLolsWEwMqwDWeKGoUg0szX2NacwxZ6mQ
+	 qshwzzUipEZ+T8itCDjAwcw8d13z/EseNbsMaUV0NlyW8o2m8ds3la5Bu4RavQygCq
+	 1VTj1Ey/RqBnfZAVcDDfpRSLBOFHbCTywurcZX1giroewPM6FlW3987mLvKdVgeLl/
+	 C4HluG8U5XizyTTgX2G9arOACRTrP89M037pn2hPY0RH6BIop7SXhiM7iaqyeFtUPY
+	 18LBNEYlawiFQ==
+Received: from [10.40.0.100] (185-67-175-126.lampert.tv [185.67.175.126])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: mriesch)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1E40217E0222;
+	Fri, 13 Mar 2026 20:33:08 +0100 (CET)
+Message-ID: <1f9942a5-e63b-4f44-87b6-5153f7ed72b7@collabora.com>
+Date: Fri, 13 Mar 2026 20:33:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1772898346.git.stefano.radaelli21@gmail.com>
- <7c84625f82c562bb9cd2b455465d63a1a25bf19e.1772898346.git.stefano.radaelli21@gmail.com>
- <CAOMZO5C+USp34WQ9ap+N9ha6EgU7JgsYkRsLEW=ZdizbkMQvPA@mail.gmail.com>
- <abQ_d9fGarNobYdo@Lord-Beerus.station> <CAOMZO5BnuGc8sddmfhKJhFgWa+K2gExeRN5097794j48+Dw-AQ@mail.gmail.com>
- <abRDxRK_GFYwmAGE@Lord-Beerus.station>
-In-Reply-To: <abRDxRK_GFYwmAGE@Lord-Beerus.station>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Fri, 13 Mar 2026 16:31:18 -0300
-X-Gm-Features: AaiRm50pUUd5PlDELi1jeVhIygeT3DuOuUYNivL7Ni7NnylRuT23VDH4JhtqGGg
-Message-ID: <CAOMZO5A7XJL8TFHZJAgJAV=yHzqHEb4+AyDEoiBR4Zas3zMisA@mail.gmail.com>
-Subject: Re: [PATCH v3 06/11] arm64: dts: freescale: imx8mm-var-som: Update
- WiFi/BT with variants
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	pierluigi.p@variscite.com, Stefano Radaelli <stefano.r@variscite.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: rockchip: enable vicap dvp on wolfvision pf5
+ io expander
+To: Heiko Stuebner <heiko@sntech.de>,
+ Gerald Loacker <gerald.loacker@wolfvision.net>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <20260313-wv-io-expander-vicap-v1-1-11001fb3b744@collabora.com>
+ <6246776.lOV4Wx5bFT@phil>
+Content-Language: en-US
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <6246776.lOV4Wx5bFT@phil>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275537-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275538-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[festevam@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[michael.riesch@collabora.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BF6E32894DA
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,collabora.com:mid,linaro.org:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,wolfvision.net:email]
+X-Rspamd-Queue-Id: 0448D28950D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 2:05=E2=80=AFPM Stefano Radaelli
-<stefano.radaelli21@gmail.com> wrote:
+Hi Heiko,
 
-> Thanks for the feedback!
->
-> I might have misunderstood the best approach here. The reason I split the
-> WiFi/BT configuration into separate dtsi files was to follow the directio=
-n
-> discussed in the previous revision, where we decided to keep support for =
-the
-> legacy Broadcom-based SOM while moving the configuration out of the
-> device tree, giving the support for both modules revisions.
->
-> However, I see your point that if it is not referenced anywhere it become=
-s
-> dead code:
-> Would it make sense to add a legacy Symphony DTS that includes the Broadc=
-om
-> configuration, in addition to the current Symphony DTS that uses the IW61=
-x?
-> This way the existing boards would keep working while the default board
-> description reflects the currently produced hardware.
+On 3/13/26 19:19, Heiko Stuebner wrote:
+> Am Freitag, 13. März 2026, 16:53:29 Mitteleuropäische Normalzeit schrieb Michael Riesch via B4 Relay:
+>> From: Michael Riesch <michael.riesch@collabora.com>
+>>
+>> The Digital Video Port (DVP, the 16-bit variant) of the RK3568 VICAP
+>> is broken out to the PF5 mainboard expansion header.
+>> Enable it in the device tree overlay for the WolfVision PF5 IO
+>> Expander board.
+>>
+>> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> 
+> The From should match the first Signed-off-by line.
 
-Yes, the idea is not to break the old boards with the Broadcom Wifi.
+Hmm... First of all, the Signed-off-by line is correct, this patch stems
+from my WolfVision era. But then with the .mailmap entry I created when
+the era ended, I cannot set the patch author (and thus the From line)
+correctly.
+
+Let me try again without this entry...
+
+> 
+> All later Signed-off-bys are from "other" people handling the patch,
+> i.e. that other Michael Riesch ;-)
+
+Yeah that guy's pretty weird!
+
+> 
+>> Reviewed-by: Gerald Loacker <gerald.loacker@wolfvision.net>
+>> Tested-by: Gerald Loacker <gerald.loacker@wolfvision.net>
+>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+> 
+> 
+> Heiko
+> 
+> 
+
+Best regards,
+Michael
+
 
