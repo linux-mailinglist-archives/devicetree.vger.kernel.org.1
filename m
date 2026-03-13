@@ -1,573 +1,157 @@
-Return-Path: <devicetree+bounces-274807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274808-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KImwLshNs2lGUgAAu9opvQ
-	(envelope-from <devicetree+bounces-274807-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 00:35:36 +0100
+	id cH5PKwdVs2mzVAAAu9opvQ
+	(envelope-from <devicetree+bounces-274808-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 01:06:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 328ED27B48C
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 00:35:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00E4A27B660
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 01:06:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C01CB30117BB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 23:35:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A32C03037E5E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 00:06:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0D053FF8B7;
-	Thu, 12 Mar 2026 23:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F6F8BA45;
+	Fri, 13 Mar 2026 00:06:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="RmfNlTEe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OLiCTbuI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEDC43D0921;
-	Thu, 12 Mar 2026 23:35:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ABF58C1F;
+	Fri, 13 Mar 2026 00:06:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773358532; cv=none; b=QGe5eVPv+DrB5no1TalVNeUly0q8K3uMlmR0O8qZVK4Q7ic6uC9fjoHkrxtDFtGLMG7DO+heL4KV3+GS1Ra+e0/mLo7rLlxG7PGdEvJ+hgAoKUJdQgMskf+eo2HciQEUwaqAlZHBOVtQHXMOrD8DY1w2ulDVQswHE/ExzYLQrzY=
+	t=1773360388; cv=none; b=FBZ0WThOORsQEpU6ftmskebI0MWyQlVTzkNvpKrtbxoxvrG8MVOFqKBEQ5LRt1yydcCS7lkSCfdMxpFwyvSadGaOieUp3fPcBSJ0fXYQiwongEtvAVxf/reyONPAipaIM8oUu1Mg1vv3lQQ5eOhIhceeq+WFW40RzqkbKgjClHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773358532; c=relaxed/simple;
-	bh=JN5suotbGYC+QEzWbKSMxvnOQoNx3yaMGS6pK5clv0s=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ulHUkfSI0MeILENG4zKrN9BLfnQSE+D7yClJ8uJfyMMrOQDriqss77LO2uLmY+mUNEvp5o01uLJ1s7ahpdSvX2UXQth3VyI7IEclQffU03rDeRfEjJ178oY/2QIAr7YJIH7c3fLyLH1gNUkED8SLrz9tqMAAGk9UEIvxYgVa95M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=RmfNlTEe; arc=none smtp.client-ip=178.251.229.89
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8284A105AED;
-	Fri, 13 Mar 2026 00:35:27 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1773358528; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=3l08SSYkKyUf9NL2bxVN1z7H+hL8rduwqKbpotBG9fM=;
-	b=RmfNlTEert7CE85O/PjR0pUtHsaLxd/e5A2tB/Bm/4gr3NQHGDwyetqYke1BqKK82/dypV
-	XClEIbZ2uE/G9RnlETqLSAa20ccgOjM5wwh5gIGs5IororsVhjSItHE9Z8Vmu9WVB1bKjb
-	57bq/y2G9/9eA+ILm9SJVnwiaxoFMxpQeU9VkJ/2kdE5NrYP9/Z0rs/zMBFc4RjELSS34f
-	+ZG+FyHXPs09VALRG4+azZgie8KSkRe1M3HXF6PfyrdcpL3FUwQ5r0N+CW7fFqfo6+Y/rK
-	qG4BkSjIhFwHKHvwoOHnvzO/lcySBr2+fN4tbAD2jxGlQX3uF2/LCUMInb5IEw==
-From: Marek Vasut <marex@nabladev.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marex@nabladev.com>,
-	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	kernel@dh-electronics.com,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: imx: Add DT overlays for DH i.MX6 DHCOM SoM and boards
-Date: Fri, 13 Mar 2026 00:34:05 +0100
-Message-ID: <20260312233526.200157-1-marex@nabladev.com>
-X-Mailer: git-send-email 2.51.0
+	s=arc-20240116; t=1773360388; c=relaxed/simple;
+	bh=ADruU6Qu0lyTOOBhcf4gScXwICP2AoS82nL0uCZVEiI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VlK6fRvIJPKeLSS1pr/CWN1lQh+FEbAfmXuXsNU8hQHsCtQ3viGK8NAg7QVRwthOt8sh0pPCy9eem1A3iz5XtlhwxgOS9kx8d7reQYHwPtAyzMJzG+elIHHxEepRTc32+149KDFOP/feSjI4Gs9h9BJXEPpOkX2JxkiGKbhS5TI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OLiCTbuI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B59ABC19424;
+	Fri, 13 Mar 2026 00:06:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773360388;
+	bh=ADruU6Qu0lyTOOBhcf4gScXwICP2AoS82nL0uCZVEiI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OLiCTbuIcfSCLyQtk52o9rUKoG3xJXGHmOUwJGzEmgjajwdkwVlhH22xbMzFnxQ9z
+	 xbECItjLHUzqR8lNGCrxgrZxVnGDoX/1whKg2+Cb9axF5pnMLuPJ5Fs54jyE4pImMD
+	 KMBEhLtnuDWVDboXE0S1BjXcAF8WtThK39ASceE6ZEtBFIfss6wuCf7d+yoeGL9D/m
+	 fJBkAiHiylPIfDyRpJ2NUxTyJPzYnBGBMDyq9nCZ/fk2mN1PovkYCuoJVEyl0H2imz
+	 lGO1NbmkuVhQubvKM1wg4iR7MAtdHfd4SBKCn6pj2C1tv4L5t3ZJTy2OMb7iTDw6/W
+	 9tG/xaAuAECjQ==
+Date: Fri, 13 Mar 2026 08:06:25 +0800
+From: Yixun Lan <dlan@kernel.org>
+To: Han Gao <gaohan@iscas.ac.cn>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Han Gao <rabenda.cn@gmail.com>
+Subject: Re: [PATCH v2 2/4] riscv: dts: spacemit: Define fixed regulators for
+ OrangePi RV2
+Message-ID: <20260313000625-GKI302167@kernel.org>
+References: <20260310161853.3900605-1-gaohan@iscas.ac.cn>
+ <20260310161853.3900605-3-gaohan@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260310161853.3900605-3-gaohan@iscas.ac.cn>
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274807-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274808-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[nabladev.com:+];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[nabladev.com,dh-electronics.com,kernel.org,gmail.com,nxp.com,pengutronix.de,vger.kernel.org,lists.linux.dev];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 328ED27B48C
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 00E4A27B660
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add DT overlays to support DH i.MX6 DHCOM SoM carrier board expansion
-modules. The following DT overlays are implemented:
-- PDK2:
-  - DH 497-200 Display board in edge connector X12
-  - DH 505-200 Display board in edge connector X12
-  - DH 531-100 SPI/I2C board in header X21
-  - DH 531-200 SPI/I2C board in header X22
-  - DH 560-200 Display board in edge connector X12
-- PicoITX:
-  - DH 626-100 Display board in edge connector X2
+Hi Han,
 
-Signed-off-by: Marek Vasut <marex@nabladev.com>
----
-Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Frank Li <Frank.Li@nxp.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: devicetree@vger.kernel.org
-Cc: imx@lists.linux.dev
-Cc: kernel@dh-electronics.com
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
----
- arch/arm/boot/dts/nxp/imx/Makefile            | 37 +++++++++
- ...l-dhcom-overlay-panel-dpi-ch101olhlwh.dtsi | 75 +++++++++++++++++++
- .../imx/imx6qdl-dhcom-overlay-panel-dpi.dtsi  | 61 +++++++++++++++
- ...mx6qdl-dhcom-pdk2-overlay-497-200-x12.dtso | 28 +++++++
- ...-pdk2-overlay-505-200-x12-ch101olhlwh.dtso | 26 +++++++
- ...mx6qdl-dhcom-pdk2-overlay-531-100-x21.dtso | 32 ++++++++
- ...mx6qdl-dhcom-pdk2-overlay-531-100-x22.dtso | 32 ++++++++
- ...mx6qdl-dhcom-pdk2-overlay-560-200-x12.dtso | 39 ++++++++++
- ...icoitx-overlay-626-100-x2-ch101olhlwh.dtso |  8 ++
- .../boot/dts/nxp/imx/imx6qdl-dhcom-som.dtsi   |  2 +-
- 10 files changed, 339 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-overlay-panel-dpi-ch101olhlwh.dtsi
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-overlay-panel-dpi.dtsi
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-497-200-x12.dtso
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-505-200-x12-ch101olhlwh.dtso
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-531-100-x21.dtso
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-531-100-x22.dtso
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-560-200-x12.dtso
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-picoitx-overlay-626-100-x2-ch101olhlwh.dtso
+On 00:18 Wed 11 Mar     , Han Gao wrote:
+> Define the DC power input and the 4v power as fixed regulator supplies.
+> 
+> Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+> ---
+>  .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+> index 93880ba7bdfe..55b3d8d7f7f1 100644
+> --- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+> +++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+> @@ -23,6 +23,25 @@ chosen {
+>  		stdout-path = "serial0";
+>  	};
+>  
+> +	reg_dc_in: regulator-dc-in-12v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "dc_in_12v";
+> +		regulator-min-microvolt = <12000000>;
+> +		regulator-max-microvolt = <12000000>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+As Trevor pointed out in another thread[1], rv2 use 5v type-c in,
+and I bet this is a copy-and-paste error..
 
-diff --git a/arch/arm/boot/dts/nxp/imx/Makefile b/arch/arm/boot/dts/nxp/imx/Makefile
-index de4142e8f3ce8..856c9f21bd703 100644
---- a/arch/arm/boot/dts/nxp/imx/Makefile
-+++ b/arch/arm/boot/dts/nxp/imx/Makefile
-@@ -58,6 +58,31 @@ dtb-$(CONFIG_SOC_IMX53) += \
- 	imx53-voipac-bsb.dtb
- imx53-qsb-hdmi-dtbs := imx53-qsb.dtb imx53-qsb-hdmi.dtbo
- imx53-qsrb-hdmi-dtbs := imx53-qsrb.dtb imx53-qsb-hdmi.dtbo
-+
-+imx6qdl-dhcom-pdk2-overlay-497-200-x12-dtbs := \
-+	imx6q-dhcom-pdk2.dtb \
-+	imx6qdl-dhcom-pdk2-overlay-497-200-x12.dtbo
-+
-+imx6qdl-dhcom-pdk2-overlay-505-200-x12-ch101olhlwh-dtbs := \
-+	imx6q-dhcom-pdk2.dtb \
-+	imx6qdl-dhcom-pdk2-overlay-505-200-x12-ch101olhlwh.dtbo
-+
-+imx6qdl-dhcom-pdk2-overlay-531-100-x21-dtbs := \
-+	imx6q-dhcom-pdk2.dtb \
-+	imx6qdl-dhcom-pdk2-overlay-531-100-x21.dtbo
-+
-+imx6qdl-dhcom-pdk2-overlay-531-100-x22-dtbs := \
-+	imx6q-dhcom-pdk2.dtb \
-+	imx6qdl-dhcom-pdk2-overlay-531-100-x22.dtbo
-+
-+imx6qdl-dhcom-pdk2-overlay-560-200-x12-dtbs := \
-+	imx6q-dhcom-pdk2.dtb \
-+	imx6qdl-dhcom-pdk2-overlay-560-200-x12.dtbo
-+
-+imx6qdl-dhcom-picoitx-overlay-626-100-x2-ch101olhlwh-dtbs := \
-+	imx6q-dhcom-pdk2.dtb \
-+	imx6qdl-dhcom-picoitx-overlay-626-100-x2-ch101olhlwh.dtbo
-+
- dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6dl-alti6p.dtb \
- 	imx6dl-apf6dev.dtb \
-@@ -179,6 +204,18 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6q-cubox-i-som-v15.dtb \
- 	imx6q-dfi-fs700-m60.dtb \
- 	imx6q-dhcom-pdk2.dtb \
-+	imx6qdl-dhcom-pdk2-overlay-497-200-x12.dtb \
-+	imx6qdl-dhcom-pdk2-overlay-497-200-x12.dtbo \
-+	imx6qdl-dhcom-pdk2-overlay-505-200-x12-ch101olhlwh.dtb \
-+	imx6qdl-dhcom-pdk2-overlay-505-200-x12-ch101olhlwh.dtbo \
-+	imx6qdl-dhcom-pdk2-overlay-531-100-x21.dtb \
-+	imx6qdl-dhcom-pdk2-overlay-531-100-x21.dtbo \
-+	imx6qdl-dhcom-pdk2-overlay-531-100-x22.dtb \
-+	imx6qdl-dhcom-pdk2-overlay-531-100-x22.dtbo \
-+	imx6qdl-dhcom-pdk2-overlay-560-200-x12.dtb \
-+	imx6qdl-dhcom-pdk2-overlay-560-200-x12.dtbo \
-+	imx6qdl-dhcom-picoitx-overlay-626-100-x2-ch101olhlwh.dtb \
-+	imx6qdl-dhcom-picoitx-overlay-626-100-x2-ch101olhlwh.dtbo \
- 	imx6q-display5-tianma-tm070-1280x768.dtb \
- 	imx6q-dmo-edmqmx6.dtb \
- 	imx6q-dms-ba16.dtb \
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-overlay-panel-dpi-ch101olhlwh.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-overlay-panel-dpi-ch101olhlwh.dtsi
-new file mode 100644
-index 0000000000000..afdb936f1d4e3
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-overlay-panel-dpi-ch101olhlwh.dtsi
-@@ -0,0 +1,75 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (C) 2021 Marek Vasut
-+ */
-+/dts-v1/;
-+/plugin/;
-+
-+#include "imx6qdl-dhcom-overlay-panel-dpi.dtsi"
-+
-+&{/} {
-+	lvds-encoder {
-+		compatible = "onnn,fin3385", "lvds-encoder";
-+		pclk-sample = <1>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				lvds_bridge_in: endpoint {
-+					remote-endpoint = <&ipu1_dpi0_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				lvds_bridge_out: endpoint {
-+					remote-endpoint = <&panel_in>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&display_bl {
-+	pwms = <&pwm1 0 5000000 0>;
-+};
-+
-+&i2c2 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	touchscreen@41 {
-+		compatible = "ilitek,ili251x";
-+		reg = <0x41>;
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;
-+		touchscreen-size-x = <16384>;
-+		touchscreen-size-y = <9600>;
-+		touchscreen-inverted-x;
-+		touchscreen-inverted-y;
-+	};
-+
-+	eeprom@50 {
-+		compatible = "atmel,24c04";
-+		reg = <0x50>;
-+		pagesize = <16>;
-+	};
-+};
-+
-+&ipu1_dpi0_out {
-+	remote-endpoint = <&lvds_bridge_in>;
-+};
-+
-+&panel {
-+	compatible = "chefree,ch101olhlwh-002";
-+};
-+
-+&panel_in {
-+	remote-endpoint = <&lvds_bridge_out>;
-+};
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-overlay-panel-dpi.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-overlay-panel-dpi.dtsi
-new file mode 100644
-index 0000000000000..5db43e2e240b8
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-overlay-panel-dpi.dtsi
-@@ -0,0 +1,61 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (C) 2021 Marek Vasut
-+ */
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/pwm/pwm.h>
-+
-+&{/} {
-+	display_bl: display-bl {
-+		compatible = "pwm-backlight";
-+		brightness-levels = <0 16 22 30 40 55 75 102 138 188 255>;
-+		default-brightness-level = <8>;
-+		enable-gpios = <&gpio3 27 GPIO_ACTIVE_HIGH>;
-+		status = "okay";
-+	};
-+
-+	lcd_display: disp0 {
-+		compatible = "fsl,imx-parallel-display";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		interface-pix-fmt = "rgb24";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_ipu1_lcdif>;
-+		status = "okay";
-+
-+		port@0 {
-+			reg = <0>;
-+
-+			ipu1_display_in: endpoint {
-+				remote-endpoint = <&ipu1_di0_disp0>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			ipu1_dpi0_out: endpoint {
-+				remote-endpoint = <&panel_in>;
-+			};
-+		};
-+	};
-+
-+	panel: panel {
-+		backlight = <&display_bl>;
-+
-+		port {
-+			panel_in: endpoint {
-+			};
-+		};
-+	};
-+};
-+
-+&ipu1_di0_disp0 {
-+	remote-endpoint = <&ipu1_display_in>;
-+};
-+
-+&pwm1 {
-+	status = "okay";
-+};
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-497-200-x12.dtso b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-497-200-x12.dtso
-new file mode 100644
-index 0000000000000..277278085442e
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-497-200-x12.dtso
-@@ -0,0 +1,28 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (C) 2021 Marek Vasut
-+ */
-+/dts-v1/;
-+/plugin/;
-+
-+#include "imx6qdl-dhcom-overlay-panel-dpi.dtsi"
-+
-+&display_bl {
-+	pwms = <&pwm1 0 50000 PWM_POLARITY_INVERTED>;
-+};
-+
-+&ipu1_dpi0_out {
-+	remote-endpoint = <&panel_in>;
-+};
-+
-+&panel {
-+	compatible = "dataimage,scf0700c48ggu18";
-+};
-+
-+&panel_in {
-+	remote-endpoint = <&ipu1_dpi0_out>;
-+};
-+
-+&touch_i2c {	/* TSC2004 */
-+	status = "okay";
-+};
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-505-200-x12-ch101olhlwh.dtso b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-505-200-x12-ch101olhlwh.dtso
-new file mode 100644
-index 0000000000000..43b96e7908392
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-505-200-x12-ch101olhlwh.dtso
-@@ -0,0 +1,26 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (C) 2021 Marek Vasut
-+ */
-+/dts-v1/;
-+/plugin/;
-+
-+#include "imx6qdl-dhcom-overlay-panel-dpi-ch101olhlwh.dtsi"
-+
-+&{/} {
-+	gpio-keys {
-+		/* BUTTON1 GPIO-B conflicts with touchscreen reset */
-+		button-1 {
-+			/* Use status as /delete-node/ does not work in DTOs */
-+			status = "disabled";
-+		};
-+	};
-+
-+	led {
-+		/* LED7 GPIO-H conflicts with touchscreen IRQ */
-+		led-7 {
-+			/* Use status as /delete-node/ does not work in DTOs */
-+			status = "disabled";
-+		};
-+	};
-+};
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-531-100-x21.dtso b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-531-100-x21.dtso
-new file mode 100644
-index 0000000000000..3ce48b07e3ea6
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-531-100-x21.dtso
-@@ -0,0 +1,32 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (C) 2021 Marek Vasut
-+ */
-+/dts-v1/;
-+/plugin/;
-+
-+&i2c2 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	eeprom@56 {
-+		compatible = "atmel,24c04";
-+		reg = <0x56>;
-+		pagesize = <16>;
-+	};
-+};
-+
-+&ecspi1 {
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	eeprom@1 {
-+		compatible = "microchip,25aa010a", "atmel,at25";
-+		reg = <1>;
-+		address-width = <8>;
-+		pagesize = <16>;
-+		size = <128>;
-+		spi-max-frequency = <5000000>;
-+	};
-+};
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-531-100-x22.dtso b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-531-100-x22.dtso
-new file mode 100644
-index 0000000000000..a8d81106c1647
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-531-100-x22.dtso
-@@ -0,0 +1,32 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (C) 2021 Marek Vasut
-+ */
-+/dts-v1/;
-+/plugin/;
-+
-+&i2c1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	eeprom@56 {
-+		compatible = "atmel,24c04";
-+		reg = <0x56>;
-+		pagesize = <16>;
-+	};
-+};
-+
-+&ecspi2 {
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	eeprom@0 {
-+		compatible = "microchip,25aa010a", "atmel,at25";
-+		reg = <0>;
-+		address-width = <8>;
-+		pagesize = <16>;
-+		size = <128>;
-+		spi-max-frequency = <5000000>;
-+	};
-+};
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-560-200-x12.dtso b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-560-200-x12.dtso
-new file mode 100644
-index 0000000000000..16ad61545e933
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-pdk2-overlay-560-200-x12.dtso
-@@ -0,0 +1,39 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (C) 2021 Marek Vasut
-+ */
-+/dts-v1/;
-+/plugin/;
-+
-+#include "imx6qdl-dhcom-overlay-panel-dpi.dtsi"
-+
-+&display_bl {
-+	pwms = <&pwm1 0 50000 PWM_POLARITY_INVERTED>;
-+};
-+
-+&ipu1_dpi0_out {
-+	remote-endpoint = <&panel_in>;
-+};
-+
-+&panel {
-+	compatible = "edt,etm0700g0edh6";
-+};
-+
-+&panel_in {
-+	remote-endpoint = <&ipu1_dpi0_out>;
-+};
-+
-+&i2c2 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	touchscreen@38 {
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_dhcom_e>;
-+		compatible = "edt,edt-ft5406";
-+		reg = <0x38>;
-+		/* Touchscreen IRQ GPIO-E conflicts with LED5 GPIO */
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <5 IRQ_TYPE_EDGE_FALLING>; /* GPIO E */
-+	};
-+};
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-picoitx-overlay-626-100-x2-ch101olhlwh.dtso b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-picoitx-overlay-626-100-x2-ch101olhlwh.dtso
-new file mode 100644
-index 0000000000000..861306d74a58a
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-picoitx-overlay-626-100-x2-ch101olhlwh.dtso
-@@ -0,0 +1,8 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (C) 2023 Marek Vasut
-+ */
-+/dts-v1/;
-+/plugin/;
-+
-+#include "imx6qdl-dhcom-overlay-panel-dpi-ch101olhlwh.dtsi"
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-som.dtsi
-index af0d95396cd51..3a577d526bb9c 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-som.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-dhcom-som.dtsi
-@@ -303,7 +303,7 @@ ldo2_reg: ldo2 {
- 		};
- 	};
- 
--	touchscreen@49 { /* TSC2004 */
-+	touch_i2c: touchscreen@49 { /* TSC2004 */
- 		compatible = "ti,tsc2004";
- 		interrupts-extended = <&gpio4 14 IRQ_TYPE_EDGE_FALLING>;
- 		pinctrl-0 = <&pinctrl_tsc2004>;
+And for name I'd suggest to simply use: regulator-vcc-in-5v
+
+Link: https://lore.kernel.org/r/20260309-orangepi-sd-card-uhs-v2-6-5bb2b574df5d@gmail.com [1]
+
+> +
+> +	reg_vcc_4v: regulator-vcc-4v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc_4v";
+> +		regulator-min-microvolt = <4000000>;
+> +		regulator-max-microvolt = <4000000>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +		vin-supply = <&reg_dc_in>;
+> +	};
+> +
+>  	leds {
+>  		compatible = "gpio-leds";
+>  
+> -- 
+> 2.47.3
+> 
+> 
+
 -- 
-2.51.0
-
+Yixun Lan (dlan)
 
