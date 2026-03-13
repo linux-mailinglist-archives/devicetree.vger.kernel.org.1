@@ -1,375 +1,566 @@
-Return-Path: <devicetree+bounces-275066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275067-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wBeqMk3Vs2l5bQAAu9opvQ
-	(envelope-from <devicetree+bounces-275066-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 10:13:49 +0100
+	id OGNKLkjWs2mzbgAAu9opvQ
+	(envelope-from <devicetree+bounces-275067-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 10:18:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D856F280499
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 10:13:48 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D642280562
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 10:18:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id F14493042FFA
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:10:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 77D2B31A58D0
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:10:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78AFB38CFE1;
-	Fri, 13 Mar 2026 09:09:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73C3D38C2AD;
+	Fri, 13 Mar 2026 09:09:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fIbMGyOc"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="geN7ZrYW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11011050.outbound.protection.outlook.com [52.101.52.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E839D38C437;
-	Fri, 13 Mar 2026 09:09:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.52.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 891ED38C2AE
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 09:09:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.210.45
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773392982; cv=fail; b=sRWrS9uB3iJ8CfXu/zOWafevgwIVKJPvQFPOdf6yXYDE12tZKGWzUehC2JQYXAyCihGd/e4g7l2RRL5q8RUB7Y9cPLQzfB18WTxGv2RkQDDxf9I/y77V1T2ceDwPQrD58jKcBkvAsQaHE/uOirze431jHoZ8yLafXk0Yb6hQoAc=
+	t=1773392991; cv=pass; b=dJaMTAkbfPhPEtpEfNAN8sqktYLsGeX4fo6JUEIWC7V148bM9irGUXI1hz339u3NrZ+qr/MgDUlA1D+kN4gcsTEEHTzeMP+8/JfVVXjC40zccOKPFAI7H8tYzZ2fh7uLR9Nd7rvotaaK9i0RL3snKcIcJr/0KQAM8zoQPpwtkUo=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773392982; c=relaxed/simple;
-	bh=HqOtvISPjjPZeGCyW3YW3wJDpTZmlV72eaQCDJpqLkA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=k85X7ibfkVTZXa5hNoHWy7yG3A0RyBP8xQJfDRivOPBzKVVx42NAZVqhhLJJvNpYdOSO1ixJlB3ywYy/1YhM2ZjM3boZhRhkdgZT3b0nY8+e2atbG7vZj9YPmiM5lcGUeOnS7aCHzUbTuc3AVoVehw2U6BsBXHdQwMIZ9k2qDT8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fIbMGyOc; arc=fail smtp.client-ip=52.101.52.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AwI6gDpxWsmrP04f+w6o4uhDMJ2aLpJDNaIcuFrw5RwfObOXhM2ptLBAXeSmeivNPIBqMUHK53dRWT3SHhqSyNciCs/LeDS9pn8UkT02g7ps9GC7lQwdnB/8UTRiO/lAYDBx6PvXJO7qwLV/HxHir3vCQwlvX5aEAKy4VoiAQhW3L8KrT0SAlH9LY3ooPj6JZ1gYy8dRbUpH2KIM9ur0kE51PlYmevri99JbepR5Hv6+oFYn6+gbg1l049BQR2L8uXg0Ex1mztLDD6KloZUyDT43nGacFBDk2t409yNtxGh/YZ1CMxDNhajUsJeKRpjSCqUMPqbP8PZcROnoya98eA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xUENghndurma7+0AinMGkZz/d8Sj3wnfqEWrbFC75Po=;
- b=Zx2vaBH4e357ehnyVEyh7cdMYmxZrVRf13OyNrDbDjBdZebz+rT7kk5y36n8MumguRLxNIYneCDiYNro8kgxn+cHjMa49INIDarwC0iqvddXjEcVHN5hP57VA6Czht/qjeOc5OTfKEs8kNKdst415ahuS3FG3HD5doFesKwxYzVxfhxjZ4jfDrY8u4THTBMfZS0u/fjlUAuTmrUiqXuWm0zUj8jwo+sJRfUiDM+uo8iZzupcTZbbzCA1Mx7JezT3BsuLT0YSTT8gTEwOJBR/861Z2yYoN1UFr4USdWme1m6vbZZHBqgjiFOQWQYn1ZePVO+i6hxKCgGtmtSdzORSIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xUENghndurma7+0AinMGkZz/d8Sj3wnfqEWrbFC75Po=;
- b=fIbMGyOcWL33DC7Kjtf/sYy2NGHW3YQ4Ng310TpowkeYNbZ848548bWgzmAdMr9FwXTjgMKcV6JLTBI1wX4E+Wzc0Dyc7eEC9j/ulixVrLowifVj8DxQrPMvkH+ENbs5AOdcvgoAv67pO/1Lc//zYXdul8JJ2cVjB2K37RhRXYA=
-Received: from BY3PR05CA0010.namprd05.prod.outlook.com (2603:10b6:a03:254::15)
- by SA1PR10MB7684.namprd10.prod.outlook.com (2603:10b6:806:38e::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.15; Fri, 13 Mar
- 2026 09:09:38 +0000
-Received: from BY1PEPF0001AE1B.namprd04.prod.outlook.com
- (2603:10b6:a03:254:cafe::b) by BY3PR05CA0010.outlook.office365.com
- (2603:10b6:a03:254::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.25 via Frontend Transport; Fri,
- 13 Mar 2026 09:09:37 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- BY1PEPF0001AE1B.mail.protection.outlook.com (10.167.242.103) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18 via Frontend Transport; Fri, 13 Mar 2026 09:09:36 +0000
-Received: from DFLE207.ent.ti.com (10.64.6.65) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 13 Mar
- 2026 04:09:01 -0500
-Received: from DFLE206.ent.ti.com (10.64.6.64) by DFLE207.ent.ti.com
- (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 13 Mar
- 2026 04:09:00 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE206.ent.ti.com
- (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 13 Mar 2026 04:09:00 -0500
-Received: from ws.dhcp.ti.com (ws.dhcp.ti.com [172.24.233.149])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62D972bl274611;
-	Fri, 13 Mar 2026 04:08:54 -0500
-From: Rishikesh Donadkar <r-donadkar@ti.com>
-To: <jai.luthra@linux.dev>, <laurent.pinchart@ideasonboard.com>,
-	<mripard@kernel.org>
-CC: <r-donadkar@ti.com>, <y-abhilashchandra@ti.com>, <devarsht@ti.com>,
-	<s-jain1@ti.com>, <vigneshr@ti.com>, <mchehab@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <p.zabel@pengutronix.de>, <conor+dt@kernel.org>,
-	<sakari.ailus@linux.intel.com>, <hverkuil-cisco@xs4all.nl>,
-	<tomi.valkeinen@ideasonboard.com>, <jai.luthra@ideasonboard.com>,
-	<changhuang.liang@starfivetech.com>, <sjoerd@collabora.com>,
-	<dan.carpenter@linaro.org>, <hverkuil+cisco@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-Subject: [PATCH v12 17/17] media: ti: j721e-csi2rx: Support system suspend using pm_notifier
-Date: Fri, 13 Mar 2026 14:37:01 +0530
-Message-ID: <20260313090701.646534-18-r-donadkar@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260313090701.646534-1-r-donadkar@ti.com>
-References: <20260313090701.646534-1-r-donadkar@ti.com>
+	s=arc-20240116; t=1773392991; c=relaxed/simple;
+	bh=A86AK3hMoHmfP2RQlcgHaOOiYceIspwmribQCL3G23w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=piDJwhylPqST9pt0sUdi1yKm1JZWV9wWSTX1JOey0aJaxk9yjDNDZvn9W1itT0Xi5nbEhyI15fTmGEeUWDj873c7I0h9wbStv5QrzJFq7SJZI/TERyxCTT0PQJ6BQ/pf9k8NX0YdMbdfhTf8Ny0VUoI0nBU32anFfSl+rREpF7s=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=geN7ZrYW; arc=pass smtp.client-ip=209.85.210.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-7d74c1157a4so2027606a34.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 02:09:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773392988; cv=none;
+        d=google.com; s=arc-20240605;
+        b=BmARaoE1fCadE1PcqLt2mtRMexPs0BOFDuJe95cxFLniZK8BHtKtuwZvsv3Gh/tt1h
+         rqwUzXCdn8lKfDwgcCZhI6eOiOtdd8hLcE4L9i8vweh7d3B3ZIv1G9j6GKBcQM9grco2
+         5TuyFMKpMRzXqFP94TkU2HPI00Abmu2Q28t/NMqjvnx7IXL/nmplME7eZxaSXTxdY+Hh
+         CrzE7t+dcOg14eIDkIkr0M5QGlxXIsEnqu10YZ/qhdWLlwwAs695L09noxyLXI1AJsh7
+         7MtAm/67NgIqPgS2ZzvI+u6K/ZXF0vK25nys1L9zvkjRVDAI+/33e3uVIGSDzmidDj+2
+         N1Nw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=jD3yFgzucS1yBN+JcINxzltwlVIBO2L/z6C3mDwI3lU=;
+        fh=TM7YWm/nlliTS9anyUQ3UQBcyDC+ApUPQuC9Wv67qzs=;
+        b=PAR0HS1edcVTKPPRmNEWBR3AEwmhPXm0K97KlcmAmBhrVd4mfaYE3Qw4zFOWgNXh5y
+         a9G2VlLRR28060r/FlVm4PBE0neJmjJDZ871FWzNddKcNwmNzD1pWKVtyB7DNoX/vNXO
+         YyE6Awuzd7JMYKl+G80GQDZKbVOv5iOSgdHpzfERhUMrRRgBqcvQfghjD90uWqZqLPX5
+         BslVekBqsdNhYcmxX2bjMUR9BXJ3FpmxAqkIXo1J+yAOJPaXU6+OJzRcfJ0uMFwubq2Z
+         qz+x8Hf9cja+DhOOgMsbvm5oCyLm1tQJSjmE0bmVTTRRbrGiQEN6g1ZPULx5Z1Nk8LRL
+         1/mA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1773392988; x=1773997788; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=jD3yFgzucS1yBN+JcINxzltwlVIBO2L/z6C3mDwI3lU=;
+        b=geN7ZrYWrCH7TdYIYh3wjuNcXqOwIkidLFThc25RpV/eOeKIaW+m1Di000SKUztOoh
+         Vh4Uq0onYF6UuxzEfbd07idmc/TlHqrC0MnazUSxyY1m0RYkB92AQPtm+i0uYev2sev1
+         Zr4R2asZLF4rG8AHidq9ve8CohYPRETrttftxhrR4pP0AG54IvkF1j+w1r5vW7DhcG+O
+         ahoRvWZoCLHPUjvlRTOH0s1ZNO3Ux/fLwFfyrqZQD9NxyroMz2LG9R8SLGh5oidxoqvg
+         fHAGw9+jTKVNuSGdX6kHAUAGXKX/UtXH6Enl1wN3YE0T60WXy5qUYTJXaHhAhax6l6iw
+         kuTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773392988; x=1773997788;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jD3yFgzucS1yBN+JcINxzltwlVIBO2L/z6C3mDwI3lU=;
+        b=keOBnoywLUoDuUpAQUaZM8DY78I1xpUrXLla9JRGkovmLxcUaV4ohbI8UZI98cowrq
+         4xkg4OVN1z/QoGxGgMbery+DFNcKtY2wPi1wBar8b4pOxGJGp+0YBUNxeU7VffikxLx1
+         X5DYKCkjyQtjYXaadd/7ZtEgvZEOGut60C7tcrkXebqam8nZEFDi6F54hc38KTUO1Wdy
+         5hcY+ig4JPArmGFmDTZ0e6CSmKnoT+ij2/PDkTIvjmqmQGxtHyEHyFZ88p3CSIBxu5K+
+         r5b1iCs5epJupwoMd+cT3bOt7Er3N6ZEjM+kw8QoSnYtlOknahJZ7rZkbcvluY6W4XPZ
+         4fRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU9AKZHs6VIscjGS0hjK4+H3MOAeWsT0GZ+vnWawhWIP/cHMJALoSfpa6nhyxhu3cxwTaqlahQmwpJY@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwWhZIfTUnCGuwLqlPgjz7K6yj3e1QLsi01pRhQ31eqvKmWigC
+	jX7YWZyDqbF+RPPC96D7hJOHu/Nwjp1TTNRT2Re25bvaGBHujePlSeEMwnr3ZWACQI5EtxJApdF
+	1av1gQJrkWyWxOhk2FaCKcuPQCac2K5xT3aEvGHtL6A==
+X-Gm-Gg: ATEYQzxpWg9LDAjxa1Jy6CuF4HhwYqozX42yCegAtmTm76nJ4/UX1zioOR/h1u2boW9
+	GaXaia4lveAqJnTFFL4LZDGg+L/K9FnEi+CQWxKuEmpTFQCO0XUCU/1szUruZfFznrvkRd83Cni
+	Cp+6pQ8GeHbcmK9htzgS7jU4WsWPH4ID9vgELiBIAAr0fi14B/F3VV0IhCh3JT0xalImR9cBaWy
+	eDPBiUYEhDBzPYfwUG7dc3ubHPoBkdAY6geChILou0V7DXZLd8ATca4jKGme/KcIz9s6vwvQFVg
+	o714iMvbYxXWrmHDlBCC
+X-Received: by 2002:a05:6820:4b18:b0:67b:aac1:5054 with SMTP id
+ 006d021491bc7-67bda9bde9cmr1411972eaf.27.1773392988346; Fri, 13 Mar 2026
+ 02:09:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY1PEPF0001AE1B:EE_|SA1PR10MB7684:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1fcafcf8-1319-4ce1-6d84-08de80e04019
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|7416014|376014|1800799024|36860700016|22082099003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info:
-	zPUMfQNtIz+q+ZmPpuV1DZCmMVE0jb8Z6wPkUXdJ0vFAfN5I3hvK51cek1HpBJ7z/ahSoykgjH+Z9p2v74XND7wWEOix4/78bYJMIiVKGZYe+z7CRxzbFpPPVrAX+zutnuxKoMtnOOwKVt9nGrHmOpjYzhH/+F4X9YPuXBuyy8J9BcQMa54AqQ7FfzBbVVQ+thDN8MpEnGDogLqzCoOoD1gajZepYYKJX7gf4jrWoIw9uJB2Ba6MQENSe5NwEUhhJJGq+uz2IGZl9vY8ceAWUJ3/UEfmIH+Aorp0tkuKFNtSETAyaD3QZRtQ3tz9seOxkpFplziLaySw2B6UXJcsO27SuAym/Y6QX7dgaUMZ8atC/Gp6jwXrfrbTWUtN88X54fsulnLNHe9vli1Nq+ri7Tgr84cHr6BAnQvLiIbPDwgeTOVz5zXdWMKvjNqItpA/PQfHhvvleNMPZqt9aoN18OzRARsdEMqzKOdvTkQCXfOBjKlx3KXakwS9e+NLPigsCWmz7+yNynSeHzB3XA7tnWR/SI68LTJa4ch/BprC4J3KZZuSxVayexIEDLv4fDbcGSkjx38ilsP1ApdZLsrOkr49qM90CJuQY/9ZKwg50GS2PSJsZumVVKULSQUTuoeDFR0kODoG/F0uIy2rDQSTqfi1rlf2TcSJlFwfq2xIaCD3J3Jz/1K48u7k0zdbMLlkJkYCbUKkJ+C1ppTFPOHT4S0JX5HPncsGObBQvrTAvJAJsfs4AhXUo6jIOHV0ZccXN3hvaST7vlB05kdGkE3yeg==
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(7416014)(376014)(1800799024)(36860700016)(22082099003)(56012099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	Em8Cls3jfcp5SJokz/PXefrNPeFimEgKuowDZ2SOr6ym5Vm04aD8a1TQZrIe9Hp9dX93jq3DnPKZQv6+yLI3ZFCzyyknOKrRAuea/ouYTmV5SBsEYxBz8fyO3GBBOY+3gU4cLaDJO4bew/WDSOVQp+aKk51PTJuU65av+f2WloE631XlQdER9KoIniTPzLPpvs28pb88cEsXMYzU6u3lvbOWoU2k5p8CfSse8JnLgRA3d09zX+MJNAYiQRyIyYB8wuHTpbfnoJ7ymtemVqpkPajCvSz2G8QzGiBpWQr8eqjL10UTK+OgpogF5s+qll7LQTa+SS52T4EiUh0FBSNfeT2qcqllseW4d5rFceb++7VNPovOmXDKqvhfZgSgpwIRBScorIDifO0BfEQt4vV2XNPiIhfJtbg/yuoeFsjcVsLVpr7fP2khElAN77fVUNtz
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 09:09:36.8331
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1fcafcf8-1319-4ce1-6d84-08de80e04019
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BY1PEPF0001AE1B.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR10MB7684
-X-Spamd-Result: default: False [2.84 / 15.00];
+References: <CABvJ_xhtx1Ym8qyr6HsLWnkV6_c=V7TpKOYY3L-gKnVDr87rcA@mail.gmail.com>
+In-Reply-To: <CABvJ_xhtx1Ym8qyr6HsLWnkV6_c=V7TpKOYY3L-gKnVDr87rcA@mail.gmail.com>
+From: Vincent Chen <vincent.chen@sifive.com>
+Date: Fri, 13 Mar 2026 17:09:36 +0800
+X-Gm-Features: AaiRm53Rf3qyp9z5prSBdOPVYkZF3JrpTmA7b0Mkkg8QqNyn4AH2_emy-F9ES1w
+Message-ID: <CABvJ_xj+FtKgLN1Ur36ks7OLNWCy9-AotbfhsF6m1H4ycUSznA@mail.gmail.com>
+Subject: Re: [PATCH v3 07/12] rvtrace: Add trace ramsink driver
+To: Anup Patel <anup.patel@oss.qualcomm.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>, 
+	Greg KH <gregkh@linuxfoundation.org>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Ian Rogers <irogers@google.com>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
+	Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>, Jiri Olsa <jolsa@kernel.org>, 
+	Adrian Hunter <adrian.hunter@intel.com>, Liang Kan <kan.liang@linux.intel.com>, 
+	Mayuresh Chitale <mchitale@gmail.com>, Anup Patel <anup@brainfault.org>, 
+	Atish Patra <atish.patra@linux.dev>, Andrew Jones <andrew.jones@oss.qualcomm.com>, 
+	Sunil V L <sunilvl@oss.qualcomm.com>, linux-riscv <linux-riscv@lists.infradead.org>, 
+	devicetree@vger.kernel.org, 
+	"linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>, 
+	Mayuresh Chitale <mayuresh.chitale@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[sifive.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[sifive.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[ti.com,kernel.org,pengutronix.de,linux.intel.com,xs4all.nl,ideasonboard.com,starfivetech.com,collabora.com,linaro.org,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-275066-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[r-donadkar@ti.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-275067-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
-	TO_DN_NONE(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,linuxfoundation.org,linux.intel.com,google.com,ghiti.fr,infradead.org,redhat.com,arm.com,intel.com,gmail.com,brainfault.org,linux.dev,oss.qualcomm.com,lists.infradead.org,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vincent.chen@sifive.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[sifive.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,ti.com:dkim,ti.com:email,ti.com:mid];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: D856F280499
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,dst.base:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sifive.com:dkim,qualcomm.com:email,src.base:url]
+X-Rspamd-Queue-Id: 1D642280562
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Jai Luthra <jai.luthra@ideasonboard.com>
+>
+> Add initial implementation of RISC-V trace ramsink driver. The ramsink
+> is defined in the RISC-V Trace Control Interface specification.
+>
+> Co-developed-by: Anup Patel <anup.patel@oss.qualcomm.com>
+> Signed-off-by: Anup Patel <anup.patel@oss.qualcomm.com>
+> Signed-off-by: Mayuresh Chitale <mayuresh.chitale@oss.qualcomm.com>
+> ---
+>  drivers/hwtracing/rvtrace/Kconfig           |   9 +
+>  drivers/hwtracing/rvtrace/Makefile          |   1 +
+>  drivers/hwtracing/rvtrace/rvtrace-ramsink.c | 322 ++++++++++++++++++++
+>  3 files changed, 332 insertions(+)
+>  create mode 100644 drivers/hwtracing/rvtrace/rvtrace-ramsink.c
+>
+> diff --git a/drivers/hwtracing/rvtrace/Kconfig
+> b/drivers/hwtracing/rvtrace/Kconfig
+> index ba35c05f3f54..0577f9acb858 100644
+> --- a/drivers/hwtracing/rvtrace/Kconfig
+> +++ b/drivers/hwtracing/rvtrace/Kconfig
+> @@ -21,3 +21,12 @@ config RVTRACE_ENCODER
+>   default y
+>   help
+>    This driver provides support for RISC-V Trace Encoder component.
+> +
+> +config RVTRACE_RAMSINK
+> + tristate "RISC-V Trace Ramsink driver"
+> + depends on RVTRACE
+> + select DMA_SHARED_BUFFER
+> + default y
+> + help
+> +  This driver provides support for Risc-V E-Trace Ramsink
+> +  component.
+> diff --git a/drivers/hwtracing/rvtrace/Makefile
+> b/drivers/hwtracing/rvtrace/Makefile
+> index f320693a1fc5..122e575da9fb 100644
+> --- a/drivers/hwtracing/rvtrace/Makefile
+> +++ b/drivers/hwtracing/rvtrace/Makefile
+> @@ -3,3 +3,4 @@
+>  obj-$(CONFIG_RVTRACE) += rvtrace.o
+>  rvtrace-y := rvtrace-core.o rvtrace-platform.o
+>  obj-$(CONFIG_RVTRACE_ENCODER) += rvtrace-encoder.o
+> +obj-$(CONFIG_RVTRACE_RAMSINK) += rvtrace-ramsink.o
+> diff --git a/drivers/hwtracing/rvtrace/rvtrace-ramsink.c
+> b/drivers/hwtracing/rvtrace/rvtrace-ramsink.c
+> new file mode 100644
+> index 000000000000..5393423c8f28
+> --- /dev/null
+> +++ b/drivers/hwtracing/rvtrace/rvtrace-ramsink.c
+> @@ -0,0 +1,322 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2026 Qualcomm Technologies, Inc.
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/rvtrace.h>
+> +#include <linux/types.h>
+> +#include <linux/sizes.h>
+> +
+> +#define RVTRACE_RAMSINK_STARTLOW_OFF 0x010
+> +#define RVTRACE_RAMSINK_STARTHIGH_OFF 0x014
+> +#define RVTRACE_RAMSINK_LIMITLOW_OFF 0x018
+> +#define RVTRACE_RAMSINK_LIMITHIGH_OFF 0x01c
+> +#define RVTRACE_RAMSINK_WPLOW_OFF 0x020
+> +#define RVTRACE_RAMSINK_WPHIGH_OFF 0x024
+> +#define RVTRACE_RAMSINK_WPLOW_WRAP 0x1
+> +#define RVTRACE_RAMSINK_CTRL_MODE_SHIFT 0x4
+> +#define RVTRACE_RAMSINK_CTRL_STP_WRAP_SHIFT 0x8
+> +
+> +enum rvtrace_ramsink_mode {
+> + MODE_SRAM,
+> + MODE_SMEM
+> +};
+> +
+> +struct rvtrace_ramsink_priv {
+> + size_t size;
+> + void *va;
+> + dma_addr_t start;
+> + dma_addr_t end;
+> + enum rvtrace_ramsink_mode mode;
+> + bool stop_on_wrap;
+> + int mem_acc_width;
+> +};
+> +
+> +struct trace_buf {
+> + void *base;
+> + long cur;
+> + size_t len;
+> +};
+> +
+> +static int rvtrace_ramsink_start(struct rvtrace_component *comp)
+> +{
+> + int ret;
+> + u32 val;
+> +
+> + val = rvtrace_read32(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET);
+> + val |= BIT(RVTRACE_COMPONENT_CTRL_ENABLE_SHIFT);
+> + rvtrace_write32(comp->pdata, val, RVTRACE_COMPONENT_CTRL_OFFSET);
+> + ret = rvtrace_poll_bit(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET,
+> +       RVTRACE_COMPONENT_CTRL_ENABLE_SHIFT, 1,
+> +       comp->pdata->control_poll_timeout_usecs);
+> + if (ret)
+> + dev_err(&comp->dev, "failed to start ramsink.\n");
+> +
+> + return ret;
+> +}
+> +
+> +static int rvtrace_ramsink_stop(struct rvtrace_component *comp)
+> +{
+> + int ret;
+> + u32 val;
+> +
+> + val = rvtrace_read32(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET);
+> + val &= ~BIT(RVTRACE_COMPONENT_CTRL_ENABLE_SHIFT);
+> + rvtrace_write32(comp->pdata, val, RVTRACE_COMPONENT_CTRL_OFFSET);
+> + ret = rvtrace_poll_bit(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET,
+> +       RVTRACE_COMPONENT_CTRL_ENABLE_SHIFT, 0,
+> +       comp->pdata->control_poll_timeout_usecs);
+> + if (ret) {
+> + dev_err(&comp->dev, "failed to stop ramsink.\n");
+> + return ret;
+> + }
+> +
+> + return rvtrace_comp_poll_empty(comp);
+> +}
+> +
+> +static void tbuf_to_pbuf_copy(struct trace_buf *src, struct trace_buf
+> *dst, size_t size)
+> +{
+> + int bytes_dst, bytes_src, bytes;
+> + void *dst_addr, *src_addr;
+> +
+> + while (size) {
+> + src_addr = src->base + src->cur;
+> + dst_addr = dst->base + dst->cur;
+> +
+> + /* Ensure that there are no OOB memory accesses */
+> + if (dst->len - dst->cur < size)
+> + bytes_dst = dst->len - dst->cur;
+> + else
+> + bytes_dst = size;
+> +
+> + if (src->len - src->cur < size)
+> + bytes_src = src->len - src->cur;
+> + else
+> + bytes_src = size;
+> + bytes = bytes_dst < bytes_src ? bytes_dst : bytes_src;
+> + memcpy(dst_addr, src_addr, bytes);
+> + dst->cur = (dst->cur + bytes) % dst->len;
+> + src->cur = (src->cur + bytes) % src->len;
+> + size -= bytes;
+> + }
+> +}
+> +
+> +static size_t rvtrace_ramsink_copyto_auxbuf(struct rvtrace_component *comp,
+> +    struct rvtrace_perf_auxbuf *buf)
+> +{
+> + struct rvtrace_ramsink_priv *priv = dev_get_drvdata(&comp->dev);
+> + size_t size_wp_end = 0, size_start_wp = 0;
+> + struct trace_buf src, dst;
+> + u32 wp_low, wp_high, trram_ctrl;
+> + u64 buf_cur_head;
+> +
+> + dst.base = buf->base;
+> + dst.len = buf->length;
+> + dst.cur = buf->pos;
+> + src.base = priv->va;
+> + src.len = priv->size;
+> + wp_low = rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_WPLOW_OFF);
+> + wp_high = rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_WPHIGH_OFF);
+> + buf_cur_head = (u64)(wp_high) << 32 | wp_low;
+> + trram_ctrl = rvtrace_read32(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET);
+> + if (buf_cur_head & 0x1) {
+> + buf_cur_head &= ~RVTRACE_RAMSINK_WPLOW_WRAP;
+> + rvtrace_write32(comp->pdata, lower_32_bits(priv->start),
+> + RVTRACE_RAMSINK_WPLOW_OFF);
+> + rvtrace_write32(comp->pdata, upper_32_bits(priv->start),
+> + RVTRACE_RAMSINK_WPHIGH_OFF);
+> + src.cur = buf_cur_head - priv->start;
+> + size_wp_end = priv->end - buf_cur_head;
+> + tbuf_to_pbuf_copy(&src, &dst, size_wp_end);
+> + }
 
-As this device is the "orchestrator" for the rest of the media
-pipeline, we need to stop all on-going streams before system suspend and
-enable them back when the system wakes up from sleep.
+Hi Anup,
+I have two questions about the handling of the wrap case.
+1. If I understand correctly, the perf_aux_event has a flag,
+PERF_AUX_FLAG_TRUNCATED, which is used to indicate whether data loss
+has occurred within a record slice. Users can use perf commands such
+as perf report --stats to determine if the trace log contains the
+complete history. I notice that this driver currently sets
+stop_on_wrap=false unconditionally, which means the hardware will wrap
+around and overwrite old data when the buffer is full. However, I
+don't see PERF_AUX_FLAG_TRUNCATED being set when wrap occurs.
+According to other drivers (e.g., ARM CoreSight ETR)
+ERF_AUX_FLAG_TRUNCATED should NOT be set in snapshot mode because:
+a) Data overwrite is expected behavior in snapshot mode,
+b) Setting TRUNCATED prevents the perf core from re-enabling the event
+Is the current implementation assuming that this driver only supports snapshot?
 
-Using .suspend/.resume callbacks does not work, as the order of those
-callbacks amongst various devices in the camera pipeline like the sensor,
-FPD serdes, CSI bridge etc. is impossible to enforce, even with
-device links. For example, the Cadence CSI bridge is a child device of
-this device, thus we cannot create a device link with the CSI bridge as
-a provider and this device as consumer. This can lead to situations
-where all the dependencies for the bridge have not yet resumed when we
-request the subdev to start streaming again through the .resume callback
-defined in this device.
+2. Currently, perf tool snapshot mode requires users to explicitly add
+the "-S" option to perf record. If this driver only supports snapshot
+mode, do we consider either:
+a) Reject non-snapshot mode in rvtrace_setup_aux() with an error
+message like: "RISC-V TCI requires snapshot mode. Please use: perf
+record -S ..."
+or
+b) Emit a warning when snapshot=false is detected: "RISC-V TCI:
+non-snapshot mode not supported, forcing snapshot mode"
+This would prevent users from unknowingly losing data when the buffer
+wraps around in non-snapshot mode.
+What do you think?
 
-Instead here we register a notifier callback with the PM framework
-which is triggered when the system is fully functional. At this point we
-can cleanly stop or start the streams, because we know all other devices
-and their dependencies are functional. A downside of this approach is
-that the userspace is also alive (not frozen yet, or just thawed), so
-the suspend notifier might complete before the userspace has completed
-all ioctls, like QBUF/DQBUF/STREAMON/STREAMOFF.
-
-Tested-by: Rishikesh Donadkar <r-donadkar@ti.com>
-Reviewed-by: Rishikesh Donadkar <r-donadkar@ti.com>
-Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
-Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
----
- .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 135 ++++++++++++++++++
- 1 file changed, 135 insertions(+)
-
-diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-index 52c93a11ce8b7..722c3fa22031e 100644
---- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-+++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-@@ -131,6 +131,7 @@ struct ti_csi2rx_dev {
- 	struct v4l2_subdev		*source;
- 	struct v4l2_subdev		subdev;
- 	struct ti_csi2rx_ctx		ctx[TI_CSI2RX_MAX_CTX];
-+	struct notifier_block		pm_notifier;
- 	u8				pix_per_clk;
- 	/* Buffer to drain stale data from PSI-L endpoint */
- 	struct {
-@@ -1545,6 +1546,124 @@ static int ti_csi2rx_runtime_resume(struct device *dev)
- 	return 0;
- }
- 
-+static int ti_csi2rx_suspend(struct device *dev)
-+{
-+	struct ti_csi2rx_dev *csi = dev_get_drvdata(dev);
-+	enum ti_csi2rx_dma_state state;
-+	struct ti_csi2rx_ctx *ctx;
-+	struct ti_csi2rx_dma *dma;
-+	unsigned long flags = 0;
-+	int i, ret = 0;
-+
-+	/* If device was not in use we can simply suspend */
-+	if (pm_runtime_status_suspended(dev))
-+		return 0;
-+
-+	/*
-+	 * If device is running, assert the pixel reset to cleanly stop any
-+	 * on-going streams before we suspend.
-+	 */
-+	writel(0, csi->shim + SHIM_CNTL);
-+
-+	for (i = 0; i < csi->num_ctx; i++) {
-+		ctx = &csi->ctx[i];
-+		dma = &ctx->dma;
-+
-+		spin_lock_irqsave(&dma->lock, flags);
-+		state = dma->state;
-+		spin_unlock_irqrestore(&dma->lock, flags);
-+
-+		if (state != TI_CSI2RX_DMA_STOPPED) {
-+			/* Disable source */
-+			ret = v4l2_subdev_disable_streams(&csi->subdev,
-+							  TI_CSI2RX_PAD_FIRST_SOURCE + ctx->idx,
-+							  BIT(0));
-+			if (ret)
-+				dev_err(csi->dev, "Failed to stop subdev stream\n");
-+		}
-+
-+		/* Stop any on-going streams */
-+		writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
-+
-+		/* Drain DMA */
-+		ti_csi2rx_drain_dma(ctx);
-+
-+		/* Terminate DMA */
-+		ret = dmaengine_terminate_sync(ctx->dma.chan);
-+		if (ret)
-+			dev_err(csi->dev, "Failed to stop DMA\n");
-+	}
-+
-+	return ret;
-+}
-+
-+static int ti_csi2rx_resume(struct device *dev)
-+{
-+	struct ti_csi2rx_dev *csi = dev_get_drvdata(dev);
-+	struct ti_csi2rx_ctx *ctx;
-+	struct ti_csi2rx_dma *dma;
-+	struct ti_csi2rx_buffer *buf;
-+	unsigned long flags = 0;
-+	unsigned int reg;
-+	int i, ret = 0;
-+
-+	/* If device was not in use, we can simply wakeup */
-+	if (pm_runtime_status_suspended(dev))
-+		return 0;
-+
-+	/* If device was in use before, restore all the running streams */
-+	reg = SHIM_CNTL_PIX_RST;
-+	writel(reg, csi->shim + SHIM_CNTL);
-+
-+	for (i = 0; i < csi->num_ctx; i++) {
-+		ctx = &csi->ctx[i];
-+		dma = &ctx->dma;
-+		spin_lock_irqsave(&dma->lock, flags);
-+		if (dma->state != TI_CSI2RX_DMA_STOPPED) {
-+			/* Re-submit all previously submitted buffers to DMA */
-+			list_for_each_entry(buf, &ctx->dma.submitted, list) {
-+				ti_csi2rx_start_dma(ctx, buf);
-+			}
-+			spin_unlock_irqrestore(&dma->lock, flags);
-+
-+			/* Restore stream config */
-+			ti_csi2rx_setup_shim(ctx);
-+
-+			ret = v4l2_subdev_enable_streams(&csi->subdev,
-+							 TI_CSI2RX_PAD_FIRST_SOURCE + ctx->idx,
-+							 BIT(0));
-+			if (ret)
-+				dev_err(ctx->csi->dev, "Failed to start subdev\n");
-+		} else {
-+			spin_unlock_irqrestore(&dma->lock, flags);
-+		}
-+	}
-+
-+	return ret;
-+}
-+
-+static int ti_csi2rx_pm_notifier(struct notifier_block *nb,
-+				 unsigned long action, void *data)
-+{
-+	struct ti_csi2rx_dev *csi =
-+		container_of(nb, struct ti_csi2rx_dev, pm_notifier);
-+
-+	switch (action) {
-+	case PM_HIBERNATION_PREPARE:
-+	case PM_SUSPEND_PREPARE:
-+	case PM_RESTORE_PREPARE:
-+		ti_csi2rx_suspend(csi->dev);
-+		break;
-+	case PM_POST_SUSPEND:
-+	case PM_POST_HIBERNATION:
-+	case PM_POST_RESTORE:
-+		ti_csi2rx_resume(csi->dev);
-+		break;
-+	}
-+
-+	return NOTIFY_DONE;
-+}
-+
- static const struct dev_pm_ops ti_csi2rx_pm_ops = {
- 	RUNTIME_PM_OPS(ti_csi2rx_runtime_suspend, ti_csi2rx_runtime_resume,
- 		       NULL)
-@@ -1618,6 +1737,20 @@ static int ti_csi2rx_probe(struct platform_device *pdev)
- 		goto err_notifier;
- 	}
- 
-+	/*
-+	 * Use PM notifier instead of .suspend/.resume callbacks because the
-+	 * ordering of callbacks among camera pipeline devices (sensor, serdes,
-+	 * CSI bridge) cannot be enforced even with device links. The notifier
-+	 * is called when the system is fully functional, ensuring all
-+	 * dependencies are available when stopping/starting streams.
-+	 */
-+	csi->pm_notifier.notifier_call = ti_csi2rx_pm_notifier;
-+	ret = register_pm_notifier(&csi->pm_notifier);
-+	if (ret) {
-+		dev_err(csi->dev, "Failed to create PM notifier: %d\n", ret);
-+		goto err_notifier;
-+	}
-+
- 	return 0;
- 
- err_notifier:
-@@ -1645,6 +1778,8 @@ static void ti_csi2rx_remove(struct platform_device *pdev)
- 		ti_csi2rx_cleanup_ctx(&csi->ctx[i]);
- 
- 	ti_csi2rx_cleanup_notifier(csi);
-+	unregister_pm_notifier(&csi->pm_notifier);
-+
- 	ti_csi2rx_cleanup_v4l2(csi);
- 	dma_free_coherent(csi->dev, csi->drain.len, csi->drain.vaddr,
- 			  csi->drain.paddr);
--- 
-2.34.1
-
+Thanks,
+Vincent Chen
+> +
+> + src.cur = 0;
+> + size_start_wp = buf_cur_head - priv->start;
+> + tbuf_to_pbuf_copy(&src, &dst, size_start_wp);
+> + dev_dbg(&comp->dev, "Copied %zu bytes\n", size_wp_end + size_start_wp);
+> + return (size_wp_end + size_start_wp);
+> +}
+> +
+> +static int rvtrace_ramsink_setup_buf(struct rvtrace_component *comp,
+> +     struct rvtrace_ramsink_priv *priv)
+> +{
+> + struct device *pdev = comp->pdata->dev;
+> + u64 start_min, limit_max, end;
+> + u32 low, high;
+> + int ret;
+> +
+> + /* Probe min and max values for start and limit registers */
+> + rvtrace_write32(comp->pdata, 0, RVTRACE_RAMSINK_STARTLOW_OFF);
+> + rvtrace_write32(comp->pdata, 0, RVTRACE_RAMSINK_STARTHIGH_OFF);
+> + low = rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_STARTLOW_OFF);
+> + high = rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_STARTHIGH_OFF);
+> + start_min = (u64)(high) << 32 | low;
+> +
+> + rvtrace_write32(comp->pdata, 0xffffffff, RVTRACE_RAMSINK_LIMITLOW_OFF);
+> + rvtrace_write32(comp->pdata, 0xffffffff, RVTRACE_RAMSINK_LIMITHIGH_OFF);
+> + low = rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_LIMITLOW_OFF);
+> + high = rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_LIMITHIGH_OFF);
+> + limit_max = (u64)(high) << 32 | low;
+> +
+> + /* Set DMA mask based on the maximum allowed limit address */
+> + ret = dma_set_mask_and_coherent(pdev, DMA_BIT_MASK(fls64(limit_max)));
+> + if (ret)
+> + return ret;
+> +
+> + priv->va = dma_alloc_coherent(pdev, priv->size, &priv->start, GFP_KERNEL);
+> + if (!priv->va)
+> + return -ENOMEM;
+> +
+> + priv->end = priv->start + priv->size;
+> + if (priv->end <= start_min || priv->start >= limit_max) {
+> + dma_free_coherent(pdev, priv->size, priv->va, priv->start);
+> + dev_err(&comp->dev, "DMA memory not addressable by device\n");
+> + return -EINVAL;
+> + }
+> +
+> + /* Setup ram sink start addresses */
+> + if (priv->start < start_min) {
+> + dev_warn(&comp->dev, "Ramsink start address updated from %pad to %pad\n",
+> + &priv->start, &start_min);
+> + priv->va += start_min - priv->start;
+> + priv->start = start_min;
+> + }
+> +
+> + rvtrace_write32(comp->pdata, lower_32_bits(priv->start),
+> RVTRACE_RAMSINK_STARTLOW_OFF);
+> + rvtrace_write32(comp->pdata, upper_32_bits(priv->start),
+> RVTRACE_RAMSINK_STARTHIGH_OFF);
+> + rvtrace_write32(comp->pdata, lower_32_bits(priv->start),
+> RVTRACE_RAMSINK_WPLOW_OFF);
+> + rvtrace_write32(comp->pdata, upper_32_bits(priv->start),
+> RVTRACE_RAMSINK_WPHIGH_OFF);
+> + /* Setup ram sink limit addresses */
+> + if (priv->end > limit_max) {
+> + dev_warn(&comp->dev, "Ramsink limit address updated from %pad to %pad\n",
+> + &priv->end, &limit_max);
+> + priv->end = limit_max;
+> + priv->size = priv->end - priv->start;
+> + }
+> +
+> + /* Limit address needs to be set to end - mem_access_width to avoid
+> overflow */
+> + end = priv->end - priv->mem_acc_width;
+> + rvtrace_write32(comp->pdata, lower_32_bits(end),
+> RVTRACE_RAMSINK_LIMITLOW_OFF);
+> + rvtrace_write32(comp->pdata, upper_32_bits(end),
+> RVTRACE_RAMSINK_LIMITHIGH_OFF);
+> + low = rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_LIMITLOW_OFF);
+> + high = rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_LIMITHIGH_OFF);
+> + end = (u64)(high) << 32 | low;
+> + if (end != (priv->end - 4)) {
+> + dev_warn(&comp->dev, "Ramsink limit address updated from %pad to %pad\n",
+> + &priv->end, &end);
+> + priv->end = end;
+> + priv->size = priv->end - priv->start;
+> + }
+> +
+> + return 0;
+> +}
+> +
+> +static int rvtrace_ramsink_setup(struct rvtrace_component *comp)
+> +{
+> + struct rvtrace_ramsink_priv *priv;
+> + u32 trram_ctrl;
+> + int ret;
+> +
+> + priv = devm_kzalloc(&comp->dev, sizeof(*priv), GFP_KERNEL);
+> + if (!priv)
+> + return -ENOMEM;
+> +
+> + /* Derive RAM sink memory size based on component implementation ID */
+> + switch (comp->pdata->impid) {
+> + default:
+> + priv->size = SZ_1M;
+> + priv->mode = MODE_SMEM;
+> + priv->stop_on_wrap = false;
+> + priv->mem_acc_width = 4;
+> + break;
+> + }
+> +
+> + trram_ctrl = rvtrace_read32(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET);
+> + trram_ctrl |= priv->mode << RVTRACE_RAMSINK_CTRL_MODE_SHIFT;
+> + rvtrace_write32(comp->pdata, trram_ctrl, RVTRACE_COMPONENT_CTRL_OFFSET);
+> + trram_ctrl = rvtrace_read32(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET);
+> + dev_dbg(&comp->dev, "mode: %s\n", (trram_ctrl >>
+> RVTRACE_RAMSINK_CTRL_MODE_SHIFT) & 0x1 ?
+> + "SMEM" : "SRAM");
+> +
+> + trram_ctrl |= priv->stop_on_wrap << RVTRACE_RAMSINK_CTRL_STP_WRAP_SHIFT;
+> + rvtrace_write32(comp->pdata, trram_ctrl, RVTRACE_COMPONENT_CTRL_OFFSET);
+> +
+> + ret = rvtrace_ramsink_setup_buf(comp, priv);
+> + if (!ret)
+> + dev_set_drvdata(&comp->dev, priv);
+> +
+> + return ret;
+> +}
+> +
+> +static void rvtrace_ramsink_cleanup(struct rvtrace_component *comp)
+> +{
+> + struct rvtrace_ramsink_priv *priv = dev_get_drvdata(&comp->dev);
+> +
+> + dma_free_coherent(comp->pdata->dev, priv->size, priv->va, priv->start);
+> +}
+> +
+> +static int rvtrace_ramsink_probe(struct rvtrace_component *comp)
+> +{
+> + int ret;
+> +
+> + ret = rvtrace_ramsink_setup(comp);
+> + if (ret)
+> + return dev_err_probe(&comp->dev, ret, "failed to setup ramsink.\n");
+> +
+> + ret = rvtrace_enable_component(comp->pdata);
+> + if (ret)
+> + return dev_err_probe(&comp->dev, ret, "failed to enable ramsink.\n");
+> +
+> + return ret;
+> +}
+> +
+> +static void rvtrace_ramsink_remove(struct rvtrace_component *comp)
+> +{
+> + int ret;
+> +
+> + ret = rvtrace_disable_component(comp->pdata);
+> + if (ret)
+> + dev_err(&comp->dev, "failed to disable ramsink.\n");
+> +
+> + rvtrace_ramsink_cleanup(comp);
+> +}
+> +
+> +static struct rvtrace_component_id rvtrace_ramsink_ids[] = {
+> + { .type = RVTRACE_COMPONENT_TYPE_RAMSINK,
+> +  .version = rvtrace_component_mkversion(1, 0), },
+> + {},
+> +};
+> +
+> +static struct rvtrace_driver rvtrace_ramsink_driver = {
+> + .id_table = rvtrace_ramsink_ids,
+> + .copyto_auxbuf = rvtrace_ramsink_copyto_auxbuf,
+> + .stop = rvtrace_ramsink_stop,
+> + .start = rvtrace_ramsink_start,
+> + .probe = rvtrace_ramsink_probe,
+> + .remove = rvtrace_ramsink_remove,
+> + .driver = {
+> + .name = "rvtrace-ramsink",
+> + },
+> +};
+> +
+> +static int __init rvtrace_ramsink_init(void)
+> +{
+> + return rvtrace_register_driver(&rvtrace_ramsink_driver);
+> +}
+> +
+> +static void __exit rvtrace_ramsink_exit(void)
+> +{
+> + rvtrace_unregister_driver(&rvtrace_ramsink_driver);
+> +}
+> +
+> +module_init(rvtrace_ramsink_init);
+> +module_exit(rvtrace_ramsink_exit);
+> +
+> +/* Module information */
+> +MODULE_AUTHOR("Mayuresh Chitale");
+> +MODULE_DESCRIPTION("RISC-V Trace Ramsink Driver");
+> +MODULE_LICENSE("GPL");
 
