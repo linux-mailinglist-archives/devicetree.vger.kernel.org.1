@@ -1,148 +1,196 @@
-Return-Path: <devicetree+bounces-275389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275390-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mGohDtkytGn4igAAu9opvQ
-	(envelope-from <devicetree+bounces-275389-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:52:57 +0100
+	id SPZWKe4ytGn4igAAu9opvQ
+	(envelope-from <devicetree+bounces-275390-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:53:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FA28286601
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:52:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E7C3286612
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:53:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 64EF330626CE
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:49:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 70B94308660B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:49:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D9574F5E0;
-	Fri, 13 Mar 2026 15:49:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76D7C35DA49;
+	Fri, 13 Mar 2026 15:49:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="MYW1lb/v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K3+rHyjs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DED035DA4D;
-	Fri, 13 Mar 2026 15:49:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20CE730E82D;
+	Fri, 13 Mar 2026 15:49:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773416953; cv=none; b=KkElxRRA+kKAFsrLws3zdDH7rzf3sRLoKfSwQu/t+5d+N9/c9yw/SGl0oMVXY6UCJhqg1q1r5zVwGARkvxYoabQBDozhceWdsi2v3hitLxUz8CBttwgk2g6q0hX35VPOCRtxXskbRZTyYdLqVsYmsWV2FFY4frdctliPROxotLU=
+	t=1773416961; cv=none; b=bpwpH3ujzmrpofhAse9m21ylCruxH1z8Ycw4jCfKO72Dk8/e1ZwECBQMn4579lOTw3epWTW1XCLNNZ5/lfNAu8WSuwjxM0+5jX9stzk7cUrsGSSEpKmiTBwRpOvjyG7SCCoKDeZLv1ROKI8bD9ZQ7YeJuAMrXI/EwYgqH7hXsHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773416953; c=relaxed/simple;
-	bh=JBvFN3my5AVy2lrIhdejQCli64xpHH7XCUnkjZXPNFU=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=uaBBiOHakdzdovv8UYfETD46QJXQLCX7KU8hZ6riJZsyjlnVSzQm0Fe1CBhLmZzNaY3/GnTn6h1vD/oSnlD4g9FTz4dXoTsOufbDVA2Zh7tSksdE1kBSKRIBAx3m/wL4oXmY8jVrP55V508IFQEYn8am5C2z0FY20UAKlxGRSLM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=MYW1lb/v; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id D890AC4285E;
-	Fri, 13 Mar 2026 15:49:29 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 94FF960027;
-	Fri, 13 Mar 2026 15:49:07 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DF33F10369BC8;
-	Fri, 13 Mar 2026 16:49:00 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1773416946; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=JBvFN3my5AVy2lrIhdejQCli64xpHH7XCUnkjZXPNFU=;
-	b=MYW1lb/v7UD9mqMZtt9u4Yicuw08mgqjTl0y8Nyr7O3/y8JYD7Z864f9EBWgGlg5a0iJS1
-	Up1QJj5OjMrrMsA5FhZNcFUxUn+3K0dgTK+00RVDaF9DM0xhcM9XWzgmDK8a9XCDIouLsz
-	M5tV47t1J4N3YS+kxxjnjtVk+bhTD66GsVMMySFs21BG6NUL4WDjNxkYqSK4+gSnUUSXg+
-	bpyNrkJnUSAQGhf/QOxowU0/kSOlNZVCvBkSjmud6eDkIIdabFYfqFfeCV6d7UpRI3/MSk
-	y3bqRtVQGpdeov/joMjP4+aBRRANwUMt56MkXFGcVlfJogMbM1joHGkj/xBIZQ==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Rob Herring <robh+dt@kernel.org>
-Cc: Elad Nachman <enachman@marvell.com>, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, andrew@lunn.ch, sebastian.hesselbarth@gmail.com,
- pali@kernel.org, mrkiko.rs@gmail.com, chris.packham@alliedtelesis.co.nz,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/3] dt-bindings: arm64: add Marvell 7k COMe boards
-In-Reply-To: <CAL_JsqJn87FdJmh=4phLL+DRQk8dz1iJE7=43f-ObFpEPpB_Dw@mail.gmail.com>
-References: <20260122165923.2316510-1-enachman@marvell.com>
- <20260122165923.2316510-2-enachman@marvell.com>
- <87ms0qfd8h.fsf@BLaptop.bootlin.com>
- <CAL_JsqJn87FdJmh=4phLL+DRQk8dz1iJE7=43f-ObFpEPpB_Dw@mail.gmail.com>
-Date: Fri, 13 Mar 2026 16:49:00 +0100
-Message-ID: <87y0jv687n.fsf@BLaptop.bootlin.com>
+	s=arc-20240116; t=1773416961; c=relaxed/simple;
+	bh=z57Tf7Z7/AgkJp5BlAyT2BBV9PYTgl6tC4lbtgL5PU0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oVMdJwewtgvS8g6CLnHhmB4GcYv3uxluw6EoKIFa1/13/2mOcn6hAg6lEi0MFB97dCbfdcoQrMXoK30I7pO0c2FxJua38N4zX3111yPZ+k/xwZBbpjA9KCnTqcBOKer0dYB9QZadd95NXooyuyL9f8MqWhHzVGDP1IJsyOsmYjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K3+rHyjs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38AA3C19425;
+	Fri, 13 Mar 2026 15:49:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773416960;
+	bh=z57Tf7Z7/AgkJp5BlAyT2BBV9PYTgl6tC4lbtgL5PU0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=K3+rHyjs+IrOar126hgYD5L/iPUGP/H5gTLYu6YSk0MvWeTwDcf4bDlNu2XGDBtT7
+	 zRxW+Ta2ufkwk3XxtnNGVORAPRmoiNKStSHMv27RuqpEY71PnpRCN78OBCSKG+G5ye
+	 zsfXqWd05cRwBMjzWDe/x6NSBHNTyPTrm2bF9Yei9Le1ds1a8wYQOSLcjSdRYEvrAF
+	 c6NZ6YOLGf2YPcAvHdtQhbvxdCx+UIrclCrpLwLV02TGpCNW8CAYoUJEV1LnITX+2g
+	 WeIKPD/RQ8nDdruth2piW2Jt46qq5NaXt6cJu74OO7/RTufDVH6xd+bxm0JqFE2N7V
+	 QJiT4tFhzedhQ==
+Message-ID: <849c07bd-2f8d-4982-b5cf-c336807ab8ed@kernel.org>
+Date: Fri, 13 Mar 2026 16:49:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 8/8] dt-bindings: remoteproc: k3-r5f: Require
+ memory-region-names
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Suman Anna <s-anna@ti.com>, Nishanth Menon
+ <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, Vishal Mahaveer <vishalm@ti.com>,
+ Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>,
+ Sebin Francis <sebin.francis@ti.com>, Kendall Willis <k-willis@ti.com>,
+ Akashdeep Kaur <a-kaur@ti.com>, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20260312-topic-am62a-ioddr-dt-v6-19-v2-0-37cb7ceec658@baylibre.com>
+ <20260312-topic-am62a-ioddr-dt-v6-19-v2-8-37cb7ceec658@baylibre.com>
+ <20260313-quantum-modest-prawn-896bde@quoll>
+ <DH1P27ZP9QYQ.2IP3X8G218GR8@baylibre.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <DH1P27ZP9QYQ.2IP3X8G218GR8@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[marvell.com,linaro.org,kernel.org,lunn.ch,gmail.com,alliedtelesis.co.nz,vger.kernel.org,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-275389-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275390-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gregory.clement@bootlin.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,BLaptop.bootlin.com:mid,marvell.com:email,bootlin.com:dkim,bootlin.com:email,bootlin.com:url]
-X-Rspamd-Queue-Id: 8FA28286601
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0E7C3286612
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello Rob,
-
-> On Mon, Mar 2, 2026 at 9:44=E2=80=AFAM Gregory CLEMENT
-> <gregory.clement@bootlin.com> wrote:
+On 13/03/2026 14:38, Markus Schneider-Pargmann wrote:
+> Hi Krzysztof,
+> 
+> On Fri Mar 13, 2026 at 2:13 PM CET, Krzysztof Kozlowski wrote:
+>> On Thu, Mar 12, 2026 at 04:49:02PM +0100, Markus Schneider-Pargmann (TI) wrote:
+>>> If memory-region is used, require memory-region-names.
 >>
->> Elad Nachman <enachman@marvell.com> writes:
+>> Why?
+> 
+> This was a suggestion/comment from Conor in the last version:
+> 
+>     Is this really optional? Shouldn't it be made mandatory so that it is
+>     easy to tell the difference between the two configurations?
+
+Then write it in commit msg. You have entire commit msg to explain why
+you are doing things, instead of obvious what. We can read the diff.
+
+> 
+> https://lore.kernel.org/all/20260303-hesitate-preoccupy-5e311cbd3e58@spud/
+> 
 >>
->> > From: Elad Nachman <enachman@marvell.com>
->> >
->> > Add dt bindings for:
->> > Armada 7020 COM Express CPU module
->> > Falcon DB-98CX85x0 COM Express type 7 Carrier board
->> > Falcon DB-98CX85x0 COM Express type 7 Carrier board
->> > with an Armada 7020 COM Express CPU module
->> >
->> > Signed-off-by: Elad Nachman <enachman@marvell.com>
->>
->> Applied on mvebu/dt64
->
-> It seems the .dts files are in 7.0 and the binding is only in next.
-> The binding needs to go into 7.0 too.
->
-> Please pay attention to the warnings. There are only 19 (unique ones)
-> left for marvell since I fixed most of them.
->
-Sorry for this. I have now applied the binding, and it will be included
-in my next fixes PR.
+>> I don't understand also why this is a separate change, but maybe answer
+>> to "Why are you doing it" would cover it as well.
+> 
+> I made this a separate patch so the git tree never has any
+> binding/devicectree warnings for memory-region-names even in-between
+> patches. That's why I created these patches in this order:
+> 
+> 1. Add the memory-region-names as an optional property.
+> 2. Add memory-region-names to all users of memory-region.
 
-Gregory
+So what is the point of this if it is optional? IOW, what does this
+commit achieve? Almost nothing.
 
-> Rob
+> 3. Make the property required if memory-region exists.
 
---=20
-Gr=C3=A9gory CLEMENT, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+but only required here? You need to organize your work in logical hunks.
+
+> Markus
+
+
+Best regards,
+Krzysztof
 
