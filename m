@@ -1,196 +1,174 @@
-Return-Path: <devicetree+bounces-275451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275452-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8Ms+I89BtGk4kAAAu9opvQ
-	(envelope-from <devicetree+bounces-275451-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:56:47 +0100
+	id AF2fFxtBtGnCjwAAu9opvQ
+	(envelope-from <devicetree+bounces-275452-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:53:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06499287A79
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:56:46 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id F313B28797B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:53:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 61AAD3028ECD
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:51:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 287CD308627A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:52:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D9333C7DE8;
-	Fri, 13 Mar 2026 16:51:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DBC23C873D;
+	Fri, 13 Mar 2026 16:52:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IuqH0owB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GYQe+k18"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37B5235E92C;
-	Fri, 13 Mar 2026 16:51:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773420716; cv=none; b=eLyd4r8ga94MyN4znqsXp+vUMWpmBVLrzcPci4AlgbhnQj2cIhizUag212sGW2ZrUNzFEzirIPXHFVUIqAwUfJmXP/lvzs9LqtoUE0Nnk7Sxp4DSYPSvEF0H/CyFua3gGNPCVfNJvHxTYA5HXo+44XCmBNtzmPDR3rdhGbW9TnI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773420716; c=relaxed/simple;
-	bh=lFPdsTRQIac0h20us+/rsEhtCke2dTOPyz2JdgoPmZE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZgYXqRP3cpsHfonJHRnLny59kFEGVU73ThMwxSArP1yQI3JiIYkngy2leWW+ktF1S9x0+eULG1CLXofiKmyIzvH4dvUkKd7c9yxM0RJG4y2a8ay/ifYJs4aubm9eqbMFL10i7rWe9MrhFx+/tC9DkkQciR59osNvQuxs7/rQwGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IuqH0owB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 448C8C19425;
-	Fri, 13 Mar 2026 16:51:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773420715;
-	bh=lFPdsTRQIac0h20us+/rsEhtCke2dTOPyz2JdgoPmZE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IuqH0owBJ5zYkJvKJnKft9Lq15W7NGrQlgAt43FbOK1uVltXbXJ+nwpS7JDdHvqyG
-	 ckqt6azUqU2p6bpLJ3E4optg7es6GLJQFxyLh1rdbwpEoph90Lr1eHLAM60Ti1G7ei
-	 Rm1GzeiC/WPhG8ykmpfXVkD+usRDX537i1n2oTbPseH9GV3cxnXpoTo8FbBCAYVEvd
-	 NgksUiItyZO/vvzF327w05loREK9jPad49ttR/8dvzfr5clRRqT7wghErVYn9bUCFY
-	 B0NBbwfCFDv1F5NYOEdhdztlsnmcwEJ/YojDAPMU0kdgtaqAyk/YOpNjS696r58X5v
-	 Jq9Cgme38CGPA==
-Date: Fri, 13 Mar 2026 16:51:50 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Erikas Bitovtas <xerikasxx@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Peter Meerwald <pmeerw@pmeerw.net>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: iio: light: vcnl4000: add regulators
-Message-ID: <20260313-reputably-pregame-ba41c3c1438a@spud>
-References: <20260312-vcnl4000-regulators-v2-0-2bdebbcbb58a@gmail.com>
- <20260312-vcnl4000-regulators-v2-1-2bdebbcbb58a@gmail.com>
- <20260312-slouching-shelf-c8f64433881d@spud>
- <3d27945a-639d-4c3d-969f-2ec23bdd9900@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE2553C7DE8
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 16:52:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.173
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773420765; cv=pass; b=reMWKXlI0iKjRZxkCx2hSS6Rr7yxsL/JQmTAQN0nTa2+b+BASk4593THntq4cJNtJ2zoedrGEjmVGrHn5vBzZaVRiwC4a8sekTM8jsWuqfQ3a8W5Cr7y/zLgWRo3y8uPoWIMtxwp5iun0dBaugWjN6F3zeIEG8NqGf6X4xjvxEA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773420765; c=relaxed/simple;
+	bh=p4zOxxN5sMxEMhttmRH6ZENKMtvVQ6PbFWqYTavE0PE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BYBEp6TsHrugkO1GwAovfjr2NPolOEkG3hyPV6ehNCmaSKxbMLAi06YiM42+jXp229KR8Xh6dUbjb9/4XFdUo9Pkc0BStgZlhkcqXWVi6u9eU4wwNZfLjLG6Pe9hoZ2Ft8MtJR2ODx+ou7Q109Mum96Q54FglzjGtijtyUeh0kU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GYQe+k18; arc=pass smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-38a45bc61e9so18928491fa.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 09:52:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773420762; cv=none;
+        d=google.com; s=arc-20240605;
+        b=DutpisRZx69tCzhvRo/GKSFWJ/2IApQNVtW5gzlBAa9kbinTrKHHfw1eY4ECNwaFNW
+         ljKQN7r93TzDDRpJtVm8jhjpA0Dml/aadas8GMiTFZq1lkaKSPEvjGOaxvyHNPKTN3+E
+         /LNi6SICUmjiFR0cvFyCXY/PLtxnuhsn0vBwAVeFo8xrCY3t9Ly8scdKz94uGYHq7fMM
+         sDY33yyRAtavZGAwObCX7FCm7yLimSKjAzB+ApisJpuD2wbFQIux9TxvNwliRoJ1EbN6
+         Mhai6yxz0UBSak/utjA8cqL0KuSyMjgJQeZk+/bLh0L/4IQ985L5QoljN5uIJKM4VuUY
+         ktbw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=p4zOxxN5sMxEMhttmRH6ZENKMtvVQ6PbFWqYTavE0PE=;
+        fh=J9vOx8qJ5k4i/nNex/D6nKwmhoWDTzww/D6uBDdzOY0=;
+        b=EvNEpZ1WJdpjjga1uMEqVbcGWR/4Butci4WaI3TuIp1NLoER3g+Za8UvAQRg7K3pHx
+         0m74OcRQDCppu++YHUVyu7RBRVq920oNRPeYZmH2kDFdCxP6nA5VJ2DZmm8zXGbmaJTJ
+         eOvjfBB4fWfrsv+QLDJnBZUT6E3p61LFTBaXDJwzDgT1QkDg+LW5MJBU0GEihreVfBiK
+         tmzJXs7R9ahiXeKykiIsakeVjY/jIbi/POOxevr2rSmTa3IBlM5WSnUW1orL+3krYIt+
+         vQ2FIkAb1qqMHRByIkzT9kf6Afv+lUGoUOyJLeopRUbrJJCUstTRDKEJzh8eB8wkPcgx
+         xwLg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773420762; x=1774025562; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p4zOxxN5sMxEMhttmRH6ZENKMtvVQ6PbFWqYTavE0PE=;
+        b=GYQe+k18weg+mY2SrsWG8WYfnL01x10hLM4j9mXlTA/9E6oQ6K46IpDZgjrP3NCOR4
+         pw7CSbbs/8soEJKfp8WKmdgR0c5zPpHdCTYxguUG6g+Rnrnc7NkSrLZktoUQzoS7QBVt
+         DC5rqeBs0tag3QuH6ofYexMo226I0JSsf1hwA4diED2eN/2PdGVXRRMkty4kipOCPpmO
+         2zFcWcEUcZTsrw1LqZK84asyLWsDJW7hPyptoM6a9gRgXC+aQx453/ZDCfLQSCVSyena
+         OPTsEywEjJbF/xw6pdMeZbgTRpkbebiAIHDdUrlSKOwGfumxpIwHS5Lnpeoaz1PXxTEz
+         M8QA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773420762; x=1774025562;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=p4zOxxN5sMxEMhttmRH6ZENKMtvVQ6PbFWqYTavE0PE=;
+        b=eHmFg3uJsPw7K4HbzbPanfOi5We/TGa2L/wOyoeUoQXJhJ4775kGVPVenYE6iXrQlq
+         pzax+/00y/q0jeOsHeiaXUHYa4cBNIgJSj/2ldPZ95k8z8MUVAAKXKa4wjsN9/r8zRD4
+         jDes0jUNH6IxPskmniwVXcJ/yV+V12sNKwGwdmK6cJ3gpHkqlP/TFRPTOEEc+NbZljLw
+         MiD7aeGBf/8oIgledSPW/G/cYXspwL8agixgi084MmB4LA29bm+W2fEraouiLfB/2JC5
+         G6/mN7uO80dCZizwasdVuVRburyGAGwFJVjInEvZkxIR5V613X6P+SwzHyCzYfeR9FQp
+         3d6A==
+X-Gm-Message-State: AOJu0YyFn+zzbWOKWvf3CebCKrTun2UujwijVYXM/pBcD40Yr6SZ5ot1
+	X2RQ0HHU8rLedkiAjsXdj3ENv0qBDOHvs55wM6iBF/hmGOdhkb2MKsyPNFlle3QFaJj4mobR0s7
+	7h0kKORqytAdTgKXpVBqJncf+zmHEfnsTZw4K
+X-Gm-Gg: ATEYQzwCzXPECwdxYkvpLU/WF9RIRuFMUOqLo8knODbaLL+BuCMz1PpnYz/xRdWMsSj
+	fOlonbNZCp5KeRtDhMmlHKBgFv/5HLHnavkXaMRcCLc3Vrj8DBI/yBMCkcELh0fY8wvQYc2Zi/8
+	/Sx7v5BUe6cxF1fASbSdg373UDgtuXLaBWx6c9qlTVIVXkrVIxk1toMmsFPmD+LiL7K4byOQgDN
+	d+hZhG+TGBtBfw76wYs2qk3POqF02Vhry4VbnoS8Jr/3F7dAxWlEWTyVFEX98zo0+tTrPihLrU+
+	LwZxk5smruijdDyUZmtfjbFS+hxe/CmTA3nvzx1CfUx2Hi8UQhyBVQrGE5EDotfWaqf+eayz
+X-Received: by 2002:a05:651c:2102:b0:38a:4e44:7a14 with SMTP id
+ 38308e7fff4ca-38a89824096mr11615721fa.35.1773420761766; Fri, 13 Mar 2026
+ 09:52:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="+Nw0i8gb4BqMs9qV"
-Content-Disposition: inline
-In-Reply-To: <3d27945a-639d-4c3d-969f-2ec23bdd9900@gmail.com>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+References: <cover.1772898346.git.stefano.radaelli21@gmail.com>
+ <7c84625f82c562bb9cd2b455465d63a1a25bf19e.1772898346.git.stefano.radaelli21@gmail.com>
+ <CAOMZO5C+USp34WQ9ap+N9ha6EgU7JgsYkRsLEW=ZdizbkMQvPA@mail.gmail.com> <abQ_d9fGarNobYdo@Lord-Beerus.station>
+In-Reply-To: <abQ_d9fGarNobYdo@Lord-Beerus.station>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Fri, 13 Mar 2026 13:52:31 -0300
+X-Gm-Features: AaiRm52CBpU6R9UhBbKbW5aUQPcGYYXwouM18lgYHobd5ENQYOomz0enfBALELw
+Message-ID: <CAOMZO5BnuGc8sddmfhKJhFgWa+K2gExeRN5097794j48+Dw-AQ@mail.gmail.com>
+Subject: Re: [PATCH v3 06/11] arm64: dts: freescale: imx8mm-var-som: Update
+ WiFi/BT with variants
+To: Stefano Radaelli <stefano.radaelli21@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	pierluigi.p@variscite.com, Stefano Radaelli <stefano.r@variscite.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275451-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-275452-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[festevam@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 06499287A79
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: F313B28797B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Fri, Mar 13, 2026 at 1:46=E2=80=AFPM Stefano Radaelli
+<stefano.radaelli21@gmail.com> wrote:
 
---+Nw0i8gb4BqMs9qV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Correct. It is not included anywhere at the moment.
+> The Symphony evaluation board uses the IW61x configuration.
+> The imx8mm-var-som-wifi-brcm-legacy.dtsi file is kept as a separate inclu=
+de
+> so that carrier boards using the legacy Broadcom-based SOM revision can
+> include it if needed.
 
-On Fri, Mar 13, 2026 at 06:39:25PM +0200, Erikas Bitovtas wrote:
->=20
->=20
-> On 3/12/26 7:39 PM, Conor Dooley wrote:
-> > On Thu, Mar 12, 2026 at 01:53:12PM +0200, Erikas Bitovtas wrote:
-> >> This commit adds regulator properties for vcnl4000 ambient light and
-> >> proximity sensors.
-> >=20
-> > This we can see. Your commit message should say why.
-> >=20
-> > Do all devices in the binding have all of these supplies?
-> >=20
->=20
-> If we look at the datasheet for vcnl4040,
-> https://www.vishay.com/docs/84274/vcnl4040.pdf, in figure 11 we can see
-> that there can be 3 supplies: sensor supply Vdd (vdd), I2C supply for
-> the bus Vpull_up (vddio) and IR LED anode Vdd_led (vled).
-> The other datasheets refer to three supplies as well - one for the
-> sensor, one for anode and one for the bus:
-> https://www.vishay.com/docs/83372/vcnl4000.pdf
-> https://www.vishay.com/docs/84138/designingvcnl4010.pdf
-> https://www.vishay.com/docs/84327/designingvcnl4200.pdf
+Then imx8mm-var-som-wifi-brcm-legacy.dtsi is dead code. Nothing includes it=
+.
 
-Please provide this information in the commit message in v2.
+I don't think we want a dead dts in the tree.
 
-Thanks,
-Conor.
-pw-bot: changes-requested
+IW612 has not been upstreamed, right?
 
->=20
-> >>
-> >> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
-> >> ---
-> >>  Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml | 7 =
-+++++++
-> >>  1 file changed, 7 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/iio/light/vishay,vcnl40=
-00.yaml b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
-> >> index 2ba4d5de4ec4..a1b4c02db246 100644
-> >> --- a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
-> >> +++ b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
-> >> @@ -33,6 +33,10 @@ properties:
-> >>    interrupts:
-> >>      maxItems: 1
-> >> =20
-> >> +  vdd-supply: true
-> >> +  vddio-supply: true
-> >> +  vled-supply: true
-> >> +
-> >>    reg:
-> >>      maxItems: 1
-> >> =20
-> >> @@ -54,6 +58,9 @@ examples:
-> >>              compatible =3D "vishay,vcnl4200";
-> >>              reg =3D <0x51>;
-> >>              proximity-near-level =3D <220>;
-> >> +            vdd-supply =3D <&reg_vdd>;
-> >> +            vddio-supply =3D <&reg_vddio>;
-> >> +            vled-supply =3D <&reg_vled>;
-> >>          };
-> >>      };
-> >>  ...
-> >>
-> >> --=20
-> >> 2.53.0
-> >>
->=20
+People using the Broadcom Wi-Fi on the old board may still want to
+continue using it.
 
---+Nw0i8gb4BqMs9qV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabRApgAKCRB4tDGHoIJi
-0vDkAQCshe3nKx65m2CNcOl5oQt9otncLP8FiCIxDNfENpedyQEA2tgP6bBNXlJ+
-GIbUAOt1aQiV+0+Ujn4lrTD2Tv8UQw4=
-=5mIE
------END PGP SIGNATURE-----
-
---+Nw0i8gb4BqMs9qV--
+Please don't break it.
 
