@@ -1,123 +1,149 @@
-Return-Path: <devicetree+bounces-275472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275473-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wP68M3FItGk4kAAAu9opvQ
-	(envelope-from <devicetree+bounces-275472-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:25:05 +0100
+	id sA0aI+5ItGk4kAAAu9opvQ
+	(envelope-from <devicetree+bounces-275473-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:27:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69B93288145
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:25:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF5182881A0
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:27:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A40BD3030FC9
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:25:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E3F4F31C2BA4
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:25:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C732C3CCA0F;
-	Fri, 13 Mar 2026 17:24:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B879B3CBE9A;
+	Fri, 13 Mar 2026 17:25:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q9/eVV6+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bPWw+Wm2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3CB13CCA07;
-	Fri, 13 Mar 2026 17:24:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CAA03CBE8A;
+	Fri, 13 Mar 2026 17:25:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773422697; cv=none; b=afR4ALa2t/uQXCkwkWVyixCQanf/Gw2wMrbjjRaR4OYVWas0mLzJ5c9ceU02dtbHk96DzAUmwfWLBKVG6IaHdoYzhzSVEfrVhizKUnxwFdK8ucrHLom/YMoQL7M+gF/yJPh9n5INMWt1uSpUi8QVQB+2PfjRJqkHONMYG2egzss=
+	t=1773422725; cv=none; b=k+kyInkW3nsdPm7qUZgkb9Kpu47OO73z1JJ4ax06Bsf+sIsQRonN859a8J1lMFVgGVgRB5EkPkpDLOyp6aF4/kXUqyjnJ64ho0qOV9Lc3yRUnJBAraijhPZMPQlPAkp4HZwfPSrckGDINqZZixP096p5d2/qAolARBJ6ofE9WiY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773422697; c=relaxed/simple;
-	bh=PhgkdS5DvKWel9MdAAVCfG3QPkga0OY/GSOQG7dc5Os=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qKiYlCh5cd7XZDXxymKMHWAofomykjqL8/OVnLQIrat65h+YlWmD0y15FXyx5uaw7qpggb/anF06p/VASQ8YkVz1CBVEg1EkMqCvyVUO1bxAybs0TMwwt64zrQ3tujv1UT6T9Cy0KD+0QxKIqYKuLnP0xbemcC3oyHl5kVEYJBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q9/eVV6+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 561BDC19425;
-	Fri, 13 Mar 2026 17:24:55 +0000 (UTC)
+	s=arc-20240116; t=1773422725; c=relaxed/simple;
+	bh=ml4brZgYysNGyVbeOm8a2m9JHM+roqQsETGmno23LcY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GgCuTXpPh5TLo7kzFqB6uA6E8UXVa1B9bWYajjb/IbFgx8pj/YPwCyRhq5V1A/7yP/GmI/N8IXBPbPsB8t7Tve+qC6Fr0n/Ynx3oeo7bkfTrWtcd+gR2TQgQdbgw40sBxqEHu/+L1+bVOEMGIxq0+qJVQN5ob+Wli1Z5HuuqTi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bPWw+Wm2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F630C19421;
+	Fri, 13 Mar 2026 17:25:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773422697;
-	bh=PhgkdS5DvKWel9MdAAVCfG3QPkga0OY/GSOQG7dc5Os=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Q9/eVV6+G6iQHoVoQvE3FXt2QiwsFEbZ2Rfcb1d4yvmNUQ2SnDPYBuP5neW+O/Gjn
-	 vrlhe17RVGUCHVj7LVykkfoLZVjgK2NW3KklpK4RPerWSBKQV+8X15gGN6AAHZKBEL
-	 JaaDB1+1VH4aFa/39JwcAUzCQJhs/G1OdfM63Hdh6w+pbBdrHCz+FLXjI+ltupE9TP
-	 qiL1OVN1Jv8hm+j60h6d7HqPcAgjJo91y77SqMOOYWlLEX/9b3InkkhnnyqRV71DIF
-	 bfocNfbynOrIECN0GjFe/4cX5q4eNDA8F7cQA1oeHwY4O0lss1YWEt6Mapf/L2FiyS
-	 hsdCCg9J/jI8Q==
-Date: Fri, 13 Mar 2026 17:24:53 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Robby Cai <robby.cai@nxp.com>
-Cc: broonie@kernel.org, lgirdwood@gmail.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, andreas@kemnade.info,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: fp9931: Make vin-supply
- property as required
-Message-ID: <20260313-collector-freckles-b918ae703a73@spud>
-References: <20260313133102.2749890-1-robby.cai@nxp.com>
- <20260313133102.2749890-2-robby.cai@nxp.com>
+	s=k20201202; t=1773422724;
+	bh=ml4brZgYysNGyVbeOm8a2m9JHM+roqQsETGmno23LcY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=bPWw+Wm2vENS0R2etVUo52Ys6ZStKULfae6XmmOinT+dnd68U5DQmopUMqGOmzdG8
+	 a8uRfq6QRCj7WOd3kChdIl0lSXD4JwFks82csjU2kB/1V8ij/f2U5TOQ6yGD2hqDr7
+	 g8LXhAYWIfp/F5jR5tDh+qNBIE/zapkVjgg6OUKJ5Xx3Z69Quslgi/ibnXv7Huyruh
+	 SukHaYpysqQ5cHSBmCAaZksdyFAaUJT0kQn/bmC3rJ6bd6pClR+I4m9yctJ5dsoPOM
+	 6Iy5ydxLRU1Cd2ReN+qVOHlbEMoQnMgZpid7aYuPCL3JMzbnc+WkksBepuN12v4r27
+	 RB3f7cGYxRsLA==
+Received: by wens.tw (Postfix, from userid 1000)
+	id 033165FDD4; Sat, 14 Mar 2026 01:25:21 +0800 (CST)
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Chen-Yu Tsai <wens@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jernej Skrabec <jernej@kernel.org>,
+	Samuel Holland <samuel@sholland.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>
+Subject: [PATCH RESEND] dt-bindings: media: sun4i-a10-video-engine: Add interconnect properties
+Date: Sat, 14 Mar 2026 01:25:03 +0800
+Message-ID: <20260313172505.2321212-1-wens@kernel.org>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="p1S1Jfnom+KWoNa+"
-Content-Disposition: inline
-In-Reply-To: <20260313133102.2749890-2-robby.cai@nxp.com>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	TAGGED_FROM(0.00)[bounces-275472-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,kemnade.info,vger.kernel.org,lists.linux.dev];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,lists.linux.dev,lists.infradead.org,sholland.org,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-275473-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 69B93288145
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DF5182881A0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+The Allwinner video engine sits behind the MBUS that is represented as
+an interconnect.
 
---p1S1Jfnom+KWoNa+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Make sure that the interconnect properties are valid in the binding.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+Fixes: d41662e52a03 ("media: dt-bindings: media: allwinner,sun4i-a10-video-engine: Add R40 compatible")
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Chen-Yu Tsai <wens@kernel.org>
+---
+This was part of a series to clean up warnings for the Allwinner device
+trees. This patch was not picked up by the media maintainers.
 
---p1S1Jfnom+KWoNa+
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+ .../media/allwinner,sun4i-a10-video-engine.yaml        | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabRIZQAKCRB4tDGHoIJi
-0qFUAP9M6FoyDrkxMO1NpPLvKXPslEQzLm8rciOfC7ZlkzQ4RQD/dZzDnJxPprB8
-Y5zMx9Nl5O1MGLlN0Q25FdZI1nOjbgo=
-=MbDo
------END PGP SIGNATURE-----
+diff --git a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
+index 541325f900a1..01f2afa023f0 100644
+--- a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
++++ b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
+@@ -63,6 +63,16 @@ properties:
+       CMA pool to use for buffers allocation instead of the default
+       CMA pool.
+ 
++  # FIXME: This should be made required eventually once every SoC will
++  # have the MBUS declared.
++  interconnects:
++    maxItems: 1
++
++  # FIXME: This should be made required eventually once every SoC will
++  # have the MBUS declared.
++  interconnect-names:
++    const: dma-mem
++
+ required:
+   - compatible
+   - reg
+-- 
+2.47.3
 
---p1S1Jfnom+KWoNa+--
 
