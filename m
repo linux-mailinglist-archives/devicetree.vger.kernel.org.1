@@ -1,281 +1,204 @@
-Return-Path: <devicetree+bounces-275026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275027-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eHtzFhTPs2n2awAAu9opvQ
-	(envelope-from <devicetree+bounces-275026-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:47:16 +0100
+	id wFC3D8HQs2ncbAAAu9opvQ
+	(envelope-from <devicetree+bounces-275027-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:54:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF30F27FEF2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:47:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC22427FFE6
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:54:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6D83A302A2EE
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:47:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D9AEA302452C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:53:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67C9F386C3F;
-	Fri, 13 Mar 2026 08:47:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JepH0vlW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 299332FC874;
+	Fri, 13 Mar 2026 08:53:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023112.outbound.protection.outlook.com [40.107.44.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8D8B386437;
-	Fri, 13 Mar 2026 08:47:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773391633; cv=none; b=TPAg1H7WluJKUx8NIAhOeZY2x8NzQbkgBghXMZH+kWGyWdFndBOetdl/ITkqo5GydpBfEtE9uh/NR7tSvH3oaEjG+101RWhHrbXlWZ1E0tjwSjgrG2QALIBoWwOIftwMNVRHFJpyBNt0dESA7CyR+08DnxaFX/n37xd+oDwJG3s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773391633; c=relaxed/simple;
-	bh=FGn8dJxicvgrsI/h6Hp65oLeF+oMlSRnErsYPVzfqqk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HN42H7m5JRw+om9KVxah8uzHNr2CqW7MepuEKA04xiW0Uj5XjqboYva2kcMJuabQ1we3SufLbSW7sR+DzY27mpFb6deyb5Vq/9T5clxhfOomS/i5ftyivIbcK7JV6AhkJnFo6OGLl+PadnkxhNYaeZ1Ynbcae7izQUaRAxVtfrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JepH0vlW; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773391631; x=1804927631;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=FGn8dJxicvgrsI/h6Hp65oLeF+oMlSRnErsYPVzfqqk=;
-  b=JepH0vlWQAHM04z4VugFqzL18gjiv51JpfZFSiQ+uXlsfSWUO84KQnTu
-   R5RG+YCexun0PFIShChBncq6cLlTYy+4XihDpKqHJvz8BBY2h3Q/vBmN+
-   lGpF3mfCImGbZhlQAeu8+klchf9kPY8b06tzNNSwyegIRxb2CaZbgUjj6
-   2VZtX7qhoyrCJj3OqDKrR5XyVrVszYWyewW1NYYIMOkUnW52hdP8u+KcJ
-   7oyW1PaWk3HrKvTKq48WtdbMdGIM5w9CEqcd/Ks2I6JJSCNIwB+Ckp4Jh
-   RjQyRgl/u1KrXvCJdA9REvtT2dlRJFFjGixqnFrXaGUbn4guX4Ri1DNyG
-   g==;
-X-CSE-ConnectionGUID: Wa/c42eSQXKisWhsPjwFKw==
-X-CSE-MsgGUID: yiozJj6ITKio6P72Wc5D0Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="62067203"
-X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; 
-   d="scan'208";a="62067203"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2026 01:47:10 -0700
-X-CSE-ConnectionGUID: EK0T+kaDQpCaPmPvtWwt/A==
-X-CSE-MsgGUID: TwUHx1WNRQ6Dc8H0L0qKYA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; 
-   d="scan'208";a="244128261"
-Received: from black.igk.intel.com ([10.91.253.5])
-  by fmviesa002.fm.intel.com with ESMTP; 13 Mar 2026 01:47:08 -0700
-Received: by black.igk.intel.com (Postfix, from userid 1008)
-	id 331FD95; Fri, 13 Mar 2026 09:47:07 +0100 (CET)
-Date: Fri, 13 Mar 2026 10:46:23 +0200
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Alexander Koskovich <akoskovich@pm.me>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] usb: typec: qcom: Add support for per port VBUS
- detection
-Message-ID: <abPO31SynIPY6fJD@kuha>
-References: <20260312-qcom-typec-shared-vbus-v2-1-99ed9e500947@pm.me>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1789C280318;
+	Fri, 13 Mar 2026 08:53:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773392022; cv=fail; b=XffC8r7TQWHfzosPuSs11oGxsxV2/HIUVSHVEyZunxaNlQMTX6rwxxYVFTVFeVMAged7GC7fBWe+C/+RIVHk2Uz6QmUR4i7GQuOMw2d+M29pQKVohxRQ3P5N0vGwbCB5VPrI2NcbSAWDisNgmMAgSKknDWj7t8ZYDA7eBlkECVg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773392022; c=relaxed/simple;
+	bh=yvbXW00J097k7xHaXBo1zA9Ozm+d7L41RN655R43+Rw=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=tt3HWU/M85R5s0MZpaDQphBRh73EoNPcps2pONc3J+meQLQBF1CvOdSxtr6345j+6w8kNt/V2jqup6oaYWvSZFAenE0FBwnfq8erR7/uquQuDr1EvZyHuhNsWL/rgMsXSKO0OvTyujVs+AI7TbugnYAewS7uijTA8zAkaMIXjCE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.44.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Dwm8sRUhssSXm2ZlgneIgUIck2GctPNEE7+TJWiUhS0CCA3lBCSMdtvVzwyCrqPWMrcNJ/nf1eJ2QyaYz71EWUb2BsVmeA17/HE1cpEFm6OfNkLh5f3yy9sNInpxvRwBiJeWsWFAqDXwO8bIvhg2vT9drlPB0SbbJBHkMoPNYwVeK3oD7HTtI5pQP4fiCsxTUgM/QVUVTA3vd0T+yvDI4tlAWLHiglmYFJ58VxP1PGRiIK5Ch/Vi8Ua1sJIiqFttgGOOFetJKGg9yoN5bsiwHhdz1d5nHbckr8iDb4aoxqGY6BGxR2q3IEbAC2n6LA1K/e7F5Fv1Ycav1s0YwCDEhg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yvbXW00J097k7xHaXBo1zA9Ozm+d7L41RN655R43+Rw=;
+ b=JKUAM4QKCVV8xO1f+ihmTK/S+QR2JmvADGOCVVJWwlXx1f7+skpqqtNLvJb5F/Y0mjNX6cgUNqt0h2Yl941bmf8eAfRVF+8Iin8N4j5xo534VMXrzZoQPC0GZmG+75HmnTJPzdqiYVT/rj9AhSb9BRl39DdpDLQJeEJciCq1DNuckMgVUMs99ExGUXChUKLXuCJLpTn/2YSp6Od909ojHO6yzxmSedMkQKp1+0nNFYVUAbB4iZJYFVLXTzA78+IhShJQ0kQpgtp0jA6NiPKUAqE1m6YLmaSb1mQp49XNhQ6O8L0srNnih8p+wqnBC8ZV6U3dD17c6Fe4poAIK8ecOQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cixtech.com; dmarc=pass action=none header.from=cixtech.com;
+ dkim=pass header.d=cixtech.com; arc=none
+Received: from PUZPR06MB5887.apcprd06.prod.outlook.com (2603:1096:301:117::13)
+ by SE3PR06MB8069.apcprd06.prod.outlook.com (2603:1096:101:2e8::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Fri, 13 Mar
+ 2026 08:53:35 +0000
+Received: from PUZPR06MB5887.apcprd06.prod.outlook.com
+ ([fe80::f320:58f6:4dc6:b908]) by PUZPR06MB5887.apcprd06.prod.outlook.com
+ ([fe80::f320:58f6:4dc6:b908%6]) with mapi id 15.20.9700.013; Fri, 13 Mar 2026
+ 08:53:35 +0000
+From: Gary Yang <gary.yang@cixtech.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: "lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kwilczynski@kernel.org"
+	<kwilczynski@kernel.org>, "mani@kernel.org" <mani@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>, "bhelgaas@google.com"
+	<bhelgaas@google.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, Peter Chen
+	<peter.chen@cixtech.com>, "linux-pci@vger.kernel.org"
+	<linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, cix-kernel-upstream
+	<cix-kernel-upstream@cixtech.com>
+Subject:
+ =?utf-8?B?5Zue5aSNOiBbUEFUQ0ggdjMgMS8yXSBkdC1iaW5kaW5nczogUENJOiBjaXgs?=
+ =?utf-8?Q?sky1-pcie-host:_Add_power-domains?=
+Thread-Topic: [PATCH v3 1/2] dt-bindings: PCI: cix,sky1-pcie-host: Add
+ power-domains
+Thread-Index: AQHcsq8TbEH4TkzUwkyIJK4gXzlCk7WsIJ8AgAAEn6A=
+Date: Fri, 13 Mar 2026 08:53:34 +0000
+Message-ID:
+ <PUZPR06MB5887055EC1C0745627143092EF45A@PUZPR06MB5887.apcprd06.prod.outlook.com>
+References: <20260313060308.1300518-1-gary.yang@cixtech.com>
+ <20260313060308.1300518-2-gary.yang@cixtech.com>
+ <20260313-piquant-robin-of-honor-cb9f39@quoll>
+In-Reply-To: <20260313-piquant-robin-of-honor-cb9f39@quoll>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=cixtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PUZPR06MB5887:EE_|SE3PR06MB8069:EE_
+x-ms-office365-filtering-correlation-id: a91d09a8-65fb-4da6-8999-08de80de02b1
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700021|56012099003|22082099003|18002099003;
+x-microsoft-antispam-message-info:
+ G2pi92rPw6sEHKyjX629zCXyLwYdECyTlP+A9FCFu4ebjU8RgE1//cnOob9uvXfVjnhMyU9krk1mlOhAcsWAYIyRuEQ9DVJ1jiB4TzKFB0/UGB0UfuQWfgP+t+Hp5JmP01c7pUzXZyTIHyo3Oqq+/VNyBqPFX5UnEVfquNuY9X9lgOc6h0JhUc35eXBf1vE4vU0ccn3C2bBSAKBM5XmBCZ0Hw1Dn4cc+62C5LLmW7LtJpuXlWE1gJFBtWk8ENYld6xOM53iBUQ0YDjwBoivIA6fkQRa+XUbpzR7VfecploKvT9KSHEhKNUT63G36viZ9jC5XG4nUwW72zuIui3LNT0mBNGMcxd+fcH5DDxHHPF8Ksedg0kf16p28vuJpFqg+GKttuGkqbHF08G4otQZJ7Vi3OBbLTebbnBt0H03jrfCxr1RAUej5P5v/3QgXz5S4O24me7QBs+0iTQqVbP09JdOmP6VmRWMZnbMTX/Kkq8BCsd49B8ebe9kib8oBO7jxy1/QwPQFs9Gwolu4fvuTpi2H+K4N8NCmS42XbZFAGckdhw8IA7m0FVJ4qUf2CZf4SgjDWapTs9RNDblNemeheA7r2Dqfn13zXDScoplmUnrAfaWfKQxLnyCXQnqb2ybOogidvpIJFz07sGUiWZbzd/iT7EkfP0xyHjgF45aevSdIlotKta8RpNJ39rIIFpo9NKSFGEgjroPxcu08gTFjQgrpchjtbgc0dVKoZA11Sbc0N5xH2hLUNAldugu2s8fOE1/T4Hu0muePfaiekJ1Z4dXKardtoWQ1L/Q6FRplxkA=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PUZPR06MB5887.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700021)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?dmI5NldQWE5JaXhSNjRJcDkyWkpOOG1YdXROaVV0WVYzZ2hTeVVxVE5jbzk4?=
+ =?utf-8?B?bnE4V0lYUmVnVjJBNVB5YVZQZ0J1SEE0OXA3Y2lGaFB6RG4wazc0VnNyT21v?=
+ =?utf-8?B?OEZ1SVY3UlJrK0lpazk4QlFQVlRHTVdwL1ZHMVBrdFJYNkdSc1dGRXlxTHpI?=
+ =?utf-8?B?aUEzWUZNRGlXRnY2c2lyUmYrUW1KemR4eHRPbHdjWlpQZFFaNG9oTmJaMnFm?=
+ =?utf-8?B?NlYyT1hpc25Oa3I0SW45ZDlJWTVjTGFTMlkxeFhnU3ZnM3VhZDJDL2xSN05a?=
+ =?utf-8?B?SFhYNWNEVmQwdWh5YnovSE1CWVZzRll0SytVelRMVGdqSExQSzgva1FSYzVX?=
+ =?utf-8?B?cURPTE1tR01ZSWg2aTRhL0kwZ1FpQnJxOW14bXMxR3g4UUxqQ0ovVm9TRGJD?=
+ =?utf-8?B?bTcwN1lSNDVxMldOczR3NUl2RVFiQVZIaTNrNkdsR1BFTmFsNTgyblZkcE9O?=
+ =?utf-8?B?UVI5OEd3MzVXUy9KUWlXQnB6aUdwT1lIbk9lSk9LL2FKWnNMWGtyZkxqTy8v?=
+ =?utf-8?B?M2NCcDJ2R1NQd0pjVzhxSGx0UklDQzdER0NMSVhmdHZyS3FIMXF6R3E5RGRH?=
+ =?utf-8?B?cEU4dXJFWngzTW5EeUJaYjU2RGlQTVJoTWM4bFI3TUpmdTZZd2M3ZFVhaGxn?=
+ =?utf-8?B?UjJFWVM1em9aL3ZVbit0MlNsUS9tK2k3dURnMEdSa3hmUHVnbXU2Rmt1Sk1Q?=
+ =?utf-8?B?ZnFWMytUbjg5aGV5SjIvcm95dGp4ZnBVT3hOQWQ4YmUxeGhIUnBnSUZHWElV?=
+ =?utf-8?B?WlBtczdveHlhaDdrNllDc3crZDFJUlpiL3hXRDlOYkhmbjBCZ2ltQkp5alNC?=
+ =?utf-8?B?Rm8rUnBSM1FFUFRNSnBVdlJNWHVIQWxXWkVoTDN1bmVXblFXUm1wSS9TTStj?=
+ =?utf-8?B?clkzR0ZCUThCTjg3V2U3emJhNi9xQXFJck80UnRRUWszdDlGL0tpdHVOV2ti?=
+ =?utf-8?B?UHl0N1ByT0Q1UmI5U2tTZVNpR2w1KzBJZVZrbThjUWFsb2N6YnJkWm1VS2I2?=
+ =?utf-8?B?WSt4aEdONGM0R1N4WmdtSkVXVk9WQlluR3Blb21jNjdQRjRoZ2l3VkFDYldB?=
+ =?utf-8?B?eWM2WTVvL25ZVXN4YWNRNm9RT0FsNHZYSDVGUnk2MEMxbHRCamlra3JnS0pm?=
+ =?utf-8?B?OFJ2dm9hOGlHc0VtS1l4QW5OaTBDVTArSWpxSndrZmZNZzdwOHhNKzdxRFRH?=
+ =?utf-8?B?eDVBTG1DSnduYjdJb21GMmVOMGVUeFUraVpEbTBnM3lSUjFHMnhmd3VtTEl6?=
+ =?utf-8?B?T1VBbUZ3dk1GMmNpSDhHSnN2alQ4WkRGTXVPaUdnVms0MmhEdVgyUDZWamg4?=
+ =?utf-8?B?YytKM0JsQ3E4eEdjUktHNjJDUm5YVUtOWG5TMFNrNFgwaVNGTnVRQ2ZQM3dk?=
+ =?utf-8?B?WnZCWGkxZ3NhOFFjc3FocnpXL1V4TjNXS2p5dHRDRHE1Z1lwUEpkRjlqMDhM?=
+ =?utf-8?B?SExReEVMNWtpZUlFN1ZXbmx1U1BVSWxGbEZqcDRTUFBQOFlUa0dTTk8vOVFE?=
+ =?utf-8?B?WHN0czgvejNWSEt1Qit0cHB4aHhBVXZHS1ZjSUt4OENrTWd0WStSR0FwM2Ny?=
+ =?utf-8?B?ZUhDSlhCQkdtVXVUS2pnR3A1VXRpRytxMDRmRi9mMis1UWQ0YStGSXhWaXNp?=
+ =?utf-8?B?UHpLUXcrR0JBMWZLYWk3YjZhMkR0MnFWVWxaTHNRUjVkcDQ2YUVab3E0bEoz?=
+ =?utf-8?B?bHdOUVhkTm5HUE1FakR0V282eElKV1RHQUFvMlRtOExxQTFRUytiYUNoWGhQ?=
+ =?utf-8?B?QktySnIvR1g4eDRCU2VIR3ZYTTByeTNRMXJqMW9WczdENk11ZE1jc2pTQU1U?=
+ =?utf-8?B?eWFrQmdaeUlHUklNSzNYSlhwZ2FGSHlBZ0JaVE1ZbVd1SFhvVk41YWVFTUpj?=
+ =?utf-8?B?N3dqMTJicFF0SUpVUldRdEhRL1J5ZGJlbDFJNzRRZ003OVJWdDhpaGEwbVB5?=
+ =?utf-8?B?MU1NdjNKVm00YStKdCtQd2pnQjdCWUZjcDNFSlNKeDNqMWdXMS81RmtqREFv?=
+ =?utf-8?B?VWViTUVyVjFuNHIwTEdOeEg5b1lJL1J1TDdITjIvaFo5cnZRQmI0RGpPZXYv?=
+ =?utf-8?B?Y1M3V2Nrbk12SXc5TVFpTEFtbDhiN2wzZUwwN0s4WmxNZWMwTmlxNkUveFQr?=
+ =?utf-8?B?S1NLWVZrSno0VFNwMVcvaGpmU0VLRVJtMWZrbnNxQ1kzbCtXZmRhWldKU2o1?=
+ =?utf-8?B?b2ZsOFRjNW5hajV1OUpta25ZSmJ4UEw3NUR2bytpd2tmeENFNURQcEc1NXZj?=
+ =?utf-8?B?Uk1NdUIwM2RVay8vN0t0cS9VYW82VmdicjJzeVVWWVdWZkR3SCtZbVhmcEtE?=
+ =?utf-8?B?WlhRSW5QN2JRQnRhZXBJUVhmYzZkYlIxdnRmR3psdzd1ck5WMVYyZz09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260312-qcom-typec-shared-vbus-v2-1-99ed9e500947@pm.me>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PUZPR06MB5887.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a91d09a8-65fb-4da6-8999-08de80de02b1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Mar 2026 08:53:34.9448
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: +e76yHi9YeygCnDNGGEo8ED6mSuvjUcb1Iw1imYBWDCqRVhANSbkTir//TIwr5IaXzZk18D+2SAXz0vx4dyGgA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SE3PR06MB8069
+X-Spamd-Result: default: False [3.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275026-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-275027-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	DMARC_NA(0.00)[cixtech.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[heikki.krogerus@linux.intel.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pm.me:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: AF30F27FEF2
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gary.yang@cixtech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,PUZPR06MB5887.apcprd06.prod.outlook.com:mid]
+X-Rspamd-Queue-Id: DC22427FFE6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thu, Mar 12, 2026 at 06:16:58AM +0000, Alexander Koskovich kirjoitti:
-> This is required for devices (e.g. ASUS ROG Phone 3) where more than
-> one USB port can act as a sink and both share a single USBIN input on
-> the PMIC.
-> 
-> Because the PM8150B uses USBIN to determine VBUS presence, a charger
-> connected to one port causes the PMIC to falsely detect VBUS on the
-> other port, preventing it from entering source mode.
-> 
-> For example, plugging a charger into one port prevents using the other
-> port for a flash drive.
-> 
-> Fix this by adding support for the vbus-gpios connector binding so the
-> driver can use an external GPIO for per-port VBUS presence detection
-> instead of the shared USBIN register.
-> 
-> Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
-
-Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-
-> ---
-> Changes in v2:
-> - Dropped RFC prefix
-> - Remove redundant vbus-detect-gpios, instead use existing vbus-gpios from usb-connector (Dmitry)
-> - Updated cover to better describe scenario where this change is relevant
-> - Update comment for EN_TRY_SRC to make more sense
-> - Skip vSafe5V poll too not just vSafe0V
-> - return gpiod_get_value_cansleep (Konrad)
-> - regmap_update_bits -> regmap_set_bits (Konrad)
-> - Get vbus-gpios per connector (Konrad)
-> - Add bracket to if (IS_ERR(pmic_typec_port->vbus_detect_gpio)) (Bryan)
-> - Link to v1: https://lore.kernel.org/r/20260308-qcom-typec-shared-vbus-v1-0-7d574b91052a@pm.me
-> ---
->  drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c | 53 +++++++++++++++++++++-
->  1 file changed, 52 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c
-> index 8051eaa46991..a8f6687a3522 100644
-> --- a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c
-> +++ b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c
-> @@ -5,6 +5,7 @@
->  
->  #include <linux/delay.h>
->  #include <linux/err.h>
-> +#include <linux/gpio/consumer.h>
->  #include <linux/interrupt.h>
->  #include <linux/kernel.h>
->  #include <linux/mod_devicetable.h>
-> @@ -176,6 +177,8 @@ struct pmic_typec_port {
->  	bool				vbus_enabled;
->  	struct mutex			vbus_lock;		/* VBUS state serialization */
->  
-> +	struct gpio_desc		*vbus_detect_gpio;
-> +
->  	int				cc;
->  	bool				debouncing_cc;
->  	struct delayed_work		cc_debounce_dwork;
-> @@ -279,6 +282,9 @@ static int qcom_pmic_typec_port_vbus_detect(struct pmic_typec_port *pmic_typec_p
->  	unsigned int misc;
->  	int ret;
->  
-> +	if (pmic_typec_port->vbus_detect_gpio)
-> +		return gpiod_get_value_cansleep(pmic_typec_port->vbus_detect_gpio);
-> +
->  	ret = regmap_read(pmic_typec_port->regmap,
->  			  pmic_typec_port->base + TYPEC_MISC_STATUS_REG,
->  			  &misc);
-> @@ -310,6 +316,13 @@ static int qcom_pmic_typec_port_vbus_toggle(struct pmic_typec_port *pmic_typec_p
->  		val = TYPEC_SM_VBUS_VSAFE0V;
->  	}
->  
-> +	/*
-> +	 * On devices with multiple ports sharing USBIN, VBUS from another
-> +	 * port makes the USBIN-based vsafe polls unreliable.
-> +	 */
-> +	if (pmic_typec_port->vbus_detect_gpio)
-> +		return 0;
-> +
->  	/* Poll waiting for transition to required vSafe5V or vSafe0V */
->  	ret = regmap_read_poll_timeout(pmic_typec_port->regmap,
->  				       pmic_typec_port->base + TYPEC_SM_STATUS_REG,
-> @@ -589,7 +602,15 @@ static int qcom_pmic_typec_port_start_toggling(struct tcpc_dev *tcpc,
->  		mode = EN_SNK_ONLY;
->  		break;
->  	case TYPEC_PORT_DRP:
-> -		mode = EN_TRY_SNK;
-> +		/*
-> +		 * With VBUS present on USBIN from another port, EN_TRY_SNK
-> +		 * keeps the port in sink mode. Use EN_TRY_SRC so the port
-> +		 * tries to source first.
-> +		 */
-> +		if (pmic_typec_port->vbus_detect_gpio)
-> +			mode = EN_TRY_SRC;
-> +		else
-> +			mode = EN_TRY_SNK;
->  		break;
->  	}
->  
-> @@ -677,6 +698,19 @@ static int qcom_pmic_typec_port_start(struct pmic_typec *tcpm,
->  	if (ret)
->  		goto done;
->  
-> +	/*
-> +	 * On devices with multiple USB-C ports sharing USBIN, bypass
-> +	 * VSAFE0V so SRC attachment can complete despite VBUS being
-> +	 * present on USBIN from another port.
-> +	 */
-> +	if (pmic_typec_port->vbus_detect_gpio) {
-> +		ret = regmap_set_bits(pmic_typec_port->regmap,
-> +				     pmic_typec_port->base + TYPEC_EXIT_STATE_CFG_REG,
-> +				     BYPASS_VSAFE0V_DURING_ROLE_SWAP);
-> +		if (ret)
-> +			goto done;
-> +	}
-> +
->  	pmic_typec_port->tcpm_port = tcpm_port;
->  
->  	for (i = 0; i < pmic_typec_port->nr_irqs; i++)
-> @@ -704,6 +738,7 @@ int qcom_pmic_typec_port_probe(struct platform_device *pdev,
->  	struct device *dev = &pdev->dev;
->  	struct pmic_typec_port_irq_data *irq_data;
->  	struct pmic_typec_port *pmic_typec_port;
-> +	struct fwnode_handle *connector;
->  	int i, ret, irq;
->  
->  	pmic_typec_port = devm_kzalloc(dev, sizeof(*pmic_typec_port), GFP_KERNEL);
-> @@ -724,6 +759,22 @@ int qcom_pmic_typec_port_probe(struct platform_device *pdev,
->  	if (IS_ERR(pmic_typec_port->vdd_vbus))
->  		return PTR_ERR(pmic_typec_port->vdd_vbus);
->  
-> +	connector = device_get_named_child_node(dev, "connector");
-> +	if (connector) {
-> +		pmic_typec_port->vbus_detect_gpio =
-> +			devm_fwnode_gpiod_get(dev, connector, "vbus",
-> +					      GPIOD_IN, NULL);
-> +		fwnode_handle_put(connector);
-> +
-> +		if (IS_ERR(pmic_typec_port->vbus_detect_gpio)) {
-> +			ret = PTR_ERR(pmic_typec_port->vbus_detect_gpio);
-> +			pmic_typec_port->vbus_detect_gpio = NULL;
-> +			if (ret != -ENOENT)
-> +				return dev_err_probe(dev, ret,
-> +						     "failed to get vbus GPIO\n");
-> +		}
-> +	}
-> +
->  	pmic_typec_port->dev = dev;
->  	pmic_typec_port->base = base;
->  	pmic_typec_port->regmap = regmap;
-> 
-> ---
-> base-commit: 1f318b96cc84d7c2ab792fcc0bfd42a7ca890681
-> change-id: 20260308-qcom-typec-shared-vbus-7d37c6b2d155
-> 
-> Best regards,
-> -- 
-> Alexander Koskovich <akoskovich@pm.me>
-> 
-
--- 
-heikki
+SGkgS3J6eXN6dG9mOg0KDQpUaGFua3MgZm9yIHlvdXIgY29tbWVudHMNCg0KPiBFWFRFUk5BTCBF
+TUFJTA0KPiANCj4gT24gRnJpLCBNYXIgMTMsIDIwMjYgYXQgMDI6MDM6MDdQTSArMDgwMCwgR2Fy
+eSBZYW5nIHdyb3RlOg0KPiA+IGFkZCBwb3dlci1kb21haW5zIGFuZCBwb3dlci1kb21haW4tbmFt
+ZXMgcHJvcGVydHkNCj4gDQo+IE5vdGhpbmcgaW1wcm92ZWQuDQo+IA0KPiA8Zm9ybSBsZXR0ZXI+
+DQo+IFRoaXMgaXMgYSBmcmllbmRseSByZW1pbmRlciBkdXJpbmcgdGhlIHJldmlldyBwcm9jZXNz
+Lg0KPiANCj4gSXQgc2VlbXMgbXkgb3Igb3RoZXIgcmV2aWV3ZXIncyBwcmV2aW91cyBjb21tZW50
+cyB3ZXJlIG5vdCBmdWxseSBhZGRyZXNzZWQuDQo+IE1heWJlIHRoZSBmZWVkYmFjayBnb3QgbG9z
+dCBiZXR3ZWVuIHRoZSBxdW90ZXMsIG1heWJlIHlvdSBqdXN0IGZvcmdvdCB0bw0KPiBhcHBseSBp
+dC4gUGxlYXNlIGdvIGJhY2sgdG8gdGhlIHByZXZpb3VzIGRpc2N1c3Npb24gYW5kIGVpdGhlciBp
+bXBsZW1lbnQgYWxsDQo+IHJlcXVlc3RlZCBjaGFuZ2VzIG9yIGtlZXAgZGlzY3Vzc2luZyB0aGVt
+Lg0KPiANCj4gVGhhbmsgeW91Lg0KPiA8L2Zvcm0gbGV0dGVyPg0KPiANCg0KU29ycnksIHdlIG9u
+bHkgZGVsZXRlIHBvd2VyLWRvbWFpbi1uYW1lcyBwcm9wZXJ0eSBpbiBkdHMgZmlsZS4NCg0KV2Ug
+YWxzbyBkZWxldGUgaXQgaW4geWFtbCBmaWxlIG9uIFY0LiBMaWtlIHRoaXMsIEFsbCByaWdodD8g
+DQoNCiAgIHBvd2VyLWRvbWFpbnM6DQogICAgIG1heEl0ZW1zOiAxDQoNCkJlc3QgUmVnYXJkcw0K
+R2FyeQ0KDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQoNCg==
 
