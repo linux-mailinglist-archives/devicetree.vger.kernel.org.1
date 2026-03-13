@@ -1,142 +1,201 @@
-Return-Path: <devicetree+bounces-275339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275340-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UFItDXAhtGnahgAAu9opvQ
-	(envelope-from <devicetree+bounces-275339-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:38:40 +0100
+	id 8PXqGuAhtGnahgAAu9opvQ
+	(envelope-from <devicetree+bounces-275340-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:40:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FDC0285227
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:38:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FF1E2852AC
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:40:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2AFC730752FC
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:38:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AA9C43077233
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:40:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EFA03A545E;
-	Fri, 13 Mar 2026 14:38:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 151023A3835;
+	Fri, 13 Mar 2026 14:40:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NByij+em"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EGbAEev7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02CDD3A6B62;
-	Fri, 13 Mar 2026 14:38:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DA95372B22;
+	Fri, 13 Mar 2026 14:40:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773412716; cv=none; b=fHdGEQbvW1oFdzqn0DuS0gs3MhAY/iGrVSIMozGXt73AQlfj5qsGvWcKCmavMeC1LGQZ4jiE4K0FiAT5IWjf3yTmhV8k1x8eYl1dQTYuRMbWzkaacVr4ys1Q44c0W1Bk68Jar+GBHYQSK+yPLPx0o3+zsvAGLiQFjQb1AU5DW+M=
+	t=1773412830; cv=none; b=bX8P1jMpp5BfTKzfbsyJFoY969mww3ljUolwYS2v3pDkR4+kjTQM101Px7CvhL17wyMzWmz7EF8Q2Z7ym4s2ZzD+z1INYgmABId67PCf9BNo2bh7e3RqppVUokZrYCqcHc0+kjDurjESZR2oMWaeKolV01wrpQy3apjG5PZEN7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773412716; c=relaxed/simple;
-	bh=QSmgrG0OG1xIa/QEPeKYY+gOfwfly9O/CNm38e9XojA=;
+	s=arc-20240116; t=1773412830; c=relaxed/simple;
+	bh=d23l5QfZILL92TANqDOqm0WjgNLDASSxYAanpTwaEgE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fjokEWTMII1ADdI8wl7QVIhg+V90Oa64TdotViNaVh7gZ+osw79Ji4O9jEy21RoUhw/ui4oHOsqnXIp+nwXceReaDrsXDczT03lbY0chW8lM1JH9G2m8clSmNyDbXVduo/SpgUvk0KeynhrC/m1/9u8C4ahOiQJZ1a/0V3Y15Mg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NByij+em; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82CEFC19425;
-	Fri, 13 Mar 2026 14:38:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773412715;
-	bh=QSmgrG0OG1xIa/QEPeKYY+gOfwfly9O/CNm38e9XojA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NByij+emn7cJC0i1ih0mExHBhmln0+EXm1lLGe1yT1hf5xXhge63H43c3p4Gr24Xj
-	 BQ6UtRHchsj3i5+oohSqwN86kZwlm9n3m3uOOLqTQ3FL+duqDk3V3YwZo8qwHt5Sb6
-	 Z1Plp3+akyaEqyb+TR/MPNpcqtis4OQTbrSlMB6induuhk1giceANxyABMIyi/5xPE
-	 POzfr4UlX9GEQqYUOtDnTW6n/v72fmUe7oCnCZCxMbqj6ouTyPW88XutUUpIjNTA59
-	 VJTcvLZKw+JwVMOY1rRecjkBD0XbzNGJqTVi6oK1lqpIbIrRsvkxtzObXfqWSBoRJ1
-	 VjxJ1y8UQeq4w==
-Date: Fri, 13 Mar 2026 14:38:30 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: Robby Cai <robby.cai@nxp.com>, lgirdwood@gmail.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: fp9931: Make vin-supply
- property as required
-Message-ID: <fe5571cf-bc46-4a7b-b09a-ccdd0eb5b0f6@sirena.org.uk>
-References: <20260313133102.2749890-1-robby.cai@nxp.com>
- <20260313133102.2749890-2-robby.cai@nxp.com>
- <0b9d0512-1164-4178-9bd3-4a3a7505fe1a@sirena.org.uk>
- <20260313151643.7e6a5805@kemnade.info>
+	 Content-Type:Content-Disposition:In-Reply-To; b=LbYjLy1lDxd/97UyVqHFz6k4M62X59Z8i8awDxEL8pUDYsCDkKPD9WYBhq/CDPmBmX5/7xHzIduzXmjbGyg+uZGKWC4QkbV7IvFrvzS3+xtb2DDLGmf9RAod64hh6uiv4wuf5LJKRPrqH/7XQrWXt4GvXGe1E7tpXlp3q/0RY00=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EGbAEev7; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773412828; x=1804948828;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=d23l5QfZILL92TANqDOqm0WjgNLDASSxYAanpTwaEgE=;
+  b=EGbAEev7miV1BJjqzfAtGilgzJ6wbn3TF37tNjvaFhIAE32cbq5x12Pa
+   puSuGkBMEm2Xsi1eHALpoLF6KRug/ENzAZw8ncKixsDXGBrjVu0RC5HRd
+   GadDxOgefoumjJfYQqe6SfNhCuL0ZCrajzy/Y7n8E6/DXDFE3pD5Wv2b9
+   zueXNB82dQvj/EOxIkRHyXTo5Cr+7PvFUSGEKeE7ooE48BPfbQDh2yMes
+   bFKEG7hIL/XrF6waGg3vXpoYV8mdeBCF/rZKaRjG6YfKg4CsWezbRru+z
+   XSynfdtNys+nfuUyKf7wOOtHnxrrRKPZd6SzD/m3ZpcdU9ygDzE5eBDMx
+   g==;
+X-CSE-ConnectionGUID: G/dvZH0LQFaussNxKmw1wA==
+X-CSE-MsgGUID: Uqvw0KZ3Tu+wvuhPD66L3w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11728"; a="62090732"
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; 
+   d="scan'208";a="62090732"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2026 07:40:28 -0700
+X-CSE-ConnectionGUID: k7P44SedR9iseEQORDQ+MA==
+X-CSE-MsgGUID: fZ+VfvuWSh6RDMwVkZXiOQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; 
+   d="scan'208";a="217597282"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.246])
+  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2026 07:40:23 -0700
+Date: Fri, 13 Mar 2026 16:40:21 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: "Sabau, Radu bogdan" <Radu.Sabau@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	"Hennerich, Michael" <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	"Sa, Nuno" <Nuno.Sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH v3 3/4] iio: adc: ad4691: add triggered buffer support
+Message-ID: <abQh1Y5_oGyvIxwT@ashevche-desk.local>
+References: <20260313-ad4692-multichannel-sar-adc-driver-v3-0-b4d14d81a181@analog.com>
+ <20260313-ad4692-multichannel-sar-adc-driver-v3-3-b4d14d81a181@analog.com>
+ <abPxR0TVa70sMg38@ashevche-desk.local>
+ <LV9PR03MB841415AA5DB9FFB714710CC3F745A@LV9PR03MB8414.namprd03.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="abW4aHNxrzA4MoW6"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260313151643.7e6a5805@kemnade.info>
-X-Cookie: Monitor not included.
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+In-Reply-To: <LV9PR03MB841415AA5DB9FFB714710CC3F745A@LV9PR03MB8414.namprd03.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275339-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[nxp.com,gmail.com,kernel.org,vger.kernel.org,lists.linux.dev];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	TAGGED_FROM(0.00)[bounces-275340-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[metafoo.de,analog.com,kernel.org,baylibre.com,gmail.com,pengutronix.de,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sirena.org.uk:mid]
-X-Rspamd-Queue-Id: 7FDC0285227
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,intel.com:email]
+X-Rspamd-Queue-Id: 0FF1E2852AC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Fri, Mar 13, 2026 at 12:09:55PM +0000, Sabau, Radu bogdan wrote:
+> > -----Original Message-----
+> > From: Andy Shevchenko <andriy.shevchenko@intel.com>
+> > Sent: Friday, March 13, 2026 11:13 AM
+> > On Fri, Mar 13, 2026 at 12:07:27PM +0200, Radu Sabau via B4 Relay wrote:
 
---abW4aHNxrzA4MoW6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+...
 
-On Fri, Mar 13, 2026 at 03:16:43PM +0100, Andreas Kemnade wrote:
-> Mark Brown <broonie@kernel.org> wrote:
+> > > -#define AD4691_ACC_COUNT_VAL			0x3F
+> > > +#define AD4691_ACC_COUNT_VAL			0x01
+> > 
+> > No ping-pong, and actually this was not used at all. So, make sure you add
+> > constants when they are really started being used.
+> 
+> This value is being used in the buffer_postenable in order to make
+> sure we don't encounter oversampling, since Manual Mode doesn't
+> oversample, and per Jonathan's review, there is no reason to support
+> both oversampled and raw readings at the same time.
 
-> > Please submit patches using subject lines reflecting the style for the
-> > subsystem, this makes it easier for people to identify relevant patches.
-> > Look at what existing commits in the area you're changing are doing and
-> > make sure your subject lines visually resemble what they're doing.
-> > There's no need to resubmit to fix this alone.
+Yes, but it wasn't used before this patch.
 
-> Since I once have misunderstood that text block myself:
-> - this sounds like you are talking about the subject line as a whole
->   and not only the prefix.
+...
 
-It *might* be the rest of the subject line as well, very much less often
-but it does happen (excessively long lines for example).
+> > > +static int ad4691_setup_triggered_buffer(struct iio_dev *indio_dev,
+> > > +					 struct ad4691_state *st)
+> > > +{
+> > > +	struct device *dev = regmap_get_device(st->regmap);
+> > > +	struct spi_device *spi = to_spi_device(dev);
+> > > +	int irq, ret;
+> > > +
+> > > +	st->trig = devm_iio_trigger_alloc(dev, "%s-dev%d",
+> > > +					  indio_dev->name,
+> > > +					  iio_device_id(indio_dev));
+> > 
+> > It seems you ignored some of my comments. Please go back and read carefully
+> > what I commented on previous version of the series.
+> 
+> I am very sorry for this. I may have misunderstood the comments, and thus
+> seem like I ignored them, but this wasn't my intention at all.
 
---abW4aHNxrzA4MoW6
-Content-Type: application/pgp-signature; name="signature.asc"
+When in such a situation, ask! A request is free and acceptable.
 
------BEGIN PGP SIGNATURE-----
+> If you refer to the trigger_alloc comment, I did talk to my senior colleagues
+> and they referred to the fact -ENOMEM return should have been enough,
+> but perhaps this was wrong too. Could you please clarify?
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmm0IWUACgkQJNaLcl1U
-h9C0BAf/eNEA12YHd7H1xAgm2pVt+JlET0YFIV+YLnIl4f2MAc365X5mS11Gl8vR
-vS/g7UplM6qRzyoVSiheZiGvsoU5LkGH66G558Vw2qScWY22Jgq2Uix/ITW/ogI9
-WGcBocb3LSd2xIXSUuBeL5yD2zT70AGAXINdqup7YjGd8YzytsDL75xoJyuv4CBN
-cxbSdgUYKXZiwQ/h+UgENYt2ViF9ob/cPAKYr6Q5+teuTHnm+hP4tkpZO2Xvt0jQ
-PikuwkFz3z9tNv25hGuUbZCwFdeb0r/gT+wEdRipkH1mCsaBDu/ojiILapg4Irar
-ufvBr9vwk9sSLErNsGvNxjxbivId+Q==
-=fLgU
------END PGP SIGNATURE-----
+I'm talking about the room of the previous lines
 
---abW4aHNxrzA4MoW6--
+	st->trig = devm_iio_trigger_alloc(dev, "%s-dev%d", indio_dev->name,
+					  iio_device_id(indio_dev));
+
+fits 80 limit, for example. OTOH this is less logical, perhaps your variant
+is okay.
+
+...
+
+> Radu
+
+When answering, remove the context you are agree with and not going to discuss.
+I had to drop over 200 lines just "for fun" (no).
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
