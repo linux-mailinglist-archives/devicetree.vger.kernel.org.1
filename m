@@ -1,100 +1,103 @@
-Return-Path: <devicetree+bounces-274958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274959-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aOIrJefAs2lQagAAu9opvQ
-	(envelope-from <devicetree+bounces-274958-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:46:47 +0100
+	id eB0WNi3Bs2mEagAAu9opvQ
+	(envelope-from <devicetree+bounces-274959-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:47:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E658727EF1F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:46:46 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0345927EF46
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:47:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6F09A3008D1E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:46:45 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1D2393015B86
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:47:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 015C01917ED;
-	Fri, 13 Mar 2026 07:46:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22C3B2D837C;
+	Fri, 13 Mar 2026 07:47:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="S2eFK8j4"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="D91Onl6Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11011037.outbound.protection.outlook.com [52.101.52.37])
+Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010061.outbound.protection.outlook.com [52.101.61.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAA132D837C;
-	Fri, 13 Mar 2026 07:46:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.52.37
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9034A79CD;
+	Fri, 13 Mar 2026 07:47:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.61.61
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773388004; cv=fail; b=NWHes+eRl2lsl5ESMl/gYxA4Hschdr2iXj2sB4r9Cpf1fIMLleeD9OW9F/upbGXCatSjDr91s4AG7iyV3l5MsE3Y86EZURlBug8YI0whXlpSNBBbXouuHQZBxc7N1z7JQfMGsvIAwU/HSy6S7wVjC9/15NgOpLxWBdgdRAv5kaY=
+	t=1773388073; cv=fail; b=YFb6o58zXk+LnZrckn8s2hlKnHcHZU8qs82mQ+kN2dpBVyQ2jvCON7uoxrUoaUOLpkEXTvxh59jUaXtUU7kptainC3p5QLVamw+TY8RGapG2EAxb12yV3izmHJ3Gpt1Pv+T7sK21Qc17cJrViWYMnQb/QIrlEI65qTzaD6Dt31s=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773388004; c=relaxed/simple;
-	bh=L/gTryjRUi9/6koZWdNGDdJe5Zbar+mWjFAYB39o/Ic=;
+	s=arc-20240116; t=1773388073; c=relaxed/simple;
+	bh=M6+olLMPLh/0ttEMTcj93///A0HCY72oTK80mdfOce0=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=k8qp5hqMDZnbvjCsQ77WxL4UaT6Rvhi+BPV5E4Xmwb+Dmj0hPlSSklqg/YxdppiBVMkG2HLKyvqKPuQqp9dKCdpYY/wMiJxAHCDM0UnX/8SjwGuk9CLYyRHssM5HTXNA2FnSUTKhrGxHLbS67Q4bMuaHQwCIhWdcHjLEdbx1WyA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=S2eFK8j4; arc=fail smtp.client-ip=52.101.52.37
+	 MIME-Version:Content-Type; b=FV/ke9BZL2LypvSKTZXAPHOi4Te5C0FdDHjsiBeC87IY0VclhSbzFl783cH5LOTB5jUBnJIhwlWSyT0B4LYxNIwY0cIy51ci//DVb4qdXOeindYw74mcpsYeHj6OJnw/cq/h+PGbemBeP5E9GO9jRBTh4yhwXVGj7pVlb737kTw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=D91Onl6Q; arc=fail smtp.client-ip=52.101.61.61
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QqA6wC2sD7eATjbGpxAHvTproRRXQyPepguaBNmlmI0XMEbQ+k1wT6Y+B/ef4svvJcoqPtWDziikoMKkWIVOdEOhAu3jFHggP2s2P3lc0KR/ctj+fqGf6xg4jwU822BO0sKOv4u9ylCbPdn3wrr0m8s/o+uy4MezpLEJ+lylo42KO/lAUgXCniwiffIGiGasfuQ+VgheoiXcTngGCZWIu2WpRhiW9pKS5dftbSUu7lPgrExdpahKT6HrfidGVtVW8mkuOLenixozjjWa4kGPCYjTTHdiCeu4NvCPFDIhe41pa1zLLdT+5rrTTt9fszha4NQfnXmwyz3mCN/kVFML9Q==
+ b=FYkQJexqfZyaIX7bn3ICG6jx8FcEb1/TXcokehcw6Wh/QMvuQRoFYDOlic7lGXAHKXlrk4mnwzyjbcjVmSPYcmkheMlQKxdYEN8m+KCT/NMcHlxauHlmh9x5mLJYnW+g8gZxFsXdAfPcnivKOl7DY3Ndlh5JI2ASWbjyJ1r90TRRIq13MK0HJov0bIdMbGz3B/GlRsX91Cbov4Zzec9JeJ2VXQsFedwKPcbauz6T/O4swZHzgd9HENzOZ8lHdObkRXy0QYZBW9qNgp29yDxJVLBpp0EjlIByJ9QmnvXxO+10xc6TTQGJTADb7tlZNdtOfNWOSMyiP2//3u3CHRmtOg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=58ncy9SC17mJ7g9iYB3J3T1HpkMLHC4s44xbCKV0vn8=;
- b=prO8QP8mfAd7rfQaWAq0yxoI08w87zIn/7oyCEm5vsjkCM1JWb8bp63VBs5662c2EWRp0v4NignOpt0hygIe5n3FZvBqeVylUgpasbpNpMIMgzOkXsfdeL6o+U+hJnDeIPWcmbddfzgMl9PCnk5XtNAN5s4JHCP8E8NX1ODKUXBi/fUNrbUOGs+YJ2cRFJ4+3vy6cOdXiUi/UUMNdKlL0WQBS1bY9Uiy8u+pRlMd99QgMJ6M+hXVqQn7GzA1Ep8p1CVaHFZQxGM8KCF99J4qPI5/GuXuN3i6kdiH/Nn91ljyODHCeIgojiG8Oly0aS6KvSVVc0Z5YhFwGwjDOFC/eQ==
+ bh=ToGnh3yeB71hHz/0RKbhcnA3sjL4bLBovhtrQ1V7BRM=;
+ b=hKLo5kdHBBJq5Y+/NJwY5OAA1aRYjGjmgO4bjv9oGKjkXpKjJDMyVsLL2JnP+TnRQ9FhffHF7Wd6QrSs/9gFdWFWXkXZXwkODkVr68ZUdoGRfLNRgxKvZB8kLmnIm3y2+k1VCBcVH+Z8xedqduM96VWKD0mjPpMqpYwrljmhkiv7ZUrZXitjWRn07BuCn9lOr46gTPLepb6SMkLI52aLnXu5wKiuL50+HHPHJgFkQKMYlssMhi/6V/k7Sfe7VhejuzWCbX6Rk3w2U8sRQFgcEcPIkrLp4wQZVzTvZeVeYiU/98BRHs8CmGphEBNAZ3cxMW3CGSf0I0tMCbxOrE5NJQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=lists.phytec.de smtp.mailfrom=ti.com;
+ 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=58ncy9SC17mJ7g9iYB3J3T1HpkMLHC4s44xbCKV0vn8=;
- b=S2eFK8j4fGcubE3RayDDFrPL5cgvSaY0oiXmdEYmngNvIOl1FvRoammTCmm3GjzbrWcwmpaWmut7pVQ/rTMh1+irCWHCNow+z7dRlvXVttBja9YKVXBMSMwBWyOVGxRnQtabWVDElgyWyIDFChEchO7z6em3m/moGlFjjAFsqgo=
-Received: from DM5PR07CA0106.namprd07.prod.outlook.com (2603:10b6:4:ae::35) by
- CH3PR10MB7354.namprd10.prod.outlook.com (2603:10b6:610:12f::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.15; Fri, 13 Mar 2026 07:46:39 +0000
-Received: from CY4PEPF0000E9DB.namprd05.prod.outlook.com
- (2603:10b6:4:ae:cafe::bd) by DM5PR07CA0106.outlook.office365.com
- (2603:10b6:4:ae::35) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.16 via Frontend Transport; Fri,
- 13 Mar 2026 07:46:39 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ bh=ToGnh3yeB71hHz/0RKbhcnA3sjL4bLBovhtrQ1V7BRM=;
+ b=D91Onl6QBupT036WMdKK79vlRMw+SpA6lm0Hcmbw1u+RuTH83KQgLhV7r/RKhWFAipdejOishPMzyTGvi0eWuT4YS8psYjdUS/YwkxY9n33Fbccnayfhp4TWjPQ+/dKU7OQIYNrcN1smBwjWCqi0fEucZFzpYo6DrUGAJ4RWtxk=
+Received: from SJ0PR03CA0036.namprd03.prod.outlook.com (2603:10b6:a03:33e::11)
+ by SA1PR10MB7554.namprd10.prod.outlook.com (2603:10b6:806:379::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.16; Fri, 13 Mar
+ 2026 07:47:49 +0000
+Received: from SJ5PEPF000001F2.namprd05.prod.outlook.com
+ (2603:10b6:a03:33e:cafe::d3) by SJ0PR03CA0036.outlook.office365.com
+ (2603:10b6:a03:33e::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.27 via Frontend Transport; Fri,
+ 13 Mar 2026 07:47:37 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- CY4PEPF0000E9DB.mail.protection.outlook.com (10.167.241.74) with Microsoft
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ SJ5PEPF000001F2.mail.protection.outlook.com (10.167.242.70) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.17 via Frontend Transport; Fri, 13 Mar 2026 07:46:38 +0000
-Received: from DLEE213.ent.ti.com (157.170.170.116) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9678.18 via Frontend Transport; Fri, 13 Mar 2026 07:47:47 +0000
+Received: from DFLE201.ent.ti.com (10.64.6.59) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 13 Mar
- 2026 02:46:36 -0500
-Received: from DLEE203.ent.ti.com (157.170.170.78) by DLEE213.ent.ti.com
- (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 02:47:23 -0500
+Received: from DFLE214.ent.ti.com (10.64.6.72) by DFLE201.ent.ti.com
+ (10.64.6.59) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 13 Mar
- 2026 02:46:36 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE203.ent.ti.com
- (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 02:47:23 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE214.ent.ti.com
+ (10.64.6.72) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 13 Mar 2026 02:46:36 -0500
+ Transport; Fri, 13 Mar 2026 02:47:23 -0500
 Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.233.103])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62D7kWvX160910;
-	Fri, 13 Mar 2026 02:46:33 -0500
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62D7lJNv3847731;
+	Fri, 13 Mar 2026 02:47:20 -0500
 From: Vignesh Raghavendra <vigneshr@ti.com>
-To: <nm@ti.com>, <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, Wadim Egorov <w.egorov@phytec.de>
-CC: Vignesh Raghavendra <vigneshr@ti.com>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62-phycore-som: Add 128MiB of global CMA
-Date: Fri, 13 Mar 2026 13:16:25 +0530
-Message-ID: <177338196936.240421.14150175440432465653.b4-ty@ti.com>
+To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Franz Schnyder <fra.schnyder@gmail.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Franz Schnyder
+	<franz.schnyder@toradex.com>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 0/2] arm64: dts: ti: k3-am69-aquila: Fix DP enable GPIO
+Date: Fri, 13 Mar 2026 13:16:55 +0530
+Message-ID: <177338196935.240421.13983455283267702229.b4-ty@ti.com>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20260213053806.219495-1-w.egorov@phytec.de>
-References: <20260213053806.219495-1-w.egorov@phytec.de>
+In-Reply-To: <20260202083604.325060-1-fra.schnyder@gmail.com>
+References: <20260202083604.325060-1-fra.schnyder@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,46 +109,47 @@ Content-Transfer-Encoding: 8bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9DB:EE_|CH3PR10MB7354:EE_
-X-MS-Office365-Filtering-Correlation-Id: b1495a00-22a8-45ae-f476-08de80d4a8d1
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F2:EE_|SA1PR10MB7554:EE_
+X-MS-Office365-Filtering-Correlation-Id: 637f181d-4189-4f18-8947-08de80d4d1b3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|376014|36860700016|1800799024|18002099003|56012099003|22082099003;
+	BCL:0;ARA:13230040|82310400026|36860700016|376014|1800799024|18002099003|22082099003|56012099003;
 X-Microsoft-Antispam-Message-Info:
-	vTyFZR9EgaRkCKKNIEnzCQMAmWOJPP7kcl4x2ojaZYGw/Yyi/KfI+68RJybKydpF4YI4J8uWRt6Wdovhp+QA3p261IZbqm6P3PxQgWgJAof+AqJiwobULiz3zgXnuWMqdgob3gcYRTsgqXmQQqqcqqr6qszSzp4oSYw4D2H48n7qIbkfeD95joI8OWtonWH4Rj/T3NA5m0TeScgOCo9FEciHz1rAMJaF+D4ScIA2yIcrLW7PIM6uqKuhfw2swQMHLYATkq0GYWuyyNaksqgF7QADvPHGzdZ9WqGaEK2ofeGZIxRXoK9QM2PfMV/VNSGErIGbGwsgw3JB2hIFBUx0iF+zphdTXPKdLiPvw0iyiu9/Yfhv1Yk3Ba3cbVvbN6ERPvWycRrHyW8nQ6WBGB/kPhMDY0iW03hadPgnW2EnArQqaGLmj+rqRxO3et9I+T6WfwrMfDGjEIQCg3oG+vBTzMd8Zk5hwbQ5ewaqqZ5Ie5+CBE/rt8JPI14cdrluwdqu7Hmx9TiyfX51Np5ayEPsbxL9FVkHdxrR+NZ8h6nnCNR65fQVnnxeDZOOzx/RNxIMlZ0/2RHI+kg+axhxB5S67r5YJkP9e+DbdDalYEu8Np01aTSI2UYNmxgZ/hBY7gaBXs7XMLehCfxglDTGzbwoxkf2zmKZlGrRfns47wQ8jUo242PVxYJfsits/UvKtTI9pJ0sURZHXW+J1caSp5RD8rgkSCLn33P62lZJh0pgjZ0=
+	d+KuvUidfnMKQuq0tmgQBmgirOm6rlj84GVk/UeE41b/rjr2GjR3FBRVHaWMY4mdVHcB4SwGNN54K8hZqam8aqlmL/tX5u6WJM7E/di8T3VFQ+3WZ66owbCi2vfp2dqmWNentKjv7OGYjuAmobtaghduFSVcyuj8gm2je0r4VXqZW9MklpIgtwMeU+pQQTRAbwzF0cbcCYve4cOCipYPSBZwOn19IXsS6+j4Llcm/OVqUJc8lKwaD+iDWhgxISjpV2mT94JRbxzhyZk9KIDJbT5VfpxQ9HU2gf5SB0pLyBmUzFCvaiD23sr9irfS0OnRY5Dpa+PvjOxSTfAQhZeVlbAm5Wk0BOFF+Fe1bpkTE9VPMcJW6VPo+M/S5zpPlgtTh3z5N23hDiImLlncCebOgWiUwkwDBJzdqYcU4fhUXfXz69RFZk1lRk0C8ZPnd1QGX895+caDciq4N0mxuzBQfW0z7T3q7M+/48/scmJyl203EPTPRGh8Sqa3wCoXkATNiJrCpHOtDbD4Q7JY/eNs34OnsWi3CHms6MeP7i3qVgm9WHkiHV+iApC/tgvEporokbmFqi9zO0ofcjLrXrFU7QzvPlmsuYpVBZ5rMk2xIQEAmduvTwpeAEIH4l84Bb1vJpYJoH6sYUjnjFwD1isKPDILRQM9W4TC4qb2CpT2Q65afMEr8oEXHFpbVqfPKDZVXKFwCFs3DJOHG0/7tWK/W1A20wdmV/JSLITPaFywNMg=
 X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(36860700016)(1800799024)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(376014)(1800799024)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	+9/aIHDNuYowsTreKeCEiaPKbtDu2Ik4EngPVc500VEPZs6gDFbftnDycRn+j2vLKLtyrKmvGVEjlr3GDcrkV9xi89B3edaPkKp2GvhsX36kkG36soZvLEEUGS9m674jGZKh862kDS44jOzKhI6x2HaUADplBZg332kASqh7PXnSUxzRGPypBOhgwFhEBuEFNQP/oApFkc5dAATIz+Jv0K7GVvRdqqbG+TUa0LGocsIMdkWzmq+3cYCnGsUTAoM1LsLO+m1DNSHjOXCT4V7ZLjg/9sAFDfAOPLpF2xSiglsX+wd5WJTsuJr0bCoCiWAfkdwl6G1YHgShwITr3zv5bHbAsRSAlsY0ROFsJOq3cT57jpTMAEj2qwvvjh83ddMQTwqZuVibW+R3THMm+J4zCrznZkOF0wZFygCllh/SBDPEfyl07D/BX+O68uoDU80Z
+	sm0ya9rTEd8kp6YqNN3jRAcr4ko+hGC6YbTUgl3zXCH2+7Ecud7DwYy+8zDpd5rgzVuLEKg7f8inkODcs0NBy0rYZaB5FxTC3fhra6/uPERDm1yJfvuEFBFF5YK6nRxPa3zlrltnVG2z+h+RVAAA+/N/R3YVHlqn7GHyRDOVQnhT2Haso7vNEp9YhR2MIC5ZuFqmquux2kAQsJMtBsjMlh595CaKG2aEh3kj+61F8VaoEebog2TFyiVoy0yMxYPZxOkSQLkWOkPQRVTw11v4WbOLixNKkr24yOJOBL7hRz7fKnrKnWtyjAsQykwUXdK3aLcf85V7wWUZoZ+aqVQHQlGRz518OaLSASEK+thMnAQ4AE9yqgTIWYqltP6oCIOjxwpIkcGUtiKM4nmvmNr3RTMYvBXEml+3uD6roZ41i2b6ek00cgaL6sM5aXwN4Uqu
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 07:46:38.6061
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 07:47:47.1524
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b1495a00-22a8-45ae-f476-08de80d4a8d1
+X-MS-Exchange-CrossTenant-Network-Message-Id: 637f181d-4189-4f18-8947-08de80d4d1b3
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000E9DB.namprd05.prod.outlook.com
+	SJ5PEPF000001F2.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR10MB7354
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR10MB7554
 X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
 	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
 	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274958-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:dkim,ti.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274959-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,ti.com:dkim,ti.com:mid];
+	FREEMAIL_TO(0.00)[ti.com,kernel.org,linaro.org,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[ti.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[vigneshr@ti.com,devicetree@vger.kernel.org];
@@ -156,27 +160,31 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: E658727EF1F
+X-Rspamd-Queue-Id: 0345927EF46
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Wadim Egorov,
+Hi Franz Schnyder,
 
-On Fri, 13 Feb 2026 06:38:06 +0100, Wadim Egorov wrote:
-> Reserve 128MiB of global CMA which is also marked as re-usable
-> so that OS can also use the same if peripheral drivers are not using
-> the same.
+On Mon, 02 Feb 2026 09:35:59 +0100, Franz Schnyder wrote:
+> Correct the DP regulator enable GPIO to index 21 on Clover and Dev board.
+> The 3.3V DP regulator was not being enabled by the assigned GPIO, as it
+> is routed to GPIO index 21 and not 37, which was causing instability
+> with displays connected over DP or via an active DP-to-HDMI adapter.
 > 
-> Based on the use case described in commit c43dd2fe5316 ("arm64: dts: ti:
-> k3-am62x-sk-common: Reserve 128MiB of global CMA").
+> Franz Schnyder (2):
+>   arm64: dts: ti: k3-am69-aquila-dev: Fix DP regulator enable GPIO
+>   arm64: dts: ti: k3-am69-aquila-clover: Fix DP regulator enable GPIO
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/1] arm64: dts: ti: k3-am62-phycore-som: Add 128MiB of global CMA
-      commit: 2af52683ecd85ae33dcd52eaddef6d592da5492a
+[1/2] arm64: dts: ti: k3-am69-aquila-dev: Fix DP regulator enable GPIO
+      commit: 222191225e69711089ecade3b98d79757d51e907
+[2/2] arm64: dts: ti: k3-am69-aquila-clover: Fix DP regulator enable GPIO
+      commit: 8cfb2e517113543e0de9e8df5754d5e09cb3627e
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
