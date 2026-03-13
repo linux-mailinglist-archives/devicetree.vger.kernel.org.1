@@ -1,458 +1,276 @@
-Return-Path: <devicetree+bounces-274850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274851-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iNDQIYp1s2mwWgAAu9opvQ
-	(envelope-from <devicetree+bounces-274850-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 03:25:14 +0100
+	id oEcZHTl2s2mwWgAAu9opvQ
+	(envelope-from <devicetree+bounces-274851-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 03:28:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 334DA27CB4D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 03:25:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2DD827CB98
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 03:28:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 385923130753
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 02:23:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7427C307E5A1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 02:27:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09DE233F8D6;
-	Fri, 13 Mar 2026 02:23:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A6A32A3DA;
+	Fri, 13 Mar 2026 02:27:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="C7Dh8YyK";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Mks4/mP/"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="LkrthrFl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011057.outbound.protection.outlook.com [52.101.70.57])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13F9433FE12
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 02:22:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773368579; cv=none; b=b3TdOg2SOKMp0PZfLNkqiF1EmwllWxex1prTz/VOLLajJVw+k4fVTlXa++v5X8LwOEM3md8LRUoUH47WvKdZLZr6X7jEwkJRmAo6U8YgUQ//E+NjI2Uo9VF1Uh2+7Hqd+Qmso8W/X/KZRENN6npMakZ31v69L8MS3S2u2GYKKJ0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773368579; c=relaxed/simple;
-	bh=EUS8ihCC0jldgkzrUQt7usOvsJ64CfXdeDnPzei1SiI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UoZFAi5WqlNXF1AiqptE6CqATfz9zGInOMM2PQ6e3XIpUcCtNKzInDuB4ZOB7dD6/6mPPt7Cxl+vRYI7HyKjiQQ1KKWqrh1LQOWD6m5EAW2kufN+LVaeh2H9YboNMi+vQHmY5YFYyDW6IBjDPv5pW/f1KN++Vf0hko+EeNdzTMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=C7Dh8YyK; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Mks4/mP/; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62CIRjH81922472
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 02:22:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=ronbY7L826A/RmtJnsLIWNKj
-	PKfv0DFhMEDzBi+iAcg=; b=C7Dh8YyKfLiGt68TcG/P1WksYpAmtjKr95K9/zqY
-	EJ8PDu2ovOVL1Rs7czEfBlgpVUDN74DJ5op9/WevVFwUvYQQppq73y9b8rI+odnT
-	6CjOLSh0vEobdMIXecRHIXpTfA/CMYxukYjNIajLlBPyDFYv0eoGrgWtot0w49gH
-	Zcw4B+IxOqv+qmJTwGSKCXmUar1excLgHJYjQsBLXQqVjL/HH8wMdeVcZcMinIIT
-	dBz3Hq0g0jbWvPvynLoFB3q2J2+gulWDH12YJGx2WFtrFAKJlxYgdBa7wL97ctJ2
-	3AlXJwwosmzqda3zkTef9yX7rLlNmlVr3vUifyieLe3Wzg==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cuh4wv5n8-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 02:22:56 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8cd773dd409so273490285a.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 19:22:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773368575; x=1773973375; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ronbY7L826A/RmtJnsLIWNKjPKfv0DFhMEDzBi+iAcg=;
-        b=Mks4/mP/2FEc7aL+2SegNAK3ZftgknPn639HqhpW+wuzfS06hA7EUMplF//gKAtEKT
-         2lBqasEZSXaMqXdbctpTJInUOzwu9nHZ570BMvlOgjOl+qo6hcO+vHa8EFpEtSJbucMK
-         tOhzEJsCMQi8mcYmU77tQFT/qrzFCn/I30F1MjRf2/epj44ycpZtLEfxp6cnQnMtccvm
-         gYXqmI6fGbfIpekKnjUQhfbHRti/9fG/YOUnHnAySFguX+Gnzsj1xsNg/iFr8aVhPBVN
-         /uzDA8gbX9zg0aQ5qkRDTHPSb8QXGvW0uA/G6FjYHLRJJAIBeCyPTv0KaeNBTJ8KU563
-         OGFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773368575; x=1773973375;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ronbY7L826A/RmtJnsLIWNKjPKfv0DFhMEDzBi+iAcg=;
-        b=GTnFneb1muy/7B9p0tG+xGah1puCtB/9hJ0WsSVbYtz3SObWLyYkDJiNNtOHmY0tsd
-         eU1sSkZ3+g80+N28mMV54MQG0YxXd8p6O0jg2F1sE981CZ5bUfcQRy3T+W4HXZFvMBuu
-         rwTGrfqm2IxmMatwr622/NJluvYL/BIWU6BTfcUp3cRrCicO6Y3BeoLMqJMp8ucIWxQX
-         mDmBdK8POuShIoj7xzKLjXmMZln2r5q1FStdz3EuwDeQQDDcpIpHKn6SmHjkV9z4KYMh
-         kmkMHKlu+/cSmcONH9vZXtTqXn/xex7sZQi0BgPL9yirxYw2bpebDlA9fucLntYH2w2n
-         ruTA==
-X-Forwarded-Encrypted: i=1; AJvYcCX0s/5/rmAbIayxcWBCbTKQFu9w1bp09t02KCPIDc1lRMdLq9quZZyJx6Stc7hUhDPxuLu9I/ipokp5@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywzl0ywvlhHox5AaisX/Rl0LIxu4o0+qETAUf04aNdxxZ0QXNOB
-	AhbZrS5tv9VEJ4N0HfJmYTC8PGE3ZArxKBIkLPMIAvaeZFJdWX9dVd80sFff3PqvDypuAbhNXPl
-	Z1ufPhrZCgbHdTIIRW40lEvLT7421XK/U6AVfvq49fB9/FnCLgdHPtXsFVrhR3sUHU3guN+sg
-X-Gm-Gg: ATEYQzwRN4QZz8HQl+YBf1rQnNF4kevn6l834JQvmkzcLwlajIsec+5/3GqgboDex4t
-	Gx3oWM5zEJqTCJ7vXMyGNbKlchfB2SBizycqAF6eDaazYSpHrbR2hRkHMdWchqAABYwIgLQ7Lth
-	kkHeTaFofWRonNBKp56m8+lULKTI9Cl9eOFmHzOSSQK21zaiJQ+bxqWdN/a1xn+757bMk9L6g5i
-	4jyN/hs0r0GhDcYF1Tvvco3g4tJB/uZ1D3DAoLHTYjEg8e+l/kBpLIl7xqsZKBtVGvN7vn6R9+7
-	KyU53xwffI9Xdmtt/qxEgmHiRN7ef/duXX3YnzJTMRBdYMn0oPd4EUYoO33xJtXMx6Zip2s+nBt
-	s9E7Bro0p1cwAXdiIS1AZ3gT9tMDLj+F1e7GeHG8+BcXBLmyujvfmy41D/F8kxhu29uRlLU/Rh5
-	wPmgc8ZuBg1nDOJ6Lli78Qc1KL5IYlNsChWz0=
-X-Received: by 2002:a05:620a:4443:b0:8cd:8320:3368 with SMTP id af79cd13be357-8cdb5a551c2mr271113385a.32.1773368574912;
-        Thu, 12 Mar 2026 19:22:54 -0700 (PDT)
-X-Received: by 2002:a05:620a:4443:b0:8cd:8320:3368 with SMTP id af79cd13be357-8cdb5a551c2mr271112185a.32.1773368574354;
-        Thu, 12 Mar 2026 19:22:54 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38a67d83f9dsm13047751fa.10.2026.03.12.19.22.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Mar 2026 19:22:52 -0700 (PDT)
-Date: Fri, 13 Mar 2026 04:22:49 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Maulik Shah <maulik.shah@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
-        Linus Walleij <linusw@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Sneh Mankad <sneh.mankad@oss.qualcomm.com>
-Subject: Re: [PATCH 3/5] irqchip/qcom-pdc: Configure PDC to pass through mode
-Message-ID: <eizcoxjnjgbobjwndnq7gewqnynnm2o2aqhh4muposgnhhagaf@tnomg2p4uj27>
-References: <20260312-hamoa_pdc-v1-0-760c8593ce50@oss.qualcomm.com>
- <20260312-hamoa_pdc-v1-3-760c8593ce50@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25711277CA5;
+	Fri, 13 Mar 2026 02:27:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.57
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773368846; cv=fail; b=hX17uQDC+2+Gg1EbweMdt8XKgNT4UHYGlMXkMIzeeMVfOSsT9SBbab/K80Nhg+yPPzL0ZRDBznPGPZB4v/+CQrofuSx93Gq5PCdIQ8uPfq0DAOpn7wt7hoqMjK9UDtUFnFsjlpYI2DyAChLgDPEjYa0esxVZDwBLptgv5/vtm/8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773368846; c=relaxed/simple;
+	bh=VoDxEvZdLkshd7bcntBrDYeiAzYZnv0H4arVWyET2Fk=;
+	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=LRfb+AhPlPXTN2wfeN1O1AUSfaxZtj+cx6ghexOghScxiR8utTrja/ppaVOBkpOBrYuMdTIC2tG3UkTm1F5J1V7bBBPcigdORy79JyvxPZ6ukpdZ8tOiBUCpYSi4NvvuSxWwWqX0EI4KkKeGqcGp4CAmrcECfG7QjyVbJDMTdCI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=LkrthrFl; arc=fail smtp.client-ip=52.101.70.57
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bZGUQNFEhnKFXhuy9PC8RSQDQhQQ3uGxHNagrpr1mRCqRwSsqlPc6HRQmH0vzynbSWNRTqH3/ezZPpA3PH2uewViMabw1K/InOJrMjLLEujjxEZi6n+P8/0Cxwijuqu9m6HeRap8qkqstGPBMAWUiLwkyXlsxhznb4GH2fEX22Y+nIssP4wuJ9N/hx9BI0qJOPQymyzJiu/ij5qXpWlX2mhHLJsb5430C45yYkyxQiWr3oP0JaWNV73ZAqQIr8/axFft71kQT2ZOlcbMlji03odMrrejsMw+P1soYKxAEw4m0XaMwrLOQxaDIq7ehiDwYo+zIp4AfGvpTdCKN4WNRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nQyhKF7mVTGKt1VJ4tCDKmZndhbwG+m2EFBRAafYluY=;
+ b=YYGmzkd4mNSpdlrmSk9/k5vWNgUZuvSFg5uzRrZbLwCN+k2QKvfrsGWtr2iKvnNBC7EhkozNONbyZgCHUd+TJaiz2R4vBlvizh18K0e/g9gZzVl4zwbxWw4GTN4uyZ5EeH1nbDI/L6yokkg6tpNSAzlOicOw2d34Q09Lso8ttDMbGaFBC52ZW5m3q33jgRBfX3Hr/ED7ivD9WLqbr6izU014VDdLo8sc4X+UuTFMuldfg4PZMKQH2xQgv4nuSFk0TF/I1urWflJ/pJ95SbnHh4xFsdWh2h4KUT/wv+yAA23wqzWmTWQYve+rurzgyHfVosYPdFg1u5TM7DK+2x2JeA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nQyhKF7mVTGKt1VJ4tCDKmZndhbwG+m2EFBRAafYluY=;
+ b=LkrthrFla1a167nHqDwLCMHiswYDe5RnksGuaYD9lKTR43E5L+tnuvf6lvm9NEsrsEa9/1BNNJGz5wqHKKWXGVqnBEfdyrDjk471JaEEWE6w1mi4tLUAGZVK8lbXiXFSCDQTrAaSq4seQhblwdhM+8ryT1hXyj8jEl++2NDG7CH2NgUenWs+W2HvtmHNn2fzo9i98k/+XeTBi/E+dPudCbYZ3HhYXhIo1hRoktg/YwkvVb2o5sl/pOxi/WIP8J25tcWJ7UEYhjzBFCROcPDdElIaPnzhdOKCz1IThh33c5jy5tbQW3/6AAAi6Zr3yKlEV8qJ/SxWSVGuZSQNW8y/Lg==
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ (2603:10a6:800:315::13) by PA1PR04MB10940.eurprd04.prod.outlook.com
+ (2603:10a6:102:480::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.12; Fri, 13 Mar
+ 2026 02:27:09 +0000
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994]) by VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994%5]) with mapi id 15.20.9700.010; Fri, 13 Mar 2026
+ 02:27:18 +0000
+From: Sherry Sun <sherry.sun@nxp.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, Hongxing Zhu
+	<hongxing.zhu@nxp.com>, Lucas Stach <l.stach@pengutronix.de>, Lorenzo
+ Pieralisi <lpieralisi@kernel.org>, =?iso-8859-2?Q?Krzysztof_Wilczy=F1ski?=
+	<kwilczynski@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, Rob
+ Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li
+	<frank.li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel
+ Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Jingoo Han
+	<jingoohan1@gmail.com>, Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "imx@lists.linux.dev"
+	<imx@lists.linux.dev>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v2 1/2] dt-bindings: PCI: fsl,imx6q-pcie: Explicitly
+ deprecate reset-gpio
+Thread-Topic: [PATCH v2 1/2] dt-bindings: PCI: fsl,imx6q-pcie: Explicitly
+ deprecate reset-gpio
+Thread-Index: AQHcslAvPRd3NV8vsUK8f1lUXc6zS7WrvElA
+Date: Fri, 13 Mar 2026 02:27:18 +0000
+Message-ID:
+ <VI0PR04MB1211433ABEE52392089255E639245A@VI0PR04MB12114.eurprd04.prod.outlook.com>
+References: <20260312184344.42337-3-krzysztof.kozlowski@oss.qualcomm.com>
+In-Reply-To: <20260312184344.42337-3-krzysztof.kozlowski@oss.qualcomm.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: VI0PR04MB12114:EE_|PA1PR04MB10940:EE_
+x-ms-office365-filtering-correlation-id: 4d3cd569-0b0f-46e6-0d63-08de80a80ca2
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|376014|1800799024|19092799006|366016|22082099003|56012099003|18002099003|38070700021|921020;
+x-microsoft-antispam-message-info:
+ txOZo3qEgF7aJ/0k8QqOdO8GkyYD0VaF5ULymAb4n8yldsffS/Vb4y88rdAsOIx1ebAiyZx2LfSOxYk6yJJJi9SxLQTmC8l2OclgX0xaDDrjDPJEIHRlkR2WrCP7ZKxq7SG7SNIWQGwyGy2a1ouzP1Y4pb1FTI06+Mzvfs8NkBDrwKoB2U/lmw+s/8gFuY+n15I9+fy71R16HnDi9WBcSEfGDpYUuH7hGttIOUQC4TdV8IEg9FLJlTPPu5pC4sY7vD+tUlTI+hfUCPkTXnhtQFLJxKOA2hIQRE3DeK3r293HWE7t0ttkCsD7gL2lDpd281jCQZWOyBFEi1u38hq0DQ2Udt6uykQMcZWOAF3W7XIc/4/8oD8tEzLFPqMmAWgJW+v2o3qefgoSYZAMF2DYMLsEJEqFf35RSNfiy88PtIrI9HfpKheuESqP6L10/B4YlRq06TdQh9kVrVkAKNm9Dn73yNZ4tjFA1+Z9xEddB/pOHB3z2mgElM4lcHfD/EB96MsjpwsL7WeN32HrvWgeBaqDkdWnIqKgBo6JSBA2wkfceLTg9vuOghBQMa3jYPDUlWswSiJUtk8QMqtibls6hvy1hJRn2puv+9hySW3sUesD6wx+lbrY5/CfuPNeBUrny9MPTG/PlWZ6WTMy2xbvIKcvFhNv1kdjCTdqX9UoOQzZXnc8jg7/sygKaHGSFf+cMh0vlSI3lpJ8VQiDejJkawYivGRfceh7rVgHF3GWIHr16zfMsYUmJ31DBXTFAK8D
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(19092799006)(366016)(22082099003)(56012099003)(18002099003)(38070700021)(921020);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-2?Q?4dsahqLFfNeA0fPqIQKiLP8fht0KPySUV2fuoQOMYmbxXg3UmH6I8of1Ag?=
+ =?iso-8859-2?Q?yNSzULMCQ62MYccGIfzBUa5Q8N11P2orD0celWuVtBWxwOwftp8LzZDYoD?=
+ =?iso-8859-2?Q?+78Uczbg6mlaRfQ06D358Nx5m17Kg4ek4RTuna8kA+jmd1pGEBhn5wFJg5?=
+ =?iso-8859-2?Q?2/DZEmjb4YTgfIhi1+m84kPS65l7VlZfo86iMphbF8JQP6iwmXRhd1Y/S+?=
+ =?iso-8859-2?Q?Me6KBRTUa9hg79VEXTqm1k6Qeu4ju4EL4/Xjlh7PMmgKLZQbPGBwTNgSYq?=
+ =?iso-8859-2?Q?VbGDpc+3QXGNuxBUIjzAch1LvIDfL3xQ9k6+ChxfnJv10i3TB82mLEFH5A?=
+ =?iso-8859-2?Q?1s8h6Aro2PU/hDhDVLzV7puYuV0+K/J6ZRfH1yCfWQtBfmmC+svEp4J6CW?=
+ =?iso-8859-2?Q?1Yb0x0PegHXelJPdjxorpg+zFHmiRMgJHN/Ps954ZzhDuu3TekGfTx1u/a?=
+ =?iso-8859-2?Q?KvYnwUQftTcjBNqmqQeNrglXO9VHi10ulz/L/VvGlConIlZIz9xwkWup9+?=
+ =?iso-8859-2?Q?DKw/iM+KF882jaGMLC1JIXzgibZ/R4PcqfmbVqGjckPwetJaUGhyVIn2ku?=
+ =?iso-8859-2?Q?a4sze0wV4klxDIe7gGGoLjAAf95MRrDduo8vNDjecb09u6W2pa+9J4Gbty?=
+ =?iso-8859-2?Q?AS/uSWscwk5NFGcXIrUh/IbEUId2PHIJJKarFRZJTo2x9eQ/LMl50HOL7i?=
+ =?iso-8859-2?Q?eiENDMoZ1COxghEVXayOD4KpoWq8VUyfdwrAezqzf4w2+RI7PMdEdy2Udb?=
+ =?iso-8859-2?Q?cf1PEthxECvKRuVUTHARcRKbGaiyYbW0RlB8fEfRqt0S5+fF9E+nOjLpHy?=
+ =?iso-8859-2?Q?CiNBEID551qBflp/4DDVIoCrPjDoa7M5ZakNXeD6btwk8kwjywTlMfNLJX?=
+ =?iso-8859-2?Q?rA7SiEsS7DeiuMkU8nQwiOjW0zwDbCRkVUjosOTXIM8Gh3bpicsjTUh6Px?=
+ =?iso-8859-2?Q?JeuARMBuToouOHzUBx2sVF89iwTOOUMhTo7+KGpxwPmB4I730/SFavfncn?=
+ =?iso-8859-2?Q?Toin0DF35O2n1vMKG1kOSTNIY6rfZr5Rrkv8ZEXkz4BjR5uV8iQVo95GNC?=
+ =?iso-8859-2?Q?rH2Wuw1yLTiA1BusfDiZOSTqr7NGRCMxG3zKaimStV9mTRLw1DZO/iDwMb?=
+ =?iso-8859-2?Q?6E3HGZU7Ti8bZjcla9WsMMTqmO3rldEbn7UzLD8sh8QcMHwY4VEsP421d4?=
+ =?iso-8859-2?Q?ISv2rCCLaPPtNe9v3kam/EwTijA9r6nHooIF7Rnh/EBp3oTn9EdINfDLPi?=
+ =?iso-8859-2?Q?jCgT2z+XP+kgr1EpML9wbWqMz8aYZiger+RO8GKkbHGOYXjmCY4mWW87Kj?=
+ =?iso-8859-2?Q?ephGNo89og7S4INKTfJE8irJMpXYLcdrWmy5bmwtvtk0vaoJY+pHCyJ9B/?=
+ =?iso-8859-2?Q?qYI+iRnL/LG0gzG2Zx99lJ5BrQcRBhpiiX1eM9nZmcXBopeb75lBwkBqob?=
+ =?iso-8859-2?Q?NK4NcLn8Dt9KVun32FtoHALCZmmgEpd8Cbl1X2Y++m17Gaavdj5tQVjqJF?=
+ =?iso-8859-2?Q?oeXDN1Yf+6mcKbolLtzusbRe6hunXyLb4wK5zf5zXWfwutHh3xq4EJ8N6i?=
+ =?iso-8859-2?Q?5Ik48ZNbuznvdzSyFULysPL0HFUU4IxFj+LLRM+cw6p2fyWSfjAtPs3u2Y?=
+ =?iso-8859-2?Q?YsfKio1hKMIEpSIMFkKIVoUt46SNy0onS+WhJf5wWND4rZdOwcLYha4SFa?=
+ =?iso-8859-2?Q?Y7T+teJWIVZmgVoJtBJIfrpyYn0B6qx9iyeQLs0wxAeYWsb+tKaOGPIzc/?=
+ =?iso-8859-2?Q?woyuq3dSv9Is6EbSXJlAL2CqzEJmtTTs2SYW/DE4niMr4w?=
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260312-hamoa_pdc-v1-3-760c8593ce50@oss.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=GcoaXAXL c=1 sm=1 tr=0 ts=69b37500 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22 a=EUspDBNiAAAA:8
- a=U6JMhTfLYnJ_8UpLpkYA:9 a=CjuIK1q_8ugA:10 a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-GUID: AvMbBQou-AEZTXvy738zcurBfAj6aQX9
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEzMDAxOCBTYWx0ZWRfX+h/PKtsrytV+
- YYjefsEhmysv1E4i7WHv2FdpXvE/qAB1IDeB3Zi2cjX37ye5rte1vDLeiQ2uf6UTklUO0xihIbZ
- oACEzD9WQz9daRlL9fXm+ibOzCjjkwaxH83GovMYhG5GfFJNZUFgDrWUWoyEuuUfk4/FwoBD9CA
- YJN7Q/TAP9davIsamUl0H4xpyFsczEipXGtBdqpWeu1dn/Xx4L1J5EclHECBf7JE98wnJxcGlZH
- RWFBI/T9eTgVsb6EEvvnV/2mG10p43e6m61EayWm+vbt4xYbCZLGurjrcHqfi1xNRWlzmydZ0D7
- LX8EONr9XVl7+/0r1w4epZxzrz4kPH2+VyhwWTN1ZqyVzO6S5ACKWbqvcmE3PRNfFUDnS0joRbB
- GS+u1CgI9Z5K/arPHrgSX95J6ZSDw64iDy2BoS29uXghH6s96VwRX5M/4gjchP49BTyF9WhIZBd
- yGJGPCkxT6FIZX3RLTg==
-X-Proofpoint-ORIG-GUID: AvMbBQou-AEZTXvy738zcurBfAj6aQX9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-12_03,2026-03-12_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0 suspectscore=0 spamscore=0 adultscore=0
- impostorscore=0 malwarescore=0 priorityscore=1501 bulkscore=0
- lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
- definitions=main-2603130018
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4d3cd569-0b0f-46e6-0d63-08de80a80ca2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Mar 2026 02:27:18.7389
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: heMqa1DX7ljP+BmByBkXXGgch1QWE6ie9wH4TvQfnp3jHpYM/SE0iVI6O7JxzCJ8ymrvTBy5Ks3blWLvkRdiWQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10940
+X-Spamd-Result: default: False [1.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274850-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim];
+	TAGGED_FROM(0.00)[bounces-274851-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,nxp.com,pengutronix.de,kernel.org,google.com,gmail.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 334DA27CB4D
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,nxp.com:dkim,nxp.com:email,VI0PR04MB12114.eurprd04.prod.outlook.com:mid]
+X-Rspamd-Queue-Id: A2DD827CB98
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 12, 2026 at 09:26:37PM +0530, Maulik Shah wrote:
-> There are two modes PDC irqchip supports pass through mode and secondary
-> controller mode.
-
-Can't parse this, excuse me.
-
-> 
-> All PDC irqchip supports pass through mode in which both Direct SPIs and
-> GPIO IRQs (as SPIs) are sent to GIC without latching at PDC.
-> 
-> Newer PDCs (v3.0 onwards) also support additional secondary controller mode
-
-It would help to mention the platforms, not everybody has the core docs.
-
-> where PDC latches GPIO IRQs and sends to GIC as level type IRQ. Direct SPIs
-> still works same as pass through mode without latching at PDC even in
-> secondary controller mode.
-> 
-> All the SoCs so far default uses pass through mode with the exception of
-
-Is it something that must be configured by the bootloaders?
-
-> x1e. x1e PDC may be set to secondary controller mode for builds on CRD
-> boards whereas it may be set to pass through mode for IoT-EVK.
-> 
-> There is no way to read which current mode it is set to and make PDC work
-> in respective mode as the read access is not opened up for non secure
-> world. There is though write access opened up via SCM write API to set the
-> mode.
-
-What are going to loose? The ability to latch the wakeup sources on the
-CRD?
-
-> Configure PDC mode to pass through mode for all x1e based boards via SCM
-> write.
-
-Would it make sense to always use the secondary mode instead?
-
-> 
-> Co-developed-by: Sneh Mankad <sneh.mankad@oss.qualcomm.com>
-> Signed-off-by: Sneh Mankad <sneh.mankad@oss.qualcomm.com>
-> Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
+> Subject: [PATCH v2 1/2] dt-bindings: PCI: fsl,imx6q-pcie: Explicitly depr=
+ecate
+> reset-gpio
+>
+> The binding references snps,dw-pcie-common.yaml which already deprecates
+> "reset-gpio", however mentioning this property here lacks this mark thus
+> code is confusing and suggests property is not deprecated.
+>
+> OTOH, the property cannot be removed from this schema, because it is an
+> ABI implemented by Linux kernel in gpiolib-of.c in backwards-compatible m=
+ap
+> between compatibles, "reset-gpio" and "reset-gpio-active-high"
+> properties.
+>
+> This creates code and binding which is not obvious to follow, so rewrite =
+it and
+> be more explicit about:
+> 1. Deprecation of "reset-gpio",
+> 2. Relation that "reset-gpio-active-high" is used only for that property
+>    and not proper "reset-gpios".
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+>
 > ---
->  drivers/irqchip/Kconfig    |   1 +
->  drivers/irqchip/qcom-pdc.c | 119 +++++++++++++++++++++++++++++++++++++++++----
->  2 files changed, 111 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-> index 83d333f8bf63d78827800e0de724f81e6aa2f1df..89caddf6e5c569a0e867cda1838c870b967fb13d 100644
-> --- a/drivers/irqchip/Kconfig
-> +++ b/drivers/irqchip/Kconfig
-> @@ -505,6 +505,7 @@ config GOLDFISH_PIC
->  config QCOM_PDC
->  	tristate "QCOM PDC"
->  	depends on ARCH_QCOM
-> +	depends on QCOM_AOSS_QMP
->  	select IRQ_DOMAIN_HIERARCHY
->  	help
->  	  Power Domain Controller driver to manage and configure wakeup
-> diff --git a/drivers/irqchip/qcom-pdc.c b/drivers/irqchip/qcom-pdc.c
-> index 32b77fa93f730416edf120710bcdcdce33fa39a7..051700d672471c092e8cda4d7f5aa6d2032157f7 100644
-> --- a/drivers/irqchip/qcom-pdc.c
-> +++ b/drivers/irqchip/qcom-pdc.c
-> @@ -19,6 +19,8 @@
->  #include <linux/spinlock.h>
->  #include <linux/slab.h>
->  #include <linux/types.h>
-> +#include <linux/firmware/qcom/qcom_scm.h>
-> +#include <linux/soc/qcom/qcom_aoss.h>
->  
->  #define PDC_MAX_GPIO_IRQS	256
->  #define PDC_DRV_OFFSET		0x10000
-> @@ -26,9 +28,11 @@
->  /* Valid only on HW version < 3.2 */
->  #define IRQ_ENABLE_BANK		0x10
->  #define IRQ_ENABLE_BANK_MAX	(IRQ_ENABLE_BANK + BITS_TO_BYTES(PDC_MAX_GPIO_IRQS))
-> +#define IRQ_i_CFG_IRQ_MASK_3_0	3
->  #define IRQ_i_CFG		0x110
->  
->  /* Valid only on HW version >= 3.2 */
-> +#define IRQ_i_CFG_IRQ_MASK_3_2	4
->  #define IRQ_i_CFG_IRQ_ENABLE	3
->  
->  #define IRQ_i_CFG_TYPE_MASK	GENMASK(2, 0)
-> @@ -36,8 +40,11 @@
->  #define PDC_VERSION_REG		0x1000
->  
->  /* Notable PDC versions */
-> +#define PDC_VERSION_3_0		0x30000
->  #define PDC_VERSION_3_2		0x30200
->  
-> +#define PDC_PASS_THROUGH_MODE	0
-> +
->  struct pdc_pin_region {
->  	u32 pin_base;
->  	u32 parent_base;
-> @@ -97,6 +104,33 @@ static void pdc_x1e_irq_enable_write(u32 bank, u32 enable)
->  	pdc_base_reg_write(base, IRQ_ENABLE_BANK, bank, enable);
->  }
->  
-> +/*
-> + * The new mask bit controls whether the interrupt is to be forwarded to the
-> + * parent GIC in secondary controller mode. Writing the mask is do not care
-> + * when the PDC is set to pass through mode.
-> + *
-> + * As linux only makes so far make use of pass through mode set all IRQs
-> + * masked during probe.
-> + */
-> +static void __pdc_mask_intr(int pin_out, bool mask)
-> +{
-> +	unsigned long irq_cfg;
-> +	int mask_bit;
-> +
-> +	/* Mask bit available from v3.0 */
-> +	if (pdc_version < PDC_VERSION_3_0)
-> +		return;
-> +
-> +	if (pdc_version < PDC_VERSION_3_2)
-> +		mask_bit = IRQ_i_CFG_IRQ_MASK_3_0;
-> +	else
-> +		mask_bit = IRQ_i_CFG_IRQ_MASK_3_2;
-> +
-> +	irq_cfg = pdc_reg_read(IRQ_i_CFG, pin_out);
-> +	__assign_bit(mask_bit, &irq_cfg, mask);
-> +	pdc_reg_write(IRQ_i_CFG, pin_out, irq_cfg);
-> +}
-> +
->  static void __pdc_enable_intr(int pin_out, bool on)
->  {
->  	unsigned long enable;
-> @@ -312,7 +346,6 @@ static const struct irq_domain_ops qcom_pdc_ops = {
->  static int pdc_setup_pin_mapping(struct device_node *np)
->  {
->  	int ret, n, i;
-> -
->  	n = of_property_count_elems_of_size(np, "qcom,pdc-ranges", sizeof(u32));
->  	if (n <= 0 || n % 3)
->  		return -EINVAL;
-> @@ -341,8 +374,10 @@ static int pdc_setup_pin_mapping(struct device_node *np)
->  		if (ret)
->  			return ret;
->  
-> -		for (i = 0; i < pdc_region[n].cnt; i++)
-> +		for (i = 0; i < pdc_region[n].cnt; i++) {
->  			__pdc_enable_intr(i + pdc_region[n].pin_base, 0);
-> +			__pdc_mask_intr(i + pdc_region[n].pin_base, true);
-> +		}
->  	}
->  
->  	return 0;
-> @@ -352,10 +387,13 @@ static int pdc_setup_pin_mapping(struct device_node *np)
->  
->  static int qcom_pdc_probe(struct platform_device *pdev, struct device_node *parent)
->  {
-> +	static const char buf[64] = "{class: cx_mol, res: cx, val: mol}";
-> +	unsigned int domain_flag = IRQ_DOMAIN_FLAG_QCOM_PDC_WAKEUP;
->  	struct irq_domain *parent_domain, *pdc_domain;
->  	struct device_node *node = pdev->dev.of_node;
->  	resource_size_t res_size;
->  	struct resource res;
-> +	struct qmp *pdc_qmp;
->  	int ret;
->  
->  	/* compat with old sm8150 DT which had very small region for PDC */
-> @@ -366,6 +404,13 @@ static int qcom_pdc_probe(struct platform_device *pdev, struct device_node *pare
->  	if (res_size > resource_size(&res))
->  		pr_warn("%pOF: invalid reg size, please fix DT\n", node);
->  
-> +	pdc_base = ioremap(res.start, res_size);
-> +	if (!pdc_base) {
-> +		pr_err("%pOF: unable to map PDC registers\n", node);
-> +		ret = -ENXIO;
-> +		goto fail;
-> +	}
-> +
->  	/*
->  	 * PDC has multiple DRV regions, each one provides the same set of
->  	 * registers for a particular client in the system. Due to a hardware
-> @@ -382,15 +427,71 @@ static int qcom_pdc_probe(struct platform_device *pdev, struct device_node *pare
->  		}
->  
->  		pdc_x1e_quirk = true;
-> -	}
->  
-> -	pdc_base = ioremap(res.start, res_size);
-> -	if (!pdc_base) {
-> -		pr_err("%pOF: unable to map PDC registers\n", node);
-> -		ret = -ENXIO;
-> -		goto fail;
-> +		/*
-> +		 * There are two modes PDC irqchip can work in
-> +		 *	- pass through mode
-> +		 *	- secondary controller mode
-> +		 *
-> +		 * All PDC irqchip supports pass through mode in which both
-> +		 * Direct SPIs and GPIO IRQs (as SPIs) are sent to GIC
-> +		 * without latching at PDC.
-> +		 *
-> +		 * Newer PDCs (v3.0 onwards) also support additional
-> +		 * secondary controller mode where PDC latches GPIO IRQs
-> +		 * and sends to GIC as level type IRQ. Direct SPIs still
-> +		 * works same as pass through mode without latching at PDC
-> +		 * even in secondary controller mode.
+>
+> Cc: Sherry Sun <sherry.sun@nxp.com>
+>
+> Changes in v2:
+> 1. Rewrite the commit completely after Sherry Sun comments - keep the
+>    property, but add "not" clause to forbid usavge of
+>    "reset-gpio-active-high" and "reset-gpios".
+> 2. Because of above not adding Richard's ack.
+>
+> v1:
+> https://lore.ke/
+> rnel.org%2Fr%2F20260311154955.145120-3-
+> krzysztof.kozlowski%40oss.qualcomm.com&data=3D05%7C02%7Csherry.sun%4
+> 0nxp.com%7Cc630bed6bc4f46715b4408de80675002%7C686ea1d3bc2b4c6fa
+> 92cd99c5c301635%7C0%7C0%7C639089378371805072%7CUnknown%7CTWF
+> pbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4
+> zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3DA%2BiFa
+> kDVdjPn0JJxUDlTDt1ej4iqnBivDktjwbcpFK4%3D&reserved=3D0
+> ---
+>  Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> index 12a01f7a5744..12cd1b9f78d0 100644
+> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> @@ -62,6 +62,9 @@ properties:
+>      description: Should specify the GPIO for controlling the PCI bus dev=
+ice
+>        reset signal. It's not polarity aware and defaults to active-low r=
+eset
+>        sequence (L=3Dreset state, H=3Doperation state) (optional required=
+).
+> +      Deprecated, use reset-gpios which respects the polarity expressed =
+in
+> +      phandle argument.
+> +    deprecated: true
+>
+>    reset-gpio-active-high:
+>      description: If present then the reset sequence using the GPIO
 
-I'd say, there is no need to duplicate the commit message.
+Hi Krzysztof,
+This property also needs to be deprecated as Rob suggested in my previous p=
+atch :)
+https://lore.kernel.org/all/20260121164002.GA3427694-robh@kernel.org/
 
-> +		 *
-> +		 * All the SoCs so far default uses pass through mode with
-> +		 * the exception of x1e.
-> +		 *
-> +		 * x1e modes:
-> +		 *
-> +		 * x1e PDC may be set to secondary controller mode for
-> +		 * builds on CRD boards whereas it may be set to pass
-> +		 * through mode for IoT-EVK boards.
-> +		 *
-> +		 * There is no way to read which current mode it is set to
-> +		 * and make PDC work in respective mode as the read access
-> +		 * is not opened up for non secure world. There is though
-> +		 * write access opened up via SCM write API to set the mode.
-> +		 *
-> +		 * Configure PDC mode to pass through mode for all x1e based
-> +		 * boards.
-> +		 *
-> +		 * For successful write:
-> +		 *	- Nothing more to be done
-> +		 *
-> +		 * For unsuccessful write:
+Best Regards
+Sherry
 
-Why would it fail?
-
-> +		 *	- Inform TLMM to monitor GPIO IRQs (same as MPM)
-> +		 *	- Prevent SoC low power mode (CxPC) as PDC is not
-> +		 *	  monitoring GPIO IRQs which may be needed to wake
-> +		 *	  the SoC from low power mode.
-
-This doesn't quite match the description of "latches the GPIO IRQs".
-
-> +		 */
-> +		ret = of_address_to_resource(node, 2, &res);
-> +		if (ret) {
-> +			domain_flag = IRQ_DOMAIN_FLAG_QCOM_MPM_WAKEUP;
-> +			goto skip_scm_write;
-> +		}
+ @@ -224,6
+> +227,11 @@ allOf:
+>              - const: ref
+>              - const: extref  # Optional
+>
+> +  - not:
+> +      required:
+> +        - reset-gpios
+> +        - reset-gpio-active-high
 > +
-> +		ret = qcom_scm_io_writel(res.start, PDC_PASS_THROUGH_MODE);
-> +		if (ret) {
-> +			pdc_qmp = qmp_get(&pdev->dev);
-> +			if (IS_ERR(pdc_qmp)) {
-> +				ret = PTR_ERR(pdc_qmp);
-> +				goto fail;
-> +			} else {
-> +				ret = qmp_send(pdc_qmp, buf, sizeof(buf));
-> +				qmp_put(pdc_qmp);
-> +				if (ret)
-> +					goto fail;
-> +			}
-> +			domain_flag = IRQ_DOMAIN_FLAG_QCOM_MPM_WAKEUP;
-> +		}
->  	}
->  
-> +skip_scm_write:
->  	pdc_version = pdc_reg_read(PDC_VERSION_REG, 0);
->  
->  	parent_domain = irq_find_host(parent);
-> @@ -407,7 +508,7 @@ static int qcom_pdc_probe(struct platform_device *pdev, struct device_node *pare
->  	}
->  
->  	pdc_domain = irq_domain_create_hierarchy(parent_domain,
-> -					IRQ_DOMAIN_FLAG_QCOM_PDC_WAKEUP,
-> +					domain_flag,
->  					PDC_MAX_GPIO_IRQS,
->  					of_fwnode_handle(node),
->  					&qcom_pdc_ops, NULL);
-> 
-> -- 
-> 2.34.1
-> 
+>  unevaluatedProperties: false
+>
+>  examples:
+> --
+> 2.51.0
 
--- 
-With best wishes
-Dmitry
 
