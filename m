@@ -1,242 +1,236 @@
-Return-Path: <devicetree+bounces-275522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275524-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CIT3DVJftGmKmgAAu9opvQ
-	(envelope-from <devicetree+bounces-275522-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:02:42 +0100
+	id gGO1B7ZftGmKmgAAu9opvQ
+	(envelope-from <devicetree+bounces-275524-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:04:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA6222890B3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:02:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB1EE289118
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:04:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 96AF730241AE
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:02:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3F6EB3076534
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:03:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C5D1391519;
-	Fri, 13 Mar 2026 19:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93B753CCA07;
+	Fri, 13 Mar 2026 19:03:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="UR37YCAs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PgEIfAdi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013028.outbound.protection.outlook.com [52.101.83.28])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 198E3336880;
-	Fri, 13 Mar 2026 19:02:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.28
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773428558; cv=fail; b=Mu/8ZJvm92snbOw/ww3lS4/zQA7mAkuM3KuKPBMRFRqQ14SwwzAXNpBiYbcZckpF4GGPjPN8p0xGDAlag+nh4Mo3Cx+E/6OnXkwSTGsgeXVLYetRntstHtdyjp4IrGrCTu0qEFps9WjbTHh2RY+aPbmkYVI+taOTwsphhE0gpg4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773428558; c=relaxed/simple;
-	bh=EmYRDbV4yK9MqCn7Kt+G2jLX5rRPB+bq+DxtoI8Z+Aw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=MFecx9gO9ljqpMeZUVSvxiMP3zEsk8hzFtvTHZbM8bBM0d/A/oH2AyTkngTga/Gcb6WJP/qUIEeFwb0oAPimNZljDeHGHg/PzfOsGtNu396skT19ua/T41XzX5vVrqPRO5+T/d8V3jF0BaBiEIEGuPdWGSpCCf+p4bWPuFgmoaU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=UR37YCAs; arc=fail smtp.client-ip=52.101.83.28
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rdi5cLK6Ulqnax68z86DYZv6tk1rLJRuREsf+C6fFfr4fxCN77OH8kivGVcRzOMufc/pqu898iekRw07ns3xdUAmHVXOEWncgnkc1MzHPPO2dHd01TWr5DVUlBz0UARjkeb0Aw42k8WymmYS9F89DkERtFHlLykCMVmPEMX7bvHqPjz3vKKtPK8EAmLceQxR6OV8oLs99qI56AVoeElXttKbhMWDUP0U1U+0p4bWZkrReKn25pMScDk2i2DIdt2bYq7ss6IOU6HIkXidnw+Sh7KOS+/WsksjU6ovlmCf0zC84ECf6OEDQhaiN9KFzttGbpkNraKYCS+WI7V09icanw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EmYRDbV4yK9MqCn7Kt+G2jLX5rRPB+bq+DxtoI8Z+Aw=;
- b=p7MWda4nNOMjIL92XS29GgDswQ7NNPiDUycVw+0vwsfD0NSlXyMaLn6GWIJqRptEKx9Mm92qtLZH4YPtdrYdkcsHVKLgVOxW/K45hmwC99Cirph56XH+EDurKH2ZhzO/JXH2aZUyeA8XD+lpm0wIyV0VVO97pE3fGxuHvaw36tXSnZ3pCv/dyPSR0QuUGlI8bKhQASO62eUrhylTMfhne5Wd4n+sVZd2iyB27tzuVm7pLotm5B8OvJzDjQVzg7QKTviqloJ4qH3d+vu61qkvw2pxp+mDW1j35+/qGmEwBTQXdgAJmXeoDkPuMjCfPSTV02P9AusyhNhruPvPtWzZPw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EmYRDbV4yK9MqCn7Kt+G2jLX5rRPB+bq+DxtoI8Z+Aw=;
- b=UR37YCAsTxdVUFPoLhOFCrOgeBUbM+LmeWFBk0SlF/42P35KJiQWq2hckSbfOT3T2u+O0fagaHnI8Xj+nrtb0Ahcu3QjkAOR4RRfbTtBP5mCPBCOVpyTqUbAp5Pwz2guXl3TS7QCjeotmcQt771lDNN7fz1VglEhOghnI17RydPs4RHpSvSRJ1A6ZgbXDkSGqwbgqMJK6PVO0KjDwnc4BTF0fHKQ80TcUvCSvkXCwbrgnjs+st1MxcapBwKmlC5kAEkTRaIh93GCFz7NhoXMcdxpmbKCBqbcPo3l9lBJdyfks7TXT0wHO4wJwgWNpwVHZhkoTPs/cw0BYPA9JSiqNQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by GVXPR04MB9778.eurprd04.prod.outlook.com (2603:10a6:150:110::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.12; Fri, 13 Mar
- 2026 19:02:25 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9700.010; Fri, 13 Mar 2026
- 19:02:24 +0000
-Date: Fri, 13 Mar 2026 15:02:20 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>
-Cc: Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, pierluigi.p@variscite.com,
-	Stefano Radaelli <stefano.r@variscite.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [PATCH v3 06/11] arm64: dts: freescale: imx8mm-var-som: Update
- WiFi/BT with variants
-Message-ID: <abRfPK0pUxFcb8sQ@lizhi-Precision-Tower-5810>
-References: <cover.1772898346.git.stefano.radaelli21@gmail.com>
- <7c84625f82c562bb9cd2b455465d63a1a25bf19e.1772898346.git.stefano.radaelli21@gmail.com>
- <CAOMZO5C+USp34WQ9ap+N9ha6EgU7JgsYkRsLEW=ZdizbkMQvPA@mail.gmail.com>
- <abQ_d9fGarNobYdo@Lord-Beerus.station>
- <CAOMZO5BnuGc8sddmfhKJhFgWa+K2gExeRN5097794j48+Dw-AQ@mail.gmail.com>
- <abRDxRK_GFYwmAGE@Lord-Beerus.station>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <abRDxRK_GFYwmAGE@Lord-Beerus.station>
-X-ClientProxiedBy: SN7PR04CA0104.namprd04.prod.outlook.com
- (2603:10b6:806:122::19) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4F283DFC9B;
+	Fri, 13 Mar 2026 19:03:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773428608; cv=none; b=q/9ZOe+VaUixWNvXJTEhSAQSy8Qtx+YELYUs0KTrEtfvEQ50YZpB74vX/QhKjJ5sedYb7uWoEl4JH14NXUJXgjhVDNEbfpUY5+KEcts9lKrbfMI/6L5DqqtP0YRyqRG+4yRGm2rVd2KHDreyFPUW5vC9BQC/nZ9YvkIINkLjgwA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773428608; c=relaxed/simple;
+	bh=IrWyWb2kxV5OzeytoBcovDqq1Y5EzHRPfMuaRrJQiho=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=nSpT4FCbmOCcnlEb7LWf9JM8Y35onuwG/By5S9gextVlPZatmoqjtaUfHKWQAeQUI7lhmwU0vDB0apRWgSmpBMCi46D9VxtB1rSRcy3J8p18w5KjkS3T3zfHgGdGf60jc+A0ARRbv2Pcb6mPmcpuDK5Hm8zFoxWyZ5WDGSlbq2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PgEIfAdi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1AB74C19421;
+	Fri, 13 Mar 2026 19:03:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773428608;
+	bh=IrWyWb2kxV5OzeytoBcovDqq1Y5EzHRPfMuaRrJQiho=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=PgEIfAdi4hH21js+xQYDmLxMAGezQqjcpHhPO8kAJrAhEw2PVHOt0IR5+5gp7bGpo
+	 q6Lvu3o05VzNOKf5jOo9HqwEboQ+JF9cQMLnoNKb1ZFze3sdJwP6I8YsAeP87+iC9r
+	 kGq7MUpd4Tpyeo37Rm8+lD78P5sU+2aBRhc4nQz7a1T1mmxIvpzgY3b02npEpRKUat
+	 H+5qRzyBtOts9UvPsY0ucWUK6Kw2QS6JT4qco3XLfgIBwqWgel2lsualI9hf7lEs23
+	 SFOmY/HyBepxpgyLdTsgfMyCjXL8pYn3cup2FtK1x6/JVEi6+214gLlLtmg02A/7E5
+	 39xZnowksZ8og==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0937C107BCDA;
+	Fri, 13 Mar 2026 19:03:28 +0000 (UTC)
+From: Markus Probst via B4 Relay <devnull+markus.probst.posteo.de@kernel.org>
+Subject: [PATCH v3 0/7] Introduce Synology Microp driver
+Date: Fri, 13 Mar 2026 20:03:04 +0100
+Message-Id: <20260313-synology_microp_initial-v3-0-ad6ac463a201@posteo.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|GVXPR04MB9778:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7e25d125-bb62-40b1-b69c-08de81330fb5
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|1800799024|52116014|376014|7416014|19092799006|366016|38350700014|7053199007|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
- 6FYOV7L/qTrnVud6HauS/Z0deQYokrvJ8+QFS6w98+DifbS23LI10E3kGl1ajmsjv05aASdhujln9kPwZDW7g/iXlTySECnFw33dY0ekgQ0XEU8giGLEF1641UcaS09BFF7XBjmAMK7TNfTKTsyK4k/xlOdV1o2eYYbeLEiMKYWUTjptg1lWd+NdfBwupgq0fDH3KFVh+gOONdBq6IdmL9aiQpu8xKfNehfjgNj5LJnR4hKr+EC0UIxhGLL9gLXfQPTKodGzSSEcL8BmvUtSVQ2NxUfMsGI4DmKfI5toztQv2/byh/2nkmrMuPRI9/PkdggqTd3D2E6pZsSYn1uqiMqK6KLpaQzh6KDY6XQs6bInGnbG91X8HX9BQDw88Sk8xXFUDWr8emHM3Ej/CGWnF+15l/TG/FPzxndZSYWK3nkzaOlArYHDBS4JoTKn+gtPm3f0ipf6pRJfr60hyhNZG6I0NT2FC4jRcmbaX6gDUFH6GdHlk1JYuLSMAAA1EfZJ2yU0pINN5cRdPnV/u2RUdvtYAoCnX61aAgUJkF1pKYakTt6v0WPhNbWYfi32tnfFxciYf43x6kr0BEwFn/cnHY2lwTYjr1jW5F/Y2Zwf7a0p6mKkU0jCMGwiNmVGYUDYE+CCI966BFDyjLxOK5rahXNEWkt7d7HkiMS76+zkesyfyEzVugYF/AI2Mca9I7FDYkxi0ut010tiBRl0NsrflRdciQ31Hdf5n33eTe2dbIjcigrrQ1xl95ClkrQkz5EBZ30fkxXIYVOB3CQhlqGLOhO6k6UEeAhNyFZ6TOhyix0=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(376014)(7416014)(19092799006)(366016)(38350700014)(7053199007)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?UHNEaUxUQTRZTkhnWitCeGxsSFQ4TDllVkxjRnBvblhOWHRCZEpDbnN2d0Rh?=
- =?utf-8?B?Z0hXZWNoeG5hbllldDFBdy9ReDVrcWJZQmw2eFhlanUvNFJMVVJseE9yY3ZM?=
- =?utf-8?B?MzkwV1dSdlYyR0d1Q0RYT2tiVXRwS09lVVlQai9pb2grNEg5akdxOWRFa1FD?=
- =?utf-8?B?akdrWE5xTzd0NzYwc2tSRi9rUENXZ2U5aUJaZ2xhVk9GQVdMVFc3Tlk1YTZ3?=
- =?utf-8?B?UmlUZGc0VDgwYjVOTUpWM1pjOG5ZZzdFNFNvbklOMFNzQjhJVjY2T1dSQUhj?=
- =?utf-8?B?R1BjcVVxZ1N4dDA3bUtlVGVQT3NxdS83Y0ptb0V0S3V3ckhoWTMwbVJ4YTJI?=
- =?utf-8?B?R3liWFpjcWFYWHVRZUFZSklTSVdmOWdHZk93bExBbjlFNWhKUjJ5UDk3M3M3?=
- =?utf-8?B?NDFVVDN1UUxNM3hKMjF5ZnpQaEJYTHVNb3hBaUEvL0ZZdW4zUVdOTEM0K3ls?=
- =?utf-8?B?NkZBVkwvQlp2MUs0S2pGcFFzVExOUXpsMnlKRDh1OWJOU3c4eUpucjVybUlj?=
- =?utf-8?B?Ujlmd1ptSGJHOVdSQTlQUmNFMVptSWlhWkg0N3pWQklrc3BKaWx2amJRdTJH?=
- =?utf-8?B?VU5LZ3RCSGd0S3JHZzkveXVuMFNnUUpmR0lGeUFwTit6T1NIREN3NFF6b2RD?=
- =?utf-8?B?R0NFOG1DZFFRaUtDQmdrQ2Y3RFhkcGVoZGY4VlNzOHhYWUwzU2g1eTN0Y2pP?=
- =?utf-8?B?V3c3NjFVZEUzbGYyTGRlTjd3K0xwT1pjcDFpWUxJQUhrTEdKMzVlNVRhamIr?=
- =?utf-8?B?VXUvSnhBYmdkZkFEa2hsdTBzZHZ0ZEdZN1VudE0xbWNzUDh4a2RjMmUvbWpH?=
- =?utf-8?B?K0huUDB0QytkOG5wMG8rS2tMTmJyb1NZekN2SW4wTUNFSi9Cb3lXdkJDNy9W?=
- =?utf-8?B?TXlxaGI2MjE0M2pESStpOHZHNUl2QUY4RW5MdWFFdDF6UDhyQTY5M2duRjNF?=
- =?utf-8?B?bkRuNE5kT2crZktsRE4vbWtZZFVFaEEzMjdtVUo1SXNtSC9TWnYyaFdtb2xF?=
- =?utf-8?B?VkpCckJlTFZPZ0R5dzNMMXByRVVUV1RwblNWMGNjdTVJSFRXejhBMWFlUzZx?=
- =?utf-8?B?cDlvd0dqTVAvcHBOZHNUNjdzTlRxcFpBS1piR2t6TGxPWCt4M1RPajZaSm5t?=
- =?utf-8?B?V1Zmci9TeDB0UWR0YzJUWFk4Z0h4ME4yT1U3d0JSZC9KdmR6MGQ1REdPVWtC?=
- =?utf-8?B?YlAzR2d4c1N1NEtmUHJjaDg4VENnWEZoR2tKNXg0cE9WT3ZWb1huSE1KWWxi?=
- =?utf-8?B?bVZJa3hUY1lZSk0yWDFERFhiejJTeDhTMGlBNk5CbVgwYkgxdnQvWHE5K3py?=
- =?utf-8?B?UVVaRjFkdjN6S2lGU1dQblZWWFNNdmc2R2VHMnNJVVBQbEUyeDdjSW5LOE5F?=
- =?utf-8?B?cDhlQlBkRzBkVEpFQU96MFJQNVc5UzZGaHYrNEJVVlU3TGEwV2x5L1JWTzBR?=
- =?utf-8?B?ZDRnVXBwWHVTOHJJdEdPYitLV2hxdkowcGh2TVZ4OXdMWjg1cnhScGZpalVl?=
- =?utf-8?B?bUNkNVVQbTZoN2x4MnUvODN6KzNFWUpLT2U5NUNuSlc5OStNTHFFNE5md0M4?=
- =?utf-8?B?UzlNVHZwSWZWbVJLaVZwMlpISngxU01acDVleGliU1F5aDM5TzY2OFlCQmow?=
- =?utf-8?B?Yk9UeUJ2Wk5MUi9vL3RxYmgxUXlHYjNmU2dja3kvNXltY2VyYnJidkdwYnV2?=
- =?utf-8?B?NHBiVk50RjNHR05iNWxTTWYzWUd6NElFejNPaHF3eFBmcDRMVjJaU2EvMDZk?=
- =?utf-8?B?WFJNeDMwMVJpVE1XY1JtelFBdk5PUFVEUUoxVHd1cXhMblByRlhYMk9jeFFC?=
- =?utf-8?B?Q1A0c3BCOW1sZ2RmM21CTGhPOHFqekI5em1LT21uSDhlbVFNOVQ3YXMxNmVm?=
- =?utf-8?B?SGN1U1pIVVRhSWxtUFRjOTAxb1l2dEpwYUg4SWhhWFBKL3BuNXNIYjZ0QXVw?=
- =?utf-8?B?Rk5KLy9zTWVNMERVdW1tTjZkWHIreEFYcFk0b0V4U1pIaDZ1Skt6cTd3RGxG?=
- =?utf-8?B?OU1lMmxjRzVXWE1hZm5uRU5xSVB3YWl0SVFReFdQOHhXcWRKMUxSVS9FVkhK?=
- =?utf-8?B?ZjFJWDZqekhxakxORUw1WHdlbXZ5ZCtEY2FhUnVjOUVzMS9tVHhWMTF3MUlD?=
- =?utf-8?B?VENZb25UL2p0WWE4VHZKcllhaWVBTm9mdXRKbXN6S2w0Zi84MmNQTG9yWnJT?=
- =?utf-8?B?aGxUZ252TTJ4cktsaGpIWmw4bzIvd3hiZWFCaFQ2Mnpvc3drblNEZElQd3N5?=
- =?utf-8?B?T0l3ZFJlSGowWTQ1WU5EUUJZNDdWd0owbkdIOTY1cEg3RkhodzNJSDJ2ZDFM?=
- =?utf-8?B?YUtNb2ZmN250RVFzcm1xcTJhWlRqbXFTNm1nZW5OMkNuTW5ZUFpjZz09?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7e25d125-bb62-40b1-b69c-08de81330fb5
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 19:02:24.1694
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6051hlGPXJ8/FJfqiTkYd80H50MBcfhMUBTFhS0f0a52Im/hpJRrLGXKij1ki9K7RCmEV8/aXI7APA1bbVQpXQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9778
-X-Spamd-Result: default: False [1.84 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGhftGkC/4WPzYqDMBSFX0WynpT8qDGu5j2GIja5aQNqbJKGS
+ vHdJ9WBcTPM8lz4vnvOCwXwFgJqixfykGywbsqBfxRI3frpCtjqnBEjrCac1DgskxvcdelGq7y
+ bOzvZaPsBEyN0r8RFlLJGmZ49GPvczF/nPXu4P/KDuB9//W2R7RVlVGD/CLHLlTQkDFCVDQVJm
+ kq1iaNjpR+E0nJHBtAB97KSRihmhJFtouxNXPoAWLlxtLEtkjgR7BVH70I3G6Lzy7Y80a3RvyM
+ TxQQbZQxoqMuyUZ+zCxHcScPmTOzoaf72sOyRvJGy5oZTVR0967p+A3mvwYWXAQAA
+X-Change-ID: 20260306-synology_microp_initial-0f7dac7b7496
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>, 
+ Gary Guo <gary@garyguo.net>, 
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Danilo Krummrich <dakr@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Igor Korotin <igor.korotin.linux@gmail.com>, 
+ Daniel Almeida <daniel.almeida@collabora.com>, 
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Pavel Machek <pavel@kernel.org>, Len Brown <lenb@kernel.org>, 
+ Robert Moore <robert.moore@intel.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, driver-core@lists.linux.dev, 
+ linux-pci@vger.kernel.org, linux-leds@vger.kernel.org, 
+ linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev, 
+ Markus Probst <markus.probst@posteo.de>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4556;
+ i=markus.probst@posteo.de; h=from:subject:message-id;
+ bh=IrWyWb2kxV5OzeytoBcovDqq1Y5EzHRPfMuaRrJQiho=;
+ b=owEBiQJ2/ZANAwAIATR2H/jnrUPSAcsmYgBptF9s60d+pfHXse4ikbSkzVo5yY/0L5v1i+qBg
+ TKkCKvUvGyJAk8EAAEIADkWIQSCdBjE9KxY53IwxHM0dh/4561D0gUCabRfbBsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDIACgkQNHYf+OetQ9JAbRAAr25iOrm9PmSuwLH7/Y66yv/KUAEuYdW
+ exSVg+xJgFhAPn58kruRMn4VglsHwSVAHbkfdBdCS6yCxpZ5WGYGnzOCQHkMQ/BlRWvHl08eDM6
+ uSlLgexXZ+xT7ZoF/jhqf5Zc+vmnXUX2vnkFlYxNRSxbJEsAs0eGNLBV1cNOCXfuYnb6usMKf2+
+ RWAWNVyPpBkrY3uDl5enzgzCD5haN7sf8QUfBc0q5FOBt5kJuuO3mDhK+uTV9nYSd7IhYv+cUf6
+ KpOuxyaumzvP+2rn4KLoewNgnjQOzDeH91ySfAR8LamR4MGksKzrVzqoJ0u4Z0yF7SA62OmHZY/
+ o6Wm4VIYa9y9O+FaqSFWi3xBW00XRJbGMtSopeIS6opVoagfs+igz8rVpA+JnIUd3VhJbfiF/t+
+ J0cBzpK6GVnk5rCWogmqyBkYnFiOVnNs/inp+rDBX2OffaEm5DYNtT5zwj62/8bS6unyDqxJMFL
+ 6suoClqKFH08xiMq1XDjORs3m9WoW3aSpIxsXWCKcLLyPY82WEQSqdnnLMXB9LcNFPchOTgEwMw
+ NEMpXvLtM7qoWQ3Hir6QoUMwB9o+4YuiSQZcJCqHq1fLVJOvOAcGz6SKDS7SE6bsHBarqIfFD/C
+ QO3aGQVaztrrHVoW5bBNVmND0iyTD5xZBLOAoLheJFvdClt9SCag=
+X-Developer-Key: i=markus.probst@posteo.de; a=openpgp;
+ fpr=827418C4F4AC58E77230C47334761FF8E7AD43D2
+X-Endpoint-Received: by B4 Relay for markus.probst@posteo.de/default with
+ auth_id=680
+X-Original-From: Markus Probst <markus.probst@posteo.de>
+Reply-To: markus.probst@posteo.de
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275522-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-275524-lists,devicetree=lfdr.de,markus.probst.posteo.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,linuxfoundation.org,garyguo.net,protonmail.com,google.com,umich.edu,gmail.com,collabora.com,intel.com];
 	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[31];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,variscite.com,kernel.org,pengutronix.de];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_REPLYTO(0.00)[markus.probst@posteo.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:dkim]
-X-Rspamd-Queue-Id: AA6222890B3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[posteo.de:email,posteo.de:replyto,posteo.de:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BB1EE289118
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 06:05:09PM +0100, Stefano Radaelli wrote:
-> Hi Fabio,
->
-> On Fri, Mar 13, 2026 at 01:52:31PM -0300, Fabio Estevam wrote:
-> > On Fri, Mar 13, 2026 at 1:46 PM Stefano Radaelli
-> > <stefano.radaelli21@gmail.com> wrote:
-> >
-> > > Correct. It is not included anywhere at the moment.
-> > > The Symphony evaluation board uses the IW61x configuration.
-> > > The imx8mm-var-som-wifi-brcm-legacy.dtsi file is kept as a separate include
-> > > so that carrier boards using the legacy Broadcom-based SOM revision can
-> > > include it if needed.
-> >
-> > Then imx8mm-var-som-wifi-brcm-legacy.dtsi is dead code. Nothing includes it.
-> >
-> > I don't think we want a dead dts in the tree.
-> >
-> > IW612 has not been upstreamed, right?
-> >
-> > People using the Broadcom Wi-Fi on the old board may still want to
-> > continue using it.
-> >
-> > Please don't break it.
->
->
-> Thanks for the feedback!
->
-> I might have misunderstood the best approach here. The reason I split the
-> WiFi/BT configuration into separate dtsi files was to follow the direction
-> discussed in the previous revision, where we decided to keep support for the
-> legacy Broadcom-based SOM while moving the configuration out of the
-> device tree, giving the support for both modules revisions.
->
-> However, I see your point that if it is not referenced anywhere it becomes
-> dead code:
-> Would it make sense to add a legacy Symphony DTS that includes the Broadcom
-> configuration, in addition to the current Symphony DTS that uses the IW61x?
+Apparently my email provider refused to send the whole patch series,
+because of a 100 receiver per hour limit to protect against spam
+(according to the error message). Please ignore the previous submission.
 
-Yes.
+Synology uses a microcontroller in their NAS devices connected to a
+serial port to control certain LEDs, fan speeds, a beeper, to handle
+proper shutdown and restart, buttons and fan failures.
 
-Frank
+This patch series depends on the rust led abstraction [1] and the rust
+serdev abstraction [2].
 
-> This way the existing boards would keep working while the default board
-> description reflects the currently produced hardware.
->
-> Or if you have any other suggestion, I'd be happy to follow it!
->
-> Best regards,
-> Stefano
+This only adds the core driver and led driver.
+The following rust abstractions would be required, to implement the
+remaining features:
+- hwmon (include/linux/hwmon.h)
+- input (include/linux/input.h)
+- sysoff handler + hardware protection shutdown (include/linux/reboot.h)
+
+[1] https://lore.kernel.org/rust-for-linux/20260207-rust_leds-v12-0-fdb518417b75@posteo.de/
+[2] https://lore.kernel.org/rust-for-linux/20260313-rust_serdev-v3-0-c9a3af214f7f@posteo.de/
+
+Signed-off-by: Markus Probst <markus.probst@posteo.de>
+---
+Changes in v3:
+- remove `default n` from Kconfig entry, as n is the default already.
+- select RUST_SERIAL_DEV_BUS_ABSTRACTIONS in Kconfig
+- add mfd rust abstraction
+- split core and led parts into their own driver. It should now be considered a
+  MFD device.
+- split led part of dt binding into its own file
+- Link to v2: https://lore.kernel.org/r/20260308-synology_microp_initial-v2-0-9389963f31c5@posteo.de
+
+Changes in v2:
+- fix missing tabs in MAINTAINERS file
+- remove word binding from patch subject
+- add missing signed-off-by
+- add missing help entry in Kconfig
+- add missing spdx license headers
+- remove no-check{,-cpu}-fan properties from the dt-bindings and replace
+  them with the check_fan module parameter
+- use patternProperties for leds in dt-bindings
+- license dt-binding as GPL-2.0-only OR BSD-2-Clause
+- move driver from staging tree into mfd tree and mark it as work in
+  progress inside Kconfig
+- only register alert and usb led if fwnode is present
+- Link to v1: https://lore.kernel.org/r/20260306-synology_microp_initial-v1-0-fcffede6448c@posteo.de
+
+---
+Markus Probst (7):
+      rust: Add `parent_unchecked` function to `Device`
+      rust: add basic mfd abstractions
+      acpi: add acpi_of_match_device_ids
+      mfd: match acpi devices against PRP0001
+      dt-bindings: mfd: Add synology,microp device
+      mfd: Add synology microp core driver
+      leds: add synology microp led driver
+
+ .../devicetree/bindings/leds/synology,microp.yaml  |  40 +++
+ .../devicetree/bindings/mfd/synology,microp.yaml   |  51 ++++
+ MAINTAINERS                                        |  14 +
+ drivers/acpi/bus.c                                 |   7 +
+ drivers/leds/Kconfig                               |  11 +
+ drivers/leds/Makefile                              |   1 +
+ drivers/leds/leds_synology_microp.rs               | 303 +++++++++++++++++++++
+ drivers/mfd/Kconfig                                |  11 +
+ drivers/mfd/Makefile                               |   2 +
+ drivers/mfd/mfd-core.c                             |  27 ++
+ drivers/mfd/synology_microp.rs                     |  46 ++++
+ include/acpi/acpi_bus.h                            |   2 +
+ rust/bindings/bindings_helper.h                    |   1 +
+ rust/kernel/device.rs                              |  25 +-
+ rust/kernel/i2c.rs                                 |   7 +
+ rust/kernel/lib.rs                                 |   1 +
+ rust/kernel/mfd.rs                                 | 114 ++++++++
+ rust/kernel/pci.rs                                 |   7 +
+ rust/kernel/platform.rs                            |   7 +
+ rust/kernel/serdev.rs                              |   6 +
+ rust/kernel/usb.rs                                 |   7 +
+ 21 files changed, 688 insertions(+), 2 deletions(-)
+---
+base-commit: 3daa4f5dc6cc1ac1ab2f95b5b4c16bc5fb87f48f
+change-id: 20260306-synology_microp_initial-0f7dac7b7496
+prerequisite-change-id: 20251217-rust_serdev-ee5481e9085c:v3
+prerequisite-patch-id: 52b17274481cc770c257d8f95335293eca32a2c5
+prerequisite-patch-id: eec47e5051640d08bcd34a9670b98804449cad52
+prerequisite-patch-id: f24b68c71c3f69371e8ac0251efca0a023b31cc4
+prerequisite-patch-id: 3dfc1f7e5ecd3e0dd65d676aeb16f55260847b25
+prerequisite-change-id: 20251114-rust_leds-a959f7c2f7f9:v12
+prerequisite-patch-id: 42c445ef6981e3a3740dbaaf307f4b810042e46f
+prerequisite-patch-id: 90c7b200cca722a592353885e21af069101c4e09
+prerequisite-patch-id: c664a52faa3d47000d252eb7603c9c08382e868a
+
+
 
