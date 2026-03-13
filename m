@@ -1,149 +1,144 @@
-Return-Path: <devicetree+bounces-275473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275474-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sA0aI+5ItGk4kAAAu9opvQ
-	(envelope-from <devicetree+bounces-275473-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:27:10 +0100
+	id oMz0GytJtGk4kAAAu9opvQ
+	(envelope-from <devicetree+bounces-275474-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:28:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF5182881A0
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:27:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEB052881C5
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:28:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E3F4F31C2BA4
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:25:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3307A305595C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:26:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B879B3CBE9A;
-	Fri, 13 Mar 2026 17:25:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72ACA3CAE9F;
+	Fri, 13 Mar 2026 17:26:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bPWw+Wm2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iLAW11TQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CAA03CBE8A;
-	Fri, 13 Mar 2026 17:25:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F0B23CAE67;
+	Fri, 13 Mar 2026 17:26:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773422725; cv=none; b=k+kyInkW3nsdPm7qUZgkb9Kpu47OO73z1JJ4ax06Bsf+sIsQRonN859a8J1lMFVgGVgRB5EkPkpDLOyp6aF4/kXUqyjnJ64ho0qOV9Lc3yRUnJBAraijhPZMPQlPAkp4HZwfPSrckGDINqZZixP096p5d2/qAolARBJ6ofE9WiY=
+	t=1773422764; cv=none; b=tI4Z48buBAH7o5PZlYrVH4dj0QbDFuLgOLOkFXdYAVb9SVYF7Ojxd07DqxbN07l0lu0dwtwUaCpYG6bd/uTxEkhkjUT8327xRhqOQqYYR4JyJbzl5bCNrUB5wvZeYXAWlJxiFejkEMt+Yl15Wh9HQ+WmIzHFusQo+8q6PhfttBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773422725; c=relaxed/simple;
-	bh=ml4brZgYysNGyVbeOm8a2m9JHM+roqQsETGmno23LcY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GgCuTXpPh5TLo7kzFqB6uA6E8UXVa1B9bWYajjb/IbFgx8pj/YPwCyRhq5V1A/7yP/GmI/N8IXBPbPsB8t7Tve+qC6Fr0n/Ynx3oeo7bkfTrWtcd+gR2TQgQdbgw40sBxqEHu/+L1+bVOEMGIxq0+qJVQN5ob+Wli1Z5HuuqTi0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bPWw+Wm2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F630C19421;
-	Fri, 13 Mar 2026 17:25:24 +0000 (UTC)
+	s=arc-20240116; t=1773422764; c=relaxed/simple;
+	bh=zZNYqBYQpWUnW/tLMvfUh2kjUY/YDWM5Q+UdXtOlsMw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rvsHHn3iY8GyaSohczusjERvHwIGHey0hhe1b50Bpqk+0/UGTnroQFIy2wWd4dRKTrdEIbCE+w+yNR9GzhkPpbdxzqgPFRxOZkmtxq6Ee7Jwtxkyi2PYtP9cs8ubbx3lWq7yjpEaqUa1P20EmyhiaYn5gNtaHvLK5vvSpjOjMB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iLAW11TQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CCA1C19421;
+	Fri, 13 Mar 2026 17:26:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773422724;
-	bh=ml4brZgYysNGyVbeOm8a2m9JHM+roqQsETGmno23LcY=;
-	h=From:To:Cc:Subject:Date:From;
-	b=bPWw+Wm2vENS0R2etVUo52Ys6ZStKULfae6XmmOinT+dnd68U5DQmopUMqGOmzdG8
-	 a8uRfq6QRCj7WOd3kChdIl0lSXD4JwFks82csjU2kB/1V8ij/f2U5TOQ6yGD2hqDr7
-	 g8LXhAYWIfp/F5jR5tDh+qNBIE/zapkVjgg6OUKJ5Xx3Z69Quslgi/ibnXv7Huyruh
-	 SukHaYpysqQ5cHSBmCAaZksdyFAaUJT0kQn/bmC3rJ6bd6pClR+I4m9yctJ5dsoPOM
-	 6Iy5ydxLRU1Cd2ReN+qVOHlbEMoQnMgZpid7aYuPCL3JMzbnc+WkksBepuN12v4r27
-	 RB3f7cGYxRsLA==
-Received: by wens.tw (Postfix, from userid 1000)
-	id 033165FDD4; Sat, 14 Mar 2026 01:25:21 +0800 (CST)
-From: Chen-Yu Tsai <wens@kernel.org>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Chen-Yu Tsai <wens@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Jernej Skrabec <jernej@kernel.org>,
-	Samuel Holland <samuel@sholland.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: [PATCH RESEND] dt-bindings: media: sun4i-a10-video-engine: Add interconnect properties
-Date: Sat, 14 Mar 2026 01:25:03 +0800
-Message-ID: <20260313172505.2321212-1-wens@kernel.org>
-X-Mailer: git-send-email 2.47.3
+	s=k20201202; t=1773422763;
+	bh=zZNYqBYQpWUnW/tLMvfUh2kjUY/YDWM5Q+UdXtOlsMw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iLAW11TQMPOsxVrmWlW/razPRVJT/XzIxRENzZzEZi08nlNqc5BwR6QDve3cyQc8s
+	 FKNe8qqR4s+fiCl3NZXfLPzVi7l4MNelmQRHbhhTEpf5QcvuTulzbKf7OvxGdz205J
+	 v2PsYjA4wnU3vYXWzxywydeL+qHIs+Lge3CnzdY0uAO3LmPUZ9ZCUXstGxN6HesHUd
+	 bxsYA6/2a3UtLWf1yp5g2p505N8B52jtZZHq8tTjOMwbub/+8KFA0lMEayGH6qeOCu
+	 hgG1wfvrI5kWtMX6y5G4S/EjW7KYmzlJ5XjKQeCnhGi9/yEWVM2HNzWnDGocHmTayR
+	 kP5EKJb/2YxeQ==
+Date: Fri, 13 Mar 2026 17:25:58 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	Frank.Li@nxp.com, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, amitsd@google.com, gregkh@linuxfoundation.org,
+	kyletso@google.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: connector: add pd-disable dependency
+Message-ID: <20260313-cradling-rocker-7ea6db821916@spud>
+References: <20260312071609.388047-1-xu.yang_2@nxp.com>
+ <20260312-facial-backshift-7e810ca5f996@spud>
+ <eew6denbcj2orizphwwl34qhbwfnumas44vx3f5t722csugmp2@zbsmhpcqazao>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="6USddsxsDHkuXizf"
+Content-Disposition: inline
+In-Reply-To: <eew6denbcj2orizphwwl34qhbwfnumas44vx3f5t722csugmp2@zbsmhpcqazao>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,lists.linux.dev,lists.infradead.org,sholland.org,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-275473-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-275474-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,google.com,linuxfoundation.org,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DF5182881A0
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:email]
+X-Rspamd-Queue-Id: BEB052881C5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Allwinner video engine sits behind the MBUS that is represented as
-an interconnect.
 
-Make sure that the interconnect properties are valid in the binding.
+--6USddsxsDHkuXizf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Fixes: d41662e52a03 ("media: dt-bindings: media: allwinner,sun4i-a10-video-engine: Add R40 compatible")
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Chen-Yu Tsai <wens@kernel.org>
----
-This was part of a series to clean up warnings for the Allwinner device
-trees. This patch was not picked up by the media maintainers.
+On Fri, Mar 13, 2026 at 09:58:18AM +0800, Xu Yang wrote:
+> On Thu, Mar 12, 2026 at 05:47:32PM +0000, Conor Dooley wrote:
+> > On Thu, Mar 12, 2026 at 03:16:08PM +0800, Xu Yang wrote:
+> > > When Power Delivery is not supported, the source is unable to obtain =
+the
+> > > current capability from the Source PDO. As a result, typec-power-opmo=
+de
+> > > needs to be added to advertise such capability.
+> >=20
+> > What's the impact on any users of making this a dependency?
+> > I assume nothing negative, since this will only impact systems that
+> > don't work properly at present?
+>=20
+> Yes, right. Most of the user satisfy this requirement,
+> expect imx8mp-tx8p-ml81-moduline-display-106-av101hdt-a10.dtso.
+> I suppose this user can't work well, so patch#2 is added.
 
+Okay.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
- .../media/allwinner,sun4i-a10-video-engine.yaml        | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+--6USddsxsDHkuXizf
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
-index 541325f900a1..01f2afa023f0 100644
---- a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
-+++ b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
-@@ -63,6 +63,16 @@ properties:
-       CMA pool to use for buffers allocation instead of the default
-       CMA pool.
- 
-+  # FIXME: This should be made required eventually once every SoC will
-+  # have the MBUS declared.
-+  interconnects:
-+    maxItems: 1
-+
-+  # FIXME: This should be made required eventually once every SoC will
-+  # have the MBUS declared.
-+  interconnect-names:
-+    const: dma-mem
-+
- required:
-   - compatible
-   - reg
--- 
-2.47.3
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabRIpgAKCRB4tDGHoIJi
+0hTeAP0V1CWIyzl7ZQX9Pnvcy+h+Cv/hX+KNv50caRHWkfZH8wEA+tCGP/dGbZRT
+gRj/q/9O7SsxXuj0iSXiNORmQNAeOgY=
+=jVap
+-----END PGP SIGNATURE-----
+
+--6USddsxsDHkuXizf--
 
