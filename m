@@ -1,62 +1,57 @@
-Return-Path: <devicetree+bounces-275268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275269-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MGp6J3kWtGlkgwAAu9opvQ
-	(envelope-from <devicetree+bounces-275268-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:51:53 +0100
+	id oCQLCK0VtGlkgwAAu9opvQ
+	(envelope-from <devicetree+bounces-275269-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:48:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A34B284414
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:51:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7440284334
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:48:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id EF2ED3073769
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:39:46 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EB52932D523E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:40:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 737EC39890A;
-	Fri, 13 Mar 2026 13:35:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 033EB30F7F2;
+	Fri, 13 Mar 2026 13:37:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MFczpodk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k69HOhq/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F5F939479B;
-	Fri, 13 Mar 2026 13:35:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3A0E258CD9;
+	Fri, 13 Mar 2026 13:37:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773408939; cv=none; b=p2YGFXqIEuMIq5T3zgtS9R2+IQfDZvNJUC3w/SINffoETQxw/BQcHTdJPul35tbkppjfVswwas1x7Mg7NT944c0TxzXtIXFwIHcwpdTUYwnRc6s+od6YnojEtxEZ+Onp3F3QatGmJf2j8/GwsCoKMZYEm/LPLV0rSsOI8cegCMo=
+	t=1773409059; cv=none; b=kskfhTdIR8K+7v8JxZIoGDcGCn8b3u6E2mSiBsy2sXkvcF2Ta9oj5byKDdL4miuBQ5vWoMtOLFP0mtWyfaJORnWUnSukm5XZIMwa3YKHeZlTgcjJKpT9WZnG7vcuwZSHgZWfKJ1U1/8vsBiP1nmFVMJVZIvQcHitC+jQm8LWuvE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773408939; c=relaxed/simple;
-	bh=0sevSDJejValIi8WkOg9BsYqJ+7eCWC/tjBqMaAIcg4=;
+	s=arc-20240116; t=1773409059; c=relaxed/simple;
+	bh=250PDTdEuQTxrdUP74l0WdKsZ4A5soJaDweRz3J5J7Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ma2e4CkNP9cwASqcDgqbZ7B2mY4g+8Y43kIAaO/zo2Gg9YXoV7euk4+Rm7HBgXR/XCilIZGUh72RWhNt8REg63yiUDnVjwjaOC99VB8rKPydH5yf37wZWXlRcg4BglHTFKqKTmUQ5Na4J3VkSIQNiDsxx6UHUrP7JLFMt1j+Njo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MFczpodk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F7CBC19421;
-	Fri, 13 Mar 2026 13:35:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=g6w+K0nbTimqD8Dncjfs6RzRcFHLFKOLb6nfmPdxGL8vreKn4Tj/H711qNCTWZ2kk8kfupLNpJpntA3IHHc6nf1ko04CPeblEj3I3qg827z3TTgopinYq2RXE+PMIqwwQSW/lIoXIST8jBp6QQhJ5nIhGePvlVI2tq2momR7mXo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k69HOhq/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4910C19421;
+	Fri, 13 Mar 2026 13:37:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773408938;
-	bh=0sevSDJejValIi8WkOg9BsYqJ+7eCWC/tjBqMaAIcg4=;
+	s=k20201202; t=1773409059;
+	bh=250PDTdEuQTxrdUP74l0WdKsZ4A5soJaDweRz3J5J7Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MFczpodktwK4n3veoRhCBX140bgLw/VtTwGHtgQubQdorTJOz64+mozPMTxzniR1O
-	 5t50BKDjDkB3XA4T95fb6NyHoePIRM3eCJE3TbZ7sMYn0hQOqmzkYy4/fGyGNlzwrW
-	 Yrg47NPHdlpns2cJT/TvMutHZs/eJQrk2C8RkXiZaCb61e66xqEQgb+LbGgyyOMseU
-	 iyhCkcw9WH2wFPzGImlPXPHBYMN6RWX75a27XLJBSSHHLKUBUCqAuwPICTXd3qAS7w
-	 M0sysiaRtvlkp5x79vl+IV5iXv/f6LV7+YfGkml7GUQ2yriA4yqOmhIAAij4OqBioN
-	 FZPmVvo3O72mw==
-Date: Fri, 13 Mar 2026 14:35:36 +0100
+	b=k69HOhq/AEKCrp6K4PcbcAR7qQFYGguBZebYvz+0LhNDyHNbt0gW+CTIr8XslHRuX
+	 NUYyhyJlj+9IRo11BNTV7Hxt/SoGGzSDSMiVblrKfb+sWAq3+vt+F6c8yJzlBRPqb/
+	 uG5+b4xJl360c3hd79gaLQLOwhUHmuoxowJYM1He9An6Z8mo66+6D3KKN5oF198giC
+	 hTGFa7HbkseZZvZVic2hV9Tw5YUwfgKY81k76ESlTJiCefI4EUMZNCzASbIVgvSPPk
+	 KRTcU3MwPhM0IlWMSLUBCHQ00wCCJrvlv98Z9QfFuERr6ZivWDCCKppMAdGeb1AoNb
+	 4YOrlNHxmW5pA==
+Date: Fri, 13 Mar 2026 14:37:37 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Luo Jie <quic_luoj@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, John Crispin <john@phrozen.org>
-Subject: Re: [PATCH 3/4] dt-bindings: clock: qcom: Add CMN PLL support for
- IPQ8074
-Message-ID: <20260313-able-savvy-cuckoo-38ed75@quoll>
-References: <20260311183942.10134-1-ansuelsmth@gmail.com>
- <20260311183942.10134-4-ansuelsmth@gmail.com>
+To: nick.hawkins@hpe.com
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: arm: Add HPE GSC platform binding
+Message-ID: <20260313-mottled-toucanet-of-examination-a57aaa@quoll>
+References: <20260311210416.1706784-1-nick.hawkins@hpe.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,60 +60,90 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260311183942.10134-4-ansuelsmth@gmail.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+In-Reply-To: <20260311210416.1706784-1-nick.hawkins@hpe.com>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275268-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-275269-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,phrozen.org:email]
-X-Rspamd-Queue-Id: 4A34B284414
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_FIVE(0.00)[6];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url,hpe.com:email]
+X-Rspamd-Queue-Id: B7440284334
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 11, 2026 at 07:39:40PM +0100, Christian Marangi wrote:
-> From: John Crispin <john@phrozen.org>
+On Wed, Mar 11, 2026 at 04:04:16PM -0500, nick.hawkins@hpe.com wrote:
+> From: Nick Hawkins <nick.hawkins@hpe.com>
 > 
-> The CMN PLL block in the IPQ8074 SoC takes 48 MHz as the reference
-> input clock. Its output clocks are the bias_pll_cc_clk (300 MHz) and
-> bias_pll_nss_noc_clk (416.5 MHz) clocks used by the networking
-> subsystem.
+> Add the devicetree binding for the HPE GSC ARM64 BMC SoC used on
+> HPE ProLiant servers.  The HPE GSC is the successor to the HPE GXP
+> (ARM32) BMC.
 > 
-> Add the related compatible for IPQ8074 to the ipq9574-cmn-pll
-> generic schema.
+> The initial board compatible is hpe,gsc-dl380gen12 for the DL380 Gen12
+> server platform.
 > 
-> Signed-off-by: John Crispin <john@phrozen.org>
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
 > ---
->  .../bindings/clock/qcom,ipq9574-cmn-pll.yaml      |  1 +
->  include/dt-bindings/clock/qcom,ipq8074-cmn-pll.h  | 15 +++++++++++++++
->  2 files changed, 16 insertions(+)
->  create mode 100644 include/dt-bindings/clock/qcom,ipq8074-cmn-pll.h
+>  .../devicetree/bindings/arm/hpe,gsc.yaml      | 30 +++++++++++++++++++
+>  MAINTAINERS                                   |  5 ++++
+>  2 files changed, 35 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/hpe,gsc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/hpe,gsc.yaml b/Documentation/devicetree/bindings/arm/hpe,gsc.yaml
+> new file mode 100644
+> index 000000000000..c81753e3501b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/hpe,gsc.yaml
+> @@ -0,0 +1,30 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/hpe,gsc.yaml#
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+You already have binding for all HPE chips hpe,gxp.yaml. It's one
+binding for one vendor.
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: HPE BMC GSC platforms
+> +
+> +maintainers:
+> +  - Nick Hawkins <nick.hawkins@hpe.com>
+> +
+> +description:
+> +  The HPE GSC is an ARM64 BMC SoC used on HPE ProLiant servers.
+> +  It is the successor to the HPE GXP (ARM32) BMC.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - description: GSC Based Boards
+> +        items:
+> +          - enum:
+> +              - hpe,gsc-dl380gen12
+
+Where is any user of this? I don't see a reason why we want this without
+users.
 
 Best regards,
 Krzysztof
