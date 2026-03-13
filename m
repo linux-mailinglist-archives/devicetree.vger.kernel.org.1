@@ -1,308 +1,367 @@
-Return-Path: <devicetree+bounces-275557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275558-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CHgdCD6BtGlTpAAAu9opvQ
-	(envelope-from <devicetree+bounces-275557-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 22:27:26 +0100
+	id yJZYNHaBtGlTpAAAu9opvQ
+	(envelope-from <devicetree+bounces-275558-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 22:28:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2238428A202
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 22:27:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAF6028A229
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 22:28:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 12630300B8E5
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:27:22 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id DE1B6300B8D1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:28:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C195382F2F;
-	Fri, 13 Mar 2026 21:27:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF45C382F13;
+	Fri, 13 Mar 2026 21:28:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kuwMu3FP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RNsUaNnD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-dy1-f176.google.com (mail-dy1-f176.google.com [74.125.82.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C00F214A64
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 21:27:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.49
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773437241; cv=pass; b=Rlf3+wixdy9ZFjuShtp6ndmtEdhfDIiZLyLs4FpsDrwI1T8NoCdLyzWIqxvkkECVUdZTz25Narbtdj8rjrWPJ1HgYuFwCI/6hDRyiQmzJnnxQpA0or/7CGHwa2hA3QUxoNo2Hi/8ireTBkeuUk5B771gYXGfYlwJdVlv8kdyYdI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773437241; c=relaxed/simple;
-	bh=Mu4QL9itUMaZvCAaMREMIWEtSf4+H1iYSm9D5SGGewA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=k89XCH+zNQ6qS8BvE1reT4WiZelaGUF8HoQmlwUpilw3kQwyHC/UCT1I78vUi4kHQCM9J7aVahTbiPXtdvw6jM1bgxzS4KbnbWQOc2WnTXxC7JHE88Qz7xVrKVjsKpcfdkaaC9niqSOXZTRX1pUxHFGXwJjJUBvr+3Bz37nBHuY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kuwMu3FP; arc=pass smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AF74214A64
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 21:28:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.176
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773437297; cv=none; b=hwhk8HJa/luLWnn93OtsHhv7aA2k7snz5S1UAsU9WV1XNjtG6Ou0nVwFnm8aSB2ZidX6l3NHSPSVJRQedeafivnjKTFEaQC/VkJG2oRo8pS85CJ49ge2N7FZsINPKZokTXRz8ReePOgwOpFYq6rXCqV91VKWsi9dLsO2TCPkkNo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773437297; c=relaxed/simple;
+	bh=EOcuIn9GMaSAPBhs1LyfTZjpYqpuiHTFQE5/6H/nlik=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HdaXc31ehKFhGpdFgFrR+TaZgZ+3S1KjxSq4cLFaUSiEROJOCbSoBrRqtgj/3uTSpGypPtFp/MuDvX/itjK0VHI3MZQ0+I26StPbQBB0ILX7HYkADkgNdzOAP+GmehgYfatnczUPYkepBV6J7Fddxx95FINYdGjxpiI6qg+eev0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RNsUaNnD; arc=none smtp.client-ip=74.125.82.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-439aeed8a5bso2739874f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 14:27:19 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773437238; cv=none;
-        d=google.com; s=arc-20240605;
-        b=cTfE3njyDsUB/v2I5SgtD9h2ve+1R4j7J4QSYYyoYK5DhYmMYjxTHdfIs7CaIepXWZ
-         PGaTzqtpubPA+6xt1lakKNXwgMbHOiTDGX43COHlZXUn3ko+VPKrC8+5JI/UYsAdmP2U
-         0z+LaYHF6M/A55xcZTujSCZVI5fg8KZqM7cGL41SVugbtGyeR5Y6cvR8TBbrnHKtKydN
-         k4lzy0J1JNQvCscWgRUITkU0BqVE5n+uLP3mk6VseU1ls2gyKToAvvbqxq06L8p2SAjB
-         gBcXcHZjWOIdnXqjwHZA7iStH4ISkk3f+gi/3fTG5sY5Hwq7g5RSFjAQamggWa0Zy/Zr
-         wN4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=hNqPR9afYYngIxPOY+LyXKakGBy9VYA9o61Z936t+Eg=;
-        fh=Sgxj0n1AdIOS+YELHj+QmelJ7sJeMkNT16P/ryv6jnw=;
-        b=hnH13OaFlaHJGwuBFE5cS9oiveXQcUW75Siev9NWaiU/GxHZsmOQBpr2KheskDPrUL
-         ZbdRK0s+f4ghnCf86LEWJDF7wAT+f8wX684vGFZ/5Ol6BxPPO8yV271dMwSPRf0jzaSi
-         dQz48G/lc97aBBEKC/OBn/fuWcP/fCw+kgZ9hgUYwcZElHFRyZmxlJAZXkHbAxHrT8Fp
-         fEgynu8Y8b37YtSJ8ZkDBU00YrzNF/fncaQKb3OFU1Q0B9hVJ7rOnF4Y1Vc4pHQrEw/F
-         Kh9+KJEX5gQxghoig3NLX2ruVsRs5KGROpQ4unSbKcppgzGIO2N7kWJJgAxAWSWsLMTg
-         VFoQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: by mail-dy1-f176.google.com with SMTP id 5a478bee46e88-2beb0246931so1368394eec.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 14:28:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773437238; x=1774042038; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hNqPR9afYYngIxPOY+LyXKakGBy9VYA9o61Z936t+Eg=;
-        b=kuwMu3FPO8JSmWw/74HWuUhdC1Gx0l/ZR/UpDGNhiZmHQF4agS5JnPCllWz+cgXzNq
-         fDyW5hl21QGrTPA0zTVMrJ/r8CcZ/Z853rQbbYk/2dUgj035H8/5FO8JXGCxKzJuRsYv
-         7UzVP/pZji5oKpOMAhSL8mK2gs3vNmnUJZzlvjxL6hpDvGMQb6gQgien5RPG5owbFPbr
-         apCT4hBirQgFXxAcybVMB7ZiK5WWI4OwncsWXhKrG/CpqC63yybHc81M5mVNKIPe1ikk
-         QRhz3gj95VJU5XTBmpFSixNYnkd/69o+1Y5g8gaoLJte/6EwzdHH+hYechNR0Peq0TL/
-         jKlQ==
+        d=gmail.com; s=20230601; t=1773437295; x=1774042095; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XFQN2iDyW5m5a7jX1vRhVdG+wB2cb7HPaqKy8sTeyCQ=;
+        b=RNsUaNnDQ9UcHT4MRTTAoP2ibOfgm7QOwKdNP9B5AtsuzVKohZUB7vrIKnlLBli1Bm
+         TXgn59WvkeUh47+DBVIg1r6HTUAF4M/fyHRvQE6Luq7xRG2zmWk/goPZyLjFQioXBUCA
+         EsFTJG/urAsll0R8QSiYXI06k9DMImVJc1a/jI2GBhEZTIY0tmXFWu9g+/aaizhrCucL
+         YbUcysFmzLhjOFcp9EZevCVr+MPtGYW6aP3XGBkLgD8hVX/2RdZ8ccl7rn8U2ukD/K/m
+         sBCQrMxj5VB6HhgRecvhb3vxdOhWiPfYIW+diR10T6Tu7674yxe3XTyJYPcBzCC1/XLM
+         C+mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773437238; x=1774042038;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=hNqPR9afYYngIxPOY+LyXKakGBy9VYA9o61Z936t+Eg=;
-        b=hwMIvFto8Tuqp9i4AXbY2akgNeek0azgKnZlz8IHSHMHAZPrvyAa1QIDezW3e1+zx7
-         ek9NIB2BGajqXzmmT+g9N7ihiDLY8m5242futtsv66vZjFbkbZ/dJYyKieRohctoC399
-         wJDRizE0ZsBwsZxUn4j+EDfepwE6IPYnCZCnrlQojBWMLXwgivlkkNAJZJTs5uvHvGbO
-         2gFzBKhbk/Fi3EC1OqKxq/fLmS6iC1IoEVv8uaOSDQU+tpUZALavVrsoWooue0SMHfum
-         1aIR5xv1etbs5XRRVPbqo7jKhvjuO70mGMm6NiQfLMOoVN/P8gCFwu4eiRfn/CaUgLh1
-         Gs/w==
-X-Forwarded-Encrypted: i=1; AJvYcCUIkRgUpVlKmlD0P60TKSp3HnHM8Ng0eW3aKBW85MK28ow9PYLPy5Yhe9VkebUOE31p1L+fA4W5qLkd@vger.kernel.org
-X-Gm-Message-State: AOJu0YyI4Kpo3mhKM1QKXi1cGfqNfbB3XhQiqD0w6Bfv1A8CFuylolOX
-	GOkdO8zlY1rktZU2+Mddu/wrErlSwub4YEGJei0HbIhYheyEiTVvJlc4X6Eafejtlcl4ygrrwvi
-	dWThtsO9+u+rDunUzFYgC7VMCdXT6icI=
-X-Gm-Gg: ATEYQzx/MxNcY93r9xmL2agiyVpy/NjR4x0NAp8elnEkbaq2gCOKkgXw1GMrdmV+Ri7
-	Qy0P3caKxO5/uX8TOLN9abUCWck1Zudbii/6Zfb6b3VGIolDbn4+hP0t/HsRwp2kmnmuaI+zFiD
-	tOxAKuojrL6dXIqEwY3DLLW9LoYeoinpTOd5w2GP7yuO6sQ+HjyUXxlWvyTT7xiS3DnrBIEyMT6
-	nbOFZiE3+GrWxBNfR760689QHKM9QEyWj9wEvtHuw1mbeu6ven5lq9ZVpQcw/MkumC3dq4dP8Zn
-	dLJPm3p1K83wKvuBrHkOMIiJzSGA5qfvwuQ4zoZZqkhmQYp+yKwb5qWVk3CvdxtUr/Q=
-X-Received: by 2002:a05:6000:2313:b0:439:b4dc:1e1e with SMTP id
- ffacd0b85a97d-43a04dbbc58mr9731055f8f.29.1773437237509; Fri, 13 Mar 2026
- 14:27:17 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1773437295; x=1774042095;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XFQN2iDyW5m5a7jX1vRhVdG+wB2cb7HPaqKy8sTeyCQ=;
+        b=LiAWLwyfTmBnHjZ2DnB5qDTBIKdfZmdzc8UIFdrwMAb3wGcqQ5Zv6E0GNjzNJ2Kvs2
+         WGmWULN1Rd8jJ1UqruNpg4wodlp2CGYv7lrbQGeyrPVWuZF/jnCwjKfCiCXg6hBsiueC
+         0G5RNyM6m3OjhEAzo08T/ae3vso+9ofYqDxmexXJ+lGvaLvG2iAIuAubcmC6k/Viy9QH
+         54lmfzqq9o+h0Nb2CvmG+AOGfUPqUq7tqJ0NWH+u7KNqYV0enuXid6s0TLlx0MSPLsNq
+         zdKzcziSFZPSotRV3m0uUXpiSHZSh16Q3N7huvCuhR6sbbUyzKIpZG59k7zWg6hZkasr
+         WklQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVS23hhKTJD3MZKqJeXas/IJsDBLZCcALiOlqHJFfH9ggsArDZTdj9XDKQkOuIQH8ISQe1WqNLavYJQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxAF8Cx74/tiUcSvOGrEe2an/Oo9WiXCurb4Ueh/JZsfjYeNCSm
+	lpBJN4ls5JVOwEW/B5GcStEr9/Qy6xk1uAaP/qZp1ch0FWAe1mmz1Ymh
+X-Gm-Gg: ATEYQzy9juTUvhjF5yNq79UKXdY+xksW1w/Rbi7N1mN+PJ/kpMjgbOZKIUxCHsk32jg
+	CFo9mrnbV5jSxF2TB6+HZexvghwdYH20t6GkAu95b6vu4omLn6CnVXE0nitCONc8bdHceFdwHDU
+	117LFV6KJpC41Dtq3jalRzjPOzui+ubZhrRLppq7Hh90wyS62YSI1a3lYu7L1g4MfBVhxkENeZC
+	LmD8ap0wxUhAv5YS1kMFsIDHXLhnMiSq1gY/F62ETnfqRLTmxLG8LVVCizzf+4xJCTVFzFCZ4Uz
+	Mq5b4UndcJWeiCFMzhxq1jRpIOejAKheWjUZJ53n3MmQNTOGLnjxeIouA3DfFJR/JFx8FltxuQj
+	XQwwpz+iB15JwRT/VZ1489eIEBF+RZx77RK6FfJetkqeMKN6Rn7+WK2eE3SiBeZ6/gVdB5olmUi
+	VZjYlkGGZsqYcNcrwVt9dngywnSe/RMDbDL4bTigqMzRJ+L+g=
+X-Received: by 2002:a05:7300:cb13:b0:2b6:ffb9:9633 with SMTP id 5a478bee46e88-2bea547cfb5mr2448749eec.15.1773437295332;
+        Fri, 13 Mar 2026 14:28:15 -0700 (PDT)
+Received: from [172.16.0.242] ([192.19.161.250])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2c098cbd4dasm503846eec.0.2026.03.13.14.28.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Mar 2026 14:28:13 -0700 (PDT)
+Message-ID: <25a8565d-a6bb-401f-b776-d743a2ec9ee0@gmail.com>
+Date: Fri, 13 Mar 2026 14:33:16 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260306143423.19562-1-john.madieu.xa@bp.renesas.com>
-In-Reply-To: <20260306143423.19562-1-john.madieu.xa@bp.renesas.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Fri, 13 Mar 2026 21:26:51 +0000
-X-Gm-Features: AaiRm53lSqA4pk2gaI4MFbWILgOkrFUHAgNT-jqSkUe6YSU_FdaR66nqQD4N-HY
-Message-ID: <CA+V-a8veHDk_y_eq8CDHXENffpKshvT-XU9SiCYA_fYDf53yfQ@mail.gmail.com>
-Subject: Re: [PATCH v8 00/15] PCI: renesas: Add RZ/G3E PCIe controller support
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: claudiu.beznea.uj@bp.renesas.com, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, mani@kernel.org, geert+renesas@glider.be, 
-	krzk+dt@kernel.org, robh@kernel.org, bhelgaas@google.com, conor+dt@kernel.org, 
-	magnus.damm@gmail.com, biju.das.jz@bp.renesas.com, linux-pci@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org, john.madieu@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 1/6] riscv: Add a custom, simplified version of Svpbmt
+ "XPbmtUC"
+To: Conor Dooley <conor@kernel.org>, Bo Gan <ganboing@gmail.com>
+Cc: linux-riscv@lists.infradead.org, samuel.holland@sifive.com,
+ david@redhat.com, palmer@dabbelt.com, pjw@kernel.org, gaohan@iscas.ac.cn,
+ me@ziyao.cc, lizhi2@eswincomputing.com, hal.feng@starfivetech.com,
+ marcel@ziswiler.com, kernel@esmil.dk, devicetree@vger.kernel.org
+References: <20260313084407.29669-1-ganboing@gmail.com>
+ <20260313084407.29669-2-ganboing@gmail.com>
+ <20260313-visitor-majestic-1a6888dc57b2@spud>
+Content-Language: en-US
+From: Bo Gan <ganboing@gmail.com>
+In-Reply-To: <20260313-visitor-majestic-1a6888dc57b2@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-275558-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275557-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FREEMAIL_CC(0.00)[bp.renesas.com,kernel.org,glider.be,google.com,gmail.com,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,mail.gmail.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2238428A202
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ganboing@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	TAGGED_RCPT(0.00)[devicetree];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DAF6028A229
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi John,
+Hi Conor,
 
-On Fri, Mar 6, 2026 at 2:39=E2=80=AFPM John Madieu
-<john.madieu.xa@bp.renesas.com> wrote:
->
-> The Renesas RZ/G3E SoC features a PCIe controller that shares similaritie=
-s with
-> the existing RZ/G3S PCIe controller, but with several key differences.
-> This series adds support for the RZ/G3E PCIe controller by extending the =
-existing
-> RZ/G3S driver and device tree bindings.
->
-> Key differences between RZ/G3E and RZ/G3S PCIe controllers:
->
-> Link Speed Support:
->  - RZ/G3E: Supports PCIe Gen3 (8.0 GT/s) alongside Gen2 (5.0 GT/s)
->  - RZ/G3S: Supports PCIe Gen2 (5.0 GT/s) only
->
-> Reset Control:
->  - RZ/G3E: Uses register-based reset control mechanism
->  - RZ/G3S: Uses exclusively external reset control signals
->
-> Inbound Window Configuration:
->  - RZ/G3E: Requires precise power-of-2 window coverage with strict addres=
-s
->    alignment constraints. Non-power-of-2 memory regions must be split int=
-o
->    multiple windows to avoid over-mapping, ensuring proper hardware addre=
-ss
->    decoding for DMA operations.
->  - RZ/G3S: Uses a simpler approach that rounds up to the next power-of-2,
->    creating single larger windows. The hardware tolerates over-mapped reg=
-ions.
->
-> Class/Revision IDs:
->  - RZ/G3E: Requires explicit setting of class/revision values
->  - RZ/G3S: Has default values in hardware
->
-> Clock Naming:
->  - RZ/G3E: Uses "clkpmu" clock for power management
->  - RZ/G3S: Uses "clkl1pm" PM control clock while CLKREQ_B is deasserting
->
-> Phy Settings:
->  - RZ/G3E: Does not need PHY settings as it works with default hw values
->  - RZ/G3S: Requires explicit PHY settings
->
-> This series extends the existing driver to detect the SoC type from the d=
-evice
-> tree compatible string and configure the controller appropriately. The up=
-dates
-> are minimal and focused on the hardware-specific differences while keepin=
-g the
-> common code paths unified.
->
-> Changes:
->
-> v8:
->  - Collected additional Rb tags on remaining code patches
->  - Fixed typos in patch descriptions
->  - Fixed checkpatch warnings
->
-> v7:
->  - Removed former patch [04/16] adding support for init[off|asserted] clo=
-cks
->    and resets as these steps are not required anymore
->  - Renamed RZG3E_PCI_RESET* register defines to RZG3S_PCI_RESET* for
->    consistency, as upcoming SoCs (RZ/V2H, RZ/T2N, RZ/N2H) share these
->    registers
->  - Dropped some useless comments and reduced verbose descriptions to
->    concise forms
->  - Unified function naming: rzg3s_pcie_config_{post_init,deinit}() and
->    rzg3e_pcie_config_{pre_init,post_init,deinit}()
->  - Used local mask variables in rzg3e_pcie_config_{pre_init,post_init}()
->    for compactness within 80-char line limit
->  - Fixed resume_noirq: reordered MODE before RST_RSM_B to match probe
->    sequence, fixing error path handling
->  - Fixed checkpatch commit message line length warnings
->
-> v6:
->  - Replaced rzg3s_sysc_config() with enum-based rzg3s_sysc_config_func()
->    as suggested by Claudiu, dropping the -1 skip pattern
->  - Introduced enum rzg3s_sysc_func_id and array-based SYSC function
->    descriptors in patch 08
->  - Used regmap_update_bits() consistently for all SYSC accesses
->  - Fixed config_reinit error path in suspend_noirq: call config_pre_init
->    before config_post_init as spotted by Claudiu
->  - Fixed double config_deinit in rzg3s_pcie_host_init() error path by
->    separating config_deinit_post into a non-fall-through path
->  - Shortened comments as per Claudiu's suggestions
->  - Reordered patchset, moving v5's patch 09/16 to 02/16 and added Fixes t=
-ag
->
-> v5:
->  - Introduced new patch to reorder reset handling
->  - Introduced rzg3s_sysc_config() helper to handle SYS config
->  - Collected Tags on documentation
->
-> v4:
->  - Collected Ab tag
->  - Fixed binding clock name constraint
->
-> v3:
->  - Removed extra MaxItems in binding causing warnings
->  - Fix potential crash for non-initialized rcdev in CPG driver
->  - Fix binding contraints replacing 'description' with 'const' as per
->    Geert and Rob's comment
->
-> v2:
->  - Address Bjorn typo comments
->  - Address Claidiu's comment on stylish
->  - Use single inbound-window-configuration function for both G3E/G3S
->  - Refactor goto laballing as per Claudiu's comments
->  - Update bindings and reused G3S's interrupt ordering
->    * This involves reordering interrupts in dt
->  - Remove Board-specific PCIe dma-range.
->
->
-> John Madieu (15):
->   PCI: rzg3s-host: Fix reset handling in probe error path
->   PCI: rzg3s-host: Reorder reset assertion during suspend
->   PCI: rzg3s-host: Rework inbound window algorithm for multi-SoC support
->   clk: renesas: r9a09g047: Add PCIe clocks and reset
->   dt-bindings: PCI: renesas,r9a08g045s33-pcie: Fix naming properties
->   dt-bindings: PCI: renesas,r9a08g045s33-pcie: Document RZ/G3E SoC
->   PCI: rzg3s-host: Make SYSC register offsets SoC-specific
->   PCI: rzg3s-host: Make configuration reset lines optional
->   PCI: rzg3s-host: Add SoC-specific configuration and initialization
->     callbacks
->   PCI: rzg3s-host: Explicitly set class code for RZ/G3E compatibility
->   PCI: rzg3s-host: Add PCIe Gen3 (8.0 GT/s) link speed support
->   PCI: rzg3s-host: Add support for RZ/G3E PCIe controller
->   arm64: dts: renesas: r9a09g047: Add PCIe node
->   arm64: dts: renesas: r9a09g047e57-smarc-som: Add PCIe reference clock
->   arm64: dts: renesas: r9a09g047e57-smarc: Enable PCIe
->
-Thank you for the patches, Ive tested them on RZ/V2N EVK where PCIe IP
-is identical to RZ/G3E.
+Thanks so much for the prompt review. See inline.
 
-Tested-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> # RZ/V2N=
- EVK
+On 3/13/26 06:24, Conor Dooley wrote:
+> Hey,
+> 
+> Gonna offer some feedback on the detail of what's been done in this
+> series, without providing any commentary on whether this is the correct
+> approach to take.
+> 
+> On Fri, Mar 13, 2026 at 01:44:02AM -0700, Bo Gan wrote:
+>> On platforms that doesn't support Svpbmt or XTheadMae, SoC vendors
+>> sometimes map the system memory twice in physical address space, one
+>> as cached, and the other as uncached. Through the uncached window,
+>> device drivers will be able to map DMA buffer for noncoherent devices.
+>> Such setup is usually found in SoC with pre-Svpbmt Sifive cores.
+>> Make use of such feature by modeling it as "XPbmtUC", a customized
+>> version of Svpbmt, where a single bit in PTE is used for UC control.
+>> There's no IO bit with such scheme, as it's assumed that the PMA
+>> (usually hard-wired on these SoCs) will properly convey the strongly-
+>> ordered, non-idempotent attribute of the MMIO region.
+>>
+>> The enablement of such position of "XPbmtUC" is controlled by the
+>> device-tree property "riscv,xpbmt-uncache-bit".
+> 
+> Firstly, the naming generally I take some exception to. If this is some
+> fake vendor extension for linux purposes, it needs to have "xlinux" in
+> it, like our xlinuxenvcfg does. It should also be consistent, don't use
+> "xpmbtuc" and "xpbmt-uncache-bit", pick one and stick to it.
+> 
+Makes sense. I can certainly change that to be conformant.
 
-Cheers,
-Prabhakar
+> Athough, I think I disagree fundamentally with this property, as it seems
+> to me like "software configuration" that shouldn't be permitted in
+> devicetree. Maybe I am misunderstanding, but the numbers you chose are
+> convenient, not set in stone by the specific hardware, right?
 
->  .../bindings/pci/renesas,r9a08g045-pcie.yaml  | 121 ++++--
->  arch/arm64/boot/dts/renesas/r9a09g047.dtsi    |  69 ++++
->  .../boot/dts/renesas/r9a09g047e57-smarc.dts   |  16 +
->  .../boot/dts/renesas/renesas-smarc2.dtsi      |   4 +
->  .../boot/dts/renesas/rzg3e-smarc-som.dtsi     |  11 +
->  drivers/clk/renesas/r9a09g047-cpg.c           |   5 +
->  drivers/pci/controller/pcie-rzg3s-host.c      | 362 ++++++++++++++----
->  7 files changed, 478 insertions(+), 110 deletions(-)
->
-> --
-> 2.25.1
->
->
+For JH7110, the bit 32 (PPN bit 34) matches exactly with the HW. Meaning
+toggling this bit would re-map the page to the uncached window, which
+matches perfectly with the synthetic UC bit in the scheme.
+
+For EIC770X, the bit 38 (PPN bit 40) is hand picked to be able to map all
+physical memory space (40 bit), while making it very easy for the thin-
+hypervisor, which can utilize Sv39x4 (41 bit) page scheme in G-stage.
+
+I also considered the sbi call approach, where the kernel can query for
+the support and position of the uncache bit. The thing is that JH7110
+can just hard-code the bit without any changes to firmware, and I want
+to have a consistent way for both SoC, thus the device-tree approach, to
+let the EIC770X firmware/bootloader adding the property to dt at runtime.
+Any better ideas?
+
+> 
+> I'd be much more comfortable with adding xlinuxwhatever to
+> riscv,isa-extensions, to signal that a soc supports this stuff than with
+> a property for the bit itself. I suppose that bit information could then
+> come from a LUT in the vendor extensions, that a validate callback could
+> check (via root compatible) before enabling. There's not a super neat
+> way to do that at the moment though I don't think, code currently
+> expects that vendor extensions are in a different "namespace" to
+> standard ones, and this would blur the lines because it's not from a
+> specific vendor, nor is it a standard extension.
+> I guess, it could be done by keeping it as a standard number, but then
+> it's a bit trickier to neatly access the LUT while keeping it split
+> apart.
+> I know this means having to modify the kernel if there's a new device,
+> but I'm inclined to say "deal with it" because they could've done
+> something standard and opted not to.
+> 
+> Could also argue that this should be shoved into a sifive specific
+> thing, but I don't expect that they're the only ones with devices like
+> this that could benefit.
+> 
+
+I've thought about riscv,isa-extensions. The issue with that is that it's
+a per-CPU thing, but I'm adding a global extension, and I don't want to
+pollute the isa-extension string. Thus, I followed Samuel's approach --
+He uses "riscv,physical-memory-regions" in the root node.
+
+>>
+>> Example:
+>>
+>> Starfive JH7110 (Sifive U74):
+>>             [0x0,   0x40000000) Low MMIO
+>>      [0x40000000, 0x2_40000000) Cached Mem
+>>    [0x4_40000000, 0x6_40000000) Uncached Mem UC+
+>>    [0x9_00000000, 0x9_d0000000) High MMIO
+>>
+>> Device-tree:
+>>    riscv,xpbmt-uncache-bit = <32>;
+>>
+>> Use PTE bit 32 (PPN bit 34) as UC (uncache) control to perfectly
+>> match the memory map of the SoC.
+>>
+>> ESWIN EIC770X (Sifive U84/P550):
+>>             [0x0,    0x20000000) Core Internal
+>>      [0x20000000,    0x40000000) Core Internal (Die 1)
+>>      [0x40000000,    0x60000000) Low MMIO
+>>      [0x60000000,    0x80000000) Low MMIO (Die 1)
+>>      [0x80000000, 0x10_80000000) Cached Mem
+>>   [0x20_00000000, 0x30_00000000) Cached Mem (Die 1)
+>>   [0x80_00000000, 0xa0_00000000) High MMIO
+>>   [0xa0_00000000, 0xc0_00000000) High MMIO (Die 1)
+>>   [0xc0_00000000, 0xd0_00000000) Uncached Mem
+>>   [0xe0_00000000, 0xf0_00000000) Uncached Mem (Die 1)
+>>
+>> EIC770X is not directly compatible to this model, as the uncached
+>> regions are offsetted, and the offset is different among the Dies
+>> in the dual-die version (EIC7702). so we expect the firmware to
+>> provide a thin layer of hypervisor to transparently re-map:
+>>
+>>      [0x80000000,  0x10_80000000) Cached Mem
+>>   [0x20_00000000,  0x30_00000000) Cached Mem (Die 1)
+>>   [0xc0_00000000,  0xd0_00000000) Uncached Mem <----------.
+>>   [0xe0_00000000,  0xf0_00000000) Uncached Mem (Die 1) <--+--.
+>> [0x100_80000000, 0x110_80000000) Mem UC+ ----------------'  |
+>> [0x120_00000000, 0x130_00000000) Mem UC+ (Die 1) -----------'
+>>
+>> With that, the firmware/bootloader can set the following at boot:
+>>    riscv,xpbmt-uncache-bit = <38>;
+>>
+>> Signed-off-by: Bo Gan <ganboing@gmail.com>
+>> ---
+>>   arch/riscv/Kconfig                  | 12 ++++++++++++
+>>   arch/riscv/include/asm/hwcap.h      |  1 +
+>>   arch/riscv/include/asm/pgtable-64.h |  8 ++++++++
+>>   arch/riscv/kernel/cpufeature.c      |  8 ++++++++
+>>   arch/riscv/mm/pgtable.c             |  7 +++++++
+>>   5 files changed, 36 insertions(+)
+>>
+>> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+>> index 6b39f37f769a2..f2b4da6a3deb1 100644
+>> --- a/arch/riscv/Kconfig
+>> +++ b/arch/riscv/Kconfig
+>> @@ -893,6 +893,18 @@ config TOOLCHAIN_NEEDS_OLD_ISA_SPEC
+>>   	  versions of clang and GCC to be passed to GAS, which has the same result
+>>   	  as passing zicsr and zifencei to -march.
+>>   
+>> +config RISCV_ISA_XPBMTUC
+>> +	bool "Support XPbmtUC (customized pbmt uncache bit)"
+>> +	depends on 64BIT && MMU
+>> +	depends on RISCV_ALTERNATIVE
+>> +	default n
+>> +	select DMA_DIRECT_REMAP
+>> +	help
+>> +	  Add support for "riscv,xpbmt-uncache-bit" device-tree property.
+>> +	  The bit denotes the bit in PTE that marks the page as uncached.
+>> +
+>> +	  If you don't know what to do here, say N.
+>> +
+>>   config FPU
+>>   	bool "FPU support"
+>>   	default y
+>> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+>> index 4369a23385413..6baa6566cf4cc 100644
+>> --- a/arch/riscv/include/asm/hwcap.h
+>> +++ b/arch/riscv/include/asm/hwcap.h
+>> @@ -111,6 +111,7 @@
+>>   #define RISCV_ISA_EXT_ZILSD		102
+>>   #define RISCV_ISA_EXT_ZCLSD		103
+>>   
+>> +#define RISCV_ISA_EXT_XPBMTUC		126
+>>   #define RISCV_ISA_EXT_XLINUXENVCFG	127
+>>   
+>>   #define RISCV_ISA_EXT_MAX		128
+>> diff --git a/arch/riscv/include/asm/pgtable-64.h b/arch/riscv/include/asm/pgtable-64.h
+>> index 6e789fa58514c..1a6d04884111d 100644
+>> --- a/arch/riscv/include/asm/pgtable-64.h
+>> +++ b/arch/riscv/include/asm/pgtable-64.h
+>> @@ -140,6 +140,14 @@ enum napot_cont_order {
+>>   #define _PAGE_IO_THEAD		((1UL << 63) | (1UL << 60))
+>>   #define _PAGE_MTMASK_THEAD	(_PAGE_PMA_THEAD | _PAGE_IO_THEAD | (1UL << 59))
+>>   
+>> +#ifdef CONFIG_RISCV_ISA_XPBMTUC
+>> +extern int riscv_xpbmtuc_bit;
+>> +extern u64 riscv_xpbmtuc_mask;
+>> +#endif
+>> +
+>> +#define XPBMTUC_HAS_PAGE_NOCACHE CONFIG_RISCV_ISA_XPBMTUC
+>> +#define XPBMTUC_HAS_PAGE_MTMASK  CONFIG_RISCV_ISA_XPBMTUC
+>> +
+>>   static inline u64 riscv_page_mtmask(void)
+>>   {
+>>   	u64 val;
+>> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+>> index fa591aff9d335..faec169004b4a 100644
+>> --- a/arch/riscv/kernel/cpufeature.c
+>> +++ b/arch/riscv/kernel/cpufeature.c
+>> @@ -1118,6 +1118,14 @@ void __init riscv_fill_hwcap(void)
+>>   		riscv_v_setup_vsize();
+>>   	}
+>>   
+>> +#ifdef CONFIG_RISCV_ISA_XPBMTUC
+> 
+> Code like this needs to be unconditionally compiled.
+> 
+>> +	if (!of_property_read_u32(of_root, "riscv,xpbmt-uncache-bit",
+>> +				  &riscv_xpbmtuc_bit)) {
+>> +		riscv_xpbmtuc_mask = 1UL << riscv_xpbmtuc_bit;
+>> +		set_bit(RISCV_ISA_EXT_XPBMTUC, riscv_isa);
+>> +		pr_info("Using XPbmtUC bit=%d\n", riscv_xpbmtuc_bit);
+>> +	}
+>> +#endif
+>>   	memset(print_str, 0, sizeof(print_str));
+>>   	for (i = 0, j = 0; i < NUM_ALPHA_EXTS; i++)
+>>   		if (riscv_isa[0] & BIT_MASK(i))
+>> diff --git a/arch/riscv/mm/pgtable.c b/arch/riscv/mm/pgtable.c
+>> index 807c0a0de1827..4ca442bc8595d 100644
+>> --- a/arch/riscv/mm/pgtable.c
+>> +++ b/arch/riscv/mm/pgtable.c
+>> @@ -5,6 +5,13 @@
+>>   #include <linux/kernel.h>
+>>   #include <linux/pgtable.h>
+>>   
+>> +#ifdef CONFIG_RISCV_ISA_XPBMTUC
+>> +int riscv_xpbmtuc_bit;
+>> +
+>> +u64 riscv_xpbmtuc_mask;
+>> +EXPORT_SYMBOL(riscv_xpbmtuc_mask);
+>> +#endif
+>> +
+>>   int ptep_set_access_flags(struct vm_area_struct *vma,
+>>   			  unsigned long address, pte_t *ptep,
+>>   			  pte_t entry, int dirty)
+>> -- 
+>> 2.34.1
+>>
+
+Bo
+
 
