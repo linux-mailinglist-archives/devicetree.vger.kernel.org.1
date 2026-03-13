@@ -1,224 +1,196 @@
-Return-Path: <devicetree+bounces-275444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275439-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oH4ZGDw+tGlljgAAu9opvQ
-	(envelope-from <devicetree+bounces-275444-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:41:32 +0100
+	id QLYHDBo+tGlljgAAu9opvQ
+	(envelope-from <devicetree+bounces-275439-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:40:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B17F287456
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:41:31 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7265E28740C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:40:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id EAD88301EBE0
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:40:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A9E843058EE0
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:39:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 122AC3C9454;
-	Fri, 13 Mar 2026 16:40:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C70773C73CF;
+	Fri, 13 Mar 2026 16:39:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="ZGj35T3t";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="o218skv+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DaOVbzC/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99E353C7E12;
-	Fri, 13 Mar 2026 16:40:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BACF3C6A51
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 16:39:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773420046; cv=none; b=bF/sTryxGX5VyAul8MBZURPzdNR3wUlwuRE6hw5FstWAqB0YJ1HdvcGp6UgeGpAk8z7JzB6d3VSSAhDpdxvFaxiJEGecvNdIbuozAyc2N80QOKDsUBf4c1w+ecy+cfaMl4aDUR1+s9SwFkegyPedqfh9f3K9sj2LRAzoU7hOwnw=
+	t=1773419970; cv=none; b=TUTSFBSPSg0e2xPY0f3e5GtGCJZQVlgpECKn5yw4xWEw/9g7C6XCVbnk6EDBC+Vsk8QaXSgNVWo8niRswjvvQ/kbxBg7ir9QwnWmKZmn1a2vFtP4yEgfrtUgmoktp1ekWpins9LdUgIUPSxJfrZn+hj7FNkHFuL/GlaBvZf01uU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773420046; c=relaxed/simple;
-	bh=kLeHD/hMTidF06RFoq6PXaZwtIDsQEiP9sIUmDGYIL4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=s8pACJbveXG+SiG82pyCn0WcXQ9vBXZ8RvcsLO+5OgFtig9z9saDaXkY5wj0maDXKaTiNfLwoC8IxRvAWb3j3Z1Gun0hj0ZzIOvVclUvehet25rPJcOi+yEv9EZxEtoBiQOjcC08/Owdgm70IgjtbdyS3RmA8ZI0KzZtxq65JaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=ZGj35T3t; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=o218skv+; arc=none smtp.client-ip=80.241.56.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4fXVbR6WXxz9vC0;
-	Fri, 13 Mar 2026 17:40:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1773420036;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vmfDud7/vj53ZDYfVvEyX3xy5JPfLlI3+SZjlGxlJLk=;
-	b=ZGj35T3tusMVvrO6yQWyfepb2e9Hm/oaOWt8/hvNNQSjB2ZKk9RTV9hiN8BJYkUI1ZE542
-	xeJs/keY6e4NKNNW417gDBmOmfh2WdiI1H1G+x3qkO4cq6gmR4OWhsEhH7zoa0t12lGkj4
-	AdyHb8y7PG3b6pap6MBqwnFpmJWdhbzARi+2UWLfonXQT0agXbmoAeyziXj4zalyzpjG2G
-	gxKjbHd+eWBaqzrWWWjoNOqPas+jRo4X/QmPkQr3VSbhxRB3pDYgek5A7WQAbxJmrBsq1z
-	IuXD99MF8mgjm8MW81J6K9o5R0FemDs47NaYKJFyC5+Ty/luGrIIT1kdzWGJbg==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=o218skv+;
-	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::1 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1773420034;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vmfDud7/vj53ZDYfVvEyX3xy5JPfLlI3+SZjlGxlJLk=;
-	b=o218skv+0Qm+US9vfFfa7gbYvOVg83V6U96J6ZxyTPs50Apw9bPb3wGh8SdtKgtqVEitwf
-	y/WF9UYOqvBTF9uVLoTaOabrzYbZ123MIw4RLXDnQHFF9sCm3TPjB37S1W4J8tV8NZw/bw
-	jCQ5uebtY/JN5b1sVV4RO4d/yEXl13aPNNfalEhJ/mjaK1ZzDWg+c6uxdYHolv7JUDU4QZ
-	pPaXBWQT/UbYuUF2D9HHez4l57MP0M2N5SzIwdbiEemk4d725txrQoHAUJwXu8LY/HORPJ
-	4OsX9ULBOVRFbua95R5uGXuMu6yBsr5MeEL/Xr0Rpee1r72S1zlRcBs0PBzQaA==
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: renesas: Fix KSZ9131 PHY bogus txdv-skew-psec property
-Date: Fri, 13 Mar 2026 17:39:06 +0100
-Message-ID: <20260313164008.40933-5-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20260313164008.40933-1-marek.vasut+renesas@mailbox.org>
-References: <20260313164008.40933-1-marek.vasut+renesas@mailbox.org>
+	s=arc-20240116; t=1773419970; c=relaxed/simple;
+	bh=Qj7u7fKzT27EaALLTcCusFhJ7ATg3tivF3VhphoT12w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OdEId/NhgV/9ymzgXjNcNzwofsxoo6mQjKEy0CsV/Qixk8PXqF5BO9JXkYoy09/A4pXlTlIZBNiyUcNlPYSqVS9b/vIwckeMCaDjmfdW2Adh8GK04li/63lJ9VAjBdqsykaWEKYh+hp76jIUVxlp+dE4+GqISO+x5iWDLioXh00=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DaOVbzC/; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-439b78b638eso2537198f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 09:39:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773419967; x=1774024767; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SpEPoHYvhvWkjpmYEpEt8jyUUg5KMMUdOdkwivHgCi4=;
+        b=DaOVbzC/MQfQZvuTtUCqVq+ekt2HGjagyRzoDSez1ksKifQOvRzQStVjVt9jt6Tk1U
+         bdBBx7iFu+Thpx2NA5bGj5w4oU2nSMWaMhs1e+yzddQ40wbImoyTSxT9YNWXqz2nGXF1
+         fJGv6Wi+pBDosr6/RJ9WsaUHYrTNFxPEZrf0Vyoj3BecjhBXDFdJB6EKonccmftX+p2G
+         ytwkEaYR5PhUrH6LqGqaGr21cdzhSJLjy+PUBsBL3PvHrLTEdYVg/CDKmEWhF5A5u/pI
+         kIRZzLDTXyWvezW8Hb9o6r1Xn5WhFR3iOukr3yBTel4EZjUG7QA2ttSMYBW/QT6+II0/
+         Tq2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773419967; x=1774024767;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SpEPoHYvhvWkjpmYEpEt8jyUUg5KMMUdOdkwivHgCi4=;
+        b=BTAi2aARFAtTQfnfnpMSCyjrVMFZk+qfgHTFDz5aZ016FOWp35eQH28FXdxZ2J9Ulj
+         Axk5kF6qY2hGnjVHJrh5+G0+POe3c6D0nEPUo+uHBX2+leYRf1XPUkKQWckvaGto22X+
+         IqtNrrl6JZ56xFuwvmGfhb1cCCfPGwIO0VSXaEWGDXzvsvwj7WqAodKjJ6M5nTn26VD/
+         EpHH9BkmTIejaCimCv8BvTj9rYM93zEtbGuj0iI6dkD7MPnYrrgoEH1VIiIZAl9zZ7xA
+         +N4mTPo8tR6RhfNJ8Ix1TIKVfcdeBnT51LHJ9UB1Tin0WTWwj8oUB2wwkwFlfWpmitjg
+         DjsA==
+X-Forwarded-Encrypted: i=1; AJvYcCXx6Ip3pYUsPcYYgohMyoJdgKhFEY3YF3N3RLVN8jtpP9gRukJvLjwXSx+lZqPCNvEVhe/8lUhNGS4m@vger.kernel.org
+X-Gm-Message-State: AOJu0YylLZKh+Bz3YmMJLuKGPfpRF20PVVAKCxP+ekWsEc2EoauwjLgn
+	9mQbot2bJE/MlQs7EViJhzxF9cB0RhhF28edQOwoKFBUAfQas8fFJhqf
+X-Gm-Gg: ATEYQzxe5BsFdGMIjrt5OYlh0DY8S3p020rtg9glnjgSb6W6SIFzOkj80oINZ0jpgC4
+	o4Il0hVhzAZVjYtRliwvRqAwwjs/8IefSTfj4XLyFz9CX9sN7cWIzwuNYCwXCPT9iKVckO4ZAiK
+	ifGoj3SKj7ryi5r//fWI9IRSpUs7uXRhD+Ln3JhdtbG2IGCl3Wv1HClDRIGpIK9F/uhyO1GXIUV
+	L8N6KTSTgPF9L27RzJdyCY1ek0CjuWsRS6vVEUwocTSwD6ksVNqXJmBGxgv2qdNp9DMzCekqWx+
+	2tvbC0V4fhWLtGoAj+WXs3WOsKQR/yYWXd96Ot2eYJXwwF6x7sTfF+zf4v+qpIg7fuN19tWzmU1
+	CHO9y8KM+tew4qBUjq6/EmXzYrBzpkFRASTYbeM/yiD6w9k65ZScBzluT6I75m/RJTC2Gr9az85
+	G8ZvFGmA4i4Gd3W8ZZ3PqHtBYhTv2Em99SdQnj
+X-Received: by 2002:a05:6000:2283:b0:439:cb79:ab05 with SMTP id ffacd0b85a97d-43a04db5ff4mr7600661f8f.36.1773419967340;
+        Fri, 13 Mar 2026 09:39:27 -0700 (PDT)
+Received: from [192.168.0.39] ([79.133.247.80])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439fe22e9ddsm16346345f8f.37.2026.03.13.09.39.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Mar 2026 09:39:27 -0700 (PDT)
+Message-ID: <3d27945a-639d-4c3d-969f-2ec23bdd9900@gmail.com>
+Date: Fri, 13 Mar 2026 18:39:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: 2c656e22b26b43c5092
-X-MBO-RS-META: a36cx7pc3wbwhupfwt86kx9gr1emr6pg
-X-Spamd-Result: default: False [-1.66 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: iio: light: vcnl4000: add regulators
+To: Conor Dooley <conor@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
+ <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org
+References: <20260312-vcnl4000-regulators-v2-0-2bdebbcbb58a@gmail.com>
+ <20260312-vcnl4000-regulators-v2-1-2bdebbcbb58a@gmail.com>
+ <20260312-slouching-shelf-c8f64433881d@spud>
+Content-Language: en-US
+From: Erikas Bitovtas <xerikasxx@gmail.com>
+In-Reply-To: <20260312-slouching-shelf-c8f64433881d@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_CC(0.00)[mailbox.org,bp.renesas.com,kernel.org,glider.be,gmail.com,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-275444-lists,devicetree=lfdr.de,renesas];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275439-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.7:email];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.0.0.1:email,renesas.com:email,mailbox.org:dkim,mailbox.org:email,mailbox.org:mid,0.0.0.0:email,glider.be:email]
-X-Rspamd-Queue-Id: 7B17F287456
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 7265E28740C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The KSZ9131 schema does not document "txdv-skew-psec" property, neither
-does the kernel driver support this property. It does however document
-and support "txen-skew-psec" property. Fix what is likely a copy-paste
-error from the matching "rxdv-skew-psec" property, use "txen-skew-psec"
-property instead of "txdv-skew-psec" property.
 
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
----
-Cc: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-renesas-soc@vger.kernel.org
----
- arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts | 4 ++--
- arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts | 4 ++--
- arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi       | 4 ++--
- 3 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
-index dd5e4b13f0f86..00e5455ea5abf 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
-@@ -265,7 +265,7 @@ phy0: ethernet-phy@0 {
- 		rxc-skew-psec = <0>;
- 		txc-skew-psec = <0>;
- 		rxdv-skew-psec = <0>;
--		txdv-skew-psec = <0>;
-+		txen-skew-psec = <0>;
- 		rxd0-skew-psec = <0>;
- 		rxd1-skew-psec = <0>;
- 		rxd2-skew-psec = <0>;
-@@ -284,7 +284,7 @@ phy1: ethernet-phy@1 {
- 		rxc-skew-psec = <0>;
- 		txc-skew-psec = <0>;
- 		rxdv-skew-psec = <0>;
--		txdv-skew-psec = <0>;
-+		txen-skew-psec = <0>;
- 		rxd0-skew-psec = <0>;
- 		rxd1-skew-psec = <0>;
- 		rxd2-skew-psec = <0>;
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-index 8ae7b6e3d712e..4643c61cf06a7 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-@@ -286,7 +286,7 @@ phy0: ethernet-phy@0 {
- 		rxc-skew-psec = <0>;
- 		txc-skew-psec = <0>;
- 		rxdv-skew-psec = <0>;
--		txdv-skew-psec = <0>;
-+		txen-skew-psec = <0>;
- 		rxd0-skew-psec = <0>;
- 		rxd1-skew-psec = <0>;
- 		rxd2-skew-psec = <0>;
-@@ -305,7 +305,7 @@ phy1: ethernet-phy@1 {
- 		rxc-skew-psec = <0>;
- 		txc-skew-psec = <0>;
- 		rxdv-skew-psec = <0>;
--		txdv-skew-psec = <0>;
-+		txen-skew-psec = <0>;
- 		rxd0-skew-psec = <0>;
- 		rxd1-skew-psec = <0>;
- 		rxd2-skew-psec = <0>;
-diff --git a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-index cb5066443722c..880bd3fc9da18 100644
---- a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-@@ -142,7 +142,7 @@ phy0: ethernet-phy@7 {
- 		rxc-skew-psec = <1400>;
- 		txc-skew-psec = <1400>;
- 		rxdv-skew-psec = <0>;
--		txdv-skew-psec = <0>;
-+		txen-skew-psec = <0>;
- 		rxd0-skew-psec = <0>;
- 		rxd1-skew-psec = <0>;
- 		rxd2-skew-psec = <0>;
-@@ -162,7 +162,7 @@ phy1: ethernet-phy@7 {
- 		rxc-skew-psec = <1400>;
- 		txc-skew-psec = <1400>;
- 		rxdv-skew-psec = <0>;
--		txdv-skew-psec = <0>;
-+		txen-skew-psec = <0>;
- 		rxd0-skew-psec = <0>;
- 		rxd1-skew-psec = <0>;
- 		rxd2-skew-psec = <0>;
--- 
-2.51.0
+On 3/12/26 7:39 PM, Conor Dooley wrote:
+> On Thu, Mar 12, 2026 at 01:53:12PM +0200, Erikas Bitovtas wrote:
+>> This commit adds regulator properties for vcnl4000 ambient light and
+>> proximity sensors.
+> 
+> This we can see. Your commit message should say why.
+> 
+> Do all devices in the binding have all of these supplies?
+> 
+
+If we look at the datasheet for vcnl4040,
+https://www.vishay.com/docs/84274/vcnl4040.pdf, in figure 11 we can see
+that there can be 3 supplies: sensor supply Vdd (vdd), I2C supply for
+the bus Vpull_up (vddio) and IR LED anode Vdd_led (vled).
+The other datasheets refer to three supplies as well - one for the
+sensor, one for anode and one for the bus:
+https://www.vishay.com/docs/83372/vcnl4000.pdf
+https://www.vishay.com/docs/84138/designingvcnl4010.pdf
+https://www.vishay.com/docs/84327/designingvcnl4200.pdf
+
+>>
+>> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
+>> ---
+>>  Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml | 7 +++++++
+>>  1 file changed, 7 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+>> index 2ba4d5de4ec4..a1b4c02db246 100644
+>> --- a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+>> +++ b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+>> @@ -33,6 +33,10 @@ properties:
+>>    interrupts:
+>>      maxItems: 1
+>>  
+>> +  vdd-supply: true
+>> +  vddio-supply: true
+>> +  vled-supply: true
+>> +
+>>    reg:
+>>      maxItems: 1
+>>  
+>> @@ -54,6 +58,9 @@ examples:
+>>              compatible = "vishay,vcnl4200";
+>>              reg = <0x51>;
+>>              proximity-near-level = <220>;
+>> +            vdd-supply = <&reg_vdd>;
+>> +            vddio-supply = <&reg_vddio>;
+>> +            vled-supply = <&reg_vled>;
+>>          };
+>>      };
+>>  ...
+>>
+>> -- 
+>> 2.53.0
+>>
 
 
