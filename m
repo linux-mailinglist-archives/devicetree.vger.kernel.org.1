@@ -1,227 +1,195 @@
-Return-Path: <devicetree+bounces-275554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275555-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oIIjMrh5tGmOogAAu9opvQ
-	(envelope-from <devicetree+bounces-275554-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:55:20 +0100
+	id OGPaFhR7tGmOogAAu9opvQ
+	(envelope-from <devicetree+bounces-275555-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 22:01:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37BCE289ED6
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:55:20 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8BE2289FCD
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 22:01:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 335D63012CD1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:55:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 514AA302AF35
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:01:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53FB437FF45;
-	Fri, 13 Mar 2026 20:55:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35500382373;
+	Fri, 13 Mar 2026 21:01:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VpVS97O7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D60pN7n6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E85037F72F;
-	Fri, 13 Mar 2026 20:55:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09AD3372ED0;
+	Fri, 13 Mar 2026 21:01:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773435318; cv=none; b=Y4Y2dQtvRIf6UoGsT71klz4y/NNyHJBGotSr+HAZ/V3azIpraHlJ10SwWWr/qnanAb/bOr+QRb25G37I7ntpxXy7i9jO2jjNlLoT6m2HBjLsqzYCIz7p9392i1BFOW7BVDRZPD2x4iHLQ2zqt6Rta0fnC8cLTXGEXzpOkELLJPg=
+	t=1773435662; cv=none; b=VK0gY1I+pu6WoD8bIuG/LLTPKopv5cGEzw2wzXMC4AynNK8CgJwwOEqigkigDlLcpi/fKtrWZXm2AVKDjIvpTqpx1GVKgfRiGc7l0rH6CZGTv/Lbfx1/8udYZqRdX7aZWABGZQxtrHo8hp478cN0Tq4l37TR+5tk/dqJnifpOWo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773435318; c=relaxed/simple;
-	bh=FRgbhMTwDoCjlSgH+Mbeik4GJjhM/BNxYxIy4SLYB14=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AW6Ag/al4vBeHnwfZTcs98hsyx/HCuh+lxe024C2ZEB5rMPeGgCoO0ubsV+sXJ0RcrrZQ9BbnknaR3Z7wsFL2ir+p3qM1w86p7BrPu0yYqYRgznVjIiPzoU2iwzsbE5j2UKC5DNB5HC8LRKdhoi7f3ogNRJvbfmhTUeceDroo6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VpVS97O7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05240C19423;
-	Fri, 13 Mar 2026 20:55:14 +0000 (UTC)
+	s=arc-20240116; t=1773435662; c=relaxed/simple;
+	bh=O1nNclFDbyjxv8qi+UO7kEi9GWMfQEet1G/iJQKNSuc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
+	 References:In-Reply-To; b=ZLcBVZjDCqqi6o1pE6N419bc32P7pvvn9rO7VwutpAIVp91iMYfCWeL5x8DZE37AplGu8J5fqNmY8Nn6q0jc6JlBcMWDOwwz1p2ezBa07q4q9ukZz8PTjxrsMH1+pvt5qNWT6Kp0dlxXLK9IwtdzYQ0ljpNgdaBRVMo9wf4V8GA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D60pN7n6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E7B6C19421;
+	Fri, 13 Mar 2026 21:00:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773435317;
-	bh=FRgbhMTwDoCjlSgH+Mbeik4GJjhM/BNxYxIy4SLYB14=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VpVS97O7qvNeJqVE6E+LF3HR3DzzLy6d7TeMzjaxDwI4tCcgF7b+ZmRn67JL8AyS8
-	 2BFOBUU6qFiU6mdlOyQcjwY1ISGkDA7JLWrcTlv1DLwNcAw/J8Iy1Wdv2aBuIOpLU9
-	 5K2Jjl1wvCmQOu3v8s3Y0wSJIvb3wkDeIeFvRwpkozNtDQEjldO8yy8u0qwktH3Ex7
-	 HvryAbVFI2ww5o2ORJILsR4WZMZ0P+wsJk/jnOk9o5F2lg0kugt2WZ3b3O3D1/d5Ic
-	 McDw/M1PT9CWlINI8xt/f9OvWQT0JpP2har10PypIPGWTRiNoRj+bIjKryYKMGsBI1
-	 yaO6MqoIU/PPg==
-Date: Fri, 13 Mar 2026 20:55:12 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Florin Leotescu <florin.leotescu@oss.nxp.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Shych <michaelsh@nvidia.com>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	daniel.baluta@nxp.com, viorel.suman@nxp.com,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	festevam@gmail.com, Florin Leotescu <florin.leotescu@nxp.com>
-Subject: Re: [RFC PATCH v2 1/2] dt-bindings: hwmon: emc2305: Add
- fan-shutdown-percent property
-Message-ID: <20260313-jurist-atrophy-e145686d3145@spud>
-References: <20260312122248.1281572-1-florin.leotescu@oss.nxp.com>
- <20260312122248.1281572-2-florin.leotescu@oss.nxp.com>
- <20260312-triage-shallot-1b3d9f07d250@spud>
- <abRF+TPKuXFDJc55@ro-kernel-workstation>
- <20260313-mulberry-glamorous-6afbfc52e42f@spud>
- <cbc1d09e-25b1-4b94-a59c-6b5e54af01f9@roeck-us.net>
+	s=k20201202; t=1773435661;
+	bh=O1nNclFDbyjxv8qi+UO7kEi9GWMfQEet1G/iJQKNSuc=;
+	h=Date:To:From:Subject:Cc:References:In-Reply-To:From;
+	b=D60pN7n6xCiMmcp3DkouG5BJQPAqjLqpjWsWKm+eEugVKQ5TZldFQIJXq1h3YMsmi
+	 tV83t/LH1xOh+B9DjVLiLJz8WxXP5EAk/RJVUk5gsVWhGIuL0mKQ6ZtcObZEmsfW8S
+	 VHV2QBVE+7aYD277iItBjI/hI7Vvq4wr1ngLHgGp1vHD6oDjlT+hPFTw7SICS8Cbfr
+	 pTAMPFLTsGCmuWuW2Xiqls+SP/2p1uX8tQgdRU1WOGvfcvWPoRMCdgvNyVvLfgcaUA
+	 VJxGtsGL+nlgZDLchLAdeQKG2jmZ50CX8BXimDtnaClH0fuxKSOU4TOJWSkggs2VY8
+	 2TiPAYz4wZ/EA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="s1dtOtEOTAf4qsN4"
-Content-Disposition: inline
-In-Reply-To: <cbc1d09e-25b1-4b94-a59c-6b5e54af01f9@roeck-us.net>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 13 Mar 2026 22:00:54 +0100
+Message-Id: <DH1YH0GO75H8.18YSW2VMKRB3C@kernel.org>
+To: "Markus Probst via B4 Relay"
+ <devnull+markus.probst.posteo.de@kernel.org>
+From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH v3 7/7] leds: add synology microp led driver
+Cc: <markus.probst@posteo.de>, "Lee Jones" <lee@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, "Miguel Ojeda" <ojeda@kernel.org>, "Boqun
+ Feng" <boqun@kernel.org>, "Gary Guo" <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
+ <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice
+ Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Rafael
+ J. Wysocki" <rafael@kernel.org>, "Igor Korotin"
+ <igor.korotin.linux@gmail.com>, "Daniel Almeida"
+ <daniel.almeida@collabora.com>, "Bjorn Helgaas" <bhelgaas@google.com>,
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, "Pavel
+ Machek" <pavel@kernel.org>, "Len Brown" <lenb@kernel.org>, "Robert Moore"
+ <robert.moore@intel.com>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <rust-for-linux@vger.kernel.org>,
+ <driver-core@lists.linux.dev>, <linux-pci@vger.kernel.org>,
+ <linux-leds@vger.kernel.org>, <linux-acpi@vger.kernel.org>,
+ <acpica-devel@lists.linux.dev>
+References: <20260313-synology_microp_initial-v3-0-ad6ac463a201@posteo.de>
+ <20260313-synology_microp_initial-v3-7-ad6ac463a201@posteo.de>
+In-Reply-To: <20260313-synology_microp_initial-v3-7-ad6ac463a201@posteo.de>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
+	MV_CASE(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	TAGGED_FROM(0.00)[bounces-275554-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[oss.nxp.com,kernel.org,nvidia.com,vger.kernel.org,nxp.com,lists.infradead.org,lists.linux.dev,gmail.com];
+	TAGGED_FROM(0.00)[bounces-275555-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[posteo.de,kernel.org,linuxfoundation.org,garyguo.net,protonmail.com,google.com,umich.edu,gmail.com,collabora.com,intel.com,vger.kernel.org,lists.linux.dev];
+	RCPT_COUNT_TWELVE(0.00)[31];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[dakr@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 37BCE289ED6
+	TAGGED_RCPT(0.00)[devicetree,markus.probst.posteo.de,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C8BE2289FCD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Fri Mar 13, 2026 at 8:03 PM CET, Markus Probst via B4 Relay wrote:
+> +impl Command {
+> +    fn write(self, dev: &platform::Device<Bound>) -> Result {
+> +        // SAFETY: Since we have no of and no acpi match table, we assum=
+e this is a mfd sub-device
+> +        // and our parent is a serial device bus device, bound to the sy=
+nology microp core driver.
+> +        let parent =3D unsafe { dev.as_ref().parent_unchecked::<serdev::=
+Device<Bound>>() };
 
---s1dtOtEOTAf4qsN4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Despite being accurate description, "assume" is not what you want to read f=
+or a
+safety justification. :)
 
-On Fri, Mar 13, 2026 at 11:12:26AM -0700, Guenter Roeck wrote:
-> On 3/13/26 10:38, Conor Dooley wrote:
-> > On Fri, Mar 13, 2026 at 07:14:33PM +0200, Florin Leotescu wrote:
-> > > On Thu, Mar 12, 2026 at 05:37:51PM +0000, Conor Dooley wrote:
-> > > > On Thu, Mar 12, 2026 at 02:22:47PM +0200, florin.leotescu@oss.nxp.c=
-om wrote:
-> > > > > From: Florin Leotescu <florin.leotescu@nxp.com>
-> > > > >=20
-> > > > > The EMC2305 fan controller supports multiple independent PWM fan
-> > > > > outputs. Some systems require fans to enter a defined safe state
-> > > > > during system shutdown or reboot handoff, until firmware or the n=
-ext
-> > > > > boot stage reconfigures the controller.
-> > > > >=20
-> > > > > Add an optional "fan-shutdown-percent" property to fan child nodes
-> > > > > allowing the shutdown fan speed to be configured per fan output.
-> > > > >=20
-> > > > > Signed-off-by: Florin Leotescu <florin.leotescu@nxp.com>
-> > > > > ---
-> > > > >   .../devicetree/bindings/hwmon/microchip,emc2305.yaml      | 8 +=
-+++++++
-> > > > >   1 file changed, 8 insertions(+)
-> > > > >=20
-> > > > > diff --git a/Documentation/devicetree/bindings/hwmon/microchip,em=
-c2305.yaml b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> > > > > index d3f06ebc19fa..7bcadfab9fc4 100644
-> > > > > --- a/Documentation/devicetree/bindings/hwmon/microchip,emc2305.y=
-aml
-> > > > > +++ b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.y=
-aml
-> > > > > @@ -54,6 +54,12 @@ patternProperties:
-> > > > >             The fan number used to determine the associated PWM c=
-hannel.
-> > > > >           maxItems: 1
-> > > > > +      fan-shutdown-percent:
-> > > > > +        description:
-> > > > > +          Fan RPM in percent set during shutdown.
-> > > >=20
-> > > > This sounds like something generic, that other devices might need a=
-nd
-> > > > should be in fan-common.yaml?
-> > > >=20
-> > > Thanks for the feedback.
-> > >=20
-> > > The property name was reused from pwm-fan.yaml where it already exists
-> > > with the same meaning. I kept it local to minimize the scope of the c=
-hange.
-> > >=20
-> > > However, if you prefer it to be modelled as a common property, I can =
-adjust it in the next revision.
-> >=20
-> > I see. Makes me wonder why half the properties in pwm-fan aren't also in
-> > fan-common.
-> >=20
-> > I suppose there's a reason for it, carry on I guess.. Can be lifted if
-> > there are more users other than you and pwm-fan.
-> >=20
-> > > > > +        minimum: 0
-> > > > > +        maximum: 100
-> > > > > +
-> > > > >       required:
-> > > > >         - reg
-> > > > > @@ -80,12 +86,14 @@ examples:
-> > > > >               fan@0 {
-> > > > >                   reg =3D <0x0>;
-> > > > >                   pwms =3D <&fan_controller 26000 PWM_POLARITY_IN=
-VERTED 1>;
-> > > > > +                fan-shutdown-percent =3D <100>;
-> >=20
-> > Also leads to the question of why these devices aren't pwm-fans. Too
-> > late now to change anything, I just wanna understand why.
-> >=20
->=20
-> They are dedicated fan controllers, with an internal tach -> pwm feedback
-> loop. I don't mind modeling them as pwm controllers if there is a use case
-> (such as someone using a PWM output to control a LED), but I don't even k=
-now
-> how modeling them as pwm fans using the pwm-fan compatible would even be
-> possible since that would exclude the tach -> pwm feedback loop.
->=20
-> Also, if that were to be done, we might end up with two hwmon drivers
-> for one chip: one to report the fan speed, and one to report pwm values.
-> On top of that, even if it is not currently supported by the driver,
-> controlling the tach -> pwm feedback loop would become awkward.
->=20
-> Yes, I understand, there is a strong push to model everything with
-> a pwm output as pwm controller, but si far no one was able to describe
-> to me how to model a fan controller, and especially its feedback loop,
-> in such a scenario. That becomes even more complicated if temperatures
-> are used to control the feedback loop.
+We don't want to directly access the serial device from this driver. Instea=
+d,
+there should be an abstraction layer of the resource you are accessing.
 
-FWIW, my wording choice was poor here. I said that it was too late to
-change anything in an attempt to convey that I didn't want it to be
-changed, but it came across as implying that it was wrong.
-I just wanted to know why it was the way it was, not change it.
+If this would be I2C or SPI you would request the regmap of the parent at t=
+his
+point, e.g.
 
-Thanks for the info you provided, that's useful.
+	dev.parent().regmap("led_registers")
 
---s1dtOtEOTAf4qsN4
-Content-Type: application/pgp-signature; name="signature.asc"
+Now, this is a serial device, but regmap still works perfectly fine for thi=
+s
+case. It even allows you to ensure from the MFD driver to restrict the LED
+driver of sending commands that are not LED specific by exposing a LED spec=
+ific
+regmap. Additionally, if you need additional locking etc. it can all be don=
+e
+within the regmap implementation, so you entirely avoid custom APIs.
 
------BEGIN PGP SIGNATURE-----
+I'm not sure how common regmap is for serial devices to be honest, but
+apparently there are drivers doing this and I don't really see a reason aga=
+inst
+it.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabR5sAAKCRB4tDGHoIJi
-0hLqAP98tyg8o9VYgPVmjo979r729SYNjRFyycZPK3tbgPbguAEAo0lOn/tMvvNT
-mNnoXkl58KlVWyGYBX29eQ8cp7taUQQ=
-=NOEP
------END PGP SIGNATURE-----
+For instance, there is drivers/iio/imu/bno055/, which is a chip that works =
+on
+both serial and I2C busses and fully abstracts this fact with regmap.
 
---s1dtOtEOTAf4qsN4--
+In Rust a regmap will probably become a backend of the generic I/O
+infrastructure we are working on, which will also allow you to use the
+register!() infrastructure, etc.
+
+register!() and some other generic I/O improvements will land this cycle, I=
+/O
+projections are more likely to land next cycle.
+
+> +        parent.write_all(
+> +            match self {
+> +                Self::Power(State::On) =3D> &[0x34],
+> +                Self::Power(State::Blink) =3D> &[0x35],
+> +                Self::Power(State::Off) =3D> &[0x36],
+> +
+> +                Self::Status(_, State::Off) =3D> &[0x37],
+> +                Self::Status(StatusLedColor::Green, State::On) =3D> &[0x=
+38],
+> +                Self::Status(StatusLedColor::Green, State::Blink) =3D> &=
+[0x39],
+> +                Self::Status(StatusLedColor::Orange, State::On) =3D> &[0=
+x3A],
+> +                Self::Status(StatusLedColor::Orange, State::Blink) =3D> =
+&[0x3B],
+> +
+> +                Self::Alert(State::On) =3D> &[0x4C, 0x41, 0x31],
+> +                Self::Alert(State::Blink) =3D> &[0x4C, 0x41, 0x32],
+> +                Self::Alert(State::Off) =3D> &[0x4C, 0x41, 0x33],
+> +
+> +                Self::Usb(State::On) =3D> &[0x40],
+> +                Self::Usb(State::Blink) =3D> &[0x41],
+> +                Self::Usb(State::Off) =3D> &[0x42],
+> +            },
+> +            serdev::Timeout::Max,
+> +        )?;
+> +        Ok(())
+> +    }
+> +}
 
