@@ -1,291 +1,324 @@
-Return-Path: <devicetree+bounces-275341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275342-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CBlrD1QitGl7hwAAu9opvQ
-	(envelope-from <devicetree+bounces-275341-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:42:28 +0100
+	id kFLWCs8ktGl7hwAAu9opvQ
+	(envelope-from <devicetree+bounces-275342-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:53:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D102028531C
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:42:27 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5C9828555C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:53:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7D8B730087FD
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:42:26 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2F713307A977
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:49:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5463A6B69;
-	Fri, 13 Mar 2026 14:42:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D1B23B0AC3;
+	Fri, 13 Mar 2026 14:47:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GGFSMfaB"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="g1+Fkfqy";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="VFux0IXB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4717B3A5E87
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 14:42:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.219.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773412943; cv=pass; b=EYBW6dtwDjOMJlfM9ZlLoawJNl9oTfp6m2LgI3TcrMGTBbEOO/wybsoyR9gkcJ8eyzbqLyAmFuvd7u/FLR4a8dmGeOYm1k87RxpRf9xJBuB2JNVFlQfE/1hfzhtZ+Mce9O/DbHRx+E6vc7ogTWiXgFAyC4a2aX/45ie6ulyv/nQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773412943; c=relaxed/simple;
-	bh=MV/eXRShZGoChKIqTWx3xRDJY4D5p1GfCWHVtdLntcU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TkbcP5EhKs8oxr+99KgfvzBVczYirGEwKtkJLnaQyf1pBHcLaAwxgRnETTPCMx0960rZxGrBGxWAOeF7zwhzNYnGR1rT0ynPDjfxzNZA98JSjKb5shRgIV/NAfGG5Awhf84P1rr7H3QgKKFtjja25W2hWFJ/Ex/EJDHpT7FPCJw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GGFSMfaB; arc=pass smtp.client-ip=209.85.219.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-89a1347051aso23654866d6.2
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 07:42:22 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773412941; cv=none;
-        d=google.com; s=arc-20240605;
-        b=PIHLS/Vt8JFLPlYat9a3szZjALXjcYA7mZsWhmB9llxGVR1pTDTAO8LjCY3zkOOGcY
-         o+AAmsJgB5MToNCTQT1sxZJbO09YCZ+42uYxsfrZ+Cv9AoOUeH0Db6yeHmbvA57ZZYRK
-         7/FGPe+HjyOWiFNueJLIcRkq4d72atAPQXg5NKPpKJrQ0yrjN3mGtOQfodIofc7gG0Hb
-         QI1A0LRIsQg68L48hFnPWuNOHQ2VUKD4j6JT3P4E34ukgzWJr3IKyw7FLwu871Am98JE
-         TUJHQnnNeqK9AKplazOagyoWS4xwfLB+h43erUPX6X41C+AyFHCAEw2Enk2Ot/hC5R3l
-         Krgw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=Qc+mZxTV+FdzmhrCNMAZNBcHZoz8P43EP82OiNbVxfA=;
-        fh=4P6QqLQv+GJEIzNiDzTJwmuvNihomM0gYr6C955EgKI=;
-        b=PUPl0x4uhrDqURYmPIibVi3rL/5l4zq/4LXDqkLNDR4KYPsIdAC75sBn1Qq7byV7iE
-         TxIDgnfzkvAOUu+uxOX9LzPfpBF28oD2DHi9I5X7Y71vI96SpqIejON7BPVKegAoG2fB
-         F5hem7NuPht/wtTWsdU24q6HDW6U0rHkb4I9d8+m9rsf0ekEtOF2CbR1uRRdJfOIy7KB
-         yrS+BN8y2NwZIX/0+sTgEMozegr94ZEksgpvb8BRGkiaDsPJc5LhEn68BNXOr8dIx5QS
-         +Dx5v4F5fzbhMWsnTIbBwLxOk76meTKLUBMmVTibh/EdcUaZedWwkCKnUJjT2KG+Ipga
-         dZ4w==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC3B23AB270
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 14:47:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773413274; cv=none; b=Kxh/Plh7gZcO9Kw1JAuX3M16Zg3oLqRG3fmQMADCpS32JcNipfZ53ct5HLmORjKbgIPyHFVE7quYLQm5Ln5uxyNA6d8/nv/OO2LqPIt0lgYNmoi0d3UfdI4iQf5wKRT6RWujjPlRzXkJ3kiK0fihirxmnXZg2wugCkfar4QkV1s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773413274; c=relaxed/simple;
+	bh=BwyR3wMEIv+XOoo4gD08vL2uWYEwf9XPM06RxHZmicA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TH/1GaLNktV8FlbbLvsnyqOd/zQBSk6kBe1r+059hw1/DGzShFSiNi7cvITqb7PiMYSo7rIEEBeu0J1L6iey9ynKWoQICUVD4hRSm/k0V43ESHOmeNKhjVa93HIQjq9OLT83YiUMMn3EY28fr2uCiTsIrI72Dh09OiHU6xuGCjs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=g1+Fkfqy; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=VFux0IXB; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62DAsFMF525821
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 14:47:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=EIjzCgcCqS7gor9O/lJVl3Uf
+	7RzlS6vZQX73cMseU68=; b=g1+FkfqymcZfTK8YTMn9wpWbqvfIbhBqJ1PqC9Xj
+	yKJHhJIEcvzhGKb1nBF1hAmcfEzfjVzTbrDcWpvEGM/8IjnEVHXfDoChDfZo/hJA
+	XU4Uz7Xxrs2GM49gxNwg8VL0UmtCM1gUmApFoDHYSBxBxjD+Y1N4lIFfO+vh4xMt
+	+JsIgFna/9vnaI7f4l0y6kbjRgg2N8NxU7aQX9bOvq2zUdxxJDocQGN13Go4Qfei
+	vtNjBX6t30wgeaYEwUuUbALTuu5Zl5GSdOu7z6ohnCpJQ1BpL/ZdhECVmdttTVQO
+	uDGEeB/VdirBcmLXZRmxwTMJcKVFZYgm/I7+9YSpXT7eyw==
+Received: from mail-vs1-f71.google.com (mail-vs1-f71.google.com [209.85.217.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cvh84rrvy-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 14:47:49 +0000 (GMT)
+Received: by mail-vs1-f71.google.com with SMTP id ada2fe7eead31-5ffba6a4d84so3139618137.2
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 07:47:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773412941; x=1774017741; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Qc+mZxTV+FdzmhrCNMAZNBcHZoz8P43EP82OiNbVxfA=;
-        b=GGFSMfaBlV/JxTe/0jFPTsEVWBYVyhH1nm+RUwZcTHAVGEbe4fWdeKRBQ7kTeOdTHa
-         xgP1Z0XaudAMPir7uZgUFxxeKtIf0AL+Jlf0uzdpdg157snS0oDxN+VNYUfFYrsTDahn
-         iYBZ7Y9l5lBEC9n2Ds18tvp0x9qgoH/fUBUM9lvlPyO1xSqsNv1dpO2NuQXzX2zhJKjI
-         DBGUO9N4bNPfLL6IEq4FwGNMCpLCvyKM+vWJ/tr+YXtCZ3Zb6HxXV1zhzKI7ux30QGAA
-         Vjlsh4vlYCyJ+9zAPxt/lP/e5SrZrxsxYv6rpQp6WADiNCpuOVDFuVpk6gsOOAVIYCuF
-         nH4g==
+        d=oss.qualcomm.com; s=google; t=1773413269; x=1774018069; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=EIjzCgcCqS7gor9O/lJVl3Uf7RzlS6vZQX73cMseU68=;
+        b=VFux0IXBWPfzNkQ7elO+u57wA9waIb/zmQC0Am4YFUx/nNVC06TzTmZPg9X0lBI37C
+         JDqxuWMTC2tiZnqegWr6jSpC04PEq3V0n90qvM6H1HYARvTFUGdQUujlWQT5B7TEwwdP
+         XT4HRRKXb7rGELxBaeTYsKLqm19SZHZgqZ1qjX/nFtqsTRTohw7ooUF1RBo9zhnGkNw5
+         WDdrVypHQ+EHPFHNmM9u3aedPpTNETzGrgX4hzTVbtWIVKWlE0m/yD6Ffw/mDQkK+/Jz
+         vt7F+JwFtn2Ga0xMEHcA5YPWvxjc5okMLbG2TelNzdIWqk6kRJyeLVn8nkNXLOni5czB
+         I+kQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773412941; x=1774017741;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Qc+mZxTV+FdzmhrCNMAZNBcHZoz8P43EP82OiNbVxfA=;
-        b=TDnJ17SPwWF9mRErPvJmGtjm/FAaXGWX5mPlf1PvNMYMm99ZickUx5JCwT1z+ieHnv
-         gv92In8B0Fo4HIhwdxtPaNBNrmz+XPZJOAChzmXZ8HnaBk/szHQnZQIF7ohEZj4FIk3R
-         wh87TtvoO9BLICg+DFL1WvVZB1tYsGdHIinp3thHCZhKCKdAWzkbE+/VsYzhdsNxkuF8
-         7kNq+RAUwGTc5R/VwFmgAQp5MOEHuJc+gRzTH7vDYsexm+uV/vnfOkvalaSEdSDIR3Vw
-         lJFNofhZCXJGBXPnp4t5FSJOFOF0/OcEnMD72zyVFdOcc8twa2h1g1Ahx6W33z3P2GND
-         NrHg==
-X-Forwarded-Encrypted: i=1; AJvYcCXOeuPGtCJ+bkwX1QuamWl9Cr1qB4xDunZlOVP2rkp0CLodo00iipjAl+sskMMAYx3mwU+E019Fca4G@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/QjdkhBFTKQwPBQFINjEmthsjWpicgnX9S6LTIt+MfJ0JN3vD
-	koTUFkmwqGtI2YuRSdq6oC8dExkhwd8FrJ5WOpwBPaVV93dRwdkjxopXpUhJ1j9KzfdEKrEpCRw
-	uisrF5Nl3HO910PXgvT3/wpggSQvWlWqO++Ro
-X-Gm-Gg: ATEYQzztbbyFISEgueakVOqd2meC2p65Ky0FY/aI9dOFhxVCznBjhjPfwU41fapYtx2
-	Txu+IvMtTYF45aTj9SmjZQXvXyjL5GDp9o25AYT8xzqUsAAyrPDdpD+M5Qt50VMuYsCl751DtCP
-	8s/NMOQ5EyAfscGF96JW3lIOdK73tk+ma1vQV+saw1d3THaf2fIPqB15TthDVR2wsYtBE0egZvC
-	QL68qr5MI8i4mfuwTzPlBabmctkDrauHHn+ckUE7Lr3Nwczd56mfEPkdHre6H1Jar+E+1yD/I0B
-	b1d4KA==
-X-Received: by 2002:a05:622a:1a8c:b0:503:4251:6597 with SMTP id
- d75a77b69052e-50957cc6720mr50149121cf.29.1773412941102; Fri, 13 Mar 2026
- 07:42:21 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1773413269; x=1774018069;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EIjzCgcCqS7gor9O/lJVl3Uf7RzlS6vZQX73cMseU68=;
+        b=RzvCh0CuiMCEpXBFaeHAL7CWwJFSa9m3pFBtWbsDTzPLvfSoL7SWI/Fp6VPLymUC/X
+         uT1OeADRuVLj4vtBaQ8ZHce0QDZG4X+8XwgUd/oP2ySBNyESSqK4ItX0WhPJYv64u2wZ
+         YETZtrFMFBV6oCAMblwbK2ZOghnOdTqsp+51lNYibZAEMmjHz638OYMHR3WX/50vyYXZ
+         /HvQA/0lniu7jCzlwR5N4oeJT5vvcmfF0rt1SUgq7u08zUb1ufeHgOd08YBj5UMiLxoK
+         Xxw8Y6WvA6AP2ACO0qv7KWfU8qQ1CfSBKBVK8FjzJzEAkUGEWYCqmqa7Oj9SCQoR6F9O
+         /LTw==
+X-Forwarded-Encrypted: i=1; AJvYcCX35OQwjTeEsmsS3nllN7F2kZi6J+n9hrUr0P3VEypQSa6LGRD3N0OZpQjIB+sd39elQuXS0X2nuBHa@vger.kernel.org
+X-Gm-Message-State: AOJu0YzbCaD0z6Nmo8A0wuwtTB1O0LYrKtdt1RxpJdqkXEYDmeKsDt2s
+	cx9P4Z6Zg1uo8M0/eaRZ1y+MQhK7NJH5op2hS0mfxQQg7AFpiiBRlnXfAnyYTTQKDOVg2/zo7HW
+	S7Y9R1HDlsYsSCnTc5Ce1ZSTaO0E6E7u7HHwasY8UZ0sr63yR2imO2Rve9RFDeWcD
+X-Gm-Gg: ATEYQzxNMJLOOmaiW5d84IGqt+w0tymGCeZnMPeenxjTBFX2/Nm0/omolF7A7kaOtNv
+	RRewaa8qvMeqGTlgSJWwudP0kXRxspwB1DgOOCBeSUcA+4DX0V869T7Zj81JSpoDIXDz3rdJeY2
+	KlelT/55ZiE1+kwHC4UhUK1s7aOnmAwAVyK6Dg8NDs8SAaEs5Y5aOBmPr+EYFXRUVyIDbSjLbVB
+	SATyXMifOGn9r/78ZzhKLCCzFzZ4KAL4jbzPugXUuNgrXaeGYEqShIuSlsfvFQYR6kURMITnPJI
+	IP9jZs5W3potFvy42M7IZMwDCAYu+W2G1BtvIYILzCPBFeBymDK9T339PDfdUVbvQDRiAOXd+NV
+	TqGsdCPK0JWJsl4rJynAAZjTj720ySu+26e3p8FEiP9mdNzpyNqIdp4/pPgzkSJd8nQ6KBWKDM7
+	FNGr15UoJRn2Ir1wm2tBh/0dCdC0/jA/Vccps=
+X-Received: by 2002:a05:6102:ccd:b0:600:11e1:2a4b with SMTP id ada2fe7eead31-6020e5a22bbmr1418116137.34.1773413268824;
+        Fri, 13 Mar 2026 07:47:48 -0700 (PDT)
+X-Received: by 2002:a05:6102:ccd:b0:600:11e1:2a4b with SMTP id ada2fe7eead31-6020e5a22bbmr1418106137.34.1773413268328;
+        Fri, 13 Mar 2026 07:47:48 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38a67e7dfb3sm14777811fa.45.2026.03.13.07.47.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Mar 2026 07:47:46 -0700 (PDT)
+Date: Fri, 13 Mar 2026 16:47:45 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: "Maulik Shah (mkshah)" <maulik.shah@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
+        Linus Walleij <linusw@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Sneh Mankad <sneh.mankad@oss.qualcomm.com>
+Subject: Re: [PATCH 1/5] arm64: dts: qcom: x1e80100: Remove interconnect from
+ SCM device
+Message-ID: <ro25acm4voifctjfd4hj2v22ulcx7mj4xugzkr3ai34eft6r7b@vhfajna3djja>
+References: <20260312-hamoa_pdc-v1-0-760c8593ce50@oss.qualcomm.com>
+ <20260312-hamoa_pdc-v1-1-760c8593ce50@oss.qualcomm.com>
+ <bnaxwhrfeer3n62xp5rka4pq4mz6y5xxwsin2vavc5zcj3ymxj@splrj22ki445>
+ <198ccf60-a4b9-438b-ad92-bc4d2cc84b83@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260309-orangepi-sd-card-uhs-v2-0-5bb2b574df5d@gmail.com>
- <20260309-orangepi-sd-card-uhs-v2-7-5bb2b574df5d@gmail.com> <f2eeddcb-712f-4a67-9687-e217f46f9ea8@baylibre.com>
-In-Reply-To: <f2eeddcb-712f-4a67-9687-e217f46f9ea8@baylibre.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Fri, 13 Mar 2026 20:12:02 +0530
-X-Gm-Features: AaiRm51P57qcJuyAf0DEi9SoGi5rXwcJCFXanh2EQoeiyawGvbU2ynSwbZwPkSA
-Message-ID: <CANAwSgSjsn46p13LokjYZBLdOrUBTFsmDNf80TG=nvkqHWNkfQ@mail.gmail.com>
-Subject: Re: [PATCH v2 7/7] riscv: dts: spacemit: k1-orangepi-rv2: add SD card
- support with UHS modes
-To: Trevor Gamblin <tgamblin@baylibre.com>
-Cc: Iker Pedrosa <ikerpedrosam@gmail.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Adrian Hunter <adrian.hunter@intel.com>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@kernel.org>, 
-	Michael Opdenacker <michael.opdenacker@rootcommit.com>, 
-	Javier Martinez Canillas <javierm@redhat.com>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <198ccf60-a4b9-438b-ad92-bc4d2cc84b83@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=OMoqHCaB c=1 sm=1 tr=0 ts=69b42395 cx=c_pps
+ a=P2rfLEam3zuxRRdjJWA2cw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=VwQbUJbxAAAA:8
+ a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=DApZc1ZKry7Yto7750kA:9 a=CjuIK1q_8ugA:10
+ a=ODZdjJIeia2B_SHc_B0f:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEzMDExNyBTYWx0ZWRfXx3WHxW6P3ucr
+ h6TH1xSnph7KSY3butEVLPjWVx4QOHiaWOOAmJIkcsT4CARsc8BcLrXWqhRGnvcxkECIF0zEYNX
+ YtQOK5KCqf6jIP5fsB37efaZkmpqaleZp9CDdamcNAPmvi8LzpQWh9Za6Aqz9t03yiaonasFOIr
+ sCuAcbntOUUuYNn+QeJnjJGAiiGmFr2pqbttBWwWgXhOUgLc/eET6V0dXy6iz/pi77PxIm8/6D+
+ qoGm/7foU4zahTU+CmO0AkL2zeSg7HPx92qnmvfPimCuH8xeBLWmWz20AIXPAaB9UCyjm0ANPVA
+ 6ukpd5lnKCGA7lxRx8gWu0tVzFhOK/hYXxDC/mzczxz+tQDbGPiM9A0TP5Y/zfW29gtl2sMamet
+ Pt7mH4ikaS04ex6w+JGFTuG7vK0uYrOBKuQYdT53ZnsRt80kz17bpg7ADa0ygHy/a1tlULDCa4i
+ xVbpwbEvP52vspYKZXg==
+X-Proofpoint-ORIG-GUID: Pauq6UGz1rWwXHu5DyR5RV0FzD1j7hqX
+X-Proofpoint-GUID: Pauq6UGz1rWwXHu5DyR5RV0FzD1j7hqX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-13_02,2026-03-13_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 priorityscore=1501 impostorscore=0 suspectscore=0 phishscore=0
+ bulkscore=0 adultscore=0 spamscore=0 lowpriorityscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603130117
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275341-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-275342-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:dkim,qualcomm.com:email];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[gmail.com,linaro.org,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linuxamoon@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: D102028531C
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: C5C9828555C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Trevor,
+On Fri, Mar 13, 2026 at 03:42:32PM +0530, Maulik Shah (mkshah) wrote:
+> 
+> 
+> On 3/13/2026 7:41 AM, Dmitry Baryshkov wrote:
+> > On Thu, Mar 12, 2026 at 09:26:35PM +0530, Maulik Shah wrote:
+> >> Interconnect from SCM device are optional and were added to get
+> >> additional performance benefit. These nodes however delays the
+> >> SCM firmware device probe due to dependency on interconnect and
+> >> results in NULL pointer dereference for the users of SCM device
+> >> driver APIs, such as PDC driver.
+> > 
+> > This sounds like a bug in the PDC driver. It should reject being probed
+> > before SCM is available.
+> 
+> The SCM driver provides no way to check if its ready or not to decide to reject/defer the probe.
+> A new API like below would be needed here,
 
-On Fri, 13 Mar 2026 at 19:26, Trevor Gamblin <tgamblin@baylibre.com> wrote:
->
->
-> On 2026-03-09 07:40, Iker Pedrosa wrote:
-> > Add complete SD card controller support with UHS high-speed modes.
-> >
-> > - Enable sdhci0 controller with 4-bit bus width
-> > - Configure card detect GPIO with inversion
-> > - Connect vmmc-supply to buck4 for 3.3V card power
-> > - Connect vqmmc-supply to aldo1 for 1.8V/3.3V I/O switching
-> > - Add dual pinctrl states for voltage-dependent pin configuration
-> > - Support UHS-I SDR25, SDR50, and SDR104 modes
-> >
-> > This enables full SD card functionality including high-speed UHS modes
-> > for improved performance.
-> >
-> > Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
-> > ---
-> >   arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts | 19 +++++++++++++++=
-++++
-> >   1 file changed, 19 insertions(+)
-> >
-> > diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/ri=
-scv/boot/dts/spacemit/k1-orangepi-rv2.dts
-> > index 414b03f5e6480f05f5d7eeaaa0afb4e86425ae36..361135269801f436703b6f1=
-d768c91325a52f07f 100644
-> > --- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-> > +++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-> > @@ -140,3 +140,22 @@ sd_vqmmc: aldo1 {
-> >               };
-> >       };
-> >   };
-> > +
-> > +&sdhci0 {
-> > +     pinctrl-names =3D "default", "state_uhs";
-> > +     pinctrl-0 =3D <&mmc1_cfg>;
-> > +     pinctrl-1 =3D <&mmc1_uhs_cfg>;
-> > +     bus-width =3D <4>;
-> > +     cd-gpios =3D <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
-> > +     cd-inverted;
-> > +     no-mmc;
-> > +     no-sdio;
-> > +     disable-wp;
-> > +     cap-sd-highspeed;
-> > +     vmmc-supply =3D <&sd_vmmc>;
-> > +     vqmmc-supply =3D <&sd_vqmmc>;
-> > +     sd-uhs-sdr25;
-> > +     sd-uhs-sdr50;
-> > +     sd-uhs-sdr104;
-> > +     status =3D "okay";
-> > +};
-> >
-> Hello again,
->
-> Thanks for doing this work. My colleagues and I have been testing this
-> on an OrangePi RV2, and also a Muse Pi Pro board (making a similar tweak
-> to this patch in k1-musepi-pro.dts). To do the testing on my end, I'm
-> applying the patch series on top of 6.19 in a Yocto BSP.
->
-> I've been finding that I see issues with the UHS support on my side
-> (this log comes from an image built and flashed to an SD card):
->
->
-> [ 1.072417] sdhci-spacemit d4280000.mmc: Got CD GPIO
-> [ 1.109741] mmc0: SDHCI controller on d4280000.mmc [d4280000.mmc] using
-> ADMA
-> [ 1.114589] clk: Disabling unused clocks
-> [ 1.118421] PM: genpd: Disabling unused power domains
-> [ 1.123249] ALSA device list:
-> [ 1.126[ 1.129949] check access for rdinit=3D/init failed: -2, ignoring
-> [ 1.133284] Waiting for root device
-> PARTUUID=3De94bfdd7-a36f-4315-a480-476e2a12403d...
-> [ 1.176569] mmc0: new UHS-I speed DDR50 SDHC card at address aaaa
-> [ 1.180732] mmcblk0: mmc0:aaaa SS16G 14.8 GiB
-> [ 1.276268] mmcblk0: recovery failed!
-> [ 1.277351] I/O error, dev mmcblk0, sector 0 op 0x0:(READ) flags
-> 0x800000 phys_seg 1 prio class 2
-> [ 1.286346] Buffer I/O error on dev mmcblk0, logical block 0, async page
-> read
-> [ 1.293891] mmcblk0: recovery failed!
-> [ 1.297289] I/O error, dev mmcblk0, sector 0 op 0x0:(READ) flags
-> 0x800000 phys_seg 1 prio class 2
-> [ 1.306269] Buffer I/O error on dev mmcblk0, logical block 0, async page
-> read
-> [ 1.313522] mmcblk0: unable to read partition table
->
->
-> At first I wondered if maybe there was an issue with the card itself,
-> but by changing the sdhci0 section to this, I'm able to read the SD just
-> fine:
->
-I used the same example on the K1-OrangePi-RV2 DTS,
-But it=E2=80=99s slightly different from the one you=E2=80=99re working wit=
-h.
-I tested on the latest  7.0-rc3.
+qcom_scm_is_available() ?
 
-> &sdhci0 {
->           pinctrl-names =3D "default";
->           pinctrl-0 =3D <&mmc1_cfg>;
->           bus-width =3D <4>;
->           cd-gpios =3D <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
->           cd-inverted;
->           no-mmc;
->           no-sdio;
->           disable-wp;
->           vmmc-supply =3D <&sd_vmmc>;
->           vqmmc-supply =3D <&sd_vqmmc>;
->           no-1-8-v;
->           status =3D "okay";
-> };
->
-+
-+&sdhci0 {
-+       pinctrl-names =3D "default", "state_uhs";
-+       pinctrl-0 =3D <&mmc1_cfg>;
-+       pinctrl-1 =3D <&mmc1_uhs_cfg>;
-+       bus-width =3D <4>;
-+       cd-gpios =3D <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
-+       cd-inverted;
-+       no-mmc;
-+       no-sdio;
-+       disable-wp;
-+       cap-sd-highspeed;
-+       vmmc-supply =3D <&sd_vmmc>;
-+       vqmmc-supply =3D <&sd_vqmmc>;
-+       sd-uhs-sdr25;
-+       sd-uhs-sdr50;
-+       sd-uhs-sdr104;
-+       status =3D "okay";
-+};
+> 
+> int qcom_scm_ready(void)
+> {
+>         if (__scm == NULL || __scm->dev == NULL)
+>                 return -EPROBE_DEFER;
+>         return 0;
+> }
+> EXPORT_SYMBOL_GPL(qcom_scm_ready);
+> 
+> This is inline with what cmd-db does today with cmd_db_ready() API.
+> (drivers/soc/qcom/cmd-db.c).
+> 
+> > 
+> >>
+> >> Remove them from the scm device to unblock the user.
+> >>
+> >> Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
+> >> ---
+> >>  arch/arm64/boot/dts/qcom/hamoa.dtsi | 3 +--
+> >>  1 file changed, 1 insertion(+), 2 deletions(-)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qcom/hamoa.dtsi
+> >> index d7596ccf63b90a8a002ad6e77c0fb2c1b32ec9c8..ebecf43e0d462c431540257e299e3ace054901fd 100644
+> >> --- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
+> >> +++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
+> >> @@ -308,8 +308,7 @@ eud_in: endpoint {
+> >>  	firmware {
+> >>  		scm: scm {
+> >>  			compatible = "qcom,scm-x1e80100", "qcom,scm";
+> >> -			interconnects = <&aggre2_noc MASTER_CRYPTO QCOM_ICC_TAG_ALWAYS
+> >> -					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
+> >> +			/* TODO: add interconnects */
+> > 
+> > Somebody will try to fix this TODO, reverting this patch. Let's find a
+> > better way to handle it (which would also fit other platforms).
+> > Originaly this was proposed by Sibi ([1]) to speed up PAS
+> > authentication. Other platforms require RPM or GCC clocks to let the
+> > firmware access crypto core.
+> > 
+> > One of the (stupid) ideas would be to add a separate SCM (child?) device
+> > which would be used for crypto-related SCM calls. I'd like to point out
+> > that currently we bump those clocks or NoC bandwidth, but at the same
+> > time we don't vote on the CX rail. I'm not sure of the firmware handles
+> > that somehow or not.
+> 
+> Nice catch, AFAIK firmware don't handle voting for CX rail during SCM call.
+> 
+> > 
+> > [1] https://lore.kernel.org/all/1653289258-17699-1-git-send-email-quic_sibis@quicinc.com/
+> 
+> yes, I had already seen this,
+> 
+> So remoteproc PAS driver gets performance benefit with crypto vote and interesting choice was
+> made to place it from SCM driver. It was evaluated and considered reasonable one at that time,
+> pasting from [2],
+> The clocking needs for the CE relates to the SCM and not the remoteproc, and it's in line with
+> the management of CE clocks from the SCM driver.
 
-Thanks
--Anand
+I agree that those clocks must be managed, but I think it was a hack to
+reuse SCM's iface / bus clocks for crypto. Originally, *I suppose* were
+added for very old platforms which had separate DAYTONA NoC clock, most
+likely controlling access to some of the backing hardware, but not
+necessarily crypto hardware.
+
+> 
+> With my limited understanding of remoteproc, SCM and crypto,
+> 
+> - A crypto vote would no way bump up the performance of CPU jumping from/to non-secure and secure world.
+>   (actual "path" of SCM driver).
+> 
+>   if remoteproc requires the crypto vote for image validation/authentication then remoteproc should
+>   place the vote for crypto path before invoking SCM APIs, SCM don't really use this vote for itself.
+>   SCM driver though today adds/removes vote within remoteproc APIs keeping vote placement limited
+>   to remoteproc usage only.
+
+Looking at the code, I'd assume that once we start testing HDCP we'd
+perform the same for the HDCP-related calls. The problem is that this
+kind of management also doesn't seem to belong to the remoteproc driver:
+it doesn't know and it should be of no concern for it if the firmware
+uses crypto behind its back or not.
+
+> - Firmware could have put the crypto vote if firmware is doing image validation/authentication
+>   after the SCM call lands in firmware and remove it before returning to non-secure world.
+>   clearly not a choice now to update firmware.
+> 
+> - I see crypto device too places same vote (at least on x1e) so i must be missing something and
+>   both SCM and crypto device vote are needed here. I was thinking if remoteproc should route the
+>   SCM call via crypto driver (which would places the required crypto vote) and crypto driver
+>   should then invoke the crypto related SMC calls.
+
+I think, this also looks like a hammer plumbing. The use of crypto
+device for those calls is a firmware implementation detail.
+
+> 
+>   crypto: crypto@1dfa000 {
+>   	compatible = "qcom,x1e80100-qce", "qcom,sm8150-qce", "qcom,qce";
+> 	..
+>         interconnects = <&aggre2_noc MASTER_CRYPTO QCOM_ICC_TAG_ALWAYS
+>                         &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
+>   };
+> 
+> Let me know any preferences from below options or any other.
+> 
+> a) Add the API like qcom_scm_ready(), this has been tested and works fine.
+
+We already have qcom_scm_is_available().
+
+> b) Move interconnects from SCM to remoteproc PAS driver for all devices
+>    Take the vote before invoking SCM API and release after return.
+> c) Remove the interconnects from SCM and rely on crypto driver already
+>    placing the vote, Route the remote proc to SCM call via crypto API,
+>    This would ensure crpyto is being used and it would have placed the required vote.
+> d) Add separate SCM child device (with interconnects) under SoC.
+
+This is going to be my preference, but I'm ready to listen for other
+opinions.
+
+> 
+> [2] https://lore.kernel.org/all/Yr0Os5TOITY7f0Wk@builder.lan/
+> 
+> Thanks,
+> Maulik
+
+-- 
+With best wishes
+Dmitry
 
