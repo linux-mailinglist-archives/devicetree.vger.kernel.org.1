@@ -1,84 +1,51 @@
-Return-Path: <devicetree+bounces-275461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275462-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WKUWN9JFtGk4kAAAu9opvQ
-	(envelope-from <devicetree+bounces-275461-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:13:54 +0100
+	id QF9SNjhGtGk4kAAAu9opvQ
+	(envelope-from <devicetree+bounces-275462-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:15:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81403287EB3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:13:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38683287F30
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:15:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 60AAC3016EC6
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:08:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 619FB32A59AB
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:10:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BC483C552B;
-	Fri, 13 Mar 2026 17:08:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DCED3AA4FF;
+	Fri, 13 Mar 2026 17:10:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="WzdSk1mR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E+RHGF+e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BD7E35F5FD
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 17:08:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7682C3148A6;
+	Fri, 13 Mar 2026 17:10:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773421715; cv=none; b=NcWYHllogg4StKf590qW0ukL0xWSc0EN98M8g7vtvZeCUYDRVCEY7wxmhDx+uH2h8hvDWYu7vGtK9nT+FfRAWj9CD0Zdd3iartT5QQD36L/t29cCpDYbUWlWD8lg5NDhaQn00S6wzT82N0dOZPZWjU12CiGERw8x1PWI8igN62M=
+	t=1773421822; cv=none; b=UiOqD6VPsmDz1qNKgNf5kFb1c46FcMegmp9LlbnHyX0q2pBHuXp1ndS4bItpL9D8EKdtlNB5sR0to5cKqNvfmqHl8dNXavEWCyJlAETsUwoTWWC7hfSlZclCwMhGjTYW9bShZOBbUQkb/4SFPG0R6eEcfSP6T6qqqqxwytqAIM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773421715; c=relaxed/simple;
-	bh=na5aIQmd51a6vTVSTeVTzISuG98aQ2mjt0ZNjgjSa4M=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=pzayXr04xfwBWRCG8x3SkeYkfOZ6yTc89bFvnADcQBcek2NI65jVSFTSoxPbxROA8Rqnf4eKYGmtcRWlyz2CjmkexNffiaj0426X4tCiKriZaPWyIgxcePlVBdmINcFF6K+crNW3OtcQC05bVyyVTy2adcWvfVoRhFFerRIqpG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=WzdSk1mR; arc=none smtp.client-ip=209.85.222.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-8cd78a4ce8dso321445885a.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 10:08:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1773421712; x=1774026512; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=q2wUEHO95agDl9HgpTnHWh4fawNLMxRmnfJlPuyaoJY=;
-        b=WzdSk1mRSe4L1cDGWT8I7i8ZnAHVbDgiDCtkOsUbizgieDi/uHO8Dyb1XIdczqlaJg
-         m0pD9LIJ4Zg9onbtQdH49fv5Y4WLgre/e7Z9xU9rLPwkUUY3XpDD9h1f4sOWcCbBoV7V
-         V3wJTLCW5Xy7Yc3LACf8lDYXmvtDIcXVfk4OvW2+LNH9QKssMWW1th1FnXqUILQu3M8+
-         ZrqWpwN1XLxtJ/e8a5WgZzYcJJBFgfV+haZG2FLckxGStVisoZ7Sw5vDpkfO4pd2yIv9
-         Tntnw347t7xwzaIxArnuKbFn0nBZxV6YIp+Voxsl1OoiYepJhCN9yGHwPeRWgO93mZDB
-         TDNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773421712; x=1774026512;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q2wUEHO95agDl9HgpTnHWh4fawNLMxRmnfJlPuyaoJY=;
-        b=gM4HjlWKcf4Lm7r+P7YfdBBTj8r+ZGb4hEdW9gAym2fU8qayTJz9xaAn/VByacYWhn
-         O/vJn4Vp7y6diyOjfsZsrkb/gfOo56RWC0bDEazyPTITOvVyLHeOVUUG+EqfnKmXcfe5
-         OqwuWXETMqa7Z+sOP4rWD5kpKkMUFFk79FmcY/LlBlNYNeQPbgIhZ7u5cQp/DoYgj58k
-         qUoPz08MXkKSio+rkGix5kc/iBOMZTZiIxHvJCo63eW+c/zXnRoyP2gDalzJWllIbvNy
-         61L3a9yCuRg13680xWiXLQSqMAEEa3ofUbWaKgjsFhndU22siK9LtWWTF6TQ/VK9sxpu
-         tEOw==
-X-Forwarded-Encrypted: i=1; AJvYcCUzDlnc8dj0GEKoA3zpoi6O4lj+YuodNz180B9p3TlJxTTCz3y5nxijm/qUlDO2znpXyBahxjaKPuVb@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYn9mPqyIDLRGrujUxCQXzcN/O6VQXVeR7yLXvOyI/niLEYIGW
-	2iBkJRjkDcTC+jqQmxKKEgnzDWsICT/Av2q+n/05ic6Fbl5UtL8TxgshtJ0Nh6p8C70=
-X-Gm-Gg: ATEYQzz8tZmmGHuWonW9mud6TT0dWSeE2TcRffznupWpvG4O81jwsA6MBsezk/3Tb56
-	W0vQaGE4vj/8WAmmBvBAoMBSDxyt+HdFcbRLbnffK9d0nWlDgycSDfWKeqIzVAeMKpyKM9+h665
-	DHO1u5VnO5yU1uRCvu9JV6YPi0UqjChIF+VGax8c/Gfj+4OtjVCjrComx+OBGxnX6G+l1q1EdH5
-	1Q7zL9s+urJ7AGWLnFAeOlP2RuSYgFNsNDm9MRUD5ZkCbaMW6dF5fYSetBb9AD/jHSZ7fjt21y7
-	Ips1d+juG03TD1J46d9Ap+L/hnPKkVNi5PN0ELtUG1oE5owVsO3fQDuA9GTJap18qQ7AU2A/eq8
-	wh9u/mUjzO1zilgamuijxHTgXM6r99yLCi4jOR3gvLqZJuT8kXJzVY0zLHTulDnMsg068iJ1JtV
-	aemUpruI4JSh/b15SfmwbyWvDtXjhTNImu9sqWW2U1HhPNM8/NPJ/Q7Q8WQ3tg0945rRBtulZgS
-	VbE
-X-Received: by 2002:a05:620a:1a19:b0:8cd:90d5:92c with SMTP id af79cd13be357-8cdb59fe41amr594805385a.12.1773421712407;
-        Fri, 13 Mar 2026 10:08:32 -0700 (PDT)
-Received: from ?IPV6:2001:1970:3847:e000:4c82:63a9:39e9:5c17? ([2001:1970:3847:e000:4c82:63a9:39e9:5c17])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8cda1fda2c6sm583719685a.13.2026.03.13.10.08.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Mar 2026 10:08:31 -0700 (PDT)
-Message-ID: <b3fa0aef-8efc-4c5a-8c9e-ee319b3cb0e2@baylibre.com>
-Date: Fri, 13 Mar 2026 13:08:29 -0400
+	s=arc-20240116; t=1773421822; c=relaxed/simple;
+	bh=v2vK+UcagkF2ySsZwbLEP8QRzHCoZx+uyEcEB79nZ+Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eK05d9UPtBIrv8nnLliMj1BIWHeABiLSOWZu4X/+mnXjkPxeGx9MtCC5VRpFnUon/gNGPxKBCI21sTFedN1Fb+Z6kATk+jRyj62E6dyJdubD423Nylfl/KUvXe3fBJQnW0wIe4EuelcY5jmCGOO8o+mhfz7IInJFxpvMxJPUzI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E+RHGF+e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3E78C19421;
+	Fri, 13 Mar 2026 17:10:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773421822;
+	bh=v2vK+UcagkF2ySsZwbLEP8QRzHCoZx+uyEcEB79nZ+Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=E+RHGF+euMGxrwG6J1jkUGHURKrEnFD9MUEjrZZBCnXnLvZnwa1a8S3fjAORSoYTV
+	 Wfmy6gBXGO0/OmmwAazHL8QplK0ooZ9zPU7i84FzfJ1weVLvK6QM0Zgrj5tTLCPJrG
+	 3IONROHy1gqRPFklxShZ9S4vxExjCoWl6L4Uubu11Wh798trpMb8sZvHQ1uaG1f6J9
+	 jvqsnVtU7BCskx0Ac5r5r2Fv3q3sBx1e72fCr8Pl02o0/DWlNz7qnD+UNREHgVlgE9
+	 xhzpsvj43ZFxDMuAd5IdflXXfpshc96U2IBaFM9J233FB0mZJNu+DWkAiHH6PK572Y
+	 645KQU5ScG2OA==
+Message-ID: <c7a59716-3d53-4787-b4ef-9674c2a4a9b5@kernel.org>
+Date: Fri, 13 Mar 2026 18:10:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,214 +53,227 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Trevor Gamblin <tgamblin@baylibre.com>
-Subject: Re: [PATCH v2 7/7] riscv: dts: spacemit: k1-orangepi-rv2: add SD card
- support with UHS modes
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Iker Pedrosa <ikerpedrosam@gmail.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>,
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
- Yixun Lan <dlan@kernel.org>,
- Michael Opdenacker <michael.opdenacker@rootcommit.com>,
- Javier Martinez Canillas <javierm@redhat.com>, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20260309-orangepi-sd-card-uhs-v2-0-5bb2b574df5d@gmail.com>
- <20260309-orangepi-sd-card-uhs-v2-7-5bb2b574df5d@gmail.com>
- <f2eeddcb-712f-4a67-9687-e217f46f9ea8@baylibre.com>
- <CANAwSgSjsn46p13LokjYZBLdOrUBTFsmDNf80TG=nvkqHWNkfQ@mail.gmail.com>
+Subject: Re: [PATCH v8 01/10] dt-bindings: mfd: add support for the NXP SIUL2
+ module
+To: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+ Khristine Andreea Barbulescu <khristineandreea.barbulescu@oss.nxp.com>,
+ Arnd Bergmann <arnd@arndb.de>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>,
+ Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
+ Larisa Grigore <larisa.grigore@nxp.com>, Lee Jones <lee@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Dong Aisheng <aisheng.dong@nxp.com>,
+ Jacky Bai <ping.bai@nxp.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Alberto Ruiz <aruizrui@redhat.com>, Christophe Lizzi <clizzi@redhat.com>,
+ devicetree@vger.kernel.org, Enric Balletbo <eballetb@redhat.com>,
+ Eric Chanudet <echanude@redhat.com>, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, NXP S32 Linux Team <s32@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ "Vincent Guittot devicetree @ vger . kernel . org"
+ <vincent.guittot@linaro.org>, Rob Herring <robh@kernel.org>
+References: <20260120115923.3463866-1-khristineandreea.barbulescu@oss.nxp.com>
+ <20260120115923.3463866-2-khristineandreea.barbulescu@oss.nxp.com>
+ <20260121021913.GA1704619-robh@kernel.org>
+ <e956750b-0333-4465-b37e-5f460b5e092f@oss.nxp.com>
+ <edc3a63a-8117-476f-9582-97ae31fefa96@kernel.org>
+ <7d200097-51bc-4404-be8b-f536d0ecfc25@oss.nxp.com>
+ <21531cdd-5ab9-493e-a722-61b98117e2c4@kernel.org>
+ <22a5a072-847e-4cfd-8abd-e37163f73265@oss.nxp.com>
+ <fe755e85-1558-4272-bdd4-af7a2038ab1f@kernel.org>
+ <ba6140bf-237e-4099-af0c-ee404c1719cd@oss.nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <CANAwSgSjsn46p13LokjYZBLdOrUBTFsmDNf80TG=nvkqHWNkfQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <ba6140bf-237e-4099-af0c-ee404c1719cd@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275461-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-275462-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[linaro.org,bgdev.pl,kernel.org,gmail.com,suse.com,nxp.com,pengutronix.de,linuxfoundation.org,redhat.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[32];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,linaro.org,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tgamblin@baylibre.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
+	REDIRECTOR_URL(0.00)[aka.ms];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre-com.20230601.gappssmtp.com:dkim,baylibre.com:email,baylibre.com:mid]
-X-Rspamd-Queue-Id: 81403287EB3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[aka.ms:url,2.159.138.16:email,4009c000:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 38683287F30
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On 25/02/2026 10:40, Ghennadi Procopciuc wrote:
+> On 2/23/2026 3:14 PM, Krzysztof Kozlowski wrote:
+>> On 23/02/2026 12:51, Khristine Andreea Barbulescu wrote:
+>>> On 2/20/2026 4:41 PM, Krzysztof Kozlowski wrote:
+>>>> On 20/02/2026 15:36, Khristine Andreea Barbulescu wrote:
+>>>>> Hello Krzysztof,
+>>>>>
+>>>>> On 2/20/2026 12:16 PM, Krzysztof Kozlowski wrote:
+>>>>>> [You don't often get email from krzk@kernel.org. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+>>>>>>
+>>>>>> On 19/02/2026 12:36, Khristine Andreea Barbulescu wrote:
+>>>>>>>>
+>>>>>>>>> +      reg:
+>>>>>>>>> +        maxItems: 1
+>>>>>>>>
+>>>>>>>> You have 'reg' so the node name should have unit-address.
+>>>>>>>>
+>>>>>>>> However, there's not any real DT resources in this child node, so you
+>>>>>>>> should just drop it.
+>>>>>>>>
+>>>>>>>
+>>>>>>> For context, SIUL2 exposes a set of platform‑capability and SoC identification registers that are split across the two discontiguous ranges: SIUL2-0 and SIUL2-1. These registers are the source of SoC information (e.g. identification and capability flags) that other subsystems are expected to consume (e.g. PCI Express). Because those fields are physically divided between the two SIUL2 ranges, consumers need reliable access to both ranges to correctly discover and configure the platform.
+>>>>>>>
+>>>>>>> Hence, my proposal is to keep the two 'syscon' child nodes.
+>>>>>>
+>>>>>> Please wrap your replies correctly, so this will be easily parseable.
+>>>>>>
+>>>>>> I do not understand the reasoning. If you have two register ranges, you
+>>>>>> have two <reg> entries and having a child node has nothing to do with it.
+>>>>>>
+>>>>>
+>>>>> I’ve reorganized the SIUL2 node with two syscon subnodes for the two
+>>>>> register regions used to read system info, and a separate
+>>>>> pinctrl/GPIO child (as discussed in the v8 06/10 thread [0]). The parent
+>>>>> SIUL2 node now carries the bus addressing and ranges:
+>>>>
+>>>> That's not the answer to the comment. Read again:
+>>>>
+>>>> 1. Reviewer: No resources, so no separate node.
+>>>> 2. Your answer: some soc capability and two address spaces
+>>>> 3. Reviewer: Does not matter, address spaces can go again to original place
+>>>> 4. Irrelevant reply.
+>>>>
+>>>> So again, read the first comment - do you have dedicated resources in
+>>>> children?
+>>>>
+>>>>>  
+>>>>>     siul2: siul2@4009c000 {
+>>>>>         compatible = "nxp,s32g3-siul2", "nxp,s32g2-siul2";
+>>>>>         #address-cells = <1>;
+>>>>>         #size-cells = <1>;
+>>>>>         ranges = <0x4009c000 0x4009c000 0x179c>,
+>>>>> 		 <0x44010000 0x44010000 0x17b0>;
+>>>>>  
+>>>>>         siul20: siul20@4009c000 {
+>>>>>             compatible = "nxp,s32g-siul2-syscfg", "syscon";
+>>>>>             reg = <0x4009c000 0x179c>;
+>>>>
+>>>> 0x179c is odd size. Looks fake.
+>>>>
+>>>>
+>>>>>         };
+>>>>>  
+>>>>>         siul21: siul21@44010000 {
+>>>>>             compatible = "nxp,s32g-siul2-syscfg", "syscon";
+>>>>
+>>>> And two same devices with same compatible proof it.
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>
+>>> We don’t have dedicated resources for children. In particular,
+>>
+>> Then previous comments/review stay.
+>>
+>>> there are no resources allocated specifically for nodes like
+>>> "nxp,s32g-siul2-syscfg". Their consumers are the pinctrl/gpio
+>>> driver and other drivers that read SoC‑specific information from
+>>> those shared registers.
+>>>  
+>>> My alternative is to keep two separate syscon providers for the
+>>
+>> You got review already.
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> Hi Krzysztof & Arnd,
+> 
+> I still believe that nvmem is a suitable and accurate mechanism for
+> describing SoC‑specific identification information, as originally
+> proposed in [0], assuming the necessary adjustments are made.
+> 
+> More specifically, instead of modeling software-defined cells, the nvmem
+> layout would describe the actual hardware registers backing this
+> information. One advantage of this approach is that consumer nodes (for
+> example PCIe, Ethernet, or other IPs that need SoC identification data)
+> can reference these registers using the standard nvmem-cells /
+> nvmem-cell-names mechanism, without introducing custom, per-subsystem
+> bindings.
 
-On 2026-03-13 10:42, Anand Moon wrote:
-> Hi Trevor,
->
-> On Fri, 13 Mar 2026 at 19:26, Trevor Gamblin<tgamblin@baylibre.com> wrote:
->> On 2026-03-09 07:40, Iker Pedrosa wrote:
->>> Add complete SD card controller support with UHS high-speed modes.
->>>
->>> - Enable sdhci0 controller with 4-bit bus width
->>> - Configure card detect GPIO with inversion
->>> - Connect vmmc-supply to buck4 for 3.3V card power
->>> - Connect vqmmc-supply to aldo1 for 1.8V/3.3V I/O switching
->>> - Add dual pinctrl states for voltage-dependent pin configuration
->>> - Support UHS-I SDR25, SDR50, and SDR104 modes
->>>
->>> This enables full SD card functionality including high-speed UHS modes
->>> for improved performance.
->>>
->>> Signed-off-by: Iker Pedrosa<ikerpedrosam@gmail.com>
->>> ---
->>>    arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts | 19 +++++++++++++++++++
->>>    1 file changed, 19 insertions(+)
->>>
->>> diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
->>> index 414b03f5e6480f05f5d7eeaaa0afb4e86425ae36..361135269801f436703b6f1d768c91325a52f07f 100644
->>> --- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
->>> +++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
->>> @@ -140,3 +140,22 @@ sd_vqmmc: aldo1 {
->>>                };
->>>        };
->>>    };
->>> +
->>> +&sdhci0 {
->>> +     pinctrl-names = "default", "state_uhs";
->>> +     pinctrl-0 = <&mmc1_cfg>;
->>> +     pinctrl-1 = <&mmc1_uhs_cfg>;
->>> +     bus-width = <4>;
->>> +     cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
->>> +     cd-inverted;
->>> +     no-mmc;
->>> +     no-sdio;
->>> +     disable-wp;
->>> +     cap-sd-highspeed;
->>> +     vmmc-supply = <&sd_vmmc>;
->>> +     vqmmc-supply = <&sd_vqmmc>;
->>> +     sd-uhs-sdr25;
->>> +     sd-uhs-sdr50;
->>> +     sd-uhs-sdr104;
->>> +     status = "okay";
->>> +};
->>>
->> Hello again,
->>
->> Thanks for doing this work. My colleagues and I have been testing this
->> on an OrangePi RV2, and also a Muse Pi Pro board (making a similar tweak
->> to this patch in k1-musepi-pro.dts). To do the testing on my end, I'm
->> applying the patch series on top of 6.19 in a Yocto BSP.
->>
->> I've been finding that I see issues with the UHS support on my side
->> (this log comes from an image built and flashed to an SD card):
->>
->>
->> [ 1.072417] sdhci-spacemit d4280000.mmc: Got CD GPIO
->> [ 1.109741] mmc0: SDHCI controller on d4280000.mmc [d4280000.mmc] using
->> ADMA
->> [ 1.114589] clk: Disabling unused clocks
->> [ 1.118421] PM: genpd: Disabling unused power domains
->> [ 1.123249] ALSA device list:
->> [ 1.126[ 1.129949] check access for rdinit=/init failed: -2, ignoring
->> [ 1.133284] Waiting for root device
->> PARTUUID=e94bfdd7-a36f-4315-a480-476e2a12403d...
->> [ 1.176569] mmc0: new UHS-I speed DDR50 SDHC card at address aaaa
->> [ 1.180732] mmcblk0: mmc0:aaaa SS16G 14.8 GiB
->> [ 1.276268] mmcblk0: recovery failed!
->> [ 1.277351] I/O error, dev mmcblk0, sector 0 op 0x0:(READ) flags
->> 0x800000 phys_seg 1 prio class 2
->> [ 1.286346] Buffer I/O error on dev mmcblk0, logical block 0, async page
->> read
->> [ 1.293891] mmcblk0: recovery failed!
->> [ 1.297289] I/O error, dev mmcblk0, sector 0 op 0x0:(READ) flags
->> 0x800000 phys_seg 1 prio class 2
->> [ 1.306269] Buffer I/O error on dev mmcblk0, logical block 0, async page
->> read
->> [ 1.313522] mmcblk0: unable to read partition table
->>
->>
->> At first I wondered if maybe there was an issue with the card itself,
->> but by changing the sdhci0 section to this, I'm able to read the SD just
->> fine:
->>
-> I used the same example on the K1-OrangePi-RV2 DTS,
-> But it’s slightly different from the one you’re working with.
-> I tested on the latest  7.0-rc3.
->
->> &sdhci0 {
->>            pinctrl-names = "default";
->>            pinctrl-0 = <&mmc1_cfg>;
->>            bus-width = <4>;
->>            cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
->>            cd-inverted;
->>            no-mmc;
->>            no-sdio;
->>            disable-wp;
->>            vmmc-supply = <&sd_vmmc>;
->>            vqmmc-supply = <&sd_vqmmc>;
->>            no-1-8-v;
->>            status = "okay";
->> };
->>
-> +
-> +&sdhci0 {
-> +       pinctrl-names = "default", "state_uhs";
-> +       pinctrl-0 = <&mmc1_cfg>;
-> +       pinctrl-1 = <&mmc1_uhs_cfg>;
-> +       bus-width = <4>;
-> +       cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
-> +       cd-inverted;
-> +       no-mmc;
-> +       no-sdio;
-> +       disable-wp;
-> +       cap-sd-highspeed;
-> +       vmmc-supply = <&sd_vmmc>;
-> +       vqmmc-supply = <&sd_vqmmc>;
-> +       sd-uhs-sdr25;
-> +       sd-uhs-sdr50;
-> +       sd-uhs-sdr104;
-> +       status = "okay";
-> +};
->
-> Thanks
-> -Anand
-Yes, my mistake - with 7.0-rc3 it works for me:
-
-[    1.071767] sdhci-spacemit d4280000.mmc: Got CD GPIO
-[    1.110368] mmc0: SDHCI controller on d4280000.mmc [d4280000.mmc] using ADMA
-[    1.115231] clk: Disabling unused clocks
-[    1.119072] PM: genpd: Disabling unused power domains
-[    1.123875] ALSA device list:
-[    1.1268[    1.130718] Waiting for root device PARTUUID=e94bfdd7-a36f-4315-a480-476e2a12403d...
-[    1.181158] mmc0: new UHS-I speed DDR50 SDHC card at address aaaa
-[    1.185341] mmcblk0: mmc0:aaaa SS16G 14.8 GiB
-[    1.198009] GPT:Primary header thinks Alt. header is not at the end of the disk.
-[    1.202874] GPT:1134331 != 31116287
-[    1.206388] GPT:Alternate GPT header not at the end of the disk.
-[    1.212468] GPT:1134331 != 31116287
-[    1.215993] GPT: Use GNU Parted to correct GPT errors.
-[    1.221230]  mmcblk0: p1 p2 p3
-[    1.529978] EXT4-fs (mmcblk0p3): mounted filesystem dbc76877-092e-4f8a-9f06-bf286309d8de r/w with ordered data mode. Quota mode: disabled.
-[    1.540069] VFS: Mounted root (ext4 filesystem) on device 179:3.
+nvmem is applicable only if this is NVMEM. Information about the soc is
+not NVMEM, unless this are blow out fuses / efuse. Does not look like,
+because SoC information is set probably during design phase, not board
+assembly.
 
 
-In which case:
-
-Tested-by: Trevor Gamblin <tgamblin@baylibre.com>
+Best regards,
+Krzysztof
 
