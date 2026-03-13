@@ -1,221 +1,277 @@
-Return-Path: <devicetree+bounces-275314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275317-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AFEHB7octGlLhQAAu9opvQ
-	(envelope-from <devicetree+bounces-275314-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:18:34 +0100
+	id qJPlECYhtGnahgAAu9opvQ
+	(envelope-from <devicetree+bounces-275317-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:37:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FC7F284C8F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:18:33 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF3832851EB
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:37:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B0953322F7A3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:14:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B8FE930242B0
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:16:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D91A4396599;
-	Fri, 13 Mar 2026 14:14:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57E9138C2B3;
+	Fri, 13 Mar 2026 14:15:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dmOXagPF";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="frwlslwm"
+	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b="Q1t8PKGP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE6793368AB
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 14:14:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773411242; cv=none; b=ErUKpiFl+WwOizfUlqvRT6mRdMKhM+/BYWfCmKXa3ntT95ADZgWg4ta6Kl6BXhicBphdc55f05GhjPgMuguS/lBHkd5zxkdXqzJ9gSpt0BrPXsj525h2FsReNfnoYdauGqTb+fxBxdFe5z1LlCQYvfCaq9mN54m/rnb3cWRPkY8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773411242; c=relaxed/simple;
-	bh=2Ax6mEoBmIIINq7jKCbWHwBPcWYjG4Z6TEjYdt9ZADA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Keyy+udc58FgGSReQ3s7SLLfhRqNv60qLr1T+OOqXWgrM/cYhL2yc6F5gJDaDfrUlYhnY16NOz8xaLMUZIfQGAFp+eeh6RM3dt1YI9A5L2719Tgl//gtELw+Q3WKvM517Ie2v+62tkieaDvnjZ90QbVXkn1xP0sD5dPc97CY7m8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dmOXagPF; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=frwlslwm; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62DBrXpx4140736
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 14:14:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	6MkXKrmgHZEgqEUoaPglu+nEPsg2SnNw3eYI/5+7A20=; b=dmOXagPFgDc19zEQ
-	I1ngbGcpsA/rJ3dxQEUqfQBGXf6KBmN8+/BQpNkn1RMkkguWcDF2UIUITYySjm4R
-	TgJcDKkqBT7KbJz02P+SYgE119LxFikSH9C3z8FDpGGuZjs9lqN2Stg3OrpH2XxE
-	UVklkl1aE1HQmd7Jc6XIw++fFs+uzwDfGPhrI8SLF3G7cpFoZ2wk5EF+0BhJhbk8
-	6ar9FEVOw27OVbhPMd2Chwk8rmQr0ZwjNR9fQlHNOzgFgEwlHHoMSCtrdTStVk1D
-	6uCsiSil4CaJGGpQMcwZ1Nk2mUR0PIGxH5xCsBLOBiuInsG8gAyDSjbMB1d4I28+
-	sYmonA==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cvbn29x4m-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 14:14:01 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2aec6c572fbso106855175ad.1
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 07:14:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773411240; x=1774016040; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6MkXKrmgHZEgqEUoaPglu+nEPsg2SnNw3eYI/5+7A20=;
-        b=frwlslwm3ZlR0nJ/INtWnYB8PLFnX8NUWMoK7/4vjDmZTbgC7HYzY6O0onR7UwTk3b
-         VOYLE4uAfLmsoTfBv0m08QahdE4BAFM8KblysNaIchc4i0IyUXUwf3lZfE9juOMo4iR1
-         CwO21XZ3QGIOaJiCOMzqZEfwQxCtE5UMIewq6YBcuc1isJ59PsYtMkUr6YonAC30e2Cu
-         qgA8WQAbjhIYydQ7cpAcEbjS/RSRTAwod8vPSo4s2EWx8DmTaSVqkmI2kVP5SfhugvFE
-         +Oy5Cu537kdIvKc/KGIzBMa7nUzknjEmIhibDq5A9bVCAL7tNiAhbk1lmGe4p5RcCpkc
-         sCtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773411240; x=1774016040;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6MkXKrmgHZEgqEUoaPglu+nEPsg2SnNw3eYI/5+7A20=;
-        b=THZBosUmeIb+EybCrIG0Hh2UFcvfmLIoIGGY6kEvSbUmMKaD/Wg9IIIBjsqJbHETmH
-         4bBLRA7dwjEPiJA+BC4vVSU1NFfQEK/yK7tcTRJD7utiVwWOGvPCf/RUCEhlFhMInpsK
-         92pCdpQJT7YxYx/OcMNXBX5AqFP3nBVRB7LDmIPzBUJof6hUH20s3+mna5AVIFPsd9Q/
-         MCuL+PKotRPRKH9Fy+MM+GYIIh13sedzFmsCafREkx5p6R27EZtPuylhQandAudT2EYm
-         iCiJk7hXKjTzNlmFHp8kQUVVqGF4FSipoHZoG4UE4XTikRZDggo72naZCyrxwjuknJ1t
-         U/IA==
-X-Forwarded-Encrypted: i=1; AJvYcCUaU2Kh9kJEPZ0pPso9fXdET1VmjliI/S9pgQxFS82b+2DeEytKzAwVR6s3ZcVXfCynCWrTbL+wJUL+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxi1t9gXCgFe+NFeErQcJThoFOSqAwyuXLiqsLg1PUj/25r6tYw
-	XzHd9aRvAtrUMTNr7yB2PFZWFsFtVYgIr6+WkG3dhshRtLsZ+pAR3z2SsKY2gqqCUFRQerq8ssn
-	BXfGJAUm16nPIBB3gqA++G6WPe4WsupR5V8zfx2A3keKUybKSmHbbQqu8+B4yQlP0
-X-Gm-Gg: ATEYQzwDrlaU879vCPnNdsfaS7DhWsG8OydCSOV67POWJ2HM0tn6zbGRNPQMo+SELUo
-	18R28tDx44Nzj+7GzMdlAKkgfz36TVqciBMOSyVvib3h3XZq+sl1hC4cgNSe6FmxeWmnTXORSP/
-	JbP+udMuBwTtQCY2kOZtE90HrOAiWI5Ibh1GG60kFZytYrFHisMNqxMD0YLcGoU2INdQ28rt+o7
-	3orKbR3XE3Sm437YXRYL00uOeXGemT4j8GMU6GVcLAJap76aIVGs3hEzM9TU4BOlhq9JNd1jbYU
-	lU+wiiIm5NZ8gPSIKE1NIhBzama4M3j5Fm05O9lZDdh1pNYQsQzd3mATcGSUOhdhQWDcApcSX7q
-	4nNbtu+5J+wWRqXrXv2UwdZgojcTD4Uzi6aN987tBTDQ=
-X-Received: by 2002:a17:902:ffce:b0:2ae:d3fb:bc08 with SMTP id d9443c01a7336-2aed3fbbe29mr12260865ad.26.1773411240342;
-        Fri, 13 Mar 2026 07:14:00 -0700 (PDT)
-X-Received: by 2002:a17:902:ffce:b0:2ae:d3fb:bc08 with SMTP id d9443c01a7336-2aed3fbbe29mr12260555ad.26.1773411239885;
-        Fri, 13 Mar 2026 07:13:59 -0700 (PDT)
-Received: from [192.168.1.8] ([101.0.62.124])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2aece56c2b9sm30155405ad.18.2026.03.13.07.13.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Mar 2026 07:13:59 -0700 (PDT)
-Message-ID: <b734c3bd-c54e-4463-a93f-0a9b89f2d7d6@oss.qualcomm.com>
-Date: Fri, 13 Mar 2026 19:43:54 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9C22219301;
+	Fri, 13 Mar 2026 14:15:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773411359; cv=pass; b=Hg/NBkIdl2FKoVRwWuCiqR9jV4bDkfnUBspR998k/JFtYnJAxq98Uyf716TQeCOWrgL92+qP7nAphsv23gQdwEgbzMSxCUp9Liubovj5w7j+yqv5r/B/ePaXga5Go2A7AsEgbW0BrB2EIdmzla/HGlCFCOrBLyfsJRSL2MRDpYM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773411359; c=relaxed/simple;
+	bh=BMYkIJzGNQB9BqQChyeP4jCteSWxKiciV5+aVqAqd4Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=diwhuc4ne7abQ/OQTZVQX1L7g1aNu0PFuO/69C2gv3rvM2zJCUWD7i88CmRNq3ZlSEtGlKuKRlO2Y9bvkrZlYB9zoMBwu4xT96bZe2rMxHdsEoVcjf8S4oLEJacl6dJPcpqiPHN+qHgrLa8rI61IeSkOBMpDoAJPJHRRpcqUaYE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b=Q1t8PKGP; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
+ARC-Seal: i=1; a=rsa-sha256; t=1773411339; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=iFEA9eJzcAmnXms33ePjSGqMxaL+zBVtJIHp5wTUqGcKOK/vQCZc9LRLYf3ptCfO0LRjJxNhs2fS593oDD8gT0P4nhnfTauaqFDGV/aum6sQh7Zh6L69Hzi3Rr4XhYDZpR9jC3AkQvIKGfwRD91H1DtO79+zGk5uvv6Mqfimoyc=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1773411339; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=4yyd8XotYjZZYwF11KV/R0g/vISzO4FDRU2zkUZnLvI=; 
+	b=EcitN7t3/g9tEqt9dilvFyN2RE2BieCKIUtrN41+2pT53dpsXQ0sDA6o728iupzIAcUMjyYdQxZ1FbvRdL6sLjOGSx5hVvkZnkFsinCb+tK8y2MWaE2cTvQn/ekxNPv77D89vr2qESmnkGD1VORZe4eEbjPXVRHCUumSe7UF6BE=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=ziyao.cc;
+	spf=pass  smtp.mailfrom=me@ziyao.cc;
+	dmarc=pass header.from=<me@ziyao.cc>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1773411339;
+	s=zmail; d=ziyao.cc; i=me@ziyao.cc;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To:Message-Id:Reply-To;
+	bh=4yyd8XotYjZZYwF11KV/R0g/vISzO4FDRU2zkUZnLvI=;
+	b=Q1t8PKGPX7yPTCBA5zsq9dyX3ZFA0WTh6X92KgdUQzZVpWU92R3u3cpG/0AGjPJB
+	JF9sGc0Xm0rAw46Fr4aHcxIFxS/m6IUsk/R8NDiXpCKWKw/YfuvlZ8rdX1sUH+apGVz
+	Vc7H7Yc9sXVvE3Pd6A8rLH+qCRsmd7ko2v1irjak=
+Received: by mx.zohomail.com with SMTPS id 1773411336146483.83149193111865;
+	Fri, 13 Mar 2026 07:15:36 -0700 (PDT)
+Date: Fri, 13 Mar 2026 14:15:23 +0000
+From: Yao Zi <me@ziyao.cc>
+To: Iker Pedrosa <ikerpedrosam@gmail.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@kernel.org>
+Cc: Michael Opdenacker <michael.opdenacker@rootcommit.com>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 4/7] mmc: sdhci-of-k1: add comprehensive SDR tuning
+ support
+Message-ID: <abQb-wU4S1NrBPXk@pie>
+References: <20260309-orangepi-sd-card-uhs-v2-0-5bb2b574df5d@gmail.com>
+ <20260309-orangepi-sd-card-uhs-v2-4-5bb2b574df5d@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/5] platform: arm64: Add driver for EC found on
- Qualcomm reference devices
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Hans de Goede <hansg@kernel.org>,
-        =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
-        Maya Matuszczyk <maccraft123mc@gmail.com>
-References: <20260313-v04-add-driver-for-ec-v4-0-ca9d0efd62aa@oss.qualcomm.com>
- <20260313-v04-add-driver-for-ec-v4-2-ca9d0efd62aa@oss.qualcomm.com>
- <9241da21-6b02-434d-a746-6bccc25a335d@linaro.org>
-Content-Language: en-US
-From: Anvesh Jain P <anvesh.p@oss.qualcomm.com>
-In-Reply-To: <9241da21-6b02-434d-a746-6bccc25a335d@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: oFFmi-JhyRJNjybgg_Sif98kn5dVcktQ
-X-Proofpoint-GUID: oFFmi-JhyRJNjybgg_Sif98kn5dVcktQ
-X-Authority-Analysis: v=2.4 cv=ZKfaWH7b c=1 sm=1 tr=0 ts=69b41ba9 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=EhmMhbG5NVnfTD3xWHIiWQ==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
- a=kLZw7Tj2Bp1Qn3bclxgA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEzMDExMyBTYWx0ZWRfXy0zpXy7B350H
- k99mnAed9TrSqMXy/0+4/aacskDzcS4NUtJ1/9a3D9zu4M1/9ftQZZiMu3yex0vIlmAhL8nL9eU
- V2iRRi08iJoO8iWRAkzYTj981O4kzwRhA5UJt+6m2UeuE327OhI4NJYeNLFPy+fz5L/xSrMx6U+
- 61cxhCTG+Z7yRzaEKDFrKoWhvumyX0HGGpS0UwP40tBCnW/nM+eWyBpK5ooY77LwP0jeDDUA+LB
- NM819MngKN5YrueprfXgdJ4d8VGB+HkCwOPBaZ1WTtDc0TkU4VzpRytYailgVU5O/UmOPW4GXM5
- cQZiiXryPR8dpEf7DO1myD8DMUxjA3KFNuhdczQdKmY4YsJBz0JGdhqemFrO8Xpd+Y2cz8pf4qT
- k7yCyiXxmsNS5lsMb2UgXZto+bU8w3AfO+DToGRKdJ6kfUtVDAJSjTfcOyXS4Lf7GOXfTgIBeAf
- lUyc5iZ3kfikwccb+hg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-13_02,2026-03-13_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 clxscore=1015 spamscore=0 malwarescore=0 suspectscore=0
- lowpriorityscore=0 bulkscore=0 adultscore=0 priorityscore=1501 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603130113
-X-Spamd-Result: default: False [-0.66 / 15.00];
+In-Reply-To: <20260309-orangepi-sd-card-uhs-v2-4-5bb2b574df5d@gmail.com>
+X-ZohoMailClient: External
+X-Spamd-Result: default: False [9.34 / 15.00];
+	URIBL_BLACK(7.50)[ziyao.cc:dkim];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-275314-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:dkim];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	R_DKIM_ALLOW(0.00)[ziyao.cc:s=zmail];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-275317-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,linaro.org,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	GREYLIST(0.00)[pass,body];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[anvesh.p@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DMARC_POLICY_ALLOW(0.00)[ziyao.cc,quarantine];
+	DKIM_TRACE(0.00)[ziyao.cc:+];
+	NEURAL_HAM(-0.00)[-0.826];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 6FC7F284C8F
-X-Rspamd-Action: no action
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[me@ziyao.cc,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c04:e001:36c::/64:c];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: AF3832851EB
+X-Rspamd-Action: add header
 X-Rspamd-Server: lfdr
+X-Spam: Yes
 
-
-
-On 3/13/2026 5:47 PM, Bryan O'Donoghue wrote:
-> On 13/03/2026 10:29, Anvesh Jain P wrote:
->> + * Read Response:
->> + *
->> ----------------------------------------------------------------------
->> + * | Offset    | Name        | Description                |
->> + *
->> ----------------------------------------------------------------------
->> + * | 0x00    | Byte count    | Number of bytes in response        |
->> + * |        |        | (exluding byte count)            |
+On Mon, Mar 09, 2026 at 12:40:14PM +0100, Iker Pedrosa wrote:
+> Implement software tuning algorithm to enable UHS-I SDR modes for SD
+> card operation. This adds both TX and RX delay line tuning based on the
+> SpacemiT K1 controller capabilities.
 > 
-> Great to see this documented in the code.
+> Key features:
+> - Conditional tuning: only tune when SD card is present and for
+>   high-speed modes (≥100MHz)
+> - TX tuning: configure transmit delay line with default values
+>   (dline_reg=0, delaycode=127) to ensure optimal signal output timing
+> - RX tuning: test full delay range (0-255) with window detection
+>   algorithm to find optimal receive timing
+> - Retry mechanism: multiple fallback delays within optimal window for
+>   improved reliability
+> - Complete register support: add delay line control and configuration
+>   register definitions for fine-grained timing control
 > 
-> Please run checkpatch and take heed of what it says.
-> 
-> 0002-platform-arm64-Add-driver-for-EC-found-on-Qualcomm-r.patch has no
-> obvious style problems and is ready for submission.
-> 0002-platform-arm64-Add-driver-for-EC-found-on-Qualcomm-r.patch:184:
-> exluding ==> excluding, exuding
-> 0002-platform-arm64-Add-driver-for-EC-found-on-Qualcomm-r.patch:224:
-> exluding ==> excluding, exuding
-> total: 0 errors, 0 warnings, 0 checks, 28 lines checked
+> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
 
-Thanks for the review! Confirmed the typo — will fix both occurrences in
-the next revision of the patch series.
+Sorry for raising this late: I think PATCH 3 and PATCH 4 (this one)
+should also be squashed together to form a complete functionality, I
+also doubt otherwise whether compilers complain about unused static
+functions with only PATCH 3 applied.
 
-> 
 > ---
-> bod
+>  drivers/mmc/host/sdhci-of-k1.c | 119 +++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 119 insertions(+)
+> 
+> diff --git a/drivers/mmc/host/sdhci-of-k1.c b/drivers/mmc/host/sdhci-of-k1.c
+> index 79cb7c8d0b6d9c4206bf01721651c8efe8a173c9..d903851b9be0e1d21a2b30636f5e63a52cad0dc2 100644
+> --- a/drivers/mmc/host/sdhci-of-k1.c
+> +++ b/drivers/mmc/host/sdhci-of-k1.c
+> @@ -84,6 +84,12 @@
+>  #define  SDHC_TX_DLINE_REG_MASK         GENMASK(23, 16)
+>  
+>  #define SPACEMIT_RX_DLINE_REG		9
+> +#define SPACEMIT_RX_TUNE_DELAY_MIN	0x0
+> +#define SPACEMIT_RX_TUNE_DELAY_MAX	0xFF
+> +#define SPACEMIT_RX_TUNE_DELAY_STEP	0x1
 
-Best regards,
-Anvesh
+I think the STEP constant isn't very helpful, to me its purpose is
+quite obvious in spacemit_sdhci_execute_tuning(), and you could simplify
+the tuning function without adding confusing magic numbers -- since the
+constant is literally one.
+
+> +#define SPACEMIT_TX_TUNING_DLINE_REG	0x00
+> +#define SPACEMIT_TX_TUNING_DELAYCODE	127
+
+...
+
+> +static int spacemit_sdhci_execute_tuning(struct sdhci_host *host, u32 opcode)
+> +{
+> +	int ret = 0;
+> +	int i;
+> +	bool pass_window[SPACEMIT_RX_TUNE_DELAY_MAX + 1] = {false};
+> +	int pass_len = 0, pass_start = 0, max_pass_len = 0, max_pass_start = 0;
+> +	u8 final_delay;
+> +	struct mmc_host *mmc = host->mmc;
+> +	struct mmc_ios ios = mmc->ios;
+> +
+> +	/*
+> +	 * Tuning is required for SDR50/SDR104, HS200/HS400 cards and
+> +	 * if clock frequency is greater than 100MHz in these modes.
+> +	 */
+> +	if (host->clock < 100 * 1000 * 1000 ||
+> +	    !(ios.timing == MMC_TIMING_MMC_HS200 ||
+> +	      ios.timing == MMC_TIMING_UHS_SDR50 ||
+> +	      ios.timing == MMC_TIMING_UHS_SDR104))
+> +		return 0;
+> +
+> +	if (!(mmc->caps2 & MMC_CAP2_NO_SD) && !mmc->ops->get_cd(mmc))
+> +		return 0;
+
+Is this check really necessary? Shouldn't this be handled in MMC core
+instead?
+
+> +	if (mmc->caps2 & MMC_CAP2_NO_MMC) {
+> +		spacemit_sdhci_set_tx_dline_reg(host, SPACEMIT_TX_TUNING_DLINE_REG);
+> +		spacemit_sdhci_set_tx_delay(host, SPACEMIT_TX_TUNING_DELAYCODE);
+> +		spacemit_sdhci_tx_tuning_prepare(host);
+> +
+> +		dev_dbg(mmc_dev(host->mmc), "TX tuning: dline_reg=%d, delaycode=%d\n",
+> +			SPACEMIT_TX_TUNING_DLINE_REG, SPACEMIT_TX_TUNING_DELAYCODE);
+> +	}
+> +
+> +	spacemit_sdhci_prepare_tuning(host);
+> +
+> +	for (i = SPACEMIT_RX_TUNE_DELAY_MIN; i <= SPACEMIT_RX_TUNE_DELAY_MAX;
+> +	     i += SPACEMIT_RX_TUNE_DELAY_STEP) {
+
+The last expression could be simply i++ if you drop
+SPACEMIT_RX_TUNE_DELAY_STEP, this is still quite readable. Same for the
+loop below.
+
+> +		spacemit_sdhci_set_rx_delay(host, i);
+> +
+> +		ret = mmc_send_tuning(host->mmc, opcode, NULL);
+> +		pass_window[i] = (ret == 0);
+> +
+> +		dev_dbg(mmc_dev(host->mmc), "RX delay %d: %s\n",
+> +			i, pass_window[i] ? "pass" : "fail");
+> +	}
+> +
+> +	for (i = SPACEMIT_RX_TUNE_DELAY_MIN; i <= SPACEMIT_RX_TUNE_DELAY_MAX;
+> +	     i += SPACEMIT_RX_TUNE_DELAY_STEP) {
+> +		if (pass_window[i]) {
+> +			if (pass_len == 0)
+> +				pass_start = i;
+> +			pass_len++;
+> +		} else {
+> +			if (pass_len > max_pass_len) {
+> +				max_pass_len = pass_len;
+> +				max_pass_start = pass_start;
+> +			}
+> +			pass_len = 0;
+> +		}
+> +	}
+
+It seems pass_window is only used once in the later loop, why not
+calculate and maintain the best window and its size on the fly? Then you
+could get avoid of the pass_window buffer, and refactor a loop away.
+Something like,
+
+	int current_size, max_window, max_size;
+
+	current_size = 0;
+	max_size = 0;
+	for (i = SPACEMIT_RX_TUNE_DELAY_MIN; i < SPACEMIT_RX_TUNE_DELAY_MAX;
+	     i++) {
+		ret = /* try tuning ... */
+
+		if (ret) {
+			if (max_size < current_size) {
+				max_window = i - current_size;
+				max_size = current_size;
+			}
+
+			current_size = 0;
+		} else {
+			current_size++;
+		}
+	}
+
+	if (current_size > max_size) {
+		max_window = i - current_size;
+		max_size = current_size;
+		current_size = 0;
+	}
+
+should work, too, and is simpler.
+
+Regards,
+Yao Zi
 
