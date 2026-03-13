@@ -1,143 +1,147 @@
-Return-Path: <devicetree+bounces-275072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275073-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4MiGFvrYs2mzbgAAu9opvQ
-	(envelope-from <devicetree+bounces-275072-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 10:29:30 +0100
+	id GP+oA+HZs2mzbgAAu9opvQ
+	(envelope-from <devicetree+bounces-275073-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 10:33:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C704B2807EE
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 10:29:29 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C308E2808DE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 10:33:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 451E330E2958
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:25:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2CECA3083F88
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:29:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47DE838C2BA;
-	Fri, 13 Mar 2026 09:25:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12F5F388E7B;
+	Fri, 13 Mar 2026 09:29:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="rtK4yurW"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="EDn0BA/N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB3F6387377;
-	Fri, 13 Mar 2026 09:25:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D818A36D9FA
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 09:29:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773393914; cv=none; b=mgK9wRkGv1CsIbN0XdLKyU/Y20Xs7+GF0/5R8a0XMaiaxwIn893IbqkSoM+3l+NKMskq0/vjkgt5ZRqn3gf0JpiIsUE77HDemFkipPqzoO+NTecicz+ZxOod+lsZbL0lSFoF7kbDlclIe80vLLHIX4sHnmmoATk28JEIdxSDrqE=
+	t=1773394142; cv=none; b=hD5YkqQ+OkndruS7ox6E+XuPpZpyyuSaFMTJ03xGElehnojcpOv4IuWHo6voSgB2jrxXDE9UFYE2XxmgzKJV69snnGSMGQGzspwpDjLoSqQr50tr31B1mB/dCGR/PtjUgF7z6uWcfC2zZ6b8o9fuJ9FfFllsmx3o2i+yQKYDgxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773393914; c=relaxed/simple;
-	bh=u7PHLQzEyh0y8EnqzZnd5xv6yY/Iw0TdZ7FpjnU0KQk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a86dmxVR+B3TVZy3D2j4FFh/ZwMTpqHvaNXns5puUoUlgcRDCLyEq6aUV+R3vvSntki4lpU8gt50+uSfng6zNdHxwi3kpymp6iYOUymhFeK8VCXYUQHgPJeu1ihlRygEiTHWqZP+Z/FYUS016zCAH2EjlJjQgK5TTyeYFftCyV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=rtK4yurW; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=umrsSGTwb1y3zhmlEYx9qju8b83JtHbMLtH0KKSuGXg=; b=rtK4yurWV0aQ/kXCppIokAjzI4
-	hSCwsz7v4XM1kswZv9CTB+lWBzibTnizExy74DUJXphgcZyz6Lb55rmTdiTubkkUL5JD0BDZ6zBLc
-	8pw0w9a8+UGZq9i5nnPHEkK1e184FA5Hnn9kWc/EuR2FgKx3sE1B0E7ItmYDlFehM9J9HAK1JvwWh
-	mnGrZUb6McZ0vahQ2EUgs1X+RT1syOuaOHAA6qP+G4i+bCvQK4mjcaeXiUBnzRgbX0X4qFqUNIHee
-	xs6iPObU6qG8rS+Obs4q/2KcDLhe/GK0CKWPLLi8tntr3H9MKeGZcbjHhjyX4P4qyE/T0FmQA0+lu
-	bmgCTHZA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:48998)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1w0ylE-000000000Yg-0JZT;
-	Fri, 13 Mar 2026 09:24:48 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1w0ylA-0000000086N-1vZP;
-	Fri, 13 Mar 2026 09:24:44 +0000
-Date: Fri, 13 Mar 2026 09:24:44 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: jan.petrous@oss.nxp.com
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	vladimir.oltean@nxp.com, boon.khai.ng@altera.com
-Subject: Re: [PATCH net-next v12 1/4] net: stmmac: platform: read channels irq
-Message-ID: <abPX3C1CWZb3k_V8@shell.armlinux.org.uk>
-References: <20260313-dwmac_multi_irq-v12-0-b5c9d0aa13d6@oss.nxp.com>
- <20260313-dwmac_multi_irq-v12-1-b5c9d0aa13d6@oss.nxp.com>
+	s=arc-20240116; t=1773394142; c=relaxed/simple;
+	bh=nYRFnLPrTONi7U7O1Enq4WB5OEJpZYPZGRPBstu1j9I=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=EP1uaCDyeAzGe18E9Wf1q+1SGyBS6mgNcLKpl5pCNGcqAHbp+YJ7sw1FarB0SVbBU5LAcoDprtbJt0Io4NfvwiTcg/j28rmJaj7boNihhZIeCYWaTK45AxdVjfeCuRB4k4OsrPtmZ1yJIaU5mqgM4ET3b1pU1MrZ1nhx3Ce6rfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=EDn0BA/N; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 5421E4E42680;
+	Fri, 13 Mar 2026 09:28:59 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 24B3960027;
+	Fri, 13 Mar 2026 09:28:59 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4B88510369555;
+	Fri, 13 Mar 2026 10:28:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1773394138; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=MeXmCnU6DkpJjDmOkF4Kl8YHcZPKKCKszdRslHD03ME=;
+	b=EDn0BA/Np4DWs10goVewjq2nRwiiWAdgjN1OO52/TU46cKug/fB4LXKFTooud2iCJ7WFAM
+	yIAqT5YepKsqHa3lrxEd2DYfzm88Ky+XC84kZzE9B4R3bS6R56Sv7e1wj5kDnUseMs9IMw
+	bMD4qaRz3DmyYibHFl4Av5D6gVIKWihqomEPUaQboC2wXM6LGTD5GTr2czSHmtcboZ60iT
+	qkNfahVXekJOPEc3EdTw4x8WOzD5nghJWlItGidksZkOhgDvHzAjqQXjpumqlGJODE54AU
+	VnuUg8GSyjAjb/C6lVv1uwlwKe/lLeOVbZkKqXjuwLgK8CNsfPaz8ZcogAFaUw==
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Frank Li <Frank.Li@nxp.com>, Frieder Schrempf <frieder.schrempf@kontron.de>, 
+ imx@lists.linux.dev, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-rtc@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
+ Frieder Schrempf <frieder@fris.de>
+Cc: Annette Kobou <annette.kobou@kontron.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>
+In-Reply-To: <20260309085749.25747-1-frieder@fris.de>
+References: <20260309085749.25747-1-frieder@fris.de>
+Subject: Re: (subset) [PATCH v3 0/2] Kontron i.MX8MP OSM Devicetree Fixups
+Message-Id: <177339410764.2782875.6884612032294375531.b4-ty@bootlin.com>
+Date: Fri, 13 Mar 2026 10:28:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260313-dwmac_multi_irq-v12-1-b5c9d0aa13d6@oss.nxp.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spamd-Result: default: False [1.14 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=439;
+ i=alexandre.belloni@bootlin.com; h=from:subject:message-id;
+ bh=nYRFnLPrTONi7U7O1Enq4WB5OEJpZYPZGRPBstu1j9I=;
+ b=owEBbQKS/ZANAwAKAWOk3DBscDoyAcsmYgBps9jI1uZM7eWpDS8rTcWpBXfEtGRKFhN+YxZMF
+ yZmooD0hC+JAjMEAAEKAB0WIQQGqwVVleHyz/Q7kmJjpNwwbHA6MgUCabPYyAAKCRBjpNwwbHA6
+ MlhnD/4+HCdR7zX8Z+uBkvQwNxwW1gwSrniKNKkxjYztDiGeFGH7NWiLecjKwfqw/TYsvqY1Fz8
+ y4GeFdusQtmplFJ90uqQ/2Oq7u+bgsM2p8O8LtEfdToqpnnm+lEiWfEOLG1J8cq63h5yhFeJdM4
+ tvh97+PxquzdrOD3xSCTy8oUKUssqKPMzLpgifgYSysrdvvY6+vxv8lqD1fBeGEDFf4R80bH47G
+ HX9suO2A1Jhjlf/n/3/c/LiHS2/lqfFpWpdiQ74xBIwMgXgNiqlJFm795Qr6OkWZ3ljxqrU+tUA
+ maQ6I5l+B1Ep1IuGmNO6xLVAd+Gwza2isxomF4Ik05JhNufWiajlw0CDO1TepHh+8jRFqr5EtMo
+ yK3f2PrXfqo0VZDf6E9TFtrtXc6WjGj5ARogE5EzKBaRltlsNKotm0YxiI95ioS50GQ/gTYaCr3
+ 1841EXYY3o8BX0vun2h93YRkVvxE8T678hc5olnnHMietCfNg+MhPGaEo1g5x4oP2cptZKdL/o3
+ dg2nKsnazMcGYv4dDgknywEWYT/cHIT/eoj/DBom5Np0Xm2pghaYqDWBgoOtWrqeWFO7pLM95Nl
+ wS75hU/bnsNrEi1Oua69YS1072MxINGSSadX0s/HOL8xm9+VDFB2fVJF1QsV7KSaJRn1Iv9x8IU
+ pQNUThWh9LI9KRQ==
+X-Developer-Key: i=alexandre.belloni@bootlin.com; a=openpgp;
+ fpr=D42657F65BEB9D45A004FCFAA6CD9F096F642CB3
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275072-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,suse.com,oss.nxp.com,nxp.com,pengutronix.de,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,lists.linux.dev,altera.com];
-	RCPT_COUNT_TWELVE(0.00)[28];
+	TAGGED_FROM(0.00)[bounces-275073-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[armlinux.org.uk:-];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[kontron.de,gmail.com,pengutronix.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.960];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexandre.belloni@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,shell.armlinux.org.uk:mid,suse.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,armlinux.org.uk:email,armlinux.org.uk:url]
-X-Rspamd-Queue-Id: C704B2807EE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:mid,kontron.de:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C308E2808DE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 08:13:32AM +0100, Jan Petrous via B4 Relay wrote:
-> From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+On Mon, 09 Mar 2026 09:57:41 +0100, Frieder Schrempf wrote:
+> Kontron i.MX8MP OSM Devicetree Fixups
 > 
-> Read IRQ resources for all rx/tx channels, to allow Multi-IRQ mode
-> for platform glue drivers.
+> From: Frieder Schrempf <frieder.schrempf@kontron.de>
 > 
-> Reviewed-by: Matthias Brugger <mbrugger@suse.com>
+> This contains three fixes and one cosmetic change for
+> the Kontron i.MX8MP OSM devices.
+> 
+> [...]
 
-Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+Applied, thanks!
 
-Thanks!
+[1/2] dt-bindings: rtc: microcrystal,rv3028: Allow to specify vdd-supply
+      https://git.kernel.org/abelloni/c/10663044bee5
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Best regards,
+
 
