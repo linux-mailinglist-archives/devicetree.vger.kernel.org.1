@@ -1,91 +1,89 @@
-Return-Path: <devicetree+bounces-275136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275137-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mNPVNgbus2m4dQAAu9opvQ
-	(envelope-from <devicetree+bounces-275136-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 11:59:18 +0100
+	id SCQgIz3us2m4dQAAu9opvQ
+	(envelope-from <devicetree+bounces-275137-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 12:00:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72FFA281D84
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 11:59:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECB3B281D9B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 12:00:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 08A45321BEFF
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 10:56:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ACCDC30D72C8
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 10:57:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA6FF390229;
-	Fri, 13 Mar 2026 10:56:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02DB338F636;
+	Fri, 13 Mar 2026 10:57:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBDA93358BF
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 10:56:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E70BE2F6910
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 10:57:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773399363; cv=none; b=q2hc8HMhBv+1pEy5wbms2/fnu2FCJ/VUiIWrMFo5lrOBZoX6VrZpTZf/8YtrR5P5ywDNYnIxjKHFFMIHSx7svNs7A9Na4nHrpJs+dZM/jQxLARjCMKbfDFIhIpB2HGlE4jnn6QFKb932akVTyovZ6POqpiphhCcopjKJQcJ6aY8=
+	t=1773399451; cv=none; b=ULjGxVk2Z/+HgHhSohjphJSy0MpFOswy81tKEviThBoJXdKw6c/kASyj/DfmCAz2q+Je36ibJXlFnAfLInRbLd/REgHqMUo0KRhoKY0JoyHszDQvPWH3Ee2szib5HVBQqs6+GRl/7pykuOs4UXeftato9HZ/ynbA5BCzK2UVuZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773399363; c=relaxed/simple;
-	bh=xWJukZR7qun4SLAfI53dfW+rWEm/QwqPyiKcmt6t38k=;
+	s=arc-20240116; t=1773399451; c=relaxed/simple;
+	bh=N+EUMKW8o/9rjbqaO5/kRfo4UuktX8cwqEopTFI8zU8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Tx7MqwmM+yxCXzkqMT3wdbr7E2hsdkn06yv9MG+D2QcFLHX0oqWiRim12G/nup0d5nLWAdMCsbyld5uXe6l/sDxzPCj4SgQaZ34eX25UC9S2omIN2nGy9x9giJkPHleqBcttqNiGgBBP0R8YqCXrvGm7ipdvqfzNs/zbeTAP0hc=
+	 To:Cc:Content-Type; b=cDn2W9yapuzj4KC1HIn/aca75va33/f5IOxuNoAFAdOn7GV6x6LdVmVQcWhWjyti6dPgECOheX/D1dTwomF769y0vX6dpoQ770Bej2pYRZTr3sXreosBngtjZZxW84TNzcmjP0Ty5+STH/+9egf+RsVRvSWXVyqteZ3+yJfu6VU=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-79800183233so31041377b3.1
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 03:56:02 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-79898953985so16303867b3.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 03:57:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773399362; x=1774004162;
+        d=1e100.net; s=20251104; t=1773399450; x=1774004250;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=xWJukZR7qun4SLAfI53dfW+rWEm/QwqPyiKcmt6t38k=;
-        b=AcSSWywDY55rXiPS4/FO7KFwMHjJDT4E9QbUlT8BwJFwk3ynqP2hCM6modD3//4/IH
-         EtmxSlx27Szex90EIDedDYlyYcd9MewPQfLwkG8+ch4Tx5vgilGgYq1eW6vwofpWVGdv
-         DVj41exmMne9zVwvDzGwfvS5YcTFYQ0fQ8depJeKUre3bTGHsWm+Ol1kondv/wHRYSgp
-         C/H06WtXGeM9GkFwWh/4uEhkWymt8HYiRUpv0gWp3aGaapcfT5XB1STG7kXe9BW6jim2
-         /IEpdAS1sKziMHkkqJqswHiElxDTlVVSGPeEbjbZMB/aKjqgPXzjbYQ7xmdM3b1ZNcSp
-         Z8qA==
-X-Forwarded-Encrypted: i=1; AJvYcCUUEMxGBy2D6QH2YIfoASxOHo4ag0R2ajwhCrSvr05j/BE237xj81/ZyKQ/IPTSzwIUNu919YNZ9Mhx@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDt+mvdfckecGXuVdXMznCbXHaChC7qkXdBKvffMMuvvG7fIdF
-	Z58cTlvphXPnqZBaNCaHqerDzh83Bll8Ys8yDzhnKhzLwZRIL6Pt+syFuWOO2uzeAPbdqw==
-X-Gm-Gg: ATEYQzzPUYj6NHC8WzIlZ7N67LXd/SRfkaUaaHom7oaVOl+PG1n9Hhaq+YTRzjoW0fU
-	U0VjP7EHDiq186XL2AHoxRQOYiyybFUB+Y6F3jrVKt9ynjEzzHdzoBWMeHl7LFFSlW/n7nITA67
-	ky4SiOHv4xSLf9PZi9elf2ulsCEbiHQpXrCcV6tyTzRR2Xiiuv/q+/AYVWkEz5Xo40GV79zDFd9
-	w1bUfwWM7adMZy0jDFFs7wFnkA9XOhSv01/CXSQFDpfbvSeQJ/SLeYfxYgyoJ0NyCRYqkTfKtZ0
-	rtzbutdV1lf/cGa/Yyzj+SB6fnxEAXLn8BsDbKmJrlKhHf/1WMdnASWWKqxfzLJTY1maxwDkMB6
-	Eutpw5AC7gJBDu1n+nxJaGZhoeIG6X6i66U8bUa6ihiHB5osxxAxuPNarK1/2VebpifzvgBwOHC
-	rh2klJMSZ8riX7mC6trAFE0OYwy717FUee7KHWhlMR9Nn+ct0H+IyBXZQwmRX8HsXWQB8fHmObK
-	axzjcrmsqMDyGFbVkqF/joqo204rqIETdlWHfUbSA==
-X-Received: by 2002:a05:690c:660f:b0:798:1637:ff29 with SMTP id 00721157ae682-79a1bcd5a7amr27043157b3.17.1773399361641;
-        Fri, 13 Mar 2026 03:56:01 -0700 (PDT)
-Received: from mail-yx1-f46.google.com (mail-yx1-f46.google.com. [74.125.224.46])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-79a231a54d2sm4314637b3.42.2026.03.13.03.55.59
+        bh=N+EUMKW8o/9rjbqaO5/kRfo4UuktX8cwqEopTFI8zU8=;
+        b=TS2Xxnh/4LOaR99og94jFtbkDWMnf/5zSgdARnVvFuTc+uKE5I5iPJMv8//fgriZOS
+         EiX37o8vJUrlvC2jOu2NXx/hXZGF7iFLqr+S7Nj5SD/QWE7gvdkQGrh1ZXrLcHxs96p7
+         aQnbF+ko5r/N5+xEu03DZsmufb9xEg7Tn94PF+acuP+ddTGTO+pSiMtwoMU+f0zJD9Rs
+         4QeVzW3l5tDY8o02+yqi3A8hKo0vgftol2+Ob34mNGpEdl/7uWh1EJWFRqiyNoRJ6MFQ
+         PaUPJppmQHr+8YLiNvI14eg1ARGk9Jw97aJ8tLiIigpu7BbyMF3Q5+TtC6A8abQFJG8s
+         ro6A==
+X-Forwarded-Encrypted: i=1; AJvYcCWP1t4oHkS6C+hZia5/j1vfBc6PhTDsZ1RPNPNbAD0g9PCVeDAO49AqKbzht3W7coD+EOit7wEzEai5@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHnWg03aqRkiP5Gvt1WNbfWuS8QHDK59K0ZH9ktqqqsB6pUNjq
+	Nh+jnLImMRMSeZ5WRdRKmxb/oxM2kPeebELUhkMiemZp8wlqORA25d+w9mLpVXFp1VAiUw==
+X-Gm-Gg: ATEYQzwBkpu10Myi6RUfweYlSKvhzRNVq4qvzQgmSqS5wJn+QZfq6KeYbn0Eg1a2IAa
+	qLeqtucG4wF1i1wmSEwerOgeRhdTWF+hCV3wWxH6WAAQ7J3Qw7ihf86t+ytMuPIIks58ECHBAon
+	HD3CgeS7IW5zoPh8yNohxTfEfkvDA09Oa8VttqQ60HzC4/MrnFFP5nVqa6JEANQDl60y3J9ZI5n
+	VxyU77pqzpLy7JpPGtzNTyRFSr4FeIqmHqGI6HuoIHIBgolWMt50r4Txww4h5sdSQi401nCrORC
+	M0Hdkm1oNW8NV+bFpgL37eCbc48D/F1wpouzxn+12oa9l72XJjAYL1ZiYw1XdxPng48+trBdSXr
+	fM0fnE9jzK3qIctmRcVv4HXb1rdD1sfHkFfRK8pxVmjgk8eyLozaoMbv2kt9EdmktSXMoryEoWr
+	VqTszg/ICcG0tR13qPX2g+OLR6rvMpTQ8ZkwazoXa62p1zTkkwiOWWJxNJ11GXMEYHXpS2HdK09
+	yJqSftPmhVfRIkIKaM2s/zT0+4iRoXGhOFWn0aLRY7SuG4O4WV+
+X-Received: by 2002:a05:690c:38b:b0:79a:2312:528f with SMTP id 00721157ae682-79a231273e9mr7762107b3.15.1773399449920;
+        Fri, 13 Mar 2026 03:57:29 -0700 (PDT)
+Received: from mail-yx1-f54.google.com (mail-yx1-f54.google.com. [74.125.224.54])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-79917e0de05sm44991737b3.15.2026.03.13.03.57.29
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Mar 2026 03:55:59 -0700 (PDT)
-Received: by mail-yx1-f46.google.com with SMTP id 956f58d0204a3-64c9c8f8783so2396499d50.1
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 03:55:59 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCURGEG1ZvCXEcMwLGvhTjyfTuziWL4/S5IScWIV0biEjp9UX46xObLdoqHg/plTXQ95lbndZf6iTgiu@vger.kernel.org
-X-Received: by 2002:a53:ee4b:0:b0:64d:6a5a:ac3d with SMTP id
- 956f58d0204a3-64e6289f6cbmr2073213d50.39.1773399359165; Fri, 13 Mar 2026
- 03:55:59 -0700 (PDT)
+        Fri, 13 Mar 2026 03:57:29 -0700 (PDT)
+Received: by mail-yx1-f54.google.com with SMTP id 956f58d0204a3-64ad79dfb7cso2478478d50.2
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 03:57:29 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVvZpq6wGydP9S7Y7rbj6odU+GA5QLpwKwFt0hTDZLLrwMf6jhePWs2CdP8QkSlaHrfpVuxCrCUjFZb@vger.kernel.org
+X-Received: by 2002:a53:c049:0:10b0:64a:e799:1d84 with SMTP id
+ 956f58d0204a3-64e6304d479mr2200425d50.49.1773399449098; Fri, 13 Mar 2026
+ 03:57:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260311224044.21480-1-email@sirat.me> <20260311224044.21480-3-email@sirat.me>
- <abLUgxivQnz2ISeY@ashevche-desk.local> <CANn+LW+mg9Ridm3aMrVhy7cgvmJO0JNV_s_myfRCW8gPv7Ggkg@mail.gmail.com>
- <abPaaSgJi6m6mch9@ashevche-desk.local>
-In-Reply-To: <abPaaSgJi6m6mch9@ashevche-desk.local>
+References: <20260312183721.40482-1-email@sirat.me> <abPaqo9pBSClZ-PH@ashevche-desk.local>
+In-Reply-To: <abPaqo9pBSClZ-PH@ashevche-desk.local>
 From: Sirat <email@sirat.me>
-Date: Fri, 13 Mar 2026 16:55:48 +0600
-X-Gmail-Original-Message-ID: <CANn+LWL1anBWWQz3DKbZWo=0MSb5EhY3KSiq84=qgo8ZO68XTQ@mail.gmail.com>
-X-Gm-Features: AaiRm52AWgFnivg9kHX3kLuPles6YeHu778rjWkq6sm2jrDVCYGJ_SYCDT66Jl0
-Message-ID: <CANn+LWL1anBWWQz3DKbZWo=0MSb5EhY3KSiq84=qgo8ZO68XTQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] iio: proximity: add driver for ST VL53L1X ToF sensor
+Date: Fri, 13 Mar 2026 16:57:18 +0600
+X-Gmail-Original-Message-ID: <CANn+LWLZ28_0nsgtk_Hh_-wT7x1k4Pg-U9GV+cnPtQG_22gT3w@mail.gmail.com>
+X-Gm-Features: AaiRm51t3mDZaAf73112SokdohhWIEKBUIeHDPCuYGLDhDLvPmYE-qnlAgI863s
+Message-ID: <CANn+LWLZ28_0nsgtk_Hh_-wT7x1k4Pg-U9GV+cnPtQG_22gT3w@mail.gmail.com>
+Subject: Re: [PATCH v4 0/2] iio: proximity: add driver for ST VL53L1X ToF sensor
 To: Andy Shevchenko <andriy.shevchenko@intel.com>
 Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, jic23@kernel.org, 
 	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, 
@@ -104,7 +102,7 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[sirat.me];
-	TAGGED_FROM(0.00)[bounces-275136-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-275137-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
@@ -115,44 +113,24 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 72FFA281D84
+X-Rspamd-Queue-Id: ECB3B281D9B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 3:35=E2=80=AFPM Andy Shevchenko
+On Fri, Mar 13, 2026 at 3:36=E2=80=AFPM Andy Shevchenko
 <andriy.shevchenko@intel.com> wrote:
 >
-> On Thu, Mar 12, 2026 at 11:37:26PM +0600, Sirat wrote:
-> > On Thu, Mar 12, 2026 at 8:58=E2=80=AFPM Andy Shevchenko
-> > <andriy.shevchenko@intel.com> wrote:
-> > > On Thu, Mar 12, 2026 at 04:40:37AM +0600, Siratul Islam wrote:
+> On Fri, Mar 13, 2026 at 12:37:16AM +0600, Siratul Islam wrote:
+> > This series adds support for the STMicroelectronics VL53L1X
 >
-> ...
-> > >
-> > > If it's a reset (semantically), use reset-gpio driver and reset APIs =
-here.
-> > >
-> > The XSHUT pin is a shutdown/enable pin rather than a true reset line,
-> > and the existing shared st,vl53l0x.yaml
-> > binding already defines it as reset-gpios. So I am keeping the GPIO
-> > consumer API here.
+> NAK. we haven't settled down on the v3 comments.
 >
-> And? reset-gpio driver is exactly for those cases. Please, move your driv=
-er
-> code accordingly.
->
-Blame is on me for not realizing that reset controller now also
-supports "reset-gpios", my apologies.
-My original hesitation was due to not willing to modify the binding to
-add "resets"
-
-I will switch to the reset controller.
+> --
+My Apologies, I replied in the v3 thread and will address the reset API in =
+v5
 >
 >
-
-Thanks,
-Sirat
 
