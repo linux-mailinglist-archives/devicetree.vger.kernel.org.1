@@ -1,168 +1,172 @@
-Return-Path: <devicetree+bounces-275078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275079-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IEs/ADnbs2mzbgAAu9opvQ
-	(envelope-from <devicetree+bounces-275078-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 10:39:05 +0100
+	id cI5aBkvbs2mzbgAAu9opvQ
+	(envelope-from <devicetree+bounces-275079-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 10:39:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C620280A08
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 10:39:04 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D5A3280A20
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 10:39:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6AB7A3036E9A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:36:53 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2CEAF300D4EA
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:39:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F500379EC0;
-	Fri, 13 Mar 2026 09:36:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="i4lF4l4v"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BDD1375F98;
+	Fri, 13 Mar 2026 09:39:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B9583563F6;
-	Fri, 13 Mar 2026 09:36:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5FE633ADAE
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 09:39:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773394611; cv=none; b=unnm8ykhGGZGSRqYeIiMWsxhAKkCxsYeQrDOE8azV9o8sq3jCn0szXH/8LAtrp8Vy3Lbra4SxPkIjtq8u4aNB5hCU6B5ZseXvaez75M0oGMolNvZk2r1cKwXOPKOegn4rcB7xqKM7vDniTixgGki0hFsuaL6hke2sMoeS2gduXg=
+	t=1773394755; cv=none; b=Dmm5Px0hbK6sqR+R7fgY5vMjQeRyBfO/tmy6qTJCynoW6pIjqphbfdHi2D9SKmrSOeLYpS47J8YeNgz2pF310t9Of6lNhCHEgGsWbWkhsu+BozBM5MxyjkvxTFubKmNLoBi0R51/gu9dIg/ms6RCpg121SahHsC3YSvDuzeE4N8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773394611; c=relaxed/simple;
-	bh=CeQ//vROr472/ggQjOxi0XcsVEIPRXMjawZoleEGC4s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ShikhmsTcyqr5ChrNKTg0x5scINfL5SIve02UjzFh+0cQsXe5kONAD82bwh+zOVnSH9jX9wvEzElmbW5QDYCtElaAT5yxZUDHTSS7uUxMRf9mTnE5d8pyhyJHC2V9jf4IGLbWZ3AYbSjf8a17MZxIWU/TgorIq4q+8cwrWR6ojQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=i4lF4l4v; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773394610; x=1804930610;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=CeQ//vROr472/ggQjOxi0XcsVEIPRXMjawZoleEGC4s=;
-  b=i4lF4l4vWyB9df1ntTp5Xy9GlQFX2LVts710ZGGXt5FRp6HgJRTLzCu2
-   jdYKUki9Fvjk93VgTpkjxLaZFBDpmjTGBeGwOx6eF2jNJQyTVG88HUoMJ
-   Frga4mNsX2Stw4aVcuyDlMxWsYaDkA/0osdtGSZV7QqA+6e0MiMwN7haH
-   WA5fi3xdXCcOS4fE9TyHnbdcUurwutNp4j0Le7erCtszvc+A8bZe52IFB
-   XvFEfiQNfnAuMG6Rblzx8CF8SXYE1qNosnDAKO14+My7dfxqs06xnJ6uX
-   Ll6o5b1es7scqpkphQi5dcUBlT5YZvBDIFnYITdjKrTeQSO4YSfCdB9Tr
-   A==;
-X-CSE-ConnectionGUID: JNNWcFeKSJeiOU2gmnJgOQ==
-X-CSE-MsgGUID: k4aNb2/gQP6czG91WVAflw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="85854677"
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; 
-   d="scan'208";a="85854677"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2026 02:36:48 -0700
-X-CSE-ConnectionGUID: OSav+kDXRMS2IqEkiEh0BA==
-X-CSE-MsgGUID: mi9B7LPjTDKyLHoX0XHeyA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; 
-   d="scan'208";a="220192185"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.246])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2026 02:36:45 -0700
-Date: Fri, 13 Mar 2026 11:36:42 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Siratul Islam <email@sirat.me>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, jic23@kernel.org,
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 0/2] iio: proximity: add driver for ST VL53L1X ToF
- sensor
-Message-ID: <abPaqo9pBSClZ-PH@ashevche-desk.local>
-References: <20260312183721.40482-1-email@sirat.me>
+	s=arc-20240116; t=1773394755; c=relaxed/simple;
+	bh=PL67avBPtYMTmKLtVbuj476ob0Oj2q3BQ12b2+YW3gA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lqbGkRSInp4l67tQLhHxdbQOGKGXoKNUZRlu6Q4xyhXsvCRR9IZ48MaozO9G/F55xFFRCBD1fnf31DMoEoumUkC5bsJ3G+qpWICUIiEfV3XPWioWJwOM9+1QUXju46+rTrww0R39n514apCRn9J24nsEdkOvB9tVjt5/g5+YX3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-56a9076813bso804951e0c.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 02:39:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773394753; x=1773999553;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/kFDLymno3ShHwPEKQQsYPw63HdXuC5g9oISBtZGhCk=;
+        b=ILcwnNtr2195TqEQlhR5hKfgKoYqHv9HWYFhLTQctE09CPkKshFCyZk0JBstIofqTU
+         HT+oCCvGp+J0cg+vgq4DSlYrEiEA5MqfrZ40A+lP10awB+GQmsuKn8lAF9Sg/s7NG4H3
+         c35XQGHmbE4MAdWCrsp+D/y3D44wMhrPPXWGp6xpKnXjiHFxJkKZZhtQhmTO0sAHrh3b
+         A8fjc5uPUYOO1gHJz79snZ4YTqr0zm4MCN/6Jml/nhewNCr19c/w5V3yGVkBBr77iZrH
+         Bs1wlMlHnEVT4+fn58JvMQCwwfeOgBcBabB1W+uYsAV1hMMcvfzDm2D4Aznbshiz2x6z
+         8GVA==
+X-Forwarded-Encrypted: i=1; AJvYcCUI1si6j8KFK3MLkMs5ofKWgBqw6+4LlhIi5BoqgFSG/P9ZisArLUpSEKcPu5KGb0Jo5umVFxpXQ/aG@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGtgBAj7ojr7kfnAnBIowVT5dQkwDGqAnqLoGzlq3QzzAfpEcY
+	L6drROi9qzDjLZRtcxcztv7Ej2lQesOUyucd4eYUenfQKvjIqH8mWUgOiWIGwwHzUtE=
+X-Gm-Gg: ATEYQzz+radAXjtwxPdzZTbo+MbUqVQVM6yE6hq/trVPZZLRLZ3dKrRFBdBmCgLCX4h
+	PcF4j13pmYjPqhiyh/8l0DtcI9nwJf8PuzgVYHs3ejPkd3EwXmfbSBT/v4SwLcS5cMwu8j7VjNh
+	zwGsbCFN2SKW1af0gz7rsJnUB8stmbIjoFbzD3URf7+WK8ltF0nDSMdXL20GJDjR3WZADfvLGdB
+	wodoyEfpcdSqL+d3/w08ipd59Xwva/ZDbmwRT2v3Fr8802mYFM8zDNhyB7mXTb1caJVlKFLIXjt
+	+WRansPLyL98dm4ShXqPJu8NHHWXi8q3bFaqxuqqKFW5I7/oHpQAaSZbQCvLiyjim61deP+csPq
+	UCV75xdQXJ167JT+rK9jp5Qtb7CAUwVt7/QdEKvjkbA7wdPuZrK4SIYQOfxMlXtksmP+PdEbpWh
+	yK2JZ4Nd+Xm1/4/wtnOWiyDdm0rydWsofgnHStGWto/8xXjlNUTtUB6TX/OKxY
+X-Received: by 2002:a05:6122:2511:b0:567:4aec:a27c with SMTP id 71dfb90a1353d-56b62980636mr955784e0c.17.1773394752676;
+        Fri, 13 Mar 2026 02:39:12 -0700 (PDT)
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56b4648dd38sm3637726e0c.14.2026.03.13.02.39.12
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Mar 2026 02:39:12 -0700 (PDT)
+Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-5ffd57b6fc6so477262137.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 02:39:12 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWQ5feWRUxnhm3OLBhkc49XeXNf3TAPL8P6iIxpS5cynCIQN6e+IaOzDmv9IB2TeEajIrBhiugFfp77@vger.kernel.org
+X-Received: by 2002:a05:6102:26d1:b0:5ff:cee8:6620 with SMTP id
+ ada2fe7eead31-6020e20d4afmr1001751137.11.1773394751766; Fri, 13 Mar 2026
+ 02:39:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260312183721.40482-1-email@sirat.me>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+References: <20260212073819.41304-1-phucduc.bui@gmail.com> <20260224074532.60046-1-phucduc.bui@gmail.com>
+In-Reply-To: <20260224074532.60046-1-phucduc.bui@gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 13 Mar 2026 10:39:00 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXhDfFUnfOATQEWKY-kYxyR3QgmLoD8QFXGbsuLL8SzsA@mail.gmail.com>
+X-Gm-Features: AaiRm52TLe172c21oV-Mw-rROyewWRa5GPG-BaaZAy05NtJZt9zNHx8--4wUlis
+Message-ID: <CAMuHMdXhDfFUnfOATQEWKY-kYxyR3QgmLoD8QFXGbsuLL8SzsA@mail.gmail.com>
+Subject: Re: [PATCH v2] arm: dts: renesas: r8a7740-armadillo800eva: Enable SDHI1
+To: phucduc.bui@gmail.com
+Cc: magnus.damm@gmail.com, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	krzk+dt@kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, robh@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275078-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	MISSING_XM_UA(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-275079-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,ashevche-desk.local:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5C620280A08
+	DMARC_NA(0.00)[linux-m68k.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_NONE(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 1D5A3280A20
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 12:37:16AM +0600, Siratul Islam wrote:
-> This series adds support for the STMicroelectronics VL53L1X
-> Time-of-Flight ranging sensor.
-> 
-> The VL53L1X is a ToF laser-ranging sensor with I2C interface,
-> capable of measuring distances up to 4 meters. The driver
-> supports both interrupt-driven and polled operation.
-> 
-> Why a separate driver is needed (instead of extending vl53l0x-i2c.c):
-> The VL53L1X is fundamentally different from the VL53L0X despite the
-> similar naming. Extending the existing driver would require rewriting
-> the majority of it.
-> 
-> Key differences include:
-> - A different register map (16-bit addresses vs. 8-bit addresses).
-> - Requires a 91-byte firmware configuration blob to be loaded at boot.
-> - Requires a VHV calibration cycle.
-> - Has distance mode and timing budget configurations.
-> - Uses the regmap API rather than raw i2c_smbus calls.
-> 
-> I also reviewed other drivers in drivers/iio/proximity/ and can
-> confirm this IP block does not appear to be shared by any other
-> existing driver.
-> 
-> Tested on Raspberry Pi 5 with a VL53L1X breakout board.
-> 
-> Note on vdd-supply:
-> In v2, I added vdd-supply as required. Since I'm using the
-> shared st,vl53l0x.yaml binding now, I had to drop that requirement
-> to avoid breaking backward compatibility for existing st,vl53l0x
-> devicetrees. The driver itself still uses non-optional
-> devm_regulator_get() so no change there.
+On Tue, 24 Feb 2026 at 08:45, <phucduc.bui@gmail.com> wrote:
+> From: bui duc phuc <phucduc.bui@gmail.com>
+>
+> The Armadillo-800EVA board provides an SD card slot and an AWL13 SDIO
+> interface connected to the SDHI1 controller. Routing between these two
+> interfaces is controlled by a mechanical DIP switch and a set of
+> multiplexers.
+>
+> This patch adds:
+>
+>   - A fixed 3.3V regulator for SDHI1 power, controlled by PORT16 (G2).
+>   - SDHI1 pinmux groups for data, control, and card detection.
+>   - A gpio-hog for PORT6 (J5) to control the SDHI1/AWLAN multiplexer.
+>
+> PORT176 (N21) is already configured as output-high in this DTS (via
+> lcd0-mux-hog), routing the SDSLOT2_ENABLE signal to PORT6. Since the
+> hardware includes an external 10k pull-up resistor (R94) on this line,
+> PORT6 is configured as an input to allow the physical DIP switch to
+> determine the routing without SoC interference.
+>
+> Both configurations have been verified:
+>
+>   - SD card (CON8): detected as mmcblk1, high-speed SDHC.
+>   - SDIO (CON14): detected as mmc1, high-speed SDIO.
+>
+> Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
 
-> ---
-> Changes in v4:
-> - Move i2c_check_functionality() to the top of probe before allocations.
-> - Use struct u32_fract for oscillator correction math.
-> - Explicitly set .cache_type = REGCACHE_NONE.
-> - Document intentional predisable drain
-> - Use dev_err_probe() for firmware boot timeout and remove duplicate IRQ request error message.
-> - Use sizeof() in regmap bulk read/writes instead of hardcoded lengths.
-> - Add missing headers (<linux/math.h>, <linux/time.h>, <asm/byteorder.h>).
-> - Various formatting cleanups per Andy's review.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v7.1.
 
-NAK. we haven't settled down on the v3 comments.
+> Note: While a specific driver for the AWL13 SDIO module may not be
+> present in the current mainline kernel, the SDHI1 host successfully
+> detects it as a high-speed SDIO device, confirming the hardware
+> description is correct.
+
+With SW1.5 OFF, the AWL13 SDIO module is detected as a high-speed SDIO device.
+With SW1.5 ON, SD slot 2 works with SD cards (incl. card detect).
+
+Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
