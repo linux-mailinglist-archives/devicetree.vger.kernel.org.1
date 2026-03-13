@@ -1,57 +1,51 @@
-Return-Path: <devicetree+bounces-275509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275510-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gnXxAfFWtGlbmAAAu9opvQ
-	(envelope-from <devicetree+bounces-275509-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:26:57 +0100
+	id OL1VADxZtGklmQAAu9opvQ
+	(envelope-from <devicetree+bounces-275510-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:36:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E997288B78
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:26:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54954288CCF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:36:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3CCEA3020FD1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:26:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C5D98312C48A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:36:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5B833DA7E4;
-	Fri, 13 Mar 2026 18:26:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 794973DD526;
+	Fri, 13 Mar 2026 18:36:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="aaHMayK+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OuY8jiXS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ixit.cz [185.100.197.86])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F8273DA7E1;
-	Fri, 13 Mar 2026 18:26:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.100.197.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 550673644C8;
+	Fri, 13 Mar 2026 18:36:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773426413; cv=none; b=fqXHUCUP+IMFGMcvnRehMtJf+PejkjewZeooEiKYqGjU8zvgLg46Ue0Shu7zYURpJIedGHdszL+S6HeuH0njgdu9D3JFRl+/TcJKqNkwYnA5lzDI+p2VgyOZPvs62i1LzrvTfH5Poy4LTkIsxMUCRwZEGPps9MzOlxwrliK7DMQ=
+	t=1773426985; cv=none; b=c9558DCUZ8EZPHfk7bI3APqJusRKs9GoHSM0gFeH8vpUZDLpufy7nY1rtcawARKV6Z452unF+cKqgK6Eyc6HlwOD0Z/be806a/3SO90RzFgkaugo6Z1DyY7NUWgd9PFmi6WsrpEr9J+h5R82DTb+0mSqOhFKccCR7kKhrPbmlZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773426413; c=relaxed/simple;
-	bh=zVAZ8kPXdPxobM3WP0KMWbuhFPV5OOyg7nv5dNwhaKo=;
+	s=arc-20240116; t=1773426985; c=relaxed/simple;
+	bh=o0v/ZnAf66UD4OY9xdCau0smA1KApQNZewsYj55Ha5g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YJY9noBzOXPvB7s7z1etvkPgJiifzNsjdVgMSIivrDf4m+3+Z491tuT68bXYFeO1L4RN9sV0B/bq2Vkb9PRgtOOXU+41Hrw/EUFNuiX8vmWwusscQwy7/Sf1py14Bjo65ICww05M1DxsuWiHqTjF3NwXiTyO3SF/GHIxFfaGz8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=aaHMayK+; arc=none smtp.client-ip=185.100.197.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [IPV6:2a02:f000:10bd:e301::471] (unknown [IPv6:2a02:f000:10bd:e301::471])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 552BD5341208;
-	Fri, 13 Mar 2026 19:26:47 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1773426407;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=W38Na8cWHqwvq5ZQDv7J8A47FeHpFLJrgEIEKymB3Yw=;
-	b=aaHMayK+CP+nnzzuJXetzhfRLIkajznH7s3BN1bGq7BSqKaktasWM/w7DuM2VnkCce9OGy
-	OCGraGkZn0dBwqM3UfAiBELGqfTSrz/nfLlAvmvUPAzboLT/shHoAx2gXFJfSAsjEFGrY9
-	tvGl5basX6+NK9uuZ76jw0pciCJiSOY=
-Message-ID: <1349f725-a20f-4935-a829-208c8e583ad9@ixit.cz>
-Date: Fri, 13 Mar 2026 19:26:47 +0100
+	 In-Reply-To:Content-Type; b=AWpg3jGqSVPxAPGZSGtT4Xrx0k5EojnZW2yeqNHd1gEjtjdSyBaQLhq3JKMAoWmMHIeH3DdXnXmmGaTczgGN3ZjqlrplOpHclaoIXNreYNjo2iB+tdBuvcct1mBToEZJ/BiL/9js7u2R38krDO5lhm1/WDr8q94l4ZOCnOub//Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OuY8jiXS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A140BC19424;
+	Fri, 13 Mar 2026 18:36:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773426985;
+	bh=o0v/ZnAf66UD4OY9xdCau0smA1KApQNZewsYj55Ha5g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OuY8jiXSIDgbrXg+bgoCvPZi6MkDNdjC+Zh9TeRrn/FlQMFfAWp3c+cL4kPkG0JOU
+	 iwqdoY76aPwgRxJNzz8AqWK/GwkpuSx7/Rz3+Cet/uVhwGLh05K4asltW6eyKbw6vE
+	 UHYwnSv+Ad2C2eOp7AMIxDkEt/ns2snf5qNB1yAP2LDZdbI5Y22l0ZeZRcYSZpaGgO
+	 ThqWGRUvEeEB38njsE3MfKFecbDbDhGLa5MgWq49tE/bfg/A0GWegyGB2q0xPBMvS8
+	 GAnptatQBlI6altDHSg1TWXQAHZq1O8M/45mCqLwn8v9L0syx107qmgfLZogKCpA23
+	 DkApxZiYPbdIw==
+Message-ID: <d4886596-a812-439d-920a-c415660cae4c@kernel.org>
+Date: Fri, 13 Mar 2026 19:36:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,179 +53,172 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 7/7] arm64: dts: qcom: sdm670-google-sargo: add imx355
- front camera
-To: Richard Acayan <mailingradian@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v6 4/4] phy: airoha: Add support for Airoha AN7581 USB PHY
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Tianshu Qiu
- <tian.shu.qiu@intel.com>, Sakari Ailus <sakari.ailus@linux.intel.com>,
- Robert Mader <robert.mader@collabora.com>
-Cc: phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-media@vger.kernel.org
-References: <20260217002738.133534-1-mailingradian@gmail.com>
- <20260217002738.133534-8-mailingradian@gmail.com>
+ <conor+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260306190156.22297-1-ansuelsmth@gmail.com>
+ <20260306190156.22297-5-ansuelsmth@gmail.com>
+ <20260307-otter-of-imminent-merriment-d3475d@quoll>
+ <69abffe6.050a0220.18164c.58d6@mx.google.com>
+ <52123051-0d2d-42b2-b677-99a5de0f2c4e@kernel.org>
+ <69ac04a6.5d0a0220.2969f9.9d81@mx.google.com>
+ <abbf81f7-556b-4fb0-9fb7-41f4c730f1d6@kernel.org>
+ <69ac72dd.df0a0220.a3fa6.8d4f@mx.google.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <20260217002738.133534-8-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <69ac72dd.df0a0220.a3fa6.8d4f@mx.google.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
-	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275509-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linaro.org,intel.com,linux.intel.com,collabora.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-275510-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ixit.cz:+];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ixit.cz:dkim,ixit.cz:mid]
-X-Rspamd-Queue-Id: 6E997288B78
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 54954288CCF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 17/02/2026 01:27, Richard Acayan wrote:
-[...]
+On 07/03/2026 19:47, Christian Marangi wrote:
+> On Sat, Mar 07, 2026 at 05:38:25PM +0100, Krzysztof Kozlowski wrote:
+>> On 07/03/2026 11:57, Christian Marangi wrote:
+>>> On Sat, Mar 07, 2026 at 11:40:48AM +0100, Krzysztof Kozlowski wrote:
+>>>> On 07/03/2026 11:37, Christian Marangi wrote:
+>>>>>>> +
+>>>>>>> +		if (phy_type == PHY_TYPE_USB3) {
+>>>>>>> +			ret = of_property_read_u32(dev->of_node, "airoha,usb3-serdes",
+>>>>>>> +						   &priv->serdes_port);
+>>>>>>> +			if (ret)
+>>>>>>> +				return dev_err_probe(dev, ret, "missing serdes line for USB 3.0\n");
+>>>>>>> +
+>>>>>>> +			priv->scu = syscon_regmap_lookup_by_compatible("airoha,en7581-scu");
+>>>>>>
+>>>>>> Nope, you need phandle to express proper device links.
+>>>>>>
+>>>>>> Don't sprinkle compatible lookups for new code which does not need to
+>>>>>> keep things backwards compatible. How do you manage device links
+>>>>>> without phandle? How do you manage device probe ordering?
+>>>>>>
+>>>>>
+>>>>> Hi,
+>>>>>
+>>>>> the phandle to SCU was present in old implementation but later dropped as it was
+>>>>> said that it wouldn't describe the HW.
+>>>>
+>>>>
+>>>> I went through v3 review and I did not find such said arguments. Can you
+>>>> point me to it?
+>>>>
+>>>>
+>>>
+>>> Here was v2 [0] that was clock + USB PHY. (there were clock stuff as the SCU
+>>> implementation was different) The link wasn't added in the changelog as it's
+>>> quite different than this current series.
+>>>
+>>> In patch 7 Rob pointed out that serdes-port + scu was a bit unusual.
+>>>
+>>> Then the implementation changed in favor of a more simple one where it's the PHY
+>>> that configure everything and in this new version the usage of the SCU phandle
+>>> is really to just get the regmap and modify the single bit to select the PHY
+>>> path/mode for USB 3.0. (it's mainly the reason the SCU is referenced directly
+>>> with a compatible instead of a phandle, in the previous implementation we used a
+>>> function exposed by the SCU SSR, while in this it's just a regmap that can
+>>> PROBE_DEFER)
+>>>
+>>> Rob suggested an additional layer (a PHY) to handle this but I don't feel it
+>>> would actually describe the HW this way as that bit doesn't modify another PHY
+>>> but it just toggle the mode to the related USB 3.0 PHY.
+>>>
+>>> This is really another case of not-so-organized register mapping on the SoC.
+>>>
+>>> [0] https://lore.kernel.org/all/20250320130054.4804-1-ansuelsmth@gmail.com/
+>>
+>>
+>> That's the cover letter. I guess you did not implement Rob's feedback,
+>> either. This is either phy (for phy) as Rob asked or scu phandle.
+>> Removing scu phandle and not implementing phy is not what Rob proposed.
+>>
+> 
+> It was to give the full series. The specific comment from Rob was [0].
+> 
+> SCU phandle is going back to the old dual binding that Rob was against but PHY
+> for PHY would not be descriptive of the HW.
+> 
+> I can do that but would it be correct?
 
-> +&cci_i2c1 {
-> +	camera@1a {
-> +		compatible = "sony,imx355";
-> +		reg = <0x1a>;
-> +
-> +		clocks = <&camcc CAM_CC_MCLK2_CLK>;
-> +
-> +		assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
-> +		assigned-clock-rates = <19200000>;
+You cannot avoid proper DT structure and DT review by re-implementing
+the DT properties by such lookups.
 
-Extract from #sdm670-mainline:erebion.eu discussion:
-The imx355 can operate on 24 MHz (on both Pixel 3 and 3a), but Linux kernel 
-driver can operate only with 19.2 MHz.
-
-I assume it would be worth it mention at least by comment here.
-
-David
-
-> +
-> +		reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
-> +
-> +		avdd-supply = <&cam_front_ldo>;
-> +		dvdd-supply = <&cam_front_ldo>;
-> +		dovdd-supply = <&cam_vio_ldo>;
-> +
-> +		pinctrl-0 = <&cam_mclk2_default>;
-> +		pinctrl-names = "default";
-> +
-> +		rotation = <270>;
-> +		orientation = <0>;
-> +
-> +		port {
-> +			cam_front_endpoint: endpoint {
-> +				link-frequencies = /bits/ 64 <360000000>;
-> +				remote-endpoint = <&camss_endpoint1>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
->   &gcc {
->   	protected-clocks = <GCC_QSPI_CORE_CLK>,
->   			   <GCC_QSPI_CORE_CLK_SRC>,
-> @@ -490,6 +571,14 @@ &pm660_charger {
->   	status = "okay";
->   };
->   
-> +&pm660_gpios {
-> +	cam_vio_pin: cam-vio-state {
-> +		pins = "gpio13";
-> +		function = "normal";
-> +		power-source = <0>;
-> +	};
-> +};
-> +
->   &pm660_rradc {
->   	status = "okay";
->   };
-> @@ -508,6 +597,12 @@ led-0 {
->   };
->   
->   &pm660l_gpios {
-> +	cam_front_ldo_pin: cam-front-state {
-> +		pins = "gpio4";
-> +		function = "normal";
-> +		power-source = <0>;
-> +	};
-> +
->   	vol_up_pin: vol-up-state {
->   		pins = "gpio7";
->   		function = "normal";
-
--- 
-David Heidelberg
-
+Best regards,
+Krzysztof
 
