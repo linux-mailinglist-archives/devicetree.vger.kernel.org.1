@@ -1,165 +1,132 @@
-Return-Path: <devicetree+bounces-275029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275028-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8BHIJjTRs2ncbAAAu9opvQ
-	(envelope-from <devicetree+bounces-275029-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:56:20 +0100
+	id oGBYOBbRs2lHbQAAu9opvQ
+	(envelope-from <devicetree+bounces-275028-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:55:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FFD728011F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:56:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3915A280071
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:55:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 21FBA3028EC8
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:56:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E106E3014656
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:55:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F40632AABD;
-	Fri, 13 Mar 2026 08:55:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 155033054EB;
+	Fri, 13 Mar 2026 08:55:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TuNN/sds"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lAVi6WQa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AC12305E10
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 08:55:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E616C21B191;
+	Fri, 13 Mar 2026 08:55:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773392158; cv=none; b=QtCYTXKk1zgt0ieyA8tpxRQsg7sh4uy6WjvU7T1yODz2sOU5QWre+TU5V7dpOWPvxPqy1uGD7SYoXiVAo4v27d9Q4oMtVtzD+/zedHT/BOIgGDYrPVtBY4fq2nyYko2VYwM5paefx9OsAoGXjfrYz6JNJ3+xz9UKUOZVWMxDyGk=
+	t=1773392148; cv=none; b=UDlciS0ztKbAp+CbbUYH7kJfEr3YMesIWdX4Xt8+dbtDFfaBAcByePWSt/ztBobk7crlnLQmxYmj0y49Xl1Fw2yEvoUFUBrkLGHE+uEsvtv0MQmaK6iwiv4p21b+ob8m51z2Yd+AyBUcXRClbm0QZkblCZeIT7XzbYCtU5GYEeQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773392158; c=relaxed/simple;
-	bh=dIPXg2emkEHtVSMn/uiweeN0mkAf0sj6N0jCu1Xxr2I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ou7DlXi7rWTHgt/fyvU9xPwR2lud6M8ZK1ZDp8QkbEVnQ7W2Esl9h1rf/tNNApO6IgawGDcg8acas0tGk+E2G9wtdhmpOe5SQFqI3AHJbQJIurvLiaUMby0gYHXEj0UACwHwAcVsYDJ3UNZNd8o3AnUhwvmLZ1nWtXYmpC93Gto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TuNN/sds; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E37FC2BCB8
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 08:55:58 +0000 (UTC)
+	s=arc-20240116; t=1773392148; c=relaxed/simple;
+	bh=ucTTcukYbtNVWOhR2wfdso2m++nGKWhQyMqNtiUzjF8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PUpWMD1BkwH/EEF5XTzqTLdARXVfLrPEtccIVZDF2b5qoSPH5GbDJVPNppOR53LvJPQlkvBMkC1SzqzzKrvCLNa+W2wUFHlnPK3KJXKRjzh70/cNkdOszv2JflZqhpm7pzcek1tPweBYfRiSb3LRonM5SNr5MPvCEc+NlkLo7Xg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lAVi6WQa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0491AC19421;
+	Fri, 13 Mar 2026 08:55:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773392158;
-	bh=dIPXg2emkEHtVSMn/uiweeN0mkAf0sj6N0jCu1Xxr2I=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=TuNN/sdsSHwP/VHRKKsG1F4YTUS5ZhzO3eF6ZjflRECLSxm52GZn0O+a6DYtw8s9w
-	 AztRsZ6hwk6mFH9QjMLP6ul2unGjmpkpIqrGCVRM7XJ91lE5qjYrRo421vuqGU+Ips
-	 dUTvUP2lPwGo6cUpGRPiarN2csB7JvMb0jI/Ci+wBxM0t4CvddwnzhqGPCkq7OZ2uz
-	 q1FLHibPBhnYDoXHHAzK4gd8xjmC/HbpS/GJkB9AsODxRC/oP9dyHczV035sr3rZQ7
-	 zhugJAyuq9iyE0d58vLAu0TaPaxVAVMP78UrAtKR75moc4u0qVEPZakARFdazt8gZI
-	 bL3wWDwmcIB/Q==
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-3878de20527so17587291fa.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 01:55:58 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWLkm/LIXWSu1mqS1iDZLNWY6ZnYQ0rSpO1y12N+iJBU8bdvpU47qSRkqHKhYsfKkymV23zXx4YyUe3@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYuQ+ZQgXhscx+8yTnOvg8XxFvO390ZVcuZlCRMWtX09d/hgx6
-	RCLJl8bclRGqxB3EY7AjPKyt85T531+m10dy09I01LSsVbEJUimKENL6XYh5CMooXovysIqc7m1
-	94Er6WTdewQsQtmAJYyDDzsdfwZ/w5TZCN947D2vBiw==
-X-Received: by 2002:a2e:350d:0:b0:38a:878b:b567 with SMTP id
- 38308e7fff4ca-38a897de73cmr6682211fa.36.1773392156502; Fri, 13 Mar 2026
- 01:55:56 -0700 (PDT)
+	s=k20201202; t=1773392147;
+	bh=ucTTcukYbtNVWOhR2wfdso2m++nGKWhQyMqNtiUzjF8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lAVi6WQa0IJlX9YxNyPpEorbhpqoVb4iCdGPThgB19JTT1BUQcK9w8nH7yCsJ/W/g
+	 oRzTF/V7K2RrFet8826dyQKg1Ev8dwmFMdOCuoRK1Q+pZ38VQG9VdLPjP8/bChAbxG
+	 potY4RSegHY53/8g03yWosZAkZSjcnFJxJgeV1K2LHqHGNwIh8MDc8u5tm/ft/qt7f
+	 65Z5r8qqUXgTEICmu7Z6/5d3RjwntmwAtXcfJprbMtF0HvtcXMTkExbrE2fnlGrKrM
+	 tMeKdUU/GYaAB1pRVJlBlf6ey4+LtJWplCzNGo3eERDJq8yRh3QiAVKoYV64IhbrdR
+	 P6l4dJpfGJCDA==
+Date: Fri, 13 Mar 2026 09:55:45 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Sudarshan Shetty <tessolveupstream@gmail.com>, andrzej.hajda@intel.com, 
+	neil.armstrong@linaro.org, rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, 
+	jonas@kwiboo.se, jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com, 
+	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, marex@denx.de, 
+	valentin@compulab.co.il, philippe.schenker@toradex.com, dri-devel@lists.freedesktop.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	dri-devel <dri-devel-bounces@lists.freedesktop.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: ti, sn65dsi83: Add
+ dual-link video mode property
+Message-ID: <20260313-warm-whippet-of-spirit-e7f8f5@quoll>
+References: <20260312043743.261475-1-tessolveupstream@gmail.com>
+ <20260312043743.261475-2-tessolveupstream@gmail.com>
+ <DH0X5VHW15QI.XOHUGC314J1P@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260311-qcom-sa8255p-emac-v8-0-58227bcf1018@oss.qualcomm.com> <20260312181654.2d9ba69c@kernel.org>
-In-Reply-To: <20260312181654.2d9ba69c@kernel.org>
-From: Bartosz Golaszewski <brgl@kernel.org>
-Date: Fri, 13 Mar 2026 09:55:43 +0100
-X-Gmail-Original-Message-ID: <CAMRc=Md8i6oCAqOBB_3q9PkkbaUxrCftum+WBjvac2O+Hk8kTg@mail.gmail.com>
-X-Gm-Features: AaiRm5311s8a1dkokfIWdxBu9dTaoHy4sXAtnoSYnP4jjneoiOLY-XItyfiRHlE
-Message-ID: <CAMRc=Md8i6oCAqOBB_3q9PkkbaUxrCftum+WBjvac2O+Hk8kTg@mail.gmail.com>
-Subject: Re: [PATCH net-next v8 0/6] net: stmmac: qcom-ethqos: add support for
- SCMI power domains
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Vinod Koul <vkoul@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Fabio Estevam <festevam@gmail.com>, Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com, 
-	Romain Gantois <romain.gantois@bootlin.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>, 
-	Christophe Roullier <christophe.roullier@foss.st.com>, Radu Rendec <rrendec@redhat.com>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, Drew Fustini <dfustini@tenstorrent.com>, 
-	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org, 
-	linux-mips@vger.kernel.org, imx@lists.linux.dev, 
-	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <DH0X5VHW15QI.XOHUGC314J1P@bootlin.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,lunn.ch,davemloft.net,google.com,redhat.com,gmail.com,foss.st.com,st.com,linaro.org,baylibre.com,oss.nxp.com,nxp.com,bootlin.com,glider.be,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,tenstorrent.com,lists.linux.dev,googlemail.com,bp.renesas.com];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-275029-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275028-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,linux.intel.com,suse.de,ffwll.ch,denx.de,compulab.co.il,toradex.com,lists.freedesktop.org,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_PROHIBIT(0.00)[0.0.0.2:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[50];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev,renesas];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3FFD728011F
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.3:email]
+X-Rspamd-Queue-Id: 3915A280071
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 2:16=E2=80=AFAM Jakub Kicinski <kuba@kernel.org> wr=
-ote:
->
-> On Wed, 11 Mar 2026 18:03:35 +0100 Bartosz Golaszewski wrote:
-> > Add support for the firmware-managed variant of the DesignWare MAC on
-> > the sa8255p platform. This series contains new DT bindings and driver
-> > changes required to support the MAC in the STMMAC driver.
+On Thu, Mar 12, 2026 at 04:46:40PM +0100, Luca Ceresoli wrote:
+> Hello Sudarshan,
+> 
+> On Thu Mar 12, 2026 at 5:37 AM CET, Sudarshan Shetty wrote:
+> > Add a new optional device tree property `ti,dual-link-video-mode`
+> > to indicate that the bridge should configure the device for
+> > dual-link LVDS video mode.
 > >
-> > It also reorganizes the ethqos code quite a bit to make the introductio=
-n
-> > of power domains into the driver a bit easier on the eye.
->
-> Not entirely sure what the conclusion was in the sub-thread with Russell
-> but FWIW this doesn't apply to net-next as posted so respin will be
-> needed either way.
+> > In dual-link configurations, some panels require the horizontal
+> > timing parameters to be adjusted before programming them into
+> > the device. In such cases, the horizontal timing values must be
+> > divided by two when operating in dual-link mode.
+> >
+> > Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
+> 
+> This is not needed. Dual link mode is already implied by the presence of
+> port@2 and port@3.
 
-net-next is quite the moving target, isn't it? I did just that between
-v7 and v8. :)
+Yep!
 
-As for Russell's response: I think this is the third time we're doing
-this for this driver. :( This series is not touching the existing
-functionality and rebasing of Russell's changes on top of this should
-for most part be trivial. The core of the changeset is to add support
-for power domains to enable ethernet on SCMI driven SoCs. I would
-really appreciate it if we could get it upstream and then any
-subsequent rework can take into account the two types of systems we
-support.
+Thanks for chiming in.
 
-Russell: I see your point and didn't mind the first two times but it's
-been way too long since I posted v1.
+Best regards,
+Krzysztof
 
-Bartosz
 
