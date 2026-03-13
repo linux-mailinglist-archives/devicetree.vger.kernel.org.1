@@ -1,309 +1,238 @@
-Return-Path: <devicetree+bounces-275001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275002-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +FP7F7zLs2n2awAAu9opvQ
-	(envelope-from <devicetree+bounces-275001-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:33:00 +0100
+	id GDCELjnMs2n2awAAu9opvQ
+	(envelope-from <devicetree+bounces-275002-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:35:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCAC527FB04
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:32:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D1CF27FC04
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:35:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EBC78302800E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:30:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BF9A330AAE47
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:32:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3885B285056;
-	Fri, 13 Mar 2026 08:30:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31267383C72;
+	Fri, 13 Mar 2026 08:32:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="n5eZNe65"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EYs5mD6/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012033.outbound.protection.outlook.com [52.101.66.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83E832E03E4;
-	Fri, 13 Mar 2026 08:30:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.33
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773390607; cv=fail; b=KSOyJpFKshjF67JbNmwEs97xuSeRauSnbHcSI8qkxxQ4zOZoDwnj+xc7Jmg0BXj+f+ItuILbmeVgc1jtlFOfHMOByZKcE6KauEdjOMY4vLLltGdDcoverWVGceUY48bDMzEqpnzr2iSf+Z7Rko0gHKgQbX+uoxnjVTBnUNVxzMs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773390607; c=relaxed/simple;
-	bh=7meKNOHQjeOe2C99v5akAepkKv1uoGyDGZMt+EDE9rQ=;
-	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=mmeBgtkhlbJEs38z7dLEASy5bAbX9bh1k5WM9gnFj1IyeqselLS5P8FeCKErOmbe9TsuTjU1XN3EBXGZv7uo//D5J9Y7bwiyMModygh4H3Asc3bnsXU+9kAuZbG02Sosz8nKy7hJjNwWXY7mVRPsKG4lckwA9gLPXGGvIOiMJxQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=n5eZNe65; arc=fail smtp.client-ip=52.101.66.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rAdH7QLDSlook5/Kw5uxmYHnDf4v2J/9Ez++0eEKjHbEf364SalXIMT6+gGR3vzxWJjt9tuOcSHeTB16T7r5GxCLdbhS8CpwyWEGFgXWXdJcJwyzqwJElWtTNcpnC4+Y7OTiMC85Nf+6tRK2Ww2jcxevd8IuQfSLD72xj1rxVTKXMy9tiBBfGibUSAL056296/rFnSFUzaVgLiB3xX2g3UzGYE3AiNlJRsb+nm8wfS9amr5q1sI2OttL2fLMILK4rvLmT7B0t3p/8DQDb1vV6MN01jentMFSOUG6kyQrNMfSXJ66+di83PEIkRVWV2n9Jw4CmtI/HsfOSWqZATnYJg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QMKW6du2uTW1hJG11G2XVHNPEulX3F2D6sncsCSQGTs=;
- b=nR2de7M5BX9Di9AL5gqAWQYshwqgDAweQwHd36cSSoxwvoglPic3mpthOaefi5kgEco9fXs2/sFK8OzOZl7H8rkBWfUrA/QQDQ+eQPHmr3/AnZG1eRTcDtHytJv3px7pC4dLoOUbqMqBuuFtSqh8HF0empXC6ZxqXhvPKhB5RSY73mfh+I5TqD+Wf8mzpCbiIRc4lVxJ1yeJDNTJCw74uyDAOwned3fP2o2FLnLuNsqNRExdPeXCb3Yp6k5ctNjOmlZm6+Mee20K8cYRXzdfH7Xoj/XOR0A84C0q00Sfem8sfhV7bcMC4bD4C7LIeL7u87oMKdlx1k6QFlusR43kKg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QMKW6du2uTW1hJG11G2XVHNPEulX3F2D6sncsCSQGTs=;
- b=n5eZNe65pqc3iXMz4WXUweCyCwSMKKVNNl3h9/wbGzdv8gB4rjbqhgPHggsz9LS1HCDtrrv+ga/gZbCHtkEqz+YyNOWY984hYqecU/lZd4GSgEe0omMxj0StRDncelzrCDZDP38J271QligjuxLDTim58KNOhX2vS3ZnO7Y2zFCsL5C1uW+ooB0ycqxTnVnQZA/+VGF7dhFGYc9o8Qn7YAjIXEmqZRA9D0buZ9AlUy/2eoiR5hsDYbv9rcgdcR8G8SDFQ0Ir0cKxnqGoaynmF4FXxbXxr/cdBo68aB8it9c4GzqSboVvumpbIgbkXylGhLDPT7+kqvC7ORjHqwSNoQ==
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- (2603:10a6:800:315::13) by DB9PR04MB9329.eurprd04.prod.outlook.com
- (2603:10a6:10:36f::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.16; Fri, 13 Mar
- 2026 08:29:57 +0000
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::feda:fd0e:147f:f994]) by VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::feda:fd0e:147f:f994%5]) with mapi id 15.20.9700.010; Fri, 13 Mar 2026
- 08:30:00 +0000
-From: Sherry Sun <sherry.sun@nxp.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, Hongxing Zhu
-	<hongxing.zhu@nxp.com>, Lucas Stach <l.stach@pengutronix.de>, Lorenzo
- Pieralisi <lpieralisi@kernel.org>, =?iso-8859-2?Q?Krzysztof_Wilczy=F1ski?=
-	<kwilczynski@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, Rob
- Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li
-	<frank.li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel
- Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Jingoo Han
-	<jingoohan1@gmail.com>, Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "imx@lists.linux.dev"
-	<imx@lists.linux.dev>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v2 1/2] dt-bindings: PCI: fsl,imx6q-pcie: Explicitly
- deprecate reset-gpio
-Thread-Topic: [PATCH v2 1/2] dt-bindings: PCI: fsl,imx6q-pcie: Explicitly
- deprecate reset-gpio
-Thread-Index: AQHcslAvPRd3NV8vsUK8f1lUXc6zS7WrvElAgABWzoCAAA7CoA==
-Date: Fri, 13 Mar 2026 08:30:00 +0000
-Message-ID:
- <VI0PR04MB1211419C790AE195AE73548DE9245A@VI0PR04MB12114.eurprd04.prod.outlook.com>
-References: <20260312184344.42337-3-krzysztof.kozlowski@oss.qualcomm.com>
- <VI0PR04MB1211433ABEE52392089255E639245A@VI0PR04MB12114.eurprd04.prod.outlook.com>
- <2d658e4c-6840-4218-af78-b01a09218410@oss.qualcomm.com>
-In-Reply-To: <2d658e4c-6840-4218-af78-b01a09218410@oss.qualcomm.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: VI0PR04MB12114:EE_|DB9PR04MB9329:EE_
-x-ms-office365-filtering-correlation-id: 18a2e9f2-eef2-42aa-2295-08de80dab7bb
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|19092799006|366016|376014|7416014|921020|38070700021|18002099003|56012099003|22082099003;
-x-microsoft-antispam-message-info:
- QMhlwT3Vlc2IGaKRKG298sUnfhN/U55sLZBIxOLzT6VmU/OwOo+y/6edLjtYCW0EEI0J2GRunySkTdghjjmkZfnMR0rhpOmkC4XWhTuBTxEvRQNvHiUiqNphL3KNrrZ+hrIqouTzqwythwCPtdx+XAhxfLZmXAMv/aVn0vamvocBKW0EMsjzAakuXj+2zHzJpAZlqVX1RGuexRdrmG/oAqWLY45p2PQ+t9bDpOCISaNs9ndMYwvovd9ZH4Vm3bT5LcRlNv3f3lfBmcPMbt3efspJqw6BzAKlmXhc2MOZ/P+XJnla8DDkM6n5fmuWTxJcLWnhnfLBhhCe0wqk0FvEFFEa7gYuI7OyHIldJvYgwdkZN1lzkxr2W+N0zv7tH+7l8Dq/yGGi2E0SU+Aqt7npfCJi7jwTy2fNHyDh69idajDxHvoMb7JLx7O2QeKVICeN/v0Doh6vpo9E4vCtPGUq9Tn4QLO9nl6SYuss0rJwwEO3birETafjN0O+ByMCrc6lkk1CPLk1V+C7NMxdvlBWgNRdeDH29mGadn+xm6RkFHhsQK4wMPAX/kIIyntL5ETKdZM0YHj53DB4UXUlLCHdCDBG/SD1odOUsHeqM4roiCIwECk5C+sqnX7vfTFDaZQ2+3jvK4oSiFz4L+m2unERKj+qRtuLD3eOu9ohpGViZvxDUGdf/I/s53P9jm8N2CzD3cm2K6QXs4q4PmssyEnDczH9PRTAqKojV50s4T7qujYYsEzIIpRm0M2KrwQDizi5ewi+74iB0l+ZGMvnWEK4kg==
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(366016)(376014)(7416014)(921020)(38070700021)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-2?Q?XOYpxpC+eYGRs7bo6zSxDSPTEX21go3/jfy28236OSrJ6/SYyWW+U5MP4G?=
- =?iso-8859-2?Q?sazsqHKOAkiGkNixmnkRiGU+ByGynCHUqizWvOJFZvjnI+Ef4ckDXDjGAJ?=
- =?iso-8859-2?Q?cdWSZyZw0M9jg0jN80IcmUXCnLrP59w3tXewruTAIFIlkdqdjVawUiEh5S?=
- =?iso-8859-2?Q?V1XpoKQyFtwoUK+yA/yYNOEb1yYBZtOSlnKzZKiByhK7VhEFgpJtzWb+/J?=
- =?iso-8859-2?Q?d8b/6J9uxvBCHBDxWshL+SnJMJ3mgeoTzC2UMphgRaT/eJxM6mYzrwOCsy?=
- =?iso-8859-2?Q?kB/EySuE5c5b51npwQwgVhhXyAPAkcf0qXmVePWOBgjIEBbk0gOQYuNbIA?=
- =?iso-8859-2?Q?otwTg3WkJt6DRNfpcjFWpsUUrhK9CLHGt/D+hcNX4xIS2SdJgXwzHZNpov?=
- =?iso-8859-2?Q?guU9ONccGOiCRrxyqOC3+FLEIcZCNzRPXhPS4h26uI9smZKP7yhhFNsx7F?=
- =?iso-8859-2?Q?6LTptl0I9YKrT8kIDeMcRYuvOCRNu+rRXVK45/+GkEjWmsFnbVRinFRodQ?=
- =?iso-8859-2?Q?Yc5sHB4KjGTuvbB1rbIW5VKs+WLVJ5G+6zSQbrkEAyb2inKMAzJYqCrObY?=
- =?iso-8859-2?Q?JleALkvp36ptei3P1V3u512ISFizUnBy27eSFJm2n3K6U0EjPzdiiAsI2k?=
- =?iso-8859-2?Q?CNKBtiUM4vGk3jYahK0B/Z1KrMYe45zNM8Y9yLiZ7V661fJKOcPErBWm1s?=
- =?iso-8859-2?Q?LsKIbN/1vXt1MXo06jPb5g03a9Ay1JhDAsReYhqO/9ALB8kFnTZ6uWGPtC?=
- =?iso-8859-2?Q?V2G4IRxA8oP0OxHaZR8Mw0JLW1vD9fiHgAokgeGlCAafFcPsdTqufISZvC?=
- =?iso-8859-2?Q?P6+UpA38Mn5osagJ4DKBCchGwH0YHJCOA9Y2unu6ZP0qhu8BcLT0Hrl/m9?=
- =?iso-8859-2?Q?KctC34pbF0xhJc6sFDNV4xpnKIeifgtD0z717AUjQKr9VeO2bBF1CsOHge?=
- =?iso-8859-2?Q?14sr7t3EeaWlOf+34GEgQ7MoYkt6MVHlK4Z4N2eAEO33qET9PYFjdwgppX?=
- =?iso-8859-2?Q?cyITrmD5mnuT58pUYhWi/K1zwvxqcSMsmvdKpsnXwoFyCxaHJ0T6yqPTkj?=
- =?iso-8859-2?Q?klscf0HMz5+JHgZ+glQLzru6gBegc1h1CfzNlYYniUzHy2kfcuW6Jc8IXx?=
- =?iso-8859-2?Q?2DmhyTmmnQcpXa01iOilD8N33Nx2nCO6qfXSNOkl9tC26tbtpbYC+DV7qT?=
- =?iso-8859-2?Q?QQ6ixln+jGnUzUFejQVn5m929fuI5u3U3oFZOCD2ghUHP6qrD6ryBagNYP?=
- =?iso-8859-2?Q?ndLS+M54C5v+z1a17QFjjhzigTzxc5/gXEEVv+nAQ5GoBKtTLzz7IlUiqt?=
- =?iso-8859-2?Q?+Ybm5Qdgp68AoiLvAxVKoMIlON0bf+YfvuUV+V9EdtOUzXkahjpLfTgnqp?=
- =?iso-8859-2?Q?oCf7RrW5z/Yiu2RIyuTsw6DJStx5gI5lPFefeG2neJVbvLgef2C9rBeY2Z?=
- =?iso-8859-2?Q?RsSRZRSd4nO+CJGxrM5xYw4koTavhPizqavMIICVEMnkZUizY+gzsUKFWb?=
- =?iso-8859-2?Q?72e82BhVHTFTEDp6JMflvozuhoRmEn1TatQEWnMhGErQIvqO5MCssjcSTN?=
- =?iso-8859-2?Q?vpHsHCAkoi2U1hUaYYmj08EzAfz6IY4dsNjZmiDBvwUWgdQuQJh/g5hSrK?=
- =?iso-8859-2?Q?H6YwrymBohjeDo4vYhQfLuvtsPeOro83OFEOZRWXB6PJVlWDGLDxyACBvv?=
- =?iso-8859-2?Q?DkD70qQoExYayEjx/B26ZlF67xXb/5gMt6/1c0fG2XxVHePFW4l4x4zv8x?=
- =?iso-8859-2?Q?GzY6WuILivC0ZpXLTP51hU94MitXRwFABFqSi18hnxT9rw?=
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C69E36E467;
+	Fri, 13 Mar 2026 08:32:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773390741; cv=none; b=EDYM5y5NpYTei0fdtf8hvTG+DTfgUQOLxmxP+om7MKdV3EyJaO8uBwSCHqoodpu7wbzGuPTvLxg+X/ogFZVrHvFB7q5govtWNd2U2mt2PYIyY0jCjrxteeF1FrrizNW1Znp5paj5Mp3HSBPf35kSF+YBgJUlmkzxu2cmZHgEjtA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773390741; c=relaxed/simple;
+	bh=Nl+7LWtkxv6+ukIGHNTsuAHfdV43ujZAEvxFTAY1mD8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kTF0jCTj3MyIbUwQCaYG5amVRCSjXmrDw44Y25JOaUaOCRtLKD225CR1UoPwLkGQd+28A7jUZPaq6Cp3OBCG1TUAqrZUajuRiSRNJY9cQGIXM5XXeWA3xoF37t81r6WGAfgQPStQcRugIiaY1j9NJSFbjOeVVdE2811GlveXKEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EYs5mD6/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2D27C19424;
+	Fri, 13 Mar 2026 08:32:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773390740;
+	bh=Nl+7LWtkxv6+ukIGHNTsuAHfdV43ujZAEvxFTAY1mD8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EYs5mD6/OMIB8MxF7KtH8yGzdMiS16u4t8pL24wgXbPXL5Qsz99xd85z6hQfvAs0Z
+	 Szf3uLOzX3POmHvCyokYelXTUE5bQUqNDocPuNM0yQ8i0WT2fSgd+BVi2a7Mzu9lr6
+	 pvniiL5mxW2dGs9Qn7C28ac4XWyziHf97HlZIPn6bAAunBcP0JAVq60Gib3fWqLAJq
+	 H+uGVprrlXur7feqkVlb2E7gLbvfhM+JKCk46WxIAvFT2Bp91PoAyqSRUOR8BbK8uR
+	 9ZDL2ziMroPI5c2vEFFT6e5df7F9CrJJb0LmUQiY83oTS/OzqidkKTvdVNFLEMupQe
+	 5Bel/e8GR+FfQ==
+Message-ID: <2d0afdab-78b7-4e60-b132-98cfcbbbb5af@kernel.org>
+Date: Fri, 13 Mar 2026 09:32:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 18a2e9f2-eef2-42aa-2295-08de80dab7bb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Mar 2026 08:30:00.5848
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: sjet2NmsMJHUuEqUaW1S5vPz4MvHAc8dOShf/vM3GIvP9+h8OLX926RFvdaZfp9CJ+bTabsqwn0X+aVBo3LbMA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9329
-X-Spamd-Result: default: False [1.34 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: display: panel: Add Novatek NT35532 LCD
+ DSI
+To: cristian_ci <cristian_ci@protonmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org
+References: <20260308-rimob-new-features-v1-0-aa2c330572c0@protonmail.com>
+ <20260308-rimob-new-features-v1-1-aa2c330572c0@protonmail.com>
+ <369b48d9-f089-49a2-89cb-a4e0c68f92fa@kernel.org>
+ <7Ft_cDw10-3MmNTrKncMut5g08sodd9CL7r7AGXAtPPqZpXtHEgmqm05WhEpYMZzFEs4B0KWz-LU27Z0_YDnc44nXhdUrUt5X2dWK7D6pYM=@protonmail.com>
+ <db04882b-7f30-464c-91a6-578302aef4ff@kernel.org>
+ <Nz_hTfDbWqQk8-FcCknxZKO8dIhCAGueG89SRe2LkTG1VK4KjoH-UZH6bsOvqEySwNRjJtsEUL7vxxIXOWyyzLOtM9YLZaCuhPfxNz0mVyk=@protonmail.com>
+ <4cfc7b40-f172-4eae-8f19-4a3eb858075e@kernel.org>
+ <q2whOVhy_Cqm5m8toyiZ0PQQThv6LLoo8a5ialb_td0o5yM1FRLIMRZh2FKRiwSuwPfmfibU6Z6_jz6kJFJGlFfu3V-ELMteHVDM7zpnSBI=@protonmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <q2whOVhy_Cqm5m8toyiZ0PQQThv6LLoo8a5ialb_td0o5yM1FRLIMRZh2FKRiwSuwPfmfibU6Z6_jz6kJFJGlFfu3V-ELMteHVDM7zpnSBI=@protonmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275001-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,nxp.com,pengutronix.de,kernel.org,google.com,gmail.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	TAGGED_FROM(0.00)[bounces-275002-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[protonmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org,lists.sr.ht];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[outlook.com:url,lore:url,nxp.com:dkim,nxp.com:email,qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,VI0PR04MB12114.eurprd04.prod.outlook.com:mid,lor:url]
-X-Rspamd-Queue-Id: CCAC527FB04
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1D1CF27FC04
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-> Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: fsl,imx6q-pcie: Explicitly
-> deprecate reset-gpio
->=20
-> On 13/03/2026 03:27, Sherry Sun wrote:
-> >> Subject: [PATCH v2 1/2] dt-bindings: PCI: fsl,imx6q-pcie: Explicitly
-> >> deprecate reset-gpio
-> >>
-> >> The binding references snps,dw-pcie-common.yaml which already
-> >> deprecates "reset-gpio", however mentioning this property here lacks
-> >> this mark thus code is confusing and suggests property is not deprecat=
-ed.
-> >>
-> >> OTOH, the property cannot be removed from this schema, because it is
-> >> an ABI implemented by Linux kernel in gpiolib-of.c in
-> >> backwards-compatible map between compatibles, "reset-gpio" and "reset-
-> gpio-active-high"
-> >> properties.
-> >>
-> >> This creates code and binding which is not obvious to follow, so
-> >> rewrite it and be more explicit about:
-> >> 1. Deprecation of "reset-gpio",
-> >> 2. Relation that "reset-gpio-active-high" is used only for that proper=
-ty
-> >>    and not proper "reset-gpios".
-> >>
-> >> Signed-off-by: Krzysztof Kozlowski
-> >> <krzysztof.kozlowski@oss.qualcomm.com>
-> >>
-> >> ---
-> >>
-> >> Cc: Sherry Sun <sherry.sun@nxp.com>
-> >>
-> >> Changes in v2:
-> >> 1. Rewrite the commit completely after Sherry Sun comments - keep the
-> >>    property, but add "not" clause to forbid usavge of
-> >>    "reset-gpio-active-high" and "reset-gpios".
-> >> 2. Because of above not adding Richard's ack.
-> >>
-> >> v1:
-> >> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flo=
-r
-> >>
-> e.ke%2F&data=3D05%7C02%7Csherry.sun%40nxp.com%7C6967142eb77047384
-> 81e08d
-> >>
-> e80d303e5%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C6390898
-> 4094660
-> >>
-> 3723%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwL
-> jAuMDAw
-> >>
-> MCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C
-> &sda
-> >> ta=3D4JQjEBcOsTdGVZZxRf2ov1IkD4DizXpsfNhMBZQVnIs%3D&reserved=3D0
-> >> rnel.org%2Fr%2F20260311154955.145120-3-
-> >>
-> krzysztof.kozlowski%40oss.qualcomm.com&data=3D05%7C02%7Csherry.sun%4
-> >>
-> 0nxp.com%7Cc630bed6bc4f46715b4408de80675002%7C686ea1d3bc2b4c6fa
-> >>
-> 92cd99c5c301635%7C0%7C0%7C639089378371805072%7CUnknown%7CTWF
-> >>
-> pbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4
-> >>
-> zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3DA%2BiFa
-> >> kDVdjPn0JJxUDlTDt1ej4iqnBivDktjwbcpFK4%3D&reserved=3D0
-> >> ---
-> >>  Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml | 8
-> >> ++++++++
-> >>  1 file changed, 8 insertions(+)
-> >>
-> >> diff --git
-> >> a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> >> b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> >> index 12a01f7a5744..12cd1b9f78d0 100644
-> >> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> >> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> >> @@ -62,6 +62,9 @@ properties:
-> >>      description: Should specify the GPIO for controlling the PCI bus =
-device
-> >>        reset signal. It's not polarity aware and defaults to active-lo=
-w reset
-> >>        sequence (L=3Dreset state, H=3Doperation state) (optional requi=
-red).
-> >> +      Deprecated, use reset-gpios which respects the polarity express=
-ed in
-> >> +      phandle argument.
-> >> +    deprecated: true
-> >>
-> >>    reset-gpio-active-high:
-> >>      description: If present then the reset sequence using the GPIO
-> >
-> > Hi Krzysztof,
-> > This property also needs to be deprecated as Rob suggested in my
-> > previous patch :)
-> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flor=
-e
-> > .kernel.org%2Fall%2F20260121164002.GA3427694-
-> robh%40kernel.org%2F&data
-> >
-> =3D05%7C02%7Csherry.sun%40nxp.com%7C6967142eb7704738481e08de80d3
-> 03e5%7C6
-> >
-> 86ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C639089840946618268%7
-> CUnknown
-> > %7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIl
-> AiOiJXaW4
-> >
-> zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3DduSx4R
-> MO9WjKX
-> > 0aUSEM49tQpEpUEc%2B7aVATwASdFSGE%3D&reserved=3D0
->=20
-> Heh, why that patchset isn't merged already?
+On 13/03/2026 09:26, cristian_ci wrote:
+> 
+> On Tuesday, March 10th, 2026 at 21:06, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> 
+>> On 10/03/2026 18:48, cristian_ci wrote:
+>>> On Monday, March 9th, 2026 at 16:08, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>
+>>>> On 09/03/2026 15:52, cristian_ci wrote:
+>>>>> On Sunday, March 8th, 2026 at 17:13, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>>>
+>>>>>>> +  vsp-supply:
+>>>>>>> +    description: positive voltage supply for analog circuits
+>>>>>>
+>>>>>> Both are odd. Datasheet says vci, vddi, vddam and optional avdd, avee.
+>>>>>>
+>>>>>> There is no VSN and VSP. Otherwise please point the page in datasheet or
+>>>>>> some schematics.
+>>>>>>
+>>>>>> Best regards,
+>>>>>> Krzysztof
+>>>>>>
+>>>>>
+>>>>> I'm not sure about that. Writing panel dt-bindings has been based pretty mostly on vendor devicetree - which also describes somehow the panel and makes that working with the final product released to the market - so I've to necessarily consider that.
+>>>>> Then, I could agree that vendor devicetree might be not compliant with upstream rules and could possibly make mistakes with describing the hardware, so I'd like to find a way to describe that in a more proper way, according to upstream rules.
+>>>>>
+>>>>> That said, vendor devicetree describes lists four power supplies for  DSI: 'vdd', 'vddio', 'lab' and 'ibb' (which have the following property names, respectively, in qcom,mdss_dsi_ctrl node: 'vdd-supply', 'vddio-supply', 'lab-supply' and 'ibb-supply'.
+>>>>> Two of these are related to ds/controller (apparently, 'vddio' should match VDDI power supply in NT35532 datasheet.
+>>>>>
+>>>>> The remaining two supplies are related to panel ('lab' and 'ibb'). These ones are two 'external ' regulators ('external' from NT35532 perspective), which provide power supply to display, located in the qcom PMIC (in this case, that should be PMI8950). WRT to power supply names described in the bindings ('vsp-supply' and 'vsn-supply') are the same as 'lab-supply' and 'ibb-supply', just named differently in the vendor devicetrees.
+>>>>>
+>>>>> Usage of 'vsp'/'vsn' naming for power supply properties is grounded on they commonly being used at upstream (different panel bindings make use of these properties), on one side, and also described on schematics of devices with the same hardware configuration (LCD_VSN and LCD_VSP), on the other.
+>>>>>
+>>>>> In the meantime, I've found out schematics for 'xiaomi-mido' (another MSM8953 device) - a variant of this device is shipped with a panel also using NT35532 IC (just like my device) - and LCD_VSN/LCD_VSP are clearly shown there too.
+>>>>>
+>>>>> I couldn't find much more information about the display on my device and the only resources available about that are those listed above, as of today. In light of my reply, I ask if it is still necessary to describe, in the bindings, power supply properties properties not used currently in the board DTS file.
+>>>>
+>>>> Please wrap your answers so this will be possible to parse.
+>>>>
+>>>> You write bindings matching the hardware and for the hardware, not for
+>>>> the downstream code. You cannot add supplies which do not exist
+>>>> regardless what some vendor wrote somewhere
+>>>
+>>> Vendor has also described the hardware by storing information (by including info
+>>> about panel too) directly inside the device itself (/sys/firmware/fdt).
+>>
+>> Vendor does not care about rules of DT thus puts there completely fake
+>> information just to make their drivers working
+>> .
+> 
+> I'm not sure what that statement is based on in the specific case of
 
-The V8 patch set is still under reviewing due to some pcie driver part chan=
-ges ;)
-https://lore.kernel.org/linux-devicetree/20260313020823.1592389-1-sherry.su=
-n@nxp.com/
+It's based on years of looking at vendor code.
 
-Best Regards
-Sherry
+> the panel I'm actually testing. A set of clues (some of which were also mentioned
+> in my first reply some days ago) point out that rimob's panel is really supplied by
+> two regulators part of PMIC [1]. Not only for this reason, I do not have
+> enough solid reasons, after all, to consider vendor data about the panel mounted in
+> this device (rimob) as not decently reliable, so I cannot ignore them, at least.
+
+And I did not disagree that you need regulators and that vendor
+correctly wired two of them.
+
+The comments are about naming!
+
+I discussed of using argument of incomplete or not fully correct vendor
+code when the true hardware description is available. If the vendor
+calls them in vendor DTS "yellow-pony-supply" you are going to use that
+argument to write bindings? And then argue that "not sure what that
+statement is based on"?
+
+It's obvious - vendor code is crap. There are no VSN and VSP inputs. We
+already confirmed that.
+
+You claim that vendor called like that thus you can use them as well is
+simply not correct approach.
+
+
+Best regards,
+Krzysztof
 
