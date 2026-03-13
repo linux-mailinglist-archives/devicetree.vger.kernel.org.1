@@ -1,176 +1,281 @@
-Return-Path: <devicetree+bounces-275025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275026-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GE5DOPLOs2n2awAAu9opvQ
-	(envelope-from <devicetree+bounces-275025-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:46:42 +0100
+	id eHtzFhTPs2n2awAAu9opvQ
+	(envelope-from <devicetree+bounces-275026-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:47:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 932EF27FEC6
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:46:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF30F27FEF2
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:47:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 02C1A30236AB
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:46:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6D83A302A2EE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:47:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AFD0378D81;
-	Fri, 13 Mar 2026 08:46:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67C9F386C3F;
+	Fri, 13 Mar 2026 08:47:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VqCJedCe"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JepH0vlW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E86F379EFC
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 08:46:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8D8B386437;
+	Fri, 13 Mar 2026 08:47:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773391600; cv=none; b=fGkNwTX7Cjo5O8ugSD8KzxnaIuVP43NDZvPRhirBwQkUyOusiX1F8WKu0DJb5f+aAZB7/QST1zlxUvr9CFtKSMQrecSyBxl1nl/Yl8caHrE0ZoctU83IrnOBfP+k8RYLG+rUcMrxpDnCqdFnsz3QePds7M0eiDWCA+gJXXEtVYU=
+	t=1773391633; cv=none; b=TPAg1H7WluJKUx8NIAhOeZY2x8NzQbkgBghXMZH+kWGyWdFndBOetdl/ITkqo5GydpBfEtE9uh/NR7tSvH3oaEjG+101RWhHrbXlWZ1E0tjwSjgrG2QALIBoWwOIftwMNVRHFJpyBNt0dESA7CyR+08DnxaFX/n37xd+oDwJG3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773391600; c=relaxed/simple;
-	bh=HuHpz91KYcxtzb3pdzeY1NuW7aFjeJ5XOYyXgme0Iwg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=RG6j7ZeG2LS5Cjnxl0U/6HpyyECJtIeLXLfWRb3DepTeXtGNa9JOHcdn245WuGkqIHohwgAgXRHZLit522zn2XuzaPCJtE22/Kodv0L7+oBZquHpxMhKS3XqPR8t66UG1Fcpf/XKGjgBTMXGY3jO6lKMQ3kNxedAzo6fT+2vD2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VqCJedCe; arc=none smtp.client-ip=209.85.219.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-899efe93d4eso24838156d6.2
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 01:46:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773391598; x=1773996398; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EWtVhcPwqjrv+e22Y/nIPTx2YCaGzJEiskvbRnBBT54=;
-        b=VqCJedCeXCbD8Rib4MZXWr4LAz1yxBv8DufqgRydPFXAkQoCRPVzjtwWeh5e6dnp6L
-         BHPOZBwZmEByPcPzogS4iaG6SBDI/orKo/9VSNbaTHtwGqwrIl28nbKOI9T9KWmnG2Hw
-         gne1XaV+mPVywtrVj8Qe6bTW+yl7/xX1Gjtcu9HHqkBPLbHPFYfmXKBld9TVn2ueikDT
-         e/zLeMPpklzMVuI4lfIM8vW+VreF+22cSFvXxu5ttVMDinsa97Iwg6KUZlc0cbq5HCeQ
-         2T0H6fVqTLvtV0n4RvJA1FHlqQg/UDwWtGo9guvQduUSY3ZijzDogoZzLKZ3het5H3A+
-         MbSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773391598; x=1773996398;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=EWtVhcPwqjrv+e22Y/nIPTx2YCaGzJEiskvbRnBBT54=;
-        b=na4r9beL7oA/SuQQAFDWAZ9BrxSqYtwTS5yWN3cMTRMuyTONerYywIgv7b9Auj1ySu
-         FpizURvS7dBUzQIDDCWWEYnXCRv0kWIv4Ugs0htfEQU9LQoXjn4z0F9uPNgfySfA+v3N
-         LNSchDPfpNIrw/bYtP/wo0ov7lY3IuvZq1ePdDC3IdH/e0cD5xvtPRr+96ahxusO4/kH
-         WtybU+LiXV6L0BnDq8gqz7h8dkaAhGrdzeI6FZBNqPK5JImJTk1PRfQzPAKoMqI9PpJE
-         oq9XAZkGfe+vFzlahjrv4wJSgShXoivFKCIqzdJwBfm7L9zh/lChygJMmoa24AXziNRv
-         2FMw==
-X-Forwarded-Encrypted: i=1; AJvYcCV/nw8wOggzNsYTkh0Y1Aruv23n/zOliFgt2uRps7Ky5acnTS8x8cwv8xnH96MBCwLkO27l7uBsgRjl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyy6cLwURsai5xIaesC2fSPc8BY3z8xEdUyu+AQedeuuitj/8VY
-	bgudQaDFfVdEsyXVXRPop1wOQheeRQFTBTvhk1bubX7FIFB4h9B5SfLq
-X-Gm-Gg: ATEYQzyW0jyFO5dKUvc3dYC+sZB1FOJpEC/zclaQKZfp6HeU0tTxz+8pAmF9ffqWZPq
-	Y2rJPhSWCPXd8tFUp6eqDcYsGXyAuRcnt+ulicwcXPLJ/7wMwXBJ1fB/GNJ8w/D9WuPZAfsAkO/
-	QP1md4lJF4wCxXZ4qnoJvcSlkhQq0+RAoYIC3aJHBBwphuwgVIa+jSozq+eF3Aq487GwqW0QY51
-	Rouw9BL9hj4A+YGc3iRp4nmX1DtBAUljAAq/OUJxHE4qpWVCAg7nGNTZCVJQchEoYa+NXIWQiRv
-	bscvCLc1Ga/hNLr7EYSMSK1GRrLBsojVuczDhIUQBGsjCzBsY5YxjC/CblJjMy8WwfdNc9ARxWU
-	FqJHv/ESaZY/h+wY2q3PT47XMu9mcFomFt+vYi7kgboL7Go/BXmpnAFubmpEvuXFrTOwRP3CGvz
-	viOxSXmjNilKh513m76Qr2fbVODqlftz5ikYE=
-X-Received: by 2002:a05:6214:21c4:b0:899:fd8c:55d2 with SMTP id 6a1803df08f44-89a81cce733mr42999986d6.15.1773391598089;
-        Fri, 13 Mar 2026 01:46:38 -0700 (PDT)
-Received: from m91p.airy.home ([172.92.174.155])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-89a65beb131sm50142206d6.13.2026.03.13.01.46.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Mar 2026 01:46:37 -0700 (PDT)
-From: Bo Gan <ganboing@gmail.com>
-To: linux-riscv@lists.infradead.org,
-	samuel.holland@sifive.com,
-	david@redhat.com,
-	palmer@dabbelt.com,
-	pjw@kernel.org,
-	gaohan@iscas.ac.cn,
-	me@ziyao.cc
-Cc: lizhi2@eswincomputing.com,
-	hal.feng@starfivetech.com,
-	marcel@ziswiler.com,
-	conor@kernel.org,
-	kernel@esmil.dk,
-	devicetree@vger.kernel.org
-Subject: [RFC PATCH 6/6] [TESTING-ONLY] riscv: dts: eswin: eic7700: activate XPbmtUC
-Date: Fri, 13 Mar 2026 01:44:07 -0700
-Message-Id: <20260313084407.29669-7-ganboing@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260313084407.29669-1-ganboing@gmail.com>
-References: <20260313084407.29669-1-ganboing@gmail.com>
+	s=arc-20240116; t=1773391633; c=relaxed/simple;
+	bh=FGn8dJxicvgrsI/h6Hp65oLeF+oMlSRnErsYPVzfqqk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HN42H7m5JRw+om9KVxah8uzHNr2CqW7MepuEKA04xiW0Uj5XjqboYva2kcMJuabQ1we3SufLbSW7sR+DzY27mpFb6deyb5Vq/9T5clxhfOomS/i5ftyivIbcK7JV6AhkJnFo6OGLl+PadnkxhNYaeZ1Ynbcae7izQUaRAxVtfrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JepH0vlW; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773391631; x=1804927631;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=FGn8dJxicvgrsI/h6Hp65oLeF+oMlSRnErsYPVzfqqk=;
+  b=JepH0vlWQAHM04z4VugFqzL18gjiv51JpfZFSiQ+uXlsfSWUO84KQnTu
+   R5RG+YCexun0PFIShChBncq6cLlTYy+4XihDpKqHJvz8BBY2h3Q/vBmN+
+   lGpF3mfCImGbZhlQAeu8+klchf9kPY8b06tzNNSwyegIRxb2CaZbgUjj6
+   2VZtX7qhoyrCJj3OqDKrR5XyVrVszYWyewW1NYYIMOkUnW52hdP8u+KcJ
+   7oyW1PaWk3HrKvTKq48WtdbMdGIM5w9CEqcd/Ks2I6JJSCNIwB+Ckp4Jh
+   RjQyRgl/u1KrXvCJdA9REvtT2dlRJFFjGixqnFrXaGUbn4guX4Ri1DNyG
+   g==;
+X-CSE-ConnectionGUID: Wa/c42eSQXKisWhsPjwFKw==
+X-CSE-MsgGUID: yiozJj6ITKio6P72Wc5D0Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="62067203"
+X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; 
+   d="scan'208";a="62067203"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2026 01:47:10 -0700
+X-CSE-ConnectionGUID: EK0T+kaDQpCaPmPvtWwt/A==
+X-CSE-MsgGUID: TwUHx1WNRQ6Dc8H0L0qKYA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; 
+   d="scan'208";a="244128261"
+Received: from black.igk.intel.com ([10.91.253.5])
+  by fmviesa002.fm.intel.com with ESMTP; 13 Mar 2026 01:47:08 -0700
+Received: by black.igk.intel.com (Postfix, from userid 1008)
+	id 331FD95; Fri, 13 Mar 2026 09:47:07 +0100 (CET)
+Date: Fri, 13 Mar 2026 10:46:23 +0200
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Alexander Koskovich <akoskovich@pm.me>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] usb: typec: qcom: Add support for per port VBUS
+ detection
+Message-ID: <abPO31SynIPY6fJD@kuha>
+References: <20260312-qcom-typec-shared-vbus-v2-1-99ed9e500947@pm.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260312-qcom-typec-shared-vbus-v2-1-99ed9e500947@pm.me>
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275025-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-275026-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_NEQ_ENVFROM(0.00)[ganboing@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[heikki.krogerus@linux.intel.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_NONE(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 932EF27FEC6
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pm.me:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,intel.com:email]
+X-Rspamd-Queue-Id: AF30F27FEF2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Set riscv,xpbmt-uncache-bit to 38 for testing only.
-(Make sure your firmware remaps it as the following)
+Thu, Mar 12, 2026 at 06:16:58AM +0000, Alexander Koskovich kirjoitti:
+> This is required for devices (e.g. ASUS ROG Phone 3) where more than
+> one USB port can act as a sink and both share a single USBIN input on
+> the PMIC.
+> 
+> Because the PM8150B uses USBIN to determine VBUS presence, a charger
+> connected to one port causes the PMIC to falsely detect VBUS on the
+> other port, preventing it from entering source mode.
+> 
+> For example, plugging a charger into one port prevents using the other
+> port for a flash drive.
+> 
+> Fix this by adding support for the vbus-gpios connector binding so the
+> driver can use an external GPIO for per-port VBUS presence detection
+> instead of the shared USBIN register.
+> 
+> Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
 
-            [0x0,    0x20000000) Core Internal
-     [0x20000000,    0x40000000) Core Internal (Die 1)
-     [0x40000000,    0x60000000) Low MMIO
-     [0x60000000,    0x80000000) Low MMIO (Die 1)
-     [0x80000000, 0x10_80000000) Cached Mem
-  [0x20_00000000, 0x30_00000000) Cached Mem (Die 1)
-  [0x80_00000000, 0xa0_00000000) High MMIO
-  [0xa0_00000000, 0xc0_00000000) High MMIO (Die 1)
-  [0xc0_00000000, 0xd0_00000000) Uncached Mem  <----------.
-  [0xe0_00000000, 0xf0_00000000) Uncached Mem (Die 1)  <--+--.
-with firmware/hypervisor re-mapping:                      |  |
-------------------------------------                      |  |
- [0x100_80000000, 0x110_80000000) Mem UC+ ----------------'  |
- [0x120_00000000, 0x130_00000000) Mem UC+ (Die 1) -----------'
+Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 
-Signed-off-by: Bo Gan <ganboing@gmail.com>
----
- arch/riscv/boot/dts/eswin/eic7700.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+> ---
+> Changes in v2:
+> - Dropped RFC prefix
+> - Remove redundant vbus-detect-gpios, instead use existing vbus-gpios from usb-connector (Dmitry)
+> - Updated cover to better describe scenario where this change is relevant
+> - Update comment for EN_TRY_SRC to make more sense
+> - Skip vSafe5V poll too not just vSafe0V
+> - return gpiod_get_value_cansleep (Konrad)
+> - regmap_update_bits -> regmap_set_bits (Konrad)
+> - Get vbus-gpios per connector (Konrad)
+> - Add bracket to if (IS_ERR(pmic_typec_port->vbus_detect_gpio)) (Bryan)
+> - Link to v1: https://lore.kernel.org/r/20260308-qcom-typec-shared-vbus-v1-0-7d574b91052a@pm.me
+> ---
+>  drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c | 53 +++++++++++++++++++++-
+>  1 file changed, 52 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c
+> index 8051eaa46991..a8f6687a3522 100644
+> --- a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c
+> +++ b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c
+> @@ -5,6 +5,7 @@
+>  
+>  #include <linux/delay.h>
+>  #include <linux/err.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/kernel.h>
+>  #include <linux/mod_devicetable.h>
+> @@ -176,6 +177,8 @@ struct pmic_typec_port {
+>  	bool				vbus_enabled;
+>  	struct mutex			vbus_lock;		/* VBUS state serialization */
+>  
+> +	struct gpio_desc		*vbus_detect_gpio;
+> +
+>  	int				cc;
+>  	bool				debouncing_cc;
+>  	struct delayed_work		cc_debounce_dwork;
+> @@ -279,6 +282,9 @@ static int qcom_pmic_typec_port_vbus_detect(struct pmic_typec_port *pmic_typec_p
+>  	unsigned int misc;
+>  	int ret;
+>  
+> +	if (pmic_typec_port->vbus_detect_gpio)
+> +		return gpiod_get_value_cansleep(pmic_typec_port->vbus_detect_gpio);
+> +
+>  	ret = regmap_read(pmic_typec_port->regmap,
+>  			  pmic_typec_port->base + TYPEC_MISC_STATUS_REG,
+>  			  &misc);
+> @@ -310,6 +316,13 @@ static int qcom_pmic_typec_port_vbus_toggle(struct pmic_typec_port *pmic_typec_p
+>  		val = TYPEC_SM_VBUS_VSAFE0V;
+>  	}
+>  
+> +	/*
+> +	 * On devices with multiple ports sharing USBIN, VBUS from another
+> +	 * port makes the USBIN-based vsafe polls unreliable.
+> +	 */
+> +	if (pmic_typec_port->vbus_detect_gpio)
+> +		return 0;
+> +
+>  	/* Poll waiting for transition to required vSafe5V or vSafe0V */
+>  	ret = regmap_read_poll_timeout(pmic_typec_port->regmap,
+>  				       pmic_typec_port->base + TYPEC_SM_STATUS_REG,
+> @@ -589,7 +602,15 @@ static int qcom_pmic_typec_port_start_toggling(struct tcpc_dev *tcpc,
+>  		mode = EN_SNK_ONLY;
+>  		break;
+>  	case TYPEC_PORT_DRP:
+> -		mode = EN_TRY_SNK;
+> +		/*
+> +		 * With VBUS present on USBIN from another port, EN_TRY_SNK
+> +		 * keeps the port in sink mode. Use EN_TRY_SRC so the port
+> +		 * tries to source first.
+> +		 */
+> +		if (pmic_typec_port->vbus_detect_gpio)
+> +			mode = EN_TRY_SRC;
+> +		else
+> +			mode = EN_TRY_SNK;
+>  		break;
+>  	}
+>  
+> @@ -677,6 +698,19 @@ static int qcom_pmic_typec_port_start(struct pmic_typec *tcpm,
+>  	if (ret)
+>  		goto done;
+>  
+> +	/*
+> +	 * On devices with multiple USB-C ports sharing USBIN, bypass
+> +	 * VSAFE0V so SRC attachment can complete despite VBUS being
+> +	 * present on USBIN from another port.
+> +	 */
+> +	if (pmic_typec_port->vbus_detect_gpio) {
+> +		ret = regmap_set_bits(pmic_typec_port->regmap,
+> +				     pmic_typec_port->base + TYPEC_EXIT_STATE_CFG_REG,
+> +				     BYPASS_VSAFE0V_DURING_ROLE_SWAP);
+> +		if (ret)
+> +			goto done;
+> +	}
+> +
+>  	pmic_typec_port->tcpm_port = tcpm_port;
+>  
+>  	for (i = 0; i < pmic_typec_port->nr_irqs; i++)
+> @@ -704,6 +738,7 @@ int qcom_pmic_typec_port_probe(struct platform_device *pdev,
+>  	struct device *dev = &pdev->dev;
+>  	struct pmic_typec_port_irq_data *irq_data;
+>  	struct pmic_typec_port *pmic_typec_port;
+> +	struct fwnode_handle *connector;
+>  	int i, ret, irq;
+>  
+>  	pmic_typec_port = devm_kzalloc(dev, sizeof(*pmic_typec_port), GFP_KERNEL);
+> @@ -724,6 +759,22 @@ int qcom_pmic_typec_port_probe(struct platform_device *pdev,
+>  	if (IS_ERR(pmic_typec_port->vdd_vbus))
+>  		return PTR_ERR(pmic_typec_port->vdd_vbus);
+>  
+> +	connector = device_get_named_child_node(dev, "connector");
+> +	if (connector) {
+> +		pmic_typec_port->vbus_detect_gpio =
+> +			devm_fwnode_gpiod_get(dev, connector, "vbus",
+> +					      GPIOD_IN, NULL);
+> +		fwnode_handle_put(connector);
+> +
+> +		if (IS_ERR(pmic_typec_port->vbus_detect_gpio)) {
+> +			ret = PTR_ERR(pmic_typec_port->vbus_detect_gpio);
+> +			pmic_typec_port->vbus_detect_gpio = NULL;
+> +			if (ret != -ENOENT)
+> +				return dev_err_probe(dev, ret,
+> +						     "failed to get vbus GPIO\n");
+> +		}
+> +	}
+> +
+>  	pmic_typec_port->dev = dev;
+>  	pmic_typec_port->base = base;
+>  	pmic_typec_port->regmap = regmap;
+> 
+> ---
+> base-commit: 1f318b96cc84d7c2ab792fcc0bfd42a7ca890681
+> change-id: 20260308-qcom-typec-shared-vbus-7d37c6b2d155
+> 
+> Best regards,
+> -- 
+> Alexander Koskovich <akoskovich@pm.me>
+> 
 
-diff --git a/arch/riscv/boot/dts/eswin/eic7700.dtsi b/arch/riscv/boot/dts/eswin/eic7700.dtsi
-index f16ec76fb130c..5c413439daf0a 100644
---- a/arch/riscv/boot/dts/eswin/eic7700.dtsi
-+++ b/arch/riscv/boot/dts/eswin/eic7700.dtsi
-@@ -10,6 +10,7 @@
- / {
- 	#address-cells = <2>;
- 	#size-cells = <2>;
-+	riscv,xpbmt-uncache-bit = <38>;
- 
- 	cpus {
- 		#address-cells = <1>;
 -- 
-2.34.1
-
+heikki
 
