@@ -1,204 +1,243 @@
-Return-Path: <devicetree+bounces-275188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275190-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8Da+OCIBtGnCfAAAu9opvQ
-	(envelope-from <devicetree+bounces-275188-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:20:50 +0100
+	id iDNIAYcBtGnCfAAAu9opvQ
+	(envelope-from <devicetree+bounces-275190-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:22:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88718282DBE
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:20:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61C89282E45
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:22:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B2DED321346D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 12:18:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8BDD731E2DDD
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 12:22:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 119BB391E77;
-	Fri, 13 Mar 2026 12:18:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A0D6391E55;
+	Fri, 13 Mar 2026 12:22:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GMR8E5Hy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y0TKur53"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47433391827
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 12:18:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E31391827
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 12:22:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773404327; cv=none; b=ohDBs+6xw6Le4KVcdIkorlPnsrcwKapOFCdEOyw8A0X/+AAWjWf/JyP8d6YW6J3FIlraJpV1mm2/1GOTjRLgAUrPNT34p5CZ/LTb9G1AkF/YiGEJM7IOPcKiFK2iRWuGb16nTeTeff/4IGb4aOUlBxpHKWzu7JqSCawdGyBEKbE=
+	t=1773404522; cv=none; b=ChB7zApznFbcLYIrHivoihqgRw637/VbBA6T6R8+JJTBzN95U7q4Tii1/HIbFS0BI4ovn/FknSyTZCRL9axPu7hkryAj7S6z166pC/MnaCpZOGi+wara++lFh5azOUSF93tkSzo9D+7A4zfyPqi1SiWZUMWWbaWhJO/rf3G3AjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773404327; c=relaxed/simple;
-	bh=V+lC6EjJY4lOyB1rR22LNtAT1Vlotp4LU45DmHO/UY8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sOq19vr1/FYYYqSmhGEgui8K7ZfkmHhHpP1efppNa2lpMi1lsJSUudcsod2sSRMzj7HU3gBF4bF6g0r2r+GjxI8gx1tMOsFH9EmTv1AeC45/jW7yHc0J+WFzt0Rziv36gBz58gJIchqxNH43e1Ygwqa2rR6Kmcsq4fsCJqLrnC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GMR8E5Hy; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-439f59dfda2so1722648f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 05:18:46 -0700 (PDT)
+	s=arc-20240116; t=1773404522; c=relaxed/simple;
+	bh=hFs/nJVgT00q9RHXTlVEds9o/c8VRtvriM4h9t/2l+Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nsRMG/MHrLAFN7Dm3WNSM3/NVuc4P/sxMTe3iJjiCaSd5NE+QpNn+I7vgoDg7xKeXav/Rg5PJaGdQzoBUnCMIH/kk5LUXJeUG3Q9aw0GgXuW1/oZ0isZdMr2zZSOTFhQ+pXUEIh1jlrM58BTZcJuufA+QHq/QbANaM2MSS9iK4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y0TKur53; arc=none smtp.client-ip=209.85.215.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-c06cb8004e8so864426a12.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 05:22:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773404324; x=1774009124; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4vDJxFgdwUwROzjUq7xJrFddmidfBuen5YK8xbhB4mk=;
-        b=GMR8E5HyNWdXKxTRba2IiHoZhNE+5btYwPZDw0/cTqNmOTfNzBOpLA2F8LesAOXF+5
-         vRUgrKWQXowArBxEWDPyzs6P6Ivyqv1X7sPh31HDl7TIZuBJW1uOiesfnrEKPmm2lrl5
-         l+QR4YDjF/fSjqlzI2XCeEXkerfiEp9FQ5jJqj0DONkYgAxdRNE7Gc9RtBXH8hNnprKz
-         l3ZJYfSBAU1iscXZ0tYZmKF5Sw/Z7E3+U5fD7qTecGk7hO86iXmp7ve90H7Epq4t4wkw
-         ntiR55WsLNGl5LPMJA13FyCl1SpzhEkV7yNQBA0MFtPEVirejGA0DdnYPy7iccTYX2p5
-         OJJA==
+        d=gmail.com; s=20230601; t=1773404520; x=1774009320; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qQYsaPFPiGqln9V3lf00oP6fB8VRjINu6GubTRfH7Ds=;
+        b=Y0TKur53VUpcMoXjx22bWz+0KJNlAbtjUIxkX17UFGD6tBEAwJnEOevS5ZfO/lTJBE
+         QYM3si6RvN7nG+OiVS7SKcRLfQoLuEFYsbz97h8KFp+QdU6s3hyHL7y2+31/JqKy8e7V
+         xMb1UJvtPtng6leFhuvVpLuYnpu4xweOKUiG5Tu9Jbx3sZFJM46+ZikKNT8he2NOOFn3
+         HaVaqsV0j0JCfqokzxG25ZnD38bTspe/nLoRjvuxkeyPhwYc1F2emMjNB5+V7oo2EGYi
+         ycILim7BLEdjRrd4Q/yX57FHhT1Qb6KBEvZvuAGQeXT6/VNdMZrUdHcmarC/5LQ2v4Br
+         KcTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773404324; x=1774009124;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4vDJxFgdwUwROzjUq7xJrFddmidfBuen5YK8xbhB4mk=;
-        b=S7kzMkchn5d90R586QCsdEjirhwz58zmbesMbD55DzET/MtYTtzGamOQz7TiQiE/VZ
-         zh6MjvmxoHrkjYaObBTwLUvngCN9HD6LJr68dNxNtnlpTAnEqEothS4DvOGvwVOKOR6M
-         QG5f0H6QfKtvh6TDkXtxKAjKD84fSRd2IuWUpGRUi1LZ9laYfxTQtDKbBr8XbcJKvv4l
-         JpXm3mCZQ/BCY/3C9y+c07oOLfzbvF3jsPyqcwNNOr2vb7ZjX3Oe3fEkR3VoVRPO1VwY
-         SzwCkykIr3ip/9+La9yombGJUG28J99ceEMpfT4Uy0IOih8oLCpx0FdawXEuk8a8E7xh
-         U3Mg==
-X-Forwarded-Encrypted: i=1; AJvYcCU34fnsEc7U1pm9Ux/6ii/acer/DzlPmQlFpyNjJVcFu8HwtuNs7Fwv1bOn+u0mCb5Lyz48F3bCJQ5M@vger.kernel.org
-X-Gm-Message-State: AOJu0YypMLOXOaWucUosyqm2BMfGKEMdYUHtus1KPqV9Q4bfcN/evhwG
-	AmQBOr5v1FieejHN8ePnQ5QD/i7SrDJUdBqL3dDzo3s4qOg/X9RHi6Y7S2tcpfH+/0M=
-X-Gm-Gg: ATEYQzzi4/pY8TiSaWWtdi529vevBRE2zc6uWfilWKHnVTWn4bMavUBb7L52Yud0ITe
-	iWn/QS2nTY+hocmWhRdAmhV/+GOxxt7yC5H8S54kQ09a4o5AtOprNI6JxE26Le4w7EqxYVE+tjT
-	gI5uhkbDLOsX0r5XjHl6zNHrRBrPuQhVG177txXuiLpnXk1dR3p6OeroygB5i7W4Ph1GgB1A/2u
-	LLlmsvOst3EGvdlXhl1+YbmW+gH7/c9QJd5fUF30GBxsGYxDFU9a13tfyg2TBAHUZ1F4rthHlJ3
-	Wj2bnRCo62I7PWetqFOFj4hTVyowPR3H6MyRIOzJsjlZvCk9VpKG//AIRrtGNYDvE8usb0wyDEW
-	w3NL8rTa4byBcloNVmbaaZrYznu8Ko+uB79+DZmNnZlkbDzBRwoGmIkOCueT+jQ2qDuzAf1Kwte
-	0zRxajC9O5E2sA1PoPDglbd71Xcm3FncoWP5c=
-X-Received: by 2002:a5d:64e7:0:b0:439:b59e:5e6a with SMTP id ffacd0b85a97d-43a04d816cemr6178617f8f.14.1773404324041;
-        Fri, 13 Mar 2026 05:18:44 -0700 (PDT)
-Received: from [192.168.0.35] ([109.76.176.163])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439fe19ac5fsm17764848f8f.1.2026.03.13.05.18.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Mar 2026 05:18:43 -0700 (PDT)
-Message-ID: <132116be-2964-4b98-be2b-1baae5bfb58e@linaro.org>
-Date: Fri, 13 Mar 2026 12:18:47 +0000
+        d=1e100.net; s=20251104; t=1773404520; x=1774009320;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qQYsaPFPiGqln9V3lf00oP6fB8VRjINu6GubTRfH7Ds=;
+        b=j0/gK+jYXDEubMsKXaq67dGpWM4HEElfA9jsuCzZI6Urgo6AOleBZe7TClNNt3cQFW
+         u0+9VHITFLJiusAsvyIQbobLmf8VGfolqUOMWJl6sfEkVrjLSltmQQkKfK+Suay92ngJ
+         VMlI9+H2cwnHm36uuI8qCSFoFzAThm687nuZ/UKxl7NJ4AHZPjDcOPOTN0rBqWNjIZtS
+         k6RyL1EYM14MzOUczM77Nggwb4er7X39CUw0C5zNmn9sPo50f67RWqm+vjV67hZ5XqLl
+         LRgCt9ypXKEhNP5Ydfp3JCqjU/msmcdD0CZ4lkAX8j4VNNkqvc8nkC74XM5tb2D2Lx2I
+         QXWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXFZE5lYlNAtf/WNi1oq60/sRlllEUNLW7+HpbtXW0VpQUcKxzYAtRQx2wlIWY6cuunt2qeuPT28r2W@vger.kernel.org
+X-Gm-Message-State: AOJu0YwuvnrDz8WaOfsWBU0lPBP+OIZzv+Ra54Sa6iTqbIhswoFffgrw
+	+Y68v+BxxoEwUn2CtrBtN5fVTI1RG6+z5ZLnBKGOQou+bW3znLW4ojBn
+X-Gm-Gg: ATEYQzz3vpL+dgvlUwnMil3bXZ9APFOtZrBDTzAFtMgKaZkrRxMTy5mzJI8JhXelAxU
+	ZcLWlb1ndTQ5rMKXbvVkBMujOPBuaeNns3ZdquoscOXirbczIgG0m/6+faAvmyYIknye8NwKhD2
+	6hJ9srmTa23989eYy21fC+vQJX9TkUygsBlG+YEU7RhJ5loH6a121UmeD1T4wVjb9xOgAYsUWjf
+	+Qx8tF9gjDcSqZAwEGT/999svFx81zly/Ept/dssHGqf4+gVn8tCY3YgILx2b9IQMY1zxnSPvwf
+	oPK6g6ep/n8jd3E+nIgjnlZs5F1in1AxYJKwSEfqAyQj8coTX2FLMHWL7iGQUwzxuqyumMeg8FS
+	vrPtcLwmOB6yqIYP25EN3a3UFstq6qn7e/k48YjmDX/WquhgPUPfhfrw3kbYAKFVRUt7j95agY6
+	kQd0rueEPTvBCjO2dPbsT0aQ0=
+X-Received: by 2002:a05:6a21:3289:b0:395:1511:7221 with SMTP id adf61e73a8af0-398ecdaa232mr3048034637.59.1773404520288;
+        Fri, 13 Mar 2026 05:22:00 -0700 (PDT)
+Received: from arch ([2409:40c2:5041:4729:f466:f82d:a807:fe6])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82a0725bfd0sm7336275b3a.14.2026.03.13.05.21.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Mar 2026 05:22:00 -0700 (PDT)
+From: Bhargav Joshi <rougueprince47@gmail.com>
+To: sravanhome@gmail.com,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	m.reichl@fivetechno.de
+Cc: daniel.baluta@nxp.com,
+	simona.toaca@nxp.com,
+	d-gole@ti.com,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	rougueprince47@gmail.com
+Subject: [RFC PATCH] dt-bindings: regulator: mps,mp8859: convert to DT schema
+Date: Fri, 13 Mar 2026 17:51:36 +0530
+Message-ID: <20260313122136.9349-1-rougueprince47@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/5] Add driver for EC found on Qualcomm reference
- devices
-To: Anvesh Jain P <anvesh.p@oss.qualcomm.com>,
- Sibi Sankar <sibi.sankar@oss.qualcomm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Hans de Goede <hansg@kernel.org>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- Maya Matuszczyk <maccraft123mc@gmail.com>
-References: <20260313-v04-add-driver-for-ec-v4-0-ca9d0efd62aa@oss.qualcomm.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20260313-v04-add-driver-for-ec-v4-0-ca9d0efd62aa@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-275188-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_CC(0.00)[nxp.com,ti.com,vger.kernel.org,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,fivetechno.de];
+	TAGGED_FROM(0.00)[bounces-275190-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[rougueprince47@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:dkim,linaro.org:mid,qualcomm.com:email]
-X-Rspamd-Queue-Id: 88718282DBE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.66:email,devicetree.org:url]
+X-Rspamd-Queue-Id: 61C89282E45
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 13/03/2026 10:29, Anvesh Jain P wrote:
-> From: Anvesh Jain P <anvesh.p@oss.qualcomm.com>
-> 
-> Add Embedded controller driver support for Hamoa/Purwa/Glymur Qualcomm
-> reference boards. It handles fan control, temperature sensors, access
-> to EC state changes and supports reporting suspend entry/exit to the EC.
-> 
-> ---
-> Changes in v4:
->    - Fix fan count calculation to use min() instead of max() to correctly
->      cap fan_cnt at EC_MAX_FAN_CNT.
->    - Remove unnecessary mutex lock/unlock.
->    - Disable fan debug mode on ec module removal.
->    - Fix issue reported by kernel test robot.
->    - Consolidate hamoa-iot-evk specific changes into hamoa-iot-evk.dts.
->    - Add board-specific compatible strings as per review comments.
->    - Link to v3: https://lore.kernel.org/all/20260308233646.2318676-1-sibi.sankar@oss.qualcomm.com/
-> 
-> Changes in v3:
->    - Revamp the bindings and driver to support generic ec specification
->      that works across Qualcomm Hamoa/Purwa and Glymur reference devices.
->    - Add ec nodes to Hamoa/Purwa CRDs and IOT-EVKs.
->    - Add ec node to Glymur CRDs.
->    - Link to v2: https://lore.kernel.org/lkml/20241219200821.8328-1-maccraft123mc@gmail.com/
->    - Link to v1: https://lore.kernel.org/lkml/20240927185345.3680-1-maccraft123mc@gmail.com/
-> 
-> ---
-> Maya Matuszczyk (1):
->        dt-bindings: embedded-controller: Add EC bindings for Qualcomm reference devices
-> 
-> Sibi Sankar (4):
->        platform: arm64: Add driver for EC found on Qualcomm reference devices
->        arm64: dts: qcom: glymur-crd: Add Embedded controller node
->        arm64: dts: qcom: x1-crd: Add Embedded controller node
->        arm64: dts: qcom: hamoa-iot-evk: Add Embedded controller node
-> 
->   .../embedded-controller/qcom,hamoa-ec.yaml         |  56 +++
->   MAINTAINERS                                        |   8 +
->   arch/arm64/boot/dts/qcom/glymur-crd.dts            |  22 +
->   arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts         |  16 +
->   arch/arm64/boot/dts/qcom/x1-crd.dtsi               |  16 +
->   drivers/platform/arm64/Kconfig                     |  12 +
->   drivers/platform/arm64/Makefile                    |   1 +
->   drivers/platform/arm64/qcom-hamoa-ec.c             | 468 +++++++++++++++++++++
->   8 files changed, 599 insertions(+)
-> ---
-> base-commit: a0ae2a256046c0c5d3778d1a194ff2e171f16e5f
-> change-id: 20260309-v04-add-driver-for-ec-3fa478f264d9
-> 
-> Best regards,
+Convert the Monolithic Power Systems MP8859 voltage regulator binding
+from legacy text format to DT schema.
 
-
-echo 'file qcom-hamoa-ec.c +p' > /sys/kernel/debug/dynamic_debug/control
-echo 6-0076 > /sys/bus/i2c/drivers/qcom-hamoa-ec/unbind
-echo 6-0076 > /sys/bus/i2c/drivers/qcom-hamoa-ec/bind
-dmesg | tail -n 15
-
-[   27.301126] qcom-hamoa-ec 6-0076: EC Version 0.35.0
-[   27.311768] qcom-hamoa-ec 6-0076: Fan count: 0 Fan Type: 0 Thermistor 
-Mask: 0
-
-?
-
+Signed-off-by: Bhargav Joshi <rougueprince47@gmail.com>
 ---
-bod
+Note:this patch is part of the process for applying to GSoC device tree
+bindings conversion project 
+#https://github.com/LinuxFoundationGSoC/ProjectIdeas/wiki/GSoC-2026-Device-Tree-Bindings
+
+ .../devicetree/bindings/regulator/mp8859.txt  | 22 --------
+ .../bindings/regulator/mps,mp8859.yaml        | 54 +++++++++++++++++++
+ 2 files changed, 54 insertions(+), 22 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/regulator/mp8859.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/mps,mp8859.yaml
+
+diff --git a/Documentation/devicetree/bindings/regulator/mp8859.txt b/Documentation/devicetree/bindings/regulator/mp8859.txt
+deleted file mode 100644
+index 74ad69730989..000000000000
+--- a/Documentation/devicetree/bindings/regulator/mp8859.txt
++++ /dev/null
+@@ -1,22 +0,0 @@
+-Monolithic Power Systems MP8859 voltage regulator
+-
+-Required properties:
+-- compatible: "mps,mp8859";
+-- reg: I2C slave address.
+-
+-Optional subnode for regulator: "mp8859_dcdc", using common regulator
+-bindings given in <Documentation/devicetree/bindings/regulator/regulator.txt>.
+-
+-Example:
+-
+-	mp8859: regulator@66 {
+-		compatible = "mps,mp8859";
+-		reg = <0x66>;
+-		dc_12v: mp8859_dcdc {
+-			regulator-name = "dc_12v";
+-			regulator-min-microvolt = <12000000>;
+-			regulator-max-microvolt = <12000000>;
+-			regulator-boot-on;
+-			regulator-always-on;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/regulator/mps,mp8859.yaml b/Documentation/devicetree/bindings/regulator/mps,mp8859.yaml
+new file mode 100644
+index 000000000000..144876aabd25
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/mps,mp8859.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/mps,mp8859.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Monolithic Power Systems MP8859 Voltage Regulator
++
++maintainers:
++  - Markus Reichl <m.reichl@fivetechno.de>
++
++description:
++  The MP8859 is a synchronous, 4-switch, integrated buck-boost converter
++  capable of regulating the output voltage from 2.8V to 22V wide input voltage
++  range with high efficiency.
++
++properties:
++  compatible:
++    const: mps,mp8859
++
++  reg:
++    maxItems: 1
++
++  mp8859_dcdc:
++    $ref: /schemas/regulator/regulator.yaml#
++    type: object
++    description: DCDC regulator subnode
++    unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        regulator@66 {
++            compatible = "mps,mp8859";
++            reg = <0x66>;
++
++            mp8859_dcdc {
++                regulator-name = "dc_12v";
++                regulator-min-microvolt = <12000000>;
++                regulator-max-microvolt = <12000000>;
++                regulator-boot-on;
++                regulator-always-on;
++            };
++        };
++    };
+-- 
+2.53.0
+
 
