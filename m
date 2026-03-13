@@ -1,131 +1,227 @@
-Return-Path: <devicetree+bounces-275553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275554-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IJ+5E313tGlHogAAu9opvQ
-	(envelope-from <devicetree+bounces-275553-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:45:49 +0100
+	id oIIjMrh5tGmOogAAu9opvQ
+	(envelope-from <devicetree+bounces-275554-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:55:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90620289E12
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:45:48 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37BCE289ED6
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:55:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 891063007962
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:45:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 335D63012CD1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:55:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 611D437DE93;
-	Fri, 13 Mar 2026 20:45:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53FB437FF45;
+	Fri, 13 Mar 2026 20:55:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="p/y9TmOJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VpVS97O7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B29F371064;
-	Fri, 13 Mar 2026 20:45:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E85037F72F;
+	Fri, 13 Mar 2026 20:55:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773434746; cv=none; b=aPgxuBxmHr6I5N3TQtuM+1y84/FBOPACANukiMzkWMEnbeb3XghXFTmfy1ubF7rzkrR/AHAtgFzwOnbQ8Yvb5KMdXxWaOGkN/xBM2yfbsnjvaamvt302Qm5HRFOf0ah7rWbMR4G+bE3iEx00R3yTjd1CdVpTPn0J5dYnw0uzHDs=
+	t=1773435318; cv=none; b=Y4Y2dQtvRIf6UoGsT71klz4y/NNyHJBGotSr+HAZ/V3azIpraHlJ10SwWWr/qnanAb/bOr+QRb25G37I7ntpxXy7i9jO2jjNlLoT6m2HBjLsqzYCIz7p9392i1BFOW7BVDRZPD2x4iHLQ2zqt6Rta0fnC8cLTXGEXzpOkELLJPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773434746; c=relaxed/simple;
-	bh=GxJxdMFAYHH659BhmzjOYGJJqHW/Xwn1gaupmFFVWXE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jIhqJquOqlJNisH2blFbC/ldObxzfQbBYBm7xD8jB8CcRSMvbncMR43eM6vaD6Q3oaGvEejoUiqLhclCNzciyGD8/SMc2QyMEo7z3/ejGIOw65jDJRhVzqkneFw8K68v/6zrgJwwjzWgyjTjZMdIy7dS4qhdaHQYKZucAHBIH1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=p/y9TmOJ; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=1zK/mBzPerZDG0DoNt9fcpBSJy47YwKe8HlQ+1FxntQ=; b=p/y9TmOJc28LeVce7hrNjR5G9K
-	s4oXquqPVzjwwyuL/AeAddXkhy/Hnp5BcJUthbWgo5ybIXmm346CyFiWtDg0AposWIYCyc1ODdq9D
-	bQEIbVfIcWPVP4TQ4lTvhgR28XIQK6btcrXgVgXAqhP3LjcIUXCMTgOVP1ZC0hPMJ/hD6QJsbJL1O
-	pGyAHkkoErtnaoj3hAcHytppMVOZsndEhXVOrMH+xWS+vWGLobxWDXaq5diBLAAWTNtq9juG02ZCT
-	N5aM/8MZVakKVZQiARzQZJv8A7wQSggxi+6C5Z+RheGYiC5tSESH3Zo3gNRfwLlSdSk6DOz+vgsqU
-	xzYbmgkQ==;
-From: Heiko Stuebner <heiko@sntech.de>
-To: Gerald Loacker <gerald.loacker@wolfvision.net>,
+	s=arc-20240116; t=1773435318; c=relaxed/simple;
+	bh=FRgbhMTwDoCjlSgH+Mbeik4GJjhM/BNxYxIy4SLYB14=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AW6Ag/al4vBeHnwfZTcs98hsyx/HCuh+lxe024C2ZEB5rMPeGgCoO0ubsV+sXJ0RcrrZQ9BbnknaR3Z7wsFL2ir+p3qM1w86p7BrPu0yYqYRgznVjIiPzoU2iwzsbE5j2UKC5DNB5HC8LRKdhoi7f3ogNRJvbfmhTUeceDroo6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VpVS97O7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05240C19423;
+	Fri, 13 Mar 2026 20:55:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773435317;
+	bh=FRgbhMTwDoCjlSgH+Mbeik4GJjhM/BNxYxIy4SLYB14=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VpVS97O7qvNeJqVE6E+LF3HR3DzzLy6d7TeMzjaxDwI4tCcgF7b+ZmRn67JL8AyS8
+	 2BFOBUU6qFiU6mdlOyQcjwY1ISGkDA7JLWrcTlv1DLwNcAw/J8Iy1Wdv2aBuIOpLU9
+	 5K2Jjl1wvCmQOu3v8s3Y0wSJIvb3wkDeIeFvRwpkozNtDQEjldO8yy8u0qwktH3Ex7
+	 HvryAbVFI2ww5o2ORJILsR4WZMZ0P+wsJk/jnOk9o5F2lg0kugt2WZ3b3O3D1/d5Ic
+	 McDw/M1PT9CWlINI8xt/f9OvWQT0JpP2har10PypIPGWTRiNoRj+bIjKryYKMGsBI1
+	 yaO6MqoIU/PPg==
+Date: Fri, 13 Mar 2026 20:55:12 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Florin Leotescu <florin.leotescu@oss.nxp.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Michael Riesch <michael.riesch@collabora.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Subject: Re: [PATCH] arm64: dts: rockchip: enable vicap dvp on wolfvision pf5 io expander
-Date: Fri, 13 Mar 2026 21:45:14 +0100
-Message-ID: <177343454660.206632.6377463081579115678.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260313-wv-io-expander-vicap-v1-1-11001fb3b744@collabora.com>
-References: <20260313-wv-io-expander-vicap-v1-1-11001fb3b744@collabora.com>
+	Michael Shych <michaelsh@nvidia.com>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	daniel.baluta@nxp.com, viorel.suman@nxp.com,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	festevam@gmail.com, Florin Leotescu <florin.leotescu@nxp.com>
+Subject: Re: [RFC PATCH v2 1/2] dt-bindings: hwmon: emc2305: Add
+ fan-shutdown-percent property
+Message-ID: <20260313-jurist-atrophy-e145686d3145@spud>
+References: <20260312122248.1281572-1-florin.leotescu@oss.nxp.com>
+ <20260312122248.1281572-2-florin.leotescu@oss.nxp.com>
+ <20260312-triage-shallot-1b3d9f07d250@spud>
+ <abRF+TPKuXFDJc55@ro-kernel-workstation>
+ <20260313-mulberry-glamorous-6afbfc52e42f@spud>
+ <cbc1d09e-25b1-4b94-a59c-6b5e54af01f9@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="s1dtOtEOTAf4qsN4"
+Content-Disposition: inline
+In-Reply-To: <cbc1d09e-25b1-4b94-a59c-6b5e54af01f9@roeck-us.net>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275553-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-275554-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[sntech.de:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[oss.nxp.com,kernel.org,nvidia.com,vger.kernel.org,nxp.com,lists.infradead.org,lists.linux.dev,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sntech.de:dkim,sntech.de:email,sntech.de:mid]
-X-Rspamd-Queue-Id: 90620289E12
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 37BCE289ED6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Fri, 13 Mar 2026 16:53:29 +0100, Michael Riesch wrote:
-> The Digital Video Port (DVP, the 16-bit variant) of the RK3568 VICAP
-> is broken out to the PF5 mainboard expansion header.
-> Enable it in the device tree overlay for the WolfVision PF5 IO
-> Expander board.
-> 
-> 
+--s1dtOtEOTAf4qsN4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied, thanks!
+On Fri, Mar 13, 2026 at 11:12:26AM -0700, Guenter Roeck wrote:
+> On 3/13/26 10:38, Conor Dooley wrote:
+> > On Fri, Mar 13, 2026 at 07:14:33PM +0200, Florin Leotescu wrote:
+> > > On Thu, Mar 12, 2026 at 05:37:51PM +0000, Conor Dooley wrote:
+> > > > On Thu, Mar 12, 2026 at 02:22:47PM +0200, florin.leotescu@oss.nxp.c=
+om wrote:
+> > > > > From: Florin Leotescu <florin.leotescu@nxp.com>
+> > > > >=20
+> > > > > The EMC2305 fan controller supports multiple independent PWM fan
+> > > > > outputs. Some systems require fans to enter a defined safe state
+> > > > > during system shutdown or reboot handoff, until firmware or the n=
+ext
+> > > > > boot stage reconfigures the controller.
+> > > > >=20
+> > > > > Add an optional "fan-shutdown-percent" property to fan child nodes
+> > > > > allowing the shutdown fan speed to be configured per fan output.
+> > > > >=20
+> > > > > Signed-off-by: Florin Leotescu <florin.leotescu@nxp.com>
+> > > > > ---
+> > > > >   .../devicetree/bindings/hwmon/microchip,emc2305.yaml      | 8 +=
++++++++
+> > > > >   1 file changed, 8 insertions(+)
+> > > > >=20
+> > > > > diff --git a/Documentation/devicetree/bindings/hwmon/microchip,em=
+c2305.yaml b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+> > > > > index d3f06ebc19fa..7bcadfab9fc4 100644
+> > > > > --- a/Documentation/devicetree/bindings/hwmon/microchip,emc2305.y=
+aml
+> > > > > +++ b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.y=
+aml
+> > > > > @@ -54,6 +54,12 @@ patternProperties:
+> > > > >             The fan number used to determine the associated PWM c=
+hannel.
+> > > > >           maxItems: 1
+> > > > > +      fan-shutdown-percent:
+> > > > > +        description:
+> > > > > +          Fan RPM in percent set during shutdown.
+> > > >=20
+> > > > This sounds like something generic, that other devices might need a=
+nd
+> > > > should be in fan-common.yaml?
+> > > >=20
+> > > Thanks for the feedback.
+> > >=20
+> > > The property name was reused from pwm-fan.yaml where it already exists
+> > > with the same meaning. I kept it local to minimize the scope of the c=
+hange.
+> > >=20
+> > > However, if you prefer it to be modelled as a common property, I can =
+adjust it in the next revision.
+> >=20
+> > I see. Makes me wonder why half the properties in pwm-fan aren't also in
+> > fan-common.
+> >=20
+> > I suppose there's a reason for it, carry on I guess.. Can be lifted if
+> > there are more users other than you and pwm-fan.
+> >=20
+> > > > > +        minimum: 0
+> > > > > +        maximum: 100
+> > > > > +
+> > > > >       required:
+> > > > >         - reg
+> > > > > @@ -80,12 +86,14 @@ examples:
+> > > > >               fan@0 {
+> > > > >                   reg =3D <0x0>;
+> > > > >                   pwms =3D <&fan_controller 26000 PWM_POLARITY_IN=
+VERTED 1>;
+> > > > > +                fan-shutdown-percent =3D <100>;
+> >=20
+> > Also leads to the question of why these devices aren't pwm-fans. Too
+> > late now to change anything, I just wanna understand why.
+> >=20
+>=20
+> They are dedicated fan controllers, with an internal tach -> pwm feedback
+> loop. I don't mind modeling them as pwm controllers if there is a use case
+> (such as someone using a PWM output to control a LED), but I don't even k=
+now
+> how modeling them as pwm fans using the pwm-fan compatible would even be
+> possible since that would exclude the tach -> pwm feedback loop.
+>=20
+> Also, if that were to be done, we might end up with two hwmon drivers
+> for one chip: one to report the fan speed, and one to report pwm values.
+> On top of that, even if it is not currently supported by the driver,
+> controlling the tach -> pwm feedback loop would become awkward.
+>=20
+> Yes, I understand, there is a strong push to model everything with
+> a pwm output as pwm controller, but si far no one was able to describe
+> to me how to model a fan controller, and especially its feedback loop,
+> in such a scenario. That becomes even more complicated if temperatures
+> are used to control the feedback loop.
 
-After talking with Michael and both of us getting grey hair from
-the whole mailmap thing, we agreed that I'll just adapt the author
-myself.
+FWIW, my wording choice was poor here. I said that it was too late to
+change anything in an attempt to convey that I didn't want it to be
+changed, but it came across as implying that it was wrong.
+I just wanted to know why it was the way it was, not change it.
 
-I've applied the patch now as it's just a leaf-overlay of a single
-leaf-board, so no real harm can happen here and I don't want to
-have to remember all the address details in a day or two ;-) .
+Thanks for the info you provided, that's useful.
 
-The git log will of course again show the @collabora.com, because
-the mailmap translates the author-address again.
+--s1dtOtEOTAf4qsN4
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-[1/1] arm64: dts: rockchip: enable vicap dvp on wolfvision pf5 io expander
-      commit: d7787a77cf8b129304f590233032556dec10dfc6
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabR5sAAKCRB4tDGHoIJi
+0hLqAP98tyg8o9VYgPVmjo979r729SYNjRFyycZPK3tbgPbguAEAo0lOn/tMvvNT
+mNnoXkl58KlVWyGYBX29eQ8cp7taUQQ=
+=NOEP
+-----END PGP SIGNATURE-----
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+--s1dtOtEOTAf4qsN4--
 
