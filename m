@@ -1,389 +1,132 @@
-Return-Path: <devicetree+bounces-275283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275284-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UIpdO4YatGlLhQAAu9opvQ
-	(envelope-from <devicetree+bounces-275283-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:09:10 +0100
+	id yNzoIfgatGlLhQAAu9opvQ
+	(envelope-from <devicetree+bounces-275284-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:11:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FFB0284951
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:09:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF8812849D9
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:11:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8B399312B8C7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:55:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6351232CF117
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:55:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE2A839A063;
-	Fri, 13 Mar 2026 13:55:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EF2D39A07C;
+	Fri, 13 Mar 2026 13:55:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="k2ToVNoS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FnADfsUo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8080C39A049
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 13:54:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B62239A072;
+	Fri, 13 Mar 2026 13:55:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773410101; cv=none; b=O+YWIenTReVSTfWyp5Gm+pW0AGIXJbHzh/UYrNAvuiXuTgRPikf88zznha/j6kn0XW5fCI2VSI3NI2V9u0HjQ1tICNr9GRZF6iPzADn+M6bcy/DLTzCHQHe+HI9V4ZLQOADRjDeWfGnqH0edLhmWBm7aJVfPv/xS8akU7Q29DnE=
+	t=1773410117; cv=none; b=eTnH/EZ/8eaWWEv7tOsPC212BRy23DKMT/jZyE9giQw+Fimh0cgwahoMcEPABi8BuLjjDvGj7dK+PspzAmPkcLRwMVqWelS852kgbY1IU9iXEEtxzounwb7xPUqzuIKZ1Li759ZN7MkcsmiDZiVVnzXkK/qrfapoZA4xnWn7ND4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773410101; c=relaxed/simple;
-	bh=MlNJNyJrSolsmtzHNXwytk+bJl81GE0OtGhb3cJbINY=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=uAfXB1YoyDEiVK7cmq5m6jlOTb5sx1vdZHMHBza4q5lhfZ4LZwUtIUvOs4p5/2uXyimdPoRm9x5HMiDe4uGLTl98rEYjZSeeyjgCV9ZEz/JTgc0FjEA/qsneeoOUMq8usOhrtMEudP36QaU67bK039gOg35sZMb6ttp4pyD9QZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=k2ToVNoS; arc=none smtp.client-ip=209.85.160.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-506362ac5f7so21236061cf.1
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 06:54:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1773410095; x=1774014895; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=8NYylncmkl6iB+b/mf6sX6AvKULEGc8LEp3stTQM5KM=;
-        b=k2ToVNoSKo8ln+WyZKw2EW1DjeSF+aWLmKC4YY8CzxxmWbaesvIY5+fsZ4dKh2Tc4z
-         CsvC+YssGYGQ7GOw47vjN06KeDHvAnPJYauQxjoOn4B/C1vH2dvMRaFnJ3tD6+wdsqnu
-         FMoH6DMHtZyHp0ZfLOMfFMQcRbevn7LE3yXXoHUkKOdM+Wt2gUmajdkhed2d2V4YxaID
-         xvh6B+qR5CnTpMCYd5JGQQ8p8hhUd454fmC5uXnJjpUjvSLLoyyi0KrRfHLUrY3f91Mp
-         TWpkZziXzzI2nMfBqBYpktfqg9zOPJ+P8cii6pu8U+oDRguMkyfqMgaCHa1w4Nzx9Vn1
-         yDDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773410095; x=1774014895;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8NYylncmkl6iB+b/mf6sX6AvKULEGc8LEp3stTQM5KM=;
-        b=Eu3jmVCmXKEtiSRigYVAdKVRka92rxNi/eVK55VYmerZSHgYwpKzF1eitZ4A49zoOz
-         8nqo1u4Rql6yMVBV0gy/H/xQ6S8lUYL7s281AOa8NFqVs1dWRYWVxqu87NRYpax5C/8S
-         T0kdFuKfspeKKfc4l6b0VXlir7r0pTi6B+3yKymUnapsUF5f/laOXsMX2vsGv/0dnBRM
-         Aj22ziBSsyIyK+Ada+dtJgLBIT+8BWXvXJd3va1kG/A7q1ITuEbiKFJ4VsUl2zGo/dHa
-         uzIxR5RhStvey7SyqQq+i0plmlu2i4xx/K+KZwWv7Ix1hKCvQjFWr+AIBPEdE4YoMKhx
-         lSSg==
-X-Forwarded-Encrypted: i=1; AJvYcCVCGMcEto8Plu1E7rQDalyhnw2himE+g1/f/haQq51/cKOs6iwAU6G5ZNbDWqA7A6vSqR5Q8pJgm8WW@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfVZFx/kJkdyAubWymjYUVRGs3D9FXsb76UPL1eaPKO14TB+YO
-	C3LT2+rv6bgi7QyAsJiW/4EB8Q11QBF+boIov1eHQQL2iszfZ3v1uvAac0lhROYBMu+OEFdlFk7
-	jdwjXq20=
-X-Gm-Gg: ATEYQzxXDBznXIQVxVH8HktniemZDXQjGvbTrIj7T8hWv5XYlz3WwQfMhbW1Y3PbCtZ
-	5GOivEU/NZ23B4vbAuMCMsQV3N1bIWh5SC6hwaVBK2nuz5BGx3dOl9a51Nb86M4/g7wtmUnVJdH
-	YcwF8RXfOVSlhdVUkIREWICmxhYYywb+FXJeo+DSx9Vn898DHc9ltd6Uoq6lz319pzbVRnoH0jZ
-	8AP4GzaVg2lHmpHeJVHyIBjR+FZYd4zKs7+C91r8OGQcpluDV2B6M2CvJVJz8PWIAA3YYR/u9Jo
-	Aip+0B/q2GNVOff24DRvZkut0XDaq7tNzIELHwrpJJn89yq+9gJxGFo3fZjaPbc9L//jpargG7d
-	LIu9whami1+xlSjMmhkA8wo6ASHMzK1Ti5J97kpBNhdh5pyh7PecKzGUomHyPx+Mk2F2+TTN7Jp
-	PJZ9mPxMRABSJ2o0BsMCl1ay4u74iLr+jUl/YVRD4hxWZx+TU84coVw4ehSy2pXtsSNSoZO68gL
-	T2d
-X-Received: by 2002:a05:622a:c1:b0:509:8fb:3342 with SMTP id d75a77b69052e-50957dfc262mr45478541cf.56.1773410095065;
-        Fri, 13 Mar 2026 06:54:55 -0700 (PDT)
-Received: from ?IPV6:2001:1970:3847:e000:4c82:63a9:39e9:5c17? ([2001:1970:3847:e000:4c82:63a9:39e9:5c17])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-89a65d1a3e5sm54240586d6.50.2026.03.13.06.54.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Mar 2026 06:54:53 -0700 (PDT)
-Message-ID: <f2eeddcb-712f-4a67-9687-e217f46f9ea8@baylibre.com>
-Date: Fri, 13 Mar 2026 09:54:49 -0400
+	s=arc-20240116; t=1773410117; c=relaxed/simple;
+	bh=i3AGf5Cl4JxixU2SwH05GrtCKPGtQgQLPovWbx4b8Ug=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E6wk1W4lT453HLtb5Lovk2sysYawtYoB2ti0G2E3VgCyBXiNsb/I2ebMpePS9u50ldFkx4zjN36sEg99CDg3lbbzC1rplAaTAL0GoRCU3MWjs5oM/Uf16EcLY0QS05iWWllJ/MXy6XWVrMAEaNW3ht/E5qYdNn7g+6aR4hpYcho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FnADfsUo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 386B4C19421;
+	Fri, 13 Mar 2026 13:55:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773410116;
+	bh=i3AGf5Cl4JxixU2SwH05GrtCKPGtQgQLPovWbx4b8Ug=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FnADfsUo18OTp3w/nrN7y+zMt+rCrafeZUso/zE9M3ZdSP/+1M2k6Q8Xo/G6ZfRAr
+	 eeiBhJKarxWhzGhXYx97+lMKeA/B0F1oIc+HMJvJFAlaH+MSaqo1d1NUsgaUBMjlzp
+	 ems2y4eBlfQjYEvVAluegYZf0PMwUjaVgGV5zGSNOyg+hXBhpJmGulIAGiECv+KwG9
+	 egaIMXzQDY3svUJtaKiKjdo7X1zEy76HKxgVA0HTF/LFXDtd8LR1XV1UkFJRwtCu4H
+	 Ocz6IDUeW3sTfkUkJ4N09Y7bEZB0t16FYxZP2ND/IjY4w+5aViLbUpot07Rg69caK1
+	 5d3P66+8mHrhA==
+Date: Fri, 13 Mar 2026 14:55:14 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Maulik Shah <maulik.shah@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thomas Gleixner <tglx@kernel.org>, Linus Walleij <linusw@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	Sneh Mankad <sneh.mankad@oss.qualcomm.com>
+Subject: Re: [PATCH 2/5] dt-bindings: interrupt-controller: qcom,pdc:
+ Document reg and QMP
+Message-ID: <20260313-hungry-mini-magpie-db50de@quoll>
+References: <20260312-hamoa_pdc-v1-0-760c8593ce50@oss.qualcomm.com>
+ <20260312-hamoa_pdc-v1-2-760c8593ce50@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Trevor Gamblin <tgamblin@baylibre.com>
-Subject: Re: [PATCH v2 7/7] riscv: dts: spacemit: k1-orangepi-rv2: add SD card
- support with UHS modes
-To: Iker Pedrosa <ikerpedrosam@gmail.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>,
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
- Yixun Lan <dlan@kernel.org>
-Cc: Michael Opdenacker <michael.opdenacker@rootcommit.com>,
- Javier Martinez Canillas <javierm@redhat.com>, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20260309-orangepi-sd-card-uhs-v2-0-5bb2b574df5d@gmail.com>
- <20260309-orangepi-sd-card-uhs-v2-7-5bb2b574df5d@gmail.com>
-Content-Language: en-US
-In-Reply-To: <20260309-orangepi-sd-card-uhs-v2-7-5bb2b574df5d@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260312-hamoa_pdc-v1-2-760c8593ce50@oss.qualcomm.com>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275283-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,linaro.org,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-275284-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tgamblin@baylibre.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,baylibre-com.20230601.gappssmtp.com:dkim]
-X-Rspamd-Queue-Id: 6FFB0284951
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: EF8812849D9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Thu, Mar 12, 2026 at 09:26:36PM +0530, Maulik Shah wrote:
+> Document PDC reg to configure pass through or secondary controller mode
+> for GPIO IRQs.
+> Document QMP handle for action concerning global resources.
 
-On 2026-03-09 07:40, Iker Pedrosa wrote:
-> Add complete SD card controller support with UHS high-speed modes.
->
-> - Enable sdhci0 controller with 4-bit bus width
-> - Configure card detect GPIO with inversion
-> - Connect vmmc-supply to buck4 for 3.3V card power
-> - Connect vqmmc-supply to aldo1 for 1.8V/3.3V I/O switching
-> - Add dual pinctrl states for voltage-dependent pin configuration
-> - Support UHS-I SDR25, SDR50, and SDR104 modes
->
-> This enables full SD card functionality including high-speed UHS modes
-> for improved performance.
->
-> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
+Don't explain what you did. We can read the diff. Explain WHY you are
+doing this.
+
+> 
+> Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
 > ---
->   arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts | 19 +++++++++++++++++++
->   1 file changed, 19 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-> index 414b03f5e6480f05f5d7eeaaa0afb4e86425ae36..361135269801f436703b6f1d768c91325a52f07f 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-> +++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-> @@ -140,3 +140,22 @@ sd_vqmmc: aldo1 {
->   		};
->   	};
->   };
-> +
-> +&sdhci0 {
-> +	pinctrl-names = "default", "state_uhs";
-> +	pinctrl-0 = <&mmc1_cfg>;
-> +	pinctrl-1 = <&mmc1_uhs_cfg>;
-> +	bus-width = <4>;
-> +	cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
-> +	cd-inverted;
-> +	no-mmc;
-> +	no-sdio;
-> +	disable-wp;
-> +	cap-sd-highspeed;
-> +	vmmc-supply = <&sd_vmmc>;
-> +	vqmmc-supply = <&sd_vqmmc>;
-> +	sd-uhs-sdr25;
-> +	sd-uhs-sdr50;
-> +	sd-uhs-sdr104;
-> +	status = "okay";
-> +};
->
-Hello again,
+>  Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+> index 5ad68b2c6fc630fb4044c7224e6791d3bf4c2937..00eb9b28170c29c811c17b1f02f1f4f14779752f 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+> @@ -62,6 +62,7 @@ properties:
+>      items:
+>        - description: PDC base register region
+>        - description: Edge or Level config register for SPI interrupts
+> +      - description: PDC config for pass through or secondary IRQ mode for GPIOs
 
-Thanks for doing this work. My colleagues and I have been testing this 
-on an OrangePi RV2, and also a Muse Pi Pro board (making a similar tweak 
-to this patch in k1-musepi-pro.dts). To do the testing on my end, I'm 
-applying the patch series on top of 6.19 in a Yocto BSP.
+I do not understand why all devices have suddenly grown one more MMIO
+region, including devices for few years in the market. Nothing in commit
+msg helped me to understand that.
 
-I've been finding that I see issues with the UHS support on my side 
-(this log comes from an image built and flashed to an SD card):
-
-
-[ 1.072417] sdhci-spacemit d4280000.mmc: Got CD GPIO
-[ 1.109741] mmc0: SDHCI controller on d4280000.mmc [d4280000.mmc] using 
-ADMA
-[ 1.114589] clk: Disabling unused clocks
-[ 1.118421] PM: genpd: Disabling unused power domains
-[ 1.123249] ALSA device list:
-[ 1.126[ 1.129949] check access for rdinit=/init failed: -2, ignoring
-[ 1.133284] Waiting for root device 
-PARTUUID=e94bfdd7-a36f-4315-a480-476e2a12403d...
-[ 1.176569] mmc0: new UHS-I speed DDR50 SDHC card at address aaaa
-[ 1.180732] mmcblk0: mmc0:aaaa SS16G 14.8 GiB
-[ 1.276268] mmcblk0: recovery failed!
-[ 1.277351] I/O error, dev mmcblk0, sector 0 op 0x0:(READ) flags 
-0x800000 phys_seg 1 prio class 2
-[ 1.286346] Buffer I/O error on dev mmcblk0, logical block 0, async page 
-read
-[ 1.293891] mmcblk0: recovery failed!
-[ 1.297289] I/O error, dev mmcblk0, sector 0 op 0x0:(READ) flags 
-0x800000 phys_seg 1 prio class 2
-[ 1.306269] Buffer I/O error on dev mmcblk0, logical block 0, async page 
-read
-[ 1.313522] mmcblk0: unable to read partition table
-
-
-At first I wondered if maybe there was an issue with the card itself, 
-but by changing the sdhci0 section to this, I'm able to read the SD just 
-fine:
-
-&sdhci0 {
-          pinctrl-names = "default";
-          pinctrl-0 = <&mmc1_cfg>;
-          bus-width = <4>;
-          cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
-          cd-inverted;
-          no-mmc;
-          no-sdio;
-          disable-wp;
-          vmmc-supply = <&sd_vmmc>;
-          vqmmc-supply = <&sd_vqmmc>;
-          no-1-8-v;
-          status = "okay";
-};
-
-Here's the boot log, for comparison:
-
-[    1.068399] sdhci-spacemit d4280000.mmc: Got CD GPIO
-[    1.105952] mmc0: SDHCI controller on d4280000.mmc [d4280000.mmc] 
-using ADMA
-[    1.110807] clk: Disabling unused clocks
-[    1.114624] PM: genpd: Disabling unused power domains
-[    1.119456] ALSA device list:
-[    1.122[    1.126159] check access for rdinit=/init failed: -2, ignoring
-[    1.129491] Waiting for root device 
-PARTUUID=e94bfdd7-a36f-4315-a480-476e2a12403d...
-[    1.155817] mmc0: new high speed SDHC card at address aaaa
-[    1.159367] mmcblk0: mmc0:aaaa SS16G 14.8 GiB
-[    1.173666] GPT:Primary header thinks Alt. header is not at the end 
-of the disk.
-[    1.178530] GPT:1135739 != 31116287
-[    1.182045] GPT:Alternate GPT header not at the end of the disk.
-[    1.188124] GPT:1135739 != 31116287
-[    1.191650] GPT: Use GNU Parted to correct GPT errors.
-[    1.196894]  mmcblk0: p1 p2 p3
-[    1.375482] EXT4-fs (mmcblk0p3): recovery complete
-[    1.379459] EXT4-fs (mmcblk0p3): mounted filesystem 
-ad761819-1030-44fe-9267-f59c53c4b5c4 r/w with ordered data mode. Quota 
-mode: disabled.
-[    1.390400] VFS: Mounted root (ext4 filesystem) on device 179:3.
-
-
-To be sure, I tried a different SDXC card with your version and saw:
-
-
-[    1.064528] sdhci-spacemit d4280000.mmc: Got CD GPIO
-[    1.102113] mmc0: SDHCI controller on d4280000.mmc [d4280000.mmc] 
-using ADMA
-[    1.106978] clk: Disabling unused clocks
-[    1.110792] PM: genpd: Disabling unused power domains
-[    1.115622] ALSA device list:
-[    1.118[    1.122325] check access for rdinit=/init failed: -2, ignoring
-[    1.125656] Waiting for root device 
-PARTUUID=e94bfdd7-a36f-4315-a480-476e2a12403d...
-[    1.215840] sdhci-spacemit d4280000.mmc: Tuning failed: no stable 
-window found
-[    1.220520] mmc0: tuning execution failed: -5
-[    1.224931] mmc0: error -5 whilst initialising SD card
-[    1.378228] sdhci-spacemit d4280000.mmc: Tuning failed: no stable 
-window found
-[    1.382901] mmc0: tuning execution failed: -5
-[    1.506443] mmc0: new high speed SDXC card at address 1388
-[    1.510009] mmcblk0: mmc0:1388 SATC 57.7 GiB
-[    1.645467] sdhci-spacemit d4280000.mmc: Tuning failed: no stable 
-window found
-[    1.650158] mmc0: tuning execution failed: -5
-[    1.772856] GPT:Primary header thinks Alt. header is not at the end 
-of the disk.
-[    1.777718] GPT:1135725 != 120930303
-[    1.781317] GPT:Alternate GPT header not at the end of the disk.
-[    1.787397] GPT:1135725 != 120930303
-[    1.791022] GPT: Use GNU Parted to correct GPT errors.
-[    1.796238]  mmcblk0: p1 p2 p3
-[    1.917789] sdhci-spacemit d4280000.mmc: Tuning failed: no stable 
-window found
-[    1.922483] mmc0: tuning execution failed: -5
-[    2.174518] sdhci-spacemit d4280000.mmc: Tuning failed: no stable 
-window found
-[    2.179193] mmc0: tuning execution failed: -5
-[    2.337900] EXT4-fs (mmcblk0p3): mounted filesystem 
-d1f9e739-cc74-4c48-a774-390717721c53 r/w with ordered data mode. Quota 
-mode: disabled.
-[    2.348031] VFS: Mounted root (ext4 filesystem) on device 179:3.
-[    2.492089] sdhci-spacemit d4280000.mmc: Tuning failed: no stable 
-window found
-[    2.496771] mmc0: tuning execution failed: -5
-[    2.617641] devtmpfs: mounted
-[    2.618771] Freeing unused kernel image (initmem) memory: 2432K
-[    2.624085] Run /sbin/init as init process
-[    2.749813] sdhci-spacemit d4280000.mmc: Tuning failed: no stable 
-window found
-[    2.754492] mmc0: tuning execution failed: -5
-[    3.013665] sdhci-spacemit d4280000.mmc: Tuning failed: no stable 
-window found
-[    3.018357] mmc0: tuning execution failed: -5
-[    3.279459] sdhci-spacemit d4280000.mmc: Tuning failed: no stable 
-window found
-[    3.284139] mmc0: tuning execution failed: -5
-[    3.541764] sdhci-spacemit d4280000.mmc: Tuning failed: no stable 
-window found
-[    3.546450] mmc0: tuning execution failed: -5
-[    3.665967] I/O error, dev mmcblk0, sector 259162 op 0x0:(READ) flags 
-0x880700 phys_seg 1 prio class 2
-[    3.672894] I/O error, dev mmcblk0, sector 259163 op 0x0:(READ) flags 
-0x880700 phys_seg 1 prio class 2
-[    3.683275] I/O error, dev mmcblk0, sector 259170 op 0x0:(READ) flags 
-0x880700 phys_seg 1 prio class 2
-[    3.691878] I/O error, dev mmcblk0, sector 259172 op 0x0:(READ) flags 
-0x880700 phys_seg 1 prio class 2
-[    3.701516] I/O error, dev mmcblk0, sector 259175 op 0x0:(READ) flags 
-0x880700 phys_seg 1 prio class 2
-[    3.711067] I/O error, dev mmcblk0, sector 259178 op 0x0:(READ) flags 
-0x880700 phys_seg 1 prio class 2
-[    3.720183] I/O error, dev mmcblk0, sector 259180 op 0x0:(READ) flags 
-0x880700 phys_seg 1 prio class 2
-[    3.730004] I/O error, dev mmcblk0, sector 259183 op 0x0:(READ) flags 
-0x880700 phys_seg 1 prio class 2
-[    3.739010] I/O error, dev mmcblk0, sector 259184 op 0x0:(READ) flags 
-0x880700 phys_seg 1 prio class 2
-[    3.888355] sdhci-spacemit d4280000.mmc: Tuning failed: no stable 
-window found
-[    3.893045] mmc0: tuning execution failed: -5
-[    4.149999] sdhci-spacemit d4280000.mmc: Tuning failed: no stable 
-window found
-[    4.154686] mmc0: tuning execution failed: -5
-[    4.283933] I/O error, dev mmcblk0, sector 209865 op 0x0:(READ) flags 
-0x803000 phys_seg 1 prio class 2
-[    4.290750] EXT4-fs warning (device mmcblk0p3): 
-ext4_dx_find_entry:1726: inode #768: lblock 1: comm swapper/0: error -5 
-reading directory block
-[    4.303879] Starting init: /sbin/init exists but couldn't execute it 
-(error -5)
-[    4.311194] Run /etc/init as init process
-[    4.316220] Run /bin/init as init process
-[    4.319996] Run /bin/sh as init process
-[    4.457522] sdhci-spacemit d4280000.mmc: Tuning failed: no stable 
-window found
-[    4.462200] mmc0: tuning execution failed: -5
-[    4.719271] sdhci-spacemit d4280000.mmc: Tuning failed: no stable 
-window found
-[    4.723945] mmc0: tuning execution failed: -5
-[    4.842487] EXT4-fs warning (device mmcblk0p3): 
-ext4_dx_find_entry:1726: inode #768: lblock 1: comm swapper/0: error -5 
-reading directory block
-[    4.852959] Starting init: /bin/sh exists but couldn't execute it 
-(error -5)
-[    4.860044] Kernel panic - not syncing: No working init found.  Try 
-passing init= option to kernel. See Linux 
-Documentation/admin-guide/init.rst for guidance.
-[    4.874394] CPU: 4 UID: 0 PID: 1 Comm: swapper/0 Not tainted 
-6.19.0-00008-ga23b3fad2d87 #1 NONE
-[    4.883295] Hardware name: OrangePi RV2 (DT)
-
-
-I don't think I've missed anything between 6.19 and 7.x, but it's 
-possible. It seems like there's a timing issue at play?
-
-Let me know if I can help with further testing. I'm also in #spacemit on 
-IRC.
-
+Best regards,
+Krzysztof
 
 
