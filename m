@@ -1,499 +1,159 @@
-Return-Path: <devicetree+bounces-275447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275448-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WJ1lMTw/tGlljgAAu9opvQ
-	(envelope-from <devicetree+bounces-275447-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:45:48 +0100
+	id AGJaEYI/tGlljgAAu9opvQ
+	(envelope-from <devicetree+bounces-275448-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:46:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8366E287579
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:45:48 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42B562875E1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:46:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7CDD730460AB
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:45:47 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 42C5E300138D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:46:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1124A3C9433;
-	Fri, 13 Mar 2026 16:45:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 177603C9448;
+	Fri, 13 Mar 2026 16:46:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qbbhXAVN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Usds3qWU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0CDD3C873D;
-	Fri, 13 Mar 2026 16:45:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD88D3C3C1F
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 16:46:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773420344; cv=none; b=WKaf2M3nofJw8JmYhRZg9/B/xRwW9hYlFSmgOwkzkegqDFHVtEBwP0YdTn8L9DLn4hzgr43DrssiyfYSUyT38PpoDgWgTerX7k3vsB6t/KNvrWgwt5We5LexXLOUbCNIe4gJxZmX3+9+8e4pp83/UDEKSnfNkdQbNoLtTcoYl2I=
+	t=1773420413; cv=none; b=gd4/zGQuA5OF1sQ1frlB/F7vahss5aZ3Ov9N3r+6/tBPqHnUjeGsmmBFtO5Ek0V8zWXogiaBHUgqvZGkMt7pH8rKX8iPs4J/gG1IkuIkv0GiaZTGlEOYUcsDdJ7ljn6KaBkL450HkMRLQD5E/LNTdMK8i3Wn1kVFa/WNYGqgDY8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773420344; c=relaxed/simple;
-	bh=1LTeShBu2Hbkjqj4DrZERK+ZoyJpXlXoHJeuBDKwFoI=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=sFpz7/F581Q3p5O4IX9mizvUH0oWDWqrdMvbkRxoHbIJi86jVmFTtWOA5RLdv8O7KmI/9zmOy73XtIIuu3wfwFH3wwj6BF6KfpEOOCQF+0uaNdPffmgws8swO3eV4D0If6rfTPRx1Tuj9opCJn2ET4uX2rxDGr8ike4Zt193hdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qbbhXAVN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 946CBC19421;
-	Fri, 13 Mar 2026 16:45:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773420343;
-	bh=1LTeShBu2Hbkjqj4DrZERK+ZoyJpXlXoHJeuBDKwFoI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=qbbhXAVN4774kGxV+wQMPrx7BLfVNIl1k3cP7gytGjGnzc2xPx9tKOv96sdWRpwF1
-	 h7gQqX2tJ+ZLs5ydcaJTHDnJF1XvYj/yBp47qeFWrDoKxG++wyyza6EDvH8+tEuSab
-	 i1jRHqSy86s0Fj0cLXeGJJT6Vj7x/YgJ782xj1kvIJZhonphxuUHlziqFeRJ9X9a1S
-	 eabTHixtu+c2U6zz99P+wwQ0h90gssiskC3tlKmWax7gUd6OVBEyQYzncswrxYrbaf
-	 nio9o5LHzak3oOLacN9zG8dUj/xHL2cxA0h9k6bt/LnSlWJhL4luXz00fGfvMTS/0z
-	 bNQpsiHqUgJzg==
-Date: Fri, 13 Mar 2026 11:45:42 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
-	mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
-	kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
-	kw@linux.com, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
-	qiang.yu@oss.qualcomm.com, quic_krichai@quicinc.com,
-	quic_vbadigan@quicinc.com
-Subject: Re: [PATCH v1 1/1] arm64: dts: qcom: hamoa: Move PCIe PERST and Wake
- GPIOs to port nodes
-Message-ID: <20260313164542.GA1405513@bhelgaas>
+	s=arc-20240116; t=1773420413; c=relaxed/simple;
+	bh=F4ZkVUOJAKUck0lnsuXdsP2LuYwnHclKSLue4Bt0/lI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=C4LytSXkJJ9H+p+xD42SyOEdk4el7O3ha8PG6h0G7/nx+C8Bea1JJHxB3024l41TiF7eG9YjwdAoD0sh8x1O8feGCmozlUu6NZvu7DY20Kkd7ksbzWYJBXag53hFHrR+mOALBwVVtWVzRJF/PrI/9Qq8n4w4g9hnfvS9MrRXYdY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Usds3qWU; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4855dbfc129so2759885e9.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 09:46:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773420410; x=1774025210; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=XyVi9ie4kjBemkSiAX2WnD6MGaPKy+GHNmKR/i8NVt4=;
+        b=Usds3qWULwxG8dxntwdULKni6vePEzuzRt2F/bIOmib0uvzkC4bvXzoXZpMuYxqx2Z
+         +g86W6zIg/9zBYgU1Ujk7NPTwNA9AWFceNdU0r78ETdaX1RGsSoJxy/M+Olyn17jC9Tf
+         KYaxOAsS3oKi30tgduFaUguYRV1K/E2yZP5+jMLf/cvAFlQKW78m11DSc6fUj1ZI9+bs
+         fqjXhpv4bWkj5NRX9kLRUtt4AeNrRB5g+MqktHx8L04V9REU5edhHo66kfETolZ7XeEC
+         yoiI5JT2/QJ4RPaoH6nFBwPRQRHOsGp8wGzdqgtwxu98WBcRR8YEfGngXVodHqQjvrBi
+         N//Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773420410; x=1774025210;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XyVi9ie4kjBemkSiAX2WnD6MGaPKy+GHNmKR/i8NVt4=;
+        b=f60f9ooafdpo9sOLZhOwh6L1tJmhPfGCjdaC6SyQWRNECsjncg+tbXWBBGJJIsYIx+
+         IFfbcjW9/Nmfpv69ELhTEOJ4y+yBjDY6A/6KoVTNRri8iFfuywH0eHebn+eKpb4hj/s9
+         hdX2yIgL9julY4YRLlG8O1AkfQiGKy3q6ru1MdRwEEeieROLgVbke/pmQce/sgHlQTVR
+         y66QwJek7GIuvvJj35/K/ZBdzzVKQz22sxiv4A7DyE/CIcOTwjXGksH5JTENT0gI+K8Y
+         lJG2HdOSPziXcRC98qH5jhHLZb00hAoyJT/53I9K9WnlRAPWk8xYbGEv4fv8VriLF09O
+         Wb9Q==
+X-Gm-Message-State: AOJu0YyNM9rp8eOMAL7UUBJueCGWBXakADp0DDGwUCA5mWai5A37YX6p
+	QeQfXmIDduWoK4v0zV9qqyWd+N/3PVh/1pHnZYVk8KQ4cp3bIFpYCTINNROCmbYL
+X-Gm-Gg: ATEYQzyV+Hu4FsdUm6t2S44g6XVKWYD2sI25WG1H3iOrSrDupJFucUZIRUISmZtQUVN
+	a3mf/vStrHG66tY1db2znSjZEkNg+yDmHCAzbwAO5cJ4TesyPV8Sg7wMVt5T2u1+Zpjs0aJ8Pap
+	mHSFoHznl+MXarwmfX/ilY/pEF4CgI+GaeaDL8Gzq3qP/GHgZvLxTB8iL/7lpuLmmT6QvhtkvD8
+	PQ/VhtvkuRcQV74LPptUMU0LmOuR2MC7D0pm5z3wh6rr236mu9SKfOghCxNLFoO66Zjy3rczTAw
+	jkftEXW/YOKm8vHubykSyyCGrIvPFsCsYrr+k2f8hASsYToB3lhaA1xicKtt/mVx9xJq25LjzbF
+	4+KRn3cKNYvFuDM+jYw6YeB8D43LK8BdsAZuMA0Bld/odGOXfAwt2iMh+P1T2A9JtmfpctlokU/
+	EZyaPi+yGrRbo2wanJgdrq2Oi+jf4gYSUQVDXy0ZJDbwQ131LLLMt1jY9DbjFFTHsSs9HPFqpc2
+	sJZk19vIu5c4HJirS7xhYwwHHI79xqHrQ8kKJBwimqYFQ==
+X-Received: by 2002:a05:600c:a4b:b0:485:3692:e8f7 with SMTP id 5b1f17b1804b1-48556707ddbmr67083435e9.25.1773420409865;
+        Fri, 13 Mar 2026 09:46:49 -0700 (PDT)
+Received: from Lord-Beerus.station (net-188-152-100-94.cust.dsl.teletu.it. [188.152.100.94])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4855638cebcsm59182635e9.0.2026.03.13.09.46.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Mar 2026 09:46:49 -0700 (PDT)
+Date: Fri, 13 Mar 2026 17:46:47 +0100
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	pierluigi.p@variscite.com,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH v3 06/11] arm64: dts: freescale: imx8mm-var-som: Update
+ WiFi/BT with variants
+Message-ID: <abQ_d9fGarNobYdo@Lord-Beerus.station>
+References: <cover.1772898346.git.stefano.radaelli21@gmail.com>
+ <7c84625f82c562bb9cd2b455465d63a1a25bf19e.1772898346.git.stefano.radaelli21@gmail.com>
+ <CAOMZO5C+USp34WQ9ap+N9ha6EgU7JgsYkRsLEW=ZdizbkMQvPA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260313094618.1361418-1-ziyue.zhang@oss.qualcomm.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+In-Reply-To: <CAOMZO5C+USp34WQ9ap+N9ha6EgU7JgsYkRsLEW=ZdizbkMQvPA@mail.gmail.com>
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275447-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275448-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[25];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,google.com,linaro.org,linux.com,vger.kernel.org,lists.infradead.org,oss.qualcomm.com,quicinc.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,linaro];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8366E287579
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,Lord-Beerus.station:mid]
+X-Rspamd-Queue-Id: 42B562875E1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 05:46:18PM +0800, Ziyue Zhang wrote:
-> Commit 960609b22be5 ("arm64: dts: qcom: hamoa: Move PHY, PERST, and Wake
-> GPIOs to PCIe port nodes and add port Nodes for all PCIe ports") did not
-> convert all Hamoa‑based platforms to the new method of defining PERST and
-> Wake GPIOs in the PCIe root port nodes.
-> 
-> Without the change PCIe probe will fail. The probe failure happens because
-> the PHY stays in the controller node while the PERST/Wake GPIOs were moved
-> to the port nodes.
-> 
-> This fixes probe failures seen on the following platforms:
->  - x1-hp-omnibook-x14
->  - x1-microsoft-denali
->  - x1e80100-lenovo-yoga-slim7x
->  - x1e80100-medion-sprchrgd-14-s1
->  - x1p42100-lenovo-thinkbook-16
->  - x1-asus-zenbook-a14
->  - x1-crd
->  - x1-dell-thena
-> 
-> Fixes: 960609b22be5 ("arm64: dts: qcom: hamoa: Move PHY, PERST, and Wake GPIOs to PCIe port nodes and add port Nodes for all PCIe ports")
+Hi Fabio,
 
-Are you saying that DTs in the field broke because of some kernel
-change?  That's not supposed to happen.  Even though PHY, PERST, and
-Wake GPIOs should be described in Root Port nodes instead of the Root
-Complex node in *future* DTs, the kernel is still supposed to accept
-the old style with them described in the Root Complex node.
-
-If that's the case, the Fixes tag should refer to the driver change
-that caused probe to fail with old DTs, and the fix is a driver change
-to accept both the old style and the new style.
-
-We can't expect users in the field to update their DTs to match a new
-kernel.
-
-Nit: Use PCIe spec nomenclature, e.g., "PERST#" and "WAKE#" in subject
-and commit logs.
-
-> Signed-off-by: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-> ---
->  .../boot/dts/qcom/x1-asus-zenbook-a14.dtsi    | 16 ++++++++-----
->  arch/arm64/boot/dts/qcom/x1-crd.dtsi          | 24 ++++++++++++-------
->  arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi   | 14 ++++++-----
->  .../boot/dts/qcom/x1-hp-omnibook-x14.dtsi     | 14 ++++++-----
->  .../boot/dts/qcom/x1-microsoft-denali.dtsi    |  8 ++++---
->  .../dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  |  6 ++---
->  .../qcom/x1e80100-medion-sprchrgd-14-s1.dts   | 15 ++++++------
->  .../dts/qcom/x1p42100-lenovo-thinkbook-16.dts | 14 ++++++-----
->  8 files changed, 65 insertions(+), 46 deletions(-)
+On Fri, Mar 13, 2026 at 01:41:02PM -0300, Fabio Estevam wrote:
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi b/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi
-> index 8e5c5575a532..0a382cc9e643 100644
-> --- a/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi
-> @@ -1032,9 +1032,6 @@ &mdss_dp3_phy {
->  };
->  
->  &pcie4 {
-> -	perst-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-> -	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-> -
->  	pinctrl-0 = <&pcie4_default>;
->  	pinctrl-names = "default";
->  
-> @@ -1048,10 +1045,12 @@ &pcie4_phy {
->  	status = "okay";
->  };
->  
-> -&pcie6a {
-> -	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-> -	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-> +&pcie4_port0 {
-> +	reset-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-> +};
->  
-> +&pcie6a {
->  	vddpe-3v3-supply = <&vreg_nvme>;
->  
->  	pinctrl-0 = <&pcie6a_default>;
-> @@ -1067,6 +1066,11 @@ &pcie6a_phy {
->  	status = "okay";
->  };
->  
-> +&pcie6a_port0 {
-> +	reset-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-> +};
-> +
->  &pm8550_gpios {
->  	rtmr0_default: rtmr0-reset-n-active-state {
->  		pins = "gpio10";
-> diff --git a/arch/arm64/boot/dts/qcom/x1-crd.dtsi b/arch/arm64/boot/dts/qcom/x1-crd.dtsi
-> index ded96fb43489..2fbf9ec66fb8 100644
-> --- a/arch/arm64/boot/dts/qcom/x1-crd.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1-crd.dtsi
-> @@ -1216,15 +1216,17 @@ &mdss_dp3_phy {
->  };
->  
->  &pcie4 {
-> -	perst-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-> -	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-> -
->  	pinctrl-0 = <&pcie4_default>;
->  	pinctrl-names = "default";
->  
->  	status = "okay";
->  };
->  
-> +&pcie4_port0 {
-> +	reset-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-> +};
-> +
->  &pcie4_phy {
->  	vdda-phy-supply = <&vreg_l3i_0p8>;
->  	vdda-pll-supply = <&vreg_l3e_1p2>;
-> @@ -1233,9 +1235,6 @@ &pcie4_phy {
->  };
->  
->  &pcie5 {
-> -	perst-gpios = <&tlmm 149 GPIO_ACTIVE_LOW>;
-> -	wake-gpios = <&tlmm 151 GPIO_ACTIVE_LOW>;
-> -
->  	vddpe-3v3-supply = <&vreg_wwan>;
->  
->  	pinctrl-0 = <&pcie5_default>;
-> @@ -1251,10 +1250,12 @@ &pcie5_phy {
->  	status = "okay";
->  };
->  
-> -&pcie6a {
-> -	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-> -	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-> +&pcie5_port0 {
-> +	reset-gpios = <&tlmm 149 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 151 GPIO_ACTIVE_LOW>;
-> +};
->  
-> +&pcie6a {
->  	vddpe-3v3-supply = <&vreg_nvme>;
->  
->  	pinctrl-names = "default";
-> @@ -1270,6 +1271,11 @@ &pcie6a_phy {
->  	status = "okay";
->  };
->  
-> +&pcie6a_port0 {
-> +	reset-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-> +};
-> +
->  &pm8550_gpios {
->  	kypd_vol_up_n: kypd-vol-up-n-state {
->  		pins = "gpio6";
-> diff --git a/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi b/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
-> index bf04a12b16bc..217ca8c7d81d 100644
-> --- a/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
-> @@ -1081,9 +1081,6 @@ &mdss_dp3_phy {
->  };
->  
->  &pcie4 {
-> -	perst-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-> -	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-> -
->  	pinctrl-0 = <&pcie4_default>;
->  	pinctrl-names = "default";
->  
-> @@ -1098,6 +1095,9 @@ &pcie4_phy {
->  };
->  
->  &pcie4_port0 {
-> +	reset-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-> +
->  	wifi@0 {
->  		compatible = "pci17cb,1107";
->  		reg = <0x10000 0x0 0x0 0x0 0x0>;
-> @@ -1115,9 +1115,6 @@ wifi@0 {
->  };
->  
->  &pcie6a {
-> -	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-> -	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-> -
->  	vddpe-3v3-supply = <&vreg_nvme>;
->  
->  	pinctrl-0 = <&pcie6a_default>;
-> @@ -1126,6 +1123,11 @@ &pcie6a {
->  	status = "okay";
->  };
->  
-> +&pcie6a_port0 {
-> +	reset-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-> +};
-> +
->  &pcie6a_phy {
->  	vdda-phy-supply = <&vreg_l1d_0p8>;
->  	vdda-pll-supply = <&vreg_l2j_1p2>;
-> diff --git a/arch/arm64/boot/dts/qcom/x1-hp-omnibook-x14.dtsi b/arch/arm64/boot/dts/qcom/x1-hp-omnibook-x14.dtsi
-> index a4075434162a..41063948c583 100644
-> --- a/arch/arm64/boot/dts/qcom/x1-hp-omnibook-x14.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1-hp-omnibook-x14.dtsi
-> @@ -1065,9 +1065,6 @@ &mdss_dp3_phy {
->  };
->  
->  &pcie4 {
-> -	perst-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-> -	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-> -
->  	pinctrl-0 = <&pcie4_default>;
->  	pinctrl-names = "default";
->  
-> @@ -1082,6 +1079,9 @@ &pcie4_phy {
->  };
->  
->  &pcie4_port0 {
-> +	reset-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-> +
->  	wifi@0 {
->  		compatible = "pci17cb,1107";
->  		reg = <0x10000 0x0 0x0 0x0 0x0>;
-> @@ -1099,9 +1099,6 @@ wifi@0 {
->  };
->  
->  &pcie6a {
-> -	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-> -	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-> -
->  	vddpe-3v3-supply = <&vreg_nvme>;
->  
->  	pinctrl-0 = <&pcie6a_default>;
-> @@ -1110,6 +1107,11 @@ &pcie6a {
->  	status = "okay";
->  };
->  
-> +&pcie6a_port0 {
-> +	reset-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-> +};
-> +
->  &pcie6a_phy {
->  	vdda-phy-supply = <&vreg_l1d_0p8>;
->  	vdda-pll-supply = <&vreg_l2j_1p2>;
-> diff --git a/arch/arm64/boot/dts/qcom/x1-microsoft-denali.dtsi b/arch/arm64/boot/dts/qcom/x1-microsoft-denali.dtsi
-> index d77be02848b5..ba6b7b5a9191 100644
-> --- a/arch/arm64/boot/dts/qcom/x1-microsoft-denali.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1-microsoft-denali.dtsi
-> @@ -964,9 +964,6 @@ wifi@0 {
->  };
->  
->  &pcie6a {
-> -	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-> -	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-> -
->  	vddpe-3v3-supply = <&vreg_nvme>;
->  
->  	pinctrl-0 = <&pcie6a_default>;
-> @@ -982,6 +979,11 @@ &pcie6a_phy {
->  	status = "okay";
->  };
->  
-> +&pcie6a_port0 {
-> +	reset-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-> +};
-> +
->  &pm8550_gpios {
->  	rtmr0_default: rtmr0-reset-n-active-state {
->  		pins = "gpio10";
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-> index d6472e5a3f9f..d7938d349205 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-> @@ -1126,9 +1126,6 @@ &mdss_dp3_phy {
->  };
->  
->  &pcie4 {
-> -	perst-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-> -	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-> -
->  	pinctrl-0 = <&pcie4_default>;
->  	pinctrl-names = "default";
->  
-> @@ -1143,6 +1140,9 @@ &pcie4_phy {
->  };
->  
->  &pcie4_port0 {
-> +	reset-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-> +
->  	wifi@0 {
->  		compatible = "pci17cb,1107";
->  		reg = <0x10000 0x0 0x0 0x0 0x0>;
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-medion-sprchrgd-14-s1.dts b/arch/arm64/boot/dts/qcom/x1e80100-medion-sprchrgd-14-s1.dts
-> index 20a33e6f27ee..3af7f19224ad 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100-medion-sprchrgd-14-s1.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100-medion-sprchrgd-14-s1.dts
-> @@ -1033,9 +1033,6 @@ &mdss_dp3_phy {
->  };
->  
->  &pcie4 {
-> -	perst-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-> -	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-> -
->  	pinctrl-0 = <&pcie4_default>;
->  	pinctrl-names = "default";
->  
-> @@ -1050,6 +1047,8 @@ &pcie4_phy {
->  };
->  
->  &pcie4_port0 {
-> +	reset-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
->  	wifi@0 {
->  		compatible = "pci17cb,1107";
->  		reg = <0x10000 0x0 0x0 0x0 0x0>;
-> @@ -1067,10 +1066,6 @@ wifi@0 {
->  };
->  
->  &pcie6a {
-> -	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-> -
-> -	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-> -
->  	vddpe-3v3-supply = <&vreg_nvme>;
->  
->  	pinctrl-0 = <&pcie6a_default>;
-> @@ -1086,6 +1081,12 @@ &pcie6a_phy {
->  	status = "okay";
->  };
->  
-> +&pcie6a_port0 {
-> +	reset-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-> +};
-> +
-> +
->  &pm8550_gpios {
->  	rtmr0_default: rtmr0-reset-n-active-state {
->  		pins = "gpio10";
-> diff --git a/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts b/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts
-> index 1e5eb8c5dc98..06747b54a38e 100644
-> --- a/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts
-> @@ -1131,9 +1131,6 @@ &mdss_dp3_phy {
->  };
->  
->  &pcie4 {
-> -	perst-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-> -	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-> -
->  	pinctrl-0 = <&pcie4_default>;
->  	pinctrl-names = "default";
->  
-> @@ -1148,6 +1145,9 @@ &pcie4_phy {
->  };
->  
->  &pcie4_port0 {
-> +	reset-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
-> +
->  	wifi@0 {
->  		compatible = "pci17cb,1107";
->  		reg = <0x10000 0x0 0x0 0x0 0x0>;
-> @@ -1165,9 +1165,6 @@ wifi@0 {
->  };
->  
->  &pcie6a {
-> -	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-> -	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-> -
->  	vddpe-3v3-supply = <&vreg_nvme>;
->  
->  	pinctrl-0 = <&pcie6a_default>;
-> @@ -1183,6 +1180,11 @@ &pcie6a_phy {
->  	status = "okay";
->  };
->  
-> +&pcie6a_port0 {
-> +	reset-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-> +};
-> +
->  &pm8550_pwm {
->  	status = "okay";
->  };
-> -- 
-> 2.43.0
+> One From line is enough.
 > 
+
+Yes, that was a mistake on my side. Something in my workflow ended up
+adding the "From:" line twice. I will fix it in the next revision.
+
+> 
+>  imx8mm-var-som-wifi-brcm-legacy.dtsi is not included anywhere, right?
+
+Correct. It is not included anywhere at the moment.
+The Symphony evaluation board uses the IW61x configuration.
+The imx8mm-var-som-wifi-brcm-legacy.dtsi file is kept as a separate include
+so that carrier boards using the legacy Broadcom-based SOM revision can
+include it if needed.
+
+Best Regards,
+Stefano
 
