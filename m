@@ -1,208 +1,208 @@
-Return-Path: <devicetree+bounces-275212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275213-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WPc/II8ItGlvfwAAu9opvQ
-	(envelope-from <devicetree+bounces-275212-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:52:31 +0100
+	id wDSjIQQJtGlDgAAAu9opvQ
+	(envelope-from <devicetree+bounces-275213-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:54:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAF3B28340F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:52:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 042C728349D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:54:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D51433064B9C
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 12:52:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9392430848F6
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 12:53:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 835A637F8B2;
-	Fri, 13 Mar 2026 12:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D8A37FF51;
+	Fri, 13 Mar 2026 12:53:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oPAp0SYR";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="jBwg/3xp"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="EmAzD+6Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DB1937B02A
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 12:52:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCF60379EFD;
+	Fri, 13 Mar 2026 12:53:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773406349; cv=none; b=UaIOW2oZi4sfKk9TTTkpzDfwCij9j/pfYlZxG6pY5YURCg1qcZ7gDTqk7n2gAvEJX7fXrxjRJNRx6vW4U5b9ULc7sXjivcYyEXmJUk/uUHwZBfZCSnFIODAM/oONtIuqlUAwnNpLF59YPs2swinsMbAdCxRDEObPirJNxvBiBck=
+	t=1773406417; cv=none; b=oV8Xo+C6H1QuvQ3/e8wZHCulgs/mr7ZP+jf02QS8cuVxubYZp9FAj6wOaaxOsxpFcgc0sxEoUR/xmno44f/AM18BxPr6Dik9JgXXAHdXefkFRz/o54Le/sEOSquK1Bmr+Q0OQQ6gVT5IiZ5A+MzVe7ORF6teKFADxowerUW9fG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773406349; c=relaxed/simple;
-	bh=wtDbhbmNnfEqEzyJzSlKLMntpH7AqiBe1ctdQmC+84k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EejgptPyuqsJw8XSTkWoF/qnyFNaQRVlcw01laBdePWNNyezKDCOF6uhgwKa3Md+MCSBo/B9Mp/mBtCoThrcgmv5GJZCCdmT04FTvImxMlNyJB0N1uad5vQ/MGxVYvzb4n8ng5vqyD3QTPtQRkiF544xuHNfVIGKhJRka1cfmJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oPAp0SYR; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=jBwg/3xp; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62DBeRWP3229800
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 12:52:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Bfg4L5JUbKgcj3urNnjZrvnI239bwc+beH+6JvGVSxI=; b=oPAp0SYRNQn53PhL
-	He7aTOT8HZrsHCQ7npPny19iaISjT1FhvOMwq6B1uoY8sZeIHdbmEccjPkqwLeUi
-	xDJGsDbGzNCHJEHenSiG+1r1XN+vEShtyFmF7vyqLZnFN5ap/UtWUPNfd/Ajoysc
-	KwaE640CMTwEFvC5dGxnqCmr0Y5WI1gff2bASYpVSdF3JDdJNuGwg6h33OQ5lsST
-	8v2wDVzC/Tlz69SbkEMd24LLuIRHE0bBhZLsXu/+FKbMrWlOcgCIZNbVAC7GfDpP
-	we561h7GIpCVnlc0NLOnzBQQlvz+C8HM2U+lNYoeXHa94r/bgKsPrTlCHGEKppC+
-	TdWPwg==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cv8n7j6dy-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 12:52:26 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-8954b9b5da7so15102086d6.2
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 05:52:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773406346; x=1774011146; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Bfg4L5JUbKgcj3urNnjZrvnI239bwc+beH+6JvGVSxI=;
-        b=jBwg/3xpOz0MkqELLun8/T+PU1qphEmacZq40MjGitRx7Wa1/CXjOAJ5j1RYeroHlr
-         8BIDWlD8B/qxHpsTu5TGuA0GdbaWo0F3FICMlUV9rRKEj4EFEGDHKpFXU2H3b90zsAYK
-         guHefMnDZkhDjv4KezOiGXFZ1TIHN0qYpB2cSDv4c7L9hiy/+WJSwGfoSb1vlCvT1EJQ
-         K/xOh+9kIYdFefjejSgEKVtv3Esh6k5cIEgkpUVsqU6/KNSt8cbm7wHy08ZvRRBz94Wj
-         quOCVfLyHTbSa+GUVZm12bkgrheIatLfX7qVDZLclwtKx63oAOft8jmp2hOOijx8ZFcg
-         HzJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773406346; x=1774011146;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Bfg4L5JUbKgcj3urNnjZrvnI239bwc+beH+6JvGVSxI=;
-        b=q2wa7PM/PlMruCbbWOgffai/5cgsALOpUsp/+me+yt6X/UV6OzVkss4AYKGEOHWcZ7
-         OLcGnABUiX1kpXwGY8FAqAVxJKxFsdsLvWSD6AoujdEixJZLtv0MD5vyR6n9cP4eSE77
-         3Fn4Jz6rIdSXyUdhGrf88er3Ybmdh5GRn6Xjzlg0GMSfJQGjfTvv4/icexY8NE+pcZuZ
-         gGTJdvHZDpIuqsJIXhAZ3lbaT0uYvl9iMD2AfAJuc+9AE7UC9LdSzs9OIFK7jpH/kGmn
-         t3BYC5Lb4EuCkXeQ4qKhfDo9KW+R2ubaL/IJkx4ja0A1cvmeOED/EeO/TNGcuyljz7TC
-         G7pA==
-X-Forwarded-Encrypted: i=1; AJvYcCVGm2t5KECIK4on4LHoQdN2JYfChyJ7uZs7pHo5jbjfDqHOTaRsLRUFl8ugH0LBn9kiNvUWwWWBXV62@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywd5wM/F+FUW5JFkyb8bMe3tTYMi/8CIUwY6235D9yr1mcAkjhR
-	UCzKqy4EX4blaq+yaR3UsbLk06GyOEVFlNvUbBiZD1W9YMYtxzDEKz2EclAZujqG4L/iRQpi3F6
-	KTgqKS0IXxXdzPUqTDAOyl2neO9/WauL3TnhcgxGjcIMJPVwxsh/iXSBSzGyGsQBC
-X-Gm-Gg: ATEYQzzzcuSwk+28VXlF50ayGieb/Btw6Tj+N6o0eG9LaoaUSJ2ZJxfTV29wLtKN9q5
-	WMpyMBzeAO0/9h3lv1mP3kfQmeeGGiz5XST7Na6UVFZ070v+BaCdHBYxl8GPZRf+8co3+A+FLmU
-	b6FJjs4vuRxfnnZWcleg8ak9Z2PaiUX/J+kT9yh7e3ycPqQRK+stlApG+sLiNIF/FE53mbgH4pF
-	GBfq+hVUbignvW8oggCa5kHt0SOFphYcyo8nX6VZSGkuNVLOit17+DGxqmsrRoaLNJ3FFeNRajY
-	a/jEtsH9MPWSO3LHYEpKXPwxt0ShpH+2GvGo/Qo9fuKxmru7Is+2I9oHnCXIJQIoEL6ANNTJvB9
-	zNSzCttjkXHF8XCPkiccVzqYf4MFvb4gKH8G4V1Td68E8nV+3E8YzmF4Q/s8hGlvYq6XelMUeaE
-	tYTrQ=
-X-Received: by 2002:a05:620a:3193:b0:8cd:923a:87a8 with SMTP id af79cd13be357-8cdb5a2d141mr327694385a.1.1773406345673;
-        Fri, 13 Mar 2026 05:52:25 -0700 (PDT)
-X-Received: by 2002:a05:620a:3193:b0:8cd:923a:87a8 with SMTP id af79cd13be357-8cdb5a2d141mr327691985a.1.1773406345267;
-        Fri, 13 Mar 2026 05:52:25 -0700 (PDT)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b976cc29844sm44696966b.30.2026.03.13.05.52.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Mar 2026 05:52:24 -0700 (PDT)
-Message-ID: <4e4054e4-6e5c-4623-a03e-2fdf1277a2d8@oss.qualcomm.com>
-Date: Fri, 13 Mar 2026 13:52:21 +0100
+	s=arc-20240116; t=1773406417; c=relaxed/simple;
+	bh=fVNG8XU8qrw3CqQjoIAdVbE7UZTFosXAF1TdDCwFDTw=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JXFFaz83hJGssdXnX16itOySsy7pi1mbhoP4GA4uK5YY9zKQfVcOas7mseZRhWZca0UMLRe8Z6Jo2chUnlmUZ5Hv0r9eitSPAjN7A0F+848Vwlnq06wNJ1w+4N1TkoZU+jD13l118chARFYDwIN8tVxakbuK2fzOK9UlGcH7BgQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=EmAzD+6Y; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1773406415; x=1804942415;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fVNG8XU8qrw3CqQjoIAdVbE7UZTFosXAF1TdDCwFDTw=;
+  b=EmAzD+6YHvP4RsClACtw8wErxnzDSnmVytN0hXhBfoyjI0Uzzft2F7Q5
+   evgzuxqRWkHgEAvufWfPf3uQxKm3CSulkYx6KDx0wNZuDJ4kX2H9TPaPS
+   8YO1XrmulmP3o3kC+L8I+FytfcsjS1lJ9/UMmaeJSwMyHKuk7r5q01X/w
+   PmrkTnNpiyctLw2LsNIdmuUP2c1BnCWEL6vA7uqNBqvMNiDq6RVraVQ1n
+   9n1bhQ1gUu62a/QasXnzacH4S0MpetkkeYKcO8wNV84VSxpH5I0nOBZy2
+   xTbaLo38iDLPrV4ZUAVG2Bx8W4J+J0mLIRzo77TVSH2IJ81+/V6+z3ljE
+   w==;
+X-CSE-ConnectionGUID: 9ff1ETxjS+mW1ReyoyIBew==
+X-CSE-MsgGUID: A8XVWbAdTUWuAn2xe5oUOw==
+X-IronPort-AV: E=Sophos;i="6.23,118,1770620400"; 
+   d="scan'208";a="221880347"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2026 05:53:34 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
+ chn-vm-ex4.mchp-main.com (10.10.87.33) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.35; Fri, 13 Mar 2026 05:52:54 -0700
+Received: from bby-cbu-swbuild03.eng.microchip.com (10.10.85.11) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58 via Frontend Transport; Fri, 13 Mar 2026 05:52:53 -0700
+Date: Fri, 13 Mar 2026 05:52:52 -0700
+From: Charles Perry <charles.perry@microchip.com>
+To: Jakub Kicinski <kuba@kernel.org>
+CC: <charles.perry@microchip.com>, <netdev@vger.kernel.org>,
+	<pabeni@redhat.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<claudiu.beznea@tuxon.dev>, <linux-kernel@vger.kernel.org>,
+	<horms@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<davem@davemloft.net>, <andrew+netdev@lunn.ch>, <edumazet@google.com>,
+	<nicolas.ferre@microchip.com>
+Subject: Re: [net-next,v2,1/3] dt-bindings: net: cdns,macb: add a compatible
+ for Microchip pic64hpsc
+Message-ID: <abQIpGEGi7m3LqWy@bby-cbu-swbuild03.eng.microchip.com>
+References: <20260310212202.3991199-2-charles.perry@microchip.com>
+ <20260313014943.1513621-1-kuba@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/7] arm64: dts: qcom: Add Redmi 4A
-To: barnabas.czeman@mainlining.org
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20260310-riva-common-v2-0-3bfc23996857@mainlining.org>
- <20260310-riva-common-v2-6-3bfc23996857@mainlining.org>
- <9b6520b3-aa43-4657-aba0-bba89af8a47d@oss.qualcomm.com>
- <37f385d1ad7a464771e641807d75f5e5@mainlining.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <37f385d1ad7a464771e641807d75f5e5@mainlining.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: 1qpJo2ggXjgUU9fdTZHuOXuxW2-xmYEQ
-X-Proofpoint-GUID: 1qpJo2ggXjgUU9fdTZHuOXuxW2-xmYEQ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEzMDEwMiBTYWx0ZWRfX5M/1PDG4Zs4W
- NqOMC9twJKDBi6awGfGZXNdR8Yvj0Yhe4mxB0FK7pH9hQenbfTQ/IxOpsLRjFMbGYH/a9g9U5/H
- 4G8S+eyzA8Y5/POq7/y4m5Ew9EMdkZ5sun4gSLg+/lCmzJBMADGxnZe/d+qCKmri+hrpELrETmh
- ir1avPkA2ICBoh3uFX3C74ybDn+akf08VuHkxsot/NT9m/a9BwzeNaCCe08JYE+zLdemAkaVhbM
- 6OGuzMlupuzc4OE4Mhwjf5KrOJTQsOHXOfV1WAyDOIVoA274WqjMyDgvvApA1DAsUMIJu4vyFHq
- 7ZcgvUVtpfYZZQIQ5x/zflLIOiQEz/SQ4xEhHjW1hC42ylAer9sVwbotUOTurIF4r8KP8mjOFpy
- /kvier0ljeBS8UQOaHlRh7DJQYB6ojb4cGIktS+6AH4eM/jPRipyNWTnszI84u3bJN7GKHX1lXr
- zk3ZfCxv1+kTvZYJ/Yw==
-X-Authority-Analysis: v=2.4 cv=CpCys34D c=1 sm=1 tr=0 ts=69b4088a cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
- a=f6X2TnFsAAAA:20 a=OuZLqq7tAAAA:8 a=5Mg_qL-c0DIWtcCVzYIA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=1HOtulTD9v-eNWfpl4qZ:22 a=AKGiAy9iJ-JzxKVHQNES:22
- a=bA3UWDv6hWIuX7UZL3qL:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-13_02,2026-03-13_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015 spamscore=0
- priorityscore=1501 adultscore=0 suspectscore=0 bulkscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603130102
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20260313014943.1513621-1-kuba@kernel.org>
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mainlining.org:email];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275212-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-275213-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[microchip.com:+];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[charles.perry@microchip.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: EAF3B28340F
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:dkim,linux.dev:url,bby-cbu-swbuild03.eng.microchip.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 042C728349D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/11/26 3:38 PM, barnabas.czeman@mainlining.org wrote:
-> On 2026-03-11 10:16, Konrad Dybcio wrote:
->> On 3/10/26 6:21 PM, Barnabás Czémán wrote:
->>> Redmi 4A (rolex) is like Redmi 5A with small differences like charging,
->>> fuel gauge, different speaker codec configuration and display.
->>>
->>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
->>> ---
->>
->> I see the Go has some differences in regulator configuration.
->>
->> Does the 4A's one match the existing 5A?
-> Yes they are same, l22 is vana l23 is vdig for camera sensor.
-> riva and rolex is using 2.8v for vana and 1.2v for vdig.
-> tiare is using 2.85v for vana and 1.2 v for vdig so l22 min-voltage also should be increased
-> but l23 max-voltage increase is unnecessary, there is no reason to keep downstream value there.
+On Thu, Mar 12, 2026 at 06:49:43PM -0700, Jakub Kicinski wrote:
+> This is an AI-generated review of your patch. The human sending this
+> email says "Not sure about the first one but the second one looks
+> legit"
 > 
-> Here is some proof https://github.com/Mi-Thorium/kernel_devicetree_xiaomi-msm8937/blob/dts/mi8937/4.9/master/wingtech/msm8917/tiare/camera.dtsi#L16C1-L23C65
+> For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
+> ---
+> dt-bindings: net: cdns,macb: add a compatible for Microchip pic64hpsc
+> 
+> This commit adds "microchip,pic64hpsc-gem" for "PIC64-HPSC" and
+> "microchip,pic64hx-gem" for "PIC64HX" compatible strings. It also adds a
+> conditional schema check to prevent adding PHYs under the GEM node for
+> hardware where MDIO controllers are unconnected from physical pins.
+> 
+> > diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Documentation/devicetree/bindings/net/cdns,macb.yaml
+> > --- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
+> > +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
+> > @@ -70,6 +70,14 @@
+> >                - microchip,sama7d65-gem   # Microchip SAMA7D65 gigabit ethernet interface
+> >            - const: microchip,sama7g5-gem # Microchip SAMA7G5 gigabit ethernet interface
+> >
+> > +      - items:
+> > +          - const: microchip,pic64hpsc-gem # Microchip PIC64-HPSC
+> > +          - const: cdns,gem
+> > +      - items:
+> > +          - const: microchip,pic64hx-gem   # Microchip PIC64HX
+> > +          - const: microchip,pic64hpsc-gem # Microchip PIC64-HPSC
+> > +          - const: cdns,gem
+> 
+> The fallback structure appears reversed from what was recommended in v1
+> review. Conor Dooley suggested that pic64hpsc should fallback to pic64hx:
+> 
+>   - items:
+>       - const: microchip,pic64hx-gem
+>       - const: cdns,gem
+>   - items:
+>       - const: microchip,pic64hpsc-gem
+>       - const: microchip,pic64hx-gem
+>       - const: cdns,gem
+> 
+> However, the current implementation has pic64hx falling back to pic64hpsc
+> instead. Was this reversal intentional, or should the order match the
+> reviewer's recommendation?
+> 
 
-FWIW it's easiest to work with decompiled DTs, as the include chains are
-often very complex. You can then throw them into ./scripts/dtx_diff or
-similar
+Yes, this is intentional.
 
-Konrad
+> https://lore.kernel.org/netdev/20260303-emperor-childlike-6c43d8a91753@spud/
+> 
+> >
+> >    reg:
+> >      minItems: 1
+> 
+> [ ... ]
+> 
+> > @@ -196,6 +204,17 @@
+> >        required:
+> >          - phys
+> >
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: microchip,p64h-gem
+> > +    then:
+> > +      patternProperties:
+> > +        "^ethernet-phy@[0-9a-f]$": false
+> > +      properties:
+> > +        mdio: false
+> 
+> The conditional check references 'microchip,p64h-gem', but the compatible
+> strings actually added above are 'microchip,pic64hpsc-gem' and
+> 'microchip,pic64hx-gem'. This causes the validation rule to never trigger
+> for the new hardware variants.
+> 
+> According to the commit message, the GEM IPs within pic64hpsc have their
+> MDIO controllers unconnected from physical pins, and this check should
+> prevent adding PHYs under the GEM node. However, device trees using
+> 'microchip,pic64hpsc-gem' or 'microchip,pic64hx-gem' with invalid
+> MDIO/ethernet-phy configurations will silently pass schema validation.
+> 
+> Should this check use 'microchip,pic64hpsc-gem' instead?
+> 
+
+Oops! Good catch! I'll send a v3.
+
+Thanks,
+Charles 
+
 
