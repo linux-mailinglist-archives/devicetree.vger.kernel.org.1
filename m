@@ -1,57 +1,85 @@
-Return-Path: <devicetree+bounces-275504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275505-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4OGcI1tTtGk4kAAAu9opvQ
-	(envelope-from <devicetree+bounces-275504-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:11:39 +0100
+	id ACEfLpFTtGk4kAAAu9opvQ
+	(envelope-from <devicetree+bounces-275505-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:12:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FEBD2888B2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:11:39 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1774A2888D0
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:12:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7D8343036A87
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:11:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 041E0300B577
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:12:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AE6B3DD515;
-	Fri, 13 Mar 2026 18:11:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 439653DC4D6;
+	Fri, 13 Mar 2026 18:12:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="TkSPr3M7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UamHE/9Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ixit.cz [185.100.197.86])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54C673CD8CE;
-	Fri, 13 Mar 2026 18:11:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.100.197.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4642320A14
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 18:12:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773425482; cv=none; b=Jn07icakwJHJPIOPZnjGY7M/MzFQ5xxRxA6e1cAVP9u9p8X6CNOvwNwkL/6l7Ko7nYSUV+DaTIPLR6T8rwharD2iJfqX5X+g9ODqEsvzb5c6A8ItiC7lZy/EjqE1bdtUtbFUNTxwudHlzvygwBpvLlL7ms1MgoW5pTPr8P8xjcI=
+	t=1773425551; cv=none; b=PoCR0Xsn7oSULYWvR+nXN+to2aOGN9ZayY6WM8wUExVTkiFbQZKjaVDrdRfH7eNiavhJuzTeVqdSRLNNoc/t7WvE6wx0UpLt6BZbKQ28SYD0YSNO49ZSdbz6kYgvW0lFNiWvLQp1/eeYawHz3H7YdpqtFPArJp7DZ7QFPtUnEIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773425482; c=relaxed/simple;
-	bh=8dcP5vj9PDnkeTFCUwW1twcXPEsgLx0UtV4oZCgW4hs=;
+	s=arc-20240116; t=1773425551; c=relaxed/simple;
+	bh=RmdOmrssaFa2NY+5lSy5ZaT+O8gr+fKg8x7V06Y8by8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YXrrtDVPeuzFSMiSixiVJCDeH3HFYgIipxe1NezhIKoUEAxni/Kzmee5sxRzrx+4usIQjds3VBiRosXPqczWqn+IDJWrlm77USxA+lrtiYpUHC9Umehrxv4BA1OjvbjzboTskIV9LWCNWzepZmJbKUwshR4d8TFrilfAcoclbsk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=TkSPr3M7; arc=none smtp.client-ip=185.100.197.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [IPV6:2a02:f000:10bd:e301::471] (unknown [IPv6:2a02:f000:10bd:e301::471])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 767355340E02;
-	Fri, 13 Mar 2026 19:11:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1773425474;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=l2FtP+iFXrSPmPhtCC5xRBNHOWXH+rXgtXw5IfBTcFU=;
-	b=TkSPr3M7qh4hKV/WfxmgC9qtutvk6h5UpzdoNFVwUoKmdw1+CIaycxC2o3PyBqCCd3Pa+O
-	dybC/txqa0jwVI7ismwb609AdGf+TALDXGwiKv0Ru7yWOy8RwAFYLfJXh4h0MjF4GF4GSH
-	c2jCWBDrcVVNfcDLAGvaOh0/sCL7tTg=
-Message-ID: <64b3314e-e054-4d63-a0c2-3d5fa24cd653@ixit.cz>
-Date: Fri, 13 Mar 2026 19:11:13 +0100
+	 In-Reply-To:Content-Type; b=lGhMAWxA2HFHNkSENDN/sGGO5PvwoaO9+THYCJgpo1o8KK4CQlJdmFoa6UdDWbjf5IegyYsSG/FI/GJmKnjiF4YOIT06hoKissg6xw1TEaPZ4JFdnLrnmX7IvIaLpLEU7SNcZEISpoDT7qucEcS9eXRLxyx+lgZK+XUtoH+/w2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UamHE/9Y; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-829abaaa92bso1651966b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 11:12:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773425549; x=1774030349; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=EvpzVosN3fzG6HUFZ5xf0+PeJenGWuukw2/bPevXNSU=;
+        b=UamHE/9YroASDPTAE19tXxx63xVdvrxpiuZDC0J5qtXQ9eq/GXOB6HpBv/yRIv0pCB
+         dR0ywmN/omK22VQG1eXmGuJNR0Sc5JhD5wkPbg163616hsaxgE767ci8WVCMLYMLO/CG
+         hPiMDL7bzk8rrndWbCagqD4JrDWpU2OF7eOk0s9C4gC187dc78Xh+CsLTyEzdLfzYaNC
+         QQTxCsM37gcM+7Ym/bKG6ch06xlFdvxjQ7dkSzDNNpa5J1zKO99eZQjFbq/dx+vfWtRD
+         1z06+inxkPqDSLbd3UJgesclPFImuGwdDIAqGApV1ZP2wCEN4R2W3aVO1yxxsdk4qHxt
+         3e2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773425549; x=1774030349;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EvpzVosN3fzG6HUFZ5xf0+PeJenGWuukw2/bPevXNSU=;
+        b=LjGyUssRIPZgIIih5fGpU0KWbu6YK4WQ47n+I1M23afsL/867dDsjGaVcAnLyGWgvs
+         x8cPDWff9FOKH8wHWD5O4xSjJRaclAdE4cuwLPxZBx8ljbyfGOrZOohtJN7Dd5c0fbek
+         C0aqaow4gGitNQbes3WIuEsN3Lmor0+70LP8mbm39gtIuLhdP/3QqP+SNuog5zyJuRMd
+         qlMDU9vTYDphCVcC7Jg5213GuFR/rtbkb9ke5BvwQAVnS5ZoZm9YVpe8Dc7bG/wecrpA
+         wg6U0VxpoCVrmNgDDpiDaQ3fJhR10Rh+c/TNWk2tsIXi7/UOVKllt8jikcCu/7Lp/g3e
+         u1JA==
+X-Forwarded-Encrypted: i=1; AJvYcCU9KB3s0xGmmao6j834ScRxiXXG7vCHJiUKLw7U4IXwoGPDHIj5B0ddZgnpXpLIkvGvvHgLc0HVS6ts@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2GCqv4pnerixX6wISlPRYS7xxjRgepzegzJ/F/6CwuDeXKtvE
+	ITHZtU9Nn53MIs1YbD3M/hAoLFMKvg/TxGf5Rvfz6MO9+wuE31v+01Sx
+X-Gm-Gg: ATEYQzyO6mYFQ1AVsvK2bPNryPOAC9JXXesEmtvuxvfGcFfdHtTwUQXBml5E9NABG/1
+	GAQeav8RElijnUROchiV+kcP268UUYefXyKNVwQqKkgu2szHNpKeVAnwN8AQg+eqn6V+dvgNxab
+	Wz38PZcRlNtZkXPzMaBI0XVYtTIoGVaCUq7uiadc2VmYr/tfSx63Ikp6X4/1z+mhKjblL8vEzSz
+	wzUBSFyOcCprpyFlK+TBhGuckui9k1nd5kZvBytgFkknJiDYcFOSRHKLjVk4dAHHbqkH4xM64Lx
+	q/AtYCwWzSxWgUvP8FpnIgn8s4B81QC9IU/cfD0JlmEYYdot4DRLU/g4iZ7w9fc0OkNRY2IKg84
+	dtQSgYQDa7jJZAlAm2NXjcW8TcQ8O/805pSJHVH6uyGS3FDSiB2xRGfseElEk83baVzRAINiU3f
+	saLVhtKSzpsDcwZhyVV7JX9Su3DyVIfxlqcDcZwjekpL1QAG3HmuHnAy7Z3IF3ULnFCd92sl8Q
+X-Received: by 2002:aa7:88c2:0:b0:81e:c67a:1a79 with SMTP id d2e1a72fcca58-82a198661cemr3988947b3a.25.1773425549120;
+        Fri, 13 Mar 2026 11:12:29 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82a07240f25sm6667100b3a.5.2026.03.13.11.12.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Mar 2026 11:12:28 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <cbc1d09e-25b1-4b94-a59c-6b5e54af01f9@roeck-us.net>
+Date: Fri, 13 Mar 2026 11:12:26 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,123 +87,197 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: qcm6490-fairphone-fp5: Add front
- camera support
-To: Luca Weiss <luca.weiss@fairphone.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260313-fp5-s5kjn1-v1-0-fa4f1c727318@fairphone.com>
- <20260313-fp5-s5kjn1-v1-2-fa4f1c727318@fairphone.com>
+Subject: Re: [RFC PATCH v2 1/2] dt-bindings: hwmon: emc2305: Add
+ fan-shutdown-percent property
+To: Conor Dooley <conor@kernel.org>,
+ Florin Leotescu <florin.leotescu@oss.nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Michael Shych <michaelsh@nvidia.com>,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, daniel.baluta@nxp.com, viorel.suman@nxp.com,
+ linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+ festevam@gmail.com, Florin Leotescu <florin.leotescu@nxp.com>
+References: <20260312122248.1281572-1-florin.leotescu@oss.nxp.com>
+ <20260312122248.1281572-2-florin.leotescu@oss.nxp.com>
+ <20260312-triage-shallot-1b3d9f07d250@spud>
+ <abRF+TPKuXFDJc55@ro-kernel-workstation>
+ <20260313-mulberry-glamorous-6afbfc52e42f@spud>
 Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <20260313-fp5-s5kjn1-v1-2-fa4f1c727318@fairphone.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20260313-mulberry-glamorous-6afbfc52e42f@spud>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275504-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[ixit.cz:+];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275505-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,vger.kernel.org,nxp.com,lists.infradead.org,lists.linux.dev,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ixit.cz:dkim,ixit.cz:mid]
-X-Rspamd-Queue-Id: 3FEBD2888B2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,nxp.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.1:email]
+X-Rspamd-Queue-Id: 1774A2888D0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 13/03/2026 17:00, Luca Weiss wrote:
-
-[...]
-
-> @@ -1332,6 +1377,13 @@ usb_redrive_1v8_en_default: usb-redrive-1v8-en-default-state {
->   		output-high;
->   	};
->   
-> +	cam_mclk3_default: cam-mclk3-default-state {
-
-Maybe master clock states could be added architecture wide to kodiak.dtsi as 
-done in [1]?
-
-[1] https://lore.kernel.org/all/20260114-sdm845-mclk-v3-1-c9351deaf4f2@ixit.cz/
-
-> +		pins = "gpio67";
-> +		function = "cam_mclk";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +
->   	mdp_vsync: mdp-vsync-state {
->   		pins = "gpio80";
->   		function = "mdp_vsync";
+On 3/13/26 10:38, Conor Dooley wrote:
+> On Fri, Mar 13, 2026 at 07:14:33PM +0200, Florin Leotescu wrote:
+>> On Thu, Mar 12, 2026 at 05:37:51PM +0000, Conor Dooley wrote:
+>>> On Thu, Mar 12, 2026 at 02:22:47PM +0200, florin.leotescu@oss.nxp.com wrote:
+>>>> From: Florin Leotescu <florin.leotescu@nxp.com>
+>>>>
+>>>> The EMC2305 fan controller supports multiple independent PWM fan
+>>>> outputs. Some systems require fans to enter a defined safe state
+>>>> during system shutdown or reboot handoff, until firmware or the next
+>>>> boot stage reconfigures the controller.
+>>>>
+>>>> Add an optional "fan-shutdown-percent" property to fan child nodes
+>>>> allowing the shutdown fan speed to be configured per fan output.
+>>>>
+>>>> Signed-off-by: Florin Leotescu <florin.leotescu@nxp.com>
+>>>> ---
+>>>>   .../devicetree/bindings/hwmon/microchip,emc2305.yaml      | 8 ++++++++
+>>>>   1 file changed, 8 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+>>>> index d3f06ebc19fa..7bcadfab9fc4 100644
+>>>> --- a/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+>>>> +++ b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+>>>> @@ -54,6 +54,12 @@ patternProperties:
+>>>>             The fan number used to determine the associated PWM channel.
+>>>>           maxItems: 1
+>>>>   
+>>>> +      fan-shutdown-percent:
+>>>> +        description:
+>>>> +          Fan RPM in percent set during shutdown.
+>>>
+>>> This sounds like something generic, that other devices might need and
+>>> should be in fan-common.yaml?
+>>>
+>> Thanks for the feedback.
+>>
+>> The property name was reused from pwm-fan.yaml where it already exists
+>> with the same meaning. I kept it local to minimize the scope of the change.
+>>
+>> However, if you prefer it to be modelled as a common property, I can adjust it in the next revision.
+> 
+> I see. Makes me wonder why half the properties in pwm-fan aren't also in
+> fan-common.
+> 
+> I suppose there's a reason for it, carry on I guess.. Can be lifted if
+> there are more users other than you and pwm-fan.
+> 
+>>>> +        minimum: 0
+>>>> +        maximum: 100
+>>>> +
+>>>>       required:
+>>>>         - reg
+>>>>   
+>>>> @@ -80,12 +86,14 @@ examples:
+>>>>               fan@0 {
+>>>>                   reg = <0x0>;
+>>>>                   pwms = <&fan_controller 26000 PWM_POLARITY_INVERTED 1>;
+>>>> +                fan-shutdown-percent = <100>;
+> 
+> Also leads to the question of why these devices aren't pwm-fans. Too
+> late now to change anything, I just wanna understand why.
 > 
 
--- 
-David Heidelberg
+They are dedicated fan controllers, with an internal tach -> pwm feedback
+loop. I don't mind modeling them as pwm controllers if there is a use case
+(such as someone using a PWM output to control a LED), but I don't even know
+how modeling them as pwm fans using the pwm-fan compatible would even be
+possible since that would exclude the tach -> pwm feedback loop.
+
+Also, if that were to be done, we might end up with two hwmon drivers
+for one chip: one to report the fan speed, and one to report pwm values.
+On top of that, even if it is not currently supported by the driver,
+controlling the tach -> pwm feedback loop would become awkward.
+
+Yes, I understand, there is a strong push to model everything with
+a pwm output as pwm controller, but si far no one was able to describe
+to me how to model a fan controller, and especially its feedback loop,
+in such a scenario. That becomes even more complicated if temperatures
+are used to control the feedback loop.
+
+Guenter
+
+>>>>                   #cooling-cells = <2>;
+>>>>               };
+>>>>   
+>>>>               fan@1 {
+>>>>                   reg = <0x1>;
+>>>>                   pwms = <&fan_controller 26000 0 1>;
+>>>> +                fan-shutdown-percent = <50>;
+>>>>                   #cooling-cells = <2>;
+>>>>               };
+>>>>   
+>>>> -- 
+>>>> 2.34.1
+>>>>
+>>
+>>
 
 
