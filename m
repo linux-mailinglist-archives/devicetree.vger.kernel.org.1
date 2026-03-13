@@ -1,352 +1,197 @@
-Return-Path: <devicetree+bounces-275402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275403-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ML/yInU1tGn4igAAu9opvQ
-	(envelope-from <devicetree+bounces-275402-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:04:05 +0100
+	id yNMnN4w1tGn4igAAu9opvQ
+	(envelope-from <devicetree+bounces-275403-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:04:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE1862869B4
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:04:04 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C5642869EB
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:04:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4CE1332EE666
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:58:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 286BF32F464A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:58:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1900E382F37;
-	Fri, 13 Mar 2026 15:58:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA9F2363C43;
+	Fri, 13 Mar 2026 15:58:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="joSnFRuz"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="RIClZbvt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013045.outbound.protection.outlook.com [40.107.162.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C235362130
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 15:58:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773417489; cv=none; b=JWWEMYJjGR8hkocaQJCXUsAT3jDtTd0/J6JsJ3uhS8E6fOwNEk8MtgVL9Ei8w66bXXgFpoaKVMCFq7gvE0G1tBe6xeWXnVBxnGSFZL4Rgkx2Gj8nSYhaAfB2dwL29hDmgxcj/D3sZps6X6B7Ihs+vWK3t+NWRFkiJn3PBg5i0NQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773417489; c=relaxed/simple;
-	bh=vNxznD4Ymr9+Lj741toXAtdwjzyhi9gqoluul1aJMSQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=Qxo5UPtYrIYF9fqN2vIzjdzDSgDfuOFsxRGzqgiqaqut2GYKWaT33Ote9F9YW1FZprf0rJNQOA7+FVL7OPL416LNBBRBQJBuq0VkgDxlTJu2pnf0tIf9TjAftHJPQPoZKwdSzPSWdnEHybsOQP3xS/6XZX+GM5NVP2rVT07gXXo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=joSnFRuz; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20260313155804euoutp024cf308f01b3529dfdc4fac832f3edee2~ccc5qNaep2654026540euoutp02J
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 15:58:04 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20260313155804euoutp024cf308f01b3529dfdc4fac832f3edee2~ccc5qNaep2654026540euoutp02J
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1773417484;
-	bh=6ieUQ9T9O1bHeOhUgIIKiQfh7WD6HzjAhG1ncXlVkUo=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=joSnFRuzKGMafB3uqqrZ8kfaf5nPMzmp9dgUUaMe2qCh6lxSfQSCDx1eAshZOuVkv
-	 kHbLICoGPElDefOltmzaODY/5FCDpLIUJFwWYfmngnkqfmOctxUjDHR/ALQgUdh+90
-	 AYRHlXK1X/fmW1U+pCyUiaL3WHcDtXuY1bOffYuI=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20260313155804eucas1p115ea56ef18ed8be8372835bd39ee456b~ccc5XOx1S0294202942eucas1p1o;
-	Fri, 13 Mar 2026 15:58:04 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20260313155803eusmtip29fb3ec660de0d1392912e5d729d57b40~ccc4nYSwU0077400774eusmtip2b;
-	Fri, 13 Mar 2026 15:58:03 +0000 (GMT)
-Message-ID: <b272e3e9-d48f-4f0d-95bc-2ed668bc0bee@samsung.com>
-Date: Fri, 13 Mar 2026 16:58:02 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ED593644A6;
+	Fri, 13 Mar 2026 15:58:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.45
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773417497; cv=fail; b=TzNKRQzlaWRPQU42gfKdMagq/HpvRdDoAauSDWZ4rpMGMDLV/sUUhCVYlilkx2q4XBOsobzzhzAqyKWIyL5EDgwiH8ViW0cl7CCKo9lfwn0t0vQZEVuotkPtpxrmT8IHjunAcJEtTaIKHAjILwYPo6Zqq8mHkln3EV2Vev2odDE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773417497; c=relaxed/simple;
+	bh=nw4hzbpOJL5YmzCGvirq40CjEwql3JhlrZMOxHbuxEs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=HDgpR4LK/7xNe/rPIGgqUrga+DeLAB5C3rF8BpiqApD3Ts2DKAgjQq20Zyx1DGhm88vUpAKF937peDGMlVFcTJjmr/0FSuH8EOVmD6C2AXLiP9hVLjbp/DsXCgC2ly1eNSlqKziCR6l2zE+wjq7Sp5mdDwzUKMzfiYhIlpSSDo0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=RIClZbvt; arc=fail smtp.client-ip=40.107.162.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=c/bDczlf1gM6ToXkrYhLMGCH5U1beGE4XkpJuNpErNKMFJO7D8NrIK8pX6HY7gxaY6pXXtPBQl3mhvnnE56N4dZuJpd9II02P0lJJ4h4joCW45SGnVi7RMVLF0mqJcYXKezcukHUm99cjpHsYHdsWiLc6pEOZVIm1kF2Jv1BNzlu0w8prCiOfQ5aHTpZ3nE1Vz1Yoqx7DRFBIsMZQknshWjWn5JvJGDkyFdYbB97Q+vehLF6cAVYtkgIPeOsNzFhj2e98w8RiF5i2PCngK26EUfQABFC7LtOJZXAXWE5b6w4hykPzbqS/6Gfqxs8YGkyRre+RqJqMUe+BFAIXm1vjA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nw4hzbpOJL5YmzCGvirq40CjEwql3JhlrZMOxHbuxEs=;
+ b=x5p40MVtnCjPBxbQIjcBXBNZHEfCteZgvTV4m3GgYXW2DBa8G26aJ0UN0XAXuwuRuLmyxMQvFyKM4F/OQAQu60HN9JN35NIS/o5A2g05MXynYMhGbFtiGVerkriUMv0jh70v4IesC4PoAf2WRDYWImgZjTJYbfMSAjmFWL6G+B5BXn0ZL4CoLDEHG3ihxE+UQOA1LM4j8ih033JXQv5Y3+4hEVzLtb0Cy9ff1VKwtuKCSelPaHSZktSle2iAOLe84AuVK/Rc5aYzJZv7AW0tjru4E3HyxBQddjNtoioEDlJBHJHrwPDglziXuFR/lGnrEV+6WNxn87X/G9n7zYWo8g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nw4hzbpOJL5YmzCGvirq40CjEwql3JhlrZMOxHbuxEs=;
+ b=RIClZbvtTSFMpPzpwfYnwKqE1axA3TJMbyS/kn9sOSku9musGokK8vuauduLZazs6A6aloAep5LUcF0+NMBejcQuwztf2EfmlXZdIVk8SQ7IbK7KOv3eYtm77msa7YzKaOv1L8Z8hW762D0cy2HMABKaRgjYXFNmeI5z654ksnxlVb20yNknnAuX5952MEbff95VvWj5QDuDvQ3BDfAHB4jYOosrqDBKXI2IMYafdy8D7VwjrPUsvpixPKFdXW94Ot2WYQ8+VnSzfysE1IrTMr+RnUpp5pATEKVCnB5N+lGzG8cVU/LcOJxlNtKyax47FPESbLYkxvs4/oxFyP2sjA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by DBAPR04MB7382.eurprd04.prod.outlook.com (2603:10a6:10:1ab::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.16; Fri, 13 Mar
+ 2026 15:58:06 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9700.010; Fri, 13 Mar 2026
+ 15:58:10 +0000
+Date: Fri, 13 Mar 2026 11:58:05 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Stefano Radaelli <stefano.radaelli21@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	pierluigi.p@variscite.com,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH v3 05/11] arm64: dts: freescale: imx8mm-var-som: Add
+ MCP251xFD CAN controller
+Message-ID: <abQ0DT1jtWVNQfL3@lizhi-Precision-Tower-5810>
+References: <cover.1772898346.git.stefano.radaelli21@gmail.com>
+ <d007d05d5927820aa06389c07dad55357d5f8d4e.1772898346.git.stefano.radaelli21@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d007d05d5927820aa06389c07dad55357d5f8d4e.1772898346.git.stefano.radaelli21@gmail.com>
+X-ClientProxiedBy: SJ0P220CA0004.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::9) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Betterbird (Windows)
-Subject: Re: [PATCH 3/7] of: reserved_mem: switch to ops based OF_DECLARE()
-To: Saravana Kannan <saravanak@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-mm@kvack.org, iommu@lists.linux.dev
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
-	Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>, Andrew Morton
-	<akpm@linux-foundation.org>, Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-US
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <20260313150802.1121442-4-m.szyprowski@samsung.com>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20260313155804eucas1p115ea56ef18ed8be8372835bd39ee456b
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20260313150811eucas1p28cd933ea257af5dabaad214618214050
-X-EPHeader: CA
-X-CMS-RootMailID: 20260313150811eucas1p28cd933ea257af5dabaad214618214050
-References: <20260313150802.1121442-1-m.szyprowski@samsung.com>
-	<CGME20260313150811eucas1p28cd933ea257af5dabaad214618214050@eucas1p2.samsung.com>
-	<20260313150802.1121442-4-m.szyprowski@samsung.com>
-X-Spamd-Result: default: False [-2.15 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DBAPR04MB7382:EE_
+X-MS-Office365-Filtering-Correlation-Id: 83746e9b-8470-4f4b-f4d0-08de81195310
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|52116014|7416014|376014|19092799006|1800799024|366016|38350700014|18002099003|56012099003|22082099003;
+X-Microsoft-Antispam-Message-Info:
+ SVpSfCHd17aFqNgMd6mdoDuNf9cnHyztazsN9d/AkDAnrLc2pHhGCXp2Akahpm529qURqXQySTH3pRNTJnkDXO7tyNWzMlxMYCFezslCtPW75thKYjIJCk2vfMRXqOmTl/Uf+Ntv+HHB6IqQfGmwZlP1mYX8BIYu3+5GdnnTMvDZHapdqxyqurDVGSPshkocATSKor3UqF4+Zs/MkmuNtmU3MXPGLvPZ2dFjWmYG6OtBe2s4W3lx+tnP33X5sw2iF0TJDfLreB/KhL8Trqe/+Ijf+vRcBdqf/gLJNzlHasE7tCC3vBfzjpZy4AqoSB+pB3kU+M5WAqnJ6ZUHd+Bhr9M/T8YW2WXfeybN/NUualLlzU3irSvdm929uCbq8HCr+IQPk9IRHjJQONEQzDKbiTtPG/QzAGCqzuy3TflFbsdMan4vrIkfBcB61YK4RrhqCoAjbHm4npvYxBnyvSuql87La+aEF4RxV+gOzu07rMCuENWGKEmJeso3b8rUHTLo1C0r+++PB9Q3glXF7HOOQM5iXRiuckf1e+U5pLnlLSLnoZ6/vrcgeEefiizhyl7BkYyy7pJ/I3SbAUPwj4zNi8TSRNDKX48y2z42o5EcnKvlapHMscLm3cRBiEHoAlcEQqfBHJHkb1WfTwyKTbIbtaGqEokdC413s7Ii2dgalM9nzHAlP6Q1rF08YoX+QQa4gkoJIebFI+lMSQZg3hL+11CQSY8I+1WDdZ49NKyPoWxeV4eaez4W7txUr2RWQtSEnMJbz1u56kAK4ZzpnYqTHIYKL0KqaI1JS+gGZWPZJvk=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(376014)(19092799006)(1800799024)(366016)(38350700014)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?MVDvh8p4oW9UnZyBVrK+FjZgDmxnVkFEgez1/3fHdxthOsIwVgHgRuY7pDE5?=
+ =?us-ascii?Q?IwaLSkKeRi3aCAoLjEhA6DP6Bt/QkVpobg8DYX2rQ/QPpsVBQn7DGKtSfeBW?=
+ =?us-ascii?Q?oivDg1IbRHvnFtzLKm7utseMRYftpVtA4vvhvC9ZApfE4yDzo3fLU2dCgcYs?=
+ =?us-ascii?Q?ta/MuChIVVOde9Su5UmKD+fxPcCCtCS78KaEMOLyvJzofwADdwgmp72HXvgE?=
+ =?us-ascii?Q?5RKAY4h5qwtVbUplH4mB6iH7oE/L7v627vsadGWvOpYfMUSAveWiI7d88A7g?=
+ =?us-ascii?Q?uQRmAvgSZndbDWtzR/tsPOegQmeXWP7spAPBO0F3h7xtQi5SU9KZgVJKOpx5?=
+ =?us-ascii?Q?D8BY/keWXX6IauXQdNRAAdqtWfcksaUWjO/v/04XUqoviw10Rg+i99yOoKYW?=
+ =?us-ascii?Q?s2V/GBpjaRO4spy8grPie3o01swBWo9TiyTtVraJSAy0RBdx+anwX+p2A048?=
+ =?us-ascii?Q?+W3GqCRY1FEM+B7mT1spEierCisJe28l9+mzLoWrl7u8NWvwGKF0rKWLt5UJ?=
+ =?us-ascii?Q?Fx8cFXXtF70h8Bm8kRx2GPPlHhO9d4WZ0QpnIKOqGHkMX2u0fqK9qfvvCQgn?=
+ =?us-ascii?Q?drFsUYyH2i6fcPwAK8Ay8Js80Lq2Qr3lIYWX1uzGPZv+3N+IkIvstbnsuN5Q?=
+ =?us-ascii?Q?J03esQdkf/saZ+1WimFvsyMrFL998mwEseoQlU9iWsD92bFQlGonfVdSDF6D?=
+ =?us-ascii?Q?xHTb352FGRBhDuIlvMQGdQ0R4vniK3Uk0aRiDyjdenJuN1fL70kOhQIt3IGt?=
+ =?us-ascii?Q?OdaGn1YunVQdYzO63c0q6z2MA5jel+spwNu2hz4lOvgx5mRI28DZ5fBbAz6v?=
+ =?us-ascii?Q?0A7ceAVtL88P516PS7XLQPPIiEuSH4311SSTh4dzCOx47rdaeC/zfywLsiR4?=
+ =?us-ascii?Q?VCsQjdzCz2veeIJZIuEpZWthKolMIkw/E2P13CS6ikD99MQr7jNJylZ3MyMN?=
+ =?us-ascii?Q?dZBt9lKu204A+5ZhrPEVXzlgGuwPaYx7+MPgZyuNkLuOMsJBuoqzpK35r8SL?=
+ =?us-ascii?Q?PhNwjipO4YQETVCiUQVurYcDYptSyfPlIT8ioxXQGx06Xsr3Saz+I8fC9ECi?=
+ =?us-ascii?Q?BVyx11Q4muePa3AYYet4j6aw1fx+n4VeJ9IyFXF32EseTE2fa6DacVjKmmZd?=
+ =?us-ascii?Q?Gy16wjUxkC4vBO9DNWXFc+jWz3xdSG+sAbxj83Nju2V99Szm+1jQHdYGy0IS?=
+ =?us-ascii?Q?AKyU4a84mx6CO+w8L0slmsV/1yZvbMzcH8ChKlQdvGUv2cQZ9Gcmsqj1cBnj?=
+ =?us-ascii?Q?kluzVd6xay4jCnGPvgNodWWbCQDO3Pqr3p15Z57eJCnU097RIsjmf8UVS4lf?=
+ =?us-ascii?Q?Mv7z2p+9F5yiBP8nIMiuxoh4gVxOqCtyr1OwtnGZO9RFF4FnOsAgWACAVzTG?=
+ =?us-ascii?Q?AB5OuR34pAjJ40dAz3V7sGBkxFwEnidAsq9IiubhtIGXM2zw8M2QPvql70Cj?=
+ =?us-ascii?Q?IMJApAAmUEIzR2DHv4vY6UuVTi7aOjVWFhV506wK8MWptLrJnGIiGl1GPtWd?=
+ =?us-ascii?Q?torXk8wWqy+gxLO5zWp1h8w+DDbYxLnTRS3kEIzVDqEaFbKyiNYVMNsD+0vO?=
+ =?us-ascii?Q?4HEkfXAifXOcRIzR0Svb99mW/UdPAxWS/9Fpgsx8NeISHszdyYyCEjXK3xQU?=
+ =?us-ascii?Q?q3p2Y6h6ku6KiisvzCtu+q5qytUiLJw+VIWoQzCAOfPR/P1A1AOaC2Nuszt7?=
+ =?us-ascii?Q?BAbKvqgbhWCzRCF5qkyyoEHwctljS8ji8JBtVObQ9O07er0TavxdPSutdO89?=
+ =?us-ascii?Q?SNd6GOEWng=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 83746e9b-8470-4f4b-f4d0-08de81195310
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 15:58:10.2190
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: h57VwEPmww+x5mTAsb/n7K5/AryTbZitA0c+XKJ0zQZKx8DSKRxT/Acw1jo4yStH0pxQxYhC2DrRUmP/S4GMjg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7382
+X-Spamd-Result: default: False [1.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[samsung.com:+];
-	TAGGED_FROM(0.00)[bounces-275402-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275403-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m.szyprowski@samsung.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.linux.dev,lists.infradead.org,variscite.com,kernel.org,pengutronix.de,gmail.com];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,samsung.com:dkim,samsung.com:email,samsung.com:mid]
-X-Rspamd-Queue-Id: EE1862869B4
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[variscite.com:email,nxp.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4C5642869EB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 13.03.2026 16:07, Marek Szyprowski wrote:
-> Move init function from OF_DECLARE() argument to the given reserved
-> memory region ops structure and then pass that structure to the
-> OF_DECLARE() initializer. This makes it possible in the future to add
-> more functions called by the generic code before given memory region is
-> initialized and rmem object created.
+On Sat, Mar 07, 2026 at 04:54:41PM +0100, Stefano Radaelli wrote:
+> From: Stefano Radaelli <stefano.r@variscite.com>
 >
-> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> ---
->   drivers/memory/tegra/tegra210-emc-table.c | 14 ++++++++------
->   drivers/of/of_reserved_mem.c              |  5 +++--
->   include/linux/of_reserved_mem.h           | 15 ++++++++-------
->   kernel/dma/coherent.c                     | 13 +++++++------
->   kernel/dma/contiguous.c                   | 15 ++++++++-------
->   kernel/dma/swiotlb.c                      | 13 +++++++------
->   6 files changed, 41 insertions(+), 34 deletions(-)
+> From: Stefano Radaelli <stefano.r@variscite.com>
 >
-> diff --git a/drivers/memory/tegra/tegra210-emc-table.c b/drivers/memory/tegra/tegra210-emc-table.c
-> index ac1d1e13482a..f6395bc9dbc8 100644
-> --- a/drivers/memory/tegra/tegra210-emc-table.c
-> +++ b/drivers/memory/tegra/tegra210-emc-table.c
-> @@ -70,11 +70,6 @@ static void tegra210_emc_table_device_release(struct reserved_mem *rmem,
->   	memunmap(timings);
->   }
->   
-> -static const struct reserved_mem_ops tegra210_emc_table_ops = {
-> -	.device_init = tegra210_emc_table_device_init,
-> -	.device_release = tegra210_emc_table_device_release,
-> -};
-> -
->   static int tegra210_emc_table_init(unsigned long node,
->   				   struct reserved_mem *rmem)
->   {
-> @@ -85,5 +80,12 @@ static int tegra210_emc_table_init(unsigned long node,
->   
->   	return 0;
->   }
-> +
-> +static const struct reserved_mem_ops tegra210_emc_table_ops = {
-> +	.node_init = tegra210_emc_table_init,
-> +	.device_init = tegra210_emc_table_device_init,
-> +	.device_release = tegra210_emc_table_device_release,
-> +};
-> +
->   RESERVEDMEM_OF_DECLARE(tegra210_emc_table, "nvidia,tegra210-emc-table",
-> -		       tegra210_emc_table_init);
-> +		       &tegra210_emc_table_ops);
-> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-> index 9aff460a0420..675f1c1c6627 100644
-> --- a/drivers/of/of_reserved_mem.c
-> +++ b/drivers/of/of_reserved_mem.c
-> @@ -492,14 +492,15 @@ static int __init __reserved_mem_init_node(struct reserved_mem *rmem,
->   
->   	for (i = __reservedmem_of_table; ret == -ENODEV &&
->   	     i < &__rmem_of_table_sentinel; i++) {
-> -		reservedmem_of_init_fn initfn = i->data;
-> +		const struct reserved_mem_ops *ops = i->data;
->   		const char *compat = i->compatible;
->   
->   		if (!of_flat_dt_is_compatible(node, compat))
->   			continue;
->   
-> -		ret = initfn(node, rmem);
-> +		ret = ops->node_init(node, rmem);
->   		if (ret == 0) {
-> +			rmem->ops = ops;
->   			pr_info("initialized node %s, compatible id %s\n",
->   				rmem->name, compat);
->   			break;
-> diff --git a/include/linux/of_reserved_mem.h b/include/linux/of_reserved_mem.h
-> index 5159938bfe03..dc00502a6b69 100644
-> --- a/include/linux/of_reserved_mem.h
-> +++ b/include/linux/of_reserved_mem.h
-> @@ -18,19 +18,20 @@ struct reserved_mem {
->   };
->   
->   struct reserved_mem_ops {
-> +	int	(*node_init)(unsigned long fdt_node, struct reserved_mem *rmem);
->   	int	(*device_init)(struct reserved_mem *rmem,
->   			       struct device *dev);
->   	void	(*device_release)(struct reserved_mem *rmem,
->   				  struct device *dev);
->   };
->   
-> -typedef int (*reservedmem_of_init_fn)(unsigned long node,
-> -				      struct reserved_mem *rmem);
-> -
->   #ifdef CONFIG_OF_RESERVED_MEM
->   
-> -#define RESERVEDMEM_OF_DECLARE(name, compat, init)			\
-> -	_OF_DECLARE(reservedmem, name, compat, init, reservedmem_of_init_fn)
-> +#define RESERVEDMEM_OF_DECLARE(name, compat, ops)			\
-> +	static const struct of_device_id __of_table_##name		\
-> +		__used __section("__reservedmem_of_table")		\
-> +		__aligned(__alignof__(struct of_device_id))		\
-> +		 = { .compatible = compat, .data = ops }
->   
->   int of_reserved_mem_device_init_by_idx(struct device *dev,
->   				       struct device_node *np, int idx);
-> @@ -48,8 +49,8 @@ int of_reserved_mem_region_count(const struct device_node *np);
->   
->   #else
->   
-> -#define RESERVEDMEM_OF_DECLARE(name, compat, init)			\
-> -	_OF_DECLARE_STUB(reservedmem, name, compat, init, reservedmem_of_init_fn)
-> +#define RESERVEDMEM_OF_DECLARE(name, compat, ops)			\
-> +	_OF_DECLARE_STUB(reservedmem, name, compat, init, void *)
->   
->   static inline int of_reserved_mem_device_init_by_idx(struct device *dev,
->   					struct device_node *np, int idx)
-> diff --git a/kernel/dma/coherent.c b/kernel/dma/coherent.c
-> index 64f9ba618e19..bcdc0f76d2e8 100644
-> --- a/kernel/dma/coherent.c
-> +++ b/kernel/dma/coherent.c
-> @@ -362,10 +362,6 @@ static void rmem_dma_device_release(struct reserved_mem *rmem,
->   		dev->dma_mem = NULL;
->   }
->   
-> -static const struct reserved_mem_ops rmem_dma_ops = {
-> -	.device_init	= rmem_dma_device_init,
-> -	.device_release	= rmem_dma_device_release,
-> -};
->   
->   static int __init rmem_dma_setup(unsigned long node, struct reserved_mem *rmem)
->   {
-> @@ -388,7 +384,6 @@ static int __init rmem_dma_setup(unsigned long node, struct reserved_mem *rmem)
->   	}
->   #endif
->   
-> -	rmem->ops = &rmem_dma_ops;
->   	pr_info("Reserved memory: created DMA memory pool at %pa, size %ld MiB\n",
->   		&rmem->base, (unsigned long)rmem->size / SZ_1M);
->   	return 0;
-> @@ -405,5 +400,11 @@ static int __init dma_init_reserved_memory(void)
->   core_initcall(dma_init_reserved_memory);
->   #endif /* CONFIG_DMA_GLOBAL_POOL */
->   
-> -RESERVEDMEM_OF_DECLARE(dma, "shared-dma-pool", rmem_dma_setup);
-> +static const struct reserved_mem_ops rmem_dma_ops = {
-> +	.node_init	= rmem_dma_setup,
-> +	.device_init	= rmem_dma_device_init,
-> +	.device_release	= rmem_dma_device_release,
-> +};
-> +
-> +RESERVEDMEM_OF_DECLARE(dma, "shared-dma-pool", &rmem_dma_ops);
->   #endif
-> diff --git a/kernel/dma/contiguous.c b/kernel/dma/contiguous.c
-> index e6fc6906b5c0..efeebda92537 100644
-> --- a/kernel/dma/contiguous.c
-> +++ b/kernel/dma/contiguous.c
-> @@ -470,11 +470,6 @@ static void rmem_cma_device_release(struct reserved_mem *rmem,
->   	dev->cma_area = NULL;
->   }
->   
-> -static const struct reserved_mem_ops rmem_cma_ops = {
-> -	.device_init	= rmem_cma_device_init,
-> -	.device_release = rmem_cma_device_release,
-> -};
-> -
->   static int __init rmem_cma_setup(unsigned long node, struct reserved_mem *rmem)
->   {
->   	bool default_cma = of_get_flat_dt_prop(node, "linux,cma-default", NULL);
-> @@ -499,7 +494,6 @@ static int __init rmem_cma_setup(unsigned long node, struct reserved_mem *rmem)
->   	if (default_cma)
->   		dma_contiguous_default_area = cma;
->   
-> -	rmem->ops = &rmem_cma_ops;
->   	rmem->priv = cma;
->   
->   	pr_info("Reserved memory: created CMA memory pool at %pa, size %ld MiB\n",
-> @@ -511,5 +505,12 @@ static int __init rmem_cma_setup(unsigned long node, struct reserved_mem *rmem)
->   
->   	return 0;
->   }
-> -RESERVEDMEM_OF_DECLARE(cma, "shared-dma-pool", rmem_cma_setup);
-> +
-> +static const struct reserved_mem_ops rmem_cma_ops = {
-> +	.node_init	= rmem_cma_setup,
-> +	.device_init	= rmem_cma_device_init,
-> +	.device_release = rmem_cma_device_release,
-> +};
-> +
-> +RESERVEDMEM_OF_DECLARE(cma, "shared-dma-pool", &rmem_cma_ops);
->   #endif
-> diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
-> index f3a12e15a951..327525181b8a 100644
-> --- a/kernel/dma/swiotlb.c
-> +++ b/kernel/dma/swiotlb.c
-> @@ -1855,11 +1855,6 @@ static void rmem_swiotlb_device_release(struct reserved_mem *rmem,
->   	dev->dma_io_tlb_mem = &io_tlb_default_mem;
->   }
->   
-> -static const struct reserved_mem_ops rmem_swiotlb_ops = {
-> -	.device_init = rmem_swiotlb_device_init,
-> -	.device_release = rmem_swiotlb_device_release,
-> -};
-> -
->   static int __init rmem_swiotlb_setup(unsigned long node,
->   				     struct reserved_mem *rmem)
->   {
-> @@ -1875,5 +1870,11 @@ static int __init rmem_swiotlb_setup(unsigned long node,
->   	return 0;
->   }
->   
-> -RESERVEDMEM_OF_DECLARE(dma, "restricted-dma-pool", rmem_swiotlb_setup);
-> +static const struct reserved_mem_ops rmem_swiotlb_ops = {
-> +	.node_init = rmem_swiotlb_setup,
-> +	.device_init = rmem_swiotlb_device_init,
-> +	.device_release = rmem_swiotlb_device_release,
-> +};
-> +
-> +RESERVEDMEM_OF_DECLARE(dma, "restricted-dma-pool", &rmem_swiotlb_ops);
->   #endif /* CONFIG_DMA_RESTRICTED_POOL */
+> Add support for the Microchip MCP251xFD CAN-FD controller connected
+> to the SPI bus on the i.MX8MM VAR-SOM.
+>
+> The controller uses a 40 MHz external oscillator and requires an
+> interrupt line and a dedicated RX interrupt GPIO.
+>
+> This patch adds the fixed clock, the MCP251xFD device node with the
 
-It looks that this chunk got lost during the rebase, sorry for the noise:
+Remove "This patch", Just said Add the fixed clock ...
 
-diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
-index 327525181b8a..44b566d20e04 100644
---- a/kernel/dma/swiotlb.c
-+++ b/kernel/dma/swiotlb.c
-@@ -1864,7 +1864,6 @@ static int __init rmem_swiotlb_setup(unsigned long 
-node,
-             of_get_flat_dt_prop(node, "no-map", NULL))
-                 return -EINVAL;
-
--       rmem->ops = &rmem_swiotlb_ops;
-         pr_info("Reserved memory: created restricted DMA pool at %pa, 
-size %ld MiB\n",
-                 &rmem->base, (unsigned long)rmem->size / SZ_1M);
-         return 0;
-
-
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+Frank
 
 
