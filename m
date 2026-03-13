@@ -1,136 +1,155 @@
-Return-Path: <devicetree+bounces-275578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275579-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IDgsHN+htGmxrQAAu9opvQ
-	(envelope-from <devicetree+bounces-275578-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 00:46:39 +0100
+	id 6E48KPuhtGnHrQAAu9opvQ
+	(envelope-from <devicetree+bounces-275579-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 00:47:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7906628ABCA
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 00:46:38 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ECB028ABF1
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 00:47:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 537A03023D85
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 23:46:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EEAB83042457
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 23:47:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CC3A37DE91;
-	Fri, 13 Mar 2026 23:46:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A3FE2C029F;
+	Fri, 13 Mar 2026 23:47:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nytqiSax"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X/Z3sO+U"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED9E42C029F;
-	Fri, 13 Mar 2026 23:46:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57ED0285CAE
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 23:47:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773445584; cv=none; b=M7o5SFqs1xaPHMd3LSW/n3JpL4FIG0ATC8mYhxyTa8CT3Yj9dr/H7mNCMmPVwHMTb/lQBE9Q4VHG7MuQGTwxhESUXHKUjAj2iYicvBTcqfeiYXTjHMIe9OMLA81ID/qrlWwweqxDayw/NHZ2rE8oZnYqF5udnH01ypl4oL6oo0g=
+	t=1773445623; cv=none; b=YEN9dZJlzjSrio4lvjarawh5iZjhmyn2WYaH/6aEQqM89iyvYZZSRp+3BbS/ZIBeMC3cDJOi1HW6Ab6GLyYE+nE+hkqSReqyWGV7eSkOKHlRYKr/ZODRncpN0hbKPmi4vmlOKE2ZdeGeOJFrZpYRqAKwdz1ilNjTvMy7juLlzrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773445584; c=relaxed/simple;
-	bh=l0J6UxG2Xo0qMbb5afxleJPxtISpCy1pVKLdkDdqZ1Q=;
+	s=arc-20240116; t=1773445623; c=relaxed/simple;
+	bh=PZ+OvZGrUvEAPMTs+GlBLmm3u3TYFzIg6R6x1P7qnXg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iHJydtVGw5+R8ZPxsr7LBgSkmzqAOPOuo0dbqgEAk2w+c6EVjvwLzMoeXrA/TBPUlRQj84tZuIhahN13z2bswXAnCYJ5zUaf/dJP2jPoV7twz9Kg3R42rBFdtYF+yLobUXK9L1oBYkJahNFrTtnU+SPfCI9xMCFPtYD6eBvbfqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nytqiSax; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DB95C19421;
-	Fri, 13 Mar 2026 23:46:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BPT+FmHIbO8Qs0p5QWt0yU524FUiJx+WqigrWm3mej9aCtU14joc8Z0m6+KHfYHaMPlpm6OZ1fFYdnp9E6ughPZG4knkwQ8tmPbj3sARUDKQ/qET13AV/7Y/vR3A7kC9uYM9C6ULuxVXsA+Bx9RTeM53j1bFz4q/mYyrckVNEWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X/Z3sO+U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85039C19421;
+	Fri, 13 Mar 2026 23:47:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773445583;
-	bh=l0J6UxG2Xo0qMbb5afxleJPxtISpCy1pVKLdkDdqZ1Q=;
+	s=k20201202; t=1773445623;
+	bh=PZ+OvZGrUvEAPMTs+GlBLmm3u3TYFzIg6R6x1P7qnXg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nytqiSaxKQmJfhc175aQkILi0HvMCC42qFmYmmjrIU62A49gZcD3Ws5kRjLBJJhP9
-	 QBO14ad4AVIUYldwQXZ7IbnSaY4ns5ZsEBUAcRwyUzRHxOlz6wj3L8YbkGUuLcQqeh
-	 PsK+Id12aCFDftjU8LC+fGc/heeDDnwv0VyIbE2lg4Xi9O05GF1JcWZrwicsqd2WZL
-	 IcL1SNJwiqEBSMsMpNzSp7jaJptAlXV5OlgJtriSxD6TQa5Goy+I0fK0QlAWwho3lx
-	 cW9sDy6E0u6RyTd36Mgt1eMqVm267iqwgPXx+lUJ9z8jFfV94LRooiO6XXYRJTBaUo
-	 hnHcUQ5vwqF9g==
-Date: Fri, 13 Mar 2026 18:46:22 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	linux-renesas-soc@vger.kernel.org,
-	Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 1/3] dt-bindings: memory: renesas,rzg3e-xspi: Add RZ/T2H
- and RZ/N2H support
-Message-ID: <177344558150.3660030.11298746843207669134.robh@kernel.org>
-References: <20260310212927.3372410-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260310212927.3372410-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	b=X/Z3sO+UaglZvlfz2KMSdDprHL4j/xNXgrQHtMpmz17+T8rvns23i21Z/dVcf//ok
+	 uaKo0k6fPBznhlHKlgrXmt0OabyTVX5HBKINc2Da4MsJ14yy5O9TzgoeGBRDMM0/lO
+	 KMr70KX97mIrblqUxrEiLSZcGY1Bbh98WMi4HB75dE3S2pcPBV+1K5fR30WDwMifzJ
+	 68A9BM4yL42vkYA6aHVIf3laEoXxDecVQgWdYgDhgYdA5fX/PZiYjkvfg2g2VF7mBU
+	 Rzbe7eQMoWzUIcUSk6losXpBk4jaYR/aSvk9DW2xEG37C+eaTbvm1QUVQ4B+9sKPgC
+	 EhP/XKIWP3kpg==
+Date: Fri, 13 Mar 2026 23:46:57 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Bo Gan <ganboing@gmail.com>
+Cc: linux-riscv@lists.infradead.org, samuel.holland@sifive.com,
+	david@redhat.com, palmer@dabbelt.com, pjw@kernel.org,
+	gaohan@iscas.ac.cn, me@ziyao.cc, lizhi2@eswincomputing.com,
+	hal.feng@starfivetech.com, marcel@ziswiler.com, kernel@esmil.dk,
+	devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH 5/6] riscv: dts: starfive: jh7110: activate XPbmtUC
+Message-ID: <20260313-nerd-goggles-b5136fb17833@spud>
+References: <20260313084407.29669-1-ganboing@gmail.com>
+ <20260313084407.29669-6-ganboing@gmail.com>
+ <20260313-overstep-viscosity-23f4f23e1871@spud>
+ <f2cd9698-1200-4752-a61a-e4f311473523@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="MHTtG1eK8CQHzaai"
 Content-Disposition: inline
-In-Reply-To: <20260310212927.3372410-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+In-Reply-To: <f2cd9698-1200-4752-a61a-e4f311473523@gmail.com>
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,glider.be,sang-engineering.com,vger.kernel.org,kernel.org,bp.renesas.com,renesas.com];
-	TAGGED_FROM(0.00)[bounces-275578-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275579-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7906628ABCA
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0ECB028ABF1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Tue, 10 Mar 2026 21:29:25 +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Add device tree binding support for the xSPI Interface on Renesas
-> RZ/T2H and RZ/N2H SoCs. The xSPI IP on these SoCs is closely related
-> to that found on the RZ/G3E SoC with some register bit differences
-> in the configuration registers.
-> 
-> The RZ/T2H variant has a reduced clock configuration, requiring only
-> the AHB and SPI clocks (without the AXI and spix2 clocks). It also
-> requires only the hardware reset (hresetn), without the AXI reset
-> (aresetn).
-> 
-> The RZ/N2H variant is compatible with RZ/T2H and uses the same clock
-> and reset configuration.
-> 
-> Update the binding schema to accommodate these differences using
-> conditional constraints based on the compatible string, while
-> maintaining backward compatibility with existing RZ/G3E and RZ/V2H(P)
-> implementations.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->  .../renesas,rzg3e-xspi.yaml                   | 60 +++++++++++++++----
->  1 file changed, 49 insertions(+), 11 deletions(-)
-> 
+--MHTtG1eK8CQHzaai
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+On Fri, Mar 13, 2026 at 02:59:44PM -0700, Bo Gan wrote:
+> Hi Conor,
+>=20
+> On 3/13/26 06:48, Conor Dooley wrote:
+> > On Fri, Mar 13, 2026 at 01:44:06AM -0700, Bo Gan wrote:
+> > > Set riscv,xpbmt-uncache-bit to 32 to match SoC memory map:
+> > >=20
+> > >             [0x0,   0x40000000) Low MMIO
+> > >      [0x40000000, 0x2_40000000) Cached Mem
+> > >    [0x4_40000000, 0x6_40000000) Uncached Mem UC+
+> > >    [0x9_00000000, 0x9_d0000000) High MMIO
+> > >=20
+> > > Signed-off-by: Bo Gan <ganboing@gmail.com>
+> >=20
+> >=20
+> > What I want know is how this whole setup interacts with the existing
+> > support that we have for these devices?
+> > Samuel's patchetset removed from the devicetree all of the nodes related
+> > to having two mappings of the same memory, and modified the existing
+> > erratum to only be required for older devicetrees.
+> > You've not removed them, only added a new property. The non-coherent
+> > peripherals on jh7110 already work prior to this patchset, is there not
+> > going to be funky behaviour with both of these things operating in
+> > parallel?
+> >=20
+>=20
+> I just want to clarify that Samuel's change is not touching JH7110, but
+> *JH7100*. They are very similar chips, can can confuse people sometimes,
+> but JH7110 evolved to put more devices such as gmac/sdio/usb/pcie through
+> the front port to make them cache coherent. The left over noncoherent
 
+Believe it or not, I know that! I just misread the filename ;)
+
+--MHTtG1eK8CQHzaai
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabSh8QAKCRB4tDGHoIJi
+0qaUAQCXa8nPCzAFPKlgYhb6cR5eQQzVrPexv4or6Zch7LbePAEAi7pN5/5jCIzT
+24xXk/jr+pilgEqNHUS6xdPBQ46v/AM=
+=whAx
+-----END PGP SIGNATURE-----
+
+--MHTtG1eK8CQHzaai--
 
