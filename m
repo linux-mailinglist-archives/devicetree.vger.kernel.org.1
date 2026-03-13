@@ -1,223 +1,188 @@
-Return-Path: <devicetree+bounces-275414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275419-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UKcoCNI2tGnTiwAAu9opvQ
-	(envelope-from <devicetree+bounces-275414-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:09:54 +0100
+	id wA3VOaU2tGnTiwAAu9opvQ
+	(envelope-from <devicetree+bounces-275419-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:09:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92682286B66
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:09:53 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEDB2286B3A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:09:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 310CF3278523
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:03:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 61C5F304B329
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:07:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1029F3BA22E;
-	Fri, 13 Mar 2026 16:03:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23D523C3C10;
+	Fri, 13 Mar 2026 16:07:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Q/P26N6Q"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="bdYYQhS2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010070.outbound.protection.outlook.com [52.101.84.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F1B837999C;
-	Fri, 13 Mar 2026 16:03:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.70
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773417832; cv=fail; b=PcX3ioaim9ghsH6lHi9+Vac+d3zxQ1FPdih6usuFYJ0dvokfJ5FmzJq6c3hLrseGvSz3mzrsK240IdJ25ONYXyUZcS+c1ezUzH/wyPq8FpkWdRgUStBWi2C09NWR5Za57gbThrBZMPm6COL5cJKfwOkCibqLuvZvYnyMToRGY8k=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773417832; c=relaxed/simple;
-	bh=txEy15K1Wh3MhvEom3Z80rNdRoom+EtGVJyUvfwtDuk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=DwuMXRKIxGTxURVlJV8QZjdcWdfpZnWmIXHr1DOZn9zyJz7LfJOHABdm1U5dYnFA9kcMinHFPK5wjl1flMqniyckLEwdqx/33jSNDcMum2FTmENMzHfR06nAUlBH0anm/5pEwiH/3Cu2HI/4ciGEZcfWal6f+M7zy4ORX4iyod0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Q/P26N6Q; arc=fail smtp.client-ip=52.101.84.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WQKvqoTITF7FTjYQMn0b1fr3Mdf0AGw7eVqAAHXU7JkYH2gMBc6yWIfzPhJJQmx9UBaE3NfetJaCN5EaNGEMB+RHv5a4vzJd4KQkn9Cl2YYw/bhDqAU4BoiCmW9CSNiaZVoZhuYN558tQtXC1BpcFz/VFf2kmVwKX8F7UoPIpB7WC/LP5dezC/Sxbsf+Wlk8/Pt8HtMrs8DTYCaC4icnJ9KqWMEoLhtwt8Iw7ZwOHb0qB/3b3yiTpvi9MQu6XsK8eYQr0SzXx1QYEcYxIRoQNPu3tjN9WrYa0WhZ46QBUnyLX/adTJ7BW5Un9Z+Ev6xwsiWv0Puh1oxFK4oq+Yo0lQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sHbl8yRpI1/LjTe67wCgC4LMBe5xireGe3tS97yd9Is=;
- b=bhwdkcH8idsMDzbdZlk/k93zJXzfXrgeiJR0wCDp1zolYf+OxLX0I/vPHj5VEYxAcMbMs8Z/MQoR1eKA6i+AFa6QfOofOEV/66Vpxx63cyEOd1BHWyVDHObzcD//BLJB6VlMJIiLXgs8NTvCCJCjnggrz34uRy/SzP0fMi+GBwnwc7xRIvDlptFG7lUlJbIuPi17UGhnuHdlLWruCXzHk9TcN9VY5mKUepJaWb4YHkwzZNK6NgiiqcfX7XNWTvhdkMAePoF8lTep55zxgzyOi8wJdxwqu7GIt2uGXTnNOpB1ma+lO/J1uiK2rltYkGOPV8fL17+EcUtc0l7hFcnGPw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sHbl8yRpI1/LjTe67wCgC4LMBe5xireGe3tS97yd9Is=;
- b=Q/P26N6QxW0L62MConjRXWWOCjiYKtfQitvY4Hxqe5egKY7EQaZezomW2j9mp4fT9B6qbO75VDVGCrvKnITV6P1dIKp8BBD5xpG4DgycEwpGiPL3tAN4Lbc+/BpMMEVc8pzKse0661cjL2dJI0jZuKwalmzTJYOBQVdI4D0ipWjpGnwPfNE8ZkmICP8CQT8rwGy935/2giz7JXis4WljNtBOqtyrIoRr0ja5G1gXt3qUP0hcOHCOA8kUuHrq8XpYP0Bu3nR15vaYMWYB/tiCO/aJOMiHM7BtZjCU9gIFRzFszcfC152LiYS9XtvTmvzKigtgC3k3asIFH8UapFH5ZA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by AM9PR04MB7620.eurprd04.prod.outlook.com (2603:10a6:20b:2d9::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.16; Fri, 13 Mar
- 2026 16:03:41 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9700.010; Fri, 13 Mar 2026
- 16:03:44 +0000
-Date: Fri, 13 Mar 2026 12:03:41 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	pierluigi.p@variscite.com,
-	Stefano Radaelli <stefano.r@variscite.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH v3 07/11] arm64: dts: imx8mm-var-som-symphony: Move USB
- configuration from SOM
-Message-ID: <abQ1XYca3XRvcr2f@lizhi-Precision-Tower-5810>
-References: <cover.1772898346.git.stefano.radaelli21@gmail.com>
- <04b20cb1abdea86c551a851a19eba8fce1640c87.1772898346.git.stefano.radaelli21@gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <04b20cb1abdea86c551a851a19eba8fce1640c87.1772898346.git.stefano.radaelli21@gmail.com>
-X-ClientProxiedBy: SN7P220CA0030.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:806:123::35) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68CD93BB9E2
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 16:07:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773418047; cv=none; b=YZFnql5yATbsQfes+SA9Tw0cUetqs7OdWHJ/nf82D9jaZeV90B9wlEr1hSfUGTNNvk089R/fPMAGdh/zuX2OdDwofYZJnnnbLvZSnf3/ZMG7SnQSOAA6tI3QKNfiwZX0/dxokbnreY0HcXs7u7+MczJGI+JvQEf2/zGC5j6bE50=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773418047; c=relaxed/simple;
+	bh=0GSCVv8RnRX1SM1Vvg+cL2Ym9a83esOM3TKZJC3XelA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ARqKdLqDzE+Vg16G9gZU9651iQwXvptv74K0I9Gll2B437UfC2/1b6YyLlQaPJYhu2zeMh0tNf+oygD0X2lsv3Y/nuxxWoH7aZd10cZcTloDS34qDMUsYiJgTF8Ffz5vj4DJFLcvodqHoM4y05HfekVZP61TztiIYmda/dBjbhA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=bdYYQhS2; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b96dc65b886so619136066b.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 09:07:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1773418043; x=1774022843; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2oHzvvItzqMXEjwSlbHVAmpu3j/+5uuOsYPxIlXdUcY=;
+        b=bdYYQhS2nWhjx04ypovlLjV/P/5UQ9U/M5W/+y/XTd61reomolMWGB+V5A3mhDKqXK
+         hAuosN4gR1ySo/wrGMlZGt3Vq+ujS6GDHDJiE6debb31qCYOgyCSykSAqVAJojrNK+9C
+         apD/S8b9qPTfDvwGyWLhedZpBGx/jvj9FPUoM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773418043; x=1774022843;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2oHzvvItzqMXEjwSlbHVAmpu3j/+5uuOsYPxIlXdUcY=;
+        b=L4FON79jXvm4Na1g0U0SNE4ExaGt239k7nvzdfkCYGFVA0jQUbtdmMHf4OzK04TKJC
+         AdowIsBg/ooNcFkVzR7ACPw8rdWosAgQR0ZLy/CZ2GeHTw+EmFIn2Rf9hKZdLvebJcqo
+         i8U7S5bzEc/N1lDu64PMXQj+4raT1IGTiTtixDG0v6vemU0vVFokcoOD5fn5hTq93z4j
+         /snRW+sBrj1VU8C997Pm7r/fV43q7XZoVzPkhZA+WzNGqZQMCwONalqSa+CSsPlLdeel
+         nsI/fXMnilco5rn6/OfJBDMMg0YrVumCv6i+xOK4UH3mXAuBUG/NyAktMTRhenKbnFwg
+         fd7g==
+X-Forwarded-Encrypted: i=1; AJvYcCVe2196WgwWlcB0ZAwfSOUKrtrH2Xg3jr4D+v5T08qWx/e6Sv4UR28R9sOd1jx6hAb6L7H0RP1fVtj5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxmPSFpG2am2d0bx/Dmti+U2Rhjor/1FNpxNyCl3CrbQKDzgb2L
+	3pQfdCiHt3dt4+Et1F3glrFU+3g98x7UubVWxazmJHRLEwFLhgmSVr+cA8XqnupvaQ==
+X-Gm-Gg: ATEYQzyPNdAx7NCyBmNpYST6WJI6FW99E75i8eTPdOa9UHpE+tKRz3aKGHlqfEYO7q/
+	fcdFJIquJ7J+eu1ocnmTrEns3ouGRYYGoB6n7SNVE0dze5zd+lzM37740/PBctq8vRa4MY1qYoE
+	CgEyu9D53ccPZbEHX1dF5be782HnYKZfNtHADxwuwxTYvvqKAdT8zR5aU2/SzgV+rO0MQehgd2B
+	+wVR9/b8Qhu9dB2g0phzVNj1rBUhNor4T70+DNjWQ0k4q2x920UjFo6MiUPt71uCwiNxFKMUVh9
+	4UrofL5s5QJiPt1ZTmuGMuDQ5/o3SRYQYFVvCaKxw93oek0fSM0aPD+xW600eirFDvq7dZ9u6v3
+	LDcXhXXLlCfYpvOjN3Hb392xXECFZd33b/NGVMEJU0M0efLe/ETLG5rqlnLswHSb2bwiYp0Ak8r
+	XeLtRlreJCgkxPqUAEXfQv4ZpciLIaob2OOCRBgsPE8vAP8NT/B0pKlcLU0R2+AY+6a9FPJCJHH
+	qEQEtE3BHLC
+X-Received: by 2002:a17:906:9f87:b0:b96:dce1:2f52 with SMTP id a640c23a62f3a-b973ffd257cmr472637166b.19.1773418042432;
+        Fri, 13 Mar 2026 09:07:22 -0700 (PDT)
+Received: from jaz-virt.c.googlers.com.com (131.44.147.34.bc.googleusercontent.com. [34.147.44.131])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b976cba6ec4sm62749266b.5.2026.03.13.09.07.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Mar 2026 09:07:22 -0700 (PDT)
+From: Grzegorz Jaszczyk <jaszczyk@chromium.org>
+X-Google-Original-From: Grzegorz Jaszczyk <jaszczyk@google.com>
+To: tglx@linutronix.de,
+	robh@kernel.org
+Cc: mingo@redhat.com,
+	bp@alien8.de,
+	dave.hansen@linux.intel.com,
+	x86@kernel.org,
+	hpa@zytor.com,
+	saravanak@google.com,
+	dmaluka@chromium.org,
+	bgrzesik@google.com,
+	jaszczyk@google.com,
+	ilpo.jarvinen@linux.intel.com,
+	usamaarif642@gmail.com,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	tnowicki@google.com,
+	mazurekm@google.com,
+	vineethrp@google.com,
+	rppt@kernel.org,
+	agordeev@linux.ibm.com,
+	dyoung@redhat.com,
+	myrrhperiwinkle@qtmlabs.xyz,
+	guoweikang.kernel@gmail.com,
+	kirill.shutemov@linux.intel.com,
+	akpm@linux-foundation.org,
+	joel.granados@kernel.org,
+	sourabhjain@linux.ibm.com
+Subject: [PATCH v4 0/2] x86: add support for reserved memory defined by DT
+Date: Fri, 13 Mar 2026 16:03:45 +0000
+Message-ID: <20260313160347.2843005-1-jaszczyk@google.com>
+X-Mailer: git-send-email 2.53.0.851.ga537e3e6e9-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|AM9PR04MB7620:EE_
-X-MS-Office365-Filtering-Correlation-Id: 59bc11d9-7224-40d8-78cb-08de811a1a7b
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|52116014|366016|7416014|376014|19092799006|1800799024|18002099003|56012099003|22082099003|38350700014;
-X-Microsoft-Antispam-Message-Info:
- 8f2NmEQZ7Ox2Xo1Ka+9jIY4GBPfloEQ4T5Go1eK6Rj+lM/XIR6q23B0MQvbsJHPX/axmx5BBHwv9rPiZwDFYxHFQKLjM8yUmMvyDKCvqjKHveL9aPhmnyngG/4RMRF5aYNECskQw+Mp9IMzmcEcDD9Cs7CMmfmGP3Ct7oqxfTkoJ6eOz8VSGb31h4h4cvbI6W0OfZu5m1scmrXV02W862d7ipsTUkMLKOTG65kmDQe7xU8em/nKrIeIbXJlqcZ39/yHv8bWphioM/2xqD6auIibDO8lBax409PujEGfI6EKwwoScuqymQm1UJENyhpOcU5jgfNe+eV3A6GsubrVKb2q515G5qZt+qjji1G2/gs51YMiz1BBfMC6zAYZsDqINBz4pLosV9R0ckPYkW5+qITIraJAuZ0VHorH1Sw8XOyy4DWBbbAaunj+0hYo7lLjqVRTeRRyaEcKMDGx6HDHwUuBYNpCUnjZ9wR4+8Eh0y00sSAE5FPMMF/Ceq6pXr4Bd8iLTjGJWpgQpul+m9h/1RdAVOUBA8JaVfhB4vX/bca2OkmKMuNQuHVKPPv7QFvymwP2JsXzZrzVpBBYL4wYPnpPkIapoJzCOHexxIr0rlsiEVvmfBxuSRHbY52fE3XG+SZHcEUu6BRXe18es8PmTcZEmKXD01V6IOE/RJMN5zpeS4o9m2afJJHy+EQgkrpQ4nhtmA0kqSpoVwY+CqWSgkR6oYzH36XHL/31QM4z9RUTF3czhzPA986eTgkdJfDpQ7+DexqttogZVMqoJDQNHxZ/OXiGqI2kebSfyAF8/6xk=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(366016)(7416014)(376014)(19092799006)(1800799024)(18002099003)(56012099003)(22082099003)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?bDSjqAKhyBoTtiGe+F8qI2+PqrGcDhKTPgLx6zbdZXpq6z5EEYv1Mv/ASLDg?=
- =?us-ascii?Q?TKJF7PcF99qIrO0b3Xp/PpvuPEDQCxyVPKBIbpQ2KXCYox+ALFEvNm9FKbhT?=
- =?us-ascii?Q?Ztuh/n1vdiADHDIfbHvUcDSaQ6no3RhrA2NZZ3YgOh8cMtVqAI6wn6MNMRE9?=
- =?us-ascii?Q?nqy3qvnnpkjrfT6NGpZRuLTFFWAGlckGQoen0nKtwcI6KxbCfcOlsGuq3exK?=
- =?us-ascii?Q?hRV2Bx+Qu3GRiFu4rxKW95WC8LrPeQuRC3di2m3P0rDUpA46dQCyf97/L/Hd?=
- =?us-ascii?Q?Rq/9ffJu0DLAQCwxPIoj375InIFBsYxkFtWt/NDwtZFCUrjHhmYdPri0s76b?=
- =?us-ascii?Q?2uAW09/LkPInWhISkF6idnlUIhvnTr04V7IqVU5m8Q0Zu2geEzs2ClsACl4/?=
- =?us-ascii?Q?PZZ9zlly82OEl7FhPctjIZwDm964qt2dfwLdpb87UTvyZUE7x7RkOBFFtyNO?=
- =?us-ascii?Q?vCtBuatua6r2fiYREFejr7URZL3kyxuMvN8uvOHWyZCQtvlyoIw1cReq5jbM?=
- =?us-ascii?Q?nyCFPB28HfO32highFOUR2UfQ7tRr/VI2dhjR6tffm/VYuP18buQVfRIbU3d?=
- =?us-ascii?Q?dcBZuNkDXMpcSQI2XGUT5atmdkGlDJ0Aq4F+PIiCAieRnnq9c7oyXfYwgnkz?=
- =?us-ascii?Q?MyAuW3hHq/uL38dDkXV0FxNXVWQcKyb4nY1EzUnMnAo7WlTqEBbKlrisFpMo?=
- =?us-ascii?Q?YUNLebJ0NrPz+7dg0D1sgOTanMDW4sRj2aF9bhVejzFJvWR2/m+os5EeIjXK?=
- =?us-ascii?Q?PXU3YjpfiBmz2LvW0X8Kv0bb9WOQIe4ABQqIFuTI6LiWFehR08t+sG9Z4Jl0?=
- =?us-ascii?Q?bPSIlExe+wvj2kiU4R0O1cDdcibOTpqbpPl3+XadESZYjgu6QAFSEPUnb7rH?=
- =?us-ascii?Q?Nisx3CybB5J6zbrz0FUY/Bnfu2TO9H3Mngrcv4dC+EygjPvZWD2EO1w+XlSQ?=
- =?us-ascii?Q?xxvuBmJS0n1ul5QdIsDcOSthGxyI7EcQMxtbHpYTdvUWnJop1O/G9V89HzLh?=
- =?us-ascii?Q?GFfrWuauT52dChWcywMdShVu1CoCJi7qyInr2m/CxOWQAEwgZF2LBOto3wms?=
- =?us-ascii?Q?HRc+fjyHHdAeJbxwgbjq1GFHmuAT7yzBLezUMpHocQclHqlu+Y1qOfsKgZdE?=
- =?us-ascii?Q?cQl99ubdVUCbVOK9hql5+d/EzhrZngP5Xx9md6+iQYI4rJbBDHZoTVAhSrF+?=
- =?us-ascii?Q?gHEZ5n5UW82BpbCjZCnixCDhfxS0Orh6MnoWOFr2ZNukf9pb3s9yiKa8gSUQ?=
- =?us-ascii?Q?V1r+AaQ63mbB5VccHBzKIPHUMxC2ZKNiX8cn3x6acur01DiVQEY0bBFPpkxX?=
- =?us-ascii?Q?Gz3NnmZ/ssBPXWz1PN0PQAeYqeMk5rQDBnJRuprtdCIIpvVs5YKVJ50Nc99h?=
- =?us-ascii?Q?IrJYr9AUWkMMmc/Gij33WhgK3CvR6L0+0K4rLycFZRLQo0sx0M0xOp++0WHh?=
- =?us-ascii?Q?PUIlh3fylTFAqhjhP/F0sGoTsLPZpb0Um48uAapPmrRmC5tGUZehy3u2W0ky?=
- =?us-ascii?Q?FJrWN1p1BSiturLFONAqeVEmgr0ex03xSl9LitxX2MlnPDb6PKHMj7CZHHhE?=
- =?us-ascii?Q?bFelVfJlT7Rt9b3RrqM9GMUePZVk6rCTEBpuuHwNdh0Q1dyFrP4A1oPp9U2N?=
- =?us-ascii?Q?5y4+rC2hNaXA5aD/WyxbJvEA5MAKIgJyK90z3DTxlmXLCNP5+F6U+1Kv8PsT?=
- =?us-ascii?Q?DlmrWMtnsH4gtAo5+9IA8kzA+g9zurJYFdkaq5nItc6q6JGtYycjQJjN0WGV?=
- =?us-ascii?Q?8LR/zJfh/Q=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 59bc11d9-7224-40d8-78cb-08de811a1a7b
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 16:03:44.7596
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Q29GNcpBIkc3mPIpxSYhb+Y+YJtg1yRfz07HDWE0vpsYdFpvmtZsd+oAS38uB5Gp+FVmlhCv2lJjBHrh60Bbrg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB7620
-X-Spamd-Result: default: False [1.84 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275414-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-275419-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.linux.dev,lists.infradead.org,variscite.com,kernel.org,pengutronix.de,gmail.com];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[redhat.com,alien8.de,linux.intel.com,kernel.org,zytor.com,google.com,chromium.org,gmail.com,vger.kernel.org,linux.ibm.com,qtmlabs.xyz,linux-foundation.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[jaszczyk@chromium.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,variscite.com:email,nxp.com:dkim]
-X-Rspamd-Queue-Id: 92682286B66
+	PRECEDENCE_BULK(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_NONE(0.00)[];
+	DKIM_TRACE(0.00)[chromium.org:+];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,chromium.org:dkim]
+X-Rspamd-Queue-Id: AEDB2286B3A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sat, Mar 07, 2026 at 04:54:43PM +0100, Stefano Radaelli wrote:
-> From: Stefano Radaelli <stefano.r@variscite.com>
->
-> From: Stefano Radaelli <stefano.r@variscite.com>
->
-> Move the USB controller configuration out of the i.MX8MM VAR-SOM dtsi
-> and into the VAR-SOM Symphony carrier board dts.
->
-> The SOM does not provide any USB connectors and carrier boards may
-> choose whether and how to route USB, therefore USB should be described
-> in the carrier-specific device tree instead of the SOM include.
->
-> While moving the nodes, align the Symphony USB description with the
-> carrier design by enabling both USB controllers, wiring USB1 to the
-> PTN5150 Type-C controller for dual-role operation, and updating the
-> PHY tuning and VBUS regulator pinctrl (including a sleep state).
->
-> Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
-> ---
-> v2->v3:
->  -
->
-> v1->v2:
->  -
->
-...
->
-> -	extcon_usbotg1: typec@3d {
-> +	/* USB Type-C Controller */
-> +	ptn5150: typec@3d {
->  		compatible = "nxp,ptn5150";
->  		reg = <0x3d>;
-> -		interrupt-parent = <&gpio1>;
-> -		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&pinctrl_ptn5150>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <11 IRQ_TYPE_NONE>;
+Currently x86 allows to boot with ACPI and DT at the same time and basic DT
+support is already in place but processing DT reserved memory was missing.
 
-why need update irq type here?
+The DT reserved-memory nodes can be present in DT as described in
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml.
+Similar to other architecture, which supports DT, there is a need to
+scan and register reserved memory regions on x86 for such nodes. It is required
+by drivers (e.g. open-dice driver) to process DT reserved-memory regions.
 
-Frank
->
+v3 -> v4:
+- Rebased onto latest upstream baseline. Previous series:
+ https://lore.kernel.org/all/20250618210628.2635891-1-jaszczyk@chromium.org/
+- Improved commit logs
+- Improved e820__reserve_nomap_region to perform e820__update_table_print only
+once
+- Fixed e820__reserve_nomap_region by passing region->base instead of truncated
+start address and original size, which was wrong
+
+v2 -> v3:
+- Patch #1 which extends of/reserved_mem and adds the possibility to register an
+arch specific hook was dropped. Instead "x86/e820: reserve corresponding to DT
+reserved-memory nomap region" was introduced.
+- "x86/of: add support for reserved memory defined by DT" stop relying on arch
+specific hook. Also calling x86_flattree_get_config was moved and is now called
+earlier during memblock setup.
+For more info please refer to commit log description and v2 discussion:
+https://lore.kernel.org/all/20250418124718.1009563-1-jaszczyk@chromium.org/
+
+Grzegorz Jaszczyk (2):
+  x86/of: add early setup of DT reserved-memory nodes
+  x86/e820: reserve corresponding to DT reserved-memory nomap region
+
+ arch/x86/include/asm/e820/api.h |  1 +
+ arch/x86/kernel/devicetree.c    |  1 +
+ arch/x86/kernel/e820.c          | 20 ++++++++++++++++++++
+ arch/x86/kernel/setup.c         |  6 ++++--
+ 4 files changed, 26 insertions(+), 2 deletions(-)
+
+-- 
+2.53.0.851.ga537e3e6e9-goog
+
 
