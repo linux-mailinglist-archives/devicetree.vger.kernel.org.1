@@ -1,240 +1,220 @@
-Return-Path: <devicetree+bounces-275420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275415-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +DIzGg44tGnTiwAAu9opvQ
-	(envelope-from <devicetree+bounces-275420-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:15:10 +0100
+	id qE9hGto2tGnTiwAAu9opvQ
+	(envelope-from <devicetree+bounces-275415-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:10:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D91E4286CBF
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:15:09 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE0D9286B8B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:10:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E2FFC3124CF3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:07:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F190D328439A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:04:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C941B3C554A;
-	Fri, 13 Mar 2026 16:07:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB5B93BA22E;
+	Fri, 13 Mar 2026 16:04:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="LpBoY2SE"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="d8Rj6Deq";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="h54S3c1N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6CE13BD634
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 16:07:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE1D43AEF4C
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 16:04:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773418047; cv=none; b=cFFly8PNjhN+kfnRfJKKvZOqcycqLy4mTceHYdWyvBTUdXyNtOywgxnxdagNqkJGzCInk7WOD8g7dpymtDZTqtqZQb5VwlzAQ0KPx8gwwejhos1wAJJ9i0f0RrMwhLR/5pmId+QcXYO9Ox9K2WyxKSnjAIvjxVILFoc6lRAgY3U=
+	t=1773417853; cv=none; b=RLj4XpPsVjWqSeGOcY2tNx9pyR8AfS93Pqj7hes/2U0HpB7kd3E8k2/WnfQUEe93Jcmo/RveFMqmvKPmJDL8cwNVpUB30y9mjlPNvmlU+U6G8qOE3do5Os1R6G+9NvoahUMVpcNyKx7Fhaqf76LN+2x7Nphfp6ozKe9ITrFKj0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773418047; c=relaxed/simple;
-	bh=ECkQNb3eCzal3WAJjRaDEW34t/R2ONA0tGGbLwPNcHY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ASwN9SNkDK2jNuj2RNZ825ogNfSw+qtUYgCeeyOkgB+iqfvU7vrunAcXpHY/k64svr8ceu0qU6YTS/iTlDIdegn08hDN4GD8MvP0ZjDDaDnbqCesqteMkhHc6MVTBmL/NrN/qp/hLJkD+pZz0rE794zP6IbhF4L+WBrZV6u2yRQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=LpBoY2SE; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-6642a16be1cso1012587a12.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 09:07:25 -0700 (PDT)
+	s=arc-20240116; t=1773417853; c=relaxed/simple;
+	bh=rK8S3XcdOkJtTPmU3AL4lHebx836znNSJPDRkIryyNQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MKeGLPNrqcamWgaUECldsfldh8Xf8eQcCTWeyLm0xPtO7yReUanYquTuPxdv1g8tTIzFLtftYYGxzmlj38Hu1PsQzb8oKnbcRTVuN5cVEB9R6dAJ18RGkaIGqtC7tnpvODnGj3XG+dOryz2Ox1USzmRabp1XqJ9lLrAbT/n3a/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=d8Rj6Deq; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=h54S3c1N; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62D9BJxG3906612
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 16:04:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	qoIt/c0c3o7wTtS+reA6lWhErdA4xTAVSkX0IZxKwL8=; b=d8Rj6Deqx87RQvwk
+	Hb7YnElw+GX2/F6B8gyXuwmugHHhtBXDclq/DOQy2K2yllf3pybfkIV4BzWlpNum
+	y8G+IxE+QG0j75U+7eUX6h8cOp1jy1f995i3W6+GBclKZ51XqGniPkmS9LFL4AFm
+	Lz3aESXM7GcmeLai5LVhbdU8VcVBoRrRr4E26QadDZtZJpKVAd9wbhLHrOlUsp+E
+	Hmz/9T+SxmugnXCJak0c0vDo1a+4oM1tq5fBVGc3ttiwmKgz1G/70IBqjMJNCBp/
+	FpxWLmOF9AvKfLDUYGG4EmK0l1B+fTja+CE2XVR0UaC/OuiExP3oTfeenkekjsGJ
+	G7QxIg==
+Received: from mail-oo1-f69.google.com (mail-oo1-f69.google.com [209.85.161.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cvfqs9cf9-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 16:04:11 +0000 (GMT)
+Received: by mail-oo1-f69.google.com with SMTP id 006d021491bc7-67bb5810407so34302022eaf.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 09:04:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1773418044; x=1774022844; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6IuFt080J2Skvkbg1SWMG28SkMd4vofTIXNDcp/JD4o=;
-        b=LpBoY2SEy8o39lQ4A4d2lVbk/q9d8HnWULUohXpuqBcAvlC+UMYBtuLbZVAxrrROFw
-         yI0bddsqBrHWr6ymkG/xicHopsZmr3Ba3B1VIQpht+Jcf3p3k5zv3XQxjpXlaRU0/t+X
-         xmK3sj7jTnqBcdH4CDxVt2WPQ4lGgayG2rN20=
+        d=oss.qualcomm.com; s=google; t=1773417851; x=1774022651; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=qoIt/c0c3o7wTtS+reA6lWhErdA4xTAVSkX0IZxKwL8=;
+        b=h54S3c1NG05mLoBcf7N5P3CKbU77Gmk0tgCRyH7H+vmkjdcU+3Ue0xt3OdO7risKEL
+         hHZGIC2MCyNb9OKyJZiT2oxhkN1z3PtOBS2+cWJguHbGWfTgZREKSsCUXLUZURMNem//
+         /x3GDqv5TbFLsqseCT1uXP8sYcqN/VcIOPZltCLyUU6Og0L09HeRbtgssIsaRa0yTEEl
+         tDaZYK9lbvZRyN393RmQ35/AdhDragkQU4SF6aDmkngIFFf5UvSO5tuMI080MUodpxD3
+         3ygLM5ueWgjHtWGaPrgPlD9XnqMLnuD7Wa5vue1iMZerMiGacfW4/TRshLyek9qfPdqE
+         NN7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773418044; x=1774022844;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=6IuFt080J2Skvkbg1SWMG28SkMd4vofTIXNDcp/JD4o=;
-        b=G15M/Ix+jjcyX1wdJ3N9GTokcVxnlfR8zK/dRZQDX0BSSzO9nLF5tpiAMgUGohffyC
-         Cpvk0VGD63yqEwmJtSE0tJAT6h1mWmS5aXDQXHzMHG7aTBULjDXdiPcxGrt7L1eIl3UL
-         jJAFLpZ+XgWiKmhGfACQ9AidUsQPOf3yU3eNPKOrhUpYcbf8h/SUSAP7cR/NPlxLi78X
-         piQiExVUUsyv5/Q+cA/Y/BrdB7VscgTixvaKxxC+HYibyyfvsRF9gk/TIXYitlLQGgEC
-         KIHORkRNSzRfkvmZFwz3l9/h9fTDjRGlThf9Tm573r54YVLaiU89N0KxdETeA2y9V8pX
-         w9zQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV8SRQx1bBshDaXdjp47KFJZajY6/aBvzED2vDNk3gWt6qycQ3fElNJ3JkBMkf4RMdRNx+TRQEj0GnG@vger.kernel.org
-X-Gm-Message-State: AOJu0YxFp3XF2hkJPiMJf67LEyjuNNwzWsZYaZUe4Ie0WsphFez5tSE/
-	v1xPOHPyhZZkzthFSc9j2Ry/coPgP4PES/DmhQtbegYGZox+yeLD57jf6ZP0sMMzvg==
-X-Gm-Gg: ATEYQzxD8m/Izul1YdIrd/NA5FNcn170ZzXD6TjiMr6QJ/91BD7TanpdTqwY2lT76gT
-	7oeNac7zaLmHG/Gp1O7w9BxdgpVXI0Gdf47wsibI0G4Ax0GNvjEVeTRvoLbUhf0arc0xt3MYJiI
-	hqOmT5BP4ReWSdXN7Lr+WEwPXlAGEa/IQjgtKJTvk21sXf/Y0caQkZPBFGWDxRBWRBhm80ScKwZ
-	QQDZbaNGTpGExaoIidJ4P9WKH/8I70ISzmL5J5BCmQsO29EAcKj665mjmD4kShw1ST/9bVttpgE
-	eyx+ScyQvniBwm41M4vpH9p6ptuebWTU8cfo6RrY6YfDLxwsn/vE8soiid8HHp2a6Hm2Gf9vZw2
-	ONhk82Krp2MwtlkiW2joV/FNYVMOAmUlqHku+0RbMlcnZNXE+yZMJoZvNOxzjHtL7NA7auur2YC
-	bXjdjfrpU7uUVf486idGk8v/HcTV6HZtPBt5qr1Z0oCi5ifxZ/+DilFetwBeNSsiS2oV2qU4lEC
-	2Rhsuncki/J
-X-Received: by 2002:a17:906:7953:b0:b97:73ae:e1f with SMTP id a640c23a62f3a-b9773ae1114mr133921566b.34.1773418043836;
-        Fri, 13 Mar 2026 09:07:23 -0700 (PDT)
-Received: from jaz-virt.c.googlers.com.com (131.44.147.34.bc.googleusercontent.com. [34.147.44.131])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b976cba6ec4sm62749266b.5.2026.03.13.09.07.23
+        d=1e100.net; s=20251104; t=1773417851; x=1774022651;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qoIt/c0c3o7wTtS+reA6lWhErdA4xTAVSkX0IZxKwL8=;
+        b=OtTR0N1FugFpOBEtvvn9MD5fbhaJh0smQF0+DDl9SUZo1hRiXymd5PD0sxctRaizEu
+         DXyJPVqxKJDfN9MouFogKoMlSO27rahb0qSyjo85O3n2DdpJfMfGWVXreaCfS42iy0Ub
+         oCvCtjuBBhIpt0oN8n7vwaZ45qkJ21zAD4hnkOO0PCVgBDldaqj/aEpQqHRGk6FllBBS
+         uYFAizPKcbQPspLLw0WSLsMydDjaflep3eCgr8+WPLCnb7aWVl2rpssJt5omy43na5ME
+         1a9xQb7ywh5NWTdWpcZgPwCavd/HOwtDOoUdRMYQ6LOJraxkx9Fwgx2DnW4rro6azvuU
+         cSXg==
+X-Forwarded-Encrypted: i=1; AJvYcCXfEONKLG+u7UR9VJ2lubhdU4y4o4QGEH8ldiJny+ZvkkQGDLmnVZ2EIUB1hAIQoG6xRfcprQ+R6+Ve@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDihID2MJSyB2BYuRmODcDWGxD7x2bPJ5/CYjodRYIax2gMKRG
+	58gVQITFefrZwFUY3Bbc8CEJJuflm3YtsiCsHYiH+tqxu1emG52G16eut8JBAFiy6wUiH5lmdMd
+	ZjLhpvItPaTo8nSOz9jyjyse2UMupgXDV6zhEXNE+AIBMH4OBmkOli1LcfvWbQZMO2v0GR5nU
+X-Gm-Gg: ATEYQzwECzYf3L79wZxS32Nx5PGr2YyU9ug10tgyM/oGU6KXfpwQKsWgliowhvshtvw
+	vVAW65JVNmA3sI3rtLyGmBXtmGEdRhmAeoEd0ayi0/eF9lTIY2jx93nfALtY1zBYOCWrEI87D96
+	0Pp3rLbP3MG/e5ZGahgx9NcVCYsU57qXQURGzOOMJ3K+taqnZ3ki2M5bJ8wRpufQxuVrqy98yhx
+	JKMYRE4ftQAhyf3sri39GS3mUwrkMRvA2/DuGByVWtKU1FP4Nc6Vi9x6dkBhh4J0kz2Xi4Ytt9Z
+	mZB4QQBJ095dPN55AKmtpaD+MSrpHTCZJ6se+I/ByT9wmjCK7tAeu2e6wfAvoi5S2MRvkxmB5IZ
+	dhaXXHXT2+363UKVhbTlvWIHgHvNOJ9sdEhLZqlzvWvUJkW4S0cJcKHk8+ddI9SlFxiIV9QNPYi
+	fqStMjJXOBZizr2hcLqDJHfOy8VrduWVpp2vE=
+X-Received: by 2002:a05:6820:448b:b0:67b:d301:862f with SMTP id 006d021491bc7-67bdaa5ceaemr1871690eaf.50.1773417850674;
+        Fri, 13 Mar 2026 09:04:10 -0700 (PDT)
+X-Received: by 2002:a05:6820:448b:b0:67b:d301:862f with SMTP id 006d021491bc7-67bdaa5ceaemr1871667eaf.50.1773417850160;
+        Fri, 13 Mar 2026 09:04:10 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38a96565ecbsm1475181fa.41.2026.03.13.09.04.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Mar 2026 09:07:23 -0700 (PDT)
-From: Grzegorz Jaszczyk <jaszczyk@chromium.org>
-X-Google-Original-From: Grzegorz Jaszczyk <jaszczyk@google.com>
-To: tglx@linutronix.de,
-	robh@kernel.org
-Cc: mingo@redhat.com,
-	bp@alien8.de,
-	dave.hansen@linux.intel.com,
-	x86@kernel.org,
-	hpa@zytor.com,
-	saravanak@google.com,
-	dmaluka@chromium.org,
-	bgrzesik@google.com,
-	jaszczyk@google.com,
-	ilpo.jarvinen@linux.intel.com,
-	usamaarif642@gmail.com,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	tnowicki@google.com,
-	mazurekm@google.com,
-	vineethrp@google.com,
-	rppt@kernel.org,
-	agordeev@linux.ibm.com,
-	dyoung@redhat.com,
-	myrrhperiwinkle@qtmlabs.xyz,
-	guoweikang.kernel@gmail.com,
-	kirill.shutemov@linux.intel.com,
-	akpm@linux-foundation.org,
-	joel.granados@kernel.org,
-	sourabhjain@linux.ibm.com
-Subject: [PATCH v4 2/2] x86/e820: reserve corresponding to DT reserved-memory nomap region
-Date: Fri, 13 Mar 2026 16:03:47 +0000
-Message-ID: <20260313160347.2843005-3-jaszczyk@google.com>
-X-Mailer: git-send-email 2.53.0.851.ga537e3e6e9-goog
-In-Reply-To: <20260313160347.2843005-1-jaszczyk@google.com>
-References: <20260313160347.2843005-1-jaszczyk@google.com>
+        Fri, 13 Mar 2026 09:04:08 -0700 (PDT)
+Date: Fri, 13 Mar 2026 18:04:07 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Shuai Zhang <shuai.zhang@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-bluetooth@vger.kernel.org, cheng.jiang@oss.qualcomm.com,
+        quic_chezhou@quicinc.com, wei.deng@oss.qualcomm.com,
+        jinwang.li@oss.qualcomm.com, mengshi.wu@oss.qualcomm.com
+Subject: Re: [PATCH v1] arm64: dts: qcom: hamoa-iot-evk: support Bluetooth
+ over both USB and UART
+Message-ID: <liap5tu5lpmwprmvzcjutp5kyulq7lyddrhfyorokzomdwfzdu@zscyzbg5enzj>
+References: <20260311090921.1892191-1-shuai.zhang@oss.qualcomm.com>
+ <cffdb8ab-a293-4535-860c-378a4b8a3d33@oss.qualcomm.com>
+ <97a3f3f2-e9e2-44ac-a682-0e0f0c100a45@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+In-Reply-To: <97a3f3f2-e9e2-44ac-a682-0e0f0c100a45@oss.qualcomm.com>
+X-Proofpoint-ORIG-GUID: FVWqt6-pUOAYegWRWsPvBKGtvbHVTxL-
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEzMDEyOCBTYWx0ZWRfX/ujp7AxdJcZa
+ 1KwQQ1Z8rNqUulXfmXekqJyriULVgPWFm2vBAn9G2+XzigUgv3cYZo7H4XUp8wPjQOKjd3wKNGd
+ 3KAyJUtnhDuJKKYXDqRVnrTEPF8eIE8IJ3E+B/4qOr/QG4UJYPrsOuylIwk1XmFbT9zNAKSY97u
+ 6CcgZghzVWAUo1VEWTXTHtr4xeLlNxMOV8aIz16xg3yqUsJ5Fk09M3OfwFG9cEvBeo8Uz9Au9on
+ zr/XL9A+TXS3dQtln6ZH33zgzu03N6sLyydc4QfV9N9uyAVwevT8rMBtlIth90HknYmWEaUvLXE
+ Ss1MVRadfivh7iFnxRsS4orpn7PpKpEVT5u4PBiNTu7NK38x/v9yYpJI5OfdXEk/rHuFfCyoVst
+ joe5YzSfyxdLucWSVRo2d/tBZF7EDSK3o+eg3e+szUETVNjMc9KlOieXZiiXxfqaHr1YXYWGD9f
+ 6tFplv2exOFb1//ARnw==
+X-Proofpoint-GUID: FVWqt6-pUOAYegWRWsPvBKGtvbHVTxL-
+X-Authority-Analysis: v=2.4 cv=GoNPO01C c=1 sm=1 tr=0 ts=69b4357b cx=c_pps
+ a=lVi5GcDxkcJcfCmEjVJoaw==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22 a=VwQbUJbxAAAA:8
+ a=EUspDBNiAAAA:8 a=1xRLyjFezCpYc6mQBXgA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=rBiNkAWo9uy_4UTK5NWh:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-13_02,2026-03-13_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 malwarescore=0 lowpriorityscore=0 spamscore=0 impostorscore=0
+ bulkscore=0 priorityscore=1501 phishscore=0 clxscore=1015 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603130128
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275420-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[redhat.com,alien8.de,linux.intel.com,kernel.org,zytor.com,google.com,chromium.org,gmail.com,vger.kernel.org,linux.ibm.com,qtmlabs.xyz,linux-foundation.org];
+	TAGGED_FROM(0.00)[bounces-275415-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:dkim];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[jaszczyk@chromium.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_NONE(0.00)[];
-	DKIM_TRACE(0.00)[chromium.org:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCPT_COUNT_TWELVE(0.00)[27];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D91E4286CBF
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: BE0D9286B8B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The DT reserved-memory nomap region shouldn't be mapped and registered
-as an IORESOURCE_SYSTEM_RAM resource. On the x86 platform the resource
-tree map is built based on e820 entries (via e820__reserve_resources()).
-Consequently memblock reservation originating from DT are not taken into
-account by x86 resource management unless they are explicitly injected
-into e820 table.
+On Fri, Mar 13, 2026 at 02:37:39PM +0800, Shuai Zhang wrote:
+> Hi Konrad
+> 
+> On 3/11/2026 9:07 PM, Konrad Dybcio wrote:
+> > On 3/11/26 10:09 AM, Shuai Zhang wrote:
+> > > When Bluetooth supports both USB and UART, the BT UART driver is
+> > > always loaded, while USB is hot-pluggable. As a result, when Bluetooth
+> > > is used over USB, the UART driver still be probed and drive BT_EN low,
+> > > which causes the Bluetooth device on USB to be disconnected.
+> > Is bluetooth connected over UART *and* USB simultaneously?
+> BT uses either UART or USB, never both at the same time.
+> 
+> On platforms supporting both, the UART driver is always probed, while USB is
+> hot‑pluggable.
+> 
+> As a result, when BT runs over USB, the UART driver still probes and pulls
+> BT_EN low,
+> 
+> unintentionally powering off the USB BT device.
 
-Injecting the corresponding no-map into e820 table as
-'E820_TYPE_RESERVED', ensures that the x86 architecture builds an
-accurate resource tree. This aligns x86 with how other architectures
-(like arm64 in request_standard_resources() during resource tree
- creation) protect DT no-map region.
+Could you please confirm if [1] would solve the problem?
 
-Adding a corresponding e820 entry also allows other parts of x86 early
-kernel initialization to rely on it. E.g. e820__setup_pci_gap based on
-the gap in the e820 memory table picks space and passes to the PCI
-subsystem.  Without adding corresponding e820 reserved entry, DT
-reserved memory nomap region could conflict with such region assigned
-later to PCI subsystem.
 
-Additionally updating e820_table in this stage of the x86 setup seems
-safe since it is performed before mentioned e820__reserve_resources and
-e820__setup_pci_gap and there are also other functions, which updates
-e820 table on the later stage of early x86 setup such as early_quirks()
-and efi_arch_mem_reserve() (used by efi_esrt_init).
+[1] https://lore.kernel.org/r/20260224-pci-m2-e-v5-9-dd9b9501d33c@oss.qualcomm.com
 
-Signed-off-by: Grzegorz Jaszczyk <jaszczyk@google.com>
----
- arch/x86/include/asm/e820/api.h |  1 +
- arch/x86/kernel/e820.c          | 20 ++++++++++++++++++++
- arch/x86/kernel/setup.c         |  2 ++
- 3 files changed, 23 insertions(+)
+> 
+> > 
+> > > Configure BT_EN as a GPIO hog so that it is controlled by the platform
+> > What's "the platform"?
+> 
+> hamoa-evk
+> 
+> 
 
-diff --git a/arch/x86/include/asm/e820/api.h b/arch/x86/include/asm/e820/api.h
-index bbe0c8de976c..9568d88e8df8 100644
---- a/arch/x86/include/asm/e820/api.h
-+++ b/arch/x86/include/asm/e820/api.h
-@@ -27,6 +27,7 @@ extern unsigned long e820__end_of_low_ram_pfn(void);
- 
- extern u64  e820__memblock_alloc_reserved(u64 size, u64 align);
- extern void e820__memblock_setup(void);
-+extern void e820__reserve_nomap_region(void);
- 
- extern void e820__finish_early_params(void);
- extern void e820__reserve_resources(void);
-diff --git a/arch/x86/kernel/e820.c b/arch/x86/kernel/e820.c
-index 2a9992758933..6f8a65dba7c7 100644
---- a/arch/x86/kernel/e820.c
-+++ b/arch/x86/kernel/e820.c
-@@ -1374,3 +1374,23 @@ __init void e820__memblock_setup(void)
- 
- 	memblock_dump_all();
- }
-+
-+void __init e820__reserve_nomap_region(void)
-+{
-+	struct memblock_region *region;
-+	bool updated = false;
-+
-+	for_each_mem_region(region) {
-+		if (memblock_is_nomap(region)) {
-+			/*
-+			 * Add corresponding e820 region and let
-+			 * e820__update_table sanitize e820 map
-+			 */
-+			e820__range_add(region->base, region->size, E820_TYPE_RESERVED);
-+			updated = true;
-+		}
-+	}
-+
-+	if (updated)
-+		e820__update_table_print();
-+}
-diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c
-index cf6c93f8be1a..cbbc7abdabef 100644
---- a/arch/x86/kernel/setup.c
-+++ b/arch/x86/kernel/setup.c
-@@ -1078,6 +1078,8 @@ void __init setup_arch(char **cmdline_p)
- 
- 	x86_flattree_get_config();
- 
-+	e820__reserve_nomap_region();
-+
- 	/*
- 	 * Needs to run after memblock setup because it needs the physical
- 	 * memory size.
 -- 
-2.53.0.851.ga537e3e6e9-goog
-
+With best wishes
+Dmitry
 
