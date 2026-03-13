@@ -1,133 +1,116 @@
-Return-Path: <devicetree+bounces-275535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275536-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mFM/G/NktGngnAAAu9opvQ
-	(envelope-from <devicetree+bounces-275535-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:26:43 +0100
+	id cBjqFD1ltGngnAAAu9opvQ
+	(envelope-from <devicetree+bounces-275536-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:27:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A6C6289487
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:26:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5034828949E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:27:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D1235301B668
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:26:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 68CEC301AFC4
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:27:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9632234E774;
-	Fri, 13 Mar 2026 19:26:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5F6E3DCDBB;
+	Fri, 13 Mar 2026 19:27:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="L2MEXNLp";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="OC4Yw/wM"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Vq8XhnZp";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hDNSsipM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCFA23C3459
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 19:26:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B52A3019A6
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 19:27:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773429991; cv=none; b=aJUuVqyIOfVQQQB+REYAEPFMWNpEtEKy2ScQISygDGO4cJjJjr7W6WbXBHDH+hP94/3Dp7zMNaGTyfG/2dIkc+NsE+JoSyOZ2+o1XPjAJGlb461HMi0ojlbZsy/xeT93E/FfF6A956dwzwm+LglM94nd4GVDqJ41p8Tj6wYn51c=
+	t=1773430069; cv=none; b=NCe+xuiZfz9K8pOQBO2foyPC8VRK7NeYFtuS3jqqpS+3L72wJ9hzkStPD6cXMVyWE3y2R+gKPYmlLZZiQ8RiIyKzZxE1O6JTil0adlyHFhFT7SvwUyXHiK4NU1gxyew4gKEbudoM/Ev35WONUoHQakbuFdgN+oZIQlnioC8fYOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773429991; c=relaxed/simple;
-	bh=8qklSwhkzcL2i0FUcmPEuAOaEBNcOlNKtMbVnRnlnh0=;
+	s=arc-20240116; t=1773430069; c=relaxed/simple;
+	bh=rKz6zJlCR7ITF7m2iyI0w+PyLtJ5s+0Gd/J2y9arA+8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kn3kdqXYRcrb1OEzBU8dEqm+8aIWfE118binfu4kIqHNWn7vrbFNnx1FjELWt7iSJAVmBfcUJD72dUzB/GwvS+98x9RY2DvFKHe488yXngEFNnnrD3gysWBC5w6NcflZlAqDnYC1EcJm6T34gicVhnHCWMIz+WQcNmqEFEqEHw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=L2MEXNLp; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OC4Yw/wM; arc=none smtp.client-ip=205.220.168.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=nrmWLrFuJCaFR9NnWo39cqlP2eGd2RYuKWXmeQX018goF3r0vAT9tumaMrrd+zeH2y3q/4nc5b+VfW41YofaUNnyhXWt42TUyPt8u0+KXdXJPVg+LGlfpVvqqz8Vf6x++FI81ANhnKfbl3TD98r3XNvYaAB0v+VlQOYfU40R9TA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Vq8XhnZp; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hDNSsipM; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62DEZ14w2262549
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 19:26:29 GMT
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62DC2O254140646
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 19:27:48 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=Gu4i8EY5jRW+kuyiSAZMPIOl
-	Ib5K+fyqNexYKEDD+ZM=; b=L2MEXNLpL8yi4Fm0iGveqBBoZ/ddtzANVo4reVIZ
-	N055goNW9gTp6ccKvM3PchEEs9Pp4Qo52iFrP2k0zCX3dEhmaNmF/A+HUqtZZF3x
-	7cfxcrkD3JO5Q+X1hHVJ6BgsWkgEgKrEHaOX3AixdOcZTev2pDCTsBulXHtphaTW
-	8RDmRuhhE0fv4MgBw9qXNb0GnVdAK7ECf3yV4X4P0/BoLGQ86hixHa0EXWn4WDTb
-	p9YYgJM5ijne0+gkHGtoZXnCJwEpZSqR+bZHuLaVLqrmm58PM3NUVAT66qb2P8Q8
-	mhFnTVdH37UuIrPEu3tgSFMgHrhL4/av1lOaYW1jmJ8o+g==
-Received: from mail-ua1-f69.google.com (mail-ua1-f69.google.com [209.85.222.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cvef4td92-1
+	:references:subject:to; s=qcppdkim1; bh=qtj/UJdhKICdBz0n8e3V90EO
+	SN2LnU2hBaq2dvS9HzQ=; b=Vq8XhnZpMXKdAHtVII0VRF42/U7t960S2JjaTdsD
+	1fuSwNpQSpSbxbNqBqwZKntiSvOcWPVusf02K+BF2mohlIdyowKn8NJuA1yU5TML
+	zY8yONJLJE88+eog2KyvqntOLRqd3D0skersybpNkfDWpXQ8FBX2uki+rm6WaZWC
+	JS6EN3E77TgF+GJjW+zlrjDkR7jBy3YOxuyYgtn3aFi+EIiuBSYXdnpbwaOZU2L6
+	hAdRsFRp/ODK/Vn00F4R55dlSDEtK/WBV5HBNWD0Jqo3BiBbE7fG2bayZhatSaQr
+	ty70Ze554sUP4km/oXEnzdALhsMZgHtw9hpfotTMS/jqEg==
+Received: from mail-ua1-f70.google.com (mail-ua1-f70.google.com [209.85.222.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cvbn2ayfr-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 19:26:29 +0000 (GMT)
-Received: by mail-ua1-f69.google.com with SMTP id a1e0cc1a2514c-94eb3712aa7so21318968241.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 12:26:29 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 19:27:47 +0000 (GMT)
+Received: by mail-ua1-f70.google.com with SMTP id a1e0cc1a2514c-94acebd8d64so4153720241.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 12:27:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773429988; x=1774034788; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1773430067; x=1774034867; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gu4i8EY5jRW+kuyiSAZMPIOlIb5K+fyqNexYKEDD+ZM=;
-        b=OC4Yw/wMWL5qGg8iks0Gtl8hlsdDSTwMycf1AYB2VsPbxtFPWBg6XG3N9zX4DO7H3v
-         kS/pvk+yUPS9BsjNu9WnhcSsgeKBxlHdPkGaeNmR78SOEWCqSBto+njxKjcthbmMh5vn
-         tPxxp24Q53mGz6/I9XJCTocHz2cB+KKgoRS1S4b2PYegSq+hOrGJS99r+AbYLg0L7ime
-         cFuvwSXEPpIHnNdd1uu4YljJXznpzPPHZiDsvorii+SGMEXDT1usc3WJAALC9fMK1zaN
-         eZ9O/XbBsKyzgQXAh9hiZZQQ6DklqPxanb+/zn61Ssw52HVIMmomTayzRnE7gna35x+H
-         GRuA==
+        bh=qtj/UJdhKICdBz0n8e3V90EOSN2LnU2hBaq2dvS9HzQ=;
+        b=hDNSsipMQ7HgnLHA14lDlj9ag12/czGUb+Yr0nRzlESpfQxi4qyb0spSd7sMP2swl7
+         MSQwMV/V01ZlM1WviYt1SoMbbp0LrxtryBSPzrMWHuV6xmXa3x6UCmnSZMPTqXxPdqi5
+         riBqcCI/v9qm4n5KOZq+RzMdcScNS/t6ZmPFzSP6Qy3CfaCNyr4UhZ8JtVUjWJDKrZ/I
+         hIxgfcsbqXTjIT6A8O8nvFTTI+gR0kNOao3wAhcHjsvl5ULOx5xYF7nKN9Rfq8DeFD3m
+         Ji5wpQk/tgqnsY/gfPCLMJH7SkGgLjWuJ8wnMsbwBDiq62OAFMJmGn4tHdZ7B/yj6ozk
+         KqyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773429988; x=1774034788;
+        d=1e100.net; s=20251104; t=1773430067; x=1774034867;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Gu4i8EY5jRW+kuyiSAZMPIOlIb5K+fyqNexYKEDD+ZM=;
-        b=g7+dgnmy3rLc7D1NLI899SGwRw3xLR/mUH+eioiOypdv3//PvkD+ITtGUZpEoAUL24
-         QjW77cULx+GqmlbZQwfN/23cSKPWJONx/8sHrDaZSDeZ3Mj3YCEwL8vMWlmhI49zUCmr
-         aXlCkJcnfRQh5NGIgeXvi6200DKclFKPD5/jb2p0CoZG66klx2575+0+IAuZaZk1NF80
-         hqLp3+L4fRTdYiTqgZN/RPTGq3DgRYATdBGXBoWEOEAoM2FiMywUfeWPtbCC20t8C6f6
-         xq1fR9lILXQEMe4KMggUT4qHAO/CPj0BPoQZ2gb6G36jLpk/E+qL7XnsJRy9YY5r+f79
-         7DPw==
-X-Forwarded-Encrypted: i=1; AJvYcCV1oTpjORM+Dezf6ZNnDGvpARbFH3MaFo4y4Zyx9pGZK8AyHya46TSo4Fx1Mbt3U++72ktMQaDlZvTb@vger.kernel.org
-X-Gm-Message-State: AOJu0YyfhUZ7OtxmEOK4V46CsZHFUSsGKpZROZxbZp51y3QVbepBpPG9
-	o6Z+qwWlrQ/B65CfsVEzTYJbG+kfNQAwDjHEvRwDpViWiJMITGoRweuyeqpBAV5eeLifRoEfp3C
-	n4RuiZPmULWcqT1lB2vKqrbjLNfZe/1bCFieObQQj0h3FSf572SRLVui+wefZHALl
-X-Gm-Gg: ATEYQzx2JmoJl6+eJFnAFQHLpwqTqv7Q2yAacKgVfeFVt8qLlV821F2ubWjG9CF2mLS
-	sxyUjm/KO0uFBZM9bcbzFG+XSjrwyngU3pEQmufTt2VmSL2md8amaGIvAumqJfPa2qgmZI8pjC4
-	4t7NwqukwMM756wMYj/iNlmnYMw4MvIDDgk/307TuBFeAdP37CGr6HGmVD7Yjcp8mF433KRqpPW
-	u/gi8qHmduU0LxxZxajipIXMKqAXP+CLf5wfjgtDev+72T5IRXZQUwLsytUiuEWHQyPVacXUErf
-	pQ7Oeq8wH7eh72iUeKzntl8Ek6aliEQjEcl2iFRaZSmVhTDbx1tUYAgb68nC6gswwpBhGDTdVW6
-	vmDqE5DU1qvbjPBS7bM4N6eJb6XFhTodmdIYz/WGyickCmwO01vY1DmdWkSa6VHLNvsvZyF5eWM
-	pSTCpaOQF01CEOD0M5ZSKOYQDuNdsKXD8U1UE=
-X-Received: by 2002:a05:6102:442c:b0:5ff:b684:f7c5 with SMTP id ada2fe7eead31-6020e209c34mr2211726137.8.1773429988045;
-        Fri, 13 Mar 2026 12:26:28 -0700 (PDT)
-X-Received: by 2002:a05:6102:442c:b0:5ff:b684:f7c5 with SMTP id ada2fe7eead31-6020e209c34mr2211704137.8.1773429987480;
-        Fri, 13 Mar 2026 12:26:27 -0700 (PDT)
+        bh=qtj/UJdhKICdBz0n8e3V90EOSN2LnU2hBaq2dvS9HzQ=;
+        b=ezERkqaEpCiKjUbF4h35gpchmAQCki109bb21xWu1r11XLxCOyJ85TNV3x07FXNlXI
+         ACVfijDncKl5IqvrecRPOKUM2IPsJnQDgE078d4rgys6lVx+evyTexOLDohC7f6Iz0CL
+         cPOw9+HJY/wDPzvQoPpXysZN768Zre3aF5UUjGK8PUBZEZsTxPx41KlVxiId7Tkt4SoY
+         7gJVJZ3ao3lKCBIsSwrmLOvSF6mhKBI/MfBgyfr7AgpH0mjGdFeHzszTT96jM2ZLOXUb
+         6kOFRJuh4b0Sc6YtWrIvXUCFIRWMVEQafjrad0X7oVsUgEAu9+5jeKM7VjgX2xSmdVd2
+         99TQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVDI57L0GF3kNURS54/7kTlX4PKtAqcvtIOu6EhnWu5mQBxx9oUesfgKM0ehI7IyVKyB6LiN4gsOTon@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKaFbMpXWSTA6CzL9iAqC2pFG1tuUf5P4UZq5VheoCYt5XsL0T
+	GJCtIZznM4bWSZYF29QM97pH7cPeFnnhkEt7sT8kNrnwRRIWGpBWnJpdRJ3g+ojtI4OQWDUES3m
+	lp4zYCUaa/jQiEe8Et0vJY6tUbiZ5crGf1nqyN0dDymylzA3c7mBV+rhkObYvWBv4
+X-Gm-Gg: ATEYQzwSeRDBy9zLB5zuUY2eMgemy1YT5MBFGQhKQdFzWSJJ5gclPl8QdrfOtluu6Js
+	zTl1VJvwXL7uHbfF0RpoozyjrB976pbJSrzgaEeFx60CA7Rxn6ydcuknSfU1+MbWXEmhp3f5PNk
+	5V9iutK6KPIrPbYMEYY8277J54MNyNhigwLBFHV/J4Px6ub47rrCy133kP22kUeN3wwkxdfnsXL
+	iI/o+Zm9WVFKg18kqwb5RPDgD8xu2W86iY2++nP0LJRfCu0PT1sD38utwE1LYcJFwiUoYUDUSm+
+	hf56qvZ55KoBNUTCrOs4N46RHCItaUdvOmDp10kVK1BWhETjmiJl/XsA/UWGpSP/7MN5i6+Vdcz
+	FlhM356+d3RypVqgOAu2Dsof7e965DKvG7EJM43ub9ahVyoTVoUL5yAZGehLwTW9pVezP+nqSz7
+	CzVKh5XaDBokdA45k5LcxOBBuPramjcfpn8y0=
+X-Received: by 2002:a05:6102:304d:b0:5df:8f4:61e6 with SMTP id ada2fe7eead31-6020e59d4f6mr1853564137.32.1773430066939;
+        Fri, 13 Mar 2026 12:27:46 -0700 (PDT)
+X-Received: by 2002:a05:6102:304d:b0:5df:8f4:61e6 with SMTP id ada2fe7eead31-6020e59d4f6mr1853552137.32.1773430066362;
+        Fri, 13 Mar 2026 12:27:46 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38a67d617e1sm15780241fa.9.2026.03.13.12.26.25
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38a67db290esm16299201fa.17.2026.03.13.12.27.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Mar 2026 12:26:26 -0700 (PDT)
-Date: Fri, 13 Mar 2026 21:26:24 +0200
+        Fri, 13 Mar 2026 12:27:45 -0700 (PDT)
+Date: Fri, 13 Mar 2026 21:27:43 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Saravana Kannan <saravanak@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Stefan Schmidt <stefan.schmidt@linaro.org>,
-        Hans Verkuil <hverkuil@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
-        Hans Verkuil <hverkuil+cisco@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        iommu@lists.linux.dev, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Subject: Re: [PATCH v2 4/7] media: iris: add context bank devices using
- iommu-map
-Message-ID: <yohjrtv6tkqy7ezcfeheoddsap2r2rmvp52fbpiyxvei3t7g3q@c6xdashllwom>
-References: <20260227-kaanapali-iris-v2-0-850043ac3933@oss.qualcomm.com>
- <20260227-kaanapali-iris-v2-4-850043ac3933@oss.qualcomm.com>
- <rzi7qmzsofocwcqxhsqz3f3tl4ahqnwn34of6qcc54odpben5d@7okuqabxgdqh>
- <e12da06d-cad5-4967-af07-64c7c6e540f4@oss.qualcomm.com>
- <vi5v5bczg2wx2adfpr6ppqcad76oecitoyc7zd2i4lahla4buw@mqnppboxcyrs>
- <6553cfcb-9399-4d17-a529-b07b421ed7e8@oss.qualcomm.com>
- <mqyg7cebyahkrngvnxcrenkdd3dybpnkecago4lqonfwqzize7@yawbtcsli3vi>
- <1d2b55d9-42e3-4459-971b-e276a87fb843@oss.qualcomm.com>
- <7wvdcjajf7ro3c4y7jq6tmbxfg7kfvdpmyfzqm4vgjw5wly4zu@jcjqudf7vrgd>
- <9d5aab4c-86be-46cb-8c2c-154f87e3eeba@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Kerigan Creighton <kerigancreighton@gmail.com>,
+        linux-wireless@vger.kernel.org, loic.poulain@oss.qualcomm.com,
+        wcn36xx@lists.infradead.org, andersson@kernel.org,
+        mathieu.poirier@linaro.org, linux-remoteproc@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] remoteproc: qcom_wcnss_iris: add support for
+ WCN3610
+Message-ID: <2pyi6yavgbf47amofaw44znotleankmmou2u7vzx2v2xc4hpye@6f4fcdk3hebn>
+References: <20260305003253.1022386-1-kerigancreighton@gmail.com>
+ <20260305003253.1022386-3-kerigancreighton@gmail.com>
+ <20260305-crouching-sceptical-spoonbill-fe75fb@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -136,269 +119,101 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9d5aab4c-86be-46cb-8c2c-154f87e3eeba@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: H8uObQlJZx7sS5VqZ3-98Pl3HYTXlHqD
-X-Proofpoint-GUID: H8uObQlJZx7sS5VqZ3-98Pl3HYTXlHqD
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEzMDE1NCBTYWx0ZWRfX8HWFmsVG7/+o
- Awa6mqOW4h9AMb1ta2PHZ4F4a91GPsVs5MwtOOuzV1KQY9i6tgZ5ytFUCapnlttXDRov48nbNA9
- h//5EP2dFje+J9NjeGRWZWJlLVIhliC0l/MCjaziWVKHtx1W3iyzr5jYhYrhCwmePxLiWxssc0L
- LV3Oom0MttjqWfOJN7uKtMT3+xeubXXZt5TrioBIhJGUuZigkTHqYmN67hd/s9TFFQpXLKR79qe
- WEIrrQrSeRQkdB9iSmG986VoMkBqrChYZg2o1YKr7MkDAmlez2gJxCkfgwl/hBJUMy1hp2VluxK
- V3Izin2LS6zZCHMhD6drCSHTqe1Mn6vShrfAqRz1QmpzIs+AMZzpSOJ9GlaJVEG4xXMk3DskGDh
- iNHeZ54IIspWcj/m6sS+lFro5KAvAKOam8FOA3hJQ8uye/cAUZWuwMvGtZ6vxgO+OB/Qvjzk95I
- jH8Rh8i5jvjaU9HbiFg==
-X-Authority-Analysis: v=2.4 cv=S9nUAYsP c=1 sm=1 tr=0 ts=69b464e5 cx=c_pps
- a=UbhLPJ621ZpgOD2l3yZY1w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+In-Reply-To: <20260305-crouching-sceptical-spoonbill-fe75fb@quoll>
+X-Proofpoint-ORIG-GUID: 86Y4zNM1Gh55ygHGP9pU93DHABPLCvF-
+X-Proofpoint-GUID: 86Y4zNM1Gh55ygHGP9pU93DHABPLCvF-
+X-Authority-Analysis: v=2.4 cv=ZKfaWH7b c=1 sm=1 tr=0 ts=69b46533 cx=c_pps
+ a=R6oCqFB+Yf/t2GF8e0/dFg==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
  a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22 a=EUspDBNiAAAA:8
- a=keo7-XgEt2IHayEatcwA:9 a=CjuIK1q_8ugA:10 a=TOPH6uDL9cOC6tEoww4z:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22 a=pGLkceISAAAA:8
+ a=EUspDBNiAAAA:8 a=D8mGTEjQazq80tWk8dIA:9 a=CjuIK1q_8ugA:10
+ a=TD8TdBvy0hsOASGTdmB-:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEzMDE1NSBTYWx0ZWRfXxhNbW/L9ar//
+ G47l6k+JmK/IhUw/wIfARm7vTbuOLfDW9y8HoxwOJ51YSabT8M0v5eSSetNTN8El4Z8TynParY6
+ XRL6Ss9FGQ8s/uFFXglYq+lVRsJD+JPHVTxaYZt+yZtRLaRbkWklRcDWoUZzQalD+MixgjQuN9+
+ C54hGm3HsWHRuC8YK0m3MD64C9VFDNizC07gP329EQOtmeG+EWAh28apLT7Z+yESTel3gMEhLKk
+ ncqa4hVqAn0GPuQlmPmItxxIRePbiW5xUjS1J62fbugXRDL2xSv9XPm00WcJLYhpdzVBDcAQioT
+ Bu376wq3MrTM+E8wuu3iplJNjdhK41GzxKRbKN2jkt3ZYcZdMvN1LbJ2NM3YhAuA/k/skHFYASI
+ G5WdKUp+fT4q/3061pjF+zSdbISWXc3bDm477n8s9juHuCkTNUHVW8i5BFKjh7zC4pXzTp955N3
+ XpEEzVP13vjDiggHbdw==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-03-13_03,2026-03-13_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 adultscore=0 malwarescore=0 priorityscore=1501 suspectscore=0
- clxscore=1015 lowpriorityscore=0 phishscore=0 bulkscore=0 spamscore=0
+ impostorscore=0 clxscore=1015 spamscore=0 malwarescore=0 suspectscore=0
+ lowpriorityscore=0 bulkscore=0 adultscore=0 priorityscore=1501 phishscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603130154
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603130155
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275535-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:dkim,qualcomm.com:dkim,qualcomm.com:email];
+	TAGGED_FROM(0.00)[bounces-275536-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,oss.qualcomm.com,lists.infradead.org,kernel.org,linaro.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 7A6C6289487
+X-Rspamd-Queue-Id: 5034828949E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 06, 2026 at 03:04:04AM +0530, Vikash Garodia wrote:
+On Thu, Mar 05, 2026 at 09:06:30AM +0100, Krzysztof Kozlowski wrote:
+> On Wed, Mar 04, 2026 at 06:32:52PM -0600, Kerigan Creighton wrote:
+> > Add a qcom,wcn3610 compatible string.
+> > The WCN3610 shares the same register configuration as the
+> > WCN3620, so its configuration is being reused.
+> > 
+> > Signed-off-by: Kerigan Creighton <kerigancreighton@gmail.com>
+> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> > ---
+> > Changes in v2:
+> >  - Move remoteproc compatible string addition to the middle of 
+> >    the patch set.
+> >  - Add Reviewed-by Dmitry (thanks!)
+> > ---
+> >  drivers/remoteproc/qcom_wcnss_iris.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/drivers/remoteproc/qcom_wcnss_iris.c b/drivers/remoteproc/qcom_wcnss_iris.c
+> > index 2b89b4db6c..e58b59355f 100644
+> > --- a/drivers/remoteproc/qcom_wcnss_iris.c
+> > +++ b/drivers/remoteproc/qcom_wcnss_iris.c
+> > @@ -95,6 +95,7 @@ void qcom_iris_disable(struct qcom_iris *iris)
+> >  }
+> >  
+> >  static const struct of_device_id iris_of_match[] = {
+> > +	{ .compatible = "qcom,wcn3610", .data = &wcn3620_data },
 > 
-> On 3/6/2026 12:02 AM, Dmitry Baryshkov wrote:
-> > On Thu, Mar 05, 2026 at 10:56:40PM +0530, Vikash Garodia wrote:
-> > > 
-> > > On 3/5/2026 7:51 PM, Dmitry Baryshkov wrote:
-> > > > On Thu, Mar 05, 2026 at 06:19:52PM +0530, Vikash Garodia wrote:
-> > > > > 
-> > > > > On 3/4/2026 3:55 AM, Dmitry Baryshkov wrote:
-> > > > > > On Wed, Mar 04, 2026 at 12:16:50AM +0530, Vikash Garodia wrote:
-> > > > > > > 
-> > > > > > > On 2/28/2026 1:50 AM, Dmitry Baryshkov wrote:
-> > > > > > > > On Fri, Feb 27, 2026 at 07:41:20PM +0530, Vikash Garodia wrote:
-> > > > > > > > > Introduce different context banks(CB) and the associated buffer region.
-> > > > > > > > > Different stream IDs from VPU would be associated to one of these CB.
-> > > > > > > > > Multiple CBs are needed to increase the IOVA for the video usecases like
-> > > > > > > > > higher concurrent sessions.
-> > > > > > > > > 
-> > > > > > > > > Co-developed-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
-> > > > > > > > > Signed-off-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
-> > > > > > > > > Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-> > > > > > > > > ---
-> > > > > > > > >      .../platform/qcom/iris/iris_platform_common.h      | 18 +++++++
-> > > > > > > > >      drivers/media/platform/qcom/iris/iris_probe.c      | 60 ++++++++++++++++++++--
-> > > > > > > > >      drivers/media/platform/qcom/iris/iris_resources.c  | 36 +++++++++++++
-> > > > > > > > >      drivers/media/platform/qcom/iris/iris_resources.h  |  1 +
-> > > > > > > > >      4 files changed, 111 insertions(+), 4 deletions(-)
-> > > > > > > > > 
-> > > > > > > > > diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> > > > > > > > > index 5a489917580eb10022fdcb52f7321a915e8b239d..03c50d6e54853fca34d7d32f65d09eb80945fcdd 100644
-> > > > > > > > > --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
-> > > > > > > > > +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> > > > > > > > > @@ -204,6 +204,22 @@ struct icc_vote_data {
-> > > > > > > > >      	u32 fps;
-> > > > > > > > >      };
-> > > > > > > > > +enum iris_buffer_region {
-> > > > > > > > > +	IRIS_BITSTREAM_REGION		= BIT(0),
-> > > > > > > > > +	IRIS_NON_PIXEL_REGION		= BIT(1),
-> > > > > > > > > +	IRIS_PIXEL_REGION		= BIT(2),
-> > > > > > > > > +	IRIS_SECURE_BITSTREAM_REGION	= BIT(3),
-> > > > > > > > > +	IRIS_SECURE_NON_PIXEL_REGION	= BIT(4),
-> > > > > > > > > +	IRIS_SECURE_PIXEL_REGION	= BIT(5),
-> > > > > > > > 
-> > > > > > > > Can a context bank belong to multiple regions at the same time?
-> > > > > > > 
-> > > > > > > yes, they would.
-> > > > > > 
-> > > > > > How? Each set of CBs is defined by a separate function in the DT. How
-> > > > > > can CB belong to multiple regions? Could you please provide an example?
-> > > > > 
-> > > > > SM8550 would have same stream id for VPU hardwares (tensilica and vcodec)
-> > > > > accessing bitstream and non pixel regions. Thereby non_pixel and bitstream
-> > > > > regions would map to one CB.
-> > > > 
-> > > > In my opinion it means only one thing: you will have two CBs (one for
-> > > > non_pixel and one for bitstream) having the same SIDs. An alternative
-> > > > would be to define fallback rules (if CB foo doesn't exist, use CB bar).
-> > > > 
-> > > > > While kaanapali would have different stream id for tensilica accessing non
-> > > > > pixel region and vcodec accessing bitstream region, thereby having different
-> > > > > CB.
-> > > > > 
-> > > > > > 
-> > > > > > > 
-> > > > > > > > 
-> > > > > > > > > +};
-> > > > > > > > > +
-> > > > > > > > > +struct iris_context_bank {
-> > > > > > > > > +	struct device *dev;
-> > > > > > > > 
-> > > > > > > > Separate data and the actual device. Define a wrapper around struct
-> > > > > > > > device for the actual runtime usage.
-> > > > > > > 
-> > > > > > > we still have to store the list of dynamically created device. Name can be
-> > > > > > > used to fetch the device from the list, i think the existing approach is
-> > > > > > > simpler ?
-> > > > > > 
-> > > > > > You don't need a list. You have an array of the size, which is known and
-> > > > > > fixed. You have at most 9 functions, which means less than 9 devices.
-> > > > > > 
-> > > > > 
-> > > > > as mentioned above, its not the same for all platforms to have one to one
-> > > > > mapping between CBs and buffer region. Thereby indexing based on array would
-> > > > > be an issue here
-> > > > > It would end up something like this, considering [dev region] array,
-> > > > > 
-> > > > > SM8550
-> > > > > non_pixel_device  non_pixel_region
-> > > > > non_pixel_device  bitstream_region
-> > > > > pixel_device      pixel_region
-> > > > > 
-> > > > > kaanapali
-> > > > > non_pixel_device  non_pixel_region
-> > > > > bitstream_device  bitstream_region
-> > > > > pixel_device      pixel_region
-> > > > 
-> > > > I'm sorry, I'm not sure I follow here. Could you please explain? Maybe
-> > > > by explititly mapping DT function values to iris_buffer_region values?
-> > > > 
-> > > 
-> > > Kaanapali
-> > > IRIS_BITSTREAM IRIS_BITSTREAM_REGION
-> > > IRIS_NON_PIXEL IRIS_NON_PIXEL_REGION	
-> > > IRIS_PIXEL     IRIS_PIXEL_REGION
-> > > 
-> > > SM8550
-> > > IRIS_NON_PIXEL IRIS_NON_PIXEL_REGION | IRIS_BITSTREAM_REGION
-> > > IRIS_PIXEL     IRIS_PIXEL_REGION
-> > 
-> > So, why not:
-> > 
-> > Kaanapali:
-> > 
-> > iris_cb_dev_bs = iris_cb_dev_alloc(IRIS_BITSTREAM];
-> > iris_cb_dev_np = iris_cb_dev_alloc(IRIS_NON_PIXEL];
-> > iris_cb_dev_px = iris_cb_dev_alloc(IRIS_PIXEL];
-> > 
-> > core->cb_devs = {
-> > 	[IRIS_BITSTREAM_REGION] = iris_cb_dev_bs,
-> > 	[IRIS_NON_PIXEL_REGION] = iris_cb_dev_np,
-> > 	[IRIS_PIXEL_REGION] = iris_cb_dev_px;
-> > };
-> > 
-> > SM8550:
-> > 
-> > iris_cb_dev_np = iris_cb_dev_alloc(IRIS_NON_PIXEL];
-> > iris_cb_dev_px = iris_cb_dev_alloc(IRIS_PIXEL];
-> > 
-> > core->cb_devs = {
-> > 	[IRIS_BITSTREAM_REGION] = iris_cb_dev_np,
-> > 	[IRIS_NON_PIXEL_REGION] = iris_cb_dev_np,
-> > 	[IRIS_PIXEL_REGION] = iris_cb_dev_px;
-> > };
-> > 
-> > 
-> > Yes, it would require coding of those functions, however afterwards you
-> > can access necessary CB device simply by doing core->cb_devs[region].
-> > 
-> > I think current code is overcomplicated for the sake of having the
-> > platform flexibility expressed as data.
-> > 
-> > > 
-> > > > > 
-> > > > > 
-> > > > > > > 
-> > > > > > > > 
-> > > > > > > > > +	const char *name;
-> > > > > > > > > +	const u32 f_id;
-> > > > > > > > > +	const enum iris_buffer_region region;
-> > > > > > > > > +};
-> > > > > > > > > +
-> > > > > > > > >      enum platform_pm_domain_type {
-> > > > > > > > >      	IRIS_CTRL_POWER_DOMAIN,
-> > > > > > > > >      	IRIS_HW_POWER_DOMAIN,
-> > > > > > > > > @@ -246,6 +262,8 @@ struct iris_platform_data {
-> > > > > > > > >      	u32 inst_fw_caps_enc_size;
-> > > > > > > > >      	const struct tz_cp_config *tz_cp_config_data;
-> > > > > > > > >      	u32 tz_cp_config_data_size;
-> > > > > > > > > +	struct iris_context_bank *cb_data;
-> > > > > > > > > +	u32 cb_data_size;
-> > > > > > > > 
-> > > > > > > > Do they differ from platform to platform?
-> > > > > > > Yes
-> > > > > > > 
-> > > > > > > > Mark them as const, it should be data only.
-> > > > > > > 
-> > > > > > > cb_data_size can be marked as const
-> > > > > > 
-> > > > > > Why is cb_data non-const?
-> > > > > 
-> > > > > dev is being updated once created dynamically.
-> > > > 
-> > > > That's a bad idea. Please make the platform description constant.
-> > > > 
-> > > 
-> > > I can give it a try to move CBs in core struct out of platform data and have
-> > > a buffer region based lookup array to fetch the device.
-> > 
-> > It might be easier to express that as a callback, filling core->cb_devs
-> > with struct device pointers, as I wrote above.
-> 
-> IIUC, introduce an ops like below and fill ore->cb_devs[] in SOC specific
-> data i.e sm8550_data ?
-> 
-> struct iris_platform_ops {
->     int (*populate_cb_devs)(struct iris_core *core);
-> };
-> struct iris_platform_data {
->     const struct iris_platform_ops *ops;
->     /* ... other pdata fields ... */
-> };
-> 
-> At present lemans shares the platform data of sm8550, with the above ops
-> approach, that commonality leverage would be lost ?
-> 
-> Please correct if your proposal is different than what i interpreted.
+> So compatible with wcn3620? Why are you adding it in such case? Drop the
+> change and express compatibility or explain lack of it in the bindings
+> patch.
 
-Yes, it was just about the callback. You've coded it again as a loop of
-bitmasks. My opinion would be to just have platform-specific easy
-callbacks without extra generalization.
+I'd say, keep the compatible. It's used in the next patch. But yes, it
+might need some epxlanation.
 
 > 
-> > 
-> > > 
-> > > Regards,
-> > > Vikash
-> > 
+> Best regards,
+> Krzysztof
 > 
 
 -- 
