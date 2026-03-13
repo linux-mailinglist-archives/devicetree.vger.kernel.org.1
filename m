@@ -1,405 +1,131 @@
-Return-Path: <devicetree+bounces-275552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275553-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wGw7FRx3tGlHogAAu9opvQ
-	(envelope-from <devicetree+bounces-275552-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:44:12 +0100
+	id IJ+5E313tGlHogAAu9opvQ
+	(envelope-from <devicetree+bounces-275553-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:45:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D11B3289DE9
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:44:11 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90620289E12
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:45:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 91A2030467D0
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:43:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 891063007962
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:45:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96DAB3CCFCB;
-	Fri, 13 Mar 2026 20:43:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 611D437DE93;
+	Fri, 13 Mar 2026 20:45:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H8HGVUof"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="p/y9TmOJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FF2E3264E0;
-	Fri, 13 Mar 2026 20:43:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B29F371064;
+	Fri, 13 Mar 2026 20:45:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773434636; cv=none; b=OuaN5rcA2aKU12JsBL6h6LEJPbWq+2P8uInF73FxBewMa/aG1MBR83G5MeHjY3PCXn5RsQbc9nZi7MgClEl9o8zRQpex6cw9+YLV5EONG+rEIl5ePR+6Dv0tTt2EE867q0IlhdkK6VhBxucbr2jeqtzp3TFTV1o5oBrS6ccwcuA=
+	t=1773434746; cv=none; b=aPgxuBxmHr6I5N3TQtuM+1y84/FBOPACANukiMzkWMEnbeb3XghXFTmfy1ubF7rzkrR/AHAtgFzwOnbQ8Yvb5KMdXxWaOGkN/xBM2yfbsnjvaamvt302Qm5HRFOf0ah7rWbMR4G+bE3iEx00R3yTjd1CdVpTPn0J5dYnw0uzHDs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773434636; c=relaxed/simple;
-	bh=qV+/X1vxRX8bZ7PVxv7/i4VhftfQzcPWpSMmHmU3UzY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lpAErO3Ye4RzumzdXpbR9V4Q3rzOShmZQaLS+SLBorAWAGONTrqcDCqSXReBwcjgwlc0o1qwVFfdQqBq/+BezILNPNmf3hxAbOiulc3xdhiD3lIrxlvVnkjBTVOB+/C1xw87gmNxJDcHGuWdek/qfejwCH/uTm5cNC/dBxGL6mA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H8HGVUof; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEE13C19421;
-	Fri, 13 Mar 2026 20:43:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773434636;
-	bh=qV+/X1vxRX8bZ7PVxv7/i4VhftfQzcPWpSMmHmU3UzY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H8HGVUofQv6WUl/tCGU+LFZV38URnRQQGrK9WiJdkW+Yru0j7+gTpWA1QnQyqO2xf
-	 aRRznDBl23YtRAUHRgwXcAdgCDwFA45Q4p5FHeaY4ejwuUBXfr8L4XxDabVMTR0QKQ
-	 cp14bS+hcqUBdSOqM9R2l1ZF599SQ7JQY4LM/fi4uEp7BFsceG66ti8SEm3oD8XJR5
-	 POeyTPWkqItYNWL/UwKjg9J+0KODLGfkk61iG/uTkadOz8vUkqS+iGhrxgzrs2l/2K
-	 rtlsGRR0Pm6nzQlz2R3ff2KNvgPjgH3fKuHElH7NM2RoI+/itL/xQ0kSvJiwCQYlXw
-	 AhxE11AJqawCQ==
-Date: Fri, 13 Mar 2026 15:43:54 -0500
-From: Rob Herring <robh@kernel.org>
-To: Niranjan H Y <niranjan.hy@ti.com>
-Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	lee@kernel.org, linusw@kernel.org, lgirdwood@gmail.com,
-	broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
-	krzk+dt@kernel.org, conor+dt@kernel.org, nb@tipi-net.de,
-	navada@ti.com, v-hampiholi@ti.com, sandeepk@ti.com,
-	baojun.xu@ti.com, shenghao-ding@ti.com
-Subject: Re: [PATCH v1 1/8] dt-bindings: mfd: Add bindings for TI TAC5x1x MFD
- core
-Message-ID: <20260313204354.GA3262647-robh@kernel.org>
-References: <20260312184833.263-1-niranjan.hy@ti.com>
- <20260312184833.263-2-niranjan.hy@ti.com>
+	s=arc-20240116; t=1773434746; c=relaxed/simple;
+	bh=GxJxdMFAYHH659BhmzjOYGJJqHW/Xwn1gaupmFFVWXE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jIhqJquOqlJNisH2blFbC/ldObxzfQbBYBm7xD8jB8CcRSMvbncMR43eM6vaD6Q3oaGvEejoUiqLhclCNzciyGD8/SMc2QyMEo7z3/ejGIOw65jDJRhVzqkneFw8K68v/6zrgJwwjzWgyjTjZMdIy7dS4qhdaHQYKZucAHBIH1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=p/y9TmOJ; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=1zK/mBzPerZDG0DoNt9fcpBSJy47YwKe8HlQ+1FxntQ=; b=p/y9TmOJc28LeVce7hrNjR5G9K
+	s4oXquqPVzjwwyuL/AeAddXkhy/Hnp5BcJUthbWgo5ybIXmm346CyFiWtDg0AposWIYCyc1ODdq9D
+	bQEIbVfIcWPVP4TQ4lTvhgR28XIQK6btcrXgVgXAqhP3LjcIUXCMTgOVP1ZC0hPMJ/hD6QJsbJL1O
+	pGyAHkkoErtnaoj3hAcHytppMVOZsndEhXVOrMH+xWS+vWGLobxWDXaq5diBLAAWTNtq9juG02ZCT
+	N5aM/8MZVakKVZQiARzQZJv8A7wQSggxi+6C5Z+RheGYiC5tSESH3Zo3gNRfwLlSdSk6DOz+vgsqU
+	xzYbmgkQ==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: Gerald Loacker <gerald.loacker@wolfvision.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Riesch <michael.riesch@collabora.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: Re: [PATCH] arm64: dts: rockchip: enable vicap dvp on wolfvision pf5 io expander
+Date: Fri, 13 Mar 2026 21:45:14 +0100
+Message-ID: <177343454660.206632.6377463081579115678.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260313-wv-io-expander-vicap-v1-1-11001fb3b744@collabora.com>
+References: <20260313-wv-io-expander-vicap-v1-1-11001fb3b744@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260312184833.263-2-niranjan.hy@ti.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,gmail.com,perex.cz,suse.com,tipi-net.de,ti.com];
-	TAGGED_FROM(0.00)[bounces-275552-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-275553-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[sntech.de:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D11B3289DE9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sntech.de:dkim,sntech.de:email,sntech.de:mid]
+X-Rspamd-Queue-Id: 90620289E12
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 12:18:26AM +0530, Niranjan H Y wrote:
-> Add device tree bindings for the Texas Instruments TAC5x1x family of
-> audio codecs with integrated GPIO controller, describing the MFD core
-> device interface, power supplies, and clock configuration.
+
+On Fri, 13 Mar 2026 16:53:29 +0100, Michael Riesch wrote:
+> The Digital Video Port (DVP, the 16-bit variant) of the RK3568 VICAP
+> is broken out to the PF5 mainboard expansion header.
+> Enable it in the device tree overlay for the WolfVision PF5 IO
+> Expander board.
 > 
-> Signed-off-by: Niranjan H Y <niranjan.hy@ti.com>
-> ---
->  .../devicetree/bindings/mfd/ti,tac5x1x.yaml   | 247 ++++++++++++++++++
->  1 file changed, 247 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/ti,tac5x1x.yaml
-
-This fails testing (not sure what happened to the email about it):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Warning: Duplicate compatible "ti,tad5212" found in schemas matching "$id":
-	http://devicetree.org/schemas/mfd/ti,tac5x1x.yaml
-	http://devicetree.org/schemas/sound/ti,pcm6240.yaml#
-Warning: Duplicate compatible "ti,taa5412" found in schemas matching "$id":
-	http://devicetree.org/schemas/mfd/ti,tac5x1x.yaml
-	http://devicetree.org/schemas/sound/ti,pcm6240.yaml#
-Warning: Duplicate compatible "ti,taa5212" found in schemas matching "$id":
-	http://devicetree.org/schemas/mfd/ti,tac5x1x.yaml
-	http://devicetree.org/schemas/sound/ti,pcm6240.yaml#
-
-doc reference errors (make refcheckdocs):
-Warning: Documentation/devicetree/bindings/mfd/ti,tac5x1x.yaml references a file that doesn't exist: Documentation/devicetree/bindings/pinctrl/ti,tac5x1x-pinctrl.yaml
-Warning: Documentation/devicetree/bindings/mfd/ti,tac5x1x.yaml references a file that doesn't exist: Documentation/devicetree/bindings/sound/ti,tac5x1x.yaml
-Documentation/devicetree/bindings/mfd/ti,tac5x1x.yaml: Documentation/devicetree/bindings/pinctrl/ti,tac5x1x-pinctrl.yaml
-Documentation/devicetree/bindings/mfd/ti,tac5x1x.yaml: Documentation/devicetree/bindings/sound/ti,tac5x1x.yaml
-
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/ti,tac5x1x.yaml b/Documentation/devicetree/bindings/mfd/ti,tac5x1x.yaml
-> new file mode 100644
-> index 000000000000..3d7943c0411f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/ti,tac5x1x.yaml
-> @@ -0,0 +1,247 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/ti,tac5x1x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments TAC5x1x Multi-Function Audio Device
-> +
-> +maintainers:
-> +  - Niranjan H Y <niranjan.hy@ti.com>
-> +
-> +description: |
-> +  TAC5x1x family of low-power, high-performance audio codecs with integrated
-> +  GPIO controller and diagnostic capabilities.
-> +
-> +  This is the parent binding. Child nodes are bound by these bindings:
-> +  - Pin controller: Documentation/devicetree/bindings/pinctrl/ti,tac5x1x-pinctrl.yaml
-> +  - Audio codec: Documentation/devicetree/bindings/sound/ti,tac5x1x.yaml
-> +
-> +  Hardware features:
-> +  - Audio ADC/DAC with configurable impedance and voltage references
-> +  - 4-pin GPIO controller with alternate functions (PDM, IRQ)
-> +  - Analog voltage and current monitoring circuits
-> +  - Diagnostic fault detection with interrupt generation
-> +
-> +  Device datasheets can be found at:
-> +    TAA5212:    https://www.ti.com/lit/ds/symlink/taa5212.pdf
-> +    TAA5412-Q1: https://www.ti.com/lit/ds/symlink/taa5412-q1.pdf
-> +    TAC5111:    https://www.ti.com/lit/ds/symlink/tac5111.pdf
-> +    TAC5112:    https://www.ti.com/lit/ds/symlink/tac5112.pdf
-> +    TAC5211:    https://www.ti.com/lit/ds/symlink/tac5211.pdf
-> +    TAC5212:    https://www.ti.com/lit/ds/symlink/tac5212.pdf
-> +    TAC5301:    https://www.ti.com/lit/ds/symlink/tac5301-q1.pdf
-> +    TAC5311-Q1: https://www.ti.com/lit/ds/symlink/tac5311-q1.pdf
-> +    TAC5312-Q1: https://www.ti.com/lit/ds/symlink/tac5312-q1.pdf
-> +    TAC5411-Q1: https://www.ti.com/lit/ds/symlink/tac5411-q1.pdf
-> +    TAC5412-Q1: https://www.ti.com/lit/ds/symlink/tac5412-q1.pdf
-> +    TAD5112:    https://www.ti.com/lit/ds/symlink/tad5112.pdf
-> +    TAD5212:    https://www.ti.com/lit/ds/symlink/tad5212.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,taa5212
-> +      - ti,taa5412
-> +      - ti,tac5111
-> +      - ti,tac5112
-> +      - ti,tac5211
-> +      - ti,tac5212
-> +      - ti,tac5301
-> +      - ti,tac5311
-> +      - ti,tac5312
-> +      - ti,tac5411
-> +      - ti,tac5412
-> +      - ti,tad5112
-> +      - ti,tad5212
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: I2C slave address
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: Hardware reset control pin (active low)
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description: |
-> +      Interrupt from device diagnostic circuits to host processor.
-> +      Generated on voltage/current fault conditions and other diagnostic events.
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description: Master clock input (MCLK)
-> +
-> +  clock-names:
-> +    items:
-> +      - const: mclk
-> +
-> +  avdd-supply:
-> +    description: |
-> +      Analog supply voltage input (AVDD pin).
-> +      Typical voltages: 1.8V, 3.0V, 3.3V, 5.0V
-> +
-> +  iovdd-supply:
-> +    description: |
-> +      Digital I/O supply voltage input (IOVDD pin).
-> +      Typical voltages: 1.8V, 3.3V
-> +
-> +  ti,vref-voltage:
 
-Use unit suffixes for things with units.
+Applied, thanks!
 
-> +    description: |
-> +      Internal voltage reference setting in microvolts.
-> +
-> +      Supported values:
-> +      - 1375000: VREF = 1.375V
-> +      - 2500000: VREF = 2.5V
-> +      - 2750000: VREF = 2.75V
-> +
-> +      Constraint: Selected VREF must be lower than AVDD supply voltage.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [1375000, 2500000, 2750000]
-> +    default: 2500000
-> +
-> +  ti,micbias-voltage:
-> +    description: |
-> +      Microphone bias output voltage in microvolts.
-> +
-> +      Configuration options:
-> +      - VREF voltage: Set to same value as ti,vref-voltage
-> +      - 0.5 × VREF: Set to half of ti,vref-voltage value
-> +      - AVDD voltage: Set to AVDD supply voltage value
-> +
-> +      Note: When set to AVDD voltage, hardware automatically overrides
-> +      VREF setting to 2.75V regardless of ti,vref-voltage property.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 687500
-> +    maximum: 3300000
-> +
-> +  ti,adc1-impedance:
+After talking with Michael and both of us getting grey hair from
+the whole mailmap thing, we agreed that I'll just adapt the author
+myself.
 
-Same here.
+I've applied the patch now as it's just a leaf-overlay of a single
+leaf-board, so no real harm can happen here and I don't want to
+have to remember all the address details in a day or two ;-) .
 
-Though maybe existing bindings are using these same properties. That's 
-fine then, but please state that at least. Really we should have a 
-single, common definition for them.
+The git log will of course again show the @collabora.com, because
+the mailmap translates the author-address again.
 
 
-> +    description: |
-> +      ADC Channel 1 input impedance in Ohms.
-> +      Supported impedance values:
-> +      - 5000: 5k input impedance
-> +      - 10000: 10k input impedance
-> +      - 40000: 40k input impedance
-> +      Available only for TAC5111, TAC5211, TAC5212, and TAA5212 variants.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [5000, 10000, 40000]
-> +    default: 10000
-> +
-> +  ti,adc2-impedance:
-> +    description: |
-> +      ADC Channel 2 input impedance in Ohms.
-> +      Supported impedance values:
-> +      - 5000: 5k input impedance
-> +      - 10000: 10k input impedance
-> +      - 40000: 40k input impedance
-> +      Available on stereo variants only (TAA5212, TAC5212).
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [5000, 10000, 40000]
-> +    default: 10000
-> +
-> +  ti,out2x-vcom-cfg:
-> +    description: |
-> +      Channel OUT2x VCOM reference voltage selection.
-> +
-> +      Configuration options:
-> +      - 0: VCOM = 0.6 × VREF
-> +      - 1: VCOM = AVDD / 2
-> +
-> +      Available on devices with stereo DAC output.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1]
-> +    default: 0
-> +
-> +  ti,gpa-threshold:
-> +    description: |
-> +      General Purpose Analog voltage monitoring thresholds in millivolts.
-> +      Format: [low_threshold_mv, high_threshold_mv]
-> +
-> +      Monitoring range: 0mV to 6000mV, Resolution: ~24mV per step
-> +      Default thresholds: 200mV (low), 2600mV (high)
-> +
-> +      Generates interrupt on voltage fault conditions.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 2
-> +    maxItems: 2
-> +    items:
-> +      minimum: 200
-> +      maximum: 6000
-> +    default: [200, 2600]
-> +
-> +  ti,in-ch-en:
-> +    description: |
-> +      Enable input channel diagnostic monitoring circuits.
-> +
-> +      When enabled (1), activates hardware monitoring for:
-> +      - Input channel fault detection
-> +      - Micbias current monitoring (if ti,micbias-threshold configured)
-> +      - Input overvoltage detection
-> +
-> +      Available on: TAC5301, TAC5311, TAC5312, TAC5411, TAC5412, TAA5412
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1]
-> +    default: 0
-> +
-> +  ti,out-ch-en:
-> +    description: |
-> +      Enable output channel diagnostic monitoring circuits.
-> +
-> +      When enabled (1), activates hardware monitoring for:
-> +      - Output channel fault detection
-> +      - Driver fault monitoring
-> +      - Short circuit detection
-> +
-> +      Available on: TAC5301, TAC5311, TAC5312, TAC5411, TAC5412, TAA5412
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1]
-> +    default: 0
-> +
-> +  ti,incl-se-inm:
-> +    description: |
-> +      Include INxM pins in single-ended input diagnostic scan.
-> +
-> +      When enabled (1), includes negative input pins (INxM) in diagnostic
-> +      monitoring for single-ended input configurations.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1]
-> +    default: 0
-> +
-> +  ti,incl-ac-coup:
-> +    description: |
-> +      Include AC-coupled input channels in diagnostic scan.
-> +
-> +      When enabled (1), includes AC-coupled input channels in the
-> +      diagnostic monitoring system.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1]
-> +    default: 0
-> +
-> +  ti,micbias-threshold:
-> +    description: |
-> +      Microphone bias current monitoring thresholds in microamps.
-> +      Format: [low_threshold_ua, high_threshold_ua]
-> +
-> +      Current monitoring range: 100uA to 33000uA, Resolution: ~132uA per step
-> +      Default thresholds: 2600uA (low), 18000uA (high)
-> +
-> +      Hardware monitors actual current flow through MICBIAS pin.
-> +      Generates interrupts on fault conditions when ti,in-ch-en = <1>.
-> +
-> +      Available on: TAC5301, TAC5311, TAC5312, TAC5411, TAC5412, TAA5412
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 2
-> +    maxItems: 2
-> +    items:
-> +      minimum: 100
-> +      maximum: 33000
-> +    default: [2600, 18000]
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - avdd-supply
-> +  - iovdd-supply
-> +
-> +unevaluatedProperties: false
-> -- 
-> 2.34.1
-> 
+[1/1] arm64: dts: rockchip: enable vicap dvp on wolfvision pf5 io expander
+      commit: d7787a77cf8b129304f590233032556dec10dfc6
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
