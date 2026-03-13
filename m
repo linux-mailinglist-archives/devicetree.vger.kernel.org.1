@@ -1,206 +1,444 @@
-Return-Path: <devicetree+bounces-275455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275456-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iKPEBdJCtGk4kAAAu9opvQ
-	(envelope-from <devicetree+bounces-275455-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:01:06 +0100
+	id 8HYzASdDtGk4kAAAu9opvQ
+	(envelope-from <devicetree+bounces-275456-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:02:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EC19287B7E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:01:05 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A556287BAE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:02:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E0A28306A57E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:56:35 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DD95530AF3B1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:56:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93D583CA498;
-	Fri, 13 Mar 2026 16:56:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 676323CAE88;
+	Fri, 13 Mar 2026 16:56:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Ni2SgW9S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ciA1TzPq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011044.outbound.protection.outlook.com [52.101.65.44])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48C8F39A04F;
-	Fri, 13 Mar 2026 16:56:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773420990; cv=fail; b=bkNpJDTrZV6J8KoC28ndod89CJnYaGD88ooRKrUfx6oaQy5y4OLV1AUOOwDqXJomuWw8cLi8t94o2Uw6CiKJ8GhEQLTBl3cShu/+AGzn+FGYR3hAY+bbnndtzEI3FXNm9+UWqitUtmO4c9hAy/OBpLPzs9ksnMf3x809RnD6OPY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773420990; c=relaxed/simple;
-	bh=yzAX/m14hAFWr+BK/GHrfdhZMZKVkldjh8AkYnfraqI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 Content-Type:MIME-Version; b=uE9ucCkYE+0etSj8nbEMy6N0nK9y5JnN2G9AAmK67whBKeppx9GiN86f2cH/QBV32LWHUXBsVpRQ/+5gt0uhgCRU0p3ruhgkrtvcGefSFRKgT4sx7MvgmGIsVmQ/wGdVYk+YhtFZ18LnqMxwMK4vTgLJ3GJu+UddVVR3CaAxCsA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Ni2SgW9S; arc=fail smtp.client-ip=52.101.65.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DS+cqvOgVHysb6Y/BhcCeZWAAD4L49LB/R1Po6EfTmOJKljXux+xHNkNBwKJE/sYyV6+H7lblb8ZvEHLsO1niIBO7vV0PcKPu0qBgxN8n8FSYk0X1I4XbhMnn5lZup0XYfuxhe/bZXgawzk2FCfwr19kIJvUDvyl15pV3FL02DR/FJqt5+9tFatIfZcnnxrnBgcGx5VUYlJyTxps+4QSOfg3VfAblFMUgcnE40yLrFdBFRc/bmC7yk/GCnametAs295hkRYg4StyoJW77JsS4Rl2h8JeyAz5RwqoqKDhqOKahwA3hGe90/k0F8TtqTjYfJ4XuaA+cI3l2oI/qs8Iyw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TdO6XLVKiIh2ACrZ/S0dmVyZfIKxxarxZNch05oPg9s=;
- b=U8KrGAxjv3PVj0IK8+9j7pEghhgypPhMlAViWEp2qWzDklgYpo6JfSBWrun1WDN0FK/kjOzZnJH7lN96JHunETjAY1FFB4IuZzTPyRSXkFgLp4hI1ZxFDDv5ri4mt6gD/vP10oEAjOB36ZSqxQL2GZEgE2BuXgNAGXBii5aWWnVNK6KFs8CJ29N6Ss3FJFyqST/MYGIXaI4GJVM6S7en57Cah9tEPJTZpmkORr3qHuo80EbHCHYaq8K/YKrN8sl167UbRq4xRygdYfNZFzb02Qg5aM9Yn7BnaoQXl7FahaclwvxdVzilBsppGveT7XskCq0UVMM+Jus2p8B5ThY8mg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TdO6XLVKiIh2ACrZ/S0dmVyZfIKxxarxZNch05oPg9s=;
- b=Ni2SgW9SVKna6jn1ahZv8EE0s/vhtilBZ6ASbd+Vu5EqLBzbLlFpKN7IwzTRCAa30fh/SGEvuERC1t4XhQD1I6ghj/LaLW9EjvrX+iuFskspNwtgKkbUqEVEhYm6vatZ4HESyohuJ+Fb2QT27YU9Yr1YzXzBLFjdaDQep7GJBqWzFoVAVcUc9JEyRksiKCkfhb2M5hymsze+DjB6N55S0Zze18j2XjuAQ/k4K1Tdt1UHS5KMZZnVjhdPCyd+R+2v7Lwh91jESxERpiKP5P3Mn4AAX0j4/26rqJoLtI/GlDxdpPeYULjRw1BjSQaDXNzXlTu53n5k3d6a+mhLOKCzsw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by DU2PR04MB9082.eurprd04.prod.outlook.com (2603:10a6:10:2f1::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.22; Fri, 13 Mar
- 2026 16:56:26 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9700.010; Fri, 13 Mar 2026
- 16:56:23 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: linux@ew.tq-group.com, devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20260313070226.579939-1-alexander.stein@ew.tq-group.com>
-References: <20260313070226.579939-1-alexander.stein@ew.tq-group.com>
-Subject: Re: [PATCH v2 1/5] arm64: dts:
- imx8mp-tqma8mpql-mba8mpxl-g133han01: Remove compatible from overlay
-Message-Id: <177342098414.137600.1900125768491824282.b4-ty@nxp.com>
-Date: Fri, 13 Mar 2026 12:56:24 -0400
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: SA9PR03CA0019.namprd03.prod.outlook.com
- (2603:10b6:806:20::24) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4484C39A04F;
+	Fri, 13 Mar 2026 16:56:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773420995; cv=none; b=YyYYAqM9a4qb1UsTyduh0f8oCkYgVWyHSD7k4l9JBMlVaqI3Yyx9ef6gJqF07dwnsIpIlB2ATzxGktl62Va9gxwjjL9KmjsMBQYRwHs/n8icCR6aTBvtR2B7Oj5jQ0ssmf0I8v3GlKgvVYZ7o133lZPUtbVN/FrmvpGB78H4gFg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773420995; c=relaxed/simple;
+	bh=hDVKbG9Yf6odh85cCwvUzR7BAHuhgj1Ew2MEys6Trsw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PjYZrzqqMkGi7n2FOTjL7T8nUho0Ae78X7sLB9tqHcqbkAxwccjdX4CIcpzcDvYdegzIHosaI+cn3txyH2cpqSmz1+63vZjU7oH3S/NJvY9M/nXdBtv+hgTjdYJLjZlVNRfAw2/B4ykEKZdIjj4cZaVqdo3e13NmH9e9UkOY9h4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ciA1TzPq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 733FCC19421;
+	Fri, 13 Mar 2026 16:56:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773420995;
+	bh=hDVKbG9Yf6odh85cCwvUzR7BAHuhgj1Ew2MEys6Trsw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ciA1TzPqOu8BMfC8IHLbAebnVNcj7qsJeA4HLeopB9SF5bZuUpH12FIl1lsWRk6fT
+	 sduRD5oZ773+hAT6bizbdxuZNmhDrS6lXoW6lWKQ4FKvU+s4N7NsFx6z6iIp2wH2AQ
+	 Mq3j+AyrFMpJ6swAM3l0n6KJPBbH7dH17H9FbmbunEOHQ0so4amK1cKVklGLmf82Bt
+	 zHgy9zcr2lUG2pDmsAIxvNuaUA0+Du3orJCN4UUZIK6P01Mp/p26yzCood5Fcuzf99
+	 1ADNliAvl7tUqjRnvG8z1E2k8Y6e5yRFIv23/MwS8ew8JYEeYDAvF60yENQT6ARiSE
+	 vJpDvtnZCpKeA==
+Date: Fri, 13 Mar 2026 16:56:29 +0000
+From: Conor Dooley <conor@kernel.org>
+To: michael.riesch@collabora.com
+Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	=?utf-8?B?0JrRg9C30L3QtdGG0L7QsiDQnNC40YXQsNC40Ls=?= <mai.kuznetsov.misha@gmail.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Collabora Kernel Team <kernel@collabora.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/9] media: dt-bindings: add rockchip rk3588 vicap
+Message-ID: <20260313-quickly-imperial-47638c9f0d4f@spud>
+References: <20250430-rk3588-vicap-v1-0-b3bddf749914@collabora.com>
+ <20250430-rk3588-vicap-v1-2-b3bddf749914@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DU2PR04MB9082:EE_
-X-MS-Office365-Filtering-Correlation-Id: e1352461-8f1e-4a83-7699-08de81217539
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|19092799006|1800799024|366016|52116014|7416014|38350700014|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info:
-	zxLb9vtkQ9SqcArJQH/9lpUFImybfODTibHUywfZ7Vs8uIbMWJnqTM/IuXNgT9s8jyYCWjGAAmGbbC2p47cy1w+yN92leCPC0Ay0C9yPvHom8owocrRWSdWdlUXIr/x8V8e9K9QTARhui+8K3bWl0cp5eVI8b/bpCxGjj9onP48vXJ51mk4BjO7pTYr6lzgz84HYbfXRZNTxM9CNXRHSYyeHHLPbTFMwweejNqJsKVTFg+q/grWQKM9dhM01/3EYcKXfZu9a2O1xe4HmlRBDZ2Q5XPwVB3O4BrKt99R+3UZ8wAH8gqvfRfquh4amIWB5xgTdTGWSZjAm8OOn8V64w03DfjfrY7s4tVmeR2aimoLGODtJZ8BkibubxLrm8ikkaWjU3voGuVKPKaiyQi5bwA9JgcPG5HlSAghkgMpDb0hJPx62rOmDzVER90zQxV8dsoAgKoiajnpBnzn1VI2L5lrKJ4vCAX34Ln95Ymdg5uvwfLyHyA9EkuZreYLkmf43VXLFgjW5OvkV6wH0rN81ECWjcx3ow2gARH7+DzjYycK/kpbMfGLY9ooOfa1mqBVsKaEmPqT4kYWnaNTtbo3Kt7bE19sVg5x2PR5kFPDGzPLObfEOjxykyxgADsFn0nM2Ita6rEKGYc2af/Qtc0JGxmNnc/oKd/M8zOgEIAWSNKFORW5zQSijT3K/4BiPNeebl7HAWR1kDWymoMbZ2y1/P/x7guT8zWh+neSBgNbThT5RRseJAWCd8jr+eiqX2mrm816LcSx0r2pgdKdMC1tjVK9pozHQpWy8LdxqnYa9VtY=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(19092799006)(1800799024)(366016)(52116014)(7416014)(38350700014)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?aDIzVENGbUJQY3VGVE1ENFdOaG9KNEU4R1lscEkyakZRK1l4OWM5ZUNOZnZH?=
- =?utf-8?B?Q1lJakVYTkdXNUdOOHMzWHVQMVdYVThweTIzSG9OdjNjK0xrRWJsRDJpQXBs?=
- =?utf-8?B?Nk1LSnBDOEs4ZmtsWlk3MllDUkJqN0NOWXg4dG9pK2VDY0MyYWRYMXZEY2Rs?=
- =?utf-8?B?TDcvOFp2T2NVV21JVFo1SXNVZXc0S3NPOTllVTVKVHYvTXZTSEQ2Zk42aXFS?=
- =?utf-8?B?ZWNtK2ExSHkzM1BWOU96d3JvUUwrTFlZMjdPT3ZLalBqZEJUdGI2SHhGNzdS?=
- =?utf-8?B?NHZzQjZSektjNmlDOFlWTXh3aEpGZHFhbStUM2VaK0tZZ3E5bEVFZHJnTkpM?=
- =?utf-8?B?VWVhVzY5OEV0L1hTVGNwdnpGZUdIaWYraS9DM1QwMHdIMVJhZkRFRWlpd0R4?=
- =?utf-8?B?c0JUUnM1WWR6K09SYytJczAvdm9uRVV4bUZyYWEzSUlsT2dJTzdvdE1jVVpM?=
- =?utf-8?B?Z1NSN0xQM2h0ZlNudy9hZEtFQ1haeURjMjFPNDlMV0VuOTBhcHRkblRyeFps?=
- =?utf-8?B?dTZvVUp6Z205SEdrbHlZZlVqQ2tBRHdvNjFyVkJlRlFiWmxDVEFmUlJlQ2xB?=
- =?utf-8?B?K253RzBnSzBubTd3Y1ZUd09rMGlYaDFXYytvbmUzYUtVUXZ1d1U2VytTYkk0?=
- =?utf-8?B?UytTaTBHYlovUnBoTERmU1VQSTFEMmRrTlI2amNMNUNNMk95Sm5MRlFyc2lG?=
- =?utf-8?B?ZWNONUtXMUwvZG40Nk1BR0swVElmQm1wNVpPRXNUbVpXTFN4VFZYQ05tVnZa?=
- =?utf-8?B?UVZxVFI5S1M1RmhuVzFCVUowbWlvWXZCQlRNeGNEWUMzVldreXFrTitxSmZy?=
- =?utf-8?B?bWo1RnU5c3N0YitKTjRCZU5mQ0g2VXovSi96R281cDVsTStaQ2JKdzJjN1Iv?=
- =?utf-8?B?d0RYVktPYWNZQlVYVUJKN1lpelJ5cmhpWjdjRURLV3UrNUMrS1BPSlU0cjJ6?=
- =?utf-8?B?RnoxS1JtUUhJWHlDT2tJTHJPMVM5WnJsbmJ3R1lZRU0zbHA4ZmhHSU8zc016?=
- =?utf-8?B?WDNScTRpYi9EUkJlbDJoZ0x2WmdKbG5rdlNMcXlZTXBNdlhNQ1MyazNvS0lr?=
- =?utf-8?B?RVNGZDF0RWFrQlpBUW1aMUVJV2FaTzVKWXlKMFl0c2NzaHFPb1VHU05XMDcx?=
- =?utf-8?B?NjNaK2NDSWRHOUxmUmxEWHZZU25Cd0piSThjNVU5aFh1aWJGcmx3Zk93NmNR?=
- =?utf-8?B?Q003WWd5elRuZTlhdVc0a0xsZTFKZDZackwrWVdWSnVhbmlKQXB3TWhsczBY?=
- =?utf-8?B?cEJ6UnBWZFVEQnpRQWthaFVkVFBMN3MwK0JLYjJsd3FRNXFHYjh4MTJvb3Jt?=
- =?utf-8?B?WWFZTDdVSlYwT3hZZmJ3V1VoSTJoWU9hS01hME11am5GaVdvbjdqV0x1UXA3?=
- =?utf-8?B?QUw0Z1Z2d0J6Q1NEcGxiai9WQ3lFenJ0VGRGYUluWkp3Z3pSVFkxWHVBYWZB?=
- =?utf-8?B?TnFUekVCcnJqYXFDL1plb1ZKQnBSeWlrV1dYODd4WWVBaXBISDNGNVFMRDFj?=
- =?utf-8?B?ZmVrY1cwaTRZSWhEVWFUc0NibDREMGQrYnFOOGlkMVFOU2RyRmdMTFdHMm5h?=
- =?utf-8?B?OVk5L09od1lqeENFenpkVGFEWURlMHlwbHBXY2F5M1Q4dy80LzdqNVYwanR4?=
- =?utf-8?B?YlVlVHpUdWJReU9sTEYvQnVoelpzb0YwaXk3NVYrNE5uSDM1VUFlYmUvdzhB?=
- =?utf-8?B?ZmdrSXdkRjJyWDRicHFpTmhoWWxMZm5GUzg1UythMU1FenZFcTByZkFyTlNE?=
- =?utf-8?B?bjNLWjFDM3MvTlI1bDJhUEIwcW1UU2lzS3NMSnl0Y2pWRW93YStrZFU5Wmxl?=
- =?utf-8?B?eDFERExQaXd0U1A4akpENkladHB1RmhFQ3RyQm5qQVdWMnZZTWwvMG5Dd0ZG?=
- =?utf-8?B?RFAxeVpOWTNGRjA3K0ZuY0xGeDZidEVGMVg5YzFRNHRrT1lpR1ZMSFJaOEhS?=
- =?utf-8?B?NjRjbmVjWVpLNE9lRnZXLzh0WkU4cHlCZkFqcjJXVTg4TDFUN2s4M3VSd09K?=
- =?utf-8?B?QXFHeGJGSE4rNTk3amNtZ1dabVZZalk2c1BMbW1KaE5qNHQwSTBqTHlUa0Rh?=
- =?utf-8?B?SVR6ZEo0SFhGMnhJZERNUGdKWjlvTndwWXp1TTc2YktBYnBCVElyUU9Ha0s1?=
- =?utf-8?B?QmlwaGZFZG5RcGtHdjk2ek5sVHgzazBzZnlLdTdJcnVjRVEySXVJU1kxR1ho?=
- =?utf-8?B?OXlYamhqRDdKNGJxb2V2aWFPQWpvYUNBOUpISHEzK1dpc0dMN3lxT05IcXlr?=
- =?utf-8?B?d3FqclpvVVNoRUFycU5GbTVheHZ1dXg3aER4bC9QcUN1ZkdGY3ZFOWhtM3dL?=
- =?utf-8?B?Q28vT2xwN1pFYkIwWHlMcFpmaTY2T0VkWWRNSEdSR3lZdi9wNUk5QT09?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e1352461-8f1e-4a83-7699-08de81217539
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 16:56:23.4848
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GiK0a2CmiOuHgELT8rouV9C47X3Bh+7XGYjBK08bZakvIx4dAQWIP4Yckj5DFZzrUVyPR824CBaXBQJNJzUfZg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9082
-X-Spamd-Result: default: False [1.34 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="U7yuErg2Ck8ZSJQ1"
+Content-Disposition: inline
+In-Reply-To: <20250430-rk3588-vicap-v1-2-b3bddf749914@collabora.com>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275455-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com,ew.tq-group.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-275456-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_CC(0.00)[linux.intel.com,ideasonboard.com,kernel.org,sntech.de,rock-chips.com,amarulasolutions.com,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,nxp.com:dkim,nxp.com:email,nxp.com:mid]
-X-Rspamd-Queue-Id: 3EC19287B7E
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6A556287BAE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Fri, 13 Mar 2026 08:02:20 +0100, Alexander Stein wrote:
-> Override of board compatible is unexpected, especially when the same dtso
-> override difference mainboard. So remove it and update the copyright year.
-> 
-> 
+--U7yuErg2Ck8ZSJQ1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied, thanks!
+On Fri, Mar 13, 2026 at 04:20:44PM +0100, Michael Riesch via B4 Relay wrote:
+> From: Michael Riesch <michael.riesch@collabora.com>
+>=20
+> Add documentation for the Rockchip RK3588 Video Capture (VICAP) unit.
+>=20
+> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+> ---
+>  .../bindings/media/rockchip,rk3588-vicap.yaml      | 256 +++++++++++++++=
+++++++
+>  MAINTAINERS                                        |   1 +
+>  2 files changed, 257 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3588-vica=
+p.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3588-vicap.yaml
+> new file mode 100644
+> index 000000000000..7fd4214921cb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3588-vicap.yaml
+> @@ -0,0 +1,256 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/rockchip,rk3588-vicap.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip RK3588 Video Capture (VICAP)
+> +
+> +maintainers:
+> +  - Michael Riesch <michael.riesch@collabora.com>
+> +
+> +description:
+> +  The Rockchip RK3588 Video Capture (VICAP) block features a digital vid=
+eo
+> +  port (DVP, a parallel video interface) and six MIPI CSI-2 ports. It re=
+ceives
+> +  the data from camera sensors, video decoders, or other companion ICs a=
+nd
+> +  transfers it into system main memory by AXI bus and/or passes it to th=
+e image
+> +  signal processing (ISP) blocks.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk3588-vicap
 
-[1/5] arm64: dts: imx8mp-tqma8mpql-mba8mpxl-g133han01: Remove compatible from overlay
-      commit: 3109fb0b7d8c7cac9414665006bf0355003d8dd3
-[2/5] arm64: dts: imx8mp-tqma8mpql-mba8mpxl-tm070jvhg33: Remove compatible from overlay
-      commit: cad2ef625bf149945a95e674d3efeb57a6a75cef
-[3/5] arm64: dts: imx8mq-tqma8mq-mba8mx-tm070jvhg33: Remove compatible from overlay
-      commit: cc0f70fc4b5862a5b7c0f2a0be9bea9a5c93ba6c
-[4/5] arm64: dts: imx8mn-tqma8mqnl-mba8mx-tm070jvhg33: Remove compatible from overlay
-      commit: 290c1d1924b7c01fc0dd58673a33f6d00ab676b8
-[5/5] arm64: dts: imx8mm-tqma8mqml-mba8mx-tm070jvhg33: Remove compatible from overlay
-      commit: 178d478fede312e8bda2b5a9772dff34e63ae1fd
+Curious why this cannot share a binding with the existing 3568-vicap.
+Looks pretty similar binding wise at least.
+If it's an entirely different architecture or whatever, please mention
+that in your commit message.
 
-Best regards,
--- 
-Frank Li <Frank.Li@nxp.com>
+Cheers,
+Conor.
 
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: ACLK
+> +      - description: HCLK
+> +      - description: DCLK
+> +      - description: ICLK0
+> +      - description: ICLK1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: aclk
+> +      - const: hclk
+> +      - const: dclk
+> +      - const: iclk_host0
+> +      - const: iclk_host1
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 9
+> +
+> +  rockchip,grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: Phandle to general register file used for video input b=
+lock control.
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: The digital video port (DVP, a parallel video inter=
+face).
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              bus-type:
+> +                enum:
+> +                  - 5 # MEDIA_BUS_TYPE_PARALLEL
+> +                  - 6 # MEDIA_BUS_TYPE_BT656
+> +
+> +            required:
+> +              - bus-type
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Port connected to the MIPI CSI-2 receiver 0 output.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Port connected to the MIPI CSI-2 receiver 1 output.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +      port@3:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Port connected to the MIPI CSI-2 receiver 2 output.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +      port@4:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Port connected to the MIPI CSI-2 receiver 3 output.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +      port@5:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Port connected to the MIPI CSI-2 receiver 4 output.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +      port@6:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Port connected to the MIPI CSI-2 receiver 5 output.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +      port@10:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Port connected to the ISP0 input.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +      port@11:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Port connected to the ISP1 input.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/media/video-interfaces.h>
+> +    #include <dt-bindings/power/rk3588-power.h>
+> +    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+> +
+> +    soc {
+> +        #address-cells =3D <2>;
+> +        #size-cells =3D <2>;
+> +
+> +        vicap: video-capture@fdce0000 {
+> +            compatible =3D "rockchip,rk3588-vicap";
+> +            reg =3D <0x0 0xfdce0000 0x0 0x800>;
+> +            interrupts =3D <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH 0>;
+> +            clocks =3D <&cru ACLK_VICAP>, <&cru HCLK_VICAP>,
+> +                     <&cru DCLK_VICAP>, <&cru ICLK_CSIHOST0>,
+> +                     <&cru ICLK_CSIHOST1>;
+> +            clock-names =3D "aclk", "hclk", "dclk", "iclk_host0", "iclk_=
+host1";
+> +            iommus =3D <&vicap_mmu>;
+> +            power-domains =3D <&power RK3588_PD_VI>;
+> +            resets =3D <&cru SRST_A_VICAP>, <&cru SRST_H_VICAP>,
+> +                     <&cru SRST_D_VICAP>, <&cru SRST_CSIHOST0_VICAP>,
+> +                     <&cru SRST_CSIHOST1_VICAP>, <&cru SRST_CSIHOST2_VIC=
+AP>,
+> +                     <&cru SRST_CSIHOST3_VICAP>, <&cru SRST_CSIHOST4_VIC=
+AP>,
+> +                     <&cru SRST_CSIHOST5_VICAP>;
+> +
+> +            ports {
+> +                #address-cells =3D <1>;
+> +                #size-cells =3D <0>;
+> +
+> +                vicap_dvp: port@0 {
+> +                    reg =3D <0>;
+> +
+> +                    vicap_dvp_input: endpoint {
+> +                        bus-type =3D <MEDIA_BUS_TYPE_BT656>;
+> +                        bus-width =3D <16>;
+> +                        pclk-sample =3D <MEDIA_PCLK_SAMPLE_DUAL_EDGE>;
+> +                        remote-endpoint =3D <&it6801_output>;
+> +                    };
+> +                };
+> +
+> +                vicap_mipi0: port@1 {
+> +                    reg =3D <1>;
+> +
+> +                    vicap_mipi0_input: endpoint {
+> +                        remote-endpoint =3D <&csi0_output>;
+> +                    };
+> +                };
+> +
+> +                vicap_mipi1: port@2 {
+> +                    reg =3D <2>;
+> +
+> +                    vicap_mipi1_input: endpoint {
+> +                        remote-endpoint =3D <&csi1_output>;
+> +                    };
+> +                };
+> +
+> +                vicap_mipi2: port@3 {
+> +                    reg =3D <3>;
+> +
+> +                    vicap_mipi2_input: endpoint {
+> +                        remote-endpoint =3D <&csi2_output>;
+> +                    };
+> +                };
+> +
+> +                vicap_mipi3: port@4 {
+> +                    reg =3D <4>;
+> +
+> +                    vicap_mipi3_input: endpoint {
+> +                        remote-endpoint =3D <&csi3_output>;
+> +                    };
+> +                };
+> +
+> +                vicap_mipi4: port@5 {
+> +                    reg =3D <5>;
+> +
+> +                    vicap_mipi4_input: endpoint {
+> +                        remote-endpoint =3D <&csi4_output>;
+> +                    };
+> +                };
+> +
+> +                vicap_mipi5: port@6 {
+> +                    reg =3D <6>;
+> +
+> +                    vicap_mipi5_input: endpoint {
+> +                        remote-endpoint =3D <&csi5_output>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 237397f18f07..a972cd38c13d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -22874,6 +22874,7 @@ S:	Maintained
+>  F:	Documentation/admin-guide/media/rkcif*
+>  F:	Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
+>  F:	Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.yaml
+> +F:	Documentation/devicetree/bindings/media/rockchip,rk3588-vicap.yaml
+>  F:	drivers/media/platform/rockchip/rkcif/
+> =20
+>  ROCKCHIP CRYPTO DRIVERS
+>=20
+> --=20
+> 2.39.5
+>=20
+>=20
+
+--U7yuErg2Ck8ZSJQ1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabRBvQAKCRB4tDGHoIJi
+0r13AQCoM3uVNwIVEjtjwPRLuvb1Q7eV3oSbdVL/cG8OYj5qbwD+NdwtNy7/0O2I
+quuV/nSJm2mqBUbcVELHXceOgTCGmQU=
+=bxXo
+-----END PGP SIGNATURE-----
+
+--U7yuErg2Ck8ZSJQ1--
 
