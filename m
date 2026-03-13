@@ -1,290 +1,436 @@
-Return-Path: <devicetree+bounces-275309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275310-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SH5BG80ctGlLhQAAu9opvQ
-	(envelope-from <devicetree+bounces-275309-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:18:53 +0100
+	id yJoYB3IctGlLhQAAu9opvQ
+	(envelope-from <devicetree+bounces-275310-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:17:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C49C5284CA5
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:18:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACE55284C1D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:17:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A7A6B306CDF4
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:08:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BFCCB31FEC0C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:11:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE05A336ED2;
-	Fri, 13 Mar 2026 14:08:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94CC03932F8;
+	Fri, 13 Mar 2026 14:11:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GMkTawqY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fttqLdf8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AACA8332EB1;
-	Fri, 13 Mar 2026 14:08:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 075D83976A3
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 14:11:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773410892; cv=none; b=SK4SIJB59yJLGsmh/KRH8udCVHnJuubR893UOh/Pmh1wb1+a7nw55vRt2d1t0YW/flj1x4yJT4ryNRpEYvvpPDmsz9q0abs9iD3CFE6Gm0KY7omCfXPRo637B8mntywXzyy7BMux1gXV9yijS2oNYhjG3MJe/Y5XqoCq/F0fPWw=
+	t=1773411119; cv=none; b=cLzaF0lgapGzSn6cqiuO7KJ1fVqN/BP//sALFIe/A88yBy7OeSRnBcY9Rd3G1K1maMeqZM054nF4XHdunNFEGNmNsluCGd3BbyHpB8FZBVfGVLe1/fg0+pXrBYQPt1/niXX+KKZ2opkK4IbGE/A7o01ye2xg6mVDdr8D6W9Erzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773410892; c=relaxed/simple;
-	bh=rW0sgZRNUegVJJyrf1fUfLQePGpW2MmN0lOZ5hihc6c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=q3ErMny9X/D0FWSOUIQhCLACxXQpxkHRpCJMJ8bDP9BxTDiv0AO3+BxhTOYP71soeAnkVYQPcZ7d6XWh523eO8cOuNs/vGGYti/+UhovxTVVBKU2h4r0tRye0E6YX8gGuysmvGlBR8CnRbnbr/WCgkDqilfws+p7XASaH4QJpOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GMkTawqY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1B4BC19421;
-	Fri, 13 Mar 2026 14:08:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773410892;
-	bh=rW0sgZRNUegVJJyrf1fUfLQePGpW2MmN0lOZ5hihc6c=;
-	h=From:Date:Subject:To:Cc:From;
-	b=GMkTawqYSicfgpDcvLv6vT/QBn3fbebhBoLR23SdIv7xMHegxOMdUmgpuV6MQ1Gju
-	 sE5k7cLKK1Hr43Sg1dm4AdVec8AnKW++yP3oERtJr2uF/oAdD8MI90jkjX6uHTl6zm
-	 HiGjpEr0RvZDTTlC+1W3vtVscqceoLogYkkPegvIguoK49yMwSjirFAj9cGMafsueg
-	 77ztUCOa7z1pRReebRBUT9yRCTgNEiIf0Ri++gAzAKWUnnjKRfbl1mTErAKDhRVvAS
-	 JvNqCk+4k/TifGIpsyBKn6nyDtTo78hpFSR0yuGooYjYHhm3xYGcgvkQetLBOGKu6v
-	 O11HOdBu9dmIA==
-From: Konrad Dybcio <konradybcio@kernel.org>
-Date: Fri, 13 Mar 2026 15:08:03 +0100
-Subject: [PATCH] arm64: dts: qcom: sc8280xp: Enable USB OTG on functional
- Type-C ports
+	s=arc-20240116; t=1773411119; c=relaxed/simple;
+	bh=n3tVET0RKCM0PolDzihzScVEZ6ugwLfmm5zML9kOaJk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VxD+O9QI00DuFpVl2ZkDhA3hNnK60obiDbKXIfbZpmNSDbk9xJs+CS1QTywYv+bc2DEOuqR/cJqYf/tQOJJ5GHFqk/BjRI/32N5L01nJM7rb0iyBkltOuv+2PE3Oyaig1swDD37U4YSvsGqnf+Anq7b11dAaw3zsm2txTLbyoA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fttqLdf8; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4852e09e23dso19681425e9.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 07:11:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773411115; x=1774015915; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7YKDpvVSWs+QgQl+eLRaSI/aYj/+nPQA+bT6vdg6Kz0=;
+        b=fttqLdf8mY77y3jsZQ7bbCpSxnnz8toZ67DsYv0FBM/kzQm60wgqnUzZ/gkiIbo+8Q
+         4mLqrR4e5OD2Y51q14Z6803wAroeoXTBV1KVSTBkz7yc+gEfHWTDdI19UCD47VQOAgn0
+         YMft3TuZhQ9NsEOcvdTAUGg2xuXNmGEXocXhLM/MVG4lnHhb0FVEygdlIr56aCzluhHb
+         YmfRTf8hV0ngb0iivB9S/1JxNUP8IJxEsLWrzqD3qTqQpiTTiDhH6fJnLtoDZETkrBIc
+         UqmHUdIl1Cx7ZokFQ2620j4xF6TnlSZhrsime0Eb7+Js9T9c04GeGZeEOrb2IWXPJjbm
+         U2hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773411115; x=1774015915;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7YKDpvVSWs+QgQl+eLRaSI/aYj/+nPQA+bT6vdg6Kz0=;
+        b=tXo1z02BOwJP/AcCw0aQDyBdIaIQjH+SuJHaZfbvS+rXNwGPAcTMav0tY600Uo7xfs
+         qzmCgFrWLuePAF/YHSzdtC1IFN/NucE7MDtynnyrC25RBsYVatFJB2ZUVB2aW1y0myQN
+         QaInWB9tjKZjw3Bb8jIh/KWB1biGpe4EDNXNzNpqDEDEr2Zdnd3ejufr9YWDfl2brfQg
+         ZIFoD2DQpa5NSkfpWTAa5nlauk5/y10DOQTo3Y0dsrKRd3OpUn5qhCi9qWWSi2tSX1XJ
+         LfZ7TiTeSnKzC4mUCOsHXcEMJVhR0J8d2Mrv9TJ2hYMdm/BGXq4eVhIy1cRzc2ZqQ7yK
+         HMaw==
+X-Forwarded-Encrypted: i=1; AJvYcCWVf+6M/x9V8Rw0t8aq0d675SBTsyi+7mSLZbyGiNPAYlj3xqPV1Xwpm7cFJ3svtzncP99oCKT1myue@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJZsd0DbaHqzSzSdPue5jkT8N9mUSzjM924p1oiWdY3FHPDIzM
+	EIyVqR8jl57/qP9Zcros0wWVz2btr3aww2+DRcgIBLEE0Qvb73DDPkjo
+X-Gm-Gg: ATEYQzyG9qZRNX9B49kxNmJ/W77JVwZn4WwODdAoxXCWiXS2+OnWaGtxfh0XbPKbBEE
+	Eoa53a6pJMw4BH7XJ5mpQMNqzni7+pPv3TqjWzwhQcj1pqAxc66zzIk72iZ/vx5l3OjvrZEFB0o
+	tNfI3ypzYwMW3odEyMHue9GauJISXQsqSmfV2JPs39KjwNfUkYXwO0et/3btHNztd3p3wwU1+QW
+	DoGkzLzSzCk3T7FIrFkRbWfTNr1FWbzgXT59GaXbG5NPaF9UZKCh0p72e9i9WNAlojQKSF9oKjw
+	eUHHJpHyOu76ecAzuqQdYghh/4NllnnHbxnXaYer7Ar+On8dTF27SrlqCGyajUNWvTJEgROf+Sw
+	z+I06O39Yg1/keixRAQ4iIaPVqKkvdcczUFsVd+bIbFAxcDmKU1wcg1arLHyizqNP50n+4R4Szq
+	R4vTxK+lOhbhwh/2Qn17M6Yd492OUz6oYhW6zuqtdCu7f2kZCi
+X-Received: by 2002:a05:600c:4fc6:b0:485:3f1c:d8a1 with SMTP id 5b1f17b1804b1-485566d2004mr52422155e9.9.1773411114898;
+        Fri, 13 Mar 2026 07:11:54 -0700 (PDT)
+Received: from localhost.localdomain ([2a00:23c4:a758:8a01:6418:ccf7:57f1:473f])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48557c679c1sm20703185e9.24.2026.03.13.07.11.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Mar 2026 07:11:54 -0700 (PDT)
+From: Biju <biju.das.au@gmail.com>
+X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH] arm: dts: renesas: Remove redundant ethernet-phy-ieee802.3-c22 fallback
+Date: Fri, 13 Mar 2026 14:11:44 +0000
+Message-ID: <20260313141150.406528-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260313-topic-x13s_otg-v1-1-cb2e4a08e25d@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MTQqAIBBA4avErBOcpB+6SkSIjTWbFJUQxLsnL
- b/FewUiBaYIa1cg0MuR3dOAfQfm1s9Fgs9mGOQwSYUokvNsREYVD5cuMaK1iyZptJqhRT6Q5fw
- Pt73WD2kilxhgAAAA
-X-Change-ID: 20260311-topic-x13s_otg-51ff8ae0ca37
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773410889; l=4990;
- i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
- bh=ExBImoQoNri/JtsYEeEQo60qtjsA+equUB3YrZJCDtQ=;
- b=Fm9yEm9U6T7c4bWLKdE7dbFWUq2GrpliRjKsQFB54KHvjPo1MYaytNUMs5AYAWdaLXYze8eF/
- rywXInPaKf3CbgDVOxledLeHWaQtiTEiru5gLCthLD2VPGkEsI+abCd
-X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275309-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-275310-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
+	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konradybcio@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
+	NEURAL_HAM(-0.00)[-0.998];
+	DBL_PROHIBIT(0.00)[0.0.0.3:email];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,oss.qualcomm.com:mid,a800000:email]
-X-Rspamd-Queue-Id: C49C5284CA5
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,bp.renesas.com:mid,0.0.0.1:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:email]
+X-Rspamd-Queue-Id: ACE55284C1D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+From: Biju Das <biju.das.jz@bp.renesas.com>
 
-The two non-multiport USB controllers present on the platform are
-role-switch capable, so mark them as such. They need no additional
-plumbing, as tested on the X13s.
+Drop the ethernet-phy-ieee802.3-c22 compatible string from all Renesas
+arm device tree sources. The c22 fallback is implicitly assumed for
+PHY ID-based compatible strings and does not need to be stated explicitly.
 
-Enable OTG for all devices featuring a data-role provider in one fell
-swoop to prevent hitting the edge case where UCSI code would time out
-trying to get a reference to a struct usb_role_switch, which wouldn't
-be registered if dr_mode was set to anything other than (the default)
-OTG.
-
-Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
- arch/arm64/boot/dts/qcom/sc8280xp-crd.dts                  | 8 --------
- arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts       | 8 --------
- arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 8 --------
- arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts     | 8 --------
- arch/arm64/boot/dts/qcom/sc8280xp-microsoft-blackrock.dts  | 8 --------
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi                     | 4 ++++
- 6 files changed, 4 insertions(+), 40 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-index c53e00cae465..3acb63017fe3 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-@@ -819,10 +819,6 @@ &usb_0 {
- 	status = "okay";
- };
- 
--&usb_0_dwc3 {
--	dr_mode = "host";
--};
--
- &usb_0_dwc3_hs {
- 	remote-endpoint = <&pmic_glink_con0_hs>;
- };
-@@ -856,10 +852,6 @@ &usb_1 {
- 	status = "okay";
- };
- 
--&usb_1_dwc3 {
--	dr_mode = "host";
--};
--
- &usb_1_dwc3_hs {
- 	remote-endpoint = <&pmic_glink_con1_hs>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts b/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts
-index 9819454abe13..e4513b66261b 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts
-@@ -1132,10 +1132,6 @@ &usb_0 {
- 	status = "okay";
- };
- 
--&usb_0_dwc3 {
--	dr_mode = "host";
--};
--
- &usb_0_dwc3_hs {
- 	remote-endpoint = <&ucsi0_hs_in>;
- };
-@@ -1169,10 +1165,6 @@ &usb_1 {
- 	status = "okay";
- };
- 
--&usb_1_dwc3 {
--	dr_mode = "host";
--};
--
- &usb_1_dwc3_hs {
- 	remote-endpoint = <&ucsi1_hs_in>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index d84ca010ab9d..f83947c8b1b8 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -1341,10 +1341,6 @@ &usb_0 {
- 	status = "okay";
- };
- 
--&usb_0_dwc3 {
--	dr_mode = "host";
--};
--
- &usb_0_dwc3_hs {
- 	remote-endpoint = <&pmic_glink_con0_hs>;
- };
-@@ -1379,10 +1375,6 @@ &usb_1 {
- 	status = "okay";
- };
- 
--&usb_1_dwc3 {
--	dr_mode = "host";
--};
--
- &usb_1_dwc3_hs {
- 	remote-endpoint = <&pmic_glink_con1_hs>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
-index f2b4470d4407..82ad20c5c7a4 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
-@@ -758,10 +758,6 @@ &usb_0 {
- 	status = "okay";
- };
- 
--&usb_0_dwc3 {
--	dr_mode = "host";
--};
--
- &usb_0_dwc3_hs {
- 	remote-endpoint = <&pmic_glink_con0_hs>;
- };
-@@ -795,10 +791,6 @@ &usb_1 {
- 	status = "okay";
- };
- 
--&usb_1_dwc3 {
--	dr_mode = "host";
--};
--
- &usb_1_dwc3_hs {
- 	remote-endpoint = <&pmic_glink_con1_hs>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-blackrock.dts b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-blackrock.dts
-index 00bbeeef6f14..1effb30c93af 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-blackrock.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-blackrock.dts
-@@ -986,10 +986,6 @@ &usb_0 {
- 	status = "okay";
- };
- 
--&usb_0_dwc3 {
--	dr_mode = "host";
--};
--
- &usb_0_dwc3_hs {
- 	remote-endpoint = <&pmic_glink_con0_hs>;
- };
-@@ -1023,10 +1019,6 @@ &usb_1 {
- 	status = "okay";
- };
- 
--&usb_1_dwc3 {
--	dr_mode = "host";
--};
--
- &usb_1_dwc3_hs {
- 	remote-endpoint = <&pmic_glink_con1_hs>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index 58876b25dd23..6303a0d572f2 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -4080,6 +4080,8 @@ usb_0_dwc3: usb@a600000 {
- 				snps,dis-u1-entry-quirk;
- 				snps,dis-u2-entry-quirk;
- 
-+				usb-role-switch;
-+
- 				ports {
- 					#address-cells = <1>;
- 					#size-cells = <0>;
-@@ -4159,6 +4161,8 @@ usb_1_dwc3: usb@a800000 {
- 				snps,dis-u1-entry-quirk;
- 				snps,dis-u2-entry-quirk;
- 
-+				usb-role-switch;
-+
- 				ports {
- 					#address-cells = <1>;
- 					#size-cells = <0>;
-
+This patch depend upon [1]
+[1] https://lore.kernel.org/all/20260313130623.297712-1-biju.das.jz@bp.renesas.com/
 ---
-base-commit: 5c9e55fecf9365890c64f14761a80f9413a3b1d1
-change-id: 20260311-topic-x13s_otg-51ff8ae0ca37
+ arch/arm/boot/dts/renesas/iwg20d-q7-common.dtsi         | 3 +--
+ arch/arm/boot/dts/renesas/r7s72100-genmai.dts           | 3 +--
+ arch/arm/boot/dts/renesas/r7s72100-gr-peach.dts         | 3 +--
+ arch/arm/boot/dts/renesas/r7s72100-rskrza1.dts          | 3 +--
+ arch/arm/boot/dts/renesas/r7s9210-rza2mevb.dts          | 3 +--
+ arch/arm/boot/dts/renesas/r8a7740-armadillo800eva.dts   | 3 +--
+ arch/arm/boot/dts/renesas/r8a7742-iwg21d-q7-dbcm-ca.dts | 3 +--
+ arch/arm/boot/dts/renesas/r8a7742-iwg21d-q7.dts         | 3 +--
+ arch/arm/boot/dts/renesas/r8a7743-sk-rzg1m.dts          | 3 +--
+ arch/arm/boot/dts/renesas/r8a7745-iwg22d-sodimm.dts     | 3 +--
+ arch/arm/boot/dts/renesas/r8a7745-sk-rzg1e.dts          | 3 +--
+ arch/arm/boot/dts/renesas/r8a77470-iwg23s-sbc.dts       | 3 +--
+ arch/arm/boot/dts/renesas/r8a7790-lager.dts             | 3 +--
+ arch/arm/boot/dts/renesas/r8a7790-stout.dts             | 3 +--
+ arch/arm/boot/dts/renesas/r8a7791-koelsch.dts           | 3 +--
+ arch/arm/boot/dts/renesas/r8a7791-porter.dts            | 3 +--
+ arch/arm/boot/dts/renesas/r8a7793-gose.dts              | 3 +--
+ arch/arm/boot/dts/renesas/r8a7794-alt.dts               | 3 +--
+ arch/arm/boot/dts/renesas/r8a7794-silk.dts              | 3 +--
+ 19 files changed, 19 insertions(+), 38 deletions(-)
 
-Best regards,
+diff --git a/arch/arm/boot/dts/renesas/iwg20d-q7-common.dtsi b/arch/arm/boot/dts/renesas/iwg20d-q7-common.dtsi
+index 2cc2908b48ca..219f45b7586d 100644
+--- a/arch/arm/boot/dts/renesas/iwg20d-q7-common.dtsi
++++ b/arch/arm/boot/dts/renesas/iwg20d-q7-common.dtsi
+@@ -158,8 +158,7 @@ &avb {
+ 	status = "okay";
+ 
+ 	phy3: ethernet-phy@3 {
+-		compatible = "ethernet-phy-id0022.1622",
+-			     "ethernet-phy-ieee802.3-c22";
++		compatible = "ethernet-phy-id0022.1622";
+ 		reg = <3>;
+ 		micrel,led-mode = <1>;
+ 	};
+diff --git a/arch/arm/boot/dts/renesas/r7s72100-genmai.dts b/arch/arm/boot/dts/renesas/r7s72100-genmai.dts
+index 3c3756509714..9504b63bb5e1 100644
+--- a/arch/arm/boot/dts/renesas/r7s72100-genmai.dts
++++ b/arch/arm/boot/dts/renesas/r7s72100-genmai.dts
+@@ -163,8 +163,7 @@ &ether {
+ 	renesas,no-ether-link;
+ 	phy-handle = <&phy0>;
+ 	phy0: ethernet-phy@0 {
+-		compatible = "ethernet-phy-idb824.2814",
+-			     "ethernet-phy-ieee802.3-c22";
++		compatible = "ethernet-phy-idb824.2814";
+ 		reg = <0>;
+ 	};
+ };
+diff --git a/arch/arm/boot/dts/renesas/r7s72100-gr-peach.dts b/arch/arm/boot/dts/renesas/r7s72100-gr-peach.dts
+index 23ddec217685..36cc1c4d41fd 100644
+--- a/arch/arm/boot/dts/renesas/r7s72100-gr-peach.dts
++++ b/arch/arm/boot/dts/renesas/r7s72100-gr-peach.dts
+@@ -125,8 +125,7 @@ &ether {
+ 	phy-handle = <&phy0>;
+ 
+ 	phy0: ethernet-phy@0 {
+-		compatible = "ethernet-phy-id0007.c0f0",
+-			     "ethernet-phy-ieee802.3-c22";
++		compatible = "ethernet-phy-id0007.c0f0";
+ 		reg = <0>;
+ 
+ 		reset-gpios = <&port4 2 GPIO_ACTIVE_LOW>;
+diff --git a/arch/arm/boot/dts/renesas/r7s72100-rskrza1.dts b/arch/arm/boot/dts/renesas/r7s72100-rskrza1.dts
+index 91178fb9e721..beeb2db1c28b 100644
+--- a/arch/arm/boot/dts/renesas/r7s72100-rskrza1.dts
++++ b/arch/arm/boot/dts/renesas/r7s72100-rskrza1.dts
+@@ -251,8 +251,7 @@ &ether {
+ 	renesas,no-ether-link;
+ 	phy-handle = <&phy0>;
+ 	phy0: ethernet-phy@0 {
+-		compatible = "ethernet-phy-idb824.2814",
+-			     "ethernet-phy-ieee802.3-c22";
++		compatible = "ethernet-phy-idb824.2814";
+ 		reg = <0>;
+ 	};
+ };
+diff --git a/arch/arm/boot/dts/renesas/r7s9210-rza2mevb.dts b/arch/arm/boot/dts/renesas/r7s9210-rza2mevb.dts
+index f69a7fe56b6e..55221c82ef64 100644
+--- a/arch/arm/boot/dts/renesas/r7s9210-rza2mevb.dts
++++ b/arch/arm/boot/dts/renesas/r7s9210-rza2mevb.dts
+@@ -94,8 +94,7 @@ &ether1 {
+ 	renesas,no-ether-link;
+ 	phy-handle = <&phy1>;
+ 	phy1: ethernet-phy@1 {
+-		compatible = "ethernet-phy-id001c.c816",
+-			     "ethernet-phy-ieee802.3-c22";
++		compatible = "ethernet-phy-id001c.c816";
+ 		reg = <0>;
+ 	};
+ };
+diff --git a/arch/arm/boot/dts/renesas/r8a7740-armadillo800eva.dts b/arch/arm/boot/dts/renesas/r8a7740-armadillo800eva.dts
+index 04d24b6d8056..f0e8346354d5 100644
+--- a/arch/arm/boot/dts/renesas/r8a7740-armadillo800eva.dts
++++ b/arch/arm/boot/dts/renesas/r8a7740-armadillo800eva.dts
+@@ -182,8 +182,7 @@ &ether {
+ 	status = "okay";
+ 
+ 	phy0: ethernet-phy@0 {
+-		compatible = "ethernet-phy-id0007.c0f1",
+-			     "ethernet-phy-ieee802.3-c22";
++		compatible = "ethernet-phy-id0007.c0f1";
+ 		reg = <0>;
+ 		reset-gpios = <&pfc 18 GPIO_ACTIVE_LOW>;
+ 	};
+diff --git a/arch/arm/boot/dts/renesas/r8a7742-iwg21d-q7-dbcm-ca.dts b/arch/arm/boot/dts/renesas/r8a7742-iwg21d-q7-dbcm-ca.dts
+index 33ac4bd1e63b..c43c08d9ff94 100644
+--- a/arch/arm/boot/dts/renesas/r8a7742-iwg21d-q7-dbcm-ca.dts
++++ b/arch/arm/boot/dts/renesas/r8a7742-iwg21d-q7-dbcm-ca.dts
+@@ -85,8 +85,7 @@ &ether {
+ 	status = "okay";
+ 
+ 	phy1: ethernet-phy@1 {
+-		compatible = "ethernet-phy-id0022.1560",
+-			     "ethernet-phy-ieee802.3-c22";
++		compatible = "ethernet-phy-id0022.1560";
+ 		reg = <1>;
+ 		micrel,led-mode = <1>;
+ 	};
+diff --git a/arch/arm/boot/dts/renesas/r8a7742-iwg21d-q7.dts b/arch/arm/boot/dts/renesas/r8a7742-iwg21d-q7.dts
+index 6a8a0d2113b0..86bc4a022267 100644
+--- a/arch/arm/boot/dts/renesas/r8a7742-iwg21d-q7.dts
++++ b/arch/arm/boot/dts/renesas/r8a7742-iwg21d-q7.dts
+@@ -175,8 +175,7 @@ &avb {
+ 	status = "okay";
+ 
+ 	phy3: ethernet-phy@3 {
+-		compatible = "ethernet-phy-id0022.1622",
+-			     "ethernet-phy-ieee802.3-c22";
++		compatible = "ethernet-phy-id0022.1622";
+ 		reg = <3>;
+ 		micrel,led-mode = <1>;
+ 	};
+diff --git a/arch/arm/boot/dts/renesas/r8a7743-sk-rzg1m.dts b/arch/arm/boot/dts/renesas/r8a7743-sk-rzg1m.dts
+index 9b16fe7ce713..60217797e534 100644
+--- a/arch/arm/boot/dts/renesas/r8a7743-sk-rzg1m.dts
++++ b/arch/arm/boot/dts/renesas/r8a7743-sk-rzg1m.dts
+@@ -70,8 +70,7 @@ &ether {
+ 	status = "okay";
+ 
+ 	phy1: ethernet-phy@1 {
+-		compatible = "ethernet-phy-id0022.1537",
+-			     "ethernet-phy-ieee802.3-c22";
++		compatible = "ethernet-phy-id0022.1537";
+ 		reg = <1>;
+ 		interrupts-extended = <&irqc 0 IRQ_TYPE_LEVEL_LOW>;
+ 		micrel,led-mode = <1>;
+diff --git a/arch/arm/boot/dts/renesas/r8a7745-iwg22d-sodimm.dts b/arch/arm/boot/dts/renesas/r8a7745-iwg22d-sodimm.dts
+index 3ac2526a24a1..a8a4ba5b67f1 100644
+--- a/arch/arm/boot/dts/renesas/r8a7745-iwg22d-sodimm.dts
++++ b/arch/arm/boot/dts/renesas/r8a7745-iwg22d-sodimm.dts
+@@ -123,8 +123,7 @@ phy3: ethernet-phy@3 {
+ 	 * On some older versions of the platform (before R4.0) the phy address
+ 	 * may be 1 or 3. The address is fixed to 3 for R4.0 onwards.
+ 	 */
+-		compatible = "ethernet-phy-id0022.1622",
+-			     "ethernet-phy-ieee802.3-c22";
++		compatible = "ethernet-phy-id0022.1622";
+ 		reg = <3>;
+ 		micrel,led-mode = <1>;
+ 	};
+diff --git a/arch/arm/boot/dts/renesas/r8a7745-sk-rzg1e.dts b/arch/arm/boot/dts/renesas/r8a7745-sk-rzg1e.dts
+index 571615a50620..42e82f069755 100644
+--- a/arch/arm/boot/dts/renesas/r8a7745-sk-rzg1e.dts
++++ b/arch/arm/boot/dts/renesas/r8a7745-sk-rzg1e.dts
+@@ -65,8 +65,7 @@ &ether {
+ 	status = "okay";
+ 
+ 	phy1: ethernet-phy@1 {
+-		compatible = "ethernet-phy-id0022.1537",
+-			     "ethernet-phy-ieee802.3-c22";
++		compatible = "ethernet-phy-id0022.1537";
+ 		reg = <1>;
+ 		interrupts-extended = <&irqc 8 IRQ_TYPE_LEVEL_LOW>;
+ 		micrel,led-mode = <1>;
+diff --git a/arch/arm/boot/dts/renesas/r8a77470-iwg23s-sbc.dts b/arch/arm/boot/dts/renesas/r8a77470-iwg23s-sbc.dts
+index e511eb425bc5..b78dff5d4184 100644
+--- a/arch/arm/boot/dts/renesas/r8a77470-iwg23s-sbc.dts
++++ b/arch/arm/boot/dts/renesas/r8a77470-iwg23s-sbc.dts
+@@ -79,8 +79,7 @@ &avb {
+ 	status = "okay";
+ 
+ 	phy3: ethernet-phy@3 {
+-		compatible = "ethernet-phy-id0022.1622",
+-			     "ethernet-phy-ieee802.3-c22";
++		compatible = "ethernet-phy-id0022.1622";
+ 		reg = <3>;
+ 		interrupts-extended = <&gpio5 16 IRQ_TYPE_LEVEL_LOW>;
+ 		micrel,led-mode = <1>;
+diff --git a/arch/arm/boot/dts/renesas/r8a7790-lager.dts b/arch/arm/boot/dts/renesas/r8a7790-lager.dts
+index 4f002aa7fbaf..8e7665501675 100644
+--- a/arch/arm/boot/dts/renesas/r8a7790-lager.dts
++++ b/arch/arm/boot/dts/renesas/r8a7790-lager.dts
+@@ -685,8 +685,7 @@ &ether {
+ 	status = "okay";
+ 
+ 	phy1: ethernet-phy@1 {
+-		compatible = "ethernet-phy-id0022.1537",
+-			     "ethernet-phy-ieee802.3-c22";
++		compatible = "ethernet-phy-id0022.1537";
+ 		reg = <1>;
+ 		interrupts-extended = <&irqc0 0 IRQ_TYPE_LEVEL_LOW>;
+ 		micrel,led-mode = <1>;
+diff --git a/arch/arm/boot/dts/renesas/r8a7790-stout.dts b/arch/arm/boot/dts/renesas/r8a7790-stout.dts
+index b1e20579e071..8ba9d85f1038 100644
+--- a/arch/arm/boot/dts/renesas/r8a7790-stout.dts
++++ b/arch/arm/boot/dts/renesas/r8a7790-stout.dts
+@@ -208,8 +208,7 @@ &ether {
+ 	status = "okay";
+ 
+ 	phy1: ethernet-phy@1 {
+-		compatible = "ethernet-phy-id0022.1537",
+-			     "ethernet-phy-ieee802.3-c22";
++		compatible = "ethernet-phy-id0022.1537";
+ 		reg = <1>;
+ 		interrupts-extended = <&irqc0 1 IRQ_TYPE_LEVEL_LOW>;
+ 		micrel,led-mode = <1>;
+diff --git a/arch/arm/boot/dts/renesas/r8a7791-koelsch.dts b/arch/arm/boot/dts/renesas/r8a7791-koelsch.dts
+index 61ea438eb6af..48db62e0ff87 100644
+--- a/arch/arm/boot/dts/renesas/r8a7791-koelsch.dts
++++ b/arch/arm/boot/dts/renesas/r8a7791-koelsch.dts
+@@ -676,8 +676,7 @@ &ether {
+ 	status = "okay";
+ 
+ 	phy1: ethernet-phy@1 {
+-		compatible = "ethernet-phy-id0022.1537",
+-			     "ethernet-phy-ieee802.3-c22";
++		compatible = "ethernet-phy-id0022.1537";
+ 		reg = <1>;
+ 		interrupts-extended = <&irqc0 0 IRQ_TYPE_LEVEL_LOW>;
+ 		micrel,led-mode = <1>;
+diff --git a/arch/arm/boot/dts/renesas/r8a7791-porter.dts b/arch/arm/boot/dts/renesas/r8a7791-porter.dts
+index 81b3c5d74e9b..811e263452ac 100644
+--- a/arch/arm/boot/dts/renesas/r8a7791-porter.dts
++++ b/arch/arm/boot/dts/renesas/r8a7791-porter.dts
+@@ -326,8 +326,7 @@ &ether {
+ 	status = "okay";
+ 
+ 	phy1: ethernet-phy@1 {
+-		compatible = "ethernet-phy-id0022.1537",
+-			     "ethernet-phy-ieee802.3-c22";
++		compatible = "ethernet-phy-id0022.1537";
+ 		reg = <1>;
+ 		interrupts-extended = <&irqc0 0 IRQ_TYPE_LEVEL_LOW>;
+ 		micrel,led-mode = <1>;
+diff --git a/arch/arm/boot/dts/renesas/r8a7793-gose.dts b/arch/arm/boot/dts/renesas/r8a7793-gose.dts
+index 5c6928c941ac..69d9c674bb03 100644
+--- a/arch/arm/boot/dts/renesas/r8a7793-gose.dts
++++ b/arch/arm/boot/dts/renesas/r8a7793-gose.dts
+@@ -616,8 +616,7 @@ &ether {
+ 	status = "okay";
+ 
+ 	phy1: ethernet-phy@1 {
+-		compatible = "ethernet-phy-id0022.1537",
+-			     "ethernet-phy-ieee802.3-c22";
++		compatible = "ethernet-phy-id0022.1537";
+ 		reg = <1>;
+ 		interrupts-extended = <&irqc0 0 IRQ_TYPE_LEVEL_LOW>;
+ 		micrel,led-mode = <1>;
+diff --git a/arch/arm/boot/dts/renesas/r8a7794-alt.dts b/arch/arm/boot/dts/renesas/r8a7794-alt.dts
+index 3f06a7f67d62..5d6d0d8cc4dd 100644
+--- a/arch/arm/boot/dts/renesas/r8a7794-alt.dts
++++ b/arch/arm/boot/dts/renesas/r8a7794-alt.dts
+@@ -378,8 +378,7 @@ &ether {
+ 	status = "okay";
+ 
+ 	phy1: ethernet-phy@1 {
+-		compatible = "ethernet-phy-id0022.1537",
+-			     "ethernet-phy-ieee802.3-c22";
++		compatible = "ethernet-phy-id0022.1537";
+ 		reg = <1>;
+ 		interrupts-extended = <&irqc0 8 IRQ_TYPE_LEVEL_LOW>;
+ 		micrel,led-mode = <1>;
+diff --git a/arch/arm/boot/dts/renesas/r8a7794-silk.dts b/arch/arm/boot/dts/renesas/r8a7794-silk.dts
+index 342825605768..af474b1d9676 100644
+--- a/arch/arm/boot/dts/renesas/r8a7794-silk.dts
++++ b/arch/arm/boot/dts/renesas/r8a7794-silk.dts
+@@ -412,8 +412,7 @@ &ether {
+ 	status = "okay";
+ 
+ 	phy1: ethernet-phy@1 {
+-		compatible = "ethernet-phy-id0022.1537",
+-			     "ethernet-phy-ieee802.3-c22";
++		compatible = "ethernet-phy-id0022.1537";
+ 		reg = <1>;
+ 		interrupts-extended = <&irqc0 8 IRQ_TYPE_LEVEL_LOW>;
+ 		micrel,led-mode = <1>;
 -- 
-Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+2.43.0
 
 
