@@ -1,189 +1,350 @@
-Return-Path: <devicetree+bounces-275548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275549-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MMaCMe1stGmWnwAAu9opvQ
-	(envelope-from <devicetree+bounces-275548-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:00:45 +0100
+	id ICpeG8VztGmUoQAAu9opvQ
+	(envelope-from <devicetree+bounces-275549-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:29:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45B7B289852
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:00:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7B13289BAE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:29:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CB9AF3034CAC
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:00:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C446C305C3D2
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:29:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C16A936C9CF;
-	Fri, 13 Mar 2026 20:00:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F7873D6469;
+	Fri, 13 Mar 2026 20:29:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Rk/7P1tc"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="Lvy4G9mQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 587B328852E;
-	Fri, 13 Mar 2026 20:00:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3FC83CF671
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 20:29:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773432041; cv=none; b=cOh49/JFemU8Fkg7hamgPKtJfq35DVMyyZaKuqcR3ByoXY8IwnEzVu0CMLapT9fd3/kLZ5Gn/AKe6lpmJa6lfDK1JdUQPLwr7nBbbhejLks249txxR3JzX5UCuNrRqbUn446lJTr4nt0yv/bVqULTN12G/KiYBTu/2d11owfd4A=
+	t=1773433747; cv=none; b=SFTKlIkVFPJDBbyC95XbVlPmINk145nMuluEc1Rpl0LM0heRfwY2/S92c2+kKLfmg0/tJjnzrJV+P8kbe1rNtiKnBdz43XVNaJaWLKIiTw0QsyWYQz/8izh2MNGvpX22aL+ADlysjZ8NKRBTAhNazQCkxudBJ/e/EOTs1/CGXyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773432041; c=relaxed/simple;
-	bh=7y5xiInZCWmmHEw1menCYPBGJisRe/lJxFo8cH20mis=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d4e1sU5Mys3lP+2lKpA5VngcKt1rMIIIWFW0DRm4mV/HuMnbpBH8FEHg+1mKlQWUnVLKQ2Ctfn2Bq5PuToyV3RAuZZOdCWotVra2kn8ELYEKAL3pRjGd5R+y9PS+KbloIJMt/p6yIJKG2kk4i4AgPVX4KfB4iWEbJ8DU+CRI0fM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Rk/7P1tc; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1773432038;
-	bh=7y5xiInZCWmmHEw1menCYPBGJisRe/lJxFo8cH20mis=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Rk/7P1tc2/5uFwKiov74BGEb8RCgKEmBskn1txNGp5nOdDabX6F9uBWC5DGKJaAbJ
-	 qHM1Bq13agSKpEOLatcRPLD+TAsXO9Kwaqlebhhxpn64r1H2BMsms01h9GnECeKcgi
-	 PUsZqq2KO2l4ecS+HEq8tzXYLkvJqA+enVSU/7USCarlTf2XNl2Syj7q2Dy8p4tshz
-	 1z7wCXXpisV0YDT/dT3ca2HDvXIm9d3xXBLqxxTYCa+TYMMyyoiM1m5z2aShZc/VbO
-	 lx0GwJE/HdtlOZy988O9SkW423YeSfKFl19AoImYAx6HrxbFYQs4q2iNKvwmX/gcrE
-	 fKhRfRZfO90Vw==
-Received: from [10.40.0.100] (185-67-175-126.lampert.tv [185.67.175.126])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: mriesch)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id E8D0417E0222;
-	Fri, 13 Mar 2026 21:00:37 +0100 (CET)
-Message-ID: <e064b4f2-a138-4ea9-aee4-93ac8af38f64@collabora.com>
-Date: Fri, 13 Mar 2026 21:00:37 +0100
+	s=arc-20240116; t=1773433747; c=relaxed/simple;
+	bh=XS2aHgm5sUBzDfQIeDhEJ1Eh27j/Cdg/yT6UNDNK1Zo=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=i2SzFA0VSOggMiSxteUyEHiluul9EvvIkZ27t1whZHmRZWAJcoUF++BH706wp+lhuClLhkrEDxcR2pZQzrIvM+b8OYlJYU9NOpQyzhubxmybdv8vtnzXAKkm6xiUMFjof8hKqwT9/8+LgKDJ8A/TwR7e0Vo0GTVo9l2afPXfBug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=Lvy4G9mQ; arc=none smtp.client-ip=185.67.36.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id 1A2FE240028
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 21:29:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
+	t=1773433743; bh=Y+CSJSmxjqkcbaW3wd0CmAbzhYWJpcBSr+yGN8onFgE=;
+	h=Message-ID:Subject:From:To:Cc:Date:Autocrypt:Content-Type:
+	 MIME-Version:OpenPGP:From;
+	b=Lvy4G9mQhXR3mx3S16dx0FzYZ0mvlPiZrnPAme+QFRkfjWSZgVj2DoZEWycRuMQYd
+	 7oEJ6+VMpM7iUmM/jHPN9S4TpkOwQmUqU3f+AvGpCYhrwOWhKPCDlO9gnPvlSq9aEl
+	 rLJ4pi1KvsNKusYoqbQrG8tN2oFG4WnJz2NMDpJV3mZUFkIk28xno4gKFaHgNhu/8n
+	 Trcn6tv6L70fg0mOxuvKynZ/aqXdWQsKb1D7k+n2etK2U2oE3ogZckMgljxrMUK65W
+	 pW3DKlTDpO0/VnVk4wB/yNRs8Ca60jekzIebtwTBcyVDLmmf+8CiId/ciyM+LqDYMU
+	 y0KX92ebFhn6A==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4fXbfz6HX8z6tsf;
+	Fri, 13 Mar 2026 21:28:59 +0100 (CET)
+Message-ID: <6f2298f3298dc81e6e2ed34ca43424fc39ce3518.camel@posteo.de>
+Subject: Re: [PATCH v3 5/7] dt-bindings: mfd: Add synology,microp device
+From: Markus Probst <markus.probst@posteo.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley	 <conor+dt@kernel.org>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>,  Miguel Ojeda <ojeda@kernel.org>, Boqun Feng
+ <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,  =?ISO-8859-1?Q?Bj=F6rn?=
+ Roy Baron	 <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
+ Andreas Hindborg	 <a.hindborg@kernel.org>, Alice Ryhl
+ <aliceryhl@google.com>, Trevor Gross	 <tmgross@umich.edu>, Danilo Krummrich
+ <dakr@kernel.org>, "Rafael J. Wysocki"	 <rafael@kernel.org>, Igor Korotin
+ <igor.korotin.linux@gmail.com>, Daniel Almeida
+ <daniel.almeida@collabora.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Krzysztof =?UTF-8?Q?Wilczy=C5=84ski?=	 <kwilczynski@kernel.org>, Pavel
+ Machek <pavel@kernel.org>, Len Brown	 <lenb@kernel.org>, Robert Moore
+ <robert.moore@intel.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	rust-for-linux@vger.kernel.org, driver-core@lists.linux.dev, 
+	linux-pci@vger.kernel.org, linux-leds@vger.kernel.org, 
+	linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev
+Date: Fri, 13 Mar 2026 20:29:01 +0000
+In-Reply-To: <02e0772d-ba65-4eb8-8453-e0b3eaa4af96@kernel.org>
+References: <20260313-synology_microp_initial-v3-0-ad6ac463a201@posteo.de>
+	 <20260313-synology_microp_initial-v3-5-ad6ac463a201@posteo.de>
+	 <02e0772d-ba65-4eb8-8453-e0b3eaa4af96@kernel.org>
+Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
+ keydata=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
+ jfGillcaQOqFZ3WwVqyzG1BUfTow==
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-b8ECSF0SkKDa7tfzL8rb"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/9] media: dt-bindings: add rockchip rk3588 vicap
-To: Conor Dooley <conor@kernel.org>
-Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Kever Yang <kever.yang@rock-chips.com>,
- Jagan Teki <jagan@amarulasolutions.com>,
- =?UTF-8?B?0JrRg9C30L3QtdGG0L7QsiDQnNC40YXQsNC40Ls=?=
- <mai.kuznetsov.misha@gmail.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Collabora Kernel Team <kernel@collabora.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250430-rk3588-vicap-v1-0-b3bddf749914@collabora.com>
- <20250430-rk3588-vicap-v1-2-b3bddf749914@collabora.com>
- <20260313-quickly-imperial-47638c9f0d4f@spud>
- <20260313-coyness-jab-ff0c85654555@spud>
-Content-Language: en-US
-From: Michael Riesch <michael.riesch@collabora.com>
-In-Reply-To: <20260313-coyness-jab-ff0c85654555@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
+	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275548-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[linux.intel.com,ideasonboard.com,kernel.org,sntech.de,rock-chips.com,amarulasolutions.com,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[posteo.de:+];
+	FREEMAIL_TO(0.00)[kernel.org,linuxfoundation.org,garyguo.net,protonmail.com,google.com,umich.edu,gmail.com,collabora.com,intel.com];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275549-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[michael.riesch@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:dkim,collabora.com:email,collabora.com:mid]
-X-Rspamd-Queue-Id: 45B7B289852
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[31];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: D7B13289BAE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Conor,
 
-On 3/13/26 17:57, Conor Dooley wrote:
-> On Fri, Mar 13, 2026 at 04:56:29PM +0000, Conor Dooley wrote:
->> On Fri, Mar 13, 2026 at 04:20:44PM +0100, Michael Riesch via B4 Relay wrote:
->>> From: Michael Riesch <michael.riesch@collabora.com>
->>>
->>> Add documentation for the Rockchip RK3588 Video Capture (VICAP) unit.
->>>
->>> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
->>> ---
->>>  .../bindings/media/rockchip,rk3588-vicap.yaml      | 256 +++++++++++++++++++++
->>>  MAINTAINERS                                        |   1 +
->>>  2 files changed, 257 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3588-vicap.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3588-vicap.yaml
->>> new file mode 100644
->>> index 000000000000..7fd4214921cb
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3588-vicap.yaml
->>> @@ -0,0 +1,256 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/media/rockchip,rk3588-vicap.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Rockchip RK3588 Video Capture (VICAP)
->>> +
->>> +maintainers:
->>> +  - Michael Riesch <michael.riesch@collabora.com>
->>> +
->>> +description:
->>> +  The Rockchip RK3588 Video Capture (VICAP) block features a digital video
->>> +  port (DVP, a parallel video interface) and six MIPI CSI-2 ports. It receives
->>> +  the data from camera sensors, video decoders, or other companion ICs and
->>> +  transfers it into system main memory by AXI bus and/or passes it to the image
->>> +  signal processing (ISP) blocks.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - rockchip,rk3588-vicap
->>
->> Curious why this cannot share a binding with the existing 3568-vicap.
->> Looks pretty similar binding wise at least.
->> If it's an entirely different architecture or whatever, please mention
->> that in your commit message.
-> 
-> Looking further, it's using the same driver too...
+--=-b8ECSF0SkKDa7tfzL8rb
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-It's not an entirely different architecture (indeed it uses the same
-driver). There are some differences to the RK3568 and the PX30 (which
-uses its own binding as well BTW): apart from different resets and
-clocks that's mostly the notion of the connections to the ISP. But to be
-fair, as it turns out this boils down to two additional ports.
-Other recent SoCs (e.g., RK3576 or RK3562) will be a good match for the
-RK3588 binding, but then again exactly resets, clocks and ports may vary
-in that variants as well.
+On Fri, 2026-03-13 at 20:37 +0100, Krzysztof Kozlowski wrote:
+> On 13/03/2026 20:03, Markus Probst via B4 Relay wrote:
+> > From: Markus Probst <markus.probst@posteo.de>
+> >=20
+> > Add the Synology Microp devicetree bindings. Those devices are
+> > microcontrollers found on Synology NAS devices. They are connected to a
+> > serial port on the host device.
+> >=20
+> > Those devices are used to control certain LEDs, fan speeds, a beeper, t=
+o
+> > handle buttons, fan failures and to properly shutdown and reboot the
+> > device.
+> >=20
+> > Signed-off-by: Markus Probst <markus.probst@posteo.de>
+> > ---
+>=20
+> You keep sending the same without responding to review.
+>=20
+> NAK
+All review comments have been resolved to my knowledge, but here a
+formal reply to all of them.
 
-Personally I find this variant-specific DT binding magic hard to read,
-and thus I went for a separate binding. That said, please let me know
-what your preference is and I'll arrange it that way. Not a hill I'd
-want to die on.
+> A nit, subject: drop second/last, redundant "binding for". The
+> "dt-bindings" prefix is already stating that these are bindings.
+Has been removed from the patch subject.
 
-Best regards,
-Michael
+> > +description: |
+> Do not need '|' unless you need to preserve formatting.
+It got removed in v2.
+In the current patch revision v3, it is needed because it has ":" in
+the description (to ensure it does not get interpreted as property).
+Thus it has been readded.
 
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - synology,microp
+> Missing blank line. Look at other bindings how to write one.
+Blank line has been added.
+
+> > +  power-led:
+> > +    $ref: /schemas/leds/common.yaml
+> > +    unevaluatedProperties: false
+> > +  status-led:
+> > +    $ref: /schemas/leds/common.yaml
+> > +    unevaluatedProperties: false
+> > +  alert-led:
+> > +    $ref: /schemas/leds/common.yaml
+> > +    unevaluatedProperties: false
+> > +  usb-led:
+> > +    $ref: /schemas/leds/common.yaml
+> > +    unevaluatedProperties: false
+> That's pretty unreadable code.
+>
+> ... and could be simpler with patternProperties and regex
+It has been minified using patternProperties.
+
+> > +  no-check-fan:
+> Vendor prefix
+
+> > +    type: boolean
+> > +    description: |
+> > +      Disable fan failure check.
+>
+> You described the desired Linux feature or behavior, not the actual
+> hardware. The bindings are about the latter, so instead you need to
+> rephrase the property and its description to match actual hardware
+> capabilities/features/configuration etc.
+
+> > +
+> > +      The fan failure event is triggered on the device, even if
+the fan
+> > +      has been intentionally set to a low speed. This property
+prevents a
+> > +      hardware protection shutdown if a fan failure event is
+reported.
+> > +  no-check-cpu-fan:
+>
+> You described the desired Linux feature or behavior, not the actual
+> hardware. The bindings are about the latter, so instead you need to
+> rephrase the property and its description to match actual hardware
+> capabilities/features/configuration etc.
+The 2 properties have been removed entirely. Thus those comments are
+not relevant anymore.
+
+> > +    uart {
+>
+> Drop, unuesed
+Has been dropped.
+
+> > +      microp {
+
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+>
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetr=
+ee-basics.html#generic-names-recommendation
+> If you cannot find a name matching your device, please check in
+kernel
+> sources for similar cases or you can grow the spec (via pull request
+to
+> DT spec repo).
+node name has been changed to mcu.
+
+> You we have tools which save you review time. Most important, save
+> maintainers/reviewers time from giving feedback on obvious mistakes.
+> You
+> must use these tools, otherwise maintainers get grumpy by wasting
+their
+> time.
+
+> Please run scripts/checkpatch.pl on the patches and fix reported
+> warnings. After that, run also 'scripts/checkpatch.pl --strict' on
+the
+> patches and (probably) fix more warnings. Some warnings can be
+ignored,
+> especially from --strict run, but the code here looks like it needs a
+> fix. Feel free to get in touch if the warning is not clear.
+with the exception of
+- help paragraph having less than 4 lines in Kconfig (not necessary in
+this case)
+- of_device_id not being const (it has to be)
+- "added, moved or deleted file(s), does MAINTAINERS need updating?"
+(file will be added in a following patch)
+there are no warnings left.
+
+> This is not an "MFD" device.
+It now uses the MFD APIs. By the definiton of @Lee (assuming I
+understood it correctly), this device should now qualify as "MFD"
+device.
+
+> > +
+> > +    mcu {
+>
+> Please read previous comments.
+
+You are likly trying to refer to this comment from you:
+> Depending what this is. MCU is generic purpose unit where you load
+your
+> different FW for different purposes and you have here specific - to
+> handle certain aspects of this entire machine. This looks like EC, so
+> should be called embedded-controller and placed in that directory.
+Synology uses Microchip PIC for this purpose. On a Synology DS215j, it
+uses a "Microchip PIC16F1829". At least to me, this looks like a
+general purpose microcontroller with firmware from synology flashed
+onto it. Therefore it is a MCU.
+
+If I did miss any relevant comments, let me know.
+(Replies on replies on review comments have not been included here).
+
+>=20
+> Best regards,
+> Krzysztof
+
+Thanks
+- Markus Probst
+
+--=-b8ECSF0SkKDa7tfzL8rb
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJPBAABCAA5FiEEgnQYxPSsWOdyMMRzNHYf+OetQ9IFAmm0c30bFIAAAAAABAAO
+bWFudTIsMi41KzEuMTEsMiwyAAoJEDR2H/jnrUPSyREP/3+/Ri5V9Cq/3P1ORKA6
+yVucNv6MQqstNnFoH/jhsPRNSqFgzVwe7TYPnZ06ZkJ7qhAnNFJ03ZcrYPcV7hUD
+AQ0/oUOIsQbJffOgKnN4zTs9YBoRT7wJT/Z+FbWtXbUt/q41s6blyIRphwxu5aqo
+nAbrTsll6Q6Pddd8/pIwFst0925pNW1bEjWFPlgkx1Srtk3DVWdXuV4czP830TLK
+7zKOBO45koOv8GBDELjTHu4EVBxzTXJewNYaIPqXBCe48AIQMEfoYv0ePhxevyx6
+VzTv94E2angFvxbOVQvD5+QJAEnhNKoAMGLCoEWla9jh8nO63m31INElYlDz7kMe
+WkklT05+O9bImXJ8a5Q2LzFFHgJpTUlTCdgvh6bB0Zri6XLEC4MAoggoAlC6qOjA
+7eSTEb38Sc2Az7427Z7QUsPLm2LCm+i6UmVIN3ytybf58kvc6nyp2EbDvGXraVKh
+9jm29Y7Rg3GzRgfnZp1coSf0GQ28zNOtrnJHKXXYuXg1/pan+8PQbNtuPPoIPs3y
+gjwYKXjM+aaL1WIrquCnehgOSsP2tXMXwaXaMH1lwJqKwpOxm6wvlZWS6vtGSkNg
+ZGDZTjV4tDlt+sC3M2Zuu+786zSYPjMCN9jontNQ5/Kbepd2m7vYZrS2beEI6rfN
+ZSuINDibpIYoF79wdT6AFyZ9
+=sCIA
+-----END PGP SIGNATURE-----
+
+--=-b8ECSF0SkKDa7tfzL8rb--
 
