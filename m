@@ -1,233 +1,177 @@
-Return-Path: <devicetree+bounces-275519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275520-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yHS/CNVdtGmKmgAAu9opvQ
-	(envelope-from <devicetree+bounces-275519-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:56:21 +0100
+	id QKEqJnxetGmKmgAAu9opvQ
+	(envelope-from <devicetree+bounces-275520-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:59:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D1BA288FFB
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:56:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45A5D289055
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:59:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 872AB3016D3D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:56:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1BDBD316D9FF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:57:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADB653DA7F8;
-	Fri, 13 Mar 2026 18:56:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 212403DEAFE;
+	Fri, 13 Mar 2026 18:57:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="b81A0PIW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rN9GwUbY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011001.outbound.protection.outlook.com [52.101.70.1])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 560DB3CF033;
-	Fri, 13 Mar 2026 18:56:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.1
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773428178; cv=fail; b=q7DF7af48JL7q7q59F4xgvFm/fZ79mfLXOy3U5sB2LCf6A3Otuz515NP6zbr1HA2rarmhsIWYgDhQKAM2bnwl3DOBHhl3CiDo6q/p6UyOPBxg0a2zqf5EK0/S64okyDSDJE71Qy98+8+AynaV2K1R0gl9SVs3pyHzvV5Eck/UQg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773428178; c=relaxed/simple;
-	bh=MTV0fR5o7rMLfTT0lU9uvFYLySXD1hiLO7A4Pq8Gawc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=tVkkqyvXwnVdZdClMXRZjeF+ikuePII9Xlnx3WMPpXYZH78gawpsExOB9XehD/FcbLLNFQPL1ZBz3yvcDUk6GDMzxH5lGlCgFMXHVYBJV506MI1IYaX1J/s1UOC/E/+9SxLHcf8PtaY9+fLAoyaQRm/LvTGn4bdaYuLD6prWirw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=b81A0PIW; arc=fail smtp.client-ip=52.101.70.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YSnGf06ISJKnmVeFlpdfnP7AIzjU+4vjazOVTGbXMEHSROmN0JPMUucisOl3YdqYJKlXpryyIeKMUu5gAjkWiHmBFAF/0xqFtQzY/CnpcfZGCP6LHx9LQ6H9+kRp32oL0jkiXxBLUXwN9MSLnnSlbh1JqIpL2YW1ClNLB3rmzrO5cEBpRGom+LgjdONGFd1NMybpUV5LxUERQT1uTlBj3+VvFdiERjFXE+FTgv7BK0JP6yIDBb4rVPS8zXP2YC4HM6+2lMFpeY0LfX0pp7KSn4KpVX6aaH3QtVclsmzP7LSPl1J92l0RcEz5LL4f5r2DSDoB0OhIGBCrZBm4/bxzVw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=U5jcaFlg7wQXjyDOL2oE/RKgdyxRauH/LeZ+d9xwJaY=;
- b=MxC08N+4U9XT5AJhsokPCqGjc8iLEQ+KYoDbhfMJI1wxxNcmhSPuF+c2VPwOYcgKsNLXmv/DV3xGLwth+pKYiOCKKjzcFIIiMD8hvrH5JA54BzF/2e35vpUM5o1A8jnQE7X5nI6nqXBW2ddnmHRuasiSq1nwHiLZcIy4QqiZmcTY7tzEpanzuWQS6+3udyIRS1EBqZbnm6TuItR1MbIggvasksjRTzHkCWo2qtK2o3r/qrxeGAOEeFpxpaGJhsRxBA1rJ+GK+tBDqNkgWYeGNmVJdEAO5rp1qcyuXzndDUWPm/UMBtaCcPtCRj5scLUjgWQbfWwgyHGcSrGCobDTng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U5jcaFlg7wQXjyDOL2oE/RKgdyxRauH/LeZ+d9xwJaY=;
- b=b81A0PIWdq83A4m8se0R2W8fP5TVSyHQ/O9cr/8bW/TJTEw9SvkU376y2kF5eDmPE/j499dNPpuwXDzRlNmU5HZzIdYPvSIckNuS3idrmsg+Xo+QHEmaBarMsh9baYFL++1AOhqOYQMr6YVpGyM2MAj64knYFHnaBhpdeXFpA5G5N/K3Ms7FeLXs9kPsI4INwyGF0dWoHiLQDAmFoBQl1IZeK9XIqdkC724TNgfZ7yZvHOM4H1MXv2cw5LjWvtuVpO8jXsVOcLLR94Bo81ZJEYTKcNq5vZ850msMVu7yrbn00CyJ9LfeMo47tc9u8CnjlWu0iKXzw7tb6fWL3MalhQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by GVXPR04MB10325.eurprd04.prod.outlook.com (2603:10a6:150:1e6::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.16; Fri, 13 Mar
- 2026 18:56:05 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9700.010; Fri, 13 Mar 2026
- 18:56:09 +0000
-Date: Fri, 13 Mar 2026 14:56:03 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	pierluigi.p@variscite.com,
-	Stefano Radaelli <stefano.r@variscite.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v7 0/2] Add support for Variscite DART-MX95 and Sonata
- board
-Message-ID: <abRdwy_AS046QVRI@lizhi-Precision-Tower-5810>
-References: <20260313174707.26902-1-stefano.r@variscite.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260313174707.26902-1-stefano.r@variscite.com>
-X-ClientProxiedBy: SJ0PR03CA0261.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::26) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0A953DD526
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 18:57:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773428259; cv=none; b=DCA9hDVFZn4QfSkg6iUs66R4zHSXon45TbrjKZ5HXNj/W+JywZ1eEx4qIAQcV43HiCJ/Qm2/nPSdU8kfpcjVdWn3G2e/eCjMMyckjyg5wNbVv8R7zQD57HubArZl3T9fbr4h6Uq2A4Ox8D0wYhq+i0VBD4dpzvMQaMGt1igCD80=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773428259; c=relaxed/simple;
+	bh=34m2T8zjB+u4MLGHeKznxeFD6ttVQwhK+4XwYx0EGyM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YYjgOrpOz+hRG38cgGI0zgKbLa7KIzPuLv+q5fnbgm7e6DIQIC2Z26N5QJPnl52eUWoZ1Tpe2eNC/XNslS5219qjZ+/MVC490tss3l9ZMsTTP9ZXhVTSx1MmzlV1jg4O+CM3yVVRn8f5+bgr8fP3OwN721TTKp+uCSn4HiSm8Nw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rN9GwUbY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5C6BC2BCC6
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 18:57:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773428258;
+	bh=34m2T8zjB+u4MLGHeKznxeFD6ttVQwhK+4XwYx0EGyM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=rN9GwUbYc0LU//yQ7aS5ISpKN7mJwws6vgq4FtnDBrD0ZfmAGZkWuBdrmK88j9RVJ
+	 L4PA6Xz/VqnnAgsKs0d4ptSSCWYKdgpyNsYRiZu59dLGZ8GJF71YdkYdnBZlGNgy2t
+	 g8mX1QE5P5BjiJ6MMMaky/6/DtTXfC5E9lxRBWsrdyOtymwRis3/5dUCUOcj1xSUBt
+	 4UxZY/7KzsPiF0lTE/v9jVrg8fKhRqEp5TgjI87w/xWFaqFZQrv6oggKNidnLbib8T
+	 jO8XoFUDfttizxkmPNE+qajMbg3lOIxt/+PHWWVpxD8+7Sk9eBAL28YcOOufezRE0w
+	 Um1G5kRYVq14Q==
+Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-67bb5e4d06eso924626eaf.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 11:57:38 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWa/U/a+k/Ug94PXdavgHKkb7RySAd5aaryD2fu55TUeTgp+FObCukn5CgNd7/1mTOY+EOgqyMC3+xI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHWJTR6HlcXFwrAhrIaabO/9Wkoa71AmTGXoBBDRJFUxk83w9h
+	M2/lvGg6Qc7rQlLXYnFmGvGvQ2U2o0ZD8e3GoA7xwZuNuZyCroXKOtQMdyV6sA6B9cQhd1yc8mH
+	FwTHlYwl1kw+dtQvpExWY7yoYbSIXR9g=
+X-Received: by 2002:a05:6820:c93:b0:67b:bf52:9987 with SMTP id
+ 006d021491bc7-67bdaa63959mr2561459eaf.60.1773428257476; Fri, 13 Mar 2026
+ 11:57:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|GVXPR04MB10325:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7bb4199e-b199-4883-0cad-08de81323031
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|366016|376014|19092799006|1800799024|52116014|7416014|38350700014|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
- GFCi4JbMws0nYIxZqw6mJkuAb/zykDVGGSCceHkunYgy5l4Qw+gttpoX/umGiwFkyC6wwiE7cXGA4+uH18qWye6sv+Nmns0u0lzIDWwDp846JsJUscE64qjYnKKfzEM5QrjvJDX6TL1cDS2eYJ+JAtMw6f13FGNKMnRWurK3UHWSpra2AeXlnDktJ7FXpC/Ca1J+ielpLs8ohzWvyLor7nfmIL54yiTTvZB3nabJb04jTVZTARy1E3+ftp0bXOc84lDOWu0JlCoAvcU1yMblDXiRI4DXfjp6IsOXBH+jfvRKYq6QLckwoPQaJpOybMXIwTIDcyzUkOMIya5MZ5/mu5SE5r97BrmGURzHw9pJq2+dABadJcFATFZnW9lppiV8UHIWzxqSaAX4rf2RC6yBnO3SFyIGMYFpfAPEkB6GF60HTQqcPG0Pmbmm08fm/oYkWhbv+hdYIbFWXuoty2jLsICmcZD0O6wsKN9NB4sneUhI9A2zoAO/nFkdTcuZ65YjXuGkK+D6ush9LA4AFxAsDPsDRBfAc+LAR0cbzy/uIvP9UyP8vPFPkPoHO2d/9PWjiKAdC8A1M8W2cyQUOKNTZDkwzqvb17wbwyN2AVFpdm1cBfIl9l81u+xEqVjZT8Ero8/hWo3oejAGEY+7GJo2d/fIq58Xb1jTK8s0gkINxIieYAlkT914vjB2hZi//jJURxK1jIXN0oSUs7qHKSdHKGDrPUTi27LZDwmxjRZj0UYwiksOC+7r/NIllkJXQK0B
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(19092799006)(1800799024)(52116014)(7416014)(38350700014)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?N9MuOXV7aE1QOk1NLetyZCrTNQYSpSjNSCYJ0EizX9ofOJKXXpuJkaqVf8eL?=
- =?us-ascii?Q?4lM+BAAT1DkkTEoRDhiE5+DWfgBJ2bscMFpQfq62t2b16GAfRSuDMHEjjJsz?=
- =?us-ascii?Q?VJaZulgI4UK5ht8Tl941CVFRVJpUEUBTbvJuYQahU6tfB5Mw1ILbQCJq6GJp?=
- =?us-ascii?Q?iJ3QMwvLf3UDAMq14DQa+Q+NzbVaWRCKkvOIc6kDUqWYqxUwxqRwKt2Nktwi?=
- =?us-ascii?Q?SpOhDtaG8sXS8A+koRHvkRTo+s1DLSsSQklAiUm3EwDSuFXFotc3DqKIU4WB?=
- =?us-ascii?Q?fxCaCjUxJKx0V2oSW7oNPB9VFsE2m5r2+C1XKDe8tZVhexALwAa9FgTdlMfx?=
- =?us-ascii?Q?rfk5FBmXYrSl4zIVat48ETdg0splyZcdjnqEKE6zwNiuR49kaFySatYobLYL?=
- =?us-ascii?Q?laPMZV5hXI5j/aR6RgqHWI9WOld7JMHFFwQjJeiy5Ug8fCLJCKcM4B8w3CAh?=
- =?us-ascii?Q?IBEZrr+640c3300turR3PtktndALIlD9ajDW3q0PNasTNjfNfJN7zZohQzcH?=
- =?us-ascii?Q?9o8vwxCiIgIo6wN4GPK8d6l3jt6ExMyD7D5jde2lZx2PvTBuaxITAo9UGH28?=
- =?us-ascii?Q?XtO8cNlbIaf32J6crLAjDInZki84nY+83gnYz6QLGvutM3WG/PMhvJnPSmg5?=
- =?us-ascii?Q?nRiQG3t4za+dMjp0092e6v6vF4qSC9q2KeMXzqD6d5N0OqJO8kq35Yn1XOM2?=
- =?us-ascii?Q?SLjoqWe+2FJzUTedxJmeIZx1R/U7dRiAVhya+TMaA7hPv/bDANEgT6FiWp9p?=
- =?us-ascii?Q?Jxvbzy9rVtDLxaKL+nlcIQeITz8ChP1Ggthw89r6mgEeIZ+R5r8nuXhUdyse?=
- =?us-ascii?Q?ZCYhYdU2mt3DJ0WKW1KXiqYbxYEHUNN4lywnXMp2F/DhLFXo5hewy85yMozj?=
- =?us-ascii?Q?GDhidFaKS2tsGvZinm93CMfcelJnXu4EN2fJ0r8+N2ZDtFmKsnkJk9SLiyuS?=
- =?us-ascii?Q?sBnZvTwQNiuz/t5H4VXb143J4T6z5eI94xLL9HUbW3XKmJouOlWZpg009qXg?=
- =?us-ascii?Q?q2kvw/K7UXG7Jef9PnwuFhSuXRwu8uIojYirUuV63SXUkUZoqYzOHf/43M2M?=
- =?us-ascii?Q?CIT+H/g8xt0U8biDwarG+3C5cYxJR97U1bxkQe6VBfY4N21MeTSnqZ5QwZuY?=
- =?us-ascii?Q?abe34qtXafReSZXceEPFRX01gOVm48QdGEHdeaRRar0+lEbv70lTa07Dc6j6?=
- =?us-ascii?Q?JFul63bPhI+/sn2P6Ffy/8MxKILYKjP2LaFRM6GBaJURnn6RKT735F/Svz5W?=
- =?us-ascii?Q?vv33TWDjLxwS9iUE/CwpdEPo7Yh4Eyvf8knSOlMyOw5FDxQoDdnC6is/9KMc?=
- =?us-ascii?Q?mWJaDWRPUbnzr/UDlkOv5U/IJvDewVGYEDIY9tS9Wi1NcP/8RM7GyR0anLG8?=
- =?us-ascii?Q?96qO/5LNP6Iq+WTGhnADv5WUesm/NRmuZrb/iOneSFnVPWMUlGdjpQ/+BLMK?=
- =?us-ascii?Q?g5U87xuWue8YaeB3KNMb7rUno+PV7jQlrrqHZ9Rm22VDf2sf64zkhxOdDxxJ?=
- =?us-ascii?Q?weziYrVlToS0HoIvxFBW54kEBzACoL3oEqCcG9CtdLtvpYCWCOor4ZGh5xHp?=
- =?us-ascii?Q?p/0Pqh0MJbMtHeUXP3aOBDpP+3/hiHbpyDvCZz9tDM7zHZOng0c0C1zwdp2U?=
- =?us-ascii?Q?cT72TRLdYSPGrrpCnfwDKts3WNwsir/WNuKQ0VewVNxM5CRs71If798id5gR?=
- =?us-ascii?Q?ZN0mjUua7CSx0992aFk80uQMu91bLfDBsk8zUQW4L7u6/uZCPzKlwt27Wx4h?=
- =?us-ascii?Q?dCbvclUBbA=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7bb4199e-b199-4883-0cad-08de81323031
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 18:56:09.1047
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Fa6YfOJhRSxYqAwD9AiTJkj5+fWWU2w3jB89695olZt8j9l1ucA45GcBMefdvgxA4rCCRrzlnbk8wAxa5IN3vw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10325
-X-Spamd-Result: default: False [1.84 / 15.00];
+References: <20260313-synology_microp_initial-v3-0-16941debd8a0@posteo.de> <20260313-synology_microp_initial-v3-3-16941debd8a0@posteo.de>
+In-Reply-To: <20260313-synology_microp_initial-v3-3-16941debd8a0@posteo.de>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Fri, 13 Mar 2026 19:57:26 +0100
+X-Gmail-Original-Message-ID: <CAJZ5v0hYcSDKid4cbz8ZVZG+vLSHvzPB2UryevEpE15W1w7G3g@mail.gmail.com>
+X-Gm-Features: AaiRm52wIYLXzpbrcPk1yGnN18zABaxFLxVozfWcNMKe7mZAiwm1YS4O-8Hh8h0
+Message-ID: <CAJZ5v0hYcSDKid4cbz8ZVZG+vLSHvzPB2UryevEpE15W1w7G3g@mail.gmail.com>
+Subject: Re: [PATCH v3 3/7] acpi: add acpi_of_match_device_ids
+To: Markus Probst <markus.probst@posteo.de>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Miguel Ojeda <ojeda@kernel.org>, 
+	Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, 
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+	Danilo Krummrich <dakr@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Igor Korotin <igor.korotin.linux@gmail.com>, 
+	Daniel Almeida <daniel.almeida@collabora.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Pavel Machek <pavel@kernel.org>, Len Brown <lenb@kernel.org>, 
+	Robert Moore <robert.moore@intel.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+	driver-core@lists.linux.dev, linux-pci@vger.kernel.org, 
+	linux-leds@vger.kernel.org, linux-acpi@vger.kernel.org, 
+	acpica-devel@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275519-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-275520-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,garyguo.net,protonmail.com,google.com,umich.edu,gmail.com,collabora.com,intel.com,vger.kernel.org,lists.linux.dev];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[31];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,variscite.com,kernel.org,pengutronix.de,gmail.com,lists.linux.dev,lists.infradead.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[rafael@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:dkim]
-X-Rspamd-Queue-Id: 8D1BA288FFB
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[posteo.de:email,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 45A5D289055
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 06:47:01PM +0100, Stefano Radaelli wrote:
-> This patch series adds support for the Variscite DART-MX95 system on
-> module and the Sonata carrier board.
+On Fri, Mar 13, 2026 at 7:48=E2=80=AFPM Markus Probst <markus.probst@posteo=
+.de> wrote:
 >
-> The series includes:
-> - Device tree bindings documentation for both SOM and carrier board
-> - SOM device tree with on-module peripherals
-> - Sonata carrier board device tree with board-specific features
->
-> The implementation follows the standard SOM + carrier board pattern
-> where the SOM dtsi contains only peripherals mounted on the module,
-> while carrier-specific interfaces are enabled in the board dts.
->
-> v7:
-> - Order nodes in symphony dts
+> Add a function to match acpi devices against of_device_ids. This will be
+> used in the following commit ("mfd: match acpi devices against PRP0001")
+> to match mfd sub-devices against a of compatible string.
 
-Can you run https://github.com/lznuaa/dt-format for new file to easy
-track and check by script later.
+Not until I can see how this is going to be used.
 
-Frank
+Maybe never.
 
-> v6:
-> - Order by node name instead of by label
-> v5:
-> - Fix newlines and nodes order
-> v4:
-> - Fix typo in spacing
-> - Remove vpu and cm7 reserved memory
-> - Add GPIO_OPEN_DRAIN to i2c gpios
-> - Move pinmux to eof
-> v3:
-> - Fix specific node names with generic ones
-> - Remove fixed-link property for SFP
-> - Audio regulator cleanup
-> v2:
-> - Add SFP cage node for enetc_port2 following sff,sfp.yaml binding
+> Signed-off-by: Markus Probst <markus.probst@posteo.de>
+> ---
+>  drivers/acpi/bus.c      | 7 +++++++
+>  include/acpi/acpi_bus.h | 2 ++
+>  2 files changed, 9 insertions(+)
 >
-> Stefano Radaelli (2):
->   arm64: dts: freescale: Add support for Variscite DART-MX95
->   arm64: dts: imx95-var-dart: Add support for Variscite Sonata board
+> diff --git a/drivers/acpi/bus.c b/drivers/acpi/bus.c
+> index f6707325f582..5ddcc56edc87 100644
+> --- a/drivers/acpi/bus.c
+> +++ b/drivers/acpi/bus.c
+> @@ -1044,6 +1044,13 @@ int acpi_match_device_ids(struct acpi_device *devi=
+ce,
+>  }
+>  EXPORT_SYMBOL(acpi_match_device_ids);
 >
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  .../dts/freescale/imx95-var-dart-sonata.dts   | 591 ++++++++++++++++++
->  .../boot/dts/freescale/imx95-var-dart.dtsi    | 425 +++++++++++++
->  3 files changed, 1017 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx95-var-dart-sonata.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/imx95-var-dart.dtsi
+> +int acpi_of_match_device_ids(struct acpi_device *device,
+> +                         const struct of_device_id *ids)
+> +{
+> +       return __acpi_match_device(device, NULL, ids, NULL, NULL) ? 0 : -=
+ENOENT;
+> +}
+> +EXPORT_SYMBOL(acpi_of_match_device_ids);
+> +
+>  bool acpi_driver_match_device(struct device *dev,
+>                               const struct device_driver *drv)
+>  {
+> diff --git a/include/acpi/acpi_bus.h b/include/acpi/acpi_bus.h
+> index aad1a95e6863..0081b9e4aaee 100644
+> --- a/include/acpi/acpi_bus.h
+> +++ b/include/acpi/acpi_bus.h
+> @@ -677,6 +677,8 @@ void acpi_bus_trim(struct acpi_device *start);
+>  acpi_status acpi_bus_get_ejd(acpi_handle handle, acpi_handle * ejd);
+>  int acpi_match_device_ids(struct acpi_device *device,
+>                           const struct acpi_device_id *ids);
+> +int acpi_of_match_device_ids(struct acpi_device *device,
+> +                         const struct of_device_id *ids);
+>  void acpi_set_modalias(struct acpi_device *adev, const char *default_id,
+>                        char *modalias, size_t len);
 >
 >
-> base-commit: 40fbbd64bba6c6e7a72885d2f59b6a3be9991eeb
-> prerequisite-patch-id: 7ed0e453f554c70d0fafd5147d4d9b62cac6c10f
 > --
-> 2.47.3
+> 2.52.0
+>
 >
 
