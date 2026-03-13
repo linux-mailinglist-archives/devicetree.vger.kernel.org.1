@@ -1,128 +1,172 @@
-Return-Path: <devicetree+bounces-275562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275564-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qBf+MpmHtGmBpQAAu9opvQ
-	(envelope-from <devicetree+bounces-275562-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 22:54:33 +0100
+	id 2G+/JUiItGmBpQAAu9opvQ
+	(envelope-from <devicetree+bounces-275564-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 22:57:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44AF228A322
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 22:54:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF55328A383
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 22:57:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3583830292CE
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:54:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 65B51312DCF7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:57:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034F234FF55;
-	Fri, 13 Mar 2026 21:54:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C28DD370D68;
+	Fri, 13 Mar 2026 21:57:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L0CbYZTt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D8LFC/Y2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4D451EC01B;
-	Fri, 13 Mar 2026 21:54:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B39B1EC01B;
+	Fri, 13 Mar 2026 21:57:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773438870; cv=none; b=TpbRP6TZnT+om+CyldXVUQbD1ij+dx5bDJCo8Cd4hDPwCD04MW0zWlY4tE90v3+XQZ1YWgZ+lk13yjinL45gqNfySVp3+jxLZhYSSpfPbQxvfsPhd7YJwCQUpmSgr7Q5cK45v7jnN3UITsyFK5QTAplJR4O6k38yWGxUhHCoScU=
+	t=1773439021; cv=none; b=CQTacgWhlNAb+HWfcRvqMcIFkUgpiV6IFVa5r9NVTzovTLSedaio3oXDkhUBryKDbwVnNHLTaDW3Jovd5CXrL1fiw1HyX5wLAFWJ+qQg+3Rxpcu5gCW56ZbGR5H0a/oq7WfuUEyC7CLo9hrZBrPYGyhAcIvBnTtlXKqBI4hi2S8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773438870; c=relaxed/simple;
-	bh=c9fnUiG/AbnP2qanxxG12d19at+kYpDMVVkqjlSyvuM=;
+	s=arc-20240116; t=1773439021; c=relaxed/simple;
+	bh=BwGIzF3Y1kGJ7LSzEz+7QIlkvRAEX1ybLPLbwYlypHg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fhlATqSjE1SC2ZjK3bRfwdB5qh6ABLkBKtQz5HmsBfa0sR8ahbqEvNhqwqZ/xzfmCj5HeU/gcJJ1zZqrczetNlxtnoonSTigy46Z3JQjsVKc65FPm+TJGJ+SF8fWf5WH6sT318wJkgcDysBtgmVCmk2f3YpB3//oeRorla66nHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L0CbYZTt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 493F9C19421;
-	Fri, 13 Mar 2026 21:54:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=RPPspZzz0A1gAYAAOkBUsLl08QYTqL20QNWlev5DSuj1x2mz8TXS9cCvisIKTvjJU2uO5dJlV22RAlHKJxW+TXj7qzaj4c4xDGeysAqrGbaOs6NWMPhWNbON57hVbL56yZSPbambEXv14OvXPcvsB8nGTKDuiYKEpjFk2g92dFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D8LFC/Y2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBE5AC19421;
+	Fri, 13 Mar 2026 21:57:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773438870;
-	bh=c9fnUiG/AbnP2qanxxG12d19at+kYpDMVVkqjlSyvuM=;
+	s=k20201202; t=1773439021;
+	bh=BwGIzF3Y1kGJ7LSzEz+7QIlkvRAEX1ybLPLbwYlypHg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=L0CbYZTtkkHmx308AVBrbymS0KdJc5zvVcaZgXr5bwBJ3oHFpDp4F9ek786W+L2WN
-	 Hj5I3qiPZ2CNW47o9W7Hr539VMKPDqu+ThpIfJaOCq5ofebgBL5G0hp0mqDZg/3hIP
-	 ekcqVuvMsQpyZo6goqREuYM51nU0SVPnF/H0lQl0NCXIeMzKcpSCyn0gMUAQjtpJJL
-	 jRq8B/tXraNs91dY2bV7rg0MmqddqNgKpj+9s5pNxvn0BNHALD/9Wf8HCJ3dV1G061
-	 gAC+NcwbJ/ZlAzB97rVZltk9ScbKkl/AMmAWmXu+yUeOcyE3hHfMNNrJgYdoF0oS9G
-	 y7BYYe3TXc7Gg==
-Date: Fri, 13 Mar 2026 16:54:29 -0500
+	b=D8LFC/Y2BvExaUUaQwCZ1enN784C4eGC3QLIYlLXoQRLLoZbcIPAW+9UHxunos89u
+	 W2FcjOgbPlul4rkrHWNMnWcebVKNCNJBcZAC9W9bHqSllID/Yx8/g7Pg0waFNdbV1F
+	 PZkKpvhQhygkjCvndRt4AGAp3O3ce5dB8Hf9tYRkl1Yd2G1/EC1V7ihRTEFOlFWtJD
+	 TVRWH74L5h1udZNpGw4w/HeSz46hbFXg77yqFlXWTNDJcGX7icfPbrJEmetdc7x+30
+	 MorgajnbJ3XPvDp3w4FMrauooCX4QG0hYbWRVYVLx7aMFlZXvlf6/A/GVpusGs1ME1
+	 T/VOcVRh6Fn9Q==
+Date: Fri, 13 Mar 2026 16:56:59 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Akhil P Oommen <akhilpo@oss.qualcomm.com>,
-	Rob Clark <robin.clark@oss.qualcomm.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Dmitry Baryshkov <lumag@kernel.org>, linux-arm-msm@vger.kernel.org,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Abhinav Kumar <abhinav.kumar@linux.dev>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Simona Vetter <simona@ffwll.ch>, Maxime Ripard <mripard@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, freedreno@lists.freedesktop.org,
-	Sean Paul <sean@poorly.run>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2] dt-bindings: display/msm/gpu: Drop redundant
- reg-names in one if:then:
-Message-ID: <177343886847.3412788.12364118148298803763.robh@kernel.org>
-References: <20260301142033.88851-2-krzysztof.kozlowski@oss.qualcomm.com>
+To: Jinjie Ruan <ruanjinjie@huawei.com>
+Cc: loongarch@lists.linux.dev, cfsworks@gmail.com, alex@ghiti.fr,
+	skhan@linuxfoundation.org, liaoyuanhong@vivo.com,
+	ritesh.list@gmail.com, linux-arm-kernel@lists.infradead.org,
+	kees@kernel.org, leitao@debian.org, lirongqing@baidu.com,
+	corbet@lwn.net, pmladek@suse.com, jbohac@suse.cz,
+	eajames@linux.ibm.com, sourabhjain@linux.ibm.com,
+	palmer@dabbelt.com, vishal.moola@gmail.com, npiggin@gmail.com,
+	dapeng1.mi@linux.intel.com, brgerst@gmail.com, will@kernel.org,
+	paulmck@kernel.org, tglx@kernel.org, rdunlap@infradead.org,
+	hbathini@linux.ibm.com, kexec@lists.infradead.org, bhe@redhat.com,
+	dyoung@redhat.com, x86@kernel.org, pjw@kernel.org, rppt@kernel.org,
+	linux-doc@vger.kernel.org, kernel@xen0n.name,
+	dave.hansen@linux.intel.com, catalin.marinas@arm.com,
+	saravanak@kernel.org, samuel.holland@sifive.com,
+	songshuaishuai@tinylab.org, coxu@redhat.com,
+	fuqiang.wang@easystack.cn, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, osandov@fb.com, chenhuacai@kernel.org,
+	aou@eecs.berkeley.edu, tangyouling@kylinos.cn, hpa@zytor.com,
+	chleroy@kernel.org, linuxppc-dev@lists.ozlabs.org, bp@alien8.de,
+	vgoyal@redhat.com, fvdl@google.com, kevin.brodsky@arm.com,
+	mingo@redhat.com, maddy@linux.ibm.com, akpm@linux-foundation.org,
+	junhui.liu@pigmoral.tech, ardb@kernel.org, mpe@ellerman.id.au,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v8 4/5] arm64: kexec: Add support for crashkernel CMA
+ reservation
+Message-ID: <177343901948.3415566.6726187926870600451.robh@kernel.org>
+References: <20260302035315.3892241-1-ruanjinjie@huawei.com>
+ <20260302035315.3892241-5-ruanjinjie@huawei.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260301142033.88851-2-krzysztof.kozlowski@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260302035315.3892241-5-ruanjinjie@huawei.com>
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,suse.de,gmail.com,kernel.org,vger.kernel.org,linux.dev,somainline.org,ffwll.ch,lists.freedesktop.org,poorly.run,linux.intel.com];
-	TAGGED_FROM(0.00)[bounces-275562-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lists.linux.dev,gmail.com,ghiti.fr,linuxfoundation.org,vivo.com,lists.infradead.org,kernel.org,debian.org,baidu.com,lwn.net,suse.com,suse.cz,linux.ibm.com,dabbelt.com,linux.intel.com,infradead.org,redhat.com,vger.kernel.org,xen0n.name,arm.com,sifive.com,tinylab.org,easystack.cn,fb.com,eecs.berkeley.edu,kylinos.cn,zytor.com,lists.ozlabs.org,alien8.de,google.com,linux-foundation.org,pigmoral.tech,ellerman.id.au];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275564-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_GT_50(0.00)[61];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email]
-X-Rspamd-Queue-Id: 44AF228A322
+	TAGGED_RCPT(0.00)[devicetree];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: EF55328A383
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Sun, 01 Mar 2026 15:20:34 +0100, Krzysztof Kozlowski wrote:
-> Top-level reg-names defines already proper order for "reg-names" with
-> minItems: 1, so no need to repeat it again in one of "if:then:" cases.
+On Mon, 02 Mar 2026 11:53:14 +0800, Jinjie Ruan wrote:
+> Commit 35c18f2933c5 ("Add a new optional ",cma" suffix to the
+> crashkernel= command line option") and commit ab475510e042 ("kdump:
+> implement reserve_crashkernel_cma") added CMA support for kdump
+> crashkernel reservation.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Crash kernel memory reservation wastes production resources if too
+> large, risks kdump failure if too small, and faces allocation difficulties
+> on fragmented systems due to contiguous block constraints. The new
+> CMA-based crashkernel reservation scheme splits the "large fixed
+> reservation" into a "small fixed region + large CMA dynamic region": the
+> CMA memory is available to userspace during normal operation to avoid
+> waste, and is reclaimed for kdump upon crash—saving memory while
+> improving reliability.
 > 
+> So extend crashkernel CMA reservation support to arm64. The following
+> changes are made to enable CMA reservation:
+> 
+> - Parse and obtain the CMA reservation size along with other crashkernel
+>   parameters.
+> - Call reserve_crashkernel_cma() to allocate the CMA region for kdump.
+> - Include the CMA-reserved ranges for kdump kernel to use.
+> - Exclude the CMA-reserved ranges from the crash kernel memory to
+>   prevent them from being exported through /proc/vmcore, which is already
+>   done in the crash core.
+> 
+> Update kernel-parameters.txt to document CMA support for crashkernel on
+> arm64 architecture.
+> 
+> Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> Acked-by: Ard Biesheuvel <ardb@kernel.org>
+> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
 > ---
-> 
-> Changes in v2:
-> 1. Rebase
+> v7:
+> - Correct the inclusion of CMA-reserved ranges for kdump
+>   kernel in of/kexec.
+> v3:
+> - Add Acked-by.
+> v2:
+> - Free cmem in prepare_elf_headers()
+> - Add the mtivation.
 > ---
->  Documentation/devicetree/bindings/display/msm/gpu.yaml | 7 -------
->  1 file changed, 7 deletions(-)
+>  Documentation/admin-guide/kernel-parameters.txt | 2 +-
+>  arch/arm64/kernel/machine_kexec_file.c          | 2 +-
+>  arch/arm64/mm/init.c                            | 5 +++--
+>  drivers/of/fdt.c                                | 9 +++++----
+>  drivers/of/kexec.c                              | 9 +++++++++
+>  5 files changed, 19 insertions(+), 8 deletions(-)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
