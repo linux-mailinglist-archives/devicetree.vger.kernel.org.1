@@ -1,175 +1,159 @@
-Return-Path: <devicetree+bounces-275286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275285-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2ID0NFgZtGlLhQAAu9opvQ
-	(envelope-from <devicetree+bounces-275286-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:04:08 +0100
+	id ALMqNjIZtGlLhQAAu9opvQ
+	(envelope-from <devicetree+bounces-275285-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:03:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 872A028475A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:04:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E22B28473C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:03:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CD34430AF1E3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:56:33 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2794930AD4F2
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:56:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6870F37F013;
-	Fri, 13 Mar 2026 13:55:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D24AC313532;
+	Fri, 13 Mar 2026 13:55:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ifam778/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U6VEyJU+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE5E2370D49;
-	Fri, 13 Mar 2026 13:55:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66D1039A049
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 13:55:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773410156; cv=none; b=iMbOBB+LpXa5aRY4ipsyCAAsPwr9LmqMuoTXBD65Z2lzbOzbB2I3K2FC0qr6e2syEWklHbpP4uH6o8T9ZcAGwXwK1WqTL3M5T2cf2+FIsc2OBH6prghxUGR/4jL95bYioucSlOndQzbc1j6e3YTEfaBD4ngVMwEsdjGE4AvW1bo=
+	t=1773410143; cv=none; b=NAT3SuVslX93j+tN3MzcOVD/ZwbyJn9UERt1Gpc50zC95sVYRKKBKTk+ly4ZFQttnwX6sHMoc5q3zCZG1cFuMhJtq2+6SC3iAtILa9Y3Xvs/T0tJHpcwOQsWPCpzp7kRjv7cUNIxZLbFvENPq6lXRAnog6WIkB6nghaQvQ75s74=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773410156; c=relaxed/simple;
-	bh=qCnei2hJ4tbYI/448XNR+gkx4fBz015KywP3+urQo8g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gzrCCobeG66DhYEqe2SFQ4fkSP+rCj0iV64G0Iam0vayM53F60uPR0f/68pGGB1lazr6ot00EOzyD0VYTKd2TZjhsmXg+tlC5T40/BzcBvVJ+H9C1foKM7g4uJhwXV9LeEr3W9Vlj0mWY0HRchEoIQopG8O+mF9JzkFnru38xqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ifam778/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 396FBC19421;
-	Fri, 13 Mar 2026 13:55:47 +0000 (UTC)
+	s=arc-20240116; t=1773410143; c=relaxed/simple;
+	bh=kBRAddIXHUXh1NrMwwK+Q3Uc5sar9/R6FymD2E+StZk=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=k7UoJ/VjSIC67TDDvYB3s/6BUX1/XMKFGFOfP8qrglB8WMkGb8eBgKlycWg979/Fs6jaEm9PSTwvKEET6eZ8dO7EB/+CtBjIFzimqdXF6/yzs7U3Ziwm5qqa60p1umPEObDL9HTM3zDLMZpXFd4uS/GcIQSdRoUdAhef3itKZs0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U6VEyJU+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E763FC2BCB2
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 13:55:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773410155;
-	bh=qCnei2hJ4tbYI/448XNR+gkx4fBz015KywP3+urQo8g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ifam778/BZrTiFlIY4B9luRsWK514ihjseG6gpfygZR3kFYwxmIFg04IxRFvK/ZQV
-	 7vtybKmLJiEwhjQpjB09T/Wr945UmEpkc1OjeH2kLaUem0m9LR9FUGxVY1/8wiSAqx
-	 PiiuqOy+wTzSiFcqWiLec/LqRMBRZlnnCMBBaTMj0jEYMz21Cukxm41loRpD/BlmDc
-	 RfkTJ14I1RK6I/XW71UyHtbLui0Ek7LpRmgwGiz0/5/L/v/8pXuXeZFRDPOfhURxSC
-	 NQ2ux3tM3eIdm91Csr1Wvsj0ho7mjKhe76NDkPKQ2pUYwoLFtm9xlFptjs9bH2llMI
-	 caWXOmn8WuTYg==
-Date: Fri, 13 Mar 2026 19:25:38 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: zhangsenchuan <zhangsenchuan@eswincomputing.com>
-Cc: Min Lin <linmin@eswincomputing.com>, bhelgaas@google.com, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	christian.bruel@foss.st.com, shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, 
-	thippeswamy.havalige@amd.com, inochiama@gmail.com, Frank.li@nxp.com, ningyu@eswincomputing.com, 
-	pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
-Subject: Re: [PATCH v11 2/2] PCI: eic7700: Add Eswin PCIe host controller
- driver
-Message-ID: <veqgbspu5fmm6f4dvrtz5s6xtibbglf6ejb4b6zzmzhgefksny@rzuobvk6jkt7>
-References: <20260227111536.1940-1-zhangsenchuan@eswincomputing.com>
- <20260227111808.1996-1-zhangsenchuan@eswincomputing.com>
- <jd4aszup2peetymesiltqghoptp2w4uuecrsdzkb2cl5vqqfot@m3vh6x4u5t6l>
- <57246067.3de3.19cbd03fc5f.Coremail.linmin@eswincomputing.com>
- <twvubrxemm7nx2i5p65byehj7y2g43c5esq3go72t6qbsz7yal@dxwvslzvgdc5>
- <597765c6.41f9.19cdc76ffa4.Coremail.zhangsenchuan@eswincomputing.com>
+	s=k20201202; t=1773410142;
+	bh=kBRAddIXHUXh1NrMwwK+Q3Uc5sar9/R6FymD2E+StZk=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
+	b=U6VEyJU+UiTKzqQ2uRTXHEegY3f34jVLB2FQikTev3F0iJNDKQfXWGXTFlW7MIPsv
+	 ZXIZmXxW8kiEZzKxb1L6UP1sCPTta1G2FL5dfBIzWn/NIK6KYvBsCYvZvWoLKEXyA2
+	 0NfxUqwaZkV3/Rnzqg9yLP/eoU7Fy9vcrIbrTelkPJKVnaAxvKTpb+hLfM6ppG/LTj
+	 C2SG06H6p/odgP/8rnxHAuvoc0G1sZB0keM6RcR3Zc5m+bJD4ujWuqP1zf04pOsLpK
+	 7dlJufBmfx0xEBwxVm/uF/w4c9yk3qvxfsP7V2zm2+0qGwN09WvRZ5kCDGWA9/gcmA
+	 K19ruQcSnvmVg==
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-38a5584e31fso26575441fa.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 06:55:42 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVy8NGYkLvaWEDlfAQ0LxWi0b0mnDZH+/3ikZ6UN5nibld+eydJ89SSRggCZJc0nC3CEI2oA3N4ton2@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywq1ru7VwdetifFyag33gLfyXwlVUnsyVi7Oj8n+uesUazgTkRK
+	ZnOR/Y6TriyInqaOM8Eb60Xtdi7q9TUmyhgjmmPoQV+bWlmnrQzIUQlrbRXzRwS3cloM1eviijR
+	y9HPwFVi8bfPO1DTRbF808q35XenXbuEKm1gCL7SVxw==
+X-Received: by 2002:a05:651c:4417:10b0:38a:83f0:541b with SMTP id
+ 38308e7fff4ca-38a83f05651mr14520871fa.17.1773410141391; Fri, 13 Mar 2026
+ 06:55:41 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 13 Mar 2026 06:55:40 -0700
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 13 Mar 2026 06:55:39 -0700
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20260313-wakeirq_support-v8-2-48a0a702518a@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <597765c6.41f9.19cdc76ffa4.Coremail.zhangsenchuan@eswincomputing.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+References: <20260313-wakeirq_support-v8-0-48a0a702518a@oss.qualcomm.com> <20260313-wakeirq_support-v8-2-48a0a702518a@oss.qualcomm.com>
+Date: Fri, 13 Mar 2026 06:55:39 -0700
+X-Gmail-Original-Message-ID: <CAMRc=Md3MK_YUPxx3rh9dGOfjBBxMBT1MNVAT-XZd=kD-qQj8A@mail.gmail.com>
+X-Gm-Features: AaiRm53a0ohWjYAXC_3b1_a1P_9x823vkvlD9HHudwcsHk9RyRRh0D6CSmM68NE
+Message-ID: <CAMRc=Md3MK_YUPxx3rh9dGOfjBBxMBT1MNVAT-XZd=kD-qQj8A@mail.gmail.com>
+Subject: Re: [PATCH v8 2/3] gpio: Add fwnode_gpiod_get() helper
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	quic_vbadigan@quicinc.com, sherry.sun@nxp.com, driver-core@lists.linux.dev, 
+	devicetree@vger.kernel.org, Manivannan Sadhasivam <mani@kernel.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Danilo Krummrich <dakr@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Bartosz Golaszewski <brgl@bgdev.pl>, Linus Walleij <linusw@kernel.org>, 
+	Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275286-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-275285-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,qualcomm.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[eswincomputing.com,google.com,kernel.org,pengutronix.de,vger.kernel.org,foss.st.com,samsung.com,oss.qualcomm.com,amd.com,gmail.com,nxp.com,einfochips.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,eswincomputing.com:email]
-X-Rspamd-Queue-Id: 872A028475A
+	PRECEDENCE_BULK(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 7E22B28473C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 11, 2026 at 06:35:12PM +0800, zhangsenchuan wrote:
-> > > > Subject: Re: [PATCH v11 2/2] PCI: eic7700: Add Eswin PCIe host controller driver
-> > > > 
-> > > > On Fri, Feb 27, 2026 at 07:18:08PM +0800, zhangsenchuan@eswincomputing.com wrote:
-> > > > > From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> > > > > 
-> > > > > Add driver for the Eswin EIC7700 PCIe host controller, which is based on
-> > > > > the DesignWare PCIe core, IP revision 5.96a. The PCIe Gen.3 controller
-> > > > > supports a data rate of 8 GT/s and 4 channels, support INTx and MSI
-> > > > > interrupts.
-> > > > > 
-> > > > 
-> > > > Is the driver going to work only for the PCIe RC IP in EIC7700 SoC or for the
-> > > > upcoming Eswin SoCs as well? Just curious because, we don't name drivers based
-> > > > on one SoC name, but by the vendor so that the driver (if compatible) can be
-> > > > used across other SoCs from the vendor.
-> > > > 
-> > > > If it can work across other SoCs, then I can change 'eic7700' to 'eswin', where
-> > > > applicable while applying.
-> > > > 
-> > > 
-> > > This PCIe RC IP in EIC7700 will only be used for EIC7700 SoC. One thing for sure
-> > > is our next SoC will use a higher IP revision of the DesignWare PCIe core.
-> > > In the future, there is no doubt that the use of IP from other manufacturers may
-> > > be considered.
-> > > 
-> > > Based on this, may I ask which name do you think is better, eic7700' or 'eswin'?
-> > > 
-> > 
-> > I'd suggest going with just 'eswin'. If the future revisions come up with
-> > non-dwc based IPs, we can name them appropriately.
-> > 
-> > > I found there is a commit on drivers/pci/controller/dwc/pcie-tegra194.c
-> > > It added Tegra234 PCIe support in pcie-tegra194.c
-> > > Is this naming approach no longer recommended?
-> > > 
-> > 
-> > Yes, that predates my time with host controller drivers. I strongly suggest
-> > naming the drivers based on vendors or family to avoid creating an impression
-> > that the driver only supports one SoC version.
-> > 
-> > Since you agreed for renaming, I took the liberty to do the change myself and
-> > applied the patches. I also added the maintainers entry. Please take a look at
-> > the commits and confirm if everything is OK:
-> > https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/log/?h=controller/dwc-eswin
-> 
-> Hi Mani,
-> 
-> Thank you very much for helping me change 'eic7700' to 'eswin'.
-> 
-> I have verified that the code functions are intact. However, there are a few areas
-> that require your assistance to incorporate and make necessary modifications. 
-> After the modifications, I believe you can incorporate it.
-> 
+On Fri, 13 Mar 2026 08:08:41 +0100, Krishna Chaitanya Chundru
+<krishna.chundru@oss.qualcomm.com> said:
+> Add fwnode_gpiod_get() as a convenience wrapper around
+> fwnode_gpiod_get_index() for the common case where only the
+> first GPIO is required.
+>
+> This mirrors existing gpiod_get() and devm_gpiod_get() helpers
+> and avoids open-coding index 0 at call sites.
+>
+> Suggested-by: Manivannan Sadhasivam <mani@kernel.org>
+> Acked-by: Manivannan Sadhasivam <mani@kernel.org>
+> Reviewed-by: Linus Walleij <linusw@kernel.org>
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> ---
+>  include/linux/gpio/consumer.h | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+>
+> diff --git a/include/linux/gpio/consumer.h b/include/linux/gpio/consumer.h
+> index 0d8408582918680bfea6a04ccedfc0c75211907a..fee926c0262ce9dc4b9a3c151e74f2cf37470a49 100644
+> --- a/include/linux/gpio/consumer.h
+> +++ b/include/linux/gpio/consumer.h
+> @@ -596,6 +596,15 @@ static inline int gpiod_disable_hw_timestamp_ns(struct gpio_desc *desc,
+>  }
+>  #endif /* CONFIG_GPIOLIB && CONFIG_HTE */
+>
+> +static inline
+> +struct gpio_desc *fwnode_gpiod_get(struct fwnode_handle *fwnode,
+> +				   const char *con_id,
+> +				   enum gpiod_flags flags,
+> +				   const char *label)
+> +{
+> +	return fwnode_gpiod_get_index(fwnode, con_id, 0, flags, label);
+> +}
+> +
+>  static inline
+>  struct gpio_desc *devm_fwnode_gpiod_get(struct device *dev,
+>  					struct fwnode_handle *fwnode,
+>
+> --
+> 2.34.1
+>
+>
 
-Done:
-https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/commit/?h=controller/dwc-eswin&id=cbbe59fa04b5d9f8e11138df4591653f7d2f8351
-
-I also removed PROBE_PREFER_ASYNCHRONOUS flag since there appears to be a
-possibility of a race condition with some endpoint drivers. We will add it in
-some other form later.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+Acked-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 
