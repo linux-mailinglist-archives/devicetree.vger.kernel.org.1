@@ -1,152 +1,181 @@
-Return-Path: <devicetree+bounces-274878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274881-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KFIeErCgs2liZAAAu9opvQ
-	(envelope-from <devicetree+bounces-274878-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 06:29:20 +0100
+	id +DIaM72os2k7ZgAAu9opvQ
+	(envelope-from <devicetree+bounces-274881-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:03:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A822327D71B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 06:29:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7003227D87D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:03:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6D72330C03FB
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 05:28:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CF1C0308B73D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 06:03:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCD8C31E84C;
-	Fri, 13 Mar 2026 05:28:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038F7331215;
+	Fri, 13 Mar 2026 06:03:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023118.outbound.protection.outlook.com [52.101.127.118])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FF903242CF;
-	Fri, 13 Mar 2026 05:28:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773379691; cv=none; b=mlElkJt1n/YUbBiAAnTrjdMV/AyW8UTaS9oC4SYw5nf2r0c1mUD9YCzl/aVEjXWSrsIb1mbmpU+W2X206U+qabR+MoVgkhv7yo2mDkCTN3rT9pxF0zJY7Yrg4N0E3NP91c2ZKy8f7hN9utiU+kgN24vteB0NnBXgZfG9zjWL+Wk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773379691; c=relaxed/simple;
-	bh=hRhcm7i6Ipu+U8ypFOSg4nwRS0+xKrmtHEwCMOzK03U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=iMLtdQ39WKJ1zmuWFm/h9O5JQSnsTYnsXjxJmdiucRKcoao7Q/Bo7p5wVrZ00ycpjEieJ0ibcdx2Ntjgd0eAZJnd7SiTgOL5lqjQjWCwldLq4qZfmuXXRKM/RIJbW8zXqdSeYlUwow5GInnUUnPkA6eAOEXD3xj7W95Sc/GE8/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 13 Mar
- 2026 13:27:57 +0800
-Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Fri, 13 Mar 2026 13:27:57 +0800
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-Date: Fri, 13 Mar 2026 13:27:57 +0800
-Subject: [PATCH 2/2] mmc: sdhci-of-aspeed: Add ast2700 support
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D819B12B94;
+	Fri, 13 Mar 2026 06:03:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.118
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773381796; cv=fail; b=YuaOIorAs2yZzUJlOLUc1pCIWlL4uytDvU1adXYCIp8ezvnJAw1TWE8QqNfGgA9kO3fVjmhSmwIuvts4D9JSOFilO/dpNYdnV59rRp1R4DIWsdMXPvLmsfhYInUzGp13kj28H8UrmddfkoL4HuyosXcbOc3UtnIzoq9BcBk8NH8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773381796; c=relaxed/simple;
+	bh=Ipb+YyMS6Y/AI80ABy7FOYL+jyEzkJXlmcdXmpJYgeg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=qZeBr6Fz4JmBHkDeN/LnMuqX9jWFetIkSYkdj7wBGSvGgue3VTtEq69LQYFV5oqpDPpAXOUw9EdebdVu2z/MFBaUopjarFqXRHT8DRrNccvDN5xYl+thV6CegvwdvJypn+dskTYThqZTHQfxBtvQRIxBmYIb/hg5zqexw3YQMfo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.118
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=avuTTlcLxqpkuLQjwYAwaZZ0XQGNazbesEZFl24XqHlm8EtLWhexVvKDN2m0A5woWgNWmt/rAaNLj8tFrs6xVCaNZrnrgMZqs4T2sbogw+wqtVqDzZ3yc0rOjlDm73h7rGhhzzp47TjPmzsN2g7DHyGnlLTXX+MNS1dFry/jD0xFhno9aMW2HcSYm6rarPml4xvEslMI+NQVrSsqkPVCOl1/y8Fq7r97SlWVmkMX9sdI36JDMX+Fo4SgvvnoPmg/Nq3rg2He4GF461EiZ/C352vpNfAQRBN/r4OhH0e817ZYcLCftxIpYz1g496rKiyG3CfIUe0K5L2GIxWN1rN4IA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WMgt84JaD8lCeZfUIw5wvJWdAdrP1X3wMZKIsNqUIZM=;
+ b=t30q0YLJL/ElBJym/UAyoHAPKNi6TC/Z8DixlxmepNWvdGUbfrSxMGX9Nzy+jJaZM2DUhwQJ2ROxvggTdWVCKNvU0zraiajtri7Udu45NatGTJEnRHCamI5d6+e23VMvRM7Gz35sd9dCJmCKSlmPpptfcWJKRrWqvivfCQhL6usf3TAxSV1e48kUS4XHwPbESMg/frWyq5NeCDP6fVrj+V9d7TqkYybRXjqbf4vAWl2l5s+9FuNEoFjJ1j9zOkmmOJ6AmCSeDxE7hKvKKocuuZDqcoxOIX8YNMBbisQoic/Vo+uS8aka49v9XQbF9XwJ+F0vH6/lVuAhEK4DpOLnvA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SL2PR03CA0015.apcprd03.prod.outlook.com (2603:1096:100:55::27)
+ by TY0PR06MB5283.apcprd06.prod.outlook.com (2603:1096:400:210::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.16; Fri, 13 Mar
+ 2026 06:03:10 +0000
+Received: from TY2PEPF0000AB8A.apcprd03.prod.outlook.com
+ (2603:1096:100:55:cafe::6) by SL2PR03CA0015.outlook.office365.com
+ (2603:1096:100:55::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.16 via Frontend Transport; Fri,
+ 13 Mar 2026 06:03:10 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ TY2PEPF0000AB8A.mail.protection.outlook.com (10.167.253.8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9700.17 via Frontend Transport; Fri, 13 Mar 2026 06:03:09 +0000
+Received: from localhost.localdomain (unknown [172.16.64.196])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id AA6784126F89;
+	Fri, 13 Mar 2026 14:03:08 +0800 (CST)
+From: Gary Yang <gary.yang@cixtech.com>
+To: lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org,
+	robh@kernel.org,
+	bhelgaas@google.com,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	peter.chen@cixtech.com
+Cc: linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	cix-kernel-upstream@cixtech.com,
+	Gary Yang <gary.yang@cixtech.com>
+Subject: [PATCH v3 0/2] Add scmi powerdomain for sky1
+Date: Fri, 13 Mar 2026 14:03:06 +0800
+Message-ID: <20260313060308.1300518-1-gary.yang@cixtech.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20260313-sdhci-v1-2-91cea19c8a67@aspeedtech.com>
-References: <20260313-sdhci-v1-0-91cea19c8a67@aspeedtech.com>
-In-Reply-To: <20260313-sdhci-v1-0-91cea19c8a67@aspeedtech.com>
-To: Andrew Jeffery <andrew@codeconstruct.com.au>, Ulf Hansson
-	<ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
-	<joel@jms.id.au>, Ryan Chen <ryanchen.aspeed@gmail.com>, Adrian Hunter
-	<adrian.hunter@intel.com>, Philipp Zabel <p.zabel@pengutronix.de>
-CC: Andrew Jeffery <andrew@aj.id.au>, <linux-aspeed@lists.ozlabs.org>,
-	<openbmc@lists.ozlabs.org>, <linux-mmc@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, Ryan Chen <ryan_chen@aspeedtech.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773379677; l=1605;
- i=ryan_chen@aspeedtech.com; s=20251126; h=from:subject:message-id;
- bh=hRhcm7i6Ipu+U8ypFOSg4nwRS0+xKrmtHEwCMOzK03U=;
- b=+CWnn9LIycIPd3L9+5pOLuYnU8iouEreNTfMj0wiRQr+N0l2JHaHUTeKm+G/aSNdNmiUtEa/o
- T8y8ZEVTBEqD8KG2ovwz7ONlHR17cotJYowKSXpJxzY+ZQwvUj2CbSq
-X-Developer-Key: i=ryan_chen@aspeedtech.com; a=ed25519;
- pk=Xe73xY6tcnkuRjjbVAB/oU30KdB3FvG4nuJuILj7ZVc=
-X-Spamd-Result: default: False [1.54 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[aspeedtech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB8A:EE_|TY0PR06MB5283:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 175c86c6-0e7e-4de5-5582-08de80c63403
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|7416014|82310400026|36860700016|376014|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	YZoJOfwyr4CW75gn7V3DswT7j3lK0M3Nh468EXUUyaxjaa0VZ4xabEu2WigRcTzBTkwnBzQXsT81AHHyTQbQfWAIc4H+z0fvOhs/MTOHYk3x2OBlCzyC2UaDdEbZ2esrvQioSyqNXNz63wLyNw10UN1fDtB08Gh9RKmDsAGsBrsB8qEUUACz1xWvDl1blIQ/N6JzyocHMtuJdAzfk01IO5Yb/R2Aprb4TqpJ1GGmScyG35AbeCr3JmJDc0IiQF1YvmfRnkIqAe55ZTQy6USoMl2brwE4QuIqjJv2+cBTX5cKT8XQDhRDIQA1LQy1FK7bJqtFsBNX0Qi5ClCcYFmM/8YAsP/oMaaksQiICd+3MNwhxNVElpeQmxDS1jrWQVpub0zkIS/C8qExQXdpnkp/sDP3fK2/+xpx9owmZl+rOMFBjZp+wbQbi858xcXcp2PA1I/SgAzdV8czLs+rVKrQrAFNJ8TaN5/Y7rQNI0nQ3kJit5fZzXx29AGFTDY2GO/WCrOpjk0a3XWHSpFjTN8BXfQOz3Cg3hCGUKvTDQQ0d4L/PYLZhT5sO0v0h597bLkOF2l68wmrVt2M6lsuGaQNkOvEPJMvsNnJkXRbRXP1/LaqwdrtZRejdXVFFpziJ5dB8Y/qKhKdEFKKPmMe2yanLSgJ+o46p+TzSKrZpBCVljOAgP3F5NpbWwuAv4/k+xEIOy/j1ku3WoFLuefyG9tHBcz+hvhMpq5wErE4P/c9G4wac3VlVeLBV7OvMbHfZpWua4m4S3cdyzWHzxbacK529Q==
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(82310400026)(36860700016)(376014)(56012099003)(18002099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	oDFoHJETqctqsiyf3Ht/I4EbCF0SLZAOQJlx2+9p/3ihPDnr52IX+T4bnZYuUaQb86sEepsDKzy8tFFrHz9hPQH4iNoPr1aMr0B50Got1rviOspHFnkOklxpx+zKRorwwFVcA3QPZpdWdAIEw6eKpuydtyiBlP2DROCR86Llj9m4Q0MTlFTQ5svYdAgQj2QCpzWWeKkodphwaAa4P4H4KfkbitY3SiC3qYfIPuj2EtPpODFnzNygdd/o/jbooBeB4Q3tur1Zx7mICNABG74BWdm2dd7OufR3O+s8dBGzqUNiBeRcu1MDuu/9SCVWBPR35rXa1BDxtEiQGXr0LJV83tdX4r92yUyT7NZiomQEr27/GOKmb9O4HzQ4jyQSn9HapnjWdVeTGUiKLnqBCpP7sSbSwSX49/Gi4LpsM106uKmvKv9Hp8QXRVkS3lAo5ggy
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 06:03:09.5293
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 175c86c6-0e7e-4de5-5582-08de80c63403
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	TY2PEPF0000AB8A.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR06MB5283
+X-Spamd-Result: default: False [3.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	TAGGED_FROM(0.00)[bounces-274878-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[codeconstruct.com.au,linaro.org,kernel.org,jms.id.au,gmail.com,intel.com,pengutronix.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274881-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[cixtech.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ryan_chen@aspeedtech.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.959];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gary.yang@cixtech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7];
 	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.979];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[aspeedtech.com:email,aspeedtech.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A822327D71B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cixtech.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7003227D87D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for the AST2700 SOC in the sd controller driver. AST2700 sd
-controller requires an reset line, so hook up the optional reset control
-and deassert it during probe.
+v3 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-pcie-host.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- refine dt-bindings
 
-Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
----
- drivers/mmc/host/sdhci-of-aspeed.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+v2 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-pcie-host.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- update dt-bindings
 
-diff --git a/drivers/mmc/host/sdhci-of-aspeed.c b/drivers/mmc/host/sdhci-of-aspeed.c
-index ca97b01996b1..91c36245e506 100644
---- a/drivers/mmc/host/sdhci-of-aspeed.c
-+++ b/drivers/mmc/host/sdhci-of-aspeed.c
-@@ -520,6 +520,7 @@ static int aspeed_sdc_probe(struct platform_device *pdev)
- 
- {
- 	struct device_node *parent, *child;
-+	struct reset_control *reset;
- 	struct aspeed_sdc *sdc;
- 	int ret;
- 
-@@ -529,6 +530,15 @@ static int aspeed_sdc_probe(struct platform_device *pdev)
- 
- 	spin_lock_init(&sdc->lock);
- 
-+	reset = reset_control_get_optional_exclusive(&pdev->dev, NULL);
-+	if (IS_ERR(reset))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(reset),
-+				     "unable to acquire reset\n");
-+	ret = reset_control_deassert(sdc->rst);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret,
-+				     "reset deassert failed\n");
-+
- 	sdc->clk = devm_clk_get(&pdev->dev, NULL);
- 	if (IS_ERR(sdc->clk))
- 		return PTR_ERR(sdc->clk);
-@@ -577,6 +587,7 @@ static const struct of_device_id aspeed_sdc_of_match[] = {
- 	{ .compatible = "aspeed,ast2400-sd-controller", },
- 	{ .compatible = "aspeed,ast2500-sd-controller", },
- 	{ .compatible = "aspeed,ast2600-sd-controller", },
-+	{ .compatible = "aspeed,ast2700-sd-controller", },
- 	{ }
- };
- 
+Gary Yang (2):
+  dt-bindings: PCI: cix,sky1-pcie-host: Add power-domains
+  arm64: dts: cix: Add scmi powerdomain nodes for sky1
+
+ .../bindings/pci/cix,sky1-pcie-host.yaml      |  6 ++++
+ arch/arm64/boot/dts/cix/sky1-power.h          | 34 +++++++++++++++++++
+ arch/arm64/boot/dts/cix/sky1.dtsi             | 21 ++++++++++++
+ 3 files changed, 61 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/cix/sky1-power.h
 
 -- 
-2.34.1
+2.49.0
 
 
