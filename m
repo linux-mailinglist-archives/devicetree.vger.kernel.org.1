@@ -1,135 +1,185 @@
-Return-Path: <devicetree+bounces-275292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275293-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CFBpNM4atGlLhQAAu9opvQ
-	(envelope-from <devicetree+bounces-275292-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:10:22 +0100
+	id GC5gO68YtGkihQAAu9opvQ
+	(envelope-from <devicetree+bounces-275293-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:01:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C8F42849AD
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:10:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FA5828468D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:01:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7DD9C30A24FC
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:59:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2FCAC3166C50
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:01:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9270A39448A;
-	Fri, 13 Mar 2026 13:59:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04738320A24;
+	Fri, 13 Mar 2026 14:01:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=julien.massot@collabora.com header.b="CeE2mW4J"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="FSGfmcBH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E9436CDEA;
-	Fri, 13 Mar 2026 13:59:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773410364; cv=pass; b=WGA34SF8PWB25WBkCLK50fUDtbxi5FRUOxW9h5eoYZZR/sn/ecRfsnY0thRjjP74XUukH/DtlMqHq0pucvLg0hxHqmOc3UwKiRvwfAfNRIujKMKLjRkTT08gRJeKf6WSapAGV7h25OZ0If5eS0HANI/KcNXAk1jMBJ2mqLi2L18=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773410364; c=relaxed/simple;
-	bh=o5d/UeApUdVWt9EXWxgQtMWQzeL4v+2vGK3WxLWgld8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ryS37rXl2xLGf/hHRbE93XXgdySPkgx2a+uGG2elU+RTKadm4vYgD3LFOo5Z5K2XfZZI3MC8MMyTarSU4q1JWK8bKTIElds8UCw+63ALvJdakM6WtA/awPVfd6/aa51DdTt96seIsX8ZSKNOlfDrzpnnY8imrwDHLFUQIn7dI6k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=julien.massot@collabora.com header.b=CeE2mW4J; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1773410345; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Y28NfJsNO7n1f+7BR4DuGsYawVMRPPBjiFpZDcZ1XkiRkjf2/VijtkU5D1VSpWpD5KppICJkPDrclbuwEoBmB4P5Euz1arTu3v2HCPio1gmVj35FravjYr5ajyAokxkAW9xxdlf1NIccxhbLR0wnENNKc9IuCgNTe4y4LSJQB24=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1773410345; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=DGqVqZfCBzZwLC+d969MR82frsxKVw1XiUQtABbeyJo=; 
-	b=l5MorecKGSleBzGYc8Dm2YaysK0OebkamypP5IdGx4918Tsj35FywhEzHoSKecWEKxtzm9pFwW4F/kSxr2P0WInhxK73yOjaNwmibL9sE636w+SP7qWdXTt6FARRVJIsKcDec6zuvPxV7+0CFOAZRfrgqbP4DIr9UV2wI/4XTL8=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=julien.massot@collabora.com;
-	dmarc=pass header.from=<julien.massot@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1773410345;
-	s=zohomail; d=collabora.com; i=julien.massot@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=DGqVqZfCBzZwLC+d969MR82frsxKVw1XiUQtABbeyJo=;
-	b=CeE2mW4Jgx1najhLErnoV74B/sowb/LLp/31L/HN+kpamx/cCXIc3LD2DWUg2WQW
-	wEaLesuavouj6LmtuzUDxRG7HPMlkBrjaTm2K+4sMSzvhoh3BqqHKq9AD7HxFU4z7cE
-	Z9XER7AhaCOHzUT41ut7Hv7zGibJCTHvUojTAGQk=
-Received: by mx.zohomail.com with SMTPS id 1773410343004432.7248741034314;
-	Fri, 13 Mar 2026 06:59:03 -0700 (PDT)
-Message-ID: <17790b94-af44-45b1-b5e0-a164605d4468@collabora.com>
-Date: Fri, 13 Mar 2026 14:58:57 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4597231F986
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 14:01:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773410465; cv=none; b=WlXbnB/ZDT7xNDfICxxr4ir9jhYKyXo8g8XmByLrQn4NXhEW3OwOGO+rnLyDiJO/tUs6L6tMKqV/ODqSmfrP8M35QlqZ/EquNZQ/bQwVo1jWH8wrLhF88Tk0OedxGgvD8m6md3QnMoLuUjOtG6eJdaBGlGHveAxgRkMg/gzNDgc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773410465; c=relaxed/simple;
+	bh=X2YXoo5oelC/yO2ZVmRm/ASMJDAS7BiQnBAfPRY5clk=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=tmsM5vf3NnCAsHRRzGYhmNGGMu7hG1V8KsXK1F+8GPUuLbp5gnQuQhs+SSiwFFFow/xge63QY591LaNO88tPN06KkVlrXaKBRE2leB0At5TeABW9WCmQFPKMn6utV6qqkAo6Co/pGMtmdzxMw2thPYWmY2hm9I0UVPa7leNm2CY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=FSGfmcBH; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-6642c9254c2so945744a12.2
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 07:01:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1773410462; x=1774015262; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EhAra/BMCH0n/XOw/db/nSkVgG1PExpVOvX16LQ7Y04=;
+        b=FSGfmcBHqRtqrE7Fk18MOZx9o3FRpU7JxXWfxQoDokwxTzBwpFV3FACYRbxijp1lHw
+         HN1u8NCEBF0A+6KUT8hTJyYkr8enWR0xf3gJv+8OzxPe4ZL1TehJPSBzE//uzzFayQwv
+         vc97UoXGtsd0Qopxc0vbApSx1leL9jfuve5DF9f8x2hAfxsxe58HpHV6r7JYLhXPcRif
+         WHy03mKAG3t4wk40TJa+2ifSq1Hup2QDLRlXHiJhzsFipldhnahEKpTwLHU1N/Tpw5cd
+         MlN01FhH23d4OHBNdDbheLyt7EKMpNo9ZSzhRUYfXo05JqoAbYYA8Ei92lbgeVdToMQ0
+         uJ8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773410462; x=1774015262;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EhAra/BMCH0n/XOw/db/nSkVgG1PExpVOvX16LQ7Y04=;
+        b=pSnHDnM4UdcloRhmL6Aa+iBG5Oo4He9ALq1+0MkXHl/ZIjbes3t7opTwrnjLvD3quv
+         Cg+AP7j/rZIYXyS2r+ngFvTzZmvfsySPbkeL7JBG1Z9qzK93DDXGpFdKNmF8R+P+QpdW
+         qupDfzkDNjjx0c5WF0aSySoCXQignvAc+WmWPiKVEV+0IRPtyXmGULqs24sHxBcRjn9f
+         fv+rIgImi2bJYVkrcVR5+MutssXxTy/6USbazNnwNcOmGWThPX9V+J85P0caBexBbZel
+         sl8o/98NTRCb3lY8FynMKsQNfAa21q7tNhs7XzR/EeUxcgHooTXqgpL6G9kUKDCrwGOR
+         cfZg==
+X-Forwarded-Encrypted: i=1; AJvYcCVvMGokdO/Wcknx7zbTaTGBkq78osSCVDyrZv7td+87mwMDGbubE6FpUySjX3KjMoTiB4A2zxOOT2rI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzhXRHKkl85Z5Tl+CfAxllbYuk0xliIlTo7JlOfaw/2wLTiBcT7
+	NA2TfB8ZG+IY/YxSuWL17rvpeEygnOIE7lCxmqXAGz3LcnaV8X5LP3+BUFH4lJkO/P8=
+X-Gm-Gg: ATEYQzwXuXJijy/8rMMFg0z03HA0VojzfekpwhrSBqACB8yuGsUkXfjyEerIP5sQ646
+	oBOSTeS1rKCA7tn+yatLFzj4g48oW/ZVTXN3LHO0s8Z0BKGoCWPr5qTnaORhkIFi0NDAAPvDPn8
+	YJmAHj1q5lDHYnr6aXBy5YI39yEV/RmWbMzrBRx3Dl/cNYN54YpJhs7c2woHW1453cHEcektNsy
+	TkDu+B1LcnDJDM8zGSaAxijVWXOtROU3LYSjTmKAM+YcTqHoDG4gGCE2H06DQjNnts5KALE7xc+
+	4Mho4mNusqPeooINpbKnCj83fFiGr+xiIG9Dwyiy0iQ1gN/Sw5XAQQBiIzWnwcavRmvR5SFzp/E
+	O8a64RqJIYIL+vwj0v0i5kFq+hsCOpa8ZqOjGd8vJmV1bdc+IZtDRuo/jUW8nXefmL8ayzjBTtu
+	zhpbJXDWAQNmTznVJeBVDss8UKsBqKBmnNIeJfsbMQIt20yDKnFWDbexTsp8u8YLnPqgsK
+X-Received: by 2002:a17:907:7421:b0:b8e:d4ed:5eab with SMTP id a640c23a62f3a-b976534655emr128493966b.31.1773410462146;
+        Fri, 13 Mar 2026 07:01:02 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b976cba2e01sm48940266b.9.2026.03.13.07.00.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Mar 2026 07:00:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 21/21] media: i2c: remove MAX96714 driver
-To: dumitru.ceclan@analog.com,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Rob Herring <robh@kernel.org>,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Cosmin Tanislav <cosmin.tanislav@analog.com>
-Cc: mitrutzceclan@gmail.com, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-staging@lists.linux.dev, linux-gpio@vger.kernel.org,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
- Martin Hecht <Martin.Hecht@avnet.eu>, Cosmin Tanislav <demonsingur@gmail.com>
-References: <20260311-gmsl2-3_serdes-v9-0-41499f09004f@analog.com>
- <20260311-gmsl2-3_serdes-v9-21-41499f09004f@analog.com>
-Content-Language: en-US
-From: Julien Massot <julien.massot@collabora.com>
-In-Reply-To: <20260311-gmsl2-3_serdes-v9-21-41499f09004f@analog.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 13 Mar 2026 15:00:53 +0100
+Message-Id: <DH1PJFGWESQU.1OEKLN0CX3IZE@fairphone.com>
+Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 4/5] arm64: dts: qcom: milos-fairphone-fp6: Enable
+ Bluetooth
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Luca Weiss" <luca.weiss@fairphone.com>, "Konrad Dybcio"
+ <konrad.dybcio@oss.qualcomm.com>, "Bjorn Andersson" <andersson@kernel.org>,
+ "Konrad Dybcio" <konradybcio@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Alexander Koskovich" <AKoskovich@pm.me>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260116-milos-fp6-bt-wifi-v1-0-27b4fbb77e9c@fairphone.com>
+ <20260116-milos-fp6-bt-wifi-v1-4-27b4fbb77e9c@fairphone.com>
+ <52fffc84-2fb5-47aa-835c-b0dd8c110d59@oss.qualcomm.com>
+ <DH1L9UD68SKL.21KTH1XGR724Y@fairphone.com>
+In-Reply-To: <DH1L9UD68SKL.21KTH1XGR724Y@fairphone.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
+	MV_CASE(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275292-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-275293-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,lists.linux.dev,ragnatech.se,avnet.eu];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[fairphone.com:+];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[julien.massot@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,renesas];
+	FROM_NEQ_ENVFROM(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:dkim,collabora.com:email,collabora.com:mid]
-X-Rspamd-Queue-Id: 6C8F42849AD
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,fairphone.com:dkim,fairphone.com:email,fairphone.com:mid]
+X-Rspamd-Queue-Id: 5FA5828468D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
+On Fri Mar 13, 2026 at 11:40 AM CET, Luca Weiss wrote:
+> On Wed Jan 21, 2026 at 12:52 PM CET, Konrad Dybcio wrote:
+>> On 1/16/26 3:50 PM, Luca Weiss wrote:
+>>> Add the nodes to describe the WCN6755 chip with its PMU and Bluetooth
+>>> parts.
+>>>=20
+>>> Thanks to Alexander Koskovich for helping with the bringup, adding
+>>> 'clocks' to the PMU node to make Bluetooth work.
+>>>=20
+>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts | 174 +++++++++++++++=
+++++++++
+>>>  1 file changed, 174 insertions(+)
+>>>=20
+>>> diff --git a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts b/arch/ar=
+m64/boot/dts/qcom/milos-fairphone-fp6.dts
+>>> index 52895dd9e4fa..cbe1507b0aaa 100644
+>>> --- a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
 
-On 3/11/26 8:17 AM, Dumitru Ceclan via B4 Relay wrote:
-> From: Cosmin Tanislav <demonsingur@gmail.com>
-> 
-> Remove the MAX96714 driver. Its functionality has been moved to the
-> MAX9296A driver which makes use of the Maxim GMSL2/3 serializer
-> framework.
-> 
-> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
+<snip>
 
-Reviewed-by: Julien Massot <julien.massot@collabora.com>
+>>> +	bluetooth_enable_default: bluetooth-enable-default-state {
+>>> +		pins =3D "gpio53";
+>>> +		function =3D "gpio";
+>>> +		output-low;
+>>> +		bias-disable;
+>>> +	};
+>>
+>> Not sure if we need to drive that pin.. perhaps a pull-down would
+>> suffice?
+>
+> I'll give it a shot, this pinctrl is coming from downstream but perhaps
+> the downstream btpower.c driver is differing in behavior to the upstream
+> PMU driver.
 
-Regards,
-Julien
+Seems to work, but honestly I'm not sure what the actual effects of this
+change are?
+
+-               output-low;
+-               bias-disable;
++               bias-pull-down;
+
+Regards
+Luca
 
