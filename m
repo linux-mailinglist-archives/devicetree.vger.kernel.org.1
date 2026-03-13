@@ -1,249 +1,211 @@
-Return-Path: <devicetree+bounces-274902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274903-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EBLsNyWws2lYZwAAu9opvQ
-	(envelope-from <devicetree+bounces-274902-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:35:17 +0100
+	id WNgfAD2ws2lYZwAAu9opvQ
+	(envelope-from <devicetree+bounces-274903-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:35:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B73927E30C
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:35:17 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85E6027E31B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:35:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A1D7330151C2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 06:35:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5BCB0301ABB1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 06:35:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 026FF332917;
-	Fri, 13 Mar 2026 06:35:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B85A345CBF;
+	Fri, 13 Mar 2026 06:35:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lpayoPPO"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QoatcINK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CH4PR04CU002.outbound.protection.outlook.com (mail-northcentralusazon11013044.outbound.protection.outlook.com [40.107.201.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 777A41DFDA1
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 06:34:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773383702; cv=none; b=AwScWNVK6Rf6A4E6gEXWMEpHR91bjBYtNJSjw9wEb47TVEni3hzig7bXONPDeWvAaU4l5Z5b3ueSRDugdnuM/2/u7hCR9sxSZciqp/fqgLHM1Aehe/w3BCJkYKkbXEIKt5q20Nfq7WwwrIaQZ+xCxQkOfN9Eqx03LdhBmLqQuv8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773383702; c=relaxed/simple;
-	bh=2va6sdFJPKAQtWF5TqnT8UQlob2M5LdSHIMSGn7Lebs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LG3oXzGs26QKTTdqwgHHsrXGYAzdn6CghA7ckoVR/zbWzP74w1F9CFFOIvWVG9WQHjT33kvCSj2EiP1s1Tda3GMYxOrtx/+eivFZHh0anq/6qnlJ2BQ+bAkkSayt4LgwSPrZpk7yYUUuKmQ+20AC+0I8GkqCDDnk84rv9XU0N/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lpayoPPO; arc=none smtp.client-ip=209.85.216.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-35a09e0dd63so1820795a91.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 23:34:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773383697; x=1773988497; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=q/jr7J8T+jhR53vKzR5OkWAl9M6wmaMQ89KXNhbZ4Ss=;
-        b=lpayoPPOOx738SrNj+BPEAgr+tiK/8+9oMqvPyM3dygMMrZr6f8ny/Crc87s2VDraY
-         C3S76x3E3GgSGUjyWBTX7unRH3zMegOhb2a1SrLFRedahaL/tx2JWV8AD+CapjsjQLbK
-         m1je4BTxsSB5w092HCgg6hFla9b09NFsGEs6WjdEVcIZD+SN5AjwDboSM5Uze7KgM2W5
-         2Jr+0Y0tPUi5tGJHu/QchSOp4eo4GKzSuO6M9wLI51krbrJfS1pFCN/JANV8jolYWKDC
-         z49tMhrKS/1WJlfgqPnkHZinx0HdKaSbxyWrQvKALPDW6is4YCJkbJ7NYDSQ4+3P5iqD
-         V0QQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773383697; x=1773988497;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=q/jr7J8T+jhR53vKzR5OkWAl9M6wmaMQ89KXNhbZ4Ss=;
-        b=fyvvcf9Pcm+7XZOd6Xw7jAxlRdro8KzuRFnC5vwerJ6/fjNFqG2Y1+z2X8Uj4ZBUD7
-         rHHrHjSMu0+EP5cO8atZgmY1lb8TtOD3yWb8AUduyqcs5G3fgwzara18eyHaYZ8lEDIN
-         QifQHH09cG4vlf96WpOa1EOqEWnxJfVGoduSOS+Rd0UXggo/pZsOhLsaBh6ZRWeGSsxO
-         qumdy+DvZ7Cdb0PUrvGYEzb4lqVyWFbm4DdX4QFO2t/Fx5n1m7uY0G6hHh2wUBXhnMzE
-         mEcCrvG52R6uTuj0f5YzeqIVrD5XYPxnLWB31hjO+75FhbOG3mON9iKMh+kslpdgU9Vm
-         dNjg==
-X-Forwarded-Encrypted: i=1; AJvYcCXbHyYog49rMz41ZlqtEDNYGQkR4QVDIqLDUAt2wxlg4RyAULHxJNV5aKtvy6mZ1FEHUCNaA4n4ZP1E@vger.kernel.org
-X-Gm-Message-State: AOJu0YwEr8sxHX8HkY8reyZPQ/fHSusF9etV4t7VkYmhweaiI3HTc2Ax
-	4Te5tc1KlENY4aJEY6fNCDVhaLi+4oe2eKVR8rzmxxkiiOgUX3CT4XEv
-X-Gm-Gg: ATEYQzxesSyordJZiCB+zN821Y3OcdMwwbFHxDnV401M1rtOQb1gRSfJwjyugDym+1l
-	xryXhyy0kqlz62a6YJnWd6jacq/J2NvjzT6maHWDdDaosvWXfJvqaDw+NXVnUzjtBWyzv9b4D4w
-	qLRBZvZJNba8klLpOYtkQUKA3e85zsZEayutnDBJ1QDeL/4dL9zrWKL99RKI3tggO+WNn4LnW/Q
-	wkeyRJUipsQTh+nMjpKuNnycpNFNuG98Tj8EeDU002iZ3A93PLvX03n16uiIKxfUzYQmaz/brln
-	vNkITLeqC33r5o4JG6RGd2SnQaJUS9s85UP4In2ro+xRmRLsLuds989KIkqZKxLW/BlHbhdeXfl
-	IHjECMSyLdk7JOpwC0bagShx0yE/yyR6vD7R5pCV4PC5d4iTGYqII9p6rSJgOJlP1oGMYOvdkf3
-	llx45dnVXI1to7wBRN3v7UryCzBU4oSU6aTq86Ay2wvfNG1OTXvGK5HcY=
-X-Received: by 2002:a17:90b:5185:b0:359:8ed3:8a65 with SMTP id 98e67ed59e1d1-35a22113798mr1985658a91.34.1773383697493;
-        Thu, 12 Mar 2026 23:34:57 -0700 (PDT)
-Received: from [192.168.1.5] ([27.7.215.222])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35a07f0a365sm6999155a91.13.2026.03.12.23.34.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Mar 2026 23:34:57 -0700 (PDT)
-Message-ID: <648da83c-79c5-4936-939d-690e7af1f95e@gmail.com>
-Date: Fri, 13 Mar 2026 12:04:52 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83825309F1B;
+	Fri, 13 Mar 2026 06:35:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.201.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773383736; cv=fail; b=BAgEfEF2AlLx3tJaGlD88ch3BTQYWBk2/v2SuBlRd5Ca6eRZikVqbZEVvzUBCZ88qayynSnL+scmkgJEEhzEFEP74xL+IU0QUJG/ULN4C7nv87FKFMn9No0rltAcUzKG+caLbvekylkCfqWLmTNRfsRTITCpq+0k0HK1ZKjWQGc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773383736; c=relaxed/simple;
+	bh=81i9moOEQZTaRwL0OV4nG78Um+Ovsk6jRgnVMk23faM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=EbFzr2dKxqBV/WmbbKJLglzWUNhRPhR1wpaRHOof8kqLTZBb7L5HfLEk0MOtVzYDIReLGJd/BmrXkR7EQ6SJ7TS/+byeEmwmCdPhJa/IWVNeRIsHqp3AyRd+G1ovi0VK+HJPjbujT8gmKcfVGs1Z6VP8451NvxGEi+NkxuE2grk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QoatcINK; arc=fail smtp.client-ip=40.107.201.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=BRPlqRF5KogL2m0fa1sWASIMlJsLRXZmXgdrwobd22KA6JO4DPvRxKi9y1zrqMMy53eeEZndo+30YmAdoCyNIlZluM9X2xGMBhxu7skjODmCSM6AXud+O8sm/MHGjaDvgxiWjGbnLbJOtr0q+n0Owi/dCrmte1V9HztYgKQBcPW4VwkX6btmGd3SAlyQkLEDgm0WyAKlXI7jx0hFSQS96dtfibLe4C4nI8fb8bWaoFCpfsp/z7QHWi2S04gQztT2Ix/Yd9Pw/KAPuXldPwvzLZLIwYJG/pwS6SgI0TP6nkmRPLBjcoed5U7Rqr8mZvheX1pqIru2ld08bzYuBBfsyQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PQGw3+PhUT7s5a3M9wJXnJLlfPvgY9XDgs3Nc4omqqA=;
+ b=RpvHxKqkmG1b82iyJqgpw1UPg7i+xfVIzyaTSZXfQdhdUjUb/Mnl7PfkFa6HkY3pKwW7JrVXWIq2lc4anpmQ0kU+YVR2erre+8NejMH5i0SOuXUM3SgiAFMR1liqeVuI8adSbsC42JnXGyrEJ73sahBQ+wjS9Rmc5u78Mxqq3OP6/cg0rFb62W95Fm4KwzlaxYTvTTn+YoSEsk0f0ENAVcVDcRrzzrEfYILjcT96P4M2IIs4XINir6QGMuWRebzWr8VAvuFSkcwJOdmJh0UE5ORiPtTNcAYVTISCpA3rq3ej6aM88rGdonS3TiX9/73RcUN/PoclX/qZ0TCWuoQDVA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PQGw3+PhUT7s5a3M9wJXnJLlfPvgY9XDgs3Nc4omqqA=;
+ b=QoatcINK9ZAs3+j3FYquFZGroy+V4aR/XnpyFqphu0CxpJM4vpdp6zq7w+IVcvKXo/qHlirzewpKzD7iid2+Cgg4RfjSXXE4ixOlI5++L9mpReWthYEgesNja4nSQ+wd3sOcDuHFUT0wfhmwwvfk8pElFxyv3nkIGdP+ETLayao=
+Received: from MN2PR07CA0013.namprd07.prod.outlook.com (2603:10b6:208:1a0::23)
+ by CY8PR10MB6633.namprd10.prod.outlook.com (2603:10b6:930:57::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.12; Fri, 13 Mar
+ 2026 06:35:28 +0000
+Received: from BL6PEPF00020E60.namprd04.prod.outlook.com
+ (2603:10b6:208:1a0:cafe::7f) by MN2PR07CA0013.outlook.office365.com
+ (2603:10b6:208:1a0::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.31 via Frontend Transport; Fri,
+ 13 Mar 2026 06:35:30 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ BL6PEPF00020E60.mail.protection.outlook.com (10.167.249.21) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9700.17 via Frontend Transport; Fri, 13 Mar 2026 06:35:27 +0000
+Received: from DLEE205.ent.ti.com (157.170.170.85) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 13 Mar
+ 2026 01:35:27 -0500
+Received: from DLEE211.ent.ti.com (157.170.170.113) by DLEE205.ent.ti.com
+ (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 13 Mar
+ 2026 01:35:27 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE211.ent.ti.com
+ (157.170.170.113) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Fri, 13 Mar 2026 01:35:27 -0500
+Received: from [10.249.130.238] ([10.249.130.238])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62D6ZNoq069132;
+	Fri, 13 Mar 2026 01:35:24 -0500
+Message-ID: <f55b008a-ad34-4fee-ae7f-eefec8629bb8@ti.com>
+Date: Fri, 13 Mar 2026 12:05:22 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/5] dt-bindings: usb: generic-ohci: add AT91RM9200
- OHCI binding support
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Claudiu Beznea
- <claudiu.beznea@tuxon.dev>, Herve Codina <herve.codina@bootlin.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260307-atmel-usb-v3-0-3dc48fe772be@gmail.com>
- <20260307-atmel-usb-v3-2-3dc48fe772be@gmail.com>
- <20260308-camouflaged-sage-warthog-fdbb7d@quoll>
- <1d49a4f4-8694-470f-82e2-6021772fc821@kernel.org>
+User-Agent: Betterbird (Windows)
+Subject: Re: [RFC uL PATCH 0/2] Add TI's event mux router driver and build
+To: <peda@axentia.se>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <vigneshr@ti.com>,
+	<linux-kernel@vger.kernel.org>
+References: <20260313060437.3704592-1-r-sharma3@ti.com>
 Content-Language: en-US
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-In-Reply-To: <1d49a4f4-8694-470f-82e2-6021772fc821@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+From: "Sharma, Rahul" <r-sharma3@ti.com>
+In-Reply-To: <20260313060437.3704592-1-r-sharma3@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF00020E60:EE_|CY8PR10MB6633:EE_
+X-MS-Office365-Filtering-Correlation-Id: 344f12cb-e538-417c-cfe8-08de80cab727
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|376014|36860700016|1800799024|22082099003|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	zeYZsxF4xxh/qV1PnQLRJnUagZ5XJkrUaYBDFY72H/Dkt2YGE1MMdkgehDpYSFGv2J0dBusevNSEV1lcOUJ+x7m9dJ411Us82POJn14iyD7fbrPpXiwyewT30AWOGByyYGS9MEf8CHk0FQmwmPRxeELkfq1KHEDIoPsIkBhSBkkQ/VTQIE3DctrTpy7d2DJQDCfeIovjSnoQnmSoVF8+hSn+nN0Y5e5hVkPcuD9KKqf100pUK7BeMXF2ABlb29RKaUQBYX+M7fA2mlB/JUsaxNjab81tLZhjFUZc1zz4kO6bwFj29I9b1fGgjLg9e6XsYO7HAZMDkumbxEQNicR4SoKJWYrsq4ffkcTDafCnOl26YJQ/kDjKB9i/6678xI5DXiNSgOCILTTT5Z94aCUQ9lVoPASuR0XeM/MAgeb8LtAphREzX54QHmV5/c7AMUfHEh41ldyzVisnF5p3RWD7aOLNJ3NWcE0mGM044TaKB+67CSGbr1NKGwf397M9Bn1lKy7ddXtWKUIBimj9OcvpCzuO0h81AbNpQ9nUWFMxrRZIu/X7AtNH6XgVxNdfFq1YAWvgpYNBYIGRXL6WnEe0PDewUTaLdcw4U+ONSAPVYRacmGCm7tF8zAmgSOMthmNlHl8GU7wG1jTzXkItBlF1e2Tc5TH7SkBDsbHMD47fjCbaeL/CFMombXrJXjlB+4REgZii51XWSbfdEqHlRFBoP+z0KbKaezghYxs+JzsRKYKnd/8CU+ipye/QVps3I49k24qB3S4ghxCUoNeMQJRkgg==
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(36860700016)(1800799024)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	rv1VNRIA+PJcIcyROJiAKsz7qJZ0Yqs9ZTBAne9BGPH9gCK+XTv7kZD2sydglIx6HKbHKWNJ6HTmek4jXYhB9s3S4SU85Bb0uV/kUJ3ltycdQt91JeTHlFx6twhF4Rmv5cnC2GnxThoNj/tCNdcPpJ+5b5a4aWu97dseCk6QeSu1cV0wj6KLj2BR+/OchZ36ZuPve3m358ybZxqlxxgwfFJDyyo7qdaJRz3/zdIQsuTq2YiV6RzSkrfhhmDiZqGqtNPIBS8SySdVZKodXXrSNpQcJ6FguRMuvy/C4EjHe3cO5PpqapruA2xVAr1H4d804oS59y1JeAg5vlC05gv/qEh/p2fB+ubZ6PhPvBsZ1NWpMIXJ6ZpViSsa6DYAkrC5gIX84mtArTktdsnjAs73YU2JkBYZf9pPIV1uFRgSb9O11dQ4OCIUyzFDOGpfwZBT
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 06:35:27.6626
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 344f12cb-e538-417c-cfe8-08de80cab727
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL6PEPF00020E60.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR10MB6633
+X-Spamd-Result: default: False [1.35 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274902-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	XM_UA_NO_VERSION(0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-274903-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[ti.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:dkim,ti.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
+	MIME_TRACE(0.00)[0:+];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[r-sharma3@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_NONE(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:url]
-X-Rspamd-Queue-Id: 4B73927E30C
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 85E6027E31B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Hi,
 
+A note point for this patch series,
 
-On 08-03-2026 14:58, Krzysztof Kozlowski wrote:
-> On 08/03/2026 10:23, Krzysztof Kozlowski wrote:
->> On Sat, Mar 07, 2026 at 09:16:19AM +0000, Charan Pedumuru wrote:
->>> Add binding support for the Atmel AT91RM9200 OHCI USB host controller
->>> to the generic OHCI schema.
->>>
->>> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
-> 
-> Also:
-> 
-> A nit, subject: drop second/last, redundant "binding support". The
-> "dt-bindings" prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-> 
-> And you cannot add support for bindings. The DT schema or some kernel
-> Makefile gave that support, not this file.
+1) Subject prefix has "uL" which means upstream Linux. This got added by
+mistake.
 
-Okay, I will change that.
+2) In both the patches of this series the commit header should use "mux"
+instead of "mux-controller".
 
-> 
-> 
->>> ---
->>>  .../devicetree/bindings/usb/generic-ohci.yaml      | 33 ++++++++++++++++++++++
->>>  1 file changed, 33 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/usb/generic-ohci.yaml b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
->>> index 961cbf85eeb5..a8a94b9c1fee 100644
->>> --- a/Documentation/devicetree/bindings/usb/generic-ohci.yaml
->>> +++ b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
->>> @@ -55,6 +55,7 @@ properties:
->>>            - ti,ohci-omap3
->>>        - items:
->>>            - enum:
->>> +              - atmel,at91rm9200-ohci
->>>                - cavium,octeon-6335-ohci
->>>                - nintendo,hollywood-usb-ohci
->>>                - nxp,ohci-nxp
->>> @@ -137,6 +138,16 @@ properties:
->>>        The associated ISP1301 device. Necessary for the UDC controller for
->>>        connecting to the USB physical layer.
->>>  
->>> +  atmel,vbus-gpio:
->>
->> gpio is deprecated. All bindings use gpios. Also, pins do not use vendor
->> prefixes.
->>
->>
->>> +    description: GPIO used to control or sense the USB VBUS power.
->>> +    minItems: 1
->>> +    maxItems: 3
->>
->> Why is this flexible? There is only one VBUS, no? Which pin is it
->> exactly on this device?
->>
->>> +
->>> +  atmel,oc-gpio:
->>> +    description: GPIO used to signal USB overcurrent condition.
->>> +    minItems: 1
->>> +    maxItems: 3
->>
->> Same question here - how is the pin called in the schematics?
->>
->>> +
->>>  required:
->>>    - compatible
->>>    - reg
->>> @@ -144,6 +155,28 @@ required:
->>>  
->>>  allOf:
->>>    - $ref: usb-hcd.yaml
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            const: atmel,at91rm9200-ohci
->>> +    then:
->>> +      properties:
->>> +        clock-names:
->>> +          items:
->>> +            - const: ohci_clk
->>> +            - const: hclk
->>> +            - const: uhpck
->>> +
->>> +      required:
->>> +        - clocks
->>> +        - clock-names
->>
->> There is already if:then:else covering clocks, so this makes multiple
->> clauses being applied to same device. That's not really readable.
->> Unfortunately that's a bit of a mess from existing binding. This can be
->> solved by moving this to separate schema, especially that you want to
->> add some specific properties to this device.
-> 
-> I guess Rob was fine with this, so let's keep it in this file.
+I will correct above but would wait for 1st round of comments before
+re-spin.
 
-Yes, it should be defined here as the fallback compatible is already defined in this existing YAML.
+BR,
+Rahul
 
+On 3/13/2026 11:34 AM, Rahul Sharma wrote:
+> This series contains the event mux router support present in TI's K3
+> platforms. The event mux router are of 2 types
+> 1) gpio-mux router
+> 2) timesync router
 > 
-> Best regards,
-> Krzysztof
-
--- 
-Best Regards,
-Charan.
+> In normal scenarios, GPIO signals are received by CPU via GIC, but the
+> gpio mux router routes the incoming GPIO signal to BCDMA(Block copy
+> DMA) which the DMA upon receiving uses as HW triger to perform a single
+> block transfer or as configured.
+> 
+> Time sync router does the same but for the time synchronization based
+> events.
+> 
+> This driver supports both the routers but this patch series adds support
+> only for GPIO-mux router.
+> 
+> Rahul Sharma (2):
+>   dt-bindings: mux-controller: ti: add binding for event mux router
+>   mux-controller: ti: add driver for event mux router
+> 
+>  .../mux/ti,am62l-event-mux-router.yaml        |  79 ++++++
+>  drivers/mux/Kconfig                           |  15 ++
+>  drivers/mux/Makefile                          |   2 +
+>  drivers/mux/ti-k3-event-mux.c                 | 235 ++++++++++++++++++
+>  4 files changed, 331 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mux/ti,am62l-event-mux-router.yaml
+>  create mode 100644 drivers/mux/ti-k3-event-mux.c
+> 
 
 
