@@ -1,177 +1,192 @@
-Return-Path: <devicetree+bounces-275520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275521-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QKEqJnxetGmKmgAAu9opvQ
-	(envelope-from <devicetree+bounces-275520-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:59:08 +0100
+	id 0MiNMxVftGmKmgAAu9opvQ
+	(envelope-from <devicetree+bounces-275521-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:01:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45A5D289055
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:59:08 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DC1F289086
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 20:01:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1BDBD316D9FF
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:57:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1191530242BD
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:01:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 212403DEAFE;
-	Fri, 13 Mar 2026 18:57:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E7863DD536;
+	Fri, 13 Mar 2026 19:01:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rN9GwUbY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iSktqZJc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0A953DD526
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 18:57:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C25337F74F;
+	Fri, 13 Mar 2026 19:01:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773428259; cv=none; b=DCA9hDVFZn4QfSkg6iUs66R4zHSXon45TbrjKZ5HXNj/W+JywZ1eEx4qIAQcV43HiCJ/Qm2/nPSdU8kfpcjVdWn3G2e/eCjMMyckjyg5wNbVv8R7zQD57HubArZl3T9fbr4h6Uq2A4Ox8D0wYhq+i0VBD4dpzvMQaMGt1igCD80=
+	t=1773428496; cv=none; b=j0YvPeKsorP1K9O7X1WgbAV3oXlIpmjhmcgOvkVe+82EZTJQF/7Y5f2eyvAzbc/6/guwbFgiYnpIG7cR34RoplW3Xn95IAGVicuBN2CO/LqOzdX/DDoFeNkd4thG1LVV4QMI5gSd0r/awme/yVXFt2ZPgk7gZL+CscX60DgGXF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773428259; c=relaxed/simple;
-	bh=34m2T8zjB+u4MLGHeKznxeFD6ttVQwhK+4XwYx0EGyM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YYjgOrpOz+hRG38cgGI0zgKbLa7KIzPuLv+q5fnbgm7e6DIQIC2Z26N5QJPnl52eUWoZ1Tpe2eNC/XNslS5219qjZ+/MVC490tss3l9ZMsTTP9ZXhVTSx1MmzlV1jg4O+CM3yVVRn8f5+bgr8fP3OwN721TTKp+uCSn4HiSm8Nw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rN9GwUbY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5C6BC2BCC6
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 18:57:38 +0000 (UTC)
+	s=arc-20240116; t=1773428496; c=relaxed/simple;
+	bh=t7JM9fIIXNM6OiUZarv073oEP0ElLeNWb1KjAs3Deuc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=N7woxNhQE1gr8i8oo1ldkU8ITBMHM4tKSz1oXM0J8zp52gL58rzXPQNPfnbB2/iGdaMNxXwKknMS7ZHlGTx69oGrMwUhpaQfyO2dcjz1tK+ftfn2UgV50qgODSfnzQ9tDTVFBKh6I75YOXjbXPK3WyfST4sPNBjAyIyuSWkDBkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iSktqZJc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93E2AC19421;
+	Fri, 13 Mar 2026 19:01:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773428258;
-	bh=34m2T8zjB+u4MLGHeKznxeFD6ttVQwhK+4XwYx0EGyM=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=rN9GwUbYc0LU//yQ7aS5ISpKN7mJwws6vgq4FtnDBrD0ZfmAGZkWuBdrmK88j9RVJ
-	 L4PA6Xz/VqnnAgsKs0d4ptSSCWYKdgpyNsYRiZu59dLGZ8GJF71YdkYdnBZlGNgy2t
-	 g8mX1QE5P5BjiJ6MMMaky/6/DtTXfC5E9lxRBWsrdyOtymwRis3/5dUCUOcj1xSUBt
-	 4UxZY/7KzsPiF0lTE/v9jVrg8fKhRqEp5TgjI87w/xWFaqFZQrv6oggKNidnLbib8T
-	 jO8XoFUDfttizxkmPNE+qajMbg3lOIxt/+PHWWVpxD8+7Sk9eBAL28YcOOufezRE0w
-	 Um1G5kRYVq14Q==
-Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-67bb5e4d06eso924626eaf.1
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 11:57:38 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWa/U/a+k/Ug94PXdavgHKkb7RySAd5aaryD2fu55TUeTgp+FObCukn5CgNd7/1mTOY+EOgqyMC3+xI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHWJTR6HlcXFwrAhrIaabO/9Wkoa71AmTGXoBBDRJFUxk83w9h
-	M2/lvGg6Qc7rQlLXYnFmGvGvQ2U2o0ZD8e3GoA7xwZuNuZyCroXKOtQMdyV6sA6B9cQhd1yc8mH
-	FwTHlYwl1kw+dtQvpExWY7yoYbSIXR9g=
-X-Received: by 2002:a05:6820:c93:b0:67b:bf52:9987 with SMTP id
- 006d021491bc7-67bdaa63959mr2561459eaf.60.1773428257476; Fri, 13 Mar 2026
- 11:57:37 -0700 (PDT)
+	s=k20201202; t=1773428495;
+	bh=t7JM9fIIXNM6OiUZarv073oEP0ElLeNWb1KjAs3Deuc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iSktqZJcjVlBkJDRMeU3Jymnki2j6NB3oVjPbh72r6cjQ6JjrQ9qMLWpywEodY7A/
+	 +AjLFldfkmWnK+DWlCjlNiTK/PqMq+kPkDfWb14Ipg3Sw6xpgzG8+aDKedYf2Trk2+
+	 Nn1Lkqed26LmolYZNvUtYleOjtFSVS+opF6zQPYjJHpt1X5YkvY0TsDIcQOoVjxVgT
+	 Bs8Cqqt0r7/3pnKOGyBNKilMNRIVqN32+5sKugLx9E2ofO/mnnIjTSZBH7gRvH4y2F
+	 7KQcsjj1LT9l6/YUboK2G0H//aXi9wxArIBdYfCWh4nco6K9nKk4vWJQphCP/MxcMM
+	 MpsXo/k8Y5YNw==
+Message-ID: <de539038-7e9d-488b-a6a6-45396247bf63@kernel.org>
+Date: Fri, 13 Mar 2026 20:01:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260313-synology_microp_initial-v3-0-16941debd8a0@posteo.de> <20260313-synology_microp_initial-v3-3-16941debd8a0@posteo.de>
-In-Reply-To: <20260313-synology_microp_initial-v3-3-16941debd8a0@posteo.de>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Fri, 13 Mar 2026 19:57:26 +0100
-X-Gmail-Original-Message-ID: <CAJZ5v0hYcSDKid4cbz8ZVZG+vLSHvzPB2UryevEpE15W1w7G3g@mail.gmail.com>
-X-Gm-Features: AaiRm52wIYLXzpbrcPk1yGnN18zABaxFLxVozfWcNMKe7mZAiwm1YS4O-8Hh8h0
-Message-ID: <CAJZ5v0hYcSDKid4cbz8ZVZG+vLSHvzPB2UryevEpE15W1w7G3g@mail.gmail.com>
-Subject: Re: [PATCH v3 3/7] acpi: add acpi_of_match_device_ids
-To: Markus Probst <markus.probst@posteo.de>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Miguel Ojeda <ojeda@kernel.org>, 
-	Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, 
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
-	Danilo Krummrich <dakr@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Igor Korotin <igor.korotin.linux@gmail.com>, 
-	Daniel Almeida <daniel.almeida@collabora.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Pavel Machek <pavel@kernel.org>, Len Brown <lenb@kernel.org>, 
-	Robert Moore <robert.moore@intel.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
-	driver-core@lists.linux.dev, linux-pci@vger.kernel.org, 
-	linux-leds@vger.kernel.org, linux-acpi@vger.kernel.org, 
-	acpica-devel@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/5] dt-bindings: embedded-controller: Add EC bindings
+ for Qualcomm reference devices
+To: Anvesh Jain P <anvesh.p@oss.qualcomm.com>,
+ Sibi Sankar <sibi.sankar@oss.qualcomm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Hans de Goede <hansg@kernel.org>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ Maya Matuszczyk <maccraft123mc@gmail.com>
+References: <20260313-v04-add-driver-for-ec-v4-0-ca9d0efd62aa@oss.qualcomm.com>
+ <20260313-v04-add-driver-for-ec-v4-1-ca9d0efd62aa@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20260313-v04-add-driver-for-ec-v4-1-ca9d0efd62aa@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275520-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,garyguo.net,protonmail.com,google.com,umich.edu,gmail.com,collabora.com,intel.com,vger.kernel.org,lists.linux.dev];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275521-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[31];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rafael@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[posteo.de:email,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 45A5D289055
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,devicetree.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8DC1F289086
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 7:48=E2=80=AFPM Markus Probst <markus.probst@posteo=
-.de> wrote:
->
-> Add a function to match acpi devices against of_device_ids. This will be
-> used in the following commit ("mfd: match acpi devices against PRP0001")
-> to match mfd sub-devices against a of compatible string.
+On 13/03/2026 11:29, Anvesh Jain P wrote:
+> From: Maya Matuszczyk <maccraft123mc@gmail.com>
+> 
+> Add bindings for the EC firmware running on Hamoa/Purwa and Glymur
+> reference devices.
+> 
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> Co-developed-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+> Co-developed-by: Anvesh Jain P <anvesh.p@oss.qualcomm.com>
+> Signed-off-by: Anvesh Jain P <anvesh.p@oss.qualcomm.com>
 
-Not until I can see how this is going to be used.
+A nit, subject: drop second/last, redundant "bindings for". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
-Maybe never.
-
-> Signed-off-by: Markus Probst <markus.probst@posteo.de>
 > ---
->  drivers/acpi/bus.c      | 7 +++++++
->  include/acpi/acpi_bus.h | 2 ++
->  2 files changed, 9 insertions(+)
->
-> diff --git a/drivers/acpi/bus.c b/drivers/acpi/bus.c
-> index f6707325f582..5ddcc56edc87 100644
-> --- a/drivers/acpi/bus.c
-> +++ b/drivers/acpi/bus.c
-> @@ -1044,6 +1044,13 @@ int acpi_match_device_ids(struct acpi_device *devi=
-ce,
->  }
->  EXPORT_SYMBOL(acpi_match_device_ids);
->
-> +int acpi_of_match_device_ids(struct acpi_device *device,
-> +                         const struct of_device_id *ids)
-> +{
-> +       return __acpi_match_device(device, NULL, ids, NULL, NULL) ? 0 : -=
-ENOENT;
-> +}
-> +EXPORT_SYMBOL(acpi_of_match_device_ids);
-> +
->  bool acpi_driver_match_device(struct device *dev,
->                               const struct device_driver *drv)
->  {
-> diff --git a/include/acpi/acpi_bus.h b/include/acpi/acpi_bus.h
-> index aad1a95e6863..0081b9e4aaee 100644
-> --- a/include/acpi/acpi_bus.h
-> +++ b/include/acpi/acpi_bus.h
-> @@ -677,6 +677,8 @@ void acpi_bus_trim(struct acpi_device *start);
->  acpi_status acpi_bus_get_ejd(acpi_handle handle, acpi_handle * ejd);
->  int acpi_match_device_ids(struct acpi_device *device,
->                           const struct acpi_device_id *ids);
-> +int acpi_of_match_device_ids(struct acpi_device *device,
-> +                         const struct of_device_id *ids);
->  void acpi_set_modalias(struct acpi_device *adev, const char *default_id,
->                        char *modalias, size_t len);
->
->
-> --
-> 2.52.0
->
->
+>  .../embedded-controller/qcom,hamoa-ec.yaml         | 56 ++++++++++++++++++++++
+>  1 file changed, 56 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/embedded-controller/qcom,hamoa-ec.yaml b/Documentation/devicetree/bindings/embedded-controller/qcom,hamoa-ec.yaml
+> new file mode 100644
+> index 000000000000..baa95f06644a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/embedded-controller/qcom,hamoa-ec.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/embedded-controller/qcom,hamoa-ec.yaml#
+
+Filename must match compatible.
+
+This is a standard review comment already documented in kernel and your
+internal guideline, no?
+
+
+
+Best regards,
+Krzysztof
 
