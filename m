@@ -1,462 +1,283 @@
-Return-Path: <devicetree+bounces-274885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274886-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OFeyHUSps2lWZgAAu9opvQ
-	(envelope-from <devicetree+bounces-274885-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:05:56 +0100
+	id yPvzBh6ps2k7ZgAAu9opvQ
+	(envelope-from <devicetree+bounces-274886-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:05:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA24527D909
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:05:55 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31AAD27D8D4
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:05:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8049030C9CD7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 06:04:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 33C423025702
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 06:05:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B36C325491;
-	Fri, 13 Mar 2026 06:04:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CFD2335566;
+	Fri, 13 Mar 2026 06:05:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="roMihj3h"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QJfMvUBq";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="NeU7AxGn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com (mail-westus2azon11010067.outbound.protection.outlook.com [52.101.46.67])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E84C238D52;
-	Fri, 13 Mar 2026 06:04:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.46.67
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773381896; cv=fail; b=ZhwyQSKLWvma1uoJC3sJc4M7nDVwU70kI4++hh8/agOaufJv8u9TG8ZdpfD/Zql/t9/RDMHPP418KsDmnprTn2t+GTbhY1M6BVcUC8JBvS0jP4HA5K9iVEHMBAkuGZyoxW5rF0Xcl49FdjcO68qH4aGuQpRvzs77CJkxIB37qWw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773381896; c=relaxed/simple;
-	bh=NRZzkJxdHIOBguccRqDBO6qd3USjMpL+7ZgjQBSSFy8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CFLlXtJPlR/uvi1JJlLYxQkFQaRc1A8kmZQYsFJB7XXZAnpuIm7aoQgiek2+XSqRMsEJ1uomK1MEco4OLax00Ct85sb4HyehoMURpBr0meTBXzMbZi11f4Klea4zguSb9QcM5JzVmzcAlnPig6sJwouK/E5tQ0SaIFLDT2NfUcU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=roMihj3h; arc=fail smtp.client-ip=52.101.46.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aF/85155upJpgG3DJ2oufKN5JdfmGvfI1Jv9is9GjUvdgRZY2rERpWo9r26INGItIBOWKbMdPRu3VYLaaXguxLjZKoY2VjnfLGXWw0Lw7WB/WPlcesSqo4rBohQHClTen0VMwMQLiMScqf0tSg0teU+RLg/maJmbdM0x9Jz/SUVqPrZ5eO+PvX4wKjI7RqI8qFBob0q8Gq2yFc13xPK1DCyP4ntsSTeDgKOZYCNmBkfCkaC5viPqcRAG/UsyVwgSy9kex+NP1m2n+O9c8+DOnDLMu8yXGvyl5x/k3Wv4N6UpWrUSdR2pfq2pZ3xvGTrFDjEdRP6v3VCIKANQTRWnzA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Xya40QhYoV0fW+xJAD9yvyZhKO6DyEtmPnbmUSRx818=;
- b=IOuc6z6VbFiUqGW0TYXZT+6iFLhLqUtb7YDEZKTxowJoR/1N1hv8VNSKqaQ2WO3Qgf9BOjGcei/Cly3Kt1CFZetRKa++bv4OL1dwF3FwK5uukAgs4K1+K2t9J4xhraafrzLW/RBXR7r97cDI+IPgByAmxp5UJd4KDdf9u0uGdcU7uIWkIr/2Ba1iuYU6mtGFRZYlXw2IKq0M0pSkKMcuhqlCjrPTCYki17pR1ChLLjcJJQeMeHoTyTyldbczsRI38Axt3tC1mfOzoLe0W4s12oCZ35xFdBNWqo22XWE3MneXds04ftpTqsSgIMhnpUngoAx6rp8l5zh/B+3zO3D91w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Xya40QhYoV0fW+xJAD9yvyZhKO6DyEtmPnbmUSRx818=;
- b=roMihj3h2scv223PzgmeZUsxRX5jsYyjnvA9t1x1087Apc+qdLwiRcoNVd9KQS/8WEQTTKSdiizRexSjOS20xHaFe1pMFvtykNwy0j3LFD1eT0SSr4yRucLN7Yj2c/MmawPEYuUROJKFwpplcPqh+G8RS3dhZoFMdWDy/1OtLqY=
-Received: from BY1P220CA0003.NAMP220.PROD.OUTLOOK.COM (2603:10b6:a03:59d::10)
- by LV3PR10MB8034.namprd10.prod.outlook.com (2603:10b6:408:28e::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.15; Fri, 13 Mar
- 2026 06:04:52 +0000
-Received: from SJ1PEPF00001CDC.namprd05.prod.outlook.com
- (2603:10b6:a03:59d:cafe::73) by BY1P220CA0003.outlook.office365.com
- (2603:10b6:a03:59d::10) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.29 via Frontend Transport; Fri,
- 13 Mar 2026 06:04:52 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- SJ1PEPF00001CDC.mail.protection.outlook.com (10.167.242.4) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.17 via Frontend Transport; Fri, 13 Mar 2026 06:04:51 +0000
-Received: from DLEE200.ent.ti.com (157.170.170.75) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 13 Mar
- 2026 01:04:50 -0500
-Received: from DLEE204.ent.ti.com (157.170.170.84) by DLEE200.ent.ti.com
- (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 13 Mar
- 2026 01:04:50 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE204.ent.ti.com
- (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 13 Mar 2026 01:04:50 -0500
-Received: from uda1253387.dhcp.ti.com (uda1253387.dhcp.ti.com [172.24.233.12])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62D64fK83710415;
-	Fri, 13 Mar 2026 01:04:47 -0500
-From: Rahul Sharma <r-sharma3@ti.com>
-To: <peda@axentia.se>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <vigneshr@ti.com>, <r-sharma3@ti.com>,
-	<linux-kernel@vger.kernel.org>
-Subject: [RFC uL PATCH 2/2] mux-controller: ti: add driver for event mux router
-Date: Fri, 13 Mar 2026 11:34:37 +0530
-Message-ID: <20260313060437.3704592-3-r-sharma3@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260313060437.3704592-1-r-sharma3@ti.com>
-References: <20260313060437.3704592-1-r-sharma3@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5E6332692B
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 06:05:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773381912; cv=none; b=OYBF/yzcMAwOjmDUF+yBH1cYNGM9ue5pAfJGEOgtEmZ9XtU9UbHBl3EQXGZtHbpk2S0/ua2H37Iuoh2uDFpBd2JENUEIjApSKzX5oYmoRZ7fp0AMalvTl7IjKi51qQTwBS57F+0rqvzLs3X/SPahwEGwTktGmm9KkivHx6cmEZs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773381912; c=relaxed/simple;
+	bh=JB/usJN3+rbRiZIr1+8g7VPqy6EEuWzOH+oPf8czcUU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eJCDw/dfBLF8hlsKPAiiRtH0e8W35KdX3vffiWnZc578cOiUCX0yx54jlTxCRE80h/Pe7WFoS8XC5jXX5JLdMdGgoGcrDe0H8AA+f1u3xYCkewgpLk+HCQEiR/QTpoPTHzKkBn6JjNo+e7Xt1epkEQqPTiSK19Qo1/V27LBvkZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QJfMvUBq; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=NeU7AxGn; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62D5th1s070731
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 06:05:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=zeM7gmRvWE3zPnFK+DBIUx8d
+	4QuC9ACWMKfdIK3rw1I=; b=QJfMvUBqwcfY9u+taSrVQqTd80hEJj12tOwH5Q9j
+	xaX9k0s8mlDbhIGsyeV7Sv2muOCdElzAqOAi1FkgvuzsypAnc9KVBF/OhZbRfuI0
+	eP3/swrWAVVyoStb5e+YPt30JEOc7NG6psZJycX4CZ0mekZSKIfbVV2E1p5/Ff1p
+	UXQnYl2ePnKSwUKn85QTF0fvIYjitY+MK2kohDZ7/b+AXxSNk2IYy0TqJGFJTwzA
+	PuKJfdmvTc5N2rmnW1mvZXsxdjvfMVtx5kAOry1BM8k/Jy/nrsUlXLxe3dy8zJDP
+	OluuQkZYpex1FDmbDCQwjYuzgihFZk+Hwmeljq/GFawn8A==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cuh4ymqhp-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 06:05:09 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2aec3f67844so13251745ad.3
+        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 23:05:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773381909; x=1773986709; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=zeM7gmRvWE3zPnFK+DBIUx8d4QuC9ACWMKfdIK3rw1I=;
+        b=NeU7AxGndEWvTlbIu+rGi8hAXScOCSM6lVidJHAf13QLWJiRjRarEiJ52OV9FC/t8C
+         fw8mLzlNM/ajeNlgNdYitWZz6nLZTpS8Akt+wZUQZUzVwifVlqA7iEoFDh0ONpzxQP1u
+         JNc4Uof5ODbUj4b6n0+4EbzXOpsTvHY3ehpXP4K1cJAZB9ve2beajZaTXV1U3tpIDol/
+         z5gbpbfw+0rkTrySn9fFXj8IP1aJNhMO0gleUgl5QgLIKcbsrxLWnsqtL6vtRslIxwa2
+         R89ifkNclMVrDwDHtH6aqmOb7Vx/t5FO2VWzs+ATUBBeV3ke3Mu+0/XvtvZhOI7m0io/
+         C9vQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773381909; x=1773986709;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zeM7gmRvWE3zPnFK+DBIUx8d4QuC9ACWMKfdIK3rw1I=;
+        b=cBO23LeRyzOz5j4B6XuB2nPpakzhwkY1V7xZbmv/JB1BrmhwYteqwfK2vMiZOe7VSM
+         pjhniyyimzMjdSxNjyzTmUy10whFUpHEHXdpd2yFpqPd+yS01MxOSHyDC7KcE6zceII2
+         /aaFLzcOzxHoyHfqXJAt4wf5iCl8xBbG0cd/xKGvbEzSK/KCJvonHW/XuECyGKE3L+29
+         9ibFMyokBKackntSw6vvOR+Bva2Xg9PCAn2raIiz4OTNRU1xUIOGPLeGtzGftHCBrNS9
+         bjKhit88gMvWnmKWeEjPfcfOoj/yoZ9zIVkMfsAYCy6cTOOBuOKmY+0HTTR1T4TxDKna
+         POyw==
+X-Forwarded-Encrypted: i=1; AJvYcCVuR41Y1ZKCZNXpmp3SY99tvVJVamH/4C4ka8hCcudEpFo3ZGVn6gMZJuU9FqQSy/9HlqTpHEJfs84c@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSlvSzo53Zl1syphbK5+tkhw1Hu7QzO0/R8+9NJiOqTZynw9ek
+	AZhOQmYgH4LXuzOjkB6Yc1udkSvtvU+A3gSbF/uJsTCe/FHQporgrLMHkOqzy1ytiKx+Si1It8C
+	qF1AgvJfQpObYynC40zNNGUxH9i7ri9ty8SISSJDekfZ8OoPRBv0oqrXUWQKrZxt8
+X-Gm-Gg: ATEYQzykvFkI5U6hAuV9QX2LU8CuDrxis7pEiyK+nFNdLdlVjsihycyp32+kz+0CLNM
+	cSvlCo3ASUqjumvmpZsmmu8Mu3EP+ENYSPVUoh9Mi2pXDeKm+P2Pl1l23SPNOMxygGGLPy/oH81
+	tc8tq8SiqQLK1xOx/aBUUS44kSodXBfsIgREDeiUYzMJtgHX4mT3oyLV+8WKRAzKTU7Sp+OWNE3
+	9u1dzJDXAk5pLF2RKVZDDIYhs3INZVjPh+stuYgz11dZM47DGR1Y4b8MgVKfIMP43YAr8JehAGs
+	ZXK7zk7+e8q3mlP/zYTfraz1kMPaFb6PTCgvNgWCeqJwmk1iqypYYSuJJ/8wvL3Skkf20nnrg3w
+	AD564I7hx5WP/wCNoiznbrDbh+RW0hVY+cuVcn03fTxmivXOl
+X-Received: by 2002:a17:902:e80c:b0:2ae:a786:6663 with SMTP id d9443c01a7336-2aecab1e86cmr19453295ad.26.1773381908498;
+        Thu, 12 Mar 2026 23:05:08 -0700 (PDT)
+X-Received: by 2002:a17:902:e80c:b0:2ae:a786:6663 with SMTP id d9443c01a7336-2aecab1e86cmr19452995ad.26.1773381907930;
+        Thu, 12 Mar 2026 23:05:07 -0700 (PDT)
+Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2aece7ee5b1sm10183605ad.46.2026.03.12.23.04.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Mar 2026 23:05:07 -0700 (PDT)
+Date: Fri, 13 Mar 2026 11:34:51 +0530
+From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+To: Sumit Garg <sumit.garg@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        linux-media@vger.kernel.org, netdev@vger.kernel.org,
+        linux-wireless@vger.kernel.org, ath12k@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org, andersson@kernel.org,
+        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, robin.clark@oss.qualcomm.com, sean@poorly.run,
+        akhilpo@oss.qualcomm.com, lumag@kernel.org, abhinav.kumar@linux.dev,
+        jesszhan0024@gmail.com, marijn.suijten@somainline.org,
+        airlied@gmail.com, simona@ffwll.ch, vikash.garodia@oss.qualcomm.com,
+        dikshita.agarwal@oss.qualcomm.com, bod@kernel.org, mchehab@kernel.org,
+        elder@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        jjohnson@kernel.org, mathieu.poirier@linaro.org,
+        trilokkumar.soni@oss.qualcomm.com, pavan.kondeti@oss.qualcomm.com,
+        jorge.ramirez@oss.qualcomm.com, tonyh@qti.qualcomm.com,
+        vignesh.viswanathan@oss.qualcomm.com,
+        srinivas.kandagatla@oss.qualcomm.com,
+        amirreza.zarrabi@oss.qualcomm.com, jens.wiklander@linaro.org,
+        op-tee@lists.trustedfirmware.org, apurupa@qti.qualcomm.com,
+        skare@qti.qualcomm.com, linux-kernel@vger.kernel.org,
+        Sumit Garg <sumit.garg@oss.qualcomm.com>
+Subject: Re: [PATCH v2 01/15] arm64: dts: qcom: kodiak: Add EL2 overlay
+Message-ID: <20260313060451.hswg6snnnexchmzs@hu-mojha-hyd.qualcomm.com>
+References: <20260312062756.694390-1-sumit.garg@kernel.org>
+ <20260312062756.694390-2-sumit.garg@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CDC:EE_|LV3PR10MB8034:EE_
-X-MS-Office365-Filtering-Correlation-Id: 68952e35-77b9-465e-0137-08de80c670e5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|36860700016|376014|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info:
-	IPpYagk8PhO0z8kZg/dJAbBntZfc6SbZMU+/2kV+VBtE0WKpRI9RMkWr8LzPyhThiFzMBQLjnLq3CFoQjK5duj6HYHhzrVu9GwCYsYAwJ87/3clzTdFRb9ViUy7lmdlvncMfvwuHGvD4cSwjHiqrtH5mwwglgeZLI/rAiVVNBVIIDJvchMlycKZ0j+VVo/PuhC5WwMY3rC0YS8INqYs7CA1CW3MZq9cgxNCJNLCyIiQiVuTRgycaTkkQvFYLVZCiDotH69wlfBt969L6fn3MW2WjENwE8DKiXd9koMTJShzkGERZFrNvYHw5QUNRNArOwfrgcqFQYFI9rVGcxq6Dktnb12ajeXQsjggejI8mYiqv6t8uYpoefyCpbbUGxZbNOWBp5H2zWdNAEHtC5rQMKZpoSRON4LOZbhlA+K/6Hph6z5Xc+qpXBoG8pIivmW6k+L4q+Wkq57bcTBMRYxnPJjrvpMLInviaY8aVBjZALBOwhc6iJL+Ac6BB056N2grVCcXL+PMxCeb3SvAnnaVA5U4qe4uZKitnCaF6BXZfVg5Iay4zcW4p0VVK76htkEa0SP65Cg3WgYs1WjZ8ez/6c+PRKiT2iahPxXgTqOjZIhzctisjaqZa8OG8KqW9h8SjLf4STnOpDXNu1DJBP4M2FSAtPSF+gielC/YYChCn7UK53qtpAbbY+TXbcQSTE5K3wgArL3t/zz+RqLJ6WWp2Eg==
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700016)(376014)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	N/KNPD/dlmfI9pF5DcpkAPBSE53grggoRFHOVYlGopH58Zm9ltl4uFxUqI9odWl+Gu9FZpifuCdCMYcpfsK/gb9Y76nKULfouPZeeMkzhnAhq7k9cHY7f51v9PJ2oOUR7X5ug5J3v+Z383oG3p++evsWLaqgHm/T0wqnBoDENLN2RJLj+Mv5lV/rtaUAC+F1473y6ghSL+sA6CkiSTEZg9SvbjZBILXvtO3Y8QEdVLV8vbVHULjoWYpAdnhc6oZ5LEd8t0LhDmfUWpF0hRzUlIJ6pe2A1YX9JaLjMiPAa749q2RfjEi7viP2zBVi8W1O5QR8cqqjOZl93M70OH5RoVuPG4KJFsk/6/vIZb4pTYzkGbnSusgat7SreJxYGMBhHGOg51xAqEPLKaJNZZ5ddBebLPIwKSnaDip2qTVPVpcVlrXd+HgRrH0S0+mKWUib
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 06:04:51.7690
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 68952e35-77b9-465e-0137-08de80c670e5
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ1PEPF00001CDC.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR10MB8034
-X-Spamd-Result: default: False [1.34 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260312062756.694390-2-sumit.garg@kernel.org>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEzMDA0NyBTYWx0ZWRfX+QEMFxb4cIyO
+ s5IOAQa5Er2vgGMHUXxZnLOQCYDyHQEOpzfja2TdTOmugi8PfcXfGop+Evt4A8V0kzvK9T46jkV
+ TWy2wfa6brRAXm9pVrV5eh0FwkRWHW6HKuvTZt/HuD/x8Oc5BIjk8ZfNlUzha5S4gEQein7IPth
+ 3uzwNVmDPszvd2/2kHwkeK6a8XMbJMA8mIq7QHLxTguYGy8BJ1KGsqP96qR7XrN5Jfd3fXbsRRW
+ nbx4ogQPswonn+dor7WyqmWSUO2SvkUq1reO8d5i4oJ431EFOc74oFwhpTeP8gOFE73IaBQuAlN
+ BORTFWGyZRKzpXQQBki8ZKdYaisA7Rubnp3AxfzAjkJliNWBwczbqdyb13l6QS189FdW63CNc9R
+ zRii5VXjmGGJu+LFCiKLRHQG2Uzc2ddk3VUb5K78caHF4Q9YgLaokEI06cH2PyGzDkhE8ICNOCn
+ YN5BFddMVprHBBeH/+g==
+X-Proofpoint-ORIG-GUID: wlYvl2t5vB5giavxwV6xKOlYbYjQi57z
+X-Authority-Analysis: v=2.4 cv=C+7kCAP+ c=1 sm=1 tr=0 ts=69b3a915 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=kj9zAlcOel0A:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=EUspDBNiAAAA:8 a=D5leSQ3MSkE6s3ds0kQA:9 a=CjuIK1q_8ugA:10
+ a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-GUID: wlYvl2t5vB5giavxwV6xKOlYbYjQi57z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-12_03,2026-03-12_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 priorityscore=1501 phishscore=0 adultscore=0 suspectscore=0
+ bulkscore=0 lowpriorityscore=0 clxscore=1015 impostorscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603130047
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.freedesktop.org,lists.infradead.org,kernel.org,oss.qualcomm.com,poorly.run,linux.dev,gmail.com,somainline.org,ffwll.ch,lunn.ch,davemloft.net,google.com,redhat.com,linaro.org,qti.qualcomm.com,lists.trustedfirmware.org];
+	TAGGED_FROM(0.00)[bounces-274886-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:dkim,hu-mojha-hyd.qualcomm.com:mid];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
-	TAGGED_FROM(0.00)[bounces-274885-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:dkim,ti.com:mid,ti.com:email,ti.com:url,pengutronix.de:email];
+	RCPT_COUNT_TWELVE(0.00)[49];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[r-sharma3@ti.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[mukesh.ojha@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_NONE(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: DA24527D909
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 31AAD27D8D4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The driver supports event muxing routers like gpio mux router and timesync
-router. This driver is adaptation of original reg-mux driver, along with
-changes specific to support TI's mux router.
+On Thu, Mar 12, 2026 at 11:57:42AM +0530, Sumit Garg wrote:
+> From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+> 
+> All the existing variants Kodiak boards are using Gunyah hypervisor
+> which means that, so far, Linux-based OS could only boot in EL1 on those
+> devices.  However, it is possible for us to boot Linux at EL2 on these
+> devices [1].
+> 
+> When running under Gunyah, the remote processor firmware IOMMU
+> streams are controlled by Gunyah. However, without Gunyah, the IOMMU is
+> managed by the consumer of this DeviceTree. Therefore, describe the
+> firmware streams for each remote processor.
+> 
+> Add a EL2-specific DT overlay and apply it to Kodiak IOT variant
+> devices to create -el2.dtb for each of them alongside "normal" dtb.
+> 
+> [1]
+> https://docs.qualcomm.com/bundle/publicresource/topics/80-70020-4/boot-developer-touchpoints.html#uefi
+> 
+> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+> [SG: watchdog fixup]
+> Signed-off-by: Sumit Garg <sumit.garg@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile        |  2 ++
+>  arch/arm64/boot/dts/qcom/kodiak-el2.dtso | 35 ++++++++++++++++++++++++
+>  2 files changed, 37 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/kodiak-el2.dtso
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index f80b5d9cf1e8..09a7f943190e 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -139,6 +139,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= qcs615-ride.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-radxa-dragon-q6a.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
+> +qcs6490-rb3gen2-el2-dtbs := qcs6490-rb3gen2.dtb kodiak-el2.dtbo
+> +dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-el2.dtb
 
-The idle states this driver supports are only 2 which active(represented
-by 1 in dt-node) and in-active(represented by 0 in dt-node).
+We may need to add for couple of more variants..
 
-Signed-off-by: Rahul Sharma <r-sharma3@ti.com>
----
- drivers/mux/Kconfig           |  15 +++
- drivers/mux/Makefile          |   2 +
- drivers/mux/ti-k3-event-mux.c | 235 ++++++++++++++++++++++++++++++++++
- 3 files changed, 252 insertions(+)
- create mode 100644 drivers/mux/ti-k3-event-mux.c
+>  
+>  qcs6490-rb3gen2-vision-mezzanine-dtbs := qcs6490-rb3gen2.dtb qcs6490-rb3gen2-vision-mezzanine.dtbo
+>  qcs6490-rb3gen2-industrial-mezzanine-dtbs := qcs6490-rb3gen2.dtb qcs6490-rb3gen2-industrial-mezzanine.dtbo
+> diff --git a/arch/arm64/boot/dts/qcom/kodiak-el2.dtso b/arch/arm64/boot/dts/qcom/kodiak-el2.dtso
+> new file mode 100644
+> index 000000000000..0b3a69a0d765
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/kodiak-el2.dtso
+> @@ -0,0 +1,35 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + *
+> + * Kodiak specific modifications required to boot in EL2.
+> + */
+> +
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +&gpu_zap_shader {
+> +	status = "disabled";
+> +};
+> +
+> +&remoteproc_adsp {
+> +	iommus = <&apps_smmu 0x1800 0x0>;
+> +};
+> +
+> +&remoteproc_cdsp {
+> +	iommus = <&apps_smmu 0x11a0 0x0400>;
+> +};
+> +
+> +&remoteproc_wpss {
+> +	iommus = <&apps_smmu 0x1c03 0x1>,
+> +		 <&apps_smmu 0x1c83 0x1>;
+> +};
+> +
+> +&venus {
+> +	status = "disabled";
+> +};
+> +
+> +&watchdog {
+> +	status = "okay";
+> +};
 
-diff --git a/drivers/mux/Kconfig b/drivers/mux/Kconfig
-index c68132e38138..ad3af2724d28 100644
---- a/drivers/mux/Kconfig
-+++ b/drivers/mux/Kconfig
-@@ -59,4 +59,19 @@ config MUX_MMIO
- 	  To compile the driver as a module, choose M here: the module will
- 	  be called mux-mmio.
- 
-+config MUX_TI_K3_EVENT_ROUTER
-+	tristate "TI Event Mux Router using MMIO registers"
-+	depends on OF && (REGMAP_MMIO || COMPILE_TEST)
-+	help
-+	  This is extension of MMIO mux for  timesync router and gpiomux
-+	  routers on TI K3 SoCs. This driver supports the 3-field format for
-+	  mux control: <register-offset mask value>.
-+
-+	  The driver allows configuration of hardware mux routers using
-+	  memory-mapped registers. It's based on the mmio-mux driver but
-+	  supports the extended 3-field format for more precise control.
-+
-+	  To compile the driver as a module, choose M here: the module will
-+	  be called mux-ti-k3-event.
-+
- endmenu
-diff --git a/drivers/mux/Makefile b/drivers/mux/Makefile
-index 6e9fa47daf56..f3f367de84da 100644
---- a/drivers/mux/Makefile
-+++ b/drivers/mux/Makefile
-@@ -8,9 +8,11 @@ mux-adg792a-objs		:= adg792a.o
- mux-adgs1408-objs		:= adgs1408.o
- mux-gpio-objs			:= gpio.o
- mux-mmio-objs			:= mmio.o
-+mux-ti-k3-event-objs		:= ti-k3-event-mux.o
- 
- obj-$(CONFIG_MULTIPLEXER)	+= mux-core.o
- obj-$(CONFIG_MUX_ADG792A)	+= mux-adg792a.o
- obj-$(CONFIG_MUX_ADGS1408)	+= mux-adgs1408.o
- obj-$(CONFIG_MUX_GPIO)		+= mux-gpio.o
- obj-$(CONFIG_MUX_MMIO)		+= mux-mmio.o
-+obj-$(CONFIG_MUX_TI_K3_EVENT_ROUTER)	+= mux-ti-k3-event.o
-diff --git a/drivers/mux/ti-k3-event-mux.c b/drivers/mux/ti-k3-event-mux.c
-new file mode 100644
-index 000000000000..2469500d1b48
---- /dev/null
-+++ b/drivers/mux/ti-k3-event-mux.c
-@@ -0,0 +1,235 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * MMIO register bit-field controlled multiplexer driver
-+ *
-+ * Copyright (C) 2026 Texas Instruments Incorporated - https://www.ti.com
-+ *
-+ * Based on drivers/mux/mmio.c by Philipp Zabel <kernel@pengutronix.de>
-+ * Modified to support 3-field format: reg-offset, mask & value
-+ *
-+ * Author: Rahul Sharma <r-sharma3@ti.com>
-+ */
-+
-+#include <linux/bitops.h>
-+#include <linux/err.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/mux/driver.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+
-+#define MUX_ENABLE_INTR BIT(16)
-+
-+struct mux_ti_k3_event {
-+	struct regmap *regmap;
-+	u32 reg;
-+	u32 mask;
-+	u32 value;
-+};
-+
-+struct mux_ti_k3_event_chip {
-+	struct mux_chip *mux_chip;
-+	struct mux_ti_k3_event *fields;
-+	int num_fields;
-+	u32 *saved_states;
-+};
-+
-+static int mux_ti_k3_event_suspend(struct device *dev)
-+{
-+	struct mux_ti_k3_event_chip *chip = dev_get_drvdata(dev);
-+	int i, ret;
-+
-+	if (!chip->saved_states) {
-+		chip->saved_states = devm_kcalloc(dev, chip->num_fields,
-+						  sizeof(u32), GFP_KERNEL);
-+		if (!chip->saved_states)
-+			return -ENOMEM;
-+	}
-+
-+	for (i = 0; i < chip->num_fields; i++) {
-+		struct mux_ti_k3_event *field = &chip->fields[i];
-+
-+		ret = regmap_read(field->regmap, field->reg,
-+				  &chip->saved_states[i]);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int mux_ti_k3_event_resume(struct device *dev)
-+{
-+	struct mux_ti_k3_event_chip *chip = dev_get_drvdata(dev);
-+	int i, ret;
-+
-+	if (!chip->saved_states)
-+		return 0;
-+
-+	for (i = 0; i < chip->num_fields; i++) {
-+		struct mux_ti_k3_event *field = &chip->fields[i];
-+
-+		ret = regmap_write(field->regmap, field->reg,
-+				   chip->saved_states[i]);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(mux_ti_k3_event_pm_ops,
-+				mux_ti_k3_event_suspend,
-+				mux_ti_k3_event_resume);
-+
-+/*
-+ * State behavior:
-+ * - state 0: Clears the mask bits in the target register (inactive state)
-+ * - state 1: Sets both the value bits and enable bit (bit 16) in the register
-+ */
-+static int mux_ti_k3_event_set(struct mux_control *mux, int state)
-+{
-+	struct mux_ti_k3_event *fields = mux_chip_priv(mux->chip);
-+	struct mux_ti_k3_event *field = &fields[mux_control_get_index(mux)];
-+
-+	if (!state)
-+		return regmap_update_bits(field->regmap, field->reg, field->mask, 0);
-+
-+	return regmap_update_bits(field->regmap, field->reg, field->mask | MUX_ENABLE_INTR,
-+		field->value | MUX_ENABLE_INTR);
-+}
-+
-+static const struct mux_control_ops mux_ti_k3_event_ops = {
-+	.set = mux_ti_k3_event_set,
-+};
-+
-+static const struct regmap_config mux_ti_k3_event_regmap_cfg = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+};
-+
-+static int mux_ti_k3_event_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *np = dev->of_node;
-+	struct mux_ti_k3_event_chip *chip;
-+	struct mux_ti_k3_event *fields;
-+	struct mux_chip *mux_chip;
-+	struct regmap *regmap;
-+	void __iomem *base;
-+	int num_fields;
-+	int ret;
-+	int i;
-+
-+	chip = devm_kzalloc(dev, sizeof(*chip), GFP_KERNEL);
-+	if (!chip)
-+		return -ENOMEM;
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base)) {
-+		return dev_err_probe(dev, -ENODEV,
-+				     "failed to get base address\n");
-+	} else {
-+		regmap = devm_regmap_init_mmio(dev, base, &mux_ti_k3_event_regmap_cfg);
-+	}
-+	if (IS_ERR(regmap)) {
-+		iounmap(base);
-+		return dev_err_probe(dev, PTR_ERR(regmap),
-+				     "failed to get regmap\n");
-+	}
-+
-+	ret = of_property_count_u32_elems(np, "ti,reg-mask-val");
-+	if (!ret || ret % 3) {
-+		ret = -EINVAL;
-+		dev_err(dev, "ti,reg-mask-val property missing or invalid: %d\n",
-+			ret);
-+		return ret;
-+	}
-+
-+	num_fields = ret / 3;
-+	mux_chip = devm_mux_chip_alloc(dev, num_fields, num_fields *
-+				       sizeof(*fields));
-+	if (IS_ERR(mux_chip))
-+		return PTR_ERR(mux_chip);
-+
-+	fields = mux_chip_priv(mux_chip);
-+	chip->mux_chip = mux_chip;
-+	chip->fields = fields;
-+	chip->num_fields = num_fields;
-+
-+	platform_set_drvdata(pdev, chip);
-+
-+	for (i = 0; i < num_fields; i++) {
-+		struct mux_control *mux = &mux_chip->mux[i];
-+		s32 idle_state = MUX_IDLE_AS_IS;
-+		u32 reg, mask, value;
-+
-+		ret = of_property_read_u32_index(np, "ti,reg-mask-val",
-+						 3 * i, &reg);
-+		if (!ret)
-+			ret = of_property_read_u32_index(np, "ti,reg-mask-val",
-+							 3 * i + 1, &mask);
-+		if (!ret)
-+			ret = of_property_read_u32_index(np, "ti,reg-mask-val",
-+							 3 * i + 2, &value);
-+		if (ret < 0) {
-+			dev_err(dev, "field %d: failed to read ti,reg-mask-val property: %d\n",
-+				i, ret);
-+			return ret;
-+		}
-+
-+		/* Validate that value bits are within mask */
-+		if (value & ~mask) {
-+			dev_err(dev, "field %d: value 0x%x has bits outside mask 0x%x\n",
-+				i, value, mask);
-+			return -EINVAL;
-+		}
-+
-+		fields[i].regmap = regmap;
-+		fields[i].reg = reg;
-+		fields[i].mask = mask;
-+		fields[i].value = value;
-+
-+		/* This driver supports binary mux (2 states: 0 and active) */
-+		mux->states = 2;
-+
-+		of_property_read_u32_index(np, "idle-states", i,
-+					   (u32 *)&idle_state);
-+		if (idle_state != MUX_IDLE_AS_IS) {
-+			if (idle_state < 0 || idle_state >= mux->states) {
-+				dev_err(dev, "field: %d: out of range idle state %d\n",
-+					i, idle_state);
-+				return -EINVAL;
-+			}
-+
-+			mux->idle_state = idle_state;
-+		}
-+	}
-+
-+	mux_chip->ops = &mux_ti_k3_event_ops;
-+
-+	return devm_mux_chip_register(dev, mux_chip);
-+}
-+
-+static const struct of_device_id mux_ti_k3_event_dt_ids[] = {
-+	{ .compatible = "ti,am62l-event-mux-router", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, mux_ti_k3_event_dt_ids);
-+
-+static struct platform_driver mux_ti_k3_event_driver = {
-+	.driver = {
-+		.name = "ti-k3-event-mux",
-+		.of_match_table	= mux_ti_k3_event_dt_ids,
-+		.pm = &mux_ti_k3_event_pm_ops,
-+	},
-+	.probe = mux_ti_k3_event_probe,
-+};
-+module_platform_driver(mux_ti_k3_event_driver);
-+
-+MODULE_DESCRIPTION("TI K3 Bit-field Controlled Event Multiplexer driver");
-+MODULE_AUTHOR("Rahul Sharma <r-sharma3@ti.com>");
-+MODULE_LICENSE("GPL");
+
+rb3gen2 has modem as well, did we test that as well ?
+
 -- 
-2.34.1
-
+-Mukesh Ojha
 
