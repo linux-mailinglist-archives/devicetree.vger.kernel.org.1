@@ -1,269 +1,276 @@
-Return-Path: <devicetree+bounces-274946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274948-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2GShEj25s2lXaQAAu9opvQ
-	(envelope-from <devicetree+bounces-274946-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:14:05 +0100
+	id IHZcNSS6s2lXaQAAu9opvQ
+	(envelope-from <devicetree+bounces-274948-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:17:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5A4727EA44
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:14:04 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8037827EB47
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:17:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1239E3031232
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:13:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0B2CA3039C96
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:16:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4244136B043;
-	Fri, 13 Mar 2026 07:13:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 872B6366DB6;
+	Fri, 13 Mar 2026 07:16:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VRlC+PmQ"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Vs324uF/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011067.outbound.protection.outlook.com [52.101.70.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B2E036828A;
-	Fri, 13 Mar 2026 07:13:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773386023; cv=none; b=Wj8dHx64l/9t8S9ZVhgzhZ6ja2kuwAGdk1tpQMATiDm3tNpbHgvJLpjNUP6IUePwmn5ZN2T6m0CObeTcc+YXPjWBw+n/rElzlfm63VNqjC1VfbMR2y5gb786HmLugzwESUw1YOyNJiIhjHWhudseUZWJ+dPTjsSqPEtkzUVm5sw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773386023; c=relaxed/simple;
-	bh=irkQSwZ0ZgATCbIp5Z59MJUY/oOrgGe+E+CmoJMzRtM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ogtQiisjjQG8t8aUMzEiL240XgfF0050u6elDZxQ5UUlEnAv53klUG7vx99KsjHFxZvEEhIl+s+EpgWSVRG9a0rqjSBsXEuc6DcOhZrW5/FPZypGhrNTIO5yrYtf0hgkZfuyv5dT2ZUEXMeNM4WGswwH52xhmVw0mmUjxmEo83o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VRlC+PmQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E069DC2BCAF;
-	Fri, 13 Mar 2026 07:13:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773386022;
-	bh=irkQSwZ0ZgATCbIp5Z59MJUY/oOrgGe+E+CmoJMzRtM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=VRlC+PmQRD0Fqh8YxhKtXiE90sfe0ukQXCzD8jJTt3/c8X9eQkodiH+ccFHReKaj/
-	 +G4B8tAVo7Jo24+8Ks6MD0Aa54TD11swIW/6tH30NW36ql6K8CY7/+Zgkz4x4YUQih
-	 xEsQbkP5poQe4qiRqrdfkad0sluFrpK0G0NVlRHV5gabkCnccfkHzpaDrVF0dCDBlh
-	 L84nPYvS/W6B/YYeyswYQ4SVq0IOsdgN4N8sScgO1YdABg9K3CT027ZHsn/xLsUojM
-	 7NEWqTIcIZBotKpfR2lpxl5NPrbkbipjo4/6L2O3A8wy52YQONbkIcYlgRoCYgHqgx
-	 UNoXxqKjgmQpQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D8969106FD8A;
-	Fri, 13 Mar 2026 07:13:42 +0000 (UTC)
-From: Jan Petrous via B4 Relay <devnull+jan.petrous.oss.nxp.com@kernel.org>
-Date: Fri, 13 Mar 2026 08:13:35 +0100
-Subject: [PATCH net-next v12 4/4] stmmac: s32: enable support for Multi-IRQ
- mode
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 210F6366070;
+	Fri, 13 Mar 2026 07:16:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.67
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773386176; cv=fail; b=F2aqV3eLF6eWBUTXD79dNFa6rUPQkJldc47bZUONq+ohBsaqfVk+z5it9el8lP8wNyJmJUFO5+iyM7f76Qcg04ifShux3I3BXHaI241Uf1yaaD13bGg41R2OiagT++Tnc8EO+OwCz+fMpTUu0THO9ryA9tMnoAfGnH5GAlkzWMc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773386176; c=relaxed/simple;
+	bh=3a7ml5Fy03bDZO53TayIJkn8NEgvChdVeF24ZtuZOp0=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=EjcKISk4EDc9RFUlpLPGEVh0Yy2xaJTU4naLqORyeSwG4IrSP/47/Sdoki4/wXEQB88KRYC5JJe6YOX6PAlhi7B4YSWveEfiyaKTnYUkVz3fhQVPtpM5mkkz8hP2oH1JMpYFbNCMKmr+q9rQ/4qVMGAAsUTZIC7B+9FTOxO0VoE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Vs324uF/; arc=fail smtp.client-ip=52.101.70.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CL4ON7mmeLfD/ceOhzJwJh/jlLegqKenCB2V9fxbXtAZabcjVAbKd2aXu+5xpiutJERY/dw8MrPIQVpI2pkECwqocJI/aUuSTb4rXogHwlLkWFfkxgjvRoJkiRVaOdAsEQZO9xEmkdktIlYG0cxPo87ZcOwKaF/TJCpyBC/0fSLiHDfvqzKJZ2BtwxuEj4G7PUoqLaYEerP5U7EdYufAocXddbXZCx70gvfnfxiFM6a5O8Qkl1dOd6yKtNtQHbLJ/L7eA3NuLPZ+5h/gDJa898WtnBAhR51gJrW6l77y5CBoGMtVvQMeE+VCMER9ucT+DjmWc5Sz1neqsN3H+23M9w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3a7ml5Fy03bDZO53TayIJkn8NEgvChdVeF24ZtuZOp0=;
+ b=OUMZtzOn6VzLk4jhxQePrOvKl9VL5BB84J5fhuSf7F52Ci7/oMLfCZ08JLgVUpGl/RjxiHv591m8+f8qpzqHxaYm4SCe7oP5LB6EaGPsVfTmAz+pZ9Qo+8JhogGc9lAwRuuCEUDoA7Hv/QMvIjFIFpQTI8VtTPHAivyZXxYMjt4wcI5WIppiTTtiW1fh2gU7nmIdKXKGj5qLyP4crIcVVyQgS2UB5zhkvbMdX+FTmWeHAYELr7qTFu4NDtXE8gPuPmaMvzdp6kD2OFMNMDIu9UHefgN73q9FOYaDB4bkeDJSvXGYP1j6gdyllGDvMOOyqBN86j/aJFnZQD3q/eulfA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3a7ml5Fy03bDZO53TayIJkn8NEgvChdVeF24ZtuZOp0=;
+ b=Vs324uF/Luj8fteswOtVqFmvEEc43r2UDsySZ81gj6gv0raAY/RJvIMn06b5AOJJeMYdKoM7z3BRn2S+AEmN1ADz0pFevd2H0siu/mQ84HT4FKbkPMlhmp5Td6SP3s5RdR/blKEx4WputLXPf0zmOJ9zDse/ZxDnUoqu9tOobUb5Ob+h1AvOyDCz4LAjo8c9H+tJV25hcSWYTap6v9MPry5qRWTkcDwUvr86nBdGjP43+vkqJiOnMsAHjQCuI0HJHnWqR3pk/srdCKQ3MIOhVzB0JtrSEEXn82FqrSGsF5KcvWBmh3qvhb05H5mJEKJaXwigY7aGNasMSBOwJTHKIg==
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ (2603:10a6:800:315::13) by VE1PR04MB7471.eurprd04.prod.outlook.com
+ (2603:10a6:800:1a7::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.15; Fri, 13 Mar
+ 2026 07:16:04 +0000
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994]) by VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994%5]) with mapi id 15.20.9700.010; Fri, 13 Mar 2026
+ 07:16:06 +0000
+From: Sherry Sun <sherry.sun@nxp.com>
+To: "wens@kernel.org" <wens@kernel.org>
+CC: Hongxing Zhu <hongxing.zhu@nxp.com>, "l.stach@pengutronix.de"
+	<l.stach@pengutronix.de>, Frank Li <frank.li@nxp.com>, "bhelgaas@google.com"
+	<bhelgaas@google.com>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kwilczynski@kernel.org" <kwilczynski@kernel.org>, "mani@kernel.org"
+	<mani@kernel.org>, "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "festevam@gmail.com"
+	<festevam@gmail.com>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>, "linux-pci@vger.kernel.org"
+	<linux-pci@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH V8 06/13] arm: dts: imx6qdl: Add Root Port node and PERST
+ property
+Thread-Topic: [PATCH V8 06/13] arm: dts: imx6qdl: Add Root Port node and PERST
+ property
+Thread-Index: AQHcso5EihHzW0WZ+UyejN5MCJfCDLWr+maAgAAOKmA=
+Date: Fri, 13 Mar 2026 07:16:06 +0000
+Message-ID:
+ <VI0PR04MB12114A99A438C8E8749021AAD9245A@VI0PR04MB12114.eurprd04.prod.outlook.com>
+References: <20260313020823.1592389-1-sherry.sun@nxp.com>
+ <20260313020823.1592389-7-sherry.sun@nxp.com>
+ <CAGb2v65dvWRqugwBAORB_dD+3Part+OieCe9hnSR781g-6NgZA@mail.gmail.com>
+In-Reply-To:
+ <CAGb2v65dvWRqugwBAORB_dD+3Part+OieCe9hnSR781g-6NgZA@mail.gmail.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: VI0PR04MB12114:EE_|VE1PR04MB7471:EE_
+x-ms-office365-filtering-correlation-id: b169e159-22fd-4879-aadc-08de80d064ef
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|7416014|376014|19092799006|1800799024|22082099003|18002099003|56012099003|38070700021;
+x-microsoft-antispam-message-info:
+ Dxz3c6Uvnw0nWL4F0zF+QrB15VGO7ZhQvXjcKC/3+sFCJLxZeG46HD/nzc9ssbYgbooxtYsLImBPBxW5ziMlJA6PqKKVi5okCd3wAQq76xln4H58r47DVrJyzGI5MDegaAhzU9CDpSWGxe25sHXX6OBzgFH1pqiDqyhBai2fcX0twZIA30TNo3V6wi4Z+JiuM7c5ac3A7CmQFJLWv2uMSm9v6nfy98kjezxE1SW46KOvwKWpkO0N4bgEVTCHKb3IbR/MxkkdAAvboPhBQyvL0t1Cy2AhvHxalOwNv73vNcF6BZP2VTV4MA91sVerN4nUyWOb41z4uvoZInd4O75KKNGumim/szDEDLi/tom0IyCtkCJD5FjxcA9aTxeYJqTPVD/IcWri042fhcEmrxYb7Wv1GmPJKRMg9gJKYPC2TxNm93sKcYk3rPlnNkPFD2pXds4KpfyP/AFI0zp/u9GHOWo16UW+BAbZ5533jfFpMdUjW6OMqZ/8CUNTdDr2mkAPGVe+VIUk7j5t1CixkX4vbpA7V/p9FzWez2urh2o5jFNl+qxs2Txouxwyx7QtG58OgC5T1/j5Ee/Gl07HflGnx55GYuHgnMs+PQdBKIdIzkOmdkDQYDfePmfXWrG00nCqDY2CgQRnjl2Jz4oL73VC1z0PghnaL6FFlWBweo4RDQ2Q4IJxfrNLD3dEK9kgMxsjkGU0DRVJnQoKc8FrWTPv7BaH/rwLx77jrH9cu8L4co94tBPF/Ys7RHH30Mu4v3Zd
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(19092799006)(1800799024)(22082099003)(18002099003)(56012099003)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?Wno2blBqbDF5bDA1YWFmZEdEY0NlNUJCUkZUQTlYVkp0dUI5OUliM0xueENi?=
+ =?utf-8?B?Qzd2L1VDcmtSTXhlQjdxZWx4dTRqV2EyajBrS28rUEFBQmdJTi9SK1JnbGNq?=
+ =?utf-8?B?a1orQll5SXY1WlZPOXVsK0RJYzlnZ2E4SGdvb1gvWkZ4RUt0dUdkaFREZDN3?=
+ =?utf-8?B?UUV6eFgyOEw3LytLbGgxdGRtUzBCZldTdHUza0lML2hXNmdtTWpLSHREa3dM?=
+ =?utf-8?B?dVNsc1F1Q0lvaWliKzUyWHQ1d043SnI5clVnbGRKaTkxdzdwNCtGVktMMklP?=
+ =?utf-8?B?Mk4xUkkzRk5yUDFlR2g2UlRXNU9TVDh0MnB2RGYzd3VmSEdCc09NNGg3dVZE?=
+ =?utf-8?B?Z3BNNG9JNUdXRE1hdXdLRHcxbndRVlY2L05UdGtNVnBPU0JTTml0UFAxaE9S?=
+ =?utf-8?B?anBGYkdYam1RcGZEZDR0eFJDRUJLQUJYMG5COHVHTThaZ3ZaZVprSlU3NnRo?=
+ =?utf-8?B?Sk5waXpBTllPYzJ0ZXdqbkhrTTdtNnR0bEtVcHlVdEs1ZFB2QlpIcFBuRTZ6?=
+ =?utf-8?B?cFlnUVNPNUIvUU9yaWYyTE1Fa05Kdm8zUjE0Z0dOa25hZTNTSFgxYkEwUS8w?=
+ =?utf-8?B?N09qc0dnRkd0U2JSWm1ucGJqZHRxaG1VT0M2YklmczVNeEljLyttN0RocHNv?=
+ =?utf-8?B?Yjl6QjR4RThibTYyQWIyZGF2ZGV1M1FFeER5RVVBV0lGaFhYS0tzN2NTTDdh?=
+ =?utf-8?B?OGI2VGFLOWRONGhoZ0dPcjE4aUxvN3MzSmEzaklCWTZHTFZ2YzU4eU9kQVEr?=
+ =?utf-8?B?SGhHTlBOYW9Xd2hjTTV6OWlrdXZNUGl5d01hNXFUeUUyYko5blBXczQzVlZj?=
+ =?utf-8?B?RWoxbnRlTlFTYUw5QmRxMlZiamYvUDB5Q3M1Z0JJQXZvWUh4RUJCTXUrVkF1?=
+ =?utf-8?B?d05xRGdsNC81RFluWERVY2RkdzUvZ3RuaGhoc1Q4clNxcU9veU1FdG4zTmhz?=
+ =?utf-8?B?YnpjaGFZSTJJaXlGd0J4SEtnSnJwZ2NSamtYa1M1ekJHb1kwb3Z0TVZPbFg5?=
+ =?utf-8?B?NXdWU2RwaXlTakRYL2UzN1dVczkrNkpBcmtjVkIwSHNsWlB6L1hESEI2ZVFr?=
+ =?utf-8?B?bmZBWUNTNEpuUG9BaXFLTkl0ajBrK1FORzNDZ2hESW5uYU9Oa3NZazR4RU9H?=
+ =?utf-8?B?cWFhUm9qUERuMzN0N1B0RmtVVGk2KzJLODdzZWVJaFNDYWhXNXVpYWROYXBR?=
+ =?utf-8?B?dTVVL1NESXNXdStZbkQ2RVJBUlp4cnpjLy9KYVZWYWF5SFRrN2U5MEVmZ3Y3?=
+ =?utf-8?B?KzVuQUszSGprZmFxNVlMTXJPZW9HcjN6eUZrRmw2ZW9abDhVVDAwUmcrdTRQ?=
+ =?utf-8?B?SUhJOGN2TmZ6dlZIRE9kalg3N0ljaHdXMkxCKzJoQldyVThaQ0ZCc1lyUGRp?=
+ =?utf-8?B?WVFRUnZMbWVHc0k2VjhWTXpCazc5bnhRTzcxSnA4OC9Hb3B2M3lINm15TXBU?=
+ =?utf-8?B?eHZNSmVIVy9PNlJVbmN6N3ZxVncwUXd6WVNXM0FOSWwydmd2dmRMVkVCNXln?=
+ =?utf-8?B?aHdFT2tTdi9EQmVzQS9XbW9ETHBTZHF6YThiSVJiN1h5VUpickUxT2FOd1p1?=
+ =?utf-8?B?R2dQdWh1bm5XMTNEQ2Q3ZHBvMlUzNkRKbTRROVEvbkI4VHZKNmc2d3YraUJZ?=
+ =?utf-8?B?bDNzbzJ6Sisxekt3V294U0xaNGNpcm1OMSttYXRYQk5lWXZZUDBNMnFJWnBj?=
+ =?utf-8?B?UG1HNzhVOU5uYmMwdko1RTFVRVJHZ1lKQzh5YlE4TkxLTHNlV3pxYXhIVUwz?=
+ =?utf-8?B?RitTMjMwQUlFdHJCbmpxUm0rRzM2ZkdCWndYeTg2ZXR3by96T3RxeFlUZy9h?=
+ =?utf-8?B?YlNJT3dSKzBVR0lDRWgyUWtja2dJWkV4Ujdid2UzOXozTGxyQUFKOFlwWU40?=
+ =?utf-8?B?cVloaUdSMmUvNFlVV0xKbFFJM0M2OHBJMm1yd3lKNERjMkJJM2p3STV1VStv?=
+ =?utf-8?B?T0ROeDB2SjFjRXpxZ2s5YXFWOWFSckZadDRUYnVCczZTeWdWNXc5NzUxS3M1?=
+ =?utf-8?B?TnF6TUR5ZkFHdnZhZ3ZmQU9MNkNZOVd3anpYdm1jd2R3ZTdiSjlqWks4V0ov?=
+ =?utf-8?B?Y3Z1a3hMcjhPaFQwOTZFcWp0SnlVUjlGaG90MVQ3Zmd2U2dUVzBadzRxR2hB?=
+ =?utf-8?B?ajlMOGNJdElNWDRoSmlHYmM3MTRWWEhTUm1MSFlmZi9TRXhycDJiUllLV09U?=
+ =?utf-8?B?ZlNBTE1ncGhyNEpUNTd6ZVQ4RE8rVEN0eHg1Q25MRlZ2UnpQWkJ6dXh3ZUdn?=
+ =?utf-8?B?dk00UHFKbW1wbHl5SmZXdnEyQnQ4OVNLa0NpK0dvSnpTQUl2L3pOT0ZyelMz?=
+ =?utf-8?Q?UZ9bINitd1W1oU7NUQ?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260313-dwmac_multi_irq-v12-4-b5c9d0aa13d6@oss.nxp.com>
-References: <20260313-dwmac_multi_irq-v12-0-b5c9d0aa13d6@oss.nxp.com>
-In-Reply-To: <20260313-dwmac_multi_irq-v12-0-b5c9d0aa13d6@oss.nxp.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>, 
- Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, 
- NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>
-Cc: netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, devicetree@vger.kernel.org, rmk+kernel@armlinux.org.uk, 
- vladimir.oltean@nxp.com, boon.khai.ng@altera.com, 
- "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773386021; l=4691;
- i=jan.petrous@oss.nxp.com; s=20240922; h=from:subject:message-id;
- bh=Rdb+10aBIE2gR8Bncd1438yIs2mBOuENyRGkl1CSN58=;
- b=fB8QPeHuIKTmONfEhXXoeF5KRPH8jL6K8S6vwriB04EmaXI6DaSFv6ZzMZyeJVT3EO9EP1OuA
- E0qHUrIRz8BDcra8KcjoEkNKNEcLSnE9ELDzm5801yS23gfFATzO2SU
-X-Developer-Key: i=jan.petrous@oss.nxp.com; a=ed25519;
- pk=Ke3wwK7rb2Me9UQRf6vR8AsfJZfhTyoDaxkUCqmSWYY=
-X-Endpoint-Received: by B4 Relay for jan.petrous@oss.nxp.com/20240922 with
- auth_id=217
-X-Original-From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-Reply-To: jan.petrous@oss.nxp.com
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b169e159-22fd-4879-aadc-08de80d064ef
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Mar 2026 07:16:06.7708
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: vigouvQZjR2mPW6fuBxCGPS500wGBqYRtfXR4VNl1FVEVAOan3QPyMTb5igUQPFUSrkdJ0QrQg3gpIruC45R3A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7471
+X-Spamd-Result: default: False [1.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274946-lists,devicetree=lfdr.de,jan.petrous.oss.nxp.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,suse.com,oss.nxp.com,nxp.com,pengutronix.de];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
-	HAS_REPLYTO(0.00)[jan.petrous@oss.nxp.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[nxp.com,pengutronix.de,google.com,kernel.org,gmail.com,lists.linux.dev,vger.kernel.org,lists.infradead.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274948-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,nxp.com:email,4033c000:email,oss.nxp.com:replyto,oss.nxp.com:mid,suse.com:email,s32g399aevb3:email]
-X-Rspamd-Queue-Id: E5A4727EA44
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	DBL_PROHIBIT(0.00)[0.30.132.128:email];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:dkim,nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,VI0PR04MB12114.eurprd04.prod.outlook.com:mid,0.0.0.0:email]
+X-Rspamd-Queue-Id: 8037827EB47
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-
-Based on previous changes in platform driver, the vendor
-glue driver can enable Multi-IRQ mode, if needed.
-
-To get enabled Multi-IRQ mode for dwmac-s32, the driver checks:
-
-  1) property of 'snps,mtl-xx-config' subnode
-     defines 'snps,xx-queues-to-use' bigger then one, ie:
-
-     ethernet@4033c000 {
-         compatible = "nxp,s32g2-dwmac";
-         ...
-         snps,mtl-rx-config = <&mtl_rx_setup>;
-         ...
-
-         mtl_rx_setup: rx-queues-config {
-             snps,rx-queues-to-use = <2>;
-         };
-
-  2) queue based IRQs are set, ie:
-
-     ethernet@4033c000 {
-         compatible = "nxp,s32g2-dwmac";
-         ...
-         interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
-                      /* CHN 0: tx, rx */
-                      <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>,
-                      <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>,
-                      /* CHN 1: tx, rx */
-                      <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>,
-                      <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
-         interrupt-names = "macirq",
-                           "tx-queue-0", "rx-queue-0",
-                           "tx-queue-1", "rx-queue-1";
-
-If those prerequisites are met, the driver switches to Multi-IRQ mode,
-using per-queue IRQs for rx/tx data pathr:
-
-[    1.387045] s32-dwmac 4033c000.ethernet: Multi-IRQ mode (per queue IRQs) selected
-
-Now the driver owns all queues IRQs:
-
-root@s32g399aevb3:~# grep eth /proc/interrupts
- 29:    0    0    0    0    0    0    0    0    GICv3  89 Level   eth0:mac
- 30:    0    0    0    0    0    0    0    0    GICv3  91 Level   eth0:rx-0
- 31:    0    0    0    0    0    0    0    0    GICv3  93 Level   eth0:rx-1
- 32:    0    0    0    0    0    0    0    0    GICv3  95 Level   eth0:rx-2
- 33:    0    0    0    0    0    0    0    0    GICv3  97 Level   eth0:rx-3
- 34:    0    0    0    0    0    0    0    0    GICv3  99 Level   eth0:rx-4
- 35:    0    0    0    0    0    0    0    0    GICv3  90 Level   eth0:tx-0
- 36:    0    0    0    0    0    0    0    0    GICv3  92 Level   eth0:tx-1
- 37:    0    0    0    0    0    0    0    0    GICv3  94 Level   eth0:tx-2
- 38:    0    0    0    0    0    0    0    0    GICv3  96 Level   eth0:tx-3
- 39:    0    0    0    0    0    0    0    0    GICv3  98 Level   eth0:tx-4
-
-Otherwise, if one of the prerequisite don't met, the driver
-continue with MAC IRQ mode:
-
-[    1.387045] s32-dwmac 4033c000.ethernet: MAC IRQ mode selected
-
-And only MAC IRQ will be attached:
-
-root@s32g399aevb3:~# grep eth /proc/interrupts
- 29:    0    0    0    0    0    0    0    0    GICv3  89 Level   eth0:mac
-
-What represents the original MAC IRQ mode and is fully backward
-compatible.
-
-Reviewed-by: Matthias Brugger <mbrugger@suse.com>
-Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
----
- drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c | 36 ++++++++++++++++++++++++-
- 1 file changed, 35 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-index 48fceadc55b1..024d8e10e918 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-@@ -2,7 +2,7 @@
- /*
-  * NXP S32G/R GMAC glue layer
-  *
-- * Copyright 2019-2024 NXP
-+ * Copyright 2019-2026 NXP
-  *
-  */
- 
-@@ -110,6 +110,37 @@ static void s32_gmac_exit(struct device *dev, void *priv)
- 	clk_disable_unprepare(gmac->rx_clk);
- }
- 
-+static void s32_gmac_setup_multi_irq(struct device *dev,
-+				     struct plat_stmmacenet_data *plat,
-+				     struct stmmac_resources *res)
-+{
-+	int i;
-+
-+	/* RX IRQs */
-+	for (i = 0; i < plat->rx_queues_to_use; i++) {
-+		if (res->rx_irq[i] <= 0) {
-+			dev_dbg(dev, "Missing RX queue %d interrupt\n", i);
-+			goto mac_irq_mode;
-+		}
-+	}
-+
-+	/* TX IRQs */
-+	for (i = 0; i < plat->tx_queues_to_use; i++) {
-+		if (res->tx_irq[i] <= 0) {
-+			dev_dbg(dev, "Missing TX queue %d interrupt\n", i);
-+			goto mac_irq_mode;
-+		}
-+	}
-+
-+	plat->flags |= STMMAC_FLAG_MULTI_MSI_EN;
-+	dev_info(dev, "Multi-IRQ mode (per queue IRQs) selected\n");
-+	return;
-+
-+mac_irq_mode:
-+	plat->flags &= ~STMMAC_FLAG_MULTI_MSI_EN;
-+	dev_info(dev, "MAC IRQ mode selected\n");
-+}
-+
- static int s32_dwmac_probe(struct platform_device *pdev)
- {
- 	struct plat_stmmacenet_data *plat;
-@@ -165,6 +196,9 @@ static int s32_dwmac_probe(struct platform_device *pdev)
- 	plat->core_type = DWMAC_CORE_GMAC4;
- 	plat->pmt = true;
- 	plat->flags |= STMMAC_FLAG_SPH_DISABLE;
-+
-+	s32_gmac_setup_multi_irq(dev, plat, &res);
-+
- 	plat->rx_fifo_size = 20480;
- 	plat->tx_fifo_size = 20480;
- 
-
--- 
-2.47.0
-
-
+PiBPbiBGcmksIE1hciAxMywgMjAyNiBhdCAxMDowOOKAr0FNIFNoZXJyeSBTdW4gPHNoZXJyeS5z
+dW5AbnhwLmNvbT4gd3JvdGU6DQo+ID4NCj4gPiBTaW5jZSBkZXNjcmliaW5nIHRoZSBQQ0llIFBF
+UlNUIyBwcm9wZXJ0eSB1bmRlciBIb3N0IEJyaWRnZSBub2RlIGlzDQo+ID4gbm93IGRlcHJlY2F0
+ZWQsIGl0IGlzIHJlY29tbWVuZGVkIHRvIGFkZCBpdCB0byB0aGUgUm9vdCBQb3J0IG5vZGUsIHNv
+DQo+ID4gY3JlYXRpbmcgdGhlIFJvb3QgUG9ydCBub2RlIGFuZCBhZGQgdGhlIHJlc2V0LWdwaW9z
+IHByb3BlcnR5IGluIFJvb3QNCj4gPiBQb3J0Lg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogU2hl
+cnJ5IFN1biA8c2hlcnJ5LnN1bkBueHAuY29tPg0KPiA+IC0tLQ0KPiA+ICBhcmNoL2FybS9ib290
+L2R0cy9ueHAvaW14L2lteDZxZGwtc2FicmVzZC5kdHNpIHwgIDUgKysrKysNCj4gPiAgYXJjaC9h
+cm0vYm9vdC9kdHMvbnhwL2lteC9pbXg2cWRsLmR0c2kgICAgICAgICB8IDExICsrKysrKysrKysr
+DQo+ID4gIGFyY2gvYXJtL2Jvb3QvZHRzL254cC9pbXgvaW14NnFwLXNhYnJlYXV0by5kdHMgfCAg
+NSArKysrKw0KPiA+ICAzIGZpbGVzIGNoYW5nZWQsIDIxIGluc2VydGlvbnMoKykNCj4gPg0KPiA+
+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9ueHAvaW14L2lteDZxZGwtc2FicmVzZC5k
+dHNpDQo+ID4gYi9hcmNoL2FybS9ib290L2R0cy9ueHAvaW14L2lteDZxZGwtc2FicmVzZC5kdHNp
+DQo+ID4gaW5kZXggYmEyOTcyMGUzZjcyLi5mZTkwNDZjMDNkZGQgMTAwNjQ0DQo+ID4gLS0tIGEv
+YXJjaC9hcm0vYm9vdC9kdHMvbnhwL2lteC9pbXg2cWRsLXNhYnJlc2QuZHRzaQ0KPiA+ICsrKyBi
+L2FyY2gvYXJtL2Jvb3QvZHRzL254cC9pbXgvaW14NnFkbC1zYWJyZXNkLmR0c2kNCj4gPiBAQCAt
+NzU0LDExICs3NTQsMTYgQEAgbHZkczBfb3V0OiBlbmRwb2ludCB7ICAmcGNpZSB7DQo+ID4gICAg
+ICAgICBwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOw0KPiA+ICAgICAgICAgcGluY3RybC0wID0g
+PCZwaW5jdHJsX3BjaWU+Ow0KPiA+ICsgICAgICAgLyogVGhpcyBwcm9wZXJ0eSBpcyBkZXByZWNh
+dGVkLCB1c2UgcmVzZXQtZ3Bpb3MgZnJvbSB0aGUgUm9vdA0KPiA+ICsgUG9ydCBub2RlLiAqLw0K
+PiA+ICAgICAgICAgcmVzZXQtZ3BpbyA9IDwmZ3BpbzcgMTIgR1BJT19BQ1RJVkVfTE9XPjsNCj4g
+DQo+IEknZCBzYXkganVzdCByZW1vdmUgdGhlIG9sZCBkZXNjcmlwdGlvbi4NCj4gDQo+IFlvdSdy
+ZSBhc2tpbmcgZm9yIHRyb3VibGUgYnkgZGVzY3JpYmluZyB0aGUgc2FtZSB0aGluZyBpbiB0d28g
+ZGlmZmVyZW50IHBsYWNlcy4NCg0KSGkgQ2hlbi1ZdSwNClRoYW5rcyBmb3IgdGhlIGNvbW1lbnRz
+LCBhY3R1YWxseSB0aGlzIHRvcGljIGhhcyBiZWVuIGRpc2N1c3NlZCBpbiBWMSBhbmQgVjMsIHRo
+ZQ0KY29uY2x1c2lvbiBpcyB0byBhZGQgYSBjb21tZW50IGhlcmUgdG8gYXZvaWQgY29uZnVzaW9u
+LCB3aWxsIHJlbW92ZSB0aGUgZGVwcmVjYXRlZA0KcmVzZXQtZ3BpbyBwcm9wZXJ0eSB0b2dldGhl
+ciB3aXRoIHRoaXMgY29tbWVudCBhZnRlciB0aGUgcGNpIHBhcnQgZHJpdmVyIG1lcmdlZC4NCmh0
+dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LWRldmljZXRyZWUvYVcreDllQTFJJTJGbkdkQUw5
+QGxpemhpLVByZWNpc2lvbi1Ub3dlci01ODEwLw0KaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGlu
+dXgtZGV2aWNldHJlZS9hWU5rRFd0ODliMjZ3SldmQGxpemhpLVByZWNpc2lvbi1Ub3dlci01ODEw
+Lw0KDQo+IA0KPiA+ICAgICAgICAgdnBjaWUtc3VwcGx5ID0gPCZyZWdfcGNpZT47DQo+IA0KPiBJ
+IHdvdWxkIHByb2JhYmx5IGFsc28gdGFrZSB0aGlzIGNoYW5jZSB0byBqdXN0IGNvbnZlcnQgdG8g
+dGhlIHByb3BlciBQQ0kgc2xvdA0KPiBzdXBwbHksIGFuZCBqdXN0IGFkZCBwd3JjdHJsIHN1cHBv
+cnQgaW50byB5b3VyIFBDSWUgZHJpdmVyLg0KDQpZZXMsIHRoaXMgaXMgbXkgaW5pdGlhbCBpZGVh
+LCB5b3UgY2FuIGZpbmQgdGhlc2UgaW5mbyBhbmQgbXkgbmV4dCBzdGVwIHBsYW4gaW4gdGhlDQpw
+YXRjaCBzZXQgY292ZXIgbGV0dGVyLiBUaGlzIHBhdGNoIHNldCBhZGRzIHRoZSBiYXNpYyBpbXBs
+ZW1lbnRhdGlvbiB0byBwYXJzZQ0KUm9vdCBQb3J0IGRldmljZSB0cmVlIG5vZGVzIGZpcnN0LiBP
+bmNlIHRoZSBwYXRjaGVzIGFyZSBhY2NlcHRlZCwgSSB3aWxsIHN0YXJ0DQp3b3JrIG9uIHRoZSBw
+d3JjdHJsIHN1cHBvcnQuIFRoYW5rcyENCg0KQmVzdCBSZWdhcmRzDQpTaGVycnkNCg0KPiANCj4g
+DQo+ID4gICAgICAgICBzdGF0dXMgPSAib2theSI7DQo+ID4gIH07DQo+ID4NCj4gPiArJnBjaWVf
+cG9ydDAgew0KPiA+ICsgICAgICAgcmVzZXQtZ3Bpb3MgPSA8JmdwaW83IDEyIEdQSU9fQUNUSVZF
+X0xPVz47IH07DQo+ID4gKw0KPiA+ICAmcHdtMSB7DQo+ID4gICAgICAgICBwaW5jdHJsLW5hbWVz
+ID0gImRlZmF1bHQiOw0KPiA+ICAgICAgICAgcGluY3RybC0wID0gPCZwaW5jdHJsX3B3bTE+Ow0K
+PiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9ueHAvaW14L2lteDZxZGwuZHRzaQ0K
+PiA+IGIvYXJjaC9hcm0vYm9vdC9kdHMvbnhwL2lteC9pbXg2cWRsLmR0c2kNCj4gPiBpbmRleCA0
+ZGMyYzQxMGNmNjEuLjk0Mzg4NjJiOTkyNyAxMDA2NDQNCj4gPiAtLS0gYS9hcmNoL2FybS9ib290
+L2R0cy9ueHAvaW14L2lteDZxZGwuZHRzaQ0KPiA+ICsrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL254
+cC9pbXgvaW14NnFkbC5kdHNpDQo+ID4gQEAgLTMwMiw2ICszMDIsMTcgQEAgcGNpZTogcGNpZUAx
+ZmZjMDAwIHsNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8JmNsa3MgSU1Y
+NlFETF9DTEtfUENJRV9SRUZfMTI1TT47DQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgY2xv
+Y2stbmFtZXMgPSAicGNpZSIsICJwY2llX2J1cyIsICJwY2llX3BoeSI7DQo+ID4gICAgICAgICAg
+ICAgICAgICAgICAgICAgc3RhdHVzID0gImRpc2FibGVkIjsNCj4gPiArDQo+ID4gKyAgICAgICAg
+ICAgICAgICAgICAgICAgcGNpZV9wb3J0MDogcGNpZUAwIHsNCj4gPiArICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAicGNpY2xhc3MsMDYwNCI7DQo+ID4gKyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICBkZXZpY2VfdHlwZSA9ICJwY2kiOw0KPiA+ICsgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgcmVnID0gPDB4MCAweDAgMHgwIDB4MCAweDA+Ow0K
+PiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYnVzLXJhbmdlID0gPDB4MDEgMHhm
+Zj47DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgI2FkZHJlc3Mt
+Y2VsbHMgPSA8Mz47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjc2l6ZS1j
+ZWxscyA9IDwyPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJhbmdlczsN
+Cj4gPiArICAgICAgICAgICAgICAgICAgICAgICB9Ow0KPiA+ICAgICAgICAgICAgICAgICB9Ow0K
+PiA+DQo+ID4gICAgICAgICAgICAgICAgIGFpcHMxOiBidXNAMjAwMDAwMCB7IC8qIEFJUFMxICov
+IGRpZmYgLS1naXQNCj4gPiBhL2FyY2gvYXJtL2Jvb3QvZHRzL254cC9pbXgvaW14NnFwLXNhYnJl
+YXV0by5kdHMNCj4gPiBiL2FyY2gvYXJtL2Jvb3QvZHRzL254cC9pbXgvaW14NnFwLXNhYnJlYXV0
+by5kdHMNCj4gPiBpbmRleCBjNWIyMjBhZWFlZmQuLjZiMTJjYWI3MTc1ZiAxMDA2NDQNCj4gPiAt
+LS0gYS9hcmNoL2FybS9ib290L2R0cy9ueHAvaW14L2lteDZxcC1zYWJyZWF1dG8uZHRzDQo+ID4g
+KysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvbnhwL2lteC9pbXg2cXAtc2FicmVhdXRvLmR0cw0KPiA+
+IEBAIC00NSwxMCArNDUsMTUgQEAgTVg2UURMX1BBRF9HUElPXzZfX0VORVRfSVJRICAgICAgICAg
+MHgwMDBiMQ0KPiA+ICB9Ow0KPiA+DQo+ID4gICZwY2llIHsNCj4gPiArICAgICAgIC8qIFRoaXMg
+cHJvcGVydHkgaXMgZGVwcmVjYXRlZCwgdXNlIHJlc2V0LWdwaW9zIGZyb20gdGhlIFJvb3QNCj4g
+PiArIFBvcnQgbm9kZS4gKi8NCj4gPiAgICAgICAgIHJlc2V0LWdwaW8gPSA8Jm1heDczMTBfYyA1
+IEdQSU9fQUNUSVZFX0xPVz47DQo+ID4gICAgICAgICBzdGF0dXMgPSAib2theSI7DQo+ID4gIH07
+DQo+ID4NCj4gPiArJnBjaWVfcG9ydDAgew0KPiA+ICsgICAgICAgcmVzZXQtZ3Bpb3MgPSA8Jm1h
+eDczMTBfYyA1IEdQSU9fQUNUSVZFX0xPVz47IH07DQo+ID4gKw0KPiA+ICAmc2F0YSB7DQo+ID4g
+ICAgICAgICBzdGF0dXMgPSAib2theSI7DQo+ID4gIH07DQo+ID4gLS0NCj4gPiAyLjM3LjENCj4g
+Pg0KPiA+DQo=
 
