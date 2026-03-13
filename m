@@ -1,235 +1,506 @@
-Return-Path: <devicetree+bounces-274895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274893-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2DWTJ6uys2lYZwAAu9opvQ
-	(envelope-from <devicetree+bounces-274895-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:46:03 +0100
+	id qNPPBA+vs2lYZwAAu9opvQ
+	(envelope-from <devicetree+bounces-274893-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:30:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1E3B27E4B8
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:46:01 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E25327E250
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:30:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6377D3039A52
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 06:26:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CCF2D30B12A9
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 06:25:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77AF434A3B1;
-	Fri, 13 Mar 2026 06:25:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE5C4342538;
+	Fri, 13 Mar 2026 06:25:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="zoQAAahC"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="SAoNVX1H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BN8PR05CU002.outbound.protection.outlook.com (mail-eastus2azon11011028.outbound.protection.outlook.com [52.101.57.28])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1146C33E374;
-	Fri, 13 Mar 2026 06:25:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.57.28
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E91C723ABBD
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 06:25:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.161.52
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773383152; cv=fail; b=q6M3wN0ogJJ+S5pzpKFR4oW1pBFeOCtEDKId8L3bIVHL6lA82+Am0d52pxK22V2ObBNnC64A3oOHS/Guq8mWjl/Zh20gAcWQsut+WNdg3eeq1KrqBj3n+SZy0nrKRoMoVqr/aDmz5T3Bz/lx/2dvtdTH6NGBCEbHyZIEGfIZrsc=
+	t=1773383144; cv=pass; b=NCuBX0TYFDQQ8BYfXGapjZRj9BbaMv62S3LUgpLlaPKaXZiNSRzP02R8q1QtirL4Otna0b5D8RLYgHybSwxY/Ox0ANR6Av3n5wJ5FSCQO/4lYhnob1PxXGx9ri6isOpFISNKVl2+YbkZJbDbQ2objvWHkb3uAQFjJnxAwFYqZ0U=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773383152; c=relaxed/simple;
-	bh=T4XaKYMXDH6ENLUAvTDnnfJTRV+L9KjmpcB4gC911sI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Lxer9YrCf/AhXj4o4xv2SqC6sn+apNpwxnFgFLAqSbKnX0ZNXZc+a+tNY3TpBJpZWfaCnkZ9MgkDKapJi0/uY0q3zvcz8TuYuqJz/S3D9i1Ry8U366Y81TCUhw+jjgxQ1oAL9BnlC48X1etDdzCGRzyeIHfutLt6jIfmYHplgmU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=zoQAAahC; arc=fail smtp.client-ip=52.101.57.28
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IUaN68KqWOlJ/31gFGDw7XEASd2aZlXt39+lBs7KcwxQU8pJ3zTRMk5mU+PXYFe62xTLNGX8ZJzidaTvgXLoR4FqurTYy5fRGa3F6A3hAwN2mU0zjT7a5R81kS9EaVh8oI28ltA8PysaqT2xfQH4joMqTiVNOQysOcJBUtDw61AeJ5kH9LI9zZTgvs61R5iqJ6UrHzcIMsGtkOq5NyBH6gM/R0JjeH5OigRkO7R7VTrOofL1p19xG07p+XhDzGNwCW5MO+kJK1vHUaH54nsvq2/y7e29qJHQ4LQpMRSEAzN94sATV0J1KhZlfDpxWVnxEPnoyl2A04rE2FyDCsfPjA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N522ykJ1u9LJYBqjbfnp3hUFRZ4bmn5UTpiAIr4DK9c=;
- b=iiGib+CtcQOj1O092NCOYmEjXtcQxkKe/7qdK9mP2/zu9IbxDr46HchRciEnXEKcrApPadpj9tsmQYM1AAqjYy09TJFQ/r+W3eUera4j/mzeNrKOD2KGf9DUx7fEU3HR5P0hd38E+EufqAfpN7T9gV3Ez0RS1oJow5Be21JoyON5SxybRs3Zo+NzRJbLw4PaNMp4ZgOod2u6pBVI8igEqajmZW2lo2zm39PPJFSIugSz9mu8Pz9lA+gnXZ8z9MuuIEFncbEqBOvF9Oz4seVjOLTtUlkrdD6mX7qHSySq+MqLsiE+jGrD8E49NfJyUWWKkIJO1Mg9Wl7xv0doH7WrZQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=N522ykJ1u9LJYBqjbfnp3hUFRZ4bmn5UTpiAIr4DK9c=;
- b=zoQAAahCCQT6JRr7rlNydx7QAO6HF7FgM2oDDF69jMyJeN4+m5QkFm4lRnibzFGc2tMuxXu9DviDm+k4FGXIGHgyclJL3E3zAcQ2IjQitD00mDfCI4BIwFi5ot1dFI0yapJWaS9fLDVN64y8yQUdQzE5dVYzhcQ4cg+oOQYMZ2M=
-Received: from PH7P223CA0001.NAMP223.PROD.OUTLOOK.COM (2603:10b6:510:338::22)
- by CY8PR12MB7218.namprd12.prod.outlook.com (2603:10b6:930:5a::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.7; Fri, 13 Mar
- 2026 06:25:45 +0000
-Received: from SJ1PEPF000023D4.namprd21.prod.outlook.com
- (2603:10b6:510:338:cafe::11) by PH7P223CA0001.outlook.office365.com
- (2603:10b6:510:338::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.27 via Frontend Transport; Fri,
- 13 Mar 2026 06:25:40 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- SJ1PEPF000023D4.mail.protection.outlook.com (10.167.244.69) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9723.1 via Frontend Transport; Fri, 13 Mar 2026 06:25:45 +0000
-Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 13 Mar
- 2026 01:25:43 -0500
-Received: from xhdsneeli40.xilinx.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Fri, 13 Mar 2026 01:25:39 -0500
-From: Srinivas Neeli <srinivas.neeli@amd.com>
-To: Vinod Koul <vkoul@kernel.org>, <git@amd.com>, <srinivas.neeli@amd.com>
-CC: Frank Li <Frank.Li@kernel.org>, Michal Simek <michal.simek@amd.com>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Suraj Gupta <suraj.gupta2@amd.com>, "Radhey
- Shyam Pandey" <radhey.shyam.pandey@amd.com>, Thomas Gessler
-	<thomas.gessler@brueckmann-gmbh.de>, Folker Schwesinger
-	<dev@folker-schwesinger.de>, Tomi Valkeinen
-	<tomi.valkeinen@ideasonboard.com>, Kees Cook <kees@kernel.org>, Abin Joseph
-	<abin.joseph@amd.com>, <dmaengine@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH V2 1/5] dmaengine: xilinx_dma: Fix MCDMA descriptor fields for MM2S vs S2MM
-Date: Fri, 13 Mar 2026 11:55:29 +0530
-Message-ID: <20260313062533.421249-2-srinivas.neeli@amd.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260313062533.421249-1-srinivas.neeli@amd.com>
-References: <20260313062533.421249-1-srinivas.neeli@amd.com>
+	s=arc-20240116; t=1773383144; c=relaxed/simple;
+	bh=HwXHsxaJxLLtdp/60RbH9yuM3ihjwFxS9V4gxjsLZns=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CrZ+k19bcg1kxj+CweRXg556m4s/h706I/zNT9gk1gvN83RSvsaIXIbZ9HQ6Yv38j/wMAeLD6TBVxP/FZMlt7bstymA4iTX6kuNDBfgBSydLeVvi+FQRi2YYoAN5j47wkGphv3sFlX79e360tohwUCx0MMrX7bnYx37hUHcylgE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=SAoNVX1H; arc=pass smtp.client-ip=209.85.161.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-67bb17938d5so1345172eaf.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 23:25:41 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773383141; cv=none;
+        d=google.com; s=arc-20240605;
+        b=OKbhbzr9CVMskPp3P3c8U2praJRKnpSTUzKt0yanv3XdQ1tV6aVgwm8ezbrxtX2NG8
+         wRfnM5tORUZZuJZn9kVWliH+thTI7twVyal3o/Pp4zVEsR1R4nEOGNFa+7yThotLIRYf
+         EpyLD7uNkfSzj+MUbLWoZaj+FZ0QM2sZLXJ9j1GM7bqrd3B00uXVOQIRMyxGSGpVrcUA
+         q9wGCVBfpiZlsqxwACP202WSNxxkA0H48jqEaMSpObKxsS6WDxN/dOHGdpKnuN+KP3zH
+         SRJfh2h2s8n+pMh6MilvSBOo3QZZWjCUIwTVFnPcm6V5t9bi96zb/inzN6LD9sm6ffxK
+         WYUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=1lv1ChK1Be6u3mlQsi10zwsgQz95EDY6vz+1pRNTi7M=;
+        fh=A2GOYqe2yiYXlmxQCMjRa/sJLlHuxzIGJtdyhXvO8yU=;
+        b=k15QgKO2UMr90VaUHCdiK7h1pjZFme9Go05PWhiyLUi1Z401UbmbIcs1U3PduQMfKx
+         5UPsTYwAxXKiPrxeWtbaJtkYT1mWhNA6fha/rr3m0yFBE7c5eV/bCf8ivtkpC3MTD7YW
+         rn5iC/IOTRbloRA3uVoDQ6Y3SBqRYIGXJGUtL6AjLdwUOCd5blDBmGLfFeGF+mpPCAKr
+         WRgUBkKTlmiQ97MXo2vVdDS1MZ9aZUp+FGnkoP6RFBtr+K0qPBSRg2XAHw2J3h2ud/gC
+         gm9yIz5B1iBAtOGSn66Ye1DBWQ917sFQLsNDD9K/ZatGNXkmOUsVuftddL/xNysYRiBV
+         f6zQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1773383141; x=1773987941; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=1lv1ChK1Be6u3mlQsi10zwsgQz95EDY6vz+1pRNTi7M=;
+        b=SAoNVX1HmfKUZfQzr4MXm+Fq0Y2LIoRK9INWDQGCPMP2KCWgEGTVzpcoShsH8MsR6Q
+         ZYKC7CDeHyEPkD7avqnlKe0B1F62oRZRcM9wnr22rwcJgt66N/j1sgrh9eNaUylZuqU4
+         EvIDwLcK0c1tJjlkA+EXkn6ChbHghhDQFdjy5CgU6xm85gLgVqLCEVfL9qK19Fqg3WVJ
+         dL/1iF0Mx/yv5D0L5as6lDfTPwkTPPGnmfyoSwmrJ62OVwscVbytXA1V8qAibFCRpO7D
+         1Ht9cVdpQjgTY6YhD56yMMH5DewQbRIM3IXEzATI9TgiV+E8dXyPTFPT//5sY3AGF3KJ
+         OHQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773383141; x=1773987941;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1lv1ChK1Be6u3mlQsi10zwsgQz95EDY6vz+1pRNTi7M=;
+        b=neKBKVI3qKU93do4nuJPLDw9rNCBnaIt+LgMm3TpS+aHlT/2Z9thiVbHQcsE4MqIXo
+         1VRQxwwHzclTPppOVcMDb6pkBLOS38rR61Xkq1ovUnVVmXoDbo38OOoREadur4f0UY8A
+         2IsVpP9Vl0OTwexUn742oEdOrf+01Uaoq/BAbOfYn97I7ipjIDOrRHWc2zhK5PhLkHdl
+         7O1ePbDcyMh5pf3htMPY4qZTOSBeI4abb5gtAwBWyZVPov+1vAeEemJ2Oh2D8cR3Y1fr
+         d9Mb8Nu+CDKH4adP9NDA8WmPx068tB4V+lyUW4cNOsFLaSWydDk+jOhKLx6S2FpxqhIb
+         C+Gw==
+X-Forwarded-Encrypted: i=1; AJvYcCWsxFT2e0FRxKfkboZ1HL9ZXan4d48hB6cu4EkfnRwxEcIcbbCpIPtUXGsZyBnSPuBZjLnQUZ8ZzWZq@vger.kernel.org
+X-Gm-Message-State: AOJu0YxaHTcETV4ujaljToJRS6Lm3Sj0u8fZKXmAWLlbFe4XssUrVPjH
+	Z5gb11SFNtblOsFUgBivTBxzKKxPRi93vIq3t7Iy8LNcJ+ylXgjCLG0hBH0gTxo3kAgnSlXbS3P
+	XijxnqVfc6VliW+nm3n9oeovvhlRsVx6+eSD7OysKTg==
+X-Gm-Gg: ATEYQzwDrkv6MRK6SORXhCtKIySYvtZ76Yn042EiaZioboxG6Hycb1MjiX/Wx6JI7kr
+	HXx0Ak/xLubQJwNigU7jOwX7RepFVoqaybzkgEU73gUDSq/5qasZkdCBcYjMdYumEkY8H/Xd10t
+	/gURUSwH6mZ8onz6DwlSjzmQZO8+06vGkXFK9Qa0aLj5PQPmd2bZhHG7mWtpP8SUB6W3M6xmnLt
+	k1cBFVErzQ95zDPJMc0z/VEs5WuKYDu9Gj5J/UhS+urcRCDOnJT4vXW1JmdRo4p0lqv5OcC/tzk
+	MKLC0YAerA==
+X-Received: by 2002:a05:6820:169e:b0:677:a19a:55b with SMTP id
+ 006d021491bc7-67bdaa8fa72mr1455444eaf.72.1773383140778; Thu, 12 Mar 2026
+ 23:25:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D4:EE_|CY8PR12MB7218:EE_
-X-MS-Office365-Filtering-Correlation-Id: bf60fe51-df97-4df8-ef5e-08de80c95bfa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|82310400026|1800799024|36860700016|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	0xEVFixG1iCIfOwKtFhtRZnYs90uihDZtujGPiW+oCdVqMoVwFEOV7sn/EK2z+4YVZTunM+gz/qNpmg4aAv8Xifi05AW+eCPde3VVIsOMEjS8X9K1CsQmAmtCP62/74QFcihSAB6S+9iW+fYrpgNFu2t5RDWFnj/oCeaF51JqzNFbWSQ58MzCFoiWhqXS4WPjnJVD7FX4t6U5lP/sbIm+UF19cg6gPKoTb/+2aN+t80tyQaz+Owc6VXEHz7RMsswtei3MkrilrpwQPO+oi0ElvVZ/jz8rfnBB6j3rKfNwLVUMWigioi2zOsRYZWAyv/M71KDqKyE5BYbG8HUmUzevvtRqt5/50NK8qX1NIGyUFdcntm/q1hWBcpjbe38eQOAy0gUxtguayhFQIxSwAZHO/jCQ5B6zi3vRuxQwyB2vpUYb2ViXkAW8TJXZqqKJez+3Ejt2Gxwbd7a5gWhmEd9eITGNKjfwaFydlc735mfGPelS/G/Fzkacit5ETHanEpJr3/Jr1+7rpLyO7f404wV/SXYlt+2uul0xXUUkoSXvAqmwgfViKa41Jhrmn5MCEgGB7IPmM8vKGv0qLRG8WZTeD01IT9L73QBDj78yNZOIvx0P0tgxNuEUxP9F9TCeHLbP0U9s1rRsaQ/RJKpeusSECbVpedKpaQY+CPU4sXDsGtGjpm69Qqb/iPb0UTgb0n6CfTuslohKW51Y/61VThm3vMHVac3+Ndl83TAs2lj8SiJqhWMSD4qiHsnuQSyt+OO+/9KIjBEOu1xJmHs35glvA==
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(82310400026)(1800799024)(36860700016)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	K18H/LRKGZ9/JFOIkIzGeR6MuwwEkuzLb6rOex6AUO2S2WFekyYIpPn3VMKKfxEih19hM+WoNVQWCMlEhKJlWPo7l50aTSwWRtvZAoVxJ/SrHTKL0KkXYFw1GF/5J6z9cmSuR651qgqkOdJrRvgswLjv2jaknjBv5LoWFeymOD3Crxe2TbM944Fu89e+GOkaWcHKl/CHYbSj5DZZLMAHTXxeWepWj56HVJu6m2NEiKvvnOEMPY2QGUjcIXpsGw8nPmjAMYBaDw1tuM2yL/oDVizNZonQMehGJ3VhUUaZexNXHddId1rhynvc8Vy9zSFlMnN7seNKHlfYTmvSl7nLmXgKGO5X2mml+F9vwSjnwXvGqKojl11UrzPPCvOpSwwBVE1USwK2rASkjhG0Gk2nHh4YUfWnLzzfkukKGJDOxz0LYUHFaszyJ8r806Rkh6po
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 06:25:45.1809
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf60fe51-df97-4df8-ef5e-08de80c95bfa
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ1PEPF000023D4.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7218
-X-Spamd-Result: default: False [2.84 / 15.00];
+References: <CABvJ_xibk20PbZqk0aUwQ8tsSxte8txe=CV+PMnLnD-ojksv8Q@mail.gmail.com>
+In-Reply-To: <CABvJ_xibk20PbZqk0aUwQ8tsSxte8txe=CV+PMnLnD-ojksv8Q@mail.gmail.com>
+From: Vincent Chen <vincent.chen@sifive.com>
+Date: Fri, 13 Mar 2026 14:25:29 +0800
+X-Gm-Features: AaiRm53wQ2dMf8yly9LJKQQq34H5hIlI6MOnbXQQEbUZ46QlnFFShdCqYSvoNcw
+Message-ID: <CABvJ_xjrUKyGUkbzhAX6DwwwZ3dJU7KThrO2Tz_MKL4T1Y+KDA@mail.gmail.com>
+Subject: Re: [PATCH v3 03/12] rvtrace: Add functions to create/destroy a trace
+ component path
+To: Anup Patel <anup.patel@oss.qualcomm.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>, 
+	Greg KH <gregkh@linuxfoundation.org>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Ian Rogers <irogers@google.com>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
+	Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>, Jiri Olsa <jolsa@kernel.org>, 
+	Adrian Hunter <adrian.hunter@intel.com>, Liang Kan <kan.liang@linux.intel.com>, 
+	Mayuresh Chitale <mchitale@gmail.com>, Anup Patel <anup@brainfault.org>, 
+	Atish Patra <atish.patra@linux.dev>, Andrew Jones <andrew.jones@oss.qualcomm.com>, 
+	Sunil V L <sunilvl@oss.qualcomm.com>, linux-riscv <linux-riscv@lists.infradead.org>, 
+	devicetree@vger.kernel.org, 
+	"linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>, 
+	Mayuresh Chitale <mayuresh.chitale@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[sifive.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[sifive.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-274893-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-274895-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,linuxfoundation.org,linux.intel.com,google.com,ghiti.fr,infradead.org,redhat.com,arm.com,intel.com,gmail.com,brainfault.org,linux.dev,oss.qualcomm.com,lists.infradead.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[srinivas.neeli@amd.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[vincent.chen@sifive.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[sifive.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: E1E3B27E4B8
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: 7E25327E250
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The MCDMA BD format differs between MM2S and S2MM directions, but the
-driver was using generic 'status' and 'sideband_status' fields for both.
-This could lead to incorrect residue calculations when the hardware
-updates direction-specific fields.
+>
+> Trace needs to be configured on a chain of trace components which are
+> connected to each other. These chain of components is also referred
+> to as trace component path. Add functions to create/destroy a trace
+> component path which will be later used by RISC-V trace perf support.
+>
+> Co-developed-by: Mayuresh Chitale <mayuresh.chitale@oss.qualcomm.com>
+> Signed-off-by: Mayuresh Chitale <mayuresh.chitale@oss.qualcomm.com>
+> Signed-off-by: Anup Patel <anup.patel@oss.qualcomm.com>
+> ---
+>  drivers/hwtracing/rvtrace/rvtrace-core.c | 223 +++++++++++++++++++++++
+>  include/linux/rvtrace.h                  |  43 ++++-
+>  2 files changed, 264 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/hwtracing/rvtrace/rvtrace-core.c
+> b/drivers/hwtracing/rvtrace/rvtrace-core.c
+> index d69c2236493a..5f40bad215e0 100644
+> --- a/drivers/hwtracing/rvtrace/rvtrace-core.c
+> +++ b/drivers/hwtracing/rvtrace/rvtrace-core.c
+> @@ -229,6 +229,53 @@ int rvtrace_reset_component(struct
+> rvtrace_platform_data *pdata)
+>  }
+>  EXPORT_SYMBOL_GPL(rvtrace_reset_component);
+>
+> +static int __rvtrace_walk_output_components(struct rvtrace_component *comp,
+> +    bool *stop, void *priv,
+> +    int (*fn)(struct rvtrace_component *comp, bool *stop,
+> +      struct rvtrace_connection *stop_conn,
+> +      void *priv))
+> +{
+> + struct rvtrace_connection *conn, *stop_conn = NULL;
+> + struct rvtrace_platform_data *pdata = comp->pdata;
+> + int i, ret;
+> +
+> + for (i = 0; i < pdata->nr_outconns; i++) {
+> + conn = pdata->outconns[i];
+> + ret = __rvtrace_walk_output_components(conn->dest_comp, stop, priv, fn);
+> + if (ret)
+> + return ret;
+> + if (*stop) {
+> + stop_conn = conn;
+> + break;
+> + }
+> + }
+> +
+> + ret = fn(comp, stop, stop_conn, priv);
+> + if (ret)
+> + return ret;
+> +
+> + return 0;
+> +}
+> +
+> +int rvtrace_walk_output_components(struct rvtrace_component *comp, void *priv,
+> +   int (*fn)(struct rvtrace_component *comp, bool *stop,
+> +     struct rvtrace_connection *stop_conn,
+> +     void *priv))
+> +{
+> + bool stop = false;
+> + int ret;
+> +
+> + if (!comp || !fn)
+> + return -EINVAL;
+> +
+> + mutex_lock(&rvtrace_mutex);
+> + ret = __rvtrace_walk_output_components(comp, &stop, priv, fn);
+> + mutex_unlock(&rvtrace_mutex);
+> +
+> + return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(rvtrace_walk_output_components);
+> +
+>  struct rvtrace_component *rvtrace_cpu_source(unsigned int cpu)
+>  {
+>   if (!cpu_present(cpu))
+> @@ -452,6 +499,182 @@ void rvtrace_unregister_component(struct
+> rvtrace_component *comp)
+>  }
+>  EXPORT_SYMBOL_GPL(rvtrace_unregister_component);
+>
+> +struct rvtrace_path_node {
+> + struct list_head head;
+> + struct rvtrace_component *comp;
+> + struct rvtrace_connection *conn;
+> +};
+> +
+> +struct rvtrace_component *rvtrace_path_source(struct rvtrace_path *path)
+> +{
+> + struct rvtrace_path_node *node;
+> +
+> + node = list_first_entry(&path->comp_list, struct rvtrace_path_node, head);
+> + return node->comp;
+> +}
+> +EXPORT_SYMBOL_GPL(rvtrace_path_source);
+> +
+> +struct rvtrace_component *rvtrace_path_sink(struct rvtrace_path *path)
+> +{
+> + struct rvtrace_path_node *node;
+> +
+> + node = list_last_entry(&path->comp_list, struct rvtrace_path_node, head);
+> + return node->comp;
+> +}
+> +EXPORT_SYMBOL_GPL(rvtrace_path_sink);
+> +
+> +static int rvtrace_assign_trace_id(struct rvtrace_path *path)
+> +{
+> + const struct rvtrace_driver *rtdrv;
+> + struct rvtrace_component *comp;
+> + struct rvtrace_path_node *node;
+> + int trace_id;
+> +
+> + list_for_each_entry(node, &path->comp_list, head) {
+> + comp = node->comp;
+> + rtdrv = to_rvtrace_driver(comp->dev.driver);
+> +
+> + if (!rtdrv->get_trace_id)
+> + continue;
+> +
+> + trace_id = rtdrv->get_trace_id(comp, path->mode);
+> + if (trace_id > 0) {
+> + path->trace_id = trace_id;
+> + return 0;
+> + } else if (trace_id < 0) {
+> + return trace_id;
+> + }
+> + }
+> +
+> + return 0;
+> +}
+> +
+> +static void rvtrace_unassign_trace_id(struct rvtrace_path *path)
+> +{
+> + const struct rvtrace_driver *rtdrv;
+> + struct rvtrace_component *comp;
+> + struct rvtrace_path_node *node;
+> +
+> + list_for_each_entry(node, &path->comp_list, head) {
+> + comp = node->comp;
+> + rtdrv = to_rvtrace_driver(comp->dev.driver);
+> +
+> + if (!rtdrv->put_trace_id)
+> + continue;
+> +
+> + rtdrv->put_trace_id(comp, path->mode, path->trace_id);
+> + }
+> +}
+> +
+> +static bool rvtrace_path_ready(struct rvtrace_path *path)
+> +{
+> + struct rvtrace_path_node *node;
+> +
+> + list_for_each_entry(node, &path->comp_list, head) {
+> + if (!node->comp->ready)
+> + return false;
+> + }
+> +
+> + return true;
+> +}
+> +
+> +struct build_path_walk_priv {
+> + struct rvtrace_path *path;
+> + struct rvtrace_component *sink;
+> +};
+> +
+> +static int build_path_walk_fn(struct rvtrace_component *comp, bool *stop,
+> +      struct rvtrace_connection *stop_conn,
+> +      void *priv)
+> +{
+> + struct build_path_walk_priv *ppriv = priv;
+> + struct rvtrace_path *path = ppriv->path;
+> + struct rvtrace_path_node *node;
+> +
+> + if ((!ppriv->sink && rvtrace_is_sink(comp->pdata)) ||
+> +    (ppriv->sink && ppriv->sink == comp))
+> + *stop = true;
+> +
+> + if (*stop) {
+> + node = kzalloc(sizeof(*node), GFP_KERNEL);
+> + if (!path)
 
-Refactor the descriptor structure to use unions with direction-specific
-field names (mm2s_status/s2mm_status, etc.). This ensures the driver
-accesses the correct hardware fields based on channel direction and
-matches the hardware documentation.
+Hi Anup,
+It looks like there's a typo here. I believe this should be if (!node)
+instead of if (!path).
 
-Fixes: 6ccd692bfb7f ("dmaengine: xilinx_dma: Add Xilinx AXI MCDMA Engine driver support")
-Signed-off-by: Srinivas Neeli <srinivas.neeli@amd.com>
----
- drivers/dma/xilinx/xilinx_dma.c | 29 ++++++++++++++++++++++-------
- 1 file changed, 22 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/dma/xilinx/xilinx_dma.c b/drivers/dma/xilinx/xilinx_dma.c
-index b53292e02448..4a83492f2435 100644
---- a/drivers/dma/xilinx/xilinx_dma.c
-+++ b/drivers/dma/xilinx/xilinx_dma.c
-@@ -275,8 +275,10 @@ struct xilinx_axidma_desc_hw {
-  * @buf_addr_msb: MSB of Buffer address @0x0C
-  * @rsvd: Reserved field @0x10
-  * @control: Control Information field @0x14
-- * @status: Status field @0x18
-- * @sideband_status: Status of sideband signals @0x1C
-+ * @mm2s_ctrl_sideband: Sideband control info for mm2s @0x18
-+ * @s2mm_status: Status field for s2mm @0x18
-+ * @mm2s_status: Status field for mm2s @0x1C
-+ * @s2mm_sideband_status: Sideband status for s2mm @0x1C
-  * @app: APP Fields @0x20 - 0x30
-  */
- struct xilinx_aximcdma_desc_hw {
-@@ -286,8 +288,14 @@ struct xilinx_aximcdma_desc_hw {
- 	u32 buf_addr_msb;
- 	u32 rsvd;
- 	u32 control;
--	u32 status;
--	u32 sideband_status;
-+	union {
-+		u32 mm2s_ctrl_sideband;
-+		u32 s2mm_status;
-+	};
-+	union {
-+		u32 mm2s_status;
-+		u32 s2mm_sideband_status;
-+	};
- 	u32 app[XILINX_DMA_NUM_APP_WORDS];
- } __aligned(64);
- 
-@@ -1013,9 +1021,16 @@ static u32 xilinx_dma_get_residue(struct xilinx_dma_chan *chan,
- 					   struct xilinx_aximcdma_tx_segment,
- 					   node);
- 			aximcdma_hw = &aximcdma_seg->hw;
--			residue +=
--				(aximcdma_hw->control - aximcdma_hw->status) &
--				chan->xdev->max_buffer_len;
-+			if (chan->direction == DMA_DEV_TO_MEM)
-+				residue +=
-+					(aximcdma_hw->control -
-+					 aximcdma_hw->s2mm_status) &
-+					chan->xdev->max_buffer_len;
-+			else
-+				residue +=
-+					(aximcdma_hw->control -
-+					 aximcdma_hw->mm2s_status) &
-+					chan->xdev->max_buffer_len;
- 		}
- 	}
- 
--- 
-2.43.0
-
+> + return -ENOMEM;
+> + INIT_LIST_HEAD(&node->head);
+> + rvtrace_get_component(comp);
+> + node->comp = comp;
+> + node->conn = stop_conn;
+> + list_add(&node->head, &path->comp_list);
+> + }
+> +
+> + return 0;
+> +}
+> +
+> +static void rvtrace_release_path_nodes(struct rvtrace_path *path)
+> +{
+> + struct rvtrace_path_node *node, *node1;
+> +
+> + list_for_each_entry_safe(node, node1, &path->comp_list, head) {
+> + list_del(&node->head);
+> + rvtrace_put_component(node->comp);
+> + kfree(node);
+> + }
+> +}
+> +
+> +struct rvtrace_path *rvtrace_create_path(struct rvtrace_component *source,
+> + struct rvtrace_component *sink,
+> + enum rvtrace_component_mode mode)
+> +{
+> + struct build_path_walk_priv priv;
+> + struct rvtrace_path *path;
+> + int ret = 0;
+> +
+> + if (!source || mode >= RVTRACE_COMPONENT_MODE_MAX) {
+> + ret = -EINVAL;
+> + goto err_out;
+> + }
+> +
+> + path = kzalloc(sizeof(*path), GFP_KERNEL);
+> + if (!path) {
+> + ret = -ENOMEM;
+> + goto err_out;
+> + }
+> + INIT_LIST_HEAD(&path->comp_list);
+> + path->mode = mode;
+> + path->trace_id = RVTRACE_INVALID_TRACE_ID;
+> +
+> + priv.path = path;
+> + priv.sink = sink;
+> + ret = rvtrace_walk_output_components(source, &priv, build_path_walk_fn);
+> + if (ret < 0)
+> + goto err_release_path_nodes;
+> +
+> + if (!rvtrace_path_ready(path)) {
+> + ret = -EOPNOTSUPP;
+> + goto err_release_path_nodes;
+> + }
+> +
+> + ret = rvtrace_assign_trace_id(path);
+> + if (ret < 0)
+> + goto err_release_path_nodes;
+> +
+> + return path;
+> +
+> +err_release_path_nodes:
+> + rvtrace_release_path_nodes(path);
+> + kfree(path);
+> +err_out:
+> + return ERR_PTR(ret);
+> +}
+> +EXPORT_SYMBOL_GPL(rvtrace_create_path);
+> +
+> +void rvtrace_destroy_path(struct rvtrace_path *path)
+> +{
+> + rvtrace_unassign_trace_id(path);
+> + rvtrace_release_path_nodes(path);
+> + kfree(path);
+> +}
+> +EXPORT_SYMBOL_GPL(rvtrace_destroy_path);
+> +
+>  int __rvtrace_register_driver(struct module *owner, struct
+> rvtrace_driver *rtdrv)
+>  {
+>   rtdrv->driver.owner = owner;
+> diff --git a/include/linux/rvtrace.h b/include/linux/rvtrace.h
+> index d6be6e3cc10f..00b63fa22da9 100644
+> --- a/include/linux/rvtrace.h
+> +++ b/include/linux/rvtrace.h
+> @@ -8,6 +8,8 @@
+>
+>  #include <linux/device.h>
+>  #include <linux/io.h>
+> +#include <linux/limits.h>
+> +#include <linux/list.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/property.h>
+>  #include <linux/types.h>
+> @@ -72,6 +74,12 @@ enum rvtrace_component_impid {
+>   RVTRACE_COMPONENT_IMPID_MAX
+>  };
+>
+> +/* Supported usage modes for RISC-V trace components */
+> +enum rvtrace_component_mode {
+> + RVTRACE_COMPONENT_MODE_PERF,
+> + RVTRACE_COMPONENT_MODE_MAX
+> +};
+> +
+>  /**
+>   * struct rvtrace_connection - Representation of a physical connection between
+>   * two RISC-V trace components.
+> @@ -239,6 +247,10 @@ int rvtrace_enable_component(struct
+> rvtrace_platform_data *pdata);
+>  int rvtrace_disable_component(struct rvtrace_platform_data *pdata);
+>  int rvtrace_reset_component(struct rvtrace_platform_data *pdata);
+>
+> +int rvtrace_walk_output_components(struct rvtrace_component *comp, void *priv,
+> +   int (*fn)(struct rvtrace_component *comp, bool *stop,
+> +     struct rvtrace_connection *stop_conn,
+> +     void *priv));
+>  struct rvtrace_component *rvtrace_cpu_source(unsigned int cpu);
+>
+>  struct rvtrace_component *rvtrace_register_component(enum
+> rvtrace_component_type type,
+> @@ -246,17 +258,44 @@ struct rvtrace_component
+> *rvtrace_register_component(enum rvtrace_component_type
+>       struct rvtrace_platform_data *pdata);
+>  void rvtrace_unregister_component(struct rvtrace_component *comp);
+>
+> +/**
+> + * struct rvtrace_path - Representation of a RISC-V trace path from
+> source to sink
+> + * @comp_list: List of RISC-V trace components in the path
+> + * @mode:      Usage mode for RISC-V trace components
+> + * @trace_id:  ID of the trace source (typically hart id)
+> + */
+> +struct rvtrace_path {
+> + struct list_head comp_list;
+> + enum rvtrace_component_mode mode;
+> + u32 trace_id;
+> +#define RVTRACE_INVALID_TRACE_ID 0
+> +};
+> +
+> +struct rvtrace_component *rvtrace_path_source(struct rvtrace_path *path);
+> +struct rvtrace_component *rvtrace_path_sink(struct rvtrace_path *path);
+> +struct rvtrace_path *rvtrace_create_path(struct rvtrace_component *source,
+> + struct rvtrace_component *sink,
+> + enum rvtrace_component_mode mode);
+> +void rvtrace_destroy_path(struct rvtrace_path *path);
+> +
+>  /**
+>   * struct rvtrace_driver - Representation of a RISC-V trace driver
+>   * id_table: Table to match components handled by the driver
+> - * probe:    Driver probe() function
+> - * remove:   Driver remove() function
+> + * probe:        Driver probe() function
+> + * remove:       Driver remove() function
+> + * get_trace_id: Get/allocate a trace ID
+> + * put_trace_id: Put/free a trace ID
+>   * driver:   Device driver instance
+>   */
+>  struct rvtrace_driver {
+>   const struct rvtrace_component_id *id_table;
+>   int (*probe)(struct rvtrace_component *comp);
+>   void (*remove)(struct rvtrace_component *comp);
+> + int (*get_trace_id)(struct rvtrace_component *comp,
+> + enum rvtrace_component_mode mode);
+> + void (*put_trace_id)(struct rvtrace_component *comp,
+> + enum rvtrace_component_mode mode,
+> + u32 trace_id);
+>   struct device_driver driver;
+>  };
 
