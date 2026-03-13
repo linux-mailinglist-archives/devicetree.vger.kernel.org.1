@@ -1,174 +1,164 @@
-Return-Path: <devicetree+bounces-275013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275014-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gK32CBbNs2n2awAAu9opvQ
-	(envelope-from <devicetree+bounces-275013-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:38:46 +0100
+	id 6IThC+DMs2n2awAAu9opvQ
+	(envelope-from <devicetree+bounces-275014-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:37:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E42D27FD65
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:38:45 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C504B27FD1F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:37:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D018C300C558
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:36:53 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 30B11302690C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:37:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 696D036EA97;
-	Fri, 13 Mar 2026 08:36:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4C6C328243;
+	Fri, 13 Mar 2026 08:37:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pEVHVxmx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sTulP3xK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45BFE155389
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 08:36:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F9312CCC5;
+	Fri, 13 Mar 2026 08:37:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773391012; cv=none; b=fNQ5qsjXTxBC3DdWfsl1hbSNPqe58fFRapkrxuc7SX6e9Btsq9Gv81g5DUeOnMHX5334SSQo0NQMkhsAUpx2w505WzHdo+bXBJrecoUNu5UCWHP9GzpgASb0k4nwJsghRjqYpMNQoPrIOGEAabayhlAMXgu0UQxOjlLBiiDngtk=
+	t=1773391070; cv=none; b=LMOC++WFrZz2aQYMnue6JUocahew2CK6D0Kcgv6yGltxDXDQFK9yLhFXKvD7L4Xdcdn/zjitUy3Oqr0H025pVR1v8uqk5kI1L6PD4b4ahwuOp79iT3Gx8kItU9wDj0xFl9dWp13GDTHR4pzp7OLsSCtMUJzXCmtxotowQ1sNhLA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773391012; c=relaxed/simple;
-	bh=2nRDxZu+d9TWrj4WVetOFAoz7B787w6aylEKVWKeURU=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=X+ALvatd/mZJwhP2cKaWUFIpJNa4qEYODtUZqXwEd46UFZJk7l0OdPindVfjRBjvettH2dZIvSzhEOwcC7kxke805Yg45oITQyT4Li+dtmPgkM3p0ouvbBSTqMI63pSPYoYDV3HGrgSEZHY7RtkzOEv/yPjmJnzni4RWgTY67Vk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pEVHVxmx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29C52C2BC87
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 08:36:52 +0000 (UTC)
+	s=arc-20240116; t=1773391070; c=relaxed/simple;
+	bh=if6Os7KZv3jvKc+yemWTofnnhVFQOpjqvGDEYAKip0c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mTGruRTEvgX+9fFeXT1Hot+FUsvBDOlKiFyVCMHlMMD+G8JeQVj799B0rDHvY5eCOIUbDaJpCfRdljMvxSLSTLFI26UltXntUmZovfzAYOnQm5tnlQppKr61b3DcLX6JaeeiZ5dnomLPrOEwQVf4x6ZMkvgaH9axQf7ba5eaMo0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sTulP3xK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A393DC19424;
+	Fri, 13 Mar 2026 08:37:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773391012;
-	bh=2nRDxZu+d9TWrj4WVetOFAoz7B787w6aylEKVWKeURU=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
-	b=pEVHVxmxlyR1AQS1tR8C2csZ0Qi99RNivHqgeYILFINvq+UgxBXoaqmb2GYX/Ld4+
-	 Ggrfr8od449FzPXaxUdGgWt9/wtQ+twSFhI5ShnQhf+y7mcdjLtdJ57IX6OVMgv3Jt
-	 xOfteiTDFayLyYkGt8Nn+e+3/sQZlOyOpu4k3d0cYbILyJZ19z4aLF5ss3oSCP/ncp
-	 zA7ewy+LaQATTSk1EFJSIoXRBQdGPWQp+wlgdKu9Q4NxiAihO/U3kiiejZdFS5vghm
-	 /+oIxRgcMibWkmCXvDtAKs8WeeBa7Hj0DtuJLWDonFuHitIlNZDOZIIG4fL0NK1iRe
-	 KnIZQzvHZyJJg==
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-38a67221fe8so16785171fa.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 01:36:52 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUKVrWyAscytosmNLpwayJb1+2KRS+I9JL5IwHsYYuNYtVao7SoUbWbWTsQbhwMuCQu+t8HJmd+bX1i@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzg9dP3pFs0SdmjpkR31tiO5GjkfKF3P+DhZurkk5sCiPlr6/sp
-	nc7RLK5vuLkz7tWAAXAqH1lPf199g0B3MQUqLzlu+QUHjlLHRJst4Uz0ykLRO/XjPopiPBOBGEF
-	LZqgnCIKkmmmvtKbGBJin/ownSayZbb69BQLUsZnWAQ==
-X-Received: by 2002:a05:651c:515:b0:383:20cd:52fe with SMTP id
- 38308e7fff4ca-38a896b6407mr7399191fa.17.1773391010614; Fri, 13 Mar 2026
- 01:36:50 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 13 Mar 2026 01:36:49 -0700
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 13 Mar 2026 01:36:49 -0700
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <2026031231-whiff-speculate-805a@gregkh>
+	s=k20201202; t=1773391070;
+	bh=if6Os7KZv3jvKc+yemWTofnnhVFQOpjqvGDEYAKip0c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sTulP3xKiD9uDa8zSu3xuIlY++UgnIMkKR91B4cmSiPZBqB4MHjK7iC1I+9dHz/nT
+	 yVRJDWtil2yeAgfUgOHei8po1hcKsBBU94riznlLp68Knr6woxxN6uTkGRQi8csjRT
+	 WJKlqmYR7JGMmDWUhJlO1jziyCS00RwgnVH14oGUJXLOlBSZHZHobdDRPEVxLY031Z
+	 UKkapOYblnvpUn4LxE1cQUdOFewaLN2y4tbJd0SGPBZRYr4qw3uQ8pekudvUnppSLX
+	 2RB2nyPCrQpEV6tqyJ/RLb7mlDcQubk7I5RHb3VfuMC8L465qzpyy0bEhBd4TFdkLX
+	 xeNo7MaeTEJxA==
+Date: Fri, 13 Mar 2026 09:37:47 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Aaron Kling <webgeek1234@gmail.com>, Val Packett <val@packett.cool>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Teguh Sobirin <teguh@sobir.in>
+Subject: Re: [PATCH v2 2/5] arm64: dts: qcom: Add AYN QCS8550 Common
+Message-ID: <20260313-urban-prawn-of-success-cff01f@quoll>
+References: <20260311-ayn-qcs8550-v2-0-e66986e0f0cb@gmail.com>
+ <20260311-ayn-qcs8550-v2-2-e66986e0f0cb@gmail.com>
+ <4757fd22-fe9f-4228-a0a5-11d9309549ac@packett.cool>
+ <CALHNRZ_RU+uHXfUtSO+8pKOYfBuK9jbYgqWE70WMQ=5Qz2MvvQ@mail.gmail.com>
+ <quybzbqxlohu6kiqmno2wzyltwejnc2vebxdgvdl3fdib7zg7u@wz3bkop7psu6>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260223-soc-of-root-v2-0-b45da45903c8@oss.qualcomm.com>
- <20260224183832.GB3239922-robh@kernel.org> <CAMRc=Mft5vc-C8miKVdw6C-qRdYsqfgm-UgLZJOctFwagMF0iA@mail.gmail.com>
- <2026031231-whiff-speculate-805a@gregkh>
-Date: Fri, 13 Mar 2026 01:36:49 -0700
-X-Gmail-Original-Message-ID: <CAMRc=MdhhEMJn5JTB3wn_ScmV=a0o6fTnaUDSDjOLN5WH5rOFQ@mail.gmail.com>
-X-Gm-Features: AaiRm50bkC2plkyLpch8sSUugz619L6Cf_EZYcxggWcjYtxkwiUVoHYnqPIvC6o
-Message-ID: <CAMRc=MdhhEMJn5JTB3wn_ScmV=a0o6fTnaUDSDjOLN5WH5rOFQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/9] soc: remove direct accesses to of_root from drivers/soc/
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
-	Saravana Kannan <saravanak@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Danilo Krummrich <dakr@kernel.org>, "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Chen-Yu Tsai <wens@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Frank Li <Frank.Li@nxp.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org, 
-	imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org, 
-	linux-sunxi@lists.linux.dev, driver-core@lists.linux.dev, 
-	Peng Fan <peng.fan@nxp.com>, Bartosz Golaszewski <brgl@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+In-Reply-To: <quybzbqxlohu6kiqmno2wzyltwejnc2vebxdgvdl3fdib7zg7u@wz3bkop7psu6>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275013-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,pengutronix.de,gmail.com,glider.be,sholland.org,nxp.com,vger.kernel.org,lists.ozlabs.org,lists.infradead.org,lists.linux.dev];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,linuxfoundation.org:email];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275014-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,packett.cool,kernel.org,vger.kernel.org,sobir.in];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 2E42D27FD65
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C504B27FD1F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 12 Mar 2026 16:18:38 +0100, Greg Kroah-Hartman
-<gregkh@linuxfoundation.org> said:
-> On Thu, Feb 26, 2026 at 10:28:26AM +0100, Bartosz Golaszewski wrote:
->> On Tue, Feb 24, 2026 at 7:38=E2=80=AFPM Rob Herring <robh@kernel.org> wr=
-ote:
->> >
->> > On Mon, Feb 23, 2026 at 02:37:15PM +0100, Bartosz Golaszewski wrote:
->> > > linux/of.h declares a set of variables providing addresses of certai=
-n
->> > > key OF nodes. The pointers being variables can't profit from stubs
->> > > provided for when CONFIG_OF is disabled which means that drivers
->> > > accessing these variables can't profit from CONFIG_COMPILE_TEST=3Dy
->> > > coverage.
->> > >
->> > > There are drivers under drivers/soc/ that access the of_root node. T=
-his
->> > > series introduces new OF helpers for reading the machine compatible =
-and
->> > > model strings, exports an existing SoC helper that reads the machine
->> > > string from the root node and finally replaces all direct accesses t=
-o
->> > > of_root with new or already existing helper functions.
->> > >
->> > > Merging strategy: first two patches should be either acked by Rob or
->> > > picked up into an immutable branch based on v7.0-rc1, the rest can g=
-o
->> > > through the SoC tree.
->> >
->> > SoC tree is good.
->> >
->> > For all but patch 8,
->> >
->> > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
->> >
->>
->> FYI Rob also reviewed patch 8 now. Who would pick the patches up? Greg
->> KH? There does not seem to be a centralized SoC maintainer in
->> MAINTAINERS?
->
-> Sure, let me take them now, thanks.
->
-> greg k-h
->
+On Fri, Mar 13, 2026 at 05:19:27AM +0200, Dmitry Baryshkov wrote:
+> On Wed, Mar 11, 2026 at 08:39:37PM -0500, Aaron Kling wrote:
+> > On Wed, Mar 11, 2026 at 7:49=E2=80=AFPM Val Packett <val@packett.cool> =
+wrote:
+> > >
+> > > On 3/11/26 2:44 PM, Aaron Kling wrote:
+> > >
+> > > > From: Teguh Sobirin <teguh@sobir.in>
+> > > >
+> > > > This adds a base dtb of everything common between the AYN QCS8550
+> > > > devices. It is intended to be extended by device specific overlays.
+> > > >
+> > > > Signed-off-by: Teguh Sobirin <teguh@sobir.in>
+> > > > Co-developed-by: Aaron Kling <webgeek1234@gmail.com>
+> > > > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> > > > ---
+> > > >   arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+> > > >   arch/arm64/boot/dts/qcom/qcs8550-ayntec-common.dts | 1777 +++++++=
++++++++++++++
 
-In the meantime Geert sent an alternative to patch 8/9 so this single one c=
-an
-be dropped from the series.
+Common is not a board, NAK. This could only be DTSI if you provide some
+sort of HARDWARE arguments explaining the common parts of schematics or
+hardware design.
 
-Thanks,
-Bartosz
+> > > >   2 files changed, 1778 insertions(+)
+> > > > [=E2=80=A6]
+> > > > +/ {
+> > > > +     model =3D "AYN QCS8550 Common";
+> > > > +     compatible =3D "ayntec,qcs8550-common", "qcom,qcs8550", "qcom=
+,sm8550";
+> > >
+> > > Huh?.. All existing -common files are .dtsi includes without their own
+> > > model/compatible, and the compile-time "dtbo" support is only used for
+> > > EL2 where we want to apply the same thing to many many devices without
+> > > polluting the tree with extra glue files. I don't see why this should=
+ be
+> > > a "common device" with its own compatible string, and not just a dtsi.
+> >=20
+> > My use case for these devices is Android, using a single base dtb and
+> > variant dtbo's in a single software build. Given the aosp boot image
+> > v4 setup, using individual dtb's would require different vendor_boot
+> > images, which would require multiple build targets. This setup allows
+> > for my use case, while also having individual dtb targets for a
+> > standard Linux use case. To my knowledge, the final device specific
+> > dtb from this is the same as a dtb using a common dtsi.
+>=20
+> This needs to be explained in the commit message. But do you need then a
+> model/compatible in the default dtb?
+
+Not enough. We do not add compatibles not representing actual hardware,
+just to streamline boot image handling.
+
+Plus this code is not even truly correct.
+
+We do not write DTS to fulfill broken Android boot process.
+
+Best regards,
+Krzysztof
+
 
