@@ -1,140 +1,175 @@
-Return-Path: <devicetree+bounces-274855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274856-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MFOmCKB4s2nDWwAAu9opvQ
-	(envelope-from <devicetree+bounces-274855-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 03:38:24 +0100
+	id KBHLMuZ5s2kZXAAAu9opvQ
+	(envelope-from <devicetree+bounces-274856-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 03:43:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DAB527CD69
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 03:38:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 311CD27CDB3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 03:43:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C4A293104C9C
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 02:38:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C47A530A4767
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 02:43:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DBB1346774;
-	Fri, 13 Mar 2026 02:38:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ADD7346E4E;
+	Fri, 13 Mar 2026 02:43:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HZmGErku"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YcgO7Owd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 498E62E888C;
-	Fri, 13 Mar 2026 02:38:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB69C34166B
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 02:43:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773369484; cv=none; b=r0ed694OnDkf9OEHyaNG4nOZkCLr87wVVmQaNSVLEv3bnpyrzFqbSaRHyBprLcwxgp1ohSBfsIZAN4jRHHLRWEGeTPRlkpHyDf+kOmxoUekMormy5TReSvNfmwkqfRtiAEvGmiQuuC/3MvQUQSJS0KAn/0mSM6Tm1iJGHrqQnhE=
+	t=1773369828; cv=none; b=mxShhpLCkUmf6a6c5cJVqaxYVhn1NczOedCALSIuZaWDuRStr31vm+bTty8wC79COVtF5j7pspFJZLXdl6OafDt+RuJHqO5n8jZ7hK5asdsYJYC/eEYKXszLlkNbR6LyVtKZQTpqJBl6cUaKLMVqmFfjWpGIotapaWNAhzWLjIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773369484; c=relaxed/simple;
-	bh=cXgUEDCxpb0VJM5NocwDb3y+egwZEcpfq0JderV9xYo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pPkuoJSJKfRJSZA7FIqsk+rXtgO/qRTwHQ6HVKNZ7+AYGnX6Dhy49az/cz0coUwpRyBVOwQbx+3eTECncnfqNPe3XOodQ5MJXA6pVi1GgIM1txh50jxeC6kXzzQDxPmDRPZ929hx4v7JnOLKgy7nkbijaJ5HAOXas0umEvi2jHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HZmGErku; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 268FAC116C6;
-	Fri, 13 Mar 2026 02:38:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773369483;
-	bh=cXgUEDCxpb0VJM5NocwDb3y+egwZEcpfq0JderV9xYo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=HZmGErkudO/UsvBnemx/cgWFLZAevqTXjslEtTDHabT3yxPJIFMTX6Q7ygD4VcNO9
-	 d4ZrG9RBHupYbJglUOLEKhH2YmSgDCHSN2QxcrTxkBrQtKlHbhRQScs+xcc4HNr1O2
-	 vFJOmjJnM5rvMY6e8TZt1hNTI4L3NKSELZNOW8mYvwSkU0Aeaz3X3qWVskEfm1g34d
-	 9b+hsVvMuRKOnBDLs0BqDCDLy9059cwWrfQQ+eHylhVGC1K5uzQo76MwefIGxnnJkK
-	 D1YY8jw3tzyoHrpIBmdtMloiXb1A+qepUI/C4U8QK4TVdj0CQnqkfoOboUxvVi6aJ+
-	 byWPAXlZ+c2QQ==
-Date: Thu, 12 Mar 2026 19:38:01 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan
- <dlan@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre
- Torgue <alexandre.torgue@foss.st.com>, Richard Cochran
- <richardcochran@gmail.com>, Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti
- <alex@ghiti.fr>, "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, Yao
- Zi <me@ziyao.cc>, Yanteng Si <siyanteng@cqsoftware.com.cn>, Vladimir Oltean
- <vladimir.oltean@nxp.com>, Lad Prabhakar
- <prabhakar.mahadev-lad.rj@bp.renesas.com>, Maxime Chevallier
- <maxime.chevallier@bootlin.com>, Chen-Yu Tsai <wens@kernel.org>, Shangjuan
- Wei <weishangjuan@eswincomputing.com>, Boon Khai Ng
- <boon.khai.ng@altera.com>, Quentin Schulz <quentin.schulz@cherry.de>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>, Jose Abreu
- <joabreu@synopsys.com>, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, Yixun Lan <dlan@gentoo.org>, Longbin
- Li <looong.bin@gmail.com>
-Subject: Re: [PATCH net-next v9 3/4] net: stmmac: Add glue layer for
- Spacemit K3 SoC
-Message-ID: <20260312193801.61c30de4@kernel.org>
-In-Reply-To: <20260312012232.373713-4-inochiama@gmail.com>
+	s=arc-20240116; t=1773369828; c=relaxed/simple;
+	bh=BvmSqdKL2mgHyEPzAmRBGH1hY2ITeXqKZPua1k6rWgY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=I0qszZAHiWTetUVetsLQPcS/+O8uLEopxTJ2tSZUv9m9xqcRcDCbKxgZvq6Jt2YMuJtRYYvdpgZy/iULYrpVw40Ds3eQrqMscWZlvqVBW0uttVq2mSbgSRY780sIgY4nS2X1LC+CwHlMVTFsADA7am0u2QDzAQbNYrfQYvMyl4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YcgO7Owd; arc=none smtp.client-ip=209.85.160.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-506a6cf8242so15783061cf.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 19:43:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773369826; x=1773974626; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q9hCuzuHEN/sMOidNnhHLkJz/g4iSobaxo8mhYZkdNU=;
+        b=YcgO7OwdSmT1lEE2QGd97QDP+xEYFgoLtIIqgs7H9tTtJEwhFR46mmXg6EQVrvbdr4
+         mHL4DhGg504Y6zqkYbEUzhDov+JftRDWVoxlMoK0BkX2AzH83tSbCwcHTzK3MuGxR/gA
+         TE20/wAKjpfjti6li10gtma1z5tge69nhxA5ARj6uAtpP1N5ukzyNly2RzYsBAFdY9Nm
+         /p3pcz/PCqUGSdJp4cjETko2D6XnR/+jJ7RXqtdAXAKo6p/e/JDWPdlHrlWGKgQ8KYwI
+         ztd3csBHmW8bcFCpQJp63YiQRi/FFFFeuHklzaH7WxFgaVorjpxEeIarZvzyq7DbjqDt
+         +E4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773369826; x=1773974626;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Q9hCuzuHEN/sMOidNnhHLkJz/g4iSobaxo8mhYZkdNU=;
+        b=CDDiGsuO6wnCdlnKoJqOSTpSCEidM8muXbk4/boQ91y9TZCAHmpbOtBoML8aqjIB/1
+         DGyPG23tgmU0xNp1T4truHzR+tpTEvwgWkfMPuyDfxQFmz3TciU21sB1Ir+eVLLbiZon
+         QgpPnnX7v5PzVGKEMBDPWgMxwetsO5D8Wt53Szq9zeOZujvRUJP5DwuE0uN+/oXUngC/
+         uMe0ZJW4lrOVQ691gpooHtbuHI+isEnt+r28xxFb6WYz5/oYcIiIyrYItmqpk6r9NGY3
+         nphDNqWMDJSObV32IHOO5ZcWV6h1aWb7KzhDfrmyTqQe/fK+oV8L4hcvbtVsg2wZ6EMY
+         B6HQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX71RnzFtjBxdx7eofMXCdRwpN8ZTe5yQ+wibWw8vjUAMuIVZZGG2vhujvRdrZWzsjiJQ966XEILmQP@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLl65BPJMOKz8NsAibRgsEuO7R8eZgZDKdsBONjvdUFlyXni56
+	3PzW+jKoXxmvEmPeq0mC2yhvCaSBNzK0IJnEGK5usUwXCwOevHKH1R2a
+X-Gm-Gg: ATEYQzzvV4Br/Towv4C/wGq4kG4HaTP/Dqc3+rDJMQwMnM4r9Rx4kcqMK6V6WDdp3KT
+	4z8bLETum0EPwjrQCOwJsrgNUOrQ9CAPdnThJ0grW3WRQaSHu4j+NRrU1XxHFgR+QRpEtroCZHC
+	5pCMSFNblnU9lI6fvwyRkRJRY4fXFevQira+XvjYStwBoAPUsoQ7qk8gLB7PmxQY98941zFKxhz
+	UPBe+6Rc+eP3vEevvmfmocqPZV1sdZlHsaWexoF6O9a0YndCQQFYl7FsL6UjcPhOIYUWeIxupvF
+	auDoVG2uv4aQvrgzs9wH4p2qGiHDyZy7Y1Ej5VruYO1bNZKDYKSIaqHs2023cd7Pw9gG4jmekvB
+	acFeoXIBo9dxsoc0cVbCOtZwiSrRGFrZ/nzuLUZqlZUr/H9lkEU2Nsw8AyQwEBTLPIJVazEKmd6
+	xsjbKamlRcdR//ZMekqJkycH0=
+X-Received: by 2002:ac8:5fcb:0:b0:509:329e:bd5 with SMTP id d75a77b69052e-50957b909c8mr24981181cf.3.1773369825770;
+        Thu, 12 Mar 2026 19:43:45 -0700 (PDT)
+Received: from localhost ([2001:19f0:8001:1b2d:5400:5ff:fefa:a95d])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-5093a0ea844sm53518871cf.17.2026.03.12.19.43.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Mar 2026 19:43:45 -0700 (PDT)
+Date: Fri, 13 Mar 2026 10:43:05 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Jakub Kicinski <kuba@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Richard Cochran <richardcochran@gmail.com>, Paul Walmsley <pjw@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, 
+	Yao Zi <me@ziyao.cc>, Yanteng Si <siyanteng@cqsoftware.com.cn>, 
+	Vladimir Oltean <vladimir.oltean@nxp.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Maxime Chevallier <maxime.chevallier@bootlin.com>, Chen-Yu Tsai <wens@kernel.org>, 
+	Shangjuan Wei <weishangjuan@eswincomputing.com>, Boon Khai Ng <boon.khai.ng@altera.com>, 
+	Quentin Schulz <quentin.schulz@cherry.de>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH net-next v9 3/4] net: stmmac: Add glue layer for Spacemit
+ K3 SoC
+Message-ID: <abN5Xn5GCa_UqCbO@inochi.infowork>
 References: <20260312012232.373713-1-inochiama@gmail.com>
-	<20260312012232.373713-4-inochiama@gmail.com>
+ <20260312012232.373713-4-inochiama@gmail.com>
+ <20260312193801.61c30de4@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260312193801.61c30de4@kernel.org>
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274855-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[37];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,redhat.com,kernel.org,gmail.com,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,armlinux.org.uk,ziyao.cc,cqsoftware.com.cn,nxp.com,bp.renesas.com,bootlin.com,eswincomputing.com,altera.com,cherry.de,st.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com,gentoo.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274856-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[38];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,redhat.com,kernel.org,gmail.com,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,armlinux.org.uk,ziyao.cc,cqsoftware.com.cn,nxp.com,bp.renesas.com,bootlin.com,eswincomputing.com,altera.com,cherry.de,st.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com,gentoo.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8DAB527CD69
+X-Rspamd-Queue-Id: 311CD27CDB3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Some nit picks only to be addressed in case the AI complaint on patch 1
-is legit..
+On Thu, Mar 12, 2026 at 07:38:01PM -0700, Jakub Kicinski wrote:
+> Some nit picks only to be addressed in case the AI complaint on patch 1
+> is legit..
+> 
+> On Thu, 12 Mar 2026 09:22:25 +0800 Inochi Amaoto wrote:
+> > +config DWMAC_SPACEMIT
+> > +	tristate "Spacemit dwmac support"
+> > +	depends on OF && (ARCH_SPACEMIT || COMPILE_TEST)
+> > +	select MFD_SYSCON
+> > +	default m if ARCH_SPACEMIT
+> 
+> I know other STMMAC sub-drivers do it but isn't the defconfig for 
+> the platform the right place to add this sort of default?
+> 
+> > +	apmu = syscon_regmap_lookup_by_phandle_args(pdev->dev.of_node,
+> > +						    "spacemit,apmu", 2,
+> > +						    offset);
+> > +	if (IS_ERR(apmu))
+> > +		return dev_err_probe(dev, PTR_ERR(apmu),
+> > +				"Failed to get apmu regmap\n");
+> 
+> looks mis-aligned 
 
-On Thu, 12 Mar 2026 09:22:25 +0800 Inochi Amaoto wrote:
-> +config DWMAC_SPACEMIT
-> +	tristate "Spacemit dwmac support"
-> +	depends on OF && (ARCH_SPACEMIT || COMPILE_TEST)
-> +	select MFD_SYSCON
-> +	default m if ARCH_SPACEMIT
+Yes, that's true. I will fix this.
 
-I know other STMMAC sub-drivers do it but isn't the defconfig for 
-the platform the right place to add this sort of default?
-
-> +	apmu = syscon_regmap_lookup_by_phandle_args(pdev->dev.of_node,
-> +						    "spacemit,apmu", 2,
-> +						    offset);
-> +	if (IS_ERR(apmu))
-> +		return dev_err_probe(dev, PTR_ERR(apmu),
-> +				"Failed to get apmu regmap\n");
-
-looks mis-aligned 
+Regards,
+Inochi
 
