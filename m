@@ -1,196 +1,167 @@
-Return-Path: <devicetree+bounces-275482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275483-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uCAKHf1LtGk4kAAAu9opvQ
-	(envelope-from <devicetree+bounces-275482-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:40:13 +0100
+	id 0ELUHclMtGk4kAAAu9opvQ
+	(envelope-from <devicetree+bounces-275483-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:43:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CFD6288382
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:40:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D171C288409
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:43:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4E7FA300462C
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:40:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4CD1F3252365
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:41:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98B863CAE67;
-	Fri, 13 Mar 2026 17:40:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC9213CCA06;
+	Fri, 13 Mar 2026 17:41:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z7jDdA5h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IVSpJcj1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 759A23C5DBD;
-	Fri, 13 Mar 2026 17:40:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A92AB373C01;
+	Fri, 13 Mar 2026 17:41:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773423606; cv=none; b=FVoBz0XjndkyCSWBE4VRsa4S80FmpJTi4TDFqR1lID4V8Z5JpaDwp+H5wvRZz+JlWx1wMCGfBS3yQj7dGTgV5AZ4snAVwcc+GGVMbaMyfq8TWeoB6LyJeWDJLpatg6jh3wdVuPn+aHnGAmxyvj9httfDbSFz7c419FOe4PQzJrU=
+	t=1773423713; cv=none; b=hjHeFtuI5g0awmzH6bg66/9k0q8ADMr6p6K/KyEy++qEYx7+ZZ1uR3GQA2J8g9JikFX8XaAcTQXfHUzYRCbAzXIUOyDwiY90YUAfidLJa0dmbzGXbnOCqQREV7lFE94j3BhdULEF9BkmotU8Pngtfx92ZydmO6j1fPeeDQYCbN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773423606; c=relaxed/simple;
-	bh=PDjv6lj0xs4XAnUT9GLFnTkZ2gh6Ra2uKalbK9P5GpA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ItEWncyJf1Jo4yyK5a2FhiPz6hbzG6CzuSrlvDWyV+P9C02GjzJBxOCNSU3g1XygGl0KkRa5/pckcJhxpXrnWwXEIntWztQznUXOhqwYLnQyz6etTuRiePwLU/i1oGhQ+jhBucuBvDtUqvWtuBgBBOzfs8bcKfxmQ/2jRVVmWU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z7jDdA5h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF7FEC19421;
-	Fri, 13 Mar 2026 17:40:00 +0000 (UTC)
+	s=arc-20240116; t=1773423713; c=relaxed/simple;
+	bh=VXCiFrR4yDELNwPvAiBupPm7f1sU3asDVgzS0mTctyc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Z9zswC0Uny2AK5gVTISepD4xEJYwutNu0I9i1lbYeKBUafL9B0bijgxFzCWHjq+SRDRDQ2LNvkyy1ZVwYNLaigIc/XEIwffps6k4o5idKmeqGJVT457TTDG3qcNU8JnbEghqmPUv7gzghG4sMsjMvj3SurhQf3ti26gTc6zGv5Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IVSpJcj1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2D47C19424;
+	Fri, 13 Mar 2026 17:41:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773423606;
-	bh=PDjv6lj0xs4XAnUT9GLFnTkZ2gh6Ra2uKalbK9P5GpA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Z7jDdA5hNBdPqR6CluugKTJvOAnuiKRttDzV9aIbeiuNP5DlzDXBzKdsTdJi+0UOJ
-	 +YSaSYoQudfpgl87Hl6hzQGq+hUuzqE82xnmxpGi6/YF3zd0Ft8RQePkPSOWweGjb/
-	 vYKmi1DRJ6IutTjJYn/8Cy8OpE/GA4Ye/H9t6xbBzAycQgr+4HWS/6asI5GPBmgoy0
-	 j3OQIJ1MLXpDrNkyVq6GAJIp1aJ0ax4IqRZTI6N+XaikwIW4jfiWAGTKlgTqUPgzJY
-	 pzyOlmuEm6Fw6jsnKv6PcNRAaMTNsLBj9t+dnoztdJV/tQHWBoqCrYndLxySPrvYkO
-	 AdwLJTL5rNcRg==
-Date: Fri, 13 Mar 2026 17:39:58 +0000
-From: Conor Dooley <conor@kernel.org>
-To: lizhi2@eswincomputing.com
-Cc: devicetree@vger.kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
-	pabeni@redhat.com, mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk,
-	wens@kernel.org, pjw@kernel.org, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr,
-	linux-riscv@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com, pritesh.patel@einfochips.com,
-	weishangjuan@eswincomputing.com
-Subject: Re: [PATCH net-next v4 1/3] dt-bindings: ethernet: eswin: add clock
- sampling control
-Message-ID: <20260313-stiffness-item-c451eaef970d@spud>
-References: <20260313075234.1567-1-lizhi2@eswincomputing.com>
- <20260313075351.1584-1-lizhi2@eswincomputing.com>
+	s=k20201202; t=1773423713;
+	bh=VXCiFrR4yDELNwPvAiBupPm7f1sU3asDVgzS0mTctyc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=IVSpJcj10KVVQa1cfFulFJi8o+JNoLHu14//K7mQHAZb/+oii1PVuPR3sKMnIgafC
+	 Ogn7G5hZ9F1fs4Jg71nNRABGJ86EQr70dBqS1i7ScqeFgB4lDBTovRDYkVO9d0lDyW
+	 E2YzfdE9UG6bnyXA/2uS+dMhjfeAlK4+j+O1hapOnL07Y3GetEmx1MYYUdkmuKuKRu
+	 UC+T2Pxsse2xMxjWowkVFRMikTCtBmqhtYZFXRy03C4U6ZSrmXxZlPNZAEorDh3l8z
+	 dNlck02+VoO3mww3NNX1QoJpGhxJ5CTwq3cwS7LkWSfXMa5ShHrc8HOULexLygG2Av
+	 uqyen0rVhSC9w==
+Message-ID: <44931dca-171e-4fae-ac37-761e5eb95d3a@kernel.org>
+Date: Fri, 13 Mar 2026 18:41:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7F9kwIhbyHy1RjqW"
-Content-Disposition: inline
-In-Reply-To: <20260313075351.1584-1-lizhi2@eswincomputing.com>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: bus: ti,da850-mstpri: Convert to YAML
+To: Zeynep Dicle <zeynep.dicle.dev@gmail.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: bartosz.golaszewski@oss.qualcomm.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, daniel.baluta@nxp.com, simona.toaca@nxp.com,
+ d-gole@ti.com, m-chawdhry@ti.com
+References: <20260313173123.1167-1-zeynep.dicle.dev@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260313173123.1167-1-zeynep.dicle.dev@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275482-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lists.infradead.org,st-md-mailman.stormreply.com,eswincomputing.com,einfochips.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-275483-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:url,microchip.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7CFD6288382
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: D171C288409
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On 13/03/2026 18:31, Zeynep Dicle wrote:
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bus/ti,da850-mstpri.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +title: Texas Instruments DA850 Master Peripheral Priority
+> +maintainers:
+> +  - Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+> +description: |
+> +  DA8XX SoCs feature a set of registers allowing to change the priority of all
+> +  peripherals classified as masters.
+> +properties:
+> +  compatible:
+> +    const: ti,da850-mstpri
+> +  reg:
+> +    maxItems: 1
+> +required:
+> +  - compatible
+> +  - reg
 
---7F9kwIhbyHy1RjqW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I don't believe this passed your GSoC mentors review. Please don't send
+AI output but actually follow existing kernel/DT style.
 
-On Fri, Mar 13, 2026 at 03:53:51PM +0800, lizhi2@eswincomputing.com wrote:
-> From: Zhi Li <lizhi2@eswincomputing.com>
->=20
-> Due to chip backend reasons, there is already an approximately 4-5 ns
-> skew between the RX clock and data of the eth1 MAC controller inside
-> the silicon.
->=20
-> For 1000M, the RX clock must be inverted since it is not possible to
-> meet the RGMII timing requirements using only rx-internal-delay-ps on
-> the MAC together with the standard 2 ns delay on the PHY. Therefore,
-> even on a properly designed board, eth1 still requires RX clock
-> inversion.
->=20
-> This behaviour effectively breaks the RGMII timing assumptions at the
-> SoC level.
->=20
-> For the TX path of eth1, there is also a skew between the TX clock
-> and data on the MAC controller inside the silicon. This skew happens
-> to be approximately 2 ns. Therefore, it can be considered that the
-> 2 ns delay of TX is provided by the MAC, so the TX is compliant with
-> the RGMII standard.
->=20
-> For 10/100 operation, the approximately 4-5 ns skew in the chip does
-> not break the standard. The RGMII timing table (Section 3.3) specifies
-> that for 10/100 operation the maximum value is unspecified:
-> https://community.nxp.com/pwmxy87654/attachments/pwmxy87654/imx-processor=
-s/20655/1/RGMIIv2_0_final_hp.pdf
->=20
-> Due to the eth1 silicon behavior described above, a new compatible
-> string "eswin,eic7700-qos-eth-clk-inversion" is added to the device
-> tree. This allows the driver to handle the differences between eth1
-> and eth0 through dedicated logic.
->=20
-> The rx-internal-delay-ps and tx-internal-delay-ps properties now use
-> minimum and maximum constraints to reflect the actual hardware delay
-> range (0-2540 ps) applied in 20 ps steps. This relaxes the binding
-> validation compared to the previous enum-based definition and avoids
-> regressions for existing DTBs while keeping the same hardware limits.
->=20
-> Treat the RX/TX internal delay properties as optional, board-specific
-> tuning knobs and remove them from the example to avoid encouraging
-> their use.
->=20
-> In addition, the binding now includes additional background information
-> about the HSP CSR registers accessed by the MAC. The TXD and RXD delay
-> control registers are included so the driver can explicitly clear any
-> residual configuration left by the bootloader.
->=20
-> Background reference for the High-Speed Subsystem and HSP CSR block is
-> available in Chapter 10 ("High-Speed Interface") of the EIC7700X SoC
-> Technical Reference Manual, Part 4
-> (EIC7700X_SoC_Technical_Reference_Manual_Part4.pdf):
-> https://github.com/eswincomputing/EIC7700X-SoC-Technical-Reference-Manual=
-/releases
->=20
-> There are currently no in-tree users of the EIC7700 Ethernet driver, so
-> these changes are safe.
->=20
-> Fixes: 888bd0eca93c ("dt-bindings: ethernet: eswin: Document for EIC7700 =
-SoC")
-> Signed-off-by: Zhi Li <lizhi2@eswincomputing.com>
-
-Krzysztof might not yet be happy with the compatible naming, but from my
-pov:
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
---7F9kwIhbyHy1RjqW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabRL7gAKCRB4tDGHoIJi
-0qJLAP0c1yh00ld+1PBzXG2QWRzTWLz4Bu2S3D1IL4VcXwRdmAD8D13YNNMzL8Jb
-WJXhFrH1ZO+pCsRM64k+gar0NbK4lwc=
-=pXlI
------END PGP SIGNATURE-----
-
---7F9kwIhbyHy1RjqW--
+Best regards,
+Krzysztof
 
