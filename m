@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-275496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275501-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gG3jBlNRtGk4kAAAu9opvQ
-	(envelope-from <devicetree+bounces-275496-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:02:59 +0100
+	id qNHyGtNQtGk4kAAAu9opvQ
+	(envelope-from <devicetree+bounces-275501-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:00:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 724B428875E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:02:58 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D74BF2886F9
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 19:00:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0E900317C4A0
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:57:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DABF530D0B56
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:58:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B273CFF7B;
-	Fri, 13 Mar 2026 17:57:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C8AF3D7D95;
+	Fri, 13 Mar 2026 17:57:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="XMqFpRcl"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="mbMo3aOC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26F6E3D6CB5;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32F4E3D6CB8;
 	Fri, 13 Mar 2026 17:57:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773424654; cv=none; b=LzmJ5Rf5DwTVcU80EKbI75h2jhOc7F1WX7w3oK4iqybQrEKi5P4abSQ1H1fYJ0YklRr3TkJVl+UeEB274laWnYuIhC4yf5lAQZ40M57xL8vmHL8l/VnsO+sN7dSKNuxL+IZGiXLWCZEWQjqKIZ2aCI35I+0Mh77ToF2mVRSemJM=
+	t=1773424658; cv=none; b=U45aiX13nALdBdjDTmQTOQgFymT1GAuAYacC6neYRjZOwwNpLnubgLMIjElTzfjJgqXPeZ0ns9SymJUuDTvPQ7ei66Iv4LBrJuxhw3A/ZOtmSQAp4XfmS1OtG03owAeSjiUQOpItmwXcWaoa5Y+33o0jjgOnLdQ31V7qemUe/rE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773424654; c=relaxed/simple;
-	bh=dUOuRcSdmkPT5OJpNxAO8iMCG2oRg7tjpzo/g+O1Qks=;
+	s=arc-20240116; t=1773424658; c=relaxed/simple;
+	bh=qMiM+y23mMIV/O2+DsAFTwCJPGth2zOC8TvDV61Cnco=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jFIzncvSXF7wlwqcI9WwElHbOHv9rNDND5cVG4dzJA/zEVSGBiSPXQVKXIdi4UvWXTMKM3MNWp+JPvhzhcEDUaWMKJK64Jen2S5rXfdBDL/Cy5L9d34S+PBlRka2bmo1r/PfdGjqXseTKyQvlmxq48hyhTejF2ywYTbGPPIqrdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=XMqFpRcl; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:To:Cc; b=J0lm3doxhB3kgtA/OKRADIkHUW25Egk1mVYrCILrmBHA7nN7LR1YR1U0gJSRYDQUK+B1UjvM2G65f+BomkOWZovqDEYEHIDeFBEt+9KyAARzdoBSCqBc/ntvA8B/adT8NdDLzZz6k1AdKHxjakAshd9c4btrl1euJC/BOakHp+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=mbMo3aOC; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1773424641;
-	bh=dUOuRcSdmkPT5OJpNxAO8iMCG2oRg7tjpzo/g+O1Qks=;
+	s=mail; t=1773424642;
+	bh=qMiM+y23mMIV/O2+DsAFTwCJPGth2zOC8TvDV61Cnco=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=XMqFpRclhrcMeBZAcLeuRp8MHH2eceTJDReKnizd96ZOK3OfkY+aJaLUwhOcL2DPM
-	 Wrns7aTiMAnTq02qF2IEfPfE6g1GgHxNQ3Vd0QZUxxB8nakoO/Q1OFEsGaPWz+TwfT
-	 KOomxTThEPzMOKwrsN0+P5HNdN4tnFZFKxhFFHZtZtC7Ye76v6pjcAJ/oOXS3lNq/0
-	 ZK3AwdTkXGWyjp6xW+zz5I8LvcgpKf1Kgy0TqB/MjtNx1y5qjr279rV3JuM1qux67w
-	 QjmxlX2VmjuI1xe7pUbcrmIs4TmRvjrDXR2/Y/Z4L5M9iitaERejwAWNVlkzqDNWZu
-	 X0rfAJCBbnvGw==
+	b=mbMo3aOCpPlqQJSBfLidHC5TV5+BwxFW0ZqWGmpjxOmGjf9l+buyzZkel27jpLywG
+	 mT28aVve7FxTzPd7ZsWrHyJRKM7wbXL1ckt/lE9Mz2C/gAaZQXqNG7mT9chXjaT5+k
+	 un4yUuyGua3g4bfVBVwE7iicLJtYkPCih4iXZRWQ0BQLSRTW1P/UQadhN95a6eXI2K
+	 beGaJyTySo4cZl+oycR8mk0UDno9gx8xSMicENDxXEZ5mbupSR84Ry6fY2yaywaiiM
+	 5UkXBQ+S8D+fSTMBUBNCVJRERHMNgA8k2VIS8hDOv77leO0WktjPrmrMWdL6PBkji3
+	 /QNe6RxE+sgFw==
 Received: from jupiter.universe (dyndsl-091-248-210-078.ewe-ip-backbone.de [91.248.210.78])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
 	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id C347A17E1380;
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id E75F917E13D6;
 	Fri, 13 Mar 2026 18:57:21 +0100 (CET)
 Received: by jupiter.universe (Postfix, from userid 1000)
-	id 2AFEB48002C; Fri, 13 Mar 2026 18:57:21 +0100 (CET)
+	id 2C54748002D; Fri, 13 Mar 2026 18:57:21 +0100 (CET)
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Fri, 13 Mar 2026 18:57:15 +0100
-Subject: [PATCH v3 06/12] phy: rockchip: usbdp: Add missing mode_change
- update
+Date: Fri, 13 Mar 2026 18:57:16 +0100
+Subject: [PATCH v3 07/12] phy: rockchip: usbdp: Support single-lane DP
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,7 +64,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260313-rockchip-usbdp-cleanup-v3-6-3e8fe89a35b5@collabora.com>
+Message-Id: <20260313-rockchip-usbdp-cleanup-v3-7-3e8fe89a35b5@collabora.com>
 References: <20260313-rockchip-usbdp-cleanup-v3-0-3e8fe89a35b5@collabora.com>
 In-Reply-To: <20260313-rockchip-usbdp-cleanup-v3-0-3e8fe89a35b5@collabora.com>
 To: Vinod Koul <vkoul@kernel.org>, 
@@ -81,41 +80,41 @@ Cc: Andy Yan <andy.yan@rock-chips.com>, Dmitry Baryshkov <lumag@kernel.org>,
  devicetree@vger.kernel.org, 
  Sebastian Reichel <sebastian.reichel@collabora.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1949;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5209;
  i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=dUOuRcSdmkPT5OJpNxAO8iMCG2oRg7tjpzo/g+O1Qks=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGm0UAAjzWVTyiaU43Tu76Ye4dA1ydrje8x7h
- N7BxGXby+c9AIkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJptFAAAAoJENju1/PI
- O/qaASIP/0oQWcQqq8bP2zhl5IIVUCMot9dWgfM01QJr3/wL195cHYgE899te2/Sag9kx/a+bYm
- T9FmAyGQ0X+hl5S5yMAprYE1PQGs1xftTBxXDgmBMeMWM53R3CcSGMGkHKg1C3JBPKB1felbZjv
- 0DbuBHA9hfabEz4VNzT6iwauvrdgcXV/6iQ+rwL4SzXV6BgmDnzsQ8a3zNmtsUqXPcDr6CCriY5
- 3aiPbWLQ0VOzA70fulqP3QYeBf0AHkqcFXzBjjEPoTeNG0i+O38FGwGUQk8TrRdvPfeqoNpjCd7
- L4kqVsDs1bEciR9AelkSibLVbOhkfVOKwico4pP17An2muq3wHdVUeCR+c23QVcT9//qiW4YBgj
- C9jsewvaqubqf3d+tf1GrlAFihqdHVJzxS1uygigMA4j1NcINU49dX4DfGw+M8aWlYO6iMRniIN
- lu/TMqMV+3rX0t5TBpieowhda3LBCIP5YBjCj2SjmGszpd31uThFf9vmwUcOG4uB1RUD5cEmF6T
- 5ZhotQxYcCec0hJxScxGrV8Z5viNKuWSPYv9bDMxNy2V4aoHMmiPJgJEHQK/W91kstR0PjKamnJ
- 4cgtkE288rc7aJ4PKuFRaVzvDrA3LNCCwv0+C153GxMtwsgM2jrhyEYdo8z79RO+lBZpgWO2R+G
- WNrueUkb2Md6FQNCDCxovZQ==
+ bh=ioOYbBoPnii0Ssh3FoAynz8BRGrqgJ5P5pyx9vo4JGQ=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGm0UADCgCHU3cp/kQDK0Gx62a9atSdS6o7iK
+ p0WB7VQ8e2xx4kCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJptFAAAAoJENju1/PI
+ O/qauaYP+wUjvP3v/QemWfx/0wY3zO39SdPFaeAm+Iuo5fNRiuAvEwzbe5YhVL4euJsyxedeBYB
+ s5ijnzvAF644ZV85UzAqRU1qyS6NYFj2DBkPbbHJitLrgw4kVdhUIY6IHI8IfORRrChtc7uB4n7
+ zYno56zlioqcs8YUKonedIVIDsRBeryLlnQuMC50frr3EBwZWIxRW0BSmwi568t9PzhAdCMFJ9W
+ oTInfgl17QbjS/NZ2j2dpc9U70gnLsDzOnpSiiVdaluxMJLpLWFdUBugqbBWdcOoz+qRimlKbbm
+ sW1+BUfYmls0czrUBB5nVEbmwNQJwPgnva0AfhWjmIQrc0PvxkMYxsu8dSksvH3bH/z2g5p00Uj
+ PkCCDmOpPk8g1wm6OFqHWmE1bYJ0eXZJxOb2e+z1XYs21banr7207V31tjTPId16yG7SRLPLY5g
+ wfRM6v3OublX6MDBakukjTE4AjDsZni1qt+by9bp/8U+VgeCaFm5sbvurOJr8M4D9cOUl3lRUqJ
+ W+PbPkZv8AIP3/K+nVdBHL+dMoKNc6MgTENkf76Fc5A6A8E3ckjQjRRhKT/+W0D23xqbCV8rtWP
+ ku47zz7tYqgHDEYx6o2BLrMKHha9aI48yoF99llA88esEe4mE0irmpQkUny2QTifito150ei5/H
+ pCRspd5dMch9SxL/xdWUx5g==
 X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
  fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[rock-chips.com,kernel.org,gmail.com,lists.infradead.org,vger.kernel.org,collabora.com];
-	TAGGED_FROM(0.00)[bounces-275496-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-275501-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[collabora.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -125,64 +124,176 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,collabora.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 724B428875E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:dkim,collabora.com:email,collabora.com:mid,rock-chips.com:email]
+X-Rspamd-Queue-Id: D74BF2886F9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-rk_udphy_set_typec_default_mapping() updates the available modes,
-but does not set the mode_change as required. This results in
-missing re-initialization and thus non-working DisplayPort.
+From: Zhang Yubing <yubing.zhang@rock-chips.com>
 
-Fix this issue by introducing a new helper to update the available
-modes.
+Implement support for using just a single DisplayPort line.
 
+Signed-off-by: Zhang Yubing <yubing.zhang@rock-chips.com>
 Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- drivers/phy/rockchip/phy-rockchip-usbdp.c | 16 +++++++++++-----
- 1 file changed, 11 insertions(+), 5 deletions(-)
+ drivers/phy/rockchip/phy-rockchip-usbdp.c | 61 +++++++++++++------------------
+ 1 file changed, 25 insertions(+), 36 deletions(-)
 
 diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-index 97e53b933225..febc148a754e 100644
+index febc148a754e..bf8394174294 100644
 --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
 +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-@@ -619,6 +619,15 @@ static void rk_udphy_dp_hpd_event_trigger(struct rk_udphy *udphy, bool hpd)
- 	rk_udphy_grfreg_write(udphy->vogrf, &cfg->vogrfcfg[udphy->id].hpd_trigger, hpd);
+@@ -193,6 +193,7 @@ struct rk_udphy {
+ 	int id;
+ 
+ 	bool dp_in_use;
++	int dp_lanes;
+ 
+ 	/* PHY const config */
+ 	const struct rk_udphy_cfg *cfgs;
+@@ -537,6 +538,13 @@ static void rk_udphy_usb_bvalid_enable(struct rk_udphy *udphy, u8 enable)
+  * <0 1>                  dpln0         dpln1       usbrx         usbtx
+  * <2 3>                  usbrx         usbtx       dpln0         dpln1
+  * ---------------------------------------------------------------------------
++ * if 1 lane for dp function, 2 lane for usb function, define rockchip,dp-lane-mux = <x>;
++ * sample as follow:
++ * ---------------------------------------------------------------------------
++ *                        B11-B10       A2-A3       A11-A10       B2-B3
++ * rockchip,dp-lane-mux   ln0(tx/rx)    ln1(tx)     ln2(tx/rx)    ln3(tx)
++ * <0>                    dpln0         \           usbrx         usbtx
++ * ---------------------------------------------------------------------------
+  */
+ 
+ static void rk_udphy_dplane_select(struct rk_udphy *udphy)
+@@ -544,18 +552,18 @@ static void rk_udphy_dplane_select(struct rk_udphy *udphy)
+ 	const struct rk_udphy_cfg *cfg = udphy->cfgs;
+ 	u32 value = 0;
+ 
+-	switch (udphy->mode) {
+-	case UDPHY_MODE_DP:
+-		value |= 2 << udphy->dp_lane_sel[2] * 2;
++	switch (udphy->dp_lanes) {
++	case 4:
+ 		value |= 3 << udphy->dp_lane_sel[3] * 2;
++		value |= 2 << udphy->dp_lane_sel[2] * 2;
+ 		fallthrough;
+ 
+-	case UDPHY_MODE_DP_USB:
+-		value |= 0 << udphy->dp_lane_sel[0] * 2;
++	case 2:
+ 		value |= 1 << udphy->dp_lane_sel[1] * 2;
+-		break;
++		fallthrough;
+ 
+-	case UDPHY_MODE_USB:
++	case 1:
++		value |= 0 << udphy->dp_lane_sel[0] * 2;
+ 		break;
+ 
+ 	default:
+@@ -568,28 +576,6 @@ static void rk_udphy_dplane_select(struct rk_udphy *udphy)
+ 		     FIELD_PREP(DP_AUX_DOUT_SEL, udphy->dp_aux_dout_sel) | value);
  }
  
-+static void rk_udphy_mode_set(struct rk_udphy *udphy, u8 mode)
-+{
-+	if (udphy->mode == mode)
-+		return;
-+
-+	udphy->mode_change = true;
-+	udphy->mode = mode;
-+}
-+
- static void rk_udphy_set_typec_default_mapping(struct rk_udphy *udphy)
+-static int rk_udphy_dplane_get(struct rk_udphy *udphy)
+-{
+-	int dp_lanes;
+-
+-	switch (udphy->mode) {
+-	case UDPHY_MODE_DP:
+-		dp_lanes = 4;
+-		break;
+-
+-	case UDPHY_MODE_DP_USB:
+-		dp_lanes = 2;
+-		break;
+-
+-	case UDPHY_MODE_USB:
+-	default:
+-		dp_lanes = 0;
+-		break;
+-	}
+-
+-	return dp_lanes;
+-}
+-
+ static void rk_udphy_dplane_enable(struct rk_udphy *udphy, int dp_lanes)
  {
- 	if (udphy->flip) {
-@@ -649,7 +658,7 @@ static void rk_udphy_set_typec_default_mapping(struct rk_udphy *udphy)
- 		gpiod_set_value_cansleep(udphy->sbu2_dc_gpio, 1);
+ 	u32 val = 0;
+@@ -659,6 +645,7 @@ static void rk_udphy_set_typec_default_mapping(struct rk_udphy *udphy)
  	}
  
--	udphy->mode = UDPHY_MODE_DP_USB;
-+	rk_udphy_mode_set(udphy, UDPHY_MODE_DP_USB);
+ 	rk_udphy_mode_set(udphy, UDPHY_MODE_DP_USB);
++	udphy->dp_lanes = 2;
  }
  
  static int rk_udphy_orien_sw_set(struct typec_switch_dev *sw,
-@@ -1385,10 +1394,7 @@ static int rk_udphy_typec_mux_set(struct typec_mux_dev *mux,
- 			usleep_range(750, 800);
- 			rk_udphy_dp_hpd_event_trigger(udphy, true);
- 		} else if (data->status & DP_STATUS_HPD_STATE) {
--			if (udphy->mode != mode) {
--				udphy->mode = mode;
--				udphy->mode_change = true;
--			}
-+			rk_udphy_mode_set(udphy, mode);
- 			rk_udphy_dp_hpd_event_trigger(udphy, true);
- 		} else {
- 			rk_udphy_dp_hpd_event_trigger(udphy, false);
+@@ -897,7 +884,7 @@ static int rk_udphy_parse_lane_mux_data(struct rk_udphy *udphy)
+ 		return 0;
+ 	}
+ 
+-	if (num_lanes != 2 && num_lanes != 4)
++	if (num_lanes != 1 && num_lanes != 2 && num_lanes != 4)
+ 		return dev_err_probe(udphy->dev, -EINVAL,
+ 				     "invalid number of lane mux\n");
+ 
+@@ -923,7 +910,8 @@ static int rk_udphy_parse_lane_mux_data(struct rk_udphy *udphy)
+ 	}
+ 
+ 	udphy->mode = UDPHY_MODE_DP;
+-	if (num_lanes == 2) {
++	udphy->dp_lanes = num_lanes;
++	if (num_lanes == 1 || num_lanes == 2) {
+ 		udphy->mode |= UDPHY_MODE_USB;
+ 		udphy->flip = (udphy->lane_mux_sel[0] == PHY_LANE_MUX_DP);
+ 	}
+@@ -1074,18 +1062,17 @@ static int rk_udphy_dp_phy_exit(struct phy *phy)
+ static int rk_udphy_dp_phy_power_on(struct phy *phy)
+ {
+ 	struct rk_udphy *udphy = phy_get_drvdata(phy);
+-	int ret, dp_lanes;
++	int ret;
+ 
+ 	mutex_lock(&udphy->mutex);
+ 
+-	dp_lanes = rk_udphy_dplane_get(udphy);
+-	phy_set_bus_width(phy, dp_lanes);
++	phy_set_bus_width(phy, udphy->dp_lanes);
+ 
+ 	ret = rk_udphy_power_on(udphy, UDPHY_MODE_DP);
+ 	if (ret)
+ 		goto unlock;
+ 
+-	rk_udphy_dplane_enable(udphy, dp_lanes);
++	rk_udphy_dplane_enable(udphy, udphy->dp_lanes);
+ 
+ 	rk_udphy_dplane_select(udphy);
+ 
+@@ -1365,6 +1352,7 @@ static int rk_udphy_typec_mux_set(struct typec_mux_dev *mux,
+ 		udphy->lane_mux_sel[2] = PHY_LANE_MUX_DP;
+ 		udphy->lane_mux_sel[3] = PHY_LANE_MUX_DP;
+ 		mode = UDPHY_MODE_DP;
++		udphy->dp_lanes = 4;
+ 		break;
+ 
+ 	case TYPEC_DP_STATE_D:
+@@ -1381,6 +1369,7 @@ static int rk_udphy_typec_mux_set(struct typec_mux_dev *mux,
+ 			udphy->lane_mux_sel[3] = PHY_LANE_MUX_DP;
+ 		}
+ 		mode = UDPHY_MODE_DP_USB;
++		udphy->dp_lanes = 2;
+ 		break;
+ 	}
+ 
+@@ -1529,7 +1518,7 @@ static int rk_udphy_probe(struct platform_device *pdev)
+ 		ret = PTR_ERR(udphy->phy_dp);
+ 		return dev_err_probe(dev, ret, "failed to create DP phy\n");
+ 	}
+-	phy_set_bus_width(udphy->phy_dp, rk_udphy_dplane_get(udphy));
++	phy_set_bus_width(udphy->phy_dp, udphy->dp_lanes);
+ 	udphy->phy_dp->attrs.max_link_rate = 8100;
+ 	phy_set_drvdata(udphy->phy_dp, udphy);
+ 
 
 -- 
 2.51.0
