@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-275418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275420-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EL+HCJs2tGnTiwAAu9opvQ
-	(envelope-from <devicetree+bounces-275418-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:08:59 +0100
+	id +DIzGg44tGnTiwAAu9opvQ
+	(envelope-from <devicetree+bounces-275420-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:15:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A45DF286B22
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:08:58 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D91E4286CBF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:15:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E63163008277
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:07:35 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E2FFC3124CF3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 16:07:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37B2B3C13F4;
-	Fri, 13 Mar 2026 16:07:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C941B3C554A;
+	Fri, 13 Mar 2026 16:07:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Pta9ysXI"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="LpBoY2SE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCAB73BD247
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 16:07:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6CE13BD634
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 16:07:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773418046; cv=none; b=IA+mhY8ltPyBy3aUeAtaeP0Ckp895AMJKXlrDWT4lf3/i3BmxpcNFHUsxQnvBFCf3xZa4uU1fTZT5KMlLnPaFHzBSyOJbnaPQokoGS4M0ijgozzbte/c46c1ukk6ihf5dXkx2hv6Zys2RgiktFa1RJNDXELtCc0YeN+qsxipu+Y=
+	t=1773418047; cv=none; b=cFFly8PNjhN+kfnRfJKKvZOqcycqLy4mTceHYdWyvBTUdXyNtOywgxnxdagNqkJGzCInk7WOD8g7dpymtDZTqtqZQb5VwlzAQ0KPx8gwwejhos1wAJJ9i0f0RrMwhLR/5pmId+QcXYO9Ox9K2WyxKSnjAIvjxVILFoc6lRAgY3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773418046; c=relaxed/simple;
-	bh=Bmfl7ft/YjK5LyDZL/lyphuYczIreEHAVKWBpakrNTg=;
+	s=arc-20240116; t=1773418047; c=relaxed/simple;
+	bh=ECkQNb3eCzal3WAJjRaDEW34t/R2ONA0tGGbLwPNcHY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DLotz8Y4OzPvM6pQnnBTML1a0zZo19r57Uheqj9yE1Gwjur9u0U6xCSlHb/cBp0hEXfxIThhBEDL91ijCpDKriMIuMmZviDCB1txboy3Ba7tdZHkvTTgVgQa89aX8F06TP5niWLwY2WBFEb0T5msyYQ3IWnKL4BZ5tWm8doiv6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Pta9ysXI; arc=none smtp.client-ip=209.85.208.44
+	 MIME-Version; b=ASwN9SNkDK2jNuj2RNZ825ogNfSw+qtUYgCeeyOkgB+iqfvU7vrunAcXpHY/k64svr8ceu0qU6YTS/iTlDIdegn08hDN4GD8MvP0ZjDDaDnbqCesqteMkhHc6MVTBmL/NrN/qp/hLJkD+pZz0rE794zP6IbhF4L+WBrZV6u2yRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=LpBoY2SE; arc=none smtp.client-ip=209.85.208.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-6611d20c026so3535027a12.1
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 09:07:24 -0700 (PDT)
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-6642a16be1cso1012587a12.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 09:07:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1773418043; x=1774022843; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1773418044; x=1774022844; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6c9kfdEWLKd/Nu261uajCPoEnKn4RxRPk/xf66gdPHE=;
-        b=Pta9ysXIDdcEQwMeIB2mAPHuCx7aeyqwTdMLT11lNbfIpqhesHNnEDNC6VtDA3m5X9
-         t/3Z7d0y9qLb+bABSyA+TxGN4pR3k6OPKXctljcl1l42dBUrZj+koMNunDnFASi2ShlG
-         vTLXPy/ZnD+ebPpBD8OroRSCgpWVhXCoMALpQ=
+        bh=6IuFt080J2Skvkbg1SWMG28SkMd4vofTIXNDcp/JD4o=;
+        b=LpBoY2SEy8o39lQ4A4d2lVbk/q9d8HnWULUohXpuqBcAvlC+UMYBtuLbZVAxrrROFw
+         yI0bddsqBrHWr6ymkG/xicHopsZmr3Ba3B1VIQpht+Jcf3p3k5zv3XQxjpXlaRU0/t+X
+         xmK3sj7jTnqBcdH4CDxVt2WPQ4lGgayG2rN20=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773418043; x=1774022843;
+        d=1e100.net; s=20251104; t=1773418044; x=1774022844;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=6c9kfdEWLKd/Nu261uajCPoEnKn4RxRPk/xf66gdPHE=;
-        b=aaJb8yP+qjlSDIYqZxwgvl8TKYI72sQy4wAM207GXdgj/Y0vLw97jdctNpTpqovtUt
-         P9A5lL1uXpAoOUT35rj+NCy2zpfX8xoOqumj6mED+b6Mc22XWVr+GqVCo6uzpQ569ocB
-         J0G2vwBTJTdx/WQDGhAZKwxZoc4h26vUK3tmt72N827qROQok3pLp0D0pUHMcgM/7sXs
-         4U1aC/MBXSZoYmBRKwuaUDO0Qa10FfZBqKj/ADaDM6hQNrThpQB5mP2sElFTTQCw03gd
-         Oi08LMfRIEjW0aP/z9fbcbfOvvnuLFdNR3JxwCwPBzCF4aqMG6yKatLlDGMmebQLRF92
-         pvoA==
-X-Forwarded-Encrypted: i=1; AJvYcCWCXNX+SD0QEapelKHJoCeNXWGonvrimsnUr7uoGwEzzzuBqDwrM7d7o+p0cGFVuuUmYu9KzCkg0FH7@vger.kernel.org
-X-Gm-Message-State: AOJu0YymqsYayjKgO3jjm13cfPMAK5izve7VcF6KKO0TEUBhgIx7/fWU
-	M9x0uIGa5I2Z4XYTHi/GbZ+QS/QLsCEygT/cGNVLWaL2jTBHyOW3KoBZZ8eCsMsguQ==
-X-Gm-Gg: ATEYQzzI32jE5t99a9MSTKXrW9pUJoN3DvqLU8iO2Etd9j/EG1JDvHmUXC28q4VJ43a
-	aIVgZtc/pj3HEKsQwUsjOFdPyhMhh1sq3lsWsipCsbJjz93sdgPJwTeq4TsyE1QzXQMiz9uaKT1
-	HHI+RvvWsHj5Hy+edKKDamU+f/Brk+h4yVBvc07pxTNndIqVJdfJ9StKUH2X8udO5wkILNbBeoI
-	nUuqPsthglek3upGYIDQNmKPBbFJXtSVLX1QJpA6LYH5GztNIrdxGJ0VKLxnyLuoHIUBEeKXLzT
-	8g+DgOiJCvOV+lpkokAlcv4y0uM5VL8uKiAKBRWJDBBObzo08HBK4qP+/vC8Un/DcqOWX5k5sPw
-	O1DLnFayDWBVE9bAVDHIXPXPc232U7TUCdBdgUWocrb/Jo3vg0uIPBvJO0qHoCBA+XRqO7jbHvy
-	gSEax2oGpWhIVk5Sxx0VSOUYPTlUwY9A+18DckESxdqNMDDAk+3O6E0jpwqlPce2z3JnN83bgdL
-	bk5hB/ZFmuU
-X-Received: by 2002:a17:906:3396:b0:b97:464:956e with SMTP id a640c23a62f3a-b97651d0b0cmr163866166b.34.1773418042960;
-        Fri, 13 Mar 2026 09:07:22 -0700 (PDT)
+        bh=6IuFt080J2Skvkbg1SWMG28SkMd4vofTIXNDcp/JD4o=;
+        b=G15M/Ix+jjcyX1wdJ3N9GTokcVxnlfR8zK/dRZQDX0BSSzO9nLF5tpiAMgUGohffyC
+         Cpvk0VGD63yqEwmJtSE0tJAT6h1mWmS5aXDQXHzMHG7aTBULjDXdiPcxGrt7L1eIl3UL
+         jJAFLpZ+XgWiKmhGfACQ9AidUsQPOf3yU3eNPKOrhUpYcbf8h/SUSAP7cR/NPlxLi78X
+         piQiExVUUsyv5/Q+cA/Y/BrdB7VscgTixvaKxxC+HYibyyfvsRF9gk/TIXYitlLQGgEC
+         KIHORkRNSzRfkvmZFwz3l9/h9fTDjRGlThf9Tm573r54YVLaiU89N0KxdETeA2y9V8pX
+         w9zQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV8SRQx1bBshDaXdjp47KFJZajY6/aBvzED2vDNk3gWt6qycQ3fElNJ3JkBMkf4RMdRNx+TRQEj0GnG@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFp3XF2hkJPiMJf67LEyjuNNwzWsZYaZUe4Ie0WsphFez5tSE/
+	v1xPOHPyhZZkzthFSc9j2Ry/coPgP4PES/DmhQtbegYGZox+yeLD57jf6ZP0sMMzvg==
+X-Gm-Gg: ATEYQzxD8m/Izul1YdIrd/NA5FNcn170ZzXD6TjiMr6QJ/91BD7TanpdTqwY2lT76gT
+	7oeNac7zaLmHG/Gp1O7w9BxdgpVXI0Gdf47wsibI0G4Ax0GNvjEVeTRvoLbUhf0arc0xt3MYJiI
+	hqOmT5BP4ReWSdXN7Lr+WEwPXlAGEa/IQjgtKJTvk21sXf/Y0caQkZPBFGWDxRBWRBhm80ScKwZ
+	QQDZbaNGTpGExaoIidJ4P9WKH/8I70ISzmL5J5BCmQsO29EAcKj665mjmD4kShw1ST/9bVttpgE
+	eyx+ScyQvniBwm41M4vpH9p6ptuebWTU8cfo6RrY6YfDLxwsn/vE8soiid8HHp2a6Hm2Gf9vZw2
+	ONhk82Krp2MwtlkiW2joV/FNYVMOAmUlqHku+0RbMlcnZNXE+yZMJoZvNOxzjHtL7NA7auur2YC
+	bXjdjfrpU7uUVf486idGk8v/HcTV6HZtPBt5qr1Z0oCi5ifxZ/+DilFetwBeNSsiS2oV2qU4lEC
+	2Rhsuncki/J
+X-Received: by 2002:a17:906:7953:b0:b97:73ae:e1f with SMTP id a640c23a62f3a-b9773ae1114mr133921566b.34.1773418043836;
+        Fri, 13 Mar 2026 09:07:23 -0700 (PDT)
 Received: from jaz-virt.c.googlers.com.com (131.44.147.34.bc.googleusercontent.com. [34.147.44.131])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b976cba6ec4sm62749266b.5.2026.03.13.09.07.22
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b976cba6ec4sm62749266b.5.2026.03.13.09.07.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Mar 2026 09:07:22 -0700 (PDT)
+        Fri, 13 Mar 2026 09:07:23 -0700 (PDT)
 From: Grzegorz Jaszczyk <jaszczyk@chromium.org>
 X-Google-Original-From: Grzegorz Jaszczyk <jaszczyk@google.com>
 To: tglx@linutronix.de,
@@ -103,9 +103,9 @@ Cc: mingo@redhat.com,
 	akpm@linux-foundation.org,
 	joel.granados@kernel.org,
 	sourabhjain@linux.ibm.com
-Subject: [PATCH v4 1/2] x86/of: add early setup of DT reserved-memory nodes
-Date: Fri, 13 Mar 2026 16:03:46 +0000
-Message-ID: <20260313160347.2843005-2-jaszczyk@google.com>
+Subject: [PATCH v4 2/2] x86/e820: reserve corresponding to DT reserved-memory nomap region
+Date: Fri, 13 Mar 2026 16:03:47 +0000
+Message-ID: <20260313160347.2843005-3-jaszczyk@google.com>
 X-Mailer: git-send-email 2.53.0.851.ga537e3e6e9-goog
 In-Reply-To: <20260313160347.2843005-1-jaszczyk@google.com>
 References: <20260313160347.2843005-1-jaszczyk@google.com>
@@ -122,12 +122,12 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275418-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-275420-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -142,68 +142,98 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree];
 	RCPT_COUNT_TWELVE(0.00)[27];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,chromium.org:dkim]
-X-Rspamd-Queue-Id: A45DF286B22
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D91E4286CBF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The x86 allows booting with ACPI and DT simultaneously, and while basic
-DT support is present, the processing of DT 'reserved-memory' is
-currently missing.
+The DT reserved-memory nomap region shouldn't be mapped and registered
+as an IORESOURCE_SYSTEM_RAM resource. On the x86 platform the resource
+tree map is built based on e820 entries (via e820__reserve_resources()).
+Consequently memblock reservation originating from DT are not taken into
+account by x86 resource management unless they are explicitly injected
+into e820 table.
 
-Some drivers (such as open-dice driver) rely on the standard device-tree
-bindings (Documentation/devicetree/bindings/reserved-memory/) to
-communicate securely reserved memory region.
+Injecting the corresponding no-map into e820 table as
+'E820_TYPE_RESERVED', ensures that the x86 architecture builds an
+accurate resource tree. This aligns x86 with how other architectures
+(like arm64 in request_standard_resources() during resource tree
+ creation) protect DT no-map region.
 
-To support this add early_init_fdt_scan_reserved_mem as part of early
-flattened device tree parsing.
+Adding a corresponding e820 entry also allows other parts of x86 early
+kernel initialization to rely on it. E.g. e820__setup_pci_gap based on
+the gap in the e820 memory table picks space and passes to the PCI
+subsystem.  Without adding corresponding e820 reserved entry, DT
+reserved memory nomap region could conflict with such region assigned
+later to PCI subsystem.
 
-Additionally this patch changes the sequence and calls
-x86_flattree_get_config earlier in `setup_arch()`, just after e820
-memblock setup, so the DT reserved-memory can be properly reflected in
-the memblock before that reserved-memory is used for allocation.
+Additionally updating e820_table in this stage of the x86 setup seems
+safe since it is performed before mentioned e820__reserve_resources and
+e820__setup_pci_gap and there are also other functions, which updates
+e820 table on the later stage of early x86 setup such as early_quirks()
+and efi_arch_mem_reserve() (used by efi_esrt_init).
 
 Signed-off-by: Grzegorz Jaszczyk <jaszczyk@google.com>
 ---
- arch/x86/kernel/devicetree.c | 1 +
- arch/x86/kernel/setup.c      | 4 ++--
- 2 files changed, 3 insertions(+), 2 deletions(-)
+ arch/x86/include/asm/e820/api.h |  1 +
+ arch/x86/kernel/e820.c          | 20 ++++++++++++++++++++
+ arch/x86/kernel/setup.c         |  2 ++
+ 3 files changed, 23 insertions(+)
 
-diff --git a/arch/x86/kernel/devicetree.c b/arch/x86/kernel/devicetree.c
-index dd8748c45529..f7db0e8f9c3e 100644
---- a/arch/x86/kernel/devicetree.c
-+++ b/arch/x86/kernel/devicetree.c
-@@ -307,6 +307,7 @@ void __init x86_flattree_get_config(void)
- 		}
+diff --git a/arch/x86/include/asm/e820/api.h b/arch/x86/include/asm/e820/api.h
+index bbe0c8de976c..9568d88e8df8 100644
+--- a/arch/x86/include/asm/e820/api.h
++++ b/arch/x86/include/asm/e820/api.h
+@@ -27,6 +27,7 @@ extern unsigned long e820__end_of_low_ram_pfn(void);
  
- 		early_init_dt_verify(dt, __pa(dt));
-+		early_init_fdt_scan_reserved_mem();
- 	}
+ extern u64  e820__memblock_alloc_reserved(u64 size, u64 align);
+ extern void e820__memblock_setup(void);
++extern void e820__reserve_nomap_region(void);
  
- 	unflatten_and_copy_device_tree();
+ extern void e820__finish_early_params(void);
+ extern void e820__reserve_resources(void);
+diff --git a/arch/x86/kernel/e820.c b/arch/x86/kernel/e820.c
+index 2a9992758933..6f8a65dba7c7 100644
+--- a/arch/x86/kernel/e820.c
++++ b/arch/x86/kernel/e820.c
+@@ -1374,3 +1374,23 @@ __init void e820__memblock_setup(void)
+ 
+ 	memblock_dump_all();
+ }
++
++void __init e820__reserve_nomap_region(void)
++{
++	struct memblock_region *region;
++	bool updated = false;
++
++	for_each_mem_region(region) {
++		if (memblock_is_nomap(region)) {
++			/*
++			 * Add corresponding e820 region and let
++			 * e820__update_table sanitize e820 map
++			 */
++			e820__range_add(region->base, region->size, E820_TYPE_RESERVED);
++			updated = true;
++		}
++	}
++
++	if (updated)
++		e820__update_table_print();
++}
 diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c
-index eebcc9db1a1b..cf6c93f8be1a 100644
+index cf6c93f8be1a..cbbc7abdabef 100644
 --- a/arch/x86/kernel/setup.c
 +++ b/arch/x86/kernel/setup.c
-@@ -1076,6 +1076,8 @@ void __init setup_arch(char **cmdline_p)
+@@ -1078,6 +1078,8 @@ void __init setup_arch(char **cmdline_p)
  
- 	e820__memblock_setup();
+ 	x86_flattree_get_config();
  
-+	x86_flattree_get_config();
++	e820__reserve_nomap_region();
 +
  	/*
  	 * Needs to run after memblock setup because it needs the physical
  	 * memory size.
-@@ -1186,8 +1188,6 @@ void __init setup_arch(char **cmdline_p)
- 	early_acpi_boot_init();
- 	x86_init.mpparse.early_parse_smp_cfg();
- 
--	x86_flattree_get_config();
--
- 	initmem_init();
- 	dma_contiguous_reserve(max_pfn_mapped << PAGE_SHIFT);
- 
 -- 
 2.53.0.851.ga537e3e6e9-goog
 
