@@ -1,303 +1,189 @@
-Return-Path: <devicetree+bounces-275157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275160-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gIgPMwf5s2nYdgAAu9opvQ
-	(envelope-from <devicetree+bounces-275157-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 12:46:15 +0100
+	id YAmvMtT5s2nWeQAAu9opvQ
+	(envelope-from <devicetree+bounces-275160-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 12:49:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 761452826C7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 12:46:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76CE328275D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 12:49:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 16E643077238
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 11:46:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B936D3189BEC
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 11:49:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 406EC377EC4;
-	Fri, 13 Mar 2026 11:46:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ottyQ+4t";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ORC3YwAP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E25C638BF73;
+	Fri, 13 Mar 2026 11:49:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023110.outbound.protection.outlook.com [52.101.127.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 613D779CD
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 11:46:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773402369; cv=none; b=MTktMdECLMLb0M+WX2cSnuGBIErXHu2ErTggESbi7o2vJD22xd6xQ5E5p+wzUIWft5sQsltuJv65oqrZ+dvok31y3X/n6IFaJL4HWwTUIdd/esl7/XAJuBnynVVviZPo3YpWu7wrox52uaMPlutGxpmYSXvyuI+e3xv1jSlrr+I=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773402369; c=relaxed/simple;
-	bh=p9gRUw/1sa+IWFsrR/fQYGevFbp+SQEbBTw0TZ645PA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GuREkhTC6gYmqky26rbFUs4S64Wvb5JTJAq1vBK6MPMwp6PKnNXRrmc7DdUGur39wkBnBAbYUPtis5dP6eaur9X5az03zs6gCmJwHxV25vmZxlDEOfYGDcPSkaZffe4lYew3tsM3rjcdl5wmA993x1GqDvGEN/eRGK94FXv/Vxs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ottyQ+4t; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ORC3YwAP; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62DA83vw1749335
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 11:46:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	EQ6rmuUSOwm1bx/rwcwQuU4u+z1BgbLoQv3BSEX4INM=; b=ottyQ+4tYu5wB680
-	A79unT/3TpojUdSQQx0TmsybiGOQF0u+hXII1YgqqR4W4gYA648qRsjgK8QTbyAD
-	YWi4UgXmcwudls01G7GZ1Gk3yvI6SPd21vOF+obIfujNXK4AfpXug8M98uDzS75T
-	AgNfdRCnDrTRCVu2nGj1y5UL+ZDIwc7ipsAMLucDnHgLE4IqZEX1RAxmfUBRYeq3
-	aFmHT8G7T48s102xoNZn6QAkGwjysnky1PannEqIuDYBuxswdXhLzb6PNP9iSu8C
-	bjABis1E1XA6xqIlfFPH2d9cZMtGo7TBVgQ8GsTVxpMO3D0KPyYytSwB+zXQoqed
-	xNepFQ==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cvgj6g97c-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 11:46:06 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2aecaae9506so10851875ad.1
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 04:46:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773402366; x=1774007166; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EQ6rmuUSOwm1bx/rwcwQuU4u+z1BgbLoQv3BSEX4INM=;
-        b=ORC3YwAPGkmUp3oAt8KixazmJqFOEmCmPgkafFdRCNeONChCq/UQoafYZEhJ8lp4uR
-         a49/hjeBW0weThTL898IunPKmXw/X5GVnuy/ABmhj4E9bEnErfTIQuOVHdxZzXMADtzq
-         DOnPINhFqLugBdmD/kvQUnfShp13qLgmc8QqnDVIJUxUobWGzkqwURjWS0oTibVN1MLR
-         8y7VjTyv3qAEdV5pGU9/0AcFM3DyXIfnTjp0Ymvb0dp2aElD+KlUb1TuW4GJpc3g50i+
-         snlLIZmADIW9CCDAcn7jOmOnjRc0OHqC6j5ripaDtA79H+pEoL24ox7B9MexYroGUVQa
-         09yA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773402366; x=1774007166;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EQ6rmuUSOwm1bx/rwcwQuU4u+z1BgbLoQv3BSEX4INM=;
-        b=Wpkykmd2pq2kcVQoS9u31G+q3FkwHd5fe2zUToFtVU32xTR1plxU1Jh01b6Ry9L4ge
-         +rV+L/AbWOyk3sgd8musxQVdSCewBVWmHsNvpbvylhTVLqgX7RWbcc+woY4eq6RG00gh
-         CBLFcFave+ckiRzd7NADHJIrsmU6z7A88albNR7Ke+l0YrYA+jSbafyeSjbzITh4ObxS
-         J3WY9vbrzuUjpeNEJLOsexPupR7xJwxFMzmRmTBDw3OsjQlgScJQHcpjWLN5eOO27Fbp
-         l/kz5zC0y0cq4pry3DOU0UzeIPOz4EpvG2df2MOusE/dP03iMIL8S8q7UOe7cOlzPI2S
-         EWfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWWDwwnqMFMDPfBJVj5WIj8ZsL2hOZdRKF1fKoNJspIlwjyVJ/TRN3+ohglhh8U01skvqPZqgBYoGGI@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpRUe9dX2b8Kx8/R03d8fZklC+sh62fKak+8f0Ji+AzaW897QW
-	YIeU9l5/IyTIsw7rtsBtrFYWD0HW+Mvyz99g67VMvNcPH+1iCTNE8RdbL2ir2BoqVrirPk3ppob
-	vTBjTGFj4rjhZC6z0Yc8182HXXR+bSXIjYhTtCryHURhiR3vYVTd7xBGOfdsFvSGB
-X-Gm-Gg: ATEYQzx9yqN5L5e+R/uDw54QXVHwhSlhjJUhSYP+l6PzspcTa1jdOqtTZGSWyy9T476
-	pX/Qyyah5jbEe1bzEssIdSmIwmqHWECpHEP6YvCrpp6idN491pr34AoUi+0iUJIA6m4FOSfx7mC
-	ePHucFL1+tRxlN9DBAvOLj/ElJIRITfXXFMjZTAxvda8IuOWUSo6gAzTVzd9X0V0Vz9PcEGcP6M
-	wrREENyLIBhesFLJqLe/JFRuBKa4FQ69ZUs1ZLPnWft1YDQavjMrNwFPiIxppHznUFlcMP5aXUV
-	rtkWa4isGwE4BQmyG8dWq1jeN14mIh6OC9vuMoopPs7lQ2VAeGJsGHG++ELGz0vXPa1QmJwrm1g
-	sJOrEFeXLhhKrdApjaejzWjV6x4H2FRlPvHVeaEb6vI2xWhO35rc=
-X-Received: by 2002:a17:902:f552:b0:2ae:54e3:9299 with SMTP id d9443c01a7336-2aeba51229cmr56438835ad.21.1773402365550;
-        Fri, 13 Mar 2026 04:46:05 -0700 (PDT)
-X-Received: by 2002:a17:902:f552:b0:2ae:54e3:9299 with SMTP id d9443c01a7336-2aeba51229cmr56438565ad.21.1773402364893;
-        Fri, 13 Mar 2026 04:46:04 -0700 (PDT)
-Received: from [10.217.223.121] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2aece83b35fsm23082215ad.80.2026.03.13.04.45.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Mar 2026 04:46:04 -0700 (PDT)
-Message-ID: <fc3d1ef4-1a0f-41d5-a742-81305ee7f521@oss.qualcomm.com>
-Date: Fri, 13 Mar 2026 17:15:55 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40FB0363098;
+	Fri, 13 Mar 2026 11:49:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.110
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773402562; cv=fail; b=EQRyxmIoNkyr9Yibd/1acFGfgldpTE/3M5x8cEyKJwJf0ysuZ0EmlMJ+tO6zqQpyAYKiRV4+wflUNNQvU46LZ7vbDaUMoQpC5NwegQcjHCAgxc0XfR6gV75CBeZPIYyCLcjY/qTlLP+F+koHLVmDJXUY/n15jw0mOb3lppBltyM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773402562; c=relaxed/simple;
+	bh=bYuiRHdQJMr/pa2wPJF0xcjahYr60Qp8JJH7kMbvIo8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=fOGyIT0huwImRdp2dS5lOrzSzVTL1gsFlHKAdgRPbOBWSHKCz3x2MJiBkhgIPIVNGWufKWJL1lmyZB62i+jA4dcKB0IT7yQcRPFqbuSGF9gNh1tWhY1tT7ami7p8I8u0/2Vc3mGUM5jJcPS69Dda5ec9x9DI1iAwbBm2jrKVUvY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=gsreD2sZ9AUnazIS3hP7EuDojAPZr6T+NJGUtin7qDr8oCar2KAxpJwheYBAUmkia7RfGotBcUgvkyB/ISdUnYxwvbyoJajHtxLj3MkZ8ZB4F6dWyVuyyqAFug3+WuS1mYZy8GLV/zTVhFCNSQFF+Psu1CO2SzI3wt/suk9SWHa5zwpL3oMqERzHwhXW8eHIMjGgwy8WTkVuU75EQw9yMhGTtxgxnzTgXbWaTVKDKnrBn0lW7HbUDLn+ASWHQJ/F1TxbDmh5Vj6IkOrzy8pZGhSFdhtApKVjM7fv4AB3sBOHBcc5QjzpWVYQEmj2ZrKzZSU2X2sfcvucZT+WWm0FmA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0kdu427wFNw0Z9mtsVA+BkAqm+HDIFpis4xRgnUsdPA=;
+ b=Igo6B99JDWv9yURkqp82Qp2ltY8Z09TVyqYbZlgkFmVF/sVjLi/7Y2X2Q2B1Oxm9xjQfhbP7CXRXdnQU2/arlcse9/SV0RIRKj1bo5WYaw9pRMHq6+leJ5huIJpsIaY8pOP2AtholENFl3K08WSljmv6ni15jwkx1yRo2nWwYJ5ck3uqc6A7yp8WEWM1m6eqRPw6hnwOvPnJF+2Z7FjZmvYmlwHj7ldvlwZ1+VTI2EVChami1Ddx8OpUaaLvdXh/QeAQ88NJpth9k66IQU67huOZ+OcxJ3+zAPRhmp2v+H7BhHg1srkqKmTlmgKI99Uc/9ZseIdrrPV7iL98/S6aGQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SG2PR02CA0007.apcprd02.prod.outlook.com (2603:1096:3:17::19) by
+ OSNPR06MB8307.apcprd06.prod.outlook.com (2603:1096:604:471::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.16; Fri, 13 Mar
+ 2026 11:49:17 +0000
+Received: from OSA0EPF000000C6.apcprd02.prod.outlook.com
+ (2603:1096:3:17:cafe::4f) by SG2PR02CA0007.outlook.office365.com
+ (2603:1096:3:17::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.29 via Frontend Transport; Fri,
+ 13 Mar 2026 11:49:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ OSA0EPF000000C6.mail.protection.outlook.com (10.167.240.52) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9700.17 via Frontend Transport; Fri, 13 Mar 2026 11:49:15 +0000
+Received: from localhost.localdomain (unknown [172.16.64.196])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id EF68740A5BD7;
+	Fri, 13 Mar 2026 19:49:14 +0800 (CST)
+From: Gary Yang <gary.yang@cixtech.com>
+To: lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org,
+	robh@kernel.org,
+	bhelgaas@google.com,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	peter.chen@cixtech.com
+Cc: linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	cix-kernel-upstream@cixtech.com,
+	Gary Yang <gary.yang@cixtech.com>
+Subject: [PATCH v4 0/2] Add scmi powerdomain for sky1
+Date: Fri, 13 Mar 2026 19:49:12 +0800
+Message-ID: <20260313114914.1564115-1-gary.yang@cixtech.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/11] dt-bindings: crypto: qcom,ice: Allow
- power-domain and iface clk
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Abel Vesa <abel.vesa@oss.qualcomm.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
-        cros-qcom-dts-watchers@chromium.org,
-        Eric Biggers <ebiggers@google.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-        Tengfei Fan <tengfei.fan@oss.qualcomm.com>,
-        Bartosz Golaszewski <brgl@kernel.org>,
-        Yuvaraj Ranganathan <quic_yrangana@quicinc.com>,
-        David Wronek <davidwronek@gmail.com>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Melody Olvera <quic_molvera@quicinc.com>
-Cc: Brian Masney <bmasney@redhat.com>,
-        Neeraj Soni <neeraj.soni@oss.qualcomm.com>,
-        Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20260310-qcom_ice_power_and_clk_vote-v2-0-b9c2a5471d9e@oss.qualcomm.com>
- <20260310-qcom_ice_power_and_clk_vote-v2-1-b9c2a5471d9e@oss.qualcomm.com>
- <2ac2efad-3533-490e-bb42-f21c4e950277@kernel.org>
- <a2d6c630-e4df-4cdf-8b10-64d87d24bf8f@oss.qualcomm.com>
- <b2d852c4-9f52-4ad4-a916-ced19c599938@kernel.org>
- <972bd9c8-4671-4151-a3a9-d7eccdf83913@kernel.org>
-Content-Language: en-US
-From: Harshal Dev <harshal.dev@oss.qualcomm.com>
-In-Reply-To: <972bd9c8-4671-4151-a3a9-d7eccdf83913@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEzMDA5MiBTYWx0ZWRfXxLFHYrS7kIyO
- tZJNJWsdD0JEMEELKBJTwH4EpxgzoYzxkOxVpxpK3Mr4jRLYwYLF9oXMXXfdgCKwloCzssRkS9H
- KinZTZTpNEmTNd7iIQ61KKMRRkCLhS/FPK2gaLhiHnWa6biQtJyYwZ1Y5He9RoP9xfbv9LiRm9U
- mQb6BKYVGY0wBXZGIF9vn7tPodDDPFpPzSbDNvcOSrTa/LLxDB6cGKfgJ5rcQ/OhphDPbWzbWcc
- mJSlrW9gJ/WRWyynqlBd/3I+sQrtHTjHB4M75WPQbM4Fgz7OBhoiBOSKjsrEUViSLfWdocjTxeF
- lJ8B/NZJOAPmDlM8xDv96ppsKHZhfZ3SOkJ0uqxqZHILaFblDax3pWnAHejiXvtZ4sUIwSBit81
- L1hgKHDM3b2jwMyrbiMMZScorosACgxqJUrOPPJiLq5qzglLBKuEySStkBGwr+yvcMCAKkXQd5x
- ZsnqjADQJDf8mYaKGHA==
-X-Proofpoint-GUID: YzaPpr9QDarRdK-oUQuXc-iPXxyeQBpZ
-X-Proofpoint-ORIG-GUID: YzaPpr9QDarRdK-oUQuXc-iPXxyeQBpZ
-X-Authority-Analysis: v=2.4 cv=H+vWAuYi c=1 sm=1 tr=0 ts=69b3f8fe cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
- a=P-IC7800AAAA:8 a=EUspDBNiAAAA:8 a=dbIX2S3wHq3ruR6a9lMA:9 a=QEXdDO2ut3YA:10
- a=324X-CrmTo6CU4MGRt3R:22 a=d3PnA9EDa4IxuAV0gXij:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-13_02,2026-03-13_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 lowpriorityscore=0 phishscore=0 clxscore=1015 malwarescore=0
- adultscore=0 impostorscore=0 priorityscore=1501 bulkscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603130092
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OSA0EPF000000C6:EE_|OSNPR06MB8307:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 3eb0ed4d-a83a-4420-bcd8-08de80f68dbe
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|36860700016|7416014|376014|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	77ct1PKCcYTk4i9pL5XBcqUM3LqmPi2+kooO7mCpkXRkN7Ay4CWPqcna3YxIAs847oetmLrO+JtCpun4BOkQIpkXQZt6Ab0Lf9fIgYTG4EoHKbz+8HlAA3uqfRcHfBthq+QlQZEtBc0NhK8N2MJNMIN/VcCx+G3m/KLQxXpOses6zLBSlv1sUVcZjn/VpR3MamdrKAlU24/h6klXFz6ImeoF7gGs/ORW4U3oNs8aiE9/W1Qw5pspkKt3IznK0QV1vgs7jgLXe8FGvaRojMbQ1j0TdmLK+eF/ZwuddXhPVEV+gFcR2Fz+Oj5lRjbNtmZtt2r6qOJGihmetwJ1QExpr7Q7OVC2rEgsuA0Pt09KDngpbc+hRYcN3MsBAXXQoyLVVKgy4xiR80JFVgi/pmcfpiU+5E0jB5jSilDDPElDyQeOu43bpDuDPOFLpG88tIXV6KrMDFqX9fqXDhip6Efm+I4oK+98ULIYCz4kFQL6oii8Dqspsg35E2uGeNigRe9HntWaXd1dO2jZGEJjAAhfeZkzzaBKTQO1nXJgsVJI9oGd4j8vjkICvH2dzF51l3bEpPGIMMSFUzTDa9F905aen0Ka8IbLVRrUlZ7u7BSoz4YncSuhhaBprpHEMrAJAGogWDBHsTeUce5yxscvU3K6/CJPzlF2cTvp2vj/I1EmYsXKXNUF153Kfvs6r96larq1s5W27WGlUM7CZwoNxKKw9k5g89tM3PhK9BnvtGtIX+OO2bjvVKYtAyZ3JQ4tXxW53V2+mjWOllI+1HrM9xqZUw==
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700016)(7416014)(376014)(18002099003)(56012099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	gKGTU0aTxUQSaGkaQiHkV3TvYJWZz+XwYmhTyTpV+akT6vZrfocYEf4hV9cJNfqH/VWy6Cq5petwQiKM1JU+cMEZPrXiHIzcio16NlCj6S4nMLA4IwiQh4sV9pT9z3rPLWD9HM1/6SkN8h/CCiIgh6yd159xD0V0zgFyAC5Gi0LvR3GQwbRX4QKiOU76SVHDce3nC9fyFk1bc0n/X8hkrayVh3Pm1CFQGYG/VfgeIx1SnTPf3rvRPLG99Z/M4oB8pM7Ue3TPRkWGhZqLverirHUdDkk6fhW6eIgrf7mlPZ6dIL+glRerfGCQKtbkXBkLzA5XM2uQ8ijeW2M0J1dDieqQu+t+gF8PonSd8JIqL4iMSKXaOKBVJAS4ucvUB/4ZEiNL2sxcHl+WJb+WE/RLgN8Ty6TGwi0QkA+rjfSsnz+clnkegxo18zNaq+Igvaq1
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 11:49:15.9516
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3eb0ed4d-a83a-4420-bcd8-08de80f68dbe
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	OSA0EPF000000C6.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSNPR06MB8307
+X-Spamd-Result: default: False [3.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275157-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
-	FREEMAIL_TO(0.00)[kernel.org,gondor.apana.org.au,davemloft.net,oss.qualcomm.com,chromium.org,google.com,quicinc.com,gmail.com,fairphone.com,linaro.org];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_FROM(0.00)[bounces-275160-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[cixtech.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[harshal.dev@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[gary.yang@cixtech.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.975];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 761452826C7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,cixtech.com:mid]
+X-Rspamd-Queue-Id: 76CE328275D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Krzysztof,
+v4 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-pcie-host.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- delete power-domain-names property
 
-On 3/11/2026 11:58 PM, Krzysztof Kozlowski wrote:
-> On 11/03/2026 19:25, Krzysztof Kozlowski wrote:
->> On 11/03/2026 10:37, Harshal Dev wrote:
->>>
->>>
->>> On 3/11/2026 1:55 AM, Krzysztof Kozlowski wrote:
->>>> On 10/03/2026 09:06, Harshal Dev wrote:
->>>>> Update the inline-crypto engine DT binding to allow specifying up to two
->>>>> clocks along with their names and associated power-domain. When the
->>>>> 'clk_ignore_unused' flag is not passed on the kernel command line
->>>>> occasional unclocked ICE hardware register access are observed during ICE
->>>>> driver probe based on the relative timing between the probe and the kernel
->>>>> disabling the unused clocks. On the other hand, when the 'pd_ignore_unused'
->>>>> flag is not passed on the command line, clock 'stuck' issues are
->>>>> observed if the power-domain required by ICE hardware is unused and thus
->>>>> disabled before ICE probe. To avoid these scenarios, the 'iface' clock and
->>>>> the associated power-domain should be specified in the ICE device tree node
->>>>> and the 'iface' clock should be voted on by the ICE driver during probe.
->>>>>
->>>>> Fixes: f6ff91a47ac57 ("dt-bindings: crypto: Add Qualcomm Inline Crypto Engine")
->>>>> Signed-off-by: Harshal Dev <harshal.dev@oss.qualcomm.com>
->>>>> ---
->>>>>  .../bindings/crypto/qcom,inline-crypto-engine.yaml       | 16 +++++++++++++++-
->>>>>  1 file changed, 15 insertions(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
->>>>> index c3408dcf5d20..d9a0a8adf645 100644
->>>>> --- a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
->>>>> +++ b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
->>>>> @@ -28,6 +28,16 @@ properties:
->>>>>      maxItems: 1
->>>>>  
->>>>>    clocks:
->>>>> +    minItems: 1
->>>>> +    maxItems: 2
->>>>> +
->>>>> +  clock-names:
->>>>> +    minItems: 1
->>>>> +    items:
->>>>> +      - const: ice_core_clk
->>>>
->>>> core
->>>
->>> Ack. I'll introduce a check for this specific name here as well:
->>> https://elixir.bootlin.com/linux/v7.0-rc3/source/drivers/soc/qcom/ice.c#L582
->>>
->>>>
->>>>> +      - const: iface_clk
->>>>
->>>> iface or bus
->>>
->>> Ack, will call it 'iface'.
->>>
->>>>
->>>> I don't understand why this is flexible and commit msg does not explain
->>>> that. Devices do not have one and two clocks at the same time. You miss
->>>> proper constraints.
->>>>
->>>
->>> I agree, it might confuse someone reading the commit message the first time.
->>> I'll re-write the commit message to make it explicit that even though these
->>> two properties are 'required', for the time being we are introducing 'iface'
->>> clk and 'power-domain' as an optional property to maintain bisectability,
->>> and that the properties would be made 'required' in a subsequent commit once
->>> the DTS changes which are part of this patch series have reached the top tree.
->>>
->>> Let me know if any concerns with this kind of commit message.
->>
->> So you are adding it for backwards compatibility? It's fine then,
->> although I had impression you are fixing something which is not working
->> correctly. New devices will need to constrain this.
-> 
+v3 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-pcie-host.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- refine dt-bindings
 
-Yes, this is for backward compatibility.
+v2 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-pcie-host.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- update dt-bindings
 
-> Except new devices, like Eliza and Milos. And then this should go to
-> current fixes.
+Gary Yang (2):
+  dt-bindings: PCI: cix,sky1-pcie-host: Add power-domains
+  arm64: dts: cix: Add scmi powerdomain nodes for sky1
 
-I'm not sure if I understand correctly, do you mean to say that except for Eliza
-and Milos, new devices need to change their DT binding to 'required' with
-corresponding DTS changes. And then, the patch updating the DT binding also needs
-to be back-ported?
+ .../bindings/pci/cix,sky1-pcie-host.yaml      |  3 ++
+ arch/arm64/boot/dts/cix/sky1-power.h          | 33 +++++++++++++++++++
+ arch/arm64/boot/dts/cix/sky1.dtsi             | 21 ++++++++++++
+ 3 files changed, 57 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/cix/sky1-power.h
 
-I'm assuming you're leaving out Eliza and Milos because they aren't supported
-on the stable branches yet?
-
-Apologies in advance if you meant something else and I have completely misunderstood
-your comment.
-
-Regards,
-Harshal
-
-> 
-> Best regards,
-> Krzysztof
+-- 
+2.49.0
 
 
