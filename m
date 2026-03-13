@@ -1,201 +1,166 @@
-Return-Path: <devicetree+bounces-275294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275296-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aGVUM/8YtGkihQAAu9opvQ
-	(envelope-from <devicetree+bounces-275294-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:02:39 +0100
+	id mNxPGJEZtGlLhQAAu9opvQ
+	(envelope-from <devicetree+bounces-275296-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:05:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 317202846F3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:02:39 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFABE2847C9
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:05:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A49E33189239
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:01:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 85FDA3249C2F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:02:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3F09320CB1;
-	Fri, 13 Mar 2026 14:01:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="g6HLMZFj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8469E330B01;
+	Fri, 13 Mar 2026 14:02:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E75D30CD92;
-	Fri, 13 Mar 2026 14:01:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4580631F98F
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 14:02:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773410484; cv=none; b=o4esq5dEILuutoOyBAqaSysiqY1MZNad4vebkcMGQH6y9BhgF9QMZbA7XBc0vwO0kG0gNw8fmJbmr+X5OGRq+a7VmgCyoUqDTCtHtZSBpAlzRHEQXkXZQngo77cmEzEWygd5xSq2KfSLeievsFkomivmCZPOcSpyVqVgA7Sn7dk=
+	t=1773410562; cv=none; b=uatNskL4+MLXn4Mes6zYOTIsuFsEO099m66eg91h/K4IWcCeTM5OnXOPh6ot4qPWPprLoploEM9WoUIgLCs5YZGGY634dYjz8IauZ/AQHQeFF9JyPW8mgg0EZT2YBN2j9QoITO7/c4NZofYfFyVJ4hwZpLh64FL+oFGLNMB35m0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773410484; c=relaxed/simple;
-	bh=2BppDJfSxsSjbvRdSpJ2401wKS89758/R3FKR3prU1A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VWAbJzWbahQKpKYoFbS0o+OE4NDUw87WOLcgW8lvzdEB2kDKNx8ZNj+CNNK8Sve9d3lvDXINaq4UxGG5A3AOSNGI7Duur7TQy03pupuVIGNuarOAax9BXz/eF4zRcrfj6YAwckRzu/n7ampgTxTRwyd06T03VTRYAV7a5xSLSO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=g6HLMZFj; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773410483; x=1804946483;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2BppDJfSxsSjbvRdSpJ2401wKS89758/R3FKR3prU1A=;
-  b=g6HLMZFjGTqeeHwMi/WwWWyAV7EG/Z/eUZTxiFxBO3AyDw2GVkwmUVVJ
-   NhdlEpHJWS9YxTdd3NBrW9rZGIPjBDPbf7bz0fCr7Xz7HBBZUroWOr3E7
-   HrTKYEkk69A2ZIVLhsXRU1XLf0JXXgPnO1VpDnVwbXBefjmNaEd2MKvYf
-   zPft1FrF5ly+90GYwrdrjVnWqw+pueMWfeSosWnJ/XPCbDNqaxOTP5pKt
-   ZTYjzsH0QH2tEvBNoiOzgtfCVz7Z/XlJn8kzQbu8KNRFES7fOS7KY96ch
-   zww14cJT6AkzJGrVin4wFCO9dHaHe19KRARFs2dqm+tM3dO+5OpWy47os
-   w==;
-X-CSE-ConnectionGUID: aCjayNtmR8G/Q2F3yvqYxg==
-X-CSE-MsgGUID: XO+GxlpZScS3tgB/krE4iA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11728"; a="74553770"
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; 
-   d="scan'208";a="74553770"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2026 07:01:23 -0700
-X-CSE-ConnectionGUID: xdhWzKQYQ0O2y+xVHpmc+Q==
-X-CSE-MsgGUID: 9RNE0+/oQwenl+GhflUgPg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; 
-   d="scan'208";a="216078843"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.246])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2026 07:01:18 -0700
-Date: Fri, 13 Mar 2026 16:01:16 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Michael Hennerich <michael.hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1773410562; c=relaxed/simple;
+	bh=R9YrhmjZkD/PSbKNmQZeb8m1zYjkKhTGggTT14t94gk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Ph1CLQx2JJZ025W/MPSJ5J89OB0Pq4kT7FmnMKwkgYDJG6Y4m0imyM5FsMR1qvmzjj/XH8tzAaLhuVI02b7jn3vJkHQNqx0jXPc5kOjrqbGG70gt+lWbYo1q3XR9qFydzAlrAvIWMg/nTcTnuXFrXBUsDtLR23YN07YqSZaQRrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w135p-0007IN-AB; Fri, 13 Mar 2026 15:02:21 +0100
+Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac] helo=dude04)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w135o-0005cl-36;
+	Fri, 13 Mar 2026 15:02:20 +0100
+Received: from ore by dude04 with local (Exim 4.98.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w135o-000000055gW-3hPS;
+	Fri, 13 Mar 2026 15:02:20 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Petre Rodan <petre.rodan@subdimension.ro>,
-	Jorge Marques <jorge.marques@analog.com>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] iio: accel: adxl372: introduce chip_info structure
-Message-ID: <abQYrLTQvceBCalD@ashevche-desk.local>
-References: <20260313115525.85435-1-antoniu.miclaus@analog.com>
- <20260313115525.85435-2-antoniu.miclaus@analog.com>
+	Lee Jones <lee@kernel.org>,
+	Peter Rosin <peda@axentia.se>,
+	Linus Walleij <linusw@kernel.org>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	David Jander <david@protonic.nl>
+Subject: [PATCH v4 0/6] mfd: Add support for NXP MC33978/MC34978 MSDI
+Date: Fri, 13 Mar 2026 15:02:11 +0100
+Message-ID: <20260313140218.1213393-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260313115525.85435-2-antoniu.miclaus@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275294-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	DMARC_NA(0.00)[pengutronix.de];
+	RCVD_COUNT_FIVE(0.00)[6];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-275296-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.993];
+	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim]
-X-Rspamd-Queue-Id: 317202846F3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,pengutronix.de:mid]
+X-Rspamd-Queue-Id: DFABE2847C9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 01:54:54PM +0200, Antoniu Miclaus wrote:
-> Introduce a chip_info structure to parameterize device-specific
-> properties such as ODR/bandwidth frequency tables, activity/inactivity
-> timer scale factors, and the maximum ODR value. This refactors the
-> driver to use chip_info lookups instead of hardcoded values, preparing
-> the driver to support multiple device variants.
-> 
-> The sampling_frequency and filter_low_pass_3db_frequency available
-> attributes are switched from custom sysfs callbacks to read_avail()
-> based handling via info_mask_shared_by_type_available. This enforces
-> consistent formatting through the IIO framework and makes the values
-> accessible to in-kernel consumers.
-> 
-> The SPI/I2C probe functions are updated to pass a chip_info pointer
-> instead of a device name string.
-> 
-> No functional change intended.
+This series adds support for the NXP MC33978/MC34978 Multiple Switch Detection
+Interface (MSDI) via the MFD framework.
 
-...
+Architecture overview:
+* mfd: Core driver handling 2-frame pipelined SPI, regulator sequencing, and
+  linear irq_domain. Harvests status bits from SPI MISO MSB.
+* pinctrl: Exposes 22 physical switch inputs as standard GPIOs. Proxies IRQs to
+  the MFD domain.
+* hwmon: Exposes thermal limits, VBATP/VDDQ voltage boundaries, and dynamic
+  fault alarms.
+* mux: Controls the 24-to-1 AMUX routing analog signals (switch voltages,
+  temperature, VBATP) to an external ADC.
 
-> enum adxl372_odr {
+Initial pinctrl implementation by David Jander, reworked into this MFD
+architecture.
 
->  	ADXL372_ODR_1600HZ,
->  	ADXL372_ODR_3200HZ,
->  	ADXL372_ODR_6400HZ,
-> +	ADXL372_ODR_NUM,
+Best regards,
+Oleksij
 
-No comma for the terminator entry.
 
->  };
+David Jander (1):
+  pinctrl: add NXP MC33978/MC34978 pinctrl driver
 
-...
+Oleksij Rempel (5):
+  dt-bindings: pinctrl: add NXP MC33978/MC34978 MSDI
+  mfd: add NXP MC33978/MC34978 core driver
+  pinctrl: core: Make pin group callbacks optional
+  hwmon: add NXP MC33978/MC34978 driver
+  mux: add NXP MC33978/MC34978 AMUX driver
 
-> static const struct iio_event_spec adxl372_events[] = {
+ .../bindings/pinctrl/nxp,mc33978.yaml         | 148 +++
+ drivers/hwmon/Kconfig                         |  10 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/mc33978-hwmon.c                 | 430 +++++++++
+ drivers/mfd/Kconfig                           |  15 +
+ drivers/mfd/Makefile                          |   2 +
+ drivers/mfd/mc33978.c                         | 870 ++++++++++++++++++
+ drivers/mux/Kconfig                           |  14 +
+ drivers/mux/Makefile                          |   2 +
+ drivers/mux/mc33978-mux.c                     | 119 +++
+ drivers/pinctrl/Kconfig                       |  14 +
+ drivers/pinctrl/Makefile                      |   1 +
+ drivers/pinctrl/core.c                        |  25 +-
+ drivers/pinctrl/pinconf.c                     |  18 +-
+ drivers/pinctrl/pinctrl-mc33978.c             | 747 +++++++++++++++
+ include/linux/mfd/mc33978.h                   |  86 ++
+ 16 files changed, 2492 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nxp,mc33978.yaml
+ create mode 100644 drivers/hwmon/mc33978-hwmon.c
+ create mode 100644 drivers/mfd/mc33978.c
+ create mode 100644 drivers/mux/mc33978-mux.c
+ create mode 100644 drivers/pinctrl/pinctrl-mc33978.c
+ create mode 100644 include/linux/mfd/mc33978.h
 
->  	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |		\
->  				    BIT(IIO_CHAN_INFO_SAMP_FREQ) |	\
->  		BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY),	\
-
-Consider at some point making the above consistent by style with the below
-
-	.info_mask_shared_by_type =
-		BIT(IIO_CHAN_INFO_SCALE) |				\
-		BIT(IIO_CHAN_INFO_SAMP_FREQ) |				\
-		BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY),	\
-
-> +	.info_mask_shared_by_type_available =				\
-> +		BIT(IIO_CHAN_INFO_SAMP_FREQ) |				\
-> +		BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY),	\
->  	.scan_index = index,						\
-
->  };
-
-...
-
-> +	chip_info = i2c_get_match_data(client);
-
-> +	if (!chip_info)
-> +		return -ENODEV;
-
-It is an agreement to avoid adding a dead code such as above check.
-
-...
-
-> +	chip_info = spi_get_device_match_data(spi);
-> +	if (!chip_info)
-> +		return -ENODEV;
-
-Ditto.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+--
+2.47.3
 
 
