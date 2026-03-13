@@ -1,138 +1,138 @@
-Return-Path: <devicetree+bounces-274821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274822-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oOiQHY9ls2mVVwAAu9opvQ
-	(envelope-from <devicetree+bounces-274821-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 02:17:03 +0100
+	id 4AAdNBRms2mVVwAAu9opvQ
+	(envelope-from <devicetree+bounces-274822-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 02:19:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A194927C350
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 02:17:02 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CCBF27C38E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 02:19:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A2427302378F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 01:16:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3DFCB304A9C9
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 01:19:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9506A311940;
-	Fri, 13 Mar 2026 01:16:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1FF5314A64;
+	Fri, 13 Mar 2026 01:19:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jFllOpLR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uFM+G/a0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D0DD15665C;
-	Fri, 13 Mar 2026 01:16:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEAC242AA6;
+	Fri, 13 Mar 2026 01:19:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773364617; cv=none; b=mjGKNmb2MlYTrwSMlQuT0wUcgpRdbMKBPcoVthHHh9oVOyLV4kGlS7o2gjiJZrw9fIiopLqq6s3j4DDo5NBlL6Xz6asevl/BR88PCbt5u0Gdo5tdZZUR1gAxLIFgaYejACZPUJRlUuayCcjk4ADKcM+8pAgzZj5BzGEC3OwvbVQ=
+	t=1773364753; cv=none; b=M+AMjs4HYEARn7B6TXYC7jhYcvPg2W/Sd2gc8FSfhBH4AGltKT/1k3zU5iHqjmkJrpnYmwQgvLIUPEAY128IdDA/54nQNHWSYsYVoFxXx2INOggQhc/AZrLGcb9736sFpr8Z9MgF61ZEodcSKmxyXiymeLpomj74B4DH7rBcCW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773364617; c=relaxed/simple;
-	bh=zPEcR98I4xhUijv+qJNI6kaevc+I8oOwAq51hsyZIN4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GFidzKx/mkwZZ5ju5GaElScOXb1bqKf7DuumaPaTMypxa3w4Gf7rhx/pVZKkGepn1P8H2IXPlTkehmc95UsQObCJircBR9Ztwc+IzXW+zyxnsGbmxlmWNzOnEwzyjr8xbr/bv01Yp7lXhI4f4OuiD9X3ahGPV/QMkSCcdqBiCRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jFllOpLR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF82BC4CEF7;
-	Fri, 13 Mar 2026 01:16:54 +0000 (UTC)
+	s=arc-20240116; t=1773364753; c=relaxed/simple;
+	bh=DBlu2vYwHqk1j0AVAu14WX3YgH/5nx3xXS/Du3SQ55k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VAp5mv7QKreVYtJOY2Puk02sGUnVOm4DiQ0tk1T5GupHUrSkIq5akQelb1zD7B5FVp0Rwq3eZy7z7SPUSzFaekTiIwC0D94sZVXAiI0DbdF6Wi+3Ibof/OOukaemIHL3xybsWvEcCt1PnH2A46Y7x9ycbmrXMcNgcs55im4l4Ps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uFM+G/a0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6632BC4CEF7;
+	Fri, 13 Mar 2026 01:19:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773364617;
-	bh=zPEcR98I4xhUijv+qJNI6kaevc+I8oOwAq51hsyZIN4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=jFllOpLRMRE2IGfEDXUEY9ba4b3cNJWvEbGvGBw5ZGzoCW8DWdJj0BqcNiQ/Y8GUJ
-	 cRhG0Zmu/MtyrpDtIKMli5RfjyB/7DdinXkjUxwC3r2xHYzxZbVE1PbUsIBtNBGdXT
-	 zBg/De8hBSG2RiGNlB9aDCTKJRuiv+r9Rg4ZJ3giPiudOiLXMS1iDeGg6PQ7NkTCtQ
-	 CN1f3+8XC3U+KAwErIpoSpBRfdv6Z/+4x5hJTBdsFVOCyayhVGj6jeZHQfgm+zMlxj
-	 EQv4E9b4SZXOVU2lIIor9NApwk4IbuDYgD3C03BfACceOsz9wt5jUmHqlze9bYvBTs
-	 DJoY+01DWokAA==
-Date: Thu, 12 Mar 2026 18:16:54 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
- <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew
- Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Maxime
- Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
- <alexandre.torgue@foss.st.com>, Vinod Koul <vkoul@kernel.org>, Giuseppe
- Cavallaro <peppe.cavallaro@st.com>, Chen-Yu Tsai <wens@kernel.org>, Jernej
- Skrabec <jernej.skrabec@gmail.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Shawn Guo <shawnguo@kernel.org>, Fabio
- Estevam <festevam@gmail.com>, Jan Petrous <jan.petrous@oss.nxp.com>,
- s32@nxp.com, Romain Gantois <romain.gantois@bootlin.com>, Geert
- Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
- <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>, Christophe
- Roullier <christophe.roullier@foss.st.com>, Bartosz Golaszewski
- <brgl@kernel.org>, Radu Rendec <rrendec@redhat.com>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, Drew Fustini
- <dfustini@tenstorrent.com>, linux-sunxi@lists.linux.dev,
- linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org,
- imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org, sophgo@lists.linux.dev,
- linux-riscv@lists.infradead.org, Bartosz Golaszewski
- <bartosz.golaszewski@linaro.org>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Krzysztof Kozlowski
- <krzysztof.kozlowski@oss.qualcomm.com>, Lad Prabhakar
- <prabhakar.mahadev-lad.rj@bp.renesas.com>, Konrad Dybcio
- <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH net-next v8 0/6] net: stmmac: qcom-ethqos: add support
- for SCMI power domains
-Message-ID: <20260312181654.2d9ba69c@kernel.org>
-In-Reply-To: <20260311-qcom-sa8255p-emac-v8-0-58227bcf1018@oss.qualcomm.com>
-References: <20260311-qcom-sa8255p-emac-v8-0-58227bcf1018@oss.qualcomm.com>
+	s=k20201202; t=1773364753;
+	bh=DBlu2vYwHqk1j0AVAu14WX3YgH/5nx3xXS/Du3SQ55k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uFM+G/a0xcVM1z3FJ17Y5s/3i6Xgajsz7uByrp0BRn5kVkbe3I+ANdAsdzwRQLa+T
+	 VDwpsUB2xt7OnlEtVw8yEe53cAVzHYaeotZetXoqaAXnrdV53yT6OOHukZUSkJ5NNS
+	 YdtpN750zHp8D8cQEcZsYZ0QSt21EfC1aITVm+UGE0MOqaFA7OAs7Mi9P1zWBZiE1D
+	 aTldv4Zpee3Y8UFcAmPlH0ubKQRZLODu/WwqvMSW3PN0uenzi1+8aOiDdBNBGN4Y5q
+	 AWj6XL+hZTVIzIS908fjAnumimaFxxlPbZfGbUBJhk+YH9nwGJS+3G/XJD9GYXt2YK
+	 BqzxIrbneatCQ==
+Date: Fri, 13 Mar 2026 09:19:10 +0800
+From: Yixun Lan <dlan@kernel.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Yixun Lan <dlan@gentoo.org>, Jiri Slaby <jirislaby@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	devicetree@vger.kernel.org, Guodong Xu <guodong@riscstar.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
+Subject: Re: [PATCH] dt-bindings: serial: 8250: spacemit: fix clock property
+ for K3 SoC
+Message-ID: <20260313011910-GKL302167@kernel.org>
+References: <20260304-01-uart-clock-names-v1-1-338483f04a8b@kernel.org>
+ <20260310093446-GYC318052@gentoo.org>
+ <2026031226-utter-spellbind-53bf@gregkh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2026031226-utter-spellbind-53bf@gregkh>
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,lunn.ch,davemloft.net,google.com,redhat.com,gmail.com,foss.st.com,st.com,linaro.org,baylibre.com,oss.nxp.com,nxp.com,bootlin.com,glider.be,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,tenstorrent.com,lists.linux.dev,googlemail.com,oss.qualcomm.com,bp.renesas.com];
-	TAGGED_FROM(0.00)[bounces-274821-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-274822-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[50];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev,renesas];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A194927C350
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4CCBF27C38E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 11 Mar 2026 18:03:35 +0100 Bartosz Golaszewski wrote:
-> Add support for the firmware-managed variant of the DesignWare MAC on
-> the sa8255p platform. This series contains new DT bindings and driver
-> changes required to support the MAC in the STMMAC driver.
-> 
-> It also reorganizes the ethqos code quite a bit to make the introduction
-> of power domains into the driver a bit easier on the eye.
+Hi Greg,
 
-Not entirely sure what the conclusion was in the sub-thread with Russell
-but FWIW this doesn't apply to net-next as posted so respin will be
-needed either way.
+On 15:13 Thu 12 Mar     , Greg Kroah-Hartman wrote:
+> On Tue, Mar 10, 2026 at 05:34:46PM +0800, Yixun Lan wrote:
+> > Hi Greg, Jiri,
+> > 
+> >   Do you mind if I taking this patch via SpacemiT's SoC tree? and if
+> > possible, it would be nice to have your Acks..
+> > (or either way works for me, if you grab it and merged via tty tree)
+> > 
+> > On 07:19 Wed 04 Mar     , Yixun Lan wrote:
+> > > The UART of SpacemiT K3 SoC has same clock property as K1 generation which
+> > > request two clock sources, fix the binding otherwise will get DT check
+> > > warnings.
+> > > 
+> > > Fixes: b5024e804ee0 ("dt-bindings: serial: 8250: add SpacemiT K3 UART compatible")
+> > I would just drop the Fixes tag, as I think at the time of Gudong
+> > submitting the patch, the clock driver isn't ready, so he deliberatly
+> > removed this clock contraint and provided with a fixed clock frequency
+> > (the bindings match with DTS)
+> > 
+> > https://github.com/torvalds/linux/blob/v7.0-rc3/arch/riscv/boot/dts/spacemit/k3.dtsi#L414
+> 
+> You need to get a DT maintainer to review it before you can apply it.
+Ok, so Rob gave an Ack
+
+> If you want to take it through your tree once that happens, that's fine
+> with me.
+Thanks, so this imply an Ack, but could give an explict Acked-by?
+then I will proceed..
+
+-- 
+Yixun Lan (dlan)
 
