@@ -1,51 +1,84 @@
-Return-Path: <devicetree+bounces-275002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275003-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GDCELjnMs2n2awAAu9opvQ
-	(envelope-from <devicetree+bounces-275002-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:35:05 +0100
+	id uOmfCUnMs2n2awAAu9opvQ
+	(envelope-from <devicetree+bounces-275003-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:35:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D1CF27FC04
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:35:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C35C627FC35
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:35:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BF9A330AAE47
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:32:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5CB223198EC7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:32:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31267383C72;
-	Fri, 13 Mar 2026 08:32:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEADE384238;
+	Fri, 13 Mar 2026 08:32:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EYs5mD6/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ve4+KjZM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C69E36E467;
-	Fri, 13 Mar 2026 08:32:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2902A382F2A
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 08:32:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773390741; cv=none; b=EDYM5y5NpYTei0fdtf8hvTG+DTfgUQOLxmxP+om7MKdV3EyJaO8uBwSCHqoodpu7wbzGuPTvLxg+X/ogFZVrHvFB7q5govtWNd2U2mt2PYIyY0jCjrxteeF1FrrizNW1Znp5paj5Mp3HSBPf35kSF+YBgJUlmkzxu2cmZHgEjtA=
+	t=1773390742; cv=none; b=ftgRSxdVHodtfCDql4PzS31bSGlZhPfndnShwRy1PunYBfgI+8H9fVuijU+ooawpcQLTD88EXm/QmbMUAE3B3fF5dYMmLt9UTSxB9/E09vmlhk33Aj6MUfBI8XWxcmR/EAMg75pn2HE+NqooYJoxR2EAALukfiIhp/+1IBzg3lc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773390741; c=relaxed/simple;
-	bh=Nl+7LWtkxv6+ukIGHNTsuAHfdV43ujZAEvxFTAY1mD8=;
+	s=arc-20240116; t=1773390742; c=relaxed/simple;
+	bh=gF7U4AhLl2B54UlbLoigUUUH6Jsm/F5mlTaV5RfBX1c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kTF0jCTj3MyIbUwQCaYG5amVRCSjXmrDw44Y25JOaUaOCRtLKD225CR1UoPwLkGQd+28A7jUZPaq6Cp3OBCG1TUAqrZUajuRiSRNJY9cQGIXM5XXeWA3xoF37t81r6WGAfgQPStQcRugIiaY1j9NJSFbjOeVVdE2811GlveXKEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EYs5mD6/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2D27C19424;
-	Fri, 13 Mar 2026 08:32:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773390740;
-	bh=Nl+7LWtkxv6+ukIGHNTsuAHfdV43ujZAEvxFTAY1mD8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EYs5mD6/OMIB8MxF7KtH8yGzdMiS16u4t8pL24wgXbPXL5Qsz99xd85z6hQfvAs0Z
-	 Szf3uLOzX3POmHvCyokYelXTUE5bQUqNDocPuNM0yQ8i0WT2fSgd+BVi2a7Mzu9lr6
-	 pvniiL5mxW2dGs9Qn7C28ac4XWyziHf97HlZIPn6bAAunBcP0JAVq60Gib3fWqLAJq
-	 H+uGVprrlXur7feqkVlb2E7gLbvfhM+JKCk46WxIAvFT2Bp91PoAyqSRUOR8BbK8uR
-	 9ZDL2ziMroPI5c2vEFFT6e5df7F9CrJJb0LmUQiY83oTS/OzqidkKTvdVNFLEMupQe
-	 5Bel/e8GR+FfQ==
-Message-ID: <2d0afdab-78b7-4e60-b132-98cfcbbbb5af@kernel.org>
-Date: Fri, 13 Mar 2026 09:32:14 +0100
+	 In-Reply-To:Content-Type; b=J+e89y19Yx4dlpl5mLNgij6QV0L5mLB8ngfciR7cbxKj+WPD7Lm0/C7HM+fVL6v1dQSaGjSp+rAttfDEV5/+LFp9OBwGjjZR4qJAesg6L/iiHEyHOGuyrO3Aj8SdGbGK9On0uixwasnpb0LJw+dG+2FSG3v7t8WvP5v9qNs6ncA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ve4+KjZM; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b93698bb57aso373969566b.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 01:32:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773390739; x=1773995539; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zbcDxBVVYzOw7c6OTfNiMQmEPeMGSouBlRwpnguHKAQ=;
+        b=Ve4+KjZMZXY4pNNaIPy6oKForvFFVjldMaURWwmxmzsmi+eV3MBTRRAd1SMZIX345h
+         CuM9UPCoPnm84rEkVOfCzztFXPmTAlGoJBaGYyyhDd+hIbw2oLs+ZICv/LMKPCSCoPau
+         HvE2s0thCUwFl1Lp4ruYJ7XJgjfwEHOYBowlXC5BHuqsyW5NJv2OWwL5ShpyhPmnxoyI
+         IaTH1CNYSzxrimyyURz3spByUlwxn+KkTXJBZTy4lWDfNEIzHdB7/laV0bVJSJPK2lrJ
+         2ERci+y02pPLrqM5DXhh8IXd4bDpOuswI7THsBPfv/Ywl+B54JNSA58bAKWTK286/sJQ
+         Jvqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773390739; x=1773995539;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zbcDxBVVYzOw7c6OTfNiMQmEPeMGSouBlRwpnguHKAQ=;
+        b=XH4WkolD7Ae+Juk4oGDAhDng++TxSCd5wuSzffFENZUOlcNxTUOiId7TQDDLToures
+         Mbu0L0h82T9ObFdvo3swgfy0ZGEmeWoagJ0h28eDY6raNft0UgHRbRKaT6ZjhzijFKUC
+         j0rd/GsaFNf80JFoO9O8jr0m3YLnUDqihqKTL7V8bma1tEMmpUL5VfgZlcOoTBAWMDDj
+         JX+BO8hPLl+m8Dl2rmo+5AcAM3NgD4p/+mzWoHDSAe26ShZXtC5oWaBLmphJI1l5LBUT
+         X0H+Ijx+INO7W0g0qKn2xzFuOKwRDqQEmRXZeRKvc2BATfuJwvMGBeYcQqH4LAVVGw62
+         EZ2w==
+X-Forwarded-Encrypted: i=1; AJvYcCWhY9uT8fhD3TqzSU/TGgAdufB38FrZBnUHXWJFS0f/5wBe/2POv80szL7MtW92Du6BKitGOu33zDL6@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9e8I5nHcBeBz8yRbhavOLlEcYz2QC9HDnEY2hqg1Lx4mEm66K
+	EPfx8F99VdtBvjq8mikB/bwEzU9y+OoWUC8iViWNalwmONvhQjPu8E+N
+X-Gm-Gg: ATEYQzxDsh2r5eo3SAFFATB70YjWmUm7SQBGj81N7tppV6YeKdSjH6koIV51a80vNE7
+	paVzeRiQuAVgVAg4iNUFr71J1krsDnvQGIJiDPyJP2tK3rthWDR2NaAuzem3KGrkhX79eNmbcmq
+	U3FsdX1Z0hroGHfjBX5Fklr7ayhUCNcIhR1bSwEgNYDUYIUjHlaVnDtsDDC+fIyxJz0gjWvCt4u
+	6DsdUFc3CpbWAFKiDCXCx7L+9O7AMuz4wBIYH6C6j/lzPEOEdtQcTuNCC/B5vXJI0UI2nboOYlO
+	B7FPTlDIIRS5mIw93SB/GJOZArGh9vcIaXqklhMzGXXD6J/SAchIJi6czx2XGMTMC6bW3anrqMZ
+	nclZyyror4ji3o7I+8NoSBlCMgZCfCz8tMKtBZLGohrSbu2UvzQhmi2VlmUOT0kddvpEWzXbloI
+	XTNHY0/tGQ2xNAY9VdGynRRgSvtnu7boPUi4kWkx0DrmlOmwypgWWGllmH8Bw67gDWwA==
+X-Received: by 2002:a17:907:9285:b0:b97:73ae:e2e with SMTP id a640c23a62f3a-b9773ae119bmr31732166b.18.1773390738986;
+        Fri, 13 Mar 2026 01:32:18 -0700 (PDT)
+Received: from ?IPV6:2a02:8109:8617:d700:5998:31f2:ed8:c4f? ([2a02:8109:8617:d700:5998:31f2:ed8:c4f])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b976cba6ec4sm29152166b.5.2026.03.13.01.32.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Mar 2026 01:32:18 -0700 (PDT)
+Message-ID: <2bcc0442-cdd7-4093-831c-0bd4652edf56@gmail.com>
+Date: Fri, 13 Mar 2026 09:32:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,186 +86,123 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: display: panel: Add Novatek NT35532 LCD
- DSI
-To: cristian_ci <cristian_ci@protonmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org
-References: <20260308-rimob-new-features-v1-0-aa2c330572c0@protonmail.com>
- <20260308-rimob-new-features-v1-1-aa2c330572c0@protonmail.com>
- <369b48d9-f089-49a2-89cb-a4e0c68f92fa@kernel.org>
- <7Ft_cDw10-3MmNTrKncMut5g08sodd9CL7r7AGXAtPPqZpXtHEgmqm05WhEpYMZzFEs4B0KWz-LU27Z0_YDnc44nXhdUrUt5X2dWK7D6pYM=@protonmail.com>
- <db04882b-7f30-464c-91a6-578302aef4ff@kernel.org>
- <Nz_hTfDbWqQk8-FcCknxZKO8dIhCAGueG89SRe2LkTG1VK4KjoH-UZH6bsOvqEySwNRjJtsEUL7vxxIXOWyyzLOtM9YLZaCuhPfxNz0mVyk=@protonmail.com>
- <4cfc7b40-f172-4eae-8f19-4a3eb858075e@kernel.org>
- <q2whOVhy_Cqm5m8toyiZ0PQQThv6LLoo8a5ialb_td0o5yM1FRLIMRZh2FKRiwSuwPfmfibU6Z6_jz6kJFJGlFfu3V-ELMteHVDM7zpnSBI=@protonmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v9 00/21] media: i2c: add Maxim GMSL2/3 serializer and
+ deserializer drivers
+To: Sakari Ailus <sakari.ailus@linux.intel.com>, dumitru.ceclan@analog.com
+Cc: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Julien Massot <julien.massot@collabora.com>, Rob Herring <robh@kernel.org>,
+ =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Cosmin Tanislav <cosmin.tanislav@analog.com>, mitrutzceclan@gmail.com,
+ linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-gpio@vger.kernel.org,
+ =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+ Martin Hecht <Martin.Hecht@avnet.eu>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Cosmin Tanislav <demonsingur@gmail.com>, Cory Keitz <ckeitz@amazon.com>
+References: <20260311-gmsl2-3_serdes-v9-0-41499f09004f@analog.com>
+ <abEgijQAqW27i5fU@kekkonen.localdomain>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <q2whOVhy_Cqm5m8toyiZ0PQQThv6LLoo8a5ialb_td0o5yM1FRLIMRZh2FKRiwSuwPfmfibU6Z6_jz6kJFJGlFfu3V-ELMteHVDM7zpnSBI=@protonmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Martin Hecht <mhecht73@gmail.com>
+In-Reply-To: <abEgijQAqW27i5fU@kekkonen.localdomain>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-275003-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275002-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[protonmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org,lists.sr.ht];
+	FREEMAIL_CC(0.00)[ideasonboard.com,kernel.org,collabora.com,ragnatech.se,linuxfoundation.org,analog.com,gmail.com,vger.kernel.org,lists.linux.dev,avnet.eu,amazon.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[mhecht73@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,renesas];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1D1CF27FC04
+X-Rspamd-Queue-Id: C35C627FC35
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 13/03/2026 09:26, cristian_ci wrote:
+Hi Sakari, hi Dumitru,
+
+I'm testing v8 already and will migrate next week to that version. Below 
+some further comments.
+
+On 3/11/26 08:58, Sakari Ailus wrote:
+> Hi Dumitru,
 > 
-> On Tuesday, March 10th, 2026 at 21:06, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> 
->> On 10/03/2026 18:48, cristian_ci wrote:
->>> On Monday, March 9th, 2026 at 16:08, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>
->>>> On 09/03/2026 15:52, cristian_ci wrote:
->>>>> On Sunday, March 8th, 2026 at 17:13, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>>>
->>>>>>> +  vsp-supply:
->>>>>>> +    description: positive voltage supply for analog circuits
->>>>>>
->>>>>> Both are odd. Datasheet says vci, vddi, vddam and optional avdd, avee.
->>>>>>
->>>>>> There is no VSN and VSP. Otherwise please point the page in datasheet or
->>>>>> some schematics.
->>>>>>
->>>>>> Best regards,
->>>>>> Krzysztof
->>>>>>
->>>>>
->>>>> I'm not sure about that. Writing panel dt-bindings has been based pretty mostly on vendor devicetree - which also describes somehow the panel and makes that working with the final product released to the market - so I've to necessarily consider that.
->>>>> Then, I could agree that vendor devicetree might be not compliant with upstream rules and could possibly make mistakes with describing the hardware, so I'd like to find a way to describe that in a more proper way, according to upstream rules.
->>>>>
->>>>> That said, vendor devicetree describes lists four power supplies for  DSI: 'vdd', 'vddio', 'lab' and 'ibb' (which have the following property names, respectively, in qcom,mdss_dsi_ctrl node: 'vdd-supply', 'vddio-supply', 'lab-supply' and 'ibb-supply'.
->>>>> Two of these are related to ds/controller (apparently, 'vddio' should match VDDI power supply in NT35532 datasheet.
->>>>>
->>>>> The remaining two supplies are related to panel ('lab' and 'ibb'). These ones are two 'external ' regulators ('external' from NT35532 perspective), which provide power supply to display, located in the qcom PMIC (in this case, that should be PMI8950). WRT to power supply names described in the bindings ('vsp-supply' and 'vsn-supply') are the same as 'lab-supply' and 'ibb-supply', just named differently in the vendor devicetrees.
->>>>>
->>>>> Usage of 'vsp'/'vsn' naming for power supply properties is grounded on they commonly being used at upstream (different panel bindings make use of these properties), on one side, and also described on schematics of devices with the same hardware configuration (LCD_VSN and LCD_VSP), on the other.
->>>>>
->>>>> In the meantime, I've found out schematics for 'xiaomi-mido' (another MSM8953 device) - a variant of this device is shipped with a panel also using NT35532 IC (just like my device) - and LCD_VSN/LCD_VSP are clearly shown there too.
->>>>>
->>>>> I couldn't find much more information about the display on my device and the only resources available about that are those listed above, as of today. In light of my reply, I ask if it is still necessary to describe, in the bindings, power supply properties properties not used currently in the board DTS file.
->>>>
->>>> Please wrap your answers so this will be possible to parse.
->>>>
->>>> You write bindings matching the hardware and for the hardware, not for
->>>> the downstream code. You cannot add supplies which do not exist
->>>> regardless what some vendor wrote somewhere
->>>
->>> Vendor has also described the hardware by storing information (by including info
->>> about panel too) directly inside the device itself (/sys/firmware/fdt).
+> On Wed, Mar 11, 2026 at 09:17:12AM +0200, Dumitru Ceclan via B4 Relay wrote:
+>> The following deserializers are supported:
+>> * MAX96712 (already exists in staging)
+>> * MAX96714 (already exists)
+>> * MAX96714F (already exists)
+>> * MAX96714R (GMSL2)
+>> * MAX96716 (GMSL2)
+>> * MAX96724 (already exists as part of existing MAX96712 driver)
+>> * MAX96724F (GMSL2)
+>> * MAX96724R (GMSL2)
+>> * MAX9296A (GMSL2)
+>> * MAX96792A (GMSL3)
 >>
->> Vendor does not care about rules of DT thus puts there completely fake
->> information just to make their drivers working
->> .
+>> The following serializers are supported:
+>> * MAX96717 (already exists)
+>> * MAX9295A (GMSL2)
+>> * MAX96793 (GMSL3)
 > 
-> I'm not sure what that statement is based on in the specific case of
+> It'd be nice to have more reviews as well as comments from the users of the
+> existing drivers especially on how this works for them.
+> 
+> Are there differences in functionality or UAPI compared to the drivers
+> already in upstream?
 
-It's based on years of looking at vendor code.
+Compared with the current mainline drivers from Julian (what offere a 
+good basic functionality) there are a lot or more features enabled. One 
+ov them is support for routing the channels as well as i2c-atr instead 
+of i2c-gate only. Both helps to setup up more complex and reconfigurable 
+routing of the video channels in complex systems with many 
+sensors/cameras/streams.
 
-> the panel I'm actually testing. A set of clues (some of which were also mentioned
-> in my first reply some days ago) point out that rimob's panel is really supplied by
-> two regulators part of PMIC [1]. Not only for this reason, I do not have
-> enough solid reasons, after all, to consider vendor data about the panel mounted in
-> this device (rimob) as not decently reliable, so I cannot ignore them, at least.
+Additionally a lot more and never devices are supported by that patchset 
+including the new GMSL3 devices what are also backward compatible to GMSL2.
 
-And I did not disagree that you need regulators and that vendor
-correctly wired two of them.
+Both link types are supported now. Generation of test patterns in pixel 
+mode has been added.
 
-The comments are about naming!
+Also log-status returns a lot of very useful information about the link 
+mode (tunnel mode versus pixel mode) and potential errors / packet 
+losses over cable by presenting the counter registers. That helps to 
+monitor the quality and reliability of the GMSL links as well as CSI links.
 
-I discussed of using argument of incomplete or not fully correct vendor
-code when the true hardware description is available. If the vendor
-calls them in vendor DTS "yellow-pony-supply" you are going to use that
-argument to write bindings? And then argue that "not sure what that
-statement is based on"?
+> 
+> ...
+> 
+>> The following v4l2-compliance test still fails:
+>>                  fail: v4l2-test-subdevs.cpp(371): fmt.code == 0 || fmt.code == ~0U
+>>                  fail: v4l2-test-subdevs.cpp(418): checkMBusFrameFmt(node, fmt.format)
+>>          test Active VIDIOC_SUBDEV_G/S_FMT: FAIL
+> 
+> Could you post the full report here, please?
+> 
 
-It's obvious - vendor code is crap. There are no VSN and VSP inputs. We
-already confirmed that.
-
-You claim that vendor called like that thus you can use them as well is
-simply not correct approach.
-
-
-Best regards,
-Krzysztof
+BR Martin
 
