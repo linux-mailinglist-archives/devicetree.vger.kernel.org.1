@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-275574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275575-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kG7tNoectGmgrAAAu9opvQ
-	(envelope-from <devicetree+bounces-275574-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 00:23:51 +0100
+	id gUyIDSOftGkjrQAAu9opvQ
+	(envelope-from <devicetree+bounces-275575-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 00:34:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41E7428AAAC
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 00:23:51 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F50D28AAF2
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 00:34:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 046E7302E40F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 23:23:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1D4C83006005
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 23:34:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 248ED332623;
-	Fri, 13 Mar 2026 23:23:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14A863D5655;
+	Fri, 13 Mar 2026 23:34:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EfGkN4d5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W+oR1ffC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01CD52BEC3F;
-	Fri, 13 Mar 2026 23:23:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E617837700F;
+	Fri, 13 Mar 2026 23:34:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773444229; cv=none; b=k7DFHpLUsO4NLQVPz7dmv7El6bw10SXYurHpTChlUwTJm9Ry1BGjffmZhh+73Dv2iiucnevvlFZ/UARQIyTq6+rJCEaF+1dSuX6i4M2gwxap/tHdlecpEIh1woeFei05LUOUx0BBeNgVNP4CJsyfPyFkDXEJI99/GKtgNtpFIzQ=
+	t=1773444892; cv=none; b=ghkBe76GljR6OXNFiFlr3x7anybmISl6Lo7vCIUYL04HhbH1B0HUa5+FcxQ86RoUU8keBPzYdpmuDCd5F5+7EovjRr1OKzAMSlMaxzMPOzyVQLlER3pshpO/17Ai8Ma0kSaRwmGJJJ1MV9c6VUwTrXZxLwJDCF35fkG8GbtLgyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773444229; c=relaxed/simple;
-	bh=5JC0kBxNUeYclQxqfiad8IJjbCeElWbnMOROfgzi4y4=;
+	s=arc-20240116; t=1773444892; c=relaxed/simple;
+	bh=xaSxGGFhYUlWH8vJOVmWLXswJQ3dh306CESBcJhVyGU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KNkn8sQz2oxFSn0IVyPKa/Sd44/SYoEPs08uGL3yvmhdxG0C7H70KwYJuy2i4YALA0cwfWPJA8kej0e4quc19awHFo8i2qCLjKPNVWRcRYHuD0q7yJK3e2mOzUYMDqdlCNvDe/jtgHrn39lqYCVOT0q+VaKnE9klIEeL6erczmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EfGkN4d5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57D70C19421;
-	Fri, 13 Mar 2026 23:23:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YfO0bNy9DOdI2uVzaQw8PS14D8fCyllefSSuWfSF59ogaQDNwP4bhqatX9C1Bu6xwkqY+Iw7m3TMFbyynDN/P+llE0l0og7uo/mY/5zwSoMJvHUuIdDE+Gx6mVV3bK3fCkV1KzQ29F8a6hJHvEfV/bwrEIehAc7v7HQNVWLOoY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W+oR1ffC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 896BEC19421;
+	Fri, 13 Mar 2026 23:34:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773444228;
-	bh=5JC0kBxNUeYclQxqfiad8IJjbCeElWbnMOROfgzi4y4=;
+	s=k20201202; t=1773444891;
+	bh=xaSxGGFhYUlWH8vJOVmWLXswJQ3dh306CESBcJhVyGU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EfGkN4d5rvbM/MIbmI88kGw1lINj0haC+phuhEtcnMN3//8JMsFqnJmAbo4LKKIhf
-	 FHA5ZqdHx/RPb0yMPge7Z1pMiYsP9kOECVBLXlA/QmsgG5MbuavWHEGx6Ng2aYlfo9
-	 K5lA/ghPFrXEWzJqgrWxkFVaUH7CY/hREvhnjSHvugn+pbEDYL/4SkXcQos46WTLcl
-	 hX427ZPGsfYJPDUciQrAfGT8Cci3k5EO7B3kYWO3z6A6m4MTuLrcMC0qy1e5a3r0Ip
-	 V8jeuk5FVpwQl3DTt0ikk6HlO8pVSepc2M7Qv3w0ZiSAiUmfyG7herouvANL2WV0AA
-	 iF2N/61NeQ5lQ==
-Date: Fri, 13 Mar 2026 18:23:47 -0500
+	b=W+oR1ffClrwEt9AgCFpOZ4DfJbiVH39Iife2WKITRvRsv5vim8y1Qg3Yco+GwjD6a
+	 +WlOsBXYAUCGfxrH7XLD80eog1cnIkrViO0p60k2EV6jq5zLoxjvulSQxWDYthguc1
+	 D3FJdtOM1kjw7mPLW/K55TTno9TOOSGGt6t5keO4v6qbn6t+2J10h45r6qEsDAQNNu
+	 BSch2sC1id1JelENkLAGT0k8g3KLdpAHZAj7Qfk/eMTytWM5tG6AjzcSbw+8RzmnWZ
+	 RbuJOm0WL3vA7A8K4/pCcf8B4gKqWB0AohOOPfGgdOFcgVk/l2WJo43bsL5cmc0NXt
+	 C+1Smf/kxAGNQ==
+Date: Fri, 13 Mar 2026 18:34:50 -0500
 From: Rob Herring <robh@kernel.org>
-To: phucduc.bui@gmail.com
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Ingo Molnar <mingo@kernel.org>,
-	Thomas Gleixner <tglx@kernel.org>, Marek Vasut <marex@denx.de>,
-	Michael Welling <mwelling@ieee.org>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: input: touchscreen: ti,tsc2005: Add
- wakeup-source
-Message-ID: <20260313232347.GA3629471-robh@kernel.org>
-References: <20260309110045.108209-1-phucduc.bui@gmail.com>
- <20260309110045.108209-2-phucduc.bui@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:MEMORY TECHNOLOGY DEVICES (MTD)" <linux-mtd@lists.infradead.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/3] dt-bindings: mtd: refactor NAND bindings and add
+ nand-controller-legacy.yaml
+Message-ID: <20260313233450.GA3632753-robh@kernel.org>
+References: <20260309200351.1791162-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,94 +67,477 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260309110045.108209-2-phucduc.bui@gmail.com>
+In-Reply-To: <20260309200351.1791162-1-Frank.Li@nxp.com>
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,denx.de,ieee.org,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275574-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-275575-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DBL_PROHIBIT(0.00)[0.0.0.1:email];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 41E7428AAAC
+	RCPT_COUNT_SEVEN(0.00)[10];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,0.0.0.0:email,bootlin.com:email,nxp.com:email]
+X-Rspamd-Queue-Id: 2F50D28AAF2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 09, 2026 at 06:00:43PM +0700, phucduc.bui@gmail.com wrote:
-> From: bui duc phuc <phucduc.bui@gmail.com>
+On Mon, Mar 09, 2026 at 04:03:42PM -0400, Frank Li wrote:
+> The modern NAND controller binding requires NAND chips to be described as
+> child nodes of the controller, for example:
 > 
-> The tsc200x driver uses the "wakeup-source" device tree property to
-> determine whether the device should be configured as a system wakeup
-> source.
+>   nand-controller {
+>           ...
+>           nand@0 {
+>                   /* raw NAND chip properties */
+>           };
+>   };
 > 
-> In the driver, this property is read with:
-> 
->     device_init_wakeup(dev,
->                        device_property_read_bool(dev, "wakeup-source"));
+> However, many existing device trees place NAND chip properties directly
+> under the controller node because those controllers support only a single
 
-Write your commit messages independent of the Linux driver.
+s/under/within/
 
+> chip. This layout is still widely used by older platforms and by other DT
+> consumers such as U-Boot. Migrating all existing users to the new layout
+> will take time.
 > 
-> Document this property in the binding to make it visible to DT schema
-> validation tools and to clarify its usage in device tree descriptions.
+> Several kernel drivers, such as ams-delta.c, davinci_nand.c and
+> fsmc_nand.c, still expect the legacy layout where raw NAND properties are
+> defined in the controller node.
 > 
-> Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
+> To support both layouts during the transition:
+> 
+> - Extract NAND chip-related properties into separate schemas
+>   (nand-property.yaml and raw-nand-property.yaml) from
+>   nand-chip.yaml and raw-nand-chip.yaml.
+> - Introduce nand-controller-legacy.yaml to allow both the
+>   legacy and modern layouts.
+> - Add a select condition in nand-controller.yaml to prevent
+>   node name pattern matching for fsl,* NAND controllers.
+> 
+> Keep compatibility with existing device trees while allowing gradual
+> migration to the modern binding structure.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  .../devicetree/bindings/input/touchscreen/ti,tsc2005.yaml  | 7 +++++++
->  1 file changed, 7 insertions(+)
+> change in v2
+> - none
 > 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml b/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml
-> index 7187c390b2f5..c0aae044d7d4 100644
-> --- a/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml
-> @@ -55,6 +55,9 @@ properties:
->    touchscreen-size-x: true
->    touchscreen-size-y: true
+> change dts layout break boot
+> https://lore.kernel.org/imx/177281063848.253518.12995342124719933118.b4-ty@nxp.com/T/#t
+> ---
+>  .../devicetree/bindings/mtd/nand-chip.yaml    | 46 +-----------
+>  ...oller.yaml => nand-controller-legacy.yaml} | 46 +++++-------
+>  .../bindings/mtd/nand-controller.yaml         | 11 +++
+>  .../{nand-chip.yaml => nand-property.yaml}    | 14 +---
+>  .../bindings/mtd/raw-nand-chip.yaml           | 74 +------------------
+>  ...-nand-chip.yaml => raw-nand-property.yaml} | 15 +---
+>  6 files changed, 36 insertions(+), 170 deletions(-)
+>  copy Documentation/devicetree/bindings/mtd/{nand-controller.yaml => nand-controller-legacy.yaml} (69%)
+>  copy Documentation/devicetree/bindings/mtd/{nand-chip.yaml => nand-property.yaml} (89%)
+>  copy Documentation/devicetree/bindings/mtd/{raw-nand-chip.yaml => raw-nand-property.yaml} (94%)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/nand-chip.yaml b/Documentation/devicetree/bindings/mtd/nand-chip.yaml
+> index 609d4a4ddd80e..8800d1d072665 100644
+> --- a/Documentation/devicetree/bindings/mtd/nand-chip.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/nand-chip.yaml
+> @@ -11,6 +11,7 @@ maintainers:
 >  
-> +  wakeup-source:
-> +    type: boolean
-> +
 >  allOf:
->    - $ref: touchscreen.yaml#
->    - if:
-> @@ -97,6 +100,8 @@ examples:
+>    - $ref: mtd.yaml#
+> +  - $ref: nand-property.yaml
 >  
->              ti,x-plate-ohms = <280>;
->              ti,esd-recovery-timeout-ms = <8000>;
-> +
-> +            wakeup-source;
->          };
->      };
->    - |
-> @@ -124,5 +129,7 @@ examples:
+>  description: |
+>    This file covers the generic description of a NAND chip. It implies that the
+> @@ -22,51 +23,6 @@ properties:
+>      description:
+>        Contains the chip-select IDs.
 >  
->              ti,x-plate-ohms = <280>;
->              ti,esd-recovery-timeout-ms = <8000>;
+> -  nand-ecc-engine:
+> -    description: |
+> -      A phandle on the hardware ECC engine if any. There are
+> -      basically three possibilities:
+> -      1/ The ECC engine is part of the NAND controller, in this
+> -      case the phandle should reference the parent node.
+> -      2/ The ECC engine is part of the NAND part (on-die), in this
+> -      case the phandle should reference the node itself.
+> -      3/ The ECC engine is external, in this case the phandle should
+> -      reference the specific ECC engine node.
+> -    $ref: /schemas/types.yaml#/definitions/phandle
+> -
+> -  nand-use-soft-ecc-engine:
+> -    description: Use a software ECC engine.
+> -    type: boolean
+> -
+> -  nand-no-ecc-engine:
+> -    description: Do not use any ECC correction.
+> -    type: boolean
+> -
+> -  nand-ecc-algo:
+> -    description:
+> -      Desired ECC algorithm.
+> -    $ref: /schemas/types.yaml#/definitions/string
+> -    enum: [hamming, bch, rs]
+> -
+> -  nand-ecc-strength:
+> -    description:
+> -      Maximum number of bits that can be corrected per ECC step.
+> -    $ref: /schemas/types.yaml#/definitions/uint32
+> -    minimum: 1
+> -
+> -  nand-ecc-step-size:
+> -    description:
+> -      Number of data bytes covered by a single ECC step.
+> -    $ref: /schemas/types.yaml#/definitions/uint32
+> -    minimum: 1
+> -
+> -  secure-regions:
+> -    description:
+> -      Regions in the NAND chip which are protected using a secure element
+> -      like Trustzone. This property contains the start address and size of
+> -      the secure regions present.
+> -    $ref: /schemas/types.yaml#/definitions/uint64-matrix
+> -
+>  required:
+>    - reg
+>  
+> diff --git a/Documentation/devicetree/bindings/mtd/nand-controller.yaml b/Documentation/devicetree/bindings/mtd/nand-controller-legacy.yaml
+> similarity index 69%
+> copy from Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> copy to Documentation/devicetree/bindings/mtd/nand-controller-legacy.yaml
+> index 28167c0cf2719..d6e612413df19 100644
+> --- a/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/nand-controller-legacy.yaml
+> @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/mtd/nand-controller.yaml#
+> +$id: http://devicetree.org/schemas/mtd/nand-controller-legacy.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+>  title: NAND Controller Common Properties
+> @@ -10,21 +10,22 @@ maintainers:
+>    - Miquel Raynal <miquel.raynal@bootlin.com>
+>    - Richard Weinberger <richard@nod.at>
+>  
+> -description: |
+> +description: >
+>    The NAND controller should be represented with its own DT node, and
+>    all NAND chips attached to this controller should be defined as
+>    children nodes of the NAND controller. This representation should be
+>    enforced even for simple controllers supporting only one chip.
+>  
+> +  This is only for legacy nand controller, new controller should use
+> +  nand-controller.yaml
 > +
-> +            wakeup-source;
->          };
->      };
+>  properties:
+> -  $nodename:
+> -    pattern: "^nand-controller(@.*)?"
+>  
+>    "#address-cells":
+>      const: 1
+>  
+>    "#size-cells":
+> -    const: 0
+> +    enum: [0, 1]
+>  
+>    ranges: true
+>  
+> @@ -39,33 +40,26 @@ properties:
+>      minItems: 1
+>      maxItems: 8
+>  
+> +  partitions:
+> +    type: object
+> +
+> +    required:
+> +      - compatible
+> +
+>  patternProperties:
+>    "^nand@[a-f0-9]$":
+>      type: object
+>      $ref: raw-nand-chip.yaml#
+
+Shouldn't this be removed? The main thing is legacy bindings don't have 
+these nand nodes.
+
+>  
+> -required:
+> -  - "#address-cells"
+> -  - "#size-cells"
+> +  "^partition@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/mtd/partitions/partition.yaml#/$defs/partition-node
+> +    deprecated: true
+
+Is there any .dts (in tree) with partition nodes not under 'partitions' 
+node. Maybe this can be omitted.
+
+Also, mtd.yaml covers alot of this. Can we just reference it?
+
+> +
+> +allOf:
+> +  - $ref: raw-nand-property.yaml#
+> +  - $ref: nand-property.yaml#
+>  
+>  # This is a generic file other binding inherit from and extend
+>  additionalProperties: true
+>  
+> -examples:
+> -  - |
+> -    nand-controller {
+> -      #address-cells = <1>;
+> -      #size-cells = <0>;
+> -      cs-gpios = <0>, <&gpioA 1>; /* A single native CS is available */
+> -
+> -      /* controller specific properties */
+> -
+> -      nand@0 {
+> -        reg = <0>; /* Native CS */
+> -        /* NAND chip specific properties */
+> -      };
+> -
+> -      nand@1 {
+> -        reg = <1>; /* GPIO CS */
+> -      };
+> -    };
+> diff --git a/Documentation/devicetree/bindings/mtd/nand-controller.yaml b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> index 28167c0cf2719..81d4ffc3fc1fa 100644
+> --- a/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> @@ -16,6 +16,17 @@ description: |
+>    children nodes of the NAND controller. This representation should be
+>    enforced even for simple controllers supporting only one chip.
+>  
+> +select:
+> +  allOf:
+> +    - properties:
+> +        $nodename:
+> +          pattern: "^nand-controller(@.*)?"
+> +    - not:
+> +        properties:
+> +          compatible:
+> +            contains:
+> +              pattern: "^fsl,"
+
+I would just do 'select: false' and make sure all non-legacy 
+controller bindings reference nand-controller.yaml. 
+
+> +
+>  properties:
+>    $nodename:
+>      pattern: "^nand-controller(@.*)?"
+> diff --git a/Documentation/devicetree/bindings/mtd/nand-chip.yaml b/Documentation/devicetree/bindings/mtd/nand-property.yaml
+> similarity index 89%
+> copy from Documentation/devicetree/bindings/mtd/nand-chip.yaml
+> copy to Documentation/devicetree/bindings/mtd/nand-property.yaml
+> index 609d4a4ddd80e..5bbc93e506fd8 100644
+> --- a/Documentation/devicetree/bindings/mtd/nand-chip.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/nand-property.yaml
+> @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/mtd/nand-chip.yaml#
+> +$id: http://devicetree.org/schemas/mtd/nand-property.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+>  title: NAND Chip Common Properties
+> @@ -9,19 +9,12 @@ title: NAND Chip Common Properties
+>  maintainers:
+>    - Miquel Raynal <miquel.raynal@bootlin.com>
+>  
+> -allOf:
+> -  - $ref: mtd.yaml#
+> -
+>  description: |
+> -  This file covers the generic description of a NAND chip. It implies that the
+> +  This file covers the generic property of a NAND chip. It implies that the
+
+s/property/properties/
+
+>    bus interface should not be taken into account: both raw NAND devices and
+>    SPI-NAND devices are concerned by this description.
+>  
+>  properties:
+> -  reg:
+> -    description:
+> -      Contains the chip-select IDs.
+> -
+>    nand-ecc-engine:
+>      description: |
+>        A phandle on the hardware ECC engine if any. There are
+> @@ -67,8 +60,5 @@ properties:
+>        the secure regions present.
+>      $ref: /schemas/types.yaml#/definitions/uint64-matrix
+>  
+> -required:
+> -  - reg
+> -
+>  # This file can be referenced by more specific devices (like spi-nands)
+>  additionalProperties: true
+> diff --git a/Documentation/devicetree/bindings/mtd/raw-nand-chip.yaml b/Documentation/devicetree/bindings/mtd/raw-nand-chip.yaml
+> index 092448d7bfc5c..792de3e3c6eee 100644
+> --- a/Documentation/devicetree/bindings/mtd/raw-nand-chip.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/raw-nand-chip.yaml
+> @@ -11,6 +11,7 @@ maintainers:
+>  
+>  allOf:
+>    - $ref: nand-chip.yaml#
+> +  - $ref: raw-nand-property.yaml#
+>  
+>  description: |
+>    The ECC strength and ECC step size properties define the user
+> @@ -31,79 +32,6 @@ properties:
+>      description:
+>        Contains the chip-select IDs.
+>  
+> -  nand-ecc-placement:
+> -    description:
+> -      Location of the ECC bytes. This location is unknown by default
+> -      but can be explicitly set to "oob", if all ECC bytes are
+> -      known to be stored in the OOB area, or "interleaved" if ECC
+> -      bytes will be interleaved with regular data in the main area.
+> -    $ref: /schemas/types.yaml#/definitions/string
+> -    enum: [ oob, interleaved ]
+> -    deprecated: true
+> -
+> -  nand-ecc-mode:
+> -    description:
+> -      Legacy ECC configuration mixing the ECC engine choice and
+> -      configuration.
+> -    $ref: /schemas/types.yaml#/definitions/string
+> -    enum: [none, soft, soft_bch, hw, hw_syndrome, on-die]
+> -    deprecated: true
+> -
+> -  nand-bus-width:
+> -    description:
+> -      Bus width to the NAND chip
+> -    $ref: /schemas/types.yaml#/definitions/uint32
+> -    enum: [8, 16]
+> -    default: 8
+> -
+> -  nand-on-flash-bbt:
+> -    description:
+> -      With this property, the OS will search the device for a Bad
+> -      Block Table (BBT). If not found, it will create one, reserve
+> -      a few blocks at the end of the device to store it and update
+> -      it as the device ages. Otherwise, the out-of-band area of a
+> -      few pages of all the blocks will be scanned at boot time to
+> -      find Bad Block Markers (BBM). These markers will help to
+> -      build a volatile BBT in RAM.
+> -    $ref: /schemas/types.yaml#/definitions/flag
+> -
+> -  nand-ecc-maximize:
+> -    description:
+> -      Whether or not the ECC strength should be maximized. The
+> -      maximum ECC strength is both controller and chip
+> -      dependent. The ECC engine has to select the ECC config
+> -      providing the best strength and taking the OOB area size
+> -      constraint into account. This is particularly useful when
+> -      only the in-band area is used by the upper layers, and you
+> -      want to make your NAND as reliable as possible.
+> -    $ref: /schemas/types.yaml#/definitions/flag
+> -
+> -  nand-is-boot-medium:
+> -    description:
+> -      Whether or not the NAND chip is a boot medium. Drivers might
+> -      use this information to select ECC algorithms supported by
+> -      the boot ROM or similar restrictions.
+> -    $ref: /schemas/types.yaml#/definitions/flag
+> -
+> -  nand-rb:
+> -    description:
+> -      Contains the native Ready/Busy IDs.
+> -    $ref: /schemas/types.yaml#/definitions/uint32-array
+> -
+> -  rb-gpios:
+> -    description:
+> -      Contains one or more GPIO descriptor (the numper of descriptor
+> -      depends on the number of R/B pins exposed by the flash) for the
+> -      Ready/Busy pins. Active state refers to the NAND ready state and
+> -      should be set to GPIOD_ACTIVE_HIGH unless the signal is inverted.
+> -
+> -  wp-gpios:
+> -    description:
+> -      Contains one GPIO descriptor for the Write Protect pin.
+> -      Active state refers to the NAND Write Protect state and should be
+> -      set to GPIOD_ACTIVE_LOW unless the signal is inverted.
+> -    maxItems: 1
+> -
+>  required:
+>    - reg
+>  
+> diff --git a/Documentation/devicetree/bindings/mtd/raw-nand-chip.yaml b/Documentation/devicetree/bindings/mtd/raw-nand-property.yaml
+> similarity index 94%
+> copy from Documentation/devicetree/bindings/mtd/raw-nand-chip.yaml
+> copy to Documentation/devicetree/bindings/mtd/raw-nand-property.yaml
+> index 092448d7bfc5c..f853b72426c43 100644
+> --- a/Documentation/devicetree/bindings/mtd/raw-nand-chip.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/raw-nand-property.yaml
+> @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/mtd/raw-nand-chip.yaml#
+> +$id: http://devicetree.org/schemas/mtd/raw-nand-property.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+>  title: Raw NAND Chip Common Properties
+> @@ -9,9 +9,6 @@ title: Raw NAND Chip Common Properties
+>  maintainers:
+>    - Miquel Raynal <miquel.raynal@bootlin.com>
+>  
+> -allOf:
+> -  - $ref: nand-chip.yaml#
+> -
+>  description: |
+>    The ECC strength and ECC step size properties define the user
+>    desires in terms of correction capability of a controller. Together,
+> @@ -24,13 +21,6 @@ description: |
+>    specify the value(s) they support.
+>  
+>  properties:
+> -  $nodename:
+> -    pattern: "^nand@[a-f0-9]$"
+> -
+> -  reg:
+> -    description:
+> -      Contains the chip-select IDs.
+> -
+>    nand-ecc-placement:
+>      description:
+>        Location of the ECC bytes. This location is unknown by default
+> @@ -104,8 +94,5 @@ properties:
+>        set to GPIOD_ACTIVE_LOW unless the signal is inverted.
+>      maxItems: 1
+>  
+> -required:
+> -  - reg
+> -
+>  # This is a generic file other binding inherit from and extend
+>  additionalProperties: true
 > -- 
 > 2.43.0
 > 
