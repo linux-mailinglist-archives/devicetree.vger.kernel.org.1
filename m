@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-275558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275559-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yJZYNHaBtGlTpAAAu9opvQ
-	(envelope-from <devicetree+bounces-275558-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 22:28:22 +0100
+	id iIi+JrGBtGlTpAAAu9opvQ
+	(envelope-from <devicetree+bounces-275559-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 22:29:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAF6028A229
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 22:28:21 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04E6D28A248
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 22:29:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DE1B6300B8D1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:28:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 73D9D301DC14
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 21:29:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF45C382F13;
-	Fri, 13 Mar 2026 21:28:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47C29382F3A;
+	Fri, 13 Mar 2026 21:29:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RNsUaNnD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TRQJvUIB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f176.google.com (mail-dy1-f176.google.com [74.125.82.176])
+Received: from mail-dl1-f48.google.com (mail-dl1-f48.google.com [74.125.82.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AF74214A64
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 21:28:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09E253750A3
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 21:29:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773437297; cv=none; b=hwhk8HJa/luLWnn93OtsHhv7aA2k7snz5S1UAsU9WV1XNjtG6Ou0nVwFnm8aSB2ZidX6l3NHSPSVJRQedeafivnjKTFEaQC/VkJG2oRo8pS85CJ49ge2N7FZsINPKZokTXRz8ReePOgwOpFYq6rXCqV91VKWsi9dLsO2TCPkkNo=
+	t=1773437358; cv=none; b=fM5N2/7FMQQA85tdMFzaqH7tVbRkITmPHfrWwWKYek7yC+7NF/8KZwPpD8wlWtL1VWPWoA12rtdwfwhIVR9lD4QAgBZ8o9wdttEyHgTVZrxgNe1d97HVPdwYnLxQxElRJ0OKT0GmQFUO49g25TwEOCquHYUMObUwI72vWTSacdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773437297; c=relaxed/simple;
-	bh=EOcuIn9GMaSAPBhs1LyfTZjpYqpuiHTFQE5/6H/nlik=;
+	s=arc-20240116; t=1773437358; c=relaxed/simple;
+	bh=laVAuq4kys4b9E4V9rg4f+TzBumtEquGMW7XpBVbfkQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HdaXc31ehKFhGpdFgFrR+TaZgZ+3S1KjxSq4cLFaUSiEROJOCbSoBrRqtgj/3uTSpGypPtFp/MuDvX/itjK0VHI3MZQ0+I26StPbQBB0ILX7HYkADkgNdzOAP+GmehgYfatnczUPYkepBV6J7Fddxx95FINYdGjxpiI6qg+eev0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RNsUaNnD; arc=none smtp.client-ip=74.125.82.176
+	 In-Reply-To:Content-Type; b=L62upcq3ZRFzptoCvAgnau9Akj+oTrWIrSS2hBN9P5zfwsSROx1DuQN04gkzZu6DZYw/XduMH8fu++of4HJ7k5p3Y3yiL15WtJdPTv/AQj4eABThQdFTyRFbZyBA6IoBzKsWKuWM3sb1nthPvl8eWXZskFX6pnqJSMUmFHGDOC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TRQJvUIB; arc=none smtp.client-ip=74.125.82.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f176.google.com with SMTP id 5a478bee46e88-2beb0246931so1368394eec.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 14:28:16 -0700 (PDT)
+Received: by mail-dl1-f48.google.com with SMTP id a92af1059eb24-128d2e3074fso3772445c88.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 14:29:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773437295; x=1774042095; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1773437356; x=1774042156; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XFQN2iDyW5m5a7jX1vRhVdG+wB2cb7HPaqKy8sTeyCQ=;
-        b=RNsUaNnDQ9UcHT4MRTTAoP2ibOfgm7QOwKdNP9B5AtsuzVKohZUB7vrIKnlLBli1Bm
-         TXgn59WvkeUh47+DBVIg1r6HTUAF4M/fyHRvQE6Luq7xRG2zmWk/goPZyLjFQioXBUCA
-         EsFTJG/urAsll0R8QSiYXI06k9DMImVJc1a/jI2GBhEZTIY0tmXFWu9g+/aaizhrCucL
-         YbUcysFmzLhjOFcp9EZevCVr+MPtGYW6aP3XGBkLgD8hVX/2RdZ8ccl7rn8U2ukD/K/m
-         sBCQrMxj5VB6HhgRecvhb3vxdOhWiPfYIW+diR10T6Tu7674yxe3XTyJYPcBzCC1/XLM
-         C+mw==
+        bh=1IyD/QFjiB4F3V0bSsrb/CnqUpdLxKmx3PhmqTmoLis=;
+        b=TRQJvUIBEt2ZLAX+MJk58QIHwx1W5fOpXsX2KhUUvtFpOABeuy1KiFx14IYAweS+Mc
+         QU93l2Q1aF35xtVYmZ9MmN6rV0OAbXzRP6zXrMr8eOD9G7LcD2SStSvLbP21M2MRmSQT
+         kL9YaHsTDIWr2cKqqlD0ceiXJV8N73Im725SDbvwTzu2YNT9V4/PmFa1yjew3W/9MDgq
+         Ll4Hxf99xV8r9imXmpLYhsWwejxFXsSCJLOJyYOROy78RQODOmdiBNvB5gtvMNlLJfrW
+         DElRGktV08jrx3N+sgetFn+1Fccxt3yyHAg9VS/GKu28DUcmK5OtYqWsniGVePzwRgLt
+         ocDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773437295; x=1774042095;
+        d=1e100.net; s=20251104; t=1773437356; x=1774042156;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=XFQN2iDyW5m5a7jX1vRhVdG+wB2cb7HPaqKy8sTeyCQ=;
-        b=LiAWLwyfTmBnHjZ2DnB5qDTBIKdfZmdzc8UIFdrwMAb3wGcqQ5Zv6E0GNjzNJ2Kvs2
-         WGmWULN1Rd8jJ1UqruNpg4wodlp2CGYv7lrbQGeyrPVWuZF/jnCwjKfCiCXg6hBsiueC
-         0G5RNyM6m3OjhEAzo08T/ae3vso+9ofYqDxmexXJ+lGvaLvG2iAIuAubcmC6k/Viy9QH
-         54lmfzqq9o+h0Nb2CvmG+AOGfUPqUq7tqJ0NWH+u7KNqYV0enuXid6s0TLlx0MSPLsNq
-         zdKzcziSFZPSotRV3m0uUXpiSHZSh16Q3N7huvCuhR6sbbUyzKIpZG59k7zWg6hZkasr
-         WklQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVS23hhKTJD3MZKqJeXas/IJsDBLZCcALiOlqHJFfH9ggsArDZTdj9XDKQkOuIQH8ISQe1WqNLavYJQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxAF8Cx74/tiUcSvOGrEe2an/Oo9WiXCurb4Ueh/JZsfjYeNCSm
-	lpBJN4ls5JVOwEW/B5GcStEr9/Qy6xk1uAaP/qZp1ch0FWAe1mmz1Ymh
-X-Gm-Gg: ATEYQzy9juTUvhjF5yNq79UKXdY+xksW1w/Rbi7N1mN+PJ/kpMjgbOZKIUxCHsk32jg
-	CFo9mrnbV5jSxF2TB6+HZexvghwdYH20t6GkAu95b6vu4omLn6CnVXE0nitCONc8bdHceFdwHDU
-	117LFV6KJpC41Dtq3jalRzjPOzui+ubZhrRLppq7Hh90wyS62YSI1a3lYu7L1g4MfBVhxkENeZC
-	LmD8ap0wxUhAv5YS1kMFsIDHXLhnMiSq1gY/F62ETnfqRLTmxLG8LVVCizzf+4xJCTVFzFCZ4Uz
-	Mq5b4UndcJWeiCFMzhxq1jRpIOejAKheWjUZJ53n3MmQNTOGLnjxeIouA3DfFJR/JFx8FltxuQj
-	XQwwpz+iB15JwRT/VZ1489eIEBF+RZx77RK6FfJetkqeMKN6Rn7+WK2eE3SiBeZ6/gVdB5olmUi
-	VZjYlkGGZsqYcNcrwVt9dngywnSe/RMDbDL4bTigqMzRJ+L+g=
-X-Received: by 2002:a05:7300:cb13:b0:2b6:ffb9:9633 with SMTP id 5a478bee46e88-2bea547cfb5mr2448749eec.15.1773437295332;
-        Fri, 13 Mar 2026 14:28:15 -0700 (PDT)
+        bh=1IyD/QFjiB4F3V0bSsrb/CnqUpdLxKmx3PhmqTmoLis=;
+        b=Eriq8ThXX3aPJdRCBH+wF3bQjtSSl84aQs1wPfcW/g8wI9TZlm00AlphleUyXfyYS6
+         +p7rHI8tU+TaMyRHlTRHwZq/K88vZfNCIyEh/I4tkMbovB+wEn2ST8HRdV2lOIP2HiYB
+         WbSTC1/wyxlq9kE5cDnQv39NP/uJTNQj4BbKTt1u/wfVWBN6Me4iWK6e6k6tOfUpE4Vl
+         OtTTKjnekWGqrWxnOm/ILSEhFmOl6kHQx0/sA7Z5gOGkUYMj8sjZMR6EZprMQE323A+W
+         8COpYs4u/43/iY/zu3eGoPBgLLI73mywRiHqU4GnLVGeNTbUJsnLG9jf190v7SzwtLDD
+         Gl6w==
+X-Forwarded-Encrypted: i=1; AJvYcCVQhR+o5DkGQTKqKqngFe+Yw0ws1n4vwTJYBDYGfh1MgoJQhv8jiwdcRyZGJxfJFJzUk/ybDFg3mow5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrbuHjpuRJZ0I8bvk2M5TuLUVjpEmRVJid/0PWD89YFYyqSwBb
+	RnaXYRo0kHpigkmk+8KFPvd28LaxD0uALnXMwxr+HiXW5uXYL1YS/NmW
+X-Gm-Gg: ATEYQzxd5mJWOOiC8PqZ9k+9bHfTGod4ZiK7Q/pT2q5EmO/oTtNpoAIsHOJxG976ttS
+	kvqbouJWzblsCuATG1fhFmx8LWZoVauItIYgMW0rPOb/U1d52bojwq3FQR2SyT3vnVWHFPZnmGl
+	tCVt3iZt1gI4tx8FcvAsE9LP4mEVj2pi+FpJo13lgyj5hCxk7SjDj+CPW52qP5s/v/qE1Mss7bU
+	lNwDRLpBeGzLOL+2VzTQSBPBbBoaj6CeWYnP6/W4d4fPrmQqb0/NWhvy2W0HoGpmvZqCt4XIo9A
+	NiHSyVFxh4Vh/nYHOrJJyKftHHaMU363dtjbDSAOwSJtinlYpdd9zMMLR/wKLkawNTuZzGECidz
+	JadQ9aOd6SgmwcHSKlmKIOZzRjTuf7Jm5y7zXsjT47//wk73cnLNWaqOnTYkzST13ROYx1y58OY
+	ZhUtMB9HsDkI6MeFXt5r/7eiOcKAiBJCS0F3lI53/XJmvNOxw=
+X-Received: by 2002:a05:7300:d717:b0:2be:fe8:8b0a with SMTP id 5a478bee46e88-2bea54de394mr2020946eec.21.1773437355602;
+        Fri, 13 Mar 2026 14:29:15 -0700 (PDT)
 Received: from [172.16.0.242] ([192.19.161.250])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2c098cbd4dasm503846eec.0.2026.03.13.14.28.12
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2beab3eec8fsm4224208eec.13.2026.03.13.14.29.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Mar 2026 14:28:13 -0700 (PDT)
-Message-ID: <25a8565d-a6bb-401f-b776-d743a2ec9ee0@gmail.com>
-Date: Fri, 13 Mar 2026 14:33:16 -0700
+        Fri, 13 Mar 2026 14:29:14 -0700 (PDT)
+Message-ID: <31b0abc4-b107-4c95-b6c8-51941330b0f4@gmail.com>
+Date: Fri, 13 Mar 2026 14:34:27 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,30 +86,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 1/6] riscv: Add a custom, simplified version of Svpbmt
- "XPbmtUC"
+Subject: Re: [RFC PATCH 3/6] riscv: apply page table attribute bits for
+ XPbmtUC
 To: Conor Dooley <conor@kernel.org>, Bo Gan <ganboing@gmail.com>
 Cc: linux-riscv@lists.infradead.org, samuel.holland@sifive.com,
  david@redhat.com, palmer@dabbelt.com, pjw@kernel.org, gaohan@iscas.ac.cn,
  me@ziyao.cc, lizhi2@eswincomputing.com, hal.feng@starfivetech.com,
  marcel@ziswiler.com, kernel@esmil.dk, devicetree@vger.kernel.org
 References: <20260313084407.29669-1-ganboing@gmail.com>
- <20260313084407.29669-2-ganboing@gmail.com>
- <20260313-visitor-majestic-1a6888dc57b2@spud>
+ <20260313084407.29669-4-ganboing@gmail.com>
+ <20260313-breezy-from-6b5ad9e9a5ac@spud>
 Content-Language: en-US
 From: Bo Gan <ganboing@gmail.com>
-In-Reply-To: <20260313-visitor-majestic-1a6888dc57b2@spud>
+In-Reply-To: <20260313-breezy-from-6b5ad9e9a5ac@spud>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275558-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-275559-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -118,7 +118,7 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -128,236 +128,90 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DAF6028A229
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 04E6D28A248
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Hi Conor,
 
-Thanks so much for the prompt review. See inline.
-
 On 3/13/26 06:24, Conor Dooley wrote:
-> Hey,
-> 
-> Gonna offer some feedback on the detail of what's been done in this
-> series, without providing any commentary on whether this is the correct
-> approach to take.
-> 
-> On Fri, Mar 13, 2026 at 01:44:02AM -0700, Bo Gan wrote:
->> On platforms that doesn't support Svpbmt or XTheadMae, SoC vendors
->> sometimes map the system memory twice in physical address space, one
->> as cached, and the other as uncached. Through the uncached window,
->> device drivers will be able to map DMA buffer for noncoherent devices.
->> Such setup is usually found in SoC with pre-Svpbmt Sifive cores.
->> Make use of such feature by modeling it as "XPbmtUC", a customized
->> version of Svpbmt, where a single bit in PTE is used for UC control.
->> There's no IO bit with such scheme, as it's assumed that the PMA
->> (usually hard-wired on these SoCs) will properly convey the strongly-
->> ordered, non-idempotent attribute of the MMIO region.
->>
->> The enablement of such position of "XPbmtUC" is controlled by the
->> device-tree property "riscv,xpbmt-uncache-bit".
-> 
-> Firstly, the naming generally I take some exception to. If this is some
-> fake vendor extension for linux purposes, it needs to have "xlinux" in
-> it, like our xlinuxenvcfg does. It should also be consistent, don't use
-> "xpmbtuc" and "xpbmt-uncache-bit", pick one and stick to it.
-> 
-Makes sense. I can certainly change that to be conformant.
-
-> Athough, I think I disagree fundamentally with this property, as it seems
-> to me like "software configuration" that shouldn't be permitted in
-> devicetree. Maybe I am misunderstanding, but the numbers you chose are
-> convenient, not set in stone by the specific hardware, right?
-
-For JH7110, the bit 32 (PPN bit 34) matches exactly with the HW. Meaning
-toggling this bit would re-map the page to the uncached window, which
-matches perfectly with the synthetic UC bit in the scheme.
-
-For EIC770X, the bit 38 (PPN bit 40) is hand picked to be able to map all
-physical memory space (40 bit), while making it very easy for the thin-
-hypervisor, which can utilize Sv39x4 (41 bit) page scheme in G-stage.
-
-I also considered the sbi call approach, where the kernel can query for
-the support and position of the uncache bit. The thing is that JH7110
-can just hard-code the bit without any changes to firmware, and I want
-to have a consistent way for both SoC, thus the device-tree approach, to
-let the EIC770X firmware/bootloader adding the property to dt at runtime.
-Any better ideas?
-
-> 
-> I'd be much more comfortable with adding xlinuxwhatever to
-> riscv,isa-extensions, to signal that a soc supports this stuff than with
-> a property for the bit itself. I suppose that bit information could then
-> come from a LUT in the vendor extensions, that a validate callback could
-> check (via root compatible) before enabling. There's not a super neat
-> way to do that at the moment though I don't think, code currently
-> expects that vendor extensions are in a different "namespace" to
-> standard ones, and this would blur the lines because it's not from a
-> specific vendor, nor is it a standard extension.
-> I guess, it could be done by keeping it as a standard number, but then
-> it's a bit trickier to neatly access the LUT while keeping it split
-> apart.
-> I know this means having to modify the kernel if there's a new device,
-> but I'm inclined to say "deal with it" because they could've done
-> something standard and opted not to.
-> 
-> Could also argue that this should be shoved into a sifive specific
-> thing, but I don't expect that they're the only ones with devices like
-> this that could benefit.
-> 
-
-I've thought about riscv,isa-extensions. The issue with that is that it's
-a per-CPU thing, but I'm adding a global extension, and I don't want to
-pollute the isa-extension string. Thus, I followed Samuel's approach --
-He uses "riscv,physical-memory-regions" in the root node.
-
->>
->> Example:
->>
->> Starfive JH7110 (Sifive U74):
->>             [0x0,   0x40000000) Low MMIO
->>      [0x40000000, 0x2_40000000) Cached Mem
->>    [0x4_40000000, 0x6_40000000) Uncached Mem UC+
->>    [0x9_00000000, 0x9_d0000000) High MMIO
->>
->> Device-tree:
->>    riscv,xpbmt-uncache-bit = <32>;
->>
->> Use PTE bit 32 (PPN bit 34) as UC (uncache) control to perfectly
->> match the memory map of the SoC.
->>
->> ESWIN EIC770X (Sifive U84/P550):
->>             [0x0,    0x20000000) Core Internal
->>      [0x20000000,    0x40000000) Core Internal (Die 1)
->>      [0x40000000,    0x60000000) Low MMIO
->>      [0x60000000,    0x80000000) Low MMIO (Die 1)
->>      [0x80000000, 0x10_80000000) Cached Mem
->>   [0x20_00000000, 0x30_00000000) Cached Mem (Die 1)
->>   [0x80_00000000, 0xa0_00000000) High MMIO
->>   [0xa0_00000000, 0xc0_00000000) High MMIO (Die 1)
->>   [0xc0_00000000, 0xd0_00000000) Uncached Mem
->>   [0xe0_00000000, 0xf0_00000000) Uncached Mem (Die 1)
->>
->> EIC770X is not directly compatible to this model, as the uncached
->> regions are offsetted, and the offset is different among the Dies
->> in the dual-die version (EIC7702). so we expect the firmware to
->> provide a thin layer of hypervisor to transparently re-map:
->>
->>      [0x80000000,  0x10_80000000) Cached Mem
->>   [0x20_00000000,  0x30_00000000) Cached Mem (Die 1)
->>   [0xc0_00000000,  0xd0_00000000) Uncached Mem <----------.
->>   [0xe0_00000000,  0xf0_00000000) Uncached Mem (Die 1) <--+--.
->> [0x100_80000000, 0x110_80000000) Mem UC+ ----------------'  |
->> [0x120_00000000, 0x130_00000000) Mem UC+ (Die 1) -----------'
->>
->> With that, the firmware/bootloader can set the following at boot:
->>    riscv,xpbmt-uncache-bit = <38>;
+> On Fri, Mar 13, 2026 at 01:44:04AM -0700, Bo Gan wrote:
+>> Apply the UC bit like Svpbmt and THEAD_MAE does. Also changed the
+>> _PAGE_PFN_MASK definition to exclude the UC bit, as it's position
+>> is now determined at runtime, and can be part of PPN.
 >>
 >> Signed-off-by: Bo Gan <ganboing@gmail.com>
+> 
+> This should be squashed with the patch adding detection and the Kconfig
+> option.
+> 
+
+Sure.
+
 >> ---
->>   arch/riscv/Kconfig                  | 12 ++++++++++++
->>   arch/riscv/include/asm/hwcap.h      |  1 +
->>   arch/riscv/include/asm/pgtable-64.h |  8 ++++++++
->>   arch/riscv/kernel/cpufeature.c      |  8 ++++++++
->>   arch/riscv/mm/pgtable.c             |  7 +++++++
->>   5 files changed, 36 insertions(+)
+>>   arch/riscv/include/asm/errata_list.h | 17 +++++++++++++++--
+>>   arch/riscv/include/asm/pgtable-64.h  |  9 ++++++++-
+>>   2 files changed, 23 insertions(+), 3 deletions(-)
 >>
->> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
->> index 6b39f37f769a2..f2b4da6a3deb1 100644
->> --- a/arch/riscv/Kconfig
->> +++ b/arch/riscv/Kconfig
->> @@ -893,6 +893,18 @@ config TOOLCHAIN_NEEDS_OLD_ISA_SPEC
->>   	  versions of clang and GCC to be passed to GAS, which has the same result
->>   	  as passing zicsr and zifencei to -march.
+>> diff --git a/arch/riscv/include/asm/errata_list.h b/arch/riscv/include/asm/errata_list.h
+>> index 6694b5ccdcf85..ba0f3d4dd0cbb 100644
+>> --- a/arch/riscv/include/asm/errata_list.h
+>> +++ b/arch/riscv/include/asm/errata_list.h
+>> @@ -53,6 +53,16 @@ asm(ALTERNATIVE(	\
+>>   	: /* no inputs */	\
+>>   	: "memory")
 >>   
->> +config RISCV_ISA_XPBMTUC
->> +	bool "Support XPbmtUC (customized pbmt uncache bit)"
->> +	depends on 64BIT && MMU
->> +	depends on RISCV_ALTERNATIVE
->> +	default n
->> +	select DMA_DIRECT_REMAP
->> +	help
->> +	  Add support for "riscv,xpbmt-uncache-bit" device-tree property.
->> +	  The bit denotes the bit in PTE that marks the page as uncached.
+>> +#ifdef CONFIG_64BIT
+>> +#define ALT_PAGE_CUST_BIT(_bit)						\
+>> +asm(ALTERNATIVE("li %0, 0\t\nnop",					\
+>> +		"1: auipc %0, %%pcrel_hi(riscv_xpbmtuc_mask)\t\n"	\
+>> +		      "ld %0, %%pcrel_lo(1b)(%0)", 0,			\
+>> +			RISCV_ISA_EXT_XPBMTUC,				\
+>> +			CONFIG_RISCV_ISA_XPBMTUC)			\
+>> +		: "=r"(_bit))
+>> +#endif
 >> +
->> +	  If you don't know what to do here, say N.
->> +
->>   config FPU
->>   	bool "FPU support"
->>   	default y
->> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
->> index 4369a23385413..6baa6566cf4cc 100644
->> --- a/arch/riscv/include/asm/hwcap.h
->> +++ b/arch/riscv/include/asm/hwcap.h
->> @@ -111,6 +111,7 @@
->>   #define RISCV_ISA_EXT_ZILSD		102
->>   #define RISCV_ISA_EXT_ZCLSD		103
->>   
->> +#define RISCV_ISA_EXT_XPBMTUC		126
->>   #define RISCV_ISA_EXT_XLINUXENVCFG	127
->>   
->>   #define RISCV_ISA_EXT_MAX		128
+>>   /*
+>>    * _val is marked as "will be overwritten", so need to set it to 0
+>>    * in the default case.
+>> @@ -60,11 +70,14 @@ asm(ALTERNATIVE(	\
+>>   #define ALT_SVPBMT_SHIFT 61
+>>   #define ALT_THEAD_MAE_SHIFT 59
+>>   #define ALT_SVPBMT(_val, prot)						\
+>> -asm(ALTERNATIVE_2("li %0, 0\t\nnop",					\
+>> +asm(ALTERNATIVE_3("li %0, 0\t\nnop",					\
+>>   		  "li %0, %1\t\nslli %0,%0,%3", 0,			\
+>>   			RISCV_ISA_EXT_SVPBMT, CONFIG_RISCV_ISA_SVPBMT,	\
+>>   		  "li %0, %2\t\nslli %0,%0,%4", THEAD_VENDOR_ID,	\
+>> -			ERRATA_THEAD_MAE, CONFIG_ERRATA_THEAD_MAE)	\
+>> +			ERRATA_THEAD_MAE, CONFIG_ERRATA_THEAD_MAE,	\
+>> +		  "1: auipc %0, %%pcrel_hi(riscv_xpbmtuc_mask)\t\n"	\
+>> +			"ld %0, %%pcrel_lo(1b)(%0)", 0,			\
+>> +			RISCV_ISA_EXT_XPBMTUC, XPBMTUC_HAS##prot)	\
+>>   		: "=r"(_val)						\
+>>   		: "I"(prot##_SVPBMT >> ALT_SVPBMT_SHIFT),		\
+>>   		  "I"(prot##_THEAD >> ALT_THEAD_MAE_SHIFT),		\
 >> diff --git a/arch/riscv/include/asm/pgtable-64.h b/arch/riscv/include/asm/pgtable-64.h
->> index 6e789fa58514c..1a6d04884111d 100644
+>> index 1a6d04884111d..aab6990d92238 100644
 >> --- a/arch/riscv/include/asm/pgtable-64.h
 >> +++ b/arch/riscv/include/asm/pgtable-64.h
->> @@ -140,6 +140,14 @@ enum napot_cont_order {
->>   #define _PAGE_IO_THEAD		((1UL << 63) | (1UL << 60))
->>   #define _PAGE_MTMASK_THEAD	(_PAGE_PMA_THEAD | _PAGE_IO_THEAD | (1UL << 59))
+>> @@ -76,7 +76,14 @@ typedef struct {
+>>    * | 63 | 62 61 | 60 54 | 53  10 | 9             8 | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0
+>>    *   N      MT     RSV    PFN      reserved for SW   D   A   G   U   X   W   R   V
+>>    */
+>> -#define _PAGE_PFN_MASK  GENMASK(53, 10)
+>> +static inline u64 riscv_pfn_mask(void)
+>> +{
+>> +	u64 cust_bit;
+>> +
+>> +	ALT_PAGE_CUST_BIT(cust_bit);
+>> +	return GENMASK(53, 10) ^ cust_bit;
+>> +}
+>> +#define _PAGE_PFN_MASK  riscv_pfn_mask()
 >>   
->> +#ifdef CONFIG_RISCV_ISA_XPBMTUC
->> +extern int riscv_xpbmtuc_bit;
->> +extern u64 riscv_xpbmtuc_mask;
->> +#endif
->> +
->> +#define XPBMTUC_HAS_PAGE_NOCACHE CONFIG_RISCV_ISA_XPBMTUC
->> +#define XPBMTUC_HAS_PAGE_MTMASK  CONFIG_RISCV_ISA_XPBMTUC
->> +
->>   static inline u64 riscv_page_mtmask(void)
->>   {
->>   	u64 val;
->> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
->> index fa591aff9d335..faec169004b4a 100644
->> --- a/arch/riscv/kernel/cpufeature.c
->> +++ b/arch/riscv/kernel/cpufeature.c
->> @@ -1118,6 +1118,14 @@ void __init riscv_fill_hwcap(void)
->>   		riscv_v_setup_vsize();
->>   	}
->>   
->> +#ifdef CONFIG_RISCV_ISA_XPBMTUC
-> 
-> Code like this needs to be unconditionally compiled.
-> 
->> +	if (!of_property_read_u32(of_root, "riscv,xpbmt-uncache-bit",
->> +				  &riscv_xpbmtuc_bit)) {
->> +		riscv_xpbmtuc_mask = 1UL << riscv_xpbmtuc_bit;
->> +		set_bit(RISCV_ISA_EXT_XPBMTUC, riscv_isa);
->> +		pr_info("Using XPbmtUC bit=%d\n", riscv_xpbmtuc_bit);
->> +	}
->> +#endif
->>   	memset(print_str, 0, sizeof(print_str));
->>   	for (i = 0, j = 0; i < NUM_ALPHA_EXTS; i++)
->>   		if (riscv_isa[0] & BIT_MASK(i))
->> diff --git a/arch/riscv/mm/pgtable.c b/arch/riscv/mm/pgtable.c
->> index 807c0a0de1827..4ca442bc8595d 100644
->> --- a/arch/riscv/mm/pgtable.c
->> +++ b/arch/riscv/mm/pgtable.c
->> @@ -5,6 +5,13 @@
->>   #include <linux/kernel.h>
->>   #include <linux/pgtable.h>
->>   
->> +#ifdef CONFIG_RISCV_ISA_XPBMTUC
->> +int riscv_xpbmtuc_bit;
->> +
->> +u64 riscv_xpbmtuc_mask;
->> +EXPORT_SYMBOL(riscv_xpbmtuc_mask);
->> +#endif
->> +
->>   int ptep_set_access_flags(struct vm_area_struct *vma,
->>   			  unsigned long address, pte_t *ptep,
->>   			  pte_t entry, int dirty)
+>>   /*
+>>    * [63] Svnapot definitions:
 >> -- 
 >> 2.34.1
 >>
