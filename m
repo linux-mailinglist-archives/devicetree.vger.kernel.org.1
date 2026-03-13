@@ -1,437 +1,299 @@
-Return-Path: <devicetree+bounces-275463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275461-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YAJuAt9FtGk4kAAAu9opvQ
-	(envelope-from <devicetree+bounces-275463-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:14:07 +0100
+	id WKUWN9JFtGk4kAAAu9opvQ
+	(envelope-from <devicetree+bounces-275461-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:13:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3377287EBE
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:14:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81403287EB3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 18:13:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 56E2C302650A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:14:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 60AAC3016EC6
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 17:08:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B788B1D86FF;
-	Fri, 13 Mar 2026 17:14:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BC483C552B;
+	Fri, 13 Mar 2026 17:08:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="WzdSk1mR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from eu-smtp-delivery-101.mimecast.com (eu-smtp-delivery-101.mimecast.com [185.58.86.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E8A535FF6C
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 17:14:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.58.86.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BD7E35F5FD
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 17:08:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773422045; cv=none; b=HqAh1kJ3MwGzpRzIHxS4+eXxgo0cUqeky+jCItPRTg6lY5jhJbuFCBPIJJyZMu8M13IVy6G4gnH78KC+fnQIJLsbcHNhj4WJjX8HpmeckHbCRDaBpF0A5f7TGoa0ym+1vQ/Lh/W4mECnouoLx/QDfqQxQAL4AQsLmyqqP6ilN3E=
+	t=1773421715; cv=none; b=NcWYHllogg4StKf590qW0ukL0xWSc0EN98M8g7vtvZeCUYDRVCEY7wxmhDx+uH2h8hvDWYu7vGtK9nT+FfRAWj9CD0Zdd3iartT5QQD36L/t29cCpDYbUWlWD8lg5NDhaQn00S6wzT82N0dOZPZWjU12CiGERw8x1PWI8igN62M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773422045; c=relaxed/simple;
-	bh=Lo39Kw5SuT58RJSgUxlVy8iyavm87UqFbDcKrqeQRw0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:MIME-Version:
-	 Content-Type:Content-Disposition; b=VBkA2wntWrixheU6HgmWB9mO6XtAwqxau9Ur+wjZs7M0HwvXSfKpTGR+xslIjrsJAOXcG0ZRyKOW5vBz8ObrfXIXJXybxufaSI4P7rMh0Sudo9eKjVjSOPcSTL+GGtCGDE9OGGi5SMrTpSZDtTJZRyCX+7kOIcW45Kp1BuwLcOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=touchnetix.com; spf=pass smtp.mailfrom=touchnetix.com; arc=none smtp.client-ip=185.58.86.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=touchnetix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=touchnetix.com
-Received: from LO0P265CU003.outbound.protection.outlook.com
- (mail-uksouthazon11022074.outbound.protection.outlook.com [52.101.96.74])
- by relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id uk-mta-196-tWMjkSvoOj-wBFuxmgA8BQ-1; Fri,
- 13 Mar 2026 17:07:20 +0000
-X-MC-Unique: tWMjkSvoOj-wBFuxmgA8BQ-1
-X-Mimecast-MFC-AGG-ID: tWMjkSvoOj-wBFuxmgA8BQ_1773421639
-Received: from LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:e9::9) by
- LO8P123MB7704.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:3d7::10) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.15; Fri, 13 Mar 2026 17:07:07 +0000
-Received: from LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM
- ([fe80::72a0:d7fe:5595:514b]) by LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM
- ([fe80::72a0:d7fe:5595:514b%2]) with mapi id 15.20.9700.017; Fri, 13 Mar 2026
- 17:07:13 +0000
-Date: Fri, 13 Mar 2026 17:07:16 +0000
-From: Andrew Thomas <andrew.thomas@touchnetix.com>
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Luis Chamberlain <mcgrof@kernel.org>, 
-	Russ Weight <russ.weight@linux.dev>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Kamel Bouhara <kamel.bouhara@bootlin.com>, Marco Felsch <kernel@pengutronix.de>, 
-	Henrik Rydberg <rydberg@bitmath.org>, Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH v6 4/4] Input: Add TouchNetix aXiom I2C Touchscreen
- support
-Message-ID: <rnbwxsdiwjojk7354c6k4us6xxl3qpbyt2lrbhgqz77avrdwga@tqb6voucuysi>
-In-Reply-To: <20260303-v6-10-topic-touchscreen-axiom-v6-4-8ac755add12b@pengutronix.de>
-X-ClientProxiedBy: LO2P265CA0328.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:a4::28) To LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:e9::9)
+	s=arc-20240116; t=1773421715; c=relaxed/simple;
+	bh=na5aIQmd51a6vTVSTeVTzISuG98aQ2mjt0ZNjgjSa4M=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=pzayXr04xfwBWRCG8x3SkeYkfOZ6yTc89bFvnADcQBcek2NI65jVSFTSoxPbxROA8Rqnf4eKYGmtcRWlyz2CjmkexNffiaj0426X4tCiKriZaPWyIgxcePlVBdmINcFF6K+crNW3OtcQC05bVyyVTy2adcWvfVoRhFFerRIqpG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=WzdSk1mR; arc=none smtp.client-ip=209.85.222.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-8cd78a4ce8dso321445885a.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 10:08:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1773421712; x=1774026512; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=q2wUEHO95agDl9HgpTnHWh4fawNLMxRmnfJlPuyaoJY=;
+        b=WzdSk1mRSe4L1cDGWT8I7i8ZnAHVbDgiDCtkOsUbizgieDi/uHO8Dyb1XIdczqlaJg
+         m0pD9LIJ4Zg9onbtQdH49fv5Y4WLgre/e7Z9xU9rLPwkUUY3XpDD9h1f4sOWcCbBoV7V
+         V3wJTLCW5Xy7Yc3LACf8lDYXmvtDIcXVfk4OvW2+LNH9QKssMWW1th1FnXqUILQu3M8+
+         ZrqWpwN1XLxtJ/e8a5WgZzYcJJBFgfV+haZG2FLckxGStVisoZ7Sw5vDpkfO4pd2yIv9
+         Tntnw347t7xwzaIxArnuKbFn0nBZxV6YIp+Voxsl1OoiYepJhCN9yGHwPeRWgO93mZDB
+         TDNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773421712; x=1774026512;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=q2wUEHO95agDl9HgpTnHWh4fawNLMxRmnfJlPuyaoJY=;
+        b=gM4HjlWKcf4Lm7r+P7YfdBBTj8r+ZGb4hEdW9gAym2fU8qayTJz9xaAn/VByacYWhn
+         O/vJn4Vp7y6diyOjfsZsrkb/gfOo56RWC0bDEazyPTITOvVyLHeOVUUG+EqfnKmXcfe5
+         OqwuWXETMqa7Z+sOP4rWD5kpKkMUFFk79FmcY/LlBlNYNeQPbgIhZ7u5cQp/DoYgj58k
+         qUoPz08MXkKSio+rkGix5kc/iBOMZTZiIxHvJCo63eW+c/zXnRoyP2gDalzJWllIbvNy
+         61L3a9yCuRg13680xWiXLQSqMAEEa3ofUbWaKgjsFhndU22siK9LtWWTF6TQ/VK9sxpu
+         tEOw==
+X-Forwarded-Encrypted: i=1; AJvYcCUzDlnc8dj0GEKoA3zpoi6O4lj+YuodNz180B9p3TlJxTTCz3y5nxijm/qUlDO2znpXyBahxjaKPuVb@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYn9mPqyIDLRGrujUxCQXzcN/O6VQXVeR7yLXvOyI/niLEYIGW
+	2iBkJRjkDcTC+jqQmxKKEgnzDWsICT/Av2q+n/05ic6Fbl5UtL8TxgshtJ0Nh6p8C70=
+X-Gm-Gg: ATEYQzz8tZmmGHuWonW9mud6TT0dWSeE2TcRffznupWpvG4O81jwsA6MBsezk/3Tb56
+	W0vQaGE4vj/8WAmmBvBAoMBSDxyt+HdFcbRLbnffK9d0nWlDgycSDfWKeqIzVAeMKpyKM9+h665
+	DHO1u5VnO5yU1uRCvu9JV6YPi0UqjChIF+VGax8c/Gfj+4OtjVCjrComx+OBGxnX6G+l1q1EdH5
+	1Q7zL9s+urJ7AGWLnFAeOlP2RuSYgFNsNDm9MRUD5ZkCbaMW6dF5fYSetBb9AD/jHSZ7fjt21y7
+	Ips1d+juG03TD1J46d9Ap+L/hnPKkVNi5PN0ELtUG1oE5owVsO3fQDuA9GTJap18qQ7AU2A/eq8
+	wh9u/mUjzO1zilgamuijxHTgXM6r99yLCi4jOR3gvLqZJuT8kXJzVY0zLHTulDnMsg068iJ1JtV
+	aemUpruI4JSh/b15SfmwbyWvDtXjhTNImu9sqWW2U1HhPNM8/NPJ/Q7Q8WQ3tg0945rRBtulZgS
+	VbE
+X-Received: by 2002:a05:620a:1a19:b0:8cd:90d5:92c with SMTP id af79cd13be357-8cdb59fe41amr594805385a.12.1773421712407;
+        Fri, 13 Mar 2026 10:08:32 -0700 (PDT)
+Received: from ?IPV6:2001:1970:3847:e000:4c82:63a9:39e9:5c17? ([2001:1970:3847:e000:4c82:63a9:39e9:5c17])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8cda1fda2c6sm583719685a.13.2026.03.13.10.08.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Mar 2026 10:08:31 -0700 (PDT)
+Message-ID: <b3fa0aef-8efc-4c5a-8c9e-ee319b3cb0e2@baylibre.com>
+Date: Fri, 13 Mar 2026 13:08:29 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LOYP123MB2701:EE_|LO8P123MB7704:EE_
-X-MS-Office365-Filtering-Correlation-Id: 93992942-1f29-4b81-245a-08de8122f8ad
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024|7053199007|18002099003|56012099003|22082099003
-X-Microsoft-Antispam-Message-Info: 0k8R05hujJl5qa1EGVHxhI+U/1OD5558kgqCXZxX636BKsgIZsMK+DXGQi56X9GoWeu5oTWTbRuy+Es0UYOpY82eLpf/cdVJBzeCEw6BcMIMeSkgJYHdlgNiRLQ442T5c9BaTjMmRYv7R9Dm3w0B8LQ0CWN+KSulSy4QS118wFdh40IqxlQW2acPiLoYLvSBC3q13goOVWJ6SKkibPte4SksTID3nEGRUzWCgymUByxUDpuVwBrAD1z5oZrRNnMV37LJqOUm3CoqaYS/kTAIz2/l+kQCk0cPncviEJlOT99ja09ITcvIEaeTvZdhIGCq82DgTFHdTJ1Fcj4tnC8RoEfP+R9qqjS1R/tUKSICvqj1ubUDjXauFHgshdbtL+OKwfqzkCvIAEaUa6yZqwFd+mhI10HXG5Wl5Whp2+D0RSpBG5HnsU7PIFxjfrwK1rybM0PuYtUALQQ8MQIGITFP/O3ksIUrJvJVkFUPyQT2k0sgDvLW+xDLldnwM0egM/2nmvcrCl46IinV7kOqH9gjE3sRVpsXJ8OeWi+UmsXYdsIur93J9d0/VtsQFVQNDLe7vYnjncRk2RZAIEOCzx1xg46PjU0y3LbqYG3qPRTc5LzcI3uM3uhZCGBBuuQffvRmtTyi7Lb4s7Ysw9YMwFRKtTa17Z/T0ZObA/ARK0CLP9Kk1wuAmrcVW+e+zHjjYGbjGK5mfa6UP/af1alh6St4etddo2cOgtiIF5k9IkjScyY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(7053199007)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1102
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QmF3MHBzS0MwQTJFdG5BVXhUSk9qcUdRbElTK0JFcUVoejROaUFpamhKTFVB?=
- =?utf-8?B?c3M2N25Rdi93U0VmK1VoQzdkWWYyRFgreEFIeVQxVzArclFta2lIc0RLNzZs?=
- =?utf-8?B?ekNPdHlrbVdlNUUvNCtDYUw2ZDRqSWdMRWpEZUFZZVVoVzQreVBFdE05R3Ft?=
- =?utf-8?B?ZXJFTTRORzF0V2R5b1gzaEc4QkVLR2tocGtudmRUU3haRlFtK3gxOVJMUWs1?=
- =?utf-8?B?WkVaZC80eGVlbWYrelpCOTc2M3VBYmQrcTR6Ry9rc3lnQmtrUEMxVWdUWVFo?=
- =?utf-8?B?dENGQ0dVSUsxR0dHUFpVMmRGUjFLbmZqV0hyOW1NQm5HN0c4dms2ZDYxeXQy?=
- =?utf-8?B?dE5hOU50bzd2TWxZOUdvNHJOVk8zK0pCMTVTUlFEZ2RCanZGRVpQcnNYbXNP?=
- =?utf-8?B?REpiVjFER1ZvVW1Vd2VMUnF3a3NnOW1uM1dNVG9KY0tQZFFWNXlXSTZBd3dz?=
- =?utf-8?B?VlpHMzZhVURtY1VhV3hNS1pPcHdmSUwvcElaRTcralNrMlhRMllSUE0rWUlB?=
- =?utf-8?B?UVhIWDJoV3pXOVNVM05mYnlnaXVWUVZOQ0p0WFlWWnk0MFJTNHdNOFJHRXlB?=
- =?utf-8?B?VlFNU0lDYlFBSnZ4RDY3WnR1Skd2dDYvWmVrSkhhTEZPbFlDS1dYWlorblFa?=
- =?utf-8?B?eDMzK0pjUCtGc3RhQUhXM3NiR05WaHBYd3FSL1VoSW9IWFdYQk5xai8yVEJ4?=
- =?utf-8?B?ZXdXUmFiRjVBSkJUREVONVNXaHhZRVhpMUthR2Y0UVRsTTlyM3d4L3VIZzU1?=
- =?utf-8?B?bUxsMnlKa0owNS9mbExVUWZxV3pVK2w5eVRyNkp6NEhVVldreXh1WE8xclRK?=
- =?utf-8?B?NFpib3RGSjREMVQ0ME40NDF6dkFKYWd4N1E0SERsbWIxWXhPOFhkaE9MWFdJ?=
- =?utf-8?B?UmdVUmNpdGhlVldjQndOaHdiZUk5RTFFNVh2MmJPVE41cnN3VVFJNTFoMUZI?=
- =?utf-8?B?VitOb1lOZ3JIclVHV2MrRmVQbkRUUFU0aFRZdDI3eWZGc3JieldCVkYzTXZ6?=
- =?utf-8?B?My9IbFRsWWFraG1xWUxOQThYQVI4eE85emR0SnNlZ1hkUFBSVzFIMEtEaFR6?=
- =?utf-8?B?ZS94dFZYU3lpSklQMnp3NmtZSUdLa2syZ1E3SmVPODlWQmhSVGl0dHZsaGxo?=
- =?utf-8?B?cUc0c0o3UzY5S1Bldlc0RVgyemdGbE1BTXQ5QjdoeXZoVzNmMngxbnVZQ0FS?=
- =?utf-8?B?QTM3enE5ZlpJbzlrWmNuUnhtbnNrbEJ4YlV5ZURDZTdDUDFRN2IyYXRTRTNT?=
- =?utf-8?B?RjNFd0tPbFg2NFlmWEJNOXBKbU51VWJOUEpHWHU4a1dONzRTMjBEWWZNNTg4?=
- =?utf-8?B?SVBQeUNKajV6REFPT0orNDBzWk5DYVdTZjF0SEtodEVRRjd2d2VkRnB5UDJi?=
- =?utf-8?B?NlNlWEFMS0RRd2Q1enNRbVd1MGxqc1VuQ0l4cGxsUktRS0hScUt5djV2SG5m?=
- =?utf-8?B?ZS9OTmg5bjJvd3h5TDNRZlpzdDhKQ0hUbmF2VVNGZzRTMDAxN3RmaW5qaytF?=
- =?utf-8?B?K1VCRlN0MGQ4dzRLeXF3NFc0d2ZBckljcFFjV2ZXaHM4VlhacFhzRzhML05W?=
- =?utf-8?B?RG1CTkw1eDV1akNaZzE5eEozS2piZi80emIzUVVHcGdpZDArRW5VT0ltMFBF?=
- =?utf-8?B?WmNPemxJRXQwYnRSWXNYeFZiYkI1TUE3Y2J4cXV3NG9IVjY1NWxnUkFnYklt?=
- =?utf-8?B?QkNvUzdWVGlGNjMvZndBdTRvb3RRV2c2UVpqK1RRc1FjK0tIb0VxNCs2NG9h?=
- =?utf-8?B?dG1PRHZqRXNjazlqdHZ2NTY4WkU4T0NEaDhPNmUzR0hPaXVvSDJ6enIvUFk0?=
- =?utf-8?B?NEIxUFVBYjh4NzJTYTBqbHEyL0MvL2VIUjEvOG05MTZpZHJGUTlpbnJjYm5z?=
- =?utf-8?B?bGU4ZnVNVy9QZU1YY0ZHVzc2aG1OSEtUQUxYdEJOWWhoYnJ2c3VGNk15ZnRB?=
- =?utf-8?B?K29nbUFDa2FjZFpYcnlsZGtRdEx5Q1lpRnliT0VyQW1aeUVkcUlmdk5jdUU2?=
- =?utf-8?B?TFJPTmh1czdGbUs4eklXcXR6bmlsTkNoejdQbGNIMTBOeHZobVBTVTJJSzh0?=
- =?utf-8?B?YnNicEhHTUxQSTh5cXRVb0wxQWFtT2cwVlM0dG1GVktQQkZPZk9obXJJVlBs?=
- =?utf-8?B?cThhWnNsUkR4ZlVCdUkyb0taajhFV25FamQ1UXlydklhWlJiNmZwOFpFbkFG?=
- =?utf-8?B?NHlxY08rRGpUckVoS3NJckFiVjA3RWtjbnFQcTdwcWJrUk9yZk9FWWwrbkpz?=
- =?utf-8?B?TDlIUWdaelFkc3owTHVPL0VLZ0JjeFZyRTZ1RE83YzQ0ZzZ6UFhZNVZCajF1?=
- =?utf-8?B?VmJQKzlyTFBQVDF1QktENS91eE5sYm9yOHZRYkwweXFudUtBMHp0RXhoTS9S?=
- =?utf-8?Q?JHu7uHKuwCwmc3c8=3D?=
-X-Exchange-RoutingPolicyChecked: GSFkg4reG1YATI2GkT/+3FZpsBiEbypdWLRK4Uzu/w77Ni4SIT7FGaqL2AtLOrO3uMz+xplNh1jdI/kz4XYCw+YE3EKQiGYuJlkePr/at/XaoZ7u5bloPa9o5xE8NRYW7YXDSATaBkq/8jl41G+434V4Giu2B5il5NZw3YQlndQyhFsuDkT4la39CTE/NwXFpU4zop7uQa3yC9CZJdyiUSPVc/G5jzcoqnQsjfuoRMYRDuoWZ5ETdP1ejt+hsZDaz9bpKR62GdvcxyekuKDRDPLAVWLLZxfnbm+/pOVRfRfw8zp4IhLu6MWJ9A5C5WHEawrk4RSR2BghwloJgqFWgQ==
-X-OriginatorOrg: touchnetix.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 93992942-1f29-4b81-245a-08de8122f8ad
-X-MS-Exchange-CrossTenant-AuthSource: LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 17:07:13.5977
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 120474da-7cc3-44b9-aff9-438a33341070
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Lrn2fCzkYxvh2Pt+UrlWYzf75+RMQKTqiPMdrnGouEQsMJgbsePSnx3JLWlmWjtBMZqsVe9fwfygt7c8maNggW2ED0Mgf1lwH+atpPd8Hgo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO8P123MB7704
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: yiAn6CLQGWHgdxSAC10blBQLxYgAjEOv4W_sbgPtCZs_1773421639
-X-Mimecast-Originator: touchnetix.com
-Content-Type: text/plain; charset=UTF-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [0.54 / 15.00];
+User-Agent: Mozilla Thunderbird
+From: Trevor Gamblin <tgamblin@baylibre.com>
+Subject: Re: [PATCH v2 7/7] riscv: dts: spacemit: k1-orangepi-rv2: add SD card
+ support with UHS modes
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Iker Pedrosa <ikerpedrosam@gmail.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>,
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+ Yixun Lan <dlan@kernel.org>,
+ Michael Opdenacker <michael.opdenacker@rootcommit.com>,
+ Javier Martinez Canillas <javierm@redhat.com>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20260309-orangepi-sd-card-uhs-v2-0-5bb2b574df5d@gmail.com>
+ <20260309-orangepi-sd-card-uhs-v2-7-5bb2b574df5d@gmail.com>
+ <f2eeddcb-712f-4a67-9687-e217f46f9ea8@baylibre.com>
+ <CANAwSgSjsn46p13LokjYZBLdOrUBTFsmDNf80TG=nvkqHWNkfQ@mail.gmail.com>
+Content-Language: en-US
+In-Reply-To: <CANAwSgSjsn46p13LokjYZBLdOrUBTFsmDNf80TG=nvkqHWNkfQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275463-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-275461-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[touchnetix.com];
-	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FREEMAIL_CC(0.00)[kernel.org,linux.dev,linuxfoundation.org,linux-foundation.org,gmail.com,bootlin.com,pengutronix.de,bitmath.org,vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew.thomas@touchnetix.com,devicetree@vger.kernel.org];
+	DMARC_NA(0.00)[baylibre.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,linaro.org,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tgamblin@baylibre.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E3377287EBE
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre-com.20230601.gappssmtp.com:dkim,baylibre.com:email,baylibre.com:mid]
+X-Rspamd-Queue-Id: 81403287EB3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 03, 2026 at 11:41:22PM +0100, Marco Felsch wrote:
->This adds the initial support for the TouchNetix AX54A touchcontroller
->which is part of TouchNetix's aXiom touchscreen controller family.
+
+On 2026-03-13 10:42, Anand Moon wrote:
+> Hi Trevor,
 >
->The TouchNetix aXiom family provides two physical interfaces: SPI and
->I2C. This patch covers only the I2C interface.
+> On Fri, 13 Mar 2026 at 19:26, Trevor Gamblin<tgamblin@baylibre.com> wrote:
+>> On 2026-03-09 07:40, Iker Pedrosa wrote:
+>>> Add complete SD card controller support with UHS high-speed modes.
+>>>
+>>> - Enable sdhci0 controller with 4-bit bus width
+>>> - Configure card detect GPIO with inversion
+>>> - Connect vmmc-supply to buck4 for 3.3V card power
+>>> - Connect vqmmc-supply to aldo1 for 1.8V/3.3V I/O switching
+>>> - Add dual pinctrl states for voltage-dependent pin configuration
+>>> - Support UHS-I SDR25, SDR50, and SDR104 modes
+>>>
+>>> This enables full SD card functionality including high-speed UHS modes
+>>> for improved performance.
+>>>
+>>> Signed-off-by: Iker Pedrosa<ikerpedrosam@gmail.com>
+>>> ---
+>>>    arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts | 19 +++++++++++++++++++
+>>>    1 file changed, 19 insertions(+)
+>>>
+>>> diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+>>> index 414b03f5e6480f05f5d7eeaaa0afb4e86425ae36..361135269801f436703b6f1d768c91325a52f07f 100644
+>>> --- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+>>> +++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+>>> @@ -140,3 +140,22 @@ sd_vqmmc: aldo1 {
+>>>                };
+>>>        };
+>>>    };
+>>> +
+>>> +&sdhci0 {
+>>> +     pinctrl-names = "default", "state_uhs";
+>>> +     pinctrl-0 = <&mmc1_cfg>;
+>>> +     pinctrl-1 = <&mmc1_uhs_cfg>;
+>>> +     bus-width = <4>;
+>>> +     cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
+>>> +     cd-inverted;
+>>> +     no-mmc;
+>>> +     no-sdio;
+>>> +     disable-wp;
+>>> +     cap-sd-highspeed;
+>>> +     vmmc-supply = <&sd_vmmc>;
+>>> +     vqmmc-supply = <&sd_vqmmc>;
+>>> +     sd-uhs-sdr25;
+>>> +     sd-uhs-sdr50;
+>>> +     sd-uhs-sdr104;
+>>> +     status = "okay";
+>>> +};
+>>>
+>> Hello again,
+>>
+>> Thanks for doing this work. My colleagues and I have been testing this
+>> on an OrangePi RV2, and also a Muse Pi Pro board (making a similar tweak
+>> to this patch in k1-musepi-pro.dts). To do the testing on my end, I'm
+>> applying the patch series on top of 6.19 in a Yocto BSP.
+>>
+>> I've been finding that I see issues with the UHS support on my side
+>> (this log comes from an image built and flashed to an SD card):
+>>
+>>
+>> [ 1.072417] sdhci-spacemit d4280000.mmc: Got CD GPIO
+>> [ 1.109741] mmc0: SDHCI controller on d4280000.mmc [d4280000.mmc] using
+>> ADMA
+>> [ 1.114589] clk: Disabling unused clocks
+>> [ 1.118421] PM: genpd: Disabling unused power domains
+>> [ 1.123249] ALSA device list:
+>> [ 1.126[ 1.129949] check access for rdinit=/init failed: -2, ignoring
+>> [ 1.133284] Waiting for root device
+>> PARTUUID=e94bfdd7-a36f-4315-a480-476e2a12403d...
+>> [ 1.176569] mmc0: new UHS-I speed DDR50 SDHC card at address aaaa
+>> [ 1.180732] mmcblk0: mmc0:aaaa SS16G 14.8 GiB
+>> [ 1.276268] mmcblk0: recovery failed!
+>> [ 1.277351] I/O error, dev mmcblk0, sector 0 op 0x0:(READ) flags
+>> 0x800000 phys_seg 1 prio class 2
+>> [ 1.286346] Buffer I/O error on dev mmcblk0, logical block 0, async page
+>> read
+>> [ 1.293891] mmcblk0: recovery failed!
+>> [ 1.297289] I/O error, dev mmcblk0, sector 0 op 0x0:(READ) flags
+>> 0x800000 phys_seg 1 prio class 2
+>> [ 1.306269] Buffer I/O error on dev mmcblk0, logical block 0, async page
+>> read
+>> [ 1.313522] mmcblk0: unable to read partition table
+>>
+>>
+>> At first I wondered if maybe there was an issue with the card itself,
+>> but by changing the sdhci0 section to this, I'm able to read the SD just
+>> fine:
+>>
+> I used the same example on the K1-OrangePi-RV2 DTS,
+> But it’s slightly different from the one you’re working with.
+> I tested on the latest  7.0-rc3.
 >
->Apart the input event handling the driver supports firmware updates too.
->One firmware interface handles the touchcontroller firmware (AXFW)
->update the other handles the touchcontroller configuration (TH2CFGBIN)
->update.
+>> &sdhci0 {
+>>            pinctrl-names = "default";
+>>            pinctrl-0 = <&mmc1_cfg>;
+>>            bus-width = <4>;
+>>            cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
+>>            cd-inverted;
+>>            no-mmc;
+>>            no-sdio;
+>>            disable-wp;
+>>            vmmc-supply = <&sd_vmmc>;
+>>            vqmmc-supply = <&sd_vqmmc>;
+>>            no-1-8-v;
+>>            status = "okay";
+>> };
+>>
+> +
+> +&sdhci0 {
+> +       pinctrl-names = "default", "state_uhs";
+> +       pinctrl-0 = <&mmc1_cfg>;
+> +       pinctrl-1 = <&mmc1_uhs_cfg>;
+> +       bus-width = <4>;
+> +       cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
+> +       cd-inverted;
+> +       no-mmc;
+> +       no-sdio;
+> +       disable-wp;
+> +       cap-sd-highspeed;
+> +       vmmc-supply = <&sd_vmmc>;
+> +       vqmmc-supply = <&sd_vqmmc>;
+> +       sd-uhs-sdr25;
+> +       sd-uhs-sdr50;
+> +       sd-uhs-sdr104;
+> +       status = "okay";
+> +};
 >
->Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
->---
-> .../testing/sysfs-driver-input-touchnetix-axiom    |   80 +
-> drivers/input/touchscreen/Kconfig                  |   17 +
-> drivers/input/touchscreen/Makefile                 |    1 +
-> drivers/input/touchscreen/touchnetix_axiom.c       | 3084 +++++++++++++++=
-+++++
-> 4 files changed, 3182 insertions(+)
->
->diff --git a/Documentation/ABI/testing/sysfs-driver-input-touchnetix-axiom=
- b/Documentation/ABI/testing/sysfs-driver-input-touchnetix-axiom
->new file mode 100644
->index 0000000000000000000000000000000000000000..8262673630557bf1e595a97ec2=
-3e66c1c5370f71
->--- /dev/null
->+++ b/Documentation/ABI/testing/sysfs-driver-input-touchnetix-axiom
->@@ -0,0 +1,80 @@
->+What:=09=09/sys/bus/i2c/devices/xxx/fw_major
->+Date:=09=09Jan 2026
->+Contact:=09linux-input@vger.kernel.org
->+Description:
->+=09=09Reports the firmware major version provided by the touchscreen.
->+
->+=09=09Access: Read
->+
->+=09=09Valid values: Represented as string
->+
->+What:=09=09/sys/bus/i2c/devices/xxx/fw_minor
->+Date:=09=09Jan 2026
->+Contact:=09linux-input@vger.kernel.org
->+Description:
->+=09=09Reports the firmware minor version provided by the touchscreen.
->+
->+=09=09Access: Read
->+
->+=09=09Valid values: Represented as string
->+
->+What:=09=09/sys/bus/i2c/devices/xxx/fw_rc
->+Date:=09=09Jan 2026
->+Contact:=09linux-input@vger.kernel.org
->+Description:
->+=09=09Reports the firmware release canidate version provided by the touch=
-screen.
->+
->+=09=09Access: Read
->+
->+=09=09Valid values: Represented as string
->+
->+What:=09=09/sys/bus/i2c/devices/xxx/fw_status
->+Date:=09=09Jan 2026
->+Contact:=09linux-input@vger.kernel.org
->+Description:
->+=09=09Reports the firmware status provided by the touchscreen. It may
->+=09=09be either "release" or "engineering".
->+
->+=09=09Access: Read
->+
->+=09=09Valid values: Represented as string
->+
->+What:=09=09/sys/bus/i2c/devices/xxx/fw_variant
->+Date:=09=09Jan 2026
->+Contact:=09linux-input@vger.kernel.org
->+Description:
->+=09=09Reports the firmware variant provided by the touchscreen. It may
->+=09=09be either: "0d", "2d", "3d", "force", "xl" or "unknown".
->+
->+=09=09Access: Read
->+
->+=09=09Valid values: Represented as string
->+
->+What:=09=09/sys/bus/i2c/devices/xxx/device_id
->+Date:=09=09Jan 2026
->+Contact:=09linux-input@vger.kernel.org
->+Description:
->+=09=09Reports the touchscreen device id, for example: "54" for the AX54A.
->+
->+=09=09Access: Read
->+
->+=09=09Valid values: Represented as string
->+
->+What:=09=09/sys/bus/i2c/devices/xxx/device_state
->+Date:=09=09Jan 2026
->+Contact:=09linux-input@vger.kernel.org
->+Description:
->+=09=09Reports the touchscreen device current runtime state. The
->+=09=09following values are reported:
->+
->+=09=09discovery: Device is in discovery mode.
->+=09=09tcp:  Device is in touch-control-protocol (tcp) mode. This is
->+=09=09      the normal working mode.
->+=09=09th2cfg-update: Device is in configuration update mode.
->+=09=09bootloader: Device is in bootloader mode, used for firmware
->+=09=09=09    updates.
->+=09=09unknown: Device mode is unknown.
->+
->+=09=09Access: Read
->+
->+=09=09Valid values: Represented as string
->diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen=
-/Kconfig
->index 196905162945d59e775c3e0bff6540a82842229a..9263dd79dab7e518e27af35364=
-fcebbff0ba706e 100644
->--- a/drivers/input/touchscreen/Kconfig
->+++ b/drivers/input/touchscreen/Kconfig
->@@ -806,6 +806,23 @@ config TOUCHSCREEN_MIGOR
-> =09  To compile this driver as a module, choose M here: the
-> =09  module will be called migor_ts.
->
->+config TOUCHSCREEN_TOUCHNETIX_AXIOM
->+=09tristate "TouchNetix aXiom based touchscreen controllers"
->+=09# We need to call into panel code so if DRM=3Dm, this can't be 'y'
->+=09depends on DRM || !DRM
->+=09depends on I2C
->+=09select CRC16
->+=09select CRC32
->+=09select REGMAP_I2C
->+=09help
->+=09  Say Y here if you have a axiom touchscreen connected to
->+=09  your system.
->+
->+=09  If unsure, say N.
->+
->+=09  To compile this driver as a module, choose M here: the
->+=09  module will be called touchnetix_axiom.
->+
-> config TOUCHSCREEN_TOUCHRIGHT
-> =09tristate "Touchright serial touchscreen"
-> =09select SERIO
->diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscree=
-n/Makefile
->index 97a025c6a3770fb80255246eb63c11688ebd79eb..0591cb304784699bf2a8bda204=
-461ac5f4532bb1 100644
->--- a/drivers/input/touchscreen/Makefile
->+++ b/drivers/input/touchscreen/Makefile
->@@ -88,6 +88,7 @@ obj-$(CONFIG_TOUCHSCREEN_SUR40)=09=09+=3D sur40.o
-> obj-$(CONFIG_TOUCHSCREEN_SURFACE3_SPI)=09+=3D surface3_spi.o
-> obj-$(CONFIG_TOUCHSCREEN_TI_AM335X_TSC)=09+=3D ti_am335x_tsc.o
-> obj-$(CONFIG_TOUCHSCREEN_TOUCHIT213)=09+=3D touchit213.o
->+obj-$(CONFIG_TOUCHSCREEN_TOUCHNETIX_AXIOM)=09+=3D touchnetix_axiom.o
-> obj-$(CONFIG_TOUCHSCREEN_TOUCHRIGHT)=09+=3D touchright.o
-> obj-$(CONFIG_TOUCHSCREEN_TOUCHWIN)=09+=3D touchwin.o
-> obj-$(CONFIG_TOUCHSCREEN_TS4800)=09+=3D ts4800-ts.o
->diff --git a/drivers/input/touchscreen/touchnetix_axiom.c b/drivers/input/=
-touchscreen/touchnetix_axiom.c
->new file mode 100644
->index 0000000000000000000000000000000000000000..d909b108ee24dfc5a56b0ba735=
-cb8a7882612d34
->--- /dev/null
->+++ b/drivers/input/touchscreen/touchnetix_axiom.c
->@@ -0,0 +1,3084 @@
->+// SPDX-License-Identifier: GPL-2.0-only
->+/*
->+ * TouchNetix aXiom Touchscreen Driver
->+ *
->+ * Copyright (C) 2024 Pengutronix
->+ *
->+ * Marco Felsch <kernel@pengutronix.de>
->+ */
->+
->+#include <drm/drm_panel.h>
->+#include <linux/bitfield.h>
->+#include <linux/bits.h>
->+#include <linux/completion.h>
->+#include <linux/crc16.h>
->+#include <linux/crc32.h>
->+#include <linux/delay.h>
+> Thanks
+> -Anand
+Yes, my mistake - with 7.0-rc3 it works for me:
 
-...
-
->+static int axiom_u02_enter_bootloader(struct axiom_data *ts)
->+{
->+=09struct axiom_u02_rev1_system_manager_msg msg =3D { };
->+=09struct device *dev =3D ts->dev;
->+=09unsigned int val;
->+=09int error;
->+
->+=09if (!axiom_driver_supports_usage(ts, AXIOM_U02))
->+=09=09return -EINVAL;
->+
->+=09/*
->+=09 * Enter the bootloader mode requires 3 consecutive messages so we can=
-'t
->+=09 * check for the response.
->+=09 * TODO: Check if it's required to add a delay between the consecutive
->+=09 * CMD_ENTERBOOTLOADER cmds.
->+=09 */
->+=09msg.command =3D cpu_to_le16(AXIOM_U02_REV1_CMD_ENTERBOOTLOADER);
->+=09msg.parameters[0] =3D cpu_to_le16(AXIOM_U02_REV1_PARAM0_ENTERBOOLOADER=
-_KEY1);
->+=09error =3D axiom_u02_send_msg(ts, &msg, false);
-
-As mentioned before the delay between commands is too short and the next co=
-mmand is sent
-before u02 is ready, which means the driver fails to put axiom into the boo=
-tloader.
-Have you tested with an i2c speed of 400KHz?
-All you need is to put true in above to wait for the bootloader command.
-error =3D axiom_u02_send_msg(ts, &msg, true);
-
-Just dont do it for the last command.
-
-I am not too sure why you are having issues with this, this is how we do it=
- for all our devices.
-
->+=09if (error) {
->+=09=09dev_err(dev, "Failed to send bootloader-key1: %d\n", error);
->+=09=09return error;
->+=09}
->+
->+=09msg.parameters[0] =3D cpu_to_le16(AXIOM_U02_REV1_PARAM0_ENTERBOOLOADER=
-_KEY2);
->+=09error =3D axiom_u02_send_msg(ts, &msg, false);
-
-Here also.
-
->+=09if (error) {
->+=09=09dev_err(dev, "Failed to send bootloader-key2: %d\n", error);
->+=09=09return error;
->+=09}
->+
->+=09msg.parameters[0] =3D cpu_to_le16(AXIOM_U02_REV1_PARAM0_ENTERBOOLOADER=
-_KEY3);
->+=09error =3D axiom_u02_send_msg(ts, &msg, false);
->+=09if (error) {
->+=09=09dev_err(dev, "Failed to send bootloader-key3: %d\n", error);
->+=09=09return error;
->+=09}
->+
->+=09/* Sleep before the first read to give the device time */
->+=09fsleep(250 * USEC_PER_MSEC);
->+
->+=09/* Wait till the device reports it is in bootloader mode */
->+=09error =3D regmap_read_poll_timeout(ts->regmap,
->+=09=09=09=09=09 AXIOM_U31_REV1_DEVICE_ID_HIGH_REG, val,
->+=09=09=09=09=09 FIELD_GET(AXIOM_U31_REV1_MODE_MASK, val) =3D=3D
->+=09=09=09=09=09=09AXIOM_U31_REV1_MODE_BLP,
->+=09=09=09=09=09 250 * USEC_PER_MSEC, USEC_PER_SEC);
->+=09if (error)
->+=09=09return error;
->+
->+=09return 0;
->+}
->+
-
-...
+[    1.071767] sdhci-spacemit d4280000.mmc: Got CD GPIO
+[    1.110368] mmc0: SDHCI controller on d4280000.mmc [d4280000.mmc] using ADMA
+[    1.115231] clk: Disabling unused clocks
+[    1.119072] PM: genpd: Disabling unused power domains
+[    1.123875] ALSA device list:
+[    1.1268[    1.130718] Waiting for root device PARTUUID=e94bfdd7-a36f-4315-a480-476e2a12403d...
+[    1.181158] mmc0: new UHS-I speed DDR50 SDHC card at address aaaa
+[    1.185341] mmcblk0: mmc0:aaaa SS16G 14.8 GiB
+[    1.198009] GPT:Primary header thinks Alt. header is not at the end of the disk.
+[    1.202874] GPT:1134331 != 31116287
+[    1.206388] GPT:Alternate GPT header not at the end of the disk.
+[    1.212468] GPT:1134331 != 31116287
+[    1.215993] GPT: Use GNU Parted to correct GPT errors.
+[    1.221230]  mmcblk0: p1 p2 p3
+[    1.529978] EXT4-fs (mmcblk0p3): mounted filesystem dbc76877-092e-4f8a-9f06-bf286309d8de r/w with ordered data mode. Quota mode: disabled.
+[    1.540069] VFS: Mounted root (ext4 filesystem) on device 179:3.
 
 
-Other than the above comments I have no issues with the driver.
-We can support more usages in a later patch.
+In which case:
 
-Many Thanks,
-Andrew
-
+Tested-by: Trevor Gamblin <tgamblin@baylibre.com>
 
