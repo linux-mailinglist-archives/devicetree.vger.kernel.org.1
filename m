@@ -1,185 +1,201 @@
-Return-Path: <devicetree+bounces-275293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275294-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GC5gO68YtGkihQAAu9opvQ
-	(envelope-from <devicetree+bounces-275293-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:01:19 +0100
+	id aGVUM/8YtGkihQAAu9opvQ
+	(envelope-from <devicetree+bounces-275294-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:02:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FA5828468D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:01:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 317202846F3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:02:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2FCAC3166C50
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:01:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A49E33189239
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:01:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04738320A24;
-	Fri, 13 Mar 2026 14:01:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3F09320CB1;
+	Fri, 13 Mar 2026 14:01:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="FSGfmcBH"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="g6HLMZFj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4597231F986
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 14:01:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E75D30CD92;
+	Fri, 13 Mar 2026 14:01:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773410465; cv=none; b=WlXbnB/ZDT7xNDfICxxr4ir9jhYKyXo8g8XmByLrQn4NXhEW3OwOGO+rnLyDiJO/tUs6L6tMKqV/ODqSmfrP8M35QlqZ/EquNZQ/bQwVo1jWH8wrLhF88Tk0OedxGgvD8m6md3QnMoLuUjOtG6eJdaBGlGHveAxgRkMg/gzNDgc=
+	t=1773410484; cv=none; b=o4esq5dEILuutoOyBAqaSysiqY1MZNad4vebkcMGQH6y9BhgF9QMZbA7XBc0vwO0kG0gNw8fmJbmr+X5OGRq+a7VmgCyoUqDTCtHtZSBpAlzRHEQXkXZQngo77cmEzEWygd5xSq2KfSLeievsFkomivmCZPOcSpyVqVgA7Sn7dk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773410465; c=relaxed/simple;
-	bh=X2YXoo5oelC/yO2ZVmRm/ASMJDAS7BiQnBAfPRY5clk=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=tmsM5vf3NnCAsHRRzGYhmNGGMu7hG1V8KsXK1F+8GPUuLbp5gnQuQhs+SSiwFFFow/xge63QY591LaNO88tPN06KkVlrXaKBRE2leB0At5TeABW9WCmQFPKMn6utV6qqkAo6Co/pGMtmdzxMw2thPYWmY2hm9I0UVPa7leNm2CY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=FSGfmcBH; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-6642c9254c2so945744a12.2
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 07:01:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1773410462; x=1774015262; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EhAra/BMCH0n/XOw/db/nSkVgG1PExpVOvX16LQ7Y04=;
-        b=FSGfmcBHqRtqrE7Fk18MOZx9o3FRpU7JxXWfxQoDokwxTzBwpFV3FACYRbxijp1lHw
-         HN1u8NCEBF0A+6KUT8hTJyYkr8enWR0xf3gJv+8OzxPe4ZL1TehJPSBzE//uzzFayQwv
-         vc97UoXGtsd0Qopxc0vbApSx1leL9jfuve5DF9f8x2hAfxsxe58HpHV6r7JYLhXPcRif
-         WHy03mKAG3t4wk40TJa+2ifSq1Hup2QDLRlXHiJhzsFipldhnahEKpTwLHU1N/Tpw5cd
-         MlN01FhH23d4OHBNdDbheLyt7EKMpNo9ZSzhRUYfXo05JqoAbYYA8Ei92lbgeVdToMQ0
-         uJ8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773410462; x=1774015262;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EhAra/BMCH0n/XOw/db/nSkVgG1PExpVOvX16LQ7Y04=;
-        b=pSnHDnM4UdcloRhmL6Aa+iBG5Oo4He9ALq1+0MkXHl/ZIjbes3t7opTwrnjLvD3quv
-         Cg+AP7j/rZIYXyS2r+ngFvTzZmvfsySPbkeL7JBG1Z9qzK93DDXGpFdKNmF8R+P+QpdW
-         qupDfzkDNjjx0c5WF0aSySoCXQignvAc+WmWPiKVEV+0IRPtyXmGULqs24sHxBcRjn9f
-         fv+rIgImi2bJYVkrcVR5+MutssXxTy/6USbazNnwNcOmGWThPX9V+J85P0caBexBbZel
-         sl8o/98NTRCb3lY8FynMKsQNfAa21q7tNhs7XzR/EeUxcgHooTXqgpL6G9kUKDCrwGOR
-         cfZg==
-X-Forwarded-Encrypted: i=1; AJvYcCVvMGokdO/Wcknx7zbTaTGBkq78osSCVDyrZv7td+87mwMDGbubE6FpUySjX3KjMoTiB4A2zxOOT2rI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzhXRHKkl85Z5Tl+CfAxllbYuk0xliIlTo7JlOfaw/2wLTiBcT7
-	NA2TfB8ZG+IY/YxSuWL17rvpeEygnOIE7lCxmqXAGz3LcnaV8X5LP3+BUFH4lJkO/P8=
-X-Gm-Gg: ATEYQzwXuXJijy/8rMMFg0z03HA0VojzfekpwhrSBqACB8yuGsUkXfjyEerIP5sQ646
-	oBOSTeS1rKCA7tn+yatLFzj4g48oW/ZVTXN3LHO0s8Z0BKGoCWPr5qTnaORhkIFi0NDAAPvDPn8
-	YJmAHj1q5lDHYnr6aXBy5YI39yEV/RmWbMzrBRx3Dl/cNYN54YpJhs7c2woHW1453cHEcektNsy
-	TkDu+B1LcnDJDM8zGSaAxijVWXOtROU3LYSjTmKAM+YcTqHoDG4gGCE2H06DQjNnts5KALE7xc+
-	4Mho4mNusqPeooINpbKnCj83fFiGr+xiIG9Dwyiy0iQ1gN/Sw5XAQQBiIzWnwcavRmvR5SFzp/E
-	O8a64RqJIYIL+vwj0v0i5kFq+hsCOpa8ZqOjGd8vJmV1bdc+IZtDRuo/jUW8nXefmL8ayzjBTtu
-	zhpbJXDWAQNmTznVJeBVDss8UKsBqKBmnNIeJfsbMQIt20yDKnFWDbexTsp8u8YLnPqgsK
-X-Received: by 2002:a17:907:7421:b0:b8e:d4ed:5eab with SMTP id a640c23a62f3a-b976534655emr128493966b.31.1773410462146;
-        Fri, 13 Mar 2026 07:01:02 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b976cba2e01sm48940266b.9.2026.03.13.07.00.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Mar 2026 07:00:54 -0700 (PDT)
+	s=arc-20240116; t=1773410484; c=relaxed/simple;
+	bh=2BppDJfSxsSjbvRdSpJ2401wKS89758/R3FKR3prU1A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VWAbJzWbahQKpKYoFbS0o+OE4NDUw87WOLcgW8lvzdEB2kDKNx8ZNj+CNNK8Sve9d3lvDXINaq4UxGG5A3AOSNGI7Duur7TQy03pupuVIGNuarOAax9BXz/eF4zRcrfj6YAwckRzu/n7ampgTxTRwyd06T03VTRYAV7a5xSLSO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=g6HLMZFj; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773410483; x=1804946483;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2BppDJfSxsSjbvRdSpJ2401wKS89758/R3FKR3prU1A=;
+  b=g6HLMZFjGTqeeHwMi/WwWWyAV7EG/Z/eUZTxiFxBO3AyDw2GVkwmUVVJ
+   NhdlEpHJWS9YxTdd3NBrW9rZGIPjBDPbf7bz0fCr7Xz7HBBZUroWOr3E7
+   HrTKYEkk69A2ZIVLhsXRU1XLf0JXXgPnO1VpDnVwbXBefjmNaEd2MKvYf
+   zPft1FrF5ly+90GYwrdrjVnWqw+pueMWfeSosWnJ/XPCbDNqaxOTP5pKt
+   ZTYjzsH0QH2tEvBNoiOzgtfCVz7Z/XlJn8kzQbu8KNRFES7fOS7KY96ch
+   zww14cJT6AkzJGrVin4wFCO9dHaHe19KRARFs2dqm+tM3dO+5OpWy47os
+   w==;
+X-CSE-ConnectionGUID: aCjayNtmR8G/Q2F3yvqYxg==
+X-CSE-MsgGUID: XO+GxlpZScS3tgB/krE4iA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11728"; a="74553770"
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; 
+   d="scan'208";a="74553770"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2026 07:01:23 -0700
+X-CSE-ConnectionGUID: xdhWzKQYQ0O2y+xVHpmc+Q==
+X-CSE-MsgGUID: 9RNE0+/oQwenl+GhflUgPg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; 
+   d="scan'208";a="216078843"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.246])
+  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2026 07:01:18 -0700
+Date: Fri, 13 Mar 2026 16:01:16 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Michael Hennerich <michael.hennerich@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Petre Rodan <petre.rodan@subdimension.ro>,
+	Jorge Marques <jorge.marques@analog.com>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] iio: accel: adxl372: introduce chip_info structure
+Message-ID: <abQYrLTQvceBCalD@ashevche-desk.local>
+References: <20260313115525.85435-1-antoniu.miclaus@analog.com>
+ <20260313115525.85435-2-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 13 Mar 2026 15:00:53 +0100
-Message-Id: <DH1PJFGWESQU.1OEKLN0CX3IZE@fairphone.com>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: milos-fairphone-fp6: Enable
- Bluetooth
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Luca Weiss" <luca.weiss@fairphone.com>, "Konrad Dybcio"
- <konrad.dybcio@oss.qualcomm.com>, "Bjorn Andersson" <andersson@kernel.org>,
- "Konrad Dybcio" <konradybcio@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Alexander Koskovich" <AKoskovich@pm.me>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260116-milos-fp6-bt-wifi-v1-0-27b4fbb77e9c@fairphone.com>
- <20260116-milos-fp6-bt-wifi-v1-4-27b4fbb77e9c@fairphone.com>
- <52fffc84-2fb5-47aa-835c-b0dd8c110d59@oss.qualcomm.com>
- <DH1L9UD68SKL.21KTH1XGR724Y@fairphone.com>
-In-Reply-To: <DH1L9UD68SKL.21KTH1XGR724Y@fairphone.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260313115525.85435-2-antoniu.miclaus@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275293-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275294-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[fairphone.com:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,fairphone.com:dkim,fairphone.com:email,fairphone.com:mid]
-X-Rspamd-Queue-Id: 5FA5828468D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim]
+X-Rspamd-Queue-Id: 317202846F3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri Mar 13, 2026 at 11:40 AM CET, Luca Weiss wrote:
-> On Wed Jan 21, 2026 at 12:52 PM CET, Konrad Dybcio wrote:
->> On 1/16/26 3:50 PM, Luca Weiss wrote:
->>> Add the nodes to describe the WCN6755 chip with its PMU and Bluetooth
->>> parts.
->>>=20
->>> Thanks to Alexander Koskovich for helping with the bringup, adding
->>> 'clocks' to the PMU node to make Bluetooth work.
->>>=20
->>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>> ---
->>>  arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts | 174 +++++++++++++++=
-++++++++
->>>  1 file changed, 174 insertions(+)
->>>=20
->>> diff --git a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts b/arch/ar=
-m64/boot/dts/qcom/milos-fairphone-fp6.dts
->>> index 52895dd9e4fa..cbe1507b0aaa 100644
->>> --- a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
->>> +++ b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
+On Fri, Mar 13, 2026 at 01:54:54PM +0200, Antoniu Miclaus wrote:
+> Introduce a chip_info structure to parameterize device-specific
+> properties such as ODR/bandwidth frequency tables, activity/inactivity
+> timer scale factors, and the maximum ODR value. This refactors the
+> driver to use chip_info lookups instead of hardcoded values, preparing
+> the driver to support multiple device variants.
+> 
+> The sampling_frequency and filter_low_pass_3db_frequency available
+> attributes are switched from custom sysfs callbacks to read_avail()
+> based handling via info_mask_shared_by_type_available. This enforces
+> consistent formatting through the IIO framework and makes the values
+> accessible to in-kernel consumers.
+> 
+> The SPI/I2C probe functions are updated to pass a chip_info pointer
+> instead of a device name string.
+> 
+> No functional change intended.
 
-<snip>
+...
 
->>> +	bluetooth_enable_default: bluetooth-enable-default-state {
->>> +		pins =3D "gpio53";
->>> +		function =3D "gpio";
->>> +		output-low;
->>> +		bias-disable;
->>> +	};
->>
->> Not sure if we need to drive that pin.. perhaps a pull-down would
->> suffice?
->
-> I'll give it a shot, this pinctrl is coming from downstream but perhaps
-> the downstream btpower.c driver is differing in behavior to the upstream
-> PMU driver.
+> enum adxl372_odr {
 
-Seems to work, but honestly I'm not sure what the actual effects of this
-change are?
+>  	ADXL372_ODR_1600HZ,
+>  	ADXL372_ODR_3200HZ,
+>  	ADXL372_ODR_6400HZ,
+> +	ADXL372_ODR_NUM,
 
--               output-low;
--               bias-disable;
-+               bias-pull-down;
+No comma for the terminator entry.
 
-Regards
-Luca
+>  };
+
+...
+
+> static const struct iio_event_spec adxl372_events[] = {
+
+>  	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |		\
+>  				    BIT(IIO_CHAN_INFO_SAMP_FREQ) |	\
+>  		BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY),	\
+
+Consider at some point making the above consistent by style with the below
+
+	.info_mask_shared_by_type =
+		BIT(IIO_CHAN_INFO_SCALE) |				\
+		BIT(IIO_CHAN_INFO_SAMP_FREQ) |				\
+		BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY),	\
+
+> +	.info_mask_shared_by_type_available =				\
+> +		BIT(IIO_CHAN_INFO_SAMP_FREQ) |				\
+> +		BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY),	\
+>  	.scan_index = index,						\
+
+>  };
+
+...
+
+> +	chip_info = i2c_get_match_data(client);
+
+> +	if (!chip_info)
+> +		return -ENODEV;
+
+It is an agreement to avoid adding a dead code such as above check.
+
+...
+
+> +	chip_info = spi_get_device_match_data(spi);
+> +	if (!chip_info)
+> +		return -ENODEV;
+
+Ditto.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
