@@ -1,67 +1,66 @@
-Return-Path: <devicetree+bounces-275577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275578-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2Cv0JVmftGkjrQAAu9opvQ
-	(envelope-from <devicetree+bounces-275577-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 00:35:53 +0100
+	id IDgsHN+htGmxrQAAu9opvQ
+	(envelope-from <devicetree+bounces-275578-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 00:46:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8ACB28AB1F
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 00:35:52 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7906628ABCA
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 00:46:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CC82A30620DC
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 23:35:47 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 537A03023D85
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 23:46:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F4FC3D5655;
-	Fri, 13 Mar 2026 23:35:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CC3A37DE91;
+	Fri, 13 Mar 2026 23:46:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H4qswcPA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nytqiSax"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BC96388E6F;
-	Fri, 13 Mar 2026 23:35:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED9E42C029F;
+	Fri, 13 Mar 2026 23:46:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773444946; cv=none; b=g8CZBDI/DV5dFvlQq6vlvcprhnBji1HpylO0pFK7gQChCc16pEKUVcXIft1ZfZdBt20KSPkw3OzQFAzcu07DslKthTPDR0cbLEb7B9Hfm6sFXuu/86TwZ3nSYmZ8GIEYt7wLdRtp6JG/5K7CaH94ySVyn8EA8Pv+0Y47433lv7g=
+	t=1773445584; cv=none; b=M7o5SFqs1xaPHMd3LSW/n3JpL4FIG0ATC8mYhxyTa8CT3Yj9dr/H7mNCMmPVwHMTb/lQBE9Q4VHG7MuQGTwxhESUXHKUjAj2iYicvBTcqfeiYXTjHMIe9OMLA81ID/qrlWwweqxDayw/NHZ2rE8oZnYqF5udnH01ypl4oL6oo0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773444946; c=relaxed/simple;
-	bh=xc7MjIMAXeiLgrS2X6SSXxTUrNBTb/oD67k7f8URbr0=;
+	s=arc-20240116; t=1773445584; c=relaxed/simple;
+	bh=l0J6UxG2Xo0qMbb5afxleJPxtISpCy1pVKLdkDdqZ1Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Doz8AT8iJ9h988DLaFqsYdtD/M6a9U8o5u0MmEPm+81QofYmzBMY4NjdI/VyrLjOrumgsOJJeAJv7b9HmsABGAsK2XzCSUbGKBlSBxS8PXAN9UqlbseaslEJ+kQo8Prmrw4p6aBIj6lthFo3X71Zo43xIhIijYnvmOEJ3YbGLJI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H4qswcPA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E6F0C19421;
-	Fri, 13 Mar 2026 23:35:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=iHJydtVGw5+R8ZPxsr7LBgSkmzqAOPOuo0dbqgEAk2w+c6EVjvwLzMoeXrA/TBPUlRQj84tZuIhahN13z2bswXAnCYJ5zUaf/dJP2jPoV7twz9Kg3R42rBFdtYF+yLobUXK9L1oBYkJahNFrTtnU+SPfCI9xMCFPtYD6eBvbfqA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nytqiSax; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DB95C19421;
+	Fri, 13 Mar 2026 23:46:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773444945;
-	bh=xc7MjIMAXeiLgrS2X6SSXxTUrNBTb/oD67k7f8URbr0=;
+	s=k20201202; t=1773445583;
+	bh=l0J6UxG2Xo0qMbb5afxleJPxtISpCy1pVKLdkDdqZ1Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H4qswcPAtRFmrMfn3/76nP5TwmCCLzz6coATiku1apP2xBcq0JVLP/kB+1TsNsa9I
-	 PDhTDidpmI6dwSCwBD7itqzlgroIR4iuvAR7Fkwvk5i13LqBT2MznlOVTFNcfqFTRA
-	 WxOWi+2HG2Lc4sbjauL2ohhfD/MXHGvRY6Z5LRJn3e0yNH0w8e2N0ZVmYL/Jk1f35a
-	 /wvrzCsTNcz937UrWrf9ImFi5+MLS4AHv+ym95eaTV0Iw6zXymzu/JnKumDDek7rXi
-	 mYAoT5Zo5xMPoZ3sI7zKOTScLJY6aR7oReDurCCbkoW3KnT+g2Sgt/SGtZGj/jLjBh
-	 8XHJAGf8oDwlA==
-Date: Fri, 13 Mar 2026 18:35:44 -0500
+	b=nytqiSaxKQmJfhc175aQkILi0HvMCC42qFmYmmjrIU62A49gZcD3Ws5kRjLBJJhP9
+	 QBO14ad4AVIUYldwQXZ7IbnSaY4ns5ZsEBUAcRwyUzRHxOlz6wj3L8YbkGUuLcQqeh
+	 PsK+Id12aCFDftjU8LC+fGc/heeDDnwv0VyIbE2lg4Xi9O05GF1JcWZrwicsqd2WZL
+	 IcL1SNJwiqEBSMsMpNzSp7jaJptAlXV5OlgJtriSxD6TQa5Goy+I0fK0QlAWwho3lx
+	 cW9sDy6E0u6RyTd36Mgt1eMqVm267iqwgPXx+lUJ9z8jFfV94LRooiO6XXYRJTBaUo
+	 hnHcUQ5vwqF9g==
+Date: Fri, 13 Mar 2026 18:46:22 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: linux-mtd@lists.infradead.org, Sascha Hauer <s.hauer@pengutronix.de>,
-	linux-arm-kernel@lists.infradead.org,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	linux-kernel@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	devicetree@vger.kernel.org, Richard Weinberger <richard@nod.at>,
-	imx@lists.linux.dev, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH v2 3/3] dt-bindings: mtd: mxc-nand: add missing
- compatible string and ref to nand-controller-legacy.yaml
-Message-ID: <177344494372.3644453.7349557296372406656.robh@kernel.org>
-References: <20260309200351.1791162-1-Frank.Li@nxp.com>
- <20260309200351.1791162-3-Frank.Li@nxp.com>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-renesas-soc@vger.kernel.org,
+	Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 1/3] dt-bindings: memory: renesas,rzg3e-xspi: Add RZ/T2H
+ and RZ/N2H support
+Message-ID: <177344558150.3660030.11298746843207669134.robh@kernel.org>
+References: <20260310212927.3372410-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260310212927.3372410-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,24 +69,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260309200351.1791162-3-Frank.Li@nxp.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+In-Reply-To: <20260310212927.3372410-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lists.infradead.org,pengutronix.de,vger.kernel.org,gmail.com,bootlin.com,nod.at,lists.linux.dev,kernel.org,ti.com];
-	TAGGED_FROM(0.00)[bounces-275577-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,glider.be,sang-engineering.com,vger.kernel.org,kernel.org,bp.renesas.com,renesas.com];
+	TAGGED_FROM(0.00)[bounces-275578-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -95,33 +94,41 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E8ACB28AB1F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7906628ABCA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Mon, 09 Mar 2026 16:03:44 -0400, Frank Li wrote:
-> Add compatible string fsl,imx51-nand, fsl,imx53-nand and fsl,imx35-nand.
+On Tue, 10 Mar 2026 21:29:25 +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> Add missinge properties dmas and dma-names.
+> Add device tree binding support for the xSPI Interface on Renesas
+> RZ/T2H and RZ/N2H SoCs. The xSPI IP on these SoCs is closely related
+> to that found on the RZ/G3E SoC with some register bit differences
+> in the configuration registers.
 > 
-> Change reg's maxItems to 2 because i.MX53 have addition NAND flash internal
-> buffer space.
+> The RZ/T2H variant has a reduced clock configuration, requiring only
+> the AHB and SPI clocks (without the AXI and spix2 clocks). It also
+> requires only the hardware reset (hresetn), without the AXI reset
+> (aresetn).
 > 
-> Change ref to nand-controller-legacy.yaml allow legacy DT layout.
+> The RZ/N2H variant is compatible with RZ/T2H and uses the same clock
+> and reset configuration.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Update the binding schema to accommodate these differences using
+> conditional constraints based on the compatible string, while
+> maintaining backward compatibility with existing RZ/G3E and RZ/V2H(P)
+> implementations.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
-> Changes in v2:
-> - use items for regs.
-> ---
->  .../devicetree/bindings/mtd/mxc-nand.yaml     | 20 +++++++++++++++++--
->  1 file changed, 18 insertions(+), 2 deletions(-)
+>  .../renesas,rzg3e-xspi.yaml                   | 60 +++++++++++++++----
+>  1 file changed, 49 insertions(+), 11 deletions(-)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
