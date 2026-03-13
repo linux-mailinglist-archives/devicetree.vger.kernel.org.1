@@ -1,654 +1,233 @@
-Return-Path: <devicetree+bounces-275174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275175-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iP4LCZ/8s2nWeQAAu9opvQ
-	(envelope-from <devicetree+bounces-275174-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:01:35 +0100
+	id AICJMp39s2mWewAAu9opvQ
+	(envelope-from <devicetree+bounces-275175-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:05:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 929F8282997
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:01:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3796B282AB3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:05:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E7E6E3099685
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 11:59:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8587E329EE55
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 12:00:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA7E5390CA5;
-	Fri, 13 Mar 2026 11:59:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BB0A390C91;
+	Fri, 13 Mar 2026 11:59:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="zvZiRE9S"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BtF5t7GB";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="PlmaDAl8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1384F390C92;
-	Fri, 13 Mar 2026 11:59:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1301390C93
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 11:59:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773403187; cv=none; b=klVDE7dRWhvlaAUOlvEKWGydaWwwcbcGpc/qCBOlUttHX9AX9B+yx2fp/Z5zUZKlDvbfuDgPplUNf3I1na2SnRXP/IdxWcnNUDqepSalOxtC2pNxYCHIj2rrIOJqQeZUHuT7vD/ab7+6TfMAX5J4Yzokf0v/Ydxz4NbSlZv5jPY=
+	t=1773403193; cv=none; b=h3BaO9rS7xWaJcQlZGfNLMSjDV9bS1z1v7uU9VvU2wzyev6Tkcfdsa8boyB5nSyNiSGAXQ3nJqdL0ai49CvpA28iIeZnFBBSjri110Sdsl13Dn4/WmenefekskOm42ZpwibaA3CDa/cX4aWdvY0IAs8Hf/8MX6BstE5qSkjFHzI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773403187; c=relaxed/simple;
-	bh=JaWmb674vDcnFd9IGiB95IqlbKi8WYYiS/Z5I64xXsQ=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XqpNsf7IVruCkhs59KVDvPfQS2Zrm059l5+M5Ggk1vmA6SVAwHTbVVkolddngxFmMF6lj9mpA0RdhtaXz1BDL5R8AfARv0KhM+dHmTcbeMzLFWNV2Vd3E1z1nShjn1lNnLQthYGWCPHsBfMN0qFyx8kJ3B7YUkv0NLM8/U/6cDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=zvZiRE9S; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62DBFDuu1999544;
-	Fri, 13 Mar 2026 07:59:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=8c6e2
-	Lpub/mxUtfvqavdVzGTZVFqKurjc//ua+N37PI=; b=zvZiRE9SFcFrCb6DwfSpi
-	ZWSunoiGpxZjHSPmK3Q+vCfiWOhFB3tRgs/Z0zo+xrz8c+BOZJ3ZwREJE3pP0tMD
-	YnAVYL0fvMJqB6PDsT6KhIADelOsqEUcY/Ao6ED8mqpYi1zlUrkeqXNn7i+E644A
-	Sgm3M0wxrzXtN0LuFauLc1FDoLl03qnrkqXAgOnPFM9F1su7YOE48DhpcCDcV/9j
-	rAzP4+Bm4JS6/5OTkV6lFTBpVzmaZyUZ+yXhEaCZXcME99ondY86mzMmdnJHb629
-	VIgWMzPAnUK9oclCtkP4vmLrsE+eoNqU+iqKI0qsr8Zg4NApQITEeIXm5ai7sD14
-	g==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4cuh5wpvb1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Mar 2026 07:59:29 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 62DBxSGE017680
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 13 Mar 2026 07:59:28 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Fri, 13 Mar
- 2026 07:59:28 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Fri, 13 Mar 2026 07:59:28 -0400
-Received: from HYB-b1tGeUj4GP1.ad.analog.com (HYB-b1tGeUj4GP1.ad.analog.com [10.48.65.247])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 62DBx4aD024568;
-	Fri, 13 Mar 2026 07:59:24 -0400
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
-        Lars-Peter Clausen
-	<lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan
- Cameron <jic23@kernel.org>,
-        David Lechner <dlechner@baylibre.com>,
-        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-        Andy Shevchenko
-	<andy@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Olivier Moysan
-	<olivier.moysan@foss.st.com>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v6 4/4] iio: adc: ad4080: add support for AD4880 dual-channel ADC
-Date: Fri, 13 Mar 2026 13:58:53 +0200
-Message-ID: <20260313115856.87763-5-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260313115856.87763-1-antoniu.miclaus@analog.com>
-References: <20260313115856.87763-1-antoniu.miclaus@analog.com>
+	s=arc-20240116; t=1773403193; c=relaxed/simple;
+	bh=z0sVzBAcv13vC9l86gQlsXV87u5QGlJTtmJZRwdqpj4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oGFhmrOU3SBPPtujTEMbt+iRprklNnUHNe5beBK9LrGJXrIaMGhDpm645gcYgBewXSDNXRg57uhOLlFIQbwo5bE3pIUd1Uef+xZbvKXCXNMxLR9V5QhmtY+Rn1FBMsNSFouVUqn/tgxMi8BlZRNLYDv2ygQqMZXAI8oZYljVAB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BtF5t7GB; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=PlmaDAl8; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62DA8BAk1749668
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 11:59:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	dAPyYNhQ7Nilvok6h06J0gKQb9GOg5VVQtkr6R/ZE0I=; b=BtF5t7GBYwJUfunD
+	K43XSiJjqXqPrGS9E8flXCr/CG5vIzZB66CCfxSHHBaYu0uwieMm12oxuvkNOvfn
+	ja1fqd3U2vZCiW3Y2q84CzAew3ijeJVFVuXE8q02dxQeLmSC/U35nIun4/hmsow+
+	nJ+GO+Q1e83yw5oaj2VXlWSDhAIR+ibLLDcmtaDgISq5duMFyJCELzm4PVV4UY4B
+	SV8LUlYila5uJookHMR4p4SvrL6NiWFc3JWjX0wSHLWFPXNJJIAK4BQlerda9t1B
+	ZkjFryzFs6FJxSgd7s57853V0JBinDvp3wrKXg1lOh3G0zcuEbVTvDDA1BhnosAh
+	AIyQAg==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cvgj6ga70-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 11:59:51 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8cd8e89d19bso114413385a.2
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 04:59:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773403190; x=1774007990; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dAPyYNhQ7Nilvok6h06J0gKQb9GOg5VVQtkr6R/ZE0I=;
+        b=PlmaDAl8vrOd2KP38BpdysJzWxfF+75kyVkAxGmJEHGPnKNRdH6k/G63rNmIKdIb3B
+         kpqmfloClxBuLzhSuEBjE9mtlr5mgJN5F++0B7/j7Ze/2yl9eiLpPaXqQyIjLcy0LSXC
+         //BO/Dcewl3WzuhdQa/yY4AcfatDnTOxKS2QyOXpHcU7102cULuIx/plhz6ovMx2gRxn
+         D3RZMiQppcRnTY14InkrUrcoq0pg98sIiMZv8t4hQlez2+5ZIUA+3c8mfMHs3Yr9+IT5
+         NmHUaFcAP4hsM0IRUqlbDztR3wssT5K44vLRd8OSrQejJ4LM3pfKDVHKnkOzJy8NM/E1
+         uCkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773403190; x=1774007990;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dAPyYNhQ7Nilvok6h06J0gKQb9GOg5VVQtkr6R/ZE0I=;
+        b=kgNlLLK+SF13bk8/pzuiV3ZUnTGRYDJBLtzYmicGtctA2CaD9GT58cIP5NkYqePYrK
+         HA3SyUEKNthbLk+8/IurMZLDPdK5md/UV54RysQGvKkUjawGKZsWTcqO61O+YRU2QsT3
+         bgf+Fh49MTJmaoWf8T7WKXdNz9vOepxYsMi+XNwKoRtytre2B1wwO/8jl12i5OJkj8Zi
+         IHY1bsPws2I7AET5gcsM5CoTEE/vhvaQ7PdsQP4peGQOicyvsXb7M7/4V8B5q4RR8QfR
+         nmVYv/st6VQOAizB17PqeUqJdJ5Nd9GSx/mXZayRTCpHKOJgIz/Mx6r/kjQnwHb8z7xq
+         PcjA==
+X-Forwarded-Encrypted: i=1; AJvYcCX+0ILqCYUBIBsv/UUXbwcIHDrIhtH9+qcFqAOSxUaf0T2m1C2ZUSGT/gw0mAi0vyM9j2Iaffk1Pvai@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8nGrxMyIBI8fJKVOD8D3x6zQAjCeFB6w3Db7oA7rYu8lBYdGg
+	sc2WLqAdL3t5TSRzBriIs7seyL4AFnMjP6hUpTX8RhvA8xafh+1fL88+srbydot6v8FNxSCHoHy
+	sDwJRHBf4eWT9gCB6fg2OpvcisDe7B2bUWlUlLDtoXdVeTXksjjsIgBaMsnEhMT2O
+X-Gm-Gg: ATEYQzz4rcu6BMt3xJS1bL1ywBV62R0pNCo1hgCS16iCUvDoLd/qx7Y3i/qUuZrhGSt
+	MkwPQEZe6y5q/Oh/KXQ5akpkUF9i72cu239/sIDffC82/CyZgft2B+86//eFmxiIYHXGK2wfef/
+	XjuXgzLk++MYly3JEyJ9xVtmg+iXTrpHGbU1lV1fPMTMEmaRq29jPupMWDVRE1UjYBITFck36e+
+	+wckXY3uATHHHNDbk61E3EFMZluU+/+e6+QW+4qYpIm3q4LYVrj8JFjXn6d3C9D/J01KLJeDVRq
+	M4ypLOFzOk/zCdNXjbc/0Op0VvJgE58Oy6UvWXOHm6AcvfLNjs7oLsD9UtIdyP+R/ez9FEIfRxO
+	ixmpGeBG7AhErkpZ4FhIu6UoMDUPiiIPXw4cDHGxXtqenF1msJbiuttKhRt/hkwcy/iKbnQSMMm
+	YJxXU=
+X-Received: by 2002:a05:620a:1990:b0:8cb:3fa7:c4f0 with SMTP id af79cd13be357-8cdb5b42e6amr292516585a.5.1773403190152;
+        Fri, 13 Mar 2026 04:59:50 -0700 (PDT)
+X-Received: by 2002:a05:620a:1990:b0:8cb:3fa7:c4f0 with SMTP id af79cd13be357-8cdb5b42e6amr292513185a.5.1773403189637;
+        Fri, 13 Mar 2026 04:59:49 -0700 (PDT)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b976cf49fa6sm39747866b.58.2026.03.13.04.59.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Mar 2026 04:59:48 -0700 (PDT)
+Message-ID: <90b3a7df-cd02-4878-b614-1499589f0906@oss.qualcomm.com>
+Date: Fri, 13 Mar 2026 12:59:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEzMDA5NSBTYWx0ZWRfX4ebXAJnsSUAA
- TO+S+xO58+DRYuaxaQbva1L7Fky16afYqAeRa19+45UuE3cb8YD58MDyEbMraxbPxNplx3bpI1O
- +kBgdfsmfH/ls8O3YMrwtn37wrasOTk/39qleumUwWoZ1kOgHcbduwAI6Kp3hg0NMJE+hXQhWIo
- GLO6Q/hgwxs/Y8jOFsTuaahNZiOtuRqsauxT3DF4Yc+xyct1AQPjaYRe3B5nNCacLkFUmpk13Wx
- sMUMINMqh+uTC10h4AHqzIHnz3fTblrmrrZF/nB0V1sN9N/LY7kvtIRQOT0QR1IiS3kMfcvg6WJ
- 4GLUbTdpTcfe7xdXCGyxrrK75H5Ko3ro7OJDaXmnvdcZVw+yu3KAtKNQq33+2js0TEKTbjf9y2H
- Qu5ZIjQ9Qkjc33GsL6vrFl/gDaQVAhzDJm7zW64ckvl++A/f99kSuXu4yJIOWME8ea+T1tqDKrI
- gyxc3W6dnip0UytUQwQ==
-X-Proofpoint-ORIG-GUID: a_ptZiXbaY0E2YDGsLIF24fpOvuv5OsO
-X-Proofpoint-GUID: a_ptZiXbaY0E2YDGsLIF24fpOvuv5OsO
-X-Authority-Analysis: v=2.4 cv=K+Qv3iWI c=1 sm=1 tr=0 ts=69b3fc21 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=0sLvza09kfJOxVLZPwjg:22 a=Z0pTeXoby7EwIRygza74:22 a=IpJZQVW2AAAA:8
- a=gAnH3GRIAAAA:8 a=TkdxIJFci9F1GQXeX6YA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=IawgGOuG5U0WyFbmm1f5:22
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] arm64: dts: qcom: x1e80100: Remove interconnect from
+ SCM device
+To: "Maulik Shah (mkshah)" <maulik.shah@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
+        Linus Walleij <linusw@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Sneh Mankad <sneh.mankad@oss.qualcomm.com>
+References: <20260312-hamoa_pdc-v1-0-760c8593ce50@oss.qualcomm.com>
+ <20260312-hamoa_pdc-v1-1-760c8593ce50@oss.qualcomm.com>
+ <bnaxwhrfeer3n62xp5rka4pq4mz6y5xxwsin2vavc5zcj3ymxj@splrj22ki445>
+ <198ccf60-a4b9-438b-ad92-bc4d2cc84b83@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <198ccf60-a4b9-438b-ad92-bc4d2cc84b83@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEzMDA5NSBTYWx0ZWRfX/MKfZLNZ247c
+ izMDSGGwq+j3wxq9xC/2LpYXkjxXydSeh+gL41I+qQAUSoB3OOSJgvMcrn679vNCvDt5fFvkn5i
+ x09MkRAY8H2aDv47Ird/6yjQIMoVXEhSw9hxdykrtcYPN0IZpd6pdhCvFc9zgVcQuzlePFKy1e/
+ U6XPCK0gBvxTnNg9bwXJXCoals4raxiInbylyqRWl7crSpUTfIPDqPY63cbPv3EPGyR0p3T8Vw6
+ 4RGelTma/AMGWwW79YbgZHf6AjHVomaz+eavIhXOLc5x9mioy2Rp1i6sUaCTKaMfUkiiBZSkd4l
+ bO7Jw+++DdD8Zlih4qj/H10ZhDIPCtCNTRTlsa2zj9KE58JbVkawTlzlZQlfnu4+mSAmFitT6Bz
+ ph2Bp3eODQ8Nbyczz3fY5MFF0j7nntr8Liz63ggaJFvDhJqC+ufccRcCB2/Lo+Hw4JTarPTlE06
+ Zo/j5wrpdClrae99IpA==
+X-Proofpoint-GUID: it8qgSORgVumMS90UYnEcXX8KxNg_SoQ
+X-Proofpoint-ORIG-GUID: it8qgSORgVumMS90UYnEcXX8KxNg_SoQ
+X-Authority-Analysis: v=2.4 cv=H+vWAuYi c=1 sm=1 tr=0 ts=69b3fc37 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
+ a=D3rGKGdzeZ1DfF1dGIIA:9 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-03-13_02,2026-03-13_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 suspectscore=0 priorityscore=1501 malwarescore=0
- bulkscore=0 clxscore=1015 spamscore=0 impostorscore=0 adultscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
- definitions=main-2603130095
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+ spamscore=0 lowpriorityscore=0 phishscore=0 clxscore=1015 malwarescore=0
+ adultscore=0 impostorscore=0 priorityscore=1501 bulkscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603130095
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275174-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-275175-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:email,analog.com:dkim,analog.com:email,analog.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:dkim,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[antoniu.miclaus@analog.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[analog.com:+];
 	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 929F8282997
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 3796B282AB3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for the AD4880, a dual-channel 20-bit 40MSPS SAR ADC with
-integrated fully differential amplifiers (FDA).
+On 3/13/26 11:12 AM, Maulik Shah (mkshah) wrote:
+> 
+> 
+> On 3/13/2026 7:41 AM, Dmitry Baryshkov wrote:
+>> On Thu, Mar 12, 2026 at 09:26:35PM +0530, Maulik Shah wrote:
+>>> Interconnect from SCM device are optional and were added to get
+>>> additional performance benefit. These nodes however delays the
+>>> SCM firmware device probe due to dependency on interconnect and
+>>> results in NULL pointer dereference for the users of SCM device
+>>> driver APIs, such as PDC driver.
+>>
+>> This sounds like a bug in the PDC driver. It should reject being probed
+>> before SCM is available.
+> 
+> The SCM driver provides no way to check if its ready or not to decide to reject/defer the probe.
+> A new API like below would be needed here,
 
-The AD4880 has two independent ADC channels, each with its own SPI
-configuration interface. The driver uses spi_new_ancillary_device() to
-create an additional SPI device for the second channel, allowing both
-channels to share the same SPI bus with different chip selects.
+There is, qcom_scm_is_available()
 
-Reviewed-by: David Lechner <dlechner@baylibre.com>
-Reviewed-by: Nuno Sá <nuno.sa@analog.com>
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
-Changes in v6:
-  - No changes
 
- drivers/iio/adc/ad4080.c | 230 +++++++++++++++++++++++++++++++--------
- 1 file changed, 182 insertions(+), 48 deletions(-)
+> Let me know any preferences from below options or any other.
+> 
+> a) Add the API like qcom_scm_ready(), this has been tested and works fine.
+> b) Move interconnects from SCM to remoteproc PAS driver for all devices
+>    Take the vote before invoking SCM API and release after return.
 
-diff --git a/drivers/iio/adc/ad4080.c b/drivers/iio/adc/ad4080.c
-index 7cf3b6ed7940..48bd124cc9d6 100644
---- a/drivers/iio/adc/ad4080.c
-+++ b/drivers/iio/adc/ad4080.c
-@@ -16,6 +16,7 @@
- #include <linux/mod_devicetable.h>
- #include <linux/module.h>
- #include <linux/mutex.h>
-+#include <linux/property.h>
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
- #include <linux/spi/spi.h>
-@@ -131,6 +132,9 @@
- #define AD4084_CHIP_ID						0x0054
- #define AD4086_CHIP_ID						0x0056
- #define AD4087_CHIP_ID						0x0057
-+#define AD4880_CHIP_ID						0x0750
-+
-+#define AD4080_MAX_CHANNELS					2
- 
- #define AD4080_LVDS_CNV_CLK_CNT_MAX				7
- 
-@@ -176,8 +180,9 @@ struct ad4080_chip_info {
- };
- 
- struct ad4080_state {
--	struct regmap			*regmap;
--	struct iio_backend		*back;
-+	struct spi_device		*spi[AD4080_MAX_CHANNELS];
-+	struct regmap			*regmap[AD4080_MAX_CHANNELS];
-+	struct iio_backend		*back[AD4080_MAX_CHANNELS];
- 	const struct ad4080_chip_info	*info;
- 	/*
- 	 * Synchronize access to members the of driver state, and ensure
-@@ -203,10 +208,11 @@ static int ad4080_reg_access(struct iio_dev *indio_dev, unsigned int reg,
- {
- 	struct ad4080_state *st = iio_priv(indio_dev);
- 
-+	/* Use channel 0 regmap for debugfs access */
- 	if (readval)
--		return regmap_read(st->regmap, reg, readval);
-+		return regmap_read(st->regmap[0], reg, readval);
- 
--	return regmap_write(st->regmap, reg, writeval);
-+	return regmap_write(st->regmap[0], reg, writeval);
- }
- 
- static int ad4080_get_scale(struct ad4080_state *st, int *val, int *val2)
-@@ -227,8 +233,9 @@ static unsigned int ad4080_get_dec_rate(struct iio_dev *dev,
- 	struct ad4080_state *st = iio_priv(dev);
- 	int ret;
- 	unsigned int data;
-+	unsigned int ch = chan->channel;
- 
--	ret = regmap_read(st->regmap, AD4080_REG_FILTER_CONFIG, &data);
-+	ret = regmap_read(st->regmap[ch], AD4080_REG_FILTER_CONFIG, &data);
- 	if (ret)
- 		return ret;
- 
-@@ -240,13 +247,14 @@ static int ad4080_set_dec_rate(struct iio_dev *dev,
- 			       unsigned int mode)
- {
- 	struct ad4080_state *st = iio_priv(dev);
-+	unsigned int ch = chan->channel;
- 
- 	guard(mutex)(&st->lock);
- 
- 	if ((st->filter_type >= SINC_5 && mode >= 512) || mode < 2)
- 		return -EINVAL;
- 
--	return regmap_update_bits(st->regmap, AD4080_REG_FILTER_CONFIG,
-+	return regmap_update_bits(st->regmap[ch], AD4080_REG_FILTER_CONFIG,
- 				  AD4080_FILTER_CONFIG_SINC_DEC_RATE_MSK,
- 				  FIELD_PREP(AD4080_FILTER_CONFIG_SINC_DEC_RATE_MSK,
- 					     (ilog2(mode) - 1)));
-@@ -304,23 +312,23 @@ static int ad4080_write_raw(struct iio_dev *indio_dev,
- 	}
- }
- 
--static int ad4080_lvds_sync_write(struct ad4080_state *st)
-+static int ad4080_lvds_sync_write(struct ad4080_state *st, unsigned int ch)
- {
--	struct device *dev = regmap_get_device(st->regmap);
-+	struct device *dev = regmap_get_device(st->regmap[ch]);
- 	int ret;
- 
--	ret = regmap_set_bits(st->regmap, AD4080_REG_ADC_DATA_INTF_CONFIG_A,
-+	ret = regmap_set_bits(st->regmap[ch], AD4080_REG_ADC_DATA_INTF_CONFIG_A,
- 			      AD4080_ADC_DATA_INTF_CONFIG_A_INTF_CHK_EN);
- 	if (ret)
- 		return ret;
- 
--	ret = iio_backend_interface_data_align(st->back, 10000);
-+	ret = iio_backend_interface_data_align(st->back[ch], 10000);
- 	if (ret)
- 		return dev_err_probe(dev, ret,
- 				     "Data alignment process failed\n");
- 
- 	dev_dbg(dev, "Success: Pattern correct and Locked!\n");
--	return regmap_clear_bits(st->regmap, AD4080_REG_ADC_DATA_INTF_CONFIG_A,
-+	return regmap_clear_bits(st->regmap[ch], AD4080_REG_ADC_DATA_INTF_CONFIG_A,
- 				 AD4080_ADC_DATA_INTF_CONFIG_A_INTF_CHK_EN);
- }
- 
-@@ -329,9 +337,10 @@ static int ad4080_get_filter_type(struct iio_dev *dev,
- {
- 	struct ad4080_state *st = iio_priv(dev);
- 	unsigned int data;
-+	unsigned int ch = chan->channel;
- 	int ret;
- 
--	ret = regmap_read(st->regmap, AD4080_REG_FILTER_CONFIG, &data);
-+	ret = regmap_read(st->regmap[ch], AD4080_REG_FILTER_CONFIG, &data);
- 	if (ret)
- 		return ret;
- 
-@@ -343,6 +352,7 @@ static int ad4080_set_filter_type(struct iio_dev *dev,
- 				  unsigned int mode)
- {
- 	struct ad4080_state *st = iio_priv(dev);
-+	unsigned int ch = chan->channel;
- 	int dec_rate;
- 	int ret;
- 
-@@ -355,11 +365,11 @@ static int ad4080_set_filter_type(struct iio_dev *dev,
- 	if (mode >= SINC_5 && dec_rate >= 512)
- 		return -EINVAL;
- 
--	ret = iio_backend_filter_type_set(st->back, mode);
-+	ret = iio_backend_filter_type_set(st->back[ch], mode);
- 	if (ret)
- 		return ret;
- 
--	ret = regmap_update_bits(st->regmap, AD4080_REG_FILTER_CONFIG,
-+	ret = regmap_update_bits(st->regmap[ch], AD4080_REG_FILTER_CONFIG,
- 				 AD4080_FILTER_CONFIG_FILTER_SEL_MSK,
- 				 FIELD_PREP(AD4080_FILTER_CONFIG_FILTER_SEL_MSK,
- 					    mode));
-@@ -399,6 +409,28 @@ static int ad4080_read_avail(struct iio_dev *indio_dev,
- 	}
- }
- 
-+static int ad4880_update_scan_mode(struct iio_dev *indio_dev,
-+				   const unsigned long *scan_mask)
-+{
-+	struct ad4080_state *st = iio_priv(indio_dev);
-+	int ret;
-+
-+	for (unsigned int ch = 0; ch < st->info->num_channels; ch++) {
-+		/*
-+		 * Each backend has a single channel (channel 0 from the
-+		 * backend's perspective), so always use channel index 0.
-+		 */
-+		if (test_bit(ch, scan_mask))
-+			ret = iio_backend_chan_enable(st->back[ch], 0);
-+		else
-+			ret = iio_backend_chan_disable(st->back[ch], 0);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static const struct iio_info ad4080_iio_info = {
- 	.debugfs_reg_access = ad4080_reg_access,
- 	.read_raw = ad4080_read_raw,
-@@ -406,6 +438,19 @@ static const struct iio_info ad4080_iio_info = {
- 	.read_avail = ad4080_read_avail,
- };
- 
-+/*
-+ * AD4880 needs update_scan_mode to enable/disable individual backend channels.
-+ * Single-channel devices don't need this as their backends may not implement
-+ * chan_enable/chan_disable operations.
-+ */
-+static const struct iio_info ad4880_iio_info = {
-+	.debugfs_reg_access = ad4080_reg_access,
-+	.read_raw = ad4080_read_raw,
-+	.write_raw = ad4080_write_raw,
-+	.read_avail = ad4080_read_avail,
-+	.update_scan_mode = ad4880_update_scan_mode,
-+};
-+
- static const struct iio_enum ad4080_filter_type_enum = {
- 	.items = ad4080_filter_type_iio_enum,
- 	.num_items = ARRAY_SIZE(ad4080_filter_type_iio_enum),
-@@ -420,17 +465,51 @@ static struct iio_chan_spec_ext_info ad4080_ext_info[] = {
- 	{ }
- };
- 
--#define AD4080_CHANNEL_DEFINE(bits, storage) {				\
-+/*
-+ * AD4880 needs per-channel filter configuration since each channel has
-+ * its own independent ADC with separate SPI interface.
-+ */
-+static struct iio_chan_spec_ext_info ad4880_ext_info[] = {
-+	IIO_ENUM("filter_type", IIO_SEPARATE, &ad4080_filter_type_enum),
-+	IIO_ENUM_AVAILABLE("filter_type", IIO_SEPARATE,
-+			   &ad4080_filter_type_enum),
-+	{ }
-+};
-+
-+#define AD4080_CHANNEL_DEFINE(bits, storage, idx) {			\
- 	.type = IIO_VOLTAGE,						\
- 	.indexed = 1,							\
--	.channel = 0,							\
-+	.channel = (idx),						\
- 	.info_mask_separate = BIT(IIO_CHAN_INFO_SCALE),			\
- 	.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ) |	\
- 			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),		\
- 	.info_mask_shared_by_all_available =				\
- 			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),		\
- 	.ext_info = ad4080_ext_info,					\
--	.scan_index = 0,						\
-+	.scan_index = (idx),						\
-+	.scan_type = {							\
-+		.sign = 's',						\
-+		.realbits = (bits),					\
-+		.storagebits = (storage),				\
-+	},								\
-+}
-+
-+/*
-+ * AD4880 has per-channel attributes (filter_type, oversampling_ratio,
-+ * sampling_frequency) since each channel has its own independent ADC
-+ * with separate SPI configuration interface.
-+ */
-+#define AD4880_CHANNEL_DEFINE(bits, storage, idx) {		\
-+	.type = IIO_VOLTAGE,						\
-+	.indexed = 1,							\
-+	.channel = (idx),						\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_SCALE) |		\
-+			BIT(IIO_CHAN_INFO_SAMP_FREQ) |			\
-+			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),		\
-+	.info_mask_separate_available =					\
-+			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),		\
-+	.ext_info = ad4880_ext_info,				\
-+	.scan_index = (idx),						\
- 	.scan_type = {							\
- 		.sign = 's',						\
- 		.realbits = (bits),					\
-@@ -438,17 +517,22 @@ static struct iio_chan_spec_ext_info ad4080_ext_info[] = {
- 	},								\
- }
- 
--static const struct iio_chan_spec ad4080_channel = AD4080_CHANNEL_DEFINE(20, 32);
-+static const struct iio_chan_spec ad4080_channel = AD4080_CHANNEL_DEFINE(20, 32, 0);
- 
--static const struct iio_chan_spec ad4081_channel = AD4080_CHANNEL_DEFINE(20, 32);
-+static const struct iio_chan_spec ad4081_channel = AD4080_CHANNEL_DEFINE(20, 32, 0);
- 
--static const struct iio_chan_spec ad4083_channel = AD4080_CHANNEL_DEFINE(16, 16);
-+static const struct iio_chan_spec ad4083_channel = AD4080_CHANNEL_DEFINE(16, 16, 0);
- 
--static const struct iio_chan_spec ad4084_channel = AD4080_CHANNEL_DEFINE(16, 16);
-+static const struct iio_chan_spec ad4084_channel = AD4080_CHANNEL_DEFINE(16, 16, 0);
- 
--static const struct iio_chan_spec ad4086_channel = AD4080_CHANNEL_DEFINE(14, 16);
-+static const struct iio_chan_spec ad4086_channel = AD4080_CHANNEL_DEFINE(14, 16, 0);
- 
--static const struct iio_chan_spec ad4087_channel = AD4080_CHANNEL_DEFINE(14, 16);
-+static const struct iio_chan_spec ad4087_channel = AD4080_CHANNEL_DEFINE(14, 16, 0);
-+
-+static const struct iio_chan_spec ad4880_channels[] = {
-+	AD4880_CHANNEL_DEFINE(20, 32, 0),
-+	AD4880_CHANNEL_DEFINE(20, 32, 1),
-+};
- 
- static const struct ad4080_chip_info ad4080_chip_info = {
- 	.name = "ad4080",
-@@ -510,25 +594,34 @@ static const struct ad4080_chip_info ad4087_chip_info = {
- 	.lvds_cnv_clk_cnt_max = 1,
- };
- 
--static int ad4080_setup(struct iio_dev *indio_dev)
-+static const struct ad4080_chip_info ad4880_chip_info = {
-+	.name = "ad4880",
-+	.product_id = AD4880_CHIP_ID,
-+	.scale_table = ad4080_scale_table,
-+	.num_scales = ARRAY_SIZE(ad4080_scale_table),
-+	.num_channels = 2,
-+	.channels = ad4880_channels,
-+	.lvds_cnv_clk_cnt_max = AD4080_LVDS_CNV_CLK_CNT_MAX,
-+};
-+
-+static int ad4080_setup_channel(struct ad4080_state *st, unsigned int ch)
- {
--	struct ad4080_state *st = iio_priv(indio_dev);
--	struct device *dev = regmap_get_device(st->regmap);
-+	struct device *dev = regmap_get_device(st->regmap[ch]);
- 	__le16 id_le;
- 	u16 id;
- 	int ret;
- 
--	ret = regmap_write(st->regmap, AD4080_REG_INTERFACE_CONFIG_A,
-+	ret = regmap_write(st->regmap[ch], AD4080_REG_INTERFACE_CONFIG_A,
- 			   AD4080_INTERFACE_CONFIG_A_SW_RESET);
- 	if (ret)
- 		return ret;
- 
--	ret = regmap_write(st->regmap, AD4080_REG_INTERFACE_CONFIG_A,
-+	ret = regmap_write(st->regmap[ch], AD4080_REG_INTERFACE_CONFIG_A,
- 			   AD4080_INTERFACE_CONFIG_A_SDO_ENABLE);
- 	if (ret)
- 		return ret;
- 
--	ret = regmap_bulk_read(st->regmap, AD4080_REG_PRODUCT_ID_L, &id_le,
-+	ret = regmap_bulk_read(st->regmap[ch], AD4080_REG_PRODUCT_ID_L, &id_le,
- 			       sizeof(id_le));
- 	if (ret)
- 		return ret;
-@@ -537,18 +630,18 @@ static int ad4080_setup(struct iio_dev *indio_dev)
- 	if (id != st->info->product_id)
- 		dev_info(dev, "Unrecognized CHIP_ID 0x%X\n", id);
- 
--	ret = regmap_set_bits(st->regmap, AD4080_REG_GPIO_CONFIG_A,
-+	ret = regmap_set_bits(st->regmap[ch], AD4080_REG_GPIO_CONFIG_A,
- 			      AD4080_GPIO_CONFIG_A_GPO_1_EN);
- 	if (ret)
- 		return ret;
- 
--	ret = regmap_write(st->regmap, AD4080_REG_GPIO_CONFIG_B,
-+	ret = regmap_write(st->regmap[ch], AD4080_REG_GPIO_CONFIG_B,
- 			   FIELD_PREP(AD4080_GPIO_CONFIG_B_GPIO_1_SEL_MSK,
- 				      AD4080_GPIO_CONFIG_B_GPIO_FILTER_RES_RDY));
- 	if (ret)
- 		return ret;
- 
--	ret = iio_backend_num_lanes_set(st->back, st->num_lanes);
-+	ret = iio_backend_num_lanes_set(st->back[ch], st->num_lanes);
- 	if (ret)
- 		return ret;
- 
-@@ -556,7 +649,7 @@ static int ad4080_setup(struct iio_dev *indio_dev)
- 		return 0;
- 
- 	/* Set maximum LVDS Data Transfer Latency */
--	ret = regmap_update_bits(st->regmap,
-+	ret = regmap_update_bits(st->regmap[ch],
- 				 AD4080_REG_ADC_DATA_INTF_CONFIG_B,
- 				 AD4080_ADC_DATA_INTF_CONFIG_B_LVDS_CNV_CLK_CNT_MSK,
- 				 FIELD_PREP(AD4080_ADC_DATA_INTF_CONFIG_B_LVDS_CNV_CLK_CNT_MSK,
-@@ -565,24 +658,38 @@ static int ad4080_setup(struct iio_dev *indio_dev)
- 		return ret;
- 
- 	if (st->num_lanes > 1) {
--		ret = regmap_set_bits(st->regmap, AD4080_REG_ADC_DATA_INTF_CONFIG_A,
-+		ret = regmap_set_bits(st->regmap[ch], AD4080_REG_ADC_DATA_INTF_CONFIG_A,
- 				      AD4080_ADC_DATA_INTF_CONFIG_A_SPI_LVDS_LANES);
- 		if (ret)
- 			return ret;
- 	}
- 
--	ret = regmap_set_bits(st->regmap,
-+	ret = regmap_set_bits(st->regmap[ch],
- 			      AD4080_REG_ADC_DATA_INTF_CONFIG_B,
- 			      AD4080_ADC_DATA_INTF_CONFIG_B_LVDS_CNV_EN);
- 	if (ret)
- 		return ret;
- 
--	return ad4080_lvds_sync_write(st);
-+	return ad4080_lvds_sync_write(st, ch);
-+}
-+
-+static int ad4080_setup(struct iio_dev *indio_dev)
-+{
-+	struct ad4080_state *st = iio_priv(indio_dev);
-+	int ret;
-+
-+	for (unsigned int ch = 0; ch < st->info->num_channels; ch++) {
-+		ret = ad4080_setup_channel(st, ch);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
- }
- 
- static int ad4080_properties_parse(struct ad4080_state *st)
- {
--	struct device *dev = regmap_get_device(st->regmap);
-+	struct device *dev = regmap_get_device(st->regmap[0]);
- 
- 	st->lvds_cnv_en = device_property_read_bool(dev, "adi,lvds-cnv-enable");
- 
-@@ -617,14 +724,30 @@ static int ad4080_probe(struct spi_device *spi)
- 		return dev_err_probe(dev, ret,
- 				     "failed to get and enable supplies\n");
- 
--	st->regmap = devm_regmap_init_spi(spi, &ad4080_regmap_config);
--	if (IS_ERR(st->regmap))
--		return PTR_ERR(st->regmap);
-+	/* Setup primary SPI device (channel 0) */
-+	st->spi[0] = spi;
-+	st->regmap[0] = devm_regmap_init_spi(spi, &ad4080_regmap_config);
-+	if (IS_ERR(st->regmap[0]))
-+		return PTR_ERR(st->regmap[0]);
- 
- 	st->info = spi_get_device_match_data(spi);
- 	if (!st->info)
- 		return -ENODEV;
- 
-+	/* Setup ancillary SPI devices for additional channels */
-+	for (unsigned int ch = 1; ch < st->info->num_channels; ch++) {
-+		st->spi[ch] = devm_spi_new_ancillary_device(spi,
-+				spi_get_chipselect(spi, ch));
-+		if (IS_ERR(st->spi[ch]))
-+			return dev_err_probe(dev, PTR_ERR(st->spi[ch]),
-+					     "failed to register ancillary device\n");
-+
-+		st->regmap[ch] = devm_regmap_init_spi(st->spi[ch],
-+						     &ad4080_regmap_config);
-+		if (IS_ERR(st->regmap[ch]))
-+			return PTR_ERR(st->regmap[ch]);
-+	}
-+
- 	ret = devm_mutex_init(dev, &st->lock);
- 	if (ret)
- 		return ret;
-@@ -632,7 +755,8 @@ static int ad4080_probe(struct spi_device *spi)
- 	indio_dev->name = st->info->name;
- 	indio_dev->channels = st->info->channels;
- 	indio_dev->num_channels = st->info->num_channels;
--	indio_dev->info = &ad4080_iio_info;
-+	indio_dev->info = st->info->num_channels > 1 ?
-+			  &ad4880_iio_info : &ad4080_iio_info;
- 
- 	ret = ad4080_properties_parse(st);
- 	if (ret)
-@@ -644,15 +768,23 @@ static int ad4080_probe(struct spi_device *spi)
- 
- 	st->clk_rate = clk_get_rate(clk);
- 
--	st->back = devm_iio_backend_get(dev, NULL);
--	if (IS_ERR(st->back))
--		return PTR_ERR(st->back);
-+	/* Get backends for all channels */
-+	for (unsigned int ch = 0; ch < st->info->num_channels; ch++) {
-+		st->back[ch] = devm_iio_backend_get_by_index(dev, ch);
-+		if (IS_ERR(st->back[ch]))
-+			return PTR_ERR(st->back[ch]);
- 
--	ret = devm_iio_backend_request_buffer(dev, st->back, indio_dev);
--	if (ret)
--		return ret;
-+		ret = devm_iio_backend_enable(dev, st->back[ch]);
-+		if (ret)
-+			return ret;
-+	}
- 
--	ret = devm_iio_backend_enable(dev, st->back);
-+	/*
-+	 * Request buffer from the first backend only. For multi-channel
-+	 * devices (e.g., AD4880), all backends share a single IIO buffer
-+	 * as data from all ADC channels is interleaved into one stream.
-+	 */
-+	ret = devm_iio_backend_request_buffer(dev, st->back[0], indio_dev);
- 	if (ret)
- 		return ret;
- 
-@@ -670,6 +802,7 @@ static const struct spi_device_id ad4080_id[] = {
- 	{ "ad4084", (kernel_ulong_t)&ad4084_chip_info },
- 	{ "ad4086", (kernel_ulong_t)&ad4086_chip_info },
- 	{ "ad4087", (kernel_ulong_t)&ad4087_chip_info },
-+	{ "ad4880", (kernel_ulong_t)&ad4880_chip_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(spi, ad4080_id);
-@@ -681,6 +814,7 @@ static const struct of_device_id ad4080_of_match[] = {
- 	{ .compatible = "adi,ad4084", &ad4084_chip_info },
- 	{ .compatible = "adi,ad4086", &ad4086_chip_info },
- 	{ .compatible = "adi,ad4087", &ad4087_chip_info },
-+	{ .compatible = "adi,ad4880", &ad4880_chip_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, ad4080_of_match);
--- 
-2.43.0
+I think this is not the right decision. The crypto path is only necessary,
+because cryptographic checks must be carried out in the TZ in order to
+(dis)allow a certain firmware binary. This is not a characteristic of the
+remoteprocs themselves, as with a non-prudent TZ, the firmware loading
+would amount to a memcpy() (and some SMMU/XPU configs via reg writes)
 
+> c) Remove the interconnects from SCM and rely on crypto driver already
+>    placing the vote, Route the remote proc to SCM call via crypto API,
+>    This would ensure crpyto is being used and it would have placed the required vote.
+
+I think this would make things even worse, because instead of waiting on
+the interconnect driver, we'd now have to wait on the interconnect driver,
+the clock driver and the crypto driver
+
+> d) Add separate SCM child device (with interconnects) under SoC.
+
+We'd then have to probe it as an aux device or something, which would
+either delay the probing of SCM, or introduce the need to ping-pong for
+PAS availability between the API provider and consumer, since some calls
+work perfectly fine without the ICC path, while others could really use
+it
+
+Konrad
 
