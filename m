@@ -1,280 +1,196 @@
-Return-Path: <devicetree+bounces-274892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274894-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YCQBLw6us2n1ZgAAu9opvQ
-	(envelope-from <devicetree+bounces-274892-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:26:22 +0100
+	id YBFOO+eus2kvZwAAu9opvQ
+	(envelope-from <devicetree+bounces-274894-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:29:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D66527E0D9
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:26:22 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9228D27E20D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 07:29:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 00E7D31779A1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 06:23:10 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8FC32305335C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 06:25:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F959364948;
-	Fri, 13 Mar 2026 06:18:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F36345729;
+	Fri, 13 Mar 2026 06:25:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="acmQIefg"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="AZoT85VD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from BN1PR04CU002.outbound.protection.outlook.com (mail-eastus2azon11010061.outbound.protection.outlook.com [52.101.56.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2302342538
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 06:18:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773382692; cv=none; b=d6R4h32bO3vMR2D/Ch6D8X1Q8y8mJXfAUJ4Z/oq8cs46ssiuNUTo7wkldos94/FDWvOj0rvHUk3WHmW3HoaalT6hwy4y5fOw9sm2yngC3wPB/q4K0wfoOmT7aDSnmWG5cV32aQ3GD+DGJQTW+J8WD3gEHh8U59pvsO/TcmMBIY4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773382692; c=relaxed/simple;
-	bh=6ZWQY4ymrBGJ8hYNeyFqtRtQF7QKPc3nK2vfrQJD4sY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZsjA5vDFmJG3rHNKh7PgmpVEMvQWoIyhgHB9gtLweat4DI1b3TE27AU67k5Bp7uy8XLlEIYjVS3zTA7wyZ+ght2ZUB7rNbU4LavKFfQKQVTg5m+KOGOF8m94g2O9hzMuCUQPY6Nj2MKxz07OkOeOoFMp3K0ukOUDEZFU8G6CuMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=acmQIefg; arc=none smtp.client-ip=209.85.215.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-c73a5473bbdso700814a12.2
-        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 23:18:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773382690; x=1773987490; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zmh5HzaCjwFFl1hth5ZY2QU6iyHPHYjmE5iTWZ5JFAE=;
-        b=acmQIefgK0C9TPYg911+7dfh/rixy9ccWBEjNEp0FJAUt9RzIdnHtVBKo2wmrAHqgu
-         EenbCbHzDbluas5av8mr5oLD0u+dP3aPiBO+YqNTViZRBNtUuqLAYeLa11TEspnqE6i6
-         mS+vNRY+wG/Mr/nKozjcQ5+riNnBmJhfvJ6EhA3dYGDkLS6eaL8Uf0mxxHgiL/XmjY3w
-         zDfdGQT4E+3+Em2ueqITCmezr6LKqEu83RpFAGKMuquQAyItUXq7Z2N1+vEe7oZsThB8
-         0QxW8jetROf8vh+hgQLHUVgB+PTab8jPFc5MTUo6qId+/J985gXkqOQCMZzPC2Zjng3h
-         1Wjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773382690; x=1773987490;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zmh5HzaCjwFFl1hth5ZY2QU6iyHPHYjmE5iTWZ5JFAE=;
-        b=E5GBLiscudc0C5o6LO8Ymje/PlxG8dt8nABS9vAhuiSYDn1dwvfagixaMGZhWn0Ly5
-         2kDbblLUO7MOf7NKTaHtylTkFdd4gQSGwf/an6g+3pxOBMsKou9K80SWtnLZMtE5Q3UF
-         AMZ9Lm1hL77ye8Gk2N53/aIse0HNRrhwe+NW0Nmw1NtQdaXf4RdQuZDWVsg86zGsreI5
-         ssf7kHx3OT1oeOD0jvfmd4+6zoSde4rchIQ+gDDLMWx2iCbpd2tZDoHEgGA0ILGo6/8c
-         7ACiJMw4OlXIXXB/loqOtV47D4KZUVRzlXTgBf+uWyaQEQbTsGOl8OCgptjHFRl4MZlR
-         SMiA==
-X-Forwarded-Encrypted: i=1; AJvYcCU6LUEdF8QjYK7FtaDdTIRkwB4eBAQi+th3UZo3Ir+n5gE/wtyCpWoOMotAPG16p7mmitoIGjXgVczJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHzJrKrQSx+92RPzFjPnzMFSQbBVzkJyEmiBE4Muh/CzrXs44a
-	7uWf8Ndu93fQgC8LJjpEK9gvHfJOK/fXdzF2wB1aeRN2NeRuG4SfESeP
-X-Gm-Gg: ATEYQzzbTy/1qVzFgn7mZi/JZE4L/Y+HO3IHYBkYhA7SkI0FYcPP5BjRvQkqdVnPIyZ
-	7ppQF4Bcky2F8T8kRI4FrWTX+QyxYbE/MR6p3HCZGt1abpiRSB42pIAF3KNPey3GpzyxoNPe3Ek
-	KnfNn7a+H1GgZJus+efzkIE73K6xC2qfLfDJZkaf3tGBPQFYmPTkBI2axZsUEUx4uhnKcOXP8Y8
-	QKys93vUwt6F3zc1aGQiXK4g4OsVtS7Zas4hELa/6DmfDD3JV4TG3LeQ++NcywsAIEnYk8YDmZL
-	QzYAKX5UsUCbNdodRX+4GK++X6ab9+d9M4ojMiMKP42Hi5DNDbjv+UrF3I9MPVDIVrnJbbGv6Oc
-	DxQXlUO0M25+GtzkvuOeNAbm4th4v1ImdHoQ4+03+Eawh4K+TRiKEkOE5sR7IkYRx2GgX+UGRAK
-	gNvyCmrOZUYcLYjX0B/MuK72SsRMzoSgNVPXA/fba/PE+wMAPFKBTsECgv1hApnD1OqDcVS4PC0
-	oGtaB3RFvWt4l01OjY=
-X-Received: by 2002:a05:6a21:618e:b0:398:8dbb:d2b with SMTP id adf61e73a8af0-398ecdd56bamr1753374637.58.1773382690097;
-        Thu, 12 Mar 2026 23:18:10 -0700 (PDT)
-Received: from ?IPV6:2401:4900:892e:1f2a:440a:1550:d03:380c? ([2401:4900:892e:1f2a:440a:1550:d03:380c])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c73ebb76f04sm915634a12.26.2026.03.12.23.18.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Mar 2026 23:18:09 -0700 (PDT)
-Message-ID: <cf3adca8-adf1-4163-89a2-e00cafdc2973@gmail.com>
-Date: Fri, 13 Mar 2026 11:48:00 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F09683431E6;
+	Fri, 13 Mar 2026 06:25:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.56.61
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773383146; cv=fail; b=liWcJ1GmRrCD//LNeL9nk9hASPG1vlK5YYi+/eSPpiOAnsxDRy6PbLyP/MaR9gNe6XDvqCd4RHmNqQHtTvqEfJUhRu+FSN9bNZXDnp6eHey94hLvL8Fam8Kz3zs01EDFLkn2ngyyVBRImhI3bvgEeqsMRQREPvGQnTxL8dUtqHU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773383146; c=relaxed/simple;
+	bh=1xag35iODtRAjNwV/+wpLm3LylgWu+1S2cL/w0F1DDs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Raq7inYYIPVZcCjB6gpoIay83OvW0iav68HUeQ/p1Xf5W9NDm8vZuPOaBhakatlaznUkKPQEK/WWxHn1MbXBs1ZVRk8aeW5Od2wB8nSkDI7dkztvqEglBRKP+pTYyqIlczq4v+FA0Znqu9IOcIzCFhRXpP9amIKrgKIq6MjfQqA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=AZoT85VD; arc=fail smtp.client-ip=52.101.56.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tlEOOeN6MbqOl412eypckqtEzNarCO30cGVjjTLH37BEVVKtwRGp54l6sXOsSDI/1vtnIvgSg0UkKTh6by1zeY4G2uXbPu73HuA6AdFlZKjxQQF85oXX++rJOA/0a2+JtK8YjL4viHk+ZHivXjhMuw9e0B9VKGe1J/9HkaW8Aqo4rRWxS9G7IG88lDEPWgMXsrfC9d5ZDazedrUzrhPLscsw+du0RHMgD8pWE97X1QJWP0p47/qBwL5dHKkvqiZnIJK4WY7bUvbkMHETVtw1RqSvnKAHQQSX/t4iL9zMTkLG/GVtDgSqLKtYXbeC4HZH7dgrGUpqmheQeFUV4u87Pw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lNPwALV0Tf2qKWYJJ3DkoHTbtblOZ1UjGKeyPm7Y1GE=;
+ b=Rw2h0zx+UfIJDX4H8CnBtBxLL/AhUz6Jgtt9PD9IgHvxi7fV7mwt+c21cAdUTx0+bDuctscC5/6sN7vbz8EcSR9VaOjtOecBtx55dDJicJqtSoAJRAP1cwFIvgJDAQgmcP2azbhVggGLFBXEh1hfTVn8UinEgGE5e4VBBYB1rvB6dUsLaCs85uXCYf5S3PgHIKqFLJkckqmw7qnVyHhFpz7Cu04MEc5td9y8ngn4EGvPxVXbEulu6cvPyhfnTl7Gp4IjwXhx4ErDklZKDrQYFEZACmwTYcbACRZT3ea2mHcTB5xXFUrDkU/uElv8NICFY/J+6yybt0zT27NpVHgnCg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lNPwALV0Tf2qKWYJJ3DkoHTbtblOZ1UjGKeyPm7Y1GE=;
+ b=AZoT85VDpgly9Hj6EyzJHe3cU0J++gvVt8tPbAOnjxdYxU79nWUhI8517CGTA+FBVRC+s/Z8o6qIWfvkzPpc4pI4jXfvDQ3WrQQhMM76k1SxWDlChAeFeGrMO2ETDQ4vlRWvKTIRQFDGGWPrQBH9k748h2CR6d/bfM4OLyAzJ7w=
+Received: from CH0PR13CA0034.namprd13.prod.outlook.com (2603:10b6:610:b2::9)
+ by BL3PR12MB9049.namprd12.prod.outlook.com (2603:10b6:208:3b8::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.7; Fri, 13 Mar
+ 2026 06:25:40 +0000
+Received: from CH1PEPF0000AD75.namprd04.prod.outlook.com
+ (2603:10b6:610:b2:cafe::d6) by CH0PR13CA0034.outlook.office365.com
+ (2603:10b6:610:b2::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.13 via Frontend
+ Transport; Fri, 13 Mar 2026 06:25:39 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CH1PEPF0000AD75.mail.protection.outlook.com (10.167.244.54) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9678.18 via Frontend Transport; Fri, 13 Mar 2026 06:25:40 +0000
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 13 Mar
+ 2026 01:25:38 -0500
+Received: from xhdsneeli40.xilinx.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Fri, 13 Mar 2026 01:25:34 -0500
+From: Srinivas Neeli <srinivas.neeli@amd.com>
+To: Vinod Koul <vkoul@kernel.org>, <git@amd.com>, <srinivas.neeli@amd.com>
+CC: Frank Li <Frank.Li@kernel.org>, Michal Simek <michal.simek@amd.com>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Suraj Gupta <suraj.gupta2@amd.com>, "Radhey
+ Shyam Pandey" <radhey.shyam.pandey@amd.com>, Thomas Gessler
+	<thomas.gessler@brueckmann-gmbh.de>, Folker Schwesinger
+	<dev@folker-schwesinger.de>, Tomi Valkeinen
+	<tomi.valkeinen@ideasonboard.com>, Kees Cook <kees@kernel.org>, Abin Joseph
+	<abin.joseph@amd.com>, <dmaengine@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH V2 0/5] dmaengine: xilinx_dma: MCDMA descriptor and metadata handling improvements
+Date: Fri, 13 Mar 2026 11:55:28 +0530
+Message-ID: <20260313062533.421249-1-srinivas.neeli@amd.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mtd: hisilicon,504-nfc: convert to DT schema
-To: Rob Herring <robh@kernel.org>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-mtd@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260307-hisi504-1-v1-1-8bf9a186faf2@gmail.com>
- <20260312152851.GA3190071-robh@kernel.org>
-Content-Language: en-US
-From: Akhila YS <akhilayalmati@gmail.com>
-In-Reply-To: <20260312152851.GA3190071-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD75:EE_|BL3PR12MB9049:EE_
+X-MS-Office365-Filtering-Correlation-Id: 23d46346-f1f0-46c6-1458-08de80c958e5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|36860700016|376014|7416014|1800799024|13003099007|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	A35DDyB6xbL0V8gnW1N5w5lWdmDGkAQraqKrKbSvg9IJmzMW1m9VPrp3EbaQo0AYBkr2pnzWgJBxAZUgziIxaJ+LqCQE6X4jrl9VJZ80jC2nUEr235eMLnIKLe0u3Z/kaICtveixR/RzITZ1NR1uAbrOJJEwfuxgTqCL3Czy/aTTLswAFlhTce2kG03BttsWiDYl/EnMUQNkfKFUJI1kWBpNps2m4QRU01eqi3LNm0eWHwHBiRTYtVbWaFHE5+z2V3SkhwqeyKBW0Q3ZfSySSdh2A67mpdwnocK8BnJwU6iAytdBUpyvpsbf7lCR/JH5bg24PTbzaryHFU9keHDhbYS/emj29y8jL7CVfH98+g9VIcDcRJskntPMvgxhpbqI4D9FurjwyJZAuERQBCc/QgsyqJ9IvrQfSLG3dZTe76FN0Ihoi0eE7l5ARzD7ewyG2h6ZdgzcLxtvigLnN6cIB7qGLdKgixH6x7j26ApmqAAuYcarpLE4c0igN9nBpMkmOVzeMaWoRf+7P5aroICKyPRe17pMMQasvziRDfo3s8o5gjUTEMfnbKatSdkRQfH1lYzy5amewcflT4Oa3R+6/dfoNELRf2umPq6VIC2lg7KK63/IXp7qPy0JTnbYkry3s3Y5d9zIutcUFyi1YV/u2s/aeC5AG7juxApfzlEXdANNxhAhEQrjl5THIk03W8GJIiyy+vXyM+xvKLWW03CONeVeThj9zBhlyi8fO9myp+Jx5fRaXBS6XEzFsk3aLV0E6VkHJpNpo4LGYd/gqofoTA==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(376014)(7416014)(1800799024)(13003099007)(18002099003)(56012099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	zUdeI0NcvzK1KDm1A8+UKMyV+dDjq1MPxEqlRmIdhkzBsIonorh5DSmGwZR/AyOqTb2v0uC5sDkAYg5cUD0zG+eXSNsqKB7CxzFeb7vK2ImlVX2KZEKtxsd7nB4atC5RCI1jHWNl0nTC4dvPwQNwX45RX8HeK1qAzE047lJ26dk62WFOgQkz9mTEpDmqABN70SN3dqtPQd9zud+XWPJoLP1X3iRMA0exx3rPjXmhpdGK7WTCaZCddw/Q/JBed9aIoVj6R3VzCsVWTHyXivi5qhw8ILckjCnm7Vj27dlU6FACp/kXg0r/smO7OYvp+vc5caFJ9Z5sW2P0r6id5xStJ2Fa7iscbNnbTDcEKer2ooQjWRIx9H1z23++dwt9su7O3F8p9d6TKreVLNz9Zmx9Je0cobXUveO3aT4ogHoxljiHJkCghtgJW9U9ykh2CpXB
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 06:25:40.0810
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 23d46346-f1f0-46c6-1458-08de80c958e5
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CH1PEPF0000AD75.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB9049
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274892-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-274894-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[akhilayalmati@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[srinivas.neeli@amd.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,amd.com:dkim,amd.com:mid];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.0:email,devicetree.org:url,0.61.87.32:email]
-X-Rspamd-Queue-Id: 1D66527E0D9
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 9228D27E20D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+This series improves the Xilinx AXI MCDMA driver's descriptor handling
+and metadata reporting. It fixes direction specific descriptor field
+usage, ensures completion is based on the hardware completion bit
+(important with delay interrupts), and extends metadata handling so APP
+fields are used when the AXI4-Stream status/control interface is enabled.
+When APP fields are unavailable, the series still reports transferred byte
+count via the status field, enabling clients to track progress in both
+configurations. Device tree bindings are updated to expose the
+status/control stream presence with a dedicated property, distinct from
+stream connectivity.
 
-On 12-03-2026 20:58, Rob Herring wrote:
-> On Sat, Mar 07, 2026 at 04:43:56PM +0000, Akhila YS wrote:
->> Convert Hisilicon Hip04 Soc NAND controller DT binding to YAML format.
->>
->> Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
->> ---
->>  .../devicetree/bindings/mtd/hisilicon,504-nfc.yaml | 90 ++++++++++++++++++++++
->>  1 file changed, 90 insertions(+)
-> Convert implies the removal of the .txt binding. Where is that? Could be 
-> missing? If so, say that.
+Changes in V2:
+- Rebased on the AXI DMA binding YAML conversion.
+- Added xlnx,include-stscntrl-strm in the YAML binding.
+- Clarified cover letter to reflect metadata behavior with and without
+  APP fields.
+https://lore.kernel.org/all/20260309033444.3472359-1-abin.joseph@amd.com/
 
+Srinivas Neeli (3):
+  dmaengine: xilinx_dma: Fix MCDMA descriptor fields for MM2S vs S2MM
+  dmaengine: xilinx_dma: Move descriptors to done list based on
+    completion bit
+  dt-bindings: dma: xlnx,axi-dma: Add "xlnx,include-stscntrl-strm"
+    property
 
-Hi rob, yeah the removed .txt binding is not added in this commit, i
-will add it and send that in a v2.
+Suraj Gupta (2):
+  dmaengine: xilinx_dma: Extend metadata handling for AXI MCDMA
+  dmaengine: xilinx_dma: Add support for reporting transfer size to AXI
+    DMA / MCDMA client when app fields are unavailable
 
->> diff --git a/Documentation/devicetree/bindings/mtd/hisilicon,504-nfc.yaml b/Documentation/devicetree/bindings/mtd/hisilicon,504-nfc.yaml
->> new file mode 100644
->> index 000000000000..805ef0af0e04
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mtd/hisilicon,504-nfc.yaml
->> @@ -0,0 +1,90 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mtd/hisilicon,504-nfc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: HiSilicon Hip04 NAND Flash Controller
->> +
->> +maintainers:
->> +  - Miquel Raynal <miquel.raynal@bootlin.com>
->> +  - Richard Weinberger <richard@nod.at>
-> This should be someone with the h/w. I would use the HiSilicon 
-> maintainer from MAINTAINERS.
+ .../bindings/dma/xilinx/xlnx,axi-dma.yaml     |  4 +
+ drivers/dma/xilinx/xilinx_dma.c               | 93 ++++++++++++++++---
+ 2 files changed, 84 insertions(+), 13 deletions(-)
 
-
-Okay, sure.
-
->
->> +
->> +description:
->> +  The HiSilicon 504 NFC is a NAND flash memory controller used in the
->> +  Hip04 SoC. It supports hardware ECC for NAND devices and provides
->> +  register and buffer regions for NAND operations.
->> +
->> +allOf:
->> +  - $ref: nand-controller.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: hisilicon,504-nfc
->> +
->> +  reg:
->> +    minItems: 2
->> +    maxItems: 2
-> Need to define what each entry is.
-
-
-Okay.
-
->
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  nand-bus-width:
->> +    enum: [8, 16]
->> +
->> +  nand-ecc-mode:
->> +    enum:
->> +      - none
->> +      - hw
->> +
->> +  nand-ecc-strength:
->> +    const: 16
->> +
->> +  nand-ecc-step-size:
->> +    const: 1024
->> +
->> +  "#address-cells":
->> +    const: 1
->> +
->> +  "#size-cells":
->> +    const: 0
-> These can be dropped as the child (partitions) doesn't have an address.
-
-
-Okay.
-
->
->> +
->> +  partitions:
->> +    $ref: /schemas/mtd/partitions/fixed-partitions.yaml#
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - nand-bus-width
->> +  - nand-ecc-mode
->> +  - "#address-cells"
->> +  - "#size-cells"
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    nand-controller@4020000 {
->> +        compatible = "hisilicon,504-nfc";
->> +        reg = <0x04020000 0x10000>, <0x05000000 0x1000>;
->> +        interrupts = <0 379 4>;
->> +        nand-bus-width = <8>;
->> +        nand-ecc-mode = "hw";
->> +        nand-ecc-strength = <16>;
->> +        nand-ecc-step-size = <1024>;
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        partitions {
->> +             compatible = "fixed-partitions";
->> +             #address-cells = <1>;
->> +             #size-cells = <1>;
->> +
->> +             partition@0 {
->> +                 label = "nand_text";
->> +                 reg = <0x0 0x400000>;
->> +            };
->> +        };
->> +    };
->> +...
->>
->> ---
->> base-commit: d4906ae14a5f136ceb671bb14cedbf13fa560da6
->> change-id: 20260306-hisi504-1-d7aa09c70d93
->>
->> Best regards,
->> -- 
->> Akhila YS <akhilayalmati@gmail.com>
->>
 -- 
-Best Regards,
-Akhila.
+2.43.0
 
 
