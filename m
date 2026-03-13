@@ -1,201 +1,291 @@
-Return-Path: <devicetree+bounces-275340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275341-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8PXqGuAhtGnahgAAu9opvQ
-	(envelope-from <devicetree+bounces-275340-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:40:32 +0100
+	id CBlrD1QitGl7hwAAu9opvQ
+	(envelope-from <devicetree+bounces-275341-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:42:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FF1E2852AC
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:40:32 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D102028531C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 15:42:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AA9C43077233
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:40:30 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7D8B730087FD
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:42:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 151023A3835;
-	Fri, 13 Mar 2026 14:40:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5463A6B69;
+	Fri, 13 Mar 2026 14:42:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EGbAEev7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GGFSMfaB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DA95372B22;
-	Fri, 13 Mar 2026 14:40:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773412830; cv=none; b=bX8P1jMpp5BfTKzfbsyJFoY969mww3ljUolwYS2v3pDkR4+kjTQM101Px7CvhL17wyMzWmz7EF8Q2Z7ym4s2ZzD+z1INYgmABId67PCf9BNo2bh7e3RqppVUokZrYCqcHc0+kjDurjESZR2oMWaeKolV01wrpQy3apjG5PZEN7M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773412830; c=relaxed/simple;
-	bh=d23l5QfZILL92TANqDOqm0WjgNLDASSxYAanpTwaEgE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LbYjLy1lDxd/97UyVqHFz6k4M62X59Z8i8awDxEL8pUDYsCDkKPD9WYBhq/CDPmBmX5/7xHzIduzXmjbGyg+uZGKWC4QkbV7IvFrvzS3+xtb2DDLGmf9RAod64hh6uiv4wuf5LJKRPrqH/7XQrWXt4GvXGe1E7tpXlp3q/0RY00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EGbAEev7; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773412828; x=1804948828;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=d23l5QfZILL92TANqDOqm0WjgNLDASSxYAanpTwaEgE=;
-  b=EGbAEev7miV1BJjqzfAtGilgzJ6wbn3TF37tNjvaFhIAE32cbq5x12Pa
-   puSuGkBMEm2Xsi1eHALpoLF6KRug/ENzAZw8ncKixsDXGBrjVu0RC5HRd
-   GadDxOgefoumjJfYQqe6SfNhCuL0ZCrajzy/Y7n8E6/DXDFE3pD5Wv2b9
-   zueXNB82dQvj/EOxIkRHyXTo5Cr+7PvFUSGEKeE7ooE48BPfbQDh2yMes
-   bFKEG7hIL/XrF6waGg3vXpoYV8mdeBCF/rZKaRjG6YfKg4CsWezbRru+z
-   XSynfdtNys+nfuUyKf7wOOtHnxrrRKPZd6SzD/m3ZpcdU9ygDzE5eBDMx
-   g==;
-X-CSE-ConnectionGUID: G/dvZH0LQFaussNxKmw1wA==
-X-CSE-MsgGUID: Uqvw0KZ3Tu+wvuhPD66L3w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11728"; a="62090732"
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; 
-   d="scan'208";a="62090732"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2026 07:40:28 -0700
-X-CSE-ConnectionGUID: k7P44SedR9iseEQORDQ+MA==
-X-CSE-MsgGUID: fZ+VfvuWSh6RDMwVkZXiOQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; 
-   d="scan'208";a="217597282"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.246])
-  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2026 07:40:23 -0700
-Date: Fri, 13 Mar 2026 16:40:21 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: "Sabau, Radu bogdan" <Radu.Sabau@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	"Hennerich, Michael" <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	"Sa, Nuno" <Nuno.Sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH v3 3/4] iio: adc: ad4691: add triggered buffer support
-Message-ID: <abQh1Y5_oGyvIxwT@ashevche-desk.local>
-References: <20260313-ad4692-multichannel-sar-adc-driver-v3-0-b4d14d81a181@analog.com>
- <20260313-ad4692-multichannel-sar-adc-driver-v3-3-b4d14d81a181@analog.com>
- <abPxR0TVa70sMg38@ashevche-desk.local>
- <LV9PR03MB841415AA5DB9FFB714710CC3F745A@LV9PR03MB8414.namprd03.prod.outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4717B3A5E87
+	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 14:42:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.219.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773412943; cv=pass; b=EYBW6dtwDjOMJlfM9ZlLoawJNl9oTfp6m2LgI3TcrMGTBbEOO/wybsoyR9gkcJ8eyzbqLyAmFuvd7u/FLR4a8dmGeOYm1k87RxpRf9xJBuB2JNVFlQfE/1hfzhtZ+Mce9O/DbHRx+E6vc7ogTWiXgFAyC4a2aX/45ie6ulyv/nQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773412943; c=relaxed/simple;
+	bh=MV/eXRShZGoChKIqTWx3xRDJY4D5p1GfCWHVtdLntcU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TkbcP5EhKs8oxr+99KgfvzBVczYirGEwKtkJLnaQyf1pBHcLaAwxgRnETTPCMx0960rZxGrBGxWAOeF7zwhzNYnGR1rT0ynPDjfxzNZA98JSjKb5shRgIV/NAfGG5Awhf84P1rr7H3QgKKFtjja25W2hWFJ/Ex/EJDHpT7FPCJw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GGFSMfaB; arc=pass smtp.client-ip=209.85.219.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-89a1347051aso23654866d6.2
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 07:42:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773412941; cv=none;
+        d=google.com; s=arc-20240605;
+        b=PIHLS/Vt8JFLPlYat9a3szZjALXjcYA7mZsWhmB9llxGVR1pTDTAO8LjCY3zkOOGcY
+         o+AAmsJgB5MToNCTQT1sxZJbO09YCZ+42uYxsfrZ+Cv9AoOUeH0Db6yeHmbvA57ZZYRK
+         7/FGPe+HjyOWiFNueJLIcRkq4d72atAPQXg5NKPpKJrQ0yrjN3mGtOQfodIofc7gG0Hb
+         QI1A0LRIsQg68L48hFnPWuNOHQ2VUKD4j6JT3P4E34ukgzWJr3IKyw7FLwu871Am98JE
+         TUJHQnnNeqK9AKplazOagyoWS4xwfLB+h43erUPX6X41C+AyFHCAEw2Enk2Ot/hC5R3l
+         Krgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=Qc+mZxTV+FdzmhrCNMAZNBcHZoz8P43EP82OiNbVxfA=;
+        fh=4P6QqLQv+GJEIzNiDzTJwmuvNihomM0gYr6C955EgKI=;
+        b=PUPl0x4uhrDqURYmPIibVi3rL/5l4zq/4LXDqkLNDR4KYPsIdAC75sBn1Qq7byV7iE
+         TxIDgnfzkvAOUu+uxOX9LzPfpBF28oD2DHi9I5X7Y71vI96SpqIejON7BPVKegAoG2fB
+         F5hem7NuPht/wtTWsdU24q6HDW6U0rHkb4I9d8+m9rsf0ekEtOF2CbR1uRRdJfOIy7KB
+         yrS+BN8y2NwZIX/0+sTgEMozegr94ZEksgpvb8BRGkiaDsPJc5LhEn68BNXOr8dIx5QS
+         +Dx5v4F5fzbhMWsnTIbBwLxOk76meTKLUBMmVTibh/EdcUaZedWwkCKnUJjT2KG+Ipga
+         dZ4w==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773412941; x=1774017741; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Qc+mZxTV+FdzmhrCNMAZNBcHZoz8P43EP82OiNbVxfA=;
+        b=GGFSMfaBlV/JxTe/0jFPTsEVWBYVyhH1nm+RUwZcTHAVGEbe4fWdeKRBQ7kTeOdTHa
+         xgP1Z0XaudAMPir7uZgUFxxeKtIf0AL+Jlf0uzdpdg157snS0oDxN+VNYUfFYrsTDahn
+         iYBZ7Y9l5lBEC9n2Ds18tvp0x9qgoH/fUBUM9lvlPyO1xSqsNv1dpO2NuQXzX2zhJKjI
+         DBGUO9N4bNPfLL6IEq4FwGNMCpLCvyKM+vWJ/tr+YXtCZ3Zb6HxXV1zhzKI7ux30QGAA
+         Vjlsh4vlYCyJ+9zAPxt/lP/e5SrZrxsxYv6rpQp6WADiNCpuOVDFuVpk6gsOOAVIYCuF
+         nH4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773412941; x=1774017741;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Qc+mZxTV+FdzmhrCNMAZNBcHZoz8P43EP82OiNbVxfA=;
+        b=TDnJ17SPwWF9mRErPvJmGtjm/FAaXGWX5mPlf1PvNMYMm99ZickUx5JCwT1z+ieHnv
+         gv92In8B0Fo4HIhwdxtPaNBNrmz+XPZJOAChzmXZ8HnaBk/szHQnZQIF7ohEZj4FIk3R
+         wh87TtvoO9BLICg+DFL1WvVZB1tYsGdHIinp3thHCZhKCKdAWzkbE+/VsYzhdsNxkuF8
+         7kNq+RAUwGTc5R/VwFmgAQp5MOEHuJc+gRzTH7vDYsexm+uV/vnfOkvalaSEdSDIR3Vw
+         lJFNofhZCXJGBXPnp4t5FSJOFOF0/OcEnMD72zyVFdOcc8twa2h1g1Ahx6W33z3P2GND
+         NrHg==
+X-Forwarded-Encrypted: i=1; AJvYcCXOeuPGtCJ+bkwX1QuamWl9Cr1qB4xDunZlOVP2rkp0CLodo00iipjAl+sskMMAYx3mwU+E019Fca4G@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/QjdkhBFTKQwPBQFINjEmthsjWpicgnX9S6LTIt+MfJ0JN3vD
+	koTUFkmwqGtI2YuRSdq6oC8dExkhwd8FrJ5WOpwBPaVV93dRwdkjxopXpUhJ1j9KzfdEKrEpCRw
+	uisrF5Nl3HO910PXgvT3/wpggSQvWlWqO++Ro
+X-Gm-Gg: ATEYQzztbbyFISEgueakVOqd2meC2p65Ky0FY/aI9dOFhxVCznBjhjPfwU41fapYtx2
+	Txu+IvMtTYF45aTj9SmjZQXvXyjL5GDp9o25AYT8xzqUsAAyrPDdpD+M5Qt50VMuYsCl751DtCP
+	8s/NMOQ5EyAfscGF96JW3lIOdK73tk+ma1vQV+saw1d3THaf2fIPqB15TthDVR2wsYtBE0egZvC
+	QL68qr5MI8i4mfuwTzPlBabmctkDrauHHn+ckUE7Lr3Nwczd56mfEPkdHre6H1Jar+E+1yD/I0B
+	b1d4KA==
+X-Received: by 2002:a05:622a:1a8c:b0:503:4251:6597 with SMTP id
+ d75a77b69052e-50957cc6720mr50149121cf.29.1773412941102; Fri, 13 Mar 2026
+ 07:42:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <LV9PR03MB841415AA5DB9FFB714710CC3F745A@LV9PR03MB8414.namprd03.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+References: <20260309-orangepi-sd-card-uhs-v2-0-5bb2b574df5d@gmail.com>
+ <20260309-orangepi-sd-card-uhs-v2-7-5bb2b574df5d@gmail.com> <f2eeddcb-712f-4a67-9687-e217f46f9ea8@baylibre.com>
+In-Reply-To: <f2eeddcb-712f-4a67-9687-e217f46f9ea8@baylibre.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Fri, 13 Mar 2026 20:12:02 +0530
+X-Gm-Features: AaiRm51P57qcJuyAf0DEi9SoGi5rXwcJCFXanh2EQoeiyawGvbU2ynSwbZwPkSA
+Message-ID: <CANAwSgSjsn46p13LokjYZBLdOrUBTFsmDNf80TG=nvkqHWNkfQ@mail.gmail.com>
+Subject: Re: [PATCH v2 7/7] riscv: dts: spacemit: k1-orangepi-rv2: add SD card
+ support with UHS modes
+To: Trevor Gamblin <tgamblin@baylibre.com>
+Cc: Iker Pedrosa <ikerpedrosam@gmail.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Adrian Hunter <adrian.hunter@intel.com>, Paul Walmsley <pjw@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@kernel.org>, 
+	Michael Opdenacker <michael.opdenacker@rootcommit.com>, 
+	Javier Martinez Canillas <javierm@redhat.com>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	TAGGED_FROM(0.00)[bounces-275340-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[metafoo.de,analog.com,kernel.org,baylibre.com,gmail.com,pengutronix.de,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-275341-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[gmail.com,linaro.org,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: 0FF1E2852AC
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linuxamoon@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: D102028531C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 12:09:55PM +0000, Sabau, Radu bogdan wrote:
-> > -----Original Message-----
-> > From: Andy Shevchenko <andriy.shevchenko@intel.com>
-> > Sent: Friday, March 13, 2026 11:13 AM
-> > On Fri, Mar 13, 2026 at 12:07:27PM +0200, Radu Sabau via B4 Relay wrote:
+Hi Trevor,
 
-...
+On Fri, 13 Mar 2026 at 19:26, Trevor Gamblin <tgamblin@baylibre.com> wrote:
+>
+>
+> On 2026-03-09 07:40, Iker Pedrosa wrote:
+> > Add complete SD card controller support with UHS high-speed modes.
+> >
+> > - Enable sdhci0 controller with 4-bit bus width
+> > - Configure card detect GPIO with inversion
+> > - Connect vmmc-supply to buck4 for 3.3V card power
+> > - Connect vqmmc-supply to aldo1 for 1.8V/3.3V I/O switching
+> > - Add dual pinctrl states for voltage-dependent pin configuration
+> > - Support UHS-I SDR25, SDR50, and SDR104 modes
+> >
+> > This enables full SD card functionality including high-speed UHS modes
+> > for improved performance.
+> >
+> > Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
+> > ---
+> >   arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts | 19 +++++++++++++++=
+++++
+> >   1 file changed, 19 insertions(+)
+> >
+> > diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/ri=
+scv/boot/dts/spacemit/k1-orangepi-rv2.dts
+> > index 414b03f5e6480f05f5d7eeaaa0afb4e86425ae36..361135269801f436703b6f1=
+d768c91325a52f07f 100644
+> > --- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+> > +++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+> > @@ -140,3 +140,22 @@ sd_vqmmc: aldo1 {
+> >               };
+> >       };
+> >   };
+> > +
+> > +&sdhci0 {
+> > +     pinctrl-names =3D "default", "state_uhs";
+> > +     pinctrl-0 =3D <&mmc1_cfg>;
+> > +     pinctrl-1 =3D <&mmc1_uhs_cfg>;
+> > +     bus-width =3D <4>;
+> > +     cd-gpios =3D <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
+> > +     cd-inverted;
+> > +     no-mmc;
+> > +     no-sdio;
+> > +     disable-wp;
+> > +     cap-sd-highspeed;
+> > +     vmmc-supply =3D <&sd_vmmc>;
+> > +     vqmmc-supply =3D <&sd_vqmmc>;
+> > +     sd-uhs-sdr25;
+> > +     sd-uhs-sdr50;
+> > +     sd-uhs-sdr104;
+> > +     status =3D "okay";
+> > +};
+> >
+> Hello again,
+>
+> Thanks for doing this work. My colleagues and I have been testing this
+> on an OrangePi RV2, and also a Muse Pi Pro board (making a similar tweak
+> to this patch in k1-musepi-pro.dts). To do the testing on my end, I'm
+> applying the patch series on top of 6.19 in a Yocto BSP.
+>
+> I've been finding that I see issues with the UHS support on my side
+> (this log comes from an image built and flashed to an SD card):
+>
+>
+> [ 1.072417] sdhci-spacemit d4280000.mmc: Got CD GPIO
+> [ 1.109741] mmc0: SDHCI controller on d4280000.mmc [d4280000.mmc] using
+> ADMA
+> [ 1.114589] clk: Disabling unused clocks
+> [ 1.118421] PM: genpd: Disabling unused power domains
+> [ 1.123249] ALSA device list:
+> [ 1.126[ 1.129949] check access for rdinit=3D/init failed: -2, ignoring
+> [ 1.133284] Waiting for root device
+> PARTUUID=3De94bfdd7-a36f-4315-a480-476e2a12403d...
+> [ 1.176569] mmc0: new UHS-I speed DDR50 SDHC card at address aaaa
+> [ 1.180732] mmcblk0: mmc0:aaaa SS16G 14.8 GiB
+> [ 1.276268] mmcblk0: recovery failed!
+> [ 1.277351] I/O error, dev mmcblk0, sector 0 op 0x0:(READ) flags
+> 0x800000 phys_seg 1 prio class 2
+> [ 1.286346] Buffer I/O error on dev mmcblk0, logical block 0, async page
+> read
+> [ 1.293891] mmcblk0: recovery failed!
+> [ 1.297289] I/O error, dev mmcblk0, sector 0 op 0x0:(READ) flags
+> 0x800000 phys_seg 1 prio class 2
+> [ 1.306269] Buffer I/O error on dev mmcblk0, logical block 0, async page
+> read
+> [ 1.313522] mmcblk0: unable to read partition table
+>
+>
+> At first I wondered if maybe there was an issue with the card itself,
+> but by changing the sdhci0 section to this, I'm able to read the SD just
+> fine:
+>
+I used the same example on the K1-OrangePi-RV2 DTS,
+But it=E2=80=99s slightly different from the one you=E2=80=99re working wit=
+h.
+I tested on the latest  7.0-rc3.
 
-> > > -#define AD4691_ACC_COUNT_VAL			0x3F
-> > > +#define AD4691_ACC_COUNT_VAL			0x01
-> > 
-> > No ping-pong, and actually this was not used at all. So, make sure you add
-> > constants when they are really started being used.
-> 
-> This value is being used in the buffer_postenable in order to make
-> sure we don't encounter oversampling, since Manual Mode doesn't
-> oversample, and per Jonathan's review, there is no reason to support
-> both oversampled and raw readings at the same time.
+> &sdhci0 {
+>           pinctrl-names =3D "default";
+>           pinctrl-0 =3D <&mmc1_cfg>;
+>           bus-width =3D <4>;
+>           cd-gpios =3D <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
+>           cd-inverted;
+>           no-mmc;
+>           no-sdio;
+>           disable-wp;
+>           vmmc-supply =3D <&sd_vmmc>;
+>           vqmmc-supply =3D <&sd_vqmmc>;
+>           no-1-8-v;
+>           status =3D "okay";
+> };
+>
++
++&sdhci0 {
++       pinctrl-names =3D "default", "state_uhs";
++       pinctrl-0 =3D <&mmc1_cfg>;
++       pinctrl-1 =3D <&mmc1_uhs_cfg>;
++       bus-width =3D <4>;
++       cd-gpios =3D <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
++       cd-inverted;
++       no-mmc;
++       no-sdio;
++       disable-wp;
++       cap-sd-highspeed;
++       vmmc-supply =3D <&sd_vmmc>;
++       vqmmc-supply =3D <&sd_vqmmc>;
++       sd-uhs-sdr25;
++       sd-uhs-sdr50;
++       sd-uhs-sdr104;
++       status =3D "okay";
++};
 
-Yes, but it wasn't used before this patch.
-
-...
-
-> > > +static int ad4691_setup_triggered_buffer(struct iio_dev *indio_dev,
-> > > +					 struct ad4691_state *st)
-> > > +{
-> > > +	struct device *dev = regmap_get_device(st->regmap);
-> > > +	struct spi_device *spi = to_spi_device(dev);
-> > > +	int irq, ret;
-> > > +
-> > > +	st->trig = devm_iio_trigger_alloc(dev, "%s-dev%d",
-> > > +					  indio_dev->name,
-> > > +					  iio_device_id(indio_dev));
-> > 
-> > It seems you ignored some of my comments. Please go back and read carefully
-> > what I commented on previous version of the series.
-> 
-> I am very sorry for this. I may have misunderstood the comments, and thus
-> seem like I ignored them, but this wasn't my intention at all.
-
-When in such a situation, ask! A request is free and acceptable.
-
-> If you refer to the trigger_alloc comment, I did talk to my senior colleagues
-> and they referred to the fact -ENOMEM return should have been enough,
-> but perhaps this was wrong too. Could you please clarify?
-
-I'm talking about the room of the previous lines
-
-	st->trig = devm_iio_trigger_alloc(dev, "%s-dev%d", indio_dev->name,
-					  iio_device_id(indio_dev));
-
-fits 80 limit, for example. OTOH this is less logical, perhaps your variant
-is okay.
-
-...
-
-> Radu
-
-When answering, remove the context you are agree with and not going to discuss.
-I had to drop over 200 lines just "for fun" (no).
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Thanks
+-Anand
 
