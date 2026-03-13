@@ -1,447 +1,474 @@
-Return-Path: <devicetree+bounces-275169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275163-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id INXYNtj7s2nWeQAAu9opvQ
-	(envelope-from <devicetree+bounces-275169-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 12:58:16 +0100
+	id MF3OCDr7s2nWeQAAu9opvQ
+	(envelope-from <devicetree+bounces-275163-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 12:55:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64D872828D1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 12:58:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72AF1282824
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 12:55:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 30428324F1C3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 11:56:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 34E33301D69A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 11:55:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A131B3890E7;
-	Fri, 13 Mar 2026 11:56:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99DE8383C8C;
+	Fri, 13 Mar 2026 11:55:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="H2wkd7rw"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QO2iVZA/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from BL0PR03CU003.outbound.protection.outlook.com (mail-eastusazon11012044.outbound.protection.outlook.com [52.101.53.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C9D43876D6;
-	Fri, 13 Mar 2026 11:56:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773402989; cv=none; b=VVJJClDHUFju3Nlwmy+BK+vqORTnkC0JsZlTnxjozK0ieAL4HXTt0uvVPQo52dzY5U8LErk3Nlj3KR4HJFoCAFZTWybua++84E/Ugb2tcrPX3y/NGbxNQnr+7dH1sggapj37tNCgidqlkLQfHJSbbiIfta5JJsWEBr7Ys0Jp89s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773402989; c=relaxed/simple;
-	bh=F/WwZ+V8Xb/k3p4qUYm+5DVVTce69TtV7vbVJD8YzAQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=C/PoF6c6Jm6BHyShY5NF1ymewi7QS2kyOgMprrlHqtzu/FC7TgUY3sjeMHKhZTAUKWk4drNRDcEd05RNBZYbT4kO4C6ugyJ37VI0vV7MU+h5h8hmzqbQzFOpKKtD5mQKwTnJjEuK3GxPashwmcUaIujQ38gAokqckGlOxfQGGsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=H2wkd7rw; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62D9tAWX030173;
-	Fri, 13 Mar 2026 07:56:10 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=KDq+H
-	GePkSMJQjqRszDVRFVAkCJW9RX9lcykv1Inu/o=; b=H2wkd7rw2055L9Q4M1qGx
-	XC4mXY5Igt2/byNo3cYfhtrPMZ1PMfqYi5SPfdrvGgNHCglMebfeV+/v6vPac1jF
-	7GxvDzTXyy8ts6+UUJbYycneUKO/4mTE8rv5mho+XQfikYNm9LOk3MChbhQDgIy0
-	WiIF1Hbd5YU+6FkbKQnf98a3rz9ZcRdQAM5MAqh0N7/iypP3E9HH7m+z04P2OxN0
-	U9iNjLYxuVfBVGlTGYfYDOtMDLPiE9LhBLU8dnzrWIgVUtgmMvaKCzmDZdIJLze0
-	9Tsl6T730WWw2N+scOwWujt9P9DzpSJ//72P0fRSo6oOu9bLws1LrOOYWkkD8LtO
-	Q==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4cuh766yb5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Mar 2026 07:56:10 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 62DBu9OQ017366
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 13 Mar 2026 07:56:09 -0400
-Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Fri, 13 Mar 2026 07:56:09 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Fri, 13 Mar 2026 07:56:08 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Fri, 13 Mar 2026 07:56:08 -0400
-Received: from HYB-b1tGeUj4GP1.ad.analog.com (HYB-b1tGeUj4GP1.ad.analog.com [10.48.65.247])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 62DBtTxL024500;
-	Fri, 13 Mar 2026 07:56:01 -0400
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: Michael Hennerich <michael.hennerich@analog.com>,
-        Lars-Peter Clausen
-	<lars@metafoo.de>,
-        Jonathan Cameron <jic23@kernel.org>,
-        David Lechner
-	<dlechner@baylibre.com>,
-        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-        Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Petre
- Rodan" <petre.rodan@subdimension.ro>,
-        Jorge Marques
-	<jorge.marques@analog.com>,
-        Marcelo Schmitt <marcelo.schmitt@analog.com>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH v3 4/4] iio: accel: adxl372: add support for ADXL371
-Date: Fri, 13 Mar 2026 13:54:57 +0200
-Message-ID: <20260313115525.85435-5-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260313115525.85435-1-antoniu.miclaus@analog.com>
-References: <20260313115525.85435-1-antoniu.miclaus@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0231F1DDC28;
+	Fri, 13 Mar 2026 11:55:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.53.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773402935; cv=fail; b=iKDhLiCsaECghrX57KqG62ts37KA+gCGmHiLtD+Q8uU429Na/jv5T4J39I2/FEkSf40H/eolAz0e51rumVJoC9IA5aFzRrWjWAAbomxTatFgg3fOFFOewMh6uQuRfhdFtg0oUFBoTEM6Fc2CAV5RysOuzQmIZrvajfKDT14JmBs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773402935; c=relaxed/simple;
+	bh=+V0ZVXGTzSr7ZJYFjspXDb31uzM9G9vjoQ3WBG5GlDY=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DSA23m5LWa1SwUUYA4hgREtQlN0nNCKPnMP9grfAf9DM7CH82lGteB4W39RtACXIbPw5gxckQEHhaIxOsUhBQ10T8L97TTxvcLHx2t9L6Otid3/nOJmZ0kv/2617mTVHFyU9m4wXYwc/ekRnxyP6deBkMb6oYL5JrsDyKtjv3NM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QO2iVZA/; arc=fail smtp.client-ip=52.101.53.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wA25JG1aHcLQ/mN4UWu9Maiua4LjAZsNcCAg7vsELIjJOzGkPqryRH4OQVwK8Z9SoUggqiZj+IRYVWTjr1PkI8BB86kyHly8oyt1dWjGgJtNJ609w4BnbpvObE6YX7sk20PK0aIzK+EII97Otey4qeoAdLM/vGoPI52JLKF8+WEDpYJQYVn9fS6lbGH5d/GQLZC/RdMSoLO3tCZEhzCvKI2quGil+JMtLNxCLyBSyoh7f95/BM1u9ioz8vb9Aj9EYEx37zOn9oP6O23T0G3trCqKtjH/5/V1FzbSPUgO/TyjVBrDMpp4EYndM8pYkPmDogZXDX/qS+XH7PIEeh3xsQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GJYI/zjKJrFc266SciK9o33O1nT9aXWTY401E7EaJ5E=;
+ b=sQqFQIdqkkWLHSgyQ8a4Kua8/Af65Ep9OHy50x9hGYBMQc8bVSkRC1kS4GtzqWSkzHLleo49HA42z5F2Uk3omXcedJavhtUfNq3wQm1Ux6e4l7alVIFl1RtfQ8DCJoxN39q0nMuWGohtjY57fNW2fQzAhmujnLxxFPBaTPGXo239zCVpPe096zm0DwPfuQts6C/gtunmhacXIDIN7dp7hf6hGB/+IBHzLvSX4JjpLzl+wOkfoXZOtHS5DfamqcwnfrodCkTjop6Ozyjc2z1b7imYOx9fVJ0vf2w6j8Yd7jLoxqB8QLbqNyr+QjASz8LZoxDGmxLtFixNot23wtjZjg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GJYI/zjKJrFc266SciK9o33O1nT9aXWTY401E7EaJ5E=;
+ b=QO2iVZA/YCYpMFnhF79ByY2G9azGq3y8s9gZMzmwjn5K7nuRZYOmceiOGfJ8IgfkzbcVDe0+0Imb9W7fDD7c93/KQzCxv30roYDbxFJUWw4lQzaAKO/p8awV+wyakDq52kBCugS4rq01cUIIXRPRtMoVdwX8clmxmEbqBeR4VoU=
+Received: from BY5PR03CA0004.namprd03.prod.outlook.com (2603:10b6:a03:1e0::14)
+ by MW5PR10MB5761.namprd10.prod.outlook.com (2603:10b6:303:19a::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.17; Fri, 13 Mar
+ 2026 11:55:30 +0000
+Received: from CO1PEPF000075EF.namprd03.prod.outlook.com
+ (2603:10b6:a03:1e0:cafe::f2) by BY5PR03CA0004.outlook.office365.com
+ (2603:10b6:a03:1e0::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.16 via Frontend Transport; Fri,
+ 13 Mar 2026 11:55:28 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ CO1PEPF000075EF.mail.protection.outlook.com (10.167.249.38) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9700.17 via Frontend Transport; Fri, 13 Mar 2026 11:55:28 +0000
+Received: from DFLE210.ent.ti.com (10.64.6.68) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 13 Mar
+ 2026 06:55:26 -0500
+Received: from DFLE203.ent.ti.com (10.64.6.61) by DFLE210.ent.ti.com
+ (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 13 Mar
+ 2026 06:55:26 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE203.ent.ti.com
+ (10.64.6.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Fri, 13 Mar 2026 06:55:26 -0500
+Received: from localhost (lcpd911.dhcp.ti.com [172.24.233.130])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62DBtPNb485559;
+	Fri, 13 Mar 2026 06:55:25 -0500
+Date: Fri, 13 Mar 2026 17:25:24 +0530
+From: Dhruva Gole <d-gole@ti.com>
+To: "Kevin Hilman (TI)" <khilman@baylibre.com>
+CC: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	"Geert Uytterhoeven" <geert@linux-m68k.org>, <linux-pm@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<arm-scmi@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 2/3] pmdomain: core: add support for
+ power-domains-child-ids
+Message-ID: <20260313115524.6eqm7xle5umhttzb@lcpd911>
+References: <20260310-topic-lpm-pmdomain-child-ids-v1-0-5361687a18ff@baylibre.com>
+ <20260310-topic-lpm-pmdomain-child-ids-v1-2-5361687a18ff@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: Z4bIkMn9tXlmlqrojVI_zKKOQwDcieTq
-X-Authority-Analysis: v=2.4 cv=AI0/m/Lt c=1 sm=1 tr=0 ts=69b3fb5a cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22 a=0sLvza09kfJOxVLZPwjg:22
- a=uXIjobp8t2wMuQ0fPvqm:22 a=gAnH3GRIAAAA:8 a=frw5fpX27FXSdM8m8iwA:9
- a=mpv_7z2a4kGo0ltCk4E8:22
-X-Proofpoint-GUID: Z4bIkMn9tXlmlqrojVI_zKKOQwDcieTq
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEzMDA5NCBTYWx0ZWRfX73nnZMZpaJvY
- 0H6vvEXia8qF4urH/letZlN37hgvqe1qA0DMu8SblzwTnSQUYgYNS3QAqmgsg5WSy5npq5Rargg
- rg5KgRUzhwcYt9Wmvdp3MdWbn0biZ6zdk0Te+SVYJws8wNwI1wU7NllsPHsI+/VH8usPbyhNhgx
- it/TtnqCB38z4wmnpH9L1lhzq5VXrsd+Ydbbfy/emNbEgoMu6ZUc9jwA5DJTB48/mchA9DuXtlK
- EZlgysQG7JWDyXlJqO/NmsllerWtWK/c1+7Xt9SB90YooabZep94Fz2ZNCiu7eEigN1W5epahTx
- /7KbeCxDNbObOI7NiCjY04KViEopw2+e5RcsVqfOhNb/ndPc4PO5tjM/gHvFUOzzrLPtr+lefj4
- nAGiXevq5UHWTzCqdvBJ23/+BcvrTHV+t6o0YcwqSCB5MBF8/x4jRwQLp2Afu9dOpZ6QGiNPP/f
- +HUhl1XFNaF+kfgr7PQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-13_02,2026-03-13_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 suspectscore=0 impostorscore=0 spamscore=0 phishscore=0
- bulkscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603130094
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20260310-topic-lpm-pmdomain-child-ids-v1-2-5361687a18ff@baylibre.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000075EF:EE_|MW5PR10MB5761:EE_
+X-MS-Office365-Filtering-Correlation-Id: f6fba719-e184-47e8-1bcb-08de80f76bf8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700016|376014|82310400026|1800799024|22082099003|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	BaPH4Pu0Zkeh7TzumQsCq5MkMnLEOeAMczvW6VAadAUrEf5iVYY4fCf3JeOx/wfrebZVod9/7Q4IbTbU1GyiOwqpM8Y0LHSW5Nayf9t4tefcTmobZ5o4xG/wRchrbVDyp0Uofwa7whPvOFMg8lgGL6G2FbV/3sl2Tv4LXSs/nTv+zeb7bHnka6zke1F2vKKZQTu5hFlt400lAcIOEZK8s51c3iQxyk6HjJgW/OZllnmCkeOCJNHQM8OX2+vaS91zh5/5W6Kk7eWS9TaSd0L9xSeUAcT5UGY3uKYzaRdi1gJa8n1EyB8ppuCWX1pylCfIydr1T2gPDVhMkHdsHOZEsCRWg+8G4v1kH45PvveSqgEUnB5fUk8RpDeTNa3+uddA5sA8j/tb41yl3SUG8VEQhwguNCSlGN6fDmfQVJer/0GdoM2vuL0Kr7xY6h8HIPgDXXSZchAUqxeoBEDSR7ZMziWJgd4x5W8eXTrpZ1mI/LLusUnt3HH/wOoYZeCSxEYG+EJXCYDk9ifF8ptSd9egU8TJZ+CZ7cSIwAhc40gi2oHsou/5vvVtt/Qxix5aee5DImOJtzWjjvkpbEkRISY135/g1UYED264VEkqKEbhhuWLRl0J1n0poioUvrD498uZucFgrQk8/7n4VbQjgEqRGlJFOYtrBFRh1ftqgcx27il+ZJ2PXz4XOyPVN+8JgbwXXk9Guw9rjKBJ5OKYNV6tz0d/fCv6Hiwkaqm+ahcuBTxheygpksGTI7tbeC+hVjA5k4vIP3tOk9+n5yu+gk6/mA==
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700016)(376014)(82310400026)(1800799024)(22082099003)(56012099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	R9ax/2FKM6Xi3WHhXKP+6RWb1tCjJ8MO/trhG/DwJcXvtwEwnfuLX3LKxqX2RIsAyNhICgzqd/IIeSRfwTuLRH/BKVOod5m32YZOq0ujKZLG3qs1axnnnmLg4F3Xu5V0iNRPHYN6kTBxyu+vd70/RgbCVrlVPWzmUJUJYH/vM70IhTx8O0P3rJ5GJdIjbLm/xEIInQhdnBXXjbxcTS7ba2346VCaYXgc3xzDKXcwh5+FRg3EtbivRO8Nsub9OgrtezdhqyQkUdJKex0g3Sb+wk8W3Z4s3X5KTCGgR6t+0zWO2hcD5oezpxgFbdtZpW/gyxW9N2DBUW99KgfYmvv3ufNvG+R8bHu3iSO5VI1Z5e9Lu/vDJhKX3uzEWc1s+AxfvT5anC8jCB/1lpdP5bXOfJwYrJHdZEGMZE+fvOsVqYUJQvcbZlZYYGTAPICQ+ZZy
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2026 11:55:28.8534
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6fba719-e184-47e8-1bcb-08de80f76bf8
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CO1PEPF000075EF.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR10MB5761
+X-Spamd-Result: default: False [0.34 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275163-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:dkim,ti.com:email,baylibre.com:email,0.0.0.11:email];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-275169-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[antoniu.miclaus@analog.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[analog.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:dkim,analog.com:email,analog.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[ti.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[d-gole@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 64D872828D1
+X-Rspamd-Queue-Id: 72AF1282824
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for the Analog Devices ADXL371, a +-200g 3-axis MEMS
-accelerometer sharing the same register map as the ADXL372 but with
-different ODR values (320/640/1280/2560/5120 Hz vs 400/800/1600/3200/
-6400 Hz), different bandwidth values, and different timer scale
-factors for activity/inactivity detection.
+Hi Kevin,
 
-Due to a silicon anomaly (er001) causing FIFO data misalignment on
-all current ADXL371 silicon, FIFO and triggered buffer support is
-disabled for the ADXL371 - only direct mode reads are supported.
+On Mar 10, 2026 at 17:19:24 -0700, Kevin Hilman (TI) wrote:
+> Currently, PM domains can only support hierarchy for simple
+> providers (e.g. ones with #power-domain-cells = 0).
+> 
+> Add support for oncell providers as well by adding a new property
+> `power-domains-child-ids` to describe the parent/child relationship.
+> 
+> For example, an SCMI PM domain provider has multiple domains, each of
+> which might be a child of diffeent parent domains. In this example,
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
-Changes in v3:
- - Add ADXL371_ODR_NUM to adxl371_odr enum and use it to size the
-   ADXL371 frequency tables.
+s/diffeent/different
 
-Changes in v2:
- - Use adxl372_buffer_setup() helper instead of inlining buffer/trigger
-   conditional logic in probe.
- - Use designated initializers for ADXL371 frequency tables.
+> the parent domains are MAIN_PD and WKUP_PD:
+> 
+>     scmi_pds: protocol@11 {
+>         reg = <0x11>;
+>         #power-domain-cells = <1>;
+>         power-domains = <&MAIN_PD>, <&WKUP_PD>;
+>         power-domains-child-ids = <15>, <19>;
+>     };
+> 
+> With this example using the new property, SCMI PM domain 15 becomes a
+> child domain of MAIN_PD, and SCMI domain 19 becomes a child domain of
+> WKUP_PD.
+> 
+> To support this feature, add two new core functions
+> 
+> - of_genpd_add_child_ids()
+> - of_genpd_remove_child_ids()
+> 
+> which can be called by pmdomain providers to add/remove child domains
+> if they support the new property power-domains-child-ids.
+> 
+> Signed-off-by: Kevin Hilman (TI) <khilman@baylibre.com>
+> ---
 
- drivers/iio/accel/Kconfig       | 12 +++---
- drivers/iio/accel/adxl372.c     | 67 ++++++++++++++++++++++++++++-----
- drivers/iio/accel/adxl372.h     |  4 +-
- drivers/iio/accel/adxl372_i2c.c |  7 +++-
- drivers/iio/accel/adxl372_spi.c |  7 +++-
- 5 files changed, 77 insertions(+), 20 deletions(-)
+I've tested multiple possibilities with this series on the TI AM62L,
+Tested-by: Dhruva Gole <d-gole@ti.com>
 
-diff --git a/drivers/iio/accel/Kconfig b/drivers/iio/accel/Kconfig
-index 3d3f8d8673dd..4094299e2ed8 100644
---- a/drivers/iio/accel/Kconfig
-+++ b/drivers/iio/accel/Kconfig
-@@ -158,24 +158,24 @@ config ADXL372
- 	select IIO_TRIGGERED_BUFFER
- 
- config ADXL372_SPI
--	tristate "Analog Devices ADXL372 3-Axis Accelerometer SPI Driver"
-+	tristate "Analog Devices ADXL371/ADXL372 3-Axis Accelerometer SPI Driver"
- 	depends on SPI
- 	select ADXL372
- 	select REGMAP_SPI
- 	help
--	  Say yes here to add support for the Analog Devices ADXL372 triaxial
--	  acceleration sensor.
-+	  Say yes here to add support for the Analog Devices ADXL371/ADXL372
-+	  triaxial acceleration sensor.
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called adxl372_spi.
- 
- config ADXL372_I2C
--	tristate "Analog Devices ADXL372 3-Axis Accelerometer I2C Driver"
-+	tristate "Analog Devices ADXL371/ADXL372 3-Axis Accelerometer I2C Driver"
- 	depends on I2C
- 	select ADXL372
- 	select REGMAP_I2C
- 	help
--	  Say yes here to add support for the Analog Devices ADXL372 triaxial
--	  acceleration sensor.
-+	  Say yes here to add support for the Analog Devices ADXL371/ADXL372
-+	  triaxial acceleration sensor.
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called adxl372_i2c.
- 
-diff --git a/drivers/iio/accel/adxl372.c b/drivers/iio/accel/adxl372.c
-index b1d611619e16..c5eea32d81db 100644
---- a/drivers/iio/accel/adxl372.c
-+++ b/drivers/iio/accel/adxl372.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0+
- /*
-- * ADXL372 3-Axis Digital Accelerometer core driver
-+ * ADXL371/ADXL372 3-Axis Digital Accelerometer core driver
-  *
-  * Copyright 2018 Analog Devices Inc.
-  */
-@@ -183,6 +183,15 @@ enum adxl372_odr {
- 	ADXL372_ODR_NUM,
- };
- 
-+enum adxl371_odr {
-+	ADXL371_ODR_320HZ,
-+	ADXL371_ODR_640HZ,
-+	ADXL371_ODR_1280HZ,
-+	ADXL371_ODR_2560HZ,
-+	ADXL371_ODR_5120HZ,
-+	ADXL371_ODR_NUM,
+I tried having more parents than child nodes. That failed.
+Tried less parents, more child nodes, failed as well.
+< All as expected >
+
+Tried the proper thing , worked :) (attached a short log of working case)
+
+8<-----------------------
+root@am62lxx-evm:~# cat /sys/kernel/debug/pm_genpd/power-controller-cluster/sub_domains
+GPMC0
+ELM0
+root@am62lxx-evm:~# cat /sys/kernel/debug/pm_genpd/power-controller-main/sub_domains
+power-controller-cluster
+WKUP_GTC0
+MSRAM_96K0
+MCSPI0
+root@am62lxx-evm:~# uname -a
+Linux am62lxx-evm 7.0.0-rc3-next-20260312-00003-g9556feac2532-dirty #2 SMP PREEMPT Fri Mar 13 16:13:51 IST 2026 aarch64 GNU/Linux
+---------------------->8
+
+changes in DT:
+
+8<------------------------------------------
++&scmi_pds {
++       power-domains = <&MAIN_PD>, <&MAIN_PD>, <&CLUSTER_PD>,<&CLUSTER_PD>, <&CLUSTER_PD>;
++       power-domains-child-ids = <58>, <63>, <72>, <37>, <25>;
 +};
 +
- enum adxl372_bandwidth {
- 	ADXL372_BW_200HZ,
- 	ADXL372_BW_400HZ,
-@@ -231,6 +240,37 @@ static const int adxl372_bw_freq_tbl[ADXL372_ODR_NUM] = {
- 	[ADXL372_BW_3200HZ] = 3200,
- };
- 
-+static const int adxl371_samp_freq_tbl[ADXL371_ODR_NUM] = {
-+	[ADXL371_ODR_320HZ] = 320,
-+	[ADXL371_ODR_640HZ] = 640,
-+	[ADXL371_ODR_1280HZ] = 1280,
-+	[ADXL371_ODR_2560HZ] = 2560,
-+	[ADXL371_ODR_5120HZ] = 5120,
-+};
++&psci {
++       CLUSTER_PD: power-controller-cluster {
++               #power-domain-cells = <0>;
++               power-domains = <&MAIN_PD>;
++       };
 +
-+static const int adxl371_bw_freq_tbl[ADXL371_ODR_NUM] = {
-+	[ADXL371_ODR_320HZ] = 160,
-+	[ADXL371_ODR_640HZ] = 320,
-+	[ADXL371_ODR_1280HZ] = 640,
-+	[ADXL371_ODR_2560HZ] = 1280,
-+	[ADXL371_ODR_5120HZ] = 2560,
-+};
-+
-+const struct adxl372_chip_info adxl371_chip_info = {
-+	.name = "adxl371",
-+	.samp_freq_tbl = adxl371_samp_freq_tbl,
-+	.bw_freq_tbl = adxl371_bw_freq_tbl,
-+	.num_freqs = ARRAY_SIZE(adxl371_samp_freq_tbl),
-+	.act_time_scale_us = 4125,
-+	.act_time_scale_low_us = 8250,
-+	.inact_time_scale_ms = 16,
-+	.inact_time_scale_low_ms = 32,
-+	.max_odr = ADXL371_ODR_5120HZ,
-+	/* Silicon erratum (er001) causes FIFO data misalignment on ADXL371 */
-+	.fifo_supported = false,
-+};
-+EXPORT_SYMBOL_NS_GPL(adxl371_chip_info, "IIO_ADXL372");
-+
- const struct adxl372_chip_info adxl372_chip_info = {
- 	.name = "adxl372",
- 	.samp_freq_tbl = adxl372_samp_freq_tbl,
-@@ -241,6 +281,7 @@ const struct adxl372_chip_info adxl372_chip_info = {
- 	.inact_time_scale_ms = 13,
- 	.inact_time_scale_low_ms = 26,
- 	.max_odr = ADXL372_ODR_6400HZ,
-+	.fifo_supported = true,
++       MAIN_PD: power-controller-main {
++               #power-domain-cells = <0>;
++       };
  };
- EXPORT_SYMBOL_NS_GPL(adxl372_chip_info, "IIO_ADXL372");
- 
-@@ -1217,8 +1258,8 @@ static int adxl372_buffer_setup(struct iio_dev *indio_dev)
- 		return -ENOMEM;
- 
- 	st->peak_datardy_trig = devm_iio_trigger_alloc(dev, "%s-dev%d-peak",
--							indio_dev->name,
--							iio_device_id(indio_dev));
-+						       indio_dev->name,
-+						       iio_device_id(indio_dev));
- 	if (!st->peak_datardy_trig)
- 		return -ENOMEM;
- 
-@@ -1265,10 +1306,15 @@ int adxl372_probe(struct device *dev, struct regmap *regmap,
- 
- 	indio_dev->channels = adxl372_channels;
- 	indio_dev->num_channels = ARRAY_SIZE(adxl372_channels);
--	indio_dev->available_scan_masks = adxl372_channel_masks;
- 	indio_dev->name = chip_info->name;
- 	indio_dev->info = &adxl372_info;
--	indio_dev->modes = INDIO_DIRECT_MODE | INDIO_BUFFER_SOFTWARE;
-+
-+	if (chip_info->fifo_supported) {
-+		indio_dev->modes = INDIO_DIRECT_MODE | INDIO_BUFFER_SOFTWARE;
-+		indio_dev->available_scan_masks = adxl372_channel_masks;
-+	} else {
-+		indio_dev->modes = INDIO_DIRECT_MODE;
-+	}
- 
- 	ret = adxl372_setup(st);
- 	if (ret < 0) {
-@@ -1276,14 +1322,17 @@ int adxl372_probe(struct device *dev, struct regmap *regmap,
- 		return ret;
- 	}
- 
--	ret = adxl372_buffer_setup(indio_dev);
--	if (ret < 0)
--		return ret;
-+	if (chip_info->fifo_supported) {
-+		ret = adxl372_buffer_setup(indio_dev);
-+		if (ret < 0)
-+			return ret;
-+	}
- 
- 	return devm_iio_device_register(dev, indio_dev);
- }
- EXPORT_SYMBOL_NS_GPL(adxl372_probe, "IIO_ADXL372");
- 
- MODULE_AUTHOR("Stefan Popa <stefan.popa@analog.com>");
--MODULE_DESCRIPTION("Analog Devices ADXL372 3-axis accelerometer driver");
-+MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com>");
-+MODULE_DESCRIPTION("Analog Devices ADXL371/ADXL372 3-axis accelerometer driver");
- MODULE_LICENSE("GPL");
-diff --git a/drivers/iio/accel/adxl372.h b/drivers/iio/accel/adxl372.h
-index 3ce06609446c..353a8b3a9d76 100644
---- a/drivers/iio/accel/adxl372.h
-+++ b/drivers/iio/accel/adxl372.h
-@@ -1,6 +1,6 @@
- /* SPDX-License-Identifier: GPL-2.0+ */
- /*
-- * ADXL372 3-Axis Digital Accelerometer
-+ * ADXL371/ADXL372 3-Axis Digital Accelerometer
-  *
-  * Copyright 2018 Analog Devices Inc.
-  */
-@@ -20,8 +20,10 @@ struct adxl372_chip_info {
- 	unsigned int inact_time_scale_ms;
- 	unsigned int inact_time_scale_low_ms;
- 	unsigned int max_odr;
-+	bool fifo_supported;
- };
- 
-+extern const struct adxl372_chip_info adxl371_chip_info;
- extern const struct adxl372_chip_info adxl372_chip_info;
- 
- int adxl372_probe(struct device *dev, struct regmap *regmap,
-diff --git a/drivers/iio/accel/adxl372_i2c.c b/drivers/iio/accel/adxl372_i2c.c
-index 3f97126a87a1..40acfa611c83 100644
---- a/drivers/iio/accel/adxl372_i2c.c
-+++ b/drivers/iio/accel/adxl372_i2c.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0+
- /*
-- * ADXL372 3-Axis Digital Accelerometer I2C driver
-+ * ADXL371/ADXL372 3-Axis Digital Accelerometer I2C driver
-  *
-  * Copyright 2018 Analog Devices Inc.
-  */
-@@ -46,12 +46,14 @@ static int adxl372_i2c_probe(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id adxl372_i2c_id[] = {
-+	{ "adxl371", (kernel_ulong_t)&adxl371_chip_info },
- 	{ "adxl372", (kernel_ulong_t)&adxl372_chip_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, adxl372_i2c_id);
- 
- static const struct of_device_id adxl372_of_match[] = {
-+	{ .compatible = "adi,adxl371", .data = &adxl371_chip_info },
- 	{ .compatible = "adi,adxl372", .data = &adxl372_chip_info },
- 	{ }
- };
-@@ -69,6 +71,7 @@ static struct i2c_driver adxl372_i2c_driver = {
- module_i2c_driver(adxl372_i2c_driver);
- 
- MODULE_AUTHOR("Stefan Popa <stefan.popa@analog.com>");
--MODULE_DESCRIPTION("Analog Devices ADXL372 3-axis accelerometer I2C driver");
-+MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com>");
-+MODULE_DESCRIPTION("Analog Devices ADXL371/ADXL372 3-axis accelerometer I2C driver");
- MODULE_LICENSE("GPL");
- MODULE_IMPORT_NS("IIO_ADXL372");
-diff --git a/drivers/iio/accel/adxl372_spi.c b/drivers/iio/accel/adxl372_spi.c
-index 0e199feb405e..438e2bef5b77 100644
---- a/drivers/iio/accel/adxl372_spi.c
-+++ b/drivers/iio/accel/adxl372_spi.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0+
- /*
-- * ADXL372 3-Axis Digital Accelerometer SPI driver
-+ * ADXL371/ADXL372 3-Axis Digital Accelerometer SPI driver
-  *
-  * Copyright 2018 Analog Devices Inc.
-  */
-@@ -37,12 +37,14 @@ static int adxl372_spi_probe(struct spi_device *spi)
- }
- 
- static const struct spi_device_id adxl372_spi_id[] = {
-+	{ "adxl371", (kernel_ulong_t)&adxl371_chip_info },
- 	{ "adxl372", (kernel_ulong_t)&adxl372_chip_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(spi, adxl372_spi_id);
- 
- static const struct of_device_id adxl372_of_match[] = {
-+	{ .compatible = "adi,adxl371", .data = &adxl371_chip_info },
- 	{ .compatible = "adi,adxl372", .data = &adxl372_chip_info },
- 	{ }
- };
-@@ -60,6 +62,7 @@ static struct spi_driver adxl372_spi_driver = {
- module_spi_driver(adxl372_spi_driver);
- 
- MODULE_AUTHOR("Stefan Popa <stefan.popa@analog.com>");
--MODULE_DESCRIPTION("Analog Devices ADXL372 3-axis accelerometer SPI driver");
-+MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com>");
-+MODULE_DESCRIPTION("Analog Devices ADXL371/ADXL372 3-axis accelerometer SPI driver");
- MODULE_LICENSE("GPL");
- MODULE_IMPORT_NS("IIO_ADXL372");
+--------------------------------------------->8
+
+>  drivers/pmdomain/core.c   | 169 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+>  include/linux/pm_domain.h |  16 ++++++++++++++++
+>  2 files changed, 185 insertions(+)
+> 
+> diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
+> index 61c2277c9ce3..acb45dd540b7 100644
+> --- a/drivers/pmdomain/core.c
+> +++ b/drivers/pmdomain/core.c
+> @@ -2909,6 +2909,175 @@ static struct generic_pm_domain *genpd_get_from_provider(
+>  	return genpd;
+>  }
+>  
+> +/**
+> + * of_genpd_add_child_ids() - Parse power-domains-child-ids property
+> + * @np: Device node pointer associated with the PM domain provider.
+> + * @data: Pointer to the onecell data associated with the PM domain provider.
+> + *
+> + * Parse the power-domains and power-domains-child-ids properties to establish
+> + * parent-child relationships for PM domains. The power-domains property lists
+> + * parent domains, and power-domains-child-ids lists which child domain IDs
+> + * should be associated with each parent.
+> + *
+> + * Returns 0 on success, -ENOENT if properties don't exist, or negative error code.
+> + */
+> +int of_genpd_add_child_ids(struct device_node *np,
+> +			   struct genpd_onecell_data *data)
+> +{
+> +	struct of_phandle_args parent_args;
+> +	struct generic_pm_domain *parent_genpd, *child_genpd;
+> +	struct of_phandle_iterator it;
+> +	const struct property *prop;
+> +	const __be32 *item;
+> +	u32 child_id;
+> +	int ret;
+> +
+> +	/* Check if both properties exist */
+> +	if (of_count_phandle_with_args(np, "power-domains", "#power-domain-cells") <= 0)
+> +		return -ENOENT;
+> +
+> +	prop = of_find_property(np, "power-domains-child-ids", NULL);
+> +	if (!prop)
+> +		return -ENOENT;
+> +
+> +	item = of_prop_next_u32(prop, NULL, &child_id);
+> +
+> +	/* Iterate over power-domains phandles and power-domains-child-ids in lockstep */
+> +	of_for_each_phandle(&it, ret, np, "power-domains", "#power-domain-cells", 0) {
+> +		if (!item) {
+> +			pr_err("power-domains-child-ids shorter than power-domains for %pOF\n", np);
+> +			ret = -EINVAL;
+> +			goto err_put_node;
+> +		}
+> +
+> +		/*
+> +		 * Fill parent_args from the iterator. it.node is released by
+> +		 * the next of_phandle_iterator_next() call at the top of the
+> +		 * loop, or by the of_node_put() on the error path below.
+> +		 */
+> +		parent_args.np = it.node;
+> +		parent_args.args_count = of_phandle_iterator_args(&it, parent_args.args,
+> +								  MAX_PHANDLE_ARGS);
+> +
+> +		/* Get the parent domain */
+> +		parent_genpd = genpd_get_from_provider(&parent_args);
+> +		if (IS_ERR(parent_genpd)) {
+> +			pr_err("Failed to get parent domain for %pOF: %ld\n",
+> +			       np, PTR_ERR(parent_genpd));
+> +			ret = PTR_ERR(parent_genpd);
+> +			goto err_put_node;
+> +		}
+> +
+> +		/* Validate child ID is within bounds */
+> +		if (child_id >= data->num_domains) {
+> +			pr_err("Child ID %u out of bounds (max %u) for %pOF\n",
+> +			       child_id, data->num_domains - 1, np);
+> +			ret = -EINVAL;
+> +			goto err_put_node;
+> +		}
+> +
+> +		/* Get the child domain */
+> +		child_genpd = data->domains[child_id];
+> +		if (!child_genpd) {
+> +			pr_err("Child domain %u is NULL for %pOF\n", child_id, np);
+> +			ret = -EINVAL;
+> +			goto err_put_node;
+> +		}
+> +
+> +		/* Establish parent-child relationship */
+> +		ret = genpd_add_subdomain(parent_genpd, child_genpd);
+> +		if (ret) {
+> +			pr_err("Failed to add child domain %u to parent in %pOF: %d\n",
+> +			       child_id, np, ret);
+> +			goto err_put_node;
+> +		}
+> +
+> +		pr_debug("Added child domain %u (%s) to parent %s for %pOF\n",
+> +			 child_id, child_genpd->name, parent_genpd->name, np);
+> +
+> +		item = of_prop_next_u32(prop, item, &child_id);
+> +	}
+> +
+> +	/* of_for_each_phandle returns -ENOENT at natural end-of-list */
+> +	if (ret && ret != -ENOENT)
+> +		return ret;
+> +
+> +	/* All power-domains phandles were consumed; check for trailing child IDs */
+> +	if (item) {
+> +		pr_err("power-domains-child-ids longer than power-domains for %pOF\n", np);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_put_node:
+> +	of_node_put(it.node);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(of_genpd_add_child_ids);
+> +
+> +/**
+> + * of_genpd_remove_child_ids() - Remove parent-child PM domain relationships
+> + * @np: Device node pointer associated with the PM domain provider.
+> + * @data: Pointer to the onecell data associated with the PM domain provider.
+> + *
+> + * Reverses the effect of of_genpd_add_child_ids() by parsing the same
+> + * power-domains and power-domains-child-ids properties and calling
+> + * pm_genpd_remove_subdomain() for each established relationship.
+> + *
+> + * Returns 0 on success, -ENOENT if properties don't exist, or negative error
+> + * code on failure.
+> + */
+> +int of_genpd_remove_child_ids(struct device_node *np,
+> +			   struct genpd_onecell_data *data)
+> +{
+> +	struct of_phandle_args parent_args;
+> +	struct generic_pm_domain *parent_genpd, *child_genpd;
+> +	struct of_phandle_iterator it;
+> +	const struct property *prop;
+> +	const __be32 *item;
+> +	u32 child_id;
+> +	int ret;
+> +
+> +	/* Check if both properties exist */
+> +	if (of_count_phandle_with_args(np, "power-domains", "#power-domain-cells") <= 0)
+> +		return -ENOENT;
+> +
+> +	prop = of_find_property(np, "power-domains-child-ids", NULL);
+> +	if (!prop)
+> +		return -ENOENT;
+> +
+> +	item = of_prop_next_u32(prop, NULL, &child_id);
+> +
+> +	of_for_each_phandle(&it, ret, np, "power-domains", "#power-domain-cells", 0) {
+> +		if (!item)
+> +			break;
+> +
+> +		parent_args.np = it.node;
+> +		parent_args.args_count = of_phandle_iterator_args(&it, parent_args.args,
+> +								  MAX_PHANDLE_ARGS);
+> +
+> +		if (child_id >= data->num_domains || !data->domains[child_id]) {
+> +			item = of_prop_next_u32(prop, item, &child_id);
+> +			continue;
+> +		}
+> +
+> +		parent_genpd = genpd_get_from_provider(&parent_args);
+> +		if (IS_ERR(parent_genpd)) {
+> +			item = of_prop_next_u32(prop, item, &child_id);
+> +			continue;
+> +		}
+> +
+> +		child_genpd = data->domains[child_id];
+> +		pm_genpd_remove_subdomain(parent_genpd, child_genpd);
+> +
+> +		item = of_prop_next_u32(prop, item, &child_id);
+> +	}
+> +
+> +	return (ret == -ENOENT) ? 0 : ret;
+> +}
+> +EXPORT_SYMBOL_GPL(of_genpd_remove_child_ids);
+> +
+>  /**
+>   * of_genpd_add_device() - Add a device to an I/O PM domain
+>   * @genpdspec: OF phandle args to use for look-up PM domain
+> diff --git a/include/linux/pm_domain.h b/include/linux/pm_domain.h
+> index f67a2cb7d781..b44615d79af6 100644
+> --- a/include/linux/pm_domain.h
+> +++ b/include/linux/pm_domain.h
+> @@ -465,6 +465,10 @@ struct generic_pm_domain *of_genpd_remove_last(struct device_node *np);
+>  int of_genpd_parse_idle_states(struct device_node *dn,
+>  			       struct genpd_power_state **states, int *n);
+>  void of_genpd_sync_state(struct device_node *np);
+> +int of_genpd_add_child_ids(struct device_node *np,
+> +			   struct genpd_onecell_data *data);
+> +int of_genpd_remove_child_ids(struct device_node *np,
+> +			      struct genpd_onecell_data *data);
+>  
+>  int genpd_dev_pm_attach(struct device *dev);
+>  struct device *genpd_dev_pm_attach_by_id(struct device *dev,
+> @@ -534,6 +538,18 @@ struct generic_pm_domain *of_genpd_remove_last(struct device_node *np)
+>  {
+>  	return ERR_PTR(-EOPNOTSUPP);
+>  }
+> +
+> +static inline int of_genpd_add_child_ids(struct device_node *np,
+> +					 struct genpd_onecell_data *data)
+> +{
+> +	return -EOPNOTSUPP;
+> +}
+> +
+> +static inline int of_genpd_remove_child_ids(struct device_node *np,
+> +					    struct genpd_onecell_data *data)
+> +{
+> +	return -EOPNOTSUPP;
+> +}
+>  #endif /* CONFIG_PM_GENERIC_DOMAINS_OF */
+>  
+>  #ifdef CONFIG_PM
+> 
+> -- 
+> 2.51.0
+> 
+> 
+
 -- 
-2.43.0
-
+Best regards,
+Dhruva Gole
+Texas Instruments Incorporated
 
