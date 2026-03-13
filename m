@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-275233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275234-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8JyXErwOtGlvfwAAu9opvQ
-	(envelope-from <devicetree+bounces-275233-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:18:52 +0100
+	id 6AWqMOAOtGlvfwAAu9opvQ
+	(envelope-from <devicetree+bounces-275234-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:19:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AA402839A8
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:18:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D2FA2839CC
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 14:19:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 07C2032240D8
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:18:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D7F66311A1F5
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 13:19:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E4153176EE;
-	Fri, 13 Mar 2026 13:18:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCCB1318EE1;
+	Fri, 13 Mar 2026 13:19:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pq2UX4Pd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qidgDliL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B99630E831;
-	Fri, 13 Mar 2026 13:18:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 932403BB40;
+	Fri, 13 Mar 2026 13:19:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773407890; cv=none; b=Ud/+qkVlYngbwLpH5wN3lPD6N3x0OH6YMZhoO+1w4Mp0/5if9JddFeIhQshdKQOjoRpWyE9VwXDnZ1jVqKLIoYnE8mddDZpFWGc98lPYgs3MM3Zmr47wrWez8tH+QrNWba3NmKfqS3m51N0VdvORq+E4bJEeQ9LRvokbYiKNcXo=
+	t=1773407953; cv=none; b=uQ/a3IaB3Qm9hw7T1BWNKesw37OTjLYeSSfWlpaeZEIaRKyL36GTwbrZzk1fzzpYf/1qetdfsoyMUITp/OpCcPUPi0d1AxIBFil+vT4M/8MirKdydalZd897lLAiEnEAnWIYt84bSKMmEL93KT+3+jHgm1drFgp/XgqVGPExgRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773407890; c=relaxed/simple;
-	bh=uJvERdL4GYTSwBUxDMpbh2DSbv6DUKGZudboXFZXoYo=;
+	s=arc-20240116; t=1773407953; c=relaxed/simple;
+	bh=eOxdydwzMCWwKW+m6Pjcr2i9St6pdp+5lfwnBN75Ue0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YTKKZ+9Ae/JJ8NKQ4+NYyRslY/M4jxMrYY5Phc8I40OGz3Vc46BQRAG8JhAjbFAwhdqnxVozY9NZ9/2WeXJDYLEJismUtuPMjY08dIGJDTjolJNJ653GV0P6M5LxgP+g1+2lbpt+p0Q3RnfCRoCTfq7vcA/t3SmHV2BDSa3If/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pq2UX4Pd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8533AC19421;
-	Fri, 13 Mar 2026 13:18:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JXy0gsO9bdwW/2QX+mgakVUOn+WDTNwBzqfWDXFpEKpAakMLt8f8DB7XnUvL9dIBrZR3wEYNGE1lEB8whW+Ass0JaqXnBJPhKTpdRa+i8tnYQaSPObudO3loHfU+wSrvfaHAkGFKkVC1Epcn0pB7YQahblyTDHi8sjF06MqfMBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qidgDliL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CB2CC19421;
+	Fri, 13 Mar 2026 13:19:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773407890;
-	bh=uJvERdL4GYTSwBUxDMpbh2DSbv6DUKGZudboXFZXoYo=;
+	s=k20201202; t=1773407953;
+	bh=eOxdydwzMCWwKW+m6Pjcr2i9St6pdp+5lfwnBN75Ue0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pq2UX4PdVQO/3pCtRiAhsnO7AuuZf2wBVmbZWlvbFgi4vwB4APUMuloxI0qSa2qj9
-	 DseaHC6HlYEEWVhO5cWjnRFrAHEgjMh2dJRzfJCTeR2z6P4R1xj4cGRcboTw9//EsN
-	 ERZlVhYuiUieungdF10MTqKEKVlCH7JNDmJzTl6mLydNLqPv96eHgHTej8HK05HNVH
-	 ixzudl8jw/DqqC+W9AijQW5hUXYGPpxJxeZrEkt+Datxr1RWjP4v1BW1XUkDxcWJDC
-	 zVPCtlgKGbwnSDup+pQaDQuyLxCKFsLZB0TnujttEXwng8iQy8fYeGqWBNKKf8Fpq4
-	 cPrGdAyfZQDsg==
-Date: Fri, 13 Mar 2026 14:18:07 +0100
+	b=qidgDliLWV56T+pWIRaAYqwiYRmbvN5sjvoHdLrM/q1rbu+3FBqgvZueFtjn86tS8
+	 BSzHMQ9WwieAssNxkKIoHMRI0n0lLIwk1M5f1M4WvA7cmEgtLCKizTofKTmJsCzA3n
+	 r5/9EAV8ZX1/aoZHPgO3y452D2/vL0N7gdh0h1C8ECPIWU7B0R7CZiHBg5BNVQqU0I
+	 886Jbui0v/eCK1Y64UR0Y+X0mx40UagSSWvo2azwcNjdFwkHYuxyLKIivY4PJlsVqL
+	 KI2zMfiXvPFU36gQVor2aPc1JRsNQTt7RkVmqS6cyz37SqBARX6mpxqdKu0ZK81MYx
+	 0BBJNafgbaZ3g==
+Date: Fri, 13 Mar 2026 14:19:10 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, 
-	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh@kernel.org>, 
+To: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-sound@vger.kernel.org
-Subject: Re: [PATCH 5/6] ASoC: dt-bindings: loongson,ls2k1000-i2s: Document
- Loongson-2K0300 compatible
-Message-ID: <20260313-glorious-nostalgic-gopher-df38b1@quoll>
-References: <cover.1773107475.git.zhoubinbin@loongson.cn>
- <600bfea91c1f14f089b2f7677578cd8690412fac.1773107475.git.zhoubinbin@loongson.cn>
+	Philipp Zabel <p.zabel@pengutronix.de>, Linus Walleij <linusw@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Robert Marko <robimarko@gmail.com>, Guru Das Srinagesh <linux@gurudas.dev>, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, linux-mmc@vger.kernel.org
+Subject: Re: [PATCH 7/9] dt-bindings: firmware: qcom,scm: Document ipq5210 SCM
+Message-ID: <20260313-glorious-daffy-kangaroo-f6dad6@quoll>
+References: <20260311-ipq5210_boot_to_shell-v1-0-fe857d68d698@oss.qualcomm.com>
+ <20260311-ipq5210_boot_to_shell-v1-7-fe857d68d698@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,25 +67,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <600bfea91c1f14f089b2f7677578cd8690412fac.1773107475.git.zhoubinbin@loongson.cn>
+In-Reply-To: <20260311-ipq5210_boot_to_shell-v1-7-fe857d68d698@oss.qualcomm.com>
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275233-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-275234-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,loongson.cn,kernel.org,perex.cz,suse.com,xen0n.name,lists.linux.dev,vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,pengutronix.de,linaro.org,gmail.com,gurudas.dev,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
@@ -93,28 +93,21 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,loongson.cn:email]
-X-Rspamd-Queue-Id: 9AA402839A8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 5D2FA2839CC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 11, 2026 at 02:37:47PM +0800, Binbin Zhou wrote:
-> Add "loongson,ls2k0300-i2s" dedicated compatible to represent the I2S
-> interface of the Loongson-2K0300 chip.
+On Wed, Mar 11, 2026 at 03:15:49PM +0530, Kathiravan Thirumoorthy wrote:
+> Document the scm compatible for ipq5210 SoC.
 > 
-> The hardware integration of the Loongson-2K0300 I2S interface differs
-> significantly from that of the Loongson-2K1000. Specifically, while both
-> utilize external DMA controllers, the Loongson-2K0300 configures DMA
-> channel routing via the `dmas` property, whereas the Loongson-2K1000
-> requires additional register.
-> 
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
 > ---
->  .../bindings/sound/loongson,ls2k1000-i2s.yaml | 22 ++++++++++++++++++-
->  1 file changed, 21 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
