@@ -1,455 +1,189 @@
-Return-Path: <devicetree+bounces-275038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275039-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id NPdUIcLRs2l2bQAAu9opvQ
-	(envelope-from <devicetree+bounces-275038-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:58:42 +0100
+	id yGtQOmfSs2l5bQAAu9opvQ
+	(envelope-from <devicetree+bounces-275039-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 10:01:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D78DB2801A5
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:58:38 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 482EB280210
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 10:01:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 13623302B4C0
-	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 08:58:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 512EC30166C6
+	for <lists+devicetree@lfdr.de>; Fri, 13 Mar 2026 09:01:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BE933890F2;
-	Fri, 13 Mar 2026 08:58:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F8F93328FD;
+	Fri, 13 Mar 2026 09:01:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jq751Tkk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NoN/8z8i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82CE2388E40
-	for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 08:58:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A5E11AF0BB;
+	Fri, 13 Mar 2026 09:01:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773392296; cv=none; b=eqGIdCV8mlrz1tBmt0GQnZ3FjLisFqQzgBgzoOENAwFq4EjBYHmo504XdjRkFfGlZn2ZYYjV4gBszbWBbZgH8XCikiOVKcKRPepHk2Eli/JCM7b69NIjkHgf/5skksYtIxN1cr4bSn1lO8/ylPklzet3PMWb7Y1RCYYYXpLQ/ws=
+	t=1773392461; cv=none; b=m2rDiH6yOGKh19J42tT4wxJGlnXKsE5kqrRJ0iJXYskJ/Iy3hKUyzzSdQDUbc/pq4C6y6PjQ+cPbTJb0J4kzsmbL3cB281h5wJYQwBQ3W2Cp/u/wyQNx+CBObaI1S4+bUYttXBnKaVYeDArfhMoSWD43jmI7vGcypsWEq8IN03Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773392296; c=relaxed/simple;
-	bh=0wJsLp5kvifdTNDu+96M8xE0uJtd8X+tuuiZQJbe7PI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=vBOeJ1zju3Y0yWwRdzGfZUvztMawzswjkNloG7AmwQQLdS++xYHJSUAe7JMXzUlW7OkaUD9neVEQP+C2b+MJwA35EOCEt6OoHeo+WuI1g/2SgScfOdfXsJkLFDva4xUqnTwbFb7obPaeF4gyDdYkp4+qykNzP/zcGeJ38/nQKWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jq751Tkk; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-439d8df7620so1420495f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 01:58:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773392289; x=1773997089; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sSAf/a2Rb2/FOYvdPVGSqhiOt13IM1Gi9djyH0j/h5E=;
-        b=jq751Tkk2KqmL67ytrA2nQX+w4RjHzDHPoYWcLbjJJHE2wiYmt5Z/Lozi0C7VOfD2T
-         2NPnVlNJcusepoS9kijyawuKWZCnjt72uTNrzKOPrDD7AHCllm1fy5KrAUKse/m6eV+G
-         gPJhoQpNczayzoERvJAMgPIBQCFBa50skN+j2z81dfIjSUcO+JhkCYWDpTUENgI6DF/K
-         ZDk3QBBkJm1EHMC8fwfJGKfhOBaAV+47pKo26CQkKoPMrnaG6uvjym8VW0AHE+sE/f1X
-         qGQBeD/ZBFZZHKLUdmujkFiYr5jHGhNpTLholXtArHF0zTzXjQ5bij7JtN2reH/1G2sN
-         7OTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773392289; x=1773997089;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=sSAf/a2Rb2/FOYvdPVGSqhiOt13IM1Gi9djyH0j/h5E=;
-        b=YdrLJZTMkegJJ9rRSBEjV+o/IEgChk1iX5lAICEQRtwh/7XAhPdJf490oznDZai1g3
-         r+uzckj+Fi6zvgsImq6dwzHPO717TbfK+MID+TS+tloi9uq9A+fom/XP3kwDQJpmp+d1
-         IWHSB7N5AILIiKj/klnyMsoq7Srt9236voVgA8S0o+JAa8sDhjgi+4H7BQ0F6v9N5n2U
-         DAGcDVGPZbast6CioBG+wyybn5gQTTvqsNY8FRG/cvwLC5qk2oQBVEW9QS6tEVJ08eGs
-         iug/r3OMlHm9XE2h7bT3+MPa1N+eqDDkyiOR4E254WDYRZ0WMak//czO/OnML+e8s3pO
-         5apw==
-X-Forwarded-Encrypted: i=1; AJvYcCUJkOKenbA73ezvRMiAerqy+1OJc5PtcmMfP9v693TYk5MjQiWHxsWrFWBXOaY482BDWL+4WpdtwcfV@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJYVLxn24D/w8iGfdKRJ1odC5G0XLR6+LJhQV9/6haiFncceJs
-	eR+A/LikgHX+VCOMGj8IohXow+oXjtcITei6Twubli0saIxG89yaE0io
-X-Gm-Gg: ATEYQzyUcg8z5qIU7yjLtjyyYNqtm8zdof9speN/1YSjtX+c5BL3V44fn7/3pXQn8An
-	GSF1vzOLVXe8E8oOgtdPTtBlphevsE2NigrQuIRvnfGzC3fydrGJxvkmXQR8dlyNue5+qLMPM88
-	ZSP+NUSt2CltR7Irz20t8HDQaGb8WGsy13jgH6EdMtiZKgNYAwWmya0kjXjgkeDI13ELnGRd8t1
-	6x2UmiN5qZhPXTU7DUcol69QhuBCOLIp0qGmy0UCnj3NyOO5MDRvLcNLApPiih/0CDSMUlKYJsh
-	3GyG161q83MjARjfsUd2mIKc0Yupid+3lKlGH1zAqqYkmg0BfGxvlNhf9bdUJGn2H9RajtiTpik
-	GIQF9M7JtFuhhuJgV1V5+lAuDe4LVQ5zuojHz7MZ8FNsnkDTcULaOyTcTkAZYePQVrzJ3pTtt7x
-	v9FR04fYiGH5JMN5NHKyz52k8a6XpjneWGdEj2CGI/OYUoI36LKwYM6+JanKFsTMnvlAywAe29V
-	c1PId52eNxwkgmLHjY5gOwP0ps=
-X-Received: by 2002:a05:6000:248a:b0:439:ae3f:9405 with SMTP id ffacd0b85a97d-43a04dda734mr4789391f8f.59.1773392288730;
-        Fri, 13 Mar 2026 01:58:08 -0700 (PDT)
-Received: from ernest.hoecke-nb (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43a03cfd18fsm7663718f8f.36.2026.03.13.01.58.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Mar 2026 01:58:08 -0700 (PDT)
-From: Ernest Van Hoecke <ernestvanhoecke@gmail.com>
-Date: Fri, 13 Mar 2026 09:57:47 +0100
-Subject: [PATCH v2 6/6] arm64: dts: freescale: imx95-verdin: Add Yavia
- carrier board
+	s=arc-20240116; t=1773392461; c=relaxed/simple;
+	bh=8LufsHxk+Y3YkFwtR1vxXVSuF7cD5vBLzTYBZU4j5d8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=h7BUhDAyCMLtUqiGvkKU/nZ9PzYgqIhpc8ECE0spnjdQ/LyZc2wO1n9/1VbYmptVGDGw1qlK54Mh7gcmNsIV0R2lbnU8LNo/PBFPekAaPoLUXY/TpQamHVdjQ77HINv+93V05/1fTpO+aTQTp49aHRJb+Dm1b3DfD88Z+wGVLyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NoN/8z8i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02F4CC19424;
+	Fri, 13 Mar 2026 09:00:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773392461;
+	bh=8LufsHxk+Y3YkFwtR1vxXVSuF7cD5vBLzTYBZU4j5d8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=NoN/8z8ib5Wo8ahi7R0aPY8K03JJfYIABBoXF8qPmPJ51i4ecChWtPURKWppTC40E
+	 /bM416gQU42TBVVvMJNwHom8SEpyZyozitvrEP0MJy/oJVXaSI4vWSwNTH3z/rOYKl
+	 w5F0WJsD9zxROZs0oy6d0/UYwc3JXIBpSkBQFii2zmBoee4HRopnOgfiNAORGvHzpH
+	 oj0BB61kgDmhHRe/cG5b7sUuonnylhha9hTmXEPfXEzkLZEftalSYw/GrcgUPvR5Kn
+	 JYuibscxD58+H6V+sr9i7VvKjhraIyoTxrkuOTeltL4xYYnpBK/5ctuu9qKtESNdwN
+	 3OnFnDYoy7NeA==
+Message-ID: <7d027652-53d6-486d-b5cd-2d82569fe6bb@kernel.org>
+Date: Fri, 13 Mar 2026 10:00:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: =?UTF-8?B?UmU6IOWbnuWkjTogW1BBVENIIHYzIDEvMl0gZHQtYmluZGluZ3M6IFBD?=
+ =?UTF-8?Q?I=3A_cix=2Csky1-pcie-host=3A_Add_power-domains?=
+To: Gary Yang <gary.yang@cixtech.com>
+Cc: "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+ "kwilczynski@kernel.org" <kwilczynski@kernel.org>,
+ "mani@kernel.org" <mani@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+ "bhelgaas@google.com" <bhelgaas@google.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ Peter Chen <peter.chen@cixtech.com>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
+References: <20260313060308.1300518-1-gary.yang@cixtech.com>
+ <20260313060308.1300518-2-gary.yang@cixtech.com>
+ <20260313-piquant-robin-of-honor-cb9f39@quoll>
+ <PUZPR06MB5887055EC1C0745627143092EF45A@PUZPR06MB5887.apcprd06.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <PUZPR06MB5887055EC1C0745627143092EF45A@PUZPR06MB5887.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260313-verdin-imx95-upstream-frank-li-base-v2-6-bd488be7c699@toradex.com>
-References: <20260313-verdin-imx95-upstream-frank-li-base-v2-0-bd488be7c699@toradex.com>
-In-Reply-To: <20260313-verdin-imx95-upstream-frank-li-base-v2-0-bd488be7c699@toradex.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>, 
- Emanuele Ghidoli <emanuele.ghidoli@toradex.com>, 
- Francesco Dolcini <francesco.dolcini@toradex.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-X-Mailer: b4 0.13.0
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-275038-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-275039-lists,devicetree=lfdr.de];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	ASN_FAIL(0.00)[1.2.3.5.c.f.2.1.0.0.0.0.0.0.0.0.c.6.3.0.1.0.0.e.4.0.c.3.0.0.6.2.asn6.rspamd.com:query timed out];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ernestvanhoecke@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	DBL_PROHIBIT(0.00)[0.0.0.57:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.997];
 	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[toradex.com:email,toradex.com:mid,toradex.com:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,4f:email]
-X-Rspamd-Queue-Id: D78DB2801A5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 482EB280210
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
+On 13/03/2026 09:53, Gary Yang wrote:
+> Hi Krzysztof:
+> 
+> Thanks for your comments
+> 
+>> EXTERNAL EMAIL
+>>
+>> On Fri, Mar 13, 2026 at 02:03:07PM +0800, Gary Yang wrote:
+>>> add power-domains and power-domain-names property
+>>
+>> Nothing improved.
+>>
+>> <form letter>
+>> This is a friendly reminder during the review process.
+>>
+>> It seems my or other reviewer's previous comments were not fully addressed.
+>> Maybe the feedback got lost between the quotes, maybe you just forgot to
+>> apply it. Please go back to the previous discussion and either implement all
+>> requested changes or keep discussing them.
+>>
+>> Thank you.
+>> </form letter>
+>>
+> 
+> Sorry, we only delete power-domain-names property in dts file.
+> 
+> We also delete it in yaml file on V4. Like this, All right? 
 
-Add support for the Verdin i.MX95 SoM mated with the Yavia carrier
-board.
+"Please go back to the previous discussion..."
 
-Link: https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx95
-Link: https://www.toradex.com/products/carrier-board/yavia
-Signed-off-by: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
----
-v2: no changes
-v1: https://lore.kernel.org/all/20260305-verdin-imx95-upstream-frank-li-base-v1-6-823fad02def9@toradex.com/
----
- arch/arm64/boot/dts/freescale/Makefile             |   2 +
- .../dts/freescale/imx95-verdin-nonwifi-yavia.dts   |  21 ++
- .../boot/dts/freescale/imx95-verdin-wifi-yavia.dts |  21 ++
- .../boot/dts/freescale/imx95-verdin-yavia.dtsi     | 217 +++++++++++++++++++++
- 4 files changed, 261 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index e3c34f8f40cd..48e5711526d6 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -456,10 +456,12 @@ dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-nonwifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-nonwifi-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-nonwifi-ivy.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-nonwifi-mallow.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-nonwifi-yavia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-wifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-wifi-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-wifi-ivy.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-wifi-mallow.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-wifi-yavia.dtb
- 
- imx95-15x15-evk-pcie0-ep-dtbs = imx95-15x15-evk.dtb imx-pcie0-ep.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk-pcie0-ep.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx95-verdin-nonwifi-yavia.dts b/arch/arm64/boot/dts/freescale/imx95-verdin-nonwifi-yavia.dts
-new file mode 100644
-index 000000000000..4f7b4e3a518b
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx95-verdin-nonwifi-yavia.dts
-@@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) Toradex
-+ *
-+ * https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx95
-+ * https://www.toradex.com/products/carrier-board/yavia
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx95-verdin.dtsi"
-+#include "imx95-verdin-nonwifi.dtsi"
-+#include "imx95-verdin-yavia.dtsi"
-+
-+/ {
-+	model = "Toradex Verdin iMX95 on Yavia Board";
-+	compatible = "toradex,verdin-imx95-nonwifi-yavia",
-+		     "toradex,verdin-imx95-nonwifi",
-+		     "toradex,verdin-imx95",
-+		     "fsl,imx95";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx95-verdin-wifi-yavia.dts b/arch/arm64/boot/dts/freescale/imx95-verdin-wifi-yavia.dts
-new file mode 100644
-index 000000000000..43d35b770db2
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx95-verdin-wifi-yavia.dts
-@@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) Toradex
-+ *
-+ * https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx95
-+ * https://www.toradex.com/products/carrier-board/yavia
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx95-verdin.dtsi"
-+#include "imx95-verdin-wifi.dtsi"
-+#include "imx95-verdin-yavia.dtsi"
-+
-+/ {
-+	model = "Toradex Verdin iMX95 WB on Yavia Board";
-+	compatible = "toradex,verdin-imx95-wifi-yavia",
-+		     "toradex,verdin-imx95-wifi",
-+		     "toradex,verdin-imx95",
-+		     "fsl,imx95";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx95-verdin-yavia.dtsi b/arch/arm64/boot/dts/freescale/imx95-verdin-yavia.dtsi
-new file mode 100644
-index 000000000000..6403ae584e70
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx95-verdin-yavia.dtsi
-@@ -0,0 +1,217 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) Toradex
-+ *
-+ * Common dtsi for Verdin iMX95 SoM on Yavia carrier board
-+ *
-+ * https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx95
-+ * https://www.toradex.com/products/carrier-board/yavia
-+ */
-+
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	aliases {
-+		eeprom1 = &carrier_eeprom;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_qspi1_clk_gpio>,
-+			    <&pinctrl_qspi1_cs_gpio>,
-+			    <&pinctrl_qspi1_io0_gpio>,
-+			    <&pinctrl_qspi1_io1_gpio>,
-+			    <&pinctrl_qspi1_io2_gpio>,
-+			    <&pinctrl_qspi1_io3_gpio>;
-+
-+		/* SODIMM 52 - LD1_RED */
-+		led-0 {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <1>;
-+			gpios = <&gpio5 9 GPIO_ACTIVE_HIGH>;
-+		};
-+		/* SODIMM 54 - LD1_GREEN */
-+		led-1 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <1>;
-+			gpios = <&gpio5 10 GPIO_ACTIVE_HIGH>;
-+		};
-+		/* SODIMM 56 - LD1_BLUE */
-+		led-2 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <1>;
-+			gpios = <&gpio5 0 GPIO_ACTIVE_HIGH>;
-+		};
-+		/* SODIMM 58 - LD2_RED */
-+		led-3 {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <2>;
-+			gpios = <&gpio5 1 GPIO_ACTIVE_HIGH>;
-+		};
-+		/* SODIMM 60 - LD2_GREEN */
-+		led-4 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <2>;
-+			gpios = <&gpio5 2 GPIO_ACTIVE_HIGH>;
-+		};
-+		/* SODIMM 62 - LD2_BLUE */
-+		led-5 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <2>;
-+			gpios = <&gpio5 3 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+};
-+
-+/* Verdin ADC_1, ADC_2, ADC_3 and ADC_4 */
-+&adc1 {
-+	status = "okay";
-+};
-+
-+/* Verdin ETH_1 (On-module PHY) */
-+&enetc_port0 {
-+	status = "okay";
-+};
-+
-+/* Verdin CAN_1 */
-+&flexcan1 {
-+	status = "okay";
-+};
-+
-+/* Verdin CAN_2 */
-+&flexcan2 {
-+	status = "okay";
-+};
-+
-+&gpio1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ctrl_sleep_moci>;
-+};
-+
-+&gpio2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpio1>,
-+		    <&pinctrl_gpio2>,
-+		    <&pinctrl_gpio3>;
-+};
-+
-+&gpio3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpio6>;
-+};
-+
-+&gpio4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpio5>;
-+};
-+
-+&gpio5 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpio4>,
-+		    <&pinctrl_qspi1_cs2_gpio>,
-+		    <&pinctrl_qspi1_dqs_gpio>;
-+};
-+
-+/* Verdin I2C_3_HDMI */
-+&i3c2 {
-+	status = "okay";
-+};
-+
-+/* Verdin I2C_2_DSI */
-+&lpi2c3 {
-+	status = "okay";
-+};
-+
-+/* Verdin I2C_1 */
-+&lpi2c4 {
-+	status = "okay";
-+
-+	temperature-sensor@4f {
-+		compatible = "ti,tmp75c";
-+		reg = <0x4f>;
-+	};
-+
-+	carrier_eeprom: eeprom@57 {
-+		compatible = "st,24c02", "atmel,24c02";
-+		reg = <0x57>;
-+		pagesize = <16>;
-+	};
-+};
-+
-+/* Verdin I2C_4_CSI */
-+&lpi2c5 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_3, used as the Linux console */
-+&lpuart1 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_4 */
-+&lpuart2 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_1 */
-+&lpuart7 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_2 */
-+&lpuart8 {
-+	status = "okay";
-+};
-+
-+/* Verdin PCIE_1 */
-+&pcie0 {
-+	status = "okay";
-+};
-+
-+/* Verdin PWM_1 */
-+&tpm4 {
-+	status = "okay";
-+};
-+
-+/* Verdin PWM_2 */
-+&tpm5 {
-+	status = "okay";
-+};
-+
-+/* Verdin PWM_3_DSI */
-+&tpm6 {
-+	status = "okay";
-+};
-+
-+/* Verdin USB_1 */
-+&usb2 {
-+	status = "okay";
-+};
-+
-+/* Verdin USB_2 */
-+&usb3 {
-+	fsl,permanently-attached;
-+
-+	status = "okay";
-+};
-+
-+&usb3_phy {
-+	status = "okay";
-+};
-+
-+/* Verdin SD_1 */
-+&usdhc2 {
-+	status = "okay";
-+};
-+
-+/* Verdin CTRL_WAKE1_MICO# */
-+&verdin_gpio_keys {
-+	status = "okay";
-+};
-
--- 
-2.43.0
-
+Best regards,
+Krzysztof
 
