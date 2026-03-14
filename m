@@ -1,157 +1,140 @@
-Return-Path: <devicetree+bounces-275884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275765-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MKs9Hv9et2nZQQEAu9opvQ
-	(envelope-from <devicetree+bounces-275884-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 02:38:07 +0100
+	id gGoKC5HytWl87QAAu9opvQ
+	(envelope-from <devicetree+bounces-275765-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 00:43:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9D512936F0
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 02:38:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F08D28F8D0
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 00:43:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0BA08300FC53
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 01:37:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 10E5D30067B5
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 23:43:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5271423D297;
-	Mon, 16 Mar 2026 01:37:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8763938AC7A;
+	Sat, 14 Mar 2026 23:43:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FRzD8sxt"
+	dkim=pass (2048-bit key) header.d=oss.cipunited.com header.i=@oss.cipunited.com header.b="2HP/y21E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from lf-2-36.ptr.blmpb.com (lf-2-36.ptr.blmpb.com [101.36.218.36])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EDF122D785;
-	Mon, 16 Mar 2026 01:37:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F68240DFA1
+	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 23:43:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.36.218.36
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773625063; cv=none; b=LQqZq/uYYTxAXtg2xTWXmm06Bd9XeYABoF1k2Rn+ApDt3W2Xp5MpXLJHVns9Epv/096gi9wQXqQ8kyo8LoAagVz6AVu7VKvIy2ZcZ2UWqJ0XkCnjqj548vE/uLpgrRy4nbt2KtL/55EcNTrFP8WW+IwsyapPaV/1bcdCH6wl5y8=
+	t=1773531790; cv=none; b=CBrcoKCvHe8mTAKjs5UY28BDhR93e7p1j47A/L1aAioamM7khYE6swnvLpccHgQ0tE2bKx/8l45U1Sq+Q8mpnwftqLnUJqPmmkFxMgA4eo6bYdSagDKdIGd4E9u+eNHcJ9qTfmMOjtD6dAhiXVcAOPoqZKl5fojcZcO7ej4wIOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773625063; c=relaxed/simple;
-	bh=TGQIw/q/zFMyHgT9wXEpWPAd2N2W6JnYL+lx6HkddLk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Vcir6blr3tf05Caz75Xrtmk9d+lyROWcNcTs15PrhssaH1omTbwXSgeybg8Pi3kvyJUvOj0U7+8brQQ7NFs53P43kx+K6UVh7EFsUF+HfIPovMU5sXYISTrViAIIKoYNfAHZiONEaYvsK1ZjSYs/yjiUldn7h/qKTEtlnPjSr0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FRzD8sxt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64CF8C19425;
-	Mon, 16 Mar 2026 01:37:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773625062;
-	bh=TGQIw/q/zFMyHgT9wXEpWPAd2N2W6JnYL+lx6HkddLk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=FRzD8sxtWGzZf04kzC7Xi/txIeltFmL7gxMkHHZhlxDQcObQTW7bT1CEcFWxmAxZY
-	 1o+6rc64q4fh6e6ahab9n03frJz8mZ3rvcOkdgKvlZYrbMWLahfiylHFyDDYfQNmaO
-	 OQ9vqB6MXJeubc69yr4l+rSQGAg4hihvqsoyxyiVprNtfXfV4pU3lePKCQwWPQFmv2
-	 1e9LPCKyw61UXetoeVulORj/r6wrJuvRWa/1JczJAsB2KWV8GreUb7qpk3Fy6DfYba
-	 qzIT8KP9I2iNo2HLLyIWy3VzHVHs/u9FiwvljbmhzWkQVhQqJVWBlobXjNieLrR9UV
-	 zNCmusXetr/cA==
-From: Mark Brown <broonie@kernel.org>
-To: Jernej Skrabec <jernej@kernel.org>, 
- Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-sunxi@lists.linux.dev, 
- devicetree@vger.kernel.org, linux-spi@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20260302153559.3199783-1-wens@kernel.org>
-References: <20260302153559.3199783-1-wens@kernel.org>
-Subject: Re: (subset) [PATCH v2 0/3] arm64: allwinner: sun55i-t527:
- avaota-a1: Add SPI NAND
-Message-Id: <177352554724.149922.11236010638417672034.b4-ty@kernel.org>
-Date: Sat, 14 Mar 2026 21:59:07 +0000
+	s=arc-20240116; t=1773531790; c=relaxed/simple;
+	bh=vrusqwkGGaiD1U40//aLfLHGRcn4Aexj8deKTDqIpgw=;
+	h=To:Subject:Message-Id:Mime-Version:Content-Type:From:Date:Cc; b=aM6NO9K5Qs3tnJIJ0cJ91SMqGyoERBVkpNICbv8Ojo+JO277JOPOZTcsvUgkRGVZ7o0dnkXUlNhgXSrEYT5rbA+IsTt7nOYK1G1wTwSBpiL8cHhqX+3f31bnykzYwuSSE6f0y4w6yyqqAuCovpabtQh/UFCzUrrY9wkHkthdSuE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.cipunited.com; spf=pass smtp.mailfrom=oss.cipunited.com; dkim=pass (2048-bit key) header.d=oss.cipunited.com header.i=@oss.cipunited.com header.b=2HP/y21E; arc=none smtp.client-ip=101.36.218.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.cipunited.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.cipunited.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ s=feishu2303200042; d=oss.cipunited.com; t=1773531707;
+  h=from:subject:mime-version:from:date:message-id:subject:to:cc:
+ reply-to:content-type:mime-version:in-reply-to:message-id;
+ bh=TzyF1v0NlxN5WwXjtflZOgV+Cup/KHavISWhIQddOMg=;
+ b=2HP/y21Equv0ZkfR9uS0yQe0N622cps0q3Xrq0XuIBwjSra49NjQXoATBMjPYvPzyStzj0
+ pXkAIb7AJQLH8I3283375g+5dUqKkM7hU0HzepKSgFBCKBYyWWHhF5xreHztM4ODRCTjH5
+ CWjo1vZC7Ejj5AzIgRr6rjBTQ5LBs1gmpkdAJbFyxd1UaAEzuQKo5JBSlbAFHSCLxlgZVo
+ lMp0pHrlQObsuT3KD55e+cKKQ7gFUxrHu3TLefYn4QILzRmznEpiv60/d4aj3vwqFqDsEE
+ 7wcOLpgEmktAq6TWB2dkRmtOBT0jcexUZ1tbWRPm0hnnxkVQQ6rrCkwZwvQz7g==
+X-Original-From: Rong Zhang <rongrong@oss.cipunited.com>
+X-Mailer: git-send-email 2.53.0
+To: "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, 
+	"Jiri Slaby" <jirislaby@kernel.org>, "Rob Herring" <robh@kernel.org>, 
+	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, 
+	"Conor Dooley" <conor+dt@kernel.org>, 
+	"Thomas Bogendoerfer" <tsbogend@alpha.franken.de>, 
+	"Huacai Chen" <chenhuacai@loongson.cn>, 
+	"Jiaxun Yang" <jiaxun.yang@flygoat.com>
+Subject: [PATCH 0/3] MIPS: dts: loongson64g-package: Switch to Loongson UART driver
+Content-Transfer-Encoding: 7bit
+Received: from tb ([223.88.91.90]) by smtp.feishu.cn with ESMTPS; Sun, 15 Mar 2026 07:41:45 +0800
+Message-Id: <20260314234143.651298-1-rongrong@oss.cipunited.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-5154a
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1508; i=broonie@kernel.org;
- h=from:subject:message-id; bh=TGQIw/q/zFMyHgT9wXEpWPAd2N2W6JnYL+lx6HkddLk=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBpt17jchZo0gt311TnfM91Px7xeMUnDDWgGnHg5
- aPZt2gS/jyJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCabde4wAKCRAk1otyXVSH
- 0NkBB/96GMZnNoZeWsfT+kcGAZx6S+Ao310k+PbeK/xJt271Tz0NrWNlPvQZCLXxs4SQNIZFO5M
- Dr4zSEidJE/ORmsiypIqH6qztsrTp9KGh0DMZt1wZgeIrWETeDJenvDAP2BxhnRhER7hcEkbEjO
- dPj1MGZqdoZBCb4pEn/bQ2itm7AAsbKhMPTIT+fMfNoP+awzQn1AvEBL1w6eSPkRJtGe/PzF2vs
- 4apTXsrYWgR1Muwe2Aqo6FqdXLCUZVZRLtV3QqIrNVoVqlc1EqFdBZKwysXbk0Krry4Kgs2iFih
- zwZ7tpICsIacOmo1RYoCA1etZDpvw+NSmN3HLmdihBnINnoB
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
-X-Spamd-Result: default: False [0.34 / 15.00];
+Mime-Version: 1.0
+X-Lms-Return-Path: <lba+269b5f239+2ca8c4+vger.kernel.org+rongrong@oss.cipunited.com>
+Content-Type: text/plain; charset=UTF-8
+From: "Rong Zhang" <rongrong@oss.cipunited.com>
+Date: Sun, 15 Mar 2026 07:41:40 +0800
+Cc: "Rong Zhang" <rongrong@oss.cipunited.com>, 
+	<linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>, 
+	<linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>, 
+	"Yao Zi" <me@ziyao.cc>, "Icenowy Zheng" <uwu@icenowy.me>, 
+	"Rong Zhang" <i@rong.moe>
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DATE_IN_PAST(1.00)[27];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[oss.cipunited.com,none];
+	MV_CASE(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[oss.cipunited.com:s=feishu2303200042];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275884-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-275765-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[rongrong@oss.cipunited.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[oss.cipunited.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D9D512936F0
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.cipunited.com:dkim,oss.cipunited.com:mid]
+X-Rspamd-Queue-Id: 7F08D28F8D0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, 02 Mar 2026 23:35:55 +0800, Chen-Yu Tsai wrote:
-> arm64: allwinner: sun55i-t527: avaota-a1: Add SPI NAND
-> 
-> Hi,
-> 
-> This is v2 of my Avaota A1 SPI NAND enablement series.
-> 
-> Changes since v1:
-> - DT bindings (Krzysztof)
->   - Moved "allOf:" block after "required:" block
->   - Dropped "type:" from child node in conditional block
-> - Collected tags
-> - Link to v1:
->   https://lore.kernel.org/linux-sunxi/20260227175157.2339758-1-wens@kernel.org/
-> 
-> [...]
+Loongson64g is Loongson 3A4000, whose UART controller is compatible with
+Loongson 2K1500, which is NS16550A-compatible with an additional
+fractional frequency divisor register.
 
-Applied to
+Patch 1 adds loongson,ls3a4000-uart as compatible with
+loongson,ls2k1500-uart.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-7.0
+Patch 2 enables building 8250_loongson (loongson-uart) on MIPS
+Loongson64.
 
-Thanks!
+Patch 3 updates the compatible strings to reflect this, so that 3A4000
+can benefit from the fractional frequency divisor provided by
+loongson-uart. This is required on some devices, otherwise their UART
+can't work at some high baud rates, e.g., 115200.
 
-[1/3] spi: dt-bindings: sun6i: Allow Dual SPI and Quad SPI for newer SoCs
-      https://git.kernel.org/broonie/misc/c/743956bb9990
+Tested on Loongson-LS3A4000-7A1000-NUC-SE with a 25MHz UART clock.
+Without fractional frequency divisor, the actual baud rate was 111607
+(25MHz / 16 / 14, measured value: 111545) and some USB-to-UART
+converters couldn't work with it at all. With fractional frequency
+divisor, the measured baud rate becomes 115207, which is quite accurate.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Rong Zhang (3):
+  dt-bindings: serial: 8250: Add Loongson 3A4000 uart compatible
+  serial: 8250: loongson: Enable building on MIPS Loongson64
+  MIPS: dts: loongson64g-package: Switch to Loongson UART driver
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+ Documentation/devicetree/bindings/serial/8250.yaml   | 1 +
+ arch/mips/boot/dts/loongson/loongson64g-package.dtsi | 4 ++--
+ drivers/tty/serial/8250/Kconfig                      | 9 +++++----
+ 3 files changed, 8 insertions(+), 6 deletions(-)
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+base-commit: 69237f8c1f69112cca7388af7fab6d0ee45a2525
+-- 
+2.53.0
 
