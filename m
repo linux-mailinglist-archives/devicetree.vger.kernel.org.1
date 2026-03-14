@@ -1,226 +1,170 @@
-Return-Path: <devicetree+bounces-275716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275717-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ZRSODvdstWlz0QAAu9opvQ
-	(envelope-from <devicetree+bounces-275716-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 15:13:11 +0100
+	id uKeQN4JutWlz0QAAu9opvQ
+	(envelope-from <devicetree+bounces-275717-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 15:19:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82CBB28D700
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 15:13:10 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F34928D7A7
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 15:19:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EE4E930048C4
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 14:13:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2B6D0301983C
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 14:19:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B893262808;
-	Sat, 14 Mar 2026 14:13:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EBB1361DC4;
+	Sat, 14 Mar 2026 14:19:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="ho/Vx5yo"
+	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="EGLEwi+W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f52.google.com (mail-yx1-f52.google.com [74.125.224.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB49821773D
-	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 14:13:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CDBF344DB5
+	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 14:19:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773497587; cv=none; b=F7R9ZGyfM4lcrXFf5iLznUmom9fsauQbL/47gDF4cyzI8BU8rJ8ml4vVwE4nSzWGhZdIJO5L27kjEKPo/awrL2/nq6NwtxdxntNaAVJx53DMJePpR2NeFQU2rzfBZXQQkN34ey3QRGarXnF8T+pksMk3RnXajCJiKEZJmRkyXxs=
+	t=1773497982; cv=none; b=ntBKOBXM8kokuZdGni+hBBo9VrOTw4uhf2KdqILxCX3ewk+JB7GErQCxtVSrXCiOIdcXa6LOo/6KYKuNDWtfHZEa8/kLFPmECpksofgaGF9KzWH2BRtj50Lozb8AxCPo6o15yLwHHAR6AvoTe4wNQrBhPpO8MMlfEuubjvsO22E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773497587; c=relaxed/simple;
-	bh=dZfizOLvEhwTGQ+F1IZsC1RT3jKpyEuuiwgZF0wBGpw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=c2AZoMa8XUIb2bURn5V7xWX3z6Wj0eQNemN+/UIbKQ82IWyDr1vtyuZYHx2V74acJnysOYKEo3KxpgHPERNsq1W1qxtReq3FCshT/VtOQiWW2UJaL6RNtbyJE4uZj9tgV/0++5kxFviLpPe64OH0EcoTAbrJ82xiAX53rU259Sg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=ho/Vx5yo; arc=none smtp.client-ip=74.125.224.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-yx1-f52.google.com with SMTP id 956f58d0204a3-64c9a6d6b70so2650447d50.3
-        for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 07:13:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1773497585; x=1774102385; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kb1CjrStBIIzJ9sGHwsiJsF+p3lIqo/Alx3Y+vVcnNg=;
-        b=ho/Vx5yoEd2lCkRy38GlGC5+CiZ13f+Py/QZJ71nx3F86pqcKwVf+mSlal4K8Zmc7a
-         /TW48xHqEFe68Cd+5Wiu9e+txk1JybOOh+hsJ5zyW55H9DrhnG6D/nDsJZsSiCTrrzk8
-         kArL628k1t9LLbgqc4PWligv2Hnxpzfru0jTF6lXVcIEV1gYrWKceBAjED+TMYQ4qyS8
-         PzTzVXJOJ8GoVNQyfQSOHe463D8mnRibbln6U8Q/O/TLjYX9m+6PSOPVkqB41EIMImbM
-         RYAKqnHBLNjqd8cFYNrcnjOwfaNjTM2xr5Van+ia3jyBrfmWmpF4PqonKIXpBZWZKSXB
-         IPYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773497585; x=1774102385;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kb1CjrStBIIzJ9sGHwsiJsF+p3lIqo/Alx3Y+vVcnNg=;
-        b=sLEbJavLmLI3dPzV0WwcnJjsQ8pF+Rm3Izxp9hSX8p0D+jDInHK6Y1+XV4eifrLUT/
-         PEvycm25twRldqUKNj2ax081iFMPqQP7OyJtAE1YIqn7q5hFDQPAIqH3tlkO0qXJ6H2i
-         +bsEvQ5Gerfz1K3PRAIOwE79xV8lpxK8y68fnsyafZCKzn2n6J+yM1rBVQFb70Mlk3Aa
-         h80+85R5E9yPV09KFkEl5PiJJOrdP7278X+T8RFPOBvsIKaCUM/5zV9t82hEDNukZyxM
-         o0LCdr1Ef+DALN4nn5Z9IHlAtoTMmaqfOYeXdqjJBEX3HK58MDpTpyO5vwyyq0o//8WM
-         U82w==
-X-Gm-Message-State: AOJu0YzDgTaQNU0/qcJDCxG3wk1To4mH9EjqtvWg+Re4FbYfR6Lx6p+m
-	A5p/x54xvkYMj7Ruhn+pLQ2W8fmnM+KDwjy/Q+R/EIFYsg+/Dst3Hwwj219aSEebzL8=
-X-Gm-Gg: ATEYQzyN+RHtHx/mLoJ+sfHFrZPIJ1FrNuR5Vq10+KpL6Api38hT+C8y3o5m/c73GVE
-	9ixu6MEZ3qb+01fc4B+1b3slYuEUv3vCBA3nZ7DfUbs74CwAQqy5zHThVddnJTCUQ8ZiaiBhDYi
-	EmJd7sNLBihnN2wqwX0Hnk5Mz/5vKRp2kOZoPN7edJCzA+47sCxf7UDqizDh4/i8IKjP0TcJbJR
-	AphWClqNlUBkUG9UAuXd9SS+FT4SfIul9CBvi3qy4QcDFFiWuziKPq32BYH4PmHFk9csyslQhjO
-	ezpcjdyfZmgSCYN54qakbcOF8Niyayep7VgFvk2xD8tOlzMrWfEdqvlLEGvSosaKS1uyfVHGREK
-	AFHPS+3T0i2PUWoceA7IMJoajVDiBOOfe3HKf6QnOHl5OQQi8gMZIMS2VWpuh/igG2e/yNi1Wqg
-	2sihTlrQiy+FJz5fyf/mtLUmNrbKVPLj77cR0MDNZ3P3mRe4LjC4c=
-X-Received: by 2002:a53:ee65:0:b0:64d:6193:a752 with SMTP id 956f58d0204a3-64e62fc1f7amr5251930d50.28.1773497584611;
-        Sat, 14 Mar 2026 07:13:04 -0700 (PDT)
-Received: from [100.64.0.1] ([170.85.103.33])
-        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-64e65b39f56sm2709456d50.15.2026.03.14.07.13.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 14 Mar 2026 07:13:04 -0700 (PDT)
-Message-ID: <b885158f-3859-4bfa-96b0-39c274a856cf@sifive.com>
-Date: Sat, 14 Mar 2026 09:13:03 -0500
+	s=arc-20240116; t=1773497982; c=relaxed/simple;
+	bh=+Q2NHbqyScT8pUlf7wHWUJIw0RO1x/ZiSkOBZGtVGzI=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:Cc:To:
+	 References:In-Reply-To; b=o1vWzP51P9451OD6V8aeOW/3+emrXUD4ZXyVjMP1Xjlael7oIh5F8AbaFSqD0vArSbPAUZuVv1L9xlLVV6PKcemc0qOq9O1YCoF1UKYk9XkDDsb62pVwJqziuahjIgRDrE0SCYtecwwHASHenTzwFvnhn9ZLMNe/TGAW5h3sBzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=EGLEwi+W; arc=none smtp.client-ip=95.215.58.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow-tech.com
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] riscv: dts: spacemit: k3: add clock tree
-To: Yixun Lan <dlan@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>
-References: <20260304-01-dts-uart-full-v1-0-50a0aa53a245@kernel.org>
- <20260304-01-dts-uart-full-v1-1-50a0aa53a245@kernel.org>
- <fecadd41-ee3e-4452-bf25-4a70eaeb5f3f@sifive.com>
- <20260314085252-GKB415778@kernel.org>
-From: Samuel Holland <samuel.holland@sifive.com>
-Content-Language: en-US
-In-Reply-To: <20260314085252-GKB415778@kernel.org>
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
+	s=key1; t=1773497976;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Xl+Uf18fqruXHqchg5arUmkQufHcl9O3lBTne7YsaaQ=;
+	b=EGLEwi+WJkwvV8gz682AmrPTMD1U66aeOBTeWeosWn8TziuY17rzTDlXucPem7yuwUbLq7
+	k3uD0kFRayntDssYJGY5sVuAI4wWbmSzOu41+ADPrUqBWx/pcBVOU/y3PRMs7gzvDGYPQp
+	pAUXoiRHvDVg7A3RYc4ZIKtqh/wY2k3K/nqRwi0G2EU1+QwCIg9Yt9XjmSAnqGUL6Hxno4
+	bUE/fjvSpd7TFrBVCvYoMrAD9BRmxj8kEs1IeCwDxG1FQZv8v6n0o9bdsXtqGvZM0FsP3S
+	0NOxd6rWdW1wq8uXlM6U+ImQcs3Sb6OhNdv01nvwlWX2ZRas/1r+Da2eeYSf5w==
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Date: Sat, 14 Mar 2026 15:19:22 +0100
+Message-Id: <DH2KK4G8Y2K1.3VO7LIFPTGDV1@cknow-tech.com>
+Subject: Re: [PATCH v2 0/3] media: rockchip: rkvdec: add support for the
+ VDPU346 variant
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <diederik@cknow-tech.com>
+Cc: "Christian Hewitt" <christianshewitt@gmail.com>, "Detlev Casanova"
+ <detlev.casanova@collabora.com>, =?utf-8?q?Olivier_Cr=C3=AAte?=
+ <olivier.crete@collabora.com>, "Ezequiel Garcia"
+ <ezequiel@vanguardiasur.com.ar>, "Mauro Carvalho Chehab"
+ <mchehab@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Heiko Stuebner" <heiko@sntech.de>, "Diederik de Haas"
+ <diederik@cknow-tech.com>, "Dmitry Osipenko"
+ <dmitry.osipenko@collabora.com>, "Thomas Gleixner" <tglx@linutronix.de>,
+ "Dragan Simic" <dsimic@manjaro.org>, "Chukun Pan" <amadeus@jmu.edu.cn>,
+ <linux-media@vger.kernel.org>, <linux-rockchip@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>
+To: "Nicolas Dufresne" <nicolas@ndufresne.ca>
+References: <20251226113140.573759-1-christianshewitt@gmail.com>
+ <ee0fd1ecc6c940811cae743f087e96d348909c9a.camel@ndufresne.ca>
+In-Reply-To: <ee0fd1ecc6c940811cae743f087e96d348909c9a.camel@ndufresne.ca>
+X-Migadu-Flow: FLOW_OUT
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[sifive.com,reject];
-	R_DKIM_ALLOW(-0.20)[sifive.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[cknow-tech.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[cknow-tech.com:s=key1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[sifive.com:+];
+	TAGGED_FROM(0.00)[bounces-275717-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_CC(0.00)[gmail.com,collabora.com,vanguardiasur.com.ar,kernel.org,sntech.de,cknow-tech.com,linutronix.de,manjaro.org,jmu.edu.cn,vger.kernel.org,lists.infradead.org];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275716-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[samuel.holland@sifive.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[diederik@cknow-tech.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[cknow-tech.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 82CBB28D700
+X-Rspamd-Queue-Id: 3F34928D7A7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Yixun,
+Hi Nicolas,
 
-On 2026-03-14 3:52 AM, Yixun Lan wrote:
-> On 20:44 Fri 13 Mar     , Samuel Holland wrote:
->> On 2026-03-04 1:36 AM, Yixun Lan wrote:
->>> Add clock support to SpacemiT K3 SoC, the clock tree consist of several
->>> blocks which are APBC, APMU, DCIU, MPUM.
->>>
->>> Signed-off-by: Yixun Lan <dlan@kernel.org>
->>> ---
->>>  arch/riscv/boot/dts/spacemit/k3.dtsi | 75 ++++++++++++++++++++++++++++++++++++
->>>  1 file changed, 75 insertions(+)
->>>
->>> diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/spacemit/k3.dtsi
->>> index b69cf81b5d55..e3d7f3102fd5 100644
->>> --- a/arch/riscv/boot/dts/spacemit/k3.dtsi
->>> +++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
->>> @@ -4,6 +4,7 @@
->>>   * Copyright (c) 2026 Guodong Xu <guodong@riscstar.com>
->>>   */
->>>  
->>> +#include <dt-bindings/clock/spacemit,k3-clocks.h>
->>>  #include <dt-bindings/interrupt-controller/irq.h>
->>>  
->>>  /dts-v1/;
->>> @@ -398,6 +399,36 @@ core3 {
->>>  		};
->>>  	};
->>>  
->>> +	clocks {
->>> +		vctcxo_1m: clock-1m {
->>> +			compatible = "fixed-clock";
->>> +			clock-frequency = <1000000>;
->>> +			clock-output-names = "vctcxo_1m";
->>> +			#clock-cells = <0>;
->>> +		};
->>> +
->>> +		vctcxo_24m: clock-24m {
->>> +			compatible = "fixed-clock";
->>> +			clock-frequency = <24000000>;
->>> +			clock-output-names = "vctcxo_24m";
->>> +			#clock-cells = <0>;
->>> +		};
->>> +
->>> +		vctcxo_3m: clock-3m {
->>> +			compatible = "fixed-clock";
->>> +			clock-frequency = <3000000>;
->>> +			clock-output-names = "vctcxo_3m";
->>> +			#clock-cells = <0>;
->>> +		};
->>> +
->>> +		osc_32k: clock-32k {
->>> +			compatible = "fixed-clock";
->>> +			clock-frequency = <32000>;
->>> +			clock-output-names = "osc_32k";
->>> +			#clock-cells = <0>;
->>> +		};
->>
->> Are these clocks provided by SoC or by the board? Usually there's a crystal
->> external to the SoC that provides the root of the clock tree. If these clocks
->> are provided by the board, they (or at least the clock-frequency property)
->> should be in the board DT, not the SoC dtsi.
->>
-> It's true, as a quick check, osc_32k provided by P1 PMU, while vctcxo_24m is
-> a crystal, vctcxo_1m and vctcxo_3m are also marked as external in the clock
-> tree, but I would confirm them later..
+On Sun Mar 8, 2026 at 10:40 PM CET, Nicolas Dufresne wrote:
+> Le vendredi 26 d=C3=A9cembre 2025 =C3=A0 11:31 +0000, Christian Hewitt a =
+=C3=A9crit=C2=A0:
+>> This series depends upon Detlev Casanova's current v7 series for VDPU381=
+ and
+>> VDPU383 support [0]. It adds support for the VDPU346 IP block used for H=
+264,
+>> HEVC and (in active work) VP9 on the RK356X boards. VDPU346 appears to b=
+e a
+>> close relation to VDPU381 used with RK3588, except with a single core, o=
+utput
+>> limited to 4K, and minor feature differences, e.g. HEVC level 5.1 on VDP=
+U346
+>> vs 6.1 on VDPU381. To handle differences we declare a new compatible.
+>>=20
+>> The device-tree changes are derived from prior-art in Detlev's patches f=
+or
+>> RK3576 and RK3588, the vendor kernel [1], and some earlier patch attempt=
+s
+>> from Piotr Oniszczuk and Diederik de Haas.
+>>=20
+>> The register differences between VDPU346 and VDPU381 appear to be minima=
+l so
+>> we currently and intentionally reuse the VDPU381 h264, hevc, and regs fi=
+les
+>> to avoid duplicating code. There is some evidence of buffer size changes=
+ in
+>> testing which still need to be explored. If further register analysis ne=
+eds
+>> separate files for VDPU346 the refactoring will be beyond my current n00=
+b
+>> coding skills and I will either need some coaching or would be happy to =
+pass
+>> the series over to a more experienced developer.
+>
+> A fluster score and explained error report is missing your this cover let=
+ter.=20
+> This will probably highlight some of the instability issues reported in t=
+his
+> series. I'll mark the series are "Change Request", as you have few review
+> comments and now this test.
+>
+> Overall, I'd like to see probably investigations of the problem before go=
+ing
+> ahead.
 
-In that case, osc_32k should ideally be a reference to the P1 PMU clock
-provider, not a fixed-clock. But this may be infeasible if it creates dependency
-loops (PMU depends on I2C, I2C depends on clocks, clocks depend on PMU).
+FTR: You replied to v2 while there is a v3 here:
+https://patch.msgid.link/20260110053727.2295260-1-christianshewitt@gmail.co=
+m/
 
-> I agree to move them out of SoC dtsi file - k3.dtsi, while due to all boards share
-> the same clock topology, what if I creating a k3-clock.dtsi and making it shared 
-> between all board dts file? to avoid massive DTS duplication
+It (still) doesn't have a fluster score, but it is the currently most
+recent version posted on the MLs.
 
-Yes, it is common practice to create a .dtsi file for things shared among
-several boards for a SoC (for example if they are all based on a reference
-platform). You may want to name it something more generic if more than just
-clocks can be shared (like k3-common.dtsi, compare jh7110-common.dtsi).
-
->> Also, the /clocks node is out of order.
->>
-> I will move osc_32k before vtccxo_1m, assuming it's the problem you
-> refered to?
-
-I mean that /clocks sorts alphabetically before /cpus. Your ordering of the
-fixed-clocks nodes themselves is fine.
-
-Regards,
-Samuel
-
+Cheers,
+  Diederik
 
