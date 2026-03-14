@@ -1,161 +1,144 @@
-Return-Path: <devicetree+bounces-275624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275625-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ju8xDCUVtWllwQAAu9opvQ
-	(envelope-from <devicetree+bounces-275624-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:58:29 +0100
+	id 4G9KH5QVtWllwQAAu9opvQ
+	(envelope-from <devicetree+bounces-275625-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 09:00:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6996728C056
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:58:28 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 232B928C070
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 09:00:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E0CB130297A5
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 07:58:26 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6485E30185CA
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:00:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E688B2D0C84;
-	Sat, 14 Mar 2026 07:58:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RwvCe+B7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 192F528850D;
+	Sat, 14 Mar 2026 08:00:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D63AD30F7F2;
-	Sat, 14 Mar 2026 07:58:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66C0F22D785;
+	Sat, 14 Mar 2026 08:00:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773475105; cv=none; b=PVKkq1LSqsPFyEm0eeWXbU9t179zDJmNiaw1X7v6nijl67bxg1VWa1cETFdEMfbEJn/y0Ajz6T5Cw3kv3zLesfeK1vxrfuJDafMUALCguZD6d/PaWpVkALD9QU+qdAxUS3r1d/hsUx50S3wxNqijj0FTRzf5cxnlkwZxFhzzXdw=
+	t=1773475218; cv=none; b=AAHhUZvK9Btosj8uwfE9SufPK6QuBOYrE0lHHwcolnOOl/X2jdqnK7FqDPZHH5A9LfaFZqgqLKbJ9LBS3AXrVtPnFCpg+kClynvDRKwMMZBcY6ad+CPr66lHMi3bsNLHZQNXNxK3w/jyZ8nlr/Z4izWPKrjpKirdjT/W9VdS2Bs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773475105; c=relaxed/simple;
-	bh=/4mO55ZscN1eFQLHdQLwOS7Gxe9h8uCnujezTmQwxyE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=vE9ACxbU7gNEbFUPnZBOJj8B2qfT8WiMNqOButkHGZ4WJxtDPEKvPkBP+RpbizCuydd1vPDuCjaykHga1f17219TmF00mwirWBMKY/rdNGX7hk1W2XOCv5IE7QcKgoyVdgm/CQQrhPUm2R6yZ/mctPAZte+5TdMOQS6Eyxj7aYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RwvCe+B7; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773475103; x=1805011103;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=/4mO55ZscN1eFQLHdQLwOS7Gxe9h8uCnujezTmQwxyE=;
-  b=RwvCe+B7l5ou0DV1UwUAUNt81Abh37sSNJaIQZPiqRO2CEeHC1Db2n5V
-   O5x72RZSbsX+7/Z9bYdlbfFYwGldRpOqLhVo0TwjvsiEE1wSDwe0iBUrV
-   IybI/fbkJpBUG85aW07Dal3foyjcfQ5oSEkk0rx4tCxG63plIDOLOUny6
-   EhnkdeYoKZ7KfYpXr/wEU9T4RbWPj3gVL6B/O7609EwlhMcOBycV1HWZy
-   F81vN5xDJtKCKapf7I1FH3ls1CkedGndAX5Dtbh7P0Rl3zQQrCid5P2Js
-   TxFoWsmL0eAFk4KN56XEhTcKMjjArRxWGCuSaLp55WHoDY7Rp5FADV7aB
-   g==;
-X-CSE-ConnectionGUID: +tUQDDHOTWiH4McMhYMW+w==
-X-CSE-MsgGUID: TUnq/3xmQuOn75Jf/SpbAg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11728"; a="62140688"
-X-IronPort-AV: E=Sophos;i="6.23,119,1770624000"; 
-   d="scan'208";a="62140688"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Mar 2026 00:58:22 -0700
-X-CSE-ConnectionGUID: XV8nd9QKRpqyf1cdyxEXxQ==
-X-CSE-MsgGUID: K3AoNwyMRBOBlrzhjAovxQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,119,1770624000"; 
-   d="scan'208";a="218691536"
-Received: from igk-lkp-server01.igk.intel.com (HELO 9958d990ccf2) ([10.211.93.152])
-  by fmviesa007.fm.intel.com with ESMTP; 14 Mar 2026 00:58:20 -0700
-Received: from kbuild by 9958d990ccf2 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1w1Jt3-000000003ld-2H34;
-	Sat, 14 Mar 2026 07:58:17 +0000
-Date: Sat, 14 Mar 2026 08:57:54 +0100
-From: kernel test robot <lkp@intel.com>
-To: Marek Szyprowski <m.szyprowski@samsung.com>,
-	Saravana Kannan <saravanak@kernel.org>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-mm@kvack.org, iommu@lists.linux.dev
-Cc: oe-kbuild-all@lists.linux.dev,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Linux Memory Management List <linux-mm@kvack.org>,
-	Robin Murphy <robin.murphy@arm.com>
-Subject: Re: [PATCH 7/7] of: reserved_mem: rework fdt_init_reserved_mem_node()
-Message-ID: <202603140843.vdpZ0bgs-lkp@intel.com>
-References: <20260313150802.1121442-8-m.szyprowski@samsung.com>
+	s=arc-20240116; t=1773475218; c=relaxed/simple;
+	bh=7cXL1x9VDDJYAcnzsSdDGWEjIgHPn15oz2mI6DIi1Bg=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=qyyGUvxbKuaNfBk97Q4cnAR9Y3Px4DqKazwMsvjCBQNtJveuIds+9evCIRxv1u/eWe65imUFUesHaCRMTl9fURAuyDLFE0COWtK55BOMakOZ4v8SvG4B12Nq4SaHGab5Lo33JRHOq0EXzpsMsQGmcHW441tODtR12HjhO2Q22A4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from Vostro-3710.lan (unknown [116.25.94.199])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 36eefd5cf;
+	Sat, 14 Mar 2026 16:00:12 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: gaohan@iscas.ac.cn
+Cc: alex@ghiti.fr,
+	aou@eecs.berkeley.edu,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dlan@kernel.org,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	palmer@dabbelt.com,
+	pjw@kernel.org,
+	rabenda.cn@gmail.com,
+	robh@kernel.org,
+	spacemit@lists.linux.dev,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: Re: [PATCH v2 4/4] riscv: dts: spacemit: Enable USB3.0/PCIe on OrangePi RV2
+Date: Sat, 14 Mar 2026 16:00:03 +0800
+Message-Id: <20260314080003.2573296-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260310161853.3900605-5-gaohan@iscas.ac.cn>
+References: <20260310161853.3900605-5-gaohan@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260313150802.1121442-8-m.szyprowski@samsung.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9ceb5c2ad603a2kunmb13d530a73040
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDTh5MVk8aGhgaQk8fHRlPGlYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSk1VSU5VQk9VSkJCWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09LVUpLS1VLWQ
+	Y+
+X-Spamd-Result: default: False [1.64 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[jmu.edu.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275624-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275625-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[ghiti.fr,eecs.berkeley.edu,kernel.org,vger.kernel.org,lists.infradead.org,dabbelt.com,gmail.com,lists.linux.dev,jmu.edu.cn];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid,git-scm.com:url]
-X-Rspamd-Queue-Id: 6996728C056
+	FROM_NEQ_ENVFROM(0.00)[amadeus@jmu.edu.cn,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.995];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,jmu.edu.cn:mid]
+X-Rspamd-Queue-Id: 232B928C070
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Marek,
+Hi,
 
-kernel test robot noticed the following build warnings:
+> +	regulator-usb3-vbus-5v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "USB30_VBUS";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		gpio = <&gpio K1_GPIO(97) GPIO_ACTIVE_HIGH>;
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on akpm-mm/mm-everything next-20260313]
-[cannot apply to tegra/for-next linus/master v6.16-rc1]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Is this true?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Marek-Szyprowski/of-reserved_mem-remove-fdt-node-from-the-structure/20260314-023123
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20260313150802.1121442-8-m.szyprowski%40samsung.com
-patch subject: [PATCH 7/7] of: reserved_mem: rework fdt_init_reserved_mem_node()
-config: x86_64-rhel-9.4-kunit (https://download.01.org/0day-ci/archive/20260314/202603140843.vdpZ0bgs-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260314/202603140843.vdpZ0bgs-lkp@intel.com/reproduce)
+> +		enable-active-high;
+> +	};
+> +
+> +	usb3_hub_5v: regulator-usb3-hub-5v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "USB30_HUB";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		gpio = <&gpio K1_GPIO(123) GPIO_ACTIVE_HIGH>;
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603140843.vdpZ0bgs-lkp@intel.com/
+Although GPIO123 is labeled as USB_HUB_EN, it actually
+supplies for USB3 vbus.
 
-All warnings (new ones prefixed by >>):
+> +		enable-active-high;
+> +	};
 
->> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'uname' not described in 'fdt_init_reserved_mem_node'
->> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'base' not described in 'fdt_init_reserved_mem_node'
->> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'size' not described in 'fdt_init_reserved_mem_node'
->> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'uname' not described in 'fdt_init_reserved_mem_node'
->> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'base' not described in 'fdt_init_reserved_mem_node'
->> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'size' not described in 'fdt_init_reserved_mem_node'
+> ...
+> +		peer-hub = <&hub_3_0>;
+> +		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Really? GPIO124 is floating.
+
+> +	};
+
+I still insist that the regulator name of DT should be the same
+as on the schematic. This will force us to review the schematic.
+
+Thanks,
+Chukun
 
