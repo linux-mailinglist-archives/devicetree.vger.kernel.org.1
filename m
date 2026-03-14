@@ -1,163 +1,168 @@
-Return-Path: <devicetree+bounces-275734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275735-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iBdqCq6KtWmO1gAAu9opvQ
-	(envelope-from <devicetree+bounces-275734-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 17:19:58 +0100
+	id uC66Is+MtWmN1wAAu9opvQ
+	(envelope-from <devicetree+bounces-275735-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 17:29:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE67228DDA2
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 17:19:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7A2528DE0A
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 17:29:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2AAFB300D4C5
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 16:19:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C4C303024135
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 16:28:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C876B227599;
-	Sat, 14 Mar 2026 16:19:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="UTlE6CIa"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07528282F02;
+	Sat, 14 Mar 2026 16:28:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB0BA13790B
-	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 16:19:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90B06272E56;
+	Sat, 14 Mar 2026 16:28:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773505195; cv=none; b=IBPpoyJ4wXMhur45SrpY1wKC8jQ87UY8qE7Uii0k4pCgvoNpOEnvc3OgRunMmW942fGvfMX+8CiUAJXMZUXC7XAizHewgFgBToO4EawoksH/MOcFoPOBNP8U586ZCh4A7RGM5l0VSShQezdH6eFs2h4RHvFwj6N+HEZRuIqJgiQ=
+	t=1773505735; cv=none; b=WYzbsdl0ps83kGdadH0T+RzBR3Xy79Oi2TcqyCp1V1EdXROJdgbeffoMw+iGZMsDrxZ4ReqUJEAqfAuL5rBJ9Yrp9oQ/f0YmxkfGZDdXGX31JwjbzkMyKzAe+RlneXKMbKi0qkr2MFpomHhghSMMeKReRg0SPc38jIcDVqHtp4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773505195; c=relaxed/simple;
-	bh=KBkmFspCBI5UcLEf1cRd//2zKNdLHfEi9/AjCUQ/XiQ=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=gDfm7t9vuQUsChyVH5KkihJarOdmwt8EJqtMH4fZxhwKlAd0He4Y8ALw8y3Zz3yaHGm8JbTLHirb8kY/K1ido+Y+gSAuYObJeQtMyTBRmkVO7FskVQNtCPW1f+ayZaD1szt36VjokoPeeFDFXuQwyHL/kT0fnUhissaYoBco8Uc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=UTlE6CIa; arc=none smtp.client-ip=209.85.160.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-417c34b0509so1134982fac.1
-        for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 09:19:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1773505193; x=1774109993; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=KBkmFspCBI5UcLEf1cRd//2zKNdLHfEi9/AjCUQ/XiQ=;
-        b=UTlE6CIakS2eeEyYdefN9JLGIAeYhImg5giLVCU1Jwn1SkdIs2yf9jTYEC3DucLtNP
-         +4CtMvlqRY05xeMY9671JeIYMAHlL9UnjTq04Xw6NGdprq0U9qR1bXZKQg6Eu+sLf2/D
-         HsD+apRTHc11ijvEOk3MfRcpkJTDnQAsaVUsMID6lu4qUm+8wc3KW3HfAjaWNiRrdM0C
-         AoLf5KyL59/iBXG8HiwayLfUHaST8neln7L9cZvg5jExoNUkjR5j27PQmejhHLJXScil
-         +vO2pfiAg3VdCKMVkDQveenO4TZq9FoBA/pi6WKthvseITlnsALJrCQQjdtTbBMz/Yty
-         ukUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773505193; x=1774109993;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KBkmFspCBI5UcLEf1cRd//2zKNdLHfEi9/AjCUQ/XiQ=;
-        b=iN2JsqVNFHVQw6qVgzOOtkTzD61A4DrZvQ9xKRIygBegaAWe68HCo+inHYygMr8gSo
-         pMSXb1/vZPUjnOVUafqRr54xl6m+0JSGIbyTmqoeMsm6qmsqT9Q/OzzD6g4Q8+ih1WCV
-         dGfxdk8FZztYbQINIHl3BYoDsOE/QgwuheHKOPsmrfSWvMFZPjtgvnKzpsTXxS7tmcrg
-         m+b/CqdyTXNQBxRUpXiI/3QcbvqXBEKEoO5wPI46dQ3T+9erU/fj/JUPQI2MiPHFvo/w
-         yDBuE+jq6n/sAJ4RpCWEPVKFGqBBfeXkT+j5Q6sdHvv5sY4ssaWxF4ooFSGGw3XX+C1s
-         LEeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWvLFgUFv1zK39lBi9Ug6pT0+pQfDD/EHAxOlGfyKssjMK9Wr1GJdf457vX6/8M90bN5mux8xMyE4EC@vger.kernel.org
-X-Gm-Message-State: AOJu0YyEmslnc9Iqf416GDWLwZHuAxJVHKt//z89+3+QxzEYEiC6uMu3
-	QZZHLFbTh/3H1ZOraB3WuhOvWzepu9qnJDJPa7UXxDhRefaW9t+09/567c1MWcGCuQU=
-X-Gm-Gg: ATEYQzz+7NQwOn8IxOhZ1zHWtyKi0GAkSxfykyry62J/HfWzfUZ/X+rh1hdc76MlR77
-	l/kvioVO98r5oPdt/pbWZ28klWtmuFymrHkaJAkntgNkrabh+gmj7AE3b7hoquhdwAfPAN5Rx07
-	KmeeQU2+rwJVCqWAHBtDibyOW+O7tLXidQYiYxQfQ9O7ljvgXCHUS4fv+oOCdc/ToeMfaKoLieM
-	83c2tng2wRLTn0RCbdG6E5xoWnZj1l7ypI+OV+0vOEbi46eczxIWAY/tucFrYLu1JCoYzt0tqOZ
-	x56ijCL9F2TF0b10jrK0+2VA3zaMWgkOkynfLRlpDPa+QSGdXJjdOmnx0qKKofahJSANyPUlPQS
-	c+51AkzwvG2YWTB1e29Mnv5S4Ddr7o5A87R0tbFOEsvGUICbYcSTK+spdPQz5slM3tax0UTAvln
-	tL8ImP5ZZFFeKHzZ0Usc1ahiWr12pQYsJuZzQ7B9cVlMh9YEuTgeQJYj4ZIso5WVVv26Tg5TeD9
-	g==
-X-Received: by 2002:a05:6870:510d:b0:417:1165:cf2e with SMTP id 586e51a60fabf-417b917197amr4017421fac.6.1773505192866;
-        Sat, 14 Mar 2026 09:19:52 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:500:14a9:db6c:e65a:4287? ([2600:8803:e7e4:500:14a9:db6c:e65a:4287])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4177e6ae0e3sm11940193fac.16.2026.03.14.09.19.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 14 Mar 2026 09:19:52 -0700 (PDT)
-Message-ID: <c158a12d-4855-40e7-9581-8078be4237fa@baylibre.com>
-Date: Sat, 14 Mar 2026 11:19:51 -0500
+	s=arc-20240116; t=1773505735; c=relaxed/simple;
+	bh=fFVepg2Wl75Yf2JJDEIXm+4/5C5inV2EAKG0Z/pf/I4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ixDD6ujffMNtK2e+uiNXlRLIHrsY3MTlniDIK9MmvQJGRc0TNw47RE3tYEw1drwkhmgNcquciPoolAbqGdIyJi7zdCaFJTcpcfRRlrquX4/kqE5e1agqzUrbQpsQMYVbKI38SMm+M6ISZS6l4TIcdCUTJjXBjiNmph+Nicb92OU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from edelgard.fodlan.icenowy.me (unknown [112.94.100.43])
+	by APP-03 (Coremail) with SMTP id rQCowAB3ktmwjLVpHpqpCg--.41252S2;
+	Sun, 15 Mar 2026 00:28:34 +0800 (CST)
+From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+To: Thomas Gleixner <tglx@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	WANG Xuerui <kernel@xen0n.name>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc: Icenowy Zheng <uwu@icenowy.me>,
+	Yao Zi <me@ziyao.cc>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	loongarch@lists.linux.dev,
+	linux-mips@vger.kernel.org,
+	Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Subject: [PATCH v3 0/8] Add support for LS7A LPC IRQ for MIPS Loongson systems
+Date: Sun, 15 Mar 2026 00:28:20 +0800
+Message-ID: <20260314162828.1055188-1-zhengxingda@iscas.ac.cn>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: iio: adc: add bindings for AD4691
- family
-From: David Lechner <dlechner@baylibre.com>
-To: radu.sabau@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>,
- Bartosz Golaszewski <brgl@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
- linux-gpio@vger.kernel.org
-References: <20260313-ad4692-multichannel-sar-adc-driver-v3-0-b4d14d81a181@analog.com>
- <20260313-ad4692-multichannel-sar-adc-driver-v3-1-b4d14d81a181@analog.com>
- <a1824f39-3925-4e94-ac98-52dcdfbaa0d2@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <a1824f39-3925-4e94-ac98-52dcdfbaa0d2@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:rQCowAB3ktmwjLVpHpqpCg--.41252S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7ZFy3KrWkuFyfJw48Ar4xJFb_yoW5JF1Up3
+	y3u3W3tr48JFW7C3saya48ZryfZFWfJa9rGanxXr17X3s0gF9Fg3WYyFs8XrW7Crs3Xw1j
+	vFy093WUWFyjkaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
+	4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+	n2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
+	kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
+	67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
+	CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
+	MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
+	VFxhVjvjDU0xZFpf9x0JUd-B_UUUUU=
+X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275734-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-275735-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[analog.com,metafoo.de,kernel.org,gmail.com,pengutronix.de];
+	DMARC_NA(0.00)[iscas.ac.cn];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.977];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre-com.20230601.gappssmtp.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,baylibre.com:mid]
-X-Rspamd-Queue-Id: BE67228DDA2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,iscas.ac.cn:mid]
+X-Rspamd-Queue-Id: E7A2528DE0A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/14/26 10:29 AM, David Lechner wrote:
-> On 3/13/26 5:07 AM, Radu Sabau via B4 Relay wrote:
->> From: Radu Sabau <radu.sabau@analog.com>
->>
->> Add DT bindings for the Analog Devices AD4691 family of multichannel
->> SAR ADCs (AD4691, AD4692, AD4693, AD4694).
->>
+This patchset tries to add support for Loongson 7A1000 PCH's LPC
+interrupt controller to MIPS-based Loongson systems.
 
-...
+LPC, from software's perspective of view, is just ISA, so the interrupts
+should be handled as legacy ones occupying the lowest 0-15 IRQ numbers.
+Despite the current PCH LPC driver for ACPI-based LoongArch Loongson
+machines handled it, the setup is fragile and depends on its specific
+setup sequence (allocating the LPC IRQs first, and then allocate the
+parent IRQ at PCH PIC). The refactor of extracting parent IRQ allocation
+breaks this fragile sequence, so the first two commits is created to
+address this issue (by reserving ISA interrupts from the dynamic
+allocation space).
 
->> +
->> +properties:
+Then the remaining commits are just adding OF(DT) based initialization
+of PCH LPC interrupt controller, like what happened on PCH PIC.
 
-More properties we can add: gpio-controller and #gpio-cells
+Tested on a Haier Boyue G51 system with legacy i8042 keyboard/mouse as
+integrated ones.
 
-It doesn't matter if the driver implements it or not. We want the
-bindings to be as complete as possible and we know these are the
-correct properties for ADCs with GPIOs.
+Changes in v3:
+- Override arch_dynirq_lower_bound() in MIPS Loongson64 / LoongArch
+  instead of modifying the global version of function.
+- Added Rob's R-b to the binding patch.
 
+Changes in v2:
+- Rebased on top of `irq-drivers-2026-02-09` tag.
+- Compatible changed to `loongson,ls7a-lpc` .
+- Merged the patch for conditionally build of ACPI code to the patch
+  introducing OF code.
+- Sorted function variable definitions.
+- Reworded some commit messages as Thomas Glexiner suggests.
+- Added __init to the LPC irqchip OF initialization code to prevent
+  section mismatch.
+
+Icenowy Zheng (8):
+  MIPS: loongson64: Override arch_dynirq_lower_bound to reserve LPC IRQs
+  LoongArch: Override arch_dynirq_lower_bound to reserve LPC IRQs
+  dt-bindings: interrupt-controller: add LS7A PCH LPC
+  irqchip/loongson-pch-lpc: extract non-ACPI-related code from ACPI init
+  irqchip/loongson-pch-lpc: add OF init code
+  irqchip/loongson-pch-lpc: enable building on MIPS Loongson64
+  MIPS: Loongson64: dts: sort nodes
+  MIPS: Loongson64: dts: add node for LS7A PCH LPC
+
+ .../loongson,pch-lpc.yaml                     | 52 +++++++++++
+ arch/loongarch/kernel/irq.c                   |  6 ++
+ arch/mips/boot/dts/loongson/ls7a-pch.dtsi     | 17 +++-
+ arch/mips/loongson64/init.c                   |  6 ++
+ drivers/irqchip/Kconfig                       |  1 -
+ drivers/irqchip/irq-loongson-pch-lpc.c        | 87 ++++++++++++++-----
+ 6 files changed, 144 insertions(+), 25 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,pch-lpc.yaml
+
+-- 
+2.52.0
 
 
