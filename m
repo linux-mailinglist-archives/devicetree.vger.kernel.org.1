@@ -1,286 +1,239 @@
-Return-Path: <devicetree+bounces-275594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275595-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yJhUBJm3tGkLsQAAu9opvQ
-	(envelope-from <devicetree+bounces-275594-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 02:19:21 +0100
+	id eLh3JQu4tGkLsQAAu9opvQ
+	(envelope-from <devicetree+bounces-275595-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 02:21:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C4D428B375
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 02:19:20 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40EED28B385
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 02:21:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0449D30146B7
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 01:19:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A4209300C32C
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 01:21:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62F86285061;
-	Sat, 14 Mar 2026 01:19:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C5DB23A566;
+	Sat, 14 Mar 2026 01:21:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gxkgTOwv"
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="meTdi7ay"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023098.outbound.protection.outlook.com [52.101.127.98])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 415291D5170
-	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 01:19:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773451141; cv=none; b=FliSFEY7ehOeN0HmzQc+pRGgt8dX+f7my87j48AsGNkTsmN0byHOl30IKoWDCLAordvr9WybLB6h7DB18zjrrT9zZBBPjy0VZ4kWQX58y4wQsspbX8UH6IaUx6bWkWAOeas6CMsfwu3oUZLBjyNaaQbJpEqyR9oIstHeGjImgNM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773451141; c=relaxed/simple;
-	bh=qnr95hgbmxKCQoVxKIASrc5t+YqB+yRLOXFlitKJJD4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VQIX7yS3uuSmG0WXM7yYO+Rf1cpSe7/bTjRbOTLMszOnj6iAKzVJTl1MqJmJMNZ0zFY00iwHGDMbElhtJRFjqNy6NVInuslc5K21186Rlw/PtNv7LeVesBTTkwOcelaq+OxAqzfWIIOTdERekv7nj/B7hDwXwozvOyJLutsZ56c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gxkgTOwv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C97DC19421;
-	Sat, 14 Mar 2026 01:18:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773451140;
-	bh=qnr95hgbmxKCQoVxKIASrc5t+YqB+yRLOXFlitKJJD4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gxkgTOwvprg6wrBkZjtbNCLlgJr9aLdNXqBKiBEiFxGZ4wupJM3ZuNVkJhYPM/OWN
-	 aThlf4IggApRnj+TUGNuisZc73p5WkG0VpDjlglGpBXSi0TL/QWS37Hmvkr4JEpgrh
-	 sLmU1uOiIUNdjHaHQEzlMdoIC/pUQYEiU7BswfdaKFKD2pnD3/LbhkuF5jNTkVCGjV
-	 2slp3PNX3y/F0eYfdgdTR9ZfTVsmAiU54vsw5+vW/YbLqXjlYECEk3P0AeJDp3FT4l
-	 TOPUUTTRjwLb6z5Y6kD0IxJXGSb5RMYCfhmsI2jc3JpQHxPyVyFyH/BlBQxjUcywOg
-	 dErjhHezKZpOw==
-Date: Sat, 14 Mar 2026 01:18:55 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Bo Gan <ganboing@gmail.com>
-Cc: linux-riscv@lists.infradead.org, samuel.holland@sifive.com,
-	david@redhat.com, palmer@dabbelt.com, pjw@kernel.org,
-	gaohan@iscas.ac.cn, me@ziyao.cc, lizhi2@eswincomputing.com,
-	hal.feng@starfivetech.com, marcel@ziswiler.com, kernel@esmil.dk,
-	devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH 1/6] riscv: Add a custom, simplified version of
- Svpbmt "XPbmtUC"
-Message-ID: <20260314-errant-gnarly-dcca92457051@spud>
-References: <20260313084407.29669-1-ganboing@gmail.com>
- <20260313084407.29669-2-ganboing@gmail.com>
- <20260313-visitor-majestic-1a6888dc57b2@spud>
- <25a8565d-a6bb-401f-b776-d743a2ec9ee0@gmail.com>
- <20260313-spiny-duration-702fff6bca17@spud>
- <ba44e0ed-9a6f-4d4d-b3bc-a6e0bac19940@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3466184540;
+	Sat, 14 Mar 2026 01:21:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.98
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773451273; cv=fail; b=N+Mfoyg+h91a2i/q2rVPxRhW7Hs5sE0KIzUJ0AhVF4H4k0nS4ansx6/WzJ9xQ5KCoXuJ4g1T9X0NVhFyQx+OmyVlh1nkX8cWvQaUX9jngI5A2mzCz0dOeStSj/SRpcSWCuZGmTxt00IjWEmC3Q26Ndx8Qh0jTCL/TnU1QPC13+0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773451273; c=relaxed/simple;
+	bh=HcO5BKX2erjNi6lNFw2a1MlsJGwhA/PDPL8ufBl0Hlc=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=AxKKLFZNK3/IyeFCBdKG7oArrt15t4XpPZIkeD7IliQ3UMNHzEjaUlch/VCb6DqgpE/6TMeZqNUB4Y22H0yNrGQ9dvd+OyRJeh91EqsxYesRP+/otdvvM6RNm4jHJqw9vTqssGekyV2jKE9uU1cMrFC0fYrbo4T9lpDwSY+gOdA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=meTdi7ay; arc=fail smtp.client-ip=52.101.127.98
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=cfe96FypEgW/NZfa4KOzswHruES9LUjw1sUlZeblioHW4FgqxqMHEyqK8z8bqYadPsxSdTOaMZb4NGEFPZ1o+e3QEsuOXyEk3Hw0RadlmALeoKHhCsroLpxz+1YLtTd2+a7G4/wwx5d72jsN0YRlgOPbklT8WnmSRfemZo4UlyCN124816WqRl3N5zpvg0yhY96VOw5lzVEmNsgPHy7kcz3EuZ2llLlD9IQpyH4bHC4qza2xtIMw1TXoRnHXMBPEG1FyNKvEIGwLPdwLY28h7THUVTevxLaN3tVelqvk0/Mw8gvlO9v7oC1rKQAAV2IS0A/OFAfeprFC8ngREiIYnA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HcO5BKX2erjNi6lNFw2a1MlsJGwhA/PDPL8ufBl0Hlc=;
+ b=MFItin9wq7aO/0of2xGbwYu2Oryd+IXPjKuwkdxJDvvqHOtnK/Fmml1R2TwWi0Il5zXwzU+aYcfwT2wHQuYFCO3GA+MNSMug7afDFItlflnxxaZvXlN1uW1+Vhu2cOBlhx2TSCbTSXDgQ/Yrf3vMDiCaYYVG4YoUqicADiBnOzhpQKsLBJIMVOeYY6w6Rxh/mnl54hNLrrM0gxzaDMnkbuXhQjEL6BYI8IwRMJo+YwDKaRq94a/DpW2zx3wUEjkRce0oly3hi2JqjxeNh4oxKN4F7KIioqmCBFXzQniMZJUbLZAVqZTxeQbQnnCmwzvw9QKhxWtD/mlbE2YgXQ84RA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HcO5BKX2erjNi6lNFw2a1MlsJGwhA/PDPL8ufBl0Hlc=;
+ b=meTdi7ayywZmIJYgxELOr83EL9MWwr8R+cg+qMqB8cH5D64NxKety+7cRL0VcvGOq/ZgJI3Phuh75jcbvK7CuqfgTAWj/JuFStgS2PErb/E9UFJtB3YFBo6R4PyxKCGQZcski21ISToqluIKaT0XG0hGUyyBXYa26+IglFpnJHEOXPnOB/en6zUEERhN1lww6P76kJQE3LhnuLzhgiB+6USbopVx/VAFvr1vuFdSJ496YjseFNyAVoNzKoimiS7wl8qE91/CqmfHT3j+YiVr9bsTCrx7JIC+Oq9jJQJiFKJG7WJEvdufZlT+tq171/lalQtHCvBnO5/Hytou4EhmcA==
+Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com (2603:1096:408::791)
+ by KUZPR06MB7962.apcprd06.prod.outlook.com (2603:1096:d10:2c::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.18; Sat, 14 Mar
+ 2026 01:21:03 +0000
+Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
+ ([fe80::8c70:cb01:78fb:d9c0]) by TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
+ ([fe80::8c70:cb01:78fb:d9c0%6]) with mapi id 15.20.9700.013; Sat, 14 Mar 2026
+ 01:21:03 +0000
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: Ryan Chen <ryan_chen@aspeedtech.com>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Andrew Jeffery <andrew@codeconstruct.com.au>, Ulf
+ Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel
+ Stanley <joel@jms.id.au>, Ryan Chen <ryanchen.aspeed@gmail.com>, Adrian
+ Hunter <adrian.hunter@intel.com>
+CC: Andrew Jeffery <andrew@aj.id.au>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>, "openbmc@lists.ozlabs.org"
+	<openbmc@lists.ozlabs.org>, "linux-mmc@vger.kernel.org"
+	<linux-mmc@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 2/2] mmc: sdhci-of-aspeed: Add ast2700 support
+Thread-Topic: [PATCH 2/2] mmc: sdhci-of-aspeed: Add ast2700 support
+Thread-Index: AQHcsqoqa/wkH2eIMUucFBg3jcknirWsIJ8AgAAB8kCAARlecA==
+Date: Sat, 14 Mar 2026 01:21:03 +0000
+Message-ID:
+ <TY2PPF5CB9A1BE6CFB3FA0165159C68D3F0F242A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+References: <20260313-sdhci-v1-0-91cea19c8a67@aspeedtech.com>
+	 <20260313-sdhci-v1-2-91cea19c8a67@aspeedtech.com>
+ <352a522b5325e9db80c880dd7a3a052516f3b673.camel@pengutronix.de>
+ <TY2PPF5CB9A1BE6C2F2EFFA36CD917C623CF245A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+In-Reply-To:
+ <TY2PPF5CB9A1BE6C2F2EFFA36CD917C623CF245A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY2PPF5CB9A1BE6:EE_|KUZPR06MB7962:EE_
+x-ms-office365-filtering-correlation-id: 9665f8a6-bade-4a53-7580-08de8167f5a7
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700021|22082099003|18002099003|56012099003|921020;
+x-microsoft-antispam-message-info:
+ BXvN+LV61/OqtP+p4uwM/3VZzbPTiBvKEFtxs9YLhaFtPXWypx5ZEPI0gS8whhhzFVXIOcIJ0tD9gZ8nVeb1TFqzmZC74SDbyOVBmEOaUxIV3XYzot7ygpSxjGcvUuyY/Aizn55PUpW4N5Zg+zx/FGZ2R3DlQByXfDVjGWPxvcOTriOoWAUEheOtlP3NcFtSuXt0+4ATQBDQJOQdE0nH24NTWMOkahOFnZLMR0K1SFxOJRXTc5OUXBjO8+W4ioB1/NKUfwpBY8Va3SUcVB92W7iZ/4RQPWtRS9nYhN2uFdcS7QjZYmRyt2Fqq/c19sln78iHRCsQ3TUwa475QGaeFJ2jwV+YlWUu7oVR6MjQlwfePrlWk7QUxDIsFZEBw7ClPgrhP2RZ0JotDga/n7d6QRTfmJfw25aGFpT7gOb5IcsPcRgqOfldNdWsoK2a7abVQ1krL7uZA+za6+ZFPfZAaZgLRc7pDM2EEVWxfN2UATZOc7rkOeNnV0vE0i1tRp2RG37KJVyv48C0DvbZOLh+2boLlkIrrNhXNkm8j5o6CCP+Jbv8VY4uTCWqnCF7t8LYoHrT2Z41czGfmc1Rl1J0o3oSICl8uQL3rrX8Byi7SlONFRfejfZzhfekIJ2eWSZJ/Hwu5Pnx/pembsTCf1m2GFLdt7lNUZe3ykYNPDebEvKfAApAH17ZsDGMZSet4dKq3jWMQ2fzdg/LfphXhaLJraB/pRRcTFZBneqDes2pV9TzgNPzghj/0Vp6KXkk+x/IhpwvlvPqEt7SMuoz219SG3OsPjLMWuOj3AMjggfolR38eotPRPAC66vs2LkyfeM8
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700021)(22082099003)(18002099003)(56012099003)(921020);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?dEErNnZPUG1Jb1JyRFdOTmVxeFdMQnpHdjR4eGpNUnkzcnNLNTN0TDlzVVB2?=
+ =?utf-8?B?a0JUb3FRTlp6V0ZuaW9MNVpwaEsxNC83MEF5RFUvcFNDaWJ6Yzc2TVl1cm5W?=
+ =?utf-8?B?UlNYUS9ZOFJ2QUEwOHZJWm9XTXYvZlB0d1dCZTFUWGFrYnNnSmQzUXZtSmV6?=
+ =?utf-8?B?Sy9vMDJyOTFCWnRqR2N5TlRzUW5lZ2kyRTVhaFFoc0NHQ2Fza2txZSsrQ0tS?=
+ =?utf-8?B?SWdKZzlNdHk2YTJ2a095NUJLSDlxcjc0TGVaeVpQT3U4S0RMU2NwWVRhRW96?=
+ =?utf-8?B?ZEo3RnN1QlQ2dFNKUC9jSm9xTGRUOEFUN3dXY2xBNnpTNHJRT09LMExIMUVu?=
+ =?utf-8?B?ZzVQSmpETU01bTVxaFRRekNlQkh4bE5HN3RNUHNsWkp3RDV4V0lkaVNtdG5v?=
+ =?utf-8?B?d2JkUGV4dzdmQUF6aUtqQ0NHZnJKUjZiWUdvTzhqMEVnMnBZNGhPL2RxN1hj?=
+ =?utf-8?B?eFpnR3VNNlZMb1FtL3EzZmpIQU1WUU1WTjBoL1ZCTFYyVnl4K3dHckNBTWVo?=
+ =?utf-8?B?MW0yanFNdkVVTHEzcHY3NHNncmVYV2I2bGNCYUdxbkwxWGRKR0hpWHh2NkRz?=
+ =?utf-8?B?UDNianBUSzRsT00xZm5XZ1ZuSUJqOVU3Vk44bVlRcDhlSnBta1B2N3hiZzVG?=
+ =?utf-8?B?WjY4LzhFRDZ3R2M2OUVhMlFYZjd1ejhRWGN1NW9WRjRWQUFwdzAwUSt3NU1q?=
+ =?utf-8?B?R1Q1UkxsbzVHWDkwdi91WUxIbWk5azc5YmtNcFFLZmFra3hQeGVmRW81ZDRl?=
+ =?utf-8?B?VFhqWnJqVDFyOWJSNmFMelNlZHlUTzVSMit0RmhsWWJPbGVqREt3V3pWemJr?=
+ =?utf-8?B?N2RkMnVmTDBNTWIrb2VqWG8rYmFMQjJBc0lIRWhLTU05SWE2VHFKUndMKzdw?=
+ =?utf-8?B?UDJSV2p5RU1Ebm5yYkxBZGVMOEdjRzNYSmZTbmUyTm8vM0l6YzhtNmZYcjZZ?=
+ =?utf-8?B?MFVLWFFBYUVmbm1UejM1WlRrSnJramk1QS9PZDV2eCtWS0MvdHE5a2M5dWZ6?=
+ =?utf-8?B?T2JJeGhZYklEK29pU2I2WmVJRFpIQ0VLUUFZMzJZcU5tVWZjT0ZGdGF1cG5w?=
+ =?utf-8?B?WVdRMGtacHArSnRwcHJROExGMUgrSHhwZ0VROGRKcExYRHppejhIa2tLZGdT?=
+ =?utf-8?B?Z0kzS3pSZVBBSVlMRS92QWhad21WVWlQUXVBYStvTEFWRDRKV3lnek1ldkcv?=
+ =?utf-8?B?Q24xQnlSQ1BrUGo1Tm9EQ0lURkE3bjhNVWFua2dodE9aTkR6eEZUMlY5YzFC?=
+ =?utf-8?B?T1lHRFk1cTZoK3gzVzQ4d01TWGRLaEJ6anB1U1M4dE5hNDBXMXdDZ0REbXF1?=
+ =?utf-8?B?MEFYN1p1WjF5Ti9YY3k0eVB3dlgrc2ltZG5qKzJQZjlETVFRVWMzUzZMaVlO?=
+ =?utf-8?B?cUcvajZwTzFOSzEydmNleGRweFpXUWlVUDJZQTlaemJhU3hScEhZTGhEdnVp?=
+ =?utf-8?B?bjhPeUVscXRlQXNsM25Gdko3MmFuNGphTGJPOHZNek9LN1JpREhnMTJqUXJn?=
+ =?utf-8?B?bVNhcnJ2Y2REa1lySEVtUzBWMndZNFVITk9NYllrOEhjSGNQN0U2Y0RzekVJ?=
+ =?utf-8?B?eU5LMVRFS2lMZ3hFWXdxNVVXN0x0bXBOYXNoS21rcS9pYUw0Q1J6alV1REdr?=
+ =?utf-8?B?eTBZYVcvZkdiQTZwbXBMQjdPNEVtUGpSZUNnM2dsNjZvRXowRzhITmR5ZExL?=
+ =?utf-8?B?cHlHMFNiSzJPbFlGZi9vODVSVGdObHJCazNocnZENWJucTl1T2hIU1Yzd0Y3?=
+ =?utf-8?B?OURKOXhRd2l4d2tSQWZiV2hYUmd3UHRWSCtkb214ZHpQT2RnT3pSaGhiOVF0?=
+ =?utf-8?B?cS8yRHRwanpKeHVhWVA4VmE1SmxLdjVMa002cXVrS1Ywa1VIN1Q2dU0wbjR4?=
+ =?utf-8?B?TFlkMVBtMXVLUk5HMFB4SE45bUsvMzBzLzBNTkV5Rm1mZHJCZEUyNlNDOUlR?=
+ =?utf-8?B?OVVjUmtrc1ExWFpCbW9xZ2xINHBNU3Q2cStFdGl2QTVGTEpsV29LRTZSR3Rk?=
+ =?utf-8?B?Um1OTFZpR3FyNkV3K0pQWjBtN3dBK1pGbkV4Y29ZVUl2MXpsRmlqQU5sV3hX?=
+ =?utf-8?B?Q3g1bWJCKy9TeUZyLzVZYk5iTGRCZnJpYkxtOWRMTEJMbDRLVFA2YmxMOWcz?=
+ =?utf-8?B?eTU4bzIzRVlUQ3Q0WmwvS0IvSVpjUmZGem1mRXIzL3lKTE1hUGlpeFMzUkVX?=
+ =?utf-8?B?MDIwRU1URk9CMEFJN3VlNmpGVVRPUkRVa3RIZ0VEeTBhQTFPWERRdjgyZit4?=
+ =?utf-8?B?c2lmSW8rU2YyK2hPK1pLNnBrU2RFWFMvSWdWMHpSUUdEOWZDOEcrM1J0b2Jv?=
+ =?utf-8?B?SGxyMjNiVXNCOUd3ZWNTRFVlbExkbFNqQmlSeEtQdXlaRUlBU0hYUT09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Q+I14jZDJu0cG5SR"
-Content-Disposition: inline
-In-Reply-To: <ba44e0ed-9a6f-4d4d-b3bc-a6e0bac19940@gmail.com>
-X-Spamd-Result: default: False [-3.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+X-Exchange-RoutingPolicyChecked:
+	LYzzGBBFgsOWuMynY95qDyHEx4qg7ZC0pE8YV7pyeS7OkQbk5eJT+ye3f2Sz7KIZksn960Tf4xp2inmMMKPYcQqlyP5trYUS84OQu9lVA7q7Hem8SECr84lGk66W9NOE0GxtldtVrNWnK5cgYoA7ktxu0IQlOOjwUz7trrJdtzI3K9sm0r0aeKomBiRk/9u4hVHHoE5iZ4IvwAyOdTimAvipTZKH/FErohXttrRpvrEL6UoNd34rvm5hgMtvz1vtS+e7qkGL4dITt2gP1wvBLBY4rWzr63ZRDECKjd99gaGgupFK4NOfyuooX46uQeE2SLrUR8gz5yH85o2O4Oua/A==
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9665f8a6-bade-4a53-7580-08de8167f5a7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Mar 2026 01:21:03.5972
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ulY70yIkftYy+4hfZ3z921/3Hn7BRGKrUJ6svBugE010p00eQ8v0B1TJ/Tw0xPlFx+MWvheyBH/sXsNHevXA85DywLH3R/aHlVmpmXjCzxc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KUZPR06MB7962
+X-Spamd-Result: default: False [2.44 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[aspeedtech.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[aspeedtech.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
 	MAILLIST(-0.15)[generic];
+	MIME_BASE64_TEXT(0.10)[];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-275595-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[aspeedtech.com,pengutronix.de,codeconstruct.com.au,linaro.org,kernel.org,jms.id.au,gmail.com,intel.com];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275594-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[aspeedtech.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ryan_chen@aspeedtech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7C4D428B375
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,aspeedtech.com:dkim,aspeedtech.com:email,TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com:mid]
+X-Rspamd-Queue-Id: 40EED28B385
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
---Q+I14jZDJu0cG5SR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Mar 13, 2026 at 05:29:53PM -0700, Bo Gan wrote:
-> Hi Conor,
->=20
-> On 3/13/26 16:55, Conor Dooley wrote:
-> > On Fri, Mar 13, 2026 at 02:33:16PM -0700, Bo Gan wrote:
-> > > Hi Conor,
-> > >=20
-> > > Thanks so much for the prompt review. See inline.
-> > >=20
-> > > On 3/13/26 06:24, Conor Dooley wrote:
-> > > > Hey,
-> > > >=20
-> > > > Gonna offer some feedback on the detail of what's been done in this
-> > > > series, without providing any commentary on whether this is the cor=
-rect
-> > > > approach to take.
-> > > >=20
-> > > > On Fri, Mar 13, 2026 at 01:44:02AM -0700, Bo Gan wrote:
-> > > > > On platforms that doesn't support Svpbmt or XTheadMae, SoC vendors
-> > > > > sometimes map the system memory twice in physical address space, =
-one
-> > > > > as cached, and the other as uncached. Through the uncached window,
-> > > > > device drivers will be able to map DMA buffer for noncoherent dev=
-ices.
-> > > > > Such setup is usually found in SoC with pre-Svpbmt Sifive cores.
-> > > > > Make use of such feature by modeling it as "XPbmtUC", a customized
-> > > > > version of Svpbmt, where a single bit in PTE is used for UC contr=
-ol.
-> > > > > There's no IO bit with such scheme, as it's assumed that the PMA
-> > > > > (usually hard-wired on these SoCs) will properly convey the stron=
-gly-
-> > > > > ordered, non-idempotent attribute of the MMIO region.
-> > > > >=20
-> > > > > The enablement of such position of "XPbmtUC" is controlled by the
-> > > > > device-tree property "riscv,xpbmt-uncache-bit".
-> > > >=20
-> > > > Firstly, the naming generally I take some exception to. If this is =
-some
-> > > > fake vendor extension for linux purposes, it needs to have "xlinux"=
- in
-> > > > it, like our xlinuxenvcfg does. It should also be consistent, don't=
- use
-> > > > "xpmbtuc" and "xpbmt-uncache-bit", pick one and stick to it.
-> > > >=20
-> > > Makes sense. I can certainly change that to be conformant.
-> > >=20
-> > > > Athough, I think I disagree fundamentally with this property, as it=
- seems
-> > > > to me like "software configuration" that shouldn't be permitted in
-> > > > devicetree. Maybe I am misunderstanding, but the numbers you chose =
-are
-> > > > convenient, not set in stone by the specific hardware, right?
-> > >=20
-> > > For JH7110, the bit 32 (PPN bit 34) matches exactly with the HW. Mean=
-ing
-> > > toggling this bit would re-map the page to the uncached window, which
-> > > matches perfectly with the synthetic UC bit in the scheme.
-> >=20
-> > What does "matches exactly with the hardware" mean? AFAICT, you picked
-> > it because it was the best value, but you could also have picked another
-> > less optimal value?
-> >=20
-> > >=20
-> > > For EIC770X, the bit 38 (PPN bit 40) is hand picked to be able to map=
- all
-> > > physical memory space (40 bit), while making it very easy for the thi=
-n-
-> > > hypervisor, which can utilize Sv39x4 (41 bit) page scheme in G-stage.
-> > >=20
-> > > I also considered the sbi call approach, where the kernel can query f=
-or
-> > > the support and position of the uncache bit. The thing is that JH7110
-> > > can just hard-code the bit without any changes to firmware, and I want
-> > > to have a consistent way for both SoC, thus the device-tree approach,=
- to
-> > > let the EIC770X firmware/bootloader adding the property to dt at runt=
-ime.
-> > > Any better ideas?
-> >=20
-> > Is the only thing that's variable on your eic770x platform whether or
-> > not the bit is enabled? Or are you looking to vary the bit depending on
-> > the specific platform?
-> >=20
->=20
-> It'll be "fixed" for eic770x if a thin-hypervisor re-mapping is enabled
-> underneath. It just so happens that the physical address space is 40 bits
-> (ignoring the 40bit+ upper uncached region for interleaved memory, which
-> we don't need when the "xpbmt-uc" is enabled anyway), and the hypervisor
-> can use Sv39x4 (also 41bit) to re-map everything.
->=20
-> The variation comes with different SoCs, JH7110 vs. EIC770X. I'd like to
-> make it a variable, to make a unified kernel binary boot on all SoCs, so
-
-FWIW, I have no interest in things that are not multiplatform-safe, so
-anything I've been suggesting has been with that in mind. When I was
-talking about not conveying the bit via DT, but storing the value in the
-kernel, I was still considering that the values would be stored for
-specific soc compatibles.
-
-To be honest, I'm not completely dead-set opposed to a property that has
-the bit positioning, but any property being added for what is
-effectively an erratum needs to pass a high bar when the info could be
-gathered in another way. That the eic7700 one depends on firmware for
-what the bit may be is points in your favour, since firmware variability
-is part of what dt is there to do. The jh7110 is points against, since
-it could be fished out of the errata handling code.
-
-> I need to fix the alternative logic for PC-relative instructions to read
-> from a global variable "xpbmtuc_bit/mask". Also I want to avoid adding
-> too many branches to the alternative macro.
->=20
-> > > > I'd be much more comfortable with adding xlinuxwhatever to
-> > > > riscv,isa-extensions, to signal that a soc supports this stuff than=
- with
-> > > > a property for the bit itself. I suppose that bit information could=
- then
-> > > > come from a LUT in the vendor extensions, that a validate callback =
-could
-> > > > check (via root compatible) before enabling. There's not a super ne=
-at
-> > > > way to do that at the moment though I don't think, code currently
-> > > > expects that vendor extensions are in a different "namespace" to
-> > > > standard ones, and this would blur the lines because it's not from a
-> > > > specific vendor, nor is it a standard extension.
-> > > > I guess, it could be done by keeping it as a standard number, but t=
-hen
-> > > > it's a bit trickier to neatly access the LUT while keeping it split
-> > > > apart.
-> > > > I know this means having to modify the kernel if there's a new devi=
-ce,
-> > > > but I'm inclined to say "deal with it" because they could've done
-> > > > something standard and opted not to.
-> > > >=20
-> > > > Could also argue that this should be shoved into a sifive specific
-> > > > thing, but I don't expect that they're the only ones with devices l=
-ike
-> > > > this that could benefit.
-> > > >=20
-> > >=20
-> > > I've thought about riscv,isa-extensions. The issue with that is that =
-it's
-> > > a per-CPU thing, but I'm adding a global extension, and I don't want =
-to
-> >=20
-> > Most of the extensions in that string are effectively global. There's no
-> > need to worry about "polluting" it.
-> >=20
->=20
-> Got it. So I can use something like "xlinuxpbmtuc38" in isa-string? (until
-> someone comes up with a better naming. Naming things is hard...)
-
-I don't think the encoding of the bit should be in the name, otherwise
-we'd need to many different variations, if using riscv,isa-extensions is
-the approach that ends up being used.
-
-> > > pollute the isa-extension string. Thus, I followed Samuel's approach =
---
-> > > He uses "riscv,physical-memory-regions" in the root node.
->=20
-> Bo
-
---Q+I14jZDJu0cG5SR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabS3fwAKCRB4tDGHoIJi
-0iCdAP0YveJl1IGqhdlqO0fUyAq6U6ugZdJQN1GaN4EkiNuXLAEArpEQOjLyAipb
-PaTnjbx8X3PCe4bPuL8kSh2kUMjhUQI=
-=4fko
------END PGP SIGNATURE-----
-
---Q+I14jZDJu0cG5SR--
+PiBTdWJqZWN0OiBSRTogW1BBVENIIDIvMl0gbW1jOiBzZGhjaS1vZi1hc3BlZWQ6IEFkZCBhc3Qy
+NzAwIHN1cHBvcnQNCj4gDQo+ID4gU3ViamVjdDogUmU6IFtQQVRDSCAyLzJdIG1tYzogc2RoY2kt
+b2YtYXNwZWVkOiBBZGQgYXN0MjcwMCBzdXBwb3J0DQo+ID4NCj4gPiBPbiBGciwgMjAyNi0wMy0x
+MyBhdCAxMzoyNyArMDgwMCwgUnlhbiBDaGVuIHdyb3RlOg0KPiA+ID4gQWRkIHN1cHBvcnQgZm9y
+IHRoZSBBU1QyNzAwIFNPQyBpbiB0aGUgc2QgY29udHJvbGxlciBkcml2ZXIuIEFTVDI3MDANCj4g
+PiA+IHNkIGNvbnRyb2xsZXIgcmVxdWlyZXMgYW4gcmVzZXQgbGluZSwgc28gaG9vayB1cCB0aGUg
+b3B0aW9uYWwgcmVzZXQNCj4gPiA+IGNvbnRyb2wgYW5kIGRlYXNzZXJ0IGl0IGR1cmluZyBwcm9i
+ZS4NCj4gPiA+DQo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBSeWFuIENoZW4gPHJ5YW5fY2hlbkBhc3Bl
+ZWR0ZWNoLmNvbT4NCj4gPiA+IC0tLQ0KPiA+ID4gIGRyaXZlcnMvbW1jL2hvc3Qvc2RoY2ktb2Yt
+YXNwZWVkLmMgfCAxMSArKysrKysrKysrKw0KPiA+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxMSBpbnNl
+cnRpb25zKCspDQo+ID4gPg0KPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbW1jL2hvc3Qvc2Ro
+Y2ktb2YtYXNwZWVkLmMNCj4gPiA+IGIvZHJpdmVycy9tbWMvaG9zdC9zZGhjaS1vZi1hc3BlZWQu
+Yw0KPiA+ID4gaW5kZXggY2E5N2IwMTk5NmIxLi45MWMzNjI0NWU1MDYgMTAwNjQ0DQo+ID4gPiAt
+LS0gYS9kcml2ZXJzL21tYy9ob3N0L3NkaGNpLW9mLWFzcGVlZC5jDQo+ID4gPiArKysgYi9kcml2
+ZXJzL21tYy9ob3N0L3NkaGNpLW9mLWFzcGVlZC5jDQo+ID4gPiBAQCAtNTIwLDYgKzUyMCw3IEBA
+IHN0YXRpYyBpbnQgYXNwZWVkX3NkY19wcm9iZShzdHJ1Y3QNCj4gPiA+IHBsYXRmb3JtX2Rldmlj
+ZQ0KPiA+ID4gKnBkZXYpDQo+ID4gPg0KPiA+ID4gIHsNCj4gPiA+ICAJc3RydWN0IGRldmljZV9u
+b2RlICpwYXJlbnQsICpjaGlsZDsNCj4gPiA+ICsJc3RydWN0IHJlc2V0X2NvbnRyb2wgKnJlc2V0
+Ow0KPiA+ID4gIAlzdHJ1Y3QgYXNwZWVkX3NkYyAqc2RjOw0KPiA+ID4gIAlpbnQgcmV0Ow0KPiA+
+ID4NCj4gPiA+IEBAIC01MjksNiArNTMwLDE1IEBAIHN0YXRpYyBpbnQgYXNwZWVkX3NkY19wcm9i
+ZShzdHJ1Y3QNCj4gPiA+IHBsYXRmb3JtX2RldmljZSAqcGRldikNCj4gPiA+DQo+ID4gPiAgCXNw
+aW5fbG9ja19pbml0KCZzZGMtPmxvY2spOw0KPiA+ID4NCj4gPiA+ICsJcmVzZXQgPSByZXNldF9j
+b250cm9sX2dldF9vcHRpb25hbF9leGNsdXNpdmUoJnBkZXYtPmRldiwgTlVMTCk7DQo+ID4NCj4g
+PiBUaGlzIGlzIG1pc3NpbmcgYSByZXNldF9jb250cm9sX3B1dCgpIGluIGFzcGVlZF9zZGNfcmVt
+b3ZlKCkuIE9yIHVzZQ0KPiA+IGRldm1fcmVzZXRfY29udHJvbF9nZXRfb3B0aW9uYWxfZXhjbHVz
+aXZlKCkuDQo+ID4NCj4gPiBJcyBpdCBvayB0byBhc3NlcnQgdGhpcyByZXNldCBjb250cm9sIGlu
+IF9yZW1vdmUoKT8gSWYgc28sIHlvdSBjb3VsZA0KPiA+IHVzZSBkZXZtX3Jlc2V0X2NvbnRyb2xf
+Z2V0X29wdGlvbmFsX2V4Y2x1c2l2ZV9kZWFzc2VydGVkKCkuDQo+ID4NCj4gVGhhbmtzIHRoZSBn
+dWlkYW5jZS4NCj4gSSB3aWxsIHVwZGF0ZSB1c2UNCj4gc2RjLT5yc3QgPSBkZXZtX3Jlc2V0X2Nv
+bnRyb2xfZ2V0X29wdGlvbmFsX2V4Y2x1c2l2ZSgmcGRldi0+ZGV2LCBOVUxMKTsNCj4gaWYgKElT
+X0VSUihzZGMtPnJzdCkpDQo+IAlyZXR1cm4gZGV2X2Vycl9wcm9iZSgmcGRldi0+ZGV2LCBQVFJf
+RVJSKHNkYy0+cnN0KSwNCj4gCQkJICAgICAidW5hYmxlIHRvIGFjcXVpcmUgcmVzZXRcbiIpOw0K
+PiANClNvcnJ5LCBJIHJldmlldyB0aGUgZGV2bV9yZXNldF9jb250cm9sX2dldF9vcHRpb25hbF9l
+eGNsdXNpdmVfZGVhc3NlcnRlZA0KSSB3aWxsIG1vZGlmeSB3aXRoIGZvbGxvd2luZyBpbiBwcm9i
+ZS4NCg0KCXNkYy0+cnN0ID0gZGV2bV9yZXNldF9jb250cm9sX2dldF9vcHRpb25hbF9leGNsdXNp
+dmVfZGVhc3NlcnRlZCgmcGRldi0+ZGV2LA0KCQkJCQkJCQkJTlVMTCk7DQoJaWYgKElTX0VSUihz
+ZGMtPnJzdCkpDQoJCXJldHVybiBkZXZfZXJyX3Byb2JlKCZwZGV2LT5kZXYsIFBUUl9FUlIoc2Rj
+LT5yc3QpLA0KCQkJCSAgICAgInVuYWJsZSB0byBhY3F1aXJlIHJlc2V0XG4iKTsNCg0KQW5kIGFk
+ZCByZXNldF9jb250cm9sX2Fzc2VydChzZGMtPnJzdCk7IGluIHJlbW92ZS4NCg0KDQo=
 
