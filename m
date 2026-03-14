@@ -1,160 +1,154 @@
-Return-Path: <devicetree+bounces-275612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275613-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aUt8MHrZtGlNtgAAu9opvQ
-	(envelope-from <devicetree+bounces-275612-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 04:43:54 +0100
+	id iEdmM2zftGk1twAAu9opvQ
+	(envelope-from <devicetree+bounces-275613-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 05:09:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0654928B7C3
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 04:43:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92C7B28B87D
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 05:09:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 89C17305512E
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 03:43:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1CD353027DB6
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 04:09:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E74F307AD5;
-	Sat, 14 Mar 2026 03:43:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A3E3334C11;
+	Sat, 14 Mar 2026 04:09:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="f6Bjyn1F"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EIFypa/m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 461214A35;
-	Sat, 14 Mar 2026 03:43:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03F132DB7BD
+	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 04:09:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773459829; cv=none; b=DWTdXphDycWGaJq+nIYuenDRYv+zKJRERRbDWHJmGbXqr0CnIEO+opmtYyIyEj04R4BB8h325PUjiVC8HZuaClTIOwEUCANdvxj2nvCtpk81Uty2osdOG+NhxwoJ7pw6YuiBwmeCWjmUjnlBjR5YWI6Uq6C/7VaFtGW4BgpRgFk=
+	t=1773461351; cv=none; b=Vo1pgzH5f3FypxroWCIfSujELdDtV5JhRZAtqNiQPEeBNRZwuFWGFfRczcHirjR4lLioblkJgXY5jGAx4aYriAi2o7OCJPlcDzbSXchX3Kzqsyhq0Fl34vmZz575Rm4N3SMQckseo5Nrxymtkxgvzy+kxdfpP72gqRgOTtjiiUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773459829; c=relaxed/simple;
-	bh=kS+cBmQC7gM1gNSUurbOOTzzOTiUZdBmnUD9OtT30Lo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZYxZjFdE9LmpT7FpblWXBpq/LGBmrP2uMsTBKg7niR9aznNdEtdgvjMNJiPsxpxvzcBqtjAkqUQz1saeAeGnoasgD4ztVcGFIJzmztFJFJQHwKz7otfOTOGFXj0OcZvJmuus1ICizKcu2o9cfGW/XWeCndPaJ/M5DyiyA/1ZWaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=f6Bjyn1F; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773459827; x=1804995827;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=kS+cBmQC7gM1gNSUurbOOTzzOTiUZdBmnUD9OtT30Lo=;
-  b=f6Bjyn1FRX4NMED05V7OyqEOAT2RTIXisJ7nutsVI/HaaIv6GkcwV06C
-   QyqLbEu1/n7Cx5P5bcC5eE8x0L6zfmtzUI6F/Mxx31bekj6ACTzZM2Xp+
-   a9o65Z55pz7T8BIPYoph6wISMkJxui4wmJWjoSOHYVNjJvRRGPjcYsQAg
-   YbT455x1mUWM+7bKi9xXQcJd3Zj6Dsc7XzOIMKcv4aDIvq6LPi0bBwS9Z
-   J5OsdiFptoT+pMNiZC7s1FhCwfv9S53w2s+J3GBfChsKINC1lbJLS5qWC
-   RHyJX/CATrveQs80av/vPGKceUpShOqzxxuFfAuU3V8KvPYEVcPJuGJFH
-   w==;
-X-CSE-ConnectionGUID: 8w1stLYzQgKjibTbsdBOTA==
-X-CSE-MsgGUID: O2JulzYVQI60oGG6mDMo3Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11728"; a="74481693"
-X-IronPort-AV: E=Sophos;i="6.23,119,1770624000"; 
-   d="scan'208";a="74481693"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2026 20:43:46 -0700
-X-CSE-ConnectionGUID: UKSJurcGQnWhOrTi8Ezv7Q==
-X-CSE-MsgGUID: talYbqnkSdie1UjmS14HqQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,119,1770624000"; 
-   d="scan'208";a="226026513"
-Received: from lkp-server01.sh.intel.com (HELO 418530b1a366) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 13 Mar 2026 20:43:44 -0700
-Received: from kbuild by 418530b1a366 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1w1Fuf-000000004c7-0vqk;
-	Sat, 14 Mar 2026 03:43:41 +0000
-Date: Sat, 14 Mar 2026 11:43:24 +0800
-From: kernel test robot <lkp@intel.com>
-To: Marek Szyprowski <m.szyprowski@samsung.com>,
-	Saravana Kannan <saravanak@kernel.org>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-mm@kvack.org, iommu@lists.linux.dev
-Cc: oe-kbuild-all@lists.linux.dev,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Linux Memory Management List <linux-mm@kvack.org>,
-	Robin Murphy <robin.murphy@arm.com>
-Subject: Re: [PATCH 7/7] of: reserved_mem: rework fdt_init_reserved_mem_node()
-Message-ID: <202603141108.XvqRlNaY-lkp@intel.com>
-References: <20260313150802.1121442-8-m.szyprowski@samsung.com>
+	s=arc-20240116; t=1773461351; c=relaxed/simple;
+	bh=PJN4+9Mca0Th0PJtmzAQpFS+PGYcX6JdGcwqPdpN9ew=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kYQQvoIenn0U5lOKTwHVY/whr3KvLT2eswbOkANmYOuDLYPuK95T1WNcI1qYj6rZZaVjIaQd8qACyZtQy0bILs2avQZErw0LQ5AHWadM7UZhydd+KnhIdtOXkNuPR749UtKfOfYogSAgu2Wbt5Nuox0c7ZMtTtUcFG3s26lX8R0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EIFypa/m; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4853c3c2fe7so16981695e9.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 21:09:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1773461348; x=1774066148; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PJN4+9Mca0Th0PJtmzAQpFS+PGYcX6JdGcwqPdpN9ew=;
+        b=EIFypa/mJu7qpKhQJN693xvhM0oQS7HOlBR48/cViFU2Q5PDhkGOUy+uJ/TyqIGFQJ
+         iasDs8h3NJ1o0iCDWvemmqfVDRgDVSmuKQkVSHK65GLYbdVTGV6kzt7zbe8WthC6DORZ
+         InnshsedSCIelSwTICuICDS22Zwhr+khW+4RxC4DhB+hPgnh4h6WW0+QFh+sAxHsJFw9
+         bWSayoETx0FJmPzvAgPPmzE/J2p6rzOqaGpzKA4mCdWAT4+nUJ9bkZraYYX8lguvbAqn
+         mplUiU3UuvQPfxmZyoaLB4ftbDc4n7/B+TZpECuvDjzQxnCkvGVlGl9Ylf6F/ezQfP2I
+         /4MQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773461348; x=1774066148;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PJN4+9Mca0Th0PJtmzAQpFS+PGYcX6JdGcwqPdpN9ew=;
+        b=huhbl3UJVPIrQWsuzcL0a3Y/fTmMsAA8BC9x+tcxJUsKyfc5EHQSo/Z/gCUSvc2z7x
+         ljcn08agTG3m+pWkK3wy03FMa8BgKQ1icBiYraJJQqgjC19N8QrKfhC6Zd5IKD68VXdT
+         XHaewscBemKrG9dAMk0UeP09cDHH8CSEK+SQbmvpMQPFNM5YWc4hfAYNgE9vd4EtFCjm
+         PqI7gVJbah/oaeKFs88OnIN6TIyDuN33fwlEnf6xFrA/nXLqIbitmtoI78FGcGoUn4u/
+         LSxErghSO+O55FD/tpZWEoBNXphl6vGK5nkem7mcAp6SbTXc+qWpwPzFvFQHZRSgsZTS
+         AbCA==
+X-Forwarded-Encrypted: i=1; AJvYcCUKIca5VOFxaYo1MJhZrG9b8BbaFKTvGxd3Adp2NNwRcxKn/TyAujhcWqp5HqvJWeXE2QqTEi3S2Dfn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy68sfVhEoCsmtkyTO6ADaWatQGIO1zrVitKEKFQkPNcMDAyigt
+	Zp9qngh2PUfPOxikJ1piBpE6Jr6aR/1dXcBKA+qSGvdT2WQhdeenXjKx72m01vgkZ70=
+X-Gm-Gg: ATEYQzxlo4J45t4Ke+cqtMNNpBXrJWdHnGxo0+oICrVy9rLYUqVszHTe6d0V+yjmMN/
+	TQpWmrEWmSlPkY3h6+MeVPoXBgDEesYpzXWKFTGbgRx0scYpuYWM/k64hDsmJf6LTk2ivkBO+4z
+	FyvG7jNDTJJsPa/hBEpPvODzhS/X2pmg2QqS9zESjBBg+pESmO6ET5ZENUc7Pmo/zX3VpqbCYdc
+	Ut020CAWqGyU9gL+MnzfAt2T69165udrOv/VerXGRk6pA3SMhciXQ/b3XzKvqeug9Q1jU/KW/Xx
+	5kijSVCFwyq5cGV7d9KpC/wqjXP1XbObZ5GCE4vpO8WsXK9b2gdHG24EFrnw7R6s7879pJXDCO5
+	4vIGwWdsgPBw2MtYkOxMmtsfTeAVoNTxxll2/6eU1C3rg2ms7fJDapNwQA0bNRl+mC60lWKlSyj
+	WOb0AXsI9ymxPV52s0YaWHwyJM+FJ3gejbPj4=
+X-Received: by 2002:a05:600d:6451:10b0:485:39b2:a47c with SMTP id 5b1f17b1804b1-48556705319mr65207605e9.25.1773461348314;
+        Fri, 13 Mar 2026 21:09:08 -0700 (PDT)
+Received: from [192.168.0.101] ([109.76.226.20])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439fe19ac34sm23085560f8f.3.2026.03.13.21.09.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Mar 2026 21:09:07 -0700 (PDT)
+Message-ID: <ca7d675d-139d-4fbd-b57e-5b233a0e2922@linaro.org>
+Date: Sat, 14 Mar 2026 04:09:06 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260313150802.1121442-8-m.szyprowski@samsung.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/5] Add driver for EC found on Qualcomm reference
+ devices
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Anvesh Jain P <anvesh.p@oss.qualcomm.com>,
+ Sibi Sankar <sibi.sankar@oss.qualcomm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Hans de Goede <hansg@kernel.org>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org,
+ Maya Matuszczyk <maccraft123mc@gmail.com>
+References: <20260313-v04-add-driver-for-ec-v4-0-ca9d0efd62aa@oss.qualcomm.com>
+ <132116be-2964-4b98-be2b-1baae5bfb58e@linaro.org>
+ <19e8837b-d711-4d0e-ba9c-e9b2c8330969@oss.qualcomm.com>
+ <aabf9bfa-aa90-411c-b9f6-706f963a5ab0@linaro.org>
+ <azoaku7s3lxgcccc2rrp2bljbvqeitax2bl47k7eemy6uhcr2g@kveqod2tstgk>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <azoaku7s3lxgcccc2rrp2bljbvqeitax2bl47k7eemy6uhcr2g@kveqod2tstgk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,linux.intel.com,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-275613-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275612-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 0654928B7C3
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 92C7B28B87D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Marek,
+On 13/03/2026 17:17, Dmitry Baryshkov wrote:
+>> Fan Count == 0 || Thermistor == 0 => error and probe() fail.
+> WHy? EC is still there. QUite useless though.
 
-kernel test robot noticed the following build warnings:
+You want to register when zero fans are found, zero thermistors... ?
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on akpm-mm/mm-everything linus/master v7.0-rc3 next-20260311]
-[cannot apply to tegra/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+That's a bit fruity.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Marek-Szyprowski/of-reserved_mem-remove-fdt-node-from-the-structure/20260314-023123
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20260313150802.1121442-8-m.szyprowski%40samsung.com
-patch subject: [PATCH 7/7] of: reserved_mem: rework fdt_init_reserved_mem_node()
-config: arc-allnoconfig (https://download.01.org/0day-ci/archive/20260314/202603141108.XvqRlNaY-lkp@intel.com/config)
-compiler: arc-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260314/202603141108.XvqRlNaY-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603141108.XvqRlNaY-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'uname' not described in 'fdt_init_reserved_mem_node'
->> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'base' not described in 'fdt_init_reserved_mem_node'
->> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'size' not described in 'fdt_init_reserved_mem_node'
->> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'uname' not described in 'fdt_init_reserved_mem_node'
->> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'base' not described in 'fdt_init_reserved_mem_node'
->> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'size' not described in 'fdt_init_reserved_mem_node'
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+---
+bod
 
