@@ -1,114 +1,161 @@
-Return-Path: <devicetree+bounces-275623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275624-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id hsLkMVkTtWnuwAAAu9opvQ
-	(envelope-from <devicetree+bounces-275623-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:50:49 +0100
+	id ju8xDCUVtWllwQAAu9opvQ
+	(envelope-from <devicetree+bounces-275624-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:58:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E47C28BFA1
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:50:48 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6996728C056
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:58:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C1827301283B
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 07:50:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E0CB130297A5
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 07:58:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FD0C30F7F2;
-	Sat, 14 Mar 2026 07:50:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E688B2D0C84;
+	Sat, 14 Mar 2026 07:58:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RwvCe+B7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95F14303A12;
-	Sat, 14 Mar 2026 07:50:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D63AD30F7F2;
+	Sat, 14 Mar 2026 07:58:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773474644; cv=none; b=QXaOhhzw/xZPVWW1FX7++PfdD01L7O+Tnd5Dvo07GMIatLxToDO+ujkTcGrox8uacwzXkzNPVRG/mReMRJwYz9Lx/1Tmo9iu5r5nX8MYcSMCwH2TqHACJy3pqdR6W+QDA38vMlej0DmbAxa6ZfMuWDWQOVMQNL9J3swr3cRBWtg=
+	t=1773475105; cv=none; b=PVKkq1LSqsPFyEm0eeWXbU9t179zDJmNiaw1X7v6nijl67bxg1VWa1cETFdEMfbEJn/y0Ajz6T5Cw3kv3zLesfeK1vxrfuJDafMUALCguZD6d/PaWpVkALD9QU+qdAxUS3r1d/hsUx50S3wxNqijj0FTRzf5cxnlkwZxFhzzXdw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773474644; c=relaxed/simple;
-	bh=gLkElNC3ATunKczn+tZS/GDOLAtWDHExal+eSc9uxDM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=HmsXUbBnUtsBLc0JqP/HwWC/ZpbnDfUnLKX4MjBLbfmjixyP2UbiDB5hHaPSptJzLD5UsRUF2OCzpnVY5QLHEPgifepH07CrVBDgUBRmF2irG+jhdxvjKzWwOTOk1WHhb9QbKOPny9NiPZhenv1scDKC4+rdLu6iLGw0l/VyZI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from Vostro-3710.lan (unknown [116.25.94.199])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 36eefd4f7;
-	Sat, 14 Mar 2026 15:50:36 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: dlan@kernel.org
-Cc: alex@ghiti.fr,
-	amadeus@jmu.edu.cn,
-	aou@eecs.berkeley.edu,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dlan@gentoo.org,
-	gaohan@iscas.ac.cn,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	palmer@dabbelt.com,
-	pjw@kernel.org,
-	rabenda.cn@gmail.com,
-	robh@kernel.org,
-	spacemit@lists.linux.dev
-Subject: Re: [PATCH 7/7] riscv: dts: spacemit: PCIe and PHY-related updates for OrangePi RV2
-Date: Sat, 14 Mar 2026 15:50:28 +0800
-Message-Id: <20260314075028.2571780-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260310090359-GKF302167@kernel.org>
-References: <20260310090359-GKF302167@kernel.org>
+	s=arc-20240116; t=1773475105; c=relaxed/simple;
+	bh=/4mO55ZscN1eFQLHdQLwOS7Gxe9h8uCnujezTmQwxyE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=vE9ACxbU7gNEbFUPnZBOJj8B2qfT8WiMNqOButkHGZ4WJxtDPEKvPkBP+RpbizCuydd1vPDuCjaykHga1f17219TmF00mwirWBMKY/rdNGX7hk1W2XOCv5IE7QcKgoyVdgm/CQQrhPUm2R6yZ/mctPAZte+5TdMOQS6Eyxj7aYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RwvCe+B7; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773475103; x=1805011103;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/4mO55ZscN1eFQLHdQLwOS7Gxe9h8uCnujezTmQwxyE=;
+  b=RwvCe+B7l5ou0DV1UwUAUNt81Abh37sSNJaIQZPiqRO2CEeHC1Db2n5V
+   O5x72RZSbsX+7/Z9bYdlbfFYwGldRpOqLhVo0TwjvsiEE1wSDwe0iBUrV
+   IybI/fbkJpBUG85aW07Dal3foyjcfQ5oSEkk0rx4tCxG63plIDOLOUny6
+   EhnkdeYoKZ7KfYpXr/wEU9T4RbWPj3gVL6B/O7609EwlhMcOBycV1HWZy
+   F81vN5xDJtKCKapf7I1FH3ls1CkedGndAX5Dtbh7P0Rl3zQQrCid5P2Js
+   TxFoWsmL0eAFk4KN56XEhTcKMjjArRxWGCuSaLp55WHoDY7Rp5FADV7aB
+   g==;
+X-CSE-ConnectionGUID: +tUQDDHOTWiH4McMhYMW+w==
+X-CSE-MsgGUID: TUnq/3xmQuOn75Jf/SpbAg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11728"; a="62140688"
+X-IronPort-AV: E=Sophos;i="6.23,119,1770624000"; 
+   d="scan'208";a="62140688"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Mar 2026 00:58:22 -0700
+X-CSE-ConnectionGUID: XV8nd9QKRpqyf1cdyxEXxQ==
+X-CSE-MsgGUID: K3AoNwyMRBOBlrzhjAovxQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,119,1770624000"; 
+   d="scan'208";a="218691536"
+Received: from igk-lkp-server01.igk.intel.com (HELO 9958d990ccf2) ([10.211.93.152])
+  by fmviesa007.fm.intel.com with ESMTP; 14 Mar 2026 00:58:20 -0700
+Received: from kbuild by 9958d990ccf2 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1w1Jt3-000000003ld-2H34;
+	Sat, 14 Mar 2026 07:58:17 +0000
+Date: Sat, 14 Mar 2026 08:57:54 +0100
+From: kernel test robot <lkp@intel.com>
+To: Marek Szyprowski <m.szyprowski@samsung.com>,
+	Saravana Kannan <saravanak@kernel.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-mm@kvack.org, iommu@lists.linux.dev
+Cc: oe-kbuild-all@lists.linux.dev,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Linux Memory Management List <linux-mm@kvack.org>,
+	Robin Murphy <robin.murphy@arm.com>
+Subject: Re: [PATCH 7/7] of: reserved_mem: rework fdt_init_reserved_mem_node()
+Message-ID: <202603140843.vdpZ0bgs-lkp@intel.com>
+References: <20260313150802.1121442-8-m.szyprowski@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9ceb53613803a2kunmc0b324c6729e4
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZTUxKVhkYGkpLSkseTkwfQlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSk1VSU5VQk9VSkJCWVdZFhoPEhUdFFlBWU9LSFVKS0hJTU9CVUpLS1VKQk
-	tLWQY+
-X-Spamd-Result: default: False [1.64 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260313150802.1121442-8-m.szyprowski@samsung.com>
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[jmu.edu.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-275624-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275623-lists,devicetree=lfdr.de];
-	TO_DN_NONE(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[ghiti.fr,jmu.edu.cn,eecs.berkeley.edu,kernel.org,vger.kernel.org,gentoo.org,iscas.ac.cn,lists.infradead.org,dabbelt.com,gmail.com,lists.linux.dev];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
-	FROM_NEQ_ENVFROM(0.00)[amadeus@jmu.edu.cn,devicetree@vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,jmu.edu.cn:mid]
-X-Rspamd-Queue-Id: 8E47C28BFA1
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid,git-scm.com:url]
+X-Rspamd-Queue-Id: 6996728C056
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
+Hi Marek,
 
-> I agree, if the phy is used for USB, the pinctrl info can be dropped
-> Do you want to submit a patch for this?
+kernel test robot noticed the following build warnings:
 
-I will submit a patch to drop the pinctrl.
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on akpm-mm/mm-everything next-20260313]
+[cannot apply to tegra/for-next linus/master v6.16-rc1]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Thanks,
-Chukun
+url:    https://github.com/intel-lab-lkp/linux/commits/Marek-Szyprowski/of-reserved_mem-remove-fdt-node-from-the-structure/20260314-023123
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20260313150802.1121442-8-m.szyprowski%40samsung.com
+patch subject: [PATCH 7/7] of: reserved_mem: rework fdt_init_reserved_mem_node()
+config: x86_64-rhel-9.4-kunit (https://download.01.org/0day-ci/archive/20260314/202603140843.vdpZ0bgs-lkp@intel.com/config)
+compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260314/202603140843.vdpZ0bgs-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603140843.vdpZ0bgs-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'uname' not described in 'fdt_init_reserved_mem_node'
+>> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'base' not described in 'fdt_init_reserved_mem_node'
+>> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'size' not described in 'fdt_init_reserved_mem_node'
+>> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'uname' not described in 'fdt_init_reserved_mem_node'
+>> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'base' not described in 'fdt_init_reserved_mem_node'
+>> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'size' not described in 'fdt_init_reserved_mem_node'
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
