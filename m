@@ -1,140 +1,124 @@
-Return-Path: <devicetree+bounces-275618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275619-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EMiNJtcJtWnXvgAAu9opvQ
-	(envelope-from <devicetree+bounces-275618-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:10:15 +0100
+	id XqpuO54OtWmZvwAAu9opvQ
+	(envelope-from <devicetree+bounces-275619-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:30:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CD5028BE84
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:10:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4943E28BEFA
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:30:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8A346303E387
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 07:09:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A0510303DABA
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 07:30:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06502292B4B;
-	Sat, 14 Mar 2026 07:09:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD8FA2EA159;
+	Sat, 14 Mar 2026 07:30:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t60OkyTn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5331C27AC45
-	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 07:09:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35CD525524C;
+	Sat, 14 Mar 2026 07:30:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773472154; cv=none; b=pZ3yWzTNQCssOrxrjgDXmsq+/hd4s3GhYqhjQ80Z6NDAKQ2PnP97L+Kvb4JCS34uptG6tob1k+0vYEVrI5NpbTU5IZZPZXcZeHldpklVNmFsHbdIxHmtL2b84NyeoY7VbGaQB11pGdxgN+sEGdes3OUyY3sr4WGHEQ84M4A7qgA=
+	t=1773473434; cv=none; b=nhexMN1PPZm2W7x1gtfH7xMVWbaBnuzPgZsvWcqGhz/1NyIMyUS5gUDxufj+j1J3+JDlvB6l/2C0N0Omoo90aRLuwDpR8PaS3j3wy5hEuc2qmlkISrKB8iczARMswBKQ9GVGljGG7EyxEpS6HnL3jWsWrWjfv6kzYpH3mkct9ac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773472154; c=relaxed/simple;
-	bh=5jXR0m/ZBpmNbRznNyJbwCMzJU13ks+8266sT6unD5s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h5H+o0fpv8x9wQWsAl2LjYnN0a2YkabPSC/K3Zw/YggCzyS06LNrQNl3Rx52wk92WGJjGk6MVeMo02feCrE0+AJIYl4uNKP6do/BqDLPWpzRP9FU2HEvYgCtL2lLscHVrtFjDgq0bCEU6KRcKpIbo99sENzKAOnid9zbHSCflbI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1w1J7A-00044G-V9; Sat, 14 Mar 2026 08:08:48 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1w1J79-000D2L-2F;
-	Sat, 14 Mar 2026 08:08:47 +0100
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1w1J79-00000001SMc-2MkW;
-	Sat, 14 Mar 2026 08:08:47 +0100
-Date: Sat, 14 Mar 2026 08:08:47 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Bartosz Golaszewski <brgl@kernel.org>
-Cc: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-	Peter Rosin <peda@axentia.se>, Linus Walleij <linusw@kernel.org>,
-	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
-	linux-gpio@vger.kernel.org, David Jander <david@protonic.nl>,
-	biju.das.jz@bp.renesas.com, tomm.merciai@gmail.com
-Subject: Re: [PATCH v3 4/7] gpio: gpiolib: fix allocation order in
- hierarchical IRQ domains
-Message-ID: <abUJfy4aqJhwhKcl@pengutronix.de>
-References: <20260309134920.1918294-1-o.rempel@pengutronix.de>
- <20260309134920.1918294-5-o.rempel@pengutronix.de>
- <abPqGvy5FqJ0a0ug@tom-desktop>
- <abQMQAbbvV60bV2j@pengutronix.de>
- <7b1e12b2-f55d-4e70-9cb7-ecfa9d82ebdf@bp.renesas.com>
- <CAMRc=Mc4x0SOfoxB9Fv4VUmNjJLjdBnMSmFG=Y1JvLih6cODww@mail.gmail.com>
+	s=arc-20240116; t=1773473434; c=relaxed/simple;
+	bh=/r7P63vAzuId1FJu7Wx90EZmySB9sAz0wDy3fGBNv4E=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=crPpDA5KGwG9AjarVLZp7sWo/grg34wKuJUaYrWzZDDW9l8MVwViJCfCGnMFA4KBuj7le2iy1pPPi/RKf8Z91LDE7kcRSiEfM78fYCqy8331A6/hru5XJ7WXLk8V592JF72C97Gn1DZesBFj+NoNKDz+VAO+DjFMSL7GZVH+afM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t60OkyTn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 829D8C116C6;
+	Sat, 14 Mar 2026 07:30:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773473433;
+	bh=/r7P63vAzuId1FJu7Wx90EZmySB9sAz0wDy3fGBNv4E=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=t60OkyTn7wfBA1/DrrMu7aRTpp4k6minF0VVXbLhFstWqShJAYlYymEnFfNx0Yo7n
+	 UnwpsrP+XkzOs6EL1Qh0IktITu43JhiG27eom1zjTXorlC7hg2unAci74EFwXGkkXX
+	 MRA4iEKOd0sqEdsN56ErTUHu1R6AhvzsgD7+RMwsUJh5GRZDlsCLKtBlOLwTXRuyAR
+	 dQ5H6pjhEsudK2b0U4TLoKapU5/6n95yosXcg9aHic7vp1gyrT8ufPpEC+TURzN9Fd
+	 ibw1mSpvyVdskSI0EM3kokAZFz2AXVNxIPu/G8+qIzLfMx9FxU2k9qlNh6GtFNynF9
+	 xCzGUWFdshCvA==
+From: Chen-Yu Tsai <wens@kernel.org>
+To: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, Jun Yan <jerrysteve1101@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ jernej.skrabec@gmail.com, samuel@sholland.org, mripard@kernel.org, 
+ andre.przywara@arm.com
+In-Reply-To: <20260304073430.438835-1-jerrysteve1101@gmail.com>
+References: <20260304073430.438835-1-jerrysteve1101@gmail.com>
+Subject: Re: [PATCH v4 0/3] board: sunxi: Add TaiqiCat (TQC) A01
+Message-Id: <177347343121.5222.10454445952676916581.b4-ty@kernel.org>
+Date: Sat, 14 Mar 2026 15:30:31 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAMRc=Mc4x0SOfoxB9Fv4VUmNjJLjdBnMSmFG=Y1JvLih6cODww@mail.gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spamd-Result: default: False [0.04 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.14.2
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[bp.renesas.com,roeck-us.net,kernel.org,axentia.se,pengutronix.de,vger.kernel.org,protonic.nl,gmail.com];
-	TAGGED_FROM(0.00)[bounces-275618-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-275619-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org,arm.com];
 	MIME_TRACE(0.00)[0:+];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,pengutronix.de:mid,pengutronix.de:url]
-X-Rspamd-Queue-Id: 2CD5028BE84
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,archive.org:url]
+X-Rspamd-Queue-Id: 4943E28BEFA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 03:35:34PM +0100, Bartosz Golaszewski wrote:
-> > With this fix all is working fine on my side.
-> > I'm not more seeing the seeing the RCU stall.
-> >
+On Wed, 04 Mar 2026 15:34:27 +0800, Jun Yan wrote:
+> This series adds support for the TaiqiCat (TQC) A01 —
+> a set-top box based on the Allwinner H6 SoC.
+> Originally released by Ultrapower(UQSoft) as a blockchain terminal,
+> the device has been discontinued and is no longer officially
+> supported.
 > 
-> Ah, I sent this patch upstream for v7.0. I will tell Linus to not pull
-> it. How do we want to handle it then? Should this patch go together
-> with the rest of the series?
+>   https://web.archive.org/web/20190409213228/https://tq.ultrapower.com.cn/product.html
+> 
+> [...]
 
-Yes, better let's go the slow way. I can't guarantee it will avoid other
-regressions.
+Applied to sunxi/dt-for-7.1 in local tree, thanks!
 
-Should I include updated version it the next patch series?
+[1/3] dt-bindings: vendor-prefixes: Add Beijing Ultrapower Software Co., Ltd.
+      commit: b4137a75e1e611f37fcdc74c1d41696c7971e0b8
+[2/3] dt-bindings: arm: sunxi: Add TaiqiCat (TQC) A01
+      commit: f3208874f32c09dfc9ee330204f9fccf26e15b57
+[3/3] arm64: dts: allwinner: h6: Add TaiqiCat (TQC) A01 support
+      commit: b912e48bee355b6b1faf86efc4a23191324ffecb
 
-Best Regards,
-Oleksij
+Best regards,
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Chen-Yu Tsai <wens@kernel.org>
+
 
