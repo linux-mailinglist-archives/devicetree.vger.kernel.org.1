@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-275643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275644-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EJmNDxwotWkSxAAAu9opvQ
-	(envelope-from <devicetree+bounces-275643-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 10:19:24 +0100
+	id AJnDObwptWlkxAAAu9opvQ
+	(envelope-from <devicetree+bounces-275644-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 10:26:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B11F028C52B
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 10:19:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CE9B28C5B4
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 10:26:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8C217301E7EF
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 09:19:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 749FA301DCFB
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 09:26:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A70A0284684;
-	Sat, 14 Mar 2026 09:19:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83DEA2EDD40;
+	Sat, 14 Mar 2026 09:26:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jyDSe+ld"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bimeqrTG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82FFB14EC73;
-	Sat, 14 Mar 2026 09:19:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6153354768;
+	Sat, 14 Mar 2026 09:26:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773479959; cv=none; b=rOQv1zrMWgGB8wofOccBfBg4IGOl2zOkfwb+LvI8/WP92rS57tU7O9Yp26jElKetsGQ6bjnjCgKYxxeXMzUmlwYL7wjazp77ylbTCg1g5YAoFPOayTTThxQ5qnnHg6pnyiylhxd+ErQmcFWx0mAyVOmPvW80vZYx7gv121NpLPE=
+	t=1773480376; cv=none; b=Dgg1Ry+sXerSregyGQKha7SWdteehDQA2xQUDwQgBlEs33MU65G06dYUJ2AX/qrLp66XUpXKhby/HdaWzw8OxKaETrQmWNYA/AoFc9NnIQ0Tg2bx+9n9Hz1ct7kQzdLGyceUhoiy4jI1uplf24Jiu5WRNL6BKSq7I2MadR2uv3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773479959; c=relaxed/simple;
-	bh=YbB77Yc70N5EwVs5uQal1oO5lYDCV1c+r8TobCUec+w=;
+	s=arc-20240116; t=1773480376; c=relaxed/simple;
+	bh=I0kYhW0BmPT/Cm2S7SgFFfnCYg7754lS3e+9dMO9GQE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Sexl88qwh/nD4CWB0+ne8FFOUqR6iGXdRHuHXa16UMq0V/GHT74KKsN/yzkQGWBa8WVCUjTRuXn2hTPBwt7Xgd9zFr6Ly7c0s+lmPXZoFsfCT/GQNGVZeWlwObvhbfldd1twih39QlnBzo+pb5oxqNOQjqyicKsMhZtdYO/VwB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jyDSe+ld; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98896C19425;
-	Sat, 14 Mar 2026 09:19:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GDKH31SSpeBNDHtVMvRKsyyibFk49C2bMitAz+Sb/iFdyV/gC8xTgPE15nAWelXPfaaP2Hxf8TiXzDDHfIWSRcIOYBZQ0IvDbh5PSlVMB7NS3aQG9x9A/xUAJLX3DBdzGaCgC8qKSzKcO8aCis2OgBtnPjv8dRmjmIRCjPMADOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bimeqrTG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA7DBC116C6;
+	Sat, 14 Mar 2026 09:26:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773479959;
-	bh=YbB77Yc70N5EwVs5uQal1oO5lYDCV1c+r8TobCUec+w=;
+	s=k20201202; t=1773480376;
+	bh=I0kYhW0BmPT/Cm2S7SgFFfnCYg7754lS3e+9dMO9GQE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jyDSe+ldITlSVLhJ9AfIV+C3Z93j4l7b8mlVxdCU/aHSesj4VMtdEVRqtGt8JJ67g
-	 hTzexjMn4eUOCbvGTXbp3/lxcrR9RTCoh8Vo873TGHwap5L48OHOCVwj+WDWATjqL+
-	 PgcNrYEsEhe12cbOdsw62Tr7bj/8S0k5faXWeO24dbt2Y0IXCLTqZPmEnVSknrA4ZA
-	 kzPVp8qHe0UfUTVEvwQorBI7Zwxpf4aNp/3rcv2feMWY43vQv2wijbOokcE6g+KLsl
-	 EVfvJuNG+1rZWDx6HU0VFwo9dv8VkcskdC6Tv+5EtA8rqko3yuur+FOJO1NvX59Wig
-	 /eo74kzyl4NrQ==
-Date: Sat, 14 Mar 2026 10:19:16 +0100
+	b=bimeqrTG5mTTo2RjPs0SpHZw9q0OtEJ14ixuintnXGYM/Kbf3t8WnJ5/AkqfL0qDH
+	 Z3bTbIIynD/HWVmZzBmP4bCFWWcPKmWevm7JDzo0p+K/NMWFzjvRnFRlVb+DTSyQYw
+	 Jkmnpzq9YRRuOc9MtWAdUcXMfmd0FlJPC7f2VpSJotESBnja/h7fEc8ekDg3Pu/paH
+	 DohamW/UPqhW1Al9sKqXVxEfSIzVGGWQf+zFJ99iSpAijyQrVqUHLCVZNH4kCvYnZJ
+	 bdRK8aoapEeq4KrM22vnSGPbH3fD0ErsYtfD8c4jZ4jKqblQJA63tIsrk+hplZh5Aw
+	 OWl07m8L87ytg==
+Date: Sat, 14 Mar 2026 10:26:11 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Yu-Chun Lin <eleanor.lin@realtek.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de, cylee12@realtek.com, 
-	afaerber@suse.com, jyanchou@realtek.com, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-realtek-soc@lists.infradead.org, james.tai@realtek.com, 
-	cy.huang@realtek.com, stanley_chang@realtek.com
-Subject: Re: [PATCH v4 03/10] clk: realtek: Add basic reset support
-Message-ID: <20260314-silky-goshawk-of-penetration-f00964@quoll>
-References: <20260313081100.596224-1-eleanor.lin@realtek.com>
- <20260313081100.596224-4-eleanor.lin@realtek.com>
+To: Gary Yang <gary.yang@cixtech.com>
+Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org, 
+	robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	peter.chen@cixtech.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	cix-kernel-upstream@cixtech.com
+Subject: Re: [PATCH v4 1/2] dt-bindings: PCI: cix,sky1-pcie-host: Add
+ power-domains
+Message-ID: <20260314-maize-warthog-of-modernism-f74475@quoll>
+References: <20260313114914.1564115-1-gary.yang@cixtech.com>
+ <20260313114914.1564115-2-gary.yang@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,23 +65,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260313081100.596224-4-eleanor.lin@realtek.com>
+In-Reply-To: <20260313114914.1564115-2-gary.yang@cixtech.com>
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275643-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-275644-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -90,144 +90,25 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[realtek.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B11F028C52B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,cixtech.com:email,qualcomm.com:email]
+X-Rspamd-Queue-Id: 8CE9B28C5B4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 04:10:53PM +0800, Yu-Chun Lin wrote:
-> From: Cheng-Yu Lee <cylee12@realtek.com>
+On Fri, Mar 13, 2026 at 07:49:13PM +0800, Gary Yang wrote:
+> The Sky1 PCIe controller resides in a dedicated power domain managed
+> via SCMI. Add the power-domains property to the binding to allow
+> describing this dependency.
 > 
-> Define the reset operations backed by a regmap-based register
-> interface and prepare the reset controller to be registered
-> through the reset framework.
-> 
-> Signed-off-by: Cheng-Yu Lee <cylee12@realtek.com>
-> Co-developed-by: Yu-Chun Lin <eleanor.lin@realtek.com>
-> Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
 > ---
-> Changes in v4:
-> - Add forward declaration for struct regmap in reset.h.
-> - Move struct rtk_reset_data definition into reset.c as it's only used there.
-> - Remove rtk_reset_reset() due to unnecessary implementation.
-> - Remove unnecessary parameter from rtk_reset_get_id().
-> ---
->  MAINTAINERS                  |   1 +
->  drivers/clk/Kconfig          |   1 +
->  drivers/clk/Makefile         |   1 +
->  drivers/clk/realtek/Kconfig  |  27 ++++++++++
->  drivers/clk/realtek/Makefile |   4 ++
->  drivers/clk/realtek/reset.c  | 104 +++++++++++++++++++++++++++++++++++
->  drivers/clk/realtek/reset.h  |  28 ++++++++++
->  7 files changed, 167 insertions(+)
->  create mode 100644 drivers/clk/realtek/Kconfig
->  create mode 100644 drivers/clk/realtek/Makefile
->  create mode 100644 drivers/clk/realtek/reset.c
->  create mode 100644 drivers/clk/realtek/reset.h
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 9b7d64cc8d90..53a2f3575c37 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -22247,6 +22247,7 @@ L:	devicetree@vger.kernel.org
->  L:	linux-clk@vger.kernel.org
->  S:	Supported
->  F:	Documentation/devicetree/bindings/clock/realtek*
-> +F:	drivers/clk/realtek/*
->  F:	include/dt-bindings/clock/realtek*
->  
->  REALTEK SPI-NAND
-> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-> index 3d803b4cf5c1..d60f6415b0a3 100644
-> --- a/drivers/clk/Kconfig
-> +++ b/drivers/clk/Kconfig
-> @@ -519,6 +519,7 @@ source "drivers/clk/nuvoton/Kconfig"
->  source "drivers/clk/pistachio/Kconfig"
->  source "drivers/clk/qcom/Kconfig"
->  source "drivers/clk/ralink/Kconfig"
-> +source "drivers/clk/realtek/Kconfig"
->  source "drivers/clk/renesas/Kconfig"
->  source "drivers/clk/rockchip/Kconfig"
->  source "drivers/clk/samsung/Kconfig"
-> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-> index f7bce3951a30..69b84d1e7bcc 100644
-> --- a/drivers/clk/Makefile
-> +++ b/drivers/clk/Makefile
-> @@ -140,6 +140,7 @@ obj-$(CONFIG_COMMON_CLK_PISTACHIO)	+= pistachio/
->  obj-$(CONFIG_COMMON_CLK_PXA)		+= pxa/
->  obj-$(CONFIG_COMMON_CLK_QCOM)		+= qcom/
->  obj-y					+= ralink/
-> +obj-$(CONFIG_COMMON_CLK_REALTEK)	+= realtek/
->  obj-y					+= renesas/
->  obj-$(CONFIG_ARCH_ROCKCHIP)		+= rockchip/
->  obj-$(CONFIG_COMMON_CLK_SAMSUNG)	+= samsung/
-> diff --git a/drivers/clk/realtek/Kconfig b/drivers/clk/realtek/Kconfig
-> new file mode 100644
-> index 000000000000..121158f11dd1
-> --- /dev/null
-> +++ b/drivers/clk/realtek/Kconfig
-> @@ -0,0 +1,27 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +config COMMON_CLK_REALTEK
-> +	bool "Clock driver for Realtek SoCs"
-> +	depends on ARCH_REALTEK || COMPILE_TEST
-> +	default y
-> +	help
-> +	  Enable the common clock framework infrastructure for Realtek
-> +	  system-on-chip platforms.
-> +
-> +	  This provides the base support required by individual Realtek
-> +	  clock controller drivers to expose clocks to peripheral devices.
-> +
-> +	  If you have a Realtek-based platform, say Y.
-> +
-> +if COMMON_CLK_REALTEK
-> +
-> +config RTK_CLK_COMMON
-> +	tristate "Realtek Clock Common"
+>  Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 
-Reset drivers go to reset directory.
-
-> +	select RESET_CONTROLLER
-> +	help
-> +	  Common helper code shared by Realtek clock controller drivers.
-> +
-> +	  This provides utility functions and data structures used by
-> +	  multiple Realtek clock implementations, and include integration
-> +	  with reset controllers where required.
-> +
-> +endif
-> diff --git a/drivers/clk/realtek/Makefile b/drivers/clk/realtek/Makefile
-> new file mode 100644
-> index 000000000000..52267de2eef4
-> --- /dev/null
-> +++ b/drivers/clk/realtek/Makefile
-> @@ -0,0 +1,4 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +obj-$(CONFIG_RTK_CLK_COMMON) += clk-rtk.o
-> +
-> +clk-rtk-y += reset.o
-> diff --git a/drivers/clk/realtek/reset.c b/drivers/clk/realtek/reset.c
-> new file mode 100644
-> index 000000000000..45713785d76d
-> --- /dev/null
-> +++ b/drivers/clk/realtek/reset.c
-> @@ -0,0 +1,104 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2019 Realtek Semiconductor Corporation
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/of.h>
-> +#include <linux/regmap.h>
-> +#include "reset.h"
-
-And here is the proof that none of your reset header constants are
-bindings - do you see the header here above? No.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
