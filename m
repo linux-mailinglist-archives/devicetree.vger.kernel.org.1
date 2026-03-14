@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-275637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275638-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GFmZGDohtWlZwwAAu9opvQ
-	(envelope-from <devicetree+bounces-275637-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 09:50:02 +0100
+	id KBH8FaIhtWlZwwAAu9opvQ
+	(envelope-from <devicetree+bounces-275638-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 09:51:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id F006C28C370
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 09:50:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B367028C3A7
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 09:51:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5092F30151E9
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:50:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AF05C302528F
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:50:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47E59145B3F;
-	Sat, 14 Mar 2026 08:50:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E4A91BBBE5;
+	Sat, 14 Mar 2026 08:50:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uZrSRJ1w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q1sTB+I2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DA627082D;
-	Sat, 14 Mar 2026 08:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A8092C187;
+	Sat, 14 Mar 2026 08:50:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773478200; cv=none; b=Op2y/nXDwK01UxJrtyZQm19did44QKgXwIGZ8UWpr8Kom5QJSZedtslFIcZ0dUMuKoaPjyvW38Bosf4ZC4OLf38Lkei2qFU99SfmXYhUEzq7p2uG4HKlxOxb2oUFflYlP9ULReV9JdrY7yPOb4aOlbsIDPY+Tky1QZPUmIJd1H4=
+	t=1773478250; cv=none; b=aoZHn75ihsVbgTiS5xyo1g1KZ8P7F+HmjOTewDHZnB2UzYCCyUw3KTJOujZcBM8VzduRFq6xa85RR3dLUJAqFkohvOX9emIaTLNXYe9J3VTW1TiGtl/ML64TUgLSBxRCrSSzwOYzxzHSGE6rI7h0+0Uk6Kho/yOfmxywhM4paLw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773478200; c=relaxed/simple;
-	bh=vXZYHzFnBeRy7S1yQMG+LEicyLSek5vHhy/TpvGC43Y=;
+	s=arc-20240116; t=1773478250; c=relaxed/simple;
+	bh=jLDA57WfV5DNrq3xv7Qd0QXrJH67mxBJMUpO6YArVzA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D1egRF26pxCJ7RQtGqkJBNafRr6TdK6ermb4z6Q3IVupEST6R10NBGEKug7pkOTa0+dW7BinyM1J8tQbVTV4DgXM+p3jQJ9tYOV96II0EBC1Rqbch68FDv5SXEVEqoznoRJJ2TLb15rhNy+EjEmo/hChSduHNSolP6LDE8X7Zdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uZrSRJ1w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E081C116C6;
-	Sat, 14 Mar 2026 08:49:52 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=KfOJrO9iHF0yRCM81vlhsWyhaBZ15ZLNuD9DlJ6rTx1s3q8eMr+yZ0Z9v0dsmEAbDk9jNeUjlKwizPmOCs1+1b/fA8C5/7ObHXEieFW8GBsGGUhIkiW0Fw9VmhV/gGyK2GZAfEMhdZO9Xg09jhDIxVYm0dGnfZmYDEOtHMHp0cM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q1sTB+I2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CFA3C116C6;
+	Sat, 14 Mar 2026 08:50:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773478199;
-	bh=vXZYHzFnBeRy7S1yQMG+LEicyLSek5vHhy/TpvGC43Y=;
+	s=k20201202; t=1773478249;
+	bh=jLDA57WfV5DNrq3xv7Qd0QXrJH67mxBJMUpO6YArVzA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uZrSRJ1w28zJV2cr8yWmITJcsM2N8oAUzGxXzAmhixJKml7zsHgWX2t+CgbBLFm2D
-	 A8ELTWPXtLGRVK0hOIdDDc+RB8c9ZgMu92z2hYwVD5wh8vIv6ww+BoUO3hGGUXG1zs
-	 4ATzawsNWsBzJAS92Ndq2R3+EFCLkqjynDr1oYDQOdIkChVfsHagiZ4fYU6F5/X4wX
-	 FCfnO48YsxZ+GfYZvnrj2CVFJtM96UQrzlVDzD3W/SK2ECRUWirGQwrpS2ey0ws2Vx
-	 79jYlUbW4HwIOPIzpmo5Aw+6hoptf5NpM6HYFRstM+qTD2BYgcydKwowDf03YMq0jF
-	 HVV1TezacQ/TQ==
-Message-ID: <336523bb-615b-451b-8681-c965bf579203@kernel.org>
-Date: Sat, 14 Mar 2026 09:49:51 +0100
+	b=Q1sTB+I2ogGwoJmOawjmjsUgMeM2pIwveAjHNTiO+7jNAB+mNa+vIOko4CtH6d540
+	 zLVNelQ+IBqb7iR5FGt7KWLBMtJABVEnts0eYBHJ3rCLsRmjQ2wFq1Q4tNi/gCbAJd
+	 K9xpei2uT5AdU7XNerroradoCAkN1JpsXRpM5czu53RByQHnqvJ1ngA8Lx4RjAleBK
+	 2vxMN58q5uKG8FDr9crdUNVSr0wFzRDq8ariTiSDmlSS6iCQvg0XrhfWvLZQZmrKkw
+	 Cg1EMrnjuwxt10YiqZIWD/JYxFGkNEvSg6GpvUT5386mPzY/3F1BC0c0gea1t0Vqnv
+	 JY54PF2ZSeOEg==
+Message-ID: <e82aefd4-384e-43e6-a830-c7728f642ae2@kernel.org>
+Date: Sat, 14 Mar 2026 09:50:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,31 +53,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/7] dt-bindings: mfd: Add synology,microp device
-To: Markus Probst <markus.probst@posteo.de>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Igor Korotin <igor.korotin.linux@gmail.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Pavel Machek <pavel@kernel.org>, Len Brown <lenb@kernel.org>,
- Robert Moore <robert.moore@intel.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org, driver-core@lists.linux.dev,
- linux-pci@vger.kernel.org, linux-leds@vger.kernel.org,
- linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev
-References: <20260313-synology_microp_initial-v3-0-ad6ac463a201@posteo.de>
- <20260313-synology_microp_initial-v3-5-ad6ac463a201@posteo.de>
- <02e0772d-ba65-4eb8-8453-e0b3eaa4af96@kernel.org>
- <6f2298f3298dc81e6e2ed34ca43424fc39ce3518.camel@posteo.de>
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: lm75: Add label property
+To: Flaviu Nistor <flaviu.nistor@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260313-enthusiastic-defiant-mastiff-bfe8d5@quoll>
+ <20260314074858.268098-1-flaviu.nistor@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -123,77 +107,62 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <6f2298f3298dc81e6e2ed34ca43424fc39ce3518.camel@posteo.de>
+In-Reply-To: <20260314074858.268098-1-flaviu.nistor@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275637-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[posteo.de,kernel.org,linuxfoundation.org,garyguo.net,protonmail.com,google.com,umich.edu,gmail.com,collabora.com,intel.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-275638-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[31];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: F006C28C370
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B367028C3A7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 13/03/2026 21:29, Markus Probst wrote:
-> 
->> This is not an "MFD" device.
-> It now uses the MFD APIs. By the definiton of @Lee (assuming I
-> understood it correctly), this device should now qualify as "MFD"
-> device.
-
-No. Using Linux framework does not make this device MFD, since there is
-no such term of hardware as MFD. Otherwise please explain or link to
-verifiable external source describing what sort of device class is MFD,
-because for sure this is not MFD how Wikipedia defines it.
-
-> 
->>> +
->>> +    mcu {
+On 14/03/2026 08:48, Flaviu Nistor wrote:
+> On Fri, 13 Mar 2026 14:26:35 +0100, Krzysztof Kozlowski wrote:
+>> On Wed, Mar 11, 2026 at 12:58:07PM +0200, Flaviu Nistor wrote:
+>>> Add support for an optional label property similar to other hwmon devices.
 >>
->> Please read previous comments.
+>> I do not see any support being added here.
+>>
+>> Subject is not accurate either. You did not add the label property.
+>>
+>> Best regards,
+>> Krzysztof
 > 
-> You are likly trying to refer to this comment from you:
->> Depending what this is. MCU is generic purpose unit where you load
-> your
->> different FW for different purposes and you have here specific - to
->> handle certain aspects of this entire machine. This looks like EC, so
->> should be called embedded-controller and placed in that directory.
-> Synology uses Microchip PIC for this purpose. On a Synology DS215j, it
-> uses a "Microchip PIC16F1829". At least to me, this looks like a
+> Hello and thanks for the reply.
+> I probably did not use the best description and subject name, 
+> I wanted to be linked to the other patch in the series).
+> The label property is already added by you via the hwmon-common.yaml.
+> I will have to send out a v2 for this series so I will change the subject to
+> "Add examples for label property" and also specify in the description more clear
+> that is just a simple "Add label property in the two examples."
 
-It does not matter what chip is used. Every component uses some sort of
-chip.
-
-> general purpose microcontroller with firmware from synology flashed
-> onto it. Therefore it is a MCU.
-
-Every chip is then an MCU with such logic. Every PMIC, every EC.
-
-This is for me clearly embedded controller and that's where this should
-be placed and called.
+Your commit msg must explain WHY you are doing this.
 
 Best regards,
 Krzysztof
