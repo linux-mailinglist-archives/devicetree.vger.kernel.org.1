@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-275605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275606-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gJphEOfJtGnLswAAu9opvQ
-	(envelope-from <devicetree+bounces-275605-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 03:37:27 +0100
+	id 0LenAurJtGnRswAAu9opvQ
+	(envelope-from <devicetree+bounces-275606-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 03:37:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95C0728B67A
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 03:37:26 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EF5728B689
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 03:37:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2D1DC301CCFD
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 02:37:25 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 02C6B301DEC6
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 02:37:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AADED2868AB;
-	Sat, 14 Mar 2026 02:37:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 699C5288C3D;
+	Sat, 14 Mar 2026 02:37:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VUhGxtdy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="flXjLuKp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25260194A60
-	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 02:37:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E87CC282F0C
+	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 02:37:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773455844; cv=none; b=mcRPKjUyHL4m9eapuI+uaJUdE6wmVFl0cKXN7VCaztrb7jh/kA70lUBFYS+Gb9zJvY3jpenveDPDlykVNqARxCzVbL5JLdvVMB84lVQYcr2syvbHbyhcQ9naXN+HZWM9IDdA6CaaA+caN7JgcBWKaZzGF00qjl1dPobbZeQWwGY=
+	t=1773455847; cv=none; b=Xjut7KiS+phywVppoodVfqQFwgW0iTr4seVLpWa3HgE9Z9Ld7mYoJIromvWwEpa5G2TjUYj8nGUCrVKzYiqykj0Mv0BPD0Ap5ImMEVLFTMh1JRnLP6OYpdJhWKgrZr8hcl7ELFJhsObYSqsDIwi8+d3YZKJazTqspiJhK/aefBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773455844; c=relaxed/simple;
-	bh=o54kgX/FfKG/NTJ3r0AQP3BUXLOxKSho0aL+4GiIKgY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ime/BB5jXaDWVQHi9DpitsgS6XcSSeHeqtgnC9g2olKd76w/e9Zd1GRgnwA9sTO3jhfx5sjf/BEOSCzT84unI88adkiLe3sMZqQxmo66ClFUAPzTzoivaRB8eXV25W2PZFFflehkRfGu7p/ie5CzNxEX4immBH59MjOD67JBQNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VUhGxtdy; arc=none smtp.client-ip=209.85.167.45
+	s=arc-20240116; t=1773455847; c=relaxed/simple;
+	bh=0ScLnVnfEOmbN2X7Q9868OgSGGlBSVIHw9wugAYEo8k=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=Ztn922+HVKaoUMcxBgiBIPbZPK46vDCh3Y0AnAK1MHzZTYul9eQu0jF/6U4lCDvt8DOjHTuxRHZCVA+JUznVLKYzDVIqIVTHaYtZl74qmchgjapKnQpLqt+4Dds5cUqQNwDwRld73MzsgEZm5AvXAJsIGcy4J7pzjpYXq+QSpUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=flXjLuKp; arc=none smtp.client-ip=209.85.167.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5a132096c08so294103e87.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 19:37:22 -0700 (PDT)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5a137632c34so384326e87.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 19:37:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773455841; x=1774060641; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7jkMjAsh5AS687nQGwoNgRIEGVMFG8INWXbw9vpLXjI=;
-        b=VUhGxtdypVhyORErYnStlhmb0xhfbcpNP3tf+N49F86ODiVLlWKfcPAxZbu/CrLc5Q
-         RTmhiiJCohRPW+5AOdpvJ7dUornL4KcuphoPZFQfpeasUt7n2fizsccnCNb9mbNtD/JY
-         /Vs/ZZGzndLw2fotMFu6jwqrpji/acHJEyixL4wZYex5ENQtNjyboSZWKHVN5/QrYAy2
-         C2oXrI+6CBPUI3CSDsoUV/v88u2mmZx1Jja8eyWTZRoYldkmDohSFUhlUFhEB3+5h/pB
-         mHnmGpYQFG+FmKcbbdW6e2HBJ5rTmwwydzNc/pOjnthM8cv40aBI9Jvz+DDpbtlxFwk1
-         abxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773455841; x=1774060641;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1773455844; x=1774060644; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7jkMjAsh5AS687nQGwoNgRIEGVMFG8INWXbw9vpLXjI=;
-        b=XBUDes8rpHg6gpLOOcAGo1SunsqAwzig1NWiPWPaSNIgd4D0CWmBuQsndydhxiCeH/
-         kBcwFRkj7MTZgC9Wa/UqGL23aXLouB/Ndpn8di6bRW5uCh+S2ZQFLRh9fSoWzqqqd0L9
-         Qe7M0vooQ3RGfojedxANPgjj6++tDVmEUtCN1ZQmrP+baf7yegg5a12OP/IjR7GTzmiP
-         D5ZDAVOCBDVrIHqx/Iej0hEOdqAmimK5aT+U/XuZtVoGjSHogI6SlY+PpNZ1JXfZcNa3
-         2S0Ahup7RmsAPf345mueadPKo8jOdhsBcSaCD5RcH4vQYJ5pID+LABUsa4vJfx7ra63q
-         Thww==
-X-Forwarded-Encrypted: i=1; AJvYcCW1M8wIjCWy6WkWcdNQVYQyW8K75o3f3lJMvrmSZ6vpeEPyBc2VJHIKDFk+47dzczQ20aBJMD6Tqw/D@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywwg2tDUE9tMROcYC36bEMmQXbend9VTOJRzXYccVar5bc3AZQy
-	kDVubwrrxixa2pEqNmugNOcTPJphDjoRcudtUvuul2wt3WPviPzYWIrM22gUQ+yXZFA=
-X-Gm-Gg: ATEYQzzAZS0yaOq4Uoacw3Yg43WZWAm4A7vdrLbiKn7UtD6oXv2IC7Pec+zNb4nqKGV
-	Giz2dq52bwTn/kHUzdayoP1pUT8sn+eNccpyT1Adsnvv7rwbOZPJ389KVaTy0U77yiONrL62f1B
-	fj0bJpdR6KwBx7sFOKbP+ux5QOrXNc5ZFpiNpcRWs/9ocjl3ZJQcuAUc/RHrLfkLHHpoHrl4VwK
-	5gABYmqYgba3FzpS95rffoCVieQUxa4xpH+dg05A5y13deV3aSPZzfF5vxmK+DKGRv14VnaUXlg
-	412chDyneO73e9DFMsCPQr2Q8rpkJwloTDFvtHngE/ntlS1QpA1sfOzYhaHr+DjB4BiF3W/MKQs
-	dXejjkdiuM66Bv0t6n88y9Qqt3+EtAgADbcMLclsbUlhO/GQJvZF1og/mkdlRxe/CDSLOQ1tTUN
-	Zmeuv6WdDwZueWGEYKJeBCbWc3bN5hm3XNfVoTvF/i4ZLb+WARBdg+qqCZnz27PMSsOQ==
-X-Received: by 2002:ac2:521a:0:b0:5a1:3e50:423a with SMTP id 2adb3069b0e04-5a162b0f132mr630706e87.4.1773455841073;
-        Fri, 13 Mar 2026 19:37:21 -0700 (PDT)
+        bh=pMtgrVeLM7+dMhDcPcbsb5ExopfHJGQnfIKy1KYUAeY=;
+        b=flXjLuKpgvrVqPpkg1H1B8XVS1iKCDsROn0kzlsI2l1fbDEEkh6LQCmrD8lvY6hBEo
+         ZueRSkAsSAQbP2n4OxojOVYQGQFzKPtDyNVRwb+DI4JGcwnGVhN9tw6Fn0PBL+IqLB7H
+         UwutrHUrL7zdfTU7/sWtt45x8mkdbQlZ9eyROdThcfO4O+7Aln5E2/Y0L2fC46P9ZAfA
+         LUlvC2d6Yz5sSnvC18MenzsdwaVZ2KdKwnk2pMtly/Ex/MF8oPNc4/FwUmczd9SAu4Gu
+         bRQRnV84TJ9PoQmYdLzt0kCgab8t3ovtLd7sDE/teimu4zUnJQ31SBEnTVd7hJ4rfYxw
+         n1tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773455844; x=1774060644;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=pMtgrVeLM7+dMhDcPcbsb5ExopfHJGQnfIKy1KYUAeY=;
+        b=opRSw87gccz+knzo4eWUwUsO5QGhXHHHPmU+pMApSJWQJu4rXLANfIl/hi1P2Xu7+W
+         TFky+6FN8yIcFs1k+JW8fNDS0uNFZKRTsg9laraQp2UG9CgXs4EnKpdExQD5RjJE430j
+         ZhRN5WDlbfwkhSIGql3m9YZ/nF2cckfm0EzE9RFNdJWWyrHJbpCfPoznCLEXRZxCdTEK
+         kYb9D1Ukf3ejbxgxVX5cyV+XV7kGWaklKmoVDmKCcIv/4urkr0mLbmABFkH73rc47M/v
+         kGSqSZAbTzKM9LfkkGoC/GH60Yp0gtVVM3pb4kxTfEvq8xTaXLnmc/0M+GdJq44MvGTl
+         Yoqw==
+X-Forwarded-Encrypted: i=1; AJvYcCWytMDQSTerdBSUmniRH/E9bg9OoxogsCbvWYMRwEp5Vr/I8wz/Cac91ait/7NCVoG5zT1l5ukmovsJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXpU0L5kh7SJ24NWP4FL+UYBXhbwMbydgrNLVImDqwOXTO+Fjn
+	qiITNbFXFezKXIlNQfIFAKX1j0IZdoF/d/EeXWSHU87+fwevXQXemQn5bZFMtao29Gc=
+X-Gm-Gg: ATEYQzy7kD8DlpaEYF3g02oBWyMOu9rLmf96FXsS7YIs39EOTRwJlOVqol8DB3MUMV+
+	MSuesGOefb2d56YqQLlTR+sEsDB2pmsNz7AZzsS5j4sCohNOfP7G2XuT7dB6iG1sWP7d2Gmuk3/
+	//umkPSLAXz0UVaOftBeErtEPirrX/KsvqpgnwHMK6XTbKxuTzabu8PMG4Ywm+/ccCcDUshH7Oh
+	8vBeQSRNMWK89180Oilg07RC6t9zGni71Lovr6LnXUYDffLnSKQRGOj8mjaHduq3rToqX4Y63BX
+	ZQ0mBDoIPYkI5saqsu50MvEMmB5WLwoItuqbtDgCK233uZioBpNtOkBZ1TASywhxFtZPqCTrAZJ
+	y2yol9mplZ4vtTz+O9TZZ5W16MGeEUnsc8ItGqq/KTOWbTp8C69w6AUdgp/saRs6LpEIoEMD1jd
+	NQStsx3Zo3sFbd+fdwpDwzzb0nx3OZOSXZDJLjd6KLSPWDTXOmeFIk8gTMet52zU+bRw==
+X-Received: by 2002:a05:6512:61d2:10b0:5a1:1329:5ae5 with SMTP id 2adb3069b0e04-5a16271283dmr697090e87.1.1773455844079;
+        Fri, 13 Mar 2026 19:37:24 -0700 (PDT)
 Received: from thyme.. (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a15602e692sm1884296e87.30.2026.03.13.19.37.18
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a15602e692sm1884296e87.30.2026.03.13.19.37.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Mar 2026 19:37:19 -0700 (PDT)
+        Fri, 13 Mar 2026 19:37:22 -0700 (PDT)
 From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>
@@ -84,10 +86,12 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
 	Abel Vesa <abelvesa@kernel.org>,
 	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH v2 0/6] arm64: dts: qcom: sm8x50: Enable UHS-I SDR50 and SDR104 SD card modes
-Date: Sat, 14 Mar 2026 04:37:09 +0200
-Message-ID: <20260314023715.357512-1-vladimir.zapolskiy@linaro.org>
+Subject: [PATCH v2 1/6] arm64: dts: qcom: sm8550: Fix xo clock supply of platform SD host controller
+Date: Sat, 14 Mar 2026 04:37:10 +0200
+Message-ID: <20260314023715.357512-2-vladimir.zapolskiy@linaro.org>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20260314023715.357512-1-vladimir.zapolskiy@linaro.org>
+References: <20260314023715.357512-1-vladimir.zapolskiy@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,73 +104,61 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275605-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275606-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[9];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:dkim,linaro.org:mid]
-X-Rspamd-Queue-Id: 95C0728B67A
+	DBL_PROHIBIT(0.00)[0.134.86.160:email];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:email,linaro.org:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8EF5728B689
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The reported problem of some non-working UHS-I speed modes on SM8450
-originates in commit 0a631a36f724 ("arm64: dts: qcom: Add device tree
-for Sony Xperia 1 IV"), and then it was spread to all SM8450 powered
-platforms by commit 9d561dc4e5cc ("arm64: dts: qcom: sm8450: disable
-SDHCI SDR104/SDR50 on all boards").
+The expected frequency of SD host controller core supply clock is 19.2MHz,
+while RPMH_CXO_CLK clock frequency on SM8650 platform is 38.4MHz.
 
-The tests show that the rootcause of the problem was related to an
-overclocking of SD cards, and it's fixed later on by commit a27ac3806b0a
-("clk: qcom: gcc-sm8450: Use floor ops for SDCC RCGs").
+Apparently the overclocked supply clock could be good enough on some
+boards and even with the most of SD cards, however some low-end UHS-I
+SD cards in SDR104 mode of the host controller produce I/O errors in
+runtime, fortunately this problem is gone, if the "xo" clock frequency
+matches the expected 19.2MHz clock rate.
 
-Due to a missed setting of an appropriate SDCC clock operations in
-platform GCC driver the workaround of dropping SD card speeds from UHS-I
-to high speed was spread to SM8550 and SM8650 platforms, the fixes in
-the clock controller drivers were applied to v7.0. In addition v2 of
-the changeset corrects the "xo" clock frequency on the platforms,
-and now it should be safe to remove the speed mode configuration
-restrictions from SM8450, SM8550 and SM8650 platforms.
+Fixes: ffc50b2d3828 ("arm64: dts: qcom: Add base SM8550 dtsi")
+Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Changes from v1 to v2:
-* added "xo" clock fixes, which provide the expected 19.2MHz clock rate,
-* added Reviewed-by tags given by Neil and Konrad,
-* added Fixes tags, since the changes are functional and performance fixes,
-* rebased the changes.
-
-Link to v1 of the changeset:
-* https://lore.kernel.org/linux-arm-msm/20251126012043.3764567-1-vladimir.zapolskiy@linaro.org/
-
-Vladimir Zapolskiy (6):
-  arm64: dts: qcom: sm8550: Fix xo clock supply of platform SD host controller
-  arm64: dts: qcom: sm8650: Fix xo clock supply of SD host controller
-  arm64: dts: qcom: hamoa: Fix xo clock supply of platform SD host controller
-  arm64: dts: qcom: sm8450: Enable UHS-I SDR50 and SDR104 SD card modes
-  arm64: dts: qcom: sm8550: Enable UHS-I SDR50 and SDR104 SD card modes
-  arm64: dts: qcom: sm8650: Enable UHS-I SDR50 and SDR104 SD card modes
-
- arch/arm64/boot/dts/qcom/hamoa.dtsi  | 4 ++--
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 3 ---
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 5 +----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 5 +----
- 4 files changed, 4 insertions(+), 13 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+index e3f93f4f412d..03672df25eeb 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+@@ -3210,7 +3210,7 @@ sdhc_2: mmc@8804000 {
+ 
+ 			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
+ 				 <&gcc GCC_SDCC2_APPS_CLK>,
+-				 <&rpmhcc RPMH_CXO_CLK>;
++				 <&bi_tcxo_div2>;
+ 			clock-names = "iface", "core", "xo";
+ 			iommus = <&apps_smmu 0x540 0>;
+ 			qcom,dll-config = <0x0007642c>;
 -- 
 2.49.0
 
