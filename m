@@ -1,234 +1,176 @@
-Return-Path: <devicetree+bounces-275722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275723-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GL9dNIx3tWln0wAAu9opvQ
-	(envelope-from <devicetree+bounces-275722-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 15:58:20 +0100
+	id Vl/CN9V8tWlf1AAAu9opvQ
+	(envelope-from <devicetree+bounces-275723-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 16:20:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A2F428D932
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 15:58:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25B7F28DA47
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 16:20:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AB7C53018BF9
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 14:58:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A3FA1301BC19
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 15:20:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65C8E37CD41;
-	Sat, 14 Mar 2026 14:58:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A68F23E334;
+	Sat, 14 Mar 2026 15:20:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=machinesoul.in header.i=@machinesoul.in header.b="lXjAT81/";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="nGAPURnL"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NrZ+8Tw5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a2-smtp.messagingengine.com (fhigh-a2-smtp.messagingengine.com [103.168.172.153])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D3F62741A0;
-	Sat, 14 Mar 2026 14:58:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.153
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07947202997;
+	Sat, 14 Mar 2026 15:20:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773500291; cv=none; b=HLlRR5AB9lijPhTF75uc3kcH3jKIRlRF9JD4cSxD3fOvCyM+fwYrDPgLOblBclslAOXbUoe8mkOQLUYO6GC18EE5AZPG+BH8pO8pspXnzFCIbB3QupQ5oeLLmijSIpzi5arm/WDqI0otiJY4fwU5zXD7cv1Dum7x9l/PWWsBiCU=
+	t=1773501650; cv=none; b=h9+6/t67FlrKJmNQKfsfEVamgukti/3Qs60RjOoiPBLwKCJt96iK04yIqjEzS1i3dMZiIHZkJq7tAPfhiVxjZ1C9qfrsnQioRqawNMc6B4nZvCmhytRj4legX1I0bv4GY3mLbotdpcux5ExmmqtW3UdAE9B01WJ/VxQvWFpg/hc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773500291; c=relaxed/simple;
-	bh=qzZaBR6WczjUq19/Rm9o4qZLMSf1fqqnVk12OhWwCf0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Fe/IbWVYG06ax/UHXT1WIb/ae03pgV2GIbqph68QfHE93K444wyWdT6gE3BU0HgX9lR+SHWe++NdKnOVp1u0hLe4BYW/bAjHJ5MRvGEEs+ejeZPGhoiV/66v+KzbLQaWvefzCeqSPqor6TB+AL5+63uNtOrqFLJGIHV6LwJ3upU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=machinesoul.in; spf=pass smtp.mailfrom=machinesoul.in; dkim=pass (2048-bit key) header.d=machinesoul.in header.i=@machinesoul.in header.b=lXjAT81/; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=nGAPURnL; arc=none smtp.client-ip=103.168.172.153
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=machinesoul.in
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=machinesoul.in
-Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id 2FC7114001C1;
-	Sat, 14 Mar 2026 10:58:08 -0400 (EDT)
-Received: from phl-frontend-04 ([10.202.2.163])
-  by phl-compute-04.internal (MEProxy); Sat, 14 Mar 2026 10:58:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=machinesoul.in;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:message-id:mime-version
-	:reply-to:subject:subject:to:to; s=fm1; t=1773500288; x=
-	1773586688; bh=rewhcCVOaBlBlXLPPExXCzwA+4le69WPGJ1AWUoSONM=; b=l
-	XjAT81/qyCLfokBgEdkYIG/cgFqm6oOWiujh7B8GMytsC4W09SrP5hY3oTz3lqGc
-	vSPJeIUkWQbhPFzLPvSfQF4+PUu5P+cx5eJRkPKgTYGYBH0c3pM6/o71GPNBWZeB
-	OdntNDBDEkNaTRe5NeWITwq996F/oS2rris0XTH7/YMvvmQAFip9IYVLZ2PYcmnv
-	2mVMFSFfBsZkC68ntbQkn8zTDdJ8GZRu0vWrYfkvLjEMUzP08qcLYVTF7vZLuGh0
-	JonVPmNY6UHPzdAi3H9DEoCskrnwpyuexWm/TDafmM+mt+yLHUCBZ7dEUHrVCIwd
-	IB8u4w/xxg5THoiJa1PTw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
-	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm1; t=1773500288; x=1773586688; bh=rewhcCVOaBlBlXLPPExXCzwA+4le
-	69WPGJ1AWUoSONM=; b=nGAPURnLVHeYLbMKQWeK2K9I4N5jTosvdCoXQ5I5/7Iq
-	z/+ImcviSBuL6mdSLTwb2dIHPwU+9YXwnAB47btPpsmwRhRgxVmkzu3n/c6c6qAs
-	IGxqJHgUFJIZTmiXBx3xuIUdAM1Ssg0iwcih9vKM1AJuPpwqZ3gICzDqLEP2FJj5
-	z8R8dvOg0aPQ43T3GUY5zA0UBH40BloV9r6e3wofk717zYxk5XKIX/h4VgfbTKsu
-	YBs9OQAUzPypk4fomWwINvI1V/RrXujyOiSJ7RjUBiN8BRhuO9mqAN7k6rNAJ+NA
-	dBioHt46+LDRD8LwtHB7AFenGaGaLhI6oqUuUY6bVg==
-X-ME-Sender: <xms:f3e1afJ5MVpOaqRCBLJhdOcpanS_luNZLjp81eEFdSCVNa_gJDBBOg>
-    <xme:f3e1afJVcAJgHCP4SOip5iCKezAg1s_vq-6ZhA8h0eRxdo_OSek_KYr1cJ-rm89ZH
-    dJ1AHz0HoGhCD362zDebIQjebtpLJ0dOA8NMKQzN8NMAQDvt9CZag>
-X-ME-Received: <xmr:f3e1aZ5U55D-g9otIkh9XhAe7T__suS18iFqizWCWUZrZIuCyRgAAAYpQu-UUfC-SY0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddvledvkeejucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhephfffufggtgfgkffvvefosehtjeertdertdejnecuhfhrohhmpeeuhhhushhhrghn
-    ucfuhhgrhhcuoegshhhushhhrghnrdhshhgrhhesmhgrtghhihhnvghsohhulhdrihhnqe
-    enucggtffrrghtthgvrhhnpedtudffjeelfefhvdekkeeggeffhfeludevtefgkeekgfdt
-    gefgtdegueduledvvdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsth
-    gvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepsghhuhhshhgrnhdrshhh
-    rghhsehmrggthhhinhgvshhouhhlrdhinhdpnhgspghrtghpthhtohepkedpmhhouggvpe
-    hsmhhtphhouhhtpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhn
-    vghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprh
-    gtphhtthhopegshhhushhhrghnrdhshhgrhhesmhgrtghhihhnvghsohhulhdrihhnpdhr
-    tghpthhtohepughmihhtrhihrdhtohhrohhkhhhovhesghhmrghilhdrtghomhdprhgtph
-    htthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodguthes
-    khgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrh
-    drkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqihhnphhuthesvhhgvghr
-    rdhkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:f3e1aZfb4MCgB0X42rOCoXEzdugvYTnAgsh844_AWvRRN8hT3Fc_Bw>
-    <xmx:f3e1aUH-WA2TmBv774NH4ygovlXAlIyosjRcIN1QG9pYabznls0Pyg>
-    <xmx:f3e1aSRdy3L_DURlS5fe_xCfCFbxxio8UvuCGpkm7kG7cpd-Jecy_A>
-    <xmx:f3e1aSYw9SyrnhFUES_1kAdL-SFvqsEl7BwnbQattVu6ueQGZBXqPw>
-    <xmx:gHe1afLgMGPVPNuU4Pyo3NDw7aaVjF1Lz-G5Nx5hQrbScdkjquiEL4SM>
-Feedback-ID: i6b0e4831:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 14 Mar 2026 10:58:05 -0400 (EDT)
-From: Bhushan Shah <bhushan.shah@machinesoul.in>
-Date: Sat, 14 Mar 2026 20:27:58 +0530
-Subject: [PATCH v3] dt-bindings: input: touchscreen: edt-ft5x06: Add
- FocalTech FT3519
+	s=arc-20240116; t=1773501650; c=relaxed/simple;
+	bh=1FtGcHaPzohD23/qb3jPURbq6HHqLOzLRiH5ow2x+iE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GbS6IAVIx6sSEZFgNrrPQJExCcQOEOjFvptXZsWh2/pek6hWtVVKbuNMoEM4veRUy3GNWmH2uZVmBE/oA7HtZ2YL7RD9gTiQw095vdz0M0h4ga1Xds2647YoVFt8KokH+ECpbPFhVA2RofgQ8HB8a3bKHWK2SdJUdJkUJdX3N8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NrZ+8Tw5; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773501649; x=1805037649;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=1FtGcHaPzohD23/qb3jPURbq6HHqLOzLRiH5ow2x+iE=;
+  b=NrZ+8Tw52c6j1AgcNiy2ThC7Va7ZKRT6t8r5oyvrGzi4+P5GJBktspKW
+   HGCeAJvFZAxfmS/QugkjcaWgDOVAXnhSYO4ajdgQzisNdvd+oxQY+9LBu
+   5L3rvIaHqMhV+sJ4lB9Njth/ywUn+9uj5W8bPEt3GJ1+YdYBPAg9jczZU
+   eJxy1aCOMoaqK5Nn2oVeTmCdfCft9U1aw9BA8VctQXFaXLhLTss9PaHDd
+   32Sh4/K6rVpuLJ3GEQ7vWsRR0gBcmXJOvbnZTCyuvxGGpdkLpP2PDRB0n
+   MjNdDTKSDBoA3uKudxJN7UJuFwrq6Q+BUfjJfsSrK9ssfsuGOl5cm5fqb
+   w==;
+X-CSE-ConnectionGUID: 9JcFyyEbR2SVUwRvMrCGxQ==
+X-CSE-MsgGUID: fxuEdJCETJqnh3VlZecm9w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11729"; a="78476191"
+X-IronPort-AV: E=Sophos;i="6.23,119,1770624000"; 
+   d="scan'208";a="78476191"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Mar 2026 08:20:48 -0700
+X-CSE-ConnectionGUID: qNbf0hHhQhu2DsmAtre4nA==
+X-CSE-MsgGUID: RSSzsBKMTTmMexgmUNZJ8A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,119,1770624000"; 
+   d="scan'208";a="221663544"
+Received: from lkp-server01.sh.intel.com (HELO 418530b1a366) ([10.239.97.150])
+  by orviesa007.jf.intel.com with ESMTP; 14 Mar 2026 08:20:45 -0700
+Received: from kbuild by 418530b1a366 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1w1QnC-000000005I7-1ruy;
+	Sat, 14 Mar 2026 15:20:42 +0000
+Date: Sat, 14 Mar 2026 23:20:22 +0800
+From: kernel test robot <lkp@intel.com>
+To: Marek Szyprowski <m.szyprowski@samsung.com>,
+	Saravana Kannan <saravanak@kernel.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-mm@kvack.org, iommu@lists.linux.dev
+Cc: oe-kbuild-all@lists.linux.dev,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Linux Memory Management List <linux-mm@kvack.org>,
+	Robin Murphy <robin.murphy@arm.com>
+Subject: Re: [PATCH 3/7] of: reserved_mem: switch to ops based OF_DECLARE()
+Message-ID: <202603142347.aops46Bf-lkp@intel.com>
+References: <20260313150802.1121442-4-m.szyprowski@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260314-edt-ft3519-v3-1-5ee91b408ed6@machinesoul.in>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/22MQQ6CMBAAv0J6dg3dtQQ8+Q/jActWNtFiWmw0h
- L9bOGn0OJPMTCpyEI5qX0wqcJIog89Am0LZvvUXBukyKyyxKkkTcDeCG8noBs7E2BJxXTOrHNw
- DO3mus+Mpcy9xHMJrfSe92L+bpKEEx8Y5WxG6Dg+31vbiOQ6P61a8Wl4JP/vdV4+ggbG25BpbG
- dP89PM8vwGhzc2A6QAAAA==
-X-Change-ID: 20260313-edt-ft3519-b3e2a33e88ee
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Bhushan Shah <bhushan.shah@machinesoul.in>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2477;
- i=bhushan.shah@machinesoul.in; h=from:subject:message-id;
- bh=qzZaBR6WczjUq19/Rm9o4qZLMSf1fqqnVk12OhWwCf0=;
- b=owEBbQGS/pANAwAKARGWjESSjK78AcsmYgBptXd83zIxZt4ryZZ3gLBK1YM9xRA4A5LrruTxl
- fIWtbN3e9CJATMEAAEKAB0WIQSzyzZlUlQL4G7prZcRloxEkoyu/AUCabV3fAAKCRARloxEkoyu
- /O8sB/47ZIF92dSB5JscUM1Y7lQ3GUiLIvtm3M1AJ0L/zRysJXYU6l/cT+5rAqT0MU2rae/Nnty
- JyonfdUtFdv7fPLkCXKmKn7kFiEUWAaoOttpLFkOTw20BHEZoxU4yiaXM+j586KjL7msGAWUTmV
- Saq0AmZbCkXuAfi5t3jjhqrR8FpgD/ZHzl6fzVf0CbgRo9Kh/Sjl8C/IdsiQomhC8u8hOpx60fY
- JINjGIRSFqHI0eORsLClv/qIlvP07ie0+xm88FZawkNeJSlKPpNQpi52o4FrSRBuQ4hgO1wiw0x
- NlkFkjPqlYLXKiYToeSGZNII2i+08MI3KceHCYFQM7X9yBQI
-X-Developer-Key: i=bhushan.shah@machinesoul.in; a=openpgp;
- fpr=0AAC775BB6437A8D9AF7A3ACFE0784117FBCE11D
-X-Spamd-Result: default: False [-1.66 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260313150802.1121442-4-m.szyprowski@samsung.com>
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[machinesoul.in:s=fm1,messagingengine.com:s=fm1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[machinesoul.in:+,messagingengine.com:+];
-	TAGGED_FROM(0.00)[bounces-275722-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[machinesoul.in];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	TAGGED_FROM(0.00)[bounces-275723-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bhushan.shah@machinesoul.in,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[machinesoul.in:dkim,machinesoul.in:email,machinesoul.in:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,messagingengine.com:dkim]
-X-Rspamd-Queue-Id: 3A2F428D932
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid,01.org:url,git-scm.com:url]
+X-Rspamd-Queue-Id: 25B7F28DA47
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Document FocalTech FT3519 support by adding the compatible. It's 10
-point touchscreen, which is compatible with FT3518
+Hi Marek,
 
-Signed-off-by: Bhushan Shah <bhushan.shah@machinesoul.in>
----
-$ make dt_binding_check DT_SCHEMA_FILES=input/touchscreen/edt-ft5x06.yaml    
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-  CHKDT   ./Documentation/devicetree/bindings
-  LINT    ./Documentation/devicetree/bindings
-  DTEX    Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.example.dts
-  DTC [C] Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.example.dtb
----
-Changes in v3:
-- Fix syntax
-- Link to v2: https://lore.kernel.org/r/20260314-edt-ft3519-v2-1-e28c3f9c6559@machinesoul.in
+kernel test robot noticed the following build errors:
 
-Changes in v2:
-- Remove the driver change and add only compatible in dt-bindings.
-- Link to v1: https://lore.kernel.org/r/20260313-edt-ft3519-v1-0-fe5ffc632fd2@machinesoul.in
----
- .../bindings/input/touchscreen/edt-ft5x06.yaml     | 30 ++++++++++++----------
- 1 file changed, 17 insertions(+), 13 deletions(-)
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on tegra/for-next akpm-mm/mm-everything linus/master v7.0-rc3 next-20260311]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-index 6f90522de8c0..68b2f1601654 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-@@ -33,19 +33,23 @@ allOf:
- 
- properties:
-   compatible:
--    enum:
--      - edt,edt-ft5206
--      - edt,edt-ft5306
--      - edt,edt-ft5406
--      - edt,edt-ft5506
--      - evervision,ev-ft5726
--      - focaltech,ft3518
--      - focaltech,ft5426
--      - focaltech,ft5452
--      - focaltech,ft6236
--      - focaltech,ft8201
--      - focaltech,ft8716
--      - focaltech,ft8719
-+    oneOf:
-+      - enum:
-+          - edt,edt-ft5206
-+          - edt,edt-ft5306
-+          - edt,edt-ft5406
-+          - edt,edt-ft5506
-+          - evervision,ev-ft5726
-+          - focaltech,ft3518
-+          - focaltech,ft5426
-+          - focaltech,ft5452
-+          - focaltech,ft6236
-+          - focaltech,ft8201
-+          - focaltech,ft8716
-+          - focaltech,ft8719
-+      - items:
-+          - const: focaltech,ft3519
-+          - const: focaltech,ft3518
- 
-   reg:
-     maxItems: 1
+url:    https://github.com/intel-lab-lkp/linux/commits/Marek-Szyprowski/of-reserved_mem-remove-fdt-node-from-the-structure/20260314-023123
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20260313150802.1121442-4-m.szyprowski%40samsung.com
+patch subject: [PATCH 3/7] of: reserved_mem: switch to ops based OF_DECLARE()
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20260314/202603142347.aops46Bf-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 15.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260314/202603142347.aops46Bf-lkp@intel.com/reproduce)
 
----
-base-commit: 0257f64bdac7fdca30fa3cae0df8b9ecbec7733a
-change-id: 20260313-edt-ft3519-b3e2a33e88ee
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603142347.aops46Bf-lkp@intel.com/
 
-Best regards,
+All errors (new ones prefixed by >>):
+
+   drivers/memory/tegra/tegra210-emc-table.c: In function 'tegra210_emc_table_init':
+>> drivers/memory/tegra/tegra210-emc-table.c:79:22: error: 'tegra210_emc_table_ops' undeclared (first use in this function); did you mean 'tegra210_emc_table_init'?
+      79 |         rmem->ops = &tegra210_emc_table_ops;
+         |                      ^~~~~~~~~~~~~~~~~~~~~~
+         |                      tegra210_emc_table_init
+   drivers/memory/tegra/tegra210-emc-table.c:79:22: note: each undeclared identifier is reported only once for each function it appears in
+
+
+vim +79 drivers/memory/tegra/tegra210-emc-table.c
+
+10de21148f7d28 Joseph Lo        2019-05-29  72  
+6888259214366b Marek Szyprowski 2026-03-13  73  static int tegra210_emc_table_init(unsigned long node,
+6888259214366b Marek Szyprowski 2026-03-13  74  				   struct reserved_mem *rmem)
+10de21148f7d28 Joseph Lo        2019-05-29  75  {
+10de21148f7d28 Joseph Lo        2019-05-29  76  	pr_debug("Tegra210 EMC table at %pa, size %lu bytes\n", &rmem->base,
+10de21148f7d28 Joseph Lo        2019-05-29  77  		 (unsigned long)rmem->size);
+10de21148f7d28 Joseph Lo        2019-05-29  78  
+10de21148f7d28 Joseph Lo        2019-05-29 @79  	rmem->ops = &tegra210_emc_table_ops;
+10de21148f7d28 Joseph Lo        2019-05-29  80  
+10de21148f7d28 Joseph Lo        2019-05-29  81  	return 0;
+10de21148f7d28 Joseph Lo        2019-05-29  82  }
+f954eaa20bd915 Marek Szyprowski 2026-03-13  83  
+
 -- 
-Bhushan Shah <bhushan.shah@machinesoul.in>
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
