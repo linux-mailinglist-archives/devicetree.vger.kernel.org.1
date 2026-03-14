@@ -1,67 +1,59 @@
-Return-Path: <devicetree+bounces-275648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275649-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8OLrCUMutWkXxQAAu9opvQ
-	(envelope-from <devicetree+bounces-275648-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 10:45:39 +0100
+	id OKcKGzkvtWkXxQAAu9opvQ
+	(envelope-from <devicetree+bounces-275649-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 10:49:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 713D028C7C5
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 10:45:38 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01AAE28C841
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 10:49:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BA41B302A04A
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 09:41:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6E135302D58C
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 09:49:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ED25334C11;
-	Sat, 14 Mar 2026 09:41:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3591034EF11;
+	Sat, 14 Mar 2026 09:49:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mXSYI/mQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BSoPmFdl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 395048003D;
-	Sat, 14 Mar 2026 09:41:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D9E134E767;
+	Sat, 14 Mar 2026 09:49:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773481315; cv=none; b=iC1cORSpU6FLHv9ETkmVBoo8kxo4XlZXFse+r2ZHRBD4W528niTAZSS4Txcai+j6Ax7F2/wN8cJ4NxR/Op0cUmDFodEQW5F3fFTsrJSeWtBC+34T/XHNuwPQZfgrYgJalrT78qwtRGzPpQ7t4febxKQ3MvoniOsYdQztUu9nzSg=
+	t=1773481777; cv=none; b=E8GDL3v9CDXWI193nkYrHLaVd2WVLCrPK8bBebp0nITMcOzo7v8g7PoKGYZekM67ZANWn3crx8if+BXdj2x78EZhgF8pQZ9VLatUoiq7IUggQBIiaV4qzi9pX16N+pEtIHdpDsYUlf0nTmAeUCVfE+LDazhmbKyN70nRqjJeJUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773481315; c=relaxed/simple;
-	bh=kqXr9BArz3PvS0L2GA1uoT9JRBle5Jc4GIpeDAoGZ7s=;
+	s=arc-20240116; t=1773481777; c=relaxed/simple;
+	bh=fcrIRgo7WiG1bH6sO/LxIQs2quqbjD/lDxK0CwZbRdU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FQlgoLuQyVCTLPmn1/OPrHZ11d4Dx3d0mw6pfOGqMsSBCS1Gshjsl0d/ZjhIQzM07HqpJT5qfh1l5tzRAigwtIBZr8ImgeHbQddZggKf6gpMH71IOr9y7YxT8R0wW2DcOPFUFQ7eycImOHTqnLm2YgZO0fDZn8MRSYw4rp7/9LQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mXSYI/mQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D111C116C6;
-	Sat, 14 Mar 2026 09:41:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YHjz98gLC064mobuVccuIMhr6o9sc+lZ2ZnZCwe9SJNis5oGJTlJ9w74CDOHn2lw7ihMCfPsCDiIT4a3VbqjfoNZl9nU3pF08fjD6c5gxbki4cS1haPT0m0XGu8b8N6If/aYRko4rBbChz6zWQCA4uRrpjQHSsmLSEnJY13qDp8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BSoPmFdl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E96B1C19425;
+	Sat, 14 Mar 2026 09:49:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773481314;
-	bh=kqXr9BArz3PvS0L2GA1uoT9JRBle5Jc4GIpeDAoGZ7s=;
+	s=k20201202; t=1773481776;
+	bh=fcrIRgo7WiG1bH6sO/LxIQs2quqbjD/lDxK0CwZbRdU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mXSYI/mQErB5npG1bowsFMzGLlblK7qjG69GDv14mjqI2OaMzzsvgpoKRSEVjviYb
-	 lZQEvNkdCzV0z8QsUr65WaPkZZRr1JrMoP8hhbGQ3qfbipDP+UoDXRcKTkr8+MQFL3
-	 +J/mHwinur5B9kINeaUG+qWuVAf1R/Dv+RjyZhoEseE4zBiwqVRhhMddP2VNwdQkyT
-	 f1nRljvlWujAcmw4GFYgQYZbET44FLw9g1EegLo29FUg05JXdclsUalkbiminNadoE
-	 F26NiAcJwJEbBOZUAypwBNFjMT5Xnbb9MVrJgG3YHQZS2kFBonNHMj+uzy2anDeQYv
-	 7bpsGPn+BnUdg==
-Date: Sat, 14 Mar 2026 10:41:52 +0100
+	b=BSoPmFdlFfBqCJLL3ptAYbd/Vl1+wpQPGDz6FW8jgiKcfLd/BDfui27gHhVikmDyr
+	 TLS2v6MzWQevab2P34ULibP5LJyvvAtJzXEUFS7qbLBLk6CH/ui5lzZA9uoUVmetOE
+	 vSml/qG8psiXPQe6NPgy14rDXIxgrd9Cdl+P6J0qDAXO2NnMb9/m12kZV8AbPgNNGJ
+	 qgO2KuW3t/BLrc2C3nY/bblS5bwl/fufDMMxbXm+UFVkrl2VOIHpVSJnfnYlenMYtB
+	 i3wma6nJj2pYYOydc5dchfW5mQnTvIqcCX4m/gFAI6T1Blp2JqnxXGSeMarwOIZQG6
+	 8jUHmq7cxElUQ==
+Date: Sat, 14 Mar 2026 10:49:33 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Radu Sabau <radu.sabau@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>, 
-	Bartosz Golaszewski <brgl@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: iio: adc: add bindings for AD4691
- family
-Message-ID: <20260314-resilient-colorful-myna-ecaeda@quoll>
-References: <20260313-ad4692-multichannel-sar-adc-driver-v3-0-b4d14d81a181@analog.com>
- <20260313-ad4692-multichannel-sar-adc-driver-v3-1-b4d14d81a181@analog.com>
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: spmi: qcom,x1e80100-spmi-pmic-arb:
+ Document Eliza compatible
+Message-ID: <20260314-happy-funny-muskox-5c0ba4@quoll>
+References: <20260313-eliza-bindings-spmi-v3-1-b8ff1e0a6171@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,48 +62,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260313-ad4692-multichannel-sar-adc-driver-v3-1-b4d14d81a181@analog.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+In-Reply-To: <20260313-eliza-bindings-spmi-v3-1-b8ff1e0a6171@oss.qualcomm.com>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275648-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275649-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[metafoo.de,analog.com,kernel.org,baylibre.com,gmail.com,pengutronix.de,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 713D028C7C5
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: 01AAE28C841
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 12:07:25PM +0200, Radu Sabau wrote:
-> Add DT bindings for the Analog Devices AD4691 family of multichannel
-> SAR ADCs (AD4691, AD4692, AD4693, AD4694).
+On Fri, Mar 13, 2026 at 02:22:38PM +0200, Abel Vesa wrote:
+> The SPMI multi-master Arbiter found on Eliza is version 7.2.0, yet
+> driver-wise, still compatible with the one featured on Hamoa (X1E80100),
+> which is 7.0.1.
+> 
+> So document the Eliza compatible and allow Hamoa one as fallback.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> ---
 
-subject, you did not implement entire feedback. Respond to all the
-comments and implement them.
-
-I finish the review here.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
