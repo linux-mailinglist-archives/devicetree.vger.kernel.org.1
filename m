@@ -1,131 +1,193 @@
-Return-Path: <devicetree+bounces-275583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275584-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qOb8NwOntGlvrgAAu9opvQ
-	(envelope-from <devicetree+bounces-275583-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 01:08:35 +0100
+	id iD8/F9intGlvrgAAu9opvQ
+	(envelope-from <devicetree+bounces-275584-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 01:12:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 443D528AD6B
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 01:08:35 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1285228ADA1
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 01:12:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 187F53062494
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 00:08:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 72A7730466A5
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 00:12:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A11D1DE4EF;
-	Sat, 14 Mar 2026 00:08:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C0A52236E0;
+	Sat, 14 Mar 2026 00:12:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dvSTOH67"
+	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="d0VCZhPf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-188.mta1.migadu.com (out-188.mta1.migadu.com [95.215.58.188])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 490DE1D5178;
-	Sat, 14 Mar 2026 00:08:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F85F1E376C
+	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 00:12:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.188
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773446900; cv=none; b=i1fY4SR+DNoL3Bjs9aQxWSQ+YYIhBeH7YAGlm7HfaExHqqd/GXDs10O3SZ3Bn6vylvQw7gYmD3YSQQPpE3mibkLoZs6ISsWyuf2bsBmdAtsHfe6hZuHs6kmTX8o8DPJ4dG99f0FfCOa3DPG+hRRYhK+6mRNQWlsS0GBQulOlq60=
+	t=1773447125; cv=none; b=Vla3WbT0PdOdg4iCnyOB34iE/s6jfVrq07FQa6zQlq8fbWl+vI1WmF5YDoRw+3iJkWm/61Po7Jn+XBKlhnHvE/ifSZbsYHFn1u/08ultriXPgaVRwuwHHXC7GI0KVI3wRK9oPEGWnzDDKrZ4NS3Zz5G8a7u7edIb/+SzBwBK8UQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773446900; c=relaxed/simple;
-	bh=7gNCDydkgxUZvseLqPsVtxB6EjOzf+D38jXxxHFS1RI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s1kGu9jmi7k2nr1XvrhJ+QgbdH7V9yFYiYCkDQmSXWOn0SGuiZz6qHW91XF7+2bcu/bzUSqstFtqOlOBgENsFadq5V8ndUkBh+Dtk5Qf9FGNnMPe6CSeqiyl9C08Py2lE+PZZrS9cV6+byHHk4PZADIrBuhuUmjMTwDUsOyeNOA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dvSTOH67; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E686C19421;
-	Sat, 14 Mar 2026 00:08:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773446899;
-	bh=7gNCDydkgxUZvseLqPsVtxB6EjOzf+D38jXxxHFS1RI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dvSTOH67VHiMLz2VR34KszR3m2sZfJb/89XLPZOiVu6ezSidZMe1YYywy7Tsq470i
-	 DgvP3Ktwbgdyiiks+MeQJWchthxll7aFbehD//QQP1UbB1pHYjELIiHiJlAcqnEmiv
-	 pkJ/8rn25WN+/qLGjie4Km3GY+By7D9LetSXDAaGve/vjib5QWvzWPRr8y30CRt0/R
-	 rQQ0EVzjJG4jB/t/tftsxgoTEEF+mM83fRWWs2dzu/fXETiK5z7xBSiptBBUvZQLjR
-	 0qap7XMOxQjnH3Y2S8tjZGyXaLEf0YdeYrfKQGA3CYRhcBg13zBGJT3rT9sS5vSr5y
-	 FlHJKrVui89Yg==
-Date: Fri, 13 Mar 2026 19:08:18 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: briannorris@chromium.org, conor+dt@kernel.org,
-	linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
-	johannes@sipsolutions.net, krzk+dt@kernel.org, kvalo@kernel.org,
-	linux-kernel@vger.kernel.org, Frank.Li@nxp.com
-Subject: Re: [PATCH] dt-bindings: net: wireless: marvell,sd8787: Relax length
- constraints
-Message-ID: <177344689795.3706356.13043407533958417879.robh@kernel.org>
-References: <20260311194531.70441-1-festevam@gmail.com>
+	s=arc-20240116; t=1773447125; c=relaxed/simple;
+	bh=4segyY3QMSl/1qA0TXzeBzgo3C16gzxb9Rr8GiYr/ys=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WZctrW0Ejz6tmGNrDl+Hnu3Ax30u5d/x9ZnPukAzm/DupJ/XYdiFWieltWOzX2pRQBc6FNkvaBrq8h4MHk31Mf/YTjFi/I5vUst4e6DS417FJq3JGwEB6q37n/k8x0xDYZWn/KELQl0FsFc83V+yhug2zr9VaAp6h6Jyk24FTpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=d0VCZhPf; arc=none smtp.client-ip=95.215.58.188
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
+Message-ID: <a045299f-9be1-4e91-8b3c-132a30613f41@packett.cool>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
+	s=key1; t=1773447111;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=UoeQv1cqLOVzIDScwdugzORdwsDIfs8B+RKp94VQiZ4=;
+	b=d0VCZhPfV3Iphz1t3h7pNC9gF6IjFwqoz9a66qh5lTiHTSOjWMkv/RHTy/S3MlhBrQDV29
+	jnLMOUTWN7jyTrn0T1leW+jC2aoufL9X+JGbL8Ta5kzYIlYej/ANi0u6GhAkd3VW41yoRg
+	hXvdPW6t91t1HmDj5P6lGky0x5N9XZV0MZakLwhidGGg3BM5OW5H96k50jrsp9kT1eoIp9
+	q5cvV59iNX6lSMVmzZl/oB6M+3ai6o09ON9bHVZtq3YIPyURIvwXXpap92hCyymetSQvZm
+	xTZ8NKD+ers9jyiZbWY7Vb4KbPqHnPIvjUk/fy6jikizyWXNZA3HFrnrar3CFw==
+Date: Fri, 13 Mar 2026 21:11:41 -0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260311194531.70441-1-festevam@gmail.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
+Subject: Re: [PATCH v2 2/5] arm64: dts: qcom: Add AYN QCS8550 Common
+To: Aaron Kling <webgeek1234@gmail.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Teguh Sobirin <teguh@sobir.in>
+References: <20260311-ayn-qcs8550-v2-0-e66986e0f0cb@gmail.com>
+ <20260311-ayn-qcs8550-v2-2-e66986e0f0cb@gmail.com>
+ <4757fd22-fe9f-4228-a0a5-11d9309549ac@packett.cool>
+ <CALHNRZ_RU+uHXfUtSO+8pKOYfBuK9jbYgqWE70WMQ=5Qz2MvvQ@mail.gmail.com>
+ <quybzbqxlohu6kiqmno2wzyltwejnc2vebxdgvdl3fdib7zg7u@wz3bkop7psu6>
+ <20260313-urban-prawn-of-success-cff01f@quoll>
+ <CALHNRZ8iBqGGRDKhDNOasfyf8TY43ne1N82irkuzDZfWUuV5sg@mail.gmail.com>
+ <wzle4bdmemfknhflwhxikq7rk7x3ao3z474bhsr5zdkvtp67cc@jddzjpzwlfrc>
+ <CALHNRZ8_Lzn=mr89dezkC6hVwgxh9kYmg8ntLf5RDuNydc9VLQ@mail.gmail.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Val Packett <val@packett.cool>
+In-Reply-To: <CALHNRZ8_Lzn=mr89dezkC6hVwgxh9kYmg8ntLf5RDuNydc9VLQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[packett.cool,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[packett.cool:s=key1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275583-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-275584-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[gmail.com,oss.qualcomm.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[packett.cool:+];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[val@packett.cool,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 443D528AD6B
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sobir.in:email,qualcomm.com:email]
+X-Rspamd-Queue-Id: 1285228ADA1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Wed, 11 Mar 2026 16:45:31 -0300, Fabio Estevam wrote:
-> Commit 31ed9d9d71ec ("ARM: dts: rockchip: Limit WiFi TX power on
-> rk3288-veyron-jerry") added calibration data for the rk3288-veyron-jerry
-> platform. The commit message explicitly notes that "the length can vary
-> between hw versions", as documented in the original text binding.
-> 
-> The current YAML schema enforces fixed maximum lengths for calibration
-> data arrays, which causes dtbs_check warnings for rk3288-veyron-jerry.dts.
-> 
-> Relax the constraints for the two properties that have
-> variable-length data in this platform by adding minItems based on the
-> actual data used in the downstream kernel:
-> 
-> - marvell,caldata-txpwrlimit-2g: 508 bytes (from rk3288-veyron-jerry.dts)
-> - marvell,caldata-txpwrlimit-5g-sub2: 744 bytes (from
-> rk3288-veyron-jerry.dts)
-> 
-> The original maxItems values are preserved as upper bounds to maintain
-> validation for other platforms while accommodating this specific
-> hardware variant.
-> 
-> Fixes: 25f855413885 ("dt-bindings: net: wireless: convert marvel-8xxx.txt to yaml format")
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
-> ---
->  .../devicetree/bindings/net/wireless/marvell,sd8787.yaml        | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+On 3/13/26 3:21 PM, Aaron Kling wrote:
+> On Fri, Mar 13, 2026 at 12:48 PM Dmitry Baryshkov
+> <dmitry.baryshkov@oss.qualcomm.com> wrote:
+>> On Fri, Mar 13, 2026 at 12:34:21PM -0500, Aaron Kling wrote:
+>>> On Fri, Mar 13, 2026 at 3:37 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>> On Fri, Mar 13, 2026 at 05:19:27AM +0200, Dmitry Baryshkov wrote:
+>>>>> On Wed, Mar 11, 2026 at 08:39:37PM -0500, Aaron Kling wrote:
+>>>>>> On Wed, Mar 11, 2026 at 7:49 PM Val Packett <val@packett.cool> wrote:
+>>>>>>> On 3/11/26 2:44 PM, Aaron Kling wrote:
+>>>>>>>
+>>>>>>>> From: Teguh Sobirin <teguh@sobir.in>
+>>>>>>>>
+>>>>>>>> This adds a base dtb of everything common between the AYN QCS8550
+>>>>>>>> devices. It is intended to be extended by device specific overlays.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Teguh Sobirin <teguh@sobir.in>
+>>>>>>>> Co-developed-by: Aaron Kling <webgeek1234@gmail.com>
+>>>>>>>> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+>>>>>>>> ---
+>>>>>>>>    arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+>>>>>>>>    arch/arm64/boot/dts/qcom/qcs8550-ayntec-common.dts | 1777 ++++++++++++++++++++
+>>>> Common is not a board, NAK. This could only be DTSI if you provide some
+>>>> sort of HARDWARE arguments explaining the common parts of schematics or
+>>>> hardware design.
+>>>>
+>>>> Not enough. We do not add compatibles not representing actual hardware,
+>>>> just to streamline boot image handling.
+>>>>
+>>>> Plus this code is not even truly correct.
+>>>>
+>>>> We do not write DTS to fulfill broken Android boot process.
+>>> I have been trying rather hard to find a reasonable compromise between
+>>> mainline requirements and a normal Android use case, something I can
+>>> actually ship to normal users. This seemed fairly reasonable to me,
+>>> since it can generate standalone dtb's transparently. But if my use
+>>> case can never meet submission requirements, then why am I even here,
+>>> getting shamed for working on Android? If I have to fork the
+>>> device-tree anyways to fit my requirements, then there's no reason for
+>>> me to put the time and effort in to submitting something I can't use.
+>>> I'd be better off just keeping everything out of tree as googles
+>>> kernel-platform supports. And never look at mainline qcom again.
+>> Well... It's a tough argument. Getting your DTs into mainline would help
+>> occasional users that would like to run something else than Android
+>> (PmOS or some other distro). Also it ensures that you can run Android
+>> even when Google (Qualcomm) EOL the current SM8550 msm-something tree.
+> Oh, I'm not working on the downstream kernel either way. The question
+> is whether device support gets mainlined or if I keep all support out
+> of tree and only update when Google forks the ack from a new lts.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+IMO landing everything with proper upstream style and having minimal 
+customization/patching during your Android build process to convert it 
+into a base dtb + dtbos setup (or a blank base + everything as dtbos 
+one?) during would already be really valuable.
+
+>> Speaking about the boot process. I remember that historically it was
+>> possible to pass several DTBs in the the Android boot image. Is it no
+>> longer the case? Is there any way to identify the boards (I think
+>> historical code was using qcom,board-id for that)? Then you would be
+>> able to squash all your DTBs in a single boot image.
+> That functionality is still there, the concatenated dtb slot in the
+> vendor_boot image. Unfortunately for this context, the odm did not
+> change those ids per hardware variant. I think they just left them at
+> the hdk or qrd default that came with the bsp. I do have to jump some
+> software hoops to slot in the correct dtbo to the dtbo partition
+> during inline updates because of this, but it's not terrible. And
+> that's not something I can reasonably do for the vendor_boot image. To
+> my knowledge, there is no way for the bootloader to tell these devices
+> apart and any attempt to do so would require a custom abl build,
+> probably per variant, which would then desync the boot firmware from
+> the official OS, plus make first install more difficult for users,
+> both of which I'm trying not to do.
+
+Leaving the default board ID is a classic… but on many old Android 
+phones you (read: an intermediate bootloader) can use the cmdline 
+injected by ABL to distinguish between models. Nothing like that here?
+
+~val
 
 
