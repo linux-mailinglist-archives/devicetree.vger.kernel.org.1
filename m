@@ -1,169 +1,185 @@
-Return-Path: <devicetree+bounces-275638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275639-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KBH8FaIhtWlZwwAAu9opvQ
-	(envelope-from <devicetree+bounces-275638-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 09:51:46 +0100
+	id kAwpDewhtWlZwwAAu9opvQ
+	(envelope-from <devicetree+bounces-275639-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 09:53:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B367028C3A7
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 09:51:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9129D28C3BF
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 09:52:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AF05C302528F
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:50:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4792430247DC
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:52:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E4A91BBBE5;
-	Sat, 14 Mar 2026 08:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 439022561A2;
+	Sat, 14 Mar 2026 08:52:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q1sTB+I2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FG0XXk9s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A8092C187;
-	Sat, 14 Mar 2026 08:50:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 208C6846A;
+	Sat, 14 Mar 2026 08:52:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773478250; cv=none; b=aoZHn75ihsVbgTiS5xyo1g1KZ8P7F+HmjOTewDHZnB2UzYCCyUw3KTJOujZcBM8VzduRFq6xa85RR3dLUJAqFkohvOX9emIaTLNXYe9J3VTW1TiGtl/ML64TUgLSBxRCrSSzwOYzxzHSGE6rI7h0+0Uk6Kho/yOfmxywhM4paLw=
+	t=1773478377; cv=none; b=bkXEzKtnRfaW9SEajYOwOJmVr3yXp74hhWf6pR218irFLBs9qj+mfILVTjGOjxggOfQqdjxcQEmGvuLGoLnnxbfBPHA2/3frGlJOG5BSXaDcK2vA5EzjoSTr7X6huBlMLjtVFMR5dbm3gMlRCceBZe+KU6wCeb4Y90XUQM6z3rI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773478250; c=relaxed/simple;
-	bh=jLDA57WfV5DNrq3xv7Qd0QXrJH67mxBJMUpO6YArVzA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KfOJrO9iHF0yRCM81vlhsWyhaBZ15ZLNuD9DlJ6rTx1s3q8eMr+yZ0Z9v0dsmEAbDk9jNeUjlKwizPmOCs1+1b/fA8C5/7ObHXEieFW8GBsGGUhIkiW0Fw9VmhV/gGyK2GZAfEMhdZO9Xg09jhDIxVYm0dGnfZmYDEOtHMHp0cM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q1sTB+I2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CFA3C116C6;
-	Sat, 14 Mar 2026 08:50:46 +0000 (UTC)
+	s=arc-20240116; t=1773478377; c=relaxed/simple;
+	bh=isyAYh5ojmORloCgPaNY2dTczDe0Vz4+tpOhyTGu6gE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hQVcjSNRTGQbTSUnIe67H7JyUVnM1Kwhc0VBhXsfx38ShBbk9GOEtqWsO+fW/P8fXLaHz5QcDTwP/1XDtoxUZ0kRS+oR+zKg0TdsLMcBi8xzf3T01C0z5ryPCL9cf6xl/MHb9A3dHnHaeFKIdm7u01SUoSCWkii2pwYnRjvsZuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FG0XXk9s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 183CDC116C6;
+	Sat, 14 Mar 2026 08:52:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773478249;
-	bh=jLDA57WfV5DNrq3xv7Qd0QXrJH67mxBJMUpO6YArVzA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Q1sTB+I2ogGwoJmOawjmjsUgMeM2pIwveAjHNTiO+7jNAB+mNa+vIOko4CtH6d540
-	 zLVNelQ+IBqb7iR5FGt7KWLBMtJABVEnts0eYBHJ3rCLsRmjQ2wFq1Q4tNi/gCbAJd
-	 K9xpei2uT5AdU7XNerroradoCAkN1JpsXRpM5czu53RByQHnqvJ1ngA8Lx4RjAleBK
-	 2vxMN58q5uKG8FDr9crdUNVSr0wFzRDq8ariTiSDmlSS6iCQvg0XrhfWvLZQZmrKkw
-	 Cg1EMrnjuwxt10YiqZIWD/JYxFGkNEvSg6GpvUT5386mPzY/3F1BC0c0gea1t0Vqnv
-	 JY54PF2ZSeOEg==
-Message-ID: <e82aefd4-384e-43e6-a830-c7728f642ae2@kernel.org>
-Date: Sat, 14 Mar 2026 09:50:45 +0100
+	s=k20201202; t=1773478376;
+	bh=isyAYh5ojmORloCgPaNY2dTczDe0Vz4+tpOhyTGu6gE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FG0XXk9sqlykF+WTrPP6Ra92mHopuoMNuMu4U/kRaB5eTRWeCH2Es+O4bivRJvt0h
+	 xkwdx1VosZCrxboHeTVeo/Z/305oScEfFYnphPE3lqJLcK6v59hY7C6ssj8ZIF3LjT
+	 FRwyNLZbwVEnzLeoieLUEu+YPDF3npLUlKnHZlhqljprrKRWaJRjxtjTA6gQJGEaT2
+	 EfsDh9jw7zC3MDTqKoJcKbz0Fh7+6DFfCfDg3bJpn1GokSvQUM2whoYaa7ZLcoZWev
+	 EmwvnDWTDtcsNwHG6uIERTr7twHHes1pWZNrHdwLtp0o5y+8jOcn8GIytEqmki32ne
+	 XnIoOG1lCbFWQ==
+Date: Sat, 14 Mar 2026 16:52:52 +0800
+From: Yixun Lan <dlan@kernel.org>
+To: Samuel Holland <samuel.holland@sifive.com>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Subject: Re: [PATCH 1/4] riscv: dts: spacemit: k3: add clock tree
+Message-ID: <20260314085252-GKB415778@kernel.org>
+References: <20260304-01-dts-uart-full-v1-0-50a0aa53a245@kernel.org>
+ <20260304-01-dts-uart-full-v1-1-50a0aa53a245@kernel.org>
+ <fecadd41-ee3e-4452-bf25-4a70eaeb5f3f@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: lm75: Add label property
-To: Flaviu Nistor <flaviu.nistor@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260313-enthusiastic-defiant-mastiff-bfe8d5@quoll>
- <20260314074858.268098-1-flaviu.nistor@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260314074858.268098-1-flaviu.nistor@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fecadd41-ee3e-4452-bf25-4a70eaeb5f3f@sifive.com>
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275638-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	TAGGED_FROM(0.00)[bounces-275639-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B367028C3A7
+X-Rspamd-Queue-Id: 9129D28C3BF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 14/03/2026 08:48, Flaviu Nistor wrote:
-> On Fri, 13 Mar 2026 14:26:35 +0100, Krzysztof Kozlowski wrote:
->> On Wed, Mar 11, 2026 at 12:58:07PM +0200, Flaviu Nistor wrote:
->>> Add support for an optional label property similar to other hwmon devices.
->>
->> I do not see any support being added here.
->>
->> Subject is not accurate either. You did not add the label property.
->>
->> Best regards,
->> Krzysztof
+Hi Samuel,
+
+On 20:44 Fri 13 Mar     , Samuel Holland wrote:
+> Hi Yixun,
 > 
-> Hello and thanks for the reply.
-> I probably did not use the best description and subject name, 
-> I wanted to be linked to the other patch in the series).
-> The label property is already added by you via the hwmon-common.yaml.
-> I will have to send out a v2 for this series so I will change the subject to
-> "Add examples for label property" and also specify in the description more clear
-> that is just a simple "Add label property in the two examples."
+> On 2026-03-04 1:36 AM, Yixun Lan wrote:
+> > Add clock support to SpacemiT K3 SoC, the clock tree consist of several
+> > blocks which are APBC, APMU, DCIU, MPUM.
+> > 
+> > Signed-off-by: Yixun Lan <dlan@kernel.org>
+> > ---
+> >  arch/riscv/boot/dts/spacemit/k3.dtsi | 75 ++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 75 insertions(+)
+> > 
+> > diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/spacemit/k3.dtsi
+> > index b69cf81b5d55..e3d7f3102fd5 100644
+> > --- a/arch/riscv/boot/dts/spacemit/k3.dtsi
+> > +++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
+> > @@ -4,6 +4,7 @@
+> >   * Copyright (c) 2026 Guodong Xu <guodong@riscstar.com>
+> >   */
+> >  
+> > +#include <dt-bindings/clock/spacemit,k3-clocks.h>
+> >  #include <dt-bindings/interrupt-controller/irq.h>
+> >  
+> >  /dts-v1/;
+> > @@ -398,6 +399,36 @@ core3 {
+> >  		};
+> >  	};
+> >  
+> > +	clocks {
+> > +		vctcxo_1m: clock-1m {
+> > +			compatible = "fixed-clock";
+> > +			clock-frequency = <1000000>;
+> > +			clock-output-names = "vctcxo_1m";
+> > +			#clock-cells = <0>;
+> > +		};
+> > +
+> > +		vctcxo_24m: clock-24m {
+> > +			compatible = "fixed-clock";
+> > +			clock-frequency = <24000000>;
+> > +			clock-output-names = "vctcxo_24m";
+> > +			#clock-cells = <0>;
+> > +		};
+> > +
+> > +		vctcxo_3m: clock-3m {
+> > +			compatible = "fixed-clock";
+> > +			clock-frequency = <3000000>;
+> > +			clock-output-names = "vctcxo_3m";
+> > +			#clock-cells = <0>;
+> > +		};
+> > +
+> > +		osc_32k: clock-32k {
+> > +			compatible = "fixed-clock";
+> > +			clock-frequency = <32000>;
+> > +			clock-output-names = "osc_32k";
+> > +			#clock-cells = <0>;
+> > +		};
+> 
+> Are these clocks provided by SoC or by the board? Usually there's a crystal
+> external to the SoC that provides the root of the clock tree. If these clocks
+> are provided by the board, they (or at least the clock-frequency property)
+> should be in the board DT, not the SoC dtsi.
+> 
+It's true, as a quick check, osc_32k provided by P1 PMU, while vctcxo_24m is
+a crystal, vctcxo_1m and vctcxo_3m are also marked as external in the clock
+tree, but I would confirm them later..
 
-Your commit msg must explain WHY you are doing this.
+I agree to move them out of SoC dtsi file - k3.dtsi, while due to all boards share
+the same clock topology, what if I creating a k3-clock.dtsi and making it shared 
+between all board dts file? to avoid massive DTS duplication
 
-Best regards,
-Krzysztof
+> Also, the /clocks node is out of order.
+> 
+I will move osc_32k before vtccxo_1m, assuming it's the problem you
+refered to?
+
+> Regards,
+> Samuel
+
+-- 
+Yixun Lan (dlan)
 
