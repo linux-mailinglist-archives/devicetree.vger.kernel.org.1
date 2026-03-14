@@ -1,191 +1,160 @@
-Return-Path: <devicetree+bounces-275611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275612-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0IPfCPfJtGnRswAAu9opvQ
-	(envelope-from <devicetree+bounces-275611-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 03:37:43 +0100
+	id aUt8MHrZtGlNtgAAu9opvQ
+	(envelope-from <devicetree+bounces-275612-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 04:43:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFC2228B6CB
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 03:37:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0654928B7C3
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 04:43:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 53CA7301DD58
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 02:37:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 89C17305512E
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 03:43:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94AC28C2A1;
-	Sat, 14 Mar 2026 02:37:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E74F307AD5;
+	Sat, 14 Mar 2026 03:43:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PGY9BxEp"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="f6Bjyn1F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26AAF2BDC16
-	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 02:37:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 461214A35;
+	Sat, 14 Mar 2026 03:43:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773455861; cv=none; b=ZPDAp6InBWOYIpuGntatpVRIbXW0wECdj8cW5RNdotrfFMO7Rtr3rOzY/iA9r44uEUniF4zMfdayXDC0hnB2qa0NwCQAmJPfBUU32PNOA5lnMKsKUZDjrv52BFjKT9zUtzOS6+vyAk6YfhwjYBX1U4A2jzz31ePhHqri78xEP+c=
+	t=1773459829; cv=none; b=DWTdXphDycWGaJq+nIYuenDRYv+zKJRERRbDWHJmGbXqr0CnIEO+opmtYyIyEj04R4BB8h325PUjiVC8HZuaClTIOwEUCANdvxj2nvCtpk81Uty2osdOG+NhxwoJ7pw6YuiBwmeCWjmUjnlBjR5YWI6Uq6C/7VaFtGW4BgpRgFk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773455861; c=relaxed/simple;
-	bh=2MnwNNxi3vR2blEnzDjTJ8DgBhkgsMLNvz2ObjHVzxQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MurU2EalGgvHk6sY5e67jgElkgZP0GDsI2OU7iPBuT78cU/5xFijYyTPaxeCiVreGel9Bl4MV72lQkH8ql1HiHwsSA7aNRfph5988bAg6KInFrBCDAr4zTzs3v0e+WCumvO+kwIOIambGQoyG8OeFYd+ga5U/0Tq4OMZEcebC34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PGY9BxEp; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5a132096c08so294115e87.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 19:37:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773455858; x=1774060658; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rJQsy+un74x71sHYQTOJe8v5BZSrSsUlftntQyMx9oM=;
-        b=PGY9BxEpJIxIhRgPkWe2vaB8fr71gUf/sh3BODCmY2ECWOB8JsJDEPINJPT8z0IZta
-         Lk3scwWfW7kTxVYVlDqGqkOcuG10gi6gxhR+u0+w3LnYLuxWdC46w59n/qgVaukGndaT
-         hfmtwVqJeaze6eRSB+Kdk5qmXPvudrf1FMEXDteYN2D7XA40JM8bD1aGTOjqYvPgwoWV
-         ngwY2WVnmvnAhUaH+OXcdxlupVH5KyA/J8R7718U+MJTm3oM8GgdNvo7R1Vhz6gEGp53
-         Sakx4GgUilCQUZl/gyoJvaESZvFsTUH2Oj2V14gqa7qbQBFfaXKjwWfdHgX+YysYIWes
-         z3TQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773455858; x=1774060658;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=rJQsy+un74x71sHYQTOJe8v5BZSrSsUlftntQyMx9oM=;
-        b=bjAJptniDBrKOftA0Cm/PVnqje/j8KDqGw907VdKXxDrZvhdzxlDElaoK0cyQkvHop
-         XViDJXS9s/5vU7K/3aCQwlSYCj5TNGE3Fh7f/NHDMEEugg9e2IiB+UUjCm4C21xeq4/d
-         I4Yu8TXC/ybPjKu7wCrMwPaszNrGRkqh/AA8ERTcxi/bEec5bPvJdJXiYlc1EzuuwpBz
-         UmzrxpD5ZxjTWWtg25HUACdNdCro+kciA2e2XNFUua4TECoRlkznlsZ51/1hhDkwZRqe
-         UAkEhQSvaWO5BlqS7lAee/TUTGha2KI1QbJAu7X3cWnJvs+BCXg/GIuH9nbVUq+bCIA+
-         JN0A==
-X-Forwarded-Encrypted: i=1; AJvYcCV0qWB/x2qfz0kJ1TUhG8U/i7uwlRpfZi8E3MLeDv75CTikvm+6prslzMlNvvcwxgZEN0QnN8JFrl0E@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7jvmmBjLcIdMn/4NrBUkOFfD6lxaWocO1H+ZWJZUzzingaimJ
-	u8W3wvxAW3QYIyPjuaSMGJKEZmijy4IzBpH7hE9DfElDN3aZ/ppYMrjYMz8a5KzjBf8=
-X-Gm-Gg: ATEYQzwUsf5S9Bb/tWHVWC+7OG/GGjlSUz7SIMixyPXtYNBbsDyTC6byaQJTeUGPrl3
-	OOEPYBjZ9HYHppvmGTkKHmy8ZHhcXJZS88ApmLe5CsS0S3NP1oB9yOaShEkBz1EDnRA0qyYk4x6
-	sMikJm+OvdA192ECbXVnbdHOi3FVexrn/XeR4W3oX51zPFP3KQdkhRAcuO20bhtRau2686wSa4j
-	5z15h7xHmmaL1qNp1SoZmd50+7Qr/RCvP6Y/HQlDCbY4U4UhfTS9vkRumxRDwzpQDQTKwDlPE+a
-	CKSRL5c8pzB1gKgHsVOecVZac9TvEIrxANFlYdE555v2m7tX7dW5XE64cIq70GCdptgQtlKYezh
-	R3JS21YNHTrTmPqQMRJo2G/980ByvszNlzmotKSSUFUkL5A7U7KBnLGXL91bfg9fmK5iZZkbWea
-	IBBBfF4H3UfF040nVBOvP/k1hSTvwLSnzppCl/nTNUjALgydiK9lzH55K0u6HN4gZY5w==
-X-Received: by 2002:ac2:5a44:0:b0:5a1:440f:512a with SMTP id 2adb3069b0e04-5a162b0ed40mr728470e87.3.1773455858307;
-        Fri, 13 Mar 2026 19:37:38 -0700 (PDT)
-Received: from thyme.. (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a15602e692sm1884296e87.30.2026.03.13.19.37.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Mar 2026 19:37:36 -0700 (PDT)
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	s=arc-20240116; t=1773459829; c=relaxed/simple;
+	bh=kS+cBmQC7gM1gNSUurbOOTzzOTiUZdBmnUD9OtT30Lo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZYxZjFdE9LmpT7FpblWXBpq/LGBmrP2uMsTBKg7niR9aznNdEtdgvjMNJiPsxpxvzcBqtjAkqUQz1saeAeGnoasgD4ztVcGFIJzmztFJFJQHwKz7otfOTOGFXj0OcZvJmuus1ICizKcu2o9cfGW/XWeCndPaJ/M5DyiyA/1ZWaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=f6Bjyn1F; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773459827; x=1804995827;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=kS+cBmQC7gM1gNSUurbOOTzzOTiUZdBmnUD9OtT30Lo=;
+  b=f6Bjyn1FRX4NMED05V7OyqEOAT2RTIXisJ7nutsVI/HaaIv6GkcwV06C
+   QyqLbEu1/n7Cx5P5bcC5eE8x0L6zfmtzUI6F/Mxx31bekj6ACTzZM2Xp+
+   a9o65Z55pz7T8BIPYoph6wISMkJxui4wmJWjoSOHYVNjJvRRGPjcYsQAg
+   YbT455x1mUWM+7bKi9xXQcJd3Zj6Dsc7XzOIMKcv4aDIvq6LPi0bBwS9Z
+   J5OsdiFptoT+pMNiZC7s1FhCwfv9S53w2s+J3GBfChsKINC1lbJLS5qWC
+   RHyJX/CATrveQs80av/vPGKceUpShOqzxxuFfAuU3V8KvPYEVcPJuGJFH
+   w==;
+X-CSE-ConnectionGUID: 8w1stLYzQgKjibTbsdBOTA==
+X-CSE-MsgGUID: O2JulzYVQI60oGG6mDMo3Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11728"; a="74481693"
+X-IronPort-AV: E=Sophos;i="6.23,119,1770624000"; 
+   d="scan'208";a="74481693"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2026 20:43:46 -0700
+X-CSE-ConnectionGUID: UKSJurcGQnWhOrTi8Ezv7Q==
+X-CSE-MsgGUID: talYbqnkSdie1UjmS14HqQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,119,1770624000"; 
+   d="scan'208";a="226026513"
+Received: from lkp-server01.sh.intel.com (HELO 418530b1a366) ([10.239.97.150])
+  by fmviesa005.fm.intel.com with ESMTP; 13 Mar 2026 20:43:44 -0700
+Received: from kbuild by 418530b1a366 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1w1Fuf-000000004c7-0vqk;
+	Sat, 14 Mar 2026 03:43:41 +0000
+Date: Sat, 14 Mar 2026 11:43:24 +0800
+From: kernel test robot <lkp@intel.com>
+To: Marek Szyprowski <m.szyprowski@samsung.com>,
+	Saravana Kannan <saravanak@kernel.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-mm@kvack.org, iommu@lists.linux.dev
+Cc: oe-kbuild-all@lists.linux.dev,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Abel Vesa <abelvesa@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH v2 6/6] arm64: dts: qcom: sm8650: Enable UHS-I SDR50 and SDR104 SD card modes
-Date: Sat, 14 Mar 2026 04:37:15 +0200
-Message-ID: <20260314023715.357512-7-vladimir.zapolskiy@linaro.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20260314023715.357512-1-vladimir.zapolskiy@linaro.org>
-References: <20260314023715.357512-1-vladimir.zapolskiy@linaro.org>
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Linux Memory Management List <linux-mm@kvack.org>,
+	Robin Murphy <robin.murphy@arm.com>
+Subject: Re: [PATCH 7/7] of: reserved_mem: rework fdt_init_reserved_mem_node()
+Message-ID: <202603141108.XvqRlNaY-lkp@intel.com>
+References: <20260313150802.1121442-8-m.szyprowski@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260313150802.1121442-8-m.szyprowski@samsung.com>
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275611-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275612-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree];
 	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:email,linaro.org:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: DFC2228B6CB
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 0654928B7C3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The restriction on UHS-I speed modes was added to all SM8650 platforms
-by copying it from SM8450 and SM8550 dtsi files, and it was an actually
-reproducible problem due to the overclocking of SD cards. Since the latter
-issue has been fixed in the SM8650 GCC driver, UHS-I speed modes are
-working fine on SM8650 boards, below is the test performed on SM8650-HDK:
+Hi Marek,
 
-SDR50 speed mode:
+kernel test robot noticed the following build warnings:
 
-    mmc0: new UHS-I speed SDR50 SDHC card at address 0001
-    mmcblk0: mmc0:0001 00000 14.6 GiB
-     mmcblk0: p1
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on akpm-mm/mm-everything linus/master v7.0-rc3 next-20260311]
+[cannot apply to tegra/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-    % dd if=/dev/mmcblk0p1 of=/dev/null bs=1M count=1024
-    1024+0 records in
-    1024+0 records out
-    1073741824 bytes (1.1 GB, 1.0 GiB) copied, 24.8086 s, 43.3 MB/s
+url:    https://github.com/intel-lab-lkp/linux/commits/Marek-Szyprowski/of-reserved_mem-remove-fdt-node-from-the-structure/20260314-023123
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20260313150802.1121442-8-m.szyprowski%40samsung.com
+patch subject: [PATCH 7/7] of: reserved_mem: rework fdt_init_reserved_mem_node()
+config: arc-allnoconfig (https://download.01.org/0day-ci/archive/20260314/202603141108.XvqRlNaY-lkp@intel.com/config)
+compiler: arc-linux-gcc (GCC) 15.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260314/202603141108.XvqRlNaY-lkp@intel.com/reproduce)
 
-SDR104 speed mode:
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603141108.XvqRlNaY-lkp@intel.com/
 
-    mmc0: new UHS-I speed SDR104 SDHC card at address 59b4
-    mmcblk0: mmc0:59b4 USDU1 28.3 GiB
-     mmcblk0: p1
+All warnings (new ones prefixed by >>):
 
-    % dd if=/dev/mmcblk0p1 of=/dev/null bs=1M count=1024
-    1024+0 records in
-    1024+0 records out
-    1073741824 bytes (1.1 GB, 1.0 GiB) copied, 12.9448 s, 82.9 MB/s
+>> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'uname' not described in 'fdt_init_reserved_mem_node'
+>> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'base' not described in 'fdt_init_reserved_mem_node'
+>> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'size' not described in 'fdt_init_reserved_mem_node'
+>> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'uname' not described in 'fdt_init_reserved_mem_node'
+>> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'base' not described in 'fdt_init_reserved_mem_node'
+>> Warning: drivers/of/of_reserved_mem.c:580 function parameter 'size' not described in 'fdt_init_reserved_mem_node'
 
-Unset the UHS-I speed mode restrictions from the SM8550 platform dtsi
-file, there is no indication that the SDHC controller is broken.
-
-Fixes: 10e024671295 ("arm64: dts: qcom: sm8650: add interconnect dependent device nodes")
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 3 ---
- 1 file changed, 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index e915e7209750..d0180e871bdf 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -4976,9 +4976,6 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
- 
- 			bus-width = <4>;
- 
--			/* Forbid SDR104/SDR50 - broken hw! */
--			sdhci-caps-mask = <0x3 0>;
--
- 			qcom,dll-config = <0x0007642c>;
- 			qcom,ddr-config = <0x80040868>;
- 
 -- 
-2.49.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
