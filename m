@@ -1,146 +1,237 @@
-Return-Path: <devicetree+bounces-275718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275719-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8Ds4KNxutWlz0QAAu9opvQ
-	(envelope-from <devicetree+bounces-275718-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 15:21:16 +0100
+	id k6eJOptwtWkS0gAAu9opvQ
+	(envelope-from <devicetree+bounces-275719-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 15:28:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A304328D7EB
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 15:21:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C2C528D82B
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 15:28:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B100A3006212
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 14:21:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B93DA301E6EE
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 14:28:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34090361DDB;
-	Sat, 14 Mar 2026 14:21:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C3D637999D;
+	Sat, 14 Mar 2026 14:28:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g6sqYRo+"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="RN+bru/A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 102A8239E76;
-	Sat, 14 Mar 2026 14:21:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39A94377ECA
+	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 14:28:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773498069; cv=none; b=iICgfNVpefuLu2pl/a2qOqYmRk41B4Wg0OdeRyYYdSzL4qJVdcI7LMf9PusDMKNffO0Ijd+F7SMIhuCpLS5EmGUrgB2rNm7sa1pNuJF5w2EEgIU8emc7F+GoeP/eS534a0+gnqX6VArIONmtxSuio9xUbGMpp/1WlFCl3RNn4rA=
+	t=1773498519; cv=none; b=Z4zCuPUsZ5B4BrgVTDqrm3bBhwFRY06mrWhZLesCXK/sjGOwXmHMCfP/Vy5d5j1rCl/+CYVWK2IfQNvrLgQ2lOSdIfqp6JQf+4ef0d/k4Xvd/wd9m9MKT97AXhwvP5krufs6zdK6GcyZizxJQtdWNHVyBb3/FNM3G0mAKRXS8bM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773498069; c=relaxed/simple;
-	bh=YdVf07ou5a2k64Dde6YPstlshLKg9I/2efrQvGdUQpU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rJif83SR8xjc2ReriBEXdwlr39pe44wazh31IkbNPjpYa9j7dsZzwIoLdQ/3mGFDkS0uScYnVI20TzeXIYRbIHQPzmj+a6s8lg8m08W0xgb0YyAR3HnsJdyjWsKZ6mcUm1zCJvnVlWnOdeSbDcM0q+gd7c0v/l/XB2+xP6MhHpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g6sqYRo+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2560C116C6;
-	Sat, 14 Mar 2026 14:20:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773498068;
-	bh=YdVf07ou5a2k64Dde6YPstlshLKg9I/2efrQvGdUQpU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=g6sqYRo+OmrrdWF3NQFAgx4mE/BObaNhmv+978Slt6FXdRWuUfDqoGz0LqPxY4ygA
-	 IYYFWzOcoZHqgdu6/+PBxzus+2qRBhdkYJ2v0LnzajnLHrmTwOPAEUysX2vGdJMOxo
-	 u4sdVBnB5cIkeBQTjUW1m3aQMUyqVi0GHU3s1KnTrJ4ujUILAYZKOYSntrGCy8OWW0
-	 bLqMaoWptbo+TESpD2gnkNjFCJMCwP+6pjrocwJtoeRmNe1Jz7/VaWk7K0EYqvY/Lf
-	 e3m8fItzg1l4H/1m9s7iJy09kIZNyVFmfi3MEqBgmGLVSmGWXK5v+dkvbuYZluZOIS
-	 hMhEOdCy4hnRA==
-Date: Sat, 14 Mar 2026 19:50:50 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>, andersson@kernel.org, 
-	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	jingoohan1@gmail.com, lpieralisi@kernel.org, kwilczynski@kernel.org, 
-	bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org, kishon@kernel.org, 
-	neil.armstrong@linaro.org, abel.vesa@linaro.org, kw@linux.com, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com, 
-	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com
-Subject: Re: [PATCH v1 1/1] arm64: dts: qcom: hamoa: Move PCIe PERST and Wake
- GPIOs to port nodes
-Message-ID: <en5a7jrgpbn4bsmw5qwprugb2qmjkqw2x5eey6jxxu63634duz@b43rhcsqkj3o>
-References: <20260313094618.1361418-1-ziyue.zhang@oss.qualcomm.com>
- <20260313164542.GA1405513@bhelgaas>
+	s=arc-20240116; t=1773498519; c=relaxed/simple;
+	bh=XpZU3k937Pg1EDwk3hoUh1d/FQnXttxyeM0NFBMxMTI=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
+	 References:In-Reply-To; b=G1pZhryHkThafbZ6z57HRW2OKMSo6p4uW6hLa/pims6qCAtTYOcbnzaSa7IdGaZbmy5km9N6iibK9mcPvVY3UklE8KQdvj6L5xU5r0WizRbwmZr6W7/LLzEpCJWdghqQI5MeTW5Fpl/qdPjXIqu7vDnbNsOtgn1yDjWyUdGz/K4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=RN+bru/A; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4852b81c73aso27584795e9.3
+        for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 07:28:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1773498515; x=1774103315; darn=vger.kernel.org;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=C+2Tn48ZTy8YJup8oy5qnpSHZErDyfJTbe2tIPOLqQk=;
+        b=RN+bru/ApmfvfP4+0T9nmFML9bHW5MpEghE9vgIBqtb7HC++oSoi7XCguqJTw5hwRy
+         bkvt22F1uv3XauCItw/BfDV1TuW34fpg4spQ1uUtaNjXZuBJaQGZ94sfAM2NZojcTD97
+         Z1j8Xm0ahPMnIW1pULg+wYL5zbBzO1XTEQmyN5nkANijHRiNSvYqkMzuI8SSEBuGCAfH
+         WRyU1xZoFxANfaOD7/SSRedk6iy8yIfbmXbUP7bRPA7DTSBeICU2S1fSSOFYnhXOX9Vh
+         nMpju9KmXNTCZy202Sb8Y2tWiFCVA4mnM/HB28TFePVyD8dxvd3p3hvITWw9c5Y7ooVP
+         hbwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773498515; x=1774103315;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=C+2Tn48ZTy8YJup8oy5qnpSHZErDyfJTbe2tIPOLqQk=;
+        b=DKNx7PDjlWfcOM8RV66k6dJLDZXJWc7qWgUHpcDq4Mdgrw5/mB2FISi2duwLqHnQTo
+         aUJ8JYMDN7eReLOY7eYIZC76oniMw860MV97O+Ktn+HPkU3NpBGi32VmiszsWDeyfpzy
+         rBY9jHhD+quGul9p/Nbmw8Wd1iF7mRHNH932/bciE/DSLGWfuZsUWfqKRhGZvzaVKk3V
+         /u351JP14e7CJ4L2XvQas/1f7z7TmnYlhAlqWk2DqgUpDgjbboQy/otFQyUD96Rv6viW
+         LMbdIXlaybqizH1paQOLEwdbJpdw7K1gNzQAyFhmLZQCObSAqqCFLY3szGr9QOSsUliT
+         xHlA==
+X-Forwarded-Encrypted: i=1; AJvYcCXq5jDAfGo/1OPD8u0a4KPPY4pujYCmdrWlBXiQ/tVSqG7aQ7zpcB4mVS+wGLm8PFZwdf5DLndVJIcR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDTJUficKMXEsUQsnRspBk6QPjj3pipNNLPSN8Ck8frB2tUlvx
+	FfOQnYnxlGkpCN49TuRJIvFgf6Sodm3MvGTodVzA8cS1QPCpItQTCITIgElrKs7ZcYc=
+X-Gm-Gg: ATEYQzxYLAr/FN+ieUWW/CSZslnItOKXHknoIHYag6xTUC05HtyIeBuSPUNPTrfuNw7
+	ReeMzJmnco55ToiP745i86KcalHX6GuwhD/LWUaAzsBjpc4az/6Wpsz8wh4CdEuUpEj5zmx6a1i
+	JVbiC/wVP4ACEWvTQrY5LmUc3eiNo9YHMipUi/0qfqmKY/yeXGevZuEoPelmDJVuuEb8Ww0hrek
+	Y7dI3ER6JQAAb2LPaBmTJM8cwciVBh/tr+japr79xKBBBryzns6bF46kgrpzCZe79YjBTKcT32+
+	LG4VFf3WI0qiOV7H7Og1YPAkGlps6Il6v31jprvHAzXnQV3Pt8YPEI4WGc++Sxv7D9jPm/l8eXA
+	hW2gnm/oXUkLL39do+jr4Jw3ne3rUz4kgJJpCt0aVVkE19LMINiVTro0NFU4qxYersLTeglBjTq
+	d2nReDnKqZyDI6Ay0=
+X-Received: by 2002:a05:600c:3550:b0:485:3983:aba2 with SMTP id 5b1f17b1804b1-4855670b64emr125739085e9.23.1773498515112;
+        Sat, 14 Mar 2026 07:28:35 -0700 (PDT)
+Received: from localhost ([195.52.25.213])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4854b5e912fsm753413325e9.2.2026.03.14.07.28.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 14 Mar 2026 07:28:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260313164542.GA1405513@bhelgaas>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Mime-Version: 1.0
+Content-Type: multipart/signed;
+ boundary=2594bdddbece5ae68bc65d0e181a463f516ad51c50de981b59b6999a2bd2;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Sat, 14 Mar 2026 15:28:25 +0100
+Message-Id: <DH2KR1W7CWZW.35FWVV4MNS0NE@baylibre.com>
+From: "Markus Schneider-Pargmann" <msp@baylibre.com>
+To: "Conor Dooley" <conor@kernel.org>, "Krzysztof Kozlowski"
+ <krzk@kernel.org>
+Cc: "Markus Schneider-Pargmann" <msp@baylibre.com>, "Bjorn Andersson"
+ <andersson@kernel.org>, "Mathieu Poirier" <mathieu.poirier@linaro.org>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Suman Anna"
+ <s-anna@ti.com>, "Nishanth Menon" <nm@ti.com>, "Vignesh Raghavendra"
+ <vigneshr@ti.com>, "Tero Kristo" <kristo@kernel.org>, "Vishal Mahaveer"
+ <vishalm@ti.com>, "Kevin Hilman" <khilman@baylibre.com>, "Dhruva Gole"
+ <d-gole@ti.com>, "Sebin Francis" <sebin.francis@ti.com>, "Kendall Willis"
+ <k-willis@ti.com>, "Akashdeep Kaur" <a-kaur@ti.com>,
+ <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 8/8] dt-bindings: remoteproc: k3-r5f: Require
+ memory-region-names
+X-Mailer: aerc 0.21.0-126-g9e77103592fe
+References: <20260312-topic-am62a-ioddr-dt-v6-19-v2-0-37cb7ceec658@baylibre.com> <20260312-topic-am62a-ioddr-dt-v6-19-v2-8-37cb7ceec658@baylibre.com> <20260313-quantum-modest-prawn-896bde@quoll> <DH1P27ZP9QYQ.2IP3X8G218GR8@baylibre.com> <849c07bd-2f8d-4982-b5cf-c336807ab8ed@kernel.org> <20260313-kettle-craftily-aa087e6b74db@spud>
+In-Reply-To: <20260313-kettle-craftily-aa087e6b74db@spud>
+X-Spamd-Result: default: False [-1.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MV_CASE(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-275718-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,gmail.com,google.com,linaro.org,linux.com,vger.kernel.org,lists.infradead.org,quicinc.com];
+	TAGGED_FROM(0.00)[bounces-275719-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,linaro];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DMARC_NA(0.00)[baylibre.com];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[msp@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: A304328D7EB
+X-Rspamd-Queue-Id: 3C2C528D82B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 11:45:42AM -0500, Bjorn Helgaas wrote:
-> On Fri, Mar 13, 2026 at 05:46:18PM +0800, Ziyue Zhang wrote:
-> > Commit 960609b22be5 ("arm64: dts: qcom: hamoa: Move PHY, PERST, and Wake
-> > GPIOs to PCIe port nodes and add port Nodes for all PCIe ports") did not
-> > convert all Hamoa‑based platforms to the new method of defining PERST and
-> > Wake GPIOs in the PCIe root port nodes.
-> > 
-> > Without the change PCIe probe will fail. The probe failure happens because
-> > the PHY stays in the controller node while the PERST/Wake GPIOs were moved
-> > to the port nodes.
-> > 
-> > This fixes probe failures seen on the following platforms:
-> >  - x1-hp-omnibook-x14
-> >  - x1-microsoft-denali
-> >  - x1e80100-lenovo-yoga-slim7x
-> >  - x1e80100-medion-sprchrgd-14-s1
-> >  - x1p42100-lenovo-thinkbook-16
-> >  - x1-asus-zenbook-a14
-> >  - x1-crd
-> >  - x1-dell-thena
-> > 
-> > Fixes: 960609b22be5 ("arm64: dts: qcom: hamoa: Move PHY, PERST, and Wake GPIOs to PCIe port nodes and add port Nodes for all PCIe ports")
-> 
-> Are you saying that DTs in the field broke because of some kernel
-> change?  That's not supposed to happen.  Even though PHY, PERST, and
-> Wake GPIOs should be described in Root Port nodes instead of the Root
-> Complex node in *future* DTs, the kernel is still supposed to accept
-> the old style with them described in the Root Complex node.
-> 
+--2594bdddbece5ae68bc65d0e181a463f516ad51c50de981b59b6999a2bd2
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-This is not related to the driver change. The driver correctly parses all Root
-Port properties either in the Root Complex node (old binding) or Root Port node
-(new binding). But commit 960609b22be5, left converting mentioned board DTS to
-the new binding, leaving those affected platforms in a half baked state i.e.,
-some properties in RC node and some in Root Port node. Driver cannot parse such
-combinations, so it fails correctly so.
+Hi,
 
-- Mani
+On Fri Mar 13, 2026 at 5:18 PM CET, Conor Dooley wrote:
+> On Fri, Mar 13, 2026 at 04:49:14PM +0100, Krzysztof Kozlowski wrote:
+>> On 13/03/2026 14:38, Markus Schneider-Pargmann wrote:
+>> > Hi Krzysztof,
+>> >=20
+>> > On Fri Mar 13, 2026 at 2:13 PM CET, Krzysztof Kozlowski wrote:
+>> >> On Thu, Mar 12, 2026 at 04:49:02PM +0100, Markus Schneider-Pargmann (=
+TI) wrote:
+>> >>> If memory-region is used, require memory-region-names.
+>> >>
+>> >> Why?
+>> >=20
+>> > This was a suggestion/comment from Conor in the last version:
+>> >=20
+>> >     Is this really optional? Shouldn't it be made mandatory so that it=
+ is
+>> >     easy to tell the difference between the two configurations?
+>>=20
+>> Then write it in commit msg. You have entire commit msg to explain why
+>> you are doing things, instead of obvious what. We can read the diff.
+>>=20
+>> >=20
+>> > https://lore.kernel.org/all/20260303-hesitate-preoccupy-5e311cbd3e58@s=
+pud/
+>> >=20
+>> >>
+>> >> I don't understand also why this is a separate change, but maybe answ=
+er
+>> >> to "Why are you doing it" would cover it as well.
+>> >=20
+>> > I made this a separate patch so the git tree never has any
+>> > binding/devicectree warnings for memory-region-names even in-between
+>> > patches. That's why I created these patches in this order:
+>> >=20
+>> > 1. Add the memory-region-names as an optional property.
+>> > 2. Add memory-region-names to all users of memory-region.
+>>=20
+>> So what is the point of this if it is optional? IOW, what does this
+>> commit achieve? Almost nothing.
+>>=20
+>> > 3. Make the property required if memory-region exists.
+>>=20
+>> but only required here? You need to organize your work in logical hunks.
+>
+> My rationale for my original request was that the meaning of the second
+> memory region is modified by this series. Previously it was always
+> "firmware image sections", but now it can also be "IPC resources".
+> Nothing changed in terms of the number of memory regions (it was 2-8
+> before and 2-8 after), so without making memory-region-names mandatory,
+> there'd be no way to tell which of the two configurations are being
+> used.
+>
+> This patch should likely be squashed with the patch adding
+> memory-region-names, so that it is easily to provide an explanation for
+> what's going on.
 
--- 
-மணிவண்ணன் சதாசிவம்
+My goal was to not introduce any warnings in any of the patches.
+
+That is the reason why I only added the requirement for
+memory-region-names at the end, after adding memory-region-names to all
+users.
+
+The alternative patch order as you suggest is:
+1. Introduce required memory-region-names
+2. Add memory-region-names to all users
+
+After patch 1 there will be new warnings about memory-region-names
+missing for every user of r5f memory-region until patch 2 is applied. I
+can happily squash this patch into the patch introducing
+memory-region-names. I can also update the commit message to describe
+why I split the patches this way.
+
+Let me know what you prefer.
+
+Best
+Markus
+
+--2594bdddbece5ae68bc65d0e181a463f516ad51c50de981b59b6999a2bd2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iKMEABYKAEsWIQSJYVVm/x+5xmOiprOFwVZpkBVKUwUCabVwiRsUgAAAAAAEAA5t
+YW51MiwyLjUrMS4xMiwyLDIRHG1zcEBiYXlsaWJyZS5jb20ACgkQhcFWaZAVSlOB
+igD/WvYTEC75LExS0Z+nmXUcqQeFFHaNPYlU8r3MTTmbi7ABAIE3q9wziwZ5bY8H
+oyiuJEgonYJvR0yiRjyuJx6FJmUG
+=5pep
+-----END PGP SIGNATURE-----
+
+--2594bdddbece5ae68bc65d0e181a463f516ad51c50de981b59b6999a2bd2--
 
