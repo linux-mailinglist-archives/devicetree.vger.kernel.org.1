@@ -1,177 +1,171 @@
-Return-Path: <devicetree+bounces-275724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275725-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kLpTFhF9tWlf1AAAu9opvQ
-	(envelope-from <devicetree+bounces-275724-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 16:21:53 +0100
+	id 8Bo2ChR+tWl71AAAu9opvQ
+	(envelope-from <devicetree+bounces-275725-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 16:26:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C56A828DA57
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 16:21:52 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A62AF28DABA
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 16:26:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 511A0302335B
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 15:21:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B1713302C347
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 15:26:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 553A926ED4F;
-	Sat, 14 Mar 2026 15:21:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BmT9n7xJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A20D2EB860;
+	Sat, 14 Mar 2026 15:26:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+Received: from mail-yx1-f52.google.com (mail-yx1-f52.google.com [74.125.224.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 178DA23F431
-	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 15:21:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.160.169
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773501709; cv=pass; b=OqYdetlIkn3kZGT9/uCtwojlwpVPisdTYfx0WQcHZKCvqexhFBCnVVz6+bqp4i8PAVHLI3LSnmWCaXcoZn+7NAlBWb9cM1/4qmeF2dq9JakcqMeAwbMGvg/pVC0pdvUtdBx+4tJdBloiM0X3TFHHAwF2b6p7Be5DseioXPtMXSE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773501709; c=relaxed/simple;
-	bh=79yloG2S6LSxDMg+2dBq+50iWkXEACUaWo+PxUDAKzk=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5875F267B07
+	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 15:25:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773501960; cv=none; b=C2v0G5arIjPzaHsJH/3/dc6qNDTcfD2LS4Wn7ipnzmiM9gl6F1N+n7ICGlThCtHMjphVBXXV7p5ylBMb/wdRe2b2NFEQdqrbIA9GQquh1IgQ8v+oT+P2Q+sPHkVL+YeaBXvuglbRoPwD+IEL8rGSOrEKTX7Rh/+NbDPq9tNpsCQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773501960; c=relaxed/simple;
+	bh=MtmnzLG5Bo63WRQMbvVrVIj5k9GpRoRJaxMkFlxTeV0=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aku2P1AFd3HmqIo8GMykUabDS0PSmow4Hs91R/abFiAJTMfddQZocAqsWU2uv9N1/nNxCftSpm4R616oRceyEA3CPY83DdV4bdiZ01CoIMJ+uufqlSc7BWUhuaSTuzLk6Q93AWwMD1E+qJbHG7838rzsCWuP8TohGud6DsJsR0o=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BmT9n7xJ; arc=pass smtp.client-ip=209.85.160.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	 To:Cc:Content-Type; b=Yfc62512nNlpdGWOqS5N1cWjvYoBR1jsk32v9z0wVBJUwzloKWHolR3UfOdtzYmmxShCrsO42xrXI05da6/yWqPVMWiAMNIfcE9ia0PI5cNNVOlJTqbtdRFKnAewLni8GJm2Q55LBZ5JV5kEW+HbU+CYNyeRzT94188Dx56SFQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=74.125.224.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-50904a8f421so29505711cf.2
-        for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 08:21:47 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773501707; cv=none;
-        d=google.com; s=arc-20240605;
-        b=B8KxyELfTVJK1Q+6DfXiSwfHODXnPGyRMtRVpZ0js7WNbqLLowTyIZ9Lg5nYcRgAWV
-         pM6JqK495sadByhquV4GsadgDT6Q3kA9mXa0soFSfjznYi6Z51lb5yLZ2lbsv87kXeAj
-         tVkEV+DH5etUrKfAkYKWWdg3iq+3otCz2bQj07Vxt8t9xjLbnF6TSIjmaUDY976mgc8V
-         1t4ZMz7/+pULVHNaW/buD1uqO/84zrtaJbRaqFKwjxMVwg0wI7MxkdMUsoXxa6BaP3nA
-         OnlMjz5dCCTPBB2RWzWBm4lruD6ktC7Howr1fJtpMG356mAmQmAYVduOEttGZ9pZsc6/
-         ea0A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=79yloG2S6LSxDMg+2dBq+50iWkXEACUaWo+PxUDAKzk=;
-        fh=RZd/5hl6WyipU0tiPSoLMrZcz54N+vbwby8sVBGGUuA=;
-        b=dCGiRsxfyKAMC6dENWkDvFjXG/Qs6GQtkhDYEs+m75ZVpnMH8SHChiP0sDdX9Mm/JQ
-         GPky86eoWtlQicmOGmjSu/6bI63ksMjlwRkYx3ao2m5Fmy1QR2UTN6L0F/B/7m2h181B
-         2aXKb+zt5eiQqKNLY/YWU2uw7R9+ty5Rd9a3JaNobA19iyzRYnEF5jG7tRQ+iVK4B3gT
-         s+pg6lqZUxCNqfS72iMoBZYffffm86u9aUO9VvBvXNkhLyF/mZ3mKWRT8cfLb3NlYeKe
-         9M7MkwzxZS0Hm9rNxo5+Ups6r3fYpxrM5SfsO0pmrX8Tg4E3kM3GHkW9VSWB3FsYZHq6
-         nUVQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773501707; x=1774106507; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=79yloG2S6LSxDMg+2dBq+50iWkXEACUaWo+PxUDAKzk=;
-        b=BmT9n7xJh99ZqVSXMzFaeID85omvM5ddeVjkJc5Eciy3oTCKSpGMjfqqaOjklumibm
-         SKI8UENCzzahjbzX8freIGg/VQmeR+RH0q1Kw9DGMFk9Mbh4DrvP++MsOJwwF2vEIODu
-         WLY3d23rkrGrtnPNUSzHiis5kv2lBmFuex4qdnDkzVhlqsu3xWC8rizXCikthU3QYPXy
-         vWho4M5bq3KopruvaB6w1cz0JzOMvSaY2fJYRU9rU6I2VPgohB6ZbUwVHgU7VqT2SLg2
-         0kaEkECDCVBEKCqOpe/EaBVWH+gJACal/7ptmYpKLG8n0kju6Ox1oTZGrRNERPfp0O5z
-         5IoA==
+Received: by mail-yx1-f52.google.com with SMTP id 956f58d0204a3-64c9a6d68e5so2715515d50.3
+        for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 08:25:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773501707; x=1774106507;
+        d=1e100.net; s=20251104; t=1773501958; x=1774106758;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=79yloG2S6LSxDMg+2dBq+50iWkXEACUaWo+PxUDAKzk=;
-        b=OVq90Qb+AUGS0xxETESgIlhXuOiE+txmH+VZEbcwltrUgJ+fvQZ7uidSYNLhUg9fSc
-         38jMebqO6yM1kELKMuubF9HJ2lZeDBwf6G4/qOJmIJBu/V2saRoE1yeap2SJRZOFZE0Y
-         M8I1Cvj5ai2J5C/IHJeB+q1J5WPZ+ge5qEJ+cFqFWNQ4Qk8BhG5ZvkLy3qySoRl5pN/B
-         A5jW9sTJLVlk1kH+A4h7JT9KXPfHUKjeJbsU/8VwbMwI3JUcQTp0nbRzB626/kdTDIx4
-         xz0xLJj1O8BfbM6am/9BHrdpQA2NIEoHGYTMfC2iaQc7HE4eBKHIKSzpva/7iONRRHBF
-         wm6g==
-X-Forwarded-Encrypted: i=1; AJvYcCU+lr5gjmdBZa/MC6l5l+EAsx7+fnFERuHWPmxieTuW7KQoFBo6O05hY5rkMV49OLVe2iCsnuCvqCMs@vger.kernel.org
-X-Gm-Message-State: AOJu0Yye8vhATRNGXD0qG52Oc7OAWMQxgkZjC+6qMbX10paaj5iS4Sih
-	dDkGPX9FH2OM6fwdOI3Qyh02q5jBmF+tdJf7QQkm6LkFA9BelXrQ6gOHzBAW3b8qHC2/ztdeigV
-	mqCFmyiGRJ3ebOas4iUyNZIdYD/LMrII=
-X-Gm-Gg: ATEYQzyHKetXLFnBpskRPcDFdsrc1ogRQ4IjpzgoDSWvcdph0Hf6yoMRlzoygiyLphn
-	rHmkDkVhvEPzSZIbHd9nM5ksVDHm9mFfpprwyijtIaV9BYlQJBNDfUTBEQFkVZ/tZuCWC6ntCrq
-	Qh6bO7RrWv4k+fPawkaAARReBkXeQpCjcZHSaU/3gWCx3tTVb/NB0Z2C/BXl6ciQ/OucUTjENxw
-	2QjTDMEqMiLWoHqf1UEmxLG4DqAAvt2vD3Ql96WLixudJIy0EfiLMdb9Zpv9Cg9I94p3Zk3VpTQ
-	y6vng8M4
-X-Received: by 2002:a05:622a:48f:b0:509:30b0:831e with SMTP id
- d75a77b69052e-50957cd8e8cmr91300511cf.21.1773501706958; Sat, 14 Mar 2026
- 08:21:46 -0700 (PDT)
+        bh=uPLN6zlYiIXlkEI//PrNAmzZ4tY8iJf1tdCwKSeMOdg=;
+        b=M3EmynPOvcznVmqnG2eIkjlxRZcB5fzQNfsazzgzzn8NU9ydFFMgENjuzurLWOFp1a
+         VeDnR+d4wmnAnlUAwX5k1PbO6wSrxKhmQF9TdmbszdMc7VySlFX5NUDdSTm6ot9jxVAv
+         k0zYK3rPHH94bbJOwgcwt+Zefd6Lk6fihbmJ04DTK4baaA/dchSiiuqEzCBPr4GQjLW4
+         djnR2dbxK28lihDvURJp0FZRezlzUCd5bX0n0khBjC5JHiMf+fN07io2Xtks4LXq0f5d
+         3/f207PtyY+aeD1zcKSyhDYOd1Sl9OvmcfJb2j8IJU99tWl1DA4KF3tnPmWuSw9FNkCN
+         TOig==
+X-Forwarded-Encrypted: i=1; AJvYcCXqPFFEuH5AJjeAApjX1y30BzWBPHJw1Hdsva3GX+9fowFVMpQq6Cekd+d+iSiIC4LrSCcLGxtHJ8Q4@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0eTrOhlT/1RuL3C/ImHLqItCzKpi8YoTQg2UfY4Rc9KtmLluz
+	VKvaOYAKoXeUKhBdSy2FBoTeGi/fTkkAT5Ohn8nX/zlABTjGY80TTmz5EQ8I9c3gO40=
+X-Gm-Gg: ATEYQzxxrlqfN+YNXO2b81nFatntobOzazK9+ohWMWnR3CYnlcVdEetI3jtU5YKEHfK
+	Mge/H4+a6rXSSIqosL3+ISd2c/hIj1c481y7Pv4dWIyz0cZ6rAm3OiO/WZ+DnxKddSTn+46y2ye
+	5Pe0dLJfWbYJU4HsKkLshj59w00RlMT2guapmKtXNCOYX7YHrRdAbysrjYX/3tIpIIS2QBayCZs
+	t4An3mOQXnsFQwy64+RQmMwXA3taufr6FxzwIBidZRbTkdSWRPMnWxEMBjaY++rEir1hyV+94M9
+	zAHzNf7YEb3rnS1ZWlnIK/fnrhIm6bZRS23k7cKLYW98yA1kAwSFQ212O4RVG8anv+2V0yl4B/u
+	moqTO8eDTsqEkvtaS6BHL32VnLOLVgmRRzGvHfBdGHBkx0nHPETcCeFMdl1xhcBFx8tla9SzVjp
+	+dmHpBV8LS2tC8b6JnQxbKsMknKsxFIwv5QirRtdygt24yAuLN+mPC3i3ofdsnmZRFBFv3dfSMQ
+	qd64NDgwLq7A1oGxZ9ZGrak4i+CqaO+2bTlixibRho0DwDvCe6A2tY8
+X-Received: by 2002:a53:eccf:0:b0:64c:f7d0:5bfe with SMTP id 956f58d0204a3-64e62eeb404mr6010620d50.13.1773501958085;
+        Sat, 14 Mar 2026 08:25:58 -0700 (PDT)
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
+        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-64e65a3bedcsm2827863d50.1.2026.03.14.08.25.56
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 14 Mar 2026 08:25:56 -0700 (PDT)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-7987531082aso33237837b3.3
+        for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 08:25:56 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVO/vlcLh49ly2sqQJ9TeBMXJTIo4r7jWbe3JO5V7ODYE/kC0mRFJMMQ3QCXyjmMhdXgoPGfFcfCc1j@vger.kernel.org
+X-Received: by 2002:a05:690c:c50e:b0:798:1f8:3152 with SMTP id
+ 00721157ae682-79a1c085de0mr77708347b3.13.1773501956280; Sat, 14 Mar 2026
+ 08:25:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260312041533.187553-1-akkun11.open@gmail.com>
- <20260312041533.187553-7-akkun11.open@gmail.com> <20260313-cunning-fresh-rattlesnake-ab8087@quoll>
-In-Reply-To: <20260313-cunning-fresh-rattlesnake-ab8087@quoll>
-From: Akari Tsuyukusa <akkun11.open@gmail.com>
-Date: Sun, 15 Mar 2026 00:21:36 +0900
-X-Gm-Features: AaiRm535EmprjKZQc-5oWppPCZE2tY_D2F_kXvT9geVdj9eW0363jXm8lhZ_OXM
-Message-ID: <CAKr_iV4m9Jaxv3SCR1Rxg4ZmKPCkDteVaLZNCJo+tjqhX0=6sw@mail.gmail.com>
-Subject: Re: [PATCH 6/6] dt-bindings: pinctrl: mediatek: mt8188: Fix include
- guard comment
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
-	sean.wang@kernel.org, linusw@kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org, 
-	hui.liu@mediatek.com, nfraprado@collabora.com, linus.walleij@linaro.org, 
-	mars.cheng@mediatek.com, andy.teng@mediatek.com, hanks.chen@mediatek.com, 
-	sam.shih@mediatek.com, rafal@milecki.pl, ben.ho@mediatek.com, 
-	erin.lo@mediatek.com, zhiyong.tao@mediatek.com, Jason-ch.Chen@mediatek.com, 
-	amergnat@baylibre.com, seiya.wang@mediatek.com, tinghan.shen@mediatek.com
+References: <20260311224044.21480-1-email@sirat.me> <abLNbGUmaA7K0s68@ashevche-desk.local>
+ <CANn+LW+F2bVMAGwoF8q9yBpF3x5r_hWDqvE3_JYjcLd16A_cEA@mail.gmail.com> <a2486bc7-13be-4567-a53c-b37921df7bcd@baylibre.com>
+In-Reply-To: <a2486bc7-13be-4567-a53c-b37921df7bcd@baylibre.com>
+From: Sirat <email@sirat.me>
+Date: Sat, 14 Mar 2026 21:25:44 +0600
+X-Gmail-Original-Message-ID: <CANn+LWK2OZ1dm0TAstM2hr6O6h2nEPRrNfje0mC3a2uc0HEwVQ@mail.gmail.com>
+X-Gm-Features: AaiRm50a0WB7oPrNpIM1ZzaRDqKuyHnT9tTRHdmvsogCGE-cmB_9gK4JmsK425k
+Message-ID: <CANn+LWK2OZ1dm0TAstM2hr6O6h2nEPRrNfje0mC3a2uc0HEwVQ@mail.gmail.com>
+Subject: Re: [PATCH v3 0/2] iio: proximity: add driver for ST VL53L1X ToF sensor
+To: David Lechner <dlechner@baylibre.com>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, jic23@kernel.org, nuno.sa@analog.com, 
+	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275724-lists,devicetree=lfdr.de];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[sirat.me];
+	TAGGED_FROM(0.00)[bounces-275725-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org,mediatek.com,linaro.org,milecki.pl,baylibre.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[akkun11open@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C56A828DA57
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[email@sirat.me,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A62AF28DABA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 10:39=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
-> No bug here, otherwise explain user-visible issues.
+On Sat, Mar 14, 2026 at 8:39=E2=80=AFPM David Lechner <dlechner@baylibre.co=
+m> wrote:
+>
+> On 3/12/26 10:12 AM, Sirat wrote:
+> > On Thu, Mar 12, 2026 at 8:28=E2=80=AFPM Andy Shevchenko
+> > <andriy.shevchenko@intel.com> wrote:
+> >>
+> >> On Thu, Mar 12, 2026 at 04:40:35AM +0600, Siratul Islam wrote:
+> > ...
+> >>> ---
+> >>> Changes in v3:
+> >>> - Merge DT binding into existing st,vl53l0x.yaml (per Krzysztof).
+> >>> - Use "reset-gpios" in the binding but xshut_gpio in the driver since=
+ that's the actual pin name.
+> >>
+>
+> We can modify the existing binding to make the supply required based
+> on the compatible.
+>
+> allOf:
+>   # Technically supply is required to power device, but we keep it
+>   # optional for "st,vl53l0x" for backwards compatibility.
+>   - if:
+>       not:
+>         properties:
+>           compatible:
+>             const: "st,vl53l0x"
+>     then:
+>       required:
+>         vdd-supply
+>
+>
+> And we can add a description to reset-gpios to explain that it is actuall=
+y the
+> XSHUT pin.
+>
+This will solve the problem, but I'm concerned about someone not
+following the commit history looking at the code.
+Logically, it doesn't make sense as both the devices require the
+supply. In fact it may give the impression that
+the vl53l0x explicitly doesn't need power. We are having to deal with
+too much just to save us from writing a new file.
 
-Ok, I'll be careful in the future.
-
-> No, just a churn. This has no benefit, because it is obvious which if/end=
-if
-> this corresponds to.
-
-I understand your point.
-Certainly these patches do not affect the compiled kernel.
-However, I found that there are over 400 instances of mismatched include
-guard comments across the kernel. While it doesn't cause bugs, I thought
-this discrepancy should be addressed for consistency and readability.
-
-Anyway, I withdraw patch 4, 5, 6.
-
-Best regards,
-Akari
+That said, I can still implement this if it's still the prefered way
+to solve our problem. Or leave it optional as it is.
+>
 
