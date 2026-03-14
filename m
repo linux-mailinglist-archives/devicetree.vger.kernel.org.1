@@ -1,61 +1,71 @@
-Return-Path: <devicetree+bounces-275590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275591-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kHK/Bu+ttGmDrwAAu9opvQ
-	(envelope-from <devicetree+bounces-275590-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 01:38:07 +0100
+	id kLfqMSiutGmDrwAAu9opvQ
+	(envelope-from <devicetree+bounces-275591-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 01:39:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70BC028AFAA
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 01:38:06 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C26828AFEF
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 01:39:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 09C3A308C2F7
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 00:38:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3FE7A302960B
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 00:39:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 576CE29E0E6;
-	Sat, 14 Mar 2026 00:38:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50FC92C375E;
+	Sat, 14 Mar 2026 00:39:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MaBLduxH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CSMMdnS8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3492629C33F;
-	Sat, 14 Mar 2026 00:38:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 284EE1EBFE0;
+	Sat, 14 Mar 2026 00:38:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773448684; cv=none; b=f81q24CE4NOd7mE/iHi7I1p+/rEy4aPZCxbscBhVd33fPMstLgw/WZdLbACiXxDtcqy3hIReORVtDbaukG+BeRmQJ1KjCrtqvddBkO/YIdhqMxAtWbD9lxC+TFwAR9K1yNWrtR4afCne3oXAZo1m+WXdnP2LmKt0KdlgmaXx+/k=
+	t=1773448740; cv=none; b=OKs8KZZ7bujmW22K+Ch172Y8mtURimJXGxgQJHjIaBnPdIeH//FO3LY0csFVxTNbpmcjbo4tFgVVkUrIp3iU1Veik3+qS3u4WmmfRuXGLZ55rCwshm4kd+UtUkT6J/Bkt5s/UZWr0yL6Aknx3/9h9FaL0XdweIPljWuI95GJPtg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773448684; c=relaxed/simple;
-	bh=FD2WS5RUbvHH16+jWCJnePbwNK7/fnFcOqm+8udtIXs=;
+	s=arc-20240116; t=1773448740; c=relaxed/simple;
+	bh=mkaGOENEa1gmtvrXYu8nQ+hbKTdiqqEtszypw75YmEo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kr32MjQLGODEX0HiEjlE1LB3Iu/Czq59tw5juvBMvIVixmFNv9P8qzTX6UtJBlkeTGmqs10LCHQk/MonUOu3TLHSljKGcVOrEUiP4MLBMI2GuD59D+O40phJloI9Pq9fDJyjX5JfYX0+Z5EYQppAieJ0iRqgSMdekJEAWSL8yew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MaBLduxH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE12EC19421;
-	Sat, 14 Mar 2026 00:38:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nS0kG9cVGyi1m+jM5VHL92tVmuVSPX8V+9NOopIuf6wRtfWNKzpaGxmA5cWERGjeWW9PG2EvXuboW12DjVIQX+aGMYiy3ql1oepBTYz7J0nnSeYXwAOedVBGz2u5T1+7+Qe4sGAKaO+Z+aiyBWv1Em/OYT1x8zRrQRPnYRW41kA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CSMMdnS8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76799C19421;
+	Sat, 14 Mar 2026 00:38:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773448684;
-	bh=FD2WS5RUbvHH16+jWCJnePbwNK7/fnFcOqm+8udtIXs=;
+	s=k20201202; t=1773448739;
+	bh=mkaGOENEa1gmtvrXYu8nQ+hbKTdiqqEtszypw75YmEo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MaBLduxHXQeby8WUhwBtXYXPGvaXz7v8z0oXbe/J9xTVslw5VS2qArJZxhcnh0pC+
-	 m9DDUnKsDTaPCfLh/6dmIwyZfVpjykneYzJcylYL4kq06KgC32qhV7GAeyZ7bJk5ut
-	 IbO1qerJVbZhMRPvleSyKK3c24CjNZ0wNd/q5dhcyU1TgJABq2Z8t5eSCJ2hTWl0TK
-	 njl3B0XVm18Ly3HLxflliV1g8r7Q4DKPHJ4Z4ot2B4jKSCsJniyEzvBHYCk9c8sg/D
-	 rEZZEAENkBoOIG7SQ4fPDQ2kC63ODLq0VKhAq6WXaBitT0VSqjqvzMTI2cmz1blXf4
-	 qt2zIbFd9M0/Q==
-Date: Fri, 13 Mar 2026 19:38:02 -0500
-From: Rob Herring <robh@kernel.org>
-To: Caleb James DeLisle <cjd@cjdns.fr>
-Cc: linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
-	naseefkm@gmail.com, bmasney@redhat.com, mturquette@baylibre.com,
-	sboyd@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	lee@kernel.org, p.zabel@pengutronix.de, nbd@nbd.name,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: clock, reset: Add econet EN751221
-Message-ID: <20260314003802.GA3735730-robh@kernel.org>
-References: <20260312162449.569359-1-cjd@cjdns.fr>
- <20260312162449.569359-2-cjd@cjdns.fr>
+	b=CSMMdnS8V1wzMZQMhbCKNINtDMD9y6wXAU3MpkSL9L3U85rIfZE+OW8OFJ3DcdRBM
+	 YdlMha2l9YYahxR4kj2FjM9EIsGgGKsjGe240rTgY0FgMVJZ5AYHRLTwGvMLccLVNR
+	 sFz2WQNbn3o50gctD0mN1NXAuSglgXdq7HVcmkXMxw5GjT9mcelaYqR8Xsd8RMb8hK
+	 owYs8LuW6U1eIxAPP2q7x9okaM4PPhYfZCdM2ZMaZLIFY9zjOyBOMEgHdIwdOD2yZb
+	 nCB9x1UHtacCUygnKE9ucVaWoGCNHzYvZqhCViVk/gWDi/9RQutmV0b0MY/ZniJrZD
+	 73jOsFDGNuOXw==
+Date: Fri, 13 Mar 2026 19:38:58 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Sherry Sun <sherry.sun@nxp.com>, Jingoo Han <jingoohan1@gmail.com>,
+	Frank Li <Frank.Li@nxp.com>, Conor Dooley <conor+dt@kernel.org>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: fsl,imx6q-pcie: Explicitly
+ deprecate reset-gpio
+Message-ID: <177344873783.3740802.16889031626294728182.robh@kernel.org>
+References: <20260312184344.42337-3-krzysztof.kozlowski@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,21 +74,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260312162449.569359-2-cjd@cjdns.fr>
+In-Reply-To: <20260312184344.42337-3-krzysztof.kozlowski@oss.qualcomm.com>
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,redhat.com,baylibre.com,kernel.org,pengutronix.de,nbd.name];
-	TAGGED_FROM(0.00)[bounces-275590-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[pengutronix.de,vger.kernel.org,lists.infradead.org,kernel.org,synopsys.com,gmail.com,nxp.com,google.com,lists.linux.dev];
+	TAGGED_FROM(0.00)[bounces-275591-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
@@ -90,43 +100,50 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 70BC028AFAA
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4C26828AFEF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 12, 2026 at 04:24:48PM +0000, Caleb James DeLisle wrote:
-> Add clock and reset bindings for EN751221 as well as a "chip-scu" which is
-> an additional regmap that is used by the clock driver as well as others.
-> This split of the SCU across two register areas is the same as the Airoha
-> AN758x family.
+
+On Thu, 12 Mar 2026 19:43:45 +0100, Krzysztof Kozlowski wrote:
+> The binding references snps,dw-pcie-common.yaml which already deprecates
+> "reset-gpio", however mentioning this property here lacks this mark thus
+> code is confusing and suggests property is not deprecated.
 > 
-> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
+> OTOH, the property cannot be removed from this schema, because it is an
+> ABI implemented by Linux kernel in gpiolib-of.c in backwards-compatible
+> map between compatibles, "reset-gpio" and "reset-gpio-active-high"
+> properties.
+> 
+> This creates code and binding which is not obvious to follow, so rewrite
+> it and be more explicit about:
+> 1. Deprecation of "reset-gpio",
+> 2. Relation that "reset-gpio-active-high" is used only for that property
+>    and not proper "reset-gpios".
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> 
 > ---
->  .../bindings/clock/airoha,en7523-scu.yaml     |  6 ++-
->  .../devicetree/bindings/mfd/syscon.yaml       |  2 +
->  MAINTAINERS                                   |  2 +
->  .../dt-bindings/clock/econet,en751221-scu.h   | 12 +++++
->  .../dt-bindings/reset/econet,en751221-scu.h   | 49 +++++++++++++++++++
->  5 files changed, 70 insertions(+), 1 deletion(-)
->  create mode 100644 include/dt-bindings/clock/econet,en751221-scu.h
->  create mode 100644 include/dt-bindings/reset/econet,en751221-scu.h
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> index a8471367175b..eb24a5687639 100644
-> --- a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> +++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> @@ -32,6 +32,7 @@ properties:
->        - enum:
->            - airoha,en7523-scu
->            - airoha,en7581-scu
-> +          - econet,en751221-scu
+> Cc: Sherry Sun <sherry.sun@nxp.com>
+> 
+> Changes in v2:
+> 1. Rewrite the commit completely after Sherry Sun comments - keep the
+>    property, but add "not" clause to forbid usavge of
+>    "reset-gpio-active-high" and "reset-gpios".
+> 2. Because of above not adding Richard's ack.
+> 
+> v1:
+> https://lore.kernel.org/r/20260311154955.145120-3-krzysztof.kozlowski@oss.qualcomm.com
+> ---
+>  Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
 
-AFAICT, 'econet' is not a vendor/company but a family of products. The 
-vendor is still airoha.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
 
