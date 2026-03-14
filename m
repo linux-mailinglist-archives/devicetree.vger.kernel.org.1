@@ -1,174 +1,271 @@
-Return-Path: <devicetree+bounces-275645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275646-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id Ia62MuAqtWnNxAAAu9opvQ
-	(envelope-from <devicetree+bounces-275645-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 10:31:12 +0100
+	id yHPmBSQstWnNxAAAu9opvQ
+	(envelope-from <devicetree+bounces-275646-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 10:36:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0286228C5CB
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 10:31:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6470428C66F
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 10:36:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E9386301FA73
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 09:31:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F123830530ED
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 09:35:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31BB41EBA14;
-	Sat, 14 Mar 2026 09:31:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72E6E318B85;
+	Sat, 14 Mar 2026 09:35:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cDYKMpuD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dr+I6Vxo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CA2214B977;
-	Sat, 14 Mar 2026 09:31:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FFAC248F47;
+	Sat, 14 Mar 2026 09:35:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773480668; cv=none; b=rCvU4QAtOs/BcjkXvsVomgwyVLn8adxPAx3gAg7JcAs2fHtRQsBYVACPJdod2G4Pt2wETY8aoveUsnkDArnO5JjKezrk7nq+sjYeKTfUwCYP7/EToSB5LJWCZpW/7OzFBElAZXg8uILoSFRcB7ufW6PfNJjIaSIYPMH+GmtIqwQ=
+	t=1773480922; cv=none; b=Vo783ERnqy/ng0Cs3YkiQp5X9RR/PTMGEj1YmGlW46/B+hMrxD9QrrroUOz07WGukO6zYG+UNuw1zLvubGVAsX8R9vxvALpDr8xCpLT+1MgP3JV9fJLbwtpRTLWrg1+oiUZuHXiKQRVrhGAgiQJe9CkHiZFz3Jds/oO3OqfvE1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773480668; c=relaxed/simple;
-	bh=qmroeRBu/F4k6cNJcJppsb9Qv+FWGHkGRQvfH9ke+24=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hCSvSKSAfUen30bvuDZv73pTK+34Fi43pHvOWO6cp+4Fkh+s1Qa05XEfRnlVQwYpdXP6Z0PSkEkS6jAkcsEfAWjDSk+gEvjlPkp/RHM8ANkGTjRzIZczrYkb8mCx2U1qP2VNKBhZb5PNp+T1JwDC3X7ZuV/vedCRjk8029aoJtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cDYKMpuD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06F8FC116C6;
-	Sat, 14 Mar 2026 09:31:02 +0000 (UTC)
+	s=arc-20240116; t=1773480922; c=relaxed/simple;
+	bh=G/HvirnM8kwBidIX/83urhAQGGGdEhPrgtoz3GiBBrI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KOYaAn84b+yuG50KjifQFFIRR1JsGkKVru+BSve2t1/dgvVGqp9BLtcY/0Bxs6M53Hd8rQHPcb1q9vfcB7zTvaLMEz9gSJxufBZnDw4wQ7YfbMCntZ5Dztmp8Rjk9PVHZ+nvMIn52oFu0CAxQrI2IMm05Z7fCQDxr2EWknmT8kk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dr+I6Vxo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 510CFC116C6;
+	Sat, 14 Mar 2026 09:35:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773480667;
-	bh=qmroeRBu/F4k6cNJcJppsb9Qv+FWGHkGRQvfH9ke+24=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cDYKMpuDRHMpbd7FiwghSWRvC5pE7vaVfCAhdTgO25OUSgaHyBcFyk+iG9sQhr2TF
-	 R7Dh6FJyaTQHR9Qqpa9aii/vRzlBl+iK/InZC2otIpmMC1qsZ0smrjYjRrTLWuMIrH
-	 USzxImHTDa1DCVZM76+WvL+Qup783LtYd97Hlt0fmfWMZUX6W00XEPQa8ciyb/rtv3
-	 yU27KbtVnb6joBSTOlrW6WJUwzJTEumkD8kzYfSNuZ7J9q8R86Gsf7mgo2IUFoPlwd
-	 Tj33K/oi76BrAoD5P5NnqQX6wnL2ZIJXkLjhgL9SKl7Sr3ohRhiMPedvL+tDuIeJCo
-	 Kmj6Rx6Cr0TFg==
-Message-ID: <21cc3b90-0cd7-421c-914d-30e718558224@kernel.org>
-Date: Sat, 14 Mar 2026 10:31:00 +0100
+	s=k20201202; t=1773480921;
+	bh=G/HvirnM8kwBidIX/83urhAQGGGdEhPrgtoz3GiBBrI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Dr+I6Vxo6j20ToKtROSa9l3I5yXZzwhwmUiZtqVW+VF2VO952LyFJvNNdPC7rt3Gc
+	 yasMm0nK+Z20M2R++1yi1GlwQqe1TJC2Dcv219jgOsnTR6UGlURJTaX+C0Pp+M9Kg1
+	 Mc9MN5YuGpZc2R9k7bQJKjzpTMU3cl7W4LCwfgJX0hmKc/spg+ywE4pvc4IZUbq0Iq
+	 EYRVwnS94MxL2vlVMbcjh2FQEHR0U2RLnQpFUBn/G8PNNh6oFmrJrl6lKhZ3OCCz3m
+	 8/OC9BqKJGk0C/qy6Fx1Llhwp1k2t0x90H0k35kF9yotNj0dFD2STH/MMZ/1OoXiLd
+	 3dBLpr94prW5g==
+Date: Sat, 14 Mar 2026 10:35:19 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Hermes Wu <Hermes.wu@ite.com.tw>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Pet.Weng@ite.com.tw, Kenneth.Hung@ite.com.tw, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: Add ITE IT6162 MIPI
+ DSI to HDMI bridge
+Message-ID: <20260314-chipmunk-of-therapeutic-development-ce2a73@quoll>
+References: <20260313-upstream-6162-v3-0-8497fb7c4406@ite.com.tw>
+ <20260313-upstream-6162-v3-1-8497fb7c4406@ite.com.tw>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/2] dt-binding: display: Add ITE IT61620 MIPI DSI to
- HDMI bridge
-To: Pet Weng <pet.weng@ite.com.tw>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Hermes Wu <hermes.Wu@ite.com.tw>,
- Kenneth Hung <kenneth.Hung@ite.com.tw>,
- Jau-chih Tseng <jau-chih.tseng@ite.com.tw>,
- Pin-yen Lin <treapking@google.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-References: <20260313-it61620-0714-v7-0-36a16dc036d6@ite.com.tw>
- <20260313-it61620-0714-v7-1-36a16dc036d6@ite.com.tw>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260313-it61620-0714-v7-1-36a16dc036d6@ite.com.tw>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260313-upstream-6162-v3-1-8497fb7c4406@ite.com.tw>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-275646-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275645-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[ite.com.tw,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,ite.com.tw,lists.freedesktop.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: 0286228C5CB
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.0:email,60hz:email,0.0.0.3:email,0.0.0.1:email,devicetree.org:url,ite.com.tw:email,0.0.0.2:email]
+X-Rspamd-Queue-Id: 6470428C66F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 13/03/2026 07:48, Pet Weng wrote:
-> This chip receives MIPI DSI input and outputs HDMI, and is commonly
-> connected to SoCs via I2C and DSI.
+On Fri, Mar 13, 2026 at 02:16:00PM +0800, Hermes Wu wrote:
+> Add device tree binding documentation for the ITE IT6162 MIPI DSI to
+> HDMI 2.0 bridge chip. The IT6162 is an I2C-controlled bridge that
+> supports the following configurations:
 > 
-> Signed-off-by: Pet Weng <pet.weng@ite.com.tw>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+>   - Single MIPI DSI input: up to 4K @ 30Hz
+>   - Dual MIPI DSI input (combined): up to 4K @ 60Hz
+> 
+> The chip also supports up to 8-channel audio output via 4 I2S data
+> channels.
+> 
+> Signed-off-by: Hermes Wu <Hermes.wu@ite.com.tw>
 > ---
->  .../bindings/display/bridge/ite,it61620.yaml       | 142 +++++++++++++++++++++
->  1 file changed, 142 insertions(+)
+> Changes in v3:
+>   - Fix lane-polarities: remove $ref redefinition, allow via video-interfaces.yaml
+>   - Improve ite,support-hdcp description to clarify FW-based HDCP behavior
+>   - Remove descriptions repeating schema constraints
+>   - Remove stray comment in ports required section
+>   - Fix data-lanes spacing in example: <1 2 3 4>
+>   - Add missing newline at end of file
+>   - Add missing change log that Reviewed-by tag was drop in V2.
+> 
+> Changes in V2:
+>   - Drop Reviewed-by tag due to DT bindings changed.
+>   - Add property "ite,spport-hdcp" to enable HDCP
+>   - Add property "lane-polarities" and "clock-noncontinuous" for DSI
+>     setting
+> ---
+>  .../bindings/display/bridge/ite,it6162.yaml        | 178 +++++++++++++++++++++
+>  1 file changed, 178 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6162.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6162.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..b33fd140a9932cff3ede342298488988d337477f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6162.yaml
+> @@ -0,0 +1,178 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/ite,it6162.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ITE IT6162 MIPI DSI to HDMI 2.0 Bridge
+> +
+> +maintainers:
+> +  - Hermes Wu <Hermes.Wu@ite.com.tw>
+> +
+> +description: |
+> +  The ITE IT6162 is a high-performance, low-power HDMI bridge that converts
+> +  2 MIPI DSI signals to 1 HDMI 2.0 output. It supports dual MIPI D-PHY 2.0
+> +  links up to 10 Gbps each (20 Gbps total), compatible with DSI-2 v2.0.
+> +
+> +  The HDMI transmitter supports resolutions up to 4Kx2K@60Hz and is compliant
+> +  with HDMI 2.0 specifications.
+> +
+> +  For audio, it supports up to 8-channel LPCM via I2S (multi-line or TDM mode),
+> +  with optional S/PDIF or DSD (for SACD). Audio sampling rates up to 192 kHz
+> +  are supported.
+> +
+> +allOf:
+> +  - $ref: /schemas/sound/dai-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: ite,it6162
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  ivdd-supply:
+> +    description: Core voltage supply
+> +
+> +  ovdd-supply:
+> +    description: I/O voltage supply
+> +
+> +  ovdd1833-supply:
+> +    description: Flexible I/O voltage supply (1.8V domain)
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +  ite,support-hdcp:
+
+I don't see how this property varies per board, since it is always the
+same chip with the same firmware. Drop property.
+
+> +    description: >
+
+Drop >
+
+> +      Enables FW-based HDCP 1.4 and 2.3 negotiation. When absent, the
+> +      bridge firmware will not attempt HDCP authentication regardless
+> +      of sink capability.
+> +    type: boolean
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: Input port for MIPI DSI-0
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +            properties:
+> +              data-lanes: true
+> +              lane-polarities: true
+> +              clock-noncontinuous: true
+
+Drop all three. Why did you add them?
 
 
-This is almost the same as ite,it6162. Almost the same binding, same
-description. Also google finds nothing for ite,it61620.
+> +            required:
+> +              - data-lanes
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: Input port for MIPI DSI-1
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +            properties:
+> +              data-lanes: true
+> +              lane-polarities: true
+> +              clock-noncontinuous: true
 
-Looks like some duplicate and your cover letter does not explain here
-anything.
+Drop all three
+
+> +            required:
+> +              - data-lanes
+> +
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Audio input port
+> +
+> +      port@3:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: HDMI output port
+> +
+> +    required:
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - ports
 
 Best regards,
 Krzysztof
+
 
