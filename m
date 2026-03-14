@@ -1,159 +1,139 @@
-Return-Path: <devicetree+bounces-275696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275697-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SEccOxpStWlGzQAAu9opvQ
-	(envelope-from <devicetree+bounces-275696-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 13:18:34 +0100
+	id AZWfAFpUtWmezQAAu9opvQ
+	(envelope-from <devicetree+bounces-275697-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 13:28:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7995528D16C
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 13:18:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 547AC28D21B
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 13:28:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5FEC93027B4F
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 12:17:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8774B300C017
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 12:28:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4396B241139;
-	Sat, 14 Mar 2026 12:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BD6D23B61E;
+	Sat, 14 Mar 2026 12:28:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DzkVT062"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hjhh0hxa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEBCA32ED2E
-	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 12:17:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7899242050;
+	Sat, 14 Mar 2026 12:28:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773490638; cv=none; b=qVYvh0DxbLeSuQArEXdsCDoQdwKhbOh6gsPgYKK7UGFNHTIWvnRYP9lu49bAlrTWTXZ1anjnc+h6Rwmnm5W8csSn9hA37TANiFzlI/RKEGnknpgHRe9dObrS/9gi/diSZF+6Hc8Q5ruiXz7aH8HN3ByUrZ4K7/ZoTZLAoW8ywiM=
+	t=1773491286; cv=none; b=JcMf3wLea4+J7K8PAlCio7mIe3xmX18cTr5O4ObwDUOY6LNjYTAgP79a9a5fq/xIOEGBPYDRpC+2Kj8n3DHPMzixwLEqGC9KB5d+a7DjtEQ3+i32XmlJvZ+8lKBOKVjmjjGmKnM+znwIyhQAyx5nRZyiI7XUMt4fAEVvDQZShKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773490638; c=relaxed/simple;
-	bh=qJN0XXCAFaH6VkPmE666UHy9EHp3KHZV4dMoKW+Qfz8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uFmdpypy6kmsOtc1eQFgBH+FV5t/iRreDYhXY+/A7YeJy+lL7tWWMPTCVblylxS75s/qWqIeBC3uR4QxlYphm3ob47nGS3oiEraMqsUtECZciCLuMC8Acp9zr/uqEDHCj44PVOLXOy84zQl8aC3rxz8w/9j/3bNqf0u8xbI0YZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DzkVT062; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAAC3C116C6;
-	Sat, 14 Mar 2026 12:17:14 +0000 (UTC)
+	s=arc-20240116; t=1773491286; c=relaxed/simple;
+	bh=875Lx9GdJ2JYYcgoslCqGduvaB4Sx0zWJoBv3nkvLv4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Q8iEUjMOOSo4sRwv4/kC1ulMx6b2I5OHJbaXuxNGBiMkTjS7wT5/cozFplbaXiFjpUbs52f3qT0hejfEovEMuAbcaM9R3VHKPrLR/BsOCxH1j1pMHnG2h1bWAQUY+stP7+q7c36tDLCcfTY2vZFld49rkoUxttqLQDD3JoSPMsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hjhh0hxa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3EC4C116C6;
+	Sat, 14 Mar 2026 12:28:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773490637;
-	bh=qJN0XXCAFaH6VkPmE666UHy9EHp3KHZV4dMoKW+Qfz8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DzkVT062gMhnk4qaERql+mwsd79l6a1zlNM7tZT9ZLpvvmwtM7l6GzAs0fG+KYDCf
-	 GnxB9EVnaG5/XzTtge/XmWhi5g6v+WlCpbHgn9sKhRcdjiDe/NfjXPf1YMQFFw+wC1
-	 2I6FJH/2LenPCD7kBnbGjFTeVMDBCfkttqWYn9SAqNDuCdJYWzfh+bmcykLAaI51uq
-	 4yVSABdemLJetaVLt2j7SV/3esrCm7UDrzDvpb5bCV1wrtJAD1nCmfzHIlO/ivwFxp
-	 d15R7U6kvNmEB+aRWtrr4KN1I4Sils/8oZdsmjbYBMKZLvrlRvv2HER5yCSoqg5SsL
-	 wSvRq+XSGghyg==
-Date: Sat, 14 Mar 2026 12:17:12 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Bo Gan <ganboing@gmail.com>
-Cc: linux-riscv@lists.infradead.org, samuel.holland@sifive.com,
-	david@redhat.com, palmer@dabbelt.com, pjw@kernel.org,
-	gaohan@iscas.ac.cn, me@ziyao.cc, lizhi2@eswincomputing.com,
-	hal.feng@starfivetech.com, marcel@ziswiler.com, kernel@esmil.dk,
-	devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH 1/6] riscv: Add a custom, simplified version of
- Svpbmt "XPbmtUC"
-Message-ID: <20260314-subdued-morally-f20a84fd446c@spud>
-References: <20260313084407.29669-1-ganboing@gmail.com>
- <20260313084407.29669-2-ganboing@gmail.com>
- <20260313-visitor-majestic-1a6888dc57b2@spud>
- <25a8565d-a6bb-401f-b776-d743a2ec9ee0@gmail.com>
- <20260313-spiny-duration-702fff6bca17@spud>
- <ba44e0ed-9a6f-4d4d-b3bc-a6e0bac19940@gmail.com>
- <20260314-errant-gnarly-dcca92457051@spud>
- <9592ecf2-8410-4df7-9b2c-17564426240d@gmail.com>
+	s=k20201202; t=1773491285;
+	bh=875Lx9GdJ2JYYcgoslCqGduvaB4Sx0zWJoBv3nkvLv4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=hjhh0hxa3JBgGmMLHMPi5yd2rKzxXostHKu7tMmvo9AAqbYemQ/vJ9pqxjq8AWV1V
+	 tBFHuOLeRrbnh/nyG+Sm0AhAJiV72w43lg0Mefsouc7BiSWv1qCvm07Z9Oi6vB64lR
+	 kphYoKb1kh5D99WweBHf3CuVRDztlEfyXRjqliOTFQwInuPIP2ZLthGsCtnjVyhTAU
+	 Dru6bLW0TvbHJ487HAsCGMjpHsFl1ZWUClq+91C75nPaWUh60Op38UpRxVB2/1AV7y
+	 wuqL4Zv2kXcjQRwHkiXqm4f/vk2a/5Q5et6eq2M6BhFpugknqfyy/u5mOYyHmAYUci
+	 RSymLihjag1HA==
+Date: Sat, 14 Mar 2026 12:27:53 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Sirat <email@sirat.me>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] iio: proximity: add driver for ST VL53L1X ToF
+ sensor
+Message-ID: <20260314122753.327058bd@jic23-huawei>
+In-Reply-To: <CANn+LW+mg9Ridm3aMrVhy7cgvmJO0JNV_s_myfRCW8gPv7Ggkg@mail.gmail.com>
+References: <20260311224044.21480-1-email@sirat.me>
+	<20260311224044.21480-3-email@sirat.me>
+	<abLUgxivQnz2ISeY@ashevche-desk.local>
+	<CANn+LW+mg9Ridm3aMrVhy7cgvmJO0JNV_s_myfRCW8gPv7Ggkg@mail.gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="iDS3O7h7qtVz8IgK"
-Content-Disposition: inline
-In-Reply-To: <9592ecf2-8410-4df7-9b2c-17564426240d@gmail.com>
-X-Spamd-Result: default: False [-3.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275697-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275696-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7995528D16C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sirat.me:email]
+X-Rspamd-Queue-Id: 547AC28D21B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Thu, 12 Mar 2026 23:37:26 +0600
+Sirat <email@sirat.me> wrote:
 
---iDS3O7h7qtVz8IgK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On Thu, Mar 12, 2026 at 8:58=E2=80=AFPM Andy Shevchenko
+> <andriy.shevchenko@intel.com> wrote:
+> >
+> > On Thu, Mar 12, 2026 at 04:40:37AM +0600, Siratul Islam wrote: =20
+> > > Add support for the STMicroelectronics VL53L1X Time-of-Flight
+> > > ranging sensor with I2C interface. =20
+> > ...
+> > =20
+> > > +static const struct regmap_config vl53l1x_regmap_config =3D {
+> > > +     .reg_bits =3D 16,
+> > > +     .val_bits =3D 8, =20
+> >
+> > No cache?
+> > =20
+> The result registers change on every measurement, so caching doesn't
+> apply well here.
+> Will add .cache_type =3D REGCACHE_NONE  with a comment to clarify.
 
-On Fri, Mar 13, 2026 at 10:06:42PM -0700, Bo Gan wrote:
-> > To be honest, I'm not completely dead-set opposed to a property that has
-> > the bit positioning, but any property being added for what is
-> > effectively an erratum needs to pass a high bar when the info could be
-> > gathered in another way. That the eic7700 one depends on firmware for
-> > what the bit may be is points in your favour, since firmware variability
-> > is part of what dt is there to do. The jh7110 is points against, since
-> > it could be fished out of the errata handling code.
-> >=20
-> Even for JH7110, I don't think it can be handled through the errata. It
-> describes the errata of the core (if I'm not mistaken), and there can be
-> other SoCs using the same core with the same archid/impid, but maps the
-> peripherals differently, and the UC bit position doesn't apply there. I
-> think you are probably looking for "SoC level errata" handling. It's not
-> there AFAIK. Hence I guess both SoC cases point in favor of the dt prop?
+That's always the case, so more interesting is what registers
+don't change? Can just mark the result registers as volatile
+and get the advantages from caching the rest.
 
-I dunno, nothing wrong with checking the devicetree during the errata
-"probe" code. Checks are not limited to imp/arch ids, can do ecalls etc
-etc in there too, so looking at the root compatible would be possible.
+Someone else may have commented on it already, but please
+slow down a bit on sending new versions.  Typically 1 a week
+is a reasonable cadence unless things are very near to merge
+and you are being asked for minor final tweaks in which case
+one every few days is fine.
 
-Either way, if people like what you've done here generally (because
-coming up with our own use of PTE bits could be controversial), and a
-custom property of some sort is to be used, you need to provide a good
-justification of why it is needed in the commit messages because you're
-setting a precedent of being the first "extension" conjured up to suit
-linux that would need that kind of functionality.
-Need to demonstrate that it describes an aspect of the hardware, and
-isn't being conjured up to configure software to use one out of several
-possible values, that it may even be able to determine heuristically
-=66rom information already provided in the devicetree (like the root
-compatible or a completely described memory node).
+Jonathan
 
---iDS3O7h7qtVz8IgK
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabVRxAAKCRB4tDGHoIJi
-0sKCAQCFcLXaxPOsQWiEZYssCaXCDw8Ikdz/ax1iXfKfagutMgD/TE4w73XgMNvH
-GeXGGZb5eOooB27gJKL5sMKOn2nx1A0=
-=c0jS
------END PGP SIGNATURE-----
-
---iDS3O7h7qtVz8IgK--
+> > > +};=20
 
