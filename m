@@ -1,66 +1,60 @@
-Return-Path: <devicetree+bounces-275582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275583-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iJbIHbCmtGlvrgAAu9opvQ
-	(envelope-from <devicetree+bounces-275582-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 01:07:12 +0100
+	id qOb8NwOntGlvrgAAu9opvQ
+	(envelope-from <devicetree+bounces-275583-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 01:08:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B29928AD5B
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 01:07:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 443D528AD6B
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 01:08:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 811B830FF0D2
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 00:06:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 187F53062494
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 00:08:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F35F5CA52;
-	Sat, 14 Mar 2026 00:06:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A11D1DE4EF;
+	Sat, 14 Mar 2026 00:08:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z3GA5kVz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dvSTOH67"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCA89171CD;
-	Sat, 14 Mar 2026 00:06:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 490DE1D5178;
+	Sat, 14 Mar 2026 00:08:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773446775; cv=none; b=m4dEYDZJwb37amcVM3VaGssHF9XwnrCjHTuitFLPrU35doaCCW5ijjuEyZzfabKIToNbqqDeHUkXy5aZ2D98XfOaG9Iib3Bgf2QyCXXVhaKAuPUQsZ72ZuRHVKZuHpYVG1V4YqSuT+EL8sX+B0KdczX5UNXwEBJ9kTYUEXiBWsI=
+	t=1773446900; cv=none; b=i1fY4SR+DNoL3Bjs9aQxWSQ+YYIhBeH7YAGlm7HfaExHqqd/GXDs10O3SZ3Bn6vylvQw7gYmD3YSQQPpE3mibkLoZs6ISsWyuf2bsBmdAtsHfe6hZuHs6kmTX8o8DPJ4dG99f0FfCOa3DPG+hRRYhK+6mRNQWlsS0GBQulOlq60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773446775; c=relaxed/simple;
-	bh=+1mGqsTCzmyeptm4zZFJrDwcCw1teWFPqxDEfyiccas=;
+	s=arc-20240116; t=1773446900; c=relaxed/simple;
+	bh=7gNCDydkgxUZvseLqPsVtxB6EjOzf+D38jXxxHFS1RI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sN5ndM7wO075Lt82HJ9lmRfCDg7stuz9Pu9w1zN+1JtsKgJEkGNyAy8cNlgVlVPSny4NRCb8GdFsGTZE09oOdXHWCFhD8/nlv6d1wa7yGhgVyAQkYc1JxtSWNfEwXPKfGhiJF51z7PaKk82a/jJu9nWatPG40Oabx7ehbxwCFkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z3GA5kVz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81228C19421;
-	Sat, 14 Mar 2026 00:06:15 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=s1kGu9jmi7k2nr1XvrhJ+QgbdH7V9yFYiYCkDQmSXWOn0SGuiZz6qHW91XF7+2bcu/bzUSqstFtqOlOBgENsFadq5V8ndUkBh+Dtk5Qf9FGNnMPe6CSeqiyl9C08Py2lE+PZZrS9cV6+byHHk4PZADIrBuhuUmjMTwDUsOyeNOA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dvSTOH67; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E686C19421;
+	Sat, 14 Mar 2026 00:08:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773446775;
-	bh=+1mGqsTCzmyeptm4zZFJrDwcCw1teWFPqxDEfyiccas=;
+	s=k20201202; t=1773446899;
+	bh=7gNCDydkgxUZvseLqPsVtxB6EjOzf+D38jXxxHFS1RI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Z3GA5kVzqOIbO9+vW0WHtPcADkumsKArf9JIO9g63lxrn0lYIZ+8asM7PM8O+2qXm
-	 7SHWJKlOXvMlzODRB14xixa89QdjMRGtGioqN75b6uRgzccdMlS6zAddfdfEzQ9vE4
-	 rkGT9trdvKOPLpvauThoy0bgqsuwumhW7gAmG65mG/i0MbGa08m4sz5FtRLUiqCcvR
-	 J1PYVf9oj4BbHClb8T7ZKA9DOD1bP+2Uo4hjzLZmQVs4xYhfyj+vS8udU33M+NXL2j
-	 wzpNTNiBXoILtlLi26yhuDIw/qNNNe7zfXBTFodMUM9zWT5pvwSvP6fFNuIrBwm92e
-	 poqG8JqOvX5qQ==
-Date: Fri, 13 Mar 2026 19:06:14 -0500
+	b=dvSTOH67VHiMLz2VR34KszR3m2sZfJb/89XLPZOiVu6ezSidZMe1YYywy7Tsq470i
+	 DgvP3Ktwbgdyiiks+MeQJWchthxll7aFbehD//QQP1UbB1pHYjELIiHiJlAcqnEmiv
+	 pkJ/8rn25WN+/qLGjie4Km3GY+By7D9LetSXDAaGve/vjib5QWvzWPRr8y30CRt0/R
+	 rQQ0EVzjJG4jB/t/tftsxgoTEEF+mM83fRWWs2dzu/fXETiK5z7xBSiptBBUvZQLjR
+	 0qap7XMOxQjnH3Y2S8tjZGyXaLEf0YdeYrfKQGA3CYRhcBg13zBGJT3rT9sS5vSr5y
+	 FlHJKrVui89Yg==
+Date: Fri, 13 Mar 2026 19:08:18 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Biju <biju.das.au@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org,
-	Thomas Gleixner <tglx@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 02/15] dt-bindings: interrupt-controller:
- renesas,rzg2l-irqc: Document RZ/G3L SoC
-Message-ID: <177344677088.3704014.4761763624670554477.robh@kernel.org>
-References: <20260311192459.609064-1-biju.das.jz@bp.renesas.com>
- <20260311192459.609064-3-biju.das.jz@bp.renesas.com>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: briannorris@chromium.org, conor+dt@kernel.org,
+	linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
+	johannes@sipsolutions.net, krzk+dt@kernel.org, kvalo@kernel.org,
+	linux-kernel@vger.kernel.org, Frank.Li@nxp.com
+Subject: Re: [PATCH] dt-bindings: net: wireless: marvell,sd8787: Relax length
+ constraints
+Message-ID: <177344689795.3706356.13043407533958417879.robh@kernel.org>
+References: <20260311194531.70441-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,18 +63,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260311192459.609064-3-biju.das.jz@bp.renesas.com>
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+In-Reply-To: <20260311194531.70441-1-festevam@gmail.com>
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,bp.renesas.com,gmail.com,glider.be];
-	TAGGED_FROM(0.00)[bounces-275582-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-275583-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -93,52 +87,45 @@ X-Spamd-Result: default: False [-1.16 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email]
-X-Rspamd-Queue-Id: 1B29928AD5B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 443D528AD6B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Wed, 11 Mar 2026 19:24:33 +0000, Biju wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
+On Wed, 11 Mar 2026 16:45:31 -0300, Fabio Estevam wrote:
+> Commit 31ed9d9d71ec ("ARM: dts: rockchip: Limit WiFi TX power on
+> rk3288-veyron-jerry") added calibration data for the rk3288-veyron-jerry
+> platform. The commit message explicitly notes that "the length can vary
+> between hw versions", as documented in the original text binding.
 > 
-> Document RZ/G3L (R9A08G046) IRQC. The IRQC block on the RZ/G3L SoC is
-> nearly identical to that found on the RZ/G3S SoC, with the following
-> differences: it supports more external interrupts and GPT error
-> interrupts, and adds registers for GPT/MTU interrupt selection and shared
-> interrupt selection between external interrupt and TINT. A new compatible
-> string "renesas,r9a08g046-irqc" is therefore introduced for the RZ/G3L
-> SoC.
+> The current YAML schema enforces fixed maximum lengths for calibration
+> data arrays, which causes dtbs_check warnings for rk3288-veyron-jerry.dts.
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Relax the constraints for the two properties that have
+> variable-length data in this platform by adding minItems based on the
+> actual data used in the downstream kernel:
+> 
+> - marvell,caldata-txpwrlimit-2g: 508 bytes (from rk3288-veyron-jerry.dts)
+> - marvell,caldata-txpwrlimit-5g-sub2: 744 bytes (from
+> rk3288-veyron-jerry.dts)
+> 
+> The original maxItems values are preserved as upper bounds to maintain
+> validation for other platforms while accommodating this specific
+> hardware variant.
+> 
+> Fixes: 25f855413885 ("dt-bindings: net: wireless: convert marvel-8xxx.txt to yaml format")
+> Signed-off-by: Fabio Estevam <festevam@gmail.com>
 > ---
-> v4->v5:
->  * No change.
-> v3->v4: [4]
->  * Updated commit description.
-> v2->v3: [3]
->  * Dropped items and instead used enum for single compatible values
->  * Add minItems for interrupts and interrupt-names properties of
->    the RZ/{G2L,G2UL,Five,V2L} SoCs
->  * Replaced maxItems->minItems for interrupts and interrupt-names
->    properties of the RZ/G3L SoC.
-> v1->v2: [2]
->  * Simplified the binding using pattern
-> 
-> [4] https://lore.kernel.org/all/20260227140316.308106-3-biju.das.jz@bp.renesas.com/
-> [3] https://lore.kernel.org/all/20260204180632.249139-3-biju.das.jz@bp.renesas.com/
-> [2] https://lore.kernel.org/all/20260206111658.231934-3-biju.das.jz@bp.renesas.com/
-> [1]https://lore.kernel.org/all/20260204142320.103184-2-biju.das.jz@bp.renesas.com/
-> ---
->  .../renesas,rzg2l-irqc.yaml                   | 43 ++++++++++++++++---
->  1 file changed, 36 insertions(+), 7 deletions(-)
+>  .../devicetree/bindings/net/wireless/marvell,sd8787.yaml        | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
