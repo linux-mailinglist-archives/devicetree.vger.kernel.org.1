@@ -1,278 +1,416 @@
-Return-Path: <devicetree+bounces-275699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275700-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id c1b5NzdVtWnIzQAAu9opvQ
-	(envelope-from <devicetree+bounces-275699-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 13:31:51 +0100
+	id yICkIZxXtWkMzgAAu9opvQ
+	(envelope-from <devicetree+bounces-275700-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 13:42:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B10328D277
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 13:31:51 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24B3F28D30D
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 13:42:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5833C301C5B8
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 12:31:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7B0223016AC4
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 12:42:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7774620E334;
-	Sat, 14 Mar 2026 12:31:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FFB735295E;
+	Sat, 14 Mar 2026 12:42:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="WjwNEvQh"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="c+6cj/pK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+Received: from MW6PR02CU001.outbound.protection.outlook.com (mail-westus2azon11012070.outbound.protection.outlook.com [52.101.48.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEFF11D5151
-	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 12:31:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773491508; cv=none; b=VeSeT6F3FRAU8yyrEooS+tnlynLIDArziswwQDboBmvq5oLruH4k4/5i2++aFBsHOwSuU8rwmmd4vbix0J9/9YiEuyrwhva6HDwM7oaseRMxZPpP5SMKkTEtm38/cxYDwvIHWbl3S93nmapineGlqEBXfS0z0dkHeP6KUsgdKkU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773491508; c=relaxed/simple;
-	bh=ymnt/NWDGkNqoUIBq0vbjXm6EpNS9Aqr8moYdTzESqM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=XhdQwOZB79mgLgavOP6dyNWyRmTTmQYj4J03lXOTFfJsg9pJgrcrmwO7noG2nI2XF1T49T+pKcH5fQgjT4iXCOpmiIGp0x2bfdqBm17jJHmf6r3jsNn8s5wmKh0jENvXpTh8afWmqsECFsdM415SByOmrIIonxw4Itm5tOC0ZyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=WjwNEvQh; arc=none smtp.client-ip=185.67.36.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout01.posteo.de (Postfix) with ESMTPS id 0137C24002F
-	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 13:31:45 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
-	t=1773491505; bh=q2dLmprXXF4mEzJHnhT896dDscoHqOY/k5KCoI0lfzg=;
-	h=Message-ID:Subject:From:To:Cc:Date:Autocrypt:Content-Type:
-	 MIME-Version:OpenPGP:From;
-	b=WjwNEvQhaV6OGri4Z7KUTYQyz1lvYFfPDfyE5IuL9AF3B70JElKeMGGSQW0zuaLm+
-	 TPZonRqgTh77cO1fNSsQ44jwGyGt71O4UvOa8wYs4g9CRTCvj/5Ng36oG3EAXFTnnb
-	 nKxMMgcOml2x+G3LLnxQ9ltnW+IjIyCwAbc/9aEnzdIGxjlcnhlZhRdhUUP0C3MQFH
-	 3+0c9PIXn1APmdSnChyX8I+qaxMCmloJteZOqvwya3ODUvoQH8qvGulKe1Jv1K6p90
-	 BKzRRarTatA7nPxuUyWuqtUdSmECUWAgT/+V72p3odNdd/ksABZShOazWjwgAncB15
-	 APFoILGHJg13w==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4fY11l3nCGz9rxS;
-	Sat, 14 Mar 2026 13:31:39 +0100 (CET)
-Message-ID: <97c64ee64734debae475716b4d588dee59889f70.camel@posteo.de>
-Subject: Re: [PATCH v3 5/7] dt-bindings: mfd: Add synology,microp device
-From: Markus Probst <markus.probst@posteo.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley	 <conor+dt@kernel.org>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>,  Miguel Ojeda <ojeda@kernel.org>, Boqun Feng
- <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,  =?ISO-8859-1?Q?Bj=F6rn?=
- Roy Baron	 <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
- Andreas Hindborg	 <a.hindborg@kernel.org>, Alice Ryhl
- <aliceryhl@google.com>, Trevor Gross	 <tmgross@umich.edu>, Danilo Krummrich
- <dakr@kernel.org>, "Rafael J. Wysocki"	 <rafael@kernel.org>, Igor Korotin
- <igor.korotin.linux@gmail.com>, Daniel Almeida
- <daniel.almeida@collabora.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof =?UTF-8?Q?Wilczy=C5=84ski?=	 <kwilczynski@kernel.org>, Pavel
- Machek <pavel@kernel.org>, Len Brown	 <lenb@kernel.org>, Robert Moore
- <robert.moore@intel.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	rust-for-linux@vger.kernel.org, driver-core@lists.linux.dev, 
-	linux-pci@vger.kernel.org, linux-leds@vger.kernel.org, 
-	linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev
-Date: Sat, 14 Mar 2026 12:31:43 +0000
-In-Reply-To: <336523bb-615b-451b-8681-c965bf579203@kernel.org>
-References: <20260313-synology_microp_initial-v3-0-ad6ac463a201@posteo.de>
-	 <20260313-synology_microp_initial-v3-5-ad6ac463a201@posteo.de>
-	 <02e0772d-ba65-4eb8-8453-e0b3eaa4af96@kernel.org>
-	 <6f2298f3298dc81e6e2ed34ca43424fc39ce3518.camel@posteo.de>
-	 <336523bb-615b-451b-8681-c965bf579203@kernel.org>
-Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
- keydata=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
- jfGillcaQOqFZ3WwVqyzG1BUfTow==
-Content-Type: multipart/signed; micalg="pgp-sha256";
-	protocol="application/pgp-signature"; boundary="=-QgeV7XmAqUUPZhNVaoPn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86E1734F48D;
+	Sat, 14 Mar 2026 12:42:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.48.70
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773492122; cv=fail; b=TT2swERrUuROcpFFvCve86yw5XQtulM1XIohr/0td7B93FBl+kkuCBM+r4dGVr/JyqWt1SrGs9C89YIX48cgwmGW16FzeUlEaQAWool0fkif/vR1t68FIgN4Asu4g4gCUQhyd0aGCspQBn3r4WlrojLXabUmreg7ZKZx2d5W9Fc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773492122; c=relaxed/simple;
+	bh=GreJGp1DrvxD20KlPz4j5iFIl3+aoG0hlK426uecKlY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Ifjv4ZqIwhotA7c3WJzmwVM4BcO6NN1Wp6GEH4sej0Q56o6J0BEqGExalHzrB+98WPdtAK3jmciH7CMXDfrm42CeEn5784mu/UpGIp1UmzVEcHIDidFlLmFBcZL0PucIqUFOKr/sy5h9Ax96d16se/D1BNpbA82aBjE/4knGnXE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=c+6cj/pK; arc=fail smtp.client-ip=52.101.48.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QPiqTlRBA9RudUDEoeqS33Dl+Cdu+VhRSPVHoWWAtsYhJikMzgDIXzCM4e+/eYPP7xWvuQ4pJHZyO7tqoFILaO32t146/Pgwxm2gikX9xRXwnvL3P6mv1fZ8NkMXekPQ3w8/GClh3O3hMh6TigMveFvlzb9Ue4/GoBxuiGUneHiJb1Ihe18Po8drhN+rwFfUvsP9o1ju3UQ223ZkgjOSLMzDEZRRpOxSujABmMuoh+bgkK+mMmAt4FQAt4mEvIl2bpzDC1ibNuZg84XBSRujMKdbPxI6tbF4lgCpEIovcpeg8TlVUkjV2pJked1c7JwEDldpt5FIxTCH0e7k1adESw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DpHWsgKxBZi7sATWIfS4DxLDh7cD+zEJIHxKjFX1GdM=;
+ b=R3LS4hLmDsneuh2A8o4HLAS25IAZm2dV1fVI4KEBUFVH6xSJkXf4lc709E6bqhwrunZ1Z01Mxg7dT+dXfFC4N9ZHtB1pWvpY5NJQloPDFIzp/SNSm6vWnriiKSH473uIM4wXgDLwGfpSmYyng0sStxeWgolLjIsV1V++HKxan4Nsiz5Emnq0vWUuJJjFX2o0BEbOpvgbHWNcntDTTvKTy5qnj750WEDNu55+wzt6mmQcuIhxrT4uUqVrbdFaUJfp7R9Fpu1JDEMfpOJJ97RmsrlezjKQCFKhYGyzhoYpUUCuxnjpjUiwGZ/hsAw6js0HGdPg/6L5TFB+G38nOJf2ag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=lists.phytec.de smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DpHWsgKxBZi7sATWIfS4DxLDh7cD+zEJIHxKjFX1GdM=;
+ b=c+6cj/pKU9kNpYEhtPtxjaA84Jr9w+vBu/mSU866gD2/Ijfw+ft4al3T0TWKuELUWkM1aZ61lSVRmVYUMmzy2fFZFtO28fR3KFWNyos523wOGQLtRPOFSe7eRxsGin29R9rTXKdeuONcf9w/2fQ4eBOI+/D95IK/087ESd18YwA=
+Received: from SJ0PR03CA0056.namprd03.prod.outlook.com (2603:10b6:a03:33e::31)
+ by CY8PR10MB7196.namprd10.prod.outlook.com (2603:10b6:930:72::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.19; Sat, 14 Mar
+ 2026 12:41:57 +0000
+Received: from SJ1PEPF000023D1.namprd02.prod.outlook.com
+ (2603:10b6:a03:33e:cafe::b0) by SJ0PR03CA0056.outlook.office365.com
+ (2603:10b6:a03:33e::31) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.17 via Frontend Transport; Sat,
+ 14 Mar 2026 12:41:57 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ SJ1PEPF000023D1.mail.protection.outlook.com (10.167.244.7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9700.17 via Frontend Transport; Sat, 14 Mar 2026 12:41:57 +0000
+Received: from DLEE213.ent.ti.com (157.170.170.116) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Sat, 14 Mar
+ 2026 07:41:54 -0500
+Received: from DLEE212.ent.ti.com (157.170.170.114) by DLEE213.ent.ti.com
+ (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Sat, 14 Mar
+ 2026 07:41:54 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE212.ent.ti.com
+ (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Sat, 14 Mar 2026 07:41:54 -0500
+Received: from [172.24.233.103] (uda0132425.dhcp.ti.com [172.24.233.103])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62ECfp441750165;
+	Sat, 14 Mar 2026 07:41:51 -0500
+Message-ID: <37e866f4-c464-4d66-bcc8-c8f3a696f512@ti.com>
+Date: Sat, 14 Mar 2026 18:11:50 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/5] arm64: dts: ti: k3-am68-phyboard-izar: Add
+ PEB-AV-15 overlay
+To: Dominik Haller <d.haller@phytec.de>, Nishanth Menon <nm@ti.com>, "Tero
+ Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <upstream@lists.phytec.de>
+References: <20260311234844.56443-1-d.haller@phytec.de>
+ <20260311234844.56443-6-d.haller@phytec.de>
+From: Vignesh Raghavendra <vigneshr@ti.com>
+Content-Language: en-US
+In-Reply-To: <20260311234844.56443-6-d.haller@phytec.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D1:EE_|CY8PR10MB7196:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1ecdf0d1-a68f-4d69-52ea-08de81c7143f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|36860700016|1800799024|376014|18002099003|56012099003|22082099003;
+X-Microsoft-Antispam-Message-Info:
+	bxjl413kADpB10wvzyIhYpRsKanugQV4K+BTVw90NoxCIDhe0+TQT53948NO+YGfGom5l74BPG5H+weX+Re/uuktMi8Vmc0F2wp2xuqBSPRVs/m74aybC4CTopg9PDlTxjRuLynwl3PQHZX/pG9Lwr33uUulAI9FR/2mdMFv91eq4TsVsGRuMtHOqI/02/fDDnZyodf1sNXouGzOEW78PJDIy7GPwaOosTGSOVoS+czOJ91vcD/75I6TGSupmALUSaf4QLRNeTKXGHVbk87owqpVpFN7TMWuCI6q6VwiSdMwBvNe/9ARFYGuL1tKi5qRuFRr3oOiZ3ZdiPnOrjThejTXwPiExvkVWQYUbe9TVVmwnd9VxBYIgp88HnRm0Z9EeEF6gA1QYO/01yBenArSDEqKxpMxXeUE/zSacq9bQ9S35LhJhpM4bj2jcobhAtfuGJeI50SW8MVIEnFAT3Dp3Uv1XDWiry5lFooJdcsGB/k2hseFcfpHW/z/wJ6Wgfi8ENTYhLqFgGuPnPdcsZ3tqEBWGxnWK5cp51V8sKBceb1hxa6KWuBrfx5PQvL8JcMz+TcpTBRt//ixTQ68RZlD0S4nv7sZX9xIweCX+XTugEwtODEPgqBewJ3DmK1sLOIS9FgJ0aDhBqdjxJjVUtcKgUJ1WcqNAs8QZLFMxhMFyzmgKLYweKEP0UlsQnxvL4iO3E7F894vpOjykSkngaFCymf8dnx3JGCeFJcYBKicNaw5Gyk1+KbkVrrTcQ41k1ivlcSujoQJDhiVXKdtd96Ttw==
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(1800799024)(376014)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	r/DLb8EEGyemHVIN8kPYfa+vZf/84DM1uyx5GWOHN/JjR70Wb4D8dSpY4VjsNS7DLrP/hLhKHu9nEYkgPacFSeqjyEC+LAdYcgMakef4p9Piqav/sLfN21UkF7Bjq5k7UkqTsYEHw1bu73CpzCxZBO4OWsdk4ogAypm1rcyyqBa3z0TonWlrEuluj4tCj+jdbONRPQTF3RzsIuv5tik40JneP9VFGhRuSPp42Ro+fKF9u7gIN3qiAa93K4r3ONYIyjEAHyAg5yZ5hfySrCYr26jXONDDN1bU6y1wxC/Sui3vs7YM8soq4d1w/f7ojoNsOvTzP44zYcBOXTA5AYPgS2W88WaFb9Pj1orFSnj7X5xrYw4Ig841RqE9BHwtbQd0IslTR45pRJanC+cxWyOs4JS2S+h/JZ0MqMD0mcCTLdkqsT/3exsU+6XiQEkX9Qg/
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2026 12:41:57.0063
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1ecdf0d1-a68f-4d69-52ea-08de81c7143f
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF000023D1.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR10MB7196
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275699-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,linuxfoundation.org,garyguo.net,protonmail.com,google.com,umich.edu,gmail.com,collabora.com,intel.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[31];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[posteo.de:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[ti.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275700-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,0.0.0.0:email,ti.com:dkim,ti.com:mid,ti.com:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,phytec.de:email];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[wikipedia.org:url,posteo.de:dkim,posteo.de:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8B10328D277
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vigneshr@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_PROHIBIT(0.00)[0.0.0.48:email,0.0.0.18:email,0.0.0.3:email];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 24B3F28D30D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---=-QgeV7XmAqUUPZhNVaoPn
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Sat, 2026-03-14 at 09:49 +0100, Krzysztof Kozlowski wrote:
-> On 13/03/2026 21:29, Markus Probst wrote:
-> >=20
-> > > This is not an "MFD" device.
-> > It now uses the MFD APIs. By the definiton of @Lee (assuming I
-> > understood it correctly), this device should now qualify as "MFD"
-> > device.
->=20
-> No. Using Linux framework does not make this device MFD, since there is
-> no such term of hardware as MFD. Otherwise please explain or link to
-> verifiable external source describing what sort of device class is MFD
-I assumed these comments would also apply for the dt bindings:
--
-https://lore.kernel.org/rust-for-linux/DGYAFNSJ7576.1E0JZ2W499ZQ7@kernel.or=
-g/
--
-https://lore.kernel.org/rust-for-linux/20260309151555.GU183676@google.com/
+On 12/03/26 05:18, Dominik Haller wrote:
+> Add an overlay to use the PEB-AV-15 AV-Adapter. It's a small expansion board
+> using a Lontium LT8912B DSI->HDMI bridge and a TLV320AIC3007 audio codec.
+> 
+> Signed-off-by: Dominik Haller <d.haller@phytec.de>
+> ---
+>  arch/arm64/boot/dts/ti/Makefile               |   4 +
+>  .../ti/k3-am68-phyboard-izar-peb-av-15.dtso   | 192 ++++++++++++++++++
+>  2 files changed, 196 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso
+> 
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> index a188e62e32b4..ae5994818ad2 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -135,6 +135,9 @@ dtb-$(CONFIG_ARCH_K3) += k3-am68-phyboard-izar.dtb
+>  dtb-$(CONFIG_ARCH_K3) += k3-am68-phyboard-izar-lvds-ph128800t006.dtb
+>  k3-am68-phyboard-izar-lvds-ph128800t006-dtbs := k3-am68-phyboard-izar.dtb \
+>  	k3-am68-phyboard-izar-lvds-ph128800t006.dtbo
+> +dtb-$(CONFIG_ARCH_K3) += k3-am68-phyboard-izar-peb-av-15.dtb
+> +k3-am68-phyboard-izar-peb-av-15-dtbs := k3-am68-phyboard-izar.dtb \
+> +        k3-am68-phyboard-izar-peb-av-15.dtbo
+>  dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
+>  dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board-pcie1-ep.dtbo
+>  dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
+> @@ -323,6 +326,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+>  	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
+>  	k3-am67a-kontron-sa67-base-gpios.dtb \
+>  	k3-am68-phyboard-izar-lvds-ph128800t006.dtb \
+> +	k3-am68-phyboard-izar-peb-av-15.dtb \
+>  	k3-am68-sk-base-board-csi2-dual-imx219.dtb \
+>  	k3-am68-sk-base-board-pcie1-ep.dtb \
+>  	k3-am69-sk-csi2-dual-imx219.dtb \
+> diff --git a/arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso b/arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso
+> new file mode 100644
+> index 000000000000..a86971fcdee1
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso
+> @@ -0,0 +1,192 @@
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> +/*
+> + * Copyright (C) 2026 PHYTEC Messtechnik GmbH
+> + * Author: Dominik Haller <d.haller@phytec.de>
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include "k3-pinctrl.h"
+> +
+> +&{/} {
+> +	audio_refclk1: audio-clock {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <19200000>;
+> +	};
+> +
+> +	hdmi: hdmi-connector {
+> +		compatible = "hdmi-connector";
+> +		label = "hdmi";
+> +		type = "a";
+> +		ddc-i2c-bus = <&main_i2c2>;
+> +
+> +		port {
+> +			hdmi_connector_in: endpoint {
+> +				remote-endpoint = <&lt8912b_out>;
+> +			};
+> +		};
+> +	};
+> +
+> +	reg_audio_3v3: regulator-audio-3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC3V3_AUDIO";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	reg_audio_1v8: regulator-audio-1v8 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC1V8_AUDIO";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	sound {
+> +		compatible = "simple-audio-card";
+> +		simple-audio-card,name = "PEB-AV-15";
+> +		simple-audio-card,widgets =
+> +			"Headphone", "Headphone Jack",
+> +			"Microphone", "Mic Jack";
+> +		simple-audio-card,routing =
+> +			"Headphone Jack", "HPLOUT",
+> +			"Headphone Jack", "HPROUT",
+> +			"MIC3R", "Mic Jack",
+> +			"Mic Jack", "Mic Bias";
+> +		simple-audio-card,format = "dsp_b";
+> +		simple-audio-card,bitclock-inversion;
+> +		simple-audio-card,bitclock-master = <&link0_codec>;
+> +		simple-audio-card,frame-master = <&link0_codec>;
+> +
+> +		link0_cpu: simple-audio-card,cpu {
+> +			sound-dai = <&mcasp0>;
+> +		};
+> +
+> +		link0_codec: simple-audio-card,codec {
+> +			sound-dai = <&audio_codec>;
+> +			clocks = <&audio_refclk1>;
+> +		};
+> +	};
+> +
+> +};
+> +
+> +&dphy_tx1 {
+> +        status = "okay";
 
-given that using linux MFD APIs also changes the structure of the dt
-bindings with added sub-devices.
+You have spacs instead of tabs
 
-But it seems no?
+> +};
+> +
+> +&dsi1 {
+> +	status = "okay";
+> +};
+> +
+> +&dsi1_ports {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	port@0 {
+> +		reg = <0>;
+> +		dsi1_out: endpoint {
+> +			remote-endpoint = <&lt8912b_in>;
+> +		};
+> +	};
+> +
+> +	port@1 {
+> +		reg = <1>;
+> +		dsi1_in: endpoint {
+> +			remote-endpoint = <&dpi3_out>;
+> +		};
+> +	};
+> +};
+> +
+> +&dss {
+> +	status = "okay";
+> +};
+> +
+> +&dss_ports {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
 
-> because for sure this is not MFD how Wikipedia defines it.
+Here too... Please check the entire series.
 
-Wikipedia defines it as a synonym for a "multi-function
-product/printer/peripheral"
-https://en.wikipedia.org/wiki/Multifunction_device
+> +        port@3 {
+> +                reg = <3>;
+> +                dpi3_out: endpoint {
+> +                        remote-endpoint = <&dsi1_in>;
+> +                };
+> +        };
+> +};
+> +
+> +&mcasp0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcasp0_pins>;
+> +
+> +	#sound-dai-cells = <0>;
+> +
+> +	op-mode = <0>;	/* MCASP_IIS_MODE */
+> +	tdm-slots = <2>;
+> +
+> +	/* 4 serializers */
+> +	serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
+> +		2 0 0 1
+> +		0 0 0 0
+> +		0 0 0 0
+> +		0 0 0 0
+> +	>;
+> +
+> +	tx-num-evt = <32>;
+> +	rx-num-evt = <32>;
+> +	status = "okay";
+> +};
+> +
+> +&main_i2c2 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	audio_codec: audio-codec@18 {
+> +		compatible = "ti,tlv320aic3007";
+> +		reg = <0x18>;
+> +		#sound-dai-cells= <0>;
 
->=20
-> >=20
-> > > > +
-> > > > +    mcu {
-> > >=20
-> > > Please read previous comments.
-> >=20
-> > You are likly trying to refer to this comment from you:
-> > > Depending what this is. MCU is generic purpose unit where you load
-> > your
-> > > different FW for different purposes and you have here specific - to
-> > > handle certain aspects of this entire machine. This looks like EC, so
-> > > should be called embedded-controller and placed in that directory.
-> > Synology uses Microchip PIC for this purpose. On a Synology DS215j, it
-> > uses a "Microchip PIC16F1829". At least to me, this looks like a
->=20
-> It does not matter what chip is used. Every component uses some sort of
-> chip.
-I would be interested in what does matter then.
+Missing space before "="
 
-I did not actually find an exact definition for what
-Documentation/devicetree/bindings/mfd
-and
-Documentation/devicetree/bindings/embedded-controller
-is for in the kernel tree or in the devicetree spec.
+> +		ai3x-micbias-vg = <2>;
+> +		AVDD-supply = <&reg_audio_3v3>;
+> +		IOVDD-supply = <&reg_audio_3v3>;
+> +		DRVDD-supply = <&reg_audio_3v3>;
+> +		DVDD-supply = <&reg_audio_1v8>;
+> +
+> +	};
+> +
+> +	bridge@48 {
+> +		compatible = "lontium,lt8912b";
+> +		reg = <0x48>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +				lt8912b_in: endpoint {
+> +					data-lanes = <0 1 2 3>;
+> +					remote-endpoint = <&dsi1_out>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +				lt8912b_out: endpoint {
+> +					remote-endpoint = <&hdmi_connector_in>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&main_pmx0 {
+> +	mcasp0_pins: mcasp0-default-pins {
+> +		pinctrl-single,pins = <
+> +			J721S2_IOPAD(0x03c, PIN_INPUT, 1) /* (U27) WCLK, MCASP0_AFSX.MCASP0_AFSX */
+> +			J721S2_IOPAD(0x038, PIN_INPUT, 1) /* (AB28) BCLK, MCASP0_ACLKX.MCASP0_ACLKX */
+> +			J721S2_IOPAD(0x040, PIN_OUTPUT, 1) /* (AC28) DOUT, MCASP0_AXR0.MCASP0_AXR0 */
+> +			J721S2_IOPAD(0x07c, PIN_INPUT, 1) /* (T27) DIN, MCASP0_AXR3.MCASP0_AXR3 */
+> +		>;
+> +	};
+> +};
 
->=20
-> > general purpose microcontroller with firmware from synology flashed
-> > onto it. Therefore it is a MCU.
->=20
-> Every chip is then an MCU with such logic. Every PMIC, every EC.
->=20
-> This is for me clearly embedded controller and that's where this should
-> be placed and called.
-In that case I will move it to
-Documentation/devicetree/bindings/embedded-controller and update the
-node name used in the example.
+-- 
+Regards
+Vignesh
+https://ti.com/opensource
 
-I will wait a bit for the other patches to be reviewed before sending a
-next revision.
-
-But I wonder how
-Documentation/devicetree/bindings/mfd/qnap,ts433-mcu.yaml
-got in there then, given it is pretty similar to this device in the
-functionality it provides.
-
->=20
-> Best regards,
-> Krzysztof
-
-Thanks
-- Markus Probst
-
---=-QgeV7XmAqUUPZhNVaoPn
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iQJPBAABCAA5FiEEgnQYxPSsWOdyMMRzNHYf+OetQ9IFAmm1VSgbFIAAAAAABAAO
-bWFudTIsMi41KzEuMTEsMiwyAAoJEDR2H/jnrUPSP+MP/1/VBG/dQxtLR1lRfGjP
-p2JzDwOfaO93qw6mJsn7rNMLFDHKQmJO81dItaEXl9jyILcrE/Cy7UcoMtpeH04r
-jcQyDORLNPVXzcc+rHIJ/sUt3Qy2G079Wf9qC6RgkVy4LVkCOcjH/s9JdxoAAFih
-yIXwkhnCUE3S73WfzwuxSVnuCO+V7/IIzahYG2kDV2kdpIvGF41Aq9SyUB+4E3u7
-g+mfg7R2TJVtENuQQJScHBXEoqos8bUegjMCegORqAhKCTtyHwdzCgGwH+ZZK2Oh
-utEcaGUQRE7KUkUbH24aPyk67FTGhBiwH4NJxJFW+XXJpwue+SO7xGYP9XOXtAcd
-MBPzmXkwYC0miMgDnadnYyZfbQ/eUcSzYE3N6n/Cur+mDW5kokdDOdiFInDH9yfH
-Q9PHATWyP29w7XD+AWA5K2w0iUZugvLozHTYm1G/gIcEYKByA588v0Z8VQb2LwQP
-GMQMXTWv6drWpHCMRSUZOgjRsH57kfKexCkZPfSLyZVxvPP7Ii19aOTMH/8kQRW5
-8IL4gvnYHWGoktz5S80CUT2CzzqI11L+RAYWE3v/f6ITZC+WByfxI5ohJj9e3mxj
-12Swd/r6R4CyySCeIPyfH4eqd24S7cGwRyBWe0ujFVKWoY17PZyfZc/Wu+BIsICq
-BAGtgYZCiTCFd8ajt9i1+TGT
-=TVne
------END PGP SIGNATURE-----
-
---=-QgeV7XmAqUUPZhNVaoPn--
 
