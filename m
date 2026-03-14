@@ -1,273 +1,163 @@
-Return-Path: <devicetree+bounces-275733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275734-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eBHHBBKItWn11QAAu9opvQ
-	(envelope-from <devicetree+bounces-275733-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 17:08:50 +0100
+	id iBdqCq6KtWmO1gAAu9opvQ
+	(envelope-from <devicetree+bounces-275734-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 17:19:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DDF128DCFA
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 17:08:49 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE67228DDA2
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 17:19:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 80B4D3039F51
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 16:07:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2AAFB300D4C5
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 16:19:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6AAC37E2E8;
-	Sat, 14 Mar 2026 16:06:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C876B227599;
+	Sat, 14 Mar 2026 16:19:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dGaiKDey"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="UTlE6CIa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 336A237CD57
-	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 16:06:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB0BA13790B
+	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 16:19:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773504407; cv=none; b=GeLwtnwW2bG1B6tFMDIy2fj30O9Sg4G4ugLk6v8DeWoc315OEQA6wlYAjLreYcrDEfXpnq9wlBVmZ7Pxvjkx9cSK56WbmXeoxUaMuxjmBrSbUFj0MkAxVypzSEjarGBiEPTYfASZp6s1ubWK0zTT3mbwXrQJUiAngR/LhVPAF1c=
+	t=1773505195; cv=none; b=IBPpoyJ4wXMhur45SrpY1wKC8jQ87UY8qE7Uii0k4pCgvoNpOEnvc3OgRunMmW942fGvfMX+8CiUAJXMZUXC7XAizHewgFgBToO4EawoksH/MOcFoPOBNP8U586ZCh4A7RGM5l0VSShQezdH6eFs2h4RHvFwj6N+HEZRuIqJgiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773504407; c=relaxed/simple;
-	bh=AAYQH8m5hJopiQqgeTngADuMlO+elqyJCsSOeSZcnBU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=UA/JY0z8RCQh8t6RifJ3Cvhe/1fz2AXRsGLu8SJw3k74YXQOZCwWmLFdC6YS/vpWjelRF5QgQ//UBWdPWj+nwm2ha2OdDBJ/16ZErUYAzMExuqWRW/kDcwWYF8ctRHZbENAWjfKqJy3FC1iLI1D0FUu5rfH9brm0WOIa7BgbOUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dGaiKDey; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-66438f18ea1so1893965a12.3
-        for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 09:06:46 -0700 (PDT)
+	s=arc-20240116; t=1773505195; c=relaxed/simple;
+	bh=KBkmFspCBI5UcLEf1cRd//2zKNdLHfEi9/AjCUQ/XiQ=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=gDfm7t9vuQUsChyVH5KkihJarOdmwt8EJqtMH4fZxhwKlAd0He4Y8ALw8y3Zz3yaHGm8JbTLHirb8kY/K1ido+Y+gSAuYObJeQtMyTBRmkVO7FskVQNtCPW1f+ayZaD1szt36VjokoPeeFDFXuQwyHL/kT0fnUhissaYoBco8Uc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=UTlE6CIa; arc=none smtp.client-ip=209.85.160.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-417c34b0509so1134982fac.1
+        for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 09:19:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773504404; x=1774109204; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ztVKqP7Iue8aUh5WW0pabHa7SHe1KuIXZfJfBXrdn9M=;
-        b=dGaiKDeyCS/zMpoONAWtHlh6/lm5+lp/RD1B9EeSGZ2u5oRIpW1Iirkmz6zYIloLUs
-         /VEQqCH0R4Ju26RpDnC1TS3BAF8DBdY3Q1WBZn2Uc+aCHx1O3h2FCSuD7NOXd8cKJyew
-         J7uWG3FghoA8CkNzjwbAEajbKB3PKa6EDxnl9TvygmQ7D3+SB4dAu+1gec9Pp9HuS2em
-         3BBpwDEj7DyjxSYc6iuY1TW/JVmo7U/pE/tUCSnHUkzJ/wit9T/7rU8xc4H5q+DmUNWl
-         NSDJUXU3GBO1RC28jclfsIoF2DHlcKiXVfRlT2OpoKW5x6xn9oR1sY5RKL7fIDYahpB+
-         f2TA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773504404; x=1774109204;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1773505193; x=1774109993; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=ztVKqP7Iue8aUh5WW0pabHa7SHe1KuIXZfJfBXrdn9M=;
-        b=kFw7RXKhgYE+r7baJE66/V0PRKoWXoAdJ+rqCipod9NBvtJis0w9Cj2Ujt3GP5LUhl
-         IJBbGjuuNkqifPZrOaTa2QREig2OTFfzPnpmA30RWzT28/MqzPYPhqIz03k+PfnkWcqH
-         bejVZKSigajpoDF212Q3oiN14h6axyAQEP5XzsR7jo40ZRjZwUnlOFEtKN00XXSFvc8Z
-         4UHoTjtFZ2NUkkfGXaWdKcxOs+fcvPSK2+vMsZqRt6a5pEj9dhset28n2k69b2FBNkC6
-         Ko0cBmUTNA7DnrMWxc8+u7M8vnhluxG7ZZV5jziSODGTH9C7oRHZlxxTYkwbgY3w0Q0/
-         hrkw==
-X-Forwarded-Encrypted: i=1; AJvYcCXS49MP+yw8CMdi3yoM9a4Gu0e6yKATpYVNU/eF/Py3jT61DNLM5tDsLBkDp0/ZzmQIuqXNFJlTKmRL@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZ6SFeJhjp/+onzb7qcBSolXs5hJW5Pao9mnB7w7FtHDvWWv9/
-	lgIoqCgcUeXY9KhPtwq+1xZYbKcxmRWyf6wNJzZ7cf931OlHude9A3t3
-X-Gm-Gg: ATEYQzzALGb1JvJqTMiU4U8dCM1OHJ4/9JkDrsoqzIvgQbbHZpT9Gm7CDYiW3j7H1Wu
-	FTPCopGHSgLFcZQvYgArf286ptKA6XSnbs/odoIHkJPfkbFcoxrVvykIe6aegkAtTBSm1AOhbkC
-	WnIiq9BvnXR44cXJ2NUXK9P96yFYGlLZvdwZkdyxZUipbRzQoFQVoUGaTTFyKpJrU7Stf1tPFUv
-	baiJkhMu5mDd+ygS/Pdc41nfOFPN+YsSedUD7wngvWxjoET6w+/xVk2ndjUWq/Ad+p0ZQShi4bb
-	gs11uazBXpWJU5nOOP/bJlyWRE0SCGN7zlHn0AUcsR4NtMoF7HIF+OO9ydrGMSKKynf67gSZGgX
-	L0h9NzjDfPvUWbCrujJ2nOiWGeSb7gh076lOJ6ZGwmOhj2iHwkBHmDJsU8UKvp3FsvTONzTj9fM
-	YZ1/R6L8JNmVGSG/rv/RtV8ueTcw==
-X-Received: by 2002:a17:907:746:b0:b97:6384:2317 with SMTP id a640c23a62f3a-b97650e5609mr440832566b.17.1773504404085;
-        Sat, 14 Mar 2026 09:06:44 -0700 (PDT)
-Received: from [192.168.0.39] ([79.133.247.80])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b978b8625d3sm151722366b.52.2026.03.14.09.06.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Mar 2026 09:06:43 -0700 (PDT)
-From: Erikas Bitovtas <xerikasxx@gmail.com>
-Date: Sat, 14 Mar 2026 18:06:35 +0200
-Subject: [PATCH v3 6/6] iio: light: vcnl4000: use variables for I2C client
- and device instances
+        bh=KBkmFspCBI5UcLEf1cRd//2zKNdLHfEi9/AjCUQ/XiQ=;
+        b=UTlE6CIakS2eeEyYdefN9JLGIAeYhImg5giLVCU1Jwn1SkdIs2yf9jTYEC3DucLtNP
+         +4CtMvlqRY05xeMY9671JeIYMAHlL9UnjTq04Xw6NGdprq0U9qR1bXZKQg6Eu+sLf2/D
+         HsD+apRTHc11ijvEOk3MfRcpkJTDnQAsaVUsMID6lu4qUm+8wc3KW3HfAjaWNiRrdM0C
+         AoLf5KyL59/iBXG8HiwayLfUHaST8neln7L9cZvg5jExoNUkjR5j27PQmejhHLJXScil
+         +vO2pfiAg3VdCKMVkDQveenO4TZq9FoBA/pi6WKthvseITlnsALJrCQQjdtTbBMz/Yty
+         ukUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773505193; x=1774109993;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KBkmFspCBI5UcLEf1cRd//2zKNdLHfEi9/AjCUQ/XiQ=;
+        b=iN2JsqVNFHVQw6qVgzOOtkTzD61A4DrZvQ9xKRIygBegaAWe68HCo+inHYygMr8gSo
+         pMSXb1/vZPUjnOVUafqRr54xl6m+0JSGIbyTmqoeMsm6qmsqT9Q/OzzD6g4Q8+ih1WCV
+         dGfxdk8FZztYbQINIHl3BYoDsOE/QgwuheHKOPsmrfSWvMFZPjtgvnKzpsTXxS7tmcrg
+         m+b/CqdyTXNQBxRUpXiI/3QcbvqXBEKEoO5wPI46dQ3T+9erU/fj/JUPQI2MiPHFvo/w
+         yDBuE+jq6n/sAJ4RpCWEPVKFGqBBfeXkT+j5Q6sdHvv5sY4ssaWxF4ooFSGGw3XX+C1s
+         LEeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWvLFgUFv1zK39lBi9Ug6pT0+pQfDD/EHAxOlGfyKssjMK9Wr1GJdf457vX6/8M90bN5mux8xMyE4EC@vger.kernel.org
+X-Gm-Message-State: AOJu0YyEmslnc9Iqf416GDWLwZHuAxJVHKt//z89+3+QxzEYEiC6uMu3
+	QZZHLFbTh/3H1ZOraB3WuhOvWzepu9qnJDJPa7UXxDhRefaW9t+09/567c1MWcGCuQU=
+X-Gm-Gg: ATEYQzz+7NQwOn8IxOhZ1zHWtyKi0GAkSxfykyry62J/HfWzfUZ/X+rh1hdc76MlR77
+	l/kvioVO98r5oPdt/pbWZ28klWtmuFymrHkaJAkntgNkrabh+gmj7AE3b7hoquhdwAfPAN5Rx07
+	KmeeQU2+rwJVCqWAHBtDibyOW+O7tLXidQYiYxQfQ9O7ljvgXCHUS4fv+oOCdc/ToeMfaKoLieM
+	83c2tng2wRLTn0RCbdG6E5xoWnZj1l7ypI+OV+0vOEbi46eczxIWAY/tucFrYLu1JCoYzt0tqOZ
+	x56ijCL9F2TF0b10jrK0+2VA3zaMWgkOkynfLRlpDPa+QSGdXJjdOmnx0qKKofahJSANyPUlPQS
+	c+51AkzwvG2YWTB1e29Mnv5S4Ddr7o5A87R0tbFOEsvGUICbYcSTK+spdPQz5slM3tax0UTAvln
+	tL8ImP5ZZFFeKHzZ0Usc1ahiWr12pQYsJuZzQ7B9cVlMh9YEuTgeQJYj4ZIso5WVVv26Tg5TeD9
+	g==
+X-Received: by 2002:a05:6870:510d:b0:417:1165:cf2e with SMTP id 586e51a60fabf-417b917197amr4017421fac.6.1773505192866;
+        Sat, 14 Mar 2026 09:19:52 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:14a9:db6c:e65a:4287? ([2600:8803:e7e4:500:14a9:db6c:e65a:4287])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4177e6ae0e3sm11940193fac.16.2026.03.14.09.19.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 14 Mar 2026 09:19:52 -0700 (PDT)
+Message-ID: <c158a12d-4855-40e7-9581-8078be4237fa@baylibre.com>
+Date: Sat, 14 Mar 2026 11:19:51 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/4] dt-bindings: iio: adc: add bindings for AD4691
+ family
+From: David Lechner <dlechner@baylibre.com>
+To: radu.sabau@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>,
+ Bartosz Golaszewski <brgl@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+References: <20260313-ad4692-multichannel-sar-adc-driver-v3-0-b4d14d81a181@analog.com>
+ <20260313-ad4692-multichannel-sar-adc-driver-v3-1-b4d14d81a181@analog.com>
+ <a1824f39-3925-4e94-ac98-52dcdfbaa0d2@baylibre.com>
+Content-Language: en-US
+In-Reply-To: <a1824f39-3925-4e94-ac98-52dcdfbaa0d2@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260314-vcnl4000-regulators-v3-6-3c4a48d30676@gmail.com>
-References: <20260314-vcnl4000-regulators-v3-0-3c4a48d30676@gmail.com>
-In-Reply-To: <20260314-vcnl4000-regulators-v3-0-3c4a48d30676@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- phone-devel@vger.kernel.org, Erikas Bitovtas <xerikasxx@gmail.com>
-X-Mailer: b4 0.14.3
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275733-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-275734-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,gmail.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[analog.com,metafoo.de,kernel.org,gmail.com,pengutronix.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[baylibre.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7DDF128DCFA
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre-com.20230601.gappssmtp.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,baylibre.com:mid]
+X-Rspamd-Queue-Id: BE67228DDA2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-After moving data->client and client->dev into variables of their own,
-replace all instances of data->client and client->dev being used in
-vcnl4200_init and vcnl4000_probe by the said variables to reduce
-clutter.
+On 3/14/26 10:29 AM, David Lechner wrote:
+> On 3/13/26 5:07 AM, Radu Sabau via B4 Relay wrote:
+>> From: Radu Sabau <radu.sabau@analog.com>
+>>
+>> Add DT bindings for the Analog Devices AD4691 family of multichannel
+>> SAR ADCs (AD4691, AD4692, AD4693, AD4694).
+>>
 
-Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
----
- drivers/iio/light/vcnl4000.c | 34 +++++++++++++++++-----------------
- 1 file changed, 17 insertions(+), 17 deletions(-)
+...
 
-diff --git a/drivers/iio/light/vcnl4000.c b/drivers/iio/light/vcnl4000.c
-index c8bb1826b916..9b7cd3f0c8fb 100644
---- a/drivers/iio/light/vcnl4000.c
-+++ b/drivers/iio/light/vcnl4000.c
-@@ -362,14 +362,14 @@ static int vcnl4200_init(struct vcnl4000_data *data)
- 	int ret, id;
- 	u16 regval;
- 
--	ret = i2c_smbus_read_word_data(data->client, VCNL4200_DEV_ID);
-+	ret = i2c_smbus_read_word_data(client, VCNL4200_DEV_ID);
- 	if (ret < 0)
- 		return ret;
- 
- 	id = ret & 0xff;
- 
- 	if (id != VCNL4200_PROD_ID) {
--		ret = i2c_smbus_read_word_data(data->client, VCNL4040_DEV_ID);
-+		ret = i2c_smbus_read_word_data(client, VCNL4040_DEV_ID);
- 		if (ret < 0)
- 			return ret;
- 
-@@ -379,7 +379,7 @@ static int vcnl4200_init(struct vcnl4000_data *data)
- 			return -ENODEV;
- 	}
- 
--	dev_dbg(&data->client->dev, "device id 0x%x", id);
-+	dev_dbg(dev, "device id 0x%x", id);
- 
- 	data->rev = (ret >> 8) & 0xf;
- 	data->ps_int = 0;
-@@ -413,23 +413,23 @@ static int vcnl4200_init(struct vcnl4000_data *data)
- 		return ret;
- 
- 	/* Use 16 bits proximity sensor readings */
--	ret = i2c_smbus_read_word_data(data->client, VCNL4200_PS_CONF1);
-+	ret = i2c_smbus_read_word_data(client, VCNL4200_PS_CONF1);
- 	if (ret < 0)
- 		return ret;
- 
- 	regval = ret | VCNL4040_PS_CONF2_PS_HD;
--	ret = i2c_smbus_write_word_data(data->client, VCNL4200_PS_CONF1,
-+	ret = i2c_smbus_write_word_data(client, VCNL4200_PS_CONF1,
- 					regval);
- 	if (ret < 0)
- 		return ret;
- 
- 	/* Align proximity sensor sample rate to 16 bits data width */
--	ret = i2c_smbus_read_word_data(data->client, VCNL4200_PS_CONF3);
-+	ret = i2c_smbus_read_word_data(client, VCNL4200_PS_CONF3);
- 	if (ret < 0)
- 		return ret;
- 
- 	regval = ret | VCNL4040_CONF3_PS_SAMPLE_16BITS;
--	ret = i2c_smbus_write_word_data(data->client, VCNL4200_PS_CONF3,
-+	ret = i2c_smbus_write_word_data(client, VCNL4200_PS_CONF3,
- 					regval);
- 	if (ret < 0)
- 		return ret;
-@@ -1998,7 +1998,7 @@ static int vcnl4000_probe(struct i2c_client *client)
- 	struct device *dev = &client->dev;
- 	int ret;
- 
--	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
- 	if (!indio_dev)
- 		return -ENOMEM;
- 
-@@ -2022,10 +2022,10 @@ static int vcnl4000_probe(struct i2c_client *client)
- 	if (ret < 0)
- 		return ret;
- 
--	dev_dbg(&client->dev, "%s Ambient light/proximity sensor, Rev: %02x\n",
-+	dev_dbg(dev, "%s Ambient light/proximity sensor, Rev: %02x\n",
- 		data->chip_spec->prod, data->rev);
- 
--	if (device_property_read_u32(&client->dev, "proximity-near-level",
-+	if (device_property_read_u32(dev, "proximity-near-level",
- 				     &data->near_level))
- 		data->near_level = 0;
- 
-@@ -2037,7 +2037,7 @@ static int vcnl4000_probe(struct i2c_client *client)
- 
- 	if (data->chip_spec->trig_buffer_func &&
- 	    data->chip_spec->buffer_setup_ops) {
--		ret = devm_iio_triggered_buffer_setup(&client->dev, indio_dev,
-+		ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
- 						      NULL,
- 						      data->chip_spec->trig_buffer_func,
- 						      data->chip_spec->buffer_setup_ops);
-@@ -2046,8 +2046,8 @@ static int vcnl4000_probe(struct i2c_client *client)
- 	}
- 
- 	if (client->irq && data->chip_spec->irq_thread) {
--		ret = devm_request_threaded_irq(&client->dev, client->irq,
--						NULL, data->chip_spec->irq_thread,
-+		ret = devm_request_threaded_irq(dev, client->irq, NULL,
-+						data->chip_spec->irq_thread,
- 						IRQF_TRIGGER_FALLING |
- 						IRQF_ONESHOT,
- 						"vcnl4000_irq",
-@@ -2060,7 +2060,7 @@ static int vcnl4000_probe(struct i2c_client *client)
- 			return ret;
- 	}
- 
--	ret = pm_runtime_set_active(&client->dev);
-+	ret = pm_runtime_set_active(dev);
- 	if (ret < 0)
- 		goto fail_poweroff;
- 
-@@ -2068,9 +2068,9 @@ static int vcnl4000_probe(struct i2c_client *client)
- 	if (ret < 0)
- 		goto fail_poweroff;
- 
--	pm_runtime_enable(&client->dev);
--	pm_runtime_set_autosuspend_delay(&client->dev, VCNL4000_SLEEP_DELAY_MS);
--	pm_runtime_use_autosuspend(&client->dev);
-+	pm_runtime_enable(dev);
-+	pm_runtime_set_autosuspend_delay(dev, VCNL4000_SLEEP_DELAY_MS);
-+	pm_runtime_use_autosuspend(dev);
- 
- 	return 0;
- fail_poweroff:
+>> +
+>> +properties:
 
--- 
-2.53.0
+More properties we can add: gpio-controller and #gpio-cells
+
+It doesn't matter if the driver implements it or not. We want the
+bindings to be as complete as possible and we know these are the
+correct properties for ADCs with GPIOs.
+
 
 
