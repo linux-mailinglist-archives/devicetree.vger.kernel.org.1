@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-275714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275715-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YCYNJvBptWkM0QAAu9opvQ
-	(envelope-from <devicetree+bounces-275714-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 15:00:16 +0100
+	id CBSyNKtrtWlJ0QAAu9opvQ
+	(envelope-from <devicetree+bounces-275715-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 15:07:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9985328D67B
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 15:00:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F3FA28D6DB
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 15:07:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2ADD43008696
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 14:00:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7C3EB302F989
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 14:07:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 068E0378806;
-	Sat, 14 Mar 2026 14:00:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B09262808;
+	Sat, 14 Mar 2026 14:07:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QVrAoIMZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Iz5AC2zY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE9601E1E16;
-	Sat, 14 Mar 2026 14:00:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A9751D63F3;
+	Sat, 14 Mar 2026 14:07:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773496807; cv=none; b=T2Ma+uxhyaFKDmI6New6CvmU7LBT8JkLgWkUfQ1rKNSXFNUqojZ91wXh8R7D9pNFFy1JZSUTCy6n8FYcbXLuSSMoBJVspGYC/vZtlqJzOqXzR9NQQUQAPkogUTDTtvDHBSg2abUhX+aGcfPSaGQwL7t7vZ89zlE/3cAv5vQanCk=
+	t=1773497255; cv=none; b=VbwHtpr/YwqxScFm3fcBGRIXUad8VTUT510Oj2y0TIk+ZyuEXTBX49nLCS9DrM/7DQfCDFX/TWCAy0vwLd1pI5uIkYER0XcG81waI5rtWp0lr3+75QXlchavOatLmKlai3OkxsgqJ8ziX51ULwkIcFhgfijOVq2NBmIJXtLhWxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773496807; c=relaxed/simple;
-	bh=1+vB6Fh0hWuDgVa5lqXyiRNifiXr1Y6OZeg8vSQVs5c=;
+	s=arc-20240116; t=1773497255; c=relaxed/simple;
+	bh=SV44/ZN/OjIb2n1UHVVokej+vXYWzqmwDFdcOIOLWF4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Pa2gpZzxGSIbpw/q1Upohin16GLK8CvAzSggerDlSEopPXKnWbcr7gH2g+cb/kJ+/BmC8FlTd0zgYIsrSd9fxMtOlgVwHQvfI1j+3sLG+dMUAXYvK/qdc2Dpq3AXN0xmrEBLnk2kN8goDDCGUYrSeEm7iuiUYFfUv4oHPO1kVJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QVrAoIMZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE4B3C116C6;
-	Sat, 14 Mar 2026 13:59:59 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=PzseuF+fU7EdfWYyru1EFqe8mdxu8gt9D3P1JMaz9nNxXjOvv+Y4PgBASJd6WhQ3lCAFY8l2ArhFfQyzcQQYHAiRrJQSwceXaEiVi1R2/EeYRbBdfwHDQ86gGbOz0cErxLeQBoQ03TBvP/KwBjh8/icObs6e0oE1I2lJO3RiXnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Iz5AC2zY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 562AFC116C6;
+	Sat, 14 Mar 2026 14:07:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773496807;
-	bh=1+vB6Fh0hWuDgVa5lqXyiRNifiXr1Y6OZeg8vSQVs5c=;
+	s=k20201202; t=1773497255;
+	bh=SV44/ZN/OjIb2n1UHVVokej+vXYWzqmwDFdcOIOLWF4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QVrAoIMZxICmvffRH8O7N7SIUO7gkYz38hFkr8r/CBMuTWGv+8nuSuSvJGn4nwIdd
-	 NnfDqcS+5TVX0xcKguvpScSfM9QBrBPBr9wOM4GaOa4os1WUTy86kuP5VBma5B4Lay
-	 +4G1RdCp+zlJ/Tsyo0P6bht08cjRTltDNHgVUg4nZrQ2qd5+E6aNiuOqStjbWr5P8F
-	 mXPxoECpMkrrwuk6Z/2fBRhJxSjtDUdzDrAlfJRXdhU49x+vdjp1OoWbzmoQN+f6LG
-	 t+/2z+HeeFx97feR234cKyC4djshItRkiASYBk8Ku0FT8gjJllIbZjBerVS9smnVdP
-	 taL12cz2ApG/Q==
-Message-ID: <88f53ef1-5c3c-44d7-a749-a03b9563a552@kernel.org>
-Date: Sat, 14 Mar 2026 14:59:57 +0100
+	b=Iz5AC2zYDHfkbj3ZAzPsh7qUAERSuFPxE0vVtOO1gYzOctsXHhmsXIQnuwlG5sFA5
+	 oCvgdZXynGGIx48r8u53MSVcg5KNmZDHIdzbt8eMFQSGVBVGl6kgpqk2/gN0srvEEw
+	 kbz4tfP1Hj9RxnlCNgjh26c2EYBKnyV6tn+dPMBnTv9vXaqUlHnTQROoFSJ38CCq0q
+	 Bc77Me7Ai+4edA+ir03eCsvLjnlTf1v9cgEu3E5QhHBLTgvuHYBi4bjnmv7Mjz0EUr
+	 8jnTWWvA0SGOMJmNTazVDITbEDrla7Jgg1XERd6L1rMmIJCbrjIR7ShlwsHOOQ4VDo
+	 W64jBEuvDxW7Q==
+Message-ID: <df78feab-1876-42b6-b503-07afbd072463@kernel.org>
+Date: Sat, 14 Mar 2026 15:07:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,33 +53,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/7] dt-bindings: mfd: Add synology,microp device
-To: Markus Probst <markus.probst@posteo.de>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Igor Korotin <igor.korotin.linux@gmail.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Pavel Machek <pavel@kernel.org>, Len Brown <lenb@kernel.org>,
- Robert Moore <robert.moore@intel.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org, driver-core@lists.linux.dev,
- linux-pci@vger.kernel.org, linux-leds@vger.kernel.org,
- linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev
-References: <20260313-synology_microp_initial-v3-0-ad6ac463a201@posteo.de>
- <20260313-synology_microp_initial-v3-5-ad6ac463a201@posteo.de>
- <02e0772d-ba65-4eb8-8453-e0b3eaa4af96@kernel.org>
- <6f2298f3298dc81e6e2ed34ca43424fc39ce3518.camel@posteo.de>
- <336523bb-615b-451b-8681-c965bf579203@kernel.org>
- <97c64ee64734debae475716b4d588dee59889f70.camel@posteo.de>
+Subject: Re: [PATCH v2] dt-bindings: input: touchscreen: edt-ft5x06: Add
+ FocalTech FT3519
+To: Bhushan Shah <bhushan.shah@machinesoul.in>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260314-edt-ft3519-v2-1-e28c3f9c6559@machinesoul.in>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -125,141 +106,59 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <97c64ee64734debae475716b4d588dee59889f70.camel@posteo.de>
+In-Reply-To: <20260314-edt-ft3519-v2-1-e28c3f9c6559@machinesoul.in>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-275715-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275714-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[posteo.de,kernel.org,linuxfoundation.org,garyguo.net,protonmail.com,google.com,umich.edu,gmail.com,collabora.com,intel.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[31];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[machinesoul.in,gmail.com,kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[wikipedia.org:url]
-X-Rspamd-Queue-Id: 9985328D67B
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 1F3FA28D6DB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 14/03/2026 13:31, Markus Probst wrote:
-> On Sat, 2026-03-14 at 09:49 +0100, Krzysztof Kozlowski wrote:
->> On 13/03/2026 21:29, Markus Probst wrote:
->>>
->>>> This is not an "MFD" device.
->>> It now uses the MFD APIs. By the definiton of @Lee (assuming I
->>> understood it correctly), this device should now qualify as "MFD"
->>> device.
->>
->> No. Using Linux framework does not make this device MFD, since there is
->> no such term of hardware as MFD. Otherwise please explain or link to
->> verifiable external source describing what sort of device class is MFD
-> I assumed these comments would also apply for the dt bindings:
-> -
-> https://lore.kernel.org/rust-for-linux/DGYAFNSJ7576.1E0JZ2W499ZQ7@kernel.org/
-> -
-> https://lore.kernel.org/rust-for-linux/20260309151555.GU183676@google.com/
-
-I don't understand your question. We talk here about bindings, so why do
-you ask if the comments are about bindings?
-
+On 14/03/2026 14:50, Bhushan Shah wrote:
+> Document FocalTech FT3519 support by adding the compatible. It's 10
+> point touchscreen, which is compatible with FT3518
 > 
-> given that using linux MFD APIs also changes the structure of the dt
-> bindings with added sub-devices.
-> 
-> But it seems no?
+> Signed-off-by: Bhushan Shah <bhushan.shah@machinesoul.in>
+> ---
+> Document FocalTech FT3519 support by adding the compatible. It's 10
+> point touchscreen, which is compatible with FT3518.
+> ---
+> Changes in v2:
+> - Remove the driver change and add only compatible in dt-bindings.
+> - Link to v1: https://lore.kernel.org/r/20260313-edt-ft3519-v1-0-fe5ffc632fd2@machinesoul.in
+> ---
 
-> 
->> because for sure this is not MFD how Wikipedia defines it.
-> 
-> Wikipedia defines it as a synonym for a "multi-function
-> product/printer/peripheral"
-> https://en.wikipedia.org/wiki/Multifunction_device
-
-I know, not need to state obvious. And this is not a printer.
-
-
-
-> 
->>
->>>
->>>>> +
->>>>> +    mcu {
->>>>
->>>> Please read previous comments.
->>>
->>> You are likly trying to refer to this comment from you:
->>>> Depending what this is. MCU is generic purpose unit where you load
->>> your
->>>> different FW for different purposes and you have here specific - to
->>>> handle certain aspects of this entire machine. This looks like EC, so
->>>> should be called embedded-controller and placed in that directory.
->>> Synology uses Microchip PIC for this purpose. On a Synology DS215j, it
->>> uses a "Microchip PIC16F1829". At least to me, this looks like a
->>
->> It does not matter what chip is used. Every component uses some sort of
->> chip.
-> I would be interested in what does matter then.
-> 
-> I did not actually find an exact definition for what
-> Documentation/devicetree/bindings/mfd
-
-Because there is no such hardware as MFD.
-
-> and
-> Documentation/devicetree/bindings/embedded-controller
-> is for in the kernel tree or in the devicetree spec.
-
-Commit msg moving several devices there explained, no?
-
-
-> 
->>
->>> general purpose microcontroller with firmware from synology flashed
->>> onto it. Therefore it is a MCU.
->>
->> Every chip is then an MCU with such logic. Every PMIC, every EC.
->>
->> This is for me clearly embedded controller and that's where this should
->> be placed and called.
-> In that case I will move it to
-> Documentation/devicetree/bindings/embedded-controller and update the
-> node name used in the example.
-> 
-> I will wait a bit for the other patches to be reviewed before sending a
-> next revision.
-> 
-> But I wonder how
-> Documentation/devicetree/bindings/mfd/qnap,ts433-mcu.yaml
-> got in there then, given it is pretty similar to this device in the
-> functionality it provides.
-
-Great question. How do any bugs, mistakes, different judgments or
-imperfectness got merged?  How is it possible that code for example is
-reviewed but has a bug? Don't ever use arguments that something
-somewhere happened, so you can do the same.
-
-Not mentioning that if you even question this, you could at least look
-at the history which would tell you if "embedded-controller" directory
-existed that time or not.
+It does not look like you tested the bindings, at least after quick
+look. Please run `make dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Maybe you need to update your dtschema and yamllint. Don't rely on
+distro packages for dtschema and be sure you are using the latest
+released dtschema.
 
 Best regards,
 Krzysztof
