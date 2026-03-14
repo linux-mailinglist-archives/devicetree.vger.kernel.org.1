@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-275655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275656-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AIDcOboxtWn1xQAAu9opvQ
-	(envelope-from <devicetree+bounces-275655-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 11:00:26 +0100
+	id kB2sDwQ0tWl3xgAAu9opvQ
+	(envelope-from <devicetree+bounces-275656-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 11:10:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 898D328C966
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 11:00:26 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44A9728C991
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 11:10:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1EFD73015B48
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 10:00:26 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E61113004DBE
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 10:10:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 514C281AA8;
-	Sat, 14 Mar 2026 10:00:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F04302FD665;
+	Sat, 14 Mar 2026 10:10:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EuJ3vzUz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mmi9YZig"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E7363FF1;
-	Sat, 14 Mar 2026 10:00:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC3332192F9;
+	Sat, 14 Mar 2026 10:10:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773482424; cv=none; b=nHvV16/Fvl1dIkFDhVI3844sslnsq1vhZomrWgjknCw0a4SweEnb5h45UuHhgeIgny0PvDWMKKBr1GkbYFFiK45ZNoZzTuXRhMA7seYUqzzxMQdUVhQT6Hwm0hlrG2IMWLilgLDFTffV3CubW9IzTM0ot/Sn0bEMKxhHnNF6R9o=
+	t=1773483004; cv=none; b=IJuQcR+IeMBjGyxKJrnmLp66ORBIRpHUhnJSNXTNpAnQPaYfFjnftjC+UHhikGmtppLsBw9RrfomIXJuAZkbSgufdGmZMjASsQqgWKp9qTZGNIfDF1jEt3PZy4qsU3GViBjqJ+CXOC4JkoeCpm2PkTENfrTtgKl2tt1OkLd0fug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773482424; c=relaxed/simple;
-	bh=7q6/mh/+hgMSacRtQrKwjiNoZrlr2KIxDe3CIv91HnE=;
+	s=arc-20240116; t=1773483004; c=relaxed/simple;
+	bh=9JM2HxiM/2D7f0WoZeD6i7J2Lsf1/r1NqLsYIjJ2u+k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BAebeIIZCpWC+LsZv7swdipT2b0OFLchYiwxtRAjq+fa+Weu9ENb+ZJxeRhw/e7gjYFSuNn/q7fzE25kTdGKPpyTJWOAP1gi4f767Rh7/SZFX8lXR5GfhFx0cMnZ5VrnpmFxg3nlhrkxuq8V3iQAQi5Hx1R007wuy7nRELz0DBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EuJ3vzUz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D95FC116C6;
-	Sat, 14 Mar 2026 10:00:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oOxCTsTdOICX1c93WreZ3/XWZXY8Rwi1XLt16pHKR+ZrKxwiuCaW+WXluIAcM/4SBZ9A/6jRc0el6qFzB4qNRP1P8eYkyKPmUoGibM+FglIVL18Y01B1v74xE4zai6xADzqd1nqjStmmde9gHR2B1Dyble2ib8LzcvpFi/ERBuU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mmi9YZig; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19B61C116C6;
+	Sat, 14 Mar 2026 10:10:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773482423;
-	bh=7q6/mh/+hgMSacRtQrKwjiNoZrlr2KIxDe3CIv91HnE=;
+	s=k20201202; t=1773483004;
+	bh=9JM2HxiM/2D7f0WoZeD6i7J2Lsf1/r1NqLsYIjJ2u+k=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EuJ3vzUzXhtxJRplj9Ur4p5dtgPDFdidkPRAetjIqw/gHAG+e/TzDoem5L0z531z8
-	 qmXqHlB7iY5u8osMVkJkqz0362emawugGbxSm3hCjpZXO+lHO6jKhYhA/fRKN+4xLL
-	 aKu6goH+/SAkdZ0cbgC0Td3MwQW5EnIIu0RrcaYk0aOypL5dh18Uhion8/icPw2og7
-	 bWfPiB7fWzpuy0z9sWEo1mgI5RjQb2pJhDkdGz8a7UODpYj3yFiOyvf1mvF4OYzAX4
-	 PYVI5uKff1cNSX5Kw/rMxwcihaieQeP0ZwAmckQsNr5GDX9icKVILMza3ddV6ENgeb
-	 UkaWCMoxSL6cQ==
-Date: Sat, 14 Mar 2026 11:00:21 +0100
+	b=mmi9YZiggA0pbsrxw6Soz7a+FQrnIcYn7GpE7RwgUrAPpUC4t7ycM/H/16xwOUH3v
+	 nRz+YczIa6OF6SYMY15h/81CKc/+JSZwDjQ6hazTspSL7kUW1z9lZZWZ+5koNGotTA
+	 fATuGoC82zpaqaqMJ5uXnhWCIZFH/GXLKX+nkXW3o9T5VDz4xo/NZkIm5fTR3d4Ver
+	 L18kzAatDsQ8oQaz1ghsmCNNpzbWOnpJ8D06tTNAG+jVg+aJnoZAJchxhYLudt8qkn
+	 vyNSAtVYP2y5tvITHVgK2mcaLtYRH+5gBgreT2PI9Yv0J/Eakm5+UewR76lLkDSUYd
+	 upo8Z6HpIFaKA==
+Date: Sat, 14 Mar 2026 11:10:02 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: qcom: Document Eliza SoC and
- its MTP board
-Message-ID: <20260314-petite-spirited-cobra-d6aadb@quoll>
-References: <20260313-eliza-base-dt-v2-0-bd91367d860d@oss.qualcomm.com>
- <20260313-eliza-base-dt-v2-1-bd91367d860d@oss.qualcomm.com>
+To: Niranjan H Y <niranjan.hy@ti.com>
+Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, lee@kernel.org, linusw@kernel.org, 
+	lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz, tiwai@suse.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, nb@tipi-net.de, 
+	navada@ti.com, v-hampiholi@ti.com, sandeepk@ti.com, baojun.xu@ti.com, 
+	shenghao-ding@ti.com
+Subject: Re: [PATCH v1 2/8] dt-bindings: pinctrl: Add bindings for TI TAC5x1x
+ pinctrl
+Message-ID: <20260314-keen-glittering-pudu-b7b2c1@quoll>
+References: <20260312184833.263-1-niranjan.hy@ti.com>
+ <20260312184833.263-3-niranjan.hy@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,51 +66,286 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260313-eliza-base-dt-v2-1-bd91367d860d@oss.qualcomm.com>
-X-Spamd-Result: default: False [-1.66 / 15.00];
+In-Reply-To: <20260312184833.263-3-niranjan.hy@ti.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-275656-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275655-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,gmail.com,perex.cz,suse.com,tipi-net.de,ti.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: 898D328C966
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,devicetree.org:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 44A9728C991
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 03:23:50PM +0200, Abel Vesa wrote:
-> Qualcomm Eliza SoC comes with different flavors. There is SM7750 for
-> mobiles and then QC7790S/M for IoT. One of the boards that comes with
-> Eliza SoC is the MTP.
-> 
-> So document both the SoC and MTP board compatibles.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+On Fri, Mar 13, 2026 at 12:18:27AM +0530, Niranjan H Y wrote:
+> Add device tree bindings for the Texas Instruments TAC5x1x family
+> pin controller. These bindings define the GPIO and pin control
+> configuration interface for the device.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+A nit, subject: drop second/last, redundant "bindings for". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+> 
+> Signed-off-by: Niranjan H Y <niranjan.hy@ti.com>
+> ---
+>  .../bindings/pinctrl/ti,tac5x1x-pinctrl.yaml  | 163 ++++++++++++++++++
+>  include/dt-bindings/pinctrl/tac5x1x.h         |  44 +++++
+>  2 files changed, 207 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/ti,tac5x1x-pinctrl.yaml
+>  create mode 100644 include/dt-bindings/pinctrl/tac5x1x.h
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/ti,tac5x1x-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/ti,tac5x1x-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..3ccb262d6247
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/ti,tac5x1x-pinctrl.yaml
+> @@ -0,0 +1,163 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/ti,tac5x1x-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI TAC5x1x Pin Controller
+> +
+> +maintainers:
+> +  - Niranjan H Y <niranjan.hy@ti.com>
+> +
+> +description: |
+> +  The TAC5x1x devices have 5 configurable pins that can be used for GPIO
+> +  or alternate functions like PDM (Pulse Density Modulation) and interrupt
+> +  generation. A subset of pins can be present in any variant of the HW.
+> +
+> +  This binding is used as a child node of the main TAC5x1x MFD device
+> +  described in Documentation/devicetree/bindings/mfd/ti,tac5x1x.yaml
+> +
+> +  Pin capabilities:
+> +  - GPIO1, GPIO2: Bidirectional, configurable as GPIO, PDM clock, or IRQ output
+> +  - GPO1: Output only, configurable as GPIO, PDM clock, or IRQ output.
+> +          Some variants use different name GPO1A.
+> +  - GPI1: Input only, configurable as GPIO or PDM data input
+> +          Some variants use different name GPI1A.
+> +  - GPI2A: Input only, configurable as GPIO or PDM data input
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,tac5x1x-pinctrl
+
+No wildcards in compatibles and filenames.
+
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +    description: |
+> +      First cell is the pin number (0-4 corresponding to GPIO1, GPIO2, GPO1, GPI1, GPI2A)
+> +      Second cell is flags (GPIO_ACTIVE_HIGH or GPIO_ACTIVE_LOW)
+> +
+> +  gpio-ranges:
+> +    maxItems: 1
+> +    description: GPIO range mapping to pin controller
+> +
+> +  gpio-line-names:
+> +    minItems: 1
+> +    maxItems: 5
+> +    description: Names for the GPIO lines
+> +
+> +patternProperties:
+> +  '-state$':
+> +    type: object
+> +    description: Pin configuration state
+> +    $ref: /schemas/pinctrl/pinmux-node.yaml#
+> +
+> +    patternProperties:
+> +      '^.*$':
+
+-group$ or -grp$
+
+> +        type: object
+> +        $ref: /schemas/pinctrl/pincfg-node.yaml#
+> +
+> +        properties:
+> +          groups:
+> +            description: Pin groups to configure
+> +            items:
+> +              enum:
+> +                - gpio1
+> +                - gpio2
+> +                - gpo1
+> +                - gpi1
+> +                - gpi2a
+> +                - pdm_gpio1_gpio2
+> +                - pdm_gpio1_gpi1
+> +                - pdm_gpio1_gpi2a
+> +                - pdm_gpio2_gpio1
+> +                - pdm_gpio2_gpi1
+> +                - pdm_gpio2_gpi2a
+> +                - pdm_gpo1_gpio1
+> +                - pdm_gpo1_gpio2
+> +                - pdm_gpo1_gpi1
+> +                - pdm_gpo1_gpi2a
+> +
+> +          function:
+> +            description: Function to assign
+> +            enum:
+> +              - gpio
+> +              - pdm
+> +              - irq
+> +
+> +          drive-push-pull:
+> +            type: boolean
+> +            description: Enable push-pull drive mode
+> +
+> +          drive-open-drain:
+> +            type: boolean
+> +            description: Enable open-drain drive mode
+> +
+> +          drive-open-source:
+> +            type: boolean
+> +            description: Enable open-source drive mode
+> +
+> +          bias-pull-up:
+> +            type: boolean
+> +            description: Enable pull-up bias
+> +
+> +          bias-pull-down:
+> +            type: boolean
+> +            description: Enable pull-down bias
+> +
+> +          bias-high-impedance:
+> +            type: boolean
+> +            description: Set pin to high impedance
+> +
+> +          input-enable:
+> +            type: boolean
+> +            description: Enable input buffer
+> +
+> +          output-enable:
+> +            type: boolean
+> +            description: Enable output buffer
+
+Drop all descriptions and type. common schema defines them. You only
+need :true if none of other properties are applicable here.
+
+
+> +
+> +        required:
+> +          - groups
+> +          - function
+> +
+> +        additionalProperties: false
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - gpio-controller
+> +  - '#gpio-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    pinctrl {
+> +        compatible = "ti,tac5x1x-pinctrl";
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +        gpio-ranges = <&pinctrl 0 0 5>;
+> +        gpio-line-names = "GPIO1", "GPIO2", "GPO1", "GPI1", "GPI2A";
+> +
+> +        default_state: default-state {
+> +            pdm_config {
+> +                groups = "pdm_gpo1_gpi1";
+> +                function = "pdm";
+> +                drive-push-pull;
+> +            };
+> +
+> +            gpio_config {
+> +                groups = "gpio1", "gpio2";
+> +                function = "gpio";
+> +                bias-pull-up;
+> +            };
+> +
+> +            irq_config {
+> +                groups = "gpo1";
+> +                function = "irq";
+> +                drive-open-drain;
+> +            };
+> +        };
+> +    };
+> diff --git a/include/dt-bindings/pinctrl/tac5x1x.h b/include/dt-bindings/pinctrl/tac5x1x.h
+> new file mode 100644
+> index 000000000000..8cc3fa0b7946
+> --- /dev/null
+> +++ b/include/dt-bindings/pinctrl/tac5x1x.h
+
+Header always match bindings filename.
+
+> @@ -0,0 +1,44 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+> +/*
+> + * Device Tree binding constants for TAC5x1x pinctrl
+> + *
+> + * Copyright (C) 2025 Texas Instruments Incorporated
+> + * Author: Niranjan H Y <niranjan.hy@ti.com>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_PINCTRL_TAC5X1X_H
+> +#define _DT_BINDINGS_PINCTRL_TAC5X1X_H
+> +
+> +/* Pin IDs */
+> +#define TAC5X1X_PIN_GPIO1 0
+> +#define TAC5X1X_PIN_GPIO2 1
+> +#define TAC5X1X_PIN_GPO1 2
+> +#define TAC5X1X_PIN_GPI1 3
+> +#define TAC5X1X_PIN_GPI2A 4
+
+Since when GPIOs are bindings?
+
+> +
+> +/* Pin functions */
+> +#define TAC5X1X_FUNC_GPIO 0
+> +#define TAC5X1X_FUNC_PDM 1
+> +#define TAC5X1X_FUNC_IRQ 2
+
+No, pin function is a string.
+
+> +
+> +/* Pin drive modes */
+> +#define TAC5X1X_DRIVE_HIZ 0
+> +#define TAC5X1X_DRIVE_PUSH_PULL 1
+> +#define TAC5X1X_DRIVE_PULL_DOWN 2
+> +#define TAC5X1X_DRIVE_OPEN_DRAIN 3
+> +#define TAC5X1X_DRIVE_PULL_UP 4
+> +#define TAC5X1X_DRIVE_OPEN_SOURCE 5
+
+Are you sure this patch was extensively reviewed internally?
 
 Best regards,
 Krzysztof
