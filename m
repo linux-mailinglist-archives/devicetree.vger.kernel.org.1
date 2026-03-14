@@ -1,158 +1,140 @@
-Return-Path: <devicetree+bounces-275617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275618-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id XMcCEP4FtWlkvgAAu9opvQ
-	(envelope-from <devicetree+bounces-275617-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 07:53:50 +0100
+	id EMiNJtcJtWnXvgAAu9opvQ
+	(envelope-from <devicetree+bounces-275618-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:10:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D64D28BE22
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 07:53:49 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CD5028BE84
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:10:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 214C73045A83
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 06:53:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8A346303E387
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 07:09:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 179E826E711;
-	Sat, 14 Mar 2026 06:53:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AWElYE72"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06502292B4B;
+	Sat, 14 Mar 2026 07:09:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA70B19F40A
-	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 06:53:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5331C27AC45
+	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 07:09:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773471227; cv=none; b=ATeKr/5zzh6c8GF5mzn+OjN387tVIRXJ6fAFBOXtuQpmwHNxEPE3zfXiT5LTemamKZFFrqb+aUhGYQrR3K+3Z5cR9stYxPe+JeuyWTbuxAEAKCp2YCnBZZqMMGw/gfmJRE9sN/CW+BWmfevkjfiD8OtmpBoje4l0haxEPYWDTQU=
+	t=1773472154; cv=none; b=pZ3yWzTNQCssOrxrjgDXmsq+/hd4s3GhYqhjQ80Z6NDAKQ2PnP97L+Kvb4JCS34uptG6tob1k+0vYEVrI5NpbTU5IZZPZXcZeHldpklVNmFsHbdIxHmtL2b84NyeoY7VbGaQB11pGdxgN+sEGdes3OUyY3sr4WGHEQ84M4A7qgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773471227; c=relaxed/simple;
-	bh=OGqE3n15B8Oam7oaufyM4egmtIok/tvgCx592UaF9pQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XyMaBApRxZwF2g56MNmnIcX9PXrczxgw6bbT3NRr8gQuxCPZvaokdZ35R79VYszItWqDFW9/a/gNTae+9ITss0Lj8ww/Y1AKTS5HJZ9kSwozGdw/U7L5c6H3COkAQvOAMeIhFobFQCQMg4TqKugMGE2ujqpc078z/y3RPnu7lZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AWElYE72; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-439af7d77f0so2320910f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Mar 2026 23:53:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773471224; x=1774076024; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OGqE3n15B8Oam7oaufyM4egmtIok/tvgCx592UaF9pQ=;
-        b=AWElYE72LPnq++Y88iKIndzwe0yzI6583D6RQQRf9sJMpk08yGPuJ/2opVl4WNBHca
-         vpk8zz4Wam1MOllrJK8vnBRJPuzvANvdE9GauzASNtpRq6Iuiwyh3o7tvfOwqBmR3RPz
-         Yuq4BTxwpvrOXyRr3TWUwFG7GhY3cem1n2QWUQZuRX+juThOhE+wZ7UEwh8c3aMfJJWM
-         /1o4ekhR2EAFRT+H1y9I7e6NL2k3RpMueknHP+KCmCOGiFgbRawuJNac8WXEM3l9rNH2
-         ZPNk7asnMtcYtfmMXMRlfYRINshV7xD42CD4lhyNEp6Hl9qRJ62dPboQWU1tL6e9DPCj
-         w/Tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773471224; x=1774076024;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=OGqE3n15B8Oam7oaufyM4egmtIok/tvgCx592UaF9pQ=;
-        b=Kr8mcTnRgzNdWuApHC2r3IhZeBQEh0U6dsR4/YCptGgXvaDIVerS1AZd0oXKo12147
-         3PtW6IaEC5XK5s5DZE1zRBqdUnIyh5fxZgeoYlHGIUeow9O82v0VDn4xlcZL9rBRQ49P
-         7UmB3V43mERb7WQuthUaxwpspbli5VtwQeiOM0WDX4Tb04wdCAs5pSyBi/f3pjXTsQcS
-         9pfB3e2pRpIp7+B6KLXykrQypQPJkNbIV4oePkkGTE5UtKnUT+59cf8mUY7PxHOwg4qR
-         lv3/tS9mXKCzLrNgqyo1n7T7uF68OCNeMDCrhDoPYb+N1gIPY1GtOXsBuM96gP7MVgwz
-         hw1g==
-X-Gm-Message-State: AOJu0YzAlygDB8b5AtNcz5HC4ppbOLfE22EicdpFpuKHA4B/as9wj/Rp
-	5O+94H+Sb3akVSjMVcp3BailyuTeMz76IKorFDjMgCAFxTpQ3UpRFdO8L+2OCg==
-X-Gm-Gg: ATEYQzxoLmQw+/f0J772MXDOZ4i1j4h/6PagVfeXfCHMnQuBZQ+jDLuCkTe59VX0CdP
-	JHu0VNNjYaMJHeOaVRgRjVQGegugZnycEV8Ews1z7qneLNZnB1uG2WwZpB6VJH4Xg4Uc9N8LzcB
-	X+d/LB1yIA8RuRBK224YszzFly0p8zTk3GcKtyQf2vqofikpry555xIs1hMFj9tSdVnmvn0cNT5
-	FYLaBiqCLb3S2ireg/FlR9a92Xh5HVAPojZD9qLM+0TNBXst0YcpFTf+ToJs/mA2qEt68cJwk6E
-	xyjH51DEF/Xk/bZIMfYANsvI52/Gw0Pj4v1MCqedaJij9o4od7P/xEmqEPUX3G6j4XZYG9Qh/3v
-	vaBY75D8zoAp57mb1/F8vt3AqIrz+vw9TCDozKW3kvxopJCaJba/Z5g9mpFAWY1RaSlRJUxBUlV
-	Sz0+Pb5pZO7S4m/cLHVk1SSiWbwkV5iLu/GUXHTaywqi+YzX90d1lzJjbWSeiwlhPZK6QQ/C9Hs
-	eIBUw==
-X-Received: by 2002:a05:600c:4f8b:b0:485:3a27:a960 with SMTP id 5b1f17b1804b1-485564981d8mr105428765e9.0.1773471224016;
-        Fri, 13 Mar 2026 23:53:44 -0700 (PDT)
-Received: from jernej-laptop.localnet (86-58-12-163.dynamic.telemach.net. [86.58.12.163])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48556422338sm40021775e9.7.2026.03.13.23.53.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Mar 2026 23:53:43 -0700 (PDT)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
- Samuel Holland <samuel@sholland.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- Yuanshen Cao <alex.caoys@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, Yuanshen Cao <alex.caoys@gmail.com>
-Subject:
- Re: [PATCH v2 2/2] pmdomain: sunxi: Add support for A733 to Allwinner PCK600
- driver
-Date: Sat, 14 Mar 2026 07:53:42 +0100
-Message-ID: <5083201.31r3eYUQgx@jernej-laptop>
-In-Reply-To: <20260305-b4-pck600-a733-v2-2-ba6bbed7d253@gmail.com>
-References:
- <20260305-b4-pck600-a733-v2-0-ba6bbed7d253@gmail.com>
- <20260305-b4-pck600-a733-v2-2-ba6bbed7d253@gmail.com>
+	s=arc-20240116; t=1773472154; c=relaxed/simple;
+	bh=5jXR0m/ZBpmNbRznNyJbwCMzJU13ks+8266sT6unD5s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=h5H+o0fpv8x9wQWsAl2LjYnN0a2YkabPSC/K3Zw/YggCzyS06LNrQNl3Rx52wk92WGJjGk6MVeMo02feCrE0+AJIYl4uNKP6do/BqDLPWpzRP9FU2HEvYgCtL2lLscHVrtFjDgq0bCEU6KRcKpIbo99sENzKAOnid9zbHSCflbI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w1J7A-00044G-V9; Sat, 14 Mar 2026 08:08:48 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w1J79-000D2L-2F;
+	Sat, 14 Mar 2026 08:08:47 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w1J79-00000001SMc-2MkW;
+	Sat, 14 Mar 2026 08:08:47 +0100
+Date: Sat, 14 Mar 2026 08:08:47 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Bartosz Golaszewski <brgl@kernel.org>
+Cc: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Peter Rosin <peda@axentia.se>, Linus Walleij <linusw@kernel.org>,
+	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	linux-gpio@vger.kernel.org, David Jander <david@protonic.nl>,
+	biju.das.jz@bp.renesas.com, tomm.merciai@gmail.com
+Subject: Re: [PATCH v3 4/7] gpio: gpiolib: fix allocation order in
+ hierarchical IRQ domains
+Message-ID: <abUJfy4aqJhwhKcl@pengutronix.de>
+References: <20260309134920.1918294-1-o.rempel@pengutronix.de>
+ <20260309134920.1918294-5-o.rempel@pengutronix.de>
+ <abPqGvy5FqJ0a0ug@tom-desktop>
+ <abQMQAbbvV60bV2j@pengutronix.de>
+ <7b1e12b2-f55d-4e70-9cb7-ecfa9d82ebdf@bp.renesas.com>
+ <CAMRc=Mc4x0SOfoxB9Fv4VUmNjJLjdBnMSmFG=Y1JvLih6cODww@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAMRc=Mc4x0SOfoxB9Fv4VUmNjJLjdBnMSmFG=Y1JvLih6cODww@mail.gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[bp.renesas.com,roeck-us.net,kernel.org,axentia.se,pengutronix.de,vger.kernel.org,protonic.nl,gmail.com];
+	TAGGED_FROM(0.00)[bounces-275618-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275617-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,sholland.org,linaro.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[pengutronix.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jernejskrabec@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8D64D28BE22
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,pengutronix.de:mid,pengutronix.de:url]
+X-Rspamd-Queue-Id: 2CD5028BE84
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Dne =C4=8Detrtek, 5. marec 2026 ob 04:34:08 Srednjeevropski standardni =C4=
-=8Das je Yuanshen Cao napisal(a):
-> The Allwinner A733 PCK600, similar to A523 PCK600, is likely a
-> customized version of ARM PCK-600 power controller. It shares the same
-> BSP driver with A523. According to the BSP provided by Radxa, unlike
-> A523, it doesn't require reset, as well as a different pair of delay
-> values.
->=20
-> Make reset optional in the sunxi pck600 driver and add support
-> for A733.
->=20
-> Signed-off-by: Yuanshen Cao <alex.caoys@gmail.com>
+On Fri, Mar 13, 2026 at 03:35:34PM +0100, Bartosz Golaszewski wrote:
+> > With this fix all is working fine on my side.
+> > I'm not more seeing the seeing the RCU stall.
+> >
+> 
+> Ah, I sent this patch upstream for v7.0. I will tell Linus to not pull
+> it. How do we want to handle it then? Should this patch go together
+> with the rest of the series?
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Yes, better let's go the slow way. I can't guarantee it will avoid other
+regressions.
 
-Best regards,
-Jernej
+Should I include updated version it the next patch series?
 
-
+Best Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
