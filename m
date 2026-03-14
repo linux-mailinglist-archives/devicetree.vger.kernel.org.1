@@ -1,124 +1,224 @@
-Return-Path: <devicetree+bounces-275619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275620-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id XqpuO54OtWmZvwAAu9opvQ
-	(envelope-from <devicetree+bounces-275619-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:30:38 +0100
+	id mHtJNOMOtWmZvwAAu9opvQ
+	(envelope-from <devicetree+bounces-275620-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:31:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4943E28BEFA
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:30:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E153E28BF03
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 08:31:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A0510303DABA
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 07:30:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9F6E6301ECE3
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 07:31:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD8FA2EA159;
-	Sat, 14 Mar 2026 07:30:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AA6519CC14;
+	Sat, 14 Mar 2026 07:31:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t60OkyTn"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="vIUGI6PU";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="5th2kdid"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fhigh-a6-smtp.messagingengine.com (fhigh-a6-smtp.messagingengine.com [103.168.172.157])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35CD525524C;
-	Sat, 14 Mar 2026 07:30:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27F4C2E401;
+	Sat, 14 Mar 2026 07:31:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.157
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773473434; cv=none; b=nhexMN1PPZm2W7x1gtfH7xMVWbaBnuzPgZsvWcqGhz/1NyIMyUS5gUDxufj+j1J3+JDlvB6l/2C0N0Omoo90aRLuwDpR8PaS3j3wy5hEuc2qmlkISrKB8iczARMswBKQ9GVGljGG7EyxEpS6HnL3jWsWrWjfv6kzYpH3mkct9ac=
+	t=1773473505; cv=none; b=EA4z/eIesyqxXMRQFJoRVxnOh9orcr2dxd28JyZxgeatG5OMv18dEZg3vod+BvnwYTG+SFlufss0CZoQzu+HCoW6QT2st6/b8QRNc6KO3CE7/pVHMJTd/hOIsG/plChwlC0WfhWPN0+BpprCson7TNvGJ7HvVqUx69myruXSrrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773473434; c=relaxed/simple;
-	bh=/r7P63vAzuId1FJu7Wx90EZmySB9sAz0wDy3fGBNv4E=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=crPpDA5KGwG9AjarVLZp7sWo/grg34wKuJUaYrWzZDDW9l8MVwViJCfCGnMFA4KBuj7le2iy1pPPi/RKf8Z91LDE7kcRSiEfM78fYCqy8331A6/hru5XJ7WXLk8V592JF72C97Gn1DZesBFj+NoNKDz+VAO+DjFMSL7GZVH+afM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t60OkyTn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 829D8C116C6;
-	Sat, 14 Mar 2026 07:30:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773473433;
-	bh=/r7P63vAzuId1FJu7Wx90EZmySB9sAz0wDy3fGBNv4E=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=t60OkyTn7wfBA1/DrrMu7aRTpp4k6minF0VVXbLhFstWqShJAYlYymEnFfNx0Yo7n
-	 UnwpsrP+XkzOs6EL1Qh0IktITu43JhiG27eom1zjTXorlC7hg2unAci74EFwXGkkXX
-	 MRA4iEKOd0sqEdsN56ErTUHu1R6AhvzsgD7+RMwsUJh5GRZDlsCLKtBlOLwTXRuyAR
-	 dQ5H6pjhEsudK2b0U4TLoKapU5/6n95yosXcg9aHic7vp1gyrT8ufPpEC+TURzN9Fd
-	 ibw1mSpvyVdskSI0EM3kokAZFz2AXVNxIPu/G8+qIzLfMx9FxU2k9qlNh6GtFNynF9
-	 xCzGUWFdshCvA==
-From: Chen-Yu Tsai <wens@kernel.org>
-To: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, Jun Yan <jerrysteve1101@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- jernej.skrabec@gmail.com, samuel@sholland.org, mripard@kernel.org, 
- andre.przywara@arm.com
-In-Reply-To: <20260304073430.438835-1-jerrysteve1101@gmail.com>
-References: <20260304073430.438835-1-jerrysteve1101@gmail.com>
-Subject: Re: [PATCH v4 0/3] board: sunxi: Add TaiqiCat (TQC) A01
-Message-Id: <177347343121.5222.10454445952676916581.b4-ty@kernel.org>
-Date: Sat, 14 Mar 2026 15:30:31 +0800
+	s=arc-20240116; t=1773473505; c=relaxed/simple;
+	bh=jkjgiRgO5CR/7AlJE6LIfCfOcumeVzGdYAHPWElQBVQ=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=F+R7UNbWSzDUOH6GsWFIMtxkszmnGX1a3oSgxEt6GaRyWkkIGHN/HSxPsVKFgyNe1Nmm9k6cg22Pf8rTp8CZGTmpvvXuIHHG/93biDhpNmfpc5hPgOXVMFfKzvgcEv7QGFdxdnr6k3TMN2jMnyd+Wnh80bfZ06thNcdbnMc/61U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=vIUGI6PU; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=5th2kdid; arc=none smtp.client-ip=103.168.172.157
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 3129E14001B4;
+	Sat, 14 Mar 2026 03:31:42 -0400 (EDT)
+Received: from phl-imap-02 ([10.202.2.81])
+  by phl-compute-04.internal (MEProxy); Sat, 14 Mar 2026 03:31:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1773473502;
+	 x=1773559902; bh=tr3JbOnsJoUpDM+B2gJBFvxjmzg4yKH8O1IiAlVJkN8=; b=
+	vIUGI6PUtGuLD9MmA7He5MaSxNXymLe5VmuYEFztVyE2ey+TWlMs9wpbxm5m0SHW
+	/2MY8ZrghTSl0nxKsljeSTgPW+7p2aNF0g4qV2yoO6XpYUj/LVu30Hj8CfWufek0
+	A1ntnxABTtEhR3xW+MmMkQfJsoh3KUtT1ghtLu1M5QbHvVh+GWUUHo8TgXT+f/X/
+	Kj4DEr+3ffZQQJXQpu8gspe5isusRZ6zNkuOU8WlCbigR6WWowRvClVOVkMGZTaL
+	PByD+pWip5jGOEaxIWOemgmWOR5EG5wYkProLjqgXoc3Y/ePf3F06VU/rN8mVjdo
+	+i9Y4A8uLsATQ5NmWUtUMA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1773473502; x=
+	1773559902; bh=tr3JbOnsJoUpDM+B2gJBFvxjmzg4yKH8O1IiAlVJkN8=; b=5
+	th2kdid27NE2Q6Zf9HnTICg3grZm+GQN8HsdEBThJAfyx7j20KSsUU1MYkh+L3Cd
+	CqJltfa1L4xTSkgSbx+l0/ZTbNDjjMKLeEncvOBuhU2TYlOZzzd6D5Imus9dxltE
+	VqVX19DARJc5XHPxZVXM48Z+c4E2pBoYtf/iFLuaJPcd4IHeey22JaIbC0x6xGIb
+	ikkVsNzGteydWH2PtuZ0C/YslE7OPGkPhMQADG5wSXECX8PYBUu4BALVhFkKfKzE
+	QiWe3OcNb0B2Nj/iJB2T32XvubR3VQHwUA8jrRGMImZN2CJiDMjNSdBB4h/LgUtI
+	DEOymQpmWEWhgkE3k4cqg==
+X-ME-Sender: <xms:3Q61ae0qyzq46sW3iFr4nwLH-QablCM5EpxY18ktNc9I9ruTP7yZEg>
+    <xme:3Q61ab4IHYWF-tJxe2XeLHOdgsjAAth3Fk_lV_Qk70vSY_Fap-Uc2C7cQE3cdkeVZ
+    nKgVbw8tMpu_zRj8GS5FqDhxc4RXmd6wEi5fmdqsJM6wvSpxK3_9PU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddvleduleekucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhepofggfffhvfevkfgjfhfutgfgsehtqhertdertdejnecuhfhrohhmpedftehrnhgu
+    uceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrthhtvg
+    hrnhepvdfhvdekueduveffffetgfdvveefvdelhedvvdegjedvfeehtdeggeevheefleej
+    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnh
+    gusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohepfedvpdhmohguvgepshhmthhpohhu
+    thdprhgtphhtthhopegsrhhglhessghguggvvhdrphhlpdhrtghpthhtoheptghhvghsth
+    gvrheivdehudehsehgmhgrihhlrdgtohhmpdhrtghpthhtohepfhgvshhtvghvrghmsehg
+    mhgrihhlrdgtohhmpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrgh
+    dprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehk
+    rhiikheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlrdhorh
+    hgpdhrtghpthhtoheprhgrfhgrvghlsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehr
+    ohgshheskhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:3Q61aUC5SLAg6F46AVIdW-J6XHLcwTogwGCVkA98DKm3dcj7q-gmNg>
+    <xmx:3Q61aUAQNtztZSaLvN0Ifx0l1VuiwS33s2iYj60XNAqazeuEZ51_1g>
+    <xmx:3Q61aTqBE9u_uyIR9Q5J02qjuzP-epogqXeYePga7yjWs8xHlmbrOw>
+    <xmx:3Q61aYAJUdlRMadUyUsf5YTcfIgInbuyUbMq4qleODkVz2y49zLAPA>
+    <xmx:3g61aW2PxF8orihiR3Uh8UCLvDymWO1grtBE7zb-D4zegmREAp-v4m3k>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 44D63700065; Sat, 14 Mar 2026 03:31:41 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.14.2
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-ThreadId: ABMmOHXEXk43
+Date: Sat, 14 Mar 2026 08:31:20 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>,
+ "Ghennadi Procopciuc" <ghennadi.procopciuc@oss.nxp.com>,
+ "Khristine Andreea Barbulescu" <khristineandreea.barbulescu@oss.nxp.com>
+Cc: "Linus Walleij" <linus.walleij@linaro.org>,
+ "Bartosz Golaszewski" <brgl@bgdev.pl>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Chester Lin" <chester62515@gmail.com>,
+ "Matthias Brugger" <mbrugger@suse.com>,
+ "Ghennadi Procopciuc" <ghennadi.procopciuc@nxp.com>,
+ "Larisa Grigore" <larisa.grigore@nxp.com>, "Lee Jones" <lee@kernel.org>,
+ "Shawn Guo" <shawnguo@kernel.org>,
+ "Sascha Hauer" <s.hauer@pengutronix.de>,
+ "Fabio Estevam" <festevam@gmail.com>,
+ "Aisheng Dong" <aisheng.dong@nxp.com>, "Jacky Bai" <ping.bai@nxp.com>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ "Alberto Ruiz" <aruizrui@redhat.com>,
+ "Christophe Lizzi" <clizzi@redhat.com>, devicetree@vger.kernel.org,
+ "Enric Balletbo" <eballetb@redhat.com>,
+ "Eric Chanudet" <echanude@redhat.com>, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org,
+ "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+ linux-kernel@vger.kernel.org, "NXP S32 Linux Team" <s32@nxp.com>,
+ "Pengutronix Kernel Team" <kernel@pengutronix.de>,
+ "Vincent Guittot" <vincent.guittot@linaro.org>,
+ "Rob Herring" <robh@kernel.org>
+Message-Id: <3c454da1-d949-4258-87ce-8b545000bf01@app.fastmail.com>
+In-Reply-To: <c7a59716-3d53-4787-b4ef-9674c2a4a9b5@kernel.org>
+References: 
+ <20260120115923.3463866-1-khristineandreea.barbulescu@oss.nxp.com>
+ <20260120115923.3463866-2-khristineandreea.barbulescu@oss.nxp.com>
+ <20260121021913.GA1704619-robh@kernel.org>
+ <e956750b-0333-4465-b37e-5f460b5e092f@oss.nxp.com>
+ <edc3a63a-8117-476f-9582-97ae31fefa96@kernel.org>
+ <7d200097-51bc-4404-be8b-f536d0ecfc25@oss.nxp.com>
+ <21531cdd-5ab9-493e-a722-61b98117e2c4@kernel.org>
+ <22a5a072-847e-4cfd-8abd-e37163f73265@oss.nxp.com>
+ <fe755e85-1558-4272-bdd4-af7a2038ab1f@kernel.org>
+ <ba6140bf-237e-4099-af0c-ee404c1719cd@oss.nxp.com>
+ <c7a59716-3d53-4787-b4ef-9674c2a4a9b5@kernel.org>
+Subject: Re: [PATCH v8 01/10] dt-bindings: mfd: add support for the NXP SIUL2 module
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.65 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[arndb.de,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[arndb.de:s=fm3,messagingengine.com:s=fm1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275619-lists,devicetree=lfdr.de];
+	XM_UA_NO_VERSION(0.01)[];
+	TAGGED_FROM(0.00)[bounces-275620-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org,arm.com];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[32];
+	FREEMAIL_CC(0.00)[linaro.org,bgdev.pl,kernel.org,gmail.com,suse.com,nxp.com,pengutronix.de,linuxfoundation.org,redhat.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,archive.org:url]
-X-Rspamd-Queue-Id: 4943E28BEFA
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[arnd@arndb.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[arndb.de:+,messagingengine.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,messagingengine.com:dkim]
+X-Rspamd-Queue-Id: E153E28BF03
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 04 Mar 2026 15:34:27 +0800, Jun Yan wrote:
-> This series adds support for the TaiqiCat (TQC) A01 —
-> a set-top box based on the Allwinner H6 SoC.
-> Originally released by Ultrapower(UQSoft) as a blockchain terminal,
-> the device has been discontinued and is no longer officially
-> supported.
-> 
->   https://web.archive.org/web/20190409213228/https://tq.ultrapower.com.cn/product.html
-> 
-> [...]
+On Fri, Mar 13, 2026, at 18:10, Krzysztof Kozlowski wrote:
+> On 25/02/2026 10:40, Ghennadi Procopciuc wrote:
+>> On 2/23/2026 3:14 PM, Krzysztof Kozlowski wrote:
+>>>> there are no resources allocated specifically for nodes like
+>>>> "nxp,s32g-siul2-syscfg". Their consumers are the pinctrl/gpio
+>>>> driver and other drivers that read SoC=E2=80=91specific information=
+ from
+>>>> those shared registers.
+>>>> =20
+>>>> My alternative is to keep two separate syscon providers for the
+>>>
+>>> You got review already.
+>>>
+>> I still believe that nvmem is a suitable and accurate mechanism for
+>> describing SoC=E2=80=91specific identification information, as origin=
+ally
+>> proposed in [0], assuming the necessary adjustments are made.
+>>=20
+>> More specifically, instead of modeling software-defined cells, the nv=
+mem
+>> layout would describe the actual hardware registers backing this
+>> information. One advantage of this approach is that consumer nodes (f=
+or
+>> example PCIe, Ethernet, or other IPs that need SoC identification dat=
+a)
+>> can reference these registers using the standard nvmem-cells /
+>> nvmem-cell-names mechanism, without introducing custom, per-subsystem
+>> bindings.
+>
+> nvmem is applicable only if this is NVMEM. Information about the soc is
+> not NVMEM, unless this are blow out fuses / efuse. Does not look like,
+> because SoC information is set probably during design phase, not board
+> assembly.
 
-Applied to sunxi/dt-for-7.1 in local tree, thanks!
+Agreed, nvmem clearly makes no sense here, the patch description
+appears to accurately describe the MMIO area as hardware registers
+with a fixed meaning rather than a convention for how the
+memory is being used.
 
-[1/3] dt-bindings: vendor-prefixes: Add Beijing Ultrapower Software Co., Ltd.
-      commit: b4137a75e1e611f37fcdc74c1d41696c7971e0b8
-[2/3] dt-bindings: arm: sunxi: Add TaiqiCat (TQC) A01
-      commit: f3208874f32c09dfc9ee330204f9fccf26e15b57
-[3/3] arm64: dts: allwinner: h6: Add TaiqiCat (TQC) A01 support
-      commit: b912e48bee355b6b1faf86efc4a23191324ffecb
+That said, there is probably room for improvement, since some of
+the register contents are read-only and could just be accessed
+by the boot firmware in order to move the information into more
+regular DT properties instead of defining bindings for drivers
+to access the information in raw form.
 
-Best regards,
--- 
-Chen-Yu Tsai <wens@kernel.org>
-
+    Arnd
 
