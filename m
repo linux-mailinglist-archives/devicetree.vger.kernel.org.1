@@ -1,257 +1,215 @@
-Return-Path: <devicetree+bounces-275689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275694-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MFGYO65PtWm8zAAAu9opvQ
-	(envelope-from <devicetree+bounces-275689-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 13:08:15 +0100
+	id kNmfBQlRtWm8zAAAu9opvQ
+	(envelope-from <devicetree+bounces-275694-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 13:14:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E38F28D041
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 13:08:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2384228D10F
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 13:14:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D2F513064EBF
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 12:05:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 25A4C300F9FB
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 12:09:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFC3432B9A9;
-	Sat, 14 Mar 2026 12:05:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD1A73101D2;
+	Sat, 14 Mar 2026 12:09:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="Nz6wZ0bj";
-	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="Nz6wZ0bj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WYJSZpIS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11023083.outbound.protection.outlook.com [40.107.162.83])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D22F2DCC05;
-	Sat, 14 Mar 2026 12:05:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.83
-ARC-Seal:i=3; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773489941; cv=fail; b=XtVKydMMtzIzwqMqIcuZ8q9M3gj6mam6b29ZIhJj9oigR5GyuUc8rQcoIO9pVBlN2gBff2mxb+4mjMmjLpt4U4xCJONWiC7t9U2FJEPUYqsaYJzeUtk6WVWEgc2lCJR5Hs5VMutJ2T79n48Dyvc+so5pOHn4YyPnd+19c8hN9bQ=
-ARC-Message-Signature:i=3; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773489941; c=relaxed/simple;
-	bh=boUVEgGiIZD12xslgG6zyjkfWy7St8ZfNuBk95qGL/o=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=hCyz/ShtPN7DEITepbkPHB525a2NuR88vtfpgd83zHBD0NFpPDD3eK6EpTl1bNV59kZJoSqAqaW9sf32xSrq+wdoooefo4l4OisLz9WPJN+nRYSOB8U4uYC4T/whovNcUZA95CgEH+WQQHz5/Yb7wvvtwg8BAlo/de0Kh1Y6Dbw=
-ARC-Authentication-Results:i=3; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=Nz6wZ0bj; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=Nz6wZ0bj; arc=fail smtp.client-ip=40.107.162.83
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
- b=tK8Xn987xD2E4Gla2rxaps2ofkrXo1cuvEcYFOsTxARvNcXW1zawINBO1qsts/YpvmSpcOyTEbxmvpjIKBHwFIlPHV4HO9lFpBRa1ymWfRH5yJbLghhsdaz4GNG+UlJBNrzslyICmPeFNEfPvQn16hrXd6iwyj4m32Rztsiu3qGNVwExLr+JbQZLz/jPszS0kD2Q0da0LhkyItw44AOHZiGsHAkEkpayPhhvVNwZjk07m7H6AjYM6GddzxlsdNNg95eXQYsbmD/ivytfTFsnhNhVhXn6tV/7Rs4ez8B+9wkfSrLtd8l0JhyEhpQEVePWDhkq1AJAQjFfXZAbkBMxrA==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TV3Bp7ypsj5/5LFVVMLalB6K+UQpGjbjOiVYswysFRM=;
- b=DW7fPGKYYeYsbXw9kUFna67u1+hmIhTWpdc2hH4AJDIqdkTPnjsBAay7++rKmSu6QRS2GnONZiu6cBupytuNDcInTozaokDh21bavh5a1Tmxq4cpzSJbNt8CowLVZByJdkTp0upd3Q4sCkjzyZFgzrgPjxjucx27vOnuekD0L+/On9bbEMiTe32ShtlTzyCjKRJ0KISbO0U+6SR9vIif1VkBbY9pW8Gc6dY2I+NKlXNohmlR4CInQKz8Q1Ta+eHRTIoIRs9Il2BJsbS6583xowqCxqoU1cZc2cslYTjgWlkiI+aUAB2lR4KUvKyXJxZ5sBLJmelHkmeOmeLxOTSu6Q==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=softfail (sender ip
- is 52.17.62.50) smtp.rcpttodomain=kernel.org smtp.mailfrom=solid-run.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=solid-run.com;
- dkim=pass (signature was verified) header.d=solidrn.onmicrosoft.com; arc=pass
- (0 oda=1 ltdi=1 spf=[1,1,smtp.mailfrom=solid-run.com]
- dkim=[1,1,header.d=solid-run.com] dmarc=[1,1,header.from=solid-run.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TV3Bp7ypsj5/5LFVVMLalB6K+UQpGjbjOiVYswysFRM=;
- b=Nz6wZ0bjWg2kIVw0xqZmNCQMPkaQvHyt3w3aueBUnX3LNR1ZauToE0zWiVu+xaQvxA0o6v2/R1C15sdZIyiVhFgqxXb/cjHkw3rH1PjjF5EqxSq8iSw+y7axiEo02Kz/dCrNxnW1ksrGVHRebpBfQwydg3GbUSvVT0gZaEpp0xQ=
-Received: from AS4P189CA0030.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:5db::17)
- by AM0PR04MB11853.eurprd04.prod.outlook.com (2603:10a6:20b:6f9::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.17; Sat, 14 Mar
- 2026 12:05:22 +0000
-Received: from AM3PEPF00009B9F.eurprd04.prod.outlook.com
- (2603:10a6:20b:5db:cafe::d8) by AS4P189CA0030.outlook.office365.com
- (2603:10a6:20b:5db::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.21 via Frontend Transport; Sat,
- 14 Mar 2026 12:05:36 +0000
-X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 52.17.62.50)
- smtp.mailfrom=solid-run.com; dkim=pass (signature was verified)
- header.d=solidrn.onmicrosoft.com;dmarc=fail action=none
- header.from=solid-run.com;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- solid-run.com discourages use of 52.17.62.50 as permitted sender)
-Received: from eu-dlp.cloud-sec-av.com (52.17.62.50) by
- AM3PEPF00009B9F.mail.protection.outlook.com (10.167.16.24) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.17
- via Frontend Transport; Sat, 14 Mar 2026 12:05:36 +0000
-Received: from emails-4525761-12-mt-prod-cp-eu-2.checkpointcloudsec.com (ip-10-20-6-17.eu-west-1.compute.internal [10.20.6.17])
-	by mta-outgoing-dlp-141-mt-prod-cp-eu-2.checkpointcloudsec.com (Postfix) with ESMTPS id 1A5C480130;
-	Sat, 14 Mar 2026 12:05:36 +0000 (UTC)
-X-Mailbox-Line: From b'josua@solid-run.com' Sat Mar 14 12:05:29 2026
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dOtxLxZbR0BUgrRizEFm2Go33ISxAvlFtG/Qrl+1LHYUockev+9Z5pehzFposCO6Z4X2Kjed/LiwctRyakhpwkUqw/orrhP9+HCTZ7jE+HqUrGRJxBX5GjzIKvZSFr9AAJ1pkt1Q2scNoQRek19xzZSk3+ag/W/t155vlxUDH++IkjzHSk6WuZKqktKTphTEIfEYUeoy6S1RFfZgNezecod2k/GCtdaq/DqY6bru9B+BekTxtitXZB4A0TYI7ZmGXMCTz4vCZXf1I3J5iDts8w8Bo+yegyYUCMftVxYnfEoAV8dhRp1lH9KHK1dGaYn0lGVun9HVhRpc8r2W6n8qgQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TV3Bp7ypsj5/5LFVVMLalB6K+UQpGjbjOiVYswysFRM=;
- b=FTTezoT2mxPaBIoU1AIlg6uGDHiCjKXUbPKJYbBEulLT6lXk2b/eML3JZHQNEhtO0ktVp4sv1Le+Lj7BqfG6dmD724mYOW5EikyNyPStIHhMpIyJXwhshhf8q2Pr2J28nU5Hd4vw/o0tEVecfWlmXXam1838UvkCsGBUei9XxflzEYE1NNrwEwpDQimkmjxQFHUKuG1bqHbpe5cVeJU2GDdh2O4jixmJZ2eeERWWUEiJer9PhEe+vTo8aWbi/lXaSSf0c6YqlX34BCYushuvyJZARSETN77Ahlo0r3/1A3M3A6Y0IT2wfadJGren5O/2I6tfALqLS6K9nTItjGyYHw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=solid-run.com; dmarc=pass action=none
- header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TV3Bp7ypsj5/5LFVVMLalB6K+UQpGjbjOiVYswysFRM=;
- b=Nz6wZ0bjWg2kIVw0xqZmNCQMPkaQvHyt3w3aueBUnX3LNR1ZauToE0zWiVu+xaQvxA0o6v2/R1C15sdZIyiVhFgqxXb/cjHkw3rH1PjjF5EqxSq8iSw+y7axiEo02Kz/dCrNxnW1ksrGVHRebpBfQwydg3GbUSvVT0gZaEpp0xQ=
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=solid-run.com;
-Received: from PAXPR04MB8749.eurprd04.prod.outlook.com (2603:10a6:102:21f::22)
- by DU4PR04MB10500.eurprd04.prod.outlook.com (2603:10a6:10:55e::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.19; Sat, 14 Mar
- 2026 12:05:04 +0000
-Received: from PAXPR04MB8749.eurprd04.prod.outlook.com
- ([fe80::d782:fbb2:be9a:43f1]) by PAXPR04MB8749.eurprd04.prod.outlook.com
- ([fe80::d782:fbb2:be9a:43f1%3]) with mapi id 15.20.9700.015; Sat, 14 Mar 2026
- 12:05:06 +0000
-From: Josua Mayer <josua@solid-run.com>
-Date: Sat, 14 Mar 2026 13:05:20 +0100
-Subject: [PATCH v5 10/10] arm64: dts: lx2162a-clearfog: set sfp connector
- leds function and source
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260314-lx2160-sd-cd-v5-10-83de721585e3@solid-run.com>
-References: <20260314-lx2160-sd-cd-v5-0-83de721585e3@solid-run.com>
-In-Reply-To: <20260314-lx2160-sd-cd-v5-0-83de721585e3@solid-run.com>
-To: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Carlos Song <carlos.song@nxp.com>
-Cc: Mikhail Anikin <mikhail.anikin@solid-run.com>, 
- Yazan Shhady <yazan.shhady@solid-run.com>, 
- Rabeeh Khoury <rabeeh@solid-run.com>, Frank Li <frank.li@nxp.com>, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Josua Mayer <josua@solid-run.com>
-X-Mailer: b4 0.14.3
-X-ClientProxiedBy: FR4P281CA0184.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:ca::19) To PAXPR04MB8749.eurprd04.prod.outlook.com
- (2603:10a6:102:21f::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A4772949E0;
+	Sat, 14 Mar 2026 12:09:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773490156; cv=none; b=OjP98ghF4WYpVARihAR+NlUO/y40AvHb9QcmdsjLVCo7q+u3MqfXxOv+BTa5xNYloYrzD8m+3g2vAEucn8PmXC2/XAsPUleO7WCVTh0qgbi5IiF/oRZ2rpWmxWLlVRMmDzAmvh6ZI/QEH1nB6AZggwf0k/Iq06JpTtztCeWtJbY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773490156; c=relaxed/simple;
+	bh=H66Rk1Lr5dkE6znYGULWwNpORwboGWlxJP27Ub566I0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=NnfzaAQpMociFe2jGUL23nlfYXQQWYHvAoUbp5hnrrmKYcbfRfM5+lg/i7NRPtPdba25dglzc7P4ej1hLP6xHxRDyt2G1rLCT00gAEFCUcyNnY9Qo7QJMIc1h9Tfk1U0RmdaWlJ5Gy/gadVqZHt0oiVNK29uP1tS/8ebEsRC6SU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WYJSZpIS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCF52C116C6;
+	Sat, 14 Mar 2026 12:09:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773490155;
+	bh=H66Rk1Lr5dkE6znYGULWwNpORwboGWlxJP27Ub566I0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=WYJSZpISFdYnJQURxdyZ99Syat+N6QcR9olYNHLCJqz3yc0YrjFaJc+o/J81a/Vo1
+	 azcww4VzxPC7xe8L8ffwho+P88UFFIxWS30MisOlBFtYn9WgjXjSxss7UDmM1xZN17
+	 ONZfFqeg+XRJFAJ3+Gl6vNdJTBfHk+3srcJDjNHNG+zeJ2f9HLU800Vldjb3u8jpQa
+	 xPXp8i4YCnfn/Yus+qRtOgjFp3+KXwT5zm7HpEmx0KNU9A3/mKLC1//BD5W/6HXgn3
+	 Ww+p+LUWKaNHQiCya8MfoDaJ9TcjCPaveczTeaoclFCX6ks2ebL+3KREOkO5o+yg6P
+	 r8VBYUwAv/B0Q==
+Date: Sat, 14 Mar 2026 12:08:55 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, "Hennerich, Michael"
+ <Michael.Hennerich@analog.com>, "Schmitt, Marcelo"
+ <Marcelo.Schmitt@analog.com>, "Sa, Nuno" <Nuno.Sa@analog.com>, David
+ Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Petre Rodan <petre.rodan@subdimension.ro>,
+ "Marques, Jorge" <Jorge.Marques@analog.com>, "linux-iio@vger.kernel.org"
+ <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 4/4] iio: accel: adxl372: add support for ADXL371
+Message-ID: <20260314120855.0ac0e128@jic23-huawei>
+In-Reply-To: <CY4PR03MB3399158C9C0984048B8EF7189B79A@CY4PR03MB3399.namprd03.prod.outlook.com>
+References: <20260306151859.131934-1-antoniu.miclaus@analog.com>
+	<20260306151859.131934-5-antoniu.miclaus@analog.com>
+	<20260307110447.189b98c0@jic23-huawei>
+	<CY4PR03MB3399158C9C0984048B8EF7189B79A@CY4PR03MB3399.namprd03.prod.outlook.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic:
-	PAXPR04MB8749:EE_|DU4PR04MB10500:EE_|AM3PEPF00009B9F:EE_|AM0PR04MB11853:EE_
-X-MS-Office365-Filtering-Correlation-Id: f543c97c-d590-4d2c-5fee-08de81c20074
-X-CLOUD-SEC-AV-Info: solidrun,office365_emails,sent,inline
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted:
- BCL:0;ARA:13230040|1800799024|376014|52116014|366016|38350700014|22082099003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info-Original:
- 2W1rR35C6dDsv7fs0RYyTzY2BAbHjtErjU3RqzuIaTJc82dUX1TQplLHcTuuW0kaxnxrteLNKMZlI14NRzX5kP1k21m0LhTvoVDzpxyIaZaKJeWLfiEggdPky9BrvrEqyg9O3Sbg/yr8FwjhrrDv7aYjxKNAYKNvszROWAmkOgDDjVED/kZubSkkSWS6PgCZLGQY1IAyArWB6O2WcaPTndmvatjUYbQC88J56WSadLREpmM4G6if8puovRE62Zv5NpFS2F0v0JTdVFuUUKjN8XjOiEDFKXG0aqqUCvVrBmAwDLmF396nhMhB11D+l2rRhfRIxx+GxY6mpxL/eeejaohfDmDIjRSbGBH3bXj46aqNVqFzEDEsZeCpi5NJM1P2b8S4kIjoO91CZU3WO9iMMmrzkp/fFIn5tpGgp/iAPGUsxCKqxWmU6eoRD4LXTTMTklFJ92D9T1JN5anSbWOoCWjRbYi2KJfzx6bIB3zn9q/z80njuq8my6TKioA0CLPZTebnnSlYrsqOMwRx0k++NayLUWRXzjrF0AxiXa4NN3/IDIp5RLrxvzLmIX7nULHDf/yzEn4Djjoy+xvakgDycrnzIszsikYgbioFieGS8GHd/1WYkLlkmRz7OagnKleDebcy4zy7fodikPzR0rtiFqezTi71XpurXlDgu6T5c4fN03vPJblpz6CvsV/el2fZ8nCHUrscwRp8++XxdUmb1tOjjT4bKk2VFrlUSysEC1JnfwtYXfiApseK3+27wHn0smscExftI/XgiQd+jUXBjhabYSYu8d97Jhh9+6LBRPo=
-X-Forefront-Antispam-Report-Untrusted:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8749.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(52116014)(366016)(38350700014)(22082099003)(56012099003)(18002099003);DIR:OUT;SFP:1102;
-X-Exchange-RoutingPolicyChecked:
- nrFoNvw2HjUfkzM0S7h/f2CqRJml7NtUJmn8zFL5c600X0BUrK3gnt1U0288zCUGrsmRl1fV7rNdn8UJZUSOBfNUCHGViYuS8dJS4nv9fZiNWRZG78xCGPDWkcjGykeT+yMixnCpo3dxOP6PsFyZJHAvRlDhq0HOrX9uY7Grzky9Fuw3x/xZrO8TxWyDnGqc8RC1ROs+pAN9pqjXkDXfV+/45bgI+ZbiWzCGP+DpRuTgBrot+DiCOBnelGi4QEmCDd5luCTnTwqs33Q4QIG8WrYcj3Ea1abQgz7m8ySERecRKzjXloIJFfcRaF+LyTz03TYeuAsQZL8VBpAArpNyPg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10500
-X-CLOUD-SEC-AV-INT-Relay: sent<mta-outgoing-dlp-mt-prod-cp-eu-2.checkpointcloudsec.com>
-X-CLOUD-SEC-AV-UUID: 4c08832f590f4401affeac91b5f4fa08:solidrun,office365_emails,sent,inline:e8a71b8ecf121745cfe4398c998083a7
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped:
- AM3PEPF00009B9F.eurprd04.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs:
-	bc680990-13b5-4ee9-161e-08de81c1ee5c
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|36860700016|82310400026|14060799003|1800799024|35042699022|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	KOdR4n6i1ksPYI3U0ZyKfHtLS9jx8tanjo/zO60eBtMJPeiKIf/tBLTF0BdoL1jqfZSzWPKQPsJcdexQj7LE8t+daStg7QldXhFqAGhruU5d6qXtefTX+034n51DcEuiGLfZmbyGjtX0E4yk3dVzh0Q3S8cvctpaTpkbDOqCKATXgp1rshABdMFSES+kydGncKU6mhY9lt2TqzzUG5Aa1XZ8QIuctLUQxOt4Wl1jQdTFn8EbtcCJ/BhWCbIZNqjQUjY1gkNXVJNO0dJwUBcDRtZ02MetF+DtlGYMRUCgnF6Sx/aGVnHhcU33rH7TZKpmek7fE3iLHzUTApIHzlO+Yzi8J8uYqSTzK3kPm4xfT7jHW2ceVFBezFdhTMIP7t4NnG2mzUFgz4jGmWF4SLEcTVz4+T4HgKxVYUJ/ksJuVdLobGt5pvIADKEp/p8H+2O5fVB3nX6ZM2G4eMRLLmf15fApKFj7WzNJtmw0NfQYc6QnztQQoQeOFX/5BoQPWlfBBvs9awHuAm28Q47Mz4mXTgjnbS8W2ZwQHyUMiw3rinU84Vpq1pyKyeka7Y3oQCgiRScckQSOo23aV1v94sSHEjy8KKH9qJ87GRIPriyxnZoQ9QyjEBimtWAgG+eicGhrIkoVBcl1pr/V+DCMMDPyF1GXoqAo/3tSGkeWsyb9gY6yfPK39vqdoZAmC4ovi1vw4xlB9ptikDFLY50iwSSYY0yUtECOZozC3P5wSx851wnY8L9bv/UVfMCK9l5yPEhSwogQEziy69Uc+1xBV3C5bg==
-X-Forefront-Antispam-Report:
-	CIP:52.17.62.50;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:eu-dlp.cloud-sec-av.com;PTR:eu-dlp.cloud-sec-av.com;CAT:NONE;SFS:(13230040)(376014)(36860700016)(82310400026)(14060799003)(1800799024)(35042699022)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	G7vdqI9S7DGPuC3Vp50Z/nuSNn2T89ABuX/0aQjgpnpFe6TPHkdw51XU1B2WRfL4yuqoy4vWSdBDjUhXbokujMljzB2gsTrJl8c1uCgEu6/CA9nAI4yfE7Uc1uK88FrIypJ6uMFk2Ex13fx+LYsEOnsWHUgrnIsJkgFnBOP1KKxGhZcBh4w4UXJQySWjOYM0jp7AHgK/fma9Adqg/3iHfTFGupRDPlj9ysAAr0UMIGcb9wQekm7gdHFncXswcgo3adq67fPAC/oVf1/yfQG6IQmgjlIgwj63BX69OWy8gQ3eAc+XbbSYHf4mcLFisQCbq4rnSvrWtS6F4xj8MMR2fSxpGMmzc5XoJjk+2al7zlwwVlugC0NmCtaNoFP52+5N8jPbxLA9d8oGaPXrTLJMvS+eArv0bqNOKc3PUsh/7+7FlInLMDouo+ctcFYGuogB
-X-OriginatorOrg: solid-run.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2026 12:05:36.3408
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f543c97c-d590-4d2c-5fee-08de81c20074
-X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a4a8aaf3-fd27-4e27-add2-604707ce5b82;Ip=[52.17.62.50];Helo=[eu-dlp.cloud-sec-av.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM3PEPF00009B9F.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB11853
-X-Spamd-Result: default: False [1.94 / 15.00];
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=3];
-	R_DKIM_ALLOW(-0.20)[solidrn.onmicrosoft.com:s=selector1-solidrn-onmicrosoft-com];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[solid-run.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275689-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275694-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,solidrn.onmicrosoft.com:dkim,solid-run.com:email,solid-run.com:mid];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[josua@solid-run.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[solidrn.onmicrosoft.com:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 5E38F28D041
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,subdimension.ro:email]
+X-Rspamd-Queue-Id: 2384228D10F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-LX2162A Clearfog has four LEDs attached physically to the 4-port SFP
-connector. They are intended to show information relating to network
-interface status.
+On Mon, 9 Mar 2026 13:08:26 +0000
+"Miclaus, Antoniu" <Antoniu.Miclaus@analog.com> wrote:
 
-Select "netdev" as default trigger for each LED, and link each one to
-the respective dpmac instance as trigger-source.
+> > -----Original Message-----
+> > From: Jonathan Cameron <jic23@kernel.org>
+> > Sent: Saturday, March 7, 2026 1:05 PM
+> > To: Miclaus, Antoniu <Antoniu.Miclaus@analog.com>
+> > Cc: Lars-Peter Clausen <lars@metafoo.de>; Hennerich, Michael
+> > <Michael.Hennerich@analog.com>; Schmitt, Marcelo
+> > <Marcelo.Schmitt@analog.com>; Sa, Nuno <Nuno.Sa@analog.com>; David
+> > Lechner <dlechner@baylibre.com>; Andy Shevchenko <andy@kernel.org>;
+> > Rob Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>;
+> > Conor Dooley <conor+dt@kernel.org>; Petre Rodan
+> > <petre.rodan@subdimension.ro>; Marques, Jorge
+> > <Jorge.Marques@analog.com>; linux-iio@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+> > Subject: Re: [PATCH v2 4/4] iio: accel: adxl372: add support for ADXL371
+> > 
+> > [External]
+> > 
+> > On Fri, 6 Mar 2026 17:18:24 +0200
+> > Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+> >   
+> > > Add support for the Analog Devices ADXL371, a +-200g 3-axis MEMS
+> > > accelerometer sharing the same register map as the ADXL372 but with
+> > > different ODR values (320/640/1280/2560/5120 Hz vs  
+> > 400/800/1600/3200/  
+> > > 6400 Hz), different bandwidth values, and different timer scale
+> > > factors for activity/inactivity detection.
+> > >
+> > > Due to a silicon anomaly (er001) causing FIFO data misalignment on
+> > > all current ADXL371 silicon, FIFO and triggered buffer support is
+> > > disabled for the ADXL371 - only direct mode reads are supported.
+> > >
+> > > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>  
+> > A couple of small formatting things. Otherwise looks good to me.
+> > 
+> > Thanks,
+> > 
+> > Jonathan
+> >   
+> > >
+> > > diff --git a/drivers/iio/accel/adxl372.c b/drivers/iio/accel/adxl372.c
+> > > index adb9e42653f1..7a1ee2fef618 100644
+> > > --- a/drivers/iio/accel/adxl372.c
+> > > +++ b/drivers/iio/accel/adxl372.c
+> > > @@ -1,6 +1,6 @@
+> > >  // SPDX-License-Identifier: GPL-2.0+
+> > >  /*
+> > > - * ADXL372 3-Axis Digital Accelerometer core driver
+> > > + * ADXL371/ADXL372 3-Axis Digital Accelerometer core driver
+> > >   *
+> > >   * Copyright 2018 Analog Devices Inc.
+> > >   */
+> > > @@ -182,6 +182,14 @@ enum adxl372_odr {
+> > >  	ADXL372_ODR_6400HZ,
+> > >  };
+> > >
+> > > +enum adxl371_odr {
+> > > +	ADXL371_ODR_320HZ,
+> > > +	ADXL371_ODR_640HZ,
+> > > +	ADXL371_ODR_1280HZ,
+> > > +	ADXL371_ODR_2560HZ,
+> > > +	ADXL371_ODR_5120HZ,  
+> > Might be worth a
+> > 	ADXL371_ODR_NUM
+> > entry so you can size the array from it below.
+> >   
+> > > +};
+> > > +
+> > >  enum adxl372_bandwidth {
+> > >  	ADXL372_BW_200HZ,
+> > >  	ADXL372_BW_400HZ,
+> > > @@ -222,6 +230,37 @@ static const int adxl372_bw_freq_tbl[5] = {
+> > >  	200, 400, 800, 1600, 3200,
+> > >  };
+> > >
+> > > +static const int adxl371_samp_freq_tbl[5] = {
+> > > +	[ADXL371_ODR_320HZ] = 320,
+> > > +	[ADXL371_ODR_640HZ] = 640,
+> > > +	[ADXL371_ODR_1280HZ] = 1280,
+> > > +	[ADXL371_ODR_2560HZ] = 2560,
+> > > +	[ADXL371_ODR_5120HZ] = 5120,
+> > > +};
+> > > +
+> > > +static const int adxl371_bw_freq_tbl[5] = {
+> > > +	[ADXL371_ODR_320HZ] = 160,
+> > > +	[ADXL371_ODR_640HZ] = 320,
+> > > +	[ADXL371_ODR_1280HZ] = 640,
+> > > +	[ADXL371_ODR_2560HZ] = 1280,
+> > > +	[ADXL371_ODR_5120HZ] = 2560,
+> > > +};  
+> > Style wise, why not do the same for adxl372_bw_freq_tbl[] as here?
+> > I slightly prefer this style, but key is consistency so if you'd
+> > gone the other way for both that would have been fine as well.  
+> 
+> 
+> I will do the same for adxl372_bw_freq_tbl[] as here.
+> Where do you think is the best place to put that, in patch 1? (introduce chip_info structure)
+Probably a precursor patch given the tables already exist.
 
-Signed-off-by: Josua Mayer <josua@solid-run.com>
----
- arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Jonathan
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dts b/arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dts
-index 8920326a06735..9d50d3e2761da 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dts
-@@ -41,21 +41,29 @@ leds {
- 		led_sfp_at: led-sfp-at {
- 			gpios = <&gpio2 5 GPIO_ACTIVE_HIGH>; /* PROC_IRQ5 */
- 			default-state = "off";
-+			linux,default-trigger = "netdev";
-+			trigger-sources = <&dpmac3>;
- 		};
- 
- 		led_sfp_ab: led-sfp-ab {
- 			gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>; /* PROC_IRQ11 */
- 			default-state = "off";
-+			linux,default-trigger = "netdev";
-+			trigger-sources = <&dpmac4>;
- 		};
- 
- 		led_sfp_bt: led-sfp-bt {
- 			gpios = <&gpio2 13 GPIO_ACTIVE_HIGH>; /* EVT1_B */
- 			default-state = "off";
-+			linux,default-trigger = "netdev";
-+			trigger-sources = <&dpmac5>;
- 		};
- 
- 		led_sfp_bb: led-sfp-bb {
- 			gpios = <&gpio2 14 GPIO_ACTIVE_HIGH>; /* EVT2_B */
- 			default-state = "off";
-+			linux,default-trigger = "netdev";
-+			trigger-sources = <&dpmac6>;
- 		};
- 	};
- 
-
--- 
-2.51.0
+> 
+> Thanks
+> 
 
 
