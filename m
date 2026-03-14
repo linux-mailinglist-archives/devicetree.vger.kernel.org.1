@@ -1,156 +1,227 @@
-Return-Path: <devicetree+bounces-275751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275752-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uBjnKdO8tWlD4QAAu9opvQ
-	(envelope-from <devicetree+bounces-275751-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 20:53:55 +0100
+	id KM6RLIDHtWnu4wAAu9opvQ
+	(envelope-from <devicetree+bounces-275752-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 21:39:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 483AA28EAF4
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 20:53:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3C7228EE56
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 21:39:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id AAB953012D0D
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 19:53:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A6FE7300CE50
+	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 20:39:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6473037F8C9;
-	Sat, 14 Mar 2026 19:53:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F47337BE74;
+	Sat, 14 Mar 2026 20:39:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="phCg3G4U"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CW4LqOly"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1547C1A2545
-	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 19:53:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69658282F0A;
+	Sat, 14 Mar 2026 20:39:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773518033; cv=none; b=FJsIjUPVWd1l3pItnTLffpAC1jykGrRzg0AC+s8ITLNqIQB6MqrFcn0tps+XJHqzLQgFwMxcbTWLDSZfFzu/QF5fIuyB/0bLVjIFHkNMJiu6mAsZY4rlCy5F2PhHGspedghsy2qDDPbt8ikk27QeQWjCp4Q2nKKxL/qyuUl28Yo=
+	t=1773520766; cv=none; b=odNFWbzchY4ATE+S8ji43JxoBuh5/yp11RNwhtkKDaoeBHj8FKob/BpjLYD6ew+4OfUJ9D2B8g3e9aYvqzTL1wDpPOrnn/h9DtMFGdEPu1lXR8EvLF88EtbaeE09fFxT36t5ErOK3W0yP+KTdf5/diWOhAkwD7+KPyKDQGURPAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773518033; c=relaxed/simple;
-	bh=WoYBcfnqdXjGLK8p2ATCDv5Clwk3rCl9OK1fQPfrqbk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EyB8e6LpeYmf7Y76iLtW39ASnNqGqdScwnTT6/yOzDfaTt8AAg0AF6dDgFR0SnHcajpY/cyQJd/NAaaDh4iqx01B6nNCBTkQDINC6eaxgKhPy8D2j3ZPOxPuOnuBOYisKEP8Yzms0M3dzJjyYlY2/VZTm2fFtPxhpdQikrrIDaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=phCg3G4U; arc=none smtp.client-ip=209.85.160.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-40ea611d1a4so1310931fac.2
-        for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 12:53:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1773518031; x=1774122831; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jAUWUxgIJbO5o3ZCocsIhLG9qA3mcb6cANaDC/wIQ9Q=;
-        b=phCg3G4UpLjTDCiRn9Kfgzoxih14sZ5+A46wkuduGbAUTVGGLJioPsmvFndMoCGiMC
-         5F72fHgNzPfMvaOYwbWPQF8Cb1hItKBp8s5bRB9tc4xzsRHP71pt1kUW7QxtT22UwJZL
-         KzpaqbLAuNPt9lsQ9JjpzsabOqz3Tf7ZHF10Bvx6ayJdVxSCCiLwMGu6pCpLgQP8fdGR
-         cQOkocPaO5DOzZ5eDlzz/jPXcKPFU8wL8fT4uVNcazviiCTFF0wMK0NwIacOHa+W1W4m
-         w1KjV0cWB59E2z6g6Cy17EOGkCEVcp94RRmC0IfU2i+Hx+NOYu9fIv2tVe+RTNtekcd1
-         r04Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773518031; x=1774122831;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jAUWUxgIJbO5o3ZCocsIhLG9qA3mcb6cANaDC/wIQ9Q=;
-        b=tHFiYBFO6HwwUgJmOUa1vMxPhizxAJH+YwtODuM2CI69nvjxT1yBg0xL/l88m1PeE/
-         raGgJQHlimrMUx2ptcjampzyLw22GjB/fozC5d2nTXP14V4/5dn9IeU3LuJNPyNuKCBj
-         0HvWNWNGwZ+W0Q3Ow1HgfZhrJay0KcLGtxUiHJLIN+YudseI3ubcNsQ8+2Sm5Am3r2QK
-         I6s6jwJl1fRIXIMFLd6E3bUgkcLjO7/o5ZPl77CmDHuL7EKDqbcAYWyxQtBwsfFPyUsG
-         rT3+RdgpflsGUfHfYkXJ15NDLeeRP0WAp7KZRMChA4fB482Nc72hrl/wL11qGVE7EfTx
-         aROQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUgbuaf5TfQ0SuWOBN7rbvbjsJFuWRYfONf4BeZvJhu1u/fEOBjaD1kXROGfZQH0NpGROY0m3QIqaAn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5ckvI6TLVhuLZxUMe6Z685uUWMnRQl0y2Mwm0RtnEflBt2m5Y
-	oolNOutb6a++NBl8PO0RzhbV4Zz0V+ZwhDD8rwGJ6njmSYrwUURWgLClkOJvRqXIn4Q=
-X-Gm-Gg: ATEYQzybKxo9Q4kwPFmlXgUijz16KbX7M5AVFemcjaATVvTDyjRVXdGsEe1YayPuT86
-	ifeIjhu9Q8uiYwASCW+FXGD9F7Jn4/yDTwLn+5SdZ4TVmchMX6z0G4PaP+GH1trOTe0K+q3GGXX
-	UnU3zIw1A7pdnyI/e7e+SzKq/0cMiWgRhaAq92QP4B4nNAkLZqJQNSUuOEr3uWDyaUPOr+cVKvw
-	XY/oj08UAO/5FgA+rVVZ1XT4xYualC9rCBQHgD51YZPsienU85utvFpi0Wms3xUdY7uJzbNcPB+
-	hrZXYxCRwEFDnZUcxPIvxKOdBLOvb8jaaSPztMnZRiDC540MbVRrHVSG912okAefT2PYq7qSuiZ
-	Uq1UGUQuR7AIc3yKK17O9xr5UkrNMD4fESsd+gbq6XEJGU0GANzQgVLQN6i5cvGDoQrzaTMoc83
-	uEqz2CCB388R11Kd5yMVmsrPfj8T9U+1sCssplWCg/XzF8ZFZ6M/Dv+gvDD2Re/Tj1quUEcJl2o
-	HRBzv1N9+L/
-X-Received: by 2002:a05:6870:d8c:b0:404:33e1:3cc2 with SMTP id 586e51a60fabf-417b91b2c8fmr4441451fac.13.1773518030913;
-        Sat, 14 Mar 2026 12:53:50 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:500:14a9:db6c:e65a:4287? ([2600:8803:e7e4:500:14a9:db6c:e65a:4287])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4177e64a931sm12099255fac.14.2026.03.14.12.53.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 14 Mar 2026 12:53:49 -0700 (PDT)
-Message-ID: <cb92bb47-9078-475d-b242-71e3f9181a72@baylibre.com>
-Date: Sat, 14 Mar 2026 14:53:47 -0500
+	s=arc-20240116; t=1773520766; c=relaxed/simple;
+	bh=AukoqsMcYsnDKt5+d2e638BLLQ4ybjY4dyDeaqoO5S4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sH969aul5xuD1r3Y1SG4rCXOqVuFtZZB9nN+baFvJv21OMUF3HGCChbXIWL2cy03bNpEvGe+6LQKetQ4cSMICXuaDPIrGNElWWHk0st6J6Ecs6U/i6/U9o9AfR2sbb5GQdDyIqEnbkBcR22Isud8pZdQIIwU8nHzAxY2awR+xr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CW4LqOly; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773520763; x=1805056763;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=AukoqsMcYsnDKt5+d2e638BLLQ4ybjY4dyDeaqoO5S4=;
+  b=CW4LqOlyhuxjagiqAXGqQAKU4vG+UCjcQQEfWI/6aRNL1EQxUg1x3nw5
+   W7UV1TPkvNcqcM54xsen6xq3O9X1Wt4o/qzbofhKWtltbMWpiO9DL0lfk
+   WhJJBfFEu7htcodU0J3ALMtmZVCeIeEdk7g6dQvBKS/VLAQu4ipNWOHsG
+   IQPkMeW9LelEqVLGpJmjAEaZDyJMmOfvs9DoPJq3CeLh8vk+pza3iOPNc
+   T5M1hkERrt7VGtlNWlj1Du1IHDWXIEHknLqeFShr32z64y1n8LWD2Y7HX
+   Lj77RHNpA5vQf9wW1y5lrfgk6jMr5rHA763VtAb+9zO1P4IsvVuxHevtd
+   w==;
+X-CSE-ConnectionGUID: I0XXXvLMQQm7CrF6YP+wcQ==
+X-CSE-MsgGUID: I5y0Pzu1SpyNeLmfanYOWQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11729"; a="85214885"
+X-IronPort-AV: E=Sophos;i="6.23,119,1770624000"; 
+   d="scan'208";a="85214885"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Mar 2026 13:39:22 -0700
+X-CSE-ConnectionGUID: /Zma5jHUTamC/jFSOEsqDQ==
+X-CSE-MsgGUID: jgQOkDZJRUW7aIRqQu3piw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,119,1770624000"; 
+   d="scan'208";a="217835982"
+Received: from lkp-server01.sh.intel.com (HELO 418530b1a366) ([10.239.97.150])
+  by fmviesa010.fm.intel.com with ESMTP; 14 Mar 2026 13:39:18 -0700
+Received: from kbuild by 418530b1a366 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1w1VlS-000000005ip-3yYv;
+	Sat, 14 Mar 2026 20:39:14 +0000
+Date: Sun, 15 Mar 2026 04:39:00 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ryan Chen <ryan_chen@aspeedtech.com>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Ryan Chen <ryanchen.aspeed@gmail.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: oe-kbuild-all@lists.linux.dev, linux-aspeed@lists.ozlabs.org,
+	openbmc@lists.ozlabs.org, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] mmc: sdhci-of-aspeed: Add ast2700 support
+Message-ID: <202603150439.FM8mt7EG-lkp@intel.com>
+References: <20260313-sdhci-v1-2-91cea19c8a67@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/6] iio: light: vcnl4000: add regulator support
-To: Erikas Bitovtas <xerikasxx@gmail.com>, Jonathan Cameron
- <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org, Raymond Hackley <raymondhackley@protonmail.com>
-References: <20260314-vcnl4000-regulators-v3-0-3c4a48d30676@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20260314-vcnl4000-regulators-v3-0-3c4a48d30676@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260313-sdhci-v1-2-91cea19c8a67@aspeedtech.com>
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275751-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,analog.com,pmeerw.net];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-275752-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[aspeedtech.com,codeconstruct.com.au,linaro.org,kernel.org,jms.id.au,gmail.com,intel.com,pengutronix.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,protonmail.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,baylibre.com:email,baylibre.com:mid,baylibre-com.20230601.gappssmtp.com:dkim]
-X-Rspamd-Queue-Id: 483AA28EAF4
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,01.org:url]
+X-Rspamd-Queue-Id: E3C7228EE56
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/14/26 11:06 AM, Erikas Bitovtas wrote:
-> This patch series introduces support for voltage supply, I2C and cathode
-> regulators. This fixes an issue where if a regulator is shared between
-> the proximity sensor and some other device, and the other device is
-> powered off, the proximity sensor would be powered off as well.
-> 
-> One of the commits includes a Reported-by: tag without a Closes: tag -
-> the report was done outside of LKML.
+Hi Ryan,
 
-If it is on the public web, we can still add a link. You can just reply
-to that patch with the tag (if there is one) and it will get picked up.
+kernel test robot noticed the following build errors:
 
-> 
-> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
-> ---
+[auto build test ERROR on 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f]
 
-Reviewed-by: David Lechner <dlechner@baylibre.com>
+url:    https://github.com/intel-lab-lkp/linux/commits/Ryan-Chen/dt-bindings-mmc-sdhci-of-aspeed-Add-ast2700-support/20260314-132323
+base:   6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+patch link:    https://lore.kernel.org/r/20260313-sdhci-v1-2-91cea19c8a67%40aspeedtech.com
+patch subject: [PATCH 2/2] mmc: sdhci-of-aspeed: Add ast2700 support
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20260315/202603150439.FM8mt7EG-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 15.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260315/202603150439.FM8mt7EG-lkp@intel.com/reproduce)
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603150439.FM8mt7EG-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/mmc/host/sdhci-of-aspeed.c: In function 'aspeed_sdc_probe':
+>> drivers/mmc/host/sdhci-of-aspeed.c:533:17: error: implicit declaration of function 'reset_control_get_optional_exclusive' [-Wimplicit-function-declaration]
+     533 |         reset = reset_control_get_optional_exclusive(&pdev->dev, NULL);
+         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/mmc/host/sdhci-of-aspeed.c:533:15: error: assignment to 'struct reset_control *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+     533 |         reset = reset_control_get_optional_exclusive(&pdev->dev, NULL);
+         |               ^
+>> drivers/mmc/host/sdhci-of-aspeed.c:537:15: error: implicit declaration of function 'reset_control_deassert' [-Wimplicit-function-declaration]
+     537 |         ret = reset_control_deassert(sdc->rst);
+         |               ^~~~~~~~~~~~~~~~~~~~~~
+>> drivers/mmc/host/sdhci-of-aspeed.c:537:41: error: 'struct aspeed_sdc' has no member named 'rst'
+     537 |         ret = reset_control_deassert(sdc->rst);
+         |                                         ^~
+
+
+vim +/reset_control_get_optional_exclusive +533 drivers/mmc/host/sdhci-of-aspeed.c
+
+   520	
+   521	{
+   522		struct device_node *parent, *child;
+   523		struct reset_control *reset;
+   524		struct aspeed_sdc *sdc;
+   525		int ret;
+   526	
+   527		sdc = devm_kzalloc(&pdev->dev, sizeof(*sdc), GFP_KERNEL);
+   528		if (!sdc)
+   529			return -ENOMEM;
+   530	
+   531		spin_lock_init(&sdc->lock);
+   532	
+ > 533		reset = reset_control_get_optional_exclusive(&pdev->dev, NULL);
+   534		if (IS_ERR(reset))
+   535			return dev_err_probe(&pdev->dev, PTR_ERR(reset),
+   536					     "unable to acquire reset\n");
+ > 537		ret = reset_control_deassert(sdc->rst);
+   538		if (ret)
+   539			return dev_err_probe(&pdev->dev, ret,
+   540					     "reset deassert failed\n");
+   541	
+   542		sdc->clk = devm_clk_get(&pdev->dev, NULL);
+   543		if (IS_ERR(sdc->clk))
+   544			return PTR_ERR(sdc->clk);
+   545	
+   546		ret = clk_prepare_enable(sdc->clk);
+   547		if (ret) {
+   548			dev_err(&pdev->dev, "Unable to enable SDCLK\n");
+   549			return ret;
+   550		}
+   551	
+   552		sdc->regs = devm_platform_get_and_ioremap_resource(pdev, 0, &sdc->res);
+   553		if (IS_ERR(sdc->regs)) {
+   554			ret = PTR_ERR(sdc->regs);
+   555			goto err_clk;
+   556		}
+   557	
+   558		dev_set_drvdata(&pdev->dev, sdc);
+   559	
+   560		parent = pdev->dev.of_node;
+   561		for_each_available_child_of_node(parent, child) {
+   562			struct platform_device *cpdev;
+   563	
+   564			cpdev = of_platform_device_create(child, NULL, &pdev->dev);
+   565			if (!cpdev) {
+   566				of_node_put(child);
+   567				ret = -ENODEV;
+   568				goto err_clk;
+   569			}
+   570		}
+   571	
+   572		return 0;
+   573	
+   574	err_clk:
+   575		clk_disable_unprepare(sdc->clk);
+   576		return ret;
+   577	}
+   578	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
