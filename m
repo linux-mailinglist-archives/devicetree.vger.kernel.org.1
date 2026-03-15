@@ -1,156 +1,292 @@
-Return-Path: <devicetree+bounces-275850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275851-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ZM3SG2Uot2nzNAEAu9opvQ
-	(envelope-from <devicetree+bounces-275850-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 22:45:09 +0100
+	id YHDoN4Qot2nzNAEAu9opvQ
+	(envelope-from <devicetree+bounces-275851-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 22:45:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BC09292AC9
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 22:45:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A392292AE8
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 22:45:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A694F303E2F7
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 21:45:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8D00C303DD2C
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 21:45:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B42B37C11A;
-	Sun, 15 Mar 2026 21:45:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ABF133A033;
+	Sun, 15 Mar 2026 21:45:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="DqRYR57v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="haH7+8Df"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C87C237C936
-	for <devicetree@vger.kernel.org>; Sun, 15 Mar 2026 21:45:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07EC97262B;
+	Sun, 15 Mar 2026 21:45:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773611105; cv=none; b=BzTSt9YqLavK19Xpqh5aBwq+DF5c4Wi0tj4Hqo4kIb2z6cJTOFfCD8cw1jdi+/G9KTd1iNUSz2FRtvdlba+AG4NnGZ1BiIa6frjsZe0gomIuaq3QWk0cN6tDN0X0EXeRc7vrP2FCauBH5hYTStmhY2LeW4RHMrE0W3fcSxvet80=
+	t=1773611124; cv=none; b=qpN9twXwe0LGkVjfdc/e55BI+nFSbmvY93L7azv3uf2wWlXIm4YoXX5Mv1d4iHzZMkfiZnJuQAbc1dIdNg00FvOlqarL8sAw/+zTCnmQyTEB9heiDUjH+sxOjXRZnz/DDRlQFw2pR8CenD4m8O7DCPnFnoXpQLIPGKajLcQWHQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773611105; c=relaxed/simple;
-	bh=9pyVlvPC76KcMClHfgwkfU8R1Q34ey2Pp/yM0eEZswM=;
-	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=uFLPXRPgn4MSGbpHOYOVuDQ9jhSaEeUmLprN4prP3iEA3AQd2zrp616tuGD+CRuTXettweOT0H8kwyetfwac51KSxdyESEkpvZamclxKaLTb4OMetBWP9fUbkkSOAznEQEwCmIvH0NM0G4Z/uK3yQ5Z68GSMatitZCTnhyX3g70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=DqRYR57v; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id D40432C05BD;
-	Mon, 16 Mar 2026 10:45:00 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1773611100;
-	bh=9pyVlvPC76KcMClHfgwkfU8R1Q34ey2Pp/yM0eEZswM=;
-	h=From:To:Subject:Date:References:In-Reply-To:From;
-	b=DqRYR57vnH3rqySK1vjPaRZnuPyY2QQIkySMLNBy8Z/gueMPCcG8IFjxbjhnmpDem
-	 lG8VQaOocfQLXhZmw2AUdk83hBdVP+xNThqVrXYOrA4zGyjoLbFdjLwYfg2QSOiMsy
-	 daPIC5gpkhy6ywP+q1ioR7cCGNHdTHasxQgxDGzrhIgmVTLCcFIB1MOkOg7a8/99Im
-	 q8dKBKa3xlNIVYg0C5hT8wh2c88vZNk+S7i28SCHqBxUoP0Sr1mo6pW+iss6D6tjAv
-	 xZnKnhOqPr+YlOwUtClNo31EkxRSlWh/OH8tC91NBHNQaZ+XWuWEeh3Ey42kRe9N0e
-	 yxv+g9NPFj2fw==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B69b7285c000a>; Mon, 16 Mar 2026 10:45:00 +1300
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.39; Mon, 16 Mar 2026 10:45:00 +1300
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1748.039; Mon, 16 Mar 2026 10:45:00 +1300
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Rustam Adilov <adilov@disroot.org>, Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, "linux-i2c@vger.kernel.org"
-	<linux-i2c@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 0/8] i2c: rtl9300: support for RTL9607C I2C controller
-Thread-Topic: [PATCH 0/8] i2c: rtl9300: support for RTL9607C I2C controller
-Thread-Index: AQHcs4xiMjFOEDKSO06/HZHP90Z4vrWvSOeA
-Date: Sun, 15 Mar 2026 21:45:00 +0000
-Message-ID: <3fb8f700-a77c-4713-b3e2-7abd84d4a659@alliedtelesis.co.nz>
-References: <20260314082628.25206-1-adilov@disroot.org>
-In-Reply-To: <20260314082628.25206-1-adilov@disroot.org>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <504EC4280CA57D478CB8C679DBD96281@alliedtelesis.co.nz>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1773611124; c=relaxed/simple;
+	bh=c1wKqfh+jcbPWKCBgQ7T1I8pmOpQA2n9dE3yAxPAIUY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Um5NnSt0WxY38o4sBSp28dvFoA3bI2BaGlfjE34cYZrcekKVEBpuXzKO1EgYUoVBUQym7GTOVFjKMr0ebyyiWXOHctAeQqS4e5hEJ2CjV+RPr33ZBEeRYnQsvgUTHRjHkgeblm9RzEdVlG83uewtXH/YwPLBv/Y+6zvVCjTnzFY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=haH7+8Df; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 94299C4CEF7;
+	Sun, 15 Mar 2026 21:45:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773611123;
+	bh=c1wKqfh+jcbPWKCBgQ7T1I8pmOpQA2n9dE3yAxPAIUY=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=haH7+8DfIQKOvuZiq7y4d3Xh17mLZjfxayXlv6I9F0euGXTkNVywR9DmzZ0zBoPSg
+	 AZPP+WC4gQdaA3wBULmw0esSoVufFILI3Sa0Olgzb58To1TDKrMVkCQM0d74qkhqXN
+	 XDDY9vyXrCkocekjNep5S+dImvBF39tBBtJJAWwVpmihON3l9f/VyWvL2shvAW5NcE
+	 L5wT5U0UobpMVZn4kX2kJnlvW+/0cn1rLGbqXMYKm40EBTxOfO2qLhqHO1ZJ0S/+B7
+	 rfzJYnxighyJQfW3UhkMju2fgoLSgk10bZwek2Tt7rzdG/uZ37hqjtORfvP+/UxbZK
+	 VrgbsKBiiOIew==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8970FF3027F;
+	Sun, 15 Mar 2026 21:45:23 +0000 (UTC)
+From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
+Date: Sun, 15 Mar 2026 22:45:13 +0100
+Subject: [PATCH v4] powerpc: dts: Build devicetrees of enabled platforms
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=EcprQ+mC c=1 sm=1 tr=0 ts=69b7285c a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=drD7vYo3kbIA:10 a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=WczAkwAvwwI12XJ2doMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
-X-Spamd-Result: default: False [-1.06 / 15.00];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260315-mpc83xx-dtb-v4-1-243849be4280@posteo.net>
+X-B4-Tracking: v=1; b=H4sIAGgot2kC/2XP0QrCIBTG8VcZXmd4jlqzq94jutCpzYu2MYcsx
+ t49N4KSLr8Dvz+chUQ3BhfJpVrI6FKIoe/yEIeKNK3uHo4GmzdBhicGDOhzaGo+z9ROhiK3qta
+ gmENOshhG58O81273vNsQp3587fEE2/XTAVV0ElCgEtHXAlAx469DHyfXHzs3kS2U8Is5kyXGj
+ BtrzhKErIWQf5j/YCg/SDxjobXgxijvNSvwuq5vf0DM1CEBAAA=
+X-Change-ID: 20260101-mpc83xx-dtb-23d98a190e23
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>, 
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
+Cc: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org, Geert Uytterhoeven <geert@linux-m68k.org>, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773611122; l=7655;
+ i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
+ bh=tOg76kwFnfAMdsOrfytYNNBMYvqrE5CInLny6ci6P8A=;
+ b=NzezU5KvWQfGRrQUKE2dyqNsHIeSvAcWIJcymF5XosjLKnBuFipX8XPYE505TURVq6XeZfjly
+ vIXtgeiIVmSA48hVV0xfWepdBBcRV2OnNU708VeW8A78pzzCT4nmZZW
+X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
+ pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
+X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
+ auth_id=156
+X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Reply-To: j.ne@posteo.net
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[alliedtelesis.co.nz,quarantine];
-	R_DKIM_ALLOW(-0.20)[alliedtelesis.co.nz:s=mail181024];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275850-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,alliedtelesis.co.nz:dkim,alliedtelesis.co.nz:email,alliedtelesis.co.nz:mid];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[alliedtelesis.co.nz:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Chris.Packham@alliedtelesis.co.nz,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275851-lists,devicetree=lfdr.de,j.ne.posteo.net];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,linux.ibm.com,ellerman.id.au,gmail.com];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 7BC09292AC9
+	HAS_REPLYTO(0.00)[j.ne@posteo.net];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6A392292AE8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-SGkgUnVzdGFtLA0KDQpPbiAxNC8wMy8yMDI2IDIxOjI2LCBSdXN0YW0gQWRpbG92IHdyb3RlOg0K
-PiBUaGlzIHBhdGNoIHNlcmllcyBmb3IgdGhlIFJUTDkzMDAgSTJDIGRyaXZlciBhZGRzIGkyYyBz
-dXBwb3J0IGZvcg0KPiBSVEw5NjA3QyBTb0MuIFRoZXkgYXJlIHNvbWV3aGF0IGRpZmZlcmVudCB0
-byB0aGUgUlRMOTMwMCBhbmQNCj4gUlRMOTMxMCBidXQgbm90IGVub3VnaCB0byB3YXJyYW50IGEg
-bmV3IHdob2xlIGRyaXZlci4NCj4NCj4gVGhlIHBhdGNoIHNlcmllcyB3YXMgc3BsaXQgaW50byBw
-YXRjaGVzIHRoYXQgYWRkL2NoYW5nZSBzb21ldGhpbmcgaW4gdGhlDQo+IGRyaXZlciB0byBzbW9v
-dGggb3V0IHRoZSBSVEw5NjA3QyBzdXBwb3J0IGFkZGl0aW9uIGluIHRoZSBlbmQgYW5kIGZvcg0K
-PiBlYXNlIG9mIHJldmlldy4gQmVjYXVzZSBvZiB0aGF0LCB0aGUgcGF0Y2ggOCBkZXBlbmRzIG9u
-IGFsbCB0aGUgcHJpb3INCj4gcGF0Y2hlcyBiZWZvcmUgaXQuDQo+DQo+IFJUTDk2MDdDIHByaW1h
-cmx5IHVzZXMgdGhlIGkyYyBjb250cm9sbGVyIGZvciBjb21tdW5pY2F0aW9uIHdpdGggbGFzZXIN
-Cj4gZHJpdmVyIG92ZXIgb24gaTJjIGludGVyZmFjZSAxIG9yIDIuDQo+DQo+IEkgaGF2ZSBzdWNj
-ZXNzZnVsbHkgdGVzdGVkIHRoZSBieXRlIHJlYWQgb3BlcmF0aW9ucyBvbiBteSBSVEw5NjA3QyBi
-b2FyZA0KPiB3aGljaCBoYXMgR04yNUw5NSBsYXNlciBkcml2ZXIgaW4gT3BlbldydC4NCj4NCj4g
-UnVzdGFtIEFkaWxvdiAoOCk6DQo+ICAgIGkyYzogcnRsOTMwMDogc3BsaXQgZGF0YV9yZWcgaW50
-byByZWFkIGFuZCB3cml0ZSByZWcNCj4gICAgaTJjOiBydGw5MzAwOiBpbnRyb2R1Y2UgbWF4IGxl
-bmd0aCBwcm9wZXJ0eSB0byBkcml2ZXIgZGF0YQ0KPiAgICBpMmM6IHJ0bDkzMDA6IGludHJvZHVj
-ZSBGX0JVU1kgdG8gdGhlIHJlZ19maWVsZHMgc3RydWN0DQo+ICAgIGkyYzogcnRsOTMwMDogaW50
-cm9kdWNlIGEgcHJvcGVydHkgZm9yIDggYml0IHdpZHRoIHJlZyBhZGRyZXNzDQo+ICAgIGkyYzog
-cnRsOTMwMDogaW50cm9kdWNlIGNsayBzdHJ1Y3QgZm9yIHVwY29taW5nIHJ0bDk2MDcgc3VwcG9y
-dA0KPiAgICBpMmM6IHJ0bDkzMDA6IGludG9kdWNlIG5ldyBmdW5jdGlvbiBwcm9wZXJ0aWVzIHRv
-IGRyaXZlciBkYXRhDQo+ICAgIGR0LWJpbmRpbmdzOiBpMmM6IHJlYWx0ZWsscnRsOTMwMS1pMmM6
-IGV4dGVuZCBmb3IgUlRMOTYwN0Mgc3VwcG9ydA0KPiAgICBpMmM6IHJ0bDkzMDA6IGFkZCBSVEw5
-NjA3QyBpMmMgY29udHJvbGxlciBzdXBwb3J0DQoNClBhdGNoZXMgMS01LCA4DQoNClJldmlld2Vk
-LWJ5OiBDaHJpcyBQYWNraGFtIDxjaHJpcy5wYWNraGFtQGFsbGllZHRlbGVzaXMuY28ubno+DQoN
-ClRoZXJlIGlzIGEgYml0IG9mIGEgY29uZmxpY3Qgd2l0aCBhbm90aGVyIHRvcGljIHRoYXQgaXMg
-ZWl0aGVyIGluLWZsaWdodCANCm9yIGxvc3QgZm9yIHBhdGNoIDYgKEkgcmVwbGllZCB0byB0aGF0
-IG9uZSBzcGVjaWZpY2FsbHkpIGFuZCBJIHNlZSB5b3UgDQphbmQgS3J6eXp0b2YgYXJlIHN0aWxs
-IGRpc2N1c3Npb24gdGhlIGR0LWJpbmRpbmdzIGNoYW5nZXMuDQoNCj4NCj4gICAuLi4vYmluZGlu
-Z3MvaTJjL3JlYWx0ZWsscnRsOTMwMS1pMmMueWFtbCAgICAgfCAgMTUgKysNCj4gICBkcml2ZXJz
-L2kyYy9idXNzZXMvaTJjLXJ0bDkzMDAuYyAgICAgICAgICAgICAgfCAxNzkgKysrKysrKysrKysr
-KysrLS0tDQo+ICAgMiBmaWxlcyBjaGFuZ2VkLCAxNjUgaW5zZXJ0aW9ucygrKSwgMjkgZGVsZXRp
-b25zKC0pDQo+
+From: "J. Neuschäfer" <j.ne@posteo.net>
+
+Follow the same approach as other architectures such as Arm or RISC-V,
+and build devicetrees based on platforms selected in Kconfig. This makes
+it unnecessary to use CONFIG_OF_ALL_DTBS on PowerPC in order to build
+DTB files.
+
+This makes it easier to use other build and test infrastructure such as
+`make dtbs_check`, and is a first step towards generating FIT images
+that include all the relevant DTBs with `make image.fit`.
+
+Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+---
+Changes in v4:
+- Correctly list turris1x.dtb in boot/dts, not boot/dts/fsl.
+- Link to v3: https://lore.kernel.org/r/20260311-mpc83xx-dtb-v3-1-4aa43bb9ffa0@posteo.net
+
+Changes in v3:
+- Group multiple files per line, while still avoiding backslashes
+  (suggested by Christophe Leroy)
+- Link to v2: https://lore.kernel.org/r/20260305-mpc83xx-dtb-v2-1-cdb751458445@posteo.net
+
+Changes in v2:
+- Use "dtb-$(FOO) += foo.dtb" format on every line, avoid backslashes
+  (suggested by Geert Uytterhoeven)
+- Link to v1: https://lore.kernel.org/r/20260119-mpc83xx-dtb-v1-1-522f841290bf@posteo.net
+---
+ arch/powerpc/boot/dts/Makefile     | 73 ++++++++++++++++++++++++++++++++++++++
+ arch/powerpc/boot/dts/fsl/Makefile | 43 ++++++++++++++++++++++
+ 2 files changed, 116 insertions(+)
+
+diff --git a/arch/powerpc/boot/dts/Makefile b/arch/powerpc/boot/dts/Makefile
+index 0cd0d8558b475c..1e61a951cebe84 100644
+--- a/arch/powerpc/boot/dts/Makefile
++++ b/arch/powerpc/boot/dts/Makefile
+@@ -3,3 +3,76 @@
+ subdir-y += fsl
+ 
+ dtb-$(CONFIG_OF_ALL_DTBS) := $(patsubst $(src)/%.dts,%.dtb, $(wildcard $(src)/*.dts))
++
++# PPC44x platforms
++dtb-$(CONFIG_PPC44x_SIMPLE) += arches.dtb bamboo.dtb bluestone.dtb glacier.dtb
++dtb-$(CONFIG_PPC44x_SIMPLE) += eiger.dtb katmai.dtb rainier.dtb redwood.dtb
++dtb-$(CONFIG_PPC44x_SIMPLE) += sequoia.dtb taishan.dtb yosemite.dtb icon.dtb
++dtb-$(CONFIG_EBONY) += ebony.dtb
++dtb-$(CONFIG_SAM440EP) += sam440ep.dtb
++dtb-$(CONFIG_WARP) += warp.dtb
++dtb-$(CONFIG_ISS4xx) += iss4xx.dtb iss4xx-mpic.dtb
++dtb-$(CONFIG_CANYONLANDS) += canyonlands.dtb
++dtb-$(CONFIG_CURRITUCK) += currituck.dtb
++dtb-$(CONFIG_AKEBONO) += akebono.dtb
++dtb-$(CONFIG_FSP2) += fsp2.dtb
++
++# Embedded 6xx platforms
++dtb-$(CONFIG_LINKSTATION) += kuroboxHG.dtb kuroboxHD.dtb
++dtb-$(CONFIG_STORCENTER) += storcenter.dtb
++dtb-$(CONFIG_PPC_HOLLY) += holly.dtb
++dtb-$(CONFIG_GAMECUBE) += gamecube.dtb
++dtb-$(CONFIG_WII) += wii.dtb
++dtb-$(CONFIG_MVME5100) += mvme5100.dtb
++
++# MPC8xx platforms
++dtb-$(CONFIG_MPC885ADS) += mpc885ads.dtb
++dtb-$(CONFIG_MPC86XADS) += mpc866ads.dtb
++dtb-$(CONFIG_PPC_EP88XC) += ep88xc.dtb
++dtb-$(CONFIG_PPC_ADDER875) += adder875-redboot.dtb adder875-uboot.dtb
++dtb-$(CONFIG_TQM8XX) += tqm8xx.dtb
++
++# MPC512x platforms
++dtb-$(CONFIG_MPC5121_ADS) += mpc5121ads.dtb
++dtb-$(CONFIG_MPC512x_GENERIC) += mpc5125twr.dtb ac14xx.dts
++dtb-$(CONFIG_PDM360NG) += pdm360ng.dtb
++
++# MPC5200 platforms
++dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += a3m071.dtb a4m072.dtb charon.dtb cm5200.dtb
++dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += digsy_mtc.dtb motionpro.dtb mucmc52.dtb
++dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += o2d.dtb o2d300.dtb o2dnt2.dtb o2i.dtb
++dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += o2mnt.dtb o3dnt.dtb pcm030.dtb pcm032.dtb
++dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += tqm5200.dtb uc101.dtb
++dtb-$(CONFIG_PPC_LITE5200) += lite5200.dtb lite5200b.dtb
++dtb-$(CONFIG_PPC_MEDIA5200) += media5200.dtb
++
++# MPC82xx platforms
++dtb-$(CONFIG_EP8248E) += ep8248e.dtb
++dtb-$(CONFIG_MGCOGE) += mgcoge.dtb
++
++# MPC83xx platforms
++dtb-$(CONFIG_MPC830x_RDB) += mpc8308rdb.dtb mpc8308_p1m.dtb
++dtb-$(CONFIG_MPC831x_RDB) += mpc8313erdb.dtb mpc8315erdb.dtb
++dtb-$(CONFIG_MPC832x_RDB) += mpc832x_rdb.dtb
++dtb-$(CONFIG_MPC834x_ITX) += mpc8349emitx.dtb mpc8349emitxgp.dtb
++dtb-$(CONFIG_ASP834x) += asp834x-redboot.dtb
++dtb-$(CONFIG_MPC836x_RDK) += mpc836x_rdk.dtb
++dtb-$(CONFIG_KMETER1) += kmeter1.dtb
++dtb-$(CONFIG_MPC837x_RDB) += mpc8377_rdb.dtb mpc8378_rdb.dtb mpc8379_rdb.dtb
++dtb-$(CONFIG_MPC837x_RDB) += mpc8377_wlan.dtb
++
++# MPC85xx platforms
++dtb-$(CONFIG_STX_GP3) += stx_gp3_8560.dtb stxssa8555.dtb
++dtb-$(CONFIG_TQM85xx) += tqm8540.dtb tqm8541.dtb tqm8548.dtb
++dtb-$(CONFIG_TQM85xx) += tqm8548-bigflash.dtb tqm8555.dtb tqm8560.dtb
++dtb-$(CONFIG_SOCRATES) += socrates.dtb
++dtb-$(CONFIG_KSI8560) += ksi8560.dtb
++dtb-$(CONFIG_XES_MPC85xx) += xcalibur1501.dtb xpedite5200.dtb
++dtb-$(CONFIG_XES_MPC85xx) += xpedite5200_xmon.dtb xpedite5301.dtb
++dtb-$(CONFIG_XES_MPC85xx) += xpedite5330.dtb xpedite5370.dtb
++dtb-$(CONFIG_PPC_P2020) += turris1x.dtb
++
++# Misc. platforms
++dtb-$(CONFIG_PPC_MICROWATT) += microwatt.dtb
++dtb-$(CONFIG_AMIGAONE) += amigaone.dtb
++dtb-$(CONFIG_PPC_PS3) += ps3.dtb
+diff --git a/arch/powerpc/boot/dts/fsl/Makefile b/arch/powerpc/boot/dts/fsl/Makefile
+index d3ecdf14bc42e7..d2cc8e1f007ea5 100644
+--- a/arch/powerpc/boot/dts/fsl/Makefile
++++ b/arch/powerpc/boot/dts/fsl/Makefile
+@@ -1,3 +1,46 @@
+ # SPDX-License-Identifier: GPL-2.0
+ 
+ dtb-$(CONFIG_OF_ALL_DTBS) := $(patsubst $(src)/%.dts,%.dtb, $(wildcard $(src)/*.dts))
++
++# MPC85xx platforms
++dtb-$(CONFIG_BSC9131_RDB) += bsc9131rdb.dtb
++dtb-$(CONFIG_BSC9132_QDS) += bsc9132qds.dtb
++dtb-$(CONFIG_C293_PCIE) += c293pcie.dtb
++dtb-$(CONFIG_MPC8536_DS) += mpc8536ds.dtb mpc8536ds_36b.dtb
++dtb-$(CONFIG_MPC85xx_DS) += mpc8544ds.dtb mpc8572ds_camp_core0.dtb
++dtb-$(CONFIG_MPC85xx_DS) += mpc8572ds_camp_core1.dtb mpc8572ds_36b.dtb
++dtb-$(CONFIG_MPC85xx_DS) += mpc8572ds.dtb
++dtb-$(CONFIG_MPC85xx_MDS) += mpc8568mds.dtb mpc8569mds.dtb p1021mds.dtb
++dtb-$(CONFIG_MPC85xx_RDB) += p1020mbg-pc_32b.dtb p1020mbg-pc_36b.dtb
++dtb-$(CONFIG_MPC85xx_RDB) += p1020rdb_36b.dtb p1020rdb.dtb p1020rdb-pc_32b.dtb
++dtb-$(CONFIG_MPC85xx_RDB) += p1020rdb-pc_36b.dtb p1020rdb-pc_camp_core0.dtb
++dtb-$(CONFIG_MPC85xx_RDB) += p1020rdb-pc_camp_core1.dtb p1020rdb-pd.dtb
++dtb-$(CONFIG_MPC85xx_RDB) += p1020utm-pc_32b.dtb p1020utm-pc_36b.dtb
++dtb-$(CONFIG_MPC85xx_RDB) += p1021rdb-pc_32b.dtb p1021rdb-pc_36b.dtb
++dtb-$(CONFIG_MPC85xx_RDB) += p1024rdb_32b.dtb p1024rdb_36b.dtb p1025rdb_32b.dtb
++dtb-$(CONFIG_MPC85xx_RDB) += p1025rdb_36b.dtb
++dtb-$(CONFIG_P1010_RDB) += p1010rdb-pa_36b.dtb p1010rdb-pa.dtb
++dtb-$(CONFIG_P1010_RDB) += p1010rdb-pb_36b.dtb p1010rdb-pb.dtb
++dtb-$(CONFIG_P1022_DS) += p1022ds_32b.dtb p1022ds_36b.dtb
++dtb-$(CONFIG_P1022_RDK) += p1022rdk.dtb
++dtb-$(CONFIG_P1023_RDB) += p1023rdb.dtb
++dtb-$(CONFIG_PPC_P2020) += p2020ds.dtb
++dtb-$(CONFIG_TWR_P102x) += p1025twr.dtb
++dtb-$(CONFIG_CORENET_GENERIC) += b4420qds.dtb b4860qds.dtb cyrus_p5020.dtb
++dtb-$(CONFIG_CORENET_GENERIC) += kmcent2.dtb kmcoge4.dtb oca4080.dtb
++dtb-$(CONFIG_CORENET_GENERIC) += p2041rdb.dtb p3041ds.dtb p4080ds.dtb
++dtb-$(CONFIG_CORENET_GENERIC) += p5020ds.dtb p5040ds.dtb t1023rdb.dtb
++dtb-$(CONFIG_CORENET_GENERIC) += t1024qds.dtb t1024rdb.dtb t1040d4rdb.dtb
++dtb-$(CONFIG_CORENET_GENERIC) += t1040qds.dtb t1040rdb.dtb t1040rdb-rev-a.dtb
++dtb-$(CONFIG_CORENET_GENERIC) += t1042d4rdb.dtb t1042qds.dtb t1042rdb.dtb
++dtb-$(CONFIG_CORENET_GENERIC) += t1042rdb_pi.dtb t2080qds.dtb t2080rdb.dtb
++dtb-$(CONFIG_CORENET_GENERIC) += t2081qds.dtb t4240qds.dtb t4240rdb.dtb
++dtb-$(CONFIG_PPA8548) += ppa8548.dtb
++dtb-$(CONFIG_GE_IMP3A) += ge_imp3a.dtb
++dtb-$(CONFIG_MVME2500) += mvme2500.dtb
++
++# MPC86xx platforms
++dtb-$(CONFIG_GEF_SBC310) += gef_sbc310.dtb
++dtb-$(CONFIG_GEF_SBC610) += gef_sbc610.dtb
++dtb-$(CONFIG_GEF_PPC9A) += gef_ppc9a.dtb
++dtb-$(CONFIG_MVME7100) += mvme7100.dtb
+
+---
+base-commit: 11439c4635edd669ae435eec308f4ab8a0804808
+change-id: 20260101-mpc83xx-dtb-23d98a190e23
+
+Best regards,
+-- 
+J. Neuschäfer <j.ne@posteo.net>
+
+
 
