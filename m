@@ -1,179 +1,160 @@
-Return-Path: <devicetree+bounces-275835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275836-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mDtoAIYAt2mKLQEAu9opvQ
-	(envelope-from <devicetree+bounces-275835-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 19:55:02 +0100
+	id aLv0DxwBt2mKLQEAu9opvQ
+	(envelope-from <devicetree+bounces-275836-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 19:57:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A7A229220E
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 19:55:01 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4196A29224C
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 19:57:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ADB86305F3E7
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 18:53:05 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 49E39300721D
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 18:57:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6886E37CD41;
-	Sun, 15 Mar 2026 18:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D037373BEE;
+	Sun, 15 Mar 2026 18:57:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OAeXjpl+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rBJFFQBn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28A4B37C924;
-	Sun, 15 Mar 2026 18:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 698FB245014;
+	Sun, 15 Mar 2026 18:57:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773600774; cv=none; b=ci62mDWcFurLutOEdF5yiPF45cUdi3YR6NQKIoGneuh2zuXOrt2fNp5vQyS/+wrYZdJmj32C1ON8lOAwxVlxLCM9qwkOAKcVGOxkXWWdidKZG9ONYt7GVH/thYJacmzBkQxMgwev05/js7FCZKC40ImJ/UHzsuSKn9A18PHnSx8=
+	t=1773601045; cv=none; b=rx4LSy8gq8YC6B3mk9X9akF2kw9wHL/UkQQGfcPh1F2lpsQBuYRnWPMrdz1MioRO54cVPw0SZiQbNdg/Fp2hYnu66NRpotLQHwvWlqg2mstTvH/bIb7qVnZQ1SYH4H+qm324B6gl28E0RmBswL+NW+uEVLdRvpg73p60A+t76g0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773600774; c=relaxed/simple;
-	bh=DRN8Y2azyPABZr+mUTsY8ADaTpvTOyUxWI2eOU/dWp0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=iHzx3XIgcU9q+w2Wu+dDfZdzhP8i2PZTqr9Wpo5y4w9Qk50o7kHu+qTmiTkZgUxPcEEaTbDBxKxO5PLCGWVbO6zX0NczPS1HKyaqAh700nyrcqsqGwpQXioIeyL9Gz7ZOmeyK+ZRNNZTTSB0qmXii0RTc9czNnvIwvQrQrzjINw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OAeXjpl+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D600EC2BCFA;
-	Sun, 15 Mar 2026 18:52:53 +0000 (UTC)
+	s=arc-20240116; t=1773601045; c=relaxed/simple;
+	bh=kZlk9tz7eb5Ii44ZV8HPl05j/xDd2gmkIgWgh6jXmiA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DQiKygoOBhrjRb2emeCRnQ/AvYC5kCgivLqWFxDXv5A4fMdk/SoaE+lXTuOGouAvLx3iK1P7aoSPR8vYFCtdT+bJ5iPEqEtsKLpAzC/zr4vqTtLuUNAK29uQNHOY49biv6Sph74wt5d6wTV7L87EjQD6wmFMHlxtHjSp6fox+OA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rBJFFQBn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2E95C4CEF7;
+	Sun, 15 Mar 2026 18:57:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773600774;
-	bh=DRN8Y2azyPABZr+mUTsY8ADaTpvTOyUxWI2eOU/dWp0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=OAeXjpl+VhkelY+3qCifOb7WHdtRSrnVmMkjj2LOJIvj23739HrT0R5pLuubtxWro
-	 nxJRoN+orRQTNanig4BZJRTpXvYGrNeR5k1UIJ/y6HTSGgwiN++0+4R6AMrzLUs4OO
-	 KGKBZpjV+wfMScHLKwiWp2MugwoN3KxnMxHc9rM1NC2hlsN0P/VSqedJlJpqElBkUa
-	 DGCL4yrw2aoTHlL27dtpH5mXMsInCogpBvjKz9iYgBLQurJpppz2rjfe2BsDSZtul8
-	 8QS7zI6rkq5X06ji/XjOpXjXmCgWgAVUyOyOOGxtVKeYTUMs4L5sa5nXx/bvOK2EqT
-	 MIrjlWubT30uw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BBDDDF30282;
-	Sun, 15 Mar 2026 18:52:53 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Sun, 15 Mar 2026 19:52:47 +0100
-Subject: [PATCH WIP v2 11/11] arm64: dts: qcom: sdm845-google: Add STM FTS
- touchscreen support
+	s=k20201202; t=1773601045;
+	bh=kZlk9tz7eb5Ii44ZV8HPl05j/xDd2gmkIgWgh6jXmiA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=rBJFFQBnY2m1wfqsn94Smf/51IdfIlmmujclu64JY2vMSi0hJkqYB2bcHyodjkwvr
+	 T8k8IvFysT94sy5qSqfXazyp9z+9bbE9wV7oaMBlCVoXW8k4aoo3Vo+mXNQOu5Hw7O
+	 R1aBFr2ecfbt9XYlWGPmf1cgtcmVCBd+G/cyYBItzOljXLydnVj6W20dWnwDxlGbFF
+	 7s3kWc/54nd/LGUiewYzzq87rX1+HLea8Jl6Acggbe+ydrLfwSWW3dGkI89R5urPhN
+	 4pWuYODscHVOiBtqBc+OexZTo26I60I8/9J83Nm6oa0ABwi6oZ4Gr6b6J7CSXb3XLq
+	 gA/hbFf8Ovl4w==
+Date: Sun, 15 Mar 2026 18:57:15 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Sirat <email@sirat.me>
+Cc: David Lechner <dlechner@baylibre.com>, Andy Shevchenko
+ <andriy.shevchenko@intel.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, nuno.sa@analog.com, andy@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] iio: proximity: add driver for ST VL53L1X ToF
+ sensor
+Message-ID: <20260315185715.2f97c496@jic23-huawei>
+In-Reply-To: <CANn+LWK2OZ1dm0TAstM2hr6O6h2nEPRrNfje0mC3a2uc0HEwVQ@mail.gmail.com>
+References: <20260311224044.21480-1-email@sirat.me>
+	<abLNbGUmaA7K0s68@ashevche-desk.local>
+	<CANn+LW+F2bVMAGwoF8q9yBpF3x5r_hWDqvE3_JYjcLd16A_cEA@mail.gmail.com>
+	<a2486bc7-13be-4567-a53c-b37921df7bcd@baylibre.com>
+	<CANn+LWK2OZ1dm0TAstM2hr6O6h2nEPRrNfje0mC3a2uc0HEwVQ@mail.gmail.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260315-stmfts5-v2-11-70bc83ee9591@ixit.cz>
-References: <20260315-stmfts5-v2-0-70bc83ee9591@ixit.cz>
-In-Reply-To: <20260315-stmfts5-v2-0-70bc83ee9591@ixit.cz>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Petr Hodina <petr.hodina@protonmail.com>, linux-input@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org, 
- David Heidelberg <david@ixit.cz>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1222; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=GLiD2nULc18ENMziPB9JyYEPA1R8XKpCMXaNSc0DKdU=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBptv/6OhC8SocPmih7wGnZLPlUoktbgC3LKcDkk
- rb7jDcfKtuJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCabb/+gAKCRBgAj/E00kg
- cjyAEACecNgd/QeeVImpnVd0/qO9+NmYGuaGVLUdkOlwiR1azyYsPURJ0BoyOPVPUtW2SARrkbp
- /8y+IyIkP6AfVP++jl5EJ6Yb7RANAZofa7WRVNE7EPvM+AinjYj7tk5DCxmS+XbjjG+2fsOZL4n
- Dl0gV1yktFmywT+QT8MjjBZDsgbfZpLBjqJxQmtL4QLcK4bgb78wF0XiWrL4LRdHzKAU6OlpJaI
- LLZhvv4S1aZDfByji/VpDBP7wd78ADZmLqgk1qJrkzJGUpvMdkBWuNNy0ShAPwPQ/6qBCLxBMfi
- KGv68gmommlUQfPd6LWmEX9MRo8aVQloJoeJsr59cRpxKhqYzVENlAF0F2K02rH+CYwz+L1mrER
- z0r96/B3M1MbE3+C2x0pQaXCgiROmD9uWKcQdaURbtuTU7ZPh8a2o/HyfGotrhpkp7dpHd+gaW6
- nWbiiAQACYEfnCaawvKmRL5nX4eUXAN95YFnE9twgQpyQDKJjRMmpAmPpjqF97P3p7LTMpuutth
- cGBOEnjMVoyfpjhAt1qL3bw8zlbnbds2TzfEgRV7jZTAC5o+q6oR4UwDc7HpU3jorAULWVBzD+h
- T88D7ApzdQs8qIaVXoxc9Tf55Dwv6W/74Eed+xnAqYOhVLlW1Knj7K8nSzP+kO6QAFxtb8DY0I4
- yXJg9gbgW+l2ccw==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275835-lists,devicetree=lfdr.de,david.ixit.cz];
+	TAGGED_FROM(0.00)[bounces-275836-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,foss.st.com,kernel.org,bitmath.org];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[protonmail.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,kernel.org,ixit.cz];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[david@ixit.cz]
-X-Rspamd-Queue-Id: 5A7A229220E
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 4196A29224C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Petr Hodina <petr.hodina@protonmail.com>
+On Sat, 14 Mar 2026 21:25:44 +0600
+Sirat <email@sirat.me> wrote:
 
-Basic touchscreen connected to second i2c bus.
+> On Sat, Mar 14, 2026 at 8:39=E2=80=AFPM David Lechner <dlechner@baylibre.=
+com> wrote:
+> >
+> > On 3/12/26 10:12 AM, Sirat wrote: =20
+> > > On Thu, Mar 12, 2026 at 8:28=E2=80=AFPM Andy Shevchenko
+> > > <andriy.shevchenko@intel.com> wrote: =20
+> > >>
+> > >> On Thu, Mar 12, 2026 at 04:40:35AM +0600, Siratul Islam wrote: =20
+> > > ... =20
+> > >>> ---
+> > >>> Changes in v3:
+> > >>> - Merge DT binding into existing st,vl53l0x.yaml (per Krzysztof).
+> > >>> - Use "reset-gpios" in the binding but xshut_gpio in the driver sin=
+ce that's the actual pin name. =20
+> > >> =20
+> >
+> > We can modify the existing binding to make the supply required based
+> > on the compatible.
+> >
+> > allOf:
+> >   # Technically supply is required to power device, but we keep it
+> >   # optional for "st,vl53l0x" for backwards compatibility.
+> >   - if:
+> >       not:
+> >         properties:
+> >           compatible:
+> >             const: "st,vl53l0x"
+> >     then:
+> >       required:
+> >         vdd-supply
+> >
+> >
+> > And we can add a description to reset-gpios to explain that it is actua=
+lly the
+> > XSHUT pin.
+> > =20
+> This will solve the problem, but I'm concerned about someone not
+> following the commit history looking at the code.
+> Logically, it doesn't make sense as both the devices require the
+> supply. In fact it may give the impression that
+> the vl53l0x explicitly doesn't need power. We are having to deal with
+> too much just to save us from writing a new file.
+>=20
+> That said, I can still implement this if it's still the prefered way
+> to solve our problem. Or leave it optional as it is.
+> > =20
+Can make it required in the binding. Just explain clearly why
+it should be there.  The driver should carry on coping without
+it though (and leave a comment so we don't break that in the future).
 
-Signed-off-by: Petr Hodina <petr.hodina@protonmail.com>
-Co-developed-by: David Heidelberg <david@ixit.cz>
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts | 20 +++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
+Jonathan
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts b/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
-index fa89be500fb85..48d7e7f83c285 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
-@@ -26,7 +26,25 @@ &i2c2 {
- 
- 	status = "okay";
- 
--	/* ST,FTS @ 49 */
-+	touchscreen@49 {
-+		compatible = "st,stmfts5";
-+		reg = <0x49>;
-+
-+		pinctrl-0 = <&touchscreen_pins &touchscreen_reset>;
-+		pinctrl-names = "default";
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <125 IRQ_TYPE_LEVEL_LOW>;
-+
-+		switch-gpios = <&tlmm 136 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&tlmm 99 GPIO_ACTIVE_LOW>;
-+
-+		avdd-supply = <&vreg_l14a_1p8>;
-+		vdd-supply = <&vreg_l19a_3p3>;
-+
-+		touchscreen-size-x = <1080>;
-+		touchscreen-size-y = <2160>;
-+	};
- };
- 
- &mdss_dsi0 {
-
--- 
-2.53.0
-
+>=20
 
 
