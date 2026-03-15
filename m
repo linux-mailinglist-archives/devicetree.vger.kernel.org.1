@@ -1,160 +1,179 @@
-Return-Path: <devicetree+bounces-275846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275848-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KA/ZDbMjt2mnMwEAu9opvQ
-	(envelope-from <devicetree+bounces-275846-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 22:25:07 +0100
+	id 8IOeFUsmt2lqNAEAu9opvQ
+	(envelope-from <devicetree+bounces-275848-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 22:36:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23D9F292A14
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 22:25:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC565292A68
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 22:36:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CED533009B3B
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 21:25:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 676AC303DD70
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 21:36:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 974F937B41E;
-	Sun, 15 Mar 2026 21:25:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3E3037C922;
+	Sun, 15 Mar 2026 21:36:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jic23.retrosnub.co.uk header.i=@jic23.retrosnub.co.uk header.b="5OlrNzX5"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="OT49QBAv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx2.mythic-beasts.com (mx2.mythic-beasts.com [46.235.227.24])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12C74371D01;
-	Sun, 15 Mar 2026 21:24:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6137228CA9
+	for <devicetree@vger.kernel.org>; Sun, 15 Mar 2026 21:36:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773609903; cv=none; b=M0u+eicY0RHbioSl5bfnmysTyZD4b+/mzd91TkxsoISjm+tRcTcVvPg2gAl431M7isAWIBTWpo8EEIRVv9JaDPC+3ZU62ZvFZj8xDQaJSED5Ji4X8OYwyfGEaq+gTIwn4GjT8MWnkmSySHttEXaPf4PhF8j4FL3EZ+C3ujrgvrk=
+	t=1773610565; cv=none; b=Km1b/oiPWijzlcSXo2vVzC8dlmJ2CPpRn6srrsGC94xRUWl/2MAHD1Ft7jP2PZRZhBZhFvO+uok6wuu4PCD0Iazvqc6pcIbgSBNreB9fCFAUKAmm3luSMw+zXcDxjDSo+dTr2RkZs/KcK4cRspHIvBdu1067IAbPAclRO1gdXFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773609903; c=relaxed/simple;
-	bh=NG9/BsFQD9fSdaKlgTgR0n8gl/bSvJoKMyv+VsMHC1c=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=Hm5aExh5TjprhWzXtyae2ambbK1OyNe9DpEy5DLoxtC5cX2YJBImZzKh00B5JrOAZli995YatRhlADVh7rna7Gx0UaixZ+jUt/F7GgEE+QaVN06a281SeMbUe25o+vn03c1e2xMkWa6CxaPGPUt39BgYid4D1aNqItYsHXDsZMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jic23.retrosnub.co.uk; spf=pass smtp.mailfrom=jic23.retrosnub.co.uk; dkim=pass (2048-bit key) header.d=jic23.retrosnub.co.uk header.i=@jic23.retrosnub.co.uk header.b=5OlrNzX5; arc=none smtp.client-ip=46.235.227.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jic23.retrosnub.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jic23.retrosnub.co.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=jic23.retrosnub.co.uk; s=mythic-beasts-k1; h=Subject:To:From:Date;
-	bh=d0bhAwjEo/QnWswJsthoj3+V9ClSGQBFouScMgZDBs8=; b=5OlrNzX5lTzK8WOqaaBfwp3eEb
-	gSvMbziqU5KM1gqJNKPQUT9Ub9O77fi2+sRCOLQPxygkQ64ZlUByNdx99RhP4XRyPzLlwK78y3BXw
-	qSy10OEGSorEwZmVkCa5vwKYkcOkhi0Ut6aRctEZp60WOhxuEGhWNMjPta+MRp6lISEY5U+ZD/4xH
-	YcbwpkSVMXMdm/X5V2KKXW2bHWAShkGxE/sOb+/y821foi86kkLIX18xX/ueWIEZV8arTGvCSjJS4
-	u9fBrXuikIGNsONVI2kDHdXfI3QTv8VQYuZc1OqC4rlet9XXzv2YwPNcz/JoQuxPRmmm5V36fyQ+J
-	2T2XwOSQ==;
-Received: by mailhub-hex-d.mythic-beasts.com with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <jic23@jic23.retrosnub.co.uk>)
-	id 1w1sx3-000ck4-2Y;
-	Sun, 15 Mar 2026 21:24:46 +0000
-Date: Sun, 15 Mar 2026 21:24:18 +0000
-From: Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
-To: Erikas Bitovtas <xerikasxx@gmail.com>, Jonathan Cameron <jic23@kernel.org>
-CC: David Lechner <dlechner@baylibre.com>,
- =?ISO-8859-1?Q?Nuno_S=E1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Peter Meerwald <pmeerw@pmeerw.net>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v3_5/6=5D_iio=3A_light=3A_vcnl4000=3A_?=
- =?US-ASCII?Q?remove_error_messages_for_trigger_and_irq?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <706a349f-63e5-4f47-9f77-c84db1058f5e@gmail.com>
-References: <20260314-vcnl4000-regulators-v3-0-3c4a48d30676@gmail.com> <20260314-vcnl4000-regulators-v3-5-3c4a48d30676@gmail.com> <20260315183127.59036e25@jic23-huawei> <706a349f-63e5-4f47-9f77-c84db1058f5e@gmail.com>
-Message-ID: <8D6D8F40-2B7E-46C6-8A24-15717CB70ADD@jic23.retrosnub.co.uk>
+	s=arc-20240116; t=1773610565; c=relaxed/simple;
+	bh=o7trqVei18a8K6anFaToDsX9xeFct+Q/hQ1+Rwxz73g=;
+	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=ET59mzXcmVP1VUGidhZENAWOGenssdYdABv2puOhdwmyKv9N8Qutn0rcWzCBzwgoVxcniVv/bcXUSKBexthMnUKdNMH2oOQDEVub4VHJ/SKZ3Nmc7sQ2xoyPZ2o/GOCczVqo9nVUcoVviTxv4NwjcB84ROqK4mRafbb5WgGK1TQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=OT49QBAv; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 3596C2C05BD;
+	Mon, 16 Mar 2026 10:26:56 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1773610016;
+	bh=o7trqVei18a8K6anFaToDsX9xeFct+Q/hQ1+Rwxz73g=;
+	h=From:To:Subject:Date:References:In-Reply-To:From;
+	b=OT49QBAvXXjt09I0W+PvCui2J59tJyBMJRiWmgTXH6hJmnJvGqdnpAY9TnkjNfW2v
+	 kZOuSfTHOgWr9qr14A4SHQYMh+1awT3ntFltVU8NNmwYkaydS+2/jZukZOz0mQ4sO9
+	 uYsHdBtSSG9ThWhPVua20HF8w/BOTAQHwwpQSwml9I4+15VQXzsOvClqhUDjNwoka7
+	 Q8DjD/7ru1FY/cCt6iunFnvMHiwkmyjezicynwfHx0qBHwsF1qJUiTIAo5bxzlxrh0
+	 qIIHt+AZ8D5FLBzKganvgDb/deZ3o+49Hk35uf+vocsHzR5pN2o9BqV2+AOmO/JtBo
+	 LgCLvNUAEQcJw==
+Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B69b724200001>; Mon, 16 Mar 2026 10:26:56 +1300
+Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
+ svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.39; Mon, 16 Mar 2026 10:26:55 +1300
+Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
+ svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
+ 15.02.1748.039; Mon, 16 Mar 2026 10:26:55 +1300
+From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To: Rustam Adilov <adilov@disroot.org>, Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, "linux-i2c@vger.kernel.org"
+	<linux-i2c@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 4/8] i2c: rtl9300: introduce a property for 8 bit width
+ reg address
+Thread-Topic: [PATCH 4/8] i2c: rtl9300: introduce a property for 8 bit width
+ reg address
+Thread-Index: AQHcs4xrIL0qfGb1U0GyvvEnqztOg7WvQ9oA
+Date: Sun, 15 Mar 2026 21:26:55 +0000
+Message-ID: <6b283fb8-5d80-4ffb-b21c-8d8d8fd025be@alliedtelesis.co.nz>
+References: <20260314082628.25206-1-adilov@disroot.org>
+ <20260314082628.25206-5-adilov@disroot.org>
+In-Reply-To: <20260314082628.25206-5-adilov@disroot.org>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <D73ECDB14ABAFD49A9AE4F4EA92402E7@alliedtelesis.co.nz>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-BlackCat-Spam-Score: 25
-X-Spamd-Result: default: False [1.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	SUBJ_EXCESS_QP(1.20)[];
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=EcprQ+mC c=1 sm=1 tr=0 ts=69b72420 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=drD7vYo3kbIA:10 a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=LpNgXrTXAAAA:8 a=fjHevkijCDgla4ZAOPQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=LqOpv0_-CX5VL_7kjZO3:22
+X-SEG-SpamProfiler-Score: 0
+X-Spamd-Result: default: False [-1.06 / 15.00];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[jic23.retrosnub.co.uk:s=mythic-beasts-k1];
+	DMARC_POLICY_ALLOW(-0.50)[alliedtelesis.co.nz,quarantine];
+	R_DKIM_ALLOW(-0.20)[alliedtelesis.co.nz:s=mail181024];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-275848-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[retrosnub.co.uk];
-	TAGGED_FROM(0.00)[bounces-275846-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,alliedtelesis.co.nz:dkim,alliedtelesis.co.nz:mid,disroot.org:email];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[alliedtelesis.co.nz:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Chris.Packham@alliedtelesis.co.nz,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@jic23.retrosnub.co.uk,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[jic23.retrosnub.co.uk:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 23D9F292A14
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: CC565292A68
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
-
-On March 15, 2026 7:15:51 PM GMT, Erikas Bitovtas <xerikasxx@gmail=2Ecom> =
-wrote:
->
->
->On 3/15/26 8:31 PM, Jonathan Cameron wrote:
->> On Sat, 14 Mar 2026 18:06:34 +0200
->> Erikas Bitovtas <xerikasxx@gmail=2Ecom> wrote:
->>=20
->>> The error code is available in the log after return=2E Remove duplicat=
-e
->>> error messages to reduce noise in dmesg=2E
->>>
->>> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail=2Ecom>
->>> ---
->>>  drivers/iio/light/vcnl4000=2Ec | 9 ++-------
->>>  1 file changed, 2 insertions(+), 7 deletions(-)
->>>
->>> diff --git a/drivers/iio/light/vcnl4000=2Ec b/drivers/iio/light/vcnl40=
-00=2Ec
->>> index e501db7249d7=2E=2Ec8bb1826b916 100644
->>> --- a/drivers/iio/light/vcnl4000=2Ec
->>> +++ b/drivers/iio/light/vcnl4000=2Ec
->>> @@ -2041,11 +2041,8 @@ static int vcnl4000_probe(struct i2c_client *cl=
-ient)
->>>  						      NULL,
->>>  						      data->chip_spec->trig_buffer_func,
->>>  						      data->chip_spec->buffer_setup_ops);
->>> -		if (ret < 0) {
->>> -			dev_err(&client->dev,
->>> -				"unable to setup iio triggered buffer\n");
->>=20
->> Is this one a duplicate? I don't recall us being particular verbose
->> in terms of error messages in iio_triggered_buffer_setup_ext() which is
->> where that ends up coming from=2E  I think there is only one path
->> where it can return anything other than -ENOMEM and that one is a dupli=
-cate
->> registration check (so fair to not print)=2E  So perhaps all this patch
->> needs is a comment on what errors can surface from this call and why
->> it is therefore not worth printing anything=2E
->>=20
->
->I do not see anything being printed on iio_triggered_buffer_setup_ext(),
->so I guess this is not a duplicate=2E The function can return -EADDRINUSE
->if a buffer is already assigned, to prevent cleanup function being
->called on a buffer that wasn't allocated=2E
->I will add this print back if necessary in v4=2E
->
-I think it is fine to drop the print but more detail on why is needed for =
-the commit message=2E
+DQpPbiAxNC8wMy8yMDI2IDIxOjI2LCBSdXN0YW0gQWRpbG92IHdyb3RlOg0KPiBJbiBSVEw5NjA3
+QyBpMmMgY29udHJvbGxlciwgaW4gb3JkZXIgdG8gaW5kaWNhdGUgdGhhdCB0aGUgd2lkdGggb2YN
+Cj4gbWVtb3J5IGFkZHJlc3MgaXMgOCBiaXRzLCAwIGlzIHdyaXR0ZW4gdG8gTUVNX0FERFJfV0lE
+VEggZmllbGQgYXMNCj4gb3Bwb3NlZCB0byAxIGZvciBSVEw5MzAwIGFuZCBSVEw5MzEwLg0KPg0K
+PiBJbnRyb2R1Y2UgYSBuZXcgcHJvcGVydHkgdG8gYSBkcml2ZXIgZGF0YSB0byBpbmRpY2F0ZSB3
+aGF0IHZhbHVlDQo+IG5lZWQgdG8gd3JpdHRlbiB0byBNRU1fQUREUl9XSURUSCBmaWVsZCBmb3Ig
+dGhpcyBjYXNlLg0KPg0KPiBTaWduZWQtb2ZmLWJ5OiBSdXN0YW0gQWRpbG92IDxhZGlsb3ZAZGlz
+cm9vdC5vcmc+DQo+IC0tLQ0KPiAgIGRyaXZlcnMvaTJjL2J1c3Nlcy9pMmMtcnRsOTMwMC5jIHwg
+OCArKysrKysrLQ0KPiAgIDEgZmlsZSBjaGFuZ2VkLCA3IGluc2VydGlvbnMoKyksIDEgZGVsZXRp
+b24oLSkNCj4NCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvaTJjL2J1c3Nlcy9pMmMtcnRsOTMwMC5j
+IGIvZHJpdmVycy9pMmMvYnVzc2VzL2kyYy1ydGw5MzAwLmMNCj4gaW5kZXggMjUyNWI1N2E5ZDAz
+Li44NmE4MmYyYzNjZTAgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvaTJjL2J1c3Nlcy9pMmMtcnRs
+OTMwMC5jDQo+ICsrKyBiL2RyaXZlcnMvaTJjL2J1c3Nlcy9pMmMtcnRsOTMwMC5jDQo+IEBAIC02
+MCw2ICs2MCw3IEBAIHN0cnVjdCBydGw5MzAwX2kyY19kcnZfZGF0YSB7DQo+ICAgCXUzMiB3ZF9y
+ZWc7DQo+ICAgCXU4IG1heF9uY2hhbjsNCj4gICAJdTggbWF4X2RhdGFfbGVuOw0KPiArCXU4IHJl
+Z19hZGRyXzhiaXRfbGVuOw0KPiAgIH07DQo+ICAgDQo+ICAgI2RlZmluZSBSVEw5MzAwX0kyQ19N
+VVhfTkNIQU4JOA0KPiBAQCAtMTA1LDYgKzEwNiw3IEBAIHN0cnVjdCBydGw5MzAwX2kyY194ZmVy
+IHsNCj4gICAjZGVmaW5lIFJUTDkzMDBfSTJDX01TVF9EQVRBX1dPUkQyCQkJMHgxMA0KPiAgICNk
+ZWZpbmUgUlRMOTMwMF9JMkNfTVNUX0RBVEFfV09SRDMJCQkweDE0DQo+ICAgI2RlZmluZSBSVEw5
+MzAwX0kyQ19NU1RfR0xCX0NUUkwJCQkweDM4NA0KPiArI2RlZmluZSBSVEw5MzAwX1JFR19BRERS
+XzhCSVRfTEVOCQkJMQ0KPiAgIA0KPiAgICNkZWZpbmUgUlRMOTMxMF9JMkNfTVNUX0lGX0NUUkwJ
+CQkJMHgxMDA0DQo+ICAgI2RlZmluZSBSVEw5MzEwX0kyQ19NU1RfSUZfU0VMCQkJCTB4MTAwOA0K
+PiBAQCAtMjk5LDYgKzMwMSw3IEBAIHN0YXRpYyBpbnQgcnRsOTMwMF9pMmNfc21idXNfeGZlcihz
+dHJ1Y3QgaTJjX2FkYXB0ZXIgKmFkYXAsIHUxNiBhZGRyLCB1bnNpZ25lZCBzDQo+ICAgCQkJCSAg
+dW5pb24gaTJjX3NtYnVzX2RhdGEgKmRhdGEpDQo+ICAgew0KPiAgIAlzdHJ1Y3QgcnRsOTMwMF9p
+MmNfY2hhbiAqY2hhbiA9IGkyY19nZXRfYWRhcGRhdGEoYWRhcCk7DQo+ICsJY29uc3Qgc3RydWN0
+IHJ0bDkzMDBfaTJjX2Rydl9kYXRhICpkcnZfZGF0YTsNCj4gICAJc3RydWN0IHJ0bDkzMDBfaTJj
+ICppMmMgPSBjaGFuLT5pMmM7DQo+ICAgCXN0cnVjdCBydGw5MzAwX2kyY194ZmVyIHhmZXIgPSB7
+MH07DQo+ICAgCWludCByZXQ7DQo+IEBAIC0zMDgsNiArMzExLDcgQEAgc3RhdGljIGludCBydGw5
+MzAwX2kyY19zbWJ1c194ZmVyKHN0cnVjdCBpMmNfYWRhcHRlciAqYWRhcCwgdTE2IGFkZHIsIHVu
+c2lnbmVkIHMNCj4gICANCj4gICAJZ3VhcmQocnRsOTMwMF9pMmMpKGkyYyk7DQo+ICAgDQo+ICsJ
+ZHJ2X2RhdGEgPSBkZXZpY2VfZ2V0X21hdGNoX2RhdGEoaTJjLT5kZXYpOw0KPiAgIAlyZXQgPSBy
+dGw5MzAwX2kyY19jb25maWdfY2hhbihpMmMsIGNoYW4pOw0KPiAgIAlpZiAocmV0KQ0KPiAgIAkJ
+cmV0dXJuIHJldDsNCj4gQEAgLTMxNSw3ICszMTksNyBAQCBzdGF0aWMgaW50IHJ0bDkzMDBfaTJj
+X3NtYnVzX3hmZXIoc3RydWN0IGkyY19hZGFwdGVyICphZGFwLCB1MTYgYWRkciwgdW5zaWduZWQg
+cw0KPiAgIAl4ZmVyLmRldl9hZGRyID0gYWRkciAmIDB4N2Y7DQo+ICAgCXhmZXIud3JpdGUgPSAo
+cmVhZF93cml0ZSA9PSBJMkNfU01CVVNfV1JJVEUpOw0KPiAgIAl4ZmVyLnJlZ19hZGRyID0gY29t
+bWFuZDsNCj4gLQl4ZmVyLnJlZ19hZGRyX2xlbiA9IDE7DQo+ICsJeGZlci5yZWdfYWRkcl9sZW4g
+PSBkcnZfZGF0YS0+cmVnX2FkZHJfOGJpdF9sZW47DQo+ICAgDQo+ICAgCXN3aXRjaCAoc2l6ZSkg
+ew0KPiAgIAljYXNlIEkyQ19TTUJVU19CWVRFOg0KPiBAQCAtNTAxLDYgKzUwNSw3IEBAIHN0YXRp
+YyBjb25zdCBzdHJ1Y3QgcnRsOTMwMF9pMmNfZHJ2X2RhdGEgcnRsOTMwMF9pMmNfZHJ2X2RhdGEg
+PSB7DQo+ICAgCS53ZF9yZWcgPSBSVEw5MzAwX0kyQ19NU1RfREFUQV9XT1JEMCwNCj4gICAJLm1h
+eF9uY2hhbiA9IFJUTDkzMDBfSTJDX01VWF9OQ0hBTiwNCj4gICAJLm1heF9kYXRhX2xlbiA9IFJU
+TDkzMDBfSTJDX01BWF9EQVRBX0xFTiwNCj4gKwkucmVnX2FkZHJfOGJpdF9sZW4gPSBSVEw5MzAw
+X1JFR19BRERSXzhCSVRfTEVOLA0KPiAgIH07DQo+ICAgDQo+ICAgc3RhdGljIGNvbnN0IHN0cnVj
+dCBydGw5MzAwX2kyY19kcnZfZGF0YSBydGw5MzEwX2kyY19kcnZfZGF0YSA9IHsNCj4gQEAgLTUy
+NCw2ICs1MjksNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IHJ0bDkzMDBfaTJjX2Rydl9kYXRhIHJ0
+bDkzMTBfaTJjX2Rydl9kYXRhID0gew0KPiAgIAkud2RfcmVnID0gUlRMOTMxMF9JMkNfTVNUX0RB
+VEFfQ1RSTCwNCj4gICAJLm1heF9uY2hhbiA9IFJUTDkzMTBfSTJDX01VWF9OQ0hBTiwNCj4gICAJ
+Lm1heF9kYXRhX2xlbiA9IFJUTDkzMDBfSTJDX01BWF9EQVRBX0xFTiwNCj4gKwkucmVnX2FkZHJf
+OGJpdF9sZW4gPSBSVEw5MzAwX1JFR19BRERSXzhCSVRfTEVOLA0KPiAgIH07DQo+ICAgDQo+ICAg
+c3RhdGljIGNvbnN0IHN0cnVjdCBvZl9kZXZpY2VfaWQgaTJjX3J0bDkzMDBfZHRfaWRzW10gPSB7
 
