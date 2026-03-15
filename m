@@ -1,292 +1,222 @@
-Return-Path: <devicetree+bounces-275851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275852-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YHDoN4Qot2nzNAEAu9opvQ
-	(envelope-from <devicetree+bounces-275851-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 22:45:40 +0100
+	id QOEaGRort2kLNQEAu9opvQ
+	(envelope-from <devicetree+bounces-275852-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 22:56:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A392292AE8
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 22:45:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCB04292C2F
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 22:56:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8D00C303DD2C
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 21:45:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3554F30790BC
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 21:54:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ABF133A033;
-	Sun, 15 Mar 2026 21:45:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81F3437CD4B;
+	Sun, 15 Mar 2026 21:54:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="haH7+8Df"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k06V33/7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07EC97262B;
-	Sun, 15 Mar 2026 21:45:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A55737CD25
+	for <devicetree@vger.kernel.org>; Sun, 15 Mar 2026 21:54:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773611124; cv=none; b=qpN9twXwe0LGkVjfdc/e55BI+nFSbmvY93L7azv3uf2wWlXIm4YoXX5Mv1d4iHzZMkfiZnJuQAbc1dIdNg00FvOlqarL8sAw/+zTCnmQyTEB9heiDUjH+sxOjXRZnz/DDRlQFw2pR8CenD4m8O7DCPnFnoXpQLIPGKajLcQWHQY=
+	t=1773611697; cv=none; b=d8IEfD53iWUnuIXrnwHakeaTOqIgsZKzV0P7HsKLKoi0gs82pQtYL360yEpO/QMU4lLeaheNHbOHlta5vG7RlYW35FzNuxNiff8xvxdm167bnii21xkwf2Vk1tWwZ0DsG1pSUpm116k8JEuukDxMYg7Yf61FRNGe9Y+t2x72SDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773611124; c=relaxed/simple;
-	bh=c1wKqfh+jcbPWKCBgQ7T1I8pmOpQA2n9dE3yAxPAIUY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Um5NnSt0WxY38o4sBSp28dvFoA3bI2BaGlfjE34cYZrcekKVEBpuXzKO1EgYUoVBUQym7GTOVFjKMr0ebyyiWXOHctAeQqS4e5hEJ2CjV+RPr33ZBEeRYnQsvgUTHRjHkgeblm9RzEdVlG83uewtXH/YwPLBv/Y+6zvVCjTnzFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=haH7+8Df; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 94299C4CEF7;
-	Sun, 15 Mar 2026 21:45:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773611123;
-	bh=c1wKqfh+jcbPWKCBgQ7T1I8pmOpQA2n9dE3yAxPAIUY=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=haH7+8DfIQKOvuZiq7y4d3Xh17mLZjfxayXlv6I9F0euGXTkNVywR9DmzZ0zBoPSg
-	 AZPP+WC4gQdaA3wBULmw0esSoVufFILI3Sa0Olgzb58To1TDKrMVkCQM0d74qkhqXN
-	 XDDY9vyXrCkocekjNep5S+dImvBF39tBBtJJAWwVpmihON3l9f/VyWvL2shvAW5NcE
-	 L5wT5U0UobpMVZn4kX2kJnlvW+/0cn1rLGbqXMYKm40EBTxOfO2qLhqHO1ZJ0S/+B7
-	 rfzJYnxighyJQfW3UhkMju2fgoLSgk10bZwek2Tt7rzdG/uZ37hqjtORfvP+/UxbZK
-	 VrgbsKBiiOIew==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8970FF3027F;
-	Sun, 15 Mar 2026 21:45:23 +0000 (UTC)
-From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
-Date: Sun, 15 Mar 2026 22:45:13 +0100
-Subject: [PATCH v4] powerpc: dts: Build devicetrees of enabled platforms
+	s=arc-20240116; t=1773611697; c=relaxed/simple;
+	bh=ZHyFZQHqWgam1NdfpOD11Poa3CjAieCq6kZVddSJ+8A=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=If+3SnghIEO+XH+pfs7Zm1wooHb79LqV7tw8nd6QId8tYI2UDvJ/jxaoG7iyEHMk/lif6a907CqQT255la7qI2NqA3S6DOjWxF2k/DKq3Nh70Ghp/iDLatIMyUx7A5OwBalG4oknoGXrL+5Xin4oZNGLsar6x2a3wvDL3/qTH2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k06V33/7; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-82a072db915so3334080b3a.2
+        for <devicetree@vger.kernel.org>; Sun, 15 Mar 2026 14:54:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773611696; x=1774216496; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=r1/aL+GcrcXe4rkRjHz6Qdgy5d873vnDywLVzNx1zBs=;
+        b=k06V33/7CHwvSPwlT03eNcysWnq2+pZMw0VortYlR/8/X+pjNX51YMBxSXlzFo2Qev
+         FiDKqIPSie+MX+K6roA/yQT4RgrzXe9wixJdt0qsadywFOEK0PkV3SR5wKq7fk98XC1n
+         mhSXJ0bprs5wFa6W8JMLAByLWeNfZWO3x+Ojvyfe173XTFviqFDxYDDMblRQH0Mavs9R
+         ayTRsuq+7bHwXunBj14/sfJKg389TkQPx4fSScJo04CsqiSdPmnf0Y8x1+rwlL2CFUC9
+         ro1kclq43fHjDZjSzwFVP+MvLdM2fuWE7J2r2jEbxMQ5lE1gzpkZ+VB274HG5DZGxNd0
+         9lOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773611696; x=1774216496;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=r1/aL+GcrcXe4rkRjHz6Qdgy5d873vnDywLVzNx1zBs=;
+        b=WESVDxnQy98aaLWL8dejc6Em5bRdsxHNCP7MNsG/4BUHMA9Zfvb7RKcGr9DH8WToGW
+         4G9s/zTIL5JKSVPgS2fIczkafIOr5z8cCeaSl/aPNycuotOMOHzbK2Um4zUXGB8I2sjK
+         yY2ROg+t21Ph1n7O1pf3xittOWdgFZYT5IEas5s0lPBtC8LHH6GAWIUVg5MGV6fmRGZz
+         YDZmGhMQLQHz3eUX0nIDRsD/tlyz37izc/w1mT1ixRphz5AmjIlOAn9LU9eySrAjhD5n
+         8t+OOUa7cllOfGx3+UTI/UuNq3dhLdQBUngrDsk53OPGDrQJHlSs0mT+KXEaqbt9ITZM
+         yZmA==
+X-Forwarded-Encrypted: i=1; AJvYcCUN47IylYQUZBKhSaz8gRKDYxymXjjLNi/MCDzUvJTrKGnyM1vWJnRsDVPM41T2ATPrNKpgHhfSaciI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy1+LP9AiUmC/47vWAqtOSF3pl09kGlF5tV16ObfCqFs3GPp68D
+	BDLpBmjVxnwOCJSZQy671W0UBXs/nPTPNIEtS23BrbQhsOrfR1ezmQjT
+X-Gm-Gg: ATEYQzxNiAe9Rgkh88Yun33XHoBeN9VCP0rDQj+I1cYOp0i6+h00QVY6UNvUiM1Jhf3
+	sDR0zpO/Zak6Wykqy8htEmWdmX0Q5h2+PeZbElq9U4V/xejj8buuuzv8aBevshupKmO2HA3zXxT
+	lbM6J3TB6twzENwWjTfS8xjR2uopufdRCJvtNMYXxHdCyeEIWbOvY/rmgZtTWnaJrjLTT4TVKrf
+	sl/dHC9BzC51Fwys0Yd7rwp5DByyRtt/x8ReIPWEw23Dp+o2pGuGP28yNWlTjAHRQGd+jQAA3ep
+	abILdxtl6GDUbhA59VsxtjhjAJxzv3/zzX1T/7qFYhfSoq4iSdPQbKtxjmZ7uLuCf+Av8qC0n5K
+	JyxYQpObLHFL9um9qdkXcmkDnb3v9lyK+XL7SGI3gdSb8vrbyLFmvQ+MTcgM0TdHzh6siN+pKcx
+	HCZY6JJNIjPbTWgwYGX3i9VkWmLaVRts9x3ecpBLazhvkfEq7eDfF9/l7vjwWXROuIku3Gm2MmC
+	6Wj47KWzggeznjgkd/aXSWW1n/HLrsrU7pL
+X-Received: by 2002:a05:6a00:a04:b0:81f:994f:cb with SMTP id d2e1a72fcca58-82a19716f8fmr10117321b3a.24.1773611695607;
+        Sun, 15 Mar 2026 14:54:55 -0700 (PDT)
+Received: from lorddaniel-VivoBook-ASUSLaptop-K3502ZA-S3502ZA.. ([2405:201:31:d01f:962:a48e:8021:2c05])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82a07244071sm11782298b3a.6.2026.03.15.14.54.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 15 Mar 2026 14:54:55 -0700 (PDT)
+From: Piyush Patle <piyushpatle228@gmail.com>
+To: Lars-Peter Clausen <lars@metafoo.de>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: sound: adi,ssm2305: Convert to DT schema
+Date: Mon, 16 Mar 2026 03:24:47 +0530
+Message-Id: <20260315215447.276886-1-piyushpatle228@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260315-mpc83xx-dtb-v4-1-243849be4280@posteo.net>
-X-B4-Tracking: v=1; b=H4sIAGgot2kC/2XP0QrCIBTG8VcZXmd4jlqzq94jutCpzYu2MYcsx
- t49N4KSLr8Dvz+chUQ3BhfJpVrI6FKIoe/yEIeKNK3uHo4GmzdBhicGDOhzaGo+z9ROhiK3qta
- gmENOshhG58O81273vNsQp3587fEE2/XTAVV0ElCgEtHXAlAx469DHyfXHzs3kS2U8Is5kyXGj
- BtrzhKErIWQf5j/YCg/SDxjobXgxijvNSvwuq5vf0DM1CEBAAA=
-X-Change-ID: 20260101-mpc83xx-dtb-23d98a190e23
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>, 
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
-Cc: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org, Geert Uytterhoeven <geert@linux-m68k.org>, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773611122; l=7655;
- i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
- bh=tOg76kwFnfAMdsOrfytYNNBMYvqrE5CInLny6ci6P8A=;
- b=NzezU5KvWQfGRrQUKE2dyqNsHIeSvAcWIJcymF5XosjLKnBuFipX8XPYE505TURVq6XeZfjly
- vIXtgeiIVmSA48hVV0xfWepdBBcRV2OnNU708VeW8A78pzzCT4nmZZW
-X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
- pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
-X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
- auth_id=156
-X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Reply-To: j.ne@posteo.net
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275851-lists,devicetree=lfdr.de,j.ne.posteo.net];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,linux.ibm.com,ellerman.id.au,gmail.com];
+	TAGGED_FROM(0.00)[bounces-275852-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[j.ne@posteo.net];
+	FROM_NEQ_ENVFROM(0.00)[piyushpatle228@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6A392292AE8
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,metafoo.de:email,devicetree.org:url]
+X-Rspamd-Queue-Id: BCB04292C2F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: "J. Neuschäfer" <j.ne@posteo.net>
+Convert the SSM2305 speaker amplifier binding from text format to
+YAML schema to enable dtbs_check validation.
 
-Follow the same approach as other architectures such as Arm or RISC-V,
-and build devicetrees based on platforms selected in Kconfig. This makes
-it unnecessary to use CONFIG_OF_ALL_DTBS on PowerPC in order to build
-DTB files.
+Remove the legacy text binding.
 
-This makes it easier to use other build and test infrastructure such as
-`make dtbs_check`, and is a first step towards generating FIT images
-that include all the relevant DTBs with `make image.fit`.
-
-Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+Signed-off-by: Piyush Patle <piyushpatle228@gmail.com>
 ---
-Changes in v4:
-- Correctly list turris1x.dtb in boot/dts, not boot/dts/fsl.
-- Link to v3: https://lore.kernel.org/r/20260311-mpc83xx-dtb-v3-1-4aa43bb9ffa0@posteo.net
+ .../devicetree/bindings/sound/adi,ssm2305.txt | 14 ------
+ .../bindings/sound/adi,ssm2305.yaml           | 46 +++++++++++++++++++
+ 2 files changed, 46 insertions(+), 14 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/adi,ssm2305.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/adi,ssm2305.yaml
 
-Changes in v3:
-- Group multiple files per line, while still avoiding backslashes
-  (suggested by Christophe Leroy)
-- Link to v2: https://lore.kernel.org/r/20260305-mpc83xx-dtb-v2-1-cdb751458445@posteo.net
-
-Changes in v2:
-- Use "dtb-$(FOO) += foo.dtb" format on every line, avoid backslashes
-  (suggested by Geert Uytterhoeven)
-- Link to v1: https://lore.kernel.org/r/20260119-mpc83xx-dtb-v1-1-522f841290bf@posteo.net
----
- arch/powerpc/boot/dts/Makefile     | 73 ++++++++++++++++++++++++++++++++++++++
- arch/powerpc/boot/dts/fsl/Makefile | 43 ++++++++++++++++++++++
- 2 files changed, 116 insertions(+)
-
-diff --git a/arch/powerpc/boot/dts/Makefile b/arch/powerpc/boot/dts/Makefile
-index 0cd0d8558b475c..1e61a951cebe84 100644
---- a/arch/powerpc/boot/dts/Makefile
-+++ b/arch/powerpc/boot/dts/Makefile
-@@ -3,3 +3,76 @@
- subdir-y += fsl
- 
- dtb-$(CONFIG_OF_ALL_DTBS) := $(patsubst $(src)/%.dts,%.dtb, $(wildcard $(src)/*.dts))
+diff --git a/Documentation/devicetree/bindings/sound/adi,ssm2305.txt b/Documentation/devicetree/bindings/sound/adi,ssm2305.txt
+deleted file mode 100644
+index a9c9d83c8a30..000000000000
+--- a/Documentation/devicetree/bindings/sound/adi,ssm2305.txt
++++ /dev/null
+@@ -1,14 +0,0 @@
+-Analog Devices SSM2305 Speaker Amplifier
+-========================================
+-
+-Required properties:
+-  - compatible : "adi,ssm2305"
+-  - shutdown-gpios : The gpio connected to the shutdown pin.
+-                     The gpio signal is ACTIVE_LOW.
+-
+-Example:
+-
+-ssm2305: analog-amplifier {
+-	compatible = "adi,ssm2305";
+-	shutdown-gpios = <&gpio3 20 GPIO_ACTIVE_LOW>;
+-};
+diff --git a/Documentation/devicetree/bindings/sound/adi,ssm2305.yaml b/Documentation/devicetree/bindings/sound/adi,ssm2305.yaml
+new file mode 100644
+index 000000000000..b841da2dc284
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/adi,ssm2305.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/adi,ssm2305.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+# PPC44x platforms
-+dtb-$(CONFIG_PPC44x_SIMPLE) += arches.dtb bamboo.dtb bluestone.dtb glacier.dtb
-+dtb-$(CONFIG_PPC44x_SIMPLE) += eiger.dtb katmai.dtb rainier.dtb redwood.dtb
-+dtb-$(CONFIG_PPC44x_SIMPLE) += sequoia.dtb taishan.dtb yosemite.dtb icon.dtb
-+dtb-$(CONFIG_EBONY) += ebony.dtb
-+dtb-$(CONFIG_SAM440EP) += sam440ep.dtb
-+dtb-$(CONFIG_WARP) += warp.dtb
-+dtb-$(CONFIG_ISS4xx) += iss4xx.dtb iss4xx-mpic.dtb
-+dtb-$(CONFIG_CANYONLANDS) += canyonlands.dtb
-+dtb-$(CONFIG_CURRITUCK) += currituck.dtb
-+dtb-$(CONFIG_AKEBONO) += akebono.dtb
-+dtb-$(CONFIG_FSP2) += fsp2.dtb
++title: Analog Devices SSM2305 Class-D Speaker Amplifier
 +
-+# Embedded 6xx platforms
-+dtb-$(CONFIG_LINKSTATION) += kuroboxHG.dtb kuroboxHD.dtb
-+dtb-$(CONFIG_STORCENTER) += storcenter.dtb
-+dtb-$(CONFIG_PPC_HOLLY) += holly.dtb
-+dtb-$(CONFIG_GAMECUBE) += gamecube.dtb
-+dtb-$(CONFIG_WII) += wii.dtb
-+dtb-$(CONFIG_MVME5100) += mvme5100.dtb
++maintainers:
++  - Lars-Peter Clausen <lars@metafoo.de>
 +
-+# MPC8xx platforms
-+dtb-$(CONFIG_MPC885ADS) += mpc885ads.dtb
-+dtb-$(CONFIG_MPC86XADS) += mpc866ads.dtb
-+dtb-$(CONFIG_PPC_EP88XC) += ep88xc.dtb
-+dtb-$(CONFIG_PPC_ADDER875) += adder875-redboot.dtb adder875-uboot.dtb
-+dtb-$(CONFIG_TQM8XX) += tqm8xx.dtb
++description:
++  The SSM2305 is a filterless, high efficiency, mono 2.8 W Class-D
++  audio amplifier with a micropower shutdown mode controlled via a
++  dedicated active-low GPIO pin.
 +
-+# MPC512x platforms
-+dtb-$(CONFIG_MPC5121_ADS) += mpc5121ads.dtb
-+dtb-$(CONFIG_MPC512x_GENERIC) += mpc5125twr.dtb ac14xx.dts
-+dtb-$(CONFIG_PDM360NG) += pdm360ng.dtb
++allOf:
++  - $ref: dai-common.yaml#
 +
-+# MPC5200 platforms
-+dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += a3m071.dtb a4m072.dtb charon.dtb cm5200.dtb
-+dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += digsy_mtc.dtb motionpro.dtb mucmc52.dtb
-+dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += o2d.dtb o2d300.dtb o2dnt2.dtb o2i.dtb
-+dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += o2mnt.dtb o3dnt.dtb pcm030.dtb pcm032.dtb
-+dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += tqm5200.dtb uc101.dtb
-+dtb-$(CONFIG_PPC_LITE5200) += lite5200.dtb lite5200b.dtb
-+dtb-$(CONFIG_PPC_MEDIA5200) += media5200.dtb
++properties:
++  compatible:
++    const: adi,ssm2305
 +
-+# MPC82xx platforms
-+dtb-$(CONFIG_EP8248E) += ep8248e.dtb
-+dtb-$(CONFIG_MGCOGE) += mgcoge.dtb
++  shutdown-gpios:
++    maxItems: 1
++    description:
++      GPIO connected to the shutdown pin (SD) of the SSM2305.
++      The pin is active-low; asserting it puts the device into
++      micropower shutdown mode.
 +
-+# MPC83xx platforms
-+dtb-$(CONFIG_MPC830x_RDB) += mpc8308rdb.dtb mpc8308_p1m.dtb
-+dtb-$(CONFIG_MPC831x_RDB) += mpc8313erdb.dtb mpc8315erdb.dtb
-+dtb-$(CONFIG_MPC832x_RDB) += mpc832x_rdb.dtb
-+dtb-$(CONFIG_MPC834x_ITX) += mpc8349emitx.dtb mpc8349emitxgp.dtb
-+dtb-$(CONFIG_ASP834x) += asp834x-redboot.dtb
-+dtb-$(CONFIG_MPC836x_RDK) += mpc836x_rdk.dtb
-+dtb-$(CONFIG_KMETER1) += kmeter1.dtb
-+dtb-$(CONFIG_MPC837x_RDB) += mpc8377_rdb.dtb mpc8378_rdb.dtb mpc8379_rdb.dtb
-+dtb-$(CONFIG_MPC837x_RDB) += mpc8377_wlan.dtb
++required:
++  - compatible
++  - shutdown-gpios
 +
-+# MPC85xx platforms
-+dtb-$(CONFIG_STX_GP3) += stx_gp3_8560.dtb stxssa8555.dtb
-+dtb-$(CONFIG_TQM85xx) += tqm8540.dtb tqm8541.dtb tqm8548.dtb
-+dtb-$(CONFIG_TQM85xx) += tqm8548-bigflash.dtb tqm8555.dtb tqm8560.dtb
-+dtb-$(CONFIG_SOCRATES) += socrates.dtb
-+dtb-$(CONFIG_KSI8560) += ksi8560.dtb
-+dtb-$(CONFIG_XES_MPC85xx) += xcalibur1501.dtb xpedite5200.dtb
-+dtb-$(CONFIG_XES_MPC85xx) += xpedite5200_xmon.dtb xpedite5301.dtb
-+dtb-$(CONFIG_XES_MPC85xx) += xpedite5330.dtb xpedite5370.dtb
-+dtb-$(CONFIG_PPC_P2020) += turris1x.dtb
++unevaluatedProperties: false
 +
-+# Misc. platforms
-+dtb-$(CONFIG_PPC_MICROWATT) += microwatt.dtb
-+dtb-$(CONFIG_AMIGAONE) += amigaone.dtb
-+dtb-$(CONFIG_PPC_PS3) += ps3.dtb
-diff --git a/arch/powerpc/boot/dts/fsl/Makefile b/arch/powerpc/boot/dts/fsl/Makefile
-index d3ecdf14bc42e7..d2cc8e1f007ea5 100644
---- a/arch/powerpc/boot/dts/fsl/Makefile
-+++ b/arch/powerpc/boot/dts/fsl/Makefile
-@@ -1,3 +1,46 @@
- # SPDX-License-Identifier: GPL-2.0
- 
- dtb-$(CONFIG_OF_ALL_DTBS) := $(patsubst $(src)/%.dts,%.dtb, $(wildcard $(src)/*.dts))
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
 +
-+# MPC85xx platforms
-+dtb-$(CONFIG_BSC9131_RDB) += bsc9131rdb.dtb
-+dtb-$(CONFIG_BSC9132_QDS) += bsc9132qds.dtb
-+dtb-$(CONFIG_C293_PCIE) += c293pcie.dtb
-+dtb-$(CONFIG_MPC8536_DS) += mpc8536ds.dtb mpc8536ds_36b.dtb
-+dtb-$(CONFIG_MPC85xx_DS) += mpc8544ds.dtb mpc8572ds_camp_core0.dtb
-+dtb-$(CONFIG_MPC85xx_DS) += mpc8572ds_camp_core1.dtb mpc8572ds_36b.dtb
-+dtb-$(CONFIG_MPC85xx_DS) += mpc8572ds.dtb
-+dtb-$(CONFIG_MPC85xx_MDS) += mpc8568mds.dtb mpc8569mds.dtb p1021mds.dtb
-+dtb-$(CONFIG_MPC85xx_RDB) += p1020mbg-pc_32b.dtb p1020mbg-pc_36b.dtb
-+dtb-$(CONFIG_MPC85xx_RDB) += p1020rdb_36b.dtb p1020rdb.dtb p1020rdb-pc_32b.dtb
-+dtb-$(CONFIG_MPC85xx_RDB) += p1020rdb-pc_36b.dtb p1020rdb-pc_camp_core0.dtb
-+dtb-$(CONFIG_MPC85xx_RDB) += p1020rdb-pc_camp_core1.dtb p1020rdb-pd.dtb
-+dtb-$(CONFIG_MPC85xx_RDB) += p1020utm-pc_32b.dtb p1020utm-pc_36b.dtb
-+dtb-$(CONFIG_MPC85xx_RDB) += p1021rdb-pc_32b.dtb p1021rdb-pc_36b.dtb
-+dtb-$(CONFIG_MPC85xx_RDB) += p1024rdb_32b.dtb p1024rdb_36b.dtb p1025rdb_32b.dtb
-+dtb-$(CONFIG_MPC85xx_RDB) += p1025rdb_36b.dtb
-+dtb-$(CONFIG_P1010_RDB) += p1010rdb-pa_36b.dtb p1010rdb-pa.dtb
-+dtb-$(CONFIG_P1010_RDB) += p1010rdb-pb_36b.dtb p1010rdb-pb.dtb
-+dtb-$(CONFIG_P1022_DS) += p1022ds_32b.dtb p1022ds_36b.dtb
-+dtb-$(CONFIG_P1022_RDK) += p1022rdk.dtb
-+dtb-$(CONFIG_P1023_RDB) += p1023rdb.dtb
-+dtb-$(CONFIG_PPC_P2020) += p2020ds.dtb
-+dtb-$(CONFIG_TWR_P102x) += p1025twr.dtb
-+dtb-$(CONFIG_CORENET_GENERIC) += b4420qds.dtb b4860qds.dtb cyrus_p5020.dtb
-+dtb-$(CONFIG_CORENET_GENERIC) += kmcent2.dtb kmcoge4.dtb oca4080.dtb
-+dtb-$(CONFIG_CORENET_GENERIC) += p2041rdb.dtb p3041ds.dtb p4080ds.dtb
-+dtb-$(CONFIG_CORENET_GENERIC) += p5020ds.dtb p5040ds.dtb t1023rdb.dtb
-+dtb-$(CONFIG_CORENET_GENERIC) += t1024qds.dtb t1024rdb.dtb t1040d4rdb.dtb
-+dtb-$(CONFIG_CORENET_GENERIC) += t1040qds.dtb t1040rdb.dtb t1040rdb-rev-a.dtb
-+dtb-$(CONFIG_CORENET_GENERIC) += t1042d4rdb.dtb t1042qds.dtb t1042rdb.dtb
-+dtb-$(CONFIG_CORENET_GENERIC) += t1042rdb_pi.dtb t2080qds.dtb t2080rdb.dtb
-+dtb-$(CONFIG_CORENET_GENERIC) += t2081qds.dtb t4240qds.dtb t4240rdb.dtb
-+dtb-$(CONFIG_PPA8548) += ppa8548.dtb
-+dtb-$(CONFIG_GE_IMP3A) += ge_imp3a.dtb
-+dtb-$(CONFIG_MVME2500) += mvme2500.dtb
++    analog-amplifier {
++        compatible = "adi,ssm2305";
++        shutdown-gpios = <&gpio3 20 GPIO_ACTIVE_LOW>;
++    };
 +
-+# MPC86xx platforms
-+dtb-$(CONFIG_GEF_SBC310) += gef_sbc310.dtb
-+dtb-$(CONFIG_GEF_SBC610) += gef_sbc610.dtb
-+dtb-$(CONFIG_GEF_PPC9A) += gef_ppc9a.dtb
-+dtb-$(CONFIG_MVME7100) += mvme7100.dtb
-
----
-base-commit: 11439c4635edd669ae435eec308f4ab8a0804808
-change-id: 20260101-mpc83xx-dtb-23d98a190e23
-
-Best regards,
++...
 -- 
-J. Neuschäfer <j.ne@posteo.net>
-
+2.34.1
 
 
