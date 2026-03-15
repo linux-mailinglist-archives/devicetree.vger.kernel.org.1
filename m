@@ -1,160 +1,133 @@
-Return-Path: <devicetree+bounces-275836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275837-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aLv0DxwBt2mKLQEAu9opvQ
-	(envelope-from <devicetree+bounces-275836-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 19:57:32 +0100
+	id +AXZCi0Et2k3LgEAu9opvQ
+	(envelope-from <devicetree+bounces-275837-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 20:10:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4196A29224C
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 19:57:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F478292305
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 20:10:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 49E39300721D
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 18:57:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3EF43300D69B
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 19:10:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D037373BEE;
-	Sun, 15 Mar 2026 18:57:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D52E370D71;
+	Sun, 15 Mar 2026 19:10:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rBJFFQBn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nwo7VzHV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 698FB245014;
-	Sun, 15 Mar 2026 18:57:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A5CE35DA4D;
+	Sun, 15 Mar 2026 19:10:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773601045; cv=none; b=rx4LSy8gq8YC6B3mk9X9akF2kw9wHL/UkQQGfcPh1F2lpsQBuYRnWPMrdz1MioRO54cVPw0SZiQbNdg/Fp2hYnu66NRpotLQHwvWlqg2mstTvH/bIb7qVnZQ1SYH4H+qm324B6gl28E0RmBswL+NW+uEVLdRvpg73p60A+t76g0=
+	t=1773601834; cv=none; b=JNv0mSE7qSfRbB56WI4kKYUIptSQDJk1naE/xeEeJ5BWosYHMDdHN5h0IDLTAdtZNVg3xxOBpAS0Lmup5od9e9eeLbBQJ2otgZh6qToAVrNxj11hXLrN1kkzveXByB/D9sZLNaxVRzW+bq7yOtOgcBNfmCLhCYrXKCP5N1JGmq4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773601045; c=relaxed/simple;
-	bh=kZlk9tz7eb5Ii44ZV8HPl05j/xDd2gmkIgWgh6jXmiA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DQiKygoOBhrjRb2emeCRnQ/AvYC5kCgivLqWFxDXv5A4fMdk/SoaE+lXTuOGouAvLx3iK1P7aoSPR8vYFCtdT+bJ5iPEqEtsKLpAzC/zr4vqTtLuUNAK29uQNHOY49biv6Sph74wt5d6wTV7L87EjQD6wmFMHlxtHjSp6fox+OA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rBJFFQBn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2E95C4CEF7;
-	Sun, 15 Mar 2026 18:57:20 +0000 (UTC)
+	s=arc-20240116; t=1773601834; c=relaxed/simple;
+	bh=IthiWArBSLDgAMO0bvZ9kc3iO/llybx5j9goMv6GKII=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=jegABvDX/DZOQ1U1I9liHJ6TYgQ0uc9zFdySF0V6V3Dg2Y/VBEoJ4YsiqyArmIYzZzg0vzYxKri0033lI8Ya7S+z+AbzRJyKru70Vhr2MNo97hK1kwAiNQHaHqnnOhnXHXYlMzblLMp7CB0QGuselzE6+z2Ph2Hfu3m+cXgiOZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nwo7VzHV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7545C4CEF7;
+	Sun, 15 Mar 2026 19:10:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773601045;
-	bh=kZlk9tz7eb5Ii44ZV8HPl05j/xDd2gmkIgWgh6jXmiA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=rBJFFQBnY2m1wfqsn94Smf/51IdfIlmmujclu64JY2vMSi0hJkqYB2bcHyodjkwvr
-	 T8k8IvFysT94sy5qSqfXazyp9z+9bbE9wV7oaMBlCVoXW8k4aoo3Vo+mXNQOu5Hw7O
-	 R1aBFr2ecfbt9XYlWGPmf1cgtcmVCBd+G/cyYBItzOljXLydnVj6W20dWnwDxlGbFF
-	 7s3kWc/54nd/LGUiewYzzq87rX1+HLea8Jl6Acggbe+ydrLfwSWW3dGkI89R5urPhN
-	 4pWuYODscHVOiBtqBc+OexZTo26I60I8/9J83Nm6oa0ABwi6oZ4Gr6b6J7CSXb3XLq
-	 gA/hbFf8Ovl4w==
-Date: Sun, 15 Mar 2026 18:57:15 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Sirat <email@sirat.me>
-Cc: David Lechner <dlechner@baylibre.com>, Andy Shevchenko
- <andriy.shevchenko@intel.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, nuno.sa@analog.com, andy@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] iio: proximity: add driver for ST VL53L1X ToF
- sensor
-Message-ID: <20260315185715.2f97c496@jic23-huawei>
-In-Reply-To: <CANn+LWK2OZ1dm0TAstM2hr6O6h2nEPRrNfje0mC3a2uc0HEwVQ@mail.gmail.com>
-References: <20260311224044.21480-1-email@sirat.me>
-	<abLNbGUmaA7K0s68@ashevche-desk.local>
-	<CANn+LW+F2bVMAGwoF8q9yBpF3x5r_hWDqvE3_JYjcLd16A_cEA@mail.gmail.com>
-	<a2486bc7-13be-4567-a53c-b37921df7bcd@baylibre.com>
-	<CANn+LWK2OZ1dm0TAstM2hr6O6h2nEPRrNfje0mC3a2uc0HEwVQ@mail.gmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=k20201202; t=1773601834;
+	bh=IthiWArBSLDgAMO0bvZ9kc3iO/llybx5j9goMv6GKII=;
+	h=Date:From:To:Cc:Subject:From;
+	b=Nwo7VzHVJgyoCQvU4OxaefNjEGgkRLBJg94h5tYV62b9QvA+AKnYOKQds31SCdr1v
+	 YhMsvP7NP3hB/OubbhR4JEisMZT/BC9OMiymAaJM1tIen5gN9fXQbGDan8aca3K78b
+	 +4kHHiIv3M4qYCqkIWRkFRxmtKAEvAp5MnKN4cNl6wamBfgSWWex4Ph1H2mL+c9KNm
+	 44ZB/82qdCSzUH7lTfY6Vvcu0vsV1jiwwIzUjKxMs2AISAYhwA/e8rL/hOKQZ9IXuR
+	 PAnNj1/RdQ6EOc9e5eRcQ+eRdJVT8E3lw7Iult/6fAmjJrOerOJc+QpCIDwHom++uR
+	 RrNLZHiT9UzDQ==
+Date: Sun, 15 Mar 2026 12:10:32 -0700
+From: Drew Fustini <fustini@kernel.org>
+To: soc@kernel.org
+Cc: Arnd Bergmann <arnd@arndb.de>, Krzysztof Kozlowski <krzk@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Linus Walleij <linusw@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
+	Icenowy Zheng <zhengxingda@iscas.ac.cn>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Conor Dooley <conor+dt@kernel.org>,
+	Michal Wilczynski <m.wilczynski@samsung.com>,
+	Yao Zi <ziyao@disroot.org>, Han Gao <rabenda.cn@gmail.com>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [GIT PULL] RISC-V T-HEAD Devicetrees for v7.1
+Message-ID: <abcEKCNIA9wDgIcE@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275836-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	MIME_TRACE(0.00)[0:+];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-275837-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[arndb.de,kernel.org,bootlin.com,icenowy.me,iscas.ac.cn,redhat.com,samsung.com,disroot.org,gmail.com,lists.infradead.org,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 4196A29224C
+X-Rspamd-Queue-Id: 8F478292305
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sat, 14 Mar 2026 21:25:44 +0600
-Sirat <email@sirat.me> wrote:
+The following changes since commit 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f:
 
-> On Sat, Mar 14, 2026 at 8:39=E2=80=AFPM David Lechner <dlechner@baylibre.=
-com> wrote:
-> >
-> > On 3/12/26 10:12 AM, Sirat wrote: =20
-> > > On Thu, Mar 12, 2026 at 8:28=E2=80=AFPM Andy Shevchenko
-> > > <andriy.shevchenko@intel.com> wrote: =20
-> > >>
-> > >> On Thu, Mar 12, 2026 at 04:40:35AM +0600, Siratul Islam wrote: =20
-> > > ... =20
-> > >>> ---
-> > >>> Changes in v3:
-> > >>> - Merge DT binding into existing st,vl53l0x.yaml (per Krzysztof).
-> > >>> - Use "reset-gpios" in the binding but xshut_gpio in the driver sin=
-ce that's the actual pin name. =20
-> > >> =20
-> >
-> > We can modify the existing binding to make the supply required based
-> > on the compatible.
-> >
-> > allOf:
-> >   # Technically supply is required to power device, but we keep it
-> >   # optional for "st,vl53l0x" for backwards compatibility.
-> >   - if:
-> >       not:
-> >         properties:
-> >           compatible:
-> >             const: "st,vl53l0x"
-> >     then:
-> >       required:
-> >         vdd-supply
-> >
-> >
-> > And we can add a description to reset-gpios to explain that it is actua=
-lly the
-> > XSHUT pin.
-> > =20
-> This will solve the problem, but I'm concerned about someone not
-> following the commit history looking at the code.
-> Logically, it doesn't make sense as both the devices require the
-> supply. In fact it may give the impression that
-> the vl53l0x explicitly doesn't need power. We are having to deal with
-> too much just to save us from writing a new file.
->=20
-> That said, I can still implement this if it's still the prefered way
-> to solve our problem. Or leave it optional as it is.
-> > =20
-Can make it required in the binding. Just explain clearly why
-it should be there.  The driver should carry on coping without
-it though (and leave a comment so we don't break that in the future).
+  Linux 7.0-rc1 (2026-02-22 13:18:59 -0800)
 
-Jonathan
+are available in the Git repository at:
 
->=20
+  git://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git tags/thead-dt-for-v7.1
 
+for you to fetch changes up to 9c99a784d9117a192ebf779d4f72ebec435ada97:
+
+  riscv: dts: thead: lichee-pi-4a: enable HDMI (2026-03-14 09:19:26 -0700)
+
+----------------------------------------------------------------
+T-HEAD Devicetrees for 7.1
+
+Update the T-Head TH1520 RISC-V SoC device tree to support the
+Verisilicon DC8200 display controller (called DPU in manual) and the
+Synopsys DesignWare HDMI TX controller. In addition, enable HDMI output
+for the LicheePi 4a board.
+
+Signed-off-by: Drew Fustini <fustini@kernel.org>
+
+----------------------------------------------------------------
+Icenowy Zheng (2):
+      riscv: dts: thead: add DPU and HDMI device tree nodes
+      riscv: dts: thead: lichee-pi-4a: enable HDMI
+
+ arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts | 25 +++++++++
+ arch/riscv/boot/dts/thead/th1520.dtsi             | 66 +++++++++++++++++++++++
+ 2 files changed, 91 insertions(+)
 
