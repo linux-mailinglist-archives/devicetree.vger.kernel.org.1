@@ -1,152 +1,156 @@
-Return-Path: <devicetree+bounces-275764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275772-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WONsIHvytWl87QAAu9opvQ
-	(envelope-from <devicetree+bounces-275764-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 00:42:51 +0100
+	id mO93N3VQtmmYAQEAu9opvQ
+	(envelope-from <devicetree+bounces-275772-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 07:23:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E526F28F8C8
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 00:42:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA2F22900FF
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 07:23:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id ED330309E7D6
-	for <lists+devicetree@lfdr.de>; Sat, 14 Mar 2026 23:42:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0AB5030526D6
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 06:23:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1769834EEE8;
-	Sat, 14 Mar 2026 23:42:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 004831C84DC;
+	Sun, 15 Mar 2026 06:23:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oss.cipunited.com header.i=@oss.cipunited.com header.b="WFCXGrKW"
+	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="E2NQiTaP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sg-1-13.ptr.blmpb.com (sg-1-13.ptr.blmpb.com [118.26.132.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m9351.xmail.ntesmail.com (mail-m9351.xmail.ntesmail.com [103.126.93.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67C612ED15D
-	for <devicetree@vger.kernel.org>; Sat, 14 Mar 2026 23:42:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=118.26.132.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33AB740DFAF;
+	Sun, 15 Mar 2026 06:23:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.126.93.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773531757; cv=none; b=GCGeqdr78p3TRy3chrdnSiuA9lvcNq2XrCUSh8uus6QzEVMvHC4/M19ZFGDi1sSIq4T7xavvSslbdmopyVleUIpWMnchXWzQhLv0XyKfM0yFdSM9fDYo2SQpqdyIp3HemaXJoTnuXU6pgphwlU+r0IjeqsI5LpvnMzc9mmaGWnU=
+	t=1773555823; cv=none; b=OqwM135w4ANWMJMhvvFKSBRyIi7UL9eLATnynbKt84LfSDKbQ3lEQSdS/1FYtlfCGbh2B/3/ZZnS8dHFhF0z5lhzIbfajQLkrEKxJwf/4KxnqXzZL7hQ2b5ANLwYl2ptE48O/X9U4piwVoBMaiCiGNQyJSvyitSsPFejT5Z6WJw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773531757; c=relaxed/simple;
-	bh=wv6HpXrIlfr6EXsqbV6jc8CuC8VrTOicp6tv1wBw7BY=;
-	h=Date:Mime-Version:In-Reply-To:To:Cc:From:Content-Type:Subject:
-	 Message-Id:References; b=PoybnsLmPIwkw7V5/T4Be4FC+Zwx6bmOa8EvF9JUXv5lqVCPm2N6ZHvSrrwFzo2PsFIt9j2sZ49BWTZGG7672SumOrsLLky2v3wYSOXbYuFjNteDhQdn6hPmjgHEFtny4fZE1kyOWCytc80cfqRX9c4N5xBooMf0enWhi28uums=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.cipunited.com; spf=pass smtp.mailfrom=oss.cipunited.com; dkim=pass (2048-bit key) header.d=oss.cipunited.com header.i=@oss.cipunited.com header.b=WFCXGrKW; arc=none smtp.client-ip=118.26.132.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.cipunited.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.cipunited.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=feishu2303200042; d=oss.cipunited.com; t=1773531712;
-  h=from:subject:mime-version:from:date:message-id:subject:to:cc:
- reply-to:content-type:mime-version:in-reply-to:message-id;
- bh=BZW8ZqsLZjXZI6wPg1zAMlBbDDZ7mr231EF1XozrvFk=;
- b=WFCXGrKWmmRok8znSvaJPV797atmUDGLEEJlJLw3A0Sdx8EeI0Ljc3rwzNF8gjkK8I98mN
- pfbPhgNp0sRcnWxP9E7L+TNDko/UQf3j1NwMf3OSmgDqcdnFvCBqcUKo6/s/187uawiR+0
- m2bG3aOhYy6OS2Yp36INx13lxdnHry9RU6CkTE8rnVQqSQWlT+9pSzTLrSlBPJPAExHQK+
- 1euDrE9Z5z7Yso8w/4R/1PiqiB+QeiHx+SHH43HkuQe+W+tRyMn+blofvbDiqILjUh+Ti9
- iDHtxe/awCBPVZFpXc8q/R1ZyvBhCYWD/TiUB3Lvbo33EC/zQC+Sq8W7IT1g+Q==
-Date: Sun, 15 Mar 2026 07:41:43 +0800
+	s=arc-20240116; t=1773555823; c=relaxed/simple;
+	bh=lv1BZ1fF3KRzKq0KmMZAne3HwKae6+zEI9pXH9CtPOY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=azQZQ55i8JXAZQYuOnrl3brqO2lNMJ1J7Z8CiPJH0B2WjdclwrJkMMrcA8odp2Q/X6WRKQ3fAnrL5lSHTP/dfPygaLSWmECTnMDZ1nt7ajNOKl4gVoSzaKnlJQJY3lzpezSb3PPBM5tNlyQH1V5yyUH4JIM7jik/oTq+ifiWhDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=E2NQiTaP; arc=none smtp.client-ip=103.126.93.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
+Received: from tsdl-HP-EliteDesk-880-G6-Tower-PC.. (unknown [36.129.139.90])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 36f9a2afd;
+	Sun, 15 Mar 2026 13:07:50 +0800 (GMT+08:00)
+From: Hongyang Zhao <hongyang.zhao@thundersoft.com>
+To: broonie@debian.org
+Cc: andersson@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	drake@endlessm.com,
+	hongyang.zhao@thundersoft.com,
+	katsuhiro@katsuster.net,
+	konradybcio@kernel.org,
+	krzk+dt@kernel.org,
+	lgirdwood@gmail.com,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	matteomartelli3@gmail.com,
+	perex@perex.cz,
+	robh@kernel.org,
+	rosh@debian.org,
+	srini@kernel.org,
+	tiwai@suse.com,
+	zhoubinbin@loongson.cn
+Subject: Re: [PATCH 2/6] ASoC: es8316: Get sysclk rate from MCLK clock when not explicitly set
+Date: Sun, 15 Mar 2026 13:07:36 +0800
+Message-ID: <20260315050736.472233-1-hongyang.zhao@thundersoft.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <11e84371-57b2-4ea3-b3a4-0119d182229a@sirena.org.uk>
+References: <11e84371-57b2-4ea3-b3a4-0119d182229a@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-In-Reply-To: <20260314234143.651298-1-rongrong@oss.cipunited.com>
-To: "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, 
-	"Jiri Slaby" <jirislaby@kernel.org>, "Rob Herring" <robh@kernel.org>, 
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, 
-	"Conor Dooley" <conor+dt@kernel.org>, 
-	"Thomas Bogendoerfer" <tsbogend@alpha.franken.de>, 
-	"Huacai Chen" <chenhuacai@loongson.cn>, 
-	"Jiaxun Yang" <jiaxun.yang@flygoat.com>
-Cc: "Rong Zhang" <rongrong@oss.cipunited.com>, 
-	<linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>, 
-	<linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>, 
-	"Yao Zi" <me@ziyao.cc>, "Icenowy Zheng" <uwu@icenowy.me>, 
-	"Rong Zhang" <i@rong.moe>
-X-Lms-Return-Path: <lba+269b5f23e+a7f42a+vger.kernel.org+rongrong@oss.cipunited.com>
-X-Mailer: git-send-email 2.53.0
-From: "Rong Zhang" <rongrong@oss.cipunited.com>
-Received: from tb ([223.88.91.90]) by smtp.feishu.cn with ESMTPS; Sun, 15 Mar 2026 07:41:49 +0800
-Content-Transfer-Encoding: 7bit
-X-Original-From: Rong Zhang <rongrong@oss.cipunited.com>
-Content-Type: text/plain; charset=UTF-8
-Subject: [PATCH 3/3] MIPS: dts: loongson64g-package: Switch to Loongson UART driver
-Message-Id: <20260314234143.651298-4-rongrong@oss.cipunited.com>
-References: <20260314234143.651298-1-rongrong@oss.cipunited.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9cefe4ba8a09d5kunme5db3a35239c66
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCQh0YVk1MSUxJGEgdT0ofHlYVFAkWGhdVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlITVVKSUJVSkhCVUJLWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09IVUpLS1
+	VKQktLWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=E2NQiTaPn/WMhVQH9kXX1NTuYXb56GF9AhDU+eaARGuuZGLuAzZPcysDDvVcnVdIuGxWvzn0M7Sbn31Naypr3xvkzeml6/qaJxCn0N0kxDH8fl72v5ykEXp1kbVtVR4creNnuEc25fgCXRyJmGQ/ovr6pPhmZOBPMS1OskPtkQ4=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
+	bh=O2eqvpKafGnKxNWw9MkHGrYpLnJFGyGVG3+11y2x6Jg=;
+	h=date:mime-version:subject:message-id:from;
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[oss.cipunited.com,none];
-	MV_CASE(0.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[thundersoft.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[thundersoft.com:s=default];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[oss.cipunited.com:s=feishu2303200042];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275764-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,endlessm.com,thundersoft.com,katsuster.net,gmail.com,perex.cz,debian.org,suse.com,loongson.cn];
 	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-275772-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rongrong@oss.cipunited.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[oss.cipunited.com:+];
+	FROM_NEQ_ENVFROM(0.00)[hongyang.zhao@thundersoft.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[thundersoft.com:+];
+	TO_DN_NONE(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,1fe00100:email,oss.cipunited.com:dkim,oss.cipunited.com:mid,cipunited.com:email,1fe00110:email]
-X-Rspamd-Queue-Id: E526F28F8C8
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: EA2F22900FF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Loongson64g is Loongson 3A4000, whose UART controller is compatible with
-Loongson 2K1500, which is NS16550A-compatible with an additional
-fractional frequency divisor register.
+Thanks for the review!
 
-Update the compatible strings to reflect this, so that 3A4000 can
-benefit from the fractional frequency divisor provided by loongson-uart.
-This is required on some devices, otherwise their UART can't work at
-some high baud rates, e.g., 115200.
+> On Thu, Mar 05, 2026 at 01:47:43PM +0800, Hongyang Zhao wrote:
+> 
+> > @@ -477,9 +477,20 @@ static int es8316_pcm_hw_params(struct snd_pcm_substream *substream,
+> >  	u8 bclk_divider;
+> >  	u16 lrck_divider;
+> >  	int i;
+> > -	unsigned int clk = es8316->sysclk / 2;
+> > +	unsigned int clk;
+> >  	bool clk_valid = false;
+> >  
+> > +	if (es8316->sysclk == 0 && es8316->mclk) {
+> > +		/* If the sysclk has not been set, try to get it from the MCLK */
+> > +		es8316->sysclk = clk_get_rate(es8316->mclk);
+> > +		if (es8316->sysclk == 0) {
+> > +			dev_err(component->dev, "unable to get mclk rate\n");
+> > +			return -EINVAL;
+> > +		}
+> 
+> It would be better to do this by bootstrapping es8316->sysclk when we
+> get the clock, we do a clk_set_rate() when we set the sysclk so the two
+> should be in sync for robust operation.
 
-Tested on Loongson-LS3A4000-7A1000-NUC-SE with a 25MHz UART clock.
-Without fractional frequency divisor, the actual baud rate was 111607
-(25MHz / 16 / 14, measured value: 111545) and some USB-to-UART
-converters couldn't work with it at all. With fractional frequency
-divisor, the measured baud rate becomes 115207, which is quite accurate.
+I'll move the clk_get_rate() call to es8316_probe(), right after
+clk_prepare_enable() succeeds, and drop the fallback logic from hw_params().
+Will send a v2.
 
-Signed-off-by: Rong Zhang <rongrong@oss.cipunited.com>
----
- arch/mips/boot/dts/loongson/loongson64g-package.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+@@ -774,6 +774,9 @@ static int es8316_probe(struct snd_soc_component *component)
+                return ret;
+        }
 
-diff --git a/arch/mips/boot/dts/loongson/loongson64g-package.dtsi b/arch/mips/boot/dts/loongson/loongson64g-package.dtsi
-index d4314f62ccc2..029daeedd0ab 100644
---- a/arch/mips/boot/dts/loongson/loongson64g-package.dtsi
-+++ b/arch/mips/boot/dts/loongson/loongson64g-package.dtsi
-@@ -40,7 +40,7 @@ liointc: interrupt-controller@3ff01400 {
- 		};
- 
- 		cpu_uart0: serial@1fe00100 {
--			compatible = "ns16550a";
-+			compatible = "loongson,ls3a4000-uart", "loongson,ls2k1500-uart", "ns16550a";
- 			reg = <0 0x1fe00100 0x10>;
- 			clock-frequency = <100000000>;
- 			interrupt-parent = <&liointc>;
-@@ -50,7 +50,7 @@ cpu_uart0: serial@1fe00100 {
- 
- 		cpu_uart1: serial@1fe00110 {
- 			status = "disabled";
--			compatible = "ns16550a";
-+			compatible = "loongson,ls3a4000-uart", "loongson,ls2k1500-uart", "ns16550a";
- 			reg = <0 0x1fe00110 0x10>;
- 			clock-frequency = <100000000>;
- 			interrupts = <15 IRQ_TYPE_LEVEL_HIGH>;
--- 
-2.53.0
++       if (es8316->mclk)
++               es8316->sysclk = clk_get_rate(es8316->mclk);
++
+        /* Reset codec and enable current state machine */
+        snd_soc_component_write(component, ES8316_RESET, 0x3f);
+        usleep_range(5000, 5500);
+
+Thanks,
+Hongyang
 
