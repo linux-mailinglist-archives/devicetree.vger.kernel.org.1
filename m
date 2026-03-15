@@ -1,230 +1,219 @@
-Return-Path: <devicetree+bounces-275798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275799-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cMUkChPWtmkDJgEAu9opvQ
-	(envelope-from <devicetree+bounces-275798-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 16:53:55 +0100
+	id aKeME+LbtmkQJwEAu9opvQ
+	(envelope-from <devicetree+bounces-275799-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 17:18:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82F96291461
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 16:53:54 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D83332915C0
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 17:18:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D71DC302591D
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 15:53:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D1529300612A
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 16:18:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01A1E366569;
-	Sun, 15 Mar 2026 15:53:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2909336C584;
+	Sun, 15 Mar 2026 16:18:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tb0lmEsg"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="PBiIa69g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D05264207A;
-	Sun, 15 Mar 2026 15:53:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1CEC21D3E4;
+	Sun, 15 Mar 2026 16:18:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773590031; cv=none; b=JW8oCNLv4dGD2ZqLhROXQ1hlPmuT1Flud7iqBNTQ80/YQRo1i2gTr18SLc7EBh8yddLXYzwH1AmrrEBNFVvKd99MJoKg1AXgFJTQW73vF/zZ0QpOtohyG8tSqEKDfBBrum3NltNpoGNAtTJ5MPW/nSikUL394cVS2dAQzIyjzSI=
+	t=1773591518; cv=none; b=YolAaHbiUUamXWR8bhYYCiSZ9+Lf/K/xIDr3aDolNMevs900PVMQjDNxod0Vj8FM4hA5LJDyKQg9fcooUlgJlEQoIbO+DiPbs61jLnpzt8C0Rd5VdXfC6X0qtwJId7ruZUBXZLMDnRiXkOeDOmj0Oh1e6DY3XN5cEGZygpzzdW0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773590031; c=relaxed/simple;
-	bh=sBJUn/42jQXjcgTJZg1ONns3jNiKeHur5pQodUtHXhg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fWEDW5fbOTIRVZL5x6YR95Ju0dMPn+wEYgFcbRL2Ay9KV9qU/9gfupfNAYmcWb3gQ4W79/yPRc6JAwP7B4EBU2G1zKuHaArMJNaOmJyHdqoubsLVTyv4VQPtWviYqvtfDDy6YzzvfSnHzqFGRX5tTHDzX4JAHVRQXbxK6Ze0vK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tb0lmEsg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FD0CC4CEF7;
-	Sun, 15 Mar 2026 15:53:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773590031;
-	bh=sBJUn/42jQXjcgTJZg1ONns3jNiKeHur5pQodUtHXhg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tb0lmEsgF86rPVPBYaQQD41fqP4GAoTMT2nqjISwL+vx+AagDPKA4u6cgrmFEugL4
-	 sMZSb7+rK5TgfGsP9foxf8TVmecJTQHNLjf2pP6uRO53cC9V5Z02FGxtEthk+yTepl
-	 RLXf6itluKKOhEREzyZfJ4A7RV1xWDARAdJvEvqnrn1H7c2+xGuijgogVJER6bQQQi
-	 TVfXPDqSAt/BRvogDCsD/JG2DKd4lw7eN79MYCe5it9k23Fp/aoSaCMmxKsDonEewR
-	 NdwUc8MBIFexrCwNaqwL59IZ9jrueIVsiiJM3o9lB1Dgb/ukOcdBi00NePx1DUBKnu
-	 TKuOl0MFEs91g==
-Date: Sun, 15 Mar 2026 21:23:42 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: claudiu.beznea.uj@bp.renesas.com, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, geert+renesas@glider.be, krzk+dt@kernel.org, robh@kernel.org, 
-	bhelgaas@google.com, conor+dt@kernel.org, magnus.damm@gmail.com, 
-	biju.das.jz@bp.renesas.com, linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, john.madieu@gmail.com
-Subject: Re: [PATCH v8 12/15] PCI: rzg3s-host: Add support for RZ/G3E PCIe
- controller
-Message-ID: <rxb3ym45xd3xtvgghezds6mfocan2d55yhdxjitzhoa6gyjra4@l2xiy5d5mzqy>
-References: <20260306143423.19562-1-john.madieu.xa@bp.renesas.com>
- <20260306143423.19562-13-john.madieu.xa@bp.renesas.com>
+	s=arc-20240116; t=1773591518; c=relaxed/simple;
+	bh=fJHDFwpRzXb3BcX2/01HC3jefIUU851Gc1qs3JXK17A=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=M1UVNfjwgMI+93KTZ8KNI7MO0M4d82UxAz3WXCvjqWUldF7XW+qbfLWRjP70xYtW0jgNokeUN75WVb0FmSzuZVeAqC4qttWDja8HvBeVx2wxz4kA77ZkufuzeOF4u0w8gdXRr605xPfuNxa3C+2Bs5Q3PgRtvM1MqaFRkbCr98g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=PBiIa69g; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id CE68526F54;
+	Sun, 15 Mar 2026 17:18:32 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id elDOnhXWlw1B; Sun, 15 Mar 2026 17:18:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1773591512; bh=fJHDFwpRzXb3BcX2/01HC3jefIUU851Gc1qs3JXK17A=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=PBiIa69giF0vVmT12pGS2kOs9DlcwecsGg280gd9bYOQ8WL26wsaJ3YehnyJqBHzN
+	 Gx1BMZtbWOaKfdf8lrHNZHUoM7TAVkMcw3epKNe39Wg0dq5Dh4c9hN8uW+yc+8vpBG
+	 ZbGfi3ucwQTqcIHN3qiq2v1agOS2apOQZe7Uebf5RIpxB+bqXY7aIeHNBE7tPOBqeG
+	 1OOHqcMRSKii+TCe8YiBRRo3frZMQO0N7z8TzYLJ6YDnUjpGDcojR/R8SCnyKo++Km
+	 sLk7YeoxmeNNfe3NJWVTya0zGvUTNGxA5EdNCMsHugBAAZY24ixIBQfydcpbhIo7G/
+	 YDtKgnc1FboWg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260306143423.19562-13-john.madieu.xa@bp.renesas.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Date: Sun, 15 Mar 2026 16:18:31 +0000
+From: Rustam Adilov <adilov@disroot.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>, Andi Shyti
+ <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Jonas Jelonek <jelonek.jonas@gmail.com>
+Subject: Re: [PATCH 7/8] dt-bindings: i2c: realtek,rtl9301-i2c: extend for
+ RTL9607C support
+In-Reply-To: <764c3942-925d-47e9-99fb-cfd84daee0fe@kernel.org>
+References: <20260314082628.25206-1-adilov@disroot.org>
+ <20260314082628.25206-8-adilov@disroot.org>
+ <20260315-invaluable-adamant-urchin-7aaf7e@quoll>
+ <c975cfa4c18adc35c49d81a5c50b74ac@disroot.org>
+ <764c3942-925d-47e9-99fb-cfd84daee0fe@kernel.org>
+Message-ID: <1e2119e91baf59936c0d42f047a1c733@disroot.org>
+X-Sender: adilov@disroot.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
+	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275798-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[alliedtelesis.co.nz,kernel.org,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-275799-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	DKIM_TRACE(0.00)[disroot.org:+];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[bp.renesas.com,kernel.org,glider.be,google.com,gmail.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 82F96291461
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D83332915C0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 06, 2026 at 03:34:19PM +0100, John Madieu wrote:
-> Add support for the PCIe controller found in RZ/G3E SoCs to the existing
-> RZ/G3S PCIe host driver. The RZ/G3E PCIe controller is similar to the
-> RZ/G3S's, with the following key differences:
+On 2026-03-15 10:15, Krzysztof Kozlowski wrote:
+> On 15/03/2026 11:10, Rustam Adilov wrote:
+>> Hello,
+>> 
+>> On 2026-03-15 08:56, Krzysztof Kozlowski wrote:
+>>> On Sat, Mar 14, 2026 at 01:26:27PM +0500, Rustam Adilov wrote:
+>>>> Add the "realtek,rtl9607-i2c" compatible for i2c controller on the
+>>>> RTL9607C SoC series.
+>>>>
+>>>> Add a clocks property to the properties since RTL9607C requires it
+>>>> along with the realtek,scl.
+>>>>
+>>>> Signed-off-by: Rustam Adilov <adilov@disroot.org>
+>>>> ---
+>>>>  .../bindings/i2c/realtek,rtl9301-i2c.yaml         | 15 +++++++++++++++
+>>>>  1 file changed, 15 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/i2c/realtek,rtl9301-i2c.yaml b/Documentation/devicetree/bindings/i2c/realtek,rtl9301-i2c.yaml
+>>>> index f9a449fee2b0..5873cfdc5b3e 100644
+>>>> --- a/Documentation/devicetree/bindings/i2c/realtek,rtl9301-i2c.yaml
+>>>> +++ b/Documentation/devicetree/bindings/i2c/realtek,rtl9301-i2c.yaml
+>>>> @@ -15,6 +15,8 @@ description:
+>>>>    assigned to either I2C controller.
+>>>>    RTL9310 SoCs have equal capabilities but support 12 common SDA lines which
+>>>>    can be assigned to either I2C controller.
+>>>> +  RTL9607C SoCs have equal capabilities but each controller only supports 1
+>>>> +  SCL/SDA line.
+>>>>  
+>>>>  properties:
+>>>>    compatible:
+>>>> @@ -34,6 +36,7 @@ properties:
+>>>>        - enum:
+>>>>            - realtek,rtl9301-i2c
+>>>>            - realtek,rtl9310-i2c
+>>>> +          - realtek,rtl9607-i2c
+>>>>  
+>>>>    reg:
+>>>>      items:
+>>>> @@ -51,6 +54,9 @@ properties:
+>>>>        The SCL line number of this I2C controller.
+>>>>      enum: [ 0, 1 ]
+>>>>  
+>>>> +  clocks:
+>>>> +    maxItems: 1
+>>>> +
+>>>>  patternProperties:
+>>>>    '^i2c@[0-9ab]$':
+>>>>      $ref: /schemas/i2c/i2c-controller.yaml
+>>>> @@ -81,6 +87,15 @@ allOf:
+>>>>      then:
+>>>>        patternProperties:
+>>>>          '^i2c@[89ab]$': false
+>>>
+>>> Other devices do not have any clock input? Hard to believe, but if that
+>>> was the case then previous "if:then:" should disallow this. But if you
+>>> assume they have clock, which is expected, then document this in the
+>>> commit msg. Now you just silently add clock to each of existing variant
+>>> without any explanation WHY.
+>> 
+>> As far as i can tell, that does seem to be the case that they don't need the
+>> clocks input. In RTL9300 and RL9310 there is a simple SCL_FREQ bit field that
+>> sets the frequency from preselected option (100khz, 400kHz, 2.5MHz and 50kHz) and
+>> it is gotten straight from the clock-frequency of the i2c child nodes.
 > 
->  - Supports PCIe Gen3 (8.0 GT/s) link speeds alongside Gen2 (5.0 GT/s)
->  - Uses a different reset control mechanism via AXI registers instead
->    of the Linux reset framework
->  - Requires specific SYSC configuration for link state control and
->    Root Complex mode selection
-> 
-> Reviewed-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> ---
-> 
-> Changes:
-> 
-> v8: Collected Claudiu's Rb tag
-> 
-> v7:
->  - Renamed RZG3E_PCI_RESET* defines to RZG3S_PCI_RESET* as these
->    registers are shared with upcoming SoCs (RZ/V2H, RZ/T2N, RZ/N2H),
->    dropped associated "RZ/G3E specific registers" comment
->  - Dropped "RZ/G3E SoC-specific config implementations" comment
->  - Unified function naming to rzg3e_pcie_config_{pre_init,post_init,
->    deinit}() and rzg3s_pcie_config_{post_init,deinit}()
->  - Simplified comments as per Claudiu's suggestions
->  - Used local mask variables for compactness within 80-char limit
->  - Fixed L1_ALLOW error path: goto config_deinit_and_refclk since
->    port refclk is already enabled
->  - Fixed resume: reordered MODE before RST_RSM_B to match probe
->    sequence, fixing error path handling
-> 
-> v6:
->   - Use rzg3s_sysc_config_func() with per-function calls instead of
->     rzg3s_sysc_config() with -1 skip pattern, as suggested by Claudiu
->   - Extend enum rzg3s_sysc_func_id with L1_ALLOW and MODE entries
->   - Use regmap_update_bits() consistently for all SYSC accesses
->   - Shorten comment to "Put controller in RC mode and de-assert RST_RSM_B."
->   - Drop "Enable ASPM L1 transition" comment (function ID is self-documenting)
-> 
-> v5:
->   - Introduce rzg3s_sysc_config() helper for sys configuration
-> 
-> v4: No changes
-> v3: No changes
-> 
->  drivers/pci/controller/pcie-rzg3s-host.c | 90 ++++++++++++++++++++++++
->  1 file changed, 90 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/pcie-rzg3s-host.c b/drivers/pci/controller/pcie-rzg3s-host.c
-> index 44ce056d62c6..b7f92f5aee4a 100644
-> --- a/drivers/pci/controller/pcie-rzg3s-host.c
-> +++ b/drivers/pci/controller/pcie-rzg3s-host.c
-> @@ -111,6 +111,15 @@
->  #define RZG3S_PCI_PERM_CFG_HWINIT_EN		BIT(2)
->  #define RZG3S_PCI_PERM_PIPE_PHY_REG_EN		BIT(1)
->  
-> +#define RZG3S_PCI_RESET				0x310
-> +#define RZG3S_PCI_RESET_RST_OUT_B		BIT(6)
-> +#define RZG3S_PCI_RESET_RST_PS_B		BIT(5)
-> +#define RZG3S_PCI_RESET_RST_LOAD_B		BIT(4)
-> +#define RZG3S_PCI_RESET_RST_CFG_B		BIT(3)
-> +#define RZG3S_PCI_RESET_RST_RSM_B		BIT(2)
-> +#define RZG3S_PCI_RESET_RST_GP_B		BIT(1)
-> +#define RZG3S_PCI_RESET_RST_B			BIT(0)
-> +
->  #define RZG3S_PCI_MSIRE(id)			(0x600 + (id) * 0x10)
->  #define RZG3S_PCI_MSIRE_ENA			BIT(0)
->  
-> @@ -183,10 +192,14 @@ struct rzg3s_sysc_function {
->  /**
->   * enum rzg3s_sysc_func_id - System controller function IDs
->   * @RZG3S_SYSC_FUNC_ID_RST_RSM_B: RST_RSM_B SYSC function ID
-> + * @RZG3S_SYSC_FUNC_ID_L1_ALLOW: L1 allow SYSC function ID
-> + * @RZG3S_SYSC_FUNC_ID_MODE: Mode SYSC function ID
->   * @RZG3S_SYSC_FUNC_ID_MAX: Max SYSC function ID
->   */
->  enum rzg3s_sysc_func_id {
->  	RZG3S_SYSC_FUNC_ID_RST_RSM_B,
-> +	RZG3S_SYSC_FUNC_ID_L1_ALLOW,
-> +	RZG3S_SYSC_FUNC_ID_MODE,
->  	RZG3S_SYSC_FUNC_ID_MAX,
->  };
->  
-> @@ -1151,6 +1164,42 @@ static int rzg3s_pcie_config_deinit(struct rzg3s_pcie_host *host)
->  					 host->cfg_resets);
->  }
->  
-> +static void rzg3e_pcie_config_pre_init(struct rzg3s_pcie_host *host)
-> +{
-> +	u32 mask = RZG3S_PCI_RESET_RST_LOAD_B | RZG3S_PCI_RESET_RST_CFG_B;
-> +
-> +	/* De-assert LOAD_B and CFG_B */
-> +	rzg3s_pcie_update_bits(host->axi, RZG3S_PCI_RESET, mask, mask);
-> +}
-> +
-> +static int rzg3e_pcie_config_deinit(struct rzg3s_pcie_host *host)
-> +{
-> +	writel_relaxed(0, host->axi + RZG3S_PCI_RESET);
-> +	return 0;
-> +}
-> +
-> +static int rzg3e_pcie_config_post_init(struct rzg3s_pcie_host *host)
-> +{
-> +	u32 mask = RZG3S_PCI_RESET_RST_PS_B | RZG3S_PCI_RESET_RST_GP_B |
-> +		   RZG3S_PCI_RESET_RST_B;
-> +
-> +	/* De-assert PS_B, GP_B, RST_B */
-> +	rzg3s_pcie_update_bits(host->axi, RZG3S_PCI_RESET, mask, mask);
-> +
-> +	/*
-> +	 * According to the RZ/G3E HW manual (Rev.1.15, Table 6.6-130
-> +	 * Initialization Procedure (RC)), hardware requires >= 500us delay
-> +	 * before final reset deassert.
-> +	 */
-> +	fsleep(500);
+> And from where does this clock gets its frequency? Really SoC IP block
+> not having clock input would mean it is not part of the SoC, because it
+> would have completely independent clock domain.
 
-It is strongly recommended to do a dummy read before adding any delay to make
-sure that the previous write got flushed to the hardware and the delay is valid.
+I will have to leave this question to someone who knows it as i certainly don't know.
+Maybe the driver maintainer has some knowledge on this.
 
-So I added a dummy readl_relaxed() before this while applying.
+>> But in RTL9607C there is CLK_DIV bit field instead and it is set to the calculated
+>> value of "clk_get_rate(i2c->clk) / i2c->bus_freq - 1" and that is why it requires
+>> clocks.
+>> 
+>> With this, what should be changed in this i2c bindings file? I was under assumption
+> 
+> If devices *do not have* clock, you set it as false (see example schema
+> and even line above!). Clue here is what I wrote "devices" and "do not
+> have".
 
-- Mani
+I have read the example-schema file and from what i understand it i can put the
+"else: properties: clocks: false" ?
 
--- 
-மணிவண்ணன் சதாசிவம்
+So then, the whole would look like
+
+  - if:
+      properties:
+        compatible:
+          contains:
+            const: realtek,rtl9607-i2c
+    then:
+      required:
+        - realtek,scl
+        - clocks
+    else:
+      properties:
+        clocks: false
+
+Let me know if my understanding of scheme is accurate cause i am very new to this.
+Or should the "clocks: false" be under each other "if:" for rtl9300 and rtl9310
+const compatibles?
+
+> Best regards,
+> Krzysztof
+
+Best,
+Rustam
 
