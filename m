@@ -1,161 +1,195 @@
-Return-Path: <devicetree+bounces-275804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275805-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wEgQMgnetmlMJwEAu9opvQ
-	(envelope-from <devicetree+bounces-275804-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 17:27:53 +0100
+	id iNonLyTetmlMJwEAu9opvQ
+	(envelope-from <devicetree+bounces-275805-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 17:28:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C9232916C7
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 17:27:53 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 628062916D8
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 17:28:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 65DFB302810C
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 16:27:01 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C98213008247
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 16:28:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D39D374198;
-	Sun, 15 Mar 2026 16:26:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A9A637267C;
+	Sun, 15 Mar 2026 16:28:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="Cc1BO1so";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="4qP8RlFg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g7LkekBr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9B16373C02;
-	Sun, 15 Mar 2026 16:26:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 563962F2914;
+	Sun, 15 Mar 2026 16:28:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773592005; cv=none; b=gSII6lwGqQM7cT9tlwPTX1hmq3A6XvAjW9vgrE+gV5/MP4mREbxqlY3UK88I+X7Q9DOJZQzn3NKHyPiNC/L5fkU3ETmGwBzRQ92vAoAAHkcEetXTJanhpysE+YEAg6wlDvyMhIrIaqt4cDmKmIxJFO50MUPTAaOrYhd7hSx8wl4=
+	t=1773592096; cv=none; b=TWwes9EDqabufiuehOehnDCZRAezVqXqfolAJfwU7WwMGxHANMM6wqijKPD1cIy+PmyQGMY8ZZjba3Eh3pHwLypEkhr1hfuORJ9aKS+F7UdTUFy9dydo0o23pT+Kjhuon9v+aS6PGc3+4FG9noDfYMwIzHz9tLPZG/qxq0YfmGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773592005; c=relaxed/simple;
-	bh=6v/WGG4IW5FUaX0BV49oI4fw7ECTK6DF4nreNavRlkk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=k3aKSRTetlWd1Qp5o1PI6R7nqNyD5OvwolU8gChLUP67j1lheuJQcbev5WzQ5kgJ27mTws3nm7K1oEbq4rhbpUBMupd/J0jNDcoA09JNM/1pUhghOkAJCPzDhCkSSpAWATs+9+a1P6NQoaM/YgOlQyXgS9EKLtQLg/9f5f+j4Xs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=Cc1BO1so; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=4qP8RlFg; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=To:Message-Id:Subject:Date:From; t=1773591988; bh=cObeGn0+mqbIDv0gy4l32b/
-	4gwec2rhWOM6Q/NtCevI=; b=Cc1BO1son9VMvJCLRaRRvDqVlQriwxigBT3U48FVoA9K7srhio
-	0cKysR1eDN8vcXsP8CrL6TfKL5aWO1+U4LxtufOGC1+3/x3svT+W+EhtoLjXu+E4TwRHUkZPdGg
-	ZwiDucSQWYjCRWBbv9SSK2bxe2giQZbR8c4sWKoErOAKweGSGOeb1wGeaAXVs7N8VQsWsCfDRhp
-	MG7SgGJa7xCYjmxuR4ojde2x/5HEV4cKoTWS+AHPaRyjvFt8oTGe1YLr2cdzUzi1HeoEdfjJcP0
-	GX+cFY/bow0d1JanLvSXy4GnnzMT4VIq8NsfmJUwfDt5Qf5VFX67BHOzpWGdU7CoqBA==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=To:Message-Id:Subject:Date:From; t=1773591988; bh=cObeGn0+mqbIDv0gy4l32b/
-	4gwec2rhWOM6Q/NtCevI=; b=4qP8RlFg3zY3JO1wm/MRASnNrUdqpsB6//WYqk7JGQGw7UnnP8
-	flhqHgSrJfwl/u5essTPX5Ps00MtRowpwHBQ==;
-From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-Date: Sun, 15 Mar 2026 17:26:24 +0100
-Subject: [PATCH v3 6/6] arm64: dts: qcom: Add Redmi Go
+	s=arc-20240116; t=1773592096; c=relaxed/simple;
+	bh=xOjKR0tFQLh7NVKP3TuLU6yEiJpBek/7xxzo0eG2SsE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=mBPYljSWPmlz2BDdgV4HfvorkbHyjBkw/aZZVrHdiaCaguLZASd6iDxz65gpErRVbxGwgj+s6/Z/OLy3VSQ1U5AG6IaKVhEWcMnNwu5orT5vmTrMBLkOpwQ4uj8q1nb4WM3ca2re0BYDw5u9AElt/DVDR37Dy6i8XOJAdXzm9PA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g7LkekBr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C97E1C4CEF7;
+	Sun, 15 Mar 2026 16:28:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773592096;
+	bh=xOjKR0tFQLh7NVKP3TuLU6yEiJpBek/7xxzo0eG2SsE=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=g7LkekBrPJ9cKt/zbK+Lo5Xfhdj3uJc5sNkE8qRDj9+aYIpOrz7GPNnbQ4TdC8GUc
+	 6GmCGs58jD6kKrvf+CAztmbX8gJTuPsJ6dgzCfxBWtRG81On1wtBnirmdNnJ3MFxgQ
+	 a6Jm3xF0RzTobFkLPSN3HzEjy5Iheldwz+WvOtjtfqzADfEbbZVoesidFnPkw41qte
+	 ydXYJS/4EmXl14omp/KQBYmMlQhC7uhtCHvFw2na3xwE228IBwvydRweuL4woSjER0
+	 WAsbhlPqvR5a6HR26rn2XBjTcAuIzzxZ9o8ylRAbYiUmWnWMd1AF50dSs0n0sdoXXV
+	 UoqKB4okRRJcQ==
+From: Simon Horman <horms@kernel.org>
+To: lizhi2@eswincomputing.com
+Cc: Simon Horman <horms@kernel.org>,
+	alexandre.torgue@foss.st.com,
+	devicetree@vger.kernel.org,
+	alex@ghiti.fr,
+	linux-arm-kernel@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	ningyu@eswincomputing.com,
+	linux-riscv@lists.infradead.org,
+	krzk+dt@kernel.org,
+	davem@davemloft.net,
+	andrew+netdev@lunn.ch,
+	conor+dt@kernel.org,
+	weishangjuan@eswincomputing.com,
+	kuba@kernel.org,
+	robh@kernel.org,
+	edumazet@google.com,
+	pjw@kernel.org,
+	rmk+kernel@armlinux.org.uk,
+	palmer@dabbelt.com,
+	mcoquelin.stm32@gmail.com,
+	pinkesh.vaghela@einfochips.com,
+	linux-kernel@vger.kernel.org,
+	pritesh.patel@einfochips.com,
+	pabeni@redhat.com,
+	aou@eecs.berkeley.edu,
+	wens@kernel.org,
+	netdev@vger.kernel.org,
+	linmin@eswincomputing.com
+Subject: Re: [net-next,v4,2/3] net: stmmac: eic7700: enable clocks before syscon access and correct RX sampling timing
+Date: Sun, 15 Mar 2026 16:27:35 +0000
+Message-ID: <20260315162735.1427325-1-horms@kernel.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260313075416.1607-1-lizhi2@eswincomputing.com>
+References: <20260313075416.1607-1-lizhi2@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260315-riva-common-v3-6-897f130786ed@mainlining.org>
-References: <20260315-riva-common-v3-0-897f130786ed@mainlining.org>
-In-Reply-To: <20260315-riva-common-v3-0-897f130786ed@mainlining.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- phone-devel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773591982; l=1698;
- i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
- bh=6v/WGG4IW5FUaX0BV49oI4fw7ECTK6DF4nreNavRlkk=;
- b=CHdAadEbelpdf2vggFcyaiY/vusBmFy8vcArI/vyVd4qXiWkKxpKM0qS0yXdU/LvYOFv2FlzO
- k/3DGsv8QQLAQn48nIKxCIb/+/HynfpX2iL7x2k0Iq7qRQVQbRQHDkh
-X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
- pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
-X-Spamd-Result: default: False [0.49 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_MIXED_CHARSET(1.15)[subject];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mainlining.org,reject];
-	R_DKIM_ALLOW(-0.20)[mainlining.org:s=202507r,mainlining.org:s=202507e];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275804-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,foss.st.com,vger.kernel.org,ghiti.fr,lists.infradead.org,st-md-mailman.stormreply.com,eswincomputing.com,davemloft.net,lunn.ch,google.com,armlinux.org.uk,dabbelt.com,gmail.com,einfochips.com,redhat.com,eecs.berkeley.edu];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	TAGGED_FROM(0.00)[bounces-275805-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[barnabas.czeman@mainlining.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[mainlining.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mainlining.org:dkim,mainlining.org:email,mainlining.org:mid]
-X-Rspamd-Queue-Id: 4C9232916C7
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[horms@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev,kernel];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linux.dev:url]
+X-Rspamd-Queue-Id: 628062916D8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Redmi Go (tiare) is like Redmi 5A with small differences like charging,
-fuel gauge and different speaker codec.
+This is an AI-generated review of your patch. The human sending this
+email has considered the AI review valid, or at least plausible.
 
-Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
 ---
- arch/arm64/boot/dts/qcom/Makefile                 |  1 +
- arch/arm64/boot/dts/qcom/msm8917-xiaomi-tiare.dts | 20 ++++++++++++++++++++
- 2 files changed, 21 insertions(+)
+net: stmmac: eic7700: enable clocks before syscon access and correct RX sampling timing
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 20e161e843ed..a74598cf0b47 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -83,6 +83,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-yiming-uz801v3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8917-xiaomi-riva.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8917-xiaomi-rolex.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8917-xiaomi-tiare.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8929-wingtech-wt82918hd.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8937-xiaomi-land.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-asus-z00t.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8917-xiaomi-tiare.dts b/arch/arm64/boot/dts/qcom/msm8917-xiaomi-tiare.dts
-new file mode 100644
-index 000000000000..fe844230030f
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8917-xiaomi-tiare.dts
-@@ -0,0 +1,20 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2026, Barnabas Czeman
-+ */
-+
-+/dts-v1/;
-+
-+#include "msm8917-xiaomi-wingtech.dtsi"
-+
-+/ {
-+	model = "Xiaomi Redmi Go (tiare)";
-+	compatible = "xiaomi,tiare", "qcom,msm8917";
-+
-+	qcom,board-id = <0x1000b 1>;
-+};
-+
-+&pm8937_l22 {
-+	regulator-min-microvolt = <2850000>;
-+	regulator-max-microvolt = <2850000>;
-+};
+The second Ethernet controller (eth1) on the Eswin EIC7700 SoC may fail
+to sample RX data correctly at Gigabit speed due to EIC7700-specific
+receive clock to data skew at the MAC input in the silicon. The existing
+internal delay configuration does not provide sufficient adjustment range
+to compensate for this condition at 1000Mbps. Update the EIC7700 DWMAC
+glue driver to apply EIC7700-specific clock sampling inversion only
+during Gigabit operation on MAC instances that require it.
 
--- 
-2.53.0
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c
+> index bcb8e000e720..b230bc5b902a 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c
 
+[ ... ]
+
+> @@ -61,8 +81,26 @@ static int eic7700_clks_config(void *priv, bool enabled)
+>  static int eic7700_dwmac_init(struct device *dev, void *priv)
+>  {
+>  	struct eic7700_qos_priv *dwc = priv;
+> +	int ret;
+> +
+> +	ret = eic7700_clks_config(dwc, true);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_set_bits(dwc->eic7700_hsp_regmap,
+> +			      dwc->eth_phy_ctrl_offset,
+> +			      EIC7700_ETH_TX_CLK_SEL |
+> +			      EIC7700_ETH_PHY_INTF_SELI);
+> +	if (ret)
+> +		return ret;
+
+Does this code leak the enabled clocks? The function calls
+eic7700_clks_config(dwc, true) to enable the clocks, then later calls
+regmap_set_bits(). If regmap_set_bits() fails, the function returns
+without disabling the clocks.
+
+Looking at the caller in stmmac_main.c:stmmac_dvr_probe():
+
+    if (priv->plat->init) {
+        ret = priv->plat->init(priv->device, priv->plat->bsp_priv);
+        if (ret)
+            return ret;
+    }
+
+    ret = __stmmac_dvr_probe(priv->device, priv->plat, &res);
+    if (ret)
+        goto error_exit_init;
+
+The exit handler is only called when __stmmac_dvr_probe() fails, not
+when init() fails. This leaves the bulk clocks in the prepared-and-enabled
+state on this error path.
+
+> +
+> +	regmap_write(dwc->eic7700_hsp_regmap, dwc->eth_axi_lp_ctrl_offset,
+> +		     EIC7700_ETH_CSYSREQ_VAL);
+>
+> -	return eic7700_clks_config(dwc, true);
+> +	regmap_write(dwc->eic7700_hsp_regmap, dwc->eth_txd_offset, 0);
+> +	regmap_write(dwc->eic7700_hsp_regmap, dwc->eth_rxd_offset, 0);
+> +
+> +	return 0;
+>  }
+
+[ ... ]
 
