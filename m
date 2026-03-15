@@ -1,179 +1,232 @@
-Return-Path: <devicetree+bounces-275838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275840-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id y2xjEHUFt2mKLgEAu9opvQ
-	(envelope-from <devicetree+bounces-275838-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 20:16:05 +0100
+	id n6N8EWwZt2klMgEAu9opvQ
+	(envelope-from <devicetree+bounces-275840-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 21:41:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90847292353
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 20:16:04 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9007529268C
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 21:41:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3DEAE300EABC
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 19:16:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 372953043BDF
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 20:41:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BA4F37AA88;
-	Sun, 15 Mar 2026 19:16:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6171E37B00F;
+	Sun, 15 Mar 2026 20:41:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DxvjKQs8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n3u7BT1P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2757D221D89
-	for <devicetree@vger.kernel.org>; Sun, 15 Mar 2026 19:16:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39BCA221D89;
+	Sun, 15 Mar 2026 20:41:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773602162; cv=none; b=FR2tSv63ciEHX9Uq6omQDn41apOhiJglYpBIwZvYYX4RxWJ0PGxGTT9Xf0C3SCahnOtj/5iden40DBpqF4qNT5h/JFd/6ed+8W0tFcsrXnlcHJkWBPYEm4dRSMMB0vNQ8KUqmpC0reCUTb4IUkWfB+do/9Da3inue6WfyKdnOhQ=
+	t=1773607273; cv=none; b=heh5eYuSzdMQ8f9BQnKeWO+HedphMrCCpQQ+Neia5lCY90rJXWbFmAUfSFyMt6vIA+vRQ9PV/pEzUyN4YAGK1S4RYFs5dswvRoWME9AT8GWfQEqOAN0DYecJyS6zb+ex6+jatC4rctX1rSv9TcbioQ1S06h3Oy9ukezT8Z4jhfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773602162; c=relaxed/simple;
-	bh=a6zCJ7W8/2j3GTCTCY6FAyHidVZVuKayQ1N0RO9KOEo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Vk2UjxNsNmyNsQbIlwFE4xsYTqof4GbPBKMDWdLcpTvMnBuNyr5Wqx3sdSZvzCbrhtJzwpbRjVWQLYVo3jDw/UVirrTuNC5tZlwKnJ0p3yza4jWGeN4DreqXruBMpNXHKDt7wxeXD8fMZcChOR4XJ8hfD3RI5Gs7qGeY5UJCjjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DxvjKQs8; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b97ba4c2be2so31541866b.1
-        for <devicetree@vger.kernel.org>; Sun, 15 Mar 2026 12:16:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773602159; x=1774206959; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=j24q+WEEaIIpTAaLp22q5B3jSJrQk0EvfwD9aUHG8bI=;
-        b=DxvjKQs8kWy2u73OGxFvaR8tCE3IMk0ePE9vqxw+/7XaS9NXNB6JcuMm8TNqiGffmE
-         +23cB11lX47Lw9mkCj433edZ698dowY9OD2NUX3y3hJ+NwzYB7w+CeOBQFWVDGXSCxur
-         QLROn93dVOC8k6Dy7D+3zCpaatwExWf+h00rsMqKbMTeyqwNbB9twOOfKaXPCADsDCe7
-         enIEJFbjQMmK+iSymqPtkqn9BwxIMrpsNfzHQggWQ8NvIQlUOgIxw2v+qNiplciUbXYC
-         AJNU6jfWtUFGTPbZdKcAdTD4CSdeLC52EEUXt6Ed+X/RBGgB1PkB2d+7DZl7WjXe7I0k
-         R9Fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773602159; x=1774206959;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=j24q+WEEaIIpTAaLp22q5B3jSJrQk0EvfwD9aUHG8bI=;
-        b=Fn+FaydXxrzs6Ny6jjdFJ4odzgJASXZyoZstf4ApvppeQpwLtpXEdWnNi6a+pA2fBq
-         jBSNeXPCRCPIDo+h0U1eJwIRlLIKaXSH8vsFAnwugsS9eMeqZS3NtAtkDFZut2APFGpe
-         SenaqqMl9HQ6UNKmLwSIXL0T2YOnzLTsixYbA3sp82ydG6EsohBBMYsFZzvaDtyWLjR3
-         LBzG7ho9h++MX0AFgsKzkklD/3byUOXvwWmmKKsSydWv6gZ3r2AfKqcPASbGfKqcdn/O
-         918h19lQzH1tP7F5Vug8VE2Ldr1h0fjgdQWoB0crebvZk2Kev/WurJmSklAdDirFnC6f
-         dMWw==
-X-Forwarded-Encrypted: i=1; AJvYcCWaUNJI8w/FtdoXdYLU/gU0NaVV3u2LvJ35DTMP1YITFuTCx/m98xHSiJilhUT9w+Wqdq6h1LZ4ZmaM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1UrTf07COcYwr7So2HPOval5Lw3RQ6IhI9npvRJhTIJRj7Ln3
-	O0i/Oh6IstWnbv4+LPhCdCKdrw8smmOC/igHz8DHro+yIox3FhVKV9e8
-X-Gm-Gg: ATEYQzyOBFZzampATQcZWT4d6xmKnjUWKF9q498QiMafAn9pL3LIcs25e91wBJ5F6iX
-	sDb+TXqvm8+w7rrjD9Fr4RQCLR+COAQvP5fS/UhDNGZJwy57QxReT4y8IRb04R5aBOYh0XHEnug
-	mXRDvNJ538i7vETHrS3ixNwZvv+KZIz2z0guHMT4BvnM/eUQQ0f5LDD6Kbhcl33+ux5vpKe5Xb8
-	JnffqAEIttsO2Ww3dJIeiQJ5sWHvU+gTagRLw6imcqphvIhew8ojoDz8SeFC1Ng5Htr3SZVVLG/
-	OpIeFKMRzJPN4a9b4ligSG3A/5FvzkbVF5XDNxGTjWhXvQACL8iUoM39OpDRLIv4mthkofCPXaV
-	eZ2Y9APvKNS8/CqriqbveYWNSiddjRq+DuP5JV4XdaXqVtPuguCVlFXdgCtZAZ4j/mfrinz5iEQ
-	V5bzoNRsqEMY0UhNUfGcsftrY25w==
-X-Received: by 2002:a17:906:4a9a:b0:b97:f3:1231 with SMTP id a640c23a62f3a-b97653525a2mr439485666b.57.1773602158949;
-        Sun, 15 Mar 2026 12:15:58 -0700 (PDT)
-Received: from [192.168.0.39] ([79.133.247.80])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b976cdb1d20sm421911166b.41.2026.03.15.12.15.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Mar 2026 12:15:58 -0700 (PDT)
-Message-ID: <706a349f-63e5-4f47-9f77-c84db1058f5e@gmail.com>
-Date: Sun, 15 Mar 2026 21:15:51 +0200
+	s=arc-20240116; t=1773607273; c=relaxed/simple;
+	bh=ZG2i/wUEe+jX3Uu2IabuhXNhfK0TQVp34srUSuF0ZE0=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
+	 References:In-Reply-To; b=BPOMs9RmGMBdO7dOxbx9DihaGT5Kfv1wCWLGWC98XI6g9Z2eg4IEjvY4ZjGLfpzy7k2m/fI9T61asupZNA3grEqZBMSoF8cczZPAMeXvaVG+h4UJ2LsBm8XECnpV8i3WXTbIjV/sbBvSakRkfR0gyk7IMxF9TEUxivW3wd7Kg3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n3u7BT1P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32E46C19421;
+	Sun, 15 Mar 2026 20:41:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773607272;
+	bh=ZG2i/wUEe+jX3Uu2IabuhXNhfK0TQVp34srUSuF0ZE0=;
+	h=Date:To:From:Subject:Cc:References:In-Reply-To:From;
+	b=n3u7BT1P80OBjNPqGpoAkBqfpJx7qkWwItZx9xtzbcQ1S9oOGi9Ipx3p1Ia4cs43a
+	 6vw7zRb5Qj0WWQDydDrN5VzJC3JqbDyAhNrVYFTi19xESJSuNv+IbSdRL592royxRn
+	 XTVttAlonN9i4QnLbgxWM9F4ywIe4BNHCxLFt1D/MyanKXsd5iyTbCTyhnySnBODf0
+	 I5EWiLyzLdzG7m27mTba+sTEmEDV5rm3EwVtEflCcSncHWwiAhsVkCXpYL5OeVUu/m
+	 nN7eRANa0qymi27chtkgiSXhwdxCZ8gatSXXh8n/j16iE0QPh26J9FK7v+klYNkfAt
+	 kfiuSyWpke2iQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/6] iio: light: vcnl4000: remove error messages for
- trigger and irq
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org
-References: <20260314-vcnl4000-regulators-v3-0-3c4a48d30676@gmail.com>
- <20260314-vcnl4000-regulators-v3-5-3c4a48d30676@gmail.com>
- <20260315183127.59036e25@jic23-huawei>
-Content-Language: en-US
-From: Erikas Bitovtas <xerikasxx@gmail.com>
-In-Reply-To: <20260315183127.59036e25@jic23-huawei>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Date: Sun, 15 Mar 2026 20:41:06 +0100
+Message-Id: <DH3M1023PCBI.1HYYZU93NS1JX@kernel.org>
+To: "Markus Probst" <markus.probst@posteo.de>
+From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH v3 7/7] leds: add synology microp led driver
+Cc: "Markus Probst via B4 Relay"
+ <devnull+markus.probst.posteo.de@kernel.org>, "Lee Jones" <lee@kernel.org>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Miguel Ojeda"
+ <ojeda@kernel.org>, "Boqun Feng" <boqun@kernel.org>, "Gary Guo"
+ <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
+ "Trevor Gross" <tmgross@umich.edu>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Igor Korotin" <igor.korotin.linux@gmail.com>, "Daniel
+ Almeida" <daniel.almeida@collabora.com>, "Bjorn Helgaas"
+ <bhelgaas@google.com>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
+ <kwilczynski@kernel.org>, "Pavel Machek" <pavel@kernel.org>, "Len Brown"
+ <lenb@kernel.org>, "Robert Moore" <robert.moore@intel.com>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <rust-for-linux@vger.kernel.org>, <driver-core@lists.linux.dev>,
+ <linux-pci@vger.kernel.org>, <linux-leds@vger.kernel.org>,
+ <linux-acpi@vger.kernel.org>, <acpica-devel@lists.linux.dev>
+References: <20260313-synology_microp_initial-v3-0-ad6ac463a201@posteo.de>
+ <20260313-synology_microp_initial-v3-7-ad6ac463a201@posteo.de>
+ <DH1YH0GO75H8.18YSW2VMKRB3C@kernel.org>
+ <39f1c9bb0dbde9f1b60785f8e838289c888ffdb0.camel@posteo.de>
+ <DH3KAWWLECYW.3VBH7PIE7ZE20@kernel.org>
+ <eb2f7498c5f3247265effc47b3445a04ac71956e.camel@posteo.de>
+In-Reply-To: <eb2f7498c5f3247265effc47b3445a04ac71956e.camel@posteo.de>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275838-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_FROM(0.00)[bounces-275840-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,garyguo.net,protonmail.com,google.com,umich.edu,gmail.com,collabora.com,intel.com,vger.kernel.org,lists.linux.dev];
+	RCPT_COUNT_TWELVE(0.00)[31];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dakr@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 90847292353
+	TAGGED_RCPT(0.00)[devicetree,markus.probst.posteo.de,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9007529268C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Sun Mar 15, 2026 at 7:47 PM CET, Markus Probst wrote:
+> On Sun, 2026-03-15 at 19:20 +0100, Danilo Krummrich wrote:
+>> Isn't this handled through IRQs, i.e. you device issues an IRQ and then =
+you read
+>> from the serial bus?
+>>=20
+>> (I'm asking since such chips can usually be connected via different buss=
+es, e.g.
+>> serial and I2C. And with I2C the slave can't issue a transfer by itself.=
+)
+>>=20
+>> Other MFD drivers register their own IRQ chip for this. I.e. one would r=
+egister
+>> an IRQ chip in the MFD driver and pass it to the sub-devices created thr=
+ough
+>> mfd_add_devices(). Then the sub-device receives an IRQ and reads the reg=
+map.
+> You mean registering a virtual IRQ and triggering it on data receival?
 
+Not really virtual, there are a lot of MFD drivers that register their own =
+IRQ
+chip to forward only relevant IRQs to the sub-device.
 
-On 3/15/26 8:31 PM, Jonathan Cameron wrote:
-> On Sat, 14 Mar 2026 18:06:34 +0200
-> Erikas Bitovtas <xerikasxx@gmail.com> wrote:
-> 
->> The error code is available in the log after return. Remove duplicate
->> error messages to reduce noise in dmesg.
->>
->> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
->> ---
->>  drivers/iio/light/vcnl4000.c | 9 ++-------
->>  1 file changed, 2 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/iio/light/vcnl4000.c b/drivers/iio/light/vcnl4000.c
->> index e501db7249d7..c8bb1826b916 100644
->> --- a/drivers/iio/light/vcnl4000.c
->> +++ b/drivers/iio/light/vcnl4000.c
->> @@ -2041,11 +2041,8 @@ static int vcnl4000_probe(struct i2c_client *client)
->>  						      NULL,
->>  						      data->chip_spec->trig_buffer_func,
->>  						      data->chip_spec->buffer_setup_ops);
->> -		if (ret < 0) {
->> -			dev_err(&client->dev,
->> -				"unable to setup iio triggered buffer\n");
-> 
-> Is this one a duplicate? I don't recall us being particular verbose
-> in terms of error messages in iio_triggered_buffer_setup_ext() which is
-> where that ends up coming from.  I think there is only one path
-> where it can return anything other than -ENOMEM and that one is a duplicate
-> registration check (so fair to not print).  So perhaps all this patch
-> needs is a comment on what errors can surface from this call and why
-> it is therefore not worth printing anything.
-> 
+What you say should work as well, but as mentioned below, I feel like that'=
+s
+overkill.
 
-I do not see anything being printed on iio_triggered_buffer_setup_ext(),
-so I guess this is not a duplicate. The function can return -EADDRINUSE
-if a buffer is already assigned, to prevent cleanup function being
-called on a buffer that wasn't allocated.
-I will add this print back if necessary in v4.
+> Could you provide an example driver in the tree?
 
+One example would be drivers/mfd/palmas.c, but there should be many more.
+
+>> Now, if you don't have IRQs at all and the only event you get is through
+>> receive_buf() (which implies that the chip is only compatible with a ser=
+ial bus)
+>> this technically still works, but might be a bit overkill.
+>
+> There is a physical IRQ, but the serial device bus abstracts that so
+> the driver only has the receive_buf() function. The driver it self is
+> not aware of an IRQs.
+
+I think you are confusing the IRQ of the serial bus controller with a devic=
+e
+IRQ. The serial bus controller the device is connected to has an IRQ itself=
+, but
+what I mean is a device IRQ line.
+
+This is very common for devices on busses such as I2C, SPI, etc., as they h=
+ave
+master/slave semantics. I.e. the device issues an IRQ and the kernel reads =
+a
+register subsequently.
+
+UART does not force master/slave sematics on a bus level though.
+
+That's why I asked whether the device is UART only, or if it supports other
+busses as well.
+
+> Having like a reverse regmap would be great (in addition), in which the
+> mfd device is the one who calls write and the sub-device has to handle
+> it. But I don't think something like this exists in the kernel.
+
+I mean, it's not really that the kernel exposes registers to the device. Th=
+e
+device just uses the fact that the UART is not a master/slave bus and pushe=
+s a
+single byte to the kernel to signal that a button has been pressed. So, it'=
+s
+still "IRQ semantics".
+
+(But I see that on abstract level one could argue in this direction.)
+
+TBH, I think that the combination of this chip supporting multiple function=
+s and
+being connected through UART, where the device pushes bytes through the UAR=
+T to
+signal events is a bit of an edge case.
+
+As mentioned, if it would be connected through I2C instead, it would be sim=
+ple:
+forward the IRQ and use a regmap, and you can do it entirely with generic
+infrastructure and no custom APIs, which in the end is the idea of MFD. I.e=
+. you
+can describe the whole sub-device with a struct mfd_cell.
+
+And while we could technically "emulate" this, it remains to be odd and has
+unnecessary overhead.
+
+I've seen one other case in the kernel, which is drivers/mfd/rave-sp.c. But=
+ this
+driver doesn't use MFD infrastructure at all and just goes for a custom API=
+,
+which clearly defeats the purpose of MFD in the first place. I.e. it should=
+n't
+even live under drivers/mfd/.
+
+Greg already mentioned the auxiliary bus, which for a custom API clearly is=
+ the
+better choice.
+
+But to be honest, the more I hear about this device, the more I feel like a
+monolithic driver is all that's needed, as everything else sounds like over=
+head
+that doesn't really provide any value.
+
+I.e. if we can't (easily) use mfd cells and would need a custom API, then w=
+hy
+even split it up at all, given that splitting it up would probably the most
+complicated part of the whole driver.
+
+Greg, what do you think?
+
+*me runs away*
 
