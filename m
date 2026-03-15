@@ -1,232 +1,202 @@
-Return-Path: <devicetree+bounces-275840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275839-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id n6N8EWwZt2klMgEAu9opvQ
-	(envelope-from <devicetree+bounces-275840-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 21:41:16 +0100
+	id 4MX+I1UPt2mXMAEAu9opvQ
+	(envelope-from <devicetree+bounces-275839-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 20:58:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9007529268C
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 21:41:15 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E70A729246D
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 20:58:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 372953043BDF
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 20:41:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7AACD301E9B4
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 19:58:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6171E37B00F;
-	Sun, 15 Mar 2026 20:41:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B73C372EE1;
+	Sun, 15 Mar 2026 19:58:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n3u7BT1P"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="imeiwhSi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from ixit.cz (ixit.cz [185.100.197.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39BCA221D89;
-	Sun, 15 Mar 2026 20:41:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 337252405EB;
+	Sun, 15 Mar 2026 19:58:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.100.197.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773607273; cv=none; b=heh5eYuSzdMQ8f9BQnKeWO+HedphMrCCpQQ+Neia5lCY90rJXWbFmAUfSFyMt6vIA+vRQ9PV/pEzUyN4YAGK1S4RYFs5dswvRoWME9AT8GWfQEqOAN0DYecJyS6zb+ex6+jatC4rctX1rSv9TcbioQ1S06h3Oy9ukezT8Z4jhfI=
+	t=1773604689; cv=none; b=XEehGbR+IJxwJjFRdpQXy2V58D8J598Q+sp+lTjbrS7U6wWaov7xNus0WyP88qphC6fDpYwhp5T4TzIaqzN1C9StBomMERrYWvVM7cT3rNbnwEpkQbk+Siv8D76WGnndeMrkGMpolA0rJeEYa9jFaAi9iNiWVEWWHFKQIa5ia8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773607273; c=relaxed/simple;
-	bh=ZG2i/wUEe+jX3Uu2IabuhXNhfK0TQVp34srUSuF0ZE0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
-	 References:In-Reply-To; b=BPOMs9RmGMBdO7dOxbx9DihaGT5Kfv1wCWLGWC98XI6g9Z2eg4IEjvY4ZjGLfpzy7k2m/fI9T61asupZNA3grEqZBMSoF8cczZPAMeXvaVG+h4UJ2LsBm8XECnpV8i3WXTbIjV/sbBvSakRkfR0gyk7IMxF9TEUxivW3wd7Kg3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n3u7BT1P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32E46C19421;
-	Sun, 15 Mar 2026 20:41:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773607272;
-	bh=ZG2i/wUEe+jX3Uu2IabuhXNhfK0TQVp34srUSuF0ZE0=;
-	h=Date:To:From:Subject:Cc:References:In-Reply-To:From;
-	b=n3u7BT1P80OBjNPqGpoAkBqfpJx7qkWwItZx9xtzbcQ1S9oOGi9Ipx3p1Ia4cs43a
-	 6vw7zRb5Qj0WWQDydDrN5VzJC3JqbDyAhNrVYFTi19xESJSuNv+IbSdRL592royxRn
-	 XTVttAlonN9i4QnLbgxWM9F4ywIe4BNHCxLFt1D/MyanKXsd5iyTbCTyhnySnBODf0
-	 I5EWiLyzLdzG7m27mTba+sTEmEDV5rm3EwVtEflCcSncHWwiAhsVkCXpYL5OeVUu/m
-	 nN7eRANa0qymi27chtkgiSXhwdxCZ8gatSXXh8n/j16iE0QPh26J9FK7v+klYNkfAt
-	 kfiuSyWpke2iQ==
+	s=arc-20240116; t=1773604689; c=relaxed/simple;
+	bh=x96j8XO+2iH9YowIPbKyGsM/h8FrQzlL5x2emsPhfIk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=D7A3MqIcl1x4NFN+t1BATNhThTrFrzVRwWmSEAIiERehi3G5o+JDVc7I6OmC0tI8bDA5MQY8g5UaAj7WijMmAMB4hLQzOrx1SyTkiv4C9S1kFcILlFTDMNYIvIUotEUiqgW8usqa8loH1bmJ3DuaHoWRAh/HuF5lVWYB6+Z25Qs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=imeiwhSi; arc=none smtp.client-ip=185.100.197.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [IPV6:2a02:f000:10bd:e301::1d7] (unknown [IPv6:2a02:f000:10bd:e301::1d7])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 472D6534145A;
+	Sun, 15 Mar 2026 20:58:02 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1773604682;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=7sJdIxx0exETUEjfCjE9PaVKicNXP3HPBaOLcABEZDA=;
+	b=imeiwhSiEIV5stgQrEcHY1JgjeL0s4RERD+a8flXzc/dh93+LqzPXnacZmyS0cGdVkKWXp
+	HcfaK+m58yCx69In33qCjRHk/d+cGv6Hw/yDodt8y+He48Vs6YSqNbtiHbHsG8WTUjeeRe
+	JS/qswnUSciG6DKF0VbHBuMFZuYyVH0=
+Message-ID: <6bf1a210-6597-4d97-9871-ff82b5aeff50@ixit.cz>
+Date: Sun, 15 Mar 2026 20:58:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sun, 15 Mar 2026 20:41:06 +0100
-Message-Id: <DH3M1023PCBI.1HYYZU93NS1JX@kernel.org>
-To: "Markus Probst" <markus.probst@posteo.de>
-From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH v3 7/7] leds: add synology microp led driver
-Cc: "Markus Probst via B4 Relay"
- <devnull+markus.probst.posteo.de@kernel.org>, "Lee Jones" <lee@kernel.org>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Miguel Ojeda"
- <ojeda@kernel.org>, "Boqun Feng" <boqun@kernel.org>, "Gary Guo"
- <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
- Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
- "Trevor Gross" <tmgross@umich.edu>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Igor Korotin" <igor.korotin.linux@gmail.com>, "Daniel
- Almeida" <daniel.almeida@collabora.com>, "Bjorn Helgaas"
- <bhelgaas@google.com>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
- <kwilczynski@kernel.org>, "Pavel Machek" <pavel@kernel.org>, "Len Brown"
- <lenb@kernel.org>, "Robert Moore" <robert.moore@intel.com>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <rust-for-linux@vger.kernel.org>, <driver-core@lists.linux.dev>,
- <linux-pci@vger.kernel.org>, <linux-leds@vger.kernel.org>,
- <linux-acpi@vger.kernel.org>, <acpica-devel@lists.linux.dev>
-References: <20260313-synology_microp_initial-v3-0-ad6ac463a201@posteo.de>
- <20260313-synology_microp_initial-v3-7-ad6ac463a201@posteo.de>
- <DH1YH0GO75H8.18YSW2VMKRB3C@kernel.org>
- <39f1c9bb0dbde9f1b60785f8e838289c888ffdb0.camel@posteo.de>
- <DH3KAWWLECYW.3VBH7PIE7ZE20@kernel.org>
- <eb2f7498c5f3247265effc47b3445a04ac71956e.camel@posteo.de>
-In-Reply-To: <eb2f7498c5f3247265effc47b3445a04ac71956e.camel@posteo.de>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/6] arm64: dts: qcom: msm8917-xiaomi-wingtech: Add
+ goodix touch
+To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20260315-riva-common-v3-0-897f130786ed@mainlining.org>
+ <20260315-riva-common-v3-3-897f130786ed@mainlining.org>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <20260315-riva-common-v3-3-897f130786ed@mainlining.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275840-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-275839-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,garyguo.net,protonmail.com,google.com,umich.edu,gmail.com,collabora.com,intel.com,vger.kernel.org,lists.linux.dev];
-	RCPT_COUNT_TWELVE(0.00)[31];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[ixit.cz:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dakr@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,markus.probst.posteo.de,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9007529268C
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: E70A729246D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sun Mar 15, 2026 at 7:47 PM CET, Markus Probst wrote:
-> On Sun, 2026-03-15 at 19:20 +0100, Danilo Krummrich wrote:
->> Isn't this handled through IRQs, i.e. you device issues an IRQ and then =
-you read
->> from the serial bus?
->>=20
->> (I'm asking since such chips can usually be connected via different buss=
-es, e.g.
->> serial and I2C. And with I2C the slave can't issue a transfer by itself.=
-)
->>=20
->> Other MFD drivers register their own IRQ chip for this. I.e. one would r=
-egister
->> an IRQ chip in the MFD driver and pass it to the sub-devices created thr=
-ough
->> mfd_add_devices(). Then the sub-device receives an IRQ and reads the reg=
-map.
-> You mean registering a virtual IRQ and triggering it on data receival?
+On 15/03/2026 17:26, BarnabÃ¡s CzÃ©mÃ¡n wrote:
+> There are variants from MSM8917 wingtech xiaomis what
+> are using goodix touch controller instead of focaltech.
+> Add goodix node for make it able to use touch on all
+> variants.
+> 
+> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+> ---
+>   arch/arm64/boot/dts/qcom/msm8917-xiaomi-wingtech.dtsi | 16 ++++++++++++++++
 
-Not really virtual, there are a lot of MFD drivers that register their own =
-IRQ
-chip to forward only relevant IRQs to the sub-device.
+The file is not in the linux-next or linus tree.
 
-What you say should work as well, but as mentioned below, I feel like that'=
-s
-overkill.
+If this patch depends on another series, it should be stated here and preferably 
+also reference (can be done with b4 tool).
 
-> Could you provide an example driver in the tree?
+David
 
-One example would be drivers/mfd/palmas.c, but there should be many more.
+>   1 file changed, 16 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8917-xiaomi-wingtech.dtsi b/arch/arm64/boot/dts/qcom/msm8917-xiaomi-wingtech.dtsi
+> index 714e75de014b..69eda5f42c06 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8917-xiaomi-wingtech.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8917-xiaomi-wingtech.dtsi
+> @@ -102,6 +102,22 @@ edt_ft5306: touchscreen@38 {
+>   
+>   		status = "disabled";
+>   	};
+> +
+> +	goodix_gt911: touchscreen@5d {
+> +		compatible = "goodix,gt911";
+> +		reg = <0x5d>;
+> +		interrupts-extended = <&tlmm 65 IRQ_TYPE_LEVEL_LOW>;
+> +		irq-gpios = <&tlmm 65 GPIO_ACTIVE_HIGH>;
+> +		reset-gpios = <&tlmm 64 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-0 = <&tsp_int_rst_default>;
+> +		pinctrl-names = "default";
+> +		AVDD28-supply = <&pm8937_l10>;
+> +		VDDIO-supply = <&pm8937_l5>;
+> +		touchscreen-size-x = <720>;
+> +		touchscreen-size-y = <1280>;
+> +
+> +		status = "disabled";
+> +	};
+>   };
+>   
+>   &pm8937_gpios {
+> 
 
->> Now, if you don't have IRQs at all and the only event you get is through
->> receive_buf() (which implies that the chip is only compatible with a ser=
-ial bus)
->> this technically still works, but might be a bit overkill.
->
-> There is a physical IRQ, but the serial device bus abstracts that so
-> the driver only has the receive_buf() function. The driver it self is
-> not aware of an IRQs.
+-- 
+David Heidelberg
 
-I think you are confusing the IRQ of the serial bus controller with a devic=
-e
-IRQ. The serial bus controller the device is connected to has an IRQ itself=
-, but
-what I mean is a device IRQ line.
-
-This is very common for devices on busses such as I2C, SPI, etc., as they h=
-ave
-master/slave semantics. I.e. the device issues an IRQ and the kernel reads =
-a
-register subsequently.
-
-UART does not force master/slave sematics on a bus level though.
-
-That's why I asked whether the device is UART only, or if it supports other
-busses as well.
-
-> Having like a reverse regmap would be great (in addition), in which the
-> mfd device is the one who calls write and the sub-device has to handle
-> it. But I don't think something like this exists in the kernel.
-
-I mean, it's not really that the kernel exposes registers to the device. Th=
-e
-device just uses the fact that the UART is not a master/slave bus and pushe=
-s a
-single byte to the kernel to signal that a button has been pressed. So, it'=
-s
-still "IRQ semantics".
-
-(But I see that on abstract level one could argue in this direction.)
-
-TBH, I think that the combination of this chip supporting multiple function=
-s and
-being connected through UART, where the device pushes bytes through the UAR=
-T to
-signal events is a bit of an edge case.
-
-As mentioned, if it would be connected through I2C instead, it would be sim=
-ple:
-forward the IRQ and use a regmap, and you can do it entirely with generic
-infrastructure and no custom APIs, which in the end is the idea of MFD. I.e=
-. you
-can describe the whole sub-device with a struct mfd_cell.
-
-And while we could technically "emulate" this, it remains to be odd and has
-unnecessary overhead.
-
-I've seen one other case in the kernel, which is drivers/mfd/rave-sp.c. But=
- this
-driver doesn't use MFD infrastructure at all and just goes for a custom API=
-,
-which clearly defeats the purpose of MFD in the first place. I.e. it should=
-n't
-even live under drivers/mfd/.
-
-Greg already mentioned the auxiliary bus, which for a custom API clearly is=
- the
-better choice.
-
-But to be honest, the more I hear about this device, the more I feel like a
-monolithic driver is all that's needed, as everything else sounds like over=
-head
-that doesn't really provide any value.
-
-I.e. if we can't (easily) use mfd cells and would need a custom API, then w=
-hy
-even split it up at all, given that splitting it up would probably the most
-complicated part of the whole driver.
-
-Greg, what do you think?
-
-*me runs away*
 
