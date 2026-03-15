@@ -1,237 +1,230 @@
-Return-Path: <devicetree+bounces-275797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275798-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gCt8GbPVtmnLJQEAu9opvQ
-	(envelope-from <devicetree+bounces-275797-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 16:52:19 +0100
+	id cMUkChPWtmkDJgEAu9opvQ
+	(envelope-from <devicetree+bounces-275798-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 16:53:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F44529143D
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 16:52:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82F96291461
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 16:53:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 30B8F302261D
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 15:52:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D71DC302591D
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 15:53:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55E6A36F42E;
-	Sun, 15 Mar 2026 15:52:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01A1E366569;
+	Sun, 15 Mar 2026 15:53:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="sur3uond"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tb0lmEsg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ixit.cz [185.100.197.86])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A8FD1A3157;
-	Sun, 15 Mar 2026 15:52:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.100.197.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D05264207A;
+	Sun, 15 Mar 2026 15:53:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773589936; cv=none; b=uusKLZLqJCBbNnyLGqPyTPDqdAPWFynw0RUEucnITmVJfoICVmup+9vFZ9gYT2XJKt5LKP1CX93gkXbK++9Fz5guT1MfW7dJ4DSs18w3o4ZudGIv/VcCuatecCMhzUvoa6EusnU844ADE9mLg+OqXmtX+q2DX8DzPqlfMfcOETg=
+	t=1773590031; cv=none; b=JW8oCNLv4dGD2ZqLhROXQ1hlPmuT1Flud7iqBNTQ80/YQRo1i2gTr18SLc7EBh8yddLXYzwH1AmrrEBNFVvKd99MJoKg1AXgFJTQW73vF/zZ0QpOtohyG8tSqEKDfBBrum3NltNpoGNAtTJ5MPW/nSikUL394cVS2dAQzIyjzSI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773589936; c=relaxed/simple;
-	bh=LiDIOW9Hy8dn6zZF+1pxdZ4F8o3UIcdSMhOoS0H9fe8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pLGLCRNwsuQQc8aO9jN33DL/ol8b15JuhMXDNruFRpjcbsURmvblEsmCK6gaiTbX6W02drg/jwcD3/dG6zBw7JiVOQ0FkMyX41lF0FpjpjITEpDjzL9Mm3DE2PejDjGAeQRXecl6JrbgRyK7vE3ISPyCOtnZ7WGnPWBU4PKsWLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=sur3uond; arc=none smtp.client-ip=185.100.197.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [IPV6:2a02:f000:10bd:e301::1d7] (unknown [IPv6:2a02:f000:10bd:e301::1d7])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 3716053414BC;
-	Sun, 15 Mar 2026 16:52:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1773589922;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=6drqG0O4O0AKTzAz4HfPjF25blwHgCBvGYYrFt3dLpA=;
-	b=sur3uond+kX4e4Lgdu7Ywahn999EQBvi+FX+Zcr3zJyp2SOwsJuqWY9U/QscQX/cN9zosE
-	TT78GXoQ6pbkVLSnCYG2tBwDLvyEm1noob52xTzDVQAIhoML1wv2llmZRHKeWlvl1RMZpv
-	zM3eiMJVzZiVcjeQ4JpzliXhF+WOPng=
-Message-ID: <30606457-c28f-44c8-9811-63556a3e3f84@ixit.cz>
-Date: Sun, 15 Mar 2026 16:52:01 +0100
+	s=arc-20240116; t=1773590031; c=relaxed/simple;
+	bh=sBJUn/42jQXjcgTJZg1ONns3jNiKeHur5pQodUtHXhg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fWEDW5fbOTIRVZL5x6YR95Ju0dMPn+wEYgFcbRL2Ay9KV9qU/9gfupfNAYmcWb3gQ4W79/yPRc6JAwP7B4EBU2G1zKuHaArMJNaOmJyHdqoubsLVTyv4VQPtWviYqvtfDDy6YzzvfSnHzqFGRX5tTHDzX4JAHVRQXbxK6Ze0vK4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tb0lmEsg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FD0CC4CEF7;
+	Sun, 15 Mar 2026 15:53:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773590031;
+	bh=sBJUn/42jQXjcgTJZg1ONns3jNiKeHur5pQodUtHXhg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tb0lmEsgF86rPVPBYaQQD41fqP4GAoTMT2nqjISwL+vx+AagDPKA4u6cgrmFEugL4
+	 sMZSb7+rK5TgfGsP9foxf8TVmecJTQHNLjf2pP6uRO53cC9V5Z02FGxtEthk+yTepl
+	 RLXf6itluKKOhEREzyZfJ4A7RV1xWDARAdJvEvqnrn1H7c2+xGuijgogVJER6bQQQi
+	 TVfXPDqSAt/BRvogDCsD/JG2DKd4lw7eN79MYCe5it9k23Fp/aoSaCMmxKsDonEewR
+	 NdwUc8MBIFexrCwNaqwL59IZ9jrueIVsiiJM3o9lB1Dgb/ukOcdBi00NePx1DUBKnu
+	 TKuOl0MFEs91g==
+Date: Sun, 15 Mar 2026 21:23:42 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: claudiu.beznea.uj@bp.renesas.com, lpieralisi@kernel.org, 
+	kwilczynski@kernel.org, geert+renesas@glider.be, krzk+dt@kernel.org, robh@kernel.org, 
+	bhelgaas@google.com, conor+dt@kernel.org, magnus.damm@gmail.com, 
+	biju.das.jz@bp.renesas.com, linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, john.madieu@gmail.com
+Subject: Re: [PATCH v8 12/15] PCI: rzg3s-host: Add support for RZ/G3E PCIe
+ controller
+Message-ID: <rxb3ym45xd3xtvgghezds6mfocan2d55yhdxjitzhoa6gyjra4@l2xiy5d5mzqy>
+References: <20260306143423.19562-1-john.madieu.xa@bp.renesas.com>
+ <20260306143423.19562-13-john.madieu.xa@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/10] arm64: dts: qcom: sdm845-google: Add STM FTS
- touchscreen support
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Petr Hodina <petr.hodina@protonmail.com>, linux-input@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org
-References: <20260301-stmfts5-v1-0-22c458b9ac68@ixit.cz>
- <20260301-stmfts5-v1-10-22c458b9ac68@ixit.cz>
- <b747b545-12c7-4e33-95ae-ffa114fa13ec@oss.qualcomm.com>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <b747b545-12c7-4e33-95ae-ffa114fa13ec@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260306143423.19562-13-john.madieu.xa@bp.renesas.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
-	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-275798-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275797-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,gmail.com,foss.st.com,kernel.org,bitmath.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[protonmail.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,kernel.org];
+	FREEMAIL_CC(0.00)[bp.renesas.com,kernel.org,glider.be,google.com,gmail.com,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ixit.cz:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.49:email]
-X-Rspamd-Queue-Id: 0F44529143D
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 82F96291461
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Fri, Mar 06, 2026 at 03:34:19PM +0100, John Madieu wrote:
+> Add support for the PCIe controller found in RZ/G3E SoCs to the existing
+> RZ/G3S PCIe host driver. The RZ/G3E PCIe controller is similar to the
+> RZ/G3S's, with the following key differences:
+> 
+>  - Supports PCIe Gen3 (8.0 GT/s) link speeds alongside Gen2 (5.0 GT/s)
+>  - Uses a different reset control mechanism via AXI registers instead
+>    of the Linux reset framework
+>  - Requires specific SYSC configuration for link state control and
+>    Root Complex mode selection
+> 
+> Reviewed-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+> ---
+> 
+> Changes:
+> 
+> v8: Collected Claudiu's Rb tag
+> 
+> v7:
+>  - Renamed RZG3E_PCI_RESET* defines to RZG3S_PCI_RESET* as these
+>    registers are shared with upcoming SoCs (RZ/V2H, RZ/T2N, RZ/N2H),
+>    dropped associated "RZ/G3E specific registers" comment
+>  - Dropped "RZ/G3E SoC-specific config implementations" comment
+>  - Unified function naming to rzg3e_pcie_config_{pre_init,post_init,
+>    deinit}() and rzg3s_pcie_config_{post_init,deinit}()
+>  - Simplified comments as per Claudiu's suggestions
+>  - Used local mask variables for compactness within 80-char limit
+>  - Fixed L1_ALLOW error path: goto config_deinit_and_refclk since
+>    port refclk is already enabled
+>  - Fixed resume: reordered MODE before RST_RSM_B to match probe
+>    sequence, fixing error path handling
+> 
+> v6:
+>   - Use rzg3s_sysc_config_func() with per-function calls instead of
+>     rzg3s_sysc_config() with -1 skip pattern, as suggested by Claudiu
+>   - Extend enum rzg3s_sysc_func_id with L1_ALLOW and MODE entries
+>   - Use regmap_update_bits() consistently for all SYSC accesses
+>   - Shorten comment to "Put controller in RC mode and de-assert RST_RSM_B."
+>   - Drop "Enable ASPM L1 transition" comment (function ID is self-documenting)
+> 
+> v5:
+>   - Introduce rzg3s_sysc_config() helper for sys configuration
+> 
+> v4: No changes
+> v3: No changes
+> 
+>  drivers/pci/controller/pcie-rzg3s-host.c | 90 ++++++++++++++++++++++++
+>  1 file changed, 90 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/pcie-rzg3s-host.c b/drivers/pci/controller/pcie-rzg3s-host.c
+> index 44ce056d62c6..b7f92f5aee4a 100644
+> --- a/drivers/pci/controller/pcie-rzg3s-host.c
+> +++ b/drivers/pci/controller/pcie-rzg3s-host.c
+> @@ -111,6 +111,15 @@
+>  #define RZG3S_PCI_PERM_CFG_HWINIT_EN		BIT(2)
+>  #define RZG3S_PCI_PERM_PIPE_PHY_REG_EN		BIT(1)
+>  
+> +#define RZG3S_PCI_RESET				0x310
+> +#define RZG3S_PCI_RESET_RST_OUT_B		BIT(6)
+> +#define RZG3S_PCI_RESET_RST_PS_B		BIT(5)
+> +#define RZG3S_PCI_RESET_RST_LOAD_B		BIT(4)
+> +#define RZG3S_PCI_RESET_RST_CFG_B		BIT(3)
+> +#define RZG3S_PCI_RESET_RST_RSM_B		BIT(2)
+> +#define RZG3S_PCI_RESET_RST_GP_B		BIT(1)
+> +#define RZG3S_PCI_RESET_RST_B			BIT(0)
+> +
+>  #define RZG3S_PCI_MSIRE(id)			(0x600 + (id) * 0x10)
+>  #define RZG3S_PCI_MSIRE_ENA			BIT(0)
+>  
+> @@ -183,10 +192,14 @@ struct rzg3s_sysc_function {
+>  /**
+>   * enum rzg3s_sysc_func_id - System controller function IDs
+>   * @RZG3S_SYSC_FUNC_ID_RST_RSM_B: RST_RSM_B SYSC function ID
+> + * @RZG3S_SYSC_FUNC_ID_L1_ALLOW: L1 allow SYSC function ID
+> + * @RZG3S_SYSC_FUNC_ID_MODE: Mode SYSC function ID
+>   * @RZG3S_SYSC_FUNC_ID_MAX: Max SYSC function ID
+>   */
+>  enum rzg3s_sysc_func_id {
+>  	RZG3S_SYSC_FUNC_ID_RST_RSM_B,
+> +	RZG3S_SYSC_FUNC_ID_L1_ALLOW,
+> +	RZG3S_SYSC_FUNC_ID_MODE,
+>  	RZG3S_SYSC_FUNC_ID_MAX,
+>  };
+>  
+> @@ -1151,6 +1164,42 @@ static int rzg3s_pcie_config_deinit(struct rzg3s_pcie_host *host)
+>  					 host->cfg_resets);
+>  }
+>  
+> +static void rzg3e_pcie_config_pre_init(struct rzg3s_pcie_host *host)
+> +{
+> +	u32 mask = RZG3S_PCI_RESET_RST_LOAD_B | RZG3S_PCI_RESET_RST_CFG_B;
+> +
+> +	/* De-assert LOAD_B and CFG_B */
+> +	rzg3s_pcie_update_bits(host->axi, RZG3S_PCI_RESET, mask, mask);
+> +}
+> +
+> +static int rzg3e_pcie_config_deinit(struct rzg3s_pcie_host *host)
+> +{
+> +	writel_relaxed(0, host->axi + RZG3S_PCI_RESET);
+> +	return 0;
+> +}
+> +
+> +static int rzg3e_pcie_config_post_init(struct rzg3s_pcie_host *host)
+> +{
+> +	u32 mask = RZG3S_PCI_RESET_RST_PS_B | RZG3S_PCI_RESET_RST_GP_B |
+> +		   RZG3S_PCI_RESET_RST_B;
+> +
+> +	/* De-assert PS_B, GP_B, RST_B */
+> +	rzg3s_pcie_update_bits(host->axi, RZG3S_PCI_RESET, mask, mask);
+> +
+> +	/*
+> +	 * According to the RZ/G3E HW manual (Rev.1.15, Table 6.6-130
+> +	 * Initialization Procedure (RC)), hardware requires >= 500us delay
+> +	 * before final reset deassert.
+> +	 */
+> +	fsleep(500);
 
+It is strongly recommended to do a dummy read before adding any delay to make
+sure that the previous write got flushed to the hardware and the delay is valid.
 
-On 02/03/2026 12:06, Konrad Dybcio wrote:
-> On 3/1/26 6:51 PM, David Heidelberg via B4 Relay wrote:
->> From: Petr Hodina <petr.hodina@protonmail.com>
->>
->> Basic touchscreen connected to second i2c bus.
->>
->> Signed-off-by: Petr Hodina <petr.hodina@protonmail.com>
->> Co-developed-by: David Heidelberg <david@ixit.cz>
->> Signed-off-by: David Heidelberg <david@ixit.cz>
->> ---
->>   arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts | 21 ++++++++++++++++++++-
->>   1 file changed, 20 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts b/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
->> index fa89be500fb85..2501104b06e1b 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
->> +++ b/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
->> @@ -26,7 +26,26 @@ &i2c2 {
->>   
->>   	status = "okay";
->>   
->> -	/* ST,FTS @ 49 */
->> +	touchscreen@49 {
->> +		compatible = "st,stmfts5";
->> +		reg = <0x49>;
->> +
->> +		pinctrl-0 = <&touchscreen_pins &touchscreen_reset>;
->> +		pinctrl-names = "default";
->> +
->> +		interrupt-parent = <&tlmm>;
->> +		interrupts = <125 IRQ_TYPE_LEVEL_LOW>;
->> +
->> +		irq-gpios = <&tlmm 125 GPIO_ACTIVE_HIGH>;
-> 
-> This is an anti-pattern - you can translate the GPIO handle to an
-> IRQ handle, but unless the hardware is spectacularly odd, an interrupt
-> reference is usually what you're after
+So I added a dummy readl_relaxed() before this while applying.
 
-Thanks, dropped in follow-up version.
-
-> 
->> +		switch-gpios = <&tlmm 136 GPIO_ACTIVE_HIGH>;
->> +		reset-gpios = <&tlmm 99 GPIO_ACTIVE_LOW>;
->> +
->> +		avdd-supply = <&vreg_l14a_1p8>;
->> +		vdd-supply = <&vreg_l19a_3p3>;
->> +
->> +		touchscreen-size-x = <1079>;
->> +		touchscreen-size-y = <2159>;
-> 
-> Are you sure about these off-by-ones?
-
-These we're extracted from st,maxcoords and yet, it should be 1080, 2160. Fixed 
-in follow-up version.
-
-Thanks
-David
-
-> 
-> FWIW
-> 
-> input/touchscreen.c:
-> 
-> touchscreen_get_prop_u32(dev, "touchscreen-size-x",
->                           input_abs_get_max(input,
->                                             axis_x) + 1,
-> 
-> 				            notice ^
-> 
-> Konrad
+- Mani
 
 -- 
-David Heidelberg
-
+மணிவண்ணன் சதாசிவம்
 
