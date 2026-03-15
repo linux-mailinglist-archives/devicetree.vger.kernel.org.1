@@ -1,69 +1,60 @@
-Return-Path: <devicetree+bounces-275772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275768-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mO93N3VQtmmYAQEAu9opvQ
-	(envelope-from <devicetree+bounces-275772-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 07:23:49 +0100
+	id RnybJFxHtmkVAAEAu9opvQ
+	(envelope-from <devicetree+bounces-275768-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 06:45:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA2F22900FF
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 07:23:48 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 203BA29004F
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 06:44:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0AB5030526D6
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 06:23:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C0497301F4A1
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 05:44:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 004831C84DC;
-	Sun, 15 Mar 2026 06:23:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="E2NQiTaP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0EB223D7CE;
+	Sun, 15 Mar 2026 05:44:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m9351.xmail.ntesmail.com (mail-m9351.xmail.ntesmail.com [103.126.93.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33AB740DFAF;
-	Sun, 15 Mar 2026 06:23:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.126.93.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D1C0189BB6;
+	Sun, 15 Mar 2026 05:44:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773555823; cv=none; b=OqwM135w4ANWMJMhvvFKSBRyIi7UL9eLATnynbKt84LfSDKbQ3lEQSdS/1FYtlfCGbh2B/3/ZZnS8dHFhF0z5lhzIbfajQLkrEKxJwf/4KxnqXzZL7hQ2b5ANLwYl2ptE48O/X9U4piwVoBMaiCiGNQyJSvyitSsPFejT5Z6WJw=
+	t=1773553496; cv=none; b=ljegZXfCTQ/4RjvSEZFLZVHzaVdmVMoMsaONJF2TzTMfT53HPGIWHz1eBuIOsKLyUYa1ZSHldV3Qp2xXjDZM8MT7GmdRqVBtG1vmS5Ndfz5yJN88KfwiQj+J1G9oiuUKxSWIXnSEVTuvsJYxsYtpfdCSXtDPhTmcaSb/gvguhRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773555823; c=relaxed/simple;
-	bh=lv1BZ1fF3KRzKq0KmMZAne3HwKae6+zEI9pXH9CtPOY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=azQZQ55i8JXAZQYuOnrl3brqO2lNMJ1J7Z8CiPJH0B2WjdclwrJkMMrcA8odp2Q/X6WRKQ3fAnrL5lSHTP/dfPygaLSWmECTnMDZ1nt7ajNOKl4gVoSzaKnlJQJY3lzpezSb3PPBM5tNlyQH1V5yyUH4JIM7jik/oTq+ifiWhDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=E2NQiTaP; arc=none smtp.client-ip=103.126.93.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
-Received: from tsdl-HP-EliteDesk-880-G6-Tower-PC.. (unknown [36.129.139.90])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 36f9a2afd;
-	Sun, 15 Mar 2026 13:07:50 +0800 (GMT+08:00)
-From: Hongyang Zhao <hongyang.zhao@thundersoft.com>
-To: broonie@debian.org
-Cc: andersson@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	drake@endlessm.com,
-	hongyang.zhao@thundersoft.com,
-	katsuhiro@katsuster.net,
-	konradybcio@kernel.org,
-	krzk+dt@kernel.org,
-	lgirdwood@gmail.com,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	matteomartelli3@gmail.com,
-	perex@perex.cz,
+	s=arc-20240116; t=1773553496; c=relaxed/simple;
+	bh=dvWdzsAKAM6GCyzicYYcj2neKDLsOU5vShFVA8aEqtY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GF4BAGg2ZA95K5BMFb8XdB0cUTB725fgGALgS48UqbAKnc2TpDn8mGoIJ20OvfidynhcWGGSqFC5o4BzwcMfG8szOnW/3Y9/xqL8gyJ7uUSR3o6DYOGbxcy8wo93dVtoK1OSRUXSj55n5ppv72o+rpzE1FSOH7d5TWkncRUsLD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from duge-virtual-machine (unknown [183.192.222.244])
+	by APP-05 (Coremail) with SMTP id zQCowADXaQ1BR7Zp5WGACg--.20291S2;
+	Sun, 15 Mar 2026 13:44:35 +0800 (CST)
+From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+To: krzk@kernel.org,
+	ulf.hansson@linaro.org,
+	adrian.hunter@intel.com,
 	robh@kernel.org,
-	rosh@debian.org,
-	srini@kernel.org,
-	tiwai@suse.com,
-	zhoubinbin@loongson.cn
-Subject: Re: [PATCH 2/6] ASoC: es8316: Get sysclk rate from MCLK clock when not explicitly set
-Date: Sun, 15 Mar 2026 13:07:36 +0800
-Message-ID: <20260315050736.472233-1-hongyang.zhao@thundersoft.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <11e84371-57b2-4ea3-b3a4-0119d182229a@sirena.org.uk>
-References: <11e84371-57b2-4ea3-b3a4-0119d182229a@sirena.org.uk>
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: pjw@kernel.org,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	gaohan@iscas.ac.cn,
+	me@ziyao.cc,
+	Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+Subject: [PATCH v4 0/3] Add SDHCI support for Canaan K230 SoC
+Date: Sun, 15 Mar 2026 13:44:23 +0800
+Message-ID: <20260315054426.18383-1-jiayu.riscv@isrc.iscas.ac.cn>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,86 +62,114 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9cefe4ba8a09d5kunme5db3a35239c66
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCQh0YVk1MSUxJGEgdT0ofHlYVFAkWGhdVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlITVVKSUJVSkhCVUJLWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09IVUpLS1
-	VKQktLWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=E2NQiTaPn/WMhVQH9kXX1NTuYXb56GF9AhDU+eaARGuuZGLuAzZPcysDDvVcnVdIuGxWvzn0M7Sbn31Naypr3xvkzeml6/qaJxCn0N0kxDH8fl72v5ykEXp1kbVtVR4creNnuEc25fgCXRyJmGQ/ovr6pPhmZOBPMS1OskPtkQ4=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
-	bh=O2eqvpKafGnKxNWw9MkHGrYpLnJFGyGVG3+11y2x6Jg=;
-	h=date:mime-version:subject:message-id:from;
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-CM-TRANSID:zQCowADXaQ1BR7Zp5WGACg--.20291S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxur4fJF1fCw45Aw18tF1rXrb_yoW5WF1UpF
+	WUurW3G3yDGF1ftF4xKa1ku3W3Zws5X34UGw1ag34UX390kFW5Xr97C3WYqFyDJFZ7Gw1j
+	yw15XFyfCrZ8ZaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
+	4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+	n2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
+	kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
+	67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
+	CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
+	MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
+	VFxhVjvjDU0xZFpf9x0JUd-B_UUUUU=
+X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[thundersoft.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[thundersoft.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,endlessm.com,thundersoft.com,katsuster.net,gmail.com,perex.cz,debian.org,suse.com,loongson.cn];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-275768-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-275772-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[iscas.ac.cn];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jiayu.riscv@isrc.iscas.ac.cn,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hongyang.zhao@thundersoft.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[thundersoft.com:+];
-	TO_DN_NONE(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.968];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: EA2F22900FF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 203BA29004F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thanks for the review!
+This series is based on the k230 usbphy series[1].
 
-> On Thu, Mar 05, 2026 at 01:47:43PM +0800, Hongyang Zhao wrote:
-> 
-> > @@ -477,9 +477,20 @@ static int es8316_pcm_hw_params(struct snd_pcm_substream *substream,
-> >  	u8 bclk_divider;
-> >  	u16 lrck_divider;
-> >  	int i;
-> > -	unsigned int clk = es8316->sysclk / 2;
-> > +	unsigned int clk;
-> >  	bool clk_valid = false;
-> >  
-> > +	if (es8316->sysclk == 0 && es8316->mclk) {
-> > +		/* If the sysclk has not been set, try to get it from the MCLK */
-> > +		es8316->sysclk = clk_get_rate(es8316->mclk);
-> > +		if (es8316->sysclk == 0) {
-> > +			dev_err(component->dev, "unable to get mclk rate\n");
-> > +			return -EINVAL;
-> > +		}
-> 
-> It would be better to do this by bootstrapping es8316->sysclk when we
-> get the clock, we do a clk_set_rate() when we set the sysclk so the two
-> should be in sync for robust operation.
+This patch series adds SDHCI support for the Canaan K230 SoC,
+which uses Synopsys DWCMSHC SDHCI controllers, include MMC0 and MMC1.
+The hardware designs of these two controllers are different.
+The MMC0 supports eMMC, while MMC1 only supports SDIO. Detailed
+information can be found in the vendor's manual[2].
 
-I'll move the clk_get_rate() call to es8316_probe(), right after
-clk_prepare_enable() succeeds, and drop the fallback logic from hw_params().
-Will send a v2.
+From the vendor's K230 manual:
+ - MMC0 supports eMMC5.0 and SDIO3.0, usually for eMMC chips.
+ - MMC1 only does SDIO3.0 in 4/1-bit mode up to SDR104, and the manual
+   clearly says it can't handle eMMC because of pin count and limits.
 
-@@ -774,6 +774,9 @@ static int es8316_probe(struct snd_soc_component *component)
-                return ret;
-        }
+Therefore, there are two separate compatibles and the driver treats them
+differently.
 
-+       if (es8316->mclk)
-+               es8316->sysclk = clk_get_rate(es8316->mclk);
-+
-        /* Reset codec and enable current state machine */
-        snd_soc_component_write(component, ES8316_RESET, 0x3f);
-        usleep_range(5000, 5500);
+Link: https://lore.kernel.org/all/20260121145526.14672-1-jiayu.riscv@isrc.iscas.ac.cn/ [1]
+Link: https://github.com/kendryte/k230_docs/blob/main/en/00_hardware/K230_Hardware_Design_Guide.md#mmc-circuit [2]
 
-Thanks,
-Hongyang
+Changes in v4:
+- Drop the unnecessary line wrapping.
+- Drop the extra match_data pointer that was added in v3.
+- Add struct k230_pltfm_data which embeds struct dwcmshc_pltfm_data.
+- Use container_of() to get k230_pltfm_data.
+- Link to v3: https://lore.kernel.org/all/20260310064513.140093-1-jiayu.riscv@isrc.iscas.ac.cn/
+
+Changes in v3:
+- Drop the clock maxItems.
+- Add a const void *match_data to the struct dwcmshc_priv
+- Copy the match_data pointer to dwcmshc_priv in the common dwcmshc_probe
+- Link to v2: https://lore.kernel.org/all/20260226115923.75670-1-jiayu.riscv@isrc.iscas.ac.cn/
+
+Changes in v2:
+- Change the clock minItems to 5.
+- Add comments to explain the reason for setting SDHCI_PROG_CLOCK_MODE.
+- Write the power selection logic in the phy init cleaner.
+- Replace manual delay loop with read_poll_timeout.
+- Drop unnecessarily braces where a single statement will do.
+- Add the match_data pointer to dwcmshc_pltfm_data.
+- Add dwcmshc_k230_match_data struct to separate eMMC/SDIO config data
+- Split K230 into individual emmc/sdio platform data instances instead of
+  sharing one.
+- Remove redundant have_phy member in k230_priv.
+- Replace of_find_compatible_node with of_parse_phandle to get USB PHY
+  from DT phandle.
+- Link to v1: https://lore.kernel.org/all/20260204082908.27501-1-jiayu.riscv@isrc.iscas.ac.cn/
+
+Jiayu Du (3):
+  dt-bindings: mmc: Add sdhci support for Canaan k230
+  mmc: sdhci-dwcmshc: Add Canaan K230 DWCMSHC controller support
+  riscv: dts: canaan: Add mmc nodes for K230
+
+ .../bindings/mmc/snps,dwcmshc-sdhci.yaml      |  28 ++
+ .../boot/dts/canaan/k230-canmv-dshanpi.dts    |  56 ++++
+ .../dts/canaan/k230-canmv-module-dshanpi.dtsi |   7 +
+ arch/riscv/boot/dts/canaan/k230.dtsi          |  28 ++
+ drivers/mmc/host/sdhci-of-dwcmshc.c           | 277 ++++++++++++++++++
+ 5 files changed, 396 insertions(+)
+
+-- 
+2.53.0
+
 
