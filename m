@@ -1,219 +1,147 @@
-Return-Path: <devicetree+bounces-275799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275800-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aKeME+LbtmkQJwEAu9opvQ
-	(envelope-from <devicetree+bounces-275799-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 17:18:42 +0100
+	id mH3NFyDctmkQJwEAu9opvQ
+	(envelope-from <devicetree+bounces-275800-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 17:19:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D83332915C0
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 17:18:41 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 630FC2915E5
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 17:19:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D1529300612A
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 16:18:40 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 76FBA30060A3
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 16:19:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2909336C584;
-	Sun, 15 Mar 2026 16:18:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25BF2371CED;
+	Sun, 15 Mar 2026 16:19:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="PBiIa69g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LgLDdw+Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1CEC21D3E4;
-	Sun, 15 Mar 2026 16:18:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEC47363C66;
+	Sun, 15 Mar 2026 16:19:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773591518; cv=none; b=YolAaHbiUUamXWR8bhYYCiSZ9+Lf/K/xIDr3aDolNMevs900PVMQjDNxod0Vj8FM4hA5LJDyKQg9fcooUlgJlEQoIbO+DiPbs61jLnpzt8C0Rd5VdXfC6X0qtwJId7ruZUBXZLMDnRiXkOeDOmj0Oh1e6DY3XN5cEGZygpzzdW0=
+	t=1773591577; cv=none; b=J4UQEZLmo4F24dminxkLAU+pzE/wDNVcaFw7OHVrjze0s0V7zHX5dca98B4l03wTsBZpOMiVXsBXk4FGnNKGhex0tezFJSjC1RJZTP7I4KZUPuIh5i/gIx72fApKNobBQfydwfAwQCbtyr3f2DPR7q6tm6hX7Rd0UeaNhIU9tow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773591518; c=relaxed/simple;
-	bh=fJHDFwpRzXb3BcX2/01HC3jefIUU851Gc1qs3JXK17A=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=M1UVNfjwgMI+93KTZ8KNI7MO0M4d82UxAz3WXCvjqWUldF7XW+qbfLWRjP70xYtW0jgNokeUN75WVb0FmSzuZVeAqC4qttWDja8HvBeVx2wxz4kA77ZkufuzeOF4u0w8gdXRr605xPfuNxa3C+2Bs5Q3PgRtvM1MqaFRkbCr98g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=PBiIa69g; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id CE68526F54;
-	Sun, 15 Mar 2026 17:18:32 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id elDOnhXWlw1B; Sun, 15 Mar 2026 17:18:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1773591512; bh=fJHDFwpRzXb3BcX2/01HC3jefIUU851Gc1qs3JXK17A=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=PBiIa69giF0vVmT12pGS2kOs9DlcwecsGg280gd9bYOQ8WL26wsaJ3YehnyJqBHzN
-	 Gx1BMZtbWOaKfdf8lrHNZHUoM7TAVkMcw3epKNe39Wg0dq5Dh4c9hN8uW+yc+8vpBG
-	 ZbGfi3ucwQTqcIHN3qiq2v1agOS2apOQZe7Uebf5RIpxB+bqXY7aIeHNBE7tPOBqeG
-	 1OOHqcMRSKii+TCe8YiBRRo3frZMQO0N7z8TzYLJ6YDnUjpGDcojR/R8SCnyKo++Km
-	 sLk7YeoxmeNNfe3NJWVTya0zGvUTNGxA5EdNCMsHugBAAZY24ixIBQfydcpbhIo7G/
-	 YDtKgnc1FboWg==
+	s=arc-20240116; t=1773591577; c=relaxed/simple;
+	bh=h5Z6I40xCkxuo0L+Pz55mKrVb/ARpUeKbuqHsTWX90o=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=FtiXbqPI8HMHAIrqovHKbfGzBYdLLIWbmta5cor7HmIb+i6XTmLM+9RStaA8OODJBhAv35ZGTLkU1Px4pXy9RBRAv83NyT8BCw9mgzU5ShUWFVKty6G2rFmIYGzZ3pzwvhTEqslrYI0vm7RIGTAG8bKn5MwTAxa6IBCGwbrlSVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LgLDdw+Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DD90C4CEF7;
+	Sun, 15 Mar 2026 16:19:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773591576;
+	bh=h5Z6I40xCkxuo0L+Pz55mKrVb/ARpUeKbuqHsTWX90o=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=LgLDdw+ZqkTckA4mFvt+6o+TVZxNlHTnrRpgkJVdELZWwNb0bXItkkBGKWECemanf
+	 /OZXW2pM1zl0ssQ+jNtwbGHUkVcioPlEuuOxzugyjzt/NbtFyTTNRG/2BKFpFHktPQ
+	 bOkcoMwVGRsjQ/Aq/8iaAKtt84HeDoMZhTwSypKZVD88YyXVLB39Pd0sfkm+OGsIar
+	 RiHtb+WJIbPNIRdd2Xjx0jvWE345dBEEEy8VvYdV4uOEfCqgOpkdbjHUYrGyIiCDog
+	 eFad/cQKBY4/TxEyvfb2lGjN/RZlQy4XnIguj6UN1cL5QLDOjxRwglOKK0X8/B38cM
+	 BfC8UE+JoOjqQ==
+Date: Sun, 15 Mar 2026 11:19:35 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Sun, 15 Mar 2026 16:18:31 +0000
-From: Rustam Adilov <adilov@disroot.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>, Andi Shyti
- <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jonas Jelonek <jelonek.jonas@gmail.com>
-Subject: Re: [PATCH 7/8] dt-bindings: i2c: realtek,rtl9301-i2c: extend for
- RTL9607C support
-In-Reply-To: <764c3942-925d-47e9-99fb-cfd84daee0fe@kernel.org>
-References: <20260314082628.25206-1-adilov@disroot.org>
- <20260314082628.25206-8-adilov@disroot.org>
- <20260315-invaluable-adamant-urchin-7aaf7e@quoll>
- <c975cfa4c18adc35c49d81a5c50b74ac@disroot.org>
- <764c3942-925d-47e9-99fb-cfd84daee0fe@kernel.org>
-Message-ID: <1e2119e91baf59936c0d42f047a1c733@disroot.org>
-X-Sender: adilov@disroot.org
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Simona Vetter <simona@ffwll.ch>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org, 
+ David Airlie <airlied@gmail.com>, Jessica Zhang <jesszhan0024@gmail.com>, 
+ Maxime Ripard <mripard@kernel.org>, linux-kernel@vger.kernel.org
+To: Pengyu Luo <mitltlatltl@gmail.com>
+In-Reply-To: <20260315144536.515032-2-mitltlatltl@gmail.com>
+References: <20260315144536.515032-1-mitltlatltl@gmail.com>
+ <20260315144536.515032-2-mitltlatltl@gmail.com>
+Message-Id: <177359157560.309332.9206480782210457963.robh@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: Add Himax HX83121A
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
-	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[alliedtelesis.co.nz,kernel.org,vger.kernel.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-275799-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DKIM_TRACE(0.00)[disroot.org:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275800-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,linaro.org,oss.qualcomm.com,linux.intel.com,ffwll.ch,suse.de,lists.freedesktop.org,gmail.com];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D83332915C0
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,qualcomm.com:email,devicetree.org:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 630FC2915E5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 2026-03-15 10:15, Krzysztof Kozlowski wrote:
-> On 15/03/2026 11:10, Rustam Adilov wrote:
->> Hello,
->> 
->> On 2026-03-15 08:56, Krzysztof Kozlowski wrote:
->>> On Sat, Mar 14, 2026 at 01:26:27PM +0500, Rustam Adilov wrote:
->>>> Add the "realtek,rtl9607-i2c" compatible for i2c controller on the
->>>> RTL9607C SoC series.
->>>>
->>>> Add a clocks property to the properties since RTL9607C requires it
->>>> along with the realtek,scl.
->>>>
->>>> Signed-off-by: Rustam Adilov <adilov@disroot.org>
->>>> ---
->>>>  .../bindings/i2c/realtek,rtl9301-i2c.yaml         | 15 +++++++++++++++
->>>>  1 file changed, 15 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/i2c/realtek,rtl9301-i2c.yaml b/Documentation/devicetree/bindings/i2c/realtek,rtl9301-i2c.yaml
->>>> index f9a449fee2b0..5873cfdc5b3e 100644
->>>> --- a/Documentation/devicetree/bindings/i2c/realtek,rtl9301-i2c.yaml
->>>> +++ b/Documentation/devicetree/bindings/i2c/realtek,rtl9301-i2c.yaml
->>>> @@ -15,6 +15,8 @@ description:
->>>>    assigned to either I2C controller.
->>>>    RTL9310 SoCs have equal capabilities but support 12 common SDA lines which
->>>>    can be assigned to either I2C controller.
->>>> +  RTL9607C SoCs have equal capabilities but each controller only supports 1
->>>> +  SCL/SDA line.
->>>>  
->>>>  properties:
->>>>    compatible:
->>>> @@ -34,6 +36,7 @@ properties:
->>>>        - enum:
->>>>            - realtek,rtl9301-i2c
->>>>            - realtek,rtl9310-i2c
->>>> +          - realtek,rtl9607-i2c
->>>>  
->>>>    reg:
->>>>      items:
->>>> @@ -51,6 +54,9 @@ properties:
->>>>        The SCL line number of this I2C controller.
->>>>      enum: [ 0, 1 ]
->>>>  
->>>> +  clocks:
->>>> +    maxItems: 1
->>>> +
->>>>  patternProperties:
->>>>    '^i2c@[0-9ab]$':
->>>>      $ref: /schemas/i2c/i2c-controller.yaml
->>>> @@ -81,6 +87,15 @@ allOf:
->>>>      then:
->>>>        patternProperties:
->>>>          '^i2c@[89ab]$': false
->>>
->>> Other devices do not have any clock input? Hard to believe, but if that
->>> was the case then previous "if:then:" should disallow this. But if you
->>> assume they have clock, which is expected, then document this in the
->>> commit msg. Now you just silently add clock to each of existing variant
->>> without any explanation WHY.
->> 
->> As far as i can tell, that does seem to be the case that they don't need the
->> clocks input. In RTL9300 and RL9310 there is a simple SCL_FREQ bit field that
->> sets the frequency from preselected option (100khz, 400kHz, 2.5MHz and 50kHz) and
->> it is gotten straight from the clock-frequency of the i2c child nodes.
+
+On Sun, 15 Mar 2026 22:45:35 +0800, Pengyu Luo wrote:
+> HX83121A is a driver IC used to drive MIPI-DSI panels. It is found
+> in HUAWEI Matebook E Go series (Gaokun2/3) with BOE or CSOT panels.
 > 
-> And from where does this clock gets its frequency? Really SoC IP block
-> not having clock input would mean it is not part of the SoC, because it
-> would have completely independent clock domain.
-
-I will have to leave this question to someone who knows it as i certainly don't know.
-Maybe the driver maintainer has some knowledge on this.
-
->> But in RTL9607C there is CLK_DIV bit field instead and it is set to the calculated
->> value of "clk_get_rate(i2c->clk) / i2c->bus_freq - 1" and that is why it requires
->> clocks.
->> 
->> With this, what should be changed in this i2c bindings file? I was under assumption
+> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> ---
+> v3:
+> - remove '|' from description (Krzysztof)
+> - drop description for reset-gpios (Krzysztof)
+> ---
+>  .../display/panel/himax,hx83121a.yaml         | 86 +++++++++++++++++++
+>  1 file changed, 86 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/himax,hx83121a.yaml
 > 
-> If devices *do not have* clock, you set it as false (see example schema
-> and even line above!). Clue here is what I wrote "devices" and "do not
-> have".
 
-I have read the example-schema file and from what i understand it i can put the
-"else: properties: clocks: false" ?
+My bot found errors running 'make dt_binding_check' on your patch:
 
-So then, the whole would look like
+yamllint warnings/errors:
 
-  - if:
-      properties:
-        compatible:
-          contains:
-            const: realtek,rtl9607-i2c
-    then:
-      required:
-        - realtek,scl
-        - clocks
-    else:
-      properties:
-        clocks: false
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/panel/himax,hx83121a.example.dtb: panel@0 (csot,ppc357db1-4): 'ports' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/display/panel/himax,hx83121a.yaml
 
-Let me know if my understanding of scheme is accurate cause i am very new to this.
-Or should the "clocks: false" be under each other "if:" for rtl9300 and rtl9310
-const compatibles?
+doc reference errors (make refcheckdocs):
 
-> Best regards,
-> Krzysztof
+See https://patchwork.kernel.org/project/devicetree/patch/20260315144536.515032-2-mitltlatltl@gmail.com
 
-Best,
-Rustam
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
