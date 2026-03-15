@@ -1,120 +1,182 @@
-Return-Path: <devicetree+bounces-275781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275782-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MBDXGlh3tml4CAEAu9opvQ
-	(envelope-from <devicetree+bounces-275781-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 10:09:44 +0100
+	id yJwiKJeFtmlhCwEAu9opvQ
+	(envelope-from <devicetree+bounces-275782-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 11:10:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E003A290522
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 10:09:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2E50290617
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 11:10:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 479EA3030B35
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 09:09:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C30983027122
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 10:10:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 766C3265CD9;
-	Sun, 15 Mar 2026 09:09:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D12C425B2FA;
+	Sun, 15 Mar 2026 10:10:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="snapgaNK"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="bmBlfxmT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 528092AEF5;
-	Sun, 15 Mar 2026 09:09:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAF60225416;
+	Sun, 15 Mar 2026 10:10:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773565780; cv=none; b=fr6/XLZPBfNNO1ZsAmkT0a9zgqaoO1wIay1xSTc/27JP72xbgh6xS/iwq6j0yzh/asKBR8O68S7ReHnGnjh1CtkP6WVlPorJnqKxnUGcUREiUm4x4FdhbFO2Av3HJFu4WbocP+L3fnKULU8j2nJu8zYqStNd4y3LvlZ8TGxy5Do=
+	t=1773569415; cv=none; b=UxsADJGF9UvDPQKjHnhpR8l1n223c0HaNFj67PGCXVAH7UU541jK4uGXvBL4W5F2suGZOrYnVN29xTs63Pf4lDJEyA/baEbmkYxGVpg65MMYCBb6yVzVoJ56Ykv7r5+4A6w9AKnPWmcYKfvvXD8lI8vSsSAOdHvlyOwjlyn2yIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773565780; c=relaxed/simple;
-	bh=ZIbwSNyXCHsWNZpwx80jaK1r2K54qgDpNHqrLdy6exo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a0ljgDq2fFO7kkBJO7LRiRmdSYyp17MftuS/aZdM+krswjiXqYEtvPyLUkXk4WlmmrZ/oxFfLmm5YKGWJLJPOt/W8BtFUuQOIm83qKu9Y8skG29BWVB4GRCTpNrfFA9nmwbd8Ba/NAa3haKnhL70VIkAvmmRudqUiQQqlyNRp5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=snapgaNK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A243C4CEF7;
-	Sun, 15 Mar 2026 09:09:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773565779;
-	bh=ZIbwSNyXCHsWNZpwx80jaK1r2K54qgDpNHqrLdy6exo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=snapgaNKcdcFVnSBCKmmBsbMKvEPvE1syrls0YnoEOSqz/sYV0SRuUpVlIhjl10Pt
-	 p0NsZgGahsvVlIptsL8AgJWWB6rs2ysHHgCiXFOzu2Hh6ukCDDKnTjcRjU0wx4Q71V
-	 6+iKqzJwICYxBem1thsUTTqPOUvVdlqjfI4n3uUen8CMadBy+Q+WFFPAISQxgDszLk
-	 YhHlmF6in633w8IYCsWo+qD2PLECFwEnxc4x9bQgQKa2wWNEM2Z5psRzBJBqV9OV0H
-	 PjhoGuO8cwUt1Kb3gxvzcCRiAnt12gvICxFFYP79Di1u0pv13cZizwOZZhJcMolooZ
-	 1kjxByLE5SduQ==
-Date: Sun, 15 Mar 2026 10:09:37 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Rong Zhang <rongrong@oss.cipunited.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Jiaxun Yang <jiaxun.yang@flygoat.com>, linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
-	linux-mips@vger.kernel.org, devicetree@vger.kernel.org, Yao Zi <me@ziyao.cc>, 
-	Icenowy Zheng <uwu@icenowy.me>, Rong Zhang <i@rong.moe>
-Subject: Re: [PATCH 1/3] dt-bindings: serial: 8250: Add Loongson 3A4000 uart
- compatible
-Message-ID: <20260315-bulky-important-goshawk-affcf9@quoll>
-References: <20260314234143.651298-1-rongrong@oss.cipunited.com>
- <20260314234143.651298-2-rongrong@oss.cipunited.com>
+	s=arc-20240116; t=1773569415; c=relaxed/simple;
+	bh=2kw1sbKR/vEkSJj9nsrmMCEPQZJu7Ji5z3i8iH0upVw=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=dfouavKliLA1uFJxN11FWM9cbIAk7FRWZs7LbzhqsX0ARPSwjCNnLM13floCTOAP9tAKzWW9CXEjLzmqOr2Czp5xe9kabUMbBnPrH2vRTCTg+sRtKvidkM3smZw9nHTSxUBb0kzE3E24WoxI+xNc6Qm/jbVCIS9FIKAeOUxzAN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=bmBlfxmT; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 7F72C2715F;
+	Sun, 15 Mar 2026 11:10:05 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id N6A2cGKR5FvL; Sun, 15 Mar 2026 11:10:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1773569404; bh=2kw1sbKR/vEkSJj9nsrmMCEPQZJu7Ji5z3i8iH0upVw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=bmBlfxmTnsjR8G5JzM4k18e4ewigdTRTu9mYv75x/1FTxRvlyTBrHhXmoEHHnbB7v
+	 tjWz+e0CLdB4y/TfLTt16KwHox3lUJZei7p4iRlQbO4jkjO1FD4QQUfIw8XX7R8bnW
+	 AP2z7n0jX3CDfRYHFxjPAVbo7vbCbRJYGfdYscPbK7oCNqiB+K8EmNN5cQEc4oXTBu
+	 DI3pJbWqnkRmIXF//ZhDY3o6Rwd/WlVo+ASo+NjIE6L6ppPVjaWZvFmA7iUQQekZgi
+	 9InXTvuM42kzZ3F6pK8p4kg2VmVGXN203AS/0+O3F3RyOCnXlgSrRAOfTbmsr9TUqt
+	 9JDCG5VTNvD7w==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260314234143.651298-2-rongrong@oss.cipunited.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Date: Sun, 15 Mar 2026 10:10:04 +0000
+From: Rustam Adilov <adilov@disroot.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>, Andi Shyti
+ <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 7/8] dt-bindings: i2c: realtek,rtl9301-i2c: extend for
+ RTL9607C support
+In-Reply-To: <20260315-invaluable-adamant-urchin-7aaf7e@quoll>
+References: <20260314082628.25206-1-adilov@disroot.org>
+ <20260314082628.25206-8-adilov@disroot.org>
+ <20260315-invaluable-adamant-urchin-7aaf7e@quoll>
+Message-ID: <c975cfa4c18adc35c49d81a5c50b74ac@disroot.org>
+X-Sender: adilov@disroot.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
+	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DKIM_TRACE(0.00)[disroot.org:+];
+	TAGGED_FROM(0.00)[bounces-275782-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275781-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[cipunited.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E003A290522
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:dkim,disroot.org:email,disroot.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E2E50290617
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sun, Mar 15, 2026 at 07:41:41AM +0800, Rong Zhang wrote:
-> The UART controller on Loongson 3A4000 is compatible with Loongson
-> 2K1500, which is NS16550A-compatible with an additional fractional
-> frequency divisor register.
+Hello,
+
+On 2026-03-15 08:56, Krzysztof Kozlowski wrote:
+> On Sat, Mar 14, 2026 at 01:26:27PM +0500, Rustam Adilov wrote:
+>> Add the "realtek,rtl9607-i2c" compatible for i2c controller on the
+>> RTL9607C SoC series.
+>> 
+>> Add a clocks property to the properties since RTL9607C requires it
+>> along with the realtek,scl.
+>> 
+>> Signed-off-by: Rustam Adilov <adilov@disroot.org>
+>> ---
+>>  .../bindings/i2c/realtek,rtl9301-i2c.yaml         | 15 +++++++++++++++
+>>  1 file changed, 15 insertions(+)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/i2c/realtek,rtl9301-i2c.yaml b/Documentation/devicetree/bindings/i2c/realtek,rtl9301-i2c.yaml
+>> index f9a449fee2b0..5873cfdc5b3e 100644
+>> --- a/Documentation/devicetree/bindings/i2c/realtek,rtl9301-i2c.yaml
+>> +++ b/Documentation/devicetree/bindings/i2c/realtek,rtl9301-i2c.yaml
+>> @@ -15,6 +15,8 @@ description:
+>>    assigned to either I2C controller.
+>>    RTL9310 SoCs have equal capabilities but support 12 common SDA lines which
+>>    can be assigned to either I2C controller.
+>> +  RTL9607C SoCs have equal capabilities but each controller only supports 1
+>> +  SCL/SDA line.
+>>  
+>>  properties:
+>>    compatible:
+>> @@ -34,6 +36,7 @@ properties:
+>>        - enum:
+>>            - realtek,rtl9301-i2c
+>>            - realtek,rtl9310-i2c
+>> +          - realtek,rtl9607-i2c
+>>  
+>>    reg:
+>>      items:
+>> @@ -51,6 +54,9 @@ properties:
+>>        The SCL line number of this I2C controller.
+>>      enum: [ 0, 1 ]
+>>  
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>>  patternProperties:
+>>    '^i2c@[0-9ab]$':
+>>      $ref: /schemas/i2c/i2c-controller.yaml
+>> @@ -81,6 +87,15 @@ allOf:
+>>      then:
+>>        patternProperties:
+>>          '^i2c@[89ab]$': false
 > 
-> Add loongson,ls3a4000-uart as compatible with loongson,ls2k1500-uart.
+> Other devices do not have any clock input? Hard to believe, but if that
+> was the case then previous "if:then:" should disallow this. But if you
+> assume they have clock, which is expected, then document this in the
+> commit msg. Now you just silently add clock to each of existing variant
+> without any explanation WHY.
+
+As far as i can tell, that does seem to be the case that they don't need the
+clocks input. In RTL9300 and RL9310 there is a simple SCL_FREQ bit field that
+sets the frequency from preselected option (100khz, 400kHz, 2.5MHz and 50kHz) and
+it is gotten straight from the clock-frequency of the i2c child nodes.
+But in RTL9607C there is CLK_DIV bit field instead and it is set to the calculated
+value of "clk_get_rate(i2c->clk) / i2c->bus_freq - 1" and that is why it requires
+clocks.
+
+With this, what should be changed in this i2c bindings file? I was under assumption
+that even if only RTL9607 requires the clocks i would still need to add it to the 
+properties along with the "if:then:" but if not then i can remove it.
 > 
-> Signed-off-by: Rong Zhang <rongrong@oss.cipunited.com>
-> ---
->  Documentation/devicetree/bindings/serial/8250.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Best regards,
+> Krzysztof
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
-Best regards,
-Krzysztof
-
+Best,
+Rustam
 
