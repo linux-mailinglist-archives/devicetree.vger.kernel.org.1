@@ -1,76 +1,66 @@
-Return-Path: <devicetree+bounces-275786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275787-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qE70BZihtmnnEgEAu9opvQ
-	(envelope-from <devicetree+bounces-275786-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 13:10:00 +0100
+	id YqL5KyaitmkMEwEAu9opvQ
+	(envelope-from <devicetree+bounces-275787-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 13:12:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AD6F290984
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 13:09:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07F4229099D
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 13:12:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BEDA530179DC
-	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 12:09:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CB67E301828C
+	for <lists+devicetree@lfdr.de>; Sun, 15 Mar 2026 12:12:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7F1E34D4FA;
-	Sun, 15 Mar 2026 12:09:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E708934D90D;
+	Sun, 15 Mar 2026 12:12:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BOx05BHE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xye8T87s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3116346A1D;
-	Sun, 15 Mar 2026 12:09:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1044346A1D;
+	Sun, 15 Mar 2026 12:12:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773576595; cv=none; b=lV7O9oubs0dOdGu9EQngvf7wjOaYtdqd1HcYy6y4xwLGqHSqtexrFQzUztfXHWpVrB/ISa9XDFvCikbvAVvSv6CdcPTVkS5TE0HDQjHpt1JD5VhsHDXmeqqfqnTxd6iuLjXczfbPuUzyCT9FPmgEoI37Y3FvRBXojkg5B+WioJI=
+	t=1773576738; cv=none; b=CzOOzI4Ho46aT/xYz/WC14/Q7FSzmd37MzvL4NKQwrPMLOuTBhQ8lFA4kZj2EH12LsX+Rlsu9wR8kKV+qcCz8tUwvj+66HkxNf3ZddX5nbAF/+P/qhmqWGdMIc0Zd/Vep0VYt7g/J4Ji7UkC8/t9+sEZRW4xYJk9lSCO43AUbOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773576595; c=relaxed/simple;
-	bh=kMnAv0hAsF+sY5CDNuXvfwH6pllo4bNiD0Kc14LYaCQ=;
+	s=arc-20240116; t=1773576738; c=relaxed/simple;
+	bh=6CGcM3IIxKsMzHTVUtHK9uC5NP4xomnmcR+Vtyq5J4Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cY9E24siwK8mQ2ip6VleNOgDAJ0XuFJ/2AOgbeIoXrxSmPI0mb74O3wVH4jz49qcr2cbapAQ4ZZuSrUnroq5lW9iGYgNPLQijPi+caM4Iwl6UWMTxpSTuu9ot2xX2D9u9gAusDRtc4Neg527ujs8XAkAzxZraF5aOcL7BcTgM3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BOx05BHE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9889FC4CEF7;
-	Sun, 15 Mar 2026 12:09:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=T0n7aU6GtcxcRVWEI6onTM4b6B/cwrnnw8/XspeC8uVwRkM0MSKNBsdV7M3X+Kp0mAM2EG9J8sQBtDBhi4GnA1BSqwyWD6EmIz3H0gTJ3D97yXPDWPs6DBMqP9FGVXImr/N+zxj3w7a25C0TckkGbWsPPq2CjX2q87qdQjdUvgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xye8T87s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F112C4CEF7;
+	Sun, 15 Mar 2026 12:12:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773576595;
-	bh=kMnAv0hAsF+sY5CDNuXvfwH6pllo4bNiD0Kc14LYaCQ=;
+	s=k20201202; t=1773576738;
+	bh=6CGcM3IIxKsMzHTVUtHK9uC5NP4xomnmcR+Vtyq5J4Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BOx05BHE5rGVd6UwfAxoIT56Wx2mQiXYYuUur3NsKrWrsfwysMjgePuFS5UCuRttH
-	 sbAzoAEcF53qI4zVspG5Pbyj/7+Bi7VulyEHWpbx/obtiX7aeGCUTdnGqX8yA86bx9
-	 Jr2tZAYE/bWHDL5V0/Y6scryKvcIdsU5hGYcqNPIyGZ25DV3aCRS8LbBgfj8uYWEmK
-	 2XxAHjduh/LBwtm64VGBqbgkCLKGCYjG6RQOOcUtCHpBYEIG8/FjfWFpyehiUqnAau
-	 hV84NBSR+V2yVGIS7Gta5FArDmSZ0Oa4lE0n1LIwA7K952bnLQeURKdhKyYdVBYPjw
-	 mQP4NxBJdpQbw==
-Date: Sun, 15 Mar 2026 12:09:49 +0000
+	b=Xye8T87sqEmhusxuk+NSjtJawsXqCHdy/Tp6LOpl1tOZb0g1oMBTy1jQyMbY1URn/
+	 yUVlDlGzUiAuvvX3ywbujI7hnxLgEuhMdhI/LD3kaHVVuTHlwjdOx/Qo8DzvZ7dULi
+	 Njs5ME23BdPtoQpF2xqbXxp6kLZzpX0b/P/7BtKIQOazSFo1hU6bhy+hFbCnXiKBmA
+	 eHTx97n9AJhRmA77ZF8AwAl7rIZ++qHs+SoGZqqh5netbueup7dtYkL+TkiLDtMPkK
+	 WnRWjmw6qis6GhaUjTPq7CLbz12qcjAtq9IFdLsIOULpkVc+Ngf+bsLWBgU5aZ4KxI
+	 nGfhnCXdrTkbA==
+Date: Sun, 15 Mar 2026 12:12:13 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Michael Riesch <michael.riesch@collabora.com>
-Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+To: Drew Fustini <fustini@kernel.org>
+Cc: Icenowy Zheng <zhengxingda@iscas.ac.cn>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Jagan Teki <jagan@amarulasolutions.com>,
-	=?utf-8?B?0JrRg9C30L3QtdGG0L7QsiDQnNC40YXQsNC40Ls=?= <mai.kuznetsov.misha@gmail.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Collabora Kernel Team <kernel@collabora.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/9] media: dt-bindings: add rockchip rk3588 vicap
-Message-ID: <20260315-geologist-fringe-c6b8c653a653@spud>
-References: <20250430-rk3588-vicap-v1-0-b3bddf749914@collabora.com>
- <20250430-rk3588-vicap-v1-2-b3bddf749914@collabora.com>
- <20260313-quickly-imperial-47638c9f0d4f@spud>
- <20260313-coyness-jab-ff0c85654555@spud>
- <e064b4f2-a138-4ea9-aee4-93ac8af38f64@collabora.com>
+	Conor Dooley <conor+dt@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Rahul Tanwar <rtanwar@maxlinear.com>,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Icenowy Zheng <uwu@icenowy.me>, Han Gao <rabenda.cn@gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: moortec,mr75203: adapt
+ multipleOf for T-Head TH1520
+Message-ID: <20260315-cogwheel-dislodge-a3efe31728d1@spud>
+References: <20260309162457.4128205-1-zhengxingda@iscas.ac.cn>
+ <20260309162457.4128205-2-zhengxingda@iscas.ac.cn>
+ <abWTO7QBFIcjxKn6@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,149 +68,116 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="nSCb7cCQ1MbL+UzG"
+	protocol="application/pgp-signature"; boundary="K2OPznGYZkKn+vwY"
 Content-Disposition: inline
-In-Reply-To: <e064b4f2-a138-4ea9-aee4-93ac8af38f64@collabora.com>
+In-Reply-To: <abWTO7QBFIcjxKn6@x1>
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275786-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-275787-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_CC(0.00)[linux.intel.com,ideasonboard.com,kernel.org,sntech.de,rock-chips.com,amarulasolutions.com,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
+	FREEMAIL_CC(0.00)[iscas.ac.cn,roeck-us.net,kernel.org,redhat.com,maxlinear.com,vger.kernel.org,lists.infradead.org,icenowy.me,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,0.0.0.5:email]
-X-Rspamd-Queue-Id: 6AD6F290984
+	RCPT_COUNT_TWELVE(0.00)[15];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 07F4229099D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---nSCb7cCQ1MbL+UzG
+--K2OPznGYZkKn+vwY
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Mar 13, 2026 at 09:00:37PM +0100, Michael Riesch wrote:
-> Hi Conor,
->=20
-> On 3/13/26 17:57, Conor Dooley wrote:
-> > On Fri, Mar 13, 2026 at 04:56:29PM +0000, Conor Dooley wrote:
-> >> On Fri, Mar 13, 2026 at 04:20:44PM +0100, Michael Riesch via B4 Relay =
-wrote:
-> >>> From: Michael Riesch <michael.riesch@collabora.com>
-> >>>
-> >>> Add documentation for the Rockchip RK3588 Video Capture (VICAP) unit.
-> >>>
-> >>> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
-> >>> ---
-> >>>  .../bindings/media/rockchip,rk3588-vicap.yaml      | 256 +++++++++++=
-++++++++++
-> >>>  MAINTAINERS                                        |   1 +
-> >>>  2 files changed, 257 insertions(+)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3588-=
-vicap.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3588-vicap.=
-yaml
-> >>> new file mode 100644
-> >>> index 000000000000..7fd4214921cb
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3588-vicap.y=
-aml
-> >>> @@ -0,0 +1,256 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/media/rockchip,rk3588-vicap.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: Rockchip RK3588 Video Capture (VICAP)
-> >>> +
-> >>> +maintainers:
-> >>> +  - Michael Riesch <michael.riesch@collabora.com>
-> >>> +
-> >>> +description:
-> >>> +  The Rockchip RK3588 Video Capture (VICAP) block features a digital=
- video
-> >>> +  port (DVP, a parallel video interface) and six MIPI CSI-2 ports. I=
-t receives
-> >>> +  the data from camera sensors, video decoders, or other companion I=
-Cs and
-> >>> +  transfers it into system main memory by AXI bus and/or passes it t=
-o the image
-> >>> +  signal processing (ISP) blocks.
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    enum:
-> >>> +      - rockchip,rk3588-vicap
-> >>
-> >> Curious why this cannot share a binding with the existing 3568-vicap.
-> >> Looks pretty similar binding wise at least.
-> >> If it's an entirely different architecture or whatever, please mention
-> >> that in your commit message.
+On Sat, Mar 14, 2026 at 09:56:27AM -0700, Drew Fustini wrote:
+> On Tue, Mar 10, 2026 at 12:24:56AM +0800, Icenowy Zheng wrote:
+> > The G and J coefficients provided by T-Head TH1520 manual (which calls
+> > them A and C coefficients and calls H coefficient in the binding as B)
+> > have 1/100 degree Celsius precision (the values are 42.74 and -0.16
+> > respectively), however the binding currently only allows coefficients as
+> > precise as 100 milli-Celsius (1/10 degree Celsius).
 > >=20
-> > Looking further, it's using the same driver too...
+> > Change the multipleOf value of these two coefficients to 10 (in the unit
+> > of milli-Celsius) to satisfy the need of TH1520.
+> >=20
+> > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> > Reviewed-by: Drew Fustini <fustini@kernel.org>
+> > ---
+> > Changes in v3:
+> > - Added Drew's R-b.
+> > - Fixed some typos in the commit message and slightly reworded the
+> >   precision sentence.
+> >=20
+> >  Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.ya=
+ml b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
+> > index 56db2292f062d..7d57c2934a8a1 100644
+> > --- a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
+> > +++ b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
+> > @@ -105,7 +105,7 @@ properties:
+> >        G coefficient for temperature equation.
+> >        Default for series 5 =3D 60000
+> >        Default for series 6 =3D 57400
+> > -    multipleOf: 100
+> > +    multipleOf: 10
+> >      minimum: 1000
+> >      $ref: /schemas/types.yaml#/definitions/uint32
+> > =20
+> > @@ -131,7 +131,7 @@ properties:
+> >        J coefficient for temperature equation.
+> >        Default for series 5 =3D -100
+> >        Default for series 6 =3D 0
+> > -    multipleOf: 100
+> > +    multipleOf: 10
+> >      maximum: 0
+> >      $ref: /schemas/types.yaml#/definitions/int32
+> > =20
+> > --=20
+> > 2.52.0
+> >=20
 >=20
-> It's not an entirely different architecture (indeed it uses the same
-> driver). There are some differences to the RK3568 and the PX30 (which
-> uses its own binding as well BTW): apart from different resets and
-> clocks that's mostly the notion of the connections to the ISP. But to be
-> fair, as it turns out this boils down to two additional ports.
-> Other recent SoCs (e.g., RK3576 or RK3562) will be a good match for the
-> RK3588 binding, but then again exactly resets, clocks and ports may vary
-> in that variants as well.
->=20
-> Personally I find this variant-specific DT binding magic hard to read,
-> and thus I went for a separate binding. That said, please let me know
-> what your preference is and I'll arrange it that way. Not a hill I'd
-> want to die on.
+> I have applied this to thead-dt-for-next.
 
+That's odd, why is a hwmon binding in your branch?
 
-If all it really comes down to is the ports, I'd rather you added these
-devices to one file, rather than having one for every related SoC.
-The "magic" shouldn't be that bad if it is just ports, just some sort of
-thing like
+> https://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git/commit/=
+?h=3Dthead-dt-for-next&id=3Deb4fd43ff6793681f0a0a8e8ac861142caba2b19
 
-if:
-  compatible:
-    contains:
-      const: foo
-then:
-  properties:
-    port@5: false
+I don't see an ack on it from the relevant maintainer either?
 
-
---nSCb7cCQ1MbL+UzG
+--K2OPznGYZkKn+vwY
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabahjQAKCRB4tDGHoIJi
-0qShAQDtAk9uQ4qLF9H8qeCQKTdrdrxdrMgULNS8CATV2vUmcwD/eTsvwJk18F9d
-dxxcNA+q2mvbNpttew+v9JzatA0jvQM=
-=hCaH
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabaiHQAKCRB4tDGHoIJi
+0sHpAQCQjzi+cNolm2xVUQPM/xhXGlaZd27ksgr515avB8wazwEA23VtiIN0eo3j
+ca7CEQM0KubAhupaXlPmwyZWu6IPNwY=
+=4gr8
 -----END PGP SIGNATURE-----
 
---nSCb7cCQ1MbL+UzG--
+--K2OPznGYZkKn+vwY--
 
