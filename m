@@ -1,205 +1,210 @@
-Return-Path: <devicetree+bounces-276315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276316-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4F4mIgwxuGmvaAEAu9opvQ
-	(envelope-from <devicetree+bounces-276315-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:34:20 +0100
+	id 2NF/JqkxuGmvaAEAu9opvQ
+	(envelope-from <devicetree+bounces-276316-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:36:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3E7129D735
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:34:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0437C29D7C4
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:36:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 83404306740D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:29:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B59E030DC0DF
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:31:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A81D43385A7;
-	Mon, 16 Mar 2026 16:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E48C3B7B7B;
+	Mon, 16 Mar 2026 16:31:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Ie4vuMdT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tzN25Hks"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FA05324B1E;
-	Mon, 16 Mar 2026 16:29:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 786F43B5824;
+	Mon, 16 Mar 2026 16:31:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773678544; cv=none; b=hw3O0+XKHoM977CUFfMwCPf8XHo0nNr6Go0Zq3EkGebea71Qb3gDE7vGUBI+e9WpOjX/nSzIpooOXz9x9NnPZuXcrW3y6NE/dpiNX7hSiDMamfGZ4uzaigNBPQwT/0arYojGPdb+zRA82YCIlZPO13Las0mR5hOHCda4693SdAo=
+	t=1773678672; cv=none; b=M+Ch/HMqav3yn62zO3P15WY+wK1g8kqKM9skIug/+rvNKhkoQRLiuJgg8DKdEeCHFiAntj+QlYdS0jTRzQwS+/+qk9pj7F6afmLALq0f4LpjZH9JHK3eWirzn2nLI3dIlHLu4jCgwwA2ffYPJFRGX5eoISl7z4us1UBjQdsjPWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773678544; c=relaxed/simple;
-	bh=xGy5Xa1dQr/5pfh8pXxYijxQkHbJMOii4GfmIYyf+38=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=d5hyXBZ1nq+vgqhpoH9yZXCqrQL6ogMDYaJ4+6FJKrDULFpb6NKOkpWFU1lDoSAeG6G0jYkXSf/qmKD06bzdOg6BG/gwvM5IyZPLs0x+TW7fQNgA6tVUcSkHdfAnVkcRQPr5/AOuL+ZWR4s9r3yc0pnkk7MY2pfWaK9YTarOCIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Ie4vuMdT; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id E22CE270D2;
-	Mon, 16 Mar 2026 17:28:53 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id SynF4M5Uyg-P; Mon, 16 Mar 2026 17:28:53 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1773678533; bh=xGy5Xa1dQr/5pfh8pXxYijxQkHbJMOii4GfmIYyf+38=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=Ie4vuMdTynPHxBbYmYEBuDW7mJeUD3XImKyeyF4lQt/cBYK67N+aInW0Oi0W0lCuU
-	 WpWPKeM8EiasvfX+Du9QVE78IKw73bQkvrcQwALu1IJszLZmp0grbPfoVZJLsvXuOg
-	 FsE3NZmnQ7H/2U8dmFn+ZKzD96beO4Oa3M727guddGlUqpW+ULnk1bJRVq9vapih3b
-	 CuTqCqY6oXhYLGwr5iHowS8KLFH5aOpMXc51seKJM1xB/0X4vG+EhzJ62pPIu/48br
-	 ADe0uqEtxqeum+bP6sIsj/0BBhtX7hKM8/3es0g4+QplAFY7ua5tEmNRWlLdElNjCm
-	 8aT2DPnp6bplA==
+	s=arc-20240116; t=1773678672; c=relaxed/simple;
+	bh=ogWJS6+fbkJKhwd2cn3COve3OtrIPc4ti934RTsFUDU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eYnqdwd4pvwAerXClLYOIRaGDaFr8d32Ppd+PM9mTY4Qk7w+TCO1qxvpIojB30oF3n4M9OYOzHUCZmQR/kkcFcZ5IczEqOy616MCszFmA4cp+2OycWJLyELvy9ox1voTkMF9GwobX/RIcVeXO62WfpVX0IVEEQIBwZ6bBnpebqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tzN25Hks; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB5D3C19421;
+	Mon, 16 Mar 2026 16:31:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773678671;
+	bh=ogWJS6+fbkJKhwd2cn3COve3OtrIPc4ti934RTsFUDU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tzN25Hksy4MeH/oXFwsK7O4YaNxhpcrzCXC+b23Gsro3l336xpZp8qt1VXMDJVxcW
+	 EEYgvZNIyezaFWmF2DRaS6DBNCtMCewOBTo38imkrQWoB7f4i4yZvI1sEZu1fdLuA0
+	 QcCkui8dgqAyPS/2H9GWahAaeJKnXMh3qScXZ2d0hz5yOgkWRxAfskYr+hmpjqNQtC
+	 fEIAwFasnDA46BtbiIpIWPMUgWOOsp5m1+NK2Jza+6ItFdI5vSBRpXaKjWn6wg+1rp
+	 C0ROyAPJqV2dNEN1dKuqXo2VjuuudHirK808KxON1ohIbdIvxu3pOY0vy915ozzEMz
+	 cLbuzcPuLtmqQ==
+Message-ID: <e1cf4c86-f777-4b2f-8dd0-e47554006660@kernel.org>
+Date: Mon, 16 Mar 2026 17:31:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Mon, 16 Mar 2026 16:28:52 +0000
-From: Rustam Adilov <adilov@disroot.org>
-To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/8] i2c: rtl9300: introduce a property for 8 bit width
- reg address
-In-Reply-To: <d91f5897-c565-4574-81e4-5b0624da2766@alliedtelesis.co.nz>
-References: <20260314082628.25206-1-adilov@disroot.org>
- <20260314082628.25206-5-adilov@disroot.org>
- <d91f5897-c565-4574-81e4-5b0624da2766@alliedtelesis.co.nz>
-Message-ID: <c03ba2a5b0fa3ee0714d9e6cf475a1c6@disroot.org>
-X-Sender: adilov@disroot.org
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] media: verisilicon: Fix kernel panic due to
+ __initconst misuse
+To: Nicolas Dufresne <nicolas@ndufresne.ca>,
+ Francesco Dolcini <francesco@dolcini.it>, ming.qian@oss.nxp.com
+Cc: linux-media@vger.kernel.org, mchehab@kernel.org,
+ hverkuil-cisco@xs4all.nl, benjamin.gaignard@collabora.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
+ sebastian.fricke@collabora.com, shawnguo@kernel.org, ulf.hansson@linaro.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ m.felsch@pengutronix.de, fra.schnyder@gmail.com, linux-imx@nxp.com,
+ l.stach@pengutronix.de, Frank.li@nxp.com, peng.fan@nxp.com,
+ eagle.zhou@nxp.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, regressions@lists.linux.dev
+References: <20260306031059.801-1-ming.qian@oss.nxp.com>
+ <20260312173349.GA137045@francesco-nb>
+ <e559b822c5f4fc9167d40544172c6c450d88636a.camel@ndufresne.ca>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <e559b822c5f4fc9167d40544172c6c450d88636a.camel@ndufresne.ca>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
-	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[disroot.org:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276316-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276315-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,xs4all.nl,collabora.com,pengutronix.de,linaro.org,gmail.com,nxp.com,lists.linux.dev,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[30];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: F3E7129D735
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,qualcomm.com:email,toradex.com:email,pengutronix.de:email]
+X-Rspamd-Queue-Id: 0437C29D7C4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello,
-On 2026-03-15 21:31, Chris Packham wrote:
-> Hi Rustam,
-> 
-> (sorry I might have prematurely hit send on an earlier reply)
-> 
-> On 14/03/2026 21:26, Rustam Adilov wrote:
->> In RTL9607C i2c controller, in order to indicate that the width of
->> memory address is 8 bits, 0 is written to MEM_ADDR_WIDTH field as
->> opposed to 1 for RTL9300 and RTL9310.
+On 16/03/2026 16:25, Nicolas Dufresne wrote:
+> Le jeudi 12 mars 2026 à 18:34 +0100, Francesco Dolcini a écrit :
+>> Hello,
 >>
->> Introduce a new property to a driver data to indicate what value
->> need to written to MEM_ADDR_WIDTH field for this case.
+>> On Fri, Mar 06, 2026 at 11:10:57AM +0800, ming.qian@oss.nxp.com wrote:
+>>> From: Ming Qian <ming.qian@oss.nxp.com>
+>>>
+>>> Fix a kernel panic when probing the driver as a module:
+>>>
+>>>   Unable to handle kernel paging request at virtual address
+>>>   ffffd9c18eb05000
+>>>   of_find_matching_node_and_match+0x5c/0x1a0
+>>>   hantro_probe+0x2f4/0x7d0 [hantro_vpu]
+>>>
+>>> The imx8mq_vpu_shared_resources array is referenced by variant
+>>> structures through their shared_devices field. When built as a
+>>> module, __initconst causes this data to be freed after module
+>>> init, but it's later accessed during probe, causing a page fault.
+>>>
+>>> The imx8mq_vpu_shared_resources is referenced from non-init code,
+>>> so keeping __initconst or __initconst_or_module here is wrong.
+>>>
+>>> Drop the __initconst annotation and let it live in the normal .rodata
+>>> section.
+>>>
+>>> A bug of __initconst called from regular non-init probe code
+>>> leading to bugs during probe deferrals or during unbind-bind cycles.
+>>>
+>>> Reported-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+>>> Closes: https://lore.kernel.org/all/68ef934f-baa0-4bf6-93d8-834bbc441e66@kernel.org/
+>>> Reported-by: Franz Schnyder <franz.schnyder@toradex.com>
+>>> Closes: https://lore.kernel.org/all/n3qmcb62tepxltoskpf7ws6yiirc2so62ia23b42rj3wlmpl67@rvkbuirx7kkp/
+>>> Fixes: e0203ddf9af7 ("media: verisilicon: Avoid G2 bus error while decoding H.264 and HEVC")
+>>> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+>>> Suggested-by: Marco Felsch <m.felsch@pengutronix.de>
+>>> Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+>>> Signed-off-by: Ming Qian <ming.qian@oss.nxp.com>
 >>
->> Signed-off-by: Rustam Adilov <adilov@disroot.org>
->> ---
->>   drivers/i2c/busses/i2c-rtl9300.c | 8 +++++++-
->>   1 file changed, 7 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/i2c/busses/i2c-rtl9300.c b/drivers/i2c/busses/i2c-rtl9300.c
->> index 2525b57a9d03..86a82f2c3ce0 100644
->> --- a/drivers/i2c/busses/i2c-rtl9300.c
->> +++ b/drivers/i2c/busses/i2c-rtl9300.c
->> @@ -60,6 +60,7 @@ struct rtl9300_i2c_drv_data {
->>   	u32 wd_reg;
->>   	u8 max_nchan;
->>   	u8 max_data_len;
->> +	u8 reg_addr_8bit_len;
->>   };
->>   
->>   #define RTL9300_I2C_MUX_NCHAN	8
->> @@ -105,6 +106,7 @@ struct rtl9300_i2c_xfer {
->>   #define RTL9300_I2C_MST_DATA_WORD2			0x10
->>   #define RTL9300_I2C_MST_DATA_WORD3			0x14
->>   #define RTL9300_I2C_MST_GLB_CTRL			0x384
->> +#define RTL9300_REG_ADDR_8BIT_LEN			1
->>   
->>   #define RTL9310_I2C_MST_IF_CTRL				0x1004
->>   #define RTL9310_I2C_MST_IF_SEL				0x1008
->> @@ -299,6 +301,7 @@ static int rtl9300_i2c_smbus_xfer(struct i2c_adapter *adap, u16 addr, unsigned s
->>   				  union i2c_smbus_data *data)
->>   {
->>   	struct rtl9300_i2c_chan *chan = i2c_get_adapdata(adap);
->> +	const struct rtl9300_i2c_drv_data *drv_data;
->>   	struct rtl9300_i2c *i2c = chan->i2c;
->>   	struct rtl9300_i2c_xfer xfer = {0};
->>   	int ret;
->> @@ -308,6 +311,7 @@ static int rtl9300_i2c_smbus_xfer(struct i2c_adapter *adap, u16 addr, unsigned s
->>   
->>   	guard(rtl9300_i2c)(i2c);
->>   
->> +	drv_data = device_get_match_data(i2c->dev);
->>   	ret = rtl9300_i2c_config_chan(i2c, chan);
->>   	if (ret)
->>   		return ret;
->> @@ -315,7 +319,7 @@ static int rtl9300_i2c_smbus_xfer(struct i2c_adapter *adap, u16 addr, unsigned s
->>   	xfer.dev_addr = addr & 0x7f;
->>   	xfer.write = (read_write == I2C_SMBUS_WRITE);
->>   	xfer.reg_addr = command;
->> -	xfer.reg_addr_len = 1;
->> +	xfer.reg_addr_len = drv_data->reg_addr_8bit_len;
+>> What's the plan to merge this? It fixes a quite severe regression,
+>> a boot failure.
 > 
-> For this one I wonder if we could come up with something that involves a 
-> subtraction for the rtl9607? len = 1 just makes sense to me so maybe 
-> RTL_9300_ADDR_LEN(1) which expands to 1 - 0 on the rtl9300 and 1 - 1 on 
-> the rtl9607 would be easier to follow.
+> To be decided this week. The commit message does not say if it was released, or
+> came in RCs (and I didn't check myself yet). I'd say, if its the first one, it
+> will go through next and backports, otherwise its is really tight to get that
+> into the RC series, but serious enough. Please fill the gap if you have time,
+> and I'll handle it later, probably tomorrow.
 
-I am not entirely sure i understand this approach. Is RTL_9300_ADDR_LEN(1)
-gonna be a "#define"? Would like to know before i proceed with possible
-changes for v2.
+As Francesco pointed and earlier Franz, this affects current users so
+please consider bigger impact of the issue and applying as soon as you
+have time (I know you have many patches).
 
-And wouldn't something like this work just as well:
+To help:
 
-xfer.reg_addr_len = 1 - drv_data->subtract_len;
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-But then, i honestly think "drv_data->reg_addr_8bit_len" would be a bit less
-cluttery?
-
-> Not a deal breaker just thought I'd mention it.
-> 
->>   
->>   	switch (size) {
->>   	case I2C_SMBUS_BYTE:
->> @@ -501,6 +505,7 @@ static const struct rtl9300_i2c_drv_data rtl9300_i2c_drv_data = {
->>   	.wd_reg = RTL9300_I2C_MST_DATA_WORD0,
->>   	.max_nchan = RTL9300_I2C_MUX_NCHAN,
->>   	.max_data_len = RTL9300_I2C_MAX_DATA_LEN,
->> +	.reg_addr_8bit_len = RTL9300_REG_ADDR_8BIT_LEN,
->>   };
->>   
->>   static const struct rtl9300_i2c_drv_data rtl9310_i2c_drv_data = {
->> @@ -524,6 +529,7 @@ static const struct rtl9300_i2c_drv_data rtl9310_i2c_drv_data = {
->>   	.wd_reg = RTL9310_I2C_MST_DATA_CTRL,
->>   	.max_nchan = RTL9310_I2C_MUX_NCHAN,
->>   	.max_data_len = RTL9300_I2C_MAX_DATA_LEN,
->> +	.reg_addr_8bit_len = RTL9300_REG_ADDR_8BIT_LEN,
->>   };
->>   
->>   static const struct of_device_id i2c_rtl9300_dt_ids[] = {
+Best regards,
+Krzysztof
 
