@@ -1,228 +1,153 @@
-Return-Path: <devicetree+bounces-276285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276284-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cMAoBpIiuGk8ZgEAu9opvQ
-	(envelope-from <devicetree+bounces-276285-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:32:34 +0100
+	id EDVcE68juGk8ZgEAu9opvQ
+	(envelope-from <devicetree+bounces-276284-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:37:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F397C29C6FC
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:32:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D320529C897
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:37:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E6394302DA9F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:28:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3C7F23175C07
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:27:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A5D93A2577;
-	Mon, 16 Mar 2026 15:26:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 119E33A255D;
+	Mon, 16 Mar 2026 15:26:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="u1VWQwa5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ovhzMWqk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f194.google.com (mail-qk1-f194.google.com [209.85.222.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D1233AA1A3
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 15:26:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0C913A9631;
+	Mon, 16 Mar 2026 15:26:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773674780; cv=none; b=OE2X5GdgwtmlAQgATfXYZ63aGQPtcsO2g2z4QcCdXHbpfQ+KNC5MRyMeOZGY3cExAjOX02Ttt0bhF2Kgi688b/103OB4TTFich+T2suNFjx2DuWAYiqwjm/DdIgYkd5gXFAHMcdzEbAwyJmuakXCU/CyhzfLYJg4brl99STrz3o=
+	t=1773674777; cv=none; b=lI6XOnmJusB6eOWbTPVEIUqwuh+EWnw4jiDHqnWMTeE4w2zhLyMxz/7nk4PpY8VgARCUToiBRrY4X1ZOqXUtVau/gaygJdCK7AjGGKk1UT/UEGzw6YBUHvmQTiZACduHFtOzmHRYcCkUhM41NbNXkjod5xbTYLpMmpXL1qtZeG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773674780; c=relaxed/simple;
-	bh=ChNwrvwut9AH8kQhXrPmezqcMvifV/XRrhrpWQpij9s=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Rf3o8CbNECwlv9sL86M44ylYypmV2/Zpu2phG6V2h4EbvQthivwBpj6p5qMPN0ljYT2b8hbVoFS9VrLKPLJ75WomcRIdTv/fY9/WQDPQ1N23enNJVygIW4zgYK4Nl7buWa41BV+fSgK4JEjmOmbdJBXLv3siVqzOWvnAcTYsDEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=u1VWQwa5; arc=none smtp.client-ip=209.85.222.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qk1-f194.google.com with SMTP id af79cd13be357-8cd80bea5f3so295822985a.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 08:26:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1773674777; x=1774279577; darn=vger.kernel.org;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ChNwrvwut9AH8kQhXrPmezqcMvifV/XRrhrpWQpij9s=;
-        b=u1VWQwa5ye9ZBXKUG6uLwhPpkJoxE/ivguem9y5a2s5fFljWwfgpRqGdGFVtdej8mm
-         Sc61rUkgkaaovXoNyiKW1O9gRYoaCokdpJ3Po6Lz4/jJlrZLiDM9WgR0QC3MwpZhOsf8
-         sejh8E7RrvsIB195GxxOotAa75Ws6uXHopvaclIm7NvzfjfVfC764YOEebrejH11Un2H
-         cOCk6qTiwinH4T4FTCQzGIaG3w2mQQLA1YYlEnhr6dItWYcPKZxww+EFM6QqIFMB1PUV
-         k7YfcMpiNVKwpfIGXhSj3xxY+nOxC4seSXRZeLwpIT0H5ggitqMRACu21yVCWQ75jIxI
-         UhEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773674777; x=1774279577;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ChNwrvwut9AH8kQhXrPmezqcMvifV/XRrhrpWQpij9s=;
-        b=g089swTP53Rseq34FZy+vJbAkF5XuHbByPLfeysJc3Pm9q7xG9xTMwGOaCanek1903
-         lo1vY0fqfwy4fVfexNdK88zTndRVC+TRh2eq5buE2s842nAY39w1m/0q/B29bpS/mNwS
-         v/FmnVsaBup+N24LTWYJ8gkE6FKzMnUlWz3foHeeNpWPyI4idz+1wBPVkyTz0SbyA0Tu
-         5j/u0BaqQDLD9SED6Hly2OWyaYgMxZKTE175HVCmKG42+KbKXsycgaHczlH79StaS+ih
-         VaHhNFlC6JjXw1GbUOY6o13VoaP/j8YdxYnP5T7oxs3DibMoI4QYqie2ybXt8Tk7ZqtU
-         K3QQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUA7D25IieEjovr193Eynio58vl6aP0+DT1sznXFY7h0VDxO1tFS9AuLsRBtxql8hnkekfc8lHQy7LH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIZCDnBrVy6fpuRQRYAKZYsSVOwme1YaX+ND1MMv+A7g9qzfWD
-	xYf46M4aybn6idvI6/+nzHFrOexKoLAnc5cXR9CGpuAC3ZmJFNoIDKHxwmeK43vn8yI=
-X-Gm-Gg: ATEYQzy8VQRQvJDOzyB8SycM8c8ZHnUiYzCqjzuM8FrpqlSX7KLxirz+RNhc9DXxWBq
-	3yV4rHlCy9nwXRX6kG4Oo97u7TlNOzxd/X5pCAQ2hLydgkMquaBhlomjeiT+7xhc+sWH4mH+/yU
-	jRWJhEabR4NGd7tGDHKojJa1Xg/OA5qZCJRHbXMi9jttaPC2dDbPo/K28THowPFiJanLEDOaUiR
-	WWQf3Zz/RiBolt7gF1eNZ+6opgc1b4TV0h5xMkSU7c64fUDhZnYkiXBe9AAsgMRhECSoogl1V6U
-	ZcN0FMG3zUtEou+F6e5NFffizHGBy0RpUrpX1MXo08tpZUA7Hd72diOIEYlo1wsLkeAF+X448eY
-	TVOKghAUeBeJjZPT/vJ/elPku8+JRTO4GZlVRTBdPKw7mbh9mXqpY57aKserMyKPTuuO7ke4T6y
-	aaK7nHnHtNv6xGKzqrhS3Te1lsaYQ/
-X-Received: by 2002:a05:620a:170f:b0:8c9:e989:9d97 with SMTP id af79cd13be357-8cdb5b56e2fmr1651069785a.68.1773674776906;
-        Mon, 16 Mar 2026 08:26:16 -0700 (PDT)
-Received: from ?IPv6:2606:6d00:11:b76d::5ac? ([2606:6d00:11:b76d::5ac])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8cda1fddfe8sm1228675185a.12.2026.03.16.08.26.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Mar 2026 08:26:15 -0700 (PDT)
-Message-ID: <e559b822c5f4fc9167d40544172c6c450d88636a.camel@ndufresne.ca>
-Subject: Re: [PATCH v4] media: verisilicon: Fix kernel panic due to
- __initconst misuse
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Francesco Dolcini <francesco@dolcini.it>, ming.qian@oss.nxp.com
-Cc: linux-media@vger.kernel.org, mchehab@kernel.org,
- hverkuil-cisco@xs4all.nl, 	benjamin.gaignard@collabora.com,
- robh@kernel.org, krzk+dt@kernel.org, 	conor+dt@kernel.org,
- p.zabel@pengutronix.de, sebastian.fricke@collabora.com, 
-	shawnguo@kernel.org, ulf.hansson@linaro.org, s.hauer@pengutronix.de, 
-	kernel@pengutronix.de, festevam@gmail.com, m.felsch@pengutronix.de, 
-	fra.schnyder@gmail.com, linux-imx@nxp.com, l.stach@pengutronix.de, 
-	Frank.li@nxp.com, peng.fan@nxp.com, eagle.zhou@nxp.com,
- devicetree@vger.kernel.org, 	imx@lists.linux.dev, linux-pm@vger.kernel.org,
- linux-kernel@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
- regressions@lists.linux.dev
-Date: Mon, 16 Mar 2026 11:25:53 -0400
-In-Reply-To: <20260312173349.GA137045@francesco-nb>
-References: <20260306031059.801-1-ming.qian@oss.nxp.com>
-	 <20260312173349.GA137045@francesco-nb>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-6HvdHsM5JK0qWfzveRb3"
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+	s=arc-20240116; t=1773674777; c=relaxed/simple;
+	bh=f5yrzvJyKqNO0mx1A368jXTrlKXyBPupbgbIJWVdVDg=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=s8ZvG/jEuPIdFX2M/RgC+aGvGp8vnEQcafz6EYSXGIVFIaeSy1Rr1Ik+mkoKfIsKyAYTVYYGwZWU8zKWrcA6Y1EZO878AxHPrMF/CR+QTIf45WTR2aX/quu+H3b6jBUnOi4TkLZLT5orkM1H2hjlECWQrQ2VMTN/u2/vBhixShw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ovhzMWqk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56604C19421;
+	Mon, 16 Mar 2026 15:26:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773674776;
+	bh=f5yrzvJyKqNO0mx1A368jXTrlKXyBPupbgbIJWVdVDg=;
+	h=Date:From:To:Cc:Subject:From;
+	b=ovhzMWqk806ZgRSfbKVBcxktTp+WFCFPfQii4kiAXjB/7c60iC/cGW0GHW1LveMa0
+	 w/GQbssWk9KmNuPvTBzHBcTD5l8BjYuvvusZgzfGltD1S1YLexZmxaFLWHSJknBZOb
+	 qNcxmTgvrz/dsom3WZx91hP+Qcgdf47U7v+rm5W6ieJU0kj/+TjI/qiCdFP9PVoZ91
+	 sIpBJT8ODkhe6zDwzJd1eKnmkGMDp6rdFGMrI2248Zckv6qoDbNcXanZFY8Gy6rPX6
+	 Oakf0AgRspS14udOdoJv28RnnQOX3DrM/YXIw5YSg/O4eMMR0NHRV0kHi7iEw8PCz9
+	 xcSh00OQLnp/g==
+Date: Mon, 16 Mar 2026 08:26:14 -0700
+From: Drew Fustini <fustini@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Brian Masney <bmasney@redhat.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>,
+	Drew Fustini <dfustini@oss.tenstorrent.com>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: [GIT PULL] clk: tenstorrent: Add Atlantis PRCM for v7.1
+Message-ID: <abghFg5INVslFFcc@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[ndufresne-ca.20230601.gappssmtp.com:s=20230601];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[ndufresne.ca : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,xs4all.nl,collabora.com,pengutronix.de,linaro.org,gmail.com,nxp.com,lists.linux.dev,lists.infradead.org];
-	DKIM_TRACE(0.00)[ndufresne-ca.20230601.gappssmtp.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276285-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276284-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nicolas@ndufresne.ca,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: F397C29C6FC
+	TAGGED_RCPT(0.00)[devicetree];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D320529C897
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Hi Stephen,
 
---=-6HvdHsM5JK0qWfzveRb3
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This pull request introduces support for the Tenstorrent Atlantis RISC-V
+SoC in the form of a clk driver, reset driver and the associated DT
+binding. The reset driver was reviewed by Philipp, who agreed that it
+could go via the clk tree. Brian reviewed the clk driver but there is no
+review/ack from you. Please let me know if you'd like to see any changes
+and we will post a new revision.
 
-Le jeudi 12 mars 2026 =C3=A0 18:34 +0100, Francesco Dolcini a =C3=A9crit=C2=
-=A0:
-> Hello,
->=20
-> On Fri, Mar 06, 2026 at 11:10:57AM +0800, ming.qian@oss.nxp.com=C2=A0wrot=
-e:
-> > From: Ming Qian <ming.qian@oss.nxp.com>
-> >=20
-> > Fix a kernel panic when probing the driver as a module:
-> >=20
-> > =C2=A0 Unable to handle kernel paging request at virtual address
-> > =C2=A0 ffffd9c18eb05000
-> > =C2=A0 of_find_matching_node_and_match+0x5c/0x1a0
-> > =C2=A0 hantro_probe+0x2f4/0x7d0 [hantro_vpu]
-> >=20
-> > The imx8mq_vpu_shared_resources array is referenced by variant
-> > structures through their shared_devices field. When built as a
-> > module, __initconst causes this data to be freed after module
-> > init, but it's later accessed during probe, causing a page fault.
-> >=20
-> > The imx8mq_vpu_shared_resources is referenced from non-init code,
-> > so keeping __initconst or __initconst_or_module here is wrong.
-> >=20
-> > Drop the __initconst annotation and let it live in the normal .rodata
-> > section.
-> >=20
-> > A bug of __initconst called from regular non-init probe code
-> > leading to bugs during probe deferrals or during unbind-bind cycles.
-> >=20
-> > Reported-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> > Closes: https://lore.kernel.org/all/68ef934f-baa0-4bf6-93d8-834bbc441e6=
-6@kernel.org/
-> > Reported-by: Franz Schnyder <franz.schnyder@toradex.com>
-> > Closes: https://lore.kernel.org/all/n3qmcb62tepxltoskpf7ws6yiirc2so62ia=
-23b42rj3wlmpl67@rvkbuirx7kkp/
-> > Fixes: e0203ddf9af7 ("media: verisilicon: Avoid G2 bus error while deco=
-ding H.264 and HEVC")
-> > Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com=
->
-> > Suggested-by: Marco Felsch <m.felsch@pengutronix.de>
-> > Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
-> > Signed-off-by: Ming Qian <ming.qian@oss.nxp.com>
->=20
-> What's the plan to merge this? It fixes a quite severe regression,
-> a boot failure.
+The following changes since commit 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f:
 
-To be decided this week. The commit message does not say if it was released=
-, or
-came in RCs (and I didn't check myself yet). I'd say, if its the first one,=
- it
-will go through next and backports, otherwise its is really tight to get th=
-at
-into the RC series, but serious enough. Please fill the gap if you have tim=
-e,
-and I'll handle it later, probably tomorrow.
+  Linux 7.0-rc1 (2026-02-22 13:18:59 -0800)
 
-Nicolas
+are available in the Git repository at:
 
---=-6HvdHsM5JK0qWfzveRb3
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+  git://git.kernel.org/pub/scm/linux/kernel/git/tenstorrent/linux.git tags/tenstorrent-clk-for-v7.1
 
------BEGIN PGP SIGNATURE-----
+for you to fetch changes up to 23c8ebc952849b3ba47d04d0ec95daf5cc136061:
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCabghAgAKCRDZQZRRKWBy
-9NFwAP9sVkqCaBiBRpXCvZHE5Oa05+dzKFdWC5+h1oxIeJJ4dQD/VD/qrH1k6wW/
-L9bxPFGmfGPNVwVSrJM7fk/6BwpNMg0=
-=TFXY
------END PGP SIGNATURE-----
+  clk: tenstorrent: Add Atlantis clock controller driver (2026-03-09 20:10:26 -0700)
 
---=-6HvdHsM5JK0qWfzveRb3--
+----------------------------------------------------------------
+clk: tenstorrent: Add support for Atlantis PRCM
+
+Introduce support for the clock and reset controllers (e.g. PRCM) in the
+Tenstorrent Atlantis SoC. 5 types of clocks are generated by the PRCM:
+PLLs, shared gates and standard muxes. The reset controller is setup as
+an auxiliary device of the clock controller.
+
+Signed-off-by: Drew Fustini <fustini@kernel.org>
+
+----------------------------------------------------------------
+Anirudh Srinivasan (3):
+      dt-bindings: clk: tenstorrent: Add tenstorrent,atlantis-prcm-rcpu
+      reset: tenstorrent: Add reset controller for Atlantis
+      clk: tenstorrent: Add Atlantis clock controller driver
+
+ .../clock/tenstorrent,atlantis-prcm-rcpu.yaml      |  54 ++
+ MAINTAINERS                                        |   4 +
+ drivers/clk/Kconfig                                |   1 +
+ drivers/clk/Makefile                               |   1 +
+ drivers/clk/tenstorrent/Kconfig                    |  14 +
+ drivers/clk/tenstorrent/Makefile                   |   3 +
+ drivers/clk/tenstorrent/atlantis-prcm.c            | 870 +++++++++++++++++++++
+ drivers/reset/Kconfig                              |  11 +
+ drivers/reset/Makefile                             |   1 +
+ drivers/reset/reset-tenstorrent-atlantis.c         | 173 ++++
+ .../clock/tenstorrent,atlantis-prcm-rcpu.h         | 103 +++
+ 11 files changed, 1235 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/tenstorrent,atlantis-prcm-rcpu.yaml
+ create mode 100644 drivers/clk/tenstorrent/Kconfig
+ create mode 100644 drivers/clk/tenstorrent/Makefile
+ create mode 100644 drivers/clk/tenstorrent/atlantis-prcm.c
+ create mode 100644 drivers/reset/reset-tenstorrent-atlantis.c
+ create mode 100644 include/dt-bindings/clock/tenstorrent,atlantis-prcm-rcpu.h
+
 
