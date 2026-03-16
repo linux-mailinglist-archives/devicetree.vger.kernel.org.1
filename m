@@ -1,175 +1,165 @@
-Return-Path: <devicetree+bounces-275943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275945-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eG5OIPedt2l/TgEAu9opvQ
-	(envelope-from <devicetree+bounces-275943-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:06:47 +0100
+	id sMXLMeCjt2lTTwEAu9opvQ
+	(envelope-from <devicetree+bounces-275945-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:32:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF425294F64
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:06:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BF54295260
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:32:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DCCC0300DA4B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 06:06:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0443F300D94C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 06:31:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D96F3347BAF;
-	Mon, 16 Mar 2026 06:06:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C/UxY97y"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B2BF34B1A3;
+	Mon, 16 Mar 2026 06:31:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B4A7339844
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 06:06:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.75.44.102])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE9EF1427A;
+	Mon, 16 Mar 2026 06:31:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.75.44.102
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773641204; cv=none; b=XLuBSfEsXJO/kZexeBc5zyPVyZ8o0SCjBdiSVmypt3Ke8RnE3ed5dlC9qbZoejMwPnVVSqKddlDDII6J79EK3wgFZrWx7IVOKUUJ0wzW8MVpTtLFTQl6A0WSmL0lOqzdad4AxY2bIfi1Dke79Fn9uTTpHLitokkQs4HhUXcwozA=
+	t=1773642682; cv=none; b=dV4syWeMA5LFDFKu7OWRrK9uYVlKGqZR/olAqgkSQJh+XmcAvejcl+OAw1ieNg7BhsTITgUosmORYvSFebKtfo7Ve4mhW5jTx4KVRbR3G97Iivu5ZL06Sso2mNHryRXEk8WnUW+Y+RHkm0ZiZXUs31jiBaIH14o9ZVYhvFfZw7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773641204; c=relaxed/simple;
-	bh=xykCT9BKujCqkA2IArKY3bjqd+RsxJe4XdOgeQgUVOQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=gxJtNaZsrv6kC7oYQ7s3y2qUcb13nC444I2ZFH1enMAmmke+Sbz+KUCciAKl2WxLrJZ6GmpD3ZT1kE5Sh9D+tUEGk9rUrlHttgLLFqr/uET+0iu8HbAzYyeakeIblDnf61TrLGkDH9qmFabhDmp7LoU4VkNgqv1/VJwhn9OAaOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C/UxY97y; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-3878de20527so36578261fa.3
-        for <devicetree@vger.kernel.org>; Sun, 15 Mar 2026 23:06:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773641202; x=1774246002; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=xykCT9BKujCqkA2IArKY3bjqd+RsxJe4XdOgeQgUVOQ=;
-        b=C/UxY97yAYNVBDD3hah+kB66c9kUXz5YkchE0CmlYHRwXSadKlj5u0nJ+cqlLLvN21
-         wDuTf8Le97X06CcK3Kh23X1dBhxPKLHUBvFYij5GdbqwJQ+EugUZocDRLpWZ2PJUj8p4
-         8Ooqy7rSYoAHzVG4KvuLxjLqCVyxGwYXbHAuQikeadf3KM3oLSm1JmfVF+e5WKksXigQ
-         fNKUgwITa7waFOVJGQRynXNnMwngyEAxlglH/XETc31nEe41AZFeTPuzkq/rOjeE1k/j
-         VPrX4SYrZ7oF2ExOY6SmwI4NAigeu3E3lWbFSlygX6AL1jXnUKXrpmE+UaEDokmGSW40
-         J6xA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773641202; x=1774246002;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xykCT9BKujCqkA2IArKY3bjqd+RsxJe4XdOgeQgUVOQ=;
-        b=reezNpxR87NQUgUacg/elxEv/IHZwxAURCx9FwKdQDKDmAKyfKdvNJV0YH6MzbyCDm
-         btCu+81E+1EvNcJUv9hoad0QZaQGtgoX0dAUDZgPkuWXaddJRQ3COZcChkLmXGoQFbSi
-         G1sH2igGW7CWXWy+Z0i3MhvZ24KqZPQRzGGUWEWTOaDIn3f7O35o9G3T0pChYjz9ONLG
-         mxR0PdDeVqoNS5SDcNtKaOzfFVCXj3qukt01OgG2/HvlRQHBSuTjY3KSc87ac+pLuUiz
-         N338Zo4NlbzOOsBhh1/rkeDwAPTLMPuygIpg8FNl0G/jaw5iajaeBGA4/ohI3dOMgL/j
-         KcFQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVaN9ATGht1S95pnYJx9JrmnZH3tUnKYtZni/uC3Yay7mdCJ1s1YQW+Cmqh2rJsBxZXb1XE4L6ui+mA@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAjk+sUJUiy8Y4ZjLbLMz3If64z+OEVUABxD1njAhPm30Dc53t
-	pgxU+rx4aVy1KgOasZlw0zF2b2+y81GFZ59sKOvyWsD7ou3z2OvnG1m1
-X-Gm-Gg: ATEYQzwcFfA070xv6XLKHvI5n4s1d6Qjg0tRxzwNa5nm1Im8XptJplclsaR2YNMMBy8
-	kN34ZaW+6Zj2T4gZ0QfBQx6TsjUXCYjUZ3ETjB9mwbhaIcDOEeIVZLoM22EHy8Zb3b17Jz54WdI
-	PENAUBFFPpLIln3X1b19JeAQbOAoZg3GYltuQuO0ugqsmw+dabo3CUNhF5HwbFNg3eZH0tODALc
-	2gxcdgjwrdC6oc3Tl8ycInXjx76BqZj2tzL3Js2dtJRC9gvx1cIXsA6xIDrUnMh48UTAtVyFhFs
-	ZzqQRmMxwkgbpU7FU6RyfKc4ynzU5xOguvDxFiEXNQc1+Vq9gXPSBNaIo9QVhtAB8wLVLtJ5AX2
-	vgXEpFNh9hHzrv18JPDv8KCSrPsG2ediZF/50uuwvaoKJIQe1QzxtzgjWVExJ8mTzDffK8Z0/Nf
-	AhCP7ZzzDuhy9LRjbGZ19EWsu4
-X-Received: by 2002:ac2:428d:0:b0:5a1:1862:67a0 with SMTP id 2adb3069b0e04-5a162b2fa48mr2657409e87.45.1773641201430;
-        Sun, 15 Mar 2026 23:06:41 -0700 (PDT)
-Received: from [192.168.1.161] ([81.200.11.23])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38a67d61f1asm29442921fa.2.2026.03.15.23.06.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Mar 2026 23:06:40 -0700 (PDT)
-Message-ID: <4400f95392163ddc3997cbbc0b298f50910fe6f2.camel@gmail.com>
-Subject: Re: [PATCH 0/7] soc: aspeed: Add AST2600 eSPI controller support
-From: Ivan Mikhaylov <fr0st61te@gmail.com>
-To: Arnd Bergmann <arnd@arndb.de>, Conor Dooley <conor@kernel.org>, aspeedyh
-	 <yh_chung@aspeedtech.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew
- Jeffery	 <andrew@codeconstruct.com.au>, Ryan Chen
- <ryan_chen@aspeedtech.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- devicetree@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, 	linux-kernel@vger.kernel.org,
- openbmc@lists.ozlabs.org, 	maciej.lawniczak@intel.com, Mark Brown
- <broonie@kernel.org>
-Date: Mon, 16 Mar 2026 09:06:36 +0300
-In-Reply-To: <23909400-4e7f-49c9-a982-14036372af98@app.fastmail.com>
-References: <20260313-upstream_espi-v1-0-9504428e1f43@aspeedtech.com>
-	 <20260313-energy-casket-ca8adc1f1fd1@spud>
-	 <23909400-4e7f-49c9-a982-14036372af98@app.fastmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.0 
+	s=arc-20240116; t=1773642682; c=relaxed/simple;
+	bh=cVK1F9dpsa6SZEl5AFdW3LwoaKynV9oRUDGg+iQpF48=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=EjsdJujQWxc1yBT9eVWAOANdRbop+Ba/46Be90JlO8J9fPxNFHwF+rA2oKenVyNrlGF08TU7OmdSe/5u098+vdVZ8mlkl6YhvF7YBhAOFgrjdN4EppmuxFWzr+LpW2ViD5yY2QocqZmf8jDHgxzFq2divlmRpBVzQh4IJolUSFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.75.44.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from zhangsenchuan$eswincomputing.com ( [10.12.96.83] ) by
+ ajax-webmail-app2 (Coremail) ; Mon, 16 Mar 2026 14:30:46 +0800 (GMT+08:00)
+Date: Mon, 16 Mar 2026 14:30:46 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: zhangsenchuan <zhangsenchuan@eswincomputing.com>
+To: "Manivannan Sadhasivam" <mani@kernel.org>
+Cc: "Min Lin" <linmin@eswincomputing.com>, bhelgaas@google.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org, lpieralisi@kernel.org,
+	kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, christian.bruel@foss.st.com,
+	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com,
+	thippeswamy.havalige@amd.com, inochiama@gmail.com, Frank.li@nxp.com,
+	ningyu@eswincomputing.com, pinkesh.vaghela@einfochips.com,
+	ouyanghui@eswincomputing.com
+Subject: Re: Re: [PATCH v11 2/2] PCI: eic7700: Add Eswin PCIe host
+ controller driver
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
+ 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
+ mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
+In-Reply-To: <veqgbspu5fmm6f4dvrtz5s6xtibbglf6ejb4b6zzmzhgefksny@rzuobvk6jkt7>
+References: <20260227111536.1940-1-zhangsenchuan@eswincomputing.com>
+ <20260227111808.1996-1-zhangsenchuan@eswincomputing.com>
+ <jd4aszup2peetymesiltqghoptp2w4uuecrsdzkb2cl5vqqfot@m3vh6x4u5t6l>
+ <57246067.3de3.19cbd03fc5f.Coremail.linmin@eswincomputing.com>
+ <twvubrxemm7nx2i5p65byehj7y2g43c5esq3go72t6qbsz7yal@dxwvslzvgdc5>
+ <597765c6.41f9.19cdc76ffa4.Coremail.zhangsenchuan@eswincomputing.com>
+ <veqgbspu5fmm6f4dvrtz5s6xtibbglf6ejb4b6zzmzhgefksny@rzuobvk6jkt7>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Message-ID: <6474f691.43fe.19cf5570586.Coremail.zhangsenchuan@eswincomputing.com>
+X-Coremail-Locale: en_US
+X-CM-TRANSID:TQJkCgAHHaCWo7dpTdUIAA--.1726W
+X-CM-SenderInfo: x2kd0wpvhquxxxdqqvxvzl0uprps33xlqjhudrp/1tbiAgEIBmm23
+	4kP8gAFs8
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VW3Jw
+	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+	daVFxhVjvjDU=
+X-Spamd-Result: default: False [2.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275943-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-275945-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[eswincomputing.com];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[eswincomputing.com,google.com,kernel.org,pengutronix.de,vger.kernel.org,foss.st.com,samsung.com,oss.qualcomm.com,amd.com,gmail.com,nxp.com,einfochips.com];
+	NEURAL_HAM(-0.00)[-0.923];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fr0st61te@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[zhangsenchuan@eswincomputing.com,devicetree@vger.kernel.org];
+	HAS_X_PRIO_THREE(0.00)[3];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: EF425294F64
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,eswincomputing.com:email,eswincomputing.com:mid]
+X-Rspamd-Queue-Id: 2BF54295260
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 2026-03-13 at 22:36 +0100, Arnd Bergmann wrote:
-> On Fri, Mar 13, 2026, at 17:24, Conor Dooley wrote:
-> > On Fri, Mar 13, 2026 at 06:07:35PM +0800, aspeedyh wrote:
-> > > This series adds initial support for the eSPI controller found on
-> > > ASPEED
-> > > AST2600 BMC SoCs.
-> > >=20
-> > > The series introduces a eSPI controller framework for ASPEED SoCs
-> > > under
-> > > drivers/soc/aspeed/, adds AST2600-specific controller support for
-> > > peripheral and flash channels, defines the corresponding
-> > > devicetree=20
-> > > binding, and adds the AST2600 eSPI controller node to the SoC
-> > > dtsi.
-> > >=20
-> > > The driver is intended to support host-BMC communication over the
-> > > BMC-side
-> > > eSPI slave controller present on AST2600 systems.
-> >=20
-> > This all seems to be in the wrong places entirely, shouldn't an
-> > eSPI
-> > driver and bindings go in the spi subsystem?
->=20
-> From an initial reading, my impression is that patches 1, 2, 3 and 7
-> should be modified to use the normal SPI interfaces to implement
-> an spi target driver, possibly a combined host/target driver.
-> Reworking this should be fairly straightforward because the
-> interfaces
-> to the SPI core are well documented.
+PiA+ID4gPiA+IE9uIEZyaSwgRmViIDI3LCAyMDI2IGF0IDA3OjE4OjA4UE0gKzA4MDAsIHpoYW5n
+c2VuY2h1YW5AZXN3aW5jb21wdXRpbmcuY29tIHdyb3RlOgo+ID4gPiA+ID4gPiBGcm9tOiBTZW5j
+aHVhbiBaaGFuZyA8emhhbmdzZW5jaHVhbkBlc3dpbmNvbXB1dGluZy5jb20+Cj4gPiA+ID4gPiA+
+IAo+ID4gPiA+ID4gPiBBZGQgZHJpdmVyIGZvciB0aGUgRXN3aW4gRUlDNzcwMCBQQ0llIGhvc3Qg
+Y29udHJvbGxlciwgd2hpY2ggaXMgYmFzZWQgb24KPiA+ID4gPiA+ID4gdGhlIERlc2lnbldhcmUg
+UENJZSBjb3JlLCBJUCByZXZpc2lvbiA1Ljk2YS4gVGhlIFBDSWUgR2VuLjMgY29udHJvbGxlcgo+
+ID4gPiA+ID4gPiBzdXBwb3J0cyBhIGRhdGEgcmF0ZSBvZiA4IEdUL3MgYW5kIDQgY2hhbm5lbHMs
+IHN1cHBvcnQgSU5UeCBhbmQgTVNJCj4gPiA+ID4gPiA+IGludGVycnVwdHMuCj4gPiA+ID4gPiA+
+IAo+ID4gPiA+ID4gCj4gPiA+ID4gPiBJcyB0aGUgZHJpdmVyIGdvaW5nIHRvIHdvcmsgb25seSBm
+b3IgdGhlIFBDSWUgUkMgSVAgaW4gRUlDNzcwMCBTb0Mgb3IgZm9yIHRoZQo+ID4gPiA+ID4gdXBj
+b21pbmcgRXN3aW4gU29DcyBhcyB3ZWxsPyBKdXN0IGN1cmlvdXMgYmVjYXVzZSwgd2UgZG9uJ3Qg
+bmFtZSBkcml2ZXJzIGJhc2VkCj4gPiA+ID4gPiBvbiBvbmUgU29DIG5hbWUsIGJ1dCBieSB0aGUg
+dmVuZG9yIHNvIHRoYXQgdGhlIGRyaXZlciAoaWYgY29tcGF0aWJsZSkgY2FuIGJlCj4gPiA+ID4g
+PiB1c2VkIGFjcm9zcyBvdGhlciBTb0NzIGZyb20gdGhlIHZlbmRvci4KPiA+ID4gPiA+IAo+ID4g
+PiA+ID4gSWYgaXQgY2FuIHdvcmsgYWNyb3NzIG90aGVyIFNvQ3MsIHRoZW4gSSBjYW4gY2hhbmdl
+ICdlaWM3NzAwJyB0byAnZXN3aW4nLCB3aGVyZQo+ID4gPiA+ID4gYXBwbGljYWJsZSB3aGlsZSBh
+cHBseWluZy4KPiA+ID4gPiA+IAo+ID4gPiA+IAo+ID4gPiA+IFRoaXMgUENJZSBSQyBJUCBpbiBF
+SUM3NzAwIHdpbGwgb25seSBiZSB1c2VkIGZvciBFSUM3NzAwIFNvQy4gT25lIHRoaW5nIGZvciBz
+dXJlCj4gPiA+ID4gaXMgb3VyIG5leHQgU29DIHdpbGwgdXNlIGEgaGlnaGVyIElQIHJldmlzaW9u
+IG9mIHRoZSBEZXNpZ25XYXJlIFBDSWUgY29yZS4KPiA+ID4gPiBJbiB0aGUgZnV0dXJlLCB0aGVy
+ZSBpcyBubyBkb3VidCB0aGF0IHRoZSB1c2Ugb2YgSVAgZnJvbSBvdGhlciBtYW51ZmFjdHVyZXJz
+IG1heQo+ID4gPiA+IGJlIGNvbnNpZGVyZWQuCj4gPiA+ID4gCj4gPiA+ID4gQmFzZWQgb24gdGhp
+cywgbWF5IEkgYXNrIHdoaWNoIG5hbWUgZG8geW91IHRoaW5rIGlzIGJldHRlciwgZWljNzcwMCcg
+b3IgJ2Vzd2luJz8KPiA+ID4gPiAKPiA+ID4gCj4gPiA+IEknZCBzdWdnZXN0IGdvaW5nIHdpdGgg
+anVzdCAnZXN3aW4nLiBJZiB0aGUgZnV0dXJlIHJldmlzaW9ucyBjb21lIHVwIHdpdGgKPiA+ID4g
+bm9uLWR3YyBiYXNlZCBJUHMsIHdlIGNhbiBuYW1lIHRoZW0gYXBwcm9wcmlhdGVseS4KPiA+ID4g
+Cj4gPiA+ID4gSSBmb3VuZCB0aGVyZSBpcyBhIGNvbW1pdCBvbiBkcml2ZXJzL3BjaS9jb250cm9s
+bGVyL2R3Yy9wY2llLXRlZ3JhMTk0LmMKPiA+ID4gPiBJdCBhZGRlZCBUZWdyYTIzNCBQQ0llIHN1
+cHBvcnQgaW4gcGNpZS10ZWdyYTE5NC5jCj4gPiA+ID4gSXMgdGhpcyBuYW1pbmcgYXBwcm9hY2gg
+bm8gbG9uZ2VyIHJlY29tbWVuZGVkPwo+ID4gPiA+IAo+ID4gPiAKPiA+ID4gWWVzLCB0aGF0IHBy
+ZWRhdGVzIG15IHRpbWUgd2l0aCBob3N0IGNvbnRyb2xsZXIgZHJpdmVycy4gSSBzdHJvbmdseSBz
+dWdnZXN0Cj4gPiA+IG5hbWluZyB0aGUgZHJpdmVycyBiYXNlZCBvbiB2ZW5kb3JzIG9yIGZhbWls
+eSB0byBhdm9pZCBjcmVhdGluZyBhbiBpbXByZXNzaW9uCj4gPiA+IHRoYXQgdGhlIGRyaXZlciBv
+bmx5IHN1cHBvcnRzIG9uZSBTb0MgdmVyc2lvbi4KPiA+ID4gCj4gPiA+IFNpbmNlIHlvdSBhZ3Jl
+ZWQgZm9yIHJlbmFtaW5nLCBJIHRvb2sgdGhlIGxpYmVydHkgdG8gZG8gdGhlIGNoYW5nZSBteXNl
+bGYgYW5kCj4gPiA+IGFwcGxpZWQgdGhlIHBhdGNoZXMuIEkgYWxzbyBhZGRlZCB0aGUgbWFpbnRh
+aW5lcnMgZW50cnkuIFBsZWFzZSB0YWtlIGEgbG9vayBhdAo+ID4gPiB0aGUgY29tbWl0cyBhbmQg
+Y29uZmlybSBpZiBldmVyeXRoaW5nIGlzIE9LOgo+ID4gPiBodHRwczovL2dpdC5rZXJuZWwub3Jn
+L3B1Yi9zY20vbGludXgva2VybmVsL2dpdC9wY2kvcGNpLmdpdC9sb2cvP2g9Y29udHJvbGxlci9k
+d2MtZXN3aW4KPiA+IAo+ID4gSGkgTWFuaSwKPiA+IAo+ID4gVGhhbmsgeW91IHZlcnkgbXVjaCBm
+b3IgaGVscGluZyBtZSBjaGFuZ2UgJ2VpYzc3MDAnIHRvICdlc3dpbicuCj4gPiAKPiA+IEkgaGF2
+ZSB2ZXJpZmllZCB0aGF0IHRoZSBjb2RlIGZ1bmN0aW9ucyBhcmUgaW50YWN0LiBIb3dldmVyLCB0
+aGVyZSBhcmUgYSBmZXcgYXJlYXMKPiA+IHRoYXQgcmVxdWlyZSB5b3VyIGFzc2lzdGFuY2UgdG8g
+aW5jb3Jwb3JhdGUgYW5kIG1ha2UgbmVjZXNzYXJ5IG1vZGlmaWNhdGlvbnMuIAo+ID4gQWZ0ZXIg
+dGhlIG1vZGlmaWNhdGlvbnMsIEkgYmVsaWV2ZSB5b3UgY2FuIGluY29ycG9yYXRlIGl0Lgo+ID4g
+Cj4gCj4gRG9uZToKPiBodHRwczovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2VybmVs
+L2dpdC9wY2kvcGNpLmdpdC9jb21taXQvP2g9Y29udHJvbGxlci9kd2MtZXN3aW4maWQ9Y2JiZTU5
+ZmEwNGI1ZDlmOGUxMTEzOGRmNDU5MTY1M2Y3ZDJmODM1MQo+IAo+IEkgYWxzbyByZW1vdmVkIFBS
+T0JFX1BSRUZFUl9BU1lOQ0hST05PVVMgZmxhZyBzaW5jZSB0aGVyZSBhcHBlYXJzIHRvIGJlIGEK
+PiBwb3NzaWJpbGl0eSBvZiBhIHJhY2UgY29uZGl0aW9uIHdpdGggc29tZSBlbmRwb2ludCBkcml2
+ZXJzLiBXZSB3aWxsIGFkZCBpdCBpbgo+IHNvbWUgb3RoZXIgZm9ybSBsYXRlci4KCk9rZXksdGhh
+bmtzIQoKSSBoYXZlIGNoZWNrZWQgdGhlIGNvZGUgYW5kIGV2ZXJ5dGhpbmcgaXMgZmluZS4gSSdt
+IGxvb2tpbmcgZm9yd2FyZCB0byB5b3VyIG1lcmdlLgoKS2luZCByZWdhcmRzLApTZW5jaHVhbg==
 
-Arnd, that's would be nice if it would be standard SPI device. But what
-if eSPI would be a bus? So, I assume all other which lying underneath=20
-eSPI would be much easier to implement as standard driver data set
-SPI/GPIO/I2C with something like devm_regmap_init_espi(like for i2c/spi
-or anything else) for example as common part for these drivers.
-
-Thanks.
 
