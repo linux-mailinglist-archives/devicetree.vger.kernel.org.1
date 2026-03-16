@@ -1,245 +1,165 @@
-Return-Path: <devicetree+bounces-275964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275968-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iD0VJdyrt2nkUAEAu9opvQ
-	(envelope-from <devicetree+bounces-275964-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 08:06:04 +0100
+	id sHinDICst2kGUQEAu9opvQ
+	(envelope-from <devicetree+bounces-275968-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 08:08:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34B692955E7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 08:06:04 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CED5295688
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 08:08:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 582EC3016EC1
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:05:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 931183010B88
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:08:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E61F234D4EB;
-	Mon, 16 Mar 2026 07:05:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D382F34D912;
+	Mon, 16 Mar 2026 07:08:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b="TbFNW1Dx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I403kxFK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta-65-226.siemens.flowmailer.net (mta-65-226.siemens.flowmailer.net [185.136.65.226])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75FF934A3DC
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 07:05:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.65.226
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEF9E347FD7;
+	Mon, 16 Mar 2026 07:08:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773644755; cv=none; b=exB2/aCg4YpHedTKkfk9Uf3eayDIGnBqFONldJ0due9taDnAX89GwGBo3BsQrhTfRsp7ya2AFdMjtMeQ2DG0E5E+8vZFzP9hHAYZQxtF8svKzpUIdHqtZ4h9M+no6tHPIrrhH1ZKt3Hc+t+lnGQslSR71QR3Ku/lKGJxR2WElLE=
+	t=1773644924; cv=none; b=BwqDHXfGhIn2VqpmZbOMTcjeTbtmsmr1lHgXpvfyB1cKlQPhQPuF5bgXd9BgOGSSn2NDvFFBhS6Nw2LgwsxHcBGZwDH6bYt8Sit1p/H0Q1zkr5QGu2u/Swl/mHqrZHw4ZF4ACEE/SLziuZiwaDy9brThcSmfWlpiWnWw33hHuXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773644755; c=relaxed/simple;
-	bh=AKyxp5Owb55QcnIoyeAfKcR7uO+dojDomwowHlnfO3M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=lhWHqcaDQ3Jct4BKSMxYY4aE9tmvLIIGyXyva60GtrEgzbb4DDFHPlh11h1Clli8VWuSUqpFw2SInpIt8j1IkOdia1bLA2grtyCbUC8ait7gM9GtNVowucHxbAsIBgdpPq4n0d2zV3f24aI9rQhzbMLUYOughZ+Ujp/7N/eXVdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b=TbFNW1Dx; arc=none smtp.client-ip=185.136.65.226
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
-Received: by mta-65-226.siemens.flowmailer.net with ESMTPSA id 202603160705428406f82ed0000207dd
-        for <devicetree@vger.kernel.org>;
-        Mon, 16 Mar 2026 08:05:42 +0100
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
- d=siemens.com; i=alexander.sverdlin@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
- bh=6vGAJVpZ1jpQDkOyacjMdeipgp709TifBFgj8Np5dLw=;
- b=TbFNW1DxAFl2RX3wTAh1skXmbZ9eD1YCqF8vA6rhSICghukMCpENByqULSz0EPckxAM8CX
- P627luJfeH6MYOjyABVydvAwq9JTjcUC7uOW+3RhRmmaZils4MxzSkLAzLYkmBBFMSJ9wEQf
- GtUlvX/E8CzRUknJasdu8Wyxky8CwZXswp5+THloQpnFagYUvAlHLdMqimhF9QTFzglvL3LS
- LvWFZ93YFzBPR2aseLPpNQefO93lsfXUEuLKj8lze4y6rqde244sgLdrAockXbRdIVL8Cxgd
- e2reS17M/ygqIt5mmbb9rdxdw2jsmWbLeHRZZRmGGupiIEdPiOp471Ow==;
-From: "A. Sverdlin" <alexander.sverdlin@siemens.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Alexander Sverdlin <alexander.sverdlin@siemens.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Santosh Shilimkar <ssantosh@kernel.org>,
-	Andrew Davis <afd@ti.com>,
-	Jayesh Choudhary <j-choudhary@ti.com>,
-	Siddharth Vadapalli <s-vadapalli@ti.com>,
-	Abraham I <kishon@kernel.org>,
-	Roger Quadros <rogerq@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] soc: ti: k3-socinfo: Provide reset reason information
-Date: Mon, 16 Mar 2026 08:04:25 +0100
-Message-ID: <20260316070429.1545707-4-alexander.sverdlin@siemens.com>
-In-Reply-To: <20260316070429.1545707-1-alexander.sverdlin@siemens.com>
-References: <20260316070429.1545707-1-alexander.sverdlin@siemens.com>
+	s=arc-20240116; t=1773644924; c=relaxed/simple;
+	bh=9A5OCwRLDHXQNfCDrDgLTuSWigTIaBNqYaY07aDVvXk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rgo4PDdbaWBy0lqQrBnHkUfDxNkH8Kvy2PxuAv57F62sy1tUpzNyHd7ARl/5TJzWlS2G/w5v9kbFi5Y6I8HkIRnBkucw/cuk3q6H2lrp5LpSTWG/ZBKC3WqF5LvQVXhZmVwFYkDeqbOHFyiqkWg3djnLt/95mSem01upVosZxdQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I403kxFK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 55420C19421;
+	Mon, 16 Mar 2026 07:08:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773644924;
+	bh=9A5OCwRLDHXQNfCDrDgLTuSWigTIaBNqYaY07aDVvXk=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=I403kxFK7qxALhqqYw9BSrxwTMBeArORC0C1yRHI4kzHKd4P6V/+7uQ3vt+sPc2v/
+	 o+3uK2tHvCTcK80zvdrENZ8OjgqNfqEf0cDfP9m6WA8Ss+BpD5xUaMtcDzFXvIQ9RG
+	 AA24E8ugpGX6VXV8Qy3iMPLZ7yC4AjD4l5513qBicwAlop0O6LhKHSkCWNbAmQQkdx
+	 14ftazIYU25wzF5HcS9zDa5Vi414dIqxZW4/Oc5SqzSP/LlLAi3BUrSI2zueYhmuMI
+	 41OFB1txd7nPG5Acv7JSyn5JsqdhSgbbquyoNb3DzwDN9yXHvjVEHTBl+vwWSNU/RI
+	 vDZ1mwcRpqnsg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4538AEFCBCD;
+	Mon, 16 Mar 2026 07:08:44 +0000 (UTC)
+From: Jia Wang via B4 Relay <devnull+wangjia.ultrarisc.com@kernel.org>
+Subject: [PATCH 0/4] riscv: Add PCIe support for UltraRISC DP1000 SoC
+Date: Mon, 16 Mar 2026 15:06:56 +0800
+Message-Id: <20260316-ultrarisc-pcie-v1-0-ef2946ede698@ultrarisc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-456497:519-21489:flowmailer
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABCst2kC/yXMQQqDQAxA0atI1gbGGVHTq0gXdho1UuyQaCmId
+ ++0Xb7F/wcYq7DBpThA+SUmzzWjKguI87BOjHLPBu9840LlcH9sOqhYxBSFsaaaqGubEIggR0l
+ 5lPdv2F//tv22cNy+FzjPD2lTZsVyAAAA
+X-Change-ID: 20260310-ultrarisc-pcie-494998763399
+To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>, 
+ Xincheng Zhang <zhangxincheng@ultrarisc.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+ Jia Wang <wangjia@ultrarisc.com>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773644922; l=1823;
+ i=wangjia@ultrarisc.com; s=20260309; h=from:subject:message-id;
+ bh=9A5OCwRLDHXQNfCDrDgLTuSWigTIaBNqYaY07aDVvXk=;
+ b=rTFbbGwTCs1+w180BnpbPCUeQ48DDiDPysHMhe+dVo09dnr0HDi5YQ722b8CFO3rBZlb+4Mxj
+ ApRZT3KEmc7CSeiRFYvzulaVAR4fW8CRujEIfp2OSn7/LlXmilFN+/I
+X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
+ pk=XvYkrelqJIIzobY7j+nIg8rsfv5kzaOzuc1UPhd087U=
+X-Endpoint-Received: by B4 Relay for wangjia@ultrarisc.com/20260309 with
+ auth_id=682
+X-Original-From: Jia Wang <wangjia@ultrarisc.com>
+Reply-To: wangjia@ultrarisc.com
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[siemens.com,reject];
-	R_DKIM_ALLOW(-0.20)[siemens.com:s=fm1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	TAGGED_FROM(0.00)[bounces-275964-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-275968-lists,devicetree=lfdr.de,wangjia.ultrarisc.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexander.sverdlin@siemens.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[siemens.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_TO(0.00)[kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,google.com,gmail.com,ultrarisc.com];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[siemens.com:dkim,siemens.com:email,siemens.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 34B692955E7
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_REPLYTO(0.00)[wangjia@ultrarisc.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ultrarisc.com:email,ultrarisc.com:replyto,ultrarisc.com:mid]
+X-Rspamd-Queue-Id: 9CED5295688
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
+This patch series adds PCIe controller support for the UltraRISC DP1000 SoC.
+The DP1000 is an 8-core 64-bit RISC-V SoC based on UltraRISC C100 cores,
+supporting RV64GCBHX ISA with Hardware Virtualization and RISC-V H(v1.0)
+Extension.
 
-Add reset_reason attribute decoging the RST_SRC register present in AM64x
-and later SoCs of K3 family. Textual representation of the bits was taken
-from the AM62x Processors Technical Reference Manual, except the POR, which
-is not signalled explicitly by the reset module.
+The PCIe controller is based on Synopsys DesignWare PCIe IP.
+This series adds:
+- Patch 1 adds the basic SoC family Kconfig support for UltraRISC platforms.
+- Patch 2 adds the MAINTAINERS entry for the new driver.
+- Patch 3 adds the device tree bindings documentation for the PCIe controller.
+- Patch 4 introduces the PCIe host controller driver.
 
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@siemens.com>
+The patches have been tested on UltraRISC DP1000 development board with
+various PCIe devices including NVMe SSDs and network cards, verifying
+link establishment, enumeration, and basic data transfer.
+
+Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
 ---
-Changelog:
-v2: no changes
+Jia Wang (3):
+      riscv: add UltraRISC SoC family Kconfig support
+      MAINTAINERS: Add entry for the UltraRISC DP1000 PCIe controller driver and its DT binding
+      dt-bindings: PCI: Add UltraRISC DP1000 PCIe controller
 
- drivers/soc/ti/k3-socinfo.c | 88 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 88 insertions(+)
+Xincheng Zhang (1):
+      PCI: dwc: Add UltraRISC DP1000 PCIe rc driver
 
-diff --git a/drivers/soc/ti/k3-socinfo.c b/drivers/soc/ti/k3-socinfo.c
-index 676041879eca3..3736c982fd0c8 100644
---- a/drivers/soc/ti/k3-socinfo.c
-+++ b/drivers/soc/ti/k3-socinfo.c
-@@ -45,6 +45,8 @@
- #define JTAG_ID_PARTNO_J722S		0xBBA0
- #define JTAG_ID_PARTNO_AM62LX		0xBBA7
- 
-+#define CTRL_MMR_RST_SRC		8
-+
- static const struct k3_soc_id {
- 	unsigned int id;
- 	const char *family_name;
-@@ -123,6 +125,90 @@ static const struct regmap_config k3_chipinfo_regmap_cfg = {
- 	.reg_stride = 4,
- };
- 
-+static u32 k3_reset_source;
-+static const char *const k3_reset_sources[] = {
-+	[0]	= "Reset Caused by MCU Reset Pin",
-+	[1]	= "Power On Reset",			/* Reserved in HW */
-+	[2]	= "Main Reset Pin",
-+	[4]	= "Thermal Reset",
-+	[8]	= "Debug Subsystem Initiated Reset",
-+	[12]	= "SMS Cold Reset",
-+	[13]	= "SMS Warm Reset",
-+	[16]	= "Software Warm Reset",
-+	[20]	= "Software Main Warm Reset From MCU CTRL MMR",
-+	[21]	= "Software Main Warm Reset from MAIN CTRL MMR",
-+	[22]	= "Watchdog Initiated Reset",
-+	[24]	= "Software Main Power On Reset From MCU CTRL MMR",
-+	[25]	= "Software Main Power On Reset From MAIN CTRL MMR",
-+	[30]	= "Reset Caused by Main ESM Error",
-+	[31]	= "Reset Caused by MCU ESM Error",
-+};
-+
-+static ssize_t reset_reason_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	int ret, i;
-+	int total = 0;
-+
-+	for (i = ARRAY_SIZE(k3_reset_sources); i >= 0; i--) {
-+		if (!k3_reset_sources[i] || !(k3_reset_source & BIT(i)))
-+			continue;
-+
-+		ret = sprintf(buf + total, "%s\n", k3_reset_sources[i]);
-+		if (ret < 0)
-+			return ret;
-+		total += ret;
-+		/* Note that several reset sources may be active simultaneously */
-+	}
-+
-+	return total;
-+}
-+
-+static DEVICE_ATTR_RO(reset_reason);
-+
-+static struct attribute *k3_soc_attrs[] = {
-+	&dev_attr_reset_reason.attr,
-+	NULL
-+};
-+
-+ATTRIBUTE_GROUPS(k3_soc);
-+
-+static const struct of_device_id k3_rst_id_table[] = {
-+	{
-+		.compatible	= "ti,am64-rst",
-+	},
-+	{}
-+};
-+
-+static void k3_reset_reason_read(struct soc_device_attribute *soc_dev_attr)
-+{
-+	struct device_node *node = of_find_matching_node(NULL, k3_rst_id_table);
-+	struct regmap *regmap;
-+
-+	/* AM65x/J721E do not have similar registers */
-+	if (!node)
-+		return;
-+
-+	regmap = device_node_to_regmap(node);
-+	of_node_put(node);
-+	if (IS_ERR(regmap)) {
-+		pr_err("Cannot obtain %s regmap\n", k3_rst_id_table[0].compatible);
-+		return;
-+	}
-+
-+	regmap_read(regmap, CTRL_MMR_RST_SRC, &k3_reset_source);
-+	/*
-+	 * The register is only being cleared on POR, so we have to clear reset
-+	 * source of the current boot manually
-+	 */
-+	regmap_write(regmap, CTRL_MMR_RST_SRC, k3_reset_source);
-+
-+	/* Simplify the code a bit and use HW-reserved bit for POR indication */
-+	if (!k3_reset_source)
-+		k3_reset_source |= BIT(1);
-+
-+	soc_dev_attr->custom_attr_group = k3_soc_groups[0];
-+}
-+
- static int k3_chipinfo_probe(struct platform_device *pdev)
- {
- 	struct device_node *node = pdev->dev.of_node;
-@@ -183,6 +269,8 @@ static int k3_chipinfo_probe(struct platform_device *pdev)
- 	of_property_read_string(node, "model", &soc_dev_attr->machine);
- 	of_node_put(node);
- 
-+	k3_reset_reason_read(soc_dev_attr);
-+
- 	soc_dev = soc_device_register(soc_dev_attr);
- 	if (IS_ERR(soc_dev)) {
- 		ret = PTR_ERR(soc_dev);
--- 
-2.52.0
+ .../bindings/pci/ultrarisc,dp1000-pcie.yaml        | 108 +++++++++++
+ MAINTAINERS                                        |   8 +
+ arch/riscv/Kconfig.socs                            |  10 +
+ drivers/pci/controller/dwc/Kconfig                 |  15 ++
+ drivers/pci/controller/dwc/Makefile                |   1 +
+ drivers/pci/controller/dwc/pcie-designware.h       |  22 +++
+ drivers/pci/controller/dwc/pcie-ultrarisc.c        | 202 +++++++++++++++++++++
+ 7 files changed, 366 insertions(+)
+---
+base-commit: f338e77383789c0cae23ca3d48adcc5e9e137e3c
+change-id: 20260310-ultrarisc-pcie-494998763399
+
+Best regards,
+--  
+Jia Wang <wangjia@ultrarisc.com>
+
 
 
