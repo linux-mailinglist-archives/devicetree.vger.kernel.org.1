@@ -1,118 +1,129 @@
-Return-Path: <devicetree+bounces-276388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276391-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MKYWNrFruGn5dgEAu9opvQ
-	(envelope-from <devicetree+bounces-276388-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 21:44:33 +0100
+	id oKnSMyhtuGn5dgEAu9opvQ
+	(envelope-from <devicetree+bounces-276391-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 21:50:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80DF82A0538
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 21:44:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A00C2A0629
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 21:50:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 03C0A3023D56
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 20:44:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CE805307AA25
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 20:49:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEC61392818;
-	Mon, 16 Mar 2026 20:44:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03F4F359A63;
+	Mon, 16 Mar 2026 20:49:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="doTy37qe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta.ai112.secure.ne.jp (ai112.secure.ne.jp [150.60.158.247])
+Received: from relay.smtp-ext.broadcom.com (lpdvsmtp10.broadcom.com [192.19.144.205])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07CB939E6E9
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 20:44:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.60.158.247
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4108358D14;
+	Mon, 16 Mar 2026 20:49:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.205
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773693871; cv=none; b=Izb0IBR3sEHoEsxtzWlLE6e164b1p72UoB2b6Vr7svQaWrjRug9cs02LCSjFJBVZGACfh4mBIoeqPTkCjSiGTz/MBrDFmAFqVoUPxmNWSw0vn4aeocVs37uUc1nWIQDgqMDby8jjZwqQvqVf96SYIPAPQsAAr+g75swjvjT4UnI=
+	t=1773694195; cv=none; b=bV/FRV8GBplrLcQ+cwhbDIgaR483YA2mWdGnhn+b6qSd6+/UInoZgoyHl9Yx5ngv95lWBLItKyBY7CJHbejwrt7oW8GirFOVEGL89UM7NAGTmhXN0HSV0aAGuRiWzo9w5RWxV4uNjAwsWLe3i6nK5wh4Y4PqpFS0i3M3uzO/uZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773693871; c=relaxed/simple;
-	bh=HTSbkAu6LzhBivZ7actY7nw3ZwOFD+8yHCqYOLbN4Rs=;
-	h=To:Subject:Date:From:Message-ID:MIME-Version:Content-Type; b=toQXDFTBuMPHYWlTuUDUeY+i8qQy1FWcCkgq+tgb6FQqsF60cBSIiEHA90MW3iIzPC3q7QNt0kdBZXAIEUvhrkSpHn2367CyYnJbi+Bf45ytKi68swBX1oOpBrQaYg6x1V02zk0EKdcqdfD1g9PwA405HGMgBoGzWlGfhozUehE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=towa-care.com; spf=pass smtp.mailfrom=ai112.secure.ne.jp; arc=none smtp.client-ip=150.60.158.247
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=towa-care.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ai112.secure.ne.jp
-Received: by mta.ai112.secure.ne.jp (Postfix, from userid 10275)
-	id 89D1C3D3B5F; Tue, 17 Mar 2026 05:36:40 +0900 (JST)
-To: devicetree@vger.kernel.org
-Subject: =?UTF-8?B?44GK5ZWP44GE5ZCI44KP44Gb6aCC44GN6Kqg44Gr44GC44KK44GM44Go44GG?=  =?UTF-8?B?44GU44GW44GE44G+44GX44Gf44CC?=
-X-PHP-Originating-Script: 10275:class-phpmailer.php
-Date: Mon, 16 Mar 2026 20:36:40 +0000
-From: =?UTF-8?B?5qCq5byP5Lya56S+IOawuOmBoA==?= <confirm@towa-care.com>
-Reply-To: info@towa-care.com
-Message-ID: <859ae3e89dc1665ae0ceb4803a095889@towa-care.com>
-X-Mailer: PHPMailer 5.2.22 (https://github.com/PHPMailer/PHPMailer)
+	s=arc-20240116; t=1773694195; c=relaxed/simple;
+	bh=W3Vv8A2Za9HrqIOTwJsGyIfvZpnDJ2c/uZPsxDKqTzM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=Y411td/4C5Eu27h21z2yTyg7WYAhuNx7vUWUD9HmmRO8vyOsGZIZ6s/D/pPI2wSA87r9Uka43ISeQV90wKBPaaudAO3XOj6WswkeW+9ysIDv74wHeqrxdkVQE3JraVwbpOnem2YOQKGCmy4aoVHy+gxgmigIwTCdEmj23Lm1M9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=doTy37qe; arc=none smtp.client-ip=192.19.144.205
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: from mail-lvn-it-01.broadcom.com (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 2BC14C0005CB;
+	Mon, 16 Mar 2026 13:43:38 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 2BC14C0005CB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
+	s=dkimrelay; t=1773693818;
+	bh=W3Vv8A2Za9HrqIOTwJsGyIfvZpnDJ2c/uZPsxDKqTzM=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=doTy37qeqqaUOPhJ0bt3C5D581JlYn0UF51AJl6Q9uSIxiTvxoDIBqnxTLeUG5msH
+	 KqBXoPIeAHPRlATgdsE5xunJMlSy2thha6qBNxM1K5QanY20foncjwlOQLZ2Ul04YF
+	 kZSqIBoclU/a7A23quZp+ktCUOSnEDm5LQkujMOU=
+Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id BC575A83;
+	Mon, 16 Mar 2026 13:43:37 -0700 (PDT)
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+To: bcm-kernel-feedback-list@broadcom.com,
+	Rosen Penev <rosenp@gmail.com>,
+	devicetree@vger.kernel.org
+Cc: Florian Fainelli <f.fainelli@gmail.com>,
+	Hauke Mehrtens <hauke@hauke-m.de>,
+	=?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"moderated list:BROADCOM BCM5301X ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ARM: dts: BCM5301X: add root pcie bridges
+Date: Mon, 16 Mar 2026 13:43:37 -0700
+Message-ID: <20260316204337.2144930-1-florian.fainelli@broadcom.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260302000736.592422-1-rosenp@gmail.com>
+References: <20260302000736.592422-1-rosenp@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-1.36 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[broadcom.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[broadcom.com:s=dkimrelay];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[towa-care.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	HAS_PHPMAILER_SIG(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-276388-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,hauke-m.de,kernel.org,lists.infradead.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_ONE(0.00)[1];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FREEMAIL_TO(0.00)[broadcom.com,gmail.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-276391-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	REDIRECTOR_URL(0.00)[tinyurl.com];
-	REPLYTO_DOM_EQ_FROM_DOM(0.00)[];
-	TO_DN_NONE(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[broadcom.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[confirm@towa-care.com,devicetree@vger.kernel.org];
-	HAS_REPLYTO(0.00)[info@towa-care.com];
-	HAS_X_POS(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.156];
-	TAGGED_RCPT(0.00)[devicetree];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 80DF82A0538
+	FROM_NEQ_ENVFROM(0.00)[florian.fainelli@broadcom.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,broadcom.com:dkim,broadcom.com:mid]
+X-Rspamd-Queue-Id: 3A00C2A0629
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---------------------------------------------------------------------------------
-お問い合わせ頂き誠にありがとうございます。
-本メールは自動送信専用メールアドレスからの送信となります。
-本メールからご返信頂きますと当サイト担当のメールアドレスへご返送頂けます。
---------------------------------------------------------------------------------
-以下情報で承りました。
-担当者からの折り返しのご連絡をお待ちください。
-尚、3日経ってもご連絡がない場合はお手数ですが、
-一度お電話頂くようお願い申し上げます。
+From: Florian Fainelli <f.fainelli@gmail.com>
 
+On Sun,  1 Mar 2026 16:07:36 -0800, Rosen Penev <rosenp@gmail.com> wrote:
+> They are always required and instead of duplicating a definition in each
+> dts file, place it in dtsi with labels and work based on that.
+> 
+> Also changed each bridge@ to pcie@ to get extra dtc static analysis.
+> 
+> Fixed bridge numbers as a result.
+> 
+> Signed-off-by: Rosen Penev <rosenp@gmail.com>
+> ---
 
-氏名：Agekbada
-
-氏名カナ：Agekbada
-
-会社・店名：google
-
-メールアドレス：devicetree@vger.kernel.org
-
-電話番号：82946227713
-
-携帯番号：84482863265
-
-メッセージ本文：
-That constant heaviness in your chest? It's exhausting. Get back to enjoying life with simple, private help available online. Fast shipping, secure checkout, complete anonymity. See the options waiting for you.  https://tinyurl.com/44hsj6ha#ILJZxj
-
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
 --
-送信日時： 2026年3月17日　5:36 AM
-IPアドレス：158.173.20.22
---
-このメールは 株式会社 永遠  (https://towa-care.com) のお問い合わせフォームから送信されました
-
+Florian
 
