@@ -1,173 +1,127 @@
-Return-Path: <devicetree+bounces-276216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276217-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oZTaIQwSuGk7YwEAu9opvQ
-	(envelope-from <devicetree+bounces-276216-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:22:04 +0100
+	id YN+kIHQSuGk7YwEAu9opvQ
+	(envelope-from <devicetree+bounces-276217-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:23:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id F253929B3DB
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:22:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAB0A29B444
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:23:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EA0A330048CB
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:22:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5C62A3008E17
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:23:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 159732765D7;
-	Mon, 16 Mar 2026 14:22:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 775292798ED;
+	Mon, 16 Mar 2026 14:23:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vb0KmWB/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NzGLe0Mx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4D072701BB;
-	Mon, 16 Mar 2026 14:22:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53D3D2765D7
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 14:23:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773670922; cv=none; b=evgPkNBmJCZDRTTUt7n7YKkDcQIhKmOpjXEG77Tp57nCgAFbMsLsFg+e0FjhRW9Sk4fo55nv0+nnimtzqMwKuvypnNJi+KF7/HjbC91U7+97Z6hYdUTfBqedgEzdDfG0imB5AMkgJhaJfqjljU1PJY+DD6ZXZP46ESjIiBtBHzw=
+	t=1773671025; cv=none; b=Fy/Bd9thCMdTAMIVwEjOgurQ6llEW+AY+jLIA7TqLesF/haU6zYOth3FkA4QQvCqxOuk9NHe03XuGOeDXurZKmH1G19wrsRjMqQzb2fsF7aPtmKfQsu5X/rksAe7DXf4wX5Yu86WLPjmNIwpgC4+lISo1Gnq3ebz/Gk8ZE2Oekw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773670922; c=relaxed/simple;
-	bh=iXFAkyHZVPA9Js7q3zVpJAkTrRXaqU4mUKoFiz/fVeA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XmPOpY9YSQhV1TPT8u+xyfQSrAINfbALH47j267Octe4/zM+KGiOfLBcpM6iH7baCk5L6wFAbugJK4TlFSVj+D3XvSW2y2XyNOi09S3ZhhCxgnxR6Cs5xjrqUNJUzpiTaDxh5vzegjXF3hRvEpxKKno8+5nHKKDUXoqKsUpFcfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vb0KmWB/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E1B1C19425;
-	Mon, 16 Mar 2026 14:22:01 +0000 (UTC)
+	s=arc-20240116; t=1773671025; c=relaxed/simple;
+	bh=o9qImMPTFN9l13pEaVZexXF0+F/wHlqkeGvCWUWvFc0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eqo/jLEOaiS/SrgTl85ksdmc5yOsBzUvbkBhRDTyQAIR3COESvpTxCc139S8je2zF9CAj620M5FGfyWr3C3JQ7sh0/2/fwLum/WDCkL7cq6k+yVgkbFQ0DUdWouSDt+goVTdDcFq9aiCTjQIns78x7JTD8pcpZdE3g+PJxbJ8WQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NzGLe0Mx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3029DC2BCB2
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 14:23:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773670921;
-	bh=iXFAkyHZVPA9Js7q3zVpJAkTrRXaqU4mUKoFiz/fVeA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Vb0KmWB/iuxyOrVhlK4FapCa9mzGM9nh5PwOvP5hUcrlaMDuUNCzi5wkoBiyWHY/z
-	 fiKgUdjgNBKIBFECaUTHUebuRP/ifJ74CUnhNlbmvOAlk5d7pwZEGqq/6bRVvLADKj
-	 jgjKDDwr/6RtuoCMnPW13oUD3QnhaY+DmO1wQPEL69HXv3xVL0lmRt+n8arUADfk8i
-	 ZlpgmCUVCnesskPTC2+ro56U1mbwxfdhiSp7tTulsWEta/JALyYsMPH7oqxQowfpSp
-	 NhbQXPZNKsG9L4snwizHaOAoIhOnL3oloIjuINpdgQuH0qfwgA7vG68ikaY/pXEsTB
-	 +ycUgioU6SEOA==
-Date: Mon, 16 Mar 2026 07:21:59 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Conor Dooley <conor@kernel.org>,
-	Icenowy Zheng <zhengxingda@iscas.ac.cn>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Rahul Tanwar <rtanwar@maxlinear.com>,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Icenowy Zheng <uwu@icenowy.me>, Han Gao <rabenda.cn@gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: moortec,mr75203: adapt
- multipleOf for T-Head TH1520
-Message-ID: <abgSB6DBABOtk+tU@x1>
-References: <20260309162457.4128205-1-zhengxingda@iscas.ac.cn>
- <20260309162457.4128205-2-zhengxingda@iscas.ac.cn>
- <abWTO7QBFIcjxKn6@x1>
- <20260315-cogwheel-dislodge-a3efe31728d1@spud>
- <0f88a17c-7c21-4ae5-b418-dfb4b4ac5d6a@roeck-us.net>
+	s=k20201202; t=1773671025;
+	bh=o9qImMPTFN9l13pEaVZexXF0+F/wHlqkeGvCWUWvFc0=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=NzGLe0MxaJ6b4oDrU7jIw7POfBs6WQhK9MokUeJZmK1iorKNGExFfp4+cbDRBy1+r
+	 MwB38IheT63yy32AjDHKZp26QAFHx2O1TgGdVGS1K8zk8OAf+7bqjMfJwfSpKyviIg
+	 GqlarZ/EtuYdo9tj1+ZfxKFY8Eg1WowSXVX5/nwLQn532pLRUGz/l6tZmIgur2SHGJ
+	 2VmiZe6iub9TvE32oTer3V0ZDOqZxyEEwYVd5k5gf64TFUB9dWjx3/HOkqu0h7Kx/g
+	 iiX/CXJHWsZ8TMzp1u/LZpLyE73G/91zUIjY6v3fJqALNCB1WKoBj5Uj7S8LVR0cLF
+	 bjajcaCpeBl/g==
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5a12cd0bcd8so5324305e87.3
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 07:23:45 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUX+xo66luwMK/jk7mAtvRrkXK1gJnLCna+wfaVKulLJ+fGiWbtqw2P+k9aQTyokCGpKryLgOdZiyZ6@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+IxHCx7qvZ1ChWjWShaKl3sYL+EoxMDpR4atW8ibN3i/Vfrtn
+	B9IjKHHafZxg3s7KIowQbM15ds0fXyuNZX9yBtjz40kSfDRgWXdZBlG9ZpyMZ6zyBAGpR+NGPNN
+	EmF74O4JiPxyfpL8YIwmG/cJjEPCfpPQ=
+X-Received: by 2002:a05:6512:1589:b0:5a1:3f66:1d75 with SMTP id
+ 2adb3069b0e04-5a162b1feb3mr3926051e87.43.1773671023606; Mon, 16 Mar 2026
+ 07:23:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0f88a17c-7c21-4ae5-b418-dfb4b4ac5d6a@roeck-us.net>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+References: <20260313195801.2043306-1-shenwei.wang@nxp.com>
+In-Reply-To: <20260313195801.2043306-1-shenwei.wang@nxp.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Mon, 16 Mar 2026 15:23:30 +0100
+X-Gmail-Original-Message-ID: <CAD++jLkVZc7J+39eUtpWz4+YQm035HDtUyiyrEFGifQkcSMsCA@mail.gmail.com>
+X-Gm-Features: AaiRm51oPQ0PGDQyh1c2t_SBzYfjFDmFeidRXonO75pnfFoM__wwYFbbiMK8ux8
+Message-ID: <CAD++jLkVZc7J+39eUtpWz4+YQm035HDtUyiyrEFGifQkcSMsCA@mail.gmail.com>
+Subject: Re: [PATCH v12 0/5] Enable Remote GPIO over RPMSG on i.MX Platform
+To: Shenwei Wang <shenwei.wang@nxp.com>
+Cc: Bartosz Golaszewski <brgl@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, arnaud.pouliquen@foss.st.com, 
+	Shuah Khan <skhan@linuxfoundation.org>, linux-gpio@vger.kernel.org, 
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
+	devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276216-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276217-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,lwn.net,linaro.org,nxp.com,pengutronix.de,foss.st.com,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,iscas.ac.cn,redhat.com,maxlinear.com,vger.kernel.org,lists.infradead.org,icenowy.me,gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.993];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,iscas.ac.cn:email]
-X-Rspamd-Queue-Id: F253929B3DB
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.990];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,nxp.com:email,i.mx:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DAB0A29B444
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 16, 2026 at 07:11:37AM -0700, Guenter Roeck wrote:
-> On 3/15/26 05:12, Conor Dooley wrote:
-> > On Sat, Mar 14, 2026 at 09:56:27AM -0700, Drew Fustini wrote:
-> > > On Tue, Mar 10, 2026 at 12:24:56AM +0800, Icenowy Zheng wrote:
-> > > > The G and J coefficients provided by T-Head TH1520 manual (which calls
-> > > > them A and C coefficients and calls H coefficient in the binding as B)
-> > > > have 1/100 degree Celsius precision (the values are 42.74 and -0.16
-> > > > respectively), however the binding currently only allows coefficients as
-> > > > precise as 100 milli-Celsius (1/10 degree Celsius).
-> > > > 
-> > > > Change the multipleOf value of these two coefficients to 10 (in the unit
-> > > > of milli-Celsius) to satisfy the need of TH1520.
-> > > > 
-> > > > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-> > > > Reviewed-by: Drew Fustini <fustini@kernel.org>
-> > > > ---
-> > > > Changes in v3:
-> > > > - Added Drew's R-b.
-> > > > - Fixed some typos in the commit message and slightly reworded the
-> > > >    precision sentence.
-> > > > 
-> > > >   Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml | 4 ++--
-> > > >   1 file changed, 2 insertions(+), 2 deletions(-)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> > > > index 56db2292f062d..7d57c2934a8a1 100644
-> > > > --- a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> > > > +++ b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> > > > @@ -105,7 +105,7 @@ properties:
-> > > >         G coefficient for temperature equation.
-> > > >         Default for series 5 = 60000
-> > > >         Default for series 6 = 57400
-> > > > -    multipleOf: 100
-> > > > +    multipleOf: 10
-> > > >       minimum: 1000
-> > > >       $ref: /schemas/types.yaml#/definitions/uint32
-> > > > @@ -131,7 +131,7 @@ properties:
-> > > >         J coefficient for temperature equation.
-> > > >         Default for series 5 = -100
-> > > >         Default for series 6 = 0
-> > > > -    multipleOf: 100
-> > > > +    multipleOf: 10
-> > > >       maximum: 0
-> > > >       $ref: /schemas/types.yaml#/definitions/int32
-> > > > -- 
-> > > > 2.52.0
-> > > > 
-> > > 
-> > > I have applied this to thead-dt-for-next.
-> > 
-> > That's odd, why is a hwmon binding in your branch?
-> > 
-> > > https://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git/commit/?h=thead-dt-for-next&id=eb4fd43ff6793681f0a0a8e8ac861142caba2b19
-> > 
-> > I don't see an ack on it from the relevant maintainer either?
-> 
-> I don't get it either. Normally I am the one to apply hwmon bindings
-> through the hwmon branch.
+Hi Shenwei,
 
-Sorry, I should not have done this. I should only be applying dts/dtsi
-patches to my thead dt branch.
+On Fri, Mar 13, 2026 at 8:58=E2=80=AFPM Shenwei Wang <shenwei.wang@nxp.com>=
+ wrote:
 
-Thanks,
-Drew
+> Support the remote devices on the remote processor via the RPMSG bus on
+> i.MX platform.
+
+I think v12 looks pretty good, if Arnaud gives his ACK on this patch
+series I think it's ripe for merge.
+
+Yours,
+Linus Walleij
 
