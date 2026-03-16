@@ -1,51 +1,73 @@
-Return-Path: <devicetree+bounces-276297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276298-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AEMhCmgouGnhZgEAu9opvQ
-	(envelope-from <devicetree+bounces-276297-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:57:28 +0100
+	id GA+mCjQouGnhZgEAu9opvQ
+	(envelope-from <devicetree+bounces-276298-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:56:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9537429CD90
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:57:27 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1C4529CD68
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:56:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9E99C300828D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:53:59 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id EFF08300832B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:56:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4C2C3B95F1;
-	Mon, 16 Mar 2026 15:53:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E1023B7767;
+	Mon, 16 Mar 2026 15:56:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ee4lljvO"
+	dkim=pass (2048-bit key) header.d=leemhuis.info header.i=@leemhuis.info header.b="k8n3jmyb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay.yourmailgateway.de (relay.yourmailgateway.de [188.68.63.162])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 511B53B9609;
-	Mon, 16 Mar 2026 15:53:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B8553A4508;
+	Mon, 16 Mar 2026 15:56:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.68.63.162
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773676387; cv=none; b=fpJgboQkcRhB/l5xSKj3Gchovk5/S9YqasN4KFQ5BaF96kroEgrC2OSDM4ck8EvNgvbTlXVdFKjO1HhoAWoZGrCfJ/uJ1kWa9ZrzlRiKD3CQ4Cf8isDHrtbqSdfABvjLKCL3xYvxV3N4N26FVLP64DejfGQRBdw6vO/ClGf6uN8=
+	t=1773676593; cv=none; b=BI33oLkNEsOTfiAYbdkFvk51iRyXKdUZvjP9XE242IeDFyls8LIi5bcM6tMYgRxiRfx8YIQFjZiw/0gdCtM8qxvIPABySRKbvn031kWiQLPOOuWY/y72cRzhORn6DUdY3+jib17sovSLB+5PxboFB71W3lQw+RYvy4AyZeK6NpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773676387; c=relaxed/simple;
-	bh=+DUB05VhdXfx4QMFIX0abllmoRqd3R/aE8T81dsGNsk=;
+	s=arc-20240116; t=1773676593; c=relaxed/simple;
+	bh=WlSUsVAGD5bEWuxTDhZsT6Xf5db1wW9sFlbq69Me71s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B11RJQJr8Ykvj8cEYMGR5qBi9tHt5Eyr8ccJACf7vZIbNh2rY31RjiRnGyygoTFzm4crYWPZZCmkIEjnixuas7pomQSBcst9UoXO8EzZH/WLiYCQnJSbs28PVVqtshToQUsL+a1sDHG+qNTBvZhoE9ZzHuHetCXBGH2QX8z2P8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ee4lljvO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 777BBC19421;
-	Mon, 16 Mar 2026 15:53:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773676386;
-	bh=+DUB05VhdXfx4QMFIX0abllmoRqd3R/aE8T81dsGNsk=;
+	 In-Reply-To:Content-Type; b=GXEIwtuEukfGQYhuiH38ow5OXMAEawAGfmqXe4ToVdUkn74Xd+gykTJ8oD5vB1SFw4evEiIxKoM/BF72FIOiugRJdXY/SkwUalz9Fivj18gNAMM/Plg+fJ0BOB2YCpozy4bf7B0OMAy+EDGeb+Qd/fmpVEWZqx+f/iX1Kq/th+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=leemhuis.info; spf=pass smtp.mailfrom=leemhuis.info; dkim=pass (2048-bit key) header.d=leemhuis.info header.i=@leemhuis.info header.b=k8n3jmyb; arc=none smtp.client-ip=188.68.63.162
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=leemhuis.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=leemhuis.info
+Received: from mors-relay-8201.netcup.net (localhost [127.0.0.1])
+	by mors-relay-8201.netcup.net (Postfix) with ESMTPS id 4fZKSv1jJrz42Tr;
+	Mon, 16 Mar 2026 16:56:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
+	s=key2; t=1773676575;
+	bh=WlSUsVAGD5bEWuxTDhZsT6Xf5db1wW9sFlbq69Me71s=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ee4lljvO/Q6zIkSRTshvtKm8bKRW8fqCXaseeXZR4KlMEh4NiNL9X7Qz1Psr2s5tQ
-	 hib7DNcBpjsHuK4msHTby9f8sE96VA6I+neUuCUrH3EgveP6b8W446J0yp3AsuT+pb
-	 d0RNgg1pr8buAVSqMf2zGw2e2UzU3mvLIkJtRuAtRfxWOT4YTuyi1UCD5H2xTJ4F4P
-	 kEqtx8pt0H70BXPgl3TExFGq2QWSbgJnvihJzA+ZUKV6QpiqvOWOFAOML3nXHt2Ohh
-	 O76m7gljyCmILIK+6YfsdHW0tfFyxWPYbuaYA12A/HpVDo+IJAuz8glcsAeN0VJDIo
-	 cjMut0UlTlHnQ==
-Message-ID: <0e8a5ab4-3922-4a74-a751-146de5fa381b@kernel.org>
-Date: Mon, 16 Mar 2026 16:53:01 +0100
+	b=k8n3jmybFD7gXBaYrpK4yBXfYwwFLyUVnapTaQGgoaMQrxhSSZcXFg5U3XYna28KB
+	 3K6t7I9oVZIPWHFSIbqIwvAKFYIG6Rj8hfk7BNnH2Hh6cWIFdc+Mk0e5Q+rEfdvVws
+	 jHW2DlUHb0NmvXDYoPI2VPAHefdTWgsDYFKdVdefdGsPp6VqD3l/zp5UgLCRRo1rBx
+	 tFs2Nxvadf0yumXDv2t4uPQn1WAMFaChJMSdSm+bfHUzp2+ddQbMDdDKQvudeTKYgb
+	 uWA22wmoBXInOXv6nQQI1PppB2Sqr31JmlFMlfNw/MmvxpbHSmGAk40ba5eS3fN0hD
+	 g/br3glqXVCUg==
+Received: from policy01-mors.netcup.net (unknown [46.38.225.35])
+	by mors-relay-8201.netcup.net (Postfix) with ESMTPS id 4fZKSv0tb6z42HL;
+	Mon, 16 Mar 2026 16:56:15 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at policy01-mors.netcup.net
+X-Spam-Flag: NO
+X-Spam-Score: -2.899
+X-Spam-Level: 
+Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by policy01-mors.netcup.net (Postfix) with ESMTPS id 4fZKSr6Ywwz8t3w;
+	Mon, 16 Mar 2026 16:56:12 +0100 (CET)
+Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
+	by mxe9fb.netcup.net (Postfix) with ESMTPSA id 81D35635AB;
+	Mon, 16 Mar 2026 16:56:11 +0100 (CET)
+Authentication-Results: mxe9fb;
+        spf=pass (sender IP is 2a02:8108:8984:1d00:a0cf:1912:4be:477f) smtp.mailfrom=regressions@leemhuis.info smtp.helo=[IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f]
+Received-SPF: pass (mxe9fb: connection is authenticated)
+Message-ID: <3b30506f-f651-44c4-aca2-29e99ce60cba@leemhuis.info>
+Date: Mon, 16 Mar 2026 16:56:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,111 +75,123 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: defconfig: enable EMC2305 driver
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux@ew.tq-group.com, linux-renesas-soc@vger.kernel.org
-References: <20260316150535.786122-1-alexander.stein@ew.tq-group.com>
- <20260316150535.786122-3-alexander.stein@ew.tq-group.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260316150535.786122-3-alexander.stein@ew.tq-group.com>
+Subject: Re: [PATCH v4] media: verisilicon: Fix kernel panic due to
+ __initconst misuse
+To: Nicolas Dufresne <nicolas@ndufresne.ca>,
+ Francesco Dolcini <francesco@dolcini.it>, ming.qian@oss.nxp.com
+Cc: linux-media@vger.kernel.org, mchehab@kernel.org,
+ hverkuil-cisco@xs4all.nl, benjamin.gaignard@collabora.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
+ sebastian.fricke@collabora.com, shawnguo@kernel.org, ulf.hansson@linaro.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ m.felsch@pengutronix.de, fra.schnyder@gmail.com, linux-imx@nxp.com,
+ l.stach@pengutronix.de, Frank.li@nxp.com, peng.fan@nxp.com,
+ eagle.zhou@nxp.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, regressions@lists.linux.dev
+References: <20260306031059.801-1-ming.qian@oss.nxp.com>
+ <20260312173349.GA137045@francesco-nb>
+ <e559b822c5f4fc9167d40544172c6c450d88636a.camel@ndufresne.ca>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+Content-Language: de-DE, en-US
+In-Reply-To: <e559b822c5f4fc9167d40544172c6c450d88636a.camel@ndufresne.ca>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-PPP-Message-ID: <177367657238.2992055.3000395586816625353@mxe9fb.netcup.net>
+X-NC-CID: r6HJUysEbzhA4YW/OY4xibuaKrLtu3kst56pC0zpvPNb0zaEbPQ=
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[leemhuis.info:s=key2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,qualcomm.com:email,toradex.com:email,pengutronix.de:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
+	TAGGED_FROM(0.00)[bounces-276298-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276297-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[ew.tq-group.com,kernel.org,nxp.com,pengutronix.de,gmail.com,glider.be];
+	DMARC_NA(0.00)[leemhuis.info];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,xs4all.nl,collabora.com,pengutronix.de,linaro.org,gmail.com,nxp.com,lists.linux.dev,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[30];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[leemhuis.info:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[regressions@leemhuis.info,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9537429CD90
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: B1C4529CD68
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 16/03/2026 16:04, Alexander Stein wrote:
-> EMC2301 is used on MBa95xxCA mainboard.
+On 3/16/26 16:25, Nicolas Dufresne wrote:
+> Le jeudi 12 mars 2026 à 18:34 +0100, Francesco Dolcini a écrit :
+>> On Fri, Mar 06, 2026 at 11:10:57AM +0800, ming.qian@oss.nxp.com wrote:
+>>> From: Ming Qian <ming.qian@oss.nxp.com>
+>>>
+>>> Fix a kernel panic when probing the driver as a module:
+>>>
+>>>   Unable to handle kernel paging request at virtual address
+>>>   ffffd9c18eb05000
+>>>   of_find_matching_node_and_match+0x5c/0x1a0
+>>>   hantro_probe+0x2f4/0x7d0 [hantro_vpu]
+>>>
+>>> The imx8mq_vpu_shared_resources array is referenced by variant
+>>> structures through their shared_devices field. When built as a
+>>> module, __initconst causes this data to be freed after module
+>>> init, but it's later accessed during probe, causing a page fault.
+>>>
+>>> The imx8mq_vpu_shared_resources is referenced from non-init code,
+>>> so keeping __initconst or __initconst_or_module here is wrong.
+>>>
+>>> Drop the __initconst annotation and let it live in the normal .rodata
+>>> section.
+>>>
+>>> A bug of __initconst called from regular non-init probe code
+>>> leading to bugs during probe deferrals or during unbind-bind cycles.
+>>>
+>>> Reported-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+>>> Closes: https://lore.kernel.org/all/68ef934f-baa0-4bf6-93d8-834bbc441e66@kernel.org/
+>>> Reported-by: Franz Schnyder <franz.schnyder@toradex.com>
+>>> Closes: https://lore.kernel.org/all/n3qmcb62tepxltoskpf7ws6yiirc2so62ia23b42rj3wlmpl67@rvkbuirx7kkp/
+>>> Fixes: e0203ddf9af7 ("media: verisilicon: Avoid G2 bus error while decoding H.264 and HEVC")
+>>> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+>>> Suggested-by: Marco Felsch <m.felsch@pengutronix.de>
+>>> Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+>>> Signed-off-by: Ming Qian <ming.qian@oss.nxp.com>
+>>
+>> What's the plan to merge this? It fixes a quite severe regression,
+>> a boot failure.
+> 
+> To be decided this week. The commit message does not say if it was released, or
+> came in RCs (and I didn't check myself yet). I'd say, if its the first one, it
+> will go through next and backports, otherwise its is really tight to get that
+> into the RC series, but serious enough. Please fill the gap if you have time,
+> and I'll handle it later, probably tomorrow.
 
-Defconfig goes via different branch, thus when applied this:
-	git grep -i MBa95xxCA
-will give 0 results.
+Well, FYI: the culprit according to the fixes tag quoted above is
+e0203ddf9af7c8 ("media: verisilicon: Avoid G2 bus error while decoding
+H.264 and HEVC") [v7.0-rc1, v6.19.6 (286d629d10640b)]. Given that this was
+* reported 11 days ago
+* reported at least two times
+* made it into a stable series
+it is something that Linus would like to see fixed by now in mainline
+afaics, as ""the rule of thumb should generally be "within a week",
+preferably before the next rc."":
+https://www.kernel.org/doc/html/next/process/handling-regressions.html#on-how-quickly-regressions-should-be-fixed
 
-Please use fuller board name, e.g. "TQ-Systems i.MX95 MBa95xxCA" (or
-TQMa95xxLA ...)
+If that fix is too dangerous a revert is of course an option, too.
 
+BTW, given that the culprit made it to a stable series, it would be a
+wise to add a stable tag to ensure it's backported (it otherweise might
+be silent dropped and/or applying might be deferred).
 
-Best regards,
-Krzysztof
+Ciao, Thorsten
 
