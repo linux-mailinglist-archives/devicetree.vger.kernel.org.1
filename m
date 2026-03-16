@@ -1,257 +1,211 @@
-Return-Path: <devicetree+bounces-276192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276190-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mJIUFgoNuGkWYQEAu9opvQ
-	(envelope-from <devicetree+bounces-276192-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:00:42 +0100
+	id WOL4IYoMuGkWYQEAu9opvQ
+	(envelope-from <devicetree+bounces-276190-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:58:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C7D329AE96
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:00:41 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4E4329AE33
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:58:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8E7C5303EE93
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 13:58:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 005E4300B468
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 13:58:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 207D939B96B;
-	Mon, 16 Mar 2026 13:58:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7193C39A818;
+	Mon, 16 Mar 2026 13:58:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="RAEYYRiV"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="M9ic3BVM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 812B13932E4;
-	Mon, 16 Mar 2026 13:58:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32788382F39;
+	Mon, 16 Mar 2026 13:58:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773669514; cv=none; b=JQNa7xWMWdd/8TnF1iky4FJ7DxS8YP7wUlSaNtlSXQy5591DVsWGcxBhsy27Jpg12GHCcQCkpHkzo7lGku+Ru/qQr59oixlKeS3nRahw3jVprUT8Zt29s0dunEky1QfpghHqhw7HUR8tSS7+ysVcW7CipPibNOVHvlroMWlWswY=
+	t=1773669507; cv=none; b=grGjnNcJJ4+7hWWGJdd8XHZNfqt/eVOfe04CsU0Ra0aRbjjoJkvvmzYfAGOa6RUFKS6xKG30e+7uaOQABRrklfluyXGew9gHodiB0PBJu/KF0d64kqFyLdTqNmRLrpzRWxwzvkYc1rGgGvo4PYdSWSnluI5MlAGGsNTBKKBxdLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773669514; c=relaxed/simple;
-	bh=CVlQNzU0b44viEJZlAsnGAUFZ+BPYB4D+sIq30LUVvU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=C922kVsayWKgk395j34Sy21Q2rorsnro9GnNBrjKtOURMq7uJIkGbZ7jMk6C47/PFgXazihN9Ex2XHoO9LGzDsem97A396J5/Uyei/h6ZU0VtjJ+cYR6elcaRqYwhpot2zu/z5oQubY5eYj6QDIc1W5F8SEsIdV/4abvHQ0XkO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=RAEYYRiV; arc=none smtp.client-ip=188.40.3.216
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=ew.tq-group.com; s=default2602; h=Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=mJpzIoG8vHCShHmOQrQ4HR4CTAI6WdcksZZ8V4h76OU=; b=RAEYYRiVyhflbHPdSPIW9gyJh8
-	YPuRF7K5pO7anE1hW0EugrRQxDi9RTC3vRh7/ONLsLP5RQRLRo2yIXFel4gPNx9KItu0fzGMlVE8Y
-	qimPMwMoF0y90t4zEGt+ZHu27gzKCOrVw3Gb6HKiXNRlmUsXgqDUP6UHo26d1kCJFBrGZJMHPsDZz
-	hcpm5qQ+BF4vfGb6eVx5+m5UOxJ23PCWGH6WM/VZBidVIQ24XgJej8rh9x2Nq5fjKDI/D+slbwi87
-	HA+Utg7oMf8wmlptqty4KGmIfu8asWRHiX58Zgz+lUpe8bkC28o3T5j+YVhDgoY3uWRkNzQFIv5O/
-	pjrthP/w==;
-Received: from sslproxy05.your-server.de ([78.46.172.2])
-	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1w28Sf-000LlW-14;
-	Mon, 16 Mar 2026 14:58:25 +0100
-Received: from localhost ([127.0.0.1])
-	by sslproxy05.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1w28Sf-000LMt-1C;
-	Mon, 16 Mar 2026 14:58:24 +0100
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1773669507; c=relaxed/simple;
+	bh=O3/GG12QpLO1UZgLug9usf1QzvRky6kw6Ji7zydi8gU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pxHcr6ff0dRpHFatiIcI+lygZNPilXUJeSBqkVjIrmqUI9R65E3tWJMiepdjIHpk1i3QVi1PXvVsf9FiRed2Vd35GvZ+iCM5j8vfUwwHAjoOnqPpSSIQI/tKFFqfa3AvfgdgJMJbYF4ExKrciZyXvV/XJ9mHMhkkbgs8YBK+ark=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=M9ic3BVM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 287BEC19421;
+	Mon, 16 Mar 2026 13:58:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1773669506;
+	bh=O3/GG12QpLO1UZgLug9usf1QzvRky6kw6Ji7zydi8gU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=M9ic3BVMtkejqZnGD/X589zYsSaNYNIFpqWnXN0K4rpu7xcbEijzAZQIM+9JkB07p
+	 FZhGw4+v3ETjruTkeo0JTZ+b2KgEKnWha59HpfOZVifCFy5SNauZ4Ca5zauENxZJnR
+	 YBnRNIrwc4MpPqEfMsi3FJg901LsmKffMc4UrwQc=
+Date: Mon, 16 Mar 2026 14:58:22 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Markus Probst <markus.probst@posteo.de>
+Cc: Danilo Krummrich <dakr@kernel.org>,
+	Markus Probst via B4 Relay <devnull+markus.probst.posteo.de@kernel.org>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux@ew.tq-group.com
-Subject: [PATCH v2 2/2] arm64: dts: freescale: tqma8mqml/tqma8mxnl-mba8mx: Add dual-channel LVDS overlay
-Date: Mon, 16 Mar 2026 14:58:19 +0100
-Message-ID: <20260316135820.760073-2-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260316135820.760073-1-alexander.stein@ew.tq-group.com>
-References: <20260316135820.760073-1-alexander.stein@ew.tq-group.com>
+	Conor Dooley <conor+dt@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+	Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Igor Korotin <igor.korotin.linux@gmail.com>,
+	Daniel Almeida <daniel.almeida@collabora.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Pavel Machek <pavel@kernel.org>, Len Brown <lenb@kernel.org>,
+	Robert Moore <robert.moore@intel.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+	driver-core@lists.linux.dev, linux-pci@vger.kernel.org,
+	linux-leds@vger.kernel.org, linux-acpi@vger.kernel.org,
+	acpica-devel@lists.linux.dev
+Subject: Re: [PATCH v3 7/7] leds: add synology microp led driver
+Message-ID: <2026031602-drove-timothy-1bb1@gregkh>
+References: <20260313-synology_microp_initial-v3-0-ad6ac463a201@posteo.de>
+ <20260313-synology_microp_initial-v3-7-ad6ac463a201@posteo.de>
+ <DH1YH0GO75H8.18YSW2VMKRB3C@kernel.org>
+ <39f1c9bb0dbde9f1b60785f8e838289c888ffdb0.camel@posteo.de>
+ <DH3KAWWLECYW.3VBH7PIE7ZE20@kernel.org>
+ <eb2f7498c5f3247265effc47b3445a04ac71956e.camel@posteo.de>
+ <DH3M1023PCBI.1HYYZU93NS1JX@kernel.org>
+ <2026031645-unplowed-purist-9c4b@gregkh>
+ <a4fb56d5eea790b51aa3623044e5d774a6bab47f.camel@posteo.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: Clear (ClamAV 1.4.3/27942/Mon Mar 16 07:24:14 2026)
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a4fb56d5eea790b51aa3623044e5d774a6bab47f.camel@posteo.de>
+X-Spamd-Result: default: False [3.84 / 15.00];
+	MID_END_EQ_FROM_USER_PART(4.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[nxp.com,pengutronix.de,gmail.com,kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276192-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-276190-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ew.tq-group.com:+];
-	DBL_PROHIBIT(0.00)[0.0.0.2:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[31];
+	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,gmail.com,collabora.com,intel.com,vger.kernel.org,lists.linux.dev];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.993];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linuxfoundation.org:+];
+	TAGGED_RCPT(0.00)[devicetree,markus.probst.posteo.de,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tq-group.com:email,0.0.0.1:email,0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.3:email]
-X-Rspamd-Queue-Id: 8C7D329AE96
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D4E4329AE33
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add an overlay for the supported LVDS display AUO G133HAN01. Apply
-it for both TQMa8MxML and TQMa8MxNL.
+On Mon, Mar 16, 2026 at 01:43:44PM +0000, Markus Probst wrote:
+> On Mon, 2026-03-16 at 07:33 +0100, Greg Kroah-Hartman wrote:
+> > On Sun, Mar 15, 2026 at 08:41:06PM +0100, Danilo Krummrich wrote:
+> > > I.e. if we can't (easily) use mfd cells and would need a custom API, then why
+> > > even split it up at all, given that splitting it up would probably the most
+> > > complicated part of the whole driver.
+> > > 
+> > > Greg, what do you think?
+> > 
+> > I think this has yet to be proven to be a kernel driver at all at this
+> > point, and not just a userspace daemon that listens to the serial port
+> > and then does what is needed from there :)
+> > 
+> > Or, if someone can prove that the operations on this serial data stream
+> > actually do require it to be in the kernel (which I have yet to see a
+> > list of what this connection does, did I miss it?) then a single driver,
+> > under the drivers/platform section of the kernel tree makes sense.
+> The sysoff component is strictly necessary for poweroff and reboot.
+> 
+> On ARM64 Synology NAS devices it is needed so the device actually
+> powers off after calling
+> `syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2,
+> LINUX_REBOOT_CMD_POWER_OFF, NULL);`
+> . Otherwise it would stay on.
+> Same applies to reboot.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Changes in v2:
-* Merge Patch 3 of v1
-* Adjust commit message
+So that means a write of a set of bytes to the serial port will cause
+the machine to reboot or shutdown?
 
- arch/arm64/boot/dts/freescale/Makefile        |  4 +
- ...mx8mm-tqma8mqml-mba8mx-lvds-g133han01.dtso | 86 +++++++++++++++++++
- 2 files changed, 90 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx-lvds-g133han01.dtso
+> On x86 it isn't clearly documented what sending the poweroff and reboot
+> command to the microp device exactly does, so this is based on
+> observations. It should be sent before issuing a poweroff or reboot via
+> ACPI Sleep. On reboot it resets various device states, so fan speeds go
+> to default, leds turn off etc., so it behaves like a coldboot.
+> On poweroff it will mark it as graceful shutdown (i. e. the device
+> won't turn automatically on, because it thinks a power-loss happend).
+> 
+> For the other components:
+> - leds
+> - hwmon
+> - input
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 8a85b5c39f3cc..18fe5134ff407 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -180,7 +180,9 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-ivy.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-mallow.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-yavia.dtb
- 
-+imx8mm-tqma8mqml-mba8mx-lvds-g133han01-dtbs += imx8mm-tqma8mqml-mba8mx.dtb imx8mm-tqma8mqml-mba8mx-lvds-g133han01.dtbo
- imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33-dtbs += imx8mm-tqma8mqml-mba8mx.dtb imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtbo
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-tqma8mqml-mba8mx-lvds-g133han01.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtb
- 
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-beacon-kit.dtb
-@@ -214,8 +216,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-vhip4-evalboard-v1.dtb \
- 			  imx8mn-vhip4-evalboard-v2-overlay-ksz8794.dtb \
- 			  imx8mn-vhip4-evalboard-v2-overlay-ksz8794.dtbo
- 
-+imx8mn-tqma8mqnl-mba8mx-lvds-g133han01-dtbs += imx8mn-tqma8mqnl-mba8mx.dtb imx8mm-tqma8mqml-mba8mx-lvds-g133han01.dtbo
- imx8mn-tqma8mqnl-mba8mx-lvds-tm070jvhg33-dtbs += imx8mn-tqma8mqnl-mba8mx.dtb imx8mn-tqma8mqnl-mba8mx-lvds-tm070jvhg33.dtbo
- imx8mn-tqma8mqnl-mba8mx-usbotg-dtbs += imx8mn-tqma8mqnl-mba8mx.dtb imx8mn-tqma8mqnl-mba8mx-usbotg.dtbo
-+dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx-lvds-g133han01.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx-lvds-tm070jvhg33.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx-usbotg.dtb
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx-lvds-g133han01.dtso b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx-lvds-g133han01.dtso
-new file mode 100644
-index 0000000000000..ce12bc46553dc
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx-lvds-g133han01.dtso
-@@ -0,0 +1,86 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-+/*
-+ * Copyright (c) 2019-2026 TQ-Systems GmbH <linux@ew.tq-group.com>,
-+ * D-82229 Seefeld, Germany.
-+ * Author: Alexander Stein
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/clock/imx8mq-clock.h>
-+#include <dt-bindings/gpio/gpio.h>
-+
-+&backlight_lvds {
-+	status = "okay";
-+};
-+
-+&dsi_lvds_bridge {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@2 {
-+			reg = <2>;
-+
-+			lvds_bridge_out0: endpoint {
-+				remote-endpoint = <&panel_in_lvds0>;
-+			};
-+		};
-+
-+		port@3 {
-+			reg = <3>;
-+
-+			lvds_bridge_out1: endpoint {
-+				remote-endpoint = <&panel_in_lvds1>;
-+			};
-+		};
-+	};
-+};
-+
-+&expander0 {
-+	dsi-mux-oe-hog {
-+		gpio-hog;
-+		gpios = <10 GPIO_ACTIVE_LOW>;
-+		output-high;
-+		line-name = "DSI_MUX_OE#";
-+	};
-+};
-+
-+&lcdif {
-+	status = "okay";
-+};
-+
-+&mipi_dsi {
-+	status = "okay";
-+};
-+
-+&panel {
-+	compatible = "auo,g133han01";
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			dual-lvds-odd-pixels;
-+
-+			panel_in_lvds0: endpoint {
-+				remote-endpoint = <&lvds_bridge_out0>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+			dual-lvds-even-pixels;
-+
-+			panel_in_lvds1: endpoint {
-+				remote-endpoint = <&lvds_bridge_out1>;
-+			};
-+		};
-+	};
-+};
--- 
-2.43.0
+For "input" what exactly does the input device show up as?  A power
+button?  Something else?
 
+For hwmon, that makes sense to have a kernel driver.
+
+For leds, that depends on what you want to do with the led, as in the
+end you are just controlling it from userspace anyway :)
+
+> It could theoratically be implemented in userspace. A userspace daemon
+> could theoratically control the fan speeds directly, issue a systemd
+> shutdown on power button press, control the leds directly etc.
+> 
+> But honestly, I don't understand why this is an argument.
+> With that argument drivers/leds, drivers/hwmon and drivers/input would
+> not even exist, because everything could be implemented in userspace
+> via
+> - I2C: /dev/i2c-* (drivers/i2c/i2c-dev.c)
+> - MMIO: /dev/ioport and /dev/mem (drivers/char/mem.c)
+> - GPIO: /sys/class/gpio (drivers/gpio/gpiolib-sysfs.c)
+> - SPI: /dev/spidev* (drivers/spi/spidev.c)
+> - PCI: /sys/class/pci_bus/ (drivers/pci/pci-sysfs.c)
+> - Serial: /dev/ttyS*
+> and likely almost any other bus device too.
+> 
+> Generally speaking, the kernel and its drivers is the layer between
+> hardware and software. It provides the hardware abstractions as
+> userspace interfaces. So any software on the same cpu architecture can
+> work with any hardware, as long as there is a kernel driver.
+
+Yes, I kind of know what drivers and classes do and why they are needed,
+that's not the point here. :)
+
+> In the case of this driver, it means
+> - *any* led daemon can control the leds
+> - *any* fan control daemon can control the fan speed and frequency
+> - *any* monitoring software can view the provided sensors
+> - *any* init system can react to the power button
+> - *any* process can request a reboot or shutdown
+> .
+> I think this is the expected behaviour.
+
+Ok great, then make a single driver that handles all of this, like other
+drivers/platform/ drivers do today, and all should be fine.
+
+thanks,
+
+greg k-h
 
