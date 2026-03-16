@@ -1,51 +1,85 @@
-Return-Path: <devicetree+bounces-276319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276320-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0OlcGz00uGnXaQEAu9opvQ
-	(envelope-from <devicetree+bounces-276319-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:47:57 +0100
+	id EBk9EoczuGmvaAEAu9opvQ
+	(envelope-from <devicetree+bounces-276320-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:44:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4E8429D9F3
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:47:56 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 391DA29D989
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:44:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D69A03006B34
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:44:08 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 12201300E69C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:44:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C20D3BED73;
-	Mon, 16 Mar 2026 16:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABE9D3CD8B9;
+	Mon, 16 Mar 2026 16:44:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kNq3N96w"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="iTFuv01s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 280AE3A1A5C;
-	Mon, 16 Mar 2026 16:44:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 855C73BED73
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 16:44:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773679448; cv=none; b=OG96BnlmikS1adSUVeGO7Sffp2/HrKkpxIV1T0DjamOmdwh7VcOTiIQg5c5ZNnR87dOLEH1o1645/YIUCWaMpVhVuBh8th50bEl5CeEetkRyz9LTh0B0Du1KTqEDirUSxBemZhDWyLF28zcS3GQWeFlE7ICVAfJMW6kAy+5DrbM=
+	t=1773679489; cv=none; b=nvIVsQci9J/oiz8XuG9aia85q6QPpag08YjqsvAJWxX+Kt2AI5x4BtgD+8dc8KbvULqM/xdn2DqZK0lDw+a15CfOsqEtEl/EzPqpoF1I6K0GQKbTL1l6va6uVOzchcwgAuCb4H0vdpESLqVfmfLvG86/ZSX+zdK3zOJ3hFaNxHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773679448; c=relaxed/simple;
-	bh=UJiJGdnIbo8YhWP9a8898EeByRFPPoe9G04ORqwYyao=;
+	s=arc-20240116; t=1773679489; c=relaxed/simple;
+	bh=Tkdt6e6cnfyPY0SugtxYloHST0stO69sHMglYRTuOi0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UP/L1vUH39Tnry5OKU59Zwf3likw2aCWpy8kO3uHelyjXc1iBM6Us4p/SpP/qr9kp9RvfHW7ORKlq09KqsZUgxB9h9S9T/RC3/iWVuyeh++rA3/ZjxB465npqPipAHPm8bEia7GeyYeP0YJ8nkX9zMneqdf1DMwm61UYLbO+Y0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kNq3N96w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97EFDC19421;
-	Mon, 16 Mar 2026 16:44:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773679448;
-	bh=UJiJGdnIbo8YhWP9a8898EeByRFPPoe9G04ORqwYyao=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kNq3N96w1Uyh9BHrPZnStKE3rWXHfkL/gk6W/wkus/0NBFRkv0EO/+10w1ZnP4V5P
-	 RGl2dfpJ6Ee0c7aV0BiBoXX1Qiu1rR1s5f3QQ3CxytQrnivU1ip1kH79vZDcgmZccc
-	 PvLfb3s1iH2p4F6Tvr6pLL5Tm0jgF8RebY2LCkkYWaNie21VhThcOcEIQj6/rmL7vp
-	 eK07/QA6xGM6up9uwIUbDIgjBkzFt9ltdecOzTJ68omLfVjjHXrOFU/LJZZu6KSe6h
-	 XrPpzP61JJNXwX5O9PwbtHbp7BM9uFLQ6VuNtL17KXUz/Z4WHL2cbMBWORm4VBPBzL
-	 764nAuua2hjPQ==
-Message-ID: <bb9712c6-a8be-4068-b549-96a12bc55e3c@kernel.org>
-Date: Mon, 16 Mar 2026 17:44:02 +0100
+	 In-Reply-To:Content-Type; b=C9QTNWhgoT7W+AFUPqXNP/RRQ9edu8/htee5vrU/VmiDiMRoNcc8473tER88JAnzAtYRhS19rS3pduzd2kylgDv5OqZe19BIagDMWfAU79M77STNDaseya18E+DfNoXgSWBmUJiwP4tg7CeVMzXGvpkKfTBh0bBY3quE/3kTelg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=iTFuv01s; arc=none smtp.client-ip=209.85.160.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-40438e0cba6so3017168fac.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 09:44:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1773679486; x=1774284286; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4AJTku3OJZDZ6/Kpiw5pDXaqosol7el2TXJoCn2CGLI=;
+        b=iTFuv01sWYT+Kv5MkQyWtJ5hj1yeq4H2sWPcTmnOjZwRc+VRQZ7HLoo2fAUEjJa8a/
+         I4yhutovyrIh0Dog60nItEsnan7+/ELbTB6P39HRFPutA0L8dFvynDwjMhb62zXzDEWD
+         BS4lYWyhk7AGsCOkEZPwBzG6N0PAyGTe2N60Vb/vbyecUzjYi/+48yd82Alg4IMdw4pm
+         0OLfZMCubL00ZTG7wVAhIEOHX1R0WqCIlOedtQw6oebgcXqKQvlviYMZoxB39oC3D/ox
+         KDa2sDZ7yrwt5sfO5JWymdSFM6P1uAGIkFlVoawdP+6UG49eY58kesVfjfH41MBQTljF
+         GreA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773679486; x=1774284286;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4AJTku3OJZDZ6/Kpiw5pDXaqosol7el2TXJoCn2CGLI=;
+        b=UA5PWJNJCPtg6BgOL4Euj38cMo7bbyZzWkWdkv82TMnnNU+6g3kUjK9t+5YIztEg0H
+         t18roF7fUC4+ibrlw0c7ptPmlXrHQpFqX2Xjos3hlbex3i7pprceSTZaRzMJa6MxWFgs
+         1g89jvd8swaHwlxwmjJiml4GfjTMNRmYttsTVRMbLspsj2k+IgK5ZKHH2p8rAKdkDtn1
+         ei4IC2Dq/A+Zc4GAZTBKtb9Pl4UCJ1wNx0CgrKAFUKqhLG+JgoDPgHTk4y16HY5jqbXv
+         O5Q1mLML1qcr0D68SWJeLNcaXcswwdksvP8v6QYjLwAXnwkuDTqKENQ/+IUrHm1EO9bE
+         FOqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXMKDWtv331KLEQqRVQwHmBHvC8atp9wzbBdbig2padBAZtcdUetnJNIBgtI6cYbmJMV8uL4CLfj2oe@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx38DUb/x/v6qsmtL+T4R6JqgdmOyY74yxET/0A8/E+lxxVXAif
+	FiSxNo0zatjrcJXJ3jR0Ly7UShomDeUt1txHD2YTCZOApVo94zoKg3VTN6m9VrTJ6wE=
+X-Gm-Gg: ATEYQzwlxsjSDnuLjFLyGmAsALZ71iag82VZ8k3zgr9d6GcedAhi1MysjpYnXTJSUbm
+	Ei1Rfoo3OcVgcs9QQ84Yn+lA8DD/fh1T8o9rqMtGc15Qj9YjEIROedZ5erUVKXvjjd639pYls/s
+	jlLB4LhwX6WVPCiJ1sxAaB/IZo+uIpU2wEDlf2MRRsUI9Mydjsu/ajlaB0Zp0cOu8r3h+Io8ear
+	rbjMRMNSwHU1iY+5A1AAcAPdU2i+bMsEWsXXhpb+dY37gxz4xc5+Efnq3AstIFPs8B1/gJbvZrR
+	qCBMexFM1RbSbUGtOsTVoeEKTm/rL+cOn/FFgxUR+WUt9Os6100uvcoAfdY6ODE8Oz4ZXiqYGty
+	gL58N+TC05C1B520XV1Y/6wun08/UyQi0f2HlW9KjUY6XXepd4BheVTD7nU54huH+rN++BWFYql
+	wgdnyrbfKtTLvkjZ1AqM0MuNGj6S2zjgyXoDXo+lzf0zFP4AuDr3dZENWg91rSJdCo4FhCVRSj/
+	w==
+X-Received: by 2002:a05:6870:3b8e:b0:417:22c9:a311 with SMTP id 586e51a60fabf-417b902ecbcmr8375036fac.6.1773679486349;
+        Mon, 16 Mar 2026 09:44:46 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:e504:a034:1152:a664? ([2600:8803:e7e4:500:e504:a034:1152:a664])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4177e69c79dsm15440675fac.15.2026.03.16.09.44.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Mar 2026 09:44:45 -0700 (PDT)
+Message-ID: <06b48810-f997-40a4-86db-d3b7db9dfc18@baylibre.com>
+Date: Mon, 16 Mar 2026 11:44:44 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,162 +87,167 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: display: ti,am65x-dss: Fix AM62L DSS reg
- and clock constraints
-To: Swamil Jain <s-jain1@ti.com>
-Cc: jyri.sarha@iki.fi, tomi.valkeinen@ideasonboard.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, devarsht@ti.com, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, praneeth@ti.com,
- vigneshr@ti.com
-References: <20260129150601.185882-1-s-jain1@ti.com>
- <20260205-spectral-dramatic-jellyfish-cec4e2@quoll>
- <4b554339-95e1-4980-8899-57ba637ba80c@ti.com>
- <7b3660cf-cc5a-47d6-9cc8-362544cfdb37@ti.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 3/4] iio: adc: ad4691: add triggered buffer support
+To: "Sabau, Radu bogdan" <Radu.Sabau@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, "Sa, Nuno" <Nuno.Sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>,
+ Bartosz Golaszewski <brgl@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+References: <20260313-ad4692-multichannel-sar-adc-driver-v3-0-b4d14d81a181@analog.com>
+ <20260313-ad4692-multichannel-sar-adc-driver-v3-3-b4d14d81a181@analog.com>
+ <0bca5313-a968-48a1-9245-aeae25ab4187@baylibre.com>
+ <LV9PR03MB8414E82D015E615DD64ADEFAF740A@LV9PR03MB8414.namprd03.prod.outlook.com>
+ <7251a53a-100c-4867-ab4e-b7d2d019b26b@baylibre.com>
+ <LV9PR03MB84146ADC269645000849795AF740A@LV9PR03MB8414.namprd03.prod.outlook.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <7b3660cf-cc5a-47d6-9cc8-362544cfdb37@ti.com>
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <LV9PR03MB84146ADC269645000849795AF740A@LV9PR03MB8414.namprd03.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[iki.fi,ideasonboard.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,ti.com,lists.freedesktop.org,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-276319-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_FROM(0.00)[bounces-276320-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[analog.com,metafoo.de,kernel.org,gmail.com,pengutronix.de];
+	DMARC_NA(0.00)[baylibre.com];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
 	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: C4E8429D9F3
+X-Rspamd-Queue-Id: 391DA29D989
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 16/03/2026 13:36, Swamil Jain wrote:
->>      description:
->>        Addresses to each DSS memory region described in the SoC's TRM.
->>      oneOf:
->>        - items:
->>            - description: common DSS register area
->>            - description: VIDL1 light video plane
->>            - description: VID video plane
->>            - description: OVR1 overlay manager for vp1
->>            - description: OVR2 overlay manager for vp2
->>            - description: VP1 video port 1
->>            - description: VP2 video port 2
->>            - description: common1 DSS register area
->>        - items:
->>            - description: common DSS register area
->>            - description: VIDL1 light video plane
->>            - description: OVR1 overlay manager for vp1
->>            - description: VP1 video port 1
->>            - description: common1 DSS register area
->>
->> .....(Similarly for reg-names, clocks, clock-names,...)
->>
->> allOf:
->>    - if:
->>        properties:
->>          compatible:
->>            contains:
->>              const: ti,am62l-dss
->>      then:
->>        properties:
->>          clock-names:
->>            maxItems: 2
->>          clocks:
->>            maxItems: 2
->>          reg:
->>            maxItems: 5
->>      else:
->>        properties:
->>          clock-names:
->>            minItems: 3
->>          clocks:
->>            minItems: 3
->>          reg:
->>            minItems: 8
->>
->> ```
->>
->> Could you please confirm on this?
-
-If there is no common part of each list, then this looks correct. Other
-way would be the example I wrote ~2 hours ago on DT IRC (different
-patchset) - so the qcom,ufs way. It depends how readable is the final
-schema.
-
+On 3/16/26 10:56 AM, Sabau, Radu bogdan wrote:
 > 
-> Hi Krzysztof,
 > 
-> Gentle ping, could you please confirm on the above design?
+>> -----Original Message-----
+>> From: David Lechner <dlechner@baylibre.com>
+>> Sent: Monday, March 16, 2026 5:38 PM
+>> To: Sabau, Radu bogdan <Radu.Sabau@analog.com>; Lars-Peter Clausen
+>> <lars@metafoo.de>; Hennerich, Michael <Michael.Hennerich@analog.com>;
+>> Jonathan Cameron <jic23@kernel.org>; Sa, Nuno <Nuno.Sa@analog.com>;
+>> Andy Shevchenko <andy@kernel.org>; Rob Herring <robh@kernel.org>;
+>> Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
+>> <conor+dt@kernel.org>; Uwe Kleine-König <ukleinek@kernel.org>; Liam
+>> Girdwood <lgirdwood@gmail.com>; Mark Brown <broonie@kernel.org>; Linus
+>> Walleij <linusw@kernel.org>; Bartosz Golaszewski <brgl@kernel.org>; Philipp
+>> Zabel <p.zabel@pengutronix.de>
+>> Cc: linux-iio@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; linux-pwm@vger.kernel.org; linux-
+>> gpio@vger.kernel.org
+>> Subject: Re: [PATCH v3 3/4] iio: adc: ad4691: add triggered buffer support
+>>
+>> [External]
+>>
+>> On 3/16/26 8:22 AM, Sabau, Radu bogdan wrote:
+>>>
+>>>
+>>>> -----Original Message-----
+>>>> From: David Lechner <dlechner@baylibre.com>
+>>>> Sent: Saturday, March 14, 2026 8:38 PM
+>>>
+>>> ...
+>>>
+>>>>> Both operating modes share a single IIO trigger and trigger handler.
+>>>>> The handler builds a complete scan — one u32 slot per channel at its
+>>>>> scan_index position, followed by a timestamp — and pushes it to the
+>>>>> IIO buffer in a single iio_push_to_buffers_with_ts() call.
+>>>>
+>>>> It would really help here to see some timing diagrams to know if we
+>>>> are implementing this right.
+>>>>
+>>>> For example, it isn't clear that in clocked mode if CNV triggers a
+>>>> single conversion in the sequencer (i.e. IIO_SAMP_FREQ should be
+>>>> info_mask_separate) or if it triggers the sequence (i.e. IIO_SAMP_FREQ
+>>>> should be info_mask_shared_by_all).
+>>>>
+>>>
+>>> The CNV triggers the sequence and IIO_SAMP_FREQ is
+>> info_mask_shared_by_all.
+>>>
+>>> As per datasheet page 31 (Accumulator Section), when each accumulator
+>>> receives a sample, the ACC_COUNT is increased. In clocked mode we
+>>> are setting the ACC_COUNT limit to 1, therefore having one sample per
+>>> channel (no oversampling as discussed in previous versions). So each
+>>> period of the CNV PWM is respective to one sample of a channel.
+>>
+>> Assuming that "a" channel means "one" channel...
+>>
+>> In this case then sampling_frequency should be per channel (separate).
+>>
+>> A sampling_frequency that is shared_by_all means that each period of
+>> CNV should trigger one sample each for _all_ channels. In other words,
+>> the sampling frequency gives one complete set of samples for all enabled
+>> channels pushed to the buffer.
+>>
+> 
+> Oh, ok then, will have them separate. I assumed that since the PWM period
+> is constant with each pulse, then the sampling rate will be the same for
+> each channel, thus having them as shared_by_all, but I assume you are
+> right about this in this case, I will have them as separate in this case, the
+> update will happen in the previous patch upon next version.
+> 
+Does the sampling stop after one "burst" (reading each enabled channel once)?
 
-If you do not hear from me or other reviewer for some time after asking
-"shall I do like that", just send next version implementing what you
-think should be done and mentioning in changelog, that this is how you
-address reviewers feedback.
+If yes, then what controls when the next set of samples starts?
 
-Best regards,
-Krzysztof
+Looking at Figure 63 in the datasheet for CNV Clock mode, it looks like it
+depends entirely on how long the SPI message takes. So the actual sample rate
+is going to be quite random instead of the sum of each channel as the IIO ABI
+says it should. It seems a waste of the PWM to do it this way since we end
+up with a random sample rate.
+
+It seems to me like the CNV Burst mode would actually be better suited to
+how IIO usually does things. In this case, the PWM frequency would control
+the effective sample rate (one PWM pulse triggers one complete set of
+samples) and the internal oscillator controls triggering each individual
+conversion.
+
+In this setup, we would still have the info_mask_separate IIO_SAMP_FREQ,
+but it would control the internal oscillator. Then we would have a separate
+buffer0/sampling_frequency attribute that controlled the PWM frequency.
+
+Then, as long as the PWM frequency was slow enough that the SPI message
+can be done, it can make samples with almost no jitter. This is why I would
+expect PWM to almost always be used with SPI offload though, otherwise
+it has to be quite slow compared to what the chip is capable of.
+
+I suppose the CNV Clock mode could also be made to work with the typical
+IIO trigger so that we could control the actual sample rate. It just
+wouldn't be as precise.
+
+
+
+If you have some examples of how this chip should actually be used in the
+real world, that could help pick what is the right thing to do here.
+
 
