@@ -1,270 +1,228 @@
-Return-Path: <devicetree+bounces-275954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275956-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yCMnLkmlt2lTTwEAu9opvQ
-	(envelope-from <devicetree+bounces-275954-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:38:01 +0100
+	id AIIfE6unt2k2UAEAu9opvQ
+	(envelope-from <devicetree+bounces-275956-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:48:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C6A8295394
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:38:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E99D62953F6
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:48:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 84CDD300D968
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 06:37:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 73A0D300E3B0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 06:48:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6357F34C155;
-	Mon, 16 Mar 2026 06:37:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 481BD5CDF1;
+	Mon, 16 Mar 2026 06:48:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AnnBqBOr"
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="N2PI9mya"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-05.mail-europe.com (mail-05.mail-europe.com [85.9.206.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2758334BA57
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 06:37:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0BC720468E;
+	Mon, 16 Mar 2026 06:48:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.9.206.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773643073; cv=none; b=QtOj4vQ7bjAdyj2KuPuEcUUG22KGcQeYCV972OQ/gUK13a0G/M2dRXMu29rYa4i/C19sD4v+MXQYrAS2/rYVoQRE4Fgyi7FHchtZwmNn3SvzujFyeAoOlLjlas4gRTFXpKxiAk9HK8dkUQZp1Dv+unBTE2hKd2sO64HJEHO1yYk=
+	t=1773643689; cv=none; b=YNxU22Rj7LUATn/J/LOvR/Jx09h88EP5n/UOv11JrIJQ4Uwbq75L9Dtp0+ICQw4M0JkvhF30Nil2CSHKDKUwzQwf2LhZUzEkvHsVe6orbIVBu17codz8jW/xWopCS4X8y+xAhZTbeLTPFOvg3Yvn7u4XTRiY1aRIto4HuZI95cY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773643073; c=relaxed/simple;
-	bh=qDsHhbPxIT+Q9J1MamUtKdqYgi9yLUueJwoFGd2tGSA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=HWmKcCrgnMf0hBAJXWsynecIOMy7eV7g9WpvwmWW+7Lem3Nh1p/jXAuLuVrASt2pFlhMwAah1+gsM7a+/C7B+Tl/Q7/2PMRQkv8n6iNjRWnJqxlVFKqOxd21CLBiNxkQnE0hGc2lQld9EzTkL1U8gtyw0/C/ueJqqT6edigV7nk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AnnBqBOr; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2b04075d1e5so7625565ad.0
-        for <devicetree@vger.kernel.org>; Sun, 15 Mar 2026 23:37:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773643071; x=1774247871; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=v5k8sNwUCtuNl5KQTKE9dvLLTtEJ1hjFmuOQqcpUNe8=;
-        b=AnnBqBOrcsaI86oX7kuFoK2BCV0eaFjIqwkgEWaHDkUFBcxcqMILcL4lkHiYG8OCGg
-         +SE/QIVfP5UhHBNddyw/0jDnMHpNIHVw1sFylEYVjfLC/zhrxqlWlB6dMg7q5UbKAEEj
-         Uiiw2ceziW9GMsG7o/eDCPKntit+YbVeK3RCVhuPYVoDBfurdE1PoDIMtUJdvwtptXeW
-         FBUKz7SPOEsrXL60aKrMAsSPkv4lgrH9qgX0Fu0jpSqIf+pWcCtKzpcwe4T1dXXlQyRz
-         7iRkOOUYPm1dztreRCmZjBMU4U/WM5NA4hHZNAKUMk0EQYXabAH8UuqAxrgmqhR562GT
-         oUCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773643071; x=1774247871;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=v5k8sNwUCtuNl5KQTKE9dvLLTtEJ1hjFmuOQqcpUNe8=;
-        b=W7Aifw7MdV4PktCGh5TYjJIEOSs3n2dzYcZorm4Miawxg/dlesHLWtfFCLubF0HTKV
-         03hPFj8xtbDSv6TpjLad9bxqO7ppGtziwJ5EcUUnGEQFLqGAgMDlaVudQnaLXTGHB6Ku
-         TnW+8lvFUoMelBuku15zaFwRBcVMDeN++1yncAIh3inhrc1py/FD3DN6+zEH7e0+dmQ+
-         M9LTchBRqz/87UTBk7/cAG/JszLTyBd5HE7WR5uajNEBi0Hjs3o87V3lYXjenBPHDzT1
-         OamDuY2/bvoI/ZGJ/BFk88MU8Frf/w74XepA3lSQkoQMuJ51S2ncF3dEXH4VohDyua9f
-         3oVA==
-X-Forwarded-Encrypted: i=1; AJvYcCXRqc5b6VJq6WwW0vSFTkAUo6A/gEHomg2MKzYVBGSlWQZ0J8s0fpAIXmFBdo5ryUz/1RBYsIFrYT3x@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYsrC0TmgGUlN+nXhLbsPglzVufq1b9Q89Dk5MEojbLcIM2p4i
-	5FHBWjVruvYyFJaL1D1JNwsHXguBM5IWB5UVZtJfg3WpdraOcEO8whyGIL8DOQ==
-X-Gm-Gg: ATEYQzxoNyA+UF/pjMy9DRRNHMa8rtWDieGqKRHpsuOdNZpJNUdIotk5NbW7dC/uQvv
-	LX+Sr9dFkvq+wfqqXzBdXS6dhsyRYwbgwzRBIxoNgUTpcsLha6txzsYipa/Nq0QpY/ONSaZWh1A
-	NKwKBtmqJrn5cofGzqmJsNqKXf/23DGIB7lTm9KEu/veKchO1FzZpLTHJ88MqcCyiYotSVKId6j
-	jSD+0kctWCjVM1K5XTHOlVaQDqRYrts3mWkYPiDinlhuPw9oUlm91a4URdVYF4QMXyRluc+zQ6J
-	+66u9m8FEkia6QSKQP3EhaDsRT1wWpYCb+/ZBw7AOFy97TPkBeKV4+/VkvXAUoZEsXpZIKoQRQQ
-	q4e6VDOWtWEeg7UELCj6NbQCDlwp42SsnmxmsHah8rqm+r+A2wnY3ALc3hijsyPFol7At0DPydq
-	RoVOkx1+Sg++cwiEky5YUdQcbaj+Se2uwJZl/NTtqhbpbpcyDq2yB+3d6xXr5oxpoZUug6keeJP
-	PiO55RsfQ==
-X-Received: by 2002:a17:903:2b06:b0:2ae:c001:834b with SMTP id d9443c01a7336-2aecac3e7bdmr118041445ad.39.1773643071442;
-        Sun, 15 Mar 2026 23:37:51 -0700 (PDT)
-Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2aece56cdf4sm122845295ad.8.2026.03.15.23.37.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Mar 2026 23:37:51 -0700 (PDT)
-From: Zi-Yu Chen <zychennvt@gmail.com>
-To: andi.shyti@kernel.org,
-	ychuang3@nuvoton.com
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	zychennvt@gmail.com
-Subject: [PATCH v2 3/3] arm64: dts: nuvoton: Add I2C nodes for MA35D1 SoC
-Date: Mon, 16 Mar 2026 06:37:26 +0000
-Message-Id: <20260316063726.41048-4-zychennvt@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260316063726.41048-1-zychennvt@gmail.com>
-References: <20260316063726.41048-1-zychennvt@gmail.com>
+	s=arc-20240116; t=1773643689; c=relaxed/simple;
+	bh=DvcWku+iWuEBTEQLmL0mPUKhyzSKNUO8/1ZTbR7l0Bw=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KkFnKYqnIqoUX49qFp6jJPFVLbfFk53dvE43NyQeU8MfwF/JZHTCiJsz9pF44xlfrH2nTSSOg1Ytk+/bjTmlJ40C4uYbzv3RqburH6E2OWf5kNk0xduejtVcEYRjp6IOfnxaEZD4AzHj9KQhCkJgSdM0V0ve9iiI6JYeXS144qg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=N2PI9mya; arc=none smtp.client-ip=85.9.206.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1773643677; x=1773902877;
+	bh=8ICJw08UJIz0AP6P0cn3L4DZUL5fjtlF4dxKFsE46as=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=N2PI9myakKW6GEoOdz3lHidvmY9XMdFsqujfxRNBFbMJ6/EYfKdE4JyJIW7+raV/O
+	 LZc5sgNX62j17yMz4qkLuePZQn3CRHbtSlpU7yBHMdOhSb9U769EkoDlPDGBLzqtOR
+	 dnMBD9idzRqwneC4l3SHO1B/uwLJW04KTSihi6J2c9Lsi1ZlPdweyAg05I+K3LBaat
+	 9NRd6G5HMqJ8U6ycat/5BoEF/6c1x2WqL9jp4v5N2yHTfmP9QsdUyBeTS96GXLmnb4
+	 NwgbBBMnYi0I2b2zNC+9F6lGs4hheVnX5rxNzaRLqWykOd0J0AiBySWpUoDnuO6P4l
+	 8IDtDAlc4Na4w==
+Date: Mon, 16 Mar 2026 06:47:52 +0000
+To: Krzysztof Kozlowski <krzk@kernel.org>
+From: cristian_ci <cristian_ci@protonmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: display: panel: Add Novatek NT35532 LCD DSI
+Message-ID: <2Iorhp1aLx-JWsIeTVctlNqbF5BWAbE7_0Ki5GL2nNNp0XViFuNBRJV60_KF0Zh8I8AamFvv7hFWZXajcVrqLlLFnfOI_csagePlYvLYAZo=@protonmail.com>
+In-Reply-To: <2d0afdab-78b7-4e60-b132-98cfcbbbb5af@kernel.org>
+References: <20260308-rimob-new-features-v1-0-aa2c330572c0@protonmail.com> <20260308-rimob-new-features-v1-1-aa2c330572c0@protonmail.com> <369b48d9-f089-49a2-89cb-a4e0c68f92fa@kernel.org> <7Ft_cDw10-3MmNTrKncMut5g08sodd9CL7r7AGXAtPPqZpXtHEgmqm05WhEpYMZzFEs4B0KWz-LU27Z0_YDnc44nXhdUrUt5X2dWK7D6pYM=@protonmail.com> <db04882b-7f30-464c-91a6-578302aef4ff@kernel.org> <Nz_hTfDbWqQk8-FcCknxZKO8dIhCAGueG89SRe2LkTG1VK4KjoH-UZH6bsOvqEySwNRjJtsEUL7vxxIXOWyyzLOtM9YLZaCuhPfxNz0mVyk=@protonmail.com> <4cfc7b40-f172-4eae-8f19-4a3eb858075e@kernel.org> <q2whOVhy_Cqm5m8toyiZ0PQQThv6LLoo8a5ialb_td0o5yM1FRLIMRZh2FKRiwSuwPfmfibU6Z6_jz6kJFJGlFfu3V-ELMteHVDM7zpnSBI=@protonmail.com> <2d0afdab-78b7-4e60-b132-98cfcbbbb5af@kernel.org>
+Feedback-ID: 27475468:user:proton
+X-Pm-Message-ID: d6ec91e3516ec63a908e0b35f46289badd97cb96
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[protonmail.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[protonmail.com:s=protonmail3];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_FROM(0.00)[bounces-275954-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,lists.infradead.org,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[zychennvt@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-275956-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_NONE(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[protonmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org,lists.sr.ht];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	DBL_PROHIBIT(0.00)[2.111.82.80:email,2.111.199.128:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cristian_ci@protonmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[protonmail.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,2.110.182.16:email,2.110.221.32:email,2.111.43.64:email,2.111.4.48:email]
-X-Rspamd-Queue-Id: 1C6A8295394
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,protonmail.com:dkim,protonmail.com:mid]
+X-Rspamd-Queue-Id: E99D62953F6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add I2C controller nodes to the MA35D1 SoC dtsi.
-Also enable the I2C interfaces on the MA35D1 SOM board
-to allow communication with onboard peripherals.
+On Friday, March 13th, 2026 at 09:32, Krzysztof Kozlowski <krzk@kernel.org>=
+ wrote:
 
-Signed-off-by: Zi-Yu Chen <zychennvt@gmail.com>
----
- .../boot/dts/nuvoton/ma35d1-som-256m.dts      | 18 +++++-
- arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       | 60 +++++++++++++++++++
- 2 files changed, 77 insertions(+), 1 deletion(-)
+> On 13/03/2026 09:26, cristian_ci wrote:
+> >
+> > On Tuesday, March 10th, 2026 at 21:06, Krzysztof Kozlowski <krzk@kernel=
+.org> wrote:
+> >
+> >> On 10/03/2026 18:48, cristian_ci wrote:
+> >>> On Monday, March 9th, 2026 at 16:08, Krzysztof Kozlowski <krzk@kernel=
+.org> wrote:
+> >>>
+> >>>> On 09/03/2026 15:52, cristian_ci wrote:
+> >>>>> On Sunday, March 8th, 2026 at 17:13, Krzysztof Kozlowski <krzk@kern=
+el.org> wrote:
+> >>>>>
+> >>>>>>> +  vsp-supply:
+> >>>>>>> +    description: positive voltage supply for analog circuits
+> >>>>>>
+> >>>>>> Both are odd. Datasheet says vci, vddi, vddam and optional avdd, a=
+vee.
+> >>>>>>
+> >>>>>> There is no VSN and VSP. Otherwise please point the page in datash=
+eet or
+> >>>>>> some schematics.
+> >>>>>>
+> >>>>>> Best regards,
+> >>>>>> Krzysztof
+> >>>>>>
+> >>>>>
+> >>>>> I'm not sure about that. Writing panel dt-bindings has been based p=
+retty mostly on vendor devicetree - which also describes somehow the panel =
+and makes that working with the final product released to the market - so I=
+'ve to necessarily consider that.
+> >>>>> Then, I could agree that vendor devicetree might be not compliant w=
+ith upstream rules and could possibly make mistakes with describing the har=
+dware, so I'd like to find a way to describe that in a more proper way, acc=
+ording to upstream rules.
+> >>>>>
+> >>>>> That said, vendor devicetree describes lists four power supplies fo=
+r  DSI: 'vdd', 'vddio', 'lab' and 'ibb' (which have the following property =
+names, respectively, in qcom,mdss_dsi_ctrl node: 'vdd-supply', 'vddio-suppl=
+y', 'lab-supply' and 'ibb-supply'.
+> >>>>> Two of these are related to ds/controller (apparently, 'vddio' shou=
+ld match VDDI power supply in NT35532 datasheet.
+> >>>>>
+> >>>>> The remaining two supplies are related to panel ('lab' and 'ibb'). =
+These ones are two 'external ' regulators ('external' from NT35532 perspect=
+ive), which provide power supply to display, located in the qcom PMIC (in t=
+his case, that should be PMI8950). WRT to power supply names described in t=
+he bindings ('vsp-supply' and 'vsn-supply') are the same as 'lab-supply' an=
+d 'ibb-supply', just named differently in the vendor devicetrees.
+> >>>>>
+> >>>>> Usage of 'vsp'/'vsn' naming for power supply properties is grounded=
+ on they commonly being used at upstream (different panel bindings make use=
+ of these properties), on one side, and also described on schematics of dev=
+ices with the same hardware configuration (LCD_VSN and LCD_VSP), on the oth=
+er.
+> >>>>>
+> >>>>> In the meantime, I've found out schematics for 'xiaomi-mido' (anoth=
+er MSM8953 device) - a variant of this device is shipped with a panel also =
+using NT35532 IC (just like my device) - and LCD_VSN/LCD_VSP are clearly sh=
+own there too.
+> >>>>>
+> >>>>> I couldn't find much more information about the display on my devic=
+e and the only resources available about that are those listed above, as of=
+ today. In light of my reply, I ask if it is still necessary to describe, i=
+n the bindings, power supply properties properties not used currently in th=
+e board DTS file.
+> >>>>
+> >>>> Please wrap your answers so this will be possible to parse.
+> >>>>
+> >>>> You write bindings matching the hardware and for the hardware, not f=
+or
+> >>>> the downstream code. You cannot add supplies which do not exist
+> >>>> regardless what some vendor wrote somewhere
+> >>>
+> >>> Vendor has also described the hardware by storing information (by inc=
+luding info
+> >>> about panel too) directly inside the device itself (/sys/firmware/fdt=
+).
+> >>
+> >> Vendor does not care about rules of DT thus puts there completely fake
+> >> information just to make their drivers working
+> >> .
+> >
+> > I'm not sure what that statement is based on in the specific case of
+>=20
+> It's based on years of looking at vendor code.
+>=20
+> > the panel I'm actually testing. A set of clues (some of which were also=
+ mentioned
+> > in my first reply some days ago) point out that rimob's panel is really=
+ supplied by
+> > two regulators part of PMIC [1]. Not only for this reason, I do not hav=
+e
+> > enough solid reasons, after all, to consider vendor data about the pane=
+l mounted in
+> > this device (rimob) as not decently reliable, so I cannot ignore them, =
+at least.
+>=20
+> And I did not disagree that you need regulators and that vendor
+> correctly wired two of them.
+>=20
+> The comments are about naming!
+>=20
+> I discussed of using argument of incomplete or not fully correct vendor
+> code when the true hardware description is available. If the vendor
+> calls them in vendor DTS "yellow-pony-supply" you are going to use that
+> argument to write bindings? And then argue that "not sure what that
+> statement is based on"?
+>=20
+> It's obvious - vendor code is crap. There are no VSN and VSP inputs. We
+> already confirmed that.
+>=20
+> You claim that vendor called like that thus you can use them as well is
+> simply not correct approach.
 
-diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts b/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
-index f6f20a17e501..4dfb5340a139 100644
---- a/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
-+++ b/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
-@@ -13,6 +13,7 @@ / {
- 	compatible = "nuvoton,ma35d1-som", "nuvoton,ma35d1";
- 
- 	aliases {
-+		i2c0 = &i2c2;
- 		serial0 = &uart0;
- 		serial11 = &uart11;
- 		serial12 = &uart12;
-@@ -55,6 +56,12 @@ &clk {
- 			   "integer";
- };
- 
-+&i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
-+};
-+
- &pinctrl {
- 	uart-grp {
- 		pinctrl_uart0: uart0-pins {
-@@ -98,6 +105,15 @@ pinctrl_uart16: uart16-pins {
- 			power-source = <1>;
- 		};
- 	};
-+	
-+	i2c-grp {
-+		pinctrl_i2c1: i2c1-pins {
-+			nuvoton,pins = <1 10 12>,
-+				       <1 11 12>;
-+			bias-disable;
-+		};
-+
-+	};
- };
- 
- &uart0 {
-@@ -128,4 +144,4 @@ &uart16 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart16>;
- 	status = "okay";
--};
-+};
-\ No newline at end of file
-diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
-index e51b98f5bdce..a88d1c2938e7 100644
---- a/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
-+++ b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
-@@ -372,6 +372,66 @@ uart15: serial@407f0000 {
- 			status = "disabled";
- 		};
- 
-+		i2c1: i2c@40810000 {
-+			compatible = "nuvoton,ma35d1-i2c";
-+			reg = <0x0 0x40810000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk I2C1_GATE>;
-+			clock-frequency = <100000>;
-+			resets = <&sys MA35D1_RESET_I2C1>;
-+			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c2: i2c@40820000 {
-+			compatible = "nuvoton,ma35d1-i2c";
-+			reg = <0x0 0x40820000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk I2C2_GATE>;
-+			clock-frequency = <100000>;
-+			resets = <&sys MA35D1_RESET_I2C2>;
-+			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c3: i2c@40830000 {
-+			compatible = "nuvoton,ma35d1-i2c";
-+			reg = <0x0 0x40830000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk I2C3_GATE>;
-+			clock-frequency = <100000>;
-+			resets = <&sys MA35D1_RESET_I2C3>;
-+			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c4: i2c@40840000 {
-+			compatible = "nuvoton,ma35d1-i2c";
-+			reg = <0x0 0x40840000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk I2C4_GATE>;
-+			clock-frequency = <100000>;
-+			resets = <&sys MA35D1_RESET_I2C4>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		i2c5: i2c@40850000 {
-+			compatible = "nuvoton,ma35d1-i2c";
-+			reg = <0x0 0x40850000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk I2C5_GATE>;
-+			clock-frequency = <100000>;
-+			resets = <&sys MA35D1_RESET_I2C5>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		uart16: serial@40880000 {
- 			compatible = "nuvoton,ma35d1-uart";
- 			reg = <0x0 0x40880000 0x0 0x100>;
--- 
-2.34.1
-
+Ok but I don't know if I can submit a v2 series including my new bindings=
+=20
+changes (along with changes for other patches too) or I've to stick with=20
+v1 here, by showing my proposed fix for power supply properties, in order=
+=20
+to address review concerns about bindings, first.
+=20
+> Best regards,
+> Krzysztof
+> 
 
