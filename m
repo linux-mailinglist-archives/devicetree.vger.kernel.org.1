@@ -1,140 +1,175 @@
-Return-Path: <devicetree+bounces-276223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276224-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aJEpMl4VuGl/YwEAu9opvQ
-	(envelope-from <devicetree+bounces-276223-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:36:14 +0100
+	id +LjINeEVuGl/YwEAu9opvQ
+	(envelope-from <devicetree+bounces-276224-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:38:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B09229B7D8
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:36:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A2C229B889
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:38:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9F4F8304C484
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:34:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8AB3F308A8A9
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:35:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7693628B4FA;
-	Mon, 16 Mar 2026 14:34:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rEFUaIIU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B2B1293B5F;
+	Mon, 16 Mar 2026 14:35:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 525A71E511;
-	Mon, 16 Mar 2026 14:34:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 351AD2BDC1B
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 14:35:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773671670; cv=none; b=aBMojGfsCygFSAA0wol1QyIuPpA6W9bNRO1S9Jq/7GEolkBXdoO/vkPH3s7nZoQWJBxk+DCQoqQiz9/SBBmNwSTlJms7m4ZCJvLsy+W1CHLg/mdCXv1pP2P02YSc7OvPd3BNxI0ZXt1YkQpZwZhGIKBmO/99XVNAeBB18h3MrQU=
+	t=1773671716; cv=none; b=Uz4UG/w1WPw3ULUQjpspfIiuElvbyT6gazIvhui9BugN/ld0wUnXtKwKXp9CjNotuTkw/VY7Yt1WwQ1i35+/7NP2dcTURK0t5NUZAb841oEN/pv5QoOIRkUo5F7cg8DNjOo2FoM62XeOFeq/W3JxXxYYw3dh/Ux3pkHvefSOsT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773671670; c=relaxed/simple;
-	bh=PeJNgY4coc1jftz+tWfZK5DVqDvKvneWw1iXK8IlmxU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z801MaRMhONBTLMqW68N+/Snq+t2KyiFq38DV9OH6swIaAFGEuGNELpWsjkkYWmB3STKY+uqKf2YfV4svsKha4nVhkAorREc4S0F36df3u0aFaJPC+bqGonS9Ita5A4fgFJdmxITGUqG9PLgnf+e8uhDK8IFtBkRedU8dYfjDqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rEFUaIIU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48F9CC2BC87;
-	Mon, 16 Mar 2026 14:34:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773671670;
-	bh=PeJNgY4coc1jftz+tWfZK5DVqDvKvneWw1iXK8IlmxU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rEFUaIIUFXXLHmJ2tE/wnSEeQ+6mBZ4TDvzR6sGV6Mm2N/W2IMdQgC5VMvuYQYml0
-	 s7OGxtpO3kODthcxxNCV6uoHT63+iB/bfx5lqS7HuB2jgaI1IFGB8v8+msqMcIy7oQ
-	 cu5yGAMPb58czWbYsAEBdWHgM14yEeVmlsVtB0MbJzYJMff7rlEFhpgpFlW2uox76x
-	 R6rKptaaQ5LEHZQDzvrFY4+12tnLARwRKVLo2ZDYhLje3wpUagtrl28lusXDS2z1GX
-	 R2UMXxJhdZCNdmuzWVGYCjyepUOgHEpi/y1cIhP+mUyUq30qd3bTQtJ8tpgJtKFBb+
-	 LHETa75Md0cBQ==
-Date: Mon, 16 Mar 2026 14:34:25 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Rahul Tanwar <rtanwar@maxlinear.com>,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Icenowy Zheng <uwu@icenowy.me>, Han Gao <rabenda.cn@gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: moortec,mr75203: adapt
- multipleOf for T-Head TH1520
-Message-ID: <20260316-trusting-moving-1a37dbb94242@spud>
-References: <20260309162457.4128205-1-zhengxingda@iscas.ac.cn>
- <20260309162457.4128205-2-zhengxingda@iscas.ac.cn>
+	s=arc-20240116; t=1773671716; c=relaxed/simple;
+	bh=iy9mAbo+s/T9dKdx46UM1/G3Wgr+pl5kUIJdFdPPHoc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=svAkA6d/gDXMugfYDn9yuv/ue5HuTr1O1qtR3WfazBT71qnIV3aV8+031B4RkMyILO0thCZtRtV/zW5z+YoeVHfFtVmt22lMzxNivp6TOjmowomBE3tVErOM/sxO0MMznU4yeGOeDwC/f6rvD6ADIf45nArGGsIckPSInwIT8zA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-56b71eef805so718527e0c.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 07:35:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773671714; x=1774276514;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cEi22uqCpnp8wHRA2MLlWKOoRU5kiNMxo6iy2SBbAHQ=;
+        b=JdiJFGFt1NrgnESECU8xg6Dhs0ciiFqmH9+U5zXGw2zynEC+BMWJAfLmy7zvzxv+HH
+         mltRusQq60QpC59MokcnvqlBLxgWGfRiSEJi5b+eaAsZAQe33JtEWWKW1RyJ0fCOOkhl
+         /0LZ60IPKWLzjskCroCsGQqfKcrVPUI9U5Tx671/4WiAc0CWaWpXIJDWMh1ulh/nulSl
+         q4iQc6ZYhJayi4a1ihGziT7DrWeeSGu/PMU3bsOK7SPExX6inCoBsZ0+kd59sizowclv
+         DD0wLikozvGpjHGsk5q3rDHe9XMxrjpt3UDSISoPz/Q/WBTMIwDjONvN0u1f/twfT46C
+         bwUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXarh6b/eOQKvS0fKDXM2dWkeTTbRJU7TcHUASHuM/dQhX657tWa6EIUh21R+SinMRDpS7ggPemMVYb@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYzjVMs6VoHCitkvLe7P4wAM/JsfqJtOQts/rSCFPIs0V0NfN4
+	AwBqwyCeHFk8OLmjIsrol8LeFm2aHOjSEyDrmMOOUBsBhI3tFFRR9c0UIjoDIC5U
+X-Gm-Gg: ATEYQzw1XvUaTRJ9+AUnkahBa3hTz5v3gMu0xyf+grA2jOde0FHxxIPYw0LCFysdl+G
+	Yb1vOcYejEqfOoi89cRayztCRaqk/OQzUse84S9kga1a/zJzR555fnUvolW7cew5TrXtFPdhJrQ
+	xcUkgDnTqMkkmSv/SQ3wIy3Le4o5lCqWWIZjRSbS8+7on4+acCHnmqBULE4LFLJEmGuPB077z1a
+	l2895hbWGBdtivw6h+8n+IjkpRq7YdJ5pYvQxt55+cz4HAlQQjngBg/g+vhePJaMJ5OsWtbZ/ny
+	DahRct1XAajgCta2mlOcgxHCPXPBCNQ73uJnLhq3/N7tCyR5NKZCd56d+jJR1so+74j9Ix/PqWb
+	tckNjkL6xXyOSo2+wzFBagZcMny+UdCeQBH8/a8zPThL+1UOHu3bLAyqvn5SpjKCWLOze1nd5Xx
+	ZjPLCpTn5t5NwgogO5U14botGG9qyuDyepWZR7zi9nis5+nCf8ju8a1+jn4DhA
+X-Received: by 2002:a05:6122:310d:b0:563:c3e7:6132 with SMTP id 71dfb90a1353d-56b6291ab84mr4875086e0c.10.1773671714072;
+        Mon, 16 Mar 2026 07:35:14 -0700 (PDT)
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56b79fd4a84sm2739530e0c.12.2026.03.16.07.35.10
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Mar 2026 07:35:12 -0700 (PDT)
+Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-950d235b500so305542241.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 07:35:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVWNGdNVsO5AC5PIRjiVJMxhZsw0/uRV4p27c2YQBHvP4zi4fAZAsX8wwva8j3kpBrphQli8p8AUzkF@vger.kernel.org
+X-Received: by 2002:a05:6102:3711:b0:5ff:be25:8934 with SMTP id
+ ada2fe7eead31-6020e176ecemr4558310137.8.1773671710334; Mon, 16 Mar 2026
+ 07:35:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="/bIZjy/TXeMd0h4B"
-Content-Disposition: inline
-In-Reply-To: <20260309162457.4128205-2-zhengxingda@iscas.ac.cn>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+References: <20260310212927.3372410-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260310212927.3372410-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <abgQpsArW3VrCAns@shikoro> <c3af22f6-d937-4539-8eb7-d7f0b0892ca2@kernel.org>
+In-Reply-To: <c3af22f6-d937-4539-8eb7-d7f0b0892ca2@kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 16 Mar 2026 15:34:59 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWdyK6YKSrExmvzG9sPdr-xihJROAeZGLh=xAB6sObVsw@mail.gmail.com>
+X-Gm-Features: AaiRm53dfSLRgvt3HKUnwt4jeNK1RNa3l_ZjqMoT8LvOA5hXcJ4fFaeKP7Uw9XE
+Message-ID: <CAMuHMdWdyK6YKSrExmvzG9sPdr-xihJROAeZGLh=xAB6sObVsw@mail.gmail.com>
+Subject: Re: [PATCH 3/3] memory: renesas-rpc-if: Add support for RZ/T2H SoC
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Prabhakar <prabhakar.csengg@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276223-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[sang-engineering.com,gmail.com,kernel.org,glider.be,bp.renesas.com,vger.kernel.org,renesas.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_CC(0.00)[roeck-us.net,kernel.org,redhat.com,maxlinear.com,vger.kernel.org,lists.infradead.org,icenowy.me,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-276224-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,iscas.ac.cn:email,microchip.com:email]
-X-Rspamd-Queue-Id: 2B09229B7D8
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.955];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,linux-m68k.org:email]
+X-Rspamd-Queue-Id: 3A2C229B889
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Hi Krzysztof,
 
---/bIZjy/TXeMd0h4B
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, 16 Mar 2026 at 15:21, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> On 16/03/2026 15:16, Wolfram Sang wrote:
+> >> Add a new compatible string "renesas,r9a09g077-xspi" for RZ/T2H while
+> >> reusing the existing xspi_info_r9a09g047 OF data. This allows the driver
+> >> to bind correctly on RZ/T2H while the register differences can be handled
+> >> in future updates as the affected configuration registers are not currently
+> >> accessed by the driver.
+> >
+> > This sounds fragile to me. Can you add a comment somewhere in the driver
+> > or headers so people wanting to use these registers will find out that
+> > the SoCs are not compatible anymore?
+>
+> IMO, this patch is not needed. If you need to handle differences in
+> registers, then you add dedicated OF data.
+>
+> The change here (with the bindings) is actually confusing, because
+> effectively it says two contradictory statements:
+> 1. Driver patch: devices are different but they are compatible in
+> meaning of DT,
+> 2. Bindings: devices are not compatible
+>
+> So you need to decide which above, but not both.
+>
+> Eventually provide extensive arguments in terms of how DT understands
+> compatibility.
 
-On Tue, Mar 10, 2026 at 12:24:56AM +0800, Icenowy Zheng wrote:
-> The G and J coefficients provided by T-Head TH1520 manual (which calls
-> them A and C coefficients and calls H coefficient in the binding as B)
-> have 1/100 degree Celsius precision (the values are 42.74 and -0.16
-> respectively), however the binding currently only allows coefficients as
-> precise as 100 milli-Celsius (1/10 degree Celsius).
->=20
-> Change the multipleOf value of these two coefficients to 10 (in the unit
-> of milli-Celsius) to satisfy the need of TH1520.
->=20
-> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-> Reviewed-by: Drew Fustini <fustini@kernel.org>
+I disagree.  Using the same of_data can does not mean the devices are
+100% compatible.  It can also mean that the devices are different, but
+  a) The differences are not handled yet, because the extra features of
+     one variant (or both variants)  are not yet supported by the driver,
+  b) The differences are not handled explicitly, but implicitly,
+     or elsewhere.
+     E.g. the different number of resets is handled implicitly through
+     devm_reset_control_array_get_exclusive().
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Gr{oetje,eeting}s,
 
---/bIZjy/TXeMd0h4B
-Content-Type: application/pgp-signature; name="signature.asc"
+                        Geert
 
------BEGIN PGP SIGNATURE-----
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabgU7AAKCRB4tDGHoIJi
-0homAQDkf1eqMgJ/+IbCqDYOM+BEbR1o59LkqXqdiYt9YWbZ/wEArBuFNE3IjZ13
-2aCGEYb1dnAW5jxk1LeIbmR5q17WCQ8=
-=LVWl
------END PGP SIGNATURE-----
-
---/bIZjy/TXeMd0h4B--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
