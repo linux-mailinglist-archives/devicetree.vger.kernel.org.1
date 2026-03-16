@@ -1,173 +1,184 @@
-Return-Path: <devicetree+bounces-276304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276306-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KGSkEIApuGnhZgEAu9opvQ
-	(envelope-from <devicetree+bounces-276304-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:02:08 +0100
+	id WF/oD64puGnhZgEAu9opvQ
+	(envelope-from <devicetree+bounces-276306-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:02:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2978329CEF7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:02:03 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB6F029CF44
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:02:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 05514301F683
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:01:10 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7F528303289E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:01:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E809E3CCFDB;
-	Mon, 16 Mar 2026 16:01:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4864D325716;
+	Mon, 16 Mar 2026 16:01:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tRvR8jWP"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="USsn5Id1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56E293CCFAA
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 16:01:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.49
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773676868; cv=pass; b=Ytj2Sac6FfeSHms+PuW+r3xT3tL9EKIGpfqblnTC5sjVYbLC9TW3QcNIL3FsrWoCFdecWz5zXIQTE3nUe0KXNC9r3hTdoV/3GG1vIbYVhGzhq/ObHmXb5PtBZXeiypBpE+YoSvz+O+1qLXZyN+qByIsBBh26cIZAhmMjmUuWvE8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773676868; c=relaxed/simple;
-	bh=nRTROiegC3HHzc2PKkDT6LEu+pHZlAThf22kVsmxLDs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oqNfOL+YuMLhmquxHKHWYgnC697zOGkUo6zEQtz09NE0KnavB9N5GhcAt5CYxEDuVzz4Ej+qmrEfyFqE/0ZAvgWMH4vz0sw6p2fAjxHrC6PL6WBe0A4miYc6UipcZXMyGv6IjJ6Rzn0PF58P+zvWCRLU3UJErrZtoMhToqaeb9Q=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tRvR8jWP; arc=pass smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-66391baf250so4477470a12.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 09:01:07 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773676866; cv=none;
-        d=google.com; s=arc-20240605;
-        b=cXB+tk0winZvOklo/ypQlYu5/xtOJ2qiCtxLvHfeNuOEkfyjuDyzlE3UiSFHHKoRgC
-         R309vxpUnhZTM/tigI8eQ2KU3xrtLGCSDdfSYL4gN3PnAL9LdbYJtei1o2z70C2WcApm
-         GRt45tIUJBaO23Q6ezJIyPABlUskq6EARWurulaxweJrZNQTOPJzHRPn1NpggycJEAv/
-         aagkZafYDfA7XbMK0BnAQOzenOV+aswZVIBLwCChq9YVL7/6JKeLul0/9SVyDK6/3DOF
-         Q0nNR0X+coodPDcYomArl6GNVCSPtSZAE915/8vVxc1UBOrEuHVPmfflfia4sH7uBcg0
-         XJhA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=nRTROiegC3HHzc2PKkDT6LEu+pHZlAThf22kVsmxLDs=;
-        fh=8/2OEmQ80DbOt2zKp6okrHUMDtUUMI1koM5WyVmYBtk=;
-        b=bVzp2QAHi2vb+OjZSZ8upgY1qf9ebkkPL6UhSe0Sad1ef/xUEM3CPMXVeAuqh7avUy
-         s/JCZ0n+lrUNKhBRIYZK/CKlmozVrclgNHUnG07oCVVxZ9LDwAPooMQj7udRXaFBi8yG
-         iJRB1yHZXiZlRHiZFBoFgaQMDRQpEspNbkgjKrv6TqKpfm6ZliWYaj+wgWn6YbPWET8s
-         CxlGZiV/ijUfxwbcR7l+StiqYZW5o1MuNP8AfvJXWgEJk8mQa7SX3ohZDoDRkCV99MUI
-         vLUXgPlwC7aZPyutxeq1JQigHUGIs86ctS1FibopBb/GgotjFpZLglJHs8e/DUggD0OY
-         ZFRQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773676866; x=1774281666; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nRTROiegC3HHzc2PKkDT6LEu+pHZlAThf22kVsmxLDs=;
-        b=tRvR8jWPdYpapywuFbFHAwdbkmfciAm97lupRo23Lz95ol4WDw47KF+V049m3ECDKP
-         khDfrPMN6aR/vimprZmLRF6GU2CkUGsd4Jv5xtJGU+u1yNjoX+Yy544KdjdWYeVUqwvP
-         PAuT67hKYlEjtdFL0MRqVeSCfe5qhhfNz5y8pDlti3aC5sbdN5iYW7S3kFsgmreBC4CN
-         qAGJEDXXCt/WGvWjeZrLQIJq7Yect+cT6Mb1tiyLaxvjXE+m/ds4hH8ov+Y8sMqZNrSm
-         SWPoHKrCT3TVDDSq/C0ySD3PoMmRqSWtUYuAZVCOsx/LSb4q+nVLCCHHlStxxvaawLlT
-         Ym6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773676866; x=1774281666;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=nRTROiegC3HHzc2PKkDT6LEu+pHZlAThf22kVsmxLDs=;
-        b=PpKzLuzn69zSePXb9BixNsC9evVJAJney9LmktcfFCQNskoJU/Pl0NuX4ouHMJvdmC
-         UTkCfy5S46Ow4S/GJ2T15nFX84pzvy7DRFBrSN/pUhPtEQThB1/ofntGcx89Ho4ivmyG
-         8B4cdnJB4Fe76LG06fZMt2QkcnUhRisEolj/5keWOeWDV8TumYuC66WuQE3KfaN+RAi4
-         /g7dX+qo/AlqbEhBaxb/2qDIEHfLNWUs3WOD5FdPTBaCUMdPYCvUFXlJma3NDQ4ws61S
-         XlpPRqHp/tZ2ObdRXRVvSXm2IIbZ5JhwN3jSUpaDhWqC97+Yt/jSDiQbDao0TGch1lJg
-         mrLA==
-X-Forwarded-Encrypted: i=1; AJvYcCW41alCSuPZSEJ++vYpHrvY/3csqzPuczLhSkFjR/9ZSCBpGRefouw4znBY05FxQzEHNEWbVxJQ6J/n@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKCHh+NanAu0C70/xVIYZY/DxwBOeekDVYJ1XF/c5hl1k0U+wp
-	Z1ted10mrP5jvwc5vmlJ3b85QORyJ5cWWX56xQK/Rdlf0hTrNik8kh5E2Po5ponibJ3qB2q05ct
-	cU+Qfilwppu7sWJU+PxqGD8AUtRVTmIBCl1etU6GmxA==
-X-Gm-Gg: ATEYQzzPWAd5jJZ9PN45bdQdzkulTAPfJHE44wfZQ8m+s51EzN+q5luUzZRJ+r4sl/4
-	IMZSvnpTCfjoOouorrSyCIiwx/jEvjOyTQL7drbc+kO+/TTGVKG7Fi83OpvWXV85eeQaR/0+0EB
-	5Cf7kmmX4zjCq/QkSTPCIX+JGqPzOUyjETLMyf5gq0a4fZYA9c7NnaFSl1zGxFeB3xK04T1i3pp
-	IPjtbkF3nCriZBi5phonhFaihGBiq0U4cUd6t1J56dH43Ig6rDVnDF7tNHNH9Dm+Jxw1/n+iguJ
-	y2yRU6lzj3BXaAb2sEC49cHwgRNRuLJM5HJYHDpVgQ==
-X-Received: by 2002:a05:6402:51c9:b0:65c:2af1:b7e2 with SMTP id
- 4fb4d7f45d1cf-663bac17dcamr7423927a12.27.1773676865593; Mon, 16 Mar 2026
- 09:01:05 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D4B521A95D;
+	Mon, 16 Mar 2026 16:01:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773676902; cv=none; b=jEUefmdLpr++0E6LMmuuXgPPA6GDQLzzkTlzR1L3DPGBiSjtg9wN7PXtgGpUPlSbcI8jKjbXF3FksVREFC2FOG4lgtGsqNZVrBaw5FHy3wSHvhLOUrfTA/zfDPAbNTMhVamQU/MaRpA5ctqNXVav0rBIw4jYXBYcuzEnOnQ3mC8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773676902; c=relaxed/simple;
+	bh=UyIZsrjKkEUaxHt7v/3reYw2j7lqEdtoJPKx1gtB+vg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lnn6takAcXSd3itde/2vXnBg5BAVVFLZBfDh4GMEt1QdX8LupMlW1PF9J+zG6TsvYAHCwsAEXaqXdvUosWHiisWp6xZ3SBKOlHdHtFaxQtS8KaOlVhAw2tcBYoTWKwbCO+ewsKVs11iyKVb1suVXmDKSCo5b1ZSYXwiRZPugn7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=USsn5Id1; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (xcpe-178-82-120-96.dyn.res.sunrise.net [178.82.120.96])
+	by mail11.truemail.it (Postfix) with ESMTPA id C71371FABC;
+	Mon, 16 Mar 2026 17:01:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1773676898;
+	bh=vhmAKk+4/zPYmmEuoWhhmx7M2Dlod4lMaxpiHqopJPk=; h=From:To:Subject;
+	b=USsn5Id1GmEi1ZI96WmPiKcNx5xtNxmE3ma2bHTvCZQCOUvz0rO8RB6gxDHv2RzIk
+	 3JVU78saC5ArM5uD4CAO0axgfLhJ2i8IDHgYBhFLuuF2oPkd2HlJWChqXw6BYO3qE0
+	 MWqeCtDUd2O1QTdeKO05aT3spatvaXHOwJxMSXQvekKQWGVa1drmsPebFltmKrklxI
+	 ecq8AnEVqRs0HuZ4FYHvwG18t1FJt/EhdBlAIkLrXsN6+F6TEK7h8f24DdfY+ER6Vl
+	 sau069TI35K4nCbRPQjwhSGm8iTSkH7aWZqbzUGjhxjYhfO8j4qh01eSfJFKO/P5xu
+	 dehkwvvtlNz9w==
+Date: Mon, 16 Mar 2026 17:01:36 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Thorsten Leemhuis <regressions@leemhuis.info>
+Cc: Nicolas Dufresne <nicolas@ndufresne.ca>,
+	Francesco Dolcini <francesco@dolcini.it>, ming.qian@oss.nxp.com,
+	linux-media@vger.kernel.org, mchehab@kernel.org,
+	hverkuil-cisco@xs4all.nl, benjamin.gaignard@collabora.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	p.zabel@pengutronix.de, sebastian.fricke@collabora.com,
+	shawnguo@kernel.org, ulf.hansson@linaro.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, m.felsch@pengutronix.de,
+	fra.schnyder@gmail.com, linux-imx@nxp.com, l.stach@pengutronix.de,
+	Frank.li@nxp.com, peng.fan@nxp.com, eagle.zhou@nxp.com,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, regressions@lists.linux.dev
+Subject: Re: [PATCH v4] media: verisilicon: Fix kernel panic due to
+ __initconst misuse
+Message-ID: <20260316160136.GB43134@francesco-nb>
+References: <20260306031059.801-1-ming.qian@oss.nxp.com>
+ <20260312173349.GA137045@francesco-nb>
+ <e559b822c5f4fc9167d40544172c6c450d88636a.camel@ndufresne.ca>
+ <3b30506f-f651-44c4-aca2-29e99ce60cba@leemhuis.info>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260313195801.2043306-1-shenwei.wang@nxp.com> <CAD++jLkVZc7J+39eUtpWz4+YQm035HDtUyiyrEFGifQkcSMsCA@mail.gmail.com>
-In-Reply-To: <CAD++jLkVZc7J+39eUtpWz4+YQm035HDtUyiyrEFGifQkcSMsCA@mail.gmail.com>
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-Date: Mon, 16 Mar 2026 10:00:53 -0600
-X-Gm-Features: AaiRm52a6xRhLIv8WCDX8JG5wzLTI5tmdCIrfHWi7mJRzbOdI91SV43T2PYw5ig
-Message-ID: <CANLsYkyd8x29kz1u2dkyn_5hhWVJehz6VVKEx81Ew6i1nKObwg@mail.gmail.com>
-Subject: Re: [PATCH v12 0/5] Enable Remote GPIO over RPMSG on i.MX Platform
-To: Linus Walleij <linusw@kernel.org>, Andrew Lunn <andrew@lunn.ch>
-Cc: Shenwei Wang <shenwei.wang@nxp.com>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, arnaud.pouliquen@foss.st.com, 
-	Shuah Khan <skhan@linuxfoundation.org>, linux-gpio@vger.kernel.org, 
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
-	devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3b30506f-f651-44c4-aca2-29e99ce60cba@leemhuis.info>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[dolcini.it,none];
+	R_DKIM_ALLOW(-0.20)[dolcini.it:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-276306-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276304-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	FREEMAIL_CC(0.00)[nxp.com,kernel.org,lwn.net,pengutronix.de,foss.st.com,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[31];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[ndufresne.ca,dolcini.it,oss.nxp.com,vger.kernel.org,kernel.org,xs4all.nl,collabora.com,pengutronix.de,linaro.org,gmail.com,nxp.com,lists.linux.dev,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mathieu.poirier@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[francesco@dolcini.it,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[dolcini.it:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[i.mx:url,mail.gmail.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,nxp.com:email]
-X-Rspamd-Queue-Id: 2978329CEF7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[toradex.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,pengutronix.de:email,dolcini.it:dkim,qualcomm.com:email,nxp.com:email]
+X-Rspamd-Queue-Id: DB6F029CF44
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-[Adding Andrew Lunn]
+On Mon, Mar 16, 2026 at 04:56:09PM +0100, Thorsten Leemhuis wrote:
+> On 3/16/26 16:25, Nicolas Dufresne wrote:
+> > Le jeudi 12 mars 2026 à 18:34 +0100, Francesco Dolcini a écrit :
+> >> On Fri, Mar 06, 2026 at 11:10:57AM +0800, ming.qian@oss.nxp.com wrote:
+> >>> From: Ming Qian <ming.qian@oss.nxp.com>
+> >>>
+> >>> Fix a kernel panic when probing the driver as a module:
+> >>>
+> >>>   Unable to handle kernel paging request at virtual address
+> >>>   ffffd9c18eb05000
+> >>>   of_find_matching_node_and_match+0x5c/0x1a0
+> >>>   hantro_probe+0x2f4/0x7d0 [hantro_vpu]
+> >>>
+> >>> The imx8mq_vpu_shared_resources array is referenced by variant
+> >>> structures through their shared_devices field. When built as a
+> >>> module, __initconst causes this data to be freed after module
+> >>> init, but it's later accessed during probe, causing a page fault.
+> >>>
+> >>> The imx8mq_vpu_shared_resources is referenced from non-init code,
+> >>> so keeping __initconst or __initconst_or_module here is wrong.
+> >>>
+> >>> Drop the __initconst annotation and let it live in the normal .rodata
+> >>> section.
+> >>>
+> >>> A bug of __initconst called from regular non-init probe code
+> >>> leading to bugs during probe deferrals or during unbind-bind cycles.
+> >>>
+> >>> Reported-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> >>> Closes: https://lore.kernel.org/all/68ef934f-baa0-4bf6-93d8-834bbc441e66@kernel.org/
+> >>> Reported-by: Franz Schnyder <franz.schnyder@toradex.com>
+> >>> Closes: https://lore.kernel.org/all/n3qmcb62tepxltoskpf7ws6yiirc2so62ia23b42rj3wlmpl67@rvkbuirx7kkp/
+> >>> Fixes: e0203ddf9af7 ("media: verisilicon: Avoid G2 bus error while decoding H.264 and HEVC")
+> >>> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> >>> Suggested-by: Marco Felsch <m.felsch@pengutronix.de>
+> >>> Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+> >>> Signed-off-by: Ming Qian <ming.qian@oss.nxp.com>
+> >>
+> >> What's the plan to merge this? It fixes a quite severe regression,
+> >> a boot failure.
+> > 
+> > To be decided this week. The commit message does not say if it was released, or
+> > came in RCs (and I didn't check myself yet). I'd say, if its the first one, it
+> > will go through next and backports, otherwise its is really tight to get that
+> > into the RC series, but serious enough. Please fill the gap if you have time,
+> > and I'll handle it later, probably tomorrow.
+> 
+> Well, FYI: the culprit according to the fixes tag quoted above is
+> e0203ddf9af7c8 ("media: verisilicon: Avoid G2 bus error while decoding
+> H.264 and HEVC") [v7.0-rc1, v6.19.6 (286d629d10640b)]. Given that this was
+> * reported 11 days ago
+> * reported at least two times
+> * made it into a stable series
+> it is something that Linus would like to see fixed by now in mainline
+> afaics, as ""the rule of thumb should generally be "within a week",
+> preferably before the next rc."":
+> https://www.kernel.org/doc/html/next/process/handling-regressions.html#on-how-quickly-regressions-should-be-fixed
+> 
+> If that fix is too dangerous a revert is of course an option, too.
+> 
+> BTW, given that the culprit made it to a stable series, it would be a
+> wise to add a stable tag to ensure it's backported (it otherweise might
+> be silent dropped and/or applying might be deferred).
 
-On Mon, 16 Mar 2026 at 08:23, Linus Walleij <linusw@kernel.org> wrote:
->
-> Hi Shenwei,
->
-> On Fri, Mar 13, 2026 at 8:58=E2=80=AFPM Shenwei Wang <shenwei.wang@nxp.co=
-m> wrote:
->
-> > Support the remote devices on the remote processor via the RPMSG bus on
-> > i.MX platform.
->
-> I think v12 looks pretty good, if Arnaud gives his ACK on this patch
-> series I think it's ripe for merge.
+Absolutely ... the tag here should help b4
 
-Please wait until Andrew and I have provided our RBs before merging.
+Cc: stable@vger.kernel.org
 
->
-> Yours,
-> Linus Walleij
+Francesco
+
 
