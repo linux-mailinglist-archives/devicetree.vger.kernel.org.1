@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-275940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275941-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2G/XIbudt2l/TgEAu9opvQ
-	(envelope-from <devicetree+bounces-275940-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:05:47 +0100
+	id uHUABL6dt2l/TgEAu9opvQ
+	(envelope-from <devicetree+bounces-275941-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:05:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F212E294F2B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:05:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD3AD294F38
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:05:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E4532300E24B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 06:05:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6C4F43009FBD
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 06:05:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B17B7346A15;
-	Mon, 16 Mar 2026 06:05:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E73B034751B;
+	Mon, 16 Mar 2026 06:05:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pzc93iPG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CwYKOZXg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79875346FA5
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 06:05:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCF55346A15
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 06:05:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773641145; cv=none; b=KdaFYy9iztYW28CSORGRMTVH+n5tLY4Tl+Yk7ykP/B+caKczgOOTik01vCoXpCeJBV8URi/dVO1DbW4P7lf9QjnBYEIhs9ZdmDKg9GjNL8AJDuzkWaOyCTxpDWcBvny60vhQYjPgr3rKobAcXJABe6IRhrj6to073dApeDGNblc=
+	t=1773641147; cv=none; b=lr8n3I0GpkI0XywWVpSS4CnhQfRTM2Cx8VNNn2B8Y9zArUIWyiiXxyb2vTX4ch0XIYBiz+AOlYyO3zXhj5b9rRJJSb7SWI61WVpE6Ph5/HeqkqxHk/9ujTEqfkkdfS/CUHjDen3169o2ohwyoqUav5AWsrsrPsLPK/n+FbZxnVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773641145; c=relaxed/simple;
-	bh=mPU5x+HvHVJP3hc9FslgpERL9sjP+/zf51lYNf1ETL0=;
+	s=arc-20240116; t=1773641147; c=relaxed/simple;
+	bh=zFpJ9Lc+qbmVhSv+wBhS1sRunSnT/QfrtvQejWtn9GY=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=XhIE20wEnH9NCA9pfCwdE3m8kyM9zKJ1IDPCmHr2lp1lTUchXz7iSIfPdu0RTKQXYq7gWRM34qtLzqC4vb6S3PCPkBL3kl/RL5hveq4Xoo+f9uq1mKigzefJhMNWk+CcWCV15yuSWqXH62g4pEdxE4iv28L7rfoqDeBzK8Adu/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Pzc93iPG; arc=none smtp.client-ip=209.85.210.175
+	 MIME-Version; b=IOGSt2G+ArcTqWzFDiHXVNyi8g/wLE7k+wQJER2ZUw97FYnF51WrhJb8UXy8P1kDUOu4oFcmy2o6Ac23Fr2Ucq81XpSwLi0APcNGRfRpHtanXxedGkyktXUTctplE3uJJv0actvoXJrs5W4UU+4euiTJhMkjfIgJTs9vYrjML9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CwYKOZXg; arc=none smtp.client-ip=209.85.210.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-82a3d3235c9so655139b3a.2
-        for <devicetree@vger.kernel.org>; Sun, 15 Mar 2026 23:05:44 -0700 (PDT)
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-827270d50d4so3986631b3a.3
+        for <devicetree@vger.kernel.org>; Sun, 15 Mar 2026 23:05:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773641144; x=1774245944; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1773641146; x=1774245946; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xean22/tjFsNOsF/nOdABDf/+KIaxj5k5+75ISbAbNU=;
-        b=Pzc93iPGWCB5JfheQ9RQDMv9Ye2tPb0Yc9L5ybhTkzeX2gke2bfhSggd4v7XvzsYoc
-         NeG6qCyhckrZG95k+zHy4LH2anKA/CVOZxoiqrpwTVCzBqIya3FRGnSJeFPSdoSEzhBU
-         007SK6mujeeS97rRNYk5xbSd3VGb1GR4DChxIscecA+D7mzXVCvnTYLgPi3IFiupyR+E
-         3ME/BR4IeIcBBJO1lcGQi/u++lpcRoDl5RBwlXQfvQeb9cQh6IZmujUZsaO+LVwgl1eF
-         2oJN9TayBi9XH+yWODSo+RKUnO3gibiLvHolylbPIvgJBe1d/NNMH0szDE9LFIExhhIw
-         iA/w==
+        bh=SDQYRHz1Z1t4tWIcfE0Fv7aJ0eRwhG3fEsKD60MRqLg=;
+        b=CwYKOZXgtORJDTXD8TASkcxfY576irKaW6r9pAhC7jlcnbtHDYxeuX4WiCfzkvuSg7
+         Nj3e2VdjrOn3n/mB71zwwROy8dR39m5ElUgrTJX9NRX770EF7vHIYgcwJGjSED2eJkWh
+         sqQ9vfPkdB+Zb+Yh/ADy7a6wC0+uh8oIAXTf7BW30mrl0CMPS/+/uo/TUxr+r+ad99mm
+         Ry5zuO1uJHy3SPYqyBtI2BgudfZT4xoWxSwsh/8ieMTHMitkr++ltoZUHJIpYD4apc2Y
+         CznauqnWef4gM4VDjsPb1fuIjrSnAQYfvKPjL6kqEO1rpAi6UbiMdC5iOqcGRu9KMIIV
+         mdGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773641144; x=1774245944;
+        d=1e100.net; s=20251104; t=1773641146; x=1774245946;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=xean22/tjFsNOsF/nOdABDf/+KIaxj5k5+75ISbAbNU=;
-        b=CrsxP2GxsV5qeSAL2CPvzRNy6qKo4mLMPL8GCHnoB/bC0bCg/+suabXaYtGzV4bX/m
-         zQyYwMq/5ULdYIOnMbwYufWZ/dsa8RX/S9zQsoCnqiafS9qK4F5VhDfcVBjTYqKhNQji
-         b2LMbnZ7zjvGd655yDxoU0hGgnmFILeBLi13Q/pOEMC0wmRbawo7EXstMXVCjJiOPi1J
-         TI/cR2C8K9xJRzQ9XrEG9IoVcEywCsITAIRQDT4FWL4lbsWNBp02X7QDRAEmMah9yhyB
-         VD0cRc+x2QDXE/TpBThLDzyAOABQ8i13LVU0jOGP8SEKkNSppuu9xFFYRjbzKy/xnOu9
-         ZkLg==
-X-Forwarded-Encrypted: i=1; AJvYcCUWZN50ogHFBu5w4rCb9Ri3Gup1g2kpL5ZkPeNc4KOl1If7ONL7AsPtyh2c7iwkCZDLQqbRyxwUPRMe@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgwZyAH5pqMQ86Y7YhZLpgizYpNrb4WOGpYCQhUSkVaVK76mwM
-	mjmy4IQpzQO0vj/Qbt2yxP5Md0dCQa0mxu3H2UibE3+vyzSomJIN9Ygp
-X-Gm-Gg: ATEYQzxJ66xj9EOQEmeOAS9/pBL2NP2Scc96c3Kl7ktzGBAl8oQTdhKwyAZFzOJOt1t
-	0tLT/aiGvQ8G5R67iLzK5iQBRvkwZkOs5mH4+Hkj2O2/AbbZw7Nvene/1VvbNa+Ey00YeG9CUPj
-	1u1QM55IlQoJhKeumzZ6kolApANTv6Atx2pPXZmbKHqmb8/43pN5zWlZzsV+u+0T/zJZEL8Cs1h
-	+Z4cmWOdjMH43Pcw+c9TfcQ4YAkO9qKxxQT7Bam8y7M/+aQOk3o/yR+wdmM2oDwImcRyTdnAlKE
-	mGmOIj9+2p1sKgBmBHLlW0u4NxdEsGVZWK5Hm58X8RUYhLAd//2TLu/h8R/NXZybyxQFsJqtArj
-	nkoS17O5YPFSRC9iVLolo0w4QpCIKQBa9cl46JCKaihuMcYrbJrFal00WUSe9nt6/UYZfFEOChp
-	PcLJZweWHuqGdvisczWyIjkLSC
-X-Received: by 2002:a05:6a00:2d8c:b0:829:8bb4:1034 with SMTP id d2e1a72fcca58-82a19873098mr10167099b3a.28.1773641143923;
-        Sun, 15 Mar 2026 23:05:43 -0700 (PDT)
+        bh=SDQYRHz1Z1t4tWIcfE0Fv7aJ0eRwhG3fEsKD60MRqLg=;
+        b=DrOInc2tyQVytm9D210XW3O15COK8CRN7K3ONof3uPCVIDS+dST+WryEzQ/x2qqrc3
+         4+Dv/PPSP9aTDSmdw61dpQudBT3G1v8xxqVNu6XoPfbovR+2Sw41WlOZv77IX7Pfac6i
+         4YI8Kk17+9dGLaUwYw4zZaWgsVA7EScP1CFmmOvt8t3v2AG3dYi0cK/3ry3uK1DQJj5v
+         uJHON6cs3412EexZD4xy3xICyBVD/LhRhJ7P9JDeBtuViYEqZPuXiszyihDkEj7B8DTU
+         LC9YITJOcMgpjydC/6cCLAdNlwzbT28tQQEenxRWK5ys1B/klvLSgZx2awe/WoIj+aGS
+         tBsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXPHjLUDmYH1K1odPpGPuZBhcvLli1CZ1aN8wfw3tgPMXC9K/YzLExFOy27mzc1vJP+83wYsGvKLCoe@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+x6w8BR2mG6o5ELAt7Y1CZ/EYGP0/TOsu58QlglrpPe6QX5xE
+	NLof+mbNPTpLXdyu/P2C2KqsSyulPcO2xCtGqu6bX9fe1p/Nw3fYIm2U
+X-Gm-Gg: ATEYQzwg7OkTnO+g1XAJ9517OTlr4bCZuf9FV9MNt7I3lYkVvIQoCydwW0pijb+4cCD
+	tnBZH3H0NH5IgZnFUBxWm/QzgzQ58JbOHcC95k4VfvhcZA04ucMR4P4DPkDZaaWqoFrCcqpzwxH
+	WHPBSWHGCaCeEVcR0qaGX3us31jfMVYOT7X9vZcYYljhDhanKm6CYEDJyrot01ScT22btoJ28WQ
+	qAsIzUNAWjA1tcwZIpnPS7vO21Rv5UgXf3n7bJ3MxOfPlNUolfl4KuKtUpVDpk0r38CJMNxbOnq
+	lU1onYcGkeIyikbFZSAnauJs/edoArhmnKOmCK1ldkBokJqYHbE73nf1jUDJIFDeIvOtlMRRONv
+	whiT5V3lDQW76SrA4tMDFMLUpMm96k226mXXNy7ZZhlG1hLIAewPp+x4K/G0t07naWaIW6RXU0Z
+	APvdKu9dRf6qQHao40XZXDnp6J
+X-Received: by 2002:a05:6a00:a90:b0:824:a5f4:fc3c with SMTP id d2e1a72fcca58-82a19842906mr11729345b3a.19.1773641146216;
+        Sun, 15 Mar 2026 23:05:46 -0700 (PDT)
 Received: from m91p.airy.home ([172.92.174.155])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82a07393098sm12525226b3a.62.2026.03.15.23.05.42
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82a07393098sm12525226b3a.62.2026.03.15.23.05.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Mar 2026 23:05:42 -0700 (PDT)
+        Sun, 15 Mar 2026 23:05:44 -0700 (PDT)
 From: Bo Gan <ganboing@gmail.com>
 To: linux-riscv@lists.infradead.org,
 	samuel.holland@sifive.com,
@@ -90,9 +90,9 @@ Cc: lizhi2@eswincomputing.com,
 	conor@kernel.org,
 	kernel@esmil.dk,
 	devicetree@vger.kernel.org
-Subject: [RFC PATCH v2 1/3] riscv: alternatives: support auipc+load pair
-Date: Sun, 15 Mar 2026 23:03:26 -0700
-Message-Id: <20260316060328.1173634-2-ganboing@gmail.com>
+Subject: [RFC PATCH v2 2/3] riscv: errata: sifive: support auipc/load pair in patched alternatives
+Date: Sun, 15 Mar 2026 23:03:27 -0700
+Message-Id: <20260316060328.1173634-3-ganboing@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260316060328.1173634-1-ganboing@gmail.com>
 References: <20260316060328.1173634-1-ganboing@gmail.com>
@@ -108,12 +108,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275940-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-275941-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -123,100 +123,55 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[ganboing@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	NEURAL_HAM(-0.00)[-0.999];
 	TO_DN_NONE(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	TAGGED_RCPT(0.00)[devicetree];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: F212E294F2B
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: AD3AD294F38
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Previously only auipc+jalr pair is supported. Add auipc+load pair
-to support PC-relative memory load instruction as well.
+Enhance the errata/sifive patching function to support auipc/load
+insn pair by fixing the offsets in immediate, just like in function
+`riscv_cpufeature_patch_func`. Refer to commit 27c653c06505
+("RISC-V: fix auipc-jalr addresses in patched alternatives")
 
 Signed-off-by: Bo Gan <ganboing@gmail.com>
 ---
- arch/riscv/include/asm/insn.h   |  8 ++++++++
- arch/riscv/kernel/alternative.c | 11 ++++++-----
- 2 files changed, 14 insertions(+), 5 deletions(-)
+ arch/riscv/errata/sifive/errata.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/arch/riscv/include/asm/insn.h b/arch/riscv/include/asm/insn.h
-index c3005573e8c99..1c791a8732efc 100644
---- a/arch/riscv/include/asm/insn.h
-+++ b/arch/riscv/include/asm/insn.h
-@@ -135,6 +135,8 @@
- #define RVC_C2_RS1_MASK		GENMASK(4, 0)
- 
- /* parts of opcode for RVG*/
-+#define RVG_OPCODE_LOAD		0x03
-+#define RVG_OPCODE_STORE	0x23
- #define RVG_OPCODE_FENCE	0x0f
- #define RVG_OPCODE_AUIPC	0x17
- #define RVG_OPCODE_BRANCH	0x63
-@@ -198,6 +200,8 @@
- #define RVG_MATCH_BGE		(RV_ENCODE_FUNCT3(BGE) | RVG_OPCODE_BRANCH)
- #define RVG_MATCH_BLTU		(RV_ENCODE_FUNCT3(BLTU) | RVG_OPCODE_BRANCH)
- #define RVG_MATCH_BGEU		(RV_ENCODE_FUNCT3(BGEU) | RVG_OPCODE_BRANCH)
-+#define RVG_MATCH_LOAD		(RVG_OPCODE_LOAD)
-+#define RVG_MATCH_STORE		(RVG_OPCODE_STORE)
- #define RVG_MATCH_EBREAK	(RV_ENCODE_FUNCT12(EBREAK) | RVG_OPCODE_SYSTEM)
- #define RVG_MATCH_SRET		(RV_ENCODE_FUNCT12(SRET) | RVG_OPCODE_SYSTEM)
- #define RVC_MATCH_C_BEQZ	(RVC_ENCODE_FUNCT3(C_BEQZ) | RVC_OPCODE_C1)
-@@ -222,6 +226,8 @@
- #define RVG_MASK_BGE		(RV_INSN_FUNCT3_MASK | RV_INSN_OPCODE_MASK)
- #define RVG_MASK_BLTU		(RV_INSN_FUNCT3_MASK | RV_INSN_OPCODE_MASK)
- #define RVG_MASK_BGEU		(RV_INSN_FUNCT3_MASK | RV_INSN_OPCODE_MASK)
-+#define RVG_MASK_LOAD		(RV_INSN_OPCODE_MASK)
-+#define RVG_MASK_STORE		(RV_INSN_OPCODE_MASK)
- #define RVC_MASK_C_BEQZ		(RVC_INSN_FUNCT3_MASK | RVC_INSN_OPCODE_MASK)
- #define RVC_MASK_C_BNEZ		(RVC_INSN_FUNCT3_MASK | RVC_INSN_OPCODE_MASK)
- #define RVC_MASK_C_EBREAK	0xffff
-@@ -262,6 +268,8 @@ __RISCV_INSN_FUNCS(c_ebreak, RVC_MASK_C_EBREAK, RVC_MATCH_C_EBREAK)
- __RISCV_INSN_FUNCS(ebreak, RVG_MASK_EBREAK, RVG_MATCH_EBREAK)
- __RISCV_INSN_FUNCS(sret, RVG_MASK_SRET, RVG_MATCH_SRET)
- __RISCV_INSN_FUNCS(fence, RVG_MASK_FENCE, RVG_MATCH_FENCE);
-+__RISCV_INSN_FUNCS(load, RVG_MASK_LOAD, RVG_MATCH_LOAD);
-+__RISCV_INSN_FUNCS(store, RVG_MASK_STORE, RVG_MATCH_STORE);
- 
- /* special case to catch _any_ system instruction */
- static __always_inline bool riscv_insn_is_system(u32 code)
-diff --git a/arch/riscv/kernel/alternative.c b/arch/riscv/kernel/alternative.c
-index 7642704c7f184..04a9d3aed4647 100644
---- a/arch/riscv/kernel/alternative.c
-+++ b/arch/riscv/kernel/alternative.c
-@@ -74,7 +74,7 @@ static u32 riscv_instruction_at(void *p)
- 	return (u32)parcel[0] | (u32)parcel[1] << 16;
- }
- 
--static void riscv_alternative_fix_auipc_jalr(void *ptr, u32 auipc_insn,
-+static void riscv_alternative_fix_auipc_pair(void *ptr, u32 auipc_insn,
- 					     u32 jalr_insn, int patch_offset)
+diff --git a/arch/riscv/errata/sifive/errata.c b/arch/riscv/errata/sifive/errata.c
+index d0c61f86cba33..f26c997e04e59 100644
+--- a/arch/riscv/errata/sifive/errata.c
++++ b/arch/riscv/errata/sifive/errata.c
+@@ -80,6 +80,7 @@ void sifive_errata_patch_func(struct alt_entry *begin, struct alt_entry *end,
+ 			      unsigned int stage)
  {
- 	u32 call[2] = { auipc_insn, jalr_insn };
-@@ -123,14 +123,15 @@ void riscv_alternative_fix_offsets(void *alt_ptr, unsigned int len,
- 		if (riscv_insn_is_auipc(insn) && i < num_insn - 1) {
- 			u32 insn2 = riscv_instruction_at(alt_ptr + (i + 1) * sizeof(u32));
+ 	struct alt_entry *alt;
++	void *oldptr, *altptr;
+ 	u32 cpu_req_errata;
+ 	u32 tmp;
  
--			if (!riscv_insn_is_jalr(insn2))
-+			if (!riscv_insn_is_jalr(insn2) &&
-+			    !riscv_insn_is_load(insn2))
- 				continue;
+@@ -100,9 +101,12 @@ void sifive_errata_patch_func(struct alt_entry *begin, struct alt_entry *end,
  
--			/* if instruction pair is a call, it will use the ra register */
--			if (RV_EXTRACT_RD_REG(insn) != 1)
-+			if (RV_EXTRACT_RD_REG(insn) != RV_EXTRACT_RS1_REG(insn2))
- 				continue;
- 
--			riscv_alternative_fix_auipc_jalr(alt_ptr + i * sizeof(u32),
-+			/* insn2 use rd of insn as rs1, patch it */
-+			riscv_alternative_fix_auipc_pair(alt_ptr + i * sizeof(u32),
- 							 insn, insn2, patch_offset);
- 			i++;
+ 		tmp = (1U << alt->patch_id);
+ 		if (cpu_req_errata & tmp) {
++			oldptr = ALT_OLD_PTR(alt);
++			altptr = ALT_ALT_PTR(alt);
++
+ 			mutex_lock(&text_mutex);
+-			patch_text_nosync(ALT_OLD_PTR(alt), ALT_ALT_PTR(alt),
+-					  alt->alt_len);
++			patch_text_nosync(oldptr, altptr, alt->alt_len);
++			riscv_alternative_fix_offsets(oldptr, alt->alt_len, oldptr - altptr);
+ 			mutex_unlock(&text_mutex);
  		}
+ 	}
 -- 
 2.34.1
 
