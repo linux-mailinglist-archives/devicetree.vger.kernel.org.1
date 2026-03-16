@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-276078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276079-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ECEiOerVt2kwWAEAu9opvQ
-	(envelope-from <devicetree+bounces-276078-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:05:30 +0100
+	id JPXUCHjXt2mcWAEAu9opvQ
+	(envelope-from <devicetree+bounces-276079-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:12:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49329297A50
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:05:30 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D16D5297B8C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:12:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E9AF4300C59A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:05:28 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 41BB130065C4
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:12:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BCB6382281;
-	Mon, 16 Mar 2026 10:05:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E31B372EF0;
+	Mon, 16 Mar 2026 10:12:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a5ZhhxUO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mOX3N7Fj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 182CE37B03A;
-	Mon, 16 Mar 2026 10:05:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBED7277035;
+	Mon, 16 Mar 2026 10:12:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773655528; cv=none; b=dTRullRErC0kzi793t1ZgMA5URNRcDkq/4pDnD7IQkTZp7LtXdCLCAoKxtpR8w4oLF83v7le1CAggtNlA09zpudSJeghZu0Y53E93G0KP0EbxGsO3k+iqqa39PWoNuHjdvrIfbV0lcOj9uooz5x5E3rbFY0MB5s5nuDulV9c+8A=
+	t=1773655925; cv=none; b=oCbOIsU0DrK8fojX0fLVxYw4VU61kUACkGLx1ABlrDRfJElofDBmoffciFHbd7pVvXI6Y2CYxoM7VNafIHXNR8+nfkrMqNr58rYsMrJWFU+yV3G2fVAUwEUOWJ1xp4XQM2Vn3Dzbf1GrFt/5CWDm9fdLAyLjPag0JuwpmM2cRdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773655528; c=relaxed/simple;
-	bh=sHVW2hIa/n9xV+Z1CaMc9UBvMKWkP7ViMouML+7JYmU=;
+	s=arc-20240116; t=1773655925; c=relaxed/simple;
+	bh=mqR8+vXJnR85A1XQ8m0lepsoCOmYl3OEwVL+zsTiaKw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dS9ZBldK+NmzlIiye6Qgij9qKDVGrtqwHKGid1c5HA/LLJA1etvKwV9V/S6+2Ta7eRbuH+RDlk9dwLIlpbHtTSDOs/bgmZpVIvo9NIww5AE6w7fsLjoWFH2ac83zCSMtVxUOmDTUtCKETo4GXH8Ehf6IFE7VTda9SFr7/4qbVcA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a5ZhhxUO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 158C7C19421;
-	Mon, 16 Mar 2026 10:05:23 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=MTABEOGyJ2afhtdgb32d8M+UbZA34RrKq5ptvMsAjJFjd6OdyLMl+cPBZO9WbLv5E6p72jc+vO5f0J3FBY7AlLk2delXNFPWdcz6WOkf8H6MBSPSTC3dci6+U0Va5mILhTFSldrjjR/2sAtX6Y1xMf8Wq6UgqkfoaUmKNuA0jxE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mOX3N7Fj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9002EC19421;
+	Mon, 16 Mar 2026 10:12:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773655527;
-	bh=sHVW2hIa/n9xV+Z1CaMc9UBvMKWkP7ViMouML+7JYmU=;
+	s=k20201202; t=1773655925;
+	bh=mqR8+vXJnR85A1XQ8m0lepsoCOmYl3OEwVL+zsTiaKw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=a5ZhhxUO2L2kELTVrraa2sIjq0uV51tQlvn0ALk7NsKn+QVRiqFOk6G+dTPLl3EYC
-	 VY83d/YFGm3OYdY0PcR8U4pvJXGxfDWWrjwufp1Adf46yxPWXo3rWt7fVLjBkqxHyH
-	 yRufl0DoOMdJ0Y3hu/J8oPqbBvuhOIsZyL67chgizjQeUv3u37IH5zrrg8FmOAYa6Y
-	 KZpaPGz2QbG/CIlz65y8eaOOUJxj1PTWVyYJILlbMPLaKjh+oXMLd92oVf9Ib++VxA
-	 hJPjlxd0qlOi51jSGKxnf7yaqepHbdyvv9kRa2xkklrRo6jYQG8/P/jgE6btF4cPP4
-	 bgcrpRw+nGViQ==
-Message-ID: <733fff11-c670-42f9-812a-ad5a501491a1@kernel.org>
-Date: Mon, 16 Mar 2026 11:05:21 +0100
+	b=mOX3N7Fj9J3JgHkAnm5WnQWNphxDrxdIUj8H5sPiWooFGpfU0HTzTob9Zlof9y0tM
+	 O7ZwlFY6ilWGUWLZ9ExV3K55InT3k+eALcbluzcvEMURq/Xpbes8b/BsP1eX5U5lc/
+	 h1Cg5r/+Kp01FzVRX4k2qF/lCHzz7IMNEZjpJ82JvjRTI+WP8TtX969IU3Km8Z0xJB
+	 EImiiS4nNJxO3G708zHvjIVSOAn2c2yiX7T6urQjcwOKsJingKtDAFrqjIdp6u7E3m
+	 4fSsnFoYmDq/qyeTLINQuj9unHbyU87baATL4BasAUeZbfNwK/8XH2eWeNCkfMiLw2
+	 AU/PlEgH3FYsw==
+Message-ID: <55db5547-96b0-4d3a-90bf-3d2b289abaa3@kernel.org>
+Date: Mon, 16 Mar 2026 11:12:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,20 +53,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] dt-bindings: PCI: Add UltraRISC DP1000 PCIe
- controller
-To: wangjia@ultrarisc.com, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
- Xincheng Zhang <zhangxincheng@ultrarisc.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-References: <20260316-ultrarisc-pcie-v1-0-ef2946ede698@ultrarisc.com>
- <20260316-ultrarisc-pcie-v1-3-ef2946ede698@ultrarisc.com>
+Subject: Re: [PATCH v4 2/2] phy: qcom-mipi-csi2: Add a CSI2 MIPI DPHY driver
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Bryan O'Donoghue <bod@kernel.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260315-x1e-csi2-phy-v4-0-90c09203888d@linaro.org>
+ <20260315-x1e-csi2-phy-v4-2-90c09203888d@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,91 +111,77 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260316-ultrarisc-pcie-v1-3-ef2946ede698@ultrarisc.com>
+In-Reply-To: <20260315-x1e-csi2-phy-v4-2-90c09203888d@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276078-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[ultrarisc.com,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,google.com,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-276079-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url,sashiko.dev:url]
-X-Rspamd-Queue-Id: 49329297A50
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D16D5297B8C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 16/03/2026 08:06, Jia Wang via B4 Relay wrote:
-> From: Jia Wang <wangjia@ultrarisc.com>
-> 
-> Add UltraRISC DP1000 SoC PCIe controller devicetree bindings.
-> 
-> Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
-> ---
->  .../bindings/pci/ultrarisc,dp1000-pcie.yaml        | 108 +++++++++++++++++++++
->  1 file changed, 108 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/ultrarisc,dp1000-pcie.yaml b/Documentation/devicetree/bindings/pci/ultrarisc,dp1000-pcie.yaml
-> new file mode 100644
-> index 000000000000..b50ff98dd878
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/ultrarisc,dp1000-pcie.yaml
-> @@ -0,0 +1,108 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/ultrarisc,dp1000-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+On 16/03/2026 00:52, Bryan O'Donoghue wrote:
 > +
-> +title: UltraRISC DP1000 PCIe Host Controller
+> +	csi2phy = devm_kzalloc(dev, sizeof(*csi2phy), GFP_KERNEL);
+> +	if (!csi2phy)
+> +		return -ENOMEM;
 > +
-> +description: |
-> +  UltraRISC DP1000 SoC PCIe host controller is based on the DesignWare PCIe IP.
-> +  This binding describes the UltraRISC specific extensions to the base DesignWare
-> +  PCIe binding.
+> +	csi2phy->dev = dev;
+> +	csi2phy->soc_cfg = device_get_match_data(&pdev->dev);
 > +
-> +maintainers:
-> +  - Xincheng Zhang <zhangxincheng@ultrarisc.com>
-> +  - Jia Wang <wangjia@ultrarisc.com>
+> +	if (!csi2phy->soc_cfg)
+> +		return -EINVAL;
 > +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-bus.yaml#
+> +	num_clk = csi2phy->soc_cfg->num_clk;
+> +	csi2phy->clks = devm_kzalloc(dev, sizeof(*csi2phy->clks) * num_clk, GFP_KERNEL);
+> +	if (!csi2phy->clks)
+> +		return -ENOMEM;
 > +
-> +properties:
-> +  compatible:
-> +    const: ultrarisc,dp1000-pcie
+> +	num_pds = csi2phy->soc_cfg->num_genpd_names;
+> +	if (!num_pds)
+> +		return -EINVAL;
 > +
-> +  reg:
-> +      - description: Data Bus Interface (DBI) registers.
-> +      - description: PCIe configuration space region.
+> +	csi2phy->pds = devm_kzalloc(dev, sizeof(*csi2phy->pds) * num_pds, GFP_KERNEL);
+> +	if (!csi2phy->pds)
+> +		return -ENOMEM;
+> +
+> +	for (i = 0; i < num_pds; i++) {
+> +		csi2phy->pds[i] = dev_pm_domain_attach_by_name(dev,
+> +							       csi2phy->soc_cfg->genpd_names[i]);
+> +		if (IS_ERR(csi2phy->pds[i])) {
 
-Never tested. Test your patches before sending to avoid common mistakes.
-Several issues here are just duplicating known issue.
+API is terrible, but it does return NULL. Look at other uses of it. Or
+read review of sashiko of your patchset.
 
-Read also sashiko review of your code.
+> +			return dev_err_probe(dev, PTR_ERR(csi2phy->pds[i]),
+> +					     "Failed to attach %s\n",
+> +					     csi2phy->soc_cfg->genpd_names[i]);
+> +		}
 
-https://sashiko.dev/#/patchset/20260316-ultrarisc-pcie-v1-0-ef2946ede698%40ultrarisc.com
 
 Best regards,
 Krzysztof
