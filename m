@@ -1,825 +1,339 @@
-Return-Path: <devicetree+bounces-275959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275960-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EEa8Bgaot2k2UAEAu9opvQ
-	(envelope-from <devicetree+bounces-275959-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:49:42 +0100
+	id OGDuMlqpt2lrUAEAu9opvQ
+	(envelope-from <devicetree+bounces-275960-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:55:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7222629544E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:49:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DD8D2954C4
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:55:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 006773031833
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 06:48:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 735D8300DDC5
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 06:54:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDF7234D4E0;
-	Mon, 16 Mar 2026 06:48:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F60B34CFA1;
+	Mon, 16 Mar 2026 06:54:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023135.outbound.protection.outlook.com [52.101.127.135])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D50A5CDF1;
-	Mon, 16 Mar 2026 06:48:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.135
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773643720; cv=fail; b=qtmiLrdfp8EAdUw8zoAJOIqaHrfXTszxEn3fWjSYJTafZyzA6Ac1rwbKlJpauCTyxDcZ6c/ogz5JmwdcW/0UCRszJRomHZudbVZf7zIO9KljqB2hTpwWTjneWTqe6XcFy2ZwINhRMYDQZU/WTkJ6pWbClXv8SEaPFGfd12gtIBM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773643720; c=relaxed/simple;
-	bh=ZoClpGwvwZwLmenzgXZ98iPCkLRG73o7JbwgHSQV1GI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NWFX8E90e790BgLK2eeQFDakK9J4PtynzGnr2yYz86DdetvNgoIHojlY8y6hnrHQKgGgOIEIr/7v5n1Dle03X7kyboIZwzh930DxOcJooNHHVfVpU7bpK2I9H7xeNU/gphzEKtVJMGms8g3I1jQBrODlqR+K9BOknIY1fZ1MEQc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.135
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dsNB6bp/rhmsX1Ep8TKipaOiE+VXI9ED3/DOTklP3GMIV1V/xqm6xHSy0fSZ3uPU/4AfZ3R+xYLp4JYQuGAerwfNTSDurxrpLD2a037z5u8uORsUHD8tHfI28BoxrEruISDBH+mKx3unbLWShmNaiiG9YMgagH1wx4VaUMZMyIa5Cupyul8OdQLEjhzcCK1KFBYHv7xWSnlozxFKfyeQHj3ccGLXmgrOIlptCFae8GkSw667kCTShnWadc/hZCj1UOzsnGQurPjcKSRdIWH3Rt0GGTVkBLJRVlc1Iqc5KyrFHSyvXp9e25ZGZSEQiNqE5s0BzIdrPN3O02F9biA5hA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jX9Nkp5RpXDmU/Abq4XNFHzmCy1OCvZgTYQAuLcUrgQ=;
- b=JRd7ghg2hgEvRTLNlfVz0CJre1y9euyDVpJIC8/7yqe11St6WlRfuG5s/cxM+zlLimf50sw/O4z7on36BNz1uT9bN6lppTCbsm84MSOnZqgngRNRjVyVzGDf1/RnHpvpQ+tCsWA6M0iAlHD17pyarj5/8qU1EWLxWydRqtUu3har6LHR5doNIxMa2+KYIlgUWt3CGjTteOCY5QPbm6RNLnpFeN9ox7clTZnOtdYrjHMz6vgZrqCX/1t259kJEiazKBT6oMhz5WA8rdqHdIkYwljFQwopHHA4Wixjcxq5HtWUuTBVawpGO2djVEe/yyIBOuAYmIPOUzwyJUf3+K1adA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SG2PR01CA0198.apcprd01.prod.exchangelabs.com
- (2603:1096:4:189::7) by SEZPR06MB6549.apcprd06.prod.outlook.com
- (2603:1096:101:17e::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.22; Mon, 16 Mar
- 2026 06:48:34 +0000
-Received: from OSA0EPF000000C6.apcprd02.prod.outlook.com
- (2603:1096:4:189:cafe::37) by SG2PR01CA0198.outlook.office365.com
- (2603:1096:4:189::7) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.24 via Frontend Transport; Mon,
- 16 Mar 2026 06:48:29 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- OSA0EPF000000C6.mail.protection.outlook.com (10.167.240.52) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.17 via Frontend Transport; Mon, 16 Mar 2026 06:48:32 +0000
-Received: from nchen-desktop (unknown [172.16.64.25])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 8137B4126F88;
-	Mon, 16 Mar 2026 14:48:31 +0800 (CST)
-From: Peter Chen <peter.chen@cixtech.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	gregkh@linuxfoundation.org,
-	pawell@cadence.com,
-	rogerq@kernel.org
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	cix-kernel-upstream@cixtech.com,
-	Peter Chen <peter.chen@cixtech.com>
-Subject: [PATCH v2 2/2] usb: cdns3: Add USBSSP platform driver support
-Date: Mon, 16 Mar 2026 14:48:31 +0800
-Message-ID: <20260316064831.274865-3-peter.chen@cixtech.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260316064831.274865-1-peter.chen@cixtech.com>
-References: <20260316064831.274865-1-peter.chen@cixtech.com>
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [52.229.168.213])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9854D34A3A5;
+	Mon, 16 Mar 2026 06:54:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.229.168.213
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773644064; cv=none; b=GRbpYS/JjGTkUFtkDaygBE60PruUp43eZM+Vp53k85D/t7uzftnsigO8lzNYvDWY163ZRj+4+Tft9RoukKe7fxifNg4IXoQG8oEDqOQjCHrw+4CY6yWWNTjXMLTth005/8lUy/T9pEqUjAQqUhdGYzlgM9FBos+H5YhZIzH8QS4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773644064; c=relaxed/simple;
+	bh=HLLFKltYbuT0UNBxiSc/Kr79YUBjayjGprvpoKwsPfc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=fpjSeOGdUd/Rs4j8sFRBVamChAyHW3/sLpY0Fojtqd/Mremn2AGrQg/Vr09Yhy+WSMbT3wc6t+72oy0qkyiNY7W6piPm9n8B5jfa9U6adqcNNfdGwzyi4qHE/v+eOSMnqFdtwSfW46sfkEAciftJO8tjhLto/eolZfQF6jgluWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=52.229.168.213
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from dongxuyang$eswincomputing.com ( [10.12.96.41] ) by
+ ajax-webmail-app2 (Coremail) ; Mon, 16 Mar 2026 14:54:00 +0800 (GMT+08:00)
+Date: Mon, 16 Mar 2026 14:54:00 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: "Xuyang Dong" <dongxuyang@eswincomputing.com>
+To: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	troy.mitchell@linux.dev, bmasney@redhat.com
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com,
+	ganboing@gmail.com, marcel@ziswiler.com
+Subject: Re: [PATCH v15 0/4] Add driver support for ESWIN eic700 SoC clock
+ controller
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
+ 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
+ mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
+In-Reply-To: <20260303080513.2042-1-dongxuyang@eswincomputing.com>
+References: <20260303080513.2042-1-dongxuyang@eswincomputing.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSA0EPF000000C6:EE_|SEZPR06MB6549:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: d5fc61d9-1d89-4082-9ee4-08de83280a3b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700016|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	uEbDewr5f0WfM1Qc5ZQ1g1U4pi6tqx00AFfOzx4WhzLiQG06IYEY/sGu/tEE6k7pRRMl3w2aQMSf3PNpv43fyr3WNdrZtW8HOHUCnivBM4C3bX4OFo60iQh4SHm1rRCssBEb9X6FOeM2dj+0MI6VYPBStl52riWAjhkKtTJVnnOTUv6xA5JXb3EP62rqkmQG9ZNtn6PNm8JT01bSUjLbr1VBv3Ct9DdrMdMRG0g1d+5YfjIGvSBCCjKNLlS6yuQKk+6I9xfg6DuCujcplBdfpz2EpSC3Q/xG2xlRXI7Up8qwVyS5rRBZ5WOYy8NJOfSXhelZQDzCBMv58DEFCTXzRP30Akb+uK1ZBz2s3fjPGWonr8AZsT4X5CckXoCfuThTRsyWX9qJgc7SmbMEmlj875VN8EJ8JgrdSHLWGFB2Mk4guzBI0hSaheaVj8pxJC2FeJZpwHJ4lQVKE+SZ9eyzTEO8KnqgK/ncjkSCBWMzEGoiA9fUnYkGi1rhar2udub+PiyyZIRguAZqiO0DksY767wcz+1noQHxjQIcsAEpG+s8rhgXzSzQ3EJAJzXQD6TZRz8tEJ3SxSBZEujUws835vVkO3YDe5WHNSedFqqMT1dLu7/ywlqAP03sCUQALiJd/7vZo/tkgn8tAP5QYMuZCIo8F+5EOyT5WtN5XxAmyVk8PSlV6krJ1tlIdRlFIgismjgUIH0Z5++F82KrzpMESKmxPTzLB+7tKVRNdQVVqylY2ZXGI7D17T9CxI9dr4BOWcGluc1GiAh2VNA74WD1ow==
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700016)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	F07kB1V7hXt5eisYORmMmRgv2eU/AR2MaIb1SyX2JGcfPrLfjTKP+GdYYDMQtpgkwWiCFEq/tkCVwHBZ6/Lbfnd33NhN2RwWz0Boa3+px2ZE+hZdInce6hieBEcHjQoEcOvSO+lTlxRITMsjZjc60z0J/+z4mp5SW72CRSdFfpUvlGuPLnbKVBT44jOjTBfVNiwkg6EKaD+c4aAMQfhS7XA/3RVdT8rQC0lFHaay+nLBNHdTekf53hsLn/n5SBq/77ygcgz1ZPQcgDUF0B6NGnIZtm3gq1GWUlr5eq5jF2pwYc8VbcVdCjlqjBgzhrJWWM1G7ZWptaQ6nyRwSOzYpOkqKSTp5CyfD9V+xBG4yUKAZE5xUyxHNLEMfQv7MbYAmOEbdldiuvxnwmqR13yVNqU2GlBdSCxoYFocC3oRHPgbDY1bdbQ9Hlu7sCSH2i7t
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 06:48:32.4349
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d5fc61d9-1d89-4082-9ee4-08de83280a3b
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	OSA0EPF000000C6.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB6549
-X-Spamd-Result: default: False [3.54 / 15.00];
+Message-ID: <54e32101.4409.19cf56c4aae.Coremail.dongxuyang@eswincomputing.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:TQJkCgAnPJ8IqbdpidYIAA--.501W
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/1tbiAgEIAmm234kM+
+	gADs1
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
+	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+	daVFxhVjvjDU=
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-275960-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275959-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[eswincomputing.com];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[cixtech.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peter.chen@cixtech.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_X_PRIO_THREE(0.00)[3];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.933];
-	RCVD_COUNT_SEVEN(0.00)[7];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[eswincomputing.com,einfochips.com,gmail.com,ziswiler.com];
+	NEURAL_HAM(-0.00)[-0.987];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[cixtech.com:email,cixtech.com:mid,cadence.com:email,plat_info.id:url,plat_info.name:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,plat_info.data:url]
-X-Rspamd-Queue-Id: 7222629544E
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,microchip.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux.dev:email,eswincomputing.com:mid,sifive.com:url,ziswiler.com:email]
+X-Rspamd-Queue-Id: 2DD8D2954C4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Cadence USBSSP (CDNSP) controller was previously only accessible
-through PCI, coupling the gadget driver with the PCI glue layer into a
-single monolithic module (cdnsp-udc-pci). This prevented using the
-CDNSP IP on SoC/platform designs that expose the controller through
-device tree. It restructures the driver to decouple the CDNSP gadget
-from PCI.
-
-- Introduce CONFIG_USB_CDNSP as a standalone tristate (analogous to
-  CONFIG_USB_CDNS3), with USB_CDNSP_GADGET and USB_CDNSP_HOST as
-  bool sub-options. The gadget code builds as a separate cdnsp.ko
-  module.
-
-- Regroup USBSSP and CDNS3 Kconfig options under the USB_CDNS_SUPPORT
-  menu so they appear properly grouped in menuconfig.
-
-- Refactor cdnsp-pci.c into a thin PCI-to-platform wrapper (similar
-  to cdns3-pci-wrap.c) that registers a platform device and passes
-  PCI resources and platform data to the common platform driver.
-
-- Auto-detect the controller version (USBSS vs USBSSP) at runtime by
-  reading the DRD/OTG Device ID register in cdns_drd_init(), and select
-  the appropriate gadget init function (cdns3_gadget_init or
-  cdnsp_gadget_init) based on cdns->version. This follows the same
-  pattern already used for host initialization.
-
-- Fix gadget-export.h to use IS_REACHABLE() keyed on the tristate
-  module config (CONFIG_USB_CDNS3/CONFIG_USB_CDNSP) instead of
-  IS_ENABLED() on the bool gadget config. The bool configs are always
-  'y' when enabled, causing IS_ENABLED/IS_REACHABLE to always return
-  true and resulting in link errors when cdns-usb-common is built-in
-  but the gadget module is loadable.
-
-- Add missing MODULE_LICENSE()/MODULE_DESCRIPTION() and
-  EXPORT_SYMBOL_GPL() to the cdns3 and cdnsp gadget modules, required
-  by modpost.
-
-- Pass override_apb_timeout through cdns3_platform_data so the PCI
-  wrapper can communicate PCI-specific APB timeout values to the
-  common driver.
-
-This patch is Assisted-by: Cursor:claude-4.6-opus
-
-Signed-off-by: Peter Chen <peter.chen@cixtech.com>
----
- drivers/usb/cdns3/Kconfig         |  50 ++++---
- drivers/usb/cdns3/Makefile        |  30 ++---
- drivers/usb/cdns3/cdns3-gadget.c  |   4 +
- drivers/usb/cdns3/cdns3-plat.c    |  17 ++-
- drivers/usb/cdns3/cdnsp-gadget.c  |   4 +
- drivers/usb/cdns3/cdnsp-pci.c     | 217 +++++++++++++-----------------
- drivers/usb/cdns3/core.c          |  11 +-
- drivers/usb/cdns3/core.h          |   5 +-
- drivers/usb/cdns3/gadget-export.h |   4 +-
- 9 files changed, 164 insertions(+), 178 deletions(-)
-
-diff --git a/drivers/usb/cdns3/Kconfig b/drivers/usb/cdns3/Kconfig
-index 0a514b591527..97fa84dddbca 100644
---- a/drivers/usb/cdns3/Kconfig
-+++ b/drivers/usb/cdns3/Kconfig
-@@ -20,10 +20,6 @@ config USB_CDNS3
- 	  Say Y here if your system has a Cadence USB3 dual-role controller.
- 	  It supports: dual-role switch, Host-only, and Peripheral-only.
- 
--	  If you choose to build this driver is a dynamically linked
--	  as module, the module will be called cdns3.ko.
--endif
--
- if USB_CDNS3
- 
- config USB_CDNS3_GADGET
-@@ -89,29 +85,27 @@ config USB_CDNS3_STARFIVE
- 
- 	  If you choose to build this driver as module it will
- 	  be dynamically linked and module will be called cdns3-starfive.ko
--endif
- 
--if USB_CDNS_SUPPORT
-+endif # USB_CDNS3
- 
--config USB_CDNSP_PCI
--	tristate "Cadence CDNSP Dual-Role Controller"
--	depends on USB_CDNS_SUPPORT && USB_PCI && ACPI
-+config USB_CDNSP
-+	tristate "Cadence USBSSP Dual-Role Controller"
-+	depends on USB_CDNS_SUPPORT
- 	help
--	  Say Y here if your system has a Cadence CDNSP dual-role controller.
--	  It supports: dual-role switch Host-only, and Peripheral-only.
--
--	  If you choose to build this driver is a dynamically linked
--	  module, the module will be called cdnsp.ko.
--endif
-+	  Say Y here if your system has a Cadence USBSSP dual-role controller.
-+	  It supports: dual-role switch, Host-only, and Peripheral-only.
-+	  Cadence CDNSP Controller device mode is very similar to XHCI controller.
-+	  Therefore some algorithms used has been taken from xHCI driver.
-+	  Host controller is compliant with XHCI so it uses standard XHCI driver.
- 
--if USB_CDNSP_PCI
-+if USB_CDNSP
- 
- config USB_CDNSP_GADGET
--	bool "Cadence CDNSP device controller"
--	depends on USB_GADGET=y || USB_GADGET=USB_CDNSP_PCI
-+	bool "Cadence USBSSP device controller"
-+	depends on USB_GADGET=y || USB_GADGET=USB_CDNSP
- 	help
- 	  Say Y here to enable device controller functionality of the
--	  Cadence CDNSP-DEV driver.
-+	  Cadence USBSSP-DEV driver.
- 
- 	  Cadence CDNSP Device Controller in device mode is
- 	  very similar to XHCI controller. Therefore some algorithms
-@@ -120,8 +114,8 @@ config USB_CDNSP_GADGET
- 	  It doesn't support LS.
- 
- config USB_CDNSP_HOST
--	bool "Cadence CDNSP host controller"
--	depends on USB=y || USB=USB_CDNSP_PCI
-+	bool "Cadence USBSSP host controller"
-+	depends on USB=y || USB=USB_CDNSP
- 	select USB_CDNS_HOST
- 	help
- 	  Say Y here to enable host controller functionality of the
-@@ -130,4 +124,16 @@ config USB_CDNSP_HOST
- 	  Host controller is compliant with XHCI so it uses
- 	  standard XHCI driver.
- 
--endif
-+config USB_CDNSP_PCI
-+	tristate "Cadence USBSSP support on PCIe-based platforms"
-+	depends on USB_PCI && ACPI
-+	help
-+	  If you're using the USBSSP Core IP with a PCIe, please say
-+	  'Y' or 'M' here.
-+
-+	  If you choose to build this driver as module it will
-+	  be dynamically linked and module will be called cdnsp-pci.ko
-+
-+endif # USB_CDNSP
-+
-+endif # USB_CDNS_SUPPORT
-diff --git a/drivers/usb/cdns3/Makefile b/drivers/usb/cdns3/Makefile
-index 48dfae75b5aa..63484f145bb9 100644
---- a/drivers/usb/cdns3/Makefile
-+++ b/drivers/usb/cdns3/Makefile
-@@ -4,41 +4,33 @@ CFLAGS_cdns3-trace.o				:= -I$(src)
- CFLAGS_cdnsp-trace.o				:= -I$(src)
- 
- cdns-usb-common-y				:= core.o drd.o
--cdns3-y						:= cdns3-plat.o
- 
- ifeq ($(CONFIG_USB),m)
- obj-m						+= cdns-usb-common.o
--obj-m						+= cdns3.o
-+obj-m						+= cdns3-plat.o
- else
- obj-$(CONFIG_USB_CDNS_SUPPORT)			+= cdns-usb-common.o
--obj-$(CONFIG_USB_CDNS3)				+= cdns3.o
-+obj-$(CONFIG_USB_CDNS_SUPPORT)			+= cdns3-plat.o
- endif
- 
- cdns-usb-common-$(CONFIG_USB_CDNS_HOST) 	+= host.o
--cdns3-$(CONFIG_USB_CDNS3_GADGET)		+= cdns3-gadget.o cdns3-ep0.o
- 
-+# For CDNS3 gadget
- ifneq ($(CONFIG_USB_CDNS3_GADGET),)
-+cdns3-y						:= cdns3-gadget.o cdns3-ep0.o
- cdns3-$(CONFIG_TRACING)				+= cdns3-trace.o
-+obj-$(CONFIG_USB_CDNS3)				+= cdns3.o
- endif
--
- obj-$(CONFIG_USB_CDNS3_PCI_WRAP)		+= cdns3-pci-wrap.o
- obj-$(CONFIG_USB_CDNS3_TI)			+= cdns3-ti.o
- obj-$(CONFIG_USB_CDNS3_IMX)			+= cdns3-imx.o
- obj-$(CONFIG_USB_CDNS3_STARFIVE)		+= cdns3-starfive.o
- 
--cdnsp-udc-pci-y					:= cdnsp-pci.o
--
--ifdef CONFIG_USB_CDNSP_PCI
--ifeq ($(CONFIG_USB),m)
--obj-m						+= cdnsp-udc-pci.o
--else
--obj-$(CONFIG_USB_CDNSP_PCI) 			+= cdnsp-udc-pci.o
--endif
--endif
--
--cdnsp-udc-pci-$(CONFIG_USB_CDNSP_GADGET)	+= cdnsp-ring.o cdnsp-gadget.o \
--						   cdnsp-mem.o cdnsp-ep0.o
--
-+# For CDNSP gadget
- ifneq ($(CONFIG_USB_CDNSP_GADGET),)
--cdnsp-udc-pci-$(CONFIG_TRACING)			+= cdnsp-trace.o
-+cdnsp-y						:= cdnsp-ring.o cdnsp-gadget.o \
-+						   cdnsp-mem.o cdnsp-ep0.o
-+cdnsp-$(CONFIG_TRACING)				+= cdnsp-trace.o
-+obj-$(CONFIG_USB_CDNSP)				+= cdnsp.o
- endif
-+obj-$(CONFIG_USB_CDNSP_PCI)			+= cdnsp-pci.o
-diff --git a/drivers/usb/cdns3/cdns3-gadget.c b/drivers/usb/cdns3/cdns3-gadget.c
-index d59a60a16ec7..b800bd1bedd4 100644
---- a/drivers/usb/cdns3/cdns3-gadget.c
-+++ b/drivers/usb/cdns3/cdns3-gadget.c
-@@ -3508,3 +3508,7 @@ int cdns3_gadget_init(struct cdns *cdns)
- 
- 	return 0;
- }
-+EXPORT_SYMBOL_GPL(cdns3_gadget_init);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("Cadence USBSS DRD Driver - gadget");
-diff --git a/drivers/usb/cdns3/cdns3-plat.c b/drivers/usb/cdns3/cdns3-plat.c
-index 735df88774e4..71c612e27b73 100644
---- a/drivers/usb/cdns3/cdns3-plat.c
-+++ b/drivers/usb/cdns3/cdns3-plat.c
-@@ -44,6 +44,14 @@ static void set_phy_power_off(struct cdns *cdns)
- 	phy_power_off(cdns->usb2_phy);
- }
- 
-+static int cdns3_plat_gadget_init(struct cdns *cdns)
-+{
-+	if (cdns->version < CDNSP_CONTROLLER_V2)
-+		return cdns3_gadget_init(cdns);
-+	else
-+		return cdnsp_gadget_init(cdns);
-+}
-+
- /**
-  * cdns3_plat_probe - probe for cdns3 core device
-  * @pdev: Pointer to cdns3 core platform device
-@@ -64,6 +72,8 @@ static int cdns3_plat_probe(struct platform_device *pdev)
- 
- 	cdns->dev = dev;
- 	cdns->pdata = dev_get_platdata(dev);
-+	if (cdns->pdata && cdns->pdata->override_apb_timeout)
-+		cdns->override_apb_timeout = cdns->pdata->override_apb_timeout;
- 
- 	platform_set_drvdata(pdev, cdns);
- 
-@@ -143,12 +153,15 @@ static int cdns3_plat_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto err_phy_power_on;
- 
--	cdns->gadget_init = cdns3_gadget_init;
--
- 	ret = cdns_init(cdns);
- 	if (ret)
- 		goto err_cdns_init;
- 
-+	cdns->gadget_init = cdns3_plat_gadget_init;
-+	ret = cdns_core_init_role(cdns);
-+	if (ret)
-+		goto err_cdns_init;
-+
- 	device_set_wakeup_capable(dev, true);
- 	pm_runtime_set_active(dev);
- 	pm_runtime_enable(dev);
-diff --git a/drivers/usb/cdns3/cdnsp-gadget.c b/drivers/usb/cdns3/cdnsp-gadget.c
-index 6b3815f8a6e5..8db7eee528a1 100644
---- a/drivers/usb/cdns3/cdnsp-gadget.c
-+++ b/drivers/usb/cdns3/cdnsp-gadget.c
-@@ -2075,3 +2075,7 @@ int cdnsp_gadget_init(struct cdns *cdns)
- 
- 	return 0;
- }
-+EXPORT_SYMBOL_GPL(cdnsp_gadget_init);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("Cadence CDNSP DRD Driver - gadget");
-diff --git a/drivers/usb/cdns3/cdnsp-pci.c b/drivers/usb/cdns3/cdnsp-pci.c
-index 566d94e49102..432007cfe695 100644
---- a/drivers/usb/cdns3/cdnsp-pci.c
-+++ b/drivers/usb/cdns3/cdnsp-pci.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- * Cadence PCI Glue driver.
-+ * Cadence USBSSP PCI Glue driver.
-  *
-  * Copyright (C) 2019 Cadence.
-  *
-@@ -16,7 +16,19 @@
- #include <linux/pci.h>
- 
- #include "core.h"
--#include "gadget-export.h"
-+
-+struct cdnsp_wrap {
-+	struct platform_device *plat_dev;
-+	struct resource dev_res[6];
-+	int devfn;
-+};
-+
-+#define RES_IRQ_HOST_ID		0
-+#define RES_IRQ_PERIPHERAL_ID	1
-+#define RES_IRQ_OTG_ID		2
-+#define RES_HOST_ID		3
-+#define RES_DEV_ID		4
-+#define RES_DRD_ID		5
- 
- #define PCI_BAR_HOST		0
- #define PCI_BAR_OTG		0
-@@ -26,16 +38,16 @@
- #define PCI_DEV_FN_OTG		1
- 
- #define PCI_DRIVER_NAME		"cdns-pci-usbssp"
--#define PLAT_DRIVER_NAME	"cdns-usbssp"
-+#define PLAT_DRIVER_NAME	"cdns-usb3"
- 
--#define CHICKEN_APB_TIMEOUT_VALUE       0x1C20
-+#define CHICKEN_APB_TIMEOUT_VALUE	0x1C20
- 
- static struct pci_dev *cdnsp_get_second_fun(struct pci_dev *pdev)
- {
- 	/*
- 	 * Gets the second function.
--	 * Platform has two function. The fist keeps resources for
--	 * Host/Device while the secon keeps resources for DRD/OTG.
-+	 * Platform has two function. The first keeps resources for
-+	 * Host/Device while the second keeps resources for DRD/OTG.
- 	 */
- 	if (pdev->device == PCI_DEVICE_ID_CDNS_USBSSP)
- 		return pci_get_device(pdev->vendor, PCI_DEVICE_ID_CDNS_USBSS, NULL);
-@@ -48,11 +60,12 @@ static struct pci_dev *cdnsp_get_second_fun(struct pci_dev *pdev)
- static int cdnsp_pci_probe(struct pci_dev *pdev,
- 			   const struct pci_device_id *id)
- {
--	struct device *dev = &pdev->dev;
--	struct pci_dev *func;
-+	struct platform_device_info plat_info;
-+	static struct cdns3_platform_data pdata;
-+	struct cdnsp_wrap *wrap;
- 	struct resource *res;
--	struct cdns *cdnsp;
--	int ret;
-+	struct pci_dev *func;
-+	int ret = 0;
- 
- 	/*
- 	 * For GADGET/HOST PCI (devfn) function number is 0,
-@@ -79,146 +92,105 @@ static int cdnsp_pci_probe(struct pci_dev *pdev,
- 	}
- 
- 	pci_set_master(pdev);
-+
- 	if (pci_is_enabled(func)) {
--		cdnsp = pci_get_drvdata(func);
-+		wrap = pci_get_drvdata(func);
- 	} else {
--		cdnsp = kzalloc_obj(*cdnsp);
--		if (!cdnsp) {
-+		wrap = kzalloc_obj(*wrap);
-+		if (!wrap) {
- 			ret = -ENOMEM;
- 			goto put_pci;
- 		}
- 	}
- 
--	/* For GADGET device function number is 0. */
--	if (pdev->devfn == 0) {
--		resource_size_t rsrc_start, rsrc_len;
--
--		/* Function 0: host(BAR_0) + device(BAR_1).*/
--		dev_dbg(dev, "Initialize resources\n");
--		rsrc_start = pci_resource_start(pdev, PCI_BAR_DEV);
--		rsrc_len = pci_resource_len(pdev, PCI_BAR_DEV);
--		res = devm_request_mem_region(dev, rsrc_start, rsrc_len, "dev");
--		if (!res) {
--			dev_dbg(dev, "controller already in use\n");
--			ret = -EBUSY;
--			goto free_cdnsp;
--		}
--
--		cdnsp->dev_regs = devm_ioremap(dev, rsrc_start, rsrc_len);
--		if (!cdnsp->dev_regs) {
--			dev_dbg(dev, "error mapping memory\n");
--			ret = -EFAULT;
--			goto free_cdnsp;
--		}
--
--		cdnsp->dev_irq = pdev->irq;
--		dev_dbg(dev, "USBSS-DEV physical base addr: %pa\n",
--			&rsrc_start);
--
--		res = &cdnsp->xhci_res[0];
--		res->start = pci_resource_start(pdev, PCI_BAR_HOST);
--		res->end = pci_resource_end(pdev, PCI_BAR_HOST);
--		res->name = "xhci";
--		res->flags = IORESOURCE_MEM;
--		dev_dbg(dev, "USBSS-XHCI physical base addr: %pa\n",
--			&res->start);
--
--		/* Interrupt for XHCI, */
--		res = &cdnsp->xhci_res[1];
--		res->start = pdev->irq;
--		res->name = "host";
--		res->flags = IORESOURCE_IRQ;
-+	res = wrap->dev_res;
-+
-+	if (pdev->devfn == PCI_DEV_FN_HOST_DEVICE) {
-+		/* Function 0: host(BAR_0) + device(BAR_2). */
-+		dev_dbg(&pdev->dev, "Initialize Device resources\n");
-+		res[RES_DEV_ID].start = pci_resource_start(pdev, PCI_BAR_DEV);
-+		res[RES_DEV_ID].end = pci_resource_end(pdev, PCI_BAR_DEV);
-+		res[RES_DEV_ID].name = "dev";
-+		res[RES_DEV_ID].flags = IORESOURCE_MEM;
-+		dev_dbg(&pdev->dev, "USBSSP-DEV physical base addr: %pa\n",
-+			&res[RES_DEV_ID].start);
-+
-+		res[RES_HOST_ID].start = pci_resource_start(pdev, PCI_BAR_HOST);
-+		res[RES_HOST_ID].end = pci_resource_end(pdev, PCI_BAR_HOST);
-+		res[RES_HOST_ID].name = "xhci";
-+		res[RES_HOST_ID].flags = IORESOURCE_MEM;
-+		dev_dbg(&pdev->dev, "USBSSP-XHCI physical base addr: %pa\n",
-+			&res[RES_HOST_ID].start);
-+
-+		/* Interrupt for XHCI */
-+		wrap->dev_res[RES_IRQ_HOST_ID].start = pdev->irq;
-+		wrap->dev_res[RES_IRQ_HOST_ID].name = "host";
-+		wrap->dev_res[RES_IRQ_HOST_ID].flags = IORESOURCE_IRQ;
-+
-+		/* Interrupt for device. It's the same as for HOST. */
-+		wrap->dev_res[RES_IRQ_PERIPHERAL_ID].start = pdev->irq;
-+		wrap->dev_res[RES_IRQ_PERIPHERAL_ID].name = "peripheral";
-+		wrap->dev_res[RES_IRQ_PERIPHERAL_ID].flags = IORESOURCE_IRQ;
- 	} else {
--		res = &cdnsp->otg_res;
--		res->start = pci_resource_start(pdev, PCI_BAR_OTG);
--		res->end =   pci_resource_end(pdev, PCI_BAR_OTG);
--		res->name = "otg";
--		res->flags = IORESOURCE_MEM;
--		dev_dbg(dev, "CDNSP-DRD physical base addr: %pa\n",
--			&res->start);
-+		res[RES_DRD_ID].start = pci_resource_start(pdev, PCI_BAR_OTG);
-+		res[RES_DRD_ID].end = pci_resource_end(pdev, PCI_BAR_OTG);
-+		res[RES_DRD_ID].name = "otg";
-+		res[RES_DRD_ID].flags = IORESOURCE_MEM;
-+		dev_dbg(&pdev->dev, "CDNSP-DRD physical base addr: %pa\n",
-+			&res[RES_DRD_ID].start);
- 
- 		/* Interrupt for OTG/DRD. */
--		cdnsp->otg_irq = pdev->irq;
-+		wrap->dev_res[RES_IRQ_OTG_ID].start = pdev->irq;
-+		wrap->dev_res[RES_IRQ_OTG_ID].name = "otg";
-+		wrap->dev_res[RES_IRQ_OTG_ID].flags = IORESOURCE_IRQ;
- 	}
- 
--	/*
--	 * Cadence PCI based platform require some longer timeout for APB
--	 * to fixes domain clock synchronization issue after resuming
--	 * controller from L1 state.
--	 */
--	cdnsp->override_apb_timeout = CHICKEN_APB_TIMEOUT_VALUE;
--	pci_set_drvdata(pdev, cdnsp);
--
- 	if (pci_is_enabled(func)) {
--		cdnsp->dev = dev;
--		cdnsp->gadget_init = cdnsp_gadget_init;
--
--		ret = cdns_init(cdnsp);
--		if (ret)
--			goto free_cdnsp;
-+		/* set up platform device info */
-+		pdata.override_apb_timeout = CHICKEN_APB_TIMEOUT_VALUE;
-+		memset(&plat_info, 0, sizeof(plat_info));
-+		plat_info.parent = &pdev->dev;
-+		plat_info.fwnode = pdev->dev.fwnode;
-+		plat_info.name = PLAT_DRIVER_NAME;
-+		plat_info.id = pdev->devfn;
-+		plat_info.res = wrap->dev_res;
-+		plat_info.num_res = ARRAY_SIZE(wrap->dev_res);
-+		plat_info.dma_mask = pdev->dma_mask;
-+		plat_info.data = &pdata;
-+		plat_info.size_data = sizeof(pdata);
-+		wrap->devfn = pdev->devfn;
-+		/* register platform device */
-+		wrap->plat_dev = platform_device_register_full(&plat_info);
-+		if (IS_ERR(wrap->plat_dev)) {
-+			ret = PTR_ERR(wrap->plat_dev);
-+			kfree(wrap);
-+			goto put_pci;
-+		}
- 	}
- 
--	device_wakeup_enable(&pdev->dev);
--	if (pci_dev_run_wake(pdev))
--		pm_runtime_put_noidle(&pdev->dev);
--
--	return 0;
--
--free_cdnsp:
--	if (!pci_is_enabled(func))
--		kfree(cdnsp);
--
-+	pci_set_drvdata(pdev, wrap);
- put_pci:
- 	pci_dev_put(func);
--
- 	return ret;
- }
- 
- static void cdnsp_pci_remove(struct pci_dev *pdev)
- {
--	struct cdns *cdnsp;
-+	struct cdnsp_wrap *wrap;
- 	struct pci_dev *func;
- 
- 	func = cdnsp_get_second_fun(pdev);
--	cdnsp = (struct cdns *)pci_get_drvdata(pdev);
-+	wrap = pci_get_drvdata(pdev);
- 
--	if (pci_dev_run_wake(pdev))
--		pm_runtime_get_noresume(&pdev->dev);
-+	if (wrap->devfn == pdev->devfn)
-+		platform_device_unregister(wrap->plat_dev);
- 
--	if (pci_is_enabled(func)) {
--		cdns_remove(cdnsp);
--	} else {
--		kfree(cdnsp);
--	}
-+	if (!pci_is_enabled(func))
-+		kfree(wrap);
- 
- 	pci_dev_put(func);
- }
- 
--static int __maybe_unused cdnsp_pci_suspend(struct device *dev)
--{
--	struct cdns *cdns = dev_get_drvdata(dev);
--
--	return cdns_suspend(cdns);
--}
--
--static int __maybe_unused cdnsp_pci_resume(struct device *dev)
--{
--	struct cdns *cdns = dev_get_drvdata(dev);
--	unsigned long flags;
--	int ret;
--
--	spin_lock_irqsave(&cdns->lock, flags);
--	ret = cdns_resume(cdns);
--	spin_unlock_irqrestore(&cdns->lock, flags);
--	cdns_set_active(cdns, 1);
--
--	return ret;
--}
--
--static const struct dev_pm_ops cdnsp_pci_pm_ops = {
--	SET_SYSTEM_SLEEP_PM_OPS(cdnsp_pci_suspend, cdnsp_pci_resume)
--};
--
- static const struct pci_device_id cdnsp_pci_ids[] = {
- 	{ PCI_DEVICE(PCI_VENDOR_ID_CDNS, PCI_DEVICE_ID_CDNS_USBSSP),
- 	  .class = PCI_CLASS_SERIAL_USB_DEVICE },
-@@ -230,13 +202,10 @@ static const struct pci_device_id cdnsp_pci_ids[] = {
- };
- 
- static struct pci_driver cdnsp_pci_driver = {
--	.name = "cdnsp-pci",
-+	.name = PCI_DRIVER_NAME,
- 	.id_table = cdnsp_pci_ids,
- 	.probe = cdnsp_pci_probe,
- 	.remove = cdnsp_pci_remove,
--	.driver = {
--		.pm = &cdnsp_pci_pm_ops,
--	}
- };
- 
- module_pci_driver(cdnsp_pci_driver);
-@@ -245,4 +214,4 @@ MODULE_DEVICE_TABLE(pci, cdnsp_pci_ids);
- MODULE_ALIAS("pci:cdnsp");
- MODULE_AUTHOR("Pawel Laszczak <pawell@cadence.com>");
- MODULE_LICENSE("GPL v2");
--MODULE_DESCRIPTION("Cadence CDNSP PCI driver");
-+MODULE_DESCRIPTION("Cadence CDNSP PCI wrapper");
-diff --git a/drivers/usb/cdns3/core.c b/drivers/usb/cdns3/core.c
-index f0e32227c0b7..10f00b6c3c83 100644
---- a/drivers/usb/cdns3/core.c
-+++ b/drivers/usb/cdns3/core.c
-@@ -80,7 +80,7 @@ static void cdns_exit_roles(struct cdns *cdns)
-  *
-  * Returns 0 on success otherwise negative errno
-  */
--static int cdns_core_init_role(struct cdns *cdns)
-+int cdns_core_init_role(struct cdns *cdns)
- {
- 	struct device *dev = cdns->dev;
- 	enum usb_dr_mode best_dr_mode;
-@@ -197,11 +197,14 @@ static int cdns_core_init_role(struct cdns *cdns)
- 		goto err;
- 	}
- 
-+	dev_dbg(dev, "Cadence USB3 core: probe succeed\n");
-+
- 	return 0;
- err:
- 	cdns_exit_roles(cdns);
- 	return ret;
- }
-+EXPORT_SYMBOL_GPL(cdns_core_init_role);
- 
- /**
-  * cdns_hw_role_state_machine  - role switch state machine based on hw events.
-@@ -469,14 +472,8 @@ int cdns_init(struct cdns *cdns)
- 	if (ret)
- 		goto init_failed;
- 
--	ret = cdns_core_init_role(cdns);
--	if (ret)
--		goto init_failed;
--
- 	spin_lock_init(&cdns->lock);
- 
--	dev_dbg(dev, "Cadence USB3 core: probe succeed\n");
--
- 	return 0;
- init_failed:
- 	cdns_drd_exit(cdns);
-diff --git a/drivers/usb/cdns3/core.h b/drivers/usb/cdns3/core.h
-index 801be9e61340..dc8c4137de15 100644
---- a/drivers/usb/cdns3/core.h
-+++ b/drivers/usb/cdns3/core.h
-@@ -45,6 +45,7 @@ struct cdns3_platform_data {
- 	unsigned long quirks;
- #define CDNS3_DEFAULT_PM_RUNTIME_ALLOW	BIT(0)
- #define CDNS3_DRD_SUSPEND_RESIDENCY_ENABLE	BIT(1)
-+	u32 override_apb_timeout;	/* 0 = use default (e.g. for PCI) */
- };
- 
- /**
-@@ -119,14 +120,14 @@ struct cdns {
- 	struct cdns3_platform_data	*pdata;
- 	spinlock_t			lock;
- 	struct xhci_plat_priv		*xhci_plat_data;
--	u32                             override_apb_timeout;
--
- 	int (*gadget_init)(struct cdns *cdns);
-+	u32                             override_apb_timeout;
- };
- 
- int cdns_hw_role_switch(struct cdns *cdns);
- int cdns_init(struct cdns *cdns);
- int cdns_remove(struct cdns *cdns);
-+int cdns_core_init_role(struct cdns *cdns);
- 
- #ifdef CONFIG_PM_SLEEP
- int cdns_resume(struct cdns *cdns);
-diff --git a/drivers/usb/cdns3/gadget-export.h b/drivers/usb/cdns3/gadget-export.h
-index c37b6269b001..0cb600e2b5d2 100644
---- a/drivers/usb/cdns3/gadget-export.h
-+++ b/drivers/usb/cdns3/gadget-export.h
-@@ -10,7 +10,7 @@
- #ifndef __LINUX_CDNS3_GADGET_EXPORT
- #define __LINUX_CDNS3_GADGET_EXPORT
- 
--#if IS_ENABLED(CONFIG_USB_CDNSP_GADGET)
-+#if defined(CONFIG_USB_CDNSP_GADGET) && IS_REACHABLE(CONFIG_USB_CDNSP)
- 
- int cdnsp_gadget_init(struct cdns *cdns);
- #else
-@@ -22,7 +22,7 @@ static inline int cdnsp_gadget_init(struct cdns *cdns)
- 
- #endif /* CONFIG_USB_CDNSP_GADGET */
- 
--#if IS_ENABLED(CONFIG_USB_CDNS3_GADGET)
-+#if defined(CONFIG_USB_CDNS3_GADGET) && IS_REACHABLE(CONFIG_USB_CDNS3)
- 
- int cdns3_gadget_init(struct cdns *cdns);
- #else
--- 
-2.50.1
+PiAKPiBUaGUgbGluayBbMV0gcHJvdmlkZXMgdGhlIG9mZmljaWFsIGRvY3VtZW50YXRpb24gZm9y
+IHRoZSBFSUM3NzAwLiBTZWN0aW9uIDMuMgo+IGNvdmVycyB0aGUgY2xvY2sgc3Vic3lzdGVtLgo+
+IAo+IFsxXSBodHRwczovL3d3dy5zaWZpdmUuY29tL2RvY3VtZW50LWZpbGUvZWljNzcwMHgtZGF0
+YXNoZWV0Cj4gCj4gVXBkYXRlczoKPiAgIENoYW5nZSBpbiB2MTU6Cj4gICAtIFVwZGF0ZWQgZHJp
+dmVyIGZpbGUKPiAgICAgLSBBZGQgJ1Jldmlld2VkLWJ5OiBCcmlhbiBNYXNuZXkgPGJtYXNuZXlA
+cmVkaGF0LmNvbT4nIGZvciBwYXRjaCAyLzQsIDMvNCBhbmQgNC80Lgo+ICAgICAtIEFkZCBzcGFj
+ZSBiZXR3ZWVuIHRoZSBuYW1lIGFuZCA8IGluIE1PRFVMRV9BVVRIT1IuCj4gICAgIC0gUmVtb3Zl
+IG1lbXNldF9wKCkgYW5kIGNvbW1pdCBpbiBlc3dpbl9jbGtfaW5pdCgpLgo+ICAgICAgIFRoZSBj
+dXJyZW50IGltcGxlbWVudGF0aW9uIGVuc3VyZXMgdGhhdCBwYXJlbnQgY2xvY2tzIGFyZSByZWdp
+c3RlcmVkCj4gICAgICAgYmVmb3JlIGNoaWxkIGNsb2NrcywgdGh1cyBwcmV2ZW50aW5nIHRoZSBj
+cmVhdGlvbiBvZiBpbnZhbGlkIGNsb2Nrcy4KPiAKCkhpIFN0ZXBoZW4sCgpJIHJlY2VpdmVkIHlv
+dXIgcmV2aWV3IGNvbW1lbnRzIG9uIHY5LiBBZnRlciBhZGRyZXNzaW5nIHRoZW0gYW5kIHN1Ym1p
+dHRpbmcKdjEwIHRocm91Z2ggdjE0LCBJIHJlY2VpdmVkIGFkZGl0aW9uYWwgY29tbWVudHMgZnJv
+bSBCcmlhbiwgQm8sIE1hcmNlbCzCoAphbmQgdGhlIGtlcm5lbCB0ZXN0IHJvYm90LsKgCnYxNSBu
+b3cgaGFzIGEgUmV2aWV3ZWQtYnkgdGFnIGZyb20gQnJpYW4gYW5kIGEgVGVzdGVkLWJ5IHRhZyBm
+cm9tIE1hcmNlbC4KRG8geW91IGhhdmUgYW55IGZ1cnRoZXIgY29tbWVudHMgb24gdjE1PyBJIHdv
+dWxkIGxpa2UgdG8gc2VuZCBhIEdJVCBQVUxMwqAKcmVxdWVzdCBmb3IgNy4wLXJjNCBieSB0aGUg
+ZW5kIG9mIHRoaXMgd2Vlay4KRG8geW91IHRoaW5rIHRoaXMgaXMgb2theT8KCkJlc3QgcmVnYXJk
+cywKWHV5YW5nIERvbmcKCj4gICAtIExpbmsgdG8gdjE0OiBodHRwczovL2xvcmUua2VybmVsLm9y
+Zy9hbGwvMjAyNjAyMjYwOTA1MTMuMTY5Ni0xLWRvbmd4dXlhbmdAZXN3aW5jb21wdXRpbmcuY29t
+Lwo+IAo+ICAgQ2hhbmdlIGluIHYxNDoKPiAgIC0gVXBkYXRlZCBkcml2ZXIgZmlsZQo+ICAgLSBD
+aGFuZ2UgdGhlIGVycm9yIGNvZGUgZnJvbSBlc3dpbl9jbGtfaW5pdCgpIGZyb20gLUVBR0FJTiB0
+byBQVFJfRVJSKGNsa19kYXRhKS4KPiAgIC0gSW4gZXN3aW5fY2xrX2luaXQoKSwgY2hhbmdlIGVy
+cm9yIGhhbmRsaW5nOgo+ICAgICAtIFJlcGxhY2UgTlVMTCByZXR1cm4gZnJvbSBkZXZtX2t6YWxs
+b2MoKSB3aXRoIEVSUl9QVFIoLUVOT01FTSkuCj4gICAgIC0gUmVwbGFjZSBOVUxMIHJldHVybiBm
+cm9tIGRldm1fcGxhdGZvcm1faW9yZW1hcF9yZXNvdXJjZSgpIHdpdGggRVJSX1BUUigtRUlOVkFM
+KQo+ICAgICAgIGFuZCByZW1vdmUgZGV2X2VycigpLgo+ICAgLSBBZGQgQ0xLX0lHTk9SRV9VTlVT
+RUQgZmxhZyB0byBnYXRlIGNsb2Nrcy4gV2hlbiBjbGtfaWdub3JlX3VudXNlZCBpcyBkcm9wcGVk
+Cj4gICAgIGR1cmluZyB0ZXN0aW5nLCB0aGVzZSBjbG9ja3Mgc2hvdWxkIHJlbWFpbiBlbmFibGVk
+Lgo+ICAgLSBNb2RpZnkgdGhlIGZyYWMgY2FsY3VsYXRpb24gZm9ybXVsYSB0bzoKPiAgICAgZnJh
+YyA9IChyYXRlICogNCAlIHBhcmVudF9yYXRlICogKDJeMjQpKSAvIHBhcmVudF9yYXRlCj4gICAt
+IEFkZCBjYWxjdWxhdGlvbiBzdGVwIGRlc2NyaXB0aW9ucyBpbiBlc3dpbl9jYWxjX3BsbC4KPiAg
+ICAgUmVtb3ZlIHRtcDEgYW5kIHRlbXAyIHZhcmlhYmxlcywgdXNpbmcgb25seSAncmVtID0gZG9f
+ZGl2KHRtcCwgcGFyZW50X3JhdGUpJwo+ICAgICB0byBjYWxjdWxhdGUgZnJhYy4gVGhlIHByZXZp
+b3VzIGNhbGN1bGF0aW9uIGZvcm11bGEgd2FzIG92ZXJseSBjb21wbGV4Lgo+IAo+ICAgLSBMaW5r
+IHRvIHYxMzogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLzIwMjYwMjE0MTAxNDIxLjIyOC0x
+LWRvbmd4dXlhbmdAZXN3aW5jb21wdXRpbmcuY29tLwo+IAo+ICAgQ2hhbmdlIGluIHYxMzoKPiAg
+IC0gVXBkYXRlZCBkcml2ZXIgZmlsZQo+ICAgICAtIE1vZGlmeSBjb21taXQgc3ViamVjdCBmcm9t
+ICJjbG9jazogZXN3aW46IC4uLiIgdG8gImNsazogZXN3aW46IC4uLiIuCj4gICAgIC0gVXNlIHBh
+cmVudCByYXRlIHRvIGNhbGN1bGF0ZSBQTEwgY2xvY2sgcmF0ZS4KPiAgICAgLSBVc2UgR0VOTUFT
+SygpIHRvIGRlZmluZSBQTEwgbWFzayBtYWNyb3MgYW5kIHVzZSBGSUVMRF9QUkVQKCkgdG8gc2lt
+cGxpZnkKPiAgICAgICBiaXR3aXNlIG9wZXJhdGlvbnMuCj4gICAgIC0gUmVtb3ZlIHNoaWZ0IGFu
+ZCB3aWR0aCByZWZlcmVuY2VzIGZvciBwbGwgZW5hYmxlLCByZWZkaXYsIGZiZGl2LCBmcmFjIGFu
+ZCBwb3N0ZGl2Lgo+ICAgICAgIChVc2Ugb25seSB0aGUgUExMIG1hY3JvcyB0byBtYXRjaCB0aGUg
+ZnVuY3Rpb25hbGl0eSkKPiAgICAgLSBTZXQgcG9zdGRpdjEgYW5kIHBvc3RkaXYyIGluIGNsa19w
+bGxfc2V0X3JhdGUgZnVuY3Rpb24uCj4gCj4gICAtIExpbmsgdG8gdjEyOiBodHRwczovL2xvcmUu
+a2VybmVsLm9yZy9hbGwvMjAyNjAyMTMwOTQxMTIuMTE1LTEtZG9uZ3h1eWFuZ0Blc3dpbmNvbXB1
+dGluZy5jb20vCj4gCj4gICBDaGFuZ2UgaW4gdjEyOgo+ICAgLSBVcGRhdGVkIGRyaXZlciBmaWxl
+Cj4gICAgIC0gQWRkIENMS19NVVhfUk9VTkRfQ0xPU0VTVCB0byB0aGUgbXV4IGNsb2NrcyBzaW5j
+ZSB0aGV5IG5lZWQgYSBtb3JlCj4gICAgICAgYWNjdXJhdGUgY2xvY2sgZnJlcXVlbmN5Lgo+ICAg
+ICAtIENoYW5nZSAncmVtJyBmcm9tIHU2NCB0byB1MzIgZm9yIGZ1bmN0aW9uICdlc3dpbl9jYWxj
+X3BsbCcgYW5kCj4gICAgICAgZnVuY3Rpb24gJ2Nsa19wbGxfcmVjYWxjX3JhdGUnLgo+ICAgICAt
+IENoYW5nZSAncmF0ZScgZnJvbSB1NjQgdG8gdW5zaWduZWQgbG9uZyBmb3IgZnVuY3Rpb24gJ2Ns
+a19wbGxfcmVjYWxjX3JhdGUnLgo+ICAgICAtIEZpeCBidWlsZCBlcnJvciB3aXRoIHU2NCBkaXZp
+c29yIGZvciBmdW5jdGlvbiBgY2xrX3BsbF9zZXRfcmF0ZScuCj4gICAgICAgUmVwb3J0ZWQtYnk6
+IGtlcm5lbCB0ZXN0IHJvYm90IDxsa3BAaW50ZWwuY29tPgo+ICAgICAgIENsb3NlczogaHR0cHM6
+Ly9sb3JlLmtlcm5lbC5vcmcvb2Uta2J1aWxkLWFsbC8yMDI2MDIxMTE0MjQubWhUQWFrRFgtbGtw
+QGludGVsLmNvbS8KPiAKPiAgIC0gTGluayB0byB2MTE6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3Jn
+L2FsbC8yMDI2MDIxMDA5NTAwOC43MjYtMS1kb25neHV5YW5nQGVzd2luY29tcHV0aW5nLmNvbS8K
+PiAKPiAgIENoYW5nZSBpbiB2MTE6Cj4gICAtIFVwZGF0ZWQgZHJpdmVyIGZpbGUKPiAgICAgLSBB
+ZGQgIlRlc3RlZC1ieTogTWFyY2VsIFppc3dpbGVyIDxtYXJjZWxAemlzd2lsZXIuY29tPiAjIGVi
+Yzc3IiB0YWcuCj4gICAgIC0gRml4IGJ1aWxkIGVycm9yIGluIGZ1bmN0aW9uIGVzd2luX2Nsa19y
+ZWdpc3Rlcl9jbGtzLgo+ICAgICAgIFJlcG9ydGVkLWJ5OiBrZXJuZWwgdGVzdCByb2JvdCA8bGtw
+QGludGVsLmNvbT4KPiAgICAgICBDbG9zZXM6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL29lLWti
+dWlsZC1hbGwvMjAyNjAyMDYwNTIwLnA0SGczNUphLWxrcEBpbnRlbC5jb20vCj4gCj4gICAtIExp
+bmsgdG8gdjEwOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyNjAyMDUwOTMzMjIuMTAz
+MC0xLWRvbmd4dXlhbmdAZXN3aW5jb21wdXRpbmcuY29tLwo+IAo+ICAgQ2hhbmdlcyBpbiB2MTA6
+Cj4gICAtIFVwZGF0ZWQgZHJpdmVyIGZpbGUKPiAgICAgLSBBZGQgYSBwcml2YXRlIGNsb2NrIGRp
+dmlkZXIgQVBJIG5hbWVkICdlc3dpbl9yZWdpc3Rlcl9jbGtkaXYnIHRvCj4gICAgICAgcmVnaXN0
+ZXIgZGl2aWRlciBjbG9ja3Mgd2l0aCBwcml2YXRlIGZsYWcuCj4gICAgICAgRGVmaW5lICdFU1dJ
+Tl9QUklWX0RJVl9NSU5fMicgcHJpdmF0ZSBmbGFnIGZvciByZWdpc3RlcmluZyB0aGUgY2xvY2sK
+PiAgICAgICBkaXZpZGVycyB3aG9zZSBkaXZpc2lvbiByYXRpbyBzdGFydCBmcm9tIDIuCj4gICAg
+ICAgSW1wbGVtZW50IHRoZSBwcml2YXRlIHNldF9yYXRlLCByZWNhbGNfcmF0ZSwgYW5kIGRldGVy
+bWluZV9yYXRlIGFjY29yZGluZ2x5Lgo+ICAgICAtIEFkZCBDTEtfRElWSURFUl9BTExPV19aRVJP
+IGZsYWcgdG8gdGhlIGNsb2NrIGRpdmlkZXJzIHdob3NlIGRpdmlzaW9uCj4gICAgICAgcmF0aW8g
+c3RhcnQgZnJvbSAwLgo+ICAgICAtIFJlcGxhY2UgQ09ORklHX0FSQ0hfRVNXSU4gd2l0aCBDT05G
+SUdfQ09NTU9OX0NMS19FU1dJTiBpbiB0aGUgTWFrZWZpbGUuCj4gICAgIC0gTW9kaWZ5IHRoZSBo
+ZWxwIGRlc2NyaXB0aW9uIG9mIENPTU1PTl9DTEtfRUlDNzcwMC4KPiAgICAgLSBNb3ZlIHJlZ2lz
+dGVyIG9mZnNldCBkZWZpbml0aW9ucyBmcm9tICdjbGstZWljNzcwMC5oJyB0byAnY2xrLWVpYzc3
+MDAuYycgYW5kCj4gICAgICAgcmVtb3ZlIHRoZSAnY2xrLWVpYzc3MDAuaCcuIFJlbW92ZSAnX0NU
+UkwnIGZyb20gdGhlIG9mZnNldCBuYW1lcy4KPiAgICAgLSBSZW1vdmUgYWxsIHVudXNlZCBoZWFk
+ZXJzLgo+ICAgICAtIFVzZSBkZXZtX3BsYXRmb3JtX2lvcmVtYXBfcmVzb3VyY2UoKSBpbnN0ZWFk
+IG9mIGRldm1fb2ZfaW9tYXAoKS4KPiAgICAgLSBFeHBvcnQgdGhlIGZ1bmN0aW9ucyBmcm9tIGNs
+ay5jIGFzIHN5bWJvbHMuCj4gICAgIC0gVXNlIHJlYWRsX3BvbGxfdGltZW91dCgpLgo+ICAgICAt
+IFVzZSAnY2xrX3BhcmVudF9kYXRhJyBhbmQgJy5odycgaW5zdGVhZCBvZiBzdHJpbmcgcGFyZW50
+IG5hbWVzLgo+ICAgICAtIFJlbmFtZSB0aGUgaGVhZGVyIGZpbGUgZnJvbSBjbGsuaCB0byBjb21t
+b24uaC4KPiAgICAgLSBSZW5hbWUgbWFjcm9zIGZyb20gRUlDNzcwMF8qIHRvIEVTV0lOXyogaW4g
+Y29tbW9uLmguCj4gICAgIC0gQWRkIGEgbmV3IGZ1bmN0aW9uLCAnZXN3aW5fY2xrX3JlZ2lzdGVy
+X2Nsa3MnLCB3aGljaCBjYW4gcmVnaXN0ZXIKPiAgICAgICBkaXZpZGVyLCBtdXgsIGdhdGUsIGFu
+ZCBmaXhlZC1mYWN0b3IgY2xvY2tzIGJhc2VkIG9uIHRoZWlyIHR5cGVzLgo+ICAgICAtIEFkZCBz
+dHJ1Y3R1cmUgJ2Vzd2luX2Nsa19pbmZvJyB0byBtYW5hZ2UgdGhlIGNsb2NrcyB0aGF0IG5lZWQg
+dG8gYmUgcmVnaXN0ZXJlZAo+ICAgICAgIGluIGEgc3BlY2lmaWMgb3JkZXIuCj4gICAgIC0gQWRk
+IG1hY3JvcyAnRVNXSU5fKl9UWVBFJyB0byBkZWZpbmUgZGl2aWRlciwgbXV4LCBnYXRlLCBhbmQg
+Zml4ZWQtZmFjdG9yIGNsb2Nrcwo+ICAgICAgIHdpdGggdHlwZS4gQWRkIGVudW0gJ2Vzd2luX2Ns
+a190eXBlJyBmb3IgdGhlc2UgdHlwZXMuCj4gICAgIC0gUmVtb3ZlICdlc3dpbl9jbGtfcmVnaXN0
+ZXJfbXV4X3RibCcuIFVzZSAnZXN3aW5fY2xrX3JlZ2lzdGVyX211eCcgdG8gcmVnaXN0ZXIKPiAg
+ICAgICBtdXggY2xvY2tzIHdpdGggb3Igd2l0aG91dCB0YWJsZS4KPiAgICAgLSBBZGQgeHRhbDI0
+bSBhcyB0aGUgcGFyZW50IGNsb2NrIG9mIHRoZSBQTEwuCj4gICAgIC0gQ2hhbmdlIDIwMjUgdG8g
+MjAyNiBpbiBhbGwgZmlsZXMuCj4gCj4gICAtIExpbmsgdG8gdjk6IGh0dHBzOi8vbG9yZS5rZXJu
+ZWwub3JnL2FsbC8yMDI1MTIyOTEwNTg0NC4xMDg5LTEtZG9uZ3h1eWFuZ0Blc3dpbmNvbXB1dGlu
+Zy5jb20vCj4gCj4gICBDaGFuZ2VzIGluIHY5Ogo+ICAgLSBVcGRhdGVkIGRyaXZlciBmaWxlCj4g
+ICAgIC0gQ2hlY2tlZCByZXR1cm4gdmFsdWVzIG9mIGVzd2luX2Nsa19yZWdpc3Rlcl8qKCkgaW4g
+dGhlIHByb2JlIGZ1bmN0aW9uLgo+ICAgICAtIFJlbW92ZWQgYmluZGluZyBJRHMgY2hlY2sgZnJv
+bSBwbGwgZnVuY3Rpb25zIGluIGNsay5jLCBhcyB0aGVzZSBmdW5jdGlvbnMKPiAgICAgICB3ZXJl
+IGV4Y2x1c2l2ZWx5IHVzZWQgYnkgcGxsIGNsb2NrcyBhbmQgZGlkIG5vdCByZXF1aXJlIElEIHZh
+bGlkYXRpb24uCj4gICAgIC0gVGhlIFBMTCBzdHJ1Y3R1cmUgaGFzIGJlZW4gZXh0ZW5kZWQgd2l0
+aCBtYXhfcmF0ZSBhbmQgbWluX3JhdGUgZmllbGRzIHRvCj4gICAgICAgZXhwbGljaXRseSBkZWZp
+bmUgdGhlIGZyZXF1ZW5jeSBvcGVyYXRpbmcgcmFuZ2Ugb2YgdGhlIFBMTC4gVGhlc2UgbGltaXRz
+Cj4gICAgICAgd2VyZSBub3cgdXRpbGl6ZWQgYnkgdGhlIGNsa19wbGxfZGV0ZXJtaW5lX3JhdGUo
+KSBmdW5jdGlvbi4KPiAgICAgLSBSZW1vdmVkIF9fY2xrX2xvb2t1cCgpIGluIGNsa19wbGxfc2V0
+X3JhdGUuIEFkZGVkIGNsa19ub3RpZmllciBzdXBwb3J0Cj4gICAgICAgaW4gY2xrLWVpYzc3MDAu
+Yy4KPiAgICAgLSBBZGRlZCBmaXZlIHByZXZpb3VzbHkgbWlzc2luZyBjbG9ja3MgZnJvbSBbMV0u
+Cj4gCj4gICAtIExpbmsgdG8gdjg6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC8yMDI1MTEx
+MzAxMzYzNy4xMTA5LTEtZG9uZ3h1eWFuZ0Blc3dpbmNvbXB1dGluZy5jb20vCj4gCj4gICBDaGFu
+Z2VzIGluIHY4Ogo+ICAgLSBVcGRhdGVkIFlBTUwgZmlsZQo+ICAgICAtIEFkZGVkICJBY2tlZC1i
+eTogVHJveSBNaXRjaGVsbCA8dHJveS5taXRjaGVsbEBsaW51eC5kZXY+Igo+ICAgLSBVcGRhdGVk
+IGRyaXZlciBmaWxlCj4gICAgIC0gQ2hhbmdlZCBLY29uZmlnIGZyb20gYm9vbCB0byB0cmlzdGF0
+ZS4KPiAgIC0gVXBkYXRlZCBNQUlOVEFJTkVSUyBmaWxlCj4gICAgIC0gQWRkZWQgIkVTV0lOIFNP
+QyBTRVJJRVMgQ0xPQ0sgRFJJVkVSIgo+IAo+ICAgLSBMaW5rIHRvIHY3OiBodHRwczovL2xvcmUu
+a2VybmVsLm9yZy9hbGwvMjAyNTEwMjMwNzE2NTguNDU1LTEtZG9uZ3h1eWFuZ0Blc3dpbmNvbXB1
+dGluZy5jb20vCj4gCj4gICBDaGFuZ2VzIGluIHY3Ogo+ICAgLSBVcGRhdGVkIFlBTUwgZmlsZQo+
+ICAgICAtIEFkZGVkICJBY2tlZC1ieTogQ29ub3IgRG9vbGV5IDxjb25vci5kb29sZXlAbWljcm9j
+aGlwLmNvbT4iIGZvciBiaW5kaW5ncy4KPiAgIC0gVXBkYXRlZCBkcml2ZXIgZmlsZQo+ICAgICAt
+IEFkZGVkIGRlc2NyaXB0aW9uIGZvciBjbGsgb2YgZXN3aW5fY2FsY19wbGwoKS4KPiAgICAgLSBB
+ZGRlZCBtYWNybyBFSUM3NzAwX01VWF9UQkwgdG8gbWFuYWdlIG11eCBjbG9jay10cmVlLgo+ICAg
+ICAtIEFkZGVkIGVzd2luX2Nsa19yZWdpc3Rlcl9tdXhfdGJsKCkgdG8gcmVnaXN0ZXIgbXV4IGNs
+b2NrcyB3aXRoCj4gICAgICAgZGlzY29udGludW91cyBwYXJlbnQgaW5kZXhlcy4KPiAKPiAgIC0g
+TGluayB0byB2NjogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLzIwMjUxMDA5MDkyMDI5LjE0
+MC0xLWRvbmd4dXlhbmdAZXN3aW5jb21wdXRpbmcuY29tLwo+IAo+ICAgQ2hhbmdlcyBpbiB2NjoK
+PiAgIC0gUmVtb3ZlZCBjb25maWcgb3B0aW9uIHBhdGNoIGRlcGVuZGVuY3kgZnJvbSBjb3ZlciBs
+ZXR0ZXIsIGJlY2F1c2UgdGhlIHBhdGNoCj4gICAgIHdhcyBhcHBsaWVkLgo+ICAgLSBVcGRhdGVk
+IFlBTUwgZmlsZQo+ICAgICAtIEFkZGVkIGFuIG9zY2lsbGF0b3IgYXMgdGhlIGNsb2NrIGlucHV0
+LCBuYW1lZCB4dGFsMjRtLgo+ICAgICAtIEFkZGVkIGNsb2NrcyBwcm9wZXJ0eS4KPiAgIC0gVXBk
+YXRlZCBkcml2ZXIgZmlsZQo+ICAgICAtIFJlcGxhY2VkIGZpeGVkX3JhdGVfY2xrX3h0YWxfMjRt
+IHdpdGggeHRhbDI0bS4KPiAgICAgLSBEcm9wcGVkIGZpeGVkX3JhdGVfY2xrX3h0YWxfMjRtIGZy
+b20gZHJpdmVyLiBCZWNhdXNlIGNsb2NrIHh0YWwyNG0gd2FzCj4gICAgICAgcmVnaXN0ZXJlZCBi
+eSBmaXhlZC1jbG9jayBhcyBvc2NpbGxhdG9yLgo+IAo+ICAgLSBMaW5rIHRvIHY1OiBodHRwczov
+L2xvcmUua2VybmVsLm9yZy9hbGwvMjAyNTA5MjMwODQ2MzcuMTIyMy0xLWRvbmd4dXlhbmdAZXN3
+aW5jb21wdXRpbmcuY29tLwo+IAo+ICAgQ2hhbmdlcyBpbiB2NToKPiAgIC0gUmVtb3ZlZCB2ZW5k
+b3IgcHJlZml4IHBhdGNoIGRlcGVuZGVuY3kgZnJvbSBjb3ZlciBsZXR0ZXIsIGJlY2F1c2UgdGhl
+IHBhdGNoCj4gICAgIHdhcyBhcHBsaWVkLgo+ICAgLSBVcGRhdGVkIFlBTUwgZmlsZQo+ICAgICAt
+IFBsYWNlZCB0aGUgcmVxdWlyZWQgYWZ0ZXIgYWxsIHByb3BlcnRpZXMuCj4gICAgIC0gUmVtb3Zl
+ZCBwYXR0ZXJuUHJvcGVydGllcy4gQWxzbyByZW1vdmVkIGNvbXBhdGlibGUgb2YgZXN3aW4scGxs
+LWNsb2NrLAo+ICAgICAgIGVzd2luLG11eC1jbG9jaywgZXN3aW4sZGl2aWRlci1jbG9jayBhbmQg
+ZXN3aW4sZ2F0ZS1jbG9jayBhcyB3ZSBoYXZlIG1vdmVkCj4gICAgICAgY2xvY2sgdHJlZSBmcm9t
+IERUUyB0byBMaW51eCBkcml2ZXIuCj4gICAgIC0gUmVtb3ZlZCB0aGUgY2xvY2sgdHJlZSBmcm9t
+IERUUy4gVXNlZCBjbG9jay1jb250cm9sbGVyIHRvIG1hbmFnZSBhbGwKPiAgICAgICBjbG9jay4g
+UmVtb3ZlZCBhbGwgY2hpbGQgbm9kZXMgaW4gY2xvY2stY29udHJvbGxlci4KPiAgICAgLSBSZW1v
+dmVkICcjYWRkcmVzcy1jZWxscycgYW5kICcjc2l6ZS1jZWxscycgcHJvcGVydGllcywgYmVjYXVz
+ZSB0aGUgY2xvY2sKPiAgICAgICBjb250cm9sbGVyIGRpZCBub3QgbmVlZCB0byBkZWZpbmUgdGhl
+c2UgcHJvcGVydGllcy4KPiAgICAgLSBSZW1vdmVkIGVpYzc3MDAtY2xvY2tzLmR0c2kuCj4gICAg
+IC0gQWRkZWQgZHQtYmluZGluZ3MgaGVhZGVyIGZvciBjbG9jayBJRHMuIEJlY2F1c2UgdXNlZCB0
+aGUgSURzIHRvIHJlZ2lzdGVyCj4gICAgICAgY2xvY2tzLgo+ICAgLSBVcGRhdGVkIGRyaXZlciBm
+aWxlCj4gICAgIC0gTW9kaWZpZWQgdGhlIGNvbW1pdCBmb3IgY2xvY2sgZHJpdmVyLiBEcm9wcGVk
+IGluZGVudGF0aW9uIGluIGNvbW1pdC4KPiAgICAgLSBSZW1vdmVkIENMS19PRl9ERUNMQVJFKCku
+IFVzZWQgKmNsa19od19yZWdpc3RlciogdG8gcmVnaXN0ZXIgY2xvY2tzLiBVc2VkCj4gICAgICAg
+ZGV2bV9vZl9jbGtfYWRkX2h3X3Byb3ZpZGVyLgo+ICAgICAtIERyb3BwZWQgc2luZ2xldG9ucy4K
+PiAgICAgLSBDaGVja2VkIHRoZSB2YWx1ZSByaWdodCBhZnRlciBvYnRhaW5pbmcgaXQuCj4gICAg
+IC0gUmVtb3ZlZCB0aGUgZGVmaW5pdGlvbnMgb2YgbWFjcm8gZnJlcXVlbmN5IGluIGNsay5oIGxp
+a2UgQ0xLX0ZSRVFfMjRNLgo+ICAgICAtIE1vZGlmaWVkIGRlc2NyaXB0aW9uIG9mIGhlbHAgaW4g
+S2NvbmZpZy4KPiAgICAgLSBBZGRlZCBDT01QSUxFX1RFU1QuIEFkZGVkIENPTU1PTl9DTEtfRVNX
+SU4gZm9yIGNsay5vLiBBbmQgYWRkZWQKPiAgICAgICAic2VsZWN0IENPTU1PTl9DTEtfRVNXSU4i
+IGZvciBjbGstZWljNzcwMC5jLiBXaXRob3V0IENPTU1PTl9DTEtfRUlDNzcwMCwKPiAgICAgICBj
+bGsuYyBjb3VsZCBub3QgYmUgY29tcGlsZWQuCj4gICAgIC0gVXNlZCAuZGV0ZXJtaW5lZF9yYXRl
+Lgo+ICAgICAtIEFkZGVkIG1hY3JvIGRlZmluaXRpb25zIG9mIEVJQzc3MDBfRElWLCBFSUM3NzAw
+X0ZJWEVELCBFSUM3NzAwX0ZBQ1RPUiwKPiAgICAgICBFSUM3NzAwX01VWCBhbmQgRUlDNzcwMF9Q
+TEwgdG8gbWFuYWdlIGNsb2NrIHRyZWUuCj4gICAgIC0gQWRkZWQgY2xrLWVpYzc3MDAuaCB0byBw
+bGFjZSBlaWM3NzAwIFNvQyBjbG9jayByZWdpc3RlcnMuCj4gICAgIC0gUmVtb3ZlZCByZWZkaXZf
+dmFsIGFuZCBwb3N0ZGl2MV92YWwgZnJvbSBjbGtfcGxsX3JlY2FsY19yYXRlKCkuIEJlY2F1c2UK
+PiAgICAgICB0aGVzZSB2YWx1ZXMgd2VyZSB1bnVzZWQuCj4gCj4gICAtIExpbmsgdG8gdjQ6IGh0
+dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC8yMDI1MDgxNTA5MzUzOS45NzUtMS1kb25neHV5YW5n
+QGVzd2luY29tcHV0aW5nLmNvbS8KPiAKPiAgIENoYW5nZXMgaW4gdjQ6Cj4gICAtIFVwZGF0ZWQg
+WUFNTCBmaWxlCj4gICAgIC0gQ2hhbmdlZCBuYW1lIGZyb20gY3B1LWRlZmF1bHQtZnJlcXVlbmN5
+IHRvIGNwdS1kZWZhdWx0LWZyZXEtaHouCj4gICAgIC0gRHJvcHBlZCAkcmVmIG9mIGNwdS1kZWZh
+dWx0LWZyZXF1ZW5jeS4KPiAgICAgLSBBZGRlZCBjcHUtZGVmYXVsdC1mcmVxdWVuY3kgZm9yIHJl
+cXVpcmVkLgo+ICAgICAtIFJlbW92ZWQgY3B1LWRlZmF1bHQtZnJlcXVlbmN5IGluIHVwZGF0ZWQg
+ZmlsZSwgYmVjYXVzZSB0aGVyZSB3YXMgbm8KPiAgICAgICBuZWVkIHRvIGFkZCBjcHUtZGVmYXVs
+dC1mcmVxdWVuY3kuCj4gICAgIC0gTW92ZWQgRElWSURFUiB0byBESVYuCj4gICAgIC0gQXJyYW5n
+ZWQgdGhlIElEcyBpbiBvcmRlci4KPiAgICAgLSBEcm9wcGVkIEVJQzc3MDBfTlJfQ0xLUy4KPiAg
+ICAgLSBSZW1vdmVkIGR0LWJpbmRpbmdzIGVzd2luLGVpYzc3MDAtY2xvY2suaC4gQmVjYXVzZSBJ
+RHMgd2FzIG5vdCB1c2VkLAo+ICAgICAgIGFuZCB1c2VkIGNsb2NrIGRldmljZSBub2Rlcy4KPiAg
+ICAgLSBBY2NvcmRpbmcgdG8gdGhlIHVwZGF0ZWQgZHJpdmVyIGNvZGVzLCB0aGUgWUFNTCBoYXMg
+YmVlbiB1cGRhdGVkLgo+ICAgLSBVcGRhdGVkIGRyaXZlciBmaWxlCj4gICAgIC0gUmVtb3ZlIHVu
+ZG9jdW1lbnRlZCBwYXJhbWV0ZXJzICJjcHVfbm9fYm9vc3RfMV82Z2h6IiBhbmQKPiAgICAgICAi
+Y3B1LWRlZmF1bHQtZnJlcXVlbmN5Ii4KPiAgICAgLSBNb2RpZmllZCB0aGUgY29tbWVudCBhbmQg
+dXNlZCB0aGUgY29ycmVjdCBMaW51eCBjb2Rpbmcgc3R5bGUuCj4gICAgIC0gUmVtb3ZlZCBjb2Rl
+cyBvZiB2b2x0YWdlLCBiZWNhdXNlIGl0IHdhcyBub3QgdGhlIGNsb2NrIGRyaXZlci4KPiAgICAg
+LSBVcGRhdGVkIHRoZSBmb3JtdWxhIG9mIGNsb2NrIGZyZXF1ZW5jeSBjYWxjdWxhdGlvbi4gUmVt
+b3ZlZCB0aGUgbG9naWMKPiAgICAgICB0aGF0IG9ubHkgdXNlZCByZWdpc3RlciBzZWxlY3Rpb24u
+Cj4gICAgIC0gVXNlZCBDTEtfT0ZfREVDTEFSRSgpIHRvIHJlZ2lzdGVyIGNsb2Nrcy4gUmVnaXN0
+ZXJlZCBwbGwtY2xvY2ssCj4gICAgICAgbXV4LWNsb2NrLCBkaXZpZGVyLWNsb2NrLCBhbmQgZ2F0
+ZS1jbG9jayBpbiBjbGstZWljNzcwMC5jLgo+ICAgICAgIFRoZSBzcGVjaWZpYyBpbXBsZW1lbnRh
+dGlvbiBvZiBjbG9jayByZWdpc3RyYXRpb24gd2FzIGluIGNsay5jLgo+ICAgICAtIEFkZGVkIGVp
+Yzc3MDAtY2xvY2tzLmR0c2kuCj4gICAgIC0gTW92ZWQgZGV2aWNlIGluZm9ybWF0aW9uIHRvIERU
+Uy4gUHV0IGFsbCBjbG9ja3MnIG5vZGUgaW4gdGhlCj4gICAgICAgZWljNzcwMC1jbG9ja3MuZHRz
+aS4KPiAKPiAgIC0gTGluayB0byB2MzogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLzIwMjUw
+NjI0MTAzMjEyLjI4Ny0xLWRvbmd4dXlhbmdAZXN3aW5jb21wdXRpbmcuY29tLwo+IAo+ICAgQ2hh
+bmdlcyBpbiB2MzoKPiAgIC0gVXBkYXRlIGV4YW1wbGUsIGRyb3AgY2hpbGQgbm9kZSBhbmQgYWRk
+ICcjY2xvY2stY2VsbHMnIHRvIHRoZSBwYXJlbnQKPiAgICAgbm9kZS4KPiAgIC0gQ2hhbmdlIHBh
+cmVudCBub2RlIGZyb20gc3lzLWNyZyB0byBjbG9jay1jb250cm9sbGVyIGZvciB0aGlzIHlhbWwu
+Cj4gICAtIERyb3AgInN5c2NvbiIsICJzaW1wbGUtbWZkIiB0byBjbGVhciB3YXJuaW5ncy9lcnJv
+cnMgYnkgdXNpbmcgIm1ha2UKPiAgICAgZHRfYmluZGluZ19jaGVjayIuIEFuZCB0aGVzZSBhcmUg
+bm90IG5lY2Vzc2FyeS4KPiAgIC0gQWRkICJjcHUtZGVmYXVsdC1mcmVxdWVuY3kiIGRlZmluaXRp
+b24gaW4geWFtbCBmb3IgInVuZG9jdW1lbnRlZCBBQkkiLgo+ICAgLSBEcm9wIFJldmlld2VkLWJ5
+LCB0aGlzIGlzIG1pc3VuZGVyc3RhbmRpbmcuIFdlIGhhdmUgbm90IHJlY2VpdmVkIHN1Y2gKPiAg
+ICAgYW4gZW1haWwuCj4gICAtIExpbmsgdG8gdjI6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2Fs
+bC8yMDI1MDUyMzA5MDc0Ny4xODMwLTEtZG9uZ3h1eWFuZ0Blc3dpbmNvbXB1dGluZy5jb20vCj4g
+Cj4gICBDaGFuZ2VzIGluIHYyOgo+ICAgLSBVcGRhdGUgZXhhbXBsZSwgZHJvcCBjaGlsZCBub2Rl
+Lgo+ICAgLSBDbGVhciB3YXJuaW5ncy9lcnJvcnMgZm9yIHVzaW5nICJtYWtlIGR0X2JpbmRpbmdf
+Y2hlY2siLgo+ICAgLSBDaGFuZ2UgdG8gdGhlIGNvcnJlY3QgZm9ybWF0Lgo+ICAgLSBEcm9wIHNv
+bWUgbm9uLXN0YW5hcmQgY29kZS4KPiAgIC0gVXNlIGRldl9lcnJfcHJvYmUoKSBpbiBwcm9iZSBm
+dW5jdGlvbnMuCj4gICAtIExpbmsgdG8gdjE6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC8y
+MDI1MDUxNDAwMjIzMy4xODctMS1kb25neHV5YW5nQGVzd2luY29tcHV0aW5nLmNvbS8KPiAKPiBY
+dXlhbmcgRG9uZyAoNCk6Cj4gICBkdC1iaW5kaW5nczogY2xvY2s6IGVzd2luOiBEb2N1bWVudGF0
+aW9uIGZvciBlaWM3NzAwIFNvQwo+ICAgY2xrOiBkaXZpZGVyOiBBZGQgZGV2bV9jbGtfaHdfcmVn
+aXN0ZXJfZGl2aWRlcl9wYXJlbnRfZGF0YQo+ICAgY2xrOiBlc3dpbjogQWRkIGVpYzc3MDAgY2xv
+Y2sgZHJpdmVyCj4gICBNQUlOVEFJTkVSUzogQWRkIGVudHJ5IGZvciBFU1dJTiBFSUM3NzAwIGNs
+b2NrIGRyaXZlcgo+IAo+ICAuLi4vYmluZGluZ3MvY2xvY2svZXN3aW4sZWljNzcwMC1jbG9jay55
+YW1sICAgfCAgIDQ2ICsKPiAgTUFJTlRBSU5FUlMgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIHwgICAgOCArCj4gIGRyaXZlcnMvY2xrL0tjb25maWcgICAgICAgICAgICAgICAgICAg
+ICAgICAgICB8ICAgIDEgKwo+ICBkcml2ZXJzL2Nsay9NYWtlZmlsZSAgICAgICAgICAgICAgICAg
+ICAgICAgICAgfCAgICAxICsKPiAgZHJpdmVycy9jbGsvZXN3aW4vS2NvbmZpZyAgICAgICAgICAg
+ICAgICAgICAgIHwgICAxNSArCj4gIGRyaXZlcnMvY2xrL2Vzd2luL01ha2VmaWxlICAgICAgICAg
+ICAgICAgICAgICB8ICAgIDggKwo+ICBkcml2ZXJzL2Nsay9lc3dpbi9jbGstZWljNzcwMC5jICAg
+ICAgICAgICAgICAgfCAxMzc2ICsrKysrKysrKysrKysrKysrCj4gIGRyaXZlcnMvY2xrL2Vzd2lu
+L2Nsay5jICAgICAgICAgICAgICAgICAgICAgICB8ICA1ODYgKysrKysrKwo+ICBkcml2ZXJzL2Ns
+ay9lc3dpbi9jb21tb24uaCAgICAgICAgICAgICAgICAgICAgfCAgMzQwICsrKysKPiAgLi4uL2R0
+LWJpbmRpbmdzL2Nsb2NrL2Vzd2luLGVpYzc3MDAtY2xvY2suaCAgIHwgIDI4NSArKysrCj4gIGlu
+Y2x1ZGUvbGludXgvY2xrLXByb3ZpZGVyLmggICAgICAgICAgICAgICAgICB8ICAgMjAgKwo+ICAx
+MSBmaWxlcyBjaGFuZ2VkLCAyNjg2IGluc2VydGlvbnMoKykKPiAgY3JlYXRlIG1vZGUgMTAwNjQ0
+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9jbG9jay9lc3dpbixlaWM3NzAwLWNs
+b2NrLnlhbWwKPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvY2xrL2Vzd2luL0tjb25maWcK
+PiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvY2xrL2Vzd2luL01ha2VmaWxlCj4gIGNyZWF0
+ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2Nsay9lc3dpbi9jbGstZWljNzcwMC5jCj4gIGNyZWF0ZSBt
+b2RlIDEwMDY0NCBkcml2ZXJzL2Nsay9lc3dpbi9jbGsuYwo+ICBjcmVhdGUgbW9kZSAxMDA2NDQg
+ZHJpdmVycy9jbGsvZXN3aW4vY29tbW9uLmgKPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGluY2x1ZGUv
+ZHQtYmluZGluZ3MvY2xvY2svZXN3aW4sZWljNzcwMC1jbG9jay5oCj4gCj4gLS0KPiAyLjM0LjEK
 
 
