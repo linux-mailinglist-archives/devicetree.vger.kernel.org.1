@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-275965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275971-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AE7tAEKst2nkUAEAu9opvQ
-	(envelope-from <devicetree+bounces-275965-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 08:07:46 +0100
+	id oEJ2H92tt2lDUQEAu9opvQ
+	(envelope-from <devicetree+bounces-275971-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 08:14:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF210295654
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 08:07:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F02BE2957C6
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 08:14:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8492830087FC
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:07:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A67B13009017
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:14:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA93234DB7B;
-	Mon, 16 Mar 2026 07:07:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFA9C34D90E;
+	Mon, 16 Mar 2026 07:14:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TGzvEwiR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hd5DZVv8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5BC734DB71;
-	Mon, 16 Mar 2026 07:07:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F5534B40E;
+	Mon, 16 Mar 2026 07:14:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773644856; cv=none; b=ablNURofv+ILc4X5wnKFNXWOFRvfwkEYiznXTnxxC5s3HcthgbR7jkjsg5rKHoQk/jYRzr6STPW1Mg+4jRzM5QLGefkc2t/iDQKM0Mxc2JT5uTlGSN8jSVWL1Wk22Jc18INOjH8lzjR8KZAPoMFjavQ03TgmYqH49dP+ob83L5E=
+	t=1773645273; cv=none; b=Qgh7IVdqIpfBTEoLnPEARbzZz6W0UyrnmFcJBf46cHZRp02ypC2Wz9eAPHSRJ4Xs5C5s8eCwsaQQWiSj6eO/JhQDVVFBbAg3P+3DYy/dUosoHnxanRN2fFQvOhj2da/6GmdgVK4XSmQMe6oNhqp9PAliRK1H2rBNvjWBcT41Lt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773644856; c=relaxed/simple;
-	bh=Aht8PZinYTeCOwmJtsjULkbPYEcXPgztoZkAzDbJsPA=;
+	s=arc-20240116; t=1773645273; c=relaxed/simple;
+	bh=CukU7csTIDjMfsYYEwve5SxfJouBgjKOnhEEbN6bjnU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AT71bPe3cOJsFhqRcGSHIoZX4eqZ2SISgcTovR69t7+D6OIQeE2APqdh/k7LyF8X0GhWn6ga76BT6c1Y7/DGiuyIghH4tKP2M7gmxER09a/cn7riNvcUB51xyOiBkOb65/0wtpBa46ee5xgcUmW5GkzA3Mxb5R170nJSVM3KQVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TGzvEwiR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69195C19421;
-	Mon, 16 Mar 2026 07:07:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=UbB4FXZy7GlAokH5dlTCOxGChy9JawAkxKpHNEvaBOF4R4Fn6C1Qt/QZvjXVFTrxNzVoQ/+8RlLMx4TbWsrAwuDkgY2R9h1/z6B5zH669LUccvDeCrG6feTbYtAj4vKx/15F2UUkr821T+pDEdIFph+ETHhGqLeEO90IlkLyPj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hd5DZVv8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06998C19421;
+	Mon, 16 Mar 2026 07:14:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773644856;
-	bh=Aht8PZinYTeCOwmJtsjULkbPYEcXPgztoZkAzDbJsPA=;
+	s=k20201202; t=1773645273;
+	bh=CukU7csTIDjMfsYYEwve5SxfJouBgjKOnhEEbN6bjnU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TGzvEwiRCeGkUJjkyH/BaIpLbiBzS6H1hAe2QVfhxcew7buMn8ZwM52VWTRiFlWSK
-	 MuFTBIrQPlxRYAhXpbT6Vh2b9KTzz62QkHdfP0rnoUGwrh8gF8DfPonp2Xi4Mam739
-	 DC7E8Iird5Aq8O2gg0PaBbM9edgiiqtvM3mOpu05EOuxj5vOVJR3+qoKGGeFaZ0OKh
-	 YR/HPHQuS4dDRWwi7SnmfoEwgOuehN6Clp6cq0mrOUd/0E5X8vHRXIC3rd15a4E0Ip
-	 HvRt7Ma7oyT6wK0yBT+zzRaNySr9GHjhHjbKxalSfjPdxXQvvMuYWwKKgTCKjH8VR4
-	 mbWzl1xKRy0Jw==
-Message-ID: <3f2d964a-4e82-414c-b373-af0d531b0fcd@kernel.org>
-Date: Mon, 16 Mar 2026 08:07:31 +0100
+	b=hd5DZVv8hzCFir8ziLUTGf8+NMOKbN0YCrgl/rdSEPzB5PcJ7YHXUd9g0y9A+enhJ
+	 o1txPunXldOEhnJpfAMLhYG45jr7tQAQEFuozsodjXq6sBsIzBoYstMb3CJ9DuxnDS
+	 h8lFrXDPcUd6TF5WAtMx+f0tQAajkqP8FKlPbjLz6FWo5fEjGSARpW0RacnUcdOQz0
+	 4LyFQ7Po2doV67PJMQU72EtOKw/YkIASao5DLt0VPEJkX3H8WvgUdlMUDjDLOU4xct
+	 sQtTi5ZMDJCkZEbxDxFfbmT+daiiUOfGNG8QXnAEcKUAh/V1RDsEKQJhMt77y5O/My
+	 Bu+JO3DHQ8EKg==
+Message-ID: <85050b04-c67a-47f5-b562-ad890a8cb1b1@kernel.org>
+Date: Mon, 16 Mar 2026 08:14:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,17 +53,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] dt-bindings: soc: aspeed: Add AST2600 eSPI controller
-To: aspeedyh <yh_chung@aspeedtech.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Ryan Chen <ryan_chen@aspeedtech.com>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- openbmc@lists.ozlabs.org, maciej.lawniczak@intel.com
-References: <20260313-upstream_espi-v1-0-9504428e1f43@aspeedtech.com>
- <20260313-upstream_espi-v1-1-9504428e1f43@aspeedtech.com>
+Subject: Re: [PATCH] arm64: dts: qcom: remove the disabled replicator
+To: Jie Gan <jie.gan@oss.qualcomm.com>, Bjorn Andersson
+ <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260316-clean-up-failed-devices-v1-1-f22fc9b072ab@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,52 +107,49 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260313-upstream_espi-v1-1-9504428e1f43@aspeedtech.com>
+In-Reply-To: <20260316-clean-up-failed-devices-v1-1-f22fc9b072ab@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-275971-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275965-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CF210295654
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: F02BE2957C6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 13/03/2026 11:07, aspeedyh wrote:
-> Introduce the device-tree bindings for the Enhanced Serial
-> Peripheral Interface (eSPI) controller found on AST2600
-> BMC SoCs.
+On 16/03/2026 06:31, Jie Gan wrote:
+> Remove the disabled device that blocks probing of the connected
+> replicator, as the replicator driver validates all connected
+> devices during probe.
 > 
-> The controller operates as the BMC-side eSPI slave and provides the
-> peripheral, virtual wire, out-of-band, and flash channels used for
-> host-BMC communication.
-> 
-> Signed-off-by: aspeedyh <yh_chung@aspeedtech.com>
+> kernel log:
+> [   18.540971] platform 6046000.replicator: deferred probe pending: (reason unknown)
 
-Please use your full name. Semi-anonymous contributions are not accepted.
+No, that's not a reason to remove a device. The device is there, right?
+So fix Linux drivers if they cannot handle it properly.
 
 Best regards,
 Krzysztof
