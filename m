@@ -1,217 +1,268 @@
-Return-Path: <devicetree+bounces-276263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276264-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QEsONH8euGlYZAEAu9opvQ
-	(envelope-from <devicetree+bounces-276263-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:15:11 +0100
+	id eHr4Lf4euGlYZAEAu9opvQ
+	(envelope-from <devicetree+bounces-276264-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:17:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BDCA29C1A6
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:15:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3238B29C212
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:17:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 565B7302E7FD
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:13:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C4C6C304A201
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:14:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D09E39EF14;
-	Mon, 16 Mar 2026 15:13:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F08F739FCA9;
+	Mon, 16 Mar 2026 15:14:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="fTta+UqW"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="uZ6QC/3h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010046.outbound.protection.outlook.com [52.101.228.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0934A25BEF8;
-	Mon, 16 Mar 2026 15:13:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.46
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773673989; cv=fail; b=TftfyT3D1kqPexFMINpfzFh1mmS7g63J7D0cn/9N/HeyFTKuLlz+6X5GWzoEKFqQ0d8g8roPBuyj6HPK6fGfck8HedzxfQjpcXAuELgGCHkwzK2ihCX82g9HM5yQNHUIS1UhSAEkMcTkRFku+28+InIO6XppLC2vKWIeNhy/Rt8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773673989; c=relaxed/simple;
-	bh=dV7u18JiQtS+dLOxyatekVrX2sofUbDssMfEm3mAoEE=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=LAhSJ+LCq8z0wFtpXbYTudqvfph9U4YmNz5PMUeHIvdhw98SnMxRVxJuv0r04no6egJh9HnQiDJPbTyb/Zu29mZzpH8g5HBs/NdlfXMh4f75m4+iJUSOyIt+nyB+JIB0DVMJ07nxnd+LmLZQ/URGfHPnfbCzFcKjw8EOhDcXy28=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=fTta+UqW; arc=fail smtp.client-ip=52.101.228.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jMMFdz84b9Fha1o472vYL/72cnJQzj5mW9FKlu/b1ee6WFs0G06byTJqnj4nt/CgoEkXOnXOWYu4Fzx6QIL5wuLVq1pZE0mWUQHcM+LM5G5QGZpkMt8r03NcEiZfBrNOS6r93KSvtla9LQ6fd9CjDe7kcMXB++RfBobPb+gbCjjFoO5ZlXlcfvwa58SFacLxPzMASBKq5zA6M+XWN9ukcZj7FNXYUFh3B177FmO971gXSY8Z/vW8663UZkm1t9FLGknX0ftrxNMKgWFNjZyzyRCgu6sCUMDkSf4qOLA62GL/82aWlliUhinLD0Us8RxHXUS1MxbQWWxIJtteAJ/LOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dV7u18JiQtS+dLOxyatekVrX2sofUbDssMfEm3mAoEE=;
- b=s+srcg+7GyokdaxOEkiFLfG7SBmrTYDtNGuso2FBIzLyXTxes+fKo3gd8bs/vflkUmw/ISM7ds9n1YPUKuWkWrL1eYY/SAlhsMGWgRLFIpUlHsa95rCRodYtZ2fH3sc0CFLB/HwxuvEowmVgkMOHBxm294gUw1/qN6TZtAUVztUZUh1gl0YavW3NktJtTMlIsDwNc2Vwq9fCPVfpB5EXN8CSlmaejANYm3BkVrAGL607h4XKpBlQLPSxmFJdHvR2sknYWYwYONSK1bM+c4btbJKm/9SYVg4Iv1RKF+gaBsbKRJr3YJ/q1zqm0MQfnu099QHfMP1s7lBiaoJX3PcWxQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dV7u18JiQtS+dLOxyatekVrX2sofUbDssMfEm3mAoEE=;
- b=fTta+UqWzs2MswAW5q1lfA1Sdh2NtIKeX6XEHm/kC5hLyWNjUCRWMNawfc3YXBO3zLAcg3TIp9i6ufqVbDq2s5kfGcGokOQAZ0ysuRCD9TOExWMGyAjoho+sHOjQnL5SqjEbaB0M0QfUtAl8XzyfqyCpdRqgdSgq1+ILY6BwF3w=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by OS9PR01MB14184.jpnprd01.prod.outlook.com (2603:1096:604:361::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.22; Mon, 16 Mar
- 2026 15:13:04 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::87d1:4928:d55:97de]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::87d1:4928:d55:97de%4]) with mapi id 15.20.9700.021; Mon, 16 Mar 2026
- 15:12:47 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: "marek.vasut@mailbox.org" <marek.vasut@mailbox.org>, geert
-	<geert@linux-m68k.org>
-CC: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Prabhakar Mahadev Lad
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>, magnus.damm
-	<magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH 0/4] arm64: dts: renesas: Fix PHY C22 compatible strings
-Thread-Topic: [PATCH 0/4] arm64: dts: renesas: Fix PHY C22 compatible strings
-Thread-Index:
- AQHcswgXxNnjGhc1/UeWMH+iCL4MUbWsrS6wgAQyogCAAAJMwIAAOwEAgAAEaOCAACVAAIAAAa2w
-Date: Mon, 16 Mar 2026 15:12:47 +0000
-Message-ID:
- <TY3PR01MB11346209F10AB210730C794838640A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20260313164008.40933-1-marek.vasut+renesas@mailbox.org>
- <TY3PR01MB11346A57519DD3EB5BB4456D38645A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <CAMuHMdX5+smUnspgxnEy6ewL2-3htqeP-d0kX7muMVp9AAqO7A@mail.gmail.com>
- <TY3PR01MB11346A1E1E15BB94F5C692B408640A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <15b47af5-1249-4911-b9de-7ee177740314@mailbox.org>
- <TY3PR01MB11346B2FDD4E9CD1DC1A1BED18640A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <96978561-3733-43db-8698-8988dd0975b7@mailbox.org>
-In-Reply-To: <96978561-3733-43db-8698-8988dd0975b7@mailbox.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|OS9PR01MB14184:EE_
-x-ms-office365-filtering-correlation-id: 194ab2c0-5aea-46a5-aa3e-08de836e7b49
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|376014|7416014|366016|56012099003|22082099003|18002099003|38070700021;
-x-microsoft-antispam-message-info:
- rK/1BpIjZNfy8vY5+gKilSaL3J17CQ6mvZnF4i7TtylL6bns17Itcb2jNixi5oX6Y/hNp2Y2ZTw3eKZmCfRXAi0FT/vsJsYJHRRchb4cnTo3A0DQ2jim0kxbv9LYHYdY6QnVUJVRXgSab9tqEezST7WNSKljfv9fOYUg9PsxFodbtNysQRNNtIrr5gzAJd7B/6sy6kyTKV+FDQoHzmqRFGqOtM0PYnvdMubay9XuKsttZRubA5G2+5/RLkfL+94TadsTK/Pt+7FBeGRIUCrfPH33VhnnKJMOZhg264z4I8faujaciRhtk9E7ah1guHN+sx1PnXVTt2rbfG7i0rc5Bf+qW0//zeniocazUJCs10hUIICCVZldeuHTuT3elt1u/jOuKRp/eSzJt4hvy144Y8LBDFdfL7hR5xfp9SkV7ZI0jPExQ8jLg5s9f7smfumqbeupUOT+lqMsWrATX33N45+Go2lgxG78Kh1yN6k99tefhT8FY6ushzHX7LFGPfuUNG7GsP2Fxeh5cyMwj8jMak+nkBcrY5lXRsufTq7W/smxxbdt1bb8vyWxsdg4IWau0NMnZOc0cmhASuVbsUUNgXa3VJkPu+UxpSzHPP8AYO3rrU8bT7+IYuF65vbkEQn7UXBVFuP4qhzYDm1lk4UEKSIr2+ndD6s3npTseEEJwFTAUGehfjeJ5uSV4G4upxnbOBRpPxN6EdPkg8Jj/aevuIsBUpXdBF9+y2Js/80oyB6iJhzihx9+AEy7ybAguE9pBf3/8DaJLxP1jJdFbr3b2KoVmJdH0s6AtNzImspaaJE=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(56012099003)(22082099003)(18002099003)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?RlU3S1QzY1kvbnRzcE9sRE9vbFYwU2gvcXlQTTJRKzMxUHJON3RWVXE4YWs2?=
- =?utf-8?B?R3lNbGQxVnB4OWVVY09VZHdFNU5MVmNjK05tMkUxc2NSY2x3bTE4dUkwNnBD?=
- =?utf-8?B?TFliWmFIdUhUUHQwTUszMnd6aGxHVGZCMjVaNWZRUjZsRGt2V0VRV1RlUzZE?=
- =?utf-8?B?M1hlQkhaSE5uSGR6OUhDcmtvTjB0K3M4OCtuR2x3ZUNRKzdsY3U4OUdVb0E5?=
- =?utf-8?B?NGJLQ0xBS0ZxMmVUYjR3UTc2RXhjdElTV3dTeEZwRjJXRXUvYnoxRHhwT1BE?=
- =?utf-8?B?T2hEZ1J2dXF1OE9hcVVPaVR6ZzZueU1xZjZzR0FwTkhzR0lmblFLTldSR212?=
- =?utf-8?B?K1dmS3A1S3pLRi9rcmlZbzRCUVZWdjIrTGl5ZnhhM0FkRlZFbk0wYWRiK0FX?=
- =?utf-8?B?N1Y4Q0NBb2dGN3pGb2NZeVVZMXVNUmxqZVh2dWhoWGJJYVAyT3REUDNKYnQy?=
- =?utf-8?B?RXFGSXM0OHN1d2FsRXlrZDRvNDZmVHQ2a0pMaTJUNGlyam83N3NsMjVBemdD?=
- =?utf-8?B?Q2dvS0JaZ1JoR2V6THNMcWJKRWNpQ0xhOE9UenkvZEtHQ3JYbnJPaWxKL0Zh?=
- =?utf-8?B?bWdTQU9xUHl4RmVtZEo3UFo1Nlg5WGZWeDFGaWMvY3B0L1R0eVVYYmFSRk1y?=
- =?utf-8?B?T3R1c3Jucno3S2hYL01tRG9tZVZReFVhOTR4WVBscVFzS2JNbUZiWXBmemF3?=
- =?utf-8?B?eExNRGh5Vk5rSXdBVzFTd1BqRytGd3FxMzJ0T1dNVzFyeGcvRk9nM085bDI0?=
- =?utf-8?B?d1p2Y0NhTEJQSlZwWWxPWnludmZDdExOY0ttTDNrMDNydmVmY2RWSFNWYXY4?=
- =?utf-8?B?MXdyQzVvdnQwRHRiSERJcWpRdC9rUUxPL1NTRmNuWlZ3SWNHeDZ0MXk4eVd6?=
- =?utf-8?B?WFB0enV1T09uTXkrTHhtY2JMbm5yQzBiaWg5YXhwNHRuazU4emliajk3eS9T?=
- =?utf-8?B?OXNwZWI5RHFOU1pqWFBudDhzUEtzY0JUYUU0YXlmVnR2MmVic0V0QVZGelpq?=
- =?utf-8?B?cGZpWERBWW5uSkV5djUzcElKemNneWJQaTFOOUpra0NQa05uUHlzSnMrYzVa?=
- =?utf-8?B?WFpzZ052ZHlJZmpaOWJWQjQ3dFJCMERvY1RZMXpJQ3ZLWDQ2b2VlakN1UFps?=
- =?utf-8?B?RGFwS0R0L011eDRXMUZwNUtOTlNpcjFsdU91YklSOEdFaHhPVnJyNzBEQ25T?=
- =?utf-8?B?Vlc1c3FpZ1JndzNYZFExU1pHN0FycDhPWFpKY3dFYlRsOHFXc0hKMURMWFMz?=
- =?utf-8?B?VkRGTEhNaUFzOUpLUFI1L09iNktYMlpzNDBaZTdxWkwxY2RrQ3ZpQnZHcUV0?=
- =?utf-8?B?bUtBL3Z6QXNCWTdYOFhQUWZhUWZEWDZVMzZBMktCaDg1NGkwTjkwaFRzNkhw?=
- =?utf-8?B?bzNzbHpjZHNQNHhKRFhJV0ttcno2VlIwNENzbmRKWlNZd3pKRWNsYlRwVGJN?=
- =?utf-8?B?aHVLL0dQSFQvSkZZZmZyYUdUNVRvQnQyN2lnYkVMa1hlbDdoQkR5b2dFK3NJ?=
- =?utf-8?B?di9kWGhXL2paVGVMWkQrQlZFSWRIbFI1SVNrdGJQVEV4RDRvSWcxaTdwNTF4?=
- =?utf-8?B?YnlPT3RqNUZuNGpPWkpjTFNYRjkrUGl6MDg2Mit4YW11QjNSQisvRVZPdndz?=
- =?utf-8?B?M3E2RlViRWdxcnZXc2doMERDSGJsUVJTM3VFbDdQS0VpU1BMUlJOZTdXdFRm?=
- =?utf-8?B?OWRhNUl6UXYrdkt1Q29JTVQ0bE5XRFZrZ1ZVVVdFeEVSbWdpUFoxa0ZQQ09X?=
- =?utf-8?B?NGhCU3BmYmNlVmZqQXhObTVHcTlyN2JNSVE1NENERkk0MzBzTUlWZmxFRERY?=
- =?utf-8?B?Y0JnOEhRLzkxZFNPdmRhMHByY2pCMUxOWFZib3VTb2FkNnN2dHV3QmhNZzF0?=
- =?utf-8?B?eElEY01ZMEV5Ti85Um8xSFg3ZEgxQnhRdDhWcmVONnM3SUFQaFhveVpmenA4?=
- =?utf-8?B?UEFWeFZYTG9Xa2pMa0Y0RkRWb1JPd0pDd3ZJenM3eDJBNGQyZVByVHNNT2lM?=
- =?utf-8?B?Q1NobW11TnRQejhCS0FCZjE3bnJUcElUeGtwNmRQNzNoVnBWY1cyVVlYbW5w?=
- =?utf-8?B?bVREOERuV3RTL3A4QTMxVjBCbG1WdlhFM3pPSnJ3Q0pNcFZieG4rQ083MUdi?=
- =?utf-8?B?a1pmL21MY3pyK1lYRmdEa1BQRDlkZjVGenMwZFlqZ0pxSDdNdkMrcmxrZUli?=
- =?utf-8?B?bzdzNHJXOXRIczNSU0NLa2M1S1lLOUxVa21XYzNPTVZXVm5yWDFNMXI1dzl2?=
- =?utf-8?B?d1c3Y3UvSFVEZjROOGZva05RYzE4QmZBNURCdEpHSlQxRlNYd3dzeGNKQytM?=
- =?utf-8?B?T2NUanhma0ZIVGpEbDhLOVQ2ZlNGRUVGN2UzRTVRbTMrb1haWDFtQT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4FE339DBD8
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 15:14:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773674071; cv=none; b=idB6QjfdahM7qt15OG7QNKqCB75mgEXyLxcd40526lkEI97Uw+oXOJPh6FrbQMtN7r72QjUd0wqlclbBG3WALxGTUk1q7I9UZrziV2jLcUnzAdZYe1Au/YFy8Cq4Y03ryjnwu006gwRXwGXhC2D8ezU8WSTHtkVgodsGSPnvbTU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773674071; c=relaxed/simple;
+	bh=qpG/1vY4dOiYQwru9PU879QJPd/QPvUcZPRbRx5ZIBs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fkNIPqEiLc7IpBChZ4Zp9AwnBhlwcDki7AGsN/VcTOn9wuG7V3QRDyOJXUlFDtyj5cqB9Af7Ugyv6VlEE406jpzBn/IWyIx8WfSVaE8tPwiQoo42yBpchlAEuRqqQHZBET+2nomFCBMDIjiJ/wAGSJvFAk05SpkBOcPsLwOj91U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=uZ6QC/3h; arc=none smtp.client-ip=209.85.210.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-7d1872504cbso4739145a34.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 08:14:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1773674069; x=1774278869; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=n8x5eATN23jYRz4BCnmX7sl/BaRv2gWsraoFkpJIVsk=;
+        b=uZ6QC/3hRLxPpUC2v5S+9lTZfJ5zJxZrBlEVIeiGn62i7cOZh4SeCCIlVWGPhLiV/a
+         f/vYrEQOvlP14nShPxAUyw/m7sZRVFHTXeoByLlQkhJZ7zWMxbJouuHRvt2tHYn+3evi
+         dnd8SUvD+Pu7I41TIIpJr0mGJo5YNsbSKAxYbdnn/CtYBh2IyGZT5OpT7xjc2G9iDxDW
+         htNR0judOgV9FZnnIAELB86uEIND8QGatBe/7lM4Jlety1glViZuiCt0ciV6vvHhNQ4y
+         NBDhuxhpxhgisipLUME6p3M+yrihCkh6WCktdg8HjKirceGM1C8EEk2YQldnU52vZ7Ds
+         Iakw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773674069; x=1774278869;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=n8x5eATN23jYRz4BCnmX7sl/BaRv2gWsraoFkpJIVsk=;
+        b=YuxhVTJJ7svQ8xvCpyETrlASTAGVhj5884oFyuaWrli/FvCQ/6ifX2knsILxSxIdzw
+         magO4pLJkwMkTP9kp6fZWco8+AUwmCW1ph9FZiSVVM45N3rlxRJYegQ1Taa3nJSY8iMZ
+         A4ty1ul6P1pcc+iLOv2cykbIMRXFknWylMlViK0FIiMsKKsWXNklE0Z4VI2C/W+ZNvp5
+         VS8sxEWJRJrPqF+vhjQjHo22+alOheB1AwaSsgAsX0ouNFbB7dhkt6YAAEC1d/emVCA2
+         B19Fb5g32HzaVt8+/u6On79mU/Cm6vBt0PaS8GL9OauFRLOgp16Fd+3whw4ybBYsSLNo
+         unkw==
+X-Forwarded-Encrypted: i=1; AJvYcCVvDYMjzahmZTZiB4jLYOK+5glnr1Fwi40pjf01+N3CxCNLVdN2zLvyMdbQK8fWl0IbFcXqJYuOoW4y@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCHNROSIjhD+CDWyx/W/lWCAqqh2NGh+vmWD/UZs7FWLL2J055
+	zQRULhUytL4+PGefZZ+3TL9qK+LUZkHswvE/efLOg+WQ48ItydkrLRvu6+XHXl0CNjhAl4/OQ8C
+	PF6Zd
+X-Gm-Gg: ATEYQzyG/YosfX4dowDtyL0O+YNU9fdQ7MEey9DpX2L3gE6UmmDYH8Ru2LWeFDaMbwT
+	YNWZxwAmiDtfOGIQsj51NXNuOlLG5sGDUlf5xR/YRjGyw97eyV+s3VxCegPMekgJH+jpjstATkE
+	vEbFT43DCuI8gIwZh+2ZV0gjrJrPEZMZJsc5EbUc1IwxTKNf4ZlsS2MlE/BgA91Lp1UPquDaZSd
+	z8Z9wTUYrQvaTas9pW4TNkwJAt3WCeDuVsBQSjoeeYUnKhfILTczENAp1jlPHS3/PAPpNih8Dyx
+	DN9p/PWy/cQDGm62vlvWTXnp7jnlqpQaFCVufglrZZcFoq2LQr9g57+2mLoG9d2NegqoJumDxzR
+	DHQdKQ15ANIYhbRgj9Gt46MwJV3Jf+yJ9T6g5ceT/GKMZThFmjJxz4UOh3xFgq+ki5je8v/HLJi
+	aB1TDp1n7K2XFMecOyuvMQ+NHvOnd1sv35EfiV2bmCnhUdXUDl/ZGyYyBlYMouDER3jkbT7Ii/q
+	A==
+X-Received: by 2002:a05:6830:6519:b0:7d7:4c03:d4e2 with SMTP id 46e09a7af769-7d776d1c0c6mr11002771a34.18.1773674068556;
+        Mon, 16 Mar 2026 08:14:28 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:e504:a034:1152:a664? ([2600:8803:e7e4:500:e504:a034:1152:a664])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7d76ae9a51csm12527858a34.23.2026.03.16.08.14.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Mar 2026 08:14:27 -0700 (PDT)
+Message-ID: <04257601-5ea2-4cd8-8170-29decad13861@baylibre.com>
+Date: Mon, 16 Mar 2026 10:14:26 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 194ab2c0-5aea-46a5-aa3e-08de836e7b49
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Mar 2026 15:12:47.0780
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Uh5CIabt4kkSTzhhMKPpENHmYWuJlvI03JJ8WDWyZSX8MvLH+KkGs2aZTeSsI59uXoWfnMmGqJ2YNFnwz3FShz15tHRmVzsjitNslP3IrVs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS9PR01MB14184
-X-Spamd-Result: default: False [2.44 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/4] dt-bindings: iio: adc: add bindings for AD4691
+ family
+To: "Sabau, Radu bogdan" <Radu.Sabau@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, "Sa, Nuno" <Nuno.Sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>,
+ Bartosz Golaszewski <brgl@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+References: <20260313-ad4692-multichannel-sar-adc-driver-v3-0-b4d14d81a181@analog.com>
+ <20260313-ad4692-multichannel-sar-adc-driver-v3-1-b4d14d81a181@analog.com>
+ <a1824f39-3925-4e94-ac98-52dcdfbaa0d2@baylibre.com>
+ <LV9PR03MB84149CBDC5DD03EDAF554136F740A@LV9PR03MB8414.namprd03.prod.outlook.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <LV9PR03MB84149CBDC5DD03EDAF554136F740A@LV9PR03MB8414.namprd03.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
-	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276263-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276264-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[analog.com,metafoo.de,kernel.org,gmail.com,pengutronix.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[baylibre.com];
 	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[mailbox.org,lists.infradead.org,kernel.org,glider.be,bp.renesas.com,gmail.com,vger.kernel.org];
-	DKIM_TRACE(0.00)[bp.renesas.com:+];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[biju.das.jz@bp.renesas.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:email,bp.renesas.com:dkim,TY3PR01MB11346.jpnprd01.prod.outlook.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4BDCA29C1A6
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,baylibre-com.20230601.gappssmtp.com:dkim]
+X-Rspamd-Queue-Id: 3238B29C212
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-SGkgTWFyZWssDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTWFyZWsg
-VmFzdXQgPG1hcmVrLnZhc3V0QG1haWxib3gub3JnPg0KPiBTZW50OiAxNiBNYXJjaCAyMDI2IDE1
-OjA2DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggMC80XSBhcm02NDogZHRzOiByZW5lc2FzOiBGaXgg
-UEhZIEMyMiBjb21wYXRpYmxlIHN0cmluZ3MNCj4gT24gMy8xNi8yNiAxOjU4IFBNLCBCaWp1IERh
-cyB3cm90ZToNCj4gDQo+IEhlbGxvIEJpanUsDQo+IA0KPiA+Pj4gSXQgZG9lcyBub3QgY292ZXIg
-YWxsIHRoZSBTb0NzL2JvYXJkcy4gSWYgTWFyZWsgd2FudCB0byB0YWtlIG92ZXIsDQo+ID4+PiBI
-ZSBjYW4gc2VuZCBuZXh0IHZlcnNpb24gY292ZXJpbmcgYWxsIFJlbmVzYXMgYm9hcmRzICsgYmlu
-ZGluZyBjaGFuZ2UuDQo+ID4+IElzbid0IHRoaXMgc2VyaWVzIGVmZmVjdGl2ZWx5IGV4YWN0bHkg
-dGhhdCA/DQo+ID4NCj4gPiBZb3UgaGF2ZSBjb3ZlcmVkIG9ubHkgOSBTb0NzIFsxXSBXaGVyZWFz
-IHRoZSBwYXRjaCBzZXJpZXMgSSBwb3N0ZWQNCj4gPiBjb3ZlcnMNCj4gPiA0MyBTb0NzWzJdLg0K
-PiBJIGFsc28gZGlkIG5vdCBtb2RpZnkgYW55IG9mIHRoZSBZQU1MIHNjaGVtYXMsIEkgb25seSBm
-aXhlZCB0aGUgZXJyb3JzIHRoYXQgd2VyZSBkZXRlY3RlZCBpbiBuZXh0IGJ5DQo+IHRoZSBleGlz
-dGluZyBzY2hlbWFzLiBNYXliZSBmaXhpbmcgb2YgZXJyb3JzIHNob3VsZCBoYXBwZW4gZmlyc3Qs
-IGFuZCBhZGp1c3RtZW50IG9mIHNjaGVtYXMgYW5kDQo+IGZ1cnRoZXIgZm9sbG93IHVwIGNsZWFu
-IHVwcyBjYW4gaGFwcGVuIHNlY29uZCA/DQoNCkxvb2tzIGdvb2QgdG8gbWUuDQoNCkNoZWVycywN
-CkJpanUNCg==
+On 3/16/26 7:39 AM, Sabau, Radu bogdan wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: David Lechner <dlechner@baylibre.com>
+>> Sent: Saturday, March 14, 2026 5:30 PM
+>> On 3/13/26 5:07 AM, Radu Sabau via B4 Relay wrote:
+> 
+> ...
+> 
+>>> +
+>>> +  clocks:
+>>> +    description: Reference clock for PWM timing in CNV Clock Mode.
+>>> +    maxItems: 1
+>>
+>> I feel like I asked this already, but which pin is this clock connected to?
+>> It sounds like it is the clock for the PWM, not the ADC. So it does not belong
+>> here.
+>>
+> 
+> The pin is connected to the CNV pin of the ADC, which in CNV Clock Mode
+> replaces the internal oscillator. 
+> 
+>>> +
+>>> +  pwms:
+>>> +    description:
+>>> +      PWM connected to the CNV pin. When present, selects CNV Clock Mode
+> 
+> ...
+> 
+>>> +      Two cells are required:
+>>> +        - First cell: Trigger event type (0 = BUSY, 1 = DATA_READY)
+>>
+>> I'm wondering if we really need to specify the event type. For interrupts,
+>> we we just specify the pin and not the function when the pin has more than
+>> one possible function.
+>>
+>> I know that we have done something like this on some of the previous SPI
+>> offload devices. So maybe there was a good reason for it. Or maybe I just
+>> had tunnel vision at the time.
+>>
+>> I suggest we try implementing this with just one cell that specifies the
+>> physical pin. In the driver, when SPI_OFFLOAD_TRIGGER_DATA_READY is
+>> requested in the driver, we can use that to program the function of the
+>> pin accordingly.
+> 
+> I agree with this, since only DATA_READY will be used anyway as an interrupt
+> in CNV_CLOCK mode.
+> In fact, I am now thinking of removing ADC_BUSY entirely, since its used in
+> just two cases, which none of them perhaps make sense :
+> 
+> 1. Manual Mode,where ADC_BUSY is selected for GPx, though is not used as
+> an interrupt or 'feedback' of anyway.
+> 2. Autonomous Mode, where in theory it would be used to see when each
+> channel was sampled, but this mode is used for just once channel single
+> shot reading, so again, not actually used.
+> 
+> The implementation would see the enum removed and just initializing
+> the GPx pin used as DATA READY using a macro. 
+> 
+> What are your thoughts on this?
+
+
+We should try to consider every reasonable possible wiring situation.
+The only case I can think where the devicetree might need to know the
+requested function in addition to which pin is if the pin is wired to
+something not controlled by Linux. That is an odd enough situation though
+that we could defer considering that. I think we could add support for such
+a thing later if we needed to without breaking the existing bindings.
+
+So hopefully I am thinking clearly enough about this to say, yes, we
+should just go with #trigger-source-cells = <1>; where the cell is the
+GP pin number.
+
+> 
+>>
+>>> +        - Second cell: GPIO pin number (only 0 = GP0 is supported)
+>>
+>> If GP0 is the only possible pin for an output, we should omit the cell. If
+>> there are more possible pins, we should document them (even if the driver
+>> doesn't support it).
+> 
+> You are also right about this, other pins can be used as DATA_READY, and so
+> the DT should perhaps indicate which of those pins is actually used, so
+> that we know at probe (gpio_setup would make a comeback?) which
+> value should be written to the GPIO registers.
+> 
+>>
+>>> +
+>>> +      Macros are available in dt-bindings/iio/adc/adi,ad4691.h:
+>>> +        AD4691_TRIGGER_EVENT_BUSY,
+> 
+> ...
+> 
+>>> +
+>>> +            clocks = <&ref_clk>;
+>>> +
+>>> +            pwms = <&pwm_gen 0 0>;
+>>> +            pwm-names = "cnv";
+>>
+>> Should we also include the trigger in this example?
+>>
+> 
+> In this example, I would say this is needed since the CNV PWM is
+> not only starting the conversion on the ADC, but also controlling
+> the sampling rate, making custom sampling rates available in
+> comparison to the internal oscillator used by AUTONOMOUS.
+
+The point was to have an example that shows SPI offload usage.
+I assume this would be more common that PWM without SPI offload.
+
+> 
+>>> +
+>>> +            interrupts = <12 4>;
+> 
+> Best Regards,
+> Radu
+
 
