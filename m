@@ -1,119 +1,173 @@
-Return-Path: <devicetree+bounces-276002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276007-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iGV7BSG/t2n5UwEAu9opvQ
-	(envelope-from <devicetree+bounces-276002-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 09:28:17 +0100
+	id kIUADeHAt2n5UwEAu9opvQ
+	(envelope-from <devicetree+bounces-276007-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 09:35:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48BBC29622F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 09:28:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E838429646D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 09:35:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C59623004F1C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 08:28:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E07B8300D17B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 08:35:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99579372B41;
-	Mon, 16 Mar 2026 08:28:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABDEE381AF9;
+	Mon, 16 Mar 2026 08:35:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=psihoexpert.ro header.i=@psihoexpert.ro header.b="qu6LNeAC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YutBcPFw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.wiredblade.com (mx1.wiredblade.com [72.51.58.38])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E29DE371D19
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 08:28:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=72.51.58.38
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87A31351C0F;
+	Mon, 16 Mar 2026 08:35:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773649693; cv=none; b=u/uX3mXBjLFQOLpqoYY/FCiecJmOsXC+drFvyFxN6jz6D6Ga3RWYIx94ijQePHLP5X7y4P4+T8j2CAUM15f4/uy3JoOYl7fqu5T/qyAOlrBdwd4r99UB3GIPyRqVa/gw7MyvPIA0zTv+5MYeGkN7pIV1tVNNF4F6kytGlG45aS8=
+	t=1773650140; cv=none; b=A8WlPGe2NKYiqmGPrlDXM1dyrbUmViY/J+DC/MUW8zPuOoZs0I1+M86ssl0ROebnmES27Gl6Nka6nC9foYFPhjlNdQAX53UlBIqQs26CGswZg4Q44qC2Kgc6OWg6wCx8fxfSX2GXob8XbqaK47UOjD/krBymh/Pbr7j6b4zpkrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773649693; c=relaxed/simple;
-	bh=NIUimPRT5oygX+q3tyNvR8ZhzsTTlQvIVKmcjZqbAFU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=c0BcGLNlBR3onRmR7f3CcgXoL5eXrkJTm+P8OoBtrmQ7hn+lJ7YCznm8KjVbMSWKSVRHJxteRsGq/5xnvP7ORUfjSfz1+JQ6lFRbi+xSkAL8PUne8S1TjzF6CiIt6FbVtCfCK4hebaC7bZtmJfalZajybi+6NiGddB8uDgq8YCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=psihoexpert.ro; spf=pass smtp.mailfrom=psihoexpert.ro; dkim=pass (2048-bit key) header.d=psihoexpert.ro header.i=@psihoexpert.ro header.b=qu6LNeAC; arc=none smtp.client-ip=72.51.58.38
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=psihoexpert.ro
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=psihoexpert.ro
-dkim-signature: v=1; a=rsa-sha256; d=psihoexpert.ro; s=dynu;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding;
-	bh=6nhRXnzThfsFauagA/B8xdCo0uD0gQhmHKq0z2f64Q4=;
-	b=qu6LNeAC1YkMzADOSQBOnmb5wE3zI8C7DPUUcWioVXTj0sENVOTdd0tVcsHv/wpMow2yCJQnNH3e+cqTJ6PKWd5SZE5W8MwOSXIHSgg0ygQCiesvXtNdTSK2dcqzEXLf9JaJx44/KYxhk32BrD2/KL4pLIXsaNNHrLQDplUKCTeMXG2rZ030uZxx+Xehwf9PxUQErEn+GyEAdsiNDkAmkbxiQOMRm7Coq5boFkATlqBQHakawQkw3nI3Z8
-	SkSLvYx2rf+vee33ZlCWL+QAhEJ7GwIZzOERYv93MuaVmDtbxqiisCaVhtyqUD8gGgONzBs8zJHCSivVDooAvNAMXkwg==
-Received: from TkB (188-24-192-137.rdsnet.ro [188.24.192.137])
-	by mx1.wiredblade.com with ESMTPSA
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256)
-	; Mon, 16 Mar 2026 08:28:01 +0000
-From: Marius Dinu <m95d+git@psihoexpert.ro>
-To: devicetree@vger.kernel.org
-Cc: Marius Dinu <m95d+git@psihoexpert.ro>
-Subject: [PATCH] arm: dts: rockchip: rk3288-tinker: add eeprom node
-Date: Mon, 16 Mar 2026 10:33:38 +0200
-Message-ID: <20260316083338.1242-1-m95d+git@psihoexpert.ro>
-X-Mailer: git-send-email 2.52.0
+	s=arc-20240116; t=1773650140; c=relaxed/simple;
+	bh=eAe3vFiVRXuKk/3ha0qkCgL/xapdr+gWemxLChmfyEQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PInDv0kUmdMi+IWs6xhZewK0tAjvb6M0YVagIkbpAbXsdLXtckEJgLqT9rWkJ2WRx15MTJQFPZzOCP9CbSFZuQc5TFEUvWrjR9XXeJhFsk/t2iHT0TrzkIJpqK6++HTSRCR/mJX2ykigNnwKzpD/zxo+9ytKKcTPN5DT2exPDKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YutBcPFw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AF79C19425;
+	Mon, 16 Mar 2026 08:35:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773650140;
+	bh=eAe3vFiVRXuKk/3ha0qkCgL/xapdr+gWemxLChmfyEQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YutBcPFwm5ve5/s79es72nYp0MsWCNtrwYsiwZxE/ggOuW2x1dI5n2cA7iTQIskzd
+	 zFgDl77a73MA+isNKsYN/n4Q1g9f6qayK7LLiuBIAI8qZ/RLUJAt875HYXSaFw5fK7
+	 mYMX0RHT5bXyw/w6iQH8iBqLS5YLZt9F7g0PdNhRYIvlfchfSXvjyG//7sMrrc2ilE
+	 VAv2r4ujffJC2C4Hm9a4nes2ujx+Ibn30abDBqPmjKG18+t4Egk/ZhRdEg77oIC4GA
+	 zCe3GB3dU7eDD6Ze1RfJ+VbiYb+7sYTLkEdmUaNI0QRWM26U7jgpwfD0YpHdoBKjsu
+	 6VgDQzzKbLcDA==
+Message-ID: <bbfa2a62-7113-433b-91ad-0693ed6f8e36@kernel.org>
+Date: Mon, 16 Mar 2026 09:35:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-1.66 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] dt-bindings: trivial-devices: add
+ spi-miso-mosi-loopback
+To: Francesco Dolcini <francesco@dolcini.it>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-spi@vger.kernel.org
+References: <20260316073547.11437-1-francesco@dolcini.it>
+ <20260316073547.11437-2-francesco@dolcini.it>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260316073547.11437-2-francesco@dolcini.it>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[psihoexpert.ro,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
-	R_DKIM_ALLOW(-0.20)[psihoexpert.ro:s=dynu];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276002-lists,devicetree=lfdr.de,git];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276007-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m95d@psihoexpert.ro,devicetree@vger.kernel.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[psihoexpert.ro:+];
-	TAGGED_RCPT(0.00)[devicetree,git];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.0.50:email]
-X-Rspamd-Queue-Id: 48BBC29622F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[toradex.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E838429646D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This board contains an EEPROM that holds the CPU serial number and MAC.
-Recently, U-boot started using the dts from Linux kernel instead of
-their own. This eeprom node was missing here.
+On 16/03/2026 08:35, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> 
+> Add a compatible to describe a single wire loopback between SPI MISO and
+> MOSI signals.
+> 
+> Link: https://lore.kernel.org/all/20260310133254.GA51497@francesco-nb/
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> ---
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index a482aeadcd44..2cb973c157f6 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -432,6 +432,8 @@ properties:
+>            - socionext,uniphier-smpctrl
+>              # SparkFun Qwiic Joystick (COM-15168) with i2c interface
+>            - sparkfun,qwiic-joystick
+> +            # Single wire loopback between SPI MISO and MOSI signals
+> +          - spi-miso-mosi-loopback
 
-Signed-off-by: Marius Dinu <m95d+git@psihoexpert.ro>
----
- arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+If you decided to go against my approach, then at least document it in
+proper place - incomplete-devices - so this won't be ever used in DTS.
 
-diff --git a/arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi b/arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi
-index 8e27a20f2845..7e16022c7d9e 100644
---- a/arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi
-+++ b/arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi
-@@ -344,6 +344,11 @@ regulator-state-mem {
- 
- &i2c2 {
- 	status = "okay";
-+
-+	eeprom@50 {
-+		compatible = "atmel,24c08";
-+		reg = <0x50>;
-+	};
- };
- 
- &i2c5 {
--- 
-2.52.0
-
-
+Best regards,
+Krzysztof
 
