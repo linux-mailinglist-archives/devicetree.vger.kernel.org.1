@@ -1,344 +1,324 @@
-Return-Path: <devicetree+bounces-276356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276357-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IBAmLBpGuGmLbAEAu9opvQ
-	(envelope-from <devicetree+bounces-276356-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 19:04:10 +0100
+	id 0BHxHdlGuGmLbAEAu9opvQ
+	(envelope-from <devicetree+bounces-276357-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 19:07:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DE0829EBF8
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 19:04:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE8CB29ED28
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 19:07:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 62C89304E0E7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:03:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3A898305308A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:06:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E605E33CE88;
-	Mon, 16 Mar 2026 18:03:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ED9F33FE27;
+	Mon, 16 Mar 2026 18:06:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="d3JbbJl8";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DzHFExOW"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="qO6Lk7rT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0390189F43
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 18:03:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4DCE33F8B2
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 18:06:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773684183; cv=none; b=X2E65wv/bRBCS2DE4o+/QLO0di7WXMO3mfSBeG3KW7mFeSgOOJ6a8D631yaYPVeFskf34iYVK0LSfUGQ3BkXEL9asNuv18Mnv4311EmVOLORHiFX9COjZRds1gNkffXq1GSeZb0JQhqNi0PqJYTOsm3E3WtMTxQgM+yQmapOiPA=
+	t=1773684397; cv=none; b=lKLq0GGsrLAzDf0xitML7aFmpPl3yWkdJYkMdZeMAJXxTmFmI2CdTvQHNcgAJh33cxosPMZHJPP/m+bMM/McPNewoj1A0M2vssSVEYTFoZdIBrt2TPr1SVzCZF08EDe8yN4V3RyI3pf9WH3E+JFligTyUTLHgNh8Fy+jLOZ/vc0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773684183; c=relaxed/simple;
-	bh=foVsK7nMMmhASaq8fWmeVs0sQWwNLIUE11ymwXjj4is=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=esEMkSDVaBNL1zp4Ho6HjLGwriQASdXkVLmKgXehon1SPqT2QT4+01adgtRuWKkcSnvq/qJTXbefh5vQ9pxM06QN4negMRdhwU2Y1TXKMIQAh8HLS1teC3iDdUMzzvegEbrAGonJ07h0r/d5gRmG0xFhe1cPYy+/ua/bdRSLqkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=d3JbbJl8; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DzHFExOW; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62GHX0Cu1428813
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 18:03:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4+1ZElOXRArQIK1Uk5qMYFPmyl0owddsonq4f6CJf0U=; b=d3JbbJl8Ze9AXpjE
-	cUjkIl+gjKM/Jlz1RFM+MPMe34aLN4ILVJcUvhuvK7VaWXXaCJfAq/iC+5ngzj4L
-	fgWGqLXPsRVggZfPsv+G88xl8Y3+dRncxBO6e9VHaz4jZnruG8hA9TGmnrI5lqtx
-	GtAjZIcXsxRWfISvh44j2p7FCiKFwIyGjeOTGJGaxM4cvFEl5P+jBrpBa+1s0Obp
-	02R7GaawqU4FcLqDtk6LjoL8j5L39PXLL4lwa0ob1+e0xzP9T3ykAo0DzG9EfmoO
-	ZDFuG2rlrbIId9u3HIfra8gHLtq0OuyjA14PUMYBZcE9lMIcBzWKbiLhYxEoUIJD
-	pRCocw==
-Received: from mail-vs1-f69.google.com (mail-vs1-f69.google.com [209.85.217.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cxh999fm5-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 18:03:01 +0000 (GMT)
-Received: by mail-vs1-f69.google.com with SMTP id ada2fe7eead31-5ffd5dd4c75so426492137.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 11:03:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773684181; x=1774288981; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=4+1ZElOXRArQIK1Uk5qMYFPmyl0owddsonq4f6CJf0U=;
-        b=DzHFExOWsXQ1Lb89uRt0mrXe6QgvuhZgKEDz2+q2OL1xusDLJkDtnB8wSTGeX6cMeT
-         wWl0z9eJZWH2JovD44OSR1MF6acOXBG4I1TJpEwV75V15sSZk7vD3Tr5dcpttX1gfOXK
-         Yi4ctTnuGCmaov7v53WwpT/Y/DTJEtddUqAthpCmWlBs6dMvs0InT6xRjNP2cSpE7uC2
-         oDAn9S7QMfH8hlwxz2tfcJQh9bC6UEGtoEjVvHlbuXgArjRuo+QQrSVpdnaWXbdJSdPh
-         HgSuqWGUkls05Mhi6YkMSvEp/sMXpK4qSCS34BL3e5NyDtQRY2K1mv6nM4+3rJZ44jrD
-         5KYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773684181; x=1774288981;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4+1ZElOXRArQIK1Uk5qMYFPmyl0owddsonq4f6CJf0U=;
-        b=iao4V3ZZuyNumiEztW47fgIJjxrWL470RMw2g76rgQAH7v+mVys/wRNc9JK9IZoLF3
-         ISuAqYArgPoAxW3eCx95bIgsnNdcpqL6o08OxTuxw7Y19RDec6jQk7Yij/OgT8GLG05v
-         iLVjc/cHiC8vPek47J4SQVI76mOXC+q6sIyduy+cZCizC958v2Rn9UeDD7tu0kpewT4w
-         ZWH2Ud5F+1U3xxSxbiFklB/knXcRn9fVfKZO1hBs586NK+KWTq43rEovUBiP06n7SCrf
-         BwJaqK3OfwZq+ujUiw/jNtoVoHyw/bN387MpHzYrRORwqfJorsenjLq1OYZUQAHP/EJT
-         fNZA==
-X-Forwarded-Encrypted: i=1; AJvYcCWgUsAEj52Yg+ojJzSAmxRMro8vetf3S7ovgogAUvKBHYg9nPLd2bcFpvDD3ErPjk3u98KkiWDITyi7@vger.kernel.org
-X-Gm-Message-State: AOJu0YzA5rtb0t+Es2Ok4d+C9XK2976OpLXy7OKLEtiPltqU7ZUQzqck
-	0iyTTYR6d2ZONcHDuDWUY0AG2l8Fn0EpPGkPTio03qPvpA5nlG/g3H8uii8069zNxtttnFWkgKX
-	KCI54Y3sFY/BeKD4i1Z83mim5dEkrvJb7QCPbmxQk1hhwQiDQDLiIoHeMVJPB8h9O
-X-Gm-Gg: ATEYQzwNjQwMdB77dhJJcrjOsWfXABJ9isW1i2gm6rGxy8au7ZKYtHATxlguOO8LjSg
-	2I2I+iwr2sk1vitbl8VOIYSDn8ssLsRMoCcTNX1jzqHkIxaHT8RzVom/HTGV6CRTiE6xYBaTt0C
-	iv5JWDtgARX2Zq1NEGjbLeU5k1ntFm+DfAVkgo7YF8Xa6Iu2zM9293LyYgpb/+yYeWz9ViaPQ2d
-	X3keF3NPbPGd0TgICyaqAm0yiA6Rs+SnLL1PNB4DJXsuFVmRXWnSj5yBHjvR6wKXgxfhfYPrY4o
-	m0bcuCLQdzsvfj8SUMT9pOzYvlzbHamZJFePM5JjB4VakZzyPL+cyA+AZmyVj8KcXyZMPg8TulN
-	4nPoyT2iy6IgeHlybMeLT2XonY0a2Jhzigxwa6Yiu3zq4LN+o
-X-Received: by 2002:a05:6102:442c:b0:5f5:4d9b:bd67 with SMTP id ada2fe7eead31-6020e160bd3mr4707460137.6.1773684177870;
-        Mon, 16 Mar 2026 11:02:57 -0700 (PDT)
-X-Received: by 2002:a05:6102:442c:b0:5f5:4d9b:bd67 with SMTP id ada2fe7eead31-6020e160bd3mr4706445137.6.1773684165374;
-        Mon, 16 Mar 2026 11:02:45 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.219.94])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b41065f8csm17295129f8f.30.2026.03.16.11.02.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Mar 2026 11:02:43 -0700 (PDT)
-Message-ID: <138cc10a-b30a-4fcc-8401-ed8ac89ac04c@oss.qualcomm.com>
-Date: Mon, 16 Mar 2026 19:02:41 +0100
+	s=arc-20240116; t=1773684397; c=relaxed/simple;
+	bh=vsCerXvNI66p0WQN4f2HWtkZDjbz/hrQ/GAa3UbU95M=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=WUZHcZbGJnEUVCY98MRATOOS/9uOgPqLF9DCe+1dG3J8KAEyCUGAD6/v4h+8MEza2FZ793C49bh28QXVh/jpNxXQZdz0RelJXvfeze4dlAQ2WxM9Ek8VA2UvYNJoburyqfOCBi5iIHfInE6GY6mv7ojDDB7sbAo+fOg8lbCsX5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=qO6Lk7rT; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 1A579240101
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 19:06:25 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
+	t=1773684385; bh=w4aMMeXH0b7JgTSQ3j7crI/pRlF2UNUuOM0hPyY2020=;
+	h=Message-ID:Subject:From:To:Cc:Date:Autocrypt:Content-Type:
+	 MIME-Version:OpenPGP:From;
+	b=qO6Lk7rTUW3H0fPPJfL0YGhRHR1XTS90SrfRDYE8pBk9gt5ZhKNsQAfy69KXzCiao
+	 pjGRF3NZJtST7bhPpXSAMH/DrAAvN1ENGG+ZNaaGay7YhOoKiODycXsj6QWCqG2yRa
+	 dSkp3WxoDzxayQaYAEe362SdqM2jxkoD5sxPxIKzlD9QwZtGB6XxK/3yQz0o7OS975
+	 r2fFLZ1DvGEli+vPgFyP/m+GQwIBDjYIWpY+p8Z6G3IKZTJaxBq+AIoWoNzua6OdDc
+	 blIqYZ7il8b7kff3JP3SQ5CH8dNeALlsb4bUa7Xt+AniyB/FVn66MRVd3HE5JMBA0g
+	 miEXkT04RIr6Q==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4fZNM142Ltz9rxF;
+	Mon, 16 Mar 2026 19:06:21 +0100 (CET)
+Message-ID: <3ca65f7d0b00c93c91563bc29198f18d5a30eeae.camel@posteo.de>
+Subject: Re: [PATCH v3 7/7] leds: add synology microp led driver
+From: Markus Probst <markus.probst@posteo.de>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Danilo Krummrich <dakr@kernel.org>, Markus Probst via B4 Relay	
+ <devnull+markus.probst.posteo.de@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,  Miguel Ojeda <ojeda@kernel.org>, Boqun
+ Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, 
+ =?ISO-8859-1?Q?Bj=F6rn?= Roy Baron	 <bjorn3_gh@protonmail.com>, Benno
+ Lossin <lossin@kernel.org>, Andreas Hindborg	 <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross	 <tmgross@umich.edu>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Igor Korotin	
+ <igor.korotin.linux@gmail.com>, Daniel Almeida
+ <daniel.almeida@collabora.com>,  Bjorn Helgaas <bhelgaas@google.com>,
+ Krzysztof =?UTF-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Pavel
+ Machek <pavel@kernel.org>, Len Brown <lenb@kernel.org>, Robert Moore
+ <robert.moore@intel.com>, 	devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, 	rust-for-linux@vger.kernel.org,
+ driver-core@lists.linux.dev, 	linux-pci@vger.kernel.org,
+ linux-leds@vger.kernel.org, 	linux-acpi@vger.kernel.org,
+ acpica-devel@lists.linux.dev
+Date: Mon, 16 Mar 2026 18:06:23 +0000
+In-Reply-To: <2026031602-drove-timothy-1bb1@gregkh>
+References: <20260313-synology_microp_initial-v3-0-ad6ac463a201@posteo.de>
+	 <20260313-synology_microp_initial-v3-7-ad6ac463a201@posteo.de>
+	 <DH1YH0GO75H8.18YSW2VMKRB3C@kernel.org>
+	 <39f1c9bb0dbde9f1b60785f8e838289c888ffdb0.camel@posteo.de>
+	 <DH3KAWWLECYW.3VBH7PIE7ZE20@kernel.org>
+	 <eb2f7498c5f3247265effc47b3445a04ac71956e.camel@posteo.de>
+	 <DH3M1023PCBI.1HYYZU93NS1JX@kernel.org>
+	 <2026031645-unplowed-purist-9c4b@gregkh>
+	 <a4fb56d5eea790b51aa3623044e5d774a6bab47f.camel@posteo.de>
+	 <2026031602-drove-timothy-1bb1@gregkh>
+Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
+ keydata=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
+ jfGillcaQOqFZ3WwVqyzG1BUfTow==
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-akERDsl+g92JaDyAMR+U"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] media: dt-bindings: i2c: Drop redundant endpoint
- properties
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Tommaso Merciai <tomm.merciai@gmail.com>,
-        Martin Hecht <mhecht73@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Alain Volmat <alain.volmat@foss.st.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Dongchun Zhu <dongchun.zhu@mediatek.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Quentin Schulz <quentin.schulz@theobroma-systems.com>,
-        Todor Tomov <todor.too@gmail.com>,
-        "Paul J. Murphy"
- <paul.j.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@gmail.com>,
-        Marco Felsch <kernel@pengutronix.de>, Lubomir Rintel <lkundrak@v3.sk>,
-        linux-renesas-soc@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260316134533.56941-3-krzysztof.kozlowski@oss.qualcomm.com>
- <20260316135352.GA31616@killaraus.ideasonboard.com>
- <a429887b-13f7-4ba3-9260-ddae92adfe51@oss.qualcomm.com>
- <abg7rvczKjyIA5jN@kekkonen.localdomain>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@oss.qualcomm.com; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTpLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQG9zcy5xdWFsY29tbS5jb20+wsGXBBMB
- CgBBFiEEm9B+DgxR+NWWd7dUG5NDfTtBYpsFAmkknB4CGwMFCRaWdJoFCwkIBwICIgIGFQoJ
- CAsCBBYCAwECHgcCF4AACgkQG5NDfTtBYpuCRw/+J19mfHuaPt205FXRSpogs/WWdheqNZ2s
- i50LIK7OJmBQ8+17LTCOV8MYgFTDRdWdM5PF2OafmVd7CT/K4B3pPfacHATtOqQFHYeHrGPf
- 2+4QxUyHIfx+Wp4GixnqpbXc76nTDv+rX8EbAB7e+9X35oKSJf/YhLFjGOD1Nl/s1WwHTJtQ
- a2XSXZ2T9HXa+nKMQfaiQI4WoFXjSt+tsAFXAuq1SLarpct4h52z4Zk//ET6Xs0zCWXm9HEz
- v4WR/Q7sycHeCGwm2p4thRak/B7yDPFOlZAQNdwBsnCkoFE1qLXI8ZgoWNd4TlcjG9UJSwru
- s1WTQVprOBYdxPkvUOlaXYjDo2QsSaMilJioyJkrniJnc7sdzcfkwfdWSnC+2DbHd4wxrRtW
- kajTc7OnJEiM78U3/GfvXgxCwYV297yClzkUIWqVpY2HYLBgkI89ntnN95ePyTnLSQ8WIZJk
- ug0/WZfTmCxX0SMxfCYt36QwlWsImHpArS6xjTvUwUNTUYN6XxYZuYBmJQF9eLERK2z3KUeY
- 2Ku5ZTm5axvlraM0VhUn8yv7G5Pciv7oGXJxrA6k4P9CAvHYeJSTXYnrLr/Kabn+6rc0my/l
- RMq9GeEUL3LbIUadL78yAtpf7HpNavYkVureuFD8xK8HntEHySnf7s2L28+kDbnDi27WR5kn
- u/POwU0EVUNcNAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDy
- fv4dEKuCqeh0hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOG
- mLPRIBkXHqJYoHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6
- H79LIsiYqf92H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4ar
- gt4e+jum3NwtyupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8
- nO2N5OsFJOcd5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFF
- knCmLpowhct95ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz
- 7fMkcaZU+ok/+HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgN
- yxBZepj41oVqFPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMi
- p+12jgw4mGjy5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYC
- GwwWIQSb0H4ODFH41ZZ3t1Qbk0N9O0FimwUCaBdQXwUJFpZbKgAKCRAbk0N9O0Fim07TD/92
- Vcmzn/jaEBcqyT48ODfDIQVvg2nIDW+qbHtJ8DOT0d/qVbBTU7oBuo0xuHo+MTBp0pSTWbTh
- LsSN1AuyP8wFKChC0JPcwOZZRS0dl3lFgg+c+rdZUHjsa247r+7fvm2zGG1/u+33lBJgnAIH
- 5lSCjhP4VXiGq5ngCxGRuBq+0jNCKyAOC/vq2cS/dgdXwmf2aL8G7QVREX7mSl0x+CjWyrpF
- c1D/9NV/zIWBG1NR1fFb+oeOVhRGubYfiS62htUQjGLK7qbTmrd715kH9Noww1U5HH7WQzeP
- t/SvC0RhQXNjXKBB+lwwM+XulFigmMF1KybRm7MNoLBrGDa3yGpAkHMkJ7NM4iSMdSxYAr60
- RtThnhKc2kLIzd8GqyBh0nGPIL+1ZVMBDXw1Eu0/Du0rWt1zAKXQYVAfBLCTmkOnPU0fjR7q
- VT41xdJ6KqQMNGQeV+0o9X91X6VBeK6Na3zt5y4eWkve65DRlk1aoeBmhAteioLZlXkqu0pZ
- v+PKIVf+zFKuh0At/TN/618e/QVlZPbMeNSp3S3ieMP9Q6y4gw5CfgiDRJ2K9g99m6Rvlx1q
- wom6QbU06ltbvJE2K9oKd9nPp1NrBfBdEhX8oOwdCLJXEq83vdtOEqE42RxfYta4P3by0BHp
- cwzYbmi/Et7T2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <abg7rvczKjyIA5jN@kekkonen.localdomain>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=RJ++3oi+ c=1 sm=1 tr=0 ts=69b845d5 cx=c_pps
- a=5HAIKLe1ejAbszaTRHs9Ug==:117 a=gOEeR9iKwsj33Yj5oN/cWg==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
- a=6UtKDQ20m5PfihbUhRUA:9 a=QEXdDO2ut3YA:10 a=gYDTvv6II1OnSo0itH1n:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE2MDE0MiBTYWx0ZWRfXzhdkEhxue+2K
- S5EyZn2lTFV3b6/bgqMM2OQv+OSEPvFrXQZ+SYYw9rgVudRfrh4DxdWpyl20NeyjDRWd93z8IL3
- KzSI9qLd8babUr/BIWCaFN2F0Cp55rgri4tmOtO9gMIzUNMUoCe/TWn33YyrYE7/AigxCxpNg5o
- Cragft6lf2Eb6V3G9493Dr3tdBxghnv+NzM7FbFqwA2nBwpcChCd//TTtmkn4gwZ+GkBwXUqWLG
- liCC2P0MjKTq1vomQtltWxassTsfkkCg+2mvzw7n9fdwITs5tpSO7f0QYD6zuF9q30blKvP5TRP
- M2he2a8ed+it8DoHY+dwYtGKhhMVmppCPlM5CLKT2BTb77JCdWIPokCkqShciJlEFwGGu0HjkNx
- qVQX8r6U7jOYm6rgNv/3FMcAdVxPIJCnCHeyHCLNyYVwYWLFNmbYGDGumV5nw9AYVKDUcnD4PhB
- MZ1xTJ9dLYv3Wn7U3hQ==
-X-Proofpoint-ORIG-GUID: 76C936YxW5YtOhgr7_lk8f5VE3xGd3mk
-X-Proofpoint-GUID: 76C936YxW5YtOhgr7_lk8f5VE3xGd3mk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-16_04,2026-03-16_06,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 clxscore=1015 spamscore=0 malwarescore=0
- lowpriorityscore=0 phishscore=0 bulkscore=0 suspectscore=0 adultscore=0
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
- definitions=main-2603160142
-X-Spamd-Result: default: False [-0.66 / 15.00];
+OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[ideasonboard.com,gmail.com,kernel.org,foss.st.com,jmondi.org,ragnatech.se,raspberrypi.com,glider.be,linaro.org,mediatek.com,bootlin.com,theobroma-systems.com,intel.com,pengutronix.de,v3.sk,vger.kernel.org,bp.renesas.com];
-	TAGGED_FROM(0.00)[bounces-276356-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,gmail.com,collabora.com,intel.com,vger.kernel.org,lists.linux.dev];
+	TAGGED_FROM(0.00)[bounces-276357-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCPT_COUNT_TWELVE(0.00)[31];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[posteo.de:+];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzysztof.kozlowski@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	TAGGED_RCPT(0.00)[devicetree,markus.probst.posteo.de,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 0DE0829EBF8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,posteo.de:dkim,posteo.de:mid]
+X-Rspamd-Queue-Id: EE8CB29ED28
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 16/03/2026 18:19, Sakari Ailus wrote:
-> Hi Krzysztof, Laurent,
-> 
-> On Mon, Mar 16, 2026 at 03:42:09PM +0100, Krzysztof Kozlowski wrote:
->> On 16/03/2026 14:53, Laurent Pinchart wrote:
->>> Hello Krzysztof,
->>>
->>> Thank you for the patch.
->>>
->>> On Mon, Mar 16, 2026 at 02:45:34PM +0100, Krzysztof Kozlowski wrote:
->>>> The "endpoint" node references video-interfaces.yaml schema with
->>>> "unevaluatedProperties: false" which means that all properties from
->>>> referenced schema apply.  Listing some of them with ": true" is simply
->>>> redundant and does not make this code easier to read.
->>>
->>> I think you know my opinion on this topic. I believe we would be better
->>> off by turning "unevaluatedProperties: false" into
->>> "additionalProperties: false" here, and keeping the list of applicable
->>> properties. It brings value to device tree authors by telling which
->>> properties are applicable to the device at hand. For instance ... (see
->>> below)
->>
->> (let me trim)
->>
->>>> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
->>>> index 2d7937a372a2..7a05a1eda58d 100644
->>>> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
->>>> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
->>>> @@ -51,9 +51,6 @@ properties:
->>>>          $ref: /schemas/media/video-interfaces.yaml#
->>>>          unevaluatedProperties: false
->>>>  
->>>> -        properties:
->>>> -          clock-noncontinuous: true
->>>> -
->>>
->>> ... Without this, an integrator will need to dive into driver code to
->>> know if non-continuous clock is usable for the device.
->>
->> I see. Our usual interpretation of common schema, expressed by @Rob in
->> few places, that eventually all properties might be applicable. This
->> applies especially for ABI tied to the core Linux specifics, e.g.
->> rotation and orientation from video-interface-devices.yaml.
->>
->> Absolutely every sensor can be mounted rotated, therefore every binding
->> referencing video-interface-devices should allow it, even if driver is
->> not using it. Because basically that's the ABI we want to define for
->> each sensor, thus each binding referencing common schema should have
->> "unevaluatedProps: true" without listing them.
->>
->> Similarly touchscreen.yaml.
->>
->> OTOH, second option, properties which are strictly hardware, e.g. name
->> of power supply or whether clock has or has not non-continuous mode,
->> should be allowed only when they match the hardware. Such bindings
->> should use "additionalProperties: false" so the hardware description is
->> constrained/fixed/specific.
-> 
-> The patch may be technically correct but I'm afraid it won't improve the
-> bindings but rather the opposite: it removes information telling whether a
-> property is relevant for a given device.
-> 
-> I bet there are a lot of possibilities to write invalid DTS while the
-> checker says it's fine (missing data-lanes or link-frequencies, for
-> instance). That may have been the case before the patch but I'd make
-> properties a driver needs to function mandatory rather than removing them
-> from bindings altogether.
 
-That's pretty different problem and I am not removing any mandatory
-properties. I changed absolutely nothing from functional point of view.
+--=-akERDsl+g92JaDyAMR+U
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> It'd been on my to-do list to split the current video-interfaces.yaml into
-> several files: generic camera sensor properties, CSI-2 interface
-> properties, DVP/Bt.656 interface properties and the rest (full list
-> probably requires more thought). That way we could only include properties
-> that are relevant for the device without necessarily listing each one for
-> all bindings.
-> 
-> I'd also continue to list boolean properties relevant for devices as well
-> as other properties that are relevant for a device but not mandatory.
+On Mon, 2026-03-16 at 14:58 +0100, Greg Kroah-Hartman wrote:
+> On Mon, Mar 16, 2026 at 01:43:44PM +0000, Markus Probst wrote:
+> > On Mon, 2026-03-16 at 07:33 +0100, Greg Kroah-Hartman wrote:
+> > > On Sun, Mar 15, 2026 at 08:41:06PM +0100, Danilo Krummrich wrote:
+> > > > I.e. if we can't (easily) use mfd cells and would need a custom API=
+, then why
+> > > > even split it up at all, given that splitting it up would probably =
+the most
+> > > > complicated part of the whole driver.
+> > > >=20
+> > > > Greg, what do you think?
+> > >=20
+> > > I think this has yet to be proven to be a kernel driver at all at thi=
+s
+> > > point, and not just a userspace daemon that listens to the serial por=
+t
+> > > and then does what is needed from there :)
+> > >=20
+> > > Or, if someone can prove that the operations on this serial data stre=
+am
+> > > actually do require it to be in the kernel (which I have yet to see a
+> > > list of what this connection does, did I miss it?) then a single driv=
+er,
+> > > under the drivers/platform section of the kernel tree makes sense.
+> > The sysoff component is strictly necessary for poweroff and reboot.
+> >=20
+> > On ARM64 Synology NAS devices it is needed so the device actually
+> > powers off after calling
+> > `syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2,
+> > LINUX_REBOOT_CMD_POWER_OFF, NULL);`
+> > . Otherwise it would stay on.
+> > Same applies to reboot.
+>=20
+> So that means a write of a set of bytes to the serial port will cause
+> the machine to reboot or shutdown?
+Yes.
+>=20
+> > On x86 it isn't clearly documented what sending the poweroff and reboot
+> > command to the microp device exactly does, so this is based on
+> > observations. It should be sent before issuing a poweroff or reboot via
+> > ACPI Sleep. On reboot it resets various device states, so fan speeds go
+> > to default, leds turn off etc., so it behaves like a coldboot.
+> > On poweroff it will mark it as graceful shutdown (i. e. the device
+> > won't turn automatically on, because it thinks a power-loss happend).
+> >=20
+> > For the other components:
+> > - leds
+> > - hwmon
+> > - input
+>=20
+> For "input" what exactly does the input device show up as?  A power
+> button?  Something else?
 
-I don't think there is such goal and particular subsystem does not get
-exception here. What is relevant for device comes either from the
-hardware or implemented ABI, as I explained. Bindings arbitrarily
-choosing "I think this might be relevant" from some big schema with
-irrelevant pieces is not manageable and not correct.
+Well there are a few other things besides a power button:
 
-The common schema should be rather entirely relevant thus making such
-arbitrary choice what could be "more relevant" not even needed.
+- beeper (short and long variant)
+- factory reset button
+- "USB Copy" button. Not present on all devices (including not present
+on my testing device). It is meant for copying data from or to a usb
+stick.
+
+Both of these buttons don't have a keycode in include/uapi/linux/input-
+event-codes.h, which is suprising given how many devices have a factory
+reset button. So I am not sure if I can handle them in this driver.
+
+=46rom what I can tell, there isn't actually a input device type I could
+specify on registering a input device. But it would be considered a
+misc input device.
+
+>=20
+> For hwmon, that makes sense to have a kernel driver.
+>=20
+> For leds, that depends on what you want to do with the led, as in the
+> end you are just controlling it from userspace anyway :)
 
 
-Best regards,
-Krzysztof
+>=20
+> > It could theoratically be implemented in userspace. A userspace daemon
+> > could theoratically control the fan speeds directly, issue a systemd
+> > shutdown on power button press, control the leds directly etc.
+> >=20
+> > But honestly, I don't understand why this is an argument.
+> > With that argument drivers/leds, drivers/hwmon and drivers/input would
+> > not even exist, because everything could be implemented in userspace
+> > via
+> > - I2C: /dev/i2c-* (drivers/i2c/i2c-dev.c)
+> > - MMIO: /dev/ioport and /dev/mem (drivers/char/mem.c)
+> > - GPIO: /sys/class/gpio (drivers/gpio/gpiolib-sysfs.c)
+> > - SPI: /dev/spidev* (drivers/spi/spidev.c)
+> > - PCI: /sys/class/pci_bus/ (drivers/pci/pci-sysfs.c)
+> > - Serial: /dev/ttyS*
+> > and likely almost any other bus device too.
+> >=20
+> > Generally speaking, the kernel and its drivers is the layer between
+> > hardware and software. It provides the hardware abstractions as
+> > userspace interfaces. So any software on the same cpu architecture can
+> > work with any hardware, as long as there is a kernel driver.
+>=20
+> Yes, I kind of know what drivers and classes do and why they are needed,
+> that's not the point here. :)
+>=20
+> > In the case of this driver, it means
+> > - *any* led daemon can control the leds
+> > - *any* fan control daemon can control the fan speed and frequency
+> > - *any* monitoring software can view the provided sensors
+> > - *any* init system can react to the power button
+> > - *any* process can request a reboot or shutdown
+> > .
+> > I think this is the expected behaviour.
+>=20
+> Ok great, then make a single driver that handles all of this, like other
+> drivers/platform/ drivers do today, and all should be fine.
+Great, I will.
+
+Thanks
+- Markus Probst
+
+>=20
+> thanks,
+>=20
+> greg k-h
+
+--=-akERDsl+g92JaDyAMR+U
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJPBAABCAA5FiEEgnQYxPSsWOdyMMRzNHYf+OetQ9IFAmm4RoobFIAAAAAABAAO
+bWFudTIsMi41KzEuMTEsMiwyAAoJEDR2H/jnrUPSsUIQAJeCzIeF7FxfVLPKwAJv
+sYO9ZXh6FWfGwq+zzAzAXqlhJQWtoptqBFhmWtrGiAEUYFDMlEG2jO9t4zE9cQiR
+O+QVCX1qWxERY0X4gbrT0GEcHuZpB7eqDRpHqQ1edsZrrbjD0LJl2GwrR+juH3p+
+J0H6qYNP0BP5I2Ox7pt3Wjw942RE8yV99ReJX15i7IseMtToK170J0yfLhV9EYdD
+ti/CzYvzqLndEhHRCVDrJhqRkUY7ffDrb/xir2FRqRmEnMw8Tyyy05eBccafoX4K
+bhb+cld/DtCZYR2BL2wyj6PVV6EYOjInchNDRa9T1txQ/yAd/s0yx2znesXtj2Kt
+xGn4A82oT4q84JtGyz4SCTvhAFMtle+23zmYHGgsJGjWLV2rAFLrTplZErqZWtCo
+UYNRzDvzksVnGSp05DeVmM1qZp8PZtfG/UlIfEYCbkkQVT8LZVb6/2BAzGdbmjMk
+LBI9lI95d17uCyxp9+1Pb1fls+XD25b0v1Qv6U5/YJPAwbyGAW3JtGsVhb0vhpdI
+hxTeJKlM1qq9voRoRWSDq+CSYGbNtQCvpjderejTY5otR9Ip1h+HAhTa8326QFmp
+OxOfwBf0ZcvmnxG4bIHDiySMdXLMSNzgAyGlZfcfI0rhEWazQktxJncKWn7D7VWP
+ojdLA9L7y+sXPTSIujFHYCZA
+=q1ya
+-----END PGP SIGNATURE-----
+
+--=-akERDsl+g92JaDyAMR+U--
 
