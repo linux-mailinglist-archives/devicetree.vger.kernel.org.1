@@ -1,188 +1,144 @@
-Return-Path: <devicetree+bounces-276389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276390-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yJf2K6JsuGn5dgEAu9opvQ
-	(envelope-from <devicetree+bounces-276389-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 21:48:34 +0100
+	id sJXtAwJtuGn5dgEAu9opvQ
+	(envelope-from <devicetree+bounces-276390-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 21:50:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15F1C2A05EE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 21:48:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC9472A0613
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 21:50:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 32DF83099EBA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 20:47:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 66F4A3029249
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 20:49:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F0AD351C1C;
-	Mon, 16 Mar 2026 20:47:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94303587A2;
+	Mon, 16 Mar 2026 20:49:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="D9BOaNWb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H9EY3ga4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-182.mta1.migadu.com (out-182.mta1.migadu.com [95.215.58.182])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9083B2264AB
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 20:47:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86CD1351C34
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 20:49:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773694071; cv=none; b=ktdy+L/Er8xzVli2J8kwIiFeuNnBCbgBLPgfwPi+6NCXEo1q61VbWMVo6n423+IQNuOv3iGuSf35d7TIDkysQsfva0qnD8QhBrVuvC96zOxJTVXRh72gxJqyiOn0fRR3M34IeApA7hcvy/M8qoQ/b0XdUGppTO3HHl/mmHu7CVY=
+	t=1773694168; cv=none; b=bRCPjMJnSs3A44d2G9vKdsmz26BUwfrYHqwzBvd1lHNXx13VvYnCF6FbIXKVfFXosdb9pjYZO4f0JtDclKAsohn6U55FZ654uv6WqmAI26wpEH1wF/Mk4dLF62hlM8zXXDBzNim/YTiG5T+AQadPe2pJADlokQqzXKZctGdKv+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773694071; c=relaxed/simple;
-	bh=zpZPh7MVkXazG9gfyuhBJfvdwjMHQiGgQjLIRZhQeUA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lJMiajLHEhCAX/PTvaNiY4jJWmgYhP5MmlB3ZTYoe2PcgKjJ2b0GAG6ozsrY5d/NDLvWosV885NVmR0RidKYmyY7oRWWuqW4VUNT61xv7MENVLhzq4ninpbLus620JXGXLVwP4WHpbjTpTFfVeSTG7y12lITQlLWgevGl0J3PbI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=D9BOaNWb; arc=none smtp.client-ip=95.215.58.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
-Message-ID: <4b91b06c-2a88-4e6d-81db-0a7bb4972e1e@packett.cool>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
-	s=key1; t=1773694057;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=mi/x6909YiGRcC2bZJ0F/Z+WJHSsUo0EFS93H/21pfc=;
-	b=D9BOaNWbySw8h+lDQULyN5xxkjjxTPt52CPac6mmxZ/qak2qmGsSAsN4gcWhyjO7cUqnTB
-	9QFGYPyrz+TOX4wNvWgRYCS6DrGzm5MZb2WSmsDE9XD6/Fge5/QUsbMVs9RNGsbi6OdZrj
-	GaEJ9jsR7oWw/CGc6uYIZbVFx9UtrJ3txzK1Ij+hvnZrWZNBqVPBJwETJ7oIWkrQaLDnwb
-	BbgGVVGTV0jPXifvrhzdolmCMuaQtaq/juv9vt5gYN9kVsbsWify3DYjABLlImyOFfKbto
-	hFtte/ocueUlwzUtJ3w6lPuPpvf+cws9b4+YpNu5yuobB0R+1jOUBnSHBgxYbw==
-Date: Mon, 16 Mar 2026 17:47:13 -0300
+	s=arc-20240116; t=1773694168; c=relaxed/simple;
+	bh=VZUSzFpH7fKfBRGH53Do1z+WiVQ0GQnMNjCweAfneyg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MB7HkJFcW/Wyd5A1tTZU2UNd6LxS3sCnKRyzsgeF9DSK5ovDkpI7QJffrIolIumcKLU4k/2AqLef1kmxQGibZS9fgiV0SmexxayljApjmUq+lgCMqz7ZYs2HtS8N+OZEikL0mhTQ2rHtoNYs0qqgD3LfXXJMXeEEyThxhf5sTY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H9EY3ga4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E72FC2BCB2
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 20:49:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773694168;
+	bh=VZUSzFpH7fKfBRGH53Do1z+WiVQ0GQnMNjCweAfneyg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=H9EY3ga4LUto5uDWzRTQrsBo2mW6DKDK0cTJaCFAcQZCrpF25PfrOmBk7xVEYpFD6
+	 K+e2MZhXRJqgQEKIFHBnyed2trV9JGrSz4JnhSPh2nuuYjt4dMk+ZGBCOVgHqWkrYg
+	 vMeBgRQ7DqbtYMkL622Ss0+VtTEF7bM6/C16Rr6j4YwX6CR5LlBH1WGGytiW+AkEsk
+	 XUI1bt5+J58mrcHZUCcQuttp0SWj4nMFGF+RAkrDoudYfV4t9DeZM+iPtnLIj2l/Yq
+	 YtUB3lBwuGNF78EUE/gfy2RZXp/HMLdjcvXSFUogCXlHmSUIhU1fFK07caiiK8JH2D
+	 IoH7RYbvdksjg==
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-7986fb839f5so45244587b3.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 13:49:28 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCX0ZnUNBjIMEmL66yjJ0ckuHSkKiljhXSALBE8fqjPEBRrKYnE0C9tPz3cGj2zp90X0au9cqrx3oA6R@vger.kernel.org
+X-Gm-Message-State: AOJu0YwcVyRF2ec2ca78ZD2neeA1GKJuarwGe06xPedWE1fUz41ZlLAa
+	u2rTs6XCdOLAKDAJBaI2YsU3VNUHRWEnK51RnvKTVvv4pES7zvq2TW8B7lFK9Ria/LA2UqHibIb
+	0LecJl4jJCPUjxWCXYZhs+aqsdF4+khw=
+X-Received: by 2002:a05:690c:93:b0:799:1af1:6c52 with SMTP id
+ 00721157ae682-79a1c1acb77mr150733297b3.40.1773694167554; Mon, 16 Mar 2026
+ 13:49:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: Add Xiaomi 12 Lite 5G (taoyao)
- DTS
-To: Stanislav Zaikin <zstaseg@gmail.com>, devicetree@vger.kernel.org
-Cc: linux-arm-msm@vger.kernel.org, andersson@kernel.org,
- konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-kernel@vger.kernel.org
-References: <20260305093941.305122-1-zstaseg@gmail.com>
- <20260305093941.305122-3-zstaseg@gmail.com>
- <356110cc-699b-4a6d-973c-403d2e29630e@packett.cool>
- <168615a6-615f-46cc-b126-4780fec34ecd@gmail.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Val Packett <val@packett.cool>
-In-Reply-To: <168615a6-615f-46cc-b126-4780fec34ecd@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Spamd-Result: default: False [-2.16 / 15.00];
+References: <20260316140514.1406588-1-o.rempel@pengutronix.de> <20260316140514.1406588-2-o.rempel@pengutronix.de>
+In-Reply-To: <20260316140514.1406588-2-o.rempel@pengutronix.de>
+From: Linus Walleij <linusw@kernel.org>
+Date: Mon, 16 Mar 2026 21:49:16 +0100
+X-Gmail-Original-Message-ID: <CAD++jLm_afaTuP+9af8HZq+O7+dxfw5tEnP19VABuktZby8buQ@mail.gmail.com>
+X-Gm-Features: AaiRm53_qNzFzZsldUXICUMpShw_eWYlVf_nVALoc4j9_4pb00jh-R42NW1p5IQ
+Message-ID: <CAD++jLm_afaTuP+9af8HZq+O7+dxfw5tEnP19VABuktZby8buQ@mail.gmail.com>
+Subject: Re: [PATCH v5 1/7] dt-bindings: pinctrl: add NXP MC33978/MC34978 MSDI
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Peter Rosin <peda@axentia.se>, kernel@pengutronix.de, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, David Jander <david@protonic.nl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[packett.cool,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[packett.cool:s=key1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-276390-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276389-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[packett.cool:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[val@packett.cool,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.996];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[packett.cool:dkim,packett.cool:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 15F1C2A05EE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,pengutronix.de:email,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: AC9472A0613
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Mon, Mar 16, 2026 at 3:05=E2=80=AFPM Oleksij Rempel <o.rempel@pengutroni=
+x.de> wrote:
 
-On 3/16/26 8:57 AM, Stanislav Zaikin wrote:
-> On 3/16/26 5:05 AM, Val Packett wrote:
->> On 3/5/26 6:39 AM, Stanislav Zaikin wrote:
->>
->>> Xiaomi 12 Lite 5G is a handset released in 2022
->>>
->>> This commit has the following features working:
->>> - Display (with simple fb)
->>> - Touchscreen
->>> - UFS
->>> - Power and volume buttons
->>> - Pinctrl
->>> - RPM Regulators
->>> - Remoteprocs - wifi, bluetooth
->>> - USB (Device Mode)
->>> […]
->>> +        vreg_l7b_2p96: ldo7 {
->>> +            regulator-name = "vreg_l7b_2p96";
->>> +            /* Constrained for UFS VCC, at least until UFS driver 
->>> scales voltage */
->>> +            regulator-min-microvolt = <2952000>;
->>> +            regulator-max-microvolt = <2952000>;
->>> +            regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->>> +        };
->>> […]
->>> +&ufs_mem_hc {
->>> +    reset-gpios = <&tlmm 175 GPIO_ACTIVE_LOW>;
->>> +
->>> +    vcc-supply = <&vreg_l7b_2p96>;
->>> +    vcc-max-microamp = <800000>;
->>> +    /*
->>> +     * Technically l9b enables an eLDO (supplied by s1b) which then 
->>> powers
->>> +     * VCCQ2 of the UFS.
->>> +     */
->>> +    vccq-supply = <&vreg_l9b_1p2>;
->>> +    vccq-max-microamp = <900000>;
->>
->> If this device has UFS 3.x flash, which it most likely does, the 
->> copy-pasted eLDO comment does not apply.. and VCC range is 2.4V-2.7V, 
->> 2.95 is overvoltage! 
+> Add device tree binding documentation for the NXP MC33978 and MC34978
+> Multiple Switch Detection Interface (MSDI) devices.
 >
-> Hello Val,
+> The MC33978 and MC34978 differ primarily in their operating temperature
+> ranges. While not software-detectable, providing specific compatible
+> strings allows the hwmon subsystem to correctly interpret thermal
+> thresholds and hardware faults.
 >
-> Thank you for the review.
+> These ICs monitor up to 22 mechanical switch contacts in automotive and
+> industrial environments. They provide configurable wetting currents to
+> break through contact oxidation and feature extensive hardware
+> protection against thermal overload and voltage transients (load
+> dumps/brown-outs).
 >
-> Though you're right that this comment is a copy-paste, taoyao has 
-> ufs2. This is the explaining comment from the downstream sources:
+> The device interfaces via SPI. While it provides multiple functions, its
+> primary hardware purpose is pin/switch control. To accurately represent
+> the hardware as a single physical integrated circuit without unnecessary
+> DT overhead, all functions are flattened into a single pinctrl node:
+> - pinctrl: Exposing the 22 switch inputs (SG/SP pins) as a GPIO controlle=
+r
+>   and managing their pin configurations.
+> - hwmon: Exposing critical hardware faults (OT, OV, UV) and static
+>   voltage/temperature thresholds.
+> - mux: Controlling the 24-to-1 analog multiplexer to route pin voltages,
+>   internal temperature, or battery voltage to an external SoC ADC.
 >
->> /*
->> * Yupik target supports both UFS2.2 & UFS3.1, here
->> * vccq2 is supplied via eLDO, [..]
->
-> So I thought it's better to keep a small comment regarding eLDO.
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
-That's a comment from the qcom reference sources! I've literally seen it 
-already in the downstream DTS for the device I'm currently working on 
-(motorola-dubai) which definitely has UFS 3, hehe.
+Reviewed-by: Linus Walleij <linusw@kernel.org>
 
-You can read 
-/sys/bus/platform/devices/1d84000.ufshc/device_descriptor/specification_version 
-to see which UFS spec version your flash is (0x310 == 3.1 etc.)
-
-(Lots of interesting stuff around there, there's also health_descriptor 
-that shows your flash's wear estimation..)
-
-Also if you have the schematics, you can check for whether an LDO is 
-actually present there and whether VCCQ or VCCQ2 is connected :)
-
->> If it's actually UFS 2 after all, it would be better to rename the 
->> property to vccq2-supply.
-> Could you elaborate please? Do you mean l9b? 
-
-No, the "vccq-supply". If you look at 
-Documentation/devicetree/bindings/ufs/ufs-common.yaml you can see it 
-supports both `vccq-supply` and `vccq2-supply`, the former is used for 
-UFS3 and the latter for UFS2.
-
-
-Thanks,
-~val
-
+Yours,
+Linus Walleij
 
