@@ -1,220 +1,565 @@
-Return-Path: <devicetree+bounces-276361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276362-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eMW0F9NIuGlTbgEAu9opvQ
-	(envelope-from <devicetree+bounces-276361-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 19:15:47 +0100
+	id AKRTOkNJuGmgbgEAu9opvQ
+	(envelope-from <devicetree+bounces-276362-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 19:17:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B684A29EE39
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 19:15:46 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A69529EEDB
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 19:17:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6825D301AA4C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:13:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EF3943025C59
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:17:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB3A33D34B5;
-	Mon, 16 Mar 2026 18:13:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 325163D9DBE;
+	Mon, 16 Mar 2026 18:17:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="a5rz4F7/"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ordbabXD";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Bxp/LIrp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECFD93D34B3
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 18:13:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AA073D8919
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 18:17:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773684816; cv=none; b=F9x+XMFl5LEDSQTp3x7f/yYxG7ZyDTggoPMytwq3M6qE8K1RJMGaXMD3yDhz91egVU8Tae7bpvUCXZeClP6LXPNCHAQoFUlnheQ0q/6QbQ+qeVeQhQZQeFPKhm05BYYPuQTkIZhzEcy8ncPK6HtMjUyAQMVkJWzTbmbIoI/2dCo=
+	t=1773685038; cv=none; b=m0OEgx2UQjLmtQk3onoISyyBJRcCzFqJqU1Ulp95Gzfc7AXt7D8c+/drvVGxAtxI/wU3rVHbsFv9XOdiTUQ5CPszwlz4B/FyM8z4NkOOnDMM/H3qR5PYO4eoFDUsb7TF7NpEkOghqhCrx6TvJ7fhq19xLMKQSUTiH8d9YZ3jAXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773684816; c=relaxed/simple;
-	bh=xJhMoZNqr+EHjdBUv6t14tIBHJ2MlKnKgZGrDXGR260=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=t7Wa/AX9gb3Z4bG1FWvgkSOvD1BxcODPdnaZtjnUiOWhh/WIxnX+1+3wNHvm0qWCbSTNuWr8R7oIO1DwU0YNLRAUThRjNra7xnC0q+vFZqQKKjEMj9adE5OQdlAD592rzIkXzEAD9pPtfvySvR1//EDV5NdSe6rQmB6cFMWldYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=a5rz4F7/; arc=none smtp.client-ip=209.85.215.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-c738fecf349so1958155a12.0
-        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 11:13:34 -0700 (PDT)
+	s=arc-20240116; t=1773685038; c=relaxed/simple;
+	bh=2Bih4v4vwLTC6rBCnw5ii6HBvd+mUhCbRyH7/LtYbFo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a4XyNsz6rQTNGlhzP/QP28q8xM+MvAdC99sYgkSBLhz9tJdsl3VDfhuG8zgxWoYZS6cLCijoIOmBj3xYVbIoc/CO0ZBL3wnrbPL5KuII+446z4hfD7kNDOjrVPlR/pOOJv7xRL5gWxyBi2uT948RJmvYEOFXsK2XNdMgYO4JDc4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ordbabXD; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Bxp/LIrp; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62GDNmbe041516
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 18:17:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	HQaNupo6FUMhewtRLNzdvftP/Bl6dIddVvBA/8yfO+M=; b=ordbabXDw6dGs6//
+	OmChgPWgoRdUvSqfuuSHd5bKYR17PBXafAVpkSkX9xkvSZGC3PgnI7Jhw4GFqj2D
+	lZFaAAl0zT/2HQ0nhJDrIii5hMD4S5IDZJIuDGYgNV6h+t//tg63oYcnWuOhbH35
+	d3C7EpgoxLfl+rx9HZ4Fegnej/uMiViArk3htwsildxLw0g/hOQqX7b8+1VLIC1I
+	SETQu1ZoT+hKlke5XPCNDGyoVbjpsF7/MpuQn+wRGa5JJrLMPNR5eRv/Q9Q10O3X
+	cdrueGaGH93M1mkiT5eSYVf8C+omQ8YlxDHDi6DNvDAsBLJ95my7pKWh0VR3pbTE
+	o33zqA==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cxdt82c9f-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 18:17:11 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2b056b2f0cfso18725135ad.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 11:17:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1773684814; x=1774289614; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=6I630kcGdJmHLQvgv2ucM+rk0u+MBt6XpMILrvY8Gco=;
-        b=a5rz4F7/PIq5VoPeuJr7+Y2B1gH2TPWLfJJYg2OnJMJUiRdcIuf4QvJSK6AnFFYIyA
-         kDlAQke4I7guGFiBOIBg2AtC0aFC41RPGIeqiaikJAowEAcmII0mcc80kUAy3q1+ONh2
-         G7a9tEcDZjdM4Fllm88bAx31ihMqsRr+sErfpHhfltzj7sfeeHTJLHvckufLbmxwLguz
-         kHUILezoTbEFcVO31e+ZHgN1aQxeIP7pr1p7xwyBvOR0kAPrz6c8UlZb4sNw77FcUy04
-         CY4X6qDSPN+ro6Fo0oHiQulDhZ/b+mB0QjWIpPxrTDkTLA3iTJS/wQ4oaevjugviTfxq
-         vKJA==
+        d=oss.qualcomm.com; s=google; t=1773685028; x=1774289828; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=HQaNupo6FUMhewtRLNzdvftP/Bl6dIddVvBA/8yfO+M=;
+        b=Bxp/LIrpyvSdt05z/LloUWsS7TiXrhKJg//QZvYg3FmUWhtN2m6BI0t/FzEVOGEqWZ
+         PQXbK+JozoG5rCtvFdIhvnOvEcpord805S4BfEFdUt6PPJStnttJJMyhHCeyTI3CAyIH
+         +X2DLvEbOv+rFL/UedudwpyrLWB9lD+gstxQ/qJYNIcI66Y2wELScCfEnEXolH0HVaRm
+         VymH43TUVT7fw3c6Mx0rvyNWXnLYbKydHm3Pfcky5fomm8P/yByO78QRbyMBbA77OMiX
+         GZ7tgllO9Z4ok5uqSkIXJRBmCVkkxPk41aC9kAQC5T7xWltozYo6M6ZTGI6j6Mg6Y6vz
+         SsuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773684814; x=1774289614;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6I630kcGdJmHLQvgv2ucM+rk0u+MBt6XpMILrvY8Gco=;
-        b=lUTFIP0DBSsYH86hdUUuhr/2kNG57LQP4WyQK4flN6ayJqAC9mSxr9WUrP9oKBXmxv
-         J9o2yJTBdfUcqaD9v/hh2Htbvu46dXVQ98TOzG1HdQ0OrI9qMgcXsmL11Je+jQuZgANE
-         ZTkyNIA9CHYvbJG1iJiFAwzZ3QKzXXO2Twh9KWi8c6DoajU36Tr7qDSC4masMJ7FLUqC
-         W94qLAu2dtVZtthA7KWubBo8reLhlRDDMs54OeIgIB6oUB4dCqyCwhnDOUzJe6ubnUBT
-         mWc5Rzs6Xavsuq/QpHmMGVl3rjtv9WqaJ/9sDeTqUBD9NhwJE7YQ0t/iLNuD6E175fij
-         qliw==
-X-Forwarded-Encrypted: i=1; AJvYcCXxWQvW3xSLsX5IHEEUGUzQxVSigg7oLMAFmzcDl98XZhV6lOQ8gy4Q3RM4AwwgNA3gOLKO6Owi2y0K@vger.kernel.org
-X-Gm-Message-State: AOJu0YwRGbl0Vp40OoeTG7K3pfHSW8YT9VXnmEazOAB7GOE81ea1WW06
-	CYGqXAYu6oLILyufc6myS3jO22JnZAuG3GQn125FlUmNd/PVHFQGAOGVBbZEpf1hmOs=
-X-Gm-Gg: ATEYQzzPdENr3OgSGxXyK5+O2volHnZ0vPmJnh1G7qtfROshhhLm+HfcVjfbHjg0M0+
-	Ix6JuCz/xDkOO9FeQDYCsIxTqOOZnzUeUG0RNZksqTEKAQZnkS17mSlh/UIf1n9l7YPJM8mozsc
-	V9+c5PCazvuSkrnAljetK6b25JnOegRTPhSMxn2yQA0hsoJLqH29APl9eNb/BVFv0JO+MBdUD+s
-	1IQwdgxlVZtCaGz0b5iXo9vLGJk3nRHfp29w4PBPtItZX9Dis9WnPfs3xGQPRVnuncv4OUEj4o6
-	zcIYzIM2qmBA3/cPtdek/r+oSnLaQRMQEfw+inMpxgqKvuvRi8+MuTUVG1ZiDmy0yvikZVqOiAW
-	OUd3FOvwFqfeu43yoz1ZaAFUi0vXJUqrlgRBy1ehUxlMq3S4CK0cMTvtmr8COUB1cs4QBG8a9fv
-	BXiac6peUgPGSPwY+Fiy0=
-X-Received: by 2002:a17:903:22cb:b0:2ae:5a70:477e with SMTP id d9443c01a7336-2b06365b4dbmr4321155ad.12.1773684814193;
-        Mon, 16 Mar 2026 11:13:34 -0700 (PDT)
-Received: from localhost ([97.126.187.42])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2aece7ee3basm151378665ad.43.2026.03.16.11.13.33
+        d=1e100.net; s=20251104; t=1773685028; x=1774289828;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HQaNupo6FUMhewtRLNzdvftP/Bl6dIddVvBA/8yfO+M=;
+        b=cVHcas00bJgOhQ23sUN5jziHMqxfguUw3BAJRRvfKL5qPLw7wyht7tYT/MXmNMAA8X
+         Y0WS21AfjBuPu2It03Os9P0chnxx0L+jIG7T5I4GFQA+cdJ3dCE/7rkIwB6IU46aEupb
+         WGKXs+0TILfCacrsR+EJIxu4l9Wnu1wSFpD5yKAS0TJo67SgfbLqurGoIcWKoPCD3leg
+         NyNjC3pa6zpqST4m5trX+w7T4E7YkBB1heYOe5EGiUGhal7V/tS1QLtMiqUqvxfXBC4O
+         UWgNe2Ydc85KaojNw1LNNvPmNlVN2VWIhK+laGeVXKkuqA45QEdkeILXMmdrynGTwbkA
+         8R4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVZeRjp6bJg1MB48NdTkgOxrXNaQnVHFH4tGwlcfvG/HxB++0eM8sIkhCXUZFXYaWCn5IKZZXPU01dI@vger.kernel.org
+X-Gm-Message-State: AOJu0YynXtayZbUWt75opkIsT7PcSAI4tXT7K9s3zLh5ywcUxCWst58D
+	e7l5Yi/RE8jFVzG7koCmnRhPUFxD+9PB01WXR+TGG3LXaylcF+cZvpVa+EWpxQCuA5jxmYp6Nu+
+	Dw5IEQMnWfDmaGWbvW4raNp/4iplqxF1iphNY7LtXwW5Rqg+3Yj0pLiu0DRXhmxD4
+X-Gm-Gg: ATEYQzwmn9mEywANkLur8eBb5I2cIIeFkUzlTABQ68ngiPMXiWNOO5tOYvlaMKjkNuy
+	caDyEXroMeK5NhSxiAYvZV/fW7+CyKCbFjpLEXtckRgTjo9mrqscm47dPwXQiXRdRN9Q94xT2TQ
+	4H7XD4c/19dpWrjx3hL1PG7lXHygxZ2IwREDafStfYw7cjhi+JZJHphviTc5zketqSlQDvUox1n
+	erJcFqJoXFhMW1MyLvjl/QeQfndbGpjRiCOtzKcNeOvgkIuS7A5OxLgggGINCOaRrlwxoM7Ct7n
+	PHXKD0qk1Ilokg+Rj8zOto/NMyA+QVVxYHyTsulhX6JvGhRDEi7vzGHaP+NqPOcPfoCoZE612Xl
+	6QaQEDEuHtq+Spw+h5/XGQpSjfdqp06tDRtVEPVVT5Ry0tbin
+X-Received: by 2002:a05:6a21:3981:b0:398:c2d8:14c with SMTP id adf61e73a8af0-398ec9e64f9mr12436746637.7.1773685027216;
+        Mon, 16 Mar 2026 11:17:07 -0700 (PDT)
+X-Received: by 2002:a05:6a21:3981:b0:398:c2d8:14c with SMTP id adf61e73a8af0-398ec9e64f9mr12436685637.7.1773685026281;
+        Mon, 16 Mar 2026 11:17:06 -0700 (PDT)
+Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c73eb9966cesm9457724a12.10.2026.03.16.11.16.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Mar 2026 11:13:33 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Parvathi Pudi <parvathi@couthit.com>
-Cc: Parvathi Pudi <parvathi@couthit.com>, nm <nm@ti.com>, Vignesh
- Raghavendra <vigneshr@ti.com>, afd <afd@ti.com>, rogerq
- <rogerq@kernel.org>, tony <tony@atomide.com>, robh <robh@kernel.org>,
- krzk+dt <krzk+dt@kernel.org>, conor+dt <conor+dt@kernel.org>,
- richardcochran <richardcochran@gmail.com>, aaro koskinen
- <aaro.koskinen@iki.fi>, andreas <andreas@kemnade.info>, Andrew Lunn
- <andrew@lunn.ch>, linux-omap <linux-omap@vger.kernel.org>, devicetree
- <devicetree@vger.kernel.org>, linux-kernel <linux-kernel@vger.kernel.org>,
- netdev <netdev@vger.kernel.org>, danishanwar <danishanwar@ti.com>,
- pratheesh <pratheesh@ti.com>, j-rameshbabu <j-rameshbabu@ti.com>, praneeth
- <praneeth@ti.com>, srk <srk@ti.com>, rogerq <rogerq@ti.com>, m-malladi
- <m-malladi@ti.com>, krishna <krishna@couthit.com>, mohan
- <mohan@couthit.com>, pmohan <pmohan@couthit.com>, basharath
- <basharath@couthit.com>, Murali Karicheri <m-karicheri2@ti.com>
-Subject: Re: [PATCH v5 3/3] arm: dts: ti: Add device tree support for
- PRU-ICSS on AM335x
-In-Reply-To: <91797572.667989.1773662409130.JavaMail.zimbra@couthit.local>
-References: <20260307122641.738450-1-parvathi@couthit.com>
- <20260307122641.738450-4-parvathi@couthit.com>
- <7ho6ks1r4s.fsf@baylibre.com>
- <91797572.667989.1773662409130.JavaMail.zimbra@couthit.local>
-Date: Mon, 16 Mar 2026 11:13:33 -0700
-Message-ID: <7hcy131w36.fsf@baylibre.com>
+        Mon, 16 Mar 2026 11:17:05 -0700 (PDT)
+Date: Mon, 16 Mar 2026 23:46:47 +0530
+From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+        Eugen Hristev <eugen.hristev@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Dennis Zhou <dennis@kernel.org>,
+        Tejun Heo <tj@kernel.org>, Christoph Lameter <cl@gentwo.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Thomas Gleixner <tglx@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Anna-Maria Behnsen <anna-maria@linutronix.de>,
+        Frederic Weisbecker <frederic@kernel.org>,
+        Ingo Molnar <mingo@redhat.com>, Juri Lelli <juri.lelli@redhat.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Dietmar Eggemann <dietmar.eggemann@arm.com>,
+        Steven Rostedt <rostedt@goodmis.org>, Ben Segall <bsegall@google.com>,
+        Mel Gorman <mgorman@suse.de>, Valentin Schneider <vschneid@redhat.com>,
+        David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
+        "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+        Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+        Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+        Kees Cook <kees@kernel.org>, Brendan Jackman <jackmanb@google.com>,
+        Johannes Weiner <hannes@cmpxchg.org>, Zi Yan <ziy@nvidia.com>,
+        Chris Li <chrisl@kernel.org>, Kairui Song <kasong@tencent.com>,
+        Kemeng Shi <shikemeng@huaweicloud.com>, Nhat Pham <nphamcs@gmail.com>,
+        Baoquan He <bhe@redhat.com>, Barry Song <baohua@kernel.org>,
+        Youngjun Park <youngjun.park@lge.com>, Petr Mladek <pmladek@suse.com>,
+        John Ogness <john.ogness@linutronix.de>,
+        Sergey Senozhatsky <senozhatsky@chromium.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Saravana Kannan <saravanak@kernel.org>, workflows@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arch@vger.kernel.org, linux-mm@kvack.org,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 00/25] Introduce meminspect
+Message-ID: <20260316181647.m7x4ncmwdjho6yvr@hu-mojha-hyd.qualcomm.com>
+References: <20260311-minidump-v2-v2-0-f91cedc6f99e@oss.qualcomm.com>
+ <abdnp90cC5PI9wyz@baldur>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spamd-Result: default: False [0.34 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <abdnp90cC5PI9wyz@baldur>
+X-Proofpoint-GUID: NK7jEvUtMz3J5qPu-KA_qMCH8yZ2YjP3
+X-Authority-Analysis: v=2.4 cv=CKInnBrD c=1 sm=1 tr=0 ts=69b84927 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
+ a=vnREMb7VAAAA:8 a=Oh2cFVv5AAAA:8 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8
+ a=COk6AnOGAAAA:8 a=bLXd17yOAAAA:8 a=1XWaLZrsAAAA:8 a=EDBQhX0Mc2V3NrmwUxMA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
+ a=7KeoIwV6GZqOttXkcoxL:22 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+ a=XOuVWTVwyKTMzSnUH6Op:22
+X-Proofpoint-ORIG-GUID: NK7jEvUtMz3J5qPu-KA_qMCH8yZ2YjP3
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE2MDE0NCBTYWx0ZWRfXwDHisTArK78O
+ 6I5rr8ing/cu8uSx9rreiXebhBe4IzsfnkCPBqfP2zC3DdrAMnIB+N+Zeg+1GvY//QivBqCOPkP
+ KX9ImKbu2mHtWtISktIyoqw1oWWpogwAbt8zVims1pdHCNowjgnHH0cY5mvvlfiizKLihwelCvV
+ EpoXJuLLpT3JOCH+TVlV+4pLKjcfIiVOFg9rrJh0vKuMUpiDOBLpSdl8CK9RPS1o9sRry1BNU3Y
+ 3ESAvWO1TIYrMYGylx8cohQkStC/QZumA3xRKNEBoiR7I+ITprp1GibHShFVlUpm8NhXAVaGiNi
+ CZxtIsRMCRJTGxqg0qGfjwsw1dmlc51q4Mq+ecCDDuRdoFuB6+3cXxrbGVlkMyNGJ5Yuu3Gg+X1
+ /OkxdHV7Wc4rN7N4pVBKAt+hROlP8gJXkUYShqQEW+baDxHASaExvmKSok3w0V4mYAWOZYHKyjt
+ xBQoxlg5IYi8V0EJuFg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-16_04,2026-03-16_06,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 lowpriorityscore=0 phishscore=0 priorityscore=1501 bulkscore=0
+ adultscore=0 impostorscore=0 suspectscore=0 spamscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603160144
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-276361-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[baylibre.com];
-	TO_DN_ALL(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[lwn.net,linuxfoundation.org,linaro.org,arndb.de,kernel.org,gentwo.org,linux-foundation.org,infradead.org,linutronix.de,redhat.com,arm.com,goodmis.org,google.com,suse.de,oracle.com,suse.com,cmpxchg.org,nvidia.com,tencent.com,huaweicloud.com,gmail.com,lge.com,chromium.org,vger.kernel.org,kvack.org];
+	TAGGED_FROM(0.00)[bounces-276362-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_CC(0.00)[couthit.com,ti.com,kernel.org,atomide.com,gmail.com,iki.fi,kemnade.info,lunn.ch,vger.kernel.org];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[khilman@baylibre.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,hu-mojha-hyd.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:dkim,linaro.org:url];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mukesh.ojha@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_GT_50(0.00)[56];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[30];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,couthit.com:email,ti.com:email,baylibre-com.20230601.gappssmtp.com:dkim,baylibre.com:mid]
-X-Rspamd-Queue-Id: B684A29EE39
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 9A69529EEDB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Parvathi Pudi <parvathi@couthit.com> writes:
+On Sun, Mar 15, 2026 at 09:24:39PM -0500, Bjorn Andersson wrote:
+> On Wed, Mar 11, 2026 at 01:45:44AM +0530, Mukesh Ojha wrote:
+> > First of all, I want to thank Eugene for his excellent work on this
+> > series. What began as the Qualcomm Minidump driver from me has now
+> > evolved into meminspect. He also presented meminspect a few months ago
+> > at Linux Plumbers 2025.
+> > 
+> > Video of the recording is available here for anyone interested:
+> > https://www.youtube.com/watch?v=aDZv4-kOLSc
+> > 
+> > Introduction:
+> > 
+> > meminspect is a mechanism which allows the kernel to mark specific
+> > memory areas for memory dumping or specific inspection, statistics,
+> > usage.  Once regions are marked, meminspect keeps an internal list with
+> > the regions in a dedicated table.  Further, these regions can be
+> > accessed using specific API by any interested driver.  Regions being
+> > marked beforehand, when the system is up and running, there is no need
+> > nor dependency on a panic handler, or a working kernel that can dump the
+> > debug information.  meminspect can be primarily used for debugging. The
+> > approach is feasible to work when pstore, kdump, or another mechanism do
+> > not.  Pstore relies on persistent storage, a dedicated RAM area or
+> > flash, which has the disadvantage of having the memory reserved all the
+> > time, or another specific non volatile memory. Some devices cannot keep
+> > the RAM contents on reboot so ramoops does not work. Some devices do not
+> > allow kexec to run another kernel to debug the crashed one.  For such
+> > devices, that have another mechanism to help debugging, like firmware,
+> > kmemdump is a viable solution.
+> > 
+> > meminspect can create a core image, similar with /proc/vmcore, with only
+> > the registered regions included. This can be loaded into crash tool/gdb
+> > and analyzed. This happens if CRASH_DUMP=y.  To have this working,
+> > specific information from the kernel is registered, and this is done at
+> > meminspect init time, no need for the meminspect users to do anything.
+> > 
+> > This version of the meminspect patch series includes two drivers that
+> > make use of it: one is the Qualcomm Minidump, and the other one is the
+> > Debug Kinfo backend for Android devices, reworked from this source here:
+> > https://android.googlesource.com/kernel/common/+/refs/heads/android-mainline/drivers/android/debug_kinfo.c
+> > written originally by Jone Chou <jonechou@google.com>
+> > 
+> > *** History, motivation and available online resources ***
+> > 
+> > The patch series is based on both minidump and kmemdump previous implementations.
+> > 
+> > After the three RFC kmemdump versions, considering the ML discussions, it was decided to
+> > move this into kernel/ directory and rework it into naming it meminspect, as Thomas Gleixner
+> > suggested.
+> > 
+> > Initial version of kmemdump and discussion is available here:
+> > https://lore.kernel.org/lkml/20250422113156.575971-1-eugen.hristev@linaro.org/
+> > 
+> > Kmemdump has been presented and discussed at Linaro Connect 2025,
+> > including motivation, scope, usability and feasability.
+> > Video of the recording is available here for anyone interested:
+> > https://www.youtube.com/watch?v=r4gII7MX9zQ&list=PLKZSArYQptsODycGiE0XZdVovzAwYNwtK&index=14
+> > 
+> > Linaro blog on kmemdump can be found here:
+> > https://www.linaro.org/blog/introduction-to-kmemdump/
+> > 
+> > Linaro blog on kmemdump step by stem using minidump backend is available here:
+> > https://www.linaro.org/blog/kmemdump-step-by-step-on-qualcomm-automotive-platform/
+> > 
+> > The implementation is based on the initial Pstore/directly mapped zones
+> > published as an RFC here:
+> > https://lore.kernel.org/all/20250217101706.2104498-1-eugen.hristev@linaro.org/
+> > 
+> > The back-end implementation for qcom_minidump is based on the minidump
+> > patch series and driver written by Mukesh Ojha, thanks:
+> > https://lore.kernel.org/lkml/20240131110837.14218-1-quic_mojha@quicinc.com/
+> > 
+> > The RFC v2 version with .section creation and macro annotation kmemdump
+> > is available here:
+> > https://lore.kernel.org/all/20250724135512.518487-1-eugen.hristev@linaro.org/
+> > 
+> > The RFC v3 version with making everything static, which was pretty much rejected due to
+> > all reasons discussed on the public ML:
+> > https://lore.kernel.org/all/20250912150855.2901211-1-eugen.hristev@linaro.org/
+> > 
+> > *** How to use meminspect with minidump backend on Qualcomm platform guide ***
+> > 
+> > Prerequisites:
+> > Crash tool compiled with target=ARM64 and minor changes required for
+> > usual crash mode (minimal mode works without the patch) **A patch can be
+> > applied from here https://p.calebs.dev/1687bc ** This patch will be
+> > eventually sent in a reworked way to crash tool.
+> > 
+> 
+> That patch was written 8 months ago, what's the timeline for landing
+> this?
+> 
+> It's not feasible to have every users rebuild crash from source and
+> maintain this copy in order to use the tool.
 
-> Hi,
->
->> Parvathi Pudi <parvathi@couthit.com> writes:
->> 
->>> From: Roger Quadros <rogerq@ti.com>
->>>
->>> The TI Sitara AM335x ICE-V2 consists of single PRU-ICSS instance,
->>> This patch adds the new device tree overlay file in-order to enable
->>> PRU-ICSS instance, along with makefile changes.
->>>
->>> PRU-ICSS instance consists of two PRU cores along with various
->>> peripherals such as the Interrupt Controller (PRU_INTC), the Industrial
->>> Ethernet Peripheral(IEP), the Real Time Media Independent Interface
->>> controller (MII_RT), and the Enhanced Capture (eCAP) event module.
->>>
->>> am33xx-l4.dtsi - Adds IEP and eCAP peripheral as child nodes
->>> of the PRUSS subsystem node.
->>>
->>> am335x-icev2-prueth.dtso - Adds PRU-ICSS instance node along with PRU
->>> eth port information and corresponding port configuration. It includes
->>> interrupt mapping for packet reception, HW timestamp collection, and PRU
->>> Ethernet ports in MII mode,
->>>
->>> GPIO configuration, boot strapping along with delay configuration for
->>> individual PRU Ethernet port and other required nodes.
->>>
->>> Signed-off-by: Roger Quadros <rogerq@ti.com>
->>> Signed-off-by: Andrew F. Davis <afd@ti.com>
->>> Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
->>> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
->>> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
->> 
->> [...]
->> 
->>> +/*
->>> + * Disable CPSW switch node and
->>> + * MDIO configuration to prevent
->>> + * conflict with PRU-ICSS
->>> + */
->>> +&mac_sw {
->>> +        status = "disable";
->>> +};
->>> +
->>> +&davinci_mdio_sw {
->>> +        status = "disable";
->>> +};
->> 
->> I think you need s/disable/disabled/?  (note the trailing 'd').  Without
->> that, I don't think you're disabling these nodes, so I'm curious how it
->> is not conflicting with the PRU-ICSS.
->> 
->> Kevin
->
-> Thank you for pointing out this typo.
->
-> We checked the kernel code as to why this did not create any issue in our
-> testing.  We found that the device availability check goes through
-> of_device_is_available(), which only treats "ok" or "okay" as enabled.
-> Anything else is effectively treated as not enabled.
->
-> So even though "disable" isn't the usual DT value, it still prevents the
-> node from being probed since it doesn't match "ok"/"okay".
+Right, Let me see what I can do to make it acceptable..
 
-Yes, but since your node is in an overlay, if a previous .dts[i] had set
-this to "ok", then your overlay would not disable it, which would not be
-expected behavior.
+> 
+> > Target kernel must be built with : CONFIG_DEBUG_INFO_REDUCED=n ; this
+> > will have vmlinux include all the debugging information needed for crash
+> > tool.
+> > 
+> > Also, the kernel requires these as well: CONFIG_MEMINSPECT,
+> > CONFIG_CRASH_DUMP and the driver CONFIG_QCOM_MINIDUMP
+> > 
+> > Kernel arguments: Kernel firmware must be set to mode 'mini' by kernel
+> > module parameter like this : qcom_scm.download_mode=mini
+> > 
+> > After the kernel boots, and minidump module is loaded, everything is
+> > ready for a possible crash.
+> > 
+> > Once the crash happens, the firmware will kick in and you will see on
+> > the console the message saying Sahara init, etc, that the firmware is
+> > waiting in download mode. (this is subject to firmware supporting this
+> > mode, I am using sa8775p-ride board)
+> > 
+> > Example of log on the console:
+> > "
+> > [...]
+> > B -   1096414 - usb: init start
+> > B -   1100287 - usb: qusb_dci_platform , 0x19
+> > B -   1105686 - usb: usb3phy: PRIM success: lane_A , 0x60
+> > B -   1107455 - usb: usb2phy: PRIM success , 0x4
+> > B -   1112670 - usb: dci, chgr_type_det_err
+> > B -   1117154 - usb: ID:0x260, value: 0x4
+> > B -   1121942 - usb: ID:0x108, value: 0x1d90
+> > B -   1124992 - usb: timer_start , 0x4c4b40
+> > B -   1129140 - usb: vbus_det_pm_unavail
+> > B -   1133136 - usb: ID:0x252, value: 0x4
+> > B -   1148874 - usb: SUPER , 0x900e
+> > B -   1275510 - usb: SUPER , 0x900e
+> > B -   1388970 - usb: ID:0x20d, value: 0x0
+> > B -   1411113 - usb: ENUM success
+> > B -   1411113 - Sahara Init
+> > B -   1414285 - Sahara Open
+> > "
+> 
+> This doesn't add any specific value, it's just "Device entered ramdump
+> mode".
 
-> We will update the value to "disabled" in the next version, since that is
-> the standard.
+Sure, will remove it.
 
-Thanks.
+> 
+> > 
+> > Once the board is in download mode, you can use the qdl tool (I
+> > personally use edl , have not tried qdl yet)
+> 
+> Is this your or Eugen's comment? Why haven't you tested qdl yet?
 
-Kevin
+It was Eugene's comment, but I get it, I can try QDL and check, if it
+works.
+
+> 
+> >, to get all the regions as
+> > separate files.  The tool from the host computer will list the regions
+> > in the order they were downloaded.
+> > 
+> > Once you have all the files simply use `cat` to put them all together,
+> > in the order of the indexes.  For my kernel config and setup, here is my
+> > cat command : (you can use a script or something, I haven't done that so
+> > far):
+> 
+> So these need to be sorted in numerical order, by that number at the end
+> of the file name?
+> 
+> Do you manually punch these in? How do we make this user friendly?
+
+Yes, manually.. but I think we can do better. We could make
+this more user‑friendly by using the section header and string table in
+the md_KELF binary both of which existed in the earlier implementation.
+Then, we can write an upstream‑friendly script that reads this KELF
+metadata file, checks whether a binary with the registered name is
+present, and stitches everything together to form a complete ELF that
+the crash tool can consume.  Let me know if you have any suggestion..
+
+> 
+> Regards,
+> Bjorn
+> 
+> > 
+> > `cat md_KELF1.BIN md_Kvmcorein2.BIN md_Kconfig3.BIN \
+> > md_Ktotalram4.BIN md_Kcpu_poss5.BIN md_Kcpu_pres6.BIN \
+> > md_Kcpu_onli7.BIN md_Kcpu_acti8.BIN md_Kmem_sect9.BIN \
+> > md_Kjiffies10.BIN md_Klinux_ba11.BIN md_Knr_threa12.BIN \
+> > md_Knr_irqs13.BIN md_Ktainted_14.BIN md_Ktaint_fl15.BIN \
+> > md_Knode_sta16.BIN md_K__per_cp17.BIN md_Knr_swapf18.BIN \
+> > md_Kinit_uts19.BIN md_Kprintk_r20.BIN md_Kprintk_r21.BIN \
+> > md_Kprb22.BIN md_Kprb_desc23.BIN md_Kprb_info24.BIN \
+> > md_Kprb_data25.BIN  md_Khigh_mem26.BIN md_Kinit_mm27.BIN \
+> > md_Kunknown29.BIN md_Kunknown30.BIN md_Kunknown31.BIN \
+> > md_Kunknown32.BIN md_Kunknown33.BIN md_Kunknown34.BIN \
+> > md_Kunknown35.BIN md_Kunknown37.BIN \
+> > md_Kunknown38.BIN md_Kunknown39.BIN md_Kunknown40.BIN \
+> > md_Kunknown41.BIN md_Kunknown42.BIN md_Kunknown43.BIN \
+> > md_Kunknown44.BIN md_Kunknown45.BIN  md_Kunknown46.BIN \
+> > md_Kunknown47.BIN md_Kunknown48.BIN md_Kunknown49.BIN \
+> > md_Kunknown50.BIN md_Kunknown51.BIN md_Kunknown52.BIN \
+> > md_Kunknown53.BIN md_Kunknown54.BIN   > ./minidump_image`
+> > 
+> > Once you have the resulted file, use `crash` tool to load it, like this:
+> > `./crash --no_modules --no_panic --no_kmem_cache --zero_excluded vmlinux minidump_image`
+> > 
+> > There is also a --minimal mode for ./crash that would work without any patch applied
+> > to crash tool, but you can't inspect symbols, etc.
+> > 
+> > Once you load crash you will see something like this :
+> >       KERNEL: minidump/20260310-235110/vmlinux  [TAINTED]
+> >     DUMPFILE: ./minidump/20260310-235110/minidump_image
+> >         CPUS: 8 [OFFLINE: 7]
+> >         DATE: Thu Jan  1 05:30:00 +0530 1970
+> >       UPTIME: 00:00:27
+> >        TASKS: 0
+> >     NODENAME: qemuarm64
+> >      RELEASE: 7.0.0-rc3-next-20260309-00028-g528b3c656121
+> >      VERSION: #5 SMP PREEMPT Tue Mar 10 18:18:41 UTC 2026
+> >      MACHINE: aarch64  (unknown Mhz)
+> >       MEMORY: 0
+> >        PANIC: "Kernel panic - not syncing: sysrq triggered crash"
+> > 
+> > crash> log
+> > [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x514f0014]
+> > [    0.000000] Linux version 7.0.0-rc3-next-20260309-00028-g528b3c656121 (@21e3bca4168f) (aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #5 SMP PREEMPT Tue Mar 10 18:18:41 UTC 2026
+> > 
+> > *** Debug Kinfo backend driver ***
+> > I need help with the testing of this driver, Anyone who actually wants
+> > to test this, feel free to reply to the patch. we have also written a
+> > simple DT binding for the driver.
+> > 
+> > Thanks in advance for the review, and apologies if I missed addressing any comment.
+> > 
+> > -Mukesh 
+> > 
+> > Changes in v2: https://lore.kernel.org/lkml/20251119154427.1033475-1-eugen.hristev@linaro.org/
+> >  - Fixed doc warnings
+> >  - Fixed kernel-test robot warnings.
+> >  - Took Mike suggestion to remove mark inspect flag for dynamic memory.
+> >  - Added R-b for printk patch.
+> >  - Modified some commit messages for clarity.
+> >  - corrected binding change for debug-kinfo as per Rob suggestion.
+> > 
+> > Changelog for meminspect v1:
+> > - rename to meminspect
+> > - start on top of v2 actually, with the section and all.
+> > - remove the backend thing, change the API to access the table
+> > - move everything to kernel/
+> > - add dependency to CRASH_DUMP instead of a separate knob
+> > - move the minidump driver to soc/qcom
+> > - integrate the meminspect better into memblock by using a new memblock flag
+> > - minor fixes : use dev_err_probe everywhere, rearrange variable declarations,
+> > remove some useless code, etc.
+> > 
+> > Changelog for RFC v3:
+> > - V2 available here : https://lore.kernel.org/all/20250724135512.518487-1-eugen.hristev@linaro.org/
+> > - Removed the .section as requested by David Hildenbrand.
+> > - Moved all kmemdump registration(when possible) to vmcoreinfo.
+> > - Because of this, some of the variables that I was registering had to be non-static
+> > so I had to modify this as per David Hildenbrand suggestion.
+> > - Fixed minor things in the Kinfo driver: one field was broken, fixed some
+> > compiler warnings, fixed the copyright and remove some useless includes.
+> > - Moved the whole kmemdump from drivers/debug into mm/ and Kconfigs into mm/Kconfig.debug
+> > and it's now available in kernel hacking, as per Randy Dunlap review
+> > - Reworked some of the Documentation as per review from Jon Corbet
+> > 
+> > Changelog for RFC v2:
+> > - V1 available here: https://lore.kernel.org/lkml/20250422113156.575971-1-eugen.hristev@linaro.org/
+> > - Reworked the whole minidump implementation based on suggestions from Thomas Gleixner.
+> > This means new API, macros, new way to store the regions inside kmemdump
+> > (ditched the IDR, moved to static allocation, have a static default backend, etc)
+> > - Reworked qcom_minidump driver based on review from Bjorn Andersson
+> > - Reworked printk log buffer registration based on review from Petr Mladek
+> > 
+> > I appologize if I missed any review comments.
+> > Patches are sent on top on next-20260309 tag
+> > 
+> > ---
+> > Eugen Hristev (21):
+> >       kernel: Introduce meminspect
+> >       init/version: Annotate static information into meminspect
+> >       mm/percpu: Annotate static information into meminspect
+> >       cpu: Annotate static information into meminspect
+> >       genirq/irqdesc: Annotate static information into meminspect
+> >       timers: Annotate static information into meminspect
+> >       kernel/fork: Annotate static information into meminspect
+> >       mm/page_alloc: Annotate static information into meminspect
+> >       mm/show_mem: Annotate static information into meminspect
+> >       mm/swapfile: Annotate static information into meminspect
+> >       kernel/vmcore_info: Register dynamic information into meminspect
+> >       kernel/configs: Register dynamic information into meminspect
+> >       mm/init-mm: Annotate static information into meminspect
+> >       panic: Annotate static information into meminspect
+> >       kallsyms: Annotate static information into meminspect
+> >       mm/mm_init: Annotate static information into meminspect
+> >       sched/core: Annotate runqueues into meminspect
+> >       remoteproc: qcom: Move minidump data structures into its own header
+> >       soc: qcom: Add minidump backend driver
+> >       soc: qcom: smem: Add minidump platform device
+> >       meminspect: Add debug kinfo compatible driver
+> > 
+> > Mukesh Ojha (4):
+> >       mm/numa: Register node data information into meminspect
+> >       mm/sparse: Register information into meminspect
+> >       printk: Register information into meminspect
+> >       dt-bindings: reserved-memory: Add Google Kinfo Pixel reserved memory
+> > 
+> >  Documentation/dev-tools/index.rst                  |   1 +
+> >  Documentation/dev-tools/meminspect.rst             | 144 +++++++
+> >  .../bindings/reserved-memory/google,kinfo.yaml     |  46 ++
+> >  MAINTAINERS                                        |  14 +
+> >  drivers/of/platform.c                              |   1 +
+> >  drivers/remoteproc/qcom_common.c                   |  56 +--
+> >  drivers/soc/qcom/Kconfig                           |  13 +
+> >  drivers/soc/qcom/Makefile                          |   1 +
+> >  drivers/soc/qcom/minidump.c                        | 272 ++++++++++++
+> >  drivers/soc/qcom/smem.c                            |  10 +
+> >  include/asm-generic/vmlinux.lds.h                  |  13 +
+> >  include/linux/meminspect.h                         | 263 ++++++++++++
+> >  include/linux/soc/qcom/minidump.h                  |  72 ++++
+> >  init/Kconfig                                       |   1 +
+> >  init/version-timestamp.c                           |   3 +
+> >  init/version.c                                     |   3 +
+> >  kernel/Makefile                                    |   1 +
+> >  kernel/configs.c                                   |   6 +
+> >  kernel/cpu.c                                       |   5 +
+> >  kernel/fork.c                                      |   3 +
+> >  kernel/irq/irqdesc.c                               |   2 +
+> >  kernel/kallsyms.c                                  |   9 +
+> >  kernel/meminspect/Kconfig                          |  30 ++
+> >  kernel/meminspect/Makefile                         |   4 +
+> >  kernel/meminspect/kinfo.c                          | 284 +++++++++++++
+> >  kernel/meminspect/meminspect.c                     | 471 +++++++++++++++++++++
+> >  kernel/panic.c                                     |   4 +
+> >  kernel/printk/printk.c                             |  11 +
+> >  kernel/sched/core.c                                |   2 +
+> >  kernel/time/timer.c                                |   2 +
+> >  kernel/vmcore_info.c                               |   4 +
+> >  mm/init-mm.c                                       |  11 +
+> >  mm/mm_init.c                                       |   2 +
+> >  mm/numa.c                                          |   2 +
+> >  mm/page_alloc.c                                    |   2 +
+> >  mm/percpu.c                                        |   2 +
+> >  mm/show_mem.c                                      |   2 +
+> >  mm/sparse.c                                        |   6 +
+> >  mm/swapfile.c                                      |   2 +
+> >  39 files changed, 1725 insertions(+), 55 deletions(-)
+> > ---
+> > base-commit: 343f51842f4ed7143872f3aa116a214a5619a4b9
+> > change-id: 20260311-minidump-v2-eed8da647ce5
+> > 
+> > Best regards,
+> > -- 
+> > -Mukesh Ojha
+> > 
+
+-- 
+-Mukesh Ojha
 
