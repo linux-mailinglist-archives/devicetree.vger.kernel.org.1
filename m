@@ -1,123 +1,311 @@
-Return-Path: <devicetree+bounces-276058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276052-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uOvlIDDRt2ljVwEAu9opvQ
-	(envelope-from <devicetree+bounces-276058-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:45:20 +0100
+	id aC02Ak7Qt2n0VgEAu9opvQ
+	(envelope-from <devicetree+bounces-276052-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:41:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 035C52974B9
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:45:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74B3C297346
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:41:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8065A305BFDE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 09:41:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0AD5030300F2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 09:40:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FF1238E137;
-	Mon, 16 Mar 2026 09:41:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF33B38CFE4;
+	Mon, 16 Mar 2026 09:40:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FvQ9/GKc"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="GAvVHJ1/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013068.outbound.protection.outlook.com [40.107.162.68])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A70F38D001
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 09:41:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773654067; cv=none; b=EAEX3Xp7NkLkUCBXF49mgyf2c6zvyDNT6hMDOU6aWvxldCyfQk1A50rHyKA0+Cowg5QZlqso9Bqv9Qevd4PlbFEmDn2mfMVuOpPDYYEPWvdUYnct9DiGladiktQ03B1nx4MG3sH9vsPA18/QfsM2cnpJN7Wu4QzH/8wQdR0vhH8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773654067; c=relaxed/simple;
-	bh=Z8msOfxeowllRcJq32bZpSujfByu+DcMa2B+qOK1z6c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XnEq9fsnOAIE26XZMVOFeVyKW9ZIBGY1GG09BGWfP3X+TkPUl2rAUZWVqAYdUu7cXh2njhm7aA4WJvvksMjgXplAzL1kw88mxa+ezJ5d7B4Z05pqdu+KVoi3tfhGxHtt6rT2q81TkHeorivpoRBEw+RZeudbKkVh/eFCWiM+9as=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FvQ9/GKc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6562C2BCB2
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 09:41:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773654066;
-	bh=Z8msOfxeowllRcJq32bZpSujfByu+DcMa2B+qOK1z6c=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=FvQ9/GKcDqmGgAAoj077c1EfOGahXoK21ZWGDM8QElN4LpnNTYOL/79aWdo1ocCNY
-	 O4q0TAWCYbxe5zd/TFjruAxbPxv8bqde+79DWLjmz1WA1/+TJK/F5bjhtNKyn+GOiM
-	 h6Gw9962LjAHSeqpxD9KGWF1iYJHowE4y6ndlSbKv8stNc57gaEeOG7mgqIKuD9cnB
-	 J4Ws5u2lcwhh6cTFi/yd0APiFFeGeyefn33EZ4B9AXQzfVvqRb6zm5gWY8sW6C+Ebt
-	 zmH0FW7rEWg4agRa8YZEVD8wQX2AFSjZ1s6zaFay3csxXCPFbo8nYoebmLH8zKzFwh
-	 wM9Wkp/CH9UYQ==
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-7985ce90542so39792267b3.0
-        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 02:41:06 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVCEZD7VMMLErE8poyPoiB62fN87M1ZQsq5f/g7osrp4jRYaSdMpmJUluejPHGeaMEut0wqpGMTp8YJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzbza7icKX4zkHRqZ/EQb4toYWZyi4gxrJMuJJ3gXEtBc/uqwbA
-	hP+GJPUDQ6Z850l4qJp90hlq1BkwJP0TqM44yhOX9bp0eCYJSvtJQAw+0u+J5UhFbfCu/vmp6ir
-	GrROh9Ilf81MrkBC5el21CvSkaN8uz08=
-X-Received: by 2002:a05:690c:1c:b0:798:34a:52de with SMTP id
- 00721157ae682-79a1c1ddd0fmr123816337b3.51.1773654066057; Mon, 16 Mar 2026
- 02:41:06 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7491838AC8F;
+	Mon, 16 Mar 2026 09:40:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.68
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773654028; cv=fail; b=EpHInBRa/vBEfDEIwcSEtiwFxn+JPiJOQoq9q73DjWH/KEZ7jqdgSj/7BthtvVJ/byvc/PUS7OH730eB/Q91jl4j2tZeJslLLTsrk4CjpTFclBnYCKMaXrtAjng40ArnBqYbishbh0lxf/3TRjPd1xH7CF7axK1slQ4udo1ihL4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773654028; c=relaxed/simple;
+	bh=SLHXG1EFzttL81mP36gUQEuiEaEzlYtdm5nmUyjkCz0=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=r4mNXickL5v5tl87lBzpTcwQ4+oDB/VV64WEX7KKNcc/JJ9r9IHXLJWUwUkiR2cZRZKMvcruoaIFiOXrbxRsd2grjfZ6igjDETrmmOgTlCVD1+eik727ODaud3SYx2gW4qsHS9vlw3tWPAUsNXDQg+7KpO6GyF0Yhv1KLfL3x8Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=GAvVHJ1/; arc=fail smtp.client-ip=40.107.162.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qhB7dKNnihH4iwBdHrhr6DA7ZA76rdHKSUrljw7D1z3K2i5YOfoNIBbMxIUOMWUx9GDgnbJbPlO00CTmI+wswQKTwPqBq5nch5jmuEX2Qs2/L/fy23mXihSccJp9xF0DU2rTs/BVXNkxoPk89qSjL1x204PHhYvCrO7VUlDlp+YdKCkNLtA3xJ7SR7lAbq3ZKxDjeqGNYMdqnsZf5afO8uWy46zKs8YiTpyoTfmKHBSLxSiHrRpT/eSGtNjK+YNFwjKxH6w4M2BrMNRUxd7NUtMYBJ4cB+qjayGySX265VpjtLzOJBDt6Jlyx6x3Gvn/FSMOV70Zv8uJ6585cifLqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=U7sxdXWUOuSTbxV4sO4U6MPtKzEPLu9f6ERux6/yywc=;
+ b=WXwiSsWSGbaWElOhT75vKzK16ZzHY650Fs8WnjiETdg+0IcW5qD/h6WRLC8AVyhMT0gzoB0wTS+AqDArtfiHdDimGxOfFDEwVOKfEpiOW2jh65HzBZS3U4QqUuUPtmCao+9c3rIa006/iDhLL8d4AskZv26z9wOmX+5Mh+XYcYvK2mV33Ff+uZ07NOM5EISjxwxSHOzmoGyKbfIKUpjKSUaBdlpRrMVHi4q9/S2QQ3zkQzrNFqfBFk0exv/7DsvKxXRFagzceZnRYyHx1X/gqceZUEISH8lcQ+vw3H7Zydlj7qqxn2ap0UBDdyeK1bpzPXMRczQpZEc2RIQ+kgRzWg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=U7sxdXWUOuSTbxV4sO4U6MPtKzEPLu9f6ERux6/yywc=;
+ b=GAvVHJ1/YXZqwSUBK4jc1sX5qfvdESmEevLqD6ihBgvSYLZgwuaO3O2pV39CH370gQLf2kv4Kyg4ZlpbfIEN3YDgCf8WeKTQ4odCbx7goWn4IY1nb6xTS1NdxjqG+Il4meGvVsREIVq/e7KgIwETj7Q1HBqfXI1VxuSRbVRxNC6DdDEDjC/bsQeV4cr84QmaJQXT/OAvd98n34zhcCfWp0Zbc7EcyMrMyr2DaXPg1Xsn8ZWefLFDtYaiG95uoUgrovYRxuBOz94Wgr7GtAtzXi39eVp+WkAxvxwyPkkFvyO99FA/zL28PKN96hMQjF/Oq4kl+1EiioJsxnZ9i7/GKw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com (2603:10a6:102:211::7)
+ by MRWPR04MB12119.eurprd04.prod.outlook.com (2603:10a6:501:97::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.22; Mon, 16 Mar
+ 2026 09:40:15 +0000
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::b476:c19a:24cd:3694]) by PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::b476:c19a:24cd:3694%3]) with mapi id 15.20.9700.022; Mon, 16 Mar 2026
+ 09:40:25 +0000
+From: Wei Fang <wei.fang@nxp.com>
+To: claudiu.manoil@nxp.com,
+	vladimir.oltean@nxp.com,
+	xiaoning.wang@nxp.com,
+	andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	f.fainelli@gmail.com,
+	frank.li@nxp.com,
+	chleroy@kernel.org,
+	horms@kernel.org,
+	linux@armlinux.org.uk
+Cc: netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org,
+	linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev
+Subject: [PATCH net-next 00/14] Add preliminary NETC switch support for i.MX94
+Date: Mon, 16 Mar 2026 17:41:38 +0800
+Message-Id: <20260316094152.1558671-1-wei.fang@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR02CA0019.apcprd02.prod.outlook.com
+ (2603:1096:4:195::13) To PAXPR04MB8510.eurprd04.prod.outlook.com
+ (2603:10a6:102:211::7)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260311-pinctrl-mux-v3-0-236b1c17bf9b@nxp.com>
-In-Reply-To: <20260311-pinctrl-mux-v3-0-236b1c17bf9b@nxp.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Mon, 16 Mar 2026 10:40:55 +0100
-X-Gmail-Original-Message-ID: <CAD++jLkNdc+jc2+c_ageDAbw7ASCDf+6CKTaU4nMt68LhpuB5Q@mail.gmail.com>
-X-Gm-Features: AaiRm51CGq6AEM0GTX8yXQmjUc1clr3otpnO-iyM1eZa4K5fUJagwOZsjTiiBjY
-Message-ID: <CAD++jLkNdc+jc2+c_ageDAbw7ASCDf+6CKTaU4nMt68LhpuB5Q@mail.gmail.com>
-Subject: Re: [PATCH v3 0/7] pinctrl: Add generic pinctrl for board-level mux chips
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, Haibo Chen <haibo.chen@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8510:EE_|MRWPR04MB12119:EE_
+X-MS-Office365-Filtering-Correlation-Id: 51f956e6-5cbb-4499-690e-08de83400cc6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|7416014|376014|52116014|1800799024|366016|38350700014|18002099003|921020|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	6qCxbAQ4o2sI6LgwOIGqjcEHvIwT1u+7l6dqDogPbz/4vLPkeuls3veHsuXj2AvSUdzvWtRv5fkByz8XMyh8lrkLvifA/4tiu+MKVge3kht1858iwrOkGuoYatihXQ690J15sNUg55kCmnW05pOcdKKKcHcmJSts/Fg9NmOGlLdi08ILaLiK6yUVo7UpzgvrDBLQrbuk+jXLB8qpEpifeLRvkfMRihDDFx6cmYhSrJPBtFy4OaDuFurrFZDrtvru6rqaLAjP9DkD+fUpZo9ucz1KLVjPLpQxwHiOu+sT02warU1wuU+DuBkp1rQc1h8l28HZih+HSFd9364QpbMCuqqaV9BN6uXA3zkm9+kdeZi97eq/gKDo/Me1zhLqX1jRWs6aeX/tvO+BXDzEQmAwScocHpyZy/qDEX9XiZSqXGCnjfZZPPHeZpGG1P7whP76kyQi35KiN2KF+KCbXP/4KhZlykcRP/eXNACJL+aeeCllhrHmP6dgii2ClwLYnYIcliY8UqkH3OtDhIqEIaT5ZDj1o6V7/9iXkBu1dViRpx69QOjwEGmpmCRyVtNSvoGAYax8JdDieJA/wiZKaKVJDoWN0j69veNprsjh8iVWldho7qjwOBO0xwrHYLrCgn0ImrrOyuUpSV4uUxpnYw3ud/4ilVibo7koNVYdfAK3HPOS0q46kKHzUh9mvw1Bubdb0Ax9vtFS50mu7b+ojf+CyyG+MV7fTDnSk+M9LbeSeqAQzqyvNQfMFEudcedNuQ6KRJaPKFiT/+pWNtSS69496ahr0LIXNS8S8t5Hzvn39/uqyWJl3+8HzONZ+NW4v0jS
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8510.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(376014)(52116014)(1800799024)(366016)(38350700014)(18002099003)(921020)(56012099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?afnRSdjyP9aRbasr/3cfBTkLvGTvQcnYqqTBSS78RhsSkD1KXEje3Wd45IBo?=
+ =?us-ascii?Q?z9UWqobJRZ78qqrLw6gh92FSU5P5bFp14SZz2G5jQA9gQHascS7/Z7wH4xoj?=
+ =?us-ascii?Q?oUoyz83FTaqenDBh9gFTUGn1p1s9aJ04P2bfP4qSf05i+9Jp7s2Ds5a+qrt+?=
+ =?us-ascii?Q?jGQm1z18R/IAATR0MtKufHdvQGJBk4+TV2zNDjfLgVswIbUiGamKYLDAme8t?=
+ =?us-ascii?Q?J7eCSJtRREOCx9ApGzYx7Xyty4CIv06Y7AfcbsmBI9SCoskzFN1vpyR3uofT?=
+ =?us-ascii?Q?K24fCEU1i2dtQHTWwxL5s1IPRkQXzi724WF7NHT20N9wD1CcoRd+pTJk8QON?=
+ =?us-ascii?Q?8NDTS7Yt+KBxioRCPrCVi3dj+zDaO6y3Nn03WArZ4zIkMj0+HNbG/nvTAhIF?=
+ =?us-ascii?Q?a8tFRP4tyodxqpQfgp+5d8yEkzY+e45BIKtD1iMJ3cnprS4xABLjtS/aUK/o?=
+ =?us-ascii?Q?vOhiU5Hh2vb3Kz37AFX4LFIuh68nWXCwa085QboRjwZ0H8fvYmO1vSyZMVGo?=
+ =?us-ascii?Q?o4NvXeN5LfLkDMHZcwN2ltT2mWkIbE5Ja6+XNCBCXY424jZqOjO8K/xawMJy?=
+ =?us-ascii?Q?7sUwMY0V311x6JZYTr/cB6JDQV/Alzk3bue3w5nkvCa67bM2cjaY2OXT2V4h?=
+ =?us-ascii?Q?Fe/v766dFr8Gz2pghPOBHXzS9o55dUSDNBcdX3mIAqCNHN2TipBvPwlOWGAS?=
+ =?us-ascii?Q?REdEMOilqGZ1v4STaPhapN48X2luKnVXRMZck1/TLyxCBAcCVlPqpiIccSkg?=
+ =?us-ascii?Q?f/Irl1R0Oiojc9F6HpbF78FHuqLmmYUZaNS5KIyvoFe4V3dqhIwdOshZdHQ5?=
+ =?us-ascii?Q?RsYP7801QeIostpvKB5s1wx1dqo4MZv0M3fP+XQRs/mXnCdZ5WA3ObqrZCip?=
+ =?us-ascii?Q?el5XZ9rIbWvAjDklxe9toyrFlSIbP6Rx3gCNvWRpQRwy4JNE33l3z5uzaU3r?=
+ =?us-ascii?Q?EgnkATsHHNMZHUoDE5EMgSFgMIMeRdW7PRcdBNN5RhU/MkXwjUOq8Gl1nzk8?=
+ =?us-ascii?Q?/iwW4jTYdnaNDaASENS1Ja6pVFewhn4HeAG++Q6ZkSt5WtrKvC1XZg4hlLoL?=
+ =?us-ascii?Q?FEGKr23TW6BvSgG8Btqf63YCpnQQ/rxAV89l+VDnxQP+mtXaukCrAAdCz6wu?=
+ =?us-ascii?Q?arAcJ7szUVlkJImAv2OsNi5hzYnfDd/fC74IAMuMVAIZ5J8722mENZM8FcJl?=
+ =?us-ascii?Q?5QG+qwyGiQLSBrefnp2X3T5Dqcx04QiKVznNbBlwsKIuIiOu86cIZNFp8zer?=
+ =?us-ascii?Q?kMp3aMS2PnbPsoBC2kXNLfrd2s7vFjEhdXHfL7qPC4Q99nUre+23ZgZaF5gI?=
+ =?us-ascii?Q?2nMFfq+yCrjeZ/e6b03IKLuSoXHjKUuEQDScZRPleXMSJvXl9PIjuQy22qL/?=
+ =?us-ascii?Q?3JjJKejvgAF5geGqJvZbu/W5WQXJsHj3tE7RO9IpHIXwovrnYVJb0XdYwJIC?=
+ =?us-ascii?Q?V7+vATGOK/rd1ssPAepra1H8qXEFunnet7LwwyK0DYwLenv/0v4WQi0YXdl2?=
+ =?us-ascii?Q?mpOG9LSfDvSLT8FJ/Of16Tdkz4GCC6Cn24oKMO9cXXswxaQBvgiY5ZKdQa1G?=
+ =?us-ascii?Q?Q+xsGUJGKniSf0TdtZGiWu6UpLK9wuehicR8bfR7z89fxFah7KkIDt5wD+zK?=
+ =?us-ascii?Q?OYLkuB4iqdA/WcwZ3IdvoUNLccqob0qZTfd2SxoiITSCUeCWy2yHR50lYaaj?=
+ =?us-ascii?Q?YILLuOoBhbe//zAFsb5zC3bvPC0x2BkNrhTpweOa1E5zqoL6?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 51f956e6-5cbb-4499-690e-08de83400cc6
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8510.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 09:40:25.4699
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RwfhmTLui1Ut65wEeOJDPp3RLfjsX2CK47sscmrQ1eFBZtq/6c1QPCQt6zX3hlpZTFS3sIhz95EmxJyuskhibg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MRWPR04MB12119
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276058-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[axentia.se,kernel.org,milecki.pl,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,nxp.com];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_TO(0.00)[nxp.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276052-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wei.fang@nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_NONE(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 035C52974B9
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:dkim,nxp.com:mid]
+X-Rspamd-Queue-Id: 74B3C297346
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 11, 2026 at 8:08=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
+i.MX94 NETC (v4.3) integrates 802.1Q Ethernet switch functionality, the
+switch provides advanced QoS with 8 traffic classes and a full range of
+TSN standards capabilities. It has 3 user ports and 1 CPU port, and the
+CPU port is connected to an internal ENETC through the pseduo link, so
+instead of a back-to-back MAC, the lightweight "pseudo MAC" is used at
+both ends of the pseudo link to transfer Ethernet frames. The pseudo
+link provides a zero-copy interface (no serialization delay) and lower
+power (less logic and memory).
 
-> Add a generic pinctrl binding for board-level pinmux chips that are
-> controlled through the multiplexer subsystem.
+Like most Ethernet switches, the NETC switch also supports a proprietary
+switch tag, is used to carry in-band metadata information about frames.
+This in-band metadata information can include the source port from which
+the frame was received, what was the reason why this frame got forwarded
+to the entity, and for the entity to indicate the precise destination
+port of a frame. The NETC switch tag is added to frames after the source
+MAC address. There are three types of switch tags, and each type has 1
+to 4 subtypes, more details are as follows.
 
-I really like this version, I had a minor comment on refactoring the
-generic helper instead of wrapping it (plus some random ramblings
-from my side, sorry). With this fixed I feel I can apply v4.
+Forward switch tag (Type = 0): Represents forwarded frames.
+  - SubType = 0 - Normal frame processing.
 
-Yours,
-Linus Walleij
+To_Port switch tag (Type = 1): Represents frames that are to be sent to
+a specific switch port.
+  - SubType = 0. No request to perform timestamping.
+  - SubType = 1. Request to perform one-step timestamping.
+  - SubType = 2. Request to perform two-step timestamping.
+  - SubType = 3. Request to perform both one-step timestamping and
+    two-step timestamping.
+
+To_Host switch tag (Type = 2): Represents frames redirected or copied to
+the switch management port.
+  - SubType = 0. Received frames redirected or copied to the switch
+     management port.
+  - SubType = 1. Received frames redirected or copied to the switch
+    management port with captured timestamp at the switch port where
+    the frame was received.
+  - SubType = 2. Transmit timestamp response (two-step timestamping).
+
+Currently, this patch set supports Forward tag, SubType 0 of To_Port tag
+and SubType 0 of To_Host tag. More tags will be supported in the future.
+
+In addition, the switch supports NETC Table Management Protocol (NTMP),
+some switch functionality is controlled using control messages sent to
+the hardware using BD ring interface with 32B descriptors similar to the
+packet Transmit BD ring used on ENETC. This interface is referred to as
+the command BD ring. This is used to configure functionality where the
+underlying resources may be shared between different entities or being
+too large to configure using direct registers.
+
+For this patch set, we have supported the following tables through the
+command BD ring interface.
+
+FDB Table: It contains forwarding and/or filtering information about MAC
+addresses. The FDB table is used for MAC learning lookups and MAC
+forwarding lookups.
+
+VLAN Filter Table: It contains configuration and control information for
+each VLAN configured on the switch.
+
+Buffer Pool Table: It contains buffer pool configuration and operational
+information. Each entry corresponds to a buffer pool. Currently, we use
+this table to implement flow control feature on each port.
+
+Ingress Port Filter Table: It contains a set of filters each capable of
+classifying incoming traffic using a mix of L2, L3, and L4 parsed and
+arbitrary field data. We use this table to implement host flood support
+to the switch port.
+
+The switch also supports other tables, and we will add more advanced
+features through them in the future.
+
+Wei Fang (14):
+  dt-bindings: net: dsa: update the description of 'dsa,member' property
+  dt-bindings: net: dsa: add NETC switch
+  net: enetc: add pre-boot initialization for i.MX94 switch
+  net: enetc: add basic operations to the FDB table
+  net: enetc: add support for the "Add" operation to VLAN filter table
+  net: enetc: add support for the "Update" operation to buffer pool
+    table
+  net: enetc: add support for "Add" and "Delete" operations to IPFT
+  net: enetc: add multiple command BD rings support
+  net: dsa: add NETC switch tag support
+  net: dsa: netc: introduce NXP NETC switch driver for i.MX94
+  net: dsa: netc: add phylink MAC operations
+  net: dsa: netc: add more basic functions support
+  net: dsa: netc: initialize buffer bool table and implement
+    flow-control
+  net: dsa: netc: add support for the standardized counters
+
+ .../devicetree/bindings/net/dsa/dsa.yaml      |    6 +-
+ .../bindings/net/dsa/nxp,netc-switch.yaml     |  127 ++
+ MAINTAINERS                                   |   11 +
+ drivers/net/dsa/Kconfig                       |    3 +
+ drivers/net/dsa/Makefile                      |    1 +
+ drivers/net/dsa/netc/Kconfig                  |   14 +
+ drivers/net/dsa/netc/Makefile                 |    3 +
+ drivers/net/dsa/netc/netc_ethtool.c           |  192 ++
+ drivers/net/dsa/netc/netc_main.c              | 1575 +++++++++++++++++
+ drivers/net/dsa/netc/netc_platform.c          |   89 +
+ drivers/net/dsa/netc/netc_switch.h            |  155 ++
+ drivers/net/dsa/netc/netc_switch_hw.h         |  356 ++++
+ .../ethernet/freescale/enetc/netc_blk_ctrl.c  |  188 +-
+ drivers/net/ethernet/freescale/enetc/ntmp.c   |  391 +++-
+ .../ethernet/freescale/enetc/ntmp_private.h   |  120 ++
+ include/linux/dsa/tag_netc.h                  |   14 +
+ include/linux/fsl/netc_global.h               |    6 +
+ include/linux/fsl/ntmp.h                      |  233 +++
+ include/net/dsa.h                             |    2 +
+ include/uapi/linux/if_ether.h                 |    1 +
+ net/dsa/Kconfig                               |   10 +
+ net/dsa/Makefile                              |    1 +
+ net/dsa/tag_netc.c                            |  180 ++
+ 23 files changed, 3651 insertions(+), 27 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/nxp,netc-switch.yaml
+ create mode 100644 drivers/net/dsa/netc/Kconfig
+ create mode 100644 drivers/net/dsa/netc/Makefile
+ create mode 100644 drivers/net/dsa/netc/netc_ethtool.c
+ create mode 100644 drivers/net/dsa/netc/netc_main.c
+ create mode 100644 drivers/net/dsa/netc/netc_platform.c
+ create mode 100644 drivers/net/dsa/netc/netc_switch.h
+ create mode 100644 drivers/net/dsa/netc/netc_switch_hw.h
+ create mode 100644 include/linux/dsa/tag_netc.h
+ create mode 100644 net/dsa/tag_netc.c
+
+-- 
+2.34.1
+
 
