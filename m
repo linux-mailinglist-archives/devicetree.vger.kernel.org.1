@@ -1,236 +1,161 @@
-Return-Path: <devicetree+bounces-276349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276348-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uLfEIL4/uGnSawEAu9opvQ
-	(envelope-from <devicetree+bounces-276349-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:37:02 +0100
+	id 2LTOKxc+uGmpagEAu9opvQ
+	(envelope-from <devicetree+bounces-276348-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:29:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F88029E5FD
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:37:02 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CE5929E41E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:29:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E112D309542D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:29:41 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A32C4303C4F8
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:29:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAEFC3D331D;
-	Mon, 16 Mar 2026 17:29:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FCDD3D3301;
+	Mon, 16 Mar 2026 17:28:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MQw3Blgr"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="2RfqEAqk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 678403D1CA2;
-	Mon, 16 Mar 2026 17:29:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 550383D1CAE;
+	Mon, 16 Mar 2026 17:28:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773682165; cv=none; b=UvR7o4g293a/J110Az/aobYfeoVW3T4h4ERxVOXIKct23x63EuIZCU1odajsbYYZ9h+UY9aQg6CtHuCmHZruwRiVwqjkEhx55uyn1ZmPHH2jZMmjfH1PaVSYRWx6NXbwSI4pbVI5v9XfXD3RgdmLcUexf+EAroiTinm6wj58Owg=
+	t=1773682130; cv=none; b=f6fB+C2L2kFjaz9U3uqcXo1IYsAKQ6ObKz6fJYzZpJQTZU++ivbSJEXi0pRmAUlB7jaxW1m4Au6IwWK2laJ/sQlLAkwjuybssLWkBATRpjMelBq280s08O3KGQI+rINHIkwrWRmL/Dj96wGtQFgubsP2WNZgubPsMcWfIPUhK9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773682165; c=relaxed/simple;
-	bh=wxGX2gFq5BLquXVP03f8zC0BP5xU9gLN5ZVoUeJPYYw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FyxGGkiQqz48NBI+MivvvXFTr8/uA4djN9qjWNpSQ/SgE4VheymDBNXzJ2zYJHbgBLY+tit4U8G8ta/kV+pnX3qqFttGHu9ZdDC8PVMK5toAmTDPLCafcePAWtmHa0K0MjOuhX8kFkLf+t05leUsQ7gTMBi3EfEKU07hVhx4gG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MQw3Blgr; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773682165; x=1805218165;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=wxGX2gFq5BLquXVP03f8zC0BP5xU9gLN5ZVoUeJPYYw=;
-  b=MQw3Blgr6nSpDymMAP/XYCsl3klwX+vhPgJ3CC6ftxZy3cqbf/Xso1HU
-   6thS1uDqPdkZU9o4g9CadifWW6c0GVdw3bs7VAS1q7BV86925TlX8OGUN
-   WUFcZMcwdvDMhyROXMp/8r4YZuAJZnK+QyeQLZLYFoRnOGvBzgvuGxay3
-   BiXRJmrUnZ+mr3wXzgTn7dN+jpnM0e7vjTgcgeuYvi0w/O1OqhTpPmkjn
-   vh0y6k7lEhzf3Ccmpzp9MkggzOTDH8g+vDLsTAyUBc4JChg5JeURNjGeI
-   Wc5DMJNgylOY8/m+PN2gc+bubVa5vRiaARtH8pJd/RgmhHDZq/lF1SG5T
-   A==;
-X-CSE-ConnectionGUID: fxWzHr+bSDqog2Yar4VRuQ==
-X-CSE-MsgGUID: hrHMeoADT0StZIKEZmsSVQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="74596434"
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
-   d="scan'208";a="74596434"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2026 10:29:24 -0700
-X-CSE-ConnectionGUID: p4T2LBjYQ9+H18eSc/Zk4Q==
-X-CSE-MsgGUID: /P4nI6lSQaKad0WXq5uuyA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
-   d="scan'208";a="252507405"
-Received: from lkp-server01.sh.intel.com (HELO 892944969b78) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 16 Mar 2026 10:29:20 -0700
-Received: from kbuild by 892944969b78 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1w2Bki-00000000130-3hfX;
-	Mon, 16 Mar 2026 17:29:16 +0000
-Date: Tue, 17 Mar 2026 01:28:29 +0800
-From: kernel test robot <lkp@intel.com>
-To: Anvesh Jain P <anvesh.p@oss.qualcomm.com>,
-	Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans de Goede <hansg@kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
-	Anvesh Jain P <anvesh.p@oss.qualcomm.com>,
-	Maya Matuszczyk <maccraft123mc@gmail.com>
-Subject: Re: [PATCH v4 2/5] platform: arm64: Add driver for EC found on
- Qualcomm reference devices
-Message-ID: <202603170132.IivRdk9p-lkp@intel.com>
-References: <20260313-v04-add-driver-for-ec-v4-2-ca9d0efd62aa@oss.qualcomm.com>
+	s=arc-20240116; t=1773682130; c=relaxed/simple;
+	bh=NecQNIbJVjR4QKynRnsWGLEM/FjCA8nKBtIf4lM6MYU=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=Rq9D0caax9XrW/3aV7kkMPLkpzn4qlfxluBphqk3aJOrlLfHDDe0ekXtVc2d+sila/TfGWsbgDmh8wo2j/JgQyX//hpFRSSCbf4EI+nuIINt29x+1q/38uoVjqDACCge5Fi67UIULj7i86XkAe7biZIWCI5eHiPbgsXxFARKusM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=2RfqEAqk; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 75F08C55049;
+	Mon, 16 Mar 2026 17:29:10 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 959E35FC4A;
+	Mon, 16 Mar 2026 17:28:43 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id F415210372205;
+	Mon, 16 Mar 2026 18:28:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1773682122; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=gz0O9gf9DYS/9ki+LBzB+Kc7tz7JAV4ntvwkaPEiz9o=;
+	b=2RfqEAqkQVxA/RBKfoUw4sivzmpo/J3yIH3PRNOSIqcaI+6j1jCXdiZw0OrgYrhyrk9uxE
+	gnIRJ+LHMMTEN3pxnTANZm4QcvoarnjEPeumXPbQ3uEKOusXCLZ7Abt5w8m1ioKPYDk9UG
+	rHYPSxLNQoI3oZxFkrQ9xfek7YrfKznFUlbRPeE5wWQ9EyNBs3iXCdpjjP69JQdnapQ8oN
+	z8fdwhle17H+7c+9iu/gOrkyroc9MhlSO9pcY8ET5j5Tggtat2tkzJguMOBpFXrpbqhw0t
+	tMLOg3DwLiyWxAcNbkl6Q+EDosicnHRpZu/TAzWT2PlMKujUYVfk1VUHuZv9eQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260313-v04-add-driver-for-ec-v4-2-ca9d0efd62aa@oss.qualcomm.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 16 Mar 2026 18:28:39 +0100
+Message-Id: <DH4DU4Z4X9MM.398FQ3BIZQIJB@bootlin.com>
+Subject: Re: [PATCH net-next v3 0/3] Initial support for PIC64-HPSC/HX
+ Ethernet endpoint
+Cc: "Andrew Lunn" <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, "Eric Dumazet" <edumazet@google.com>, "Jakub
+ Kicinski" <kuba@kernel.org>, "Paolo Abeni" <pabeni@redhat.com>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Nicolas Ferre"
+ <nicolas.ferre@microchip.com>, "Claudiu Beznea" <claudiu.beznea@tuxon.dev>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+To: "Charles Perry" <charles.perry@microchip.com>, <netdev@vger.kernel.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260313140610.3681752-1-charles.perry@microchip.com>
+In-Reply-To: <20260313140610.3681752-1-charles.perry@microchip.com>
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	MV_CASE(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.linux.dev,vger.kernel.org,oss.qualcomm.com,gmail.com];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276349-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276348-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
+	FROM_NEQ_ENVFROM(0.00)[theo.lebrun@bootlin.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 0F88029E5FD
+X-Rspamd-Queue-Id: 8CE5929E41E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Anvesh,
+Hello Charles,
 
-kernel test robot noticed the following build warnings:
+On Fri Mar 13, 2026 at 3:06 PM CET, Charles Perry wrote:
+> Hello,
+>
+> This series add basic support for Microchip "PIC64-HPSC" and "PIC64HX"
+> Ethernet endpoint. Both SoCs contain 4 GEM IP with support for
+> MII/RGMII/SGMII/USXGMII at rates of 10M to 10G. Only RGMII and SGMII at a
+> rate of 1G is tested for now. Each GEM IP has 8 priority queues and the
+> revision register reads 0x220c010e.
 
-[auto build test WARNING on a0ae2a256046c0c5d3778d1a194ff2e171f16e5f]
+Do you have plans to test higher rate? We might get our hands on GEMs
+that support >1G and would like to know if CCing you would make sense.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Anvesh-Jain-P/dt-bindings-embedded-controller-Add-EC-bindings-for-Qualcomm-reference-devices/20260314-163112
-base:   a0ae2a256046c0c5d3778d1a194ff2e171f16e5f
-patch link:    https://lore.kernel.org/r/20260313-v04-add-driver-for-ec-v4-2-ca9d0efd62aa%40oss.qualcomm.com
-patch subject: [PATCH v4 2/5] platform: arm64: Add driver for EC found on Qualcomm reference devices
-config: riscv-allmodconfig (https://download.01.org/0day-ci/archive/20260317/202603170132.IivRdk9p-lkp@intel.com/config)
-compiler: clang version 23.0.0git (https://github.com/llvm/llvm-project f46a5153850c1303d687233d4adf699b01041da8)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260317/202603170132.IivRdk9p-lkp@intel.com/reproduce)
+> One particularity of this instantiation of GEM is that the MDIO controlle=
+r
+> within the GEM IP is disconnected from any physical pin and the SoC rely =
+on
+> another standalone MDIO controller.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603170132.IivRdk9p-lkp@intel.com/
+Ah, that means you instantiate the MDIO bus for no good reason.
+Code looks like:
 
-All warnings (new ones prefixed by >>):
+static int macb_mii_init(struct macb *bp)
+{
+	struct device_node *mdio_np, *np =3D bp->pdev->dev.of_node;
+	int err =3D -ENXIO;
 
->> drivers/platform/arm64/qcom-hamoa-ec.c:395:31: warning: variable 'cdev' is uninitialized when used here [-Wuninitialized]
-     395 |                         dev_err_probe(dev, PTR_ERR(cdev),
-         |                                                    ^~~~
-   drivers/platform/arm64/qcom-hamoa-ec.c:350:34: note: initialize the variable 'cdev' to silence this warning
-     350 |         struct qcom_ec_cooling_dev *cdev;
-         |                                         ^
-         |                                          = NULL
-   1 warning generated.
+	/* With fixed-link, we don't need to register the MDIO bus,
+	 * except if we have a child named "mdio" in the device tree.
+	 * In that case, some devices may be attached to the MACB's MDIO bus.
+	 */
+	mdio_np =3D of_get_child_by_name(np, "mdio");
+	if (!mdio_np && of_phy_is_fixed_link(np))
+		return macb_mii_probe(bp->dev);
 
+	// ... probe MDIO bus ...
+}
 
-vim +/cdev +395 drivers/platform/arm64/qcom-hamoa-ec.c
+So to *not* get the bus we need to be in fixed link config. Do you care
+about that? I think that the proper fix would be to lazy probe the MDIO
+bus until a PHY (ours or some other MAC's) asks for it.
 
-   347	
-   348	static int qcom_ec_probe(struct i2c_client *client)
-   349	{
-   350		struct qcom_ec_cooling_dev *cdev;
-   351		struct device *dev = &client->dev;
-   352		struct qcom_ec *ec;
-   353		int ret, i;
-   354	
-   355		ec = devm_kzalloc(dev, sizeof(*ec), GFP_KERNEL);
-   356		if (!ec)
-   357			return -ENOMEM;
-   358	
-   359		ec->client = client;
-   360	
-   361		ret = devm_request_threaded_irq(dev, client->irq, NULL, qcom_ec_irq,
-   362						IRQF_ONESHOT, "qcom_ec", ec);
-   363		if (ret < 0)
-   364			return dev_err_probe(dev, ret, "Failed to get irq\n");
-   365	
-   366		i2c_set_clientdata(client, ec);
-   367	
-   368		ret = qcom_ec_read_fw_version(dev);
-   369		if (ret < 0)
-   370			return dev_err_probe(dev, ret, "Failed to read ec firmware version\n");
-   371	
-   372		ret = qcom_ec_thermal_capabilities(dev);
-   373		if (ret < 0)
-   374			return dev_err_probe(dev, ret, "Failed to read thermal capabilities\n");
-   375	
-   376		ret = qcom_ec_sci_evt_control(dev, true);
-   377		if (ret < 0)
-   378			return dev_err_probe(dev, ret, "Failed to enable SCI events\n");
-   379	
-   380		ec->ec_cdev = devm_kcalloc(dev, ec->thermal_cap.fan_cnt, sizeof(*ec->ec_cdev), GFP_KERNEL);
-   381		if (!ec->ec_cdev)
-   382			return -ENOMEM;
-   383	
-   384		for (i = 0; i < ec->thermal_cap.fan_cnt; i++) {
-   385			struct qcom_ec_cooling_dev *ec_cdev = &ec->ec_cdev[i];
-   386			char name[EC_FAN_NAME_SIZE];
-   387	
-   388			snprintf(name, EC_FAN_NAME_SIZE, "qcom_ec_fan_%d", i);
-   389			ec_cdev->fan_id = i + 1;
-   390			ec_cdev->parent_dev = dev;
-   391	
-   392			ec_cdev->cdev = thermal_cooling_device_register(name, ec_cdev,
-   393									&qcom_ec_thermal_ops);
-   394			if (IS_ERR(ec_cdev->cdev)) {
- > 395				dev_err_probe(dev, PTR_ERR(cdev),
-   396					      "Thermal cooling device registration failed\n");
-   397				ret = -EINVAL;
-   398				goto unroll_cooling_dev;
-   399			}
-   400		}
-   401	
-   402		return 0;
-   403	
-   404	unroll_cooling_dev:
-   405		for (i--; i >= 0; i--) {
-   406			struct qcom_ec_cooling_dev *ec_cdev = &ec->ec_cdev[i];
-   407	
-   408			if (ec_cdev->cdev) {
-   409				thermal_cooling_device_unregister(ec_cdev->cdev);
-   410				ec_cdev->cdev = NULL;
-   411			}
-   412		}
-   413	
-   414		return ret;
-   415	}
-   416	
+Thanks,
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
