@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-276316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276317-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2NF/JqkxuGmvaAEAu9opvQ
-	(envelope-from <devicetree+bounces-276316-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:36:57 +0100
+	id uK+zKqcyuGmvaAEAu9opvQ
+	(envelope-from <devicetree+bounces-276317-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:41:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0437C29D7C4
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:36:56 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29F0729D8C3
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:41:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B59E030DC0DF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:31:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DBDC43016D05
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:39:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E48C3B7B7B;
-	Mon, 16 Mar 2026 16:31:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C24CD39C629;
+	Mon, 16 Mar 2026 16:39:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tzN25Hks"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MyDBcwoA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 786F43B5824;
-	Mon, 16 Mar 2026 16:31:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D94B28C2BF;
+	Mon, 16 Mar 2026 16:39:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773678672; cv=none; b=M+Ch/HMqav3yn62zO3P15WY+wK1g8kqKM9skIug/+rvNKhkoQRLiuJgg8DKdEeCHFiAntj+QlYdS0jTRzQwS+/+qk9pj7F6afmLALq0f4LpjZH9JHK3eWirzn2nLI3dIlHLu4jCgwwA2ffYPJFRGX5eoISl7z4us1UBjQdsjPWc=
+	t=1773679178; cv=none; b=DivKpcq/cmPTh9H91pCXkpeyFio8VYLfv6+XX3bkDBSz1PRS+ou/g5CEFLs4UmRdEo2nCLcOecvV2wOOiyx5cxskEKDoDwE4JPpDO665fJ8zVn8F3UjanevWQCw/mbF1OgvQWADbyjZk/f1g4fhos0/muPFOahS9hG4CnKR9jLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773678672; c=relaxed/simple;
-	bh=ogWJS6+fbkJKhwd2cn3COve3OtrIPc4ti934RTsFUDU=;
+	s=arc-20240116; t=1773679178; c=relaxed/simple;
+	bh=qEW7nkdy+hqRZA5WBxEYkPY3Eekc6Tj16/7r/ZQmwxg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eYnqdwd4pvwAerXClLYOIRaGDaFr8d32Ppd+PM9mTY4Qk7w+TCO1qxvpIojB30oF3n4M9OYOzHUCZmQR/kkcFcZ5IczEqOy616MCszFmA4cp+2OycWJLyELvy9ox1voTkMF9GwobX/RIcVeXO62WfpVX0IVEEQIBwZ6bBnpebqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tzN25Hks; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB5D3C19421;
-	Mon, 16 Mar 2026 16:31:05 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=AGH1la3eZe0SjuW7ZmpIxfN/qGy+W11tUrmI8Rc7KbznOcZQkkpVWZB1wmBxwk5zITY41oMCCUDmf/4mcrxxisymwu6pHY4XEFcvgi9GcOtyDGiUI+pY8DDLM9EVCRG5IhwE84t06Y/BLPGR3bypLWpcJpZvJjr7GfPj6gq7v+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MyDBcwoA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9588DC19421;
+	Mon, 16 Mar 2026 16:39:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773678671;
-	bh=ogWJS6+fbkJKhwd2cn3COve3OtrIPc4ti934RTsFUDU=;
+	s=k20201202; t=1773679178;
+	bh=qEW7nkdy+hqRZA5WBxEYkPY3Eekc6Tj16/7r/ZQmwxg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tzN25Hksy4MeH/oXFwsK7O4YaNxhpcrzCXC+b23Gsro3l336xpZp8qt1VXMDJVxcW
-	 EEYgvZNIyezaFWmF2DRaS6DBNCtMCewOBTo38imkrQWoB7f4i4yZvI1sEZu1fdLuA0
-	 QcCkui8dgqAyPS/2H9GWahAaeJKnXMh3qScXZ2d0hz5yOgkWRxAfskYr+hmpjqNQtC
-	 fEIAwFasnDA46BtbiIpIWPMUgWOOsp5m1+NK2Jza+6ItFdI5vSBRpXaKjWn6wg+1rp
-	 C0ROyAPJqV2dNEN1dKuqXo2VjuuudHirK808KxON1ohIbdIvxu3pOY0vy915ozzEMz
-	 cLbuzcPuLtmqQ==
-Message-ID: <e1cf4c86-f777-4b2f-8dd0-e47554006660@kernel.org>
-Date: Mon, 16 Mar 2026 17:31:03 +0100
+	b=MyDBcwoABrXg6ReEBykjnSI6xVbDDPkDTfsAulNpJPXs/l08iqkBa2bUxFM3WklOE
+	 nMjdUsQwm3bLJJkogAJWY8cbrtii7biF229jEUEr1r8XcJqr1ajZ5iJLwflS6YJVoP
+	 2Ev2i0UaHRrPYaMRIdbOSc33tuIKSUCmuuET8ZcnHX5Zyiw96Rqt88n1Nr4BFS1diX
+	 XH9WUSySnQx+M7r1duXl4j6t9jGfzXk+b3LVqOVoWpn3TpGAHHuZfHTYeKCo1247Az
+	 IsJ11vKll513OyyVgbms0ddflK47d/ehluyIi9VTyVcYYt8RhMPSaxxvKPetmtXbNj
+	 1bwyfja/vhVhQ==
+Message-ID: <1af76da3-aa6c-4960-addb-a8028ff93a74@kernel.org>
+Date: Mon, 16 Mar 2026 17:39:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,23 +53,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] media: verisilicon: Fix kernel panic due to
- __initconst misuse
-To: Nicolas Dufresne <nicolas@ndufresne.ca>,
- Francesco Dolcini <francesco@dolcini.it>, ming.qian@oss.nxp.com
-Cc: linux-media@vger.kernel.org, mchehab@kernel.org,
- hverkuil-cisco@xs4all.nl, benjamin.gaignard@collabora.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
- sebastian.fricke@collabora.com, shawnguo@kernel.org, ulf.hansson@linaro.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- m.felsch@pengutronix.de, fra.schnyder@gmail.com, linux-imx@nxp.com,
- l.stach@pengutronix.de, Frank.li@nxp.com, peng.fan@nxp.com,
- eagle.zhou@nxp.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, regressions@lists.linux.dev
-References: <20260306031059.801-1-ming.qian@oss.nxp.com>
- <20260312173349.GA137045@francesco-nb>
- <e559b822c5f4fc9167d40544172c6c450d88636a.camel@ndufresne.ca>
+Subject: Re: [PATCH 00/15] Convert power-controller to dt-schema and update
+ various yaml file to referencing it
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>, Saenz Julienne <nsaenz@kernel.org>,
+ Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Shree Ramamoorthy <s-ramamoorthy@ti.com>,
+ Jerome Neanne <jerome.neanne@baylibre.com>,
+ Paul Cercueil <paul@crapouillou.net>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Dmitry Osipenko <digetx@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+ Joseph Chen <chenjh@rock-chips.com>, Chris Zhong <zyw@rock-chips.com>,
+ Zhang Qing <zhangqing@rock-chips.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Andreas Kemnade <andreas@kemnade.info>,
+ =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+ Lubomir Rintel <lkundrak@v3.sk>, Julien Panis <jpanis@baylibre.com>,
+ Matti Vaittinen <mazziesaccount@gmail.com>, Alexander Kurz <akurz@blala.de>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-rtc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+References: <20260316-power-controller-v1-0-92c80e5e1744@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,28 +127,27 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <e559b822c5f4fc9167d40544172c6c450d88636a.camel@ndufresne.ca>
+In-Reply-To: <20260316-power-controller-v1-0-92c80e5e1744@nxp.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276316-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276317-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,xs4all.nl,collabora.com,pengutronix.de,linaro.org,gmail.com,nxp.com,lists.linux.dev,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[30];
+	FREEMAIL_TO(0.00)[oss.nxp.com,kernel.org,linaro.org,broadcom.com,gmail.com,ti.com,baylibre.com,crapouillou.net,bootlin.com,sntech.de,rock-chips.com,collabora.com,kemnade.info,gmx.net,v3.sk,blala.de];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
@@ -144,66 +155,22 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,qualcomm.com:email,toradex.com:email,pengutronix.de:email]
-X-Rspamd-Queue-Id: 0437C29D7C4
+	RCPT_COUNT_TWELVE(0.00)[39];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 29F0729D8C3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 16/03/2026 16:25, Nicolas Dufresne wrote:
-> Le jeudi 12 mars 2026 à 18:34 +0100, Francesco Dolcini a écrit :
->> Hello,
->>
->> On Fri, Mar 06, 2026 at 11:10:57AM +0800, ming.qian@oss.nxp.com wrote:
->>> From: Ming Qian <ming.qian@oss.nxp.com>
->>>
->>> Fix a kernel panic when probing the driver as a module:
->>>
->>>   Unable to handle kernel paging request at virtual address
->>>   ffffd9c18eb05000
->>>   of_find_matching_node_and_match+0x5c/0x1a0
->>>   hantro_probe+0x2f4/0x7d0 [hantro_vpu]
->>>
->>> The imx8mq_vpu_shared_resources array is referenced by variant
->>> structures through their shared_devices field. When built as a
->>> module, __initconst causes this data to be freed after module
->>> init, but it's later accessed during probe, causing a page fault.
->>>
->>> The imx8mq_vpu_shared_resources is referenced from non-init code,
->>> so keeping __initconst or __initconst_or_module here is wrong.
->>>
->>> Drop the __initconst annotation and let it live in the normal .rodata
->>> section.
->>>
->>> A bug of __initconst called from regular non-init probe code
->>> leading to bugs during probe deferrals or during unbind-bind cycles.
->>>
->>> Reported-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
->>> Closes: https://lore.kernel.org/all/68ef934f-baa0-4bf6-93d8-834bbc441e66@kernel.org/
->>> Reported-by: Franz Schnyder <franz.schnyder@toradex.com>
->>> Closes: https://lore.kernel.org/all/n3qmcb62tepxltoskpf7ws6yiirc2so62ia23b42rj3wlmpl67@rvkbuirx7kkp/
->>> Fixes: e0203ddf9af7 ("media: verisilicon: Avoid G2 bus error while decoding H.264 and HEVC")
->>> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
->>> Suggested-by: Marco Felsch <m.felsch@pengutronix.de>
->>> Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
->>> Signed-off-by: Ming Qian <ming.qian@oss.nxp.com>
->>
->> What's the plan to merge this? It fixes a quite severe regression,
->> a boot failure.
+On 16/03/2026 15:47, Peng Fan (OSS) wrote:
+> Convert power-controller.txt to dt-schema
+> Update various dt-bindings to use generic power-controller.yaml without
+> defining local property.
 > 
-> To be decided this week. The commit message does not say if it was released, or
-> came in RCs (and I didn't check myself yet). I'd say, if its the first one, it
-> will go through next and backports, otherwise its is really tight to get that
-> into the RC series, but serious enough. Please fill the gap if you have time,
-> and I'll handle it later, probably tomorrow.
 
-As Francesco pointed and earlier Franz, this affects current users so
-please consider bigger impact of the issue and applying as soon as you
-have time (I know you have many patches).
-
-To help:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+And here you explain the dependencies - external or within the patchset
+- e.g. how what stops people from merging it. You cc-ed multiple
+subsystems, so please think from the subsystem maintainer point of view
+- what should they do here.
 
 Best regards,
 Krzysztof
