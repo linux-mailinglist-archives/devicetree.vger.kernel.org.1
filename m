@@ -1,245 +1,274 @@
-Return-Path: <devicetree+bounces-276265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276267-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OBuYI68guGmdZQEAu9opvQ
-	(envelope-from <devicetree+bounces-276265-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:24:31 +0100
+	id iPDoKhwiuGk8ZgEAu9opvQ
+	(envelope-from <devicetree+bounces-276267-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:30:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A37A29C3F8
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:24:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 248DF29C618
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:30:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AE8413042479
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:16:39 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 21E86306784A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:21:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E2C93A0B36;
-	Mon, 16 Mar 2026 15:15:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68A45316189;
+	Mon, 16 Mar 2026 15:21:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="T7j/Oj7H";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="PtPvDpJ5"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mO9f78GO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA8CD39EF2F
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 15:15:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EBD61A76BB;
+	Mon, 16 Mar 2026 15:21:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773674149; cv=none; b=ubAGB+SbAVi6TTfNzpQPO1MpYSvIofP82zaHddJUF3ACQckeYo0oosAQ9fWW/bVzziWaUij8Izs5BFuLRZKFt1OXp1wmZ9zJSez2fOAHLKDCKbN0Zu3au55xusjIoyxW4gN0vnQDRa05zrVoykUxslxYN26f2Asv6dXZqtUIiW4=
+	t=1773674471; cv=none; b=GZoecSzKH1Q6+hwFmejisphpN7Ll+V/GruM82Wd0ZCG+BtI4TTJFq3aMSzRhABYkrZsh1gxlDd6WfSpiV4LssL4XMGAXCWxcGPPtEmZaAJI8kkqBmvSuloxk4HkonI0REdXhkGkryNJI/hlbIExCh3V/VMdrisdqJTsSxqRXv/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773674149; c=relaxed/simple;
-	bh=8AubT9zETLO3J0yhalp2EoKWnXlbZ0igEmByf+LsasI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QWCHbDA9+E4pUYtK6DiycUUF/aRui3NjfXSscunCc2SVwltWo345+6dYY6shYOMxyrLqQACebO/f9x2G4breC/OcBjohXLgCUUK5tl+GYWXmgyawju5IAG+WgrDIsZbHmbYZngzQhJQMsz6ylZACBoY6ygGPoS2oStXrYJ42Dsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=T7j/Oj7H; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=PtPvDpJ5; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62GCY2aZ1623660
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 15:15:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	8dtgclFV0NdJiTfOLgw6vPOoHOLrS1waSp0036mEAgQ=; b=T7j/Oj7HDDC0+1dm
-	EVimfT6urucrPqiV3MnkwGRRArh+qgN76mU09Tf1pb/RNf82o/0YXyR3Z55mj+Lr
-	/47cyenKgG+L4rdd6AYfRaRZlrxe4GjhYe+x2lEV3LOfPkFZhZR734UAX/PxzpI3
-	/VfzWX5r6M9ITUXqt8Z0GOwNUoD7yAdLMpGa0oQkVqjOS3acBfHTkTJbf5+ZjuNA
-	zfw1aBkX+5RHufK8ZX5NV+SZacJIIrRedE6F98NzpIBnBS0v/1j0tWTNRtJBlBoU
-	YQaijVtxQNBxw8xHnkzJntnWrqcwSagkC64ve2XQpZOYmPJG5QPR/aXEIEGfjrEV
-	tW83nA==
-Received: from mail-vs1-f71.google.com (mail-vs1-f71.google.com [209.85.217.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cxhyegmk7-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 15:15:46 +0000 (GMT)
-Received: by mail-vs1-f71.google.com with SMTP id ada2fe7eead31-5ffc46c792cso1110897137.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 08:15:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773674146; x=1774278946; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8dtgclFV0NdJiTfOLgw6vPOoHOLrS1waSp0036mEAgQ=;
-        b=PtPvDpJ5+I3jVFfUa3vqBNOT4cl79QJbSkylTQGUd1meWlgMHimZe9IQUoWc2kguds
-         bUOC/e3FYz1JpIQ0dJpwxo1xe6SpOoPbk4AElcKZHV+rVkNfgFjaVV2jY9t/8H4krZIi
-         0R/af3yrpGrxqQRW2RqzD0ZcWP16vJNK+mShQG6BsP1pifVB21dKqIZlkZrNwoeWX4br
-         HWr3W8gzLtrTNLRuhFfkFGfJMopPmL9ASKUkY1ptgjC4UVADZwJu12t3koZNMU9AxclI
-         LJnD8c5dscNatKNms5DxaQlVc+RUZUz8JfTdUYxeR6V+Sqn9UjTgGEiQlB3ZJSJLuwx9
-         Vk2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773674146; x=1774278946;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8dtgclFV0NdJiTfOLgw6vPOoHOLrS1waSp0036mEAgQ=;
-        b=J1ONQHVQjeMtS+sBHnGPakBgs1hj4/ELKEA1oweJRaVKkYRroU7wKEvsvbwf800mMg
-         Cq98SdXthRp1gKc8Q5pYV/SIa1DaA8tePt33Q+cn4D+gts1D9oBOf0djhANPO5Hr3OrP
-         U2xAN37oKapVD0OBLRrBnXOxRGih9ccvsSldou+e7Dk/KtLXdcTaHbMOK+36lcXVotuE
-         AxWP/pioqjyr5cwXMJKMymRcfzwflR3VjY38r8RK66FGb6RnIJDzhsADQrv1oLsWaxNU
-         ycSJDxjSdN77vCrFtaV5JSLoe0tjniizgpNKNfa3M4Zpgoh+34AF8vU51PssRZGnGTeG
-         T9gw==
-X-Forwarded-Encrypted: i=1; AJvYcCXQ/HmjnONMMPgkKDN60R1PAXr33PBZr3VcpCOEk3QburLneLH1AZSR9pGzaZRgnbKGNaKnjKk8kv38@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXa5PhPyeWKKl0sdpVRmXdNnLLVpwEwJvTfDcE0Mp7BIglvmM5
-	aX7eKv2Kxr+WRLJNSjWWooIbI2faaGwZluKA5cym+tx8JLl+fEFT3hCEJnGosA3YxYnE0fxcWfe
-	IHaXUpcOufEduDGpoFCfJaF9KBEm7wOKGqT+GUfV1+ZQfq7HKwx5QJtg/uZwHJnvF
-X-Gm-Gg: ATEYQzwQCB3razE1LjK7Y8ncgFD5Mr01WEfyPUP+39MXZsarfwluCgmoeQDr0iQy9KP
-	O2TDnLCDBzCbPqlrat01n+BSXpLZjeUZQjtmgPXCHQyitg/JOggb5IJJvkk+VVX8puqyyUsgmsg
-	cXlf9jwDwOuatqGIrtRoyX4sX8VIU1Iv7wnY2kH5Cx6gV95IJ2Ewq8MPxJOJ4FYRGChbJ/zZKWs
-	l9Nvk91BG3ODmUs1KUsBcE1+OKM6GsRdr46XbEyKpE4NJwZaF/uuLCxn2u8jPksgT+Isu4kG5M9
-	qaIRaATk91UTVmjLfdDlbUE1CWQpijiP26hCmMeEsHWL4nNsXjrW+se44dITYJnI8pP9bOKfTP7
-	1eMauLQfz5uhPx1VR+c6zt6l8T4lhiVOTyyLh8K2eyFz4iqEEPVYUo9ImG00qnxLhy1OlJU9n0g
-	yed34=
-X-Received: by 2002:a05:6102:548f:b0:5ff:dabc:db57 with SMTP id ada2fe7eead31-6020e67699amr2409059137.7.1773674145864;
-        Mon, 16 Mar 2026 08:15:45 -0700 (PDT)
-X-Received: by 2002:a05:6102:548f:b0:5ff:dabc:db57 with SMTP id ada2fe7eead31-6020e67699amr2409030137.7.1773674145396;
-        Mon, 16 Mar 2026 08:15:45 -0700 (PDT)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9791c30cf3sm455238266b.2.2026.03.16.08.15.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Mar 2026 08:15:42 -0700 (PDT)
-Message-ID: <87a103cf-d066-4319-ab68-bea3463c0fa2@oss.qualcomm.com>
-Date: Mon, 16 Mar 2026 16:15:38 +0100
+	s=arc-20240116; t=1773674471; c=relaxed/simple;
+	bh=bU9p2jhuMrsNUOSKjEd45lnMcW78fta72PH7YREyHWc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f/d/Z2of0obes1bkMUzE7NZVOgGrYqAqcLuVzYPZmo6+uSbANRoFeWejdgrphk3zq6k6/U5CU/uho+1iIJLkkBAD6X3Ogn3RljVnGbatedpNj3P1TXqD2E4+81g67p+w95EZMmB0oa0Y1T/vYxeN0FtzCbIdg1vYu24X7qcLCHA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mO9f78GO; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773674469; x=1805210469;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=bU9p2jhuMrsNUOSKjEd45lnMcW78fta72PH7YREyHWc=;
+  b=mO9f78GOw5rtOpw7DfKyXp3hBGl6sBw8bymVge3xO6jNEvSFe0rBjB+f
+   3TnmPbR7CT4s+FfLgN+wEKS7BDeI1gq1ppgdnOGhbTTDbZs5opeErlFf5
+   tR8qQPS/qfzVjMPMUUPT1Ladn9s0rHg5KEzLhlCLp9iY6cUs8JaAOMsst
+   s0kNhFl3mjRZ+629MbqZdqQC67lOyBSulNSpPxYH4BlIMM0Oy6pBG72Ms
+   7pQL8xt2ddtPBHHeYC/0sZ8Ql0ID6KrMPMvn6odqB6auXpHYSTrJxiaAK
+   lFs4LInbFJUZhXsMl5zB1fZGaZrP80WxdSiPwWZMjiR+LFtflbhlco0tE
+   Q==;
+X-CSE-ConnectionGUID: E18buDjJTi62f9MYDBh9aQ==
+X-CSE-MsgGUID: Z7cixq4ISJiWyg0oqgduaA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="73711866"
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
+   d="scan'208";a="73711866"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2026 08:21:08 -0700
+X-CSE-ConnectionGUID: 01XILBKsR92/qxl54NhOJw==
+X-CSE-MsgGUID: PA6iHNNjQrCc2D35V1Otcw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
+   d="scan'208";a="221890892"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.237])
+  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2026 08:21:04 -0700
+Date: Mon, 16 Mar 2026 17:21:01 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	"Hennerich, Michael" <Michael.Hennerich@analog.com>,
+	David Lechner <dlechner@baylibre.com>,
+	"Sa, Nuno" <Nuno.Sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 4/4] iio: adc: ad4080: add support for AD4880
+ dual-channel ADC
+Message-ID: <abgf3TZTib9UrjSB@ashevche-desk.local>
+References: <20260313115856.87763-1-antoniu.miclaus@analog.com>
+ <20260313115856.87763-5-antoniu.miclaus@analog.com>
+ <abQdvXq9MtIZ0EpZ@ashevche-desk.local>
+ <20260314120022.56265de3@jic23-huawei>
+ <abfT3qbFaM6PIDKx@ashevche-desk.local>
+ <SN6SPR01MB00908E6EDB8F4D20D391664B9B40A@SN6SPR01MB0090.namprd03.prod.outlook.com>
+ <abgWpzT_fcMqRHzf@ashevche-desk.local>
+ <SN6SPR01MB00904D9E9C5008D32066E2029B40A@SN6SPR01MB0090.namprd03.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: hamoa: Fix OPP tables for all
- DisplayPort controllers
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Abel Vesa <abel.vesa@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
-        Taniya Das <taniya.das@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org
-References: <20260309-hamoa-fix-dp3-opp-table-v1-1-1a8141d71f9f@oss.qualcomm.com>
- <2f4e4cc7-2600-482e-88d9-d4b20d328a72@oss.qualcomm.com>
- <drcot4oxpea5lnpa5htrrl2n6tcc4ocxmb5vsho3ocouvajwlo@6ueabivtjy4h>
- <7d8211c5-7b12-4349-a329-cfb51a918a1c@oss.qualcomm.com>
- <6qhpiiroqnpzg44i2j5rgmlw7uaffw4t5z6gv2kgubfoqpktpd@r7h75knlv5a2>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <6qhpiiroqnpzg44i2j5rgmlw7uaffw4t5z6gv2kgubfoqpktpd@r7h75knlv5a2>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 4ZKCMwv17HsXQFE_0X56gCqvk3_KxA5m
-X-Proofpoint-ORIG-GUID: 4ZKCMwv17HsXQFE_0X56gCqvk3_KxA5m
-X-Authority-Analysis: v=2.4 cv=KLxXzVFo c=1 sm=1 tr=0 ts=69b81ea2 cx=c_pps
- a=P2rfLEam3zuxRRdjJWA2cw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
- a=qqbVkrzGGpSu_KmFPysA:9 a=QEXdDO2ut3YA:10 a=ODZdjJIeia2B_SHc_B0f:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE2MDExNSBTYWx0ZWRfXzMoizZUjEMRG
- U+lvUVt9HWP8WpWTAjElXoVeyLMyJ/hmUknjLBYbtlIiDHdpc97NkgN8I7cg3sSn8d5cldZ4nOg
- DyeLsgCyKw9Jlj+k9qWmnnzOMf8brMQ8T194CAAS5IWMrTfVa3xw5tjsv4edNFqXeBrBC+YnP+A
- AoHrYoeqE8HwhVChg1f3aUIp8DrBsByoD1ULz4de4fZe8gQbVtQwODp4aPxc3Nq4bFbWm6b1LcX
- AXaM+py3Q8cYRnMyTtDICHOKllSOtOjnDsmgmpMkmx3Hv8IV4UKjyxE4JAx1K/MqIeedswQIlnc
- fWkq/y4x6x84wlGfmY1KDM+cY2IrzgYZGgHU/i//u9BniV4CHKNfEV2jz+Z+FJcjmrBjPqpeRra
- yJ4bHST9ZaBpZ3dtKSnyIRlLg4d1KJMNYPUX5KEUIbNEsFSQ9bVbQdSM1Co8TrV6TAscbA5ML75
- WlKghd+5ymQ/C1qxDbQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-16_04,2026-03-16_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 phishscore=0 priorityscore=1501 lowpriorityscore=0
- suspectscore=0 spamscore=0 clxscore=1015 bulkscore=0 impostorscore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
- definitions=main-2603160115
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <SN6SPR01MB00904D9E9C5008D32066E2029B40A@SN6SPR01MB0090.namprd03.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TAGGED_FROM(0.00)[bounces-276265-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-276267-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:dkim,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
+	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 0A37A29C3F8
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 248DF29C618
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/16/26 3:27 PM, Dmitry Baryshkov wrote:
-> On Mon, Mar 16, 2026 at 10:27:11AM +0100, Konrad Dybcio wrote:
->> On 3/13/26 6:39 PM, Dmitry Baryshkov wrote:
->>> On Tue, Mar 10, 2026 at 11:36:26AM +0100, Konrad Dybcio wrote:
->>>> On 3/9/26 3:44 PM, Abel Vesa wrote:
->>>>> According to internal documentation, the corners specific for each rate
->>>>> from the DP link clock are:
->>>>>  - LOWSVS_D1 -> 19.2 MHz
->>>>>  - LOWSVS    -> 270 MHz
->>>>>  - SVS       -> 540 MHz (594 MHz in case of DP3)
->>>>
->>>> This discrepancy sounds a little odd.. can we get some confirmation
->>>> that it's intended and not an internal copypasta? (+Jagadeesh, Taniya)
->>>> FWIW DP3 is not USB4- or MST-capable so it may as well be
->>>
->>> DP3 link_clock is sourced from the eDP PHY. I assume there might some 
->>>
->>>>
->>>>>  - SVS_L1    -> 594 MHz
->>>>>  - NOM       -> 810 MHz
->>>>>  - NOM_L1    -> 810 MHz
->>>>>  - TURBO     -> 810 MHz
->>>>>
->>>>> So fix all tables for each of the four controllers according to the
->>>>> documentation.
->>>>
->>>> It sounds like a good move to instead keep only a single table for
->>>> DP012 and a separate one for DP3 if it's really different
->>>>
->>>>> The 19.2 @ LOWSVS_D1 isn't needed as the controller will select 162 MHz
->>>>> for RBR, which falls under the 270 MHz and it will vote for that LOWSVS
->>>>> in that case.
->>>>
->>>> Even though the Linux OPP framework agrees with that sentiment today (it
->>>> will set the correct rate via clk APIs and the correct rpmh vote for a rate
->>>> that's >= 162), I have mixed feelings about relying on that
->>>
->>> Why? 19.2 isn't an actual working frequency, as far as I can understand
->>> anything. Or is it a working OPP for running "shared" clocks?
->>
->> No, I meant removing the 162 case and relying on OPP to pick up the
->> required-opps value from the next entry
+On Mon, Mar 16, 2026 at 03:09:18PM +0000, Miclaus, Antoniu wrote:
+> > From: Andy Shevchenko <andriy.shevchenko@intel.com>
+> > Sent: Monday, March 16, 2026 4:42 PM
+> > On Mon, Mar 16, 2026 at 12:31:09PM +0000, Miclaus, Antoniu wrote:
+> > > > From: Andy Shevchenko <andriy.shevchenko@intel.com>
+> > > > Sent: Monday, March 16, 2026 11:57 AM
+> > > > On Sat, Mar 14, 2026 at 12:00:22PM +0000, Jonathan Cameron wrote:
+> > > > > On Fri, 13 Mar 2026 16:22:53 +0200
+> > > > > Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+> > > > > > On Fri, Mar 13, 2026 at 01:58:53PM +0200, Antoniu Miclaus wrote:
+
+...
+
+> > > > > > - What is special about channel 0?
+> > > > >
+> > > > > Nothing.
+> > > >
+> > > > Then why code does explicit access to regmap channel 0?
+> > > > We should have regmap[ch] in all cases in the code.
+> > > >
+> > >   There are three places that use channel 0 explicitly, none of which
+> > >   imply channel 0 is functionally special from a hardware perspective:
+> > >
+> > >   1. ad4080_reg_access() - the debugfs reg_access callback has no
+> > >   channel concept, it's a single (reg, val) interface. We have to
+> > >   pick one regmap, channel 0 is the default choice. I can improve
+> > >   the comment to make this clearer.
+> > 
+> > Then it's simply wrong. You allow only one channel to be printed. The debugfs
+> > has to print two channels, no?
 > 
-> Isn't it a documented way how the OPP tables work?
+> The IIO debugfs_reg_access callback signature is fixed by the framework -
+> it provides (reg, writeval, readval) with no channel parameter.
+> 
+> For v7 I can drop debugfs_reg_access. But doesn't hurt if we have at least half
+> access to the debugfs for it.
 
-yes/no, there's a mention in dev_pm_opp_set_rate():
+This will confuse the users. Either do not print or print it all.
 
-"""
-An OPP entry specifies the highest frequency at which other
-of the OPP entry apply. [...]
-"""
+> > >   2. ad4080_properties_parse() - uses regmap_get_device(st->regmap[0])
+> > >   solely to obtain the struct device * for reading DT properties.
+> > >   The device tree properties live on the parent SPI node, which is
+> > >   channel 0's device. This isn't "channel 0 is special", it's just
+> > >   "DT properties belong to the primary SPI device."
+> > 
+> > Can we simply pass the struct device to that function?
+> Yes, can do that in v7 if you think it is absolutely necessary.
 
-if you insist, we can rely on it..
+Yes, please.
 
-Konrad
+...
+
+> > >   All register configuration (setup, filter, decimation) already uses
+> > >   regmap[ch] throughout.
+> > >
+> > > > > > - Is it okay to communicate with different channels simultaneously?
+> > > > >
+> > > > > Yes. They are entirely parallel bits of silicon. Own state machines
+> > > > > and everything.
+> > > > > The configuration registers section of the datasheet says:
+> > > > > "Each channel has it's own independent configuration memory
+> > > > > accessible through it's separate configuration SPI interface."
+> > > > >
+> > > > > >   Wouldn't be a nasty race with HW IO?
+> > > > >
+> > > > > Nope. You are talking to different devices (more or less).
+> > > >
+> > > > If it's a twins in the package, why do we have a special handling and not
+> > just
+> > > > describing two independent devices in the DT/fw?
+> > >
+> > > Because they are not fully independent - they share:
+> > > - Power supplies and voltage reference
+> > > - The CNV clock (conversion trigger)
+> > 
+> > Okay, then why not having a core part and a glue driver that registers as many
+> > devices as you wish and provides just a common stuff?
+
+> Because the AD4880 is not two independent ADCs sharing a package - it is
+> a single device with a single interleaved data output. Splitting into
+> separate IIO devices would make synchronized dual-channel capture
+> impossible from userspace, which is the primary use case for this part.
+
+Sounds to me like you need, probably, a virtual device for that.
+Maybe even on IIO level. Do we expect more devices like this to
+be enabled in the future (or maybe already in tree, but lacking this
+feature)?
+
+> The shared resources (supplies, CNV clock, interleaved data stream) are
+> not just "glue" - they define the device's operating model.
+
+Sure, like any other resource for MFD (HW speaking).
+
+> The per-channel SPI interfaces exist only for register configuration; the
+> actual data path is a single stream handled entirely by the backend.
+> 
+> > We have similar (to some extend) cases with SPI/I²C where
+> > drivers/platform/x86/serial-multi-instantiate.c services as "MFD" for that
+> > type of busses.
+> > 
+> > > - A single interleaved data output stream
+> > 
+> > How does it work in non-racy way?
+> 
+> The data path has no software involvement at runtime. The CNV clock
+>  triggers both channels to sample simultaneously, and the device outputs
+>  the conversion results as a single interleaved bitstream on the data
+>  lane(s). The FPGA backend captures this stream directly - no SPI
+>  register reads are involved in the data path. The only SPI traffic is
+>  for configuration, and each channel has its own independent SPI
+>  interface and regmap, so there is no shared bus contention.
+
+Okay, so it's in a way more complex (like a camera sensor in terms of
+data/configuration paths) device. It's now even more looking that the
+current approach is a quick hack rather than a solution to make this
+properly fit Linux device model.
+
+> > > Describing them as two independent DT nodes would mean duplicating
+> > > all the shared resources, and more importantly, the data interface
+> > > is a single interleaved stream feeding into one IIO buffer. Having
+> > > two separate IIO devices would make synchronized capture impossible
+> > > from userspace.
+
+> > > This is exactly the use case spi_new_ancillary_device() was designed
+> > > for - a multi-die device sharing a bus with separate chip selects for
+> > > configuration but common data/clock/power infrastructure.
+
+This... It doesn't fit the data path as far as I read from the above.
+
+> > See above.
+> > 
+> > > > TO me is either something special about channel 0, then we have to
+> > > > synchronise
+> > > > accesses, or there is no point to have this patch at all, just make devices to
+> > > > be the same under the hood and describe as independent pair.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
