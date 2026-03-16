@@ -1,191 +1,209 @@
-Return-Path: <devicetree+bounces-276101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276102-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YGcdJU3ht2mcWAEAu9opvQ
-	(envelope-from <devicetree+bounces-276101-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:54:05 +0100
+	id 2MVBB5vit2mzWwEAu9opvQ
+	(envelope-from <devicetree+bounces-276102-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:59:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14BAD2984AA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:54:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73DEF298602
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:59:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BCEB4303A482
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:50:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A4CAC3028EE2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:55:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F1A38F953;
-	Mon, 16 Mar 2026 10:50:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52B6439023F;
+	Mon, 16 Mar 2026 10:55:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M6KzD6Pw"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="HaGSGGqy";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="jyisup4R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78EF134B404
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 10:50:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773658253; cv=none; b=RtevyPCbknHUXJIyniWuWcCBTjFsQ7/+EOtlfxUBpv99d508F2IUupGIcQXp/X6mxl2WLC0L+XSUV76AitRIu+Z6+VEjRRvWnY5jKLprFsTeZzlvatjgHMF1bA+rKgIhqojktTZ31IQTfpl69662MNWYDkarVBnTcP7wiLyPF2E=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773658253; c=relaxed/simple;
-	bh=WuphdEG5WMxLm6CNAhSgSsU6b0QIPWdhcGxytQxDhYg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MMRsU7pXdP0c92rW2VAKcJd2gUDpug331djI2So+T4ADuleWHBjK5051yi3GdpszHtHKcrFRa9gWZbSLI9bLvMBKxUb2yCBUxeuVDwOYuSVwNd4WUKGpgSjllZPdLX969HU8FGWkAf4t5bd2VBJE/3B5BVkLuzpNEaBT/jN7OwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M6KzD6Pw; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b7cf4a975d2so577404866b.2
-        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 03:50:52 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11ED138E130
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 10:55:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=170.10.129.124
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773658507; cv=pass; b=U7iJ4u+oLPYJt/5ETL+lrrSbFhaxJW4cr3PKT7ctVahE7WgrWDwJeWe46FGdKhHsCjCoBS4JtzzGwZ/cmlXPWVDNG/GPf1oBQK0etaPVyDs0p7r0+mc/Uf0TQFwPHj6YldfzMg5Cx7GUwFaTGugJBAM8ggkQ7Wp3ObXQTrgmT1s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773658507; c=relaxed/simple;
+	bh=PENpEpatLH0WgmJ8nuINA9vJeOA32NMCLpwxPNCjmic=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cppYsBok+x4IqPU+JjqNyApff8uyPO1F+5SF1fjkENqPA/JvM4T1Mpl0iwI4VJT/TDCoiLuSgUSA7Ari9TPWn10C/ps4l4l3PBousWMorso2zJvHyzASjOoEdBNB6zhf2cyd/ztPxCVOrwezPZgVPCQVYgPDAxNL/OZ6YDiWdXU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=HaGSGGqy; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=jyisup4R; arc=pass smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1773658505;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=j/4AllVOKh8z4TecylNv9BZB3czFOIQzZj3H/I9GZN8=;
+	b=HaGSGGqyqNoof3Zy7y+eQNFzjoTXW0vtCtSIvGUpyOha2YVjkbhCCul/gYrsRmYCZ1atdf
+	xQ3XqLxoGgvUkxVkgv0wJeZTNJHvCqWSY3Bs0g2oMXhTCyyAR0E/PdM29OP4I/+JHpDGRD
+	8jzhMTWWrd68PYOpc4IXtzmwkqkgmL8=
+Received: from mail-yw1-f197.google.com (mail-yw1-f197.google.com
+ [209.85.128.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-615-LccEsJsUMBi1HDK3G0UFTg-1; Mon, 16 Mar 2026 06:55:03 -0400
+X-MC-Unique: LccEsJsUMBi1HDK3G0UFTg-1
+X-Mimecast-MFC-AGG-ID: LccEsJsUMBi1HDK3G0UFTg_1773658503
+Received: by mail-yw1-f197.google.com with SMTP id 00721157ae682-798531a0f58so86779307b3.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 03:55:03 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773658503; cv=none;
+        d=google.com; s=arc-20240605;
+        b=NvxCfNNp2uic+1UwPH5B7QY+JGrcywzmG7hh324AsM9zKM9nM636/aiCaMpoB6YQtx
+         DcuyJ6imQaStbwfg69DGyUhV/wZd3PAJtjbrc72TUbEP4HRXmSYAfGWgIH4SoF3oiqkM
+         Rh+dmmoQjNFxdEgvcB7lVktBmx323w/YVQVBSAJB0zbOnUdIOlwSdKNKrCfmjwHU/vFX
+         YvhhuibqGOKb7ex50SDHZro19/GkcuubaMzXW0B+7bRXQnE/r4VFHQZRlfspHEAerYYP
+         IrynOkzHyEFzPsa8MCSxnp8aP7OPicvKZ1Wt6IiepUW/DgqEMlOhTogfLJ/LGmydhhq3
+         yBuw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=j/4AllVOKh8z4TecylNv9BZB3czFOIQzZj3H/I9GZN8=;
+        fh=AWJDEOiIGDxYyppWF/NGhT0/bmzAcIBHbYew0PeCt4Y=;
+        b=Ds0/z5eVk3LmOb59CSEY73ESwXiWHJmHRwasnKeZyX26UJmAmA5JLFbhMoDAaci9er
+         m0XQZ8h2+p/EIlGybR+J04KIzz2r95gNZjvOLHGd/7IiB9ARH+ztmrhFyTdMQEE0HAhU
+         mp6DHYLXXz6lrbB6qE+cpaxD9IIk3hfAc+0r1WmK8UTuSrX+AmFCpbRsQE71XIF4nz5V
+         7rsCDMfcyif8xcNnH6AEdWsXdC1oYfBcw2hzDDXVKWYNyrBe8wHpt9koSkjhzEj4NXtd
+         BySzS7WyOxSSpbwc2eXDxy7c694ZSLDNyAXtdRFU6lv8uKTuczCIbN4aNBc2WAdP8HuJ
+         VIYw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773658251; x=1774263051; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zX8fXT4dHsVZo0l5cubooJwv9HgtnAM6ONAUv7CG/fA=;
-        b=M6KzD6PwcDBQIurPbir85r8pKHXKRKvTDPGiys1DP+DpQdsRT6jxbKM5lN5Uo1d0mC
-         qEfWaP5s2QyE74wXIWEbmxVI+eC7y0SDlPNqhP8eZ+fXcvpFrOzJtEVao0MyjsTXMpzf
-         Hhtehg10NKPFwzClLdoS8Vh+ifarA0vS8ijxz5Rs/VtiFmGKtQP0YWifeiX1MnajLoIt
-         VE2qrswvd3SGB/bld90gl9GNBxN5CNs2G0FWkHmUWh/vHiqc18OXYzlVnQLVGLIgsrZf
-         nLjscrbhwt248WYCrqfQ9TRtz/X6BcsVZYJTMBCxPZ0HcN++1n4vF1ZJrUbw17aHwMtt
-         dwGA==
+        d=redhat.com; s=google; t=1773658503; x=1774263303; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j/4AllVOKh8z4TecylNv9BZB3czFOIQzZj3H/I9GZN8=;
+        b=jyisup4RP0zLN67GpUM8espMWmKxjaknfhj53x+FKhqaDgN03OAc2StAD20sOpK0zx
+         ys1uOwlLaTf8AChqX+k/3mZxZV1RtkTwraz2M4JsJepZxUcYOU/AaICeiBW5vxfxGN36
+         oaIgjNmgdil2pCyW3lofgS1zvVq4QsF0vUTl8eF9/MAwAVEvxNqkg6eFGoDVtqA/qF2E
+         YcaHxCl9Cvl88JsYcOczKXisYrCJ/u95V3VU3BGDotUiv5sPfrgbpoDeW4hgpSaPTlSe
+         zFEmI61QLTkUFOELFdPi59a+yqnHdGSJPJADrVji79RFsYhBHfSLagltZn1W7s2COMHC
+         bcLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773658251; x=1774263051;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zX8fXT4dHsVZo0l5cubooJwv9HgtnAM6ONAUv7CG/fA=;
-        b=ngG3AqbXhpCV9/xlm+HB2KcHSvN13mZQZ4Var21DqVwM6RdfJ0S2WOp2a38Idech6l
-         UIaFeMRCjLNhPnemzkLEVgIoyjHgA5A9JMt9cKavDO+AbWNXP2GRpHplL1AXQ0cCZThW
-         7Sby0V4b4MkeWBKJJC5sdwbahi6ZW9e/Qjq2aedzuJHCZU3X1aGv7brB+YnyROsvjqNz
-         BcOW9zjLQyKCcdH9dTgEta8Kc4oI+qGPYpRYA2GqbI7cT4Lbe2Q7iFnQ9cvXEHeE490b
-         +N5VkB+zp9toHC1NTK7IsmrhoPbxJ/5SP2ui+vFpgPHPd8+pq1WlR4NraKFmmY7ROTNI
-         ks3w==
-X-Forwarded-Encrypted: i=1; AJvYcCW97vwWDh0H0akbglpm5aDn6i4+082YlvafHCdnolCyjUgIqCIFiRAlfDxtQarb7jD+YgjJXZXeXdfE@vger.kernel.org
-X-Gm-Message-State: AOJu0YxigCxRTHCQiIPdgwc5eivg0EjHpQDk6qPwlhVUDDk53WRVINEI
-	0P+a/HoZ4p+hP0B6SXT/W9DQmfWkphHy4rB0th3QhwoDV/7IIxs1hbkR
-X-Gm-Gg: ATEYQzyNcrL1MzTca0ezVeb9Pe++jUVN43zdHtMANB/VFmp/uHFuMIOS+EYGdIE46yT
-	zPL+qY/X/rys2TB89l4Y3BIeBBHy3enNByLMPhkjQImpCa4JzB4FI5alUcgDaapih79O6+Fn48R
-	wVItGmd9vbLf/hbW7yklr3skw2rowWWBTZl2rMLhNUqR39c3VE98EpleCIon/7fOlM1iHAw6na2
-	uyCByINrGkpviZtK0EnhCEv9ErExfIeHRIct9FNs444ENdJOLmidxXxtVqXPx3nF+KFVFNqvqbS
-	Cm3R37pe0ApgP3URkrM0GW+IXXmSIuci7GFunVrUZnA0P2VFom8Pd3ftk+o3LvlXIwKFN8vVZ0g
-	F3WxrTVG67lvo+lwPaxVP3gC85DY2vSqvcTBiL50sGGr+SE2DyqLzEEDw8nDRi4dpX87FbGCd26
-	DCYLn8CehQL02VzJr7y/RY9BjQQA==
-X-Received: by 2002:a17:906:3554:b0:b97:1009:7536 with SMTP id a640c23a62f3a-b9765052b4fmr564364966b.15.1773658250384;
-        Mon, 16 Mar 2026 03:50:50 -0700 (PDT)
-Received: from [192.168.0.39] ([79.133.247.80])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b976cdb49a5sm539384566b.31.2026.03.16.03.50.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Mar 2026 03:50:50 -0700 (PDT)
-Message-ID: <6cc8f5ab-2671-4975-b24c-b17d4aab656d@gmail.com>
-Date: Mon, 16 Mar 2026 12:50:48 +0200
+        d=1e100.net; s=20251104; t=1773658503; x=1774263303;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=j/4AllVOKh8z4TecylNv9BZB3czFOIQzZj3H/I9GZN8=;
+        b=r/89tMcy3rrrvYiTuvSgYahvUbn+o5qzwTniKxCoeoGVZ3TQwXrToNe8eCEH+3Pd2S
+         IRw23v44lW7NtFy7vBkssHEb6VQGBvyUOdj+qSNGHY4IyEPpOBEKyVxPh5oQM7MgAfQz
+         8EZP7XBp9/YM868YOE4yFf9qlUbm1IkJ5VyI1UZMcNXPoLfDHp8aSVO4irFv0Mn7Nz32
+         D0VF6VGmFmSFgnttwpLaRieHTDyMbUE6dGxGY7zvaq4CIQK2Ek1YJoe32O3aXedF7RGh
+         0CA/Un4e2xaXJOFj+Ajjr98gu02CRWS3X1MMm6szE9nJFiB66lXF6KjZmMyxuHwrxTVR
+         PZjg==
+X-Forwarded-Encrypted: i=1; AJvYcCXUVSFgpW9r+LMa0vDby2x/lLTALhNJ5QUNf5lkDAXSVL/B0w57K2I/0DatSeWijleXe17iHys1ISiy@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPF22L7LbpDOrVbFyBR9n/zJBVfgE67bnU/xXVCCVRYGXXhkHS
+	jJG9bMUg5UxT5G+r80UkS7NjKrACZkc4UqBsBTR8U11OOfp5WOZoiu/A4y0JbwqHEjY4BcjJlF/
+	UxZOTmo+Mm9n5Vp9WoMbp/XyeL2GY8BW3DmkqdVt0dVWEbZDOrOVvXbfzhVkTx2ru02F55lL/Lk
+	qwANqzfJwKeDy1TcQVioudAGOmH98g++VtLCdHzg==
+X-Gm-Gg: ATEYQzysU3TixWY4nrQbi++4VetQJE2YgB5EpHeQm/NntgK6E6xFgX1UGMIEraYGXoy
+	1ccSaV4hAupk85LkXrXvTxZBjZLalLfYwrYjBPLoBOewPf1OPp1BGqrZDTYRQ4YgndWCxr8pfvy
+	ptH7P6ydzcj3xxMi+IjuAtXB29sPXqm7g9L5IdpgKXe7678Ay3VKmEaFc/Kr2za2ulI+0o1yAmy
+	A==
+X-Received: by 2002:a05:690e:449a:b0:64a:db50:fab2 with SMTP id 956f58d0204a3-64e630d964emr9195116d50.80.1773658503288;
+        Mon, 16 Mar 2026 03:55:03 -0700 (PDT)
+X-Received: by 2002:a05:690e:449a:b0:64a:db50:fab2 with SMTP id
+ 956f58d0204a3-64e630d964emr9195107d50.80.1773658502956; Mon, 16 Mar 2026
+ 03:55:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/6] iio: light: vcnl4000: use variables for I2C client
- and device instances
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org
-References: <20260314-vcnl4000-regulators-v3-0-3c4a48d30676@gmail.com>
- <20260314-vcnl4000-regulators-v3-6-3c4a48d30676@gmail.com>
- <abfd5pLsCuPK4lV3@ashevche-desk.local>
-Content-Language: en-US
-From: Erikas Bitovtas <xerikasxx@gmail.com>
-In-Reply-To: <abfd5pLsCuPK4lV3@ashevche-desk.local>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+References: <20260306-b4-dmabuf-heap-coherent-rmem-v3-0-3d00d36c9bc4@redhat.com>
+ <20260306-b4-dmabuf-heap-coherent-rmem-v3-3-3d00d36c9bc4@redhat.com> <20260313230629.GA3603067-robh@kernel.org>
+In-Reply-To: <20260313230629.GA3603067-robh@kernel.org>
+From: Albert Esteve <aesteve@redhat.com>
+Date: Mon, 16 Mar 2026 11:54:51 +0100
+X-Gm-Features: AaiRm51o4lEgIIRwy7J8EQU-dh_zU9bcODR7YayBvstmpxh8vjYCQuobudoxI8I
+Message-ID: <CADSE00JymMjob5J02bh+YSw+2zyjx8OWxks5aEhuM2GX8ZB7=A@mail.gmail.com>
+Subject: Re: [PATCH v3 3/6] of_reserved_mem: add a helper for rmem device_init op
+To: Rob Herring <robh@kernel.org>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>, 
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
+	John Stultz <jstultz@google.com>, "T.J. Mercier" <tjmercier@google.com>, 
+	=?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Robin Murphy <robin.murphy@arm.com>, 
+	Saravana Kannan <saravanak@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linaro-mm-sig@lists.linaro.org, iommu@lists.linux.dev, 
+	devicetree@vger.kernel.org, mripard@redhat.com, echanude@redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276101-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-276102-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	DKIM_TRACE(0.00)[redhat.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[aesteve@redhat.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 14BAD2984AA
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 73DEF298602
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Sat, Mar 14, 2026 at 12:06=E2=80=AFAM Rob Herring <robh@kernel.org> wrot=
+e:
+>
+> On Fri, Mar 06, 2026 at 11:36:34AM +0100, Albert Esteve wrote:
+> > Add a helper function wrapping internal reserved memory
+> > device_init call and expose it externally.
+>
+> Why?
+>
+> The diff tells us what. The commit msg needs to tell us why. Maybe the
+> rest of the series explains it, but this commit needs to stand on its
+> own.
 
+ACK.
 
-On 3/16/26 12:39 PM, Andy Shevchenko wrote:
-> On Sat, Mar 14, 2026 at 06:06:35PM +0200, Erikas Bitovtas wrote:
->> After moving data->client and client->dev into variables of their own,
->> replace all instances of data->client and client->dev being used in
->> vcnl4200_init and vcnl4000_probe by the said variables to reduce
->> clutter.
-> 
-> ...
-> 
->> -	ret = i2c_smbus_write_word_data(data->client, VCNL4200_PS_CONF1,
->> +	ret = i2c_smbus_write_word_data(client, VCNL4200_PS_CONF1,
->>  					regval);
-> 
-> Now it's perfectly a single line.
-> 
-> 	ret = i2c_smbus_write_word_data(client, VCNL4200_PS_CONF1, regval);
-> 
->>  	if (ret < 0)
->>  		return ret;
-> 
-> ...
-> 
->>  	regval = ret | VCNL4040_CONF3_PS_SAMPLE_16BITS;
->> -	ret = i2c_smbus_write_word_data(data->client, VCNL4200_PS_CONF3,
->> +	ret = i2c_smbus_write_word_data(client, VCNL4200_PS_CONF3,
->>  					regval);
-> 
-> Ditto.
-> 
->>  	if (ret < 0)
->>  		return ret;
-> 
->> -	if (device_property_read_u32(&client->dev, "proximity-near-level",
->> +	if (device_property_read_u32(dev, "proximity-near-level",
->>  				     &data->near_level))
->>  		data->near_level = 0;
-> 
-> The 'if' is redundant, I think you can drop it at some point, probably to avoid
-> churn in the follow up
-> 
->  -	if (device_property_read_u32(&client->dev, "proximity-near-level",
->  -		data->near_level = 0;
->  +	device_property_read_u32(dev, "proximity-near-level", &data->near_level);
-> 
+This patch prepares for the heap implementation in patch #4, which
+uses the new helper function. I will add the information to the commit
+body.
 
-device_property_read_u32() throws an error if a property is missing.
-Would data->near_level be left without an assigned default value in that
-case?
+>
+> >
+> > Use the new helper function within of_reserved_mem_device_init_by_idx()=
+.
+> >
+> > Signed-off-by: Albert Esteve <aesteve@redhat.com>
+> > ---
+>
+> Version history?
+
+You mean track it in the commit body? History is already detailed in
+the cover letter.
+
+>
+> >  drivers/of/of_reserved_mem.c    | 68 ++++++++++++++++++++++++++-------=
+--------
+> >  include/linux/of_reserved_mem.h |  8 +++++
+> >  2 files changed, 52 insertions(+), 24 deletions(-)
+>
 
 
