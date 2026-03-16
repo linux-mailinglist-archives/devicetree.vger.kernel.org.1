@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-276120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276123-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2HcWOrPqt2mzWwEAu9opvQ
-	(envelope-from <devicetree+bounces-276120-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 12:34:11 +0100
+	id 8O3xIL3st2mzWwEAu9opvQ
+	(envelope-from <devicetree+bounces-276123-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 12:42:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6319D298BDD
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 12:34:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDA62298D5B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 12:42:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 13FE6303E77B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:32:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E045A3087059
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:36:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58A5C365A0D;
-	Mon, 16 Mar 2026 11:32:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9569338F659;
+	Mon, 16 Mar 2026 11:36:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="Qb/gHHBd"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="D/NZ4Sa6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1826317B50A;
-	Mon, 16 Mar 2026 11:32:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5724A38F25F;
+	Mon, 16 Mar 2026 11:36:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773660767; cv=pass; b=uhLJlPlxu0iTIoWBGiJemiLQUYQMy4Oj5E9RlUtlHfKYSSVaklM2hkaaziPmBSnCKPjwJwbi0y7k5JaiLJKgmJr7qigqEyimip4jw1QwHJZf2Ld3f4FsYLUY/ioWp4sayt1TZ95ynkeQEQiTGDDqNBy166eqX9QaZERZI1RPw54=
+	t=1773660974; cv=pass; b=mZCw8YQHOEf9NWu62Ps2J/0x6gMRFKybIXSz6RivjdUQdRyfRk0RIxgOHJAfJZHYvautgnfvnt01BRszkh9TnSdOPPCJkNlTmZBwibgCJbC2sS8lWTgWEhUFjr8cYZzOfD9cpLkvGdDoQ6SBQtYdIFt+ypcnE97lxetwT4AbeDI=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773660767; c=relaxed/simple;
-	bh=r7mNWGlc0Bk8vWfXnN9rWb/4K04AUTspLpeoEQ6OIe8=;
+	s=arc-20240116; t=1773660974; c=relaxed/simple;
+	bh=m1BSGgsTAn/0KmN1Fe/56yNJwBKeX8ixvZN7npqPDB8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uIVi9hTsbR91aY9VOkGxywjDGAqOLLsi4g+56s0QIko5ahRSf9ODyWAU8PKp9jS37uTNlInIShrfqPEKR0XCpL+5YSu/xn7nxJdWlw3Y9qRu1sVIKiSoQSG1tlV2gc18X/Nwe40MnSYvFleA6OUWd7V90UfomJgLO6QxHNYdW1k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=Qb/gHHBd; arc=pass smtp.client-ip=136.143.188.112
+	 MIME-Version:Content-Type; b=QFg7ZxLm+xEFXdvUKHC+CuD7YsJ6vKaHSQRMEJMbkr9Wght4k08kWvIh434e/39sHKHpSV3Ppyrf4QkJOI7BqUg2dZ6X24HO/62UaPkQI/48ESdaqrNbsuuJvw5/ikxZqjFLWW+HTPnyvjsMeC19G0jArdHUEKcuZKm91XZQJAc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=D/NZ4Sa6; arc=pass smtp.client-ip=136.143.188.112
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1773660724; cv=none; 
+ARC-Seal: i=1; a=rsa-sha256; t=1773660934; cv=none; 
 	d=zohomail.com; s=zohoarc; 
-	b=F5QPg5QvClRsgprNIOWkQWiwFQm+dWKe9f8HPyUMho0soxoQbkLiFJfIpez5JZ1PigEn5p2Onftnis86ah6JBlxcsJDUpEKiQlUw3t3rOdVbwY8B1NjqVlnlQsfRfwABdmS/4NLUt57tqvnIqUUTUWfMF7H8/4et17f+VoGbim0=
+	b=G3xW+OBU2n1UtF7tIuvVvbRZftYRL3d52z3iM+YrUlgdad53aBJWdVMNDN3iY3hTJp/ZotQwruNnnpJy+6g3KNyL3xIBPaN2z93euUPehLwfewjaJ2HXAMq102tJUaRTZoX4Rsz9htqj9vQFFfr8+Rd89tZR7xEq4cCKJeZo9Vc=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1773660724; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=CXwiJopPTfeJca7/CePLy+cTjnRvIej3hEugFxqj6bA=; 
-	b=NPHsMkbLcQtUOQ2SMvdf0pDuTMLy/4JSD6/lF/IVJS4DHw9Ts8pzy+9H7H6lQgKEHMDF5c0N8fBFb1CnB/2+K5G70mC4bVpd2G7zShMyPfCrSFpNpTWogfNC3sGpEBumVrWNQZz5WMy23+PHY5kPBFVAvPFBSmL+YhML7vxnG5A=
+	t=1773660934; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=NWuMfeb2/4fn9JWrO+GHwtoIDUvcuX2oMLSAsprenVc=; 
+	b=BAS/iMv0vMb/He6HewFGGyg6r9uJwMbRuGBZcX+qGRE6z1BQGre+30WsGZpegoUqm6xnd0z+TfdRZqjUBj9ZV35cSbWU6tlaurmGr+wgUcgw+ia37MSJwfDQabNIpWGBQUySS1vqYQUems0QAVUl8yCSDyZpUIOjG/VqI7SxV+I=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
 	dkim=pass  header.i=collabora.com;
 	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
 	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1773660724;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1773660934;
 	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
 	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=CXwiJopPTfeJca7/CePLy+cTjnRvIej3hEugFxqj6bA=;
-	b=Qb/gHHBdfTgv/e9eLd1d1KVInpZsAKl9y9HQM5Qb10aD7Ho7wdwJlrXA6f05+YvU
-	opCkIGjTDy/QFmlArMrZ1HHUhFRhMXKYRemytIMttdtrG5iCnY282H4Pk5Dc086IIlC
-	CFPxsim+VxRyLq9U5QPYCyx39lPuDrID9b6avwhg=
-Received: by mx.zohomail.com with SMTPS id 1773660722084398.51922306894573;
-	Mon, 16 Mar 2026 04:32:02 -0700 (PDT)
+	bh=NWuMfeb2/4fn9JWrO+GHwtoIDUvcuX2oMLSAsprenVc=;
+	b=D/NZ4Sa6LRtelzMRTiiO8lwaBxltSKv99C1UyuCki6/3zq0Lomt6SHpWfdGgTkip
+	6qvCzOQLfJLafBBOzQLwVR9BIEDszjCvfKkXG2gQvyrJNEQKgT5UESUCsNzJrL5Ivze
+	DFgljv3NAsymuaU9/44F4sJmX7+yolFrWahGpUZY=
+Received: by mx.zohomail.com with SMTPS id 1773660933750222.17226611988713;
+	Mon, 16 Mar 2026 04:35:33 -0700 (PDT)
 From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 To: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
  maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
@@ -68,13 +68,13 @@ Cc: Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
  dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
  linux-kernel@vger.kernel.org, Damon Ding <damon.ding@rock-chips.com>
-Subject: Re: [PATCH v1 2/4] arm64: dts: rockchip: Add eDP node for RK3576
-Date: Mon, 16 Mar 2026 12:31:54 +0100
-Message-ID: <9590182.CDJkKcVGEf@workhorse>
-In-Reply-To: <20260310105307.309765-3-damon.ding@rock-chips.com>
+Subject: Re: [PATCH v1 4/4] drm/rockchip: analogix_dp: Add support for RK3576
+Date: Mon, 16 Mar 2026 12:35:24 +0100
+Message-ID: <6140062.MhkbZ0Pkbq@workhorse>
+In-Reply-To: <20260310105307.309765-5-damon.ding@rock-chips.com>
 References:
  <20260310105307.309765-1-damon.ding@rock-chips.com>
- <20260310105307.309765-3-damon.ding@rock-chips.com>
+ <20260310105307.309765-5-damon.ding@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,7 +90,7 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -100,7 +100,7 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276120-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-276123-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[collabora.com:+];
 	TO_DN_SOME(0.00)[];
@@ -110,70 +110,84 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,collabora.com,rock-chips.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,0.0.0.1:email,0.0.0.0:email,rock-chips.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,27ed0000:email]
-X-Rspamd-Queue-Id: 6319D298BDD
+	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:email,60hz:email,collabora.com:dkim,collabora.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: EDA62298D5B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tuesday, 10 March 2026 11:53:05 Central European Standard Time Damon Ding wrote:
-> Add support for the eDP output on RK3576 SoC.
+On Tuesday, 10 March 2026 11:53:07 Central European Standard Time Damon Ding wrote:
+> RK3576 integrates the Analogix eDP 1.3 TX controller IP and the HDMI/eDP
+> TX Combo PHY based on a Samsung IP block - both of which are the same as
+> those on RK3588.
+> 
+> The patch currently adds only the basic support, specifically RGB output
+> up to 4K@60Hz, without the tests for audio, PSR and other eDP 1.3 specific
+> features.
+> 
+> In additon, the newly added clock 'hclk' is the video datapath clock,
+> which must be enabled during probing for RK3576 eDP controller.
 > 
 > Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
 > ---
->  arch/arm64/boot/dts/rockchip/rk3576.dtsi | 28 ++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
+>  drivers/gpu/drm/rockchip/analogix_dp-rockchip.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-> index a86fc6b4e8c4..14900a66d3e1 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-> @@ -1446,6 +1446,34 @@ hdmi_out: port@1 {
->  			};
->  		};
+> diff --git a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+> index 832e9766bef0..4f8511636cdf 100644
+> --- a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+> +++ b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+> @@ -71,6 +71,7 @@ struct rockchip_dp_device {
 >  
-> +		edp: edp@27dc0000 {
-> +			compatible = "rockchip,rk3576-edp";
-> +			reg = <0x0 0x27dc0000 0x0 0x1000>;
-> +			clocks = <&cru CLK_EDP0_24M>, <&cru PCLK_EDP0>, <&cru HCLK_VO0_ROOT>;
-> +			clock-names = "dp", "pclk", "hclk";
-> +			interrupts = <GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH>;
-> +			phys = <&hdptxphy>;
-> +			phy-names = "dp";
-> +			power-domains = <&power RK3576_PD_VO0>;
-> +			resets = <&cru SRST_EDP0_24M>, <&cru SRST_P_EDP0>;
-> +			reset-names = "dp", "apb";
-> +			rockchip,grf = <&vo0_grf>;
-> +			status = "disabled";
+>  	struct clk               *pclk;
+>  	struct clk               *grfclk;
+> +	struct clk               *hclk;
+>  	struct regmap            *grf;
+>  	struct reset_control     *rst;
+>  	struct reset_control     *apbrst;
+> @@ -327,6 +328,11 @@ static int rockchip_dp_of_probe(struct rockchip_dp_device *dp)
+>  		return dev_err_probe(dev, PTR_ERR(dp->pclk),
+>  				     "failed to get pclk property\n");
+>  
+> +	dp->hclk = devm_clk_get_optional_enabled(dev, "hclk");
+> +	if (IS_ERR(dp->hclk))
+> +		return dev_err_probe(dev, PTR_ERR(dp->hclk),
+> +				     "failed to get hclk property\n");
 > +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
+>  	dp->rst = devm_reset_control_get(dev, "dp");
+>  	if (IS_ERR(dp->rst))
+>  		return dev_err_probe(dev, PTR_ERR(dp->rst),
+> @@ -514,6 +520,14 @@ static const struct rockchip_dp_chip_data rk3288_dp[] = {
+>  	{ /* sentinel */ }
+>  };
+>  
+> +static const struct rockchip_dp_chip_data rk3576_edp[] = {
+> +	{
+> +		.chip_type = RK3576_EDP,
+> +		.reg = 0x27dc0000,
+> +	},
+> +	{ /* sentinel */ }
+> +};
 > +
-> +				edp_in: port@0 {
-> +					reg = <0>;
-> +				};
-> +
-> +				edp_out: port@1 {
-> +					reg = <1>;
-> +				};
-> +			};
-> +		};
-> +
->  		sai7: sai@27ed0000 {
->  			compatible = "rockchip,rk3576-sai";
->  			reg = <0x0 0x27ed0000 0x0 0x1000>;
+>  static const struct rockchip_dp_chip_data rk3588_edp[] = {
+>  	{
+>  		.edp_mode = GRF_REG_FIELD(0x0000, 0, 0),
+> @@ -531,6 +545,7 @@ static const struct rockchip_dp_chip_data rk3588_edp[] = {
+>  static const struct of_device_id rockchip_dp_dt_ids[] = {
+>  	{.compatible = "rockchip,rk3288-dp", .data = &rk3288_dp },
+>  	{.compatible = "rockchip,rk3399-edp", .data = &rk3399_edp },
+> +	{.compatible = "rockchip,rk3576-edp", .data = &rk3576_edp },
+>  	{.compatible = "rockchip,rk3588-edp", .data = &rk3588_edp },
+>  	{}
+>  };
 > 
 
 Reviewed-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-By cross-referencing the TRM, I checked the address, the IRQ number,
-and the power domain, and verified that there are no new check_dtbs
-warnings introduced.
-
 Kind regards,
 Nicolas Frattaroli
+
 
 
 
