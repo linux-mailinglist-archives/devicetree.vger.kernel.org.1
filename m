@@ -1,155 +1,189 @@
-Return-Path: <devicetree+bounces-276307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276308-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gLTGNvQruGnhZgEAu9opvQ
-	(envelope-from <devicetree+bounces-276307-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:12:36 +0100
+	id MMPyFJIruGnhZgEAu9opvQ
+	(envelope-from <devicetree+bounces-276308-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:10:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4973229D1F4
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:12:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B05EE29D1A2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:10:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A2D4230182A5
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:03:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D4E2E30053EB
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:08:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF6543264DC;
-	Mon, 16 Mar 2026 16:03:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21077330339;
+	Mon, 16 Mar 2026 16:08:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sl5mcm4P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A9C13254AE;
-	Mon, 16 Mar 2026 16:03:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF2FE324B1E;
+	Mon, 16 Mar 2026 16:08:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773677031; cv=none; b=nOKf7LBa5P/zV9+HK5eVVPtR0WANJTQf8dFg7B6Z9pS0gv+cMe18K9SWKkpeoiqGP2vc9sYH87zjsKqpTc9eTTDpw0O36mOwCbV4xfQVTdZJ82XAgtpE+kcr5bEBvIcYuh3vs01/vvyZAfBuk3r9w2tJHiqmyVw1cHK5UBYkFmc=
+	t=1773677302; cv=none; b=fpKVmGOpuvYwMez7FcgGEddPRHGegpnsqkoseJvEMB5pg8XJIkL2dBV4fK8jqBairZJwvWAGAtb26lwa4YywSHwNP1Kj09a3kPkArFj4Zj1ahNMaLN5ZV8UA5uj1P94H2Rxrn1H2mWjLWbj70wAhdGtENYUccT71mbR9L795ekU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773677031; c=relaxed/simple;
-	bh=k2epx7YD0jM8IXyjSFIrBoicPdg0GlitTL85w2hyFCw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ipsAW2dFaANrnN3XQbh8zLF9bx1njP8kTFv35MvEG2x9zqAUOmZEMjIDBbbLcJavVMUKmJlnnBVrj8SPDwzTr9CwZunhdWaSV6wFgJH+SUZzv0eWZkpzGYFQwObznvyYRadd6mqYZES3tXIkFXOuuzfkPANOEndzeJxuHKcpYS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
-Received: from duge-virtual-machine (unknown [183.192.222.244])
-	by APP-01 (Coremail) with SMTP id qwCowACXA2_RKbhp5nRBCg--.1107S2;
-	Tue, 17 Mar 2026 00:03:30 +0800 (CST)
-Date: Tue, 17 Mar 2026 00:03:28 +0800
-From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-To: Junhui Liu <junhui.liu@pigmoral.tech>
-Cc: pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	gaohan@iscas.ac.cn, me@ziyao.cc,
-	linux-riscv <linux-riscv-bounces@lists.infradead.org>
-Subject: Re: [PATCH v4 3/3] riscv: dts: canaan: Add mmc nodes for K230
-Message-ID: <abgp0PT4GHRwmaLy@duge-virtual-machine>
-References: <20260315054426.18383-1-jiayu.riscv@isrc.iscas.ac.cn>
- <20260315054426.18383-4-jiayu.riscv@isrc.iscas.ac.cn>
- <DH49Q7OQSIYM.1RD7H0L809JQV@pigmoral.tech>
+	s=arc-20240116; t=1773677302; c=relaxed/simple;
+	bh=zheSOjWZVX0jJy+pjuzYRXGN8X8Rm5D2EoxmK7k4oks=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=nnWB/4eVbQRoyFKUvzQtImpK/XLhiPVc2MN3gHNhTGOeHlbqzuhRx0x/GPmF4wficg6Nb6+2SJEIfrLJ+iRXYeg5shsloSKChVbsG+BZfY8ms0dCWVJ29K1y6cUyXHNMry+gYISiRe/Yoys7e3J49Ux2C5hMN/jvpzpIHqsuoGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sl5mcm4P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E154C19421;
+	Mon, 16 Mar 2026 16:08:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773677301;
+	bh=zheSOjWZVX0jJy+pjuzYRXGN8X8Rm5D2EoxmK7k4oks=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=Sl5mcm4P8hJ1OluY+arkRsUP9K3UqR8NoBbLxPwPmqGefGsulo8YAEha5DTJN0Soi
+	 PzryUlubnQPpZH2SSuwzBpEnGDPtzVGPMpp4kw44O+9kO7FWLr2rmYPidQi+RKaVbV
+	 QbbPYDdREZH7Vfj0+R4/ABF7uyLBX36FQ2SMfv27z6H8sh42KIyefLLm4sbRQxQ40x
+	 LUpunQj7+JUpC81KsHZg62rrgrSqcMyr3sbGyEd3BFk2OM2V80cExZ72lsSQavnamt
+	 FTOJU+fZrAK+R41/qVBnpU4b4t7DyZ6CvEd0u97CsdjYuibowtHqtAJjP8VRLGdgXW
+	 x72QRov6czrSA==
+Date: Mon, 16 Mar 2026 11:08:20 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DH49Q7OQSIYM.1RD7H0L809JQV@pigmoral.tech>
-X-CM-TRANSID:qwCowACXA2_RKbhp5nRBCg--.1107S2
-X-Coremail-Antispam: 1UD129KBjvJXoWruw1kCr1fAFW5ZF4fGF4kZwb_yoW8JrW5p3
-	y7CFW5GF4kXr17KF1Sq34jgrnxAayfJrn7Wr17tFyUJryavr90kr1Fqw4qgry7Xr40kr42
-	kw4UXryxWr4YkrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_Cr1lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
-	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
-	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
-	c7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
-	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
-	14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
-	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
-	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
-	IFyTuYvjxU7WrWUUUUU
-X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
-X-Spamd-Result: default: False [-0.96 / 15.00];
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Guenter Roeck <linux@roeck-us.net>, Conor Dooley <conor+dt@kernel.org>, 
+ Linus Walleij <linusw@kernel.org>, linux-hwmon@vger.kernel.org, 
+ Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, David Jander <david@protonic.nl>, 
+ linux-kernel@vger.kernel.org, kernel@pengutronix.de, 
+ Peter Rosin <peda@axentia.se>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+In-Reply-To: <20260316140514.1406588-2-o.rempel@pengutronix.de>
+References: <20260316140514.1406588-1-o.rempel@pengutronix.de>
+ <20260316140514.1406588-2-o.rempel@pengutronix.de>
+Message-Id: <177367730051.1660620.4239200064941367815.robh@kernel.org>
+Subject: Re: [PATCH v5 1/7] dt-bindings: pinctrl: add NXP MC33978/MC34978
+ MSDI
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-0.970];
 	MIME_TRACE(0.00)[0:+];
-	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	R_DKIM_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jiayu.riscv@isrc.iscas.ac.cn,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	PRECEDENCE_BULK(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276308-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276307-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[]
-X-Rspamd-Queue-Id: 4973229D1F4
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: B05EE29D1A2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 16, 2026 at 10:15:27PM +0800, Junhui Liu wrote:
-> Hi Jiayu,
-> Thanks for the new version. Just a friendly reminder.
+
+On Mon, 16 Mar 2026 15:05:06 +0100, Oleksij Rempel wrote:
+> Add device tree binding documentation for the NXP MC33978 and MC34978
+> Multiple Switch Detection Interface (MSDI) devices.
 > 
-> On Sun Mar 15, 2026 at 1:44 PM CST, Jiayu Du wrote:
-> > Add MMC nodes to K230, including eMMC and SDIO. Enable HS200 eMMC
-> > on the SoM and SDIO high-speed on the board.
-> >
-> > Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-> > ---
-> >  .../boot/dts/canaan/k230-canmv-dshanpi.dts    | 56 +++++++++++++++++++
-> >  .../dts/canaan/k230-canmv-module-dshanpi.dtsi |  7 +++
-> >  arch/riscv/boot/dts/canaan/k230.dtsi          | 28 ++++++++++
-> >  3 files changed, 91 insertions(+)
+> The MC33978 and MC34978 differ primarily in their operating temperature
+> ranges. While not software-detectable, providing specific compatible
+> strings allows the hwmon subsystem to correctly interpret thermal
+> thresholds and hardware faults.
 > 
-> [...]
+> These ICs monitor up to 22 mechanical switch contacts in automotive and
+> industrial environments. They provide configurable wetting currents to
+> break through contact oxidation and feature extensive hardware
+> protection against thermal overload and voltage transients (load
+> dumps/brown-outs).
 > 
-> > +
-> > +&sdio {
-> > +	bus-width = <4>;
-> > +	max-frequency = <50000000>;
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&mmc1_pins>;
-> > +	vmmc-supply = <&vdd_3v3>;
-> > +	vqmmc-supply = <&vdd_3v3>;
-> > +	cap-sd-highspeed;
-> > +	no-1-8-v;
-> > +	status = "okay";
-> >  };
-> >  
+> The device interfaces via SPI. While it provides multiple functions, its
+> primary hardware purpose is pin/switch control. To accurately represent
+> the hardware as a single physical integrated circuit without unnecessary
+> DT overhead, all functions are flattened into a single pinctrl node:
+> - pinctrl: Exposing the 22 switch inputs (SG/SP pins) as a GPIO controller
+>   and managing their pin configurations.
+> - hwmon: Exposing critical hardware faults (OT, OV, UV) and static
+>   voltage/temperature thresholds.
+> - mux: Controlling the 24-to-1 analog multiplexer to route pin voltages,
+>   internal temperature, or battery voltage to an external SoC ADC.
 > 
-> It seems the broken-cd property we discussed in the previous version is
-> not added, and also my Tested-by tag (for the whole series). Was this
-> intentional or just an oversight?
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+> changes v5:
+> - Commit Message: Added justification for distinct compatible strings
+>   based on temperature ranges.
+> - Restricted pins property to an explicit enum of valid hardware pins
+> changes v4:
+> - Drop the standalone mfd/nxp,mc33978.yaml schema entirely.
+> - Move the unified device binding to bindings/pinctrl/nxp,mc33978.yaml,
+> - Remove the dedicated child node compatible strings (nxp,mc33978-pinctrl).
+> - Flatten the pinctrl/gpio properties directly into the main SPI device
+>   node.
+> changes v3:
+> - Drop regular expression pattern from pinctrl child node and define
+>   it as a standard property
+> - Reorder required properties list in MFD binding
+> - Remove stray blank line from the MFD binding devicetree example
+> - Replace unevaluatedProperties with additionalProperties in the pinctrl
+>   binding
+> changes v2:
+> - Squashed MFD, pinctrl, hwmon, and mux bindings into a single patch
+> - Removed the empty hwmon child node
+> - Folded the mux-controller node into the parent MFD node
+> - Added vbatp-supply and vddq-supply to the required properties block
+> - Changed the example node name from mc33978@0 to gpio@0
+> - Removed unnecessary literal block scalars (|) from descriptions
+> - Documented SG, SP, and SB pin acronyms in the pinctrl description
+> - Added consumer polarity guidance (GPIO_ACTIVE_LOW/HIGH) for SG/SB
+>   inputs, with a note on output circuit dependency
+> - Updated commit message
+> ---
+>  .../bindings/pinctrl/nxp,mc33978.yaml         | 153 ++++++++++++++++++
+>  1 file changed, 153 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/nxp,mc33978.yaml
 > 
 
-Sorry for that, It was a oversight. I will fix both.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-And I will only add your Tested-by tags to patch [2/3] and [3/3].
-Is this correct?
+yamllint warnings/errors:
 
-Kind regards,
-Jiayu Du
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/nxp,mc33978.example.dtb: gpio@0 (nxp,mc33978): $nodename:0: 'gpio@0' does not match '^mux-controller(@.*|-([0-9]|[1-9][0-9]+))?$'
+	from schema $id: http://devicetree.org/schemas/mux/mux-controller.yaml
 
-> -- 
-> Best regards,
-> Junhui Liu
-> 
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20260316140514.1406588-2-o.rempel@pengutronix.de
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
