@@ -1,72 +1,73 @@
-Return-Path: <devicetree+bounces-276186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276187-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mEMBCkYLuGkWYQEAu9opvQ
-	(envelope-from <devicetree+bounces-276186-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:53:10 +0100
+	id WMDZNXELuGkWYQEAu9opvQ
+	(envelope-from <devicetree+bounces-276187-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:53:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90EB029ACE5
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:53:09 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5950C29AD2D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:53:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7E1BE3017BC0
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 13:49:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2184E3005396
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 13:49:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E03A5395D85;
-	Mon, 16 Mar 2026 13:49:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91A88395D85;
+	Mon, 16 Mar 2026 13:49:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sBU3WEMA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MUX09udD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD3721DE3B7
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 13:49:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F6AE2D7D27
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 13:49:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773668948; cv=none; b=bPkaOqrHijC5rPwuwjxFLQWNYij/QY1o+TCVx75QrUllMRTWxf6B929J6sSQ8HHWKfo0Ow2bWFaQf0v6uIVPdrbfoMyYG0FrdJOZHiaxFaYnnfL00wOzectfVA8AfM0mrLiMDyAu/qs+C2hr9hJGRVqjHZ592p3ieMwN9z9OugU=
+	t=1773668985; cv=none; b=LBecD2KtMssgqgJCSlHvWtlRFKRq/0qqxxkatQ3KZrN4VO6QHofNkFh15+LXGANEejoufJr1KJJCEOFPZJegmMWkVLEFPZnvGoAf02LvPtN3mxqG4A5G28tMtj+fqbcXfGqjOCn5/3OAEm7Y4AIteAykttP4oKcyfldUzVsmzbU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773668948; c=relaxed/simple;
-	bh=4cvdXFvlQulifAsDCud34sW/nfnMYNnh593LHQBbdnc=;
+	s=arc-20240116; t=1773668985; c=relaxed/simple;
+	bh=A2q9pnOophLnn6caR9j1SFOoQuXMepZD8MjFyVMsVzA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uNilyIwQMtck9RB8wRSzTo7ntRf6yww1SB+phaiszGHfkoL1pl8Y3uwnA17y7rXi4bKJEyuUUPlqVe6eHEd/7rnTMDpqHrXMFfjD5toeYEM3+S75Ec+FCt6Im6LJwY0CodLnNStCi2MsuX5yrCVY2lu6kdPkpB6sz2jfWi/vpCQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sBU3WEMA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C2A5C4AF0C
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 13:49:08 +0000 (UTC)
+	 To:Cc:Content-Type; b=NlrkKwCnh7VHs+HKidcjfLmvixLav7o4Ukp+eNiXZ11bSM6QWLwlkRYYmbgOr9oo3ZTo71LWghKmeowBWHsegFDFig6hmmS8qDlzctLMFv8jJsJM9jQb9+PdfVsR+3bhHuNRXuGl8s68mZHN/DdB/uc9P1lVPUf+FJ3LUjLACBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MUX09udD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D1BEC2BC9E
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 13:49:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773668948;
-	bh=4cvdXFvlQulifAsDCud34sW/nfnMYNnh593LHQBbdnc=;
+	s=k20201202; t=1773668985;
+	bh=A2q9pnOophLnn6caR9j1SFOoQuXMepZD8MjFyVMsVzA=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=sBU3WEMARYeFtfEE+AlhwSnUkJ5EJRMbtuSCokihQMPFtL4fOF1DQjLFBV7tLaFeb
-	 T+g8TOMDoyDOnotauBZotffVGvqew2uOC+8j0NVmfJBG3aonXu8u7ekMQVmMVW6JMf
-	 Q7TQZ9EomgF9UjZy4MeCmn66upcwMUAFgbNtvwsJRC/ixvV7dPy6bT/rykRI0npXbP
-	 DUyqzqj1/YZy+iGiYKlY96c+zFx8dKyxU+sXUSpSbzKgEaUIu6Ef+Dye8qbYw9eLVV
-	 ZId0lXrNkj/ideXPMXdj0oeU5bswNtuIIqXFRJYE37njzQsMp4WLNW/i76DlVt94ZD
-	 AUec0a/UFF5sQ==
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-797ab169454so45606437b3.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 06:49:08 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVQyuGtJjTJlvB8Dbk9HdZspx+4s4emjNvgoJ7A++sF17KbD6tHdfWT65DWaH6Dh8sNitEDVauBl98E@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGejZFDETVJKPLHqBIpKjPoToZCy4SdE/CKlsPJsZk/RJzVYwN
-	ThAGC5WRBINVK4wdrc3pInwzG6KeIK51++IRTU4KDOgzWLC5fdpaQZUWSsgZ+/11EjKKvd2/938
-	4Wmc7t0I7j/BA8/CtwYDS0WrezYXynKo=
-X-Received: by 2002:a05:690c:7084:b0:795:294c:fd31 with SMTP id
- 00721157ae682-79a1c1a7751mr128404507b3.38.1773668947880; Mon, 16 Mar 2026
- 06:49:07 -0700 (PDT)
+	b=MUX09udDrhOlLsC8/Q3l+9f7i6j0nw52cG2VBuQE28c0gsMbj/8yPFpkQlm+6qxO7
+	 2nwinoqGoDsFAJs6AwnP/BJBlnmpHp0JbD+DDuq3iIulxhKK+Odb/+aKge9jNKDBhh
+	 dHuXK87osW9hgYDFcPob13pEGM8QCPS+L8mw4AyRar4BUMhKg1qfF2pNQjd2nyKoN+
+	 dDETEbyC+jOHoLgXeCG9I6IKpGPo/YHNaCd+pftyQqQFeKOMf/3SItoyecyJjbrpCZ
+	 9xRKsijTcDS430vNPwngFADTRe7LPlJxz67BLKrDf2INqrfy6Aiy3CFrfWPwViujsL
+	 2U+USy9pozMzQ==
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-794719afcd4so39135707b3.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 06:49:45 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWoz/XZ1gJuf/mFYcUIceCA5ocLG6dTHJYelmcvEoQqPQG0AorGI5kMFgQRhSIQLleopoCSoAiQF6o7@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTr4HIK4ZGf3wZX4VlXvnDpuQW9m1I1rBvD2xuY/N5ypL7nWER
+	dluqKcT4XPmj3/j9n12ab9sTQYOnJEHMVipgN/2BqPPwqbk9wAQt5xgdetG8PyukL4NriQeUIjK
+	R5Hsm/taPJulTjlgKhlrIPmIg/YrnAFM=
+X-Received: by 2002:a05:690c:9a03:b0:798:58be:324d with SMTP id
+ 00721157ae682-79a1c1ddd1cmr128701907b3.55.1773668984415; Mon, 16 Mar 2026
+ 06:49:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260312113040.68189-1-eleanor.lin@realtek.com> <20260312113040.68189-5-eleanor.lin@realtek.com>
-In-Reply-To: <20260312113040.68189-5-eleanor.lin@realtek.com>
+References: <20260312113040.68189-1-eleanor.lin@realtek.com> <20260312113040.68189-6-eleanor.lin@realtek.com>
+In-Reply-To: <20260312113040.68189-6-eleanor.lin@realtek.com>
 From: Linus Walleij <linusw@kernel.org>
-Date: Mon, 16 Mar 2026 14:48:57 +0100
-X-Gmail-Original-Message-ID: <CAD++jLkGGSh=9GJ--=6VqMmKxDD+VRepHh2+yYD0hx7o4WJu5g@mail.gmail.com>
-X-Gm-Features: AaiRm53uWyqF9u3u5P6iIbQiRhn7ExWcjXBra8ph9HHpONePx6dshNEP9l450Ks
-Message-ID: <CAD++jLkGGSh=9GJ--=6VqMmKxDD+VRepHh2+yYD0hx7o4WJu5g@mail.gmail.com>
-Subject: Re: [PATCH v3 4/7] dt-bindings: pinctrl: realtek: Add RTD1625 pinctrl binding
+Date: Mon, 16 Mar 2026 14:49:33 +0100
+X-Gmail-Original-Message-ID: <CAD++jL=9J8p7sjfaFN1W_AoDuvJ+6FMXk=Mz6TMFN54VAPtTUQ@mail.gmail.com>
+X-Gm-Features: AaiRm53YgIbgRT6duHd0On12WaicPrmfX8KKe4MLPMA8yK6MYMjttB2TeXiF5i8
+Message-ID: <CAD++jL=9J8p7sjfaFN1W_AoDuvJ+6FMXk=Mz6TMFN54VAPtTUQ@mail.gmail.com>
+Subject: Re: [PATCH v3 5/7] pinctrl: realtek: add support for slew rate, input
+ voltage and high VIL
 To: Yu-Chun Lin <eleanor.lin@realtek.com>
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
 	afaerber@suse.com, bartosz.golaszewski@oss.qualcomm.com, 
@@ -81,18 +82,18 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276186-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-276187-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -102,8 +103,8 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,realtek.com:email]
-X-Rspamd-Queue-Id: 90EB029ACE5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid,realtek.com:email]
+X-Rspamd-Queue-Id: 5950C29AD2D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
@@ -112,16 +113,15 @@ om> wrote:
 
 > From: Tzuyi Chang <tychang@realtek.com>
 >
-> Add device tree bindings for RTD1625.
+> Add support for configuring slew rate, input voltage level and high VIL
+> mode. This involves updating the pin configuration parsing logic to handl=
+e
+> PIN_CONFIG_SLEW_RATE, PIN_CONFIG_INPUT_VOLTAGE_UV and the new custom
+> property "realtek,high-vil-microvolt".
 >
 > Signed-off-by: Tzuyi Chang <tychang@realtek.com>
 > Co-developed-by: Yu-Chun Lin <eleanor.lin@realtek.com>
 > Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
-> ---
-> Changes in v3:
-> - Changed slew-rate to use valid numbers.
-> - Revert realtek,pulse-width-adjust to realtek,duty-cycle.
-> - Fixed example values from hexadecimal to decimal format.
 
 Reviewed-by: Linus Walleij <linusw@kernel.org>
 
