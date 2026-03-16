@@ -1,119 +1,180 @@
-Return-Path: <devicetree+bounces-275994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275995-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CIVjN167t2mpUgEAu9opvQ
-	(envelope-from <devicetree+bounces-275994-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 09:12:14 +0100
+	id AFhEDiG8t2mpUgEAu9opvQ
+	(envelope-from <devicetree+bounces-275995-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 09:15:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39685295FD0
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 09:12:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B7D4296052
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 09:15:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C05243010519
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 08:12:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 473903009CC4
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 08:15:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8D9D355F2D;
-	Mon, 16 Mar 2026 08:12:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 838E834F263;
+	Mon, 16 Mar 2026 08:15:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CxseuR7p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MTwEI+Ve"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C516B3542E1;
-	Mon, 16 Mar 2026 08:12:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60B4534DCCC;
+	Mon, 16 Mar 2026 08:15:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773648731; cv=none; b=DBIrRCBEKij5iLRziV0SieYm5qPWYF7WFqREnvIumb6mwGZWEb54K+mo3Syta6J1mR/odpD5zeYg3cfI9wWus/PB8jvTOteS7HVyfSY7tRqaRTVgKJav88tIlYr0IWpD9grSiJa/buCb5aJp/A8prf2G/xbkKXBDcNG9pHO8OQU=
+	t=1773648926; cv=none; b=pu3ZecmcfqasVYVeoAzxHeD6129EUiyVZYa114xuHqqCZMaWDPPcwktRVJ7eUX8TvyLtIxsU29PnP55M3hGN+qfUwb7LLtE1fcJuM6eulSPt+0dITXXanAqHnrRSI16ej3SsVTN6OhGtA6QVJUO6gP0gx8t9LwHIlaL88EWfCyg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773648731; c=relaxed/simple;
-	bh=Li6cPmP3RADkGfu5yAIhyF88ZWDgiUQMDxPls8Kxlv8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Levfv5WOqakMSp94X6p+6CCpWJnjHe3g1z/fanI58Lk1/v4Yu9i/7hquMObrxPeqEJIxdkBWOSd4RDQgT9qbacihhKcv4Uqf7fXTvBuXxWT2iD6H6HpOb5rKTsWkylXIbeM9zR0pB4jNjm6G/oO+QP8CO8pwkFgFUUer0adxxJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CxseuR7p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C2C8C19421;
-	Mon, 16 Mar 2026 08:12:10 +0000 (UTC)
+	s=arc-20240116; t=1773648926; c=relaxed/simple;
+	bh=nhtL2odthWmuOWsooxA60OYDtu0DH4cHpJQAxMh1hkc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=if0K5NRETvFxTKOdCLNYH2aNVAVrNh2KmR7p65k3eFiRfXtv7A89odFl70jqmGR08mqprjYtKvqx9Y5gQ9msKPnpuchI1gqbQibPUUDXyAc+YfMNzvjkNZSZKydQuMoLkboQJ9lkkKx27PKCS3l9V4WpDHnTXPDPafZqOGgf0NI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MTwEI+Ve; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD030C19421;
+	Mon, 16 Mar 2026 08:15:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773648731;
-	bh=Li6cPmP3RADkGfu5yAIhyF88ZWDgiUQMDxPls8Kxlv8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CxseuR7pdRwz12lNYmtyJiKwmH4akmAh3zXHQmGTonNPNEC4rbaN+QdpukkpEdrko
-	 e1HqCv0B2lVGscz3lc+lyp0fJ49EdurstIHEhMsPDfqB3mhnKC6H3HMOvCfOEp5U9F
-	 AHf1iwiZqooSuG4yJ/ShCs4e5RVtQoD9TeyhqkN8Qne7HWtfvCY5WEQGpZBOoe5v7x
-	 a18vfaESXgxgQAFMWLxEcXfa91zw8nIjY6DaP2AVIWj4uJT9/6ACI/oH+VH81B0+f2
-	 yqKmzFXttfau3EU6pba2sSX13yZXrT5ya0TYRgktv7s8QA2mrdRMkQsN2UPptg2/l3
-	 Phc54JoGaLuaQ==
-Date: Mon, 16 Mar 2026 09:12:09 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jia Wang <wangjia@ultrarisc.com>
-Cc: Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	Yao Zi <me@ziyao.cc>
-Subject: Re: [PATCH v2 1/2] dt-bindings: serial: update bindings of ultrarisc
- dp1000 uart
-Message-ID: <20260316-upbeat-aardwark-of-snow-30dded@quoll>
-References: <20260316-ultrarisc-serial-v2-0-6ab3e7fa891c@ultrarisc.com>
- <20260316-ultrarisc-serial-v2-1-6ab3e7fa891c@ultrarisc.com>
+	s=k20201202; t=1773648926;
+	bh=nhtL2odthWmuOWsooxA60OYDtu0DH4cHpJQAxMh1hkc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MTwEI+Ve4cxp09X8Izg+Ie+gE6q3/zUIRUstZR19rpmNZjB96GjBV6QHUh/RxSVLr
+	 JvZxY+O2TU+LIetSkRnFbgiX0v0/+L13YdzSFPuLQRTaJdUXIwiDtRZiLiCp0Zzxhq
+	 XiIW+nU8eO9heGmggNYJ9k7AIV7uwjEk6IzxLjrWZmq7Uxg89szDYf+9gtsTHMcp9o
+	 trIOJfE5dQO+TY7P9V93O4vqQOCAp41ljiWBmrvxKRuVJ7oQEXPjshC0Lh0qLWGCE/
+	 xF9iQZ6UhJEq1rUxW8iNoMA3aKbYMZgG9ld3BTIxgh0m4FQnkhgenS/CBdzEXCsJ/J
+	 Gjgas9x+QvW/g==
+Message-ID: <6e00e9f3-0ff2-422d-b79f-fff8ebd47e58@kernel.org>
+Date: Mon, 16 Mar 2026 09:15:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260316-ultrarisc-serial-v2-1-6ab3e7fa891c@ultrarisc.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: panel: Add Himax HX83121A
+To: Pengyu Luo <mitltlatltl@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+References: <20260315144536.515032-1-mitltlatltl@gmail.com>
+ <20260315144536.515032-2-mitltlatltl@gmail.com>
+ <20260316-demonic-delicate-manul-8ffb80@quoll>
+ <CAH2e8h4US7Ut=u3AW6bra9kUhCo15k+sWmVw40adVE-JQ+ayVg@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CAH2e8h4US7Ut=u3AW6bra9kUhCo15k+sWmVw40adVE-JQ+ayVg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275994-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-275995-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org,oss.qualcomm.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:url]
-X-Rspamd-Queue-Id: 39685295FD0
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: 8B7D4296052
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 16, 2026 at 02:33:22PM +0800, Jia Wang wrote:
-> Add DP1000 UART compatible information
+On 16/03/2026 09:02, Pengyu Luo wrote:
+> On Mon, Mar 16, 2026 at 3:44 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On Sun, Mar 15, 2026 at 10:45:35PM +0800, Pengyu Luo wrote:
+>>> HX83121A is a driver IC used to drive MIPI-DSI panels. It is found
+>>> in HUAWEI Matebook E Go series (Gaokun2/3) with BOE or CSOT panels.
+>>>
+>>> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+>>> ---
+>>> v3:
+>>> - remove '|' from description (Krzysztof)
+>>> - drop description for reset-gpios (Krzysztof)
+>>
+>> And all other changes?
+>>
+>> Why aren't you testing this code?
+>>
+>> NAK, drop the tag and request re-review.
+>>
 > 
+> I see. I will send a new version later. I made changes to v1 binding by mistake.
 
-A nit, subject: drop second/last, redundant "bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-
-And anything can be "update". Be specific. Look at other commits how
-commits and their subjects are written.
+And EVERY patch you sent must be build tested, which would tell you that
+you made mistakes. Why do you think build testing your code is our task?
 
 Best regards,
 Krzysztof
-
 
