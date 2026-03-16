@@ -1,228 +1,198 @@
-Return-Path: <devicetree+bounces-275956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275958-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AIIfE6unt2k2UAEAu9opvQ
-	(envelope-from <devicetree+bounces-275956-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:48:11 +0100
+	id gHgxEs2nt2k2UAEAu9opvQ
+	(envelope-from <devicetree+bounces-275958-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:48:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E99D62953F6
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:48:10 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7897295410
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:48:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 73A0D300E3B0
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 06:48:09 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D98CE3013B4D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 06:48:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 481BD5CDF1;
-	Mon, 16 Mar 2026 06:48:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="N2PI9mya"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EFFF34CFDA;
+	Mon, 16 Mar 2026 06:48:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-05.mail-europe.com (mail-05.mail-europe.com [85.9.206.169])
+Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazon11022091.outbound.protection.outlook.com [40.107.75.91])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0BC720468E;
-	Mon, 16 Mar 2026 06:48:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.9.206.169
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773643689; cv=none; b=YNxU22Rj7LUATn/J/LOvR/Jx09h88EP5n/UOv11JrIJQ4Uwbq75L9Dtp0+ICQw4M0JkvhF30Nil2CSHKDKUwzQwf2LhZUzEkvHsVe6orbIVBu17codz8jW/xWopCS4X8y+xAhZTbeLTPFOvg3Yvn7u4XTRiY1aRIto4HuZI95cY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773643689; c=relaxed/simple;
-	bh=DvcWku+iWuEBTEQLmL0mPUKhyzSKNUO8/1ZTbR7l0Bw=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KkFnKYqnIqoUX49qFp6jJPFVLbfFk53dvE43NyQeU8MfwF/JZHTCiJsz9pF44xlfrH2nTSSOg1Ytk+/bjTmlJ40C4uYbzv3RqburH6E2OWf5kNk0xduejtVcEYRjp6IOfnxaEZD4AzHj9KQhCkJgSdM0V0ve9iiI6JYeXS144qg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=N2PI9mya; arc=none smtp.client-ip=85.9.206.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1773643677; x=1773902877;
-	bh=8ICJw08UJIz0AP6P0cn3L4DZUL5fjtlF4dxKFsE46as=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=N2PI9myakKW6GEoOdz3lHidvmY9XMdFsqujfxRNBFbMJ6/EYfKdE4JyJIW7+raV/O
-	 LZc5sgNX62j17yMz4qkLuePZQn3CRHbtSlpU7yBHMdOhSb9U769EkoDlPDGBLzqtOR
-	 dnMBD9idzRqwneC4l3SHO1B/uwLJW04KTSihi6J2c9Lsi1ZlPdweyAg05I+K3LBaat
-	 9NRd6G5HMqJ8U6ycat/5BoEF/6c1x2WqL9jp4v5N2yHTfmP9QsdUyBeTS96GXLmnb4
-	 NwgbBBMnYi0I2b2zNC+9F6lGs4hheVnX5rxNzaRLqWykOd0J0AiBySWpUoDnuO6P4l
-	 8IDtDAlc4Na4w==
-Date: Mon, 16 Mar 2026 06:47:52 +0000
-To: Krzysztof Kozlowski <krzk@kernel.org>
-From: cristian_ci <cristian_ci@protonmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH 1/6] dt-bindings: display: panel: Add Novatek NT35532 LCD DSI
-Message-ID: <2Iorhp1aLx-JWsIeTVctlNqbF5BWAbE7_0Ki5GL2nNNp0XViFuNBRJV60_KF0Zh8I8AamFvv7hFWZXajcVrqLlLFnfOI_csagePlYvLYAZo=@protonmail.com>
-In-Reply-To: <2d0afdab-78b7-4e60-b132-98cfcbbbb5af@kernel.org>
-References: <20260308-rimob-new-features-v1-0-aa2c330572c0@protonmail.com> <20260308-rimob-new-features-v1-1-aa2c330572c0@protonmail.com> <369b48d9-f089-49a2-89cb-a4e0c68f92fa@kernel.org> <7Ft_cDw10-3MmNTrKncMut5g08sodd9CL7r7AGXAtPPqZpXtHEgmqm05WhEpYMZzFEs4B0KWz-LU27Z0_YDnc44nXhdUrUt5X2dWK7D6pYM=@protonmail.com> <db04882b-7f30-464c-91a6-578302aef4ff@kernel.org> <Nz_hTfDbWqQk8-FcCknxZKO8dIhCAGueG89SRe2LkTG1VK4KjoH-UZH6bsOvqEySwNRjJtsEUL7vxxIXOWyyzLOtM9YLZaCuhPfxNz0mVyk=@protonmail.com> <4cfc7b40-f172-4eae-8f19-4a3eb858075e@kernel.org> <q2whOVhy_Cqm5m8toyiZ0PQQThv6LLoo8a5ialb_td0o5yM1FRLIMRZh2FKRiwSuwPfmfibU6Z6_jz6kJFJGlFfu3V-ELMteHVDM7zpnSBI=@protonmail.com> <2d0afdab-78b7-4e60-b132-98cfcbbbb5af@kernel.org>
-Feedback-ID: 27475468:user:proton
-X-Pm-Message-ID: d6ec91e3516ec63a908e0b35f46289badd97cb96
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF7A926FD9A;
+	Mon, 16 Mar 2026 06:48:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.75.91
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773643720; cv=fail; b=i+LhwmaPuA7RouoFp6fywMngMae8V7SHUaRfb1R7CHXOQqEF/IiJU1EOF73ql+DxI8teGa8eYFLo1QmBwSbb6vGH9oD99iP4OzdPtU0UzAIZmIx5VltCHTvrUR+ndo8SD8Z09QBZnUtgLUQJaQ3Ps0wpPmLpJx0xerAbnq9dJpQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773643720; c=relaxed/simple;
+	bh=Orj+jBNPpM+uYBw6fHbbp67T7fvi+078LT7sDI1IJeg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=e0D2jcZ3/DmybgA+NRs9/EWmOUIxlENvvLdAJAkLcN9OnUygbk3WPobcpHD56U//ZO0Njzwp5nvQOZQ3MAha7wpVNUoCa4Ix2Yfi7aqA7o62WeLtxxejTBAOisM8PWAP1W53yP8d5fsNHzpFvQy29nS16uuX7nHRtVKwuLawvFs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.75.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qKNgdEEmqtJVWd406wzdZBYOcUEpjTmaR3Cqw+B7r1hkEnqecHPXYBIMraGEael20v4DFJNSx2GYHpq/D7V9RnIPAv2CQpAYeTVM1IDy4wu/7FfRmfq6DBbmmSPFxxfmFi5myUbZQjOV9p6cr230MWUulS3fH0oRwsqJiF7rThwUfYjq1taSz3hfMstDzMF+eFf9cXxt8Z/tdjAYfuvyvcTmSRuIWTKdtp0kvY3XfMZfoO3+BvQXFpbPT7KYdQgDwygZFpClhSxP2AAGAuIIYh90fvsISDDaRFrSsHz/IrIC1S4Q/qaPRmWz//QM4MCyBENVYkpr2R81Msv3QaDMSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iXTuCDG76ptZF4VkFWskK6ROg5SgG5ZycKXQd2jhyio=;
+ b=o76IzQTGyKp7Q8uMzj4iWBlOiA4GMwD7RkP7Lct2cKvzCBc2Io4DdsY0IV0rkM0WcoP6s9NE3QqjK/mLB+QKWNwp2SnKQ9w+Fo3xyl3AHBZ2CoEn9LlFuVBZaKMwM+hlwvk71yb2sel1LWqEewiAfJJD8aJcZ7tTWQJTrY2VvyDVdh5lh/ujMmzQhm+FqvFC3bnxw3AayieVokOHrAu1W7wZJzcrPoT9iKuyU8U54CGLbFcPJoagM4Y5YaWHg8Mvufy1W3lDBSXQXEYkwdoJw946HP3BP7ysbRo1D8VRy65Riac9x3tAtBCs7rFVI8jfuqqZSURolKg1debXiawRbA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SG2P153CA0032.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c7::19) by
+ TYSPR06MB6971.apcprd06.prod.outlook.com (2603:1096:400:469::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.19; Mon, 16 Mar
+ 2026 06:48:35 +0000
+Received: from OSA0EPF000000CA.apcprd02.prod.outlook.com
+ (2603:1096:4:c7:cafe::ca) by SG2P153CA0032.outlook.office365.com
+ (2603:1096:4:c7::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9745.4 via Frontend Transport; Mon,
+ 16 Mar 2026 06:48:34 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ OSA0EPF000000CA.mail.protection.outlook.com (10.167.240.56) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9700.17 via Frontend Transport; Mon, 16 Mar 2026 06:48:32 +0000
+Received: from nchen-desktop (unknown [172.16.64.25])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 6FD4D4126F86;
+	Mon, 16 Mar 2026 14:48:31 +0800 (CST)
+From: Peter Chen <peter.chen@cixtech.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	gregkh@linuxfoundation.org,
+	pawell@cadence.com,
+	rogerq@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	cix-kernel-upstream@cixtech.com,
+	Peter Chen <peter.chen@cixtech.com>
+Subject: [PATCH v2 0/2] usb: cdns3: USBSSP platform driver support
+Date: Mon, 16 Mar 2026 14:48:29 +0800
+Message-ID: <20260316064831.274865-1-peter.chen@cixtech.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OSA0EPF000000CA:EE_|TYSPR06MB6971:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1d8cb184-c8b4-4133-8f27-08de83280a92
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|376014|36860700016|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	oN5zgAYI5PaUBznm8MvU7vqiO83mVWDUR8iJOpGsMaHLRKQTxxHeowfAxxlH51FE2oAJa5fs0tf66Y0tOrRjz0CHd1ORSg0NRXTUZScqIN7rzUyIbp+mE2Xdi0+ang1JaBkj/wU+MT2z+xUxWqVVw2pRalKVAgrZSzIEMptCglvO9InqFccVQn8xUeztAIQ7TZFEvL9WLOjP/5GHSh7thTTRIgyubT83CPk53Aq58DKHIgyK+B4gXbqkvC5gWTbooomGZFu4fZx6qNYOFq9YR5XSSN3yVl/+5QDrOoUIuoTbAyKJdWJCUbwc3pcrlSjAk3R+AJZy7TynDiSMTmB+FmrNaJ9ypn1bR4z/kAubZ3yzzAvH+/60FqWgMavUgDJvkYSS1fPtW/latBuw2O8cTWtc4G51ExNda3sFnunQQwO1DR3NGMVukBf5DPHkAAbdmlj/iE0AkiDRO7XE6GVS55DfWQ0P3M9KjyCA5MOgl8hIYbjLGR/DXiSw8h1c3qx4RpXDdX6pDB/B0tjl/FgBsRI+r6DpnGeM11VoX5LnCllERiUcs/fwuvK3n33IIgcsfrz8NNcp9cEwWP6rjTyFiwoxqdFA7rpVrxH6Qw1PlZ70lVwAiH9PAirZ721zP7KgwZQE8ry4QJNfakIPaPN+ZVKtP4dWUQv26tCMAMPkGo2MxOv0WQN5tncDlOGWXfzLSUlnX1BKdryBHcZGmD0+VbipOE9LiXvDokQ0PCv3Qgf3nRJnLyrPFWiRKEowX2S9XTp6jOKA7yl9tqvHGbfJvQ==
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(36860700016)(18002099003)(56012099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	7/+Xc++bZQRRhQrAF3b5Gbo2VwqsH7KPrp/RExQSkwLsqA1A2Cjo7Oge7HbVwArFDzWbc62YzxVRRvYwWFF4ELBT6xWtpI0czSHgxj3KaTDpTGPyoV8PXtW0wAlHgmB4K4v455VtQvazNrjh4CbB7Mz+e5IIz58a8j3F7WzL3yI+kiubPyvfPW4il6TcoGwybX4JQH8cA4PnxJhVllnI+AhozQ7/j1S9s95bS4JDMwVq4xTfX6wBP2BMjVEdHEe4OHnBvfYDejN94CHFbzlb5yT+ewE4Nz7MaIdQPvIBj4XhqlX+dLPaun1oHUzHSFIDR5A/xfr6ADahPCufzKxYy7uWiAwyVFAAntI5BpV3sCZ3ufjc2R8c7Q4BzMt38y2rYcwS/rI/Ic7ggW01CmqFSyhP8Gt2/ib2+JQXaLnMlGhOhoQMbNvacm5IbCl0uqpL
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 06:48:32.9850
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1d8cb184-c8b4-4133-8f27-08de83280a92
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	OSA0EPF000000CA.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR06MB6971
+X-Spamd-Result: default: False [3.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[protonmail.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[protonmail.com:s=protonmail3];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-275958-lists,devicetree=lfdr.de];
+	RCVD_COUNT_SEVEN(0.00)[7];
+	DMARC_NA(0.00)[cixtech.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275956-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[protonmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org,lists.sr.ht];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cristian_ci@protonmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[protonmail.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[peter.chen@cixtech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-0.876];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,protonmail.com:dkim,protonmail.com:mid]
-X-Rspamd-Queue-Id: E99D62953F6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,cixtech.com:mid]
+X-Rspamd-Queue-Id: C7897295410
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Friday, March 13th, 2026 at 09:32, Krzysztof Kozlowski <krzk@kernel.org>=
- wrote:
+This series adds platform driver support for the Cadence USBSSP (CDNSP)
+controller, which was previously only accessible through PCI.
 
-> On 13/03/2026 09:26, cristian_ci wrote:
-> >
-> > On Tuesday, March 10th, 2026 at 21:06, Krzysztof Kozlowski <krzk@kernel=
-.org> wrote:
-> >
-> >> On 10/03/2026 18:48, cristian_ci wrote:
-> >>> On Monday, March 9th, 2026 at 16:08, Krzysztof Kozlowski <krzk@kernel=
-.org> wrote:
-> >>>
-> >>>> On 09/03/2026 15:52, cristian_ci wrote:
-> >>>>> On Sunday, March 8th, 2026 at 17:13, Krzysztof Kozlowski <krzk@kern=
-el.org> wrote:
-> >>>>>
-> >>>>>>> +  vsp-supply:
-> >>>>>>> +    description: positive voltage supply for analog circuits
-> >>>>>>
-> >>>>>> Both are odd. Datasheet says vci, vddi, vddam and optional avdd, a=
-vee.
-> >>>>>>
-> >>>>>> There is no VSN and VSP. Otherwise please point the page in datash=
-eet or
-> >>>>>> some schematics.
-> >>>>>>
-> >>>>>> Best regards,
-> >>>>>> Krzysztof
-> >>>>>>
-> >>>>>
-> >>>>> I'm not sure about that. Writing panel dt-bindings has been based p=
-retty mostly on vendor devicetree - which also describes somehow the panel =
-and makes that working with the final product released to the market - so I=
-'ve to necessarily consider that.
-> >>>>> Then, I could agree that vendor devicetree might be not compliant w=
-ith upstream rules and could possibly make mistakes with describing the har=
-dware, so I'd like to find a way to describe that in a more proper way, acc=
-ording to upstream rules.
-> >>>>>
-> >>>>> That said, vendor devicetree describes lists four power supplies fo=
-r  DSI: 'vdd', 'vddio', 'lab' and 'ibb' (which have the following property =
-names, respectively, in qcom,mdss_dsi_ctrl node: 'vdd-supply', 'vddio-suppl=
-y', 'lab-supply' and 'ibb-supply'.
-> >>>>> Two of these are related to ds/controller (apparently, 'vddio' shou=
-ld match VDDI power supply in NT35532 datasheet.
-> >>>>>
-> >>>>> The remaining two supplies are related to panel ('lab' and 'ibb'). =
-These ones are two 'external ' regulators ('external' from NT35532 perspect=
-ive), which provide power supply to display, located in the qcom PMIC (in t=
-his case, that should be PMI8950). WRT to power supply names described in t=
-he bindings ('vsp-supply' and 'vsn-supply') are the same as 'lab-supply' an=
-d 'ibb-supply', just named differently in the vendor devicetrees.
-> >>>>>
-> >>>>> Usage of 'vsp'/'vsn' naming for power supply properties is grounded=
- on they commonly being used at upstream (different panel bindings make use=
- of these properties), on one side, and also described on schematics of dev=
-ices with the same hardware configuration (LCD_VSN and LCD_VSP), on the oth=
-er.
-> >>>>>
-> >>>>> In the meantime, I've found out schematics for 'xiaomi-mido' (anoth=
-er MSM8953 device) - a variant of this device is shipped with a panel also =
-using NT35532 IC (just like my device) - and LCD_VSN/LCD_VSP are clearly sh=
-own there too.
-> >>>>>
-> >>>>> I couldn't find much more information about the display on my devic=
-e and the only resources available about that are those listed above, as of=
- today. In light of my reply, I ask if it is still necessary to describe, i=
-n the bindings, power supply properties properties not used currently in th=
-e board DTS file.
-> >>>>
-> >>>> Please wrap your answers so this will be possible to parse.
-> >>>>
-> >>>> You write bindings matching the hardware and for the hardware, not f=
-or
-> >>>> the downstream code. You cannot add supplies which do not exist
-> >>>> regardless what some vendor wrote somewhere
-> >>>
-> >>> Vendor has also described the hardware by storing information (by inc=
-luding info
-> >>> about panel too) directly inside the device itself (/sys/firmware/fdt=
-).
-> >>
-> >> Vendor does not care about rules of DT thus puts there completely fake
-> >> information just to make their drivers working
-> >> .
-> >
-> > I'm not sure what that statement is based on in the specific case of
->=20
-> It's based on years of looking at vendor code.
->=20
-> > the panel I'm actually testing. A set of clues (some of which were also=
- mentioned
-> > in my first reply some days ago) point out that rimob's panel is really=
- supplied by
-> > two regulators part of PMIC [1]. Not only for this reason, I do not hav=
-e
-> > enough solid reasons, after all, to consider vendor data about the pane=
-l mounted in
-> > this device (rimob) as not decently reliable, so I cannot ignore them, =
-at least.
->=20
-> And I did not disagree that you need regulators and that vendor
-> correctly wired two of them.
->=20
-> The comments are about naming!
->=20
-> I discussed of using argument of incomplete or not fully correct vendor
-> code when the true hardware description is available. If the vendor
-> calls them in vendor DTS "yellow-pony-supply" you are going to use that
-> argument to write bindings? And then argue that "not sure what that
-> statement is based on"?
->=20
-> It's obvious - vendor code is crap. There are no VSN and VSP inputs. We
-> already confirmed that.
->=20
-> You claim that vendor called like that thus you can use them as well is
-> simply not correct approach.
+The USBSSP controller is auto-detected at runtime by reading the DRD/OTG
+Device ID register, so no additional DT compatible string is needed — both
+USBSS and USBSSP use "cdns,usb3".
 
-Ok but I don't know if I can submit a v2 series including my new bindings=
-=20
-changes (along with changes for other patches too) or I've to stick with=20
-v1 here, by showing my proposed fix for power supply properties, in order=
-=20
-to address review concerns about bindings, first.
-=20
-> Best regards,
-> Krzysztof
-> 
+Changes since v1:
+- Update DT binding: keep compatible as "const: cdns,usb3", add
+  description and super-speed-plus to maximum-speed, drop separate
+  USBSSP example.
+- Drop "cdns,usbssp" compatible string; Auto-detect the controller version
+  (USBSS vs USBSSP) at runtime by reading the DRD/OTG Device ID register
+  in cdns_drd_init(), and select the appropriate gadget init function
+  (cdns3_gadget_init or cdnsp_gadget_init) based on cdns->version.
+  This follows the same pattern already used for host initialization.
+  (Comments from: Pawel Laszczak, Krzysztof Kozlowski)
+- Export cdns_core_init_role and re-orginize the function cdns_init, and
+  controller version could be gotten before the gadget init function is
+  decided per controller.
+- Fix PLAT_DRIVER_NAME in cdnsp-pci.c from "cdns-usbssp" to "cdns-usb3"
+  to match the platform driver name. (Comments from Pawel Laszczak)
+- Remove unnecessary MODULE_ALIAS("platform:cdnsp"). (Comments from Krzysztof Kozlowski)
+- Build cdns3-plat.o as a standalone module instead of bundling it into
+  cdns-usb-common, so that 'make modules_install' works correctly.
+  (Comments from Pawel Laszczak)
+- Regroup USBSSP and CDNS3 Kconfig options under the USB_CDNS_SUPPORT
+  menu so they appear properly grouped in menuconfig. (Comments from Pawel Laszczak)
+- Add Assisted-by tag per Documentation/process/coding-assistants.rst.
+  Since the checkpatch.pl can't support this, it is added at context.
+
+Peter Chen (2):
+  dt-bindings: usb: cdns,usb3: document USBSSP controller support
+  usb: cdns3: Add USBSSP platform driver support
+
+ .../devicetree/bindings/usb/cdns,usb3.yaml    |  10 +-
+ drivers/usb/cdns3/Kconfig                     |  50 ++--
+ drivers/usb/cdns3/Makefile                    |  30 +--
+ drivers/usb/cdns3/cdns3-gadget.c              |   4 +
+ drivers/usb/cdns3/cdns3-plat.c                |  17 +-
+ drivers/usb/cdns3/cdnsp-gadget.c              |   4 +
+ drivers/usb/cdns3/cdnsp-pci.c                 | 217 ++++++++----------
+ drivers/usb/cdns3/core.c                      |  11 +-
+ drivers/usb/cdns3/core.h                      |   5 +-
+ drivers/usb/cdns3/gadget-export.h             |   4 +-
+ 10 files changed, 172 insertions(+), 180 deletions(-)
+
+-- 
+2.50.1
+
 
