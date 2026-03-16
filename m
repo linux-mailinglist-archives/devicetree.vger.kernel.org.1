@@ -1,180 +1,139 @@
-Return-Path: <devicetree+bounces-275946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275949-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WLsrJUOkt2lTTwEAu9opvQ
-	(envelope-from <devicetree+bounces-275946-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:33:39 +0100
+	id GAmNOFSkt2lTTwEAu9opvQ
+	(envelope-from <devicetree+bounces-275949-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:33:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12FD3295292
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:33:38 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E13AB2952B8
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:33:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 00368300E5C2
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 06:33:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EA25330069A0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 06:33:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD29B34B404;
-	Mon, 16 Mar 2026 06:33:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BA7334BA33;
+	Mon, 16 Mar 2026 06:33:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kamfbimK"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="u/1E1zCu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B75DD13635C;
-	Mon, 16 Mar 2026 06:33:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 098FC13635C;
+	Mon, 16 Mar 2026 06:33:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773642815; cv=none; b=AIQ33kmfPslA5frbIC46FrxZmahHh73RVFSUPbQIefWsCfXC1e8ruw7TVF0w+5L1OLoMTGY2fKVytFI3OCCiuZ2msBMgNNO/SBERaQ7/kM4o/PJu2erPoeEVG9baQ/7cAKgbirwh8lCOVwTOmrwe92FNDtpeEAQ94Lq8Q1yzNyY=
+	t=1773642827; cv=none; b=rW3qvpHpWBhyGH+WnhsCla1xTgW+wq/ag/lcERJ+piC6oirQ6rk8RhAZU1V2xtpv2z3wgwzvN0xR5O9SqHWlNGDHYBEBmSm0fXt2iLRCxRCR1U5CeDy7Bcqu3Gl/+//kbgK7RDyDQTxlIasrGQ/APoKXmdwcp4nzxvXFrUcFdzI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773642815; c=relaxed/simple;
-	bh=/cBRAudR782PfI6JZqOVzrGeBpkRDlrf5iNN8lqsEyc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RmfobSQFR2ZgdvehCOCC3dbo2uJjbOu0aBXbbYYG8Zo995sbOLLdDdlV3Qm+K0M22pHci5BPCQe0UNWFXU12l4S4FdHFDOtiNwWV/J1lYn38/csXL+xfH0/oct20B1s3ART/IGsXWynTHGVgiQ11/kg0Tc+nM46OYzN0vUFCF8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kamfbimK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 71524C2BCAF;
-	Mon, 16 Mar 2026 06:33:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773642815;
-	bh=/cBRAudR782PfI6JZqOVzrGeBpkRDlrf5iNN8lqsEyc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=kamfbimK8WbBFJvpa9J4Mv6xtNo8mTh14NWAPg4Kf6ivrOcIdkH3MeiQIS3qvTOQE
-	 YpnbosRb4+KI5gYXZUOnIAdNkM+marUjK6HiIyAjSGLDqXm5BUTPmRr+QMjCwnOxIw
-	 v9YA6J5RiXqXwV3fXaYHGc/XZz0+WfMGEPs0ns9lp0eRSeuvxDFDVawcbxnz/hfbeI
-	 0VyysXFMvQTEIdJojs9m9hOw6CDFYUPVbX3K2mU8Scks7VvP63VME++i5SypZdHZbO
-	 2qjqrgAUWymv90Y7iXs2NACzlb6/UwY7Lx5NhEUNkjMTfzHyLnBy+4CU0zVXHX14yo
-	 JLsqvqIGDh3RA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 63775EFCBBB;
-	Mon, 16 Mar 2026 06:33:35 +0000 (UTC)
-From: Jia Wang via B4 Relay <devnull+wangjia.ultrarisc.com@kernel.org>
-Date: Mon, 16 Mar 2026 14:33:23 +0800
-Subject: [PATCH v2 2/2] riscv: ultrarisc: 8250_dw: support DP1000 uart
+	s=arc-20240116; t=1773642827; c=relaxed/simple;
+	bh=Dkywfmgei82k5odcdPZZ4qCI+IO8bBIHlMkgGEm1yaM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PGiaIbkLmFvTcOM/tRjvmUONmkUKFf9avfES0LBkF/bRFUm/8KyAQxdUmuCwuv+P8r1ehwFsivjLeekHTFMf7+NbTCOSbqNNOzwFl3Ur3OAxUBFh39s+XQYrR0pS1y4c3jm3XCcxT2WZmiwAdbbay6ONwKbG/3ryfK7ZxFci4o0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=u/1E1zCu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01E4AC19421;
+	Mon, 16 Mar 2026 06:33:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1773642826;
+	bh=Dkywfmgei82k5odcdPZZ4qCI+IO8bBIHlMkgGEm1yaM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=u/1E1zCuDFBmUxj6jlulcq5x7vGGg1pSKluyGzbaTq1hNC0vjLMjjjBFGmjy7dRSp
+	 bqzdhrUsgTO2wOBTyffXfmmz18F8O1QHBopO3c+i2IaFw/KsN8ItO4FRaI8jiBVKtw
+	 ltEmDCgBGBdfUlISTQ4sVc8lEqChh7wNXZhyj+8g=
+Date: Mon, 16 Mar 2026 07:33:28 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: Markus Probst <markus.probst@posteo.de>,
+	Markus Probst via B4 Relay <devnull+markus.probst.posteo.de@kernel.org>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+	Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Igor Korotin <igor.korotin.linux@gmail.com>,
+	Daniel Almeida <daniel.almeida@collabora.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Pavel Machek <pavel@kernel.org>, Len Brown <lenb@kernel.org>,
+	Robert Moore <robert.moore@intel.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+	driver-core@lists.linux.dev, linux-pci@vger.kernel.org,
+	linux-leds@vger.kernel.org, linux-acpi@vger.kernel.org,
+	acpica-devel@lists.linux.dev
+Subject: Re: [PATCH v3 7/7] leds: add synology microp led driver
+Message-ID: <2026031645-unplowed-purist-9c4b@gregkh>
+References: <20260313-synology_microp_initial-v3-0-ad6ac463a201@posteo.de>
+ <20260313-synology_microp_initial-v3-7-ad6ac463a201@posteo.de>
+ <DH1YH0GO75H8.18YSW2VMKRB3C@kernel.org>
+ <39f1c9bb0dbde9f1b60785f8e838289c888ffdb0.camel@posteo.de>
+ <DH3KAWWLECYW.3VBH7PIE7ZE20@kernel.org>
+ <eb2f7498c5f3247265effc47b3445a04ac71956e.camel@posteo.de>
+ <DH3M1023PCBI.1HYYZU93NS1JX@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260316-ultrarisc-serial-v2-2-6ab3e7fa891c@ultrarisc.com>
-References: <20260316-ultrarisc-serial-v2-0-6ab3e7fa891c@ultrarisc.com>
-In-Reply-To: <20260316-ultrarisc-serial-v2-0-6ab3e7fa891c@ultrarisc.com>
-To: =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
- Jia Wang <wangjia@ultrarisc.com>, 
- Zhang Xincheng <zhangxincheng@ultrarisc.com>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773642814; l=2191;
- i=wangjia@ultrarisc.com; s=20260309; h=from:subject:message-id;
- bh=gRRSp55pRniZyx6sAoUvfL+vjmmUJve5ICYBYJttQq0=;
- b=lE6icoO2hEHbQKWQ48OM1Kw9YZjvib5LhszrMykHhbDQX2zTvBfTYY30YIYexqWCM0knHf563
- EmfvFVXAzMeBO74xu2ActGmCwxHWYHjEe8MkxIad730zdn+FOFn4xUH
-X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
- pk=XvYkrelqJIIzobY7j+nIg8rsfv5kzaOzuc1UPhd087U=
-X-Endpoint-Received: by B4 Relay for wangjia@ultrarisc.com/20260309 with
- auth_id=682
-X-Original-From: Jia Wang <wangjia@ultrarisc.com>
-Reply-To: wangjia@ultrarisc.com
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DH3M1023PCBI.1HYYZU93NS1JX@kernel.org>
+X-Spamd-Result: default: False [3.84 / 15.00];
+	MID_END_EQ_FROM_USER_PART(4.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275946-lists,devicetree=lfdr.de,wangjia.ultrarisc.com];
+	TAGGED_FROM(0.00)[bounces-275949-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[wangjia@ultrarisc.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[31];
+	FREEMAIL_CC(0.00)[posteo.de,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,gmail.com,collabora.com,intel.com,vger.kernel.org,lists.linux.dev];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 12FD3295292
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linuxfoundation.org:+];
+	TAGGED_RCPT(0.00)[devicetree,markus.probst.posteo.de,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linuxfoundation.org:dkim]
+X-Rspamd-Queue-Id: E13AB2952B8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Zhang Xincheng <zhangxincheng@ultrarisc.com>
+On Sun, Mar 15, 2026 at 08:41:06PM +0100, Danilo Krummrich wrote:
+> I.e. if we can't (easily) use mfd cells and would need a custom API, then why
+> even split it up at all, given that splitting it up would probably the most
+> complicated part of the whole driver.
+> 
+> Greg, what do you think?
 
-The UART of DP1000 does not support automatic detection of
-buffer size. skip_autocfg needs to be set to true
+I think this has yet to be proven to be a kernel driver at all at this
+point, and not just a userspace daemon that listens to the serial port
+and then does what is needed from there :)
 
-Signed-off-by: Zhang Xincheng <zhangxincheng@ultrarisc.com>
-Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
----
- drivers/tty/serial/8250/8250_dw.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Or, if someone can prove that the operations on this serial data stream
+actually do require it to be in the kernel (which I have yet to see a
+list of what this connection does, did I miss it?) then a single driver,
+under the drivers/platform section of the kernel tree makes sense.
 
-diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/8250_dw.c
-index db73b2ae17fa..6a2acf173331 100644
---- a/drivers/tty/serial/8250/8250_dw.c
-+++ b/drivers/tty/serial/8250/8250_dw.c
-@@ -56,6 +56,7 @@
- #define DW_UART_QUIRK_IS_DMA_FC		BIT(3)
- #define DW_UART_QUIRK_APMC0D08		BIT(4)
- #define DW_UART_QUIRK_CPR_VALUE		BIT(5)
-+#define DW_UART_QUIRK_FIXED_TYPE	BIT(6)
- 
- struct dw8250_platform_data {
- 	u8 usr_reg;
-@@ -514,6 +515,11 @@ static void dw8250_quirks(struct uart_port *p, struct dw8250_data *data)
- 		data->data.dma.prepare_tx_dma = dw8250_prepare_tx_dma;
- 		data->data.dma.prepare_rx_dma = dw8250_prepare_rx_dma;
- 	}
-+	if (quirks & DW_UART_QUIRK_FIXED_TYPE) {
-+		p->flags |= UPF_FIXED_TYPE;
-+		p->type = PORT_16550A;
-+		data->skip_autocfg = true;
-+	}
- 	if (quirks & DW_UART_QUIRK_APMC0D08) {
- 		p->iotype = UPIO_MEM32;
- 		p->regshift = 2;
-@@ -789,6 +795,11 @@ static const struct dw8250_platform_data dw8250_skip_set_rate_data = {
- 	.quirks = DW_UART_QUIRK_SKIP_SET_RATE,
- };
- 
-+static const struct dw8250_platform_data dw8250_ultrarisc_dp1000_data = {
-+	.usr_reg = DW_UART_USR,
-+	.quirks = DW_UART_QUIRK_FIXED_TYPE,
-+};
-+
- static const struct of_device_id dw8250_of_match[] = {
- 	{ .compatible = "snps,dw-apb-uart", .data = &dw8250_dw_apb },
- 	{ .compatible = "cavium,octeon-3860-uart", .data = &dw8250_octeon_3860_data },
-@@ -796,6 +807,7 @@ static const struct of_device_id dw8250_of_match[] = {
- 	{ .compatible = "renesas,rzn1-uart", .data = &dw8250_renesas_rzn1_data },
- 	{ .compatible = "sophgo,sg2044-uart", .data = &dw8250_skip_set_rate_data },
- 	{ .compatible = "starfive,jh7100-uart", .data = &dw8250_skip_set_rate_data },
-+	{ .compatible = "ultrarisc,dp1000-uart", .data = &dw8250_ultrarisc_dp1000_data },
- 	{ /* Sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, dw8250_of_match);
+thanks,
 
--- 
-2.34.1
-
-
+greg k-h
 
