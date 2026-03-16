@@ -1,208 +1,165 @@
-Return-Path: <devicetree+bounces-276086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276087-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YDz4Gszat2mcWAEAu9opvQ
-	(envelope-from <devicetree+bounces-276086-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:26:20 +0100
+	id 8PuiESPbt2mcWAEAu9opvQ
+	(envelope-from <devicetree+bounces-276087-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:27:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BE68297E3C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:26:20 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE1E6297E70
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:27:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 058FB3040474
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:25:07 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 427A93008310
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:27:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22A6A38F658;
-	Mon, 16 Mar 2026 10:25:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC6CE38E5DA;
+	Mon, 16 Mar 2026 10:27:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JwuFiIoJ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eEheYhW7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C32F38425B
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 10:25:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F3D038E124;
+	Mon, 16 Mar 2026 10:27:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773656704; cv=none; b=cHngUrP+yO9dgJ9XhNd//mdNSrlVRjsfpg27jcstFaV4x3Kf5zFu1Y2rhywDb4OaO4IUwAxHUivnr70BLr9DkMn79gR9TS9zIgWtN8brjWt0URqvANUC3QDHu+UNqRXX3nyige8R1+ojpYJbYczslXBydCL9nyzlAcJKUR26IDo=
+	t=1773656864; cv=none; b=Zhk34DC6f72pIpzjIWNtVtDGJgaErYm9eSBrQkSNEs6eniexHh1eZ3lvq5rzk/3ITBTaJOPodODtD6E1Aaaw7iO+cdfY3Q/OlfwuW9owmTMrg8angTxQMDgqn4J9AnaWezHuvsFUeaU6nUNk7nwn/qOpIv7DikTBQ4CFcTXffnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773656704; c=relaxed/simple;
-	bh=g7i0+Pp9mjDM23vWtwKGrmc2BsZHLrC1Qpwe0Pg4HnA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=M/AmXVAhtph+zr9tn+dcNeg/wSAf41BBz5+OJqyndGoCi3ppTqooriRJcNPqwley2838mXch7PJ26s9/ZR0OpGHGyWUJGFLyig5yNzpGYjc4G7la5+CF9Mdfj9InQfZF0D7Cna2zxU76gHXQIi9/qB+dBOb7aCIbCvLlNgnx0v8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JwuFiIoJ; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4853fd7b59aso26552785e9.2
-        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 03:25:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773656700; x=1774261500; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=76TTQfOSNM1rz7a9CKO2GjO22jbs8CcvWq2eCabFfvY=;
-        b=JwuFiIoJJxGpULgpCQclsszbgrE+zMiEpg6IP3hqEL2AkRSWqDuttvEEtcerWb5fW0
-         ayJRehUybKL3TjT6tXKwoT1MJZp+uVN6FQw90Vj1zXbPmBOsywnP7cBmSOUgzFhFvvrj
-         YSPVs7h4tU4m+Tyy7jw4QsiV14+9xgSzSuoURpkMyin/2a0VW+zLUbaS9XMsY8NEN4T3
-         77aDIHJCdpeTaiZDXHzMF9revugRYAfF4SSaWXhYv0Thx7urS4/keQ7rVX6H1O7mtG4M
-         XSzd2jzrGeVRGmc/khhGRaDASXVvtX9PBnW/Di7IDAsofy4Ea8lnQd4TD+JfEzUV8fhp
-         HhdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773656700; x=1774261500;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=76TTQfOSNM1rz7a9CKO2GjO22jbs8CcvWq2eCabFfvY=;
-        b=snR74XMcX1z8IsAdsY31kTCDoyus6w8vYqYmwVoMJJym5qLwnuRwieGGPTLhtvBgIN
-         anIOwfhkQln4H02VXHA+t2f8S5QaKkFR9XfN1Hay05304UC2RCUCRTm6XOZb+THA7Fcu
-         64BkJcCUjbHJioLhHL4Kqe9dKcT2AVkuYwys/6PjHi4LbgRmQ6vKhN1/KSBlkq/z7ZtG
-         06aPFXpgZDdOdBtxpuec8WNhY+VqJHPWfM2krHdk84te/rUD7U8mJcFNAg1YLck9XcoU
-         oOfmMmxE4T3oP+z9xul7FV/cSx/DpEkHKrWG0vRTQLp3vfMUUvqFjs64hgv8OjkooVoK
-         FyHw==
-X-Forwarded-Encrypted: i=1; AJvYcCVzAdLE1NwHL2qj601oE+fbtTZVHwzmgJOrhtNV3Guq90MKhWMaLSSKEQHch/nV1/7BJ6pF7n5cXuGY@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGf/syOiqNwrcXFgCtn3jnb/k0SruWaIRmUH3mlhSCIkxEkIy0
-	h8f5towm17+P5VIagDkl6MzhAG9J8eESUEfmf5Uf+lvPbvyFtzNl65l0F0E89O077rs=
-X-Gm-Gg: ATEYQzzeojCWvztn32iB67EOdEcXc+YN60A4jbiLVmFjhCNLO4+QYgKWaX3mf5157KY
-	jFD1mNNkPqMRE2XJkJ75m57mXYMoJo3lVtHnb2RXnPUi8XeOlp2MGKNUJuIXSKfiK3CK91gqG1P
-	JLiSIxOjcJvxvCuj2H/gjjaaqc2+5XZKDsOA1HJFbGN6ev6q+QIedMq7E4dnlOJ0sgGpraLtWSc
-	ADNPcVZB99BLtshjMNjmkxLNSXFF4URLAE72iOtQZFVZQRnc8aL1I0Ko3xmaj5EH/MAb7zKNVBQ
-	DuydAK+gw50EW2+b3JkhX4TyYCoJnu6QRPn0nB68yVgnbpZr0dWQOailxZ1gDdcIAHDGlwrbnkV
-	CRONweM02aUGv3Nc9JCdXXAREv0SWxGTSs/gpybnoEPgTwFWbA0mRDQC8RZiBlvlK4FXSbKmVTV
-	/e7a1/1tXRaCVctxEmse+vmiqVOm7LeUw=
-X-Received: by 2002:a05:600c:4e4a:b0:485:4135:5c92 with SMTP id 5b1f17b1804b1-4855649360amr208565725e9.0.1773656699914;
-        Mon, 16 Mar 2026 03:24:59 -0700 (PDT)
-Received: from [192.168.0.34] ([82.76.24.202])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48557777105sm149727875e9.4.2026.03.16.03.24.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Mar 2026 03:24:59 -0700 (PDT)
-Message-ID: <3af521bd-e03b-4e8c-a972-6b0b1c54e2d9@linaro.org>
-Date: Mon, 16 Mar 2026 12:24:55 +0200
+	s=arc-20240116; t=1773656864; c=relaxed/simple;
+	bh=xHbC15Av+mVN56628rDyUUF3vqnT/6/26LWQ2kojBD0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o9Nxn238BfVQP5G0df2VG4X1C6fz8QKYxRc6vdZ1XhE3GSYG5fTkEJ7XGcpfutKt9M/WGaqj5acS8wM3lkMKffFLd9vGNP7CN6K0qBMO2DU9r1CYm0IHp5mLvpPHAhgC2LC8oAT6YXXv+REP4q8DGGbKJ4FRvf8Hz8aW4mw8Y2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eEheYhW7; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773656864; x=1805192864;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xHbC15Av+mVN56628rDyUUF3vqnT/6/26LWQ2kojBD0=;
+  b=eEheYhW77LuT2/lJtO9+KyC2QscsjYqruV8Lh4Ak7P8IArf4LFjLfVTd
+   3VZBsl9g3HWjPrsaA7/CdVr3Bm2yFDERlzrDSZOrAYdCD/leqPf0rIfRA
+   xspq7ktJa0xoPVVl8lBpX7N1i7tX2ow4e+Z/nOKe/XZw0cRTl+ltFQZS+
+   ZNGs3uqekZF5Rbbbo9fEuhiw6N8a0lISaXLOVz9e2MT13cQ56meu2R66g
+   sCDLAFg0bCfaxs/pR6B+qXR3NvwdlbiXFusxLLa/FMHD+SOv3FqR3K3CA
+   wD+PXYfpYf1qOQYnzlRA4tWhNRaw43qmj+bk9jSud91Mxa2TZpNJ+ycDm
+   A==;
+X-CSE-ConnectionGUID: +2pFjj+dQuao+8Chv+se5g==
+X-CSE-MsgGUID: 7RkcF0eERAm/+btk7uS7MQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11730"; a="78273244"
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
+   d="scan'208";a="78273244"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2026 03:27:43 -0700
+X-CSE-ConnectionGUID: ROvAPVjsQ5iwvM9K1gEjnw==
+X-CSE-MsgGUID: A6/44649QN2zvNLiCVt06g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
+   d="scan'208";a="244906029"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.237])
+  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2026 03:27:38 -0700
+Date: Mon, 16 Mar 2026 12:27:36 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Erikas Bitovtas <xerikasxx@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Peter Meerwald <pmeerw@pmeerw.net>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	Raymond Hackley <raymondhackley@protonmail.com>
+Subject: Re: [PATCH v3 4/6] iio: light: vcnl4000: add support for regulators
+Message-ID: <abfbGGvcfJpRdqDZ@ashevche-desk.local>
+References: <20260314-vcnl4000-regulators-v3-0-3c4a48d30676@gmail.com>
+ <20260314-vcnl4000-regulators-v3-4-3c4a48d30676@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 20/25] printk: Register information into meminspect
-To: John Ogness <john.ogness@linutronix.de>,
- Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>, Jonathan Corbet
- <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- Arnd Bergmann <arnd@arndb.de>, Dennis Zhou <dennis@kernel.org>,
- Tejun Heo <tj@kernel.org>, Christoph Lameter <cl@gentwo.org>,
- Andrew Morton <akpm@linux-foundation.org>, Thomas Gleixner
- <tglx@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
- Anna-Maria Behnsen <anna-maria@linutronix.de>,
- Frederic Weisbecker <frederic@kernel.org>, Ingo Molnar <mingo@redhat.com>,
- Juri Lelli <juri.lelli@redhat.com>,
- Vincent Guittot <vincent.guittot@linaro.org>,
- Dietmar Eggemann <dietmar.eggemann@arm.com>,
- Steven Rostedt <rostedt@goodmis.org>, Ben Segall <bsegall@google.com>,
- Mel Gorman <mgorman@suse.de>, Valentin Schneider <vschneid@redhat.com>,
- David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- Kees Cook <kees@kernel.org>, Brendan Jackman <jackmanb@google.com>,
- Johannes Weiner <hannes@cmpxchg.org>, Zi Yan <ziy@nvidia.com>,
- Chris Li <chrisl@kernel.org>, Kairui Song <kasong@tencent.com>,
- Kemeng Shi <shikemeng@huaweicloud.com>, Nhat Pham <nphamcs@gmail.com>,
- Baoquan He <bhe@redhat.com>, Barry Song <baohua@kernel.org>,
- Youngjun Park <youngjun.park@lge.com>, Petr Mladek <pmladek@suse.com>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Saravana Kannan <saravanak@kernel.org>
-Cc: workflows@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
- linux-mm@kvack.org, linux-arm-msm@vger.kernel.org,
- linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20260311-minidump-v2-v2-0-f91cedc6f99e@oss.qualcomm.com>
- <20260311-minidump-v2-v2-20-f91cedc6f99e@oss.qualcomm.com>
- <87pl54f70l.fsf@jogness.linutronix.de>
-From: Eugen Hristev <eugen.hristev@linaro.org>
-Content-Language: en-US
-In-Reply-To: <87pl54f70l.fsf@jogness.linutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260314-vcnl4000-regulators-v3-4-3c4a48d30676@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[linutronix.de,oss.qualcomm.com,lwn.net,linuxfoundation.org,arndb.de,kernel.org,gentwo.org,linux-foundation.org,infradead.org,redhat.com,linaro.org,arm.com,goodmis.org,google.com,suse.de,oracle.com,suse.com,cmpxchg.org,nvidia.com,tencent.com,huaweicloud.com,gmail.com,lge.com,chromium.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-276087-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276086-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,pmeerw.net,vger.kernel.org,lists.sr.ht,protonmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[eugen.hristev@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_GT_50(0.00)[56];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,suse.com:email,linaro.org:dkim,linaro.org:email,linaro.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linutronix.de:email]
-X-Rspamd-Queue-Id: 0BE68297E3C
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,ashevche-desk.local:mid]
+X-Rspamd-Queue-Id: DE1E6297E70
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Sat, Mar 14, 2026 at 06:06:33PM +0200, Erikas Bitovtas wrote:
+> Add supply, I2C and cathode voltage regulators to the sensor and enable
+> them. This keeps the sensor powered on even after its only supply shared
+> by another device shuts down.
+
+...
+
+> +	ret = devm_regulator_bulk_get_enable(dev,
+
+Below is broken indentation.
+
+> +				      ARRAY_SIZE(regulator_names),
+
+There is still some room on the previous line.
+
+> +				      regulator_names);
+
+	ret = devm_regulator_bulk_get_enable(dev, ARRAY_SIZE(regulator_names),
+					     regulator_names);
+
+OTOH the logical split is rather to have the last two on a single line, but
+that one becomes too long, so your initial variant is okay with fixed
+indentation.
+
+	ret = devm_regulator_bulk_get_enable(dev,
+					     ARRAY_SIZE(regulator_names),
+					     regulator_names);
 
 
-On 3/16/26 11:39, John Ogness wrote:
-> On 2026-03-11, Mukesh Ojha <mukesh.ojha@oss.qualcomm.com> wrote:
->> Annotate vital static, dynamic information into meminspect for debugging
->>
->> Static:
->>  - prb_descs
->>  - prb_infos
->>  - prb
->>  - prb_data
->>  - printk_rb_static
->>  - printk_rb_dynamic
-> 
-> FYI: vmcore also exports the symbol "clear_seq". It is not required if
-> you are interested in reading _everything_ in the buffer. But it may be
-> interesting if you want to mirror vmcore tool features.
+> +	if (ret < 0)
 
-Thank you for your review and suggestion. One of the key points of
-meminspect is to be easy to use by the kernel developer. E.g. to be easy
-to add another symbol, like `clear_seq` for a particular use case.
-So, someone wanting to make use of it, can easily add it.
-The purpose of the initial submission would be to have a basic use case
-working, and show it as an example for everyone.
-If you would like to detail about the features you mention, it could be
-interesting to try them and see if it would work with a meminspect dump.
+Do we need ' < 0' part?
 
-Eugen
-> 
->> Dynamic:
->>  - new_descs
->>  - new_infos
->>  - new_log_buf
->>
->> meminspect uses a different API to annotate variables for inspection,
->> and information about these variables is stored in the inspection table.
->>
->> Reviewed-by: Petr Mladek <pmladek@suse.com>
->> Co-developed-by: Eugen Hristev <eugen.hristev@linaro.org>
->> Signed-off-by: Eugen Hristev <eugen.hristev@linaro.org>
->> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-> 
-> Reviewed-by: John Ogness <john.ogness@linutronix.de>
+> +		return ret;
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
