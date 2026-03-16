@@ -1,242 +1,211 @@
-Return-Path: <devicetree+bounces-276174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276166-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KPS7HVMGuGkWYQEAu9opvQ
-	(envelope-from <devicetree+bounces-276174-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:32:03 +0100
+	id mDdmOLEFuGlpYAEAu9opvQ
+	(envelope-from <devicetree+bounces-276166-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:29:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D64C929A6F7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:32:02 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6576229A5E1
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:29:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8740F30221C0
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 13:30:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8F18C3075AA5
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 13:20:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F8C23976AF;
-	Mon, 16 Mar 2026 13:30:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F029B397698;
+	Mon, 16 Mar 2026 13:20:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=superkali.me header.i=@superkali.me header.b="f5pWXXIf"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dge2AQAK";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="UCjKkmAT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fr5000-r.dnsiaas.com (fr5000-r.dnsiaas.com [92.42.104.18])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AD3585C4A;
-	Mon, 16 Mar 2026 13:30:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.42.104.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D96C225775
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 13:20:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773667831; cv=none; b=c7sjNWuxIuZh1007DKkDfRoIDeXvtV1XUsiBz2ZAMsNHVX7U3FViCSCDffFx5ZgH5dK+oFdZXozxwQLbi5brr88myYbUOv52YWBr3jWbC2vYtsc18bNnmT9DETX6VZrQKssnHnWY9w1R8HDhXzo8O4xzEKLIZmWlpnYAirBOUQc=
+	t=1773667202; cv=none; b=K/fAvqIYZl48a1iXz6viaUERFEF14gh01aFmhO7ZAFSVBnwAiULM8sHxZ+0WDUlfrHxdgoHeIf2dOWJ2ElTw+qiPuxB5YIfLcUTAf4ys2mmERvfS2g2VdaIYPel5J/0Ztx92KAUE/Wz4/QDiIimMn6r3VElVnu5K98xvnybqqXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773667831; c=relaxed/simple;
-	bh=J+EIEg1pqOJjG0KsFt5Kl5CBsqAz+bYW4IMvCtxXl5Q=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hvPgZmgA6snFDJFikibGS06XpUQ6GtaGzR5ADjDamVlbpPqWRDYNSYCs/txWiqvu9JGfP16Nrxv4YVIPIV4i7UsqqQbeFcpqCd1Sgy93i1fxcFqRoi5fCbYXqGgALHI7fFHg5DEHvlEVHvUc1UhUpCBbgoI1fluhRnMOvL7ZREI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=superkali.me; spf=fail smtp.mailfrom=superkali.me; dkim=pass (2048-bit key) header.d=superkali.me header.i=@superkali.me header.b=f5pWXXIf; arc=none smtp.client-ip=92.42.104.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=superkali.me
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=superkali.me
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=superkali.me; s=default; h=Cc:To:In-Reply-To:References:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=MkTZYHJpVH53Si1xxxr8JQuTVTYhXIYd8LKiQKjxI+4=; b=f5pWXXIfMyC0VETBVVla0rrFBP
-	F6MlwQAbbVgn7U72banrizmu2fYpAOAPsgw1mn28KvRx+qnMibGLi3D2w9VtlKJT6mkYqjLfnTv84
-	T/BJv21P17iq2WBQioFvyv4ex8GRLuei0uo136o4UqIZ9h6kEKjV2h6p8j4Jm88E0nmx3NGp1igYO
-	djxHSsHVYSon02oGH2lhsMmKUt1UCnIUzXS0RggPXn8f2l0a+4Svh/1Yl+WSzAcRz+5Z6bQtFlJJA
-	rhPjse9KOV3q2krAYDYRQJOyQ+UQCrn7XqTK0YjhKYeyGMWFzSeu+Hk8jpevgn0FQnRBZbA0+cWpO
-	247J6oVw==;
-Received: from [185.94.132.237] (port=54871 helo=1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa)
-	by fr5000-r.dnsiaas.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.99.1)
-	(envelope-from <hello@superkali.me>)
-	id 1w27ea-0000000BDZB-1WUJ;
-	Mon, 16 Mar 2026 14:06:39 +0100
-From: Daniele Briguglio <hello@superkali.me>
-Date: Mon, 16 Mar 2026 14:06:33 +0100
-Subject: [PATCH 3/3] clk: rockchip: rk3588: add GATE_GRF clocks for I2S
- MCLK output to IO
+	s=arc-20240116; t=1773667202; c=relaxed/simple;
+	bh=QlyRtyj6riE8FuflIvfBiM4ASu5Sv7E5TNQKsnxXv80=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=tvIRILvTrxmFj/0ORfAGFq+cHfhmA/ENyGSNMMmMuReBkgUocqNY2pyePGQBUCPUEaPJjaO6fUGEFHqnfHJDDr7Ptgh7MssCMQ7/QpVrSZj19E6rCZRo6J10gwuGzvxxushoIF8Gl7knuabdc4k++/nuqUbv9cjMydiYAuZaYsw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dge2AQAK; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=UCjKkmAT; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62GC3xxJ1282091
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 13:20:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=7SGS5jQKh5vFco8jAnNdL8
+	iZz9tDRrOLuUjo/nn5l2Y=; b=dge2AQAKPfXtrrGa1DhDkKG1atwaUlv1wCxMnh
+	pZfX4RIcW0Awv9rrObrEi/3sgtlVsus/TqvDGX0hzzykXJfG8vRso8Z1VBvAYKEt
+	QABcYA3cMuESMVSGkU55YnF7Nombpr8xkjtPdXV5eQdwFo7nxO49UafRh0GLFbhG
+	vC3Q9txyhbWWQBzg1QAcAERc8fmcnumy0vxOqCwTEBVeMj9Bvq1IHEkr+Wu08a2+
+	mS+YHiLUkRIScdlvMoxeiZrMfxUP81Qj5lxXx1p4pr1ZZxOKy4XhIDXkdAV2gQsi
+	nD1QJyVOIvsv8Rt4ticdCW5zaVCSedx8wJC0D7NTKZtEcZ/w==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cvyyc5s60-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 13:20:00 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-358e95e81aeso30869642a91.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 06:20:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773667199; x=1774271999; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7SGS5jQKh5vFco8jAnNdL8iZz9tDRrOLuUjo/nn5l2Y=;
+        b=UCjKkmATJtdUSnhddY6ROYWbHNiLGftPLCKRVz2510E8Y4QKY+zsN/CSKLspB07P+p
+         Ikxi5ZIj4zA9mory1dod81Bz8KL0Eq6eC6CKPqjO2Kk1Yy4V8YBVerisgJGroMXh0Uc3
+         YAjQbTfAk1JOfLXrBOOv8NJO+A+hnb4545eaam4ycXoBhjhA8ma3aa48+gY6mMYcqWVX
+         4rS24r/GCJAvOnY5Dhe5khSkS0BhBf6J1KVzAKciTx4Bf4Ftug25q4XcEFpiu9wDe/22
+         abXuXMUCUX9vdCgTPhSKIzPf/RU/3pNuNacJgOnlEMNmlx1w48KwHm3C+L4OVgf3wkMf
+         Ae5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773667199; x=1774271999;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7SGS5jQKh5vFco8jAnNdL8iZz9tDRrOLuUjo/nn5l2Y=;
+        b=HgUKzG+xEC8DDzonesmKGmFlJ8kK6qZXXMWF04Nzw9oIpnF0+TLJZthHdwubTznaYi
+         cFg+kFcGvJYd0cOX19VJU0HFe2LP0gfLa12R3RTjDHC4SZR0DrBJ0qf1tEOvAFTxyFw8
+         jjOzKhhebqpHwXj+zWoBQ0L+jHUYGr9oguPHYbov2Y9zZ2gXC9OdgNx8bvanRu0XLs6U
+         IXFzOVZP8pBzQdhP5X2WY1otsONbM8YLo/0l/Wz3AQu1+ItfgocOz00AuZJwRkmyZZb7
+         axqm8nzzpTMcggVHB9sdPNtbqY6iTCorNBePCnWVDFH91ZTyJMpUN0QmrVHe3+agIbVK
+         3RnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW/Z78zHrI6R0W68y+7RBdhrcDMPd2Lq0y8c6LNzD7kjaIFE5q9oWjzn1y8Fe4swdCJ4c1TzclnAWZM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxS21JTdIWPZhAOmIcwRSyvaSF6td54al8ZDoJrbccS0QbOOI3Y
+	pAtWPdYO7CssU/lcCwXsJr7HUkKcz7sAWzhC9nU4BWbplX6f8WJdI/mQn4ZgVTD8FDjJ36Uu/+6
+	gkoZ9bFUNkyC4tTSchW6NWPiV1ipRu0WlXvuLknoJoF0cOCxiBRfotXJIVkNNBtB6
+X-Gm-Gg: ATEYQzxYVCJSTT60RaK7Ji771WJDVniRd4WfxpMfKpdrCXGecUb7a2ewUuMGMV8OCLb
+	2sF05p7VGay3Xp+xeC09PgdoJy1xGXo+BSdJKLaWRPB0t/wDDfAnnP/g4E8XEixjfSX+UGtltfW
+	IZRgPs4XTD5GjZLiwaQ4bITrqrz7U2Z/cBTHOerqWrQx2vPYyl2mnrrL6NioZYnHkx9Moe2Iqxu
+	fb96UkNKEmHhMo1qM1D7cojsG6ZloPVImuXfhALqBWHSSz4sjyPc9YwX2+srFoAL5Y87sOD2bql
+	bpFFddcZ8FDyBLsbo1lX6A3tJD4ugxd4N2KAYSqPPkrKo/755m/ABT5dVFICCtk8B5n7DJ2YaIj
+	34EnrAiQb3ua7FFWXr4ggoiiO+4Z/uFlSW07RsyV6hDOV1nDnubnFyg1l9g==
+X-Received: by 2002:a17:90b:5306:b0:359:ff8a:ee4f with SMTP id 98e67ed59e1d1-35a21e2fcedmr12435828a91.7.1773667199471;
+        Mon, 16 Mar 2026 06:19:59 -0700 (PDT)
+X-Received: by 2002:a17:90b:5306:b0:359:ff8a:ee4f with SMTP id 98e67ed59e1d1-35a21e2fcedmr12435811a91.7.1773667199067;
+        Mon, 16 Mar 2026 06:19:59 -0700 (PDT)
+Received: from hu-vdadhani-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35b9303eb9bsm5209648a91.8.2026.03.16.06.19.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Mar 2026 06:19:58 -0700 (PDT)
+From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+To: mkl@pengutronix.de, mani@kernel.org, thomas.kopp@microchip.com,
+        mailhol@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Cc: mukesh.savaliya@oss.qualcomm.com, anup.kulkarni@oss.qualcomm.com,
+        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+Subject: [PATCH v2 0/3] can: mcp251xfd: add XSTBYEN transceiver standby control
+Date: Mon, 16 Mar 2026 18:49:47 +0530
+Message-Id: <20260316131950.859748-1-viken.dadhaniya@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260316-rk3588-mclk-gate-grf-v1-3-66fb9a246718@superkali.me>
-References: <20260316-rk3588-mclk-gate-grf-v1-0-66fb9a246718@superkali.me>
-In-Reply-To: <20260316-rk3588-mclk-gate-grf-v1-0-66fb9a246718@superkali.me>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- Daniele Briguglio <hello@superkali.me>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773666394; l=4743;
- i=hello@superkali.me; s=20260316; h=from:subject:message-id;
- bh=J+EIEg1pqOJjG0KsFt5Kl5CBsqAz+bYW4IMvCtxXl5Q=;
- b=TF+ahMc9stJ1mnSeJQyzvAxKK6zzIez7ySVEH6aJ4mC0mvgOA1AJ7V0x6tJBxqkyzY4/Dcbvq
- Zi44yKpQa87Bt/6xTi1tibC2V70q/WzrGwnF3Zgwb66B9xJVKY71Ef5
-X-Developer-Key: i=hello@superkali.me; a=ed25519;
- pk=5tynRWQdL93CDcapJ73FkcCRY2PeBOJOIAoIhRig53U=
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - fr5000-r.dnsiaas.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - superkali.me
-X-Get-Message-Sender-Via: fr5000-r.dnsiaas.com: authenticated_id: hello@superkali.me
-X-Authenticated-Sender: fr5000-r.dnsiaas.com: hello@superkali.me
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Spamd-Result: default: False [3.04 / 15.00];
-	DMARC_POLICY_REJECT(2.00)[superkali.me : SPF not aligned (relaxed),reject];
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=euXSD4pX c=1 sm=1 tr=0 ts=69b80380 cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=BLoY-fwtqX9uGLcRELsA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22
+X-Proofpoint-GUID: UeENN6_ZgNOw724Ae4YonEM3DP93fGbJ
+X-Proofpoint-ORIG-GUID: UeENN6_ZgNOw724Ae4YonEM3DP93fGbJ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE2MDEwMSBTYWx0ZWRfX24bGefaUuHnY
+ BEjhokFEpYa3YvfR+i9pvSp51pCt0Su+hr/rZ6pOTm1EP15JP+OUq1feclIpoogWYLy1osaEiEE
+ v5+QmW0jNDujy5yPaLxqOrkRSV2cSm6lbpTNLtQjGumStC75IRs0KuGVVGsAPJymfFineie70Uk
+ o8yMRZLbIq0YWG+T9iKfN+2/P0uNoQGlsXq1dohKQ1gMelZzrRFS8oVlrilEmU+BSlR2Y7DlsJd
+ jHWkaS/YJ5uM0IFgDloo7cSezmGlvHjKxFswdsq8HTB7jaPdCVGYHU7pz+VBcFsUqx5uxD9Oo9h
+ ZdIIJObCnWYRUeni4OJh7dr1H+rF/j5hs3MIM9M+yS/VydRydMgQFk7jtfOTfJ9neyf5by3ckcB
+ WNSMjTEx6WQp5025qXKGfqzIsNOoepySfTeDGEJb1Ab7VfA6lzw1d8saZohLTpx6QFROr/0VONA
+ jFM1qMiGcpmmK5pX5pw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-16_04,2026-03-16_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 adultscore=0 bulkscore=0 malwarescore=0 spamscore=0
+ impostorscore=0 lowpriorityscore=0 phishscore=0 clxscore=1015 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603160101
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_REJECT(1.00)[superkali.me:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276174-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	RCVD_COUNT_THREE(0.00)[4];
-	HAS_X_GMSV(0.00)[hello@superkali.me];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_X_AS(0.00)[hello@superkali.me];
-	DKIM_TRACE(0.00)[superkali.me:-];
+	TAGGED_FROM(0.00)[bounces-276166-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	FROM_NEQ_ENVFROM(0.00)[hello@superkali.me,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	HAS_X_SOURCE(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[viken.dadhaniya@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_X_ANTIABUSE(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: D64C929A6F7
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 6576229A5E1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The I2S MCLK outputs on RK3588 are gated by bits in the SYS_GRF
-register SOC_CON6 (offset 0x318). These gates control whether the
-internal CRU MCLK signals reach the external IO pins connected to
-audio codecs.
+This series adds support for the MCP251xFD's dedicated transceiver standby
+control function via the XSTBYEN bit, and enables it on the QCS6490 RB3
+Gen2 board.
 
-The kernel should explicitly manage these gates so that audio
-functionality does not depend on bootloader register state. This is
-analogous to what was done for RK3576 SAI MCLK outputs [1].
+The MCP251xFD has a hardware-managed transceiver standby control on the
+INT0/GPIO0/XSTBY pin. When XSTBYEN is enabled, the hardware automatically
+drives the pin low when the controller is active and high when it enters
+Sleep mode, providing automatic standby control of an external CAN
+transceiver without software intervention.
 
-Register the SYS_GRF as an auxiliary GRF with grf_type_sys in the
-early clock init, and add GATE_GRF entries for all four I2S MCLK
-output gates:
+Testing was performed on the QCS6490 RB3 Gen2 board with a PCAN-USB FD
+adapter, confirming that:
+- The transceiver is active (pin LOW) when the controller is in
+  normal mode
+- CAN communication works correctly
+- The pin is automatically managed on sleep/wake transitions
 
-  - I2S0_8CH_MCLKOUT_TO_IO (bit 0)
-  - I2S1_8CH_MCLKOUT_TO_IO (bit 1)
-  - I2S2_2CH_MCLKOUT_TO_IO (bit 2)
-  - I2S3_2CH_MCLKOUT_TO_IO (bit 7)
-
-Board DTS files that need MCLK on an IO pin can reference these
-clocks, e.g.:
-
-    clocks = <&cru I2S0_8CH_MCLKOUT_TO_IO>;
-
-Tested on the Youyeetoo YY3588 (RK3588) with an ES8388 codec on I2S0.
-
-[1] https://lore.kernel.org/r/20250305-rk3576-sai-v1-2-64e6cf863e9a@collabora.com/
-
-Signed-off-by: Daniele Briguglio <hello@superkali.me>
 ---
- drivers/clk/rockchip/clk-rk3588.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+v1 -> v2:
 
-diff --git a/drivers/clk/rockchip/clk-rk3588.c b/drivers/clk/rockchip/clk-rk3588.c
-index 1694223f4f84..0e550642c655 100644
---- a/drivers/clk/rockchip/clk-rk3588.c
-+++ b/drivers/clk/rockchip/clk-rk3588.c
-@@ -5,6 +5,7 @@
-  */
- 
- #include <linux/clk-provider.h>
-+#include <linux/mfd/syscon.h>
- #include <linux/of.h>
- #include <linux/of_address.h>
- #include <linux/platform_device.h>
-@@ -892,6 +893,8 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
- 			RK3588_CLKGATE_CON(8), 0, GFLAGS),
- 	MUX(I2S2_2CH_MCLKOUT, "i2s2_2ch_mclkout", i2s2_2ch_mclkout_p, CLK_SET_RATE_PARENT,
- 			RK3588_CLKSEL_CON(30), 2, 1, MFLAGS),
-+	GATE_GRF(I2S2_2CH_MCLKOUT_TO_IO, "i2s2_2ch_mclkout_to_io", "i2s2_2ch_mclkout",
-+			0, 0x0318, 2, GFLAGS, grf_type_sys),
- 
- 	COMPOSITE(CLK_I2S3_2CH_SRC, "clk_i2s3_2ch_src", gpll_aupll_p, 0,
- 			RK3588_CLKSEL_CON(30), 8, 1, MFLAGS, 3, 5, DFLAGS,
-@@ -907,6 +910,8 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
- 			RK3588_CLKGATE_CON(8), 4, GFLAGS),
- 	MUX(I2S3_2CH_MCLKOUT, "i2s3_2ch_mclkout", i2s3_2ch_mclkout_p, CLK_SET_RATE_PARENT,
- 			RK3588_CLKSEL_CON(32), 2, 1, MFLAGS),
-+	GATE_GRF(I2S3_2CH_MCLKOUT_TO_IO, "i2s3_2ch_mclkout_to_io", "i2s3_2ch_mclkout",
-+			0, 0x0318, 7, GFLAGS, grf_type_sys),
- 	GATE(PCLK_ACDCDIG, "pclk_acdcdig", "pclk_audio_root", 0,
- 			RK3588_CLKGATE_CON(7), 11, GFLAGS),
- 	GATE(HCLK_I2S0_8CH, "hclk_i2s0_8ch", "hclk_audio_root", 0,
-@@ -935,6 +940,8 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
- 			RK3588_CLKGATE_CON(7), 10, GFLAGS),
- 	MUX(I2S0_8CH_MCLKOUT, "i2s0_8ch_mclkout", i2s0_8ch_mclkout_p, CLK_SET_RATE_PARENT,
- 			RK3588_CLKSEL_CON(28), 2, 2, MFLAGS),
-+	GATE_GRF(I2S0_8CH_MCLKOUT_TO_IO, "i2s0_8ch_mclkout_to_io", "i2s0_8ch_mclkout",
-+			0, 0x0318, 0, GFLAGS, grf_type_sys),
- 
- 	GATE(HCLK_PDM1, "hclk_pdm1", "hclk_audio_root", 0,
- 			RK3588_CLKGATE_CON(9), 6, GFLAGS),
-@@ -2220,6 +2227,8 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
- 			RK3588_PMU_CLKGATE_CON(2), 13, GFLAGS),
- 	MUX(I2S1_8CH_MCLKOUT, "i2s1_8ch_mclkout", i2s1_8ch_mclkout_p, CLK_SET_RATE_PARENT,
- 			RK3588_PMU_CLKSEL_CON(9), 2, 2, MFLAGS),
-+	GATE_GRF(I2S1_8CH_MCLKOUT_TO_IO, "i2s1_8ch_mclkout_to_io", "i2s1_8ch_mclkout",
-+			0, 0x0318, 1, GFLAGS, grf_type_sys),
- 	GATE(PCLK_PMU1, "pclk_pmu1", "pclk_pmu0_root", CLK_IS_CRITICAL,
- 			RK3588_PMU_CLKGATE_CON(1), 0, GFLAGS),
- 	GATE(CLK_DDR_FAIL_SAFE, "clk_ddr_fail_safe", "clk_pmu0", CLK_IGNORE_UNUSED,
-@@ -2439,6 +2448,8 @@ static struct rockchip_clk_branch rk3588_clk_branches[] = {
- static void __init rk3588_clk_early_init(struct device_node *np)
- {
- 	struct rockchip_clk_provider *ctx;
-+	struct rockchip_aux_grf *sys_grf_e;
-+	struct regmap *sys_grf;
- 	unsigned long clk_nr_clks, max_clk_id1, max_clk_id2;
- 	void __iomem *reg_base;
- 
-@@ -2479,6 +2490,17 @@ static void __init rk3588_clk_early_init(struct device_node *np)
- 			&rk3588_cpub1clk_data, rk3588_cpub1clk_rates,
- 			ARRAY_SIZE(rk3588_cpub1clk_rates));
- 
-+	/* Register SYS_GRF for I2S MCLK output to IO gate clocks */
-+	sys_grf = syscon_regmap_lookup_by_compatible("rockchip,rk3588-sys-grf");
-+	if (!IS_ERR(sys_grf)) {
-+		sys_grf_e = kzalloc_obj(*sys_grf_e);
-+		if (sys_grf_e) {
-+			sys_grf_e->grf = sys_grf;
-+			sys_grf_e->type = grf_type_sys;
-+			hash_add(ctx->aux_grf_table, &sys_grf_e->node, grf_type_sys);
-+		}
-+	}
-+
- 	rockchip_clk_register_branches(ctx, rk3588_early_clk_branches,
- 				       ARRAY_SIZE(rk3588_early_clk_branches));
- 
+- Drop the gpio-hog approach as suggested by Dmitry.
+- Enable hardware‑managed transceiver standby control via the appropriate
+  Device Tree property.
+
+v1 Link: https://lore.kernel.org/all/20260108125200.2803112-1-viken.dadhaniya@oss.qualcomm.com/
+---
+
+Viken Dadhaniya (3):
+  dt-bindings: can: mcp251xfd: add microchip,xstbyen property
+  can: mcp251xfd: add support for XSTBYEN transceiver standby control
+  arm64: dts: qcom: qcs6490-rb3gen2: Enable CAN bus controller
+
+ .../bindings/net/can/microchip,mcp251xfd.yaml |  8 +++++
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts  | 22 ++++++++++++++
+ .../net/can/spi/mcp251xfd/mcp251xfd-core.c    | 30 +++++++++++++++++++
+ drivers/net/can/spi/mcp251xfd/mcp251xfd.h     |  1 +
+ 4 files changed, 61 insertions(+)
 
 -- 
-2.53.0
+2.34.1
 
 
