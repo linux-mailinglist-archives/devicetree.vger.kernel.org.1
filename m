@@ -1,201 +1,193 @@
-Return-Path: <devicetree+bounces-276098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276099-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YNuANPXft2mcWAEAu9opvQ
-	(envelope-from <devicetree+bounces-276098-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:48:21 +0100
+	id qKidERPht2lDWwEAu9opvQ
+	(envelope-from <devicetree+bounces-276099-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:53:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B26E29835B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:48:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B38829843D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:53:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8C6173043AF9
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:46:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 94B7A304EF54
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:49:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69AB839023F;
-	Mon, 16 Mar 2026 10:46:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jlKCBiIy";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="SRCHVrxf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FEA2390211;
+	Mon, 16 Mar 2026 10:49:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 379D6390200
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 10:46:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0482C21FF38
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 10:49:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773657978; cv=none; b=DrEHrHCxv4yy97XWByyF0WMEXm3Z8c/J/NkR52dsioHW7TmZ7ijFjeoZKia+Crmqi3kZDwAYW/K3N3UQwzI+ZANRA2qXH373ssnVIFD0j/cr1jM5EH8wsKT4iKJycMcJKGRyRP8eyxUfHIigfFoKeTJ3Vx6VOxzE5vlhrCNtL9o=
+	t=1773658189; cv=none; b=fsfHwjz0RkUk4xacN2fK9nP21tGyTjDbNFWjDvLCu6baZ75eikB+kbeTvXiBIpwj26AGQ2TGKnOJDx/QC7SrpU7h5r91LbnM0IzaBsZFWOFlL8h/UvGZxIH7hkfVvMv0unuw+5p+aIq/58690EOOPAMiZUdhpjA0w7ifMhonGbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773657978; c=relaxed/simple;
-	bh=DgAHaLVHniG/WjFij6KMeMEX9c6SKoxg85r4WlIblWk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=P7KBDfBdWe9MOgquuiP5A0KCQX1kDYIQEfs5mxzlD9snISnklKpi0qAza3Je75GI755qnFeNO4pjYlAtQbPQC+C+FiV6V54pyp2ujhpaln40e8Mq/vA5FOiEkd55JjxlzsVstdBok0Hf6sERyd/cPq3VCx7gQ1448ejy/VPbhyo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jlKCBiIy; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=SRCHVrxf; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62G64bYD1066826
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 10:46:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	WWI/FuuLoSUa9DlTie+QQdxxsAoZVVJdRrfTJfeNm3Y=; b=jlKCBiIysl51YLGH
-	27fuL33C4KFqBKtYESsdPdzJNxJd3AA+kTNnzcBvHr1RIMyqMuVSVTiMXLBYu3aB
-	U4Zv/GCKJ4G1y1udQN5hvHBLvhuvYH0juOOBHUbGZ+beXYpPeuHf1X5vjWTqO39H
-	b5tmdrw40JOIbuWNzSvZ8IuvKhPYhM+VULCrpeqv6UvEi2vcABVquJG7bwc206uI
-	OKgVVvG4hXt8K4+TybfTm+z8V2AKLZLA0asH2J7ZXF7ps0dXhF5g1UGZ2SsBiaYR
-	qS/Q7M/iwKUF/KGvjMZUBvrY5tvKEFyM8I0bvGUnEpLsVhFzp53q1z9RVHM5uLLX
-	tJY3gw==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cw027davr-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 10:46:16 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-89a04e9d4faso35747976d6.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 03:46:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773657976; x=1774262776; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WWI/FuuLoSUa9DlTie+QQdxxsAoZVVJdRrfTJfeNm3Y=;
-        b=SRCHVrxfjLJEdnM+3/ldzq0RVBrqA4XbPR/27/W9sF20snBtr4Bcc5/GF5W4SJ75Eg
-         wcWs4v5GOeFZTpsnyiS4rw+i+3sXlEiepjbCEeqLH4LZh33SOkwbF7RZLbupuD8d4ak6
-         zjQjzzZeUi1aRYYlRF1X2pm0LeWSJG1jFSOEarnqpbDeVm7iryIdMjzFM2B0TOHMSqvX
-         jLZhCZ80+lEJlPsq3B3SSEJSRihJgfiwZUulYuijpgxZOqlRHBlPGEsp8Yu7bLMBPDp6
-         SRT4M3F94r+7j7Nz6EHV4MCTrMZQom8ORq5RQWIM1ITYoXoLBHWdQPKlVb2bPXn19wXB
-         68Qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773657976; x=1774262776;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WWI/FuuLoSUa9DlTie+QQdxxsAoZVVJdRrfTJfeNm3Y=;
-        b=krW4dxJPbzYfdGMcTJ5p7401rRuBhIi1rbaSPnrH4iLdTbRb2Wx5wczcOmydZU9Tq7
-         VrTRNb3tDA2zS0un76ESoVjmzTEZqOh/ngwKQDc/DUSJj1mQWhkWVcllj+sCb23jm20c
-         pbLnRElgwlCnswo5yddOs9wZ3P55aTVxuR8ajl/U2TmyKhwwt/doazQmB6f8W73Qko6s
-         seWWFU80vNrUYSJDR7DevU9sHSrg5fgrbVP9g67QPfPadq1+GrJbjv2RUlLjpvRNLtUM
-         jZ7Rv8nbnavijNRw59sStRd3ml6ZbMorl1plbBz71deTlmQJ9J0K9Hym0O2J1IxDvRoa
-         k+mg==
-X-Forwarded-Encrypted: i=1; AJvYcCUwzS1SlI5DCn+wd3sz1sHhI+Iv6fDfrCHRD1KqwyyDjZHonbAuZRreUaaDNdon1IE2dPDNQ2R08VpD@vger.kernel.org
-X-Gm-Message-State: AOJu0YzmIzEfh1O5g/422yHT/LXQoLr+jfTKoOlhyU7hpcIk51/pzNWB
-	oYy3803ysSgyxCkuUAgmYgwO7UUAbEvjTc1Bipy0CELuCzRNJ4oSnh5HMx3SWrmDERka/0sMVX2
-	eZEXFSmijT84EyrQrUpICrY7h7GCC96k4yjZdUAEj558dQ0MCYzQ9hJdsLmH5fOwR
-X-Gm-Gg: ATEYQzzYw3k8c1/GwWqcJjvUhJJNEhZmbcR/sP4e5/78Fbw+PFuKb7/G9tS0HQY7qQ6
-	dhB1yWemPC6HislPgOEI5fb9keFLAFzhJsx5lYkDT3dsE0StMCrlFukssbJ7m5/D+GhbUwRn4wO
-	jzSm3VbNdcWDuZ3NfL8h/IcMXqzVaX6FYjc/+bdgiednGg/0RKZdzE47NM1FXpZMKYkvsPb7t58
-	trEqf5+z1w3tUITOAqzWIGtchf2BlgsJDOlLgy7iCh+beybPSFkx6UenpLPYT1KMVPkyXDrkdVg
-	R//3Wsa40YmNomRWJVJKihOgfShKHfBybfMQmBDKdPfFeA8/KrF1R3g89d/BtXD0bz/Ceo25AOd
-	HnLr2Pj4Y5W29/FSsHV9NFsNbpMofet43eP4r1XzHE/DAmscmCWQn+SFSz504HcrW9jhFLI2lCp
-	F7ArI=
-X-Received: by 2002:a05:6214:4e14:b0:89a:4449:ac0f with SMTP id 6a1803df08f44-89a81f51a27mr126893936d6.4.1773657975643;
-        Mon, 16 Mar 2026 03:46:15 -0700 (PDT)
-X-Received: by 2002:a05:6214:4e14:b0:89a:4449:ac0f with SMTP id 6a1803df08f44-89a81f51a27mr126893626d6.4.1773657975123;
-        Mon, 16 Mar 2026 03:46:15 -0700 (PDT)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b976cbf9028sm542193366b.19.2026.03.16.03.46.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Mar 2026 03:46:14 -0700 (PDT)
-Message-ID: <0aa28dd2-c5ff-4286-bf58-b7a9e7f3ad73@oss.qualcomm.com>
-Date: Mon, 16 Mar 2026 11:46:11 +0100
+	s=arc-20240116; t=1773658189; c=relaxed/simple;
+	bh=HHOsISjCw6STMOS1IkdFbgNlHwOBzhyTNrxlUafEby4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ONowcqAeClBR13syvv+sJBBE12PVF/xs5mdr6zpHzV6Ye0QQHBdwW2vOUHkrUOhAI4a5PEKO/z9rqkhop0uBlXakJteEyfW3/JVR5nuBf4JpQ8BS1N0wOhV9X0E4MglQyiKxoQpCN/r1GNRnJO99EPayMLJAiNv/wFqurqqsZ0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w25Vm-0007z9-9V; Mon, 16 Mar 2026 11:49:26 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w25Vl-000YUs-1M;
+	Mon, 16 Mar 2026 11:49:25 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w25Vl-00000005Q1P-1Hwo;
+	Mon, 16 Mar 2026 11:49:25 +0100
+Date: Mon, 16 Mar 2026 11:49:25 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Conor Dooley <conor@kernel.org>
+Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Peter Rosin <peda@axentia.se>, Linus Walleij <linusw@kernel.org>,
+	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	linux-gpio@vger.kernel.org, David Jander <david@protonic.nl>
+Subject: Re: [PATCH v4 1/6] dt-bindings: pinctrl: add NXP MC33978/MC34978 MSDI
+Message-ID: <abfgNaCp4VeKZUWE@pengutronix.de>
+References: <20260313140218.1213393-1-o.rempel@pengutronix.de>
+ <20260313140218.1213393-2-o.rempel@pengutronix.de>
+ <20260313-shortwave-baguette-5914f1af60f8@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/5] arm64: dts: qcom: glymur-crd: Add Embedded
- controller node
-To: Anvesh Jain P <anvesh.p@oss.qualcomm.com>,
-        Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Hans de Goede <hansg@kernel.org>,
-        =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
-References: <20260313-v04-add-driver-for-ec-v4-0-ca9d0efd62aa@oss.qualcomm.com>
- <20260313-v04-add-driver-for-ec-v4-3-ca9d0efd62aa@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260313-v04-add-driver-for-ec-v4-3-ca9d0efd62aa@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: mZy76pqfg-OCUCJRsmCY1fG55dpR9Yt1
-X-Proofpoint-ORIG-GUID: mZy76pqfg-OCUCJRsmCY1fG55dpR9Yt1
-X-Authority-Analysis: v=2.4 cv=AqXjHe9P c=1 sm=1 tr=0 ts=69b7df78 cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
- a=EUspDBNiAAAA:8 a=BYiauv21-j_JhOubGf8A:9 a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10
- a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE2MDA4MiBTYWx0ZWRfX9zUYfNts/z3O
- EqkTqj1z9A5iab4ZDbLRr3MAQ4fOTZVH+f3l2FGfmsuQ8SdeIur6zqBtbKv+GHVffLoG37Mc/o+
- sxS1HfZ+ymLmRrRLxkCOGhnQvKPOq+FWZdqENowCfWGyAEuRenWyPoyvUM4cf6Qx4nLlxqQ/wKT
- ZNYWNS0JGS/6tFBMFQa0Uj1hWNaN2IaAy/sGW7s2tvqumzSbI6yr71F5vR1qldV8ayhyt/Fll8/
- kr1Xj3DkGQbrkg4kUYy70g1/ipt9q5EDtToLLQyNrhoLILyFUF736grsqkG4oRc8hB8uWjUkEfD
- uFcQ4qYHye76ni702erlhqlqtW4bc4eVlqh2WGzZ0kKk46IN1MdZCCXTUKjaazcS7XcytdBJDov
- FnEzjD+noqOuynKayxm/pyVLCv3vbjbS/zCG9kdw2BuHPk+zSfOZ+y/WQT7bzeN/pkb/Tn13Ofx
- WyhddOnfrSr4mkDKgoA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-16_04,2026-03-13_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 bulkscore=0 clxscore=1015 phishscore=0
- spamscore=0 suspectscore=0 malwarescore=0 lowpriorityscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603160082
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260313-shortwave-baguette-5914f1af60f8@spud>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276098-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-276099-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:dkim,qualcomm.com:email];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.891];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 5B26E29835B
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[protonic.nl:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,pengutronix.de:email,pengutronix.de:mid,pengutronix.de:url]
+X-Rspamd-Queue-Id: 9B38829843D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/13/26 11:29 AM, Anvesh Jain P wrote:
-> From: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-> 
-> Add embedded controller node for Glymur CRDs which adds fan control,
-> temperature sensors, access to EC state changes through SCI events
-> and suspend entry/exit notifications to the EC.
-> 
-> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-> Co-developed-by: Anvesh Jain P <anvesh.p@oss.qualcomm.com>
-> Signed-off-by: Anvesh Jain P <anvesh.p@oss.qualcomm.com>
-> ---
+On Fri, Mar 13, 2026 at 05:16:31PM +0000, Conor Dooley wrote:
+> On Fri, Mar 13, 2026 at 03:02:12PM +0100, Oleksij Rempel wrote:
+=2E..
+> > +maintainers:
+> > +  - David Jander <david@protonic.nl>
+> > +  - Oleksij Rempel <o.rempel@pengutronix.de>
+> > +
+> > +description: |
+> > +  The MC33978 and MC34978 are Multiple Switch Detection Interface (MSD=
+I)
+> > +  devices with 22 switch inputs, integrated fault detection, and analog
+> > +  multiplexer (AMUX) for voltage/temperature monitoring.
+> > +
+> > +  Pin numbering:
+> > +  - Pins 0-13: SG0-SG13 (Switch-to-Ground inputs). These pins monitor
+> > +    contacts closed to ground and typically require GPIO_ACTIVE_LOW
+> > +    flags when used as digital inputs.
+> > +  - Pins 14-21: SP0-SP7 (Programmable inputs). These can be configured
+> > +    as SG (Switch-to-Ground) or SB (Switch-to-Battery) inputs. SB
+> > +    inputs monitor contacts closed to the battery voltage and typically
+> > +    require GPIO_ACTIVE_HIGH flags when used as digital inputs.
+> > +
+> > +  Output Emulation:
+> > +  The hardware lacks standard push-pull output drivers. Outputs are em=
+ulated
+> > +  by toggling the programmable wetting current sources (acting as pull=
+-ups
+> > +  or pull-downs) and the hardware tri-state registers. Because of this
+> > +  physical constraint:
+> > +  - Consumers using pins as outputs MUST flag them with GPIO_OPEN_DRAI=
+N or
+> > +    GPIO_OPEN_SOURCE in the device tree.
+> > +  - Push-pull configurations are physically unsupported.
+> > +  - The active polarity depends entirely on the external circuit (e.g.=
+, how
+> > +    an LED is wired) and must be flagged accordingly by the consumer.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - nxp,mc33978
+> > +      - nxp,mc34978
+>=20
+> What's different about these that a fallback is not suitable?
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+The difference are operation temperature ranges. But, it is not
+detectable by software. This information can be reused for the hwmon.
 
-Konrad
+> > +patternProperties:
+> > +  '^.*-grp$':
+> > +    type: object
+> > +    $ref: /schemas/pinctrl/pincfg-node.yaml#
+> > +    additionalProperties: false
+> > +    description: Pin configuration subnodes.
+> > +    properties:
+> > +      pins: true
+>=20
+> This seems overly permissive, think it should only allow the couple of
+> options that your hardware has. Probably just make it an enum? Shouldn't
+> have to check the driver to know what the acceptable pin names are.
+
+Some thing like this?
+
+      pins:
+        items:
+          enum: [ sg0, sg1, sg2, sg3, sg4, sg5, sg6, sg7, sg8, sg9,
+                  sg10, sg11, sg12, sg13, sp0, sp1, sp2, sp3,
+                  sp4, sp5, sp6, sp7 ]
+
+Best Regards,
+Oleksij
+--=20
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5=7F555=
+ |
 
