@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-276118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276119-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iOjwGz7ot2mzWwEAu9opvQ
-	(envelope-from <devicetree+bounces-276118-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 12:23:42 +0100
+	id 0PykC4zot2mzWwEAu9opvQ
+	(envelope-from <devicetree+bounces-276119-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 12:25:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09B7D2989CE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 12:23:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5A88298A03
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 12:24:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 074F73007F64
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:20:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9C425305FFC4
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:22:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B6DD282F03;
-	Mon, 16 Mar 2026 11:20:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F01142848BE;
+	Mon, 16 Mar 2026 11:22:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VkqMEwZl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LTLVCK+C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBF9B2494FF;
-	Mon, 16 Mar 2026 11:20:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB58F1A9FBA;
+	Mon, 16 Mar 2026 11:22:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773660027; cv=none; b=f3ZNQBcr4UQ0RcvCK++whFkRKI8RaY/KOEgrYVdwAFqims8FQMUypEL9Ce8MifBp4KYfLyx5j/Ucub2Vzr0VsM7N3vKT6xn/1NMkxeH6ATciHh2AtbTAatiTmgy63lwUN1hcETTGQkU2oWpctri+tCHSpJCAFYSCjNmpq6GNoOA=
+	t=1773660141; cv=none; b=QrPLSAe2GsRQ6xobdiOU+nNqrR3KWCvxdGR5WMoHdferTVxvKzCGGjxooYYDVmmiTss4DHXrCPg/gkPoFEee4GEDWIM5/94DtJhm5Ss4bL3kMkU6A5cEIpcxInQ3MID3pSZFf2q9ehHweTIRGLfXJDIMuO96UORvOQOBDbRSHbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773660027; c=relaxed/simple;
-	bh=dVJUwMYfXrWl+hL9SCPmas+DDb5aN/lmBHb0o8Zc6jo=;
+	s=arc-20240116; t=1773660141; c=relaxed/simple;
+	bh=hZ7HCxXZH+KCGvedYMF3TeE2GVqJXuozWkiILmg+dJE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WicbomUOyzDIAqZ1ZWQOhW/lsgJ6iu6OBaQAzhDNOuqx92+jQkHEcWBiHRjvp2sFqhWkLdehO2NyHFJVcybNVuxFbf/DjyumxavLiRh0Xg4p4dPTNtFn90KD13kAwpH5J7b1gv75Cj7ksnx4fL8xxHiojmYPRzFZdLlSHK6k8eI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VkqMEwZl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72A34C19425;
-	Mon, 16 Mar 2026 11:20:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=RF4POcZYNkuqVtXW8OksYjpeiDX86IH38stmarYk/grdDeUbUBDGYjXTQ/hFX7ezcULPM2Q2f01aupGyffV24RlJZ2SqZVBpLIahqzF3Je8ntFAwYdwFH/3vIvz420rO64NX2QrMU7MTfGudA6rjCrmHZdmet9Jx7IXL3MJZKnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LTLVCK+C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44A30C19421;
+	Mon, 16 Mar 2026 11:22:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773660027;
-	bh=dVJUwMYfXrWl+hL9SCPmas+DDb5aN/lmBHb0o8Zc6jo=;
+	s=k20201202; t=1773660141;
+	bh=hZ7HCxXZH+KCGvedYMF3TeE2GVqJXuozWkiILmg+dJE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VkqMEwZlCJcDEb1xxK7FugSdj93w6hg2H0ZN+yuW4vy/upw9kOs4g7WL7aIWNMg04
-	 q/3UXV63GjQbZab1BpB+cIaVvqFj2FE4acIZ6YQEDkHPV8lps52oPUvU3PsXTNBbl9
-	 6G6NPsWkhe5lrsJPxDVWOZdWLLEpRmRuLQbozaQbDYuYj9coPI7tfk66d6yx1EnOrN
-	 AlnCSCqd+ewdIN1v00xmBCYzTCXuRudXHcYG3nb6pskoh5FXVdUlbydUan4xXPdf1S
-	 HUsEu9ktebdjF6I/0xa9XSHk4Btpv3O0t/4T9PvJ6Iwt4N2yp4d5++4lB5Jg8XqAIf
-	 Yg9BDgDZ/mYHw==
-Date: Mon, 16 Mar 2026 11:20:22 +0000
+	b=LTLVCK+CdnGJygYTinaAMAF+FIIYL1H+vkvjx8oYuQMjaVC+XjhnpZuf0TKwRPYnp
+	 EMQuwlvUtIOb2UNxDoZABKAQch6s07FeBfppJPxUZPmzGRqVpHKqGmTY1Rzuqk7Xpo
+	 uAjB17JcB4VVqReeg+d+nj2pQ2HWKBSSSMD9VFG7kqkwFxN3pniM7EsbGrWcegbw2/
+	 yJ7XW6MH65V4cSG+kN2ei+u2NoWi7l8ql/GGjh9KVbMftwNBvhCYMRHCXm1AUINn0J
+	 UW+8CozvVuszS0aKonYx7vohj6tRK/BnnPklcg2Ugjv+5JXh6pmbQrcrFPOWXAYSOA
+	 eG87AInFdt4lA==
+Date: Mon, 16 Mar 2026 11:22:16 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Jia Wang <wangjia@ultrarisc.com>
 Cc: Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
@@ -57,12 +57,12 @@ Cc: Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
 	linux-serial@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: serial: update bindings of ultrarisc
- dp1000 uart
-Message-ID: <20260316-emit-garter-292687076ee3@spud>
+	devicetree@vger.kernel.org,
+	Zhang Xincheng <zhangxincheng@ultrarisc.com>
+Subject: Re: [PATCH 1/2] riscv: ultrarisc: 8250_dw: support DP1000 uart
+Message-ID: <20260316-frayed-pretended-eba059554dcc@spud>
 References: <20260316-ultrarisc-serial-v1-0-c464f3e933a5@ultrarisc.com>
- <20260316-ultrarisc-serial-v1-2-c464f3e933a5@ultrarisc.com>
+ <20260316-ultrarisc-serial-v1-1-c464f3e933a5@ultrarisc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,9 +70,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wdBWOCsNzigriQdV"
+	protocol="application/pgp-signature"; boundary="1+Bm8qKmqRdbiva4"
 Content-Disposition: inline
-In-Reply-To: <20260316-ultrarisc-serial-v1-2-c464f3e933a5@ultrarisc.com>
+In-Reply-To: <20260316-ultrarisc-serial-v1-1-c464f3e933a5@ultrarisc.com>
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -85,11 +85,11 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276118-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-276119-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -101,58 +101,109 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ultrarisc.com:email]
-X-Rspamd-Queue-Id: 09B7D2989CE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ultrarisc.com:email,infradead.org:email,infradead.org:url]
+X-Rspamd-Queue-Id: A5A88298A03
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---wdBWOCsNzigriQdV
+--1+Bm8qKmqRdbiva4
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 16, 2026 at 09:36:19AM +0800, Jia Wang wrote:
-> Add UltraRISC vendor-prefix information
-> Add DP1000 UART compatible information
-
-$subject: update bindings of ultrarisc dp1000 uart
-
-You're not updating, you're adding it.
-
+On Mon, Mar 16, 2026 at 09:36:18AM +0800, Jia Wang wrote:
+> From: Zhang Xincheng <zhangxincheng@ultrarisc.com>
 >=20
+> The UART of DP1000 does not support automatic detection of
+> buffer size. skip_autocfg needs to be set to true
+>=20
+> Signed-off-by: Zhang Xincheng <zhangxincheng@ultrarisc.com>
 > Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
+
+$subject: riscv: ultrarisc: 8250_dw: support DP1000 uart
+
+Please update this to match other modifications to this file.
+"riscv: ultrariscv" doesn't belong at the start.
+
 > ---
->  Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  drivers/tty/serial/8250/8250_dw.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.ya=
-ml b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-> index 6efe43089a74..0040ed28e35b 100644
-> --- a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-> @@ -78,6 +78,8 @@ properties:
->                - starfive,jh7100-uart
->                - starfive,jh7110-uart
->            - const: snps,dw-apb-uart
-> +      - items:
-> +          - const: ultrarisc,dp1000-uart
->        - const: snps,dw-apb-uart
+> diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/=
+8250_dw.c
+> index db73b2ae17fa..6a2acf173331 100644
+> --- a/drivers/tty/serial/8250/8250_dw.c
+> +++ b/drivers/tty/serial/8250/8250_dw.c
+> @@ -56,6 +56,7 @@
+>  #define DW_UART_QUIRK_IS_DMA_FC		BIT(3)
+>  #define DW_UART_QUIRK_APMC0D08		BIT(4)
+>  #define DW_UART_QUIRK_CPR_VALUE		BIT(5)
+> +#define DW_UART_QUIRK_FIXED_TYPE	BIT(6)
+> =20
+>  struct dw8250_platform_data {
+>  	u8 usr_reg;
+> @@ -514,6 +515,11 @@ static void dw8250_quirks(struct uart_port *p, struc=
+t dw8250_data *data)
+>  		data->data.dma.prepare_tx_dma =3D dw8250_prepare_tx_dma;
+>  		data->data.dma.prepare_rx_dma =3D dw8250_prepare_rx_dma;
+>  	}
+> +	if (quirks & DW_UART_QUIRK_FIXED_TYPE) {
+> +		p->flags |=3D UPF_FIXED_TYPE;
+> +		p->type =3D PORT_16550A;
+> +		data->skip_autocfg =3D true;
+> +	}
+>  	if (quirks & DW_UART_QUIRK_APMC0D08) {
+>  		p->iotype =3D UPIO_MEM32;
+>  		p->regshift =3D 2;
+> @@ -789,6 +795,11 @@ static const struct dw8250_platform_data dw8250_skip=
+_set_rate_data =3D {
+>  	.quirks =3D DW_UART_QUIRK_SKIP_SET_RATE,
+>  };
+> =20
+> +static const struct dw8250_platform_data dw8250_ultrarisc_dp1000_data =
+=3D {
+> +	.usr_reg =3D DW_UART_USR,
+> +	.quirks =3D DW_UART_QUIRK_FIXED_TYPE,
+> +};
+> +
+>  static const struct of_device_id dw8250_of_match[] =3D {
+>  	{ .compatible =3D "snps,dw-apb-uart", .data =3D &dw8250_dw_apb },
+>  	{ .compatible =3D "cavium,octeon-3860-uart", .data =3D &dw8250_octeon_3=
+860_data },
+> @@ -796,6 +807,7 @@ static const struct of_device_id dw8250_of_match[] =
+=3D {
+>  	{ .compatible =3D "renesas,rzn1-uart", .data =3D &dw8250_renesas_rzn1_d=
+ata },
+>  	{ .compatible =3D "sophgo,sg2044-uart", .data =3D &dw8250_skip_set_rate=
+_data },
+>  	{ .compatible =3D "starfive,jh7100-uart", .data =3D &dw8250_skip_set_ra=
+te_data },
+> +	{ .compatible =3D "ultrarisc,dp1000-uart", .data =3D &dw8250_ultrarisc_=
+dp1000_data },
+>  	{ /* Sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, dw8250_of_match);
+>=20
+> --=20
+> 2.34.1
+>=20
+>=20
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
-
-This doesn't look right to me. An items list with one const is just the
-same as having "const", like the snps,dw-apb-uart entry below it.
-
---wdBWOCsNzigriQdV
+--1+Bm8qKmqRdbiva4
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabfndgAKCRB4tDGHoIJi
-0qccAQD6zlH0epUiaLIDo8zyA3e+UoE4noDoNHVS35rkUmynkgD+IicJiFQ3eOUm
-4bBJEucTGH6R8VgSxm3CAkkSqP7SNwA=
-=dVh4
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabfn5wAKCRB4tDGHoIJi
+0v45AQD3hFtUbi/xAvY2OzMR5EdszsS2CzI9H3nNfQnqWUuVywD8CJ+C7OenjQXS
+FCfdsrcoF8ZN3KYfs+EfK29lh/SHYgs=
+=8Hwm
 -----END PGP SIGNATURE-----
 
---wdBWOCsNzigriQdV--
+--1+Bm8qKmqRdbiva4--
 
