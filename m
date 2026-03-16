@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-276048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276058-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gCExCpTQt2k3VwEAu9opvQ
-	(envelope-from <devicetree+bounces-276048-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:42:44 +0100
+	id uOvlIDDRt2ljVwEAu9opvQ
+	(envelope-from <devicetree+bounces-276058-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:45:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 840452973D6
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:42:43 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 035C52974B9
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:45:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3BA913032766
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 09:39:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8065A305BFDE
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 09:41:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41DC738A703;
-	Mon, 16 Mar 2026 09:39:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FF1238E137;
+	Mon, 16 Mar 2026 09:41:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M89CEiZO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FvQ9/GKc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DB39382362
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 09:39:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A70F38D001
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 09:41:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773653965; cv=none; b=TsaaGT+/30JFqhI8g3mV+HBBEABjQ/rWbQy8Z7vOKc58K0vehWEKuMwlTmxS9jbL1oPBX5AYbOPO1/nzJfSLBR+8ZEtRWJbgpUocAeF8ougR76DiPlvPrI9F8M+R3JY1/CO8+jInjM48knR7uiKt/EEPMLQJzX2S9TvIlXOGybM=
+	t=1773654067; cv=none; b=EAEX3Xp7NkLkUCBXF49mgyf2c6zvyDNT6hMDOU6aWvxldCyfQk1A50rHyKA0+Cowg5QZlqso9Bqv9Qevd4PlbFEmDn2mfMVuOpPDYYEPWvdUYnct9DiGladiktQ03B1nx4MG3sH9vsPA18/QfsM2cnpJN7Wu4QzH/8wQdR0vhH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773653965; c=relaxed/simple;
-	bh=RbqZslNxIIkzTluBmL/ed2uqFPa1E/cM4+gpAQj+klU=;
+	s=arc-20240116; t=1773654067; c=relaxed/simple;
+	bh=Z8msOfxeowllRcJq32bZpSujfByu+DcMa2B+qOK1z6c=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XCPy/y8y9+Y8pV33hop6dab0/+cV2QKvWJldfMdL2GgTIRu5S8FECsc1JdX2TK12l42s5zrb/zN52Rat/GWw0XRj9EslywjcdUgxJVneV7iIbrGO4lEPMHDMO5r4HevCsExwUmXWmn82JXeWBE2FXEv3K2Acp1xA3VlZcbnkHzM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M89CEiZO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDAD3C2BCB4
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 09:39:24 +0000 (UTC)
+	 To:Cc:Content-Type; b=XnEq9fsnOAIE26XZMVOFeVyKW9ZIBGY1GG09BGWfP3X+TkPUl2rAUZWVqAYdUu7cXh2njhm7aA4WJvvksMjgXplAzL1kw88mxa+ezJ5d7B4Z05pqdu+KVoi3tfhGxHtt6rT2q81TkHeorivpoRBEw+RZeudbKkVh/eFCWiM+9as=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FvQ9/GKc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6562C2BCB2
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 09:41:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773653964;
-	bh=RbqZslNxIIkzTluBmL/ed2uqFPa1E/cM4+gpAQj+klU=;
+	s=k20201202; t=1773654066;
+	bh=Z8msOfxeowllRcJq32bZpSujfByu+DcMa2B+qOK1z6c=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=M89CEiZOnHW6l0rVxIAVYujeaAXXC4wcFEgK6RvQrRatF+GJGYQPCQzJqxY8+1VIA
-	 E7ZCdMygmp4NiT/9U0vyf51n5I+cO6swsADrHEdCOP1BbB+Kl6PKS3hjlfS8XRAbDI
-	 FqbHS3YpHzueVeZy1lUiGD6oOZPmUBwFBnVZR0YJK7ri5JSsOvqdQ8JXeBV1zvQ9Aj
-	 iZuHlJW52n1Dcc+QGXJDlCK+tgfX07jqK9IIBqCmihvHKJESa7f89hJqPcLevHPKze
-	 xRFRnqqAGAXyPwMBME8EPg2+xjOSKUqRn9bRAGb6Bph92medmVxRyhjXkG7MELJtr7
-	 uH4XTBPdAIpOg==
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-79495b1aaa7so38962887b3.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 02:39:24 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVRuvANWkuSqEHqGEAFBumiLFre2YQ0VPiTEqH2+yl+6A+EKPybWirmXB1dbbB2Gj+Y9igbzvruf/Co@vger.kernel.org
-X-Gm-Message-State: AOJu0YwOhD1otXaVOWFjMdir4k9C1lRY6fusVhMijF4MuFLSRxy1MzsS
-	a57FGknto5assQUCMkjvLy1YGIjtzcMzRzTIHxmePCIG56Iqmiigxm8/HBgj+4Hn8XShZjAi+xR
-	YPo/KmHz2aQrDfteKkWQ859PuqVRpi88=
-X-Received: by 2002:a05:690c:6e87:b0:79a:3b28:a710 with SMTP id
- 00721157ae682-79a3b2912f5mr61530517b3.27.1773653964110; Mon, 16 Mar 2026
- 02:39:24 -0700 (PDT)
+	b=FvQ9/GKcDqmGgAAoj077c1EfOGahXoK21ZWGDM8QElN4LpnNTYOL/79aWdo1ocCNY
+	 O4q0TAWCYbxe5zd/TFjruAxbPxv8bqde+79DWLjmz1WA1/+TJK/F5bjhtNKyn+GOiM
+	 h6Gw9962LjAHSeqpxD9KGWF1iYJHowE4y6ndlSbKv8stNc57gaEeOG7mgqIKuD9cnB
+	 J4Ws5u2lcwhh6cTFi/yd0APiFFeGeyefn33EZ4B9AXQzfVvqRb6zm5gWY8sW6C+Ebt
+	 zmH0FW7rEWg4agRa8YZEVD8wQX2AFSjZ1s6zaFay3csxXCPFbo8nYoebmLH8zKzFwh
+	 wM9Wkp/CH9UYQ==
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-7985ce90542so39792267b3.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 02:41:06 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVCEZD7VMMLErE8poyPoiB62fN87M1ZQsq5f/g7osrp4jRYaSdMpmJUluejPHGeaMEut0wqpGMTp8YJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzbza7icKX4zkHRqZ/EQb4toYWZyi4gxrJMuJJ3gXEtBc/uqwbA
+	hP+GJPUDQ6Z850l4qJp90hlq1BkwJP0TqM44yhOX9bp0eCYJSvtJQAw+0u+J5UhFbfCu/vmp6ir
+	GrROh9Ilf81MrkBC5el21CvSkaN8uz08=
+X-Received: by 2002:a05:690c:1c:b0:798:34a:52de with SMTP id
+ 00721157ae682-79a1c1ddd0fmr123816337b3.51.1773654066057; Mon, 16 Mar 2026
+ 02:41:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260311-pinctrl-mux-v3-0-236b1c17bf9b@nxp.com> <20260311-pinctrl-mux-v3-4-236b1c17bf9b@nxp.com>
-In-Reply-To: <20260311-pinctrl-mux-v3-4-236b1c17bf9b@nxp.com>
+References: <20260311-pinctrl-mux-v3-0-236b1c17bf9b@nxp.com>
+In-Reply-To: <20260311-pinctrl-mux-v3-0-236b1c17bf9b@nxp.com>
 From: Linus Walleij <linusw@kernel.org>
-Date: Mon, 16 Mar 2026 10:39:12 +0100
-X-Gmail-Original-Message-ID: <CAD++jL=8tqT=jEy+_W-WnPq=Az7GbsW7pdXHZNmu8m+tKoDMDQ@mail.gmail.com>
-X-Gm-Features: AaiRm53Q_0hsf1jplyh4XsHDGxCWDXM_lyumSvDs8oSWpLJERT4ci6Zqc30deP8
-Message-ID: <CAD++jL=8tqT=jEy+_W-WnPq=Az7GbsW7pdXHZNmu8m+tKoDMDQ@mail.gmail.com>
-Subject: Re: [PATCH v3 4/7] pinctrl: add optional .release_mux() callback
+Date: Mon, 16 Mar 2026 10:40:55 +0100
+X-Gmail-Original-Message-ID: <CAD++jLkNdc+jc2+c_ageDAbw7ASCDf+6CKTaU4nMt68LhpuB5Q@mail.gmail.com>
+X-Gm-Features: AaiRm51CGq6AEM0GTX8yXQmjUc1clr3otpnO-iyM1eZa4K5fUJagwOZsjTiiBjY
+Message-ID: <CAD++jLkNdc+jc2+c_ageDAbw7ASCDf+6CKTaU4nMt68LhpuB5Q@mail.gmail.com>
+Subject: Re: [PATCH v3 0/7] pinctrl: Add generic pinctrl for board-level mux chips
 To: Frank Li <Frank.Li@nxp.com>
 Cc: Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
@@ -82,11 +82,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276048-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-276058-lists,devicetree=lfdr.de];
 	FREEMAIL_CC(0.00)[axentia.se,kernel.org,milecki.pl,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,nxp.com];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -103,42 +103,20 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 840452973D6
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 035C52974B9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On Wed, Mar 11, 2026 at 8:08=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
 
-> Add an optional .release_mux() callback to struct pinmux_ops.
->
-> Some drivers acquire additional resources in .set_mux(), such as software
-> locks. These resources may need to be released when the mux function is n=
-o
-> longer active. Introducing a dedicated .release_mux() callback allows
-> drivers to clean up such resources.
->
-> The callback is optional and does not affect existing drivers.
->
-> Commit 2243a87d90b42 ("pinctrl: avoid duplicated calling
-> enable_pinmux_setting for a pin") removed the .disable() callback
-> to resolve two issues:
->
->   1. desc->mux_usecount increasing monotonically
->   2. Hardware glitches caused by repeated .disable()/.enable() calls
->
-> Adding .release_mux() does not reintroduce those problems. The callback i=
-s
-> intended only for releasing driver-side resources (e.g. locks) and must n=
-ot
-> modify hardware registers.
->
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Add a generic pinctrl binding for board-level pinmux chips that are
+> controlled through the multiplexer subsystem.
 
-OK fair enough, I think I'm convinced about this now, also it has
-a nice pairing with set_mux(). Let's see if someone else has comments,
-I might apply v4 after fixing the generic function issue in patch 2.
+I really like this version, I had a minor comment on refactoring the
+generic helper instead of wrapping it (plus some random ramblings
+from my side, sorry). With this fixed I feel I can apply v4.
 
 Yours,
 Linus Walleij
