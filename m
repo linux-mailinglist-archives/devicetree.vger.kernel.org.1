@@ -1,469 +1,294 @@
-Return-Path: <devicetree+bounces-276407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276408-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aK8HIv2IuGksfgEAu9opvQ
-	(envelope-from <devicetree+bounces-276407-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 23:49:33 +0100
+	id SAY3ICqMuGkhfwEAu9opvQ
+	(envelope-from <devicetree+bounces-276408-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 00:03:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 048882A1B4D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 23:49:32 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23D8C2A1D09
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 00:03:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BB3473138646
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 22:44:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AAEED303C02A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 23:02:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87C29369974;
-	Mon, 16 Mar 2026 22:44:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65E56378814;
+	Mon, 16 Mar 2026 23:02:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="KceJ7vbz"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="M9KT9F9e";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="MqvaL92/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f46.google.com (mail-dl1-f46.google.com [74.125.82.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72D8A37269D
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 22:44:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F148C364057
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 23:02:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773701089; cv=none; b=qxn9BOjmPemaGrd/jple7Rf/e8BPgrTGP4OnON3PUwGEmc1EjUMwDQg6KyCBsX4BI8dAUAr1YkUdCkb1jhnCyuFD774hmmnriX+TvakQTUzG3KeL80ew3OpPBs047QGn73nr1ZeKBhlr70QHgRCvINyDySCC/v/qS79zk7hXeRE=
+	t=1773702159; cv=none; b=oBXm38Mmihb2upwR5ludNgVPrq+jByinwvlCSjmMi3ejiGVYOROVjEzFsxMmI7QLDXfSrSPlw9awxDGAkqsNrcHHM2U4El8XP0hXvwEXIcq4NFQcErHGUrR2WVm1oJXw+BsziTvVfoAp7Z1xKz9hQqMb32ik0NMUCtllKEkoUgk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773701089; c=relaxed/simple;
-	bh=TbQNVQEsTIqifTBhmial/tJVeDIfLAcFVJyfGWKgSvw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NGOFzjBEHsF3XluCVOP8KQN9JxuussgwQBZa8ZayOUr/ZIp7By/TgtVsyqqaWYX5XiDB5KLnJ7GoUqdilsmYhgnOmeXFoYqfEhSInbNfPhaXxiswEHB1jOMDygrfqStWgT+8BBr0gPF3E1rHg8ccDU3FsbFO0Ixqc9XtwMQc6U0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=KceJ7vbz; arc=none smtp.client-ip=74.125.82.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-dl1-f46.google.com with SMTP id a92af1059eb24-128e8ac3330so2374110c88.0
-        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 15:44:47 -0700 (PDT)
+	s=arc-20240116; t=1773702159; c=relaxed/simple;
+	bh=mfzcGstDrFyFY2Sl2/fGkhRvhr57tmO4LPQdDoY0lXY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HDj0ay8ZM4RkaMijJdBc0OBxr04ZMrn2khzHy7wJy6HwhLCpBOnRmSG4aJiLJrihQTe7BWhvoRoujf2/1DnN3J07Wp40vhkDBjrRkVMvT9BFas0tCrpgngAj4mPbaa9sM0Nd7ekuaUHDUL3WFV4stmzdCujnAJXMwUKU/9aBzjo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=M9KT9F9e; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=MqvaL92/; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62GL1dig1622349
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 23:02:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	mlchTDxr3z3qRdgb94yGA2QNfyjLI6qsy4bLeJPkpzo=; b=M9KT9F9ewLJ/9dch
+	etaL+nfEl6Ie44a0dNC5UrgWkq/vzzUcnI2g7lXs6rShD5R8IQMxzZIfgk8RY0DT
+	IPjTjn8inkoF61vGENpB/n08ate0ITMtWwRGjjsUS/0qKseDdwum2Cg8BYLjGM/F
+	Nq6y2sJoXlA1OwPyS1HbRgUmhl8SOUSVtJSAzMjCGjdBRJmax5gnLMMtC2XYytuM
+	7zc+F6Tby7aAbkJ6vPNWLYM59K4rvn69Q31Fxcxa+fYKyaqLoOSsOPb4rDDTG73V
+	zZVM3UBFpN8WgSxgNn5x9QhdoxcV3wMfgLSk+RfM/vGGCMe+TDKykn47Yq7tgSMP
+	gIH4jA==
+Received: from mail-dy1-f197.google.com (mail-dy1-f197.google.com [74.125.82.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cxhyej2hm-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 23:02:35 +0000 (GMT)
+Received: by mail-dy1-f197.google.com with SMTP id 5a478bee46e88-2ba8013a9e3so4216065eec.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 16:02:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1773701086; x=1774305886; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=GO9eSvDa3+h2qEsV4y9v8xIrZRQkG5vgqMO5VOKMlms=;
-        b=KceJ7vbzRzs96WiZ7B5Ypns1TvqpxNtfpHVv17BZQAhc85G7CL5xX+asNowFS6vJCK
-         hRDBFaVRYtzpG5MqgwzdV43wqGRpAeUeaUkvoY/syg7Ngr0V5Yx+KuzR5QOgqb/VxwWN
-         3ti3haJn4y1ZHYzNSEInxD0XtzPIuY+PqUMt8=
+        d=oss.qualcomm.com; s=google; t=1773702155; x=1774306955; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mlchTDxr3z3qRdgb94yGA2QNfyjLI6qsy4bLeJPkpzo=;
+        b=MqvaL92/EhWQiuQUo4VMDUYa9jHMJrtemrtwcFjpAGHq+ZUZcPdSKWtCaGmwjLoDZb
+         KFh2X04MxlFd2X3QGlRS/yBzbfmg7XWabkNtzvRBQRXLE7/8Pm5OXwIe9baLsPzoWTJW
+         879HyfphWEwwEyN0QP8XtMp4DSEWnPn2z+vb5psoHg7u3SxRyiEwCU5z+dgcANy61rrn
+         ZAmKY8DZmSdFGjq2dfjHfv0U0k6aKz79R81qOgY204gpbdIgCoLpz3Cp2jy1o9bLwo5Z
+         /dFA9iyRUy3TtofyMxvJGTnDzV+/ug9dQFd/lY4eRwPrSPw14JtBvWpdDq51oeCvoHs5
+         xhvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773701086; x=1774305886;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GO9eSvDa3+h2qEsV4y9v8xIrZRQkG5vgqMO5VOKMlms=;
-        b=U6fsf9j1MjttC35SKwN/J8qtaS+x7k9/E9GVzLcKTZbb4LRt0k2dBDvcqNiVdXn6y3
-         QIUdsCbR4HVYXHJpTqHHKMLLiSr0DtQTbEhh9mODJLCSa7llx3MR7nV89e7FEEnawcL2
-         /0b6qGSbvRpzN4BeJu2plX3FWRWDlmqfZtgareURx7SahUi/Vf4euLppjwNUfZ2G6BqW
-         w3/Ym6KEBJIjyJK3N8jNBfVuI1N1SJ0zrvjWYuH90TPo1PoY2gEV0KqjwWZTQpyP1DfL
-         JBd9hNK45hwqKdtNM49INrMNdKWQ7BTHXaindS0yuHWw5oCT3DRZoGUefQ9FqmYaatPq
-         jNvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVntgOqEf/yGC4nBtC6Kh5dw8HPiQe7Z+axD2Sy6PUhkceVmDELyGqOUHjaFeaT4jnOHJibE3nndtvS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1vtPzpcbH/vAG1Vzs/mq6SS8wT5JH8zxVCEyNKh2XpXCer5KF
-	FwQH2Gj+PV/YaSpk0KJi1yp19rM8klcRDYx3V6icMgJXboiMLXNV9UuRRV9UC3yAsw==
-X-Gm-Gg: ATEYQzz9Df7k21izQVNIOwHOGfmsnWktpugTl10EEzJkFmtDQb/OrIbKodLRvlwDkn6
-	ZJ/UaoQ4MrlLKDguRhPDdOpk/rw42HbhnVNTgRExNDw7+NAc2A3z3CwGw1p4airIlPj3nM3rfsW
-	GjdcAzOWAwmNvymUAIJuoG6QGuffEqkXp4JxMQX9jGgMvsY5Lig6hJJmIoHIkXOP6e7rxqOtbqZ
-	q0nhH15phpaqGfoCwvyNguHUeoMaujHli3fYtSapCZVHdU8uOVj1qCbooilMQZYYnNG8y3nVacz
-	rGhRBIeQnaLyeSC5YgA42MJXoJvnhgXFSBrhb3Is6Lu4Ba99Pq+St2Xbcky8a8rvyMgubRZxK91
-	22EtATQOHkBOLAJ5Y2TdvqL4Py7/e98YjEOW4cvi1t9TM/Mmb4vhsojauFTOVWneBYZlokNgj2I
-	5P31X2IFcv7ysY4WC5yceXxpyIWV8T1m5anTkj+MvLTKvbYUrz8pj2kcyO0h6IPVFBXu2QRrcC1
-	1gGMv6CHkM=
-X-Received: by 2002:a05:7022:b97:b0:128:ca90:32e2 with SMTP id a92af1059eb24-128f3d01194mr6948603c88.7.1773701086368;
-        Mon, 16 Mar 2026 15:44:46 -0700 (PDT)
-Received: from dianders.sjc.corp.google.com ([2a00:79e0:2e7c:8:3965:b4d0:9159:598b])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2beab3eec8fsm16536873eec.13.2026.03.16.15.44.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Mar 2026 15:44:45 -0700 (PDT)
-From: Douglas Anderson <dianders@chromium.org>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>
-Cc: Douglas Anderson <dianders@chromium.org>,
-	stable@vger.kernel.org,
-	Andrew Lunn <andrew@lunn.ch>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Len Brown <lenb@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	devicetree@vger.kernel.org,
-	driver-core@lists.linux.dev,
-	imx@lists.linux.dev,
-	linux-acpi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-i2c@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-spi@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: [PATCH] device property: Make modifications of fwnode "flags" thread safe
-Date: Mon, 16 Mar 2026 15:42:06 -0700
-Message-ID: <20260316154159.1.I0a4d03104ecd5103df3d76f66c8d21b1d15a2e38@changeid>
-X-Mailer: git-send-email 2.53.0.851.ga537e3e6e9-goog
+        d=1e100.net; s=20251104; t=1773702155; x=1774306955;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mlchTDxr3z3qRdgb94yGA2QNfyjLI6qsy4bLeJPkpzo=;
+        b=G/mR5/G3D546xQas4JVkMJoXsF+mfkhESfeLIqYDwxcMgpHwvEEsrRYYAgNtY+pD/0
+         j2nj8H5TT3mftLKA5MjFJkv49+2eC9KSpTveu0bo77QQlPUFzEF5QbqkPiyYU3cULhDZ
+         7lDo9aqrXoKr8flBYXimYz4bX7OFkPKpB4gLRCdBn+81rgzS7fA5n/U0x+yH6WiMMIqb
+         w19QbCdwSuS5YL98pa9sdr+mSCwfUhVuQFcYUAQy4GCOvOUyqC8G/Wi+MgxgccDw2cU4
+         yHRp1wtFihmfAepM0j3y9lC0WXDmMPTlYdXF245FJllnff4+1T+ccdFm5AXwINAf9uD1
+         gG9g==
+X-Forwarded-Encrypted: i=1; AJvYcCXYupEXSTzj7UxkRLU8NES6GD3MG8c9p7qeVkfNKs4dKB/rWl3UTi6ZdfODQGgMfuxTeAZiH5JxLg2C@vger.kernel.org
+X-Gm-Message-State: AOJu0YxybdOtcTD+uGi7J7iKldw/Dugmrc/ryYBRS1y9iNotTdXFj6Wi
+	4ltw2/uiYIuO2R3L9jtQWg227UVawWuXuApNBHMCyybEydmb7XhFKPsF5ViXA6lfrSCPgzKT3GM
+	dWMsvImwtHzMatzCVWIDmlYh/AjcJF5OYZzFyquoRreB6IZRUfYzTk7BcanJPQDqL
+X-Gm-Gg: ATEYQzxobTTJKZgsw84V0ab8+4tpY7SOMelGz7kRhsDuO3UCm9AIElvnNSEe8SRVbZx
+	fJfHq8eEikbe8+2oW07mTvTeEOJIRYL64vcWhqYU23TysoLdHckSTaSUp811/0cEwIBjobXjERp
+	xL/k3VADp64HWBrBbNkzGwFgS6fZeFu2S2YIU7Ti+TP3s5CX7Kg+VaVF09WOqs9LJBWIEx39snF
+	XPuyPwqszn1l9Rx7EH7jc3BaJFbramxkirdi8G0aZsYP5y02l1BPCVOFAccfOW2LpK+vr7PhjSr
+	m4V7lXPigF2U41MOwGBYi0CSg1BN2Gmvg82tes38hwCcgX3oYcIoQkNjv627i6ZYLLj3T0E0gEB
+	SLThVxy8YOqxIYI//1XTjIZEs0jvflCRFH50oX5kSDNhc55ri6t9OnmsT0HfNnfEJma7yq8L4/t
+	tHQXtM
+X-Received: by 2002:a05:7300:6ca0:b0:2be:1779:3289 with SMTP id 5a478bee46e88-2bea573d146mr6203989eec.35.1773702154738;
+        Mon, 16 Mar 2026 16:02:34 -0700 (PDT)
+X-Received: by 2002:a05:7300:6ca0:b0:2be:1779:3289 with SMTP id 5a478bee46e88-2bea573d146mr6203932eec.35.1773702153972;
+        Mon, 16 Mar 2026 16:02:33 -0700 (PDT)
+Received: from [10.134.65.116] (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2c0bbe04304sm9795623eec.23.2026.03.16.16.02.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Mar 2026 16:02:33 -0700 (PDT)
+Message-ID: <3934e17f-a2fa-423f-898b-a0d89e69f564@oss.qualcomm.com>
+Date: Mon, 16 Mar 2026 16:02:31 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.34 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 02/15] firmware: qcom: Add a generic PAS service
+To: Krzysztof Kozlowski <krzk@kernel.org>, Sumit Garg
+ <sumit.garg@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        linux-media@vger.kernel.org, netdev@vger.kernel.org,
+        linux-wireless@vger.kernel.org, ath12k@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, robin.clark@oss.qualcomm.com,
+        sean@poorly.run, akhilpo@oss.qualcomm.com, lumag@kernel.org,
+        abhinav.kumar@linux.dev, jesszhan0024@gmail.com,
+        marijn.suijten@somainline.org, airlied@gmail.com, simona@ffwll.ch,
+        vikash.garodia@oss.qualcomm.com, dikshita.agarwal@oss.qualcomm.com,
+        bod@kernel.org, mchehab@kernel.org, elder@kernel.org,
+        andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, jjohnson@kernel.org,
+        mathieu.poirier@linaro.org, mukesh.ojha@oss.qualcomm.com,
+        pavan.kondeti@oss.qualcomm.com, jorge.ramirez@oss.qualcomm.com,
+        tonyh@qti.qualcomm.com, vignesh.viswanathan@oss.qualcomm.com,
+        srinivas.kandagatla@oss.qualcomm.com,
+        amirreza.zarrabi@oss.qualcomm.com, jens.wiklander@linaro.org,
+        op-tee@lists.trustedfirmware.org, apurupa@qti.qualcomm.com,
+        skare@qti.qualcomm.com, linux-kernel@vger.kernel.org,
+        Sumit Garg <sumit.garg@oss.qualcomm.com>
+References: <20260312062756.694390-1-sumit.garg@kernel.org>
+ <20260312062756.694390-3-sumit.garg@kernel.org>
+ <28d63822-f191-400a-8005-5185dd480dbb@kernel.org>
+Content-Language: en-US
+From: Trilok Soni <trilokkumar.soni@oss.qualcomm.com>
+In-Reply-To: <28d63822-f191-400a-8005-5185dd480dbb@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: s0YoVTdfjNk14k82aurZreThWXlSXTeq
+X-Proofpoint-ORIG-GUID: s0YoVTdfjNk14k82aurZreThWXlSXTeq
+X-Authority-Analysis: v=2.4 cv=KLxXzVFo c=1 sm=1 tr=0 ts=69b88c0b cx=c_pps
+ a=Uww141gWH0fZj/3QKPojxA==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
+ a=EUspDBNiAAAA:8 a=_eXaltnX1kRmSEBu75cA:9 a=QEXdDO2ut3YA:10
+ a=PxkB5W3o20Ba91AHUih5:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE2MDE5MSBTYWx0ZWRfXwb8SA1dpKH23
+ z8CCzQvQ2fm3hE1feNqz0qtccXeNONHpYeUd38+hX8K1KhrTvLRBZ7QjYN2ZSVlz+rraIWx8+1C
+ WVpYbnV6K5lLTRhrjtoRkTXnfJWVvuN6LRTXX/SRIiR2BpkkJcGJ0iRfnr/zgfofqVUdnBZ0Doh
+ OiO8TNWHuIZ7dV7ewEQ1roJg/snneTKnv9GcIijy5LBSXqYL4WanB0FOdM7fj0F24h9vjh0276K
+ 4EOBfI267G2KoujkXdzCxHze6kC8xOIjXjsFXUup7eXboGTeTGgp4t4DK2WGYmBfI5oesLVUSfE
+ KhjUYryJ8XshrSu4/QR4O0P++n7KnCSq/HYvMcHle66GotYQILYUvZIJ6uYND8Vg/WXWQkJs+8B
+ HjyqKFPxt3dBG986POlZK5GQkd1/sFS7QSg7CxXYjaqo6B6SWwqr29iVGJDRjDZlfuLB9YInFJz
+ YsqVjO6VY2U5jCbkIDA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-16_06,2026-03-16_06,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 phishscore=0 priorityscore=1501 lowpriorityscore=0
+ suspectscore=0 spamscore=0 clxscore=1015 bulkscore=0 impostorscore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
+ definitions=main-2603160191
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[34];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-276407-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[chromium.org,vger.kernel.org,lunn.ch,linux.intel.com,gmail.com,davemloft.net,google.com,nxp.com,kernel.org,redhat.com,pengutronix.de,armlinux.org.uk,sang-engineering.com,lists.linux.dev,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,poorly.run,linux.dev,gmail.com,somainline.org,ffwll.ch,lunn.ch,davemloft.net,google.com,redhat.com,linaro.org,qti.qualcomm.com,lists.trustedfirmware.org,vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-276408-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dianders@chromium.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[chromium.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,renesas];
-	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[trilokkumar.soni@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_GT_50(0.00)[50];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:dkim,chromium.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 048882A1B4D
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 23D8C2A1D09
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-In various places in the kernel, we modify the fwnode "flags" member
-by doing either:
-  fwnode->flags |= SOME_FLAG;
-  fwnode->flags &= ~SOME_FLAG;
+On 3/16/2026 12:51 AM, Krzysztof Kozlowski wrote:
+> On 12/03/2026 07:27, Sumit Garg wrote:
+>> From: Sumit Garg <sumit.garg@oss.qualcomm.com>
+>>
+>> Qcom platforms has the legacy of using non-standard SCM calls
+>> splintered over the various kernel drivers. These SCM calls aren't
+>> compliant with the standard SMC calling conventions which is a
+>> prerequisite to enable migration to the FF-A specifications from Arm.
+>>
+>> OP-TEE as an alternative trusted OS to Qualcomm TEE (QTEE) can't
+>> support these non-standard SCM calls. And even for newer architectures
+>> with S-EL2 and Hafnium support, QTEE won't be able to support SCM
+>> calls either with FF-A requirements coming in. And with both OP-TEE
+>> and QTEE drivers well integrated in the TEE subsystem, it makes further
+>> sense to reuse the TEE bus client drivers infrastructure.
+>>
+>> The added benefit of TEE bus infrastructure is that there is support
+>> for discoverable/enumerable services. With that client drivers don't
+>> have to manually invoke a special SCM call to know the service status.
+>>
+>> So enable the generic Peripheral Authentication Service (PAS) provided
+>> by the firmware. It acts as the common layer with different TZ
+>> backends plugged in whether it's an SCM implementation or a proper
+>> TEE bus based PAS service implementation.
+>>
+>> Signed-off-by: Sumit Garg <sumit.garg@oss.qualcomm.com>
+>> ---
+>>  drivers/firmware/qcom/Kconfig          |   8 +
+>>  drivers/firmware/qcom/Makefile         |   1 +
+>>  drivers/firmware/qcom/qcom_pas.c       | 298 +++++++++++++++++++++++++
+>>  drivers/firmware/qcom/qcom_pas.h       |  53 +++++
+>>  include/linux/firmware/qcom/qcom_pas.h |  41 ++++
+>>  5 files changed, 401 insertions(+)
+>>  create mode 100644 drivers/firmware/qcom/qcom_pas.c
+>>  create mode 100644 drivers/firmware/qcom/qcom_pas.h
+>>  create mode 100644 include/linux/firmware/qcom/qcom_pas.h
+>>
+>> diff --git a/drivers/firmware/qcom/Kconfig b/drivers/firmware/qcom/Kconfig
+>> index b477d54b495a..8653639d06db 100644
+>> --- a/drivers/firmware/qcom/Kconfig
+>> +++ b/drivers/firmware/qcom/Kconfig
+>> @@ -6,6 +6,14 @@
+>>  
+>>  menu "Qualcomm firmware drivers"
+>>  
+>> +config QCOM_PAS
+>> +	tristate
+>> +	help
+>> +	  Enable the generic Peripheral Authentication Service (PAS) provided
+>> +	  by the firmware. It acts as the common layer with different TZ
+>> +	  backends plugged in whether it's an SCM implementation or a proper
+>> +	  TEE bus based PAS service implementation.
+>> +
+>>  config QCOM_SCM
+>>  	select QCOM_TZMEM
+>>  	tristate
+>> diff --git a/drivers/firmware/qcom/Makefile b/drivers/firmware/qcom/Makefile
+>> index 0be40a1abc13..dc5ab45f906a 100644
+>> --- a/drivers/firmware/qcom/Makefile
+>> +++ b/drivers/firmware/qcom/Makefile
+>> @@ -8,3 +8,4 @@ qcom-scm-objs += qcom_scm.o qcom_scm-smc.o qcom_scm-legacy.o
+>>  obj-$(CONFIG_QCOM_TZMEM)	+= qcom_tzmem.o
+>>  obj-$(CONFIG_QCOM_QSEECOM)	+= qcom_qseecom.o
+>>  obj-$(CONFIG_QCOM_QSEECOM_UEFISECAPP) += qcom_qseecom_uefisecapp.o
+>> +obj-$(CONFIG_QCOM_PAS)		+= qcom_pas.o
+>> diff --git a/drivers/firmware/qcom/qcom_pas.c b/drivers/firmware/qcom/qcom_pas.c
+>> new file mode 100644
+>> index 000000000000..beb1bae55546
+>> --- /dev/null
+>> +++ b/drivers/firmware/qcom/qcom_pas.c
+>> @@ -0,0 +1,298 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+>> + */
+>> +
+>> +#include <linux/device/devres.h>
+>> +#include <linux/firmware/qcom/qcom_pas.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/module.h>
+>> +
+>> +#include "qcom_pas.h"
+>> +
+>> +struct qcom_pas_ops *ops_ptr;
+> 
+> Same comment as before. Don't create singletons. And for sure not global
+> ones.
 
-This type of modification is not thread-safe. If two threads are both
-mucking with the flags at the same time then one can clobber the
-other.
+I agree, no globals here please. 
 
-While flags are often modified while under the "fwnode_link_lock",
-this is not universally true.
-
-Create some accessor functions for setting, clearing, and testing the
-FWNODE flags and move all users to these accessor functions. New
-accessor functions use set_bit() and clear_bit(), which are
-thread-safe.
-
-Cc: stable@vger.kernel.org
-Fixes: c2c724c868c4 ("driver core: Add fw_devlink_parse_fwtree()")
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
-While this patch is not known for sure to fix any specific issues, it
-seems possible that it could fix some rare problems. I'm currently
-trying to track down a hard-to-reproduce heisenbug and one (currently
-unproven) theory I had was that the fwnode flags could be getting
-messed up like this. Even if turns out not to fix my heisenbug,
-though, this seems like a worthwhile change to take.
-
- drivers/base/core.c                 | 24 +++++++++----------
- drivers/bus/imx-weim.c              |  2 +-
- drivers/i2c/i2c-core-of.c           |  2 +-
- drivers/net/phy/mdio_bus_provider.c |  4 ++--
- drivers/of/base.c                   |  2 +-
- drivers/of/dynamic.c                |  2 +-
- drivers/of/platform.c               |  2 +-
- drivers/spi/spi.c                   |  2 +-
- include/linux/fwnode.h              | 37 ++++++++++++++++++++++-------
- 9 files changed, 48 insertions(+), 29 deletions(-)
-
-diff --git a/drivers/base/core.c b/drivers/base/core.c
-index 791f9e444df8..f65492a4afc8 100644
---- a/drivers/base/core.c
-+++ b/drivers/base/core.c
-@@ -182,7 +182,7 @@ void fw_devlink_purge_absent_suppliers(struct fwnode_handle *fwnode)
- 	if (fwnode->dev)
- 		return;
- 
--	fwnode->flags |= FWNODE_FLAG_NOT_DEVICE;
-+	fwnode_set_flag(fwnode, FWNODE_FLAG_NOT_DEVICE);
- 	fwnode_links_purge_consumers(fwnode);
- 
- 	fwnode_for_each_available_child_node(fwnode, child)
-@@ -228,7 +228,7 @@ static void __fw_devlink_pickup_dangling_consumers(struct fwnode_handle *fwnode,
- 	if (fwnode->dev && fwnode->dev->bus)
- 		return;
- 
--	fwnode->flags |= FWNODE_FLAG_NOT_DEVICE;
-+	fwnode_set_flag(fwnode, FWNODE_FLAG_NOT_DEVICE);
- 	__fwnode_links_move_consumers(fwnode, new_sup);
- 
- 	fwnode_for_each_available_child_node(fwnode, child)
-@@ -1012,7 +1012,7 @@ static void device_links_missing_supplier(struct device *dev)
- static bool dev_is_best_effort(struct device *dev)
- {
- 	return (fw_devlink_best_effort && dev->can_match) ||
--		(dev->fwnode && (dev->fwnode->flags & FWNODE_FLAG_BEST_EFFORT));
-+		(dev->fwnode && (fwnode_test_flag(dev->fwnode, FWNODE_FLAG_BEST_EFFORT)));
- }
- 
- static struct fwnode_handle *fwnode_links_check_suppliers(
-@@ -1723,11 +1723,11 @@ bool fw_devlink_is_strict(void)
- 
- static void fw_devlink_parse_fwnode(struct fwnode_handle *fwnode)
- {
--	if (fwnode->flags & FWNODE_FLAG_LINKS_ADDED)
-+	if (fwnode_test_flag(fwnode, FWNODE_FLAG_LINKS_ADDED))
- 		return;
- 
- 	fwnode_call_int_op(fwnode, add_links);
--	fwnode->flags |= FWNODE_FLAG_LINKS_ADDED;
-+	fwnode_set_flag(fwnode, FWNODE_FLAG_LINKS_ADDED);
- }
- 
- static void fw_devlink_parse_fwtree(struct fwnode_handle *fwnode)
-@@ -1885,7 +1885,7 @@ static bool fwnode_init_without_drv(struct fwnode_handle *fwnode)
- 	struct device *dev;
- 	bool ret;
- 
--	if (!(fwnode->flags & FWNODE_FLAG_INITIALIZED))
-+	if (!(fwnode_test_flag(fwnode, FWNODE_FLAG_INITIALIZED)))
- 		return false;
- 
- 	dev = get_dev_from_fwnode(fwnode);
-@@ -2001,10 +2001,10 @@ static bool __fw_devlink_relax_cycles(struct fwnode_handle *con_handle,
- 	 * We aren't trying to find all cycles. Just a cycle between con and
- 	 * sup_handle.
- 	 */
--	if (sup_handle->flags & FWNODE_FLAG_VISITED)
-+	if (fwnode_test_flag(sup_handle, FWNODE_FLAG_VISITED))
- 		return false;
- 
--	sup_handle->flags |= FWNODE_FLAG_VISITED;
-+	fwnode_set_flag(sup_handle, FWNODE_FLAG_VISITED);
- 
- 	/* Termination condition. */
- 	if (sup_handle == con_handle) {
-@@ -2074,7 +2074,7 @@ static bool __fw_devlink_relax_cycles(struct fwnode_handle *con_handle,
- 	}
- 
- out:
--	sup_handle->flags &= ~FWNODE_FLAG_VISITED;
-+	fwnode_clear_flag(sup_handle, FWNODE_FLAG_VISITED);
- 	put_device(sup_dev);
- 	put_device(con_dev);
- 	put_device(par_dev);
-@@ -2127,7 +2127,7 @@ static int fw_devlink_create_devlink(struct device *con,
- 	 * When such a flag is set, we can't create device links where P is the
- 	 * supplier of C as that would delay the probe of C.
- 	 */
--	if (sup_handle->flags & FWNODE_FLAG_NEEDS_CHILD_BOUND_ON_ADD &&
-+	if (fwnode_test_flag(sup_handle, FWNODE_FLAG_NEEDS_CHILD_BOUND_ON_ADD) &&
- 	    fwnode_is_ancestor_of(sup_handle, con->fwnode))
- 		return -EINVAL;
- 
-@@ -2150,7 +2150,7 @@ static int fw_devlink_create_devlink(struct device *con,
- 	else
- 		flags = FW_DEVLINK_FLAGS_PERMISSIVE;
- 
--	if (sup_handle->flags & FWNODE_FLAG_NOT_DEVICE)
-+	if (fwnode_test_flag(sup_handle, FWNODE_FLAG_NOT_DEVICE))
- 		sup_dev = fwnode_get_next_parent_dev(sup_handle);
- 	else
- 		sup_dev = get_dev_from_fwnode(sup_handle);
-@@ -2162,7 +2162,7 @@ static int fw_devlink_create_devlink(struct device *con,
- 		 * supplier device indefinitely.
- 		 */
- 		if (sup_dev->links.status == DL_DEV_NO_DRIVER &&
--		    sup_handle->flags & FWNODE_FLAG_INITIALIZED) {
-+		    fwnode_test_flag(sup_handle, FWNODE_FLAG_INITIALIZED)) {
- 			dev_dbg(con,
- 				"Not linking %pfwf - dev might never probe\n",
- 				sup_handle);
-diff --git a/drivers/bus/imx-weim.c b/drivers/bus/imx-weim.c
-index 83d623d97f5f..f735e0462c55 100644
---- a/drivers/bus/imx-weim.c
-+++ b/drivers/bus/imx-weim.c
-@@ -332,7 +332,7 @@ static int of_weim_notify(struct notifier_block *nb, unsigned long action,
- 			 * fw_devlink doesn't skip adding consumers to this
- 			 * device.
- 			 */
--			rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
-+			fwnode_clear_flag(&rd->dn->fwnode, FWNODE_FLAG_NOT_DEVICE);
- 			if (!of_platform_device_create(rd->dn, NULL, &pdev->dev)) {
- 				dev_err(&pdev->dev,
- 					"Failed to create child device '%pOF'\n",
-diff --git a/drivers/i2c/i2c-core-of.c b/drivers/i2c/i2c-core-of.c
-index eb7fb202355f..354a88d0599e 100644
---- a/drivers/i2c/i2c-core-of.c
-+++ b/drivers/i2c/i2c-core-of.c
-@@ -180,7 +180,7 @@ static int of_i2c_notify(struct notifier_block *nb, unsigned long action,
- 		 * Clear the flag before adding the device so that fw_devlink
- 		 * doesn't skip adding consumers to this device.
- 		 */
--		rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
-+		fwnode_clear_flag(&rd->dn->fwnode, FWNODE_FLAG_NOT_DEVICE);
- 		client = of_i2c_register_device(adap, rd->dn);
- 		if (IS_ERR(client)) {
- 			dev_err(&adap->dev, "failed to create client for '%pOF'\n",
-diff --git a/drivers/net/phy/mdio_bus_provider.c b/drivers/net/phy/mdio_bus_provider.c
-index 4b0637405740..fd691c5424ea 100644
---- a/drivers/net/phy/mdio_bus_provider.c
-+++ b/drivers/net/phy/mdio_bus_provider.c
-@@ -294,8 +294,8 @@ int __mdiobus_register(struct mii_bus *bus, struct module *owner)
- 		return -EINVAL;
- 
- 	if (bus->parent && bus->parent->of_node)
--		bus->parent->of_node->fwnode.flags |=
--					FWNODE_FLAG_NEEDS_CHILD_BOUND_ON_ADD;
-+		fwnode_set_flag(&bus->parent->of_node->fwnode,
-+				FWNODE_FLAG_NEEDS_CHILD_BOUND_ON_ADD);
- 
- 	WARN(bus->state != MDIOBUS_ALLOCATED &&
- 	     bus->state != MDIOBUS_UNREGISTERED,
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index 57420806c1a2..8d1972e18161 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -1915,7 +1915,7 @@ void of_alias_scan(void * (*dt_alloc)(u64 size, u64 align))
- 		if (name)
- 			of_stdout = of_find_node_opts_by_path(name, &of_stdout_options);
- 		if (of_stdout)
--			of_stdout->fwnode.flags |= FWNODE_FLAG_BEST_EFFORT;
-+			fwnode_set_flag(&of_stdout->fwnode, FWNODE_FLAG_BEST_EFFORT);
- 	}
- 
- 	if (!of_aliases)
-diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-index 1a06175def37..ade288372101 100644
---- a/drivers/of/dynamic.c
-+++ b/drivers/of/dynamic.c
-@@ -225,7 +225,7 @@ static void __of_attach_node(struct device_node *np)
- 	np->sibling = np->parent->child;
- 	np->parent->child = np;
- 	of_node_clear_flag(np, OF_DETACHED);
--	np->fwnode.flags |= FWNODE_FLAG_NOT_DEVICE;
-+	fwnode_set_flag(&np->fwnode, FWNODE_FLAG_NOT_DEVICE);
- 
- 	raw_spin_unlock_irqrestore(&devtree_lock, flags);
- 
-diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-index ba591fbceb56..7eeaf8e27b5b 100644
---- a/drivers/of/platform.c
-+++ b/drivers/of/platform.c
-@@ -742,7 +742,7 @@ static int of_platform_notify(struct notifier_block *nb,
- 		 * Clear the flag before adding the device so that fw_devlink
- 		 * doesn't skip adding consumers to this device.
- 		 */
--		rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
-+		fwnode_clear_flag(&rd->dn->fwnode, FWNODE_FLAG_NOT_DEVICE);
- 		/* pdev_parent may be NULL when no bus platform device */
- 		pdev_parent = of_find_device_by_node(parent);
- 		pdev = of_platform_device_create(rd->dn, NULL,
-diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-index 61f7bde8c7fb..ba8098f1a88c 100644
---- a/drivers/spi/spi.c
-+++ b/drivers/spi/spi.c
-@@ -4938,7 +4938,7 @@ static int of_spi_notify(struct notifier_block *nb, unsigned long action,
- 		 * Clear the flag before adding the device so that fw_devlink
- 		 * doesn't skip adding consumers to this device.
- 		 */
--		rd->dn->fwnode.flags &= ~FWNODE_FLAG_NOT_DEVICE;
-+		fwnode_clear_flag(&rd->dn->fwnode, FWNODE_FLAG_NOT_DEVICE);
- 		spi = of_register_spi_device(ctlr, rd->dn);
- 		put_device(&ctlr->dev);
- 
-diff --git a/include/linux/fwnode.h b/include/linux/fwnode.h
-index 097be89487bf..4f7f80155f69 100644
---- a/include/linux/fwnode.h
-+++ b/include/linux/fwnode.h
-@@ -15,6 +15,7 @@
- #define _LINUX_FWNODE_H_
- 
- #include <linux/bits.h>
-+#include <linux/bitops.h>
- #include <linux/err.h>
- #include <linux/list.h>
- #include <linux/types.h>
-@@ -42,12 +43,12 @@ struct device;
-  *		suppliers. Only enforce ordering with suppliers that have
-  *		drivers.
-  */
--#define FWNODE_FLAG_LINKS_ADDED			BIT(0)
--#define FWNODE_FLAG_NOT_DEVICE			BIT(1)
--#define FWNODE_FLAG_INITIALIZED			BIT(2)
--#define FWNODE_FLAG_NEEDS_CHILD_BOUND_ON_ADD	BIT(3)
--#define FWNODE_FLAG_BEST_EFFORT			BIT(4)
--#define FWNODE_FLAG_VISITED			BIT(5)
-+#define FWNODE_FLAG_LINKS_ADDED			0
-+#define FWNODE_FLAG_NOT_DEVICE			1
-+#define FWNODE_FLAG_INITIALIZED			2
-+#define FWNODE_FLAG_NEEDS_CHILD_BOUND_ON_ADD	3
-+#define FWNODE_FLAG_BEST_EFFORT			4
-+#define FWNODE_FLAG_VISITED			5
- 
- struct fwnode_handle {
- 	struct fwnode_handle *secondary;
-@@ -57,7 +58,7 @@ struct fwnode_handle {
- 	struct device *dev;
- 	struct list_head suppliers;
- 	struct list_head consumers;
--	u8 flags;
-+	unsigned long flags;
- };
- 
- /*
-@@ -212,6 +213,24 @@ static inline void fwnode_init(struct fwnode_handle *fwnode,
- 	INIT_LIST_HEAD(&fwnode->suppliers);
- }
- 
-+static inline void fwnode_set_flag(struct fwnode_handle *fwnode,
-+				   unsigned int bit)
-+{
-+	set_bit(bit, &fwnode->flags);
-+}
-+
-+static inline void fwnode_clear_flag(struct fwnode_handle *fwnode,
-+				   unsigned int bit)
-+{
-+	clear_bit(bit, &fwnode->flags);
-+}
-+
-+static inline bool fwnode_test_flag(struct fwnode_handle *fwnode,
-+				    unsigned int bit)
-+{
-+	return test_bit(bit, &fwnode->flags);
-+}
-+
- static inline void fwnode_dev_initialized(struct fwnode_handle *fwnode,
- 					  bool initialized)
- {
-@@ -219,9 +238,9 @@ static inline void fwnode_dev_initialized(struct fwnode_handle *fwnode,
- 		return;
- 
- 	if (initialized)
--		fwnode->flags |= FWNODE_FLAG_INITIALIZED;
-+		fwnode_set_flag(fwnode, FWNODE_FLAG_INITIALIZED);
- 	else
--		fwnode->flags &= ~FWNODE_FLAG_INITIALIZED;
-+		fwnode_clear_flag(fwnode, FWNODE_FLAG_INITIALIZED);
- }
- 
- int fwnode_link_add(struct fwnode_handle *con, struct fwnode_handle *sup,
--- 
-2.53.0.851.ga537e3e6e9-goog
+> 
+> Best regards,
+> Krzysztof
 
 
