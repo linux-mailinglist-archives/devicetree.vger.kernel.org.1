@@ -1,151 +1,180 @@
-Return-Path: <devicetree+bounces-276036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276037-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qCEtHSXNt2kRVQEAu9opvQ
-	(envelope-from <devicetree+bounces-276036-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:28:05 +0100
+	id uJNwL1bNt2mDVgEAu9opvQ
+	(envelope-from <devicetree+bounces-276037-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:28:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6879296F95
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:28:04 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F30A1296FDF
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:28:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 996B9301027E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 09:28:03 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 336DD300C34F
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 09:28:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46637388372;
-	Mon, 16 Mar 2026 09:28:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 876A6388361;
+	Mon, 16 Mar 2026 09:28:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="um21Ly8S"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OoJFiU2y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D19CF3876AF
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 09:27:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB1AD386577
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 09:28:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773653279; cv=none; b=GVgSP9tcxezBxZuxkswuvSdd8ZKGZQ8jSf68hdffn884kg6tGHvk0Vs3IavpvYgGUYlDsbPmkg9/TanQpeFiP1rHTb/7sbsIMOErmUnV4TqEqrhWyqF11Ov5vAh0FPD0fin7ovSqV48uq8PU0p4n03F+wnfK9DW6WPk0y9xBaKk=
+	t=1773653319; cv=none; b=Ugxzcw46Rj9Hyk1cZnmEgvpn5Qh+ih6pFuKnrQ/32r1y0UxNaN6I2ayVH016gJVmrtgCigt0P7VwdJd+pvwRCqLrcQx+MzvYDsHYgYF9sEUZYk7Z5Iibb026zmKdwS+lEbdqe5OhhxNZzlRajcoVF2H9jIxa2jk6WVF/x6bjzp8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773653279; c=relaxed/simple;
-	bh=O/YgTgaQRwnEXirxmU+ykEQ0yOSJ8I1KRJZXk4GajnM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UuNMQbZBiB8dawZBHpOzvW1hSoOt4wDfiHSbHOqoXSNGMdjCq/2uJhjmyko/sH4CLq9gg9QIfmopYFdN/W/t6s926Jo7hhEzI9lOTjIIKU11ATr7nxec8tk/ZCiLqcJa5FBEAef63JcvOUXVdp2d2a3db4oCWP/O/7Afi23E0CM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=um21Ly8S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FCC8C19425
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 09:27:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773653279;
-	bh=O/YgTgaQRwnEXirxmU+ykEQ0yOSJ8I1KRJZXk4GajnM=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=um21Ly8SseFTJHB6APb8c1vvjnw4Qo3PPBAIuDnbeBrrANm5pl8YoBi7+1xda+Yr+
-	 g/SGslQ+inPIVImOKjxIk2VVXTggEuQJPM2ClVZBMiPWSjctuKkXZ8fPHvmZeVgWza
-	 jpmtLCvv9bb0CP9lOUVRJWLyr6M8CgYCpeWxI9DfslyABaOd/EkUPnCqngTSPCWfBf
-	 r2QG4fFdj8HHPulDlP+wr8sNcQsC8aXhxTeNrKM0p7j3u+qhWLqYpr9hFXWQ5gmd1C
-	 G2UtcWVHohy5sFB+9BSFwsOxXKqKAeL8creJrKi3+vPQuCMFfjadxqYEAXLklLOQb7
-	 Yae+EasyHNBmA==
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-79801df3e42so54155627b3.0
-        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 02:27:59 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWMbG7ovoi71E5I22/1vFVdqLZJOdq8T8PZ6MrgM2R8Hxqu70RWqTDVNKUKqut0FOjLoKXSxxtOzZPe@vger.kernel.org
-X-Gm-Message-State: AOJu0YwOk1IANRv80LPhgYzNoxbv5t8Qnb65uLHHgKz8nR05ULbdU8+h
-	ZfknKe5O8CemETq8EE+Evm1LnOzNRHzG1SdmaX124sVaL1szXm3kMSQ3YOpeXWXidOzYJbdrAcQ
-	15cpidxDYMuac30umBVxcdDByRE8WiU0=
-X-Received: by 2002:a05:690c:c4fa:b0:79a:3be7:81a8 with SMTP id
- 00721157ae682-79a3be7b453mr52979097b3.6.1773653278643; Mon, 16 Mar 2026
- 02:27:58 -0700 (PDT)
+	s=arc-20240116; t=1773653319; c=relaxed/simple;
+	bh=9c+Cpxp1ZGW3zXQamjYhD0iRzxH3nZLhn74BuWgaiP0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sWKQgUA8U0BiTVzlkOqVQWfioA7SzSfRs1wI0TlhZeJlYWFBFSp2pyFN5WSTrNOtCFH5Jn27JM0H7Hmy7c7+GD+ij9ljxN3CR3ER1nVmXEAGeQWtA0QE4iAdLATKHtOiDwYtAk7QLIm4vF+P0gcn3F3el7ViO23cVUzMy+oMx54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OoJFiU2y; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-386c441ba1dso2061721fa.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 02:28:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1773653316; x=1774258116; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=q75aoBy7Ji4mItPLv1quA/8WA+tC3Zlx81nywgbhn7w=;
+        b=OoJFiU2ysS8xfggD0fZWt27gi04RkJ65YpHk68DkMbrZaoY/Qe4d0sYSjP1MhnuhDq
+         ZMUs/kE+WHqd6M2JJ60C/zsLWKM8Kq7Fu+WIDYUCLZe4wBeptbu5+QqC5TIWUCmRyyqb
+         ZUw8CCgqvsCv+NMeR2jC+o2TTkE4m1e68b0tDeDSFotv46XgJvYW1QMKjCjgt+IdA6IY
+         zjeEtoO/bqdL+t2CIFlO8WadyBAW5p6UjE1VgMtyz42nzI3eVo5+IU7jXXXgC2neEaKY
+         7BzufaZ1Nxuc8gJ2NpwtpsDB0KlmqOWuutKvXMH7kAsr5iSGrW/Eonl/p5DNDtQwytnR
+         05Vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773653316; x=1774258116;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=q75aoBy7Ji4mItPLv1quA/8WA+tC3Zlx81nywgbhn7w=;
+        b=Q/4SJUs8O7VLG5b7+rbmwodlrrJQEZEK3+U7zUJeP+xAMalAfxJ1ey6RY7rGi9uvZu
+         4dqYhYP3oj+DnP0ZLh5G8TJvNC0FcTU6I9NSPTex6r1ebpnnc4qZ6qlMFpRdsa3zZe7y
+         CTj83VDNA7eyRD0OjDKPzxIVzWmpiiU46r0+tNzck29yqWgt3Klfj74S+x5P9SYR1X/O
+         wmVhlHDanNbxLUysC2FGi1xoC87frKiXFobe5vFgbW4oZM42o9IbAAF5Sm+MgwRHj9AG
+         kYmFDF6wK2A1PQTMpemBoBnZL8VAWRCGd5CUNnHJH14WwVZ1mue4UN90aADA4IEJddIA
+         VGzg==
+X-Forwarded-Encrypted: i=1; AJvYcCX1JluYEIwW0NwQwoGoFhqb8axHmaV3Qex1a9Fne5Ia+8d281uhHNlQLXzCkc8r441nRkxb0c/U1v4O@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6v/jdVyaF2KElykDJE1gl4yZtdEEooIGd47p75MdKMvVETgEI
+	oMqJh2h5JFQ7wKLDvU1DMSJAo1DBkVXjy3LKe43unvw51MYNaro3uZHfvSEPJSv0ybk=
+X-Gm-Gg: ATEYQzxZz8ocpi4ryg0GIf+npHMj5N9/QFdmC4JlkWzOze04y+ZZ23WiS3JUdjIeLOM
+	e/Y2hB9g39zaTmkOnViySwtHZb0d6tYkP2VWSOv7+99mbmq8Tj48TdIIGBpyMheC/Hd5IP+tO02
+	CU1XNWh+AEcpX3DsvDIRBh7IXS4f7/5DwkrAatIrNclzc2RY5KnmNLfS8pMsc1+De720VdVQSrF
+	G6K/EvREXq2sjB4tTiQV1G4QLaG77/cI9L8P98l/28GyzxYw7nBi4qR93gRGD6teG6zoTjf8jHj
+	u02uXADz1tP36BbAM1wDhCrHEUzc0rAphqgGbLYPgWLIBID0a291J/wKUWJJTD8/XuGtFz0Ps+c
+	TzizwQy1HA2FyUzk6gRzhyye/BHeEqX55aeyXg450whzh+bv5NRl9XzkqvVQTzSUMFfxyEENUjb
+	8uXl1jAoUWGmE6CRZ/Tazn/wQSvzfIgCqNH6ou37sXNESoxjJRPcPGu7UiAacyv4xvoZeXpUv2V
+	AwA7A==
+X-Received: by 2002:a05:651c:211a:b0:384:9158:6bcd with SMTP id 38308e7fff4ca-38a896a443dmr21270251fa.2.1773653316000;
+        Mon, 16 Mar 2026 02:28:36 -0700 (PDT)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38a67d617e1sm31237711fa.9.2026.03.16.02.28.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Mar 2026 02:28:35 -0700 (PDT)
+Message-ID: <30f3ec22-c86d-4f05-b519-641fc2632c50@linaro.org>
+Date: Mon, 16 Mar 2026 11:28:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260311-tasting-friend-eae39148fb96@spud> <20260311-skimming-pummel-6a3e2fc66a9f@spud>
-In-Reply-To: <20260311-skimming-pummel-6a3e2fc66a9f@spud>
-From: Linus Walleij <linusw@kernel.org>
-Date: Mon, 16 Mar 2026 10:27:47 +0100
-X-Gmail-Original-Message-ID: <CAD++jLnsToZN7hBYWnxn8NrmhmgWpgmKDvDn=0TKig36TzcOrA@mail.gmail.com>
-X-Gm-Features: AaiRm50WpMGGktuAFovbckLRYxycl65oWNTRA0oVNDR_39hckQmaUFp3WcObLzM
-Message-ID: <CAD++jLnsToZN7hBYWnxn8NrmhmgWpgmKDvDn=0TKig36TzcOrA@mail.gmail.com>
-Subject: Re: [PATCH v12 4/4] riscv: dts: microchip: update mpfs gpio
- interrupts to better match the SoC
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-gpio@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, Herve Codina <herve.codina@bootlin.com>, 
-	Daire McNamara <daire.mcnamara@microchip.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Bartosz Golaszewski <brgl@kernel.org>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 1/7] dt-bindings: media: qcom,x1e80100-camss: Add
+ simple-mfd compatible
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Bryan O'Donoghue <bod@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ Krzysztof Kozlowski <krzk@kernel.org>
+References: <20260316-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v10-0-fdfe984fe941@linaro.org>
+ <20260316-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v10-1-fdfe984fe941@linaro.org>
+ <cca53190-ec16-40ee-ab4d-7bfbc1f082e8@linaro.org>
+ <bmcxyn5bv24cmxvuyhjbbsjb2bfhq55nmoccfqxvgiwx3g44nb@xq5fsyfqdma6>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <bmcxyn5bv24cmxvuyhjbbsjb2bfhq55nmoccfqxvgiwx3g44nb@xq5fsyfqdma6>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276036-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,baylibre.com,gmail.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-276037-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E6879296F95
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,linaro.org:dkim,linaro.org:email,linaro.org:mid]
+X-Rspamd-Queue-Id: F30A1296FDF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 11, 2026 at 4:18=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
+On 3/16/26 04:39, Dmitry Baryshkov wrote:
+> On Mon, Mar 16, 2026 at 04:12:35AM +0200, Vladimir Zapolskiy wrote:
+>> On 3/16/26 03:02, Bryan O'Donoghue wrote:
+>>> Add "simple-mfd" as a second compatible string to allow child nodes
+>>> within the CAMSS block to probe as individual platform devices.
+>>
+>> Why are there any child nodes representing platform devices?
+>>
+>> There is no necessity of it, please use a layout similar to CAMSS CCI
+>> modelling.
+>>
+> 
+> I'd say it differently. I think, putting CCI device outside of the CAMSS
+> node is a mistake. In the hardware all those devices are a part of the
+> separate block, they share the same NoC fabric, etc.
+> 
 
-> From: Conor Dooley <conor.dooley@microchip.com>
->
-> There are 3 GPIO controllers on this SoC, of which:
-> - GPIO controller 0 has 14 GPIOs
-> - GPIO controller 1 has 24 GPIOs
-> - GPIO controller 2 has 32 GPIOs
->
-> All GPIOs are capable of generating interrupts, for a total of 70.
-> There are only 41 IRQs available however, so a configurable mux is used
-> to ensure all GPIOs can be used for interrupt generation.
-> 38 of the 41 interrupts are in what the documentation calls "direct
-> mode", as they provide an exclusive connection from a GPIO to the PLIC.
-> The 3 remaining interrupts are used to mux the interrupts which do not
-> have a exclusive connection, one for each GPIO controller.
->
-> The mux was overlooked when the bindings and driver were originally
-> written for the GPIO controllers on Polarfire SoC, and the interrupts
-> property in the GPIO nodes used to try and convey what the mapping was.
-> Instead, the mux should be a device in its own right, and the GPIO
-> controllers should be connected to it, rather than to the PLIC.
-> Now that a binding exists for that mux, fix the inaccurate description
-> of the interrupt controller hierarchy.
->
-> GPIO controllers 0 and 1 do not have all 32 possible GPIO lines, so
-> ngpios needs to be set to match the number of lines/interrupts.
->
-> The m100pfsevp has conflicting interrupt mappings for controllers 0 and
-> 2, as they cannot both be using an interrupt in "direct mode" at the
-> same time, so the default replaces this impossible configuration.
->
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+A simple-mfd model could be considered and pretty often it's usage makes
+great sense, but likely it's not the case here, when phys are childen of
+a factual CSI decoder. So far an umbrella/container device has not been
+considered to the best of my knowledge.
 
-Reviewed-by: Linus Walleij <linusw@kernel.org>
+OTOH I see no issue in placing phandles to the same exploited resources
+under multiple device tree nodes, the ultimate goal is to provide a proper
+hardware description.
 
-Yours,
-Linus Walleij
+>>>
+>>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>>> ---
+>>>    Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml | 8 ++++++--
+>>>    1 file changed, 6 insertions(+), 2 deletions(-)
+>>>
+
+-- 
+Best wishes,
+Vladimir
 
