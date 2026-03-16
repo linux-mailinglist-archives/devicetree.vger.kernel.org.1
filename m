@@ -1,69 +1,65 @@
-Return-Path: <devicetree+bounces-276106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276107-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mCw2KPXjt2mzWwEAu9opvQ
-	(envelope-from <devicetree+bounces-276106-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 12:05:25 +0100
+	id aIHCEkLjt2mzWwEAu9opvQ
+	(envelope-from <devicetree+bounces-276107-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 12:02:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2870D29875D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 12:05:25 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 391E02986AC
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 12:02:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3CD2F3076B42
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 10:59:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id EE42D300DCD0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 11:02:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BD6B390CB5;
-	Mon, 16 Mar 2026 10:59:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBD4827F18B;
+	Mon, 16 Mar 2026 11:02:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R7kET63p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gQapjEjS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2879B390CAD;
-	Mon, 16 Mar 2026 10:59:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A25925BEF8;
+	Mon, 16 Mar 2026 11:02:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773658774; cv=none; b=NUWeUnMEnygT/rwVZdll5R1tZ7jFd8ZOVCFhqVIOYLfehyIrLmz+CTA9NAwYIPYXxwS/uPM1vhSC/Iqh58V0FWFCNQfOMazbeFu1yjuW7vQ0Bc0v3DP5wrw7iXW3fkjeMlloIUhnQ+dfgiIUNImkBX52+LDpC6M40M2appBpxcQ=
+	t=1773658932; cv=none; b=bOMwQ33chJWDnAiD257aoQisrldq6T1qKwln4ogLUdenEvlgZkWAI4BxdDWql8tVvZZg5TXPwzZMDg+t2S3dqtwvqqEDDY2quciCmHitMAqmlwneF+qGOxKqzhIvgdUyzzh6Lx74U8o40F17p5E8BYTMJCpgiPnvIrvIkxRTRCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773658774; c=relaxed/simple;
-	bh=8upfTfzEga/wd+znnJ2xeNS58mtIiD4DoeQde1PSlpU=;
+	s=arc-20240116; t=1773658932; c=relaxed/simple;
+	bh=2WrmRtPPWS7QjKt1bst/l9hvGi2jFxB3qCVZ5N7Qxv4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KhtQ0kMmodv7s40sej0kJeIpirMSLGx/3l8DcetJD/Iu2oa5Z5JyFXSQwvy7lE/oZQNnzRzaLbiDIMmejnbCIIBrRDAIOUlPjyjfvt52kA1Ul2EETY0WwBvq+S9y0yVHLTYeeFjrWHzzSzH+rNpLe7brTc+B/8LyIyK51IAw+aU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R7kET63p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AD2EC19421;
-	Mon, 16 Mar 2026 10:59:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Yjaa+7AnvYDqMftRTtf9tynkA3AKqgNy0LZUoP2YcN6FePNRRHn9KBmy0OZzNX30ewnEsWpSugz7hhsRVbcrZ64gQcxtDM1sua7hCl1hNfKIqy9GtusOWMcxJQlMzTZhsgdk0oGpTXzl0popA3GVvH3Xn2O+qFlmX9xWF1FcT+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gQapjEjS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18340C19425;
+	Mon, 16 Mar 2026 11:02:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773658774;
-	bh=8upfTfzEga/wd+znnJ2xeNS58mtIiD4DoeQde1PSlpU=;
+	s=k20201202; t=1773658931;
+	bh=2WrmRtPPWS7QjKt1bst/l9hvGi2jFxB3qCVZ5N7Qxv4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=R7kET63pyrPOPrCL+XAp/IA6sZA/ks/ynbUvkRCCLc7XsN7DTmqvkgYa2xzBhNsfF
-	 e8VdUJuZoBuVhpdhHRNWdGz1kpQizSx9OZLfq0UI7//mwXNu7IU9V+uU9U8iAEp8yd
-	 lrx3uDmUmRCCu1QwFJdT9iLz+m9WbUeaUSp2MXs1bEkYznlQy3HZ9OEuKrl8DAMPHW
-	 QruOH1eYA9IgM2pOEN4geaajQznKxKFZBaODif/fQVT5JLsTllpPmGgePpD0TIBW9t
-	 rAWjf9FIYfqvcYbtaCzLQ4Qmfe/5D+8XrE6Sq+3/kJACVhqgo14kYHtCKxpFB5I4pG
-	 LP8zS6ziOcQnw==
-Date: Mon, 16 Mar 2026 10:59:28 +0000
+	b=gQapjEjSFbY1PwcppCIljbexVxu5r+ktpPVEa9yaNjPcqf32mS7XG3cydSQrM4Pg2
+	 epUhcc96pmKJf9bsa14PX2jRFBn63gAv/ck2wUzL80/HdRrZTwuvra5uyxAu9Th14q
+	 XstDIxts1dBQY1+iGEpxsJYuMujyMGrvQoFsBe9XiAr+vUZT2goJUV8ybToijumRtr
+	 ME30R6T8Dm1+U90OGPrc4OYoM519BPK0BWoeBudwmWvNmJ9VQVHzsYjPGeetouQHRV
+	 RWAVqRxx0ChVMXLaO3JKEjrNFvBew2L1WlgpUKZT2ovd/ZbjR0h9xB6rAmSablaD9v
+	 aX3SfTX1a+61w==
+Date: Mon, 16 Mar 2026 11:02:06 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Linus Walleij <linusw@kernel.org>
-Cc: linux-gpio@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Rob Herring <robh@kernel.org>,
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v12 3/4] soc: microchip: add mpfs gpio interrupt mux
- driver
-Message-ID: <20260316-verify-revise-c0ad49fc208e@spud>
-References: <20260311-tasting-friend-eae39148fb96@spud>
- <20260311-vigorous-steadfast-04afdcc9e524@spud>
- <CAD++jLnXBW7FDdGRt3rN5Up6GdRvu-Ywsg8jfepjEf4rBjPQ6A@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Peter Rosin <peda@axentia.se>, Linus Walleij <linusw@kernel.org>,
+	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	linux-gpio@vger.kernel.org, David Jander <david@protonic.nl>
+Subject: Re: [PATCH v4 1/6] dt-bindings: pinctrl: add NXP MC33978/MC34978 MSDI
+Message-ID: <20260316-brick-corrosive-c0ce739651ac@spud>
+References: <20260313140218.1213393-1-o.rempel@pengutronix.de>
+ <20260313140218.1213393-2-o.rempel@pengutronix.de>
+ <20260313-shortwave-baguette-5914f1af60f8@spud>
+ <abfgNaCp4VeKZUWE@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,9 +67,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="QXaUuu184siEMQsu"
+	protocol="application/pgp-signature"; boundary="GOr+HRVBfYVMkRXD"
 Content-Disposition: inline
-In-Reply-To: <CAD++jLnXBW7FDdGRt3rN5Up6GdRvu-Ywsg8jfepjEf4rBjPQ6A@mail.gmail.com>
+In-Reply-To: <abfgNaCp4VeKZUWE@pengutronix.de>
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -81,81 +77,131 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276106-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-276107-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RSPAMD_EMAILBL_FAIL(0.00)[david.protonic.nl:query timed out,o.rempel.pengutronix.de:query timed out];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:email]
-X-Rspamd-Queue-Id: 2870D29875D
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,protonic.nl:email]
+X-Rspamd-Queue-Id: 391E02986AC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---QXaUuu184siEMQsu
-Content-Type: text/plain; charset=utf-8
+--GOr+HRVBfYVMkRXD
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 16, 2026 at 10:27:15AM +0100, Linus Walleij wrote:
-> On Wed, Mar 11, 2026 at 4:18=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
-rote:
+On Mon, Mar 16, 2026 at 11:49:25AM +0100, Oleksij Rempel wrote:
+> On Fri, Mar 13, 2026 at 05:16:31PM +0000, Conor Dooley wrote:
+> > On Fri, Mar 13, 2026 at 03:02:12PM +0100, Oleksij Rempel wrote:
+> ...
+> > > +maintainers:
+> > > +  - David Jander <david@protonic.nl>
+> > > +  - Oleksij Rempel <o.rempel@pengutronix.de>
+> > > +
+> > > +description: |
+> > > +  The MC33978 and MC34978 are Multiple Switch Detection Interface (M=
+SDI)
+> > > +  devices with 22 switch inputs, integrated fault detection, and ana=
+log
+> > > +  multiplexer (AMUX) for voltage/temperature monitoring.
+> > > +
+> > > +  Pin numbering:
+> > > +  - Pins 0-13: SG0-SG13 (Switch-to-Ground inputs). These pins monitor
+> > > +    contacts closed to ground and typically require GPIO_ACTIVE_LOW
+> > > +    flags when used as digital inputs.
+> > > +  - Pins 14-21: SP0-SP7 (Programmable inputs). These can be configur=
+ed
+> > > +    as SG (Switch-to-Ground) or SB (Switch-to-Battery) inputs. SB
+> > > +    inputs monitor contacts closed to the battery voltage and typica=
+lly
+> > > +    require GPIO_ACTIVE_HIGH flags when used as digital inputs.
+> > > +
+> > > +  Output Emulation:
+> > > +  The hardware lacks standard push-pull output drivers. Outputs are =
+emulated
+> > > +  by toggling the programmable wetting current sources (acting as pu=
+ll-ups
+> > > +  or pull-downs) and the hardware tri-state registers. Because of th=
+is
+> > > +  physical constraint:
+> > > +  - Consumers using pins as outputs MUST flag them with GPIO_OPEN_DR=
+AIN or
+> > > +    GPIO_OPEN_SOURCE in the device tree.
+> > > +  - Push-pull configurations are physically unsupported.
+> > > +  - The active polarity depends entirely on the external circuit (e.=
+g., how
+> > > +    an LED is wired) and must be flagged accordingly by the consumer.
+> > > +
+> > > +allOf:
+> > > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - nxp,mc33978
+> > > +      - nxp,mc34978
+> >=20
+> > What's different about these that a fallback is not suitable?
 >=20
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> >
-> > On PolarFire SoC there are more GPIO interrupts than there are interrupt
-> > lines available on the PLIC, and a runtime configurable mux is used to
-> > decide which interrupts are assigned direct connections to the PLIC &
-> > which are relegated to sharing a line.
-> >
-> > Add a driver so that Linux can set the mux based on the interrupt
-> > mapping in the devicetree.
-> >
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->=20
-> Reviewed-by: Linus Walleij <linusw@kernel.org>
->=20
-> We need a piece of accessible documentation that clearly defines
-> the difference between an IRQ mux and a hierarchical IRQ chip.
-> If only a post on people.kernel.org, just something to help people
-> to know when to use which approach.
+> The difference are operation temperature ranges. But, it is not
+> detectable by software. This information can be reused for the hwmon.
 
-I'm guessing you're not looking for looking for me to be the arbiter,
-but I'd say that the muxing aspect is pretty important!
-On a serious note though, the lack of anything in the hardware to do
-masking etc is key, it'd have to be nothing more than a register that
-determines routing.
-That said, even the simplest mux should be an irqchip if reconfiguration
-after probe is to be supported.
-That'd make the delimiter "a simple mux that you set at probe and never
-touch again"?
+Can you note this in your commit message please?
 
---QXaUuu184siEMQsu
+>=20
+> > > +patternProperties:
+> > > +  '^.*-grp$':
+> > > +    type: object
+> > > +    $ref: /schemas/pinctrl/pincfg-node.yaml#
+> > > +    additionalProperties: false
+> > > +    description: Pin configuration subnodes.
+> > > +    properties:
+> > > +      pins: true
+> >=20
+> > This seems overly permissive, think it should only allow the couple of
+> > options that your hardware has. Probably just make it an enum? Shouldn't
+> > have to check the driver to know what the acceptable pin names are.
+>=20
+> Some thing like this?
+>=20
+>       pins:
+>         items:
+>           enum: [ sg0, sg1, sg2, sg3, sg4, sg5, sg6, sg7, sg8, sg9,
+>                   sg10, sg11, sg12, sg13, sp0, sp1, sp2, sp3,
+>                   sp4, sp5, sp6, sp7 ]
+
+Yeah.
+
+--GOr+HRVBfYVMkRXD
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabfikAAKCRB4tDGHoIJi
-0iH1AQD6gzraxUf7eLDOoP3278COj/NHaSEqGeXofXCDYLB/5QEAvW8u94Fe+EsL
-O7bkMtDdhKjZLKlM/VuSILf90VqvnAQ=
-=1Nzk
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabfjLgAKCRB4tDGHoIJi
+0sV4APwM/hhP6nB8AEEJ+l+y1n0i3Dciru0XcE5FsV3fHWqf9gEAq1xyrNzxRd8C
+3Zu4SafwjPsD4RAD4zAAzQxRpmkJvgU=
+=e1xM
 -----END PGP SIGNATURE-----
 
---QXaUuu184siEMQsu--
+--GOr+HRVBfYVMkRXD--
 
