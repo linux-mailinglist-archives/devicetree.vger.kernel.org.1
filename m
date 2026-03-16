@@ -1,147 +1,162 @@
-Return-Path: <devicetree+bounces-275911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275912-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yIQKAxRwt2nnRAEAu9opvQ
-	(envelope-from <devicetree+bounces-275911-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 03:51:00 +0100
+	id EBqCA7Zwt2n8RAEAu9opvQ
+	(envelope-from <devicetree+bounces-275912-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 03:53:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69B122943F1
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 03:50:59 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A57C929445F
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 03:53:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8E8BA3010516
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 02:50:53 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A3E903003803
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 02:53:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBBC231A7E2;
-	Mon, 16 Mar 2026 02:50:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 964E931D74B;
+	Mon, 16 Mar 2026 02:53:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ilX5wJkf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CbF+NsKh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6FD421578D;
-	Mon, 16 Mar 2026 02:50:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7290823E342;
+	Mon, 16 Mar 2026 02:53:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773629452; cv=none; b=C4UGN8pGYNGmfDYpcar2ZdCk6vvmDpJQLY7Bobl+TV6Z4ROumO8uQFFBavM/DrgtUUijxdyHe0Hg9r4HrSedDZxrrj4Gvm741iYgbeMOkuiWNhzap9/gntNEp2BTDWgXWwYSKTh0LiqzDDGi5csN3Y/p6KW5O3i0EqIEY2omNfI=
+	t=1773629619; cv=none; b=rkp+DMJp/xWukdp0TBCs6PK0DsqW58HyJO2J9sbBgDdZKYn/7kFGOAo7LZLAlIIB+HhdCoL7LhXD0qHXn6ucv6MOf+4Pb0YfooCy4wOqUgzSzIJbgmGBDJqA2gtGNDlGCVZ3xuDVsCQZtLwlyhQ6emR7sqDDyH5TfsH+6PHTyng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773629452; c=relaxed/simple;
-	bh=MI8CAeQU6WpTx/lZpswqhbydku3NU7/zyHF8/KEPquw=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=SACBV2RT9Hl08cXkswRnZ0WX7a/zjnGh5io6HFau0xkQO8VajdVTdN8UwlhqtVp0w68Xmrdo/WxllHGj7wKPRfQ5o18CZG0fe9FmUwWVw7PWTg6sxsvR/fhNFxiVjQYUBgajaXgZfGZG2HiSvW7QganSBNvpW5okrt4alz8bqKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ilX5wJkf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 444EFC4CEF7;
-	Mon, 16 Mar 2026 02:50:52 +0000 (UTC)
+	s=arc-20240116; t=1773629619; c=relaxed/simple;
+	bh=f086Q6qm64jLIfAt39GIf5jozndghww97l+kATvoaig=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=h1yIPJJ82BBgK6Df+vxrV59ue7SUzzu5NlHzLBOmzSBwQgdC1EfPskGao4DW0k33RJP3ps3kx2SZmX1dg8nxTr4hWPotYXnpeAbI7OAiGtlU1RE1xzCSA1dR7iQwG8NPnpaUEJJZHBsJ4l7XyRnWJ1wagJJtbqAmQgSqHAWWWvc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CbF+NsKh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9377C4CEF7;
+	Mon, 16 Mar 2026 02:53:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773629452;
-	bh=MI8CAeQU6WpTx/lZpswqhbydku3NU7/zyHF8/KEPquw=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=ilX5wJkf40x6+TQsMmEAx88oOuPSpkj/Nf5Z0yjguzOChCD77Xt/1VLSrHCXGeHhV
-	 RZQB9YKquV6PaPs+fXdAb2OsnWF5EALLqNLdVJig2IiJo5vpbf4kFb6iPRjV+wziSn
-	 a7xvn9KUcv3OC+hmYxqb8dILO1LqpFJL+LWHHOpWMth6+SdyFKn0EqWu6/O5/GbFj9
-	 OqddzOWv098iFzw4P2HU4ogSDVpq5elh6aeyorrnjrmcyYIJ94coZt5xQ4tPD1hdnd
-	 gUC4WNwm9RRB2kYfacqKrTJS7rljkqvCS9J6aY3YG4ce6RoePLQWCv8L1ASadh0T8k
-	 yalEj5uqKr0mg==
-Date: Sun, 15 Mar 2026 21:50:51 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1773629619;
+	bh=f086Q6qm64jLIfAt39GIf5jozndghww97l+kATvoaig=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CbF+NsKh5Ssgz4mu1cFl+rTq0AAImjOnQT5JFeBXkPgUaa/7uDt60ts75LM734CpM
+	 BLyzBgeWimIpLN3k0aPVHqP7US5WIrly2pFl9UOBQUniWxGhecNxiS2011v3btXgkq
+	 WZ6k5+pGDabPM8+sVxhoUZg4Q6pVljQxJgoTg0oIB93ZwJ0NzbjUiZUa9dLiLBtEmN
+	 fZVuhhhJBGDhN0/TxIuTqOfW/P5/Gyjvbfe8AbJmLgzDuOyT/s9LMKW2fQQRvmlI4E
+	 u3ZVFgS7UnlDkymKexpqbwNlw093PHOdb3cZ/4vG4vNtm1cmmoHflht2bQqpCGtCkn
+	 /1/NKEhLbgL2Q==
+Date: Sun, 15 Mar 2026 21:53:33 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, 
+	Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>, konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, jingoohan1@gmail.com, lpieralisi@kernel.org, 
+	kwilczynski@kernel.org, bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org, 
+	kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org, kw@linux.com, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com, 
+	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com
+Subject: Re: [PATCH v1 1/1] arm64: dts: qcom: hamoa: Move PCIe PERST and Wake
+ GPIOs to port nodes
+Message-ID: <abdviJbrluDn2Vrx@baldur>
+References: <20260313094618.1361418-1-ziyue.zhang@oss.qualcomm.com>
+ <20260313164542.GA1405513@bhelgaas>
+ <en5a7jrgpbn4bsmw5qwprugb2qmjkqw2x5eey6jxxu63634duz@b43rhcsqkj3o>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Todor Tomov <todor.too@gmail.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, linux-clk@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
- devicetree@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Bryan O'Donoghue <bod@kernel.org>, linux-media@vger.kernel.org, 
- Krzysztof Kozlowski <krzk@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- linux-arm-msm@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, Robert Foss <rfoss@kernel.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20260316-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v10-2-fdfe984fe941@linaro.org>
-References: <20260316-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v10-0-fdfe984fe941@linaro.org>
- <20260316-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v10-2-fdfe984fe941@linaro.org>
-Message-Id: <177362945144.790188.16928640175892453002.robh@kernel.org>
-Subject: Re: [PATCH v10 2/7] dt-bindings: media: qcom,x1e80100-camss: Add
- optional PHY handle definitions
-X-Spamd-Result: default: False [-1.16 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <en5a7jrgpbn4bsmw5qwprugb2qmjkqw2x5eey6jxxu63634duz@b43rhcsqkj3o>
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275911-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,linaro.org,baylibre.com];
+	TAGGED_FROM(0.00)[bounces-275912-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,gmail.com,google.com,linaro.org,linux.com,vger.kernel.org,lists.infradead.org,quicinc.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,linaro];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email]
-X-Rspamd-Queue-Id: 69B122943F1
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A57C929445F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
-On Mon, 16 Mar 2026 01:02:02 +0000, Bryan O'Donoghue wrote:
-> Add optional PHY handle definitions. This will allow for supporting both
-> legacy PHY definitions as well as supporting the optional new handle based
-> approach.
+On Sat, Mar 14, 2026 at 07:50:50PM +0530, Manivannan Sadhasivam wrote:
+> On Fri, Mar 13, 2026 at 11:45:42AM -0500, Bjorn Helgaas wrote:
+> > On Fri, Mar 13, 2026 at 05:46:18PM +0800, Ziyue Zhang wrote:
+> > > Commit 960609b22be5 ("arm64: dts: qcom: hamoa: Move PHY, PERST, and Wake
+> > > GPIOs to PCIe port nodes and add port Nodes for all PCIe ports") did not
+> > > convert all Hamoa‑based platforms to the new method of defining PERST and
+> > > Wake GPIOs in the PCIe root port nodes.
+> > > 
+> > > Without the change PCIe probe will fail. The probe failure happens because
+> > > the PHY stays in the controller node while the PERST/Wake GPIOs were moved
+> > > to the port nodes.
+> > > 
+> > > This fixes probe failures seen on the following platforms:
+> > >  - x1-hp-omnibook-x14
+> > >  - x1-microsoft-denali
+> > >  - x1e80100-lenovo-yoga-slim7x
+> > >  - x1e80100-medion-sprchrgd-14-s1
+> > >  - x1p42100-lenovo-thinkbook-16
+> > >  - x1-asus-zenbook-a14
+> > >  - x1-crd
+> > >  - x1-dell-thena
+> > > 
+> > > Fixes: 960609b22be5 ("arm64: dts: qcom: hamoa: Move PHY, PERST, and Wake GPIOs to PCIe port nodes and add port Nodes for all PCIe ports")
+> > 
+> > Are you saying that DTs in the field broke because of some kernel
+> > change?  That's not supposed to happen.  Even though PHY, PERST, and
+> > Wake GPIOs should be described in Root Port nodes instead of the Root
+> > Complex node in *future* DTs, the kernel is still supposed to accept
+> > the old style with them described in the Root Complex node.
+> > 
 > 
-> Drop the legacy high-level 0p8 and 1p2 supplies as required, each PHY has
-> its own individual rails. The old binding is still valid but with
-> individual nodes we define the rails in the CSIPHY sub-nodes.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  .../bindings/media/qcom,x1e80100-camss.yaml        | 33 ++++++++++++++++++++--
->  1 file changed, 31 insertions(+), 2 deletions(-)
+> This is not related to the driver change. The driver correctly parses all Root
+> Port properties either in the Root Complex node (old binding) or Root Port node
+> (new binding). But commit 960609b22be5, left converting mentioned board DTS to
+> the new binding, leaving those affected platforms in a half baked state i.e.,
+> some properties in RC node and some in Root Port node. Driver cannot parse such
+> combinations, so it fails correctly so.
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Are you saying that above listed machines has broken PCIe support in
+v7.0-rc?
 
-yamllint warnings/errors:
+It seems this is a (partial) revert of 960609b22be5, is this actually
+fixing that change, or is it only applicable once some other changes are
+applied?
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml: Unresolvable reference: /schemas/phy/qcom,x1e80100-csi2-phy.yaml
+Where should this be merged?
 
-doc reference errors (make refcheckdocs):
+Regards,
+Bjorn
 
-See https://patchwork.kernel.org/project/devicetree/patch/20260316-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v10-2-fdfe984fe941@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> - Mani
+> 
+> -- 
+> மணிவண்ணன் சதாசிவம்
 
