@@ -1,215 +1,217 @@
-Return-Path: <devicetree+bounces-276358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276360-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cOxONhJHuGmLbAEAu9opvQ
-	(envelope-from <devicetree+bounces-276358-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 19:08:18 +0100
+	id EAyoBANIuGlTbgEAu9opvQ
+	(envelope-from <devicetree+bounces-276360-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 19:12:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8227829ED5C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 19:08:18 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FA6629EDD7
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 19:12:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DFD79301869D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:08:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E263F300D9D7
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:12:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B082A3CE49F;
-	Mon, 16 Mar 2026 18:08:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8499E3D3D05;
+	Mon, 16 Mar 2026 18:12:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ut/a5a2c"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L06XRiFd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D9FF344D91;
-	Mon, 16 Mar 2026 18:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A9ED3D34B7
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 18:12:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773684490; cv=none; b=JzYaq4wAFZ8QRe+CSr8NITa1f085o/LhN61NKMvwke1tpos6zOtqIkAMthIOCVsG7ocB2GZhyrbIrfsDLQBlMWixYns49J/H7MXDV8oGufT3HJPi4PlCrkuPW0sDrQfb4kzeV5+WJAE4WVY2GPTVO7euDwh7v3ljrVV2OR/et3k=
+	t=1773684733; cv=none; b=iX3EHci3GKCQMsld4hlqx7uEB6azWuVIgi/uFHZni79mssPV1NL4KyfdYp4CVuqiuNLfYZJUr+deJbZ25CguCTcEuIVpZyprnO7EMvO2v1ZgzJOuo7yUEDnHxEISUk01K0LY+qu3nr8ZbL9pg6ljfcgSU0iz0TzqgPZR3R2gn4E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773684490; c=relaxed/simple;
-	bh=NiJ3WnEDehNy0iNr06KR8Y+hKvreVkcs1fNU5PCTFyU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=S6zR3F05GprrfNKbJ3pbQz07ztkqmWsTHziP2X7n+ImnAEn2yPuSnfP/zzOXG9w7iNbaF5FS51JU0qRKRB7dSQvOoPLIzBEjogXC2vC4EtFWRlKNvhQxywcha4EyeoPys0KqFVrrpYS5AipQ3/fe4LFuJWkMuVjFUQLTYw6oBaw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ut/a5a2c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87A8FC19421;
-	Mon, 16 Mar 2026 18:08:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773684489;
-	bh=NiJ3WnEDehNy0iNr06KR8Y+hKvreVkcs1fNU5PCTFyU=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=ut/a5a2cjDJ5uIZjcCBCpU3vJU6M2pSSJVQWQ6uu33mGdke1oJAr5meeWWs66fQlw
-	 f9tUMJigPl0Gd0+77+apuVjR4Le3cIYqCq8eslZo9fdx9iN6R+nfkUGWFXHEaQxVmd
-	 zaZa3uw3bxGaci9yQUlm98BdGrjxUYGBfFjuK0/I+4IOXbByDDjGzlqGL+//tmwc4G
-	 ZICKJcQZxDynfyIRCJyG/fv9faCuHI22v4ZtWawOSxoM2GsXCOZVtmtBF/2RNwrASm
-	 lx462+r8hjvRQ51au80CBA0847qDeev92EHLkjo+atGTq9M0jjoau2IKZiOl5WuOZC
-	 bftXlHygdvKLA==
-Message-ID: <9ea2c5d6-8d75-43cd-9e1f-f39bf714d2e5@kernel.org>
-Date: Mon, 16 Mar 2026 19:08:01 +0100
+	s=arc-20240116; t=1773684733; c=relaxed/simple;
+	bh=dt3alpAXUOQoTq44HebBnWI/jUQU9/9QNQ+dm8LV8Wc=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=j4zK6JpFB1F3uVBcm7m9WTzXLSWwhN6OyGMx1xSikWjZpXSHKK9JZSYt9U39LnXmJVHu4zdZciITcPLNw3Gqg9zQCAvcDzR0tF/vUvN/taw8ng7UzOS9fq+J7/PB1x1OaYUbDwilYRR+g3ndANTxXuzbTdoe3UobhRAGh0HLUeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L06XRiFd; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-48540355459so46246035e9.3
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 11:12:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773684728; x=1774289528; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZNoFb191mvWm3HG8KPjdrK6BEhKwrJKwIStTVlNnrUE=;
+        b=L06XRiFdqc5nYolNuqZlVNECB9rA1A2rW9ZQNa8d+rpEWBrJPGzePLFlMJKEJ94eNi
+         MeVSo07TAJh+SDumkZ02KYA9yIPm4hoojIU7fRqUv7AlLRiNh5kMcTQJZV7hV5SuhkQu
+         /m/J96fzt2CASgo5cUrVvWZzlE+lqFaWciwZV5yRSDUxGYCbYFaNPlqJRtF3VM0uFJyN
+         4+hYE1dbbAGa9XVCv0lf9vM65i6eItNEwhuz+FMuXUsr7pwVFiNDMk+PxWS7nwQmpGV4
+         nwQNVFDXLRZtDoahKrx8WeKZwPnYOJhVl9ef9tH5HQ33Tsy2sKPy85F/yXJoH2/KVohK
+         qSng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773684728; x=1774289528;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZNoFb191mvWm3HG8KPjdrK6BEhKwrJKwIStTVlNnrUE=;
+        b=YQP2xsvlxrfV/GjLmrayRilhZgrPgHMxCbkYsHpCSClXf7DhFk3x4YfMXly5uxFqCQ
+         Dre+KKkB9CNTcENx82PCAXUGYi74WNt+c56iFFeCZArr6EPmIe3cw91UpyFVQSiduSfG
+         p1KnSCxcAz173FxgwhcatEyMIMYsKCFuUewcWhmNFReJUxk2Y4HucmPv1IkXCAJDt135
+         bzTaAIZnFCiK/4eMQyTmZ1WFxcw0WI+FKCLi9zPp0Kg9ORREzvGR30BfMw9m9eq7o6so
+         aeKVHDdW20ttZPJd/Q83Iki/k2KuSJzJa2Y0EL7WyjAiwNCOe3aRGX1GEADYOhISHvVX
+         b5mw==
+X-Forwarded-Encrypted: i=1; AJvYcCXOM5YvflXiHBYPYBad4ba0Zf/cGAMqr4Hrqh6IFP5TPRxEx8qhErOz0mQ8Gkaz1Dt066mEGD4Khr5n@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzq2V4y2JKV/HsPSm2AGfVJFpaqkCPdRxni2uyy7PdNga1EUu6j
+	nHzM+tX1r/H40xLN7RLPq16Qw/Lr8Tm5TMFWbRgRj3W2aj4OUg1GgYIn
+X-Gm-Gg: ATEYQzw26Qu468clihLNTKCWe/ewWfpDD8+Um7kzNKFE9EjaY4qrggAVrQ96SYkolv6
+	qSZ+N76yO2BxoUmGPMR0NuFLUVnlk+TCIfZkMdQw/HhFo4ce/g0WAtyaraIyg0QUd3lVTd8ukTH
+	5787YibaHNJ4Iy5u6qtmXSFRjmSBRfyTWSGJB+wKvS+bw5l0o/nw69EfsiruK7fCvKleMI9rZP3
+	Jnu+Ct76VARQUt43dtvvoxpuTqM26SDMKXbYVi8Fhi/FL5AAhmCehogLahmy5y0ni3T5Civ1/3a
+	lK3100d0la+ypHpAqsUdO19SZmRYzp56XeheKVDNmh3RcHJO6pd2ApOdopYNVjDTUro6zUuhFR8
+	XdT72TyV8ZTYyM/Tba3aY7QBa9IdiDtQ1KtOCugZr7bMAe2tygUEQo98/6IdQRNJQJiQzM42phb
+	E664gUvjrX0HX31BI=
+X-Received: by 2002:a05:600c:548f:b0:477:b642:9dc1 with SMTP id 5b1f17b1804b1-4855670514dmr233546695e9.20.1773684727835;
+        Mon, 16 Mar 2026 11:12:07 -0700 (PDT)
+Received: from fedora ([82.137.32.223])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-48557c89186sm247427825e9.1.2026.03.16.11.12.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Mar 2026 11:12:06 -0700 (PDT)
+From: Eduard Bostina <egbostina@gmail.com>
+To: daniel.baluta@nxp.com,
+	simona.toaca@nxp.com,
+	egbostina@gmail.com,
+	d-gole@ti.com,
+	m-chawdhry@ti.com,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mark Brown <broonie@kernel.org>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: input: touchscreen: Convert TS-4800 to DT schema
+Date: Mon, 16 Mar 2026 20:10:37 +0200
+Message-ID: <20260316181038.9771-1-egbostina@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] media: dt-bindings: Drop redundant endpoint
- properties
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
- Tommaso Merciai <tomm.merciai@gmail.com>, Martin Hecht <mhecht73@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>,
- Alain Volmat <alain.volmat@foss.st.com>,
- Jacopo Mondi <jacopo+renesas@jmondi.org>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Dongchun Zhu <dongchun.zhu@mediatek.com>,
- Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
- Quentin Schulz <quentin.schulz@theobroma-systems.com>,
- Todor Tomov <todor.too@gmail.com>, "Paul J. Murphy"
- <paul.j.murphy@intel.com>,
- Daniele Alessandrelli <daniele.alessandrelli@gmail.com>,
- Marco Felsch <kernel@pengutronix.de>, Lubomir Rintel <lkundrak@v3.sk>,
- linux-renesas-soc@vger.kernel.org,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260316134533.56941-3-krzysztof.kozlowski@oss.qualcomm.com>
- <20260316134533.56941-4-krzysztof.kozlowski@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260316134533.56941-4-krzysztof.kozlowski@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-276360-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276358-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,gmail.com,kernel.org,foss.st.com,jmondi.org,ideasonboard.com,ragnatech.se,linux.intel.com,raspberrypi.com,glider.be,linaro.org,mediatek.com,bootlin.com,theobroma-systems.com,intel.com,pengutronix.de,v3.sk,vger.kernel.org,bp.renesas.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[31];
+	FREEMAIL_TO(0.00)[nxp.com,gmail.com,ti.com,kernel.org,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[egbostina@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: 8227829ED5C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.3.232:email,devicetree.org:url]
+X-Rspamd-Queue-Id: 7FA6629EDD7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 16/03/2026 14:45, Krzysztof Kozlowski wrote:
-> The "endpoint" node references video-interfaces.yaml schema with
-> "unevaluatedProperties: false" which means that all properties from
-> referenced schema apply.  Listing some of them with ": true" is simply
-> redundant and does not make this code easier to read.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/media/marvell,mmp2-ccic.yaml        | 6 ------
->  Documentation/devicetree/bindings/media/renesas,ceu.yaml    | 3 ---
->  .../devicetree/bindings/media/renesas,rzg2l-cru.yaml        | 6 ------
->  3 files changed, 15 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml b/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml
-> index de3e483f146a..a8bf06108158 100644
-> --- a/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml
-> +++ b/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml
-> @@ -35,12 +35,6 @@ properties:
->          $ref: video-interfaces.yaml#
->          unevaluatedProperties: false
->  
-> -        properties:
-> -          hsync-active: true
-> -          vsync-active: true
-> -          pclk-sample: true
-> -          bus-type: true
-> -
->    clocks:
->      minItems: 1
->      items:
-> diff --git a/Documentation/devicetree/bindings/media/renesas,ceu.yaml b/Documentation/devicetree/bindings/media/renesas,ceu.yaml
-> index d527fc42c3fd..5f78c77b10a3 100644
-> --- a/Documentation/devicetree/bindings/media/renesas,ceu.yaml
-> +++ b/Documentation/devicetree/bindings/media/renesas,ceu.yaml
-> @@ -43,9 +43,6 @@ properties:
->          unevaluatedProperties: false
->  
->          properties:
-> -          hsync-active: true
-> -          vsync-active: true
-> -          field-even-active: false
+Convert the TS-4800 touchscreen bindings to DT schema.
 
-Removed too much, this must stay.
+Signed-off-by: Eduard Bostina <egbostina@gmail.com>
+---
+Note:
+* This patch is part of the GSoC2026 application process for device tree bindings conversions
+* https://github.com/LinuxFoundationGSoC/ProjectIdeas/wiki/GSoC-2026-Device-Tree-Bindings
 
->            bus-width:
->              enum: [8, 16]
+ .../touchscreen/technologic,ts4800-ts.yaml    | 42 +++++++++++++++++++
+ .../bindings/input/touchscreen/ts4800-ts.txt  | 11 -----
+ 2 files changed, 42 insertions(+), 11 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/technologic,ts4800-ts.yaml
+ delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/ts4800-ts.txt
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/technologic,ts4800-ts.yaml b/Documentation/devicetree/bindings/input/touchscreen/technologic,ts4800-ts.yaml
+new file mode 100644
+index 000000000..c033774b4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/technologic,ts4800-ts.yaml
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/technologic,ts4800-ts.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TS-4800 Touchscreen
++
++maintainers:
++  - Eduard Bostina <egbostina@gmail.com>
++
++properties:
++  compatible:
++    const: technologic,ts4800-ts
++
++  reg:
++    maxItems: 1
++
++  syscon:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    items:
++      - items:
++          - description: Phandle to the FPGA's syscon
++          - description: Offset to the touchscreen register
++          - description: Offset to the touchscreen enable bit
++    description: Phandle / integers array that points to the syscon node which
++      describes the FPGA's syscon registers.
++
++required:
++  - compatible
++  - reg
++  - syscon
++
++additionalProperties: false
++
++examples:
++  - |
++    touchscreen@1000 {
++        compatible = "technologic,ts4800-ts";
++        reg = <0x1000 0x100>;
++        syscon = <&fpga_syscon 0x20 3>;
++    };
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/ts4800-ts.txt b/Documentation/devicetree/bindings/input/touchscreen/ts4800-ts.txt
+deleted file mode 100644
+index 4c1c092c2..000000000
+--- a/Documentation/devicetree/bindings/input/touchscreen/ts4800-ts.txt
++++ /dev/null
+@@ -1,11 +0,0 @@
+-* TS-4800 Touchscreen bindings
+-
+-Required properties:
+-- compatible: must be "technologic,ts4800-ts"
+-- reg: physical base address of the controller and length of memory mapped
+-  region.
+-- syscon: phandle / integers array that points to the syscon node which
+-          describes the FPGA's syscon registers.
+-          - phandle to FPGA's syscon
+-          - offset to the touchscreen register
+-          - offset to the touchscreen enable bit
+-- 
+2.43.0
+
 
