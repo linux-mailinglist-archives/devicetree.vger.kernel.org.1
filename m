@@ -1,123 +1,253 @@
-Return-Path: <devicetree+bounces-275895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275896-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eLUdAH1lt2kMQwEAu9opvQ
-	(envelope-from <devicetree+bounces-275895-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 03:05:49 +0100
+	id oPFRCAZmt2kMQwEAu9opvQ
+	(envelope-from <devicetree+bounces-275896-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 03:08:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08040293C92
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 03:05:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EF96293CDA
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 03:08:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 173883021C3C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 02:03:16 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4C66E30046A3
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 02:07:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8686930F7F7;
-	Mon, 16 Mar 2026 02:02:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF70530B520;
+	Mon, 16 Mar 2026 02:07:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JmjMRYX5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="swu4qAbw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 641EA30F532;
-	Mon, 16 Mar 2026 02:02:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80CCD2D0C9A
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 02:07:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773626568; cv=none; b=Fg5wmzIaibzgOkNaZfTXeZqcVuI8n6Hu+hKK45/ZaFGvbAEonyWn73wBWpfizr+VBwN+uAiKPJawdyYECAhOmnv+pU7SzYBJnFW8oSGAouIpbS95SY3yg0+KfanuwEQpJXc0XM6iBYPTnfBsGZE88SH4316I/nB7CbRFozTtlsY=
+	t=1773626869; cv=none; b=g/7J7eMJ55ErWQQ1Fien4GNKTAJvX2bljeLvEFX4OzPSpeQGcYfhB5L1HiHYYvKbpuddO09J9t71liojRuv9WgNHSzytbd7QsS9lY5S0mCFak6mUKOSkMa0GkgrBuJdPjTo/P5PTqEHl/vyJ97vrzeagswJcB0OKz+ucRQttUho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773626568; c=relaxed/simple;
-	bh=bb2whBo4MkETTAuB7Qkikcyk9GMJXh92PDQ1hgUGPoM=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hDFVncacDRCkKaSIhqXz9624wNJFMLL6JQHMh1XvhWg44QCVM+1ZABFqC/ypCqarw6aaSznPL5UBKKR1oKAWf+aCFDYAc2AhCB0sV6IzFRGcNfNtxGNfO7dtq3Jx2K2Rij7JMP1+543Xynwrv2SkaXS8nVmyIAxCIfEl+inhTS4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JmjMRYX5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1BBDC2BC9E;
-	Mon, 16 Mar 2026 02:02:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773626568;
-	bh=bb2whBo4MkETTAuB7Qkikcyk9GMJXh92PDQ1hgUGPoM=;
-	h=From:To:Subject:Date:In-Reply-To:References:From;
-	b=JmjMRYX5OrXB0SORotKuSKCPP/oyyGyLmBZnz5p2Nfuc4Gdo7B7F8ym7Zn4x4raAu
-	 Yc/zKIltHnxeR3T+CxaD892umbm3+G5Mc4dXM0G5YFFnjmPFdw7tPRxG5k7M3Y6lp+
-	 4AHOBSTVCGjfMVS8Omho0oRbVNjiOm3PGPSWy+2dGTN1rQ70kKUlhzV/vdUO8vkI1r
-	 mmUsQ606FwdUEoynBr3X5Ui89dDeF4XSYMRhp3Wzy2G1mwHP+nCJBNpc057rKWPzzU
-	 mF5yabD5KFEwkvLxqcFIc7309/2TP4adbiqVjWzgLaeVeuoH6j+PKwzD+0P8oNj1pA
-	 mv4w3UwVtHynA==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Conor Dooley <conor@kernel.org>,
-	Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Richard Acayan <mailingradian@gmail.com>
-Subject: Re: (subset) [PATCH 0/3] SDM670 cache controller support
-Date: Sun, 15 Mar 2026 21:02:31 -0500
-Message-ID: <177362655070.7429.10166175242150328507.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260210021957.13357-1-mailingradian@gmail.com>
-References: <20260210021957.13357-1-mailingradian@gmail.com>
+	s=arc-20240116; t=1773626869; c=relaxed/simple;
+	bh=HPaBKR3U80fvQSWgEj+y8B7ck4aIug1oSsSLAqE/2d0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PLWe4phzBzeXW61vLC4OkBB8N2z3xqcP8bvm6wA0OJXJ5B+VVxowZwOX73PwzpvfyyJYRLi2321lQQGqDr4YQTN0NF8o4WDUJJhFsB676+5HzxnvRkC3ikmS5sVDr/6Db3QNxS+oaHni3u2SJxaJwJOMKyV75ISFafsYInb/w5Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=swu4qAbw; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5a12c2c5b10so631972e87.2
+        for <devicetree@vger.kernel.org>; Sun, 15 Mar 2026 19:07:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1773626866; x=1774231666; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dpc22jmT6VGQLTKw1GYmfyJRKbbmD8YhSAyUKYDuoLA=;
+        b=swu4qAbwCyHfJnb0idTa86iBrORMw1XPGnKWKZelBm88cGruQtM/VRr+45wNGWsYDX
+         GIeHZhDWop1hf/j+yRZ1F7SmBezs1URR/DjrMtXcyWOclIZBkpc1S5BdpymGJi0R/3Jg
+         6cP/ZQJOQvv73oOt1NCUX9YGpxFVNOgKhM3Gzxk1BQ7YMy/btKsSJAHcgU/6fJwig7NG
+         TdSpknAIx28+3NXwba/8k/t0ZP4w0a0xxVJtrBx95dSw5maAzHJyITZ6aZHhcgeKjvJx
+         /2YkvGo1YioHJWJPpDUkVb+8YaxiC+v+QzkxiC9o4VbZFM3tb7cvnYtCwpUwq3QsTX1k
+         9jTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773626866; x=1774231666;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dpc22jmT6VGQLTKw1GYmfyJRKbbmD8YhSAyUKYDuoLA=;
+        b=LoR9+Juh87QDpNkNLoP6vjYrZ14Do+nDAK8W3uy09IO2Y6XxIV7I3KdVWXrs1ivgk/
+         5NnliJ6R/NRyv5x69OLDdAmMXFiDada0FvbeJ1E0LkpDQw3Xmb+H0+7ebsEulF8MJn25
+         8IRJvOcv4nUZCe3Fhnj86PAB/7xPQ5suP+94UuFK9mpe8Xx0dYZ+GlL5jn2BqMCpSexj
+         TYmmcEmluuyzoZeosXiyFjg2QllEhFNac0DsGFTA416XhFRZEXx7scEO7Uo3aTumWdNv
+         X6cdVsQVZcsdxKoflo35QqDSvvh3JZSV2sT7ctK4Wc4/FcAFzAAjelw33EEPvVSY/iP0
+         47HQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVdpl7vQfHzGJMaIKNODOrJImddsENqHF4UHpIFqqgOPJ5/6fkG7r8TQxSNBcHYVVo13i34gj+P+OWC@vger.kernel.org
+X-Gm-Message-State: AOJu0YytCpWYV0H1AhyenzZxgMgBfuhQwbuDDqrxCIZLNNQs6oWkplHK
+	iMce7NP6fGtnwYrx97uTf9v2uV80Il3EEO+0E1Dj+pbQ51WV7jC+yiK4XHJoFyrq0KU=
+X-Gm-Gg: ATEYQzxUMzV1Aq7p7bswHJDfNs18V4oVIMhtzBaqs28jCi3n8pX8yohpZN6p1aPUVT3
+	vz83YlRHgd0VQH5s84Ft4YrEsy2ugML+fwRmLLiZAmxf5zjRHN0Fl5bP0bZDIFwj3oC2pl+hFoz
+	BbnzmgWncqliv4lIO06XQqzdOwAtisaE5sZo7sdS5t75oGx0okW1EozldBNRnmVO6PDeHcUo3/R
+	sWkzCBXrTFlxDqZz6EMXzR27kgyiUEIWQecgluwXTeKOHqvloR1fygT87J7w/xqhW5VR/7KUdFf
+	O8R6aKZHCjcOOm6hg0eqdFv5mP2NNU3Iv5y2bIfvW1Acjzo3MMrx1NnhFtBLlN/acRFICskpEpj
+	5Y8Q0WoLKO/YY7XFPImED22jr6X9oIgmh29h5tBG45CNa2WohfIlSrgeL8VMz6G6Lrq0VCjAxtP
+	jUC+53NkRjJs7qepi6aJs85VAJBxGAEBIUN0OmOXxjOCDrmDqmi3hVf3L6qsu1ZCxFgBYv6myLp
+	PCyUw==
+X-Received: by 2002:a05:651c:546:b0:38a:8602:71df with SMTP id 38308e7fff4ca-38a89769958mr19446821fa.3.1773626865535;
+        Sun, 15 Mar 2026 19:07:45 -0700 (PDT)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a156366676sm3121084e87.71.2026.03.15.19.07.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 15 Mar 2026 19:07:44 -0700 (PDT)
+Message-ID: <6a25af47-1593-4d2d-b72a-38a68f76ead6@linaro.org>
+Date: Mon, 16 Mar 2026 04:07:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 2/7] dt-bindings: media: qcom,x1e80100-camss: Add
+ optional PHY handle definitions
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Bryan O'Donoghue <bod@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+References: <20260316-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v10-0-fdfe984fe941@linaro.org>
+ <20260316-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v10-2-fdfe984fe941@linaro.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20260316-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v10-2-fdfe984fe941@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-275895-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-275896-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[kernel.org,huawei.com,vger.kernel.org,gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[linaro.org,kernel.org,baylibre.com,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 08040293C92
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:email,linaro.org:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1EF96293CDA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
-On Mon, 09 Feb 2026 21:19:54 -0500, Richard Acayan wrote:
-> This adds support for the Low-Level Cache Controller (LLCC) on SDM670.
+On 3/16/26 03:02, Bryan O'Donoghue wrote:
+> Add optional PHY handle definitions. This will allow for supporting both
+> legacy PHY definitions as well as supporting the optional new handle based
+> approach.
 > 
-> Richard Acayan (3):
->   dt-bindings: cache: qcom,llcc: Add SDM670 compatible
->   soc: qcom: llcc: Add configuration data for SDM670
->   arm64: dts: qcom: sdm670: add llcc
+> Drop the legacy high-level 0p8 and 1p2 supplies as required, each PHY has
+> its own individual rails. The old binding is still valid but with
+> individual nodes we define the rails in the CSIPHY sub-nodes.
+
+The new proposed CSIPHY device tree nodes should be outside of CAMSS
+device tree node.
+
 > 
-> [...]
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>   .../bindings/media/qcom,x1e80100-camss.yaml        | 33 ++++++++++++++++++++--
+>   1 file changed, 31 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
+> index b5654ef71bd89..5442f981baebc 100644
+> --- a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
+> +++ b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
+> @@ -43,6 +43,14 @@ properties:
+>         - const: vfe_lite0
+>         - const: vfe_lite1
+>   
+> +  '#address-cells':
+> +    const: 2
+> +
+> +  '#size-cells':
+> +    const: 2
+> +
+> +  ranges: true
+> +
+>     clocks:
+>       maxItems: 29
+>   
+> @@ -130,6 +138,16 @@ properties:
+>       description:
+>         1.2V supply to a PHY.
+>   
+> +  phys:
+> +    maxItems: 4
+> +
+> +  phy-names:
+> +    items:
+> +      - const: csiphy0
+> +      - const: csiphy1
+> +      - const: csiphy2
+> +      - const: csiphy4
+> +
+>     ports:
+>       $ref: /schemas/graph.yaml#/properties/ports
+>   
+> @@ -162,6 +180,14 @@ properties:
+>               required:
+>                 - data-lanes
+>   
+> +patternProperties:
+> +  "^phy@[0-9a-f]+$":
 
-Applied, thanks!
+CSIPHY device tree nodes shall be put outside of CAMSS device tree node.
 
-[1/3] dt-bindings: cache: qcom,llcc: Add SDM670 compatible
-      commit: 12cf1b5de820bc302f92221d87ae13ec1c760c84
-[2/3] soc: qcom: llcc: Add configuration data for SDM670
-      commit: 11080cc4af8f0ee4b88d0e51384765bb78f05bf5
+> +    $ref: /schemas/phy/qcom,x1e80100-csi2-phy.yaml
+> +    unevaluatedProperties: false
+> +
+> +  "^opp-table(-.*)?$":
+> +    type: object
+> +
+>   required:
+>     - compatible
+>     - reg
+> @@ -175,8 +201,6 @@ required:
+>     - iommus
+>     - power-domains
+>     - power-domain-names
+> -  - vdd-csiphy-0p8-supply
+> -  - vdd-csiphy-1p2-supply
+>     - ports
+>   
+>   additionalProperties: false
+> @@ -188,6 +212,7 @@ examples:
+>       #include <dt-bindings/clock/qcom,x1e80100-camcc.h>
+>       #include <dt-bindings/interconnect/qcom,icc.h>
+>       #include <dt-bindings/interconnect/qcom,x1e80100-rpmh.h>
+> +    #include <dt-bindings/phy/phy.h>
+>       #include <dt-bindings/power/qcom-rpmpd.h>
+>   
+>       soc {
+> @@ -233,6 +258,10 @@ examples:
+>                           "vfe_lite0",
+>                           "vfe_lite1";
+>   
+> +            #address-cells = <2>;
+> +            #size-cells = <2>;
+> +            ranges;
 
-Best regards,
+Here 'ranges' machnery is unexpected, the new proposed CSIPHY devices shall
+be described outside of CAMSS device tree node, as it's stated above.
+
+CAMSS is supposed to become a consumer of CSIPHYs, see phy-bindings.txt
+for 'phys' property.
+
+> +
+>               clocks = <&camcc CAM_CC_CAMNOC_AXI_NRT_CLK>,
+>                        <&camcc CAM_CC_CAMNOC_AXI_RT_CLK>,
+>                        <&camcc CAM_CC_CORE_AHB_CLK>,
+> 
+
 -- 
-Bjorn Andersson <andersson@kernel.org>
+Best wishes,
+Vladimir
 
