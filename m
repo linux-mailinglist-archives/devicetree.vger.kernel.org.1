@@ -1,238 +1,203 @@
-Return-Path: <devicetree+bounces-276171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276172-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6GLtA7MEuGlpYAEAu9opvQ
-	(envelope-from <devicetree+bounces-276171-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:25:07 +0100
+	id YKYjA8MFuGkWYQEAu9opvQ
+	(envelope-from <devicetree+bounces-276172-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:29:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 150D229A4CB
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:25:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6200D29A5FE
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:29:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B80AF3007A4E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 13:24:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EAB723016914
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 13:29:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C07B039768C;
-	Mon, 16 Mar 2026 13:24:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aObIXB/M"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FB223976AC;
+	Mon, 16 Mar 2026 13:29:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF24B396B76;
-	Mon, 16 Mar 2026 13:24:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7E0185C4A
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 13:29:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773667450; cv=none; b=Owrv4tLNMdnfinPdj0uLFsrmtmWIQ73CO5CVQ748Jrjib/YDA5sCmNqJY0pGVTwrDgoellwwdHq0/vQUTpOu8jOfOYDEES4663y0tk+rLUBlV2+FFhT5ZFG/eGfCPL/YcMOlcQg7Qal1XFgyl5XIvYgIiP9BXVW6YXZvhgXUxVs=
+	t=1773667776; cv=none; b=pHGaEWKPCx+c3FtN4P1qiEoYeETcv1w/xkcT6t1wg7WabuTm8VyRN/YcFyX75VwM2PoDZCQkor6YZMKeWAYY8zzJKfrzzdipYVydRcpCKiWqmD63qA43vWhKcdCVq4tsUA0DL5fJFlDy/LxqN11Imp3nr7bWZ9LI1ES+izVG3wk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773667450; c=relaxed/simple;
-	bh=NMlLH2VFH/Y5/XY1P7lMtQNhv2RSfsbBoVRQz0IvbBQ=;
+	s=arc-20240116; t=1773667776; c=relaxed/simple;
+	bh=Ewljs4HTBN8eqYjdhoANaHlrnITqiTKi+tNVwOrMiZE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Obks05p8b/nzSz0OYftF8a+vVePs+667UKIBCP8R4fD+EWfC7h2Ex7Qmnp+s+pP8TGwKVlTbfFRJq/PnAoQ/cr9UVZa51OBVrHLQQ3/oi/x6cRCulhUmzecoA4BbEAdPcTHEGplJhAOOvYQ8vWkP0iwuze9qco9QAhP3hbhXRQ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aObIXB/M; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773667448; x=1805203448;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=NMlLH2VFH/Y5/XY1P7lMtQNhv2RSfsbBoVRQz0IvbBQ=;
-  b=aObIXB/MJSwDGCgEShvQRfMGUrvGXUMiVusF3KJiGQXfyGosrCZfqBhn
-   mmhnQbbXIHJdf41lbEa0WL85h2Q8nkpNujpUtB1my6aSTiqcVUJ4PuPGs
-   H3gNV35Th34SrJsgQBE/xUg421UdFY+0I5PYs1NfQcBcm3Tl+Y88oEf2m
-   EEuSCob3CZNM6/gZRkeGfoBOrgahbiAZCvrEmEHFbGeMN5bKHGerHkNb7
-   j+92kkLq7qAgCznZS/RPRyZtUIBjV8EfdBRS3njLwggGozM46XeAOHBwG
-   PnZJamVsmabO20Ya4bpDhXNt5SDoq75nwI+fuF3S8hry2eOlaQpY9d5bi
-   Q==;
-X-CSE-ConnectionGUID: Wq9VJHrZRgGeKdZxCOqRhQ==
-X-CSE-MsgGUID: K7VG6avDQumRhldbRDzJVQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="78529580"
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
-   d="scan'208";a="78529580"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2026 06:24:07 -0700
-X-CSE-ConnectionGUID: 9/YWBNp3T6SmxeRKZ+Wv9w==
-X-CSE-MsgGUID: SyKXNVf/Qj6adp44vZHmBw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
-   d="scan'208";a="259821298"
-Received: from lkp-server01.sh.intel.com (HELO 892944969b78) ([10.239.97.150])
-  by orviesa001.jf.intel.com with ESMTP; 16 Mar 2026 06:24:04 -0700
-Received: from kbuild by 892944969b78 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1w27vM-000000000i6-1PkI;
-	Mon, 16 Mar 2026 13:24:00 +0000
-Date: Mon, 16 Mar 2026 21:23:33 +0800
-From: kernel test robot <lkp@intel.com>
-To: Anvesh Jain P <anvesh.p@oss.qualcomm.com>,
-	Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans de Goede <hansg@kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	platform-driver-x86@vger.kernel.org,
-	Anvesh Jain P <anvesh.p@oss.qualcomm.com>,
-	Maya Matuszczyk <maccraft123mc@gmail.com>
-Subject: Re: [PATCH v4 2/5] platform: arm64: Add driver for EC found on
- Qualcomm reference devices
-Message-ID: <202603162107.pwsms8tn-lkp@intel.com>
-References: <20260313-v04-add-driver-for-ec-v4-2-ca9d0efd62aa@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=svSD5azZAXgOZdqUbML0MiLEWE8mzRxag15Ycm06Xbiz4X9fIwjLrcd1QleOOChzY1GboEjlq7YmUh3357Z4EtqpvcPB/ODn3szaoO3Pr0xCY0VGCnnVs22ZSSapfL8l+kHhxF9yKcnEV4LCoBSAZ1+Brt3yl9DdmXJZwGUywV0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1w280O-0004iE-Mh; Mon, 16 Mar 2026 14:29:12 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1w280O-000ZtE-16;
+	Mon, 16 Mar 2026 14:29:12 +0100
+Received: from pengutronix.de (p4ffb2dc6.dip0.t-ipconnect.de [79.251.45.198])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 05811504F6E;
+	Mon, 16 Mar 2026 13:29:12 +0000 (UTC)
+Date: Mon, 16 Mar 2026 14:29:11 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+Cc: mani@kernel.org, thomas.kopp@microchip.com, mailhol@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org, 
+	konradybcio@kernel.org, linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, mukesh.savaliya@oss.qualcomm.com, 
+	anup.kulkarni@oss.qualcomm.com
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: qcs6490-rb3gen2: Enable CAN bus
+ controller
+Message-ID: <20260316-garrulous-saluki-of-advertising-b0a726-mkl@pengutronix.de>
+X-AI: stop_reason: "refusal"
+References: <20260316131950.859748-1-viken.dadhaniya@oss.qualcomm.com>
+ <20260316131950.859748-4-viken.dadhaniya@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="r3a2xgkqmsh547pa"
 Content-Disposition: inline
-In-Reply-To: <20260313-v04-add-driver-for-ec-v4-2-ca9d0efd62aa@oss.qualcomm.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+In-Reply-To: <20260316131950.859748-4-viken.dadhaniya@oss.qualcomm.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spamd-Result: default: False [-2.56 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.linux.dev,vger.kernel.org,oss.qualcomm.com,gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276171-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_FROM(0.00)[bounces-276172-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[mkl@pengutronix.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.994];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 150D229A4CB
+X-Rspamd-Queue-Id: 6200D29A5FE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Anvesh,
 
-kernel test robot noticed the following build warnings:
+--r3a2xgkqmsh547pa
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: qcs6490-rb3gen2: Enable CAN bus
+ controller
+MIME-Version: 1.0
 
-[auto build test WARNING on a0ae2a256046c0c5d3778d1a194ff2e171f16e5f]
+On 16.03.2026 18:49:50, Viken Dadhaniya wrote:
+> Enable the MCP2518FD CAN controller on the QCS6490 RB3 Gen2 platform.
+> The controller is connected via SPI3 and uses a 40=E2=80=AFMHz oscillator.
+>
+> The setup was tested with CAN-FD loopback and actual data transfer
+> using an external PCAN-USB FD adapter.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Anvesh-Jain-P/dt-bindings-embedded-controller-Add-EC-bindings-for-Qualcomm-reference-devices/20260314-163112
-base:   a0ae2a256046c0c5d3778d1a194ff2e171f16e5f
-patch link:    https://lore.kernel.org/r/20260313-v04-add-driver-for-ec-v4-2-ca9d0efd62aa%40oss.qualcomm.com
-patch subject: [PATCH v4 2/5] platform: arm64: Add driver for EC found on Qualcomm reference devices
-config: csky-allmodconfig (https://download.01.org/0day-ci/archive/20260316/202603162107.pwsms8tn-lkp@intel.com/config)
-compiler: csky-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260316/202603162107.pwsms8tn-lkp@intel.com/reproduce)
+IIRC a board DT update should go independent of the driver update.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603162107.pwsms8tn-lkp@intel.com/
+> Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+> ---
+> v1 -> v2:
+>
+> - Drop the gpio-hog property.
+> - Add the microchip,xstbyen property to enable transceiver standby contro=
+l.
+>
+> v1 Link: https://lore.kernel.org/all/20260108125200.2803112-3-viken.dadha=
+niya@oss.qualcomm.com/
+> ---
+> ---
+>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 22 ++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/bo=
+ot/dts/qcom/qcs6490-rb3gen2.dts
+> index e3d2f01881ae..245961722f84 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> @@ -44,6 +44,14 @@ chosen {
+>  		stdout-path =3D "serial0:115200n8";
+>  	};
+>
+> +	clocks {
+> +		mcp2518fd_osc: can-clk {
+> +			compatible =3D "fixed-clock";
+> +			clock-frequency =3D <40000000>;
+> +			#clock-cells =3D <0>;
+> +		};
+> +	};
+> +
+>  	dp-connector {
+>  		compatible =3D "dp-connector";
+>  		label =3D "DP";
+> @@ -1151,6 +1159,20 @@ platform {
+>  	};
+>  };
+>
+> +&spi3 {
+> +	status =3D "okay";
+> +
+> +	can@0 {
+> +		compatible =3D "microchip,mcp2518fd";
+> +		reg =3D <0>;
+> +		interrupts-extended =3D <&tlmm 7 IRQ_TYPE_LEVEL_LOW>;
+> +		clocks =3D <&mcp2518fd_osc>;
+> +		spi-max-frequency =3D <10000000>;
 
-All warnings (new ones prefixed by >>):
+Why do you limit the frequency to 10 MHz? Is this a HW limitation?
 
-   drivers/platform/arm64/qcom-hamoa-ec.c: In function 'qcom_ec_probe':
->> drivers/platform/arm64/qcom-hamoa-ec.c:388:63: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size 8 [-Wformat-truncation=]
-     388 |                 snprintf(name, EC_FAN_NAME_SIZE, "qcom_ec_fan_%d", i);
-         |                                                               ^~
-   drivers/platform/arm64/qcom-hamoa-ec.c:388:50: note: directive argument in the range [-2147483641, 254]
-     388 |                 snprintf(name, EC_FAN_NAME_SIZE, "qcom_ec_fan_%d", i);
-         |                                                  ^~~~~~~~~~~~~~~~
-   drivers/platform/arm64/qcom-hamoa-ec.c:388:17: note: 'snprintf' output between 14 and 24 bytes into a destination of size 20
-     388 |                 snprintf(name, EC_FAN_NAME_SIZE, "qcom_ec_fan_%d", i);
-         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+With a 40 MHz clock the chip supports up to 17 MHz (not 20 MHz due to
+the erratum).
 
+Marc
 
-vim +388 drivers/platform/arm64/qcom-hamoa-ec.c
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
-   347	
-   348	static int qcom_ec_probe(struct i2c_client *client)
-   349	{
-   350		struct qcom_ec_cooling_dev *cdev;
-   351		struct device *dev = &client->dev;
-   352		struct qcom_ec *ec;
-   353		int ret, i;
-   354	
-   355		ec = devm_kzalloc(dev, sizeof(*ec), GFP_KERNEL);
-   356		if (!ec)
-   357			return -ENOMEM;
-   358	
-   359		ec->client = client;
-   360	
-   361		ret = devm_request_threaded_irq(dev, client->irq, NULL, qcom_ec_irq,
-   362						IRQF_ONESHOT, "qcom_ec", ec);
-   363		if (ret < 0)
-   364			return dev_err_probe(dev, ret, "Failed to get irq\n");
-   365	
-   366		i2c_set_clientdata(client, ec);
-   367	
-   368		ret = qcom_ec_read_fw_version(dev);
-   369		if (ret < 0)
-   370			return dev_err_probe(dev, ret, "Failed to read ec firmware version\n");
-   371	
-   372		ret = qcom_ec_thermal_capabilities(dev);
-   373		if (ret < 0)
-   374			return dev_err_probe(dev, ret, "Failed to read thermal capabilities\n");
-   375	
-   376		ret = qcom_ec_sci_evt_control(dev, true);
-   377		if (ret < 0)
-   378			return dev_err_probe(dev, ret, "Failed to enable SCI events\n");
-   379	
-   380		ec->ec_cdev = devm_kcalloc(dev, ec->thermal_cap.fan_cnt, sizeof(*ec->ec_cdev), GFP_KERNEL);
-   381		if (!ec->ec_cdev)
-   382			return -ENOMEM;
-   383	
-   384		for (i = 0; i < ec->thermal_cap.fan_cnt; i++) {
-   385			struct qcom_ec_cooling_dev *ec_cdev = &ec->ec_cdev[i];
-   386			char name[EC_FAN_NAME_SIZE];
-   387	
- > 388			snprintf(name, EC_FAN_NAME_SIZE, "qcom_ec_fan_%d", i);
-   389			ec_cdev->fan_id = i + 1;
-   390			ec_cdev->parent_dev = dev;
-   391	
-   392			ec_cdev->cdev = thermal_cooling_device_register(name, ec_cdev,
-   393									&qcom_ec_thermal_ops);
-   394			if (IS_ERR(ec_cdev->cdev)) {
-   395				dev_err_probe(dev, PTR_ERR(cdev),
-   396					      "Thermal cooling device registration failed\n");
-   397				ret = -EINVAL;
-   398				goto unroll_cooling_dev;
-   399			}
-   400		}
-   401	
-   402		return 0;
-   403	
-   404	unroll_cooling_dev:
-   405		for (i--; i >= 0; i--) {
-   406			struct qcom_ec_cooling_dev *ec_cdev = &ec->ec_cdev[i];
-   407	
-   408			if (ec_cdev->cdev) {
-   409				thermal_cooling_device_unregister(ec_cdev->cdev);
-   410				ec_cdev->cdev = NULL;
-   411			}
-   412		}
-   413	
-   414		return ret;
-   415	}
-   416	
+--r3a2xgkqmsh547pa
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQSl+MghEFFAdY3pYJLMOmT6rpmt0gUCabgFpQAKCRDMOmT6rpmt
+0mj7AQDxU5YgSIHvN2VsfG2GOVsuPCeKz6TJ75DSxolGhm4VugEA6xwrm7zxwuit
+rhVCOx+7yZZgWtDvdUq/UK19bjXJyQw=
+=+3tl
+-----END PGP SIGNATURE-----
+
+--r3a2xgkqmsh547pa--
 
