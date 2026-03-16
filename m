@@ -1,184 +1,155 @@
-Return-Path: <devicetree+bounces-276306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276307-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WF/oD64puGnhZgEAu9opvQ
-	(envelope-from <devicetree+bounces-276306-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:02:54 +0100
+	id gLTGNvQruGnhZgEAu9opvQ
+	(envelope-from <devicetree+bounces-276307-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:12:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB6F029CF44
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:02:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4973229D1F4
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:12:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7F528303289E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:01:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A2D4230182A5
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:03:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4864D325716;
-	Mon, 16 Mar 2026 16:01:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="USsn5Id1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF6543264DC;
+	Mon, 16 Mar 2026 16:03:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D4B521A95D;
-	Mon, 16 Mar 2026 16:01:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A9C13254AE;
+	Mon, 16 Mar 2026 16:03:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773676902; cv=none; b=jEUefmdLpr++0E6LMmuuXgPPA6GDQLzzkTlzR1L3DPGBiSjtg9wN7PXtgGpUPlSbcI8jKjbXF3FksVREFC2FOG4lgtGsqNZVrBaw5FHy3wSHvhLOUrfTA/zfDPAbNTMhVamQU/MaRpA5ctqNXVav0rBIw4jYXBYcuzEnOnQ3mC8=
+	t=1773677031; cv=none; b=nOKf7LBa5P/zV9+HK5eVVPtR0WANJTQf8dFg7B6Z9pS0gv+cMe18K9SWKkpeoiqGP2vc9sYH87zjsKqpTc9eTTDpw0O36mOwCbV4xfQVTdZJ82XAgtpE+kcr5bEBvIcYuh3vs01/vvyZAfBuk3r9w2tJHiqmyVw1cHK5UBYkFmc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773676902; c=relaxed/simple;
-	bh=UyIZsrjKkEUaxHt7v/3reYw2j7lqEdtoJPKx1gtB+vg=;
+	s=arc-20240116; t=1773677031; c=relaxed/simple;
+	bh=k2epx7YD0jM8IXyjSFIrBoicPdg0GlitTL85w2hyFCw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lnn6takAcXSd3itde/2vXnBg5BAVVFLZBfDh4GMEt1QdX8LupMlW1PF9J+zG6TsvYAHCwsAEXaqXdvUosWHiisWp6xZ3SBKOlHdHtFaxQtS8KaOlVhAw2tcBYoTWKwbCO+ewsKVs11iyKVb1suVXmDKSCo5b1ZSYXwiRZPugn7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=USsn5Id1; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (xcpe-178-82-120-96.dyn.res.sunrise.net [178.82.120.96])
-	by mail11.truemail.it (Postfix) with ESMTPA id C71371FABC;
-	Mon, 16 Mar 2026 17:01:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1773676898;
-	bh=vhmAKk+4/zPYmmEuoWhhmx7M2Dlod4lMaxpiHqopJPk=; h=From:To:Subject;
-	b=USsn5Id1GmEi1ZI96WmPiKcNx5xtNxmE3ma2bHTvCZQCOUvz0rO8RB6gxDHv2RzIk
-	 3JVU78saC5ArM5uD4CAO0axgfLhJ2i8IDHgYBhFLuuF2oPkd2HlJWChqXw6BYO3qE0
-	 MWqeCtDUd2O1QTdeKO05aT3spatvaXHOwJxMSXQvekKQWGVa1drmsPebFltmKrklxI
-	 ecq8AnEVqRs0HuZ4FYHvwG18t1FJt/EhdBlAIkLrXsN6+F6TEK7h8f24DdfY+ER6Vl
-	 sau069TI35K4nCbRPQjwhSGm8iTSkH7aWZqbzUGjhxjYhfO8j4qh01eSfJFKO/P5xu
-	 dehkwvvtlNz9w==
-Date: Mon, 16 Mar 2026 17:01:36 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Thorsten Leemhuis <regressions@leemhuis.info>
-Cc: Nicolas Dufresne <nicolas@ndufresne.ca>,
-	Francesco Dolcini <francesco@dolcini.it>, ming.qian@oss.nxp.com,
-	linux-media@vger.kernel.org, mchehab@kernel.org,
-	hverkuil-cisco@xs4all.nl, benjamin.gaignard@collabora.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	p.zabel@pengutronix.de, sebastian.fricke@collabora.com,
-	shawnguo@kernel.org, ulf.hansson@linaro.org, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, festevam@gmail.com, m.felsch@pengutronix.de,
-	fra.schnyder@gmail.com, linux-imx@nxp.com, l.stach@pengutronix.de,
-	Frank.li@nxp.com, peng.fan@nxp.com, eagle.zhou@nxp.com,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, regressions@lists.linux.dev
-Subject: Re: [PATCH v4] media: verisilicon: Fix kernel panic due to
- __initconst misuse
-Message-ID: <20260316160136.GB43134@francesco-nb>
-References: <20260306031059.801-1-ming.qian@oss.nxp.com>
- <20260312173349.GA137045@francesco-nb>
- <e559b822c5f4fc9167d40544172c6c450d88636a.camel@ndufresne.ca>
- <3b30506f-f651-44c4-aca2-29e99ce60cba@leemhuis.info>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ipsAW2dFaANrnN3XQbh8zLF9bx1njP8kTFv35MvEG2x9zqAUOmZEMjIDBbbLcJavVMUKmJlnnBVrj8SPDwzTr9CwZunhdWaSV6wFgJH+SUZzv0eWZkpzGYFQwObznvyYRadd6mqYZES3tXIkFXOuuzfkPANOEndzeJxuHKcpYS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from duge-virtual-machine (unknown [183.192.222.244])
+	by APP-01 (Coremail) with SMTP id qwCowACXA2_RKbhp5nRBCg--.1107S2;
+	Tue, 17 Mar 2026 00:03:30 +0800 (CST)
+Date: Tue, 17 Mar 2026 00:03:28 +0800
+From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+To: Junhui Liu <junhui.liu@pigmoral.tech>
+Cc: pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	gaohan@iscas.ac.cn, me@ziyao.cc,
+	linux-riscv <linux-riscv-bounces@lists.infradead.org>
+Subject: Re: [PATCH v4 3/3] riscv: dts: canaan: Add mmc nodes for K230
+Message-ID: <abgp0PT4GHRwmaLy@duge-virtual-machine>
+References: <20260315054426.18383-1-jiayu.riscv@isrc.iscas.ac.cn>
+ <20260315054426.18383-4-jiayu.riscv@isrc.iscas.ac.cn>
+ <DH49Q7OQSIYM.1RD7H0L809JQV@pigmoral.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3b30506f-f651-44c4-aca2-29e99ce60cba@leemhuis.info>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+In-Reply-To: <DH49Q7OQSIYM.1RD7H0L809JQV@pigmoral.tech>
+X-CM-TRANSID:qwCowACXA2_RKbhp5nRBCg--.1107S2
+X-Coremail-Antispam: 1UD129KBjvJXoWruw1kCr1fAFW5ZF4fGF4kZwb_yoW8JrW5p3
+	y7CFW5GF4kXr17KF1Sq34jgrnxAayfJrn7Wr17tFyUJryavr90kr1Fqw4qgry7Xr40kr42
+	kw4UXryxWr4YkrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_Cr1lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
+	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
+	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
+	c7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
+	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
+	14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
+	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
+	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
+	IFyTuYvjxU7WrWUUUUU
+X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
+X-Spamd-Result: default: False [-0.96 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[dolcini.it,none];
-	R_DKIM_ALLOW(-0.20)[dolcini.it:s=default];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276306-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[31];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-0.970];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[ndufresne.ca,dolcini.it,oss.nxp.com,vger.kernel.org,kernel.org,xs4all.nl,collabora.com,pengutronix.de,linaro.org,gmail.com,nxp.com,lists.linux.dev,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[francesco@dolcini.it,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[dolcini.it:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[toradex.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,pengutronix.de:email,dolcini.it:dkim,qualcomm.com:email,nxp.com:email]
-X-Rspamd-Queue-Id: DB6F029CF44
+	RCVD_COUNT_THREE(0.00)[4];
+	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jiayu.riscv@isrc.iscas.ac.cn,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	PRECEDENCE_BULK(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276307-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[]
+X-Rspamd-Queue-Id: 4973229D1F4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 16, 2026 at 04:56:09PM +0100, Thorsten Leemhuis wrote:
-> On 3/16/26 16:25, Nicolas Dufresne wrote:
-> > Le jeudi 12 mars 2026 à 18:34 +0100, Francesco Dolcini a écrit :
-> >> On Fri, Mar 06, 2026 at 11:10:57AM +0800, ming.qian@oss.nxp.com wrote:
-> >>> From: Ming Qian <ming.qian@oss.nxp.com>
-> >>>
-> >>> Fix a kernel panic when probing the driver as a module:
-> >>>
-> >>>   Unable to handle kernel paging request at virtual address
-> >>>   ffffd9c18eb05000
-> >>>   of_find_matching_node_and_match+0x5c/0x1a0
-> >>>   hantro_probe+0x2f4/0x7d0 [hantro_vpu]
-> >>>
-> >>> The imx8mq_vpu_shared_resources array is referenced by variant
-> >>> structures through their shared_devices field. When built as a
-> >>> module, __initconst causes this data to be freed after module
-> >>> init, but it's later accessed during probe, causing a page fault.
-> >>>
-> >>> The imx8mq_vpu_shared_resources is referenced from non-init code,
-> >>> so keeping __initconst or __initconst_or_module here is wrong.
-> >>>
-> >>> Drop the __initconst annotation and let it live in the normal .rodata
-> >>> section.
-> >>>
-> >>> A bug of __initconst called from regular non-init probe code
-> >>> leading to bugs during probe deferrals or during unbind-bind cycles.
-> >>>
-> >>> Reported-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> >>> Closes: https://lore.kernel.org/all/68ef934f-baa0-4bf6-93d8-834bbc441e66@kernel.org/
-> >>> Reported-by: Franz Schnyder <franz.schnyder@toradex.com>
-> >>> Closes: https://lore.kernel.org/all/n3qmcb62tepxltoskpf7ws6yiirc2so62ia23b42rj3wlmpl67@rvkbuirx7kkp/
-> >>> Fixes: e0203ddf9af7 ("media: verisilicon: Avoid G2 bus error while decoding H.264 and HEVC")
-> >>> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> >>> Suggested-by: Marco Felsch <m.felsch@pengutronix.de>
-> >>> Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
-> >>> Signed-off-by: Ming Qian <ming.qian@oss.nxp.com>
-> >>
-> >> What's the plan to merge this? It fixes a quite severe regression,
-> >> a boot failure.
-> > 
-> > To be decided this week. The commit message does not say if it was released, or
-> > came in RCs (and I didn't check myself yet). I'd say, if its the first one, it
-> > will go through next and backports, otherwise its is really tight to get that
-> > into the RC series, but serious enough. Please fill the gap if you have time,
-> > and I'll handle it later, probably tomorrow.
+On Mon, Mar 16, 2026 at 10:15:27PM +0800, Junhui Liu wrote:
+> Hi Jiayu,
+> Thanks for the new version. Just a friendly reminder.
 > 
-> Well, FYI: the culprit according to the fixes tag quoted above is
-> e0203ddf9af7c8 ("media: verisilicon: Avoid G2 bus error while decoding
-> H.264 and HEVC") [v7.0-rc1, v6.19.6 (286d629d10640b)]. Given that this was
-> * reported 11 days ago
-> * reported at least two times
-> * made it into a stable series
-> it is something that Linus would like to see fixed by now in mainline
-> afaics, as ""the rule of thumb should generally be "within a week",
-> preferably before the next rc."":
-> https://www.kernel.org/doc/html/next/process/handling-regressions.html#on-how-quickly-regressions-should-be-fixed
+> On Sun Mar 15, 2026 at 1:44 PM CST, Jiayu Du wrote:
+> > Add MMC nodes to K230, including eMMC and SDIO. Enable HS200 eMMC
+> > on the SoM and SDIO high-speed on the board.
+> >
+> > Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+> > ---
+> >  .../boot/dts/canaan/k230-canmv-dshanpi.dts    | 56 +++++++++++++++++++
+> >  .../dts/canaan/k230-canmv-module-dshanpi.dtsi |  7 +++
+> >  arch/riscv/boot/dts/canaan/k230.dtsi          | 28 ++++++++++
+> >  3 files changed, 91 insertions(+)
 > 
-> If that fix is too dangerous a revert is of course an option, too.
+> [...]
 > 
-> BTW, given that the culprit made it to a stable series, it would be a
-> wise to add a stable tag to ensure it's backported (it otherweise might
-> be silent dropped and/or applying might be deferred).
+> > +
+> > +&sdio {
+> > +	bus-width = <4>;
+> > +	max-frequency = <50000000>;
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&mmc1_pins>;
+> > +	vmmc-supply = <&vdd_3v3>;
+> > +	vqmmc-supply = <&vdd_3v3>;
+> > +	cap-sd-highspeed;
+> > +	no-1-8-v;
+> > +	status = "okay";
+> >  };
+> >  
+> 
+> It seems the broken-cd property we discussed in the previous version is
+> not added, and also my Tested-by tag (for the whole series). Was this
+> intentional or just an oversight?
+> 
 
-Absolutely ... the tag here should help b4
+Sorry for that, It was a oversight. I will fix both.
 
-Cc: stable@vger.kernel.org
+And I will only add your Tested-by tags to patch [2/3] and [3/3].
+Is this correct?
 
-Francesco
+Kind regards,
+Jiayu Du
+
+> -- 
+> Best regards,
+> Junhui Liu
+> 
 
 
