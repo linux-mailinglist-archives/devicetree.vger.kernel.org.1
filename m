@@ -1,130 +1,217 @@
-Return-Path: <devicetree+bounces-276187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276188-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WMDZNXELuGkWYQEAu9opvQ
-	(envelope-from <devicetree+bounces-276187-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:53:53 +0100
+	id OCGkDHcLuGkWYQEAu9opvQ
+	(envelope-from <devicetree+bounces-276188-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:53:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5950C29AD2D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:53:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EFCD29AD34
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:53:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2184E3005396
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 13:49:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 50C363027974
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 13:51:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91A88395D85;
-	Mon, 16 Mar 2026 13:49:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MUX09udD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1F37282F2E;
+	Mon, 16 Mar 2026 13:51:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F6AE2D7D27
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 13:49:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F313165F1A
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 13:51:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773668985; cv=none; b=LBecD2KtMssgqgJCSlHvWtlRFKRq/0qqxxkatQ3KZrN4VO6QHofNkFh15+LXGANEejoufJr1KJJCEOFPZJegmMWkVLEFPZnvGoAf02LvPtN3mxqG4A5G28tMtj+fqbcXfGqjOCn5/3OAEm7Y4AIteAykttP4oKcyfldUzVsmzbU=
+	t=1773669106; cv=none; b=teWLcZ1xtIdxJ8uXn5K8+v0Zr3otQAjodQ4C6IsWGqJHp9H8+x0DqIK91Im1ISJPBEROR8YAn6OmYTK070fUxMAf/qtTwz5KTXJjfT0/MivDyukEcCCttj2zzgX5Mcj1X9iSn4CKG9kx/+KXBbl7HmCa07EJ0UDI7QDzZLSOZ9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773668985; c=relaxed/simple;
-	bh=A2q9pnOophLnn6caR9j1SFOoQuXMepZD8MjFyVMsVzA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NlrkKwCnh7VHs+HKidcjfLmvixLav7o4Ukp+eNiXZ11bSM6QWLwlkRYYmbgOr9oo3ZTo71LWghKmeowBWHsegFDFig6hmmS8qDlzctLMFv8jJsJM9jQb9+PdfVsR+3bhHuNRXuGl8s68mZHN/DdB/uc9P1lVPUf+FJ3LUjLACBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MUX09udD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D1BEC2BC9E
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 13:49:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773668985;
-	bh=A2q9pnOophLnn6caR9j1SFOoQuXMepZD8MjFyVMsVzA=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=MUX09udDrhOlLsC8/Q3l+9f7i6j0nw52cG2VBuQE28c0gsMbj/8yPFpkQlm+6qxO7
-	 2nwinoqGoDsFAJs6AwnP/BJBlnmpHp0JbD+DDuq3iIulxhKK+Odb/+aKge9jNKDBhh
-	 dHuXK87osW9hgYDFcPob13pEGM8QCPS+L8mw4AyRar4BUMhKg1qfF2pNQjd2nyKoN+
-	 dDETEbyC+jOHoLgXeCG9I6IKpGPo/YHNaCd+pftyQqQFeKOMf/3SItoyecyJjbrpCZ
-	 9xRKsijTcDS430vNPwngFADTRe7LPlJxz67BLKrDf2INqrfy6Aiy3CFrfWPwViujsL
-	 2U+USy9pozMzQ==
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-794719afcd4so39135707b3.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 06:49:45 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWoz/XZ1gJuf/mFYcUIceCA5ocLG6dTHJYelmcvEoQqPQG0AorGI5kMFgQRhSIQLleopoCSoAiQF6o7@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTr4HIK4ZGf3wZX4VlXvnDpuQW9m1I1rBvD2xuY/N5ypL7nWER
-	dluqKcT4XPmj3/j9n12ab9sTQYOnJEHMVipgN/2BqPPwqbk9wAQt5xgdetG8PyukL4NriQeUIjK
-	R5Hsm/taPJulTjlgKhlrIPmIg/YrnAFM=
-X-Received: by 2002:a05:690c:9a03:b0:798:58be:324d with SMTP id
- 00721157ae682-79a1c1ddd1cmr128701907b3.55.1773668984415; Mon, 16 Mar 2026
- 06:49:44 -0700 (PDT)
+	s=arc-20240116; t=1773669106; c=relaxed/simple;
+	bh=kOno8zHRh6SiR8GqzoKBFXeKaues8dzpcdGrYf/NTU0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FDsAhidjT4mQ/o5VE3t94LHERxhikX9yaSh/59VAaVdI0hDyD/QyzKpmA2RpZH9Izhz4Jk6VfEcqpli6/pNwFUtarYYdAn2FywORNGYMFIG2rYEtcMKFxmwpI6sQJSrJNAYfD5jyiZaA/EDUCDFooKFCcYjc/CAic39eBbHXNy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1w28Lx-0000LJ-VB; Mon, 16 Mar 2026 14:51:29 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1w28Lx-000a1e-2O;
+	Mon, 16 Mar 2026 14:51:29 +0100
+Received: from pengutronix.de (p4ffb2dc6.dip0.t-ipconnect.de [79.251.45.198])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 6E217504FCA;
+	Mon, 16 Mar 2026 13:51:29 +0000 (UTC)
+Date: Mon, 16 Mar 2026 14:51:29 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+Cc: mani@kernel.org, thomas.kopp@microchip.com, mailhol@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org, 
+	konradybcio@kernel.org, linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, mukesh.savaliya@oss.qualcomm.com, 
+	anup.kulkarni@oss.qualcomm.com
+Subject: Re: [PATCH v2 2/3] can: mcp251xfd: add support for XSTBYEN
+ transceiver standby control
+Message-ID: <20260316-fossa-of-extreme-cookies-9c5c40-mkl@pengutronix.de>
+X-AI: stop_reason: "refusal"
+References: <20260316131950.859748-1-viken.dadhaniya@oss.qualcomm.com>
+ <20260316131950.859748-3-viken.dadhaniya@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260312113040.68189-1-eleanor.lin@realtek.com> <20260312113040.68189-6-eleanor.lin@realtek.com>
-In-Reply-To: <20260312113040.68189-6-eleanor.lin@realtek.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Mon, 16 Mar 2026 14:49:33 +0100
-X-Gmail-Original-Message-ID: <CAD++jL=9J8p7sjfaFN1W_AoDuvJ+6FMXk=Mz6TMFN54VAPtTUQ@mail.gmail.com>
-X-Gm-Features: AaiRm53YgIbgRT6duHd0On12WaicPrmfX8KKe4MLPMA8yK6MYMjttB2TeXiF5i8
-Message-ID: <CAD++jL=9J8p7sjfaFN1W_AoDuvJ+6FMXk=Mz6TMFN54VAPtTUQ@mail.gmail.com>
-Subject: Re: [PATCH v3 5/7] pinctrl: realtek: add support for slew rate, input
- voltage and high VIL
-To: Yu-Chun Lin <eleanor.lin@realtek.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	afaerber@suse.com, bartosz.golaszewski@oss.qualcomm.com, 
-	james.tai@realtek.com, cy.huang@realtek.com, stanley_chang@realtek.com, 
-	tychang@realtek.com, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-realtek-soc@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="jeks4nuhao5wgxc3"
+Content-Disposition: inline
+In-Reply-To: <20260316131950.859748-3-viken.dadhaniya@oss.qualcomm.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spamd-Result: default: False [-2.56 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276187-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276188-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	DMARC_NA(0.00)[pengutronix.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid,realtek.com:email]
-X-Rspamd-Queue-Id: 5950C29AD2D
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mkl@pengutronix.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.989];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,pengutronix.de:mid,pengutronix.de:url]
+X-Rspamd-Queue-Id: 8EFCD29AD34
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 12, 2026 at 12:30=E2=80=AFPM Yu-Chun Lin <eleanor.lin@realtek.c=
-om> wrote:
 
-> From: Tzuyi Chang <tychang@realtek.com>
+--jeks4nuhao5wgxc3
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 2/3] can: mcp251xfd: add support for XSTBYEN
+ transceiver standby control
+MIME-Version: 1.0
+
+On 16.03.2026 18:49:49, Viken Dadhaniya wrote:
+> The MCP251xFD has a dedicated transceiver standby control function on
+> the INT0/GPIO0/XSTBY pin, controlled by the XSTBYEN bit in IOCON.
+
+Please add a check to mcp251xfd_gpio_request() that GPIO0 cannot be used
+with xstbyen.
+
+> When enabled, the hardware automatically manages the transceiver
+> standby state: the pin is driven low when the controller is active
+> and high when it enters Sleep mode.
 >
-> Add support for configuring slew rate, input voltage level and high VIL
-> mode. This involves updating the pin configuration parsing logic to handl=
-e
-> PIN_CONFIG_SLEW_RATE, PIN_CONFIG_INPUT_VOLTAGE_UV and the new custom
-> property "realtek,high-vil-microvolt".
+> Enable this feature when the 'microchip,xstbyen' device tree property
+> is present.
 >
-> Signed-off-by: Tzuyi Chang <tychang@realtek.com>
-> Co-developed-by: Yu-Chun Lin <eleanor.lin@realtek.com>
-> Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+> Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+> ---
+>  .../net/can/spi/mcp251xfd/mcp251xfd-core.c    | 30 +++++++++++++++++++
+>  drivers/net/can/spi/mcp251xfd/mcp251xfd.h     |  1 +
+>  2 files changed, 31 insertions(+)
+>
+> diff --git a/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c b/drivers/net=
+/can/spi/mcp251xfd/mcp251xfd-core.c
+> index 9c86df08c2c5..7a152acf4931 100644
+> --- a/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c
+> +++ b/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c
+> @@ -764,6 +764,29 @@ static void mcp251xfd_chip_stop(struct mcp251xfd_pri=
+v *priv,
+>  	mcp251xfd_chip_set_mode(priv, MCP251XFD_REG_CON_MODE_CONFIG);
+>  }
+>
+> +static int mcp251xfd_chip_xstbyen_enable(const struct mcp251xfd_priv *pr=
+iv)
+> +{
+> +	/* Configure the INT0/GPIO0/XSTBY pin as transceiver standby control:
+> +	 *
+> +	 * - XSTBYEN=3D1: route the pin to the transceiver standby function
+> +	 * - TRIS0=3D0:   set output direction; the reset default is 1 (input),
+> +	 *              which leaves the pin floating HIGH and keeps the
+> +	 *              transceiver in standby regardless of XSTBYEN
+> +	 * - LAT0=3D0:    drive pin LOW =3D> transceiver active (not in standby)
+> +	 *
+> +	 * All three bits are included in the mask; only XSTBYEN is set in
+> +	 * val, so TRIS0 and LAT0 are cleared to 0 atomically.
+> +	 *
+> +	 * Once configured, the hardware automatically drives the pin HIGH
+> +	 * on Sleep mode entry and LOW on Sleep mode exit.
+> +	 */
 
-Reviewed-by: Linus Walleij <linusw@kernel.org>
+What does the pin do in Config mode?
 
-Yours,
-Linus Walleij
+> +	return regmap_update_bits(priv->map_reg, MCP251XFD_REG_IOCON,
+> +				  MCP251XFD_REG_IOCON_XSTBYEN |
+> +				  MCP251XFD_REG_IOCON_TRIS0 |
+> +				  MCP251XFD_REG_IOCON_LAT0,
+> +				  MCP251XFD_REG_IOCON_XSTBYEN);
+> +}
+> +
+>  static int mcp251xfd_chip_start(struct mcp251xfd_priv *priv)
+>  {
+>  	int err;
+> @@ -800,6 +823,12 @@ static int mcp251xfd_chip_start(struct mcp251xfd_pri=
+v *priv)
+>  	if (err)
+>  		goto out_chip_stop;
+>
+> +	if (priv->xstbyen) {
+> +		err =3D mcp251xfd_chip_xstbyen_enable(priv);
+> +		if (err)
+> +			goto out_chip_stop;
+> +	}
+> +
+
+You should configure the pin before bringing the controller into normale mo=
+de.
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--jeks4nuhao5wgxc3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQSl+MghEFFAdY3pYJLMOmT6rpmt0gUCabgK3gAKCRDMOmT6rpmt
+0jdsAQDHH2DRCgUOHnf0SV94wEC3/aDUYUvR4qQ04gQzQWDWowD/VKT7WZYF4mk6
+usG0qTfKBBCeYb90hnKnCcb4KPwZbAk=
+=P4Ss
+-----END PGP SIGNATURE-----
+
+--jeks4nuhao5wgxc3--
 
