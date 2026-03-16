@@ -1,207 +1,167 @@
-Return-Path: <devicetree+bounces-276200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276202-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iBroKRgPuGmZYgEAu9opvQ
-	(envelope-from <devicetree+bounces-276200-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:09:28 +0100
+	id IGXTM28OuGkWYQEAu9opvQ
+	(envelope-from <devicetree+bounces-276202-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:06:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2255029B0F2
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:09:28 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 742B229B000
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:06:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1AE903066CD7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:04:50 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 073F53031228
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:05:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3086339C63C;
-	Mon, 16 Mar 2026 14:04:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k2+5KxeT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 685513932E4;
+	Mon, 16 Mar 2026 14:05:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C987B39C65E
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 14:04:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E15639D6DC
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 14:05:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773669885; cv=none; b=ldRd7whjTcvcK1vPmx38T05eEGlCPIlmAKqCq8WZC8qIFTYt/GlITdL/0Qc1grKiSa9/CKdzaK774Zd+GLjSlDMocq+lE3Uh813ie3zUmtBoMF7COsRaa+1ivtuaROaaeiUrnR0XiAIDKVBvzz6Ohxrqvu4H8eNp8TzIdh6451s=
+	t=1773669936; cv=none; b=i20Ji79WM6n277fGnKx+JqcITV3LzctF2od7nD0x3BRGF6ohfII2TjbGeBGXKQyWDrVw8xI18zIjpnQJW2fF2o1lFYlp/PN69hR5lDhceB/NR36qOEYHMTbuUh0OSpOrtS1b7c59dB5qspVdd9pFdzTBSNxiccJo8poaeeL5z0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773669885; c=relaxed/simple;
-	bh=fx2qLZcY5f16CxHdcoO1htYJobmi8onTWzwMAk9DhnY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=QCMDdxQ+AgoLCSuxGQCKFv3b+Y/bTgfKEXldJnAUST9FPNb4c2akZJ90tI3mgi43ZuFjOa96lUaSCiAOjXhqMMskr1v9cmCam0fXhwtS/zWGpn136tUMbvHr3eiLKHdVmyTDpEgtmG2+ak3u7emTwuiPzjR69Tt2+PUlDhYaHMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k2+5KxeT; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-439c5b40f60so3607822f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 07:04:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773669881; x=1774274681; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TGku/l9FNPrwiqABN5hj0gv51qaKMC4DWzEN52XfCG0=;
-        b=k2+5KxeT5DmooyN4GmYiPjtdRtxC5ZfRHpJIdl/sAo9ksryCsDTVEyaZttF53OgOCX
-         jDNWjQVf4jAYzC2iEZABAvxo4PrkgLwvc0q/SBeX5mZ6VxJj2WpccgRtooc7W8jqQO14
-         AWT5Zy1CJgvJAornghvIxwkhUOeSQZY+AoJH2ueQuiT7mJtJHoUdhQvk2Ktp/h1IdfVv
-         ovFPV1OdTafe/qYpBJ1gwKKXVwIBtO2OolBZcjJn9IIIdZjWuFwnDCwAP/QzkzCwr/iH
-         8wuFv1esBkAGafkspkqvpj+bk1Tl2pYcSEL7y/+dF96wMMNHLbQPliqSzU+3UkdEIZ4U
-         x9YQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773669881; x=1774274681;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=TGku/l9FNPrwiqABN5hj0gv51qaKMC4DWzEN52XfCG0=;
-        b=gUl7FiJKiSpgtr1x3/T6SgqejkPThA8h4CKYI50OQ8jPPort0mAAHRAsgSg/Rjt1FH
-         5NFcXmYD5OL5q5RcgLfWHeRK/Ekk1q7xGixrLOz7A6MArylYl+jGDbHikkuAN0THAGRT
-         1dOVloJv5Z2oH4lSMFJSvTWVc3sh6kH/Njae5WVXZAi9+GDy0Vt0YdUzO0OCNnZoZ0Rc
-         dGykiGEH/Fxhe5niMDv2+/JzrB5LNzPTgWtnH06XP9Rq4N9qx6RRBcneB5m1Inikkf/9
-         MI8pEGfnlXiToLEoW97rnHeYg79r03rTbxxuVV8KBlc6XvFI2V91ke7EZmmg1bftt767
-         ZoSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUFl4D6k2HceViHUUfA/l6m7uzd0MK7licDrQn8sU/cgKR1RJ5Fcj250S5dH48mcCAHKHa5+P7Hqqux@vger.kernel.org
-X-Gm-Message-State: AOJu0YyfnoRzMUnlQ7uVmCND4cLfBhHcezlkkTEAWDmHtb7HvMi7Ok/Z
-	QOVOr7790wMECJZGVMutc2QnJ3BBmlZyoFPE75np9/U7/xHE/vg8CimGStgiXGet
-X-Gm-Gg: ATEYQzypZsh8pj2KG7RK8r4zVAfQkUvpJE9z3W4u48b8xtFu+f72aZCGpLrhi8dH8ba
-	njv7HovmnO7FOq+tXCQle1QFZkh6s1Umj/GgtUOneUjweum7t4hiax02/J1HrPKEBBCoWR55JHC
-	i1b+CaQMlVPSLUwEjSxldWfh7JUZziOOJLRCDdjm3ItGYniS0Xu1szaE9TgPhhissjm+SWji3mN
-	EkbOfvkD6vyK2ZkcSwcQaolpbePJhllHOkN1IALlsOLA9ET3Lw1Emy0g3/uIt3V960a7CEQZCjM
-	YN7h73M6OdBSdtEItFLmbn2xm0aPb0SOnpav4YMZsK20CQDD9ylkN17UbtGgj1ZrGcVBqfR5yLK
-	7QcGHuNJxdhOpsKTayNss7ryiTkmIVy827Y1VrHv+Hj6Ya3Z9fSkToMSHMJ/2tSX7Hq7Mhux2Xy
-	v+MIAU1V1ndkl5AyjX4WvGincIOaP3G/Brx+v5vW/K/0uUwKDKSF1XJXOqaxmTwIJ6
-X-Received: by 2002:a05:6000:2889:b0:43b:4153:c2a6 with SMTP id ffacd0b85a97d-43b4153c45fmr7601207f8f.36.1773669880512;
-        Mon, 16 Mar 2026 07:04:40 -0700 (PDT)
-Received: from ipedrosa-thinkpadx1carbongen12.rmtes.csb ([67.218.234.31])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b3a09e453sm20698725f8f.0.2026.03.16.07.04.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Mar 2026 07:04:39 -0700 (PDT)
-From: Iker Pedrosa <ikerpedrosam@gmail.com>
-Date: Mon, 16 Mar 2026 15:03:35 +0100
-Subject: [PATCH v3 7/7] riscv: dts: spacemit: k1-bananapi-f3: add SD card
- support with UHS modes
+	s=arc-20240116; t=1773669936; c=relaxed/simple;
+	bh=HPSxwS+M9pZMUTUJLFDD5tjDpuTangL5WVaEr8DQrjw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=u1vgrwld2QFP0Vc9Cu+oZ2F62STe2s2TXNqyUOcEW7cbJsd8EFiHnK/ZzwvhtnPHiU4qKsYXtIzdHFOAlwwwGgu2N/YIbxm7xRvxmDi+iv0DKWExR8G0PlioqxtqbMxkqBTFxqljU6jwK7OVsBvEIAXkIURsy9yutQz/7q56Dhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w28ZI-0002G2-E9; Mon, 16 Mar 2026 15:05:16 +0100
+Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac] helo=dude04)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w28ZH-000a8J-2K;
+	Mon, 16 Mar 2026 15:05:15 +0100
+Received: from ore by dude04 with local (Exim 4.98.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w28ZH-00000005twK-2f82;
+	Mon, 16 Mar 2026 15:05:15 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Peter Rosin <peda@axentia.se>,
+	Linus Walleij <linusw@kernel.org>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	David Jander <david@protonic.nl>
+Subject: [PATCH v5 0/7] mfd: Add support for NXP MC33978/MC34978 MSDI
+Date: Mon, 16 Mar 2026 15:05:05 +0100
+Message-ID: <20260316140514.1406588-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260316-orangepi-sd-card-uhs-v3-7-aefd3b7832df@gmail.com>
-References: <20260316-orangepi-sd-card-uhs-v3-0-aefd3b7832df@gmail.com>
-In-Reply-To: <20260316-orangepi-sd-card-uhs-v3-0-aefd3b7832df@gmail.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>, 
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
- Yixun Lan <dlan@kernel.org>, Yixun Lan <dlan@kernel.org>
-Cc: Michael Opdenacker <michael.opdenacker@rootcommit.com>, 
- Javier Martinez Canillas <javierm@redhat.com>, linux-mmc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Iker Pedrosa <ikerpedrosam@gmail.com>, Anand Moon <linux.amoon@gmail.com>
-X-Mailer: b4 0.14.2
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
-	TAGGED_FROM(0.00)[bounces-276200-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	DMARC_NA(0.00)[pengutronix.de];
+	RCVD_COUNT_FIVE(0.00)[6];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ikerpedrosam@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-276202-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.2:email];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.971];
+	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2255029B0F2
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 742B229B000
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add complete SD card controller support with UHS high-speed modes.
+This series adds support for the NXP MC33978/MC34978 Multiple Switch Detection
+Interface (MSDI) via the MFD framework.
 
-- Enable sdhci0 controller with 4-bit bus width
-- Configure card detect GPIO with inversion
-- Connect vmmc-supply to buck4 for 3.3V card power
-- Connect vqmmc-supply to aldo1 for 1.8V/3.3V I/O switching
-- Add dual pinctrl states for voltage-dependent pin configuration
-- Support UHS-I SDR25, SDR50, and SDR104 modes
+Architecture overview:
+* mfd: Core driver handling 2-frame pipelined SPI, regulator sequencing, and
+  linear irq_domain. Harvests status bits from SPI MISO MSB.
+* pinctrl: Exposes 22 physical switch inputs as standard GPIOs. Proxies IRQs to
+  the MFD domain.
+* hwmon: Exposes thermal limits, VBATP/VDDQ voltage boundaries, and dynamic
+  fault alarms.
+* mux: Controls the 24-to-1 AMUX routing analog signals (switch voltages,
+  temperature, VBATP) to an external ADC.
 
-This enables full SD card functionality including high-speed UHS modes
-for improved performance.
+Initial pinctrl implementation by David Jander, reworked into this MFD
+architecture.
 
-Suggested-by: Anand Moon <linux.amoon@gmail.com>
-Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
----
- arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 23 +++++++++++++++++++++--
- 1 file changed, 21 insertions(+), 2 deletions(-)
+Best regards,
+Oleksij
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index 404b69c47b91f8c37d74a3031dbad0d94a28d1b4..a7d480d01ccc0439dbf456ed5a81f467af68056a 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -222,7 +222,7 @@ buck3_1v8: buck3 {
- 				regulator-always-on;
- 			};
- 
--			buck4 {
-+			buck4: buck4 {
- 				regulator-min-microvolt = <500000>;
- 				regulator-max-microvolt = <3300000>;
- 				regulator-ramp-delay = <5000>;
-@@ -243,7 +243,7 @@ buck6 {
- 				regulator-always-on;
- 			};
- 
--			aldo1 {
-+			aldo1: aldo1 {
- 				regulator-min-microvolt = <500000>;
- 				regulator-max-microvolt = <3400000>;
- 				regulator-boot-on;
-@@ -369,3 +369,22 @@ hub_3_0: hub@2 {
- 		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
- 	};
- };
-+
-+&sdhci0 {
-+	pinctrl-names = "default", "state_uhs";
-+	pinctrl-0 = <&mmc1_cfg>;
-+	pinctrl-1 = <&mmc1_uhs_cfg>;
-+	bus-width = <4>;
-+	cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
-+	cd-inverted;
-+	no-mmc;
-+	no-sdio;
-+	disable-wp;
-+	cap-sd-highspeed;
-+	vmmc-supply = <&buck4>;
-+	vqmmc-supply = <&aldo1>;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	status = "okay";
-+};
+David Jander (1):
+  pinctrl: add NXP MC33978/MC34978 pinctrl driver
 
--- 
-2.53.0
+Oleksij Rempel (6):
+  dt-bindings: pinctrl: add NXP MC33978/MC34978 MSDI
+  mfd: add NXP MC33978/MC34978 core driver
+  pinctrl: core: Make pin group callbacks optional
+  gpio: gpiolib: fix allocation order in hierarchical IRQ domains
+  hwmon: add NXP MC33978/MC34978 driver
+  mux: add NXP MC33978/MC34978 AMUX driver
+
+ .../bindings/pinctrl/nxp,mc33978.yaml         | 153 +++
+ drivers/gpio/gpiolib.c                        |  19 +-
+ drivers/hwmon/Kconfig                         |  10 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/mc33978-hwmon.c                 | 430 +++++++++
+ drivers/mfd/Kconfig                           |  15 +
+ drivers/mfd/Makefile                          |   2 +
+ drivers/mfd/mc33978.c                         | 870 ++++++++++++++++++
+ drivers/mux/Kconfig                           |  14 +
+ drivers/mux/Makefile                          |   2 +
+ drivers/mux/mc33978-mux.c                     | 119 +++
+ drivers/pinctrl/Kconfig                       |  14 +
+ drivers/pinctrl/Makefile                      |   1 +
+ drivers/pinctrl/core.c                        |  25 +-
+ drivers/pinctrl/pinconf.c                     |  18 +-
+ drivers/pinctrl/pinctrl-mc33978.c             | 747 +++++++++++++++
+ include/linux/mfd/mc33978.h                   |  86 ++
+ 17 files changed, 2506 insertions(+), 20 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nxp,mc33978.yaml
+ create mode 100644 drivers/hwmon/mc33978-hwmon.c
+ create mode 100644 drivers/mfd/mc33978.c
+ create mode 100644 drivers/mux/mc33978-mux.c
+ create mode 100644 drivers/pinctrl/pinctrl-mc33978.c
+ create mode 100644 include/linux/mfd/mc33978.h
+
+--
+2.47.3
 
 
