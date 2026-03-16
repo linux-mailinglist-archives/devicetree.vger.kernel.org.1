@@ -1,143 +1,232 @@
-Return-Path: <devicetree+bounces-276269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276271-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AMTLM5YguGmdZQEAu9opvQ
-	(envelope-from <devicetree+bounces-276269-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:24:06 +0100
+	id OK5mCFYiuGmdZQEAu9opvQ
+	(envelope-from <devicetree+bounces-276271-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:31:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 667D729C3CB
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:24:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C071129C6A5
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:31:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A8DD23021964
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:23:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B84B030A52BF
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:26:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4787839C643;
-	Mon, 16 Mar 2026 15:23:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F0433A0EA5;
+	Mon, 16 Mar 2026 15:25:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XTtw7wr1"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="xb/iFkL2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 557FE38D00A;
-	Mon, 16 Mar 2026 15:23:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79E9630B508
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 15:25:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773674639; cv=none; b=azHfZXSHTV0CghmhdPaCfkBW9WHeraHtJSi67Da7r60VorcmEXVataoqS08u0tFE2ri9wvwZ3TFl5sNsWm1jfH5vMOTfo2WnVVK/2ysfn0UG17drTikqFj7fPtzeP1lGqIwy0HQlxqJkNqFNG0OBbRK9zUkbqq5Gy2IphnLZPkk=
+	t=1773674755; cv=none; b=EKSOU4Vbaa+wtlZieHJRnHZTjVx94UmMp6pzd/hxWY4kRloJOS+OHmYRalcu+D6xLW7tJyuAHmHV4N3w0yjk9zIeFiv2rYGsNgC8Y0Lqzv0dcjqnzNbqisagzSYGsibHPbxDg7/cKGUx/ZAzOvTZpDw1Tgfw0cDlEVDwshsq86k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773674639; c=relaxed/simple;
-	bh=20GIlEHy/sVe4e2jX3rrE8q0cbxfWTl2tfNOtUUch/w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e8CcU4Qretorgc/72Zmzh4Ytstvo+wkbsM8FEEm0yDAe1NqX8eUnLw4f3Iw8t25O29gYZJN3IvCbh2fqBxUvG9OiQGd8LUVd4Y5cBt2q/stRrOmpl792OWa/uOUcOLqSc7KLxzqCdRQoPxrLXuQINIWd01KqEeL3zsbkEUpL9kg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XTtw7wr1; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773674637; x=1805210637;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=20GIlEHy/sVe4e2jX3rrE8q0cbxfWTl2tfNOtUUch/w=;
-  b=XTtw7wr1q61fTO0nm5qGfHEVy/aF5vaXGsIiBTk5Ilgngk/PbWAsFtJg
-   B1/F5EMMGlaOIQwlJFpxE0wMcXIxNlbDg07ETqGANSzXF8v0LXKKIaQzN
-   Pd0WyRXJkKmGg7r9Skxcz4/lrsE4B5McpltezJta10J5Ed8HnBlw2+Tc6
-   jkbyGziNJxrdcXLOGKoWoJf0sorS04/93fhJDBOL6tjt1Xco512Lhb7u+
-   xFSaJm3o0qXPpqxJwE7WFQVd0AmXOYRLLUXiGkreK3jPlqox9Grx0cMXS
-   oW8mvkspWsIh9B3NYcN6tXmumN0XFZzoJdM1C2QjnqwIe93jtjWCa877F
-   A==;
-X-CSE-ConnectionGUID: OOZIVr/wQG6GtS+0zXzdHg==
-X-CSE-MsgGUID: JnWJ470MTcaIV5lPFhgPqg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="78544273"
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
-   d="scan'208";a="78544273"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2026 08:23:57 -0700
-X-CSE-ConnectionGUID: jXSBGeGqQO+Oj+adpoA8YA==
-X-CSE-MsgGUID: jMMn6nsiQBCwFDEfx9ZAnw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
-   d="scan'208";a="252475109"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.237])
-  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2026 08:23:53 -0700
-Date: Mon, 16 Mar 2026 17:23:50 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, lars@metafoo.de,
-	Michael.Hennerich@analog.com, cosmin.tanislav@analog.com,
-	jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Subject: Re: [PATCH v2 4/5] iio: adc: ad4130: introduce chip info for future
- multidevice support
-Message-ID: <abgghuhw01q9u90c@ashevche-desk.local>
-References: <cover.1773311639.git.Jonathan.Santos@analog.com>
- <4ab83983026db04695e0a36a7103efbfb82f7a76.1773311639.git.Jonathan.Santos@analog.com>
+	s=arc-20240116; t=1773674755; c=relaxed/simple;
+	bh=EmU/H1okNcFjV+9dIf1YYbHYAtpcc5BpjXx7qtPv/rU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ITQ1+hdkkAizeDHNF45OaGGybX1ycb9Opnu9aXLP2uWCNV8Jj5bTRcH7CYGKJT7nlm5dljy0RFCYN2ZzSP+UfAI3KKH+wK9QA/QSkdeqg6AvGAjw9BpQn0oepSq765U2Loa8X6EH2uFt+YEddXTxe0+dmUezhteevbTkht+p8xc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=xb/iFkL2; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id EC1D91A2DAD;
+	Mon, 16 Mar 2026 15:25:50 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B65925FC4A;
+	Mon, 16 Mar 2026 15:25:50 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EFF10103721D8;
+	Mon, 16 Mar 2026 16:25:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1773674749; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=pS+EaItzmbvXlsfn6nJX/6UR9gvOfsTQqbQOI9Z/hNA=;
+	b=xb/iFkL2u/cex3SaLpQNgV2gpcdHfmp8GDwJtmXH85r8prhksXm/QItBx41VDnLLST4Mey
+	B0IATFft4UGTLW5RhLHUhdQoMg/MyaUp+4w7IioHfBEREjMvoun/5OAADdul6eC7AwkXVc
+	FqTC3n6YtK1n5ihijQ3YQa0UNMhARXqHHMpqY795P04YcjUbpZL4ylMQEJxWYxsf106qpW
+	ojQBDVnXwMpTxkKrIRmr+ebE1FKwOfJWSZXYSLzoKeu3QIZ49bQCxSZOJP0WamBxzZc2Qq
+	nCxNEsKlEqq6fyIxGy3XmGQqnegWvBFkBebNLqT9rpPX60v5q6IY0WU/n83agw==
+From: =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
+Subject: [PATCH v4 00/13] Introducing the Mobileye EyeQ6Lplus SoC
+Date: Mon, 16 Mar 2026 16:25:37 +0100
+Message-Id: <20260316-eyeq6lplus-v4-0-bf44dfc7a261@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4ab83983026db04695e0a36a7103efbfb82f7a76.1773311639.git.Jonathan.Santos@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAPEguGkC/2WQ3WqEMBCFX0Vy3SyZUeMPpfQ9Si9MMtbA+rOJG
+ yrLvnujtqD08gx833DOg3lyljyrkwdzFKy34xBD9pIw3TXDF3FrYmYoMAfAktNCN3mdrnfPKwl
+ apqIVVSZYBCZHrf3eZB+fMXfWz6NbNneA9bprEIqjJgAXnCptlEmbNtP4rsZxvtrhoseeraKAB
+ xjTE4wR1gZag2CgRP0fTv9gKRDlCU4jXGlFKq9Qlkqc4efeydHtHneZ92KsJ++bbZc6ef215rx
+ vtOJTt/BQRKeUuTKlhMrkcHS+rTOpxhOPobdznYTiIrjTEL89fwCXn0GGjQEAAA==
+X-Change-ID: 20251128-eyeq6lplus-961c630f0940
+To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ Gregory CLEMENT <gregory.clement@bootlin.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Linus Walleij <linusw@kernel.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-mips@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276269-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276271-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[benoit.monin@bootlin.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,ashevche-desk.local:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: 667D729C3CB
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: C071129C6A5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 16, 2026 at 08:45:36AM -0300, Jonathan Santos wrote:
-> Introduce a chip_info structure to abstract device-specific parameters
-> and prepare the driver for supporting multiple AD4130 family variants.
+The Eyeq6Lplus is a new system-on-chip part of Mobileye's EyeQ family
+of SoC aimed at Advanced Driver Assistance Systems (ADAS). It is built
+around a multicore MIPS I6500 with 2 cores and 8 threads and integrates
+controllers and accelerators dedicated to driving assistance.
 
-...
+This patchset adds the initial support for the EyeQ6Lplus and its
+evaluation board with the following list of controllers:
+* The OLB ("Other Logic Block") providing clocks, resets and pin controls.
+* One UART from DesignWare.
+* One GPIO controller from DesignWare.
+* Two SPI controllers from DesignWare, one in host mode and one in target
+  mode.
+* One octoSPI flash controller from Cadence, identical to the one found
+  in the EyeQ5.
+* Two I2C controllers from Designware.
 
-> +struct ad4130_chip_info {
-> +	const char *name;
-> +	unsigned int max_analog_pins;
-> +	const struct iio_info *info;
-> +	const unsigned int *reg_size;
-> +	const unsigned int reg_size_length;
+The patch series adds the device tree bindings for the SoC and the OLB.
+It also adds the Kconfig entry for the EyeQ6Lplus, the SoC and evaluation
+board device tree, and the defconfig. For the OLB, the series adds the
+match data to the clk-eyeq, reset-eyeq and pinctrl-eyeq5 drivers.
 
-On (some) 64-bit architectures it might have unneeded gaps. Does `pahole` agree
-with this layout?
+It also brings three other changes. One is for the pinctrl-eyeq5 driver
+to access the pin descriptions, pin functions, and pin bank registers
+via the match data instead of directly. This is needed to add support
+for the EyeQ6Lplus alongside the EyeQ5 to the pinctrl driver.
 
-> +};
+To be able to match against compatible entries, an OF node is needed
+but the pinctrl-eyeq5 does not have one as it is an auxiliary device
+of clk-eyeq. As part of his MACB phy series[1], Théo switched to
+devm_auxiliary_device_create() to register the auxiliary devices, and
+this helper sets the OF node of the auxiliary device.
 
+So this series depends on Théo's patchset so that eq5p_probe() can use
+the OF node to get the match data, similar to what is done in eqr_probe()
+in reset-eyeq.
+
+The two other changes are in the clk-eyeq driver. First we skip the
+post-divisor when computing the PLL frequency in the clk-eyeq driver,
+to match how the clock signal is wired internally in all EyeQ PLL and
+compute the correct frequency for the PLL of the EyeQ6Lplus. Second we
+adjust the accuracy and down spreading computation of the PLL frequency
+as the spread spectrum of all EyeQ PLL is in 1/1024 and not in 1/1000
+as previously thought.
+
+[1]: https://lore.kernel.org/lkml/20260225-macb-phy-v7-0-665bd8619d51@bootlin.com/
+
+Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
+---
+Changes in v4:
+- Simplify entries in Kconfig for clk-eyeq and reset-eyeq, since all
+  Mobileye EyeQ SoCs use these drivers.
+- Link to v3: https://lore.kernel.org/r/20260226-eyeq6lplus-v3-0-9cbeb59268b0@bootlin.com
+
+Changes in v3:
+- Rebase series on v7.0-rc1 + Théo's patchset[1].
+- Refresh the defconfig.
+- Add missing cdns,fifo-depth entry in octospi node of the SoC device tree.
+- Simplify eq5p_probe() now that the OF node is set in clk-eyeq driver.
+- Link to v2: https://lore.kernel.org/r/20251223-eyeq6lplus-v2-0-cd1fd21d182c@bootlin.com
+
+Changes in v2:
+- Rebased on v6.19-rc2.
+- Drop spidev nodes from the evaluation board DT, they were
+  here for test only.
+- Fix bug in eq5p_pinconf_set() using uninitialized value.
+- Link to v1: https://lore.kernel.org/r/20251217-eyeq6lplus-v1-0-e9cdbd3af4c2@bootlin.com
+
+---
+Benoît Monin (13):
+      dt-bindings: mips: Add Mobileye EyeQ6Lplus SoC
+      dt-bindings: soc: mobileye: Add EyeQ6Lplus OLB
+      MIPS: Add Mobileye EyeQ6Lplus support
+      reset: eyeq: Add Mobileye EyeQ6Lplus OLB
+      pinctrl: eyeq5: Use match data
+      pinctrl: eyeq5: Add Mobileye EyeQ6Lplus OLB
+      clk: eyeq: Skip post-divisor when computing PLL frequency
+      clk: eyeq: Adjust PLL accuracy computation
+      clk: eyeq: Add Mobileye EyeQ6Lplus OLB
+      MIPS: Add Mobileye EyeQ6Lplus SoC dtsi
+      MIPS: Add Mobileye EyeQ6Lplus evaluation board dts
+      MIPS: config: add eyeq6lplus_defconfig
+      MAINTAINERS: Mobileye: Add EyeQ6Lplus files
+
+ .../devicetree/bindings/mips/mobileye.yaml         |   5 +
+ .../soc/mobileye/mobileye,eyeq6lplus-olb.yaml      | 208 ++++++++++
+ MAINTAINERS                                        |   4 +-
+ arch/mips/boot/dts/mobileye/Makefile               |   1 +
+ arch/mips/boot/dts/mobileye/eyeq6lplus-epm6.dts    | 103 +++++
+ arch/mips/boot/dts/mobileye/eyeq6lplus-pins.dtsi   |  84 ++++
+ arch/mips/boot/dts/mobileye/eyeq6lplus.dtsi        | 170 ++++++++
+ arch/mips/configs/eyeq6lplus_defconfig             | 117 ++++++
+ arch/mips/mobileye/Kconfig                         |   3 +
+ arch/mips/mobileye/Platform                        |   1 +
+ drivers/clk/Kconfig                                |   4 +-
+ drivers/clk/clk-eyeq.c                             |  90 ++++-
+ drivers/pinctrl/Kconfig                            |   4 +-
+ drivers/pinctrl/pinctrl-eyeq5.c                    | 437 +++++++++++++++------
+ drivers/reset/Kconfig                              |   4 +-
+ drivers/reset/reset-eyeq.c                         |  31 ++
+ .../dt-bindings/clock/mobileye,eyeq6lplus-clk.h    |  37 ++
+ 17 files changed, 1156 insertions(+), 147 deletions(-)
+---
+base-commit: 559f264e403e4d58d56a17595c60a1de011c5e20
+change-id: 20251128-eyeq6lplus-961c630f0940
+prerequisite-message-id: <20260225-macb-phy-v7-0-665bd8619d51@bootlin.com>
+prerequisite-patch-id: 68a9ce9820cf78e8a0705505ea29ff981b518570
+prerequisite-patch-id: 40a406305a44a0ea0d0b861d34c199907750f84c
+prerequisite-patch-id: dda6d7c3d7d7d8e49b31015887d1a7308f65559a
+
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
+Benoît Monin, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
