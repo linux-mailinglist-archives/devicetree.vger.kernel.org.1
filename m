@@ -1,63 +1,106 @@
-Return-Path: <devicetree+bounces-276326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276332-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QLngB4c7uGmpagEAu9opvQ
-	(envelope-from <devicetree+bounces-276326-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:19:03 +0100
+	id CP/gA/U7uGmpagEAu9opvQ
+	(envelope-from <devicetree+bounces-276332-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:20:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA3A629E00A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:19:02 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B6BD29E0C0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:20:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DD57B301220A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:18:59 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AB9303039363
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:20:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 191E53CFF5D;
-	Mon, 16 Mar 2026 17:18:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDE4E3D1CDB;
+	Mon, 16 Mar 2026 17:19:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ilL5GFQK"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Rbw219SB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA0E63BED73;
-	Mon, 16 Mar 2026 17:18:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCBCC3D091A;
+	Mon, 16 Mar 2026 17:19:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773681536; cv=none; b=ji1/KmuGQRID4aRMVGvuGXWRSSWVIP92LO/VOsMbC0eo4Z2Z4D0yX/vywaHqTglQdWPNF92dIu4r7LjfvcRazCsNuQybad11HgV33oFU3LhYlfJzpg7nmyk/sTtH0U6p0S4iNgN+ufTfGfFsebFzl3PwQ6rgreXey89ysQGI2ro=
+	t=1773681595; cv=none; b=sTgTA7ou3G5mWAIU6W46T2ifKwPl4TNZm8JyQvtMNjulRtdjTUskYF1ggQXxTD9cCOSvXmZqLnBJBee9S7qbx6sDavpmMOdTqFSmyPwpNnV9KLx5KVtZrjx9VW/dgWm1ZKGNiceTIrggHKjGchPIKEp8MxERllF3vY5IQF+cp4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773681536; c=relaxed/simple;
-	bh=9cK3KLb4HrCqUUxkMKGn6O5T8UEF2tr+A46rGmJElf8=;
+	s=arc-20240116; t=1773681595; c=relaxed/simple;
+	bh=Zz/hRJjLBoN755q223kYJIQDnkqItfPZ1yDBYTf+0y4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m9tbUrbeDZLq+SdPEP9K2aT4zhTWG9pS1qxSicFB5G1a4Cqn+PYgZVe2ErIHBOOpVubQn2/93P/Otg2cFbc1xPrCRAlRvAeMkTJ8iVBCl56K6sgpQjuwdOq0HG3KxG3+KX1TbPme6YNQ76DTPNMh/dZ+ZA7P2kmOBXZpAlPuNV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ilL5GFQK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EB50C2BC87;
-	Mon, 16 Mar 2026 17:18:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773681535;
-	bh=9cK3KLb4HrCqUUxkMKGn6O5T8UEF2tr+A46rGmJElf8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ilL5GFQK2OtuJkzGrrwtNW7qPiZYpzofHMyOgZ5SRG5ULZ6m/g20WUP3gjknafSFT
-	 B6r/8IJdFIg42TeP0H+2zVhRWQxImRJD3T1xo7uq2CXynFcrDgCMNB3fyYjbwH4DxK
-	 6gIVQYmL50QCS2RNBy2rPq/RIvXTsi2AC1b9MOKicEODI1yZY7Nwpz5ddWUftLr9nd
-	 jPuJSKcOk932r2foN3UxdB+xpCcjmzrHq3EKthGR2vw2R9uEMP/F/EuVXg08GCnOWg
-	 4R5ANtdtfGdqTogV7zD2oZVcHhCSLTkS/Zplrd1icxGPC1wCjZhUcPJC2JrC92sTaq
-	 RPJRWEaSq0wAw==
-Date: Mon, 16 Mar 2026 12:18:54 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>, Linus Walleij <linusw@kernel.org>,
-	David Jander <david@protonic.nl>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, kernel@pengutronix.de,
-	linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Peter Rosin <peda@axentia.se>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/7] dt-bindings: pinctrl: add NXP MC33978/MC34978 MSDI
-Message-ID: <177368153336.2253380.3145314125714011470.robh@kernel.org>
-References: <20260316140514.1406588-1-o.rempel@pengutronix.de>
- <20260316140514.1406588-2-o.rempel@pengutronix.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=WRW9YWa4x/TsBYmcDCeahqMKH0I1ApfDeVpJyddTy3TA+bo40VuMtB0XTvNzxsj9Vi4wOJpWaRvGHIf1obzdFmPM0C0yyEiW0+umBlSG5/J7avoRQIjy9ZxEfjZ3BPa5ts9BDfyyvgNTJHalSwDQeEPvV+gGLrqnHqqIaUZ+Q1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Rbw219SB; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773681594; x=1805217594;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Zz/hRJjLBoN755q223kYJIQDnkqItfPZ1yDBYTf+0y4=;
+  b=Rbw219SBcbDLkzDXtV+dczYtJ0CO9rscPc4kX9alOWOVnPrREgf3Q8Ww
+   B82It8zuJYvcFgljwQeio7VppCCHtkn1l7IafMgZBpGo5t7eQuSv19ien
+   unEpptBYfkTIwIQZeCDNmLqY+NdPkyRLSats8xOUkGLuEgQ6N0xVoaZw7
+   w63wIXcqILfyXI6Ou9znRLy/mJAt6R51HMIhxgKQbDD11nADNagi7/vLY
+   lNKfKkXTGU/Q+iio+wWZ/M39IAI+RBSsgPdOg+vWJJuH8yfbHY6ZAUHE7
+   /B7R07qB2R7KfE+l6XVra2oV07gg0Ab1C4xrChJjspGj6XvL1BEQWUclc
+   w==;
+X-CSE-ConnectionGUID: Uhu2Y3itRHyktD6X2sGeDw==
+X-CSE-MsgGUID: nnvA7GgQRxC9/TfON190aA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="74677490"
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
+   d="scan'208";a="74677490"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2026 10:19:53 -0700
+X-CSE-ConnectionGUID: RJTg4zFsRNKBYc912rzrog==
+X-CSE-MsgGUID: nQe6ouNASVu/x13EIFCQQA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
+   d="scan'208";a="226118290"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.29])
+  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2026 10:19:46 -0700
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 89A8C121D04;
+	Mon, 16 Mar 2026 19:19:42 +0200 (EET)
+Date: Mon, 16 Mar 2026 19:19:42 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	Tommaso Merciai <tomm.merciai@gmail.com>,
+	Martin Hecht <mhecht73@gmail.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Jacopo Mondi <jacopo+renesas@jmondi.org>,
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Dongchun Zhu <dongchun.zhu@mediatek.com>,
+	Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+	Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+	Todor Tomov <todor.too@gmail.com>,
+	"Paul J. Murphy" <paul.j.murphy@intel.com>,
+	Daniele Alessandrelli <daniele.alessandrelli@gmail.com>,
+	Marco Felsch <kernel@pengutronix.de>,
+	Lubomir Rintel <lkundrak@v3.sk>, linux-renesas-soc@vger.kernel.org,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] media: dt-bindings: i2c: Drop redundant endpoint
+ properties
+Message-ID: <abg7rvczKjyIA5jN@kekkonen.localdomain>
+References: <20260316134533.56941-3-krzysztof.kozlowski@oss.qualcomm.com>
+ <20260316135352.GA31616@killaraus.ideasonboard.com>
+ <a429887b-13f7-4ba3-9260-ddae92adfe51@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,102 +109,118 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260316140514.1406588-2-o.rempel@pengutronix.de>
-X-Spamd-Result: default: False [0.34 / 15.00];
+In-Reply-To: <a429887b-13f7-4ba3-9260-ddae92adfe51@oss.qualcomm.com>
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276326-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[ideasonboard.com,gmail.com,kernel.org,foss.st.com,jmondi.org,ragnatech.se,raspberrypi.com,glider.be,linaro.org,mediatek.com,bootlin.com,theobroma-systems.com,intel.com,pengutronix.de,v3.sk,vger.kernel.org,bp.renesas.com];
+	TAGGED_FROM(0.00)[bounces-276332-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,pengutronix.de:email]
-X-Rspamd-Queue-Id: CA3A629E00A
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,kekkonen.localdomain:mid]
+X-Rspamd-Queue-Id: 9B6BD29E0C0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Hi Krzysztof, Laurent,
 
-On Mon, 16 Mar 2026 15:05:06 +0100, Oleksij Rempel wrote:
-> Add device tree binding documentation for the NXP MC33978 and MC34978
-> Multiple Switch Detection Interface (MSDI) devices.
+On Mon, Mar 16, 2026 at 03:42:09PM +0100, Krzysztof Kozlowski wrote:
+> On 16/03/2026 14:53, Laurent Pinchart wrote:
+> > Hello Krzysztof,
+> > 
+> > Thank you for the patch.
+> > 
+> > On Mon, Mar 16, 2026 at 02:45:34PM +0100, Krzysztof Kozlowski wrote:
+> >> The "endpoint" node references video-interfaces.yaml schema with
+> >> "unevaluatedProperties: false" which means that all properties from
+> >> referenced schema apply.  Listing some of them with ": true" is simply
+> >> redundant and does not make this code easier to read.
+> > 
+> > I think you know my opinion on this topic. I believe we would be better
+> > off by turning "unevaluatedProperties: false" into
+> > "additionalProperties: false" here, and keeping the list of applicable
+> > properties. It brings value to device tree authors by telling which
+> > properties are applicable to the device at hand. For instance ... (see
+> > below)
 > 
-> The MC33978 and MC34978 differ primarily in their operating temperature
-> ranges. While not software-detectable, providing specific compatible
-> strings allows the hwmon subsystem to correctly interpret thermal
-> thresholds and hardware faults.
+> (let me trim)
 > 
-> These ICs monitor up to 22 mechanical switch contacts in automotive and
-> industrial environments. They provide configurable wetting currents to
-> break through contact oxidation and feature extensive hardware
-> protection against thermal overload and voltage transients (load
-> dumps/brown-outs).
+> >> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
+> >> index 2d7937a372a2..7a05a1eda58d 100644
+> >> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
+> >> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
+> >> @@ -51,9 +51,6 @@ properties:
+> >>          $ref: /schemas/media/video-interfaces.yaml#
+> >>          unevaluatedProperties: false
+> >>  
+> >> -        properties:
+> >> -          clock-noncontinuous: true
+> >> -
+> > 
+> > ... Without this, an integrator will need to dive into driver code to
+> > know if non-continuous clock is usable for the device.
 > 
-> The device interfaces via SPI. While it provides multiple functions, its
-> primary hardware purpose is pin/switch control. To accurately represent
-> the hardware as a single physical integrated circuit without unnecessary
-> DT overhead, all functions are flattened into a single pinctrl node:
-> - pinctrl: Exposing the 22 switch inputs (SG/SP pins) as a GPIO controller
->   and managing their pin configurations.
-> - hwmon: Exposing critical hardware faults (OT, OV, UV) and static
->   voltage/temperature thresholds.
-> - mux: Controlling the 24-to-1 analog multiplexer to route pin voltages,
->   internal temperature, or battery voltage to an external SoC ADC.
+> I see. Our usual interpretation of common schema, expressed by @Rob in
+> few places, that eventually all properties might be applicable. This
+> applies especially for ABI tied to the core Linux specifics, e.g.
+> rotation and orientation from video-interface-devices.yaml.
 > 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> ---
-> changes v5:
-> - Commit Message: Added justification for distinct compatible strings
->   based on temperature ranges.
-> - Restricted pins property to an explicit enum of valid hardware pins
-> changes v4:
-> - Drop the standalone mfd/nxp,mc33978.yaml schema entirely.
-> - Move the unified device binding to bindings/pinctrl/nxp,mc33978.yaml,
-> - Remove the dedicated child node compatible strings (nxp,mc33978-pinctrl).
-> - Flatten the pinctrl/gpio properties directly into the main SPI device
->   node.
-> changes v3:
-> - Drop regular expression pattern from pinctrl child node and define
->   it as a standard property
-> - Reorder required properties list in MFD binding
-> - Remove stray blank line from the MFD binding devicetree example
-> - Replace unevaluatedProperties with additionalProperties in the pinctrl
->   binding
-> changes v2:
-> - Squashed MFD, pinctrl, hwmon, and mux bindings into a single patch
-> - Removed the empty hwmon child node
-> - Folded the mux-controller node into the parent MFD node
-> - Added vbatp-supply and vddq-supply to the required properties block
-> - Changed the example node name from mc33978@0 to gpio@0
-> - Removed unnecessary literal block scalars (|) from descriptions
-> - Documented SG, SP, and SB pin acronyms in the pinctrl description
-> - Added consumer polarity guidance (GPIO_ACTIVE_LOW/HIGH) for SG/SB
->   inputs, with a note on output circuit dependency
-> - Updated commit message
-> ---
->  .../bindings/pinctrl/nxp,mc33978.yaml         | 153 ++++++++++++++++++
->  1 file changed, 153 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/nxp,mc33978.yaml
+> Absolutely every sensor can be mounted rotated, therefore every binding
+> referencing video-interface-devices should allow it, even if driver is
+> not using it. Because basically that's the ABI we want to define for
+> each sensor, thus each binding referencing common schema should have
+> "unevaluatedProps: true" without listing them.
 > 
+> Similarly touchscreen.yaml.
+> 
+> OTOH, second option, properties which are strictly hardware, e.g. name
+> of power supply or whether clock has or has not non-continuous mode,
+> should be allowed only when they match the hardware. Such bindings
+> should use "additionalProperties: false" so the hardware description is
+> constrained/fixed/specific.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+The patch may be technically correct but I'm afraid it won't improve the
+bindings but rather the opposite: it removes information telling whether a
+property is relevant for a given device.
 
+I bet there are a lot of possibilities to write invalid DTS while the
+checker says it's fine (missing data-lanes or link-frequencies, for
+instance). That may have been the case before the patch but I'd make
+properties a driver needs to function mandatory rather than removing them
+from bindings altogether.
+
+It'd been on my to-do list to split the current video-interfaces.yaml into
+several files: generic camera sensor properties, CSI-2 interface
+properties, DVP/Bt.656 interface properties and the rest (full list
+probably requires more thought). That way we could only include properties
+that are relevant for the device without necessarily listing each one for
+all bindings.
+
+I'd also continue to list boolean properties relevant for devices as well
+as other properties that are relevant for a device but not mandatory.
+
+-- 
+Regards,
+
+Sakari Ailus
 
