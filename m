@@ -1,85 +1,86 @@
-Return-Path: <devicetree+bounces-276210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276211-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aEtCFD0RuGmIYgEAu9opvQ
-	(envelope-from <devicetree+bounces-276210-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:18:37 +0100
+	id 8JTYOLgRuGmIYgEAu9opvQ
+	(envelope-from <devicetree+bounces-276211-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:20:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C97A329B322
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:18:36 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id F294B29B3A8
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 15:20:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 87C47300D947
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:13:31 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5CE94301D48F
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 14:14:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D4E939B976;
-	Mon, 16 Mar 2026 14:13:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D63B39C00C;
+	Mon, 16 Mar 2026 14:14:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZcZ5bHUF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="krqUtzhB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f52.google.com (mail-dl1-f52.google.com [74.125.82.52])
+Received: from mail-dy1-f182.google.com (mail-dy1-f182.google.com [74.125.82.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7162394498
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 14:13:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8EBB39BFF5
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 14:14:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773670410; cv=none; b=VJuwRYcoEx+QM9xigv7yTWKRTP9Tc5NyZKnNXTqEW2HwIje46rD+clhwdCmz69/IYq8S6ymHiPCX5Kmua5+F51Ej3XzEy+7AByxyv8tGaWSwENXHHF7JQ9LtgfH13OD2m6aHlDrBf36Sx/Ok8yySX8MrOtT+Lb9IFLUY/XWYeYs=
+	t=1773670495; cv=none; b=nmcI4m5lH6U10HC7zseOteGtBtHzoBrZnHobaIGvpD/psGJkvmYwihEYaKYsVOqV22FR2ldthsJEyYW1azwV25CvyeSPKN2F5fbxj6kGIEefkv+5isXNQG2nNVyqZ1kbj7UNVFc03bWVr0S3bZFRp4rZ1shl3TsD4qDDDyMyt5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773670410; c=relaxed/simple;
-	bh=TwxPg4RSXx5BNsPRkWf834jmL3m9mgr7v/t/XtQuIzw=;
+	s=arc-20240116; t=1773670495; c=relaxed/simple;
+	bh=2SsySyOvIxZk0ksyBwxfVHA6GpVP4WghID+G+yR6Y1Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I+O7kZfNEM9andZIwSoH91KV3q5l0zmrQ6Hz6k6UcOvCsHCGeGeVmHiu/y3+hGMbBteba+isSYMbMCY/m3p3PaBMG/Yni48sjjrN4cbl4jvGYRxvuKYI4nPc0KuTCRGcAmQ4F9jgcgHTlwWlXzT5Kjs9XneFSgUVcGkwrB+7JGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZcZ5bHUF; arc=none smtp.client-ip=74.125.82.52
+	 In-Reply-To:Content-Type; b=B/cKpIIB5RDpq9OWwLtGGo3YSb84LfvnJ5tRXE46Qv5k9jvACSLPxTXmN7fSYVfa5tRbP7KL1LEEIRkyFQUlXz50m6Kf/YOz2s3AXAZ2uQSzyY7NMk3kKdvXAndIv7TKZ99iqbYHzSpHwuuwX0/WT1YOmVVwqi6jLpSWTgH50xM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=krqUtzhB; arc=none smtp.client-ip=74.125.82.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f52.google.com with SMTP id a92af1059eb24-1273349c56bso6681773c88.0
-        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 07:13:28 -0700 (PDT)
+Received: by mail-dy1-f182.google.com with SMTP id 5a478bee46e88-2c0d36f3888so112185eec.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 07:14:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773670408; x=1774275208; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1773670492; x=1774275292; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=LQ0mg0iTQfY7doxy4pSiWFN/FrO9Rma90YeZ4+gFic8=;
-        b=ZcZ5bHUFKKHPzZBk3GhA0lzuW5+HY8ORf2CGDuROjEVYlu93kvawldu1QFcHjFNDTp
-         TFyL23iLbY6DlUz3BfwbUO4Q+owuTYqPGbCECSMNcNmnZujB6rm3VA4k+V6yPLBLqGnh
-         Mm2L169N7BfwQYvyFaJjhj6vllA6bpLI9Nm8Rkp5fb/axV9V2Hz0cVwkiRa5umawFkWs
-         EG1AMRySi8ocP76kHaGQwV8kFc0q4JgEhoBr2Hhnm886XriipO5v4h/qGMyiGB47je3b
-         cr5IGpq82sKhkwXU+Iw+C01jINppIoo/njKsRQ+1aOT2RZDlbz/YE4twKVxnJYxxgaWw
-         OCDg==
+        bh=v1M5A/zUiJZxosfSFmbMxi4SlAjt6MS/qTaLhxg1gbs=;
+        b=krqUtzhBP2Foihgc1OKvJJywI5kBVVeqRdh0lPYoHtCrOUeSfAArj9VOZv2HGuLL6j
+         pP5cPmXTPPNuS5KAtBkhuEsDOUPWAatLvs2BSH3Q3O94XTJ3+dJ/4EnL4jKTjBRDkVO0
+         r6NYy+9b8T8+nVmO2opS7/4zMYF3n9Z/GPAO/O3Ep3YcLTjx+9+j6F2lw43hj8bYxIBR
+         UGvmDczOtE6wpinTSv5uDQaJF8g82I5bkjkWGLQAey+ufDffjL5ZM2kvxM5nU3XnHMmm
+         4mfZWfM66e+D1DqczRz3RdFYktk0dr0pXcZgyS0nU46azHrdLrcGN7uHF5/mfiQv44AO
+         N01Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773670408; x=1774275208;
+        d=1e100.net; s=20251104; t=1773670492; x=1774275292;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=LQ0mg0iTQfY7doxy4pSiWFN/FrO9Rma90YeZ4+gFic8=;
-        b=rTt+meu92DWvsjkmUp+fhNaJwQoAIFyhHhwxuPtd3SncZtxQoYmmj5CUTIY8xHSTFp
-         RBsvQTbxKkz2sghBFksLixeZMqZEXNBNb3xDqZ7/VzORYEhcmdxekQLo/LkPpFQT6USk
-         NHQr0+2OKyBqhvMbR08D6DQTKmy3QSULHAYnEAZbOjpywip0W4Zt9xth3bDByBFr+awL
-         hiwhn/mmRmGF8iwdVbuhnzOuiFA/ihy+JZmvF+lvVxurzJPnfbwy/BxsxJpKuE967idI
-         HlnffDD/+snuVZcZArNO6jKoEvAA3LOHl1JeXikA292+rd5eLqBxlfGqfDgm3uOI3bqY
-         m6Qg==
-X-Forwarded-Encrypted: i=1; AJvYcCWpik64Zmx6QyBbQ+rOhBbrgzgKWBtyAHmFuCljiWwGGahve00X3D/cg2uSw5VwHQpwjHBR0jobOsmz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx21GBBzSZIZgmxu1GPmpvF81rBO436TdviBYdEMFAclbcITo+5
-	BDUbAWIgoIpOfIRqCT/JQx01vWU+EpRzrn+7cJh5khzDosi/8kdxiEqG
-X-Gm-Gg: ATEYQzyZPPzTGtqZjqV8XcYSmVi7t3wFHZWBnZ/4Cec8fyEwdrECXRz/+685zN2StqT
-	5M3yyN49yudH3g9hiLDeTCM+zOJrSBl5U1JdQO5+QFmok0Hu9Cy2xvwOzZMz1NGnq73XGBo4bJl
-	5CVykA5eKWG4rnZEIuITHz0OpRSCxh8A9RWbAKLq/OA/A5iRElDHqP15QoWaSOfDWcHFmxGW6QV
-	SOfs6KOPCx6ubmSUUOCBqaDyq/E+DMRoJhqn4EoEL1uASQeEO1VjL7RZqUgV28MZGXzPr6wxirE
-	yj8nDM7kEURV4OphfzC/eucHYVAqC4eJ5axjXtLeYNIyonussmfCngDwThcFT9CRiX7nIHJUswU
-	05XJ09+HbMo4SRX8eUN/hMR//GVcTYId81YPgRJ4ftMVBZCtMlELlSoNeas5X+BooWA2jXVFEmk
-	9191o8hHInS/gHx/cXnfctdRj7lQqmZslHzA5sluRUeJ8yyRu+0nwhrjrlW8T/V4sRuGVKndv0
-X-Received: by 2002:a05:7022:458c:b0:11b:9386:8265 with SMTP id a92af1059eb24-128f3e1d951mr6117870c88.42.1773670407752;
-        Mon, 16 Mar 2026 07:13:27 -0700 (PDT)
+        bh=v1M5A/zUiJZxosfSFmbMxi4SlAjt6MS/qTaLhxg1gbs=;
+        b=rq7K+4HCq5LK1fmPwskMNp+DPdNLQYQ0klBOHZevTk6lCFuFEXKQBuihCzIhouwAY7
+         xr8FZ8GFtn16kMPpy4LKTyFEZT48XQpNa2c07HuOLH3UGBLkhZJ5gbas4xMTGRwtz1ah
+         8yY5B3AXzeLBw1005Us2PaH2jTgj684IZvL0S/5iWSdmf0M4MyjMBtk/mOuZ28WQGQNK
+         o+pgenNJNmOe2EUe+TBN5LAL7MMO368CyNWDibrLHutrpUSXvb6FFA2KKSBnHRZFuCgY
+         YlVcpY3Zn84tiEWSDKoLcjALtGdyqwS6mo7Yi0wx6sBAHFlHYmH1lAX86G9dAuk3/8b4
+         bkLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUL4hzJGRkuG5TVcewcyGpQEeujsU+F7osk76TARwqqTAAc0fTOgGqZ/Xz42oNicEoWrbRx4a5xG8+U@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx7JEsjUErK3IGu+foWmWBintzqaeL9Y16vs/uqlGLOkFRyHEfU
+	yGEUaVwEYoGbwmtmeP8y63s4oKKnIiXPQ+izpRkjAcEXTvH6Tw1QVZom
+X-Gm-Gg: ATEYQzyocQXXR56J1iM5DsswEQFFw+QCbajA75dZZfsNbHLM0MwdxvaxYzxbb9tf2/S
+	j3HgyrAeckJ82TQ+naIYeIWIHVlOtKbV/3iyuX+pDB1VTxQh0PREEvFHcJ3o9s3vcA659/gwWyW
+	g8qXPtfSs00py9IcaES+ZxM48U905sRXNNadZqCraV3tO2+SqUU3v9FIk8DIGA40e/PzFc+FrQs
+	6TqR24FEtwpMXesDfoxBGCLEs2AZl+vY6jrQiw3EPpS9EbeBlFqheZsY0Brphqw6y5TZIUAqIrB
+	0/fzxf3rOXNcK0/+v/Bbk8+drsdmgNlgLLV+mf93PtQn8puR+8//p0L56eAIjRZYKpJNo3YdCNs
+	c5pUwkGSFK9edIVeLDP4RjzW9wMQj+n9OFC4rtFV36E/sqayhRQC5f/3LXnxTcx9dAQNlgc0D6F
+	P3VYFiYSc7lRKBywqoK6a1gygrCXpDduudA4VguoPSnliJCRgkD8COsnm/ujOsD/HC/A4DeWkJc
+	IpP760QFR0=
+X-Received: by 2002:a05:693c:3945:b0:2ba:6b3a:7696 with SMTP id 5a478bee46e88-2bea53a9e2cmr4877318eec.8.1773670491758;
+        Mon, 16 Mar 2026 07:14:51 -0700 (PDT)
 Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-128f62991c7sm12119295c88.5.2026.03.16.07.13.25
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2beab525c5fsm14462273eec.22.2026.03.16.07.14.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Mar 2026 07:13:26 -0700 (PDT)
+        Mon, 16 Mar 2026 07:14:51 -0700 (PDT)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <d8c3d6be-1c4a-449e-bf38-69e71f544513@roeck-us.net>
-Date: Mon, 16 Mar 2026 07:13:24 -0700
+Message-ID: <85660b25-a936-44f0-95b2-3c90d559efc3@roeck-us.net>
+Date: Mon, 16 Mar 2026 07:14:49 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,20 +88,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: moortec,mr75203: adapt
- multipleOf for T-Head TH1520
-To: Conor Dooley <conor@kernel.org>, Drew Fustini <fustini@kernel.org>
-Cc: Icenowy Zheng <zhengxingda@iscas.ac.cn>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei
- <wefu@redhat.com>, Rahul Tanwar <rtanwar@maxlinear.com>,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- Icenowy Zheng <uwu@icenowy.me>, Han Gao <rabenda.cn@gmail.com>
-References: <20260309162457.4128205-1-zhengxingda@iscas.ac.cn>
- <20260309162457.4128205-2-zhengxingda@iscas.ac.cn> <abWTO7QBFIcjxKn6@x1>
- <20260315-cogwheel-dislodge-a3efe31728d1@spud> <abbTwrAALGy3QbxN@gen8>
- <20260316-handshake-subdivide-9de6c4410927@spud>
+Subject: Re: [PATCH v2] dt-bindings: watchdog: rockchip: Add RV1103B
+ compatible
+To: Fabio Estevam <festevam@gmail.com>
+Cc: wim@linux-watchdog.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-watchdog@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, heiko@sntech.de,
+ Fabio Estevam <festevam@nabladev.com>
+References: <20260310002040.417424-1-festevam@gmail.com>
 Content-Language: en-US
 From: Guenter Roeck <linux@roeck-us.net>
 Autocrypt: addr=linux@roeck-us.net; keydata=
@@ -146,117 +141,69 @@ Autocrypt: addr=linux@roeck-us.net; keydata=
  F0WaMvQMNrk9UAUziVcUkLU52NS9SXqpVg8vgrO0JKx97IXFPcNh0DWsSj/0Y8HO/RDkGXYn
  FDMj7fZSPKyPQPmEHg+W/KzxSSfdgWIHF2QaQ0b2q1wOSec4Rti52ohmNSY+KNIW/zODhugJ
  np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20260316-handshake-subdivide-9de6c4410927@spud>
+In-Reply-To: <20260310002040.417424-1-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276210-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-276211-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[roeck-us.net];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[iscas.ac.cn,kernel.org,redhat.com,maxlinear.com,vger.kernel.org,lists.infradead.org,icenowy.me,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,roeck-us.net:mid,iscas.ac.cn:email]
-X-Rspamd-Queue-Id: C97A329B322
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,nabladev.com:email,roeck-us.net:email,roeck-us.net:mid]
+X-Rspamd-Queue-Id: F294B29B3A8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/16/26 04:09, Conor Dooley wrote:
-> On Sun, Mar 15, 2026 at 08:44:02AM -0700, Drew Fustini wrote:
->> On Sun, Mar 15, 2026 at 12:12:13PM +0000, Conor Dooley wrote:
->>> On Sat, Mar 14, 2026 at 09:56:27AM -0700, Drew Fustini wrote:
->>>> On Tue, Mar 10, 2026 at 12:24:56AM +0800, Icenowy Zheng wrote:
->>>>> The G and J coefficients provided by T-Head TH1520 manual (which calls
->>>>> them A and C coefficients and calls H coefficient in the binding as B)
->>>>> have 1/100 degree Celsius precision (the values are 42.74 and -0.16
->>>>> respectively), however the binding currently only allows coefficients as
->>>>> precise as 100 milli-Celsius (1/10 degree Celsius).
->>>>>
->>>>> Change the multipleOf value of these two coefficients to 10 (in the unit
->>>>> of milli-Celsius) to satisfy the need of TH1520.
->>>>>
->>>>> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
->>>>> Reviewed-by: Drew Fustini <fustini@kernel.org>
->>>>> ---
->>>>> Changes in v3:
->>>>> - Added Drew's R-b.
->>>>> - Fixed some typos in the commit message and slightly reworded the
->>>>>    precision sentence.
->>>>>
->>>>>   Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml | 4 ++--
->>>>>   1 file changed, 2 insertions(+), 2 deletions(-)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
->>>>> index 56db2292f062d..7d57c2934a8a1 100644
->>>>> --- a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
->>>>> +++ b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
->>>>> @@ -105,7 +105,7 @@ properties:
->>>>>         G coefficient for temperature equation.
->>>>>         Default for series 5 = 60000
->>>>>         Default for series 6 = 57400
->>>>> -    multipleOf: 100
->>>>> +    multipleOf: 10
->>>>>       minimum: 1000
->>>>>       $ref: /schemas/types.yaml#/definitions/uint32
->>>>>   
->>>>> @@ -131,7 +131,7 @@ properties:
->>>>>         J coefficient for temperature equation.
->>>>>         Default for series 5 = -100
->>>>>         Default for series 6 = 0
->>>>> -    multipleOf: 100
->>>>> +    multipleOf: 10
->>>>>       maximum: 0
->>>>>       $ref: /schemas/types.yaml#/definitions/int32
->>>>>   
->>>>> -- 
->>>>> 2.52.0
->>>>>
->>>>
->>>> I have applied this to thead-dt-for-next.
->>>
->>> That's odd, why is a hwmon binding in your branch?
->>>
->>>> https://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git/commit/?h=thead-dt-for-next&id=eb4fd43ff6793681f0a0a8e8ac861142caba2b19
->>>
->>> I don't see an ack on it from the relevant maintainer either?
->>
->> Sorry, my mistake, I should not have applied the binding. And you are
->> right to point out that there was no ack from Guenter or Rahul Tanwar.
+On 3/9/26 17:20, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@nabladev.com>
 > 
-> It was Guenter I was thinking of, but there's not one from myself, Rob
-> or Krzysztof either.
+> The RV1103B watchdog is compatible with the existing DesignWare Watchdog
+> binding. Add the rockchip,rv1103b-wdt compatible string.
 > 
+> Signed-off-by: Fabio Estevam <festevam@nabladev.com>
 
-... which is why I didn't apply it yet.
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-Guenter
-
->> I will drop both patches from thead-dt-for-next and wait for agreement
->> on the binding.
->>
->> Thanks,
->> Drew
+> ---
+> Changes since v1:
+> - Fixed a typo in the devicetree mailing list address.
 > 
+>   Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml | 1 +
+>   1 file changed, 1 insertion(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
+> index 609e98cdaaff..141c72909b15 100644
+> --- a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
+> @@ -33,6 +33,7 @@ properties:
+>                 - rockchip,rk3568-wdt
+>                 - rockchip,rk3576-wdt
+>                 - rockchip,rk3588-wdt
+> +              - rockchip,rv1103b-wdt
+>                 - rockchip,rv1108-wdt
+>                 - rockchip,rv1126-wdt
+>             - const: snps,dw-wdt
 
 
