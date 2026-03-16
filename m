@@ -1,135 +1,173 @@
-Return-Path: <devicetree+bounces-276305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276304-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MAZWFIAruGnhZgEAu9opvQ
-	(envelope-from <devicetree+bounces-276305-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:10:40 +0100
+	id KGSkEIApuGnhZgEAu9opvQ
+	(envelope-from <devicetree+bounces-276304-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:02:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C109029D194
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:10:39 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2978329CEF7
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:02:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 07D2B3019C98
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:01:41 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 05514301F683
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:01:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C34F73246FE;
-	Mon, 16 Mar 2026 16:01:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E809E3CCFDB;
+	Mon, 16 Mar 2026 16:01:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="atadA64d"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tRvR8jWP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A0DE8248B;
-	Mon, 16 Mar 2026 16:01:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773676897; cv=none; b=uacrvc7dOIGX2i00UVfUQNIAeDJFBr0V6xQonJECg1REs2Q68WDc8qwuzZaCnDYhi4R2MXrsr3IllSlhIFqmHxzG1F1/G21PorCaMp/hZUw7FqbfiksGHgWRQI0FhdWLlYcsYEOQTfIVcHk1ZGAxfbosnmUk6eqngTWz2rbiXRk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773676897; c=relaxed/simple;
-	bh=U7Vh2jIYFDPJ9+O/TNXJqPPkRJNejMkjL1llAicJQE0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lpvCVuQKuIH5ue3jXKJyaZjzVRDj9J4aTyvYVDBDaAb18acrQorWZZF3UKGWYhiaZjEMA/Mul7hQx7kidznRkCppi1iQvPIjjp8KLFUa5W1Uyo0AUNo9iebbc9YafGC5CHZIlku3dAsRH5PuKcFOPePolB61wvD+b5zvL7baPvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=atadA64d; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=dWWCo/O+pQjJJIUXRtm/J1Y1RBo9QKqpObu24MQlaGY=; b=atadA64dERkEQZdp6W+nmGUH/Z
-	1D1lTQNh+oGmNntAdmswXaRHPGoum+O4ecFDk/RgR/KGMb14rHewPnxKCQJqB8kcOHL8W9Qz7ykZO
-	Yk+WZQHBCd8+4sLEjhWF0klaRSCrbyJmXKzMG+jD1maBSr5aK0fgorZ5iFVVe1KTvqVEk+4tAr4bu
-	+vOR/WdNAw31pw6MxJmQARISl1KSmdbDMmndrVXdTRsognlNrzdrKz7aEpngN+1asv6S7j1AdVbVu
-	N35t8xgOudCsgtEHu9fm3mb9wf/4PPiT3Ghaetes9LDPdQ3wusvoJXQ1HsvGXMOH3MsTCBelKTqBy
-	uP1kw4aA==;
-Date: Mon, 16 Mar 2026 17:00:34 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Mark Brown <broonie@kernel.org>
-Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Ulf Hansson
- <ulf.hansson@linaro.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>, Scott
- Branden <sbranden@broadcom.com>, Saenz Julienne <nsaenz@kernel.org>, Lee
- Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Shree
- Ramamoorthy <s-ramamoorthy@ti.com>, Jerome Neanne
- <jerome.neanne@baylibre.com>, Paul Cercueil <paul@crapouillou.net>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>, Dmitry Osipenko
- <digetx@gmail.com>, Heiko Stuebner <heiko@sntech.de>, Joseph Chen
- <chenjh@rock-chips.com>, Chris Zhong <zyw@rock-chips.com>, Zhang Qing
- <zhangqing@rock-chips.com>, Sebastian Reichel
- <sebastian.reichel@collabora.com>, Jonathan =?UTF-8?B?TmV1c2Now6RmZXI=?=
- <j.neuschaefer@gmx.net>, Lubomir Rintel <lkundrak@v3.sk>, Julien Panis
- <jpanis@baylibre.com>, Matti Vaittinen <mazziesaccount@gmail.com>,
- Alexander Kurz <akurz@blala.de>, Krzysztof Kozlowski <krzk@kernel.org>,
- =?UTF-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-rtc@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH 00/15] Convert power-controller to dt-schema and update
- various yaml file to referencing it
-Message-ID: <20260316170034.31bee485@kemnade.info>
-In-Reply-To: <f329f1b4-787e-4c8c-ba26-e419a047023b@sirena.org.uk>
-References: <20260316-power-controller-v1-0-92c80e5e1744@nxp.com>
-	<f329f1b4-787e-4c8c-ba26-e419a047023b@sirena.org.uk>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56E293CCFAA
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 16:01:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.49
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773676868; cv=pass; b=Ytj2Sac6FfeSHms+PuW+r3xT3tL9EKIGpfqblnTC5sjVYbLC9TW3QcNIL3FsrWoCFdecWz5zXIQTE3nUe0KXNC9r3hTdoV/3GG1vIbYVhGzhq/ObHmXb5PtBZXeiypBpE+YoSvz+O+1qLXZyN+qByIsBBh26cIZAhmMjmUuWvE8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773676868; c=relaxed/simple;
+	bh=nRTROiegC3HHzc2PKkDT6LEu+pHZlAThf22kVsmxLDs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oqNfOL+YuMLhmquxHKHWYgnC697zOGkUo6zEQtz09NE0KnavB9N5GhcAt5CYxEDuVzz4Ej+qmrEfyFqE/0ZAvgWMH4vz0sw6p2fAjxHrC6PL6WBe0A4miYc6UipcZXMyGv6IjJ6Rzn0PF58P+zvWCRLU3UJErrZtoMhToqaeb9Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tRvR8jWP; arc=pass smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-66391baf250so4477470a12.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 09:01:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773676866; cv=none;
+        d=google.com; s=arc-20240605;
+        b=cXB+tk0winZvOklo/ypQlYu5/xtOJ2qiCtxLvHfeNuOEkfyjuDyzlE3UiSFHHKoRgC
+         R309vxpUnhZTM/tigI8eQ2KU3xrtLGCSDdfSYL4gN3PnAL9LdbYJtei1o2z70C2WcApm
+         GRt45tIUJBaO23Q6ezJIyPABlUskq6EARWurulaxweJrZNQTOPJzHRPn1NpggycJEAv/
+         aagkZafYDfA7XbMK0BnAQOzenOV+aswZVIBLwCChq9YVL7/6JKeLul0/9SVyDK6/3DOF
+         Q0nNR0X+coodPDcYomArl6GNVCSPtSZAE915/8vVxc1UBOrEuHVPmfflfia4sH7uBcg0
+         XJhA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=nRTROiegC3HHzc2PKkDT6LEu+pHZlAThf22kVsmxLDs=;
+        fh=8/2OEmQ80DbOt2zKp6okrHUMDtUUMI1koM5WyVmYBtk=;
+        b=bVzp2QAHi2vb+OjZSZ8upgY1qf9ebkkPL6UhSe0Sad1ef/xUEM3CPMXVeAuqh7avUy
+         s/JCZ0n+lrUNKhBRIYZK/CKlmozVrclgNHUnG07oCVVxZ9LDwAPooMQj7udRXaFBi8yG
+         iJRB1yHZXiZlRHiZFBoFgaQMDRQpEspNbkgjKrv6TqKpfm6ZliWYaj+wgWn6YbPWET8s
+         CxlGZiV/ijUfxwbcR7l+StiqYZW5o1MuNP8AfvJXWgEJk8mQa7SX3ohZDoDRkCV99MUI
+         vLUXgPlwC7aZPyutxeq1JQigHUGIs86ctS1FibopBb/GgotjFpZLglJHs8e/DUggD0OY
+         ZFRQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1773676866; x=1774281666; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nRTROiegC3HHzc2PKkDT6LEu+pHZlAThf22kVsmxLDs=;
+        b=tRvR8jWPdYpapywuFbFHAwdbkmfciAm97lupRo23Lz95ol4WDw47KF+V049m3ECDKP
+         khDfrPMN6aR/vimprZmLRF6GU2CkUGsd4Jv5xtJGU+u1yNjoX+Yy544KdjdWYeVUqwvP
+         PAuT67hKYlEjtdFL0MRqVeSCfe5qhhfNz5y8pDlti3aC5sbdN5iYW7S3kFsgmreBC4CN
+         qAGJEDXXCt/WGvWjeZrLQIJq7Yect+cT6Mb1tiyLaxvjXE+m/ds4hH8ov+Y8sMqZNrSm
+         SWPoHKrCT3TVDDSq/C0ySD3PoMmRqSWtUYuAZVCOsx/LSb4q+nVLCCHHlStxxvaawLlT
+         Ym6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773676866; x=1774281666;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=nRTROiegC3HHzc2PKkDT6LEu+pHZlAThf22kVsmxLDs=;
+        b=PpKzLuzn69zSePXb9BixNsC9evVJAJney9LmktcfFCQNskoJU/Pl0NuX4ouHMJvdmC
+         UTkCfy5S46Ow4S/GJ2T15nFX84pzvy7DRFBrSN/pUhPtEQThB1/ofntGcx89Ho4ivmyG
+         8B4cdnJB4Fe76LG06fZMt2QkcnUhRisEolj/5keWOeWDV8TumYuC66WuQE3KfaN+RAi4
+         /g7dX+qo/AlqbEhBaxb/2qDIEHfLNWUs3WOD5FdPTBaCUMdPYCvUFXlJma3NDQ4ws61S
+         XlpPRqHp/tZ2ObdRXRVvSXm2IIbZ5JhwN3jSUpaDhWqC97+Yt/jSDiQbDao0TGch1lJg
+         mrLA==
+X-Forwarded-Encrypted: i=1; AJvYcCW41alCSuPZSEJ++vYpHrvY/3csqzPuczLhSkFjR/9ZSCBpGRefouw4znBY05FxQzEHNEWbVxJQ6J/n@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKCHh+NanAu0C70/xVIYZY/DxwBOeekDVYJ1XF/c5hl1k0U+wp
+	Z1ted10mrP5jvwc5vmlJ3b85QORyJ5cWWX56xQK/Rdlf0hTrNik8kh5E2Po5ponibJ3qB2q05ct
+	cU+Qfilwppu7sWJU+PxqGD8AUtRVTmIBCl1etU6GmxA==
+X-Gm-Gg: ATEYQzzPWAd5jJZ9PN45bdQdzkulTAPfJHE44wfZQ8m+s51EzN+q5luUzZRJ+r4sl/4
+	IMZSvnpTCfjoOouorrSyCIiwx/jEvjOyTQL7drbc+kO+/TTGVKG7Fi83OpvWXV85eeQaR/0+0EB
+	5Cf7kmmX4zjCq/QkSTPCIX+JGqPzOUyjETLMyf5gq0a4fZYA9c7NnaFSl1zGxFeB3xK04T1i3pp
+	IPjtbkF3nCriZBi5phonhFaihGBiq0U4cUd6t1J56dH43Ig6rDVnDF7tNHNH9Dm+Jxw1/n+iguJ
+	y2yRU6lzj3BXaAb2sEC49cHwgRNRuLJM5HJYHDpVgQ==
+X-Received: by 2002:a05:6402:51c9:b0:65c:2af1:b7e2 with SMTP id
+ 4fb4d7f45d1cf-663bac17dcamr7423927a12.27.1773676865593; Mon, 16 Mar 2026
+ 09:01:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20260313195801.2043306-1-shenwei.wang@nxp.com> <CAD++jLkVZc7J+39eUtpWz4+YQm035HDtUyiyrEFGifQkcSMsCA@mail.gmail.com>
+In-Reply-To: <CAD++jLkVZc7J+39eUtpWz4+YQm035HDtUyiyrEFGifQkcSMsCA@mail.gmail.com>
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+Date: Mon, 16 Mar 2026 10:00:53 -0600
+X-Gm-Features: AaiRm52a6xRhLIv8WCDX8JG5wzLTI5tmdCIrfHWi7mJRzbOdI91SV43T2PYw5ig
+Message-ID: <CANLsYkyd8x29kz1u2dkyn_5hhWVJehz6VVKEx81Ew6i1nKObwg@mail.gmail.com>
+Subject: Re: [PATCH v12 0/5] Enable Remote GPIO over RPMSG on i.MX Platform
+To: Linus Walleij <linusw@kernel.org>, Andrew Lunn <andrew@lunn.ch>
+Cc: Shenwei Wang <shenwei.wang@nxp.com>, Bartosz Golaszewski <brgl@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, arnaud.pouliquen@foss.st.com, 
+	Shuah Khan <skhan@linuxfoundation.org>, linux-gpio@vger.kernel.org, 
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
+	devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kemnade.info,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kemnade.info:s=20220719];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[oss.nxp.com,kernel.org,linaro.org,broadcom.com,gmail.com,ti.com,baylibre.com,crapouillou.net,bootlin.com,sntech.de,rock-chips.com,collabora.com,gmx.net,v3.sk,blala.de,vger.kernel.org,lists.infradead.org,nxp.com];
-	TAGGED_FROM(0.00)[bounces-276305-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276304-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FREEMAIL_CC(0.00)[nxp.com,kernel.org,lwn.net,pengutronix.de,foss.st.com,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[39];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andreas@kemnade.info,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kemnade.info:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[mathieu.poirier@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: C109029D194
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[i.mx:url,mail.gmail.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,nxp.com:email]
+X-Rspamd-Queue-Id: 2978329CEF7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, 16 Mar 2026 14:55:21 +0000
-Mark Brown <broonie@kernel.org> wrote:
+[Adding Andrew Lunn]
 
-> On Mon, Mar 16, 2026 at 10:47:35PM +0800, Peng Fan (OSS) wrote:
-> > Convert power-controller.txt to dt-schema
-> > Update various dt-bindings to use generic power-controller.yaml without
-> > defining local property.  
-> 
-> Are there any dependencies here?  It doesn't look like it.  In general
-> please don't send a single series covering multiple subsystems unless
-> there are actual dependencies, it just makes it harder to figure out how
-> to handle things.  Send a separate series to each subsystem instead.
+On Mon, 16 Mar 2026 at 08:23, Linus Walleij <linusw@kernel.org> wrote:
+>
+> Hi Shenwei,
+>
+> On Fri, Mar 13, 2026 at 8:58=E2=80=AFPM Shenwei Wang <shenwei.wang@nxp.co=
+m> wrote:
+>
+> > Support the remote devices on the remote processor via the RPMSG bus on
+> > i.MX platform.
+>
+> I think v12 looks pretty good, if Arnaud gives his ACK on this patch
+> series I think it's ripe for merge.
 
-It seems that everything depends on Patch 1.
+Please wait until Andrew and I have provided our RBs before merging.
 
-Regards,
-Andreas
+>
+> Yours,
+> Linus Walleij
 
