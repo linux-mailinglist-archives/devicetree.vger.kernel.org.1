@@ -1,64 +1,69 @@
-Return-Path: <devicetree+bounces-276353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276354-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GMb1F7ZDuGmLbAEAu9opvQ
-	(envelope-from <devicetree+bounces-276353-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:53:58 +0100
+	id sKv/MIdDuGmLbAEAu9opvQ
+	(envelope-from <devicetree+bounces-276354-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:53:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2F8529E99F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:53:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FEB229E957
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:53:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6440A3036E80
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:52:32 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 372503030FD0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:52:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A67D33A9FC;
-	Mon, 16 Mar 2026 17:52:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 475E633BBBA;
+	Mon, 16 Mar 2026 17:52:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e6d+anUg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="euzR0jWn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 370743264ED;
-	Mon, 16 Mar 2026 17:52:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 220FB33B95A;
+	Mon, 16 Mar 2026 17:52:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773683548; cv=none; b=VuJx4mdjO5Bh6xrsKPj//WrdSZu1LsLyUdnnNKKWXhtAgwhtoSYsizt1RYkV21gJpgafn1e9j1N1jOnTIBJiL+t/gqmummPhXL6aUvoPi0boxU3uZxT22edFANTa+iTNiCLGUF7104+O/4FfX/Hkw4hULmepulJ2SLyf2+f9NCQ=
+	t=1773683557; cv=none; b=H9hfBRK0fyqdNwTioeePi1cyxLZZ3GTeK7Ron3bg4G6ijB57PdLsj0/Mq6nh+dlwcJENb94ijLoXXxgR6JzO+yuhJRDrbKNcoif464ERA9qXwRTIMAqzMgpxH8K3ql2K6y1kJ9SrTJbxYJch3AgC+Yz4Zw9C741B+DJwrHX/TT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773683548; c=relaxed/simple;
-	bh=553ubSb+txqxPSqOb8jW+sWkJfFLki7DRs2tAAK29j0=;
+	s=arc-20240116; t=1773683557; c=relaxed/simple;
+	bh=1pb1aqms/tuAEyqtaZxNHK+BnZRWUIA63kS7sxzCYdM=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=BXInZagbioNKb4ahlJZZgUBVHeDmRXWSIX2S0kSNYt7DbL7rj4v+m0/8kRQhbwxzbA5u1Su0YM4mt66vd0hXfTrbDzVxakpvFS7n6Crv9r8r6/gG/bKFm7p9K4L1cm3RwE/wQQ6C0d99Nn/r99oY5LLzNVhzo5XkMK3aeBl2IzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e6d+anUg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D33DC19421;
-	Mon, 16 Mar 2026 17:52:25 +0000 (UTC)
+	 MIME-Version:Content-Type; b=uMf48ixcnQZz/PKFu0d+Jhuw29x8JdIHaCDcl6mdf/uWt05FcVM+aulUzPZrhT7JeyXKht7soCkmrZDj2CJBC6lZjk90nv9Wvwg7hWlY6Rnvo8JyipWMnXXimZ7nBY+7WAf15t8s+mAEQs2Fc+8138eT9YOV8BenkfJIt9JRn8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=euzR0jWn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3315C19425;
+	Mon, 16 Mar 2026 17:52:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773683547;
-	bh=553ubSb+txqxPSqOb8jW+sWkJfFLki7DRs2tAAK29j0=;
+	s=k20201202; t=1773683556;
+	bh=1pb1aqms/tuAEyqtaZxNHK+BnZRWUIA63kS7sxzCYdM=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=e6d+anUgQ6WKnlCCMTy6IXrSxRiOIaEgv+7ReiIrfbPpHT0QjzIRMD6edd8xbl5Tr
-	 AIN/qSUN68WCEbgHDNh/XWLw1DJ+BLd2Xq78NaB3tJ5QfVak/GMpIEiU0E6uv5ER9/
-	 bkXMCvyK7JtD1zmdQf94XOlfqL02hVavUckDXp/QmSkZbHOQJqGpmemjjwj/xjHV3P
-	 cnsyTePdlDz1XaKOfiv7uTJnMNufwooa3yL2gPIzFqJSBrJ+136097Ntb3LCG8+piB
-	 meIHFpgF2evPsQKanb5rYfzD+UpeUgffLoWu+wchwW1e2n1Bjw/1PpNysQvqtKIaXU
-	 hNVH2Tc7YhZlg==
+	b=euzR0jWn68jPTGaqoZ1uLi6HDtCmQpCqd1SknY0547474UQR5dAIDOaEQv6In5cM1
+	 8/QT8JrXVyf/IZ8cqE6AuW5eEJB+GGcbhiotXovgoi4nvk7jIGeitlCy9KmyipZltP
+	 TNN6ZczPf8PKKGakm3QTN+fzlCqPeyawMingXLgcML7Vlja9AfqXTC0t+peiWmJJmz
+	 1B6fplGKDB8aiaeUfDzFVl6NUJpmRRmKDp9EVlLk/f30ZcgIxi1tpaV6pqQlhF5CiX
+	 XooQGmqDJ+ZHMYl9R4T1MtL1bhSWq23yxZiY0npEEzmmzZP/RrVePipVUkXdgnPajx
+	 UoSpLEEbxNTOQ==
 From: Mark Brown <broonie@kernel.org>
 To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Weidong Wang <wangweidong.a@awinic.com>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+ Shengjiu Wang <shengjiu.wang@nxp.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Shenghao Ding <shenghao-ding@ti.com>, 
+ Kevin Lu <kevin-lu@ti.com>, Baojun Xu <baojun.xu@ti.com>, 
+ Frank Li <Frank.Li@nxp.com>, James Calligeros <jcalligeros99@gmail.com>
 Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Teguh Sobirin <teguh@sobir.in>, 
- Aaron Kling <webgeek1234@gmail.com>
-In-Reply-To: <20260311-aw88166-fw-v2-1-8ef30dae3657@gmail.com>
-References: <20260311-aw88166-fw-v2-1-8ef30dae3657@gmail.com>
-Subject: Re: [PATCH v2] ASoC: codecs: aw88166: Support device specific
- firmware
-Message-Id: <177368354523.146755.7925960174449128605.b4-ty@kernel.org>
-Date: Mon, 16 Mar 2026 17:52:25 +0000
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, asahi@lists.linux.dev
+In-Reply-To: <20260301-tdm-idle-slots-v3-0-c6ac5351489a@gmail.com>
+References: <20260301-tdm-idle-slots-v3-0-c6ac5351489a@gmail.com>
+Subject: Re: [PATCH v3 0/7] ASoC: basic support for configuring bus keepers
+Message-Id: <177368355239.146755.11297173748459835851.b4-ty@kernel.org>
+Date: Mon, 16 Mar 2026 17:52:32 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,19 +78,18 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276353-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-276354-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,pengutronix.de,renesas.com,nxp.com,perex.cz,suse.com,ti.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,awinic.com,perex.cz,suse.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,sobir.in,gmail.com];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
@@ -94,16 +98,22 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,webgeek1234.gmail.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D2F8529E99F
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6FEB229E957
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 11 Mar 2026 12:41:20 -0500, Aaron Kling via B4 Relay wrote:
-> This driver currently loads firmware from a hardcoded path. Support
-> loading device specific firmware when provided by the boot firmware.
+On Sun, 01 Mar 2026 18:05:19 +1000, James Calligeros wrote:
+> This series introduces some infrastructure to allow platform drivers
+> to specify what a DAI should be doing when it is not active on the
+> bus. The primary use case for this is configuring bus keepers which
+> may be integrated into various codecs. The instigating use case for
+> this functionality is an interesting bus topology on Apple Silicon
+> laptops with multiple codecs.
+> 
+> [...]
 
 Applied to
 
@@ -111,8 +121,20 @@ Applied to
 
 Thanks!
 
-[1/1] ASoC: codecs: aw88166: Support device specific firmware
-      https://git.kernel.org/broonie/misc/c/fc1fbafc18a0
+[1/7] ASoC: dt-bindings: convert tdm-slot to YAML
+      https://git.kernel.org/broonie/misc/c/5273cb8197d8
+[2/7] ASoC: dt-bindings: update tdm-slot.txt references to tdm-slot.yaml
+      https://git.kernel.org/broonie/misc/c/cc74890fb484
+[3/7] ASoC: dt-bindings: add TDM slot idle mode properties
+      https://git.kernel.org/broonie/misc/c/938c1ed56ab8
+[4/7] ASoC: soc-dai: define possible idle TDM slot modes
+      https://git.kernel.org/broonie/misc/c/7d8632f1ef6c
+[5/7] ASoC: soc-dai: add common operation to set TDM idle mode
+      https://git.kernel.org/broonie/misc/c/b758d3574e88
+[6/7] ASoC: tas2764: expose SDOUT bus keeper via set_tdm_idle operation
+      https://git.kernel.org/broonie/misc/c/45573ee1f2ba
+[7/7] ASoC: tas2770: expose SDOUT bus keeper via set_tdm_idle
+      https://git.kernel.org/broonie/misc/c/af176d0787d2
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
