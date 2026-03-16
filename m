@@ -1,188 +1,165 @@
-Return-Path: <devicetree+bounces-275944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-275948-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yE2FMp6jt2lTTwEAu9opvQ
-	(envelope-from <devicetree+bounces-275944-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:30:54 +0100
+	id ADFlFEikt2lTTwEAu9opvQ
+	(envelope-from <devicetree+bounces-275948-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:33:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37F0729522C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:30:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B16D02952A1
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 07:33:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E02D0300B76C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 06:30:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0DC78300B109
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 06:33:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCE2834BA24;
-	Mon, 16 Mar 2026 06:30:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DECA434B69C;
+	Mon, 16 Mar 2026 06:33:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="P5wXfOg4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tica4iij"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010020.outbound.protection.outlook.com [52.101.84.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F0231427A;
-	Mon, 16 Mar 2026 06:30:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.20
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773642650; cv=fail; b=V1/1NjHFBLdI5YYSD2yUhjNSkzAFkBLKXdvoWGSUqSlWTtxRKTwJ3sYAYpisSmrjirYkjP6oJqIxzTNi5CEtfahgsGxsFu0zmLc/Vk1uquIgNHeiuLjsokwtdfx3++AL/a1uO5zzJ1wyFmWMj/O4ixwu5mo4hcn6b9gM0J38cZE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773642650; c=relaxed/simple;
-	bh=AbxMe28N8osMhd1Iv1snzuSjfGvUCv1TxLUY/zUoLZI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=OeIkefPrn2uvxB8mfmnwl+NWlswF/qH/u7A01VcSdOEWsPO6lqu1YZEPScH6f16CFxjhjKWx7FhYJyUDtRjkuNGwNdYXWU1429pl33FgdHH/7LeJuU9U2cpmctJ1PK0SRRaPyTS7R5oAMnBRD37KjiRMDyKOn5KFBwcYS6WTsmg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=P5wXfOg4; arc=fail smtp.client-ip=52.101.84.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kpA2HeK3R6sNxcagD2D07ZiunPcFE+tUZ3xIZztNgwyfYBEvnfjLUeZGoQi2mYOdHXVutpogBWfbV87DKnl6K1gB61WoK3820kv4nG2nQzis6Ud4yoAnDm41cxuLrmR/FuDv9x+1dMlBvWKOuQ4uUjET8gHcoCx1AuLhJ567E95AUQIkAylZAytTAHOYAt4S2EMExenObIM2eu2LdMqLva3fxSNGDT0Mqs4JYV22AyMyfvan6wx+iuDPnmm7wyiD2mwJ53ehqfUJieWAov+9P+urQpoV8dfuu6Gvd6RLeQ7+8/PYLZ1XuwA/6kSYPoMruproocUCtAsbmO7uBMbCGQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AbxMe28N8osMhd1Iv1snzuSjfGvUCv1TxLUY/zUoLZI=;
- b=eGkVXeD7HMi0wEwxz2I+DeHU/4j9xURp/d3LMfnInJI4MeVwyvW6dgCE6mZGMc1bF+HDzdfPCynqd/NgmJ680E8NAr1la7usPQKjNK7kaVe5mOESHW8v+zA3Srnphv1qlNDZWfIOT+9VrABAkk3cONkhAL/BeozTpLc2/4NNbfRkpdVGTCmrEHm7Zpx4zSZDpaom9IEj5DIEiOHmITZ7wwgPKmGtCpKEg2woxTLlfDpsdqyxEGD/e+bkcmle52kGeefWDdS75ErdHP6roM3Mq/1gmcCTEGBBD7P+BGThKZLRijTrW6WM8eik8oi+67B+9DIaJebErTc0Oc1fm5N7kA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AbxMe28N8osMhd1Iv1snzuSjfGvUCv1TxLUY/zUoLZI=;
- b=P5wXfOg4Y/hSDjXIDw7MwWMrTSVKfAbPNiAbuUWUhAgEte8H9EeX0gAYwR/wJtrRXcRxHtholwBQ4Dvzkg2w/kf44HuQwJyTLkw8Apf7RRT7K95kkWEDn892za9foibpjLVGhiL/nIc9BMsDcTo6Rto8H1p2iFXfld5KXjFCjXKVHEPgvppF2LFFYeUAGPXvO0uErDMmbPyBrvNcuNJ/He2NXYnpItRtyEBeiZsr8eBKD5i6nZl+20qf2bap6aewCcFwUNNw0cHcTlQO21AuZbsAG51VfOOdgRphX3+JxrrMEH229rHFVBLZQiQkqw/VdS/nvCFRVrnriDqgEMF1Cg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by PAXPR04MB8846.eurprd04.prod.outlook.com (2603:10a6:102:20d::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.22; Mon, 16 Mar
- 2026 06:30:35 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::4972:7eaa:b9f6:7b5e]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::4972:7eaa:b9f6:7b5e%7]) with mapi id 15.20.9700.022; Mon, 16 Mar 2026
- 06:30:43 +0000
-Date: Mon, 16 Mar 2026 14:32:44 +0800
-From: Peng Fan <peng.fan@oss.nxp.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abelvesa@kernel.org>,
-	Peng Fan <peng.fan@nxp.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux@ew.tq-group.com,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] clk: imx: fracn-gppll: Add 333.333333 MHz support
-Message-ID: <abej+/ayOkfhK+3T@shlinux89>
-References: <20260313070740.585043-1-alexander.stein@ew.tq-group.com>
- <20260313070740.585043-2-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260313070740.585043-2-alexander.stein@ew.tq-group.com>
-X-ClientProxiedBy: MA5PR01CA0116.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1a7::15) To PAXPR04MB8459.eurprd04.prod.outlook.com
- (2603:10a6:102:1da::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B76BD2853E0;
+	Mon, 16 Mar 2026 06:33:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773642815; cv=none; b=labDUWijtsxkP+k/M7I2WvF4AeeVqGc9yGIVAm9W3A+OwBULUJ8MVL8yNo5NWylqueLT9Kpipk0krCvpfOc36seGadsCEATfkMz6moDRlKgGHK3pgOA+wfjrEmDaq8GhuWwtgZY09M7ylBXW0H46YqUO1I+NO0fMlMgLSn7oGGo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773642815; c=relaxed/simple;
+	bh=djv1u2JNf9x0lGNw7u4dJc88RxbiQVxfUiQI1JdoKw8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=BWegzxMTe4Zm17Or/vbAoFplF3rEJFXCq4sQFs3KQSjakqaiz3d4ehz075pizA/XV3PhrcImfC8gH6dePsKwWneZ5ICs4R5A+HmIYtn7y0GXgWtQpIQtjK5LqJjxKgp5dvLlPZfBd7w+PzoMnGtayxVBA4FF1rMdcHbVMjmoIao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tica4iij; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 51113C19421;
+	Mon, 16 Mar 2026 06:33:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773642815;
+	bh=djv1u2JNf9x0lGNw7u4dJc88RxbiQVxfUiQI1JdoKw8=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=tica4iijwoTOjs2tI71jPmJjKpXxaUKV6Hacz9qjEYLvcUZ6NNgyczqsR7zfRAJzK
+	 0RBI1Ey4uzmKI2H+0wnhj0VG8COgCVIDZU/G/80XDIAUiRmhUD9ZFeEb6TJOcvm/9w
+	 1mdHkb6NLkQz2x2vHtEEVDRdvSEKnJwfB5RTXvpNdIDa4JRivjBZVI1S5rICBJkh6i
+	 zOrxGtPIueVqJ+IxeYaF4deDYRjWKVG5niJJGK5LnxtrLarEIg/lFA5TnuZ5vEGzDh
+	 dBTdnG7nAKEG4DnWtwxcnZTaYQdo4N/L7lQztXF1dFG8WmpZiTeLqibVg3sUqtWs1u
+	 xoAu7CmGLrR1A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4114EEFCBB3;
+	Mon, 16 Mar 2026 06:33:35 +0000 (UTC)
+From: Jia Wang via B4 Relay <devnull+wangjia.ultrarisc.com@kernel.org>
+Subject: [PATCH v2 0/2] serial: 8250_dw: Add support for UltraRISC DP1000
+ uart
+Date: Mon, 16 Mar 2026 14:33:21 +0800
+Message-Id: <20260316-ultrarisc-serial-v2-0-6ab3e7fa891c@ultrarisc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|PAXPR04MB8846:EE_
-X-MS-Office365-Filtering-Correlation-Id: 36154c39-fdb5-4b32-dc81-08de83258cf0
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|52116014|376014|7416014|19092799006|1800799024|38350700014|18002099003|56012099003|22082099003|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	F2iO3lQUeyBUH01UfpGM+L3yW7KTU/zflupsq8Yf2008x8i+wGOGfTc53FGJYH0xmY+5tfo+XXkNwrVB0+VX08QZk+6jGhLpKOfrEt+cthVTLXg/kKJZXV8txYFbHTORt++YP8pblKWqQtMNhDW8UuLRUFS7eyYTs6Y+SDK8LigviYPAtF3FffZnppuapzTTMbpfCZzUJ0HAiOn476NbXr+91NFhF39yWW/WPTeEnOOddIitBAD00FzyPYtpxgsovr1VxOCf7gZDKj/B5+DgG1NmG8jMVB3mT0sjX2IJFSgqFKdRXn2+kBfgf+aUXbd7+ibUQr1PCLPoMDtnUiInHm4mKdN+ApI3yRZm/kn/NfwoeID2AGaqpQgle6YKpz6Eo3icj7PAgNrLgkj9vbit5nSY388FlIR3o1ubNBpIQ20Eh9sYPyoV5I+JbI4Wv8BIrld0lH1cEw4tP05LihS0HNAl2qYDnFPoH/QcoRF8MFyjY49GQ8NP162uYHxDw6gMsn2PTTSx6ZqmOYqK3hg3AgNkeOcbAKhsVIO4Prz42Ha0mgOTKml9YBM3vNIs28GhPfUfbZw5HCGk+9tdhIa9Dz5hb0EmzjL81ZsF1azB3TnEG5JpuySVIqLvZ7c6Ne75rI7RLlJTcweXiakUZS0xb4L7PqLkHqbw9IfRLP+gju9ETd2+haMpgxKo8Gwp/GvCSv6A8n9FtJKnvXJ5Y+iPmx7xrzJYW1HQp92/zUz0E6SQRaB4CzRl1NZBhsB6/V6mXdTTlJSBvZevZg3ydSu35j/Hmt9xh+OTVTknT1xyakw=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(376014)(7416014)(19092799006)(1800799024)(38350700014)(18002099003)(56012099003)(22082099003)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?CbVL3rlW7iLyx4X3mWfj66wkYedWOlx1I1If31GyLS6bSKixdUubPrL5+xXS?=
- =?us-ascii?Q?pLdjHKzNiqR1hAvY2YsPflHG2wo6n3RnylxWYJ1bACgp0TM/xcK1E3HB4GF9?=
- =?us-ascii?Q?np3iQC97ElLnBgQtO8V6GISXEEOHHf0rfyO7i5hTbQb0PB+/Qt1ApshJX15a?=
- =?us-ascii?Q?MEYrN5MbLRQVh/eFJe1D+6obiga5SejpgwNjDU+3c6ajdehYFeIEsAseAzS+?=
- =?us-ascii?Q?Srx3VjGNIc4/aGi+pfdfpNO6eCeKapp/q+PpPkuBt+7NOr6KWn+f6ueEIQ40?=
- =?us-ascii?Q?Lmj+RcNKCgg67xUsXwdRebgSzVlPIHn3tIqbxye3MUZfb+ENMGo1QjcyTtFu?=
- =?us-ascii?Q?TM3HSr1w5tMN205iDjqyV8S+LBxxN8r3nmFvI+Ca31waa8Cq+rNmorHXhnbY?=
- =?us-ascii?Q?y0fLjdGSIF0ar7+G2qpFNSkg+fQ9Esz4Tt4YYOO/U+68P3WuL+vhz1CzBAKv?=
- =?us-ascii?Q?HS11RZaZm+N5BwCsN5oNhg3gQjINjDNSkCzkddLeMC7CZGGa8hXowAgNl1jG?=
- =?us-ascii?Q?vtz0Q5fRZUKtDEu+0c/NzOj84X4VraoR8W6sRtiMdm14iuhrPhxPUvYk5Bnb?=
- =?us-ascii?Q?i75KaM0tb6/N7KsfdJfarNCtrJfaRfN2MTsxEaRuvAGdO70a/W4x2JZQjhVL?=
- =?us-ascii?Q?kzEE/Lu4xC5lRiL+lUuvXqUip+rpLgtd5oQ567sT8xjtmgj/eQH5+IHDxm94?=
- =?us-ascii?Q?lUrgF2D0NsT2ummA6ua1Iu+pCkvoQ6pgygVeAm4OFU94T6/Fxr1rSQuCAt8G?=
- =?us-ascii?Q?vYuI5tW5/6Lo3IwtFZEM77mYp/IrFNE774m6GzNLI1c2H9ogvhSRgpFJa/CB?=
- =?us-ascii?Q?R1n4Xe0Y9j0rZafhHxr8/yQjJO0U6dfP1px8ZmvhBA+nw3m9Zxg5X5xcxdCd?=
- =?us-ascii?Q?DuLDd5BK/W/AkV340Op0TwuCiF4h6mFyU2zo2kfZK2DMmCmLlmbWGA1+8Mhl?=
- =?us-ascii?Q?FIfExdkKh5g7qLYXuUWbW/T8bAN2JFmLiRyMW5/cQpZl6LCFUZTs5qtDH455?=
- =?us-ascii?Q?WBRrfHgCs92bFrlmnzRLLz2YBTIErUULbxbbsid4UAzi2cHkOQvZVPLaN7J1?=
- =?us-ascii?Q?Azi+s0gbeTeHMKNoU58GaQ+Df6KUKhYUcV2NiuRoVcgekEDncYpKu2O4lZP9?=
- =?us-ascii?Q?laocMme57APoLQK5SbQt8fpXJotKJq1Jw/A/RJD2Qz6Uoa4o41N9kO7HMzLr?=
- =?us-ascii?Q?WtAw1tvUNws++eBrKCFuDXwBYzyjzU54Uk4MXn/EpxZQzfGrTLisSKdVUDk/?=
- =?us-ascii?Q?jIVnejLUGo2Lb2mz8asg6O6UmmiRsJtJTlxQNnVgnX+aIdPkAywiyL8l4n6g?=
- =?us-ascii?Q?ceGuom/0qCDZFTTcR+ZCIuhkNCtxLWU98dzFzRhctFRbIUM8FCWFUJFjsqAh?=
- =?us-ascii?Q?fn7FBHRAI8ZIx5VneiXjc7sYTt3QHoEg94muoqx7WAVEUMV1NWvex3Dgs0Nw?=
- =?us-ascii?Q?yW3e7q5ldbVOsDqWUpFr4LbLidxgLTxj73Dhtax24+id/hEOwVFRNLWt1SKB?=
- =?us-ascii?Q?ezCfl2uHFeF4tJRiciw335ARm9Hu51jd/SbbLBl8CtTCGBisagPlRwfPbOtq?=
- =?us-ascii?Q?3bhmIE78PeKcl6J9X3NLc/P0Hon5Sxs8QkFtS/GlxB/RoHOkOUlMuMIAiYBa?=
- =?us-ascii?Q?HjHVMFxuduGGPR7quc+L+dpPFbzNrGOzPDeeS9l7J+G5tHOz8B2Y35ZxKftL?=
- =?us-ascii?Q?aTT8GDjSojf2H860oknmYWBsogwIpDCHwMxF0ek8ZayNs2/jzpfAT52KCXqA?=
- =?us-ascii?Q?ghGHLu7h5A=3D=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 36154c39-fdb5-4b32-dc81-08de83258cf0
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 06:30:43.8358
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: omD78CYD/TNdd7+aR9sMfU+7GBTg+iDSmqUouxlCr9b/aqDmJ9Fk2IuSXP94FHLtUFAAyL+mh5eLll68WBM0Eg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8846
-X-Spamd-Result: default: False [2.44 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADGkt2kC/2WNwQ6CMBAFf4Xs2ZrSYg2e/A/DoZatrEEgbWk0h
+ H+3RePF4yTz5i3g0RF6OBULOIzkaRwSiF0BptPDDRm1iUFwobjkNZv74LQjb1he6p6pylolj9h
+ aoSDNJoeWnlvy0nzYz9c7mpA72ejIh9G9ts9YZu+bL9V/PpaMM1OlF4m1lPpw/il7Mz6gWdf1D
+ ZrpnmvGAAAA
+X-Change-ID: 20260309-ultrarisc-serial-64ff637edf26
+To: =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+ Jia Wang <wangjia@ultrarisc.com>, Yao Zi <me@ziyao.cc>, 
+ Zhang Xincheng <zhangxincheng@ultrarisc.com>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773642814; l=1529;
+ i=wangjia@ultrarisc.com; s=20260309; h=from:subject:message-id;
+ bh=djv1u2JNf9x0lGNw7u4dJc88RxbiQVxfUiQI1JdoKw8=;
+ b=gfIW1chPaStqWtJUPKcrjAUVN4EHB+jkMVfWtWMQwkmMqfWBb+AQRgDtE21J180xBTs2tmFwu
+ gUitd1zpKnYDozapFw5ml8C+MNA4RZuaJIBgJrvMzhej6L/3rdKgSFB
+X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
+ pk=XvYkrelqJIIzobY7j+nIg8rsfv5kzaOzuc1UPhd087U=
+X-Endpoint-Received: by B4 Relay for wangjia@ultrarisc.com/20260309 with
+ auth_id=682
+X-Original-From: Jia Wang <wangjia@ultrarisc.com>
+Reply-To: wangjia@ultrarisc.com
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-275944-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-275948-lists,devicetree=lfdr.de,wangjia.ultrarisc.com];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[wangjia@ultrarisc.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peng.fan@oss.nxp.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[nxp.com,pengutronix.de,gmail.com,kernel.org,baylibre.com,lists.linux.dev,lists.infradead.org,vger.kernel.org,ew.tq-group.com];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,tq-group.com:email,nxp.com:email]
-X-Rspamd-Queue-Id: 37F0729522C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,msgid.link:url]
+X-Rspamd-Queue-Id: B16D02952A1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 08:07:31AM +0100, Alexander Stein wrote:
->Some parallel panels have a pixelclk of 33.30 MHz. Add support for
->333.333333 MHz so a by 10 divider can be used to derive the exact pixelclk.
->
->Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+This is version 2 of the patch series.  
+Previous version was sent via local SMTP, some recipients received it.  
+This series is now sent via official web endpoint.
 
-Reviewed-by: Peng Fan <peng.fan@nxp.com>
+This patch series adds support for the UltraRISC DP1000 UART controller.
+
+The series includes two patches:
+1. Update device tree bindings to document the DP1000 UART compatible string
+   and required properties.
+2. Add driver support in the 8250_dw driver by handling the DP1000-specific
+   initialization and configuration.
+
+The patches have been tested on Ultrarisc DP1000 development board with
+Linux v7.0-rc2, verifying basic UART functionality and runtime suspend/resume.
+
+Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
+---
+Changes in v2:
+- Rebased on Linux v7.0-rc4 (previously on v7.0-rc2).
+- Reordered patch series: DT binding patch comes before driver changes.
+- Updated commit message for DT binding patch.
+- Link to v1: https://patch.msgid.link/20260316-ultrarisc-serial-v1-0-c464f3e933a5@ultrarisc.com
+
+---
+Jia Wang (1):
+      dt-bindings: serial: update bindings of ultrarisc dp1000 uart
+
+Zhang Xincheng (1):
+      riscv: ultrarisc: 8250_dw: support DP1000 uart
+
+ .../devicetree/bindings/serial/snps-dw-apb-uart.yaml         |  2 ++
+ drivers/tty/serial/8250/8250_dw.c                            | 12 ++++++++++++
+ 2 files changed, 14 insertions(+)
+---
+base-commit: f338e77383789c0cae23ca3d48adcc5e9e137e3c
+change-id: 20260309-ultrarisc-serial-64ff637edf26
+
+Best regards,
+--  
+Jia Wang <wangjia@ultrarisc.com>
+
+
 
