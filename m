@@ -1,157 +1,150 @@
-Return-Path: <devicetree+bounces-276156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276157-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oOgeMIX5t2n1XgEAu9opvQ
-	(envelope-from <devicetree+bounces-276156-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 13:37:25 +0100
+	id OC0TD5n5t2n1XgEAu9opvQ
+	(envelope-from <devicetree+bounces-276157-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 13:37:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 654CD299910
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 13:37:25 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F00D299928
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 13:37:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C42043010790
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 12:37:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BD691301A165
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 12:37:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67070394463;
-	Mon, 16 Mar 2026 12:37:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7044396B67;
+	Mon, 16 Mar 2026 12:37:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="BESAIN72";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="CoHcL7KK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XgO9rC/l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AC99390200;
-	Mon, 16 Mar 2026 12:37:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A17B039659F
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 12:37:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773664641; cv=none; b=Q8GIVEoL01X3s2w6I2p9zdllg4DsQs7f/X7HtSJeyOZ2D+t6tHu2KygthwrtTwax/gvepCbiYmr8cKaDTu1Wsy/k6xNM7HabxMLWGBU73jPyEsryLrxdrQMvrFcU+ymKyVY9XmRssM72hGpQzM8osz4jDCjQqp1x/ECbW1MI0EM=
+	t=1773664644; cv=none; b=tlHN3rU8sfSGAgem08aj6Gb3F8cLmLwJ2fEgKpSjrOCXE3+OTBI0Wv2J8VWTNyQ5NuuUKGQOJ2Sq8vwDtV6HdfME1jNt2mheVEaFEFIBEiKM/cFII4YtYCtaUq4VJtqC0mxuBmXbvdZp1Dn3rPLsZrS78D562tDQwd9TdtsPj4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773664641; c=relaxed/simple;
-	bh=mKRTPX6DY4IqV/PuiUDo5PuCX/uhXH9mn2QEA5kOYNM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UDq5xEBIx0rUfRbBOQPlgrBzquCoedurP35uOCofKdeYRDTtIC2Zn13km7WFpvHVPTZM2EPE9RAdr3jojY3YV4Xhu5ZvTb0bLKs2SjkfVg4gz45O5g4Hg6lBrSk8g2z+wryQWTazBMFVwC+blgYcu33oCGNJihe1u/1TzSlDSXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=BESAIN72; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=CoHcL7KK; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4fZF3C2WhQz9tCL;
-	Mon, 16 Mar 2026 13:37:11 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1773664631;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=YtqjrvEqsLsMJSdmv0VvFrGwyA5l9tENmr1MiPP1vjI=;
-	b=BESAIN72YvlVuHQqQMBGl/5KGTBRDRp4qJbZFj9RSgRZZVq79QmMCnsUIDbc9GWOia6nLT
-	d44grwtQftsSUArzynxhtFaQtbUjS905YEeyKG1g3bw4Lx87v50KROPst6mdeJXN+V/42f
-	otIgjtCZqLQ7xQ+HXrH9XkzDMBoWZ8+uDMoWg8J1BaY3myfg0imKFWj7TgKeIiyAsgNnem
-	AXOi8ZxMR+5JO06fyU08enwGTUW4A/cDE7wSqDT3KeEsd0a55/OPfb7jXnDyw2+JQYX99n
-	nQZVfSrwjIaoCyIwtMUDCnUKGzRy8pDkzuqU/OiT1GWJezSlH7zK6q5GJaxwog==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=CoHcL7KK;
-	spf=pass (outgoing_mbo_mout: domain of marek.vasut@mailbox.org designates 2001:67c:2050:b231:465::202 as permitted sender) smtp.mailfrom=marek.vasut@mailbox.org
-Message-ID: <15b47af5-1249-4911-b9de-7ee177740314@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1773664629;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=YtqjrvEqsLsMJSdmv0VvFrGwyA5l9tENmr1MiPP1vjI=;
-	b=CoHcL7KKQK5+sb0oMFrbVgv21wID5IlBb7SfxxPS4viZFvNt2eJu0oVsFBPiKJSmMBOuvL
-	Ozi/VCpdY8G8a++wvug1hvpKISvH4mcRsSdsCGJZxwdRQLZxIcnPc7Nqh4KM7rjZUPvdN0
-	fB3G6+FpuBGsMzsA3nFfLOFRPKgLacM4geUytkfY5eQVQqtPg/az9hFgvThEeW/BF9lvGi
-	OvKa6QAai0jacC2FmZZw8r/3oD5qvYRP8U6cu9eztzcD+xmT+d7ZNubDMdwNUzKwaqBI0F
-	TQGaARni6qKSNSGEnzgZ5Ho+eQeXXXA5a6fXjH/Z6gnNP6H11/WJ7fjxsVNmNg==
-Date: Mon, 16 Mar 2026 13:37:02 +0100
+	s=arc-20240116; t=1773664644; c=relaxed/simple;
+	bh=ZgxUTmf9fVStVjRrnO2mMxCDQB5qTL/e7od6+V7IGEk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RxlMwlS1CGXqUfDl091qwZ9ioCq1Tm6ruCLEpTH4hoEmMN3vRAaE9hSyUhtGnImEhxA66Rl9mAl3ynyxAJItjPeDfm9JCLK0Pk0snSmTqgqDRjvQGDvpvEy5Gjh+AzhxK7k6STlpug9qTWW0tXt3/xv5wRiMIYBiYsgUWOet1dM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XgO9rC/l; arc=none smtp.client-ip=209.85.222.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-8cd80bea5f3so280330485a.3
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 05:37:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773664642; x=1774269442; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=/+43p1seL+R/O2hzNoObXrztoY0CvWOJdUHkcnpAiuU=;
+        b=XgO9rC/lvsO5xJlT1/quw/he8kqnFBqgcj+ogRMfiXAtP9aSMUATF+HGxIIqv8VQ6+
+         nPSYGIHIPKdwkr3ZUkYL1d2TIos032+PamSxMVTHbSqm1+qOYUX/CawGO7yR5f2WtIp+
+         lkHG0sCbZ6KY8KEtrpKBKqItZNNTW8jXpa/so0T403AevSCWDNz3ya7I3ifN6UVBb3cC
+         S9am5n9ibqd4nlZHukfN7nVpbvmkz+QoevAWaD084SlzI+4Frmx9iZuNJGV22d4AAsSL
+         fW+K8uUS9ZzZ9vyroHD9eIJC+73ZZ+bXUleqe45kLc3KmcTAGSpOkC1V6Q9Wza5wVVMP
+         6DcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773664642; x=1774269442;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/+43p1seL+R/O2hzNoObXrztoY0CvWOJdUHkcnpAiuU=;
+        b=tMwVVOgaQI4RDsdej3FZJFyc287ks5G7Xnkk4nGoJoALWbataA9DC/kHwo1xzwp8iq
+         i2u1zYdnp6oNWOK8KbIRldK83aIupwD2V/ljQLsp9qZYdJjiWB64zdqehmI5R90azmpL
+         2YgWE4UjrxnfjtbueOpgQeBrqsmC9+QpD26O+EIRya1lLKFG7i5xXDXOpO9SMBXda252
+         x4S/Y5GINs8IcVes7i9bOxNgYe0Feo1qVCOF3H97RwNP/h5X9i1JxJOC26eIOzvZYq8E
+         oUpKWeJBwJcF6WbMpxdjtf2ITmZX1aTHZGW5dIQh1tBtiEmmLuHWVxGuv0HAlu9y8Gql
+         6CMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUfNtQmYfN43e2cv5/ikiOt33cZboABMTCiBCn1RBt8loroCeVsuV1mhKrxI32qWv+CYu9kaRRAlv6c@vger.kernel.org
+X-Gm-Message-State: AOJu0YwO64+goLm5bcREJka9K1eNC7+dLjfFlj2u1RE4ltPp7BOgakxH
+	0Ml4eTDD9BiXHcT6JQ8JoyK/yu8iLJIQK4ET6WhsKRuyHko/IQEuZkAR
+X-Gm-Gg: ATEYQzxUOHbcg5/WE58pokFsdNFQerr2a4aR3qGFvDAy2zPtNnObIax5m+VF+GgIAaW
+	IPjiZu53H9Ly0+AVx0JF8v2oH2OIK/XoAlA/KozO6Iwf0rawjxwA/jH5iNZjX0Y4/EjkMY4d6J9
+	XW68wFB65E8Bly80S+jUaHSoAHBG2hF18c5u89nOm90sKTxUvqo+GQ2PXgbgfzFbn7XqNtJFLgV
+	zFBWlhnIBhg+iSq8T0deylqoJYoUdom5SzAR6F4bL0kBbYN579fJsDwoloD8TTP80HEHQbx2oo2
+	xM9PuI23ZzxJasocGsfKkDDbasrlE3VoVZ9CiC9kfrynF/LL3yxJaCspG1vZAKbvyL4wpXb7mZ7
+	oydVTZFlLP9VMUSYlY1kSfHc0nzA60QhJjHBMziY/CiOjyODDlKz0WzSosCLd9VKKnSgqLzqodH
+	FKEKEWUgwyNlq3Qki2F+tBcgWjZdseHafOLmL0UO5UnFv2Zq+X/J2vObpB
+X-Received: by 2002:a05:620a:2912:b0:8c7:9e6:3a72 with SMTP id af79cd13be357-8cdb59eb46fmr1602679485a.6.1773664642445;
+        Mon, 16 Mar 2026 05:37:22 -0700 (PDT)
+Received: from sleek (d-23-244-200-70.nh.cpe.atlanticbb.net. [23.244.200.70])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8cda2148400sm1214055685a.39.2026.03.16.05.37.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Mar 2026 05:37:22 -0700 (PDT)
+Date: Mon, 16 Mar 2026 08:37:19 -0400
+From: Joshua Milas <josh.milas@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, unicorn_wang@outlook.com, inochiama@gmail.com,
+	paul.walmsley@sifive.com, samuel.holland@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	alexander.sverdlin@gmail.com, rabenda.cn@gmail.com,
+	thomas.bonnefille@bootlin.com, chao.wei@sophgo.com,
+	liujingqi@lanxincomputing.com, devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 1/5] dt-bindings: soc: sophgo: add Milk-V Duo S board
+ compatibles
+Message-ID: <abf5fw5wdsfdNV8G@sleek>
+References: <20251029001052.36774-1-josh.milas@gmail.com>
+ <20251029001052.36774-2-josh.milas@gmail.com>
+ <20251029-nebulous-doberman-of-wholeness-0fd3a5@kuoka>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 0/4] arm64: dts: renesas: Fix PHY C22 compatible strings
-To: Biju Das <biju.das.jz@bp.renesas.com>, geert <geert@linux-m68k.org>
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- "magnus.damm" <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-References: <20260313164008.40933-1-marek.vasut+renesas@mailbox.org>
- <TY3PR01MB11346A57519DD3EB5BB4456D38645A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <CAMuHMdX5+smUnspgxnEy6ewL2-3htqeP-d0kX7muMVp9AAqO7A@mail.gmail.com>
- <TY3PR01MB11346A1E1E15BB94F5C692B408640A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <TY3PR01MB11346A1E1E15BB94F5C692B408640A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-META: 94h6rw7cuogcfuapih3giamtep78stkh
-X-MBO-RS-ID: 8d40d4d2f994c65228f
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251029-nebulous-doberman-of-wholeness-0fd3a5@kuoka>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276156-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-276157-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[mailbox.org,lists.infradead.org,kernel.org,glider.be,bp.renesas.com,gmail.com,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[linutronix.de,kernel.org,outlook.com,gmail.com,sifive.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,bootlin.com,sophgo.com,lanxincomputing.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mailbox.org:dkim,mailbox.org:mid]
-X-Rspamd-Queue-Id: 654CD299910
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[joshmilas@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 9F00D299928
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/16/26 10:11 AM, Biju Das wrote:
+Hi Krzysztof,
 
-Hello everyone,
+Apologies for missing the change, I got ahead of myself.
+I updated my changelog for an upcoming v4 patch.
 
->> There is also Marek's older series ([1][2], as Marek doesn't do cover letters ;-).
+> How did you resolve previous comments on bindings? Nothing mentioned
+> here.
 
-You seem to be commenting on a 0/4 cover letter here ...
+Which issues specifically? i2c issues were resolved by updating the 
+.config for drivers. I have yet to resolve the spi issues.
 
->> [1] "[PATCH 1/2] ARM: dts: renesas: Drop ethernet-phy-ieee802.3-c22 from PHY compatible string on all
->> RZ boards"
->>      https://lore.kernel.org/20240630034649.173229-1-marex@denx.de/
->> [2] "[PATCH 2/2] arm64: dts: renesas: Drop ethernet-phy-ieee802.3-c22 from PHY compatible string on
->> all RZ boards"
->>      https://lore.kernel.org/20240630034649.173229-2-marex@denx.de
-> 
-> I haven't seen these patches.
-
-They are deprecated.
-
-> It does not cover all the SoCs/boards. If Marek want to take over, He can send next version
-> covering all Renesas boards + binding change.
-Isn't this series effectively exactly that ?
+Have a good day,
+- Joshua Milas
 
