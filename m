@@ -1,253 +1,214 @@
-Return-Path: <devicetree+bounces-276318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276319-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uKqgFfAyuGmvaAEAu9opvQ
-	(envelope-from <devicetree+bounces-276318-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:42:24 +0100
+	id 0OlcGz00uGnXaQEAu9opvQ
+	(envelope-from <devicetree+bounces-276319-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:47:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C708D29D8F1
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:42:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4E8429D9F3
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:47:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B71843000E35
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:42:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D69A03006B34
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:44:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB0483358AF;
-	Mon, 16 Mar 2026 16:42:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C20D3BED73;
+	Mon, 16 Mar 2026 16:44:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="glNbwmSP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kNq3N96w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FC3B334695;
-	Mon, 16 Mar 2026 16:42:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 280AE3A1A5C;
+	Mon, 16 Mar 2026 16:44:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773679339; cv=none; b=bqsxgXMLEb2YeYcaLtaMCaNpT6LijDimii+RNq069h2Moj0ayFWrE4G2Rv4uZ5scrQtsq7+XoM0mw2cAcZSD4cvylZdG/+PcX9Ay2oUBUz1LWq3KqUU+eEyFwT1BluqNjCQ+9zDD4u/aF59lxp0eGlHff+TTSYFoQ4xH8jrkCcs=
+	t=1773679448; cv=none; b=OG96BnlmikS1adSUVeGO7Sffp2/HrKkpxIV1T0DjamOmdwh7VcOTiIQg5c5ZNnR87dOLEH1o1645/YIUCWaMpVhVuBh8th50bEl5CeEetkRyz9LTh0B0Du1KTqEDirUSxBemZhDWyLF28zcS3GQWeFlE7ICVAfJMW6kAy+5DrbM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773679339; c=relaxed/simple;
-	bh=4Cca7wFU3NqZ9ihPyI8voUp020s3tYVrtxBvsYfDEC0=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=Q4ZY+95l30N9HpMWpOtseSqljw+UzcxQ3GpJYxRl1KO+S2lpJRqFle3aHombTk8NfQdXX26+2mvIJ30INOwfiNOzba3wbkSTmzldpH9+eDDrS9coB7fn6GXbSHJOGqDCuPhaXWzp58L3PvYLvvyk30jOxy7LUhOXdJl3BynAZ4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=glNbwmSP; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 3C01227109;
-	Mon, 16 Mar 2026 17:42:16 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 8xe37CrHEaKL; Mon, 16 Mar 2026 17:42:15 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1773679335; bh=4Cca7wFU3NqZ9ihPyI8voUp020s3tYVrtxBvsYfDEC0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=glNbwmSP3qENxf8uSk0d0PMt0CBJTGGwHmEFjkF00o9y/yjEINN+7F43b5NlWruOE
-	 Hmf1f145kEw8y5G1dKpp/bwdDKO1LQf2smj8j86JuUUGfAjZZ97sDr4QDKpeolffQh
-	 kPf6mbTF4AGEjixqvZDvhhbUUjZtOoSYcvnkhJVQHB1+5/b9h7xXwCSyn5NaSHHMtM
-	 ItX/8RiniVZ3j7SMGLFw8wn/Y5g2nV7s50+Ud8RV7TRs49TchqK9FRHgUY0D/h+1Sj
-	 FhldHAXqAHlQc/2trSQYMvfFuFZsV56qSSJcy+5t7h8UNfO6EO0/SGT0jBdH0l7ijx
-	 OaZ7luZbkJLKQ==
+	s=arc-20240116; t=1773679448; c=relaxed/simple;
+	bh=UJiJGdnIbo8YhWP9a8898EeByRFPPoe9G04ORqwYyao=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UP/L1vUH39Tnry5OKU59Zwf3likw2aCWpy8kO3uHelyjXc1iBM6Us4p/SpP/qr9kp9RvfHW7ORKlq09KqsZUgxB9h9S9T/RC3/iWVuyeh++rA3/ZjxB465npqPipAHPm8bEia7GeyYeP0YJ8nkX9zMneqdf1DMwm61UYLbO+Y0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kNq3N96w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97EFDC19421;
+	Mon, 16 Mar 2026 16:44:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773679448;
+	bh=UJiJGdnIbo8YhWP9a8898EeByRFPPoe9G04ORqwYyao=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kNq3N96w1Uyh9BHrPZnStKE3rWXHfkL/gk6W/wkus/0NBFRkv0EO/+10w1ZnP4V5P
+	 RGl2dfpJ6Ee0c7aV0BiBoXX1Qiu1rR1s5f3QQ3CxytQrnivU1ip1kH79vZDcgmZccc
+	 PvLfb3s1iH2p4F6Tvr6pLL5Tm0jgF8RebY2LCkkYWaNie21VhThcOcEIQj6/rmL7vp
+	 eK07/QA6xGM6up9uwIUbDIgjBkzFt9ltdecOzTJ68omLfVjjHXrOFU/LJZZu6KSe6h
+	 XrPpzP61JJNXwX5O9PwbtHbp7BM9uFLQ6VuNtL17KXUz/Z4WHL2cbMBWORm4VBPBzL
+	 764nAuua2hjPQ==
+Message-ID: <bb9712c6-a8be-4068-b549-96a12bc55e3c@kernel.org>
+Date: Mon, 16 Mar 2026 17:44:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Mon, 16 Mar 2026 16:42:15 +0000
-From: Rustam Adilov <adilov@disroot.org>
-To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Jan Kantert
- <jan-kernel@kantert.net>
-Subject: Re: [PATCH 6/8] i2c: rtl9300: intoduce new function properties to
- driver data
-In-Reply-To: <c933a245-2b35-41a5-9eee-cb655c8231ae@alliedtelesis.co.nz>
-References: <20260314082628.25206-1-adilov@disroot.org>
- <20260314082628.25206-7-adilov@disroot.org>
- <c933a245-2b35-41a5-9eee-cb655c8231ae@alliedtelesis.co.nz>
-Message-ID: <33f702e86ee5cbf98c29141cc78d364a@disroot.org>
-X-Sender: adilov@disroot.org
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: display: ti,am65x-dss: Fix AM62L DSS reg
+ and clock constraints
+To: Swamil Jain <s-jain1@ti.com>
+Cc: jyri.sarha@iki.fi, tomi.valkeinen@ideasonboard.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devarsht@ti.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, praneeth@ti.com,
+ vigneshr@ti.com
+References: <20260129150601.185882-1-s-jain1@ti.com>
+ <20260205-spectral-dramatic-jellyfish-cec4e2@quoll>
+ <4b554339-95e1-4980-8899-57ba637ba80c@ti.com>
+ <7b3660cf-cc5a-47d6-9cc8-362544cfdb37@ti.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <7b3660cf-cc5a-47d6-9cc8-362544cfdb37@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[disroot.org:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276318-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FREEMAIL_CC(0.00)[iki.fi,ideasonboard.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,ti.com,lists.freedesktop.org,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-276319-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: C708D29D8F1
+X-Rspamd-Queue-Id: C4E8429D9F3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 2026-03-15 21:36, Chris Packham wrote:
-> Hi Rustam,
+On 16/03/2026 13:36, Swamil Jain wrote:
+>>      description:
+>>        Addresses to each DSS memory region described in the SoC's TRM.
+>>      oneOf:
+>>        - items:
+>>            - description: common DSS register area
+>>            - description: VIDL1 light video plane
+>>            - description: VID video plane
+>>            - description: OVR1 overlay manager for vp1
+>>            - description: OVR2 overlay manager for vp2
+>>            - description: VP1 video port 1
+>>            - description: VP2 video port 2
+>>            - description: common1 DSS register area
+>>        - items:
+>>            - description: common DSS register area
+>>            - description: VIDL1 light video plane
+>>            - description: OVR1 overlay manager for vp1
+>>            - description: VP1 video port 1
+>>            - description: common1 DSS register area
+>>
+>> .....(Similarly for reg-names, clocks, clock-names,...)
+>>
+>> allOf:
+>>    - if:
+>>        properties:
+>>          compatible:
+>>            contains:
+>>              const: ti,am62l-dss
+>>      then:
+>>        properties:
+>>          clock-names:
+>>            maxItems: 2
+>>          clocks:
+>>            maxItems: 2
+>>          reg:
+>>            maxItems: 5
+>>      else:
+>>        properties:
+>>          clock-names:
+>>            minItems: 3
+>>          clocks:
+>>            minItems: 3
+>>          reg:
+>>            minItems: 8
+>>
+>> ```
+>>
+>> Could you please confirm on this?
+
+If there is no common part of each list, then this looks correct. Other
+way would be the example I wrote ~2 hours ago on DT IRC (different
+patchset) - so the qcom,ufs way. It depends how readable is the final
+schema.
+
 > 
-> On 14/03/2026 21:26, Rustam Adilov wrote:
->> Due to the very nature of differences between RTL9607C i2c controller
->> and RTL9300 / RTL9310 that are incompatible with each other in some areas
->> of this driver, for example in clock configuration, channel configuration
->> and initialization at the end of the probe, introduce new function
->> properties to the driver data struct to handle those differences.
->>
->> With these new properties, create configuration functions for RTL9300 and
->> RTL9310 and assign them to their respective driver data structs.
->>
->> Signed-off-by: Rustam Adilov <adilov@disroot.org>
->> ---
->>   drivers/i2c/busses/i2c-rtl9300.c | 54 ++++++++++++++++++++++----------
->>   1 file changed, 38 insertions(+), 16 deletions(-)
->>
->> diff --git a/drivers/i2c/busses/i2c-rtl9300.c b/drivers/i2c/busses/i2c-rtl9300.c
->> index 4953223ec97c..7930f47a37b2 100644
->> --- a/drivers/i2c/busses/i2c-rtl9300.c
->> +++ b/drivers/i2c/busses/i2c-rtl9300.c
->> @@ -59,6 +59,9 @@ enum rtl9300_i2c_reg_fields {
->>   struct rtl9300_i2c_drv_data {
->>   	struct rtl9300_i2c_reg_field field_desc[F_NUM_FIELDS];
->>   	int (*select_scl)(struct rtl9300_i2c *i2c, u8 scl);
->> +	int (*config_chan)(struct rtl9300_i2c *i2c, struct rtl9300_i2c_chan *chan);
->> +	void (*config_clock)(u32 clock_freq, struct rtl9300_i2c_chan *chan);
->> +	int (*misc_init)(struct rtl9300_i2c *i2c);
->>   	u32 rd_reg;
->>   	u32 wd_reg;
->>   	u8 max_nchan;
->> @@ -169,6 +172,24 @@ static int rtl9300_i2c_config_chan(struct rtl9300_i2c *i2c, struct rtl9300_i2c_c
->>   	return 0;
->>   }
->>   
->> +static void rtl9300_i2c_config_clock(u32 clock_freq, struct rtl9300_i2c_chan *chan)
->> +{
->> +	struct rtl9300_i2c *i2c = chan->i2c;
->> +
->> +	switch (clock_freq) {
->> +	case I2C_MAX_STANDARD_MODE_FREQ:
->> +		chan->bus_freq = RTL9300_I2C_STD_FREQ;
->> +		break;
->> +	case I2C_MAX_FAST_MODE_FREQ:
->> +		chan->bus_freq = RTL9300_I2C_FAST_FREQ;
->> +		break;
-> There was a series from Jan Kantert[1] (added to Cc) that added a few 
-> more speeds as supported. Looks like maybe it got missed or perhaps you 
-> need to rebase on a different tree.
+> Hi Krzysztof,
+> 
+> Gentle ping, could you please confirm on the above design?
 
-I did actually notice them when i wanted to add my patches to the OpenWrt cause Jan's patches 
-were merged there as pending. It shouldn't be hard to rebase my patches on top of them i think..
-Will do that for v2 of this patch series.
+If you do not hear from me or other reviewer for some time after asking
+"shall I do like that", just send next version implementing what you
+think should be done and mentioning in changelog, that this is how you
+address reviewers feedback.
 
->> +	default:
->> +		dev_warn(i2c->dev, "SDA%d clock-frequency %d not supported using default\n",
->> +			 chan->sda_num, clock_freq);
->> +		break;
->> +	}
->> +}
->> +
->>   static int rtl9300_i2c_read(struct rtl9300_i2c *i2c, u8 *buf, u8 len)
->>   {
->>   	u32 vals[4] = {};
->> @@ -316,7 +337,7 @@ static int rtl9300_i2c_smbus_xfer(struct i2c_adapter *adap, u16 addr, unsigned s
->>   	guard(rtl9300_i2c)(i2c);
->>   
->>   	drv_data = device_get_match_data(i2c->dev);
->> -	ret = rtl9300_i2c_config_chan(i2c, chan);
->> +	ret = drv_data->config_chan(i2c, chan);
->>   	if (ret)
->>   		return ret;
->>   
->> @@ -383,6 +404,12 @@ static struct i2c_adapter_quirks rtl9300_i2c_quirks = {
->>   	.max_write_len	= 16,
->>   };
->>   
->> +static int rtl9300_i2c_init(struct rtl9300_i2c *i2c)
->> +{
->> +	/* only use standard read format */
->> +	return regmap_field_write(i2c->fields[F_RD_MODE], 0);
->> +}
->> +
->>   static int rtl9300_i2c_probe(struct platform_device *pdev)
->>   {
->>   	struct device *dev = &pdev->dev;
->> @@ -447,21 +474,11 @@ static int rtl9300_i2c_probe(struct platform_device *pdev)
->>   		if (ret)
->>   			clock_freq = I2C_MAX_STANDARD_MODE_FREQ;
->>   
->> -		switch (clock_freq) {
->> -		case I2C_MAX_STANDARD_MODE_FREQ:
->> -			chan->bus_freq = RTL9300_I2C_STD_FREQ;
->> -			break;
->> -		case I2C_MAX_FAST_MODE_FREQ:
->> -			chan->bus_freq = RTL9300_I2C_FAST_FREQ;
->> -			break;
->> -		default:
->> -			dev_warn(i2c->dev, "SDA%d clock-frequency %d not supported using default\n",
->> -				 sda_num, clock_freq);
->> -			break;
->> -		}
->> -
->>   		chan->sda_num = sda_num;
->>   		chan->i2c = i2c;
->> +
->> +		drv_data->config_clock(clock_freq, chan);
->> +
->>   		adap = &i2c->chans[i].adap;
->>   		adap->owner = THIS_MODULE;
->>   		adap->algo = &rtl9300_i2c_algo;
->> @@ -479,8 +496,7 @@ static int rtl9300_i2c_probe(struct platform_device *pdev)
->>   	}
->>   	i2c->sda_num = 0xff;
->>   
->> -	/* only use standard read format */
->> -	ret = regmap_field_write(i2c->fields[F_RD_MODE], 0);
->> +	ret = drv_data->misc_init(i2c);
->>   	if (ret)
->>   		return ret;
->>   
->> @@ -509,6 +525,9 @@ static const struct rtl9300_i2c_drv_data rtl9300_i2c_drv_data = {
->>   		[F_BUSY]		= MST_REG_FIELD(RTL9300_I2C_MST_CTRL1, 0, 0),
->>   	},
->>   	.select_scl = rtl9300_i2c_select_scl,
->> +	.config_chan = rtl9300_i2c_config_chan,
->> +	.config_clock = rtl9300_i2c_config_clock,
->> +	.misc_init = rtl9300_i2c_init,
->>   	.rd_reg = RTL9300_I2C_MST_DATA_WORD0,
->>   	.wd_reg = RTL9300_I2C_MST_DATA_WORD0,
->>   	.max_nchan = RTL9300_I2C_MUX_NCHAN,
->> @@ -533,6 +552,9 @@ static const struct rtl9300_i2c_drv_data rtl9310_i2c_drv_data = {
->>   		[F_BUSY]		= MST_REG_FIELD(RTL9310_I2C_MST_CTRL, 0, 0),
->>   	},
->>   	.select_scl = rtl9310_i2c_select_scl,
->> +	.config_chan = rtl9300_i2c_config_chan,
->> +	.config_clock = rtl9300_i2c_config_clock,
->> +	.misc_init = rtl9300_i2c_init,
->>   	.rd_reg = RTL9310_I2C_MST_DATA_CTRL,
->>   	.wd_reg = RTL9310_I2C_MST_DATA_CTRL,
->>   	.max_nchan = RTL9310_I2C_MUX_NCHAN,
-> --
-> [1] - 
-> https://lore.kernel.org/all/20260227111134.2163701-1-jan-kernel@kantert.net/
+Best regards,
+Krzysztof
 
