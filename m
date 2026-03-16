@@ -1,189 +1,218 @@
-Return-Path: <devicetree+bounces-276321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276322-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WGXxNyo0uGmvaAEAu9opvQ
-	(envelope-from <devicetree+bounces-276321-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:47:38 +0100
+	id EK7aDLc3uGkDagEAu9opvQ
+	(envelope-from <devicetree+bounces-276322-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:02:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8562A29D9D5
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:47:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9938529DC98
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 18:02:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DFB60301FB8F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:47:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8E0223042241
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:56:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEB6C3CE4B5;
-	Mon, 16 Mar 2026 16:47:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 181613CD8CE;
+	Mon, 16 Mar 2026 16:56:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cGtekfTq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EhFuTEhg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B17E3CE4A4
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 16:47:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E88AA390982;
+	Mon, 16 Mar 2026 16:56:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773679656; cv=none; b=rLfwlnI+Q0bEZuvRolOuMQnuPKLJJ23Sx+xY8CodHHhbpMT3t42X3FD7GlJW6ZXt4FWroXWHnOeIm/EBrDR2oWekYXYKvrtXz9AkB2kS1c57/Kw8L8IjHe37P9YDjf7hCTyPuHyKbRwBIWP0NZMUmp//CCNQQcQruWmAhDEi084=
+	t=1773680168; cv=none; b=s7WIRLvjwPL4+c2RKBDn+YwaCuYe44RgnrZczYvr9qJwVXvnHVUoFu4RKKZqLczm06m+pDjlH1h2rO+otOTuEsibEHAXbxUGzpg18kucBQCuljAwSSvywYthGMgNZXM9xcKTRq61PWwvuDbdvQiHVW6u/6ug0Rl/UwHxmGvQCR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773679656; c=relaxed/simple;
-	bh=+rAbjFpJLF5ELTGsyzXHo5dgEzatb5tWHpqXy6BTmYc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cNghMcshWfRCBcrLnhDhMGxrwOeRgWeotAkQ3997j/aHuhFeVGkcalEm1ntK5N+zPkoenCKVt6IjObie4LONGlr6o3OagCy8kQgXqOblI5SnnSNXfuVgF65Fx3wAp+iV0/aMBKmgMZPudkUWAVCnzPnS+rNxc5UsnWxnNyID9nw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cGtekfTq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B210C19421
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 16:47:36 +0000 (UTC)
+	s=arc-20240116; t=1773680168; c=relaxed/simple;
+	bh=HXdFbCFmM0I4exfloxptKO0VbCx6T+9FA4oPkwUoYSY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=a/Uw+oZUDHk5OIwebAzVt7tdvPEeHDs/WSn0ca9GMq3eG7xkeNGP7EI62uEOBH95A5n3sagw7jjzyZaJ6Jd7GbzpCIo0cFGJuDBl3n75uvx6IJbO4mzrw2w68fShjBUzqNibhBOqjWfoRIaFm4btw3hUQHOvhK3OlqWmUUad55k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EhFuTEhg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42C13C19421;
+	Mon, 16 Mar 2026 16:56:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773679656;
-	bh=+rAbjFpJLF5ELTGsyzXHo5dgEzatb5tWHpqXy6BTmYc=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=cGtekfTqFvVrF7VJ1xDN/03QTDPDcdo5LNi8MIeHSIezK4Gd2z+GQ94TdThe3wfdg
-	 6+jwBMmOqzF85kgS9jF7LvwgP5JGWXJpkAzraz3vFcajQZUHBvO0WRYzQJE7J0Ytmi
-	 Gwi/li0g/v/vcXP34ZAq++FsOnJ7YYiJJNUFiQULiaw3n4kJ58eE6KrMSVjMGnsO4u
-	 IMN7zeBsIcQrt2UTsOQo2nDc2fI+SGolMG21oQW9QYbqop+gZh52CvuNSngMbBymF3
-	 pYqZPEns6Yy1LnHWMLVS9x1ZnrWuY6XLupN9bxQWg7FscMFBB3zIghh1qubhnfJmuf
-	 WBpxVo36e6R+A==
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b97a9f4b4dcso199723466b.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 09:47:36 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVVtKLXoTBcXZn0oDXwBTgdiGonuuxM0EWptWxXt7R2+jYgfHhG0loclTmBoDaTxWJKkQIrmJUlvAKR@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvjTfthte6aLE885kgK0CLN/2Og/jp1nfVToI5G9c7hXIiQ/bK
-	iczpa3ZytIm8B4IpI/ju5WfiHl/b87nQmdrUbdqbDmhcPTEa5iQZcX1dr71GYy7OFNhTiQsfW5V
-	LBZa1uFOPvizJuOfA68Kbg/hL49SAmA==
-X-Received: by 2002:a17:907:708:b0:b8a:f2cb:8088 with SMTP id
- a640c23a62f3a-b9765392113mr794224266b.33.1773679654788; Mon, 16 Mar 2026
- 09:47:34 -0700 (PDT)
+	s=k20201202; t=1773680167;
+	bh=HXdFbCFmM0I4exfloxptKO0VbCx6T+9FA4oPkwUoYSY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EhFuTEhgOTzf9+BK/w6J7I7fy3Gv4HVJ4rpbms03AocCnKAFr+4UgTCymnaaThQcj
+	 Okku9IyAuGxfRrssByDamIcvAxE88GIQ2jufzbFWDv/+CqBHgK/F4riIWsBzjPQXuQ
+	 9hGky2ZXxyTqoPcprjL/ZZ6yRBcHUnpzdQ35GrRwE29P27RIEimdX5lPLtibTiPKna
+	 AjFZl5HUafkQS0BKIhpYMt2qRnl3GOhE2nJzIJ60R/uvELOh6YUQ0csn6CX/qkablV
+	 reSDpLlQElmWYCY1nXfdbXXml+wo7N3k8Opx8rj/t4COP0W38Ew5V5RE8KZTkhCW1K
+	 lQpAqV8phiIDg==
+Message-ID: <a3796f8b-f94c-4d0d-a0b9-b2970e43e28d@kernel.org>
+Date: Mon, 16 Mar 2026 17:56:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260309-upstream_i2c-v26-0-5fedcff8ffe8@aspeedtech.com>
- <20260309-upstream_i2c-v26-2-5fedcff8ffe8@aspeedtech.com> <20260313232125.GA3618633-robh@kernel.org>
- <TY2PPF5CB9A1BE6A19D439C675AF5028C13F242A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
- <7ae8222bf6abd83a3c2ac976f54a2edbe4e9727a.camel@codeconstruct.com.au>
-In-Reply-To: <7ae8222bf6abd83a3c2ac976f54a2edbe4e9727a.camel@codeconstruct.com.au>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 16 Mar 2026 11:47:21 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKQp=HyA90rQ2Hzu148k63k5-qrGLH6sEHXNcjAu3QSwg@mail.gmail.com>
-X-Gm-Features: AaiRm51ex9uUeaeovsj_EfQkcC7S4igdlkgu0QdNDXmYleGKXTFGbzYmU6uj8IQ
-Message-ID: <CAL_JsqKQp=HyA90rQ2Hzu148k63k5-qrGLH6sEHXNcjAu3QSwg@mail.gmail.com>
-Subject: Re: [PATCH v26 2/4] dt-bindings: i2c: ast2600-i2c.yaml: Add
- global-regs and transfer-mode properties
-To: Jeremy Kerr <jk@codeconstruct.com.au>
-Cc: Ryan Chen <ryan_chen@aspeedtech.com>, 
-	"andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>, Andi Shyti <andi.shyti@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
-	Andrew Jeffery <andrew@codeconstruct.com.au>, 
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] dt-bindings: trivial-devices: add
+ spi-miso-mosi-loopback
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+ Francesco Dolcini <francesco.dolcini@toradex.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-spi@vger.kernel.org
+References: <20260316073547.11437-1-francesco@dolcini.it>
+ <20260316073547.11437-2-francesco@dolcini.it>
+ <bbfa2a62-7113-433b-91ad-0693ed6f8e36@kernel.org>
+ <cde8671f-bb38-41d8-b27f-c54aa7242899@kernel.org>
+ <20260316085751.GA23443@francesco-nb>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260316085751.GA23443@francesco-nb>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276321-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276322-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MIME_TRACE(0.00)[0:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.997];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 8562A29D9D5
+X-Rspamd-Queue-Id: 9938529DC98
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sun, Mar 15, 2026 at 8:50=E2=80=AFPM Jeremy Kerr <jk@codeconstruct.com.a=
-u> wrote:
->
-> Hi Ryan & Rob,
->
-> > > > +  aspeed,transfer-mode:
-> > > > +    description: |
-> > > > +      ASPEED ast2600 platform equipped with 16 I2C controllers eac=
-h i2c controller
-> > > > +      have 1 byte transfer buffer(byte mode), 32 bytes buffer(buff=
-er mode), and
-> > > > +      share a DMA engine.
-> > > > +      Select I2C transfer mode for this controller. Supported valu=
-es are:
-> > > > +        - "byte": Use 1 byte for i2c transmit (1-byte buffer).
-> > > > +        - "buffer": Use buffer (32-byte buffer) for i2c transmit. =
-(default)
-> > > > +                    Better performance then byte mode.
-> > >
-> > > Good, I like worse performance so I can use byte mode.
-> > Thanks your review.
-> > Will remove performance statement.
->
-> I don't think that really addresses Rob's point there.
->
-> The selection of mode is somewhat a driver implementation decision (and
-> so would not belong in a DT binding) - *except* that there are
-> considerations around the use of hardware DMA channels, as covered in
-> earlier review.
+On 16/03/2026 09:57, Francesco Dolcini wrote:
+> Hello Krzysztof,
+> thanks for taking the time to answer this
+> 
+> On Mon, Mar 16, 2026 at 09:36:42AM +0100, Krzysztof Kozlowski wrote:
+>> On 16/03/2026 09:35, Krzysztof Kozlowski wrote:
+>>> On 16/03/2026 08:35, Francesco Dolcini wrote:
+>>>> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+>>>>
+>>>> Add a compatible to describe a single wire loopback between SPI MISO and
+>>>> MOSI signals.
+>>>>
+>>>> Link: https://lore.kernel.org/all/20260310133254.GA51497@francesco-nb/
+>>>> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>>>>  1 file changed, 2 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+>>>> index a482aeadcd44..2cb973c157f6 100644
+>>>> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+>>>> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+>>>> @@ -432,6 +432,8 @@ properties:
+>>>>            - socionext,uniphier-smpctrl
+>>>>              # SparkFun Qwiic Joystick (COM-15168) with i2c interface
+>>>>            - sparkfun,qwiic-joystick
+>>>> +            # Single wire loopback between SPI MISO and MOSI signals
+>>>> +          - spi-miso-mosi-loopback
+>>>
+>>> If you decided to go against my approach, then at least document it in
+>>> proper place - incomplete-devices - so this won't be ever used in DTS.
+>>>
+>>
+>> ... and then you will notice existing linux,spi-loopback-test, so
+>> explain the differences and why spi-loopback-test cannot be used for
+>> your loopback test.
+> 
+> Yes, this spi-loopback-test will work.
+> 
+> I was not aware of it (no-one mentioned it in the email thread I opened)
+> and I misread your answer as an alternative suggestion, and not as a nack.
+> 
+> There is still an open question, I can any driver probe/bind to the
+> actual SPI device? My plan, once this discussion is settled, is to send
+> patches to add dtso file enabling this test, however, according to
+> trivial-devices.yaml, I cannot submit such a DT file using
 
-Am I supposed to go read the prior 25 versions?
+I think you meant incomplete-devices and then yes, such DT upstream is
+not allowed.
 
-> [My understanding is that the mode needs to be defined here to select
-> which i2c devices have a DMA channel allocated to them. I also
-> think that byte mode may be useful in some scenarios, but that
-> consideration certainly does not belong in the DT binding spec]
+> linux,spi-loopback-test as a compatible.
+> 
+> On the actual HW I have a pins header and a wire between MISO/MOSI.
 
-But this is selecting DMA for the bus, not specific devices. I would
-think the decision would be dynamic based on some xfer size. Certainly
-if the xfer is less than the buffer size (32bytes), then there is no
-advantage of DMA.
+pins header, if I understood correctly what you are talking about, is a
+connector. Connecting there a jumper to short circuit there is out of
+scope, because it is not part of the board. Thus cannot be send upstream
+DTS, unless it is really embedded in the design like USB-A dongles which
+could not be removed by end user.
 
-Or do you mean some instances of the I2C controllers have DMA and some
-do not? If so, then ...
+Otherwise you could say that every evalkit board can have such device,
+because they all have pin headers...
 
-> So, how about we refine this to *just* the hardware-specific component:
-> whether a DMA channel is allocated. A driver implementation can then
-> select the appropriate mode (dma, byte or buffer), depending on
-> implementation-specific details.
->
-> In that case, we would just have a boolean property, like:
->
->     aspeed,i2c-dma-enabled;
+> 
+> I am clearly missing something obvious, any advise is appreciated.
 
-... yes, this is fine.
+Describe your hardware... Nothing in this patchset helps in
+understanding it.
 
->
-> - to signify that this controller may use a DMA channel. The choice of
-> actual mode is left up to the driver implementation.
->
-> Rob, would that suit better?
->
-> This way, we don't have ambiguity on "buffer" default vs. absent
-> property, and we're no longer specifying actual driver behaviour in the
-> DT.
->
-> Cheers,
->
->
-> Jeremy
+Best regards,
+Krzysztof
 
