@@ -1,175 +1,205 @@
-Return-Path: <devicetree+bounces-276314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276315-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4Id8FugvuGmvaAEAu9opvQ
-	(envelope-from <devicetree+bounces-276314-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:29:28 +0100
+	id 4F4mIgwxuGmvaAEAu9opvQ
+	(envelope-from <devicetree+bounces-276315-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:34:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C082129D64E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:29:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3E7129D735
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 17:34:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 00C2630838D8
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:24:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 83404306740D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 16:29:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF2C6337BB0;
-	Mon, 16 Mar 2026 16:24:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A81D43385A7;
+	Mon, 16 Mar 2026 16:29:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z+2tcJIm"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Ie4vuMdT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9E6B3368B1
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 16:24:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FA05324B1E;
+	Mon, 16 Mar 2026 16:29:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773678278; cv=none; b=kCQQetpeJYasDGhGGx4BF0+Eo0DzS7KznEZKjXVEIwAMZAqXY/YsDEpM93/uuN8WvKM7CcHB64xTKTmKgsLSbjpLHuMnirpW2sadTYKBNfsyz9hO0TOVFf+J8dAqujG0gnu+D1/w+QTbO+H7g1ne8RHgABGyGmNn1J0zCgqKaKA=
+	t=1773678544; cv=none; b=hw3O0+XKHoM977CUFfMwCPf8XHo0nNr6Go0Zq3EkGebea71Qb3gDE7vGUBI+e9WpOjX/nSzIpooOXz9x9NnPZuXcrW3y6NE/dpiNX7hSiDMamfGZ4uzaigNBPQwT/0arYojGPdb+zRA82YCIlZPO13Las0mR5hOHCda4693SdAo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773678278; c=relaxed/simple;
-	bh=FI+pEJOl+xfO28oSXW6gg09R5wZ6B4Wats0lJ39KDRw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ScUISZdUbeWqLRUaDmMrbAS7UiJHJhk7pyAR7PhSV5YiDxBFnOs6qTNLj4F3GKuC+u6QOAiofMm1OA7NiySmq++7m1D+qMX+lbSJS/TkqP71QJI80GcHXOpf+9GIkMkOdNzVwgzdAkvl3uLpJLiyMGQ8fTbI9976luP7p1ilJdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z+2tcJIm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70308C2BCB2
-	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 16:24:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773678278;
-	bh=FI+pEJOl+xfO28oSXW6gg09R5wZ6B4Wats0lJ39KDRw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Z+2tcJImXtkYeNcZSosHOCTo6NjAjMeei2Ddq3BB5KjdCf6w62GGNVATGDe4rTr4I
-	 ODSYaddfodEEZZ063e2UxJkV7xZLwEobxGqz0m1IiOYz2UEXDDMh78p0Kz/CAPcowK
-	 cGRU0uk0cVRD32okUxpFvvHHM3YvsxCwLcz5F3kKCgHLhREO3q1RAgfTD44ve15t8z
-	 Oz/+bQSFQhr3ULHRmtX6aY5ZXw8XysQOciDO45yBVShI6Fwvi7o2cYGkldMT0Ojax4
-	 RS6/DuuaNRXwKotemX4AgQYRY3RZw62729x8z2N9yoqmOOfrjY97AMeLoExocJHcPh
-	 e0RBvixgM5sJg==
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-666f73217baso411907a12.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 09:24:38 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV391iXxy7ZfmDhn0CQ92eD2V8+K/cVI2oyMhhPVKj7q8mtmtbjDQ36OzkWDRyYuUQ8cbo667D5RDDI@vger.kernel.org
-X-Gm-Message-State: AOJu0YwiQXYnfGIukHkZ6hoEN3scETZc7gOdE5JHldS5bZJfgTcBiJ6Y
-	hhK1EVKz6RQCUrnEZ9wBpGIUzAdain3/54uaTZwC8ovLblMMCpbMnocZgyHor8tubzNIyI5XqQP
-	bQ7esxFcbh7X+30evCocZ5rhANODVFw==
-X-Received: by 2002:a05:6402:13d4:b0:665:57bf:7de6 with SMTP id
- 4fb4d7f45d1cf-66706eea380mr157610a12.0.1773678276885; Mon, 16 Mar 2026
- 09:24:36 -0700 (PDT)
+	s=arc-20240116; t=1773678544; c=relaxed/simple;
+	bh=xGy5Xa1dQr/5pfh8pXxYijxQkHbJMOii4GfmIYyf+38=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=d5hyXBZ1nq+vgqhpoH9yZXCqrQL6ogMDYaJ4+6FJKrDULFpb6NKOkpWFU1lDoSAeG6G0jYkXSf/qmKD06bzdOg6BG/gwvM5IyZPLs0x+TW7fQNgA6tVUcSkHdfAnVkcRQPr5/AOuL+ZWR4s9r3yc0pnkk7MY2pfWaK9YTarOCIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Ie4vuMdT; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id E22CE270D2;
+	Mon, 16 Mar 2026 17:28:53 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id SynF4M5Uyg-P; Mon, 16 Mar 2026 17:28:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1773678533; bh=xGy5Xa1dQr/5pfh8pXxYijxQkHbJMOii4GfmIYyf+38=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=Ie4vuMdTynPHxBbYmYEBuDW7mJeUD3XImKyeyF4lQt/cBYK67N+aInW0Oi0W0lCuU
+	 WpWPKeM8EiasvfX+Du9QVE78IKw73bQkvrcQwALu1IJszLZmp0grbPfoVZJLsvXuOg
+	 FsE3NZmnQ7H/2U8dmFn+ZKzD96beO4Oa3M727guddGlUqpW+ULnk1bJRVq9vapih3b
+	 CuTqCqY6oXhYLGwr5iHowS8KLFH5aOpMXc51seKJM1xB/0X4vG+EhzJ62pPIu/48br
+	 ADe0uqEtxqeum+bP6sIsj/0BBhtX7hKM8/3es0g4+QplAFY7ua5tEmNRWlLdElNjCm
+	 8aT2DPnp6bplA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260309200351.1791162-1-Frank.Li@nxp.com> <20260313233450.GA3632753-robh@kernel.org>
- <PA4PR04MB93666895F0D685181FFAF5DA8840A@PA4PR04MB9366.eurprd04.prod.outlook.com>
-In-Reply-To: <PA4PR04MB93666895F0D685181FFAF5DA8840A@PA4PR04MB9366.eurprd04.prod.outlook.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 16 Mar 2026 11:24:24 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+Nw38mPHgZTTDMRY3zQ6NeOhp3PDvZobqwjdFy2HMitw@mail.gmail.com>
-X-Gm-Features: AaiRm515QMiZFlZBbgAHua2Ztin7i7yfV9IvbR3MOhE5nRKlwuLZWSOHLGO-dh8
-Message-ID: <CAL_Jsq+Nw38mPHgZTTDMRY3zQ6NeOhp3PDvZobqwjdFy2HMitw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: mtd: refactor NAND bindings and add nand-controller-legacy.yaml
-To: Frank Li <frank.li@nxp.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"open list:MEMORY TECHNOLOGY DEVICES (MTD)" <linux-mtd@lists.infradead.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
-	"imx@lists.linux.dev" <imx@lists.linux.dev>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Date: Mon, 16 Mar 2026 16:28:52 +0000
+From: Rustam Adilov <adilov@disroot.org>
+To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/8] i2c: rtl9300: introduce a property for 8 bit width
+ reg address
+In-Reply-To: <d91f5897-c565-4574-81e4-5b0624da2766@alliedtelesis.co.nz>
+References: <20260314082628.25206-1-adilov@disroot.org>
+ <20260314082628.25206-5-adilov@disroot.org>
+ <d91f5897-c565-4574-81e4-5b0624da2766@alliedtelesis.co.nz>
+Message-ID: <c03ba2a5b0fa3ee0714d9e6cf475a1c6@disroot.org>
+X-Sender: adilov@disroot.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
+	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276314-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[disroot.org:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276315-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,1.19.21.224:email,nxp.com:email,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: C082129D64E
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: F3E7129D735
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 16, 2026 at 9:37=E2=80=AFAM Frank Li <frank.li@nxp.com> wrote:
->
-> > > +select:
-> > > +  allOf:
-> > > +    - properties:
-> > > +        $nodename:
-> > > +          pattern: "^nand-controller(@.*)?"
-> > > +    - not:
-> > > +        properties:
-> > > +          compatible:
-> > > +            contains:
-> > > +              pattern: "^fsl,"
-> >
-> > I would just do 'select: false' and make sure all non-legacy
-> > controller bindings reference nand-controller.yaml.
->
-> I found some controller have not compatible string, such as
-> arch/arm/boot/dts/broadcom/bcm4708-luxul-xwc-1000.dts
+Hello,
+On 2026-03-15 21:31, Chris Packham wrote:
+> Hi Rustam,
+> 
+> (sorry I might have prematurely hit send on an earlier reply)
+> 
+> On 14/03/2026 21:26, Rustam Adilov wrote:
+>> In RTL9607C i2c controller, in order to indicate that the width of
+>> memory address is 8 bits, 0 is written to MEM_ADDR_WIDTH field as
+>> opposed to 1 for RTL9300 and RTL9310.
+>>
+>> Introduce a new property to a driver data to indicate what value
+>> need to written to MEM_ADDR_WIDTH field for this case.
+>>
+>> Signed-off-by: Rustam Adilov <adilov@disroot.org>
+>> ---
+>>   drivers/i2c/busses/i2c-rtl9300.c | 8 +++++++-
+>>   1 file changed, 7 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/i2c/busses/i2c-rtl9300.c b/drivers/i2c/busses/i2c-rtl9300.c
+>> index 2525b57a9d03..86a82f2c3ce0 100644
+>> --- a/drivers/i2c/busses/i2c-rtl9300.c
+>> +++ b/drivers/i2c/busses/i2c-rtl9300.c
+>> @@ -60,6 +60,7 @@ struct rtl9300_i2c_drv_data {
+>>   	u32 wd_reg;
+>>   	u8 max_nchan;
+>>   	u8 max_data_len;
+>> +	u8 reg_addr_8bit_len;
+>>   };
+>>   
+>>   #define RTL9300_I2C_MUX_NCHAN	8
+>> @@ -105,6 +106,7 @@ struct rtl9300_i2c_xfer {
+>>   #define RTL9300_I2C_MST_DATA_WORD2			0x10
+>>   #define RTL9300_I2C_MST_DATA_WORD3			0x14
+>>   #define RTL9300_I2C_MST_GLB_CTRL			0x384
+>> +#define RTL9300_REG_ADDR_8BIT_LEN			1
+>>   
+>>   #define RTL9310_I2C_MST_IF_CTRL				0x1004
+>>   #define RTL9310_I2C_MST_IF_SEL				0x1008
+>> @@ -299,6 +301,7 @@ static int rtl9300_i2c_smbus_xfer(struct i2c_adapter *adap, u16 addr, unsigned s
+>>   				  union i2c_smbus_data *data)
+>>   {
+>>   	struct rtl9300_i2c_chan *chan = i2c_get_adapdata(adap);
+>> +	const struct rtl9300_i2c_drv_data *drv_data;
+>>   	struct rtl9300_i2c *i2c = chan->i2c;
+>>   	struct rtl9300_i2c_xfer xfer = {0};
+>>   	int ret;
+>> @@ -308,6 +311,7 @@ static int rtl9300_i2c_smbus_xfer(struct i2c_adapter *adap, u16 addr, unsigned s
+>>   
+>>   	guard(rtl9300_i2c)(i2c);
+>>   
+>> +	drv_data = device_get_match_data(i2c->dev);
+>>   	ret = rtl9300_i2c_config_chan(i2c, chan);
+>>   	if (ret)
+>>   		return ret;
+>> @@ -315,7 +319,7 @@ static int rtl9300_i2c_smbus_xfer(struct i2c_adapter *adap, u16 addr, unsigned s
+>>   	xfer.dev_addr = addr & 0x7f;
+>>   	xfer.write = (read_write == I2C_SMBUS_WRITE);
+>>   	xfer.reg_addr = command;
+>> -	xfer.reg_addr_len = 1;
+>> +	xfer.reg_addr_len = drv_data->reg_addr_8bit_len;
+> 
+> For this one I wonder if we could come up with something that involves a 
+> subtraction for the rtl9607? len = 1 just makes sense to me so maybe 
+> RTL_9300_ADDR_LEN(1) which expands to 1 - 0 on the rtl9300 and 1 - 1 on 
+> the rtl9607 would be easier to follow.
 
-It's there somewhere though the source structure makes it hard to
-find. Converting the dtb back to flat dts gives this:
+I am not entirely sure i understand this approach. Is RTL_9300_ADDR_LEN(1)
+gonna be a "#define"? Would like to know before i proceed with possible
+changes for v2.
 
-        nand-controller@18028000 {
-                compatible =3D "brcm,nand-iproc", "brcm,brcmnand-v6.1",
-"brcm,brcmnand";
-                reg =3D <0x18028000 0x600 0x1811a408 0x600 0x18028f00 0x20>=
-;
-                reg-names =3D "nand", "iproc-idm", "iproc-ext";
-                interrupts =3D <0x00 0x44 0x04>;
-                #address-cells =3D <0x01>;
-                #size-cells =3D <0x00>;
-                brcm,nand-has-wp;
+And wouldn't something like this work just as well:
 
-                nand@0 {
-                        compatible =3D "brcm,nandcs";
-                        reg =3D <0x00>;
-                        #address-cells =3D <0x01>;
-                        #size-cells =3D <0x01>;
-                        nand-ecc-algo =3D "bch";
-                        nand-ecc-strength =3D <0x08>;
-                        nand-ecc-step-size =3D <0x200>;
+xfer.reg_addr_len = 1 - drv_data->subtract_len;
 
-                        partitions {
-                                compatible =3D "fixed-partitions";
-                                #address-cells =3D <0x01>;
-                                #size-cells =3D <0x01>;
+But then, i honestly think "drv_data->reg_addr_8bit_len" would be a bit less
+cluttery?
 
-                                partition@0 {
-                                        label =3D "ubi";
-                                        reg =3D <0x00 0x8000000>;
-                                };
-                        };
-                };
-        };
-
-
->
-> I am not sure if it is wrong. So I have not direct use "select false".
->
-> Is it okay omit these dts?
-
-Even if there are cases, yes.
-
-Rob
+> Not a deal breaker just thought I'd mention it.
+> 
+>>   
+>>   	switch (size) {
+>>   	case I2C_SMBUS_BYTE:
+>> @@ -501,6 +505,7 @@ static const struct rtl9300_i2c_drv_data rtl9300_i2c_drv_data = {
+>>   	.wd_reg = RTL9300_I2C_MST_DATA_WORD0,
+>>   	.max_nchan = RTL9300_I2C_MUX_NCHAN,
+>>   	.max_data_len = RTL9300_I2C_MAX_DATA_LEN,
+>> +	.reg_addr_8bit_len = RTL9300_REG_ADDR_8BIT_LEN,
+>>   };
+>>   
+>>   static const struct rtl9300_i2c_drv_data rtl9310_i2c_drv_data = {
+>> @@ -524,6 +529,7 @@ static const struct rtl9300_i2c_drv_data rtl9310_i2c_drv_data = {
+>>   	.wd_reg = RTL9310_I2C_MST_DATA_CTRL,
+>>   	.max_nchan = RTL9310_I2C_MUX_NCHAN,
+>>   	.max_data_len = RTL9300_I2C_MAX_DATA_LEN,
+>> +	.reg_addr_8bit_len = RTL9300_REG_ADDR_8BIT_LEN,
+>>   };
+>>   
+>>   static const struct of_device_id i2c_rtl9300_dt_ids[] = {
 
