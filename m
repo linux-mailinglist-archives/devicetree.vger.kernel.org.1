@@ -1,180 +1,177 @@
-Return-Path: <devicetree+bounces-276008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276009-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kAMhGbzBt2n5UwEAu9opvQ
-	(envelope-from <devicetree+bounces-276008-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 09:39:24 +0100
+	id cIW9FT7Ct2n5UwEAu9opvQ
+	(envelope-from <devicetree+bounces-276009-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 09:41:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5BA6296514
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 09:39:23 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D0422965C0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 09:41:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 05A30300BDAA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 08:36:47 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B5F373018226
+	for <lists+devicetree@lfdr.de>; Mon, 16 Mar 2026 08:40:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 915F1351C0F;
-	Mon, 16 Mar 2026 08:36:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87F00382F3E;
+	Mon, 16 Mar 2026 08:40:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mvqu9nka"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AbpDotg5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D18923EA8A;
-	Mon, 16 Mar 2026 08:36:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03A9B3822B3
+	for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 08:40:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773650206; cv=none; b=j8g2SVBNH2PnzfnKUxLcoFEzgntUoA7nMJ1fKdicWHkaGfjB2Ca8dQvHiFZKwlCWQIEsD+TgZQlAKukdnHvT0hlo4X9Ma87ikJePAnEVMTnMwCr8JJ84xWReOl8pju0BKYCV1RYDtFWZZC6Pi7hlWq+pbMG0mFwsXc3mlO6AodY=
+	t=1773650408; cv=none; b=TNMFuW0aWPkWqLiroJSJuw7TzpuU1tNSwcKZqt5tx8uqDL7WJGeWYeUS2NwpdQY1zI+ugfVLL9BJb9ohcmgc0a7Zw6x65v7oA6NdpFHABoOjuokZ+OVAMrj3/1yqcstjNW8FEJ3xR/qsb+HhVg2dpxm86N1VRM12zwm3DDK4MBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773650206; c=relaxed/simple;
-	bh=j5XqXvo+8WUpL16FpwNBiVLr3/TQXp1vN1Ye/sajw3A=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ohFhKJ/bqwzkzJGuhedi73hadmZLb3HbA0SOrbQc6kK31SN9qQybdJ78geTW0nVvf1ZAg544G8YZIQ/iAlK7jIsh5hxht6iZMOY5F/rCtv8FPE4ms7zk9lC1k2BPqUgreXO6YckWPKD/nMCBaMLt0TUEw3zhLj0FeQzLOCOFSto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mvqu9nka; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48567C19421;
-	Mon, 16 Mar 2026 08:36:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773650206;
-	bh=j5XqXvo+8WUpL16FpwNBiVLr3/TQXp1vN1Ye/sajw3A=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=Mvqu9nkacTl7zejRGMu7LhdYgEzQ5ryFtnj1tNktDMdj2YMHBS++PwgN5HR9DoS2Y
-	 f8wa0H08sEmZWGQXvsapw9Lpq1wzFQw/XcjVKVbjom+nVrQPlWwL222d4mWMN7twt+
-	 odsmaMgcZSNShICI2WdKoVkvWBOEQkY4sD93V3qynQsqziG1dbKvyLYtR13VJQg90k
-	 Hair4ySqPWkH4GUVAT2+HBcBPzebmVSXWsKDsLbn8GdYPPIYYkU01mvAX1S61tjRPF
-	 /VLLk08v3LKHSdyfMhOhSnc7TnuIzo6MbvgwhYkujNHNR7Ehc07nlRkNj41vG3iQNO
-	 dnodMBQyt51jw==
-Message-ID: <cde8671f-bb38-41d8-b27f-c54aa7242899@kernel.org>
-Date: Mon, 16 Mar 2026 09:36:42 +0100
+	s=arc-20240116; t=1773650408; c=relaxed/simple;
+	bh=eAYEHKIMJ1HcMJfz2kIgNpsDS5JBZWGRLVub9M3wt2c=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YHbYljr04OlqiIzIIOP4RqlxdUImkCeMFo0RWKJdXuhM9R/HmlZkMaed8qEZ+eK83BZTplgelKpxVtRPzLsPWEYfktMeih+gI7Wr1oaCbcoXldnzQS7YgjJ8Sa4jgk7CvztFrW7BBrFRLuxDVutRJo/qrlsH1K4MyLIT2LJsUaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AbpDotg5; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2b04d051664so11476255ad.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Mar 2026 01:40:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773650405; x=1774255205; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9HzxpmNsoszjfyCRF5qB2Qo4IkmZffw/F/yON08071s=;
+        b=AbpDotg59FUfaWZeTxWgshDFsfxQfapp01Kn3Gjlx8b0+cAUDpSMoffX3PE89gdhAL
+         ogNEaKuPc1gx2TIHAEFqZCBVMShShkkiqEcDGr0UWu5s/CYFyrhHkyxFBheC1brQeAbq
+         tfUNo0eaNGDTsyubOR5Y7fljvHW/3IPbIMe10GV9Bd1eRFDsLstXIaX/wIFgB4N8CSZ4
+         MAY03cPtkWRAPqKa/W3AU+T6eI1saTPPFmfmrdk06y8ITvelE0vbLTHC1WLLyS3yC53w
+         /MQlY7G5vCSK3D6pnTsmarB9ZqjECHLEnYvODXd/eUiBivcROLtm1Z0yd1+v7yU+1SwJ
+         2I8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773650405; x=1774255205;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9HzxpmNsoszjfyCRF5qB2Qo4IkmZffw/F/yON08071s=;
+        b=HCeFcQAc8IJNa6XN+Zwb6cPL8Ykb1tQotAN+RmVr+oevaiFPhq9EtmvmtIwj2QDNEb
+         peHczgsjWfQ/yaVq7R60QuMIyNGaUk3f28zH4H/3Tz/LbjZFCz4vuMtBf5uK0iQ3IbgI
+         Ng1QSlj12OLU74JNkE+kHz7UNhlVCku9tn+lNj8NnQ4M4It1BZnGYhwhBPcq9di6frMp
+         nxNz4rJcK6DAgFGGMlDvsnJSx0j7XCVpOcSenrLBtw70Oin825toFjpqlXjBsrGZ97Yu
+         9grNgBp1cKvYfFRQ8gIunQFy8+szbXSdqroe9wxMndv2Z85RbNuQ/4X6yoMOc/4tTi9O
+         nrnw==
+X-Forwarded-Encrypted: i=1; AJvYcCW+3ig31VHUFAQvmBCKIJ0CxyeWxorbhUdYF+kOfZfXm5s/9PyDC6tb9Ag17LOr0llKszMzV8Q9Mt1+@vger.kernel.org
+X-Gm-Message-State: AOJu0YyqkgrE4BCP3WY06UG/wgudIlWORR60uHH+E6NnXRdnnjKPWqVM
+	NBbshAi/FJ/j2UQCPnWV+YQImPhyEE3k8kCqA9Th2zL/caaLxx5S5F1T
+X-Gm-Gg: ATEYQzwb9UZDgDXpEKimKlewtM8as76lUYOYmtvOAizxLFxPbwZaTuw3cDuPW4IyblL
+	Y9aaU5hg68BegPW4V+j34Qs7TCA9Iwm8bY8KHj8xK7KvCIFmEmPCfZxnxOdeBjgffRj1nE2xRuo
+	FkF9XfaGYTK2xaoLO1LZ/VYBoY5xf8Ey9bx5orPJdmIcqD8mOztHxWzKmNDhWyGw7NCxrZACgsQ
+	kLEz5ptlE4aWulFMMalqtxR8UHx7gAfrP4FsXvOkH1YFckKVENthL8oAw7vtFixZsRXMZo4ntZz
+	GnIX6OiF48jG2BPyZFceNJikj9D+UT0StUL1gMwAxwkLK4SVA/YMriaXP3uaHvZ8dPQh+eMqGps
+	QlesQM5gGTSqBCOIOYhD49nHGHsfAJSnVepcMOZHAslcrFBqYJrOY/RtF5BDWXuejJQriznEJQm
+	Tp0flcIvpldXaT6R9oIIk=
+X-Received: by 2002:a17:902:e88f:b0:2b0:571f:6f07 with SMTP id d9443c01a7336-2b0571f7b2fmr29222165ad.39.1773650405157;
+        Mon, 16 Mar 2026 01:40:05 -0700 (PDT)
+Received: from [127.0.1.1] ([218.32.81.133])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b0537b663csm45946865ad.51.2026.03.16.01.40.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Mar 2026 01:40:04 -0700 (PDT)
+From: Colin Huang <u8813345@gmail.com>
+Subject: [PATCH v2 0/2] Add support for Delta Q54SN120A1 and Q54SW120A7
+Date: Mon, 16 Mar 2026 16:39:32 +0800
+Message-Id: <20260316-add-q54sn120a1-q54q54sw120a7-v2-0-60e6182cc4a7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: trivial-devices: add
- spi-miso-mosi-loopback
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Francesco Dolcini <francesco@dolcini.it>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-spi@vger.kernel.org
-References: <20260316073547.11437-1-francesco@dolcini.it>
- <20260316073547.11437-2-francesco@dolcini.it>
- <bbfa2a62-7113-433b-91ad-0693ed6f8e36@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <bbfa2a62-7113-433b-91ad-0693ed6f8e36@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMTBt2kC/43NTQ6CMBCG4auQWVszbfgJrryHYTGWKUwiIK1BD
+ endbTmBu3lm8X47BPbCAS7FDp43CbLMCeZUgB1pHlhJnwwGTY0GK0V9r9aqDLM2SDqfWe+sRjk
+ qW3OvmbBxkBJPz04+R/7WJY8SXov/Hmubzt8/w5tWqLDFWrMl62xzHSaSx9kuE3Qxxh/YI7rZy
+ AAAAA==
+X-Change-ID: 20260205-add-q54sn120a1-q54q54sw120a7-fa492b6ea07f
+To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Cc: linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Colin.Huang2@amd.com, 
+ Carl.Lee@amd.com, Peter.Shen@amd.com, Colin Huang <u8813345@gmail.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773650402; l=1235;
+ i=u8813345@gmail.com; s=20260202; h=from:subject:message-id;
+ bh=eAYEHKIMJ1HcMJfz2kIgNpsDS5JBZWGRLVub9M3wt2c=;
+ b=zNr6Nc3i639FGZXPpBVwqmmBqW2c+oIkNCAhQ+wcFEikAWujbstRmbPo7nuTs5TK0T8UqW5Uk
+ wDvbiLA7VBUCdpoCNjoMFoUgFSdOZOrieNGyqmMSnmYoB5Q93D8nCRg
+X-Developer-Key: i=u8813345@gmail.com; a=ed25519;
+ pk=Zlg0WqpCw4qbswOqamTBTXIchwR/3SnYZpy7rjaGMdQ=
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276008-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-276009-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,amd.com,gmail.com,microchip.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[u8813345@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[toradex.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E5BA6296514
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6D0422965C0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 16/03/2026 09:35, Krzysztof Kozlowski wrote:
-> On 16/03/2026 08:35, Francesco Dolcini wrote:
->> From: Francesco Dolcini <francesco.dolcini@toradex.com>
->>
->> Add a compatible to describe a single wire loopback between SPI MISO and
->> MOSI signals.
->>
->> Link: https://lore.kernel.org/all/20260310133254.GA51497@francesco-nb/
->> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
->> ---
->>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
->> index a482aeadcd44..2cb973c157f6 100644
->> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
->> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
->> @@ -432,6 +432,8 @@ properties:
->>            - socionext,uniphier-smpctrl
->>              # SparkFun Qwiic Joystick (COM-15168) with i2c interface
->>            - sparkfun,qwiic-joystick
->> +            # Single wire loopback between SPI MISO and MOSI signals
->> +          - spi-miso-mosi-loopback
-> 
-> If you decided to go against my approach, then at least document it in
-> proper place - incomplete-devices - so this won't be ever used in DTS.
->
+This patch series adds support for the Delta Q54SN120A1 and Q54SW120A7
+1/4-brick DC/DC power modules with PMBus capability.
 
-... and then you will notice existing linux,spi-loopback-test, so
-explain the differences and why spi-loopback-test cannot be used for
-your loopback test.
+The datasheets are not publicly available but are available under NDA.
+
+Patch 1 updates the devicetree trivial-devices list.
+Patch 2 adds chips support under q54sj108a2.
+
+These changes have been tested with both modules on hardware platforms
+supporting PMBus over I2C.
+
+Signed-off-by: Colin Huang <u8813345@gmail.com>
+---
+Changes in v2:
+- remove usless patch.
+- noted datasheets are available under NDA.
+- modify driver base on reviewer commment. 
+- Link to v1: https://lore.kernel.org/r/20260205-add-q54sn120a1-q54q54sw120a7-v1-0-09061ecacfc7@gmail.com
+
+---
+Colin Huang (2):
+      dt-bindings: trivial-devices: Add Delta Q54SN120A1 and Q54SW120A7
+      hwmon: (pmbus) Add Delta Q54SN120A1 Q54SW120A7 chip
+
+ Documentation/devicetree/bindings/trivial-devices.yaml |  4 ++++
+ drivers/hwmon/pmbus/q54sj108a2.c                       | 18 +++++++++++++++---
+ 2 files changed, 19 insertions(+), 3 deletions(-)
+---
+base-commit: 18f7fcd5e69a04df57b563360b88be72471d6b62
+change-id: 20260205-add-q54sn120a1-q54q54sw120a7-fa492b6ea07f
 
 Best regards,
-Krzysztof
+-- 
+Colin Huang <u8813345@gmail.com>
+
 
