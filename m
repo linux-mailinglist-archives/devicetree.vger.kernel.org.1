@@ -1,342 +1,165 @@
-Return-Path: <devicetree+bounces-276507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276508-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uNC+CAYFuWmEnAEAu9opvQ
-	(envelope-from <devicetree+bounces-276507-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:38:46 +0100
+	id SKrfNwwFuWmEnAEAu9opvQ
+	(envelope-from <devicetree+bounces-276508-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:38:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23A292A4EF1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:38:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E8172A4F08
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:38:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AA15B30225B2
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 07:38:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 036973008221
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 07:38:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1564A39184D;
-	Tue, 17 Mar 2026 07:38:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82158391828;
+	Tue, 17 Mar 2026 07:38:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="X4ECUPcg";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ZnkMkGRW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gtce48aE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDD9E39184A
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 07:38:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EF9F391505;
+	Tue, 17 Mar 2026 07:38:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773733083; cv=none; b=PL7duzptm0+nHKPfhf9blN5O73Mh6HaemOECwQ0xnn7lniIywtPTbz5M8AWSz1B68e0CgKlhRx/gFih3VgnBt8EY75D5PXmjvDGXV74FYKqIHWR5ftpwJvpS82x6dMtAkwlSgr7hkkJiJwKkbezbpQIut062QYvcs5UHAuvGsSw=
+	t=1773733130; cv=none; b=SKI1wr4eIDazgyi0WJQaWMklQPTEXLt2iw7Vkp38AVx8betBTimg8ea7yN5/7IP9fCv16Njfx0CBvAgVei6ggZA5I5acX0o9TwWfwlRnwsRooKqREqsJxv4UY/rJ8K3B9k9rZxVRS+LjmF6akfNuWimWKZrnXJQ/JXRI9Au485A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773733083; c=relaxed/simple;
-	bh=ZJiKB5y14XoyWqqwdBWvjOVt+oDqMJNE33M5IUHiV1I=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lnX5KJb2IoAkx8H0XTy1X70t9QlkV3yn91r7Ri+PGh8RksVD7xeND/uq0jMhMZjt1vehr3fgdu2pymG+yIg35rauY3ixpWUOidaQJZ/1+nOeenElPYUtICCiG6+kxiK8jxf9+vAfuGxzVvDbAD70HNH6EqKoOdCb71DJGItKU68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=X4ECUPcg; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZnkMkGRW; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62H2BL5r3101965
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 07:38:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	uy7Og7nMxysODOOTUi28l7/aEGA0n4QL4PbWsLPD1yg=; b=X4ECUPcgjTbDIVky
-	KestdKAUAXWlNV33kYnIG4n3PL9lVQk4DOoGKJ191pEcet321lRqO3HddLvTNFzC
-	0yFDcz5sskZhWkwVD3+HpOPdilbhORxxv3+aXhKeJCkvjJpS6t1xj5BPgw0Vo0RD
-	WGXRRY4HoLL6It0R81f6XfW3GFzH2ZENLD32VdX9grh6zMjWS0QJBY/ug16S7Sic
-	Z0Z+X0qFQQG50iQW8Y3ttZ16Q09ZhVRipgDB6fRu9jIUCE0SIw+zP7uOgDl4cx7E
-	iwnECHuFUf55Fo01MM8d1VO9cjVhFvrkZeMTnwvItrxQuD2ankbynGut55cn+KtE
-	otXKWQ==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cxnb7apus-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 07:38:00 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-35b9894f9ceso2680222a91.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 00:38:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773733080; x=1774337880; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uy7Og7nMxysODOOTUi28l7/aEGA0n4QL4PbWsLPD1yg=;
-        b=ZnkMkGRWgcOzARbQglATHU5oWFNCAvcQQlWd/4GTwBYccoJ36P4YVs3/fWA7QRzNwV
-         ZWRnpbN8dR7t800Hkskvsd9yBWm8yaxji3lLh+W9NwuRWl81rMAAzoYSdE7Q7FRjfha/
-         KzvUBWZurw3JwSUG7ZyVt5/Z24ArhEd9sCiAgeAcUKV2qRLXVY+rqMD+0G6X9gFu5Puj
-         acptIGZrvwTNElTJng0AldNxnk9hFwAuwj6cLeujBUVE8/nr5K1d9YeE6zv+O0O1bTNC
-         jnc4Qq9tvbvtnrRHxxA9O/QoaZlOox0TGmB8+kdC8wVgOqmhxlg6vVpiZVzKyKZnkDHH
-         dWlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773733080; x=1774337880;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=uy7Og7nMxysODOOTUi28l7/aEGA0n4QL4PbWsLPD1yg=;
-        b=era4DcTqLof7G10NyRmvCa6Sjk4BNnRqYqZewCIxzoJtw10oTDMxJ0ad/Vw06G6Q9s
-         SH4jVIymnkUnEdmQzGemmZbU0R0TVFon/+0h37g5bab7zG8C9he8yvRWNOJ30Wv60vIp
-         obYRLt6SCyMTfnuNUUvEDRt3ESwHkpqrSn9eIEDhNZY8IMECx/KTkngY8KeLxGidtP4u
-         VKBMYj12vyAyAM6S9NZ0jKW5CI3EE8efQFaf36B6oUS76t1nDK7y+EaH7eBVievKnMO6
-         xsTMV2giVwQd9tBf9WIxGUQYAvdkVU63omojJZYtj0y3HoJaGWfco97g6epOrGYn9vXK
-         G3vw==
-X-Forwarded-Encrypted: i=1; AJvYcCXaxqQcfNOkjk1ZN785wSW5baIambgrOOIG97BXglUQCMJLQqn7GcKzxxbb9C6RTe7wvI5MmhAFYLA6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPBaGU0W/7Q3L7yK3fRTC6XxuyDLZSVHXIRAqvnCLd/Xe7Lpfd
-	+robvqwU70NdmHA4oTGjmh8l6vEeMUJ/SHK+rMXFPKaoGBRfnCKa8ZnKyMBzndzW3gaIp+L+dwu
-	fXUI3UD4Hk4gXF8Qfy7kX6dq4jAV60iUDdyXBdR1WTixRCsIZKjmyLXc4QFacSTOq
-X-Gm-Gg: ATEYQzyQEslCilQSXGSuRl9wt6H/tZspiw9RfKbHoLeO2sPTkpAxybhIjzdbl/Xa78W
-	wihaCp7Tz7oy+lux2oo9QgjsrklKYqGDNWxRsFKFgFZ+/JYxdfRmGb90bma9nwldQQxypKIp2a7
-	il7YCmRiWPfPgD2Mv8V4gsOreT2Y+oePj9of1GvvbYzGq3bkgROwn7N1a84JoIywZ4o3vuOjsGX
-	buz2+OGKDmatK4xFm+X1V4drzZ2Hk9dQOyKVk6hmlfEVB2iN3A4ICsJ7bZQGvCWnGH9YQdxxw0u
-	nOq2rQKb2utiAEokTK6eyZonZIUDn7UtfYOjRL5qMVWwpFMm8OBQCMZG/jgGoSTClAuHblMAzzm
-	rvr07GzeAJm4o3CmpWBW3zI3Hkk1MFrn+/JSCgJz9DjCqE1/VLRnbiaodQQ==
-X-Received: by 2002:a17:90b:288f:b0:354:c593:b1a8 with SMTP id 98e67ed59e1d1-35a21f67c46mr14547980a91.13.1773733080142;
-        Tue, 17 Mar 2026 00:38:00 -0700 (PDT)
-X-Received: by 2002:a17:90b:288f:b0:354:c593:b1a8 with SMTP id 98e67ed59e1d1-35a21f67c46mr14547957a91.13.1773733079651;
-        Tue, 17 Mar 2026 00:37:59 -0700 (PDT)
-Received: from hu-sushruts-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35bada2bfdbsm1954913a91.3.2026.03.17.00.37.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Mar 2026 00:37:59 -0700 (PDT)
-From: Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>
-Date: Tue, 17 Mar 2026 13:07:08 +0530
-Subject: [PATCH v5 2/2] arm64: dts: qcom:
- qcs6490-rb3gen2-industrial-mezzanine: Add second TC9563 PCIe switch node
- for PCIe1
+	s=arc-20240116; t=1773733130; c=relaxed/simple;
+	bh=sko8EAuNQshjeqzdBY1gNrd5ykW7gG5IlQMI64QEJXQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lCDi75DVl1WG/bC6K5fRlNEAxiiZJ1n9e7exX3nYMlgnrMriCImwT5eTk6Tz8A9k72zNVN1kbtsC+hB7qjMqczXF96uD85Io2adtHCZsm9lU1kaiFmyfUwtXhryAmFHXOHEkx/7HGYjvMEP5j9+M0v/inTwCB7SHHfhrE3njj/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gtce48aE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5E24C19424;
+	Tue, 17 Mar 2026 07:38:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773733130;
+	bh=sko8EAuNQshjeqzdBY1gNrd5ykW7gG5IlQMI64QEJXQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gtce48aEFNFikERVM3vOZjr2+KEf0tNV5VZ1qs296UxzHc5xJoDO3f3j+9aLiI22a
+	 NbznHOXA+l29Bue3hMebMxrZtp68dMFq53NWBXodymaHPLdA8aD5j+tnutobtUZm7Z
+	 zQlZr+lrd2P5CD/xyczjVRzxJEOU+J240VNgyLTqAS/mxG7MRVPX1ME9PUsl8d1X2r
+	 zJ6JZTP2UBz9yKpdBhkEqixofFQkGV5wdwmFE5P/H+PchCCKH+Q0VrmGeBXIeCoA+M
+	 KleDumH+Oa5b0k1LnL8Fjs6ADYR86Ofi492MTyEFLMCYlLEwqL5F8qvsLboE9jY4xC
+	 Xk7YFXqA+HhPA==
+Date: Tue, 17 Mar 2026 08:38:47 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Shaurya Rane <ssrane_b23@ee.vjti.ac.in>
+Cc: devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, linusw@kernel.org, 
+	brgl@kernel.org, sudipm.mukherjee@gmail.com
+Subject: Re: [PATCH] dt-bindings: gpio: gpio-exar: Convert to DT schema
+Message-ID: <20260317-elated-tan-lion-b91bcd@quoll>
+References: <20260316122707.23353-1-ssrane_b23@ee.vjti.ac.in>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260317-industrial-mezzanine-pcie-v5-2-1358978517fe@oss.qualcomm.com>
-References: <20260317-industrial-mezzanine-pcie-v5-0-1358978517fe@oss.qualcomm.com>
-In-Reply-To: <20260317-industrial-mezzanine-pcie-v5-0-1358978517fe@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773733066; l=4319;
- i=sushrut.trivedi@oss.qualcomm.com; s=20251127; h=from:subject:message-id;
- bh=ZJiKB5y14XoyWqqwdBWvjOVt+oDqMJNE33M5IUHiV1I=;
- b=pBnuqR1Bhwh0lp2UegQQheeCr6khItVr2qFmgnNbPoh4Knb56RJK5ZKFq3awazKJpDI+D2voI
- QMwPpWXmwE2BAhZTkfwmKZBRU9xtzhQsejbcCgfv4KwyutJFr6C7Wjm
-X-Developer-Key: i=sushrut.trivedi@oss.qualcomm.com; a=ed25519;
- pk=OrUHTxBaSg1oY3CtCictJ5A4bDMNLRZS1S+QfD9pdjw=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE3MDA2NSBTYWx0ZWRfXztHK6uP2yRhx
- JTSts6kPVJYjPGRdHOvutfzoVOXK5DH2uUGbH06WqdfzrnSie834BWTbo/QbCcwaoB0hoKHMIAp
- 68Fc3YrTcUTcFqVQTC5PaI+AH6/omhH7TTcm/mZN6c8e0jre9HFTWzpkp6QRuHHsidEaacNO/7b
- USan9ndTA1U9nP+YxL/DLzfIiySA1Liy5qxpkqaPmzDP+l5QPp4nDo1zO/Lsa4juJgHKKyP2+FD
- lAekuuooTaog6QWGcM4aydRTyFVWmxrs9w7x5MJ9n8YaAsHArpEipjxnnsB6XSVJPImD+GCqvQA
- ODroMFYX45etioQYtOiqQV2MOfjh65xm5j4y8Mbuh3ndd1Ws7eU8CyoYz6D46uTS+czJfg/8lYJ
- QiInlcXDb7DpPA6pqJlapttXZiMMfDNFp46HnGL3rcWbAghFMCMnoVi6fdgHKJRmmhPG7WAhmr4
- h1hZt3RAz6GIt/zJk4Q==
-X-Authority-Analysis: v=2.4 cv=D7pK6/Rj c=1 sm=1 tr=0 ts=69b904d8 cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
- a=EUspDBNiAAAA:8 a=bvgCVipTNhjOeuzF1ioA:9 a=QEXdDO2ut3YA:10
- a=uKXjsCUrEbL0IQVhDsJ9:22
-X-Proofpoint-ORIG-GUID: FiHGLp5mHrYGYj5RHb9qZTD_hhp499VD
-X-Proofpoint-GUID: FiHGLp5mHrYGYj5RHb9qZTD_hhp499VD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-17_01,2026-03-16_06,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 adultscore=0 clxscore=1015 suspectscore=0 spamscore=0
- malwarescore=0 lowpriorityscore=0 phishscore=0 bulkscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603170065
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260316122707.23353-1-ssrane_b23@ee.vjti.ac.in>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-276508-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-276507-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,0.0.0.1:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:dkim,qualcomm.com:email,0.0.0.2:email];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sushrut.trivedi@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.3:email];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 23A292A4EF1
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url]
+X-Rspamd-Queue-Id: 4E8172A4F08
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add a node for the second TC9563 PCIe switch on PCIe1, which is connected
-in cascade to the first TC9563 switch via the former's downstream port.
+On Mon, Mar 16, 2026 at 05:57:07PM +0530, Shaurya Rane wrote:
+> Signed-off-by: Shaurya Rane <ssrane_b23@ee.vjti.ac.in>
 
-Two embedded Ethernet devices are present on one of the downstream
-ports of this second switch as well. All the ports present in the
-node represent the downstream ports and embedded endpoints.
+Please run scripts/checkpatch.pl on the patches and fix reported
+warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+patches and (probably) fix more warnings. Some warnings can be ignored,
+especially from --strict run, but the code here looks like it needs a
+fix. Feel free to get in touch if the warning is not clear.
 
-The second TC9563 is powered up via the same LDO regulators as the first
-one, and these can be controlled via two GPIOs, which are already present
-as fixed regulators. This TC9563 can also be configured through I2C.
+> ---
+>  .../devicetree/bindings/gpio/gpio-exar.txt    |  6 +-
+>  .../devicetree/bindings/gpio/gpio-exar.yaml   | 67 +++++++++++++++++++
+>  2 files changed, 68 insertions(+), 5 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-exar.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-exar.txt b/Documentation/devicetree/bindings/gpio/gpio-exar.txt
+> index 4540d61824af..9f183e66bce9 100644
+> --- a/Documentation/devicetree/bindings/gpio/gpio-exar.txt
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-exar.txt
+> @@ -1,5 +1 @@
+> -Exportable MPIO interface of Exar UART chips
+> -
+> -Required properties of the device:
+> - - exar,first-pin: first exportable pins (0..15)
+> - - ngpios: number of exportable pins (1..16)
+> +This file has moved to gpio-exar.yaml.
 
-Signed-off-by: Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
----
- .../qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso | 102 +++++++++++++++++++++
- arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts       |   2 +-
- 2 files changed, 103 insertions(+), 1 deletion(-)
+No, file is being completely removed.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
-index ad2795668ec8..83908db335af 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
-@@ -150,6 +150,100 @@ pci@0,1 {
- 	};
- };
- 
-+&pcie1 {
-+	iommu-map = <0x0 &apps_smmu 0x1c80 0x1>,
-+		    <0x100 &apps_smmu 0x1c81 0x1>,
-+		    <0x208 &apps_smmu 0x1c84 0x1>,
-+		    <0x210 &apps_smmu 0x1c85 0x1>,
-+		    <0x218 &apps_smmu 0x1c86 0x1>,
-+		    <0x300 &apps_smmu 0x1c87 0x1>,
-+		    <0x408 &apps_smmu 0x1c90 0x1>,
-+		    <0x410 &apps_smmu 0x1c91 0x1>,
-+		    <0x418 &apps_smmu 0x1c92 0x1>,
-+		    <0x500 &apps_smmu 0x1c93 0x1>,
-+		    <0x600 &apps_smmu 0x1c94 0x1>,
-+		    <0x700 &apps_smmu 0x1c95 0x1>,
-+		    <0x701 &apps_smmu 0x1c96 0x1>,
-+		    <0x800 &apps_smmu 0x1c97 0x1>,
-+		    <0x900 &apps_smmu 0x1c98 0x1>,
-+		    <0x901 &apps_smmu 0x1c99 0x1>;
-+};
-+
-+&pcie1_switch0_dsp1 {
-+	#address-cells = <3>;
-+	#size-cells = <2>;
-+
-+	pcie@0,0 {
-+		compatible = "pci1179,0623";
-+		reg = <0x30000 0x0 0x0 0x0 0x0>;
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+
-+		device_type = "pci";
-+		ranges;
-+		bus-range = <0x2 0xff>;
-+
-+		vddc-supply = <&vdd_ntn_0p9>;
-+		vdd18-supply = <&vdd_ntn_1p8>;
-+		vdd09-supply = <&vdd_ntn_0p9>;
-+		vddio1-supply = <&vdd_ntn_1p8>;
-+		vddio2-supply = <&vdd_ntn_1p8>;
-+		vddio18-supply = <&vdd_ntn_1p8>;
-+
-+		i2c-parent = <&i2c1 0x77>;
-+
-+		resx-gpios = <&tlmm 124 GPIO_ACTIVE_LOW>;
-+
-+		pinctrl-0 = <&pcie1_tc9563_resx_n>;
-+		pinctrl-names = "default";
-+
-+		pcie@1,0 {
-+			reg = <0x40800 0x0 0x0 0x0 0x0>;
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+
-+			device_type = "pci";
-+			ranges;
-+			bus-range = <0x3 0xff>;
-+		};
-+
-+		pcie@2,0 {
-+			reg = <0x41000 0x0 0x0 0x0 0x0>;
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+
-+			device_type = "pci";
-+			ranges;
-+			bus-range = <0x4 0xff>;
-+		};
-+
-+		pcie@3,0 {
-+			reg = <0x41800 0x0 0x0 0x0 0x0>;
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			device_type = "pci";
-+			ranges;
-+			bus-range = <0x5 0xff>;
-+
-+			pci@0,0 {
-+				reg = <0x50000 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
-+				ranges;
-+			};
-+
-+			pci@0,1 {
-+				reg = <0x50100 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
-+				ranges;
-+			};
-+		};
-+	};
-+};
-+
- &tlmm {
- 	pcie0_tc9563_resx_n: pcie0-tc9563-resx-state {
- 		pins = "gpio78";
-@@ -181,6 +275,14 @@ pcie0_wake_n: pcie0-wake-n-state {
- 		bias-pull-up;
- 	};
- 
-+	pcie1_tc9563_resx_n: pcie1-tc9563-resx-state {
-+		pins = "gpio124";
-+		function = "gpio";
-+		bias-disable;
-+		input-disable;
-+		output-enable;
-+	};
-+
- };
- 
- &wifi {
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-index e3d2f01881ae..cd54525e45e0 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-@@ -852,7 +852,7 @@ pcie@0,0 {
- 		pinctrl-0 = <&tc9563_resx_n>;
- 		pinctrl-names = "default";
- 
--		pcie@1,0 {
-+		pcie1_switch0_dsp1: pcie@1,0 {
- 			reg = <0x20800 0x0 0x0 0x0 0x0>;
- 			#address-cells = <3>;
- 			#size-cells = <2>;
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-exar.yaml b/Documentation/devicetree/bindings/gpio/gpio-exar.yaml
+> new file mode 100644
+> index 000000000000..be592c7d4564
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-exar.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/gpio-exar.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Exportable MPIO interface of Exar UART chips
+> +
+> +maintainers:
+> +  - Sudip Mukherjee <sudipm.mukherjee@gmail.com>
+> +  - Bartosz Golaszewski <brgl@kernel.org>
+> +
+> +description: |
+> +  Exar XR17V35x UART chips expose a subset of their MPIO lines as a GPIO
+> +  controller. The GPIO controller is instantiated by the Exar 8250 PCI UART
+> +  driver as a child platform device and consumes firmware properties from a
+> +  child node describing the exported MPIO range.
+> +
+> +select: false
 
--- 
-2.25.1
+Never tested. That's a no go. You cannot just send us some random
+code or whatever made you passing (by disabling) tests...
+
+This patch has multiple trivial issues. Please read the docs and look
+at other patches how proper submission looks like.
+
+I don't understand why you decided to convert exactly this binding
+without understanding how anything here works. This is a very, very
+specific and odd binding.
+
+Best regards,
+Krzysztof
 
 
