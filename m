@@ -1,62 +1,70 @@
-Return-Path: <devicetree+bounces-276872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276873-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CPYZGhLIuWl/NgIAu9opvQ
-	(envelope-from <devicetree+bounces-276872-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 22:30:58 +0100
+	id eBz8KIDLuWl/NgIAu9opvQ
+	(envelope-from <devicetree+bounces-276873-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 22:45:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C57E12B2B6B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 22:30:57 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4D482B2DC6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 22:45:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D93C9302BB81
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 21:29:11 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B1C643007A62
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 21:44:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3763F39184A;
-	Tue, 17 Mar 2026 21:29:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BED9B396596;
+	Tue, 17 Mar 2026 21:44:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mNngK0/F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CTiOJc38"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 136643914F6;
-	Tue, 17 Mar 2026 21:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 995203909B1;
+	Tue, 17 Mar 2026 21:44:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773782950; cv=none; b=HzpJ6UP/YIvPDmUj1dbbOjKZrKqSPEn7CqpwssmoUOn1OjiAf28sK4D7rDyVZOL3fyEPwRTwgWJKeVz2NoMnlnNoI3zpMTG8P6ySB7kwIhPBbATmw1To74laC9tLNoIoMCt+HQcJjLWUT3/0yJPMAk2WHPfrgWypjHB7F7wA8Mk=
+	t=1773783877; cv=none; b=F5d0m5IYnKmKmACgoiHkvX5vtldARx/9KHYDUljRyUV4o+JlGlEuCLgWpDSk0E0tjWTbz4Nn7CU/FGRc8Nars0fqGDJTbl5Sid4qZFciZVwHerxDTlMp6pPMAyfaAdJUyOg9hrhe1PHMbUKJtt95/yyzp+T4Rm+glilU1yLWgxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773782950; c=relaxed/simple;
-	bh=EEPcdwfYA2i1wDNKfSw099Z5veH/DJsStfCV0MN+hNM=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=WsAoUbAQYy6KQn6zbIamEHg1F3c/knSqlxJilZB8sBsjoT4Zh/UuQd/43viMItNtgeKEP5p0Dg91SI+yWIjWMYkEUtqTHRCQYfwIX3XElYfArcj+eCbG1MTs5SCmPCkbfuFJsDtqQ39gzy/15aFbx0Q6tfiAL/aQRJxFscrtkpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mNngK0/F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81C6EC4CEF7;
-	Tue, 17 Mar 2026 21:29:09 +0000 (UTC)
+	s=arc-20240116; t=1773783877; c=relaxed/simple;
+	bh=YnJxAqY3yVW0rBxCTAK9ZMy9uB7s9ePxLZFBfN6k5Wg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bk6olEJkkv7bF2PUC+EG53PuvdfJOO3SN+b/nxCl0WWU/E9HcQpcDw1Cm0IM2i1nPUhoIWiEf0Xginbp76eiiyNSRC6Cp/BN3vCNVQC+Fd+x2GTW/ljE3pdwCbeKRTT1Jgtj33tbFAIULFZORxxqmjlcKWm3A94LmvT7TBy/xXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CTiOJc38; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8F6BC4CEF7;
+	Tue, 17 Mar 2026 21:44:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773782949;
-	bh=EEPcdwfYA2i1wDNKfSw099Z5veH/DJsStfCV0MN+hNM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=mNngK0/Fs/0IBKQ6aMEbV8XD37uWZwqxk9Xp1x3CSxJsS/UYuc7J+7WpeXQjIv9ec
-	 X8EcEeWKHBjvgKMyu88CqnlBxL2FAWqBgqJ4ozol6/VeGTI5aw1QFR1zLgeXFDVjMj
-	 Vh6uui+Fy6IJVUmetrS8GwD0rBJEg8lPlnZn8e78rGdrnEcwsHeuy895dwjCKj/iZe
-	 dJo+fNqA/n+fe+zuUf5P+uyUVtuF5G2F5N53qMXibkbEQPNAYVaY1EcNuLb40V7IK+
-	 bTXVtpbv+vjN6Jcthvxlff79woq7ce2WQMs/ChrloY0QQo6VedrOb7moFEJyJlBC9E
-	 IM6wbxpicP85A==
-Date: Tue, 17 Mar 2026 16:29:08 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Caleb James DeLisle <cjd@cjdns.fr>
-Cc: linux-pci@vger.kernel.org, linux-mips@vger.kernel.org,
-	naseefkm@gmail.com, ryder.lee@mediatek.com, bhelgaas@google.com,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
-	ansuelsmth@gmail.com, linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] PCI: Skip bridge window reads when window is not
- supported
-Message-ID: <20260317212908.GA109023@bhelgaas>
+	s=k20201202; t=1773783877;
+	bh=YnJxAqY3yVW0rBxCTAK9ZMy9uB7s9ePxLZFBfN6k5Wg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CTiOJc38tOqLBn6rKI1YCPrqaDNI0pR0suhd/76OSH8FqwhojyJL044wxft0zFGA7
+	 w+I48l+FEX6LtDsEgVFl2jI8n39BjNL59z9UROKhQOiG7OZvEJOigEYsBP2wi5hk9O
+	 FmsEpuMyAgqtQpmGo2Rexj+dRBKotiX5FNyPpAJMjkFtMAw2GXApL7KCUZ6KWrHea/
+	 en+WOvZRSy2Z0HiZnCp0iRwgqX9uSrgiqbfoXRncbkq+FkqQ+P6Roz4MKSke+pZXQN
+	 kc6l8umBVg5mToKGRlv82fTPz3cnr9E2MpwCL4ID403lX93cBrlYJ18gAnG6zkENKE
+	 LfzKPrZQwg0rw==
+Date: Wed, 18 Mar 2026 05:44:35 +0800
+From: Yixun Lan <dlan@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Ze Huang <huang.ze@linux.dev>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Junzhong Pan <junzhong.pan@spacemit.com>,
+	Inochi Amaoto <inochiama@gmail.com>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: usb: dwc3: spacemit: add support for K3
+ SoC
+Message-ID: <20260317214435-GKA453922@kernel.org>
+References: <20260317-02-k3-usb20-support-v1-0-d89f59062ad4@kernel.org>
+ <20260317-02-k3-usb20-support-v1-1-d89f59062ad4@kernel.org>
+ <20260317-shortness-gecko-72f14fbc79f2@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,98 +73,103 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260316155157.679533-4-cjd@cjdns.fr>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+In-Reply-To: <20260317-shortness-gecko-72f14fbc79f2@spud>
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276872-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-276873-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,linux.dev,synopsys.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,esmil.dk,spacemit.com,gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,mediatek.com,google.com,kernel.org,collabora.com,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C57E12B2B6B
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A4D482B2DC6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 16, 2026 at 03:51:57PM +0000, Caleb James DeLisle wrote:
-> pci_read_bridge_io() and pci_read_bridge_mmio_pref() read bridge window
-> registers unconditionally. If the registers are hardwired to zero
-> (not implemented), both base and limit will be 0. Since (0 <= 0) is
-> true, a bogus window [mem 0x00000000-0x000fffff] or [io 0x0000-0x0fff]
-> gets created.
+Hi Conor,
+
+On 12:55 Tue 17 Mar     , Conor Dooley wrote:
+> On Tue, Mar 17, 2026 at 11:53:02AM +0000, Yixun Lan wrote:
+> > Add compatible string for DWC3 USB controller found in SpacemiT K3 SoC.
+> > The USB2.0 host controller in K3 SoC actually use DWC3 IP but only has
+> > USB2.0 functionality, and requires only one USB2.0 PHY connected.
+> > 
+> > Explicitly reduce number of phy property to minimal one.
 > 
-> pci_read_bridge_windows() already detects unsupported windows by
-> testing register writability and sets io_window/pref_window flags
-> accordingly. Check these flags at the start of pci_read_bridge_io()
-> and pci_read_bridge_mmio_pref() to skip reading registers when the
-> window is not supported.
-
-The fundamental problem here is that assigned space to a bridge window
-that isn't implemented.  I wish we understood the connection between
-this "read window" path and the assignment path.
-
-Maybe this patch fixes it because we enter pci_read_bridge_mmio_pref()
-with res->flags being NULL, and we set IORESOURCE_MEM |
-IORESOURCE_PREFETCH again, which makes it look like we can assign
-space for it?
-
-If that's the case, I think it would improve the commit log to mention
-the actual mechanism by which we avoid assigning space.
-
-> Suggested-by: Bjorn Helgaas <helgaas@kernel.org>
-> Link: https://lore.kernel.org/all/20260113210259.GA715789@bhelgaas/
-> Signed-off-by: Ahmed Naseef <naseefkm@gmail.com>
-> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
-> ---
->  drivers/pci/probe.c | 6 ++++++
->  1 file changed, 6 insertions(+)
+> Is this valid for the existing compatible, will it work with only one
+> clock?
 > 
-> diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-> index bccc7a4bdd79..4eacb741b4ec 100644
-> --- a/drivers/pci/probe.c
-> +++ b/drivers/pci/probe.c
-> @@ -395,6 +395,9 @@ static void pci_read_bridge_io(struct pci_dev *dev, struct resource *res,
->  	unsigned long io_mask, io_granularity, base, limit;
->  	struct pci_bus_region region;
->  
-> +	if (!dev->io_window)
-> +		return;
-> +
->  	io_mask = PCI_IO_RANGE_MASK;
->  	io_granularity = 0x1000;
->  	if (dev->io_window_1k) {
-> @@ -465,6 +468,9 @@ static void pci_read_bridge_mmio_pref(struct pci_dev *dev, struct resource *res,
->  	pci_bus_addr_t base, limit;
->  	struct pci_bus_region region;
->  
-> +	if (!dev->pref_window)
-> +		return;
-> +
->  	pci_read_config_word(dev, PCI_PREF_MEMORY_BASE, &mem_base_lo);
->  	pci_read_config_word(dev, PCI_PREF_MEMORY_LIMIT, &mem_limit_lo);
->  	base64 = (mem_base_lo & PCI_PREF_RANGE_MASK) << 16;
-> -- 
-> 2.39.5
-> 
+I didn't change clock binding, do you mean phy?
+
+Both k1 and k3 work with one clock (no change here)
+
+for phy, the existing k1 requires two. for k3, one controller requires
+one phy due to only has USB2.0 support, other controllers requires two
+phys - USB2, USB3 PHY
+
+> > 
+> > Signed-off-by: Yixun Lan <dlan@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml | 6 +++++-
+> >  1 file changed, 5 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml b/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml
+> > index 0f0b5e061ca1..cc27b363ca79 100644
+> > --- a/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml
+> > @@ -27,7 +27,9 @@ allOf:
+> >  
+> >  properties:
+> >    compatible:
+> > -    const: spacemit,k1-dwc3
+> > +    enum:
+> > +      - spacemit,k1-dwc3
+> > +      - spacemit,k3-dwc3
+> >  
+> >    reg:
+> >      maxItems: 1
+> > @@ -42,11 +44,13 @@ properties:
+> >      maxItems: 1
+> >  
+> >    phys:
+> > +    minItems: 1
+> >      items:
+> >        - description: phandle to USB2/HS PHY
+> >        - description: phandle to USB3/SS PHY
+> >  
+> >    phy-names:
+> > +    minItems: 1
+> >      items:
+> >        - const: usb2-phy
+> >        - const: usb3-phy
+> > 
+> > -- 
+> > 2.53.0
+> > 
+
+
+
+-- 
+Yixun Lan (dlan)
 
