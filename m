@@ -1,45 +1,46 @@
-Return-Path: <devicetree+bounces-276535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276537-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4JZfEJwSuWmFowEAu9opvQ
-	(envelope-from <devicetree+bounces-276535-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 09:36:44 +0100
+	id EA6PFvkSuWkmpQEAu9opvQ
+	(envelope-from <devicetree+bounces-276537-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 09:38:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42B602A5C1D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 09:36:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB3182A5C7D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 09:38:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A704C300E692
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:36:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 11FBE3074E2A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:36:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65E893932E9;
-	Tue, 17 Mar 2026 08:36:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08B1439B49F;
+	Tue, 17 Mar 2026 08:36:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="AKC3ully"
+	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="VRkRXzFk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49220.qiye.163.com (mail-m49220.qiye.163.com [45.254.49.220])
+Received: from mail-m15578.qiye.163.com (mail-m15578.qiye.163.com [101.71.155.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C801B37FF5B;
-	Tue, 17 Mar 2026 08:36:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.220
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D24B738F234;
+	Tue, 17 Mar 2026 08:36:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773736593; cv=none; b=ls3Mhyb9fl+m/2R05o4qAXbNrpvbjDh8PCoKKqktZpqX6nEmaQyRNJ930ETOit02qCPWgq3Gzfe6vJ5WmIskxvv7ob4bEXqDVZadstfsg5+cGecLQYVxw51qTr2m0R9nU5bziMpGKh1TtTRIEuFFO3evzBbQKWjD1YVkCjLJVAE=
+	t=1773736593; cv=none; b=KgKfRAc60FbiMaWtPIr0HDU87YUvfZETt+QdqTmkRn6KMPUDyi3V4rYk9l4m/I1qxRgbNlClNemlVbRYvjCZDsOqCcAPOf7Q5iO6KVG9Rx235SC7MHzvRl8ztSb2Es2cjRYmVmJhyvQ1fpgZqVkzJ8B313RTZGh16iwUau7Vik0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1773736593; c=relaxed/simple;
-	bh=t8lhSjavVNyVN0m6itU2OGMsya1COEWO1iDxM84EcgU=;
+	bh=Iht1r+yVIjhbmgorwffY/WZG4fvWpt012DxOBQaeKic=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XWvuuIBYFkSwoc18h7WTj/X3smJRU7QvCYi4CnKPG7VEEHSMKg4qmTeSfmifdUUPxO2MM/mG88CslfnwbTKh4t7AZHS9i7lYw6T1bUeYZ++BzJYwjkgazPXiHkUX6lbpdjN1TyBBATzvfndEFCRWGUDeRtdpAHcluIqXjHE6dJ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=AKC3ully; arc=none smtp.client-ip=45.254.49.220
+	 In-Reply-To:To:Cc; b=BjjjnlKWAmsoy5OXWkWby/fmEGZUNZTmo4Irre44E3fmvK4cVNVyAJFNXkJcylktpgFqTOArymJqn5yhXn6oGyF+M5zi0reWnP1D4g6zHZhpgwIQxFY5FCT2HejEDRxAGCkorgYV7j39/nFHDYc8kD2O+/C1u2DbiXhfYLnWnVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=VRkRXzFk; arc=none smtp.client-ip=101.71.155.78
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
 Received: from [127.0.1.1] (unknown [36.129.139.90])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 373e3b4a1;
-	Tue, 17 Mar 2026 16:36:18 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 373e3b4ad;
+	Tue, 17 Mar 2026 16:36:20 +0800 (GMT+08:00)
 From: Hongyang Zhao <hongyang.zhao@thundersoft.com>
-Date: Tue, 17 Mar 2026 16:35:43 +0800
-Subject: [PATCH v2 4/6] ASoC: qcom: common: Add MI2S port IDs to jack setup
+Date: Tue, 17 Mar 2026 16:35:44 +0800
+Subject: [PATCH v2 5/6] ASoC: qcom: sc8280xp: Set codec DAI format for MI2S
+ links
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,7 +49,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260317-rubikpi-next-20260304-v2-4-5634fabe0c43@thundersoft.com>
+Message-Id: <20260317-rubikpi-next-20260304-v2-5-5634fabe0c43@thundersoft.com>
 References: <20260317-rubikpi-next-20260304-v2-0-5634fabe0c43@thundersoft.com>
 In-Reply-To: <20260317-rubikpi-next-20260304-v2-0-5634fabe0c43@thundersoft.com>
 To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
@@ -65,34 +66,34 @@ Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
  Roger Shimizu <rosh@debian.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
  Hongyang Zhao <hongyang.zhao@thundersoft.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773736570; l=890;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773736570; l=1340;
  i=hongyang.zhao@thundersoft.com; s=20260127; h=from:subject:message-id;
- bh=t8lhSjavVNyVN0m6itU2OGMsya1COEWO1iDxM84EcgU=;
- b=VC5z6stq1Q8d8aLbXgw2tpxfkpuSBbM16ljuxzmt7OrfVi00I3QHXC7jjkfsmIagIgcoFG2+H
- J4rJBh9ZdaJAG+mmKHXdFER4o6wCtT85zY8xR49h5ZI4dy+LDXSKclc
+ bh=Iht1r+yVIjhbmgorwffY/WZG4fvWpt012DxOBQaeKic=;
+ b=QHFdteYvFqMthYd4HjQZx8pZ91R0Q8QM3+BI85lLZVKeU/y3A3uc8vtOri8rvp2i6supWdGN6
+ CaAtUvf4AE7CL3a0vxvzZvauy0j+0yNNVyNTjaY/R2LPohupPryEmEO
 X-Developer-Key: i=hongyang.zhao@thundersoft.com; a=ed25519;
  pk=D9yL5W9Zj0lPBDAq9gzY++1849VlXuTWAkROzZ88J/4=
-X-HM-Tid: 0a9cfaf04ec109d5kunm8391965e39c9c1
+X-HM-Tid: 0a9cfaf0568f09d5kunm8391965e39c9e7
 X-HM-MType: 1
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZSkJDVk5LHhgdHU4fTU1PS1YVFAkWGhdVEwETFh
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaGBgaVhkdTB0fTENLS0sZSFYVFAkWGhdVEwETFh
 	oSFyQUDg9ZV1kYEgtZQVlITVVKSUJVSkhCVUJLWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09IVUpLS1
 	VKQktLWQY+
 DKIM-Signature: a=rsa-sha256;
-	b=AKC3ully1U56Lu/5ZVNWxjHdIZ56N6VfxShXvpk1Up8UZlxdGjqbVfKwtaRXpncz0eDV4R9wwakPaE/YXJJggH370Uc6TXE9trZtkHJ8HG2493Be4ubpbwCCpPhAB+grns+7OXxrg6Rmg7Y1/J5SxsVMz1bKk44QJJk/J39rOdQ=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
-	bh=PYTEvEpolPMmlNBtv2AO7COTHMb4LGvNbz02lBXKnPg=;
+	b=VRkRXzFkvpwIhXmGl7j+zHB1EOzY73dpqdH8CQGtJzq5OOFb0jAZLgJDhIpq3cnFx55+sPd4K6Mq0+cu6XMI5ZjFldPUktF/B9ahFTy/p30PerQL0SymYS1bQoGr3DurvLsayz+OpV+sdGGiMGlcqwxOhHMe3hkV+6kwdG0VTs8=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
+	bh=uD1bDfoNoFCDj51HBerfeeYEewmuLu8oZRNJDSFssSo=;
 	h=date:mime-version:subject:message-id:from;
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[thundersoft.com,none];
 	R_DKIM_ALLOW(-0.20)[thundersoft.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276535-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-276537-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[gmail.com,kernel.org,endlessm.com,katsuster.net,loongson.cn,perex.cz,suse.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -107,34 +108,43 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 42B602A5C1D
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,thundersoft.com:dkim,thundersoft.com:email,thundersoft.com:mid]
+X-Rspamd-Queue-Id: EB3182A5C7D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add PRIMARY_MI2S_RX through QUATERNARY_MI2S_TX and QUINARY MI2S port IDs
-to the qcom_snd_wcd_jack_setup() switch case, so that codecs connected
-via MI2S can use jack detection.
+Set the codec DAI format to I2S consumer mode (BC_FC) with normal bit
+and frame clocks (NB_NF) for MI2S backend links. This is required for
+external codecs connected via MI2S to work properly.
 
 Signed-off-by: Hongyang Zhao <hongyang.zhao@thundersoft.com>
 ---
- sound/soc/qcom/common.c | 2 ++
- 1 file changed, 2 insertions(+)
+ sound/soc/qcom/sc8280xp.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/sound/soc/qcom/common.c b/sound/soc/qcom/common.c
-index 7ee60a58a336..657378474254 100644
---- a/sound/soc/qcom/common.c
-+++ b/sound/soc/qcom/common.c
-@@ -230,6 +230,8 @@ int qcom_snd_wcd_jack_setup(struct snd_soc_pcm_runtime *rtd,
- 	case TX_CODEC_DMA_TX_1:
- 	case TX_CODEC_DMA_TX_2:
- 	case TX_CODEC_DMA_TX_3:
-+	case PRIMARY_MI2S_RX ... QUATERNARY_MI2S_TX:
-+	case QUINARY_MI2S_RX ... QUINARY_MI2S_TX:
- 		for_each_rtd_codec_dais(rtd, i, codec_dai) {
- 			rval = snd_soc_component_set_jack(codec_dai->component,
- 							  jack, NULL);
+diff --git a/sound/soc/qcom/sc8280xp.c b/sound/soc/qcom/sc8280xp.c
+index 7925aa3f63ba..04e15c85a145 100644
+--- a/sound/soc/qcom/sc8280xp.c
++++ b/sound/soc/qcom/sc8280xp.c
+@@ -27,6 +27,7 @@ static int sc8280xp_snd_init(struct snd_soc_pcm_runtime *rtd)
+ {
+ 	struct sc8280xp_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
+ 	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
++	struct snd_soc_dai *codec_dai = snd_soc_rtd_to_codec(rtd, 0);
+ 	struct snd_soc_card *card = rtd->card;
+ 	struct snd_soc_jack *dp_jack  = NULL;
+ 	int dp_pcm_id = 0;
+@@ -35,6 +36,9 @@ static int sc8280xp_snd_init(struct snd_soc_pcm_runtime *rtd)
+ 	case PRIMARY_MI2S_RX...QUATERNARY_MI2S_TX:
+ 	case QUINARY_MI2S_RX...QUINARY_MI2S_TX:
+ 		snd_soc_dai_set_fmt(cpu_dai, SND_SOC_DAIFMT_BP_FP);
++		snd_soc_dai_set_fmt(codec_dai, SND_SOC_DAIFMT_BC_FC |
++					       SND_SOC_DAIFMT_NB_NF |
++					       SND_SOC_DAIFMT_I2S);
+ 		break;
+ 	case WSA_CODEC_DMA_RX_0:
+ 	case WSA_CODEC_DMA_RX_1:
 
 -- 
 2.43.0
