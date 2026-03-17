@@ -1,312 +1,227 @@
-Return-Path: <devicetree+bounces-276756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276757-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wKHDKud4uWnQGQIAu9opvQ
-	(envelope-from <devicetree+bounces-276756-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 16:53:11 +0100
+	id SNFVBIN5uWnQGQIAu9opvQ
+	(envelope-from <devicetree+bounces-276757-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 16:55:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 278862AD565
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 16:53:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 641E22AD5F3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 16:55:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0D1A030C6314
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 15:52:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C3FD330B55EC
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 15:54:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC1782BEC52;
-	Tue, 17 Mar 2026 15:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C7512D46B2;
+	Tue, 17 Mar 2026 15:54:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="ccvSKwg4"
+	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="N8dktOgP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f45.google.com (mail-yx1-f45.google.com [74.125.224.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from serval.cherry.relay.mailchannels.net (serval.cherry.relay.mailchannels.net [23.83.223.163])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A1C52D5A01
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 15:52:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.224.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A37432D063A;
+	Tue, 17 Mar 2026 15:54:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.223.163
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773762749; cv=pass; b=Ytw1bSvAe6SWHfSdqCGzAbrMePV9OvfWt3SHIvzEOrdgrySORsKZIapYfK2F/Bf67rn4BXqybuziUUbKNJjLGsFA/FLRsm/jdJwEYWtn1R37Nk2PPRVo9z2LmJ3Bz6mIHGSgX/1lLPW9Npj+U+7BB6I1aMPNkYKFrHrRSzhLUlo=
+	t=1773762872; cv=pass; b=CrKrjCnU0tTpwBsZe0fLebBF+VuePr4VvM9TOQnGhIdmDNgFkrQPQJ6dR/tNO0w6EQv/2FoiBbjYMycTK0M+StzNsVj/KEqh4teIWiY/yXsIbSCrDfkhn6ytrBXjyvrRXfotb7wMhtUrkAr1wk9N5iAN6it8Hc7bu7khPTlqkQM=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773762749; c=relaxed/simple;
-	bh=6OxqeyKBaIICqgKj1cmgQHPL50VHasHMsjVgG+cyUoA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IqHJLwHKS1XI5R4zq7pKRiMkSL13eKAMOumTRRc1YPHFZGFbSfeQddfM7518pGK77SjgE4n7UZHoNVMlrCKJVwglQLr9cYcPgoMi5PtOSicgI3KMr85kcYMbXscf5tsjdfsflZXTc4HNR63trSV30khOA12llVjey0qMsMUCP/U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=ccvSKwg4; arc=pass smtp.client-ip=74.125.224.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-yx1-f45.google.com with SMTP id 956f58d0204a3-64ad79dfb6eso6671826d50.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 08:52:26 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773762746; cv=none;
-        d=google.com; s=arc-20240605;
-        b=N+xhrOVrl5nJcL94jfvCqvd0vtfAdNAVIPiQxc09aWeR27Vgkqt/Lj4TeAQIVv5oyI
-         l21aaZ2Q9Sjp1A6vNS4hdLgFg+BzsGIhWjoRdCR2VJNELu13Pjk2T1Wu+uKUjPW2flX2
-         N8V/dHaomPrb7yRjqc7YkR57QbXlbL7dKpghnWHAmr5XTuBrGWrUxpAlWpUi6h2Ra/GM
-         sgT5C141BPKjnAN9pNDKdDmzoRGzX36c2FPdYNGs1YeFn/qvs5q9sYIK2bAhDW0Anv20
-         1kfz9YMRO4FST/KsY3ORti52PCXM3eA9irSbP166BsU4FfXYg27AAZ/ysa/vGDt1payz
-         KnXA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=xWOba+wwzwLOr6/8lB5VON9f6bR8lPOgvlBWpxZ52Z0=;
-        fh=M+2NBT+AfD5yNvchxqQUIeORCnSTpAGjPgKLTFx6XBY=;
-        b=E+PCOYV8JmV2lAJdlTNno9Ua/1gug6F/2jy6lqyHYnzehnd5kAlx50kd4b2ZZjqLAz
-         aky5Q21de7GDHXWLQaZfcS2V0NkaGtdXK1Mjz3GFcboZwYlGhutqPlgbNi6hhRqBn0xR
-         rn2aOEcHLnaSOF8Rp20gJ18LRJOUYgHvK2QyObCZxvdQ9tFcNvWkDlIjy9islDzE01Sa
-         jpmunOBeuM65cMlGzJ6L42gdngPlI9fp5tFp/9/pIABceci4LzwrDiP+25wwbZedDv0V
-         rZJlRlTR79IzXv+e5WBy2G0dxmkYgxVt9CHwptSQVHWVGqXR8H1WKnZCq/12d3G+4Ize
-         Lz0w==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1773762746; x=1774367546; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=xWOba+wwzwLOr6/8lB5VON9f6bR8lPOgvlBWpxZ52Z0=;
-        b=ccvSKwg4HzVlit44/twQQ80HlWw87czok3ovPF1ndW+0iitJMmF3gAZwawcbgimT/o
-         n4VEpY6ChoJbixdaNTemgOp2bA1292RBSyTFMDoYfU2LrdaiBJgQTx5xMwGbYWqK6OnY
-         72Iz2t8G1jpS+OiF9H71LPg19ihF2aZclChOKm7gDyZG+KkwvxMGIlybfcqlf+nH9CwK
-         u92pUl248oF5WnJAZLvnwIL+J7UVWTYPe0Swnp1ZQRAPY7JQdFriNuBV6Evbaym6mBgC
-         9c0P2mtJLIXWEmY9ytYZODThLZwYXbpHp5p8wJJewvsy+XP1Ckd7Fl0bieYL1n67ZqKW
-         jBHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773762746; x=1774367546;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xWOba+wwzwLOr6/8lB5VON9f6bR8lPOgvlBWpxZ52Z0=;
-        b=NLo3UjrTl1dohRnqrr9ISntQ1FMesU7bYt8cweejbjrn+xRjVE0NiHps5UpXQvMAfL
-         Zc0JRJUmBNydlzq+pGuw/y0eky/vZC4nCSbqt/8hXCuxX8ZkerTvVL14mcoxeTEFXmej
-         c70qmNNQ4EJhsJB5qC3Eox3xL7AcdRMGvFOvqh2u+BfdQlz767EW6MjLqw7qcKlT1lBn
-         T6hWx08+OYYNemYiGiHM9w+4NPe0E7fON/m3BTGZB7cKWH21lmTwX+XUPp3qaOobOuhu
-         s0Z/ya473i0y8SmxZIPnWFOTyEuH+EG9pmeNandcAd6wbaPZ/1pmcctLawIF7EDgqCKz
-         uyFw==
-X-Forwarded-Encrypted: i=1; AJvYcCU5Dq8O0bFaHPgFsWDZ2YvQv3iAe6vjw/UgffZLLcEno2apf4QXQP5ifL+ogirvIW4BNbdaTbY+8mjS@vger.kernel.org
-X-Gm-Message-State: AOJu0YxacxX4sLYpL4cduY8T/iZatz3xMUQMr4Hrg8ALwdV2aPkHh8Jc
-	QPXijwZktbyASUEZhqbxx3XAP4ppUe+W9cq5i9w6idUx7NLeVHiLL3KDA5VtC046fLyLnXVNJ/r
-	h3bmgRqkaLbz9p+y/7z0kSAGIQB+LfSZjQcvsTk0KiA==
-X-Gm-Gg: ATEYQzyweU2uhPKpld5fFwjhw5pYr9GuKGnfZ0MR9ODB/N7Iit0lzVMcO2dlfELK9dd
-	cmZNZ+dElSpLDuqC+zmDA1jE0G/HmbVwrkurUhC3m0Ez8mqidKvPC05jhTC7iLc+gzM/kXTZ3zR
-	uBgts4ClXP4LkEvJafpQcr7uG+4Op+APbIpMOWHeLCKiE6r4jI3SZxUD/AFNxu0MzNXGMdeJk/d
-	QrdFCkDsIIMW3cs5ImreDCNMrTB2iE4fBaPOUXgaq9TYHtp+ZgBNgvFuVtaLizCoXpLF6xXkQ52
-	t2+DDGU070iuIuxBoIy6or1vGt+6DdG4rSXNwyE=
-X-Received: by 2002:a05:690e:144c:b0:64c:4f97:e8b0 with SMTP id
- 956f58d0204a3-64e915dc474mr145258d50.61.1773762745884; Tue, 17 Mar 2026
- 08:52:25 -0700 (PDT)
+	s=arc-20240116; t=1773762872; c=relaxed/simple;
+	bh=lfxNJqkAn5nedMvtm/Giy9zfFi5rpr8yqgrJXgmm9gI=;
+	h=Message-ID:MIME-Version:Cc:Subject:To:References:From:In-Reply-To:
+	 Content-Type:Date; b=MeWmrsim65SkGuITwaStyBthG2JfUVn5HWw98sbTjdVCYFWoQZuzxO61xutT8PqTJk4lZy0h05dpu7f9daa08VX4s6a4Y1BbAtHOh653IvHjRrq7ei2MQ1X6pcxs7HiDttZloIp21HiQjpUs3Zha72NjtAgXofKDyjQi8wyfBek=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=N8dktOgP; arc=pass smtp.client-ip=23.83.223.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id 50F17441501;
+	Tue, 17 Mar 2026 15:54:21 +0000 (UTC)
+Received: from de-fra-smtpout10.hostinger.io (trex-green-3.trex.outbound.svc.cluster.local [100.115.143.3])
+	(Authenticated sender: hostingeremail)
+	by relay.mailchannels.net (Postfix) with ESMTPA id 1DC08443A5F;
+	Tue, 17 Mar 2026 15:54:16 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; d=mailchannels.net; s=arc-2022; cv=none;
+	t=1773762860;
+	b=b61weR3qTzwwdmqJyI94fqXX2G8Q7UoYujr5CpkJBQufmk3KQqjTsfXFuifqNlfVIMQUQ+
+	Zb5GoIDH42Qwpef0RoXYAnnShqKPdwenXMpGlzAX8ARXrJRzRSU5pjvVdBRcc7HvPZP2GE
+	PK9NJzf9ApB06R8cmrgD8L13uzvoO9kgfA8xM5yg80ONYZSshHlTeLGgkpOU6KPHVa8rjd
+	WQBg5i331RRPtS8rCSjLZsUWOiEjKSoqOvZQCuCRSKHM2qzei8bZPP3VneXC4u4YKczc8Y
+	+EUQHRGQBV9QgLNBJPznZS0Wrz+5OKcb1a9KyWMBlkas3WPvKrC+g0k3W0o/fA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mailchannels.net;
+	s=arc-2022; t=1773762860;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=ILl2TqrEu5S8QBVXKLjl+G/C6M4r2ZltpX0HMEpdMmw=;
+	b=KFseWj9vQw7waI91d1jD4C9V9iWI5bmYcVjXZ295r/i50nke6nN6LzuZ/G5z9kEPsEuBrj
+	1ZcwlF0afGaNEmvSA51Rhc4LhS77CGslrHBCroxrY6M7W+/5+BTVSPpByP8mWtguipXSbq
+	4xzQms43J43/gYBvYZLhk34FTqTHopIdJYKuTZUJUKFCpfoezyA8w7LCLS+P29rOvaETjj
+	qbmkReB8/a/HYBG70YWjZnbQH/tgYXfo4HQa+Oc40I+8m7m/QTkKiidIqfGnnYkxzLSpk2
+	8ziFyfDXE+FteP2lUXepUK1iOQtpynZjwvAF7XDrg6G2KSkoq7RJzoS2NUX/jQ==
+ARC-Authentication-Results: i=1;
+	rspamd-78765f9847-k8fbv;
+	auth=pass smtp.auth=hostingeremail
+ smtp.mailfrom=michael.opdenacker@rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MC-Relay: Neutral
+X-MailChannels-SenderId:
+ hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MailChannels-Auth-Id: hostingeremail
+X-Interest-Macabre: 274221fb23ded875_1773762861123_1944666366
+X-MC-Loop-Signature: 1773762861123:2501252353
+X-MC-Ingress-Time: 1773762861122
+Received: from de-fra-smtpout10.hostinger.io (de-fra-smtpout10.hostinger.io
+ [148.222.55.9])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
+	by 100.115.143.3 (trex/7.1.5);
+	Tue, 17 Mar 2026 15:54:21 +0000
+Received: from [IPV6:2001:861:4450:d360:2a72:4a2c:81bf:d1d4] (unknown [IPv6:2001:861:4450:d360:2a72:4a2c:81bf:d1d4])
+	(Authenticated sender: michael.opdenacker@rootcommit.com)
+	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4fZxN64SDxz3wnK;
+	Tue, 17 Mar 2026 15:54:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
+	s=hostingermail-a; t=1773762855;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ILl2TqrEu5S8QBVXKLjl+G/C6M4r2ZltpX0HMEpdMmw=;
+	b=N8dktOgPXQBd0S/4dO0a9yNoHQlVfXPSThfnDEr3FYupVmQVvM/Zt93eiVQJ5UkeJYlTL5
+	lENELrdv6VKeJQmaGq2vElqTsdbH2ey+hEY9+z44cvuAvtXuHMts9k/mmDc7pcB9DQVCxb
+	eot8EYj0oCPwOnYPGCdHQzDhfMMSaULjXyyzSyNyYL5q+4xNPj4Foo0Yaa98O6iZIT80V1
+	n7fEUE+X2M4oGX0thn+ti8SrLsGjzsxh1fXd+w9IRWcGODEvH/ZR2DdEKG3IiM3VSKhsNp
+	g+8xs4euZQQ3BXf0iWNJZ1ER9twA3ejKNtpeEYBJEpXBQnHFyUaXY/wHWzbMxg==
+Message-ID: <5fbc6f34-06d3-4e11-b9f7-f091cbf7394a@rootcommit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260312150437.1091195-1-eagle.alexander923@gmail.com>
- <20260312150437.1091195-3-eagle.alexander923@gmail.com> <CAPY8ntAf9TjgW-E6WeJuMdsHy8pV8-CvqQJriWEFpgLB-brD5A@mail.gmail.com>
- <CAP1tNvRMoHteLcjjGbEFcp_8JRALC7mQM6efHyTrgvrZFfiByA@mail.gmail.com>
-In-Reply-To: <CAP1tNvRMoHteLcjjGbEFcp_8JRALC7mQM6efHyTrgvrZFfiByA@mail.gmail.com>
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Tue, 17 Mar 2026 15:52:09 +0000
-X-Gm-Features: AaiRm50L_KLDOLoSffajcnLGX2yYxGpeTEO1YhHeOHbjBcaYCHEyII6i_Ilt_rM
-Message-ID: <CAPY8ntAcKW70adZuGK5LdWn3pmzM0TXRyMvuCzioYUe9usG8iQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] media: i2c: Add driver for Sony IMX662 sensor
-To: Alexander Shiyan <eagle.alexander923@gmail.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Hans Verkuil <hverkuil@kernel.org>, 
-	Hans de Goede <hansg@kernel.org>, Tetsuya Nomura <tetsuya.nomura@soho-enterprise.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Cc: michael.opdenacker@rootcommit.com,
+ Javier Martinez Canillas <javierm@redhat.com>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+ Anand Moon <linux.amoon@gmail.com>, Trevor Gamblin <tgamblin@baylibre.com>
+Subject: Re: [PATCH v3 6/7] riscv: dts: spacemit: k1-orangepi-rv2: add SD card
+ support with UHS modes
+To: Iker Pedrosa <ikerpedrosam@gmail.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>,
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+ Yixun Lan <dlan@kernel.org>
+References: <20260316-orangepi-sd-card-uhs-v3-0-aefd3b7832df@gmail.com>
+ <20260316-orangepi-sd-card-uhs-v3-6-aefd3b7832df@gmail.com>
+Content-Language: en-US
+From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+In-Reply-To: <20260316-orangepi-sd-card-uhs-v3-6-aefd3b7832df@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Date: Tue, 17 Mar 2026 15:54:14 +0000 (UTC)
+X-CM-Envelope: MS4xfJw5AHuHKESwjxDU42t1s3Ntdjj/zJ52wwsXYYlRQARrN6B9FMg779E6OU6fQazbRZ+bWLG5XaO3Ntlgvf2SLKo1l5gVtS3EevJM26Cv+2YK3TO24ScR dtkz91LSXVI8KMYrrxjikwy6zfHYux/zzoWXi9bYBz5vsPA2B/mZfV+CkUFV4pZBkjpCbxrmmfgAU5XMARsge99C+0XEBumIz3AE/9GjjsYz51Ovt8JBk5FW Iwe7hqbmOXuXU8L5leCOV4bHVgDvn77uwAkvVfXv4RdGdJ9GOJY4OKt12Ucf7Cmh0Xy+MN448nX/3DtQzh0x/weDvOn86VCaa3XBMSJo+XRGRJB+g8GpDyCq G+zZACs0al7qKDgrDbp6y6kmA0WTIUo8ZvOA66GGh71eUr3RnKE4YEAkJbQkq4aIT+kuSwOPS/T+BJ2+I3Wf98SshtNlTj6LWnzJkqiyKlU0W4JTH5Cm3IEh DbN5uLy8tnnkf3Dg0QOYdlJICLyecy5gfP9eXFYzAlqzS8mNshQAmfGaZBxmlcPqYS+JvukqtmO0BBEbA1jmBa/VeFfuzJS2XNKAwY5lu4NrPxjwI9zbwtyl UjHkq1vVbjHX9Fj3YDXUN6vJEhfha9dL6mjUegX8KHfcoPX7rAN0fq0/dG222h2xfE/4MmClBv2j6ztnssNTtvc6ZMzztxhjrHksMq90vY43szkM6N1Si09X XFM5E2SOE9a15HZm1nMVMj9cVfhhG9akQXRfd0cG7w/h8REGvYyvtYncLiogf0JKA6RWRgypgR21tIgd6EPFSxNdCBIvtMtpQRY3nvq3WrNiqAOFMNi85E1N Fo5BoX87N4fRKE8ePYmaW1ddfRAQHel5qVqDmcYQ2/VT+er3DATVkRakruHBMuwpT+jnVvA9IfUXyezepwfPFBGey+y5+jv2FqRK3tp0Zi+0S8My3EA1nM5x xVBscA==
+X-CM-Analysis: v=2.4 cv=Ceda56rl c=1 sm=1 tr=0 ts=69b97927 a=eExTT1VkZWUTeek0JR7vTg==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=d70CFdQeAAAA:8 a=pGLkceISAAAA:8 a=IpJZQVW2AAAA:8 a=LzP2-JvhAYZmahfDZeMA:9 a=QEXdDO2ut3YA:10 a=NcxpMcIZDGm-g932nG_k:22 a=IawgGOuG5U0WyFbmm1f5:22
+X-AuthUser: michael.opdenacker@rootcommit.com
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[raspberrypi.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[rootcommit.com,none];
+	R_DKIM_ALLOW(-0.20)[rootcommit.com:s=hostingermail-a];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[raspberrypi.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276756-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-276757-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com,linaro.org,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dave.stevenson@raspberrypi.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[raspberrypi.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_CC(0.00)[rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,baylibre.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[michael.opdenacker@rootcommit.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[rootcommit.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[raspberrypi.com:dkim,raspberrypi.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 278862AD565
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 641E22AD5F3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Alexander
+Hi Iker
 
-On Fri, 13 Mar 2026 at 07:55, Alexander Shiyan
-<eagle.alexander923@gmail.com> wrote:
+Thanks for the update!
+
+On 3/16/26 3:03 PM, Iker Pedrosa wrote:
+> Add complete SD card controller support with UHS high-speed modes.
 >
-> Hello, Dave.
+> - Enable sdhci0 controller with 4-bit bus width
+> - Configure card detect GPIO with inversion
+> - Connect vmmc-supply to buck4 for 3.3V card power
+> - Connect vqmmc-supply to aldo1 for 1.8V/3.3V I/O switching
+> - Add dual pinctrl states for voltage-dependent pin configuration
+> - Support UHS-I SDR25, SDR50, and SDR104 modes
 >
-> > > This patch adds a V4L2 subdevice driver for the Sony IMX662 CMOS image
-> > > sensor. The sensor has a native resolution of 1936x1100 (effective
-> > > 1920x1080) and can achieve up to 90 frames per second depending on
-> > > the configuration. The driver supports:
-> > > - MIPI CSI-2 with 2 or 4 data lanes.
-> > > - RAW10 and RAW12 formats (both colour and monochrome).
-> > > - Controls: exposure, analogue gain, horizontal/vertical blanking,
-> > >   horizontal/vertical flip, brightness.
-> > > - A placeholder V4L2_CID_HDR_SENSOR_MODE control for future Clear HDR
-> > >   support (the actual HDR modes are not yet implemented).
-> > > - Runtime PM.
-> > > - Cropping via the selection API.
-> > > - Multiple link frequencies selectable via device tree.
-> > >
-> > > Tested on ARM64 Rockchip RK3568 platform with a 24 MHz external clock
-> > > and various link frequencies.
-> >
-> > Interesting timing as I've been looking at IMX662 too, but on a Raspberry Pi.
-> > FWIW my driver is at
-> > https://github.com/6by9/linux/blob/rpi-6.12.y-imx662/drivers/media/i2c/imx662.c
-> >
-> > Comments are based on brief testing and reading of the code. This is
-> > not a full review.
-> >
-> > > Signed-off-by: Alexander Shiyan <eagle.alexander923@gmail.com>
-> ...
-> > > diff --git a/drivers/media/i2c/imx662.c b/drivers/media/i2c/imx662.c
-> > > new file mode 100644
-> > > index 000000000000..d7be17b5a47d
-> > > --- /dev/null
-> > > +++ b/drivers/media/i2c/imx662.c
-> ...
-> > > +static int imx662_set_gain(struct imx662 *imx662, u32 value)
-> > > +{
-> > > +       int ret = 0;
-> > > +
-> > > +       if (imx662->hdr == IMX662_HDR_OFF) {
-> > > +               bool useHGC = value >= IMX662_ANA_GAIN_HCG_MIN;
-> > > +
-> > > +               cci_write(imx662->regmap, IMX662_REGHOLD, 1, &ret);
-> > > +               cci_write(imx662->regmap, IMX662_GAIN, value, &ret);
-> > > +               cci_write(imx662->regmap, IMX662_FDG_SEL0,
-> > > +                         useHGC ? IMX662_FDG_SEL0_HCG : IMX662_FDG_SEL0_LCG,
-> > > +                         &ret);
-> >
-> > IIRC HCG adds in another 12dB or something of gain. Automatically
-> > enabling it above a value of 0x22 means that the gain response isn't
-> > consistent with a band of gains that can't be achieved.
-> > Running libcamera with this driver I get significant oscillation as
-> > HCG gets turned on and off. Fix useHGC = 0 and the exposure and gain
-> > control is stable.
-> > AIUI Use of HCG should be a separate control if it is to be used.
+> This enables full SD card functionality including high-speed UHS modes
+> for improved performance.
 >
-> Thanks for the feedback.
+> Tested-by: Anand Moon <linux.amoon@gmail.com>
+> Tested-by: Trevor Gamblin <tgamblin@baylibre.com>
+> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
+> ---
+>   arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts | 19 +++++++++++++++++++
+>   1 file changed, 19 insertions(+)
 >
-> I haven't found any mention of a 12 dB value or any other specific gain value
-> when enabling LCG/HCG in the datasheet or application notes.
+> diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+> index f1533c99881dbf38e16cff5e91e33253cfa7a56d..aff23846085d22d1e9cd77434bffd2816ad59e12 100644
+> --- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+> +++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+> @@ -140,3 +140,22 @@ aldo1: aldo1 {
+>   		};
+>   	};
+>   };
+> +
+> +&sdhci0 {
+> +	pinctrl-names = "default", "state_uhs";
+> +	pinctrl-0 = <&mmc1_cfg>;
+> +	pinctrl-1 = <&mmc1_uhs_cfg>;
+> +	bus-width = <4>;
+> +	cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
+> +	cd-inverted;
+> +	no-mmc;
+> +	no-sdio;
+> +	disable-wp;
+> +	cap-sd-highspeed;
+> +	vmmc-supply = <&buck4>;
+> +	vqmmc-supply = <&aldo1>;
+> +	sd-uhs-sdr25;
+> +	sd-uhs-sdr50;
+> +	sd-uhs-sdr104;
+> +	status = "okay";
+> +};
 
-I've had previous conversations regarding HCG on imx290/imx462. Whilst
-I've never found exact details in the datasheet or associated docs,
-Nomura-san has commented on our forums[1] that on those sensors it
-adds x5.8 of gain. I'd expect it to be in a similar ballpark for this
-sensor. Enabling it automatically certainly makes a step change in the
-gain response though.
 
-[1] https://forums.raspberrypi.com/viewtopic.php?p=2186273#p2186273
+Tested successfully on OrangePi RV2.
+Tested-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+Cheers
+Michael
 
-> I agree it would
-> be more correct to use a separate user control here, as is done in the
-> driver that
-> Tetsuya Nomura referred to in his email. (It's strange that his email
-> didn't make it
-> to the mailing list.)
+-- 
+Root Commit
+Embedded Linux Training and Consulting
+https://rootcommit.com
 
-It did - https://lore.kernel.org/linux-media/00ea01dcb286$d14e6590$73eb30b0$@soho-enterprise.com/
-
-Will's IMX585 driver which adds the V4L2_CID_IMX585_HCG_GAIN control
-isn't merged, but the principle of a V4L2 control for HCG would be
-nice. I resorted to a module parameter to enable it.
-
-> ...
-> > > +static void imx662_set_link_limits(struct imx662 *imx662)
-> > > +{
-> > > +       u64 pixel_rate;
-> > > +
-> > > +       pixel_rate = imx662_link_freqs[imx662->link_freq_index] * 2;
-> > > +       pixel_rate *= imx662->num_data_lanes;
-> > > +       do_div(pixel_rate, imx662->format->bpp);
-> > > +
-> > > +       __v4l2_ctrl_s_ctrl_int64(imx662->pixel_rate, pixel_rate);
-> >
-> > Are you sure on this? All my testing had pixel rate being independent
-> > of bit depth and number of lanes.
-> > Trying your driver with 360Hz link freq / 720Mbit/s data rate on 2
-> > lanes. All the computations end up with a max frame rate of 60fps in
-> > 10bit mode and 50fps in 12bit, when I'm expecting a max of 30fps from
-> > the datasheet.
-> > Asking for 1920x1080 12bit @ 30fps via libcamera results in hblank of
-> > 0 and vblank of 1003 with a pixel rate of 120000000. The actual
-> > framerate achieved is 27.85fps.
-> >
-> > I'd found working from a pixel rate of 222750000 (INCK of 74.250*3),
-> > and writing HMAX with the "normal" line length value of width+hblank
-> > but divided by 3, all the numbers for line time and frame rate control
-> > fall out.
-> > IMX415 was similar, but some input clocks multiplied up to 72MHz
-> > instead of 74.25MHz and produced a set of different link frequencies,
-> > so complicated matters.
->
-> I'm not entirely sure I understand the suggestion.
-> Of course, having some fixed value would greatly simplify the driver,
-> but it's still unclear to me where these calculations come from, and where
-> does the divisor of 3 come from?
-> Nevertheless, looking at the mode table, it becomes clear that the resulting
-> frame rate does not depend on the CSI-2 format (10 or 12 bits),
-> so apparently something needs to be changed...
-
-I'd worked from the HMAX register value of 660 with VMAX of 1250
-giving 90fps, whilst altering HMAX to 990 gives 60fps. That implies it
-is a linear relationship.
-
-V4L2 equates HMAX to (width + hblank). Whilst hblank can be negative,
-trying to use 660 in computing the pixel rate would confuse matters as
-there are more pixels generated than the pixel rate implies.
-Multiplying 660 by 3 gives 1980 pixels per line (width=1920 and
-hblank=60), which is greater than the number of active pixels and
-therefore makes logical sense. All the other numbers fall out
-correctly from there.
-
-> > > +       case V4L2_CID_BRIGHTNESS:
-> > > +               cci_write(imx662->regmap, IMX662_BLKLEVEL, ctrl->val, &ret);
-> >
-> > Setting the black level based on the brightness control isn't one I've
-> > seen done on any other image sensor. It has similarities, but feels
-> > very wrong.
->
-> As far as I understand, V4L2_CID_BRIGHTNESS is exactly the control
-> that sets an offset added to the signal. This matches the intended use for
-> black level adjustment. According to the V4L2 specification,
-> V4L2_CID_BLACK_LEVEL is deprecated because its functionality is covered
-> by V4L2_CID_BRIGHTNESS (offset) and gain controls.
-> So I believe this is the correct mapping. Am I wrong?
-
-AFAIK No other sensor has exposed black level via V4L2_CID_BRIGHTNESS.
-It's more usually used for changing the luma component on TV tuners or
-other YUV video capture devices.
-
-Very few sensors benefit from having manual control of the black
-level. Seeing as there isn't a standardised mechanism for reporting
-the black level, any image tuning will have been done with a reference
-black level. If something (eg this control) changes that level then a
-large proportion of the image tuning becomes invalid.
-If V4L2_CID_BRIGHTNESS is to be used to set black level then that's a
-V4L2 policy decision and so falls to Sakari or Laurent.
-
-  Dave
 
