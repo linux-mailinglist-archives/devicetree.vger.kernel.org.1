@@ -1,394 +1,358 @@
-Return-Path: <devicetree+bounces-276805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276807-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AMyQDBeXuWkJKwIAu9opvQ
-	(envelope-from <devicetree+bounces-276805-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 19:01:59 +0100
+	id WLiPCquXuWnWKwIAu9opvQ
+	(envelope-from <devicetree+bounces-276807-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 19:04:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A99032B0819
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 19:01:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB2992B08D2
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 19:04:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A0892300A522
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 18:01:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3666F306342E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 18:04:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 676E2379975;
-	Tue, 17 Mar 2026 18:01:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6404537E2F7;
+	Tue, 17 Mar 2026 18:03:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="wgdXPT/l"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="N2TTnePJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010034.outbound.protection.outlook.com [52.101.229.34])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013021.outbound.protection.outlook.com [40.107.159.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 622B830C63B;
-	Tue, 17 Mar 2026 18:01:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9231A37CD5A;
+	Tue, 17 Mar 2026 18:03:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.21
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773770515; cv=fail; b=LoZdYSoepEo3M9iI1bPmFrhW9cusa/ZLt/t+GG/c9yDlmTDN9bay4M8+Z4l1VCr6tt16MQPmBYMR8kbpzICkTzs8aD2GplllDpEFq2EvY37hOKPiXTgpxSCo70MLfCXRcZCwOCgYy3eBFTvJhgIEBfUeTofP7pF+FJkZhL+piO4=
+	t=1773770636; cv=fail; b=L22dapqGYGQYqgNQceyENQA07JH7dM5LnAxdVav+vQYTySavbrFWyZl9lL/kdQa1crTxpN6bjcx+MHtDnreusOH7MNMBBhWTQQ/6aHZEShCJr450u2DxD9O3bfjvOBANTSfL72hRBblgNHnL8KG/N5d16v5sHmmEMX/YuPRG9pw=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773770515; c=relaxed/simple;
-	bh=IT/fNqkIxOieeM4WXUh+KgXzkeLDCdazbG+q+1LpW9c=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=Us/PLN9QasTTGn0GNSRUKwQZ+J/Jbuz1SaOe+jQBtxih3WUweeLvOHLMQ/bUEEndqcxhhYxupDWZ7CXXJuxK5zCk36kwEX7MmjwGDCdOYzm4HvBoEcU/Z1zMmAeBCOPkU1EeTHW90Wq+H6yl0D+N1l1piXJx8LuTiu60pd5cJe0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=wgdXPT/l; arc=fail smtp.client-ip=52.101.229.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+	s=arc-20240116; t=1773770636; c=relaxed/simple;
+	bh=n+bPpllNq8TpIzKKHE+r3Ky4jcQT+5Ebal+ZjB61elM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=S8LZAtEIatFq2MZmo8iYiAvsTzq25JtYGWuwsINijoFffo1DleigYGJsHFVYM4uAL4A3lcnJJIkRi+NarYMn8iwa/40pqxnL1/djJPaN1lG+fqYdcnxMGDBBaGv1ZENli6wYXbsFGOTRVDjP+wKWmh8kvBA8Vcuvu39OUhZXuw4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=N2TTnePJ; arc=fail smtp.client-ip=40.107.159.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wN+Tu4YB5TfZCIek/lyRH3uAnzsE3SN0hV87ChAnHTCWUWkIjADVMUbGIhtqjw8OcVayd4Vd+HE9PLJ6blJh1/dC7EEiVLONoYvvIvZl4yQSVffK1IHGirl1LyHZJ6W3Nb8U606cH3OHel5VhOE2eUwMRwGvZlC/1SWozqf2bPbeaSFWSkgv0Cf0g5hZuGG5zIdaozgzzqScajYNS1ImPE3JeABCnVh0Y8bnx8snWP1irsvh2eggvkgiKDiAsn3fiCT+t76/vtAKjkSW5/fzjv7I8N53DPjyqJhyvUzpX/aMbmcQ6dAbxleOwvQTH/RlAkfWjTD372XuhXy86B7F9g==
+ b=SB0O2dFwgxeOOlox6Dfsc+aqBrrVl2Xe6XQrKHgJzSpcbB8LYu5b4zVCpn8FqLYsb8GyvdRXmi9kxE1YSCCvzI4LQfojhw4uJ2hzUcP+S/E9WBS+sImORopwwkn+FB4ffM4jfrgF5h+62YtPJMLPzTmHCiFy3qqqF7gs/MODvlArg14D8H7BlXl/K8LwjMomVEwT6Abx6smYWAHkhhjAYo/eFn/5TPxvm4jCfCjc8Zf8srg93U0usnCsarnQ1hcXhwFNxym40FQctGM9690UQvv6mgVOGH0yZ3JOc42Ly2fxEvnw8SiWlC2qcpelugKIhOAhJq88V/iushyHDHTcAg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=129xc3EnyzW74bfbzzhtDctnxvee/06sCU8s2Hqnhz4=;
- b=gYImkJwcID66IVIysuXNFbJDcfjd/p35fwqX+5nUw6Wfa4gAP+nQ9TCKQll5uQBsWuYMzG0pL+ndb5JDZtor5soDUFzwBGYVp+kj+7STVkuubloZTsWXeB4jd7cUar+mikPmyx7+QTYD1y0fH0pOyH9RWEQz9Yh6MMObWAoKhD6fTgMjEU7os3sfd0ddfbNJQbS8rHZ/t/HlyP3nzwGEd7ze7LLjK+FX+JWQbJZaCfFJ89oborHl/kTSDxTMPirsOzq/15vW52SvxBH+44o/Q0xSnKYkvZiXEXluOK1wDBX69L4DnbXR2gTFvizl0OAecG/AjJGvjSYdoskSgEuBcw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
+ bh=MPH/2TVb+G7IyWo6jXI6IP6WTqNJsSi4anEcn8iTP4I=;
+ b=UqTEG7mtm6wQnAvE1rSsJaPDBj5xb19dyRi2tqgvCIuwE2Su/smp+0wrJ10XV0ypv8vMkNkm3/GAJe/QcpXotOyCZiJSNJ3hfy5LEahdC6tg/HrL1qGOo9qpKbnUnlgb3NzZRo8LT8j3i49SIcR35T8Eeik+W/bfsuAp/8lOnVsQ7ufZATZmWR591zpZcSsMFLbtvt8eurm4L0WddzNoLTN5BO9gmJ3R02rkmy3V1d49tN8PzDalBFYgNOeY70Pt9drgh++AXkNwaXJ8kAwZCfNKg3OXA50k445mvdTokP7xPQnH2QFzELQE2WPrV2LZB4zL4MTpMsem4jpJu46v6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=129xc3EnyzW74bfbzzhtDctnxvee/06sCU8s2Hqnhz4=;
- b=wgdXPT/lrPtPp4X8l01LtlHZL/uKFoHl55aCEpj1lqkpYyMjcNuWGDLJoRFUce9dzoUqNzbccP81wQ0z5bWsJT7zixprjmay5COdwCMbHuoMUn7iJB8JjrsmAOfALGEyQ9AJuB8Y/5r7rNPutGq156Q9ygNVJfASQ0IqdKNBTVI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-Received: from TY3PR01MB11948.jpnprd01.prod.outlook.com (2603:1096:400:409::5)
- by OS9PR01MB14066.jpnprd01.prod.outlook.com (2603:1096:604:35e::13) with
+ bh=MPH/2TVb+G7IyWo6jXI6IP6WTqNJsSi4anEcn8iTP4I=;
+ b=N2TTnePJEs034Sb+kjPzcVQrhvKvGDy0Yl02s+pCeTc+V+YrOTeNjwqcAotAAfumbYV0Pai9yH2u6BmzrGdRwfDllkvCd9VsBsxEoLihtRJwUzIkMLTnXlsVyj8c/yKu23llbBjQcPNL45lo5L3cuzkW9cCJVDX6E41ORgiWxRr0zFGq6J/6DR6G/zndqy9w4boUKRYS00fbNgqHJGZN0ubxHBQm5RrLdy8Hz/zZBrzim/sYK1XioCHCctEkm+nZYUStZ5MIf86lY/lO8FZF+64hIPLexdDU+ugb592oSIEB3Vy+Poc46dg/tFIFWtJa314tr3vydYUfQVQuqunrng==
+Received: from CWLP123CA0203.GBRP123.PROD.OUTLOOK.COM (2603:10a6:400:19c::13)
+ by AM0PR10MB9671.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:740::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.19; Tue, 17 Mar
- 2026 18:01:46 +0000
-Received: from TY3PR01MB11948.jpnprd01.prod.outlook.com
- ([fe80::b718:17d0:6c0f:1495]) by TY3PR01MB11948.jpnprd01.prod.outlook.com
- ([fe80::b718:17d0:6c0f:1495%6]) with mapi id 15.20.9700.025; Tue, 17 Mar 2026
- 18:01:46 +0000
-Message-ID: <ddad817b-6c20-42fc-90ed-3b841b3e8ce7@bp.renesas.com>
-Date: Tue, 17 Mar 2026 19:01:29 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 12/20] drm: renesas: rz-du: mipi_dsi: Add
- RZ_MIPI_DSI_FEATURE_GPO0R feature
-To: Biju Das <biju.das.jz@bp.renesas.com>,
- Tommaso Merciai <tomm.merciai@gmail.com>, geert <geert@linux-m68k.org>,
- "laurent.pinchart" <laurent.pinchart@ideasonboard.com>
-Cc: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, "magnus.damm" <magnus.damm@gmail.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
-References: <cover.1770996493.git.tommaso.merciai.xr@bp.renesas.com>
- <d1f47b9719edab4e85a8971020c7d7f51fff39e3.1770996493.git.tommaso.merciai.xr@bp.renesas.com>
- <TY3PR01MB113466CEA27DC0486501E89C38641A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Content-Language: en-US
-From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-In-Reply-To: <TY3PR01MB113466CEA27DC0486501E89C38641A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR3P281CA0066.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:4b::17) To TY3PR01MB11948.jpnprd01.prod.outlook.com
- (2603:1096:400:409::5)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.27; Tue, 17 Mar
+ 2026 18:03:49 +0000
+Received: from AMS0EPF0000019F.eurprd05.prod.outlook.com
+ (2603:10a6:400:19c:cafe::a4) by CWLP123CA0203.outlook.office365.com
+ (2603:10a6:400:19c::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.25 via Frontend Transport; Tue,
+ 17 Mar 2026 18:03:33 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.59)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ AMS0EPF0000019F.mail.protection.outlook.com (10.167.16.251) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9700.17 via Frontend Transport; Tue, 17 Mar 2026 18:03:49 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Tue, 17 Mar
+ 2026 19:06:23 +0100
+Received: from localhost (10.252.21.194) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Tue, 17 Mar
+ 2026 19:03:48 +0100
+From: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+To: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
+	<mathieu.poirier@linaro.org>, Jens Wiklander <jens.wiklander@linaro.org>,
+	"Rob Herring" <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	"Conor Dooley" <conor+dt@kernel.org>, Sumit Garg <sumit.garg@kernel.org>
+CC: <linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-remoteproc@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <op-tee@lists.trustedfirmware.org>,
+	<devicetree@vger.kernel.org>, Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Subject: [PATCH v21 0/6] Introduction of a remoteproc tee to load signed firmware
+Date: Tue, 17 Mar 2026 19:03:21 +0100
+Message-ID: <20260317180329.1207625-1-arnaud.pouliquen@foss.st.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY3PR01MB11948:EE_|OS9PR01MB14066:EE_
-X-MS-Office365-Filtering-Correlation-Id: d945f150-ca27-4067-27f8-08de844f40d9
-X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+X-MS-TrafficTypeDiagnostic: AMS0EPF0000019F:EE_|AM0PR10MB9671:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2c458646-b2f9-4613-9d33-08de844f8a64
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
- BCL:0;ARA:13230040|376014|7416014|366016|1800799024|22082099003|56012099003|18002099003;
+	BCL:0;ARA:13230040|82310400026|7416014|376014|30052699003|36860700016|1800799024|13003099007|56012099003|18002099003;
 X-Microsoft-Antispam-Message-Info:
- z91HyX15ptJW+GtDnCfvhXPKx+9vbnmRhFksel9A4LVslrnYi57G2hGGsAqlFK4Zx2DAfEvWP+h0CpodZBY/3OC322AIot4gW94duM6+5+g4F2CrqOo29UPxlF9DM6rriCk+ZUb+pCwnG1tPPDn+P+EdXO4R0x8BKLPs0K8Th8mMukXIZWAFYcn3m7s/YKDWz7tXaA23U3pmzKheZDpX/9bCVd6w6Gi5mp7yHXZSIylrcC+gl5n7AJVFKCio8jTfCa8Pal6qMH2zOEVJAheaBkrlJIXXSE3502prazSMOCuTsLS9NejquhukHmSs3Q7sMrbSukwVfNeorRWgZkCvgWzcW9us6rdfYjMJpyUiL6hUswkS8cSpDO4eJ/NlQsrVzK+ZYqWZ7w7C2K7eYaEPWARHY4KNJfzSK0ldIMi5ZLEA/pPCm+T38cwI4qDEiCYBaC4//sqxqyC8Lr3LIBzWzjR246vu5pcniUTnlalzncAi4PoT6yyFKd84x5LZVeY9zDv/tcGKeQID5fzUhw2qgfg3CPCfYZ3ftHWHDqcJuT8cf0xYtENKfbg7EaVw9lGbl48YXggQF80eZIsJNGe1hiHbIBuFvEfwqWiG2r9z5BSFrBlaMcvW8gwfkxP40jNNFgqnfpZOOSg75Eg0B/JsuT0THE/6bbNfMQkbgZ9vW/8Ss/RmdYr4TT9muR5zBObp1RXasIiUmrYoDNcTIrg/zNtSkGX/RGL/lPcHeukJ/G4=
+	DwW/YRRPQ6FlZNiRps0OklgE0CmOaaUHGOwM+wUemRwgubg3K7aZ7VKxAzsPx2hE/afyFD1OvEDFji331dbPZTTF4usowRPSQt1bVLd4oc3YlRs3zfq7rt5b8VLwWwm6IHnp8QIbdra4ifa4D1EmJylAhT6QZ6D2nvlGzYtx/lsnwJoUBscuztrUmQzjwiO4UtbB7JpMbSQ5Mwe/1GNwjHwyX2IQfzO+4kPSW6dgwmaTwZX3mjtb00GKZghWOmfzKbAkecsxuiolYo5IDp+/iRP3c5E7EGvmcqp04dZECA7E22rRQxu0APvZ5YI7iUXqp5PmA/CaY6+bAlP9VvOi7y30eSOwFrzDG7+jGwg+yv1RuN3Uz6Jv56hkoEvir57+kIABJN8/jF4cni1DR8LVqcDLYwJo5pL7KMPP3nmthCVzCeugxswfeLX+RU/JGLR6X1JYn0JW6lY0URSBNEEYG5AEgmvlAQk1H89st2EAAa+uXrGx4L9EJHfqtugLE0LM5MOz9mEtEHaT8OP4+guFzd9dR8SGsG4sPg31AG/i8d9d/7V63TAmPXpon5Pspjynt7n06bEZTjTgi4baMmCk9Uj5dekATC11CZTJwkQFBnC7GFZo/jVGSaRL+Z+BytUl08S0SsBvu8CSjc97e6tBq26OhPfv5RUhAW7hQvS8h8Wiqtf0+amiCVBtUS57twjslPi45Y4Tgn40JqHkJb6lzehlCBmzqbe7rhI+iEjj6Bs=
 X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11948.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(22082099003)(56012099003)(18002099003);DIR:OUT;SFP:1101;
+	CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(7416014)(376014)(30052699003)(36860700016)(1800799024)(13003099007)(56012099003)(18002099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?TUtXVWRNUU56Q3EwcmVLeTV1K1ZFSmFZYWIwcmNWYXhFNmpYcW0rdlBpMzRR?=
- =?utf-8?B?djN5cTl0RDJmVlZ6cmhnbHZ1RnVnMkh3eWJkSzVNeWQreVRVVzhMS3hIRXow?=
- =?utf-8?B?UXVIa2s1TkNGcXFIVW9PUDhNN1NNd1hYYVlHWkdDZzdvdk9YcVlESWtsejVi?=
- =?utf-8?B?ZXVEOERYaEVoTzVHa0FpRkpBYWVYcVlBUndPZjlYSUEwQU1wclF1M1BQSit6?=
- =?utf-8?B?d0lwUjRQajk3QkZOdm4yK0NVdktqSWRhYTVNakNsNG55TFlHOUhZZmt0UlVn?=
- =?utf-8?B?cE5QYUI4dGxGbXVhV2U4Z25PUjRIQTZFK3picU96bkZmbFhTVVRFWVZFUmxG?=
- =?utf-8?B?TThuME5BRk4xMFNzSnRSOThZN21OWkFLRmhGM3hRWmZlMCsrSTZtTTZQOTJ0?=
- =?utf-8?B?M3I0WkNMaGlBcm0ySHdua3dBeXRXMXdPOTVHMEg3YWErL3VSeEd0Y3RFNEVm?=
- =?utf-8?B?N0hlMFJwTWtibk5peVBtWU1TR3lHbXZLZWxsK2VCRnQwUXdhL0NwazdWRHl1?=
- =?utf-8?B?bVlaSlo2KzdXQ0t4bFdJVUZCRHRPNTJ1Z0srTGFYOWVmYzd6eDVSQ3l3Z3J5?=
- =?utf-8?B?Mm1Ya3RhajN2TlcxSWx4K1ZCbzlxQnJnaFMxcjdtYUxIRjYyWkR2ZzRIN2ov?=
- =?utf-8?B?UkVreGhaNFhhM1YxQlhIL2tjelAyY3ZQRzJPWC9xTkhCR2lKc3g3LzFrbzBt?=
- =?utf-8?B?OXp1YlNMU1pNZExYMDJlT2hrTHpHRHh5aG5LRlBjcnQ0WDBnTnNoaTJ5TU8v?=
- =?utf-8?B?VDAzOG5VUHlIb20vYWgwK21SaHJRYzNZdUJPc0tiN3craEh1RHZTL2ltZHZQ?=
- =?utf-8?B?c2xlTjVrc3JubklRMU5vbTl2d2xtdlYzOTZjaTlmQWhvejJSZjZlcVVsdDVx?=
- =?utf-8?B?WFF5UVA3andKWHhuQUd3SEhlU3c3eWRIZ0Y0c2xVaXNyMzRoVGlPcTBKNHZl?=
- =?utf-8?B?azJkV3pXRGVsd3Vnb0dUb2xldVJnRnRxRDM2eldSMGRXZWR3dTc0aElBbFkz?=
- =?utf-8?B?NDVWYzA0MFhGNmxQTmpjbTVRMTMwOXJxZ1Iyd3hpbnprazhFZTMvekVRRS9v?=
- =?utf-8?B?aUltbnVLMVVIUk1iZTlrZ2gzeDNtSjg5MDhMQTRVMDFVc3lLdllzRE9hcWc2?=
- =?utf-8?B?a2g5cFQvMlZmZUJ6eTZoRTFITG9HZG5Zc01HNzF2WVBWTWl6VXkxR3FVc3FI?=
- =?utf-8?B?VkNDaUhFK1k4Y2V1SE9mNzlPRWJxNmppdGlaQktoaEVEd05aQlJBZHBuS1hm?=
- =?utf-8?B?cFlXSjdvUXBkQzNPbXZEUFJlL0FpelNQdkhYMHNMSk9icENINUpkNmFtNXJK?=
- =?utf-8?B?NnRnemVab1BldGVJbFJOQyt0UzNPYWJZWVhtdUtxRTd1TUtQbDlweVo4a3pY?=
- =?utf-8?B?SS9JSXpGUEJDcUsybmFMNlQ5Mzc2a2NPVkc1eE03bE80ZnUwelY5aDh5L3cv?=
- =?utf-8?B?Z3ozS3lya1ZtNk1SdFB0empYUGd1WCsyQnp6L25zdHJPZVVOVFhOdlViVGpm?=
- =?utf-8?B?NFNjNHNJbEJxZXg1TlpXSHdvcGZxMGhXbXUxT2tyY245ems5SUwrRVJjUFFl?=
- =?utf-8?B?ZENQQWNSbDJkbjNweHJ3SWk1MFFHU3BFdEFUNHp5VFBWUUxBSWVLZkROMlJX?=
- =?utf-8?B?MTByS3M2LzRYSFdzK1d3ckM4MkZnNThRMmZSWGdCeVZKcUFDN1JrV3dheU9z?=
- =?utf-8?B?L2pPWDV5Y3RKS05VUFVxSGp6R3FRUFFZV0RBazJHVVBLbHpjUUYyZU10MFZu?=
- =?utf-8?B?MVRMQytZY3lnclVHQzFnT3dBMFltT3VCeEFheG9pQ0h5NTh3d0s1NUZ3bFJo?=
- =?utf-8?B?RzdHUkNUZFVabHJyRkxhTDErYUZyR3RidGlGSDYxblZwRldTYmI5Y2VQU3U0?=
- =?utf-8?B?dElLN2RSdmV2TGtURlA1bEkrdHY1YWx1Z09SL0d0eVhyZXM2RHZuQi9RZ2d2?=
- =?utf-8?B?NHBzSTRNcDdwc05nM2MwNk5ra3hKdlRiM1JHaHBmYU9XckEwR2F6ZTE0VVF0?=
- =?utf-8?B?eUFqZlhraWp2ZkJMTkl0YlNEbUN1NGNUaWxNUnFWTDBKd2hNWitvMTd0ZEpP?=
- =?utf-8?B?Z3ViTnVTTkR5ajQ3NXpnVXR6VWo1OXJRWTVmclZ4MU9jZEVuaDgxYWFGUEVk?=
- =?utf-8?B?NStJbUw0U0NjcVBpbTZQaFAvcEhDRDlXaHJSaWJZNjUyS25BZDd4aE5GbVBz?=
- =?utf-8?B?eVh5MHZBdFJPeGVKU3FWZnpZbTZkTWNTLzVzOHdYL3NGeWJBcTBaVkVLOTdp?=
- =?utf-8?B?WHdVY1hWcXpRc3kzNjdzNWk1NGVRR01sVjdPZUtTTHowdFpWeUhzd2tpeWRL?=
- =?utf-8?B?Y3hIOERCRENtU3hGbnBBZVF6Zm9QbXZsRjZuZ3NBWjRRTHRmaFBZaXVrWXRT?=
- =?utf-8?Q?fP6avAD9cPldhqXZjsTnwjjBf/aNJnaqYhx8Y?=
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d945f150-ca27-4067-27f8-08de844f40d9
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11948.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 18:01:45.9919
+	hjeuJk8782NBkRBaNxKZQwBtvN7hoHqM9hc/3umZNKCASGkZqv5dgdhAZzuDa81caVgnxiQ0dUNyBSXm3vnrHCOzBKjNRcYMlpbrQbIF/54c97rVZzTEA+aJiJeMHHbHDrGKAMY9I2IiR5TKA3BWxayNA5NC8q32CG64KgJOoDqaah39yasTZ5nUDIMnUJsNPrnX+kr7+6gW6vt+Xd2b2CcMZoBA15bi+kJirSEMnmYvN40nW7r0ODzPm3NR8NYREGv0jPfJjeJdrSiFwVt9OfMTY84kNgQZR4B0A8qAUnLZAtBo8oLZPjkpVPN+ufM/ENepHHRzRVT6L7EsYjxKMRL6Yqs6M+AZ6hq8D9hm/fR3gUajFA3lUQvluZLX7A8d9sHSsPmYn6AspLKatgVQv6XpHRB7QBwAs68tJ8o8kXNyMAL4c2ASmWmFIeQTur+b
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 18:03:49.1437
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7zOpIjWXjGqg7mOi5RfZLmZxb2VRteZ8K/8zqHSGAfMZyF/G2PbgN3uzDjoKyfnozR458BM14ADc7D0+vV/V13s4So9a7JZovhqzT/qB4XclkCqYdbTG8Z1PVBHfJJoJ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS9PR01MB14066
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2c458646-b2f9-4613-9d33-08de844f8a64
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS0EPF0000019F.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB9671
+X-Spamd-Result: default: False [2.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[foss.st.com,none];
+	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-276805-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[bp.renesas.com,gmail.com,linux-m68k.org,ideasonboard.com];
+	TAGGED_FROM(0.00)[bounces-276807-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,glider.be,baylibre.com,ideasonboard.com,lists.freedesktop.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sign_rproc_fw.py:url,foss.st.com:dkim,foss.st.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linaro.org:url];
+	DKIM_TRACE(0.00)[foss.st.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[arnaud.pouliquen@foss.st.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tommaso.merciai.xr@bp.renesas.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[bp.renesas.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:dkim,bp.renesas.com:mid,renesas.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A99032B0819
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: DB2992B08D2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Biju,
-Thanks for your review.
 
-On 3/17/26 14:03, Biju Das wrote:
-> Hi Tommaso,
-> 
-> Thanks for the patch.
-> 
->> -----Original Message-----
->> From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
->> Sent: 13 February 2026 16:28
->> Subject: [PATCH v5 12/20] drm: renesas: rz-du: mipi_dsi: Add RZ_MIPI_DSI_FEATURE_GPO0R feature
->>
->> The MIPI DSI ip found in the RZ/G3E SoC select the video input clock based on the DU instance actually
->> connected using the GPO0R register.
->>
->> Add this feature to the driver using `RZ_MIPI_DSI_FEATURE_GPO0R`, update the code accordingly to
->> manage the vclk selection with the introduction of `rzg2l_mipi_dsi_get_input_port()`.
->>
->> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
->> ---
->> v4->v5:
->>   - No changes.
->>
->> v3->v4:
->>   - No changes.
->>
->> v2->v3:
->>   - No changes.
->>
->> v1->v2:
->>   - No changes.
->>
->>   .../gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c    | 63 +++++++++++++++++--
->>   .../drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h   |  3 +
->>   2 files changed, 60 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c b/drivers/gpu/drm/renesas/rz-
->> du/rzg2l_mipi_dsi.c
->> index 8ea8594afee8..35de1a964dc0 100644
->> --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
->> +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
->> @@ -37,7 +37,9 @@ MODULE_IMPORT_NS("RZV2H_CPG");
->>
->>   #define RZG2L_DCS_BUF_SIZE	128 /* Maximum DCS buffer size in external memory. */
->>
->> +#define RZ_MIPI_DSI_MAX_INPUT	2
->>   #define RZ_MIPI_DSI_FEATURE_16BPP	BIT(0)
->> +#define RZ_MIPI_DSI_FEATURE_GPO0R	BIT(1)
->>
->>   struct rzg2l_mipi_dsi;
->>
->> @@ -81,13 +83,14 @@ struct rzg2l_mipi_dsi {
->>   	struct drm_bridge bridge;
->>   	struct drm_bridge *next_bridge;
->>
->> -	struct clk *vclk;
->> +	struct clk *vclk[RZ_MIPI_DSI_MAX_INPUT];
->>   	struct clk *lpclk;
->>
->>   	enum mipi_dsi_pixel_format format;
->>   	unsigned int num_data_lanes;
->>   	unsigned int lanes;
->>   	unsigned long mode_flags;
->> +	u8 vclk_idx;
->>
->>   	struct rzv2h_dsi_mode_calc mode_calc;
->>
->> @@ -552,8 +555,8 @@ static int rzg2l_dphy_conf_clks(struct rzg2l_mipi_dsi *dsi, unsigned long mode_f
->>   	unsigned long vclk_rate;
->>   	unsigned int bpp;
->>
->> -	clk_set_rate(dsi->vclk, mode_freq * KILO);
->> -	vclk_rate = clk_get_rate(dsi->vclk);
->> +	clk_set_rate(dsi->vclk[dsi->vclk_idx], mode_freq * KILO);
->> +	vclk_rate = clk_get_rate(dsi->vclk[dsi->vclk_idx]);
->>   	if (vclk_rate != mode_freq * KILO)
->>   		dev_dbg(dsi->dev, "Requested vclk rate %lu, actual %lu mismatch\n",
->>   			mode_freq * KILO, vclk_rate);
->> @@ -764,6 +767,11 @@ static int rzg2l_mipi_dsi_startup(struct rzg2l_mipi_dsi *dsi,
->>   	if (ret < 0)
->>   		goto err_phy;
->>
->> +	if (dsi->info->features & RZ_MIPI_DSI_FEATURE_GPO0R)
->> +		rzg2l_mipi_dsi_link_write(dsi, GPO0R, dsi->vclk_idx);
-> 
-> As per "9.5.3.1 Power on Reset and Initial Settings for All Operations"
-> This needs to be set before PLLENR.PLLEN.
+Main updates from version V20[4]:
+--------------------------------
+To address Rob’s concern on v20concerning resource declaration under the
+tee node, the device tree is now structured as follows,replacing the
+child-parent hierarchy with a phandle:
 
-Good catch! Thanks.
-I think I can move that into rzv2h_mipi_dsi_dphy_init() before the
-	
-	ndelay(200)
+    firmware {
+        tee_rproc: optee-rproc {
+            compatible = "80a4c275-0a47-4905-8285-1486a9771a08";
+        };
+    };
 
-In this way the call will reflect the power on sequence diagram.
-Also I think we can drop the dbg print.
+    m4: m4@0 {
+      compatible = "st,stm32mp1-m4-tee";
+      reg = <0 0>;
 
-What do you think?
+      mboxes = <&ipcc 0>, <&ipcc 1>, <&ipcc 2>;
+      mbox-names = "vq0", "vq1", "shutdown";
 
-Kind Regards,
-Tommaso
+      memory-region = <&vdev0vring0>, <&m_ipc_shm>, <&mcuram2>,
+                      <&vdev0vring1>, <&vdev0buffer>, <&retram>;
 
-> 
-> Cheers,
-> Biju
-> 
-> 
->> +
->> +	dev_dbg(dsi->dev, "selected du%d input channel\n", dsi->vclk_idx);
->> +
->>   	/* Enable Data lanes and Clock lanes */
->>   	txsetr = TXSETR_DLEN | TXSETR_NUMLANEUSE(dsi->lanes - 1) | TXSETR_CLEN;
->>   	rzg2l_mipi_dsi_link_write(dsi, TXSETR, txsetr); @@ -1006,6 +1014,37 @@ static int
->> rzg2l_mipi_dsi_stop_video(struct rzg2l_mipi_dsi *dsi)
->>   	return ret;
->>   }
->>
->> +static int rzg2l_mipi_dsi_get_input_port(struct rzg2l_mipi_dsi *dsi) {
->> +	struct device_node *np = dsi->dev->of_node;
->> +	struct device_node *remote_ep, *ep_node;
->> +	struct of_endpoint ep;
->> +	bool ep_enabled;
->> +	int in_port;
->> +
->> +	/* DSI can have only one port enabled */
->> +	for_each_endpoint_of_node(np, ep_node) {
->> +		of_graph_parse_endpoint(ep_node, &ep);
->> +		if (ep.port >= RZ_MIPI_DSI_MAX_INPUT)
->> +			break;
->> +
->> +		remote_ep = of_graph_get_remote_endpoint(ep_node);
->> +		ep_enabled = of_device_is_available(remote_ep);
->> +		of_node_put(remote_ep);
->> +
->> +		if (ep_enabled) {
->> +			in_port = ep.port;
->> +			break;
->> +		}
->> +	}
->> +
->> +	if (!ep_enabled)
->> +		return -EINVAL;
->> +
->> +	dev_dbg(dsi->dev, "input port@%d\n", in_port);
->> +	return in_port;
->> +}
->> +
->>   /* -----------------------------------------------------------------------------
->>    * Bridge
->>    */
->> @@ -1408,9 +1447,21 @@ static int rzg2l_mipi_dsi_probe(struct platform_device *pdev)
->>   	if (IS_ERR(dsi->mmio))
->>   		return PTR_ERR(dsi->mmio);
->>
->> -	dsi->vclk = devm_clk_get(dsi->dev, "vclk");
->> -	if (IS_ERR(dsi->vclk))
->> -		return PTR_ERR(dsi->vclk);
->> +	dsi->vclk[0] = devm_clk_get(dsi->dev, "vclk");
->> +		if (IS_ERR(dsi->vclk[0]))
->> +			return PTR_ERR(dsi->vclk[0]);
->> +
->> +	if (dsi->info->features & RZ_MIPI_DSI_FEATURE_GPO0R) {
->> +		dsi->vclk[1] = devm_clk_get(dsi->dev, "vclk2");
->> +		if (IS_ERR(dsi->vclk[1]))
->> +			return PTR_ERR(dsi->vclk[1]);
->> +
->> +		ret = rzg2l_mipi_dsi_get_input_port(dsi);
->> +		if (ret < 0)
->> +			return dev_err_probe(dsi->dev, -EINVAL,
->> +					     "No available input port\n");
->> +		dsi->vclk_idx = ret;
->> +	}
->>
->>   	dsi->lpclk = devm_clk_get(dsi->dev, "lpclk");
->>   	if (IS_ERR(dsi->lpclk))
->> diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h b/drivers/gpu/drm/renesas/rz-
->> du/rzg2l_mipi_dsi_regs.h
->> index 2bef20566648..cee2e0bc5dc5 100644
->> --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h
->> +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h
->> @@ -83,6 +83,9 @@
->>   #define LINKSR_SQCHRUN1			BIT(4)
->>   #define LINKSR_SQCHRUN0			BIT(0)
->>
->> +/* RZ/G3E General Purpose Output 0 Register */
->> +#define GPO0R				0xc0
->> +
->>   /* Tx Set Register */
->>   #define TXSETR				0x100
->>   #define TXSETR_NUMLANECAP		(0x3 << 16)
->> --
->> 2.43.0
-> 
+      interrupt-parent = <&exti>;
+      interrupts = <68 1>;
+
+      rproc-tee-phandle = <&tee_rproc 0>;
+      st,auto-boot;
+      wakeup-source;
+
+      status = "okay";
+    };
+
+As a consequence, this version:
+- Updates the device tree and bindings to:
+  - Change the compatible property from
+    "rproc-service-80a4c275-0a47-4905-8285-1486a9771a08" to
+    "80a4c275-0a47-4905-8285-1486a9771a08".
+  - Use the rproc-tee-phandle to avoid the parent-child hierarchy.
+- Updates stm32_rproc_tee.c and remoteproc_tee.c to adapt to the new bindings.
+- Updates remoteproc_tee.c to compute the device tree compatible string from
+  the TEE UUID.
+
+Main updates from version V19[3]:
+--------------------------------
+The devicetree is now structured as follows:
+
+	firmware {
+		optee {
+			compatible = "linaro,optee-tz";
+			method = "smc";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			rproc-service@0 {
+				compatible = "rproc-service-80a4c275-0a47-4905-8285-1486a9771a08";
+				reg = <0>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+				status = "okay";
+				m4: m4@0 {
+					compatible = "st,stm32mp15-m4-tee";
+					reg = <0>;
+					mboxes = <&ipcc 0>, <&ipcc 1>, <&ipcc 2>;
+					mbox-names = "vq0", "vq1", "shutdown";
+					memory-region = <&vdev0vring0>,	<&m_ipc_shm>, <&mcuram2>,
+							<&vdev0vring1>, <&vdev0buffer>, <&retram>;
+					interrupt-parent = <&exti>;
+					interrupts = <68 1>;
+					status = "okay";
+				};
+			};
+		};
+	};
+
+As a consequence, this version:
+
+- Introduces a new stm32_rproc_tee.c remoteproc driver.
+
+  Instead of further complicating the existing stm32_rproc.c driver, a
+  dedicated TEE-based driver is added. Both drivers are intended to also
+  support the STM32MP2x Cortex-M33 remote processor in a next step.
+
+- Reworks the bindings:
+  - Drop the st,stm32-rproc.yaml updates that were introduced in previous
+    revisions.
+  - Add remoteproc-tee.yaml for the
+    "rproc-service-80a4c275-0a47-4905-8285-1486a9771a08" compatible.
+  - Add st,stm32-rproc-tee.yaml for the "st,stm32mp15-m4-tee" compatible.
+
+- Reworks the probing sequence:
+
+  The m4@0 device is now probed by the remoteproc-tee driver, which itself
+  is instantiated by the TEE (OP-TEE) bus.
+
+
+Main updates from version V18[2]:
+--------------------------------
+- rework documentation for the release_fw ops 
+- rework function documentation in remoteproc_tee.c
+- replace spinlock by mutex and generalize usage in remoteproc_tee.c
+
+
+Main updates from version V17[1]:
+--------------------------------
+- Fix:  warning: EXPORT_SYMBOL() is used, but #include <linux/export.h>
+  is missing
+
+
+More details are available in each patch commit message.
+
+[1] https://lore.kernel.org/linux-remoteproc/20250613091650.2337411-1-arnaud.pouliquen@foss.st.com/
+[2] https://lore.kernel.org/linux-remoteproc/20250616075530.4106090-1-arnaud.pouliquen@foss.st.com/
+[3] https://lore.kernel.org/linux-devicetree/20250625094028.758016-1-arnaud.pouliquen@foss.st.com/
+[3] https://lore.kernel.org/linux-remoteproc/20251217153917.3998544-1-arnaud.pouliquen@foss.st.com/
+
+
+Tested-on:
+---------
+commit 1f318b96cc84 ("Linux 7.0-rc3")
+
+Description of the feature:
+--------------------------
+This series proposes the implementation of a remoteproc tee driver to
+communicate with a TEE trusted application responsible for authenticating
+and loading the remoteproc firmware image in an Arm secure context.
+
+1) Principle:
+
+The remoteproc tee driver provides services to communicate with the OP-TEE
+trusted application running on the Trusted Execution Context (TEE).
+The trusted application in TEE manages the remote processor lifecycle:
+
+- authenticating and loading firmware images,
+- isolating and securing the remote processor memories,
+- supporting multi-firmware (e.g., TF-M + Zephyr on a Cortex-M33),
+- managing the start and stop of the firmware by the TEE.
+
+2) Format of the signed image:
+
+Refer to:
+https://github.com/OP-TEE/optee_os/blob/master/ta/remoteproc/src/remoteproc_core.c#L18-L57
+
+3) OP-TEE trusted application API:
+
+Refer to:
+https://github.com/OP-TEE/optee_os/blob/master/ta/remoteproc/include/ta_remoteproc.h
+
+4) OP-TEE signature script
+
+Refer to:
+https://github.com/OP-TEE/optee_os/blob/master/scripts/sign_rproc_fw.py
+
+Example of usage:
+sign_rproc_fw.py --in <fw1.elf> --in <fw2.elf> --out <signed_fw.sign> --key ${OP-TEE_PATH}/keys/default.pem
+
+
+5) Impact on User space Application
+
+No sysfs impact. The user only needs to provide the signed firmware image
+instead of the ELF image.
+
+
+For more information about the implementation, a presentation is available here
+(note that the format of the signed image has evolved between the presentation
+and the integration in OP-TEE).
+
+https://resources.linaro.org/en/resource/6c5bGvZwUAjX56fvxthxds
+
+Arnaud Pouliquen (6):
+  dt-bindings: firmware: Add TEE remoteproc service binding
+  dt-bindings: remoteproc: Add STM32 TEE-controlled rproc binding
+  remoteproc: core: Introduce rproc_pa_to_va helper
+  remoteproc: Introduce optional release_fw operation
+  remoteproc: Add TEE support
+  remoteproc: stm32: Add TEE-controlled STM32 driver
+
+ .../bindings/remoteproc/remoteproc-tee.yaml   |  36 +
+ .../remoteproc/st,stm32-rproc-tee.yaml        | 108 +++
+ drivers/remoteproc/Kconfig                    |  10 +
+ drivers/remoteproc/Makefile                   |   3 +-
+ drivers/remoteproc/remoteproc_core.c          |  52 ++
+ drivers/remoteproc/remoteproc_internal.h      |   6 +
+ drivers/remoteproc/remoteproc_tee.c           | 810 ++++++++++++++++++
+ drivers/remoteproc/stm32_rproc_tee.c          | 537 ++++++++++++
+ include/linux/remoteproc.h                    |   6 +
+ include/linux/remoteproc_tee.h                |  91 ++
+ 10 files changed, 1658 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/remoteproc-tee.yaml
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/st,stm32-rproc-tee.yaml
+ create mode 100644 drivers/remoteproc/remoteproc_tee.c
+ create mode 100644 drivers/remoteproc/stm32_rproc_tee.c
+ create mode 100644 include/linux/remoteproc_tee.h
+
+
+base-commit: 1f318b96cc84d7c2ab792fcc0bfd42a7ca890681
+-- 
+2.43.0
 
 
