@@ -1,244 +1,511 @@
-Return-Path: <devicetree+bounces-276426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276427-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iHsYBxvHuGnTjAEAu9opvQ
-	(envelope-from <devicetree+bounces-276426-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 04:14:35 +0100
+	id +BB1CQjIuGnTjAEAu9opvQ
+	(envelope-from <devicetree+bounces-276427-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 04:18:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FBC42A3109
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 04:14:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA2942A31A7
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 04:18:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0B0713018BD2
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 03:09:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BA5ED306758E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 03:13:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 066F72C029D;
-	Tue, 17 Mar 2026 03:09:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B78602D060D;
+	Tue, 17 Mar 2026 03:13:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="MQRUPyin"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="v1EVaYyW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012057.outbound.protection.outlook.com [52.101.66.57])
+Received: from mx0b-00128a01.pphosted.com (mx0b-00128a01.pphosted.com [148.163.139.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A44FC26ED40;
-	Tue, 17 Mar 2026 03:09:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.57
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7B302D249B;
+	Tue, 17 Mar 2026 03:13:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.139.77
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773716943; cv=fail; b=Y8s+13Wdb8wiHRFqYGN3p87h0z+TB5oVg2a3KdVgO9Qg5+u1vsPkYO0rxE2mddUQ4haFffL52ML/SDLXpUYwFHF3ZIIYKfiKCgFs+QdMAndpm0I1n/TAN6Ma3ISr64WluTFD+VwjoEuevlYTjQ0OChxYyfF/UUDvhz8Jt/VeYe4=
+	t=1773717182; cv=fail; b=nCNx3EaFlvukK6oVSshAwsT3Zu2xKqdQhEpWaQlOqCADLrnJ2yDBLxp2Hpm0lIvcIgTK0tJyA3u+F3cQwcvH6ZIjwevxJuczrxrVCPhJAeAcq4KLgO7a+vbDD/eAN9bCHcb2H5BfmZnSFkNkdPc/AvKKat8ObEbfOfpSHylrNNI=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773716943; c=relaxed/simple;
-	bh=BmjWijVjGvjE2BUE5rcCwWBit8QjvkPWY0Nsid5Gc1k=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=PyVpfXeqI9u8XM6pR/wpuTVIy5FJ1wP7D+IXVTTcKL8sNDq1OTnq9nCCFhGBziT8ROyEASB9pa31BIIWM0GLUeOAX6pmzuobfwSzxAgTLJiNj5r/dHA1X4f558Wrc0tS4KhF5xEgNuEEWL14dBRYzp1blv9KSJf2Z8nFmwykHkQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=MQRUPyin; arc=fail smtp.client-ip=52.101.66.57
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	s=arc-20240116; t=1773717182; c=relaxed/simple;
+	bh=AKdwzQXN0uQ0onAfIebQXpIAjRL8pIoygtsuJCgh47A=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=F3s4xGAQoYDSjvbgZDvOiTWbOFve+Bst57BTVbbZy/1ufOixjX6625LNqPoRWPlDkblVzVNl/TJvFFsODC8qyUvqTncOid6m96BdUbnNj6Jlqf7NQ4Kiq/Ov8ghTNJquIjUdPT8axqJKw+hTqKSTx9fkVn66F3C7MgpaS46m78Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=v1EVaYyW; arc=fail smtp.client-ip=148.163.139.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167091.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62H03p2X407856;
+	Mon, 16 Mar 2026 23:12:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=DKIM; bh=eAlkN
+	hnvVX62UdWG+iB34vjNYXl79MOQdCdpbHNmhWI=; b=v1EVaYyW/gB6vvfiZOoAA
+	J6OineFt9K33UDloOVMzqGT4J60CrtUeCvNHJiD7RRBvoOl+YtCwALXgtwySjRfa
+	QTYK+C3YYdx/U1peHTjlAmlwUZoEV1t/85FtPAnis3knPlO8/Ha1OsfdGLayYzA3
+	h6I9+KapcHXTq1jSrKjw0VhqunSBqejwWH4XFyd/Z3uglTFA4xQJF4ovpdhofmZ4
+	ynuopcicmtNPUaqg6ZFzzQhRlRJhd2kCVLIFnnXSZCQy81HErWKUNxhNYiXQYoS3
+	vHmG5i7YHU9/Oik0+bZIEopdsgDXyLXH60p1MzaF6vaOPh++kJX1EAVpccRS80j5
+	w==
+Received: from sa9pr02cu001.outbound.protection.outlook.com (mail-southcentralusazon11013005.outbound.protection.outlook.com [40.93.196.5])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4cw1e5re5w-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Mon, 16 Mar 2026 23:12:56 -0400 (EDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KeGgeWGUG2OdVMdzx6Sr7pNPKpsIs29PRB0rMKtquORsIAEcsbRkBGdgFAj9/HCIj6pab8UL6TCpxT2L7w8ah0EDzz1v0Ig3VjggFJncTG8a0P6J0Gl59WPQxLMtQ3VhN8WS0RrvkZStupDVn2Q3wZb3ACAZKL33697aaG9LOUr2awp2Bdk7hx3L45t5ej9KXGLL3CqUEOnU8Z79UjEWQHY2hrDHdTT2tCYzg8LaiOV0h1K/SHAIstdTixgYDV1cSWJvXt2XMYLKQEeEjsMthwUJRL6pHX5KPOvhqQ43RIX5H0AvKtP6ZvRF8OyY5V3WctZCZKqAKSMtOBvYtP3/BQ==
+ b=hoJQzFSQ7+Wrphs8Bj5GuxPpEMmpjPo+dY5ymJc4P9mj1vRLcOSminaT7oC7pYexAl+OgYzoLuvikAuYCcTt5iSVa1uqix1cKJ7ynck6NEfWr83KvuUkU2IUKkjFdiMkr4ycoBImbbY1+r+EMd0HTAhQYZRuVzOP+XfDXau9LyOXpdIUmMdzp1rkBg5ncEYFRPUiD53wGo15OgQ3kAM8t3KZ1xrJLno+fl9Edf7GtZ72RZFj4cfBV/B6JPf7gzDVher2bUDHQIdPGqLz2783KdY+mJMZ7W64x4XZ9VavEHs8/L8wZkt8aoNDfoIm2fe/UlbD1ibU1ee1CsAwv2sS2A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0E8FGT6wial+KqgDhgQemLnMUarmjBV3/9a2bzRfiFM=;
- b=QWmoTswBIwmxdp1QYqtwmtr/lISZR+CClHqVf30AGi7ZntZJBVZAw1DIH7GV7NjioTBMRyGzQUfExKIYy7VWZez2rydAvF1PuMxb3xKkKuybLZs+1SQAWahekJ2Jyix3qwPSi9xV82W6a/TIKNrQ33lBRN5ZA1eZPhISAxHJltMQQH9K/4cDoHkTL2jsbR6zxbwRLh3s4zVAROjAIHRHOhbx/Kq9wLdxU0Y9njo0sZCRpj2aoOP0SaDT4m7CEg6CcuLbKrVS3z/SYFJDpoRxBKRhNfrT255vLrowbKB3npPIVDgqqilivuiR8Ue72Z0gJoMgk87hl/c73QjXYp7gFg==
+ bh=eAlkNhnvVX62UdWG+iB34vjNYXl79MOQdCdpbHNmhWI=;
+ b=B2YPy0KAFhdQcPJk/DWUPCXpxAF35OKk8meW0Hgnl9Mia05a2C/9j8FT4XQ4cfd1V7sFkULR2H1wNCA4isMTbVfvkghb5UfEacIImpCpYMTinRO+nA7UtfyOMrSdWe36Bkv4quSmDiwDOexpYGh+0NNyppRjMGo7VJz3gIN2TqClxvQNNl7zmymEa+X/Roe7e74XfgzuAytD4/rVQx5fNLPuBeQa4jnboeN02ytidTn0OzdzUnUM9MvkBniopuLTXS4FtEPPgu/MPRuH9hd4i/8kueS21jXMNzB78whImShMBdFyN0WgN/dzYGwk24fAQSf+/NZxj4OPilcG73Mtgw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0E8FGT6wial+KqgDhgQemLnMUarmjBV3/9a2bzRfiFM=;
- b=MQRUPyindr1b8FMR10KF+m6ODMHkUHFTpJPV+RPPh1Oh960daZuZBRbzPRF11TTxD44ytLQxfRhclGBFSydozgS3tq4Vxrfbm/vGD28QE4u5gSQ8lyjntDSfgDtWA1MGP3dogZMFqrZ9a2Fpqcfnx2IQLBH8EsmqcSA5+5UjSGD5oYcQTfJZO6qM9gdIiYdJYgTWvWEMz5o3Mw9Y8od7yKG603ArMaa9e/ZriuS5KD2FzyZ8lw54gPOuiLZFmKYUMma0ucq6td+R01hProPjF60rxXOvT72Em6qaSGFJFd1USV9FHmPKJJkY5uwlWG5+f6YwYLPuqWkvQvwVMmLRPg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- (2603:10a6:800:315::13) by DU4PR04MB11029.eurprd04.prod.outlook.com
- (2603:10a6:10:590::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.27; Tue, 17 Mar
- 2026 03:08:43 +0000
-Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::feda:fd0e:147f:f994]) by VI0PR04MB12114.eurprd04.prod.outlook.com
- ([fe80::feda:fd0e:147f:f994%5]) with mapi id 15.20.9700.021; Tue, 17 Mar 2026
- 03:08:58 +0000
-From: Sherry Sun <sherry.sun@nxp.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Frank.Li@nxp.com,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	hongxing.zhu@nxp.com
-Cc: imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx95-15x15-evk: Disable PCIe bus in the default dts
-Date: Tue, 17 Mar 2026 11:10:24 +0800
-Message-Id: <20260317031024.444157-1-sherry.sun@nxp.com>
-X-Mailer: git-send-email 2.37.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI1PR02CA0029.apcprd02.prod.outlook.com
- (2603:1096:4:1f4::20) To VI0PR04MB12114.eurprd04.prod.outlook.com
- (2603:10a6:800:315::13)
+ smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
+ dkim=pass header.d=analog.com; arc=none
+Received: from BLAPR03MB5619.namprd03.prod.outlook.com (2603:10b6:208:284::16)
+ by BL4PR03MB8037.namprd03.prod.outlook.com (2603:10b6:208:58e::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.24; Tue, 17 Mar
+ 2026 03:12:36 +0000
+Received: from BLAPR03MB5619.namprd03.prod.outlook.com
+ ([fe80::8d8a:17a3:6fa5:2be1]) by BLAPR03MB5619.namprd03.prod.outlook.com
+ ([fe80::8d8a:17a3:6fa5:2be1%5]) with mapi id 15.20.9700.022; Tue, 17 Mar 2026
+ 03:12:41 +0000
+From: "Sosa, Marc Paolo" <MarcPaolo.Sosa@analog.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "linux-input@vger.kernel.org"
+	<linux-input@vger.kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 2/2] input: misc: add driver for max16150
+Thread-Topic: [PATCH 2/2] input: misc: add driver for max16150
+Thread-Index: AQHcpLQZTZky7/t+tkWl9JFuRaI17bWSdDcAgB+pgLA=
+Date: Tue, 17 Mar 2026 03:12:41 +0000
+Message-ID:
+ <BLAPR03MB56193BFB549624E46DFC8776FF41A@BLAPR03MB5619.namprd03.prod.outlook.com>
+References: <20260223-max16150-v1-0-38e2a4f0d0f1@analog.com>
+ <20260223-max16150-v1-2-38e2a4f0d0f1@analog.com>
+ <aZ4nA33Lc73L1D2y@google.com>
+In-Reply-To: <aZ4nA33Lc73L1D2y@google.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BLAPR03MB5619:EE_|BL4PR03MB8037:EE_
+x-ms-office365-filtering-correlation-id: 37f00a06-6501-49f8-6526-08de83d30d3a
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|366016|1800799024|38070700021|22082099003|56012099003|18002099003;
+x-microsoft-antispam-message-info:
+ soAojwKD9b/sjY6OXcDUr9SN2b//erxEP8Wxh8i0XcbT9v+fWxlXGCuh694mVbXVzjCHhrwCVeUSKTW2bnjeR/GLnJPAlDyB7ETVoS5jTl+yPn5/e06CTI5bZ89tIRiH7q28sodqyIbqq9LxHVYlhejRAh7dq5HSLzW6XYivFuJ7mgB4E1z6qgm0wUCom4H4vFeL36WADofuZZCO8FFVyFG+1LnmdD6KWe1L4XbwxK0CJOtUwF7kkuFUqNuuVb8WyRIFxjJjf4IFYfdX3jc18BIOylAmQjTmpBo2AUFPfPHNGqBKrajPUWtNkX8Og323YInu/Cj/gNTu8ztSjEARxxFUSOXjg9o/scCxI40BRlkZM+uwYrnW8sxh9XGackDR2gHJp4TUay2182cqMFg9pg7uVywVtm0kQh5UvnXgt+w5R8i9IJzxcZRx/4Gj6cPZbr/1oiUcO2TU+Y6fgvpVus9xQbWkph0Pq8/z68KDMq7ssSdY9E/QFDTjTRdkKlGmwR6EotrBJetfGE4wrJr/FFUCYdYDKMTe9XpjWPsqNGwExavH8H7wl0RtrzArVAOLOvSjSU9YByPZgo9vrHOM3QBBxulKZZVBgPAXkjmwX6tnUZOrADRAKj2JkdDttbCYyYs0tAHwbSVVjnfs3Rvr5ys7Ff1sW262dbFo/b0FxJoy0BJtah/XDKTe2mSNQi2rnCGS6xfLUrTliSURnD+Mw57BoH1yGOt1ueFOu3+CLBtZjvgIkuWE5tW4tXBtONynr6y1o01ROZ9GVEs6UCqqf+YCAs+HrvXmfMb6NUhyugk=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BLAPR03MB5619.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(38070700021)(22082099003)(56012099003)(18002099003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?4faBL8EGys81SnzHgTQHrncWkqUYtSLW4np20udYOsFchgEPiiDlidrdnCYd?=
+ =?us-ascii?Q?nP8KTZNMF3RhoNZOoReDYw5nQ7sQuMxmQr+pNgZPCbTKdn/UNakMO11CagQY?=
+ =?us-ascii?Q?e9fvvR8f4itG7sBl7n/T+C+nFhfSF8i9BCcSUq7Mk51/af7ihFPa71JfAWL9?=
+ =?us-ascii?Q?VTPvtoAEFPstA3Ux9ttQIT39QJksjEeu/vLByGfvyPZ/SdkHRDkvTPfK8f5K?=
+ =?us-ascii?Q?20d6lO8eRE/hRfWOVFTuOEzfttxz3xZGa1WgE4bkYxBUVMYuyebB32w02PAq?=
+ =?us-ascii?Q?akgc9ZssbQT0AuQM5uRBF2YgRdrGNyhxLRjuX+38wLPBgnz06SxrplkuL3q1?=
+ =?us-ascii?Q?cuzuiqaaFKqzLuQocer4HZf5E3yT6Gu7WSGRTXCcY9olsaPsPKhTmZj+1qMU?=
+ =?us-ascii?Q?2K+s9h2+jG0EZhyPTRHbRDVdGIpU2zrnuSDT0py7MZrzJ/UOh5WqUAfcnYvp?=
+ =?us-ascii?Q?Jn17xeX+5sj0aKuk7AuzMVrEiBi6O3IZd7Hcm0ZDNjTt6vBwDsqYNq7QNCnC?=
+ =?us-ascii?Q?JGnkai2Ah54EjjcB7XgsXGR19GGGEqqu5yfe2hwD+HUUZJmhBkGAPWhDkYbz?=
+ =?us-ascii?Q?x3a5+tc5W63TfOP6qQxNBAyab7igSOKqXTF00C/G0KecXp+7HmtSNSgUjEOM?=
+ =?us-ascii?Q?3cae4Eo53NC/RLJ8Q3IFFX9hJQYXK3EwDz3TXwXfxao9oT60bDeCYKPYdk0k?=
+ =?us-ascii?Q?twOLrX4SDJ7PDa076lMFiKyXmPX7VlhW1F0y0BMDFlsM5is2YLlwMHNQoOr7?=
+ =?us-ascii?Q?D3/3gVPhXTRq4NZW6bPFdBQiWLfwtAbv8OktzzzXy/l1jKOGcOBsCZ/fjyLq?=
+ =?us-ascii?Q?XVwe+iky414liNPezd1OqSpCJzDQGkwbFMqDH6ZTV41HUzQGS88SStlK/VNS?=
+ =?us-ascii?Q?fhyC2HBCU+R1b9C1WwMi5/XTFM/U50aBbPfH9vLsqkLr8g0LQyWkXrDE9URY?=
+ =?us-ascii?Q?7/5ELNVGBUiwV5jXZ+DQ1mDtF+24jSmkbTtGQwP1VeESgyBV+YUclmTCCdOI?=
+ =?us-ascii?Q?w0vqXEAY125faxoRNQkER8PhKj207KCjK3U0vc5CUKTKM30WLvKva9o2kTJi?=
+ =?us-ascii?Q?lH9ImXatqXcNu0Q/sYaJwRT7BHTN9ofr4zSrOI+IwUUTkYUo9WDtelI+DqJR?=
+ =?us-ascii?Q?0L5FuFYZ+dJzgun3U+GSlin4rYtv4DX0VJBuaGNmbD/YrFwcdKxoJ78ttYOj?=
+ =?us-ascii?Q?t1+aOi6IE2/fKMrVCYK12Sm8qTFrTo5pAJ9+gHPtpY33G60yWUz3RJctZKvl?=
+ =?us-ascii?Q?EzkdOG+jNck13Gc9uhYmBs7AV0r3lkdJPte3rWHKUsB4hbVtojghtJ1HfJml?=
+ =?us-ascii?Q?S6euQgSRLEDte414nfm5J+D4rUuD0fbB/U4MB/EsFQgaGGY93gMyGtDi1PVH?=
+ =?us-ascii?Q?qo6F9yyWQHjWSLvLyFSQ/HQuUfjzSn6z4lU5nNbWkzF2NBkPKgxWeJ6oFt4b?=
+ =?us-ascii?Q?5Q0eTr+4/cWDABbT5y0JG8T2Agy6uc3IA+9Lo8ZXE4qkvrflnte79MTN+vPY?=
+ =?us-ascii?Q?nWL5WSS33meEtc56oN/UxI+kN53/0Z0K5g4MVo7WQBL9Ywrm+0vUNHhWZ9EQ?=
+ =?us-ascii?Q?aMYzTbRB6nsI4mtin46fTiMbd5Gy6ioypkO/qOqZPdzeOW0PTuAuKFMF1JuU?=
+ =?us-ascii?Q?qMp8NHwD15r6Kv13aeDZflkmA7Pk35hRMHtine6yA9Yn9G0zyrR563qFpadt?=
+ =?us-ascii?Q?TM791Pj8GVDIShNZpbxGjlQNOkagurEYcIbF0pNvALphmVQbX0XPW6xL+Tw0?=
+ =?us-ascii?Q?L8LDaT5Y4A=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI0PR04MB12114:EE_|DU4PR04MB11029:EE_
-X-MS-Office365-Filtering-Correlation-Id: 065470c4-081d-4adb-00de-08de83d287f6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|7416014|52116014|1800799024|376014|366016|38350700014|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info:
-	fQNan0pv4EkcQh+bGWE5yxOMCiqvcaZrbXExevkQ+qzNZ5P9cjuE9zBAKTXYfzeyTSzoWXHtnMm8kuR1++1pDbNAkJAeC4aBzekzwJVp6Su7ZS6F2mRRa6KFO0jGJvpPpX7viKmm8uaWeH1gGSm3aSn9njR+S1GO22zEeTQWFtXw7Dxvea5j0SR78szLK1Q1XbpvCKUT08htDX4N9qybbe5+dhYrNGKrRL7vvZagObHFeciCEx8C8h9RBkb+CRY883t0GEoTVjOn74eWGmLyi2qFmJgV3o+8EvCfbNpMl/CKOMClT/QsbIK4NNqhCNNq4EjAQkSU/MEBcrMBeyH0xMi0T5eQ0mAnrI6me6PkO1v24NJkU6MpXGpPp/RMENccHG2W+kWog26IlEuPI3wLjy0SasT9yHW7jyQ8lTEjLu4LcZso95QitxO0bIR5EIDt7U0zLtiwJqFisJKEJ5CqluQ5CSpBt/IdhavW5I05BDf1KI1EfwG5bvf/qOp2sS5KQsqK1m5mC5NwMUfU9dG+65x5oWkkGLyrk2VPm90dNC8My4cA02+gQAo90ZfCpMeA7lRdKOvGY4Xl0RZTubQdDVMXu4tS1kO2OzEIF5Fct4vPhy46v7qmHUUVZkWG/hMMpU4kJ6vwK7wMHFa09AS5ZPJtUILfJnds4gb6gDYeLqsqufa+fxGLrsKUBGUqGzpz8NVB95yJnDIuSbnWLvUFT0BC1EC/Tc2JCzXSwLiYeNlyds1vTi/zusbvnPGfKlKCp5tz0Z4XIgg5yqPk/XvEuiyq1IkzMoFPAtKwxvKnp9s=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(52116014)(1800799024)(376014)(366016)(38350700014)(56012099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?hTYF8TECJNEHExc69jlpRwFQF1Mm3R/GEHxpcpXRi08yURRWP/37nbpkio9G?=
- =?us-ascii?Q?KhV63D5N5TBOILAu+kph2khaMk9PfvAmrAbfUEd1Sr5SQYOKYMRQ1wWJl9ml?=
- =?us-ascii?Q?RzbgRlYkwnsw6ebXN9lDQF7W30+dwLRBfANE7Z4LVXPcTnGWDY0ueOsrbuvM?=
- =?us-ascii?Q?/SqF0M0/WPvIojI3xqdqDZdjh8ADt7iw434WYVLV2jvWV4pshDFinNcfU1sT?=
- =?us-ascii?Q?fKsC9WhUUxikYZ9mjeliwH0TkoXVdV7FNHjy98RfhL428K62zE7G0IbZIfnh?=
- =?us-ascii?Q?/QdDqqg2LEzS80XP3MBIEteIwa+vP0oR2+5pQiacz8j8KFiWg7J+u93Kry6X?=
- =?us-ascii?Q?qb3kaybbVhvyoPDZSeu5/+BZrX1G9rIarD/aC47zICGQo2uZX/OBxgynJM3Y?=
- =?us-ascii?Q?1Mrq6POdo+6/TSQGOwy4J9zjxI9/NgTC3SoJWtoUrZEAdGPem3DZl67qjZuT?=
- =?us-ascii?Q?tXzQXXz9QKdUoG/fzmAA2QQytTZr/VbDxEvmkUWXME2DqK5P/dKTdPqz9Qfe?=
- =?us-ascii?Q?5wD70MLTvMQ2MjK6IVYPc4l1M50qW6yIseLQP5N8jf4lj32rXk1S8XHaS2nb?=
- =?us-ascii?Q?jckJC6B6vmZeijDm2iznJSOKMGz1CUl2cP8O+iVIwPUMVxe4SzsoMon4+TAt?=
- =?us-ascii?Q?wcq9IW+JLOnYTvvWMWuG1sidELIsHMV8nh/rBajtCxFyXBGQFXXDxcgJ4qp6?=
- =?us-ascii?Q?B95HbIS4YumR8t9zv8DD2nfCcCOSS1COprxc/MkHpOXuxpSDgeNcKG7HTx3t?=
- =?us-ascii?Q?E6fv17FiSrMoT/8ZdO6Fq3+a+ATgLREj7WK6qHkMWksgB5WdUWAaLMFyWqHr?=
- =?us-ascii?Q?72sNzYz0RcUTa2lAoJpV8m+V/tmimrhRRbKh6nf+4nxd+gmGYbzKEHSD62uN?=
- =?us-ascii?Q?J4jNIph2GkUPA0cO/SIxwHMdBvOEOQuQ1jVz8jdo19BHhX5YNu+SMhE6xVVa?=
- =?us-ascii?Q?UitX1EJ1RRX64qWUGcLQUg8bSd0nUoImrw4/zM648NfPRhdiY/A2obXZxYbO?=
- =?us-ascii?Q?GG8P253WdDtjPL7J5bCaqvvwoaeNG39ne9CXFZQeqMemp8jJ/2LflgDbquB9?=
- =?us-ascii?Q?K/vx9sKNalGVKNGFn5z2/hfP1H+kLny6UBlUzOSEg566VqcX0w+3UAk8PTVM?=
- =?us-ascii?Q?mXn29EHS1U1kpYhgumRX5Tk8+xW9/w1S9TRLV1/aar2BD6jtH4kN6wc7dabu?=
- =?us-ascii?Q?D0losM+t4PaSyaMe/C9pLDy+EsrRwS1GW5HC+FMHpakVj2+WIIhVvlsLo7wB?=
- =?us-ascii?Q?VWB/+2kaR0UlfU7cIUuAM3bQdyJc0r34J4EGBF7Lvc96s3thSR0iEJrsybg0?=
- =?us-ascii?Q?zzWw7hbxjTQi1TdTUbtaVplZBny4QoMQXct13QDMCZMX2P08iRhL60GRhZGk?=
- =?us-ascii?Q?Hwc1aYGjKex009S2ubjbJKsiBohwuzYPkQV8MqGhn16PDx1+TIUbfZLJhKmX?=
- =?us-ascii?Q?mBxJZNT3paFG934e7iNbPEZRKUntk66jgIga5Ju0v7CI71g2+wxa+cV1JjwK?=
- =?us-ascii?Q?EZopQEbDHJHiiMTIHflqeEJpUqMPwb0INjcD8QiYJaJAEkU6xaMwqbLEJIRd?=
- =?us-ascii?Q?Wdlldi7cqgdK6F+I1lDlhBJBtmzLAOU9XvuMKu+6mqDwjlLx1N9gsXpk1l1A?=
- =?us-ascii?Q?ZVuY2WWqw32GM87nJL/C2AAKmAs71Wood+kcU9iOf2bBxf2vfdfmd1RPC9O6?=
- =?us-ascii?Q?17gdmMPOikyt/pNdjo/dgbDtuzW+b1OgyZpSI9qw6TyHOsAvl5s0lK1azFKr?=
- =?us-ascii?Q?R6OeqvAE3g=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 065470c4-081d-4adb-00de-08de83d287f6
-X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
+X-Exchange-RoutingPolicyChecked:
+	f4U6tLS27Ke/zhuXCIypOZKytDugDhca+WpKK1iaO/T/vvDTda0Q0bGQCMJ5cvX091C+uKiuNiHYiWZwRJHOxSXV7WX1xweVQL82nLi+OBuYdefMRHnl5mC1YTwB/g/YXCvwyBW6vVpAJZqjt3WN7ndDYRmifGJncVd47jC4vq/QW+0CZoiXeh1MHFexOV2iVsLvmgcpzVTHOdk0QXjjac5un3O/6/NA9chuNmsX7s0g6AT770o6t5/GBIl1esCnYXqqnjr902QFqC0A6PpKr3KQdTvcOmtCrrP1XyAMSXnTPDqpa/OkaTlD6lYjb5IaERe1TV+0Im5Z/TiSTfOF6w==
+X-OriginatorOrg: analog.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 03:08:58.1866
+X-MS-Exchange-CrossTenant-AuthSource: BLAPR03MB5619.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 37f00a06-6501-49f8-6526-08de83d30d3a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Mar 2026 03:12:41.6252
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hzenBxSKTgiATvyL8Ra1z9A+mQnhdtGgTRXRQ3hxZVJTMY/GaxAxi7nHIGALG66Vay10a/hvGFKNOCIgZBwI7A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB11029
-X-Spamd-Result: default: False [2.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ajzjIqZDr3UmBUmcEj3p1UJJYWXBJNKzE0s+KdbHPthMQOvnW3kHxKXH8PQGfy8qooTzTTLabU9moliZFsWOREKQpD+0AhhPWi1/yLL/cno=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL4PR03MB8037
+X-Authority-Analysis: v=2.4 cv=ds3Wylg4 c=1 sm=1 tr=0 ts=69b8c6b8 cx=c_pps
+ a=MVrca6uEa0E4C5ICDaep3Q==:117 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
+ a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22 a=0sLvza09kfJOxVLZPwjg:22
+ a=ugNRTJOwpmtT476g4l8T:22 a=pGLkceISAAAA:8 a=gAnH3GRIAAAA:8 a=VwQbUJbxAAAA:8
+ a=IyjSe8i7SjaciUra7ZIA:9 a=CjuIK1q_8ugA:10
+X-Proofpoint-GUID: FP3NxPTJCU-sX1b86K871MfujPhqGxgj
+X-Proofpoint-ORIG-GUID: FP3NxPTJCU-sX1b86K871MfujPhqGxgj
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE3MDAyNSBTYWx0ZWRfXw3yCn6ocmxU5
+ eGeMPIB/mSztUjqb/LxHWoiJS5oEpJwz9Glj0ZVeXBofKCaGnuaa1jAR9dkrKXvhlY5/xjPGlwD
+ sTnTr0egUMPKcZ92EFPRWG6a/YjOGWuNjUlPWebuMMiHvr0ueBbC2laVY90Fl4wZqeYjGiPN3FV
+ LWPghG8MbAi7C26jLNTuPfgXWBHkepaIriWQt9nejJWASzfmJg716AlngrI2A0wA2BBZwfShMeM
+ ZKEglQXwYt6KMeUyOyAD0/hYJojLWoUoLNikZpkwfa2epsGvBpfV9okQWRl7f2b638KHflIDVkg
+ lS4RyaBo9+GmTRP4q2faJPlVSt4KSw5PJtrmWLcTBZ3iGl7m+xRcm0tUDaO3oLK6e0eKNwCYuoN
+ dQkb+v2qEB09rJazyrshqDsp5MWVYDx19ZLBKUk5aDZOEWBGXyEqteI9YkNmhPpbP4/9wivdXuv
+ y8Loc+XevoirYXeuwFw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-16_06,2026-03-16_06,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 bulkscore=0 lowpriorityscore=0 priorityscore=1501
+ impostorscore=0 suspectscore=0 malwarescore=0 spamscore=0 adultscore=0
+ clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
+ definitions=main-2603170025
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:dkim,analog.com:email];
+	TAGGED_FROM(0.00)[bounces-276427-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276426-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[analog.com:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[MarcPaolo.Sosa@analog.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_NONE(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:dkim,nxp.com:email,nxp.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6FBC42A3109
+	RCPT_COUNT_SEVEN(0.00)[7];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: BA2942A31A7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Disable PCIe bus in the default dts to avoid the shared regulatory
-between SDIO and PCIe buses, the random probe order between the two
-buses may break the PCIe initialization sequence which cause PCIe
-devices has probability of failing to detect.
 
-Enable the SDIO WiFi in the default imx95-15x15-evk.dts, and add a
-separate imx95-15x15-evk-pcie.dtso to enable PCIe bus.
 
-Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
----
- arch/arm64/boot/dts/freescale/Makefile            |  5 ++++-
- .../boot/dts/freescale/imx95-15x15-evk-pcie.dtso  | 15 +++++++++++++++
- arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts |  2 +-
- 3 files changed, 20 insertions(+), 2 deletions(-)
- create mode 100644 arch/arm64/boot/dts/freescale/imx95-15x15-evk-pcie.dtso
+> -----Original Message-----
+> From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Sent: Wednesday, February 25, 2026 6:42 AM
+> To: Sosa, Marc Paolo <MarcPaolo.Sosa@analog.com>
+> Cc: Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
+> <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; linux-
+> input@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org
+> Subject: Re: [PATCH 2/2] input: misc: add driver for max16150
+>=20
+> [External]
+>=20
+> Hi Marc,
+>=20
+> On Mon, Feb 23, 2026 at 07:03:40PM +0800, Marc Paolo Sosa via B4 Relay
+> wrote:
+> > From: Marc Paolo Sosa <marcpaolo.sosa@analog.com>
+> >
+> > MAX16150/MAX16169 nanoPower Pushbutton On/Off Controller
+> >
+> > Signed-off-by: Marc Paolo Sosa <marcpaolo.sosa@analog.com>
+> > ---
+> >  drivers/input/misc/Kconfig    |   9 +++
+> >  drivers/input/misc/Makefile   |   1 +
+> >  drivers/input/misc/max16150.c | 161
+> > ++++++++++++++++++++++++++++++++++++++++++
+> >  3 files changed, 171 insertions(+)
+> >
+> > diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
+> > index 94a753fcb64f..a31d3d2a7fd6 100644
+> > --- a/drivers/input/misc/Kconfig
+> > +++ b/drivers/input/misc/Kconfig
+> > @@ -178,6 +178,15 @@ config INPUT_E3X0_BUTTON
+> >  	  To compile this driver as a module, choose M here: the
+> >  	  module will be called e3x0_button.
+> >
+> > +config INPUT_MAX16150_PWRBUTTON
+> > +	tristate "MAX16150/MAX16169 Pushbutton driver"
+> > +	help
+> > +	  Say Y here if you want to enable power key reporting via
+> > +	  MAX16150/MAX16169 nanoPower Pushbutton On/Off Controller.
+> > +
+> > +	  To compile this driver as a module, choose M here. The module will
+> > +	  be called max16150.
+> > +
+> >  config INPUT_PCSPKR
+> >  	tristate "PC Speaker support"
+> >  	depends on PCSPKR_PLATFORM
+> > diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
+> > index 415fc4e2918b..c2c1c45f2df6 100644
+> > --- a/drivers/input/misc/Makefile
+> > +++ b/drivers/input/misc/Makefile
+> > @@ -52,6 +52,7 @@ obj-$(CONFIG_INPUT_IQS7222)		+=3D iqs7222.o
+> >  obj-$(CONFIG_INPUT_KEYSPAN_REMOTE)	+=3D keyspan_remote.o
+> >  obj-$(CONFIG_INPUT_KXTJ9)		+=3D kxtj9.o
+> >  obj-$(CONFIG_INPUT_M68K_BEEP)		+=3D m68kspkr.o
+> > +obj-$(CONFIG_INPUT_MAX16150_PWRBUTTON)	+=3D max16150.o
+> >  obj-$(CONFIG_INPUT_MAX7360_ROTARY)	+=3D max7360-rotary.o
+> >  obj-$(CONFIG_INPUT_MAX77650_ONKEY)	+=3D max77650-onkey.o
+> >  obj-$(CONFIG_INPUT_MAX77693_HAPTIC)	+=3D max77693-haptic.o
+> > diff --git a/drivers/input/misc/max16150.c
+> > b/drivers/input/misc/max16150.c new file mode 100644 index
+> > 000000000000..ae353b926afc
+> > --- /dev/null
+> > +++ b/drivers/input/misc/max16150.c
+> > @@ -0,0 +1,161 @@
+> > +// SPDX-License-Identifier: GPL-2.0-or-later
+> > +/*
+> > + * Analog Devices MAX16150/MAX16169 Pushbutton Driver
+> > + *
+> > + * Copyright 2025 Analog Devices Inc.
+> > + */
+> > +
+> > +#include <linux/delay.h>
+> > +#include <linux/init.h>
+> > +#include <linux/input.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/gpio/consumer.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/property.h>
+> > +
+> > +#define MAX16150_LONG_INTERRUPT 120000000
+> > +
+> > +struct max16150_chip_info {
+> > +	bool has_clr_gpio;
+> > +};
+> > +
+> > +struct max16150_device {
+> > +	struct input_dev *input;
+> > +	struct gpio_desc *gpiod;
+> > +	struct gpio_desc *clr_gpiod;
+> > +	const struct max16150_chip_info *chip_info;
+> > +	u64 low, high, duration;
+>=20
+> I do not think you need to store "high" and "duration", just "press"
+> time. I also do not think you need nanosecond resilution, jiffies will do=
+.
+>=20
+> > +	unsigned int keycode;
+> > +};
+> > +
+> > +static irqreturn_t max16150_irq_handler(int irq, void *_max16150) {
+> > +	struct max16150_device *max16150 =3D _max16150;
+> > +	int value;
+> > +
+> > +	value =3D gpiod_get_value(max16150->gpiod);
+> > +
+> > +	if (!value) {
+> > +		max16150->low =3D ktime_get_ns();
+> > +		return IRQ_HANDLED;
+> > +	}
+> > +
+> > +	max16150->high =3D ktime_get_ns();
+> > +	if (max16150->low) {
+> > +		max16150->duration =3D max16150->high - max16150->low;
+> > +
+> > +		if (max16150->duration > MAX16150_LONG_INTERRUPT) {
+>=20
+> time_after() is probably what you need here.
+>=20
+> > +			gpiod_set_value(max16150->clr_gpiod, 1);
+> > +			input_report_key(max16150->input, max16150-
+> >keycode, 1);
+> > +			input_sync(max16150->input);
+>=20
+> Why is press not reported right away?
+>=20
+> > +			input_report_key(max16150->input, max16150-
+> >keycode, 0);
+> > +			input_sync(max16150->input);
+> > +		}
+> > +
+> > +		max16150->low =3D 0;
+> > +	}
+> > +
+> > +	return IRQ_HANDLED;
+> > +}
+> > +
+> > +static const struct max16150_chip_info max16150_variant_a =3D {
+> > +	.has_clr_gpio =3D true,
+> > +};
+> > +
+> > +static const struct max16150_chip_info max16150_variant_b =3D {
+> > +	.has_clr_gpio =3D false,
+> > +};
+> > +
+> > +static int max16150_probe(struct platform_device *pdev) {
+> > +	const struct max16150_chip_info *chip_info;
+> > +	struct max16150_device *max16150;
+> > +	struct device *dev =3D &pdev->dev;
+> > +	int err, irq, ret;
+>=20
+> Why do you need both err and ret?
+>=20
+> > +	u32 keycode;
+> > +
+> > +	chip_info =3D device_get_match_data(dev);
+> > +	if (!chip_info)
+> > +		return -EINVAL;
+> > +
+> > +	max16150 =3D devm_kzalloc(dev, sizeof(*max16150), GFP_KERNEL);
+> > +	if (!max16150)
+> > +		return -ENOMEM;
+> > +
+> > +	max16150->chip_info =3D chip_info;
+> > +
+> > +	max16150->input =3D devm_input_allocate_device(dev);
+> > +	if (!max16150->input)
+> > +		return -ENOMEM;
+> > +
+> > +	max16150->input->name =3D "MAX16150 Pushbutton";
+> > +	max16150->input->phys =3D "max16150/input0";
+> > +	max16150->input->id.bustype =3D BUS_HOST;
+> > +
+> > +	keycode =3D KEY_POWER;
+> > +	ret =3D device_property_read_u32(dev, "linux,code", &keycode);
+>=20
+> 	err =3D ...
+>=20
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "Failed to get keycode\n");
+> > +
+> > +	max16150->keycode =3D keycode;
+> > +
+> > +	input_set_capability(max16150->input, EV_KEY, max16150->keycode);
+> > +
+> > +	max16150->gpiod =3D devm_gpiod_get(dev, "interrupt", GPIOD_IN);
+> > +	if (IS_ERR(max16150->gpiod))
+> > +		return dev_err_probe(dev, PTR_ERR(max16150->gpiod),
+> > +				     "Failed to get interrupt GPIO\n");
+> > +
+> > +	if (chip_info->has_clr_gpio) {
+> > +		max16150->clr_gpiod =3D devm_gpiod_get(dev, "clr",
+> GPIOD_OUT_HIGH);
+> > +		if (IS_ERR(max16150->clr_gpiod))
+> > +			return dev_err_probe(dev, PTR_ERR(max16150-
+> >clr_gpiod),
+> > +					     "Failed to get clr GPIO\n");
+> > +
+> > +		if (!max16150->clr_gpiod)
+>=20
+>=20
+> How would we end up here? You are using devm_gpiod_get() which will never
+> return NULL GPIO descriptor.
+>=20
+> > +			return dev_err_probe(dev, -ENODEV,
+> > +						 "clr GPIO is mandatory\n");
+> > +
+> > +		if (max16150->clr_gpiod) {
+> > +			fsleep(1000);
+> > +			gpiod_set_value(max16150->clr_gpiod, 0);
+> > +		}
+> > +	}
+> > +
+> > +	irq =3D gpiod_to_irq(max16150->gpiod);
+> > +	if (irq < 0)
+> > +		return dev_err_probe(dev, irq,
+> > +				     "MAX16150: Failed to map GPIO to IRQ");
+>=20
+> As Rob said in DT binding review use interrupts property and separate IRQ=
+ and
+> GPIO handling.
+>=20
+> > +
+> > +	err =3D devm_request_irq(dev, irq, max16150_irq_handler,
+> > +			       IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING,
+> > +			       "max16150_irq", max16150);
+> > +	if (err)
+> > +		return err;
+> > +
+> > +	return input_register_device(max16150->input);
+>=20
+> 	err =3D input_register_device(...);
+> 	if (err)
+> 		return err;
+>=20
+> 	return 0;
+>=20
+> > +}
+> > +
+> > +static const struct of_device_id max16150_of_match[] =3D {
+> > +	{ .compatible =3D "adi,max16150a", .data =3D &max16150_variant_a },
+> > +	{ .compatible =3D "adi,max16150b", .data =3D &max16150_variant_b },
+> > +	{ .compatible =3D "adi,max16169a", .data =3D &max16150_variant_a },
+> > +	{ .compatible =3D "adi,max16169b", .data =3D &max16150_variant_b },
+> > +	{ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, max16150_of_match);
+> > +
+> > +static struct platform_driver max16150_driver =3D {
+> > +	.probe  =3D max16150_probe,
+> > +	.driver =3D {
+> > +		.name =3D "max16150",
+> > +		.of_match_table =3D max16150_of_match,
+> > +	},
+> > +};
+> > +module_platform_driver(max16150_driver);
+> > +
+> > +MODULE_AUTHOR("Marc Paolo Sosa <marcpaolo.sosa@analog.com>");
+> > +MODULE_DESCRIPTION("MAX16150/MAX16169 Pushbutton Driver");
+> > +MODULE_LICENSE("GPL");
+>=20
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index c4e790a268ae..505efc9ebd58 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -471,7 +471,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk-sof.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-toradex-smarc-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-tqma9596sa-mb-smarc-2.dtb
- 
--imx95-15x15-evk-pcie0-ep-dtbs = imx95-15x15-evk.dtb imx-pcie0-ep.dtbo
-+imx95-15x15-evk-pcie-dtbs = imx95-15x15-evk.dtb imx95-15x15-evk-pcie.dtbo
-+dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk-pcie.dtb
-+
-+imx95-15x15-evk-pcie0-ep-dtbs = imx95-15x15-evk-pcie.dtb imx-pcie0-ep.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk-pcie0-ep.dtb
- imx95-19x19-evk-pcie0-ep-dtbs += imx95-19x19-evk.dtb imx-pcie0-ep.dtbo
- imx95-19x19-evk-pcie1-ep-dtbs += imx95-19x19-evk.dtb imx-pcie1-ep.dtbo
-diff --git a/arch/arm64/boot/dts/freescale/imx95-15x15-evk-pcie.dtso b/arch/arm64/boot/dts/freescale/imx95-15x15-evk-pcie.dtso
-new file mode 100644
-index 000000000000..42384e6233f3
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx95-15x15-evk-pcie.dtso
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2026 NXP
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&pcie0 {
-+	status = "okay";
-+};
-+
-+&usdhc3 {
-+	status = "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-index 7eb12e7d5014..afd89ce3cc5b 100644
---- a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-@@ -557,7 +557,7 @@ &pcie0 {
- 	vpcie-supply = <&reg_m2_pwr>;
- 	vpcie3v3aux-supply = <&reg_m2_pwr>;
- 	supports-clkreq;
--	status = "okay";
-+	status = "disabled";
- };
- 
- &pcie0_ep {
--- 
-2.37.1
 
+Thank you for the initial review, I'll test the ff suggestions above and ap=
+ply it to V2, for summary,
+
+  1. Switch from nanoseconds to jiffies with single press_time variable and
+  time_after() for comparison
+  2. Remove redundant err/ret variables and use consistent naming
+  3. Remove impossible NULL checks after devm_gpiod_get() since it never re=
+turns NULL
+  4. Fix device_property_read_u32() error handling since linux,code is opti=
+onal with
+  default
+  5. Use explicit error checking pattern instead of implicit return
+  6. The MAX16150's OUT pin serves dual purposes (interrupt + GPIO state re=
+ading) -
+  should I use separate 'interrupts' and 'out-gpios' properties for the sam=
+e physical pin, or is there a
+  preferred approach for this hardware design?
+  7. The duration measurement is needed since the device ignores short pres=
+ses, but I could
+   report press immediately and validate on release instead
+
+  I'll send v2 with these improvements once I clarify the preferred IRQ/GPI=
+O handling approach.
+
+Best regards,
+Pao
 
