@@ -1,218 +1,172 @@
-Return-Path: <devicetree+bounces-276641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276644-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sOlDHTdCuWnq9wEAu9opvQ
-	(envelope-from <devicetree+bounces-276641-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:59:51 +0100
+	id oA5WCpJBuWnp9wEAu9opvQ
+	(envelope-from <devicetree+bounces-276644-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:57:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEE732A966E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:59:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE9B02A9561
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:57:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3533930FD84E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:54:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0AE1E3055C5A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:57:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E81C3B5851;
-	Tue, 17 Mar 2026 11:53:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF4F63B637D;
+	Tue, 17 Mar 2026 11:56:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W3u8qT8i"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="jaTIJ6mv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 799BB3B3BF8;
-	Tue, 17 Mar 2026 11:53:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F3143B585B;
+	Tue, 17 Mar 2026 11:56:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773748436; cv=none; b=HBjxKz3cHSxOsqV6MDgowFmCj3rbf+YmW+Fk1uNIXvngediIVS3sDUKGss8NONW8CFkteAX55ceve4YwdcyVvvzsm2EnU2bmvE88k0yuHTyuuYb+oNK3mBE4TldqHaWA6uSY56L05fNTGqx/wHzq0Ry3Xs2EYzdYb+Pb2QSV/n0=
+	t=1773748618; cv=none; b=fJ7AkRTEWOe1dw+ml6E7S40cQlGw4rgeQF0vllCLuw4qfDNWiDwuDCGVKGWc3rHK4U21pwQDhsqcGXhOGaurxcA2AwSspimUrvCZDFVOBdFeDdfI+2VDUh6vULaTWpyhc/5ceIU82qhj2t+cXZ+j4Gnon0yLZuA2hk/iifN0Ehw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773748436; c=relaxed/simple;
-	bh=TFbRVqkiInsEoxByPRhntBXJ/89VgAXqRLdHlEElC7Q=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cp7sCvZKYoyxYJF1td9TpZeMAhhCLyrjwxufBMU0NATDgyqfap7KyWCXZuAlwl6Ln5DPSBvkvfgTuJZtDYlicPFfpR/hs0pV1D2NYeq2MW5Ev8S/xudlB5EfCf3NNLTHFZa+8F5fy531QDx0wSIFGEJQTV716/7P/msJF94VBZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W3u8qT8i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F918C19425;
-	Tue, 17 Mar 2026 11:53:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773748436;
-	bh=TFbRVqkiInsEoxByPRhntBXJ/89VgAXqRLdHlEElC7Q=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=W3u8qT8iX234qAkuKOT9R26PYD+5bu2AUIllqebot0uqXoiPPE4tOdug0gfa/BPaw
-	 Syu/+qdCe6x6VWor3PJFnSgJiipkI0kCSktHcjO7cLuFApKu5sqFdsnp9lvOcCj1Qm
-	 KS1bBR+NBsZJjbTJMDUIK8ZAwG5NdvXrWnzI4LEJ0attIalJTV5delmehHHG4ybOSL
-	 JpXUJLeAXIl4dCORdwdp6GSuqag5MLSkliqiN/c0Wm73GgBrzFeVAP+qt4Fp6Xke++
-	 sW6kBdgbpnqyQsXpgYlxW7HfbhT6ToXrj0RHXG/npCofPfGZYCWYrK2k8S7pRSjTqe
-	 mXOonvHUO6DqA==
-From: Yixun Lan <dlan@kernel.org>
-Date: Tue, 17 Mar 2026 11:53:04 +0000
-Subject: [PATCH 3/3] riscv: dts: spacemit: k3: Add USB2.0 support
+	s=arc-20240116; t=1773748618; c=relaxed/simple;
+	bh=dezsWorhfibkwlHjX73400AkFUuGSNlj/FFuYVrWAY0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=H9wM4v0hOoSKyoL/klctBTamMBwl48IPgTIiL7X/EUmUxpI6UTQ0S4xaY2B4zbmprM79k84/i1ie1cvMxtUszYZWiACAJCxU49SnxbNkcDPdCvkeYEBOENbG7LDawK8ptAcD9y3rW9tJH9RJwNaLnuA6fDm7WsO5pZ2F27EEJfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=jaTIJ6mv; arc=none smtp.client-ip=211.75.126.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 62HBsBcvD3851620, This message is accepted by code: ctloc85258
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
+	t=1773748451; bh=FTzoew/ZMvCMhjpr6otK/JMZgS+ZUn1dml7NawnXAH8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:
+	 Content-Transfer-Encoding:Content-Type;
+	b=jaTIJ6mvYDvh6kBQuEgsfjpE3MXweheH8fPz7ML2iqBKfOTf4xBWeBqfQuz5RtXka
+	 eMXVHLMCXFPzD3UhZh9f1B4M2bGZUQlM0ROA0HUcRjjsqLkJUZ+kvQY9W0hFb7OR3i
+	 iX/GCweaIViD6zdINUoBs7DTUZu3MC3UC/MngbdaPy1vI8QNPIM9GRW8uGlOZtXdtt
+	 3yNsnbEnfExQtSqhrm4eEd9fD2Oqjtewoi7kcXhASVa8RegKuMTGMckm70odjJZkPH
+	 xh1QQRYlG51JefNgf75/gDOVgzLNvpTYmnbwDssKfCAsBMC3N76up1/4c2Jn3VPNBA
+	 6G7msU3vzBE9g==
+Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
+	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 62HBsBcvD3851620
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 17 Mar 2026 19:54:11 +0800
+Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
+ RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Tue, 17 Mar 2026 19:54:11 +0800
+Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
+ RTKEXHMBS06.realtek.com.tw (10.21.1.56) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Tue, 17 Mar 2026 19:54:11 +0800
+Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS05.realtek.com.tw
+ (10.21.1.55) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Tue, 17 Mar 2026 19:54:11 +0800
+From: Yu-Chun Lin <eleanor.lin@realtek.com>
+To: <linusw@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <afaerber@suse.com>
+CC: <bartosz.golaszewski@oss.qualcomm.com>, <james.tai@realtek.com>,
+        <cy.huang@realtek.com>, <stanley_chang@realtek.com>,
+        <eleanor.lin@realtek.com>, <tychang@realtek.com>,
+        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-realtek-soc@lists.infradead.org>
+Subject: [PATCH v4 0/8] pinctrl: realtek: Core improvements and RTD1625 support
+Date: Tue, 17 Mar 2026 19:54:02 +0800
+Message-ID: <20260317115411.2154365-1-eleanor.lin@realtek.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260317-02-k3-usb20-support-v1-3-d89f59062ad4@kernel.org>
-References: <20260317-02-k3-usb20-support-v1-0-d89f59062ad4@kernel.org>
-In-Reply-To: <20260317-02-k3-usb20-support-v1-0-d89f59062ad4@kernel.org>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Ze Huang <huang.ze@linux.dev>, 
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: Emil Renner Berthing <kernel@esmil.dk>, 
- Junzhong Pan <junzhong.pan@spacemit.com>, 
- Inochi Amaoto <inochiama@gmail.com>, linux-usb@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Yixun Lan <dlan@kernel.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2715; i=dlan@kernel.org;
- h=from:subject:message-id; bh=TFbRVqkiInsEoxByPRhntBXJ/89VgAXqRLdHlEElC7Q=;
- b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpuUC6kxU8ZFSs2QH7Z4NuaBBrviz0VT4CX0uH1
- cWSalc4mTOJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCablAuhsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
- maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
- QACgkQMarqR1lNu+2k3Q//bs4WGQhdkRT0+EcWnZCioYvfBVrvgHOMCDRfGx7m1s3UboTsulZxr
- Nyl9PXs+wWO928+4hTFO4mruZFfKfgJjSnNBsKPu851XwxH6YksaTfg+bHpZvoEqFjbZI7hS/uI
- fAXyOEs2w+vCBhEvObn9GnHnofejHUx5OPwCCfNnRT0FxRXq5LDSwBpnNNCGvP1Sy0T0cZ0o3y+
- /W5e+3SzK/YqVRSA8ZC9FnCbTsVSJNZDvAjAJGrV3vOH/UPod4lcxDL87ifoFnDZLY2Q5GJnWXe
- bRmzq7epQYrxCPeLVOHqzmH8ydpcBGhPMw+bmLWas9VLXv4AjZfGAzdl/yjHIHXVzqo8kP+PCyP
- TsA+0ps1XDrsNkSow9p33OxDM13Z06s4My2apY2X797if/EGBtO+o01ZVA/L8bBpaBQWHdsvqja
- OBpmPtjBA352x4E68wQeKBk3Sv8U/HlECPdCSc02pDonbq/N+SFIclwAjRi46QnfKnSK8z0R4Dh
- Ulhtt8303xkWJ9cV50RwH2yDgzf9lr8gHELeGOYmql8rd12iWcqgFoTMiGOY7IJATO8aYFy5/dB
- Yc+K9G+MAu+ozZ5XNnItxhLX2de2DkMz/88r7CrkTeyb8Am8aIzTcaafOPpgZhxgjzmutpd5qyp
- XCEcd0r9eEP3rInm5fONYMBP28Hdy0=
-X-Developer-Key: i=dlan@kernel.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276641-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[esmil.dk,spacemit.com,gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276644-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[realtek.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,realtek.com:dkim,realtek.com:mid];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[c0a00000:email,d4015000:email,c0a20000:email,5.245.225.0:email,0.0.0.1:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: EEE732A966E
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: BE9B02A9561
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The USB2.0 controller on Pico-ITX board connnects to a Terminus FE1.1 Hub
-which fully USB2.0 protocol compliant and provides 4 ports.
+This series introduces pinctrl support for the Realtek RTD1625 SoC.
 
-Signed-off-by: Yixun Lan <dlan@kernel.org>
+Besides the new SoC support, this series improves the common Realtek pinctrl
+driver and the generic pinctrl library by:
+
+1. Introducing the generic 'input-threshold-voltage-microvolt' property to pincfg
+and pinconf-generic.
+2. Improve other Realtek pinctrl bindings's descrption.
+3. Adding support for slew rate, input voltage parameters.
+
+I welcome feedback and suggestions.
+
+Best regards,
+Yu-Chun Lin
 ---
- arch/riscv/boot/dts/spacemit/k3-pico-itx.dts | 24 +++++++++++++++++++++
- arch/riscv/boot/dts/spacemit/k3.dtsi         | 31 ++++++++++++++++++++++++++++
- 2 files changed, 55 insertions(+)
+Changes in v4:
+- Add a new patch to fix the argument type in rtd_pconf_parse_conf().
+- Rename property from "input-voltage-microvolt" to
+"input-threshold-voltage-microvolt".
+- Update pinconf-generic to reflect the property renaming.
+- Add tag from Linus and Conor which received in v3.
+---
+Tzuyi Chang (5):
+  dt-bindings: pincfg-node: Add input-threshold-voltage-microvolt
+    property
+  pinctrl: pinconf-generic: Add properties
+    'input-threshold-voltage-microvolt'
+  dt-bindings: pinctrl: realtek: Add RTD1625 pinctrl binding
+  pinctrl: realtek: add support for slew rate, input voltage and high
+    VIL
+  pinctrl: realtek: add rtd1625 pinctrl driver
 
-diff --git a/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts b/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
-index b098dbd0e7a1..393a0ce65efc 100644
---- a/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
-+++ b/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
-@@ -23,6 +23,14 @@ memory@100000000 {
- 		device_type = "memory";
- 		reg = <0x1 0x00000000 0x4 0x00000000>;
- 	};
-+
-+	aux_vcc3v3: regulator-aux-vcc3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "AUX_VCC3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+	};
- };
- 
- &uart0 {
-@@ -30,3 +38,19 @@ &uart0 {
- 	pinctrl-0 = <&uart0_0_cfg>;
- 	status = "okay";
- };
-+
-+&usb2_host {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	hub@1 {
-+		compatible = "usb1a40,0101";
-+		reg = <1>;
-+		vdd-supply = <&aux_vcc3v3>;
-+	};
-+};
-+
-+&usb2_phy {
-+	status = "okay";
-+};
-diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/spacemit/k3.dtsi
-index a3a8ceddabec..52be168a0496 100644
---- a/arch/riscv/boot/dts/spacemit/k3.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
-@@ -438,6 +438,37 @@ soc: soc {
- 		dma-noncoherent;
- 		ranges;
- 
-+		usb2_host: usb@c0a00000 {
-+			compatible = "spacemit,k3-dwc3";
-+			reg = <0x0 0xc0a00000 0x0 0x10000>;
-+			clocks = <&syscon_apmu CLK_APMU_USB2_BUS>;
-+			clock-names = "usbdrd30";
-+			resets = <&syscon_apmu RESET_APMU_USB2_AHB>,
-+				 <&syscon_apmu RESET_APMU_USB2_VCC>,
-+				 <&syscon_apmu RESET_APMU_USB2_PHY>;
-+			reset-names = "ahb", "vcc", "phy";
-+			interrupts = <105 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-parent = <&saplic>;
-+			phys = <&usb2_phy>;
-+			phy-names = "usb2-phy";
-+			phy_type = "utmi";
-+			snps,dis_enblslpm_quirk;
-+			snps,dis_u2_susphy_quirk;
-+			snps,dis-del-phy-power-chg-quirk;
-+			snps,dis-tx-ipgap-linecheck-quirk;
-+			dr_mode = "host";
-+			maximum-speed = "high-speed";
-+			status = "disabled";
-+		};
-+
-+		usb2_phy: phy@c0a20000 {
-+			compatible = "spacemit,k3-usb2-phy";
-+			reg = <0x0 0xc0a20000 0x0 0x200>;
-+			clocks = <&syscon_apmu CLK_APMU_USB2_BUS>;
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		syscon_apbc: system-controller@d4015000 {
- 			compatible = "spacemit,k3-syscon-apbc";
- 			reg = <0x0 0xd4015000 0x0 0x1000>;
+Yu-Chun Lin (3):
+  pinctrl: realtek: Fix function signature for config argument
+  dt-bindings: pinctrl: realtek: Improve 'realtek,duty-cycle'
+    description
+  arm64: dts: realtek: Add pinctrl support for RTD1625
+
+ .../bindings/pinctrl/pincfg-node.yaml         |    6 +
+ .../pinctrl/realtek,rtd1315e-pinctrl.yaml     |    7 +-
+ .../pinctrl/realtek,rtd1319d-pinctrl.yaml     |    7 +-
+ .../pinctrl/realtek,rtd1619b-pinctrl.yaml     |    7 +-
+ .../pinctrl/realtek,rtd1625-pinctrl.yaml      |  260 ++
+ arch/arm64/boot/dts/realtek/kent.dtsi         |   20 +
+ drivers/pinctrl/pinconf-generic.c             |    2 +
+ drivers/pinctrl/realtek/Kconfig               |   14 +
+ drivers/pinctrl/realtek/Makefile              |    1 +
+ drivers/pinctrl/realtek/pinctrl-rtd.c         |   68 +-
+ drivers/pinctrl/realtek/pinctrl-rtd.h         |   37 +
+ drivers/pinctrl/realtek/pinctrl-rtd1625.c     | 3138 +++++++++++++++++
+ include/linux/pinctrl/pinconf-generic.h       |    3 +
+ 13 files changed, 3562 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/realtek,rtd1625-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/realtek/pinctrl-rtd1625.c
 
 -- 
-2.53.0
+2.34.1
 
 
