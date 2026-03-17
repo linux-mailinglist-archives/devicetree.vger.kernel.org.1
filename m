@@ -1,185 +1,162 @@
-Return-Path: <devicetree+bounces-276479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276480-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iPNdDV35uGkumgEAu9opvQ
-	(envelope-from <devicetree+bounces-276479-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 07:49:01 +0100
+	id MPr+DYL7uGkTmwEAu9opvQ
+	(envelope-from <devicetree+bounces-276480-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 07:58:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5FC02A4718
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 07:49:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D76A2A4870
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 07:58:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 656E6300F12A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 06:46:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 42A48300952D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 06:53:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0A6333F8A4;
-	Tue, 17 Mar 2026 06:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C61F347BC5;
+	Tue, 17 Mar 2026 06:53:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="D0au6Zbv"
+	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="mzTpzJAz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ultrarisc.com (unknown [218.76.62.146])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5A5D33BBC6;
-	Tue, 17 Mar 2026 06:46:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=218.76.62.146
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773730012; cv=none; b=X0wHKmLe3xoqU8qX6p/YSmBUd+ZdRIdAkl3WGmzAZQ9WObXDD9cvAHw2dtqiLkM6N43mnDaQcD/AMWS4smRGtRk+7Tl+v/fuqa5oWk+MKH1RECI11QFREUncnoagnyVYZklzuPvZLtbvxrxA1QTrt0EZFQaCtNYUUMR+YkfB0R8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773730012; c=relaxed/simple;
-	bh=Wh4r1tJxW/lcrM+5/s3mKCV9XBfeqG6hKDHxb5EPDGw=;
-	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
-	 References:Date:Message-Id; b=ONU0Jwxvd7EYjdeoHJhTSQqkBfzY02NbseRl7HJFHGk6DvoHpOTk7wWN7YiO7UFqxyDN8uL8oFsu5YzBo1RRz8TyJXjIGKP95D8pKhVfzOPv5tH1yaWPSSA1L4IfI/2VggYrgfztsgXnwjorduLI2QrHjVR8dD4kfvglwhH9D28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=none smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=D0au6Zbv; arc=none smtp.client-ip=218.76.62.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ultrarisc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ultrarisc.com; s=dkim; h=Received:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Subject:From:To:Cc:In-Reply-To:
-	References:Date:Message-Id; bh=gIoVGh7it5fMYUkkNLHp8OH2p11aLnm6q
-	S09VmO8Afg=; b=D0au6ZbvipQmgQNRbvlxf2uZ8Ml+cTM36jHoo5umNmfQ8QwgF
-	VfdEXq7RkCDI2C3cKihBZeQI7ETx0dZJQWQFEdrAootKoX8uGDyp65rL2HY1HNW5
-	BY+NeKxuRcv55W77ImFvfnr38gFl7fCgCN/VeOG1jqr0kdjZRB/RTQ4xO0=
-Received: from [127.0.0.1] (unknown [192.168.100.1])
-	by localhost.localdomain (Coremail) with SMTP id AQAAfwAXxSTy+LhpU0cBAA--.1123S2;
-	Tue, 17 Mar 2026 14:47:14 +0800 (CST)
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37ED4347BA7;
+	Tue, 17 Mar 2026 06:53:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773730400; cv=pass; b=oLH8a14Ch/BVrVSU/3LUfYwLR0uJUWyrkpHR6/UCYhJ4xU9Tv7AIOCjj2Sr8xGECwRXHUdJuB0/YvKPgkQOnjkX4UVxr9+p3y3WFJuTdjLP5FbloUxeRqdxat1wXOwHkSb2aAeK03kQugCypV+gjVeyVDoeaOvoxSKb9PybE0Rk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773730400; c=relaxed/simple;
+	bh=t1lemcuhNmcRliEdHa/lLCE5IkwxTqUwZS0pZ7M4mN0=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=UDrVBDddqcTskOFseYRM1dihOcLPn6vz3JxEMsLyLtjWZdC60LHAh2I7dN5rnSHKcaEOAYg/JFERFur6v1xJu7Xg9/45ZqBavg8K04CzcqMkSohYhfWrig5EAzelCCTuJKo/EZHTSLpc8DXYbbHMRvJVhBzlrhEQnNbZTYFSLZM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=mzTpzJAz; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
+ARC-Seal: i=1; a=rsa-sha256; t=1773730375; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=O6F4vfO27BhBgsN3Ujy+LtSzFdCuHLO/IeOMoxw9yMu53IRZLX1XxN67TSpJV92anSu5AWt2LdJzbkoJwXCSzDgTlO2YPDtlRq8AGBIrZfrm39oYgsTIKl3P/a0IYLXn4hNm75s26AJCddxfpVC0BSDvGTKx/gCe8BKLR7zwrfc=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1773730375; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=r6x359z7LUVYIlGpCkt6UIl3c41zccuqshUShGS4DHY=; 
+	b=e7R1IAjUPyDZ2Ye0k3mmjAM5TWsjKFUhVYfeniN/NkcYvbRBZB5SzupB2pQYUUk3KNr8Zps+7EAB1RsJNNXziC1jprgB9sJij8xpSCpsoAcCJHDc0ElX3duMK1/FkM2zrjKGrvymwgNzj/yIE70h1ju10AF4iLUcRe1rbs9kKjY=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=pigmoral.tech;
+	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
+	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1773730375;
+	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
+	h=Mime-Version:Content-Transfer-Encoding:Content-Type:Date:Date:Message-Id:Message-Id:Cc:Cc:Subject:Subject:From:From:To:To:References:In-Reply-To:Reply-To;
+	bh=r6x359z7LUVYIlGpCkt6UIl3c41zccuqshUShGS4DHY=;
+	b=mzTpzJAzBRKZxiOK12kTEebg9Tk2UIrEvu6fEsRwoC7w3gM32G3kCOjiW2ZekerT
+	jMq+pfu7laCjLfzycupCNZ1lv2HdmvSx9TcArqsnSFYsQzC9WBr57G7w5aGoytVYCaB
+	oxK1IJiUOaSOeou/NJulhapgAgMhWLbjwFJ3noKs=
+Received: by mx.zohomail.com with SMTPS id 1773730373624551.8839282460517;
+	Mon, 16 Mar 2026 23:52:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH 1/4] riscv: add UltraRISC SoC family Kconfig support
-From: Jia Wang <wangjia@ultrarisc.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Jia Wang <wangjia@ultrarisc.com>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>, 
- Xincheng Zhang <zhangxincheng@ultrarisc.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-riscv@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
- devicetree@vger.kernel.org
-In-Reply-To: <20260316-powdery-unbundle-b1166d13f53b@spud>
-References: <20260316-ultrarisc-pcie-v1-0-ef2946ede698@ultrarisc.com>
- <20260316-ultrarisc-pcie-v1-1-ef2946ede698@ultrarisc.com>
- <20260316-powdery-unbundle-b1166d13f53b@spud>
-Date: Tue, 17 Mar 2026 14:46:24 +0800
-Message-Id: <177372998464.49340.13796019002628537253.b4-reply@b4>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773729985; l=1669;
- i=wangjia@ultrarisc.com; s=20260309; h=from:subject:message-id;
- bh=Wh4r1tJxW/lcrM+5/s3mKCV9XBfeqG6hKDHxb5EPDGw=;
- b=ILj7unpHtMHqWmjlLI7/tPGnunhwSsS8Xtq1iZbRucVP8vowTNh4jyI+qbH5QarPUFQzPy/4t
- oNPEPJb4jhzCT7Eu7JSn7WY9jScPJmDP1wK6D+CRtY1UamBX4EkSEux
-X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
- pk=XvYkrelqJIIzobY7j+nIg8rsfv5kzaOzuc1UPhd087U=
-X-CM-TRANSID:AQAAfwAXxSTy+LhpU0cBAA--.1123S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7tF48Xr1UAryftFyUZFWkZwb_yoW8Wr17pF
-	s5CF1rCFsxGr1fCa9aqw45urWI9F4v93y5Zr1Duw18AFs8Cry5C3s7tr13X3WDZFZ8Crna
-	gFyru3W3ua15uaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUU9l14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
-	6F4UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
-	4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
-	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
-	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
-	n2kIc2xKxwCY1x0262kKe7AKxVW8ZVWrXwCY02Avz4vE-syl42xK82IYc2Ij64vIr41l4I
-	8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AK
-	xVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcV
-	AFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8I
-	cIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r
-	4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjTRNJ5oDUUUU
-X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAJEWm47wkAAgAAss
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
-	R_DKIM_ALLOW(-0.20)[ultrarisc.com:s=dkim];
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 17 Mar 2026 14:52:44 +0800
+Message-Id: <DH4UXSB5ZT12.2ZL6R3FWUR6GN@pigmoral.tech>
+Cc: <pjw@kernel.org>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
+ <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <gaohan@iscas.ac.cn>, <me@ziyao.cc>, "linux-riscv"
+ <linux-riscv-bounces@lists.infradead.org>
+Subject: Re: [PATCH v4 3/3] riscv: dts: canaan: Add mmc nodes for K230
+From: "Junhui Liu" <junhui.liu@pigmoral.tech>
+To: "Jiayu Du" <jiayu.riscv@isrc.iscas.ac.cn>, "Junhui Liu"
+ <junhui.liu@pigmoral.tech>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260315054426.18383-1-jiayu.riscv@isrc.iscas.ac.cn>
+ <20260315054426.18383-4-jiayu.riscv@isrc.iscas.ac.cn>
+ <DH49Q7OQSIYM.1RD7H0L809JQV@pigmoral.tech>
+ <abgp0PT4GHRwmaLy@duge-virtual-machine>
+In-Reply-To: <abgp0PT4GHRwmaLy@duge-virtual-machine>
+X-ZohoMailClient: External
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	MV_CASE(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[pigmoral.tech:s=zmail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-276479-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[ultrarisc.com,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,google.com,gmail.com,lists.infradead.org,vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[pigmoral.tech];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-276480-lists,devicetree=lfdr.de];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DKIM_TRACE(0.00)[ultrarisc.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ultrarisc.com:dkim,ultrarisc.com:email]
-X-Rspamd-Queue-Id: D5FC02A4718
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[junhui.liu@pigmoral.tech,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[pigmoral.tech:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,iscas.ac.cn:email,pigmoral.tech:dkim,pigmoral.tech:mid]
+X-Rspamd-Queue-Id: 8D76A2A4870
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 2026-03-16 14:39 +0000, Conor Dooley wrote:
-> On Mon, Mar 16, 2026 at 03:06:57PM +0800, Jia Wang wrote:
-> > The first SoC in the UltraRISC series is UR-DP1000, containing octa
-> > UltraRISC C100 cores.
-> > 
-> > Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
-> > ---
-> >  arch/riscv/Kconfig.socs | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> > 
-> > diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-> > index d621b85dd63b..f49d3ccaacde 100644
-> > --- a/arch/riscv/Kconfig.socs
-> > +++ b/arch/riscv/Kconfig.socs
-> > @@ -84,6 +84,16 @@ config ARCH_THEAD
-> >  	help
-> >  	  This enables support for the RISC-V based T-HEAD SoCs.
-> >  
-> > +config ARCH_ULTRARISC
-> > +	bool "UltraRISC RISC-V SoCs"
-> > +	depends on MMU && !XIP_KERNEL
-> 
-> Why do you depend on "MMU && !XIP_KERNEL"?
+On Tue Mar 17, 2026 at 12:03 AM CST, Jiayu Du wrote:
+> On Mon, Mar 16, 2026 at 10:15:27PM +0800, Junhui Liu wrote:
+>> Hi Jiayu,
+>> Thanks for the new version. Just a friendly reminder.
+>>=20
+>> On Sun Mar 15, 2026 at 1:44 PM CST, Jiayu Du wrote:
+>> > Add MMC nodes to K230, including eMMC and SDIO. Enable HS200 eMMC
+>> > on the SoM and SDIO high-speed on the board.
+>> >
+>> > Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+>> > ---
+>> >  .../boot/dts/canaan/k230-canmv-dshanpi.dts    | 56 ++++++++++++++++++=
++
+>> >  .../dts/canaan/k230-canmv-module-dshanpi.dtsi |  7 +++
+>> >  arch/riscv/boot/dts/canaan/k230.dtsi          | 28 ++++++++++
+>> >  3 files changed, 91 insertions(+)
+>>=20
+>> [...]
+>>=20
+>> > +
+>> > +&sdio {
+>> > +	bus-width =3D <4>;
+>> > +	max-frequency =3D <50000000>;
+>> > +	pinctrl-names =3D "default";
+>> > +	pinctrl-0 =3D <&mmc1_pins>;
+>> > +	vmmc-supply =3D <&vdd_3v3>;
+>> > +	vqmmc-supply =3D <&vdd_3v3>;
+>> > +	cap-sd-highspeed;
+>> > +	no-1-8-v;
+>> > +	status =3D "okay";
+>> >  };
+>> > =20
+>>=20
+>> It seems the broken-cd property we discussed in the previous version is
+>> not added, and also my Tested-by tag (for the whole series). Was this
+>> intentional or just an oversight?
+>>=20
 >
-Hi Conor,
+> Sorry for that, It was a oversight. I will fix both.
+>
+> And I will only add your Tested-by tags to patch [2/3] and [3/3].
+> Is this correct?
 
-Thanks for the review.
+That's fine, Thanks.
 
-The dependency on "MMU" was added conservatively, but the DP1000 hardware
-does not strictly require MMU. I will remove this dependency in the
-next version of the patch.
-
-The "!XIP_KERNEL" dependency is retained because the platform does not
-support executing the kernel directly from storage, so the kernel
-must be loaded into RAM before execution.
-
+--=20
 Best regards,
-Jia 
-> > +	help
-> > +	 This enables support for UltraRISC SoC platform hardware,
-> > +	 including boards based on the UR-DP1000.
-> > +	 UR-DP1000 is an 8-core 64-bit RISC-V SoC that supports
-> > +	 the RV64GCBHX ISA. It supports Hardware Virtualization
-> > +	 and RISC-V RV64 ISA H(v1.0) Extension.
-> > +
-> >  config ARCH_VIRT
-> >  	bool "QEMU Virt Machine"
-> >  	select POWER_RESET
-> > 
-> > -- 
-> > 2.34.1
-> > 
-
+Junhui Liu
 
 
