@@ -1,411 +1,272 @@
-Return-Path: <devicetree+bounces-276422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276423-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2GhdOTG+uGn0igEAu9opvQ
-	(envelope-from <devicetree+bounces-276422-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 03:36:33 +0100
+	id gAO5CaHBuGkfjAEAu9opvQ
+	(envelope-from <devicetree+bounces-276423-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 03:51:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0EE42A2D7A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 03:36:32 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 571362A2EF5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 03:51:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E657E30131C6
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 02:36:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 10D7830185CC
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 02:51:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E5A4243376;
-	Tue, 17 Mar 2026 02:36:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9045B346797;
+	Tue, 17 Mar 2026 02:50:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JyGjYvFo"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="B2MMwceW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010030.outbound.protection.outlook.com [52.101.228.30])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A91E18AE2;
-	Tue, 17 Mar 2026 02:36:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773714987; cv=none; b=RTYvkMkCBy52YYTzrTDazLu+pWsonle6KaI5La2MruYNrlBSxI0M8Vp68vZpjxhel+JqFxNeU7qEpLMgTRxaM3cXO/NXvcLyjyX4NWH0gYgSSrFisFKDpTe9Fk7WN7X0w2TnvouA+YbywEWWcqfZOyVk4a/+65OxMOskMdyGQXQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773714987; c=relaxed/simple;
-	bh=4RTD/yVfz8nqsxqv6oLXhqKEvwwMZcuh5/dmklf76I4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=PYjfGjP8X+BpXVDmNq55JqZ0vdSWvdVxOS6YiqfGiJak9rp+KTRL1ZCs724riZSGfThA0rGLlgVfokE8SqSUkFNAzDDpqDwQKjluwgC1ywoeM6cZmxhzjg3yzzu/J8ODCgB84Eo4UjTumXwS5tX98j5v0ybJIsGv3OoiYR6pN84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JyGjYvFo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95AB1C19421;
-	Tue, 17 Mar 2026 02:36:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773714986;
-	bh=4RTD/yVfz8nqsxqv6oLXhqKEvwwMZcuh5/dmklf76I4=;
-	h=From:Date:Subject:To:Cc:From;
-	b=JyGjYvFoyfE9oPqs1rRlWVBmC5wSFXmU7DuOSZcq4KZ2/S6LzlfovTOILdNskGqal
-	 PMMgdlVW4OwgUjehNbEsRyp92Ek0b2fxXjBIyt9JSnsvvPmfCoCQbafl10yZKlnf0L
-	 ADJ0u6lid7enblKVPeUxfF5Hahz+IWS2d5fevTOoudOj5SxLid511xrSBN3DUQ56AX
-	 vpgSO6nWrEe6dNPc+Uj2UHQzR/8Bd8+53afi3WF89VSq5/AUI4y0UhItKR2GvLwCU/
-	 3dMxuR9m4tPzWBfLSZJJNQufHKEJmLFrQWR4tbWpdDVCTkPbBN1WZA2cNw30WKJaMN
-	 5ZYP9spzX4IDA==
-From: Yixun Lan <dlan@kernel.org>
-Date: Tue, 17 Mar 2026 02:36:17 +0000
-Subject: [PATCH v3] reset: spacemit: k3: Decouple composite reset lines
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E312329C351;
+	Tue, 17 Mar 2026 02:50:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.30
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773715858; cv=fail; b=MHOybKw7SKFHJCh6I2w96IsVzijKAMyDTqFehB4MxgszYoWnXBekXS0FWo8WzBYUmfueCq+LZsOb+6A7Ffpx3ceyO4F/Cg1FAEKqeo2h1188QwCrle0WySUqTvz6aKI5Eg8qOI/Lqkp8LgTy+Wig8RuCQ5/NmQ1cNVJgcIGD030=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773715858; c=relaxed/simple;
+	bh=3I9d/RAVDDj5F0cb5oyyaaksqOvjGOLyAaLTlDwiSdc=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=V8VWYfyGKjtW0v+6/1s9vOmCl54DvZqKHk1FoM7CoNyxvAYi4DCmWJbereI/yQysZPspp/J2JsJqeA/kXH9xe11XhyCnWdAw4dqadLDob3pjvgPpd6Uw0rTgwGaTsgdFkxi8x4ftewImg7CCegSrMJwMKNSjzKP4PFLnj8fFpk4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=B2MMwceW; arc=fail smtp.client-ip=52.101.228.30
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=S0u93+RhEh+/mfimlCxCeecv9GYGMrFfZIsMsu4UQjLMkJzLhFC86TDwk1CryX7bob3bP2/zOk6IwUQr5HRv5uy22+XUU2BWy3yD0iiwVXOZUJ2GTmaTirA+UqX9TO3dL7K0Qoc+WZ/UXJJLP4FS9JV4XVJtCUEiVYonSCyjtDWxMxQvi3AJ5+oOqFLf/uQkG8lzHeG5yO2HkyK1/4RsMA1JrlYOqGHlcGEXqOhXa8ZI4xgGN3f6TvGk89MrLaIeA4RC7u6DvZNqc46KZfujTvvNIP3Yd8zgn3JBjiu8r5ZLNiy2cNHCFfBY55AsmST8fuP9zeVyQLXDjfCezUMeXw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3I9d/RAVDDj5F0cb5oyyaaksqOvjGOLyAaLTlDwiSdc=;
+ b=x7ALbedM7/FsXvuW6aqjPLDaRs539qXRvg1vOo2Ap6BGJbf3vK/5kAcJ97pSE7oFzVr4Ca/v7KUE8ZxftuUVUeimE51qrX/QHCkQGq0Zu+Q5wlsus+Y+46cfne6isecBky3FudAUdS+4zdE7QLGMgfV7ZeKZF81WYeWKA/hHsbCSEIsNeiBu4wv5uJDqfZyPe1Bna4MWM0EduY9pUS3w9lab8MT1OzK/qWgDGXg0ywaBoJLkGLc+Rxi9MoEKznTAebtZKFjisUIo+Pc68XierQ8faP+kGEVVNYYPXIXL9NDfbvV3XqMgGFXBYPewQlmE+jkLCJfGUzR8DmPwpL382w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3I9d/RAVDDj5F0cb5oyyaaksqOvjGOLyAaLTlDwiSdc=;
+ b=B2MMwceWklev5htKyhnitjULi2kgG/Ajjjcq9gbdvOa3Tq9JarCKzulIqmqGszzXiiQ6Y6deyPkmPhMkDfUKEReXuP90By7BU9Ao5KL96xQcK8mL2JUg5wy4oqc9r0a7P8I49WLQaiAfN7F/LjqWUlYkd4wT1FnF/iqFZ9v0a6c=
+Received: from TYWPR01MB11935.jpnprd01.prod.outlook.com (2603:1096:400:403::9)
+ by OS3PR01MB8619.jpnprd01.prod.outlook.com (2603:1096:604:19b::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.25; Tue, 17 Mar
+ 2026 02:50:51 +0000
+Received: from TYWPR01MB11935.jpnprd01.prod.outlook.com
+ ([fe80::dc30:6b24:b7ba:d429]) by TYWPR01MB11935.jpnprd01.prod.outlook.com
+ ([fe80::dc30:6b24:b7ba:d429%4]) with mapi id 15.20.9700.021; Tue, 17 Mar 2026
+ 02:50:38 +0000
+From: Dawei Liu <dawei.liu.jy@renesas.com>
+To: Guenter Roeck <linux@roeck-us.net>
+CC: "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"corbet@lwn.net" <corbet@lwn.net>, "skhan@linuxfoundation.org"
+	<skhan@linuxfoundation.org>, "geert+renesas@glider.be"
+	<geert+renesas@glider.be>, magnus.damm <magnus.damm@gmail.com>, Grant Peltier
+	<grant.peltier.jg@renesas.com>
+Subject: RE: [PATCH 1/2] hwmon/pmbus: (isl68137) Add support for Renesas
+ RAA228942 and RAA228943
+Thread-Topic: [PATCH 1/2] hwmon/pmbus: (isl68137) Add support for Renesas
+ RAA228942 and RAA228943
+Thread-Index: AQHctQbDkW20DY/ie0a0y/sLcaddmrWxTl2AgACzpgA=
+Date: Tue, 17 Mar 2026 02:50:38 +0000
+Message-ID:
+ <TYWPR01MB11935E8EA8F851E93FFE271F1D541A@TYWPR01MB11935.jpnprd01.prod.outlook.com>
+References: <20260316053541.3903-1-dawei.liu.jy@renesas.com>
+ <35c39de7-773a-4f94-b495-97eb25555a71@roeck-us.net>
+In-Reply-To: <35c39de7-773a-4f94-b495-97eb25555a71@roeck-us.net>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYWPR01MB11935:EE_|OS3PR01MB8619:EE_
+x-ms-office365-filtering-correlation-id: 1bb300e7-fc5c-4e22-4fb9-08de83cff85e
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|376014|7416014|1800799024|38070700021|56012099003|18002099003|22082099003;
+x-microsoft-antispam-message-info:
+ dXWPLhzepCZY8Ds2vGYpgFX78FqIX0S+ANwLQNy8jlCO0hWZReb+4mG2p288o6twd0St+mQRZH9BLU+E3qnKDUtUmleZR4figGOsM//4ngTPyJSnHz+OXHnl+rP05tdeTdLx6zuOAfJufxAopE0MHg1kdo++uazuYm5NZC/QBje6LoAUrFknhQCbCTkgnmnhL+XWLsGhZnH0gjFHEFT8yUQNZaqYAt9xfPjlBAGVqn6Kmno9qp2GlR8ctAQZeGGYyiPw72jRuatoSLGFbqWzHR4wfP1AIqLyCv8/BzpjeEeBCDSEXFMCjIES0qcIzhZk/Sx4OIJ08uUS2sbjy898tZq0fYb6skq0W3C7fSG4dVOTnjCbDYoiU+kRNUHVTDg9EbhQ7kUTrkN8KiGMjJ+WUtjNsIXN+dXeQ0G0iqjFNpDvav0ej5VNy4WU+435qjzEl5jIK7EXjP845Gda+0vhifaRGfPDcM5fFbiZ3myXTyiQURaDFhcEy9ijxDv4DDAlXNn+N0MX9i6aGH0eQ046LwtEwzuUI49puFbCJEgyzgQbItZPp7/ZqR/P5pYkpibOZyxWGZPd6oBSdi/pC8k8tITUboLLz/ycVNwBPoyqrHjFtuzXkwztkQrAmsiZ7pnrlqayecGQrlO+SJb/PpNodPgAdN5ujnR+qmp0e0mCukUMQCYhyB0aY/74tHehpRWtR2Bynsjw02vUFv+EXJg+U/QRkidrkqFpqCk4MUBWnsNNZrzM+g+mQElpr9fJUdnR0omxLnqcIngXkOjQrfkC4LFqnc7o1SZFH0rHPbfBC+w=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYWPR01MB11935.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(38070700021)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?V05TSUVCTGU4ekJOT2VZbWQ4MWcyUkpiRG1yT3ZJUGgrcEN0R2NMZzVDWk5I?=
+ =?utf-8?B?K3pHU1BTRGNWZytJWTVpNU9HSUs1TkxMd2pIMjlFNGtnUEdvcjNBejhlTzZ1?=
+ =?utf-8?B?VTJXdlo0eXlTMjJxYjROU3RwekFjNkFqaWtnNkNDMEpvaEFrSlU2UnpPRGpN?=
+ =?utf-8?B?MGVnTkk2V0NWWGhudytobzF3eUZzb3dkS0F6b2JxK2ZxSDRDbmRvUnBUS3R4?=
+ =?utf-8?B?dC96SEdBOW50MzFLajd6RUVyT0paVkVVNXpBYWtjaXhxQmd6RkRhZ2M2K0Mz?=
+ =?utf-8?B?R251RWFqcjhldy9TRklVWVVPRDNibmt2dXVYTGpIRklzOUhHVnlXKzJGZ0Rp?=
+ =?utf-8?B?bFE2dEhURlZjdmo1Y1JCa2pwSlQvRjZ3U2s1b2I4eTBoU2Radng5OGMwT0JH?=
+ =?utf-8?B?eGQra0I4NlhYakY1MjY5MEFIVzNHV1EwdTh1UFRwR29UKy9PbUgxMTdySGww?=
+ =?utf-8?B?M3JtSk5TQVlNNERSQ3JkYnllSTJCeXhsaWZJM1NRaUN0Qnl3QlkrWjdCUDZn?=
+ =?utf-8?B?M2xiTDBBT2F0QUs4Q3FCZStiekVxMjduK3RCck1NVHkwWXEzaHY3UlBHOHQr?=
+ =?utf-8?B?NW1EVjJxRDZNd3VyazBKTlNQTGFZWVRhS25EcGgrbktCZ2VVam1sYVBicFBI?=
+ =?utf-8?B?bkprOURUS0d3Z1RSQWNZZGJGMmlVcU5PeGxPU29hV1ZWT0ZFa1JLYWdjS1Uy?=
+ =?utf-8?B?UVVITWhBUTBkUmxKbDVQNTRZaElnN1RkLzJQV2RnMXEyNVZzVFNHZitvY3ZU?=
+ =?utf-8?B?WjdGTVNxNTlRVFBmY2RZV3V1UHUzUlRGRGVXam80V01KdEZLczhoM2JTb284?=
+ =?utf-8?B?TE5rZ0Z4aklSR2psd0QrVG9kUy9TQXZjVlVZd3lvc3VOQzliV2kyRHlWRHJr?=
+ =?utf-8?B?QXkrREFCRVdDbTZNaDREclBiek9UWUVlZU4waEw0S2tpeXB3Tjh1UjlISGdZ?=
+ =?utf-8?B?R2Z6ajJNNEkrSEpDVi9ieEhRQ1FTdU0xa00zL29ldStCUFZhZ2NHNzJlZmNj?=
+ =?utf-8?B?aStoSTJTa3lsYlF3cGhXYWZHR2hCODBNM2F5VnVVZE9CcWV1TW5SRkRxVWRE?=
+ =?utf-8?B?QWdRM0lNanIwWGJ5a1VkZnlDajZYT1NvMnJvUFRmcFhHMkVFbUIyaE4xalZN?=
+ =?utf-8?B?YjNXUjBFL2VsZjR4Y3VYN21nVDVnbmxrWkxWTzh0SUdLVTh0RHNKTjJvN0wy?=
+ =?utf-8?B?RmVha0dYQXFPd04raG9lcSthRUhXN0JNdkZKRnJET1hGZUo4YkpJZVVqdmtP?=
+ =?utf-8?B?UVNlM0oxMmlWOXBQeUVpUzgyYTJXRENyQlcvYW40V1FUSUxOVlphdlNVZDRu?=
+ =?utf-8?B?RXlYU05vTmVjaW1SR2Y0cS9BQ1l3ZXAxNzNLOTRHekkwRE9qNDlqVVh2VzlP?=
+ =?utf-8?B?S01sUUg3ekNGNmE3UHJNZTBteUM2RWJKV09MMDJOMmNhY0tVdmtjQzhJWk9m?=
+ =?utf-8?B?d0RUTlB2Ukttb3hzTFppVTJiVFMwNVpYbGpsWEJFbFhrbHRuR04rQTh2clh1?=
+ =?utf-8?B?R01VTTNOcFVqQzlEbVhDM2ptQWNqVUxUZ28wUkdMK3JLUXc3ZGR1ZE5MR0t5?=
+ =?utf-8?B?N29pV2JHUGZlNHVvaG5DVk92aHpnNDk3N3VGMGJVOWRIbyt5UU5wNkNMVFpl?=
+ =?utf-8?B?Ry90ZjB5WW5RUTF3VUFkdDNBU21tREszR05DaHRaYlUxLysrbVdOUjRiaFZT?=
+ =?utf-8?B?Ukxxb2orbWo4cVZNOW9FVThOLzE2RHZtbVlVZEQ3dENYd0VOYmlsSDZtVEN3?=
+ =?utf-8?B?UzlVd0pkV3FudVdPRk5vR2k3SEM4dVRtditaWkV5cjMxZWs4UnJMYlVxc003?=
+ =?utf-8?B?amgvZTVneW5sUlp0L25VMzV1K1cxOXhWRHBEVEpwRk5nVzhuK2xyTE9QSHFI?=
+ =?utf-8?B?MjYwL3lRUXFHVEUvL2xvREZjQVFDQjFoRUwvRkozdlNHdjYxQ0o2WVpxQTli?=
+ =?utf-8?B?K2U1Z2RQVHNja25lalpFSkNLc3Z3ZkVIMkMvZnc4VnFjQzdxUVF5ZVJVQ2dt?=
+ =?utf-8?B?QXJ6TFhZekZRTnZ6NjRjMTY4OUt0c29aL2lCNVI2VXFlNVdKQkFzYTROSW5p?=
+ =?utf-8?B?a0pvRFlaekxMOHFmSVl2dkM4cWxTanVPblZnQytTZEZKcGg4dVN0ejhEK25X?=
+ =?utf-8?B?YUJaNkpDOEh1RGRoNy9VZlYvZlgxN2c5NnV3UHBvTk1CeFZLajI3RnB1aGhi?=
+ =?utf-8?B?MklScVdvb2VRdGV4VytQenhmZFA5aVU0RHRxTFE0T0xXU2tWMUg0NExHZm93?=
+ =?utf-8?B?ZEtsa2FaM1gvd3dETGhZYlB6TDdhVVpnMW5nRnVTcW9DVjY0SjRJaGVKd2t3?=
+ =?utf-8?B?VGdGck8rWXVOU1pEaG44U0RNRUIybnJ2MkhKaVlOaEFHRzg1d2xQZz09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260317-01-k3-reset-usb-pci-v3-1-e4b9a43c7d45@kernel.org>
-X-B4-Tracking: v=1; b=H4sIACC+uGkC/33NQQ6CMBCF4auYrh0znRYIrryHcVHoAA0GSIuNh
- nB3CytNjMv/JfPNIgJ7x0GcD4vwHF1w45BCHQ+i7szQMjibWhBSjkoSoIRegefAMzxCBVPtwFp
- E05giy6UR6XLy3Ljnrl5vqTsX5tG/9idRbut/L0pAQKKKdFUojc2lZz/w/TT6VmxgpE9E/0YIJ
- JS2xrLIbUaav5B1Xd/twA1F/AAAAA==
-X-Change-ID: 20260312-01-k3-reset-usb-pci-dd00afa7561a
-To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Junzhong Pan <junzhong.pan@spacemit.com>, 
- Guodong Xu <guodong@riscstar.com>, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Yixun Lan <dlan@kernel.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=13998; i=dlan@kernel.org;
- h=from:subject:message-id; bh=4RTD/yVfz8nqsxqv6oLXhqKEvwwMZcuh5/dmklf76I4=;
- b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpuL4k2K9YyCxu7zijmW/LDkGYpELbhu9DSb+5c
- 1y2CGdAEwGJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCabi+JBsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
- maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
- QACgkQMarqR1lNu+1GDg/+IJTWeYNanQDfVPNx5r+Z3XvOlPtUqLEsoEe++OcZZFE7VaNKzZCWa
- nbqXhrmnpbrvJCKY4b1SEpXyAeQ1VMbhixk6w55cNTVxcwuUfDY9byLHuYIoVN6lY6HRabwt0vQ
- YKuzSWpuOYGhVUF/Z+q+BRSnBN5YD5/H8AZ9TFsYsjzY4yknzRk8SNkE8vn2LnTWiu1CTHgMPIj
- BL+0FTuLZYP8yotEIjsQLmDvH6+PeEZ55+X3cfv3Elpx+XGH5lngEfG5oNoHWi8s4poHVO+vskb
- 7919DyVNPNcsMU8vi6VIAVHxR9hw8kf5dJSUsNxCg/bT0PGufA0hFdUd1t2eDXjgsXKAaq42T79
- 1oihd863CRPMouvnA0ZJvli1JcGFoA0shqgoMNCjogSp7gTJpxBS2YxM8UYpiDyd0Mc/tD4Af8Y
- eNiw0x+jwaS8mDd4y7MMMFKzdD96nOqC6gRjVTE2UY94OAFLxcoESHU37jeUepn22rCQZotsdyc
- f79mPFOts+8wEHaijwV3iml97DclmU3aII7z/qK7QWvUzWS3LPcAESE0nFanjJy2cGtbITK9Gyd
- LDg2LAq4y+YSW3KLWU0s4qKzgCa5XKW2UFUfQ23ah4wIjOUTQmj2G9uldaMJyR4uGFHkkOXr12q
- 7siXZUU9VhbEX0fjm1rh3fw1G561Q8=
-X-Developer-Key: i=dlan@kernel.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYWPR01MB11935.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1bb300e7-fc5c-4e22-4fb9-08de83cff85e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Mar 2026 02:50:38.1175
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 7mUelkjzZpgTA8lJUd+XZEhrDITId4xNPi7WtrAyxHWaWCl85XrP5tRR4hukUSxro5tk5QH0oOZbAoH7U17D3KZzkzmMcILgaPHkaI7ml/w=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB8619
+X-Spamd-Result: default: False [1.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[renesas.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276422-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-276423-lists,devicetree=lfdr.de];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,lwn.net,linuxfoundation.org,glider.be,gmail.com,renesas.com];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: F0EE42A2D7A
+	FROM_NEQ_ENVFROM(0.00)[dawei.liu.jy@renesas.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[renesas.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	NEURAL_HAM(-0.00)[-1.000];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,TYWPR01MB11935.jpnprd01.prod.outlook.com:mid]
+X-Rspamd-Queue-Id: 571362A2EF5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Instead of grouping several different reset lines into one composite
-reset, decouple them to individual ones which make it more aligned
-with underlying hardware. And for DWC USB driver, it will match well
-with the number of the reset property in the DT bindings.
-
-The DWC3 USB host controller in K3 SoC has three reset lines - AHB, VCC,
-PHY. The PCIe controller also has three reset lines - DBI, Slave, Master.
-Also three reset lines each for UCIE and RCPU block.
-
-As an agreement with maintainer, the reset IDs has been rearranged as
-contiguous number and pushed as a fix for the driver, and reason is that
-there isn't any consumer of reset driver so far, so should not cause
-any ABI breakage. Also, the changes of DT binding header file and reset
-driver are merged together as one single commit to avoid git-bisect
-breakage.
-
-Fixes: 938ce3b16582 ("reset: spacemit: Add SpacemiT K3 reset driver")
-Fixes: 216e0a5e98e5 ("dt-bindings: soc: spacemit: Add K3 reset support and IDs")
-Signed-off-by: Yixun Lan <dlan@kernel.org>
----
-Previously, the reset of The USB and PCIe was submited as a composite
-reset, try to decouple them in this series.
-
-The motivation behind is that it will will make the result more aligned
-with the hardware which describe them as different reset lines, and also
-match with the K3 dwc3 DT binding which request different reset, 
-K1 and K3 SoC share same topology of the reset line design.
-
-See the reset part info in binding doc
-Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml
-
-In V2, I've visited through whole reset driver and decouple more resets,
-which include the block - UCIE and RPCU. Also add an explanation of why
-rearrange the reset IDs as contiguous number.
----
-Changes in v3:
-- fix checkpatch.pl warning due to missing double quotes in Fixes tag
-- Link to v2: https://lore.kernel.org/r/20260314-01-k3-reset-usb-pci-v2-1-9dc0976d524e@kernel.org
-
-Changes in v2:
-- squash the two patches to avoid git-biset breakage
-- rearrange the ID to make it contiguous
-- also decouple more reset IDs - UCIE and RPCU block
-- add Fixes tag explicitly
-- Link to v1: https://lore.kernel.org/r/20260312-01-k3-reset-usb-pci-v1-0-022b24b7340f@kernel.org
----
- drivers/reset/spacemit/reset-spacemit-k3.c     |  60 ++++++-----
- include/dt-bindings/reset/spacemit,k3-resets.h | 136 +++++++++++++++----------
- 2 files changed, 116 insertions(+), 80 deletions(-)
-
-diff --git a/drivers/reset/spacemit/reset-spacemit-k3.c b/drivers/reset/spacemit/reset-spacemit-k3.c
-index e9e32e4c1ba5..9841f5e057b2 100644
---- a/drivers/reset/spacemit/reset-spacemit-k3.c
-+++ b/drivers/reset/spacemit/reset-spacemit-k3.c
-@@ -112,16 +112,21 @@ static const struct ccu_reset_data k3_apmu_resets[] = {
- 	[RESET_APMU_SDH0]	= RESET_DATA(APMU_SDH0_CLK_RES_CTRL,	0, BIT(1)),
- 	[RESET_APMU_SDH1]	= RESET_DATA(APMU_SDH1_CLK_RES_CTRL,	0, BIT(1)),
- 	[RESET_APMU_SDH2]	= RESET_DATA(APMU_SDH2_CLK_RES_CTRL,	0, BIT(1)),
--	[RESET_APMU_USB2]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
--				BIT(1)|BIT(2)|BIT(3)),
--	[RESET_APMU_USB3_PORTA]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
--				BIT(5)|BIT(6)|BIT(7)),
--	[RESET_APMU_USB3_PORTB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
--				BIT(9)|BIT(10)|BIT(11)),
--	[RESET_APMU_USB3_PORTC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
--				BIT(13)|BIT(14)|BIT(15)),
--	[RESET_APMU_USB3_PORTD]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
--				BIT(17)|BIT(18)|BIT(19)),
-+	[RESET_APMU_USB2_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(1)),
-+	[RESET_APMU_USB2_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(2)),
-+	[RESET_APMU_USB2_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(3)),
-+	[RESET_APMU_USB3_A_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(5)),
-+	[RESET_APMU_USB3_A_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(6)),
-+	[RESET_APMU_USB3_A_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(7)),
-+	[RESET_APMU_USB3_B_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(9)),
-+	[RESET_APMU_USB3_B_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(10)),
-+	[RESET_APMU_USB3_B_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(11)),
-+	[RESET_APMU_USB3_C_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(13)),
-+	[RESET_APMU_USB3_C_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(14)),
-+	[RESET_APMU_USB3_C_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(15)),
-+	[RESET_APMU_USB3_D_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(17)),
-+	[RESET_APMU_USB3_D_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(18)),
-+	[RESET_APMU_USB3_D_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(19)),
- 	[RESET_APMU_QSPI]	= RESET_DATA(APMU_QSPI_CLK_RES_CTRL,	0, BIT(1)),
- 	[RESET_APMU_QSPI_BUS]	= RESET_DATA(APMU_QSPI_CLK_RES_CTRL,	0, BIT(0)),
- 	[RESET_APMU_DMA]	= RESET_DATA(APMU_DMA_CLK_RES_CTRL,	0, BIT(0)),
-@@ -151,10 +156,12 @@ static const struct ccu_reset_data k3_apmu_resets[] = {
- 	[RESET_APMU_CPU7_SW]	= RESET_DATA(APMU_PMU_CC2_AP,		BIT(26), 0),
- 	[RESET_APMU_C1_MPSUB_SW]	= RESET_DATA(APMU_PMU_CC2_AP,	BIT(28), 0),
- 	[RESET_APMU_MPSUB_DBG]	= RESET_DATA(APMU_PMU_CC2_AP,		BIT(29), 0),
--	[RESET_APMU_UCIE]	= RESET_DATA(APMU_UCIE_CTRL,
--				BIT(1) | BIT(2) | BIT(3), 0),
--	[RESET_APMU_RCPU]	= RESET_DATA(APMU_RCPU_CLK_RES_CTRL,	0,
--				BIT(3) | BIT(2) | BIT(0)),
-+	[RESET_APMU_UCIE_IP]	= RESET_DATA(APMU_UCIE_CTRL,		BIT(1),  0),
-+	[RESET_APMU_UCIE_HOT]	= RESET_DATA(APMU_UCIE_CTRL,		BIT(2),  0),
-+	[RESET_APMU_UCIE_MON]	= RESET_DATA(APMU_UCIE_CTRL,		BIT(3),  0),
-+	[RESET_APMU_RCPU_AUDIO_SYS]	= RESET_DATA(APMU_RCPU_CLK_RES_CTRL,	0, BIT(0)),
-+	[RESET_APMU_RCPU_MCU_CORE]	= RESET_DATA(APMU_RCPU_CLK_RES_CTRL,	0, BIT(2)),
-+	[RESET_APMU_RCPU_AUDIO_APMU]	= RESET_DATA(APMU_RCPU_CLK_RES_CTRL,	0, BIT(3)),
- 	[RESET_APMU_DSI4LN2_ESCCLK]	= RESET_DATA(APMU_LCD_CLK_RES_CTRL3,	0, BIT(3)),
- 	[RESET_APMU_DSI4LN2_LCD_SW]	= RESET_DATA(APMU_LCD_CLK_RES_CTRL3,	0, BIT(4)),
- 	[RESET_APMU_DSI4LN2_LCD_MCLK]	= RESET_DATA(APMU_LCD_CLK_RES_CTRL4,	0, BIT(9)),
-@@ -164,16 +171,21 @@ static const struct ccu_reset_data k3_apmu_resets[] = {
- 	[RESET_APMU_UFS_ACLK]	= RESET_DATA(APMU_UFS_CLK_RES_CTRL,	0, BIT(0)),
- 	[RESET_APMU_EDP0]	= RESET_DATA(APMU_LCD_EDP_CTRL,		0, BIT(0)),
- 	[RESET_APMU_EDP1]	= RESET_DATA(APMU_LCD_EDP_CTRL,		0, BIT(16)),
--	[RESET_APMU_PCIE_PORTA]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0,
--				BIT(5) | BIT(4) | BIT(3)),
--	[RESET_APMU_PCIE_PORTB]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0,
--				BIT(5) | BIT(4) | BIT(3)),
--	[RESET_APMU_PCIE_PORTC]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0,
--				BIT(5) | BIT(4) | BIT(3)),
--	[RESET_APMU_PCIE_PORTD]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0,
--				BIT(5) | BIT(4) | BIT(3)),
--	[RESET_APMU_PCIE_PORTE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0,
--				BIT(5) | BIT(4) | BIT(3)),
-+	[RESET_APMU_PCIE_A_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0, BIT(3)),
-+	[RESET_APMU_PCIE_A_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0, BIT(4)),
-+	[RESET_APMU_PCIE_A_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0, BIT(5)),
-+	[RESET_APMU_PCIE_B_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0, BIT(3)),
-+	[RESET_APMU_PCIE_B_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0, BIT(4)),
-+	[RESET_APMU_PCIE_B_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0, BIT(5)),
-+	[RESET_APMU_PCIE_C_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0, BIT(3)),
-+	[RESET_APMU_PCIE_C_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0, BIT(4)),
-+	[RESET_APMU_PCIE_C_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0, BIT(5)),
-+	[RESET_APMU_PCIE_D_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0, BIT(3)),
-+	[RESET_APMU_PCIE_D_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0, BIT(4)),
-+	[RESET_APMU_PCIE_D_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0, BIT(5)),
-+	[RESET_APMU_PCIE_E_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0, BIT(3)),
-+	[RESET_APMU_PCIE_E_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0, BIT(4)),
-+	[RESET_APMU_PCIE_E_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0, BIT(5)),
- 	[RESET_APMU_EMAC0]	= RESET_DATA(APMU_EMAC0_CLK_RES_CTRL,	0, BIT(1)),
- 	[RESET_APMU_EMAC1]	= RESET_DATA(APMU_EMAC1_CLK_RES_CTRL,	0, BIT(1)),
- 	[RESET_APMU_EMAC2]	= RESET_DATA(APMU_EMAC2_CLK_RES_CTRL,	0, BIT(1)),
-diff --git a/include/dt-bindings/reset/spacemit,k3-resets.h b/include/dt-bindings/reset/spacemit,k3-resets.h
-index 79ac1c22b7b5..4c8cba2897c8 100644
---- a/include/dt-bindings/reset/spacemit,k3-resets.h
-+++ b/include/dt-bindings/reset/spacemit,k3-resets.h
-@@ -97,62 +97,86 @@
- #define RESET_APMU_SDH0          13
- #define RESET_APMU_SDH1          14
- #define RESET_APMU_SDH2          15
--#define RESET_APMU_USB2          16
--#define RESET_APMU_USB3_PORTA    17
--#define RESET_APMU_USB3_PORTB    18
--#define RESET_APMU_USB3_PORTC    19
--#define RESET_APMU_USB3_PORTD    20
--#define RESET_APMU_QSPI          21
--#define RESET_APMU_QSPI_BUS      22
--#define RESET_APMU_DMA           23
--#define RESET_APMU_AES_WTM       24
--#define RESET_APMU_MCB_DCLK      25
--#define RESET_APMU_MCB_ACLK      26
--#define RESET_APMU_VPU           27
--#define RESET_APMU_DTC           28
--#define RESET_APMU_GPU           29
--#define RESET_APMU_ALZO          30
--#define RESET_APMU_MC            31
--#define RESET_APMU_CPU0_POP      32
--#define RESET_APMU_CPU0_SW       33
--#define RESET_APMU_CPU1_POP      34
--#define RESET_APMU_CPU1_SW       35
--#define RESET_APMU_CPU2_POP      36
--#define RESET_APMU_CPU2_SW       37
--#define RESET_APMU_CPU3_POP      38
--#define RESET_APMU_CPU3_SW       39
--#define RESET_APMU_C0_MPSUB_SW   40
--#define RESET_APMU_CPU4_POP      41
--#define RESET_APMU_CPU4_SW       42
--#define RESET_APMU_CPU5_POP      43
--#define RESET_APMU_CPU5_SW       44
--#define RESET_APMU_CPU6_POP      45
--#define RESET_APMU_CPU6_SW       46
--#define RESET_APMU_CPU7_POP      47
--#define RESET_APMU_CPU7_SW       48
--#define RESET_APMU_C1_MPSUB_SW   49
--#define RESET_APMU_MPSUB_DBG     50
--#define RESET_APMU_UCIE          51
--#define RESET_APMU_RCPU          52
--#define RESET_APMU_DSI4LN2_ESCCLK     53
--#define RESET_APMU_DSI4LN2_LCD_SW     54
--#define RESET_APMU_DSI4LN2_LCD_MCLK   55
--#define RESET_APMU_DSI4LN2_LCD_DSCCLK 56
--#define RESET_APMU_DSI4LN2_DPU_ACLK   57
--#define RESET_APMU_DPU_ACLK      58
--#define RESET_APMU_UFS_ACLK      59
--#define RESET_APMU_EDP0          60
--#define RESET_APMU_EDP1          61
--#define RESET_APMU_PCIE_PORTA    62
--#define RESET_APMU_PCIE_PORTB    63
--#define RESET_APMU_PCIE_PORTC    64
--#define RESET_APMU_PCIE_PORTD    65
--#define RESET_APMU_PCIE_PORTE    66
--#define RESET_APMU_EMAC0         67
--#define RESET_APMU_EMAC1         68
--#define RESET_APMU_EMAC2         69
--#define RESET_APMU_ESPI_MCLK     70
--#define RESET_APMU_ESPI_SCLK     71
-+#define RESET_APMU_USB2_AHB      16
-+#define RESET_APMU_USB2_VCC      17
-+#define RESET_APMU_USB2_PHY      18
-+#define RESET_APMU_USB3_A_AHB    19
-+#define RESET_APMU_USB3_A_VCC    20
-+#define RESET_APMU_USB3_A_PHY    21
-+#define RESET_APMU_USB3_B_AHB    22
-+#define RESET_APMU_USB3_B_VCC    23
-+#define RESET_APMU_USB3_B_PHY    24
-+#define RESET_APMU_USB3_C_AHB    25
-+#define RESET_APMU_USB3_C_VCC    26
-+#define RESET_APMU_USB3_C_PHY    27
-+#define RESET_APMU_USB3_D_AHB    28
-+#define RESET_APMU_USB3_D_VCC    29
-+#define RESET_APMU_USB3_D_PHY    30
-+#define RESET_APMU_QSPI          31
-+#define RESET_APMU_QSPI_BUS      32
-+#define RESET_APMU_DMA           33
-+#define RESET_APMU_AES_WTM       34
-+#define RESET_APMU_MCB_DCLK      35
-+#define RESET_APMU_MCB_ACLK      36
-+#define RESET_APMU_VPU           37
-+#define RESET_APMU_DTC           38
-+#define RESET_APMU_GPU           39
-+#define RESET_APMU_ALZO          40
-+#define RESET_APMU_MC            41
-+#define RESET_APMU_CPU0_POP      42
-+#define RESET_APMU_CPU0_SW       43
-+#define RESET_APMU_CPU1_POP      44
-+#define RESET_APMU_CPU1_SW       45
-+#define RESET_APMU_CPU2_POP      46
-+#define RESET_APMU_CPU2_SW       47
-+#define RESET_APMU_CPU3_POP      48
-+#define RESET_APMU_CPU3_SW       49
-+#define RESET_APMU_C0_MPSUB_SW   50
-+#define RESET_APMU_CPU4_POP      51
-+#define RESET_APMU_CPU4_SW       52
-+#define RESET_APMU_CPU5_POP      53
-+#define RESET_APMU_CPU5_SW       54
-+#define RESET_APMU_CPU6_POP      55
-+#define RESET_APMU_CPU6_SW       56
-+#define RESET_APMU_CPU7_POP      57
-+#define RESET_APMU_CPU7_SW       58
-+#define RESET_APMU_C1_MPSUB_SW   59
-+#define RESET_APMU_MPSUB_DBG     60
-+#define RESET_APMU_UCIE_IP       61
-+#define RESET_APMU_UCIE_HOT      62
-+#define RESET_APMU_UCIE_MON      63
-+#define RESET_APMU_RCPU_AUDIO_SYS     64
-+#define RESET_APMU_RCPU_MCU_CORE      65
-+#define RESET_APMU_RCPU_AUDIO_APMU    66
-+#define RESET_APMU_DSI4LN2_ESCCLK     67
-+#define RESET_APMU_DSI4LN2_LCD_SW     68
-+#define RESET_APMU_DSI4LN2_LCD_MCLK   69
-+#define RESET_APMU_DSI4LN2_LCD_DSCCLK 70
-+#define RESET_APMU_DSI4LN2_DPU_ACLK   71
-+#define RESET_APMU_DPU_ACLK      72
-+#define RESET_APMU_UFS_ACLK      73
-+#define RESET_APMU_EDP0          74
-+#define RESET_APMU_EDP1          75
-+#define RESET_APMU_PCIE_A_DBI    76
-+#define RESET_APMU_PCIE_A_SLAVE  77
-+#define RESET_APMU_PCIE_A_MASTER 78
-+#define RESET_APMU_PCIE_B_DBI    79
-+#define RESET_APMU_PCIE_B_SLAVE  80
-+#define RESET_APMU_PCIE_B_MASTER 81
-+#define RESET_APMU_PCIE_C_DBI    82
-+#define RESET_APMU_PCIE_C_SLAVE  83
-+#define RESET_APMU_PCIE_C_MASTER 84
-+#define RESET_APMU_PCIE_D_DBI    85
-+#define RESET_APMU_PCIE_D_SLAVE  86
-+#define RESET_APMU_PCIE_D_MASTER 87
-+#define RESET_APMU_PCIE_E_DBI    88
-+#define RESET_APMU_PCIE_E_SLAVE  89
-+#define RESET_APMU_PCIE_E_MASTER 90
-+#define RESET_APMU_EMAC0         91
-+#define RESET_APMU_EMAC1         92
-+#define RESET_APMU_EMAC2         93
-+#define RESET_APMU_ESPI_MCLK     94
-+#define RESET_APMU_ESPI_SCLK     95
- 
- /* DCIU resets*/
- #define RESET_DCIU_HDMA          0
-
----
-base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
-change-id: 20260312-01-k3-reset-usb-pci-dd00afa7561a
-
-Best regards,
--- 
-Yixun Lan <dlan@kernel.org>
-
+SGkgR3VlbnRlciwNCg0KSSB1bmRlcnN0YW5kIHRoYXQgZW51bSBjaGlwcyBpcyBub3QgdXNlZCBp
+biB0aGUgZGV2aWNlIG1hdGNoaW5nDQpsb2dpYy4gSG93ZXZlciwgaXQgcHJvdmlkZXMgYSBjbGVh
+ciwgY2VudHJhbGl6ZWQgbGlzdCBvZiBhbGwNCnN1cHBvcnRlZCBjaGlwIG1vZGVscyBmb3IgZGV2
+ZWxvcGVycyBhbmQgdXNlcnMgcmV2aWV3aW5nIHRoZSBjb2RlLg0KDQpJIGFkZGVkIGVudHJpZXMg
+dGhlcmUgdG8gbWFpbnRhaW4gY29uc2lzdGVuY3kgd2l0aCByZWNlbnQgY29tbWl0cw0KdGhhdCBo
+YWQgYmVlbiBhY2NlcHRlZC4gRm9yIGV4YW1wbGU6DQotIDcxYTExN2QyOGY4NyAiaHdtb246IChw
+bWJ1cy9pc2w2ODEzNykgQWRkIHN1cHBvcnQgZm9yIFJBQTIyOTE0MSINCi0gMjE5MGFkNTVhNjAx
+ICJod21vbjogKHBtYnVzL2lzbDY4MTM3KSBhZGQgc3VwcG9ydCBmb3IgUmVuZXNhcw0KICBSQUEy
+MjgyNDQgYW5kIFJBQTIyODI0NiINCg0KQm90aCBjb21taXRzIGZvbGxvdyB0aGUgc2FtZSBwYXR0
+ZXJuIG9mIGFkZGluZyB0byBlbnVtIGNoaXBzLg0KSSB0aGluayBrZWVwaW5nIHRoZXNlIGVudHJp
+ZXMgaW4gZW51bSBjaGlwcyBtYWludGFpbnMgY29kZQ0KY29uc2lzdGVuY3kgYW5kIGRvY3VtZW50
+YXRpb24gdmFsdWUuIEhvd2V2ZXIsIGlmIHlvdSBwcmVmZXINCm5vdCB0byBhZGQgdGhlbSB0aGVy
+ZSwgSSdtIGhhcHB5IHRvIGFkanVzdCBpbiB2Mi4NCg0KQmVzdCByZWdhcmRzLA0KRGF3ZWkgTGl1
+DQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBHdWVudGVyIFJvZWNrIDxncm9l
+Y2s3QGdtYWlsLmNvbT4gT24gQmVoYWxmIE9mIEd1ZW50ZXIgUm9lY2sNClNlbnQ6IE1vbmRheSwg
+TWFyY2ggMTYsIDIwMjYgMTE6NDggUE0NClRvOiBEYXdlaSBMaXUgPGRhd2VpLmxpdS5qeUByZW5l
+c2FzLmNvbT4NCkNjOiBsaW51eC1od21vbkB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWtlcm5lbEB2
+Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWRvY0B2Z2VyLmtlcm5lbC5vcmc7IGRldmljZXRyZWVAdmdl
+ci5rZXJuZWwub3JnOyBsaW51eC1yZW5lc2FzLXNvY0B2Z2VyLmtlcm5lbC5vcmc7IHJvYmhAa2Vy
+bmVsLm9yZzsga3J6aytkdEBrZXJuZWwub3JnOyBjb25vcitkdEBrZXJuZWwub3JnOyBjb3JiZXRA
+bHduLm5ldDsgc2toYW5AbGludXhmb3VuZGF0aW9uLm9yZzsgZ2VlcnQrcmVuZXNhc0BnbGlkZXIu
+YmU7IG1hZ251cy5kYW1tIDxtYWdudXMuZGFtbUBnbWFpbC5jb20+OyBHcmFudCBQZWx0aWVyIDxn
+cmFudC5wZWx0aWVyLmpnQHJlbmVzYXMuY29tPg0KU3ViamVjdDogUmU6IFtQQVRDSCAxLzJdIGh3
+bW9uL3BtYnVzOiAoaXNsNjgxMzcpIEFkZCBzdXBwb3J0IGZvciBSZW5lc2FzIFJBQTIyODk0MiBh
+bmQgUkFBMjI4OTQzDQoNCk9uIE1vbiwgTWFyIDE2LCAyMDI2IGF0IDAxOjM1OjQwUE0gKzA4MDAs
+IERhd2VpIExpdSB3cm90ZToNCj4gQm90aCBSQUEyMjg5NDIgYW5kIFJBQTIyODk0MyBhcmUgZGln
+aXRhbCBkdWFsLW91dHB1dCAxNi1QaGFzZShYK1kg4omkIA0KPiAxNikgUFdNIGNvbnRyb2xsZXJz
+DQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBEYXdlaSBMaXUgPGRhd2VpLmxpdS5qeUByZW5lc2FzLmNv
+bT4NCj4gLS0tDQo+ICBEb2N1bWVudGF0aW9uL2h3bW9uL2lzbDY4MTM3LnJzdCB8IDIwICsrKysr
+KysrKysrKysrKysrKysrDQo+ICBkcml2ZXJzL2h3bW9uL3BtYnVzL2lzbDY4MTM3LmMgICB8ICA2
+ICsrKysrKw0KPiAgMiBmaWxlcyBjaGFuZ2VkLCAyNiBpbnNlcnRpb25zKCspDQo+IA0KPiBkaWZm
+IC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9od21vbi9pc2w2ODEzNy5yc3QgDQo+IGIvRG9jdW1lbnRh
+dGlvbi9od21vbi9pc2w2ODEzNy5yc3QNCj4gaW5kZXggZTc3ZjU4MmMyLi4wY2UyMGQwOTEgMTAw
+NjQ0DQo+IC0tLSBhL0RvY3VtZW50YXRpb24vaHdtb24vaXNsNjgxMzcucnN0DQo+ICsrKyBiL0Rv
+Y3VtZW50YXRpb24vaHdtb24vaXNsNjgxMzcucnN0DQo+IEBAIC0zOTQsNiArMzk0LDI2IEBAIFN1
+cHBvcnRlZCBjaGlwczoNCj4gIA0KPiAgICAgICAgUHJvdmlkZWQgYnkgUmVuZXNhcyB1cG9uIHJl
+cXVlc3QgYW5kIE5EQQ0KPiAgDQo+ICsgICogUmVuZXNhcyBSQUEyMjg5NDINCj4gKw0KPiArICAg
+IFByZWZpeDogJ3JhYTIyODk0MicNCj4gKw0KPiArICAgIEFkZHJlc3NlcyBzY2FubmVkOiAtDQo+
+ICsNCj4gKyAgICBEYXRhc2hlZXQ6DQo+ICsNCj4gKyAgICAgIFByb3ZpZGVkIGJ5IFJlbmVzYXMg
+dXBvbiByZXF1ZXN0IGFuZCBOREENCj4gKw0KPiArICAqIFJlbmVzYXMgUkFBMjI4OTQzDQo+ICsN
+Cj4gKyAgICBQcmVmaXg6ICdyYWEyMjg5NDMnDQo+ICsNCj4gKyAgICBBZGRyZXNzZXMgc2Nhbm5l
+ZDogLQ0KPiArDQo+ICsgICAgRGF0YXNoZWV0Og0KPiArDQo+ICsgICAgICBQcm92aWRlZCBieSBS
+ZW5lc2FzIHVwb24gcmVxdWVzdCBhbmQgTkRBDQo+ICsNCj4gICAgKiBSZW5lc2FzIFJBQTIyOTAw
+MQ0KPiAgDQo+ICAgICAgUHJlZml4OiAncmFhMjI5MDAxJw0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9od21vbi9wbWJ1cy9pc2w2ODEzNy5jIA0KPiBiL2RyaXZlcnMvaHdtb24vcG1idXMvaXNsNjgx
+MzcuYyBpbmRleCA3OGNmZjk3MTIuLmRhMjQ4NGQ0MiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9o
+d21vbi9wbWJ1cy9pc2w2ODEzNy5jDQo+ICsrKyBiL2RyaXZlcnMvaHdtb24vcG1idXMvaXNsNjgx
+MzcuYw0KPiBAQCAtNjMsNiArNjMsOCBAQCBlbnVtIGNoaXBzIHsNCj4gIAlyYWEyMjgyMjgsDQo+
+ICAJcmFhMjI4MjQ0LA0KPiAgCXJhYTIyODI0NiwNCj4gKwlyYWEyMjg5NDIsDQo+ICsJcmFhMjI4
+OTQzLA0KDQpBSToNCg0KICBJcyBpdCBuZWNlc3NhcnkgdG8gYWRkIHRoZXNlIGVudHJpZXMgdG8g
+ZW51bSBjaGlwcz8NCiAgTG9va2luZyBhdCB0aGUgcmVzdCBvZiB0aGUgZHJpdmVyLCB0aGlzIGVu
+dW0gZG9lcyBub3QgYXBwZWFyIHRvIGJlIHVzZWQNCiAgYW55d2hlcmUuIFRoZSBkZXZpY2UgZGF0
+YSBtYXBwaW5nIHNlZW1zIHRvIHJlbHkgb24gdGhlIHZhcmlhbnRzIGVudW0NCiAgKGUuZy4sIHJh
+YV9kbXB2cjJfMnJhaWxfbm9udGMpIGluc3RlYWQuDQoNCkl0IGhhcyBhIHBvaW50LiANCg0KR3Vl
+bnRlcg0KDQo+ICAJcmFhMjI5MDAxLA0KPiAgCXJhYTIyOTAwNCwNCj4gIAlyYWEyMjkxNDEsDQo+
+IEBAIC00NzgsNiArNDgwLDggQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBpMmNfZGV2aWNlX2lkIHJh
+YV9kbXB2cl9pZFtdID0gew0KPiAgCXsicmFhMjI4MjI4IiwgcmFhX2RtcHZyMl8ycmFpbF9ub250
+Y30sDQo+ICAJeyJyYWEyMjgyNDQiLCByYWFfZG1wdnIyXzJyYWlsX25vbnRjfSwNCj4gIAl7InJh
+YTIyODI0NiIsIHJhYV9kbXB2cjJfMnJhaWxfbm9udGN9LA0KPiArCXsicmFhMjI4OTQyIiwgcmFh
+X2RtcHZyMl8ycmFpbF9ub250Y30sDQo+ICsJeyJyYWEyMjg5NDMiLCByYWFfZG1wdnIyXzJyYWls
+X25vbnRjfSwNCj4gIAl7InJhYTIyOTAwMSIsIHJhYV9kbXB2cjJfMnJhaWx9LA0KPiAgCXsicmFh
+MjI5MDA0IiwgcmFhX2RtcHZyMl8ycmFpbH0sDQo+ICAJeyJyYWEyMjkxNDEiLCByYWFfZG1wdnIy
+XzJyYWlsX3BtYnVzfSwgQEAgLTUyOSw2ICs1MzMsOCBAQCBzdGF0aWMgDQo+IGNvbnN0IHN0cnVj
+dCBvZl9kZXZpY2VfaWQgaXNsNjgxMzdfb2ZfbWF0Y2hbXSA9IHsNCj4gIAl7IC5jb21wYXRpYmxl
+ID0gInJlbmVzYXMscmFhMjI4MjI4IiwgLmRhdGEgPSAodm9pZCAqKXJhYV9kbXB2cjJfMnJhaWxf
+bm9udGMgfSwNCj4gIAl7IC5jb21wYXRpYmxlID0gInJlbmVzYXMscmFhMjI4MjQ0IiwgLmRhdGEg
+PSAodm9pZCAqKXJhYV9kbXB2cjJfMnJhaWxfbm9udGMgfSwNCj4gIAl7IC5jb21wYXRpYmxlID0g
+InJlbmVzYXMscmFhMjI4MjQ2IiwgLmRhdGEgPSAodm9pZCANCj4gKilyYWFfZG1wdnIyXzJyYWls
+X25vbnRjIH0sDQo+ICsJeyAuY29tcGF0aWJsZSA9ICJyZW5lc2FzLHJhYTIyODk0MiIsIC5kYXRh
+ID0gKHZvaWQgKilyYWFfZG1wdnIyXzJyYWlsX25vbnRjIH0sDQo+ICsJeyAuY29tcGF0aWJsZSA9
+ICJyZW5lc2FzLHJhYTIyODk0MyIsIC5kYXRhID0gKHZvaWQgDQo+ICsqKXJhYV9kbXB2cjJfMnJh
+aWxfbm9udGMgfSwNCj4gIAl7IC5jb21wYXRpYmxlID0gInJlbmVzYXMscmFhMjI5MDAxIiwgLmRh
+dGEgPSAodm9pZCAqKXJhYV9kbXB2cjJfMnJhaWwgfSwNCj4gIAl7IC5jb21wYXRpYmxlID0gInJl
+bmVzYXMscmFhMjI5MDA0IiwgLmRhdGEgPSAodm9pZCAqKXJhYV9kbXB2cjJfMnJhaWwgfSwNCj4g
+IAl7IC5jb21wYXRpYmxlID0gInJlbmVzYXMscmFhMjI5NjIxIiwgLmRhdGEgPSAodm9pZCANCj4g
+KilyYWFfZG1wdnIyXzJyYWlsIH0sDQo=
 
