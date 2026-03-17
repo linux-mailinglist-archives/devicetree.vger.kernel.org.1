@@ -1,267 +1,234 @@
-Return-Path: <devicetree+bounces-276613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276614-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uPNyLFguuWmVtQEAu9opvQ
-	(envelope-from <devicetree+bounces-276613-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:35:04 +0100
+	id 6C8hHCkwuWkYuAEAu9opvQ
+	(envelope-from <devicetree+bounces-276614-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:42:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90F1D2A7FBE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:35:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1932D2A8287
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:42:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7500E3039DCA
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 10:31:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8A5E03037150
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 10:33:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FC553A6B7E;
-	Tue, 17 Mar 2026 10:31:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hzFq/es5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51B413A63F8;
+	Tue, 17 Mar 2026 10:33:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CEFA36655E;
-	Tue, 17 Mar 2026 10:31:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECFB736655E;
+	Tue, 17 Mar 2026 10:33:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773743475; cv=none; b=AgrZYg+MntEdl1+lFGtf2w4ikvIRrBXSj+sagu4i1vby72vpRzrTTlNGTdEEHNpgGfpESB8vubhl5LiUFitcwtKPTu55hYnvvI7b2TeSQ9SLhlT5wK61QfyZLa86MmhL1ABPFsJ3NB1Ch662UO+H83k9dZ42KKYH0oXPk0ti0CA=
+	t=1773743626; cv=none; b=c9zBx9SevKZlUdHPwQV8tlHAAIR1Lhemhwc+/mwNUtiMJopE9eHSC5/iiJznlyBUQD+4meET2LxqAv2dyCrf1nvEoX71OjR4wTfCnZrIxDLzwx2fYaq6VWMBwFCPRMw2yXeGuW+8FJH6c0ssvAl80IKNA6Re5kU8FSN5U0Lu1Qk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773743475; c=relaxed/simple;
-	bh=1n3VOVl3x+1BOkcpZTwb3qWmCeX6KadDJhMAjOVUtdw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ktJ782PRJ6OCWXIz0yFdk7PH04xwcSRqvB7dseDFQ+VsX09OpMeMXNuRb2OLsgR53Sz+ZHgO0bPqMO26n3B+IwAqtUgu7Jl1T8oIgDbC95hMzSXztgIr+HM0+TDzq65cERpgGHR9GANbF0j2coUOpGqWKMkF+VU8ChA9XKizVXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hzFq/es5; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773743473; x=1805279473;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=1n3VOVl3x+1BOkcpZTwb3qWmCeX6KadDJhMAjOVUtdw=;
-  b=hzFq/es5bBqbrxuIonuvK+UhYgHB2Xi3twBaclpw+1uVhQqangH/GrUj
-   XVHh2fPfxLQoRrctf8GM4NkNE1CKqMrLtyj2EE5Y7dWmNYGD6fPTXepwS
-   3AMAi24jkMYLY+RaDbOzDIuAh3aXChuSl3oAAXbwwzh/zR02EY0PC6ZVq
-   J090z+oYi5UIgQOSUlgqhwdAoxnC5wvXxfE+CsnhKGxNFh+Fh3znp7LBg
-   JEozii7c91BtswQNGddzYO7xGuh7mM1/LjlgBeJe3+ONiMHYXv3sq7+tN
-   QihRanqFguqsT6oqVtmdlzd00qYaGtQak610IdQw4oG8ndQAd2JMlleow
-   A==;
-X-CSE-ConnectionGUID: jBkzvqaLS1eFkCW48FKhyQ==
-X-CSE-MsgGUID: 2RB1wqYITMqtK2eV5aOQFg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="86126444"
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
-   d="scan'208";a="86126444"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2026 03:31:11 -0700
-X-CSE-ConnectionGUID: nK1XShSfSKKjF4w9SCFsmA==
-X-CSE-MsgGUID: aPjlNS0tQQScsVkAVNScHA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
-   d="scan'208";a="216591023"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost) ([10.245.245.97])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2026 03:31:08 -0700
-Date: Tue, 17 Mar 2026 12:31:06 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	"Hennerich, Michael" <Michael.Hennerich@analog.com>,
-	David Lechner <dlechner@baylibre.com>,
-	"Sa, Nuno" <Nuno.Sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+	s=arc-20240116; t=1773743626; c=relaxed/simple;
+	bh=d2R9tPM2+7oBoEhs9V0jHFBGqwVZRY0lEQdmAPC1DNY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NEARq7ILfVlhmM74dKLmU5hlf8b/YX5MQgEDaGm7ivoAOKZhvcqS3sOJzFwKbXPm8u9Qs75YPMmx3uJOwCL4Mm+HvQ8TXoqJ54t2iNX6wrgD45VGOv9bcVmw/qwgYqXGrQrTXFS23wUWc+3SXKeGw+B+/9CiGA9oUyMI7M1RtwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5877F1476;
+	Tue, 17 Mar 2026 03:33:38 -0700 (PDT)
+Received: from e142021.fritz.box (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 066BE3F7BD;
+	Tue, 17 Mar 2026 03:33:41 -0700 (PDT)
+From: Andre Przywara <andre.przywara@arm.com>
+To: Mark Rutland <mark.rutland@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Sudeep Holla <sudeep.holla@kernel.org>
+Cc: Salman Nabi <salman.nabi@arm.com>,
+	Vedashree Vidwans <vvidwans@nvidia.com>,
+	Trilok Soni <trilokkumar.soni@oss.qualcomm.com>,
+	Nirmoy Das <nirmoyd@nvidia.com>,
+	vsethi@nvidia.com,
+	vwadekar@nvidia.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v6 4/4] iio: adc: ad4080: add support for AD4880
- dual-channel ADC
-Message-ID: <abktanVPsFwIlIfH@ashevche-desk.local>
-References: <20260313115856.87763-1-antoniu.miclaus@analog.com>
- <20260313115856.87763-5-antoniu.miclaus@analog.com>
- <abQdvXq9MtIZ0EpZ@ashevche-desk.local>
- <20260314120022.56265de3@jic23-huawei>
- <abfT3qbFaM6PIDKx@ashevche-desk.local>
- <SN6SPR01MB00908E6EDB8F4D20D391664B9B40A@SN6SPR01MB0090.namprd03.prod.outlook.com>
- <abgWpzT_fcMqRHzf@ashevche-desk.local>
- <SN6SPR01MB00904D9E9C5008D32066E2029B40A@SN6SPR01MB0090.namprd03.prod.outlook.com>
- <abgf3TZTib9UrjSB@ashevche-desk.local>
- <SN6SPR01MB00900C6A79A51852C73D6ECF9B41A@SN6SPR01MB0090.namprd03.prod.outlook.com>
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 0/8] Arm Live Firmware Activation (LFA) support
+Date: Tue, 17 Mar 2026 11:33:26 +0100
+Message-ID: <20260317103336.1273582-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <SN6SPR01MB00900C6A79A51852C73D6ECF9B41A@SN6SPR01MB0090.namprd03.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_CONTAINS_FROM(1.00)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276613-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276614-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andre.przywara@arm.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.716];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,ashevche-desk.local:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 90F1D2A7FBE
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:mid,arm.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1932D2A8287
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 17, 2026 at 09:54:13AM +0000, Miclaus, Antoniu wrote:
-> > On Mon, Mar 16, 2026 at 03:09:18PM +0000, Miclaus, Antoniu wrote:
-> > > > From: Andy Shevchenko <andriy.shevchenko@intel.com>
-> > > > Sent: Monday, March 16, 2026 4:42 PM
-> > > > On Mon, Mar 16, 2026 at 12:31:09PM +0000, Miclaus, Antoniu wrote:
-> > > > > > From: Andy Shevchenko <andriy.shevchenko@intel.com>
-> > > > > > Sent: Monday, March 16, 2026 11:57 AM
-> > > > > > On Sat, Mar 14, 2026 at 12:00:22PM +0000, Jonathan Cameron
-> > wrote:
-> > > > > > > On Fri, 13 Mar 2026 16:22:53 +0200
-> > > > > > > Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
-> > > > > > > > On Fri, Mar 13, 2026 at 01:58:53PM +0200, Antoniu Miclaus
-> > wrote:
+Hi all,
 
-...
+this is version 2 of the Live Firmware Activation kernel support. There
+were some significant changes to the code compared to the previous v1
+post [1]: the images are now managed using an embedded kobject, joined
+by a kset representing the /sys/firmware/lfa directory. The locking has
+been overhauled, there is no longer a global lock, but just the kset
+list lock, and a readers/writer lock when doing the actual SMC accesses.
+Also this series now includes support for the ACPI notification, as
+contributed by Veda [2] (many thanks for that!), and support for the DT
+interrupt. Also there is a new sysfs switch file to allow the automatic
+activation.
+This is now multiple patches, mostly to help review and to give credit
+to Veda's work. If people agree, some of the patches can be squashed for
+submission, eventually.
+More detailed changelog below.
+==============================
 
-> > > > > > > Nope. You are talking to different devices (more or less).
-> > > > > >
-> > > > > > If it's a twins in the package, why do we have a special handling and not
-> > > > just
-> > > > > > describing two independent devices in the DT/fw?
-> > > > >
-> > > > > Because they are not fully independent - they share:
-> > > > > - Power supplies and voltage reference
-> > > > > - The CNV clock (conversion trigger)
-> > > >
-> > > > Okay, then why not having a core part and a glue driver that registers as
-> > many
-> > > > devices as you wish and provides just a common stuff?
-> > 
-> > > Because the AD4880 is not two independent ADCs sharing a package - it is
-> > > a single device with a single interleaved data output. Splitting into
-> > > separate IIO devices would make synchronized dual-channel capture
-> > > impossible from userspace, which is the primary use case for this part.
-> > 
-> > Sounds to me like you need, probably, a virtual device for that.
-> > Maybe even on IIO level. Do we expect more devices like this to
-> > be enabled in the future (or maybe already in tree, but lacking this
-> > feature)?
-> 
->  The AD4880 is a fairly unique part - having separate SPI config
->  interfaces per channel with a shared interleaved data output is not
->  a common pattern, and the chances of another device like this being
->  upstreamed are low. Given that Jonathan has already reviewed and
->  approved a previous version of this series, and the patch has
->  collected multiple Reviewed-by tags, I'd prefer to keep the current
->  approach.
+This series implements the kernel side support of the Arm Live
+Firmware Activation (LFA) specification [3]. LFA enables the activation
+of updated firmware components without requiring a system reboot,
+reducing downtime and allowing quicker deployment of critical bug fixes
+in environments such as data centers and hyperscale systems.
+It requires explicit firmware support, both via an agent running in EL3
+(for instance in TF-A, already merged), but also in the firmware
+component to be activated. TF-RMM recently merged support for this.
 
-This...
+Unlike the usual firmware update process (which may use tools like
+fwupd), LFA focuses solely on the activation of an already updated
+firmware component, called "pending activation" in LFA lingo. This works
+by signalling the LFA agent (part of the EL3 runtime firmware) via an
+SMC call, which then does the heavy lifting of the live update, in
+cooperation with the to-be-updated firmware component.
 
-> > > The shared resources (supplies, CNV clock, interleaved data stream) are
-> > > not just "glue" - they define the device's operating model.
-> > 
-> > Sure, like any other resource for MFD (HW speaking).
-> 
-> MFD models a single device exposing multiple functionally distinct
-> sub-devices. The AD4880 channels are not distinct sub-devices - they share a
-> single interleaved data stream, and splitting them would break
-> synchronized capture.
+Key features of the driver:
+* Detects LFA support in system firmware (EL3).
+* Lists all firmware components that support live activation, identified
+  by their GUID.
+* Exposes component attributes (e.g., activation capability, and
+  activation pending) via sysfs under /sys/firmware/lfa/<GUID>/.
+* Provides interfaces to:
+  - Trigger activation of an updated firmware component.
+  - Cancel an ongoing activation if required.
+A more detailed list of features can be found in patch 2/8.
+Based on v7.0-rc1.
 
-...and this are important pieces of information. Can you add a summary
-to v7 commit message explaining on the chosen approach?
+This work is conceptually similar to Intel’s Platform Firmware Runtime
+Update and telemetry (PFRUT) [4] and TDX module updates [5], but
+targets Arm platforms. The driver has been used to successfully activate
+a Realm Management Monitor (RMM) firmware image in a controlled test
+environment. RMM is analogous to Intel’s TDX module.
 
-> > > The per-channel SPI interfaces exist only for register configuration; the
-> > > actual data path is a single stream handled entirely by the backend.
-> > >
-> > > > We have similar (to some extend) cases with SPI/I�C where
-> > > > drivers/platform/x86/serial-multi-instantiate.c services as "MFD" for that
-> > > > type of busses.
-> > > >
-> > > > > - A single interleaved data output stream
-> > > >
-> > > > How does it work in non-racy way?
-> > >
-> > > The data path has no software involvement at runtime. The CNV clock
-> > >  triggers both channels to sample simultaneously, and the device outputs
-> > >  the conversion results as a single interleaved bitstream on the data
-> > >  lane(s). The FPGA backend captures this stream directly - no SPI
-> > >  register reads are involved in the data path. The only SPI traffic is
-> > >  for configuration, and each channel has its own independent SPI
-> > >  interface and regmap, so there is no shared bus contention.
-> > 
-> > Okay, so it's in a way more complex (like a camera sensor in terms of
-> > data/configuration paths) device. It's now even more looking that the
-> > current approach is a quick hack rather than a solution to make this
-> > properly fit Linux device model.
-> 
-> The driver uses spi_new_ancillary_device() for the config path and
->  the IIO backend for the data path - both existing kernel
->  infrastructure used as intended. No custom abstractions are added.
+There is effort on similar work from the OCP [6]. Future work may
+include integration with utilities like fwupd to automatically select
+the appropriate driver, based on platform architecture, for Live/Runtime
+firmware updates.
 
-Also would be nice to have something from this.
+Please have a look, test and comment!
 
-So, I think for v7 we need transform this discussion to a summary that covers
-all aspects:
+Best regards,
+Salman and Andre
 
-- why MFD box can't be applied here
-- why regmaps are independent
-- how does it look with data and configuration paths
-- the device is unique and we do not expect more to come (or very little chances)
-- et cetera (or what I forgot to mention)
+Changelog v1 .. v2:
+- restrict build to arm64 (the LFA spec only supports AArch64)
+- rename and extend central data structure to fw_image
+- use separate GPR register sets for some SMC calls
+- provide wrapper for error messages to prevent out-of-bound access
+- return GUID in the "name" sysfs file when image is unknown
+- fix wrong attribute in pending version number show function
+- add missing include files and order them properly
+- fix memory leaks in error cleanup paths
+- handle lifetime using embedded kobjects and a kset
+- drop global lfa_lock, use kset list lock and kobject refcount instead
+- add DT binding documentation
+- add timeout and watchdog re-arming (contributed by Veda)
+- relax timeout period and do not block while waiting
+- register ACPI notification (contributed by Veda) and DT interrupt 
+- refactor ACPI notification code to allow sharing with DT code
+- use faux device instead of platform driver
+- add auto_activate file to control automatic activation
+- introduce rwsem mutex to prevent using stale sequence ID
+- use labels and goto instead of infinite loop when retrying activation
+- initialise workqueue only once (thanks to Nirmoy)
+- various cleanups on reported messages and code formatting
+- rebase on top of v7.0-rc1
 
-> > > > > Describing them as two independent DT nodes would mean duplicating
-> > > > > all the shared resources, and more importantly, the data interface
-> > > > > is a single interleaved stream feeding into one IIO buffer. Having
-> > > > > two separate IIO devices would make synchronized capture impossible
-> > > > > from userspace.
-> > 
-> > > > > This is exactly the use case spi_new_ancillary_device() was designed
-> > > > > for - a multi-die device sharing a bus with separate chip selects for
-> > > > > configuration but common data/clock/power infrastructure.
-> > 
-> > This... It doesn't fit the data path as far as I read from the above.
-> 
-> Right, spi_new_ancillary_device() covers only the config path.
-> The data path is handled entirely by the IIO backend with no SPI
-> involvement at runtime.
-> 
-> > > > See above.
-> > > >
-> > > > > > TO me is either something special about channel 0, then we have to
-> > > > > > synchronise
-> > > > > > accesses, or there is no point to have this patch at all, just make devices
-> > to
-> > > > > > be the same under the hood and describe as independent pair.
+Changelog RFC .. v1:
+- Updated SMCCC version 1.1 to 1.2 per the LFA specification requirement.
+- Changed "image_props" array to a linked list to support the dynamic
+  removal and addition of firmware images.
+- Added code to refresh firmware images following a successful activation.
+- Added a work_queue to handle the removal of firmware image attribute
+  from it's respective kobject "_store" handle.
+- Refactored prime and activate into separate functions.
+- Kernel config for LFA now defaults to "y" i.e. included by default.
+- Added individual kernel attribute files removal when removing the
+  respective kobjects using kobject_put().
+- mutex_lock added to activate_fw_image() and prime_fw_image() calls.
+- Renamed create_fw_inventory to update_fw_image_node.
+- Renamed create_fw_images_tree to update_fw_images_tree.
+- Added two more attributes due to specs update from bet0 to bet1:
+  current_version: For retrieval of the current firmware's version info.
+  pending_version: For retrieval of the pending firmware's version info.
+- Minor changes such as, improved firmware image names, and code comments.
+- do...while loops refactored to for(;;) loops.
+
+[1] https://lore.kernel.org/linux-arm-kernel/20260119122729.287522-1-salman.nabi@arm.com/
+[2] https://lore.kernel.org/linux-arm-kernel/20260210224023.2341728-1-vvidwans@nvidia.com/
+[3] https://developer.arm.com/documentation/den0147/latest/
+[4] https://lore.kernel.org/all/cover.1631025237.git.yu.c.chen@intel.com/
+[5] https://lore.kernel.org/all/20250523095322.88774-1-chao.gao@intel.com/
+[6] https://www.opencompute.org/documents/hyperscale-cpu-impactless-firmware-updates-requirements-specification-v0-7-9-29-2025-pdf
+
+Andre Przywara (4):
+  dt-bindings: arm: Add Live Firmware Activation binding
+  firmware: smccc: lfa: Add auto_activate sysfs file
+  firmware: smccc: lfa: Register DT interrupt
+  firmware: smccc: lfa: introduce SMC access lock
+
+Salman Nabi (1):
+  firmware: smccc: Add support for Live Firmware Activation (LFA)
+
+Vedashree Vidwans (3):
+  firmware: smccc: lfa: Move image rescanning
+  firmware: smccc: lfa: Add timeout and trigger watchdog
+  firmware: smccc: lfa: Register ACPI notification
+
+ .../devicetree/bindings/arm/arm,lfa.yaml      |   45 +
+ drivers/firmware/smccc/Kconfig                |   10 +
+ drivers/firmware/smccc/Makefile               |    1 +
+ drivers/firmware/smccc/lfa_fw.c               | 1008 +++++++++++++++++
+ 4 files changed, 1064 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/arm,lfa.yaml
+ create mode 100644 drivers/firmware/smccc/lfa_fw.c
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.43.0
 
 
