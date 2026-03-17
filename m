@@ -1,173 +1,263 @@
-Return-Path: <devicetree+bounces-276795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276797-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OM2BFJeWuWmhKwIAu9opvQ
-	(envelope-from <devicetree+bounces-276795-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 18:59:51 +0100
+	id mDQLKPGWuWkJKwIAu9opvQ
+	(envelope-from <devicetree+bounces-276797-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 19:01:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC89D2B0790
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 18:59:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84BA12B0809
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 19:01:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CFC2C3169BFC
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 17:29:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AB9C53076519
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 17:31:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 972AC37881E;
-	Tue, 17 Mar 2026 17:29:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5079C379988;
+	Tue, 17 Mar 2026 17:31:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gdvK5O8r"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MmHj0736"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 304AB3624B3
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 17:29:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 088FB1E1DF0
+	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 17:31:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773768553; cv=none; b=lqKOnBVZi1TSytP0sxZChUezBgF+whe3/XF2hx1Q/JwWhrIQufq09+hOH222NoGi7d94XJ7h+0YOHks/jRstRpfmefHbU4y8TKQnbsXgYEk42X3NmjV/HOGq3MEGz9ONIPJ2BWxG5dDjOZ17vfI3cmEbkqomMG6MpZQ77PoUIT8=
+	t=1773768696; cv=none; b=HX3hqanGQM19Td2Jt+1TkToa4w3D0p21lgOybOEcWf4TMLVVfpaGhEtFxpIO9Uel0Yu+ac8hr8PAtOySI/osNZm41EWaUCJmesmx3Yz0+dJisKrahSFQnIYkATXmRkYCTMsK+5cl604ykrYiGt1qTdeCMxbH2542CTKc+Ca9S8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773768553; c=relaxed/simple;
-	bh=GAKCFy2OkiKG7jpWJ/XJktQv9SAhQII1ABVEufIwzOY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PcJB/Pcwerzn++q7Iakb/oGjHrervgDKuJF0/5el2eP50dX/tv14oGXVJZ5ne9EMpdMCEDtGlHbCbmLqQZozehACyAdTCDa/GExro/cfbzWwxzQHJuVHpyd8eA2ipU6xmddlJHuERSXXKqn+lgJ6xig4bnVUnUaMPxyNbkUdHGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gdvK5O8r; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-48628ce9ab5so13302755e9.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 10:29:11 -0700 (PDT)
+	s=arc-20240116; t=1773768696; c=relaxed/simple;
+	bh=6hlNGJ8C2rtzkiaQz/hYOtypGUYIK/Wh9HQp8FIVkjU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XsAb4NzbMDeB1EqTRxj7DkZx86mz9nGgnSt0H7fPaORCHw/17zJoUXB0ZCHBmRe5Z/r1xhlAoL554Hd02/i0K0mJ4Mau4a8E5y7n8P+XWK8LTY8++8q+glCsRWCHEGjMgrBIChOWziMr24WwwDh8L50602J7X+zuZPQa6h1o6E4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MmHj0736; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2a8fba3f769so28851345ad.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 10:31:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773768550; x=1774373350; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HY9BNi0SB5U83gy+SRIh1ay4mmvnJ8DxaHKR7xUwkfM=;
-        b=gdvK5O8r42PNDfDku/MX5Sha8NGmBDu+QKqs07OwjWBFNc9/TE5KGT1Z36AjEI8L47
-         RLqjxfEWLSLMpwAhMw4SDFVyfY467iWwQeRHY1/vo4WwaPZkeO5AfxxNJ8d33bqMyV/v
-         wGYv/V8qIcam/5MUKT5o7SE/PSIXxzwCwptaJoaDeYpFdGury+tFzLzH+1pvgYhn7Snp
-         81c4ZFoxRPXTeGGkAHJk9MZYgayvSbQtw8odV+RnRgAaGHKeUZBk8msUSL3HJTm35apv
-         b2/bWsS5S+v9zuFRKkSBXrt4s+56DYGEYODmwSZ4+1jr5gjo/FtV3dDoWQ5WdEXrZ7Ut
-         E/9A==
+        d=gmail.com; s=20230601; t=1773768693; x=1774373493; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=z1ffVkrIYrhdQ/G3EnqYe2fK8Yxo/+BsbwKp30PVRVU=;
+        b=MmHj0736n1jbXLfP3fzpInjtWAVUJ3VHnZn/XGqvLc8clCErczoehf8yZDEB1d6uJ5
+         3PUVVwazFXdhgfs2TiAXBknlPfCmWi4NszYUU2rt18FBJ2Qab7RgFppJL3H+H5u+Yut8
+         GwnaUQS4KBvkIMAxNzrRgboIdI5eyc0LVYEaIlJ4IriGxMfkvqoWK8tZB+dzZKcCtrV4
+         RZbabHX8WvOv+P7fCfz+lYF1JVACGTMaPpnWkUsRQwcGu5SYZ5D97rm3/JEtKtOhO9/9
+         6bFdD6/7+4+UPFo/C2Ybk/pT5YtbSXMg3+a5e24ndOymnknegP2n6hv4NS39XNHS2GMe
+         hHFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773768550; x=1774373350;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HY9BNi0SB5U83gy+SRIh1ay4mmvnJ8DxaHKR7xUwkfM=;
-        b=rD9llygHGN30w/FL6x9a6iRwyg4jfTJgu3AIc8gCKsabCktay9+z2phSnu+KH4Me0g
-         yv+1lRb5oNk6megiaXDt6SyeOrpmW1iJ7kq4wjxX77NjDSXW6KlyDI55wSe9K0q1jUwo
-         +gC+y+FoNGd6z2F2aT3EXKC1g2SI/ugCbfr0b/otdgXP5qVlHRRhyi6PvPCeTAFjYuAr
-         HBOpeJRfw667TuDeaBu3WK/LXPBym/cMiVKMIAA64IzVSXagXLDG/swNjzrqQynXoT1i
-         SCGpVL5ekz+0ikXNhJeBxF6+ldLZmTbclRU5JaZeS2o5pIez7HvUnfib7WAdFG1nr4aO
-         Yo7w==
-X-Forwarded-Encrypted: i=1; AJvYcCWK7zzFZS00SLR2FkAIcTVGETXt+kMB9/5CqnHle/wHGEBJFzr6QU42JJvnOzArSyJot8oLmeLhEOb7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+X52pN4eHx8A66P61qGzD+3lbWtsKrDcUvWET3koLw6iCjQvk
-	N1WmPAXNZoWDbVcOAuFaQpcq1SsvcBFRFozBj+G0tgPhOBe3MrGoqX4yjwu4ViCjUzs=
-X-Gm-Gg: ATEYQzw4X2crd8/ow6uD2WQosK9ESnuLfwlLOcU1Hp7uaNPUCEKKx5vw5tfYHKRQRTi
-	HDijnJgunluyEd59GNPPe9mjdeWt1q4Oknh442IhPomVw5sSO5USp0EEEOCRzUZehMvteH6XTAV
-	qF4Y4R2Zom85O+NBnC9OExOyzvYP6Py8gU2qKFzR0fdJImX2l2nDrBcHBlelUFmZ2kxK6YOvH7u
-	sL4xMYznOCiFHUD1MUCOFsa4sNGlv6mKQwkyl/fn0e49npHqQVSprYazhPg1gaKMWiL3RFPjXoM
-	y2J8rPfIiocb/sfIlorF4u0qxsC9kzD2Vj/FvBomFOBIj1FtW7MPGWmXTAPKTjgajtP6Kde4v68
-	8VO97kOasfDE+WZS/XAFlzJJIQ0IIZWSZ6u/uipaa641cPjYrApyVhiI/0eR/zSGYiRPojoUMlg
-	8KSkAGjQW+O/hnbBoQGY5iQWYugnq8JzX7uYCdLoQq724jIJn20ZPU4o+JAycE3AXCrgWmuUan6
-	+vVDdI=
-X-Received: by 2002:a05:600c:4f0c:b0:485:358b:e80c with SMTP id 5b1f17b1804b1-486f4208becmr8101705e9.0.1773768550459;
-        Tue, 17 Mar 2026 10:29:10 -0700 (PDT)
-Received: from [192.168.0.100] (188-141-32-125.dynamic.upc.ie. [188.141.32.125])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486f443b77esm4890005e9.15.2026.03.17.10.29.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Mar 2026 10:29:09 -0700 (PDT)
-Message-ID: <85fc368a-c765-487e-bd9a-c5dd0376fca8@linaro.org>
-Date: Tue, 17 Mar 2026 17:29:20 +0000
+        d=1e100.net; s=20251104; t=1773768693; x=1774373493;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=z1ffVkrIYrhdQ/G3EnqYe2fK8Yxo/+BsbwKp30PVRVU=;
+        b=APR3ySYBrcidqZgbSfBgjP/49SNRLZm6IjUzDD+1tAj1DeSLepXdWd2DemInIflJmq
+         AKePPSz/un4uA3/k0+EzVuZiCmzvcb4VUWd1i+qxWejh/5kdYbBNfo74LQs9wl3nyv2c
+         9QtfY9/Z/jdRYMEUGYQu/Rcl62F/bMq/Y6t84KmlP2w1D99vEF2lSRIgwYFjol17TSqf
+         PT9Ye/KkPD/457CkvbpjuJkiIJtfRDiYJTchWeh92DxEhDzZcOX0jLAMhv3XbuU5ktao
+         db8w9F6/OariHBCmtfZiMAeUBe7UplKsu4feTm0kbiGu0V3iaM654TGtuMKIcGX38TeB
+         NHDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXbhCV8Fb3rqnt+MSiGE49eODgFNKaAq9gq1filrxcL5m+qrf1SfGnjsVw9S0wPkyzneS28swGmHw91@vger.kernel.org
+X-Gm-Message-State: AOJu0YwaOvhM3qhvoW1fs8GdN1rawf/adiTA3kr7tMMdPoxIFvCsAxUM
+	pt+uilyFAxootBTNtqilA7ZaA+gvDdnx1EK8RH0rgVwiDbTAPj9vrKvx
+X-Gm-Gg: ATEYQzwb23lnOn+hS9OGgaA37AbFD+JSwN7F+CHmTlpthDGkgRhjrWs2J+fMjNQfEUn
+	dEy7nO122z6oRT5AXx6rF0CtrmX4T4nUEeGI5Ct6/+iyY75Ph9+dEeCxzf3AQeNP30bBmMyT2zj
+	GvNi0gU+YtQcBuYALRTsVhDkHiWxBes29Vh4538gcaud3SCJnCV9gyuF2bfJRcNg7YSkSV1Vf3F
+	YLbvTQbp6k33Wfje7Y4Y/MjZtY3psCDzjJaSpPKuMGTesoNRvwJoLCt9pm3ib8O095meQD46lhV
+	FJNGubdu5E2WrRrRlhz3F68JhXoTA4ub+kYQ4f2nYjssy76dW+ZcGbQy5nHBEbuCLLlxVPx1V/S
+	hcPEr3HiIfE7O0JkTaH45QkdUQXltdDpb/PlP3/1kNvNiHv4b/uSji5XUy+hm2ugs3DQydqH6zD
+	l91H2IXI+P8YOpIFi7ofpN1E7kATIODQKwmw==
+X-Received: by 2002:a17:903:41d2:b0:2b0:5968:a6d5 with SMTP id d9443c01a7336-2b06e364202mr3114835ad.18.1773768693200;
+        Tue, 17 Mar 2026 10:31:33 -0700 (PDT)
+Received: from kalyani.. ([2401:4900:88f5:ac25:fbd0:e3bd:86f9:3d41])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b06e60526dsm1868795ad.62.2026.03.17.10.31.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Mar 2026 10:31:32 -0700 (PDT)
+From: Kalyani Patra <kalyanipatra2003@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	daniel.baluta@nxp.com,
+	simona.toaca@nxp.com,
+	d-gole@ti.com,
+	m-chawdhry@ti.com,
+	Kalyani Patra <kalyanipatra2003@gmail.com>
+Subject: [PATCH] dt-bindings: display: convert via,vt8500-fb binding to YAML
+Date: Tue, 17 Mar 2026 22:59:56 +0530
+Message-ID: <20260317172955.250192-2-kalyanipatra2003@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 1/7] dt-bindings: media: qcom,x1e80100-camss: Add
- simple-mfd compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>, Bryan O'Donoghue <bod@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org
-References: <20260316-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v10-0-fdfe984fe941@linaro.org>
- <20260316-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v10-1-fdfe984fe941@linaro.org>
- <20260316-glaring-jaybird-from-wonderland-4f8fd6@quoll>
- <94f4fda4-504e-44eb-87f0-e34e557402f8@linaro.org>
- <471895f6-dc60-44d8-84ce-8ba0069110e4@kernel.org>
- <xSErLOaV_RuZ1DggWWH3WGK4mpUp_7CrvmjVU4ZZd33l60PWpjxiSGID27A9hHbdDYmghPXgZONyhiTJ_USPDg==@protonmail.internalid>
- <1671b8ce-cbf9-45ae-947b-f35d174be93e@kernel.org>
- <61fa4409-e19c-49d9-b7fa-dc6f8413c181@kernel.org>
- <2eef8129-8cec-4ef3-9bb1-22e78b004905@kernel.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <2eef8129-8cec-4ef3-9bb1-22e78b004905@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,gmail.com,linaro.org,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-276795-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org,nxp.com,ti.com];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-276797-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kalyanipatra2003@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:dkim,linaro.org:mid]
-X-Rspamd-Queue-Id: AC89D2B0790
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url]
+X-Rspamd-Queue-Id: 84BA12B0809
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 17/03/2026 16:29, Krzysztof Kozlowski wrote:
->> To my mind that fits the criteria you've set of !depends on parent.
-> OK, understood, although I have doubts though, because you have also
-> interconnects and iommus only in the parent.
-> 
-> Regardless of that, even if this fits simple-mfd there is simply no
-> benefits of doing that way and your driver should just populate children.
-
-Right so this is a precursor to what I'd like to do with ICP/BPS and IPE 
-which will define iommus within themselves.
-
-Not quite ready for RFC yet but:
-
-https://github.com/0xB0D/linux/blob/qcom-laptops-v6.18-rc4-camss-icp-bps-ipe-icp-boots%2Bstats/arch/arm64/boot/dts/qcom/hamoa.dtsi#L5676
-
-Then again if I'm understanding you here, you aren't opposed to 
-sub-nodes its the simple-mfd you're skeptical about.
-
-There's nothing stopping us doing platform_register_device() from inside 
-of camss to launch these devices ..
-
+Signed-off-by: Kalyani Patra <kalyanipatra2003@gmail.com>
 ---
-bod
+Note: this patch is part of the GSoC 2026 Device Tree bindings conversion project.
+---
+ .../bindings/display/via,vt8500-fb.txt        | 36 -----------
+ .../bindings/display/via,vt8500-fb.yaml       | 63 +++++++++++++++++++
+ 2 files changed, 63 insertions(+), 36 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/via,vt8500-fb.txt
+ create mode 100644 Documentation/devicetree/bindings/display/via,vt8500-fb.yaml
+
+diff --git a/Documentation/devicetree/bindings/display/via,vt8500-fb.txt b/Documentation/devicetree/bindings/display/via,vt8500-fb.txt
+deleted file mode 100644
+index 2871e218a0fb..000000000000
+--- a/Documentation/devicetree/bindings/display/via,vt8500-fb.txt
++++ /dev/null
+@@ -1,36 +0,0 @@
+-VIA VT8500 Framebuffer
+------------------------------------------------------
+-
+-Required properties:
+-- compatible : "via,vt8500-fb"
+-- reg : Should contain 1 register ranges(address and length)
+-- interrupts : framebuffer controller interrupt
+-- bits-per-pixel : bit depth of framebuffer (16 or 32)
+-
+-Required subnodes:
+-- display-timings: see display-timing.txt for information
+-
+-Example:
+-
+-	fb@d8050800 {
+-		compatible = "via,vt8500-fb";
+-		reg = <0xd800e400 0x400>;
+-		interrupts = <12>;
+-		bits-per-pixel = <16>;
+-
+-		display-timings {
+-			native-mode = <&timing0>;
+-			timing0: 800x480 {
+-				clock-frequency = <0>; /* unused but required */
+-				hactive = <800>;
+-				vactive = <480>;
+-				hfront-porch = <40>;
+-				hback-porch = <88>;
+-				hsync-len = <0>;
+-				vback-porch = <32>;
+-				vfront-porch = <11>;
+-				vsync-len = <1>;
+-			};
+-		};
+-	};
+-
+diff --git a/Documentation/devicetree/bindings/display/via,vt8500-fb.yaml b/Documentation/devicetree/bindings/display/via,vt8500-fb.yaml
+new file mode 100644
+index 000000000000..1ebea3b82f30
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/via,vt8500-fb.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/via,vt8500-fb.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: VIA VT8500 Framebuffer Controller
++
++maintainers:
++  - Kalyani Patra <kalyanipatra2003@gmail.com>
++
++description:
++  Framebuffer controller present on VIA VT8500 SoCs.
++
++properties:
++  compatible:
++    const: via,vt8500-fb
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  bits-per-pixel:
++    description: Framebuffer bit depth
++    enum: [16, 32]
++
++  display-timings:
++    $ref: /schemas/display/panel/display-timings.yaml#
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - bits-per-pixel
++  - display-timings
++
++additionalProperties: false
++
++examples:
++  - |
++    fb@d8050800 {
++        compatible = "via,vt8500-fb";
++        reg = <0xd800e400 0x400>;
++        interrupts = <12>;
++        bits-per-pixel = <16>;
++
++        display-timings {
++            native-mode = <&timing0>;
++            timing0: timing0 {
++                clock-frequency = <0>;
++                hactive = <800>;
++                vactive = <480>;
++                hfront-porch = <40>;
++                hback-porch = <88>;
++                hsync-len = <0>;
++                vback-porch = <32>;
++                vfront-porch = <11>;
++                vsync-len = <1>;
++            };
++        };
++    };
+-- 
+2.43.0
+
 
