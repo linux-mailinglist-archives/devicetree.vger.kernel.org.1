@@ -1,179 +1,154 @@
-Return-Path: <devicetree+bounces-276416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276417-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6NNOCVqwuGl5hwEAu9opvQ
-	(envelope-from <devicetree+bounces-276416-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 02:37:30 +0100
+	id KMYEIdyxuGlLiAEAu9opvQ
+	(envelope-from <devicetree+bounces-276417-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 02:43:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F2A02A2960
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 02:37:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7C7C2A29AA
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 02:43:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 76982301451A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 01:37:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 81D3F3008D0C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 01:43:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E71A533EB0E;
-	Tue, 17 Mar 2026 01:37:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 086DC341050;
+	Tue, 17 Mar 2026 01:43:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="MQeOlmq0"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="BgZqPQgl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49242.qiye.163.com (mail-m49242.qiye.163.com [45.254.49.242])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57F2215C158;
-	Tue, 17 Mar 2026 01:37:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.242
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93D9931326A;
+	Tue, 17 Mar 2026 01:43:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773711444; cv=none; b=HHM9azAVolRFMVaPbFp6EcknACu4h9razktyPhPxFZMWbpGyhJCHhJYP1XReWr38xijnP5MCgeClN/7fKVBOl3X+99cTi01hGc93v9JCg/S8XWZOXKI63WuOJcXN9YvNgP8C3D++HRy7rooaRq1Ii4sIk2OMBdi1YjdHcxKT5/I=
+	t=1773711833; cv=none; b=GQ59zcUVHBK1Fp1G6kgC/DO/BwTtMT5EamxxNVrOMd58xeXlfUj1NU9VRGw0ZorbwezyGF2x0K5H3soAZiDt/H4M0B36TwFfFiaqZzx08BZfJDps2BUJ2kBCwwfs3Kpn92oUZ979diO2kYmeva7XAbQWNix2xhg4vPoF49kdU00=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773711444; c=relaxed/simple;
-	bh=Yj/IL/AN4ZOti1DnHpYxFCvLegKnfxksNderjPk9Pg4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Z8gUESjMgOf7+KPsQohdtulg45yPCEhdH9lKTBhXoiGenIHtiECUIKfPuccaPLw4YpWL12bRKxY2sfWwOgunC2xJMwpNiRA+5IL532ixWyJgYn4d0Durz/gkVTKLG6IZVRYpCNW17qx1V9r3NIXD0gf4COUI5oVS7pP7SgG0cHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=MQeOlmq0; arc=none smtp.client-ip=45.254.49.242
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.43] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 372f3216c;
-	Tue, 17 Mar 2026 09:37:10 +0800 (GMT+08:00)
-Message-ID: <05a8012d-c1f7-417b-96f8-ec1a41993b26@rock-chips.com>
-Date: Tue, 17 Mar 2026 09:37:10 +0800
+	s=arc-20240116; t=1773711833; c=relaxed/simple;
+	bh=9SmP2+4heY2mqxSh+2kpDHacvKUssfAIu1YMw99U9Uc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=s/TQ6Nq+OdZIVYJq007M6M/k8ced+JiOTGAZvgKDg2cHxvKh4NhujpDJmIP8J9jQCbZUjPkUo1eGldj4+Xsh0XtGbVvgxC+Q6tEGEpLtybwbkvZLyAkTIVHILaXoSdeJqPMxKVf/4d+ESzmgm8c1nvahnU7xCurzhizPii7bNJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=BgZqPQgl; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1773711830;
+	bh=9SmP2+4heY2mqxSh+2kpDHacvKUssfAIu1YMw99U9Uc=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=BgZqPQglYjGenbMZ0Xry4Vi0J1fUs7CVX0RMnYCDdEszoZdhji6xgedEDz+ah9kVW
+	 Etk0ivyOAztnVJEysv7ZT9sFMW0Y8pv76leRIKsT3953qGb97mA+Q18A/AdmHw0lXp
+	 Ey1/3IIKZCQFyjKj5v3zGbkfeNZ/BbblQa15T/hey98kRyWRFh1Te8r5pgMrUCeteD
+	 w0omaMe3yiDJXxGrErJ5gJOaSL+2p5AKbEjB9Kcj8FzQ4FU8Iyws/jKEwklYPA2kHR
+	 88XiwfeQr1IXCQJnuu1AYjYpIxlV3U65Dt3TCPkzsKQIUBDnLz7/V0xkb4UU6lWxsI
+	 fk0uIShtMwILQ==
+Received: from [192.168.72.167] (210-10-213-150.per.static-ipl.aapt.com.au [210.10.213.150])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id AF97D6009B;
+	Tue, 17 Mar 2026 09:43:49 +0800 (AWST)
+Message-ID: <9dec962eb510d947a458fd2318a3812d58b3553a.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v26 2/4] dt-bindings: i2c: ast2600-i2c.yaml: Add
+ global-regs and transfer-mode properties
+From: Jeremy Kerr <jk@codeconstruct.com.au>
+To: Ryan Chen <ryan_chen@aspeedtech.com>, Rob Herring <robh@kernel.org>
+Cc: "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
+  Andi Shyti <andi.shyti@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
+ <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, Benjamin
+ Herrenschmidt <benh@kernel.crashing.org>,  Philipp Zabel
+ <p.zabel@pengutronix.de>, "linux-i2c@vger.kernel.org"
+ <linux-i2c@vger.kernel.org>,  "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+ <linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "openbmc@lists.ozlabs.org"
+ <openbmc@lists.ozlabs.org>
+Date: Tue, 17 Mar 2026 09:43:49 +0800
+In-Reply-To: <TY2PPF5CB9A1BE6EAA73D3AD6F75F1ABD53F241A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+References: <20260309-upstream_i2c-v26-0-5fedcff8ffe8@aspeedtech.com>
+	 <20260309-upstream_i2c-v26-2-5fedcff8ffe8@aspeedtech.com>
+	 <20260313232125.GA3618633-robh@kernel.org>
+	 <TY2PPF5CB9A1BE6A19D439C675AF5028C13F242A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+	 <7ae8222bf6abd83a3c2ac976f54a2edbe4e9727a.camel@codeconstruct.com.au>
+	 <CAL_JsqKQp=HyA90rQ2Hzu148k63k5-qrGLH6sEHXNcjAu3QSwg@mail.gmail.com>
+	 <eeac1db0a5692ae45b5528a85ed1510b8b1cf771.camel@codeconstruct.com.au>
+	 <TY2PPF5CB9A1BE6EAA73D3AD6F75F1ABD53F241A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2+deb12u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/4] arm64: dts: rockchip: Add eDP node for RK3576
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
- rfoss@kernel.org
-Cc: Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, alchark@gmail.com,
- cristian.ciocaltea@collabora.com, sebastian.reichel@collabora.com,
- kever.yang@rock-chips.com, dmitry.baryshkov@oss.qualcomm.com,
- luca.ceresoli@bootlin.com, dianders@chromium.org, m.szyprowski@samsung.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20260310105307.309765-1-damon.ding@rock-chips.com>
- <20260310105307.309765-3-damon.ding@rock-chips.com>
- <9590182.CDJkKcVGEf@workhorse>
-Content-Language: en-US
-From: Damon Ding <damon.ding@rock-chips.com>
-In-Reply-To: <9590182.CDJkKcVGEf@workhorse>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9cf970940603a3kunm76417074222a43
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGh4YSVZOGUpITUwaShhPQxpWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpKQk
-	1VSktLVUpCWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=MQeOlmq07ycIc1QL4tGgjDuL85uSHPI3xkw6nYsJa7yU+1prZ8PKktKJMqK5SwPdJufqOaA4RldAN9jPxB19GDSRAGpXfK0/ea/DXI3LlkAZIgPQorilo6arCjAGHm5nL0FwSnygNzNpV9fBwJmiWVLAnNUnmmEJVMailCWpYOU=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=3Q89cxIkHSk/a2RjqYAjgiexXPdpx/jNB/mz4sMPZKU=;
-	h=date:mime-version:subject:message-id:from;
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
-	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[codeconstruct.com.au,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_DKIM_ALLOW(-0.20)[codeconstruct.com.au:s=2022a];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276416-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[collabora.com,rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[31];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[rock-chips.com:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,collabora.com,rock-chips.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-276417-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[codeconstruct.com.au:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:dkim,rock-chips.com:email,rock-chips.com:mid,collabora.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email,0.0.0.1:email,27dc0000:email]
-X-Rspamd-Queue-Id: 7F2A02A2960
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jk@codeconstruct.com.au,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: D7C7C2A29AA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Nicolas,
+Hi Ryan,
 
-On 3/16/2026 7:31 PM, Nicolas Frattaroli wrote:
-> On Tuesday, 10 March 2026 11:53:05 Central European Standard Time Damon Ding wrote:
->> Add support for the eDP output on RK3576 SoC.
->>
->> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
->> ---
->>   arch/arm64/boot/dts/rockchip/rk3576.dtsi | 28 ++++++++++++++++++++++++
->>   1 file changed, 28 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
->> index a86fc6b4e8c4..14900a66d3e1 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
->> @@ -1446,6 +1446,34 @@ hdmi_out: port@1 {
->>   			};
->>   		};
->>   
->> +		edp: edp@27dc0000 {
->> +			compatible = "rockchip,rk3576-edp";
->> +			reg = <0x0 0x27dc0000 0x0 0x1000>;
->> +			clocks = <&cru CLK_EDP0_24M>, <&cru PCLK_EDP0>, <&cru HCLK_VO0_ROOT>;
->> +			clock-names = "dp", "pclk", "hclk";
->> +			interrupts = <GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH>;
->> +			phys = <&hdptxphy>;
->> +			phy-names = "dp";
->> +			power-domains = <&power RK3576_PD_VO0>;
->> +			resets = <&cru SRST_EDP0_24M>, <&cru SRST_P_EDP0>;
->> +			reset-names = "dp", "apb";
->> +			rockchip,grf = <&vo0_grf>;
->> +			status = "disabled";
->> +
->> +			ports {
->> +				#address-cells = <1>;
->> +				#size-cells = <0>;
->> +
->> +				edp_in: port@0 {
->> +					reg = <0>;
->> +				};
->> +
->> +				edp_out: port@1 {
->> +					reg = <1>;
->> +				};
->> +			};
->> +		};
->> +
->>   		sai7: sai@27ed0000 {
->>   			compatible = "rockchip,rk3576-sai";
->>   			reg = <0x0 0x27ed0000 0x0 0x1000>;
->>
-> 
-> Reviewed-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> 
-> By cross-referencing the TRM, I checked the address, the IRQ number,
-> and the power domain, and verified that there are no new check_dtbs
-> warnings introduced.
-> 
-> 
+> Your understanding is correct; the byte and buffer mode is mostly the
+> same. And also mode should be decided before xfer, due to the
+> controller/target both use the same xfer mode, not decide by transfer
+> time. The original my submit is only buffer mode and dma mode, and use
+> only one Boolean property, aspeed,i2c-dma-enabled, but someone suggest
+> add byte mode select, so I start to add at v17. I can drop the byte
+> mode, if this is confused.
+>=20
+> byte mode request:
+> https://lore.kernel.org/all/010e55e9-d58b-444c-ab57-
+> ddf8c75f2390@gmail.com/
 
-Thanks for the review.
+OK, that sounds like more driver configuration than hardware description
+though.
 
-Best regards,
-Damon
+> > Ryan: I think this gives us a much cleaner approach to the binding.
+> Thanks the feedback, do you mean, just one boolean property for mode
+> selection,
+> Am I right?
 
+It's less about "mode selection" (which is a driver implementation
+consideration) and more about "hardware capability", which I think the
+boolean property better represents.
+
+The driver implementation could do whatever it likes with the
+information about whether a DMA channel is allocated (and select a
+suitable mode depending on that, and/or other runtime data).
+
+This property only seems to be applicable to 2600 though, as there is no
+need for it on 2700, if all controllers are DMA-capable.
+
+Cheers,
+
+
+Jeremy
 
