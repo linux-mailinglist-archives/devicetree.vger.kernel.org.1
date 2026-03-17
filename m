@@ -1,207 +1,267 @@
-Return-Path: <devicetree+bounces-276612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276613-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8KymFugsuWmVtQEAu9opvQ
-	(envelope-from <devicetree+bounces-276612-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:28:56 +0100
+	id uPNyLFguuWmVtQEAu9opvQ
+	(envelope-from <devicetree+bounces-276613-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:35:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43F5F2A7E4D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:28:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90F1D2A7FBE
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:35:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2B1B2304CA42
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 10:26:48 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7500E3039DCA
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 10:31:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 827B03AEF2D;
-	Tue, 17 Mar 2026 10:24:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FC553A6B7E;
+	Tue, 17 Mar 2026 10:31:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s4/VpbSM"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hzFq/es5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C4673AE18D;
-	Tue, 17 Mar 2026 10:24:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CEFA36655E;
+	Tue, 17 Mar 2026 10:31:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773743093; cv=none; b=sMltToN1VuF4jt5y6L5Ccr7MiShtnWrbelN/2CYvqYjRTlH+BO7DMjmwlZGB94YQwXOgjCrLS7jZnZ2dWaJUkxF8gA6JEebYEZC1dSVvc0cZD7f2jiH1hLeHPnRnBICf9DuPArwdK00MIscE4t7bEvpi/45Ii9nk+Nkv9ViRkYQ=
+	t=1773743475; cv=none; b=AgrZYg+MntEdl1+lFGtf2w4ikvIRrBXSj+sagu4i1vby72vpRzrTTlNGTdEEHNpgGfpESB8vubhl5LiUFitcwtKPTu55hYnvvI7b2TeSQ9SLhlT5wK61QfyZLa86MmhL1ABPFsJ3NB1Ch662UO+H83k9dZ42KKYH0oXPk0ti0CA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773743093; c=relaxed/simple;
-	bh=al60REhvfvK2SYPZtfpzNWXjAEAkBOKTHyDcGYyYLyo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QDlfg8FO7vFj4kPkZ3kSX/QrchXAIWstQiS4aUDnkC5q256lImIaEEJNNKN8lXnC5zY5AGFbro8e9PIevCEizVTB+PLKxwlcv1IyaUU0rtXELe0zTL+IXimeMhJvRqegu81YNk15nXm5oc4rPgsqolpNx8e7G/VB+1J+4uZ+8Xo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s4/VpbSM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3513DC2BC9E;
-	Tue, 17 Mar 2026 10:24:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773743093;
-	bh=al60REhvfvK2SYPZtfpzNWXjAEAkBOKTHyDcGYyYLyo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=s4/VpbSMH6Rni4zawsGfzudBoK3+hS2LPfa6FWP4Wz5wWaYMO7FO6JxawhNYLQ8l+
-	 wC/xU3nPM+5JwQu7CzSM1wctntbVs4pEGS1f+IAUChpNkoxsSUwkfp1i013mDYDKaM
-	 PiTvPGoM2eLjREufG2DRsvH/izIjZsdNXKccE3NFQHedNgLuuEXkj3yD29L+CeHSqL
-	 f95FzEtBGQPJXcKYHOg/pEGWVkblyhHpaKBl7s/g94hTnFvOljE6hWhgjobqAaP2x+
-	 M1QXDix/ZBfiaUtYWMs8TUdO9tBFUdyxfXDIo5fGmN9OaAKHexE+PpiP2zRaW2F4pm
-	 LP2b4MdNrOTZg==
-Message-ID: <f67c126f-b5ea-43e1-9f68-c8246e641f17@kernel.org>
-Date: Tue, 17 Mar 2026 11:24:48 +0100
+	s=arc-20240116; t=1773743475; c=relaxed/simple;
+	bh=1n3VOVl3x+1BOkcpZTwb3qWmCeX6KadDJhMAjOVUtdw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ktJ782PRJ6OCWXIz0yFdk7PH04xwcSRqvB7dseDFQ+VsX09OpMeMXNuRb2OLsgR53Sz+ZHgO0bPqMO26n3B+IwAqtUgu7Jl1T8oIgDbC95hMzSXztgIr+HM0+TDzq65cERpgGHR9GANbF0j2coUOpGqWKMkF+VU8ChA9XKizVXU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hzFq/es5; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773743473; x=1805279473;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=1n3VOVl3x+1BOkcpZTwb3qWmCeX6KadDJhMAjOVUtdw=;
+  b=hzFq/es5bBqbrxuIonuvK+UhYgHB2Xi3twBaclpw+1uVhQqangH/GrUj
+   XVHh2fPfxLQoRrctf8GM4NkNE1CKqMrLtyj2EE5Y7dWmNYGD6fPTXepwS
+   3AMAi24jkMYLY+RaDbOzDIuAh3aXChuSl3oAAXbwwzh/zR02EY0PC6ZVq
+   J090z+oYi5UIgQOSUlgqhwdAoxnC5wvXxfE+CsnhKGxNFh+Fh3znp7LBg
+   JEozii7c91BtswQNGddzYO7xGuh7mM1/LjlgBeJe3+ONiMHYXv3sq7+tN
+   QihRanqFguqsT6oqVtmdlzd00qYaGtQak610IdQw4oG8ndQAd2JMlleow
+   A==;
+X-CSE-ConnectionGUID: jBkzvqaLS1eFkCW48FKhyQ==
+X-CSE-MsgGUID: 2RB1wqYITMqtK2eV5aOQFg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="86126444"
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
+   d="scan'208";a="86126444"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2026 03:31:11 -0700
+X-CSE-ConnectionGUID: nK1XShSfSKKjF4w9SCFsmA==
+X-CSE-MsgGUID: aPjlNS0tQQScsVkAVNScHA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
+   d="scan'208";a="216591023"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost) ([10.245.245.97])
+  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2026 03:31:08 -0700
+Date: Tue, 17 Mar 2026 12:31:06 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	"Hennerich, Michael" <Michael.Hennerich@analog.com>,
+	David Lechner <dlechner@baylibre.com>,
+	"Sa, Nuno" <Nuno.Sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 4/4] iio: adc: ad4080: add support for AD4880
+ dual-channel ADC
+Message-ID: <abktanVPsFwIlIfH@ashevche-desk.local>
+References: <20260313115856.87763-1-antoniu.miclaus@analog.com>
+ <20260313115856.87763-5-antoniu.miclaus@analog.com>
+ <abQdvXq9MtIZ0EpZ@ashevche-desk.local>
+ <20260314120022.56265de3@jic23-huawei>
+ <abfT3qbFaM6PIDKx@ashevche-desk.local>
+ <SN6SPR01MB00908E6EDB8F4D20D391664B9B40A@SN6SPR01MB0090.namprd03.prod.outlook.com>
+ <abgWpzT_fcMqRHzf@ashevche-desk.local>
+ <SN6SPR01MB00904D9E9C5008D32066E2029B40A@SN6SPR01MB0090.namprd03.prod.outlook.com>
+ <abgf3TZTib9UrjSB@ashevche-desk.local>
+ <SN6SPR01MB00900C6A79A51852C73D6ECF9B41A@SN6SPR01MB0090.namprd03.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] clk: qcom: dispcc-eliza: Add Eliza display clock
- controller support
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260317-clk-qcom-dispcc-eliza-v1-0-be4b0e4eb24a@oss.qualcomm.com>
- <20260317-clk-qcom-dispcc-eliza-v1-2-be4b0e4eb24a@oss.qualcomm.com>
- <bc90669a-652c-4a10-9755-f4c202506318@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <bc90669a-652c-4a10-9755-f4c202506318@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <SN6SPR01MB00900C6A79A51852C73D6ECF9B41A@SN6SPR01MB0090.namprd03.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-276613-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276612-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email]
-X-Rspamd-Queue-Id: 43F5F2A7E4D
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,ashevche-desk.local:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 90F1D2A7FBE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 17/03/2026 11:22, Konrad Dybcio wrote:
-> On 3/17/26 11:06 AM, Krzysztof Kozlowski wrote:
->> Add a drvier for the display clock controller on Qualcomm Eliza SoC,
->> which is copied from SM8750 driver plus changes:
->>
->> 1. Additional DT_HDMI_PHY_PLL_CLK clock input,
->> 2. Eight new HDMI clocks,
->> 3. Different PLLs (lucid and pongo).
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
->> ---
-> 
-> [...]
-> 
->> +static int disp_cc_eliza_probe(struct platform_device *pdev)
->> +{
->> +	struct regmap *regmap;
->> +	int ret;
->> +
->> +	ret = devm_pm_runtime_enable(&pdev->dev);
-> 
-> -> qcom_cc_desc.use_rpm
-> 
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = pm_runtime_resume_and_get(&pdev->dev);
->> +	if (ret)
->> +		return ret;
->> +
->> +	regmap = qcom_cc_map(pdev, &disp_cc_eliza_desc);
->> +	if (IS_ERR(regmap)) {
->> +		ret = PTR_ERR(regmap);
->> +		goto err_put_rpm;
->> +	}
->> +
->> +	clk_lucid_ole_pll_configure(&disp_cc_pll0, regmap, &disp_cc_pll0_config);
->> +	clk_lucid_ole_pll_configure(&disp_cc_pll1, regmap, &disp_cc_pll1_config);
->> +	clk_pongo_elu_pll_configure(&disp_cc_pll2, regmap, &disp_cc_pll2_config);
-> 
-> -> qcom_cc_driver_data.alpha_plls
-> 
->> +
->> +	/* Enable clock gating for MDP clocks */
->> +	regmap_update_bits(regmap, DISP_CC_MISC_CMD, 0x10, 0x10);
->> +
->> +	/* Keep some clocks always-on */
->> +	qcom_branch_set_clk_en(regmap, 0xe07c); /* DISP_CC_SLEEP_CLK */
->> +	qcom_branch_set_clk_en(regmap, 0xe05c); /* DISP_CC_XO_CLK */
->> +	qcom_branch_set_clk_en(regmap, 0xc00c); /* DISP_CC_MDSS_RSCC_AHB_CLK */
->> +	qcom_branch_set_clk_en(regmap, 0xc008); /* DISP_CC_MDSS_RSCC_VSYNC_CLK */
-> 
-> -> qcom_cc_driver_data.clk_regs_configure
-> 
+On Tue, Mar 17, 2026 at 09:54:13AM +0000, Miclaus, Antoniu wrote:
+> > On Mon, Mar 16, 2026 at 03:09:18PM +0000, Miclaus, Antoniu wrote:
+> > > > From: Andy Shevchenko <andriy.shevchenko@intel.com>
+> > > > Sent: Monday, March 16, 2026 4:42 PM
+> > > > On Mon, Mar 16, 2026 at 12:31:09PM +0000, Miclaus, Antoniu wrote:
+> > > > > > From: Andy Shevchenko <andriy.shevchenko@intel.com>
+> > > > > > Sent: Monday, March 16, 2026 11:57 AM
+> > > > > > On Sat, Mar 14, 2026 at 12:00:22PM +0000, Jonathan Cameron
+> > wrote:
+> > > > > > > On Fri, 13 Mar 2026 16:22:53 +0200
+> > > > > > > Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+> > > > > > > > On Fri, Mar 13, 2026 at 01:58:53PM +0200, Antoniu Miclaus
+> > wrote:
 
-Ack, I took a bit older driver as starting point but should take Kaanapali.
+...
 
-Best regards,
-Krzysztof
+> > > > > > > Nope. You are talking to different devices (more or less).
+> > > > > >
+> > > > > > If it's a twins in the package, why do we have a special handling and not
+> > > > just
+> > > > > > describing two independent devices in the DT/fw?
+> > > > >
+> > > > > Because they are not fully independent - they share:
+> > > > > - Power supplies and voltage reference
+> > > > > - The CNV clock (conversion trigger)
+> > > >
+> > > > Okay, then why not having a core part and a glue driver that registers as
+> > many
+> > > > devices as you wish and provides just a common stuff?
+> > 
+> > > Because the AD4880 is not two independent ADCs sharing a package - it is
+> > > a single device with a single interleaved data output. Splitting into
+> > > separate IIO devices would make synchronized dual-channel capture
+> > > impossible from userspace, which is the primary use case for this part.
+> > 
+> > Sounds to me like you need, probably, a virtual device for that.
+> > Maybe even on IIO level. Do we expect more devices like this to
+> > be enabled in the future (or maybe already in tree, but lacking this
+> > feature)?
+> 
+>  The AD4880 is a fairly unique part - having separate SPI config
+>  interfaces per channel with a shared interleaved data output is not
+>  a common pattern, and the chances of another device like this being
+>  upstreamed are low. Given that Jonathan has already reviewed and
+>  approved a previous version of this series, and the patch has
+>  collected multiple Reviewed-by tags, I'd prefer to keep the current
+>  approach.
+
+This...
+
+> > > The shared resources (supplies, CNV clock, interleaved data stream) are
+> > > not just "glue" - they define the device's operating model.
+> > 
+> > Sure, like any other resource for MFD (HW speaking).
+> 
+> MFD models a single device exposing multiple functionally distinct
+> sub-devices. The AD4880 channels are not distinct sub-devices - they share a
+> single interleaved data stream, and splitting them would break
+> synchronized capture.
+
+...and this are important pieces of information. Can you add a summary
+to v7 commit message explaining on the chosen approach?
+
+> > > The per-channel SPI interfaces exist only for register configuration; the
+> > > actual data path is a single stream handled entirely by the backend.
+> > >
+> > > > We have similar (to some extend) cases with SPI/I²C where
+> > > > drivers/platform/x86/serial-multi-instantiate.c services as "MFD" for that
+> > > > type of busses.
+> > > >
+> > > > > - A single interleaved data output stream
+> > > >
+> > > > How does it work in non-racy way?
+> > >
+> > > The data path has no software involvement at runtime. The CNV clock
+> > >  triggers both channels to sample simultaneously, and the device outputs
+> > >  the conversion results as a single interleaved bitstream on the data
+> > >  lane(s). The FPGA backend captures this stream directly - no SPI
+> > >  register reads are involved in the data path. The only SPI traffic is
+> > >  for configuration, and each channel has its own independent SPI
+> > >  interface and regmap, so there is no shared bus contention.
+> > 
+> > Okay, so it's in a way more complex (like a camera sensor in terms of
+> > data/configuration paths) device. It's now even more looking that the
+> > current approach is a quick hack rather than a solution to make this
+> > properly fit Linux device model.
+> 
+> The driver uses spi_new_ancillary_device() for the config path and
+>  the IIO backend for the data path - both existing kernel
+>  infrastructure used as intended. No custom abstractions are added.
+
+Also would be nice to have something from this.
+
+So, I think for v7 we need transform this discussion to a summary that covers
+all aspects:
+
+- why MFD box can't be applied here
+- why regmaps are independent
+- how does it look with data and configuration paths
+- the device is unique and we do not expect more to come (or very little chances)
+- et cetera (or what I forgot to mention)
+
+> > > > > Describing them as two independent DT nodes would mean duplicating
+> > > > > all the shared resources, and more importantly, the data interface
+> > > > > is a single interleaved stream feeding into one IIO buffer. Having
+> > > > > two separate IIO devices would make synchronized capture impossible
+> > > > > from userspace.
+> > 
+> > > > > This is exactly the use case spi_new_ancillary_device() was designed
+> > > > > for - a multi-die device sharing a bus with separate chip selects for
+> > > > > configuration but common data/clock/power infrastructure.
+> > 
+> > This... It doesn't fit the data path as far as I read from the above.
+> 
+> Right, spi_new_ancillary_device() covers only the config path.
+> The data path is handled entirely by the IIO backend with no SPI
+> involvement at runtime.
+> 
+> > > > See above.
+> > > >
+> > > > > > TO me is either something special about channel 0, then we have to
+> > > > > > synchronise
+> > > > > > accesses, or there is no point to have this patch at all, just make devices
+> > to
+> > > > > > be the same under the hood and describe as independent pair.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
