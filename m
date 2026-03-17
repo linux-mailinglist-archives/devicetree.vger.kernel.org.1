@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-276635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276636-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IES4LmM+uWkowQEAu9opvQ
-	(envelope-from <devicetree+bounces-276635-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:43:31 +0100
+	id GKCoF48+uWkowQEAu9opvQ
+	(envelope-from <devicetree+bounces-276636-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:44:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45F4C2A91D1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:43:31 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5D842A91EA
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:44:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7F5BA30917B6
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:39:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 859EC301D960
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:42:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60ABF3ACA42;
-	Tue, 17 Mar 2026 11:39:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6720F3A9DA5;
+	Tue, 17 Mar 2026 11:42:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TCMd/cMS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KJxLa99e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3499C3ACF0F;
-	Tue, 17 Mar 2026 11:39:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42C7937FF78;
+	Tue, 17 Mar 2026 11:42:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773747597; cv=none; b=em9l9DwcvKmVCxrpJTa11gRXX97eLSi3X5/SsqNKd/0Hq8ekUI9KB1cWKgn9i+DNBhP0rhDyMzlxXuBkQNV4l0w5fiqdxD1bMqOKL5mqpK6/3xTSCXkHHD6DmQs9hhxR1VvndyRxgXisOrtTIqQe1Z/QljMtvrbiimxe15GVB28=
+	t=1773747749; cv=none; b=nY4dmWePgKD/uB+ep9P+X4aDldfgthovfT5aLFxDStFzAHMqsKGozqN1OQ5Ag2J7BvvcXRrO1WCIg66p8y3KLj9Pq/ZUFClQsc0swce92Pbgzo0dqAbz+i7q2xH8HxiD5VJpjLpyX1Xts/wLMuTMmGWSl+OwNQWcjA4tRMZMnAo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773747597; c=relaxed/simple;
-	bh=yozjB9rytWSTgNIxVrVuxEglEsVNstcwA/l28nbozPQ=;
+	s=arc-20240116; t=1773747749; c=relaxed/simple;
+	bh=AJ9IbIpU8/9WW0wCb8m+ohq5dLtmU4CpWW9qgpUy4wA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FwmNrtfUlaIS15JhLozyJsNrOdnDORPcI8MHt+R/P3rFi7iIti9qjTAm/szj5QPSmcSn+Tpj9HUntkV3t8BH86xyp7AJ49JjhA2f1rvDJz6CKMTGNEyaPwUzJeGELDwrrGKku0rQ8zgzwkr3GQ8OQt+8hx/NvHvVrqyDusMhgEs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TCMd/cMS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C177FC4CEF7;
-	Tue, 17 Mar 2026 11:39:53 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=qhQi109loAA14gbMs7a0iRe/bw2C37uZvuRGUreFV64CHKX/fVzERjQq7zD/pyeARTH53v/M7kf4pHp1C2ccwlRz0QB2fCl5j3wTUcNXhK79+BVKqlxZvjCRYDf2nykrIfIGIdh9ANiltE72tvRGq7QHd4Yzfufxn4xbhNTg6Vc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KJxLa99e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 529A3C4CEF7;
+	Tue, 17 Mar 2026 11:42:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773747596;
-	bh=yozjB9rytWSTgNIxVrVuxEglEsVNstcwA/l28nbozPQ=;
+	s=k20201202; t=1773747748;
+	bh=AJ9IbIpU8/9WW0wCb8m+ohq5dLtmU4CpWW9qgpUy4wA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TCMd/cMSdBWPYnakIQdNHVYhHYw+zb9/eGTdjXbXnpwxi7iMcHPHkDMXkGuf7TuGR
-	 kAsEpVaZDDuMoqu9D4XrGYo06JSjb4lBhlNg0spTD4jhJUC7ZUb98Q+bFhubUGfqbl
-	 oZ4MvyScSpFhHhB+HEluudDXozLZOLvBNiYs96U9Iglmu1rGsow9dm1FR6xSocA9Y3
-	 1sGl5wLW9XVdXiUGTZKigHFc9YxNomfty6SlqnZeNXiyarv+FgJpR7h/ZiW1zzwQYQ
-	 iupRQnH17VrSNlqcAQCxsmfjsyGCtcpKb/B/Whr+/QFETQGO7iR8qZXoDyBW+2jGpu
-	 XqANNA3C+Ty/w==
-Message-ID: <64c5070c-aa9e-427a-933e-91e168f0510c@kernel.org>
-Date: Tue, 17 Mar 2026 12:39:51 +0100
+	b=KJxLa99eDoVn/1XfpnY6l73w2bZuV/M3sflPnpXOSMsToBmmlmlefzgAMBeuuoWqD
+	 1zcrjOPeth9kKaExwo9aeKRTJ2JF9Dhzkpg8IL+QMCOC6/791ylV8RVW1Jl5U04KJA
+	 tcPKNu/vXgAs/WiaDSMn6ZuUbuleRV9ZSiUIN5AbQZRu5a/haH2aqItW+RDo8d4w9Y
+	 mGHMeFW6QOta1dB4YVcjHHaWdZm1vinr/zUJVJuVNKYm9MMhzdiTCn8q3rkxd/nwjc
+	 tA4WoqZpAd1Q8+ESaT05urXp4clHT8Fi2mnSUdns9FdwAtOAfHoLhO2aCjqU1U8dYK
+	 252+MPtbIAe7g==
+Message-ID: <617cc5dd-9012-407c-8579-2c08fc629047@kernel.org>
+Date: Tue, 17 Mar 2026 12:42:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,26 +53,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [EXT] Re: [PATCH v6 3/7] dt-bindings: i3c: Add NXP P3H2x4x
- i3c-hub support
-To: Lakshay Piplani <lakshay.piplani@nxp.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-i3c@lists.infradead.org" <linux-i3c@lists.infradead.org>,
- "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "robh@kernel.org"
- <robh@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "broonie@kernel.org" <broonie@kernel.org>, "lee@kernel.org"
- <lee@kernel.org>, Frank Li <frank.li@nxp.com>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- Vikash Bansal <vikash.bansal@nxp.com>, Priyanka Jain
- <priyanka.jain@nxp.com>, Aman Kumar Pandey <aman.kumarpandey@nxp.com>
-References: <20260310065727.3759342-1-lakshay.piplani@nxp.com>
- <20260310065727.3759342-3-lakshay.piplani@nxp.com>
- <20260311-outrageous-unnatural-jerboa-53f5a8@quoll>
- <AS4PR04MB936254136A4791441EDA2F91FB45A@AS4PR04MB9362.eurprd04.prod.outlook.com>
- <f0960746-e9e8-4a86-8800-31b8a7a29920@kernel.org>
- <AS4PR04MB9362F90E42A990CE0620B992FB41A@AS4PR04MB9362.eurprd04.prod.outlook.com>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: monaco: add lt8713sx bridge with
+ displayport
+To: Vishnu Saini <vishnu.saini@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, prahlad.valluru@oss.qualcomm.com,
+ Prahlad Valluru <vvalluru@qti.qualcomm.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20260317-lt8713sx_dt_for_next-v1-0-8195fa931ff1@oss.qualcomm.com>
+ <20260317-lt8713sx_dt_for_next-v1-1-8195fa931ff1@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -118,56 +110,109 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <AS4PR04MB9362F90E42A990CE0620B992FB41A@AS4PR04MB9362.eurprd04.prod.outlook.com>
+In-Reply-To: <20260317-lt8713sx_dt_for_next-v1-1-8195fa931ff1@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276635-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276636-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,nxp.com,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 45F4C2A91D1
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E5D842A91EA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 17/03/2026 12:34, Lakshay Piplani wrote:
->> Krzysztof
+On 17/03/2026 07:03, Vishnu Saini wrote:
+> Monaco-evk has LT8713sx which act as DP to 3 DP output
+> converter. Edp PHY from monaco soc is connected to lt8713sx
+> as input and output of lt8713sx is connected to 3 mini DP ports.
 > 
-> Hi Krzysztof,
+> Two ports are available in mainboard and one port
+> is available on Mezz board.
 > 
-> Thanks for the review.
+> lt8713sx is connected to soc over i2c0 and with reset gpio
+> connected to pin6 of ioexpander5.
 > 
-> To make sure I address the issue correctly, could you please suggest what specific changes you would
-> like to see in this dt-binding? I will update the schema accordingly and re‑run dt_binding_check to 
-> ensure the examples and properties are properly validated.
+> Enable the edp nodes from monaco and enable lontium lt8713sx
+> bridge node.
+> 
+> Co-developed-by: Prahlad Valluru <vvalluru@qti.qualcomm.com>
+> Signed-off-by: Prahlad Valluru <vvalluru@qti.qualcomm.com>
+> Signed-off-by: Vishnu Saini <vishnu.saini@oss.qualcomm.com>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-Really I thought it was obvious... I asked where is the compatible and
-provided you arguments that without it this is unverifiable schema.
-Solution is to add compatible.
+How v1 could be reviewed already? v1 is the first posting.
+
+
+> ---
+>  arch/arm64/boot/dts/qcom/monaco-evk.dts | 89 +++++++++++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/monaco.dtsi    |  6 +++
+>  2 files changed, 95 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/monaco-evk.dts b/arch/arm64/boot/dts/qcom/monaco-evk.dts
+> index 0b26cc334a69..0ca5615c996d 100644
+> --- a/arch/arm64/boot/dts/qcom/monaco-evk.dts
+> +++ b/arch/arm64/boot/dts/qcom/monaco-evk.dts
+> @@ -52,6 +52,30 @@ dmic: audio-codec-0 {
+>  		num-channels = <1>;
+>  	};
+>  
+> +	dp-connector0 {
+
+dp-connector-0
+
+> +		compatible = "dp-connector";
+> +		label = "DP";
+> +		type = "mini";
+> +
+> +		port {
+> +			dp0_connector_in: endpoint {
+> +				remote-endpoint = <&lt8713sx_dp0_out>;
+> +			};
+> +		};
+> +	};
+> +
+> +	dp-connector1 {
+
+
+dp-connector-1
+
+> +		compatible = "dp-connector";
+> +		label = "DP";
+> +		type = "mini";
+> +
+> +		port {
+> +			dp1_connector_in: endpoint {
+> +				remote-endpoint = <&lt8713sx_dp1_out>;
+> +			};
+> +		};
+> +	};
+> +
+>  	max98357a: audio-codec-1 {
+
+And here you have example. Write code consistent with the rest.
+
 
 Best regards,
 Krzysztof
