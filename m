@@ -1,144 +1,136 @@
-Return-Path: <devicetree+bounces-276749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276750-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0NE7Nqp0uWm8EgIAu9opvQ
-	(envelope-from <devicetree+bounces-276749-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 16:35:06 +0100
+	id UKcQDFp1uWm8EgIAu9opvQ
+	(envelope-from <devicetree+bounces-276750-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 16:38:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59F862AD1E9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 16:35:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D6B12AD274
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 16:38:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6410D301912B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 15:32:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0EA66309908D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 15:36:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 061583D6661;
-	Tue, 17 Mar 2026 15:32:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC1853EAC8E;
+	Tue, 17 Mar 2026 15:36:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VfaB9n5K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FNP+TqNk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F5D1A8F84
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 15:32:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9878A3E3C4D;
+	Tue, 17 Mar 2026 15:36:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773761549; cv=none; b=YFCLFoPjQfOD48J+UACL4gtLq1pJFArrftzyIqux1xoD/PBF5bf6WyQUdu4J1FRWjZx2fkBmT3UMu+RGfiDzd+Hbny/cf9KN0uHcC21YOqlUDyEolHHIMUHc6d/dPDTcx68oTvbtrSDkAJ2ns9q+rYaEoO+0/MIxFxG1GAOyurU=
+	t=1773761805; cv=none; b=brpyerEOLGeK0L1XBnFvbZvGYu7SrCYq0ghfGxYgU4S3GlEcQLhG4XshoeHMe5LkCsCwcTZjDizZbx2UZLXLEDW/DuzdLyTMxshhCxP0bVDVfy4bWjd8l+shLSOTnNDxoRVyx6DsuLDJ7dgFN0npS5dq1JFxrKPJ3jDbkQXbe7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773761549; c=relaxed/simple;
-	bh=dB5xlhv0AK8726vApRjjf7WxxwLj9XH/7EBSZ5F8wFU=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=FDIUn0q5RoEyoNdgJWuWjfJmluwwTdorcSL1ezJJSnqwJjRNfrokd5gb4FSvHOdziIq2P+llO8QYs9cH1RoWw4fmNsFjRRFyNtrsWyxz0Zn8KEseSKEj/Hcocx3nNHuhoTnbId/Y/Mi9e9JVnsNlC6HBgnBYC0sdi9ArA10dwF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VfaB9n5K; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 5E9A31A2DF3;
-	Tue, 17 Mar 2026 15:32:27 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 2E2715FC9A;
-	Tue, 17 Mar 2026 15:32:27 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 255331045061A;
-	Tue, 17 Mar 2026 16:32:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1773761546; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=9/oN1sDc0ufWvDNWTMdGmLevclcivf0GDYvT6kTHMY8=;
-	b=VfaB9n5KmeBybFfomLE3xUwaa/H1/AiyGm3thS8N8hpeZrhW647TsPwykSpVQFprdq49LL
-	W/nT5TaiFOfJ9xwYU9/MfYYKD7DfET62UD5PeCNAfNQ7vRaOHzD9Y5/+D8bVEU4CCWfb+U
-	18wfggiV2AqLZIq09jmMOGLyoci/ZB22mhQau4yNV9YQ86iL9XPFw7dh4eEuLeDBNW7+pq
-	3deJm7lXnnKDAVtzwOs+wLCw/YHsVEjt3iUBZsO1vBF0Zts5HClTwdzf9jifbeZ96S3YHU
-	SsKeSEZ7djDTzirJcKoiTRKq9RgsOLGMdl2m6JezMwTrW0qX9Ax7CEx+ZSx8aA==
+	s=arc-20240116; t=1773761805; c=relaxed/simple;
+	bh=nRgv3CkjH8mSrnQWc47EFIpfxM4tVAxAbKyAkUqrMeU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GabCe6/080uyR6VtboHU7QTnCsUiJuAuJayB2MvSxzJ6ItH/KPsxeKSVVkTgEDh2CzynJTeLItgyQZtLtgBKVUF5oieGp1GEsMBSNtC4bK5uvDq7G+1kKPF18QF+UKtmIfg3OV1kfVbydzXyQQlD0lSrO6kPkBNSm8GtJPHU1rE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FNP+TqNk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA355C4CEF7;
+	Tue, 17 Mar 2026 15:36:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773761805;
+	bh=nRgv3CkjH8mSrnQWc47EFIpfxM4tVAxAbKyAkUqrMeU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FNP+TqNkYKnIdDLyenctyvFqrelrFiNV0GBXRbHh1te9xfxt/OtczGMNE3bLDCHmz
+	 gKiIgjS4CIdiEjMY1fqrhidPju0Ap2lJm3Tzl87zRThsm97GPL/KFVkcjP5bav4xaF
+	 Q9FWvcYZJhERKl2JiGfF4zRN6hY82SCu/UkoG7B0lWMVXLdWanl0vuwWy2cK5TjQLE
+	 DXmFGkAPscsOX7EmQzrd80SPWvFtMLixtKfTYLsTYOQ1bfHQz00O7C2TUTdyGszB9n
+	 Q5rrxdVYbUl4qfGaeFGXhtDJNQtTeocK0vuN+m3BiWZzqCHSdS5qoPqp+DwKWwTAas
+	 qb2/udHwxAf3A==
+Date: Tue, 17 Mar 2026 15:36:40 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Hugo Villeneuve <hugo@hugovil.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: regulator: fix typos in regulator-uv-*
+ descriptions
+Message-ID: <9b3e9b15-ee4b-402c-84f9-0de05243b209@sirena.org.uk>
+References: <20260317152357.3473584-1-hugo@hugovil.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 17 Mar 2026 16:32:23 +0100
-Message-Id: <DH55ZO0TJKBD.1K8FXCOY1PRWG@bootlin.com>
-Cc: "Simon Horman" <horms@kernel.org>, "Andrew Lunn"
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, "Eric
- Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo
- Abeni" <pabeni@redhat.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Nicolas Ferre" <nicolas.ferre@microchip.com>, "Claudiu Beznea"
- <claudiu.beznea@tuxon.dev>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-To: "Charles Perry" <charles.perry@microchip.com>, <netdev@vger.kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH net-next v3 3/3] net: macb: add support for Microchip
- pic64hpsc ethernet endpoint
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260313140610.3681752-1-charles.perry@microchip.com>
- <20260313140610.3681752-4-charles.perry@microchip.com>
-In-Reply-To: <20260313140610.3681752-4-charles.perry@microchip.com>
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-0.16 / 15.00];
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="SzLKkDhqfP23zfeD"
+Content-Disposition: inline
+In-Reply-To: <20260317152357.3473584-1-hugo@hugovil.com>
+X-Cookie: Must be over 18.
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276749-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	TAGGED_FROM(0.00)[bounces-276750-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,dimonoff.com,vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[theo.lebrun@bootlin.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:mid,bootlin.com:email,bootlin.com:url,microchip.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 59F862AD1E9
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sirena.org.uk:mid,dimonoff.com:email]
+X-Rspamd-Queue-Id: 9D6B12AD274
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri Mar 13, 2026 at 3:06 PM CET, Charles Perry wrote:
-> pic64hpsc doesn't have the USRIO register so MACB_CAPS_USRIO_DISABLED is
-> used.
->
-> pic64hpsc does support PTP and has the timestamping unit so
-> MACB_CAPS_GEM_HAS_PTP is used.
->
-> jumbo_max_len is set to 16383 (0x3FFF) as reported by the DCFG2 register
-> bits 0..13. The JML register also has a default value of 0x3FFF.
->
-> dma_burst_length is set to 16 because that's what most other platforms
-> use and it worked for me so far. There is one other mode where bursts of
-> up to 256 are allowed but this might impact negatively other masters on
-> the NOC.  The register default value is 4 (bursts up to 4).
->
-> Signed-off-by: Charles Perry <charles.perry@microchip.com>
-> Reviewed-by: Simon Horman <horms@kernel.org>
-> ---
->  drivers/net/ethernet/cadence/macb_main.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
 
-Reviewed-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+--SzLKkDhqfP23zfeD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
+On Tue, Mar 17, 2026 at 11:23:39AM -0400, Hugo Villeneuve wrote:
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+>=20
+> Remove word "over".
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
+--SzLKkDhqfP23zfeD
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmm5dQgACgkQJNaLcl1U
+h9AxDAf/ZSsNOG3eaiDPEqVsztKA87Th/bIV1+i4uJMl3QBh33lL+zxGWPHum6UJ
+b29w4uS8dI5dXXcAAQ0UMOcslnnuhFDgCI8XvGqMbR60Jo6OfpcOVs0G9ZKGDSgY
+PHygabWDot5UJYYFm2g2r9t3ZaoHm/FcL40/3xUcKno+bhgN0mZjFNhGeZgyxJWq
+yBqMv5HAfqH9zvmXa+smytf1hXT4CBjZQBxfMciyvWYig+FE4F9uX9yO1YN+jRAv
+PsXhxWnFibpPmRgG7E0JF9z8mhlNQFiygb4op8zByhNdTlgh7nC+NFEwDHrVCEBY
+R/4z4hXKrLDXNMFnd4eE/3OqqzjFyg==
+=DS+L
+-----END PGP SIGNATURE-----
+
+--SzLKkDhqfP23zfeD--
 
