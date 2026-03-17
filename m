@@ -1,235 +1,273 @@
-Return-Path: <devicetree+bounces-276477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276478-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AAnREVLvuGnflwEAu9opvQ
-	(envelope-from <devicetree+bounces-276477-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 07:06:10 +0100
+	id WCbWHi74uGk5mQEAu9opvQ
+	(envelope-from <devicetree+bounces-276478-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 07:43:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8CB22A435D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 07:06:09 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 280172A465C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 07:43:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 162C930156F8
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 06:06:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 29FAE30226AA
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 06:43:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD4DE37D106;
-	Tue, 17 Mar 2026 06:06:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D060633E346;
+	Tue, 17 Mar 2026 06:43:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="FREvbzvo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HDLoxxDA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010053.outbound.protection.outlook.com [52.101.61.53])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EC6128314C;
-	Tue, 17 Mar 2026 06:06:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.61.53
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773727565; cv=fail; b=AFKr8rhSCkivDqSEKx3RomwdzucDuFx/9MzfUwcdNeWZ/cvZxKoZ5ffpIIpsKA5iK0ASuB1Cq2lYkxnxh61jrUlIRLRpNozJfaFzrpeBY2zQxh1aVaIqIF2jGyK+z5FaeWXiTxoNqOAFb1vl8LyszbDrZ4VCfrmJj4eelhU8iBk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773727565; c=relaxed/simple;
-	bh=ynx5u1l0ER06KQBqnSMBmrI4v7aAGLdYhGVDvHSAgt4=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=EmAY9mjUvoUR7RdRoETqqnpCrwIhOydi3H4O4Z4EBTy5NkDyLa83gQodQEsx2x05uwq+y7m/H7hiwu4vmqVNvpBU9b4YykXf7C/tkTGEWJHJyBhwVvUNob6+rReSlH1MaCJPa3ivQ74p9JyI8nU8e+AFt23K3gOBNCZaduVnvNc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=FREvbzvo; arc=fail smtp.client-ip=52.101.61.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=S3G99fFQMPOCdb4Pz126ltSi14W08QVVagKUCYIeSdW8E70HaE57TFL3nlEQamnbGI/ynvhciFeu8A3+ksU4BxX7TREoYjit/y/5aqQZWj/21tfDvODJBkHf4qmk1pJa6F2dVGxy454AhntaOrk4ebziaNgh6wPO4Vjm8xDyfkO/CKrnSaSGF0StBBppqvJPk55Iil09b9ZrQs3NS3IXcvtkm6e+TzzM/DBhesbbgI4P90fl4IfJWMT/z7bHvnad1gHFcgIdlVwLb4930vDuZWL6W6wDeRS7wMWZCSUwHE+LPpoB/HfR0HLVuWh9LT8LxlcxPU9vFo6XUIsi+2YaSg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ynx5u1l0ER06KQBqnSMBmrI4v7aAGLdYhGVDvHSAgt4=;
- b=wYP0l5HsevAkIfyh1aS/NMJi9wBJdt+1BZMXM0uxgsDsTraWlHgSFS+hKg8HS1gIPWVJfHO4Y1UEgSSRSvpq5JLf6AQgQOscu+JOWT9cQjurj+UJKm1IpCNuJk2+qT5QxIGlKZb5K5KGPJaKym7ongVpvc+H/EEPlCC+bHT9JK1OeBw1M2ln5Ch4ZGHLTUM0HuRKLCNwNsiQwl05SuGD+oY/x65msfVvyM4RH+J9HIsMhxrRbrI3/DutalEgB+yF0f1mCoYmmhmop4gjBMV5qwxV7Lgo5walfRCfeO/FmURxS1nk/cpLl7gEu0colUvfR71DPkk82Il6Mi9qrqyWZg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=kernel.org smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ynx5u1l0ER06KQBqnSMBmrI4v7aAGLdYhGVDvHSAgt4=;
- b=FREvbzvo1Yj3s4qQcqdN+TE17X7OimQbE+E8SZYECcbP0dmN46pAWZvBJk47hHjgwRPfs00UCQexw0ozAs7o8IdxrlJIp0D+JjAS2cIUg8C4nexfcfAlyiv0sM+l4elEFW3+7UDqhE3doKxG5HSjbp2bKx/c4YuNnQZKRgCPXuc=
-Received: from PH8P221CA0044.NAMP221.PROD.OUTLOOK.COM (2603:10b6:510:346::22)
- by LV0PR10MB997662.namprd10.prod.outlook.com (2603:10b6:408:33d::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Tue, 17 Mar
- 2026 06:06:02 +0000
-Received: from CY4PEPF0000FCC5.namprd03.prod.outlook.com
- (2603:10b6:510:346:cafe::ca) by PH8P221CA0044.outlook.office365.com
- (2603:10b6:510:346::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.27 via Frontend Transport; Tue,
- 17 Mar 2026 06:06:01 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- CY4PEPF0000FCC5.mail.protection.outlook.com (10.167.242.107) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.17 via Frontend Transport; Tue, 17 Mar 2026 06:06:00 +0000
-Received: from DLEE214.ent.ti.com (157.170.170.117) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 17 Mar
- 2026 01:05:59 -0500
-Received: from DLEE208.ent.ti.com (157.170.170.97) by DLEE214.ent.ti.com
- (157.170.170.117) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 17 Mar
- 2026 01:05:59 -0500
-Received: from DLEE208.ent.ti.com ([fe80::eccb:3d12:9ac:a479]) by
- DLEE208.ent.ti.com ([fe80::eccb:3d12:9ac:a479%20]) with mapi id
- 15.02.2562.020; Tue, 17 Mar 2026 01:05:59 -0500
-From: "Ding, Shenghao" <shenghao-ding@ti.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: "Xu, Baojun" <baojun.xu@ti.com>, "broonie@kernel.org"
-	<broonie@kernel.org>, "tiwai@suse.de" <tiwai@suse.de>, "13916275206@139.com"
-	<13916275206@139.com>, "linux-sound@vger.kernel.org"
-	<linux-sound@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>
-Subject: RE: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832 support
-Thread-Topic: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832 support
-Thread-Index: AQHcpvWtM+IwM+FmAUmJuO9Hs3DySrWWv+mAgAAB3ACAAAFxAIAEj1IAgAAJlQCAAAaZgIAAAZ+AgAAEvQCAAAbRAIAFzqUwgACDr4CAEJV9YA==
-Date: Tue, 17 Mar 2026 06:05:59 +0000
-Message-ID: <d8303fc67ae84232b4b6ff0ef8cad6f1@ti.com>
-References: <20260226075737.405-1-baojun.xu@ti.com>
- <20260226075737.405-2-baojun.xu@ti.com>
- <20260227-ubiquitous-dashing-copperhead-b2c6a0@quoll>
- <9f861c7df09c4434a98a203ecff913bc@ti.com>
- <63b0f42e-56e8-474f-8805-4e01bb2f189e@kernel.org>
- <a7316acf9ba248f9ad1fab0313a95654@ti.com>
- <3cfa4036-e7a7-4cde-9dab-a171a63bdee3@kernel.org>
- <4865c7f626a340d7847354512367577e@ti.com>
- <596f90d0-8dbd-4afe-a722-bf2ba65e1776@kernel.org>
- <aaVcDvYvi28wFR2S@ashevche-desk.local>
- <c46a8bf5-7a6a-41a9-b18f-9a7ad7a60bb9@kernel.org>
- <3af19ebaf32d482ab5cf575b831b2d9d@ti.com>
- <f16d2a7f-04e2-4d99-9239-caca9fd1f7b5@kernel.org>
-In-Reply-To: <f16d2a7f-04e2-4d99-9239-caca9fd1f7b5@kernel.org>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-c2processedorg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A01413264D6;
+	Tue, 17 Mar 2026 06:43:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773729782; cv=none; b=YqcRpVHp1nkc1XYyo7m9qHJQjxXOAkVs21CFTQsCiSNfBuw6SL1Dv67gpworaYBWn7ZYlHhQSNmw1udVjtsOHX/IU1zFluLsH+gA8Y9YxIap8ktlOQZtyqU2ayOdd09g6HFGtgmdIPGT5SwYhfh3+rPAv5LH2fFlf/ML9AH8EXQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773729782; c=relaxed/simple;
+	bh=RV36HArRQD5WpIrbL59QzOUQbECg2GUM/eOEhUB92hM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KNqhIjHkA5zdAYWXVZBRGg8Qf0LutVTgF6E+hIM7kfyaP6D2OfQTuXY7dzBKmQ87fixSovpN39rZoCcjsGw8A3CWncwwUduUizHuDOIGQ0hTSvcJnOCz40GkAk2kJpMCh1YKZaSkUiSM3KQlXNYpGBebqHJTcKsp+XeVlPp5RBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HDLoxxDA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63198C4CEF7;
+	Tue, 17 Mar 2026 06:42:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773729782;
+	bh=RV36HArRQD5WpIrbL59QzOUQbECg2GUM/eOEhUB92hM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HDLoxxDAvu4KFUNvAqr4AoRhunOfAF7ryj5X+FkO/ws53gVxJpwBMbTZW5AFZUpJR
+	 4hAOlGRX4ydTnfmdQOre3kaAoseauWJfbCaMCo0fGoU21FVGE+jAB40WTbhOMC5+9T
+	 ErNhQvhjHYdHbrfbP63w/qkuLXj6EhEKuDP4RVkKvMpdaJyyJVzi31p95Kq/jmF49E
+	 6F/fNWuSiU2CpW5KhdHIT5uJn5lsaZK7fdOoizcTUyuilvHDlILIZ0TWpgfxU5eX2K
+	 FxuQW09NlZULK7mC9C9aXh1t85izuhK//XTJ6BaUuyiukIIYlxPxM5KtDX4S3h779U
+	 gXw7KOGtZcW0w==
+Date: Tue, 17 Mar 2026 12:12:49 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: manivannan.sadhasivam@oss.qualcomm.com, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Bartosz Golaszewski <brgl@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>, 
+	Hans de Goede <hansg@kernel.org>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
+	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Bartosz Golaszewski <brgl@kernel.org>, linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-kbuild@vger.kernel.org, platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-acpi@vger.kernel.org, 
+	Hans de Goede <johannes.goede@oss.qualcomm.com>
+Subject: Re: [PATCH v6 9/9] power: sequencing: pcie-m2: Create serdev device
+ for WCN7850 bluetooth
+Message-ID: <adtnsxel2lh2hgftqplvd3slfk3x5zx7xyfroxgdbmoz4qticp@lkx6iplaawoe>
+References: <20260317-pci-m2-e-v6-0-9c898f108d3d@oss.qualcomm.com>
+ <20260317-pci-m2-e-v6-9-9c898f108d3d@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCC5:EE_|LV0PR10MB997662:EE_
-X-MS-Office365-Filtering-Correlation-Id: eefdf2ef-698e-453b-b583-08de83eb435f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|7416014|376014|36860700016|82310400026|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info:
-	NQVDkIALU15TYUp+ZiOnEZXLKlMxu1dA+CbTKoJ2Z7oaaisjr3DJuIBxFdLTk0irZcwcFe3d20Yy5UIlWE8pYy1u1U0wg2pLwV/rdreRWJoBb97alVrhljjIgQ+RuEpUrnHqpjmHNzgor8mF6UjOUvFnG1lL4uaMyfR6H4ZyI3BMi3gwizB9eTfQGrym6lIC9vgHl+J02CSkjQwBa1eQcPI1hh3W9k6JOJO21u4TbHZ/hvQyQt4iEN2jKbigWIHie3eICAOBsKUYAkoQ4OWOZmoZfl+15LX6TPX4ZfzMjCPzb6yeYWX2PLfII0xpt/QaxdpZi9rKogj30pp70uzVMp3VmfT/3R3N77cYhWxhtRek/nEevTkkoibzYLC4/0hxihtKyWfae+tFna+Py6leNzlFFI0NyiZeVqRyJ+5EfKcZp/gpE0UV+eNadUYjbjiG/WRUpkLW+6VM2MykR0ktz7WUwBT48JBgK4IVcXxaYXxrbkH0oJD+zrKSaQ1Xqn5yKzSfpUtQuAElBduIxIJvHqD2jMXeSQvwnmFQ/tQ/R8Ka54AGEG1C/Lh/6TQJpWZtzrlB59TAP7Dxk0bNbrd+ra3krmzgzzPgn/2A8sLYsbOhxxMNTqTcCxIRuoC+rN/kbv34cCxdIuOxf3D578PgPtFWYlX8quq4w+Rgp4Cc9IyZesGFBoa5gNPfxeTEB/JqkqJpEuGM0Y+yF+6JEjoFoXTcsOMjdTn1stS7dN3XyYnXSUDu4lxgESA7v5R/S1hqUhwWnm1rSSmZkc9ZJOCwNA==
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(36860700016)(82310400026)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	6h2kbGDyotlOm62MDGDEDSlI44EnKUmIboSOgvoa7eeDtTWkTZgO+3A0WIKQQV91Fq5kzvhp47xdiQ7mzmQjA0AK1EwjEWDdSs2jjITb9RjQrrimxVq2YKpxmT4yLRmrc4VtdAa/TKZfvSbRLfIQC7BU06wZLVmMjgBRrBDHB37qN5gEjSvJ9t08hozLO6ZTLNvQoTOTXJwRdYjW0BDA0KyvuG/QsfZexOjTDC9vkGOiH0ie54P6hfudQyURb0Cdn/+no8JWFTPtbfhQNKsz/VeokcYEmfBo43Rzipxl/dnJuAj0e0ZV2yjXdZbMzawi52vf4hyCRd1BL8QDnLc1TRhy+6+f6+l0l6jJYpKTjDvGcRkL4ViF02teFQ0r85KaF36O5SQ7oyiFQr5P1gjpDkQJwvjsJf2vAnbzARbhlxqE8mxbVQwKDy58kRw1ZMI3
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 06:06:00.3209
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: eefdf2ef-698e-453b-b583-08de83eb435f
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000FCC5.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV0PR10MB997662
-X-Spamd-Result: default: False [1.44 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260317-pci-m2-e-v6-9-9c898f108d3d@oss.qualcomm.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276477-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[ti.com,kernel.org,suse.de,139.com,vger.kernel.org,gmail.com,linux.intel.com];
+	TAGGED_FROM(0.00)[bounces-276478-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ti.com:dkim,ti.com:mid];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[32];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,linux.dev,linux.intel.com,squebb.ca,gmail.com,holtmann.org,bgdev.pl,vger.kernel.org,linaro.org,oss.qualcomm.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shenghao-ding@ti.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: B8CB22A435D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: 280172A465C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-PiA+Pj4NCj4gPj4+Pj4+Pj4+Pj4gc3RhdGljIGNvbnN0IHN0cnVjdCBvZl9kZXZpY2VfaWQgdGFz
-ZGV2aWNlX29mX21hdGNoW10gPSB7DQo+ID4+Pg0KPiA+Pj4+Pj4+Pj4+PiAgICAgICB7IC5jb21w
-YXRpYmxlID0gInRpLHRhczU4MjciIH0sDQo+ID4+Pj4+Pj4+Pj4+ICAgICAgIHsgLmNvbXBhdGli
-bGUgPSAidGksdGFzNTgyOCIgfSwNCj4gPj4+Pj4+Pj4+Pj4gICAgICAgeyAuY29tcGF0aWJsZSA9
-ICJ0aSx0YXM1ODMwIiB9LA0KPiA+Pj4+Pj4+Pj4+PiArICAgICB7IC5jb21wYXRpYmxlID0gInRp
-LHRhczU4MzIiIH0sDQo+ID4+Pj4+Pj4+Pj4NCj4gPiAuLi4NCj4gPj4+DQo+ID4+PiBJIGRvbid0
-IGtub3cgd2hhdCB5b3UgYXJlIHRyeWluZyB0byBnZXQgZnJvbSB0aGVtLCBidXQgScKyQw0KPiA+
-Pj4gZW51bWVyYXRpb24gb24gRFQgcGxhdGZvcm1zIHdvcmtzIGluIGEgd2F5IHRoYXQgaXQgdGFr
-ZXMgdHdvIHRhYmxlcw0KPiA+Pj4gaW50byBhY2NvdW50LCBoZW5jZSwgaWYgdGhlcmUgaXMgbm8g
-Y29tcGF0aWJsZSAod2l0aCBnaXZlbiBwYXJ0DQo+ID4+PiBudW1iZXIpIHRoZXJlIHdpbGwgYmUg
-bm8gbWF0Y2hpbmcgbmFtZS4NCj4gPj4+DQo+ID4+PiBBRkFJSyBpdCBoYXMgdG8gaGF2ZSBhIGNv
-bXBhdGlibGUgdG8gbWFrZSBpdCB3b3JrIGluIHN1Y2ggYSBjYXNlLg0KPiA+Pj4gV2hhdCBkaWQg
-SSBtaXNzPw0KPiA+Pg0KPiA+PiBTaG93IG1lIHBsZWFzZSB0aGVuIGhvdyB0aGUgT0YgdGFibGUg
-aXMgdXNlZCBoZXJlIGF0IGFsbCB0byBnZXQgdGhlIG5hbWUuDQo+ID4NCj4gPiBUaGlzIGNvZGUg
-d2lsbCBhbHNvIGJlIHVzZWQgZm9yIEFDUEkgZGV2aWNlcy4gVG8gZW5zdXJlIGNvbnNpc3RlbnQg
-YmluDQo+ID4gZmlsZSBuYW1pbmcgYmV0d2VlbiBBQ1BJIGFuZCBEVFMgZGV2aWNlcywgdGhlIG1h
-cHBpbmcgdGFibGUNCj4gPiB0YXNkZXZpY2VfaWRbXSBoYXMgYmVlbiBpbnRyb2R1Y2VkLg0KPiAN
-Cj4gV2UgbmVlZCB0byBzdG9wIGRpc2N1c3Npbmcgd2l0aCBpcnJlbGV2YW50IGFyZ3VtZW50cywg
-cmVhbGx5Lg0KPiANCj4gSSBhc2tlZCB0byBzaG93IG1lIGhvdyB0aGlzIGlzIGdvaW5nIHRvIGJl
-IHVzZWQgaW4gRFQuIE5vIGFuc3dlciB0byB0aGlzIHBhcnQuDQo+IA0KPiBOb3cgeW91IGNsYWlt
-IHRoaXMgT0YgSUQgd2lsbCBiZSB1c2VkIGZvciBBQ1BJIGRldmljZXMsIGJ1dCBZT1UgSEFWRSBh
-bHJlYWR5DQo+IEFDUEkgdGFibGUgdGhlcmUsIHNvIHRoYXQncyBjbGVhcmx5IGludmFsaWQgYXJn
-dW1lbnQuIERvIHlvdSB1bmRlcnN0YW5kIGhvdw0KPiBwYXRjaC9lbWFpbCByZXZpZXcgd29ya3M/
-IFdoZXJlIHRoZSBjb21tZW50cyBhcHBlYXIgYW5kIHdoYXQgaXMgYmVpbmcNCj4gZGlzY3Vzc2Vk
-Pw0KPiANCj4gPiBUaGUgY29kZSByZXRyaWV2ZXMgdGhlIGNvcnJlc3BvbmRpbmcgbmFtZSBvZiB0
-aGUgY2hpcCBmcm9tDQo+ID4gdGFzZGV2aWNlX2lkW10gYmFzZWQgb24gaXRzIG9yZGVyIGluIHRh
-c2RldmljZV9vZl9tYXRjaFtdIG9yDQo+IHRhc2RldmljZV9hY3BpX21hdGNoW10uDQo+IA0KPiBC
-YXNlZCBvbiB0aGUgb3JkZXIgaW4gdGFibGU/IE5vLCB0aGF0J3MgY3JhenkgYnVnZ3kgc29sdXRp
-b24gdG8gdGllIG9yZGVyIG9mDQo+IGVudHJpZXMgaW4gYm90aCB0YWJsZXMuIEFuZCBpdCBtYWtl
-cyBubyBzZW5zZS4uLiBhbmQgSSBhbSBzdXJlIGNvZGUgZG9lcyBub3QNCj4gZG8gaXQsIHNvIGFn
-YWluIGlycmVsZXZhbnQgYXJndW1lbnQuDQoNCkl0IHNob3VsZCBiZSBub3RlZCB0aGF0IHRoZSBj
-dXJyZW50IGltcGxlbWVudGF0aW9uIHJlbGllcyBvbiBpZF90YWJsZSANCihyYXRoZXIgdGhhbiBP
-Rl9JRCkgdG8gb2J0YWluIHRoZSBjaGlwIG5hbWUgYW5kIGNoaXAgSUQuIFRoZSBjaGlwIElEIGkN
-CnMgc3BlY2lmaWNhbGx5IHJlc2VydmVkIGZvciBoYW5kbGluZyBleGNlcHRpb25hbCBjYXNlcywg
-Zm9yIGV4YW1wbGUsIA0KdGhlIHdvcmthcm91bmQgZm9yIHRoZSBUQVMyNzgx4oCZcyBsb3dlciBz
-cGVha2VyIGltcGVkYW5jZSBpc3N1ZS4NCg0KU2luY2UgdGhlIDU4eHggZmFtaWx5IGxhY2tzIGEg
-ZGVkaWNhdGVkIHJlZ2lzdGVyIHRvIHF1ZXJ5IHRoZSBjaGlwIElELCANCmJvdGggdGhlIHN1cHBv
-cnRlZCBjaGlwIElEIGFuZCBuYW1lIGFyZSBzdG9yZWQgaW4gaWRfdGFibGUuDQogVGhpcyBhcHBy
-b2FjaCBhbGxvd3MgY29tcGF0aWJpbGl0eSB3aXRoIGJvdGggRFQtYmFzZWQgKERldmljZSBUcmVl
-KSANCmFuZCBBQ1BJLWJhc2VkIChBZHZhbmNlZCBDb25maWd1cmF0aW9uIGFuZCBQb3dlciBJbnRl
-cmZhY2UpIGRldmljZS4NCg0KCWlmIChBQ1BJX0hBTkRMRSgmaTJjLT5kZXYpKSB7DQoJCWFjcGlf
-aWQgPSBhY3BpX21hdGNoX2RldmljZShpMmMtPmRldi5kcml2ZXItPmFjcGlfbWF0Y2hfdGFibGUs
-DQoJCQkJJmkyYy0+ZGV2KTsNCgkJaWYgKCFhY3BpX2lkKSB7DQoJCQlkZXZfZXJyKCZpMmMtPmRl
-diwgIk5vIGRyaXZlciBkYXRhXG4iKTsNCgkJCXJldCA9IC1FSU5WQUw7DQoJCQlnb3RvIGVycjsN
-CgkJfQ0KCQl0YXNfcHJpdi0+Y2hpcF9pZCA9IGFjcGlfaWQtPmRyaXZlcl9kYXRhOw0KCQl0YXNf
-cHJpdi0+aXNhY3BpID0gdHJ1ZTsNCgl9IGVsc2Ugew0KCQl0YXNfcHJpdi0+Y2hpcF9pZCA9ICh1
-aW50cHRyX3QpaTJjX2dldF9tYXRjaF9kYXRhKGkyYyk7DQoJCXRhc19wcml2LT5pc2FjcGkgPSBm
-YWxzZTsNCgl9DQoNCg0KPiANCj4gTkFLLCBiZWNhdXNlIGFsbCB0aGUgcmVwbGllcyBzbyBmYXIg
-YXJlIG9mZi10b3BpYy4NCj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQo=
+On Tue, Mar 17, 2026 at 09:59:59AM +0530, Manivannan Sadhasivam via B4 Relay wrote:
+> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> 
+> For supporting bluetooth over the non-discoverable UART interface of
+> WCN7850, create the serdev device after enumerating the PCIe interface.
+> This is mandatory since the device ID is only known after the PCIe
+> enumeration and the ID is used for creating the serdev device.
+> 
+> Since by default there is no OF or ACPI node for the created serdev,
+> create a dynamic OF 'bluetooth' node with the 'compatible' property and
+> attach it to the serdev device. This will allow the serdev device to bind
+> to the existing bluetooth driver.
+> 
+> Tested-by: Hans de Goede <johannes.goede@oss.qualcomm.com> # ThinkPad T14s gen6 (arm64)
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> ---
+>  drivers/power/sequencing/Kconfig          |   3 +-
+>  drivers/power/sequencing/pwrseq-pcie-m2.c | 178 +++++++++++++++++++++++++++++-
+>  2 files changed, 177 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/power/sequencing/Kconfig b/drivers/power/sequencing/Kconfig
+> index f5fff84566ba..55aeef125e6f 100644
+> --- a/drivers/power/sequencing/Kconfig
+> +++ b/drivers/power/sequencing/Kconfig
+> @@ -37,7 +37,8 @@ config POWER_SEQUENCING_TH1520_GPU
+>  
+>  config POWER_SEQUENCING_PCIE_M2
+>  	tristate "PCIe M.2 connector power sequencing driver"
+> -	depends on OF || COMPILE_TEST
+> +	depends on (PCI && OF) || COMPILE_TEST
+> +	select OF_DYNAMIC
+>  	help
+>  	  Say Y here to enable the power sequencing driver for PCIe M.2
+>  	  connectors. This driver handles the power sequencing for the M.2
+> diff --git a/drivers/power/sequencing/pwrseq-pcie-m2.c b/drivers/power/sequencing/pwrseq-pcie-m2.c
+> index 3507cdcb1e7b..77357439ba81 100644
+> --- a/drivers/power/sequencing/pwrseq-pcie-m2.c
+> +++ b/drivers/power/sequencing/pwrseq-pcie-m2.c
+> @@ -12,9 +12,11 @@
+>  #include <linux/of.h>
+>  #include <linux/of_graph.h>
+>  #include <linux/of_platform.h>
+> +#include <linux/pci.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pwrseq/provider.h>
+>  #include <linux/regulator/consumer.h>
+> +#include <linux/serdev.h>
+>  #include <linux/slab.h>
+>  
+>  struct pwrseq_pcie_m2_pdata {
+> @@ -30,6 +32,9 @@ struct pwrseq_pcie_m2_ctx {
+>  	struct notifier_block nb;
+>  	struct gpio_desc *w_disable1_gpio;
+>  	struct gpio_desc *w_disable2_gpio;
+> +	struct serdev_device *serdev;
+> +	struct of_changeset *ocs;
+> +	struct device *dev;
+>  };
+>  
+>  static int pwrseq_pcie_m2_vregs_enable(struct pwrseq_device *pwrseq)
+> @@ -172,13 +177,176 @@ static int pwrseq_pcie_m2_match(struct pwrseq_device *pwrseq,
+>  	return PWRSEQ_NO_MATCH;
+>  }
+>  
+> -static void pwrseq_pcie_m2_free_regulators(void *data)
+> +static void pwrseq_pcie_m2_free_resources(void *data)
+>  {
+>  	struct pwrseq_pcie_m2_ctx *ctx = data;
+>  
+> +	serdev_device_remove(ctx->serdev);
+> +	bus_unregister_notifier(&pci_bus_type, &ctx->nb);
+> +	of_changeset_revert(ctx->ocs);
+> +	of_changeset_destroy(ctx->ocs);
+>  	regulator_bulk_free(ctx->num_vregs, ctx->regs);
+>  }
+>  
+> +static int pwrseq_m2_pcie_create_bt_node(struct pwrseq_pcie_m2_ctx *ctx,
+> +					struct device_node *parent)
+> +{
+> +	struct device *dev = ctx->dev;
+> +	struct device_node *np;
+> +	int ret;
+> +
+> +	ctx->ocs = devm_kzalloc(dev, sizeof(*ctx->ocs), GFP_KERNEL);
+> +	if (!ctx->ocs)
+> +		return -ENOMEM;
+> +
+> +	of_changeset_init(ctx->ocs);
+> +
+> +	np = of_changeset_create_node(ctx->ocs, parent, "bluetooth");
+> +	if (!np) {
+> +		dev_err(dev, "Failed to create bluetooth node\n");
+> +		ret = -ENODEV;
+> +		goto err_destroy_changeset;
+> +	}
+> +
+> +	ret = of_changeset_add_prop_string(ctx->ocs, np, "compatible", "qcom,wcn7850-bt");
+> +	if (ret) {
+> +		dev_err(dev, "Failed to add bluetooth compatible: %d\n", ret);
+> +		goto err_destroy_changeset;
+> +	}
+> +
+> +	ret = of_changeset_apply(ctx->ocs);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to apply changeset: %d\n", ret);
+> +		goto err_destroy_changeset;
+> +	}
+> +
+> +	ret = device_add_of_node(&ctx->serdev->dev, np);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to add OF node: %d\n", ret);
+> +		goto err_revert_changeset;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_revert_changeset:
+> +	of_changeset_revert(ctx->ocs);
+> +err_destroy_changeset:
+> +	of_changeset_destroy(ctx->ocs);
+> +
+> +	return ret;
+> +}
+> +
+> +static int pwrseq_m2_pcie_notify(struct notifier_block *nb, unsigned long action,
+> +			      void *data)
+> +{
+> +	struct pwrseq_pcie_m2_ctx *ctx = container_of(nb, struct pwrseq_pcie_m2_ctx, nb);
+> +	struct pci_dev *pdev = to_pci_dev(data);
+> +	struct serdev_controller *serdev_ctrl;
+> +	struct device *dev = ctx->dev;
+> +	int ret;
+> +
+> +	/*
+> +	 * Check whether the PCI device is associated with this M.2 connector or
+> +	 * not, by comparing the OF node of the PCI device parent and the Port 0
+> +	 * (PCIe) remote node parent OF node.
+> +	 */
+> +	struct device_node *pci_parent __free(device_node) =
+> +			of_graph_get_remote_node(dev_of_node(ctx->dev), 0, 0);
+> +	if (!pci_parent || (pci_parent != pdev->dev.parent->of_node))
+> +		return NOTIFY_DONE;
+> +
+> +	switch (action) {
+> +	case BUS_NOTIFY_ADD_DEVICE:
+> +		/* Create serdev device for WCN7850 */
+> +		if (pdev->vendor == PCI_VENDOR_ID_QCOM && pdev->device == 0x1107) {
+> +			struct device_node *serdev_parent __free(device_node) =
+> +				of_graph_get_remote_node(dev_of_node(ctx->dev), 1, 1);
+
+Typo. This should be:
+
+	of_graph_get_remote_node(dev_of_node(ctx->dev), 3, 0);
+
+Bartosz, could you please fix it while applying?
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
