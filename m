@@ -1,142 +1,133 @@
-Return-Path: <devicetree+bounces-276498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276499-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GIztE00CuWmEnAEAu9opvQ
-	(envelope-from <devicetree+bounces-276498-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:27:09 +0100
+	id KBi1MpMCuWmEnAEAu9opvQ
+	(envelope-from <devicetree+bounces-276499-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:28:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCC232A4C55
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:27:08 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70F692A4CB4
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:28:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B2516303C870
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 07:27:07 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BCE77301BABF
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 07:28:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E14138E5C4;
-	Tue, 17 Mar 2026 07:27:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1622238E5D6;
+	Tue, 17 Mar 2026 07:28:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="G1SOiayi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FLzwbd9y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2267F38D000
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 07:27:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6E5038C41D;
+	Tue, 17 Mar 2026 07:28:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773732426; cv=none; b=IRdCHR8smMl3+cioh0VnC8Y+uc4CQ6iz7pQCo8+gzgGtcMD1mEBk8RIEsaPi3wECK5rgnZGzQ1j6Rmk1qpn/Zpi4jeoDFoOGD7MUdB03YkDEvTK7TGaRWOP+TN7Wn6p2205w4ZZ7NHUbYImdxGMgxQLXXMQT8CVC1Y4amdzNvKY=
+	t=1773732495; cv=none; b=r1PPfzAAcFQzmQZnnfY/HK9H4zRUZyenHUMFDcIMGxqc7s8PRbtTlWLmify8wvTde0kR5viRM8qbGrmr3PiYuvmDRDdCmaKxXfmlPtcyVRKvsCcIQ/uxHsbh1c6ucwfl1ciZCMDLla58MizNUDAQlL11mA1rodkPlEy0UeCGQ/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773732426; c=relaxed/simple;
-	bh=uK/yatnqUfTvDqI7YxNLRspu58OylQogpc14FiQPe68=;
+	s=arc-20240116; t=1773732495; c=relaxed/simple;
+	bh=NjGzHFjKUHuiUZKS0Lr/kCHqpo7qJibwQZUqWulau+w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CskANBE42lUO0HCnN4APBBVLP1U+49Bfmkainw8eHeP9qNPwaWlEMIXSvK7MMDeovhMs9OtuM2qxdXdln8zAreyy9tOn/xhgmmoOkrERTueHM4G8aOw3bMzPkGAxMjTN4dZIOJ7U5/WrRz7H13ZTuLZhzL27j0QTIQu8ry7I1EA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=G1SOiayi; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=+E5J
-	ExlH1gsTbrfMSDrOrCsvoCvNuc0M7joRkI7q/a0=; b=G1SOiayi7IoPrStzYmkA
-	vE7X7q92XlvwYuEl9Qq+m43cNpJ1xkkG+3XSjgJJ6u1gQUoFRCQaWvd0ltaIwWz/
-	HONuSZqyrenHqXgFemBvGilKgGqmEuKXcnp8Z15LGRMALDs51AhRCugiRG2ZV4Px
-	7B8PLtMebupyzkbYa1PW8sHAh8ZqVD5/mREnBxYk3r9vU+BvmA5PxdwAF0in6ofA
-	GidGANePhLce/03m5Xss1p3CFf+7JesvhB182Kx4jRpvr5t72lro76lUMfRTZflS
-	96CCkOxwe23kNqh//4oAvR+2RX1AQZM5LMQLBymy9yiVdMAaxP+s1rKPe3u/WBsI
-	nA==
-Received: (qmail 162337 invoked from network); 17 Mar 2026 08:26:53 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 17 Mar 2026 08:26:53 +0100
-X-UD-Smtp-Session: l3s3148p1@khhxQjNNeKhSwmvS
-Date: Tue, 17 Mar 2026 08:26:53 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Douglas Anderson <dianders@chromium.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, stable@vger.kernel.org,
-	Andrew Lunn <andrew@lunn.ch>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>, Len Brown <lenb@kernel.org>,
-	Mark Brown <broonie@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>, Russell King <linux@armlinux.org.uk>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>, devicetree@vger.kernel.org,
-	driver-core@lists.linux.dev, imx@lists.linux.dev,
-	linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-spi@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH] device property: Make modifications of fwnode "flags"
- thread safe
-Message-ID: <abkCPU3rxHI49N4_@shikoro>
-References: <20260316154159.1.I0a4d03104ecd5103df3d76f66c8d21b1d15a2e38@changeid>
+	 Content-Type:Content-Disposition:In-Reply-To; b=M8zavMx9+Wz1WCq0QDdUu23GsuHNH48DeWjRxYf0Ecjns01BniDaz6Fvo9iKawZBCEfD/Ks4qy7F2hKObn1C7jdInsgtVMqvFN0bHHFeOsVBdGO/FWVmuyusVnKkquGI9RlEzhvAEpn05v/zWxWndNoS+jzJZUA2penOyoGAEmY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FLzwbd9y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02764C4CEF7;
+	Tue, 17 Mar 2026 07:28:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773732494;
+	bh=NjGzHFjKUHuiUZKS0Lr/kCHqpo7qJibwQZUqWulau+w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FLzwbd9y5QlK3icBAIQ4a7ER2JpeNFWJpS9C9x3mTWyrPZOD4wuSwbalBxUFSvTIT
+	 /osEuNnM9dSXF537vDO88+7gqH8wBEEi6TToRVvUQYvltHO1f+WYQ2x6OQO+2Mekg3
+	 zYzK9jxe3mkF96GByayueOa+pig1wL5I+yez0KFsUKIFD4EQPDU5llc0ww+WA22Vn3
+	 i26pyOMUtR0s40rZ3NU6PBfc/YncrHVFQ/1T3NyWHRaLkihoukavI/i/KruT41FzsK
+	 rphrRINjpENTrmX574t9DztS3z/4xOHdvatJ0nupb2R9HJAJa84xaLnfq0UD0kzIv2
+	 6F40KpgWN9FdQ==
+Date: Tue, 17 Mar 2026 08:28:12 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Piyush Patle <piyushpatle228@gmail.com>
+Cc: lars@metafoo.de, nuno.sa@analog.com, lgirdwood@gmail.com, 
+	broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] ASoC: dt-bindings: adi,ssm2305: Convert to DT schema
+Message-ID: <20260317-cassowary-of-authentic-agility-05dec5@quoll>
+References: <20260316211348.230923-1-piyushpatle228@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260316154159.1.I0a4d03104ecd5103df3d76f66c8d21b1d15a2e38@changeid>
-X-Spamd-Result: default: False [-1.16 / 15.00];
+In-Reply-To: <20260316211348.230923-1-piyushpatle228@gmail.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[sang-engineering.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276498-lists,devicetree=lfdr.de,renesas];
-	RCPT_COUNT_TWELVE(0.00)[33];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,vger.kernel.org,lunn.ch,linux.intel.com,gmail.com,davemloft.net,google.com,nxp.com,redhat.com,pengutronix.de,armlinux.org.uk,lists.linux.dev,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-276499-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[metafoo.de,analog.com,gmail.com,kernel.org,vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[sang-engineering.com:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sang-engineering.com:dkim]
-X-Rspamd-Queue-Id: BCC232A4C55
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,bootlin.com:url]
+X-Rspamd-Queue-Id: 70F692A4CB4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Doug,
+On Tue, Mar 17, 2026 at 02:43:48AM +0530, Piyush Patle wrote:
+> Convert the SSM2305 speaker amplifier binding from text format to
+> YAML schema to enable dtbs_check validation.
+> 
 
-thanks for tackling this issue! I agree it should be fixed, just
-wondered about one thing:
+Missing DCO. Apply your patch and check yourself.
 
-> While flags are often modified while under the "fwnode_link_lock",
-> this is not universally true.
+Also, you ignored my review, without explanation. But since you will
+have to send new version, then s/YAML/DT/. There is no such thing as
+YAML schema.
 
-Is it a possibility to use the lock in all code paths instead?
-Because...
+<form letter>
+This is a friendly reminder during the review process.
 
->  	struct list_head consumers;
-> -	u8 flags;
-> +	unsigned long flags;
+It looks like you received a tag and forgot to add it.
 
-... this change costs some memory on every system. Maybe it can be
-avoided?
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions of patchset, under or above your Signed-off-by tag, unless
+patch changed significantly (e.g. new properties added to the DT
+bindings). Tag is "received", when provided in a message replied to you
+on the mailing list. Tools like b4 can help here. However, there's no
+need to repost patches *only* to add the tags. The upstream maintainer
+will do that for tags received on the version they apply.
 
-Happy hacking,
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
 
-   Wolfram
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
+
+Best regards,
+Krzysztof
 
 
