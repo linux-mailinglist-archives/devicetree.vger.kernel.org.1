@@ -1,155 +1,160 @@
-Return-Path: <devicetree+bounces-276457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276460-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kD56DLrguGnDkgEAu9opvQ
-	(envelope-from <devicetree+bounces-276457-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 06:03:54 +0100
+	id UOrqDGPluGkYlAEAu9opvQ
+	(envelope-from <devicetree+bounces-276460-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 06:23:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A02B42A3E0B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 06:03:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7E6D2A3F07
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 06:23:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 54420302962E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 04:56:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AB5DA3033E65
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 05:23:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5758536EAAA;
-	Tue, 17 Mar 2026 04:56:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 021EF37DE92;
+	Tue, 17 Mar 2026 05:23:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b="WPCqwGLg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BPXi2Vxz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 141781B4257;
-	Tue, 17 Mar 2026 04:56:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773723403; cv=pass; b=GOETZRWQCV8685R/KfLwj9qUDdHB+SEZ++OonqSP0khh+CqJ8BnevkeT6V4+LbqD5THogjWCqalvvI8YKbRw4Ev+4qrZfgB3yJJVkNfnDbet59Lm8s+fiwO3fMCvHCR35o+t1eC2g7Jyj46n7o/xtvbtB6URRPqE2MNQmzl3eHE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773723403; c=relaxed/simple;
-	bh=76xcV6JFbO7j2t608/cM7lRLXMaX/zP9dgE7PR1Y9fE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c2B62fMoeuCGEehzURBDZiBrg6Z/UQ8dbw988zgEw9UQe7kTsAgsgxsqmWSbQfV/c7Cv+H8XglMOHJ+ygvGKvN+JWZDLiovNx/jMTShb6s6QCpr/bg6Bg+5xHHRtBoPC6eHOnu0k5vaBSxp3hfgCq321pZBwuZqmY4e+nC1ZRjU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b=WPCqwGLg; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
-ARC-Seal: i=1; a=rsa-sha256; t=1773723375; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=jv4W65Eez2XeH9G5ErU/Y8ESdtUVdFcY98YBU6VYVL32MAvWA/3o27T85GNglxfY2zG41dX/1h1hNF5YTjeGZ48TSDBQfbccolxYkJAAYFoT34Ex0ruvdCTbhoA52dl1xM+qj7xaeJ6Ni7I6ygbEzbFDtY+WPg3uZPvV5IddfB0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1773723375; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=/T2hb2zDBTYyx2qNSAdWht261iTUJecScL8CnM2TGvc=; 
-	b=A7hfPYMKt3xQ9cT30L5UCrgV51YbBzJ65/x1qGwdJKViu9iGhnyRCLOKyvaS2w+skFbalcWM4FVCcr5FF8lJ/uYt4K6HJH0xyeV+eInKQ5fI0MGPFPiYhbh/0zIde7YtlY8BULUGRE1iesyDRkQ3YvWGg6GhZAxTtSaUU86JAHw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=ziyao.cc;
-	spf=pass  smtp.mailfrom=me@ziyao.cc;
-	dmarc=pass header.from=<me@ziyao.cc>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1773723375;
-	s=zmail; d=ziyao.cc; i=me@ziyao.cc;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=/T2hb2zDBTYyx2qNSAdWht261iTUJecScL8CnM2TGvc=;
-	b=WPCqwGLghg4ELnTN0tR7SEMkq0yPRX/HCjbLCRFxu+Qmz19wmBt0P3riww0KuAZt
-	4V8bMeGnXDyQ/GORqiRq5XpdtTklmon8PRTyzj+3OwG4bY0/BcQ1VozmHv5sZbg4lph
-	feeQ9VTh3/e1bb9HtSRuCMlB5WMO0iyMmccY1Vi0=
-Received: by mx.zohomail.com with SMTPS id 1773723374200302.13921499108164;
-	Mon, 16 Mar 2026 21:56:14 -0700 (PDT)
-Date: Tue, 17 Mar 2026 04:56:07 +0000
-From: Yao Zi <me@ziyao.cc>
-To: wangjia@ultrarisc.com, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Xincheng Zhang <zhangxincheng@ultrarisc.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: PCI: Add UltraRISC DP1000 PCIe
- controller
-Message-ID: <abje5wWCljOBhgHU@pie>
-References: <20260316-ultrarisc-pcie-v1-0-ef2946ede698@ultrarisc.com>
- <20260316-ultrarisc-pcie-v1-3-ef2946ede698@ultrarisc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE68B21CFF6;
+	Tue, 17 Mar 2026 05:23:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773725021; cv=none; b=Usw6Ld0Y6Y8kNM4MeTRrmbGvj1ehpzHrDsU3Y+iuNxOx9xFuAZo+BYA3jhrtIqwNFyN0p3xs2LAO+dMsNNX24ocdzl/0tZkyAxA8otqlfzzXes5nNfrmdXQ28m8dTGFJs95gD5sHvdZOd58r2sDynADaPMaoUsdh7yOxglEda6k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773725021; c=relaxed/simple;
+	bh=sHBOXa5iAdCKVMBMgSvMM6uqXWupWn60SVKYB9JnKgY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=evUpUOfezi1OZZTOndPeZK8Wu095jslBY92E7yKDF3mK4ZDndyI/V2qQWaFwp3xk1UDvbS5+/IxhZPWL6LLOroigYGcz0wt1Vj8Y2RKYXcHiK1chSeHfVYi/ctwq+mGrjhXY8B/jE5lPP5du6z/TeYyR0bqPiiAuxsQ6bw8+Zu4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BPXi2Vxz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6980BC4CEF7;
+	Tue, 17 Mar 2026 05:23:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773725021;
+	bh=sHBOXa5iAdCKVMBMgSvMM6uqXWupWn60SVKYB9JnKgY=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=BPXi2VxzpJp9VE/PmpOBsGdREevYRg/UZXUY0BnXrVOxvXCH6UCE4Ceeb6mg2A9u5
+	 7hvWlIcz7b0B4M1LxPVzuZ6Kh/vyGOHzabIflQG3I5IgijSdoaf3VJuDm0qskQh/Ml
+	 tWJlctbBeVunzYnoU62z7jYblFD7AKJcFsBldG+Ln8jDR6n7P/m5elmxRCmi+FxtQT
+	 bYR85BmelPzv6girrgzgaepiBCIs3H41GuAlqNMkara0VaXPzhZmJWj+Oh9rJXywDu
+	 5Zfpgr+tgbWbZxaaRSNutXT7Bw5wbuKeWmcmzVlIMILQycGi5zZ03W9PEOKWTgIMOi
+	 cRcoxHIBjoT1w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 551A3FB5EB8;
+	Tue, 17 Mar 2026 05:23:41 +0000 (UTC)
+From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
+Subject: [PATCH v2 0/2] drm/panel: Add panel driver for ChipWealth CH13726A
+ based panels
+Date: Tue, 17 Mar 2026 00:23:06 -0500
+Message-Id: <20260317-ch13726a-v2-0-28aa46bcd6d0@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260316-ultrarisc-pcie-v1-3-ef2946ede698@ultrarisc.com>
-X-ZohoMailClient: External
-X-Spamd-Result: default: False [9.34 / 15.00];
-	URIBL_BLACK(7.50)[ziyao.cc:dkim];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/02PzU7DMBCEXyXyGaNdp/5JTrwH6mFtbxpLJAE7j
+ VpVeXfcFgTHGe3OfHMThXPiIvrmJjJvqaRlrkK9NCKMNJ9Ypli1UKAMKAUyjNhaZUjqLhhjXdR
+ tdKKef2Ye0uUR9X586sxf55q4Pk3hqbAMyzSltW86HfQBYxw8ONQETO5gLQ3WOu+x9R6sBtuR+
+ E9SwX456DrLjee4ZEmoWzQuqM6rfkNxbx9TWZd8feyq1r3+51X9TdhQgmQNGK1jBE1vp4nSx2t
+ lFMd9378Blcf2nR4BAAA=
+X-Change-ID: 20260220-ch13726a-59c6678d53d8
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Teguh Sobirin <teguh@sobir.in>, 
+ Aaron Kling <webgeek1234@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773725020; l=1279;
+ i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
+ bh=sHBOXa5iAdCKVMBMgSvMM6uqXWupWn60SVKYB9JnKgY=;
+ b=DzjhYFE5zY5In+vRpMU9r4oJg+dntBbzxTebe3W3BE1mGvjExZ86o6IckAdH0FYKHDmZJJFOH
+ JMwVyjJLiegAxS3PbkmSiAtO+k2VsdSek+G8WHb7/YX3qxDIiQnF0Aw
+X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
+ pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
+X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
+ auth_id=342
+X-Original-From: Aaron Kling <webgeek1234@gmail.com>
+Reply-To: webgeek1234@gmail.com
+X-Spamd-Result: default: False [1.34 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	R_DKIM_ALLOW(0.00)[ziyao.cc:s=zmail];
+	TAGGED_FROM(0.00)[bounces-276460-lists,devicetree=lfdr.de,webgeek1234.gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276457-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[ultrarisc.com,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,google.com,gmail.com];
+	FREEMAIL_TO(0.00)[linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	GREYLIST(0.00)[pass,body];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[ziyao.cc,quarantine];
-	DKIM_TRACE(0.00)[ziyao.cc:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_SPF_ALLOW(0.00)[+ip6:2600:3c04:e001:36c::/64:c];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.963];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[me@ziyao.cc,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,sobir.in,gmail.com];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_SPAM(0.00)[0.792];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ziyao.cc:dkim,ultrarisc.com:email]
-X-Rspamd-Queue-Id: A02B42A3E0B
-X-Rspamd-Action: add header
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FREEMAIL_REPLYTO(0.00)[gmail.com];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[webgeek1234@gmail.com]
+X-Rspamd-Queue-Id: C7E6D2A3F07
+X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spam: Yes
 
-On Mon, Mar 16, 2026 at 03:06:59PM +0800, Jia Wang via B4 Relay wrote:
-> From: Jia Wang <wangjia@ultrarisc.com>
-> 
-> Add UltraRISC DP1000 SoC PCIe controller devicetree bindings.
-> 
-> Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
-> ---
->  .../bindings/pci/ultrarisc,dp1000-pcie.yaml        | 108 +++++++++++++++++++++
->  1 file changed, 108 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/ultrarisc,dp1000-pcie.yaml b/Documentation/devicetree/bindings/pci/ultrarisc,dp1000-pcie.yaml
-> new file mode 100644
-> index 000000000000..b50ff98dd878
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/ultrarisc,dp1000-pcie.yaml
-> @@ -0,0 +1,108 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/ultrarisc,dp1000-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: UltraRISC DP1000 PCIe Host Controller
-> +
-> +description: |
-> +  UltraRISC DP1000 SoC PCIe host controller is based on the DesignWare PCIe IP.
+This driver is based on the one by Teguh Sobirin [0], cut down to only
+support the AYN Thor bottom panel.
 
-If so, you should probably refer snps,dw-pcie.yaml to avoid
-some duplication.
+[0] https://github.com/AYNTechnologies/linux/commit/d0ff75b09e66023c5f88992706dee4601aa7a437
 
-Regards,
-Yao Zi
+Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+---
+Changes in v2:
+- Add Neil Armstrong to binding maintainer list
+- Add 120hz mode, which required a minor restructure of the driver
+- Link to v1: https://lore.kernel.org/r/20260222-ch13726a-v1-0-e501d78e105a@gmail.com
+
+---
+Aaron Kling (1):
+      dt-bindings: display: panel: Add ChipWealth CH13726A AMOLED driver bindings
+
+Teguh Sobirin (1):
+      drm/panel: Add panel driver for ChipWealth CH13726A based panels
+
+ .../display/panel/chipwealth,ch13726a.yaml         |  66 ++++
+ drivers/gpu/drm/panel/Kconfig                      |  11 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-chipwealth-ch13726a.c  | 339 +++++++++++++++++++++
+ 4 files changed, 417 insertions(+)
+---
+base-commit: 95c541ddfb0815a0ea8477af778bb13bb075079a
+change-id: 20260220-ch13726a-59c6678d53d8
+prerequisite-change-id: 20260220-ayn-vendor-a153168c29b2:v1
+prerequisite-patch-id: 042cab8f04748207ba5395dd0f23c445955aaa2b
+
+Best regards,
+-- 
+Aaron Kling <webgeek1234@gmail.com>
+
+
 
