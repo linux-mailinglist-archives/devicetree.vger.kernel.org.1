@@ -1,146 +1,165 @@
-Return-Path: <devicetree+bounces-276501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276503-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uCetE9oDuWmEnAEAu9opvQ
-	(envelope-from <devicetree+bounces-276501-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:33:46 +0100
+	id qA0jOx0EuWmEnAEAu9opvQ
+	(envelope-from <devicetree+bounces-276503-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:34:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEFBE2A4DC4
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:33:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B04E92A4E07
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:34:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 87B863048ED6
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 07:33:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 998AB3041786
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 07:34:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C85C73914E2;
-	Tue, 17 Mar 2026 07:33:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8F2D3909B3;
+	Tue, 17 Mar 2026 07:34:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YntWHKC9"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="M47DaaOu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4CE938CFE9;
-	Tue, 17 Mar 2026 07:33:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 361A7390C9C;
+	Tue, 17 Mar 2026 07:34:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773732803; cv=none; b=C2Hy/BrCcyJMnUEeyrdUf4zoyAf+DR5NBGMT5pxNCQGAXiZNWbHa8e0GWR3lR4Co2C9lqXz73xZoAtGv9i7EC8Cy3h8b/aiA9yEgKtPxlaUJw6Nuxt+qPLGWiakkIGT8lhGtjbWYEPgeqyeX1T75GeX7/O+kdRlxSw94dinruhw=
+	t=1773732871; cv=none; b=AT8U6GzwRrmL4oGkjVdeNcm+qZAvIiSPqIRwqbmN+TzKdkEzqwkTm3v1vpGJKIdpcafFHVyqhdKg/NEX3uwXOOmcIf6tW9HR3teeXXRIdXD3hBGCo5r5iY0DtatlF2VGi+Mauiu0K6B+KuGBwkpRoQVE6JBueylRTl2UOFDa8cU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773732803; c=relaxed/simple;
-	bh=8El/q3asOTy7/Qcfil/zw5ZpPLTBRydyo+p6YdyFo20=;
+	s=arc-20240116; t=1773732871; c=relaxed/simple;
+	bh=1OJtUNEamh5vO3iFIrEXYFak4q7SIt7T2aherzADZ/g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O0h+zi5lhMFBHZDEjucQkBl5WkuhxyimFSelD8tO5AWSdyGMMpYu5iu1FSlVyiPKbsTprRw3bpNjXNX2VQkotNURTmyatDI8oQ49tblTiW8W4+YyN1UEQREh3q2PNXe0p4DpduhFYPIMCoiv+onkYMU3OI7/0h7TTv0KdfQn67A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YntWHKC9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E71C1C4CEF7;
-	Tue, 17 Mar 2026 07:33:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773732803;
-	bh=8El/q3asOTy7/Qcfil/zw5ZpPLTBRydyo+p6YdyFo20=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YntWHKC9SzxYXZi3l96kv7Xj+ax6mK6zu+wW+ZmH6Y5bgRFe2wHSwx+LnhEGMw2nm
-	 BY1dd9Vbq4EkphSTHXKg9b5E8Ffkm7Lya2tjdK9ha0v4d+Tvt6raIakNYITDevr5+g
-	 jBdsnLQPWZX7DX6WjIFmFZcTuFqYaOe8SIqPAhwRG7ITWZTqSE6JjQsjoSyJ7mQd8f
-	 SbDMKxb2+cPETC4HvULeoRA0pVMtNYKdETX8ybGXVcW1vY2Tss542VQux3ERgTU1Ce
-	 Jeo5/VghxnL/Rfsdp4ygoTChrQFR3Fko5FvNZ/9M790sty1fl1Dlfz12TlMBMRVJCX
-	 H8BKWb18EamEw==
-Date: Tue, 17 Mar 2026 13:03:15 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, nitin.rawat@oss.qualcomm.com
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: purwa-iot-evk: Enable UFS
-Message-ID: <sh5vzyw5lxafgjm5kbihirzsqt2dzc7tqdee3sydd37qykclpc@vimbya6opzc5>
-References: <20260317071311.1696361-1-pradeep.pragallapati@oss.qualcomm.com>
- <20260317071311.1696361-2-pradeep.pragallapati@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=sJin+WTo6SOAFIl4SwBBsbdIFKa9iBGCt2nHp6VhL5V85uqBwzYYvY/ihKKrjGztu0gUI4eZx6rsxeqTSqcC8jji5t+EPv5ZQYztB362MPiwAbgoKrqdmp291Q44HSfO4DPJwVu97EbvDCSvFtwFcA4D7Vy30c2u4KuWdplLKRo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=M47DaaOu; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773732868; x=1805268868;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=1OJtUNEamh5vO3iFIrEXYFak4q7SIt7T2aherzADZ/g=;
+  b=M47DaaOuSzsQO328WpCScWltYGD4pdgiPUxorGYboWTN4VdJ5bhV5HgK
+   ycgZqRjShABovIRAl9mbB1rplIl4VcZupB+COiK3gbIxCgaUvmCnRiLDW
+   14oPfBjsouJXU622gvO2BQcktn4jsCUgI8WY8nTWT5cqZTi+f8aJ2OIuu
+   laCc4bSV3biqHi/7v+LEiaHEwyolHZvj23jbbfU5KQWTc9OpxHY//aR+G
+   lg/1CmDhYBl0urV5JR+H+jn+fRM9jt7SZPoa74dmem/uDtsUDXX9ZPqP5
+   GsoD2FLbVK4j3eSdEXvncyrXjHlj8mzrZGGe8l0511L8OqNoGdwFv64PQ
+   A==;
+X-CSE-ConnectionGUID: 7mzbjog+TL636KIKxK2VyA==
+X-CSE-MsgGUID: RpLqQNvZTX2I+PG++Vj5oA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="74835520"
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
+   d="scan'208";a="74835520"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2026 00:34:27 -0700
+X-CSE-ConnectionGUID: l6i/QyKCQ2+Qh0zbsAMaDQ==
+X-CSE-MsgGUID: E2hgBnOgTvOTItdc81+GLQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
+   d="scan'208";a="226306582"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost) ([10.245.245.97])
+  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2026 00:34:20 -0700
+Date: Tue, 17 Mar 2026 09:34:17 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Douglas Anderson <dianders@chromium.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, stable@vger.kernel.org,
+	Andrew Lunn <andrew@lunn.ch>, Daniel Scally <djrscally@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>, Len Brown <lenb@kernel.org>,
+	Mark Brown <broonie@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>, Russell King <linux@armlinux.org.uk>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Saravana Kannan <saravanak@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>, devicetree@vger.kernel.org,
+	driver-core@lists.linux.dev, imx@lists.linux.dev,
+	linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-spi@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH] device property: Make modifications of fwnode "flags"
+ thread safe
+Message-ID: <abkD-VLprcbbEbB1@ashevche-desk.local>
+References: <20260316154159.1.I0a4d03104ecd5103df3d76f66c8d21b1d15a2e38@changeid>
+ <abkCPU3rxHI49N4_@shikoro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260317071311.1696361-2-pradeep.pragallapati@oss.qualcomm.com>
-X-Spamd-Result: default: False [-1.66 / 15.00];
+In-Reply-To: <abkCPU3rxHI49N4_@shikoro>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276501-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[chromium.org,linuxfoundation.org,kernel.org,vger.kernel.org,lunn.ch,gmail.com,davemloft.net,google.com,nxp.com,linux.intel.com,redhat.com,pengutronix.de,armlinux.org.uk,lists.linux.dev,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-276503-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[33];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: DEFBE2A4DC4
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,renesas];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:dkim]
+X-Rspamd-Queue-Id: B04E92A4E07
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 17, 2026 at 12:43:11PM +0530, Pradeep P V K wrote:
-> Enable UFS for purwa-iot-evk board.
-> 
-> Signed-off-by: Pradeep P V K <pradeep.pragallapati@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/purwa-iot-evk.dts | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/purwa-iot-evk.dts b/arch/arm64/boot/dts/qcom/purwa-iot-evk.dts
-> index fe539b1f4567..e9cf56a415ac 100644
-> --- a/arch/arm64/boot/dts/qcom/purwa-iot-evk.dts
-> +++ b/arch/arm64/boot/dts/qcom/purwa-iot-evk.dts
-> @@ -1497,6 +1497,24 @@ &uart21 {
->  	status = "okay";
->  };
->  
-> +&ufs_mem_phy {
+On Tue, Mar 17, 2026 at 08:26:53AM +0100, Wolfram Sang wrote:
 
-Nodes should be sorted alphabetically.
+...
 
-- Mani
-
-> +	vdda-phy-supply = <&vreg_l3i_0p8>;
-> +	vdda-pll-supply = <&vreg_l3e_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&ufs_mem_hc {
-> +	reset-gpios = <&tlmm 238 GPIO_ACTIVE_LOW>;
-> +
-> +	vcc-supply = <&vreg_l17b_2p5>;
-> +	vcc-max-microamp = <1300000>;
-> +	vccq-supply = <&vreg_l2i_1p2>;
-> +	vccq-max-microamp = <1200000>;
-> +
-> +	status = "okay";
-> +};
-> +
->  &usb_1_ss0_dwc3_hs {
->  	remote-endpoint = <&pmic_glink_ss0_hs_in>;
->  };
-> -- 
-> 2.34.1
+> Thanks for tackling this issue! I agree it should be fixed, just
+> wondered about one thing:
 > 
+> > While flags are often modified while under the "fwnode_link_lock",
+> > this is not universally true.
+> 
+> Is it a possibility to use the lock in all code paths instead?
+> Because...
+> 
+> >  	struct list_head consumers;
+> > -	u8 flags;
+> > +	unsigned long flags;
+> 
+> ... this change costs some memory on every system. Maybe it can be
+> avoided?
+
+How much memory does it cost? On most 64-bit architectures is +4 bytes,
+rarely +0 bytes, on m68k it might be +2bytes. On 32-bit it most likely
++0 bytes. I expect that 64-bit machines will cope with this bump.
 
 -- 
-மணிவண்ணன் சதாசிவம்
+With Best Regards,
+Andy Shevchenko
+
+
 
