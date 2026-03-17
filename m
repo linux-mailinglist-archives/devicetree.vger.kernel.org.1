@@ -1,137 +1,160 @@
-Return-Path: <devicetree+bounces-276718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276719-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4DBGF7tmuWkyDgIAu9opvQ
-	(envelope-from <devicetree+bounces-276718-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 15:35:39 +0100
+	id mHMVL9VquWmvEQIAu9opvQ
+	(envelope-from <devicetree+bounces-276719-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 15:53:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3D2F2AC134
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 15:35:38 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 378912AC65A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 15:53:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D564A3048DBB
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 14:28:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 714563181FDE
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 14:39:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 157763E5560;
-	Tue, 17 Mar 2026 14:28:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB7EC3E51C3;
+	Tue, 17 Mar 2026 14:39:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="bG2zxRXQ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="oLBSxm5z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E75223E5567
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 14:28:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F22A3A9DB6;
+	Tue, 17 Mar 2026 14:39:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773757686; cv=none; b=gdNLMX+rkSgqv5RIUFi6JVUl5Bw4g0R9BIxGuyJv45/GPYEWxBqZKI143VMOze/0NT+LgZNEX50CfQKf4SXKY2xupB8PHDdNZzSyi/ARYEc+reeP8AuzfgEizhkOa3nBqaLxdZQUlpjk6e+hDLliVcUu2ujaC0CqjT4Btufd4A4=
+	t=1773758377; cv=none; b=oKT3j7yFCBMokZozDPVLiNkdODOalklPakHXC7Az+1JQJstlZDUKN5B1t1Nidl38GJaJSyaRJwrr3kUdqR+gwQaFugRA1qaFUqB632KWOiL+eKeFwWE+kle3D9HQLGO9izQJrfPpyWJ7kjHdeKRGsJOOQWnRYhYxLgBikRb2s48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773757686; c=relaxed/simple;
-	bh=XlJj6+XtRnLs033bhaxlmEjesLS+qafeUVhuDo8ItlA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bL5g92402RT2pwNYHOoFL99QcfwIUSL1kraROJ1yHu4/gsqpsNTd0qe9weKLKhG635li/u+7YsI81Gy75Lk+DfQLJXmV16olSrKPb7s+65r9QriLMXOSK+uQMhzalLMlGROFTFR7yQX9po1tAPwenbtUG5/GMLq47slveWRlp34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=bG2zxRXQ; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=XlJj
-	6+XtRnLs033bhaxlmEjesLS+qafeUVhuDo8ItlA=; b=bG2zxRXQ9Fu9bCPjNpx3
-	P7wgiIDoMXLCFMRPPmDltjPAhFzrIRxLaSxIF85pzMhW3YyHuUmEPHx4tFc4UUho
-	Wo06erk7gncW5uU46/3R7WWSOx6aUij0lMRTitWmNhEITS6dBlW5FTJQJ9Lann3s
-	dlppwJoBzJT5UfzY5GRapN/vktmt/GFIZqfQ7PYY1fBvA6Tbh+0RN0wBNuR0C9Z/
-	Xyd1b5tVvedLvdm7mrVbuvLIWeLiCjAeTKnuo2FG1hjxzOQTRhAzR5B4ebBzP+t3
-	vgcwphcy28vVhUjbhXw+mZaFWm3+CISUtLErtDSyofA6mcDgcyIeFO1eGKVh/IO/
-	FQ==
-Received: (qmail 312797 invoked from network); 17 Mar 2026 15:27:57 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 17 Mar 2026 15:27:57 +0100
-X-UD-Smtp-Session: l3s3148p1@LnJGJDlN/LM+XdJ7
-Date: Tue, 17 Mar 2026 15:27:52 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Douglas Anderson <dianders@chromium.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>, stable@vger.kernel.org,
-	Andrew Lunn <andrew@lunn.ch>, Daniel Scally <djrscally@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>, Len Brown <lenb@kernel.org>,
-	Mark Brown <broonie@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>, Russell King <linux@armlinux.org.uk>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>, devicetree@vger.kernel.org,
-	driver-core@lists.linux.dev, imx@lists.linux.dev,
-	linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-spi@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH] device property: Make modifications of fwnode "flags"
- thread safe
-Message-ID: <ablk6O2XMUc1EKK0@shikoro>
-References: <20260316154159.1.I0a4d03104ecd5103df3d76f66c8d21b1d15a2e38@changeid>
- <abkCPU3rxHI49N4_@shikoro>
- <abkD-VLprcbbEbB1@ashevche-desk.local>
- <abkF0GO01sMcOhvb@shikoro>
- <abkLEgrZbdb03VWg@ashevche-desk.local>
- <abkLY4AAQuFlTRC7@ashevche-desk.local>
- <abkT_jpjIki6pvX1@shikoro>
- <abkqEni3phP8dqqw@ashevche-desk.local>
- <abkuNpwmYGa6qJPZ@shikoro>
- <CAJZ5v0g=_HW7i8-emNdTtw_0Kjqri8qTehHvms52u-w7jqG6bQ@mail.gmail.com>
+	s=arc-20240116; t=1773758377; c=relaxed/simple;
+	bh=Af4KFyu9G462PBzFPcUbHdbzV8CZObDoeMRMMguLwig=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=LzDcc5G5y9EoNhdGhxBLnD7QlvH5xIlIhrpAxb4yJEr6tSzfYCm8d5ZmpCfQuoPxP4EJBm84S0L4F93x49ukOdYq53grGM6unp+tSH72i/3a231nRg8hnv41tj3xp8KByaBcvDPWds1AuWYKJRPUTx+uhUSqyK7FxCkCaE/S+dM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=oLBSxm5z; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1773758375;
+	bh=Af4KFyu9G462PBzFPcUbHdbzV8CZObDoeMRMMguLwig=;
+	h=From:Date:Subject:To:Cc:From;
+	b=oLBSxm5zgGhreREyqEyUzYn869Xp060RkmQkC7FaFgd6fIGSuqiYIrCUc/HVHQLS5
+	 iXS3FsB8jBciScQaaR3SM6COLva3lEnWOxVbHm7y9xbcOtqlry2Ks6AbZoUs8O87eP
+	 u+BZQCCqTcdFkl6EjCTKY3tNg1Wl4kKiRENFim4LKanN2Xs1WRs5TxOO050jBSLO/f
+	 35j7MAfRF1EMJ+p14juEBxfDKTjbPesxUfmqYFfujmHKlFfMBb0gslxf1U2oJftQXt
+	 10n5G5OWfJoGhzEN9/zQI0ijVV8BYSuZL1FoO7AahiL+2ywvXK0T/LJ8q5FMR2Icsx
+	 jikZnVLB586EA==
+Received: from jupiter.universe (dyndsl-091-248-085-025.ewe-ip-backbone.de [91.248.85.25])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id F21E917E026C;
+	Tue, 17 Mar 2026 15:39:34 +0100 (CET)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id A2DAF48002A; Tue, 17 Mar 2026 15:39:34 +0100 (CET)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+Date: Tue, 17 Mar 2026 15:39:30 +0100
+Subject: [PATCH] arm64: dts: rockchip: add SD/eMMC aliases for ArmSom Sige5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAJZ5v0g=_HW7i8-emNdTtw_0Kjqri8qTehHvms52u-w7jqG6bQ@mail.gmail.com>
-X-Spamd-Result: default: False [-1.16 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260317-sige5-mmc-aliases-v1-1-ee93a1571802@collabora.com>
+X-B4-Tracking: v=1; b=H4sIAKFnuWkC/x3MSwqAMAwA0atI1gZq1SpeRVzUJmrAHw2IIN7d4
+ vItZh5QjsIKXfZA5EtUjj2hyDMIi99nRqFksMY6UxYNqsxc47YF9Kt4ZcWKnR2JbGOohdSdkSe
+ 5/2c/vO8HAyd6uGMAAAA=
+X-Change-ID: 20260317-sige5-mmc-aliases-4e62bdd270d8
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ kernel@collabora.com, Sebastian Reichel <sebastian.reichel@collabora.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1193;
+ i=sebastian.reichel@collabora.com; h=from:subject:message-id;
+ bh=Af4KFyu9G462PBzFPcUbHdbzV8CZObDoeMRMMguLwig=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGm5Z6alpHKfAvXq7zL1PZ3iPAInwi3LN0/S+
+ /t2vGkmeNpyfIkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJpuWemAAoJENju1/PI
+ O/qao/cP/15PNIpmb6DW8m3mBXgyxNr8Ess3FS1i7Py89+4nu/uLkj8NXNyRwF9M8eTfwsIjTq+
+ 2jCxyd+BUxGIhwrwevqziRtfitG/SuIlm8f8ZsK6CnfQqUYy0TnzrunV/sKdaULU77XHrMRHCyj
+ svLtcwVfOrStoAf9RBtqK90gUrwlWIKMZsCjtTwqy0xtg7ICMhCEX9qbDoUYxzDSidIg1Q4rbfj
+ L6uJ6JBN3sr+Nx8GUqeFg6tyhSYBnhUHt9boeg1rWmpAZg7PEo4/fZmHeLV2d5A8dBdn2hlg4rY
+ ZMg2+4vPdCPOv0Q9X3GfOqiEWaz9TKofEnm1x7Oe2nVOeEDxXBwStongX828QHEGz7t/T/mOT6S
+ p3hfg1a6blEIMFgIoyVF0F7hfIztIbDxj4wIfFspiE3J3FB64QYYrToj1nP6wZGaZ2NElzSJzRT
+ KP/kdZRANLbcBKO/aJr5TOpzrCT7x2grx/xt/bqWzwfEU+O9kPF1Qc3sO0d9shQ6iNS4k/Yu3IW
+ Y3RBEM6Xme1i/isQGjeieIKzJbb0MRhgqfkJA/tMsneuDNR+dtBGWf8ljdj80E5NFhn70xR6qoZ
+ isv1jIuX5EM2vmRwTLll62Cr5oykz6y+4xxiWqGJOHZfndRimQ7RYArg5ggT3rDGA1cMbh0MbX8
+ ka+llNC8HMM01jYItr6E0qA==
+X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
+ fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[sang-engineering.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276718-lists,devicetree=lfdr.de,renesas];
-	RCPT_COUNT_TWELVE(0.00)[33];
+	TAGGED_FROM(0.00)[bounces-276719-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linux.intel.com,chromium.org,linuxfoundation.org,kernel.org,vger.kernel.org,lunn.ch,gmail.com,davemloft.net,google.com,nxp.com,redhat.com,pengutronix.de,armlinux.org.uk,lists.linux.dev,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[sang-engineering.com:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sang-engineering.com:dkim,sang-engineering.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: F3D2F2AC134
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,collabora.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 378912AC65A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Provide aliases for the SD and eMMC interfaces, so that the operating
+system can assign stable interface names.
 
-> I don't recall using any lock for this purpose.
+On Linux this is only relevant when booting without partition UUID
+based root device identification, e.g. when booting without an
+initramfs. In that case booting with e.g. root=/dev/mmcblk0p2 is
+unreliable without this patch as the device numbers changed based
+on device probe order.
 
-In that case:
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
+index d372ba252af8..1c100ffd1518 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
+@@ -21,6 +21,8 @@ / {
+ 	aliases {
+ 		ethernet0 = &gmac0;
+ 		ethernet1 = &gmac1;
++		mmc0 = &sdhci;
++		mmc1 = &sdmmc;
+ 	};
+ 
+ 	chosen {
 
-counts as an ack for i2c, too, of course.
+---
+base-commit: 74b04802e23d970099c522b711b0d94e9a29dd74
+change-id: 20260317-sige5-mmc-aliases-4e62bdd270d8
+
+Best regards,
+-- 
+Sebastian Reichel <sebastian.reichel@collabora.com>
 
 
