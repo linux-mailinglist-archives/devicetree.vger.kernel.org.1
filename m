@@ -1,541 +1,468 @@
-Return-Path: <devicetree+bounces-276799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276800-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GGe6IL2VuWkJKwIAu9opvQ
-	(envelope-from <devicetree+bounces-276799-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 18:56:13 +0100
+	id eLodLRGSuWl3KgIAu9opvQ
+	(envelope-from <devicetree+bounces-276800-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 18:40:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9057F2B05E9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 18:56:12 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CAFD2AFF44
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 18:40:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B35A43045872
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 17:36:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 85DB630B8CEB
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 17:37:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F291037B02D;
-	Tue, 17 Mar 2026 17:36:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BD5D37CD57;
+	Tue, 17 Mar 2026 17:36:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DDNrKG6T";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QQz7rI1K"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="EJbq89Pp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011049.outbound.protection.outlook.com [52.101.125.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEBB837A492
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 17:36:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773768998; cv=none; b=Ov4lhGAqOij1O2jDNi6K1IewCawzONwxtE9t73GzpsnJTFbGUFSb/yCrlVHwmGPcUS2U7S73e3IxzMTuU93OAv6q0duEvNipi81fAeuHsTxOWv1rXE/xSudUzcsp5UlHmhYrjYFYdcQcVFGfNMRJWl8/yTjaF1XXJvUBp84eysY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773768998; c=relaxed/simple;
-	bh=3rwjPmHOSwY4XTSgIu6O+LE+Rr7mCg58/5IvLB1zFOM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Gaz+jXVjOOGDXMmki8sWgua9LceYKeA4lj8q/yod2Buzq23L1J14AwJ74FoFCTFgjhCdB4QdML4X4YeUzsV+Bce6NYu3cJytPTVYBRTvSiAtpA1AVQOTrAcV+sxPcmDnhKegqfCsBivwXrirJC6iWHVAFdKF+B0s2iP+qWhVsQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DDNrKG6T; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QQz7rI1K; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62HDxpEd3124394
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 17:36:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zytiUP8Xce3T94fCwbA24WE4ff9eD1E8/ytUb5yxkwI=; b=DDNrKG6TBGPThpBu
-	Qyx6FFRxPlo9Lsw9cg7D1U2tm8zxL8j42xvmYJAy8i0iWCAzgnYY0vH7Ul9raj6Z
-	HwxUqbkaynZU+WVWdLr+MRDq4tz5iJzOfAFFTHtkdpJPhbSqh1/UMsdv4OMIufdB
-	CvX5TsvYNSq4goCEBNHBJRVHgWt74xDg8XJsMHx9HGYEGWXYd4gS/ozpnjbkVYGC
-	QnHJ/bTannKFVM7Z/DLt8BomcdqaqKYgFGrYJkse2i7sHtxmK6ZTs/FbkI1hFi3T
-	brQEIdXMSyoL7duC5cni/eKj+yoGMQCFnf5reegtKcrLp16GOY3KvF58shbTVtD+
-	sTIEqA==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cy2fbtb4d-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 17:36:35 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2aed1beaa73so52406765ad.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 10:36:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773768995; x=1774373795; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zytiUP8Xce3T94fCwbA24WE4ff9eD1E8/ytUb5yxkwI=;
-        b=QQz7rI1Kc1KgUe6tSTMJxZ2Gj3Xqh7K9BulS4TxZdKVj/uR+seg1NYA2iNls44Sbby
-         6qd0qzU/F+Tqr5USlOxbnMiolpkfiAKvHuAVKSk7sy3ld+NmRJU674EAvsD9ET6SR36/
-         4PDK6BeqOqXUquZn2y5OwDTdE0gGXLnILpi80h9J/2LU/7rRyPWWQwrwXx/lx3UioXXT
-         G9aMDGeO6d1Niwq61CUarcbR3lC7LNuN3jSAsugZ8/iLvwr/sbSxVl5oKWPRHetHb8bL
-         RYD9QiSYdvM4NZj0ysUxItR4eo7Ya77LYBsKsI3r4EBZf/pKMfFUd76TmlAK/DszWpJg
-         hdRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773768995; x=1774373795;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zytiUP8Xce3T94fCwbA24WE4ff9eD1E8/ytUb5yxkwI=;
-        b=oZqHQcmyvW5rth2Ozsuo9pPW05sMv5OVJjl533qbF8HYnzXs0UqdMe9FLs2w9wzWNk
-         wp5wyJL6J+EoBW4shWJ/7SgfMtpYULsIsPhUaVlzfuwKzhAzoIvTqjL8zb46AVFztM+8
-         elMaeWThT1jRho8GAa9p574GQwxqNrzaa1moD0WHmmQj1ZxDzzQbdHQBf/ixtjB9Sac5
-         3NyVt998jRjcUTMY+5EJsQtcBFAoE/yr/ZngQR8AH9pE8hlXhgTNd6Jbz5PcRTJmThTN
-         2218g/QvOKOyg+uTyr+82x8FALeOIs5uNacZ/fdo8/l97tLSgYo1wpizoc/p7huiX7s8
-         LczQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUirPWnwMdmDNSVUFl6POfY2WkPBT+0MsoaZoR8dGCpYleN4jj9W2r/8yhs8QdJpvzh/4mzDoxuPqOr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxl0CK+HaTfpnRffSwEoNghcT6yFgjwv+LBezO+FErziXSHbG5L
-	B+i3hm2lvbbexZM/XLFpa285KTzfWENZO274cWhGx2cuXjHJHZ2hkzDHW9cwiVTS5QQ0Js7PnfI
-	tgpv/vn55m3Np53p9z98i5Y/sNrFMqcZYYD5U3j1RrtuGcCFh1Xo/E1LotlUOwKg5
-X-Gm-Gg: ATEYQzzy3I3R3U0O9GP63coCN6bv1GgrE7pgmj5+yQ/yKalAfE6GFiWfsrbSBpBGS3K
-	ZgvAoYCUxmci53/tLqovxEd/2MmQSc7sBPmZ244ZwTwW4T7yfcfULpFY8xRA9kTk5BOMewwMO+f
-	hlci/KznufeDs1XG9TVoRHRBAEkQwM8qZgnCegZoQzcuApVdZoKHWOUsqDTW6uDSUAodgRoTbdZ
-	93XJ1RIF2gHqUthQb0rC3Elv2GiId3KF1hpCVOMzdisJlbYBR1ouCKyulE7Yql9FNvXLZs+JZ/3
-	vhgochXi0aTbf1hwJse9Y9SxYsCLmwd+WVD9Cqd23OfStK9TU7y56CYp3ecZX2wulfU8Yz3xosI
-	i9xhojvJy3LzhYDDBheJDbt8TB2JHlHzwPuWxrjzIXZfxbVEBisI+mmbJ
-X-Received: by 2002:a17:903:1a67:b0:2b0:5a4c:726a with SMTP id d9443c01a7336-2b06e41afc9mr2520625ad.43.1773768994504;
-        Tue, 17 Mar 2026 10:36:34 -0700 (PDT)
-X-Received: by 2002:a17:903:1a67:b0:2b0:5a4c:726a with SMTP id d9443c01a7336-2b06e41afc9mr2520265ad.43.1773768993782;
-        Tue, 17 Mar 2026 10:36:33 -0700 (PDT)
-Received: from [192.168.0.172] ([49.205.248.224])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b06e603937sm1236095ad.57.2026.03.17.10.36.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Mar 2026 10:36:33 -0700 (PDT)
-Message-ID: <e2f5a1ab-2b1f-484c-b476-6c453abf0087@oss.qualcomm.com>
-Date: Tue, 17 Mar 2026 23:06:21 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4E6F37C0E7;
+	Tue, 17 Mar 2026 17:36:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.49
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773769009; cv=fail; b=mn+u524vUZ23UU5NMD7nJaASfbZQFoaD+rQVnkuwnVH/W4sqIMMIBYIr/lPHA0BmkpY19mrs9MkPWG/RqurAAGI0kHYqsevbgArn1e3NOv+JnD4AUOXmbGkC3TX07Rp0jPR2e5MphVftBI23koYZ6CY95z1ZZpyC3f0yZQI19+c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773769009; c=relaxed/simple;
+	bh=ZGG4MhuJoWqOToH8q0SHOz3R2fcM6chqV98Jvbw5WCc=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=YPODmRNy7yD/YFiTcmi/J0QxLhfww4Hx3ymKq7CJcIOaWYpUHw602h1PhSXr9vEY4zRCwHbFXwI4CrgA8Ldkr4moAEX1wsBwWSYpVHH4i+JWzaTKA+mw4gSMcehArb6+TlW5YnFVKyX45dqAAcg3KYCCgYHKb1CAwwQxb3ySTHU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=EJbq89Pp; arc=fail smtp.client-ip=52.101.125.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QNNheT2dn2k4TE8KcMVQdxKI383DS/FlR4kjGdYPQQzuxXTePO/ByG+M28olHBSB+g0Y3zigj9gScjveMTUSBUSnOflmjPU9VtTPKgQ7nboKLSInXyM/Zea6HAxFwLHi9dN4OgJ76h4ERt1BnkefbkkdRC+RqiWNY8OpFuMjSig07uevviX7MpAjZqgNN4NvHWcnuWRdBG0e2WHRHcKTpiq6859DraN5GNDflfYeDRWg4wqVbkiu+OIJcX+PfIUr9ZVI2eQJTES4uhgFBbykW3em+J8KXuteaag9waIYvTUjYl0vjtaTbZTYvCultm80kO/bF4/I8k6qhEqjjOJwLA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UnXJviPmuPPtJhGm9o2T1cIqHhSG8ikJiEk09rjrEzM=;
+ b=Xc4xT7B6Etl3PskQyihiLr/CKIQ9xUuOljpjXrvgkkveeFFWn0gFUb9UVBpLl7e4JoriASe/qFQiWyMmgLAGLby0+2hAJKb2u9DbPiWJRycJrf4sk82AlUoB5dv9MQdwhZQKaavpdffRki68X5xRbb2qI0fJkb80iRQOOgZDorAd1HAOyq9fVkaUjwEwkSokR+vOlDv4zYbqhyGxySgj7Yp/WJ0RFf4j/gVCqHm+7DSaHRMShN24UgNLxknIerxQOZqgEF6tkIHBlwvZJIKnLP2kI1qLKq2NfM5Fbj+yI7rf4QdLJHeqTuayEntaDLsnxGYeCL/6kRkrvPx5vkRnmA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UnXJviPmuPPtJhGm9o2T1cIqHhSG8ikJiEk09rjrEzM=;
+ b=EJbq89Pp25lP5AjP6I8H22mJKVKpEMjRuU2iUBgticCt/2UEr4YjU5sNVnT4D/+TRNAs9AqjM4MBf+nMjutDzauQ8Uktb9CYplLplfloin/3J3Ppym2B1rKkt/4H/DNCpA/N38qL7GuslHcGDPXsV8lmxXMTgZPqoBdcQwZKKJw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+Received: from TY3PR01MB11948.jpnprd01.prod.outlook.com (2603:1096:400:409::5)
+ by OS7PR01MB17833.jpnprd01.prod.outlook.com (2603:1096:604:445::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Tue, 17 Mar
+ 2026 17:36:43 +0000
+Received: from TY3PR01MB11948.jpnprd01.prod.outlook.com
+ ([fe80::b718:17d0:6c0f:1495]) by TY3PR01MB11948.jpnprd01.prod.outlook.com
+ ([fe80::b718:17d0:6c0f:1495%6]) with mapi id 15.20.9700.025; Tue, 17 Mar 2026
+ 17:36:43 +0000
+Message-ID: <a3beb209-c82d-4386-9a79-480f99658c25@bp.renesas.com>
+Date: Tue, 17 Mar 2026 18:36:30 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 14/20] drm: renesas: rz-du: Add RZ/G3E support
+To: Biju Das <biju.das.jz@bp.renesas.com>,
+ Tommaso Merciai <tomm.merciai@gmail.com>, geert <geert@linux-m68k.org>,
+ "laurent.pinchart" <laurent.pinchart@ideasonboard.com>
+Cc: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, "magnus.damm" <magnus.damm@gmail.com>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+References: <cover.1770996493.git.tommaso.merciai.xr@bp.renesas.com>
+ <152f19a068fcdf27c063e845fe04a48a46c5b47e.1770996493.git.tommaso.merciai.xr@bp.renesas.com>
+ <TY3PR01MB11346E0B218CBFD8A403514918641A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+Content-Language: en-US
+From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+In-Reply-To: <TY3PR01MB11346E0B218CBFD8A403514918641A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR2P281CA0166.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:99::13) To TYCPR01MB11947.jpnprd01.prod.outlook.com
+ (2603:1096:400:3e1::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] of/iommu: support multiple iommu-map entries per input
- ID
-To: Robin Murphy <robin.murphy@arm.com>,
-        Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Bjorn Helgaas
- <bhelgaas@google.com>, Frank Li <Frank.Li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, Marc Zyngier <maz@kernel.org>,
-        Juergen Gross <jgross@suse.com>,
-        Stefano Stabellini
- <sstabellini@kernel.org>,
-        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
- <krzk+dt@kernel.org>,
-        Prakash Gupta <prakash.gupta@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        imx@lists.linux.dev, xen-devel@lists.xenproject.org
-References: <20260315-iommu_multi_map-v2-1-51b98cb79331@oss.qualcomm.com>
- <be41a533-46a8-411b-bf6c-d56b550691a7@arm.com>
-Content-Language: en-US
-From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-In-Reply-To: <be41a533-46a8-411b-bf6c-d56b550691a7@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: 2suy4me6ykPFF2maMUAeIpgR8R-sYiAd
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE3MDE1NCBTYWx0ZWRfX2xZ5uxWxy/J9
- KUfIJe9x19wquRkY0NyYIizsM+W9d/g1LnIyEEUMzmIDk1RBwwYgJTghXZBrq24/GQoFDgFt/mY
- 4rrFgLVj9EPXCjfGjsPVL2iQzuHEWJHHFIgewyVWZFOwv2SpeAB/mqS9sgNyNoK5PcL5ier+FXg
- s2BUJ99EsiRh3yyNinC01yaBrSGklFWhl4qAn4eh4ZRrcPvYC+Jz9WbaC7WkIlYyGt9h7oW7I/Y
- JUhiPivX1kIKTvaee9Xrm5gOJ886+90FJMdAQlqEFfLewejwSfxa45Lv2E6AOzw+cM1kMP4/yX3
- Go07WRqj6Kjf3VAs8VfB4xqC0zl88hSn9rZVoNb8EBm8qj7OJD6JtMd9QsBEZtAQR426qcwV6Hd
- 0kuSjQoy/l5vuOlRluqBLJodxVw9S+sqXxSUmKSHSXZNVCg2ioA8mCGW0WUzx2pSeSWTHvSqkWP
- 2zyVfHJzOXzpzmkcJjg==
-X-Authority-Analysis: v=2.4 cv=fa6gCkQF c=1 sm=1 tr=0 ts=69b99123 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=L0D9IIo8dDxUtxRzEGqq2w==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
- a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=dbrUTAiK8tO8QfTRFOUA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: 2suy4me6ykPFF2maMUAeIpgR8R-sYiAd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-17_03,2026-03-17_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 spamscore=0 lowpriorityscore=0
- impostorscore=0 adultscore=0 bulkscore=0 malwarescore=0 suspectscore=0
- clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
- definitions=main-2603170154
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY3PR01MB11948:EE_|OS7PR01MB17833:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1bc4688b-21ce-4174-a48b-08de844bc129
+X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|366016|1800799024|7416014|376014|18002099003|56012099003|22082099003;
+X-Microsoft-Antispam-Message-Info:
+ xeL0BusGj56A6E1Tri/0hDS+fxpDkrFi4zMRdDZIBFYnXwXpHjCh9pG0T6isrWAxgbeJ+KDPwYysgAWUrq7/qLAwxFNy/fA/ydebyAvB4ptcqtWHyBUu8F20nI/mw97JHge+OvG/f+fvdABZN0Ni6oeSpFSY73TaDpBwCG9Q7EKbwrgZMgHtUJfb5ETfuxk+1f1fb2QUX8JFDJm+kKxgkpVtHunac563xXB5pUULW6VPS6JIVMC9Rtk03zfJoLDruyUUmZvLilQJta8OebrJk7A7nRaiI28BmMarrEhAKliMQBA6ZGH4CPkwTyD0vVUL2PNcdI9ZOuU+u5V7M/W0PK5FfHYtUMOuuVdZs8LSk21U3LVd6WzmdkNsYY0mGCDnXKII8K7MILkzjRd3+e1a6Fpng0DxFvvTy6fF0FWELrDqU3nWbjynb4AAAcbwg5UAh932aVsCQnzOFcqLfylDkph8SdANAC98VxRKWPEewm5PNkqzjw4xd08CUo8x9+ScryzOoWH3AkT4KdeVSVxiKYdbkbF8O1kQvY439OjZWTPJkK0X9Cka3SYef475l9yF/+sqotnPZIui/iiPxHFPCiqEwLUP8msDaHYCbZCk2I+T8xG6th5f5bxv30qpPGi4p0z2skiPIMH5Qp3KFnuOpbVW8A0SbhW1Q0IrqvpIstGXT0zVzouCWy1Cdytw45Z8iT3pgJx9WyoofYH7OjuLcz1RXswmNlLrbqYWor94+9s=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11948.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?utf-8?B?SmcremJONHVxSy8vaU5KKzZjckdqem5wVW5CalRHNXBaamV5UENYL0dpcXdL?=
+ =?utf-8?B?cCtjZWdSVzBIS3c4b2ZzMVBMVXpWZmZ6d1lIc1hUWFFJcGw5cmpVQVl5QlU4?=
+ =?utf-8?B?MTc1UFZ6eDkwaDVza3pRZ0FHdnRlc09vZW5nSEhRb1Z4c25Zank2bVRXRDBX?=
+ =?utf-8?B?bEo3azA5elJZTUpBU05lTC9NQlljM0p6OFRLc1NTU1I4cy9tNEZveWhMQmU0?=
+ =?utf-8?B?QjA5OEtIRXdMWkhXZlFtQWtBYTMxZ2M1Y3dFdURpWU9NZmdjVkhIbDdUejFX?=
+ =?utf-8?B?L05zU05kWk0wRGpVTXlXeHp6U2RYUDJMUEd4ZFNVWWNrMEFFUnJkQys3Zllz?=
+ =?utf-8?B?eVlKK1lyeDJNS25iNmtCYkZDY2R6bkhLc0lSc0lJYTlOajVxVmVMTTNKVE1x?=
+ =?utf-8?B?dDhjYzRVTEplTVJycG05TW42a0U2aXhrV0g3Vzc1Z1I3NnlWaGFmemU4MHBB?=
+ =?utf-8?B?bUlKZ3FEcmc1UVFBNWVpdWF0bWZNMVdiRkFwUmlmQ0owem9tSitldHFIMEFS?=
+ =?utf-8?B?cXNiMU5yU01XWUtNbmoydlZKY1BhR3paM0p3R25lUW9XWHhHUWs0K3dHSGxq?=
+ =?utf-8?B?S210eThLQWg1R2ozRVRQeXNqQVhxU1l3YUFGZEtvUkFFNWhmM09mb29iNWRG?=
+ =?utf-8?B?V2QvU05vNXk2Y2FPalhiMTRMaVp2ZkJzcHhPYVRaWFRTbFUzYkRHZHpnUDNu?=
+ =?utf-8?B?YmkvQ1ozcnJBZW8wU3I1Y0VVYkJIRlljMFB6WmFSM3RIUTlib3FjMWpTNTBt?=
+ =?utf-8?B?b1h4NXhsdnBlZ2ZncjN6dGwrM0RpcjhOeC9JTjFxNFpObDAzb2xSWjMrSHRX?=
+ =?utf-8?B?L0ZPbHA2K0lSbjRRc0xLOGRjY203UU14M1dXODltVWVLY0tUT3pYbDNZY3R5?=
+ =?utf-8?B?WklsZ2ZFcjduN1ZGZmVEbzdtMElCY25RK1lpczA4aVE5K2VlYUNlaFFHc2o4?=
+ =?utf-8?B?MXRzL0dtRWhTbjZOT2lMYWNTNzg4aGUvYWxIZWNzeDVrZ21PYzIrT0I4QXhH?=
+ =?utf-8?B?SGFaOGxPV1VDK3B1SG5hU0lEUDd0VTlkQ1FLdW5qZ3lHZlB3SUZtZGpHbFNH?=
+ =?utf-8?B?V2pUNkJONmJtd3NXWSs1QzZUS2dRR1FsbUFsSjdNNS93SElkREc2Rk9QblFu?=
+ =?utf-8?B?aWZJMEJJVkY0YVVnZE5zSkhGRWlBY3l5cnZTa3cxQXU2SzBGb3ZGZ1I1dXhy?=
+ =?utf-8?B?N1Mxd0tEVGtpMGZTem4vMDJKTkREdVhzUGNGOGUySnN1ZFJNcDcvbGhVSk0x?=
+ =?utf-8?B?VXd3bGJEZmh5VE0rTFZka3ZoT2ZPbkZ4RGczWFlQUFZ2eXo1K3drb3B0ZzZk?=
+ =?utf-8?B?QVRWOFdnR09VYkx6bXAzbDhwOWhMaHdtbE02K2JYWk81RTI0cWUrU2VkUlIz?=
+ =?utf-8?B?bSsxeG1hSmtHV0x4UEZUR21Oam1ocW53elE5R1ZqZ0I3aGJwQjl0b0ZVWG9m?=
+ =?utf-8?B?cjlEeFdyVGpueDJKR2c2T3FtTXBwUnF0UDRkRHA5TEdXRDRXdnE4c0xjeENt?=
+ =?utf-8?B?QVB2alBraUxKUkVMdE1ka2hUYzRuNFE3SlhScnNzV204T2c0dmNFMzV4NFdZ?=
+ =?utf-8?B?aUpIZHF1SXBCRU4wSVdDL2ZqeXdnNGFJYmVhQm5XRTdLTUl1OElaazVFdno2?=
+ =?utf-8?B?VDlQN0lNTG1sN2ppZUhrMk5wNVkya2taWFJISmtJTGNyWXUwMTYvdXVaejYw?=
+ =?utf-8?B?ZU5sQW5Qd3F5N0VlMUVZeGJ4MUVWdEN5UmVuSjR0Yk9qMmR3WU5PQW1IMVFo?=
+ =?utf-8?B?NGFpMWwrWVJ2a3FwdkgyTzJCVXQya1QzcHg5NUdoaTU1enphRXhtQURvOUhT?=
+ =?utf-8?B?eWx3N3F2RlRra0R1MmVMRWp3WStpVUl5a0MxUmtGV0luK2k4a05QdmZRTEkr?=
+ =?utf-8?B?ZkpzcFROZVhGSTdHMEhBUGEyOUk4ZE1ac2NCUjRNMm9lM0l5UkV0eXM1ZlF2?=
+ =?utf-8?B?WmlaK2Q3U0x3bDl0dVZyZXp0YjNNK0dqQzg1TGlhN0h0N0p5ZlhJWDFGZnZt?=
+ =?utf-8?B?U0d5NUVkY1paZHYrYUJ3TWhGQjVhcjR3OEYweHBrWmhZQU4vSkI1ZXFDaEVJ?=
+ =?utf-8?B?UTNyRW5xd0w1ZEhzN2NuU01rNUptUGxpdTFQQW9KRUJYQjZqSEpiRmFGRVV3?=
+ =?utf-8?B?MS9keGplRDlVNzhwRTg3UVFYMDdRQjBMSWpTWjI4TlQwdWx3enJQRWtjMGlJ?=
+ =?utf-8?B?SElWTE9vVkprYVNsem91bzVHZFZaZlBZaG5DYndjejBuTEFPaFU2M0p0TXBP?=
+ =?utf-8?B?MU1lNUR5dmNmdlk0R0RNYlhZMi9HR25ycTVmdUprb0phOHp0a09oLzlqeG9R?=
+ =?utf-8?B?Q1FVLzhXUHk2Ykk3N3dWamVSZ3IzNjFidFFCR1ZFK2hCa1RzS1MvNk0wYW1x?=
+ =?utf-8?Q?7k8MshWla7LtARI9gMcPY0GFIABill5gtPLMK?=
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1bc4688b-21ce-4174-a48b-08de844bc129
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11947.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 17:36:43.5094
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: k4+m/U/SCrUZAfLvp0oIQqT2NPU/eJu+tGdsQyS0PFf+GHl60LyKwC/WhuQNF9cgjyebmlTvvM1a3VpUnpuq8nlW0rKdG9rD3+JCrTAaeOCOshiH5QEzMy6LZVZ4vAUf
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS7PR01MB17833
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276799-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,iommu_spec.np:url,qualcomm.com:dkim,qualcomm.com:email,quicinc.com:email];
-	FREEMAIL_TO(0.00)[arm.com,oss.qualcomm.com,8bytes.org,kernel.org,nxp.com,pengutronix.de,google.com,gmail.com,suse.com,epam.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[34];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_FROM(0.00)[bounces-276800-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[bp.renesas.com,gmail.com,linux-m68k.org,ideasonboard.com];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,glider.be,baylibre.com,ideasonboard.com,lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[tommaso.merciai.xr@bp.renesas.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[bp.renesas.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 9057F2B05E9
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bp.renesas.com:dkim,bp.renesas.com:mid,renesas.com:email]
+X-Rspamd-Queue-Id: 2CAFD2AFF44
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello Robin,
+Hi Biju,
+Thanks for your review.
 
-On 3/16/2026 5:18 PM, Robin Murphy wrote:
-> On 2026-03-15 5:07 pm, Vijayanand Jitta wrote:
->> When multiple mappings are present for an input ID, linux matches
->> just the first one. There is a usecase [1] where all the mappings
->> are to be maintained in parallel for an iommu-map entry of a same
->> input id.
+On 3/17/26 14:35, Biju Das wrote:
+> Hi Tommaso,
+> 
+> Thanks for the patch.
+> 
+>> -----Original Message-----
+>> From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+>> Sent: 13 February 2026 16:28
+>> Subject: [PATCH v5 14/20] drm: renesas: rz-du: Add RZ/G3E support
 >>
->> Add a next_offset iterator parameter to of_map_iommu_id() and
->> refactor of_map_id() internals into a static helper to carry it.
->> Update of_iommu_configure_dev_id() to loop over all matching
->> entries to support this case. All other callers pass NULL and
->> are unaffected.
+>> The RZ/G3E Soc has 2 LCD controller (LCDC), contain a Frame Compression Processor (FCPVD), a Video
+>> Signal Processor (VSPD), Video Signal Processor (VSPD), and Display Unit (DU).
 >>
->> [1] https://lore.kernel.org/all/20250627-video_cb- 
->> v3-0-51e18c0ffbce@quicinc.com/
-> 
-> That series doesn't even reference "iommu-map" though?
-> 
-> Once again, NAK to this - the purpose of "iommu-map"/"msi-map" is to 
-> describe a translation from one hardware ID space to another, where a 
-> one-to-many mapping of IDs to a single target would never make sense. 
-> While it is in principle possible for a single device to map to multiple 
-> different *targets*, that is ambiguous as to what it means - is it 
-> giving the OS a choice to use whichever one it prefers, or implying they 
-> must all be configured identically at all times? - so depending on how 
-> you prefer to look at it, we either do not support that, or we have 
-> chosen the first option.
-> 
-
-Ideally that should be the way to have unique hardware ID should be 
-mapped to unique single target. In case of VPU hardware, there are few 
-sub hardwares blocks, 2 of them would be bitstream engine (BE) and 
-tensilica (XS). They generates unique ID as 0x1940 and 0x1a20 
-respectively. There is a *single register interface* to program a mapped 
-device address which both these hardware would access and processes on 
-the data. To accomplish this, these unique stream-ids are being mapped 
-to single target so as to generate single device address.
-We can call this out as VPU hardware limitation, but thats how it is 
-currently designed.
-
-If you could please suggest any alternate way to acheive this, it would 
-help us conclude.
-
-Regards,
-Vikash
-
->> Signed-off-by: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+>> LCDC0 supports DSI and LVDS (single or dual-channel) outputs.
+>> LCDC1 supports DSI, LVDS (single-channel), and RGB outputs.
+>>
+>> Depending on the selected output, the correct SMUX2 clock parent must be chosen based on the requested
+>> duty cycle:
+>>
+>>   - Index 0 for LVDS -> CDIV7_DSIx_CLK (DUTY H/L=4/3, 4/7 duty cycle)
+>>   - Index 1 for DSI/DPAD -> CSDIV_2to16_PLLDSIx (symmetric 50% duty cycle)
+>>
+>> To support this behavior, introduce the `RZG2L_DU_FEATURE_SMUX2_DSI_CLK` feature flag and extend the
+>> `rzg2l_du_device_info` structure to include a features field. Also, add a new helper function
+>> `rzg2l_du_has()` to check for feature flags.
+>>
+>> Add support for the RZ/G3E SoC by introducing:
+>>   - `rzg2l_du_r9a09g047_du_info` structure
+>>   - The `renesas,r9a09g047-du` compatible string
+>>
+>> Additionally, introduce the missing output definitions `RZG2L_DU_OUTPUT_LVDS{0,1}`.
+>>
+>> Introduce `rzg2l_du_crtc_atomic_check()` helper to store the routes from the CRTC output to the DU
+>> outputs.
+>>
+>> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
 >> ---
->> On Qualcomm kaanapali, the VPU hardware has multiple internal blocks
->> that generate different stream IDs for the same input ID. The device
->> tree encodes them as separate iommu-map entries sharing the same input
->> ID:
+>> v4->v5:
+>>   - Fixed RG2L_DU_FEATURE_SMUX2_DSI_CLK to RZG2L_DU_FEATURE_SMUX2_DSI_CLK,
+>>     update commit body accordingly.
+>>   - Added features field documentation.
+>>
+>> v3->v4:
+>>   - No changes.
+>>
+>> v2->v3:
+>>   - No changes.
+>>
+>> v1->v2:
+>>   - Instead of using clk-provider API to select the right parent clock,
+>>     based on the outputs. Just set the correct duty cycle based on the
+>>     output, this reflects at CPG lvl to select the right parent.
+>>   - Updated commit message accordingly.
+>>
+>>   drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c | 48 +++++++++++++++++++  drivers/gpu/drm/renesas/rz-
+>> du/rzg2l_du_drv.c  | 26 ++++++++++  drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.h  | 12 +++++
+>>   3 files changed, 86 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c b/drivers/gpu/drm/renesas/rz-
+>> du/rzg2l_du_crtc.c
+>> index 6e7aac6219be..cc35dd409e3e 100644
+>> --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c
+>> +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c
+>> @@ -64,11 +64,32 @@
+>>   static void rzg2l_du_crtc_set_display_timing(struct rzg2l_du_crtc *rcrtc)  {
+>>   	const struct drm_display_mode *mode = &rcrtc->crtc.state->adjusted_mode;
+>> +	struct rzg2l_du_crtc_state *rstate =
+>> +		to_rzg2l_crtc_state(rcrtc->crtc.state);
+>>   	unsigned long mode_clock = mode->clock * 1000;
+>>   	u32 ditr0, ditr1, ditr2, ditr3, ditr4, pbcr0;
+>>   	struct rzg2l_du_device *rcdu = rcrtc->dev;
+>>
+>>   	clk_prepare_enable(rcrtc->rzg2l_clocks.dclk);
+>> +
+>> +	if (rzg2l_du_has(rcdu, RZG2L_DU_FEATURE_SMUX2_DSI_CLK)) {
+>> +		struct clk *clk_parent;
+>> +
+>> +		clk_parent = clk_get_parent(rcrtc->rzg2l_clocks.dclk);
+>> +
+>> +		/*
+>> +		 * Request appropriate duty cycle to let clock driver select
+>> +		 * the correct parent:
+>> +		 * - CDIV7_DSIx_CLK (LVDS path) has DUTY H/L=4/3, 4/7 duty cycle.
+>> +		 * - CSDIV_2to16_PLLDSIx (DSI/RGB path) has symmetric 50% duty cycle.
+>> +		 */
+>> +		if (rstate->outputs == BIT(RZG2L_DU_OUTPUT_LVDS0) ||
+>> +		    rstate->outputs == BIT(RZG2L_DU_OUTPUT_LVDS1))
+>> +			clk_set_duty_cycle(clk_parent, 4, 7);
+>> +		else
+>> +			clk_set_duty_cycle(clk_parent, 1, 2);
 > 
-> And all that means is that your invented notion of "input IDs" is 
-> clearly wrong. Please stop this abuse of common bindings and just come 
-> up with a proper way to describe your hardware appropriately for what it 
-> actually is and does.
+> What happens if clk_set_duty_cycle returns 0 due to clk_parent is NULL??
+
+If clk_get_parent() returns NULL (e.g., the clock has no parent, or is 
+an orphan), the duty cycle is never applied but the code proceeds as if 
+it succeeded.
+
+Maybe we should check clk_parent with somenthing like:
+
+     clk_parent = clk_get_parent(rcrtc->rzg2l_clocks.dclk);
+     if (!clk_parent) {
+         dev_warn(rcdu->dev, "failed to get dclk parent\n");
+     } else {
+         if (rstate->outputs == BIT(RZG2L_DU_OUTPUT_LVDS0) ||
+             rstate->outputs == BIT(RZG2L_DU_OUTPUT_LVDS1))
+             clk_set_duty_cycle(clk_parent, 4, 7);
+         else
+             clk_set_duty_cycle(clk_parent, 1, 2);
+     }
+
+What do you think?
+
+Kind Regards,
+Tommaso
+
 > 
-> Thanks,
-> Robin.
-> 
->>    iommu-map = <0x100 &apps_smmu 0x1940 0x1>,
->>                <0x100 &apps_smmu 0x1a20 0x1>, ...
->>
->> This requires multiple iommu-map entries per device.
->> of_iommu_configure_dev_id() currently stops at the first match,
->> so only one stream ID gets registered with the IOMMU.
->>
->> The v1 series [1] addressed this with a callback threaded through
->> of_map_id().
->>
->> This patch uses a next_offset iterator on of_map_iommu_id() instead,
->> keeping of_map_id() unchanged, and updates of_iommu_configure_dev_id()
->> to loop over all matching entries.
->>
->> This patch also depends on iommu-cells series [4].
->>
->> Changes since v1:
->>        - Split patches 2/7 [2] and 3/7 [3] out into this standalone 
->> series.
->>        - Dropped the callback (of_map_id_cb / of_map_id_arg) entirely.
->>        - Replaced with a next_offset iterator on of_map_iommu_id()
->>          only; of_map_id() public API is unchanged.
->>        - of_iommu_configure_dev_id() now loops explicitly; no
->>          bus-type heuristic (dev_is_platform()) needed.
->>
->> [1] https://lore.kernel.org/all/20260126-kaanapali-iris-v1-0- 
->> e2646246bfc1@oss.qualcomm.com/
->> [2] https://lore.kernel.org/all/20260126-kaanapali-iris-v1-2- 
->> e2646246bfc1@oss.qualcomm.com/
->> [3] https://lore.kernel.org/all/20260126-kaanapali-iris-v1-3- 
->> e2646246bfc1@oss.qualcomm.com/
->> [4] https://lore.kernel.org/all/ce25b963-0e8e-4411- 
->> a406-7b466eadb1f9@oss.qualcomm.com/
->>
->> Signed-off-by: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
->> ---
->>   drivers/iommu/of_iommu.c              | 20 +++++++----
->>   drivers/of/base.c                     | 65 +++++++++++++++++++++++++ 
->> +++++-----
->>   drivers/pci/controller/dwc/pci-imx6.c |  2 +-
->>   drivers/pci/controller/pcie-apple.c   |  2 +-
->>   drivers/xen/grant-dma-ops.c           |  2 +-
->>   include/linux/of.h                    |  4 +--
->>   6 files changed, 75 insertions(+), 20 deletions(-)
->>
->> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
->> index a18bb60f6f3d..947eedd9a88b 100644
->> --- a/drivers/iommu/of_iommu.c
->> +++ b/drivers/iommu/of_iommu.c
->> @@ -46,14 +46,22 @@ static int of_iommu_configure_dev_id(struct 
->> device_node *master_np,
->>                        const u32 *id)
->>   {
->>       struct of_phandle_args iommu_spec = {};
->> -    int err;
->> +    int offset = 0, err;
->> +    bool found = false;
->> -    err = of_map_iommu_id(master_np, *id, &iommu_spec);
->> -    if (err)
->> -        return err;
->> +    while (!(err = of_map_iommu_id(master_np, *id, &iommu_spec, 
->> &offset))) {
->> +        err = of_iommu_xlate(dev, &iommu_spec);
->> +        of_node_put(iommu_spec.np);
->> +        iommu_spec.np = NULL;
->> +        if (err)
->> +            return err;
->> +        found = true;
->> +    }
+>> +	}
 >> +
->> +    /* -ENODEV means all entries exhausted; success if at least one 
->> was processed */
->> +    if (err == -ENODEV && found)
->> +        return 0;
->> -    err = of_iommu_xlate(dev, &iommu_spec);
->> -    of_node_put(iommu_spec.np);
->>       return err;
->>   }
->> diff --git a/drivers/of/base.c b/drivers/of/base.c
->> index 9c44eb6d445d..71175e670757 100644
->> --- a/drivers/of/base.c
->> +++ b/drivers/of/base.c
->> @@ -2146,13 +2146,13 @@ static bool of_check_bad_map(const __be32 
->> *map, int len)
->>    *
->>    * Return: 0 on success or a standard error code on failure.
->>    */
->> -int of_map_id(const struct device_node *np, u32 id,
->> -           const char *map_name, const char *cells_name,
->> -           const char *map_mask_name,
->> -           struct of_phandle_args *arg)
->> +static int of_map_id_next(const struct device_node *np, u32 id,
->> +              const char *map_name, const char *cells_name,
->> +              const char *map_mask_name,
->> +              struct of_phandle_args *arg, int *next_offset)
->>   {
->>       u32 map_mask, masked_id;
->> -    int map_bytes, map_len, offset = 0;
->> +    int map_bytes, map_len, offset = next_offset ? *next_offset : 0;
->>       bool bad_map = false;
->>       const __be32 *map = NULL;
->> @@ -2161,7 +2161,7 @@ int of_map_id(const struct device_node *np, u32 id,
->>       map = of_get_property(np, map_name, &map_bytes);
->>       if (!map) {
->> -        if (arg->np)
->> +        if (arg->np || next_offset)
->>               return -ENODEV;
->>           /* Otherwise, no map implies no translation */
->>           arg->args[0] = id;
->> @@ -2262,9 +2262,16 @@ int of_map_id(const struct device_node *np, u32 
->> id,
->>           pr_debug("%pOF: %s, using mask %08x, id-base: %08x, out- 
->> base: %08x, length: %08x, id: %08x -> %08x\n",
->>               np, map_name, map_mask, id_base, be32_to_cpup(out_base),
->>               id_len, id, id_off + be32_to_cpup(out_base));
+>>   	clk_set_rate(rcrtc->rzg2l_clocks.dclk, mode_clock);
+>>
+>>   	ditr0 = (DU_DITR0_DEMD_HIGH
+>> @@ -248,6 +269,32 @@ static void rzg2l_du_crtc_stop(struct rzg2l_du_crtc *rcrtc)
+>>    * CRTC Functions
+>>    */
+>>
+>> +static int rzg2l_du_crtc_atomic_check(struct drm_crtc *crtc,
+>> +				      struct drm_atomic_state *state) {
+>> +	struct drm_crtc_state *crtc_state = drm_atomic_get_new_crtc_state(state,
+>> +									  crtc);
+>> +	struct rzg2l_du_crtc_state *rstate = to_rzg2l_crtc_state(crtc_state);
+>> +	struct drm_encoder *encoder;
 >> +
->> +        if (next_offset)
->> +            *next_offset = offset;    /* caller resumes from here */
->>           return 0;
->>       }
->> +    /* no (more) matches found in the map */
->> +    if (next_offset)
->> +        return -ENODEV;
+>> +	/* Store the routes from the CRTC output to the DU outputs. */
+>> +	rstate->outputs = 0;
 >> +
->>       pr_info("%pOF: no %s translation for id 0x%x on %pOF\n", np, 
->> map_name,
->>           id, arg->np);
->> @@ -2276,6 +2283,38 @@ int of_map_id(const struct device_node *np, u32 
->> id,
->>       pr_err("%pOF: Error: Bad %s length: %d\n", np, map_name, 
->> map_bytes);
->>       return -EINVAL;
->>   }
+>> +	drm_for_each_encoder_mask(encoder, crtc->dev,
+>> +				  crtc_state->encoder_mask) {
+>> +		struct rzg2l_du_encoder *renc;
 >> +
->> +/**
->> + * of_map_id - Translate an ID through a downstream mapping.
->> + * @np: root complex device node.
->> + * @id: device ID to map.
->> + * @map_name: property name of the map to use.
->> + * @cells_name: property name of target specifier cells.
->> + * @map_mask_name: optional property name of the mask to use.
->> + * @arg: pointer to a &struct of_phandle_args. On input, @arg->np may be
->> + *    set to a target device node to match, or NULL to match any. On
->> + *    success, @arg->np will be set to the matched target node (with a
->> + *    reference held), @arg->args_count will be set to the number of
->> + *    output specifier cells as defined by @cells_name in the target 
->> node,
->> + *    and @arg->args[0..args_count-1] will contain the translated output
->> + *    specifier values.
->> + *
->> + * Given a device ID, look up the appropriate implementation-defined
->> + * platform ID and/or the target device which receives transactions 
->> on that
->> + * ID, as per the "iommu-map" and "msi-map" bindings. If @arg->np 
->> points to
->> + * a non-NULL device node, only entries targeting that node will be 
->> matched;
->> + * if it is NULL, it will receive the device node of the first matching
->> + * target phandle, with a reference held.
->> + *
->> + * Return: 0 on success or a standard error code on failure.
->> + */
->> +int of_map_id(const struct device_node *np, u32 id,
->> +          const char *map_name, const char *cells_name,
->> +          const char *map_mask_name,
->> +          struct of_phandle_args *arg)
->> +{
->> +    return of_map_id_next(np, id, map_name, cells_name, 
->> map_mask_name, arg, NULL);
+>> +		/* Skip the writeback encoder. */
+>> +		if (encoder->encoder_type == DRM_MODE_ENCODER_VIRTUAL)
+>> +			continue;
+>> +
+>> +		renc = to_rzg2l_encoder(encoder);
+>> +		rstate->outputs |= BIT(renc->output);
+>> +	}
+>> +
+>> +	return 0;
 >> +}
->>   EXPORT_SYMBOL_GPL(of_map_id);
->>   /**
->> @@ -2285,15 +2324,23 @@ EXPORT_SYMBOL_GPL(of_map_id);
->>    * @arg: pointer to a &struct of_phandle_args for the result. On 
->> success,
->>    *    @arg->np holds a reference to the target node that the caller 
->> must
->>    *    release with of_node_put().
->> + * @next_offset: if non-NULL, on success it is set to the map offset 
->> just
->> + *    past the matched entry. Pass this value back on the next call to
->> + *    resume scanning from where the previous call left off, allowing 
->> all
->> + *    matching entries for the same @id to be iterated. Pass NULL (or a
->> + *    pointer to 0) to find only the first match.
->>    *
->> - * Convenience wrapper around of_map_id() using "iommu-map" and 
->> "iommu-map-mask".
->> + * Wrapper around the internal iommu-map scanner using "iommu-map" and
->> + * "iommu-map-mask". When @next_offset is non-NULL, returns -ENODEV once
->> + * all matching entries have been exhausted.
->>    *
->>    * Return: 0 on success or a standard error code on failure.
->>    */
->>   int of_map_iommu_id(const struct device_node *np, u32 id,
->> -            struct of_phandle_args *arg)
->> +            struct of_phandle_args *arg, int *next_offset)
->>   {
->> -    return of_map_id(np, id, "iommu-map", "#iommu-cells", "iommu-map- 
->> mask", arg);
->> +    return of_map_id_next(np, id, "iommu-map", "#iommu-cells",
->> +                  "iommu-map-mask", arg, next_offset);
->>   }
->>   EXPORT_SYMBOL_GPL(of_map_iommu_id);
->> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/ 
->> controller/dwc/pci-imx6.c
->> index 5f8a11774eb5..0d7f5e6d037a 100644
->> --- a/drivers/pci/controller/dwc/pci-imx6.c
->> +++ b/drivers/pci/controller/dwc/pci-imx6.c
->> @@ -1146,7 +1146,7 @@ static int imx_pcie_add_lut_by_rid(struct 
->> imx_pcie *imx_pcie, u32 rid)
->>       u32 sid = 0;
->>       target = NULL;
->> -    err_i = of_map_iommu_id(dev->of_node, rid, &iommu_spec);
->> +    err_i = of_map_iommu_id(dev->of_node, rid, &iommu_spec, NULL);
->>       if (!err_i) {
->>           target = iommu_spec.np;
->>           sid_i = iommu_spec.args[0];
->> diff --git a/drivers/pci/controller/pcie-apple.c b/drivers/pci/ 
->> controller/pcie-apple.c
->> index 2e86f8fd300b..c780e3f9d14d 100644
->> --- a/drivers/pci/controller/pcie-apple.c
->> +++ b/drivers/pci/controller/pcie-apple.c
->> @@ -765,7 +765,7 @@ static int apple_pcie_enable_device(struct 
->> pci_host_bridge *bridge, struct pci_d
->>       dev_dbg(&pdev->dev, "added to bus %s, index %d\n",
->>           pci_name(pdev->bus->self), port->idx);
->> -    err = of_map_iommu_id(port->pcie->dev->of_node, rid, &iommu_spec);
->> +    err = of_map_iommu_id(port->pcie->dev->of_node, rid, &iommu_spec, 
->> NULL);
->>       if (err)
->>           return err;
->> diff --git a/drivers/xen/grant-dma-ops.c b/drivers/xen/grant-dma-ops.c
->> index 36547d7cf1d6..062beb5825f5 100644
->> --- a/drivers/xen/grant-dma-ops.c
->> +++ b/drivers/xen/grant-dma-ops.c
->> @@ -325,7 +325,7 @@ static int xen_dt_grant_init_backend_domid(struct 
->> device *dev,
->>           struct pci_dev *pdev = to_pci_dev(dev);
->>           u32 rid = PCI_DEVID(pdev->bus->number, pdev->devfn);
->> -        if (of_map_iommu_id(np, rid, &iommu_spec)) {
->> +        if (of_map_iommu_id(np, rid, &iommu_spec, NULL)) {
->>               dev_dbg(dev, "Cannot translate ID\n");
->>               return -ESRCH;
->>           }
->> diff --git a/include/linux/of.h b/include/linux/of.h
->> index 953f2dbe0e86..990849f00e74 100644
->> --- a/include/linux/of.h
->> +++ b/include/linux/of.h
->> @@ -467,7 +467,7 @@ int of_map_id(const struct device_node *np, u32 id,
->>              struct of_phandle_args *arg);
->>   int of_map_iommu_id(const struct device_node *np, u32 id,
->> -            struct of_phandle_args *arg);
->> +            struct of_phandle_args *arg, int *next_offset);
->>   int of_map_msi_id(const struct device_node *np, u32 id,
->>             struct of_phandle_args *arg);
->> @@ -943,7 +943,7 @@ static inline int of_map_id(const struct 
->> device_node *np, u32 id,
->>   }
->>   static inline int of_map_iommu_id(const struct device_node *np, u32 id,
->> -                  struct of_phandle_args *arg)
->> +                  struct of_phandle_args *arg, int *next_offset)
->>   {
->>       return -EINVAL;
->>   }
+>> +
+>>   static void rzg2l_du_crtc_atomic_enable(struct drm_crtc *crtc,
+>>   					struct drm_atomic_state *state)
+>>   {
+>> @@ -296,6 +343,7 @@ static void rzg2l_du_crtc_atomic_flush(struct drm_crtc *crtc,  }
 >>
->> ---
->> base-commit: 9e94742cffb7541f55fa904a40c1ca9d836d303d
->> change-id: 20260315-iommu_multi_map-8c9b78490ace
+>>   static const struct drm_crtc_helper_funcs crtc_helper_funcs = {
+>> +	.atomic_check = rzg2l_du_crtc_atomic_check,
+>>   	.atomic_flush = rzg2l_du_crtc_atomic_flush,
+>>   	.atomic_enable = rzg2l_du_crtc_atomic_enable,
+>>   	.atomic_disable = rzg2l_du_crtc_atomic_disable, diff --git a/drivers/gpu/drm/renesas/rz-
+>> du/rzg2l_du_drv.c b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c
+>> index 0fef33a5a089..3c20471fdbea 100644
+>> --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c
+>> +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c
+>> @@ -51,6 +51,29 @@ static const struct rzg2l_du_device_info rzg2l_du_r9a07g044_info = {
+>>   	}
+>>   };
 >>
->> Best regards,
+>> +static const struct rzg2l_du_device_info rzg2l_du_r9a09g047_du_info = {
+>> +	.features = RZG2L_DU_FEATURE_SMUX2_DSI_CLK,
+>> +	.channels_mask = BIT(0),
+>> +	.routes = {
+>> +		[RZG2L_DU_OUTPUT_DSI0] = {
+>> +			.possible_outputs = BIT(0),
+>> +			.port = 0,
+>> +		},
+>> +		[RZG2L_DU_OUTPUT_LVDS0] = {
+>> +			.possible_outputs = BIT(0),
+>> +			.port = 1,
+>> +		},
+>> +		[RZG2L_DU_OUTPUT_LVDS1] = {
+>> +			.possible_outputs = BIT(0),
+>> +			.port = 2,
+>> +		},
+>> +		[RZG2L_DU_OUTPUT_DPAD0] = {
+>> +			.possible_outputs = BIT(0),
+>> +			.port = 3,
+> 
+> Maybe use .port = 1 for DAPD0 for consistency with RZ/G2L.
+> 
+> 
+>> +		},
+>> +	},
+>> +};
+>> +
+>>   static const struct rzg2l_du_device_info rzg2l_du_r9a09g057_info = {
+>>   	.channels_mask = BIT(0),
+>>   	.routes = {
+>> @@ -64,6 +87,7 @@ static const struct rzg2l_du_device_info rzg2l_du_r9a09g057_info = {  static const
+>> struct of_device_id rzg2l_du_of_table[] = {
+>>   	{ .compatible = "renesas,r9a07g043u-du", .data = &rzg2l_du_r9a07g043u_info },
+>>   	{ .compatible = "renesas,r9a07g044-du", .data = &rzg2l_du_r9a07g044_info },
+>> +	{ .compatible = "renesas,r9a09g047-du", .data =
+>> +&rzg2l_du_r9a09g047_du_info },
+>>   	{ .compatible = "renesas,r9a09g057-du", .data = &rzg2l_du_r9a09g057_info },
+>>   	{ /* sentinel */ }
+>>   };
+>> @@ -74,6 +98,8 @@ const char *rzg2l_du_output_name(enum rzg2l_du_output output)  {
+>>   	static const char * const names[] = {
+>>   		[RZG2L_DU_OUTPUT_DSI0] = "DSI0",
+>> +		[RZG2L_DU_OUTPUT_LVDS0] = "LVDS0",
+>> +		[RZG2L_DU_OUTPUT_LVDS1] = "LVDS1",
+> 
+> Normally new additions are done at the bottom of the array.
+> 
+> Cheers,
+> Biju
+> 
+>>   		[RZG2L_DU_OUTPUT_DPAD0] = "DPAD0"
+>>   	};
+>>
+>> diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.h b/drivers/gpu/drm/renesas/rz-
+>> du/rzg2l_du_drv.h
+>> index 58806c2a8f2b..480a7bdfcd66 100644
+>> --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.h
+>> +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.h
+>> @@ -20,8 +20,12 @@
+>>   struct device;
+>>   struct drm_property;
+>>
+>> +#define RZG2L_DU_FEATURE_SMUX2_DSI_CLK	BIT(0)	/* Per output mux */
+>> +
+>>   enum rzg2l_du_output {
+>>   	RZG2L_DU_OUTPUT_DSI0,
+>> +	RZG2L_DU_OUTPUT_LVDS0,
+>> +	RZG2L_DU_OUTPUT_LVDS1,
+>>   	RZG2L_DU_OUTPUT_DPAD0,
+>>   	RZG2L_DU_OUTPUT_MAX,
+>>   };
+>> @@ -42,10 +46,12 @@ struct rzg2l_du_output_routing {
+>>
+>>   /*
+>>    * struct rzg2l_du_device_info - DU model-specific information
+>> + * @features: device features (RZG2L_DU_FEATURE_*)
+>>    * @channels_mask: bit mask of available DU channels
+>>    * @routes: array of CRTC to output routes, indexed by output (RZG2L_DU_OUTPUT_*)
+>>    */
+>>   struct rzg2l_du_device_info {
+>> +	unsigned int features;
+>>   	unsigned int channels_mask;
+>>   	struct rzg2l_du_output_routing routes[RZG2L_DU_OUTPUT_MAX];  }; @@ -73,6 +79,12 @@ static inline
+>> struct rzg2l_du_device *to_rzg2l_du_device(struct drm_device *dev)
+>>   	return container_of(dev, struct rzg2l_du_device, ddev);  }
+>>
+>> +static inline bool rzg2l_du_has(struct rzg2l_du_device *rcdu,
+>> +				unsigned int feature)
+>> +{
+>> +	return rcdu->info->features & feature; }
+>> +
+>>   const char *rzg2l_du_output_name(enum rzg2l_du_output output);
+>>
+>>   #endif /* __RZG2L_DU_DRV_H__ */
+>> --
+>> 2.43.0
 > 
 
 
