@@ -1,303 +1,192 @@
-Return-Path: <devicetree+bounces-276622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276623-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WIaAAC41uWnpugEAu9opvQ
-	(envelope-from <devicetree+bounces-276622-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:04:14 +0100
+	id mFzgNGw3uWnVvQEAu9opvQ
+	(envelope-from <devicetree+bounces-276623-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:13:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB3B42A86E5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:04:12 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE08F2A88FE
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:13:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 73808304C0B5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:01:23 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9C025300E180
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:13:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19794377551;
-	Tue, 17 Mar 2026 11:01:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94EDC3AA1A3;
+	Tue, 17 Mar 2026 11:13:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BN4OvIHs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E1BF373BF2;
-	Tue, 17 Mar 2026 11:01:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705113A7F61;
+	Tue, 17 Mar 2026 11:13:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773745282; cv=none; b=fepgPAapp+SpcxfN20tbMH6PkkgsIDnsRQXJUyIX5svMyEnvfL2YC42vJMineFZrDHXsPu+53XlgpHYc6Zp1VIUpz+5UfCgUSD/x3vgnD9Ug9jUH+/si/gVBmebixGWTpjerMGOwIEexuaaNB2Bv9DmYSzuBj+VhkBEbFa2MBQ4=
+	t=1773746001; cv=none; b=IOykh/usfmX+lGgQRsiOSn8Wn8bnFqf3TUc6+Yv1c3zWKHaUWcrzUXG2w0LoHBaSdCvG/T1YoMiVvnjEh/awx570M3Wy4IfHI6KX95tYbBZayNGpi1qxhdZMjji6ZothkDgd+UkMyOECCo7eQ0KbVhMEzuTO2JY2Gnkbvy4OWs8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773745282; c=relaxed/simple;
-	bh=0Y6usg7zBh1OvQlKFbecGoWf3gNBs6KQNaYhOeFm6EQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rdVpVxqd/bb9djdz8MPxZHpOYoZt4oKfeshOvtEtBp0glrObmY8EY3Zeo3Cqu8MjDgEYJxLuV+0pQwqV1IHsJEJ+GrQ0nmTCrJb2PWDuR1fV+AIt+i3IxQemrdXIyVYGY97EU6/sVLU6IN3ip74HJLdB9qnERdFKrngOwZZBaU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CE7D61756;
-	Tue, 17 Mar 2026 04:01:13 -0700 (PDT)
-Received: from [10.57.19.134] (unknown [10.57.19.134])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1D33D3F7BD;
-	Tue, 17 Mar 2026 04:01:18 -0700 (PDT)
-Message-ID: <1c4ab892-6f01-40ff-83e2-9060aa69616f@arm.com>
-Date: Tue, 17 Mar 2026 11:01:16 +0000
+	s=arc-20240116; t=1773746001; c=relaxed/simple;
+	bh=A4k44UqySYK9sBzDZ65HlwjIbkEi1C81mQWx6Wneq/E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QrLvMDPCnYNJzy1bqUgtSPVWBb3kxkamJoYyzM9EbCaooWScJcpfyRSjlzNXc9j+KdcTQDZlkBjsvnTFrkFJhroJKu9LJ2nrPKTdNtpS9DkSBJDmKtGLcVtucpw47ZcYqmM5PSIw9tCnDZ9/7F2cur9BU8nxtdLFM2sTTrSUJzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BN4OvIHs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9747DC4CEF7;
+	Tue, 17 Mar 2026 11:13:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773746001;
+	bh=A4k44UqySYK9sBzDZ65HlwjIbkEi1C81mQWx6Wneq/E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BN4OvIHsgbwLgRezuXX+qMCFE0z812uNPJ9isuRxchmBDsKjWaXzTUTLVWnM7Bfdd
+	 vMfHaG1KT8/XVIs1YNXau89CSWykOVGhdZcx+SITNe+aSiluskaWz4L7FDs0iyC/jW
+	 k0wyksijDe55/zUnE17hXYiYnQ1IDq1JU4NT4A36NApXlJcPWC/KShcBdgPE/QF4vn
+	 aUp+XeV0TFVyAd+0z6CkDTAzZLMbRGX499M4KyuWK4dtulyX9vIydWTzp6aPJU4+Ch
+	 W8BsjoO1wcKst8WwmJGQy8edFc82Kb6/mjnRFmqf1fiuG3Cb3gQ/GE/Jp458V2HcXx
+	 l5cgK8BH7vEqg==
+Date: Tue, 17 Mar 2026 16:43:17 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: xianwei.zhao@amlogic.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Frank Li <Frank.Li@kernel.org>, linux-amlogic@lists.infradead.org,
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v6 2/3] dmaengine: amlogic: Add general DMA driver for A9
+Message-ID: <abk3TUTaov3zIfFm@vaman>
+References: <20260309-amlogic-dma-v6-0-63349d23bd4b@amlogic.com>
+ <20260309-amlogic-dma-v6-2-63349d23bd4b@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v15 2/7] coresight: tmc: add create/clean functions for
- etr_buf_list
-Content-Language: en-GB
-To: Jie Gan <jie.gan@oss.qualcomm.com>, Mike Leach <mike.leach@arm.com>,
- James Clark <james.clark@linaro.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20260313-enable-byte-cntr-for-ctcu-v15-0-1777f14ed319@oss.qualcomm.com>
- <20260313-enable-byte-cntr-for-ctcu-v15-2-1777f14ed319@oss.qualcomm.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20260313-enable-byte-cntr-for-ctcu-v15-2-1777f14ed319@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [0.14 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260309-amlogic-dma-v6-2-63349d23bd4b@amlogic.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276622-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-276623-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[suzuki.poulose@arm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.754];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,arm.com:mid,linaro.org:email]
-X-Rspamd-Queue-Id: DB3B42A86E5
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vkoul@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,amlogic.com:email]
+X-Rspamd-Queue-Id: DE08F2A88FE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 13/03/2026 09:02, Jie Gan wrote:
-> Introduce functions for creating and inserting or removing the
-> etr_buf_node to/from the etr_buf_list.
-> 
-> The byte-cntr functionality requires two etr_buf to receive trace data.
-> The active etr_buf collects the trace data from source device, while the
-> byte-cntr reading function accesses the deactivated etr_buf after is
-> has been filled and synced, transferring data to the userspace.
-> 
-> Reviewed-by: Mike Leach <mike.leach@linaro.org>
-> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
-> ---
->   drivers/hwtracing/coresight/coresight-tmc-core.c |   1 +
->   drivers/hwtracing/coresight/coresight-tmc-etr.c  | 108 +++++++++++++++++++++++
->   drivers/hwtracing/coresight/coresight-tmc.h      |  17 ++++
->   3 files changed, 126 insertions(+)
-> 
-> diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c b/drivers/hwtracing/coresight/coresight-tmc-core.c
-> index c89fe996af23..bac3278ef4dd 100644
-> --- a/drivers/hwtracing/coresight/coresight-tmc-core.c
-> +++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
-> @@ -835,6 +835,7 @@ static int __tmc_probe(struct device *dev, struct resource *res)
->   		idr_init(&drvdata->idr);
->   		mutex_init(&drvdata->idr_mutex);
->   		dev_list = "tmc_etr";
-> +		INIT_LIST_HEAD(&drvdata->etr_buf_list);
->   		break;
->   	case TMC_CONFIG_TYPE_ETF:
->   		desc.groups = coresight_etf_groups;
-> diff --git a/drivers/hwtracing/coresight/coresight-tmc-etr.c b/drivers/hwtracing/coresight/coresight-tmc-etr.c
-> index 4dc1defe27a5..fdf23e1c932f 100644
-> --- a/drivers/hwtracing/coresight/coresight-tmc-etr.c
-> +++ b/drivers/hwtracing/coresight/coresight-tmc-etr.c
-> @@ -1918,6 +1918,114 @@ const struct coresight_ops tmc_etr_cs_ops = {
->   	.panic_ops	= &tmc_etr_sync_ops,
->   };
->   
-> +/**
-> + * tmc_clean_etr_buf_list - clean the etr_buf_list.
-> + * @drvdata:	driver data of the TMC device.
-> + *
-> + * Remove unused buffers from @drvdata->etr_buf_list and free them.
-> + */
-> +void tmc_clean_etr_buf_list(struct tmc_drvdata *drvdata)
+On 09-03-26, 06:33, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+> +static dma_cookie_t aml_dma_tx_submit(struct dma_async_tx_descriptor *tx)
 > +{
-> +	struct etr_buf_node *nd, *next;
-> +	unsigned long flags;
-> +
-> +	lockdep_assert_held(&drvdata->spinlock);
-> +	list_for_each_entry_safe(nd, next, &drvdata->etr_buf_list, link) {
-> +		if (nd->sysfs_buf == drvdata->sysfs_buf) {
-> +			if (coresight_get_mode(drvdata->csdev) != CS_MODE_DISABLED) {
-> +				/*
-> +				 * Dont free the sysfs_buf, just remove it from list.
-> +				 * drvdata->sysfs_buf will hold the buffer and free it later.
-> +				 */
-> +				nd->sysfs_buf = NULL;
-> +				list_del(&nd->link);
-> +				kfree(nd);
-> +				continue;
-> +			}
-> +		}
-> +		/* Free allocated buffers which are not utilized by ETR */
-> +		raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
-
-This is dangerous ! Restoring the irqflags to an uninitialised value 
-from a different function thant where it was locked. Please clean this up
-
-Suzuki
-
-
-> +		tmc_etr_free_sysfs_buf(nd->sysfs_buf);
-> +		raw_spin_lock_irqsave(&drvdata->spinlock, flags);
-> +		drvdata->sysfs_buf = NULL;
-> +		nd->sysfs_buf = NULL;
-> +		list_del(&nd->link);
-> +		kfree(nd);
-> +	}
+> +	return dma_cookie_assign(tx);
 > +}
-> +EXPORT_SYMBOL_GPL(tmc_clean_etr_buf_list);
-> +
-> +/**
-> + * tmc_create_etr_buf_list - create a list to manage the etr_buf_node.
-> + * @drvdata:	driver data of the TMC device.
-> + * @num_nodes:	number of nodes want to create with the list.
-> + *
-> + * Return 0 upon success and return the error number if fail.
-> + */
-> +int tmc_create_etr_buf_list(struct tmc_drvdata *drvdata, int num_nodes)
+
+You lost tx, why was it not saved into a queue?
+
+> +static struct dma_async_tx_descriptor *aml_dma_prep_slave_sg
+> +		(struct dma_chan *chan, struct scatterlist *sgl,
+> +		unsigned int sg_len, enum dma_transfer_direction direction,
+> +		unsigned long flags, void *context)
 > +{
-> +	struct etr_buf_node *new_node;
-> +	struct etr_buf *sysfs_buf;
-> +	unsigned long flags;
-> +	int i = 0, ret = 0;
+> +	struct aml_dma_chan *aml_chan = to_aml_dma_chan(chan);
+> +	struct aml_dma_dev *aml_dma = aml_chan->aml_dma;
+> +	struct aml_dma_sg_link *sg_link;
+> +	struct scatterlist *sg;
+> +	int idx = 0;
+> +	u64 paddr;
+> +	u32 reg, link_count, avail, chan_id;
+> +	u32 i;
 > +
-> +	lockdep_assert_held(&drvdata->spinlock);
-> +	/* We dont need a list if there is only one node */
-> +	if (num_nodes < 2)
-> +		return -EINVAL;
-> +
-> +	/* We expect that sysfs_buf in drvdata has already been allocated. */
-> +	if (drvdata->sysfs_buf) {
-> +		raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
-> +		/* Directly insert the allocated sysfs_buf into the list first */
-> +		new_node = kzalloc_obj(*new_node, GFP_KERNEL);
-> +		if (IS_ERR(new_node))
-> +			return PTR_ERR(new_node);
-> +
-> +		raw_spin_lock_irqsave(&drvdata->spinlock, flags);
-> +		new_node->sysfs_buf = drvdata->sysfs_buf;
-> +		new_node->is_free = false;
-> +		list_add(&new_node->link, &drvdata->etr_buf_list);
-> +		i++;
+> +	if (aml_chan->direction != direction) {
+> +		dev_err(aml_dma->dma_device.dev, "direction not support\n");
+> +		return NULL;
 > +	}
 > +
-> +	raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
-> +	while (i < num_nodes) {
-> +		new_node = kzalloc_obj(*new_node, GFP_KERNEL);
-> +		if (IS_ERR(new_node)) {
-> +			ret = PTR_ERR(new_node);
-> +			break;
-> +		}
-> +
-> +		sysfs_buf = tmc_alloc_etr_buf(drvdata, drvdata->size, 0, cpu_to_node(0), NULL);
-> +		if (IS_ERR(sysfs_buf)) {
-> +			kfree(new_node);
-> +			ret = PTR_ERR(sysfs_buf);
-> +			break;
-> +		}
-> +
-> +		/* We dont have a available sysfs_buf in drvdata, setup one */
-> +		if (!drvdata->sysfs_buf) {
-> +			drvdata->sysfs_buf = sysfs_buf;
-> +			new_node->is_free = false;
-> +		} else
-> +			new_node->is_free = true;
-> +
-> +		new_node->sysfs_buf = sysfs_buf;
-> +		list_add(&new_node->link, &drvdata->etr_buf_list);
-> +		i++;
-> +	}
-> +
-> +	/* Clean the list if there is an error */
-> +	if (ret)
-> +		tmc_clean_etr_buf_list(drvdata);
-> +
-> +	raw_spin_lock_irqsave(&drvdata->spinlock, flags);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(tmc_create_etr_buf_list);
-> +
->   int tmc_read_prepare_etr(struct tmc_drvdata *drvdata)
->   {
->   	int ret = 0;
-> diff --git a/drivers/hwtracing/coresight/coresight-tmc.h b/drivers/hwtracing/coresight/coresight-tmc.h
-> index 319a354ede9f..81237944b986 100644
-> --- a/drivers/hwtracing/coresight/coresight-tmc.h
-> +++ b/drivers/hwtracing/coresight/coresight-tmc.h
-> @@ -208,6 +208,19 @@ struct tmc_resrv_buf {
->   	s64		len;
->   };
->   
-> +/**
-> + * @sysfs_buf:	Allocated sysfs_buf.
-> + * @is_free:	Indicates whether the buffer is free to choose.
-> + * @pos:	Position of the buffer.
-> + * @link:	list_head of the node.
-> + */
-> +struct etr_buf_node {
-> +	struct etr_buf		*sysfs_buf;
-> +	bool			is_free;
-> +	loff_t			pos;
-> +	struct list_head	link;
-> +};
-> +
->   /**
->    * struct tmc_drvdata - specifics associated to an TMC component
->    * @atclk:	optional clock for the core parts of the TMC.
-> @@ -245,6 +258,7 @@ struct tmc_resrv_buf {
->    *		(after crash) by default.
->    * @crash_mdata: Reserved memory for storing tmc crash metadata.
->    *		 Used by ETR/ETF.
-> + * @etr_buf_list: List that is used to manage allocated etr_buf.
->    */
->   struct tmc_drvdata {
->   	struct clk		*atclk;
-> @@ -275,6 +289,7 @@ struct tmc_drvdata {
->   	struct etr_buf		*perf_buf;
->   	struct tmc_resrv_buf	resrv_buf;
->   	struct tmc_resrv_buf	crash_mdata;
-> +	struct list_head        etr_buf_list;
->   };
->   
->   struct etr_buf_operations {
-> @@ -447,5 +462,7 @@ struct etr_buf *tmc_etr_get_buffer(struct coresight_device *csdev,
->   				   enum cs_mode mode,
->   				   struct coresight_path *path);
->   extern const struct attribute_group coresight_etr_group;
-> +void tmc_clean_etr_buf_list(struct tmc_drvdata *drvdata);
-> +int tmc_create_etr_buf_list(struct tmc_drvdata *drvdata, int num_nodes);
->   
->   #endif
-> 
+> +	switch (aml_chan->status) {
+> +	case DMA_IN_PROGRESS:
+> +		dev_err(aml_dma->dma_device.dev, "not support multi tx_desciptor\n");
+> +		return NULL;
 
+And why is that. You are preparing a descriptor and keep it ready and
+submit after the current one finishes
+
+
+> +
+> +	case DMA_COMPLETE:
+> +		aml_chan->data_len = 0;
+> +		chan_id = aml_chan->chan_id;
+> +		reg = (direction == DMA_DEV_TO_MEM) ? WCH_INT_MASK : RCH_INT_MASK;
+> +		regmap_set_bits(aml_dma->regmap, reg, BIT(chan_id));
+> +
+> +		break;
+> +	default:
+> +		dev_err(aml_dma->dma_device.dev, "status error\n");
+> +		return NULL;
+> +	}
+> +
+> +	link_count = sg_nents_for_dma(sgl, sg_len, SG_MAX_LEN);
+> +
+> +	if (link_count > DMA_MAX_LINK) {
+> +		dev_err(aml_dma->dma_device.dev,
+> +			"maximum number of sg exceeded: %d > %d\n",
+> +			sg_len, DMA_MAX_LINK);
+> +		aml_chan->status = DMA_ERROR;
+> +		return NULL;
+> +	}
+> +
+> +	aml_chan->status = DMA_IN_PROGRESS;
+> +
+> +	for_each_sg(sgl, sg, sg_len, i) {
+> +		avail = sg_dma_len(sg);
+> +		paddr = sg->dma_address;
+> +		while (avail > SG_MAX_LEN) {
+> +			sg_link = &aml_chan->sg_link[idx++];
+> +			/* set dma address and len  to sglink*/
+> +			sg_link->address = paddr;
+> +			sg_link->ctl = FIELD_PREP(LINK_LEN, SG_MAX_LEN);
+> +			paddr = paddr + SG_MAX_LEN;
+> +			avail = avail - SG_MAX_LEN;
+> +		}
+> +		sg_link = &aml_chan->sg_link[idx++];
+> +		/* set dma address and len  to sglink*/
+> +		sg_link->address = paddr;
+> +		sg_link->ctl = FIELD_PREP(LINK_LEN, avail);
+> +
+> +		aml_chan->data_len += sg_dma_len(sg);
+> +	}
+> +	aml_chan->sg_link_cnt = idx;
+
+There is no descriptor management here. You are directly writing to
+channel. This is _very_ inefficient and defeats the use of dmaengine.
+
+Please revise the driver. Implement queues to manage multiple txns and
+we have vchan to help you implement these, so take use of that
+
+-- 
+~Vinod
 
