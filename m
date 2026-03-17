@@ -1,186 +1,132 @@
-Return-Path: <devicetree+bounces-276616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276617-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4NcQCtAuuWkYuAEAu9opvQ
-	(envelope-from <devicetree+bounces-276616-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:37:04 +0100
+	id EIreNtUwuWn4uAEAu9opvQ
+	(envelope-from <devicetree+bounces-276617-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:45:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4C692A8052
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:37:03 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF7DC2A82F3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:45:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D167A304D543
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 10:34:36 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4FD6130CE962
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 10:34:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95ED73A75AF;
-	Tue, 17 Mar 2026 10:34:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67A323A6F11;
+	Tue, 17 Mar 2026 10:34:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="eFh0XkAG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70B413A6B80;
-	Tue, 17 Mar 2026 10:34:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6CCB3A640A
+	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 10:34:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773743642; cv=none; b=SrPYgS2ajHgNjIvMp+V2LZjsnT/724U//f6joRCHTIeYAGWQmzEoZThvJsswEfKfJlIBrP3/lACdMo9RnZRpc1aFC/Gl6EMTu1n9GjBN4KNNllQDs+/7N2JJp0xVIjBNrT1P0KotgSFJ5gxLOY19/oSVKjddTW5uO3+RuN2skBU=
+	t=1773743677; cv=none; b=p63pQxYfpscP5Zyj0O7X+cAW2dQPakIAKSTKbbXiMMu2qfxxkigk+jqwrNSyS0d3+uwkmBmXmeBWsnjSZ1A8z2PVsIdTCCApHPvLNyU+wmqO6mym7cWfabiG8p3Xdv5KR//2Ngcl5HeSz+KdaGSupfMxCJh6pDQI2OU6GNRAh2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773743642; c=relaxed/simple;
-	bh=x56Yn23fv7LeS34uVxZPy9d6uuy0O72wl64Cf50Trvk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SS278lD8HDuHPbgFH7vPyQwwumrdwnOMYRv+8Pf1Su77X2meSk9pC409bXPVjYAUTMZArg/0iddh0QOJyZTT5+du1silQF8kke0vBo5Ik3kTJgJzBujYMw5cS1mHrfc9sRD9A1VTI7JNhGwPci8S5OLJZB6FxpAHKlA77OqyZ9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D62BB1476;
-	Tue, 17 Mar 2026 03:33:54 -0700 (PDT)
-Received: from e142021.fritz.box (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 82C173F7BD;
-	Tue, 17 Mar 2026 03:33:58 -0700 (PDT)
-From: Andre Przywara <andre.przywara@arm.com>
-To: Mark Rutland <mark.rutland@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Sudeep Holla <sudeep.holla@kernel.org>
-Cc: Salman Nabi <salman.nabi@arm.com>,
-	Vedashree Vidwans <vvidwans@nvidia.com>,
-	Trilok Soni <trilokkumar.soni@oss.qualcomm.com>,
-	Nirmoy Das <nirmoyd@nvidia.com>,
-	vsethi@nvidia.com,
-	vwadekar@nvidia.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2 7/8] firmware: smccc: lfa: Register DT interrupt
-Date: Tue, 17 Mar 2026 11:33:33 +0100
-Message-ID: <20260317103336.1273582-8-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260317103336.1273582-1-andre.przywara@arm.com>
-References: <20260317103336.1273582-1-andre.przywara@arm.com>
+	s=arc-20240116; t=1773743677; c=relaxed/simple;
+	bh=FlGrEkibMU7jAxa/nAeVCmJI/B374Ki2x5uFqqjET4Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NAFFHmGJ2rdLIg32oHAQXO+UC3kZen1mXli3JIZ/kxZ2Eh30WBCIF6ZR/y6t50ckfsdsrmhFaoqIFSBdKm7BrB/SoLRAuhZfmBeGV6dPZhRR51+9CauJH+H7u4K3G+Snh55aHT6mzB5H5G6YFm9Vxz0tEkAjRRYgNGAmelUaDMo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=eFh0XkAG; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=FlGr
+	EkibMU7jAxa/nAeVCmJI/B374Ki2x5uFqqjET4Q=; b=eFh0XkAGzMPNjtcmbgff
+	QOZPMTGhym26jBZOfBrQp5jdXXOXo7UUlMfNPmPoWR8Dxu7QTbJLJ6CzfclOrJ7N
+	5pAJufP17U/rg1k57+UhxOkrGs3RKsZLMRDmmhRWfZAznOWUisF92lPnxuozG5Q8
+	YCnIWrCduQMe+FABVERNeM8QN85Sby1Y4DRnhpRJ1T/wzRhpZFth+STBXAJpK7LD
+	RDtZgOlUxY0GXh+SiBHs6/pv7JDSeDyxsUCSD7HC+zgXPumwIsWLe14e5/TIKZcg
+	fkFC8tf3AZXbE2owx+TISJ6/NRNPs36iNKMwuQmFeYGCAWxM9hkc04XQIfij//Ds
+	QA==
+Received: (qmail 235590 invoked from network); 17 Mar 2026 11:34:30 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 17 Mar 2026 11:34:30 +0100
+X-UD-Smtp-Session: l3s3148p1@pjNn4TVNpshSwmvS
+Date: Tue, 17 Mar 2026 11:34:30 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Douglas Anderson <dianders@chromium.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, stable@vger.kernel.org,
+	Andrew Lunn <andrew@lunn.ch>, Daniel Scally <djrscally@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>, Len Brown <lenb@kernel.org>,
+	Mark Brown <broonie@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>, Russell King <linux@armlinux.org.uk>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Saravana Kannan <saravanak@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>, devicetree@vger.kernel.org,
+	driver-core@lists.linux.dev, imx@lists.linux.dev,
+	linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-spi@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH] device property: Make modifications of fwnode "flags"
+ thread safe
+Message-ID: <abkuNpwmYGa6qJPZ@shikoro>
+References: <20260316154159.1.I0a4d03104ecd5103df3d76f66c8d21b1d15a2e38@changeid>
+ <abkCPU3rxHI49N4_@shikoro>
+ <abkD-VLprcbbEbB1@ashevche-desk.local>
+ <abkF0GO01sMcOhvb@shikoro>
+ <abkLEgrZbdb03VWg@ashevche-desk.local>
+ <abkLY4AAQuFlTRC7@ashevche-desk.local>
+ <abkT_jpjIki6pvX1@shikoro>
+ <abkqEni3phP8dqqw@ashevche-desk.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [1.64 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <abkqEni3phP8dqqw@ashevche-desk.local>
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276616-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andre.przywara@arm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.869];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:email,arm.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C4C692A8052
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[sang-engineering.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276617-lists,devicetree=lfdr.de,renesas];
+	RCPT_COUNT_TWELVE(0.00)[33];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[chromium.org,linuxfoundation.org,kernel.org,vger.kernel.org,lunn.ch,gmail.com,davemloft.net,google.com,nxp.com,linux.intel.com,redhat.com,pengutronix.de,armlinux.org.uk,lists.linux.dev,lists.infradead.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[sang-engineering.com:+];
+	TAGGED_RCPT(0.00)[devicetree];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sang-engineering.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DF7DC2A82F3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Arm Live Firmware Activation spec describes an asynchronous
-notification mechanism, where the platform can notify the host OS about
-newly pending image updates.
-In the absence of the ACPI notification mechanism also a simple
-devicetree node can describe an interrupt.
 
-Add code to find the respective DT node and register the specified
-interrupt, to trigger the activation if needed.
+> Like Danilo I am also not sure what lock protects fwnode accesses.
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- drivers/firmware/smccc/lfa_fw.c | 45 +++++++++++++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
-
-diff --git a/drivers/firmware/smccc/lfa_fw.c b/drivers/firmware/smccc/lfa_fw.c
-index 5dc531e462eb..ecd056901b8d 100644
---- a/drivers/firmware/smccc/lfa_fw.c
-+++ b/drivers/firmware/smccc/lfa_fw.c
-@@ -16,6 +16,8 @@
- #include <linux/list.h>
- #include <linux/module.h>
- #include <linux/nmi.h>
-+#include <linux/of.h>
-+#include <linux/of_irq.h>
- #include <linux/psci.h>
- #include <linux/stop_machine.h>
- #include <linux/string.h>
-@@ -841,6 +843,43 @@ static void lfa_remove_acpi(struct device *dev)
- }
- #endif
- 
-+static irqreturn_t lfa_irq_handler(int irq, void *dev_id)
-+{
-+	return IRQ_WAKE_THREAD;
-+}
-+
-+static irqreturn_t lfa_irq_handler_thread(int irq, void *dev_id)
-+{
-+	int ret;
-+
-+	while (!(ret = activate_pending_image()))
-+		;
-+
-+	if (ret != -ENOENT)
-+		pr_warn("notified image activation failed: %d\n", ret);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int lfa_register_dt(struct device *dev)
-+{
-+	struct device_node *np;
-+	unsigned int irq;
-+
-+	np = of_find_compatible_node(NULL, NULL, "arm,lfa");
-+	if (!np)
-+		return -ENODEV;
-+
-+	irq = irq_of_parse_and_map(np, 0);
-+	of_node_put(np);
-+	if (!irq)
-+		return -ENODEV;
-+
-+	return devm_request_threaded_irq(dev, irq, lfa_irq_handler,
-+					 lfa_irq_handler_thread,
-+					 IRQF_COND_ONESHOT, NULL, NULL);
-+}
-+
- static int lfa_faux_probe(struct faux_device *fdev)
- {
- 	int ret;
-@@ -854,6 +893,12 @@ static int lfa_faux_probe(struct faux_device *fdev)
- 		}
- 	}
- 
-+	ret = lfa_register_dt(&fdev->dev);
-+	if (!ret)
-+		pr_info("registered LFA DT notification interrupt\n");
-+	if (ret != -ENODEV)
-+		return ret;
-+
- 	return 0;
- }
- 
--- 
-2.43.0
+This is basically the question I asked to Doug. If he also don't see
+one, let's take this patch as is.
 
 
