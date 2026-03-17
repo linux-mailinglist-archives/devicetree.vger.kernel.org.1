@@ -1,220 +1,172 @@
-Return-Path: <devicetree+bounces-276412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276414-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eHlIORuiuGlygwEAu9opvQ
-	(envelope-from <devicetree+bounces-276412-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 01:36:43 +0100
+	id IJhGFb2luGkthAEAu9opvQ
+	(envelope-from <devicetree+bounces-276414-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 01:52:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 609742A24B1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 01:36:43 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B6832A256E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 01:52:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4E302301C953
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 00:36:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E304E3013CB1
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 00:52:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57F1815C158;
-	Tue, 17 Mar 2026 00:36:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9801221CA02;
+	Tue, 17 Mar 2026 00:52:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="HwaMBhrn"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="GzkAukyh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012025.outbound.protection.outlook.com [52.101.66.25])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E91C41E89C;
-	Tue, 17 Mar 2026 00:36:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.25
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773707801; cv=fail; b=ils/uRwNxltwLK392TWptvyDJhYiwDYxsHteV8qLLoyG+FqFplwOqms5w0lh1gASJXESHzi+BfBEBtU3QjJBenhUjGlJthV8m6/L5XMpHEvK4wCYpx1SDQrPTrMIlxUhE6Q8dy4gwpZ5QO8Kq3bCkrneB00wIyQNHiEbVGsQ4aQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773707801; c=relaxed/simple;
-	bh=T1+obnCpTJTwOX/Rz+ntEjAoVxuClfDhK5PZ56g1E/8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=BWKdsjnlCbePFA5IcvSbbIzBxTNFjhsqBQ/bOw1jJiMSN4bc6tA99VVdf21Op15qsMRiAJlC/+cyO3lZQpL13iWQ+OnXY+wDiz8Palmpws2FynaIhjHQAHLMNKhteq0p8psUhxYW9Ggo+xMpIVBaoSE5gGOxGTYGTlq7FFUfBXE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=HwaMBhrn; arc=fail smtp.client-ip=52.101.66.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bAF9KM6HecTUY1Oqy6YrHA2gAN66WP0vi7SNGF6xv15zBwJ1Etj46fpOium4SqTqFiXDIfc71XLTcuhQok3Z2elfsPG/3pLWStGivqNsnFPPjKfbgAM1YjiWYlXP7PW9gBhjyq7DfVk5o4USxUolnUxj9xMw7ZXa0LvMCe1LmDGW3nLCsnZPQkKu16ufO9QywbYlzwFvU0/K075HwVfAfj7Kr3u6iCt4hB3/lRavTMQ7PN3YkuFoYJi3Auz0CgJvhnuh3L5+LdXQfcBf4kP5S6uNg0JgxaTFXxPTy9B+UYRVuQQ412qkrI8qpJDzSh8VeWMosXlg4b9/jcQkiHhWYw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BodVYCf/bHAYsaQjTusPJso3XYKgJ0tJukenrjo1MEs=;
- b=n6obmp0OI+UkATbQSSD0zKA3QNVhHvTRaDQzTds3JoiHrgqG0MkJsdURJoMzpe7ZAwT2u7ttL0uinWWavI7Qq+LSVMYGPllX1m1ka4OQx2+oriP96i1k0+VDcY0x5Hl8UL/mZdgrZIvrc+/9qKFhDenX2e7VdeRQtE+FABFTwj71w5jR55B37AoWJClhdOC12hl2ntPCbpTAtxPBfa5KWWo1kAe4cVm9VrHoE72tdgMeVAJI82y+yZs48+hGD/aqS9gDBnsxXgBO7zV34fxu8Wy51M1zvAIjuPXVRK5iFceyWSvcCFGLECJGdbmHXpn31aGsgNKRMDjYDRc/DlQPqg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BodVYCf/bHAYsaQjTusPJso3XYKgJ0tJukenrjo1MEs=;
- b=HwaMBhrnR9JlTHIDLhNXAYXHdK6gwSFnFDhNuBbwBtTqUI4e2p1mBdftSwC608AHiwzv6Jy4bxEXIP6HFfiKiTZTOe/XejMRN5oB6Esig9Uwzb/stErhVKRRu9J+NjQMd3feL0HO7+vVYiwzC77/bQNiMs15Y4Fo3Dj0plUWeVcAobEMwTLsmQeN9SObt/gfViuq1f+gerDNm+QMxvs6FADOAaJoxDMwR3g+v2TymVz0O53NRzTNAl0ykNRPu7idDiq0cWO6FhylGHNbSoSWhaRlsH6ecOgmGivZpu2m0VHbeI4R3dU4mCSgL8i/sP/sW+Iid0U5EB6SEGrje2KaPQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by PA1PR04MB10228.eurprd04.prod.outlook.com (2603:10a6:102:454::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.22; Tue, 17 Mar
- 2026 00:36:14 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9700.010; Tue, 17 Mar 2026
- 00:36:29 +0000
-Date: Mon, 16 Mar 2026 20:36:30 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Josua Mayer <josua@solid-run.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Carlos Song <carlos.song@nxp.com>,
-	Mikhail Anikin <mikhail.anikin@solid-run.com>,
-	Yazan Shhady <yazan.shhady@solid-run.com>,
-	Rabeeh Khoury <rabeeh@solid-run.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 04/10] arm64: dts: lx2160a: rename pinmux nodes for
- readability
-Message-ID: <abiiDr4bLYIufKwp@lizhi-Precision-Tower-5810>
-References: <20260314-lx2160-sd-cd-v5-0-83de721585e3@solid-run.com>
- <20260314-lx2160-sd-cd-v5-4-83de721585e3@solid-run.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260314-lx2160-sd-cd-v5-4-83de721585e3@solid-run.com>
-X-ClientProxiedBy: SN7PR04CA0117.namprd04.prod.outlook.com
- (2603:10b6:806:122::32) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C962B25776;
+	Tue, 17 Mar 2026 00:52:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773708727; cv=none; b=JcuAEMqUDFirhqj2kfwA1IM9sPcrAuYojnK5j2Nr6yvpsEnfxlrWeSPCKdDNmBC5jK3/kNUdBEWcECwEFUY42BxtwExwTgpSzlZK4Ol+iWygs6AWwBdeHyZRo3Bt2YTKklxhNZNgcazXIvJceyWs06ZpUszgKYfFqxTvPRUYaiQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773708727; c=relaxed/simple;
+	bh=IQrOaM7+9yLQsgoRKSLktpCWWPOxb5Wx6sTXy8E4jQM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=N4yXZ6rhGSG2zeyWOUzzEYUUwzVvMY0Q0v+40xgt8pIxGwC4siUH4dzOIF83WJPMGjSev6IWdh/SkTj3tRMXMJKH6VejDcWavzi2L6kpcuODbVajrxEbNcR+GuUknyeMZohIMxqGnDrdAPFpF5ZHa+SYlmsggt55KJ+UNIRs3bY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=GzkAukyh; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1773708723;
+	bh=7Wva0cCBDpLbK0JVmBe4Ub0EUtCjNYf1GYoc0uieWEk=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=GzkAukyhJbTthnB88ExXDqDQGE2jqt5wnSezRMJF/nKkq1miLa0jjJu7FsM6JU7y8
+	 HXKCxxPAoh+7kuQFvbvs8SRgYpkb3CqApgFvWPP4aVySvcSkGnL/zrGUiw0l6yPDbd
+	 XYU8i6Gd5hjtCTmSG9Qi1BKyrz6plS00DEAK9msDg7NuO/xA1FiH2Dyx6l0W4kC68D
+	 nHehRORN+FihBZog5/cJVewhMxKdu2qKYkWNMGm45o4KB2asEF0iv9YHOO27XbFB07
+	 QYnL8jlJJpDqpxkAEgKxybD6zW9VeQQqzU2V8Mp9vhvk5PJx0QCwY+Tpoq4fqxNiHo
+	 fgr2dIbmEuINQ==
+Received: from [192.168.72.167] (210-10-213-150.per.static-ipl.aapt.com.au [210.10.213.150])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id E07786009B;
+	Tue, 17 Mar 2026 08:52:01 +0800 (AWST)
+Message-ID: <eeac1db0a5692ae45b5528a85ed1510b8b1cf771.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v26 2/4] dt-bindings: i2c: ast2600-i2c.yaml: Add
+ global-regs and transfer-mode properties
+From: Jeremy Kerr <jk@codeconstruct.com.au>
+To: Rob Herring <robh@kernel.org>
+Cc: Ryan Chen <ryan_chen@aspeedtech.com>,
+ "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
+ Andi Shyti <andi.shyti@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
+ <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, Benjamin
+ Herrenschmidt <benh@kernel.crashing.org>, Philipp Zabel
+ <p.zabel@pengutronix.de>, "linux-i2c@vger.kernel.org"
+ <linux-i2c@vger.kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+ <linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "openbmc@lists.ozlabs.org"
+ <openbmc@lists.ozlabs.org>
+Date: Tue, 17 Mar 2026 08:52:03 +0800
+In-Reply-To: <CAL_JsqKQp=HyA90rQ2Hzu148k63k5-qrGLH6sEHXNcjAu3QSwg@mail.gmail.com>
+References: <20260309-upstream_i2c-v26-0-5fedcff8ffe8@aspeedtech.com>
+	 <20260309-upstream_i2c-v26-2-5fedcff8ffe8@aspeedtech.com>
+	 <20260313232125.GA3618633-robh@kernel.org>
+	 <TY2PPF5CB9A1BE6A19D439C675AF5028C13F242A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+	 <7ae8222bf6abd83a3c2ac976f54a2edbe4e9727a.camel@codeconstruct.com.au>
+	 <CAL_JsqKQp=HyA90rQ2Hzu148k63k5-qrGLH6sEHXNcjAu3QSwg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2+deb12u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|PA1PR04MB10228:EE_
-X-MS-Office365-Filtering-Correlation-Id: bee32e6d-4ea3-4e03-326b-08de83bd3b01
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|376014|7416014|52116014|366016|19092799006|1800799024|38350700014|22082099003|56012099003|18002099003|7053199007;
-X-Microsoft-Antispam-Message-Info:
- 02Mm3FDX8AQH7xAKS4cqg0fofuiGH5kX5yjHouKauB7V2tN1q2dHHYb0dqSS/xZZJ2mFHZgokbst/r18O2jyXhwoWYrm/pQtdf8twuFVnxk0HqgpvSxx6WojXNpW7v15vm1SLJ+ShkC+IRgtMzIsXWMJLTUhvJJrnjeWf0pe+2bM1BDIQqUramc8PLj9EhJyRq86edjmWcZQmpkc5EWhEJEg4fdvbJl7rlLM7GN2L4LCjU0gHd94Jt7oW9OPFPWhqhSakaheQ/x0vyQR6H0FJSV4h2aYB1FFOolx1L3B3UXH1oPP+LntdEnZvnn24Q1QcIcf3+76eEjqX4GQGpgQF8Gko+bK2TGt5o6UyZZdjgWdWpv3TDPOKqUpPiM3EW5xWHCzuOlHNAMpu6bepsFXfaplcT9dHt//HGNSxvkzuad+My46DI7Ejs1k7Yq7dDlz+KU8txG9w2B6Kt9XRXpk6FC4hZm6eZpvMCwaO7p34sAkCzCxNptkpCPiCV+NyXMwcxTs3MzK6rtnncGBeMM6mZRJR3cdtl8uiyJ8rNSOi/25XXWceo/9Ywbzr+dheIL3XpdZQqd5FxVr/QT7fvdL+R73W6NNg99d2ThMJH8131oqr+Kx3hS+eLiZCv7KfVY3OuCOUT/u9s37pfauKz9wK4WJvs5g+zuFwY2nhQMyi04pKpAR99vyZqteU4iMX6YT+FKFecD3ExjWuQZrtXiBIiPGSI5GFi/hs7pBOkjUUXsXj9CpBuNqB/BirmrmU4+H3A7oI343rZSCl14X7vlzFNzry1rBBSx3fi1eu5O9e/I=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(366016)(19092799006)(1800799024)(38350700014)(22082099003)(56012099003)(18002099003)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?uemGThbcJfY3gPf/03JCBREYE2WOzayq9DFxTRxYlPe3gF+THOTXfhauiiNh?=
- =?us-ascii?Q?9meQnyNSsOKXDd/uWB4zWOa5eWvnGJiuso9dtkoW77mMjASbV55t7jD2gHGK?=
- =?us-ascii?Q?wQT7r9zTDFtD/3AqsjQ6PSAycjEtQgRYL/fLZsXXR/0vJLOyeXzOU/khMbdf?=
- =?us-ascii?Q?aFmfuOOo6FQwFM8TpHWH1RxHKAj2e5XEvfJM8R+5TKq9FWbvxCoJmGeQcsdN?=
- =?us-ascii?Q?ahGcOgymxGleVl93q7FIFlzNoi3nX3uPtfRJfzOQvU2Wq/Mdp1NhXvoM5PXD?=
- =?us-ascii?Q?RR6LD+G34fj6Nb3JKIO6wb6J/0T2MVFDc/PYAxq87aJEngN5wnHiAdYIpIsP?=
- =?us-ascii?Q?M3QZiJQzQM9GvGrlrp7gzGoRDc7bsz26VAzS2cqbbPKvmP8QoH6xuHZ79Liq?=
- =?us-ascii?Q?coeeVln+tv2dG20sCBWeFfNt25dkynOosy8x8P6eUMjLaN9P0uT11R6D0yPt?=
- =?us-ascii?Q?bCmCihk9OvDL69nAn74o5uEFrAiqTAe/vI5nwEtw4/c1nEvprrlrruCq5rzn?=
- =?us-ascii?Q?HTLj8DM77Jbd7aTGL9ER54Bqynhrldk9OGlm93PF1wdhBsq82uOi3sQsJdML?=
- =?us-ascii?Q?RtdTx8LDT1oyHiApvcyrMiaYaj5CG8M4SSzQsmf/dNA7nt1zqX40CmxljUWn?=
- =?us-ascii?Q?gHj+OBJ7c9963lSRAjK2/sGyYLsSkeQLLtPnBRRxmuMU8QNQ4PwE9924Zot7?=
- =?us-ascii?Q?GamV5HIAXQJoFRk/7W/Ke4k+3vpAMon72d+s7G8KSuiU0MsLi9o1gQJLfGfg?=
- =?us-ascii?Q?FkjVmYrE6tzxKWTGV6ygSpxa/UAoN+nED0+QEQwiNX240UBXZYiVlYrXymt4?=
- =?us-ascii?Q?5bMg+iVs/Ju3GYOmcH60AqSo8sCcEtm06Y85AWSM9eJ8MiZw5yrD2ODForBH?=
- =?us-ascii?Q?2bnvggvcldYYOlcjGqVJRy7NOwRvWmsgT+f/o0IdmpmhrQyolq3mks6+4m8N?=
- =?us-ascii?Q?v/RCIbO7Knj/E5kuKzH6skZnQGrD6kkHOdhRNnPFqGw9yv1tT0MEe4FhYvCx?=
- =?us-ascii?Q?yl3CCvytwoZDQ1u33fe1KvZm7QvR6OKWHWbkbaSwTKJTWUWeFSZwwZbg6hHU?=
- =?us-ascii?Q?SGJFbg2ZJLg1VJpZf4s+bcnWZyk/pXa2hfEUUT021k410xjC4aUwgOcQZjk/?=
- =?us-ascii?Q?x4jkpUu9wi8x/9IFR6Y6An4kHYlZtKj91IGDk993jg4yMw2rAtYv732aC7Iu?=
- =?us-ascii?Q?1fhVXHGk5OSRQ+Wpy+lgv/f7T97WtiNrzkbINLWNdK07yPEV4CdJJuOeV0DC?=
- =?us-ascii?Q?YGdbvb4bOVYA42eNzUfy66zj3b6VAZ3gUIsPnBh+uDg0Q7HIZO132UXdyVzZ?=
- =?us-ascii?Q?fwQOYog/5wmz7YSBLr8tY+WLLzdEKt7V9RJI0YCq27LSUEdnl/hxiHSt9Fru?=
- =?us-ascii?Q?iK7bs4gIUmSS9YfuPdYHkbFK9zIGoSmYERVXLoEkayh3Kpq9ISIO9Uyc8E+s?=
- =?us-ascii?Q?lAIAeV74wqKn4WX+kKKLnOwz95UNJSLRZxG+B4DiFgs2VrhTLf4gNK1WSShu?=
- =?us-ascii?Q?5X/IZTyRFRJJ5VmLd1yY1HRSyYkFUq5bTuQ0TiPmtT7xpmFXGwePcDOB+qsv?=
- =?us-ascii?Q?Z4veXhPctadaMsW5T9BHF+UvnwCPPVm4pp0TeF6Z85vtVvAJye/4uAf0d8zf?=
- =?us-ascii?Q?xP5RKVfi+QXY9QGFetonM+HbUFqs21hWKQCpCkL0V60s88uoEOMf+GFISGvl?=
- =?us-ascii?Q?QXrGxPacFmN8Gtcv4I9FysjylcIkiT/EeiW5+rwdfVWUtSL1hY693ZztuKQH?=
- =?us-ascii?Q?WYYjyGubgg=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bee32e6d-4ea3-4e03-326b-08de83bd3b01
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 00:36:29.6875
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: M6XxzW0OvEEkpcrXkuz69bX8Q3m135UX26FgnrXBYbIUudo0DENAEQ3aYvPI8HLJjXNlT+p4gauuHkC6yJDuxg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10228
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[codeconstruct.com.au,none];
+	R_DKIM_ALLOW(-0.20)[codeconstruct.com.au:s=2022a];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276412-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-276414-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[codeconstruct.com.au:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jk@codeconstruct.com.au,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	DBL_PROHIBIT(0.00)[0.30.132.128:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 609742A24B1
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4B6832A256E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sat, Mar 14, 2026 at 01:05:14PM +0100, Josua Mayer wrote:
-> LX2160A pinmux is done in groups by various length bitfields within
-> configuration registers.
->
-> Each group of pins is named in the reference manual after a primary
-> function using soc-specific naming, e.g. IIC1 (for i2c0).
->
-> Hardware block numbering starts from zero in device-tree but one in the
-> reference manual.
->
-> Rename the already defined pinmux nodes originally added for changing
-> i2c pins between i2c and gpio functions reflecting the reference manual
-> name (IIC) in the node name, and the device-tree name (i2c, gpio) in the
-> label.
->
-> This makes it more clear to future developers that these nodes do in
-> fact configure a group of pins, and helps with cross-referencing
-> documentation.
->
-> No functional change intended.
->
-> Fixes: 8a1365c7bbc1 ("arm64: dts: lx2160a: add pinmux and i2c gpio to support bus recovery")
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
-> ---
->  arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 64 +++++++++++++-------------
->  1 file changed, 32 insertions(+), 32 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> index 41c9b4253f4a5..28500e8873909 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> @@ -750,8 +750,8 @@ i2c0: i2c@2000000 {
->  			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
->  					    QORIQ_CLK_PLL_DIV(16)>;
->  			pinctrl-names = "default", "gpio";
-> -			pinctrl-0 = <&i2c0_scl>;
-> -			pinctrl-1 = <&i2c0_scl_gpio>;
-> +			pinctrl-0 = <&i2c0_pins>;
-> +			pinctrl-1 = <&gpio0_3_2_pins>;
+Hi Rob,
 
-why need change label name here. It should scl, why need change to pins?
+> > I don't think that really addresses Rob's point there.
+> >=20
+> > The selection of mode is somewhat a driver implementation decision (and
+> > so would not belong in a DT binding) - *except* that there are
+> > considerations around the use of hardware DMA channels, as covered in
+> > earlier review.
+>=20
+> Am I supposed to go read the prior 25 versions?
 
-Frank
+Not at all - the next paragraph was my attempt at a recap of those, but
+Ryan, please correct me if I am wrong on any of those points.
+
+> > [My understanding is that the mode needs to be defined here to select
+> > which i2c devices have a DMA channel allocated to them. I also
+> > think that byte mode may be useful in some scenarios, but that
+> > consideration certainly does not belong in the DT binding spec]
+>=20
+> But this is selecting DMA for the bus, not specific devices. I would
+> think the decision would be dynamic based on some xfer size. Certainly
+> if the xfer is less than the buffer size (32bytes), then there is no
+> advantage of DMA.
+>=20
+> Or do you mean some instances of the I2C controllers have DMA and some
+> do not?
+
+Yes, some of the controllers may be allocated a DMA channel. A driver
+implementation may (or may not) make use of that channel.
+
+Since the hardware has a limited numbers of DMA channels, Ryan's aim
+here is to specify which controllers may consume a channel.
+
+(in relation to the 'bus' terminology though: there is a 1:1 mapping
+between i2c buses and controllers here, plus a small area of global
+registers which apply to all controller peripherals)
+
+>  If so, then ...
+
+[...]
+
+> > In that case, we would just have a boolean property, like:
+> >=20
+> > =C2=A0=C2=A0=C2=A0 aspeed,i2c-dma-enabled;
+>=20
+> ... yes, this is fine.
+
+Brilliant, thanks.
+
+Ryan: I think this gives us a much cleaner approach to the binding.
+
+Cheers,
+
+
+Jeremy
 
