@@ -1,270 +1,219 @@
-Return-Path: <devicetree+bounces-276882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276883-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8Ll3Gu7VuWnEOQIAu9opvQ
-	(envelope-from <devicetree+bounces-276882-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 23:30:06 +0100
+	id +okPCmzkuWldPQIAu9opvQ
+	(envelope-from <devicetree+bounces-276883-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 00:31:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13DFB2B318D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 23:30:06 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40E502B45D3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 00:31:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4B9B5308A416
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 22:30:03 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9E56C3026921
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 23:31:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A6563A1CFE;
-	Tue, 17 Mar 2026 22:30:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50FD1346E6C;
+	Tue, 17 Mar 2026 23:31:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JY1yqQr+"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="dt9HfY2c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010070.outbound.protection.outlook.com [52.101.228.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A232A3A0EAB;
-	Tue, 17 Mar 2026 22:29:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773786602; cv=none; b=Z3PQaW2wP9YkzRqIjD6/7Z+KkU4aMtyEbIUIc2BFKXo/UIjoEjmLPvXPCh2SUpr1OV1XBkmg3hZg1Dx6NG870W1kPyIchYE28PS4dZii13x/HjG6gUg2b20zN9cpBRLXVoWT/M0DQDRLZ8DmAimQLugteaTERkmYrxbMVx/erjI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773786602; c=relaxed/simple;
-	bh=CnhOIHlyblpvsOEV8hoOhLwkcqHdhWN6Zqa9wOHKLVY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ttk4OkjuDstsdpX4sur4YEsJFUsjLqAvipeJjo3qj1vspdvGGBd5Tt5MRWVzkfRsp0LqQlX0CykCldVSH8l8jTIK+Sb2AU+iXCkDlssKtsiHuQrNJAjh+2B8/1NDQ476aLnY4k8NRpCdV6bZ199o+JbbWY3semllLkscE2ysp2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JY1yqQr+; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773786599; x=1805322599;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=CnhOIHlyblpvsOEV8hoOhLwkcqHdhWN6Zqa9wOHKLVY=;
-  b=JY1yqQr+sUgDkRTFF8vFrVj8cMMY8iYlONhuAHSg5Ph1X/V3dH0S/IqO
-   3tTL1HFwA3e3eE85vY8rpSr+0QDE2ky94EjKWW/k0EnWAbalwpMFz2Red
-   Xvxyvf6/0mfsjnzpU8O70dIPF6J8IP/zle8+WBwWsQpcBFFaVV92+LQfH
-   CsohSEff041ElvhloexLASZ9iFf5uPykQNVHLf4y6Ypf7OTwfzPj+foAW
-   L0o4DbtXe7E4KszqULZDkxBXMxvSy381+2nAgczznXTfjYwKDVV2PHMXO
-   fYmpCTUqBJ1CdCgx18cJWCxCC5ti1hhDthCJAwIExeUBPYzj2xvhgiDgl
-   w==;
-X-CSE-ConnectionGUID: YiB/3BzwRDyaFIGr4n0wWA==
-X-CSE-MsgGUID: owHFRbL0SjS6JQBJ32Vixg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="74809296"
-X-IronPort-AV: E=Sophos;i="6.23,126,1770624000"; 
-   d="scan'208";a="74809296"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2026 15:29:59 -0700
-X-CSE-ConnectionGUID: BEMfbMsJRnKCt++S2U62cA==
-X-CSE-MsgGUID: pRhFVNvwQ+Se5X5qKLOxnA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,126,1770624000"; 
-   d="scan'208";a="221486241"
-Received: from lkp-server01.sh.intel.com (HELO 63737dd503cb) ([10.239.97.150])
-  by orviesa006.jf.intel.com with ESMTP; 17 Mar 2026 15:29:51 -0700
-Received: from kbuild by 63737dd503cb with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1w2cv5-0000000026z-0bPZ;
-	Tue, 17 Mar 2026 22:29:47 +0000
-Date: Wed, 18 Mar 2026 06:29:45 +0800
-From: kernel test robot <lkp@intel.com>
-To: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nicolas Schier <nicolas.schier@linux.dev>,
-	Hans de Goede <hansg@kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Mark Pearson <mpearson-lenovo@squebb.ca>,
-	"Derek J. Clark" <derekjohn.clark@gmail.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-kbuild@vger.kernel.org, platform-driver-x86@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Stephan Gerhold <stephan.gerhold@linaro.org>,
-	Dmitry Baryshkov <lumag@kernel.org>, linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v6 9/9] power: sequencing: pcie-m2: Create serdev device
- for WCN7850 bluetooth
-Message-ID: <202603180601.E8FFoQ4J-lkp@intel.com>
-References: <20260317-pci-m2-e-v6-9-9c898f108d3d@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEB6C35949;
+	Tue, 17 Mar 2026 23:31:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.70
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773790311; cv=fail; b=ocITYP+RaYDqKrNQPLO4LbvqsaZsiaW3/n7iWXnbDf95nDLhpCoJko6jyfSXgbDN0OHwkQkXBM6hYtxzVwjPvjfycSo+G6lrTVS4LnzmskXbRCsy/rOCDMj00MObIYtjnVr5vxW9MsR3yoVqR0IHSzeXVBQL9OHx0oJUOgqa6qM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773790311; c=relaxed/simple;
+	bh=xNvcNrmaJwdvQTsCg7aUv71kw4kH9NTTG4U3UNGC0IM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=DR2rPjofhlvm2tIZ0GI0nz7XIJAJF9A9iJrfxz46SdZM7M/csKEH77HNYr08Ngbk/ZOCC+X8xHMc0dn1PGc1etFTs79KzFRMSDUdyGGeIL38j2Y3FFZCiABegZ8wsZGpkl6v9pnpXXOp82TTjPYfrKDw140EGTIc0gK76Ayzt0o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=dt9HfY2c; arc=fail smtp.client-ip=52.101.228.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=aMzfHfXXW3L+hOsghbOQ9l0Td+WTxYUHOyneLR/1P2jhErr8nSpawCfk/XEVe96V1TMs7Y838foJ9T9uMZsh52vRLmfBdfgI93P+gsoRzA+fvLQ1w3xnsR4rn9/7ucPORjE0zlTkhUAsS4CK1q5YXhnziuLQPvQ6TRRjoQrF5ZKr9dr6HI3UK65rzGr04F81vzQQl+y7Hh6asFdLDUWrakywbIK8yDRz5mcjx7NNPYb43aCrJRZ0uY6kP8FPz3/SJNZQmVf45d6IHNP/AIJQIH6DU67xS8aIoaqWoXQSlGJEsWl0JrhvQoGFZ11G15NJxnXL8lZwRWVnWTYSYHcGZw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xNvcNrmaJwdvQTsCg7aUv71kw4kH9NTTG4U3UNGC0IM=;
+ b=xqnzpFzNVdqxVaxMtXuaSAGu98Vi/EZd/8lAlLO7GmRm0V8nFuo760jHCsEVxCQ8kd3s2rRCBJlj8s8OFBuKxI8CYXeJlNW3oSh+f4gtMlFuWFJ+BrntElX9FYEytnvAT0leKxPgC2lBRi4WU2Qq3qUuBvkDHatTb0usBtUm/GTbbgC0V6VO24rC2MyHT+D2NAsuI2MAw1iKIG9dn0fR0jb4KKx1LdxyLXqYizk1WTPp03opB9bihzYtMO0Qrs0ssNYFWzriEbTSK/jm2O/fi7xgzNVWSlA4GVrEmPtODBxYBlSHsUEH0xsBfnNh4UHi9EgWdPeikhFPz6uI6C/hzw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xNvcNrmaJwdvQTsCg7aUv71kw4kH9NTTG4U3UNGC0IM=;
+ b=dt9HfY2caSipuSENqclVs7obrZoqJu8XCWHXH+OIe4i9N3hH2stOKsVbrFX4TUcOK/uFVPQ+PTSb8CHMdawWwi3Ewx0pPCF4oOZCST5ILI/jkQLmYnCuFoncoj7AvMH4K6GOgQ8pvEQMebtuMZSTGtodPwRr4T7E7NjKDeju6nI=
+Received: from TY6PR01MB17377.jpnprd01.prod.outlook.com (2603:1096:405:35b::6)
+ by TYWPR01MB8363.jpnprd01.prod.outlook.com (2603:1096:400:160::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Tue, 17 Mar
+ 2026 23:31:45 +0000
+Received: from TY6PR01MB17377.jpnprd01.prod.outlook.com
+ ([fe80::f373:26d6:86c4:6aa3]) by TY6PR01MB17377.jpnprd01.prod.outlook.com
+ ([fe80::f373:26d6:86c4:6aa3%4]) with mapi id 15.20.9723.018; Tue, 17 Mar 2026
+ 23:31:43 +0000
+From: John Madieu <john.madieu.xa@bp.renesas.com>
+To: "phucduc.bui@gmail.com" <phucduc.bui@gmail.com>
+CC: "bhelgaas@google.com" <bhelgaas@google.com>, Biju Das
+	<biju.das.jz@bp.renesas.com>, Claudiu Beznea
+	<claudiu.beznea.uj@bp.renesas.com>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "geert+renesas@glider.be"
+	<geert+renesas@glider.be>, "john.madieu@gmail.com" <john.madieu@gmail.com>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "kwilczynski@kernel.org"
+	<kwilczynski@kernel.org>, "linux-clk@vger.kernel.org"
+	<linux-clk@vger.kernel.org>, "linux-pci@vger.kernel.org"
+	<linux-pci@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
+	<linux-renesas-soc@vger.kernel.org>, "lpieralisi@kernel.org"
+	<lpieralisi@kernel.org>, magnus.damm <magnus.damm@gmail.com>,
+	"mani@kernel.org" <mani@kernel.org>, "robh@kernel.org" <robh@kernel.org>
+Subject: RE: [PATCH v8 15/15] arm64: dts: renesas: r9a09g047e57-smarc: 
+Thread-Topic: [PATCH v8 15/15] arm64: dts: renesas: r9a09g047e57-smarc: 
+Thread-Index: AQHcsRDxxVpRghIpcUOEQGYBtm2ME7WzZwRw
+Date: Tue, 17 Mar 2026 23:31:43 +0000
+Message-ID:
+ <TY6PR01MB17377BF5B5B59022FB39AEA12FF41A@TY6PR01MB17377.jpnprd01.prod.outlook.com>
+References: <20260306143423.19562-16-john.madieu.xa@bp.renesas.com>
+ <20260311043831.2576-1-phucduc.bui@gmail.com>
+In-Reply-To: <20260311043831.2576-1-phucduc.bui@gmail.com>
+Accept-Language: en-US, en-GB
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY6PR01MB17377:EE_|TYWPR01MB8363:EE_
+x-ms-office365-filtering-correlation-id: ab7ca5d4-053a-4de0-e026-08de847d5958
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|376014|366016|1800799024|38070700021|18002099003|56012099003|22082099003|7053199007;
+x-microsoft-antispam-message-info:
+ wle3b4MnUQL3sT800S1eSs2tTPmqhrzKBfHv2oxgPywY8r6PFsCUIJP2mHRIJo/PbHWl1Gvcu1K7wV3XERcMOxp0EDw/M3y99Uqe8hPkb6dQe5irLUS1Cq/6yGyQ88NcWHGBeA0w3bNYqmJyondZQho7QmKW6jclYNvrhT5/cXwLbkSmwkUAoPypaTqFgNudZ5iCDaEcJ6/fps5MIy9Aq5e7+AfaPf++ZnzYsDnV2Ba5wC9JiM4UN9TiivHKJ0qCbJuJufcsTwWxMcx8r7oBjO94vJJz83rENdwacRCHC+70Sn6YFAQiiOuvs7TTqskk62F0rrJnku5jtOitBeOw2Z1ivXS4eZ721CkjAB0y8XOqejhnhFPlXAr40Tde711sx9+U7WvHDVhihW/0tVweYazAi9fYlaPlQ9Zf6/sQ/5pvfGDNVcDO5RnyIxAkxCuVaQ8I5Ih2Aa3bBrdnssUeJavPhLkiA1eLdK+brnB3PNH0BBui1KgXeoLTSG5wirbzTDmulsDuGC1qUR7BP/+W9B2qc1v2JGjXhYal5u7jLpU1uCH1qj8eGJvUeEcFPlwRTNMeXKAPjN6KoI0ZdmHvprkzNQkJVFmVfW7N7g9mRnu8B/cvK1YIfeNJXmB0KmfrL22SeA2LLxdE+yim8N6Ia9GOWl4EI+uSjesqylBJQ9WjXDo4jAL0n+7jJWONVnVe0DtOIoKFTZkZj8tS0IcwmebiU4t/ZRW6aobQk6uIERNngvBL+RhEj5n7qyb8BvfXeW/qxQHfgfageQlrKi+cjAyCgdkWq7YXuxxk1KKWouc=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY6PR01MB17377.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024)(38070700021)(18002099003)(56012099003)(22082099003)(7053199007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?ZLoyCXdl/hK3dULnvZFUHm2tI97HqfDUQMZrHzD0G/B9nCdz18s6+JXtVCVN?=
+ =?us-ascii?Q?4CChZfoefHjKQFoyY10jN6+nH16qz6FRFUGmtGYvbWnMZaX3w1f7Mu3RYsJ5?=
+ =?us-ascii?Q?g8yBbuS7R+GCN3GhM4xJfPgPCkpTi9W+0Aa0PPJC7bnA+jHUf/wA2AxK6jMw?=
+ =?us-ascii?Q?X5LvlhrDz2BzQZEKLJfwcshoZXLqPvZS2VEpfCPwDQ4bTNPf/EOpgIYL/MQd?=
+ =?us-ascii?Q?XYzIPHjEoffP916Jliga3scrCiDrzerCL0jPvNJV+5/ORNtrBNMrAdd7RUb1?=
+ =?us-ascii?Q?ldiGNt+0w3+LGSnVckOlram8GAD74Ehjo1jsZ2mrNLRX7kixK3UUHzISosfZ?=
+ =?us-ascii?Q?VIAEBCWelxpIbeYkuoYRyv2nJxk572uP13G5iNw48caUKJd6gPeg5byhCTZp?=
+ =?us-ascii?Q?Z5aBfo9vwb+i2Hu5/j92Lvc6lnAMnSyji9QREIcJAijWoNkk8I5tz/SUYjZX?=
+ =?us-ascii?Q?Aki53sYsXvlvdfTcQ4iWgOZhziNHCQsYZg48kj5ljc/S87kmBGlAfkL67P/F?=
+ =?us-ascii?Q?ooVMcM8m1dOOQA+WVW8cCOOjAY4Z03MscsV6rcgChOV9SX7J2wZir3YuUEGj?=
+ =?us-ascii?Q?kdlxsXyW5vaNplHbgDOGLk7j3pS2BuRuKv0SCWy7B6fQKO1K0glTCL1ynbgl?=
+ =?us-ascii?Q?f4Vi2SlVwLTdO6VhZGNbFqTt14smde/k1SZzUGbIWtkge4yOkHTc3noXuRmZ?=
+ =?us-ascii?Q?6rsUtdq72ueo1rSoJpb4BxzRa4r45Tzssxzcx+1fwrAtBjE1NOd3CrerJGiy?=
+ =?us-ascii?Q?blXB9iIXLRpmi7M0obHGvph9O6kT+0z0Ck8TJZrjIT3GLF2DNrb6pAbIxMj3?=
+ =?us-ascii?Q?+vJTcsYZmoDkYHrbOszzuJH0EMXXD0AYx6lWtRCUXUcFTDNuD8R0DYzQvkm5?=
+ =?us-ascii?Q?kXsT6hdxeEdlafFFPFTp+7iPwqnqs3bGSnDKPfpULiUF5E5XbhT3klzGPsIP?=
+ =?us-ascii?Q?CRbbZZCjQRB1IcQmuocg6xaS0vRJyb6ARRIN/miSXVWi8zZEbznR5Dosh+My?=
+ =?us-ascii?Q?YlrSQs/rZ8rmO52gx8arzV8d+RgpE0pWdkOmnbRlhjjqwfDAecgDZhIHjwDx?=
+ =?us-ascii?Q?AbxzP2Kxw25ENgiBkBBGdGJHlNIPUkUueAa04NVnaYmQvZfj45f9RjtUsVfL?=
+ =?us-ascii?Q?SHUSYx01XLXUwyQasAPCW44B7cG2NfSp9Sq8/4+lKuvxavyWVLchYJI7oo83?=
+ =?us-ascii?Q?UrxP/Jd/++5tkTpSnRYAKeZ8NnIkC3Iewo8JKzuVaaOSTjpWQSP7MYoP/6Ch?=
+ =?us-ascii?Q?Rxz8DpazV68lw/GLv4z1boSbUH/641/z9JsT56hmE5LmYzqUu27KVy8L9iDk?=
+ =?us-ascii?Q?IN9GE0eCMUaLxgB6jlAPlVouETci2D7KsPc81EklLxtXxhyBXNNodPKMXBdu?=
+ =?us-ascii?Q?lYuzWGqnBt1QmJLoP/haP41V87lSKXQPDpktzh8gfcWxyn+g0hmU+7nI1EVo?=
+ =?us-ascii?Q?FVtmYcWyu/rz5FcaJMud7dzqOD4pu8njdAXpR/CTRQ4UVXEGlbZPgX93O7J4?=
+ =?us-ascii?Q?UNriaxoAbNk3fuqM5lOsRFqtAXTmikRbzxkPcbH0eYSvNvKOvJsbhCQr2fj6?=
+ =?us-ascii?Q?lGclyWYElln+3ZZG2xvoCjR53U8CErFCrfuFiJHfV0OQyOUHL5Z6ZitJAKqA?=
+ =?us-ascii?Q?i4UnNBLfCA2Fop2xG90fc4G1W7vaWQqrX447jmIlTr8z4nREwhz87mdKarvG?=
+ =?us-ascii?Q?YI7IgcmhBBinrg1YaLJig61i9h4LsbTFm7JKx/DcfI5V6d0HoX1hr7oxbLev?=
+ =?us-ascii?Q?WbxMiOmXE97ZhJ7PmBhkBswhVDZUG2Y=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260317-pci-m2-e-v6-9-9c898f108d3d@oss.qualcomm.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY6PR01MB17377.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ab7ca5d4-053a-4de0-e026-08de847d5958
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Mar 2026 23:31:43.7379
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 3qtK/lu3SNSqMYaEB5gUIWUv66+mPYzR2fW/pJzvouCXsnOsZEgdLtTJJvgkgGI+0zQa5VZgB9Qou7mG2ZyNK9exsjA9U8EpCUHLd44JDgo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB8363
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
+	SUBJECT_ENDS_SPACES(0.50)[];
+	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276882-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,linuxfoundation.org,linux.dev,linux.intel.com,squebb.ca,gmail.com,holtmann.org,bgdev.pl];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-276883-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[google.com,bp.renesas.com,kernel.org,vger.kernel.org,glider.be,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[31];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,manivannan.sadhasivam.oss.qualcomm.com,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,intel.com:dkim,intel.com:email,intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 13DFB2B318D
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[john.madieu.xa@bp.renesas.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[bp.renesas.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	REDIRECTOR_URL(0.00)[aka.ms];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[aka.ms:url,renesas.com:email,TY6PR01MB17377.jpnprd01.prod.outlook.com:mid]
+X-Rspamd-Queue-Id: 40E502B45D3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Manivannan,
+Hi Phuc,
 
-kernel test robot noticed the following build errors:
+Thanks for the feedback.
 
-[auto build test ERROR on 559f264e403e4d58d56a17595c60a1de011c5e20]
+> -----Original Message-----
+> From: phucduc.bui@gmail.com <phucduc.bui@gmail.com>
+> Sent: Wednesday, March 11, 2026 5:39 AM
+> To: John Madieu <john.madieu.xa@bp.renesas.com>
+> Subject: Re: [PATCH v8 15/15] arm64: dts: renesas: r9a09g047e57-smarc:
+>=20
+> [You don't often get email from phucduc.bui@gmail.com. Learn why this is
+> important at https://aka.ms/LearnAboutSenderIdentification ]
+>=20
+> I noticed that for gpio-hog nodes, the kernel already uses the node name
+> as the default label in /sys/kernel/debug/gpio if line-name is missing.
+> Since the node name here is already pcie-clkreq-n, the line-name property
+> seems redundant. Should we remove it to keep the DTS more concise?
+>=20
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Manivannan-Sadhasivam-via-B4-Relay/serdev-Convert-to_serdev_-helpers-to-macros-and-use-container_of_const/20260317-123910
-base:   559f264e403e4d58d56a17595c60a1de011c5e20
-patch link:    https://lore.kernel.org/r/20260317-pci-m2-e-v6-9-9c898f108d3d%40oss.qualcomm.com
-patch subject: [PATCH v6 9/9] power: sequencing: pcie-m2: Create serdev device for WCN7850 bluetooth
-config: um-randconfig-002-20260318 (https://download.01.org/0day-ci/archive/20260318/202603180601.E8FFoQ4J-lkp@intel.com/config)
-compiler: clang version 23.0.0git (https://github.com/llvm/llvm-project 4abb927bacf37f18f6359a41639a6d1b3bffffb5)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260318/202603180601.E8FFoQ4J-lkp@intel.com/reproduce)
+Thanks for pointing it out. As per Biju's comment, there is a missing
+-hog at the end of node name. Thus, if we keep the schema-friendly node
+name 'pcie-clkreq-n-hog', then 'line-name =3D "pcie_clkreq_n";' can still
+be useful.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603180601.E8FFoQ4J-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from kernel/sched/rq-offsets.c:5:
-   In file included from kernel/sched/sched.h:28:
-   In file included from include/linux/cgroup_api.h:1:
-   In file included from include/linux/cgroup.h:27:
-   In file included from include/linux/kernel_stat.h:8:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from arch/um/include/asm/hardirq.h:24:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:12:
-   In file included from arch/um/include/asm/io.h:24:
-   include/asm-generic/io.h:1209:55: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-    1209 |         return (port > MMIO_UPPER_LIMIT) ? NULL : PCI_IOBASE + port;
-         |                                                   ~~~~~~~~~~ ^
-   In file included from kernel/sched/rq-offsets.c:5:
-   In file included from kernel/sched/sched.h:31:
-   In file included from include/linux/cpufreq.h:17:
->> include/linux/of.h:1652:34: error: use of undeclared identifier 'OF_RECONFIG_ATTACH_NODE'; did you mean 'OF_RECONFIG_NO_CHANGE'?
-    1652 |         return of_changeset_action(ocs, OF_RECONFIG_ATTACH_NODE, np, NULL);
-         |                                         ^~~~~~~~~~~~~~~~~~~~~~~
-         |                                         OF_RECONFIG_NO_CHANGE
-   include/linux/of.h:1627:2: note: 'OF_RECONFIG_NO_CHANGE' declared here
-    1627 |         OF_RECONFIG_NO_CHANGE = 0,
-         |         ^
->> include/linux/of.h:1658:34: error: use of undeclared identifier 'OF_RECONFIG_DETACH_NODE'; did you mean 'OF_RECONFIG_NO_CHANGE'?
-    1658 |         return of_changeset_action(ocs, OF_RECONFIG_DETACH_NODE, np, NULL);
-         |                                         ^~~~~~~~~~~~~~~~~~~~~~~
-         |                                         OF_RECONFIG_NO_CHANGE
-   include/linux/of.h:1627:2: note: 'OF_RECONFIG_NO_CHANGE' declared here
-    1627 |         OF_RECONFIG_NO_CHANGE = 0,
-         |         ^
->> include/linux/of.h:1664:34: error: use of undeclared identifier 'OF_RECONFIG_ADD_PROPERTY'
-    1664 |         return of_changeset_action(ocs, OF_RECONFIG_ADD_PROPERTY, np, prop);
-         |                                         ^~~~~~~~~~~~~~~~~~~~~~~~
->> include/linux/of.h:1670:34: error: use of undeclared identifier 'OF_RECONFIG_REMOVE_PROPERTY'
-    1670 |         return of_changeset_action(ocs, OF_RECONFIG_REMOVE_PROPERTY, np, prop);
-         |                                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~
->> include/linux/of.h:1676:34: error: use of undeclared identifier 'OF_RECONFIG_UPDATE_PROPERTY'
-    1676 |         return of_changeset_action(ocs, OF_RECONFIG_UPDATE_PROPERTY, np, prop);
-         |                                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-   1 warning and 5 errors generated.
-   make[3]: *** [scripts/Makefile.build:184: kernel/sched/rq-offsets.s] Error 1 shuffle=497447418
-   make[3]: Target 'prepare' not remade because of errors.
-   make[2]: *** [Makefile:1333: prepare0] Error 2 shuffle=497447418
-   make[2]: Target 'prepare' not remade because of errors.
-   make[1]: *** [Makefile:248: __sub-make] Error 2 shuffle=497447418
-   make[1]: Target 'prepare' not remade because of errors.
-   make: *** [Makefile:248: __sub-make] Error 2 shuffle=497447418
-   make: Target 'prepare' not remade because of errors.
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for OF_DYNAMIC
-   Depends on [n]: OF [=n]
-   Selected by [y]:
-   - POWER_SEQUENCING_PCIE_M2 [=y] && POWER_SEQUENCING [=y] && (PCI [=n] && OF [=n] || COMPILE_TEST [=y])
+Regards,
+John
 
 
-vim +1652 include/linux/of.h
-
-2e8fff668dc14e Rob Herring       2023-03-29  1633  
-201c910bd6898d Pantelis Antoniou 2014-07-04  1634  #ifdef CONFIG_OF_DYNAMIC
-f6892d193fb9d6 Grant Likely      2014-11-21  1635  extern int of_reconfig_notifier_register(struct notifier_block *);
-f6892d193fb9d6 Grant Likely      2014-11-21  1636  extern int of_reconfig_notifier_unregister(struct notifier_block *);
-f5242e5a883bf1 Grant Likely      2014-11-24  1637  extern int of_reconfig_notify(unsigned long, struct of_reconfig_data *rd);
-f5242e5a883bf1 Grant Likely      2014-11-24  1638  extern int of_reconfig_get_state_change(unsigned long action,
-f5242e5a883bf1 Grant Likely      2014-11-24  1639  					struct of_reconfig_data *arg);
-f6892d193fb9d6 Grant Likely      2014-11-21  1640  
-201c910bd6898d Pantelis Antoniou 2014-07-04  1641  extern void of_changeset_init(struct of_changeset *ocs);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1642  extern void of_changeset_destroy(struct of_changeset *ocs);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1643  extern int of_changeset_apply(struct of_changeset *ocs);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1644  extern int of_changeset_revert(struct of_changeset *ocs);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1645  extern int of_changeset_action(struct of_changeset *ocs,
-201c910bd6898d Pantelis Antoniou 2014-07-04  1646  		unsigned long action, struct device_node *np,
-201c910bd6898d Pantelis Antoniou 2014-07-04  1647  		struct property *prop);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1648  
-201c910bd6898d Pantelis Antoniou 2014-07-04  1649  static inline int of_changeset_attach_node(struct of_changeset *ocs,
-201c910bd6898d Pantelis Antoniou 2014-07-04  1650  		struct device_node *np)
-201c910bd6898d Pantelis Antoniou 2014-07-04  1651  {
-201c910bd6898d Pantelis Antoniou 2014-07-04 @1652  	return of_changeset_action(ocs, OF_RECONFIG_ATTACH_NODE, np, NULL);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1653  }
-201c910bd6898d Pantelis Antoniou 2014-07-04  1654  
-201c910bd6898d Pantelis Antoniou 2014-07-04  1655  static inline int of_changeset_detach_node(struct of_changeset *ocs,
-201c910bd6898d Pantelis Antoniou 2014-07-04  1656  		struct device_node *np)
-201c910bd6898d Pantelis Antoniou 2014-07-04  1657  {
-201c910bd6898d Pantelis Antoniou 2014-07-04 @1658  	return of_changeset_action(ocs, OF_RECONFIG_DETACH_NODE, np, NULL);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1659  }
-201c910bd6898d Pantelis Antoniou 2014-07-04  1660  
-201c910bd6898d Pantelis Antoniou 2014-07-04  1661  static inline int of_changeset_add_property(struct of_changeset *ocs,
-201c910bd6898d Pantelis Antoniou 2014-07-04  1662  		struct device_node *np, struct property *prop)
-201c910bd6898d Pantelis Antoniou 2014-07-04  1663  {
-201c910bd6898d Pantelis Antoniou 2014-07-04 @1664  	return of_changeset_action(ocs, OF_RECONFIG_ADD_PROPERTY, np, prop);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1665  }
-201c910bd6898d Pantelis Antoniou 2014-07-04  1666  
-201c910bd6898d Pantelis Antoniou 2014-07-04  1667  static inline int of_changeset_remove_property(struct of_changeset *ocs,
-201c910bd6898d Pantelis Antoniou 2014-07-04  1668  		struct device_node *np, struct property *prop)
-201c910bd6898d Pantelis Antoniou 2014-07-04  1669  {
-201c910bd6898d Pantelis Antoniou 2014-07-04 @1670  	return of_changeset_action(ocs, OF_RECONFIG_REMOVE_PROPERTY, np, prop);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1671  }
-201c910bd6898d Pantelis Antoniou 2014-07-04  1672  
-201c910bd6898d Pantelis Antoniou 2014-07-04  1673  static inline int of_changeset_update_property(struct of_changeset *ocs,
-201c910bd6898d Pantelis Antoniou 2014-07-04  1674  		struct device_node *np, struct property *prop)
-201c910bd6898d Pantelis Antoniou 2014-07-04  1675  {
-201c910bd6898d Pantelis Antoniou 2014-07-04 @1676  	return of_changeset_action(ocs, OF_RECONFIG_UPDATE_PROPERTY, np, prop);
-201c910bd6898d Pantelis Antoniou 2014-07-04  1677  }
-b544fc2b8606d7 Lizhi Hou         2023-08-15  1678  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> Best regards,
+> Phuc
 
