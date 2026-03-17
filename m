@@ -1,198 +1,227 @@
-Return-Path: <devicetree+bounces-276663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276664-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qBgPA8tJuWmK+QEAu9opvQ
-	(envelope-from <devicetree+bounces-276663-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 13:32:11 +0100
+	id 8GNVKYRJuWmK+QEAu9opvQ
+	(envelope-from <devicetree+bounces-276664-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 13:31:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 215C12A9ECE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 13:32:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 009412A9E7E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 13:30:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1053030086AF
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:29:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8A48C3020030
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:30:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF5C43C276F;
-	Tue, 17 Mar 2026 12:29:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C78773C0605;
+	Tue, 17 Mar 2026 12:30:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="OvcrnOtL";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="S+Q2nC5t"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QHEnw4k/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B3B33C198E
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 12:29:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773750592; cv=none; b=Q2fZCuW+kvoG7C/T68C6u1g0l7jS1l/cE6trxM6j88hAc9XstvZ7fH9hxulnVOwKrmDyAy3T/DdZPO7lBn3JAg/wakxDvMnkZbWcCMvlFq0DVPHowhxTZmUJnQeSQH2wtBUoPSedG85kUU8j6mNHqjP7cT/Um7LREScBfQuwKJM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773750592; c=relaxed/simple;
-	bh=ek/OTR9TzEQG8GC6iLctNmmeEw1KAmo/SHR2qgOxncE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SiLHgHLa5697GHENU/FHap8ip7kMYq1bxCU2RPbNLMNPp8cgUMNRjCky8ED98DqejtIqe+S1YD0NVd5RGVluTrIDGW0oJCDKDLC8APaEWfPVv35bH88sZF9bssLGco/xNDjEuYxc7zpkp1OEzG0YURGo7z8J7CFW+q/M3ausiMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=OvcrnOtL; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=S+Q2nC5t; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1773750590;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Iuoj/plf+Uktw7AJq60yvpOQvb8+oLR4qq5/10wEIF8=;
-	b=OvcrnOtLwm0vGCxTRGmdwC9dqWRlpvxlbceJTVo5U0SL5Q/VsIYBgzsozInUo/QjkDoIah
-	7LLkatdrjbeziW0pfdr2rgMBE4sLTReLUg4270a9aomDPqf0Jc1chkJhBBHbqa7edHuZz+
-	kEf1jdarUssp2KbMPXvGcmCC/+Wgltc=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-696--yCbAQBnMrmONUE676DYow-1; Tue, 17 Mar 2026 08:29:49 -0400
-X-MC-Unique: -yCbAQBnMrmONUE676DYow-1
-X-Mimecast-MFC-AGG-ID: -yCbAQBnMrmONUE676DYow_1773750588
-Received: by mail-wm1-f71.google.com with SMTP id 5b1f17b1804b1-4852ccff333so65633315e9.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 05:29:49 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EDD435C1B6
+	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 12:30:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773750657; cv=pass; b=EuhdMJ2Rhvw7D+iCqgLmx/7082q0OWfTT2A/OqvbL4VqxlD8W39uO3KMNZ/rumT3c7ASK6NOKpGBmujBDy/bw7wXalnjln2Vd1xcSmqRVDHPuVyXPopjxCQeRN4qBQB3Z/zl7K7vM+L4+J3PFmOqirncPLP+KurRrM7XL/wdxwk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773750657; c=relaxed/simple;
+	bh=iVI/aYbZjML/zXQFyx/DyAycVJiYb1PkAlg427mPHcU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qP10I8Pm3SWo9XbBAfFYh++3a6NSQP5cpfw0Zf8a+OKQ9IV1VDSu4oA41wd/hB1jY9gJ04thN9dcbT/tWz0KDFzlE/Lh1eA3SH7ijPBj8Nljv17q7yy4aBzWgzM+IiA/l+RPvl55CKg5ord65cnu2My5EFiVIssNV6nDSpVB9/Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QHEnw4k/; arc=pass smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-66132b22182so7384592a12.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 05:30:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773750655; cv=none;
+        d=google.com; s=arc-20240605;
+        b=D0Rg6qvWxdKn2Do8Y8kwgXSTX1It28oaw4wnBSzlAyY7ogYzDg6ZtWc5O5uzdnyL8X
+         NTmKV5sahHVsQjjpf7lFHi2Ed7jnoh6RHqIb5gN1s49XFyKQWo5DDzk2qXJSaf2+xh99
+         2OzSpmgKF4x/VT/U5HiR/BHtmwyK/EGCINq6OJmLHaFr/qritXrBgogG62N9lBETatNl
+         Hl9hvxJ/BWIeSdKxpvtFzk2SXJDDM+RIU/7xYq/HGpSDb16Q6dUNzSD099VXtKEr7G4i
+         lO9cZex0fM41Dy13Xb7l/b4G5fiXtcAji++/uAdn1+nfQIOxQqiNd9jMKxXJ/sPgIbpS
+         dEUA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=eKGVaZGEthLonpWdZqAUAIX4b+v5oagSeyJWvMOko08=;
+        fh=VK08e9jbaTaUV2OcNlDZzqXRzl6VL+0wBh5xRIq3yFA=;
+        b=D96LSpSBvFQqs+MQ+4VJmo92Bry6fauv+niA9fbLAACsyR3BZz2PImbSFLypw5AC3C
+         CXmLupR56KSYhnPcgfqaxOVn6lblZvYpLtK5QrxsdojE/nlMv0MMeiig0ByQxP+Z4HSf
+         SBklLd5VXLLHsj4RGo47iVf0aJKEzMw2HsgecKzcJ3UagBbGbDzVK8axXe20F1X6D/nP
+         PyK0QM08P/zJXir1/P2BnnS2O+X+GN5FPB79sIIA/88+puApCIS8Jc4isDkY9rHtYcnG
+         /a04KtD8pbcg081Mjs4LIMMCpX39vMJzePdJ3jQo9tGhpfN7reiL8BIC79ZGyMC2vV5g
+         pfrA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1773750588; x=1774355388; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Iuoj/plf+Uktw7AJq60yvpOQvb8+oLR4qq5/10wEIF8=;
-        b=S+Q2nC5tRug3lyi3CeNQipOUbFsWpsjt1v3HD0F8S1mEsjet+sDDHFjQU6FBQvleM/
-         vMeAo9XJjwcNiS7sLObZ+Kjichh3JDv/maPJZhT41+sq2aL91Kp4zmj/HbGAgKDCCdb1
-         3A6hUQEnEbMyf4hQayLuvq1mCBEWi6lakZoIqUHrAAvu+XUelsxwtcNbo/y26QVX6MOL
-         ZuxDq87035HRO4QWMRK5ieq0wRocZ8EUUKJua8AIDouQ4DlWAsy7sELd57RsxDpsnQ6C
-         Bhl6MZVS18pWKwX2O+ZwZ6/YY9j6Oo+Np0hViOfoeQRorBT46oFD618hiOtshwq5/fYn
-         OC2w==
+        d=gmail.com; s=20230601; t=1773750655; x=1774355455; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eKGVaZGEthLonpWdZqAUAIX4b+v5oagSeyJWvMOko08=;
+        b=QHEnw4k/gr4ixTlgHgmKa6hwAoK1aCzGTl5K+iHmoU0KiOiIg3yKCoOlIjbxU93CZw
+         DGNmQ2D/sj9sz9uqsxJFdsZH+Q7XmkKCqWIPhrbGJw5NMf8s+AmPxTw4Cs3P+voCbEae
+         lYaEKGIOhPBwIC+O7mPVAfdROGkLwKumxV1/Py9MyxuAnI2V7aD11pVx5i8Zl630hB6k
+         +fPPrs1YNCbn0Qau14/zirwxvNkJW2GuYGbD6D+S0aZzLPCeb7KBquqXzmMQ5rdwfkmC
+         888TAT0mhGtHo56LaQwm0MeN8x04kR/jekeGSTXRfuhaSBhQSMtrX1Ep4PpWOE4JE2qB
+         wx/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773750588; x=1774355388;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Iuoj/plf+Uktw7AJq60yvpOQvb8+oLR4qq5/10wEIF8=;
-        b=j1m8VfKCmrlkQWp+ozHi3W+KH27A79P+ik6OjRKHeuwvIbFAQGatCHynfmZVr8yv0y
-         pilTX8zb5v9o8BkeZ7bQEpeaYK7IwdMlHIbJ6QKFI+nxkaxCIeKDzQ9qV/CogNYuDAVe
-         OxFti88WZE6LL981xo5KydpXSf4BK1VgzocoWAthc81iEbPH2PKQbcFm/pf4/8EwF4Ra
-         A9qjrTMboow6BglXxV+z8PgWJvs50ZbsAisjVOumb02yEbbwxVRmCy9dyl9lZ0aUPKsf
-         5R8z0dJyvPaWPivTQuZOOoZF2z4POVWnjWchoGWt08iXJZybgaRwVw/tlkTv+RWf17QG
-         FdNg==
-X-Forwarded-Encrypted: i=1; AJvYcCXU0i8mYc7laTXMKUrBqikF/0Y39HkYKC9Bhn1iXCuM0cn/+VHzTZ8QUSYfpP3FosdvOKc9o5nkf6u1@vger.kernel.org
-X-Gm-Message-State: AOJu0YzyFZgljGFc1Uf2e8Njm2PbDQyLb7VRDF+F3hVeXhXrEG6ydyfm
-	9o5Tx9ZHr26JA3Ffu3CCE0puMPfrw081oouQ+li5drD/id/FWqSXtH27Dh67aslSaVq8scJ57jG
-	qlLBQvXht6HiRAAYSOAqUZOcz5labRKfeHe8BSIfKCMApGi50mdSKkrrdU3v098118yn0Gdw=
-X-Gm-Gg: ATEYQzyYLZ1KVKr85gsgj3Ya9rz+gZOpIoFG3LK2T2qs/gYQolBNARIj0UBRHG7Ypsg
-	UW6VlUhph+JOwRXYJs1xU+X6t1I0qfbJpymHMcQ858VVKXdU9Ey24dQqFuIGfgCj8ToQYJ8rc04
-	PL9EqlJBEWTiEuwf8vHxAEZaIY7c30lQbUuYlcz7SavcVSVBBXK7uopxlJN0jD4O3xzK6PE+wLZ
-	BVPko5QFkRpr/c1AkiP3WRTEGy5JfmzJ3GZ1ZUPgxYWoYHWhjatylErac6DSTJv2yIBAU6FvxNx
-	EL+cEYSWrGony+gUd3Yqc6dkCsOwOHva55APBOyO8vupofCVB0qxMXG/w68KFO8gsuyo+9CRGFI
-	Vi5/cPSuYIf62LSGOtKTFRhsMJG6jZMXxOOg3YBzcXvN8aiydYIwNI9k=
-X-Received: by 2002:a05:600c:c162:b0:485:3fd1:992c with SMTP id 5b1f17b1804b1-485566d2fe7mr271290285e9.1.1773750588000;
-        Tue, 17 Mar 2026 05:29:48 -0700 (PDT)
-X-Received: by 2002:a05:600c:c162:b0:485:3fd1:992c with SMTP id 5b1f17b1804b1-485566d2fe7mr271289565e9.1.1773750587509;
-        Tue, 17 Mar 2026 05:29:47 -0700 (PDT)
-Received: from [192.168.88.32] ([216.128.11.95])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4856eaa3b66sm73020775e9.11.2026.03.17.05.29.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Mar 2026 05:29:47 -0700 (PDT)
-Message-ID: <fb33e9ec-d93c-45f2-aacb-7633beca7805@redhat.com>
-Date: Tue, 17 Mar 2026 13:29:45 +0100
+        d=1e100.net; s=20251104; t=1773750655; x=1774355455;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=eKGVaZGEthLonpWdZqAUAIX4b+v5oagSeyJWvMOko08=;
+        b=OPZsc9FVRJg9icNyZxJvDd/m5T3cbDbqnEoPk9wTr+OlzD02Lq/7Sfcao5D+okaBbB
+         0lW71AlSpl4p5xDkpDnvSpWRz3rQR14yKkPhQP67uZpjREQ5r49kGJrEvqsXBDW3/i4y
+         MfLL4vro9IFTN2NF5Np0L1dPN6aTm4Ff2Cu+8tUqt16EPaYV7FCoBUb0izUuqNoZwxOp
+         jUvCSEGg9/J4gZsp+rm+lPaEViaRt8EiSr2XZMG6717W5rlQLsAlzMw5LwtzsL3E+j24
+         9JBctxoaIwFnGhnhAT+WDbBqwh+tAQhUeAPGWtnbyUknqfNKfRap0w8EPb6C0lEHLwqn
+         1Cyw==
+X-Forwarded-Encrypted: i=1; AJvYcCXwAyhI+FoSpEqYhl2Aq7/3QdeghO2cXC98t2vUk+ewwiCT5lfoGeu8EyPHWzFdpIYpiDxSFhH8U3BX@vger.kernel.org
+X-Gm-Message-State: AOJu0YwuMicdUok/JKUJTC1R7Kzi1HiWMrP1Yd4EcogolPiv128NvxF+
+	tj2TPDzDuXs8nrwRcY3PRqAmwkI62e18JPq3GIC3D0fKshhxRqCUd3kb5XDh9yN4cb1UiV0WM4Y
+	OdtMXNoKmiCqmFuxXGsrFQwI6DPM///w=
+X-Gm-Gg: ATEYQzwjGM/yZv6oVR/0SC5EdInIXxmuf05VOO89K/+IjOPG4SOPB8YH3rPJ56EIiEg
+	UEtoUuQ7JRWmKBdJV03u3bguvLJwrZpgJkoy0mYaxaNACNzSLHstb9c6qO0H5Iq0WMFWdqnDR6o
+	UbuTKU9bFKO1EsTqIEpBDqteRRiwyymIl/rsOEPcmL+Swg9naPtB0hWY12m2aw6/+xzxFYg914c
+	Wtjqx88CEWTB8btaLyy3ROBA2OHzFa3ztL5K16Uyj2Bq5fHf5ByaDv+UTMtHQAszDPgEHPRlqC2
+	OlNeKimlEWas8pxl1VDm
+X-Received: by 2002:a05:6402:1d49:b0:663:4560:aa8d with SMTP id
+ 4fb4d7f45d1cf-663bac0b2a9mr9465681a12.26.1773750654417; Tue, 17 Mar 2026
+ 05:30:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v3 2/3] net: macb: add safeguards for jumbo frame
- larger than 10240
-To: Charles Perry <charles.perry@microchip.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Cc: netdev@vger.kernel.org, Simon Horman <horms@kernel.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260313140610.3681752-1-charles.perry@microchip.com>
- <20260313140610.3681752-3-charles.perry@microchip.com>
- <DH4DORKIV5RB.3P7Z2RTRNCXH7@bootlin.com>
- <abhLO8fna/ioyd6O@bby-cbu-swbuild03.eng.microchip.com>
-Content-Language: en-US
-From: Paolo Abeni <pabeni@redhat.com>
-In-Reply-To: <abhLO8fna/ioyd6O@bby-cbu-swbuild03.eng.microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <cover.1773142933.git.zhoubinbin@loongson.cn> <bd5c06a20ef2e61f76902c4209f2be539ca91a97.1773142933.git.zhoubinbin@loongson.cn>
+ <abAyd9uyl3TC8vC_@ashevche-desk.local> <CAMpQs4JVYRo4DQyEVe5NhHQ=VN96mF17AtSoo6a4CGB6w_Aphw@mail.gmail.com>
+ <abFTF-RDxLqsSs6X@ashevche-desk.local>
+In-Reply-To: <abFTF-RDxLqsSs6X@ashevche-desk.local>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Tue, 17 Mar 2026 20:30:42 +0800
+X-Gm-Features: AaiRm50Kv8zppqeHF9w4EcoyL9629DqEk-04yGnKyzwAzL8KPJzuesVItDbOu6Q
+Message-ID: <CAMpQs4J323uWkjPXYXwwb2URRV0wsfkiFAXOcNazejzdhEsx2A@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] i2c: ls2x-v2: Add driver for Loongson-2K0300 I2C controller
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Bartosz Golaszewski <brgl@kernel.org>, Binbin Zhou <zhoubinbin@loongson.cn>, 
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andi Shyti <andi.shyti@kernel.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Andy Shevchenko <andy@kernel.org>, linux-i2c@vger.kernel.org, 
+	Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276663-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[redhat.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276664-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pabeni@redhat.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 215C12A9ECE
+	FROM_NEQ_ENVFROM(0.00)[zhoubbaaron@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,intel.com:email]
+X-Rspamd-Queue-Id: 009412A9E7E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/16/26 7:26 PM, Charles Perry wrote:
-> On Mon, Mar 16, 2026 at 06:21:38PM +0100, Théo Lebrun wrote:
->> Hello Charles,
->>
->> On Fri Mar 13, 2026 at 3:06 PM CET, Charles Perry wrote:
->>> The RX buffers for GEM can have a maximum size of 16320 bytes
->>> (0xff in the RXBS field of the DMACFG register means 255*64 =
->>> 16320 bytes).
->>>
->>> The GEM IP has configurable maximum jumbo frame length that can go up to
->>> 16383. The actual value for this limit can be found in the
->>>        "jumbo_max_length" field (bits 0..13) of the DCFG2 register.
->>> Currently, the macb driver doesn't use the DCFG2 register when
->>> determining the max MTU, instead an hardcoded value (jumbo_max_len in
->>> struct macb_config) is used for each platform. Right now the maximum
->>> value for jumbo_max_len is 10240 (0x2800).
->>
->> If DCFG2 contains the value then we can runtime detect it. With that, we
->> could make the macb_config->jumbo_max_len attribute optional. Then
->> start dropping it from platforms where we know we can trust the DCFG2
->> value.
->>
-> 
-> Hello Théo,
-> 
-> That would be a good idea. We could use "jumbo_max_len == 0" as a way to
-> signal that the DCFG2 register should be used for determining the max MTU.
-> 
-> However, that's a new feature and it doesn't belong in this patch. All I
-> want to do in this patchset is put the real value of jumbo_max_length in
-> the PIC64-HPSC macb_config and make sure the driver doesn't overflow when
-> that's used.
+Hi all:
 
-FWIW, I agree that is better suited for a follow-up than for the initial
-bring-up.
+On Wed, Mar 11, 2026 at 7:33=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@intel.com> wrote:
+>
+> +Cc: Bart (what's going on with i2c_adapter_set_node()?)
+>
+> On Wed, Mar 11, 2026 at 11:07:19AM +0800, Binbin Zhou wrote:
+> > On Tue, Mar 10, 2026 at 11:02=E2=80=AFPM Andy Shevchenko
+> > <andriy.shevchenko@intel.com> wrote:
+> > > On Tue, Mar 10, 2026 at 07:48:53PM +0800, Binbin Zhou wrote:
+>
+> ...
+>
+> > > > +     struct device *dev =3D priv->adapter.dev.parent;
+> > >
+> > > Derive it from regmap (and check elsewhere) as accessing dev in the a=
+dapter
+> > > may lead to issues related to the object lifetime.
+> >
+> > Do you mean regmap_get_device() API?
+>
+> Yes.
+>
+> > Also, similar references exist in `loongson2_i2c_xfer()` and
+> > `loongson2_i2c_isr_event()`, requiring synchronized updates.
+>
+> Correct.
+>
+> > > > +             return dev_err_probe(dev, PTR_ERR(priv->clk), "Failed=
+ to enable clock.\n");
+> > > > +
+> > > > +     irq =3D platform_get_irq(pdev, 0);
+> > > > +     if (irq < 0)
+> > > > +             return irq;
+> > > > +
+> > > > +     adap =3D &priv->adapter;
+> > > > +     adap->retries =3D 5;
+> > > > +     adap->nr =3D pdev->id;
+> > > > +     adap->dev.parent =3D dev;
+> > > > +     adap->owner =3D THIS_MODULE;
+> > > > +     adap->algo =3D &loongson2_i2c_algo;
+> > > > +     adap->timeout =3D 2 * HZ;
+> > >
+> > > > +     device_set_node(&adap->dev, dev_fwnode(dev));
+> > >
+> > > Why?! i2c_adapter_set_node() is part of the i2c-next.
+> >
+> > Indeed, when I rebased the v4 patchset, `i2c_adapter_set_node()`
+> > existed in the i2c-next[1]. However, when I prepared the v5 patchset,
+> > it was removed[2].
+> >
+> > [1]: base commit: 6117e1ba1db78a52a4161208ea403d3769ad73c6
+> > [2]: base commit: b82316862bea929265725c077dffcec42e3dc20b
 
-/P
+Excuse me, I=E2=80=99d like to inquire about the current status of merging =
+the
+`i2c_adapter_set_node()` API.
+If there hasn=E2=80=99t been any concrete progress yet, I=E2=80=99ll try to=
+ keep
+things as they are and prepare the V6 patchset.
 
+>
+> Bart?
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
+
+--=20
+Thanks.
+Binbin
 
