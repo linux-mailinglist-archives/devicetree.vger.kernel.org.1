@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-276492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276493-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wAKVAkwAuWkxnAEAu9opvQ
-	(envelope-from <devicetree+bounces-276492-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:18:36 +0100
+	id oNBAK68AuWkxnAEAu9opvQ
+	(envelope-from <devicetree+bounces-276493-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:20:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A071B2A4AF0
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:18:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1998A2A4B24
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:20:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0D8AD3042940
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 07:18:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EE26B301A71B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 07:20:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2D4238C433;
-	Tue, 17 Mar 2026 07:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0012638C413;
+	Tue, 17 Mar 2026 07:20:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nUYoH5pf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OLqi2nMA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AD3A2D9484;
-	Tue, 17 Mar 2026 07:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0633946C;
+	Tue, 17 Mar 2026 07:20:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773731905; cv=none; b=mrflFtaedTmvSfXf1uSPtdOsXPezxTNHoaj42bnF2xvD3oDGRTP17z5ozA5/35zw7vEOXavRhXmi1OIGsoNtyEBwm3O3RB7hrK8kmE+GRSMQWVD1dq4uAXQ8dOHSWK/GI0SFmn5Fa8ebLGvGex28JqkmHkDsgjzZOsTf+88P2EQ=
+	t=1773732008; cv=none; b=qCDaKIAmmI1WDUQg2Z1b8KqwpJ8AjVEDg1KSXaXsvUjQrNbYw/BJeIzJJhyIWZq1nNbPE7V3kozICwbfYgR9sDxy/lc2mUVqwuHjMS3SE+v+xsCA6ikswBn34zWCWAOeAYDC1LMNuohrMqT5QcntbWfq+705cAeiDujU1todrV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773731905; c=relaxed/simple;
-	bh=h9QFqvOOpHvhugdy8AYjOuTSpNkBlBQMvK7y+lI+LnY=;
+	s=arc-20240116; t=1773732008; c=relaxed/simple;
+	bh=17I5AKEtPfO6q1JpSx7o444U78m/ylhWetYIHxoJrVY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XXxFcLfW5da1nNA97Dv3gC06aD0/Wu0xslRZwE8vNrFoRus8/Q+DUJvMtB1ZWEfevHWAG8vycbeYcqKNUZa2g8uTRBSTLTnUZ/mBf6Yu2DDw3zbR5TbMKy9LOIqmNx92t0gxLbuzBVh25LeZvCdPI/I2v04ZOlY0EkrQFD+oEDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nUYoH5pf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCD65C19424;
-	Tue, 17 Mar 2026 07:18:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=uOVvizo2bp28estDQjSSfpDnCha4nqqX/D2kKr6gfOVMmWGApYsjlLDP7YWLGTgm8uLEjdnyQ7lIRqj3uQ9o1dtHySJA1gIjzBoNA70qEF+Dakqa5gScihW/sKkWYoXbBPNlt0x7hU0eXy2Buxr/KtaoknAAjUyj6QEGPpc3AYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OLqi2nMA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEC5AC4CEF7;
+	Tue, 17 Mar 2026 07:20:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773731905;
-	bh=h9QFqvOOpHvhugdy8AYjOuTSpNkBlBQMvK7y+lI+LnY=;
+	s=k20201202; t=1773732008;
+	bh=17I5AKEtPfO6q1JpSx7o444U78m/ylhWetYIHxoJrVY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nUYoH5pf5SdZ1TVJPh121r6zO8wtIxVvxUpI2gnrddqmL0/OznM/xQ7LMKdAWgC3C
-	 RxjyFwcrQbP1VkQsLH9cGqmNnGzXmUYtThlrkb3d2iMZ9ysinkj0Hzn5fEfHjwufGj
-	 16jSVvA2nUYU/qjhTWUnyouqUCf806Sa9aiJyLVSIWQJmTITjHYjGuYWO91CbuIOU1
-	 +AA6GjKcaZovkpq+OLPHi0fmkDOfEElcbVSeF1KXSRtDPb8imYvelwn07Qon2yUriJ
-	 eit7wS0g9KmVMsyCNwoGqbdMkvaUtbbo9U7tGwT7pNjQHT9Fes4qx7mrBfm3GLjjPN
-	 cwtxssYtpMpfQ==
-Date: Tue, 17 Mar 2026 08:18:22 +0100
+	b=OLqi2nMAr3/yjGI1CEf55AQzxtWZQHBfq3ZtYK6XldbJeRf8M2hdq+OjuOMngmD7e
+	 /jRToatryzClCtsvv+26TqQ2XPymbuj+mehC8NM1QShs5FQUVvIrUYubfH1EkdRYS9
+	 Afnd30zPqPANGeh2QN7nIcDKsktKCcpSwVhAoHQEPYMCXdD+lWYA4spJTkWtKtQsRC
+	 C79sxiDrr8g9QLRL6Hqr1KcEUztxCgT3I0zXSpHjpHeaEJoqvsCtjMlhotf2gfhocS
+	 A+WMe+Zm6xb+nFcOR2vJyKa6TTn2M13EDZN4LhYCEabxuD2oe14jj0ETn5FGYa4Zb3
+	 6GD1bR0Fjs2wQ==
+Date: Tue, 17 Mar 2026 08:20:05 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: nick.hawkins@hpe.com
-Cc: ulf.hansson@linaro.org, adrian.hunter@intel.com, jszhang@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	shawn.lin@rock-chips.com, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: mmc: snps,dwcmshc-sdhci: add HPE GSC
- dwcmshc compatible
-Message-ID: <20260317-shapeless-ambitious-numbat-d8d6e8@quoll>
-References: <20260316150115.2616827-1-nick.hawkins@hpe.com>
- <20260316150115.2616827-2-nick.hawkins@hpe.com>
+To: Erikas Bitovtas <xerikasxx@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Peter Meerwald <pmeerw@pmeerw.net>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+	phone-devel@vger.kernel.org
+Subject: Re: [PATCH v4 1/7] dt-bindings: iio: light: vcnl4000: add regulators
+Message-ID: <20260317-tricky-pony-of-assurance-7a8cac@quoll>
+References: <20260316-vcnl4000-regulators-v4-0-854fc2eaf54b@gmail.com>
+ <20260316-vcnl4000-regulators-v4-1-854fc2eaf54b@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,60 +66,67 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260316150115.2616827-2-nick.hawkins@hpe.com>
+In-Reply-To: <20260316-vcnl4000-regulators-v4-1-854fc2eaf54b@gmail.com>
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276492-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276493-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_NONE(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,hpe.com:email,qualcomm.com:email]
-X-Rspamd-Queue-Id: A071B2A4AF0
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre.com:email]
+X-Rspamd-Queue-Id: 1998A2A4B24
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 16, 2026 at 10:01:14AM -0500, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
+On Mon, Mar 16, 2026 at 07:19:45PM +0200, Erikas Bitovtas wrote:
+> These sensors can accept 2 supplies - one for the sensor and one for IR
+> LED [1]. Add supply properties for the sensor - 2 for the sensors and
+> one external, for their I2C bus, to ensure the sensor is powered on
+> before proceeding with setup.
 > 
-> Add the 'hpe,gsc-dwcmshc' compatible string for the HPE GSC (ARM64
-> Cortex-A53) BMC SoC eMMC controller.
+> [1] https://www.vishay.com/docs/84274/vcnl4040.pdf
 > 
-> The HPE GSC requires access to the MSHCCS register in the SoC system
-> register block to configure SCG sync disable for HS200 RX delay-line
-> phase selection.  The required 'hpe,gxp-sysreg' property takes a
-> phandle to the existing 'hpe,gxp-sysreg' syscon and the MSHCCS
-> register offset within that block.
-> 
-> The HPE GSC eMMC interface only exposes a single 'core' clock (no
-> bus clock), so clocks/clock-names are constrained to a single item.
-> 
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+> Reviewed-by: David Lechner <dlechner@baylibre.com>
+> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
 > ---
->  .../bindings/mmc/snps,dwcmshc-sdhci.yaml      | 32 +++++++++++++++++++
->  1 file changed, 32 insertions(+)
+>  Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+> index 2ba4d5de4ec4..a1b4c02db246 100644
+> --- a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+> +++ b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+> @@ -33,6 +33,10 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  vdd-supply: true
+> +  vddio-supply: true
+> +  vled-supply: true
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Same comments as before, I do not see improvements.
 
 Best regards,
 Krzysztof
