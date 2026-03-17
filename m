@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-276687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276688-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IC6fF2NWuWnYAgIAu9opvQ
-	(envelope-from <devicetree+bounces-276687-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 14:25:55 +0100
+	id qIXOMAFXuWnYAgIAu9opvQ
+	(envelope-from <devicetree+bounces-276688-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 14:28:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5FC02AAD10
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 14:25:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 437DF2AADD3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 14:28:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 15AD430A5406
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 13:24:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5FC6731135B1
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 13:25:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C60673CB2FA;
-	Tue, 17 Mar 2026 13:24:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6553CBE72;
+	Tue, 17 Mar 2026 13:25:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ca4EK0Zp"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Q+1HvZoW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B3453CB2E4;
-	Tue, 17 Mar 2026 13:24:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C87B03CB2DB;
+	Tue, 17 Mar 2026 13:25:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773753847; cv=none; b=TudyClpiBemdZlZIilK5QK1t5jTO5W44dJn0vYYjTlDBk0kVkhtLqDg5+Ul3jPbwUAUVeJN3NBnt523YmAdkXWxCCZ2/i3K4H8p0IZXkacFHjWEcTzbnM+HFrxpKmOagqxTFTaFkEhVciv4pPfik7A5RXMugfk/oD5e/hDwRYd4=
+	t=1773753913; cv=none; b=iaC6nv9XiN87QBY6kILpvX98+fmehSYSlCHmuMIl1gfo87QqMFjoarEwNOxRbjNYUcY5kIvAi2E3olI/Bk9bcJB6/qZQk4Al4rt5eVJkrI7XOM9OxZABUWjAo5I0n0RmGIZW/98t6GsiD95G2p5N+LnBmVO2Sz6qCXP7KKfsUvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773753847; c=relaxed/simple;
-	bh=tEAUK+pa+VR09YaPr4Y45r4hPgbJ47nS8N90OSVRsNA=;
+	s=arc-20240116; t=1773753913; c=relaxed/simple;
+	bh=dBuwjzBB1D62lvk1sNa+xg+p0CTXR/Rqr/9U+GnpvYI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ip50h993cwyoVQqeYbNYkEI8Q8GCzDUQl0jtT/cD2sgwaavlVIORODmLnB5dMXngafFFbJFgE1k/fM20e10bw51BiqubeirJwEyrLVW9NgHXlhsg2m0TnDz/7dTRCELohUYPxGD8WMw295lfwQ5nDeNP9KvBZqFwAXRIYi+i/Ng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ca4EK0Zp; arc=none smtp.client-ip=192.198.163.13
+	 Content-Type:Content-Disposition:In-Reply-To; b=Tk/q5C/kd8xBcghntgPjQ1XLccgSuerj5SKqaHBIRp2TsPuMsn81AJbp4G/vqdrUEUv7AEEOHV8bnsLxJULPcY4oCyo3GIX67HsjASUPeQQoQzdBNs2Yg8S9W03e2GfkQ1i1xa2HXAocrq/afNFEghyxf5ordgGP/LS+gpJvCPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Q+1HvZoW; arc=none smtp.client-ip=192.198.163.13
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773753846; x=1805289846;
+  t=1773753913; x=1805289913;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=tEAUK+pa+VR09YaPr4Y45r4hPgbJ47nS8N90OSVRsNA=;
-  b=Ca4EK0Zphi3BPeMntGQgATdg/B67rp0v3ciRl7vvheUSN8tdUWzushsm
-   xuzjmvyQh8sHWVQYOSOKzFK+hTP77R8yOzjyne2YuRuJ65vewAWgY/0qj
-   NoCqzN3x8ZzoHdJHfUN8TnL9K6v8hETrouj29+Vmey2paeeSmQMOL0E7D
-   Vl2RHy3dxL/nKW3/fWsXg9fMZNgm2bvfnPWx6luxrueMciRBI1dm1/GRm
-   CuKiJddIkxCLYiI3AoHpiJFzQw3Zx6Kh+4DlEOIKh1WDo/05lOODziD15
-   Elict4VZld06Wau5nOwD0PdI9U1gr9/bROtnmk/XykWjkTkS+0xEOzTNc
-   A==;
-X-CSE-ConnectionGUID: XYBcsjXITYy5ublSuvnRHQ==
-X-CSE-MsgGUID: l58JXQFGTxqPs7Zm+6L/jQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="77395733"
+  bh=dBuwjzBB1D62lvk1sNa+xg+p0CTXR/Rqr/9U+GnpvYI=;
+  b=Q+1HvZoWghVhjCawDoxmw8wxfqvh0qauVRGeUqN45v5XdbpLDW47dkd4
+   J0glU0ws+sZilk0GEKVwgZAPf2g6r+STGyl7O7389m73KCpEszVY9plhJ
+   +TTgZatqfpm9cjv+0DpafxfMpfeU1KiQ2uqnoPil9WVj4uJM/IG+9oDed
+   B5Q+2iqtyDQuTrlczqrZHJHXe+Zy+JxiUFAZu6A9LJnQIQ8HJNjZmtsTj
+   cWvLlEdjB/u/AP4J8BHLotwox6zsRS9F1GgyIbBlbnWy9EhJCRj1J3E5t
+   943coWaBqFelSJVG5pBsGryxEp8c1EFod6RU9QpDmplcibPbaKaqxzjAj
+   Q==;
+X-CSE-ConnectionGUID: iMesU8qMT/mKCpQpNEA3vw==
+X-CSE-MsgGUID: jqUHU3YuQHyvX4c7RMJtHA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="77396018"
 X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
-   d="scan'208";a="77395733"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2026 06:24:05 -0700
-X-CSE-ConnectionGUID: t1KaPoM3RfWc9xe3EIi62Q==
-X-CSE-MsgGUID: 8oAUK+V8QrazFR3d+q8ogw==
+   d="scan'208";a="77396018"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2026 06:25:12 -0700
+X-CSE-ConnectionGUID: ezJlcV8uR1aquGhY3Y7RQQ==
+X-CSE-MsgGUID: dbuiYPI0Shm6Fo2aVj+CLg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
-   d="scan'208";a="226958468"
+   d="scan'208";a="218410447"
 Received: from dhhellew-desk2.ger.corp.intel.com (HELO mdjait-mobl) ([10.245.245.171])
-  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2026 06:24:01 -0700
-Date: Tue, 17 Mar 2026 14:23:54 +0100
+  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2026 06:25:07 -0700
+Date: Tue, 17 Mar 2026 14:25:00 +0100
 From: Mehdi Djait <mehdi.djait@linux.intel.com>
 To: michael.riesch@collabora.com
 Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
@@ -73,11 +73,11 @@ Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
 	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Collabora Kernel Team <kernel@collabora.com>, 
 	Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 9/9] arm64: defconfig: enable designware mipi csi-2
- receiver
-Message-ID: <ablVqNnYYFoy76NJ@mdjait-mobl>
+Subject: Re: [PATCH v2 1/9] Documentation: admin-guide: media: add rk3588
+ vicap
+Message-ID: <ablV_XW5c7k2_vAX@mdjait-mobl>
 References: <20250430-rk3588-vicap-v2-0-77de5ee9048e@collabora.com>
- <20250430-rk3588-vicap-v2-9-77de5ee9048e@collabora.com>
+ <20250430-rk3588-vicap-v2-1-77de5ee9048e@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,18 +86,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250430-rk3588-vicap-v2-9-77de5ee9048e@collabora.com>
+In-Reply-To: <20250430-rk3588-vicap-v2-1-77de5ee9048e@collabora.com>
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276687-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-276688-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[19];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -111,27 +111,22 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[mehdi.djait@linux.intel.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:email,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: B5FC02AAD10
+X-Rspamd-Queue-Id: 437DF2AADD3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Michael,
+Hello Michael,
 
 Thank you for the patch!
 
-On Tue, Mar 17, 2026 at 10:32:27AM +0100, Michael Riesch via B4 Relay wrote:
+On Tue, Mar 17, 2026 at 10:32:19AM +0100, Michael Riesch via B4 Relay wrote:
 > From: Michael Riesch <michael.riesch@collabora.com>
 > 
-> The Synopsys DesignWare MIPI CSI-2 Receiver is integrated into
-> recent Rockchip SoCs, such as the RK3568 and the RK3588.
-> As a consequence, they are used on a lot of Rockchip-based
-> single board computers and/or corresponding camera modules, such
-> as the Radxa Camera 4K.
-> Enable the driver for it in the default configuration.
+> Add a section that describes the Rockchip RK3588 VICAP.
 > 
 
 Reviewed-by: Mehdi Djait <mehdi.djait@linux.intel.com>
