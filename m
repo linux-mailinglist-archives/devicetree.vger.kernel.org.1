@@ -1,86 +1,59 @@
-Return-Path: <devicetree+bounces-276838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276840-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +MLmDYujuWlILgIAu9opvQ
-	(envelope-from <devicetree+bounces-276838-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 19:55:07 +0100
+	id ENMFK9GkuWlILgIAu9opvQ
+	(envelope-from <devicetree+bounces-276840-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 20:00:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AF012B140F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 19:55:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 155F02B14C6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 20:00:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C5F2C3133072
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 18:50:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1E1A6305260D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 19:00:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FCF03F65FB;
-	Tue, 17 Mar 2026 18:50:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 479C73F65EF;
+	Tue, 17 Mar 2026 19:00:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CApqXcVU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VoAGLAbt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0756A3F7863
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 18:50:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2498734A3B1;
+	Tue, 17 Mar 2026 19:00:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773773449; cv=none; b=Wgw+BDH9ACojswZqqnbMFHKaIIwiAYLS2TNTBWAzZ0yADHcs3wUFBySngpGtgXmSzAPp4A6jsfaqoNeQ/m0KSDHC+FKAMd41l7+YIq+WbzuavYoYQz5XtOX0WYVp3InKHNe7meIW6PDQP88ajP3DstncpUDXga5B1UTwhYIkIig=
+	t=1773774028; cv=none; b=VPAsrujpbUkPy3KxUZbRAkOXSKIEaK+w1Cy3WFI+RWsO/ZL/G7xnVGQeggXJk++y7y3jZsOKKc5ogf7Brrb9YdYeKwUFQoL1pzZXZrCEUJ/genPCn8TtPgrrnoIvpMG4tZKf+IjFNK2JcL6QV3PgoIo/rDKo7Q57Rgwrb9Y0iW0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773773449; c=relaxed/simple;
-	bh=z5cWtDke+sL8Ldiyo6ylOZz0UVt/fRNgwxPdkXOleNc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=deEavEoGgbww1HM/4h1fcnlLRHd6vnvZ3v80GKItclX4JB4/OC0WXUb2aY7fIlz7Yc8eyOeJbda4fkhS3cuVipQVp839WumaPKQiHWlq2BTwhjI7k3CplD5UAg++tE/GH+B0V4RqPaVzTMi9Cyn2FO3fE7LDrcL5unWf0T6X5+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CApqXcVU; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-48628ce9ab5so14437405e9.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 11:50:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773773446; x=1774378246; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=q3uDCj5ujrrN7s5sHc5emouOCi1WukCaxLeNogjD46M=;
-        b=CApqXcVU4YsazvfLaMrshikKzzMueYkHta9Vd78TJN83AqJ1RKzf3yJzazVWkWeA4Q
-         PLYwgrgc0FhruQawr9C7RgvTh5fazW/JNDwr6/DhzFrn/W0uI2y85wCmoRy/lqVUnWKC
-         fPHvZU9PUvnLbD3CkzRlZEdrzRIWW8PZz1PUS+70b2pz4+7k/g7hLQVTKL6XrtaMgzRV
-         RtLzMtcmai0TzzuCp7zPhNzRmqlcXsnL4yvgXJD7u0xbEtXtU0pWnHgpXNCBT9+Fhg6c
-         YoAhsOmho5FX2u1QykSeH7hpUkrzkcz85jR0gEwCAfjdbej8Ja+jXei8QvWOFZ0NM+Wr
-         chvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773773446; x=1774378246;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=q3uDCj5ujrrN7s5sHc5emouOCi1WukCaxLeNogjD46M=;
-        b=rCALdu2wn5E4gXoWbtLo1E5BlVj/nojtOH3r9Q6RoicJtPFM5qsfsHnguiY90eBOqE
-         7Wm1TD4d0wOjIkIb9wzoXcJ5oJj1wBL7kCt+T837BmFXsczr79RenHY+TmsnTlj/2v+V
-         48MjinMJxrA5TUCE5S8YUtGSoI+Kf4uiqeSmMTws/TOWGRtINLrUyCChfRw5fyNW5fzt
-         WxfE22NUL1R2Q4b+f4ZMv3av0CQh1cjhVSLpbPqmEKl03/ZL2ViqT12SfoVbxv3cw7K9
-         GT1hg+To0ICJFtp/iAacCpOFXwoZ9RBANb5Ub93xI7TPZ/9AmfAywzAKoDUGLAv5mn11
-         XVRw==
-X-Forwarded-Encrypted: i=1; AJvYcCX4B7Bav51feRTZMAgJIvzxvqAcTZCTFLdrQ+eRHivcsGn6CCHeydYVnt1rBwJAf9NCIzycVvAhRS5c@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyAzvOMskckytH7guqDyXvucoFpDm6NzTs1bk+feBs1+pz5XTf
-	7yA1Ys/W7EBY5pX87PU8hc5bB18jy3nWr7g2MkAUJ+pX+Sf4j7X2X7oz
-X-Gm-Gg: ATEYQzyAf0NsGG2V3Y+RHa35qfo42NI2yjM138gRtm5QzDdj5WoYLiXTo4R9ghhgbeF
-	CnX1rmnucfP2VfHM/sEw2+NBMKa/8TfHDuOpTW6A4VDsxh9s9NKEPtgMFwrag0JgAniuAC+650z
-	d8RoKSc7cBFBBZe/nV9BAGSNRLvJ1AiyzDpmIuPNVNz+nw5NzZRYwsBwAKYQtPBk95JQhPoYEzz
-	EjsB9blYOaLEIuOIN5zJyNdgQOVuYg9hX/8q9/n1OcKKPzKfxwtZiOPgCqK1dn2oGrimAzjI0eC
-	7nWVhwGWU9TBhqbkf7Z3S3LbufqkI6XEfoR9zGJmM2CiMB1HXP7PzCj269RNLgRiUwJhqIstv9P
-	5CBoqSKKDvRH3lVEN/J8D2MMQREOIFWjdvtSkHThlrXVhIuQ3z+Nmz2LzZ/lPAArMOehFxxokTc
-	O+foHc88d8zSE9LnIBnvzWr0bFUczVgOR4opB5oQ9bHkS66Da/WljUdKqYefMgbGoXz7LBzzH8X
-	A==
-X-Received: by 2002:a05:600c:3551:b0:485:3c14:885b with SMTP id 5b1f17b1804b1-486f4476e2cmr10827785e9.28.1773773446274;
-        Tue, 17 Mar 2026 11:50:46 -0700 (PDT)
-Received: from [10.100.102.17] (89-139-129-65.bb.netvision.net.il. [89.139.129.65])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4856ea8fb0dsm152863595e9.3.2026.03.17.11.50.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Mar 2026 11:50:45 -0700 (PDT)
-From: Yedaya Katsman <yedaya.ka@gmail.com>
-Date: Tue, 17 Mar 2026 20:50:31 +0200
-Subject: [PATCH v5 3/3] arm64: dts: qcom: sm6125-xiaomi-laurel-sprout:
- Enable MDSS and add panel
+	s=arc-20240116; t=1773774028; c=relaxed/simple;
+	bh=ZpOunXFG7UJB1+kLtylw05RgGC9wSa/yEZkHh3Kqdp8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=F5MqSvRuZSnPCRWyNJRsJatEdWLPxIoBq0Wd3rK5CsJ/Qjr/Bkh1ojGoOQDUPng5Hfeff5J/fI5BXIb+afnYq1PgKsb7aHD0xAC8orP2S4eRV9XFDHHz3685WJywmdJo2fTmXLtIGntPpB5daAqfmwI9tgAdLwFhqvlMHiZSffw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VoAGLAbt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE743C4CEF7;
+	Tue, 17 Mar 2026 19:00:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773774027;
+	bh=ZpOunXFG7UJB1+kLtylw05RgGC9wSa/yEZkHh3Kqdp8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=VoAGLAbt8sWE9ES4hnhGML0av3V16JcglRiymLxEm1yR5J8/6voWqx0U0eI00TXoD
+	 uHHmtpQ3gC5KSE0TMLNfpRwQnH2zuiBbM1nLufbQsNDe6tsKR99Kn8E7mOYJCeFL9V
+	 UzSwYbby6WLh55yGuoFwVUETewMXRPFfTgzhf9ZGJ68MYCqWruY7/Cp1iWBpwcC4e0
+	 gFuD9c85C2zJDTREOLDyc2btcpiYRb4yOY46vaDaNrN4AyWB4af8jYGNUYUht9HqH8
+	 zwf7TVjKH4aNN+1KG7bGUPglMV9DB5CZudFgzXJ8VMKSb8Ti5439Wmn83kY1Blc+kL
+	 +3TtAwCodchcA==
+From: Mark Brown <broonie@kernel.org>
+To: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, andreas@kemnade.info, Robby Cai <robby.cai@nxp.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ imx@lists.linux.dev
+In-Reply-To: <20260313133102.2749890-1-robby.cai@nxp.com>
+References: <20260313133102.2749890-1-robby.cai@nxp.com>
+Subject: Re: [PATCH v2 0/2] regulator: fp9931: Make vin-supply mandatory
+Message-Id: <177377402561.742239.3128345398754838548.b4-ty@b4>
+Date: Tue, 17 Mar 2026 19:00:25 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,207 +61,79 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260317-panel-patches-v5-3-ef99f7b280da@gmail.com>
-References: <20260317-panel-patches-v5-0-ef99f7b280da@gmail.com>
-In-Reply-To: <20260317-panel-patches-v5-0-ef99f7b280da@gmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Kamil_Go=C5=82da?= <kamil.golda@protonmail.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- Yedaya Katsman <yedaya.ka@gmail.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773773435; l=3473;
- i=yedaya.ka@gmail.com; s=20260113; h=from:subject:message-id;
- bh=z5cWtDke+sL8Ldiyo6ylOZz0UVt/fRNgwxPdkXOleNc=;
- b=is/9H1uiIy/C4DtVU6X+cCIT0JuOVFC6SfqAqDeqZyS6xlZdifsCtoPxuuLOc27OyWE30vvIS
- dtEqLToBftAD/piEFdAnoqT7oYt8CS32zIzvUNdbL/gdzlShOh64Zrr
-X-Developer-Key: i=yedaya.ka@gmail.com; a=ed25519;
- pk=CgNmxD3tYSws5dZfpmJfc6re/bV/f47veVijddHLytk=
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-e1b5b
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276838-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,protonmail.com,disroot.org];
+	TAGGED_FROM(0.00)[bounces-276840-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[lists.sr.ht,vger.kernel.org,lists.freedesktop.org,gmail.com,oss.qualcomm.com];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,kemnade.info,nxp.com];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[yedayaka@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,0.0.0.0:email,protonmail.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9AF012B140F
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 155F02B14C6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Enable the MDSS nodes and add supplies and bindings for the Samsung S6E8FC0
-DSI controller for the M1906F9 panel.
+On Fri, 13 Mar 2026 21:31:00 +0800, Robby Cai wrote:
+> The FP9931 regulator requires a valid "vin" supply to operate correctly.
+> Therefore, the driver should treat "vin" as a mandatory supply.
+> 
+> This patchset updates the binding documentation to mark vin-supply as a
+> required property, and modifies the driver accordingly. As suggested in
+> the reviews from Andreas and Mark, v2 switches to using
+> devm_regulator_get() since the supply is mandatory.
+> 
+> [...]
 
-The ldo and iovcc gpio pins boot up with a current of 16 mA, but they work
-fine with 2mA, so I used that.
+Applied to
 
-mdss_dsi0_phy is powered by VDD_MX, see power-domains in sm6125.dtsi
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-Co-developed-by: Kamil Gołda <kamil.golda@protonmail.com>
-Signed-off-by: Kamil Gołda <kamil.golda@protonmail.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Yedaya Katsman <yedaya.ka@gmail.com>
----
- .../boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts  | 94 ++++++++++++++++++++++
- 1 file changed, 94 insertions(+)
+Thanks!
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-index 994fb0412fcbdf5466f87a325c48b697a37b514b..6eb46967712554929ab68af6f3218396b7f0118e 100644
---- a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-+++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-@@ -82,6 +82,33 @@ key-volume-up {
- 		};
- 	};
- 
-+	panel_vdd_1p8: regulator-panel-vdd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "panel_vdd_1p8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-boot-on;
-+		vin-supply = <&vreg_l9a>;
-+
-+		enable-active-high;
-+		gpio = <&tlmm 26 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&panel_vdd_1p8_en>;
-+		pinctrl-names = "default";
-+	};
-+
-+	panel_vci_3p0: regulator-panel-vci {
-+		compatible = "regulator-fixed";
-+		regulator-name = "panel_vci_3p0";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-boot-on;
-+
-+		enable-active-high;
-+		gpio = <&tlmm 124 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&panel_vci_3p0_en>;
-+		pinctrl-names = "default";
-+	};
-+
- 	thermal-zones {
- 		rf-pa0-thermal {
- 			thermal-sensors = <&pm6125_adc_tm 0>;
-@@ -128,6 +155,45 @@ &hsusb_phy1 {
- 	status = "okay";
- };
- 
-+&mdss {
-+	status = "okay";
-+};
-+
-+&mdss_dsi0 {
-+	vdda-supply = <&vreg_l18a>;
-+	status = "okay";
-+
-+	panel@0 {
-+		compatible = "samsung,s6e8fc0-m1906f9";
-+		reg = <0>;
-+
-+		reset-gpios = <&tlmm 90 GPIO_ACTIVE_LOW>;
-+
-+		pinctrl-0 = <&mdss_default>;
-+		pinctrl-1 = <&mdss_sleep>;
-+		pinctrl-names = "default", "sleep";
-+
-+		vdd-supply = <&panel_vdd_1p8>;
-+		vci-supply = <&panel_vci_3p0>;
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&mdss_dsi0_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&mdss_dsi0_out {
-+	data-lanes = <0 1 2 3>;
-+	remote-endpoint = <&panel_in>;
-+};
-+
-+
-+&mdss_dsi0_phy {
-+	status = "okay";
-+};
-+
- &pm6125_adc {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&camera_flash_therm &emmc_ufs_therm>;
-@@ -387,6 +453,34 @@ &sdhc_2 {
- 
- &tlmm {
- 	gpio-reserved-ranges = <22 2>, <28 6>;
-+
-+	panel_vdd_1p8_en: panel-vdd-default-state {
-+		pins = "gpio26";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	mdss_default: mdss-default-state {
-+		pins = "gpio90";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-disable;
-+	};
-+
-+	mdss_sleep: mdss-sleep-state {
-+		pins = "gpio90";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	panel_vci_3p0_en: panel-vci-default-state {
-+		pins = "gpio124";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
- };
- 
- &ufs_mem_hc {
+[1/2] dt-bindings: regulator: fp9931: Make vin-supply property as required
+      https://git.kernel.org/broonie/misc/c/d342f5e355aa
+[2/2] regulator: fp9931: Fix handling of mandatory "vin" supply
+      https://git.kernel.org/broonie/misc/c/58068932402c
 
--- 
-2.53.0
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
