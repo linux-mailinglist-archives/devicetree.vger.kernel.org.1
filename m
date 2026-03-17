@@ -1,189 +1,219 @@
-Return-Path: <devicetree+bounces-276714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276715-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4H2IN6FmuWkyDgIAu9opvQ
-	(envelope-from <devicetree+bounces-276714-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 15:35:13 +0100
+	id SM2jBVZmuWkyDgIAu9opvQ
+	(envelope-from <devicetree+bounces-276715-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 15:33:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 717012AC113
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 15:35:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B44602AC096
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 15:33:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E8C8930A5CCC
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 14:15:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 45BDF3130D4A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 14:17:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EB303EAC92;
-	Tue, 17 Mar 2026 14:13:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C1F83E4C77;
+	Tue, 17 Mar 2026 14:14:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tZAEscpa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IwDacHVC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFCB63EAC91
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 14:13:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57A7F3E4C85
+	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 14:13:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773756788; cv=none; b=debFOZ5N0lZjdUbc44mqVz+x/SLEUyMMuNm+lMIPSzgFMFkaA/Q1mB5kO445b5YWCr7LyHtfRX1v+TF+TNpi8oMnGPbOxbKc+4eIRKGxkv44cB5M1+F+t2YCT0ouAWuhT3c+iv32lUa+jWTbf2xpzJQe9F4m3iLfGIyYjAsY/eY=
+	t=1773756840; cv=none; b=qCj35YlP3rsC7w9muL558tyfihahwbvEWUv9VJn+7NjeX2o2y8S8aWcBj7AuZB+a3mMiupaGDRlZeZOHPPLqhDOFE3Et+bAegutaUGbGbYeSIrk5u0abh4827DRmV4wYvY61P3G44wzfxZDi/fo/k8EvVO7A/ycpZ3ESVBIyVak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773756788; c=relaxed/simple;
-	bh=9QDalKJYBUEDUJPFs8n5F17T6oCLIOfRdQADKKa+dtg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rLujsfuzbLE855ELQRNd7OppE6YBri2CTGLE2Wko5162tCATWQbF8HF8Q7t9uqRUYtIWgLmQDszk1z76gt8mb6lnb8vo10Rs4vD2FUv9UV+fQrQmj24vQmPIxABxly+10wpnGeQi5fUUDqnG5CGcDwnBhPfrWQdCWPEnm4y3lBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tZAEscpa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D19C5C19424
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 14:13:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773756787;
-	bh=9QDalKJYBUEDUJPFs8n5F17T6oCLIOfRdQADKKa+dtg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=tZAEscpa8SCC5cIZ2JquMfgXyJ2cYbjRRZovEZ4pp9iCwMtzoyZvoUvuYiYMbRTYC
-	 SnQwovSWExy1qzNu8gKN2Re3kiqbZF6sZmkIooWlWa9EIx1ERfsbgtRs5rZB0SAIxf
-	 3lPrGMQ4Ue2TuM4ia8nL9lBYQlDl9Z6+Gmi7Vne8vrfCzyTk9J2Ck3dsbBaTLAPSfD
-	 NPCO+IQ8fm5HTfq9yr/wXF7f1MJldHxMFhyKqH3oTfoTSoTC0Dh5v2G2YRcDRDQgL5
-	 ObXNTsitNLuKk+KvWrgZ9pPDroH39BoYVIyc5TZiwHYdHQ131NS6aY+w9jvXRnJOfo
-	 pYQYSw8TEnjrw==
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-38a3486419cso38233011fa.3
-        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 07:13:07 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUV+huOnvg6yCDB8Nu2ixd+55O3+s7nHzN+Jrg2lnl8wAXbipKkIPS2EnN/dQ9g7xhvU3bJrb8+F4Y3@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywx82ox1jfsFDdgagIyS6jkuZvzZC0YiZXpA3OCNd0sCt/TR3Wl
-	2eAFDuuLhfQQs4QS97g2sDA9NartlLDLAF78f5YA3ukSUdUX6Kz9ygqu17Pf/D7/y9A0bUx+f2Y
-	L1Bj30PiFNaGn3DIsUldTxGdIVI13BTultnAY/Rw+6Q==
-X-Received: by 2002:a05:651c:2115:b0:37f:c5ca:a6d4 with SMTP id
- 38308e7fff4ca-38a89666433mr58706271fa.6.1773756785569; Tue, 17 Mar 2026
- 07:13:05 -0700 (PDT)
+	s=arc-20240116; t=1773756840; c=relaxed/simple;
+	bh=jugNfhVGoAZLsOc99uCHasSIqDz4SbgW0PhAWH1GU18=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Z6qNp86I1Pes5jra8uanX6/H1BGFMH+Vq/Rfn9qhju3ebH01IlT+I4ayb5vYADhaBrql0jbXitp/mK1q53K58c3dRsbxeLzXxBmhA2rVMXWNBCg3vsVElcLplxIuQe6dtSoPT7GJ3R9wXd5tMws6iX4nlGZsjdkZkPCc5J7z5uU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IwDacHVC; arc=none smtp.client-ip=209.85.215.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-c73bb6662d8so1349356a12.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 07:13:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773756839; x=1774361639; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xG69i8JOUMrznCX6jQd2A8Mx07c0rQ57RLS0YIP3VgM=;
+        b=IwDacHVCJqqz/pl59zB+0pV+tkuM8+dz356kv6oRBiBwjg3VkrlOmbPFG78Rb8Oo/E
+         6Ae4mRspZMfm/YwsltuMcGnezSE0xgiVyDDBdoNyRKKpCXw42wBhyi+ay5Q8r2lT9CUx
+         jEMOttyCGd3tTunzzeNcTajNFe/TOm+IOQiSFoLiTKfpU5ex8kpMaY/EU3iAwI9Xa6md
+         0VeSs3XMmSdL53OQzALfFVFcxNhAgEXrQfxEBeZyKQWvgYKtrWQ3HibKRNBcoCFH5wZP
+         i2OleKprJbZ/FNavehvgY1lKCcEMmP2uVzgCo8Rxe5N+6F61EXtDJzzYQVN8BYfV5y4B
+         JtPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773756839; x=1774361639;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=xG69i8JOUMrznCX6jQd2A8Mx07c0rQ57RLS0YIP3VgM=;
+        b=QXsorMfz98rV2jIFCptbEuivWFXkcbOCSlkQ+Irhcl/Mnt/j71EITIpWY+iQqRP/9x
+         m6iRdpMAEnnjCsb0YwoEfSJUyjBa0uG6NnhV7G3IrW5XciEttJrnjCjBT+WP2WhJdAZP
+         HWZ1mrJP7jgi7KtiJAUdCFbtPnUENH+likslLPCCzHAg4VVTseST5mZgbacxjlnLNEcM
+         mdAJTqJlth0DfPVrlCW8geSPkCIQm4ffXHvbzEDemkHQkG9fpL2sD3/vzUxY/RPhrTfU
+         BGoMwTFxZUDEWBuwpACNRAbA90lQNKYta+Dso2/tvrHstfsfGDdbIDGGOU9lDJFu90r+
+         5p7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXIhZXFd4lMq4iSSkycPS2yb8Bb1A0WfQCmd1GARs81GjFKaqeeixdxuFrfoBK8m9WU27STdH7ZL0Gj@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLJu/6KrrmmxnFmVmTFW8nQniVG7M4xs2fPrIlgYEm9LQjTmYt
+	8tosjD5jCpN9haIJ4zMzrT/S5Y91ebIDSB48c0rw8c1nFkdaPwgfKjY3
+X-Gm-Gg: ATEYQzxLKD1awTX34v8QRyHLUJyIolX2g0rSOxFDyiyXKUTCythXP5Ar4tasI9bNXrr
+	pJzIsRS8FNxw4ArRDaK0Pmtx08ZsPbb8FYGWhpGHWBOPJOOXKeBtRKcbUEzccT2l1M9xc4HdYdx
+	u4rLV+JvTwo/llIyQC/Ro9YbaHHJG/0vVVExxJ6ZYF3yzUxhyX9Psxg2n9uLVw2KkPeqZCTar2a
+	lXMB33GFMZ+lErCbor+3wJ3JdRrtzpzX8whcG5s/3mseSlBIizJYDtLZxKpSC+/Ss4daQMa2V4m
+	AJ4IduI3UsJz2ra+BlAfDCb1Eg6zdufkmOgOOyUWIAZV95elgcNBoQWGHqi+6lJL0FIJYBbNEin
+	XSeEcy9UDwoFzKClDtgVbM9hZdglk693MTDFoLQ/tDHnzI+CoBVDDCj5JK+bupgl3n1KqbjPirb
+	szs71Wbu+ppyrTFiDMpdpuRuT4Q3mFS48FizJG8hTrTWrG3RuxN1rlgPMbByu7gbi2BHJLgQ==
+X-Received: by 2002:a17:902:e54e:b0:2b0:5472:ac80 with SMTP id d9443c01a7336-2b05472af91mr89495745ad.42.1773756838550;
+        Tue, 17 Mar 2026 07:13:58 -0700 (PDT)
+Received: from localhost.localdomain (61-230-23-18.dynamic-ip.hinet.net. [61.230.23.18])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b04f40f515sm114820005ad.74.2026.03.17.07.13.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Mar 2026 07:13:58 -0700 (PDT)
+From: Yu-Chun Lin <eleanor15x@gmail.com>
+To: krzk@kernel.org
+Cc: afaerber@suse.com,
+	conor+dt@kernel.org,
+	cy.huang@realtek.com,
+	cylee12@realtek.com,
+	devicetree@vger.kernel.org,
+	eleanor.lin@realtek.com,
+	james.tai@realtek.com,
+	jyanchou@realtek.com,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-realtek-soc@lists.infradead.org,
+	mturquette@baylibre.com,
+	p.zabel@pengutronix.de,
+	robh@kernel.org,
+	sboyd@kernel.org,
+	stanley_chang@realtek.com
+Subject: Re: [PATCH v4 01/10] dt-bindings: clock: Add Realtek RTD1625 Clock & Reset Controller
+Date: Tue, 17 Mar 2026 22:13:52 +0800
+Message-Id: <20260317141352.17813-1-eleanor15x@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <949b509d-c712-43e7-85a0-60f4c5e24a09@kernel.org>
+References: <949b509d-c712-43e7-85a0-60f4c5e24a09@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260316-qcom-sa8255p-emac-v9-0-c58934e76ff2@oss.qualcomm.com> <64d282fd94be1546df75d7df5b47eacc0479797a.camel@redhat.com>
-In-Reply-To: <64d282fd94be1546df75d7df5b47eacc0479797a.camel@redhat.com>
-From: Bartosz Golaszewski <brgl@kernel.org>
-Date: Tue, 17 Mar 2026 15:12:53 +0100
-X-Gmail-Original-Message-ID: <CAMRc=MfNcK3MLndik1jy-yhHAph5=amnTGgn-MpXXG0Uv1ifpQ@mail.gmail.com>
-X-Gm-Features: AaiRm52mh793CgOH9S8BNXU-tBYi1I-pfEq9XQjt50faEkjR5xH42aEvJgG19dM
-Message-ID: <CAMRc=MfNcK3MLndik1jy-yhHAph5=amnTGgn-MpXXG0Uv1ifpQ@mail.gmail.com>
-Subject: Re: [PATCH net-next v9 0/6] net: stmmac: qcom-ethqos: add support for
- SCMI power domains
-To: Radu Rendec <rrendec@redhat.com>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Vinod Koul <vkoul@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Fabio Estevam <festevam@gmail.com>, Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com, 
-	Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com>, Romain Gantois <romain.gantois@bootlin.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Maxime Ripard <mripard@kernel.org>, Christophe Roullier <christophe.roullier@foss.st.com>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, Drew Fustini <dfustini@tenstorrent.com>, 
-	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org, 
-	linux-mips@vger.kernel.org, imx@lists.linux.dev, 
-	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,lunn.ch,davemloft.net,google.com,redhat.com,gmail.com,foss.st.com,st.com,linaro.org,baylibre.com,oss.nxp.com,nxp.com,bootlin.com,glider.be,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,tenstorrent.com,lists.linux.dev,googlemail.com,bp.renesas.com];
+	TAGGED_FROM(0.00)[bounces-276715-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-276714-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[51];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev,renesas];
+	FROM_NEQ_ENVFROM(0.00)[eleanor15x@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 717012AC113
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B44602AC096
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 16, 2026 at 7:31=E2=80=AFPM Radu Rendec <rrendec@redhat.com> wr=
-ote:
+> On 17/03/2026 02:57, Yu-Chun Lin [林祐君] wrote:
+>>> On Fri, Mar 13, 2026 at 04:10:51PM +0800, Yu-Chun Lin wrote:
+>>>> +#endif /* __DT_BINDINGS_RTK_CLOCK_RTD1625_H */
+>>>> diff --git a/include/dt-bindings/reset/realtek,rtd1625.h
+>>>> b/include/dt-bindings/reset/realtek,rtd1625.h
+>>>> new file mode 100644
+>>>> index 000000000000..e69b5ee14cc6
+>>>> --- /dev/null
+>>>> +++ b/include/dt-bindings/reset/realtek,rtd1625.h
+>>>> @@ -0,0 +1,195 @@
+>>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+>>>> +/*
+>>>> + * Copyright (C) 2025 Realtek Semiconductor Corp.
+>>>> + */
+>>>> +#ifndef __DT_BINDINGS_RTK_RESET_RTD1625_H #define
+>>>> +__DT_BINDINGS_RTK_RESET_RTD1625_H
+>>>> +
+>>>> +#define RTD1625_RSTN_REG_ID_SOFT_RESET1     0
+>>>> +#define RTD1625_RSTN_REG_ID_SOFT_RESET2     1
+>>>> +#define RTD1625_RSTN_REG_ID_SOFT_RESET3     2
+>>>> +#define RTD1625_RSTN_REG_ID_SOFT_RESET4     3
+>>>> +#define RTD1625_RSTN_REG_ID_SOFT_RESET7     4
+>>>> +#define RTD1625_RSTN_REG_ID_SOFT_RESET9     5
+>>>> +#define RTD1625_RSTN_REG_ID_SOFT_RESET_BIST 6
+>>>> +#define RTD1625_RSTN_REG_ID_DUMMY0          7
+>>>> +#define RTD1625_RSTN_REG_ID_DUMMY1          8
+>>>> +#define RTD1625_RSTN_REG_ID_DUMMY4          9
+>>>> +#define RTD1625_RSTN_REG_ID_SOFT_RESET11    10
+>>>> +#define RTD1625_RSTN_REG_ID_SOFT_RESET12    11
+>>>> +
+>>>> +#define _REG_ID(n) ((RTD1625_RSTN_REG_ID_ ## n) << 5)
+>>>> +
+>>>
+>>> Not a binding.
+>>>
+>>>> +#define RTD1625_CRT_RSTN_MISC      (_REG_ID(SOFT_RESET1) | 0)
+>>>> +#define RTD1625_CRT_RSTN_DIP       (_REG_ID(SOFT_RESET1) | 2)
+>>>> +#define RTD1625_CRT_RSTN_GSPI      (_REG_ID(SOFT_RESET1) | 4)
+>>>
+>>> None of these are really bindings. Register offsets is hardware data, not a
+>>> binding.
+>>>
+>>> Drop all of this above and further - actually nothing in this header look like a
+>>> binding, since you called these "REG".
+>>>
+>>> Best regards,
+>>> Krzysztof
+>> 
+>> The defines in this header are NOT register offsets. They encode "Bank ID+ Bit
+>> Position" for use in Device Tree.
 >
-> On Mon, 2026-03-16 at 13:05 +0100, Bartosz Golaszewski wrote:
-> > Add support for the firmware-managed variant of the DesignWare MAC on
-> > the sa8255p platform. This series contains new DT bindings and driver
-> > changes required to support the MAC in the STMMAC driver.
-> >
-> > It also reorganizes the ethqos code quite a bit to make the introductio=
-n
-> > of power domains into the driver a bit easier on the eye.
-> >
-> > The DTS changes will go in separately.
+> Bit position as in register bit position? That's still not a binding.
 >
-> I'm seeing some weird behavior with this version. The probe part looks
-> good (but see below), but when I try to bring an interface up, it fails
-> with ETIMEDOUT. The relevant part of the stack trace leading to the
-> error is this:
 >
-> dwmac4_dma_reset+0x208/0x220 [stmmac]
-> stmmac_reset+0x2c/0x68 [stmmac]
-> stmmac_init_dma_engine+0x108/0x400 [stmmac]
-> stmmac_hw_setup+0x5c/0x538 [stmmac]
-> __stmmac_open+0xc8/0x2a0 [stmmac]
-> stmmac_open+0xcc/0x238 [stmmac]
-> __dev_open+0x138/0x2a8
+>>
+>> Agreed, The naming with "REG_ID" is misleading. I will improve naming all reset
+>> IDs in v5.
 >
-> Now dwmac4_dma_reset() is very simple. It sets the soft reset bit in
-> the DMA_BUS_MODE register, then waits for the hardware to clear it, and
-> that never happens.
+> No, all are to be dropped or renamed to standard IDs (incremented by one
+> from 0 or 1).
 >
-> Now, getting back to the probe part, there is one extra message
-> (compared to my previous successful test on v7), which I see at the
-> very end of the probing:
->
->   qcom-ethqos 23040000.ethernet: clk_csr value out of range (0xffffff00
->   exceeds mask 0x00000f00), truncating
->
-> This is a sa8775p ride board, so there are two stmmac devices. I only
-> see that message for the 2nd one, which is also the one I'm trying to
-> enable, and which fails.
->
-> I realize this may or may not be related to your changes. But there is
-> no way to test on a SCMI-pd board without them. I'm not sure how
-> relevant it would be to test on the non-SCMI variant. I'm assuming the
-> DMA part should work the same way (regardless of SCMI-pd), so if I can
-> reproduce it there, and since I know it works on mainline Linux (that's
-> where I tested v7), I could bisect and see which commit in net-next
-> breaks it. If you don't have any better idea, let me know and I can
-> try. Meanwhile, I'll keep poking at v9.
->
+> Best regards,
+> Krzysztof
 
-Does current net-next on its own still work? Or is the second
-interface broken even without this series?
+Hi Krzysztof,
+ 
+Understood. I will redesign as follows:
+ 
+1. Binding header: Sequential IDs (0, 1, 2, ...) without hardware details.
+2. Driver: Internal mapping table to convert IDs to register/bit positions.
+3. DT: Uses abstract IDs from binding header.
 
-Bart
+Regards,
+Yu-Chun
 
