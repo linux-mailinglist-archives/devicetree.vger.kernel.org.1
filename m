@@ -1,227 +1,155 @@
-Return-Path: <devicetree+bounces-276757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276758-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SNFVBIN5uWnQGQIAu9opvQ
-	(envelope-from <devicetree+bounces-276757-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 16:55:47 +0100
+	id 4AEuBGl5uWnQGQIAu9opvQ
+	(envelope-from <devicetree+bounces-276758-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 16:55:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 641E22AD5F3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 16:55:46 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73AA42AD5D7
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 16:55:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C3FD330B55EC
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 15:54:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6D24B301BED2
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 15:55:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C7512D46B2;
-	Tue, 17 Mar 2026 15:54:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92B2C28A3FA;
+	Tue, 17 Mar 2026 15:55:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="N8dktOgP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PucHr8pI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from serval.cherry.relay.mailchannels.net (serval.cherry.relay.mailchannels.net [23.83.223.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A37432D063A;
-	Tue, 17 Mar 2026 15:54:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.223.163
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773762872; cv=pass; b=CrKrjCnU0tTpwBsZe0fLebBF+VuePr4VvM9TOQnGhIdmDNgFkrQPQJ6dR/tNO0w6EQv/2FoiBbjYMycTK0M+StzNsVj/KEqh4teIWiY/yXsIbSCrDfkhn6ytrBXjyvrRXfotb7wMhtUrkAr1wk9N5iAN6it8Hc7bu7khPTlqkQM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773762872; c=relaxed/simple;
-	bh=lfxNJqkAn5nedMvtm/Giy9zfFi5rpr8yqgrJXgmm9gI=;
-	h=Message-ID:MIME-Version:Cc:Subject:To:References:From:In-Reply-To:
-	 Content-Type:Date; b=MeWmrsim65SkGuITwaStyBthG2JfUVn5HWw98sbTjdVCYFWoQZuzxO61xutT8PqTJk4lZy0h05dpu7f9daa08VX4s6a4Y1BbAtHOh653IvHjRrq7ei2MQ1X6pcxs7HiDttZloIp21HiQjpUs3Zha72NjtAgXofKDyjQi8wyfBek=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=N8dktOgP; arc=pass smtp.client-ip=23.83.223.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 50F17441501;
-	Tue, 17 Mar 2026 15:54:21 +0000 (UTC)
-Received: from de-fra-smtpout10.hostinger.io (trex-green-3.trex.outbound.svc.cluster.local [100.115.143.3])
-	(Authenticated sender: hostingeremail)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 1DC08443A5F;
-	Tue, 17 Mar 2026 15:54:16 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; d=mailchannels.net; s=arc-2022; cv=none;
-	t=1773762860;
-	b=b61weR3qTzwwdmqJyI94fqXX2G8Q7UoYujr5CpkJBQufmk3KQqjTsfXFuifqNlfVIMQUQ+
-	Zb5GoIDH42Qwpef0RoXYAnnShqKPdwenXMpGlzAX8ARXrJRzRSU5pjvVdBRcc7HvPZP2GE
-	PK9NJzf9ApB06R8cmrgD8L13uzvoO9kgfA8xM5yg80ONYZSshHlTeLGgkpOU6KPHVa8rjd
-	WQBg5i331RRPtS8rCSjLZsUWOiEjKSoqOvZQCuCRSKHM2qzei8bZPP3VneXC4u4YKczc8Y
-	+EUQHRGQBV9QgLNBJPznZS0Wrz+5OKcb1a9KyWMBlkas3WPvKrC+g0k3W0o/fA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1773762860;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=ILl2TqrEu5S8QBVXKLjl+G/C6M4r2ZltpX0HMEpdMmw=;
-	b=KFseWj9vQw7waI91d1jD4C9V9iWI5bmYcVjXZ295r/i50nke6nN6LzuZ/G5z9kEPsEuBrj
-	1ZcwlF0afGaNEmvSA51Rhc4LhS77CGslrHBCroxrY6M7W+/5+BTVSPpByP8mWtguipXSbq
-	4xzQms43J43/gYBvYZLhk34FTqTHopIdJYKuTZUJUKFCpfoezyA8w7LCLS+P29rOvaETjj
-	qbmkReB8/a/HYBG70YWjZnbQH/tgYXfo4HQa+Oc40I+8m7m/QTkKiidIqfGnnYkxzLSpk2
-	8ziFyfDXE+FteP2lUXepUK1iOQtpynZjwvAF7XDrg6G2KSkoq7RJzoS2NUX/jQ==
-ARC-Authentication-Results: i=1;
-	rspamd-78765f9847-k8fbv;
-	auth=pass smtp.auth=hostingeremail
- smtp.mailfrom=michael.opdenacker@rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MC-Relay: Neutral
-X-MailChannels-SenderId:
- hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MailChannels-Auth-Id: hostingeremail
-X-Interest-Macabre: 274221fb23ded875_1773762861123_1944666366
-X-MC-Loop-Signature: 1773762861123:2501252353
-X-MC-Ingress-Time: 1773762861122
-Received: from de-fra-smtpout10.hostinger.io (de-fra-smtpout10.hostinger.io
- [148.222.55.9])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.115.143.3 (trex/7.1.5);
-	Tue, 17 Mar 2026 15:54:21 +0000
-Received: from [IPV6:2001:861:4450:d360:2a72:4a2c:81bf:d1d4] (unknown [IPv6:2001:861:4450:d360:2a72:4a2c:81bf:d1d4])
-	(Authenticated sender: michael.opdenacker@rootcommit.com)
-	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4fZxN64SDxz3wnK;
-	Tue, 17 Mar 2026 15:54:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
-	s=hostingermail-a; t=1773762855;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ILl2TqrEu5S8QBVXKLjl+G/C6M4r2ZltpX0HMEpdMmw=;
-	b=N8dktOgPXQBd0S/4dO0a9yNoHQlVfXPSThfnDEr3FYupVmQVvM/Zt93eiVQJ5UkeJYlTL5
-	lENELrdv6VKeJQmaGq2vElqTsdbH2ey+hEY9+z44cvuAvtXuHMts9k/mmDc7pcB9DQVCxb
-	eot8EYj0oCPwOnYPGCdHQzDhfMMSaULjXyyzSyNyYL5q+4xNPj4Foo0Yaa98O6iZIT80V1
-	n7fEUE+X2M4oGX0thn+ti8SrLsGjzsxh1fXd+w9IRWcGODEvH/ZR2DdEKG3IiM3VSKhsNp
-	g+8xs4euZQQ3BXf0iWNJZ1ER9twA3ejKNtpeEYBJEpXBQnHFyUaXY/wHWzbMxg==
-Message-ID: <5fbc6f34-06d3-4e11-b9f7-f091cbf7394a@rootcommit.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79649280329
+	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 15:55:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773762908; cv=none; b=W8UTHTRQVdOfNG+r4YVnSw8UIsoRp4kMFJrJAup+9ie1n0cG3YcioqtXi51K3P3Emh2x7vaG/asa0KhC+1lCicDQwuDjlNVHjlxkfstAUhio3fBdQrl2aQHesiSitTxSuHaNVA0HiJ/7NJ0iOVb4PkdOXeirdk+jkiCT9IRfCTQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773762908; c=relaxed/simple;
+	bh=DVl7jLgxMIXSLk+EDXb7k2RJJDz3Mx+eRUZGPcAqzKE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DBJ1uyHFko84hzu5AAIVg2X172fkDXQD3AM5DZGR/zZhfBivPfV66pWW6rXelKdYko+Pt4Tc+Pa4sS9FWPExpX1QdiEMhZu98V9FJr9FyM5zdvaIpWn5SSxkk3pUzOanajJRDwoWNo6gXvtSHJ7+srxTYrme5cZA/Gf0by0lbsI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PucHr8pI; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-829759ca646so3581568b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 08:55:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773762907; x=1774367707; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=f8ibux8nB/MhHnX1SyYOz0IsNXVQjw67zWlanOsT53c=;
+        b=PucHr8pIUbZBx3gBF2TE+YGpLglnXec1O2hk7PJEM1Y4ZETngyf/W26vQTSdOQDMyx
+         EcPnLgEPBnV4MQZtgv1LJ07x04RR/t1LsYdQ2/1yTmWRIuGitAwUDryuAc47dmrZdXNp
+         H1GjNjZaARQnKpWHcZ95JAtEbm+MUlw2f5NTCzTM0RGxKEqVDO+i2AgOwN2SmqnBddTu
+         /GHa1sFRA1sIIch8D8GTcGVueyrUTZfnhZzLv0eW8Pk2DJgfUCOMDIG+NMFmjbJZl4AR
+         ZD2KWomntn0Olle+FlezQNbJG0X31SqeoqnhBoXdBNdsLCoyZBqztDV8WqwEQI76UWA8
+         Xv5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773762907; x=1774367707;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=f8ibux8nB/MhHnX1SyYOz0IsNXVQjw67zWlanOsT53c=;
+        b=fBUEPsnlSRgsVISwAtILjAazcLYg11aexdsBgrKwI2QODv8vguzcOU88G2z6gpCf1F
+         x9f4pFbRsrZTgXmcCBNZ4Yn4lBqIERT1IY172I0JUVxfXoPcEPPKESsAwl4g14xbSQwY
+         hzKuTVCPQuOY/RsUwgCsq5TgqyTCpDzrDpUciDcuDBpYBrFWlCEzClZvIlJ75UnS4SbT
+         0aSkXQFGWo/MYmvYFdi6awEImA+KsmEz40Jp5VcY7V25dnhS/coEZzhGP/a+SS6KWujO
+         IZGmSPTIVmuSecTsLy9X2b4evNBDQcUskMycgBZZqcHxAblU8pStAxCTAdE5vhygYoEP
+         w5Cg==
+X-Forwarded-Encrypted: i=1; AJvYcCXq11WPWaIBfyxiOzhYs5pRrClhibzdnJz7eVsJEoUbqr95i8DI+JwGnFRkUv50KGCopphCcw0t2rmp@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsDtoMj1wzCatgzYDhA81FChN2iijXThlx2UNgIa/1faFtujFO
+	eh8xwUhPzlkVNx17moWpdXkb6k2WsLzzsJne97lek8eWpLheAO8mIQ3c
+X-Gm-Gg: ATEYQzxenhnhVi6GDw7t4h4Ca0OrCfAdYx41ogIYwd63QUYO10Hpr7wJ0JXVwhNEl2G
+	DZSi0HX5gY4wPR+OoyXWIwGchjWF/jfxB893WNPim8lymKISGEQig62e07fyT3e37FHGnj8cN6S
+	0xLKdou1/oKs7/dalKOGL+qMmXy+oxDDijhpX3pA4SGNjS5M6JxYaRt9eQAJVmJTtYCOjW7Caz2
+	x+0R8/pZucNcP75n5DimujG9SdJyFisntiR7TlinrKHdUIB0uOwss19nPnwGtub+LxUiBTmjymb
+	rm1L91XwcC2zbyx8p0rXnz5t9ftsfPOgPuXNqEPfvRlL1R9TfFRIJh/vChxFU1HA7oYXzEYZacM
+	navUi394p9E0gg5595zc6+DrBNera63ZcLaShgmSuUJO5ynA9NspjcrkrsZD6nagtbh0oUSIbte
+	AZt6IcaRrgyFLX7DU5VG4gPpGbfzXxPQFJcChN
+X-Received: by 2002:a05:6a21:516:b0:398:9044:77b7 with SMTP id adf61e73a8af0-398ecdd8a48mr15587743637.59.1773762906804;
+        Tue, 17 Mar 2026 08:55:06 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c741e5691b8sm21201a12.25.2026.03.17.08.55.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Mar 2026 08:55:06 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Tue, 17 Mar 2026 08:55:05 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Rahul Tanwar <rtanwar@maxlinear.com>,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Icenowy Zheng <uwu@icenowy.me>, Han Gao <rabenda.cn@gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: moortec,mr75203: adapt
+ multipleOf for T-Head TH1520
+Message-ID: <7f043ae1-c863-4884-a2c7-710a8d9d8771@roeck-us.net>
+References: <20260309162457.4128205-1-zhengxingda@iscas.ac.cn>
+ <20260309162457.4128205-2-zhengxingda@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: michael.opdenacker@rootcommit.com,
- Javier Martinez Canillas <javierm@redhat.com>, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
- Anand Moon <linux.amoon@gmail.com>, Trevor Gamblin <tgamblin@baylibre.com>
-Subject: Re: [PATCH v3 6/7] riscv: dts: spacemit: k1-orangepi-rv2: add SD card
- support with UHS modes
-To: Iker Pedrosa <ikerpedrosam@gmail.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>,
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
- Yixun Lan <dlan@kernel.org>
-References: <20260316-orangepi-sd-card-uhs-v3-0-aefd3b7832df@gmail.com>
- <20260316-orangepi-sd-card-uhs-v3-6-aefd3b7832df@gmail.com>
-Content-Language: en-US
-From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-In-Reply-To: <20260316-orangepi-sd-card-uhs-v3-6-aefd3b7832df@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Date: Tue, 17 Mar 2026 15:54:14 +0000 (UTC)
-X-CM-Envelope: MS4xfJw5AHuHKESwjxDU42t1s3Ntdjj/zJ52wwsXYYlRQARrN6B9FMg779E6OU6fQazbRZ+bWLG5XaO3Ntlgvf2SLKo1l5gVtS3EevJM26Cv+2YK3TO24ScR dtkz91LSXVI8KMYrrxjikwy6zfHYux/zzoWXi9bYBz5vsPA2B/mZfV+CkUFV4pZBkjpCbxrmmfgAU5XMARsge99C+0XEBumIz3AE/9GjjsYz51Ovt8JBk5FW Iwe7hqbmOXuXU8L5leCOV4bHVgDvn77uwAkvVfXv4RdGdJ9GOJY4OKt12Ucf7Cmh0Xy+MN448nX/3DtQzh0x/weDvOn86VCaa3XBMSJo+XRGRJB+g8GpDyCq G+zZACs0al7qKDgrDbp6y6kmA0WTIUo8ZvOA66GGh71eUr3RnKE4YEAkJbQkq4aIT+kuSwOPS/T+BJ2+I3Wf98SshtNlTj6LWnzJkqiyKlU0W4JTH5Cm3IEh DbN5uLy8tnnkf3Dg0QOYdlJICLyecy5gfP9eXFYzAlqzS8mNshQAmfGaZBxmlcPqYS+JvukqtmO0BBEbA1jmBa/VeFfuzJS2XNKAwY5lu4NrPxjwI9zbwtyl UjHkq1vVbjHX9Fj3YDXUN6vJEhfha9dL6mjUegX8KHfcoPX7rAN0fq0/dG222h2xfE/4MmClBv2j6ztnssNTtvc6ZMzztxhjrHksMq90vY43szkM6N1Si09X XFM5E2SOE9a15HZm1nMVMj9cVfhhG9akQXRfd0cG7w/h8REGvYyvtYncLiogf0JKA6RWRgypgR21tIgd6EPFSxNdCBIvtMtpQRY3nvq3WrNiqAOFMNi85E1N Fo5BoX87N4fRKE8ePYmaW1ddfRAQHel5qVqDmcYQ2/VT+er3DATVkRakruHBMuwpT+jnVvA9IfUXyezepwfPFBGey+y5+jv2FqRK3tp0Zi+0S8My3EA1nM5x xVBscA==
-X-CM-Analysis: v=2.4 cv=Ceda56rl c=1 sm=1 tr=0 ts=69b97927 a=eExTT1VkZWUTeek0JR7vTg==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=d70CFdQeAAAA:8 a=pGLkceISAAAA:8 a=IpJZQVW2AAAA:8 a=LzP2-JvhAYZmahfDZeMA:9 a=QEXdDO2ut3YA:10 a=NcxpMcIZDGm-g932nG_k:22 a=IawgGOuG5U0WyFbmm1f5:22
-X-AuthUser: michael.opdenacker@rootcommit.com
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260309162457.4128205-2-zhengxingda@iscas.ac.cn>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[rootcommit.com,none];
-	R_DKIM_ALLOW(-0.20)[rootcommit.com:s=hostingermail-a];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276757-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,linaro.org,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,baylibre.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[michael.opdenacker@rootcommit.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[rootcommit.com:+];
+	TAGGED_FROM(0.00)[bounces-276758-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,redhat.com,maxlinear.com,vger.kernel.org,lists.infradead.org,icenowy.me,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 641E22AD5F3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,roeck-us.net:mid,iscas.ac.cn:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 73AA42AD5D7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Iker
+On Tue, Mar 10, 2026 at 12:24:56AM +0800, Icenowy Zheng wrote:
+> The G and J coefficients provided by T-Head TH1520 manual (which calls
+> them A and C coefficients and calls H coefficient in the binding as B)
+> have 1/100 degree Celsius precision (the values are 42.74 and -0.16
+> respectively), however the binding currently only allows coefficients as
+> precise as 100 milli-Celsius (1/10 degree Celsius).
+> 
+> Change the multipleOf value of these two coefficients to 10 (in the unit
+> of milli-Celsius) to satisfy the need of TH1520.
+> 
+> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> Reviewed-by: Drew Fustini <fustini@kernel.org>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Thanks for the update!
+Applied.
 
-On 3/16/26 3:03 PM, Iker Pedrosa wrote:
-> Add complete SD card controller support with UHS high-speed modes.
->
-> - Enable sdhci0 controller with 4-bit bus width
-> - Configure card detect GPIO with inversion
-> - Connect vmmc-supply to buck4 for 3.3V card power
-> - Connect vqmmc-supply to aldo1 for 1.8V/3.3V I/O switching
-> - Add dual pinctrl states for voltage-dependent pin configuration
-> - Support UHS-I SDR25, SDR50, and SDR104 modes
->
-> This enables full SD card functionality including high-speed UHS modes
-> for improved performance.
->
-> Tested-by: Anand Moon <linux.amoon@gmail.com>
-> Tested-by: Trevor Gamblin <tgamblin@baylibre.com>
-> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
-> ---
->   arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts | 19 +++++++++++++++++++
->   1 file changed, 19 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-> index f1533c99881dbf38e16cff5e91e33253cfa7a56d..aff23846085d22d1e9cd77434bffd2816ad59e12 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-> +++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-> @@ -140,3 +140,22 @@ aldo1: aldo1 {
->   		};
->   	};
->   };
-> +
-> +&sdhci0 {
-> +	pinctrl-names = "default", "state_uhs";
-> +	pinctrl-0 = <&mmc1_cfg>;
-> +	pinctrl-1 = <&mmc1_uhs_cfg>;
-> +	bus-width = <4>;
-> +	cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
-> +	cd-inverted;
-> +	no-mmc;
-> +	no-sdio;
-> +	disable-wp;
-> +	cap-sd-highspeed;
-> +	vmmc-supply = <&buck4>;
-> +	vqmmc-supply = <&aldo1>;
-> +	sd-uhs-sdr25;
-> +	sd-uhs-sdr50;
-> +	sd-uhs-sdr104;
-> +	status = "okay";
-> +};
-
-
-Tested successfully on OrangePi RV2.
-Tested-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-Cheers
-Michael
-
--- 
-Root Commit
-Embedded Linux Training and Consulting
-https://rootcommit.com
-
+Thanks,
+Guenter
 
