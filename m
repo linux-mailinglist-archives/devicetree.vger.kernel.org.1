@@ -1,243 +1,411 @@
-Return-Path: <devicetree+bounces-276421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276422-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WNVLGLa4uGnZiQEAu9opvQ
-	(envelope-from <devicetree+bounces-276421-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 03:13:10 +0100
+	id 2GhdOTG+uGn0igEAu9opvQ
+	(envelope-from <devicetree+bounces-276422-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 03:36:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D14122A2C43
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 03:13:09 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0EE42A2D7A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 03:36:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BE3D73023DB5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 02:13:08 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E657E30131C6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 02:36:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6517341ACA;
-	Tue, 17 Mar 2026 02:13:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E5A4243376;
+	Tue, 17 Mar 2026 02:36:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="akcU5cmH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JyGjYvFo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 318562C234A;
-	Tue, 17 Mar 2026 02:13:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A91E18AE2;
+	Tue, 17 Mar 2026 02:36:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773713587; cv=none; b=WTYZw2Gd43viFTg3sK6CM5PWPYwQ5yFhftKX2B3aAuVF9om5IevxtxH2GIAZ90WXEH9Iy7IC3/ozzs0ST0NeiELDi+yHT1YoW1qV5aEA2781NY2sYM7EtxG0fUlcOsr2zFXBa3+25iNG6dIW/19eVoGir9wpCiNcaZUg6AjbOTM=
+	t=1773714987; cv=none; b=RTYvkMkCBy52YYTzrTDazLu+pWsonle6KaI5La2MruYNrlBSxI0M8Vp68vZpjxhel+JqFxNeU7qEpLMgTRxaM3cXO/NXvcLyjyX4NWH0gYgSSrFisFKDpTe9Fk7WN7X0w2TnvouA+YbywEWWcqfZOyVk4a/+65OxMOskMdyGQXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773713587; c=relaxed/simple;
-	bh=sNM9Jb14J0evq05XH4j8QBYQXMrFLpykRBjI7g6ADVk=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=P5OdDoJddAyVxYAGrg8K0oBUWMAZ4or8Sq0YZidRPHUHcStM719+bESJVjvHRDeRzHFEGOqTSEo5PeR66nP0UyTocRzZjNZrC8OIZKLQc0gYwmVSjIgX/duGv7ltoBFTjiC4t5W6EWZ94eq6NmozGd4zYO6DZlJ06wpTRiwBIwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=akcU5cmH; arc=none smtp.client-ip=211.75.126.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 62H2CfpzE3055258, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1773713561; bh=sNM9Jb14J0evq05XH4j8QBYQXMrFLpykRBjI7g6ADVk=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:Content-Transfer-Encoding:MIME-Version;
-	b=akcU5cmHjbxrgodtLbWMaIhrjCiMnSLpDvxt5Yorv5xtWy+n0Bbfc5l2Wa5F/FwjV
-	 V+i918H2w54XUyolsVkvB7XmOnL3cYN/PGj6fUn5KPHuuqWVjyYhAf9izPsGtWhmLd
-	 Lc0338Z50uQdXDs25YPLgYQeZIqjzvCRLqOfrlgjBMS4fV+sZKroSFB2LB863rwv+p
-	 tMVeD8nkjxNzH6E8y07RcjA5vnHpUiI92TG2Uok5acy9R+tN4eVe8bp9He5G0lbaM4
-	 6rGrw8BQUBbL9l3YV3E66UI4ga1sA0mVikO8UeP765Jpfm0fDYoyWgriJcbKYLTy9m
-	 NJrDJ6iZnKqEA==
-Received: from mail.realtek.com (rtkexhmbs04.realtek.com.tw[10.21.1.54])
-	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 62H2CfpzE3055258
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 17 Mar 2026 10:12:41 +0800
-Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
- RTKEXHMBS04.realtek.com.tw (10.21.1.54) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Tue, 17 Mar 2026 10:12:40 +0800
-Received: from RTKEXHMBS06.realtek.com.tw ([fe80::4cbd:6c6c:b92b:3913]) by
- RTKEXHMBS06.realtek.com.tw ([fe80::4cbd:6c6c:b92b:3913%10]) with mapi id
- 15.02.1748.010; Tue, 17 Mar 2026 10:12:40 +0800
-From: =?utf-8?B?WXUtQ2h1biBMaW4gW+ael+elkOWQm10=?= <eleanor.lin@realtek.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org"
-	<sboyd@kernel.org>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        =?utf-8?B?RWRnYXIgTGVlIFvmnY7mib/oq61d?= <cylee12@realtek.com>,
-        "afaerber@suse.com" <afaerber@suse.com>,
-        =?utf-8?B?SnlhbiBDaG91IFvlkajoirflrold?= <jyanchou@realtek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-        "linux-realtek-soc@lists.infradead.org"
-	<linux-realtek-soc@lists.infradead.org>,
-        =?utf-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?= <james.tai@realtek.com>,
-        =?utf-8?B?Q1lfSHVhbmdb6buD6Ymm5pmPXQ==?= <cy.huang@realtek.com>,
-        =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= <stanley_chang@realtek.com>
-Subject: RE: [PATCH v4 03/10] clk: realtek: Add basic reset support
-Thread-Topic: [PATCH v4 03/10] clk: realtek: Add basic reset support
-Thread-Index: AQHcssDuibSAuLJXXUaZv+it/w6wirWtO6QAgATF4ZA=
-Date: Tue, 17 Mar 2026 02:12:40 +0000
-Message-ID: <907b6a0128904309991f0a4a9000d8f1@realtek.com>
-References: <20260313081100.596224-1-eleanor.lin@realtek.com>
- <20260313081100.596224-4-eleanor.lin@realtek.com>
- <20260314-silky-goshawk-of-penetration-f00964@quoll>
-In-Reply-To: <20260314-silky-goshawk-of-penetration-f00964@quoll>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1773714987; c=relaxed/simple;
+	bh=4RTD/yVfz8nqsxqv6oLXhqKEvwwMZcuh5/dmklf76I4=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=PYjfGjP8X+BpXVDmNq55JqZ0vdSWvdVxOS6YiqfGiJak9rp+KTRL1ZCs724riZSGfThA0rGLlgVfokE8SqSUkFNAzDDpqDwQKjluwgC1ywoeM6cZmxhzjg3yzzu/J8ODCgB84Eo4UjTumXwS5tX98j5v0ybJIsGv3OoiYR6pN84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JyGjYvFo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95AB1C19421;
+	Tue, 17 Mar 2026 02:36:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773714986;
+	bh=4RTD/yVfz8nqsxqv6oLXhqKEvwwMZcuh5/dmklf76I4=;
+	h=From:Date:Subject:To:Cc:From;
+	b=JyGjYvFoyfE9oPqs1rRlWVBmC5wSFXmU7DuOSZcq4KZ2/S6LzlfovTOILdNskGqal
+	 PMMgdlVW4OwgUjehNbEsRyp92Ek0b2fxXjBIyt9JSnsvvPmfCoCQbafl10yZKlnf0L
+	 ADJ0u6lid7enblKVPeUxfF5Hahz+IWS2d5fevTOoudOj5SxLid511xrSBN3DUQ56AX
+	 vpgSO6nWrEe6dNPc+Uj2UHQzR/8Bd8+53afi3WF89VSq5/AUI4y0UhItKR2GvLwCU/
+	 3dMxuR9m4tPzWBfLSZJJNQufHKEJmLFrQWR4tbWpdDVCTkPbBN1WZA2cNw30WKJaMN
+	 5ZYP9spzX4IDA==
+From: Yixun Lan <dlan@kernel.org>
+Date: Tue, 17 Mar 2026 02:36:17 +0000
+Subject: [PATCH v3] reset: spacemit: k3: Decouple composite reset lines
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Spamd-Result: default: False [0.44 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260317-01-k3-reset-usb-pci-v3-1-e4b9a43c7d45@kernel.org>
+X-B4-Tracking: v=1; b=H4sIACC+uGkC/33NQQ6CMBCF4auYrh0znRYIrryHcVHoAA0GSIuNh
+ nB3CytNjMv/JfPNIgJ7x0GcD4vwHF1w45BCHQ+i7szQMjibWhBSjkoSoIRegefAMzxCBVPtwFp
+ E05giy6UR6XLy3Ljnrl5vqTsX5tG/9idRbut/L0pAQKKKdFUojc2lZz/w/TT6VmxgpE9E/0YIJ
+ JS2xrLIbUaav5B1Xd/twA1F/AAAAA==
+X-Change-ID: 20260312-01-k3-reset-usb-pci-dd00afa7561a
+To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Junzhong Pan <junzhong.pan@spacemit.com>, 
+ Guodong Xu <guodong@riscstar.com>, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Yixun Lan <dlan@kernel.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=13998; i=dlan@kernel.org;
+ h=from:subject:message-id; bh=4RTD/yVfz8nqsxqv6oLXhqKEvwwMZcuh5/dmklf76I4=;
+ b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpuL4k2K9YyCxu7zijmW/LDkGYpELbhu9DSb+5c
+ 1y2CGdAEwGJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCabi+JBsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
+ maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
+ QACgkQMarqR1lNu+1GDg/+IJTWeYNanQDfVPNx5r+Z3XvOlPtUqLEsoEe++OcZZFE7VaNKzZCWa
+ nbqXhrmnpbrvJCKY4b1SEpXyAeQ1VMbhixk6w55cNTVxcwuUfDY9byLHuYIoVN6lY6HRabwt0vQ
+ YKuzSWpuOYGhVUF/Z+q+BRSnBN5YD5/H8AZ9TFsYsjzY4yknzRk8SNkE8vn2LnTWiu1CTHgMPIj
+ BL+0FTuLZYP8yotEIjsQLmDvH6+PeEZ55+X3cfv3Elpx+XGH5lngEfG5oNoHWi8s4poHVO+vskb
+ 7919DyVNPNcsMU8vi6VIAVHxR9hw8kf5dJSUsNxCg/bT0PGufA0hFdUd1t2eDXjgsXKAaq42T79
+ 1oihd863CRPMouvnA0ZJvli1JcGFoA0shqgoMNCjogSp7gTJpxBS2YxM8UYpiDyd0Mc/tD4Af8Y
+ eNiw0x+jwaS8mDd4y7MMMFKzdD96nOqC6gRjVTE2UY94OAFLxcoESHU37jeUepn22rCQZotsdyc
+ f79mPFOts+8wEHaijwV3iml97DclmU3aII7z/qK7QWvUzWS3LPcAESE0nFanjJy2cGtbITK9Gyd
+ LDg2LAq4y+YSW3KLWU0s4qKzgCa5XKW2UFUfQ23ah4wIjOUTQmj2G9uldaMJyR4uGFHkkOXr12q
+ 7siXZUU9VhbEX0fjm1rh3fw1G561Q8=
+X-Developer-Key: i=dlan@kernel.org; a=openpgp;
+ fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276421-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[realtek.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276422-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D14122A2C43
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: F0EE42A2D7A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-PiBPbiBGcmksIE1hciAxMywgMjAyNiBhdCAwNDoxMDo1M1BNICswODAwLCBZdS1DaHVuIExpbiB3
-cm90ZToNCj4gPiBGcm9tOiBDaGVuZy1ZdSBMZWUgPGN5bGVlMTJAcmVhbHRlay5jb20+DQo+ID4N
-Cj4gPiBEZWZpbmUgdGhlIHJlc2V0IG9wZXJhdGlvbnMgYmFja2VkIGJ5IGEgcmVnbWFwLWJhc2Vk
-IHJlZ2lzdGVyDQo+ID4gaW50ZXJmYWNlIGFuZCBwcmVwYXJlIHRoZSByZXNldCBjb250cm9sbGVy
-IHRvIGJlIHJlZ2lzdGVyZWQgdGhyb3VnaA0KPiA+IHRoZSByZXNldCBmcmFtZXdvcmsuDQo+ID4N
-Cj4gPiBTaWduZWQtb2ZmLWJ5OiBDaGVuZy1ZdSBMZWUgPGN5bGVlMTJAcmVhbHRlay5jb20+DQo+
-ID4gQ28tZGV2ZWxvcGVkLWJ5OiBZdS1DaHVuIExpbiA8ZWxlYW5vci5saW5AcmVhbHRlay5jb20+
-DQo+ID4gU2lnbmVkLW9mZi1ieTogWXUtQ2h1biBMaW4gPGVsZWFub3IubGluQHJlYWx0ZWsuY29t
-Pg0KPiA+IC0tLQ0KPiA+IENoYW5nZXMgaW4gdjQ6DQo+ID4gLSBBZGQgZm9yd2FyZCBkZWNsYXJh
-dGlvbiBmb3Igc3RydWN0IHJlZ21hcCBpbiByZXNldC5oLg0KPiA+IC0gTW92ZSBzdHJ1Y3QgcnRr
-X3Jlc2V0X2RhdGEgZGVmaW5pdGlvbiBpbnRvIHJlc2V0LmMgYXMgaXQncyBvbmx5IHVzZWQgdGhl
-cmUuDQo+ID4gLSBSZW1vdmUgcnRrX3Jlc2V0X3Jlc2V0KCkgZHVlIHRvIHVubmVjZXNzYXJ5IGlt
-cGxlbWVudGF0aW9uLg0KPiA+IC0gUmVtb3ZlIHVubmVjZXNzYXJ5IHBhcmFtZXRlciBmcm9tIHJ0
-a19yZXNldF9nZXRfaWQoKS4NCj4gPiAtLS0NCj4gPiAgTUFJTlRBSU5FUlMgICAgICAgICAgICAg
-ICAgICB8ICAgMSArDQo+ID4gIGRyaXZlcnMvY2xrL0tjb25maWcgICAgICAgICAgfCAgIDEgKw0K
-PiA+ICBkcml2ZXJzL2Nsay9NYWtlZmlsZSAgICAgICAgIHwgICAxICsNCj4gPiAgZHJpdmVycy9j
-bGsvcmVhbHRlay9LY29uZmlnICB8ICAyNyArKysrKysrKysrDQo+ID4gIGRyaXZlcnMvY2xrL3Jl
-YWx0ZWsvTWFrZWZpbGUgfCAgIDQgKysNCj4gPiAgZHJpdmVycy9jbGsvcmVhbHRlay9yZXNldC5j
-ICB8IDEwNA0KPiA+ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrDQo+ID4gIGRy
-aXZlcnMvY2xrL3JlYWx0ZWsvcmVzZXQuaCAgfCAgMjggKysrKysrKysrKw0KPiA+ICA3IGZpbGVz
-IGNoYW5nZWQsIDE2NyBpbnNlcnRpb25zKCspDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2
-ZXJzL2Nsay9yZWFsdGVrL0tjb25maWcgIGNyZWF0ZSBtb2RlIDEwMDY0NA0KPiA+IGRyaXZlcnMv
-Y2xrL3JlYWx0ZWsvTWFrZWZpbGUgIGNyZWF0ZSBtb2RlIDEwMDY0NA0KPiA+IGRyaXZlcnMvY2xr
-L3JlYWx0ZWsvcmVzZXQuYyAgY3JlYXRlIG1vZGUgMTAwNjQ0DQo+ID4gZHJpdmVycy9jbGsvcmVh
-bHRlay9yZXNldC5oDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvTUFJTlRBSU5FUlMgYi9NQUlOVEFJ
-TkVSUyBpbmRleA0KPiA+IDliN2Q2NGNjOGQ5MC4uNTNhMmYzNTc1YzM3IDEwMDY0NA0KPiA+IC0t
-LSBhL01BSU5UQUlORVJTDQo+ID4gKysrIGIvTUFJTlRBSU5FUlMNCj4gPiBAQCAtMjIyNDcsNiAr
-MjIyNDcsNyBAQCBMOiAgICBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZw0KPiA+ICBMOiAgIGxp
-bnV4LWNsa0B2Z2VyLmtlcm5lbC5vcmcNCj4gPiAgUzogICBTdXBwb3J0ZWQNCj4gPiAgRjogICBE
-b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvY2xvY2svcmVhbHRlayoNCj4gPiArRjog
-ICBkcml2ZXJzL2Nsay9yZWFsdGVrLyoNCj4gPiAgRjogICBpbmNsdWRlL2R0LWJpbmRpbmdzL2Ns
-b2NrL3JlYWx0ZWsqDQo+ID4NCj4gPiAgUkVBTFRFSyBTUEktTkFORA0KPiA+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL2Nsay9LY29uZmlnIGIvZHJpdmVycy9jbGsvS2NvbmZpZyBpbmRleA0KPiA+IDNk
-ODAzYjRjZjVjMS4uZDYwZjY0MTViMGEzIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvY2xrL0tj
-b25maWcNCj4gPiArKysgYi9kcml2ZXJzL2Nsay9LY29uZmlnDQo+ID4gQEAgLTUxOSw2ICs1MTks
-NyBAQCBzb3VyY2UgImRyaXZlcnMvY2xrL251dm90b24vS2NvbmZpZyINCj4gPiAgc291cmNlICJk
-cml2ZXJzL2Nsay9waXN0YWNoaW8vS2NvbmZpZyINCj4gPiAgc291cmNlICJkcml2ZXJzL2Nsay9x
-Y29tL0tjb25maWciDQo+ID4gIHNvdXJjZSAiZHJpdmVycy9jbGsvcmFsaW5rL0tjb25maWciDQo+
-ID4gK3NvdXJjZSAiZHJpdmVycy9jbGsvcmVhbHRlay9LY29uZmlnIg0KPiA+ICBzb3VyY2UgImRy
-aXZlcnMvY2xrL3JlbmVzYXMvS2NvbmZpZyINCj4gPiAgc291cmNlICJkcml2ZXJzL2Nsay9yb2Nr
-Y2hpcC9LY29uZmlnIg0KPiA+ICBzb3VyY2UgImRyaXZlcnMvY2xrL3NhbXN1bmcvS2NvbmZpZyIN
-Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9jbGsvTWFrZWZpbGUgYi9kcml2ZXJzL2Nsay9NYWtl
-ZmlsZSBpbmRleA0KPiA+IGY3YmNlMzk1MWEzMC4uNjliODRkMWU3YmNjIDEwMDY0NA0KPiA+IC0t
-LSBhL2RyaXZlcnMvY2xrL01ha2VmaWxlDQo+ID4gKysrIGIvZHJpdmVycy9jbGsvTWFrZWZpbGUN
-Cj4gPiBAQCAtMTQwLDYgKzE0MCw3IEBAIG9iai0kKENPTkZJR19DT01NT05fQ0xLX1BJU1RBQ0hJ
-TykNCj4gKz0gcGlzdGFjaGlvLw0KPiA+ICBvYmotJChDT05GSUdfQ09NTU9OX0NMS19QWEEpICAg
-ICAgICAgKz0gcHhhLw0KPiA+ICBvYmotJChDT05GSUdfQ09NTU9OX0NMS19RQ09NKSAgICAgICAg
-ICAgICAgICArPSBxY29tLw0KPiA+ICBvYmoteSAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICArPSByYWxpbmsvDQo+ID4gK29iai0kKENPTkZJR19DT01NT05fQ0xLX1JFQUxU
-RUspICAgICArPSByZWFsdGVrLw0KPiA+ICBvYmoteSAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICArPSByZW5lc2FzLw0KPiA+ICBvYmotJChDT05GSUdfQVJDSF9ST0NLQ0hJ
-UCkgICAgICAgICAgKz0gcm9ja2NoaXAvDQo+ID4gIG9iai0kKENPTkZJR19DT01NT05fQ0xLX1NB
-TVNVTkcpICAgICArPSBzYW1zdW5nLw0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2Nsay9yZWFs
-dGVrL0tjb25maWcgYi9kcml2ZXJzL2Nsay9yZWFsdGVrL0tjb25maWcNCj4gPiBuZXcgZmlsZSBt
-b2RlIDEwMDY0NCBpbmRleCAwMDAwMDAwMDAwMDAuLjEyMTE1OGYxMWRkMQ0KPiA+IC0tLSAvZGV2
-L251bGwNCj4gPiArKysgYi9kcml2ZXJzL2Nsay9yZWFsdGVrL0tjb25maWcNCj4gPiBAQCAtMCww
-ICsxLDI3IEBADQo+ID4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAtb25seSBj
-b25maWcgQ09NTU9OX0NMS19SRUFMVEVLDQo+ID4gKyAgICAgYm9vbCAiQ2xvY2sgZHJpdmVyIGZv
-ciBSZWFsdGVrIFNvQ3MiDQo+ID4gKyAgICAgZGVwZW5kcyBvbiBBUkNIX1JFQUxURUsgfHwgQ09N
-UElMRV9URVNUDQo+ID4gKyAgICAgZGVmYXVsdCB5DQo+ID4gKyAgICAgaGVscA0KPiA+ICsgICAg
-ICAgRW5hYmxlIHRoZSBjb21tb24gY2xvY2sgZnJhbWV3b3JrIGluZnJhc3RydWN0dXJlIGZvciBS
-ZWFsdGVrDQo+ID4gKyAgICAgICBzeXN0ZW0tb24tY2hpcCBwbGF0Zm9ybXMuDQo+ID4gKw0KPiA+
-ICsgICAgICAgVGhpcyBwcm92aWRlcyB0aGUgYmFzZSBzdXBwb3J0IHJlcXVpcmVkIGJ5IGluZGl2
-aWR1YWwgUmVhbHRlaw0KPiA+ICsgICAgICAgY2xvY2sgY29udHJvbGxlciBkcml2ZXJzIHRvIGV4
-cG9zZSBjbG9ja3MgdG8gcGVyaXBoZXJhbCBkZXZpY2VzLg0KPiA+ICsNCj4gPiArICAgICAgIElm
-IHlvdSBoYXZlIGEgUmVhbHRlay1iYXNlZCBwbGF0Zm9ybSwgc2F5IFkuDQo+ID4gKw0KPiA+ICtp
-ZiBDT01NT05fQ0xLX1JFQUxURUsNCj4gPiArDQo+ID4gK2NvbmZpZyBSVEtfQ0xLX0NPTU1PTg0K
-PiA+ICsgICAgIHRyaXN0YXRlICJSZWFsdGVrIENsb2NrIENvbW1vbiINCj4gDQo+IFJlc2V0IGRy
-aXZlcnMgZ28gdG8gcmVzZXQgZGlyZWN0b3J5Lg0KPg0KDQpTZXZlcmFsIHZlbmRvcnMgKGUuZy4g
-cWNvbSwgbWVkaWF0ZWssIHZpc2NvbnRpKSBhbHNvIHBsYWNlIHJlc2V0IGNvZGUgaW4NCmRyaXZl
-cnMvY2xrLyB3aGVuIHRoZSByZXNldCBjb250cm9sbGVyIGlzIGludGVncmF0ZWQgd2l0aCB0aGUg
-Y2xvY2sgY29udHJvbGxlci4NCg0KPiA+ICsgICAgIHNlbGVjdCBSRVNFVF9DT05UUk9MTEVSDQo+
-ID4gKyAgICAgaGVscA0KPiA+ICsgICAgICAgQ29tbW9uIGhlbHBlciBjb2RlIHNoYXJlZCBieSBS
-ZWFsdGVrIGNsb2NrIGNvbnRyb2xsZXIgZHJpdmVycy4NCj4gPiArDQo+ID4gKyAgICAgICBUaGlz
-IHByb3ZpZGVzIHV0aWxpdHkgZnVuY3Rpb25zIGFuZCBkYXRhIHN0cnVjdHVyZXMgdXNlZCBieQ0K
-PiA+ICsgICAgICAgbXVsdGlwbGUgUmVhbHRlayBjbG9jayBpbXBsZW1lbnRhdGlvbnMsIGFuZCBp
-bmNsdWRlIGludGVncmF0aW9uDQo+ID4gKyAgICAgICB3aXRoIHJlc2V0IGNvbnRyb2xsZXJzIHdo
-ZXJlIHJlcXVpcmVkLg0KPiA+ICsNCj4gPiArZW5kaWYNCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9jbGsvcmVhbHRlay9NYWtlZmlsZQ0KPiA+IGIvZHJpdmVycy9jbGsvcmVhbHRlay9NYWtlZmls
-ZSBuZXcgZmlsZSBtb2RlIDEwMDY0NCBpbmRleA0KPiA+IDAwMDAwMDAwMDAwMC4uNTIyNjdkZTJl
-ZWY0DQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL2RyaXZlcnMvY2xrL3JlYWx0ZWsvTWFr
-ZWZpbGUNCj4gPiBAQCAtMCwwICsxLDQgQEANCj4gPiArIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmll
-cjogR1BMLTIuMC1vbmx5DQo+ID4gK29iai0kKENPTkZJR19SVEtfQ0xLX0NPTU1PTikgKz0gY2xr
-LXJ0ay5vDQo+ID4gKw0KPiA+ICtjbGstcnRrLXkgKz0gcmVzZXQubw0KPiA+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL2Nsay9yZWFsdGVrL3Jlc2V0LmMgYi9kcml2ZXJzL2Nsay9yZWFsdGVrL3Jlc2V0
-LmMNCj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NCBpbmRleCAwMDAwMDAwMDAwMDAuLjQ1NzEzNzg1
-ZDc2ZA0KPiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9kcml2ZXJzL2Nsay9yZWFsdGVrL3Jl
-c2V0LmMNCj4gPiBAQCAtMCwwICsxLDEwNCBAQA0KPiA+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRp
-ZmllcjogR1BMLTIuMC1vbmx5DQo+ID4gKy8qDQo+ID4gKyAqIENvcHlyaWdodCAoQykgMjAxOSBS
-ZWFsdGVrIFNlbWljb25kdWN0b3IgQ29ycG9yYXRpb24gICovDQo+ID4gKw0KPiA+ICsjaW5jbHVk
-ZSA8bGludXgvZGV2aWNlLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9vZi5oPg0KPiA+ICsjaW5j
-bHVkZSA8bGludXgvcmVnbWFwLmg+DQo+ID4gKyNpbmNsdWRlICJyZXNldC5oIg0KPg0KPiBBbmQg
-aGVyZSBpcyB0aGUgcHJvb2YgdGhhdCBub25lIG9mIHlvdXIgcmVzZXQgaGVhZGVyIGNvbnN0YW50
-cyBhcmUgYmluZGluZ3MgLQ0KPiBkbyB5b3Ugc2VlIHRoZSBoZWFkZXIgaGVyZSBhYm92ZT8gTm8u
-DQo+DQoNClRoZSBiYW5rIG1hcHBpbmcgaXMgaW1wbGljaXRseSBoYXJkY29kZWQgaW4gZHJpdmVy
-czoNCg0KRXhhbXBsZTogY2xrLXJ0ZDE2MjUtY3J0LmMNCg0Kc3RhdGljIHN0cnVjdCBydGtfcmVz
-ZXRfYmFuayBydGQxNjI1X2NydF9yZXNldF9iYW5rc1tdID0gew0KICAgIHsub2ZzID0gMHgwLCAu
-d3JpdGVfZW4gPSAxLH0sICAgLyogQmFuayAwICovDQogICAgey5vZnMgPSAweDQsIC53cml0ZV9l
-biA9IDEsfSwgICAvKiBCYW5rIDEgKi8NCiAgICB7Lm9mcyA9IDB4OCwgLndyaXRlX2VuID0gMSx9
-LCAgIC8qIEJhbmsgMiAqLw0KICAgIC8qIC4uLiAqLw0KfTsNCg0KVGhlIGFycmF5IGluZGV4IGlt
-cGxpY2l0bHkgY29ycmVzcG9uZHMgdG8gdGhlIGJhbmsgSUQgaW4gdGhlIGhlYWRlci4NCkluIHY1
-LCBJIHdpbGwgZXhwbGljaXRseSB1c2UgdGhlIGhlYWRlciBkZWZpbmVzIHRvIG1ha2UgdGhpcyBt
-YXBwaW5nDQpjbGVhcjoNCg0Kc3RhdGljIHN0cnVjdCBydGtfcmVzZXRfZGVzYyBydGQxNjI1X2Nj
-X3Jlc2V0X2Rlc2NzW10gPSB7DQoJLyogQmFuayAwOiBvZmZzZXQgMHgwMDAgKi8NCglbUlREMTYy
-NV9DUlRfUlNUTl9NSVNDXSA9IHsub2ZzID0gMHgwMDAsIC5iaXQgPSAwLCAgLndyaXRlX2VuID0g
-MX0sDQogIFtSVEQxNjI1X0NSVF9SU1ROX0RJUF0gID0gey5vZnMgPSAweDAwMCwgLmJpdCA9IDIs
-ICAud3JpdGVfZW4gPSAxfSwNCiAgLyogLi4uICovDQp9Ow0KDQpCZXN0IHJlZ2FyZHMsDQpZdS1D
-aHVuDQoNCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCg==
+Instead of grouping several different reset lines into one composite
+reset, decouple them to individual ones which make it more aligned
+with underlying hardware. And for DWC USB driver, it will match well
+with the number of the reset property in the DT bindings.
+
+The DWC3 USB host controller in K3 SoC has three reset lines - AHB, VCC,
+PHY. The PCIe controller also has three reset lines - DBI, Slave, Master.
+Also three reset lines each for UCIE and RCPU block.
+
+As an agreement with maintainer, the reset IDs has been rearranged as
+contiguous number and pushed as a fix for the driver, and reason is that
+there isn't any consumer of reset driver so far, so should not cause
+any ABI breakage. Also, the changes of DT binding header file and reset
+driver are merged together as one single commit to avoid git-bisect
+breakage.
+
+Fixes: 938ce3b16582 ("reset: spacemit: Add SpacemiT K3 reset driver")
+Fixes: 216e0a5e98e5 ("dt-bindings: soc: spacemit: Add K3 reset support and IDs")
+Signed-off-by: Yixun Lan <dlan@kernel.org>
+---
+Previously, the reset of The USB and PCIe was submited as a composite
+reset, try to decouple them in this series.
+
+The motivation behind is that it will will make the result more aligned
+with the hardware which describe them as different reset lines, and also
+match with the K3 dwc3 DT binding which request different reset, 
+K1 and K3 SoC share same topology of the reset line design.
+
+See the reset part info in binding doc
+Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml
+
+In V2, I've visited through whole reset driver and decouple more resets,
+which include the block - UCIE and RPCU. Also add an explanation of why
+rearrange the reset IDs as contiguous number.
+---
+Changes in v3:
+- fix checkpatch.pl warning due to missing double quotes in Fixes tag
+- Link to v2: https://lore.kernel.org/r/20260314-01-k3-reset-usb-pci-v2-1-9dc0976d524e@kernel.org
+
+Changes in v2:
+- squash the two patches to avoid git-biset breakage
+- rearrange the ID to make it contiguous
+- also decouple more reset IDs - UCIE and RPCU block
+- add Fixes tag explicitly
+- Link to v1: https://lore.kernel.org/r/20260312-01-k3-reset-usb-pci-v1-0-022b24b7340f@kernel.org
+---
+ drivers/reset/spacemit/reset-spacemit-k3.c     |  60 ++++++-----
+ include/dt-bindings/reset/spacemit,k3-resets.h | 136 +++++++++++++++----------
+ 2 files changed, 116 insertions(+), 80 deletions(-)
+
+diff --git a/drivers/reset/spacemit/reset-spacemit-k3.c b/drivers/reset/spacemit/reset-spacemit-k3.c
+index e9e32e4c1ba5..9841f5e057b2 100644
+--- a/drivers/reset/spacemit/reset-spacemit-k3.c
++++ b/drivers/reset/spacemit/reset-spacemit-k3.c
+@@ -112,16 +112,21 @@ static const struct ccu_reset_data k3_apmu_resets[] = {
+ 	[RESET_APMU_SDH0]	= RESET_DATA(APMU_SDH0_CLK_RES_CTRL,	0, BIT(1)),
+ 	[RESET_APMU_SDH1]	= RESET_DATA(APMU_SDH1_CLK_RES_CTRL,	0, BIT(1)),
+ 	[RESET_APMU_SDH2]	= RESET_DATA(APMU_SDH2_CLK_RES_CTRL,	0, BIT(1)),
+-	[RESET_APMU_USB2]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
+-				BIT(1)|BIT(2)|BIT(3)),
+-	[RESET_APMU_USB3_PORTA]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
+-				BIT(5)|BIT(6)|BIT(7)),
+-	[RESET_APMU_USB3_PORTB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
+-				BIT(9)|BIT(10)|BIT(11)),
+-	[RESET_APMU_USB3_PORTC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
+-				BIT(13)|BIT(14)|BIT(15)),
+-	[RESET_APMU_USB3_PORTD]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
+-				BIT(17)|BIT(18)|BIT(19)),
++	[RESET_APMU_USB2_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(1)),
++	[RESET_APMU_USB2_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(2)),
++	[RESET_APMU_USB2_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(3)),
++	[RESET_APMU_USB3_A_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(5)),
++	[RESET_APMU_USB3_A_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(6)),
++	[RESET_APMU_USB3_A_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(7)),
++	[RESET_APMU_USB3_B_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(9)),
++	[RESET_APMU_USB3_B_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(10)),
++	[RESET_APMU_USB3_B_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(11)),
++	[RESET_APMU_USB3_C_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(13)),
++	[RESET_APMU_USB3_C_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(14)),
++	[RESET_APMU_USB3_C_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(15)),
++	[RESET_APMU_USB3_D_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(17)),
++	[RESET_APMU_USB3_D_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(18)),
++	[RESET_APMU_USB3_D_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(19)),
+ 	[RESET_APMU_QSPI]	= RESET_DATA(APMU_QSPI_CLK_RES_CTRL,	0, BIT(1)),
+ 	[RESET_APMU_QSPI_BUS]	= RESET_DATA(APMU_QSPI_CLK_RES_CTRL,	0, BIT(0)),
+ 	[RESET_APMU_DMA]	= RESET_DATA(APMU_DMA_CLK_RES_CTRL,	0, BIT(0)),
+@@ -151,10 +156,12 @@ static const struct ccu_reset_data k3_apmu_resets[] = {
+ 	[RESET_APMU_CPU7_SW]	= RESET_DATA(APMU_PMU_CC2_AP,		BIT(26), 0),
+ 	[RESET_APMU_C1_MPSUB_SW]	= RESET_DATA(APMU_PMU_CC2_AP,	BIT(28), 0),
+ 	[RESET_APMU_MPSUB_DBG]	= RESET_DATA(APMU_PMU_CC2_AP,		BIT(29), 0),
+-	[RESET_APMU_UCIE]	= RESET_DATA(APMU_UCIE_CTRL,
+-				BIT(1) | BIT(2) | BIT(3), 0),
+-	[RESET_APMU_RCPU]	= RESET_DATA(APMU_RCPU_CLK_RES_CTRL,	0,
+-				BIT(3) | BIT(2) | BIT(0)),
++	[RESET_APMU_UCIE_IP]	= RESET_DATA(APMU_UCIE_CTRL,		BIT(1),  0),
++	[RESET_APMU_UCIE_HOT]	= RESET_DATA(APMU_UCIE_CTRL,		BIT(2),  0),
++	[RESET_APMU_UCIE_MON]	= RESET_DATA(APMU_UCIE_CTRL,		BIT(3),  0),
++	[RESET_APMU_RCPU_AUDIO_SYS]	= RESET_DATA(APMU_RCPU_CLK_RES_CTRL,	0, BIT(0)),
++	[RESET_APMU_RCPU_MCU_CORE]	= RESET_DATA(APMU_RCPU_CLK_RES_CTRL,	0, BIT(2)),
++	[RESET_APMU_RCPU_AUDIO_APMU]	= RESET_DATA(APMU_RCPU_CLK_RES_CTRL,	0, BIT(3)),
+ 	[RESET_APMU_DSI4LN2_ESCCLK]	= RESET_DATA(APMU_LCD_CLK_RES_CTRL3,	0, BIT(3)),
+ 	[RESET_APMU_DSI4LN2_LCD_SW]	= RESET_DATA(APMU_LCD_CLK_RES_CTRL3,	0, BIT(4)),
+ 	[RESET_APMU_DSI4LN2_LCD_MCLK]	= RESET_DATA(APMU_LCD_CLK_RES_CTRL4,	0, BIT(9)),
+@@ -164,16 +171,21 @@ static const struct ccu_reset_data k3_apmu_resets[] = {
+ 	[RESET_APMU_UFS_ACLK]	= RESET_DATA(APMU_UFS_CLK_RES_CTRL,	0, BIT(0)),
+ 	[RESET_APMU_EDP0]	= RESET_DATA(APMU_LCD_EDP_CTRL,		0, BIT(0)),
+ 	[RESET_APMU_EDP1]	= RESET_DATA(APMU_LCD_EDP_CTRL,		0, BIT(16)),
+-	[RESET_APMU_PCIE_PORTA]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0,
+-				BIT(5) | BIT(4) | BIT(3)),
+-	[RESET_APMU_PCIE_PORTB]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0,
+-				BIT(5) | BIT(4) | BIT(3)),
+-	[RESET_APMU_PCIE_PORTC]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0,
+-				BIT(5) | BIT(4) | BIT(3)),
+-	[RESET_APMU_PCIE_PORTD]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0,
+-				BIT(5) | BIT(4) | BIT(3)),
+-	[RESET_APMU_PCIE_PORTE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0,
+-				BIT(5) | BIT(4) | BIT(3)),
++	[RESET_APMU_PCIE_A_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0, BIT(3)),
++	[RESET_APMU_PCIE_A_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0, BIT(4)),
++	[RESET_APMU_PCIE_A_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0, BIT(5)),
++	[RESET_APMU_PCIE_B_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0, BIT(3)),
++	[RESET_APMU_PCIE_B_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0, BIT(4)),
++	[RESET_APMU_PCIE_B_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0, BIT(5)),
++	[RESET_APMU_PCIE_C_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0, BIT(3)),
++	[RESET_APMU_PCIE_C_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0, BIT(4)),
++	[RESET_APMU_PCIE_C_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0, BIT(5)),
++	[RESET_APMU_PCIE_D_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0, BIT(3)),
++	[RESET_APMU_PCIE_D_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0, BIT(4)),
++	[RESET_APMU_PCIE_D_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0, BIT(5)),
++	[RESET_APMU_PCIE_E_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0, BIT(3)),
++	[RESET_APMU_PCIE_E_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0, BIT(4)),
++	[RESET_APMU_PCIE_E_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0, BIT(5)),
+ 	[RESET_APMU_EMAC0]	= RESET_DATA(APMU_EMAC0_CLK_RES_CTRL,	0, BIT(1)),
+ 	[RESET_APMU_EMAC1]	= RESET_DATA(APMU_EMAC1_CLK_RES_CTRL,	0, BIT(1)),
+ 	[RESET_APMU_EMAC2]	= RESET_DATA(APMU_EMAC2_CLK_RES_CTRL,	0, BIT(1)),
+diff --git a/include/dt-bindings/reset/spacemit,k3-resets.h b/include/dt-bindings/reset/spacemit,k3-resets.h
+index 79ac1c22b7b5..4c8cba2897c8 100644
+--- a/include/dt-bindings/reset/spacemit,k3-resets.h
++++ b/include/dt-bindings/reset/spacemit,k3-resets.h
+@@ -97,62 +97,86 @@
+ #define RESET_APMU_SDH0          13
+ #define RESET_APMU_SDH1          14
+ #define RESET_APMU_SDH2          15
+-#define RESET_APMU_USB2          16
+-#define RESET_APMU_USB3_PORTA    17
+-#define RESET_APMU_USB3_PORTB    18
+-#define RESET_APMU_USB3_PORTC    19
+-#define RESET_APMU_USB3_PORTD    20
+-#define RESET_APMU_QSPI          21
+-#define RESET_APMU_QSPI_BUS      22
+-#define RESET_APMU_DMA           23
+-#define RESET_APMU_AES_WTM       24
+-#define RESET_APMU_MCB_DCLK      25
+-#define RESET_APMU_MCB_ACLK      26
+-#define RESET_APMU_VPU           27
+-#define RESET_APMU_DTC           28
+-#define RESET_APMU_GPU           29
+-#define RESET_APMU_ALZO          30
+-#define RESET_APMU_MC            31
+-#define RESET_APMU_CPU0_POP      32
+-#define RESET_APMU_CPU0_SW       33
+-#define RESET_APMU_CPU1_POP      34
+-#define RESET_APMU_CPU1_SW       35
+-#define RESET_APMU_CPU2_POP      36
+-#define RESET_APMU_CPU2_SW       37
+-#define RESET_APMU_CPU3_POP      38
+-#define RESET_APMU_CPU3_SW       39
+-#define RESET_APMU_C0_MPSUB_SW   40
+-#define RESET_APMU_CPU4_POP      41
+-#define RESET_APMU_CPU4_SW       42
+-#define RESET_APMU_CPU5_POP      43
+-#define RESET_APMU_CPU5_SW       44
+-#define RESET_APMU_CPU6_POP      45
+-#define RESET_APMU_CPU6_SW       46
+-#define RESET_APMU_CPU7_POP      47
+-#define RESET_APMU_CPU7_SW       48
+-#define RESET_APMU_C1_MPSUB_SW   49
+-#define RESET_APMU_MPSUB_DBG     50
+-#define RESET_APMU_UCIE          51
+-#define RESET_APMU_RCPU          52
+-#define RESET_APMU_DSI4LN2_ESCCLK     53
+-#define RESET_APMU_DSI4LN2_LCD_SW     54
+-#define RESET_APMU_DSI4LN2_LCD_MCLK   55
+-#define RESET_APMU_DSI4LN2_LCD_DSCCLK 56
+-#define RESET_APMU_DSI4LN2_DPU_ACLK   57
+-#define RESET_APMU_DPU_ACLK      58
+-#define RESET_APMU_UFS_ACLK      59
+-#define RESET_APMU_EDP0          60
+-#define RESET_APMU_EDP1          61
+-#define RESET_APMU_PCIE_PORTA    62
+-#define RESET_APMU_PCIE_PORTB    63
+-#define RESET_APMU_PCIE_PORTC    64
+-#define RESET_APMU_PCIE_PORTD    65
+-#define RESET_APMU_PCIE_PORTE    66
+-#define RESET_APMU_EMAC0         67
+-#define RESET_APMU_EMAC1         68
+-#define RESET_APMU_EMAC2         69
+-#define RESET_APMU_ESPI_MCLK     70
+-#define RESET_APMU_ESPI_SCLK     71
++#define RESET_APMU_USB2_AHB      16
++#define RESET_APMU_USB2_VCC      17
++#define RESET_APMU_USB2_PHY      18
++#define RESET_APMU_USB3_A_AHB    19
++#define RESET_APMU_USB3_A_VCC    20
++#define RESET_APMU_USB3_A_PHY    21
++#define RESET_APMU_USB3_B_AHB    22
++#define RESET_APMU_USB3_B_VCC    23
++#define RESET_APMU_USB3_B_PHY    24
++#define RESET_APMU_USB3_C_AHB    25
++#define RESET_APMU_USB3_C_VCC    26
++#define RESET_APMU_USB3_C_PHY    27
++#define RESET_APMU_USB3_D_AHB    28
++#define RESET_APMU_USB3_D_VCC    29
++#define RESET_APMU_USB3_D_PHY    30
++#define RESET_APMU_QSPI          31
++#define RESET_APMU_QSPI_BUS      32
++#define RESET_APMU_DMA           33
++#define RESET_APMU_AES_WTM       34
++#define RESET_APMU_MCB_DCLK      35
++#define RESET_APMU_MCB_ACLK      36
++#define RESET_APMU_VPU           37
++#define RESET_APMU_DTC           38
++#define RESET_APMU_GPU           39
++#define RESET_APMU_ALZO          40
++#define RESET_APMU_MC            41
++#define RESET_APMU_CPU0_POP      42
++#define RESET_APMU_CPU0_SW       43
++#define RESET_APMU_CPU1_POP      44
++#define RESET_APMU_CPU1_SW       45
++#define RESET_APMU_CPU2_POP      46
++#define RESET_APMU_CPU2_SW       47
++#define RESET_APMU_CPU3_POP      48
++#define RESET_APMU_CPU3_SW       49
++#define RESET_APMU_C0_MPSUB_SW   50
++#define RESET_APMU_CPU4_POP      51
++#define RESET_APMU_CPU4_SW       52
++#define RESET_APMU_CPU5_POP      53
++#define RESET_APMU_CPU5_SW       54
++#define RESET_APMU_CPU6_POP      55
++#define RESET_APMU_CPU6_SW       56
++#define RESET_APMU_CPU7_POP      57
++#define RESET_APMU_CPU7_SW       58
++#define RESET_APMU_C1_MPSUB_SW   59
++#define RESET_APMU_MPSUB_DBG     60
++#define RESET_APMU_UCIE_IP       61
++#define RESET_APMU_UCIE_HOT      62
++#define RESET_APMU_UCIE_MON      63
++#define RESET_APMU_RCPU_AUDIO_SYS     64
++#define RESET_APMU_RCPU_MCU_CORE      65
++#define RESET_APMU_RCPU_AUDIO_APMU    66
++#define RESET_APMU_DSI4LN2_ESCCLK     67
++#define RESET_APMU_DSI4LN2_LCD_SW     68
++#define RESET_APMU_DSI4LN2_LCD_MCLK   69
++#define RESET_APMU_DSI4LN2_LCD_DSCCLK 70
++#define RESET_APMU_DSI4LN2_DPU_ACLK   71
++#define RESET_APMU_DPU_ACLK      72
++#define RESET_APMU_UFS_ACLK      73
++#define RESET_APMU_EDP0          74
++#define RESET_APMU_EDP1          75
++#define RESET_APMU_PCIE_A_DBI    76
++#define RESET_APMU_PCIE_A_SLAVE  77
++#define RESET_APMU_PCIE_A_MASTER 78
++#define RESET_APMU_PCIE_B_DBI    79
++#define RESET_APMU_PCIE_B_SLAVE  80
++#define RESET_APMU_PCIE_B_MASTER 81
++#define RESET_APMU_PCIE_C_DBI    82
++#define RESET_APMU_PCIE_C_SLAVE  83
++#define RESET_APMU_PCIE_C_MASTER 84
++#define RESET_APMU_PCIE_D_DBI    85
++#define RESET_APMU_PCIE_D_SLAVE  86
++#define RESET_APMU_PCIE_D_MASTER 87
++#define RESET_APMU_PCIE_E_DBI    88
++#define RESET_APMU_PCIE_E_SLAVE  89
++#define RESET_APMU_PCIE_E_MASTER 90
++#define RESET_APMU_EMAC0         91
++#define RESET_APMU_EMAC1         92
++#define RESET_APMU_EMAC2         93
++#define RESET_APMU_ESPI_MCLK     94
++#define RESET_APMU_ESPI_SCLK     95
+ 
+ /* DCIU resets*/
+ #define RESET_DCIU_HDMA          0
+
+---
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+change-id: 20260312-01-k3-reset-usb-pci-dd00afa7561a
+
+Best regards,
+-- 
+Yixun Lan <dlan@kernel.org>
+
 
