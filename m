@@ -1,228 +1,325 @@
-Return-Path: <devicetree+bounces-276845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276846-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OHZ/Nh+quWkhLwIAu9opvQ
-	(envelope-from <devicetree+bounces-276845-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 20:23:11 +0100
+	id 8AkMDjmvuWnOMAIAu9opvQ
+	(envelope-from <devicetree+bounces-276846-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 20:44:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6BA82B1806
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 20:23:10 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F4052B1A25
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 20:44:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 32D6B3009E3D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 19:20:36 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 22714300E4A9
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 19:44:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1106930DEA6;
-	Tue, 17 Mar 2026 19:20:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26E1B3446CE;
+	Tue, 17 Mar 2026 19:44:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TayZQvus";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gZICxvNs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TsgC9b54"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C224F32C942
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 19:20:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A5C43446B7
+	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 19:44:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773775235; cv=none; b=fpWWKY6Tav6LnN3bFtMGl0Bm4gm4Aic1Zu+b/+lKNaWy839hJG+7e0HZM9t5RkYIpEyST8FlZDgwsh1B8MBDUW3adkZe2IYq5PMJec7p6EEF3mvVJTdjpGcnbScC5fer26QwFUjQoY1LWWsWNXaDCpiuFLMdNLvTVIQFC3RCV3Y=
+	t=1773776690; cv=none; b=ubOnUkIPOI/T3ABtj57FA9FpCE88o2C607egLatTZwi7Hi3zdQ25C3/Jh7dryrmvn6K5FEX+7F4icPcwcj5GF/8cpJYh80NjOD4qABfYEHOyHIhgwE2dTSE/2O21go6pgqeyBQGdODU1oYUTT3J2APpdpRX8CDjaEVfZkhmL048=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773775235; c=relaxed/simple;
-	bh=RZhMRxH4BCoOIJhufOPfVGjHRKsD0WBkMRFMq27Tu8w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VFPAY8meNCH//dW3SI7pggs0rynO6CKWjKZIWpwfFGfkn7infNaQwsjgQ4vGULrJHyFWKFQvn6mfLj2/eKak0gEAU7/VlMX7ZL/CBYBD74dKacJLZgXaQzXWkUhIPMVOPrbjhJUdUrbjLMkTbOtTj7yw/bpgaGLxGjHPfo3UM7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TayZQvus; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gZICxvNs; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62HIJEdl2730152
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 19:20:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=Z/OYpnjTRNWyMxKSLf7FeDjE
-	F8nZ4njdXHhcfnv6ZHs=; b=TayZQvus1QDqbBKZOYRtjsCg2DwLo5AsqQx91BTh
-	qnLPCSe11Z5zvOgNYH/c87A+EdFPwj1WnXi2EC+T2Q/QGvXhrSyRwkUV0qS9DbWC
-	51W9lv2Q3jcWZ1GaQClI1w0WqwoEfPidP0Zulm6nmOEXkN2AkblG2qfMATRmmkX6
-	yxVo9tSF0egM4HL+lIpEhikv7XfcbmIJTeFMMS9UEpF4IBD4CXBMBQzczid8eiIX
-	srmvhQFAoVs5AIVHYbBlK0FAYlJQEPtJ9PjaYhC3wikUhDFrV/GiWEZQFTygJl4w
-	JVGvafmeEzB8gAHGPwxJkOVD4R+vmMupr1mX8YfkuUS6Eg==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cy8kjs9m2-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 19:20:32 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8cd7a25c5a9so733414985a.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 12:20:32 -0700 (PDT)
+	s=arc-20240116; t=1773776690; c=relaxed/simple;
+	bh=rD6k5g0x5o7wNECzX7SXx9gUH4XhSPou5kQZofQmVG0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=alSQtYbaMmVTpyO3rtL1gM7GqbzR8iRpKtONHlAH+T2r5E/kHt6PO8GkVB0vSWS8qS6e+xHJUbFC8z2sHPMcQx7jZk325o2QZ1U6e86Cb47QDdH7Zp9ZssRsvI2Q3VpjWocQQynsGef6PpJVVnVgP3XLaYI3Wl+H8XQfLtb7l9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TsgC9b54; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4852a9c6309so50757515e9.0
+        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 12:44:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773775232; x=1774380032; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z/OYpnjTRNWyMxKSLf7FeDjEF8nZ4njdXHhcfnv6ZHs=;
-        b=gZICxvNs9Ay4MRpoYAoN+XBhxbzaXm5UA9XNCXIVALcT6yEir9AxfelYyPBjmmYqJC
-         JO00nBuu9uaHRrc9z8JDkeL+VOs6Gzof0jSbRK7V7rKfXzBjvQrlRl2umnW6oGbV46OW
-         vqlu07gJDdzepU7XOI4iE9Dfij5RAzVFtnd5nC5T672It00Z0HGzaFrsw2kPGmlA+xcy
-         58EuAh4qgffm9yThiZ3ks40Qjgm5XaYRAs2bU8bQfjpFvRUSfbu+5wgx9Ll6/cFXWFd8
-         nQ/vlCvVfU1E3j/D6rk2ZrhjrU2jC1dt3tjZS6YtB/c9NkaHUIXxZEtokxGBzzAW5YXJ
-         12Hw==
+        d=gmail.com; s=20230601; t=1773776687; x=1774381487; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3Y0xsdwwhqtc3tEm3F1+SO5Z37i9orpFohwEEPl5Uus=;
+        b=TsgC9b54GtPgu6RgTjen6idNDliGApnWtXGjPiefpf4XyIPdMfxcNhi0GKdJr10xdk
+         lefGq7yVWeI2G6dA42eCBhJci7kgX406SIUoDzAj1vkpVHe5D86bMLx+XQM00EYSRRom
+         7hAUpVwOCYnsSy8NthylkG7KeyVRFGy3YeT8I6EsKskOgC6WmRWiQ4Apn0h1huqtEVNn
+         s7UxMhs5ZZhpL9t99Z7hbabJGvBnSsOt81eROYCALNSd6Jqnlu+EL4cUk+0qMQkw91Un
+         etuG+uRH7AsGdPEod8pAsf2+Jb1ATi9ESmnCAMroUrWR1NUcW6RyQOUSq93ywn1hF1+0
+         KlBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773775232; x=1774380032;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Z/OYpnjTRNWyMxKSLf7FeDjEF8nZ4njdXHhcfnv6ZHs=;
-        b=H8axZvf4NGoeN6Kx70s3VAUsnt5dP4lcgZxzRJeUDeEnn1QuMmkQavdFWG8WEV3g72
-         8f5BkcXNz9c3yHoxGBLTfilDsIryDAfK8emCMwj4uNAFmEfjAByHBRTq1tI+Pug7WCSE
-         Hfvhc/OS4CTvg242NfBGsINFgVUntRBYcXmSd3F7+kyrQ+L5qdTQCYbU8jPrx/CYyYeE
-         rZpiiotBllhIeurKDx4BrkJjJa1/FE3yZAIdGazFrIyFd8DhYd6JJfv1KUFJjfuRiwXj
-         CKDgxT4Pr+woGBsHGv85uHE5mMpFMprtu7IXiVF8iieqhCJ01iV3NfI1YAubtkIcAaMo
-         H93w==
-X-Forwarded-Encrypted: i=1; AJvYcCXlBk9GvBMw8nUImGfm5sWA/ujPjELuJY3ZN1+xk2KDsEm0d3V+m0H6yGhMGtHby4qXkYcVxp2wlFrn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+ax9M5VtRmyR4eyzZpx6us1qpKX8P6btHJGaCOrzv+Q+pUYpe
-	yIdbvqXZVh1AY0tkHlklwZKqZT3ph2i3kF9mNFHl1QHjbFt5wG0itD6c1Njosj3CoR/yi2elIpz
-	YpSpIJ9NtIin7iu/WxLd1wmmfUvFYCeP+A7wP3l2bTmw0WQs6kqACEGAJw9dGdPRh
-X-Gm-Gg: ATEYQzxfzr9cy5L1cIWIT2QjBEaudhNr6qSWuVPSa+uzcUJX64zZEk3end4rPCJlx5q
-	SctsBZvz1bLHt/ZMYNstU37+SF45qsNZ+0v//2v5xfAYrlkl1KM8WpKtg71u0ZWOyVG7emDMHMM
-	4YVdXw4oUEe6FpSn1vVjIiNcqV3AGUhmp/rMi90U4caRLJ1BFvf+rCdvtS3jHiOu4+wNP8ChrtG
-	AqMMGOtiOVmBz2y9ItnWiV89tQOnUcirwQE/FP5711Pg58/qd5YZM1YcFaFHmSyXGUq2I7zR4mp
-	zLOzyWd4pyaGWeD/z4jefCrYr/ifBPz9LiBCHly0MD+W/hQ2gpbc6tz8enrDsQNt/W27x/NdD1g
-	bOUsTmq4KGdnXP0QpBZnPhd1pd26LCvG5OQ==
-X-Received: by 2002:a05:620a:4109:b0:8c9:f8e5:9f12 with SMTP id af79cd13be357-8cfad3b27cemr105734885a.57.1773775231845;
-        Tue, 17 Mar 2026 12:20:31 -0700 (PDT)
-X-Received: by 2002:a05:620a:4109:b0:8c9:f8e5:9f12 with SMTP id af79cd13be357-8cfad3b27cemr105728985a.57.1773775231223;
-        Tue, 17 Mar 2026 12:20:31 -0700 (PDT)
-Received: from oss.qualcomm.com ([82.79.95.133])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486f4bbfbf4sm630885e9.31.2026.03.17.12.20.29
+        d=1e100.net; s=20251104; t=1773776687; x=1774381487;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3Y0xsdwwhqtc3tEm3F1+SO5Z37i9orpFohwEEPl5Uus=;
+        b=jtrRsUKnLnu5PQvP8Y2t8IOxAZwby+2N4zBYAa1IQ+yBPA3abtdNLbOo2OdfNJkRdL
+         4bj0thtLZ+G14tqx1F6f49TYLA33vCeJ0lET4BEVF2WX4cVNiORLHxImewxe7rF8LidB
+         ST3YM7ipSCjjcPstoN7FEjqkl5dGTTxiMpMvIEbSm7XWlbwHA3gwBXjFjIZPMghuBfxQ
+         lEYGMnMNY8Qb7qPSEkOk9YXe5XVHNmN7B1ID3ZtiJxh5W65CmO71sFfb87k5zPrsFNlJ
+         KEwdxeerXq+BwhdBvL1vn7hVxWR5Gzl0BCbSVQXX6szcH7XH7Z6ief5lmXbsubQ8Sxg8
+         wO2g==
+X-Forwarded-Encrypted: i=1; AJvYcCWLZdECEFC7Ka2slZMhPAbyR1lGM25aGtEfRJigO0XGDKk7a6bSTFeXaUMmwITXUiQIIJ3EU9X1M9Kh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2H3wVDy60SaGO8ELOj1CIhK12BMeK1KM7cHkpC/9pT3zUiqH8
+	2MGzUGnUCwkEcsI2LA8jnXbxbu9IjjIDktIYlyrAmY34Ek9R0eNHo4zw
+X-Gm-Gg: ATEYQzz/7vHwulSEN+keipX8H0KM7LQP926RcA2NClRpku65qNaHq+sAI1dmSBHL/y0
+	uu+z6CFSQl8xHTTyWlafFA5kjGvX7Mr1IrF2Bf8FgvAL1JWKFH5QktsJkRCsme0cbazbolHavF8
+	16gCxA4VglKgUscVc2gjFx6NVhGZs6401YJhd4KcFPVKMW455u5qVD1EyudhSOMr1+OSfx/78Av
+	Q3hHXTjzEk6CTULRwWYoq/5xzaS3WGZ3op/JimukpQJS3uoGWvJOulqRBWVz0TbuqZgA/gXtryS
+	64h+JWDQEZ/8vVXqLuqmD6qG8e+B1gsqz1IiOZIZ0+XfliU8CBs8m2bXntF2dCEmiP5wy1xrZtj
+	z1EUbHecedMYfb88ikuBof17xRkeNBkRwkdJEfGR+S3iFH6CZlMqFkjSZ3qc3LSaaoXdKKFSmR2
+	xrAKpOQbhp6POMLAlx3sbIt2Unxs+wSBtvhAUezmSNVIxesdJ9
+X-Received: by 2002:a05:600c:154e:b0:485:3dfc:57c with SMTP id 5b1f17b1804b1-486f4441232mr13771455e9.21.1773776686355;
+        Tue, 17 Mar 2026 12:44:46 -0700 (PDT)
+Received: from localhost.localdomain ([2a00:23c4:a758:8a01:e16b:fc56:e220:9aa9])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b51892161sm1788235f8f.21.2026.03.17.12.44.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Mar 2026 12:20:30 -0700 (PDT)
-Date: Tue, 17 Mar 2026 21:20:28 +0200
-From: Abel Vesa <abel.vesa@oss.qualcomm.com>
-To: Harshal Dev <harshal.dev@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: Introduce Eliza Soc base dtsi
-Message-ID: <fcd5mjxhwvcziur3lsk4nn3gayhvick26f2lhmjal3xcqpfvlx@nwodomyua2bi>
-References: <20260313-eliza-base-dt-v2-0-bd91367d860d@oss.qualcomm.com>
- <20260313-eliza-base-dt-v2-2-bd91367d860d@oss.qualcomm.com>
- <60b34ab6-7bad-4436-9686-a8f6e821853a@oss.qualcomm.com>
+        Tue, 17 Mar 2026 12:44:46 -0700 (PDT)
+From: Biju <biju.das.au@gmail.com>
+X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v4 0/9] Add support for Renesas RZ/G3L SoC and SMARC-EVK platform
+Date: Tue, 17 Mar 2026 19:44:27 +0000
+Message-ID: <20260317194442.468147-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <60b34ab6-7bad-4436-9686-a8f6e821853a@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE3MDE3MCBTYWx0ZWRfX8Rtx9Kwb0CH6
- EQ4vB69+SzoWQxEDRK70lgA7JrasMKqhTg0jm6eAnvDfVy3ZgLq1eJ4k+362+AE9evEJAdEd8o1
- /qHnMgAGXBFvrP+IcYd25+FgRMQL8JU7odU5WaV4eT8i0rziFGXKdxRbiOz9KH8Iw8vBbBlG6Tm
- Kdr1/Aj05Eam9l4ct5kgQLl7SXuNV7wU2Qw7DB76cuiP1EAHnxdwV0E3v69pVWZSyJF3xUtSdXB
- 1OiFZ7AspyFIjNogQddSGZ4cyju6L8RJ1ZlmNwdIRDgizA0pfXVUOEL9ZfIzuiRIHWpw/YZc9Q6
- Rp7Jm1XnCmrUuKHtMHMqCs8L5JS/yK9nPe8xTKscVra/rHnKuJLYqmaic9WTlRgsFxXfk0fwpH1
- LhUG3EEB0LXwzoVqwo9/21ElrmTpgQtX5hHBzWxJAfrSORlkm0cTnZKD/wJ97FJMKY6L/0h7mKX
- yaCzCPFESTsefqYL4/w==
-X-Authority-Analysis: v=2.4 cv=P8I3RyAu c=1 sm=1 tr=0 ts=69b9a980 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=iKs3dpp2RB4k51ZqCjcyjQ==:17
- a=kj9zAlcOel0A:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=NTKYwtGZfXC6PV2Ky9UA:9 a=CjuIK1q_8ugA:10
- a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-ORIG-GUID: drjOBPPDxU2m3ftii25wk2cgZ3hrm3UD
-X-Proofpoint-GUID: drjOBPPDxU2m3ftii25wk2cgZ3hrm3UD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-17_04,2026-03-17_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 clxscore=1015 priorityscore=1501 suspectscore=0
- lowpriorityscore=0 adultscore=0 spamscore=0 malwarescore=0 bulkscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
- definitions=main-2603170170
-X-Spamd-Result: default: False [-1.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276846-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276845-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
+	FREEMAIL_TO(0.00)[linuxfoundation.org,kernel.org,baylibre.com,glider.be,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,1d88000:email,oss.qualcomm.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: E6BA82B1806
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2F4052B1A25
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 26-03-17 15:04:24, Harshal Dev wrote:
-> Hi Abel,
-> 
-> On 3/13/2026 6:53 PM, Abel Vesa wrote:
-> > Introduce the initial support for the Qualcomm Eliza SoC. It comes in
-> > different flavors. There is SM7750 for mobiles and then QC7790S/M for IoT.
-> > Describe the common parts under a common dtsi.
-> > 
-> > The initial submission enables support for:
-> > - CPU nodes with cpufreq and cpuidle support
-> > - Global Clock Controller (GCC)
-> > - Resource State Coordinator (RSC) with clock controller & genpd provider
-> > - Interrupt controller
-> > - Power Domain Controller (PDC)
-> > - Vendor specific SMMU
-> > - SPMI bus arbiter
-> > - Top Control and Status Register (TCSR)
-> > - Top Level Mode Multiplexer (TLMM)
-> > - Debug UART
-> > - Reserved memory nodes
-> > - Interconnect providers
-> > - System timer
-> > - UFS
-> > 
-> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> > Co-developed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> > Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/eliza.dtsi | 1317 +++++++++++++++++++++++++++++++++++
-> >  1 file changed, 1317 insertions(+)
-> > 
-> > +
-> > +		ice: crypto@1d88000 {
-> > +			compatible = "qcom,eliza-inline-crypto-engine",
-> > +				     "qcom,inline-crypto-engine";
-> > +			reg = <0x0 0x01d88000 0x0 0x18000>;
-> > +
-> > +			clocks = <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
-> 
-> As per the updated ABI for eliza and milos which I am proposing with this patch,
-> we should have two clocks (core & iface) and a power-domain here:
-> 
-> https://lore.kernel.org/all/20260317-qcom_ice_power_and_clk_vote-v3-2-53371dbabd6a@oss.qualcomm.com/
+From: Biju Das <biju.das.jz@bp.renesas.com>
 
-I don't want the merging of this Eliza patchset to be blocked until
-yours gets merged.
+Hi all,
 
-So, for now, I'll respin without and we can fix it after.
+This patch series adds initial support for the Renesas RZ/G3L SoC and
+RZ/G3L SMARC EVK platform. The RZ/G3L device is a general-purpose
+microprocessor with a quad-core CA-55, single core CM-33, Mali-G31
+3-D Graphics and other peripherals.
 
-Thanks for pointing this out though!
+Support for the below list of blocks is added in the SoC DTSI (r9a08g046.dtsi):
+
+ - EXT CLK
+ - 4X CA55
+ - SCIF
+ - CPG
+ - GIC
+ - ARMv8 Timer
+
+This series also adds SCIF support for the RZ/G3L SMARC EVK board (r9a08g046l48-smarc.dts).
+
+v3->v4:
+ * Dropped SoC identification patches as it is accepted for renesas-devel.
+ * Updated commit description related to core clocks section in the
+    hardware manual
+ * Dropped CLK_P4_DIV2 from core clocks
+ * Added MIPI_DSI_PLLCLK and USB_SCLK to core clocks
+ * Dropped LVDS_PCLK  module clock
+ * Added BSC_X_PRESET_BSC reset
+ * Moved the patch series from [1] to here as it is boot-dependent.
+ * Updated commit description
+ * Updated LAST_DT_CORE_CLK with R9A08G046_USB_SCLK
+ * Fixed typo 2->8 in dtable_4_128[].
+ * Added critical reset table r9a08g046_critical_resets[]
+ * Updated num_resets
+ * Added crit_resets and num_crit_resets to r9a08g046_cpg_info.
+ * Fixed typo R0A08G046L->R9A08G046L in commit description
+ * Dropped R9A08G046L46 from commit description
+ * Dropped unused audio_clk{1,2} andcan_clk device nodes
+ * Reordered i2c device node and updated reg entries by using lower-case
+   hexadecimal number
+ * Added placeholder in pinctrl node
+ * Dropped unused DMAC device node
+ * Added pcie node with placeholder
+ * Collected the tags.
+ * Updated commit description for patch#8
+
+[1] https://lore.kernel.org/all/20260306134228.871815-1-biju.das.jz@bp.renesas.com/
+v2->v3:
+ * Added macros R9A08G046_ETH{0,1}_CLK_{TX,RX}_I_RMII in r9a08g046-cpg.h.
+ * Keep the tag from Conor as it is trivial change for just adding macros.
+v1->v2:
+ * Dropped scif bindings patch as it is accepted.
+ * Collected tags.
+ * Squashed the patch#3 and #4
+ * Documented GE3D/VCP for all SoC variants
+ * Documented external ethernet clocks as it is a clock source for MUX
+   inside CPG
+ * Updated commit description for bindings.
+ * Keep the tag from Conor as it is trivial change for adding more
+   clks.
+ * Added CLK_ETH{0,1}_TXC_TX_CLK_IN and CLK_ETH{0,1}_RXC_RX_CLK_IN clocks
+   in clk table.
+ * Dropped R9A08G046_IA55_PCLK from critical clock list.
+ * Added external clocks eth{0,1}_txc_tx_clk and eth{0,1}_rxc_rx_clk
+   in soc dtsi as it needed for cpg as it is a clock source for mux.
+ * Updated cpg node.
+ * Dropped gpio.h header from SoM dtsi.
+ * Dropped scif node as it is already included in common platform
+   file.
+
+Test logs:
+/ #  uname -r
+7.0.0-rc4-next-20260316-g7f7df5dd3d2a
+/ # cat /proc/cpuinfo
+processor       : 0
+BogoMIPS        : 48.00
+Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
+CPU implementer : 0x41
+CPU architecture: 8
+CPU variant     : 0x2
+CPU part        : 0xd05
+CPU revision    : 0
+
+processor       : 1
+BogoMIPS        : 48.00
+Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
+CPU implementer : 0x41
+CPU architecture: 8
+CPU variant     : 0x2
+CPU part        : 0xd05
+CPU revision    : 0
+
+processor       : 2
+BogoMIPS        : 48.00
+Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
+CPU implementer : 0x41
+CPU architecture: 8
+CPU variant     : 0x2
+CPU part        : 0xd05
+CPU revision    : 0
+
+processor       : 3
+BogoMIPS        : 48.00
+Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
+CPU implementer : 0x41
+CPU architecture: 8
+CPU variant     : 0x2
+CPU part        : 0xd05
+CPU revision    : 0
+
+/ # cat /proc/interrupts
+           CPU0       CPU1       CPU2       CPU3
+ 11:        104        191        429         62    GICv3  27 Level     arch_timer
+ 14:          0          0          0          0    GICv3 418 Level     100ac000.serial:rx err
+ 15:          4          0          0          0    GICv3 420 Level     100ac000.serial:rx full
+ 16:        229          0          0          0    GICv3 421 Level     100ac000.serial:tx empty
+ 17:          0          0          0          0    GICv3 419 Level     100ac000.serial:break
+ 18:         17          0          0          0    GICv3 422 Level     100ac000.serial:rx ready
+IPI0:         3         16         13         21       Rescheduling interrupts
+IPI1:       315        240        180        217       Function call interrupts
+IPI2:         0          0          0          0       CPU stop interrupts
+IPI3:         0          0          0          0       CPU stop NMIs
+IPI4:         0          0          0          0       Timer broadcast interrupts
+IPI5:         0          0          0          0       IRQ work interrupts
+IPI6:         0          0          0          0       CPU backtrace interrupts
+IPI7:         0          0          0          0       KGDB roundup interrupts
+Err:          0
+/ # cat /proc/meminfo
+MemTotal:        1887304 kB
+MemFree:         1852164 kB
+MemAvailable:    1819524 kB
+/ # cat /sys/devices/soc0/family
+RZ/G3L
+/ # cat /sys/devices/soc0/machine
+Renesas SMARC EVK version 2 based on r9a08g046l48
+/ # cat /sys/devices/soc0/soc_id
+r9a08g046
+/ # cat /sys/devices/soc0/revision
+0
+dmesg | grep r9a
+[    0.000000] Machine model: Renesas SMARC EVK version 2 based on r9a08g046l48
+[    0.066480] renesas-rz-sysc 11020000.system-controller: Detected Renesas RZ/G3L r9a08g046 Rev 0
+
+Biju Das (9):
+  dt-bindings: clock: Document RZ/G3L SoC
+  clk: renesas: rzg2l-cpg: Add support for critical resets
+  clk: renesas: r9a07g04{3,4}/r9a08g045-cpg: Add critical reset entries
+  clk: renesas: rzg2l-cpg: Re-enable critical module clocks during
+    resume
+  clk: renesas: Add support for RZ/G3L SoC
+  arm64: dts: renesas: Add initial DTSI for RZ/G3L SoC
+  arm64: dts: renesas: Add initial support for RZ/G3L SMARC SoM
+  arm64: dts: renesas: renesas-smarc2: Move usb3 nodes to board DTS
+  arm64: dts: renesas: Add initial device tree for RZ/G3L SMARC EVK
+    board
+
+ .../bindings/clock/renesas,rzg2l-cpg.yaml     |  40 +-
+ arch/arm64/boot/dts/renesas/Makefile          |   2 +
+ arch/arm64/boot/dts/renesas/r9a08g046.dtsi    | 215 +++++++++++
+ .../boot/dts/renesas/r9a08g046l48-smarc.dts   |  37 ++
+ arch/arm64/boot/dts/renesas/r9a08g046l48.dtsi |  13 +
+ .../boot/dts/renesas/r9a09g047e57-smarc.dts   |   6 +
+ .../boot/dts/renesas/renesas-smarc2.dtsi      |   8 -
+ .../boot/dts/renesas/rzg3l-smarc-som.dtsi     |  20 +
+ drivers/clk/renesas/Kconfig                   |   7 +-
+ drivers/clk/renesas/Makefile                  |   1 +
+ drivers/clk/renesas/r9a07g043-cpg.c           |   8 +
+ drivers/clk/renesas/r9a07g044-cpg.c           |  13 +
+ drivers/clk/renesas/r9a08g045-cpg.c           |   9 +
+ drivers/clk/renesas/r9a08g046-cpg.c           | 153 ++++++++
+ drivers/clk/renesas/rzg2l-cpg.c               |  80 ++++
+ drivers/clk/renesas/rzg2l-cpg.h               |   8 +
+ include/dt-bindings/clock/r9a08g046-cpg.h     | 342 ++++++++++++++++++
+ 17 files changed, 948 insertions(+), 14 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a08g046.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a08g046l48.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/rzg3l-smarc-som.dtsi
+ create mode 100644 drivers/clk/renesas/r9a08g046-cpg.c
+ create mode 100644 include/dt-bindings/clock/r9a08g046-cpg.h
+
+-- 
+2.43.0
+
 
