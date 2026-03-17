@@ -1,203 +1,206 @@
-Return-Path: <devicetree+bounces-276665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276666-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kGmCBslJuWmK+QEAu9opvQ
-	(envelope-from <devicetree+bounces-276665-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 13:32:09 +0100
+	id gLqdE6NKuWnG/QEAu9opvQ
+	(envelope-from <devicetree+bounces-276666-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 13:35:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AE2E2A9EBF
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 13:32:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A18B52A9F4A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 13:35:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8F2883031AD5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:32:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3FEA330C0FF6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:33:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F3FC3C3BEB;
-	Tue, 17 Mar 2026 12:32:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 716803C2782;
+	Tue, 17 Mar 2026 12:33:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Te8jkm00";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="Adrdg2Xt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aeV9Svij"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EFA93C141A
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 12:31:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 263823C3C09
+	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 12:33:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773750721; cv=none; b=DLp7LMyOvR4JEwzkO6Tm7RGIXzilALHX+UQY51qLDMqj8rXlLDe/YukaZQ50Ug/AYmj6FsZa36T8rKf0wL2RzJ+lIFq0Lt1BWPFg5eTU1R5FICelxmVoAWiceLwZ3a9h6PKlheJVffr6HJYwHg7ejFlHcWtCMpsCmO/DV1QviYQ=
+	t=1773750826; cv=none; b=WDJun2n5s0PBnzm5wHvjdEkuPgP4BbJjrBKItOwcFxhgxCinVfibRcxT5Y6l11dh9GAf5xvt+6yQg6eFiLhpr/kwcDDyrK3lBXpdc6T3FHNnNHw6pZp/bga96BxcgryIKYm9baTs7ErWi9+98tdcwkmz8xnxw5Xo+PCcNsjwaiI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773750721; c=relaxed/simple;
-	bh=1jQ0Io1F3tQLKlbPYrvOiyY2JRwu/1WgFSk5RLQLW9c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JFyjgaAO2zOZYbQU+SASWK7HRCPAOQs5absZ4bp1/eQAREY2ukK33URgnpbrzR9aq3iJkpnQRbK0PhriW0hdyF+GsD2VaiPXHX0MZWPHBYIR4LSVApDG3O4udWX39FkImHtSffQ+UfFjebEAt4UF2GOsmNkoeilPWtD0qHGJfIE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Te8jkm00; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=Adrdg2Xt; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1773750719;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2iZiUbcHQjwJ43FxZPCYpG6wLuTswJ/Obh68aZ9hETE=;
-	b=Te8jkm00TnPyEpXJVNEg0KxUxzHQIbEsonlq4p807udN0dclgVBXpacCW3bsBrY8l61BPG
-	OBTgUrG411ngaBHigzGMMI/dZQXUw7PJk3jymg8B2rhdFr0zJg/H0ROdWLy7RuIS8jLjNo
-	80Y9s6QN4Ia4qlGxmXP8oCroQFZayoU=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-26-lEvHBWkOPPeIryfygjZCrw-1; Tue, 17 Mar 2026 08:31:57 -0400
-X-MC-Unique: lEvHBWkOPPeIryfygjZCrw-1
-X-Mimecast-MFC-AGG-ID: lEvHBWkOPPeIryfygjZCrw_1773750717
-Received: by mail-wr1-f70.google.com with SMTP id ffacd0b85a97d-439a9182148so3879698f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 05:31:57 -0700 (PDT)
+	s=arc-20240116; t=1773750826; c=relaxed/simple;
+	bh=U1xyH+WaAysADpcGv9hBQo3f+RrbdhtWzHz9smCQyLM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=HuEs2GGVoYnyn2ylBJZt/VjHV6pcDlxss9leUK/8gFO3Cs1MDsTmtPNC6i6dGRoU+WyOuNapbWhPaRbYHfW+9CZWz1/4pC/jw4vJBhQzmn8NjZdwv+c73AyaVSpvRmOWL6Dk/Q+4pCshlNTzQi4PsW7w1CMFmjY1wAmMQEsK9Oc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aeV9Svij; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-486b96760easo5156235e9.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 05:33:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1773750716; x=1774355516; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2iZiUbcHQjwJ43FxZPCYpG6wLuTswJ/Obh68aZ9hETE=;
-        b=Adrdg2Xt/M212XjH+j/vIQnluu0qezxPVvwt24uFZxVbz/ELT3KdZDsBqKK6EgJqGT
-         6e+ws63SinWIRzbp1tB424g0Pdn+ToHsE08wsPoEFg99q7e/LuZADMzOaO+CRmfrtrZx
-         BB0tzbCyACOQ2unq7VmF+66rUF53mGCVGnVEscexeJhLnBWCVh9mXq6OCK1Fk8Pp9V5B
-         STAYnF8gUafCW8m5F5XuGAuBkzaj/cv5ywlW6orOXd9cNIQlcRfReXrCIuFeuaChg7yx
-         /ZT7djXczXVcj0P5XqDFWGnoKjHGUuguzfJG7uGzwITjMv6I7io04VFUmSkJPMJqcyoo
-         2Rsw==
+        d=gmail.com; s=20230601; t=1773750822; x=1774355622; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JWEUgV2342X6jiRVtCFNtlvF+3T7N34UBOgJmY6l/Rs=;
+        b=aeV9SvijMwJWX3fxDo0Kol+GdnRKy+bkDvGjdNACjpfUgwVN7a4YbH0yx2pDTexH8X
+         j8cTFdjD2tFER0vts+ShHJDv7L35Xpgmv03OrPsvrfS+3YKiyjIQKm1ulXBNeMFO1PJG
+         idGOchX/hZ7xdPs7KsCDVdyh7ye2F1/46gmFmIjf/oRObe9kEjaE+KE0dij6EcQh/aqr
+         cbBotk5yafxYfFyDPSf9RriRNQFXUJBwx30H4GX6LPMBKpcZ760BajePpLzYMifYA6fL
+         7FjOYs02EcqXnbJIkohfIuc+8W7jX7oMn715k8aN7+ONYNtjIej1nv7mYhU3xqyR0KRu
+         PKow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773750716; x=1774355516;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2iZiUbcHQjwJ43FxZPCYpG6wLuTswJ/Obh68aZ9hETE=;
-        b=rDTzXcoAgvJNOOQLJWZGQFJm2IGeXLWUL7N9ZmvTSWQY7ZL4Ut8+Sbj1KU2SU5BcGU
-         /xHIRCA+xx0YUxGL262TnrzYdWPkq89C5alC+Xx3M3y69LiQV6ZUahUoLc4dBC6uGCsT
-         rJQ7BhweWlep7d6mUlB3YFZ1qDPFRYs7tPErtZWyvxvwGsrI2382ypORl/Hmoot2kmGA
-         JCic33xSApLie+n6viJAds4jmkG2Vg9+9LdmOkUAuvKaP9fvT5j+4E41GVOIGlhifZ/D
-         Bnwre7sh7ngvwSL+1OCKJZ4o/q67GtGQ4mIOIRZhXMbxWLLdlu9DeF4yoScQoW28C5Zm
-         dzrg==
-X-Forwarded-Encrypted: i=1; AJvYcCW+/NhK1ZpFnRtgRQ6f2dKhSd/aXsfJHe+mXCuxpCdwAhvsWzPN+PtKcvqX03he5oEHLTdpEGjdhDCU@vger.kernel.org
-X-Gm-Message-State: AOJu0YxavTooXYMx9Kg6yYunW5Fc8eillHv4YzoWXa2EQwAoOnZWikbI
-	RcaoC6b8Be3aXAt/EIil/bW1anvpkVVeFSwqSdIWdl1msBlwTzFzjEZvRCYSEYHi1EsXYLUzpZ0
-	27j8P+P1aG0ew/kAcnuYXWsg1A4VdSZYj6+5jpD5w2hA1diQNHgoYUF/Kc+sfJnc=
-X-Gm-Gg: ATEYQzxTN+PonnmXYEzEC8u5puLCzbYd7AX5Nrue+hATUiXXkoDrltferxsOgG59jFE
-	vVeR0fesDFdMQx44uFSNYsA0cScY0OPN4gxrbO6x3Nyo2KGMapauO7P6RPYRf/4LGZPQCiWZjmE
-	78Uh56JznsHJbQLCiVZq2jTbYC9YQ940vChU7lGz1XqsJjTKr34eTA1WpDeRwyX1v9w4+B/F2T9
-	KhlzUszavj7egJGTLY9MgSMcNuNJKkxsmsP9807ApcB6OLOUIRE87pOtADkbnstmtNEwojsZPyX
-	w08tk/m3jDXQScRBSzjyYojr+VX6kJ0UaGNnmQAU5aoq7mR0dcQcHJJoZGMxVEsNqWjrxzlIaoY
-	eG4/TyekOIMqxYyuEYGHDM7XXlSQ8Dguwr/3qPyMkVoBhv3B5+R1rCtI=
-X-Received: by 2002:a05:6000:2882:b0:439:b636:1fa4 with SMTP id ffacd0b85a97d-43a04dcbd70mr30274994f8f.48.1773750716424;
-        Tue, 17 Mar 2026 05:31:56 -0700 (PDT)
-X-Received: by 2002:a05:6000:2882:b0:439:b636:1fa4 with SMTP id ffacd0b85a97d-43a04dcbd70mr30274922f8f.48.1773750715932;
-        Tue, 17 Mar 2026 05:31:55 -0700 (PDT)
-Received: from [192.168.88.32] ([216.128.11.95])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439fe20bd9csm50468510f8f.21.2026.03.17.05.31.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Mar 2026 05:31:55 -0700 (PDT)
-Message-ID: <78cc0556-7986-49dc-b7df-0a0d789a3fc0@redhat.com>
-Date: Tue, 17 Mar 2026 13:31:54 +0100
+        d=1e100.net; s=20251104; t=1773750822; x=1774355622;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JWEUgV2342X6jiRVtCFNtlvF+3T7N34UBOgJmY6l/Rs=;
+        b=piU/hlpU8C5vlcZ8UzniGSciZEFlu5BiIAGPhR8UpnbyQjnUaqi6eTxn1phqNFcurf
+         SlNtgEVUkW2IAUDbqJym7+K1ZjhNrGp3exnRmFU4lV+pFMxCDoN5dmJic+SexslvrO2S
+         aOso8S+xDRHgeeewIykDUNe2OeGWESRmlsXfuJyD45YH/WS5/dt8i5wkXTtAAxnTtmvu
+         As0jSIB8fQ8qBDm7Czae0pT8Gq7DMFRQxLH9h9hZU4QgcDy6+lsT26BBsswXqGA0BsZw
+         RDa7hdVANA2hAjx7OxC3HvH2VMT+w00/njw4plkCg0zoE2eaCULQdG2T8Of7Xmd1VyK/
+         jXfw==
+X-Forwarded-Encrypted: i=1; AJvYcCWS/4oYR8joVxw6OrOvYDToN85kWZV1lp2CnowKNB30jW1zM0WBD0UEr6xxhPEXYYMwwRb2s7LajzJP@vger.kernel.org
+X-Gm-Message-State: AOJu0YxedfE7JCJ7MXbdISFvC4K9UUf+XkfmypFLf8466KXamLeN/itH
+	9voheyhdKt9n+ZI95AElhhnLIL9y1ohAnyWvSZMdXTYja90+WriT+uHz
+X-Gm-Gg: ATEYQzws+obMTkJ9Rz2C1kGKQvy6xBVur2xzEaWAlAX/iIW8grX7Z3glr4sbHG6ipZi
+	BVhZRHrDjgpFoslgKVbmk9BRxJ+DCENiG0XrCsKFoFGjQL60/nPR/OuPyjofezsG77Zpq18pSIz
+	LSloNJ5i2QTTsri0AjMfq2U4UEu7w/Cf6Gn5k+6yjoYwfcbTWn/mcMn3R2BEmROLGVLcUgsuAxA
+	kjT2sdAXk1Ka/kw2mieh2XhWYMcen+W82po+OXC23M4dEq6ojABwUD6gkGkLsHH19HD1A5uN2jh
+	pAt9fNxPNbfSWWZQzwnM3renpIOdAjCsqykWlE0NxvVgbj/lxUD9c2SfthL3fNlh5cvNCGL1xd8
+	IGSu3QjkpFHx7fuZG+Pe/bmWhCF/23jl4VJmyE+g9LLW0tmrDsMWpu712++x2twLDlL4c/4+Ioz
+	IoQV/Ll21dVJxxN78yUy1FQlcTQqMl5aorSb8O7/TRChC+ncuIncz2
+X-Received: by 2002:a05:600d:8489:20b0:485:3812:36dc with SMTP id 5b1f17b1804b1-485566d9068mr210984635e9.9.1773750821994;
+        Tue, 17 Mar 2026 05:33:41 -0700 (PDT)
+Received: from [192.168.0.253] (5D59A51C.catv.pool.telekom.hu. [93.89.165.28])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4856ea96828sm111917355e9.5.2026.03.17.05.33.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Mar 2026 05:33:41 -0700 (PDT)
+From: Gabor Juhos <j4g8y7@gmail.com>
+Date: Tue, 17 Mar 2026 13:33:32 +0100
+Subject: [PATCH v2] arm64: dts: marvell: armada-37xx: drop
+ 'marvell,usb-misc-reg' from USB host nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v3 0/3] Initial support for PIC64-HPSC/HX
- Ethernet endpoint
-To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Charles Perry <charles.perry@microchip.com>, netdev@vger.kernel.org
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260313140610.3681752-1-charles.perry@microchip.com>
- <DH4DU4Z4X9MM.398FQ3BIZQIJB@bootlin.com>
-Content-Language: en-US
-From: Paolo Abeni <pabeni@redhat.com>
-In-Reply-To: <DH4DU4Z4X9MM.398FQ3BIZQIJB@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260317-armada-37xx-drop-usb-misc-reg-v2-1-ddff72114414@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/43NQQ6CMBCF4auQWTumBSzgynsYFqWMMImlZKoEQ
+ 7i7lRO4/N7ifxtEEqYI12wDoYUjhykhP2XgRjsNhNwnQ65yowpVohVve4tFta7YS5jxHTv0HB0
+ KDUiNKS5lUztLBlJjFnrwevTvbfLI8RXkc9wt+rf+W140aqyVcrqrStNV9jZ4y8+zCx7afd+/f
+ sJPisoAAAA=
+X-Change-ID: 20260304-armada-37xx-drop-usb-misc-reg-e9635498cae6
+To: Andrew Lunn <andrew@lunn.ch>, 
+ Gregory Clement <gregory.clement@bootlin.com>, 
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Gabor Juhos <j4g8y7@gmail.com>
+X-Mailer: b4 0.14.2
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276665-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[redhat.com:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-276666-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[lunn.ch,bootlin.com,gmail.com,kernel.org];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pabeni@redhat.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[j4g8y7@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7AE2E2A9EBF
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,0.0.226.144:email]
+X-Rspamd-Queue-Id: A18B52A9F4A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/16/26 6:28 PM, Théo Lebrun wrote:
-> On Fri Mar 13, 2026 at 3:06 PM CET, Charles Perry wrote:
->> Hello,
->>
->> This series add basic support for Microchip "PIC64-HPSC" and "PIC64HX"
->> Ethernet endpoint. Both SoCs contain 4 GEM IP with support for
->> MII/RGMII/SGMII/USXGMII at rates of 10M to 10G. Only RGMII and SGMII at a
->> rate of 1G is tested for now. Each GEM IP has 8 priority queues and the
->> revision register reads 0x220c010e.
-> 
-> Do you have plans to test higher rate? We might get our hands on GEMs
-> that support >1G and would like to know if CCing you would make sense.
-> 
->> One particularity of this instantiation of GEM is that the MDIO controller
->> within the GEM IP is disconnected from any physical pin and the SoC rely on
->> another standalone MDIO controller.
-> 
-> Ah, that means you instantiate the MDIO bus for no good reason.
-> Code looks like:
-> 
-> static int macb_mii_init(struct macb *bp)
-> {
-> 	struct device_node *mdio_np, *np = bp->pdev->dev.of_node;
-> 	int err = -ENXIO;
-> 
-> 	/* With fixed-link, we don't need to register the MDIO bus,
-> 	 * except if we have a child named "mdio" in the device tree.
-> 	 * In that case, some devices may be attached to the MACB's MDIO bus.
-> 	 */
-> 	mdio_np = of_get_child_by_name(np, "mdio");
-> 	if (!mdio_np && of_phy_is_fixed_link(np))
-> 		return macb_mii_probe(bp->dev);
-> 
-> 	// ... probe MDIO bus ...
-> }
-> 
-> So to *not* get the bus we need to be in fixed link config. Do you care
-> about that? I think that the proper fix would be to lazy probe the MDIO
-> bus until a PHY (ours or some other MAC's) asks for it.
+The 'marvell,usb-misc-reg' property is present both in the EHCI and
+in the XHCI USB host device nodes, however it is not documented. Thus
+'make dtbs_check' produces warnings like these:
 
-I think that even this one could be a follow-up patch.
+  /arch/arm64/boot/dts/marvell/armada-3720-db.dtb: usb@58000 (marvell,armada3700-xhci): Unevaluated properties are not allowed ('marvell,usb-misc-reg' was unexpected)
+          from schema $id: http://devicetree.org/schemas/usb/generic-xhci.yaml
+  /arch/arm64/boot/dts/marvell/armada-3720-db.dtb: usb@5e000 (marvell,armada-3700-ehci): Unevaluated properties are not allowed ('marvell,usb-misc-reg' was unexpected)
+          from schema $id: http://devicetree.org/schemas/usb/generic-ehci.yaml
 
-Thanks,
+Apart from the fact that the properties are not documented, those are
+not even used by any USB host drivers. Due to this, drop the properties
+in order to get rid of the warnings.
 
-Paolo
+Note:
+
+With the same name, there is a property used for the Armada 3700 USB
+UTMI PHYs of which dt-bindings documentation has been added in commit
+e60958699afa ("dt-bindings: phy: mvebu-utmi: add UTMI PHY bindings").
+
+Additionally, the property is handled by the 'phy-mvebu-a3700-utmi'
+driver since commit cc8b7a0ae866 ("phy: add A3700 UTMI PHY driver").
+
+When the nodes of the UTMI PHYs has been added to the SoC dtsi by
+commit 05d168a56fae ("arm64: dts: marvell: armada-37xx: declare USB2
+UTMI PHYs"), the properties has been added to the USB host controller
+nodes also. According to the commit message this was intentional,
+however in regard to the USB hosts, neither the respective documentation,
+nor driver support has been added into the tree since that.
+
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Signed-off-by: Gabor Juhos <j4g8y7@gmail.com>
+---
+Changes in v2:
+  - add Reviewed-by tag from Andrew
+  - change subject and reword commit message
+  - Link to v1: https://lore.kernel.org/r/20260304-armada-37xx-drop-usb-misc-reg-v1-1-800c1b746b7a@gmail.com
+---
+ arch/arm64/boot/dts/marvell/armada-37xx.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
+index ea1824f5321fbb32fc4373c08a0d94bca1dc793b..44c47409f8793ae1266303607812ef481edbfbc5 100644
+--- a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
+@@ -369,7 +369,6 @@ usb3: usb@58000 {
+ 				compatible = "marvell,armada3700-xhci",
+ 				"generic-xhci";
+ 				reg = <0x58000 0x4000>;
+-				marvell,usb-misc-reg = <&usb32_syscon>;
+ 				interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&sb_periph_clk 12>;
+ 				phys = <&comphy0 0>, <&usb2_utmi_otg_phy>;
+@@ -393,7 +392,6 @@ usb32_syscon: system-controller@5d800 {
+ 			usb2: usb@5e000 {
+ 				compatible = "marvell,armada-3700-ehci";
+ 				reg = <0x5e000 0x1000>;
+-				marvell,usb-misc-reg = <&usb2_syscon>;
+ 				interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
+ 				phys = <&usb2_utmi_host_phy>;
+ 				phy-names = "usb";
+
+---
+base-commit: 98226a594f313442fcba38cefc1df0b6c1691c7e
+change-id: 20260304-armada-37xx-drop-usb-misc-reg-e9635498cae6
+
+Best regards,
+-- 
+Gabor Juhos <j4g8y7@gmail.com>
 
 
