@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-276738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276739-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yJ1bGzhwuWm8EgIAu9opvQ
-	(envelope-from <devicetree+bounces-276738-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 16:16:08 +0100
+	id UKpgCTZxuWm8EgIAu9opvQ
+	(envelope-from <devicetree+bounces-276739-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 16:20:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC2692ACCE3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 16:16:07 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24DFC2ACE59
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 16:20:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 148EE31316C6
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 15:07:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 288E430E3B67
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 15:08:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE2093E51FA;
-	Tue, 17 Mar 2026 15:07:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E46E13EB806;
+	Tue, 17 Mar 2026 15:07:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jyX8lFYk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SKgQwR2S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D372C3EAC7B
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 15:07:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A99F3EB7ED
+	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 15:07:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773760068; cv=none; b=fLqeYJShHrZPOOYrKhGyedsIL1ttAsLjSkvNeaxv4/Hc90F+lgD1hsOwkH7r+NrZdEJC2c/A9Z2PeeHocR5dddkyXV8IElnTYrpccro+EHPfXgydTg+sguXdqvc6RxlYU1wqJpSHzB0QHsuhGQHGFvumyi6cTM4kdZFwadcnUc0=
+	t=1773760077; cv=none; b=S9U1lcJ2mVC9ffUOLPndtReJWc4XgCIcSZMS5SWhMy1QzFDfbowA7dvoirzmo7Xl12Qx61fUwP0P2Dxb9RpoKeKpMwT4C+Hknr3yH+ypL7gxwXUdRhHb4uPcTG4BVwPI43Lze8z2rQc+H+tXhyjezbp0iVAcHlnQDJokbg75zT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773760068; c=relaxed/simple;
-	bh=ugLXSOQq7QSCgho2RoIr1fLG4lvZP4+2+LFPJMLE4ls=;
+	s=arc-20240116; t=1773760077; c=relaxed/simple;
+	bh=5axsyuQX6kSpAO9yE6C9Xr9Tpol43U4sj/pTNBFqWuU=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=cWFNm4pRrRPakKuBsb9+qyPQu2Cd+++7JPxVg+3umwyn4KUieKS/2L2XqtCFKiivLBgxJsVlLbCqYD019QXataicppB4QhApzz6aFBRhNc/CICqoYFQoFE0jBx3m6XNig3QNYFqfzjoowGMgVIdK6VYpmCmSL/bAAYupBowk/LU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jyX8lFYk; arc=none smtp.client-ip=209.85.221.48
+	 In-Reply-To:Content-Type; b=glozxsy5UAVSBMQ8msd8kBshLD3OADjYkx7ZnbzLiqhbskEtVpmR3Gpj71L5JgXjMYUb74JtgJKVBNbQjBA5+AGsp2Bbp1IzObijm7NfbK7KzAeZSmpYkbmwbqQQfKLPRaVk1e2mtCBcIaP5rtUQj4ftrItqUuyUY6BRa5ldGPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SKgQwR2S; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-439af7d77f0so4355525f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 08:07:46 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-439cd6b09f8so4604481f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 08:07:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773760065; x=1774364865; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1773760075; x=1774364875; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=m89VOcIDuR8pU5+lfBINwqojWHzS8GSlw/sbPEudCRc=;
-        b=jyX8lFYkECFWfZ0uCwgGLWwmXyER+V5DbQuT6ntwPFxAaulYS8cBZjn+qDp3PNd4b6
-         L43HuLCedOhtCNgkC76DO56lbqrB7xW5xevqx4ecSmT/rGIeQTdbF62LcbylF/JktMkR
-         CeqX5LGlYL54JKcmqKDvF9Eoc+BATtvw2uyc3L5ulRajdf/K5vKJefgTXD156NCwtOwo
-         Diyh+1QzdTKvm8ATW2Hvn3Idz+b6rekCYCRw1pw71Z8MI95JzTlFteE1R3YYPtZ1T1Zy
-         rgziuD4LjknvTbAz5pJ5QFqAy6981We8C723dnbWqtkjBI+5lY3aQDHKWiVDIs7mhz3D
-         CJWQ==
+        bh=ounBg+UMN1/N0+EitrJjiPBQEsZSqjuCUXFihDm3B0o=;
+        b=SKgQwR2Scdpg1O3n0a0EF0M0DvWv632bVUKhYerlLKPtF/oI7NCozVm4bjsDWnwCS5
+         dXsxC7Nolxx5hbZFivydz/4qdvi+ES2XKWCudvDlciVChJ7wU7YkUlKbDTlHiru1oShD
+         LRFjQfT9CWQwiY6ZidoaiRewqVyQNGOLgJQTF0CSIk3tPsrKNS3o8umCM5SuPJ9mJ+JG
+         RNOlwnknJbnkjGhvThFIE1fhasjqPKtE/17MUyJH0UGf4Rsvv/Y6jvdmhhuJsLhBCBqQ
+         ASMtXn6wbKa+v24gj1WDn1v0xlVVWqm42C7bKjU6Hkohi3GfWe4GsEes2omd2Zof7NFe
+         I9fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773760065; x=1774364865;
+        d=1e100.net; s=20251104; t=1773760075; x=1774364875;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=m89VOcIDuR8pU5+lfBINwqojWHzS8GSlw/sbPEudCRc=;
-        b=WDsGaJk6p2Wpj9Li1It4T2hEGbSR27gaA6YitSN3aZkWSz57s0IrCgiVg8XgkujiTp
-         SEvg5d7cGBqN3OP5Pkcwdx/BjrrNTC4abe3AESQNVEnyiarjuQ5StpUmJzPm46CwUGMI
-         o1IyiJzdEhOCFiWd4W2tzwd2pGx382F3gmzbkHXRTvy9AcMZYcd41IH3qn7wPOvFMGKk
-         m2L6wAAHQT8Cn3VRSA7QAQwNCH9B+9XfXIOwKdkRB757h2f35ujiU2i9ybetC5ZznKtw
-         N15a+lwlP2rvThNtbO6XzuoegnRxbvyLWhPU3K1ANEV41/7mR5SCTonCuGenv5yzZIxo
-         WGGg==
-X-Forwarded-Encrypted: i=1; AJvYcCUjNe/57vjCJlLM2bdQvb9bMzudYqkslHO/3RLXpcWqVjHcu0S5Gl8YnUoGTYua/Z/P8tal7z/ik3xU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyfn8ffqJx9O/CCkjOtUQQXoavNduqlKo/I47fEAIgxsh53aOne
-	oSxPEeW5Jx04yMbCDV8L4R18TPuM8qLwta6jaaXyv73uvZQdLYEwb7otRs8MsR36EZ4=
-X-Gm-Gg: ATEYQzwe/OYi8C4LjCNLpOjdp9ewkqIazcotWUvU7R75t8C1M8GMLKvpcDZsP+fxlPw
-	JjJkjt8sjSZEHPLRYhvyvaj4kvRCpRWWizFQSgFRWE8lnuQAiapaF99UkB7xERax0J2Tjq8ZqRN
-	uefyvuupu7c13SyMUKwqSehQu5qYFeJxnaVkEaqZc7B1fHHPXA0NaQI9H7Iu85fBoWttVBYmy6b
-	MmjTZlNRl1fYRB/pmcCjetmbyO6zHyABx6jpRC+r9uUTJaN6w7dG03ItLkgmSX7J6zPmzKFCgOT
-	AZtoOZ7tKxkpiptcLc7o9wHD9eoKAwA8GLbgMuBYl/z58ryV3ynJ3NCpaLzlC3ZoFknr/KvYkki
-	MMzZKRjPiIo4lCQHqfXT9H0G8Rtq1j5Xr3GcXlgOHbyWk7/j264tVyWLFJlSBD4OfMvllqc4bpW
-	mASpRRy7FJgBGdcK2KyM1wf5fF/OolaJXSjqw/ahlMpmkxsK0i29N1VbhB0gUoOc+kGg38UXjE4
-	7uPTw8PGJ9Hs9Iupw==
-X-Received: by 2002:a5d:5d09:0:b0:43b:4faf:a496 with SMTP id ffacd0b85a97d-43b4fafa6cfmr3562311f8f.31.1773760064888;
-        Tue, 17 Mar 2026 08:07:44 -0700 (PDT)
+        bh=ounBg+UMN1/N0+EitrJjiPBQEsZSqjuCUXFihDm3B0o=;
+        b=aSTMBvbFqpeaxlT+qw00BAXC6hRWqXC7I+SBQWo0WFCV8Ogv/eFwdVTFj4tq+4LW4K
+         zwSzD7EbfMxu1s4pmA5wK/AOsb3LpwsfE19FmFDlTjR3Zr/qSszKcQIzq42jgXEfGJZq
+         mkGwAf8mLvvqTkzanKVYev/VVltzTuqIWQQ0z7P6e6/jwZrZyPJ0Pfk0jbPnEmB0zpkq
+         0P9X5/PicfSTHlk43er5xsZoq+5GRRPTvedKV/iglxDCVrsZ78lwjxUmKRIhbyhiGFH9
+         f6w8MTtILw+QUFKE0IbZ7ORXwULBGHpXOKpSiKIpBRCrTAquIWPzV1ny2YlXTdgtUR+E
+         V9mA==
+X-Forwarded-Encrypted: i=1; AJvYcCXvJ7uLXc7t8G+MfbDnCDTvfxRoOcvJQs2qsvlSsvS1jLvA9TPkAtNJ5RNE4+jW29yPDlpXZi08ZODJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxL4w6W9UQkOEeIO2dfutmTzCIlns7cJg45mtjPSjC36G32e1L
+	WvDhGPVxhB4rIuHgCIENW/M7T24oYUrUY3YDGj39ulrpqFUq/m2/8cqFIW3FcWTEt38=
+X-Gm-Gg: ATEYQzxE4NBnzNILoLvn0+65VQ2aE6czqA6LWo/pNjYEkmPPsZwg2mWAhHgE2H+Bf/G
+	K7RQI6Pr3NQuP3hpKpICSBroMdGFyGy7+088xEijj2VQWBieSelIqhTWtUY4/Z/jDh0rS8W5tH9
+	tV2EsQtb1fJJlnAZ0M/A3R1ubzSYWJtb8Dvq11Ic/MRlkZVigLP5d4IwJMuVwgOaXA+vXISzyUG
+	2dMd2nI0Jx4RzmazTA5E3mPMpJcPAzjs6gV/YwM4B80O/OoHwBdD4nOyNnBEmuy3IYYuUp31zIg
+	TtY/sIISaHUHYCXEZHVR5nZTSvXq8Lp7TjFjrVh0rCQhwcsCJwIzHg46AfiOloRJxvH+Rrcgzwu
+	B0J8HyVz9Qm6GSzz4vAdx6b/6+2FIz1G4rETk7REDr8UHfQOvn4VPApICUiW8oJWCtpKkjcWNR1
+	ILBlCgodWFhqvJOhipC74MSQ6cb0bhwxdCQzCH2IwGfTwcqXjxRHV8kEf/U8cxpTqTks9755X1M
+	e2MXuo=
+X-Received: by 2002:a05:6000:240d:b0:43b:50d6:4f00 with SMTP id ffacd0b85a97d-43b50d650e3mr2023675f8f.30.1773760074531;
+        Tue, 17 Mar 2026 08:07:54 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:106d:1080:c778:639f:c042:aa01? ([2a01:e0a:106d:1080:c778:639f:c042:aa01])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b51852ab3sm165071f8f.12.2026.03.17.08.07.43
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b51892290sm82251f8f.20.2026.03.17.08.07.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Mar 2026 08:07:44 -0700 (PDT)
-Message-ID: <a5cc6da7-b530-4acf-8014-4c24ffa2130f@linaro.org>
-Date: Tue, 17 Mar 2026 16:07:43 +0100
+        Tue, 17 Mar 2026 08:07:54 -0700 (PDT)
+Message-ID: <7510ff5b-968e-4ae7-977f-4163aa9e396f@linaro.org>
+Date: Tue, 17 Mar 2026 16:07:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,7 +90,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 4/6] arm64: dts: qcom: sm8550: Fix GIC_ITS range length
+Subject: Re: [PATCH 3/6] arm64: dts: qcom: sm8450: Fix GIC_ITS range length
 To: Konrad Dybcio <konradybcio@kernel.org>,
  Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
@@ -107,7 +107,7 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, Jishnu Prakash <quic_jprakash@quicinc.com>,
  Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 References: <20260317-topic-its_range_fixup-v1-0-49be8076adb1@oss.qualcomm.com>
- <20260317-topic-its_range_fixup-v1-4-49be8076adb1@oss.qualcomm.com>
+ <20260317-topic-its_range_fixup-v1-3-49be8076adb1@oss.qualcomm.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -134,14 +134,14 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260317-topic-its_range_fixup-v1-4-49be8076adb1@oss.qualcomm.com>
+In-Reply-To: <20260317-topic-its_range_fixup-v1-3-49be8076adb1@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -149,25 +149,25 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[21];
-	TAGGED_FROM(0.00)[bounces-276738-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-276739-lists,devicetree=lfdr.de];
 	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[linaro.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:email,linaro.org:replyto,linaro.org:mid,1.5.137.32:email,qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[1.4.236.224:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,1.5.137.32:email,linaro.org:dkim,linaro.org:email,linaro.org:replyto,linaro.org:mid,qualcomm.com:email];
 	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
 	PRECEDENCE_BULK(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	REPLYTO_EQ_FROM(0.00)[]
-X-Rspamd-Queue-Id: DC2692ACCE3
+X-Rspamd-Queue-Id: 24DFC2ACE59
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
@@ -176,22 +176,22 @@ On 3/17/26 15:41, Konrad Dybcio wrote:
 > 
 > Currently, the GITS_SGIR register is cut off. Fix it up.
 > 
-> Fixes: ffc50b2d3828 ("arm64: dts: qcom: Add base SM8550 dtsi")
+> Fixes: fc8b0b9b630d ("arm64: dts: qcom: sm8450 add ITS device tree node")
 > Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > ---
->   arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 +-
+>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 2 +-
 >   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index e3f93f4f412d..0fc86967bbeb 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -5274,7 +5274,7 @@ ppi_cluster3: interrupt-partition-3 {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index fd2d5648b92a..1f31d3eea4f0 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -5104,7 +5104,7 @@ intc: interrupt-controller@17100000 {
 >   
 >   			gic_its: msi-controller@17140000 {
 >   				compatible = "arm,gic-v3-its";
-> -				reg = <0 0x17140000 0 0x20000>;
-> +				reg = <0 0x17140000 0 0x40000>;
+> -				reg = <0x0 0x17140000 0x0 0x20000>;
+> +				reg = <0x0 0x17140000 0x0 0x40000>;
 >   				msi-controller;
 >   				#msi-cells = <1>;
 >   			};
