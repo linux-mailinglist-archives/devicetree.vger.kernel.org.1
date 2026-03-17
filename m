@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-276818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276819-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gAAIMVObuWlzLAIAu9opvQ
-	(envelope-from <devicetree+bounces-276818-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 19:20:03 +0100
+	id EPohBk6auWn5KwIAu9opvQ
+	(envelope-from <devicetree+bounces-276819-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 19:15:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id C37C32B0D37
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 19:20:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C7052B0C2C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 19:15:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A160830802F4
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 18:08:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 78B8331C1943
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 18:09:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FDE23F786D;
-	Tue, 17 Mar 2026 18:08:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03CF03F65F2;
+	Tue, 17 Mar 2026 18:08:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b="ns0e12ay"
+	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b="csNOpWSW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 851F337FF46
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 18:08:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F9AB3F7862
+	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 18:08:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773770904; cv=none; b=VXDMkD7mGYpXbSIdSgC0i3dL1u9YN3xWEXos1itvQmO4/Z0RPzhQqnJNU9tKiBvfXmLApC5f8KRk1yYVVQVMkhcDUBH7efHnvqvV+qVplCsgCYy9aIGHz+qmhhOPXXiRFyxs+w04CggDyuhCMOWWFojC4SzJJ0tdyFNWvlmqFCQ=
+	t=1773770906; cv=none; b=d7mmoqiOheqK62YheI8wSl2wlZdW65pgf5OJktSp4ciCmnMLJazl75pWckmF6J2Gf/CIld7398TvJsUQylEOTMGfwYyzXi2lFVF2NjaSSA4l1YhhwhMJNs334b0oaEVvUC207UqWiwyIcFklV78wYCguoAdQ4M+AvMYaPdeWJtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773770904; c=relaxed/simple;
-	bh=adUNrc5DmhRHUleLGmdaxH9/D4sLCU6UUObKtpN1GPU=;
+	s=arc-20240116; t=1773770906; c=relaxed/simple;
+	bh=IcqKl6Q93uEU2+8AL9hVIxItRFtJRUZB5AVhl781nlw=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EhlEVa09KD7aK9ktLEMiqIMsLSG7UKN5++0KpNaRSTb+crU84u/OHN8SMA1L1lrggmTuGgjveQ/r43BkeqgG7subeso9vFi5VeU5DvMnf8EWIb4HQubb6jPqhdJlJ0QJD5PZ7Qq5bRAOfXaZ7ipBHxemDzolEo9niN9OP1moxSM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net; spf=pass smtp.mailfrom=flipper.net; dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b=ns0e12ay; arc=none smtp.client-ip=209.85.221.53
+	 In-Reply-To:To:Cc; b=FohhwO6nUOZdOSM/oorG8ivtpj818BBLa1fYhINEaQiTB+bv92I6rScy7f9x6zsLBtRt/q4NQBU2QU9+BlaU86H268BJ5OrjGUqtgRR8WNr4dujeix3p6vhT93M2vnYVsw4qhFBCjjfbJAbiy8elGarY8otBAJoa8MQLYjonneE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net; spf=pass smtp.mailfrom=flipper.net; dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b=csNOpWSW; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flipper.net
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-43b4d73463dso689113f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 11:08:22 -0700 (PDT)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-48535a0ef86so50635625e9.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 11:08:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=flipper.net; s=google; t=1773770901; x=1774375701; darn=vger.kernel.org;
+        d=flipper.net; s=google; t=1773770904; x=1774375704; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zZzaejzhKh2/pl8uBJakl190/CtTYCUrflLlLKsisxI=;
-        b=ns0e12aylGGu33RxMy5d7BDj7PNJ5Gfdb2pS4XmfURX+xhwZI9TVEi8VvIWVSguRGg
-         gtN0kNT6nEBivxkow31CQOnkzm4N4JixjO0XsPkKVNQsvrzY6+j1UDeaccjKuzzgH6bg
-         GQfKs+hxhXdg1pUYCv8migj9FPg9Pt21yKE39RbCBbCLqPUIU2BTBhsg1FEahIe3BRwr
-         4VnwDD5klgS7jGQzxr+O9Dj2+QqdHQ6mzsaZL3SGS7jmw4fSF1EAb1LyRIOthOuioK4+
-         tF9dUDOVvJHjSTf2R5hHe7dlDHPDQg4DmqzDAx4jDqzbgqzcHfze1aGWgqYBR+KZi87t
-         C0rQ==
+        bh=z7IffOQPDV8+R2vLMwqGaiOzpiBs5raeLy7NwaqA2zE=;
+        b=csNOpWSW243w2N8IZI1VNWQR/aVyoptPIRWFEdGUUJ2532ferNRpS2NUjt12FORKue
+         5M2XFyBYdEHnkuNmMhQ/5Mj00Yefni8jqSSi6mJXayoDFASh8y4aZ6WXfVdnxn/iV1Oy
+         VjC7yExHeDUfajXQAMhzABWgfFgTeW4Rw65uznI4RpC+g/kDmU+F06StMXVHT68yA7Dg
+         yrn9KN0sjoU0ba68xsly4M5UQT4Ncxsgam/1isE0X4NQsHgH6e5XODTW+hzKfcxiYrL6
+         UOAhUkPa3x3AyhsQ/lnMeP00eD4bTh9CozT6p9TAXSLA2w2oCgnKw+WH5S94Uo/4b0Ig
+         Dvvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773770901; x=1774375701;
+        d=1e100.net; s=20251104; t=1773770904; x=1774375704;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=zZzaejzhKh2/pl8uBJakl190/CtTYCUrflLlLKsisxI=;
-        b=X/jcyRYg6RyYQRiObJnwsNB/viVkrgwWO/TPwFJoUb+hwwSpTEN9wbKvVE0zrarSaO
-         CWzkDgGCgSVI/m4pAJVwPoCP/z2/cN+nrXr62tNFABa3sG9JPiewi+1MB8ULHwl8a3b9
-         blAqbuKbTotc2HViqBW1Zswexgtm9GY6409ZJOOHjfPr0UaTOFRPtmlQxIcoh7yHjk+t
-         0M7FkAvzVSWOkbBML5ewHbZPUoi45rT5BPg/Oth9664Ol+NG+Y9qyV5mwtaaV4yflC+1
-         yeGn81SN+OeZ+NBnmRmfcEICrfHyAiEZ2O3Llvsq13edo3sxfX/EkIdzwrzQ1ZVFGo4s
-         o3pA==
-X-Forwarded-Encrypted: i=1; AJvYcCVO5PHXO4BLgDNGWrJZc8JDb9dp8x1iKRWrbjUlkwfoxTuZeRy9BIO1wz32fISHdjX9m16SlNZ1NWHV@vger.kernel.org
-X-Gm-Message-State: AOJu0YzM3qplNPrmGPCyWVvzSksivHWd2oopUWdd7xuyFraPfLp0yTZz
-	wtFEG/8mneOB2yKfD7fzEo9XUZ0qfa/w82YhjXOKzuPDo14gLZEFHSrsI1OPBCULd2g=
-X-Gm-Gg: ATEYQzzR48vhsZYay/Re7hxKY1kPCs+q6Ar8WBDLzmmoHEIOPekfS1mm0UQSi3pZBYz
-	IPGvJAeqh4UU7u5AcMzgZNCt117bXaYEjCBbSQwFkgNGqP3i89TJCNhk66v8NOmCK0J3rlQOB2r
-	B5CWC4zIr6awSFS0eM/cq9/Acy4YPv1IaMemo2DqyHCNnawGQekz95UoF83cZErQU2R+666iuAy
-	yMt51Tffth0Wcd4fHNf02iaG5EJ1gyOUH03fmEBkG9YILh+3i6hM31HlRTQkWlXjjAKJgwrMu/U
-	iwv3Vud8x8vC25gQAQGZZJEdg2LTOKZhkVlOe1WZ+0wmSKxMg10bSbbEmt72EcjirsJz/+4rLm2
-	+w66bOsqTuHY96QAA6fZvCDKTV/spahF7dIhCtAXfYjUsIgf518Kj58ARatcz5y5gCNCF/39t9e
-	o2X9x0UzuYyi0XENsD0kNsL2la6Q1k/bjup28U9L8KbR+FhJ7rc/temQvCqMCoCLbsfbo3XG6gw
-	3HOEpGDnS6JSA3g
-X-Received: by 2002:a5d:5d13:0:b0:43b:45d1:f448 with SMTP id ffacd0b85a97d-43b527aa5bbmr374980f8f.14.1773770900811;
-        Tue, 17 Mar 2026 11:08:20 -0700 (PDT)
+        bh=z7IffOQPDV8+R2vLMwqGaiOzpiBs5raeLy7NwaqA2zE=;
+        b=aWBDl38m+BO6AJO9aznQHHLJg0aM+Fp/mLekyuNTMMyxCi89RuTQO0YjmAZnlkbDbY
+         0yJ/cbnu0eSglmIjV4w5rjqOAG+qRkNR+w9y6MjBWK1Y4g6xJiDKb6FBCnWcHpn3jGAL
+         drse6l8kmBuzez65lSG+0KmrXWz8ZuLh+G5L4ngdelTB1lnVeE4TbDhv5To7lrMssAxQ
+         XKxf98eKSX3s+YsSTrx7PyRBGvWjqdo2bTMp2uk4ndlOG7SftCMLd3J6wI3DjfH74cIZ
+         WvzXBu+UlI4qheHC2h6HHpjJbhUm9WQBhAj8Nou5hjfM6vAqu9pFPL5aS5ScX3117Y+G
+         yTAA==
+X-Forwarded-Encrypted: i=1; AJvYcCX8yeowH0Mff5z0VCc+evNfkEGetx5Q+ZG3AqsNlXY01Vo+gUS+UVwPy5gSbSN2ykmpcYpYWk4PN55W@vger.kernel.org
+X-Gm-Message-State: AOJu0YwXaEqHRdIEmqa9oV2hKHyguC+nFXQaYii/KjN6asSanyyzV+jW
+	iWWVg5+qWi111sIyIsyZymkNkE37p0qTHD+gRB8zAiIrpeKIIYnuxbTkSUK/94f6OoU=
+X-Gm-Gg: ATEYQzyi5qYb6xsvoOKshmF+LhlsU7jygN7hUA76C62GGaeibayrxDgZUMNCZIn6QyL
+	tf9Pt7EDQfFWdIyoh2lkMeahqbMJAvfxb6QDp7WOwyH/BKMtNfje4YSu17b6LX6/KUfyL5IDTmI
+	1GSXgyJBNoOk8NBqeXyukGeOALS6wE1mWUiNS6rCG8JIDgZDOUAmg4EaxFemHWZaWr/tvzoV1EW
+	qi8wkLpM1PoLqX76wmXJU08WYBB+A7HDj1LZlTk6L0Nv1TO1BIVkLb6ci3S4yMezUqYyu6j5ll5
+	EZYUpBkcd92NqnYSGDnebA7YqD1T2MFjE6LXyJJEgU2nnQSaHu5YcVJk5yGNaja9qGkC4IZ/cgK
+	3Ic+BgzE6miykz4pHju1yXQDqjbapKoUhCsO89pHcqi8dpqb8HU32Z26KDGUDKllnWH0+S2GtKT
+	/ZISVXhUIDbXz+1iT6tORRWpQkBsNIcAUW3viZl6n6xxh7RgydQb6DafiSOF738vTX16LI3k27H
+	KY2bQ==
+X-Received: by 2002:a05:600c:620c:b0:485:40ed:2d1 with SMTP id 5b1f17b1804b1-486f4475049mr8830515e9.17.1773770903842;
+        Tue, 17 Mar 2026 11:08:23 -0700 (PDT)
 Received: from alchark-surface.localdomain (bba-86-98-192-109.alshamil.net.ae. [86.98.192.109])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b5184b8b9sm1436536f8f.1.2026.03.17.11.08.18
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b5184b8b9sm1436536f8f.1.2026.03.17.11.08.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Mar 2026 11:08:20 -0700 (PDT)
+        Tue, 17 Mar 2026 11:08:23 -0700 (PDT)
 From: Alexey Charkov <alchark@flipper.net>
-Date: Tue, 17 Mar 2026 22:08:01 +0400
-Subject: [PATCH v2 4/5] usb: typec: tcpci_rt1711h: Drop unnecessary
- VID/PID/DID checks
+Date: Tue, 17 Mar 2026 22:08:02 +0400
+Subject: [PATCH v2 5/5] arm64: dts: rockchip: Add HUSB311 Type-C controller
+ on RK3576 EVB1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,7 +89,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260317-husb311-v2-4-03c17c986abe@flipper.net>
+Message-Id: <20260317-husb311-v2-5-03c17c986abe@flipper.net>
 References: <20260317-husb311-v2-0-03c17c986abe@flipper.net>
 In-Reply-To: <20260317-husb311-v2-0-03c17c986abe@flipper.net>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -105,171 +105,99 @@ Cc: Sebastian Reichel <sebastian.reichel@collabora.com>,
  Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
  Alexey Charkov <alchark@flipper.net>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3767; i=alchark@flipper.net;
- h=from:subject:message-id; bh=adUNrc5DmhRHUleLGmdaxH9/D4sLCU6UUObKtpN1GPU=;
- b=owGbwMvMwCW2adGNfoHIK0sZT6slMWTunNEm7lq/wyh58vysd8teFvqaSX7aqZlhekVIp2SHw
- hzjoNeiHRNZGMS4GCzFFFnmfltiO9WIb9YuD4+vMHNYmUCGSIs0MAABCwNfbmJeqZGOkZ6ptqGe
- oaGOsY4RAxenAEz1VmuGfxYZ97tT9/Pu1tP4ff9FTPE84X1lm3ofM82yYv76Y4acTR4jw5pHJ93
- 58wTaY1/eUZrd5S50eEub3t7nTuf2MzMeNDBdxw8A
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1866; i=alchark@flipper.net;
+ h=from:subject:message-id; bh=IcqKl6Q93uEU2+8AL9hVIxItRFtJRUZB5AVhl781nlw=;
+ b=owGbwMvMwCW2adGNfoHIK0sZT6slMWTunNHmJGfEaCm+fu6bly6VCnWlgeb5ohfcLIqPLNWa5
+ uH96gR3x0QWBjEuBksxRZa535bYTjXim7XLw+MrzBxWJpAh0iINDEDAwsCXm5hXaqRjpGeqbahn
+ aKhjrGPEwMUpAFM9WYqRYX257051ceGN7IdvJFzdefLKdct/7G8ynD1yF1zeGz17TyQjw/lPB+b
+ XxN1Z7rlz644PXIxnD5b9YTqx5UVLWbBzYb/WBR4A
 X-Developer-Key: i=alchark@flipper.net; a=openpgp;
  fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[flipper.net,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[flipper.net:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276818-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,linuxfoundation.org,richtek.com,sntech.de,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,linuxfoundation.org,richtek.com,sntech.de,gmail.com];
+	TAGGED_FROM(0.00)[bounces-276819-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[flipper.net:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[alchark@flipper.net,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,flipper.net:dkim,flipper.net:email,flipper.net:mid]
-X-Rspamd-Queue-Id: C37C32B0D37
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 7C7052B0C2C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Existing checks for VID/PID/DID in the driver are redundant since the
-driver is already matched to the device via I2C device ID and OF
-compatible strings, and they preclude the use of fallback compatibles.
+Rockchip RK3576 EVB1 board has a Hynetek HUSB311 USB Type-C controller on
+its Type-C OTG port, which also supports DisplayPort Alternate Mode.
 
-Remove them to make the driver slimmer and adding new clones easier.
+Add the required DT nodes to enable basic HUSB311 operation.
+
+Note that for full support of mode and orientation switching, the USBDP
+PHY schema may need to be expanded, such as in [1]. This is left out for
+now until the respective schema is finalized and merged.
+
+[1] https://lore.kernel.org/linux-rockchip/20260313-rockchip-usbdp-cleanup-v3-1-3e8fe89a35b5@collabora.com/
 
 Signed-off-by: Alexey Charkov <alchark@flipper.net>
 ---
- drivers/usb/typec/tcpm/tcpci_rt1711h.c | 59 ++--------------------------------
- 1 file changed, 2 insertions(+), 57 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-diff --git a/drivers/usb/typec/tcpm/tcpci_rt1711h.c b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-index 37cf55ad74f8..4b3e4e22a82e 100644
---- a/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-+++ b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-@@ -18,13 +18,6 @@
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
+index fb0dd1bc5148..df6c4b4b05f6 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
+@@ -11,6 +11,7 @@
+ #include <dt-bindings/leds/common.h>
+ #include <dt-bindings/pinctrl/rockchip.h>
+ #include <dt-bindings/soc/rockchip,vop2.h>
++#include <dt-bindings/usb/pd.h>
+ #include "rk3576.dtsi"
  
--#define RT1711H_VID		0x29CF
--#define ET7304_VID		0x6DCF
--#define RT1711H_PID		0x1711
--#define RT1711H_DID		0x2171
--#define RT1715_DID		0x2173
--#define ET7304_DID		0x2173
--
- #define RT1711H_PHYCTRL1	0x80
- #define RT1711H_PHYCTRL2	0x81
+ / {
+@@ -769,6 +770,25 @@ regulator-state-mem {
+ &i2c2 {
+ 	status = "okay";
  
-@@ -57,8 +50,6 @@
- 
- struct rt1711h_chip_info {
- 	u32 rxdz_sel;
--	u16 vid;
--	u16 did;
- 	bool enable_pd30_extended_message;
- };
- 
-@@ -304,35 +295,6 @@ static int rt1711h_sw_reset(struct rt1711h_chip *chip)
- 	return 0;
- }
- 
--static int rt1711h_check_revision(struct i2c_client *i2c, struct rt1711h_chip *chip)
--{
--	int ret;
--
--	ret = i2c_smbus_read_word_data(i2c, TCPC_VENDOR_ID);
--	if (ret < 0)
--		return ret;
--	if (ret != chip->info->vid) {
--		dev_err(&i2c->dev, "vid is not correct, 0x%04x\n", ret);
--		return -ENODEV;
--	}
--	ret = i2c_smbus_read_word_data(i2c, TCPC_PRODUCT_ID);
--	if (ret < 0)
--		return ret;
--	if (ret != RT1711H_PID) {
--		dev_err(&i2c->dev, "pid is not correct, 0x%04x\n", ret);
--		return -ENODEV;
--	}
--	ret = i2c_smbus_read_word_data(i2c, TCPC_BCD_DEV);
--	if (ret < 0)
--		return ret;
--	if (ret != chip->info->did) {
--		dev_err(&i2c->dev, "did is not correct, 0x%04x\n", ret);
--		return -ENODEV;
--	}
--	dev_dbg(&i2c->dev, "did is 0x%04x\n", ret);
--	return ret;
--}
--
- static int rt1711h_probe(struct i2c_client *client)
- {
- 	int ret;
-@@ -349,12 +311,6 @@ static int rt1711h_probe(struct i2c_client *client)
- 
- 	chip->info = i2c_get_match_data(client);
- 
--	ret = rt1711h_check_revision(client, chip);
--	if (ret < 0) {
--		dev_err(&client->dev, "check vid/pid fail\n");
--		return ret;
--	}
--
- 	chip->data.regmap = devm_regmap_init_i2c(client,
- 						 &rt1711h_regmap_config);
- 	if (IS_ERR(chip->data.regmap))
-@@ -408,27 +364,16 @@ static void rt1711h_remove(struct i2c_client *client)
- 	tcpci_unregister_port(chip->tcpci);
- }
- 
--static const struct rt1711h_chip_info et7304 = {
--	.rxdz_sel = RT1711H_BMCIO_RXDZSEL,
--	.vid = ET7304_VID,
--	.did = ET7304_DID,
--	.enable_pd30_extended_message = true,
--};
--
- static const struct rt1711h_chip_info rt1711h = {
--	.vid = RT1711H_VID,
--	.did = RT1711H_DID,
- };
- 
- static const struct rt1711h_chip_info rt1715 = {
- 	.rxdz_sel = RT1711H_BMCIO_RXDZSEL,
--	.vid = RT1711H_VID,
--	.did = RT1715_DID,
- 	.enable_pd30_extended_message = true,
- };
- 
- static const struct i2c_device_id rt1711h_id[] = {
--	{ "et7304", (kernel_ulong_t)&et7304 },
-+	{ "et7304", (kernel_ulong_t)&rt1715 },
- 	{ "rt1711h", (kernel_ulong_t)&rt1711h },
- 	{ "rt1715", (kernel_ulong_t)&rt1715 },
- 	{}
-@@ -436,7 +381,7 @@ static const struct i2c_device_id rt1711h_id[] = {
- MODULE_DEVICE_TABLE(i2c, rt1711h_id);
- 
- static const struct of_device_id rt1711h_of_match[] = {
--	{ .compatible = "etekmicro,et7304", .data = &et7304 },
-+	{ .compatible = "etekmicro,et7304", .data = &rt1715 },
- 	{ .compatible = "richtek,rt1711h", .data = &rt1711h },
- 	{ .compatible = "richtek,rt1715", .data = &rt1715 },
- 	{}
++	usbc0: typec-portc@4e {
++		compatible = "hynetek,husb311", "richtek,rt1711h";
++		reg = <0x4e>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <RK_PA5 IRQ_TYPE_LEVEL_LOW>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&usbc0_int>;
++		vbus-supply = <&vbus5v0_typec>;
++
++		connector {
++			compatible = "usb-c-connector";
++			label = "USB-C";
++			data-role = "dual";
++			power-role = "source";
++			source-pdos = <PDO_FIXED(5000, 2000,
++						 PDO_FIXED_USB_COMM | PDO_FIXED_DATA_SWAP)>;
++		};
++	};
++
+ 	hym8563: rtc@51 {
+ 		compatible = "haoyu,hym8563";
+ 		reg = <0x51>;
 
 -- 
 2.52.0
