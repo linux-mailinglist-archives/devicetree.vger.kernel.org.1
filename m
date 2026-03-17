@@ -1,192 +1,151 @@
-Return-Path: <devicetree+bounces-276623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276624-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mFzgNGw3uWnVvQEAu9opvQ
-	(envelope-from <devicetree+bounces-276623-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:13:48 +0100
+	id WESWE004uWk8vgEAu9opvQ
+	(envelope-from <devicetree+bounces-276624-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:17:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE08F2A88FE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:13:47 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B835E2A8989
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 12:17:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9C025300E180
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:13:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D4CC6306586B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:17:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94EDC3AA1A3;
-	Tue, 17 Mar 2026 11:13:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 932F633F361;
+	Tue, 17 Mar 2026 11:17:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BN4OvIHs"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="q1G5tA1H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705113A7F61;
-	Tue, 17 Mar 2026 11:13:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D192E372EE2;
+	Tue, 17 Mar 2026 11:17:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773746001; cv=none; b=IOykh/usfmX+lGgQRsiOSn8Wn8bnFqf3TUc6+Yv1c3zWKHaUWcrzUXG2w0LoHBaSdCvG/T1YoMiVvnjEh/awx570M3Wy4IfHI6KX95tYbBZayNGpi1qxhdZMjji6ZothkDgd+UkMyOECCo7eQ0KbVhMEzuTO2JY2Gnkbvy4OWs8=
+	t=1773746243; cv=none; b=dIZvH+VP8GT0DusjMFveaxEcjMB72MOwnC0in3PKcoOT/nsqsxn09eChdyviA9BafgOCPgXT1nu9ANWXgsoXWDdsV9jPy+y4RxYzoEardSfZgw2cdG8/J5kNmxnbWjvr7KXGSw+CKMQOfsmnsImX0uYklQ7Eo7H86mX4Yp1KKMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773746001; c=relaxed/simple;
-	bh=A4k44UqySYK9sBzDZ65HlwjIbkEi1C81mQWx6Wneq/E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QrLvMDPCnYNJzy1bqUgtSPVWBb3kxkamJoYyzM9EbCaooWScJcpfyRSjlzNXc9j+KdcTQDZlkBjsvnTFrkFJhroJKu9LJ2nrPKTdNtpS9DkSBJDmKtGLcVtucpw47ZcYqmM5PSIw9tCnDZ9/7F2cur9BU8nxtdLFM2sTTrSUJzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BN4OvIHs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9747DC4CEF7;
-	Tue, 17 Mar 2026 11:13:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773746001;
-	bh=A4k44UqySYK9sBzDZ65HlwjIbkEi1C81mQWx6Wneq/E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BN4OvIHsgbwLgRezuXX+qMCFE0z812uNPJ9isuRxchmBDsKjWaXzTUTLVWnM7Bfdd
-	 vMfHaG1KT8/XVIs1YNXau89CSWykOVGhdZcx+SITNe+aSiluskaWz4L7FDs0iyC/jW
-	 k0wyksijDe55/zUnE17hXYiYnQ1IDq1JU4NT4A36NApXlJcPWC/KShcBdgPE/QF4vn
-	 aUp+XeV0TFVyAd+0z6CkDTAzZLMbRGX499M4KyuWK4dtulyX9vIydWTzp6aPJU4+Ch
-	 W8BsjoO1wcKst8WwmJGQy8edFc82Kb6/mjnRFmqf1fiuG3Cb3gQ/GE/Jp458V2HcXx
-	 l5cgK8BH7vEqg==
-Date: Tue, 17 Mar 2026 16:43:17 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: xianwei.zhao@amlogic.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	Frank Li <Frank.Li@kernel.org>, linux-amlogic@lists.infradead.org,
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v6 2/3] dmaengine: amlogic: Add general DMA driver for A9
-Message-ID: <abk3TUTaov3zIfFm@vaman>
-References: <20260309-amlogic-dma-v6-0-63349d23bd4b@amlogic.com>
- <20260309-amlogic-dma-v6-2-63349d23bd4b@amlogic.com>
+	s=arc-20240116; t=1773746243; c=relaxed/simple;
+	bh=GZw8+B+r7XHcl1ZhynndIAqOtmGsttTADzy8NiQjyOc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=H5H3WGJwYyGADmxgMrAtRvvtDr3fP+1ezER9sv2L1BKnz40T/iXta5LKHq7Wf7F5yjN+5+z2SPLuQhqHpP8aSyZXJ6aw+KFwHgtjNVi/ZvEPWXvoqOxyt8jaFeOrGG/fBSpCoMrOByFdFnvHKYOAgUfR0FoU/PyUImNEHztftmk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=q1G5tA1H; arc=none smtp.client-ip=188.40.3.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ew.tq-group.com; s=default2602; h=Content-Transfer-Encoding:MIME-Version:
+	Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=avvawqzpw98eGlOgQgfT3HyYcAovbaWbFswynfXll9E=; b=q1G5tA1HN7SUP59QF3c0RomN0+
+	9UuDvzSVdYfhjzllYzitf+bi+v0ITmyDTlTFmtJJBVE6K9cMOwGGrUiJxkoTNgdC13gUB1cYp0aPj
+	a1eVtPNK4EVFJInhhuG2BnFZOsKDKq+kd3l/zb26vpwjFv9cjfBtl36z3K3AdWYf0jar79SKCbDBk
+	BQfGKxZ+Q1VjCn07wg6GsJa8tLMG6FMD0jHl9pOS8TdVPtYCV+LcYoTZbLU92mfB4Y5uwsr6ENfE2
+	pFK1GjUzPILWylPnpu5VNydXcneEatDA7Vul1Sdmjzkh2OUoARbWWknr0M/9ylp2ulEGIS5iR4KWJ
+	rDOmo5XA==;
+Received: from sslproxy04.your-server.de ([78.46.152.42])
+	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1w2SQJ-000923-1i;
+	Tue, 17 Mar 2026 12:17:19 +0100
+Received: from localhost ([127.0.0.1])
+	by sslproxy04.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1w2SQI-000MCw-2H;
+	Tue, 17 Mar 2026 12:17:19 +0100
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com
+Subject: [PATCH 0/3] TQMa93xx on MBa93xxLA-Mini support
+Date: Tue, 17 Mar 2026 12:16:59 +0100
+Message-ID: <20260317111704.1075938-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260309-amlogic-dma-v6-2-63349d23bd4b@amlogic.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: Clear (ClamAV 1.4.3/27943/Tue Mar 17 07:24:09 2026)
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276623-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276624-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vkoul@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,amlogic.com:email]
-X-Rspamd-Queue-Id: DE08F2A88FE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tq-group.com:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ew.tq-group.com:dkim,ew.tq-group.com:mid]
+X-Rspamd-Queue-Id: B835E2A8989
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 09-03-26, 06:33, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Hi all,
 
-> +static dma_cookie_t aml_dma_tx_submit(struct dma_async_tx_descriptor *tx)
-> +{
-> +	return dma_cookie_assign(tx);
-> +}
+this series adds support for TQMa93xxLA on MBa93xxLA-Mini [1],
+a single board computer board in small form factor.
+It has a reduced feature set compared to MBa93xxLA, with WiFi/Bluetooth and
+WWAN applicaitons in mind.
+An overlay for Ezurio WiFi module is added as well.
 
-You lost tx, why was it not saved into a queue?
+Best regards,
+Alexander
 
-> +static struct dma_async_tx_descriptor *aml_dma_prep_slave_sg
-> +		(struct dma_chan *chan, struct scatterlist *sgl,
-> +		unsigned int sg_len, enum dma_transfer_direction direction,
-> +		unsigned long flags, void *context)
-> +{
-> +	struct aml_dma_chan *aml_chan = to_aml_dma_chan(chan);
-> +	struct aml_dma_dev *aml_dma = aml_chan->aml_dma;
-> +	struct aml_dma_sg_link *sg_link;
-> +	struct scatterlist *sg;
-> +	int idx = 0;
-> +	u64 paddr;
-> +	u32 reg, link_count, avail, chan_id;
-> +	u32 i;
-> +
-> +	if (aml_chan->direction != direction) {
-> +		dev_err(aml_dma->dma_device.dev, "direction not support\n");
-> +		return NULL;
-> +	}
-> +
-> +	switch (aml_chan->status) {
-> +	case DMA_IN_PROGRESS:
-> +		dev_err(aml_dma->dma_device.dev, "not support multi tx_desciptor\n");
-> +		return NULL;
+[1] https://www.tq-group.com/en/products/tq-embedded/arm-architecture/mba93xxla-mini/
 
-And why is that. You are preparing a descriptor and keep it ready and
-submit after the current one finishes
+Martin Schmiedel (3):
+  dt-bindings: arm: fsl: add MBa93xxLA-MINI
+  arm64: dts: freescale: add initial device tree for
+    TQMa93xx/MBa93xxLA-MINI
+  arm64: dts: freescale: imx93-tqma9352-mba93xxla-mini: Add WLAN/BT
+    overlay
 
-
-> +
-> +	case DMA_COMPLETE:
-> +		aml_chan->data_len = 0;
-> +		chan_id = aml_chan->chan_id;
-> +		reg = (direction == DMA_DEV_TO_MEM) ? WCH_INT_MASK : RCH_INT_MASK;
-> +		regmap_set_bits(aml_dma->regmap, reg, BIT(chan_id));
-> +
-> +		break;
-> +	default:
-> +		dev_err(aml_dma->dma_device.dev, "status error\n");
-> +		return NULL;
-> +	}
-> +
-> +	link_count = sg_nents_for_dma(sgl, sg_len, SG_MAX_LEN);
-> +
-> +	if (link_count > DMA_MAX_LINK) {
-> +		dev_err(aml_dma->dma_device.dev,
-> +			"maximum number of sg exceeded: %d > %d\n",
-> +			sg_len, DMA_MAX_LINK);
-> +		aml_chan->status = DMA_ERROR;
-> +		return NULL;
-> +	}
-> +
-> +	aml_chan->status = DMA_IN_PROGRESS;
-> +
-> +	for_each_sg(sgl, sg, sg_len, i) {
-> +		avail = sg_dma_len(sg);
-> +		paddr = sg->dma_address;
-> +		while (avail > SG_MAX_LEN) {
-> +			sg_link = &aml_chan->sg_link[idx++];
-> +			/* set dma address and len  to sglink*/
-> +			sg_link->address = paddr;
-> +			sg_link->ctl = FIELD_PREP(LINK_LEN, SG_MAX_LEN);
-> +			paddr = paddr + SG_MAX_LEN;
-> +			avail = avail - SG_MAX_LEN;
-> +		}
-> +		sg_link = &aml_chan->sg_link[idx++];
-> +		/* set dma address and len  to sglink*/
-> +		sg_link->address = paddr;
-> +		sg_link->ctl = FIELD_PREP(LINK_LEN, avail);
-> +
-> +		aml_chan->data_len += sg_dma_len(sg);
-> +	}
-> +	aml_chan->sg_link_cnt = idx;
-
-There is no descriptor management here. You are directly writing to
-channel. This is _very_ inefficient and defeats the use of dmaengine.
-
-Please revise the driver. Implement queues to manage multiple txns and
-we have vchan to help you implement these, so take use of that
+ .../devicetree/bindings/arm/fsl.yaml          |   3 +
+ arch/arm64/boot/dts/freescale/Makefile        |   5 +
+ ...3-tqma9352-mba93xxla-mini-ezurio-wlan.dtso |  35 +
+ .../imx93-tqma9352-mba93xxla-mini.dts         | 637 ++++++++++++++++++
+ 4 files changed, 680 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla-mini-ezurio-wlan.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla-mini.dts
 
 -- 
-~Vinod
+2.43.0
+
 
