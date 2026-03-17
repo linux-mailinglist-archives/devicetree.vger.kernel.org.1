@@ -1,255 +1,233 @@
-Return-Path: <devicetree+bounces-276852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276853-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +F/6AgiyuWmDMQIAu9opvQ
-	(envelope-from <devicetree+bounces-276852-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 20:56:56 +0100
+	id eGSvHheyuWmDMQIAu9opvQ
+	(envelope-from <devicetree+bounces-276853-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 20:57:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EF5E2B1D5E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 20:56:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F05722B1D7D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 20:57:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9530F318EC26
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 19:52:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7F9D0305C8C0
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 19:52:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C7AB342173;
-	Tue, 17 Mar 2026 19:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9130C33F8DC;
+	Tue, 17 Mar 2026 19:52:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aMgPxxxO"
+	dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b="KAQ09qVd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f182.google.com (mail-dy1-f182.google.com [74.125.82.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CH5PR02CU005.outbound.protection.outlook.com (mail-northcentralusazon11022097.outbound.protection.outlook.com [40.107.200.97])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FEA5342C9E
-	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 19:52:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.182
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773777130; cv=none; b=immVwcmerUX5bouy8/nbXdsSX+IsuQskTRuHy1YvQORJHWgHLXO3EAPPjMW6LTM8RADhhCE6VyLkQ1mn9j5MQGqQplD27dFeY3X2PCj2bIOE5VKbkX+/nf+Ww9DfDeMuuziE0nd50xmCdxybDDcX6NUVO14p/jY0DePZmgSDE+k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773777130; c=relaxed/simple;
-	bh=ogKC+c2UlJOTTNUwTjAN18d6KohDFlaYVIJyoaKGqYE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kRWexB2TmI39fSST6BUdxZVVU/Dr4UWVrOQCCGSGscF+/5kmSPQp9VG5ToUk3MPkXuAni63xEcL39EBPEzIRkh0xRqf35HIiaSyubTge+4KXZPXVGcdNHFqBrEL+4s8O3LfSBc7Civ5+wfJCl1bc7jk9neUa17tiPXfM7q6dDUM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aMgPxxxO; arc=none smtp.client-ip=74.125.82.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f182.google.com with SMTP id 5a478bee46e88-2ba9c484e5eso7366667eec.1
-        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 12:52:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773777126; x=1774381926; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hmUcttp3wBsYArrFOUjW9PH5NmkZe1nXWSW5R4bPR8I=;
-        b=aMgPxxxO9Ki/pu+drSYDuzb6LHC1fhrNxB92MVlobMS2sxewoIOZY/zY7rFmRby4Vy
-         CSd/+ZsvtMjqPFL7ExyGOE5CvGSxLwl1+3jAxo7ntuA+no3niWB6qlGCKVvnknNatSXL
-         +jtB7+UofrT6lRHkRMVOEZqy24n7aDpQ1VsW2PZ7hFlhEDyqoN7PHFKF3iqd6MZTQEt+
-         WFY5z/jhc8P2oEN9kFwMBawRySHYtF9U9BtLiHcSXm/qrWJUa655ye9gwtAot3LogIFY
-         b446EoR5Nj/67eTLGGirmBN9uOYYf1KMvILYLtStXyZ1uxQVxsFnpp02wz2rPyRp6XCx
-         xSLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773777126; x=1774381926;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=hmUcttp3wBsYArrFOUjW9PH5NmkZe1nXWSW5R4bPR8I=;
-        b=E6t2tVscqWeXeJOTP1Ni/MVmauR28tNoGEqkpvbd2VrGmIJzYMRkMox/J8461Mkkff
-         a/YvTv2bTvh/xoccr3yG3m2AI2Dc14P2XVDCM8L4/Oe+Q1qQGcSPBSThvzoWxsu+w6CG
-         RkrGSLfxYUQsGknS8tt7oxz1lkyUg4Ln8gpaGAAG0fqPaNA0O5ReqQTdQdZOcAbH15+M
-         KI12DJyZ9NgMozMqCQ0QMlbt7VsAIY7qD9vkkvhrvszzlPhAKL0RqkTn20E21Ek88AvL
-         Q2GF1o9G+Nh/V95pUy61nb2objMjtCntfdlpQ49y0LZDYZk53giNQyf144xtmNvpy7Wy
-         JrkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVufGWG3bRe2J5g6v1H2wxugL2gKuL0hj7tUUGT614AWc5WLtnb0pSZFXoauLAim+UibRYeLwxtXQR/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrkzhDGs7yZrAzHP9lpHTmDN13GyjQCTrYRWWS0zwmDEoXdfT/
-	8gQgkn5DPP4Fosv3TfOr4DhvyCZ+48JLYCt+lz45Ep93u3qymGeR9j5W
-X-Gm-Gg: ATEYQzz3OdzpEmN0cIZtyrsWoYKF1YOormQdJNcSL+8UQD92mLdg20QLuJOgphu4vAf
-	grDXvYLYMn0+UPFKJ1g3vEceHZ27OoFPpaU1g/ylk8RzV6AMYZqW2Jy5R4O0WdAA6GtSHV1jUuK
-	u/Rx1SxsHNcbpHdZkJG44vvB/6082v/i24898ey5FkxOSqCrGmjNTemXqrw8x6zKW2EvDRSQOur
-	pKAtBxyCgnlsSKKfKiEQSdd40+hHIL1NhStw9zPZiQ3qcUQhA57wGfZwDglRjBc9VQjE5kjCwqC
-	xA5TRyt6VatZu1zkUwcEwEEAbs7QS+M2t7gh7fbKu8ovPVXyl7+JxxS4pp+wsBYhm++FqeeTU1x
-	qs4BKGDMmg7BCZH9ZLJVtzOnjZjlpD4FnXNQTvIKkyexNbkAF+hZ/d5WWxGs7kU6LvMz60GVEYm
-	obvCJRP/pSV4MPeyesPJVwp+Opr/H1LX2rtsgT
-X-Received: by 2002:a05:7301:1285:b0:2b7:1d38:3596 with SMTP id 5a478bee46e88-2c0e5074bd0mr328051eec.4.1773777125448;
-        Tue, 17 Mar 2026 12:52:05 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2c0e5582bdasm660352eec.19.2026.03.17.12.52.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Mar 2026 12:52:04 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Tue, 17 Mar 2026 12:52:03 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Alexey Charkov <alchark@flipper.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: Add TI INA4230 4-channel I2C
- power monitor
-Message-ID: <d83026f9-62ea-4851-8188-5ce4150b6fcb@roeck-us.net>
-References: <20260310-ina4230-v3-0-06ab3a77c570@flipper.net>
- <20260310-ina4230-v3-1-06ab3a77c570@flipper.net>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B78B2DBF75;
+	Tue, 17 Mar 2026 19:52:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.200.97
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773777136; cv=fail; b=M9J02nxSeCKoio7F0mG5k0ODclWHGUqqJnQXjFUi6GBbqSeHXhV8Lx8J+ZZpf2ctPtq7EgKn7vVQTIL4SKm9fFm8sLq8vz4UU8QmovGbQDBPgNdeE9+JK9ppMDk1nmBjM1Edjj2+DneNVAiZJPBHl77W8RYMR8oW20Bw1+cKF3g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773777136; c=relaxed/simple;
+	bh=P+30FVp4nPeC6kaOvtSRDFhDx5m76GXTDCI+dK1IC2w=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rAIlAjSqwUdqCIjsJ66OhDsePtVJubtRnYedsTR8L867SOh8Q6/AQeFjNdrqdXc1IyPofd24xKZsOa/+lx8wOhY7p4oy8uKTGERvRH2uEWmADrZCVHY25/bwhQdBj/jUdGjdWZoa1J9BR+GmLg3RXlLR8owOHeXreGQrR2CHq1Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com; spf=pass smtp.mailfrom=axiado.com; dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b=KAQ09qVd; arc=fail smtp.client-ip=40.107.200.97
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axiado.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=x848iTj0BNQnSayHEMkxotlXL75vzuUOJaEvk//3ktxnTww5IPGq9NvVkvyPDGZptKwKpg8Jrn7kJ28AvZ+8nrGzsnP494rp7aiVMlfzuLW+zeQ8CxY+acU8og4J68sNBIYn3sXmqw43jn8Ysfef5bcsaKkwa1GRTv+V+Z8J8s04/TbZq8likFOox4rooEfFICzPsTTS44F2Vy2lz8bKkTXjtbGr3DhJqvJbGEi6gtvPKS/GdXpxUPHjzTvpR4fNa1UuYzhqBukCJLKCLZZ9yvqHMID65+9hq+60jenpCRIIsE1/8Wi1ZY2kKqLrBSOwWU2IbMCcyDUE8aS8lMqVkw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aesD0p/lA1kZ9s0tzGCGlDJghkQwnpRiDW4yP3Kux6U=;
+ b=XmKinC8ON0EfeU0qHQ/g15yILpHUFuStOcFZ7JkJtsyLqG5n+ii41VmiIOfaNguhakma8HpEVv9Joo6Z+5Qm4J7CZKsvlQE7arw7Sp2G/daq05a5cuoQvShyq3ui21FmaY0nO9nJadHeFZOe9YXPr/vgIMoXkaOc5rlioIg6iPUs20jrJpRztfh9wcYWGyKiaEzUMkdHcvkPnty6jYMGmZAJdLZzZiqKcI5qyU6Ahxv+2aEGKS63Jdcd4DSo7th7s+o6fknPIUSU+NxFd3BG+eprSROaAdYiP9pV9FoyvsPlR4lndc9EOrnfuP7pO3PTifXyQfCdI33FiufRjVVSRA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 50.233.182.194) smtp.rcpttodomain=axiado.com smtp.mailfrom=axiado.com;
+ dmarc=none action=none header.from=axiado.com; dkim=none (message not
+ signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aesD0p/lA1kZ9s0tzGCGlDJghkQwnpRiDW4yP3Kux6U=;
+ b=KAQ09qVdqRUyAy0LTfxsgEf7fsKt4zmJMW8CvneeAT8aW8zqmQdf2Kz3veHUyvTbBUEmvh3G54+OhjzDK4EY7i6EnwK1E1V/hFngDuoQhJKvI0ylY+9OQyYTRYvuQk12s9xkJAnlbWAO1CPBcacm0wdxZWhrP6KvvUpFpsgQf1AWM/QKVeZghGTGmfU/a5L3Fn57dwhVJ/mCnLsUTQ3PYOipSrqxMjjrhEGgvpHqtuc76LL324N5sBdL8vCIAhVd7ilOd5Jl7uNV12MC5o1NvRn5SaJaEEJ20rulH9p+pFQbv3ZyOD5bneyDu1PVFXxv7IfaXoBlVfZGNsOExZ5X5g==
+Received: from BYAPR01CA0064.prod.exchangelabs.com (2603:10b6:a03:94::41) by
+ CH3PR18MB6119.namprd18.prod.outlook.com (2603:10b6:610:1e1::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.25; Tue, 17 Mar
+ 2026 19:52:12 +0000
+Received: from SJ5PEPF000001F2.namprd05.prod.outlook.com
+ (2603:10b6:a03:94:cafe::6d) by BYAPR01CA0064.outlook.office365.com
+ (2603:10b6:a03:94::41) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.27 via Frontend Transport; Tue,
+ 17 Mar 2026 19:52:13 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 50.233.182.194)
+ smtp.mailfrom=axiado.com; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axiado.com;
+Received-SPF: Fail (protection.outlook.com: domain of axiado.com does not
+ designate 50.233.182.194 as permitted sender)
+ receiver=protection.outlook.com; client-ip=50.233.182.194;
+ helo=smtp.corp.axiado.com;
+Received: from smtp.corp.axiado.com (50.233.182.194) by
+ SJ5PEPF000001F2.mail.protection.outlook.com (10.167.242.70) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.17
+ via Frontend Transport; Tue, 17 Mar 2026 19:52:11 +0000
+Received: from axz-uw1-build-vm02.corp.axiado.com (unknown [10.14.1.22])
+	by smtp.corp.axiado.com (Postfix) with ESMTPS id 57C504157BE1;
+	Tue, 17 Mar 2026 12:52:10 -0700 (PDT)
+From: Tzu-Hao Wei <twei@axiado.com>
+Subject: [PATCH v3 0/4] Add eMMC PHY support for Axiado AX3000 SoC
+Date: Tue, 17 Mar 2026 12:52:07 -0700
+Message-Id: <20260317-axiado-ax3000-add-emmc-phy-driver-support-v3-0-fbf790f3f711@axiado.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260310-ina4230-v3-1-06ab3a77c570@flipper.net>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOewuWkC/5WNvQ7CMAwGXwVlxih1fyBMvAdiMLVLM5RUSYlaV
+ X13Agghxk7WWfruZhXEWwnquJmVl2iDdfcE+Xaj6pbuNwHLiRVqrHSmD0CjJXbp5FprIGaQrqu
+ hbydgb6N4CI++d34ArjIS4kNTIark6700dny3zpfErQ2D89M7HbPX91sxKyoxAw3MRV6Uhq+N0
+ Omz3dWuU69MxJ8adbVGjUlN2JRGzJ4M8p96WZYnxrzW2D4BAAA=
+X-Change-ID: 20260108-axiado-ax3000-add-emmc-phy-driver-support-d61aead8f622
+To: SriNavmani A <srinavmani@axiado.com>, 
+ Prasad Bolisetty <pbolisetty@axiado.com>, Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ openbmc@lists.ozlabs.org, Tzu-Hao Wei <twei@axiado.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2603; i=twei@axiado.com;
+ h=from:subject:message-id; bh=P+30FVp4nPeC6kaOvtSRDFhDx5m76GXTDCI+dK1IC2w=;
+ b=owEB7QES/pANAwAKAXgQMF3EWvHXAcsmYgBpubDoVqFO9ZW4ehf1W1BVVGoaVIa8gnmHhL1wD
+ GhgsneXNxOJAbMEAAEKAB0WIQSZyWINOowtFmDvdYF4EDBdxFrx1wUCabmw6AAKCRB4EDBdxFrx
+ 177OC/9AjvzTyYYe9Qku1mOuxujAgpuN4leSc7TnZbPHRTTQd6YKSeOU+t0g7qT2/VgBGGf/wI4
+ wbYH1YqF0NQHSeLsHZVUPwfrOGK01kbUzqpvsVbQ8hUY1XyVs7RuS9FnadiHtoq0hjbXYIJ/E3A
+ I2s7juXANy1M5x0R6H9oO8lqRb5K+LTGLjQetovZqOInZzj/5sLmbDEJCyFOFZ8SaHiAzvYQUFp
+ CkOEbB5vyAFs+JV1eEjwR63SA9icOOmY4yUyEEwu3dhjZTWx4/2kpBtlz/YglmDug4rSdxjcn4A
+ 1mi5S9Ucg0sEHRtne2nXyqMbPPjlEJpFFL5XYkCkgRqLWrYwVCdmKXN4FsWyatGpjg2YUtwU2TS
+ thOu3VseRhhjojWb3UpFqyRiEQyP9Z6rFJ1HEBx2m62teSGiSUhDfGD+CbagBwJyxKrX7orAxaX
+ rXkoDxBFfijsnhtIp4cpx/5WHo5baJkwhd2Aud6Pn6fCzNc+wgrNoWs0djX3Iz0smOl0w=
+X-Developer-Key: i=twei@axiado.com; a=openpgp;
+ fpr=99C9620D3A8C2D1660EF75817810305DC45AF1D7
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F2:EE_|CH3PR18MB6119:EE_
+X-MS-Office365-Filtering-Correlation-Id: a50c6dba-6605-46c7-7225-08de845eae15
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700016|82310400026|7416014|376014|42112799006|1800799024|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	zTYtNNayjcqyrK3/WgUzQYiOtJR3L/j6n/Mby7tH1DGUX1qLPZUHQ04Vlg1DwcJrlLiyO7hrAjxFAbXtUihqASLN2nNWinGe4vPXwAu1hVr50iwuv8LpUZ7M859fD5P8u32uh1KqUbUoql9bfzQ3H7ttgcJ/12YF44OBvYabSgmBrI/QOUK6AkV5wU3cmjNxVhlEX7xpN0pStnDPX7MxCn5iq9ZFGgRR+bOrEAq3qSvmZeKpsHk7drzULbP18z9uuY5bTOFtCvPWOt9UENS1bkpKdD2DJqrAVMbqTb89DNDD8ykKmiV+iUt5TGH24kMI7lffeinFYoZQeVWEm0YKgLvOVHej58tPEQuLvLdSv0MIFUqdaRUoW4L9tu+EEVYhVJ7B1NewlvSFu7E4R3vfDr10v4VUJ8c0uvgMV7clNEUFyUOUgctszjLhZunD9D3PXyIvyUyGXB82ixfL8/jycFII4mU1ph8IsJuUCeitkvH50ewtXS9/qnzwz6uEFlFewUaAINuOY5Szo3WJBfAxThN33GDcYPZcRuFc6cHywTJu2p5KL9TJT8yMt4gP90CVGghSu6RHRGQ0xcPcbru8DmDb/+XNmtl+1rfjktmJqrr6AE57NNZ4X+z36b/5ytyLhNthqfpmrZ3Xg5xtmZhiYW5Bphnpk63x7TT1Tu+5uaq5/UQGnxjt48gTr2G444quX0ECutr9HkgRu4GHw9KLfNPzqKfd6M0nfa1BjQymnHowRnjy6EmUj+GfcifMy0ZWddvi/TSrncnkFX7vPwqtIjDjedsvtItAJBfXcitAqrI=
+X-Forefront-Antispam-Report:
+	CIP:50.233.182.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtp.corp.axiado.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(82310400026)(7416014)(376014)(42112799006)(1800799024)(56012099003)(18002099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	sY4aoIwlpjt/tx/Pmx0mhbkcpIHEm1+WZo3GgtDIe6oSw22Z9wgAOka137n4sQ8eQnjtQ58ZnTbN78B9d9WtmnlpVYn1dbSK+ddrGtqpAy+1ve/Oq54+3qew75K6u3qyCKc1Ph5VeU1DXg6FpItd2vgXLAYNZ+q/Z2v1alZ1FghsOD9ncOD+j172wdOH0CZS85tT5Jt1cifq6HQqCvQrtuveQWAGXxlT/d1avAdiCwoz0ykvEtTkALr0bsdWLIwYeX9VJRi9ZjH2fbn3ycxbVcxS3BpS5fDnqU4aDIv7MNpMynYNyr2E5Q5PJIilwZnGEwhgncTii869dZ+dviULjxNbaS/COly46fTArhGwkUAHwkHUaHv88IZTL+V7nUpsP3iIx8UVr4VPxcQERxN6OiSQLaWFKYwyEc8PdP/jo6EgtI6YwYAmzbFv4rqCP3JZ
+X-OriginatorOrg: axiado.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 19:52:11.5134
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a50c6dba-6605-46c7-7225-08de845eae15
+X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=ff2db17c-4338-408e-9036-2dee8e3e17d7;Ip=[50.233.182.194];Helo=[smtp.corp.axiado.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ5PEPF000001F2.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR18MB6119
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_DKIM_ALLOW(-0.20)[axiado.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-276853-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[axiado.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276852-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[axiado.com:dkim,axiado.com:email,axiado.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[twei@axiado.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[axiado.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,roeck-us.net:mid,devicetree.org:url,flipper.net:email]
-X-Rspamd-Queue-Id: 9EF5E2B1D5E
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: F05722B1D7D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 10, 2026 at 03:43:46PM +0400, Alexey Charkov wrote:
-> Add TI INA4230, which is a 48V 4-channel 16-bit I2C-based
-> current/voltage/power/energy monitor with alert function.
-> 
-> Link: https://www.ti.com/product/INA4230
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> Signed-off-by: Alexey Charkov <alchark@flipper.net>
+Axiado AX3000 SoC contains Arasan PHY which provides the interface to the
+HS200 eMMC controller.
 
-AI review feedback inline. As far as I can see all are valid points
-which will need to be addressed either in the bindings or in the driver.
+This series includes:
+1. Add bindings for Axiado AX3000 eMMC PHY
+2. Add Axiado AX3000 eMMC phy driver
+3. Update MAINTAINERS for the new driver
+4. Update Axiado AX3000 device tree
 
-Guenter
+Changes in v3:
+- Update year to 2026
+- Use lowercase for addresses
+- Remove redundant macros and use GENMASK
+- Implement power_off function
+- Link to v2: https://lore.kernel.org/r/20260206-axiado-ax3000-add-emmc-phy-driver-support-v2-0-a2f59e97a92d@axiado.com
 
-> ---
->  .../devicetree/bindings/hwmon/ti,ina4230.yaml      | 134 +++++++++++++++++++++
->  MAINTAINERS                                        |   6 +
->  2 files changed, 140 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina4230.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina4230.yaml
-> new file mode 100644
-> index 000000000000..f33e52a12657
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina4230.yaml
-> @@ -0,0 +1,134 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/ti,ina4230.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments INA4230 quad-channel power monitors
-> +
-> +maintainers:
-> +  - Alexey Charkov <alchark@flipper.net>
-> +
-> +description: |
-> +  The INA4230 is a 48V quad-channel 16-bit current, voltage, power and energy
-> +  monitor with an I2C interface.
-> +
-> +  Datasheet:
-> +    https://www.ti.com/product/INA4230
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,ina4230
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    description: Required only if a child node is present.
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    description: Required only if a child node is present.
-> +    const: 0
-> +
-> +  vs-supply:
-> +    description: phandle to the regulator that provides the VS supply typically
-> +      in range from 1.7 V to 5.5 V.
-> +
-> +  ti,alert-polarity-active-high:
-> +    description: Alert pin is asserted based on the value of Alert polarity Bit
-> +      of the CONFIG2 register. Default value is 0, for which the alert pin
-> +      toggles from high to low during faults. When this property is set, the
-> +      corresponding register bit is set to 1, and the alert pin toggles from
-> +      low to high during faults.
-> +    $ref: /schemas/types.yaml#/definitions/flag
+Changes in v2:
+- Fix dt-binding format
+- Fix compilation error in m68k
+- Use readl_poll_timeout instead of read_poll_timeout
+- Link to v1: https://lore.kernel.org/r/20260109-axiado-ax3000-add-emmc-phy-driver-support-v1-0-dd43459dbfea@axiado.com
 
-The property is defined here and read by the driver in a subsequent
-patch, but the driver never uses the value to set the ALERT_POL bit
-in the CONFIG2 register. This renders the property non-functional.
+Changes: (The previous version was mixed with Host driver, so I separate
+the PHY driver as a new thread)
+- Fix property order in required section to match properties section
+- Fixed example to use lowercase hex and proper node naming
+- Removed wrapper functions, use readl/writel directly
+- Replaced manual polling loops with read_poll_timeout macro
+- Used devm_platform_ioremap_resource instead of separate calls
+- Removed unnecessary of_match_node check
+- Used dev_err_probe for error reporting
+- Added proper Kconfig dependencies (ARCH_AXIADO || COMPILE_TEST)
+- Fixed various coding style issues
+- Link to previous patches: https://lore.kernel.org/all/20251222-axiado-ax3000-add-emmc-host-driver-support-v1-0-5457d0ebcdb4@axiado.com/
 
-> +
-> +patternProperties:
-> +  "^input@[0-3]$":
-> +    description: The node contains optional child nodes for four channels.
-> +      Each child node describes the information of input source. Input channels
-> +      default to enabled in the chip. Unless channels are explicitly disabled
-> +      in device-tree, input channels will be enabled.
-> +    type: object
-> +    additionalProperties: false
-> +    properties:
-> +      reg:
-> +        description: Must be 0, 1, 2 or 3, corresponding to the IN1, IN2, IN3
-> +          or IN4 ports of the INA4230, respectively.
-> +        enum: [ 0, 1, 2, 3 ]
-> +
-> +      label:
-> +        description: name of the input source
-> +
-> +      shunt-resistor-micro-ohms:
-> +        description: shunt resistor value in micro-Ohm
-> +
-> +      ti,maximum-expected-current-microamp:
-> +        description: |
-> +          This value indicates the maximum current in microamps that you can
-> +          expect to measure with ina4230 in your circuit.
-> +
-> +          This value will be used to calculate the Current_LSB to maximize the
-> +          available precision while ensuring your expected maximum current fits
-> +          within the chip's ADC range. It will also enable built-in shunt gain
-> +          to increase ADC granularity by a factor of 4 if the provided maximum
-> +          current / shunt resistance combination does not produce more than
-> +          20.48 mV drop at the shunt.
-> +        minimum: 32768
-> +        maximum: 4294967295
-> +        default: 32768000
+Signed-off-by: Tzu-Hao Wei <twei@axiado.com>
+---
+SriNavmani A (3):
+      dt-bindings: phy: axiado,ax3000-emmc-phy: add Axiado eMMC PHY
+      phy: axiado: add Axiado eMMC PHY driver
+      arm64: dts: axiado: Add eMMC PHY node
 
-The binding allows values up to UINT32_MAX, but the driver rejects
-values above INT_MAX. While 2147 Amperes is likely sufficient, the
-mismatch should be resolved.
+Tzu-Hao Wei (1):
+      MAINTAINERS: Add Axiado AX3000 eMMC PHY driver
 
-The driver also attempts to read a "ti,single-shot" property which is
-missing from this binding file. Given it was present in the INA3221
-bindings this driver is based on, its omission appears to be an
-oversight.
+ .../bindings/phy/axiado,ax3000-emmc-phy.yaml       |  37 ++++
+ MAINTAINERS                                        |  10 +
+ arch/arm64/boot/dts/axiado/ax3000.dtsi             |   7 +
+ drivers/phy/Kconfig                                |   1 +
+ drivers/phy/Makefile                               |   1 +
+ drivers/phy/axiado/Kconfig                         |  11 ++
+ drivers/phy/axiado/Makefile                        |   1 +
+ drivers/phy/axiado/phy-axiado-emmc.c               | 217 +++++++++++++++++++++
+ 8 files changed, 285 insertions(+)
+---
+base-commit: 63804fed149a6750ffd28610c5c1c98cce6bd377
+change-id: 20260108-axiado-ax3000-add-emmc-phy-driver-support-d61aead8f622
 
-Furthermore, the "vs-supply" property is defined in the bindings but
-completely ignored by the driver (it does not acquire or enable the
-regulator).
+Best regards,
+-- 
+Tzu-Hao Wei <twei@axiado.com>
+
 
