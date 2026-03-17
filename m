@@ -1,202 +1,325 @@
-Return-Path: <devicetree+bounces-276857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276858-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mEEdNvqwuWkkMQIAu9opvQ
-	(envelope-from <devicetree+bounces-276857-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 20:52:26 +0100
+	id +MT+AoSzuWnJMQIAu9opvQ
+	(envelope-from <devicetree+bounces-276858-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 21:03:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F88B2B1C28
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 20:52:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 699052B1F4D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 21:03:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 572B4301F394
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 19:52:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 16C7D317E1A6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 19:57:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36C73344046;
-	Tue, 17 Mar 2026 19:52:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90BB0348889;
+	Tue, 17 Mar 2026 19:56:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b="uOIwF6qv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nE+mM0Qi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com (mail-westus3azon11022098.outbound.protection.outlook.com [40.107.209.98])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97CEB3446B7;
-	Tue, 17 Mar 2026 19:52:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.209.98
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773777139; cv=fail; b=T74kgtA0TbEkzVGPk74dLfOC78dGw3Fm4ACnN9HIg6yLByYsM/aSReV8ArNWt/v2fdLbAma2wpWxNFxFA+5mPwOq9SRBsrIQwpeyS5zfnatcUpWCLocc3QWRTh9JsBygzm9FGDYaSldikdaVzAOcBsEXl/zew9m2DegemKeSxvs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773777139; c=relaxed/simple;
-	bh=OqcxSOIdhk069zvjSWRuDXF1g9yF0T2LeYdlTXuw+yA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=t9FwOiX4yMoYIw9B9rvbm/2TWwulOa6Edfz/KFF5C34NgfGyS/AslPPNt9RlAaJU9q4DCsB9hkjPW6bA4DtydC+fffsFRJx9O0KTwn7fhtppFLdSlMNbF/6JFfUrbuECoLzmO+s7evLcYlNJ28wncGFHvd4Oyg0YmDgTY3wM2rw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com; spf=pass smtp.mailfrom=axiado.com; dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b=uOIwF6qv; arc=fail smtp.client-ip=40.107.209.98
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axiado.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JrZRvwWWd3mu5dyQDCRBV0eGsIrhTk9gYrfhpAjKIV4qqH7W/wR6/ufJl8dm8q1dF74m4sUfQlvOUgN7wYS5Qw+vXP8EGZuM6Qu4mTOxiPaNYLF60sK7wtTvwoFtMdKYSpdttDCYfxCIJGWY27h9plCxW3FC02tkVNb0eiHdl7wyW6FjGENBEQ3G7kQUuchdD73ykmnArjQXOz1MMjzxcbo3LXD3fJL2goerHnUEtzbjLSGRsMjgcYOds4cDJaY4rWxpsVBGZahDYHJmjLMoj51l7hUFBz7u62bFq+qDfFm8EdJ2ueO31hnrW4aNJRY69Se/QCdG0RNV3ute5gHOEw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DQbeyUpcxHP0UttbckzSvqDGia0H3PNtqqBpsfm0zQc=;
- b=tpzwxM5nLCHD2grD4GXdJ5FXa4Ku5lIi/yWtUX5iVzLU9XrVbmdv8Ysw+HjpxW5Fv8GDhZgkbF14uZNulYKiEbPpBjK8s93IO4xk9GEWEjHMrdmycuSEeRkT0boggimtERUssU45SX9Tx89sYW9b7kFvIxA9xD9xi6ZfpXKmauqjQ9wDvXdkflTG2hdHjvYHy/ShLIe76nhWzT/F5GfNN/e90rrcGAKtRhCQBJG8zmrZCdiK/MTEEv9xukM+shSg9TKipFcbW86/DHA3noDflkXnuV8B37nnui1UNPM/w3A2oGlGY8AsVCyDFXl9m7LlhnzRbjnxWK2LEq4XXXo/lQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 50.233.182.194) smtp.rcpttodomain=axiado.com smtp.mailfrom=axiado.com;
- dmarc=none action=none header.from=axiado.com; dkim=none (message not
- signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DQbeyUpcxHP0UttbckzSvqDGia0H3PNtqqBpsfm0zQc=;
- b=uOIwF6qvKjXsjqy19qsCsmojAMEANZmQypBi6ogfveVlZmRH+TJRiKGzOugO2DxYyu+DjE+4kdHjHWxkgB/bc0uTWoYAULHovWiLMZHw2bOc3BTi/Pl4I/kaMmyQqxskRwLBg2MefhmSICggGrIErc46oDeSE0QwWQrxvul1AmJ08AQiJVHIiLggnDP7aRFUv3QWNNd/P2/B/Jp9tNn4OuwqGyZIZvwwWXSfGQmh9wUhD6Jd6AQ7f9NlW5YRN3gKGMxNvy9LPdTzG3+AwOy7FDdQToUJcf/0TeIrelJHNFjOgKsS55vNYj5Vu/rcr3+DoGHE113u7QHoxxkeE69dqg==
-Received: from CH0PR04CA0112.namprd04.prod.outlook.com (2603:10b6:610:75::27)
- by PH7PR18MB5827.namprd18.prod.outlook.com (2603:10b6:510:15d::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.19; Tue, 17 Mar
- 2026 19:52:14 +0000
-Received: from CH1PEPF0000AD7C.namprd04.prod.outlook.com
- (2603:10b6:610:75:cafe::f8) by CH0PR04CA0112.outlook.office365.com
- (2603:10b6:610:75::27) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.27 via Frontend Transport; Tue,
- 17 Mar 2026 19:52:09 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 50.233.182.194)
- smtp.mailfrom=axiado.com; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axiado.com;
-Received-SPF: Fail (protection.outlook.com: domain of axiado.com does not
- designate 50.233.182.194 as permitted sender)
- receiver=protection.outlook.com; client-ip=50.233.182.194;
- helo=smtp.corp.axiado.com;
-Received: from smtp.corp.axiado.com (50.233.182.194) by
- CH1PEPF0000AD7C.mail.protection.outlook.com (10.167.244.84) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.17
- via Frontend Transport; Tue, 17 Mar 2026 19:52:12 +0000
-Received: from axz-uw1-build-vm02.corp.axiado.com (unknown [10.14.1.22])
-	by smtp.corp.axiado.com (Postfix) with ESMTPS id 9DD384186B5D;
-	Tue, 17 Mar 2026 12:52:10 -0700 (PDT)
-From: Tzu-Hao Wei <twei@axiado.com>
-Date: Tue, 17 Mar 2026 12:52:11 -0700
-Subject: [PATCH v3 4/4] arm64: dts: axiado: Add eMMC PHY node
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2D5B346795
+	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 19:56:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773777417; cv=none; b=l445J3rJQ6sS9P0hKQ859pfO9pLeG8is+IerF/rxoLrutnLP1gaItImjKzk3j6DKX4RbOOHjqv83v7N7bPsZMQiTMeHoBfP35xhEY3Sl/TuMlzGaqC3rGyRRIGSwLvATuCKM8Do2tzSRqfcmRz/SGGbKJ3Z8ek3Kak5rTCsqP+A=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773777417; c=relaxed/simple;
+	bh=rD6k5g0x5o7wNECzX7SXx9gUH4XhSPou5kQZofQmVG0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OcOWHDwycdSQhzI1wcvCAuImscmysSmLBmyI569mSlzkbcGAsYG+UbW5bTwa7ob0jRz8Jg+JxlySO67s/ginPsC4PRJ8ca4hdRSt3azchFlKYEi+AF1RGT2fgdT2Tj7yrCSmyrNfoYZUwUTU7R/gVvOPr4qt5ASV7zzeQCvE44c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nE+mM0Qi; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-439d8dc4ae4so6018911f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 12:56:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773777414; x=1774382214; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3Y0xsdwwhqtc3tEm3F1+SO5Z37i9orpFohwEEPl5Uus=;
+        b=nE+mM0QiZNCf/ii+Tn+Xrzhit6Z4/YyBaFbI20nr13XbnG90YbzIPFdmRE5/Gzs7AY
+         7lfzFGqrpZz7ihpv+DLOnuwialuZc/82kUgVFqbBsde91xIsnL8vW31yjXcdZD81+N8w
+         tCcENoUwiELGkXm2k35A7JQABIIjLxpIlF1SIU5iQr+JFxnpC+JJAz5ijPMr9DJVjU9c
+         hLlshWi4BcnWec39gTcXJR68UI4ByzA+iFCvWiWxlAD7RaJbuzZUk3piMASt08GpD4OM
+         B4q24qLbeF+AsrCi8rMR/26RGIs06CBiHPtw8w4zgs8tTw5ffRyk6Ji5964eVLbGCaEK
+         XlXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773777414; x=1774382214;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3Y0xsdwwhqtc3tEm3F1+SO5Z37i9orpFohwEEPl5Uus=;
+        b=CiD45zcfNqZRRm6amzT6Xz0xVbsRRrsQE0QQ5puZ2CNMI02Z19cQPXHIyhHAUREE1W
+         LFf0u/SOQjR04juFRW73xVvvOXd9vtoxVU8Wr3yf1LNLtF1L0PlOMYFs6tR16BZJQjNh
+         hT4Q+Gm71IBhBRbcDpbBAzMK6J1CNXHlpZupXgnqyyOLg//ECopIIJQMDy3eBcjK+Ct7
+         5F9YieKNzHZ4Rqco2CT+DXevotGL0M3bp5rz3HpqDGh42BhhAODZyHz8ny6WBkjuszt8
+         T2UfYGRcQpq4UHnBpvvteSQDDhsthiqwv/mSmJprVhFxYH0ZIj+YFNnA9jEQcLxzFjT5
+         DNbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWUKHIBauRw95RpNCKsyA7412dg80Nhoo6h33NsnfVvzK19LEDpqK46E4vqIzNbQO+bCeAfcvIJmIwK@vger.kernel.org
+X-Gm-Message-State: AOJu0YxEOpwilZC4oqoR0BdL//0B9SKzHwPe8SIldD6bIQGubWVy3C7M
+	sGimxSgZ+D+0BN+Njxz1Yzrn6CbyVY+JfR5hJ3zADgaqPQWaSFQ0b0xx
+X-Gm-Gg: ATEYQzw4prcVwh5WxdccJI5Sr1cqTO0/mBQ1hd6P9vW0kJSk9CKPK+8SCwo8CauU/aD
+	Xi/pInm6s1SX5g8HNumdFcXBKSzv442FfsOTWROIWl/si61fy88AOvwKKlhud665CLfykLjjxIn
+	Ma7QTBRLcZ4OKTVdUjP2gS3hvMtL0leXbeouTQ+NAYHcvfLwOhZ+8PMJBOIpnUWGe5YeaILzFUN
+	XaHRpsjN3/ecUrsGPOKJJFPzuoymNS5jrS0lHB4X1ceaN42ggCFFaT0r3NMUCI4DQTdBs16Hld+
+	FFYaw1cUeXLZ8YPKlSZSqfzzJiqs8nZj22xbNJ7krDscqHkk7FclzAPSnhlPsF4RTskh4lA5wiL
+	91tlFmQpkRu9w0zqw6Lm+ygwpKc6C4v+FKLYebtUhKgd7XkXs/0DQiExEY1uwO+NGobHDyWwGcE
+	14AybWTI4x9PN2jFtCsXXOyIWgt2+HGhG8Q3T0Ez5VJuZqLavN
+X-Received: by 2002:a05:6000:24c4:b0:43b:3d44:6624 with SMTP id ffacd0b85a97d-43b527a07fbmr1060580f8f.2.1773777413952;
+        Tue, 17 Mar 2026 12:56:53 -0700 (PDT)
+Received: from localhost.localdomain ([2a00:23c4:a758:8a01:e16b:fc56:e220:9aa9])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b5189221dsm1339217f8f.23.2026.03.17.12.56.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Mar 2026 12:56:53 -0700 (PDT)
+From: Biju <biju.das.au@gmail.com>
+X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v4 0/9] Add support for Renesas RZ/G3L SoC and SMARC-EVK platform
+Date: Tue, 17 Mar 2026 19:56:29 +0000
+Message-ID: <20260317195650.468330-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260317-axiado-ax3000-add-emmc-phy-driver-support-v3-4-fbf790f3f711@axiado.com>
-References: <20260317-axiado-ax3000-add-emmc-phy-driver-support-v3-0-fbf790f3f711@axiado.com>
-In-Reply-To: <20260317-axiado-ax3000-add-emmc-phy-driver-support-v3-0-fbf790f3f711@axiado.com>
-To: SriNavmani A <srinavmani@axiado.com>, 
- Prasad Bolisetty <pbolisetty@axiado.com>, Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- openbmc@lists.ozlabs.org, Tzu-Hao Wei <twei@axiado.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=893; i=twei@axiado.com;
- h=from:subject:message-id; bh=ifJe6BWD6fxFLW7464vvxiIMU26jLX4+q7GsF1xfii8=;
- b=owEB7QES/pANAwAKAXgQMF3EWvHXAcsmYgBpubDrsBgd7jTU0mf0WTqsmEN7ZRebhG5BsaCSN
- jtiEtA3wAmJAbMEAAEKAB0WIQSZyWINOowtFmDvdYF4EDBdxFrx1wUCabmw6wAKCRB4EDBdxFrx
- 12ZcDACdvDxeWa+YvZ9ZkoDutVUkl6P9A3G1iiS+eJLgdxQ779On7lSQmqP04GCkGVGw1Ym9gru
- 9B08opDi3TyE4nBVLpgC0szn/nTB57rxAZZgf15B+N0rnPn57KV25sPClwsQL0LUc1ZqPZmIk/w
- XSVrBEQsP/fzpD1YbnvGY7Vlb3cwhOtkgeYis9KlVnayk9CghlpHK0SjiADV1TwfAeLda5+678Y
- w2Cukrgkb4RHHs69EGWAlq6IeA44u4OYjs/+A1SC7zvpua9Glu/krrkdKTE7QRsYxD7QedgTp5J
- Ilg97SJXTwm9Med6Zr0u17Re/X0Otq2eUqBS8F8ftqGCDfEA0pbfhE9u0U6c9YSnoP4Td9q36Zi
- U2ocnmC8+vNNXEkF+T8sL9nUe1AUPQLhaJEEYffhGruHUj/dESmH5WG2yxFs2e65yooUldBIFFB
- O1Mt80Oip9wQqzdIJNqSbbJ/aPXKhxB/5tPk2wQIFI6NKdQrczK6IY/iPzHfFVIRbMdPI=
-X-Developer-Key: i=twei@axiado.com; a=openpgp;
- fpr=99C9620D3A8C2D1660EF75817810305DC45AF1D7
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD7C:EE_|PH7PR18MB5827:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6301bf5c-3acf-4135-865e-08de845eae97
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|42112799006|376014|36860700016|1800799024|7416014|82310400026|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	t0M/h+9p3xQ86JxX+PDB5FooKrTg05KZQOhCCWUyAKFfAIgzJCqsZaPzCRresAghTFOhzM6VlcYjoWKgxnd4Cyo1Xw8906o0SGiySDSl039nxM1xNSn1auhMBSwLo+6/YW5aXNfkXCp62LxAE0s9lH2f0Gc/n+O/nrpmbML7a3IkNkwPIkC/Ok439eRZSx+inTuOKedKr8/fLN0KSleQW7sXOmrkXnYiVwSr71QjRKz+04N9+Gql1qzdFi8j6SvulIM+r6+eOh5WBZr42V90oK8MEbCWYH5B9QoDDWjlKQhzqFk/lgmDm8xPkdCqv9ZVmWoU5m6m2L4HaV+p6kFMZasXkm+B4+MwKE6BYKyPcyHCCo6EZHmpa/h2n0NkBTDrINDWqX9CrgieR/WWVKkYrPnl5z+4mBY406pFZq8YPNswv3Wp5X9MFcYcftjtRTJHIdDexDy8rffCJK8nF0kqwYlkeumBOaz26JoWbN0ovf1V7doRJsFU7i4Y+IE42sdVPErrzpQq1vZADHGK69Fohv1JYCVbLSm4pJh6c5/sOisWWuNN2pJ3VQRVgSasm4Jil6V/B/j+xGRpDBhVF5X3An57YDWTVkHS+6tj0TNvKyYUV7uhLkWOjLuNMON9bjFG3QgUdeoyaQoC3XsqPtSznCrszG0AdHiBp977/0o/V4XoAwh+Ci9k406JAIZfGA8yA1E836Aajvkjvgm3aUoFIqZ7ryWza3RmaJgOP5+Up8/DqrOYZYzlPH88YNYtVhHbioC2oIvvU7KQIMHOaBkA6Q==
-X-Forefront-Antispam-Report:
-	CIP:50.233.182.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtp.corp.axiado.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(42112799006)(376014)(36860700016)(1800799024)(7416014)(82310400026)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	FAx4iUjvoUAli7arZ+WitifI1A8mcHdZGwEsi/NAE09hxZUvXJb5ma8beECNOzQcBrqWhEAcyNxtsLYdyr0bZSSTSgKYJSUqMTTWjPPGUylqdyfUx0VZFl8mwPAB8my4f4RY6SyuxG3w+HpwxD6QWPeQ6zby3jbOQVUTKeIsqUsXNeCq4uToX/8a0NBalkSHMNqUmjQSm/oJKuER6Fvlijpw9z6ksNXnyrpmqE/u0RjJwBwQxagu5RydFUp9jGhkHCv9pJ04i3LNx33JsYNJdFyVAMtp+Os0GE7hVOHUyX3+JoXfZFcxWFegAFfAKf572c4JiWnxMhe7db7nqKhOTOwUA5h2rfbn0C8s4VY4mH1G+7xl4KggOyr3hNR7PH0X3PaakIUYGelUNLlq9Mh07Dl2Rxc+Acg2/rBPw/R/hnfY2F9UbxQ+AMT3OjeB1+rU
-X-OriginatorOrg: axiado.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 19:52:12.2686
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6301bf5c-3acf-4135-865e-08de845eae97
-X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=ff2db17c-4338-408e-9036-2dee8e3e17d7;Ip=[50.233.182.194];Helo=[smtp.corp.axiado.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CH1PEPF0000AD7C.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR18MB5827
-X-Spamd-Result: default: False [1.84 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_DKIM_ALLOW(-0.20)[axiado.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-276857-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[axiado.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-276858-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,80801c00:email,4.204.166.96:email];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
+	FREEMAIL_TO(0.00)[linuxfoundation.org,kernel.org,baylibre.com,glider.be,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[twei@axiado.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[axiado.com:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 7F88B2B1C28
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,bp.renesas.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 699052B1F4D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: SriNavmani A <srinavmani@axiado.com>
+From: Biju Das <biju.das.jz@bp.renesas.com>
 
-Add the eMMC PHY device tree node to the AX3000 SoC DTSI.
-AX3000 has one eMMC PHY interface.
+Hi all,
 
-Signed-off-by: SriNavmani A <srinavmani@axiado.com>
-Signed-off-by: Tzu-Hao Wei <twei@axiado.com>
----
- arch/arm64/boot/dts/axiado/ax3000.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+This patch series adds initial support for the Renesas RZ/G3L SoC and
+RZ/G3L SMARC EVK platform. The RZ/G3L device is a general-purpose
+microprocessor with a quad-core CA-55, single core CM-33, Mali-G31
+3-D Graphics and other peripherals.
 
-diff --git a/arch/arm64/boot/dts/axiado/ax3000.dtsi b/arch/arm64/boot/dts/axiado/ax3000.dtsi
-index 792f52e0c7dd42cbc54b0eb47e25b0fbf1a706b8..ccc8088bd8258cfb666268b14a3b0716a9ca69f4 100644
---- a/arch/arm64/boot/dts/axiado/ax3000.dtsi
-+++ b/arch/arm64/boot/dts/axiado/ax3000.dtsi
-@@ -507,6 +507,13 @@ uart3: serial@80520800 {
- 			clocks = <&refclk &refclk>;
- 			status = "disabled";
- 		};
-+
-+		emmc_phy: phy@80801c00 {
-+			compatible = "axiado,ax3000-emmc-phy";
-+			reg = <0x0 0x80801c00 0x0 0x1000>;
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
- 	};
- 
- 	timer {
+Support for the below list of blocks is added in the SoC DTSI (r9a08g046.dtsi):
+
+ - EXT CLK
+ - 4X CA55
+ - SCIF
+ - CPG
+ - GIC
+ - ARMv8 Timer
+
+This series also adds SCIF support for the RZ/G3L SMARC EVK board (r9a08g046l48-smarc.dts).
+
+v3->v4:
+ * Dropped SoC identification patches as it is accepted for renesas-devel.
+ * Updated commit description related to core clocks section in the
+    hardware manual
+ * Dropped CLK_P4_DIV2 from core clocks
+ * Added MIPI_DSI_PLLCLK and USB_SCLK to core clocks
+ * Dropped LVDS_PCLK  module clock
+ * Added BSC_X_PRESET_BSC reset
+ * Moved the patch series from [1] to here as it is boot-dependent.
+ * Updated commit description
+ * Updated LAST_DT_CORE_CLK with R9A08G046_USB_SCLK
+ * Fixed typo 2->8 in dtable_4_128[].
+ * Added critical reset table r9a08g046_critical_resets[]
+ * Updated num_resets
+ * Added crit_resets and num_crit_resets to r9a08g046_cpg_info.
+ * Fixed typo R0A08G046L->R9A08G046L in commit description
+ * Dropped R9A08G046L46 from commit description
+ * Dropped unused audio_clk{1,2} andcan_clk device nodes
+ * Reordered i2c device node and updated reg entries by using lower-case
+   hexadecimal number
+ * Added placeholder in pinctrl node
+ * Dropped unused DMAC device node
+ * Added pcie node with placeholder
+ * Collected the tags.
+ * Updated commit description for patch#8
+
+[1] https://lore.kernel.org/all/20260306134228.871815-1-biju.das.jz@bp.renesas.com/
+v2->v3:
+ * Added macros R9A08G046_ETH{0,1}_CLK_{TX,RX}_I_RMII in r9a08g046-cpg.h.
+ * Keep the tag from Conor as it is trivial change for just adding macros.
+v1->v2:
+ * Dropped scif bindings patch as it is accepted.
+ * Collected tags.
+ * Squashed the patch#3 and #4
+ * Documented GE3D/VCP for all SoC variants
+ * Documented external ethernet clocks as it is a clock source for MUX
+   inside CPG
+ * Updated commit description for bindings.
+ * Keep the tag from Conor as it is trivial change for adding more
+   clks.
+ * Added CLK_ETH{0,1}_TXC_TX_CLK_IN and CLK_ETH{0,1}_RXC_RX_CLK_IN clocks
+   in clk table.
+ * Dropped R9A08G046_IA55_PCLK from critical clock list.
+ * Added external clocks eth{0,1}_txc_tx_clk and eth{0,1}_rxc_rx_clk
+   in soc dtsi as it needed for cpg as it is a clock source for mux.
+ * Updated cpg node.
+ * Dropped gpio.h header from SoM dtsi.
+ * Dropped scif node as it is already included in common platform
+   file.
+
+Test logs:
+/ #  uname -r
+7.0.0-rc4-next-20260316-g7f7df5dd3d2a
+/ # cat /proc/cpuinfo
+processor       : 0
+BogoMIPS        : 48.00
+Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
+CPU implementer : 0x41
+CPU architecture: 8
+CPU variant     : 0x2
+CPU part        : 0xd05
+CPU revision    : 0
+
+processor       : 1
+BogoMIPS        : 48.00
+Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
+CPU implementer : 0x41
+CPU architecture: 8
+CPU variant     : 0x2
+CPU part        : 0xd05
+CPU revision    : 0
+
+processor       : 2
+BogoMIPS        : 48.00
+Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
+CPU implementer : 0x41
+CPU architecture: 8
+CPU variant     : 0x2
+CPU part        : 0xd05
+CPU revision    : 0
+
+processor       : 3
+BogoMIPS        : 48.00
+Features        : fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
+CPU implementer : 0x41
+CPU architecture: 8
+CPU variant     : 0x2
+CPU part        : 0xd05
+CPU revision    : 0
+
+/ # cat /proc/interrupts
+           CPU0       CPU1       CPU2       CPU3
+ 11:        104        191        429         62    GICv3  27 Level     arch_timer
+ 14:          0          0          0          0    GICv3 418 Level     100ac000.serial:rx err
+ 15:          4          0          0          0    GICv3 420 Level     100ac000.serial:rx full
+ 16:        229          0          0          0    GICv3 421 Level     100ac000.serial:tx empty
+ 17:          0          0          0          0    GICv3 419 Level     100ac000.serial:break
+ 18:         17          0          0          0    GICv3 422 Level     100ac000.serial:rx ready
+IPI0:         3         16         13         21       Rescheduling interrupts
+IPI1:       315        240        180        217       Function call interrupts
+IPI2:         0          0          0          0       CPU stop interrupts
+IPI3:         0          0          0          0       CPU stop NMIs
+IPI4:         0          0          0          0       Timer broadcast interrupts
+IPI5:         0          0          0          0       IRQ work interrupts
+IPI6:         0          0          0          0       CPU backtrace interrupts
+IPI7:         0          0          0          0       KGDB roundup interrupts
+Err:          0
+/ # cat /proc/meminfo
+MemTotal:        1887304 kB
+MemFree:         1852164 kB
+MemAvailable:    1819524 kB
+/ # cat /sys/devices/soc0/family
+RZ/G3L
+/ # cat /sys/devices/soc0/machine
+Renesas SMARC EVK version 2 based on r9a08g046l48
+/ # cat /sys/devices/soc0/soc_id
+r9a08g046
+/ # cat /sys/devices/soc0/revision
+0
+dmesg | grep r9a
+[    0.000000] Machine model: Renesas SMARC EVK version 2 based on r9a08g046l48
+[    0.066480] renesas-rz-sysc 11020000.system-controller: Detected Renesas RZ/G3L r9a08g046 Rev 0
+
+Biju Das (9):
+  dt-bindings: clock: Document RZ/G3L SoC
+  clk: renesas: rzg2l-cpg: Add support for critical resets
+  clk: renesas: r9a07g04{3,4}/r9a08g045-cpg: Add critical reset entries
+  clk: renesas: rzg2l-cpg: Re-enable critical module clocks during
+    resume
+  clk: renesas: Add support for RZ/G3L SoC
+  arm64: dts: renesas: Add initial DTSI for RZ/G3L SoC
+  arm64: dts: renesas: Add initial support for RZ/G3L SMARC SoM
+  arm64: dts: renesas: renesas-smarc2: Move usb3 nodes to board DTS
+  arm64: dts: renesas: Add initial device tree for RZ/G3L SMARC EVK
+    board
+
+ .../bindings/clock/renesas,rzg2l-cpg.yaml     |  40 +-
+ arch/arm64/boot/dts/renesas/Makefile          |   2 +
+ arch/arm64/boot/dts/renesas/r9a08g046.dtsi    | 215 +++++++++++
+ .../boot/dts/renesas/r9a08g046l48-smarc.dts   |  37 ++
+ arch/arm64/boot/dts/renesas/r9a08g046l48.dtsi |  13 +
+ .../boot/dts/renesas/r9a09g047e57-smarc.dts   |   6 +
+ .../boot/dts/renesas/renesas-smarc2.dtsi      |   8 -
+ .../boot/dts/renesas/rzg3l-smarc-som.dtsi     |  20 +
+ drivers/clk/renesas/Kconfig                   |   7 +-
+ drivers/clk/renesas/Makefile                  |   1 +
+ drivers/clk/renesas/r9a07g043-cpg.c           |   8 +
+ drivers/clk/renesas/r9a07g044-cpg.c           |  13 +
+ drivers/clk/renesas/r9a08g045-cpg.c           |   9 +
+ drivers/clk/renesas/r9a08g046-cpg.c           | 153 ++++++++
+ drivers/clk/renesas/rzg2l-cpg.c               |  80 ++++
+ drivers/clk/renesas/rzg2l-cpg.h               |   8 +
+ include/dt-bindings/clock/r9a08g046-cpg.h     | 342 ++++++++++++++++++
+ 17 files changed, 948 insertions(+), 14 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a08g046.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a08g046l48.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/rzg3l-smarc-som.dtsi
+ create mode 100644 drivers/clk/renesas/r9a08g046-cpg.c
+ create mode 100644 include/dt-bindings/clock/r9a08g046-cpg.h
 
 -- 
-2.34.1
+2.43.0
 
 
