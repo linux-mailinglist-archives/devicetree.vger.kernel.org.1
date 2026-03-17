@@ -1,86 +1,114 @@
-Return-Path: <devicetree+bounces-276545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276546-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CgyIC9gUuWmOpgEAu9opvQ
-	(envelope-from <devicetree+bounces-276545-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 09:46:16 +0100
+	id YNq0GrwVuWmOpgEAu9opvQ
+	(envelope-from <devicetree+bounces-276546-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 09:50:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D8692A5E1E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 09:46:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5AA52A5EFE
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 09:50:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7CEEC301319A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:46:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2BF5B3051D25
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 08:47:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 253BD39C648;
-	Tue, 17 Mar 2026 08:46:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA25D39C65E;
+	Tue, 17 Mar 2026 08:47:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Z78Rw7+w"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="feh5CEkS";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="NkAGWEfL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6AB139B483;
-	Tue, 17 Mar 2026 08:46:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6352C39C62A
+	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 08:47:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773737171; cv=none; b=PnN4lDUukwDjwrt85O37wynDIt2STh9EIvEtIWeLKRauqLraAJNuHj3LCLkHfyCg6PKeAkrwvtYcLy9vMjff8N7wS9lYwPkIyf+9nUkEoNfHqcB6TeknrbWdUhRBNshP3CppyFzV9AMcZ4MInAbv9TZO3Mo6iZXPSzuMPVaTmB0=
+	t=1773737244; cv=none; b=uawFVnM5BJavm1Mi0v0MYAxULKs9mTbL6zM4hQke0qCojaTQdO9ww0qQUGSLWTIcpaXGcCdIB2w7fjyvd4/J7OOw0WjSUecI1j/ItGtHFJrQzAAJ+JOQBqXGQKq3cVOJTD6pl7EMjPHysku1WSXBtyn3p+zAeSQKVJaF6Kftv5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773737171; c=relaxed/simple;
-	bh=lYYB2M4rOhfpUsT2sxICQbxaMvChimycMPJ5ubsc194=;
+	s=arc-20240116; t=1773737244; c=relaxed/simple;
+	bh=5kbCIAQkiikkI7HDQQYIe6F4cUwh63ghh0nbNIOzvoY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JtGiGSnBGaciUTdDpAcMIKRYoIpwEddvgel/nA+Y6G+BISwwvfoQegcqe91bMYxqVcGFZ4Dv+S8SiFXQDEal109QS/p0rr9CP0TN6dAej2yuLSXxeKxm4tSFW7yx/9E0sCGzND8Jo/stDn1ag7yozpjpsYA9Tkgt7NgODLKxY8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Z78Rw7+w; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773737169; x=1805273169;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=lYYB2M4rOhfpUsT2sxICQbxaMvChimycMPJ5ubsc194=;
-  b=Z78Rw7+wxgHoTFokUB6wgSNoVzurr8gPGJedSePFMJOqE9VcEXTYEjTr
-   8ju4dGu6RpL+fftaY3F9p5fvGzFX6rgF3YSTpvO7sR2iLE3eSqKDmH2ar
-   uc6Scm3I8THuYw2Y1eJvFInjTH6Gj1+g+T4QYQlkNTTvTckShleRFQpkd
-   g4fPOsD7lwUOEg8pIkp9w6ZoXNYfAaDggEJw8RUH7r53vqbzu3h9eUcZZ
-   cG5ShDTGE0Wqe2FQwfoS43Pke1cywne+T+ehA75RSld66HBstCnNhg5D7
-   24C4V5HzVKJ177vK9uL2SvCqokc0sOdcmEYbwivCW8gkWDQt07fl9x3r2
-   A==;
-X-CSE-ConnectionGUID: IgAJN1uITQGrsGibyanrJg==
-X-CSE-MsgGUID: 19Pxq8qNQkKbdwPwKw0oeQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="100218948"
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
-   d="scan'208";a="100218948"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2026 01:46:08 -0700
-X-CSE-ConnectionGUID: +cBoXIEDSCWAr7IKOMp3Jw==
-X-CSE-MsgGUID: +XWBVvGfRH6RYxXEjBcSBQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
-   d="scan'208";a="222254270"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.106])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2026 01:46:05 -0700
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id C586C121D04;
-	Tue, 17 Mar 2026 10:46:03 +0200 (EET)
-Date: Tue, 17 Mar 2026 10:46:03 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Matthias Fend <matthias.fend@emfend.at>
-Cc: Jimmy Su <jimmy.su@intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	bsp-development.geo@leica-geosystems.com
-Subject: Re: [PATCH v2 8/9] media: i2c: ov08d10: add support for reset and
- power management
-Message-ID: <abkUy5U-cwK-6_kz@kekkonen.localdomain>
-References: <20260309-ov08d10-v2-0-81f8b5d99984@emfend.at>
- <20260309-ov08d10-v2-8-81f8b5d99984@emfend.at>
+	 Content-Type:Content-Disposition:In-Reply-To; b=isC5cghufFg8HX5N5Fo8RWARGNpXtIIyzHiU3RnUqG0uiEX0x3x1bcOKpkM0jTkq1bODIByE54AW0oggpPCdyAwzOht76brRemzxLQ6CbTJlgv+/rVxNs7Jg8DRhCKy/SoDw+XxJqygMiLGS8BEMrYlmCKClnmofhlPFmYG/iDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=feh5CEkS; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=NkAGWEfL; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62H8UjqO2315225
+	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 08:47:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=2Fop3rhDCFzqQgIatndthlwv
+	Lk7+QkbtzpTq2lw5zww=; b=feh5CEkSdvo6mJbnNGJIFJALfj2Y8mfGTDdSlpIh
+	ISx6I4LN0dOgW/xqS2aNRvPZQi/EyxDNN/qQ4Qn9D1lZcVwyySCvwYAruxFH6DXq
+	7ysS7swEBSr9ZYMTSSlg73pf0bcFi23pmJ7xFMDO1NwoAZjot32eDu9eqIyZCDJP
+	7h6gzWJHVjCd96QUgZ068F9SBIpfbI010Due4NtCsx2KBA+J4tFxYiNFI1OQS8t8
+	S552wZKJcgiGNY1y+NbJ0yKwnGcgO8kGtjV1t/I6cG+i5RcaEgaBJcwdhhBmsimi
+	gjQsgY13gf0xtY6IEyv8Xun6u014UNWCKD6gKfrlphRszg==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cxmf2b1xu-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 08:47:22 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-89a0013d87bso910218396d6.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 01:47:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773737241; x=1774342041; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=2Fop3rhDCFzqQgIatndthlwvLk7+QkbtzpTq2lw5zww=;
+        b=NkAGWEfLvcvu+CgkYvL6C41Rh0qs1qZdKWWtQXwHyTAgTvHAETvNiMXQcGUvnKOUOY
+         oVu6WcDcPxfiZ+70IcV/7vAkEgupAEt/U15u1DREUjn5s/e6LSqRsyLLfbptbQEhVnbY
+         L3ZY+4sGqJrxZVsH9bozhy1uHUZEQm8ei/QC310evYd3Fj6jOGHSBmydVTqrAAwz9I1m
+         w5e6yz5aBPYnHhJ633mXfz4T8IlnMQqFHRlXmkclAmcr/O6yYfCqPZkbHgdbay6NPiQu
+         cF1yw/E+3Gq3K6+NuGCX/sQhgR7aizO3fZiPd77k7JA38kdg2lwgr21sRtq7NHEA+6pA
+         G1ZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773737241; x=1774342041;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2Fop3rhDCFzqQgIatndthlwvLk7+QkbtzpTq2lw5zww=;
+        b=kRqwxAICC1jUuZlAiYEd4k2/lLsYv6htKP+GETsShW4xm486/UMOORrq91VaMgHWV9
+         18Q2Y77/yi+bgZ2jNYjVahze2GKEP5LJDTk9WejvU/auBtSgj63w19kolznX/eGhVj4e
+         rBylwjerz6V9RUbzGR0idRNcGMHsr5a1gRvNe1Jn/Ng4AbR261AQ9l4YQRFRxeDr/C2q
+         zGfL67u8EQgKddJXQOLAPaIYsgRAEUngDQeQZ+ZiIZF7UYHCl7+VPSueD+BrkuHG8Jc4
+         GaM2nEq3Ol70B6VQjXkCLwquFLgwXPk+ZCfhSFHwUAFd/STUNvrHtXXCkX2VIIuziMOz
+         yNqw==
+X-Forwarded-Encrypted: i=1; AJvYcCWKVWE88kVt1Ym2I9Q1HyH3KaJG74D/xhaIPWJmXsQJGLb1pKmUqnQF7txAj4MEUgwIPVnWQVJPkyQl@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGpYjhHBRqKMpxGCZJ/0BJ+n+jOlyzVwUfm2Nu6Tt0RzZoG3cA
+	B84tlkqWTpwFx15oUlU/wBuDPvLNF4FD28CIl94YoDsGeJ6CqhMGgMLXPho6lUbQ8yS5cDJvzdO
+	EvBv4eo9Gcf4vTEfDArrGDno3cecz57lj/ZTmAElkhYJbkfu9DS5BwVgKldn1zVfI
+X-Gm-Gg: ATEYQzwAq/LPDk4oa87ii6IfKcph0/9irLbWkid8Y2MGlLZG3/Wqei/1iFuVsJsn7aq
+	CDb0QmQiNpuruNvyI8nx2mFAoZxdmsJaUVnlydZdCMdna9utPt1e4/2lqVeVuQ7u7cxZ/Sz9Vll
+	uEElb4iouBPgqqPdTi5e/ypq4+A7O8UC1WTCmWzuFwavt6EgKRQiDYD3be38S9L85Nq8tN2RW2V
+	SQiOwgF4buf6eiF1MREgGRBXKmyO8jGDt2DgzFeezCetVM7sT46f4cWpGY/IAxLZnnZw0OCGYda
+	oFLJCcT5adURcww80lFhLky194FbmmStZTYwrUJsPSdhDqrooSETlBWDp4GQtU5VMxhQU18J09Q
+	STmSNQoquyUP2D/g27SQnS49zkUhl9+70OQ==
+X-Received: by 2002:a05:620a:31a5:b0:8c7:f79:bd70 with SMTP id af79cd13be357-8cdb5b5a893mr2023589085a.44.1773737241347;
+        Tue, 17 Mar 2026 01:47:21 -0700 (PDT)
+X-Received: by 2002:a05:620a:31a5:b0:8c7:f79:bd70 with SMTP id af79cd13be357-8cdb5b5a893mr2023586085a.44.1773737240883;
+        Tue, 17 Mar 2026 01:47:20 -0700 (PDT)
+Received: from oss.qualcomm.com ([82.79.95.133])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48557c66583sm118154185e9.21.2026.03.17.01.47.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Mar 2026 01:47:19 -0700 (PDT)
+Date: Tue, 17 Mar 2026 10:47:18 +0200
+From: Abel Vesa <abel.vesa@oss.qualcomm.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: eliza: Enable Eliza MTP board
+ support
+Message-ID: <vpoq5lznz3jcfiumsfgdskspus5nzotl2utoaubidfktnvw3za@txma7z7m3v4f>
+References: <20260313-eliza-base-dt-v2-0-bd91367d860d@oss.qualcomm.com>
+ <20260313-eliza-base-dt-v2-3-bd91367d860d@oss.qualcomm.com>
+ <sf2e5rld6oiv7piqq277ppe3xqrh7q6bz2qntekzusq6w56rr5@tc2kdlnocul4>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,218 +117,104 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260309-ov08d10-v2-8-81f8b5d99984@emfend.at>
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+In-Reply-To: <sf2e5rld6oiv7piqq277ppe3xqrh7q6bz2qntekzusq6w56rr5@tc2kdlnocul4>
+X-Proofpoint-ORIG-GUID: dM5z9wRCseXlXM_N6-SRGeEjAwp25cZd
+X-Proofpoint-GUID: dM5z9wRCseXlXM_N6-SRGeEjAwp25cZd
+X-Authority-Analysis: v=2.4 cv=FvcIPmrq c=1 sm=1 tr=0 ts=69b9151a cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=iKs3dpp2RB4k51ZqCjcyjQ==:17
+ a=kj9zAlcOel0A:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=EUspDBNiAAAA:8 a=0dtTbxgAnuXmjDA3jTkA:9 a=CjuIK1q_8ugA:10
+ a=pJ04lnu7RYOZP9TFuWaZ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE3MDA3NyBTYWx0ZWRfXxZ2925gO1Dr8
+ yX24dGAWO1FhI8EZg29fmf6t9DRbymy0V2215mOdeSjk1/eOyLwpBHdmZoyuaCh7BINTZIwY71p
+ xgeogDBEnggLRDSrKIIjxp+28R0R9fNoDSTMxmvgmKdrTvMlmx5z2AsHfgV5w2V/JDNqCMiY9RK
+ wpNmCPsFHjQw9EwUEBdEqBfFNj0d/k4QQ3WIz8gsNGQwU1RD6KamcUMc3REFkV4IcTj9l5+aML9
+ kJk9aObCEIeO8vEImYhGnYo7hhQI/NwYWCupc6NHOdUjttTZtVcncFicbNDpqMDNTG9O7fOQFNj
+ pfvUQNH3VmcppgOHw6Ji6pb3h9WtBSkUmZ2SIG0QM98qCgdiQbMKBT15QjTCTeBfw+pYTKCzX6D
+ Gu0V6qfA2JKLzLD07dcokn/vWXzbx2rkphDM8eVRgZO/nW/6Ev5vOjBkiKAU56XyhEwqamUHZnM
+ rNxD9DcKwurQLv801Uw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-17_01,2026-03-16_06,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 priorityscore=1501 suspectscore=0 phishscore=0
+ lowpriorityscore=0 bulkscore=0 spamscore=0 clxscore=1015 malwarescore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
+ definitions=main-2603170077
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276545-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276546-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,qualcomm.com:dkim,qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,kekkonen.localdomain:mid]
-X-Rspamd-Queue-Id: 3D8692A5E1E
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: C5AA52A5EFE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 09, 2026 at 06:07:10PM +0100, Matthias Fend wrote:
-> Add support for the required power supplies as well as the control of an
-> optional sensor reset.
+On 26-03-13 17:51:37, Dmitry Baryshkov wrote:
+> On Fri, Mar 13, 2026 at 03:23:52PM +0200, Abel Vesa wrote:
+> > The MTP is a one of the boards that comes with the Eliza SoC.
+> > So add dedicated board dts for it.
+> > 
+> > The initial support enables:
+> > - UART debug console
+> > - Ob-board UFS storage
+> > - Qualcomm RPMh regulators (PMIC) and VPH_PWR
+> > - board specific clocks & reserved GPIO ranges
+> > 
+> > Co-developed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> > Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/Makefile      |   1 +
+> >  arch/arm64/boot/dts/qcom/eliza-mtp.dts | 407 +++++++++++++++++++++++++++++++++
+> >  2 files changed, 408 insertions(+)
+> > 
+> > +
+> > +		vreg_l12b: ldo12 {
+> > +			regulator-name = "vreg_l12b";
+> > +			/*
+> > +			 * Skip voltage voting for UFS VCC.
 > 
-> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
-> ---
->  drivers/media/i2c/ov08d10.c | 93 ++++++++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 92 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/media/i2c/ov08d10.c b/drivers/media/i2c/ov08d10.c
-> index ce0fa30a86129302b5dda0b8796e44054fd77c88..19035991e8bb164d4fca5d87ee4551191974e8bb 100644
-> --- a/drivers/media/i2c/ov08d10.c
-> +++ b/drivers/media/i2c/ov08d10.c
-> @@ -8,6 +8,7 @@
->  #include <linux/module.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/regulator/consumer.h>
-> +#include <linux/reset.h>
->  #include <media/v4l2-ctrls.h>
->  #include <media/v4l2-device.h>
->  #include <media/v4l2-fwnode.h>
-> @@ -513,9 +514,17 @@ static const char * const ov08d10_test_pattern_menu[] = {
->  	"Standard Color Bar",
->  };
->  
-> +static const char *const ov08d10_supply_names[] = {
-> +	"dovdd",	/* Digital I/O power */
-> +	"avdd",		/* Analog power */
-> +	"dvdd",		/* Digital core power */
-> +};
-> +
->  struct ov08d10 {
->  	struct device *dev;
->  	struct clk *clk;
-> +	struct reset_control *reset;
-> +	struct regulator_bulk_data supplies[ARRAY_SIZE(ov08d10_supply_names)];
->  
->  	struct v4l2_subdev sd;
->  	struct media_pad pad;
-> @@ -1265,6 +1274,56 @@ static const struct v4l2_subdev_internal_ops ov08d10_internal_ops = {
->  	.open = ov08d10_open,
->  };
->  
-> +static int ov08d10_power_off(struct device *dev)
-> +{
-> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> +	struct ov08d10 *ov08d10 = to_ov08d10(sd);
-> +
-> +	reset_control_assert(ov08d10->reset);
-> +
-> +	regulator_bulk_disable(ARRAY_SIZE(ov08d10->supplies),
-> +			       ov08d10->supplies);
-> +
-> +	clk_disable_unprepare(ov08d10->clk);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ov08d10_power_on(struct device *dev)
-> +{
-> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> +	struct ov08d10 *ov08d10 = to_ov08d10(sd);
-> +	int ret;
-> +
-> +	ret = regulator_bulk_enable(ARRAY_SIZE(ov08d10->supplies),
-> +				    ov08d10->supplies);
-> +	if (ret < 0) {
-> +		dev_err(dev, "failed to enable regulators: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = clk_prepare_enable(ov08d10->clk);
-> +	if (ret < 0) {
-> +		regulator_bulk_disable(ARRAY_SIZE(ov08d10->supplies),
-> +				       ov08d10->supplies);
-> +
-> +		dev_err(dev, "failed to enable imaging clock: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	if (ov08d10->reset) {
-> +		/* Delay from DVDD stable to sensor XSHUTDN pull up: 5ms */
-> +		fsleep(5 * USEC_PER_MSEC);
-> +
-> +		reset_control_deassert(ov08d10->reset);
-> +
-> +		/* Delay from XSHUTDN pull up to SCCB start: 8ms */
-> +		fsleep(8 * USEC_PER_MSEC);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int ov08d10_identify_module(struct ov08d10 *ov08d10)
->  {
->  	struct i2c_client *client = v4l2_get_subdevdata(&ov08d10->sd);
-> @@ -1371,6 +1430,10 @@ static void ov08d10_remove(struct i2c_client *client)
->  	media_entity_cleanup(&sd->entity);
->  	v4l2_ctrl_handler_free(sd->ctrl_handler);
->  	pm_runtime_disable(ov08d10->dev);
-> +	if (!pm_runtime_status_suspended(ov08d10->dev)) {
-> +		ov08d10_power_off(ov08d10->dev);
-> +		pm_runtime_set_suspended(ov08d10->dev);
-> +	}
->  	mutex_destroy(&ov08d10->mutex);
->  }
->  
-> @@ -1378,6 +1441,7 @@ static int ov08d10_probe(struct i2c_client *client)
->  {
->  	struct ov08d10 *ov08d10;
->  	unsigned long freq;
-> +	unsigned int i;
->  	int ret;
->  
->  	ov08d10 = devm_kzalloc(&client->dev, sizeof(*ov08d10), GFP_KERNEL);
-> @@ -1403,12 +1467,32 @@ static int ov08d10_probe(struct i2c_client *client)
->  		return ret;
->  	}
->  
-> +	ov08d10->reset = devm_reset_control_get_optional_exclusive(ov08d10->dev, NULL);
-> +	if (IS_ERR(ov08d10->reset))
-> +		return dev_err_probe(ov08d10->dev, PTR_ERR(ov08d10->reset),
-> +				     "failed to get reset\n");
-> +	reset_control_assert(ov08d10->reset);
-> +
-> +	for (i = 0; i < ARRAY_SIZE(ov08d10_supply_names); i++)
+> Please continue with 'why?'
 
-You can declare i here.
+Actually, I think I'm going to drop the comment and add the voltages range
+in here.
 
-> +		ov08d10->supplies[i].supply = ov08d10_supply_names[i];
-> +
-> +	ret = devm_regulator_bulk_get(ov08d10->dev,
-> +				      ARRAY_SIZE(ov08d10->supplies),
-> +				      ov08d10->supplies);
-> +	if (ret)
-> +		return dev_err_probe(ov08d10->dev, ret,
-> +				     "failed to get regulators\n");
-> +
->  	v4l2_i2c_subdev_init(&ov08d10->sd, client, &ov08d10_subdev_ops);
->  
-> +	ret = ov08d10_power_on(ov08d10->dev);
-> +	if (ret)
-> +		return dev_err_probe(ov08d10->dev, ret, "failed to power on\n");
-> +
->  	ret = ov08d10_identify_module(ov08d10);
->  	if (ret) {
->  		dev_err(ov08d10->dev, "failed to find sensor: %d\n", ret);
-> -		return ret;
-> +		goto probe_error_power_off;
->  	}
->  
->  	mutex_init(&ov08d10->mutex);
-> @@ -1452,9 +1536,15 @@ static int ov08d10_probe(struct i2c_client *client)
->  	v4l2_ctrl_handler_free(ov08d10->sd.ctrl_handler);
->  	mutex_destroy(&ov08d10->mutex);
->  
-> +probe_error_power_off:
-> +	ov08d10_power_off(ov08d10->dev);
-> +
->  	return ret;
->  }
->  
-> +static DEFINE_RUNTIME_DEV_PM_OPS(ov08d10_pm_ops,
-> +				 ov08d10_power_off, ov08d10_power_on, NULL);
-> +
->  #ifdef CONFIG_ACPI
->  static const struct acpi_device_id ov08d10_acpi_ids[] = {
->  	{ "OVTI08D1" },
-> @@ -1473,6 +1563,7 @@ MODULE_DEVICE_TABLE(of, ov08d10_of_match);
->  static struct i2c_driver ov08d10_i2c_driver = {
->  	.driver = {
->  		.name = "ov08d10",
-> +		.pm = pm_ptr(&ov08d10_pm_ops),
->  		.acpi_match_table = ACPI_PTR(ov08d10_acpi_ids),
->  		.of_match_table = ov08d10_of_match,
->  	},
-> 
+For some reason, when I added these, I considered that if other platforms
+are skipping the voltage voting, Eliza should do that too. But now that I
+took another look, I really don't think the voltage voting should be
+skipped at all.
 
--- 
-Regards,
+Downstream does the voting as well.
 
-Sakari Ailus
+So I'm going to add the following in the next version:
+
+regulator-min-microvolt = <2400000>;
+regulator-max-microvolt = <3300000>;
+
+Thanks for pointing this out.
 
