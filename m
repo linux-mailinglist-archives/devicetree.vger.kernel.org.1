@@ -1,240 +1,192 @@
-Return-Path: <devicetree+bounces-276605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276606-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gb82ERYquWmVtQEAu9opvQ
-	(envelope-from <devicetree+bounces-276605-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:16:54 +0100
+	id eIPKKvoquWmVtQEAu9opvQ
+	(envelope-from <devicetree+bounces-276606-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:20:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D7CD2A7AE1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:16:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E1C22A7C0E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 11:20:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A4F3730672F9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 10:10:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CCFC83032CF1
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 10:16:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE0C835B651;
-	Tue, 17 Mar 2026 10:10:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 805083A2549;
+	Tue, 17 Mar 2026 10:16:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="esgxgUOI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bt8f7Jel"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33BCB3A451A;
-	Tue, 17 Mar 2026 10:10:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DC5481724
+	for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 10:16:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773742255; cv=none; b=eTTuM9ZLbO3xSp9B8seq0A/aPM29JPEVDHFTywL1B7dKzHtPOZAPd5vaYtnoGN/yNI8bOaOElYmr41vOBqApEy25cqTqpyghTWidfTphVT1MCuNFptmU5wUMnRH37qYkzPSjCmTT0sA33LKO9Hfnu4eK46LwlfRT9DoA1n8tVpk=
+	t=1773742593; cv=none; b=T/ORopBYo0SHFNzZht3oMY9NuZfCaUJ95MKEQL880t7xli/1IBY5joUx21iVVaL9ykGlT9dinG5vcx+WxDkbzjzqGRA2IE1tnYzxa3ebiNZEdlsACThXWJdlx8ty7CH+PpPqVh8E82GS8ji6gu3xjEzPYzcHwWCNLuPWEWTTOVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773742255; c=relaxed/simple;
-	bh=pjLtVEXYu6Ezm9WVwTnSwzGyT6cFbKsaKtpF/hqBJGc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LkpUddJ/3tRtTsffFWQM9c5P/VGCauqFamIOrHCsw8auTaCWT309+ndAgNHRTGwRIgpOyOoJXbq+CMBG7S3GuOYtvqOwR23Zi7mIN0hk5CS2H5Q2PxRKPrZcXJpFKT4XeUzZqXAQuvwq72JW2Vv4Zk78jj0aaJLt3MSLzxIQt2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=esgxgUOI; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773742249; x=1805278249;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=pjLtVEXYu6Ezm9WVwTnSwzGyT6cFbKsaKtpF/hqBJGc=;
-  b=esgxgUOICDba9Dv0wpSbMJbD2Q6KeQPuXWbJpm0T7+5vwCteEdvRu/g+
-   8dj0juKZ9C1YWMbx8cuuMKgQOESwLNOIBRDQ38sefsNGl+SONL/F0uYnH
-   QY34yqJmMRYg6UdEpSuaazXjvI47a9HbOYBKmA6ilybHuSWwy32rCM610
-   e5ucc8HclTX/dRBcbbVQdflOH78y13jwvFqGCHfA1amQYZIAagW4x6QOG
-   ubb5pEOeDwjpiN4NYWe3fUemX+OE/G4zqnsQlWZCPtz5GG2Q1uYxcHm2g
-   Ip0qRBAE/NohjGakkSKtQjRJ1HUkuKvBclZl+vveBA9MJ7iMW9FvNEmIy
-   g==;
-X-CSE-ConnectionGUID: KP2ytwgWQHSAKdAMRo2JGg==
-X-CSE-MsgGUID: dOv+UKQYRCaZ0pPSInKulg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="73947785"
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
-   d="scan'208";a="73947785"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2026 03:10:47 -0700
-X-CSE-ConnectionGUID: rZW/vNdCSgKXquYHdxLMXA==
-X-CSE-MsgGUID: P9pMYPriQluzlqeXNUdWPQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; 
-   d="scan'208";a="224396867"
-Received: from lkp-server01.sh.intel.com (HELO 63737dd503cb) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 17 Mar 2026 03:10:43 -0700
-Received: from kbuild by 63737dd503cb with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1w2RNo-000000000Dd-19DE;
-	Tue, 17 Mar 2026 10:10:40 +0000
-Date: Tue, 17 Mar 2026 18:10:08 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jie Gan <jie.gan@oss.qualcomm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@arm.com>,
-	James Clark <james.clark@linaro.org>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	s=arc-20240116; t=1773742593; c=relaxed/simple;
+	bh=ABn9Ni57R0ZkpGLX2ZIwE8vOk53v0f5Zak751TrF5w8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YC+RCLUx6PSW0dTPz7dotxCUUbtL7m7Q9kCft8NoqYKZXriJaZPdnFexQgL98/jIAaEnMuMs2gUmmYAJJOrlTo92Bj7c/vIiWbct1OSAkKw85VRUSTI6U0N0z2v9Ga11Q5CjcU/frlU9lcQtkDtox58w2dP4vQvnuFIDQmyPG8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bt8f7Jel; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4852b81c73aso49399205e9.3
+        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 03:16:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773742590; x=1774347390; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oxpIVyCSKVrX2DiLGUQhb5TMOZpG4m6V2TbsqVVpj04=;
+        b=Bt8f7JeljAb+cWcPNtxImOJ9/dmJjqgIF5JVMEXx+dz3VU7/h4oPprOGZXEzB6nWtN
+         IhnCIrTVELTYstyYJRzJAuSoW2wEqDgj4TG8ME9fzK8EcCPm6OmW2j/O9EXviRkm+bPB
+         MG83lytosBI6+mZuqR+oXHBI0hVMjTqfoYtI0n3qhNixxMhSgKYvY+tfP1FWWaN3/D7N
+         xHPLgBp4NMoOYpA+TB1ohksEwc6zQA0/ayJq84ce2KuSuZyCL9UTAZEWrTQza0C/LErD
+         EuQAUeo7ZRSiN+//luaux8Y4pu49fgHZM5yevQziRCdM9soFZCcBIWgoozBnY0D4taMA
+         l4vA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773742590; x=1774347390;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oxpIVyCSKVrX2DiLGUQhb5TMOZpG4m6V2TbsqVVpj04=;
+        b=RSjtc63ti1/BkVRgWCX1rRjN7SbsA9rdXlJBYl4/aOKZvuT3RyVen1MYnPHNFoRF82
+         oxD8oCSsfDDd8u5b03VjEAoj6BAvbMxlZ1U9JhrV+7fEPBuTDwIj/TV62/nBVsJIry0+
+         IZIMxcb3qFUzn2Ll9mrpL1qcZQmbqSUuzONTgNhNxqAWW4Z+ZmFCV7WiHAOh+x7XNFkB
+         wxp0cDM216nq9ROxUo/QDLYX0Rg7/zrsgzFVi1GqKDNKgljYKARadG7+WpgRzGPYS2e5
+         w7T0swiTuJvhCJ8E8d2D/AP6SB0M/w5Dk/l2Gw5b0C5KuBAQsn7lRmgI74IOx5Vy4GJO
+         NtyA==
+X-Forwarded-Encrypted: i=1; AJvYcCVuyvxP2nDkt2EnbPD28HQJUt0l83KnnFswsDPGMwtW6fFtt/xxg5oAOYN1ZZ14hwPAJ1qCXUNX+95J@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKsVFh98Z8RypHDGz1dKWcg5Hyr2t7mfXEgXNX0bk3HqmaaGyW
+	vXYZhfyy3QpfEu5Eo73AozcxLojAXySN4oE8LmUa6zHtGxhOiacvPu4q
+X-Gm-Gg: ATEYQzzYOdtLUddGS+KsDR0F+9XWk2XlNEGIj/j4EsK9vsCy3wUdAiK6kxxXFjGSA+k
+	loC8mwi/xCVTFSUEvpR28UZwUSlAAPVJnJVGIwmYBd3GZTCZLHlUxD9++EqiLucsvJtIoEagFzR
+	25wXONEHYxNotYHnSqF4U47A1duazUiAia2UlXHlG725RQ59U0j7iSPCNFnRCKs4jHRDrQ0Nw4a
+	55hHFDwAvcCLmUBs3zLtvzKURRX9AZSVsBnZaskv/xhCscUwvPO4Dze0dohmcEJ+uNceur5JQDL
+	gdaS15p7hYGOLAiqWib11xbLbaD0hDgYJV3Gl8emsQo2bsPt0tTZ7AHLa08YKA5JPsbR816YZs0
+	yH+1VWKROJbQWaCsrxecJsglxUTCDOhcXdkUS0ri3EdbpiISXKS3XvP+bri4w20dwwN9xfy2DQm
+	eoF9Z36EBscGQ7YmGWFqXiHWVKq/LWbE+t5Rv+W+SRaWGNAVvjK9ZmeJ86Gyo=
+X-Received: by 2002:a05:600c:a15:b0:485:34a2:919e with SMTP id 5b1f17b1804b1-48556710fd5mr284691515e9.33.1773742590244;
+        Tue, 17 Mar 2026 03:16:30 -0700 (PDT)
+Received: from localhost.localdomain ([2a00:23c4:a758:8a01:e16b:fc56:e220:9aa9])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4856eaee510sm53903275e9.14.2026.03.17.03.16.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Mar 2026 03:16:29 -0700 (PDT)
+From: Biju <biju.das.au@gmail.com>
+X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Linus Walleij <linusw@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, Jie Gan <jie.gan@oss.qualcomm.com>
-Subject: Re: [PATCH v15 6/7] coresight: ctcu: enable byte-cntr for TMC ETR
- devices
-Message-ID: <202603171821.OtWlpARW-lkp@intel.com>
-References: <20260313-enable-byte-cntr-for-ctcu-v15-6-1777f14ed319@oss.qualcomm.com>
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	linux-renesas-soc@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v3 0/8] Add Renesas RZ/G3L PINCONTROL support
+Date: Tue, 17 Mar 2026 10:16:13 +0000
+Message-ID: <20260317101627.174491-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260313-enable-byte-cntr-for-ctcu-v15-6-1777f14ed319@oss.qualcomm.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276605-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276606-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_TO(0.00)[glider.be,kernel.org,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,01.org:url,intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: 9D7CD2A7AE1
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bp.renesas.com:mid,renesas.com:email]
+X-Rspamd-Queue-Id: 0E1C22A7C0E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Jie,
+From: Biju Das <biju.das.jz@bp.renesas.com>
 
-kernel test robot noticed the following build errors:
+Hi All,
 
-[auto build test ERROR on a0ae2a256046c0c5d3778d1a194ff2e171f16e5f]
+This patch series aims to add basic pin-control support for the Renesas
+RZ/G3L SoC. The RZ/G3L pinctrl has an OTHER_POC register compared to other
+SoCs for setting the IO domain voltage for AWO, ISO, and WDT.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jie-Gan/coresight-core-refactor-ctcu_get_active_port-and-make-it-generic/20260315-052703
-base:   a0ae2a256046c0c5d3778d1a194ff2e171f16e5f
-patch link:    https://lore.kernel.org/r/20260313-enable-byte-cntr-for-ctcu-v15-6-1777f14ed319%40oss.qualcomm.com
-patch subject: [PATCH v15 6/7] coresight: ctcu: enable byte-cntr for TMC ETR devices
-config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20260317/202603171821.OtWlpARW-lkp@intel.com/config)
-compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260317/202603171821.OtWlpARW-lkp@intel.com/reproduce)
+Document the bindings for the RZ/G3L SoC and add pinctrl definitions in
+the driver. Some IPs need to set the register IPCONT_SEL_CLONECH in SYSC
+to control the clone channel of the IP. Document the reset-names, as all
+SoCs have multiple resets.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603171821.OtWlpARW-lkp@intel.com/
+v2->v3:
+ * Dropped clk, pincontrol device node and pincontrol support for SCIF0
+   and GBETH nodes from this series. Will add this later.
+ * Documented renesas,clonech property for controlling clone channel
+   control register located on SYSC IP block on RZ/G3L SoC.
+ * Retained the tag as it is similar change for RZ/G3E thermal bindings.
+ * Updated r9a08g046_gpio_configs[] by replacing the typo AWO->ISO.
+ * Added PIN_CFG_PUPD to RZG3L_MPXED_ETH_PIN_FUNCS macro
+ * Replaced RZG2L_MPXED_COMMON_PIN_FUNCS->RZG3L_MPXED_PIN_FUNCS in 
+   RZG3L_MPXED_PIN_FUNCS_POC macro for setting power source for pins.
+ * Added clone channel control support in the driver
+v1->v2:
+ * Split DTSI patches from bindings
+ * Fix typo maxItems->minItems in bindings
+ * Collected the tag
 
-All errors (new ones prefixed by >>):
+Biju Das (8):
+  dt-bindings: pinctrl: renesas: Document reset-names
+  dt-bindings: pinctrl: renesas: Document RZ/G3L SoC
+  arm64: dts: renesas: Add reset-names for RZ/G2L and RZ/V2H family SoCs
+  pinctrl: renesas: rzg2l: Add support for selecting power source for
+    {WDT,AWO,ISO}
+  pinctrl: renesas: rzg2l: Add OEN support for RZ/G3L
+  pinctrl: renesas: rzg2l: Add support for RZ/G3L SoC
+  pinctrl: renesas: rzg2l: Simplify rzg2l_pinctrl_set_mux()
+  pinctrl: renesas: rzg2l: Add support for clone channel control
 
->> drivers/hwtracing/coresight/coresight-ctcu-byte-cntr.c:177:3: error: cannot jump from this goto statement to its label
-     177 |                 goto out;
-         |                 ^
-   drivers/hwtracing/coresight/coresight-ctcu-byte-cntr.c:179:2: note: jump bypasses initialization of variable with __attribute__((cleanup))
-     179 |         guard(raw_spinlock_irqsave)(&byte_cntr_data->spin_lock);
-         |         ^
-   include/linux/cleanup.h:419:2: note: expanded from macro 'guard'
-     419 |         CLASS(_name, __UNIQUE_ID(guard))
-         |         ^
-   include/linux/cleanup.h:300:3: note: expanded from macro 'CLASS'
-     300 |                 class_##_name##_constructor
-         |                 ^
-   <scratch space>:18:1: note: expanded from here
-      18 | class_raw_spinlock_irqsave_constructor
-         | ^
-   note: (skipping 3 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
-   include/linux/compiler_types.h:16:23: note: expanded from macro '__PASTE'
-      16 | #define __PASTE(a, b) ___PASTE(a, b)
-         |                       ^
-   include/linux/compiler_types.h:15:24: note: expanded from macro '___PASTE'
-      15 | #define ___PASTE(a, b) a##b
-         |                        ^
-   <scratch space>:24:1: note: expanded from here
-      24 | __UNIQUE_ID_unlock_802
-         | ^
-   drivers/hwtracing/coresight/coresight-ctcu-byte-cntr.c:179:2: note: jump bypasses initialization of variable with __attribute__((cleanup))
-   include/linux/cleanup.h:419:15: note: expanded from macro 'guard'
-     419 |         CLASS(_name, __UNIQUE_ID(guard))
-         |                      ^
-   include/linux/compiler.h:168:2: note: expanded from macro '__UNIQUE_ID'
-     168 |         __PASTE(__UNIQUE_ID_,                                   \
-         |         ^
-   include/linux/compiler_types.h:16:23: note: expanded from macro '__PASTE'
-      16 | #define __PASTE(a, b) ___PASTE(a, b)
-         |                       ^
-   include/linux/compiler_types.h:15:24: note: expanded from macro '___PASTE'
-      15 | #define ___PASTE(a, b) a##b
-         |                        ^
-   <scratch space>:12:1: note: expanded from here
-      12 | __UNIQUE_ID_guard_801
-         | ^
-   1 error generated.
-
-
-vim +177 drivers/hwtracing/coresight/coresight-ctcu-byte-cntr.c
-
-   156	
-   157	static int tmc_read_prepare_byte_cntr(struct tmc_drvdata *etr_drvdata)
-   158	{
-   159		struct coresight_device *ctcu = tmc_etr_get_ctcu_device(etr_drvdata);
-   160		struct ctcu_byte_cntr *byte_cntr_data;
-   161		int ret = 0;
-   162	
-   163		/* byte-cntr is operating with SYSFS mode being enabled only */
-   164		if (coresight_get_mode(etr_drvdata->csdev) != CS_MODE_SYSFS)
-   165			return -EINVAL;
-   166	
-   167		byte_cntr_data = ctcu_get_byte_cntr(ctcu, etr_drvdata->csdev);
-   168		if (!byte_cntr_data || !byte_cntr_data->irq_enabled)
-   169			return -EINVAL;
-   170	
-   171		if (byte_cntr_data->reading)
-   172			return -EBUSY;
-   173	
-   174		/* Setup an available etr_buf_list for byte-cntr */
-   175		ret = tmc_create_etr_buf_list(etr_drvdata, 2);
-   176		if (ret)
- > 177			goto out;
-   178	
-   179		guard(raw_spinlock_irqsave)(&byte_cntr_data->spin_lock);
-   180		atomic_set(&byte_cntr_data->irq_cnt, 0);
-   181		/*
-   182		 * Configure the byte-cntr register to enable IRQ. The configured
-   183		 * size is 5% of the buffer_size.
-   184		 */
-   185		ctcu_cfg_byte_cntr_reg(byte_cntr_data->ctcu_drvdata,
-   186				       etr_drvdata->size / MAX_IRQ_CNT,
-   187				       byte_cntr_data->irq_ctrl_offset);
-   188		enable_irq_wake(byte_cntr_data->irq);
-   189		byte_cntr_data->buf_node = NULL;
-   190		byte_cntr_data->reading = true;
-   191	
-   192	out:
-   193		return ret;
-   194	}
-   195	
+ .../pinctrl/renesas,rzg2l-pinctrl.yaml        |  35 ++
+ arch/arm64/boot/dts/renesas/r9a07g043.dtsi    |   1 +
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    |   1 +
+ arch/arm64/boot/dts/renesas/r9a07g054.dtsi    |   1 +
+ arch/arm64/boot/dts/renesas/r9a08g045.dtsi    |   1 +
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi    |   1 +
+ arch/arm64/boot/dts/renesas/r9a09g056.dtsi    |   1 +
+ arch/arm64/boot/dts/renesas/r9a09g057.dtsi    |   1 +
+ drivers/pinctrl/renesas/pinctrl-rzg2l.c       | 514 +++++++++++++++++-
+ .../pinctrl/renesas,r9a08g046-pinctrl.h       |  39 ++
+ 10 files changed, 588 insertions(+), 7 deletions(-)
+ create mode 100644 include/dt-bindings/pinctrl/renesas,r9a08g046-pinctrl.h
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.0
+
 
