@@ -1,81 +1,62 @@
-Return-Path: <devicetree+bounces-276871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276872-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cE7VFp7DuWmcNQIAu9opvQ
-	(envelope-from <devicetree+bounces-276871-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 22:11:58 +0100
+	id CPYZGhLIuWl/NgIAu9opvQ
+	(envelope-from <devicetree+bounces-276872-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 22:30:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFE112B2871
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 22:11:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C57E12B2B6B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 22:30:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2C4F2315C4E9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 21:09:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D93C9302BB81
+	for <lists+devicetree@lfdr.de>; Tue, 17 Mar 2026 21:29:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B04EB38F23E;
-	Tue, 17 Mar 2026 21:09:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3763F39184A;
+	Tue, 17 Mar 2026 21:29:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PJAbZ52j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mNngK0/F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8864F346AE8;
-	Tue, 17 Mar 2026 21:09:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 136643914F6;
+	Tue, 17 Mar 2026 21:29:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773781794; cv=none; b=N1PXU8RXwKrpW9YZj2dUk5m9JrGJSI/Bfw40MAzSq0pnk55hehzUINz9aaLdJaI3nM47oAj8j12nZiWSzO+i+BtYDvxUJ3v31FuVWrCSw3lTjvrYBJafp6u2RwtXoeo6ZsqY4qx8X8PWQWLz1bLIAupuh5RBiG4OPElnm+HVVCk=
+	t=1773782950; cv=none; b=HzpJ6UP/YIvPDmUj1dbbOjKZrKqSPEn7CqpwssmoUOn1OjiAf28sK4D7rDyVZOL3fyEPwRTwgWJKeVz2NoMnlnNoI3zpMTG8P6ySB7kwIhPBbATmw1To74laC9tLNoIoMCt+HQcJjLWUT3/0yJPMAk2WHPfrgWypjHB7F7wA8Mk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773781794; c=relaxed/simple;
-	bh=MnWGC7HeMn0onQGdlxyusL98lBFK6f+bwyuj7KV5zBg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cfNgxQlqpTb5AKC4DBLiph6oOwZdDWHqzwrLTAqQ4AqaM7TK8wfzWHjo1mYIkxkcpud+tAiI+aools6jWfYF3Qcss3EhhXJ4YbkThgGHy0eqhlkCZPL6x99NeNt/a7OoQnGQM/MAK+iCeytpOSAsG0Ckv+Rx/JCJawUgRPd/eh4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PJAbZ52j; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773781794; x=1805317794;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=MnWGC7HeMn0onQGdlxyusL98lBFK6f+bwyuj7KV5zBg=;
-  b=PJAbZ52jet52i/7guvv2ZWg4f77JvkYLwAdHc8USAK5IS2ZrR69UZ/uF
-   VQR9mw+JCLeTbmoiNUzqL/4EgP9NCsK09e1BmtFfMf7144NB3zf7qjwod
-   f4hzQxB+ALHu6FmoY69n/AOiDcZB2q9XaWUhuqrr3l3hudMczo3rHYo+T
-   /ttTTrrKi5xwxeMy1Kd5DmWV7kIbaxLgtNmzE5eR2m4ZdlH6UL1Um+89t
-   7KeP3ZUo997DVwNncHS3W4WtoRNZrRIbVEWBXHIHU+eNlORZmAV1xYlGj
-   JEW/FhoSeAtwYqLebnBCRSdybNzTtiGq5kZfmnWIrDFVvv1JBPrBKgjXt
-   A==;
-X-CSE-ConnectionGUID: qxDFp6IhREWHgeoLM0NqrA==
-X-CSE-MsgGUID: 9KfeBDPrQ6u5Zc39JSltEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="74527868"
-X-IronPort-AV: E=Sophos;i="6.23,126,1770624000"; 
-   d="scan'208";a="74527868"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2026 14:09:53 -0700
-X-CSE-ConnectionGUID: oDXPjczDS/iIXulXJNalJA==
-X-CSE-MsgGUID: 26dPCyrGTAOavifEgRFBXA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,126,1770624000"; 
-   d="scan'208";a="226535489"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost) ([10.245.245.97])
-  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2026 14:09:51 -0700
-Date: Tue, 17 Mar 2026 23:09:48 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Carsten =?iso-8859-1?Q?Spie=DF?= <mail@carsten-spiess.de>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v1 1/1] hwmon: (isl28022) Don't check for specific errors
- when parsing properties
-Message-ID: <abnDHK_uWcZ_Vdxs@ashevche-desk.local>
-References: <20260219140532.2259235-1-andriy.shevchenko@linux.intel.com>
- <CAMuHMdX9CdQNBGegrfHz+-UpuyO-rmHEQ2HUa=JjVpG_0ryacg@mail.gmail.com>
+	s=arc-20240116; t=1773782950; c=relaxed/simple;
+	bh=EEPcdwfYA2i1wDNKfSw099Z5veH/DJsStfCV0MN+hNM=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=WsAoUbAQYy6KQn6zbIamEHg1F3c/knSqlxJilZB8sBsjoT4Zh/UuQd/43viMItNtgeKEP5p0Dg91SI+yWIjWMYkEUtqTHRCQYfwIX3XElYfArcj+eCbG1MTs5SCmPCkbfuFJsDtqQ39gzy/15aFbx0Q6tfiAL/aQRJxFscrtkpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mNngK0/F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81C6EC4CEF7;
+	Tue, 17 Mar 2026 21:29:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773782949;
+	bh=EEPcdwfYA2i1wDNKfSw099Z5veH/DJsStfCV0MN+hNM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=mNngK0/Fs/0IBKQ6aMEbV8XD37uWZwqxk9Xp1x3CSxJsS/UYuc7J+7WpeXQjIv9ec
+	 X8EcEeWKHBjvgKMyu88CqnlBxL2FAWqBgqJ4ozol6/VeGTI5aw1QFR1zLgeXFDVjMj
+	 Vh6uui+Fy6IJVUmetrS8GwD0rBJEg8lPlnZn8e78rGdrnEcwsHeuy895dwjCKj/iZe
+	 dJo+fNqA/n+fe+zuUf5P+uyUVtuF5G2F5N53qMXibkbEQPNAYVaY1EcNuLb40V7IK+
+	 bTXVtpbv+vjN6Jcthvxlff79woq7ce2WQMs/ChrloY0QQo6VedrOb7moFEJyJlBC9E
+	 IM6wbxpicP85A==
+Date: Tue, 17 Mar 2026 16:29:08 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Caleb James DeLisle <cjd@cjdns.fr>
+Cc: linux-pci@vger.kernel.org, linux-mips@vger.kernel.org,
+	naseefkm@gmail.com, ryder.lee@mediatek.com, bhelgaas@google.com,
+	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+	ansuelsmth@gmail.com, linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] PCI: Skip bridge window reads when window is not
+ supported
+Message-ID: <20260317212908.GA109023@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,63 +65,98 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdX9CdQNBGegrfHz+-UpuyO-rmHEQ2HUa=JjVpG_0ryacg@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.66 / 15.00];
+In-Reply-To: <20260316155157.679533-4-cjd@cjdns.fr>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,carsten-spiess.de,roeck-us.net,glider.be,gmail.com];
-	TAGGED_FROM(0.00)[bounces-276871-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276872-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,mediatek.com,google.com,kernel.org,collabora.com,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,renesas];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,intel.com:dkim,intel.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: EFE112B2871
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C57E12B2B6B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Feb 19, 2026 at 03:21:29PM +0100, Geert Uytterhoeven wrote:
-> On Thu, 19 Feb 2026 at 15:06, Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > Instead of checking for the specific error codes (that can be considered
-> > a layering violation to some extent) check for the property existence first
-> > and then either parse it, or apply a default value.
+On Mon, Mar 16, 2026 at 03:51:57PM +0000, Caleb James DeLisle wrote:
+> pci_read_bridge_io() and pci_read_bridge_mmio_pref() read bridge window
+> registers unconditionally. If the registers are hardwired to zero
+> (not implemented), both base and limit will be 0. Since (0 <= 0) is
+> true, a bogus window [mem 0x00000000-0x000fffff] or [io 0x0000-0x0fff]
+> gets created.
+> 
+> pci_read_bridge_windows() already detects unsupported windows by
+> testing register writability and sets io_window/pref_window flags
+> accordingly. Check these flags at the start of pci_read_bridge_io()
+> and pci_read_bridge_mmio_pref() to skip reading registers when the
+> window is not supported.
 
-> IIRC, we have removed superfluous presence checks all over the tree
-> during the past few years? E.g. of_property_read_*() is documented to
-> return -EINVAL if a property does not exist.
+The fundamental problem here is that assigned space to a bridge window
+that isn't implemented.  I wish we understood the connection between
+this "read window" path and the assignment path.
 
-Implementation detail and actually not accurate.
+Maybe this patch fixes it because we enter pci_read_bridge_mmio_pref()
+with res->flags being NULL, and we set IORESOURCE_MEM |
+IORESOURCE_PREFETCH again, which makes it look like we can assign
+space for it?
 
-> So this patch looks like a step back to me...
+If that's the case, I think it would improve the commit log to mention
+the actual mechanism by which we avoid assigning space.
 
-Not to me, just sent
-20260317210828.2117631-1-andriy.shevchenko@linux.intel.com
-to clarify in the documentation what's this about.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> Suggested-by: Bjorn Helgaas <helgaas@kernel.org>
+> Link: https://lore.kernel.org/all/20260113210259.GA715789@bhelgaas/
+> Signed-off-by: Ahmed Naseef <naseefkm@gmail.com>
+> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
+> ---
+>  drivers/pci/probe.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
+> index bccc7a4bdd79..4eacb741b4ec 100644
+> --- a/drivers/pci/probe.c
+> +++ b/drivers/pci/probe.c
+> @@ -395,6 +395,9 @@ static void pci_read_bridge_io(struct pci_dev *dev, struct resource *res,
+>  	unsigned long io_mask, io_granularity, base, limit;
+>  	struct pci_bus_region region;
+>  
+> +	if (!dev->io_window)
+> +		return;
+> +
+>  	io_mask = PCI_IO_RANGE_MASK;
+>  	io_granularity = 0x1000;
+>  	if (dev->io_window_1k) {
+> @@ -465,6 +468,9 @@ static void pci_read_bridge_mmio_pref(struct pci_dev *dev, struct resource *res,
+>  	pci_bus_addr_t base, limit;
+>  	struct pci_bus_region region;
+>  
+> +	if (!dev->pref_window)
+> +		return;
+> +
+>  	pci_read_config_word(dev, PCI_PREF_MEMORY_BASE, &mem_base_lo);
+>  	pci_read_config_word(dev, PCI_PREF_MEMORY_LIMIT, &mem_limit_lo);
+>  	base64 = (mem_base_lo & PCI_PREF_RANGE_MASK) << 16;
+> -- 
+> 2.39.5
+> 
 
