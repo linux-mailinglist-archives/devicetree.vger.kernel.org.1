@@ -1,286 +1,197 @@
-Return-Path: <devicetree+bounces-277125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277126-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OG9yJ8iBumldXQIAu9opvQ
-	(envelope-from <devicetree+bounces-277125-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:43:20 +0100
+	id uKL0I0CCumnrXQIAu9opvQ
+	(envelope-from <devicetree+bounces-277126-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:45:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F292D2BA1C4
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:43:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E83272BA248
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:45:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 990AE300E26F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:43:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 39361306DA46
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:44:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FE613A8727;
-	Wed, 18 Mar 2026 10:43:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00FCF39F169;
+	Wed, 18 Mar 2026 10:44:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AWGtY84O";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="MDuQr1T3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F53C3A785D
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 10:43:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D648639FCDE
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 10:44:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773830586; cv=none; b=ZQ4XFzc7YmHyUAoKtNeZ/yElmls7+2jdeTy73zIohzyCfCTwdtRMrIdYgSJ0yWGrLslsthQS9Iwqpok/9s7lS/gdn4fzzHx0D86+3eFjYfzMc6vyEJz3gk3XHlRJTpzCZm1IookfwxZNv0EfGtxqUvd3F9kNMGQW3gXYZd0Ki6Y=
+	t=1773830675; cv=none; b=cT3KkzJHDYi4wfoVwCEWfU1QZI6lf9FnvNCM/Vm+ChaL7rFMZo96T2HqMne5MD/HbrQD6DgcPN6Ct52fPrtgzGrCRc6r+NzXUJK5s4k82VrpmakAVcOcwrGbcXn+NmTblIb0J57VzmQVeaJgYBqSsgb1m6wK4EVwpohlB/MTjrs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773830586; c=relaxed/simple;
-	bh=sMfGnYFhdRR0aK9GSFvWgYJqmLxxE0zQpPzzY6zWNCU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kL24/ydX8syUC2PE7O1a6pTDdJI3y+65UQW5oNC8fgvPRs6XuUtnETxJ/9Q9jxN43F6RWpQBiXtuKgcoAstPZZyYXk8IRJ8/c8ArzCSrzGABeRLSEt+D5q4jndT2VyGGOmnSQNIJSZId27prBFUjHitGNNAXQJ8j0bp8nwkGUt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1w2oMB-00007O-N6; Wed, 18 Mar 2026 11:42:31 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1w2oMA-000tRR-2y;
-	Wed, 18 Mar 2026 11:42:30 +0100
-Received: from pengutronix.de (p4ffb2dc6.dip0.t-ipconnect.de [79.251.45.198])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 836A1507596;
-	Wed, 18 Mar 2026 10:42:30 +0000 (UTC)
-Date: Wed, 18 Mar 2026 11:42:30 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
-Cc: Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	NXP S32 Linux Team <s32@nxp.com>, Christophe Lizzi <clizzi@redhat.com>, 
-	Alberto Ruiz <aruizrui@redhat.com>, Enric Balletbo <eballetb@redhat.com>, 
-	Eric Chanudet <echanude@redhat.com>, Larisa Grigore <larisa.grigore@nxp.com>
-Subject: Re: [PATCH 2/5] can: flexcan: add FLEXCAN_QUIRK_NR_IRQ_2 quirk for
- two interrupt lines
-Message-ID: <20260318-meteoric-tentacled-chupacabra-347f1d-mkl@pengutronix.de>
-X-AI: stop_reason: "refusal"
-References: <20260318092215.23505-1-ciprianmarian.costea@oss.nxp.com>
- <20260318092215.23505-3-ciprianmarian.costea@oss.nxp.com>
+	s=arc-20240116; t=1773830675; c=relaxed/simple;
+	bh=Yji3btnVfV9CCokEpyjEwbVFo5fodmpKRObuzj0tlvg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WozX2BxtkTsK4On524rDV8R4DMhJRPiLopl6zJtiZciqAfgmhdfVuOTVK50T9fZHBJtppC6kUHhoxRAlkS1Rd8Na4/WIVKGKeSJhTgfX3USDZfHVZmOjKjp31PNdRMnfXE87jvpFwyaj1y7AV5b7VB108wevU5S5aDVIgibRwuk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AWGtY84O; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=MDuQr1T3; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62I92thj1146010
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 10:44:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	w9YjRCIhwbUqkLyLDNcmvuCBkcpcTL0Nhz/SwuyLvWk=; b=AWGtY84OtoJ3zfGV
+	vKnPTHpHW8bVTppFAiXEHFAzjDvTNxUCoJXqXFKZYRkSI/4DBIseFFG4iF+VW56X
+	a0twHjgoetrEbHkleGC8FhrKCpAwHXkmgdnW5aDUYyAFKCoNiobrIWUb+rvA7cN0
+	TuGOp2NAJw5Uctzy0/Nf2j+ql3jH+M/dp7LGlinItUIyUJlgw0o4XJyJI8a49IMi
+	KICoZZMBIh/V6WPvPo8OYITA3BOQxX9E5Ny32wMI6yVUlWVRmw3LN2aowPt+I6HD
+	YzlH31aNjbFnH87SfYRroYDUp7WUXp/xR9g2W93lcDwIKulZzfEALlguAVtfp1l6
+	LIGDtQ==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cyak3uurp-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 10:44:34 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-5090f7cee3eso39971371cf.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 03:44:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773830673; x=1774435473; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=w9YjRCIhwbUqkLyLDNcmvuCBkcpcTL0Nhz/SwuyLvWk=;
+        b=MDuQr1T3Mf1icDS29nY49eiZHSAkJ0PG4mV7zK0P0BCWZCogrz27GWxPU1Xwnb/n6K
+         3WtNkZq3NOIzwpXngRnALXcv4gUn8WbSJxxCos4CMqmaklUTKo/3af16M2Vr2VIGgbp7
+         Nc2oI0ggJO3icyU4EOOCUnA8jucYe+swKQcwJpYcVjjiaj2oBZs1L636RvyLPOb7aYdj
+         6RVB+34lyNbuUne/C7OTqrrOeKmQPSTaX83g+lFm/OZTHbH3sxd4FYz+cfCrsFoZEW1d
+         GEuyqesiabyViamnEr3XIuD2poJoJnN5FReSfhDr0xW7MCbq7IvfG5tsAHi41NIcQBZN
+         zaoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773830673; x=1774435473;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=w9YjRCIhwbUqkLyLDNcmvuCBkcpcTL0Nhz/SwuyLvWk=;
+        b=G9Sbg96ul+dfaWYQwKDlh88ti7fQauLLkNo3ajBRzT0r1fj9giBobdJeCcbNITY+qU
+         XATjD8EY+MqXKsZCv0ev4cmx8kX4Xm+ytsO0RTv1GoKTC62qe3WLWPzLT8TdR0P2vp11
+         yuDls05meKmOqJ/su/330KxWz4MBTz5O9ra4O3dWPXp1Oje4qPBdTWldOQYHKwoi2A6E
+         c5UqHr2Dr9qPmq5rBtBfDWXSFoEWadJQK0/Fs083Dlm8MbtviVxlyMgZZXkdvOq1La7C
+         jFjwnP/Qt5uf3jJiu+Yus/9qHkmV4yyqVnZ929fwLpcnw/76gzzmvjdZYpoM8VFPvX6C
+         RPmg==
+X-Forwarded-Encrypted: i=1; AJvYcCXlWyqWay5BYqTzmnBNkTEo6rimba4PSx+asFH07F5DJM8M0vkJbnky2G3fdXy69XFlhoqEYgM9k4op@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywdcb6CAO3UrUFgSTiHDNgYlAyAHi2DrsKpvqjgeGQvdvb7BNrh
+	5yvaHteFtF4S8+TC6vw/Q8vCv7fMiuyU/rM/4Bf2tCJFzgAzNbYz+3+5zM6ckcBIMy5nOHWFf/g
+	Lt553KtBJ9dSeEtrRGZI1Q0VEKeWnH8dVQsg8cIlQwQcCXkOk71UD/TyiwbYpzbFP
+X-Gm-Gg: ATEYQzzzN2llyjOP0aqC5v9pUaC2DOig4wBIoiCzMK/lbXqSrph5tVDLSnGPw4D3J7S
+	Mc/A2LnNHMBn7zx/8VmmKjBktn3nB7hdwKriZSFuc2kPwPPKCmHqDbmd3OOTFWrwe5l6YQ2zn7+
+	bbP44FKKPuoX6qq9saC7kdxlMjVU6qlU0E/jCyxpbAyM+HrIccnAvkSM96JEgI61/yOXVqN73cn
+	UY2kglhibIJr9gcewW9Auq4SVvoQ5rSkb7mZdq0yZqbJ/OI94V6TFyObQot2efgmIPCWHAfK76p
+	fWbZL02uMcCvgFSR70EbFizdwUADgWEl56BMvnvdxgR4GEE3Fb1w9cxpS3wRa6Fp4wfSbtvpaX4
+	C/OWi+EG7wPTGiH5hQUYzNhyxivBegsrMF3MQzSNvcm/NthLASgnG83O5V3mJrV/t0UVJaz7xDK
+	GZglM=
+X-Received: by 2002:a05:622a:50d:b0:509:39b5:a97a with SMTP id d75a77b69052e-50b146476eamr26767891cf.0.1773830673138;
+        Wed, 18 Mar 2026 03:44:33 -0700 (PDT)
+X-Received: by 2002:a05:622a:50d:b0:509:39b5:a97a with SMTP id d75a77b69052e-50b146476eamr26767671cf.0.1773830672775;
+        Wed, 18 Mar 2026 03:44:32 -0700 (PDT)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b97f13e9941sm184320466b.3.2026.03.18.03.44.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Mar 2026 03:44:32 -0700 (PDT)
+Message-ID: <f1e369a7-ee5b-4342-919e-abe541611f38@oss.qualcomm.com>
+Date: Wed, 18 Mar 2026 11:44:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mmaqyshtoip65elf"
-Content-Disposition: inline
-In-Reply-To: <20260318092215.23505-3-ciprianmarian.costea@oss.nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spamd-Result: default: False [-1.06 / 15.00];
-	SIGNED_PGP(-2.00)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] arm64: defconfig: Enable Qualcomm Eliza SoC
+ display clock controller
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260318-clk-qcom-dispcc-eliza-v2-0-8c05581168d1@oss.qualcomm.com>
+ <20260318-clk-qcom-dispcc-eliza-v2-3-8c05581168d1@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260318-clk-qcom-dispcc-eliza-v2-3-8c05581168d1@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=A7Zh/qWG c=1 sm=1 tr=0 ts=69ba8212 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
+ a=EUspDBNiAAAA:8 a=iyqEaw9I7auMvmsjhYoA:9 a=QEXdDO2ut3YA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-GUID: wgUIMOLe5OZ-_tH7aw9RhXY7dSlHuBgi
+X-Proofpoint-ORIG-GUID: wgUIMOLe5OZ-_tH7aw9RhXY7dSlHuBgi
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDA5MCBTYWx0ZWRfXxJNeRAGOgzRD
+ ksSnxdqWh/4/UHqgRzEiaAzaV1YWi37dSKTHQyHQGDE2U1EHS+x9yLBamZ+4QGdSmw93GGbcjLg
+ na95/HGYmVT8UeOCglitk8HNH/3Zv0NgBsU7z6C/r2dxLIOLeIALXCspHflnnoF+B/GXW3/p3m7
+ E3j8xutdOS8xPHWdDehcNZPEgkTNYYliAQbZTCUyrduqGIVPvJw8Vy8BDhGeqrJZKKAg4PNS4rV
+ aNRaKsAXP0HPDOiYk7UdkFjE5XsD+G9WuXp3pAGoP3HNLSXfiOR3xVOjpkKzMJHtqDAZeB3zmIY
+ wqUg4bFGUntjyBbVmuuUqfLB2/VS1Eko/Es2P+oZy/l9L1gqXjZ33jpXXk+kKeG6Mb14hM5YFc1
+ utdv5aB5t79OQ5CtSpSvlRpqTGORHHKuwT3ihNwNNLflAFe3OqriEz2EzUUcq1Yi/M1gAQz3EDd
+ h0qzOCEIGEZg0ARfFDQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-18_01,2026-03-17_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 adultscore=0 malwarescore=0 phishscore=0 spamscore=0
+ priorityscore=1501 bulkscore=0 lowpriorityscore=0 clxscore=1015
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
+ definitions=main-2603180090
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,redhat.com];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-277126-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277125-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[pengutronix.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mkl@pengutronix.de,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.915];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,pengutronix.de:mid,pengutronix.de:url]
-X-Rspamd-Queue-Id: F292D2BA1C4
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: E83272BA248
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
---mmaqyshtoip65elf
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 2/5] can: flexcan: add FLEXCAN_QUIRK_NR_IRQ_2 quirk for
- two interrupt lines
-MIME-Version: 1.0
-
-On 18.03.2026 10:22:12, Ciprian Costea wrote:
-> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
->
-> Introduce FLEXCAN_QUIRK_NR_IRQ_2 quirk to handle hardware integration
-
-I understand, you followed the pattern and introduced
-FLEXCAN_QUIRK_NR_IRQ_2.
-
-I think it would be better to describe the actual reason why this IP
-integration uses 2 IRQs: it has a dedicated combined bus error and state
-change IRQ. What about: FLEXCAN_QUIRK_IRQ_BERR, this would match the
-interrupt name from the bindings.
-
-In a separate patch, we could migrate the s32g compatible SoCs to the
-new quirk. But that's not subject to this patch series.
-
-> where the FlexCAN module has two separate interrupt lines:
-> - one for signaling error and bus state changes
-
-Usually it's "bus error" and "state changes", as the errors happen
-visible for everyone on the bus, while the state change is local to the
-controller (every controller has it's own state).
-
-> - one for mailboxes 0-127
->
-> This is required for NXP S32N79 SoC support.
->
-> Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+On 3/18/26 11:39 AM, Krzysztof Kozlowski wrote:
+> Enable the driver for Qualcomm Eliza SoC display clock controller, used
+> for example on Qualcomm Eliza MTP board.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> 
 > ---
->  drivers/net/can/flexcan/flexcan-core.c | 21 ++++++++++++++++++---
->  drivers/net/can/flexcan/flexcan.h      | 16 +++++++++-------
->  2 files changed, 27 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/fle=
-xcan/flexcan-core.c
-> index f5d22c61503f..a6b15496853c 100644
-> --- a/drivers/net/can/flexcan/flexcan-core.c
-> +++ b/drivers/net/can/flexcan/flexcan-core.c
-> @@ -1770,7 +1770,10 @@ static int flexcan_open(struct net_device *dev)
->  				  flexcan_irq, IRQF_SHARED, dev->name, dev);
->  		if (err)
->  			goto out_free_irq;
-> +	}
->
-> +	if (priv->devtype_data.quirks &
-> +			(FLEXCAN_QUIRK_NR_IRQ_2 | FLEXCAN_QUIRK_NR_IRQ_3)) {
->  		err =3D request_irq(priv->irq_err,
->  				  flexcan_irq, IRQF_SHARED, dev->name, dev);
->  		if (err)
-> @@ -1791,7 +1794,8 @@ static int flexcan_open(struct net_device *dev)
->  	return 0;
->
->   out_free_irq_err:
-> -	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_NR_IRQ_3)
-> +	if (priv->devtype_data.quirks &
-> +			(FLEXCAN_QUIRK_NR_IRQ_2 | FLEXCAN_QUIRK_NR_IRQ_3))
->  		free_irq(priv->irq_err, dev);
->   out_free_irq_boff:
->  	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_NR_IRQ_3)
-> @@ -1823,10 +1827,12 @@ static int flexcan_close(struct net_device *dev)
->  	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SECONDARY_MB_IRQ)
->  		free_irq(priv->irq_secondary_mb, dev);
->
-> -	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_NR_IRQ_3) {
-> +	if (priv->devtype_data.quirks &
-> +			(FLEXCAN_QUIRK_NR_IRQ_2 | FLEXCAN_QUIRK_NR_IRQ_3))
->  		free_irq(priv->irq_err, dev);
-> +
-> +	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_NR_IRQ_3)
->  		free_irq(priv->irq_boff, dev);
-> -	}
->
->  	free_irq(dev->irq, dev);
->  	can_rx_offload_disable(&priv->offload);
-> @@ -2213,12 +2219,21 @@ static int flexcan_probe(struct platform_device *=
-pdev)
->  	if (transceiver)
->  		priv->can.bitrate_max =3D transceiver->attrs.max_link_rate;
->
-> +	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_NR_IRQ_2) {
-> +		priv->irq_err =3D platform_get_irq(pdev, 1);
 
-Please use platform_get_irq_byname()
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-> +		if (priv->irq_err < 0) {
-> +			err =3D priv->irq_err;
-> +			goto failed_platform_get_irq;
-> +		}
-> +	}
-> +
->  	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_NR_IRQ_3) {
->  		priv->irq_boff =3D platform_get_irq(pdev, 1);
->  		if (priv->irq_boff < 0) {
->  			err =3D priv->irq_boff;
->  			goto failed_platform_get_irq;
->  		}
-> +
->  		priv->irq_err =3D platform_get_irq(pdev, 2);
->  		if (priv->irq_err < 0) {
->  			err =3D priv->irq_err;
-> diff --git a/drivers/net/can/flexcan/flexcan.h b/drivers/net/can/flexcan/=
-flexcan.h
-> index 16692a2502eb..f05036ca54f5 100644
-> --- a/drivers/net/can/flexcan/flexcan.h
-> +++ b/drivers/net/can/flexcan/flexcan.h
-> @@ -58,22 +58,24 @@
->  #define FLEXCAN_QUIRK_SUPPORT_ECC BIT(10)
->  /* Setup stop mode with SCU firmware to support wakeup */
->  #define FLEXCAN_QUIRK_SETUP_STOP_MODE_SCFW BIT(11)
-> +/* Setup 2 separate interrupts, main and err */
-> +#define FLEXCAN_QUIRK_NR_IRQ_2 BIT(12)
->  /* Setup 3 separate interrupts, main, boff and err */
-> -#define FLEXCAN_QUIRK_NR_IRQ_3 BIT(12)
-> +#define FLEXCAN_QUIRK_NR_IRQ_3 BIT(13)
->  /* Setup 16 mailboxes */
-> -#define FLEXCAN_QUIRK_NR_MB_16 BIT(13)
-> +#define FLEXCAN_QUIRK_NR_MB_16 BIT(14)
->  /* Device supports RX via mailboxes */
-> -#define FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX BIT(14)
-> +#define FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX BIT(15)
->  /* Device supports RTR reception via mailboxes */
-> -#define FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR BIT(15)
-> +#define FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR BIT(16)
->  /* Device supports RX via FIFO */
-> -#define FLEXCAN_QUIRK_SUPPORT_RX_FIFO BIT(16)
-> +#define FLEXCAN_QUIRK_SUPPORT_RX_FIFO BIT(17)
->  /* Setup stop mode with ATF SCMI protocol to support wakeup */
-> -#define FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI BIT(17)
-> +#define FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI BIT(18)
->  /* Device has two separate interrupt lines for two mailbox ranges, which
->   * both need to have an interrupt handler registered.
->   */
-> -#define FLEXCAN_QUIRK_SECONDARY_MB_IRQ	BIT(18)
-> +#define FLEXCAN_QUIRK_SECONDARY_MB_IRQ	BIT(19)
-
-As I want to change the quirks anyways, just add new quirk at the end.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---mmaqyshtoip65elf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQSl+MghEFFAdY3pYJLMOmT6rpmt0gUCabqBkwAKCRDMOmT6rpmt
-0vZfAQCcHiduJJiHqQlpBQ+Vi3ackoALdVecg7r1LhFi8U5J3gEA8x/8YRKjyyHq
-e8ITNDj/HHimKZHGuSGD2mKfFELkDAc=
-=F+OT
------END PGP SIGNATURE-----
-
---mmaqyshtoip65elf--
+Konrad
 
