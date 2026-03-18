@@ -1,171 +1,192 @@
-Return-Path: <devicetree+bounces-277493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277492-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oNZiOmUgu2lofQIAu9opvQ
-	(envelope-from <devicetree+bounces-277493-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 23:00:05 +0100
+	id UMVvJQ0gu2lofQIAu9opvQ
+	(envelope-from <devicetree+bounces-277492-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 22:58:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 594CF2C334B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 23:00:05 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3338F2C3324
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 22:58:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 58EEC31A085E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 21:58:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 18DD3301CC68
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 21:58:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6561B345CC9;
-	Wed, 18 Mar 2026 21:58:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2B48343D7F;
+	Wed, 18 Mar 2026 21:58:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AlhIzBTq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bbINCqq+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20A453590AE
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 21:58:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.219.51
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773871117; cv=pass; b=kTL50OxPtTItI/YqkLnoAVjETDtYu3gv0blUDY+u5MQltN5oG6vgYqQL4j78aq9l28WsSVxOk6sLgIwzi6PFz3YoauQ53RX+GzUcWmZlwadr88q2b5IZBRneomdqgrzp79ttxmEUR2zxNyEhfho2E3rD4tGNCLfCFMKa00HuYuE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773871117; c=relaxed/simple;
-	bh=Zenm7moC4cMHhzK5K3aV+UpapPf9fWYppd7Np9kpH2E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gUoRhQIhcKQEd2bQwPSSLhmEOHMjzjK1h6O+g8Xnlz6xUyQV8zxcLdM+JD1UT4XBnL6JUU02UNkpgw+hj03lX4DbfazWmKKwuI2kTDpnWgBPzwKslmkIf/0Ipxpg2ryH5vA0Yrm4z4LxlcuPd2Fd4dxlOs0jnCn6rSVh7TJpd4I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AlhIzBTq; arc=pass smtp.client-ip=209.85.219.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-89c52ef3c2fso4574586d6.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 14:58:35 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773871115; cv=none;
-        d=google.com; s=arc-20240605;
-        b=AR4xdhQg4e4P/BIxRWMNMJy/TgiMgFfb1wmprq1/cjRjOEUjChkNH3T6yThMqR1GBU
-         pWdoODi+2f9nxarUwnmd3r0bIP2SrYIFlKv+pZkqw4P1HFTo+wfuq7CKNLbCd1H23lXj
-         Obwewg71YZYSCrjBMmow+TF9+lNzvkS4aMDqmX/as74UGNNHdmQ3Lti8TyNeE2T698+B
-         Nru75xbMk5CZXRitQ+ut+oe4g5wzO60Ogr5yZdf6KtqxW2c26w/6FiZ5XUfb7LhVwRg8
-         gW1A2dzu8uhb/8jU37uv5NlPd7EhrRy5gqca4KPhhmxSNBxknctYchpLTLS9XAGLHAZo
-         OMlw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=Zenm7moC4cMHhzK5K3aV+UpapPf9fWYppd7Np9kpH2E=;
-        fh=paUp37Bnx+40eYT2lzKPRqcamDC8EfJW2gnFBmqKrHw=;
-        b=eyK2HMuDwCUvzYB+CXly2AsKcgXa4a5edgShKj9fLi7LVQCMy1aPb/1h2Dukpu76TU
-         BW/iRGd6BCNBY4ErBJSyMRHlrA8lIY/Y71QtdBCL69eetqZtKCTgWMMK21YPFtSZ/7tw
-         6BF/3uMeeZpO3vEKGeaa3aUsaWmm0lQVXmxOpONHmfHBVQ9j3TmhkA2EbbfTvfRDZ20O
-         W6c68dWejinepusKhT5t3NgsnpyhBeFgEpghAaUlz2m5UfgL5Ny3UqDUNPUgl7yXTYXd
-         QG5c+hY0UqZgntyq6663aGgZe40S7AGNzzNbjFf/atHGDDneDm5JekqCM6wHmiJWXg5V
-         6xcQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773871115; x=1774475915; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Zenm7moC4cMHhzK5K3aV+UpapPf9fWYppd7Np9kpH2E=;
-        b=AlhIzBTqGIHKMA9/cGiGfD5SUIVaAbhr31rOWrbElH1VVkT4oLRscnxvnihlfaIeBi
-         vNmkBKovJhjnau5bidMAyhmONp6/EPFfVsrJZ2E/ipRwjXpxOK124uhRb+TUDg8+7KtK
-         GKBFNuB2Z8mXhSQvbpLY7tAb31NBKSep19tT8b8HLdBWTwtK+ZUQ1D4ef3SQN2dk6RuG
-         AMlpTo7hPkOuhhlpel1Nu3goyxfymGSspVqBsl5fdNxEYFgKb7YzH3k/uRfirV5i3Q7T
-         n1A7Fqtj1IB5SVUm9fYunKnotbO55syREOEGV8HwRcrQadj77olPr4mZTFWqHytJaQQo
-         Onyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773871115; x=1774475915;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Zenm7moC4cMHhzK5K3aV+UpapPf9fWYppd7Np9kpH2E=;
-        b=du4x8j2W4p2YA2CwpnZDbfwPvOLIO8xZjWlcwqGlYetIcEK983rKIvLn6BTI28/8OV
-         xNFvpsyt4UqKCZq/QcyktSt+yXbSxddcAFYjJpY4xEP3hXEFDido7ibzL3VfmLWmjEYL
-         o/EBGP3ghw597HrpEvxAHtvTVo3JNLU10U4SPgmbPDyFaz6oPBSHMCiHVHEBohIlsL7A
-         9nGr4Jq0G9PonrKIRk/xQihfa8TD/UcFI7iS1V5zs4WKMaz9cNR0yNmxTf4Yv7f14BGK
-         2uBatGfocmJYVKXCvgf167QEudnz5klCRwO3h3fAXyIxcPH8Ss4lV4kUuwDUJPDE5Ouc
-         oIlw==
-X-Forwarded-Encrypted: i=1; AJvYcCXElnmUbvBXPbBQgDPDvpyVtPq9lgFPwPB2mEKegHgoSimUfdlbLJ1lcH4dCfYYAWXzNyNUFdcg13Yc@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZCDW1lsUBnVD3Lftu4K08yCC9AlqZ26CodZCflXrSqmEvXnbV
-	AX2bwOrQMEFHN2fg7ysqg7xBLuO+6rZdk1AvKfyiXENKKtoT146hC6qQMhsCf4/Jr4vwEiO8ygp
-	CRhMtlGWwhtVOV45x8UE2/Q30yzhaSAw=
-X-Gm-Gg: ATEYQzx7+0yWktIgoAlvbPyEp2sVXbF6sXeCwrPwBshIDIC1o3BDWrzSecsGYBlezVe
-	4h/lFv3P+P1HNk5JdpYHll7SJdPmGNseHyNfHZNVFJTD7FM+QQ7DOR3FSwxcjob2/JvpmEX2W1H
-	UbFo0h3dX8T6+AyjbIxT2Tqx3ifL23haTGpSw4u/tpzQB+tQCtbQgM9mEPhY0ielW3pcLD95Ulb
-	BvTXGxfgqagSjjc2ze82hDGEvq2StMTyApgB14HoQMaq1jNJQARw3pNO2TMIXU5IortT+dVGvyB
-	38k//mQ8miu74K7GkSWvR++Uz8hC6H17m3y6CqVM
-X-Received: by 2002:ad4:5c66:0:b0:899:f6bb:331f with SMTP id
- 6a1803df08f44-89c6b58f785mr72497716d6.41.1773871114997; Wed, 18 Mar 2026
- 14:58:34 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DE4021ADC7;
+	Wed, 18 Mar 2026 21:58:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773871114; cv=none; b=lrNFNhQfvcdpScA5O8xqQfM8chlGxsXKfORHj9dB09w3crw6NNDUgvOnDIILgkoeDxxvYazLrnfm5M3cikB2OJX5WDJFvt21AphFee7Q9IoXAE+9QKONx0l/eB4NNlTKLJxgietVA7rMdD44zAXD5W9VX7c+Oe5xDALj6eOWvj0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773871114; c=relaxed/simple;
+	bh=g+UfRkP0ayM7nlit+xXvMF47RJk+YzbVbcsTEDZHgVA=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=co6u/tmqsnoTt4vJguMmJOh4Nb+ibXhCsQxstAu2WKFGHFpKFcx1OT5zMlXmNmhF6BukfkVJzjWZDFICOEntGf64QgEdAhH2Zmo6V/BWuViqZ+IeCteKI12jwOlJxvbHYZ/IAsCNfqnCJ8rw9vMyafCTqk9/TwzVziTUK66lTP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bbINCqq+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A9CEC19421;
+	Wed, 18 Mar 2026 21:58:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773871114;
+	bh=g+UfRkP0ayM7nlit+xXvMF47RJk+YzbVbcsTEDZHgVA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=bbINCqq+QGr4OWvGM+Asg8zE2iaZmTEvvOpUaWY1IeaK3ZsDKJm71QFgRR+VpJPSo
+	 LzzpRAQr+EsxbuZyal3Ew9cgEQfNQbF6Z7uxISaPB0df3VqX6kKQhcdULV8/ziy3Vs
+	 uYIo88kfuvE0WH6PN/3RzPVYhurGOkqoRxjr/Pwb89rOtmv7fPor972DZAkW0MapR9
+	 4NjJJHGj7j7wH3ZsK+KxlHopfyKqXw/mUnBL2Meyv94uWyzMfsfnN0ALQcY7fEk1by
+	 IEnr8DdjSDXXQe71Nhteew4nqipFCsZ73WwP/dp+z9i05PZSmjTOinRN7OYBV9eZvl
+	 W2oUEi1fTJyaA==
+Date: Wed, 18 Mar 2026 16:58:32 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Caleb James DeLisle <cjd@cjdns.fr>
+Cc: linux-pci@vger.kernel.org, linux-mips@vger.kernel.org,
+	naseefkm@gmail.com, ryder.lee@mediatek.com, bhelgaas@google.com,
+	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+	ansuelsmth@gmail.com, linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] PCI: Skip bridge window reads when window is not
+ supported
+Message-ID: <20260318215832.GA476412@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260315204454.124544-3-dam.dejean@gmail.com> <20260318021222.1391487-1-kuba@kernel.org>
-In-Reply-To: <20260318021222.1391487-1-kuba@kernel.org>
-From: Damien Dejean <dam.dejean@gmail.com>
-Date: Wed, 18 Mar 2026 22:58:19 +0100
-X-Gm-Features: AaiRm51rFbEo2c7d7K3rasLej0EttyagoaVbWOHShXODh8J4kcprNNhbzTO3yDo
-Message-ID: <CAErgN1CyV2XuujdrasxZ4anMkuVs_BFab1oAxYxw0MNJhS+jaw@mail.gmail.com>
-Subject: Re: [net-next,v8,2/4] net: phy: realtek: add RTL8224 pair order support
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: pabeni@redhat.com, netdev@vger.kernel.org, davem@davemloft.net, 
-	devicetree@vger.kernel.org, robh@kernel.org, hkallweit1@gmail.com, 
-	andrew@lunn.ch, edumazet@google.com, maxime.chevallier@bootlin.com, 
-	krzk+dt@kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260316155157.679533-4-cjd@cjdns.fr>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-277492-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277493-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_CC(0.00)[redhat.com,vger.kernel.org,davemloft.net,kernel.org,gmail.com,lunn.ch,google.com,bootlin.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,mediatek.com,google.com,kernel.org,collabora.com,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.553];
+	NEURAL_HAM(-0.00)[-0.871];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[damdejean@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 594CF2C334B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3338F2C3324
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Le mer. 18 mars 2026 =C3=A0 03:12, Jakub Kicinski <kuba@kernel.org> a =C3=
-=A9crit :
->
-> This causes rtl8224_config_init() to return -ENOSYS, which then propagate=
-s
-> through phy_init_hw(), failing RTL8224 PHY initialization on non-OF kerne=
-l
-> configurations.
->
-> REALTEK_PHY has no 'depends on OF' in its Kconfig, so CONFIG_OF=3Dn is a =
-valid
-> build configuration. Before this patch, RTL8224 had no config_init callba=
-ck,
-> so this is a new failure path.
->
-> Could the code handle -ENOSYS in addition to -EINVAL, or use
-> device_property_read_u32() which is firmware-agnostic?
+On Mon, Mar 16, 2026 at 03:51:57PM +0000, Caleb James DeLisle wrote:
+> pci_read_bridge_io() and pci_read_bridge_mmio_pref() read bridge window
+> registers unconditionally. If the registers are hardwired to zero
+> (not implemented), both base and limit will be 0. Since (0 <= 0) is
+> true, a bogus window [mem 0x00000000-0x000fffff] or [io 0x0000-0x0fff]
+> gets created.
+> 
+> pci_read_bridge_windows() already detects unsupported windows by
+> testing register writability and sets io_window/pref_window flags
+> accordingly. Check these flags at the start of pci_read_bridge_io()
+> and pci_read_bridge_mmio_pref() to skip reading registers when the
+> window is not supported.
+> 
+> Suggested-by: Bjorn Helgaas <helgaas@kernel.org>
+> Link: https://lore.kernel.org/all/20260113210259.GA715789@bhelgaas/
+> Signed-off-by: Ahmed Naseef <naseefkm@gmail.com>
+> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
 
-Thanks for the feedback, I handled ENOSYS next to EINVAL in the v9 series.
+I applied this to pci/resource for v7.1 with the following commit log:
 
-Regards,
-Damien
+  PCI: Prevent assignment to unsupported bridge windows
+
+  Previously, pci_read_bridge_io() and pci_read_bridge_mmio_pref()
+  unconditionally set resource type flags (IORESOURCE_IO or IORESOURCE_MEM |
+  IORESOURCE_PREFETCH) when reading bridge window registers. For windows that
+  are not implemented in hardware, this may cause the allocator to assign
+  space for a window that doesn't exist.
+
+  For example, the EcoNET EN7528 SoC Root Port doesn't support the
+  prefetchable window, but since a downstream device had a prefetchable BAR,
+  the allocator mistakenly assigned a prefetchable window:
+
+    pci 0001:00:01.0: [14c3:0811] type 01 class 0x060400 PCIe Root Port
+    pci 0001:00:01.0: PCI bridge to [bus 01-ff]
+    pci 0001:00:01.0: bridge window [mem 0x28000000-0x280fffff]: assigned
+    pci 0001:00:01.0: bridge window [mem 0x28100000-0x282fffff pref]: assigned
+    pci 0001:01:00.0: BAR 0 [mem 0x28100000-0x281fffff 64bit pref]: assigned
+
+  pci_read_bridge_windows() already detects unsupported windows by testing
+  register writability and sets dev->io_window/pref_window accordingly.
+
+  Check dev->io_window/pref_window so we don't set the resource flags for
+  unsupported windows, which prevents the allocator from assigning space to
+  them.
+
+  After this commit, the prefetchable BAR is correctly allocated from the
+  non-prefetchable window:
+
+    pci 0001:00:01.0: bridge window [mem 0x28000000-0x281fffff]: assigned
+    pci 0001:01:00.0: BAR 0 [mem 0x28000000-0x280fffff 64bit pref]: assigned
+
+I also set the author to "Ahmed Naseef <naseefkm@gmail.com>" per
+https://lore.kernel.org/all/abRQYM1If/6Vv/tI@DESKTOP-TIT0J8O.localdomain
+
+You can make this work correctly next time by including a
+"From: Ahmed Naseef <naseefkm@gmail.com>" line as the very first line
+in the message body; see
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst?id=v6.19#n723
+
+> ---
+>  drivers/pci/probe.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
+> index bccc7a4bdd79..4eacb741b4ec 100644
+> --- a/drivers/pci/probe.c
+> +++ b/drivers/pci/probe.c
+> @@ -395,6 +395,9 @@ static void pci_read_bridge_io(struct pci_dev *dev, struct resource *res,
+>  	unsigned long io_mask, io_granularity, base, limit;
+>  	struct pci_bus_region region;
+>  
+> +	if (!dev->io_window)
+> +		return;
+> +
+>  	io_mask = PCI_IO_RANGE_MASK;
+>  	io_granularity = 0x1000;
+>  	if (dev->io_window_1k) {
+> @@ -465,6 +468,9 @@ static void pci_read_bridge_mmio_pref(struct pci_dev *dev, struct resource *res,
+>  	pci_bus_addr_t base, limit;
+>  	struct pci_bus_region region;
+>  
+> +	if (!dev->pref_window)
+> +		return;
+> +
+>  	pci_read_config_word(dev, PCI_PREF_MEMORY_BASE, &mem_base_lo);
+>  	pci_read_config_word(dev, PCI_PREF_MEMORY_LIMIT, &mem_limit_lo);
+>  	base64 = (mem_base_lo & PCI_PREF_RANGE_MASK) << 16;
+> -- 
+> 2.39.5
+> 
 
