@@ -1,769 +1,286 @@
-Return-Path: <devicetree+bounces-276902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276903-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gCf5J3QQumlwRAIAu9opvQ
-	(envelope-from <devicetree+bounces-276902-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 03:39:48 +0100
+	id eKhXD9cYuml4RgIAu9opvQ
+	(envelope-from <devicetree+bounces-276903-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 04:15:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CB392B541D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 03:39:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DA0C2B56E2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 04:15:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9DA6E304DF02
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 02:39:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BFA2E3043003
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 03:15:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24A3F274FD0;
-	Wed, 18 Mar 2026 02:39:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 033B1285CA3;
+	Wed, 18 Mar 2026 03:15:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CURffu0+"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="jyTMagoP";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="YF+RpXs3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94E5F26FD97
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 02:39:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773801563; cv=none; b=e3gezyJG3qaUvvegE26qeyuQjsVYiZpce1E/rmOO+3Xn2hbpggY7epLInH7Y7ESUukKx/P9+UpJTeVsKQLk/yJikv6MJMBF7PKCAIkjwqDr6/Zx+0oF8KU+Rl13Q8gIDKFFqWO+19nFeNB0O6Wu3IpQ6gzapVzetwbGybiANwYY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773801563; c=relaxed/simple;
-	bh=nbNqI6hu1d6kr35WkBOVzA6ROeSHhSjED+j1W9+GMtE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rNfUfqxDX5jStYr3g2hlS8EPMmqfsmILCEQGyi/abs7yIUOFaRKS1yfszS80z9av/oCqwDZSGXsYSkY8jyUDjheDe3zYZznONehCcPNNYrivniS6VtVHqZowquHojD7PcEUOncWmIAKF3G168qBpccv81noWbNX1vEDhL6v/kP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CURffu0+; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2b0603ee486so16006445ad.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 19:39:20 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE1CCDDC3;
+	Wed, 18 Mar 2026 03:15:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=210.61.82.184
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773803731; cv=fail; b=hlSZyGtvEw+zVMqPXXQIa+pMCWOxYLr2kIyYQXBJMeyitIqDAlP3N3lbWBP7wJ7nwklsyKmJmLOgEdfLpnB0ZQEp9wmcNC0r6o6R8PubiifiR8Mi5xZJSP/yCfAUdLlCbjL/ka1XCMyi1lKY7Wt6mBtTOvTBK3ZjOZ9PrFhQqpk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773803731; c=relaxed/simple;
+	bh=relPn5El+UWeYWUHrGy33Ucy/WlNcBqzJeqLvUq7Vu8=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=YGU5nFjR7v2xbgWB17OKovAleNL9ePrjACTJAMsVHH1oJVkbMCRV/8gUw2whNTOZHXi5RhLmqS1rBLRLTM/Sx5H9PpLieap4oy23DJQhDZ2/ra6IZn2D6nqNkpDjG3z2AMKGbJV01IpMtlyVjy/bBgZSbmhmtWA1qh2UdT5eElA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=jyTMagoP; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=YF+RpXs3; arc=fail smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: b36ecc2e227811f1a39cd589f645bc18-20260318
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=relPn5El+UWeYWUHrGy33Ucy/WlNcBqzJeqLvUq7Vu8=;
+	b=jyTMagoP/LiZWe8NuSie25c1Zo9ts1xhVa3ierahAoLGAuLa2ZWa06rJMG2hK9Sp3Qr1DrVt9IxEbRF536NNNYEjfiFajew1dveaWco4cjwiH2fDiVgFJNnLTV8ogi5ssyTVcxGDUSqqUaBnynmlyQwVqbcvu6NYCO++Jucg2ko=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.12,REQID:2eab9dd6-8a72-49cb-9c1c-abd41f59972b,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:e7bac3a,CLOUDID:f22122fa-dfaf-419f-9dd3-d093c7e8f968,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102|110|111|836|888|898,
+	TC:-5,Content:0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BE
+	C:-1,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: b36ecc2e227811f1a39cd589f645bc18-20260318
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+	(envelope-from <chaotian.jing@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 518576795; Wed, 18 Mar 2026 11:15:22 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ MTKMBS09N1.mediatek.inc (172.21.101.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Wed, 18 Mar 2026 11:15:21 +0800
+Received: from SG2PR04CU010.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
+ 15.2.2562.29 via Frontend Transport; Wed, 18 Mar 2026 11:15:20 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=cFJWJ3VjHyJfS2WamguZ1zK5PKUVAu1vcdoR8uueCBtoN1yaFj270Sv9m94c9WuwshnIUdTiothadpvG1ccO8wZaoGAjFGVd5X83PQtbO4U3Gzc8rG9p8VQHtKpRGvdSrKf/e8kgTaHakWfOQBn1ZWQLFTynpFHYbbZjy7a+xOdUYEjPBpwEbXbpfGQjjEdhVu/0tN0JLwK31AqdPrOk/9Pv/5GziWLDgTxRA0Pk0T7X4fL7p3P9SlnMYl5Pz73R7/7bFHRFxyZ+x08vtyv8CgnO/OERAtkUEM8siCS/s2aO0de4TSuTXXH67wE4k7tTmNG+TwxEDwObIHxhga4qhw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=relPn5El+UWeYWUHrGy33Ucy/WlNcBqzJeqLvUq7Vu8=;
+ b=JJDNjfCbmJ1i+zZftiv3tJAhLun05oVUbB9e8pe1kGzSqk77Pp1x3pVjcsbn8I05NPVB8q7DnCWROaoL2I1Knunry2r/B4k22pyAml8hMBguTdtYYYJpuOFnyDZLsTqC4VcDmQ4e7r2Ufe2QaAUahLsDqnpOlKX+5tgE6S9/zHsbFP2y71G4JT4YvOkICjDaHObU5gqzifv8qnFBE7ewEDuloDI9NckXeHCOLMeZ4noHfQ1YeFYGwPm3VERVqMNa244K3cHt7eDq59baD/IvYfpFzCJu5jAlbAgGFIQkt4juZUPikq9OIMAjIdLLWt0qd2USHu2aoFDb0BsJSiQ+Lw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773801560; x=1774406360; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HuaARnkQKZeETVkPKB+UTqrXgaEnyDJrt2QqPo1vXH4=;
-        b=CURffu0+YT7eBGdDtLpCl2opf6+NjHCXr6EAFkjHrEHfI+fPv5QZiB4ZTUcbhfZau1
-         OxMw+0gGXMV+UkDLNTCuAq9cjbUE5ndwnh1U7nC0fqBkNs+vMIevvPo2MY3CoPo5VES2
-         i9AYomdcKzHKjMGoInSDbNaoeK4TRVx6HDNvip92Uc/YsHBvgGPrLyfLkaBJ2hbZc+YU
-         8HBKJmGbiuKK7BPUBOSEqhrvZYeVPrjEvQg2+Rc7RF8ORZWt0iEIN5JfYpRfLILVA/lg
-         qQG8o48iwMQbhJx+6Xq+GUO99F+RqT/QsBs+nOGhbTaAKt9O/iyH2m6dt50DLt7DZT24
-         rCvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773801560; x=1774406360;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HuaARnkQKZeETVkPKB+UTqrXgaEnyDJrt2QqPo1vXH4=;
-        b=QfCJEg8yFZwK5/bG8V7tkzGErUssSD0iQ7Ku2Tn6Dkgapn6Ih1KgtiL+wrVblrXucn
-         4tuJvyoaR/JJ4uGoB+CnlrTKRA14QWN/UH/ETLFq6K9w/RquZebhXsNuyRuPLUOlvkym
-         H6SU/ZWDVQcY6CDMAyFg9OIl3UZlcWPGwiELBSYR/0D3hQHMQrtNmy+SCF54qD39emOJ
-         Vm7EAJjckCewyT44fy6pqMvEB4wCVJ3GsYXLlVMir2lpmH9m+4cYhPyJernRe2QxR6JR
-         7odIeqbHY0LjJFFIg7F8l5oxZsU0Xxwt6qNRDO4sjFzw76YdzA/SkBAuvV67Yyp3o2M2
-         c1dw==
-X-Forwarded-Encrypted: i=1; AJvYcCV+fXBROuwJgFB/ylM2LA+3sik9cOBeQspL4ybnkZDgQNpIXmrek1LdFqGzdn06+h/JX+rSsUp8P1hX@vger.kernel.org
-X-Gm-Message-State: AOJu0YzAa9q8BY6arP/1O8fFwWZETzeyBJVheF2VOiXclT77jMG+iU1i
-	STh/g3y06FoLy/FVT3xwPZOMP19qt8nyHaITQcZfO+w2YDn0e6Pj6WZv
-X-Gm-Gg: ATEYQzyjv1l42qy+0Wd/+WY24t2ViIWFmcjsrW4F8KdgpOB+VbfqThQY944q/q0MsWB
-	mqxjeFQ0AwbZn5U3tjz9avQEGSuVHWfyA29nT9NG2Zb2zvzvbdAuymhImdnkD383m5ezR0imDbv
-	LZBTAIORWfnLsigc7akZT5bm57y964JiW7yzB2I1+KKsrqiKgap+1LIiV+fXFRPlHY0X2Cc3mZC
-	GcqGDfnOY4Gkoy58fXwb0otpuYUblc9v5G9m/nekMT1vyh2BW95c5pTiWYt3TXALsHAKsRnzPMv
-	SEUItzvxN8Ujg0kx2HfL9iLx0lQyGm7vSv8mfbdK2oQRPUkKZHChaQh1G5aCAlBk9hYmdh69muA
-	wj3pyc7qvzvBq9B4XMdrEmeFxb1+ewRDsoeuWlG3ZxfHP+sB643fIsjwxYsvvPA/7SevUYQ3sTM
-	IpCdSvms6z+fe+QBLimFUjzAo/NCsjU7heq3mn0YCn139BMwg=
-X-Received: by 2002:a17:903:1666:b0:2aa:d5e5:b136 with SMTP id d9443c01a7336-2b06e3f5513mr16474155ad.38.1773801559812;
-        Tue, 17 Mar 2026 19:39:19 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b06e61119bsm8747165ad.64.2026.03.17.19.39.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Mar 2026 19:39:19 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Tue, 17 Mar 2026 19:39:18 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: wenswang@yeah.net
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	corbet@lwn.net, skhan@linuxfoundation.org,
-	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] hwmon: add MP2985 driver
-Message-ID: <537a1f18-436c-4dd8-aeee-30017afd122f@roeck-us.net>
-References: <20260309090041.452957-1-wenswang@yeah.net>
- <20260309090215.453396-1-wenswang@yeah.net>
- <20260309090215.453396-2-wenswang@yeah.net>
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=relPn5El+UWeYWUHrGy33Ucy/WlNcBqzJeqLvUq7Vu8=;
+ b=YF+RpXs3VDnKRRvFceoOG1pMWVQUkbSJTPTNAKf6Xp4ERlb+3QjBrLfU4FRUEcXY7+WROGNFnMyNv4t5oPZnvIUDWRX1J5sqXJyOXC64N+S5eKqK1LZgFL/HiicouG9yA2kJ9rt9PluJ6v4fGMpTxkFcByNwmEXJiuHbas5ShQc=
+Received: from KL1PR03MB6032.apcprd03.prod.outlook.com (2603:1096:820:8b::7)
+ by TYNPR03MB9894.apcprd03.prod.outlook.com (2603:1096:405:3b3::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Wed, 18 Mar
+ 2026 03:15:17 +0000
+Received: from KL1PR03MB6032.apcprd03.prod.outlook.com
+ ([fe80::8d8a:2d79:b170:1ec4]) by KL1PR03MB6032.apcprd03.prod.outlook.com
+ ([fe80::8d8a:2d79:b170:1ec4%6]) with mapi id 15.20.9700.025; Wed, 18 Mar 2026
+ 03:15:17 +0000
+From: =?utf-8?B?Q2hhb3RpYW4gSmluZyAo5LqV5pyd5aSpKQ==?=
+	<Chaotian.Jing@mediatek.com>
+To: =?utf-8?B?UGV0ZXIgV2FuZyAo546L5L+h5Y+LKQ==?= <peter.wang@mediatek.com>,
+	=?utf-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= <Chunfeng.Yun@mediatek.com>,
+	"nicolas.frattaroli@collabora.com" <nicolas.frattaroli@collabora.com>,
+	"kishon@kernel.org" <kishon@kernel.org>, "avri.altman@wdc.com"
+	<avri.altman@wdc.com>, "bvanassche@acm.org" <bvanassche@acm.org>,
+	"martin.petersen@oracle.com" <martin.petersen@oracle.com>,
+	"broonie@kernel.org" <broonie@kernel.org>, "alim.akhtar@samsung.com"
+	<alim.akhtar@samsung.com>, "chu.stanley@gmail.com" <chu.stanley@gmail.com>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "p.zabel@pengutronix.de"
+	<p.zabel@pengutronix.de>, "robh@kernel.org" <robh@kernel.org>,
+	"James.Bottomley@HansenPartnership.com"
+	<James.Bottomley@HansenPartnership.com>, "lgirdwood@gmail.com"
+	<lgirdwood@gmail.com>, "vkoul@kernel.org" <vkoul@kernel.org>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"kernel@collabora.com" <kernel@collabora.com>, Louis-Alexis Eyraud
+	<louisalexis.eyraud@collabora.com>, "linux-scsi@vger.kernel.org"
+	<linux-scsi@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-phy@lists.infradead.org"
+	<linux-phy@lists.infradead.org>
+Subject: Re: [PATCH v9 23/23] scsi: ufs: mediatek: Add MT8196 compatible,
+ update copyright
+Thread-Topic: [PATCH v9 23/23] scsi: ufs: mediatek: Add MT8196 compatible,
+ update copyright
+Thread-Index: AQHcrW0oWZSD9fqd3kmagEgYp7lkibWzsAgA
+Date: Wed, 18 Mar 2026 03:15:17 +0000
+Message-ID: <daee335be4aed346cd157ad41d0889f4c91337b9.camel@mediatek.com>
+References: <20260306-mt8196-ufs-v9-0-55b073f7a830@collabora.com>
+	 <20260306-mt8196-ufs-v9-23-55b073f7a830@collabora.com>
+In-Reply-To: <20260306-mt8196-ufs-v9-23-55b073f7a830@collabora.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: KL1PR03MB6032:EE_|TYNPR03MB9894:EE_
+x-ms-office365-filtering-correlation-id: b502adbf-5fab-4c2b-9edc-08de849c946b
+x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016|38070700021|921020|56012099003|22082099003|18002099003;
+x-microsoft-antispam-message-info: ywXVaKjjtt3879z0FhMLG1oz/3Vf9IOuPX+KakZM9SjO5VwGnxBis75whny4dAiSigyRusrni/4NmhiHXBccqRHHc1aN/cS+ACgtziX9viWIoJQ4wvVJvsCB7cv1GKlp7RnL1IPxSNfdbnW3uWodTU6wVGqx6iazGzI7w1D/MvTKflJC0Sixmf78qSD234iIGsuzoHgq7k0X52qCik3hfAY7M029I9T/usWNrqKGYiuykOe6fpFjg66/ixq+pfBZypmFTkkHlUJOz6FHlJfj74adH1ob8G5Vq0/pE2vMQIa1tRO/qF8XJNxGp0mNc2g9gP6qh/xnHNVlZAps/6DXJPkpnKFPpYmzAaT4dn05pRKjEXneTal5wfRxo3E49hIAtDtrR4brM6rRXc2r0cL9kdbc+SnE7KUxIYdthtkA51SWEoKZ4XuMyTlnSLJJRT+iO/aHHqdFL5so7w0XVEX81B6MIYusj9Gr1eVX1ZVsLxsCr+TCe1M9nDGbM5gM+Pmorm0LmTK5hN9wHehIJlztKRaHw40xzaamye3GGJQdOgZFM0Fqh5KyjhAa3Dbjnu2lpPy0TmtphzmJZqjtUlM8PjZEaG4INcy8C8OjYmGPZi5zrBCqLO8ly3kqXYvvU8FAUtGPlXurICaj/HwCzTBZkr7Vh/3Eb9AB+cD3wtTTHKZ81+rQqRrdmAW4sSi80kIOz2XkC4AtxW1o0YY3NgIAn0yQKIbsLUvo9j3m01HQC1+axZiM1WsjYQPfenSD+McLf7ZAR731AbFnDEb4hguQAIZs4JZSkLPHB8BaypjwYxyp2m3Epesv/uNlR3Lcdmr+
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB6032.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700021)(921020)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SXFacFlDYUZOanRSN091cTk5VFYxL25QTWdBQm0rNHpZSHdvWDAzMWgrakRG?=
+ =?utf-8?B?WGVFMDFTN3pveFZUUXN0am85TjNUTUJONmphRGRDNWw5YU9ZOWVLa0R1UW90?=
+ =?utf-8?B?YlZTdGF3aFlKanhJSXZFU0Q5RFlZdERqWm5NTlhwbklMMlVKQ3NvbVQycGsr?=
+ =?utf-8?B?T2RPN0QxQU5rRlNqaE5USzZUVTlxYjZSYTk1T0ZqQmpFeEcwVWlGUGRmVWl5?=
+ =?utf-8?B?eS8vRmluTStTVjlFU2w4Q1pYb044c3I5ZTI2OTN4TkFqS25ta0RXZEUybjhx?=
+ =?utf-8?B?ZUVyWG5nQUN1MDRRNlovU3RLajFwQmVGR0pSeitXTkJuSVFHaXZxMkpVcjJD?=
+ =?utf-8?B?NTVlbFdyMXRMZzdyK2NqWjVuKzZRZXZ3c3JkTHVod1dEYmlHT3FFZ1ZDTjZB?=
+ =?utf-8?B?ZHptMzVKVGljQTBKMkJKOHlHSFl0c0pySWV4d1VXV1FLa252MWdqdERGRGdx?=
+ =?utf-8?B?d2NFZTdjWjNMbUdFREpSY0o3YzdmYXFRbzRxbG50UlJQTmF3ODlnODFETzZp?=
+ =?utf-8?B?VFV4NGE5VWVTMTN2RHZaQWVFZk90ZmhFaWJxQTRYYk5SRTM2VXBRV2NMbVhZ?=
+ =?utf-8?B?dTZTa0Mwbk5DbEhnZklmWnFwbHNvbzhiN2hIeWR6YVJMbGo5VDZmQU5sbVlF?=
+ =?utf-8?B?NGorRlFFUnRXNlQ5aW9oN1VLWGJSTDhnbDdaaS9RdkZ5S2F6SDNzUE5nUDVp?=
+ =?utf-8?B?VGx1WXcxNTRWckZvOWQ5Ujh1Mmh0L2l0emJIclFrRERocmpHRm4zR08xRnhD?=
+ =?utf-8?B?bTlMb3Rab3JNNjdsZ01KUDB0cVpvbmNjQkJBN09mZnhNTHQyWG0xTVE4b3dX?=
+ =?utf-8?B?TEdiVVhmb1hwSGFWYkRzMEkrU3h2OVZDeFRLL3lkK2kwTUcxYVh1bDR0OWx3?=
+ =?utf-8?B?c0JUdWN1RDZQYTE4RUZnSTM0R2M0TW1RUEl6WWpUQWFtZWJwT0pGMEZaSHdi?=
+ =?utf-8?B?eXFqOWJSdE5HQWlVa1lsNXpaT2xycUd3VkZvbmU1YVZIVzVxcWk5ZXpPcUQr?=
+ =?utf-8?B?a013U1hLV3ZSb3lUaDZ1M0pWMTRWLy9WWEZXWC9tM2VFZi85RkZIZGFDYTI0?=
+ =?utf-8?B?K09mYTNsOWo4TFpuM0p2dms2aVlSNnAremo4Ym42VW1FOFlpT28vSHVjVGRR?=
+ =?utf-8?B?Z2t4VW1vKzc4YXUyekR0NXBkdC9iTFJMT0ltUnEwOEp1WVlUZDNzamtmcmc0?=
+ =?utf-8?B?dnYrR1dkVysvbkxiUDM2S1ExdUV3VEdpZUN5bFhGUHNvYWZ5VE5QeWlQaFp3?=
+ =?utf-8?B?S21oZm95ZU9qYXdCUGpBS1JlV00xT2RtZWVuWkJaOUl2YU9vSUZHcEh6dHov?=
+ =?utf-8?B?VVdFVThYeWYyeU5IRGJsZTA1clQwNFBDRy9ybGN4ODJCb1RTQS9hV0t5d2Ni?=
+ =?utf-8?B?MWFvRWMxSDVRdjlPanFSWWZlM0FLYkQrYTlTNUR5SjVjVDk5bFErUVdSK3NP?=
+ =?utf-8?B?b2tNc0dsQisrcWNpMC8xOFQ4WjVDWStyNW9ZdmtvSnJwbnM5Rjl5eExqNWgy?=
+ =?utf-8?B?b1JEbTJBYWlYblJTNTk5eDBsbkVxbEJxYUplRFJhU1lvRFBrcUMwVTBDRFlh?=
+ =?utf-8?B?N0poWENTUTRpTDlQWDJiYzRLc2NRUklCOHJTcGtrRHRodm16OU5wbEtJUTdD?=
+ =?utf-8?B?bWxyUEVyQ0g5UERmZkpmTWRsSkFkcHdENGk5SFJsU0pXdFZDNG9XdnBLblA2?=
+ =?utf-8?B?RjFXQlRIamhDNExScEdwVHhnM0IyTFQ3S0ZvWE5sdU5udkFSMlViVm1EWGpS?=
+ =?utf-8?B?YXhwOERXOU80T1pUVkdWZHVtdUdONFpwaWtiMW92SWNWaXp5SVJzdDNHMkpo?=
+ =?utf-8?B?M0ViNHdGRkw3N2oxZkVnTEhkMzFIQ1BJdjJ6OXRzZXBYQ1JER0pPV2FGMHVs?=
+ =?utf-8?B?TThIYzkxcmdNTlg5S1JWUWFHcGYrU2FFRTZYUTZ6UlpKSUlmWHExTlRTeEpI?=
+ =?utf-8?B?RS9zUytEZnFIWW9OYnFRWWUwc20zNzFBek1SYVhIaE84eURFQzVDSmhYZUZq?=
+ =?utf-8?B?U3M3d2tBQm1Gb0Jod2lmSTI3a3pwVjlULzU3UWhhbUVSZmRhbFJMalFHUEls?=
+ =?utf-8?B?aVlQWWR2MFFJTlY3V1ZjOENBSmNmMThMYVlzb3VyWWswNnhPc2YrZFVHZmU2?=
+ =?utf-8?B?eTAzRkFHMDBCWjFoTnNGeU1nUTJXbmJuTmgzZHZxRTBXTHl4U1FzVGFvMUNO?=
+ =?utf-8?B?T2dLUWZTUEtIRnlOZUxOcTlWU2k0RFZselI1WHNPdW1UaUdsZkpNMXpTRzJ2?=
+ =?utf-8?B?YmFxT292RjRxcFVUVDgxcVppU29aMlFPY1pRdkxpNnpnNnM5WHZHQ0kyZ0VT?=
+ =?utf-8?B?dk1zalpubEo2MWo5dEMzYzhiSXBPaENrN0I1eDk1SzlTUFA3YXlWN1ZVQU9D?=
+ =?utf-8?Q?H3Qpqim6dSHqRPZs=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <590420873312224697DF1C4CBB9E7032@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260309090215.453396-2-wenswang@yeah.net>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Exchange-RoutingPolicyChecked: R4Ww+AMW7aCflKIASXTGpdCtA2XDy2EOi/yLjcLG+OmAuyTGEpetAojU8B5mttSkS0UDg4xyOU3fuERyOke0gWKSIG/BiLiyYSxi02t0aDusgK1hGKcM76wRoROgKDwFGoz7W+ssE7SHe5YZ0x6zXpsW9o6U7HHdSK6Bo/RvGP04mHDHEfpF4TaJlkCLNDnxcWlYiB+2LSY4KQzEJX/Ioy0aoQTwSRcXUfOPtP5cdSwa0J9M3ysSytryT+RMnPcJDXkEBRhWOR/jDRe+LTBMgN7oANWzLIj5rUCv5d8jNFeSKNTLnwCkaj7/KwTgvrI7huDYydZwNhFbT2lXdREE5g==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB6032.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b502adbf-5fab-4c2b-9edc-08de849c946b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Mar 2026 03:15:17.2953
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Y3II803iOe3r0qSvNXhBwqT5rfpDXab/4LxkZPvbx6+dgafiMviTv9Ijxeivs+hKwlfTPWZJH6PBexPQQUJ/SvUCRo/7TyHqZAe1VYyhunk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYNPR03MB9894
+X-MTK: N
+X-Spamd-Result: default: False [2.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk,mediateko365.onmicrosoft.com:s=selector2-mediateko365-onmicrosoft-com];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276902-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	TAGGED_FROM(0.00)[bounces-276903-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[yeah.net];
-	MISSING_XM_UA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FREEMAIL_TO(0.00)[mediatek.com,collabora.com,kernel.org,wdc.com,acm.org,oracle.com,samsung.com,gmail.com,pengutronix.de,HansenPartnership.com,linaro.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_NONE(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Chaotian.Jing@mediatek.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mediatek.com:+,mediateko365.onmicrosoft.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[outlook.com:email,roeck-us.net:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3CB392B541D
+	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 0DA0C2B56E2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 09, 2026 at 05:02:15PM +0800, wenswang@yeah.net wrote:
-> From: Wensheng Wang <wenswang@yeah.net>
-> 
-> Add support for MPS mp2985 controller. This driver exposes
-> telemetry and limit value readings and writtings.
-> 
-> Signed-off-by: Wensheng Wang <wenswang@yeah.net>
-> ---
->  Documentation/hwmon/index.rst  |   1 +
->  Documentation/hwmon/mp2985.rst | 151 ++++++++++++++
->  MAINTAINERS                    |   7 +
->  drivers/hwmon/pmbus/Kconfig    |   9 +
->  drivers/hwmon/pmbus/Makefile   |   1 +
->  drivers/hwmon/pmbus/mp2985.c   | 355 +++++++++++++++++++++++++++++++++
->  6 files changed, 524 insertions(+)
->  create mode 100644 Documentation/hwmon/mp2985.rst
->  create mode 100644 drivers/hwmon/pmbus/mp2985.c
-> 
-> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-> index b2ca8513cfcd..1b7007f41b39 100644
-> --- a/Documentation/hwmon/index.rst
-> +++ b/Documentation/hwmon/index.rst
-> @@ -183,6 +183,7 @@ Hardware Monitoring Kernel Drivers
->     mp2925
->     mp29502
->     mp2975
-> +   mp2985
->     mp2993
->     mp5023
->     mp5920
-> diff --git a/Documentation/hwmon/mp2985.rst b/Documentation/hwmon/mp2985.rst
-> new file mode 100644
-> index 000000000000..892c5b5ca19c
-> --- /dev/null
-> +++ b/Documentation/hwmon/mp2985.rst
-> @@ -0,0 +1,151 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +Kernel driver mp2985
-> +====================
-> +
-> +Supported chips:
-> +
-> +  * MPS mp2985
-> +
-> +    Prefix: 'mp2985'
-> +
-> +  * MPS mp2985
-> +
-> +    Prefix: 'mp2985'
-> +
-
-Duplicate entry
-
-> +Author:
-> +
-> +	Wensheng Wang <wenswang@yeah.net>
-> +
-> +Description
-> +-----------
-> +
-> +This driver implements support for Monolithic Power Systems, Inc. (MPS)
-> +MP2985 Dual Loop Digital Multi-phase Controller.
-> +
-> +Device compliant with:
-> +
-> +- PMBus rev 1.3 interface.
-> +
-> +The driver exports the following attributes via the 'sysfs' files
-> +for input voltage:
-> +
-> +**in1_input**
-> +
-> +**in1_label**
-> +
-> +**in1_crit**
-> +
-> +**in1_crit_alarm**
-> +
-> +**in1_lcrit**
-> +
-> +**in1_lcrit_alarm**
-> +
-> +**in1_max**
-> +
-> +**in1_max_alarm**
-> +
-> +**in1_min**
-> +
-> +**in1_min_alarm**
-> +
-> +The driver provides the following attributes for output voltage:
-> +
-> +**in2_input**
-> +
-> +**in2_label**
-> +
-> +**in2_crit**
-> +
-> +**in2_crit_alarm**
-> +
-> +**in2_lcrit**
-> +
-> +**in2_lcrit_alarm**
-> +
-> +**in3_input**
-> +
-> +**in3_label**
-> +
-> +**in3_crit**
-> +
-> +**in3_crit_alarm**
-> +
-> +**in3_lcrit**
-> +
-> +**in3_lcrit_alarm**
-> +
-> +The driver provides the following attributes for input current:
-> +
-> +**curr1_input**
-> +
-> +**curr1_label**
-> +
-> +The driver provides the following attributes for output current:
-> +
-> +**curr2_input**
-> +
-> +**curr2_label**
-> +
-> +**curr2_crit**
-> +
-> +**curr2_crit_alarm**
-> +
-> +**curr2_max**
-> +
-> +**curr2_max_alarm**
-> +
-> +**curr3_input**
-> +
-> +**curr3_label**
-> +
-> +**curr3_crit**
-> +
-> +**curr3_crit_alarm**
-> +
-> +**curr3_max**
-> +
-> +**curr3_max_alarm**
-> +
-> +The driver provides the following attributes for input power:
-> +
-> +**power1_input**
-> +
-> +**power1_label**
-> +
-> +**power2_input**
-> +
-> +**power2_label**
-> +
-> +The driver provides the following attributes for output power:
-> +
-> +**power3_input**
-> +
-> +**power3_label**
-> +
-> +**power4_input**
-> +
-> +**power4_label**
-> +
-> +The driver provides the following attributes for temperature:
-> +
-> +**temp1_input**
-> +
-> +**temp1_crit**
-> +
-> +**temp1_crit_alarm**
-> +
-> +**temp1_max**
-> +
-> +**temp1_max_alarm**
-> +
-> +**temp2_input**
-> +
-> +**temp2_crit**
-> +
-> +**temp2_crit_alarm**
-> +
-> +**temp2_max**
-> +
-> +**temp2_max_alarm**
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 77fdfcb55f06..7b47e31ee7a3 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -17922,6 +17922,13 @@ S:	Maintained
->  F:	Documentation/hwmon/mp29502.rst
->  F:	drivers/hwmon/pmbus/mp29502.c
->  
-> +MPS MP2985 DRIVER
-> +M:	Wensheng Wang <wenswang@yeah.net>
-> +L:	linux-hwmon@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/hwmon/mp2985.rst
-> +F:	drivers/hwmon/pmbus/mp2985.c
-> +
->  MPS MP2993 DRIVER
->  M:	Noah Wang <noahwang.wang@outlook.com>
->  L:	linux-hwmon@vger.kernel.org
-> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-> index fc1273abe357..83fe5866c083 100644
-> --- a/drivers/hwmon/pmbus/Kconfig
-> +++ b/drivers/hwmon/pmbus/Kconfig
-> @@ -447,6 +447,15 @@ config SENSORS_MP2975
->  	  This driver can also be built as a module. If so, the module will
->  	  be called mp2975.
->  
-> +config SENSORS_MP2985
-> +	tristate "MPS MP2985"
-> +	help
-> +	  If you say yes here you get hardware monitoring support for MPS
-> +	  MP2985 Dual Loop Digital Multi-Phase Controller.
-> +
-> +	  This driver can also be built as a module. If so, the module will
-> +	  be called mp2985.
-> +
->  config SENSORS_MP2993
->  	tristate "MPS MP2993"
->  	help
-> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-> index d6c86924f887..24505bbee2b0 100644
-> --- a/drivers/hwmon/pmbus/Makefile
-> +++ b/drivers/hwmon/pmbus/Makefile
-> @@ -45,6 +45,7 @@ obj-$(CONFIG_SENSORS_MP2891)	+= mp2891.o
->  obj-$(CONFIG_SENSORS_MP2925)	+= mp2925.o
->  obj-$(CONFIG_SENSORS_MP29502)	+= mp29502.o
->  obj-$(CONFIG_SENSORS_MP2975)	+= mp2975.o
-> +obj-$(CONFIG_SENSORS_MP2985)	+= mp2985.o
->  obj-$(CONFIG_SENSORS_MP2993)	+= mp2993.o
->  obj-$(CONFIG_SENSORS_MP5023)	+= mp5023.o
->  obj-$(CONFIG_SENSORS_MP5920)	+= mp5920.o
-> diff --git a/drivers/hwmon/pmbus/mp2985.c b/drivers/hwmon/pmbus/mp2985.c
-> new file mode 100644
-> index 000000000000..b96c1096d294
-> --- /dev/null
-> +++ b/drivers/hwmon/pmbus/mp2985.c
-> @@ -0,0 +1,355 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Hardware monitoring driver for MPS Multi-phase Digital VR Controllers(MP2985)
-> + *
-> + * Copyright (C) 2026 MPS
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include "pmbus.h"
-> +
-> +/*
-> + * Vender specific register READ_PIN_EST(0x93), READ_IIN_EST(0x8E),
-> + * MFR_VR_MULTI_CONFIG_R1(0x0D) and MFR_VR_MULTI_CONFIG_R2(0x1D).
-> + * The READ_PIN_EST is used to read pin telemetry, the READ_IIN_EST
-> + * is used to read iin telemetry and the MFR_VR_MULTI_CONFIG_R1,
-> + * MFR_VR_MULTI_CONFIG_R2 are used to obtain vid scale.
-> + */
-> +#define READ_PIN_EST	0x93
-> +#define READ_IIN_EST	0x8E
-> +#define MFR_VR_MULTI_CONFIG_R1	0x0D
-> +#define MFR_VR_MULTI_CONFIG_R2	0x1D
-> +
-> +#define MP2985_VOUT_DIV	512
-> +#define MP2985_VOUT_OVUV_UINT	195
-> +#define MP2985_VOUT_OVUV_DIV	100
-> +
-> +#define MP2985_PAGE_NUM	2
-> +
-> +#define MP2985_RAIL1_FUNC	(PMBUS_HAVE_VIN | PMBUS_HAVE_PIN | \
-> +							 PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT | \
-> +							 PMBUS_HAVE_POUT | PMBUS_HAVE_TEMP | \
-> +							 PMBUS_HAVE_STATUS_VOUT | \
-> +							 PMBUS_HAVE_STATUS_IOUT | \
-> +							 PMBUS_HAVE_STATUS_TEMP | \
-> +							 PMBUS_HAVE_STATUS_INPUT)
-> +
-> +#define MP2985_RAIL2_FUNC	(PMBUS_HAVE_PIN | PMBUS_HAVE_VOUT | \
-> +							 PMBUS_HAVE_IOUT | PMBUS_HAVE_POUT | \
-> +							 PMBUS_HAVE_TEMP | PMBUS_HAVE_IIN | \
-> +							 PMBUS_HAVE_STATUS_VOUT | \
-> +							 PMBUS_HAVE_STATUS_IOUT | \
-> +							 PMBUS_HAVE_STATUS_TEMP | \
-> +							 PMBUS_HAVE_STATUS_INPUT)
-> +
-> +struct mp2985_data {
-> +	struct pmbus_driver_info info;
-> +	int vout_scale[MP2985_PAGE_NUM];
-> +	int vid_offset[MP2985_PAGE_NUM];
-> +};
-> +
-> +#define to_mp2985_data(x) container_of(x, struct mp2985_data, info)
-> +
-> +static u16 mp2985_linear_exp_transfer(u16 word, u16 expect_exponent)
-> +{
-> +	s16 exponent, mantissa, target_exponent;
-> +
-> +	exponent = ((s16)word) >> 11;
-> +	mantissa = ((s16)((word & 0x7ff) << 5)) >> 5;
-> +	target_exponent = (s16)((expect_exponent & 0x1f) << 11) >> 11;
-> +
-> +	if (exponent > target_exponent)
-> +		mantissa = mantissa << (exponent - target_exponent);
-> +	else
-> +		mantissa = mantissa >> (target_exponent - exponent);
-> +
-> +	return (mantissa & 0x7ff) | ((expect_exponent << 11) & 0xf800);
-> +}
-> +
-> +static int mp2985_read_byte_data(struct i2c_client *client, int page, int reg)
-> +{
-> +	int ret;
-> +
-> +	switch (reg) {
-> +	case PMBUS_VOUT_MODE:
-> +		/*
-> +		 * The MP2985 does not follow standard PMBus protocol completely,
-> +		 * and the calculation of vout in this driver is based on direct
-> +		 * format. As a result, the format of vout is enforced to direct.
-> +		 */
-> +		ret = PB_VOUT_MODE_DIRECT;
-> +		break;
-> +	default:
-> +		ret = -ENODATA;
-> +		break;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int mp2985_read_word_data(struct i2c_client *client, int page, int phase,
-> +				 int reg)
-> +{
-> +	const struct pmbus_driver_info *info = pmbus_get_driver_info(client);
-> +	struct mp2985_data *data = to_mp2985_data(info);
-> +	int ret;
-> +
-> +	switch (reg) {
-> +	case PMBUS_READ_VOUT:
-> +		ret = pmbus_read_word_data(client, page, phase, reg);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		/*
-> +		 * In vid mode, the MP2985 vout telemetry has 49 vid step offset, but
-> +		 * PMBUS_VOUT_OV_FAULT_LIMIT and PMBUS_VOUT_UV_FAULT_LIMIT do not take
-> +		 * this into consideration, its resolution is 1.95mV/LSB, as a result,
-> +		 * format[PSC_VOLTAGE_OUT] can not be set to vid directly. Adding extra
-> +		 * vid_offset variable for vout telemetry.
-> +		 */
-
-This is a bit misleading, since the code (appears to) cover both VID and
-non-VID mode. The complete set of supported modes needs to be explained
-somewhere.
-
-> +		ret = DIV_ROUND_CLOSEST(((ret & GENMASK(11, 0)) + data->vid_offset[page]) *
-> +					data->vout_scale[page], MP2985_VOUT_DIV);
-
-Based on the code below, vout_scale can be 5,120, and vid_offset can be 49.
-That means the maximum value of "ret" can be
-	(4,095 + 49) * 5,120 / 512, or 41,440
-
-If the result exceeds 32,767, the calling code will interpret this as
-negative value. It should be clamped to 32,767 to ensure that this does
-not happen.
-
-> +		break;
-> +	case PMBUS_READ_IIN:
-> +		/*
-> +		 * The MP2985 has standard PMBUS_READ_IIN register(0x89), but this is
-> +		 * not used to read the input current of per rail. The input current
-> +		 * is read through the vender redefined register READ_IIN_EST(0x8E).
-> +		 */
-> +		ret = pmbus_read_word_data(client, page, phase, READ_IIN_EST);
-> +		break;
-> +	case PMBUS_READ_PIN:
-> +		/*
-> +		 * The MP2985 has standard PMBUS_READ_PIN register(0x97), but this
-> +		 * is not used to read the input power of per rail. The input power
-> +		 * of per rail is read through the vender redefined register
-> +		 * READ_PIN_EST(0x93).
-> +		 */
-> +		ret = pmbus_read_word_data(client, page, phase, READ_PIN_EST);
-> +		break;
-> +	case PMBUS_VOUT_OV_FAULT_LIMIT:
-> +	case PMBUS_VOUT_UV_FAULT_LIMIT:
-> +		ret = pmbus_read_word_data(client, page, phase, reg);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		ret = DIV_ROUND_CLOSEST((ret & GENMASK(11, 0)) * MP2985_VOUT_OVUV_UINT,
-> +					MP2985_VOUT_OVUV_DIV);
-> +		break;
-> +	case PMBUS_STATUS_WORD:
-> +	case PMBUS_READ_VIN:
-> +	case PMBUS_READ_IOUT:
-> +	case PMBUS_READ_POUT:
-> +	case PMBUS_READ_TEMPERATURE_1:
-> +	case PMBUS_VIN_OV_FAULT_LIMIT:
-> +	case PMBUS_VIN_OV_WARN_LIMIT:
-> +	case PMBUS_VIN_UV_WARN_LIMIT:
-> +	case PMBUS_VIN_UV_FAULT_LIMIT:
-> +	case PMBUS_IOUT_OC_FAULT_LIMIT:
-> +	case PMBUS_IOUT_OC_WARN_LIMIT:
-> +	case PMBUS_OT_FAULT_LIMIT:
-> +	case PMBUS_OT_WARN_LIMIT:
-> +		ret = -ENODATA;
-> +		break;
-> +	default:
-> +		ret = -EINVAL;
-> +		break;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int mp2985_write_word_data(struct i2c_client *client, int page, int reg,
-> +				  u16 word)
-> +{
-> +	int ret;
-> +
-> +	switch (reg) {
-> +	case PMBUS_VIN_OV_FAULT_LIMIT:
-> +	case PMBUS_VIN_OV_WARN_LIMIT:
-> +	case PMBUS_VIN_UV_WARN_LIMIT:
-> +	case PMBUS_VIN_UV_FAULT_LIMIT:
-> +		/*
-> +		 * The PMBUS_VIN_OV_FAULT_LIMIT, PMBUS_VIN_OV_WARN_LIMIT,
-> +		 * PMBUS_VIN_UV_WARN_LIMIT and PMBUS_VIN_UV_FAULT_LIMIT
-> +		 * of MP2985 is linear11 format, and the exponent is a
-> +		 * constant value(5'b11101)， so the exponent of word
-> +		 * parameter should be converted to 5'b11101(0x1D).
-> +		 */
-> +		ret = pmbus_write_word_data(client, page, reg,
-> +					    mp2985_linear_exp_transfer(word, 0x1D));
-> +		break;
-> +	case PMBUS_VOUT_OV_FAULT_LIMIT:
-> +	case PMBUS_VOUT_UV_FAULT_LIMIT:
-> +		/*
-> +		 * The bit0-bit11 is the limit value, and bit12-bit15
-> +		 * should not be changed.
-> +		 */
-> +		ret = pmbus_read_word_data(client, page, 0xff, reg);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		ret = pmbus_write_word_data(client, page, reg,
-> +					    (ret & ~GENMASK(11, 0)) |
-> +				FIELD_PREP(GENMASK(11, 0),
-> +					   DIV_ROUND_CLOSEST(word * MP2985_VOUT_OVUV_DIV,
-> +							     MP2985_VOUT_OVUV_UINT)));
-> +		break;
-> +	case PMBUS_OT_FAULT_LIMIT:
-> +	case PMBUS_OT_WARN_LIMIT:
-> +		/*
-> +		 * The PMBUS_OT_FAULT_LIMIT and PMBUS_OT_WARN_LIMIT of
-> +		 * MP2985 is linear11 format, and the exponent is a
-> +		 * constant value(5'b00000), so the exponent of word
-> +		 * parameter should be converted to 5'b00000.
-> +		 */
-> +		ret = pmbus_write_word_data(client, page, reg,
-> +					    mp2985_linear_exp_transfer(word, 0x00));
-> +		break;
-> +	case PMBUS_IOUT_OC_FAULT_LIMIT:
-> +	case PMBUS_IOUT_OC_WARN_LIMIT:
-> +		/*
-> +		 * The PMBUS_IOUT_OC_FAULT_LIMIT and PMBUS_IOUT_OC_WARN_LIMIT
-> +		 * of MP2985 is linear11 format, and the exponent can not be
-> +		 * changed.
-> +		 */
-> +		ret = pmbus_read_word_data(client, page, 0xff, reg);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		ret = pmbus_write_word_data(client, page, reg,
-> +					    mp2985_linear_exp_transfer(word,
-> +								       FIELD_GET(GENMASK(15, 11),
-> +										 ret)));
-> +		break;
-> +	default:
-> +		ret = -EINVAL;
-> +		break;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int
-> +mp2985_identify_vout_scale(struct i2c_client *client, struct pmbus_driver_info *info,
-> +			   int page)
-> +{
-> +	struct mp2985_data *data = to_mp2985_data(info);
-> +	int ret;
-> +
-> +	ret = i2c_smbus_write_byte_data(client, PMBUS_PAGE, page);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = i2c_smbus_read_byte_data(client, PMBUS_VOUT_MODE);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (FIELD_GET(GENMASK(5, 5), ret)) {
-
-This is just BIT(5), isn't it ? Why the complexity ?
-
-> +		ret = i2c_smbus_write_byte_data(client, PMBUS_PAGE, 2);
-> +		if (ret < 0)
-> +			return ret;
-
-This will leave the chip on page 2, which may confuse the PMBus core.
-
-> +
-> +		ret = i2c_smbus_read_word_data(client, page == 0 ?
-> +									MFR_VR_MULTI_CONFIG_R1 :
-> +									MFR_VR_MULTI_CONFIG_R2);
-
-Return value is not checked.
-
-Alignment is completely off here.
-
-> +
-> +		if (page == 0) {
-> +			if (FIELD_GET(GENMASK(4, 4), ret))
-
-Same here and everywhere else where the same logic is used.
-
-> +				data->vout_scale[page] = 2560;
-> +			else
-> +				data->vout_scale[page] = 5120;
-> +		} else {
-> +			if (FIELD_GET(GENMASK(3, 3), ret))
-> +				data->vout_scale[page] = 2560;
-> +			else
-> +				data->vout_scale[page] = 5120;
-> +		}
-> +
-> +		data->vid_offset[page] = 49;
-> +	} else if (FIELD_GET(GENMASK(4, 4), ret)) {
-> +		data->vout_scale[page] = 1;
-> +		data->vid_offset[page] = 0;
-> +	} else {
-> +		data->vout_scale[page] = 512;
-> +		data->vid_offset[page] = 0;
-> +	}
-
-The context suggests that bit 5 and bit 4 may refer to different input modes.
-There should be a comment explaining what is what.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int mp2985_identify(struct i2c_client *client, struct pmbus_driver_info *info)
-> +{
-> +	int ret;
-> +
-> +	ret = mp2985_identify_vout_scale(client, info, 0);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return mp2985_identify_vout_scale(client, info, 1);
-> +}
-> +
-> +static struct pmbus_driver_info mp2985_info = {
-> +	.pages = MP2985_PAGE_NUM,
-> +	.format[PSC_VOLTAGE_IN] = linear,
-> +	.format[PSC_CURRENT_IN] = linear,
-> +	.format[PSC_CURRENT_OUT] = linear,
-> +	.format[PSC_POWER] = linear,
-> +	.format[PSC_TEMPERATURE] = linear,
-> +	.format[PSC_VOLTAGE_OUT] = direct,
-> +
-> +	.m[PSC_VOLTAGE_OUT] = 1,
-> +	.R[PSC_VOLTAGE_OUT] = 3,
-> +	.b[PSC_VOLTAGE_OUT] = 0,
-> +
-> +	.func[0] = MP2985_RAIL1_FUNC,
-> +	.func[1] = MP2985_RAIL2_FUNC,
-> +	.read_word_data = mp2985_read_word_data,
-> +	.read_byte_data = mp2985_read_byte_data,
-> +	.write_word_data = mp2985_write_word_data,
-> +	.identify = mp2985_identify,
-> +};
-> +
-> +static int mp2985_probe(struct i2c_client *client)
-> +{
-> +	struct mp2985_data *data;
-> +
-> +	data = devm_kzalloc(&client->dev, sizeof(struct mp2985_data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	memcpy(&data->info, &mp2985_info, sizeof(mp2985_info));
-> +
-> +	return pmbus_do_probe(client, &data->info);
-> +}
-> +
-> +static const struct i2c_device_id mp2985_id[] = {
-> +	{"mp2985", 0},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(i2c, mp2985_id);
-> +
-> +static const struct of_device_id __maybe_unused mp2985_of_match[] = {
-> +	{.compatible = "mps,mp2985"},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, mp2985_of_match);
-> +
-> +static struct i2c_driver mp2985_driver = {
-> +	.driver = {
-> +		.name = "mp2985",
-> +		.of_match_table = mp2985_of_match,
-> +	},
-> +	.probe = mp2985_probe,
-> +	.id_table = mp2985_id,
-> +};
-> +
-> +module_i2c_driver(mp2985_driver);
-> +
-> +MODULE_AUTHOR("Wensheng Wang <wenswang@yeah.net>");
-> +MODULE_DESCRIPTION("PMBus driver for MPS MP2985 device");
-> +MODULE_LICENSE("GPL");
-> +MODULE_IMPORT_NS("PMBUS");
+T24gRnJpLCAyMDI2LTAzLTA2IGF0IDE0OjI1ICswMTAwLCBOaWNvbGFzIEZyYXR0YXJvbGkgd3Jv
+dGU6DQo+IFRIZSBNVDgxOTYncyBVRlMgY29udHJvbGxlciBoYXMgYSBuZXcgY29tcGF0aWJsZS4g
+QWRkIHRoZSBuZWNlc3NhcnkNCj4gc3RydWN0IGRlZmluaXRpb25zIHRvIHN1cHBvcnQgaXQuDQo+
+IA0KPiBBbHNvIHVwZGF0ZSB0aGUgY29weXJpZ2h0cyBhbmQgYXV0aG9ycywgd2l0aG91dCB0YWJz
+IGZvbGxvd2luZyBzcGFjZXMNCj4gdG8NCj4gYXZvaWQgY2hlY2twYXRjaCBlcnJvcnMsIHRvIGxp
+c3QgbXlzZWxmIGFzIGhhdmluZyBjb250cmlidXRlZCB0byB0aGlzDQo+IGRyaXZlciBhZnRlciB0
+aGUgcHJlY2VkaW5nIHJld29yayBwYXRjaGVzLg0KPiANCj4gUmV2aWV3ZWQtYnk6IEFuZ2Vsb0dp
+b2FjY2hpbm8gRGVsIFJlZ25vIDwNCj4gYW5nZWxvZ2lvYWNjaGluby5kZWxyZWdub0Bjb2xsYWJv
+cmEuY29tPg0KPiBSZXZpZXdlZC1ieTogUGV0ZXIgV2FuZyA8cGV0ZXIud2FuZ0BtZWRpYXRlay5j
+b20+DQo+IFNpZ25lZC1vZmYtYnk6IE5pY29sYXMgRnJhdHRhcm9saSA8bmljb2xhcy5mcmF0dGFy
+b2xpQGNvbGxhYm9yYS5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy91ZnMvaG9zdC91ZnMtbWVkaWF0
+ZWsuYyB8IDE3ICsrKysrKysrKysrKysrKy0tDQo+ICAxIGZpbGUgY2hhbmdlZCwgMTUgaW5zZXJ0
+aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3Vmcy9o
+b3N0L3Vmcy1tZWRpYXRlay5jIGIvZHJpdmVycy91ZnMvaG9zdC91ZnMtDQo+IG1lZGlhdGVrLmMN
+Cj4gaW5kZXggMWRmYzI5OWI5M2I1Li5jYzkzNTdlOTA5NTggMTAwNjQ0DQo+IC0tLSBhL2RyaXZl
+cnMvdWZzL2hvc3QvdWZzLW1lZGlhdGVrLmMNCj4gKysrIGIvZHJpdmVycy91ZnMvaG9zdC91ZnMt
+bWVkaWF0ZWsuYw0KPiBAQCAtMSw5ICsxLDExIEBADQo+ICAvLyBTUERYLUxpY2Vuc2UtSWRlbnRp
+ZmllcjogR1BMLTIuMA0KPiAgLyoNCj4gICAqIENvcHlyaWdodCAoQykgMjAxOSBNZWRpYVRlayBJ
+bmMuDQo+ICsgKiBDb3B5cmlnaHQgKEMpIDIwMjUgQ29sbGFib3JhIEx0ZC4NCj4gICAqIEF1dGhv
+cnM6DQo+IC0gKglTdGFubGV5IENodSA8c3RhbmxleS5jaHVAbWVkaWF0ZWsuY29tPg0KPiAtICoJ
+UGV0ZXIgV2FuZyA8cGV0ZXIud2FuZ0BtZWRpYXRlay5jb20+DQo+ICsgKiAgICAgIFN0YW5sZXkg
+Q2h1IDxzdGFubGV5LmNodUBtZWRpYXRlay5jb20+DQo+ICsgKiAgICAgIFBldGVyIFdhbmcgPHBl
+dGVyLndhbmdAbWVkaWF0ZWsuY29tPg0KPiArICogICAgICBOaWNvbGFzIEZyYXR0YXJvbGkgPG5p
+Y29sYXMuZnJhdHRhcm9saUBjb2xsYWJvcmEuY29tPiAoTWFqb3INCj4gY2xlYW51cHMpDQo+ICAg
+Ki8NCj4gIA0KPiAgI2luY2x1ZGUgPGxpbnV4L2FybS1zbWNjYy5oPg0KPiBAQCAtMjIwMCw2ICsy
+MjAyLDEwIEBAIHN0YXRpYyBjb25zdCBjaGFyICpjb25zdA0KPiB1ZnNfbXRrX3JlZ3NfYXZkZDEy
+X2NrYnVmX2F2ZGQxOFtdID0gew0KPiAgCSJhdmRkMTIiLCAiYXZkZDEyLWNrYnVmIiwgImF2ZGQx
+OCINCj4gIH07DQo+ICANCj4gK3N0YXRpYyBjb25zdCBjaGFyICpjb25zdCB1ZnNfbXRrX3JlZ3Nf
+YXZkZDEyX2NrYnVmW10gPSB7DQo+ICsJImF2ZGQxMiIsICJhdmRkMTItY2tidWYiDQo+ICt9Ow0K
+PiArDQo+ICBzdGF0aWMgY29uc3Qgc3RydWN0IHVmc19tdGtfc29jX2RhdGEgbXQ4MTgzX2RhdGEg
+PSB7DQo+ICAJLmhhc19hdmRkMDkgPSB0cnVlLA0KPiAgCS5yZWdfbmFtZXMgPSB1ZnNfbXRrX3Jl
+Z3NfYXZkZDEyX2F2ZGQxOCwNCj4gQEAgLTIyMTIsMTAgKzIyMTgsMTcgQEAgc3RhdGljIGNvbnN0
+IHN0cnVjdCB1ZnNfbXRrX3NvY19kYXRhDQo+IG10ODE5Ml84MTk1X2RhdGEgPSB7DQo+ICAJLm51
+bV9yZWdfbmFtZXMgPSBBUlJBWV9TSVpFKHVmc19tdGtfcmVnc19hdmRkMTJfY2tidWZfYXZkZDE4
+KSwNCj4gIH07DQo+ICANCj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgdWZzX210a19zb2NfZGF0YSBt
+dDgxOTZfZGF0YSA9IHsNCj4gKwkuaGFzX2F2ZGQwOSA9IHRydWUsDQo+ICsJLnJlZ19uYW1lcyA9
+IHVmc19tdGtfcmVnc19hdmRkMTJfY2tidWYsDQo+ICsJLm51bV9yZWdfbmFtZXMgPSBBUlJBWV9T
+SVpFKHVmc19tdGtfcmVnc19hdmRkMTJfY2tidWYpLA0KPiArfTsNCj4gKw0KbWlzc2luZyBhdmRk
+MTItc3VwcGx5IGFuZCBhdmRkMTItY2xrYnVmLXN1cHBseSBpbiB0aGUgRFQgYmluZGluZyBvZg0K
+TVQ4MTk2Lg0KPiAgc3RhdGljIGNvbnN0IHN0cnVjdCBvZl9kZXZpY2VfaWQgdWZzX210a19vZl9t
+YXRjaFtdID0gew0KPiAgCXsgLmNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTgzLXVmc2hjaSIs
+IC5kYXRhID0gJm10ODE4M19kYXRhDQo+IH0sDQo+ICAJeyAuY29tcGF0aWJsZSA9ICJtZWRpYXRl
+ayxtdDgxOTItdWZzaGNpIiwgLmRhdGEgPQ0KPiAmbXQ4MTkyXzgxOTVfZGF0YSB9LA0KPiAgCXsg
+LmNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTk1LXVmc2hjaSIsIC5kYXRhID0NCj4gJm10ODE5
+Ml84MTk1X2RhdGEgfSwNCj4gKwl7IC5jb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE5Ni11ZnNo
+Y2kiLCAuZGF0YSA9ICZtdDgxOTZfZGF0YQ0KPiB9LA0KPiAgCXt9LA0KPiAgfTsNCj4gIE1PRFVM
+RV9ERVZJQ0VfVEFCTEUob2YsIHVmc19tdGtfb2ZfbWF0Y2gpOw0KPiANCg==
 
