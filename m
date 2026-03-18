@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-277064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277055-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EJYrFQ5qumnnWAIAu9opvQ
-	(envelope-from <devicetree+bounces-277064-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:02:06 +0100
+	id cLEDFz9oumnnWAIAu9opvQ
+	(envelope-from <devicetree+bounces-277055-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:54:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 078522B89DE
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:02:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB5662B8862
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:54:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6DCD1300DCF5
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:02:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 708F73030E96
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:52:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76EB039D6DF;
-	Wed, 18 Mar 2026 09:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0122A39184D;
+	Wed, 18 Mar 2026 08:52:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="cp7fSnBA"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="2LsqgJO9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E783D359A97
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 09:01:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 130B336AB6E
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 08:52:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773824519; cv=none; b=l+j9qn0TYxT2izvSlRkWHsE52puaAe7D6WqLTC+7prjUp/9y6WyzPkl5amPLd05eVheb9b89iuvuW0FytRdzCpXTnQAcsm+X8fDvf+46PWbe6OWl+4erCs7WCrxbNPiuEIv0Mlnp02EoLWQ8ZtlGVpIqO3cRhUxRTS+vTrijLYg=
+	t=1773823937; cv=none; b=EHrZ0mMdyQrD7I/D6GEj4EfkLgu6HN6Iobd2SIAOd0NDsmKKXkuN0NPIds1p9cHJRXYHB5QL3A1Fi+Jz/NzDyEHbbbVCZM96U5rPCwNOY/Z94skVBT5jKEPLVWKTR5dnxFthhWvAtdDGkifo5zY5qSQPkrZHfReK2tTIfNiZ9ko=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773824519; c=relaxed/simple;
-	bh=QcX27Uqby1YRe+RtOgdEBmLaRDq/7Us0zPkNT2cLobo=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
-	 References:In-Reply-To; b=FIp1rp4UeNtrnFLlUMJcC5eqbhdxrMtYpoCd7PidjmtprPybLoo6EgyEZ/9eZW3rNBGfnfey64B/1dKcsoJAiGVtwaICUTZfCvpc6uaUdfkPCjVaYmBf7k1EIs3BejwUoVvNGcBsNfezKpq63f4pwrGNp++h+q8w7pGNHCTsHGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=cp7fSnBA; arc=none smtp.client-ip=185.246.85.4
+	s=arc-20240116; t=1773823937; c=relaxed/simple;
+	bh=9fpamoudnXy3M4dHBCHFeTPRyc7L3lzExzn+kqja54A=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=ZQLF8OHwEfMLecC0i7an8Kkp+V8gsiHiW9Rt/Zz68Kuy0eMA71IxSOMbr2AvBgnIPLDDsDHL76qt+PmWPJdspU/lj8mJhgCw+B/EDsJ4t+dBo6LLU2dOJpinXfc1TWx+mYL1pV6tXJ4rLEITKilOsPVY/CHKGHv/TXCV72zjZWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=2LsqgJO9; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id B48614E426E3;
-	Wed, 18 Mar 2026 08:51:53 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 52D3B4E426E5;
+	Wed, 18 Mar 2026 08:52:14 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 7BE096004F;
-	Wed, 18 Mar 2026 08:51:53 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 059E5104506D1;
-	Wed, 18 Mar 2026 09:51:40 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 1FF976004F;
+	Wed, 18 Mar 2026 08:52:14 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5CD1E104506C1;
+	Wed, 18 Mar 2026 09:52:09 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1773823908; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1773823933; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=alSZ2fWiAi+9qwfblfCJyz0fVMs/+X5EwPZ2SQgxmLQ=;
-	b=cp7fSnBAyWP25/Vl+tF6iiCGYoJXIVWSHpR+5L4HAY2v19vJBUA+qoEwIqKJjlYpXVYFKU
-	Yq/xbInLIl8Xv1/Voi2LGVlm/wbox8/Amb44AfhPFY/gmjxrTRpemc4pjxTIQAMnoTLyw2
-	g/yB36lMoqLyAtZhDQpUwycEQlOiAqtyzbZUifcFFfHQl1LLamw5Gq3anHAcBrrd5KD/TD
-	UGdCu0DPDZUIVaCoYr5e7qCNStyb8YbtIuP9G/SVDOxsz8Fw6mDvQK2W2lA2o+OrgK7dw9
-	xfvyjQm57SPNyLS8gCsk6D63W1plQhrX2xNGRmpYFwIFl5mw4xP0uyeg54NoGA==
+	bh=nT0Hf9Q9SP5IQGF+baESZbBfkIQwTmW8dv27L7iwgeE=;
+	b=2LsqgJO9mmywmuu+OZIQWEmwa9aPtAMPTrwKG7bGoN5bV+/zhTYajELNrPnKUD64igN24M
+	2G5NuTm6Ghia91FARpBn73xewOOhT5+NwMmlSVYdLu/UM6/pn23wP/oHh8R8sMmkZzA9kO
+	Fab49tsKAwf6PoEflO4Igf4p/vLTuzagTJH3fJfhpOqIUifSXbz+EdTVdRB0HKgmPa113Y
+	z1OftieVu4yAmcpkhPJEPP2pkarYESUtft8jshwsRBs47hVtrIIvjJcBEQx6L3vpoiolq6
+	b8XgizJPYNlO9cprRBlYtnkzwW2oFgdUwGKoSMuuh9uBwsjytAQ8vcC1C8Eqew==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,50 +59,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Wed, 18 Mar 2026 09:51:39 +0100
-Message-Id: <DH5S3DYT0PJQ.11ABZFGEU6ZPC@bootlin.com>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-Subject: Re: [PATCH v2 0/2] drm: bridge: ti-sn65dsi83: Improve dual-link
- LVDS support
+Date: Wed, 18 Mar 2026 09:52:08 +0100
+Message-Id: <DH5S3RB2XZ31.3C994FZK5U4OV@bootlin.com>
+Subject: Re: [PATCH v2 2/2] drm: bridge: ti-sn65dsi83: Add support for
+ dual-link LVDS video mode
 Cc: <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
  <jernej.skrabec@gmail.com>, <maarten.lankhorst@linux.intel.com>,
  <mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
  <simona@ffwll.ch>, <robh@kernel.org>, <krzk+dt@kernel.org>,
- <conor+dt@kernel.org>, <valentin@compulab.co.il>,
+ <conor+dt@kernel.org>, <marex@denx.de>, <valentin@compulab.co.il>,
  <philippe.schenker@toradex.com>, <dri-devel@lists.freedesktop.org>,
  <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-To: <tessolveupstream@gmail.com>, "Marek Vasut" <marex@nabladev.com>,
- <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>
+To: <tessolveupstream@gmail.com>, <andrzej.hajda@intel.com>,
+ <neil.armstrong@linaro.org>, <rfoss@kernel.org>
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
 X-Mailer: aerc 0.20.1
 References: <20260312043743.261475-1-tessolveupstream@gmail.com>
- <9f694b2d-44bc-46ad-8aa3-b464c2f0da13@nabladev.com>
- <176ed865-11a6-42de-89e0-06951b59a430@gmail.com>
- <DH0X7QW3AH3C.PRNRA8CRSSKA@bootlin.com>
- <49b79a0d-844b-4fee-bccb-706187ed76d1@gmail.com>
-In-Reply-To: <49b79a0d-844b-4fee-bccb-706187ed76d1@gmail.com>
+ <20260312043743.261475-3-tessolveupstream@gmail.com>
+ <DH0X6JQP0ZIW.3F4LJLIEMWH8M@bootlin.com>
+ <9a9e13a5-411a-40bc-b52f-4345e7f6b92e@gmail.com>
+In-Reply-To: <9a9e13a5-411a-40bc-b52f-4345e7f6b92e@gmail.com>
 X-Last-TLS-Session-Version: TLSv1.3
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,compulab.co.il,toradex.com,lists.freedesktop.org,vger.kernel.org];
+	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,denx.de,compulab.co.il,toradex.com,lists.freedesktop.org,vger.kernel.org];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,nabladev.com,intel.com,linaro.org,kernel.org];
-	TAGGED_FROM(0.00)[bounces-277064-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,intel.com,linaro.org,kernel.org];
+	TAGGED_FROM(0.00)[bounces-277055-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[bootlin.com:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MAILSPIKE_FAIL(0.00)[172.232.135.74:query timed out];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_COUNT_FIVE(0.00)[6];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -111,97 +110,131 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCPT_COUNT_TWELVE(0.00)[21];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 078522B89DE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:mid,bootlin.com:url]
+X-Rspamd-Queue-Id: AB5662B8862
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Hello Sudarshan,
 
-On Wed Mar 18, 2026 at 6:45 AM CET, tessolveupstream wrote:
->>>> You might want to look at recently posted:
->>>>
->>>> [PATCH 2/3] drm/bridge: ti-sn65dsi83: halve horizontal syncs for dual =
-LVDS output
+On Wed Mar 18, 2026 at 6:53 AM CET, tessolveupstream wrote:
+>>> +	if (ctx->dual_link_video_mode) {
+>>> +		regmap_write(ctx->regmap, REG_RC_LVDS_PLL, 0x05);
+>>> +		regmap_write(ctx->regmap, REG_RC_PLL_EN, 0x00);
+>>> +		regmap_write(ctx->regmap, REG_DSI_CLK, 0x53);
+>>> +		regmap_write(ctx->regmap, REG_LVDS_FMT, 0x6f);
+>>> +		regmap_write(ctx->regmap, REG_LVDS_VCOM, 0x00);
+>>> +		regmap_write(ctx->regmap,
+>>> +			     REG_VID_CHA_VERTICAL_DISPLAY_SIZE_LOW, 0x00);
+>>> +		regmap_write(ctx->regmap,
+>>> +			     REG_VID_CHA_VERTICAL_DISPLAY_SIZE_HIGH, 0x00);
+>>> +		regmap_write(ctx->regmap,
+>>> +			     REG_VID_CHA_HSYNC_PULSE_WIDTH_LOW, 0x10);
+>>> +		regmap_write(ctx->regmap,
+>>> +			     REG_VID_CHA_HORIZONTAL_BACK_PORCH, 0x28);
+>>> +		regmap_write(ctx->regmap,
+>>> +			     REG_VID_CHA_VERTICAL_BACK_PORCH, 0x00);
+>>> +		regmap_write(ctx->regmap,
+>>> +			     REG_VID_CHA_HORIZONTAL_FRONT_PORCH, 0x00);
+>>> +		regmap_write(ctx->regmap,
+>>> +			     REG_VID_CHA_VERTICAL_FRONT_PORCH, 0x00);
+>>> +	}
+>>
+>> I guess these hard-coded values are sepcific to your panel. They must
+>> instead be computed based on the timings in order to work for every pane=
+l.
+>>
+>
+> The hard-coded values were initially derived from the TI DSI Tuner output
+> during our bring-up testing. TI had also mentioned that when PATGEN is
+> enabled with dual-LVDS output on the SN65DSI84, the horizontal timings
+> must be divided by 2. They also noted that the current driver does not
+> appear to divide the horizontal timings when PATGEN is enabled in
+> dual-LVDS mode.
+>
+> Based on that suggestion, we had tried adjusting the horizontal timing
+> registers accordingly to match the tuner output.
+> Could you please advise how these register values are expected to be
+> derived from the mode timings so that they work correctly for different
+> panels?
+
+Well, the principle is quite simple:
+
+ 1. the panel docs tell you which timings the panel needs, e.g. HBP must be
+    10 clock cycles
+
+ 2. your panel description in dts or implementation in a panel driver will
+    then be written accordingly
+
+ 3. the ti-sn65dsi83 driver will receive a struct drm_display_mode* with
+    these values
+
+ 4. based on those values it sets the registers so the SN65DSI84 uses the
+    timings required by the panel (with a bit of math if needed):
+
+	regmap_write(ctx->regmap, REG_VID_CHA_HORIZONTAL_BACK_PORCH,
+		     mode->htotal - mode->hsync_end);
+
+Same for all other timings.
+
+Ti is more complicated if more cases need to be handled, such as dual-LVDS,
+and the chip documentation is vague about what must be done in those cases.
+
+I suggested next steps to move forward in reply to the cover letter.
+
+>>> @@ -965,9 +1001,15 @@ static int sn65dsi83_host_attach(struct sn65dsi83=
+ *ctx)
 >>>
->>> Thanks for pointing this out.
->>> I tried applying the patch =E2=80=9C[PATCH 2/3] drm/bridge: ti-sn65dsi8=
-3: halve horizontal syncs for dual LVDS output=E2=80=9D on top of the curre=
-nt tree and
->>> removed the changes that I had previously added in the driver.
->>> However, with this patch applied, I am currently seeing only the backli=
-ght turning on and no image on the LVDS panel.
->>> For reference, the LVDS panel used on our platform is G133HAN01.1 and t=
-he
->>> DSI-to-dual-link LVDS bridge is SN65DSI84ZXHR.
+>>>  	dsi->lanes =3D dsi_lanes;
+>>>  	dsi->format =3D MIPI_DSI_FMT_RGB888;
+>>> -	dsi->mode_flags =3D MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
+>>> -			  MIPI_DSI_MODE_VIDEO_NO_HFP | MIPI_DSI_MODE_VIDEO_NO_HBP |
+>>> -			  MIPI_DSI_MODE_VIDEO_NO_HSA | MIPI_DSI_MODE_NO_EOT_PACKET;
+>>> +	if (ctx->dual_link_video_mode)
+>>> +		dsi->mode_flags =3D MIPI_DSI_MODE_VIDEO;
+>>> +	else
+>>> +		dsi->mode_flags =3D MIPI_DSI_MODE_VIDEO |
+>>> +				  MIPI_DSI_MODE_VIDEO_BURST |
+>>> +				  MIPI_DSI_MODE_VIDEO_NO_HFP |
+>>> +				  MIPI_DSI_MODE_VIDEO_NO_HBP |
+>>> +				  MIPI_DSI_MODE_VIDEO_NO_HSA |
+>>> +				  MIPI_DSI_MODE_NO_EOT_PACKET;
 >>
->> Thanks for having tried.
+>> There is no explanation about this, can you elaborate on why?
 >>
->> Can you please test with both the fixes in the series applied + the test
->> pattern feature and report the results you get with and without test
->> pattern enabled?
->>
->> The patches to apply are:
->>
->>  - https://lore.kernel.org/all/20260226-ti-sn65dsi83-dual-lvds-fixes-and=
--test-pattern-v1-1-2e15f5a9a6a0@bootlin.com/
->>  - https://lore.kernel.org/all/20260226-ti-sn65dsi83-dual-lvds-fixes-and=
--test-pattern-v1-2-2e15f5a9a6a0@bootlin.com/
->>  - https://lore.kernel.org/lkml/20260309-ti-sn65dsi83-dual-lvds-fixes-an=
-d-test-pattern-v2-1-e6aaa7e1d181@bootlin.com/
+>> I'm working on bringing up a dual-LVDS panel on a board with the SN65DSI=
+84,
+>> and the removing MIPI_DSI_MODE_VIDEO_BURST seems to help, but I still ha=
+ve
+>> no idea why. Should you have any info, maybe from TI, it would be very
+>> interesting.
 >>
 >
-> Thanks for the suggestions.
->
-> I tested the three patches together as mentioned, but the LVDS panel
-> still only shows the backlight and no image. I also tried removing the
-> test-pattern patch and retesting with only the remaining two fixes, but
-> the result remained the same =E2=80=94 only the backlight turns on and no=
- image
-> is displayed.
+> During our earlier bring-up, TI mentioned that one possible reason for th=
+e DSI
+> REFCLK not behaving as expected could be that the DSI output is configure=
+d in
+> burst mode instead of non-burst mode. In burst mode the DSI clock may not=
+ be
+> continuous, whereas non-burst mode provides a more predictable DSI clock.
 
-Sure, the test pattern patch does not change anything, unless you enable
-the test pattern.
+Uhm, this is a bit vague. They basically said "burst can be more
+problematic than continuous", which is obvious, and "try disabling burst
+and see whether it helps" with no explanation on why one works and not the
+other. Shoudl you have more info from them you'd be welcome to share it. In
+particular, is disabling burst mode specifically related to dual-LVDS, or
+just a way to (try to) get rid of some problems without a clear
+understanding?
 
->> The first thing I suggest doing on your side is testing with the 3 patch=
-es
->> mentioned above.
->>
->> If you display works, good! Let us know (you can also add your Tested-by=
- /
->> Reviewed-by tags to the test_pattern patch too if applicable).
->>
->> If it doesn't work, compare the individual register values to find the
->> differences, try to figure out why the working setting works and how to
->> apply that change to the driver in away that keeps other boards
->> working. You're welcome to come back here to discuss it in case you can'=
-t
->> find out on your own.
->>
->
-> I tested the three patches as suggested, but the panel still shows only t=
-he
-> backlight with no visible image. I=E2=80=99m unsure how to translate the =
-working
-> register values into a generic fix based on display timings. Any guidance
-> on the right direction would be helpful.
+On my side I also have a dual-LVDS panel connected to a SN65DSI84, which
+works only by disabling burst mode. I haven't tried upstreaming it because
+I don't have an explanation of why it fixes the panel and so I have no idea
+how to teach the driver when it should disable burst mode.
 
-What you should do is:
+Additionally inyour patch you remove many other flags. Any explanation from
+those?
 
- 1. with your patches, and while the display is enabled (and working) do
-
-     cat /sys/kernel/debug/regmap/4-002c/registers >regs.working
-
- 2. remove your patches, add the 3 I mentioned, and while the display is
-    enabled (but only backlight is working) do
-
-     cat /sys/kernel/debug/regmap/4-002c/registers >regs.broken
-
-Then compare regs.working and regs.broken. Which registers differ? Can you
-give a reason for the differences?
-
-You can come back with these values here so we may discuss them.
-
+Best regards,
 Luca
 
 --
