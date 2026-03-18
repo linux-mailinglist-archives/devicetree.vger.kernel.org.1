@@ -1,66 +1,72 @@
-Return-Path: <devicetree+bounces-277300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277301-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uJHEKOy4umlWawIAu9opvQ
-	(envelope-from <devicetree+bounces-277300-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:38:36 +0100
+	id YJBzGS68ummqbQIAu9opvQ
+	(envelope-from <devicetree+bounces-277301-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:52:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CD132BD4B0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:38:36 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B82C2BD8C4
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:52:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 939CB3059D4D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:35:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 02F1331136BD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:36:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F11E3DE42D;
-	Wed, 18 Mar 2026 14:34:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 748693DFC91;
+	Wed, 18 Mar 2026 14:34:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tjcsd4RQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QJvKNkFg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C0DC3DEAD4;
-	Wed, 18 Mar 2026 14:34:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50C293DFC87;
+	Wed, 18 Mar 2026 14:34:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773844482; cv=none; b=sD6JlgvT8OAYHAf93mb0H56oowCP5XsBVxHLdQ7akQsn19oNKKycNA6RmfXyT6XmpAblz7JcxveN0xe8tiiivP2wbjaP8KLweRD8mGBzTjNhF8Vtll4htJcBqiULHhigEBIIhSe4Zehdp1dqoplE4O2jeHIiud7FGtp3gYjh7uY=
+	t=1773844484; cv=none; b=U2TPmgAf2Qce2kNuhw+uvkC3OfV6Rey06KVkYCJKeHlWf8MOguo8xuNlt+fue8xVSAV3ovth/5nQDGiQvrJ7levMDdKKUZOK6KtBnDSyuWsBopedd7WrYLNT02yYDuip/v0CETbdriDjqMyiP5R/ODKLycNoXPSeMZV87O5jRzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773844482; c=relaxed/simple;
-	bh=xtoifRTN1TTM3w+ERGdLox8K2UmKoVQLCW6DXie/wAQ=;
+	s=arc-20240116; t=1773844484; c=relaxed/simple;
+	bh=HanmwPMH1O0RI0PJY9z6T4zBlQz+KHanM1pduXungGA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ygt5+IRFucmQlvrlmw9OyCvianuZtv/g5GRT7/1m33QeNMjsY9dqcbTpB8CphK4uh6BpYBQIb5j1pLGq4dXfNCvsOdIUDEGk1LWH6XKJtxnWCCkeVHtWWgARP0CV9u0FfYWXNlGpBfC0d3FFs1MsRxigWhni6cxRKYHczbkkIGE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tjcsd4RQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0FC5C2BCAF;
-	Wed, 18 Mar 2026 14:34:40 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Xucd0WN15fx2PAdIT9S3gSZxhLJQRPPhPLd9c6WAyhLvtJUcbDqo2THJ+PfDViPykZGRg8K70vDArgUSXhuoFUAHjgOVx7XcP663eHHBkpRsMQUtlDjLFwrziYl07bN3UxDeEjWnKdZXr7XqOWh2tQXZapXTqsyX2dn78U70Uzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QJvKNkFg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37678C2BC87;
+	Wed, 18 Mar 2026 14:34:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773844481;
-	bh=xtoifRTN1TTM3w+ERGdLox8K2UmKoVQLCW6DXie/wAQ=;
+	s=k20201202; t=1773844483;
+	bh=HanmwPMH1O0RI0PJY9z6T4zBlQz+KHanM1pduXungGA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Tjcsd4RQvDGFLBERmnyr0+W/0p/uroNYyJIBOAMXIWL30TD4Z8jx3oOIf7/0KSlZp
-	 rC34XfDtJRpx+l4safSvSoZARjTWlV9fSu9YG77oFM8DHwQtIq3UKcnQAypxI6blNc
-	 Qy0C86Pei3MbqWVVcmR792KpsRuvyavLEAT/ovlmB0Z09H78mO0EN26uTXZaYGZu6H
-	 g4UNABHbSGj5NzVJHe+Pm9U4TzC1n+wdejsyIDeoLSHoD6LvnpaKokZAyyulv3xVNF
-	 ombdPijLFoqIhmRCJRCNT1sVoSuKP9OsNUAoAgll8rA+HxrWy/5t+UESDbwBZE6EYO
-	 mUIE2lb9lQF8g==
+	b=QJvKNkFguGE7qplaKfC8UE+V/CymuWpbaCGlkM2VVN23jtMaprOmkHNDC2P3+F3f7
+	 9X2Tuxc8XI6xJV7/yJKs7zcXpEtZDaU+sdXo0rTxJ6N+c3hvEZtL/85ot5AyC5Hh6s
+	 Qv1nNRlJWJ0HwcYOP6PytFBXjNxuQ8oW56AQCnrnadsGoV4Q5xM++tjRG8ZMQTweM5
+	 +7tvgWYUR1CzJ60KVATXUr2ZrMZ29AhpbbkXqLl8BQyTt2ie8HzcX2+lSjsqHACHkG
+	 Nw7/kpyixmJuwGqi6XLy8nO/ahj/JkId41x0ukMRPfh92hlCAbWiJ+hTnF0dST4BQk
+	 UJZ9R8mS5i/GQ==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Tobias Heider <tobias.heider@canonical.com>
-Cc: =?UTF-8?q?J=C3=A9r=C3=B4me=20de=20Bretagne?= <jerome.debretagne@gmail.com>,
-	Dale Whinham <daleyo@gmail.com>,
-	linux-arm-msm@vger.kernel.org,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Wei Deng <wei.deng@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: add missing denali-oled.dtb to Makefile
-Date: Wed, 18 Mar 2026 09:34:31 -0500
-Message-ID: <177384446632.22424.14837123103284088888.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	linux-bluetooth@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	cheng.jiang@oss.qualcomm.com,
+	shuai.zhang@oss.qualcomm.com,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH V4] arm64: dts: qcom: qcs8300-ride: Enable Bluetooth support
+Date: Wed, 18 Mar 2026 09:34:32 -0500
+Message-ID: <177384446641.22424.14287595183017921421.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260226140429.232544-3-tobias.heider@canonical.com>
-References: <20260226140429.232544-3-tobias.heider@canonical.com>
+In-Reply-To: <20260302024658.2836798-1-wei.deng@oss.qualcomm.com>
+References: <20260302024658.2836798-1-wei.deng@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,49 +78,50 @@ Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-277300-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,holtmann.org,gmail.com,oss.qualcomm.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277301-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7CD132BD4B0
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9B82C2BD8C4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Thu, 26 Feb 2026 15:04:30 +0100, Tobias Heider wrote:
-> The device tree was originally added in
-> 0d72ccaa1e840b4c8723a929b2febbedcf5f80cd.
-> The original patch on the mailing list also added the new device
-> tree to the Makefile but that part seems to have been dropped
-> (by accident) when it got merged.
+On Mon, 02 Mar 2026 08:16:58 +0530, Wei Deng wrote:
+> Enable BT on qcs8300-ride by adding a BT device tree node.
 > 
+> Since the platform uses the QCA6698 Bluetooth chip. While
+> the QCA6698 shares the same IP core as the WCN6855, it has
+> different RF components and RAM sizes, requiring new firmware
+> files. Use the firmware-name property to specify the NVM and
+> rampatch firmware to load.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: add missing denali-oled.dtb to Makefile
-      commit: 5bfaf79ebe69c4b93b322c3112ec87d746457721
+[1/1] arm64: dts: qcom: qcs8300-ride: Enable Bluetooth support
+      commit: 2d600e615f53891f75f0607c530163384b045edb
 
 Best regards,
 -- 
