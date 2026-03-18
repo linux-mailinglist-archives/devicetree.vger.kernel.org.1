@@ -1,215 +1,139 @@
-Return-Path: <devicetree+bounces-277185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277186-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4K1FLByYumnSXgIAu9opvQ
-	(envelope-from <devicetree+bounces-277185-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:18:36 +0100
+	id YG+IDMibummHZgIAu9opvQ
+	(envelope-from <devicetree+bounces-277186-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:34:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73D032BB559
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:18:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91E6F2BB891
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:34:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C9AD9300A322
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:18:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 98654305DED8
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:32:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 627B73B4E9E;
-	Wed, 18 Mar 2026 12:18:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DB2E392C47;
+	Wed, 18 Mar 2026 12:32:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XjtJVgL3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fYvGtyrF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 958BD34A79F;
-	Wed, 18 Mar 2026 12:18:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46CDC37DEA2
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:32:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773836313; cv=none; b=GaAPN6T6tnJHoE3dbz7GlXVC4Q9LFTw1KzSA5zufm+Yl0OGNXvncu2NSjYVoxns4WHclPgzpdBMVN8MqjVQyn0h0m/bAziH+hZxYHiWS26hbjbB5AngVo85YrlwEop1yGoIw4T70uZZ/ZblLELZOXcJQKis+8R9YDleGbxYsqT4=
+	t=1773837178; cv=none; b=s/DSYI5WS3OQfzLBU2Uh4ue43X01xAnJvzfVwfjalL7A4b1UWuwfZhZZMk1dJ6U9btFuosdxIvHJWlvDSVIR7Bzr9ei5J/oEZoqkw543QKYmcFDdDb2Oh6PvCXAsXzKIQ1hAWYLt9YF2QYOvAdJsFvXcsf/ZIz9w55EbgARoCVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773836313; c=relaxed/simple;
-	bh=fKlAMln5+eXtPqBPuI/T7U2v223nK0zolTnYCh7Gbgk=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=B/svvTMM3fDKPnoQNg/LpSo8J/JxmYPgU4dsc9kx6uiHPGGXwGk6dWiMoOlUGS5sImWBQztcyQNUf15r3KDmc9hfpMUs2+faE0QIm27Cu+DO+xPSSVyJInQ0Z4vQNZbqV0B3rgnVg1RLpY8fk79WqudhDUIgD6rbKesJ9WTCuPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XjtJVgL3; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773836311; x=1805372311;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=fKlAMln5+eXtPqBPuI/T7U2v223nK0zolTnYCh7Gbgk=;
-  b=XjtJVgL34cYErJOWixVLxheHS062vCqU1CRJc6rtIpG/S2ulXYXhwDka
-   Cl3qHM5AgmsZOkAE3I83gThuZgw5Kl4A/bRTZLL6wvbQBvLW4xq8ziMV6
-   yqh/KHTgxrqYQZ+slzvIy9HGIZe+BoTbd42Gguqm+mQBtMgFnTO1m8wei
-   GTLaoMDdm7kvht1uSzTx9yfPZE+HJzG1cY5SVSrPoomF6hl2asyHMpBTe
-   lmjvvgzpxEYr7dYBSsM9WKPd1VUvlrlHweBhSutJwd/bfvd145WFK3KtL
-   D303+pgfc9BmASkuT0wGjX3RqgL7QowGu/BBlISNw/lIrqysNmjDmk8TN
-   w==;
-X-CSE-ConnectionGUID: 3NBllwkVQUmhXnM7mLOu4A==
-X-CSE-MsgGUID: HPzdxXUyTAWnK3M5rSSUWQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="85965481"
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; 
-   d="scan'208";a="85965481"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2026 05:18:31 -0700
-X-CSE-ConnectionGUID: P+Z6F1F5RT+Evho1irfuLQ==
-X-CSE-MsgGUID: Ista6+2aT3yV+XUX6UohtA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; 
-   d="scan'208";a="222822818"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.55])
-  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2026 05:18:24 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Wed, 18 Mar 2026 14:18:22 +0200 (EET)
-To: Ahmed Naseef <naseefkm@gmail.com>
-cc: Bjorn Helgaas <helgaas@kernel.org>, Caleb James DeLisle <cjd@cjdns.fr>, 
-    linux-pci@vger.kernel.org, linux-mips@vger.kernel.org, 
-    ryder.lee@mediatek.com, bhelgaas@google.com, lpieralisi@kernel.org, 
-    kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org, 
-    krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
-    angelogioacchino.delregno@collabora.com, ansuelsmth@gmail.com, 
-    linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
-    LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] PCI: Skip bridge window reads when window is not
- supported
-In-Reply-To: <fc927b7f-a820-d3c2-581c-ab6db562bcfb@linux.intel.com>
-Message-ID: <2d47f78f-22cf-78c8-8312-3ffb095d2693@linux.intel.com>
-References: <20260316155157.679533-4-cjd@cjdns.fr> <20260317212908.GA109023@bhelgaas> <abpFjQJ5RNcbzbmz@DESKTOP-TIT0J8O.localdomain> <fc927b7f-a820-d3c2-581c-ab6db562bcfb@linux.intel.com>
+	s=arc-20240116; t=1773837178; c=relaxed/simple;
+	bh=IMu1STsZaPjdEMUFZEaMUzKlaotLmNW8IHhZWpsufEM=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=iPqWGBpV8Dx+doCqNhEXR7+7ao9ESRiYcz9AE3Oj3BBF1TCFgBMB6akac/lhfmYywajChKttkOcbp9p7//tdpPRFKHWvqyM2E1bYum6rlGXwsYXgro0hwpa3pVWCP24iP4VFvZjPEM2oviisA3afI0fy4PBZYkP8jXmcvvhVMjs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fYvGtyrF; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-8296d553142so3195326b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 05:32:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773837177; x=1774441977; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IMu1STsZaPjdEMUFZEaMUzKlaotLmNW8IHhZWpsufEM=;
+        b=fYvGtyrFamV6azVn8cEvWWy/Z3aLcNuCHcL1C0NBtFaPahAC9d62aPQ38AxwxNeyTM
+         /+aFSVPbGH1cwXHCnTIvr/UM39Z6aVKFyFTZUHTnfglzdahLK1kj4X6+jTwa0tdQXPl7
+         L+mZnYPyu5A9LdA720iWfA5A8279VKSuiqzitScwlP80J9R3FMBnenYzT6W85Lefq9j6
+         ffrmuHXt7l+LpelkZhYtwxHehf/EL/71ULPWBgJuM2xeWHVYTJNJLjIkvA6lVIMKXftH
+         6Ev+14T8DPDzX9KOgeRC22SogKXYjMm82Ya2RDeRY+0sKO18KIuEMFljDM9Y6A8nArif
+         srfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773837177; x=1774441977;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IMu1STsZaPjdEMUFZEaMUzKlaotLmNW8IHhZWpsufEM=;
+        b=l+urx/I7YSpL84K8kwprHl1jsahoX8wUvLOklcPfwpHyQyvrkH7oZp/c98faHkutVc
+         yMHwhg90MvkVxOyxBAObHpXOjhhUDDJrjXO4fcVco19wk1u941gyqMxFsEulmJJP0Q5j
+         MkFcHcNzosDEOYim9T9uv4yveSf05zJGd1lxuoafHSW0UOpEziZVY4jlTiDcDkZAC5tn
+         ywtc9v98E3Un3hvWJaZBRfaIxhCuQN8r0Ia+r50i15ITVVVjOTmt5EOdPuzsrLyYkfCR
+         xoe7vdpr4fiOoMjnuApVoksNaU/DHcZV7f6iBKDLXZifP6NBsFiKFZUhzI9NSwmmAsh8
+         nM6A==
+X-Forwarded-Encrypted: i=1; AJvYcCWuK6vJNo90V/UTMY5fiORpg/wkmDAg10RclQPdj6op4zxj/Xy5fnZOI8tQx+3uhaR8bInAbfD9GMof@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywgz50DmsN/jgqU7wuufOTCdlPQVbsAqlo6wdV2SdVvT6UaQaGS
+	PFoAye9C0fDgfSHGErNNcT2Mlf1niODAUU3Q3UqqUuWRz9sJES+0uqac
+X-Gm-Gg: ATEYQzw9fXAFBX3rI/WpHDVaZosKn6xxMP+bEtl7HWYwvyjmMGUWAGwWp2Emmc/i12n
+	vhhF86ODpv6CoSdezoPCZA4wOihv06zuqzeJaqecjsFswXyTcAHb3zucxVOYO15q5hH66LcOaZW
+	jb0LIbUFg9Rt0ZEDzKFyxxFFMcVI9NjKE0HPNojyAJu6ztYFJa/o9B5teTnpzRzf16w2o/uRq6H
+	0OTBanyr+0q8HT64JCkM/W1mkyLe7R/VDUEpo4eK45UYCbQEpvvOKQfa3V6QG7Uk0UjOX3aXiEO
+	xse6QmXzNrnZ1eYpp1Egw9JxYKKYx3JRRpwb1/JfumFUzl0wLAGcEH++ck+f9EZV5/kc5vpWH3r
+	v0c4eazzuRdiFmzwQ6gR1xjU6d7HDAVxKxFhTxkdAlg7Ysj1zic34MmsV4vbVhlS3pxxNOR64pb
+	dTqnG8OYD7liwOwBRLl5A=
+X-Received: by 2002:a05:6a00:8c02:b0:82a:64c7:8c6d with SMTP id d2e1a72fcca58-82a6ae1f450mr2859794b3a.25.1773837176554;
+        Wed, 18 Mar 2026 05:32:56 -0700 (PDT)
+Received: from fedora ([122.173.30.71])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82a6bf0cf5fsm3350045b3a.61.2026.03.18.05.32.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Mar 2026 05:32:56 -0700 (PDT)
+Date: Wed, 18 Mar 2026 18:02:18 +0530
+From: ShiHao <i.shihao.999@gmail.com>
+To: krzk+dt@kernel.org
+Cc: robh@kernel.org, conor+dt@kernel.org, broonie@kernel.org,
+	bjorn.andersson@oss.qualcomm.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, i.shihao.999@gmail.com
+Subject: request for guidence
+Message-ID: <abqbUuruxPJsfBo3@fedora>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323328-1311157423-1773836302=:971"
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	CTYPE_MIXED_BOGUS(1.00)[];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,cjdns.fr,vger.kernel.org,mediatek.com,google.com,gmail.com,collabora.com,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	TAGGED_FROM(0.00)[bounces-277185-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	DKIM_TRACE(0.00)[intel.com:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,vger.kernel.org,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277186-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ilpo.jarvinen@linux.intel.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ishihao999@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_NONE(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:dkim,linux.intel.com:mid]
-X-Rspamd-Queue-Id: 73D032BB559
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 91E6F2BB891
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Hello everyone,
 
---8323328-1311157423-1773836302=:971
-Content-Type: text/plain; charset=ISO-8859-15
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+I hope everyone is good. I am writing this letter to ask forsome guidance
+on GSoC. I wanted some help regarding proposal since the application
+period has began i wanted to ask whether to submit my prepared proposal
+or not and wait for review by mentors first because the proposal template
+is a bit different from google's suggested template that is why i have
+some confusions. If anyone has some time to review my drafted proposal i
+would be very thankful. Any help would be deeply appreciated
 
-On Wed, 18 Mar 2026, Ilpo J=E4rvinen wrote:
-
-> On Wed, 18 Mar 2026, Ahmed Naseef wrote:
->=20
-> > On Tue, Mar 17, 2026 at 04:29:08PM -0500, Bjorn Helgaas wrote:
-> > > On Mon, Mar 16, 2026 at 03:51:57PM +0000, Caleb James DeLisle wrote:
-> > > > pci_read_bridge_io() and pci_read_bridge_mmio_pref() read bridge wi=
-ndow
-> > > > registers unconditionally. If the registers are hardwired to zero
-> > > > (not implemented), both base and limit will be 0. Since (0 <=3D 0) =
-is
-> > > > true, a bogus window [mem 0x00000000-0x000fffff] or [io 0x0000-0x0f=
-ff]
-> > > > gets created.
-> > > >=20
-> > > > pci_read_bridge_windows() already detects unsupported windows by
-> > > > testing register writability and sets io_window/pref_window flags
-> > > > accordingly. Check these flags at the start of pci_read_bridge_io()
-> > > > and pci_read_bridge_mmio_pref() to skip reading registers when the
-> > > > window is not supported.
-> > >=20
-> > > The fundamental problem here is that assigned space to a bridge windo=
-w
-> > > that isn't implemented.  I wish we understood the connection between
-> > > this "read window" path and the assignment path.
-> > >=20
-> > > Maybe this patch fixes it because we enter pci_read_bridge_mmio_pref(=
-)
-> > > with res->flags being NULL, and we set IORESOURCE_MEM |
-> > > IORESOURCE_PREFETCH again, which makes it look like we can assign
-> > > space for it?
-> >=20
-> > Yes, that's exactly right.
-> >=20
-> > >=20
-> > > If that's the case, I think it would improve the commit log to mentio=
-n
-> > > the actual mechanism by which we avoid assigning space.
-> > >=20
-> >=20
-> > How about this:
-> >=20
-> >   pci_read_bridge_io() and pci_read_bridge_mmio_pref() read
-> >   bridge window registers unconditionally. If the registers
-> >   are hardwired to zero (not implemented), both base and limit
-> >   will be 0. Since (0 <=3D 0) is true, these functions set
-> >   IORESOURCE_IO or IORESOURCE_MEM | IORESOURCE_PREFETCH on
-> >   the bridge resource. This causes the allocator to assign
-> >   space for the window even though the hardware can't
-> >   implement it.
-> >=20
-> >   pci_read_bridge_windows() already detects unsupported windows
-> >   by testing register writability and sets io_window/pref_window
-> >   flags accordingly. Check these flags at the start of
-> >   pci_read_bridge_io() and pci_read_bridge_mmio_pref() to skip
-> >   reading registers when the window is not supported, so the
-> >   resource flags remain clear and the allocator does not assign
-> >   space for non-existent windows.
->=20
-> At least to me the proposed text reads much better than the original.
-> The original text required reading between the lines to connect the dots,=
-=20
-> whereas this new one clearly explains what causes what.
-
-Hi again,
-
-Reading the code I think the entire 0 <=3D 0 part is a red herring=20
-when it comes to the current code, the flags are always set by the=20
-functions!
-
-The code would only add IORESOURCE_UNSET | IORESOURCE_DISABLED if the=20
-base <=3D limit check fails but that's still wrong because it says to the=
-=20
-resource allocation code that it can enable that bridge window if it needs=
-=20
-to.
-
-Prior to the commit 8278c6914306 ("PCI: Preserve bridge window resource=20
-type flags") the base <=3D limit check did play some role (maybe the=20
-original commit message was based on some older tree than the most current=
-=20
-one).
-
---=20
- i.
-
---8323328-1311157423-1773836302=:971--
+Thanks and regards
+ Shi hao
 
