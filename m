@@ -1,216 +1,172 @@
-Return-Path: <devicetree+bounces-277136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277131-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yNAnAxKFumnrXQIAu9opvQ
-	(envelope-from <devicetree+bounces-277136-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:57:22 +0100
+	id AIYlBNODumnrXQIAu9opvQ
+	(envelope-from <devicetree+bounces-277131-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:52:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 493A22BA512
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:57:21 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id B20362BA3F6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:52:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B0D603081F30
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:52:04 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0C60B3021403
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:51:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 591B73A9608;
-	Wed, 18 Mar 2026 10:51:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 533A93A255D;
+	Wed, 18 Mar 2026 10:51:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YJgF5KS8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 467BA3A2548
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 10:51:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66F6A3976AF
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 10:51:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773831101; cv=none; b=KWQiH/XpR8txjokQtQ2zHLu11nqcqgwX1nZ1d92oNrRgGwPQxWVndejfnr6GkN0nqYA7kKaAziHgl6L/rwdm8i2ephDdisgxjfCsMRKzbWRlLnptuh8bQ1Qu6X2g/IgGlORySKUwprb51FOtXO+biLxrltVw8LSWPWwv/pqK6PU=
+	t=1773831099; cv=none; b=H0+IFK2eP4JHKo7NfZxsBIfjo4GzXdB+WOV9jWD2bltnWT9DFX5XNgy9NCDSzaUjNOyTcB55oICYFXxf49TOQpCFtq8bUSDpHXSJ9Md8MNhhaTQxyTAsAI34+j4XRAO9QiUWSdT0l3xLM6kJc2vX0Sj6UoNDJMxFOo7GM/AF87o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773831101; c=relaxed/simple;
-	bh=UE8DLg0OmVNUS8QhDZnhmGITW1Sio+cYfmRHHPQL4sM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pfvErsglKCcpVVPPgC504KUPfGwpudBifMD8UDopd4ZueLQQT6f+vmyaWndNRegYxcSQhDGU7Z4sBiACX//P31MWIadPKp7qmIgFR/d9Tm9cayVzrOA1sspowJzeCUppw7sjD93OLsmL9MdaZabEXHzEVWj0jnh000vr7ogAhCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1w2oUn-0001WP-Ey; Wed, 18 Mar 2026 11:51:25 +0100
-Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac] helo=dude04)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1w2oUn-000tSY-0X;
-	Wed, 18 Mar 2026 11:51:25 +0100
-Received: from ore by dude04 with local (Exim 4.98.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1w2oUn-00000003RJI-0IbV;
-	Wed, 18 Mar 2026 11:51:25 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: David Jander <david@protonic.nl>,
-	stable@vger.kernel.org,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH v1 7/7] ARM: dts: stm32: stm32mp15x-mecio1-io: Move expander gpio-line-names to board files
-Date: Wed, 18 Mar 2026 11:51:23 +0100
-Message-ID: <20260318105123.819807-8-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260318105123.819807-1-o.rempel@pengutronix.de>
-References: <20260318105123.819807-1-o.rempel@pengutronix.de>
+	s=arc-20240116; t=1773831099; c=relaxed/simple;
+	bh=Y1LcCjSTgl7Dl+0GHq7UgL3cvKL9ZQvmeooUVDMIj0w=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=gYxtsHdnweQhc9VXVZQQFlREE3USPqFtRGgmGgbTobuRQrQENccBD5HOK+ksYSKC3ovRekkc4xF2msqHUDfQAVOOOBrg7m5ogyZqBVK/g97IOAPMbq5FN08h4a61PQzuaGZjy3+88XPE25JMYRScEYfNxeqKlmHleS7SvhR5phc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YJgF5KS8; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id AC7311A2EA2;
+	Wed, 18 Mar 2026 10:51:34 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 80A896004F;
+	Wed, 18 Mar 2026 10:51:34 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1A64D10450782;
+	Wed, 18 Mar 2026 11:51:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1773831093; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=uaQF8Rk+pj0ruLxQsZHfi0rM4RAp8TegoCfMnyVAwdg=;
+	b=YJgF5KS8ujsrm5AiN97YgWQpsPd++BRHIKDOVBY1kjPdT05MK1ww23hofLU2szthf4AFAd
+	O585qgmOCVLk0cZNcXFvsIVxezE/jYdilRMSPa3/occ2oMa2oAjiaJH+OtvvabHW3SdcuT
+	5/3fMGYWGsld1jfLU7lvpdAA6YaGDyioTSNq70j1tnMRWNW2ukpRwKJsZ6ZYquyGOJDdVD
+	oqrkStBLh3OHR6DVh2+CuvJljImul3WgVMSPGiGZyc0BCXSPNh+jFGcVQVGWUNcnLx8JJn
+	cYFnpm5gf25x0YwUCQFgfHZTQ6Hv0QACSCk681+wJpxa8pgUOUytQ5dhO5/VzQ==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc: Gabor Juhos <j4g8y7@gmail.com>,  Andrew Lunn <andrew@lunn.ch>,
+  Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,  Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
+ Dooley <conor+dt@kernel.org>,  linux-arm-kernel@lists.infradead.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: marvell: armada-37xx: drop
+ 'marvell,usb-misc-reg' from USB host nodes
+In-Reply-To: <875x6t5ska.fsf@BLaptop.bootlin.com> (Gregory CLEMENT's message
+	of "Wed, 18 Mar 2026 11:40:37 +0100")
+References: <20260317-armada-37xx-drop-usb-misc-reg-v2-1-ddff72114414@gmail.com>
+	<875x6t5ska.fsf@BLaptop.bootlin.com>
+User-Agent: mu4e 1.12.7; emacs 30.2
+Date: Wed, 18 Mar 2026 11:51:31 +0100
+Message-ID: <87o6klcswc.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spamd-Result: default: False [1.54 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,foss.st.com];
-	RCVD_COUNT_FIVE(0.00)[6];
+	FREEMAIL_CC(0.00)[gmail.com,lunn.ch,kernel.org,lists.infradead.org,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-277136-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277131-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.992];
-	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[protonic.nl:email,pengutronix.de:email,pengutronix.de:mid,0.0.0.20:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.21:email]
-X-Rspamd-Queue-Id: 493A22BA512
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[5e000:email,devicetree.org:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,0.0.226.144:email]
+X-Rspamd-Queue-Id: B20362BA3F6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: David Jander <david@protonic.nl>
+On 18/03/2026 at 11:40:37 +01, Gregory CLEMENT <gregory.clement@bootlin.com=
+> wrote:
 
-Move the gpio-line-names properties for the I2C GPIO expanders (gpio0
-and gpio1) out of the common mecio1-io.dtsi file and into the specific
-board dts files.
+> +Miqu=C3=A8l
+>
+> Hello Gabor,
+>
+> Thanks it is better,
+>
+>> The 'marvell,usb-misc-reg' property is present both in the EHCI and
+>> in the XHCI USB host device nodes, however it is not documented. Thus
+>> 'make dtbs_check' produces warnings like these:
+>>
+>>   /arch/arm64/boot/dts/marvell/armada-3720-db.dtb: usb@58000 (marvell,ar=
+mada3700-xhci): Unevaluated properties are not allowed ('marvell,usb-misc-r=
+eg' was unexpected)
+>>           from schema $id: http://devicetree.org/schemas/usb/generic-xhc=
+i.yaml
+>>   /arch/arm64/boot/dts/marvell/armada-3720-db.dtb: usb@5e000 (marvell,ar=
+mada-3700-ehci): Unevaluated properties are not allowed ('marvell,usb-misc-=
+reg' was unexpected)
+>>           from schema $id: http://devicetree.org/schemas/usb/generic-ehc=
+i.yaml
+>>
+>> Apart from the fact that the properties are not documented, those are
+>> not even used by any USB host drivers. Due to this, drop the properties
+>> in order to get rid of the warnings.
+>>
+>> Note:
+>>
+>> With the same name, there is a property used for the Armada 3700 USB
+>> UTMI PHYs of which dt-bindings documentation has been added in commit
+>> e60958699afa ("dt-bindings: phy: mvebu-utmi: add UTMI PHY bindings").
+>>
+>> Additionally, the property is handled by the 'phy-mvebu-a3700-utmi'
+>> driver since commit cc8b7a0ae866 ("phy: add A3700 UTMI PHY driver").
+>>
+>> When the nodes of the UTMI PHYs has been added to the SoC dtsi by
+>> commit 05d168a56fae ("arm64: dts: marvell: armada-37xx: declare USB2
+>> UTMI PHYs"), the properties has been added to the USB host controller
+>> nodes also. According to the commit message this was intentional,
+>
+> Miquel will confirm that, after speaking with him, it appears to be a
+> mistake rather than an intentional act.
 
-The layout originally defined in the common include file belonged to the
-mecio1r1 (Revision 1) hardware. This layout is moved 1:1 into the
-stm32mp153c-mecio1r1.dts file.
+Indeed, I believe it is a leftover, the property should have been added
+only to the PHY nodes, not the host nodes.
 
-The mecio1r0 (Revision 0) hardware utilizes a completely different
-pinout for these expanders. A new, accurate mapping reflecting the
-Revision 0 schematics is added to stm32mp151c-mecio1r0.dts.
+The sentence above should be: s/intentional/unintentional/, the commit
+messages clearly states that PHY nodes were targeted, not the
+host. Plus, a follow-up commit adds the missing phy properties to the
+hosts, so clearly reaching this syscon through the host node directly
+does not make sense and was not intended.
 
-Fixes: 8267753c891c ("ARM: dts: stm32: Add MECIO1 and MECT1S board variants")
-Cc: stable@vger.kernel.org
-Signed-off-by: David Jander <david@protonic.nl>
-Co-developed-by: Oleksij Rempel <o.rempel@pengutronix.de>
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- arch/arm/boot/dts/st/stm32mp151c-mecio1r0.dts  | 14 ++++++++++++++
- arch/arm/boot/dts/st/stm32mp153c-mecio1r1.dts  | 14 ++++++++++++++
- arch/arm/boot/dts/st/stm32mp15x-mecio1-io.dtsi |  8 --------
- 3 files changed, 28 insertions(+), 8 deletions(-)
+Once this single word fixed, you can add my
 
-diff --git a/arch/arm/boot/dts/st/stm32mp151c-mecio1r0.dts b/arch/arm/boot/dts/st/stm32mp151c-mecio1r0.dts
-index 06ab77465816..862782d20d10 100644
---- a/arch/arm/boot/dts/st/stm32mp151c-mecio1r0.dts
-+++ b/arch/arm/boot/dts/st/stm32mp151c-mecio1r0.dts
-@@ -97,6 +97,20 @@ &ethernet0 {
- 	st,eth-clk-sel;
- };
- 
-+&gpio0 {
-+	gpio-line-names = "HSIN0_BIAS", "HSIN1_BIAS", "HSIN2_BIAS", "HSIN3_BIAS",
-+			  "HSIN4_BIAS", "", "STP_VREF0_LVL", "HSIN_VREF0_LVL",
-+			  "STP0_FB_BIAS", "STP1_FB_BIAS", "STP2_FB_BIAS", "STP3_FB_BIAS",
-+			  "", "", "", "";
-+};
-+
-+&gpio1 {
-+	gpio-line-names = "HSIN5_BIAS", "HSIN6_BIAS", "HSIN7_BIAS", "HSIN8_BIAS",
-+			  "HSIN9_BIAS", "", "STP_VREF1_LVL", "HSIN_VREF1_LVL",
-+			  "STP4_FB_BIAS", "STP5_FB_BIAS", "STP6_FB_BIAS", "",
-+			  "", "", "LSIN8_BIAS", "LSIN9_BIAS";
-+};
-+
- &gpiod {
- 	gpio-line-names = "", "", "", "",
- 			  "", "", "", "",
-diff --git a/arch/arm/boot/dts/st/stm32mp153c-mecio1r1.dts b/arch/arm/boot/dts/st/stm32mp153c-mecio1r1.dts
-index 2b3989303cd1..739cc18c3d3a 100644
---- a/arch/arm/boot/dts/st/stm32mp153c-mecio1r1.dts
-+++ b/arch/arm/boot/dts/st/stm32mp153c-mecio1r1.dts
-@@ -90,6 +90,20 @@ &clk_hse {
- 	clock-frequency = <24000000>;
- };
- 
-+&gpio0 {
-+	gpio-line-names = "HSIN0_BIAS", "HSIN1_BIAS", "HSIN2_BIAS", "HSIN3_BIAS",
-+			  "", "", "HSIN_VREF0_LVL", "HSIN_VREF1_LVL",
-+			  "HSIN4_BIAS", "HSIN5_BIAS", "HSIN6_BIAS", "HSIN7_BIAS",
-+			  "", "", "", "";
-+};
-+
-+&gpio1 {
-+	gpio-line-names = "HSIN8_BIAS", "HSIN9_BIAS", "HSIN10_BIAS", "HSIN11_BIAS",
-+			  "", "", "HSIN_VREF2_LVL", "HSIN_VREF3_LVL",
-+			  "HSIN12_BIAS", "HSIN13_BIAS", "HSIN14_BIAS", "HSIN15_BIAS",
-+			  "", "", "LSIN8_BIAS", "LSIN9_BIAS";
-+};
-+
- &gpioa {
- 	gpio-line-names = "", "", "", "",
- 			  "", "", "", "",
-diff --git a/arch/arm/boot/dts/st/stm32mp15x-mecio1-io.dtsi b/arch/arm/boot/dts/st/stm32mp15x-mecio1-io.dtsi
-index 1808289f8193..1a4f5a523eb3 100644
---- a/arch/arm/boot/dts/st/stm32mp15x-mecio1-io.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp15x-mecio1-io.dtsi
-@@ -184,10 +184,6 @@ gpio0: gpio@20 {
- 		reg = <0x20>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
--		gpio-line-names = "HSIN0_BIAS", "HSIN1_BIAS", "HSIN2_BIAS", "HSIN3_BIAS",
--				  "", "", "HSIN_VREF0_LVL", "HSIN_VREF1_LVL",
--				  "HSIN4_BIAS", "HSIN5_BIAS", "HSIN6_BIAS", "HSIN7_BIAS",
--				  "", "", "", "";
- 	};
- 
- 	gpio1: gpio@21 {
-@@ -195,10 +191,6 @@ gpio1: gpio@21 {
- 		reg = <0x21>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
--		gpio-line-names = "HSIN8_BIAS", "HSIN9_BIAS", "HSIN10_BIAS", "HSIN11_BIAS",
--				  "", "", "HSIN_VREF2_LVL", "HSIN_VREF3_LVL",
--				  "HSIN12_BIAS", "HSIN13_BIAS", "HSIN14_BIAS", "HSIN15_BIAS",
--				  "", "", "LSIN8_BIAS", "LSIN9_BIAS";
- 	};
- };
- 
--- 
-2.47.3
+Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
+Thanks for the fix!
+Miqu=C3=A8l
 
