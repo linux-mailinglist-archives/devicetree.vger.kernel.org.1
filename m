@@ -1,172 +1,182 @@
-Return-Path: <devicetree+bounces-277131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277139-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AIYlBNODumnrXQIAu9opvQ
-	(envelope-from <devicetree+bounces-277131-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:52:03 +0100
+	id eFkfHnKGumnSXgIAu9opvQ
+	(envelope-from <devicetree+bounces-277139-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:03:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B20362BA3F6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:52:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFE9C2BA6D2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:03:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0C60B3021403
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:51:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5F5DA304B8EC
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:58:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 533A93A255D;
-	Wed, 18 Mar 2026 10:51:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C803B3A7F62;
+	Wed, 18 Mar 2026 10:58:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YJgF5KS8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eKiMcZ85"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66F6A3976AF
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 10:51:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 378133AE194;
+	Wed, 18 Mar 2026 10:58:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773831099; cv=none; b=H0+IFK2eP4JHKo7NfZxsBIfjo4GzXdB+WOV9jWD2bltnWT9DFX5XNgy9NCDSzaUjNOyTcB55oICYFXxf49TOQpCFtq8bUSDpHXSJ9Md8MNhhaTQxyTAsAI34+j4XRAO9QiUWSdT0l3xLM6kJc2vX0Sj6UoNDJMxFOo7GM/AF87o=
+	t=1773831522; cv=none; b=FdycXJ70l6vSdQMEqo9QFPndZWiNEPgUAGkp+kwENtYH7YW3wsZ95TBFDjG6r2yoX5JFyuM3jWDCnt7nO0YB4O1rHwY4Gr1rGxXshlbby+AbMmGR9s4vXcvdcyZ6mMUp3LniWzCXC6MpC/M1so67EiYFtyheaO7QlbO+VGAFQBM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773831099; c=relaxed/simple;
-	bh=Y1LcCjSTgl7Dl+0GHq7UgL3cvKL9ZQvmeooUVDMIj0w=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=gYxtsHdnweQhc9VXVZQQFlREE3USPqFtRGgmGgbTobuRQrQENccBD5HOK+ksYSKC3ovRekkc4xF2msqHUDfQAVOOOBrg7m5ogyZqBVK/g97IOAPMbq5FN08h4a61PQzuaGZjy3+88XPE25JMYRScEYfNxeqKlmHleS7SvhR5phc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YJgF5KS8; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id AC7311A2EA2;
-	Wed, 18 Mar 2026 10:51:34 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 80A896004F;
-	Wed, 18 Mar 2026 10:51:34 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1A64D10450782;
-	Wed, 18 Mar 2026 11:51:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1773831093; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=uaQF8Rk+pj0ruLxQsZHfi0rM4RAp8TegoCfMnyVAwdg=;
-	b=YJgF5KS8ujsrm5AiN97YgWQpsPd++BRHIKDOVBY1kjPdT05MK1ww23hofLU2szthf4AFAd
-	O585qgmOCVLk0cZNcXFvsIVxezE/jYdilRMSPa3/occ2oMa2oAjiaJH+OtvvabHW3SdcuT
-	5/3fMGYWGsld1jfLU7lvpdAA6YaGDyioTSNq70j1tnMRWNW2ukpRwKJsZ6ZYquyGOJDdVD
-	oqrkStBLh3OHR6DVh2+CuvJljImul3WgVMSPGiGZyc0BCXSPNh+jFGcVQVGWUNcnLx8JJn
-	cYFnpm5gf25x0YwUCQFgfHZTQ6Hv0QACSCk681+wJpxa8pgUOUytQ5dhO5/VzQ==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc: Gabor Juhos <j4g8y7@gmail.com>,  Andrew Lunn <andrew@lunn.ch>,
-  Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,  Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
- Dooley <conor+dt@kernel.org>,  linux-arm-kernel@lists.infradead.org,
-  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: marvell: armada-37xx: drop
- 'marvell,usb-misc-reg' from USB host nodes
-In-Reply-To: <875x6t5ska.fsf@BLaptop.bootlin.com> (Gregory CLEMENT's message
-	of "Wed, 18 Mar 2026 11:40:37 +0100")
-References: <20260317-armada-37xx-drop-usb-misc-reg-v2-1-ddff72114414@gmail.com>
-	<875x6t5ska.fsf@BLaptop.bootlin.com>
-User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Wed, 18 Mar 2026 11:51:31 +0100
-Message-ID: <87o6klcswc.fsf@bootlin.com>
+	s=arc-20240116; t=1773831522; c=relaxed/simple;
+	bh=kLYySycm4Q+kO2x2jmLEs+z7oAnQtdjmqDIbHrWcbjw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FkrwECbg3IvgAO1goomj0dMiHNJE6Vc3Vq3XhGmg0OFAcloAvlmdMSZsQHZw0d7weI12MXG4mUTP13qATgSV2r0ch+PDyGp3PFIKjEWL6yIcXqNWCVlOG40sZWdTk5OZi0vwa8vzW/Y8Yisl7Ds8CaInm3dmh4arWvTEBi8058E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eKiMcZ85; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65881C19421;
+	Wed, 18 Mar 2026 10:58:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773831521;
+	bh=kLYySycm4Q+kO2x2jmLEs+z7oAnQtdjmqDIbHrWcbjw=;
+	h=From:To:Cc:Subject:Date:From;
+	b=eKiMcZ85WLFC8bXWA/cKx5AD46CSeZMTj7t+7hTK626aenEZLjVU/M1bTaE/8BRRS
+	 X6S1Y6bTAssMWXPL91D/crg1FtPFmAE77lAntj2Q7m/PYz0wUHGJzu4AZOtr5VKYhD
+	 O9x+2NB3x0e+Qee3RPqpqmkTck/x41t2dPoDUPGIkmdpXAuih590JlibeZmTDiQlQj
+	 +q9tqVFXNLT50Bo4J93EDhzKNN36MtH2iOtNw1iebPTvJL5rSLJyP/H3K7GSINY4cU
+	 Jl739DvgI4xC+TxFvGCyIhqDj4Pg7a/bTjrprZ63VJjVDKtRWfpfjBV+NYDfdH+Dsr
+	 4yKWpa/0srIqQ==
+From: Mike Rapoport <rppt@kernel.org>
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: Alexander Potapenko <glider@google.com>,
+	Alexander Viro <viro@zeniv.linux.org.uk>,
+	Andreas Larsson <andreas@gaisler.com>,
+	Ard Biesheuvel <ardb@kernel.org>,
+	Borislav Petkov <bp@alien8.de>,
+	Brendan Jackman <jackmanb@google.com>,
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Christian Brauner <brauner@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	David Hildenbrand <david@kernel.org>,
+	Dmitry Vyukov <dvyukov@google.com>,
+	Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+	Ingo Molnar <mingo@redhat.com>,
+	Jan Kara <jack@suse.cz>,
+	Johannes Weiner <hannes@cmpxchg.org>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Marco Elver <elver@google.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Masami Hiramatsu <mhiramat@kernel.org>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Michal Hocko <mhocko@suse.com>,
+	Mike Rapoport <rppt@kernel.org>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Rob Herring <robh@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Saravana Kannan <saravanak@kernel.org>,
+	Suren Baghdasaryan <surenb@google.com>,
+	Thomas Gleixner <tglx@kernel.org>,
+	Vlastimil Babka <vbabka@kernel.org>,
+	Will Deacon <will@kernel.org>,
+	Zi Yan <ziy@nvidia.com>,
+	devicetree@vger.kernel.org,
+	iommu@lists.linux.dev,
+	kasan-dev@googlegroups.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-efi@vger.kernel.org,
+	linux-fsdevel@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mm@kvack.org,
+	linux-trace-kernel@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org,
+	sparclinux@vger.kernel.org,
+	x86@kernel.org
+Subject: [PATCH 0/8] memblock: improve late freeing of reserved memory
+Date: Wed, 18 Mar 2026 12:58:19 +0200
+Message-ID: <20260318105827.1358927-1-rppt@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,lunn.ch,kernel.org,lists.infradead.org,vger.kernel.org];
+	FREEMAIL_CC(0.00)[google.com,zeniv.linux.org.uk,gaisler.com,kernel.org,alien8.de,arm.com,davemloft.net,linux.intel.com,linaro.org,redhat.com,suse.cz,cmpxchg.org,oracle.com,linux.ibm.com,samsung.com,ellerman.id.au,suse.com,gmail.com,zytor.com,nvidia.com,vger.kernel.org,lists.linux.dev,googlegroups.com,lists.infradead.org,kvack.org,lists.ozlabs.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277139-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277131-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	RCPT_COUNT_TWELVE(0.00)[49];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[rppt@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[5e000:email,devicetree.org:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,0.0.226.144:email]
-X-Rspamd-Queue-Id: B20362BA3F6
+	TAGGED_RCPT(0.00)[devicetree];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: EFE9C2BA6D2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 18/03/2026 at 11:40:37 +01, Gregory CLEMENT <gregory.clement@bootlin.com=
-> wrote:
+From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
 
-> +Miqu=C3=A8l
->
-> Hello Gabor,
->
-> Thanks it is better,
->
->> The 'marvell,usb-misc-reg' property is present both in the EHCI and
->> in the XHCI USB host device nodes, however it is not documented. Thus
->> 'make dtbs_check' produces warnings like these:
->>
->>   /arch/arm64/boot/dts/marvell/armada-3720-db.dtb: usb@58000 (marvell,ar=
-mada3700-xhci): Unevaluated properties are not allowed ('marvell,usb-misc-r=
-eg' was unexpected)
->>           from schema $id: http://devicetree.org/schemas/usb/generic-xhc=
-i.yaml
->>   /arch/arm64/boot/dts/marvell/armada-3720-db.dtb: usb@5e000 (marvell,ar=
-mada-3700-ehci): Unevaluated properties are not allowed ('marvell,usb-misc-=
-reg' was unexpected)
->>           from schema $id: http://devicetree.org/schemas/usb/generic-ehc=
-i.yaml
->>
->> Apart from the fact that the properties are not documented, those are
->> not even used by any USB host drivers. Due to this, drop the properties
->> in order to get rid of the warnings.
->>
->> Note:
->>
->> With the same name, there is a property used for the Armada 3700 USB
->> UTMI PHYs of which dt-bindings documentation has been added in commit
->> e60958699afa ("dt-bindings: phy: mvebu-utmi: add UTMI PHY bindings").
->>
->> Additionally, the property is handled by the 'phy-mvebu-a3700-utmi'
->> driver since commit cc8b7a0ae866 ("phy: add A3700 UTMI PHY driver").
->>
->> When the nodes of the UTMI PHYs has been added to the SoC dtsi by
->> commit 05d168a56fae ("arm64: dts: marvell: armada-37xx: declare USB2
->> UTMI PHYs"), the properties has been added to the USB host controller
->> nodes also. According to the commit message this was intentional,
->
-> Miquel will confirm that, after speaking with him, it appears to be a
-> mistake rather than an intentional act.
+Hi,
 
-Indeed, I believe it is a leftover, the property should have been added
-only to the PHY nodes, not the host nodes.
+Following a recent discussion about leaks in x86 EFI [1], I audited usage of
+memblock_free_late() and free_reserved_area() and made some imporovements how
+we handle late freeing of the memory allocated with memblock.
 
-The sentence above should be: s/intentional/unintentional/, the commit
-messages clearly states that PHY nodes were targeted, not the
-host. Plus, a follow-up commit adds the missing phy properties to the
-hosts, so clearly reaching this syscon through the host node directly
-does not make sense and was not intended.
+[1] https://lore.kernel.org/all/ec2aaef14783869b3be6e3c253b2dcbf67dbc12a.camel@kernel.crashing.org/
 
-Once this single word fixed, you can add my
+Mike Rapoport (Microsoft) (8):
+  powerpc: fadump: pair alloc_pages_exact() with free_pages_exact()
+  powerpc: opal-core: pair alloc_pages_exact() with free_pages_exact()
+  mm: move free_reserved_area() to mm/memblock.c
+  memblock: make free_reserved_area() more robust
+  memblock: extract page freeing from free_reserved_area() into a helper
+  memblock: make free_reserved_area() update memblock if ARCH_KEEP_MEMBLOCK=y
+  memblock, treewide: make memblock_free() handle late freeing
+  memblock: warn when freeing reserved memory before memory map is
+    initialized
 
-Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
+ arch/arm64/mm/init.c                       |   3 -
+ arch/powerpc/kernel/fadump.c               |  16 +--
+ arch/powerpc/platforms/powernv/opal-core.c |   9 +-
+ arch/sparc/kernel/mdesc.c                  |   4 +-
+ arch/x86/kernel/setup.c                    |   2 +-
+ arch/x86/platform/efi/memmap.c             |   5 +-
+ arch/x86/platform/efi/quirks.c             |   2 +-
+ drivers/firmware/efi/apple-properties.c    |   2 +-
+ drivers/of/kexec.c                         |   2 +-
+ include/linux/memblock.h                   |   2 -
+ init/initramfs.c                           |   7 --
+ kernel/dma/swiotlb.c                       |   6 +-
+ lib/bootconfig.c                           |   2 +-
+ mm/internal.h                              |  10 ++
+ mm/kfence/core.c                           |   4 +-
+ mm/memblock.c                              | 110 ++++++++++++++-------
+ mm/page_alloc.c                            |  46 ---------
+ 17 files changed, 102 insertions(+), 130 deletions(-)
 
-Thanks for the fix!
-Miqu=C3=A8l
+
+base-commit: 1f318b96cc84d7c2ab792fcc0bfd42a7ca890681
+--
+2.51.0
 
