@@ -1,232 +1,324 @@
-Return-Path: <devicetree+bounces-277310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277312-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uPqBEXbAumkGbgIAu9opvQ
-	(envelope-from <devicetree+bounces-277310-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 16:10:46 +0100
+	id GPBmBNW8ummqbQIAu9opvQ
+	(envelope-from <devicetree+bounces-277312-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:55:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 492D72BDE5D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 16:10:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DB172BD9F1
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:55:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2EA1430B8EAC
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:47:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B9FC930F4C77
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:47:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFB673DE431;
-	Wed, 18 Mar 2026 14:46:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85DE43E0C48;
+	Wed, 18 Mar 2026 14:47:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BUs6buE1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lNEXEXFH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46BC83DEAC3;
-	Wed, 18 Mar 2026 14:46:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1F703E0244;
+	Wed, 18 Mar 2026 14:47:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773845210; cv=none; b=VPqJIcYWMHPuZ8rxmdlnrawFKMbHMRsp+h0X9eUOZHpIEj/CRQx45C0joPLIj1CKRUMR4MKCW17Gzu0MvoWq4/3FMk/nN4iuEl5N0Z4x5//w5XV3gutiMrXr02yP6KWmEIi8bzuuZ4Bj+jdt55knBIHxf2cqJQgJ5f4z91cp290=
+	t=1773845231; cv=none; b=m15NT7Xs9l6ueOIe2taveL9ggq+SxfT90FtPO7g/6ThLHdHzRB30F2qeWI/SOpHkHIVg/M31n5Gu4XbMVVIrFT10YYR4UcBOBD4I+RNvcymZLsVC1buuwRGkvWXyUR9TbxQljs+OClDA7as3Qw7fFuGGo9NpSA7oTGpBtirLapI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773845210; c=relaxed/simple;
-	bh=gvuq/gAM5OiH7F9mMhn33EHNI4LQXwBO42NHJxQek74=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Tz+z4NZztWy2LqMb1MIIzyuG55LCF5Xj1fzpOpV4scr5INN7KdIYVMLKJFFyO5LoAf639nuaY1vIhHoD9XbkAvPuiGMPGAkePAmPKDSANL+TnI5Jm3mDgU62W6E6zgZLBJX4o8WVQ1mD6XdApYP2fSWe2xh6JAnWZyKaUy5eWTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BUs6buE1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6450C19421;
-	Wed, 18 Mar 2026 14:46:46 +0000 (UTC)
+	s=arc-20240116; t=1773845231; c=relaxed/simple;
+	bh=sOGhleK/nOFjGylRZPX91uK0mo+r2D9Kaglk5zGCV1M=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=GcIuTbDSTGG6VTb5DooQgxFEl/n6mZWaoNO8diLTGVqkdIjdnygfMaZbY7g4gjDH2INBaNswhnzUEjFxZAzUZKBnvIqRB19974hN7MCYkT1lyHWC0HZ3y1QNCnr3P3u4Hi0JLqLBoNtKEvIkOXpKPDOugDbtSo+1MtMC73TaKU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lNEXEXFH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2CE2C19421;
+	Wed, 18 Mar 2026 14:47:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773845209;
-	bh=gvuq/gAM5OiH7F9mMhn33EHNI4LQXwBO42NHJxQek74=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=BUs6buE13hMtTigsrWMuHpEH31O6+DNhfIcUQsItbYPXQ3zvLPaMh7bEIMvkN6Lio
-	 nvJr6Mo/5tMArhQSUNxlUAVELnjVTj9/wy2ry1wZ/0RwHcdPuhrszrWVer641s1Lkk
-	 K83wa1nXuUv9cOgVTLt79bcJYZY/6OujEDIaU1XhKcS0nBnRYxKmBQ5Btd9KeEHg+9
-	 q9imPjiQg7yrf4FurCSWfMtlZ5vH0lPQb/TxIEjlqmUDTn9uTFl5sxUgDL/51eJkwf
-	 vqr4XCikz6I4qpwcjJ6g+Bf9nYwOlHdtP5J41g9Ita/5I4VUymBnhIS6mniC9sSUVf
-	 JDnf8/9Zoah4Q==
-Message-ID: <4b7689ce-5ab1-4f04-8701-f9f03a40ae76@kernel.org>
-Date: Wed, 18 Mar 2026 15:46:44 +0100
+	s=k20201202; t=1773845231;
+	bh=sOGhleK/nOFjGylRZPX91uK0mo+r2D9Kaglk5zGCV1M=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=lNEXEXFHtHqqr5+jSR8/WPIZ+t95wCNVVoFyFK6S3X5ngF1Z0hz/dGpE0/8EVWyzB
+	 7mFxzM+0bUnUaAhTlEuc+9AknVBfSI9p5RHBxJWrrAvHGw/j+0E6tA3hZYfaqyW8OI
+	 3qeaNgswbe4lvpsnrdMYYgKytxx1PEPv7MSrbOGaa3g8CmFStN9NXTdAjn8hQtLhjO
+	 8VQ1bPGUgw/WxjL8g9punuvgQVYnky6+kVtBTz+q+WuZUomr0+eYyGnze5a5zLO7rs
+	 Xul8ho2Ds77F5cnV2Odc+IaNBY2ZPyljYTpCY3FqWe/wRWhVHahuEr8FNWykrSONbu
+	 lV9haUJJi9Hxg==
+From: Simon Horman <horms@kernel.org>
+To: wei.fang@nxp.com
+Cc: Simon Horman <horms@kernel.org>,
+	f.fainelli@gmail.com,
+	krzk+dt@kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	claudiu.manoil@nxp.com,
+	xiaoning.wang@nxp.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux@armlinux.org.uk,
+	pabeni@redhat.com,
+	conor+dt@kernel.org,
+	chleroy@kernel.org,
+	edumazet@google.com,
+	frank.li@nxp.com,
+	kuba@kernel.org,
+	vladimir.oltean@nxp.com,
+	linuxppc-dev@lists.ozlabs.org,
+	robh@kernel.org,
+	davem@davemloft.net,
+	andrew+netdev@lunn.ch
+Subject: Re: [net-next,11/14] net: dsa: netc: add phylink MAC operations
+Date: Wed, 18 Mar 2026 14:46:51 +0000
+Message-ID: <20260318144651.1891670-1-horms@kernel.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260316094152.1558671-12-wei.fang@nxp.com>
+References: <20260316094152.1558671-12-wei.fang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] clk: qcom: dispcc-eliza: Add Eliza display clock
- controller support
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260318-clk-qcom-dispcc-eliza-v2-0-8c05581168d1@oss.qualcomm.com>
- <20260318-clk-qcom-dispcc-eliza-v2-2-8c05581168d1@oss.qualcomm.com>
- <1a00582d-66d6-4325-aafd-156cfacee8cd@oss.qualcomm.com>
- <d2975a1a-04bb-4026-a0cd-34571f99ae02@oss.qualcomm.com>
- <2227a9d2-fb34-4d54-8122-c00f54009de1@oss.qualcomm.com>
- <846ae47c-8e0e-4fdb-899d-de679d013fa5@oss.qualcomm.com>
- <xofpfzgcsmjhprnnffqrwbauisbsctg7bedtri2vxtxk5zowz4@rjlmceevwesg>
- <9ea16bfe-ac9b-405c-8597-e4f398347d8f@oss.qualcomm.com>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <9ea16bfe-ac9b-405c-8597-e4f398347d8f@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277310-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,lists.linux.dev,nxp.com,lists.infradead.org,armlinux.org.uk,redhat.com,google.com,lists.ozlabs.org,davemloft.net,lunn.ch];
 	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	TAGGED_FROM(0.00)[bounces-277312-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[horms@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.940];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: 492D72BDE5D
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linux.dev:url]
+X-Rspamd-Queue-Id: 9DB172BD9F1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 18/03/2026 15:33, Krzysztof Kozlowski wrote:
-> On 18/03/2026 14:46, Dmitry Baryshkov wrote:
->> On Wed, Mar 18, 2026 at 12:36:24PM +0100, Krzysztof Kozlowski wrote:
->>> On 18/03/2026 12:32, Konrad Dybcio wrote:
->>>> On 3/18/26 12:13 PM, Krzysztof Kozlowski wrote:
->>>>> On 18/03/2026 11:48, Konrad Dybcio wrote:
->>>>>> On 3/18/26 11:39 AM, Krzysztof Kozlowski wrote:
->>>>>>> Add a driver for the display clock controller on Qualcomm Eliza SoC,
->>>>>>> which is copied from SM8750 driver plus changes:
->>>>>>>
->>>>>>> 1. Additional DT_HDMI_PHY_PLL_CLK clock input,
->>>>>>> 2. Eight new HDMI clocks,
->>>>>>> 3. Different PLLs (lucid and pongo).
->>>>>>>
->>>>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
->>>>>>> ---
->>>>>>
->>>>>> [...]
->>>>>>
->>>>>>
->>>>>>> +// SPDX-License-Identifier: GPL-2.0-only
->>>>>>> +/*
->>>>>>> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
->>>>>>> + * Copyright (c) 2023-2024, Linaro Ltd.
->>>>>>> + * Copyright (c) 2024-2025, Qualcomm Innovation Center, Inc. All rights reserved.
->>>>>>
->>>>>> -> Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
->>>>>
->>>>> That's the copyright I found in the downstream code I used in few places
->>>>> here (with modifications) and I am not touching them. I also don't care
->>>>> about these and I am surprised this keeps popping in community review...
->>>>
->>>> You may not care, but our legal department does..
->>>
->>> And your task as community maintainer is to care about community and
->>> Linux kernel, not about legal department.
->>>
->>> Legal department can comment here, if they care. You as maintainer have
->>> rather responsibilities regardless of that legal department.
->>>
->>> Don't bring corpo legal stuff to the community.
->>
->> Then please follow the internal company guidelines as outlined in the
->> legal&marketing documents.
-> 
-> That's not your task to instruct people what internal stuff should they
-> follow or not.
-> 
-> Especially not implied by previous comment "Then".
-> 
->>
->> JFYI, several other Qualcomm maintainers also enforce use of copyright
->> headers for Qualcomm-provided patches. Konrad is not unique here.
-> 
-> I already objected to one of them, so I know.
-> 
-> You do understand that this is completely broken review process? As
-> every contributor, I can object to that comment with arguments (and I
-> did in the past), however you as reviewer do not bring any
-> counter-arguments for that all. You just refer "follow legal internal
-> stuff". No, this does not work for that.
+This is an AI-generated review of your patch. The human sending this
+email has considered the AI review valid, or at least plausible.
 
-BTW, I welcome here any legal arguments, not referring to whatever
-internal stuff you have, why I should remove EXISTING copyright or
-replace it with something.
+For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
+---
+net: dsa: netc: add phylink MAC operations
 
-Also kind of related to above, please provide arguments, since copyright
-statements absolutely do not matter and Git history defines actual
-copyrights, why I should add more copyright lines after the initial
-copyrights I carried over from the code I used.
+This commit adds phylink MAC operations to the NETC DSA switch driver,
+including support for different PHY interface modes (RGMII, RMII, MII,
+REVMII, SGMII, 2500BASE-X).
 
-If you come with argument that I should provide something, then please
-at least justify it. And no, do not refer to any internal legal
-departments, because they do not matter. They are not being a part of
-discussion here.
+> diff --git a/drivers/net/dsa/netc/netc_main.c b/drivers/net/dsa/netc/netc_main.c
+> index bc7d48b99610..884ee899fc89 100644
+> --- a/drivers/net/dsa/netc/netc_main.c
+> +++ b/drivers/net/dsa/netc/netc_main.c
 
-Best regards,
-Krzysztof
+[ ... ]
 
+> @@ -595,10 +595,221 @@ static void netc_switch_get_ip_revision(struct netc_switch *priv)
+>  	priv->revision = val & IPBRR0_IP_REV;
+>  }
+>
+> +static void netc_phylink_get_caps(struct dsa_switch *ds, int port,
+> +				  struct phylink_config *config)
+> +{
+> +	struct netc_switch *priv = ds->priv;
+> +
+> +	priv->info->phylink_get_caps(port, config);
+> +}
+> +
+> +static void netc_port_set_mac_mode(struct netc_port *np,
+> +				   unsigned int mode,
+> +				   phy_interface_t phy_mode)
+> +{
+> +	u32 mask = PM_IF_MODE_IFMODE | PM_IF_MODE_ENA;
+> +	u32 val = 0;
+> +
+> +	switch (phy_mode) {
+> +	case PHY_INTERFACE_MODE_RGMII:
+> +	case PHY_INTERFACE_MODE_RGMII_ID:
+> +	case PHY_INTERFACE_MODE_RGMII_RXID:
+> +	case PHY_INTERFACE_MODE_RGMII_TXID:
+> +		val |= IFMODE_RGMII;
+> +		/* Enable auto-negotiation for the MAC if its
+> +		 * RGMII interface supports In-Band status.
+> +		 */
+> +		if (phylink_autoneg_inband(mode))
+> +			val |= PM_IF_MODE_ENA;
+> +		break;
+> +	case PHY_INTERFACE_MODE_RMII:
+> +		val |= IFMODE_RMII;
+> +		break;
+> +	case PHY_INTERFACE_MODE_REVMII:
+> +		val |= PM_IF_MODE_REVMII;
+> +		fallthrough;
+> +	case PHY_INTERFACE_MODE_MII:
+> +		val |= IFMODE_MII;
+> +		break;
+
+Does the mask need to include PM_IF_MODE_REVMII? Looking at
+netc_port_set_mac_mode(), the mask is set to:
+
+    u32 mask = PM_IF_MODE_IFMODE | PM_IF_MODE_ENA;
+
+which expands to GENMASK(2,0) | BIT(15) = 0x8007. When the REVMII
+case sets val |= PM_IF_MODE_REVMII (BIT(3)), this makes val = 0x9.
+
+In netc_mac_port_rmw(), there's a check:
+
+    WARN_ON((mask | val) != mask)
+
+This check would fire on every REVMII configuration since 0x800F != 0x8007.
+
+Additionally, REVMII is reachable because imx94_switch_phylink_get_caps()
+advertises PHY_INTERFACE_MODE_REVMII as supported for port 2. When
+transitioning FROM REVMII to another mode, PM_IF_MODE_REVMII (BIT(3))
+won't be cleared since it's not in the mask, leaving stale configuration.
+
+Should the mask be:
+
+    u32 mask = PM_IF_MODE_IFMODE | PM_IF_MODE_REVMII | PM_IF_MODE_ENA;
+
+> +	case PHY_INTERFACE_MODE_SGMII:
+> +	case PHY_INTERFACE_MODE_2500BASEX:
+> +		val |= IFMODE_SGMII;
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	netc_mac_port_rmw(np, NETC_PM_IF_MODE(0), mask, val);
+> +}
+
+[ ... ]
+
+> +static void netc_port_force_set_rgmii_mac(struct netc_port *np,
+> +					  int speed, int duplex)
+> +{
+> +	u32 mask, val;
+> +
+> +	mask = PM_IF_MODE_ENA | PM_IF_MODE_SSP | PM_IF_MODE_HD |
+> +	       PM_IF_MODE_M10 | PM_IF_MODE_REVMII;
+> +
+> +	switch (speed) {
+> +	default:
+> +	case SPEED_1000:
+> +		val = FIELD_PREP(PM_IF_MODE_SSP, SSP_1G);
+> +		break;
+> +	case SPEED_100:
+> +		val = FIELD_PREP(PM_IF_MODE_SSP, SSP_100M);
+> +		break;
+> +	case SPEED_10:
+> +		val = FIELD_PREP(PM_IF_MODE_SSP, SSP_10M);
+> +		break;
+> +	}
+> +
+> +	if (duplex != DUPLEX_FULL)
+> +		val |= PM_IF_MODE_HD;
+> +
+> +	netc_mac_port_rmw(np, NETC_PM_IF_MODE(0), mask, val);
+> +}
+> +
+> +static void net_port_set_rmii_mii_mac(struct netc_port *np,
+
+This isn't a bug, but should this function be named
+netc_port_set_rmii_mii_mac() instead of net_port_set_rmii_mii_mac()?
+All other functions in this driver use the netc_ prefix
+(netc_port_set_speed, netc_port_force_set_rgmii_mac,
+netc_port_set_mac_mode, etc.).
+
+> +				      int speed, int duplex)
+> +{
+> +	u32 mask, val = 0;
+> +
+> +	mask = PM_IF_MODE_ENA | PM_IF_MODE_SSP | PM_IF_MODE_HD |
+> +	       PM_IF_MODE_M10;
+> +
+> +	if (speed == SPEED_10)
+> +		val |= PM_IF_MODE_M10;
+> +
+> +	if (duplex != DUPLEX_FULL)
+> +		val |= PM_IF_MODE_HD;
+> +
+> +	netc_mac_port_rmw(np, NETC_PM_IF_MODE(0), mask, val);
+> +}
+
+[ ... ]
+
+> +static void netc_mac_link_up(struct phylink_config *config,
+> +			     struct phy_device *phy, unsigned int mode,
+> +			     phy_interface_t interface, int speed,
+> +			     int duplex, bool tx_pause, bool rx_pause)
+> +{
+> +	struct dsa_port *dp = dsa_phylink_to_port(config);
+> +	struct netc_port *np;
+> +
+> +	np = NETC_PORT(dp->ds, dp->index);
+> +	netc_port_set_speed(np, speed);
+> +
+> +	if (phy_interface_mode_is_rgmii(interface) &&
+> +	    !phylink_autoneg_inband(mode)) {
+> +		netc_port_force_set_rgmii_mac(np, speed, duplex);
+> +	}
+> +
+> +	if (interface == PHY_INTERFACE_MODE_RMII ||
+> +	    interface == PHY_INTERFACE_MODE_REVMII ||
+> +	    interface == PHY_INTERFACE_MODE_MII) {
+> +		net_port_set_rmii_mii_mac(np, speed, duplex);
+> +	}
+> +
+> +	netc_port_set_hd_flow_control(np, duplex == DUPLEX_HALF);
+> +	netc_port_mac_rx_enable(np);
+> +}
+> +
+> +static void netc_mac_link_down(struct phylink_config *config,
+> +			       unsigned int mode,
+> +			       phy_interface_t interface)
+> +{
+> +	struct dsa_port *dp = dsa_phylink_to_port(config);
+> +
+> +	netc_port_mac_rx_graceful_stop(NETC_PORT(dp->ds, dp->index));
+> +}
+> +
+> +static const struct phylink_mac_ops netc_phylink_mac_ops = {
+> +	.mac_config		= netc_mac_config,
+> +	.mac_link_up		= netc_mac_link_up,
+> +	.mac_link_down		= netc_mac_link_down,
+> +};
+> +
+>  static const struct dsa_switch_ops netc_switch_ops = {
+>  	.get_tag_protocol		= netc_get_tag_protocol,
+>  	.setup				= netc_setup,
+>  	.teardown			= netc_teardown,
+> +	.phylink_get_caps		= netc_phylink_get_caps,
+>  };
+>
+>  static int netc_switch_probe(struct pci_dev *pdev,
+> @@ -639,6 +850,7 @@ static int netc_switch_probe(struct pci_dev *pdev,
+>  	ds->num_ports = priv->info->num_ports;
+>  	ds->num_tx_queues = NETC_TC_NUM;
+>  	ds->ops = &netc_switch_ops;
+> +	ds->phylink_mac_ops = &netc_phylink_mac_ops;
+>  	ds->priv = priv;
+>
+>  	priv->ds = ds;
+
+[ ... ]
 
