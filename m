@@ -1,249 +1,191 @@
-Return-Path: <devicetree+bounces-277404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277405-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oJ2IFrbpuml0dAIAu9opvQ
-	(envelope-from <devicetree+bounces-277404-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:06:46 +0100
+	id 6C4HDwTjummdcwIAu9opvQ
+	(envelope-from <devicetree+bounces-277405-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:38:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA93E2C0F32
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:06:45 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0B222C06B6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:38:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7B9B331E5269
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 17:37:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 353693003D22
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 17:38:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E366D30BBBF;
-	Wed, 18 Mar 2026 17:37:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1509B30DD16;
+	Wed, 18 Mar 2026 17:38:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Srzpw+pT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qo/9MguC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B392627467F
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 17:37:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E436230CDB6;
+	Wed, 18 Mar 2026 17:38:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773855450; cv=none; b=PsA+6ptm/0ZvkNpae5o8n76dcMRDeVwV2qJPqyVmYLjGFDZT/vzbFTOi7EdUxbdzMRk0fut1kjEAGiiMlfiI31JsWUSV9ed39XfpSIAy419K15k3M1Kahu9DSmg+jHid9p5luxwTUcVCMIodDqG+DTCcl8z8tv/dCApincpySic=
+	t=1773855490; cv=none; b=lVshsru5fyWAU3HTyHXg6v0zlkE3+vz+c9HSJTn8HCPn9gveI4A9HnLyuSHKAWOU9miKh5GHoJx9j9bj8zycx2osNxmzNg8/VKs1PrswGiHgggvb+7OCDK58ZTUOLUxTDSqqNcQ8IdEnnmyIL5gxIuAE9DxsfuI0EHtYlgtQ5Ts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773855450; c=relaxed/simple;
-	bh=9N0p1gHJ4/ldCRjXubOfQ1J+k+6ttdTdb0EsZzoophk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WLdTjnCCBZIvHpre8fnINJAyxmhfX7fTkB/tkLUdU3coJ+Su20bN7a/zdae4yMQaKauNO0Lz+13lrNpydqqXnKTRTkLHfXjeRInWCj33oZAd/+icro4IKq4t4pVieX5hYx7YFTern3YG0J1UGgvw/vleZpJWk0H8T8P5OXtOueQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Srzpw+pT; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2aae4816912so335625ad.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 10:37:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773855449; x=1774460249; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=OJEyn7i7B9+B9dY5m7w6oyTeXs0Qvwqbo+nm6YMirEU=;
-        b=Srzpw+pTOJVMZnh0BUC8kvo+IU9Fhbs7Ex9hOjEWXe3SeGnIq0nYjP9N/5YAzmF6u9
-         /3yNfOgdysOH84sd/o7dKe36M4sxQVBAynJj0cwhJwwKODoTN42gyHAOB6fWTjEYrFkl
-         7+eXrb9xCoQWZizvvUftMZdLRoF6BlQaujaqDe+b7Hgek4wRc4ZjnmnCGJ1yykhw27f+
-         TMVs3pFdCveloHlCY22hQYhfQJKzG73sln9W9m04exHZfJ7eAgxhSVASdQAwiX8//LCk
-         wAwZ70ruy63MAQplkhnJGZ/DAsV35I295EvieVBMWFBoMEZWD7YxxwCO/7c40lPXOeaj
-         YN6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773855449; x=1774460249;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OJEyn7i7B9+B9dY5m7w6oyTeXs0Qvwqbo+nm6YMirEU=;
-        b=TfbsEfRBN+9iAfCsbdsEzEZ7H8PWAndGsQb265rZuv3N1Zo9afBaIVewNAf/mn7Inv
-         HoHHJkeS+eT5M/3TUeCqUSiMiNQffaHWyvZ5/inkmcryG6STz9h9ihWg8BauOZtsnS13
-         PXgmdqf6Oxe6tIZHl2nM+kF0rzy7ZZb9EXcs4PmF9+xVeQwOmaY+qqFUgswX5+oKwI5b
-         K4BWOZ4v8uTUKuKefv+NIKTWZgqZ5mDbB9fVuvBuKBLbgfhNEiiUi0U7J2/Z0eUQqE0L
-         5VwpbuRvLf1gPQiaRChvwV2GDWyluvP/0OmsfwoQ8l2nL4dF3ZVVTqJELbPGLdCrcIhi
-         kcwg==
-X-Forwarded-Encrypted: i=1; AJvYcCUprfg+q/+ZYx56ypGLQHKax5CbLGoBQDPDo4cTG9WeOzoeHNw891aPErYBY/eqi4MGjdlV27ztaCbY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3bGRgKDJhqLEpqz/dDraEOI682sVXgDXIkwx/AS5/h9ZMJ0VJ
-	JbvcdHkKCwMWmwIzJ81LDwg1Y4q/RvxFAUrVaolKkLLxaFNlNBq4umPI
-X-Gm-Gg: ATEYQzzDp9zWxCJfgTDI98idh/m7zaHVsUr3s62ba3PiFZiOiqr1KZ6TN/yd+flv+9x
-	ACH2pMAkbvv5z01LWlgJxzM+jCJP6Lg25t30ZAj7+Gaac6n4eFKhY7IcntibqCuI6VoeZvVXr9Z
-	MLQWy0MQKjWqVhP8RC31HSqvNJlQ6PFZHsbE4ZAzda8Faz0/yWuwIDpqeb5b6pq54dirGP5LxV7
-	kMvlGoTuNWfZ8jS+4BLNF5uUxkWTRcR8b/En/u7pu6lamLEAksZBoTleaQuhIIqfbsue1eKQUsL
-	kwJOFG256h4YRofDCpAllVgv5R2lj3d9dvkI9+l/oWcnh3+yMx/DdRqgB8TR7ILacEseXM0N5ZQ
-	WOH1uPa8T1xa2Mg+K86uqUlUyw8LbV1AiVWLY7aAt1dbGCR4qYJZFaSaKZd/JxbdclcEkzSmTNr
-	aD7YRlMmLdsqYQgLcGoPmyLIB8nDVM+FOXFvSY9Cugdvm7PqG2+St6tn9MR4y0pkXxbgy/1wuSG
-	rMBxC7WbU0=
-X-Received: by 2002:a17:902:ebc2:b0:2b0:400a:c77c with SMTP id d9443c01a7336-2b06e417f21mr54217035ad.44.1773855448985;
-        Wed, 18 Mar 2026 10:37:28 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b06e5ef42asm40025865ad.40.2026.03.18.10.37.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Mar 2026 10:37:28 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <5dce0ef8-d61a-4429-aa42-c857b3fd8690@roeck-us.net>
-Date: Wed, 18 Mar 2026 10:37:27 -0700
+	s=arc-20240116; t=1773855490; c=relaxed/simple;
+	bh=HPl+5k0VOQiOi37dHewPhIufg1R1qsuZGRuoSVJRbLg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q7F2ETr1BJASgFK/j6G0QN6KjhQH2EFwe5ZZPocAk02BggM0EpFaapz/yVnlSRld3IXST8sVbVVnwGuJaNRJHanl0XKNeti9BVwjYU7guYpzm7c1ywjLMueL9+VBrCll+M89NEZ51OybrIxjEWfDizvM+nO9Tj1zMs24mPTFxcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qo/9MguC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A999C19421;
+	Wed, 18 Mar 2026 17:38:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773855489;
+	bh=HPl+5k0VOQiOi37dHewPhIufg1R1qsuZGRuoSVJRbLg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qo/9MguCk2jSOcuQM5E82tSD79b0rJ+ZNkixOzIwCC2I7zbDnOLrxgt21ahKKxrMk
+	 /gNqJcYC311pXfLXLz1gtYBNmbrUib+fK1EzVUrvRlUCCINJMC3CUsvj/wlVuan1Rr
+	 yCndb3SvDaJA0Box9M9C4KfsWas0kKL1kBlZixp3u17YRuGDkyeUONIwO2463EcTDL
+	 KdQm31YovClvRLCe0GrSAGnur+Q5XblxZFbfsEQShQB108qJm5D774O//zsB7/+Cei
+	 lsXhrWRHqTMke3xBiuJAXZUoLtuEv3Ak2gfzUIW9AvN1ydIyVgnQAnowyjeFjsvmCR
+	 ZaPE6LZQJ7NFw==
+Date: Wed, 18 Mar 2026 17:38:04 +0000
+From: Conor Dooley <conor@kernel.org>
+To: David =?utf-8?Q?Marinovi=C4=87?= <david.marinovic@pupin.rs>
+Cc: jic23@kernel.org, andriy.shevchenko@intel.com, dlechner@baylibre.com,
+	nuno.sa@analog.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, michael.hennerich@analog.com,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: iio: dac: ltc2632: add LTC2654
+ compatible strings
+Message-ID: <20260318-case-landslide-cdff9d99cd56@spud>
+References: <5d4fb8998d9634c3e5a8ed17b80dae07@pupin.rs>
+ <20260318135736.91564-1-david.marinovic@pupin.rs>
+ <20260318135736.91564-3-david.marinovic@pupin.rs>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] hwmon: pmbus: mpq8785: add support for mpm3695-20 and
- mpm3690s-15
-To: Yuxi Wang <Yuxi.Wang@monolithicpower.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, paweldembicki@gmail.com,
- carl.lee@amd.com, ythsu0511@gmail.com
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, wyx137120466@gmail.com
-References: <20260318094635.1873-1-Yuxi.Wang@monolithicpower.com>
- <0111019d00586e60-e3a938c5-6b1d-47c8-9856-0fc717ece565-000000@us-west-1.amazonses.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <0111019d00586e60-e3a938c5-6b1d-47c8-9856-0fc717ece565-000000@us-west-1.amazonses.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="UUFt2eb+o6gxv3mb"
+Content-Disposition: inline
+In-Reply-To: <20260318135736.91564-3-david.marinovic@pupin.rs>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277404-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
-	FREEMAIL_TO(0.00)[monolithicpower.com,kernel.org,gmail.com,amd.com];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-277405-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.955];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.983];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[roeck-us.net:mid,monolithicpower.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: EA93E2C0F32
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D0B222C06B6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/18/26 02:48, Yuxi Wang wrote:
-> Add support for the MPS mpm3695-20 and mpm3690s-15.
-> 
-> Signed-off-by: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-> ---
->   drivers/hwmon/pmbus/mpq8785.c | 10 +++++++++-
->   1 file changed, 9 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/hwmon/pmbus/mpq8785.c b/drivers/hwmon/pmbus/mpq8785.c
-> index 87bd039c77b9..03889a197c4f 100644
-> --- a/drivers/hwmon/pmbus/mpq8785.c
-> +++ b/drivers/hwmon/pmbus/mpq8785.c
-> @@ -12,13 +12,15 @@
->   
->   #define MPM82504_READ_TEMPERATURE_1_SIGN_POS	9
->   
-> -enum chips { mpm3695, mpm3695_25, mpm82504, mpq8785 };
-> +enum chips { mpm3695, mpm3695_25, mpm82504, mpq8785, mpm3695_20, mpm3690s_15 };
->   
->   static u16 voltage_scale_loop_max_val[] = {
->   	[mpm3695] = GENMASK(9, 0),
->   	[mpm3695_25] = GENMASK(11, 0),
->   	[mpm82504] = GENMASK(9, 0),
->   	[mpq8785] = GENMASK(10, 0),
-> +	[mpm3695_20] = GENMASK(9, 0),
-> +	[mpm3690s_15] = GENMASK(9, 0),
->   };
->   
->   static int mpq8785_identify(struct i2c_client *client,
-> @@ -114,6 +116,8 @@ static const struct i2c_device_id mpq8785_id[] = {
->   	{ "mpm3695-25", mpm3695_25 },
->   	{ "mpm82504", mpm82504 },
->   	{ "mpq8785", mpq8785 },
-> +	{ "mpm3695-20", mpm3695_20 },
-> +	{ "mpm3690s-15", mpm3690s_15 },
->   	{ },
->   };
->   MODULE_DEVICE_TABLE(i2c, mpq8785_id);
-> @@ -123,6 +127,8 @@ static const struct of_device_id __maybe_unused mpq8785_of_match[] = {
->   	{ .compatible = "mps,mpm3695-25", .data = (void *)mpm3695_25 },
->   	{ .compatible = "mps,mpm82504", .data = (void *)mpm82504 },
->   	{ .compatible = "mps,mpq8785", .data = (void *)mpq8785 },
-> +	{ .compatible = "mps,mpm3695-20", .data = (void *)mpm3695_20 },
-> +	{ .compatible = "mps,mpm3690s-15", .data = (void *)mpm3690s_15 },
->   	{}
->   };
->   MODULE_DEVICE_TABLE(of, mpq8785_of_match);
-> @@ -148,6 +154,8 @@ static int mpq8785_probe(struct i2c_client *client)
->   	case mpm3695:
->   	case mpm3695_25:
->   	case mpm82504:
-> +	case mpm3695_20:
-> +	case mpm3690s_15:
->   		info->format[PSC_VOLTAGE_OUT] = direct;
->   		info->m[PSC_VOLTAGE_OUT] = 8;
->   		info->b[PSC_VOLTAGE_OUT] = 0;
 
-I don't think those changes are needed since both chips appear to be fully
-register-compatible to other chips supported by the driver (specifically the
-generic mpm3695 entry for both chips).
+--UUFt2eb+o6gxv3mb
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Obviously I can not say for sure if that is really the case for mpm3690s_15
-since its complete datasheet is not available, so my statement is based on
-the code above.
+On Wed, Mar 18, 2026 at 02:57:31PM +0100, David Marinovi=C4=87 wrote:
+> From: David Marinovic <david.marinovic@pupin.rs>
+>=20
+> The LTC2654 is a quad-channel, 16-/12-bit DAC with internal
+> reference voltage and SPI interface, sharing the same 24-bit
+> SPI protocol as the LTC2632/2634/2636 family.
+
+What makes these devices incompatible from the existing ones in the
+file?
+Can you add a note about that please?
 
 Thanks,
-Guenter
+Conor.
 
+>=20
+> Add compatible strings for the following variants:
+> - lltc,ltc2654-l16: 16-bit, 2.5V internal reference
+> - lltc,ltc2654-l12: 12-bit, 2.5V internal reference
+> - lltc,ltc2654-h16: 16-bit, 4.096V internal reference
+> - lltc,ltc2654-h12: 12-bit, 4.096V internal reference
+>=20
+> Signed-off-by: David Marinovic <david.marinovic@pupin.rs>
+> ---
+>  .../devicetree/bindings/iio/dac/lltc,ltc2632.yaml    | 12 +++++++++---
+>  1 file changed, 9 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml =
+b/Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml
+> index 733edc7d6d17..b22df24dee07 100644
+> --- a/Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml
+> +++ b/Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml
+> @@ -4,14 +4,16 @@
+>  $id: http://devicetree.org/schemas/iio/dac/lltc,ltc2632.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> =20
+> -title: Linear Technology LTC263x 12-/10-/8-Bit Rail-to-Rail DAC
+> +title: Linear Technology LTC263x and LTC2654 Rail-to-Rail DAC
+> =20
+>  maintainers:
+>    - Michael Hennerich <michael.hennerich@analog.com>
+> =20
+>  description: |
+> -  Bindings for the Linear Technology LTC2632/2634/2636 DAC
+> -  Datasheet can be found here: https://www.analog.com/media/en/technical=
+-documentation/data-sheets/LTC263[246].pdf
+> +  Bindings for the Linear Technology LTC2632/2634/2636/2654 DAC
+> +  Datasheet can be found here:
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+LTC263[246].pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+2654f.pdf
+> =20
+>  properties:
+>    compatible:
+> @@ -34,6 +36,10 @@ properties:
+>        - lltc,ltc2636-h12
+>        - lltc,ltc2636-h10
+>        - lltc,ltc2636-h8
+> +      - lltc,ltc2654-l16
+> +      - lltc,ltc2654-l12
+> +      - lltc,ltc2654-h16
+> +      - lltc,ltc2654-h12
+> =20
+>    reg:
+>      maxItems: 1
+> --=20
+> 2.50.1
+>=20
+
+--UUFt2eb+o6gxv3mb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabri/AAKCRB4tDGHoIJi
+0pBIAP9RORlhRv+rtXxBd65FrAKSXHwlMibwlikrHN1jdZdYxwEAtxWPpFhgKynw
+5UKK16RnBapFLp4/z+cEHSkCHyxGgAs=
+=kFnl
+-----END PGP SIGNATURE-----
+
+--UUFt2eb+o6gxv3mb--
 
