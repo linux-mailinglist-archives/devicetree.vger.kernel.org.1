@@ -1,64 +1,65 @@
-Return-Path: <devicetree+bounces-277237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277238-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8ELJIaOuumlXagIAu9opvQ
-	(envelope-from <devicetree+bounces-277237-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:54:43 +0100
+	id 8DnyEGSxumkVawIAu9opvQ
+	(envelope-from <devicetree+bounces-277238-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:06:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0EA92BC69F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:54:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3B842BC9CC
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:06:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 492FD3026D85
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:51:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7C33E30642F4
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:52:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 607B13DC4DF;
-	Wed, 18 Mar 2026 13:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5F0D3DCDB8;
+	Wed, 18 Mar 2026 13:50:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aV8I7UUg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XT8f/tCz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C79E3DBD6D;
-	Wed, 18 Mar 2026 13:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90A323DCDB5;
+	Wed, 18 Mar 2026 13:50:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773841850; cv=none; b=Q4UAS8YAJVU8Ja5NA4hziRaf1cCXJRpSdAIXEAOnxFjlzxN2NuhgK4BPWZvJ/DW2DJqcPz2gfcLrLA44rvDqon1z14wEeO+2zy9VJEigzs3J3D+WNLr5tgmt+r9Alhq1kCuLYSNu7LSkww+hfazwgVk18JBBa9kl7KDhdtnbnLc=
+	t=1773841851; cv=none; b=Kut6SeBrogJ4/HcVD7EYWOknHC/GtGqUPQsfugwViMU2XrY/kd1MDXml97HTeM6VY8whX7uC5eUnLv0pS0E3LigvQB/OzQ/XXSCH4aEcwBdxOR6QVSKHS2HV98ARKNif4PUx75O8m0kWO1k+fRfwmiXhX8/bl4+GdBmslLpakJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773841850; c=relaxed/simple;
-	bh=kcRB/zY2HbBMecuJj6Pmw3F1Bx/+LXX6E9CQ9LpIhzQ=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VF722pXNTSkggvSg7rpiOAZwx3MfwRHMfE8/+TCf59gF4wUDY2Le3dcvmr6ytv5iV1HiOi2UYCpkQwmiN+w9Oy5k4IMSflsusXzAWKjyivD2yHFSL17SBBshvE0CGqzWJJ+62rAI3ejqxcKGRXW8/GyihUO1AmiNfwyZ4iey1r8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aV8I7UUg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF6F4C19424;
-	Wed, 18 Mar 2026 13:50:48 +0000 (UTC)
+	s=arc-20240116; t=1773841851; c=relaxed/simple;
+	bh=bYmJU8hDq5tEXGv0ab5w3ft+M6a12orrx2A0ypZlKn8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=NYyn7Yhx1sd9yPoWg5wcHvcO6V0Xhxux5qpPTcnGAOoDvIB0nBGn7jyBTwxlG5WrnKVj+rjmncFoYHtWGhvNnBR7hwYT2nkhBf3TD2WWoG5uS58div9DiwctfDLlMyeGt7ijZsKmZSkmYTwtCUTuB5dqI/W1Rl3Y4a4cnWmxsJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XT8f/tCz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28225C19421;
+	Wed, 18 Mar 2026 13:50:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773841849;
-	bh=kcRB/zY2HbBMecuJj6Pmw3F1Bx/+LXX6E9CQ9LpIhzQ=;
-	h=From:To:Subject:Date:In-Reply-To:References:From;
-	b=aV8I7UUgjzrrw/wOofrT68oJQoie6L0crbAGHNrs1K12h4gZQ1llOy/+sk0FDDjTl
-	 V3Ro/i4n6fvnG17uTwwg04NHT92JLIiwNqM60Gw2xTlQ2+mTZHuCYcSgFWhqb1zSNB
-	 p2Xt70gDRb//BnsaIam/aRQkQmfwMHpRdwsj1LXyMMsrh0pDKDSKyDQc4LZ3TZeiAN
-	 6g7PpTLFusNKI0KUonNyBfb5ZHBeYLSTXcj23PJyJnro8hH8Z80mtmQyJkmWYmM4NA
-	 J72Ev5cHTkRurSv9PgEw6UMnLpFfT1h+li3JfYNwo6UiYZpyfvwmO5JBHTrOWj81vm
-	 hLJSx4kv45S9g==
+	s=k20201202; t=1773841851;
+	bh=bYmJU8hDq5tEXGv0ab5w3ft+M6a12orrx2A0ypZlKn8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=XT8f/tCzMUyP4JtYmYdu0hfygNrNgjudPIsG0NhisfPFZ1ancWOu6ElMGKe7ZlCmj
+	 dtytArnELu0QqzBtdT5vzUxsctKMUMT48E9FNwxahCLO716l/tXI+mVpjR7hALim/O
+	 SI9CE9XVaNYigS3iyahWrHJsA50PLdR9GBWbBiV+hYlvdTXCsH/GpA7KCchux7+MJG
+	 /FiY1F5IVLYK2wi4EFX9LPhoD+MbSPI4nPs+WCqOwFXXZk3NndforKMCmjzaMSWRV4
+	 Vjgti7kSNWweoVojy8lByrjeInIxVuoi3L3BVbtKGue7aR+nshNCs7FgmxMevRcXBn
+	 68/0gSiBNzhfA==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
+	Le Qi <le.qi@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: [PATCH v4] arm64: dts: qcom: x1-crd: add USB DisplayPort audio
-Date: Wed, 18 Mar 2026 08:50:10 -0500
-Message-ID: <177384182890.14526.14528740000024549733.b4-ty@kernel.org>
+	kernel@oss.qualcomm.com
+Subject: Re: [PATCH v2] arm64: dts: qcom: hamoa-evk: Add DP0/DP1 audio playback support
+Date: Wed, 18 Mar 2026 08:50:11 -0500
+Message-ID: <177384182893.14526.15474276434838592182.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260209093237.33287-2-krzysztof.kozlowski@oss.qualcomm.com>
-References: <20260209093237.33287-2-krzysztof.kozlowski@oss.qualcomm.com>
+In-Reply-To: <20260210024037.3719191-1-le.qi@oss.qualcomm.com>
+References: <20260210024037.3719191-1-le.qi@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,12 +71,12 @@ Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277237-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277238-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -87,27 +88,28 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E0EA92BC69F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C3B842BC9CC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Mon, 09 Feb 2026 10:32:38 +0100, Krzysztof Kozlowski wrote:
-> Add support for playing audio over USB DisplayPort (the two left USB-C
-> ports on the CRD device).
+On Tue, 10 Feb 2026 10:40:37 +0800, Le Qi wrote:
+> The hamoa-evk DTS currently lacks DAI links for DP0 and DP1, preventing
+> the sound card from exposing these playback paths. Add the missing links
+> to enable audio output on both DP interfaces.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: x1-crd: add USB DisplayPort audio
-      commit: 90b7cc18e9333879991f178c3f78bd1b93e2e8e7
+[1/1] arm64: dts: qcom: hamoa-evk: Add DP0/DP1 audio playback support
+      commit: a210cb039b41a68595c517918640813430a1c8ca
 
 Best regards,
 -- 
