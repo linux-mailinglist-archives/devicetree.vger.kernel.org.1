@@ -1,136 +1,285 @@
-Return-Path: <devicetree+bounces-277319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277320-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eG2aAmO+umkGbgIAu9opvQ
-	(envelope-from <devicetree+bounces-277319-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 16:01:55 +0100
+	id 0HNfAhnCumkGbgIAu9opvQ
+	(envelope-from <devicetree+bounces-277320-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 16:17:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 219EB2BDC05
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 16:01:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AB8C2BE065
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 16:17:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6961E309F68C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:57:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4B8CB31B8874
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:09:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90C1D3DA7FF;
-	Wed, 18 Mar 2026 14:57:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4866533B97A;
+	Wed, 18 Mar 2026 15:06:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YoWNFLJC"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hdGeTTlm";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="dl3MtHI3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 980643DA5CF;
-	Wed, 18 Mar 2026 14:57:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AE9B221FCF
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 15:06:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773845835; cv=none; b=Kb6zdEKcwG3KjB2D2fjkEcXAj35wa4yivoJY1jiUiEqMlO3QjjQceLr2g8XaMscbCxSvrxPu45bAGsJ2D7YATgeX8P1sKapEaGCp0Dwxv2fTYNqNIvPldgMtY7Re1mavv2eHfk1B88hT4dcbCCRl3IYFhx/dYXnyifqyBjS0qRU=
+	t=1773846366; cv=none; b=J9bt1wzgZE6rm0LxaSMrBPw996vkiSReNzdcix1K0stvZEVhuMqbRYSaPlESX1pSEXXjPL4A8iCXySYHRaePLg/aqLJ3Gdxp/x9SsdsFHYj+G7nmBksazgVFTGkkakWsnVtIE/YiGdoiTz3RHf7EsWXolFOErvFi1/IdEiS3pWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773845835; c=relaxed/simple;
-	bh=xRnPqAZQZ0x1PoBQ1+qTXwJ2WQqtGL4R4H8wesG6Rzw=;
+	s=arc-20240116; t=1773846366; c=relaxed/simple;
+	bh=w8RVlObokax96tSpdXL3RgM28FgDZ7jKOP+xERdOEDw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HSCay10QaQ8TC4Y0wpxDMUfnFIolvAntWHVCRis2q4slmCH5yXcZRem6rAS6o5rFJxyfBWqJ3VAJla1qQ6WisXDEUbKCu6vyGpC1hA8V5PJKa0W4XysPRXakXPHSSQSjgYTq1KHodLkmEWcG6eaHJI0hmKcc/szwIdRBHtFOP5s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YoWNFLJC; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773845834; x=1805381834;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=xRnPqAZQZ0x1PoBQ1+qTXwJ2WQqtGL4R4H8wesG6Rzw=;
-  b=YoWNFLJCk9fIywP2tLwhLDYrA0OgbuQWKN2FR+Gym5EdkWtFlCWoqw/R
-   socVgnxE7pqgObaEl2nfGejpXF9KEmko5YaTYwjJE0yoqpHimLd1skiku
-   f53kzZsv5DrQTcDP5qK4K0KxByM7tJpu/HJ04r1h3hvw3g3V77QnqPUA1
-   HqOG75U18POqY2owIS9t29cV/b8Jb4gqxD9bwa1XZyIZ/QZ/vk3ug9JK0
-   rfm9ehAQYXcnJ8JCtcs/tGxO0WoOJxbb07RMQxEdIPE837OXE5pZXM3Gr
-   aRaWwjtAsTBFIhAOA+x3SqyKN1GF05b+67AXYP92HJjpWfUeUI8LygkJ0
-   g==;
-X-CSE-ConnectionGUID: SMPkfZOPRRm8wwyBrcJdhg==
-X-CSE-MsgGUID: KA7oOEntQpqATuPyz3ViDA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="75082264"
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; 
-   d="scan'208";a="75082264"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2026 07:57:13 -0700
-X-CSE-ConnectionGUID: 3YRhrJykQ2WTE8d3EyWWhg==
-X-CSE-MsgGUID: CB3lNrEUSduuxXip/IsMyQ==
-X-ExtLoop1: 1
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.240])
-  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2026 07:57:10 -0700
-Date: Wed, 18 Mar 2026 16:57:08 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: David =?utf-8?Q?Marinovi=C4=87?= <david.marinovic@pupin.rs>
-Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	michael.hennerich@analog.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] iio: dac: ltc2632: drop enum and use individual
- chip_info objects
-Message-ID: <abq9RCfFjGVzhrMg@ashevche-desk.local>
-References: <5d4fb8998d9634c3e5a8ed17b80dae07@pupin.rs>
- <20260318135736.91564-1-david.marinovic@pupin.rs>
- <20260318135736.91564-2-david.marinovic@pupin.rs>
+	 Content-Type:Content-Disposition:In-Reply-To; b=lfKwjnj5wRLj+B5A9lZcVs7kmBOwWBrv4b70F51QKbpCgtugOaE2j9bR/mI5dvT6Gpg/VpOXg0l2XhCdmPUGfA7bQTEculgYtex1sKmOqSQUanOAkr736xc06AtU8MeYbTB+m6VMIyknC8tEsn0eoIi+MVju6dH8rlqMbHCkAYU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hdGeTTlm; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dl3MtHI3; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62ICUHVe2878103
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 15:06:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=whZ+BLOA3aSGWD/2ng6Ki2lM
+	3Sn01GwNyZKo3R4NKMI=; b=hdGeTTlmMxMj3TzYlVrgXrj/e1/Hzj6MDLkHrFic
+	+y8s+mDG1Geh4e4Ju/56hTT6aBksCxF3Vjr6+HVxlX2d14yw1fZ+XYcQQBBpECRr
+	GqHJTTSammK3CpezyGOOltekCt+I3l6NSdnIX9Rd6GrzbK6ygQlQWn7LuA16PYpC
+	nGWf/PQpTDFGKV1d07lBp/0lkU2ahjZOfGrqoPb/P+HQ3bWVtF4UY5WkXnle23HR
+	O/1ESgRQ3KBfjXSc+WLS33Ji8Q18FaM6NvWFGVM2aXSuQybnUNHyGD1FEwWDz+mq
+	O2yev1cNopvbNgxahs6wEUUHLS6nQo72gjUntROHQbhAIw==
+Received: from mail-vs1-f69.google.com (mail-vs1-f69.google.com [209.85.217.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cypwr21cr-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 15:06:02 +0000 (GMT)
+Received: by mail-vs1-f69.google.com with SMTP id ada2fe7eead31-60280bcf80cso6958343137.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 08:06:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773846361; x=1774451161; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=whZ+BLOA3aSGWD/2ng6Ki2lM3Sn01GwNyZKo3R4NKMI=;
+        b=dl3MtHI3wfCPW1VLs8sCEkii/c2r7GXAIcfu7dSfoSw1OeqGuHNFHDfuEEQTq9Lb4R
+         z/Om795ujnA6UZ7rO+RpiIPKjEKh3FnuyFh9ewdvix9HVO8cCCrU7rI/zB6fm1NASknx
+         w92DpzDKFN3sYAhK06Lh06QjWWjHysAjTy5MgMVIdLfh4vV6Y11Nxyp6XtaqbZqDwHVh
+         rqZnuXzTfxmoV4EKb07KbIO6iI44bSs0mcAdcn8sKiFnv8bx8XJ/TulIr23UlxGFN+sr
+         pQAhYqJN7m4I7y+OY89eys4XfKjhUr+aI7N2n/cxI1FBmx2Q4h0IDQ/fwLKc6/2a2Eed
+         rkKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773846361; x=1774451161;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=whZ+BLOA3aSGWD/2ng6Ki2lM3Sn01GwNyZKo3R4NKMI=;
+        b=mUASWphTquREASLYrkrn1EvFsEYNgk84WysrIsekxiM5l1dYBZheSZZsBdlufKfTfG
+         P1bo6CckjLNnoQIvfWPKM2yj+wLa46mPA41AmgOf+TnmsMCth5l/ayVDFAHsp4+bu1pz
+         NQRbfYcVwfymZE4ilrERTjcOnMPFMqC7BvgdgsknVPi3/QVffmwPDsMUey33lwYD8aoG
+         vC3isRGRQQhNA3/prGx2VrCjZ9YqV/FXkOYRMqO+0QhVQi8eP9iuzJ2HOdXieSTN9hYI
+         SuLEMa6hNYwNXYWVm8cwFV8Ssp5jc2jBWtal2kpKhXWSN0Zx3e8g58yGjmO6nPS/LzjB
+         9jLg==
+X-Forwarded-Encrypted: i=1; AJvYcCVSrcWzIZYVH5cja68hwaEmGDbzF82DMfaALsA4JjJLFVk2KZJiWRznYOtbWsKFT719nnDRPhA6bllS@vger.kernel.org
+X-Gm-Message-State: AOJu0YzIq3g3GSCkxid93JQOnWRawwm/Rg1boqm5LFpzRit3Y9eCTcx2
+	Q58ai4AAxdaelxMgWYpPvCsLlM6rYnWD0Ny4udjWvydy513mKsaVtU/Sn+NTs74jFJpcfwnVMi9
+	qiztDq9QSheoWnXu6VkNAJhZaUcGCIxxl8Xdi62gJ3/tVNNKpO/reHqElcY+97NSR
+X-Gm-Gg: ATEYQzyMD276xqcufIt+0JIAUpnRZZMEBHuGoIfu62izpk0g9pinCTWJxJuJQAg+Jc2
+	7Kmr6RWT8yuVfoGeFi7eUoaL+jNAPm8gRV7quXR31fFLNhqdfig2H999ZICCx8imKEMk8pB3J0Z
+	v2eCEAgKYdspMfR3dB35aY0XQvkbm2Zpz4hl3RlC1MuYkAf+6NEL6jdPrvm6iXqWd60+npWHdyC
+	SKgIYXpiAl0FQP4UQ15bdROIERVW1IouQLRzvHRpS0BWKBuf6RYgnY3zrTULalfkC+M8KYnwlsa
+	g1bmAObRrol29I30umv84k+ICAFUkI3VytaDqsjsrn6zAcpKVmwdoXCEQ7zL7WpPQAaQbQu5Qof
+	8OXxO44CgPHmpIIC6qhKsmWb3zul75uNfarwed1S+5FrTGujzIFm53nsfR2uXxGYs8YlhjONxYR
+	OdGRcagbOV4H/nSRH/FbolIdRdOQLKSlElr9s=
+X-Received: by 2002:a05:6102:956:b0:5ff:ea89:449a with SMTP id ada2fe7eead31-60263f21872mr3470511137.13.1773846361211;
+        Wed, 18 Mar 2026 08:06:01 -0700 (PDT)
+X-Received: by 2002:a05:6102:956:b0:5ff:ea89:449a with SMTP id ada2fe7eead31-60263f21872mr3470469137.13.1773846360105;
+        Wed, 18 Mar 2026 08:06:00 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a279c2c256sm586547e87.24.2026.03.18.08.05.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Mar 2026 08:05:58 -0700 (PDT)
+Date: Wed, 18 Mar 2026 17:05:57 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] clk: qcom: dispcc-eliza: Add Eliza display clock
+ controller support
+Message-ID: <oqgc2rtmtr725u723vwueew2g7oq5aro47744j445373j4pp2z@e4oaur2fggyp>
+References: <20260318-clk-qcom-dispcc-eliza-v2-0-8c05581168d1@oss.qualcomm.com>
+ <20260318-clk-qcom-dispcc-eliza-v2-2-8c05581168d1@oss.qualcomm.com>
+ <1a00582d-66d6-4325-aafd-156cfacee8cd@oss.qualcomm.com>
+ <d2975a1a-04bb-4026-a0cd-34571f99ae02@oss.qualcomm.com>
+ <2227a9d2-fb34-4d54-8122-c00f54009de1@oss.qualcomm.com>
+ <846ae47c-8e0e-4fdb-899d-de679d013fa5@oss.qualcomm.com>
+ <xofpfzgcsmjhprnnffqrwbauisbsctg7bedtri2vxtxk5zowz4@rjlmceevwesg>
+ <9ea16bfe-ac9b-405c-8597-e4f398347d8f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260318135736.91564-2-david.marinovic@pupin.rs>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+In-Reply-To: <9ea16bfe-ac9b-405c-8597-e4f398347d8f@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=bIcb4f+Z c=1 sm=1 tr=0 ts=69babf5a cx=c_pps
+ a=5HAIKLe1ejAbszaTRHs9Ug==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22 a=EUspDBNiAAAA:8
+ a=RL4VFcGN3qrngw8Fkn4A:9 a=CjuIK1q_8ugA:10 a=gYDTvv6II1OnSo0itH1n:22
+X-Proofpoint-ORIG-GUID: sVs3n1rEP-ZOFdTe0gtnq-QzPb0al8qz
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDEyOSBTYWx0ZWRfX1H/df8rjUZRi
+ 2F1j44vUITm2iFX4x4nD6bBpEDa2l8dVhVEyJVcZNqQvQ0ItCtveKU2nT67YKGSevzpnJHGvbdj
+ MXuQF+BJq/c6bGeme+zoyu1ZZ7POZpPzg6YDhAkYXHGWnnE9PXO6wKcpC6yMAu08fNZjfUpieYw
+ 5AqU839G2NjAly3tbUaCE2dc13HIjd6uGBRxwfbhht1V9HiRYNSTGBL+3W5Wo2R1YnCQe0vVWgq
+ 86EfPIrCpPHRpj+UzFPAcrWNwZG8p+ZmHBeIup2zYCGb5NnR4jGCS4qNc9nHDvdU1Yx7gK1i0iS
+ c31tYuTZ7m+5O8NmdGlRTBhsmgOKCWh1qbz4nOhkp8PPUnCCRI+jMhGyU3aqhAe9nmhxthQvpcZ
+ UdWfJFGPxdYrsAOazBWm8BqX8pS2bTwf87JIyJB7ciHBFgIqOaHkDpxba5Ta38GYCCf8DL5onQH
+ +o7I6scPCtkntjvBwVA==
+X-Proofpoint-GUID: sVs3n1rEP-ZOFdTe0gtnq-QzPb0al8qz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-18_01,2026-03-17_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 impostorscore=0 malwarescore=0 adultscore=0 lowpriorityscore=0
+ clxscore=1015 priorityscore=1501 bulkscore=0 phishscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603180129
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277319-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277320-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:dkim,qualcomm.com:email];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.990];
+	NEURAL_HAM(-0.00)[-0.997];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ashevche-desk.local:mid]
-X-Rspamd-Queue-Id: 219EB2BDC05
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 5AB8C2BE065
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 02:57:30PM +0100, David Marinović wrote:
+On Wed, Mar 18, 2026 at 03:33:56PM +0100, Krzysztof Kozlowski wrote:
+> On 18/03/2026 14:46, Dmitry Baryshkov wrote:
+> > On Wed, Mar 18, 2026 at 12:36:24PM +0100, Krzysztof Kozlowski wrote:
+> >> On 18/03/2026 12:32, Konrad Dybcio wrote:
+> >>> On 3/18/26 12:13 PM, Krzysztof Kozlowski wrote:
+> >>>> On 18/03/2026 11:48, Konrad Dybcio wrote:
+> >>>>> On 3/18/26 11:39 AM, Krzysztof Kozlowski wrote:
+> >>>>>> Add a driver for the display clock controller on Qualcomm Eliza SoC,
+> >>>>>> which is copied from SM8750 driver plus changes:
+> >>>>>>
+> >>>>>> 1. Additional DT_HDMI_PHY_PLL_CLK clock input,
+> >>>>>> 2. Eight new HDMI clocks,
+> >>>>>> 3. Different PLLs (lucid and pongo).
+> >>>>>>
+> >>>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> >>>>>> ---
+> >>>>>
+> >>>>> [...]
+> >>>>>
+> >>>>>
+> >>>>>> +// SPDX-License-Identifier: GPL-2.0-only
+> >>>>>> +/*
+> >>>>>> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> >>>>>> + * Copyright (c) 2023-2024, Linaro Ltd.
+> >>>>>> + * Copyright (c) 2024-2025, Qualcomm Innovation Center, Inc. All rights reserved.
+> >>>>>
+> >>>>> -> Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> >>>>
+> >>>> That's the copyright I found in the downstream code I used in few places
+> >>>> here (with modifications) and I am not touching them. I also don't care
+> >>>> about these and I am surprised this keeps popping in community review...
+> >>>
+> >>> You may not care, but our legal department does..
+> >>
+> >> And your task as community maintainer is to care about community and
+> >> Linux kernel, not about legal department.
+> >>
+> >> Legal department can comment here, if they care. You as maintainer have
+> >> rather responsibilities regardless of that legal department.
+> >>
+> >> Don't bring corpo legal stuff to the community.
+> > 
+> > Then please follow the internal company guidelines as outlined in the
+> > legal&marketing documents.
+> 
+> That's not your task to instruct people what internal stuff should they
+> follow or not.
 
-> Remove the ltc2632_chip_info_tbl[] array and related
-> ltc2632_supported_device_ids enum used for looking up chip-specific
-> information. Instead, use separate static const struct
-> ltc2632_chip_info objects for each supported chip variant.
+Well... For me it's not different from your comments telling other
+submitters to follow "internal guidelines" when submitting patches. Or
+not to follow them.
 
-Suggested-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+I don't want to argue about the corporate guidelines. If you think they
+are incorrect, please change them.
 
-(I have not reviewed that scrupulously, but at the brief look for the values
- and names LGTM.)
+> 
+> Especially not implied by previous comment "Then".
+> 
+> > 
+> > JFYI, several other Qualcomm maintainers also enforce use of copyright
+> > headers for Qualcomm-provided patches. Konrad is not unique here.
+> 
+> I already objected to one of them, so I know.
+> 
+> You do understand that this is completely broken review process? As
+> every contributor, I can object to that comment with arguments (and I
+> did in the past), however you as reviewer do not bring any
+> counter-arguments for that all. You just refer "follow legal internal
+> stuff". No, this does not work for that.
+> 
+> If you bring review comment you must be able to justify it, when it is
+> being discussed. You cannot refer "but legal team said".
+
+If you want to put it that way, sure. As a Qualcomm employee you have a
+set of internal rules you have to adhere to. One of them is this
+copyright string. I'd rather not have legal department pre-review all
+our contributions. Been there (in another company), thanks, but no.
+
+In my opinion, the maintainers and reviewers should ensure correctness
+of the patch. Correct legal header is one of those. Consider someone
+submitting patches which has copyright strings such as "(c) qwalkomm" or
+"(c) lunix foundacion". They would be questioned for correctness.
+Likewise when somebody from Qualcomm submits a patch with "(c) QuIC",
+they were asked to change it to the current form. It doesn't concern
+non-Qualcomm employees, because they cannot change the copyright of the
+material.
+
+> 
+> Otherwise look for comments for your contributions where you are going
+> to receive review "please remove all boilerplate because my legal team
+> told me that and I am not going to provide actual arguments why".
+
+In this case there is one. "Because I assume that you have a requirement
+to do so from your company". If I were reviewing patches for e.g.
+Mediatek driver, if I knew the guideline for the patches and if I saw
+any of the guidelines to be breached, I'd have reacted in exactly the
+same way.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+With best wishes
+Dmitry
 
