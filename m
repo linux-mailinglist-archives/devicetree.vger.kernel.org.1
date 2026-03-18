@@ -1,212 +1,164 @@
-Return-Path: <devicetree+bounces-277402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277403-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iB1vCTDkummdcwIAu9opvQ
-	(envelope-from <devicetree+bounces-277402-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:43:12 +0100
+	id EItfHmjiummdcwIAu9opvQ
+	(envelope-from <devicetree+bounces-277403-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:35:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 807852C0794
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:43:11 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ADBF2C05F3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:35:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BC76333D9CB3
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 17:34:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D25593028102
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 17:35:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAA103101D4;
-	Wed, 18 Mar 2026 17:34:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C732311940;
+	Wed, 18 Mar 2026 17:35:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YiIZSNhe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hMDJvEc9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A19430EF75
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 17:34:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB7FE3101DB;
+	Wed, 18 Mar 2026 17:35:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773855250; cv=none; b=Q/8PAI3dUopt5ehacMgjoZqRTG8Ce+vhWQwSfOBSxY2Pk5kSOE+gmqreq3wW4XbIo/OjsbOEc3Tej2K6p5q+XcQvmDtZ6ltorjpFV2A1/DQWWp7v7JUg7ZQo9Lh94nf9bPbj+MDzpbH1NUi7WJApHwGR4GSyPNuqJpxBRDskSI8=
+	t=1773855317; cv=none; b=gN2eQd7Up7VSbC3sbTTLrXrnBjbR7Q9d8nFhfrSxBhVlBjKvQkkLeAJUeeVP1RP2tbtxbTT/AkXqHZNp3fAiV3l2FdVcwO06xlc8ax6yJ7Tc75440LvAwUAWkIZf47PlUX2BedpEzgadgynBx0z+60PLD46HDu3R02QtvgFUtXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773855250; c=relaxed/simple;
-	bh=8VMNYnpVHaNRAEX/drpWt4PsdIMVh+ZoUPG/IH5ILAk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SXFJIP0b7zSx2jthRakBN6kahVe3Y5Daa17ZUTsF6xAV5T4bpeQrUgkQCUgh+gS1sl0BLcrvMrHzhVyi7+hneyb2efHjeqroA0K+aUFCEGMVFJsoalsG0vDK2Rna94Eui/SeE5D7Evhz6jlDDZ/FAJk0IgiTsrlL4L/TzfCucKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YiIZSNhe; arc=none smtp.client-ip=209.85.216.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-35b905e9dc0so110074a91.3
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 10:34:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773855246; x=1774460046; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=EPgwoRrC7+QQkTKwjUbOhwycwkaqrufAa2TwHnGOJoA=;
-        b=YiIZSNhecEvRGOqutfd9hM/EMlmogo28LF58oXP44nK5gmxn0S2ySfMpb7uxnnl6Rp
-         Z6ldG5iB1G46L0rUkLDrL0QBD+BlyKCii4Hk47qrPwM+pOtkuH1GZ3d7eXiPKnTiyyBq
-         90w6X68RLfAe3UM4omy2A+S/ORYTGM/NUd8xvvheOn0MYS4ZV3tUnx8n0PPsfqy1Gmef
-         F6atxGYCdGu4ODuJQqWWY4AFy7zmo8+S4K90ecGCt/6kjHnJ+rgs60UAA9NjA2iQk6V3
-         RzG7n/zadIJnBcg4TuOSjxU7TeysX9TwSSmXUJB+0clQE8k8sK0FwQjXhWukAgdAFogS
-         DR6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773855246; x=1774460046;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EPgwoRrC7+QQkTKwjUbOhwycwkaqrufAa2TwHnGOJoA=;
-        b=UMLoO4ypyszU4ljl7GEyqBujJIjaibIZuQozQFRRufEc14QhSwhP1+zJMFOx8Ji0gy
-         y3tedoJVXD1wHP0vRBkJUc7858ntpBZmmRgMsuTrq4KUNMXd4LyqnKrG8JxSquptq7gh
-         OD9hg9EKIjmeP5cjWfBByWxXN2V570L/sw+tNkvrNTtY27F3UG1bdqRa96IGZrjUdxhW
-         b0Ae6yqFMP9feDrRE1mSRe+V+z+WzbTd/qBEB4Ava9+mAu0QVyTQbiQPu4d+KBJCBnmq
-         1whsSMCitkF7EITdfkTwj4rEhPaihMeqo3g/HcWiHq//c1uxrS0iOSsZJ0aa7iu6of/N
-         CcGg==
-X-Forwarded-Encrypted: i=1; AJvYcCUgSOBEZ/1KXM28pTpp5YKMRo42gFCQanVY1rtbK0ZuiAnv+XlydP43uSIj2MM/3p86MWxkAYo6ljD+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx95wTf7HYaTAU9LEjmnNXGsYYRKuIE53LX/3Umi8+knsacLlnv
-	hnlsCE7N31/FnvxsgRGN90p+DeanwKCwuJ0qhcO4F6qAaH7MG0i8E8cy
-X-Gm-Gg: ATEYQzy3AqE2NeNoNR/6i6P0DRuyeJP1PMYJA8BqP2CKejVPQPcmz8D/lvX48MJDdbj
-	3pTfnr9b0kCCASTC1Eapt6u8pw0A9uXJJEeGccRPo23cbmEQe24fERHyiFXysii1TOhgdvSEf/H
-	hW5U8AMXgjMo/+5MlKHMZxzglYNOabNTxYNdDdZZ/qa9LxrlWCua4gbH3Ke2SZ90bECy3eD68jZ
-	QVaquwZndkFZrrPiljNbSSQb6wvikEFkVk/D2kiFLDej9A5t+VpUL9mZ+1S/33C1xmrIkBYosWe
-	/OvbY0xc/qi8jsmt2IhA5nPnrYZpoIHu+0egFHKcRvAD/K57qPXgPxcY4D4O4OaBF9J7Gs0mSNh
-	pF3IOLIhDAoluqz9qSjL2ss48dv+vFCUxGrEBCp6VoRXWKbNHGiZ1uT/9uaEHRGpSt6jtHTt0D+
-	vRXAX7U1KPrbuKL3KX+wnW4KruunpU9mimV6IzF4mCwxHtIa9RZGxW74WD2QyqX8vgT2mTytfh
-X-Received: by 2002:a17:90b:2781:b0:35b:99f8:966d with SMTP id 98e67ed59e1d1-35bb9f0f790mr3715953a91.24.1773855245704;
-        Wed, 18 Mar 2026 10:34:05 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35bbae5e139sm1034514a91.8.2026.03.18.10.34.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Mar 2026 10:34:05 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <3b9a3b0e-9a52-462b-853e-3f557a422879@roeck-us.net>
-Date: Wed, 18 Mar 2026 10:34:03 -0700
+	s=arc-20240116; t=1773855317; c=relaxed/simple;
+	bh=XMV5inxjfKHIqVPnyCdwg/fTj3Azn9yJnNe7LuS48N4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ia5TPlwxOfWw/3+vkYHrpq/WjEv/A1uhMu/kDsE/8H5bd0HPS5lvKUEuRiGzXNQUJxou99LfuKRSF4p4aS9r0awwmujR+WazsO83UHa/TW6Ph/l9y0UuI72PYS1ZL9fVi0ODy7nvuQLWlLneoUJo0CpX7aN6EGVbbL5Bo0rnNE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hMDJvEc9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1D3CC19421;
+	Wed, 18 Mar 2026 17:35:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773855317;
+	bh=XMV5inxjfKHIqVPnyCdwg/fTj3Azn9yJnNe7LuS48N4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hMDJvEc9eneBZHrpi8WbIrwzhbzxDlOCCstXE7RyyPYs1c5T5VyVoa+8Ed1Trc+cE
+	 NUTYzX3iQtw4Uxx1MQd+DP+PzNulWD/x4yqfsXby20opha9QC24sWJuLZViLBolZ9w
+	 Ds7t1ra7dcWnr7kJdTfAkc1PqlOvj7YLe8sK5wGVnszwSlscl96oechPj4t4GVlEtl
+	 jdKylRXkz2hk6FYz99wmcf/zgRm6rzSQzNPhxFDiLgYbnFOyw/Vdphf3ALYh3znw/r
+	 dgH0beGYsJfLMjeLxNuGKLQhVPMFcZMgL8jA686EaCpMbfbH7ENDlvIC4ddjumHkZC
+	 S4gfrkmLe3S5g==
+Date: Wed, 18 Mar 2026 17:35:11 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Nora Schiffer <nora.schiffer@ew.tq-group.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Siddharth Vadapalli <s-vadapalli@ti.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com
+Subject: Re: [PATCH 3/7] dt-bindings: net: ti: k3-am654-cpsw-nuss: Add
+ ti,j722s-cpsw-nuss compatible
+Message-ID: <20260318-sustained-reshuffle-eaf180729a9c@spud>
+References: <cover.1773751309.git.nora.schiffer@ew.tq-group.com>
+ <1382fed198246f1563dea091478757aebc4e4948.1773751309.git.nora.schiffer@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pmbus: mpq8785: add mpm3695-20
- and mpm3690s-15 support
-To: Yuxi Wang <Yuxi.Wang@monolithicpower.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, paweldembicki@gmail.com,
- carl.lee@amd.com, ythsu0511@gmail.com
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, wyx137120466@gmail.com
-References: <20260318094635.1873-1-Yuxi.Wang@monolithicpower.com>
- <0111019d00581351-82f8e649-34b4-4f57-b08c-cebf9d486454-000000@us-west-1.amazonses.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <0111019d00581351-82f8e649-34b4-4f57-b08c-cebf9d486454-000000@us-west-1.amazonses.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="g8SSq65u6iP4ZaTS"
+Content-Disposition: inline
+In-Reply-To: <1382fed198246f1563dea091478757aebc4e4948.1773751309.git.nora.schiffer@ew.tq-group.com>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277402-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
-	FREEMAIL_TO(0.00)[monolithicpower.com,kernel.org,gmail.com,amd.com];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-277403-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.949];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.993];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,roeck-us.net:mid,monolithicpower.com:email]
-X-Rspamd-Queue-Id: 807852C0794
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,tq-group.com:email,tq-group.com:url]
+X-Rspamd-Queue-Id: 0ADBF2C05F3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/18/26 02:47, Yuxi Wang wrote:
-> Add device type support for mpm3695-20 and mpm3690s-15.
-> 
-> Signed-off-by: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
+
+--g8SSq65u6iP4ZaTS
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Mar 18, 2026 at 03:05:25PM +0100, Nora Schiffer wrote:
+> The J722S CPSW3G is mostly identical to the AM64's, but additionally
+> supports SGMII.
+>=20
+> Signed-off-by: Nora Schiffer <nora.schiffer@ew.tq-group.com>
 > ---
->   Documentation/devicetree/bindings/hwmon/pmbus/mps,mpq8785.yaml | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/mps,mpq8785.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/mps,mpq8785.yaml
-> index 90970a0433e9..86e979cf0a00 100644
-> --- a/Documentation/devicetree/bindings/hwmon/pmbus/mps,mpq8785.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/mps,mpq8785.yaml
-> @@ -19,6 +19,8 @@ properties:
->         - mps,mpm3695-25
->         - mps,mpm82504
->         - mps,mpq8785
-> +      - mps,mpm3695-20
+>  Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.=
+yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+> index a959c1d7e643a..9ab8237c7f79e 100644
+> --- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+> +++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+> @@ -59,6 +59,7 @@ properties:
+>        - ti,j7200-cpswxg-nuss
+>        - ti,j721e-cpsw-nuss
+>        - ti,j721e-cpswxg-nuss
+> +      - ti,j722s-cpsw-nuss
 
-Alphabetic order, please.
+For all these bindings, why is a fallback not suitable? Seems like it'd
+be possible here, since there's just a new feature. Is there some other
+programming model difference?
 
-We already have mps,mpm3695 and mps,mpm3695-25. The -20 model is covered by
-mps,mpm3695, and a separate entry should therefore not be needed.
+>        - ti,j784s4-cpswxg-nuss
+> =20
+>    reg:
+> --=20
+> TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+> Amtsgericht M=FCnchen, HRB 105018
+> Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+> https://www.tq-group.com/
+>=20
 
-> +      - mps,mpm3690s-15
+--g8SSq65u6iP4ZaTS
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Unless there are other differences, that seems to be register compatible
-to mps,mpm3695 and should therefore also not need a separate property entry.
-It should instead be listed as compatible to mps,mpm3695.
+-----BEGIN PGP SIGNATURE-----
 
-Thanks,
-Guenter
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabriTwAKCRB4tDGHoIJi
+0rmKAP4oA9ZLXSHHUbsFb5/219KbRXIiAAlbMACiaWPxfR6W7gEA+bHWo2zEutXo
+hbEedSyQOaJ/t3Kn1ZHU72wiR4Qnswc=
+=lTAy
+-----END PGP SIGNATURE-----
 
+--g8SSq65u6iP4ZaTS--
 
