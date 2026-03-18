@@ -1,159 +1,132 @@
-Return-Path: <devicetree+bounces-277187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277188-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oLVbCLWcummHZgIAu9opvQ
-	(envelope-from <devicetree+bounces-277187-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:38:13 +0100
+	id MDChMOycummHZgIAu9opvQ
+	(envelope-from <devicetree+bounces-277188-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:39:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B1772BB93E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:38:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DDBA2BB963
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:39:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 949FA305D6DB
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:36:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AF03B305DA7E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:39:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FAC73A6EE4;
-	Wed, 18 Mar 2026 12:36:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 386153D648B;
+	Wed, 18 Mar 2026 12:39:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="Z+jonyye"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="R0+02u9T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 169603A3811;
-	Wed, 18 Mar 2026 12:36:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773837407; cv=pass; b=KD6jzwVPCStBQYbmzw3iek9Gq0tr3gj5O5KMFLEUe7KNZDqjqs/bW7V+DjHNqH0VHYFBfMVc317B0/niCtsnrnI1uP8+2ocW89yR1ai/dy3kXix+BsbvlWM8u5OZ20aeGjEFM10OXEx5cLNf4iU6SC1QUT88/tQCFVOwUgnfzfY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773837407; c=relaxed/simple;
-	bh=xp2+KXWMoCS68GBhKubDEdw9t8R6SkP9dmD027p2X+A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=B5+/hGvn/EQ6s1tnsOSf8WZOBiOy5jtTN/XEVfBq+grJyhsIP4Ds9E9tmcthUxcMA2YW71a/G5Eba8lqPYSd+mNRYiIULsJymUPIE58919qrD+Sflqcbt+cnZcO8I4W+PKUzYS73X9okPNak/MX44wVHH2k6lvDjpcNQVcSZk6U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=Z+jonyye; arc=pass smtp.client-ip=136.143.188.112
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03F1E3D667B;
+	Wed, 18 Mar 2026 12:39:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773837545; cv=none; b=uVbIoPzOOGT8hf6gRLF8hAicbkN/oBkugazxBWFpbxWPhF/InHtQIBsZRxshnK2RGc2NpANnLJRdH0uLK5Obh0SmoZKWMi6ksMAwtroIUfK9CUzqrWJvs0O82/UMy6+ZXUHK6uheDl1OOgCAk7dVsVeool0YLH22nsiznw6uY6Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773837545; c=relaxed/simple;
+	bh=9U/iI1CXl529Xk+OEnXPc2Xt3E+s6tig40NUgGlPaVg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jOs3ffPo7kUeZhXdEU5fGAw2X+yCH8oQE3ZDRz5GL8d2yxRqJU8Kg518YwPpp22XWo+tC7xC7Uw8+YG37b5lJn0NoK84UK+i3ZckPyosc+aTPoebRHQU1PS3OqAm4OkhYc97z9DewjcUDC7AGqwLWqC2wadU6/2n7fHnK1Uj0Vc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=R0+02u9T; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1773837347; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=CBxN97Qi19FNhuvIfPGCePkR+Vur/noh/3S3UvtMbpsVRDjLf6VDzcHgk/WhS339vaDil74464iYL4jCd9Cx8p6znZJe/Sf4KGF/XJLvw9bXd9GtLBvKU7vHfBoJDrrWFGdElDLLtvE3uE1MIskAZlwUQjQXzM9MVYdcFzyD4kA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1773837347; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=V46uq1gIonA11FIl2YA34cg/6cf19A3UTojwMYo+WeI=; 
-	b=SiLEBhTbUzdDS9z8Ibt9cxreqzfEaJDt+8L/R8kpFwQaNxSwIK5J1Yd53CbjVQa3Exrfr1V6fJip/6DLybYTZuokNLHU/gTB8yYVKtFhM2P1ILPP/WyZVo73DHTgjwPICUFJkOB2CwAWhJTFXTY98qNA1C8b3+GNH+HIjsI+XQ4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1773837347;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=V46uq1gIonA11FIl2YA34cg/6cf19A3UTojwMYo+WeI=;
-	b=Z+jonyyeWBANmIkrXlBQ4qqJ6EKmGlg2pFvrpCxdhKC/Lowhjv1xXCFNwsB/GKAA
-	YZE1D53DdLBz/mJRvwohVEMgY8Qx/jSDLGp1vxFO5gRTyFL9hcxnF4kSqJkyTng7xfV
-	M5NTXun2HvxzEnDMX0N/W4DY/FlGkcMu1qF8KNqE=
-Received: by mx.zohomail.com with SMTPS id 1773837345790539.4413022581078;
-	Wed, 18 Mar 2026 05:35:45 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Daniele Briguglio <hello@superkali.me>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Daniele Briguglio <hello@superkali.me>
-Subject:
- Re: [PATCH 2/3] clk: rockchip: allow grf_type_sys lookup in aux_grf_table
-Date: Wed, 18 Mar 2026 13:35:41 +0100
-Message-ID: <13714918.O9o76ZdvQC@workhorse>
-In-Reply-To: <20260316-rk3588-mclk-gate-grf-v1-2-66fb9a246718@superkali.me>
-References:
- <20260316-rk3588-mclk-gate-grf-v1-0-66fb9a246718@superkali.me>
- <20260316-rk3588-mclk-gate-grf-v1-2-66fb9a246718@superkali.me>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1773837541;
+	bh=9U/iI1CXl529Xk+OEnXPc2Xt3E+s6tig40NUgGlPaVg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=R0+02u9TojARPQ+E5Kf3P1hkkLKNy565zJXac5uxMtSFgN0YKGU0/Ctm1RYa/Ipph
+	 +V6OS9FtrZldm++HTHrUHnmZXdg/uKE42eDGla2UsgjP5jhIarReqOCkl2Ut4b9ud3
+	 EmonEj9hO3isxcoUvX7bEsqiXgWIWTcdT6GMykc1Bp8wvvvwC4WqF+AVC2dPax2EUH
+	 jPIzhp9qy0AfzzHIxNHjeTYfV3JKvo/f0wlIGYz/xhd2DOZBh1JcPbIbkqsJOAZLYf
+	 znPjnqBRLYzsSo1u1o6g1OAYoxn/eTAEP2vynI0sMhy9ptI6M9KXH2X/OGdjtM7TZa
+	 VTbCi9Ze06KTw==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1AA8217E0FFA;
+	Wed, 18 Mar 2026 13:39:00 +0100 (CET)
+Message-ID: <3ddf39e3-3d41-4393-b410-a1335be625ba@collabora.com>
+Date: Wed, 18 Mar 2026 13:38:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	CTE_CASE(0.50)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 8/9] pinctrl: mediatek: mt6397: Add support for MT6392
+ variant
+To: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
+ linux-mediatek@lists.infradead.org
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sen Chu <sen.chu@mediatek.com>,
+ Sean Wang <sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>,
+ Lee Jones <lee@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Linus Walleij <linusw@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Gary Bisson <bisson.gary@gmail.com>,
+ Julien Massot <julien.massot@collabora.com>,
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+ Val Packett <val@packett.cool>, Fabien Parent <parent.f@gmail.com>,
+ Chen Zhong <chen.zhong@mediatek.com>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-gpio@vger.kernel.org
+References: <20260317184507.523060-1-l.scorcia@gmail.com>
+ <20260317184507.523060-9-l.scorcia@gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20260317184507.523060-9-l.scorcia@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-277187-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277188-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,lists.infradead.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,mediatek.com,collabora.com,packett.cool,vger.kernel.org,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,superkali.me:email]
-X-Rspamd-Queue-Id: 8B1772BB93E
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,collabora.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2DDBA2BB963
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Monday, 16 March 2026 14:06:32 Central European Standard Time Daniele Briguglio wrote:
-> Remove the grf_type_sys exclusion from the auxiliary GRF table lookup
-> in rockchip_clk_register_branches(). Previously, branches with
-> grf_type_sys always used ctx->grf directly, bypassing the aux_grf_table.
+Il 17/03/26 19:43, Luca Leonardo Scorcia ha scritto:
+> Add support for the MT6392 pinctrl device, which is very similar to
+> MT6397 with a handful of different property values and its own pins
+> definition.
 > 
-> This is a problem on SoCs like RK3588 where ctx->grf points to the
-> PHP_GRF (set via the CRU's rockchip,grf phandle), but GATE_GRF clock
-> entries need to access the SYS_GRF instead.
+> Update the MT6397 driver to retrieve device data from the match table and
+> use it for driver init.
 > 
-> With this change, grf_type_sys branches first check the aux_grf_table,
-> and fall back to ctx->grf if no entry is found. This is backwards
-> compatible: on SoCs that do not register grf_type_sys in the
-> aux_grf_table, the behavior is unchanged.
-> 
-> Signed-off-by: Daniele Briguglio <hello@superkali.me>
-> ---
->  drivers/clk/rockchip/clk.c | 7 +++----
->  1 file changed, 3 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/clk/rockchip/clk.c b/drivers/clk/rockchip/clk.c
-> index e8b3b0b9a4f8..911e6b610618 100644
-> --- a/drivers/clk/rockchip/clk.c
-> +++ b/drivers/clk/rockchip/clk.c
-> @@ -509,10 +509,9 @@ void rockchip_clk_register_branches(struct rockchip_clk_provider *ctx,
->  		clk = NULL;
->  
->  		/* for GRF-dependent branches, choose the right grf first */
-> -		if ((list->branch_type == branch_grf_mux ||
-> -		     list->branch_type == branch_grf_gate ||
-> -		     list->branch_type == branch_grf_mmc) &&
-> -		    list->grf_type != grf_type_sys) {
-> +		if (list->branch_type == branch_grf_mux ||
-> +		    list->branch_type == branch_grf_gate ||
-> +		    list->branch_type == branch_grf_mmc) {
->  			hash_for_each_possible(ctx->aux_grf_table, agrf, node, list->grf_type) {
->  				if (agrf->type == list->grf_type) {
->  					grf = agrf->grf;
-> 
-> 
+> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
 
-Reviewed-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-
-Kind regards,
-Nicolas Frattaroli
-
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 
