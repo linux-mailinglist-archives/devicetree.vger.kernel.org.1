@@ -1,259 +1,198 @@
-Return-Path: <devicetree+bounces-277429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277430-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +PIfGMfsuml0dAIAu9opvQ
-	(envelope-from <devicetree+bounces-277429-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:19:51 +0100
+	id ILi4D5j0ummVdQIAu9opvQ
+	(envelope-from <devicetree+bounces-277430-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:53:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03D042C1226
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:19:50 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F1FE2C1A3A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:53:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BD316301A9C6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:19:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 243F83038AAF
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:20:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D51E3CD8A3;
-	Wed, 18 Mar 2026 18:19:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A0393CF697;
+	Wed, 18 Mar 2026 18:20:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="wC05hgGu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mI6V35NV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B1C01F192E
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 18:19:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773857989; cv=none; b=rnIwHfOkDCiIjPcIvzDEhqz6EbvIp3iMJY37kfuucpLvQkzsfscOUToWAxTugUvKqkl9hWPNJg94ZnvCyZwI6kgTAYfRvBUzg53OTVuDnp+UxLISSu/fArRC0OI2OpEMxgWUEWF4fFxyf/N7jAnhRCfZI9lfRy05/Y2Wy+Jia2U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773857989; c=relaxed/simple;
-	bh=vj7tS7uIMvZSXYU425dVU9YT132ngTU9jfQFxZte628=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kW8bGS7dOfAkfPe3YeYKFR5no97e6R3P7HAQ70W91FHS/ZkI1W6csiLhBXoSIMRPDJiCFAKjfEpQpBwOpGosZIiIFQr5eVm7SYqbM7kMQCg2XsexTeLXuXxq818Jh8skNBTrAeUewfYerhrWnLL/5dPbl97nNwufVbsKfnkHiw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=wC05hgGu; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id A7D46C5506C;
-	Wed, 18 Mar 2026 18:20:08 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id E1C1D6004F;
-	Wed, 18 Mar 2026 18:19:43 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2878510450431;
-	Wed, 18 Mar 2026 19:19:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1773857982; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=GFiGghzPl6g8oEQeQrcO9TafT5x7gCN92iALR8Yy2dM=;
-	b=wC05hgGuVfa+8EvwpROQS7dqjARjeKaWIU113kVPpWKO9oJMZR7+p4+5qakt+7dNOXwT4Y
-	5DnoW5/51sYHsUt67qtSiLOELpz0LbWYtNq1eu4fVCpGKQ6H/1t0Is4PMy5YWyuE783a7j
-	LQ6shnjEo6aAPupfW+6MPI4Xq1QbP1evicCA6W18jltj/xHBBkMs8k1sxpMPX5/LhR0jDu
-	YRrNoRzGBVtsGscmtlEpz9wGUVJD0neM+6vaOnJkRaC396auEzOO/ADgY2/2MlyIYZD2B1
-	WYQ4YdXSQXv1ymLaqL15eMTElJc49798VPeRb9dxn+z1nWK5ClpPEz56vJ5JFA==
-Date: Wed, 18 Mar 2026 19:19:36 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Akhil R <akhilrajeev@nvidia.com>
-Cc: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Robert Moore <robert.moore@intel.com>, Len Brown <lenb@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Eric Biggers <ebiggers@kernel.org>,
-	Fredrik Markstrom <fredrik.markstrom@est.tech>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Jon Hunter <jonathanh@nvidia.com>,
-	Suresh Mangipudi <smangipudi@nvidia.com>,
-	linux-tegra@vger.kernel.org, linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev,
-	linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH 11/12] hwmon: spd5118: Add I3C support
-Message-ID: <202603181819360a32c641@mail.local>
-References: <20260318172820.13771-1-akhilrajeev@nvidia.com>
- <20260318172820.13771-12-akhilrajeev@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEE8F1F192E
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 18:20:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.50
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773858029; cv=pass; b=iMiqVS9Ul8s2YDMDEZ9AlEzutPzECu0PPLQ3au2f2JIXBBxPOxtBWwk6D0CraxGaB9jCWMqvQzMFSzljvgbewViDPymz+jGTUvIvzeVhCjahch2fkEq3+muph7TYNuDBFjJRUXHPGha6aWWssS4cOKMHyQysJ7N0zzf7eCcnQ4Q=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773858029; c=relaxed/simple;
+	bh=o2AlAnMddYyM3GRUlR6Czl0IFVIjXXrBXoY3tjJ2NCM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oobB32ytZz3c7BYjyIvtIu8QIlbC2/I1wv3nLblhYDYffv2i7pLD6fYfUTPFz9Ia9sDgD7nQqbnAHtjBi6vgyyYkHwHaQ0/Wexd9DUYqykUzZw3xL/ZZ/ftt367uIvdUvDAUVujrWMAYMjMv1OzuRqhHHThG45QMhtLt/n9gqig=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mI6V35NV; arc=pass smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-59e4a04f059so161098e87.2
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 11:20:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773858026; cv=none;
+        d=google.com; s=arc-20240605;
+        b=WtAdnEEeLpsobPUXaqWR3jHH4S+lrusYSGJpKxLIwfZGy4sqkFNcII7O7GPgviN41i
+         o9Bln7ZGlnbzfn5vvqExQjy2yqR2YiGDRoosozRAV85VMCpOqjgvJrs3LFLo01/PrAxb
+         Ffk+CTNA/YzohcXBB6EFEBzU634yyekfLMqyTzDnGy20DlN16D/IiuTvV/E32Hodj+1f
+         kr1zU15R+711cD4ieKqro4x6j3FqZN9O16w4wtK6G8jW5uviYw3JejHIRrt+kw+VvjSX
+         GzGfH+z0P3r+NzpTUuwOKKalIrxYPtHBxUOcgtReay13cXqJYAwebs4mbZnUThBG8Pxj
+         NlSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=iQ1x2ihDMnnywua4CVQQdfzwfLUYhJP99revvTgTk0o=;
+        fh=inZ2V/LvbO1yelE1XnvBYTlO8oXV50Ln25RPzAjArgQ=;
+        b=FK8OpjcG2mVVUp/lXcVatdaJ9rbZeTCta4YMnOr2eHt16Itim01sVimZuabzU8JTdZ
+         8QmarC87zTuX/qNkwPkgxtNvdoi76Hu/MqRytn7wEPmfi3x4q0H1cIFfd5g77x0BC+mQ
+         SpxtwvXX7QjKiDqDcJlO3/t+AIyAnrjDQQnbPLBO8S8DfSoXxS0Y33QU6pZbMOiiRoi+
+         G3D/rhWDcSUkefHny/lC/9y9Ogy8zHkL9BN38K9pE71H5QoP20FrM3Nl5L6hQq31O3bM
+         CoycX0r9vELkV6TUyV/CK1sprswtS/7jOjgCvNapbgcxy25dg9nXfgYTsBvmPqKABlLE
+         13lA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1773858026; x=1774462826; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=iQ1x2ihDMnnywua4CVQQdfzwfLUYhJP99revvTgTk0o=;
+        b=mI6V35NV8ZWus1QtxqcWcFu7cx86rkGqhoUIR8ptZvCoq57Y8NoeSWyMY+knpIGMpU
+         BpZStWyG+GeeetaECaDMjqOoC1O3ENiIF1Wlm9VDxhqMkgH8Rrku7JdywhpNwkR+s1oG
+         0CioRCsUFUOkqDYa8KQwPBbqowNfK5mg725LQu3I2VqXzO3QUowqJUcd9Dj3vEW5yMnv
+         dXILrC5+5/lgq0XBYJ9dryfydjoLr8egZEzHj89QPaX4qDocwSI5H+G9/B9EO+e8/4uB
+         qhq8RaiUcRhEV3ltZzwLCKdE5L32BrQaywJo+Oq7we2DimHkOgTO2C5sQU/VQQ10lTH0
+         d2pQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773858026; x=1774462826;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iQ1x2ihDMnnywua4CVQQdfzwfLUYhJP99revvTgTk0o=;
+        b=b8Tw9jNJyUoeeD4gJcGrsbFmkrN+HzesBxyEDeQh560WQhqYf5rdqUlcGZ6qX+SJJq
+         FVidcP8foryPeW1Mm6nluLttUbmxa/y37T0OhdeKjIDzbnA1MhkzgkzekBgcK7JAZeQ7
+         FK39hYVlq5Ho6IqCW/BJdU2Ahev4eBBQ6CxCMIUO+OR3jUAqYMOkHkSaWW51Be4/e7qi
+         gtC8pLuB/iAmCrMQ3OIVx+0ALfiegYHOV6G5BrmhXp1sFTAadfGc/cRnor8kKOx1zWFy
+         fvpx+6oSBnXrWZs96Noa+FflpXtDGwe3U3oB9K8XzZIPUQEE9qKZNhrAQSwEuwcQRm42
+         YVXA==
+X-Forwarded-Encrypted: i=1; AJvYcCXjvakUOLPiZYXtJWQi70+HbDYexYzl15+WahurocFwD2vL3JesUD4VhffKInppallvK935Wq71VALE@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZweMJ2+6na2NAP/mHSVEC51rP3jI4WEsGhyw9lnCnTaq2gqkK
+	sGCB8U76I6PFvaOgdOZOo+bEa1oQowOR4KpF/mAuMfLIQeA1v1WiopCLyv/OgaukvRVpAnuWmoT
+	PvUK9v8Zb7fQaDWjklKe74B8xKMlD+GrBQZcA6h8mEoavMRo6WtWb9dY=
+X-Gm-Gg: ATEYQzz0xkR8+TvNNbuNr+pvzgC2bEyoDM5TQz7NsrEvRE6IB+MtMrmeyp/qUHHJ8/c
+	pllXlixzvqJrteAYJ3/9BG5RuyK1OzsmN7k3HDCwEpl75B3nPi4YJ2lXSTeCLuWM11f56BWaKw6
+	04g8LLhIYxgg1G1d5IMncizE99QPJ3nrNUVxtVXf8turMpG0ezVal6S5MmDG8WLPw8988SaDQFp
+	1da8QozympsiApSUhoCLLYaHCOSCMZj17cT1dlm5CEkvJ7UhzuILnuN9MQ/vv/h0QDQX8mCDn06
+	mJBFR+JJ
+X-Received: by 2002:a05:6512:24c5:20b0:5a1:37cd:7f10 with SMTP id
+ 2adb3069b0e04-5a2795903dcmr1158473e87.10.1773858026058; Wed, 18 Mar 2026
+ 11:20:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260318172820.13771-12-akhilrajeev@nvidia.com>
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20260305-b4-pck600-a733-v2-0-ba6bbed7d253@gmail.com>
+In-Reply-To: <20260305-b4-pck600-a733-v2-0-ba6bbed7d253@gmail.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Wed, 18 Mar 2026 19:19:50 +0100
+X-Gm-Features: AaiRm50uzOde_q8t8Y3YJeSNhx4Hb7KPrmeaUA5JiLmoBH5vpeZt6VfvtJkYLuo
+Message-ID: <CAPDyKFoo7HXuS1OQtt6Ku4O23pvFOvaG3g1_N7SPV8uB+ckt-Q@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] allwinner: a733: Add A733 PCK600 Power Domain
+ Controller Support
+To: Yuanshen Cao <alex.caoys@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277429-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277430-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-0.900];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexandre.belloni@bootlin.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.990];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ulf.hansson@linaro.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org,vger.kernel.org,lists.infradead.org,lists.linux.dev,oss.qualcomm.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:url,nvidia.com:email,roeck-us.net:email,exactcode.de:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 03D042C1226
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,linaro.org:dkim,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 4F1FE2C1A3A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 18/03/2026 22:57:24+0530, Akhil R wrote:
-> Add a regmap config and a probe function to support for I3C based
-> communication to SPD5118 devices.
-> 
-> On an I3C bus, SPD5118 are enumerated via SETAASA and always require an
-> ACPI or device tree entry. The device matching is hence through the OF
-> match tables only and do not need an I3C class match table. The device
-> identity is verified in the type registers before proceeding to the
-> common probe function.
-> 
-> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+On Thu, 5 Mar 2026 at 04:34, Yuanshen Cao <alex.caoys@gmail.com> wrote:
+>
+> Hi everyone,
+>
+> This series is to introduce Allwinner A733 PCK600 Power Domain
+> Controller.
+>
+> Allwinner A733 has this one power domain controller, PCK600, which
+> shares the same BSP drivers according to the package provided by
+> Radxa[1]. Unlike A523, A733 does not require the resets, and it also has
+> different delay values. Apart from these, driver wise, everything else
+> is the same.
+>
+> Add support for A733 power domain controller by making resets optional
+> on sun55i-pck600 driver, adding A733 sunxi_pck600_desc and dt-bindings
+> definitions.
+> Tested on Radxa Cubie A7Z.
+>
+> [1] https://github.com/radxa/allwinner-bsp
+>
+> Signed-off-by: Yuanshen Cao <alex.caoys@gmail.com>
 > ---
->  drivers/hwmon/Kconfig   |  7 +++--
->  drivers/hwmon/spd5118.c | 66 ++++++++++++++++++++++++++++++++++++++++-
->  2 files changed, 70 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-> index 8af80e17d25e..23604c05ad22 100644
-> --- a/drivers/hwmon/Kconfig
-> +++ b/drivers/hwmon/Kconfig
-> @@ -2300,10 +2300,13 @@ config SENSORS_SPD5118
->  	tristate "SPD5118 Compliant Temperature Sensors"
->  	depends on I2C
+> Changes in v2:
+> - Fit the pd_names into two lines
+> - Link to v1: https://lore.kernel.org/r/20260304-b4-pck600-a733-v1-0-2f54efdb8cc2@gmail.com
+>
+> ---
+> Yuanshen Cao (2):
+>       dt-bindings: power: Add Support for Allwinner A733 PCK600 Power Domain Controller
+>       pmdomain: sunxi: Add support for A733 to Allwinner PCK600 driver
+>
+>  .../bindings/power/allwinner,sun20i-d1-ppu.yaml    | 17 ++++++++++-
+>  drivers/pmdomain/sunxi/sun55i-pck600.c             | 35 +++++++++++++++++++---
+>  .../power/allwinner,sun60i-a733-pck-600.h          | 18 +++++++++++
+>  3 files changed, 65 insertions(+), 5 deletions(-)
+> ---
+> base-commit: 0031c06807cfa8aa51a759ff8aa09e1aa48149af
+> change-id: 20260304-b4-pck600-a733-1790e0e48d49
+>
+> Best regards,
+> --
+> Yuanshen Cao <alex.caoys@gmail.com>
+>
 
-Please use I3C_OR_I2C here
+The series applied for next, thanks!
 
->  	select REGMAP_I2C
-> +	select REGMAP_I3C if I3C
->  	help
->  	  If you say yes here you get support for SPD5118 (JEDEC JESD300)
-> -	  compliant temperature sensors. Such sensors are found on DDR5 memory
-> -	  modules.
-> +	  compliant temperature sensors using I2C or I3C bus interface.
-> +	  Such sensors are found on DDR5 memory modules.
-> +
-> +	  This driver supports both I2C and I3C interfaces.
->  
->  	  This driver can also be built as a module. If so, the module
->  	  will be called spd5118.
-> diff --git a/drivers/hwmon/spd5118.c b/drivers/hwmon/spd5118.c
-> index 5da44571b6a0..d70123e10616 100644
-> --- a/drivers/hwmon/spd5118.c
-> +++ b/drivers/hwmon/spd5118.c
-> @@ -18,6 +18,7 @@
->  #include <linux/bits.h>
->  #include <linux/err.h>
->  #include <linux/i2c.h>
-> +#include <linux/i3c/device.h>
->  #include <linux/hwmon.h>
->  #include <linux/module.h>
->  #include <linux/mutex.h>
-> @@ -482,6 +483,25 @@ static const struct regmap_config spd5118_regmap16_config = {
->  	.cache_type = REGCACHE_MAPLE,
->  };
->  
-> +/*
-> + * I3C uses 2-byte register addressing -
-> + *   Byte 1: MemReg | BlkAddr[0] | Address[5:0]
-> + *   Byte 2: 0000   | BlkAddr[4:1]
-> + *
-> + * The low byte carries the register/NVM address and the high byte carries the
-> + * upper block address bits, so little-endian format is required. No range
-> + * config is needed since I3C does not use MR11 page switching.
-> + */
-> +static const struct regmap_config spd5118_regmap_i3c_config = {
-> +	.reg_bits = 16,
-> +	.val_bits = 8,
-> +	.max_register = 0x7ff,
-> +	.reg_format_endian = REGMAP_ENDIAN_LITTLE,
-> +	.writeable_reg = spd5118_writeable_reg,
-> +	.volatile_reg = spd5118_volatile_reg,
-> +	.cache_type = REGCACHE_MAPLE,
-> +};
-> +
->  static int spd5118_suspend(struct device *dev)
->  {
->  	struct spd5118_data *data = dev_get_drvdata(dev);
-> @@ -770,7 +790,51 @@ static struct i2c_driver spd5118_i2c_driver = {
->  	.address_list	= IS_ENABLED(CONFIG_SENSORS_SPD5118_DETECT) ? normal_i2c : NULL,
->  };
->  
-> -module_i2c_driver(spd5118_i2c_driver);
-> +/* I3C */
-> +
-> +static int spd5118_i3c_probe(struct i3c_device *i3cdev)
-> +{
-> +	struct device *dev = i3cdev_to_dev(i3cdev);
-> +	struct regmap *regmap;
-> +	unsigned int regval;
-> +	int err;
-> +
-> +	regmap = devm_regmap_init_i3c(i3cdev, &spd5118_regmap_i3c_config);
-> +	if (IS_ERR(regmap))
-> +		return dev_err_probe(dev, PTR_ERR(regmap), "regmap init failed\n");
-> +
-> +	/* Verify this is a SPD5118 device */
-> +	err = regmap_read(regmap, SPD5118_REG_TYPE, &regval);
-> +	if (err)
-> +		return err;
-> +
-> +	if (regval != 0x51) {
-> +		dev_err(dev, "unexpected device type 0x%02x, expected 0x51\n", regval);
-> +		return -ENODEV;
-> +	}
-> +
-> +	err = regmap_read(regmap, SPD5118_REG_TYPE + 1, &regval);
-> +	if (err)
-> +		return err;
-> +
-> +	if (regval != 0x18) {
-> +		dev_err(dev, "unexpected device type 0x%02x, expected 0x18\n", regval);
-> +		return -ENODEV;
-> +	}
-> +
-> +	return spd5118_common_probe(dev, regmap, false);
-> +}
-> +
-> +static struct i3c_driver spd5118_i3c_driver = {
-> +	.driver = {
-> +		.name	= "spd5118_i3c",
-> +		.of_match_table = spd5118_of_ids,
-> +		.pm = pm_sleep_ptr(&spd5118_pm_ops),
-> +	},
-> +	.probe		= spd5118_i3c_probe,
-> +};
-> +
-> +module_i3c_i2c_driver(spd5118_i3c_driver, &spd5118_i2c_driver);
->  
->  MODULE_AUTHOR("René Rebe <rene@exactcode.de>");
->  MODULE_AUTHOR("Guenter Roeck <linux@roeck-us.net>");
-> -- 
-> 2.50.1
-> 
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Kind regards
+Uffe
 
