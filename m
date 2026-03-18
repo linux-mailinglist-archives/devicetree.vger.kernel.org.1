@@ -1,198 +1,146 @@
-Return-Path: <devicetree+bounces-277447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277448-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oMS6F137umlwdwIAu9opvQ
-	(envelope-from <devicetree+bounces-277447-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 20:22:05 +0100
+	id ePIZOg3+uml2eAIAu9opvQ
+	(envelope-from <devicetree+bounces-277448-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 20:33:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B54762C1F55
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 20:22:04 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABEF92C20AF
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 20:33:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F206131D53DC
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:15:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DF8FE300A30C
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:33:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD3A03F1640;
-	Wed, 18 Mar 2026 19:14:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B10E13E1CFB;
+	Wed, 18 Mar 2026 19:33:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="D+Iodw/R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ReZsv8aD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D07FC3F0AB8;
-	Wed, 18 Mar 2026 19:14:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CA1A38F9C;
+	Wed, 18 Mar 2026 19:33:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773861263; cv=none; b=eimtSYMJh+tDXePRVNdpI8kcmOUxioKOj8Cr5OqaGKJnlzSFLH4sQpiIngixn0746GKRlO9rgukEwRSfa/bWgqdZSA5eSIBmto61rz6lKNVWrGExmLxuClbD2tZl5zQ542narpVCfYln+rBUqE1tFlUyarxPXBzYebRFc7TJWBA=
+	t=1773862408; cv=none; b=QCjOjzUMvQ7iHpbazyuFCYYvqJu5konGnKHwX+LiE56QnlZRqw+td5WvneibkTnRHcsU2i/oSpfFnAuy6qOcsup7JyRjZQsEvIfh1qiBkmafyFK00cAK+Q2luQlXmxqkcOpFLnKxXaQVVTAtJcXWmhiP4K5RP3ccKlg0qSxhYKs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773861263; c=relaxed/simple;
-	bh=iaMJc/x0hbL4+hGkHwPxGwqgMJ633NGk0/QTlyPgmQ0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sDJYmiqCj0YwnwK+oZ6ATBcdvvRKz+olIS759dHJ7bFBrIYokOKcJKxOzGDLOFUV7s+TSEnbQsWMXvurobbhegKqiGKCNTKG7AqZJ5wEaM8Jo/B/a5L92a3OKF7SIbJNXSXzv6yXgXKm3OpZIYL1J//3TiVxVc+cdUEI/CtfauE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=D+Iodw/R; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773861261; x=1805397261;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=iaMJc/x0hbL4+hGkHwPxGwqgMJ633NGk0/QTlyPgmQ0=;
-  b=D+Iodw/R+pUMFEEAmMSZd59qwBs2KYY7W9Q89uuvyOn5lh0UPm6IFhL2
-   XFPRVzTUlxf7CyQ9qUGk9NQxZ5etTGa8QTWz9g0ELmtgvop2Hq+fXGfm+
-   uhft2F+bgEAf6xAPjP2olF5fVDUrLybeownqcDInnnck6zGlTXHgdng4M
-   OxLCF/4dbNGA/a5gPwcreGrAFXYE2hSM9S37prRohATKay+Sms6Kgp8lz
-   FCZKXVT/MNQhdBExgMczItiYi5ahXudSThIrRU5UyGxnGqhyRGmRz+dLC
-   8TWYiLx8OhloKnttEIwVVgVl6C6Q5x3COrb3C585vmIxVlJXX02/1jS33
-   w==;
-X-CSE-ConnectionGUID: 7mz/3sHJSUWPzcRndmInjA==
-X-CSE-MsgGUID: XtDaBOo8QempVQET6jOWgA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="97536673"
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; 
-   d="scan'208";a="97536673"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2026 12:14:20 -0700
-X-CSE-ConnectionGUID: qojLmZmzTe6qpnWD1m/YZA==
-X-CSE-MsgGUID: 3YcMJB16TIqoozb7h5nrpg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; 
-   d="scan'208";a="227423817"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.240])
-  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2026 12:14:16 -0700
-Date: Wed, 18 Mar 2026 21:14:14 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: rodrigo.alencar@analog.com
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>
-Subject: Re: [PATCH RFC v2 4/9] iio: frequency: ad9910: add digital ramp
- generator support
-Message-ID: <abr5hoBIQLlcOk_v@ashevche-desk.local>
-References: <20260318-ad9910-iio-driver-v2-0-e79f93becf11@analog.com>
- <20260318-ad9910-iio-driver-v2-4-e79f93becf11@analog.com>
+	s=arc-20240116; t=1773862408; c=relaxed/simple;
+	bh=DKwmLj7ND65DBAHN0CJDebSbMwzS0B4x/PyZj6skfFg=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=ijoyJdNgqSlWgnfbPgMiqWYtJn4PDj5RsYHJN8qwSlKJO0NyfSSfYvP94izoyXygaMe63a2rAjAvKtbIyMYCelA35jNFiCScqkBj4PuVYCPDD9Yx+gMh4PDrGOqVTvknrIMjiNT7RedoGZTxiwmtYdsqa9omBsswgIbZzGGvyJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ReZsv8aD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED5C3C19421;
+	Wed, 18 Mar 2026 19:33:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773862408;
+	bh=DKwmLj7ND65DBAHN0CJDebSbMwzS0B4x/PyZj6skfFg=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=ReZsv8aD6a0k5rLEN6z39B2n/QYDUIWT7vyhNhs9EeibcpvVMG0WEGiUEdBEzhh45
+	 hI5GiY7VE4Pf1gS9qy/nQ8TOU+AsUTqP5ihOGYfwy/e0I4uraqYj9CUHKfFx+QPL/8
+	 adRfzOBe1C1Eb/VXJclX69k32cPCjy7i4t0LzjqDBunZU9PrJZxa9GNuFp499K1HsT
+	 e+Rd0/oTXreatQjsoRjmt6/PW+wK5WAdww6MW6VPrWu8o9CBwcASPuncBYhIRZSi0X
+	 JM3R4fdecUgfaXUC8zG4T3vPKAyuS9iIpc9/L+rB5ms6+SYi1zD2F/O62XC4sTXlI6
+	 Tk8lcL87ggJVA==
+Date: Wed, 18 Mar 2026 14:33:27 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260318-ad9910-iio-driver-v2-4-e79f93becf11@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.66 / 15.00];
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, linux-clk@vger.kernel.org, 
+ Stephen Boyd <sboyd@kernel.org>, Vyacheslav Yurkov <uvv.mail@gmail.com>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+To: Vyacheslav Yurkov <V.Yurkov.EXT@bruker.com>
+In-Reply-To: <20260318-feature-clock-guard-v1-2-6137cb4084b7@bruker.com>
+References: <20260318-feature-clock-guard-v1-0-6137cb4084b7@bruker.com>
+ <20260318-feature-clock-guard-v1-2-6137cb4084b7@bruker.com>
+Message-Id: <177386240712.300579.9310156446534562139.robh@kernel.org>
+Subject: Re: [PATCH 2/2] dt-bindings: Add clock guard DT description
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277447-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[baylibre.com,vger.kernel.org,kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-277448-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.938];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.992];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim]
-X-Rspamd-Queue-Id: B54762C1F55
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: ABEF92C20AF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 05:56:04PM +0000, Rodrigo Alencar via B4 Relay wrote:
 
-> Add DRG channels with destination selection (frequency, phase, or
-> amplitude), operating mode control, configurable upper/lower limits,
-> increment/decrement step sizes, and step rate settings for the digital
-> ramp generator.
+On Wed, 18 Mar 2026 17:43:40 +0000, Vyacheslav Yurkov wrote:
+> Describe device tree binding for virtual clock controller guard.
+> 
+> Signed-off-by: Vyacheslav Yurkov <uvv.mail@gmail.com>
+> Signed-off-by: Vyacheslav Yurkov <V.Yurkov.EXT@bruker.com>
+> ---
+>  .../bindings/clock/clock-controller-guard.yaml     | 79 ++++++++++++++++++++++
+>  1 file changed, 79 insertions(+)
+> 
 
-...
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> +static ssize_t ad9910_drg_attrs_read(struct iio_dev *indio_dev,
-> +				     uintptr_t private,
-> +				     const struct iio_chan_spec *chan,
-> +				     char *buf)
-> +{
-> +	struct ad9910_state *st = iio_priv(indio_dev);
-> +	unsigned int type;
-> +	int vals[2];
-> +	u64 tmp64;
-> +
-> +	guard(mutex)(&st->lock);
-> +
-> +	switch (chan->channel) {
-> +	case AD9910_CHANNEL_DRG_RAMP_UP:
-> +		tmp64 = FIELD_GET(AD9910_DRG_STEP_INC_MSK,
-> +				  st->reg[AD9910_REG_DRG_STEP].val64);
-> +		break;
-> +	case AD9910_CHANNEL_DRG_RAMP_DOWN:
-> +		tmp64 = FIELD_GET(AD9910_DRG_STEP_DEC_MSK,
-> +				  st->reg[AD9910_REG_DRG_STEP].val64);
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	switch (private) {
-> +	case AD9910_DRG_FREQ_STEP:
-> +		type = IIO_VAL_INT_PLUS_MICRO;
-> +		tmp64 *= st->data.sysclk_freq_hz;
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/clock/clock-controller-guard.yaml:4:6: [error] string value is redundantly quoted with any quotes (quoted-strings)
+./Documentation/devicetree/bindings/clock/clock-controller-guard.yaml:5:10: [error] string value is redundantly quoted with any quotes (quoted-strings)
+./Documentation/devicetree/bindings/clock/clock-controller-guard.yaml:28:13: [error] syntax error: mapping values are not allowed here (syntax)
 
-> +		vals[0] = upper_32_bits(tmp64);
-> +		vals[1] = upper_32_bits((u64)lower_32_bits(tmp64) * MICRO);
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/clock-controller-guard.yaml: ignoring, error parsing file
+./Documentation/devicetree/bindings/clock/clock-controller-guard.yaml:28:13: mapping values are not allowed here
+make[2]: *** Deleting file 'Documentation/devicetree/bindings/clock/clock-controller-guard.example.dts'
+Documentation/devicetree/bindings/clock/clock-controller-guard.yaml:28:13: mapping values are not allowed here
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/clock/clock-controller-guard.example.dts] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1601: dt_binding_check] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-Not sure if wordparts.h fits here, esp. taking into account...
+doc reference errors (make refcheckdocs):
 
-> +		break;
-> +	case AD9910_DRG_PHASE_STEP:
-> +		type = IIO_VAL_INT_PLUS_NANO;
-> +		tmp64 *= AD9910_PI_NANORAD;
-> +		tmp64 >>= 31;
-> +		vals[0] = div_u64_rem(tmp64, NANO, &vals[1]);
-> +		break;
-> +	case AD9910_DRG_AMP_STEP:
-> +		type = IIO_VAL_INT_PLUS_NANO;
-> +		vals[0] = 0;
-> +		vals[1] = tmp64 * NANO >> 32;
+See https://patchwork.kernel.org/project/devicetree/patch/20260318-feature-clock-guard-v1-2-6137cb4084b7@bruker.com
 
-...open coded approach here. I think the open coded calculations.
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	return iio_format_value(buf, type, ARRAY_SIZE(vals), vals);
-> +}
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
+pip3 install dtschema --upgrade
 
--- 
-With Best Regards,
-Andy Shevchenko
-
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
