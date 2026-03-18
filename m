@@ -1,240 +1,191 @@
-Return-Path: <devicetree+bounces-276988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276986-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +PFXJxpWumm8UQIAu9opvQ
-	(envelope-from <devicetree+bounces-276988-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:36:58 +0100
+	id eGQmIFVVumm8UQIAu9opvQ
+	(envelope-from <devicetree+bounces-276986-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:33:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB1112B70A7
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:36:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECFC92B6F9C
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:33:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C891C306D8E6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 07:34:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7A77D301F146
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 07:33:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1832436AB54;
-	Wed, 18 Mar 2026 07:34:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A532028853A;
+	Wed, 18 Mar 2026 07:33:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="A21rrs3W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RDKfKavl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FBA536AB52
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 07:34:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F2051A073F;
+	Wed, 18 Mar 2026 07:33:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773819251; cv=none; b=Lmjq1E6umEJg7/TkG02frEvm4xkaP1JqjZV93llWqrAlsMtuHW9UKGsa3mxy9IhSmfsbPI0W4ZBHPYYuJMp58dVuoFgfFail72KJR9Q9HhF5akSTaY6YO4+EEgBX7scY+x9uqQgJp8HbKnyItBPrDfvtoP5vZQ5B0EVJF03qXxE=
+	t=1773819217; cv=none; b=sbbDyCy1gMF8BWrs8gm3YU2ezz908l1+cRT+HmvxAFbAyv35dV7sB9hs7e2jIm4X7Jq7wzd9HLocbM2/gJtenZXA214Sh5/iLiDLidbwTL5XQRu7X/Y/Gohgzxp38YCzEvf+tMQuH4n+yshKtU7yuOpF5OZcsGxazQF8FJKXhPs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773819251; c=relaxed/simple;
-	bh=6A5gFZh4PkcNk73aLwTIO4LGvMMWoLrc+UDvXMTkc9g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WdU/bc1ORg5KOk1GEemt44VuF90/kUfZ/vd14zGfVHqA1pu/MRXxa7iqvsOXiuouErkq6ULTe+lwxIm+5xxyCi/axbu32PgDFRibxFvaFEx4mClXVWIEDk6kJ6Jp3SBhvV+84yGZt1sPJ5mBBjxZNJBKz5FxaDDAAfrqTx3563o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=A21rrs3W; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-48540d21f7dso73688255e9.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 00:34:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1773819248; x=1774424048; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zo4QCx8aR6J7VFChxL1u3Y+zYNsaTehJkZimdyWgxLs=;
-        b=A21rrs3W3kzSRmsrTRUOiUpNgkbpzavkt5e86pIXTyuiBQzjLgnMZMVR5GRXYfbFdh
-         U/ooxfLDoOSkzvDIeRE55JSYwhdMBJH63akBVjQqpD5av8TnNe6EXIdrk2/wWGN0M94t
-         +6yf6/h/08WRcBmhS4OLQn+7VdeqJ4gCvaBjM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773819248; x=1774424048;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=zo4QCx8aR6J7VFChxL1u3Y+zYNsaTehJkZimdyWgxLs=;
-        b=iqSaI/0bb6iphOQ/HulPhmAp3NV1lpYYvJc6lGvMafTENwimYJ5+cI+lRunbUjMua/
-         8nN/BEyRi2A8/uWg8SX0T3WNk+Ho43B1aiURvNf6WJaSF+SQOaCBD8C18kxZU6ieoZ5M
-         HUAm5aM2PtsiRfihOlc3st4rpxbS1A7edb+Cp2mBstmuaozG55WvyPHENqjwHcAwDLBH
-         wvZoiXrB85XVGygY3/D4KO55BtqELNgNJtMNyaAf4G6cAPA5Bpb3zvnDLKIqqmCa+yex
-         xSFlocYk3eehKuDIAEILwqIEVXGQU7X2oEgrGlEAWU4/49HJGGDlVvNaDES6p9YDqjS7
-         1sQw==
-X-Forwarded-Encrypted: i=1; AJvYcCWhhWsVyeQouHSj53dXOAfpI8AoAIW1V4cxOOYO/G1E7gF6qlEOSy+4KdbB0/K3hrlcKI9FHxsRx02E@vger.kernel.org
-X-Gm-Message-State: AOJu0YyaPdkhbot3HxfeoAJKu+B0DrW2kWUP2TGf0bxIzD4eSjlHgvm5
-	8G5SIKIF61E7fslhr2ffIksgxjafR9XdTVzz1ihH2OpI/LwhKKle3qaiER0ZioZ4dAY=
-X-Gm-Gg: ATEYQzzpUkQK3y2JwdMfgOA/LektyrdL3he/gsfE3i9Oz9vCUSVax8yb7IpT9i9SXFH
-	xOx2LWyKUO0FSH1ERyG8KG2qCHND18eJF3W7NTiqyZlp8Ib304tSe3lBlweJ+326L6H24bTw7ZR
-	OvLMCzJpI5h3co/NLHeLrrAfORiCdglEecTYeyGDvZJu9d4diBhXS4AWgRikoN5Cnx+UWfvqE35
-	QOpmol2spRmP5jhDFprIq/114QCuv1DTJIWYtktsJj92Ye9i4AsIjOFIQ2xgxxu2szC+YzwlZ/Z
-	a+k8owmfMk27ZWVFPw6uYgtTg+kE/+U10CXrwWvj4GXRyHcRddbEu9ydcumMtbga3r4R2mgkMoB
-	ebX3gdUsegpEJGR2Qv5OaI5IzhHe2oKTMx+CCQSKr3s059RQ2wfURNDoUkaovuXlxHLLqxYJHqG
-	CD7BAlH+c3iWD8gu+ED3JJe+8zRRwvYq+7kGuWdOCImfxi+w1Aj6B8q7MCdUqArxEood2PzxgpB
-	9Zo5lQXQiy3XnB+Pn7KkrGjtLWXb6cyfkAS/5xf0tSifz+wMpp4jX7zC8rW0tmCKvYno4+Y7xZY
-	lHS3jq+ToNWM0o1viVhR0g==
-X-Received: by 2002:a05:600c:8b65:b0:483:badb:618e with SMTP id 5b1f17b1804b1-486f44377dcmr38308265e9.8.1773819247958;
-        Wed, 18 Mar 2026 00:34:07 -0700 (PDT)
-Received: from dario-ThinkPad-P14s-Gen-5.homenet.telecomitalia.it (host-87-9-97-160.retail.telecomitalia.it. [87.9.97.160])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486f45f7e96sm25615765e9.0.2026.03.18.00.34.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Mar 2026 00:34:06 -0700 (PDT)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Michael Walle <mwalle@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH v5 3/4] dt-bindings: ili9806e: add Rocktech RK050HR345-CT106A display
-Date: Wed, 18 Mar 2026 08:32:52 +0100
-Message-ID: <20260318073346.18041-4-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260318073346.18041-1-dario.binacchi@amarulasolutions.com>
-References: <20260318073346.18041-1-dario.binacchi@amarulasolutions.com>
+	s=arc-20240116; t=1773819217; c=relaxed/simple;
+	bh=ScRK7G/j4sFH55VvieNmUsTongM7CZ2Vp3tQOPnFgyU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IPt+e1QA45+zr+UjAWPVqJHIubDR7P4n+gg1kg313iLGCVZdD/j92DmR7FBka1cDKByVMnYvGyIpfUCnl/VZoH2AEL4vd3oai22QME05wZyJSkZK02v3gCcSrddDx8dKcO7LbAomiVzBLuxAXA7BzImL3vI3VKM+oMgir6g/qao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RDKfKavl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3696FC19421;
+	Wed, 18 Mar 2026 07:33:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773819217;
+	bh=ScRK7G/j4sFH55VvieNmUsTongM7CZ2Vp3tQOPnFgyU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RDKfKavl5jjxOQf/aX7HLjw7nFcZ9BADqXsmLSW17v1RxUDoNS3TuHso+2HwuXGTP
+	 Tky49iLy1yxiP21gv230KhRj+CiTqCEfixn/PTeXtudlmOmzqLzmJhLm1RN4XuDXrf
+	 ZIta7e7cV9izJWFTa/qRG8JAbDsAdDsXn3YHMOkeZUnLMdnIVoh5GFZaznmS0c3JgU
+	 WvBMIN13VRfNmYqdHJLyhXSNvhphB6kv1MEK/IrSowRd7zt0sBrqQkqaOB2bGq6XPz
+	 KsiuMCOH3q3/pVcia7EuSigfGfAaKnRnJgtZggTGniJITV2BVOeT+xZVbc3/8mjdbs
+	 mCNcV1bk+xHUQ==
+Message-ID: <8863f38b-51df-43ea-995c-08b9fb04f4dc@kernel.org>
+Date: Wed, 18 Mar 2026 08:33:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 12/12] soc: qcom: ice: Allow explicit votes on 'iface'
+ clock for ICE
+To: Harshal Dev <harshal.dev@oss.qualcomm.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Abel Vesa <abel.vesa@oss.qualcomm.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
+ cros-qcom-dts-watchers@chromium.org, Eric Biggers <ebiggers@google.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Tengfei Fan <tengfei.fan@oss.qualcomm.com>,
+ Bartosz Golaszewski <brgl@kernel.org>, David Wronek <davidwronek@gmail.com>,
+ Luca Weiss <luca.weiss@fairphone.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Melody Olvera <quic_molvera@quicinc.com>,
+ Alexander Koskovich <akoskovich@pm.me>
+Cc: Brian Masney <bmasney@redhat.com>,
+ Neeraj Soni <neeraj.soni@oss.qualcomm.com>,
+ Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>,
+ linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>
+References: <20260317-qcom_ice_power_and_clk_vote-v3-0-53371dbabd6a@oss.qualcomm.com>
+ <20260317-qcom_ice_power_and_clk_vote-v3-12-53371dbabd6a@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260317-qcom_ice_power_and_clk_vote-v3-12-53371dbabd6a@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amarulasolutions.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[amarulasolutions.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[amarulasolutions.com,kernel.org,gmail.com,linux.intel.com,linaro.org,ffwll.ch,suse.de,vger.kernel.org,lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-276988-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dario.binacchi@amarulasolutions.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-276986-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,gondor.apana.org.au,davemloft.net,kernel.org,chromium.org,google.com,gmail.com,fairphone.com,linaro.org,quicinc.com,pm.me];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amarulasolutions.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amarulasolutions.com:dkim,amarulasolutions.com:email,amarulasolutions.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url,0.0.0.0:email]
-X-Rspamd-Queue-Id: AB1112B70A7
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: ECFC92B6F9C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Document the Rocktech 5" 480x854 panel based on the Ilitek ILI9806E
-controller.
+On 17/03/2026 10:20, Harshal Dev wrote:
+> Since Qualcomm inline-crypto engine (ICE) is now a dedicated driver
+> de-coupled from the QCOM UFS driver, it explicitly votes for its required
+> clocks during probe. For scenarios where the 'clk_ignore_unused' flag is
+> not passed on the kernel command line, to avoid potential unclocked ICE
+> hardware register access during probe the ICE driver should additionally
+> vote on the 'iface' clock.
+> Also update the suspend and resume callbacks to handle un-voting and voting
+> on the 'iface' clock.
+> 
+> Fixes: 2afbf43a4aec6 ("soc: qcom: Make the Qualcomm UFS/SDCC ICE a dedicated driver")
+> Signed-off-by: Harshal Dev <harshal.dev@oss.qualcomm.com>
+> ---
+>  drivers/soc/qcom/ice.c | 17 +++++++++++++++--
 
-This panel uses SPI for control and an RGB interface for display
-data, so adjust the binding requirements accordingly.
+Why the driver patch is after the DTS patches? It is explicitly
+documented as no-go.
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+You do not understand how patches are being applied and you think you
+can fix inherent problems in bisectability by creating incorrect order
+of patches. No, you cannot. Read maintainer soc profile and entire
+development-process document, so you understand how patches are applied,
+what are branches, what is current RC and how kernel is effectively
+released.
 
----
-
-(no changes since v3)
-
-Changes in v3:
-- Add Reviewed-by tag of Rob Herring
-
-Changes in v2:
-- Restore vdd-supply as required for both DSI and SPI types
-- Dop useless settings in case of rocktech,rk050hr345-ct106a
-
- .../display/panel/ilitek,ili9806e.yaml        | 38 ++++++++++++++++++-
- 1 file changed, 36 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
-index f80307579485..2080d9e0ffac 100644
---- a/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/display/panel/ilitek,ili9806e.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Ilitek ILI9806E based MIPI-DSI panels
-+title: Ilitek ILI9806E based panels
- 
- maintainers:
-   - Michael Walle <mwalle@kernel.org>
-@@ -18,6 +18,7 @@ properties:
-       - enum:
-           - densitron,dmt028vghmcmi-1d
-           - ortustech,com35h3p70ulc
-+          - rocktech,rk050hr345-ct106a
-       - const: ilitek,ili9806e
- 
-   reg:
-@@ -30,11 +31,24 @@ required:
-   - compatible
-   - reg
-   - vdd-supply
--  - vccio-supply
-   - reset-gpios
-   - backlight
-   - port
- 
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - rocktech,rk050hr345-ct106a
-+then:
-+  $ref: /schemas/spi/spi-peripheral-props.yaml#
-+  required:
-+    - spi-max-frequency
-+else:
-+  required:
-+    - vccio-supply
-+
- unevaluatedProperties: false
- 
- examples:
-@@ -60,5 +74,25 @@ examples:
-             };
-         };
-     };
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
- 
-+        panel@0 {
-+            compatible = "rocktech,rk050hr345-ct106a", "ilitek,ili9806e";
-+            reg = <0>;
-+            vdd-supply = <&reg_vdd_panel>;
-+            spi-max-frequency = <10000000>;
-+            reset-gpios = <&gpiob 6 GPIO_ACTIVE_LOW>;
-+            backlight = <&backlight>;
-+            port {
-+                panel_in_rgb: endpoint {
-+                    remote-endpoint = <&ltdc_out_rgb>;
-+                };
-+            };
-+        };
-+    };
- ...
--- 
-2.43.0
-
+Best regards,
+Krzysztof
 
