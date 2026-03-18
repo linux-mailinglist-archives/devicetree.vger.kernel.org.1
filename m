@@ -1,247 +1,264 @@
-Return-Path: <devicetree+bounces-277217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277218-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id HZWmBOKkummaaAIAu9opvQ
-	(envelope-from <devicetree+bounces-277217-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:13:06 +0100
+	id oGNJMJmlummaaAIAu9opvQ
+	(envelope-from <devicetree+bounces-277218-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:16:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F8F52BBFF2
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:13:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B9672BC085
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:16:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 57FCA30093BB
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:13:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 766E93171433
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:13:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 374EF3D75B3;
-	Wed, 18 Mar 2026 13:13:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E01093D75CC;
+	Wed, 18 Mar 2026 13:13:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NN91kXR1"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Jz3XS10m";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="kGdm771G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED8933D3482
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 13:12:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96D853D6CB8
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 13:13:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773839580; cv=none; b=I0/LKpY9GEAT+a+hYgtUnEItEd8mgYS5oy3Mp/Vi+dBC2bqSRk59VKaDQ5N6GbbWPOzeVwYxghsb1yJYM4wUpqe8L4HdSm29Ls7ovpiMi+mzeSueMOKAXLsQo76pEkJnNaC+reS12jjP+3hm+5U4/gLx13SvBHj2FAzsJ6g9DZE=
+	t=1773839587; cv=none; b=sAhtEh36ZEVDGqqWZDDB0VHjgMVJLSeDVmw0f9AKD7JN4wCuezDEnXmTVKUd8ZJsAywD+Af6cFKJBIRmvVXx0HDGLOFhkAKZos+2ACV0xH0bMJbz/gEZxcTsQV5sghJBniDO+5QlXcOM0xpEPTKx0tt6pP0cZNJws9BnVaD1GD0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773839580; c=relaxed/simple;
-	bh=OdQCTcowNhAMMHZuTr+edOMBX9ASYFb/KgzSCNzEfFM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VpdwEIcVlgEGcqMdMvF/k9Rtp9VI/DVz4eleNaY6RIlUHeMv1IiW+vTuYjZjgMYPHrvVxMn3Jw8qEzmeUpbGOJNXVWIqmzYgVTQtvp7z1QoSqDGDiiiqWBk0kQUhDcFTH+ewrH8QYMF4FNkQ4LBpeVhDkD3cDp+HnN0VIPB8OO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NN91kXR1; arc=none smtp.client-ip=209.85.215.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-c70ea5e9e9dso3223871a12.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 06:12:58 -0700 (PDT)
+	s=arc-20240116; t=1773839587; c=relaxed/simple;
+	bh=+L9vOqSjiO9a6O165CuZxAw6NKrb8imiDto6ttLiloo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IoUu4k8Jc04TplVu9Qeqqf1Nxlhq2tK9hGoSUkf7Vyz9sWFNsMsfB1WMsIvRTtBgibtjFUy3GE7Tlpqf5YvS8B2AwI7POCmLArstolc71peDvzhXT2eEhY/29CXjO8mmnSbYkNY2ScsK61WvYsK9ApSO98o+5KAzEIe4ovuoSoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Jz3XS10m; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=kGdm771G; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62I9tfR0403175
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 13:13:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	E59iGtHoJttmNzitX+WU26YIvATCm8nHOcVB6LcRIhs=; b=Jz3XS10mK5iWpAMH
+	IZOP/Ga9BaythitcXHYA3vN0cyT1r2vfujIy5BPUxHtRuFWfr6ffG0l2k4DOLCY1
+	ZWjTGIrIQd75Kq6VlUln45zEZwsuJ7KDKmOteYAn30JGFOJUVGLaMebWdeBRknmr
+	Dimqnhhht2vownssAYk5s6br/zRCWqURZY8nS6QxRJVMgnwIi6V7liAY4J6oqPc0
+	/aMD9LIGihe1eNN7qRTJg+PUl+0wVv3+YulN16ZaDlTgFOJWgYKb+X26qPN7W2Od
+	TVmxKbSfbrnA0CiBuG+iwZqaIrjJUJtDks/tjO0Ka5e/vA70eOxM2NT62/d8zYW9
+	oVATFg==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cyc4duvsh-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 13:13:05 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2b0565d77a6so40589365ad.2
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 06:13:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773839578; x=1774444378; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=a38AgtgrSL45qQSDWrOkOi7hxNfM+B9cZh1RZkzmCEM=;
-        b=NN91kXR1KBFUWH2LCTrwNH9CAKvd2+gcA74C1KxOg2JmLznRUAUaDS/T5+mpLKhtHU
-         5Wn33SyIlmjSVzR6BdMzvg6RCZd9mO+wWGxs5IU5yrk3UWc8BnUyoY2gtQUQKaNjanLA
-         egn8stiMUBTB6dv1teQo5Kfdjxc45Fd+iJjkUFm/0RHRMFkzlSrh6Ch5XwA+EqNJtEdm
-         gfYYZeqInlcAxOZksN3WkPCHqnMhiwe0/qumJbmvyiyHEMDbaODL7r+JNslBG9GIDSAE
-         OUI2x1F52vDHysXhi7aRe1+lbwNw4aGQZ2z8hISzQ17Gnzij8p1i95HWhL2gwLEMR8Yx
-         q2+Q==
+        d=oss.qualcomm.com; s=google; t=1773839584; x=1774444384; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=E59iGtHoJttmNzitX+WU26YIvATCm8nHOcVB6LcRIhs=;
+        b=kGdm771GAL1UMY1qjIKsg3GRCV22r1rAfOLE3r2RthxgTUjbTWQrIB0kE/2DaCXMTs
+         xu2Uhwn3+QkMNL0aDj0GvJnPardbnwOdEfv1hCaD8CIXx6KHrHInE4ynsm47hPv4kICp
+         fXle0+Klzp0T8TuL4gzh55TUmYh2oPEaFlgCsbXOeddb6mtVtUzeBZQlFenpbA9goJuc
+         uXIv2hFbR1hBXc88JeXIcO+GoF1B7ZfieWIjr+IxqveXRtugvYNbggr372n5nGsTNtj1
+         E2t/fJkcAEn4CGkxiFnTFjpqsIdPZGB0LLfM7z26e4rLcFhAPv2VW3GodSqvh7mtjcL1
+         xZZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773839578; x=1774444378;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=a38AgtgrSL45qQSDWrOkOi7hxNfM+B9cZh1RZkzmCEM=;
-        b=ptxsV4XtWCvhmm0e4anrJbKDN0LAUbMxdXd79uj98NFposNuIef5QiCGVw1hooWdvI
-         gyP0+uEGe3leLwXoq9Wzvb4KMTOM6l+YuFpztnxye+kYfBrsFhMiJ0miDErGfvfoYpEj
-         WsLhJHzli+5cSNReXYgw4geOHuUxfBQ6OIc4+95sQ74J7tYP63+m6oj2J+4ClnDL/w3s
-         ffGi+oxc8LBHDWGKcLbwC53GQg5MCwsgjK+fbp7WFUGQNV6RuRcfu0b2Dy76jWasVO/b
-         XwZlauILj47lFA7S6MHgEADmKibp6H+AMX7OJlfduOklKqL1dDPUcH0N9XYodZ1Ga3Jg
-         6tnw==
-X-Forwarded-Encrypted: i=1; AJvYcCUkz2wsD42ZWozQUqnuCYcwKM8d24sMG21OwP3Mp+jIYs68BESzZJgWdB7TscHS/JpOoqvSn5oVfSMp@vger.kernel.org
-X-Gm-Message-State: AOJu0YzEEgrj2YcX6pacZhqr0J6M60Kzp4QNm136azBrzYqc+TAyAa2V
-	pP3SNOGDCDZHWN3Lmo6CMUOYqWX1gTkg27NHYVHzDb0atSjOTBkMHOlw
-X-Gm-Gg: ATEYQzwjjPSpOPwjG/EQenXef39R4r44LhwV83eWG1lsSGaT/VM6vZ4AGLpNZlWwS3f
-	Loe7C4psRHO/rERX7UOe4HeMxYqAAC22eWIq+BknMYX+Zb9zD80/ISKifKZGfkaXqGRg40j9D/w
-	T6q5i6OmtLzjYEj7byUpVgrftYANyYhHPjWYETDTlHmkwzUSOX3B3ZqYLyZotz7xGZJh1viTta9
-	qpx8BdnQVucp71fxADIipH1LVQ1DCLlSWMQD9X/XfDT+X4iF96GKc1S1R+mHTt288ebhO8Nteyj
-	FKb30+8FdtH8FmL2cHpDMMy1TCCNCqAz+wOHZkZXQO9WAxfj0br0P4cDdThLNt7+RDQD44sj8hr
-	tpwFwHPXTxXPl3Gr7Efw/RqwsEauDsgS3vEd2M8GE1KBf+Wh0qGLNBlKDqKaLuNR0kXZ24JDDLh
-	ct1OQ3Bd4RKgHmjudNUmW8CBoJcMnwSRi6RsVUCGo=
-X-Received: by 2002:a17:90b:1d52:b0:35b:982a:28c7 with SMTP id 98e67ed59e1d1-35bb9e3cf19mr3027930a91.5.1773839578116;
-        Wed, 18 Mar 2026 06:12:58 -0700 (PDT)
-Received: from DESKTOP-TIT0J8O.localdomain ([49.47.198.15])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35bada5c760sm6280105a91.5.2026.03.18.06.12.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Mar 2026 06:12:57 -0700 (PDT)
-Date: Wed, 18 Mar 2026 17:12:49 +0400
-From: Ahmed Naseef <naseefkm@gmail.com>
-To: Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>
-Cc: Bjorn Helgaas <helgaas@kernel.org>, Caleb James DeLisle <cjd@cjdns.fr>,
-	linux-pci@vger.kernel.org, linux-mips@vger.kernel.org,
-	ryder.lee@mediatek.com, bhelgaas@google.com, lpieralisi@kernel.org,
-	kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com, ansuelsmth@gmail.com,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] PCI: Skip bridge window reads when window is not
- supported
-Message-ID: <abqk0VUyLF+iqVXw@DESKTOP-TIT0J8O.localdomain>
-References: <20260316155157.679533-4-cjd@cjdns.fr>
- <20260317212908.GA109023@bhelgaas>
- <abpFjQJ5RNcbzbmz@DESKTOP-TIT0J8O.localdomain>
- <fc927b7f-a820-d3c2-581c-ab6db562bcfb@linux.intel.com>
- <2d47f78f-22cf-78c8-8312-3ffb095d2693@linux.intel.com>
+        d=1e100.net; s=20251104; t=1773839584; x=1774444384;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=E59iGtHoJttmNzitX+WU26YIvATCm8nHOcVB6LcRIhs=;
+        b=XOR5zV6OawcHAxaz6jckbmotSG0KI40kllLL2Ny9Xz3fF19SsMg0QCHV/eEJki30x0
+         PFrkVO4Domxn4bXATAfak6vnPfiXKLOW1yk/TgTAI+5svnLEd3GqCdyd57oS9LXmR63y
+         76m2aSg0fsV7PunqrYiG83EjbbQkLkmPVq2/ok8F2Qvp3RIJG+6Dxrh4kUhoLglVpFU+
+         lK433E1E0QSLKeTc/2TTe1+s0a2gU+/VC2TcWdHmUKQuKW06QwKsf0ynOKVkyLu4P7zM
+         78idRHLAHy66RlsWVkfcGncUtBuRxB/lATjMM+5ja1y7Kk38v57AnPDhCHg5O2joNkEI
+         fJBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUcc9K+p8kCZfsOoY2mk5zGwbELLmhDTtzHdwdToDbl5do0qlgSQcyv4kuoBKfkRcUuKFpzUUXEU8aH@vger.kernel.org
+X-Gm-Message-State: AOJu0YxokUaYne0P1I5rDZ5nghvOJJvr6Ss+uMS9onWblBdu+xoLCnMs
+	GnAuvHnAyb5RHrUgJxKtpjxiRPJDgXixL3LR9XxXMvc6ENe1FUwFfSLeQYU0XDj4+1iSoUSP1aP
+	X5lmB0swcosjV5qdauNHCoyxr9gVpErsb6G6ZxtB6pUBd5uoFOiaD/s3AdgJEO6es
+X-Gm-Gg: ATEYQzwTGCtwgaBwkSX0YDuIsTLnzh3BIfT9PM8rnWLzXS/jFrarKjOMoVymdOYFGYX
+	7uf/Nl5CgQ8mgd9BMjTmRYxMjGzhSMlr+WSw+kwHueHiLVJ+DnbeuImOHEL8hkSrvwsJBy2cPm5
+	ILTQBGqvxCdn96K9NEB+2Ik3lJ20RX8svnqHbG1bZuNZeVitSXxYtAiiewv5R0c+4GE3qQVV+MP
+	RLASZdAdndcJ8TTY+DgkeJQyoagB+GAVfwWRRfXuwRuoyrqI3ZmpPKwpFYsqCedDUBxRu2LLIX2
+	lVXiGXz+FAs9HYTHjSOU/SbH9L49rYvE1BryJEqozPq4S/SO6sW149Ut8zOYates9JFwxvcTPlQ
+	V0dgozUhDzeNpgr8iHkSIM6CzltdvCu72n4LYjo6w4h383N9Xnateb+4imE3Ojwjw+w==
+X-Received: by 2002:a17:903:2f87:b0:2b0:41bf:ca83 with SMTP id d9443c01a7336-2b06e35b4c7mr33140725ad.23.1773839584302;
+        Wed, 18 Mar 2026 06:13:04 -0700 (PDT)
+X-Received: by 2002:a17:903:2f87:b0:2b0:41bf:ca83 with SMTP id d9443c01a7336-2b06e35b4c7mr33140445ad.23.1773839583794;
+        Wed, 18 Mar 2026 06:13:03 -0700 (PDT)
+Received: from [192.168.1.28] ([122.164.82.79])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b06e44a258sm27444125ad.34.2026.03.18.06.12.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Mar 2026 06:13:03 -0700 (PDT)
+Message-ID: <11471fb9-a862-41b9-95d1-68ddcca5b7a3@oss.qualcomm.com>
+Date: Wed, 18 Mar 2026 18:42:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2d47f78f-22cf-78c8-8312-3ffb095d2693@linux.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/6] arm64: dts: qcom: add IPQ5210 SoC and rdp504 board
+ support
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Robert Marko <robimarko@gmail.com>,
+        Guru Das Srinagesh <linux@gurudas.dev>,
+        Linus Walleij <linusw@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+References: <20260318-ipq5210_boot_to_shell-v2-0-a87e27c37070@oss.qualcomm.com>
+ <20260318-ipq5210_boot_to_shell-v2-5-a87e27c37070@oss.qualcomm.com>
+ <c0effabb-3daa-4752-9069-c49a562edc63@oss.qualcomm.com>
+Content-Language: en-US
+From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+In-Reply-To: <c0effabb-3daa-4752-9069-c49a562edc63@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDExMiBTYWx0ZWRfXw55xg0jHXy3/
+ v/Q7b4rdOJNbcVmD0abmv3c51v3/Zi2EwSp1yAYRk60eXf9dtvagR1p2GCWFz1x2Qx3NU28BZEw
+ gUUBJk+HuaknEJzQ2WLwQdqAp93NnE8ihpErmqfXUhmhnJGPiPkParqDPS1ZpH7cXCwm/+xhwnZ
+ gQibPA4j37yxfvzv7dUf5WTjCjgGaCXs7XlJzxj9cfvUk1VJaNDRVHRtyytExT4znwBliLUo4u2
+ /FSsiw1bOMYn6wsWbmz/SjMZ16QO7D4anxGZ9FHUehB7IRBTpedokO1+TGkKolGCjVieKIPvqA2
+ /Oh5Yif4DpFfsJ5lqKKDZ7uP+qQYzT6NIntFwcaWxxR1Yqjuhykre6q/+3wtUCZ5DXWN14PYbAp
+ baqkl1l8O3rinvKS7MKSUpr1p6Iyv3uJQ5zZ8MNjfAlQPPqfb9JjHBrIA4pdNIsRXigolTII6RN
+ I1kUTDMTHQ1SMWLhOWA==
+X-Proofpoint-GUID: OIsHZizSHkRrqBZYcKl06UZfLqhP6FC0
+X-Authority-Analysis: v=2.4 cv=DfQaa/tW c=1 sm=1 tr=0 ts=69baa4e1 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=x8XZtM9IcEPKAfKvXv8PGA==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
+ a=EUspDBNiAAAA:8 a=onala_4StLzjsFYz-ZEA:9 a=QEXdDO2ut3YA:10
+ a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-ORIG-GUID: OIsHZizSHkRrqBZYcKl06UZfLqhP6FC0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-18_01,2026-03-17_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 suspectscore=0 impostorscore=0 lowpriorityscore=0 adultscore=0
+ priorityscore=1501 clxscore=1015 spamscore=0 bulkscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603180112
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277217-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277218-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email,0.0.0.0:email,b120000:email,b000000:email];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,baylibre.com,pengutronix.de,gmail.com,gurudas.dev];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,cjdns.fr,vger.kernel.org,mediatek.com,google.com,gmail.com,collabora.com,lists.infradead.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[naseefkm@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[DESKTOP-TIT0J8O.localdomain:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3F8F52BBFF2
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kathiravan.thirumoorthy@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 6B9672BC085
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 02:18:22PM +0200, Ilpo Järvinen wrote:
-> On Wed, 18 Mar 2026, Ilpo Järvinen wrote:
-> 
-> > On Wed, 18 Mar 2026, Ahmed Naseef wrote:
-> > 
-> > > On Tue, Mar 17, 2026 at 04:29:08PM -0500, Bjorn Helgaas wrote:
-> > > > On Mon, Mar 16, 2026 at 03:51:57PM +0000, Caleb James DeLisle wrote:
-> > > > > pci_read_bridge_io() and pci_read_bridge_mmio_pref() read bridge window
-> > > > > registers unconditionally. If the registers are hardwired to zero
-> > > > > (not implemented), both base and limit will be 0. Since (0 <= 0) is
-> > > > > true, a bogus window [mem 0x00000000-0x000fffff] or [io 0x0000-0x0fff]
-> > > > > gets created.
-> > > > > 
-> > > > > pci_read_bridge_windows() already detects unsupported windows by
-> > > > > testing register writability and sets io_window/pref_window flags
-> > > > > accordingly. Check these flags at the start of pci_read_bridge_io()
-> > > > > and pci_read_bridge_mmio_pref() to skip reading registers when the
-> > > > > window is not supported.
-> > > > 
-> > > > The fundamental problem here is that assigned space to a bridge window
-> > > > that isn't implemented.  I wish we understood the connection between
-> > > > this "read window" path and the assignment path.
-> > > > 
-> > > > Maybe this patch fixes it because we enter pci_read_bridge_mmio_pref()
-> > > > with res->flags being NULL, and we set IORESOURCE_MEM |
-> > > > IORESOURCE_PREFETCH again, which makes it look like we can assign
-> > > > space for it?
-> > > 
-> > > Yes, that's exactly right.
-> > > 
-> > > > 
-> > > > If that's the case, I think it would improve the commit log to mention
-> > > > the actual mechanism by which we avoid assigning space.
-> > > > 
-> > > 
-> > > How about this:
-> > > 
-> > >   pci_read_bridge_io() and pci_read_bridge_mmio_pref() read
-> > >   bridge window registers unconditionally. If the registers
-> > >   are hardwired to zero (not implemented), both base and limit
-> > >   will be 0. Since (0 <= 0) is true, these functions set
-> > >   IORESOURCE_IO or IORESOURCE_MEM | IORESOURCE_PREFETCH on
-> > >   the bridge resource. This causes the allocator to assign
-> > >   space for the window even though the hardware can't
-> > >   implement it.
-> > > 
-> > >   pci_read_bridge_windows() already detects unsupported windows
-> > >   by testing register writability and sets io_window/pref_window
-> > >   flags accordingly. Check these flags at the start of
-> > >   pci_read_bridge_io() and pci_read_bridge_mmio_pref() to skip
-> > >   reading registers when the window is not supported, so the
-> > >   resource flags remain clear and the allocator does not assign
-> > >   space for non-existent windows.
-> > 
-> > At least to me the proposed text reads much better than the original.
-> > The original text required reading between the lines to connect the dots, 
-> > whereas this new one clearly explains what causes what.
-> 
-> Hi again,
-> 
-> Reading the code I think the entire 0 <= 0 part is a red herring 
-> when it comes to the current code, the flags are always set by the 
-> functions!
-> 
-> The code would only add IORESOURCE_UNSET | IORESOURCE_DISABLED if the 
-> base <= limit check fails but that's still wrong because it says to the 
-> resource allocation code that it can enable that bridge window if it needs 
-> to.
-> 
-> Prior to the commit 8278c6914306 ("PCI: Preserve bridge window resource 
-> type flags") the base <= limit check did play some role (maybe the 
-> original commit message was based on some older tree than the most current 
-> one).
 
-Thank you for catching that. We were testing on LTS kernel
-6.12 (downstream OpenWrt) where the commit 8278c6914306
-("PCI: Preserve bridge window resource type flags") is not
-present . In that tree the flags are still only set inside
-the base <= limit check, which is why the commit message
-focused on that path.
-  
-For current mainline, how about this for the commit message:
+On 3/18/2026 5:14 PM, Konrad Dybcio wrote:
+> On 3/18/26 9:39 AM, Kathiravan Thirumoorthy wrote:
+>> Add initial device tree support for the Qualcomm IPQ5210 SoC and
+>> rdp504 board.
+>>
+>> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+>> ---
+> [...]
+>
+>> +&sdhc {
+>> +	max-frequency = <192000000>;
+>> +	bus-width = <4>;
+>> +	mmc-ddr-1_8v;
+>> +	mmc-hs200-1_8v;
+>> +	pinctrl-0 = <&sdhc_default_state>;
+>> +	pinctrl-names = "default";
+>> +	status = "okay";
+> nit: Please keep a uniform \n before 'status', file-wide
 
-  pci_read_bridge_io() and pci_read_bridge_mmio_pref()
-  unconditionally set resource type flags (IORESOURCE_IO
-  or IORESOURCE_MEM | IORESOURCE_PREFETCH) when reading
-  bridge window registers. For windows that are not
-  implemented in hardware, this causes the allocator to
-  assign space for a window that doesn't exist.
+Ack. I missed this to take care in RDP DTS.
 
-  pci_read_bridge_windows() already detects unsupported
-  windows by testing register writability and sets
-  io_window/pref_window flags accordingly. Check these
-  flags at the start of pci_read_bridge_io() and
-  pci_read_bridge_mmio_pref() to skip them entirely when
-  the window is not supported, so the resource flags
-  remain clear and the allocator does not assign space
-  for non-existent windows.
+>
+> [...]
+>
+>> +	cpus {
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +
+>> +		cpu@0 {
+>> +			device_type = "cpu";
+>> +			compatible = "arm,cortex-a53";
+>> +			reg = <0x0>;
+>> +			enable-method = "psci";
+>> +			next-level-cache = <&l2_0>;
+> Since we have PSCI, is there some sort of cpuidle?
 
+Yeah, there is a plan to support but it is under development. Once it is 
+available and validate, I will submit the incremental patches.
 
-Ahmed Naseef
+>
+> [...]
+>
+>> +		intc: interrupt-controller@b000000 {
+>> +			compatible = "qcom,msm-qgic2";
+>> +			interrupt-controller;
+>> +			#interrupt-cells = <3>;
+>> +			reg = <0x0 0xb000000 0x0 0x1000>,  /* GICD */
+>> +			      <0x0 0xb002000 0x0 0x1000>,  /* GICC */
+>> +			      <0x0 0xb001000 0x0 0x1000>,  /* GICH */
+>> +			      <0x0 0xb004000 0x0 0x1000>;  /* GICV */
+> let's drop these comments
 
-> 
-> -- 
->  i.
+Ack.
 
+>
+> [...]
+>
+>> +		timer@b120000 {
+>> +			compatible = "arm,armv7-timer-mem";
+>> +			reg = <0x0 0xb120000 0x0 0x1000>;
+> Please pad the address part of reg with leading zeroes to 8 hex digits
+> (i.e. 0x0b120000 etc.)
+
+Ack. Will take care of this next spin
+
+>
+> otherwise I think lgtm
+
+Thanks!
+
+>
+> Konrad
 
