@@ -1,121 +1,199 @@
-Return-Path: <devicetree+bounces-277496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277481-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2w96BRImu2kcfwIAu9opvQ
-	(envelope-from <devicetree+bounces-277496-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 23:24:18 +0100
+	id yI54IVgZu2k+fAIAu9opvQ
+	(envelope-from <devicetree+bounces-277481-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 22:30:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5106A2C357E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 23:24:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E592B2C3039
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 22:29:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BAFB13059F23
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 22:24:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EC404311B697
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 21:28:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0938A35E927;
-	Wed, 18 Mar 2026 22:24:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30EBC37DE8C;
+	Wed, 18 Mar 2026 21:28:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OUAwZl2m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UJEVYQLv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3746347BC7;
-	Wed, 18 Mar 2026 22:24:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0377337B035;
+	Wed, 18 Mar 2026 21:28:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773872653; cv=none; b=uaNw08v7EW3Ja7y2VoFCgmTyS+85cnBb4y8/ufHwrYe9Xcw+XC5NfJNEt9LL82w0kwwsukzK9TlqHYi87hFCk5/P1zjw9fviJyQOdkScRksNbja2WpIo5oLt4o1tBfkHYfjfZ+FVcGndec5Nki9IulT/DBFmeq10/++lZfJrPQY=
+	t=1773869335; cv=none; b=F26XaKHFJ2G1IMW95D4UrqYXlP8rWC7reBTyXuzVb2Fkjt5TbbCiaaaSEb2LctUYTfJ74VnVddESz7ZgloAn64iukNff5EWxR3rRX8kzWxTDZO2RKp75E+xdCWZ99bU5KV7/l+YaQXDvvAtpV8Q2xMc22iZVEkwSWpjM8c7zIBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773872653; c=relaxed/simple;
-	bh=h6ndzAFvIQVHqH354HE+77ZIUYrbNgvOw6/MHKSXkcg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aHf22UdjuR88XE2Jz/VnnWIlIdFLEyd9pjaxw18mfaj7qBhuSERmDPRRn6LKzNeIJVv6iX/OFzampOHrFlAVYMkNjTX0FsHTMXTdRmTwubsPMBMP19cQgmawrGEXKl0TG+M+cX9aJLdDt3EHcIB3LkQ/58P3pZrl5zRMV80hY9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OUAwZl2m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49BC8C19421;
-	Wed, 18 Mar 2026 22:24:11 +0000 (UTC)
+	s=arc-20240116; t=1773869335; c=relaxed/simple;
+	bh=2xLuSv2TiyFBIIeQDHg/5ze8Cep6E7OZsCQj+tAfpBs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FT4pJXVpg3tr7qJf8z3QQqKuh9gcXPQ9HeI4MuCly0GD5fzYVHEwqy2i8h0apKDLS5wYiIr2XCSFGO/uIacPppUcuz8Vc+lS6cS6a31DO9PgGfIrUeK8+6Q4+haEWSjy2xgRqePR2smVj+Vk2NBCBcFIqh56Us23stVfL6oIO2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UJEVYQLv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 86DC7C19421;
+	Wed, 18 Mar 2026 21:28:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773872653;
-	bh=h6ndzAFvIQVHqH354HE+77ZIUYrbNgvOw6/MHKSXkcg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=OUAwZl2mzfE6ZOYdjgXflyKsVp07YDgb/YHhAMsj6KAffhy3k44djep/2i4RjEsDH
-	 DgCO455CMfC5YLsj77FsAcijiCBVU3b59EcTx/x4Kr74UwesFclFSemVn0HmwAWIDg
-	 /IzFB520uDimKtkJ0sqtTcXd7xJYan/Ow23b3Yqakompc8vBYgW3JoTimW47hLJR4B
-	 +eFGnHcP8jwuKGDnTJyJai0Of7NfJ/0HF0AeJjbjSZKWcdtn2EzLQcGsAWnKZtY5fu
-	 WHYwaN4C9dnWdiUHWDmCYIM+8Yfcsv37Qz+K1NxmIvA9Az7Ygs7dPwCnkawFsehwDx
-	 9RJQ2HPwFHPXA==
-Date: Wed, 18 Mar 2026 15:24:08 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Simon Horman <horms@kernel.org>, wei.fang@nxp.com,
- netdev@vger.kernel.org, xiaoning.wang@nxp.com, vladimir.oltean@nxp.com,
- davem@davemloft.net, linuxppc-dev@lists.ozlabs.org, krzk+dt@kernel.org,
- frank.li@nxp.com, claudiu.manoil@nxp.com, chleroy@kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
- imx@lists.linux.dev, pabeni@redhat.com, f.fainelli@gmail.com,
- linux@armlinux.org.uk, edumazet@google.com, conor+dt@kernel.org,
- andrew+netdev@lunn.ch, linux-arm-kernel@lists.infradead.org
-Subject: Re: [net-next,13/14] net: dsa: netc: initialize buffer bool table
- and implement flow-control
-Message-ID: <20260318152408.002d1bd6@kernel.org>
-In-Reply-To: <3dab3f5b-fb94-4c63-bcfd-aad4268e2ac3@kernel.org>
-References: <20260316094152.1558671-14-wei.fang@nxp.com>
-	<20260318145452.1898637-2-horms@kernel.org>
-	<3dab3f5b-fb94-4c63-bcfd-aad4268e2ac3@kernel.org>
+	s=k20201202; t=1773869334;
+	bh=2xLuSv2TiyFBIIeQDHg/5ze8Cep6E7OZsCQj+tAfpBs=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=UJEVYQLv+9VpuCSnQwH9azbSso+frALiu+j1ZrfQ7SGCC5Q29yEjysjsdzj2K9i/S
+	 WZcrX05Ky4Q/oN5u7D0uMzO5gQ4Db8ncAZnaR/+l9vPbRM+o8UHuJZYDyrfLicpISX
+	 xWi+sY+zlNH0iWg35rBmfXh7RFL1KmyuVdx1g51B6JSjQJnLpwR/pQXPYFxlS/Dz4r
+	 Vt0/dymOX0aWWAuFjdSA6jZMyxgE4rXWM6Ih/Ctd2jeUYiY2EyInQH1morHPUzk0G6
+	 LVLVRsI05AijPv4iBQMhtJCienQsqd/rzOBMaxLHvRGlpVP+fBhQSz1SKottEFtDJn
+	 fX9G8LzRXHvZg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 732C71077607;
+	Wed, 18 Mar 2026 21:28:54 +0000 (UTC)
+From: Cristian Cozzolino via B4 Relay <devnull+cristian_ci.protonmail.com@kernel.org>
+Subject: [PATCH v2 0/6] Enable new features for flipkart-rimob
+Date: Wed, 18 Mar 2026 23:28:08 +0100
+Message-Id: <20260318-rimob-new-features-v2-0-c1bf8917449e@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/22NQQ6CMBBFr0Jm7ZihRVBW3sOwKHWQSaQlLaKGc
+ HcriTuX7yX//QUiB+EIdbZA4FmieJdA7TKwvXE3RrkmBkWqJE0agwy+RcdP7NhMj8ARSVenomi
+ 1KRVBGo6BO3lt0UuTuJc4+fDePub8a3+547/cnCOhMcpqTYdKWTqPwU/eDUbue+sHaNZ1/QBlW
+ AaquQAAAA==
+X-Change-ID: 20260303-rimob-new-features-037944b3a620
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ Cristian Cozzolino <cristian_ci@protonmail.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773872973; l=3035;
+ i=cristian_ci@protonmail.com; s=20250620; h=from:subject:message-id;
+ bh=2xLuSv2TiyFBIIeQDHg/5ze8Cep6E7OZsCQj+tAfpBs=;
+ b=Sp6Ahl3vlrPi9YE8nTq0WsnIe5bYmDBTpnLvFvHfmih19ZlRdTAXgqzdfRmyTxfu+MIDjIFsq
+ 6tjReHIZmvVCX5I4s5eupocnG5D2IwgX5oanCwJElfnDBpR3CtoOHLY
+X-Developer-Key: i=cristian_ci@protonmail.com; a=ed25519;
+ pk=xH5IvIPUNHV1Q8R0/pq2CfuVFR/wTiAyuyi6IwedjZY=
+X-Endpoint-Received: by B4 Relay for cristian_ci@protonmail.com/20250620
+ with auth_id=438
+X-Original-From: Cristian Cozzolino <cristian_ci@protonmail.com>
+Reply-To: cristian_ci@protonmail.com
+X-Spamd-Result: default: False [1.34 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277496-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277481-lists,devicetree=lfdr.de,cristian_ci.protonmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,vger.kernel.org,davemloft.net,lists.ozlabs.org,lists.linux.dev,redhat.com,gmail.com,armlinux.org.uk,google.com,lunn.ch,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	FREEMAIL_TO(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.952];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_REPLYTO(0.00)[protonmail.com];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,lists.sr.ht,protonmail.com,oss.qualcomm.com];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[cristian_ci@protonmail.com];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.945];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5106A2C357E
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: E592B2C3039
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 18 Mar 2026 15:56:39 +0100 Krzysztof Kozlowski wrote:
-> On 18/03/2026 15:54, Simon Horman wrote:
-> > This is an AI-generated review of your patch. The human sending this
-> > email has considered the AI review valid, or at least plausible.
-> 
-> Why are you removing the "PATCH" part in the email subject?
-> 
-> This completely messes up with the filters and causes this email to pop
-> up in places it should not.
+This series enables a set of miscellaneous features for Billion Capture+ 
+(a handset using the MSM8953 SoC released in 2017):
+- Panel and GPU
+- Touchscreen
+- WiFi + Bluetooth
+- Hall sensor 
 
-Sorry about that :/ We pull patch info form patchwork and for some
-reason patchwork uses this notation for the "name" of the patch
-when showing the list of patches in series info.
+Patches 1 and 2 provide a driver for Novatek NT35532 and its corresponding
+devicetree bindings, required for enabling panel in DTS. The remaining 
+patches are all DTS changes, aimed to enable the features listed above.
 
-I'll hack up the scripts to fetch real thing from lore.
+To: Neil Armstrong <neil.armstrong@linaro.org>
+To: Jessica Zhang <jesszhan0024@gmail.com>
+To: David Airlie <airlied@gmail.com>
+To: Simona Vetter <simona@ffwll.ch>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: dri-devel@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-msm@vger.kernel.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht
+Cc: phone-devel@vger.kernel.org 
+
+Signed-off-by: Cristian Cozzolino <cristian_ci@protonmail.com>
+---
+Changes in v2:
+- (patch 1/6): define power supplies in the bindings as per datasheet  
+  and update example;
+- (patch 2/6): add blank lines where required between mipi dsi write
+  sequences in nt35532_on() function and make use of names for mipi dcs
+  commands, instead of hex numbers, to improve readibility (Dmitry); 
+- (patch 3/6): move pinctrl lines ibto panel node and get rid of
+  sleep/reset state, since panel just uses one pinctrl state for
+  default/sleep (Dmitry). Also, update power supplies according to
+  bindings; 
+- (patch 4/6): pick up tags (Konrad,Dmitry);
+- (patch 6/6): squash hall sensor node into gpio-keys (Dmitry);
+- Link to v1: https://lore.kernel.org/r/20260308-rimob-new-features-v1-0-aa2c330572c0@protonmail.com
+
+---
+Cristian Cozzolino (6):
+      dt-bindings: display: panel: Add Novatek NT35532 LCD DSI
+      drm/panel: Add driver for Novatek NT35532
+      arm64: dts: qcom: msm8953-flipkart-rimob: Enable display and GPU
+      arm64: dts: qcom: msm8953-flipkart-rimob: Enable WiFi/Bluetooth
+      arm64: dts: qcom: msm8953-flipkart-rimob: Enable touchscreen
+      arm64: dts: qcom: msm8953-flipkart-rimob: Enable Hall sensor
+
+ .../bindings/display/panel/novatek,nt35532.yaml    |  80 +++
+ MAINTAINERS                                        |   6 +
+ .../arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts | 139 +++-
+ drivers/gpu/drm/panel/Kconfig                      |  11 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-novatek-nt35532.c      | 779 +++++++++++++++++++++
+ 6 files changed, 1015 insertions(+), 1 deletion(-)
+---
+base-commit: 8e5a478b6d6a5bb0a3d52147862b15e4d826af19
+change-id: 20260303-rimob-new-features-037944b3a620
+
+Best regards,
+-- 
+Cristian Cozzolino <cristian_ci@protonmail.com>
+
+
 
