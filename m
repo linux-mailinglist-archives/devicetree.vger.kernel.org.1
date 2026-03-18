@@ -1,198 +1,189 @@
-Return-Path: <devicetree+bounces-277430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277431-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ILi4D5j0ummVdQIAu9opvQ
-	(envelope-from <devicetree+bounces-277430-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:53:12 +0100
+	id UPNnLN3uumkBdQIAu9opvQ
+	(envelope-from <devicetree+bounces-277431-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:28:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F1FE2C1A3A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:53:11 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 319922C144B
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:28:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 243F83038AAF
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:20:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1453D3014C53
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:28:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A0393CF697;
-	Wed, 18 Mar 2026 18:20:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 020793D6660;
+	Wed, 18 Mar 2026 18:28:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mI6V35NV"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lXInBPzU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEE8F1F192E
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 18:20:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.50
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773858029; cv=pass; b=iMiqVS9Ul8s2YDMDEZ9AlEzutPzECu0PPLQ3au2f2JIXBBxPOxtBWwk6D0CraxGaB9jCWMqvQzMFSzljvgbewViDPymz+jGTUvIvzeVhCjahch2fkEq3+muph7TYNuDBFjJRUXHPGha6aWWssS4cOKMHyQysJ7N0zzf7eCcnQ4Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773858029; c=relaxed/simple;
-	bh=o2AlAnMddYyM3GRUlR6Czl0IFVIjXXrBXoY3tjJ2NCM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oobB32ytZz3c7BYjyIvtIu8QIlbC2/I1wv3nLblhYDYffv2i7pLD6fYfUTPFz9Ia9sDgD7nQqbnAHtjBi6vgyyYkHwHaQ0/Wexd9DUYqykUzZw3xL/ZZ/ftt367uIvdUvDAUVujrWMAYMjMv1OzuRqhHHThG45QMhtLt/n9gqig=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mI6V35NV; arc=pass smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-59e4a04f059so161098e87.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 11:20:27 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773858026; cv=none;
-        d=google.com; s=arc-20240605;
-        b=WtAdnEEeLpsobPUXaqWR3jHH4S+lrusYSGJpKxLIwfZGy4sqkFNcII7O7GPgviN41i
-         o9Bln7ZGlnbzfn5vvqExQjy2yqR2YiGDRoosozRAV85VMCpOqjgvJrs3LFLo01/PrAxb
-         Ffk+CTNA/YzohcXBB6EFEBzU634yyekfLMqyTzDnGy20DlN16D/IiuTvV/E32Hodj+1f
-         kr1zU15R+711cD4ieKqro4x6j3FqZN9O16w4wtK6G8jW5uviYw3JejHIRrt+kw+VvjSX
-         GzGfH+z0P3r+NzpTUuwOKKalIrxYPtHBxUOcgtReay13cXqJYAwebs4mbZnUThBG8Pxj
-         NlSg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=iQ1x2ihDMnnywua4CVQQdfzwfLUYhJP99revvTgTk0o=;
-        fh=inZ2V/LvbO1yelE1XnvBYTlO8oXV50Ln25RPzAjArgQ=;
-        b=FK8OpjcG2mVVUp/lXcVatdaJ9rbZeTCta4YMnOr2eHt16Itim01sVimZuabzU8JTdZ
-         8QmarC87zTuX/qNkwPkgxtNvdoi76Hu/MqRytn7wEPmfi3x4q0H1cIFfd5g77x0BC+mQ
-         SpxtwvXX7QjKiDqDcJlO3/t+AIyAnrjDQQnbPLBO8S8DfSoXxS0Y33QU6pZbMOiiRoi+
-         G3D/rhWDcSUkefHny/lC/9y9Ogy8zHkL9BN38K9pE71H5QoP20FrM3Nl5L6hQq31O3bM
-         CoycX0r9vELkV6TUyV/CK1sprswtS/7jOjgCvNapbgcxy25dg9nXfgYTsBvmPqKABlLE
-         13lA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773858026; x=1774462826; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=iQ1x2ihDMnnywua4CVQQdfzwfLUYhJP99revvTgTk0o=;
-        b=mI6V35NV8ZWus1QtxqcWcFu7cx86rkGqhoUIR8ptZvCoq57Y8NoeSWyMY+knpIGMpU
-         BpZStWyG+GeeetaECaDMjqOoC1O3ENiIF1Wlm9VDxhqMkgH8Rrku7JdywhpNwkR+s1oG
-         0CioRCsUFUOkqDYa8KQwPBbqowNfK5mg725LQu3I2VqXzO3QUowqJUcd9Dj3vEW5yMnv
-         dXILrC5+5/lgq0XBYJ9dryfydjoLr8egZEzHj89QPaX4qDocwSI5H+G9/B9EO+e8/4uB
-         qhq8RaiUcRhEV3ltZzwLCKdE5L32BrQaywJo+Oq7we2DimHkOgTO2C5sQU/VQQ10lTH0
-         d2pQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773858026; x=1774462826;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iQ1x2ihDMnnywua4CVQQdfzwfLUYhJP99revvTgTk0o=;
-        b=b8Tw9jNJyUoeeD4gJcGrsbFmkrN+HzesBxyEDeQh560WQhqYf5rdqUlcGZ6qX+SJJq
-         FVidcP8foryPeW1Mm6nluLttUbmxa/y37T0OhdeKjIDzbnA1MhkzgkzekBgcK7JAZeQ7
-         FK39hYVlq5Ho6IqCW/BJdU2Ahev4eBBQ6CxCMIUO+OR3jUAqYMOkHkSaWW51Be4/e7qi
-         gtC8pLuB/iAmCrMQ3OIVx+0ALfiegYHOV6G5BrmhXp1sFTAadfGc/cRnor8kKOx1zWFy
-         fvpx+6oSBnXrWZs96Noa+FflpXtDGwe3U3oB9K8XzZIPUQEE9qKZNhrAQSwEuwcQRm42
-         YVXA==
-X-Forwarded-Encrypted: i=1; AJvYcCXjvakUOLPiZYXtJWQi70+HbDYexYzl15+WahurocFwD2vL3JesUD4VhffKInppallvK935Wq71VALE@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZweMJ2+6na2NAP/mHSVEC51rP3jI4WEsGhyw9lnCnTaq2gqkK
-	sGCB8U76I6PFvaOgdOZOo+bEa1oQowOR4KpF/mAuMfLIQeA1v1WiopCLyv/OgaukvRVpAnuWmoT
-	PvUK9v8Zb7fQaDWjklKe74B8xKMlD+GrBQZcA6h8mEoavMRo6WtWb9dY=
-X-Gm-Gg: ATEYQzz0xkR8+TvNNbuNr+pvzgC2bEyoDM5TQz7NsrEvRE6IB+MtMrmeyp/qUHHJ8/c
-	pllXlixzvqJrteAYJ3/9BG5RuyK1OzsmN7k3HDCwEpl75B3nPi4YJ2lXSTeCLuWM11f56BWaKw6
-	04g8LLhIYxgg1G1d5IMncizE99QPJ3nrNUVxtVXf8turMpG0ezVal6S5MmDG8WLPw8988SaDQFp
-	1da8QozympsiApSUhoCLLYaHCOSCMZj17cT1dlm5CEkvJ7UhzuILnuN9MQ/vv/h0QDQX8mCDn06
-	mJBFR+JJ
-X-Received: by 2002:a05:6512:24c5:20b0:5a1:37cd:7f10 with SMTP id
- 2adb3069b0e04-5a2795903dcmr1158473e87.10.1773858026058; Wed, 18 Mar 2026
- 11:20:26 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6258B3290D0;
+	Wed, 18 Mar 2026 18:28:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773858522; cv=none; b=NeHMADi8egJyyUjApcnNCVCRajKSDYGtFEGjnGVAPg/bQJEddr+IGrvrfV6VoVj/cYqMs+bSTh8L+QyOhEG8Q91peMrU/w7P2jdO6CvHIdrBZyps6chUqC+StFaj9xBGUd0EgFPacFU8YZBfH40IUExeVEc4mI8g8MKlGTn8aY4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773858522; c=relaxed/simple;
+	bh=XOaTiZHn9UMaLOFROLfov5TVFH+Ngph/fryjaROjd4k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pwKCkIbUBZNHn4F/b/02a3IvtOsw4JXXg23NT84DdQsEXDIrUHy48jF6ro2E1Y1rYcAz/89aTg/9J0Q/HWrIjoveBKELQs7p3Iwadil/XhJZajU2pnsQ8rtU/ARv/OTNVZ6Q7OkvxQqTsdm2l9UOrPYUBvD8ZGoGDnMrDB1hj9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lXInBPzU; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773858521; x=1805394521;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=XOaTiZHn9UMaLOFROLfov5TVFH+Ngph/fryjaROjd4k=;
+  b=lXInBPzUh85wcEapgU/wOJDLBR9uPwsu9p8Brl3kDxrfaZwdXLHpcqi6
+   4YinRmdDShv6fY1CV9mzVIGFRHlPu379e+/3LY9Nq0sSIaODJuMNt5/Zb
+   zItkJZylaVPOFC0xKX60ntrXuC24GqXsec0QkAXYcRuofPx2tlwOn2gWF
+   e17lDcRrjCmqgUqyupDcojQ8aULnVrrS1d2hDs7cOMli/sl6HSD37ZTOW
+   6QFJ9eem5rhZZc382E/oaPICB6LdT5uvQhwktKMzxfdWrCqsf0gkqcGzI
+   7e/aq4WerRnSfFJsOnzJj5XR5NTHXWO6ZM4XILwDw9ub79r6Imj2pjFBW
+   g==;
+X-CSE-ConnectionGUID: hym9qKl0RIuwoh9yTiexIg==
+X-CSE-MsgGUID: ON02GIcWRSCJiltue9JdCg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="78530243"
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; 
+   d="scan'208";a="78530243"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2026 11:28:41 -0700
+X-CSE-ConnectionGUID: UzIakgAVRrq12NOlHw5oXA==
+X-CSE-MsgGUID: Zahpa9bsRB+EbyZpLr3K+Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; 
+   d="scan'208";a="221952312"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.240])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2026 11:28:37 -0700
+Date: Wed, 18 Mar 2026 20:28:34 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: rodrigo.alencar@analog.com
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>
+Subject: Re: [PATCH RFC v2 3/9] iio: frequency: ad9910: add simple parallel
+ port mode support
+Message-ID: <abru0mNtpJSPSJux@ashevche-desk.local>
+References: <20260318-ad9910-iio-driver-v2-0-e79f93becf11@analog.com>
+ <20260318-ad9910-iio-driver-v2-3-e79f93becf11@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260305-b4-pck600-a733-v2-0-ba6bbed7d253@gmail.com>
-In-Reply-To: <20260305-b4-pck600-a733-v2-0-ba6bbed7d253@gmail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 18 Mar 2026 19:19:50 +0100
-X-Gm-Features: AaiRm50uzOde_q8t8Y3YJeSNhx4Hb7KPrmeaUA5JiLmoBH5vpeZt6VfvtJkYLuo
-Message-ID: <CAPDyKFoo7HXuS1OQtt6Ku4O23pvFOvaG3g1_N7SPV8uB+ckt-Q@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] allwinner: a733: Add A733 PCK600 Power Domain
- Controller Support
-To: Yuanshen Cao <alex.caoys@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260318-ad9910-iio-driver-v2-3-e79f93becf11@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277430-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-277431-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.900];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ulf.hansson@linaro.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org,vger.kernel.org,lists.infradead.org,lists.linux.dev,oss.qualcomm.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,linaro.org:dkim,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 4F1FE2C1A3A
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	NEURAL_HAM(-0.00)[-0.988];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 319922C144B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 5 Mar 2026 at 04:34, Yuanshen Cao <alex.caoys@gmail.com> wrote:
->
-> Hi everyone,
->
-> This series is to introduce Allwinner A733 PCK600 Power Domain
-> Controller.
->
-> Allwinner A733 has this one power domain controller, PCK600, which
-> shares the same BSP drivers according to the package provided by
-> Radxa[1]. Unlike A523, A733 does not require the resets, and it also has
-> different delay values. Apart from these, driver wise, everything else
-> is the same.
->
-> Add support for A733 power domain controller by making resets optional
-> on sun55i-pck600 driver, adding A733 sunxi_pck600_desc and dt-bindings
-> definitions.
-> Tested on Radxa Cubie A7Z.
->
-> [1] https://github.com/radxa/allwinner-bsp
->
-> Signed-off-by: Yuanshen Cao <alex.caoys@gmail.com>
-> ---
-> Changes in v2:
-> - Fit the pd_names into two lines
-> - Link to v1: https://lore.kernel.org/r/20260304-b4-pck600-a733-v1-0-2f54efdb8cc2@gmail.com
->
-> ---
-> Yuanshen Cao (2):
->       dt-bindings: power: Add Support for Allwinner A733 PCK600 Power Domain Controller
->       pmdomain: sunxi: Add support for A733 to Allwinner PCK600 driver
->
->  .../bindings/power/allwinner,sun20i-d1-ppu.yaml    | 17 ++++++++++-
->  drivers/pmdomain/sunxi/sun55i-pck600.c             | 35 +++++++++++++++++++---
->  .../power/allwinner,sun60i-a733-pck-600.h          | 18 +++++++++++
->  3 files changed, 65 insertions(+), 5 deletions(-)
-> ---
-> base-commit: 0031c06807cfa8aa51a759ff8aa09e1aa48149af
-> change-id: 20260304-b4-pck600-a733-1790e0e48d49
->
-> Best regards,
-> --
-> Yuanshen Cao <alex.caoys@gmail.com>
->
+On Wed, Mar 18, 2026 at 05:56:03PM +0000, Rodrigo Alencar via B4 Relay wrote:
 
-The series applied for next, thanks!
+> Add parallel port channel with frequency scale, frequency offset, phase
+> offset, and amplitude offset extended attributes for configuring the
+> parallel data path.
 
-Kind regards
-Uffe
+...
+
+> +	ret = iio_str_to_fixpoint(buf, MICRO / 10, &val, &val2);
+
+I think here we just use 100000 as it's in so many drivers de facto use.
+ideally this should be fixed on API level.
+
+> +	if (ret)
+> +		return ret;
+
+...
+
+> -#define AD9910_EXT_INFO(_name, _ident, _shared) { \
+
+> +#define AD9910_EXT_INFO_TMPL(_name, _ident, _shared, _fn_desc) { \
+>  	.name = _name, \
+> -	.read = ad9910_ext_info_read, \
+> -	.write = ad9910_ext_info_write, \
+> +	.read = ad9910_ ## _fn_desc ## _read, \
+> +	.write = ad9910_ ## _fn_desc ## _write, \
+>  	.private = _ident, \
+>  	.shared = _shared, \
+>  }
+
+> +#define AD9910_EXT_INFO(_name, _ident, _shared) \
+> +	AD9910_EXT_INFO_TMPL(_name, _ident, _shared, ext_info)
+> +
+> +#define AD9910_PP_EXT_INFO(_name, _ident) \
+> +	AD9910_EXT_INFO_TMPL(_name, _ident, IIO_SEPARATE, pp_attrs)
+
+I don't see why you should have so many - lines. This TMPL should be introduced
+in the first patch.
+
+...
+
+> +	case IIO_CHAN_INFO_ENABLE:
+> +		val = !!val;
+
+Only used once, why do we need this...
+
+> +		switch (chan->channel) {
+> +		case AD9910_CHANNEL_PARALLEL_PORT:
+> +			tmp32 = FIELD_PREP(AD9910_CFR2_PARALLEL_DATA_PORT_EN_MSK, val);
+
+...and not just here?
+
+> +			return ad9910_reg32_update(st, AD9910_REG_CFR2,
+> +						   AD9910_CFR2_PARALLEL_DATA_PORT_EN_MSK,
+> +						   tmp32, true);
+> +		default:
+> +			return -EINVAL;
+> +		}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
