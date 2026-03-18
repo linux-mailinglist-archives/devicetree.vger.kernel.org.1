@@ -1,262 +1,347 @@
-Return-Path: <devicetree+bounces-277067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277068-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8MjAA9NtumnRWQIAu9opvQ
-	(envelope-from <devicetree+bounces-277067-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:18:11 +0100
+	id iEWpGp5tumnRWQIAu9opvQ
+	(envelope-from <devicetree+bounces-277068-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:17:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8164A2B8CE0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:18:10 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D58FF2B8C89
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:17:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A96C1301E9B0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:16:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4FEDB3019832
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:17:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C4ED38CFE6;
-	Wed, 18 Mar 2026 09:16:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15F1539903B;
+	Wed, 18 Mar 2026 09:17:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kT6Qve4G";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ioHrCbK/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FCBaqsjQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAADC38F65C
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 09:16:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E600B1B87C0;
+	Wed, 18 Mar 2026 09:17:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773825384; cv=none; b=OyC6t3VURqMUfQOOtUhF/7ESe5JSKUaWg2ldUcWUIUNkMZuEH1zJEqp0xACiS+4DkwxWHNlTFkehckYYM79X74kSlW66GhpVTZNcKXzhf0wpmi2uNk021E6jZVxgKPP0gAFogZW3PEybGRVLvyB2HHU6bc8P5OMsK3FJ7J+r9Ng=
+	t=1773825424; cv=none; b=R/6ry8/h23CnbPnBx5/vMcipq2TBnVhEX29Xmzvi1GjWq46zGjSzKEbKl0QYrlqADFrW5sPtJvGQVeToW7p+PC2mKhvUoexIgb0mFCSv0ThwV4avzsnhiLW0x53Jgx981k5KChCU/ec3QsV58LhzN3sTMlexmmIoB2uRaYCNTXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773825384; c=relaxed/simple;
-	bh=gG8YpPBJWHTKKOsywTFckQWTjFllfY00ZZmBdj+bCE0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Jj66AB9PlStiV/on+oR1/t6vYsHWZq6Yk0WYyt+KZo+l9K2AWGKONEY1jG9qhq7AimNGA6SGuGWwULUfd7njpFDbmhUOe4Ny2DbIUBbePyxlDKX9oR5WTvtOj+mziIuCas/bhI7Ti0f+5zxSJJ35jF0vV7JI3wKLzj5Cmg3G0jw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kT6Qve4G; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ioHrCbK/; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62I6ZPAT2878329
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 09:16:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	WBO1GQf6amTvBiVYZDCx47wmVjgPF6ImMey27b4pnBw=; b=kT6Qve4GPxrZI4ic
-	hSKqSHVYc6HLS4/zHWccCNR/6lGw+YmPacmil95xKsg8yrcb6HzC2nD7cKAP6BQn
-	WMLjPyEVCTWZNi4qOEgZN++Fxwt0afM96UtNfvEbdErK1n0/a+Hio5CNQ+2yvFjf
-	u9SaxV0UBOzn6Hhe9BlHOIskwAfKoa+zVzLqgwVehbuedOFYumgmY9ErrTGRBgq2
-	OQ/dL7zFDv55cUicu7+SMlwdC1hpzkCvDS6Incn/PxfgoAYGnwWN6PN1j2fUfXde
-	0lIDEG2gVM82AJlSB3LngONeM0at83s3+NFr5DnuDHahcQeDlXgdeXRT9TVTrEf4
-	42hWuw==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cypwr0s3p-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 09:16:22 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2b04db6c138so9784905ad.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 02:16:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773825382; x=1774430182; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WBO1GQf6amTvBiVYZDCx47wmVjgPF6ImMey27b4pnBw=;
-        b=ioHrCbK/50Fg7Wn0TSV3PZEDl9BhZkFlStiV5rSjeZWRqUZoRU1anDiZ1J9W4KogMq
-         nhzYyNIRJCniQLlfxtNIcSDUmYLeoLKpyjpgzw5xd4EK2/+vFUBTU3ylsyGAXtIU6dMF
-         3dYun1IanzibcGaexcD4qXar6JVw3RhruyYcRDxvo8mCNHTAMz1okuIMMbrcTeRfi27r
-         JRFtRrzV4WYSdiD7nMeuyIl4qSNGhc/dGhWhyU4Chcn6KJih6qexS3opLyZF0i6saiZG
-         SEj6VQymfa0p4jcnnQbJwJ6nQ3sLhCIAj2aY6o8Z9ugv26oJKMcIZS0tZKoye0NZnzqd
-         tbbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773825382; x=1774430182;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WBO1GQf6amTvBiVYZDCx47wmVjgPF6ImMey27b4pnBw=;
-        b=D8sRV4UbdeX73jeAUVyMUlW/pbtoN6b48j5QDhV9E65EM9N2lz0xzQedkPGwG8OU7G
-         hbb1Y21ehdt47fxzFm9zMj3XvG5K7qFAM6KosV+Fu4tPUQn9HtRL3N1MMwTV6Tdw7KFV
-         gtpRrQnEial2bDCd6vm4KmPY+8p7Uhyj4ERb3B80O9es9ReXjjkecbG92/DFlbf8kQWW
-         FJewE4/r8+ukeF+s7wWqIHvhbM1B1MTfm4Vj8zOLYj0X9B2kN3RVtZV7tUaHDqOKEVgt
-         6rI1hASCpoQmU7RQp/wMRHVwZUQQjIn6wI7e7nySOqpABEIT06xCrvqHIEePLFVzrLG5
-         4m/w==
-X-Forwarded-Encrypted: i=1; AJvYcCXGIO5FitilFPCibpUkyD/t/wBxc444tcfsfs7HUKVM9QQA++1nEK2MMBpi/eBqtqCtVMzLyYmKZvCq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4kCvLJwyOMpLuOUeZOKBJjft6nRCvFZF7Lp1Embidk+hCO2T0
-	GnCA7HTkjV227AKhZtGiE05C0yxKkUI9T2mks0Who/TgibzTTg0P6vJJEiO4ruBlALnrjHlbovX
-	4aOUu2P0F/LIAAGDQAXKy+ODZ63ocX3iPZR3cvTbD15R4RE01zRMmDgKiO5Fu3NKa
-X-Gm-Gg: ATEYQzyxFyguye+o8aM4yskw37iLSYdeOlzJI/05mVsphhaTxvrCpfXJoi6bAHhAZv+
-	fAUZiDjZGnLLjUG20FoFoJwyM6R2JzRAfaNxPZIcsWpuXue3tsOwLtghyPQsznrRd6i/ucXogZS
-	TtsFnjjnv60Q/Zy35TwRdXRHsyWWiGGFImjp1z3qZKNiNxGjlgMmBcrRJ3Vi4T+ygBECqhe56e+
-	TCSrq0VGIbi8ysMYkWu3zGMLNNxxUCNVnRliR36Uukm1i2OUeSQkGvZnePE0SuH4Wk4z0SSQdsS
-	NH6e3+BleGidR8aWrWutxYalcvwGo878RlHMFSJM1HoQnULu7rf+wo1vFehy9N20dAH01QyhPhG
-	0k8bNL+2LCR8OTEWkg3oZK5unt8vs4SUt397SZiDHDSiR47fYZtsbNA==
-X-Received: by 2002:a17:903:1b0f:b0:2ae:5426:da49 with SMTP id d9443c01a7336-2b06e3e106dmr31483565ad.34.1773825382337;
-        Wed, 18 Mar 2026 02:16:22 -0700 (PDT)
-X-Received: by 2002:a17:903:1b0f:b0:2ae:5426:da49 with SMTP id d9443c01a7336-2b06e3e106dmr31483145ad.34.1773825381818;
-        Wed, 18 Mar 2026 02:16:21 -0700 (PDT)
-Received: from [10.0.0.3] ([106.222.229.118])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b06e5f1245sm24693345ad.46.2026.03.18.02.16.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Mar 2026 02:16:21 -0700 (PDT)
-Message-ID: <9d9a8381-e174-72ef-6e69-1b26de07da67@oss.qualcomm.com>
-Date: Wed, 18 Mar 2026 14:46:15 +0530
+	s=arc-20240116; t=1773825424; c=relaxed/simple;
+	bh=1bAMJUwleZzW7GDCrHjhA7QBSe3/jidu//rH+g/+KRA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=npDXFe+0h+Rdto3U3z9Xh2R75waF6Wztjs3345GI/wT3Tz2mXJhAWboY9j/mq75GzLhQ3vZO4Ui8YsHLlkTlg8QbirF1YQWDcpiKktuQnI1tN+7CGFxq1wfL2SAexxzU66CCBM6hPxYa6gNx9kihS7vjo0tguFbOL4eWukTALj0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FCBaqsjQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED405C19421;
+	Wed, 18 Mar 2026 09:17:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773825423;
+	bh=1bAMJUwleZzW7GDCrHjhA7QBSe3/jidu//rH+g/+KRA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FCBaqsjQNgRJcLepL924vDM7DtHzfxPNoUDsl5nt8b+JSdDZkBdfik0ZwBYU5TSKR
+	 x9Mi40nVvj5Kv3o+jUbO9tvKfqTiq6vayv0mV/3jlkQzPZx4kraRnwFd8X36UUnNDP
+	 90/rk2T4wVxB3YnzYayTMSyQhDzkVIphnaSCQeHJkwS+ez+O3RA0fAasL/+jwJDmbb
+	 fzTmfsAIZNXEtPeV946SIaesRWmIGMtd973mJ1e7ysCaHEMH0AZCMau/MFbGM8z2au
+	 5wl87T/c/RywTgUGvlEVEjfAFQ3R234foBfL7sKMVD5nUs9Epc8tXOTJS7s5O5PekF
+	 ZYvyWel9DotwQ==
+Date: Wed, 18 Mar 2026 10:17:00 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: soc: renesas: add MFIS binding
+ documentation
+Message-ID: <20260318-camouflaged-umber-oxpecker-b2b29e@quoll>
+References: <20260317130638.2804-1-wsa+renesas@sang-engineering.com>
+ <20260317130638.2804-2-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: sm8650: correct Iris corners for
- the MXC rail
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Taniya Das <taniya.das@oss.qualcomm.com>,
-        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Stephan Gerhold <stephan.gerhold@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260313-iris-fix-corners-v1-0-32a393c25dda@oss.qualcomm.com>
- <20260313-iris-fix-corners-v1-5-32a393c25dda@oss.qualcomm.com>
- <8dd814c0-039e-c8aa-2588-9c1edbadaf47@oss.qualcomm.com>
- <scsvyc7vb3lnk6mktwltdac5bkynvrzd4jrx7dwceeesbqnhrh@clz7d5e3igkk>
-From: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
-In-Reply-To: <scsvyc7vb3lnk6mktwltdac5bkynvrzd4jrx7dwceeesbqnhrh@clz7d5e3igkk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=bIcb4f+Z c=1 sm=1 tr=0 ts=69ba6d67 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=RgczR8+8wRjDfzPIf2UjDw==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
- a=EUspDBNiAAAA:8 a=BSPgCQzljRD-_oUiieYA:9 a=QEXdDO2ut3YA:10
- a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-ORIG-GUID: LXgQCYqExT0T7sQIgMBekcQLEbqwL8dM
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDA3OCBTYWx0ZWRfX5ZdzaZOlo54X
- +6bvNghe5Iu5WSGgxsaBRU2MfNzHJaOw/cLy9UC2wRFvff7WN5Om1Hzv6dpk+q1QrvX/OR46OYp
- bGJipeT0nUFzIUY9UMvOJAFSK0lApm8X2hn/BNmsoeMRGy6vbNZ+1fIEBmTLc+ajA2P0imKhmHr
- Knc3wErN42bUjdWjyG2qd0AxWYRpHhz+8T5K+s8G+Ch+AgM1HikHFCl7XLmqpDE3s1qEGtplOTC
- SGfYu4PwwUvLkCL9wqgUt2dlFGYkcwGBy/N7hTNhwiQAPHXzB0+QS29SrPa5rNsOWQ7Pn8WeOzi
- 1h4mDXZtfhjcToVA3eZ4EUi3C/sCWQEB2z/LtaEDGFv1jeUPWWDL2zbQPTe/ilSUGfYXgZyCqpj
- ejXjtO/9MnWRAOTye3CoO7TiWqRFIwxLf5i3va1SMuZETVd3a9cg5KWDphm2a+danXwZ18H3m1l
- We06RMaUu5UGZfD+nPA==
-X-Proofpoint-GUID: LXgQCYqExT0T7sQIgMBekcQLEbqwL8dM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-17_05,2026-03-17_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 impostorscore=0 malwarescore=0 adultscore=0 lowpriorityscore=0
- clxscore=1015 priorityscore=1501 bulkscore=0 phishscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603180078
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260317130638.2804-2-wsa+renesas@sang-engineering.com>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-277067-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,glider.be,kernel.org];
+	TAGGED_FROM(0.00)[bounces-277068-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dikshita.agarwal@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 8164A2B8CE0
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url,189e0000:email]
+X-Rspamd-Queue-Id: D58FF2B8C89
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
-
-On 3/18/2026 12:32 PM, Dmitry Baryshkov wrote:
-> On Wed, Mar 18, 2026 at 10:54:07AM +0530, Dikshita Agarwal wrote:
->>
->>
->> On 3/13/2026 8:57 PM, Dmitry Baryshkov wrote:
->>> The corners of the MVS0 / MVS0C clocks on the MMCX rail don't always
->>> match the PLL corners on the MXC rail. Correct the performance corners
->>> for the MXC rail following the PLL documentation.
->>>
->>> Fixes: 56cf5ad39a55 ("arm64: dts: qcom: sm8650: add iris DT node")
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
->>> ---
->>>  arch/arm64/boot/dts/qcom/sm8650.dtsi | 8 ++++----
->>>  1 file changed, 4 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
->>> index 357e43b90740..9437360ea215 100644
->>> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
->>> @@ -5236,13 +5236,13 @@ opp-196000000 {
->>>  
->>>  				opp-300000000 {
->>>  					opp-hz = /bits/ 64 <300000000>;
->>
->> I see in the document that this level value should be 280000000, could you
->> pls check and update accordingly.
+On Tue, Mar 17, 2026 at 02:06:34PM +0100, Wolfram Sang wrote:
+> Add device tree bindings for the Renesas Multifunctional Interface
+> (MFIS) as found on the Renesas R-Car X5H (r8a78000) SoC. MFIS includes
+> features like Mailbox/HW Spinlock/Product Register.
 > 
-> I cross-checked, the table for SM8650 lists 300 MHz here.
-
-Ack.
-
-Thanks,
-Dikshita
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
 > 
->>
->>> -					required-opps = <&rpmhpd_opp_low_svs>,
->>> +					required-opps = <&rpmhpd_opp_svs>,
->>>  							<&rpmhpd_opp_low_svs>;
->>>  				};
->>>  
->>>  				opp-380000000 {
->>>  					opp-hz = /bits/ 64 <380000000>;
->>> -					required-opps = <&rpmhpd_opp_svs>,
->>> +					required-opps = <&rpmhpd_opp_svs_l1>,
->>>  							<&rpmhpd_opp_svs>;
->>>  				};
->>>  
->>> @@ -5254,13 +5254,13 @@ opp-435000000 {
->>>  
->>>  				opp-480000000 {
->>>  					opp-hz = /bits/ 64 <480000000>;
->>> -					required-opps = <&rpmhpd_opp_nom>,
->>> +					required-opps = <&rpmhpd_opp_svs_l1>,
->>>  							<&rpmhpd_opp_nom>;
->>>  				};
->>>  
->>>  				opp-533333334 {
->>>  					opp-hz = /bits/ 64 <533333334>;
->>> -					required-opps = <&rpmhpd_opp_turbo>,
->>> +					required-opps = <&rpmhpd_opp_svs_l1>,
->>>  							<&rpmhpd_opp_turbo>;
->>>  				};
->>>  			};
->>>
->>
->> with above comment addressed.
->>
->> Reviewed-by: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
->>
->> Thanks,
->> Dikshita
+> Checked with 'dt_bindings_check'. Family-compatible values are not
+> introduced here because MFIS is usually very different per SoC.
+
+Not sure with what family this would be compatible, but anyway this
+should be explained in commit msg.
+
 > 
+>  .../soc/renesas/renesas,r8a78000-mfis.yaml    | 160 ++++++++++++++++++
+>  .../mailbox/renesas,r8a78000-mfis.h           |  27 +++
+>  2 files changed, 187 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/renesas/renesas,r8a78000-mfis.yaml
+>  create mode 100644 include/dt-bindings/mailbox/renesas,r8a78000-mfis.h
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas,r8a78000-mfis.yaml b/Documentation/devicetree/bindings/soc/renesas/renesas,r8a78000-mfis.yaml
+> new file mode 100644
+> index 000000000000..dbda28ac781c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas,r8a78000-mfis.yaml
+> @@ -0,0 +1,160 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/renesas/renesas,r8a78000-mfis.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas MFIS (Multifunctional Interface) controller
+> +
+> +maintainers:
+> +  - Wolfram Sang <wsa+renesas@sang-engineering.com>
+> +
+> +description:
+> +  Renesas Multifunctional Interface (MFIS) provides functionality for
+> +  communication between different CPU cores. Those cores can be in various
+
+so kind of remoteproc? The soc directory is dumping ground, so you
+should find something more suitable if possible.
+
+> +  domains like AP, RT, or SCP. Functionality includes features like
+> +  mailboxes, hardware spinlocks and such.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - renesas,r8a78000-mfis       # R-Car X5H (AP<->AP, with PRR)
+> +      - renesas,r8a78000-mfis-scp   # R-Car X5H (AP<->SCP, without PRR)
+> +
+> +  reg:
+> +    minItems: 2
+
+Drop
+
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: common
+> +      - const: mboxes
+> +
+> +  interrupts:
+> +    minItems: 32
+> +    maxItems: 128
+> +    description:
+> +      The interrupts raised by the remote doorbells.
+> +
+> +  interrupt-names:
+> +    minItems: 32
+> +    maxItems: 128
+> +    items:
+> +      pattern: "^ch[0-9]+[ie]$"
+> +    description:
+> +      An interrupt name is constructed with the prefix 'ch'. Then, the
+> +      channel number as specified in the documentation of the SoC. Finally,
+> +      the letter 'i' if the interrupt is raised by the IICR register. Or 'e'
+> +      if it is raised by the EICR register.
+
+Describe why is this flexible. These are fixed devices, very specific
+SoCs. They do not come with randomly routed interrupts, usually.
+
+> +
+> +  "#hwlock-cells":
+> +    const: 1
+> +
+> +  "#mbox-cells":
+> +    const: 2
+> +    description:
+> +      The first cell is the channel number as specified in the documentation
+> +      of the SoC. The second cell may specify flags as described in the file
+> +      <dt-bindings/mailbox/renesas,r8a78000-mfis.h>.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +  - interrupt-names
+> +  - "#hwlock-cells"
+> +  - "#mbox-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    mfis: syscon@189e0000 {
+
+Drop label and rename node - that's not syscon.
+
+> +            compatible = "renesas,r8a78000-mfis";
+> +            reg = <0x189e0000 0x1000>, <0x18800000 0x40000>;
+> +            reg-names = "common", "mboxes";
+> +            interrupts = <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 139 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 150 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 151 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 171 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 172 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 173 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 175 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 177 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 179 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 180 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 181 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 182 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 183 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 185 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 192 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 193 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 194 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 195 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 198 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 199 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 201 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 202 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 203 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 204 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 206 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 209 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 210 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 211 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 212 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 213 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 214 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 217 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 218 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 220 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 222 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 228 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-names = "ch0i", "ch0e", "ch1i", "ch1e", "ch2i", "ch2e", "ch3i", "ch3e",
+> +                              "ch4i", "ch4e", "ch5i", "ch5e", "ch6i", "ch6e", "ch7i", "ch7e",
+> +                              "ch8i", "ch8e", "ch9i", "ch9e", "ch10i", "ch10e", "ch11i", "ch11e",
+> +                              "ch12i", "ch12e", "ch13i", "ch13e", "ch14i", "ch14e", "ch15i", "ch15e",
+> +                              "ch16i", "ch16e", "ch17i", "ch17e", "ch18i", "ch18e", "ch19i", "ch19e",
+> +                              "ch20i", "ch20e", "ch21i", "ch21e", "ch22i", "ch22e", "ch23i", "ch23e",
+> +                              "ch24i", "ch24e", "ch25i", "ch25e", "ch26i", "ch26e", "ch27i", "ch27e",
+> +                              "ch28i", "ch28e", "ch29i", "ch29e", "ch30i", "ch30e", "ch31i", "ch31e",
+> +                              "ch32i", "ch32e", "ch33i", "ch33e", "ch34i", "ch34e", "ch35i", "ch35e",
+> +                              "ch36i", "ch36e", "ch37i", "ch37e", "ch38i", "ch38e", "ch39i", "ch39e",
+> +                              "ch40i", "ch40e", "ch41i", "ch41e", "ch42i", "ch42e", "ch43i", "ch43e",
+> +                              "ch44i", "ch44e", "ch45i", "ch45e", "ch46i", "ch46e", "ch47i", "ch47e",
+> +                              "ch48i", "ch48e", "ch49i", "ch49e", "ch50i", "ch50e", "ch51i", "ch51e",
+> +                              "ch52i", "ch52e", "ch53i", "ch53e", "ch54i", "ch54e", "ch55i", "ch55e",
+> +                              "ch56i", "ch56e", "ch57i", "ch57e", "ch58i", "ch58e", "ch59i", "ch59e",
+> +                              "ch60i", "ch60e", "ch61i", "ch61e", "ch62i", "ch62e", "ch63i", "ch63e";
+> +            #hwlock-cells = <1>;
+> +            #mbox-cells = <2>;
+> +    };
+> diff --git a/include/dt-bindings/mailbox/renesas,r8a78000-mfis.h b/include/dt-bindings/mailbox/renesas,r8a78000-mfis.h
+> new file mode 100644
+> index 000000000000..89489c2a4847
+> --- /dev/null
+> +++ b/include/dt-bindings/mailbox/renesas,r8a78000-mfis.h
+> @@ -0,0 +1,27 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Constants for the mailbox part of the Renesas MFIS IP core.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_MAILBOX_RENESAS_MFIS_H
+> +#define _DT_BINDINGS_MAILBOX_RENESAS_MFIS_H
+> +
+> +/*
+> + * MFIS HW design before r8a78001 requires a channel to be marked as either
+> + * TX or RX.
+> + */
+> +#define MFIS_CHANNEL_TX	(0 << 0)
+
+0, bindings constants are abstract (so without dedicated meaning)
+numbers, starting from 0 or 1 and incremented by 1. Shifting this
+implies there is some other logic and that would mean - not a binding.
+
+> +#define MFIS_CHANNEL_RX	(1 << 0)
+
+1
+
+
+> +
+> +/*
+> + * MFIS variants before r8a78001 work with pairs of IICR and EICR registers.
+> + * Usually, it is specified in the datasheets which of the two a specific core
+> + * should use. Then, it does not need extra description in DT. For plain MFIS
+> + * of r8a78000, this is selectable, though. According to the system design and
+> + * the firmware in use, these channels need to be marked. This is not needed
+> + * with other versions of the MFIS, not even with MFIS-SCP of r8a78000.
+> + */
+> +#define MFIS_CHANNEL_IICR	(0 << 1)
+> +#define MFIS_CHANNEL_EICR	(1 << 1)
+
+Same here.
+
+Best regards,
+Krzysztof
+
 
