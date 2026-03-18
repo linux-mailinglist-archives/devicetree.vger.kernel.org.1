@@ -1,256 +1,232 @@
-Return-Path: <devicetree+bounces-277352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277353-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6AiWFLvdumk3cwIAu9opvQ
-	(envelope-from <devicetree+bounces-277352-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:15:39 +0100
+	id UAnDOGPXumkXcgIAu9opvQ
+	(envelope-from <devicetree+bounces-277353-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 17:48:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6C5A2C007C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:15:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48DB32BF95A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 17:48:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 810BD34459F3
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 16:30:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3AFE7317ED86
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 16:32:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3040B3A256A;
-	Wed, 18 Mar 2026 16:03:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20C9431A576;
+	Wed, 18 Mar 2026 16:05:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NrvFKfJy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DxmWjC/B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F8923F20EA
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 16:03:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.41
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773849804; cv=pass; b=PzGPDiWzJGc9YhrMfIM3c5LhH22+sg2gplPBpbyik0xL6rHXJ0pBtGnKbiLf3stQc6OhOjzQPivTa74SVaQhowsp8BPW7gUKxYrvWjYAmgJXk21U3iwp4Ctxd61iXN0y1lA83t6tXH4/b9EoPRLNZEoO4/Ce53YDTh4T0uAQSco=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773849804; c=relaxed/simple;
-	bh=whUst5kD5E4ZE3YDOSV+OSVwVL0wed8ch5z/VyWCXig=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=a4ICWbyxdvaX+bVOFlaHFDX5sk83QoFHMKlSrphHNqpTp59w7/GC9ID/sz9vxknMVKjMDwjWyPvSq4ZShvQ40nJHrTRBoiP2vJ6miCxVuGZHwS7CqxKH/R9KMfMuClFIh2kWns1fje2itePAlL8awHUE8IKn/lUClcDuFTcZKiI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NrvFKfJy; arc=pass smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-664f8bef4e7so74952a12.3
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 09:03:18 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773849796; cv=none;
-        d=google.com; s=arc-20240605;
-        b=TkMbiURWcwlnoW1eG9a6saw7SeHM8bBhvSWnV++kpFYJn7Mo/1Lqnwj3sF6LtBgZqb
-         i9/L7TUdZpn1NNI8H0lGTSGZo4ygcS/l+4OchxYTeRFLIj6DJEiCtjN2ZUmqbaXZjB+d
-         07aO30cC+BNwS6hvTGknCxkhG9hg6eaTHByNF8T6qwuLZRr/OEW4eoKSHFk0S6dNHKkL
-         WptFqxsWdCTgckwVlrU2m5Vw6+A3PlH4rY8GDoyKnTe0Ika1YzsiiFcgJXIzmovkNJus
-         JQPllDSiZel0VE5Wy1ySTjnrgrrmChYGkydjProzfdgJOt+E7wcV+ciiz60X+EXc/UbT
-         EeaA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=Swz0XhdroxzWkDHIYYyMmBF0VrlYEkeUluciyU8bDwM=;
-        fh=jCCSrDNzPpdRA4PX+r7Ptf+whM3hQc6I3P3lhJBQoDU=;
-        b=briU36PpqSbpcaWje4INkajOeKZLs3e4EJyq+C4FBa7IDHyksfcwiIQJZY0E2mvZ2B
-         juo7TW20gGyOHMLGthsLk3NLDQGWCecOchjFmnLhx04YjD7jVzKWE0cqIRjKELrvkF7Q
-         2+T40K0x4Zs0IhNHjdZgtx6oACVbo9dhwoI9qqkpvy5OKtKkG2aw0XUs2LuRB+FA0N8/
-         x3Gn8wz463cG353GcMUIdWrsKgIt9evwda2RvGJq2icW/j1S4MJNxATlp5k/VuAj40re
-         g9zJ63IAP58xBiM7FKuQ18q6FINQ2IEQrmk3ZIXnWZ/AC5DByZ3m0EcKOUw0amBnjsJL
-         baMA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98DFD3DFC66
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 16:05:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773849923; cv=none; b=Bgi11hOR73/q8myQHNME6IiwxozB25SBYABDnRleFi+Vu345tPEAAxga9LJodTXz4QTUHRRsHzLD6UMZNZC3kAA7qJfAcPSzBSYo+DPsdPvQu9MsE6e82YtjNX+KsKQUMTR+0OFYFhFRLGI6aTbfjtawqk8XpGcHC4hDxxU88i0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773849923; c=relaxed/simple;
+	bh=jXMA/dCk6GfYrs/V5on0Asyipeqpdixm75EBXPhISag=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lX+5JLH24N6mtfTQ2fwF6twMMXNi0qiYYB92r/JUpREh1x2vXPmBVLIsxfdSztQ0iPOAIuESx1ryQ8K07XdH04LuplTtdY+uvcyG/bOPyhqnuNbrNVTMLWkawDj9iHwbUdmQpZm0q7XfqBT/UWEq+WD59nhlk0ASCYutmpwgrIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DxmWjC/B; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4853c3c2fe7so141225e9.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 09:05:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773849796; x=1774454596; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Swz0XhdroxzWkDHIYYyMmBF0VrlYEkeUluciyU8bDwM=;
-        b=NrvFKfJy8CtNVdNccGFS39F+Doot4zdly3PsBWy04M7efbIcf6JilwzgwZ5tKcxYvE
-         CRsztuu8mCaeVzWm8JS8NQJo8NiV+qUdakCj+PcJCY5f9k47Y9Bzl/s2JryZnZYbIQJ4
-         Us/Q6uozSXjJ2OHxxlKdUPPtzhCLXNQV88EcL9igVFlszfsI1/PHUPIpZQ42UUpMqSQM
-         Qb1vV55lgYIoRD0ARNuuIEsSzK7rgFpdNAbbklTL6awoS2ak9qKkt/HctA0Lqi+BKIO9
-         yW/TET3gQkdUt+yvJpODff1zYn7V7WIgZZMyyEUk4J6HO/ZMfVW4Fn4uELApzY2iMTeA
-         IOIw==
+        d=gmail.com; s=20230601; t=1773849914; x=1774454714; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=48rofo6CJOo6vDXyvqVZcV6FKGqYI4Brbiz5qO2aiTw=;
+        b=DxmWjC/Bzd91/aMGNyGqaZfuHMcOZRqWF0b1GJF/rN+k70JpBEMecwTbdRE+PSIjK9
+         k3wBeOxYVn+XrVFOxDRwaM2sq67+gz8a/d/ZydErZX3tU6l8VH1bwLprFmo80XFa0JhF
+         pqAMeoxMmx/yGt25vyHWAlQyEboY4R25Z+0WVXtf48XuwspyyrAGuo1WzSafLwXA+EjP
+         x9ZonkVxGOSfj72prMnxeHxIvlfv8yx5QGrU4wjnNdNB+/5LcyVDQk+EAU5GBHghOFLw
+         m3sjZ9dAV5+8bffqcIe3a8Giw2kclF7s/TpeclinGOn314ZsPAmTvuUKiIwLFv5bfWi8
+         T/Yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773849796; x=1774454596;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20251104; t=1773849914; x=1774454714;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Swz0XhdroxzWkDHIYYyMmBF0VrlYEkeUluciyU8bDwM=;
-        b=YO0rApk0qn40fbSbqw2oHZrfcFcL4tEbJN8q8L+gN1B/LJa/QqiaGkjuEXp1cpxdcX
-         CGIvpJYcJmItuzzg3lYCCspNIZdObYr2XA4TU4JW92/iscxTEdXfA4+HJJ0bn8e/9izl
-         1qPjsT7WI5h996fRe9TISexV3AjmzKcXJdZZ+Bb0s4/Bv2RuHy/dl6c51xaRvzU8Qgel
-         ShgiOR7n3gfXV12TpQoC2o+a9nnUp3B+CSI/fFopAZCvTBmaeP3BXxs4cnAo8qXP9bNA
-         sht1KseFaDcFrjHG/0RPTvj2+5H5X5CbmRfLvERzcYt/U1mQIoRuT/keYmDTH3GAhOUI
-         EITA==
-X-Forwarded-Encrypted: i=1; AJvYcCXMC8IIWLpJRTdBkRiCBYFRaUnXcxSgB8gKz5MnZMrxZ02kvOV1yYvJU+OkfxxpQKnDjAu7UPnkjR8y@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx73S/ChKr6E7c4gQ6PMhWzsbjk4xSI8ozPLgtCiUKPYK7ywLT8
-	SBybDuVYa+snlpbOV1nZZVLNmlvvdwMmY2yamAXmYL3wKPi1Mvm/Ymyb9WmZ6kfcfS4ZV3rUrBR
-	GY6QD8QQl4CR9zmytVnTLbUKaqKroHJUxmc5/bBHezQ==
-X-Gm-Gg: ATEYQzxECpv5rocXeg8lvWjo27PRl19QASc0Adyey6N5b0PS08OrQtz4dMC+2Dqtk0m
-	BMGzZDU4e7yWhIy4n8Kc6dF0YIk6AsCYTvZmFFSnUmpdIvYjYpIJ2lZ1R0wlshUSeGrF4f9lk/P
-	Ihb/+1xrTxg4ltneF1zIJd1kAWOBdBdCjE84qldnNPlJYFPoYTwCgbbbi9xQxaSbk7SVIOr85pu
-	Uie62xchtk7jxruHMH3wLesP6evFRgPa0HwAIvW17RTEpDwzAXgPVoLk8OKtkmUBxzPdQVgqB7a
-	65AzT14K14OspPm1jzCL9pReJQk+3s7HY4szOuF8
-X-Received: by 2002:a17:907:9811:b0:b94:24:44bb with SMTP id
- a640c23a62f3a-b97f49bd1dfmr258135566b.42.1773849796081; Wed, 18 Mar 2026
- 09:03:16 -0700 (PDT)
+        bh=48rofo6CJOo6vDXyvqVZcV6FKGqYI4Brbiz5qO2aiTw=;
+        b=ZtHlL/4per67J119TO99sZVFENG731CXLrKrDm/lBrs0RA5iwHUG7BTMJ9bDbgEYp/
+         xSUFpOnRJOpE5VVp2MRh8zTOYHH721U6YWRVZpNB9/Ysu7FBtYld/cbAQeSo8DBt1ZNh
+         0dmt2m+JmjMajHbi90AQk8fZ3t6FCoX9uRcxvwYsLDkC4q7NYLblcCCyLxTWvrbJPQqq
+         DFxxOT3RMCVJpC2PPeOQ4H//XBNqCgVv++uYEP8O3MaHdNIcaNtHXGqPin/5mbhwykn9
+         RPRep6/rSYcWJkBj4dgg713b8N22VoFTqbJ1zErVV6fBbFjTyO0943J165mOQHkq7IVf
+         cGXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWF1KKQhlVIYMY5OxRTObshuJxe0RLNT/OOxJKFW4ocyCikYDzpDshZe7XObwUAamHxm7GhfFBnZ+Mi@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYBSC+XjVpAL6vXNnQ2yRBZPwNf/PwHV83+FwGwQGwKOy2oFSA
+	PaA4CTQt21CIXGd6L4YAtBqFhknIoa93VKsBlvbOLCMU7fLWJvOf7pZn
+X-Gm-Gg: ATEYQzw4gVSyVhSA9h8rrSs9OK/wCWrt/42Ab+CnGE9eA9FvVd6h8OLzu1FVtrYVE+g
+	wY6vT9PJ2dP6HZZ3PFDAP63suLcHGYcI3tFFM/vlYY4z18ZzkeDzpkjtKusfrnHnO2P2NLhzHI/
+	HKZH7Xj0V7nmHDEiV+Zj3pCy2OgY0IjmF5EmUbpQlD6hnJfpziHFoFT+0vteMl8cxzxIgpYBXFS
+	IwjZr/1yOm1amOMcJ6fEZ3sKfhSwo1LCNX24j8UNh5Cf4ISKkHlZAjwsqLntzyYXz0dmUr2WAsU
+	fmLR/yka8ZfN4EWKIPat21JGzl7RkKAADQbbCYJFHK+B9SzvjwTnJdW3Qq43aOe14ssoFEA9OiL
+	CG6IPrBGXUtFpUIkSdedixYakjaRGQh2buu/QAPH4yUnkPrCXxC3EbjG8BRVCtAbIB69LdNj7yB
+	LfvgMQI2gyU0KeVeHXswKrbo3MT46jLNElngDsSTfB1tm/HuCuDj8D/O11lQBRQlc=
+X-Received: by 2002:a05:600c:3e08:b0:485:5812:bb9e with SMTP id 5b1f17b1804b1-486f42018dcmr69488495e9.0.1773849913198;
+        Wed, 18 Mar 2026 09:05:13 -0700 (PDT)
+Received: from [10.100.102.17] (89-139-129-65.bb.netvision.net.il. [89.139.129.65])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486f8baec5csm2282225e9.15.2026.03.18.09.05.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Mar 2026 09:05:12 -0700 (PDT)
+From: Yedaya Katsman <yedaya.ka@gmail.com>
+Subject: [PATCH v6 0/3] Add support for the Samsung S6E8FC0 DSI and M1906F9
+ display panel
+Date: Wed, 18 Mar 2026 18:04:47 +0200
+Message-Id: <20260318-panel-patches-v6-0-7a30c2f85e0b@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260313195801.2043306-1-shenwei.wang@nxp.com>
- <20260313195801.2043306-4-shenwei.wang@nxp.com> <2aa1d063-181f-4145-9f1f-7e3012c4d0af@foss.st.com>
- <104e9861-bfd4-4e0f-8967-a849edf7e6fb@lunn.ch>
-In-Reply-To: <104e9861-bfd4-4e0f-8967-a849edf7e6fb@lunn.ch>
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-Date: Wed, 18 Mar 2026 10:03:03 -0600
-X-Gm-Features: AaiRm50ET16GLgpYC6lwF0jbLmfq5CygllZIeseBjuujZbOA5MhL0hZ6kP_Zg-Y
-Message-ID: <CANLsYkx6KhspTjzpk51ywfgWcf-FR7-3XrH=MmBi_W6yZmMukA@mail.gmail.com>
-Subject: Re: [PATCH v12 3/5] gpio: rpmsg: add generic rpmsg GPIO driver
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>, Shenwei Wang <shenwei.wang@nxp.com>, 
-	Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Shuah Khan <skhan@linuxfoundation.org>, 
-	linux-gpio@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, devicetree@vger.kernel.org, 
-	linux-remoteproc@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com, 
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33QS2rDMBAG4KsYrasweliSQyi5R+lCj1Eiasep5
+ ZqWkLtXdhYNWhSBYAa+XzO6kYxTwkz2zY1MuKScxksp1EtD/NleTkhTKDXhwBVwZujVXrAv9+z
+ PmKnqVIgaIRgGpJjrhDF9b3lv7496ws+vEjs/mmTAnO0Wu28OW6pYjzRS75gwGiiji+2PV+s/c
+ J53fhz71zXa2YzUj8OQ5n0TZAfKIpO2jUwoj05p5hyTHoMrnWhbBcEqsg5xTnkep59tx4VtUzz
+ W4aJaZ2EUqNat4tBJrWN3PA029WWIYUta+L+aF82cskFqFloJtRZ/WjBea1G0wmA8gArgsNbyW
+ ctay/Vt9M5xD154U+v2Wetat0Vj7LqoHTfl4571/X7/BSAeNrknAgAA
+X-Change-ID: 20260218-panel-patches-696df7e0d810
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Kamil_Go=C5=82da?= <kamil.golda@protonmail.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Yedaya Katsman <yedaya.ka@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ David Heidelberg <david@ixit.cz>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773849909; l=3391;
+ i=yedaya.ka@gmail.com; s=20260113; h=from:subject:message-id;
+ bh=jXMA/dCk6GfYrs/V5on0Asyipeqpdixm75EBXPhISag=;
+ b=TOPaPwp4HkIzKfP0Z/7KdEVCQZt1ENxA6P4rIZ70bOfbJ1izYjskptI21MjXpuNlci9qsaLxn
+ S4uXQcjZfbwARVhc7DLz6EYtxZ9hQnorQQFmDiHOutRZ+NJ5k3xDRWt
+X-Developer-Key: i=yedaya.ka@gmail.com; a=ed25519;
+ pk=CgNmxD3tYSws5dZfpmJfc6re/bV/f47veVijddHLytk=
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-277353-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277352-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,protonmail.com,disroot.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[lists.sr.ht,vger.kernel.org,lists.freedesktop.org,gmail.com,oss.qualcomm.com,ixit.cz];
 	RCPT_COUNT_TWELVE(0.00)[25];
-	FREEMAIL_CC(0.00)[foss.st.com,nxp.com,kernel.org,lwn.net,pengutronix.de,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org,bgdev.pl];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mathieu.poirier@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	NEURAL_HAM(-0.00)[-0.931];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[yedayaka@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.969];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lwn.net:url,lunn.ch:email,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: C6C5A2C007C
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,packett.cool:email,sashiko.dev:url]
+X-Rspamd-Queue-Id: 48DB32BF95A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, 17 Mar 2026 at 08:11, Andrew Lunn <andrew@lunn.ch> wrote:
->
-> > > +struct rpmsg_gpio_info {
-> > > +   struct rpmsg_device *rpdev;
-> > > +   struct rpmsg_gpio_packet *reply_msg;
-> > > +   struct completion cmd_complete;
-> > > +   struct mutex lock;
-> > > +   void **port_store;
-> > > +};
-> >
-> > Except if I missunderstood Mathieu and Bjorn's request:
-> > "reuse all the design-work done in the gpio-virtio"
-> > We should find similar structures here to those defined
-> > in virtio_gpio.h.
-> > struct rpmsg_gpio_config {
-> >       __le16 ngpio;
-> >       __u8 padding[2];
-> >       __le32 gpio_names_size;
-> > };
-> >
-> > /* Virtio GPIO Request / Response */
-> > struct virtio_gpio_request {
-> >       __le16 type;
-> >       __le16 gpio;
-> >       __le32 value;
-> > };
->
-> The core of the issue is that Shenwei is stone walling any change
-> which makes it hard to keep the legacy firmware. It is possible to use
-> these structures, but it makes the extra code Shenwei needs to
-> translate this protocol to the legacy protocol more difficult. It
-> might need to keep state, etc.
->
+This adds a driver to support the Samsung S6E8FC0 DSI controller with the
+M1906F9 display panel found in Xiaomi Mi A3 (xiaomi-laurel). The driver is
+generated using linux-mdss-dsi-panel-driver-generator[0].
 
-I agree with everything Andrew points out above.
+The mdss reset dependency makes the screen work more reliably.
 
-> Two points...
->
-> The firmware implements more than GPIO. There is definitely I2C as
-> well, the first version of the patch has bits of I2C code. Looking at:
->
-> https://lwn.net/ml/all/20250922200413.309707-3-shenwei.wang@nxp.com/
->
-> There is also RTC, and a few other things which don't directly map to
-> Linux subsystems, but maybe do have Linux drivers?
->
-> Give how much pushback there has been on the existing protocol for
-> GPIO, it would be wise to assume that I2C, and RTC is going to get the
-> same amount of pushback. If any of these three, GPIO, I2C, or RTC
-> decide that only a new, clean protocol will be accepted, no legacy
-> shims, the firmware has to change, breaking compatibility to legacy
-> protocols, and the accepted shims become pointless Maintenance burden.
->
+[0]: https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator
+Original tree with patches: https://gitlab.postmarketos.org/SzczurekYT/linux/-/tree/laurel
 
-I have made this point clear before: modeling legacy protocols in
-mainline doesn't scale.  Mainline uses a single generic protocol, and
-yes, it means breaking legacy protocols.  This is the cost of moving
-to a mainline kernel.  If people want to use the legacy firmware, they
-must stick with a legacy kernel.
+Signed-off-by: Yedaya Katsman <yedaya.ka@gmail.com>
+---
+Changes in v6:
+- Rename some identifiers to be more panel generic like David asked
+- Link to v5: https://lore.kernel.org/r/20260317-panel-patches-v5-0-ef99f7b280da@gmail.com
 
-> Point two is that the customers who are pushing for these drivers to
-> be added to Mainline probably know that nearly nothing gets into
-> Mainline without some changes. There is some short term pain to
-> swapping to Mainline because of these changes, in this case, firmware
-> upgrades. But in the long run, it is worth the pain to be able to use
-> Mainline. And those customers who don't want to upgrade the firmware
-> can keep with the out of tree drives.
->
-> So, what are our choices?
->
-> 1) We accept the code as it is now, with the shim?
->
+Changes in v5:
+- Fix typo in panel name, s6e8fco -> s6e8fc0 (zero -> O). Was like this in
+  downstream, but in samsung website it ends with a 0 [1]. Found in [2]
+- Link to v4: https://lore.kernel.org/r/20260314-panel-patches-v4-0-1ecbb2c0c3c8@gmail.com
 
-NAK
+[1] https://semiconductor.samsung.com/display-ic/mobile-ddi/part-number/s6e8fc0/
+[2] https://sashiko.dev/#/patchset/20260314-panel-patches-v4-0-1ecbb2c0c3c8%40gmail.com
 
-> 2) We keep pushing for the virtio protocol, with the shim?
->
+Changes in v4:
+- Use exisiting binding instead of creating a new one
+- Mention dsi phy power source in commit message
+- Mention only DSI controller, not panel where it makes sense
+- Remove VIDEOMODE_HELPERS selection
+- Collect trailers
+- Link to v3: https://lore.kernel.org/r/20260312-panel-patches-v3-0-6ed8c006d0be@gmail.com
 
-NAK
+Changes in v3:
+- Make driver, bindings, compatible specific to M1906F9 panel
+- Adjust brightness scale and default
+- de-mystify some dsi writes
+- move pinctrl for mdss into panel node
+- Rename regulator nodes and names according to schematic
+- Treat vreg_l9a as input to vddi regulator
+- Add myself to copyright header, remove years
+- Link to v2: https://lore.kernel.org/r/20260223-panel-patches-v2-0-1b6ad471d540@gmail.com
 
-> 3) We keep pushing for the virtio protocol, no shim, firmware changes
->
+Changes in v2:
+- Changed commit title like Dmitry asked
+- Fixed copyright header years
+- Link to v1: https://lore.kernel.org/r/20260223-panel-patches-v1-0-7756209477f9@gmail.com
 
-Nothing will get merged in the RPMSG subsystem that includes support
-for the legacy protocol.  Not today, not in a month, not in 5 years.
+---
+Yedaya Katsman (3):
+      dt-bindings: display: panel: Add Samsung S6E8FC0-M1906F9
+      drm: panel: Add Samsung S6E8FC0 DSI controller for M1906F9 panel
+      arm64: dts: qcom: sm6125-xiaomi-laurel-sprout: Enable MDSS and add panel
 
-> 4) We pause GPIO where it is today, and restart all the arguments with
->    the I2C driver. We can come back to the GPIO driver in a few months
->    time once we have a better idea how I2C is going. And maybe we also
->    need to see the watchdog driver, and argue about its protocol.
->
-> I also understand ST has a generic I2C driver nearly ready, if that
-> gets merged first, that probably kills the NXP I2C protocol, and maybe
-> the NXP GPIO and RTC protocols.
->
-> My vote is for 3. If not 3, then 4.
->
+ .../panel/samsung,s6e8aa5x01-ams561ra01.yaml       |   5 +-
+ MAINTAINERS                                        |   5 +
+ .../boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts  |  94 +++++++
+ drivers/gpu/drm/panel/Kconfig                      |  13 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ .../gpu/drm/panel/panel-samsung-s6e8fc0-m1906f9.c  | 301 +++++++++++++++++++++
+ 6 files changed, 418 insertions(+), 1 deletion(-)
+---
+base-commit: d4906ae14a5f136ceb671bb14cedbf13fa560da6
+change-id: 20260218-panel-patches-696df7e0d810
+prerequisite-message-id: <20260303034847.13870-1-val@packett.cool>
+prerequisite-patch-id: 3fba84f11111406e0d530013fd45ad0eb389786b
+prerequisite-patch-id: 81440b7f28f9101d3dc5d4bad6dc86e39b81a026
+prerequisite-patch-id: 53469d8c9810169d058f1bfd27ac8399038aae74
+prerequisite-patch-id: 80809bee71eb6434f6699d5e5f8c7f9d4bcd1ca7
+prerequisite-patch-id: 0269e01c9c54a37bb92983635cd516342189aee5
+prerequisite-patch-id: e2bbf7c452d4da6d71b1a5194e0d7ce46584e113
 
-Strong vote for 3.
+Best regards,
+-- 
+Yedaya Katsman <yedaya.ka@gmail.com>
 
->      Andrew
->
 
