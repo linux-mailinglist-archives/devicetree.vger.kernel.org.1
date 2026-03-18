@@ -1,171 +1,207 @@
-Return-Path: <devicetree+bounces-277197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277198-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qMQoAeadumngZgIAu9opvQ
-	(envelope-from <devicetree+bounces-277197-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:43:18 +0100
+	id kDOcGD2eumngZgIAu9opvQ
+	(envelope-from <devicetree+bounces-277198-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:44:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 021892BBB27
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:43:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A614C2BBBA6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:44:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 295F630482DC
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:40:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id DD1FC301D4B9
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:41:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70A143D6CDC;
-	Wed, 18 Mar 2026 12:40:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAE9E3D3CEF;
+	Wed, 18 Mar 2026 12:41:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MZjcB+bI";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="PXEhxLz5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 263EC3D666A
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:40:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 773721D88AC
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:41:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773837607; cv=none; b=AQM4Mra7MDYlwsBzvE4NZsoWnD5n35JpOEww9qcqsPB7pYOOqhloDvkgHAhnAv4tVmqOgYbFjI4koGAfwNK3P8Ng0FLfGg7gG4cVM+ItAU4uhQCTrQ8Safni0+4iPqg+aZ23YLF1o+JF2xJzKmcI5etyHEdtH15SrtlJXD1wNlI=
+	t=1773837677; cv=none; b=IhR9eAb5zLwq1dTez2BmLvQIz0IRedkCEASc+IFtHRSjEdpbAL8RBgKUWT16DalDWKU/WaBuGOGyzBj1ALKLZI8C7yN4FnoYM2Iq367KXEhUwQGqnx5yEz/KSRH9fYM2raVbISyJe3vBnxdGJWghldxu8rSLn+f526lwmDXfbHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773837607; c=relaxed/simple;
-	bh=2ogj76zhqhmxdVnoHmHagIWkf+8xLWmelrn3mfxdUaM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=TYAw1st8lgPCYogIyBr3CXYl2UU90riLsYmztyZNqmGwIOEmyDcrWaXDJxMqcnzyzSinfhS+TVSYjLUEis9enHs7tyg/ySLw3GJZ/tvDz6K/9QxtpLNwQFMSH6jKpz0J4ixLtGVTHZXV2JiFA0WLif/D1r24VcmhaMlAWse4QZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1w2qBf-0001Qv-Cj; Wed, 18 Mar 2026 13:39:47 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1w2qBe-000uRl-2b;
-	Wed, 18 Mar 2026 13:39:46 +0100
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1w2qBe-000000009ES-30Jx;
-	Wed, 18 Mar 2026 13:39:46 +0100
-Message-ID: <3e9022faae3dc6f5066a1e7cc3752a0193a55bc9.camel@pengutronix.de>
-Subject: Re: [PATCH v3] reset: spacemit: k3: Decouple composite reset lines
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Yixun Lan <dlan@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Junzhong Pan <junzhong.pan@spacemit.com>, Guodong Xu
- <guodong@riscstar.com>, 	devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, 	spacemit@lists.linux.dev,
- linux-kernel@vger.kernel.org, Inochi Amaoto	 <inochiama@gmail.com>
-Date: Wed, 18 Mar 2026 13:39:46 +0100
-In-Reply-To: <20260317-01-k3-reset-usb-pci-v3-1-e4b9a43c7d45@kernel.org>
-References: <20260317-01-k3-reset-usb-pci-v3-1-e4b9a43c7d45@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1773837677; c=relaxed/simple;
+	bh=KbsIcm0aGdrq4L5CtWeMDNeON5JCTg6FqM58BWBOVDE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LlsluGI6GeC4u3QY2uU5Fqnlg8W70uFqyqAaZ/R8caG4rlWzkGPo72j8NKErtShuTRrH37zNINlvkXCXdsoJgqEijsRyKog4V2BMjxOsPvxulkdi8BcaG6ctH4X5u20wgcavaSHoYE6aWsbpacgA+CdtPO7R0OXDrdSgOk/7eeU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MZjcB+bI; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=PXEhxLz5; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62I76Z7o2612593
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:41:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=WBmNvZvU9C9Q+UlnWfyjncZkgl11xuGyxg1
+	qBLB+0rA=; b=MZjcB+bI5NIdI92x0kXjfXc87rWg38WHvc6pLweZ8mLz+OxhC0v
+	++tBZQWQo/mraGkDxhhka02NWttdJTgBnVQf+72ePZ3/PboNr6o1JBry6LR2BWMb
+	ViaIlDE4ZsLc/YqHwZwtMoJpWAwUTi6TSdCXlW1N3niHSIFJGEV26+BYVsDs/J58
+	fIeVC/C9+12m2dHMnKPJNSDsjS4PS2+XEfXvby6dBMCjgGslEiGYFHygk71dp5JS
+	UOrelHmwJhQxFqtTaLsPpICnwrwojcrLGLYGFxe9RH+5hWpGw4de2s1j3M2R/jVm
+	qOf+mfBhx0JyWmMwnEcJGqFyDPbI0E0sOkQ==
+Received: from mail-dl1-f71.google.com (mail-dl1-f71.google.com [74.125.82.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cyqcdsa3m-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:41:14 +0000 (GMT)
+Received: by mail-dl1-f71.google.com with SMTP id a92af1059eb24-128d285d6c3so4069016c88.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 05:41:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773837673; x=1774442473; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WBmNvZvU9C9Q+UlnWfyjncZkgl11xuGyxg1qBLB+0rA=;
+        b=PXEhxLz5cFdlWokXZgbpzfecbsMXAjgB9Dr37vZ8OuGmHiVFsVOhSKpxpXHNLGd6XH
+         gba6TwwzJQUHmU4zk6ud7BL67cp0oQ0bFmvdTeniBXqNd8ntpAkMnbEZIDvSIs2ZUS58
+         eVSeRRzdBqltQqOBBFd4OZ3UIP83BumFqk6nggPsbDii521nWDXkMiZxDbkAUQYSuasd
+         MX8QoxDA5YQscxohUMEsKzPoyWpzZQCbKBy5DrZR0l2GkysKKoQ50ydOSPly45+0NqUj
+         VETPaLx4/0PlHy6WJVcIuaju/MvdvMWB6IBrFAfDrLzhSAtpsI2peJDXW0NA6SQGXKK5
+         ai/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773837673; x=1774442473;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WBmNvZvU9C9Q+UlnWfyjncZkgl11xuGyxg1qBLB+0rA=;
+        b=I4CVkHc8ddvFsgx6AbfIulpL/oyR6IpXb3b3THCIUQEqP6Lr8hi1rjkXgcruPd9Ejn
+         31lbZDrZWZKPqaeAk7gB64uOUNu1L1e9xrwyWnJdaGrQLwAYvn73uVcB0jwadYfOHyYJ
+         bdgLSRtq9eZCOEtKBbO5JqolSLfOUnDZ6dRex0WhIv8wZGEWYhnHhXSf7HEvifA707X4
+         BrTFepgzqSAWGguWkUJEEMqqem9o/8XZRARZ813Ra9dB2BVxuVr6sP/5Pb7aE1L7DQDW
+         U37s/XxzbjvPmDJMFvlwIgptTukyxmT21u+2YsbrvAocpFf0ZX4Kn3mXF11imTOhwyNY
+         YPDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXkoOWvILCfNC8funNUVro9JTUFNGX5pW2K600yLY4CCz7GkzFZnsNA1cnvVJzHSvB8RvMzN6iz/ggo@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyx7NrQ9z6ViPeMb7iGJ6hF4NF1FaxQTm3aTXDfsZlc8H1udJLn
+	TpBu9wf/0L/MK5Bk/uXC/W/hu5vVyWSx9bWcO+JMY1Gh0RPSlr5nhNTsvT7rCx/Bb2r+/n3aQyB
+	ESEjY856knmZ2H3ruKK6PPUUJ5guGQlRJWluERKZcPFD6rDByzRGiEAxfh3uEriHi
+X-Gm-Gg: ATEYQzwmvrcgFJopqjzpXB9WNpm4NX1xn7XqT3ZLTcVtkiKAiQi0bzsPrnQT4Kb7M+X
+	mIDyQJDX6f1BuUCGfeJ9c+98+HVzeEVnTgU9Qpb5Rz3BDsRSm/WGjYR0vedcC4n7abzmXiS0YcW
+	gUB6RpINLiT8mzlDVcS0ekorMFYqBMiAhCaDd6BooFRN2TmWxl43WB7YoHk+TEFEmVRDTDG/9e5
+	9YllahZg8IqCael11qil/6YQMdX/kNXTX9Nm6IuSZibylqnVxi3xlDDtj9IKC3rwi61uwIVw9jA
+	PlYvNjZHcxfuKCUBH6rbKSHfBtWGQdO8D9Bb5FjnNyfGrT1xvs7ZUcXBZupUG41RbUt748IEnuD
+	mZdaVtCbOKKAU9lDUZEr+d6KCYGNufuEYybONSqUMdpfPdB739XVHXj5pIHNCwgY87mDO/lK4Sh
+	ILzw+JykK7SQ==
+X-Received: by 2002:a05:7022:2214:b0:128:d5f1:d595 with SMTP id a92af1059eb24-129a70d5847mr1565553c88.10.1773837673281;
+        Wed, 18 Mar 2026 05:41:13 -0700 (PDT)
+X-Received: by 2002:a05:7022:2214:b0:128:d5f1:d595 with SMTP id a92af1059eb24-129a70d5847mr1565537c88.10.1773837672703;
+        Wed, 18 Mar 2026 05:41:12 -0700 (PDT)
+Received: from hu-ggarmidi-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2c0e53b5fa1sm4454521eec.10.2026.03.18.05.41.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Mar 2026 05:41:12 -0700 (PDT)
+From: Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>
+To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sibi.sankar@oss.qualcomm.com,
+        pankaj.patil@oss.qualcomm.com, rajendra.nayak@oss.qualcomm.com,
+        qiang.yu@oss.qualcomm.com,
+        Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>
+Subject: [PATCH v2 0/3] Mahua SoC and CRD DT support
+Date: Wed, 18 Mar 2026 05:40:57 -0700
+Message-Id: <20260318124100.212992-1-gopikrishna.garmidi@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDEwOCBTYWx0ZWRfXztxc+kro9fHp
+ SGzPjFh8U9Hz8X5BpELtZFMOmn1rfzpsJ0bY4K9E9T7CLM4e8W1FVCISIWh++3ohYPDDi7818kn
+ xvO0evjhngRn257xXHmuoqk5Ygx17dbT47AWzWkm0k0YTLIwLJ85S6K8/gqmp7TdqXLL6rNfhUN
+ aCitHqTLBDxvxJ9mTU8zVg1IeXed0QOfvHM6tAuKZ+ZxPc2oTRJYqed+YvR+gtxLcUEGv35uzPP
+ i7IMsscTsopAOgWe2l8kh2cYIA82JtH/7gB/nmhpMjvv+N0tJkJmWtLCccBBUYn5Fwqb0BN2lVD
+ 8wouTKEjtTaM+BPUL4TuJzccdJ40ZS07LkgytfL2rIWo4e7vra/aM3kHrvJN6nxpRcrunzWobLQ
+ mWnIG7qQtrd3B5Wz3odhv5CkijTpFRw3z5qA3vtsHh3cULJ2NzIs69MDuyQFS8EnBC4bc1uiI7c
+ mJZfl9U/VEUCd+g3XZw==
+X-Proofpoint-ORIG-GUID: cvPB2ypfw4BmX2Kd2a_Top02U2Ww6H9a
+X-Authority-Analysis: v=2.4 cv=H87WAuYi c=1 sm=1 tr=0 ts=69ba9d6a cx=c_pps
+ a=JYo30EpNSr/tUYqK9jHPoA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22 a=VwQbUJbxAAAA:8
+ a=EUspDBNiAAAA:8 a=TlQAaJdr-xPSoc6T7vEA:9 a=Fk4IpSoW4aLDllm1B1p-:22
+X-Proofpoint-GUID: cvPB2ypfw4BmX2Kd2a_Top02U2Ww6H9a
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-18_01,2026-03-17_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 spamscore=0 adultscore=0 lowpriorityscore=0 malwarescore=0
+ suspectscore=0 bulkscore=0 priorityscore=1501 phishscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603180108
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[spacemit.com,riscstar.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-277197-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277198-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DMARC_NA(0.00)[pengutronix.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_NEQ_ENVFROM(0.00)[gopikrishna.garmidi@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.730];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	R_DKIM_NA(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 021892BBB27
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: A614C2BBBA6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Di, 2026-03-17 at 02:36 +0000, Yixun Lan wrote:
-> Instead of grouping several different reset lines into one composite
-> reset, decouple them to individual ones which make it more aligned
-> with underlying hardware. And for DWC USB driver, it will match well
-> with the number of the reset property in the DT bindings.
->=20
-> The DWC3 USB host controller in K3 SoC has three reset lines - AHB, VCC,
-> PHY. The PCIe controller also has three reset lines - DBI, Slave, Master.
-> Also three reset lines each for UCIE and RCPU block.
->=20
-> As an agreement with maintainer, the reset IDs has been rearranged as
-> contiguous number and pushed as a fix for the driver, and reason is that
-> there isn't any consumer of reset driver so far,
+The series introduces the DTS bits required for Mahua SoC (A derivative
+of the Glymur SoC) and the CRD based on it. 
 
-Unfortunately that does not seem to be the case for all APMU resets.
-A lore query for all changed IDs [1] yields a patch that adds ethernet
-device nodes using RESET_APMU_EMAC[012] [2].
+Some of the notable differences are the absent CPU cluster, interconnect,
+TLMM, thermal zones and adjusted PCIe west clocks. Everything else should 
+work as-is.
 
-[1] https://lore.kernel.org/all/?q=3Ddfb%3ARESET_APMU_USB2+OR+dfb%3ARESET_A=
-PMU_USB3_PORTA+OR+dfb%3ARESET_APMU_USB3_PORTB+OR+dfb%3ARESET_APMU_USB3_PORT=
-C+OR+dfb%3ARESET_APMU_USB3_PORTD+OR+dfb%3ARESET_APMU_QSPI+OR+dfb%3ARESET_AP=
-MU_QSPI_BUS+OR+dfb%3ARESET_APMU_DMA+OR+dfb%3ARESET_APMU_AES_WTM+OR+dfb%3ARE=
-SET_APMU_MCB_DCLK+OR+dfb%3ARESET_APMU_MCB_ACLK+OR+dfb%3ARESET_APMU_VPU+OR+d=
-fb%3ARESET_APMU_DTC+OR+dfb%3ARESET_APMU_GPU+OR+dfb%3ARESET_APMU_ALZO+OR+dfb=
-%3ARESET_APMU_MC+OR+dfb%3ARESET_APMU_CPU0_POP+OR+dfb%3ARESET_APMU_CPU0_SW+O=
-R+dfb%3ARESET_APMU_CPU1_POP+OR+dfb%3ARESET_APMU_CPU1_SW+OR+dfb%3ARESET_APMU=
-_CPU2_POP+OR+dfb%3ARESET_APMU_CPU2_SW+OR+dfb%3ARESET_APMU_CPU3_POP+OR+dfb%3=
-ARESET_APMU_CPU3_SW+OR+dfb%3ARESET_APMU_C0_MPSUB_SW+OR+dfb%3ARESET_APMU_CPU=
-4_POP+OR+dfb%3ARESET_APMU_CPU4_SW+OR+dfb%3ARESET_APMU_CPU5_POP+OR+dfb%3ARES=
-ET_APMU_CPU5_SW+OR+dfb%3ARESET_APMU_CPU6_POP+OR+dfb%3ARESET_APMU_CPU6_SW+OR=
-+dfb%3ARESET_APMU_CPU7_POP+OR+dfb%3ARESET_APMU_CPU7_SW+OR+dfb%3ARESET_APMU_=
-C1_MPSUB_SW+OR+dfb%3ARESET_APMU_MPSUB_DBG+OR+dfb%3ARESET_APMU_UCIE+OR+dfb%3=
-ARESET_APMU_RCPU+OR+dfb%3ARESET_APMU_DSI4LN2_ESCCLK+OR+dfb%3ARESET_APMU_DSI=
-4LN2_LCD_SW+OR+dfb%3ARESET_APMU_DSI4LN2_LCD_MCLK+OR+dfb%3ARESET_APMU_DSI4LN=
-2_LCD_DSCCLK+OR+dfb%3ARESET_APMU_DSI4LN2_DPU_ACLK+OR+dfb%3ARESET_APMU_DPU_A=
-CLK+OR+dfb%3ARESET_APMU_UFS_ACLK+OR+dfb%3ARESET_APMU_EDP0+OR+dfb%3ARESET_AP=
-MU_EDP1+OR+dfb%3ARESET_APMU_PCIE_PORTA+OR+dfb%3ARESET_APMU_PCIE_PORTB+OR+df=
-b%3ARESET_APMU_PCIE_PORTC+OR+dfb%3ARESET_APMU_PCIE_PORTD+OR+dfb%3ARESET_APM=
-U_PCIE_PORTE+OR+dfb%3ARESET_APMU_EMAC0+OR+dfb%3ARESET_APMU_EMAC1+OR+dfb%3AR=
-ESET_APMU_EMAC2+OR+dfb%3ARESET_APMU_ESPI_MCLK+OR+dfb%3ARESET_APMU_ESPI_SCLK
-[2] https://lore.kernel.org/all/20260318035542.517554-1-inochiama@gmail.com=
-/
+Changes in v2:
+- Updated commit message based on review feedback. [Dmitry]
+- Override the default thermal sensor configuration and enable only
+  the sensors and thermal zones that are actually supported on Mahua. [Dmitry]
+- Link to v1: https://lore.kernel.org/all/20260310054947.2114445-1-gopikrishna.garmidi@oss.qualcomm.com/
 
-Please reorder the resets such that only the decoupled lines get new
-numbers. Especially EMAC resets should keep the same value.
+Gopikrishna Garmidi (3):
+  dt-bindings: arm: qcom: Document Mahua SoC and board
+  arm64: dts: qcom: Commonize Glymur CRD DTSI
+  arm64: dts: qcom: Add Mahua SoC and CRD
 
-> so should not cause any ABI breakage.
->
-> Also, the changes of DT binding header file and reset
-> driver are merged together as one single commit to avoid git-bisect
-> breakage.
+ .../devicetree/bindings/arm/qcom.yaml         |   5 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ arch/arm64/boot/dts/qcom/glymur-crd.dts       | 586 +-----------------
+ .../qcom/{glymur-crd.dts => glymur-crd.dtsi}  |   7 -
+ arch/arm64/boot/dts/qcom/glymur.dtsi          |   2 +-
+ arch/arm64/boot/dts/qcom/mahua-crd.dts        |  21 +
+ arch/arm64/boot/dts/qcom/mahua.dtsi           | 299 +++++++++
+ arch/arm64/boot/dts/qcom/pmcx0102.dtsi        |   2 +-
+ arch/arm64/boot/dts/qcom/pmh0104-glymur.dtsi  |   4 +-
+ 9 files changed, 331 insertions(+), 596 deletions(-)
+ copy arch/arm64/boot/dts/qcom/{glymur-crd.dts => glymur-crd.dtsi} (99%)
+ create mode 100644 arch/arm64/boot/dts/qcom/mahua-crd.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/mahua.dtsi
 
-This addresses the only remaining checkpatch-warning:
 
-  WARNING: DT binding docs and includes should be a separate patch. See: Do=
-cumentation/devicetree/bindings/submitting-patches.rst
+base-commit: 3ef088b0c5772a6f75634e54aa34f5fc0a2c041c
+-- 
+2.34.1
 
-which is ignored on purpose to avoid a bisection hazard.
-
-> Fixes: 938ce3b16582 ("reset: spacemit: Add SpacemiT K3 reset driver")
-> Fixes: 216e0a5e98e5 ("dt-bindings: soc: spacemit: Add K3 reset support an=
-d IDs")
-> Signed-off-by: Yixun Lan <dlan@kernel.org>
-
-regards
-Philipp
 
