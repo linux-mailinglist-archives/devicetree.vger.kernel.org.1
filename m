@@ -1,2325 +1,304 @@
-Return-Path: <devicetree+bounces-276889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276890-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MPMIEJn9uWnZQAIAu9opvQ
-	(envelope-from <devicetree+bounces-276889-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 02:19:21 +0100
+	id 6v3wNgP/uWlBQQIAu9opvQ
+	(envelope-from <devicetree+bounces-276890-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 02:25:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD6D92B4E8F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 02:19:20 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DF2C2B4EFD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 02:25:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 91C6330B616E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 01:17:34 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 920A230229A6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 01:25:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28BB723ABB0;
-	Wed, 18 Mar 2026 01:17:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8928023C8A0;
+	Wed, 18 Mar 2026 01:25:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OH2qB+/F"
+	dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="iVj3JRoy";
+	dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="RsJLpcue";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="G4Dtzf0c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-00230701.pphosted.com (mx0b-00230701.pphosted.com [148.163.158.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A906323183B
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 01:17:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773796654; cv=none; b=mPBoU7isSYuxTiwJCiD7Mexd36Pl46iuFtai1viI1Ab2gyoPm+xh9EdOvP+GzQyBgFuUkK3GHB/fhEdx2J+CpQ2889jzvaqPkXegoqyMx7ROnKmBFbdZPg65gUTLatkTIsP6D7f77NC6/DzO8PSDkAcyCsx52q8bCSlVzWehFNY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773796654; c=relaxed/simple;
-	bh=qaP4m+T9lFFf2Azbea1AENl/mdX/1LAZPs+tSkCDJ/g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VyloBIJKUf+YuZBBll/GH+DkgTlPf29bbK9AyODcYXuatxLaLmjVZzex1G7eon60kxx7YNpx4Yeh7IoBm4GmHRiwHU7kQsb9696IhlNXFlnX/LYH6lo3xn4NJZISPUIWnJJtbHKwvfFyJfk4gNfemijNI7KWAuDOZYu5trpH4hs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OH2qB+/F; arc=none smtp.client-ip=209.85.210.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-829781b2b01so3976376b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 18:17:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773796649; x=1774401449; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=924gw6VEmoi/laUZsaAue8hvyEOMwp2IvbijfhO4bqI=;
-        b=OH2qB+/FVLge/iIt1mr0/W6SvmjwFF5F1SOGiAvnoEdl9AGjFuKgI8z9vG2lTYup6f
-         EbRS5gPYy6l9uy8e7WSXmoigE9swFuGOSiSbkD4p/3scFpFLl+4gXKHewm/TkS5gOIX2
-         eMCppCcMNKWXeyQ/3JgDG3D5vFBs6IGX1fojbP8fqPT+RaS60ISXRpVR++qGaj3hV91u
-         8AWyITjuy8RmbgBL8q9Cw9t2w9AUPkLWH6Z+kVp6w99Cn+2/ji0ZHdEeYEQYQtgOFKU5
-         5VKyVIuGVWgTArlXkPq1xxzPnVmlh/QOZpWYaxx4tGhxYkq94pKb/Djifmgv5YIRg0wf
-         JrjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773796649; x=1774401449;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=924gw6VEmoi/laUZsaAue8hvyEOMwp2IvbijfhO4bqI=;
-        b=cgkxE542jxRXDimQnWgYWVjUKcqWiU/pzsle3K3y1FMn7PMsVp2q7bmsi/gBY/+A8c
-         Nwtru4aX23peaNiQ1KxwPhiKho6uwNRoaBwLy88SZVq7rx4xPZoyYa9GvJzA4Yfcsupc
-         +ti9YRqwd9Ba9jbmLpz22KJHnVcRg4D61KP3PX1LcE7ZJSCvZjd7VxQOOXsJBNii6yBE
-         t4MjKGWtnHuHq6Jl0QUeczD/EfBqYYe3n4TPakR4HkNpJ/OKDoWjyqrSR5Clkx2X8gVT
-         iYbOqesKZXDJKA/iiSH3+OOlJoqG0iQ1dvI1bUa5D27iK2ne/XPgTjMKpGN/hnZv1C40
-         akTw==
-X-Forwarded-Encrypted: i=1; AJvYcCXfZiDPiqTAggyI5eUdmoHWudmRMyLt9F3V1z6Cl+daj4KcIltaI/GEcN7VAhIwNRBQr39sHzyuVh3b@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCx40l8e3VwmIUD49G1wz1ugu03BtLaxS+cxU3xy5upnGJtt6N
-	+SjMN3j/sMmPdXyndtTENcqAiURjSbIy0v6XuKg3jego1iJq7s+oiWHd
-X-Gm-Gg: ATEYQzwlxFWKSPXDXYBImioOBsaJg4aqXpY1ajS/72OJ4Mc9vKOZs20bVwk6CvVZ2YW
-	Kltpj1rcS6DhjbvmGpAWaiLX+Ha/qfVFi5Nt0iXMWSey7LgF7YE9soKXVHYQrqsqswu/IRaHUPD
-	sFu8usBLQWPwKnNfLpwtr1W4lNQpBQlxLPIUgLZKeiStUmCNkaUQs7/XQWbiCLEVffXJxlkmacm
-	fDoT0yQXr7vNpLgDIVOtvidVcZ4KGOuo1E78s/tSI3s2DbINskWxV/32gTai1IsNZxZoyldamy8
-	k85R8ROpJAHU0/m6897FF2ucbnP6c8Fk651Pf9X6twSKw0dmNecmzmQXX78bIdrOzAgbQDkPy67
-	DXAHz1C9orC8vhle/ZgfilM7rzvoEDz1UUqfKmzTj0lx3bP7+o8peqrwAym21l/+v/ZPf+9ft93
-	HL0hEhtesnnI207wB+Kt34GA5XBHgIBTA6YY7E3ZCnKx1cQ1Y=
-X-Received: by 2002:a05:6a00:2985:b0:81e:81fb:b392 with SMTP id d2e1a72fcca58-82a6ac92ef3mr1190224b3a.11.1773796648501;
-        Tue, 17 Mar 2026 18:17:28 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82a6b541cafsm731907b3a.12.2026.03.17.18.17.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Mar 2026 18:17:27 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Tue, 17 Mar 2026 18:17:26 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
-Cc: linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>
-Subject: Re: [PATCH v7 2/3] hwmon: ltc4283: Add support for the LTC4283 Swap
- Controller
-Message-ID: <69e4e158-bd91-4df6-906c-a64f10408ae9@roeck-us.net>
-References: <20260314-ltc4283-support-v7-0-1cda48e93802@analog.com>
- <20260314-ltc4283-support-v7-2-1cda48e93802@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB3CDE55A;
+	Wed, 18 Mar 2026 01:25:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.158.9
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773797121; cv=fail; b=YfXGDSyLAmA2+copu244AygfuA1d3yPNzmelRKRuI6mz8NNpvPAE3IoBDVYDxYoRZVSGIiAKgpEgoId/6PH5RLLRDyiViaKR9x0FSa1V0X1XXyQDVLbK1DIbzWB7JUhv+OcTjTQBdOp/L06I1VSudVM/17ew/GcA5CzAEdVWtck=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773797121; c=relaxed/simple;
+	bh=cqedIXKdzxEFodWSVLvMRNV7BOAqcTftkIPEq+i485g=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=qWVMHttkRw3WdCB+638zk98qdT9H1pq9Ts/zfAXE2597hnwc/QeCtj3O+E7pdKwrBmdfVzdef0iQtF70MK3JbFWxNuK9xRUuI2utC94xPbQ5z0nVN8Pab/2arp31mWn/hMS47XT+gcHfaz3e0bhyJkN6vCctTNfG9ZsX3BRMW50=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=synopsys.com; spf=pass smtp.mailfrom=synopsys.com; dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b=iVj3JRoy; dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b=RsJLpcue; dkim=fail (1024-bit key) header.d=synopsys.com header.i=@synopsys.com header.b=G4Dtzf0c reason="signature verification failed"; arc=fail smtp.client-ip=148.163.158.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=synopsys.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=synopsys.com
+Received: from pps.filterd (m0297265.ppops.net [127.0.0.1])
+	by mx0a-00230701.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62HLYqo81806001;
+	Tue, 17 Mar 2026 18:24:36 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com; h=
+	cc:content-id:content-transfer-encoding:content-type:date:from
+	:in-reply-to:message-id:mime-version:references:subject:to; s=
+	pfptdkimsnps; bh=cqedIXKdzxEFodWSVLvMRNV7BOAqcTftkIPEq+i485g=; b=
+	iVj3JRoyxWknU9JhBtQBtMvl5HuEEBQty56bo7ts9XTYDFaXw834hmN+fYZelELe
+	1bJHdpHxIqF3QLu7geohr/JDT67gROI66Upy29+TDCSeBhZ0z1xy8jJ5rATmpDCi
+	gug4O65SNDYGvAH2SRv1KFSW/4DCKFJ+poqf4Q9GSV8jcKxRdgLP/E/CuTCtUrzP
+	xnGgQiSf+wiIjgKAeMHZ5tphELGnyd226E3zTgWOnLcu7029TQiBn2IRWoYlJK6Y
+	1BN1OZSU+4jL7iWQL+eUwiU2GvcdY0YMcvT7e0SpRd4ArJA5fFMf/db5IarU3MLD
+	OD7wupPRpMud+pntw2zKCQ==
+Received: from smtprelay-out1.synopsys.com (smtprelay-out1.synopsys.com [149.117.87.133])
+	by mx0a-00230701.pphosted.com (PPS) with ESMTPS id 4cy98hmnhx-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Tue, 17 Mar 2026 18:24:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+	t=1773797075; bh=cqedIXKdzxEFodWSVLvMRNV7BOAqcTftkIPEq+i485g=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=RsJLpcuebeEucSf3JFlVpTWPGBnJG6mQogc+VRX0+kv1BPA1ek8nERav9EoWqwRys
+	 XhMh9fbnQAoeU4ZUKgeBLkonzDb+MN9xAOGbcGjtRLjPOULxXvMuWinupHx4V9EDaf
+	 P3YfUHScUgADuz4hXbkV2ECCwFPJ8Y9azSJSw/ZtwRF4QuTrUb3VLUj7IhkxbkhFjB
+	 QCsitm4Xwc8/3v8+wHDMLW81/13dpKTHZjco7Xb3ki8giCsiCsiEFywiFNaD4iRL1w
+	 KPz5Pw5MJxQURy58e/K9+A4gfRAUb2etbd0TYwCahdd8xJqwF6Y4SOaKcjkqweCpEk
+	 wy9vHnv8GznOg==
+Received: from mailhost.synopsys.com (sv2-mailhost1.synopsys.com [10.205.2.133])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits)
+	 client-signature RSA-PSS (2048 bits))
+	(Client CN "mailhost.synopsys.com", Issuer "SNPSica2" (verified OK))
+	by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id E4CAF401FA;
+	Wed, 18 Mar 2026 01:24:33 +0000 (UTC)
+Received: from o365relay-in.synopsys.com (us03-o365relay3.synopsys.com [10.4.161.139])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits)
+	 client-signature RSA-PSS (2048 bits))
+	(Client CN "o365relay-in.synopsys.com", Issuer "Sectigo Public Server Authentication CA OV R36" (not verified))
+	by mailhost.synopsys.com (Postfix) with ESMTPS id 74EDFA00A1;
+	Wed, 18 Mar 2026 01:24:32 +0000 (UTC)
+Authentication-Results: o365relay-in.synopsys.com; dmarc=pass (p=reject dis=none) header.from=synopsys.com
+Authentication-Results: o365relay-in.synopsys.com; spf=pass smtp.mailfrom=synopsys.com
+Authentication-Results: o365relay-in.synopsys.com;
+	dkim=pass (1024-bit key; unprotected) header.d=synopsys.com header.i=@synopsys.com header.a=rsa-sha256 header.s=selector1 header.b=G4Dtzf0c;
+	dkim-atps=neutral
+Received: from SJ0PR08CU001.outbound.protection.outlook.com (mail-sj0pr08cu00101.outbound.protection.outlook.com [40.93.1.73])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256
+	 client-signature RSA-PSS (2048 bits) client-digest SHA256)
+	(Client CN "mail.protection.outlook.com", Issuer "DigiCert Cloud Services CA-1" (verified OK))
+	by o365relay-in.synopsys.com (Postfix) with ESMTPS id 72CED40359;
+	Wed, 18 Mar 2026 01:24:29 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NL9GQ0b4+AbwThlr3tEVqYXvFchpDGQparyEydVOh4cuoPVUoVXRGOUVLDsdSQVrXaVH+FYwtZwH0GVGgOus7JF77VooCxc1n7qSisq5m5qMhUKPJs94WN/FkR2Fkz1CUQKTT31dU6627xsIiLKIpS20ScZPPSvpixaIUlYpMg+8RX1rfLpEs8xPqQJ+MTouBk39uB7ei0gFy88Jm+fLkkopSk6I8/RImndnAepsFchEh02rWCSzw/2s4juOCvVmg6aJfVdL19YrUsZj6S4i+bpFL+UwKBzwHbFWMeE7RDFW5RbiXVCIsRM+SW6/uQYLe1HuZfhlmZ5O5fGt5zfEvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cqedIXKdzxEFodWSVLvMRNV7BOAqcTftkIPEq+i485g=;
+ b=Xc9yo2ksuOurvdAGQvQT/llywXFy5shdN+aV52mA7EmmITiIyKIyNVZ2LBjkR++Cz7MfBWGaI11K8GJj6G4sogFJ0u/equ7n3VHPCWunVxHFid2HolgsbI/b1AMMjO5AFwrazlWy7pBUxpvh9C9T/LUV2JTnfI/LPHqZrSyoNATPU0b0d1wE3vyJpJiSSA/lWTa6xEo3kOc8eAvsxEIbSSbAJxzl+7fmU68W9cSaXt+py/OJRriljzZF3dksX3uQOCvsE5bFfEsCU3JVjQty3l4R+VTz/EIGfxM87p0C1CypkJtz/jKcdbjrz1R4RuJ/rqQq2CUUkxyAMnZeZwU1qw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synopsys.com; dmarc=pass action=none header.from=synopsys.com;
+ dkim=pass header.d=synopsys.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cqedIXKdzxEFodWSVLvMRNV7BOAqcTftkIPEq+i485g=;
+ b=G4Dtzf0cHbVglUcqEqHuzqn1pk91QANB4lP40YL0guwx+afxey+YIBKV7GfZVNI2k33Mh1sFuqZ4VKkuPv4JwQU5HWvdDjC/ykXkrpY6UaQCrqua1PjwFUYSRfrOKeaTn+YBNE82FAGT2jJlyup2HzkbioWlK0/V6sul7WKBk+M=
+Received: from LV2PR12MB5990.namprd12.prod.outlook.com (2603:10b6:408:170::16)
+ by SJ2PR12MB8784.namprd12.prod.outlook.com (2603:10b6:a03:4d0::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.17; Wed, 18 Mar
+ 2026 01:24:22 +0000
+Received: from LV2PR12MB5990.namprd12.prod.outlook.com
+ ([fe80::7b72:b921:b9bd:4899]) by LV2PR12MB5990.namprd12.prod.outlook.com
+ ([fe80::7b72:b921:b9bd:4899%6]) with mapi id 15.20.9723.018; Wed, 18 Mar 2026
+ 01:24:22 +0000
+X-SNPS-Relay: synopsys.com
+From: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+To: Yixun Lan <dlan@kernel.org>
+CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Ze Huang <huang.ze@linux.dev>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Junzhong Pan <junzhong.pan@spacemit.com>,
+        Inochi Amaoto <inochiama@gmail.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "spacemit@lists.linux.dev" <spacemit@lists.linux.dev>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/3] usb: dwc3: dwc3-generic-plat: spacemit: add support
+ for K3 SoC
+Thread-Topic: [PATCH 2/3] usb: dwc3: dwc3-generic-plat: spacemit: add support
+ for K3 SoC
+Thread-Index: AQHctgS/Lru4fyFIS0uHSVeVDL3wubWzf9uA
+Date: Wed, 18 Mar 2026 01:24:22 +0000
+Message-ID: <20260318012421.cbilkaj5vmrpmxif@synopsys.com>
+References: <20260317-02-k3-usb20-support-v1-0-d89f59062ad4@kernel.org>
+ <20260317-02-k3-usb20-support-v1-2-d89f59062ad4@kernel.org>
+In-Reply-To: <20260317-02-k3-usb20-support-v1-2-d89f59062ad4@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: LV2PR12MB5990:EE_|SJ2PR12MB8784:EE_
+x-ms-office365-filtering-correlation-id: 8594a30a-bdbb-47b0-0b36-08de848d1612
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700021|22082099003|18002099003|56012099003;
+x-microsoft-antispam-message-info:
+ f1aIyIfkjkQNKJaSVKN9bunZ/OH3BTFeC0IBwjT+L4gJuU2l9/qTDhrXIwCogTtvcd9CU9v0OixbHTA50DecbC/E+7HYfCGJDVcIcEnT/UuBrtTNGScXVq5FYbgukjVGLAJSKJycKNW5Ms4rBbj1JyGdbqFZ7IFNIYUqAlZjsjX0+8uNzEE2pIJcTzfg5MWIpOUsmDyTgTRQr5w+nf0qdysYjfirquINlenGnRjBFdMxcRHBAnz90e+/zsr4T/AaPpUbUUHUSfWICcLqRUNFWwREodpyTIF3arZ8QmH+8VCAsUcVHcrFM2v8AjXV93bteu0LckxS/KE3ejzV3Ey10A/Fp2tF2Zg/qcwivUQlhy9z2dwxoSqM0ctycvX2WLKFNnaDF0hmfPJISLpF4sAoLYt53yGqi1nne+aJuW31OTdmDClLYq+v77xvaCNK/pcCBTQDwKUAPR4J3JgK6o6FrvMckbJH3rZPAKbGYHXUqVFRRSYdEvM6pAl+CeRm8+eguOjSsSKXKrUETTZRaElCRPOmG1FPVN5yXdga2aHJH1qSSGVc93S4WezFf664r6cI3LBJxdrq4X23O1o+yvFatRakpODSpDXfPgB7rVxw3B4zUMm9yTc0zDu3rSew/wYii8PnpHC/ouTqmGTGtP1VtNz2SUapUGBtJZ+4vYS+AgcGV9EyNJuQd84zXBte91oA2q/am6kK9OMC4kTTfgSvNYYEHlV3FzyYSg80TgKWZFopkvQiT3DY86bjE9l3pQgYUR4lwQDJZh0GMKlRCPBW3GGknP+I/xpuYM69rMLZjYc=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV2PR12MB5990.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700021)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?cTl3QWVtS3N1TVFaSEd4UHNvRjFFUGovQWhJTys5REVIRmFmbmVvVUc2eDNz?=
+ =?utf-8?B?OWRkWDQ1TnN0UDR0akYrL3ZaTGxVTSt4d0t0UkhlaUxKZkovbGRncjJheVB1?=
+ =?utf-8?B?dFBtRncrQklHL3puZkx5VjE4RkN2SlluWjJuc1h5M1dSaEQzOSt1bWs0MmRV?=
+ =?utf-8?B?TjZCNzFGZnd0OVJXSFozRjA2Zml5bGJsKzJZVzB2cG9LNlB1TjRyY1A1SDB3?=
+ =?utf-8?B?TUlQZC81ajN1VUhIRkRKeGp5MFl6dlRQNkUvVVJpY0RHYjZybmU3bFFRaTZn?=
+ =?utf-8?B?L040VUhxeUZSeWpTa0x2bS9WNEh0RHg4SjlIZktadmowZUV5M3FXelQ5Y1dm?=
+ =?utf-8?B?NVc0aFZheG4vZ1doOUV4TUpNM0s3UzVXNjNIK2hVdHo0MUMzS0FsaDlmcVpH?=
+ =?utf-8?B?NEhTZVFyK3R6ZVgzbGVMUmZWNjdwU2tMcDlqZnppMjNFUkRsR3ZoZlN4dzRj?=
+ =?utf-8?B?U2JjaHRBdmNzaGFPeCtxWTEzSGVyL0UyU2UrVlo1SzVEU1BjbjN4dmh5SEo4?=
+ =?utf-8?B?b2FyK1lIcWxvS1BERU5FRWpQNHQ3cSt1K04vdEFlWTZzNEN0U3ZjSGlyOThI?=
+ =?utf-8?B?b0QxSFdtMzhuSzhadE5VRDZRZFZTTHdrZzgzMGYzakxGVGtTQzR4VVpBdWRM?=
+ =?utf-8?B?K1lQdUd0a0xJWDNjTXZ2RklUV0lqRlI4Rkt4NFhVRmF3ZE80U2U0eEV1WGhG?=
+ =?utf-8?B?SitaNFlVZVRQelJ2Qml4K3YvVjkvSzcvN1YvTjI3UVo2TWU4Ulg0Nmc3eWhE?=
+ =?utf-8?B?R3hGaDNkTjVrWGc5M05ia1RQY3laTUdxUTZ1aFVUbHdZd1lqZjh3ZlRRblMw?=
+ =?utf-8?B?c0F3emNVNkJZTkJOZVJjd1lxT0JZY1EzTXlLQURncnlaOWZVbVBhOW9mVVJN?=
+ =?utf-8?B?YXl6MWEwQWdWZ2VkbTErdjhubHI3M1MwdVpZaGNJczgwaWFIMlZzYi9BbVF1?=
+ =?utf-8?B?bjRqTnJlVko4ZlZJMmM5V3VVTElLQlMyRm9qV2haU01oV0ZzbTNCS205bUxv?=
+ =?utf-8?B?Sk5TNUlhSm0vMzQwRmJIWjlLalkyMmNETGpJNkxvd2lZeUJsSVBsRDIrb0ll?=
+ =?utf-8?B?c1kxRmYvaHBmQ2FCOG1kc21wVUlncTExdTYvRVJxUFJwQzN1ZWd6NS9Rbzh3?=
+ =?utf-8?B?bkJyUk5GZUd6NDRRQVVrRXI0NVBRd1ZCcHZ0NlBDRW5CZk1jRm5RYktqWEts?=
+ =?utf-8?B?V0ZlSCtaRWpQRno0b1RnNmo2Y2tzcGZ3NGg2aDZoNkw0MWtZZHRLWERTalcr?=
+ =?utf-8?B?WnNBR2MwL2syQ0lvY2xaVURwZjZRbXRXaFhObUZEWmIwTE04YjRCeVY3a0pu?=
+ =?utf-8?B?N0RGdnpDOFl2NjQ1U3ZQYTVFMU81YUNiaGU2UHlMTWlINjZCanZYUG42Kys0?=
+ =?utf-8?B?L1hOMjNSWkY4alRFUGgxdFowOXEzTENFanVPRnJjZ2JUbXg3cURtSWgvbHZG?=
+ =?utf-8?B?Tkt3UFJsS0d4SG41THc4ZmFYYzFwb3F5VldJNWpnUDlZUkV1WGxjc3AxTTNH?=
+ =?utf-8?B?clRydGZEU0pKRHNnMVFZWGZrL2Z2SHIwdW54UjdpTGpJd3NKdmVjZkJ2SkRB?=
+ =?utf-8?B?MzBMRFk1cmkzdHpSeHcxc1JkR1dkaGZxOThkMkVJUlRQTnZrRUxTK0RhZENy?=
+ =?utf-8?B?ZEV6ejB0TjhKWitvdjJTUlovT0krRlU2a05XNHpLdTdxVGE3TEFNeTVObGZy?=
+ =?utf-8?B?aXJ5bk9ZQmkzUnpkdmdFbklaTzlId0Yra3RWVCtzVVBtV0dYOTVUdkVXU3E3?=
+ =?utf-8?B?cW40azJtY3dkSVlLRGM5a2VEc0pPNUVMZnVvSUl5N3pweGs3MTZsVVpRMVli?=
+ =?utf-8?B?M2FsYTBZR0hIN1lCRWRTaisrY0pzTCtzOTJQUGI0elZnbldLZFh0VHBmTjg4?=
+ =?utf-8?B?WStTazlSelIzVGx3b21ISDFiUE5lR2JwdFZHcHQwdmJYZjk3ckxIL0hZbzY2?=
+ =?utf-8?B?c2gwdHFzSjczQ2xveGJsSjFubEo5ZnF1T1JGUDZvcm10VG9wSHBucTVpNldJ?=
+ =?utf-8?B?WGFtN1dCRFlDcXh0Mjh5ZVBzOU1kMXJzVUQ2a1B3Rld4TXIyMU1BM2V5bU12?=
+ =?utf-8?B?YXRFNFhzbCtHVUxWQktXZGFqd0ZBb3pLeEw4RFNyc0JvOXk0eWZzMUUvL2ND?=
+ =?utf-8?B?eUlJdDIxbnhKVGpJdnJ5TDE4akoxYkFZZmtlQWZ0ZW8rT0l3bzQvSm9NL08r?=
+ =?utf-8?B?am8wTUM3bFp0c3lWdFl2VnJCMWIzbDNMV0RCLysyRTFJdWR6Y3g3QjVCeHRr?=
+ =?utf-8?B?VVE5UURnWDMwSldpOG1yb20zUGJjeUNMMDYzNlE0OGpvOFVaMEszTmt3d2lR?=
+ =?utf-8?B?aUFXVUhPTHVOOG9YTUVybS9yUTBESU5Jekw0ZVk0RENySndvSzBxZz09?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <22C7B65E0AD39C4FBF34C368F1B56F02@namprd12.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260314-ltc4283-support-v7-2-1cda48e93802@analog.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Exchange-RoutingPolicyChecked:
+	vjgIylFouwpz9US4eI65TIUpwENWoDAgJ6kcRlvNZ+HQZ9EKCdjjg8GLgggiPJ4jmQyuolzgxemRmsDiuQh1JLFx7WdUTbCz+qPhWw4/pVKPsKckyM5Z+EN4I8NcTu1b3fTDt+Zv7eK1lNuu/esXkiDFmvD1ygQIRfhLw6p60+PsX/Ncf+9VXEmq1jetBux23RmD4kIQqBSGTNhLegI9JhSaz5r54hcYp2uqfgW/p5Ff4yrxssvFgRnoXXBbHTVTbNtVHDiGaIUBY7tA9bbnB67hFGAwRsm1BGtQw1jZiM6FXAIDyfP5N6YaDeevtkj5w1ypxUBnazI804IdVnjCCg==
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
+	gNx8jY+pq4Be/0VbgRmdnTdyXe2/CehNsYQRYb9T55YFi55LamLLP4BqnN4/nDOf4BZZF1rEB/IdJoGtLs9yM+CwhXlOX09Trbgj3MkMmsslxJB/lkWbaKjA8hqkfRbd1opWueGkRY/Xob5Dw5yCCOU80gnvA3jFOIqY+IVMxU1AjnBX5pzbFulATbyICzj9GgAjqESqylHZGS25NQwUm+ayj5ctzvorcK8AQf8A2w6XQvXOdx+BRGgqJDRuM79unAIQ501TwzPXYWMjhEWzj3U0rYXtb17IK0ZTHXDZZso9rwg+3TvPV3F14BbYBjeZvYFuN71egHSa33cLCeiHWBY0ueomxsOuaJiSX/IdXcuNUWGsmiK2ohzWwmUU6a3lwtyFQK52q8HGHzjYNJAMW0wpM2p1VVYm1c90V0HbzvRleB9Sw4Di5ifQ811hDFfbaFF8t1I6P7k55nvlgon0j3+lS13mjZIb+z1yx9qXawpk7X9ziv7Yr76KRfE945s1mAUVG8Jc/GsY4LRo52bDQAcMeIF0ej4FqZ17rz5M1l66Z0FayQxGzPIFSogvQTXmF60Y8jVdNLWrQpG27C0FtVF03T2wBYZnuwX1uiGvN+d9yRU7e6min95sgz+LVZ5vUE3k+x1JWkS0QFkk4iD4jA==
+X-OriginatorOrg: synopsys.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5990.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8594a30a-bdbb-47b0-0b36-08de848d1612
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Mar 2026 01:24:22.8176
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c33c9f88-1eb7-4099-9700-16013fd9e8aa
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Mw0cuOZqGz24mZsclxGbRnZsYVlpJb7g8/UwY/Ytp4f04O123uuXDtmJOEmx1qzVo7HeYYa2sHNFVsVr0aUDpQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8784
+X-Proofpoint-ORIG-GUID: 7qEMRI4ir-EAXDAXc7fghBlIIF5zlSYe
+X-Proofpoint-GUID: 7qEMRI4ir-EAXDAXc7fghBlIIF5zlSYe
+X-Authority-Analysis: v=2.4 cv=F5lat6hN c=1 sm=1 tr=0 ts=69b9fed4 cx=c_pps
+ a=t4gDRyhI9k+KZ5gXRQysFQ==:117 a=t4gDRyhI9k+KZ5gXRQysFQ==:17
+ a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
+ a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=qPHU084jO2kA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=tU_645BZ7FZt8VqRJtHG:22 a=-4-sGo8i1FcW4KD7_GeR:22
+ a=VwQbUJbxAAAA:8 a=jIQo8A4GAAAA:8 a=dqQ8RcJgTzKgpIuyz7kA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDAxMCBTYWx0ZWRfX7o5gqbeG9BSO
+ YRpa6dKNo1BvYqOn3kD1c0JPtjP+YM3DEkaAEgcvj1sVFsboUads7+jKmWpQnLgn+5zKv1A49Gd
+ a/MP4RhlQDOv9Y13Kxa8JXi6yyYUq6sNSLyBMKbFpnJOkUA/UNRPLSCtnJWHMAV6/ZNFhKlDMhU
+ Jy/TR/nBuMRMnEPvonqQ12evHUoqB3T0OPnkQWVOydO0TUDZxMs16ou2F9+SLlc1OA5pQ4i2gi7
+ OhLU+zou6H4ktfxuA4FULB9xoZszXfO9lwSAdGcI1jF4/fNbtZ5tveS6ac+2on7WTPfitYjf1Uf
+ jMxyk07XYMpR+TkiFg+UGA74m2HEO7NsczIlTvQGNWteg55Eo9FFtNJL8Zp/uBTdv5thE7DPr14
+ qO5k6Y66eUyyruFGch3ECh9jDLZUHNW43nIOntggOgCrZHLTWGazVD/ioWckqV9VkjJEyX17Lv/
+ gcXMQYnmrR/FjQbu2Pw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-17_05,2026-03-17_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_active_cloned_notspam
+ policy=outbound_active_cloned score=0 lowpriorityscore=0 suspectscore=0
+ spamscore=0 phishscore=0 clxscore=1011 malwarescore=0 priorityscore=1501
+ adultscore=0 bulkscore=0 impostorscore=0 classifier=typeunknown authscore=0
+ authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.22.0-2603050001 definitions=main-2603180010
+X-Spamd-Result: default: False [2.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	R_DKIM_ALLOW(-0.20)[synopsys.com:s=pfptdkimsnps,synopsys.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276889-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-276890-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[synopsys.com:dkim,synopsys.com:email,synopsys.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
+	R_DKIM_REJECT(0.00)[synopsys.com:s=selector1];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	DKIM_MIXED(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,linux.dev,synopsys.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,esmil.dk,spacemit.com,gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	DKIM_TRACE(0.00)[synopsys.com:+,synopsys.com:-];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Thinh.Nguyen@synopsys.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[synopsys.com,quarantine];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,analog.com:url,wiwynn.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,roeck-us.net:mid]
-X-Rspamd-Queue-Id: AD6D92B4E8F
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 6DF2C2B4EFD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sat, Mar 14, 2026 at 10:52:20AM +0000, Nuno Sá wrote:
-> From: Nuno Sá <nuno.sa@analog.com>
-> 
-> Support the LTC4283 Hot Swap Controller. The device features programmable
-> current limit with foldback and independently adjustable inrush current to
-> optimize the MOSFET safe operating area (SOA). The SOA timer limits MOSFET
-> temperature rise for reliable protection against overstresses.
-> 
-> An I2C interface and onboard ADC allow monitoring of board current,
-> voltage, power, energy, and fault status.
-> 
-> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> ---
->  Documentation/hwmon/index.rst   |    1 +
->  Documentation/hwmon/ltc4283.rst |  266 ++++++
->  MAINTAINERS                     |    1 +
->  drivers/hwmon/Kconfig           |   12 +
->  drivers/hwmon/Makefile          |    1 +
->  drivers/hwmon/ltc4283.c         | 1787 +++++++++++++++++++++++++++++++++++++++
->  6 files changed, 2068 insertions(+)
-> 
-> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-> index 559c32344cd38a9b5bf01a0b7570213f5ae1ab8b..eab95152abee0ae87acd9d01dab005200d80e924 100644
-> --- a/Documentation/hwmon/index.rst
-> +++ b/Documentation/hwmon/index.rst
-> @@ -144,6 +144,7 @@ Hardware Monitoring Kernel Drivers
->     ltc4260
->     ltc4261
->     ltc4282
-> +   ltc4283
->     ltc4286
->     macsmc-hwmon
->     max127
-> diff --git a/Documentation/hwmon/ltc4283.rst b/Documentation/hwmon/ltc4283.rst
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..ba88445e45f4c2918a3c7f99a4b54efe69d4d048
-> --- /dev/null
-> +++ b/Documentation/hwmon/ltc4283.rst
-> @@ -0,0 +1,266 @@
-> +.. SPDX-License-Identifier: GPL-2.0-only
-> +
-> +Kernel drivers ltc4283
-> +==========================================
-> +
-> +Supported chips:
-> +
-> +  * Analog Devices LTC4283
-> +
-> +    Prefix: 'ltc4283'
-> +
-> +    Addresses scanned: -
-> +
-> +    Datasheet:
-> +
-> +        https://www.analog.com/media/en/technical-documentation/data-sheets/ltc4283.pdf
-> +
-> +Author: Nuno Sá <nuno.sa@analog.com>
-> +
-> +Description
-> +___________
-> +
-> +The LTC4283 negative voltage hot swap controller drives an external N-channel
-> +MOSFET to allow a board to be safely inserted and removed from a live backplane.
-> +The device features programmable current limit with foldback and independently
-> +adjustable inrush current to optimize the MOSFET safe operating area (SOA). The
-> +SOA timer limits MOSFET temperature rise for reliable protection against
-> +overstresses. An I2C interface and onboard gear-shift ADC allow monitoring of
-> +board current, voltage, power, energy, and fault status.  Additional features
-> +respond to input UV/OV, interrupt the host when a fault has occurred, notify
-> +when output power is good, detect insertion of a board, turn off the MOSFET
-> +if an external supply monitor fails to indicate power good within a timeout
-> +period, and auto-reboot after a programmable delay following a host commanded
-> +turn-off.
-> +
-> +Sysfs entries
-> +_____________
-> +
-> +The following attributes are supported. Limits are read-write and all the other
-> +attributes are read-only. Note that the VADIOx channels might not be available
-> +if the ADIO pins are used as GPIOs (naturally also affects the respective
-> +differential channels).
-> +
-> +======================= ==========================================
-> +in0_lcrit_alarm         Critical Undervoltage alarm
-> +in0_crit_alarm          Critical Overvoltage alarm
-> +in0_label		Channel label (VIN)
-> +
-> +in1_input		Output voltage (mV).
-> +in1_min			Undervoltage threshold
-> +in1_max			Overvoltage threshold
-> +in1_lowest		Lowest measured voltage
-> +in1_highest		Highest measured voltage
-> +in1_reset_history	Write 1 to reset history.
-> +in1_min_alarm		Undervoltage alarm
-> +in1_max_alarm		Overvoltage alarm
-> +in1_label		Channel label (VPWR)
-> +
-> +in2_input		Output voltage (mV).
-> +in2_min			Undervoltage threshold
-> +in2_max			Overvoltage threshold
-> +in2_lowest		Lowest measured voltage
-> +in2_highest		Highest measured voltage
-> +in2_reset_history	Write 1 to reset history.
-> +in2_min_alarm		Undervoltage alarm
-> +in2_max_alarm		Overvoltage alarm
-> +in2_enable		Enable/Disable monitoring.
-> +in2_label		Channel label (VADI1)
-> +
-> +in3_input		Output voltage (mV).
-> +in3_min			Undervoltage threshold
-> +in3_max			Overvoltage threshold
-> +in3_lowest		Lowest measured voltage
-> +in3_highest		Highest measured voltage
-> +in3_reset_history	Write 1 to reset history.
-> +in3_min_alarm		Undervoltage alarm
-> +in3_max_alarm		Overvoltage alarm
-> +in3_enable		Enable/Disable monitoring.
-> +in3_label		Channel label (VADI2)
-> +
-> +in4_input		Output voltage (mV).
-> +in4_min			Undervoltage threshold
-> +in4_max			Overvoltage threshold
-> +in4_lowest		Lowest measured voltage
-> +in4_highest		Highest measured voltage
-> +in4_reset_history	Write 1 to reset history.
-> +in4_min_alarm		Undervoltage alarm
-> +in4_max_alarm		Overvoltage alarm
-> +in4_enable		Enable/Disable monitoring.
-> +in4_label		Channel label (VADI3)
-> +
-> +in5_input		Output voltage (mV).
-> +in5_min			Undervoltage threshold
-> +in5_max			Overvoltage threshold
-> +in5_lowest		Lowest measured voltage
-> +in5_highest		Highest measured voltage
-> +in5_reset_history	Write 1 to reset history.
-> +in5_min_alarm		Undervoltage alarm
-> +in5_max_alarm		Overvoltage alarm
-> +in5_enable		Enable/Disable monitoring.
-> +in5_label		Channel label (VADI4)
-> +
-> +in6_input		Output voltage (mV).
-> +in6_min			Undervoltage threshold
-> +in6_max			Overvoltage threshold
-> +in6_lowest		Lowest measured voltage
-> +in6_highest		Highest measured voltage
-> +in6_reset_history	Write 1 to reset history.
-> +in6_min_alarm		Undervoltage alarm
-> +in6_max_alarm		Overvoltage alarm
-> +in6_enable		Enable/Disable monitoring.
-> +in6_label		Channel label (VADIO1)
-> +
-> +in7_input		Output voltage (mV).
-> +in7_min			Undervoltage threshold
-> +in7_max			Overvoltage threshold
-> +in7_lowest		Lowest measured voltage
-> +in7_highest		Highest measured voltage
-> +in7_reset_history	Write 1 to reset history.
-> +in7_min_alarm		Undervoltage alarm
-> +in7_max_alarm		Overvoltage alarm
-> +in7_enable		Enable/Disable monitoring.
-> +in7_label		Channel label (VADIO2)
-> +
-> +in8_input		Output voltage (mV).
-> +in8_min			Undervoltage threshold
-> +in8_max			Overvoltage threshold
-> +in8_lowest		Lowest measured voltage
-> +in8_highest		Highest measured voltage
-> +in8_reset_history	Write 1 to reset history.
-> +in8_min_alarm		Undervoltage alarm
-> +in8_max_alarm		Overvoltage alarm
-> +in8_enable		Enable/Disable monitoring.
-> +in8_label		Channel label (VADIO3)
-> +
-> +in9_input		Output voltage (mV).
-> +in9_min			Undervoltage threshold
-> +in9_max			Overvoltage threshold
-> +in9_lowest		Lowest measured voltage
-> +in9_highest		Highest measured voltage
-> +in9_reset_history	Write 1 to reset history.
-> +in9_min_alarm		Undervoltage alarm
-> +in9_max_alarm		Overvoltage alarm
-> +in9_enable		Enable/Disable monitoring.
-> +in9_label		Channel label (VADIO4)
-> +
-> +in10_input		Output voltage (mV).
-> +in10_min		Undervoltage threshold
-> +in10_max		Overvoltage threshold
-> +in10_lowest		Lowest measured voltage
-> +in10_highest		Highest measured voltage
-> +in10_reset_history	Write 1 to reset history.
-> +in10_min_alarm		Undervoltage alarm
-> +in10_max_alarm		Overvoltage alarm
-> +in10_enable		Enable/Disable monitoring.
-> +in10_label		Channel label (DRNS)
-> +
-> +in11_input		Output voltage (mV).
-> +in11_min		Undervoltage threshold
-> +in11_max		Overvoltage threshold
-> +in11_lowest		Lowest measured voltage
-> +in11_highest		Highest measured voltage
-> +in11_reset_history	Write 1 to reset history.
-> +			Also clears fet bad and short fault logs.
-> +in11_min_alarm		Undervoltage alarm
-> +in11_max_alarm		Overvoltage alarm
-> +in11_enable		Enable/Disable monitoring
-> +in11_fault		Failure in the MOSFET. Either bad or shorted FET.
-> +in11_label		Channel label (DRAIN)
-> +
-> +in12_input		Output voltage (mV).
-> +in12_min		Undervoltage threshold
-> +in12_max		Overvoltage threshold
-> +in12_lowest		Lowest measured voltage
-> +in12_highest		Highest measured voltage
-> +in12_reset_history	Write 1 to reset history.
-> +in12_min_alarm		Undervoltage alarm
-> +in12_max_alarm		Overvoltage alarm
-> +in12_enable		Enable/Disable monitoring.
-> +in12_label		Channel label (ADIN2-ADIN1)
-> +
-> +in13_input		Output voltage (mV).
-> +in13_min		Undervoltage threshold
-> +in13_max		Overvoltage threshold
-> +in13_lowest		Lowest measured voltage
-> +in13_highest		Highest measured voltage
-> +in13_reset_history	Write 1 to reset history.
-> +in13_min_alarm		Undervoltage alarm
-> +in13_max_alarm		Overvoltage alarm
-> +in13_enable		Enable/Disable monitoring.
-> +in13_label		Channel label (ADIN4-ADIN3)
-> +
-> +in14_input		Output voltage (mV).
-> +in14_min		Undervoltage threshold
-> +in14_max		Overvoltage threshold
-> +in14_lowest		Lowest measured voltage
-> +in14_highest		Highest measured voltage
-> +in14_reset_history	Write 1 to reset history.
-> +in14_min_alarm		Undervoltage alarm
-> +in14_max_alarm		Overvoltage alarm
-> +in14_enable		Enable/Disable monitoring.
-> +in14_label		Channel label (ADIO2-ADIO1)
-> +
-> +in15_input		Output voltage (mV).
-> +in15_min		Undervoltage threshold
-> +in15_max		Overvoltage threshold
-> +in15_lowest		Lowest measured voltage
-> +in15_highest		Highest measured voltage
-> +in15_reset_history	Write 1 to reset history.
-> +in15_min_alarm		Undervoltage alarm
-> +in15_max_alarm		Overvoltage alarm
-> +in15_enable		Enable/Disable monitoring.
-> +in15_label		Channel label (ADIO4-ADIO3)
-> +
-> +curr1_input		Sense current (mA)
-> +curr1_min		Undercurrent threshold
-> +curr1_max		Overcurrent threshold
-> +curr1_lowest		Lowest measured current
-> +curr1_highest		Highest measured current
-> +curr1_reset_history	Write 1 to reset curr1 history.
-> +			Also clears overcurrent fault logs.
-> +curr1_min_alarm		Undercurrent alarm
-> +curr1_max_alarm		Overcurrent alarm
-> +curr1_crit_alarm        Critical Overcurrent alarm
-> +curr1_label		Channel label (ISENSE)
-> +
-> +power1_input		Power (in uW)
-> +power1_min		Low power threshold
-> +power1_max		High power threshold
-> +power1_input_lowest	Historical minimum power use
-> +power1_input_highest	Historical maximum power use
-> +power1_reset_history	Write 1 to reset power1 history.
-> +			Also clears power fault logs.
-> +power1_min_alarm	Low power alarm
-> +power1_max_alarm	High power alarm
-> +power1_label		Channel label (Power)
-> +
-> +energy1_input		Measured energy over time (in microJoule)
-> +energy1_enable		Enable/Disable Energy accumulation
-> +======================= ==========================================
-> +
-> +DebugFs entries
-> +_______________
-> +
-> +The chip also has a fault log register where failures can be logged. Hence,
-> +as these are logging events, we give access to them in debugfs. Note that
-> +even if some failure is detected in these logs, it does necessarily mean
-> +that the failure is still present. As mentioned in the proper Sysfs entries,
-> +these logs can be cleared by writing in the proper reset_history attribute.
-> +
-> +.. warning:: The debugfs interface is subject to change without notice
-> +             and is only available when the kernel is compiled with
-> +             ``CONFIG_DEBUG_FS`` defined.
-> +
-> +``/sys/kernel/debug/i2c/i2c-[X]/[X]-addr/``
-> +contains the following attributes:
-> +
-> +=======================		==========================================
-> +power1_failed_fault_log		Set to 1 by a power1 fault occurring.
-> +power1_good_input_fault_log	Set to 1 by a power1 good input fault occurring at PGIO3.
-> +in11_fet_short_fault_log	Set to 1 when a FET-short fault occurs.
-> +in11_fet_bad_fault_log		Set to 1 when a FET-BAD fault occurs.
-> +in0_lcrit_fault_log		Set to 1 by a VIN undervoltage fault occurring.
-> +in0_crit_fault_log		Set to 1 by a VIN overvoltage fault occurring.
-> +curr1_crit_fault_log		Set to 1 by an overcurrent fault occurring.
-> +======================= 	==========================================
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 13ae2f3db449e5fd3a7d0fbac92aabdc01734ba9..38d22cf622b7982e157b19e3ecbf30a80dfbb04d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -15146,6 +15146,7 @@ M:	Nuno Sá <nuno.sa@analog.com>
->  L:	linux-hwmon@vger.kernel.org
->  S:	Supported
->  F:	Documentation/devicetree/bindings/hwmon/adi,ltc4283.yaml
-> +F:	drivers/hwmon/ltc4283.c
->  
->  LTC4286 HARDWARE MONITOR DRIVER
->  M:	Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
-> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-> index fb77baeeba27b9ec51142040beccc953df0a1e3e..99ab14726d6b559a2f8bc2af5b79ecd9d0b80b87 100644
-> --- a/drivers/hwmon/Kconfig
-> +++ b/drivers/hwmon/Kconfig
-> @@ -1157,6 +1157,18 @@ config SENSORS_LTC4282
->  	  This driver can also be built as a module. If so, the module will
->  	  be called ltc4282.
->  
-> +config SENSORS_LTC4283
-> +	tristate "Analog Devices LTC4283"
-> +	depends on I2C
-> +	select REGMAP_I2C
-> +	select AUXILIARY_BUS
-> +	help
-> +	  If you say yes here you get support for Analog Devices LTC4283
-> +	  Negative Voltage Hot Swap Controller I2C interface.
-> +
-> +	  This driver can also be built as a module. If so, the module will
-> +	  be called ltc4283.
-> +
->  config SENSORS_LTQ_CPUTEMP
->  	bool "Lantiq cpu temperature sensor driver"
->  	depends on SOC_XWAY
-> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-> index 556e86d277b195d8c98798012f0069c78a2f37dc..cb77938dbe07ddb0c2db69f27ade2794139c2d01 100644
-> --- a/drivers/hwmon/Makefile
-> +++ b/drivers/hwmon/Makefile
-> @@ -147,6 +147,7 @@ obj-$(CONFIG_SENSORS_LTC4245)	+= ltc4245.o
->  obj-$(CONFIG_SENSORS_LTC4260)	+= ltc4260.o
->  obj-$(CONFIG_SENSORS_LTC4261)	+= ltc4261.o
->  obj-$(CONFIG_SENSORS_LTC4282)	+= ltc4282.o
-> +obj-$(CONFIG_SENSORS_LTC4283)	+= ltc4283.o
->  obj-$(CONFIG_SENSORS_LTQ_CPUTEMP) += ltq-cputemp.o
->  obj-$(CONFIG_SENSORS_MACSMC_HWMON)	+= macsmc-hwmon.o
->  obj-$(CONFIG_SENSORS_MAX1111)	+= max1111.o
-> diff --git a/drivers/hwmon/ltc4283.c b/drivers/hwmon/ltc4283.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..2066ff5d568fbaa75c66d1f75087f7eb8cfe83a2
-> --- /dev/null
-> +++ b/drivers/hwmon/ltc4283.c
-> @@ -0,0 +1,1787 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Analog Devices LTC4283 I2C Negative Voltage Hot Swap Controller (HWMON)
-> + *
-> + * Copyright 2025 Analog Devices Inc.
-> + */
-> +#include <linux/auxiliary_bus.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/bitmap.h>
-> +#include <linux/bitops.h>
-> +#include <linux/bits.h>
-> +
-> +#include <linux/debugfs.h>
-> +#include <linux/device.h>
-> +#include <linux/device/devres.h>
-> +#include <linux/hwmon.h>
-> +#include <linux/i2c.h>
-> +#include <linux/math.h>
-> +#include <linux/math64.h>
-> +#include <linux/minmax.h>
-> +#include <linux/module.h>
-> +
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/overflow.h>
-> +#include <linux/property.h>
-> +#include <linux/regmap.h>
-> +#include <linux/unaligned.h>
-> +#include <linux/units.h>
-> +
-> +#define LTC4283_SYSTEM_STATUS		0x00
-> +#define LTC4283_FAULT_STATUS		0x03
-> +#define   LTC4283_OV_MASK		BIT(0)
-> +#define   LTC4283_UV_MASK		BIT(1)
-> +#define   LTC4283_OC_MASK		BIT(2)
-> +#define   LTC4283_FET_BAD_MASK		BIT(3)
-> +#define   LTC4283_FET_SHORT_MASK	BIT(6)
-> +#define LTC4283_FAULT_LOG		0x04
-> +#define   LTC4283_OV_FAULT_MASK		BIT(0)
-> +#define   LTC4283_UV_FAULT_MASK		BIT(1)
-> +#define   LTC4283_OC_FAULT_MASK		BIT(2)
-> +#define   LTC4283_FET_BAD_FAULT_MASK	BIT(3)
-> +#define   LTC4283_PGI_FAULT_MASK	BIT(4)
-> +#define   LTC4283_PWR_FAIL_FAULT_MASK	BIT(5)
-> +#define   LTC4283_FET_SHORT_FAULT_MASK	BIT(6)
-> +#define LTC4283_ADC_ALM_LOG_1		0x05
-> +#define   LTC4283_POWER_LOW_ALM		BIT(0)
-> +#define   LTC4283_POWER_HIGH_ALM	BIT(1)
-> +#define   LTC4283_SENSE_LOW_ALM		BIT(4)
-> +#define   LTC4283_SENSE_HIGH_ALM	BIT(5)
-> +#define LTC4283_ADC_ALM_LOG_2		0x06
-> +#define LTC4283_ADC_ALM_LOG_3		0x07
-> +#define LTC4283_ADC_ALM_LOG_4		0x08
-> +#define LTC4283_ADC_ALM_LOG_5		0x09
-> +#define LTC4283_CONTROL_1		0x0a
-> +#define   LTC4283_RW_PAGE_MASK		BIT(0)
-> +#define   LTC4283_PIGIO2_ACLB_MASK	BIT(2)
-> +#define   LTC4283_PWRGD_RST_CTRL_MASK	BIT(3)
-> +#define   LTC4283_FET_BAD_OFF_MASK	BIT(4)
-> +#define   LTC4283_THERM_TMR_MASK	BIT(5)
-> +#define   LTC4283_DVDT_MASK		BIT(6)
-> +#define LTC4283_CONTROL_2		0x0b
-> +#define   LTC4283_OV_RETRY_MASK		BIT(0)
-> +#define   LTC4283_UV_RETRY_MASK		BIT(1)
-> +#define   LTC4283_OC_RETRY_MASK		GENMASK(3, 2)
-> +#define   LTC4283_FET_BAD_RETRY_MASK	GENMASK(5, 4)
-> +#define   LTC4283_EXT_FAULT_RETRY_MASK	BIT(7)
-> +#define LTC4283_RESERVED_OC		0x0c
-> +#define LTC4283_CONFIG_1		0x0d
-> +#define   LTC4283_FB_MASK		GENMASK(3, 2)
-> +#define   LTC4283_ILIM_MASK		GENMASK(7, 4)
-> +#define LTC4283_CONFIG_2		0x0e
-> +#define   LTC4283_COOLING_DL_MASK	GENMASK(3, 1)
-> +#define   LTC4283_FTBD_DL_MASK		GENMASK(5, 4)
-> +#define LTC4283_CONFIG_3		0x0f
-> +#define   LTC4283_VPWR_DRNS_MASK	BIT(6)
-> +#define   LTC4283_EXTFLT_TURN_OFF_MASK	BIT(7)
-> +#define LTC4283_PGIO_CONFIG		0x10
-> +#define   LTC4283_PGIO1_CFG_MASK	GENMASK(1, 0)
-> +#define   LTC4283_PGIO2_CFG_MASK	GENMASK(3, 2)
-> +#define   LTC4283_PGIO3_CFG_MASK	GENMASK(5, 4)
-> +#define   LTC4283_PGIO4_CFG_MASK	GENMASK(7, 6)
-> +#define LTC4283_PGIO_CONFIG_2		0x11
-> +#define   LTC4283_ADC_MASK		GENMASK(2, 0)
-> +#define LTC4283_ADC_SELECT(c)		(0x13 + (c) / 8)
-> +#define   LTC4283_ADC_SELECT_MASK(c)	BIT((c) % 8)
-> +#define LTC4283_SENSE_MIN_TH		0x1b
-> +#define LTC4283_SENSE_MAX_TH		0x1c
-> +#define LTC4283_VPWR_MIN_TH		0x1d
-> +#define LTC4283_VPWR_MAX_TH		0x1e
-> +#define LTC4283_POWER_MIN_TH		0x1f
-> +#define LTC4283_POWER_MAX_TH		0x20
-> +#define LTC4283_ADC_2_MIN_TH(c)		(0x21 + (c) * 2)
-> +#define LTC4283_ADC_2_MAX_TH(c)		(0x22 + (c) * 2)
-> +#define LTC4283_ADC_2_MIN_TH_DIFF(c)	(0x39 + (c) * 2)
-> +#define LTC4283_ADC_2_MAX_TH_DIFF(c)	(0x3a + (c) * 2)
-> +#define LTC4283_SENSE			0x41
-> +#define LTC4283_SENSE_MIN		0x42
-> +#define LTC4283_SENSE_MAX		0x43
-> +#define LTC4283_VPWR			0x44
-> +#define LTC4283_VPWR_MIN		0x45
-> +#define LTC4283_VPWR_MAX		0x46
-> +#define LTC4283_POWER			0x47
-> +#define LTC4283_POWER_MIN		0x48
-> +#define LTC4283_POWER_MAX		0x49
-> +#define LTC4283_RESERVED_68		0x68
-> +#define LTC4283_RESERVED_6D		0x6D
-> +/* get channels from ADC 2 */
-> +#define LTC4283_ADC_2(c)		(0x4a + (c) * 3)
-> +#define LTC4283_ADC_2_MIN(c)		(0x4b + (c) * 3)
-> +#define LTC4283_ADC_2_MAX(c)		(0x4c + (c) * 3)
-> +#define LTC4283_ADC_2_DIFF(c)		(0x6e + (c) * 3)
-> +#define LTC4283_ADC_2_MIN_DIFF(c)	(0x6f + (c) * 3)
-> +#define LTC4283_ADC_2_MAX_DIFF(c)	(0x70 + (c) * 3)
-> +#define LTC4283_ENERGY			0x7a
-> +#define LTC4283_METER_CONTROL		0x84
-> +#define   LTC4283_INTEGRATE_I_MASK	BIT(0)
-> +#define   LTC4283_METER_HALT_MASK	BIT(6)
-> +#define LTC4283_RESERVED_86		0x86
-> +#define LTC4283_RESERVED_8F		0x8F
-> +#define LTC4283_FAULT_LOG_CTRL		0x90
-> +#define   LTC4283_FAULT_LOG_EN_MASK	BIT(7)
-> +#define LTC4283_RESERVED_91		0x91
-> +#define LTC4283_RESERVED_A1		0xA1
-> +#define LTC4283_RESERVED_A3		0xA3
-> +#define LTC4283_RESERVED_AC		0xAC
-> +#define LTC4283_POWER_PLAY_MSB		0xE7
-> +#define LTC4283_POWER_PLAY_LSB		0xE8
-> +#define LTC4283_RESERVED_F1		0xF1
-> +#define LTC4283_RESERVED_FF		0xFF
-> +
-> +/* also applies for differential channels */
-> +#define LTC4283_ADC1_FS_uV		32768
-> +#define LTC4283_ADC2_FS_mV		2048
-> +#define LTC4283_TCONV_uS		64103
-> +#define LTC4283_VILIM_MIN_uV		15000
-> +#define LTC4283_VILIM_MAX_uV		30000
-> +#define LTC4283_VILIM_RANGE	\
-> +	(LTC4283_VILIM_MAX_uV - LTC4283_VILIM_MIN_uV + 1)
-> +
-> +#define LTC4283_PGIO_FUNC_GPIO		2
-> +#define LTC4283_PGIO2_FUNC_ACLB		3
-> +
-> +/* voltage channels */
-> +enum {
-> +	LTC4283_CHAN_VIN,
-> +	LTC4283_CHAN_VPWR,
-> +	LTC4283_CHAN_ADI_1,
-> +	LTC4283_CHAN_ADI_2,
-> +	LTC4283_CHAN_ADI_3,
-> +	LTC4283_CHAN_ADI_4,
-> +	LTC4283_CHAN_ADIO_1,
-> +	LTC4283_CHAN_ADIO_2,
-> +	LTC4283_CHAN_ADIO_3,
-> +	LTC4283_CHAN_ADIO_4,
-> +	LTC4283_CHAN_DRNS,
-> +	LTC4283_CHAN_DRAIN,
-> +	/* differential channels */
-> +	LTC4283_CHAN_ADIN12,
-> +	LTC4283_CHAN_ADIN34,
-> +	LTC4283_CHAN_ADIO12,
-> +	LTC4283_CHAN_ADIO34,
-> +	LTC4283_CHAN_MAX
-> +};
-> +
-> +/* Just for ease of use on the regmap  */
-> +#define LTC4283_ADIO34_MAX \
-> +	LTC4283_ADC_2_MAX_DIFF(LTC4283_CHAN_ADIO34 - LTC4283_CHAN_ADIN12)
-> +
-> +struct ltc4283_hwmon {
-> +	struct regmap *map;
-> +	struct i2c_client *client;
-> +	unsigned long gpio_mask;
-> +	unsigned long ch_enable_mask;
-> +	/* in microwatt */
-> +	long power_max;
-> +	/* in millivolt */
-> +	u32 vsense_max;
-> +	/* in tenths of microohm*/
-> +	u32 rsense;
-> +	bool energy_en;
-> +	bool ext_fault;
-> +};
-> +
-> +static int ltc4283_read_voltage_word(const struct ltc4283_hwmon *st,
-> +				     u32 reg, u32 fs, long *val)
-> +{
-> +	unsigned int __raw;
-> +	int ret;
-> +
-> +	ret = regmap_read(st->map, reg, &__raw);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*val = DIV_ROUND_CLOSEST(__raw * fs, BIT(16));
-> +	return 0;
-> +}
-> +
-> +static int ltc4283_read_voltage_byte(const struct ltc4283_hwmon *st,
-> +				     u32 reg, u32 fs, long *val)
-> +{
-> +	int ret;
-> +	u32 in;
-> +
-> +	ret = regmap_read(st->map, reg, &in);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*val = DIV_ROUND_CLOSEST(in * fs, BIT(8));
-> +	return 0;
-> +}
-> +
-> +static u32 ltc4283_in_reg(u32 attr, u32 channel)
-> +{
-> +	switch (attr) {
-> +	case hwmon_in_input:
-> +		if (channel == LTC4283_CHAN_VPWR)
-> +			return LTC4283_VPWR;
-> +		if (channel >= LTC4283_CHAN_ADI_1 && channel <= LTC4283_CHAN_DRAIN)
-> +			return LTC4283_ADC_2(channel - LTC4283_CHAN_ADI_1);
-> +		return LTC4283_ADC_2_DIFF(channel - LTC4283_CHAN_ADIN12);
-> +	case hwmon_in_highest:
-> +		if (channel == LTC4283_CHAN_VPWR)
-> +			return LTC4283_VPWR_MAX;
-> +		if (channel >= LTC4283_CHAN_ADI_1 && channel <= LTC4283_CHAN_DRAIN)
-> +			return LTC4283_ADC_2_MAX(channel - LTC4283_CHAN_ADI_1);
-> +		return LTC4283_ADC_2_MAX_DIFF(channel - LTC4283_CHAN_ADIN12);
-> +	case hwmon_in_lowest:
-> +		if (channel == LTC4283_CHAN_VPWR)
-> +			return LTC4283_VPWR_MIN;
-> +		if (channel >= LTC4283_CHAN_ADI_1 && channel <= LTC4283_CHAN_DRAIN)
-> +			return LTC4283_ADC_2_MIN(channel - LTC4283_CHAN_ADI_1);
-> +		return LTC4283_ADC_2_MIN_DIFF(channel - LTC4283_CHAN_ADIN12);
-> +	case hwmon_in_max:
-> +		if (channel == LTC4283_CHAN_VPWR)
-> +			return LTC4283_VPWR_MAX_TH;
-> +		if (channel >= LTC4283_CHAN_ADI_1 && channel <= LTC4283_CHAN_DRAIN)
-> +			return LTC4283_ADC_2_MAX_TH(channel - LTC4283_CHAN_ADI_1);
-> +		return LTC4283_ADC_2_MAX_TH_DIFF(channel - LTC4283_CHAN_ADIN12);
-> +	default:
-> +		if (channel == LTC4283_CHAN_VPWR)
-> +			return LTC4283_VPWR_MIN_TH;
-> +		if (channel >= LTC4283_CHAN_ADI_1 && channel <= LTC4283_CHAN_DRAIN)
-> +			return LTC4283_ADC_2_MIN_TH(channel - LTC4283_CHAN_ADI_1);
-> +		return LTC4283_ADC_2_MIN_TH_DIFF(channel - LTC4283_CHAN_ADIN12);
-> +	}
-> +}
-> +
-> +static int ltc4283_read_in_vals(const struct ltc4283_hwmon *st,
-> +				u32 attr, u32 channel, long *val)
-> +{
-> +	u32 reg = ltc4283_in_reg(attr, channel);
-> +	int ret;
-> +
-> +	if (channel < LTC4283_CHAN_ADIN12) {
-> +		if (attr != hwmon_in_max && attr != hwmon_in_min)
-> +			return ltc4283_read_voltage_word(st, reg,
-> +							 LTC4283_ADC2_FS_mV,
-> +							 val);
-> +
-> +		return ltc4283_read_voltage_byte(st, reg,
-> +						 LTC4283_ADC2_FS_mV, val);
-> +	}
-> +
-> +	if (attr != hwmon_in_max && attr != hwmon_in_min)
-> +		ret = ltc4283_read_voltage_word(st, reg,
-> +						LTC4283_ADC1_FS_uV, val);
-> +	else
-> +		ret = ltc4283_read_voltage_byte(st, reg,
-> +						LTC4283_ADC1_FS_uV, val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*val = DIV_ROUND_CLOSEST(*val, MILLI);
-> +	return 0;
-> +}
-> +
-> +static int ltc4283_read_alarm(struct ltc4283_hwmon *st, u32 reg,
-> +			      u32 mask, long *val)
-> +{
-> +	u32 alarm;
-> +	int ret;
-> +
-> +	ret = regmap_read(st->map, reg, &alarm);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*val = !!(alarm & mask);
-> +
-> +	/* If not status/fault logs, clear the alarm after reading it. */
-> +	if (reg != LTC4283_FAULT_STATUS && reg != LTC4283_FAULT_LOG)
-> +		return regmap_clear_bits(st->map, reg, mask);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ltc4283_read_in_alarm(struct ltc4283_hwmon *st, u32 channel,
-> +				 bool max_alm, long *val)
-> +{
-> +	if (channel == LTC4283_VPWR)
-> +		return ltc4283_read_alarm(st, LTC4283_ADC_ALM_LOG_1,
-> +					  BIT(2 + max_alm), val);
-> +
-> +	if (channel >= LTC4283_CHAN_ADI_1 && channel <= LTC4283_CHAN_ADI_4) {
-> +		u32 bit = (channel - LTC4283_CHAN_ADI_1) * 2;
-> +		/*
-> +		 * Lower channels go to higher bits. We also want to go +1 down
-> +		 * in the min_alarm case.
-> +		 */
-> +		return ltc4283_read_alarm(st, LTC4283_ADC_ALM_LOG_2,
-> +					  BIT(7 - bit - !max_alm), val);
-> +	}
-> +
-> +	if (channel >= LTC4283_CHAN_ADIO_1 && channel <= LTC4283_CHAN_ADIO_4) {
-> +		u32 bit = (channel - LTC4283_CHAN_ADIO_1) * 2;
-> +
-> +		return ltc4283_read_alarm(st, LTC4283_ADC_ALM_LOG_3,
-> +					  BIT(7 - bit - !max_alm), val);
-> +	}
-> +
-> +	if (channel >= LTC4283_CHAN_ADIN12 && channel <= LTC4283_CHAN_ADIN34) {
-> +		u32 bit = (channel - LTC4283_CHAN_ADIN12) * 2;
-> +
-> +		return ltc4283_read_alarm(st, LTC4283_ADC_ALM_LOG_5,
-> +					  BIT(7 - bit - !max_alm), val);
-> +	}
-> +
-> +	if (channel == LTC4283_CHAN_DRNS)
-> +		return ltc4283_read_alarm(st, LTC4283_ADC_ALM_LOG_4,
-> +					  BIT(6 + max_alm), val);
-> +
-> +	return ltc4283_read_alarm(st, LTC4283_ADC_ALM_LOG_4, BIT(4 + max_alm),
-> +				  val);
-> +}
-> +
-> +static int ltc4283_read_in(struct ltc4283_hwmon *st, u32 attr, u32 channel,
-> +			   long *val)
-> +{
-> +	switch (attr) {
-> +	case hwmon_in_input:
-> +		if (!test_bit(channel, &st->ch_enable_mask))
-> +			return -ENODATA;
-> +
-> +		return ltc4283_read_in_vals(st, attr, channel, val);
-> +	case hwmon_in_highest:
-> +	case hwmon_in_lowest:
-> +	case hwmon_in_max:
-> +	case hwmon_in_min:
-> +		return ltc4283_read_in_vals(st, attr, channel, val);
-> +	case hwmon_in_max_alarm:
-> +		return ltc4283_read_in_alarm(st, channel, true, val);
-> +	case hwmon_in_min_alarm:
-> +		return ltc4283_read_in_alarm(st, channel, false, val);
-> +	case hwmon_in_crit_alarm:
-> +		return ltc4283_read_alarm(st, LTC4283_FAULT_STATUS,
-> +					  LTC4283_OV_MASK, val);
-> +	case hwmon_in_lcrit_alarm:
-> +		return ltc4283_read_alarm(st, LTC4283_FAULT_STATUS,
-> +					  LTC4283_UV_MASK, val);
-> +	case hwmon_in_fault:
-> +		/*
-> +		 * We report failure if we detect either a fer_bad or a
-> +		 * fet_short in the status register.
-> +		 */
-> +		return ltc4283_read_alarm(st, LTC4283_FAULT_STATUS,
-> +					  LTC4283_FET_BAD_MASK | LTC4283_FET_SHORT_MASK, val);
-> +	case hwmon_in_enable:
-> +		*val = test_bit(channel, &st->ch_enable_mask);
-> +		return 0;
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +	return 0;
-> +}
-> +
-> +static int ltc4283_read_current_word(const struct ltc4283_hwmon *st, u32 reg,
-> +				     long *val)
-> +{
-> +	u64 temp = (u64)LTC4283_ADC1_FS_uV * DECA * MILLI;
-> +	unsigned int __raw;
-> +	int ret;
-> +
-> +	ret = regmap_read(st->map, reg, &__raw);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*val = DIV64_U64_ROUND_CLOSEST(__raw * temp,
-> +				       BIT_ULL(16) * st->rsense);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ltc4283_read_current_byte(const struct ltc4283_hwmon *st, u32 reg,
-> +				     long *val)
-> +{
-> +	u64 temp = (u64)LTC4283_ADC1_FS_uV * DECA * MILLI;
-> +	u32 curr;
-> +	int ret;
-> +
-> +	ret = regmap_read(st->map, reg, &curr);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*val = DIV_ROUND_CLOSEST_ULL(curr * temp, BIT(8) * st->rsense);
-> +	return 0;
-> +}
-> +
-> +static int ltc4283_read_curr(struct ltc4283_hwmon *st, u32 attr, long *val)
-> +{
-> +	switch (attr) {
-> +	case hwmon_curr_input:
-> +		return ltc4283_read_current_word(st, LTC4283_SENSE, val);
-> +	case hwmon_curr_highest:
-> +		return ltc4283_read_current_word(st, LTC4283_SENSE_MAX, val);
-> +	case hwmon_curr_lowest:
-> +		return ltc4283_read_current_word(st, LTC4283_SENSE_MIN, val);
-> +	case hwmon_curr_max:
-> +		return ltc4283_read_current_byte(st, LTC4283_SENSE_MAX_TH, val);
-> +	case hwmon_curr_min:
-> +		return ltc4283_read_current_byte(st, LTC4283_SENSE_MIN_TH, val);
-> +	case hwmon_curr_max_alarm:
-> +		return ltc4283_read_alarm(st, LTC4283_ADC_ALM_LOG_1,
-> +					  LTC4283_SENSE_HIGH_ALM, val);
-> +	case hwmon_curr_min_alarm:
-> +		return ltc4283_read_alarm(st, LTC4283_ADC_ALM_LOG_1,
-> +					  LTC4283_SENSE_LOW_ALM, val);
-> +	case hwmon_curr_crit_alarm:
-> +		return ltc4283_read_alarm(st, LTC4283_FAULT_STATUS,
-> +					  LTC4283_OC_MASK, val);
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
-> +static int ltc4283_read_power_word(const struct ltc4283_hwmon *st,
-> +				   u32 reg, long *val)
-> +{
-> +	u64 temp = (u64)LTC4283_ADC1_FS_uV * LTC4283_ADC2_FS_mV * DECA * MILLI;
-> +	unsigned int __raw;
-> +	int ret;
-> +
-> +	ret = regmap_read(st->map, reg, &__raw);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * Power is given by:
-> +	 *     P = CODE(16b) * 32.768mV * 2.048V / (2^16 * Rsense)
-> +	 */
-> +	*val = DIV64_U64_ROUND_CLOSEST(temp * __raw, BIT_ULL(16) * st->rsense);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ltc4283_read_power_byte(const struct ltc4283_hwmon *st,
-> +				   u32 reg, long *val)
-> +{
-> +	u64 temp = (u64)LTC4283_ADC1_FS_uV * LTC4283_ADC2_FS_mV * DECA * MILLI;
-> +	u32 power;
-> +	int ret;
-> +
-> +	ret = regmap_read(st->map, reg, &power);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*val = DIV_ROUND_CLOSEST_ULL(power * temp, BIT(8) * st->rsense);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ltc4283_read_power(struct ltc4283_hwmon *st, u32 attr, long *val)
-> +{
-> +	switch (attr) {
-> +	case hwmon_power_input:
-> +		return ltc4283_read_power_word(st, LTC4283_POWER, val);
-> +	case hwmon_power_input_highest:
-> +		return ltc4283_read_power_word(st, LTC4283_POWER_MAX, val);
-> +	case hwmon_power_input_lowest:
-> +		return ltc4283_read_power_word(st, LTC4283_POWER_MIN, val);
-> +	case hwmon_power_max_alarm:
-> +		return ltc4283_read_alarm(st, LTC4283_ADC_ALM_LOG_1,
-> +					  LTC4283_POWER_HIGH_ALM, val);
-> +	case hwmon_power_min_alarm:
-> +		return ltc4283_read_alarm(st, LTC4283_ADC_ALM_LOG_1,
-> +					  LTC4283_POWER_LOW_ALM, val);
-> +	case hwmon_power_max:
-> +		return ltc4283_read_power_byte(st, LTC4283_POWER_MAX_TH, val);
-> +	case hwmon_power_min:
-> +		return ltc4283_read_power_byte(st, LTC4283_POWER_MIN_TH, val);
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
-> +static int ltc4283_read_energy(struct ltc4283_hwmon *st, u32 attr, s64 *val)
-> +{
-> +	u64 temp = LTC4283_ADC1_FS_uV * LTC4283_ADC2_FS_mV, energy, temp_2;
-> +	u8 raw[8] = {};
-> +	int ret;
-> +
-> +	if (!st->energy_en)
-> +		return -ENODATA;
-> +
-> +	ret = i2c_smbus_read_i2c_block_data(st->client, LTC4283_ENERGY, 6, raw);
-> +	if (ret < 0)
-> +		return ret;
-> +	if (ret != 6)
-> +		return -EIO;
-> +
-> +	energy = get_unaligned_be64(raw) >> 16;
-> +
-> +	/*
-> +	 * The formula for energy is given by:
-> +	 *	E = CODE(48b) * 32.768mV * 2.048V * Tconv / 2^24 * Rsense
-> +	 *
-> +	 * As Rsense can have tenths of micro-ohm resolution, we need to
-> +	 * multiply by DECA to get microjoule.
-> +	 */
-> +	if (check_mul_overflow(temp * LTC4283_TCONV_uS, energy, &temp_2)) {
-> +		/*
-> +		 * We multiply again by 1000 to make sure that we don't get 0
-> +		 * in the following division which could happen for big rsense
-> +		 * values. OTOH, we then divide energy first by 1000 so that
-> +		 * we do not overflow u64 again for very small rsense values.
-> +		 * We add 100 factor for proper conversion to microjoule.
-> +		 */
-> +		temp_2 = DIV64_U64_ROUND_CLOSEST(temp * LTC4283_TCONV_uS * MILLI,
-> +						 BIT_ULL(24) * st->rsense);
-> +		energy = DIV_ROUND_CLOSEST_ULL(energy, MILLI * CENTI) * temp_2;
-> +	} else {
-> +		/* Put rsense back into nanoohm so we get microjoule. */
-> +		energy = DIV64_U64_ROUND_CLOSEST(temp_2, BIT_ULL(24) * st->rsense * CENTI);
-> +	}
-> +
-> +	*val = energy;
-> +	return 0;
-> +}
-> +
-> +static int ltc4283_read(struct device *dev, enum hwmon_sensor_types type,
-> +			u32 attr, int channel, long *val)
-> +{
-> +	struct ltc4283_hwmon *st = dev_get_drvdata(dev);
-> +
-> +	switch (type) {
-> +	case hwmon_in:
-> +		return ltc4283_read_in(st, attr, channel, val);
-> +	case hwmon_curr:
-> +		return ltc4283_read_curr(st, attr, val);
-> +	case hwmon_power:
-> +		return ltc4283_read_power(st, attr, val);
-> +	case hwmon_energy:
-> +		*val = st->energy_en;
-> +		return 0;
-> +	case hwmon_energy64:
-> +		return ltc4283_read_energy(st, attr, (s64 *)val);
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
-> +static int ltc4283_write_power_byte(const struct ltc4283_hwmon *st, u32 reg,
-> +				    long val)
-> +{
-> +	u64 temp = (u64)LTC4283_ADC1_FS_uV * LTC4283_ADC2_FS_mV * DECA * MILLI;
-> +	u32 __raw;
-> +
-> +	clamp_val(val, 0, st->power_max);
-
-Result of clamp_val() is ignored.
-
-> +	__raw = DIV64_U64_ROUND_CLOSEST(val * BIT_ULL(8) * st->rsense, temp);
-> +
-> +	return regmap_write(st->map, reg, __raw);
-> +}
-> +
-> +static int ltc4283_write_power_word(const struct ltc4283_hwmon *st,
-> +				    u32 reg, long val)
-> +{
-> +	u64 temp = st->rsense * BIT_ULL(16), temp_2;
-> +	u16 __raw;
-> +
-> +	if (check_mul_overflow(val, temp, &temp_2)) {
-> +		temp = DIV_ROUND_CLOSEST_ULL(temp, DECA * MILLI);
-> +		__raw = DIV_ROUND_CLOSEST_ULL(temp * val, LTC4283_ADC1_FS_uV * LTC4283_ADC2_FS_mV);
-> +	} else {
-> +		temp = (u64)LTC4283_ADC1_FS_uV * LTC4283_ADC2_FS_mV * DECA * MILLI;
-> +		__raw = DIV64_U64_ROUND_CLOSEST(temp_2, temp);
-> +	}
-> +
-> +	return regmap_write(st->map, reg, __raw);
-> +}
-> +
-> +static int ltc4283_reset_power_hist(struct ltc4283_hwmon *st)
-> +{
-> +	int ret;
-> +
-> +	ret = ltc4283_write_power_word(st, LTC4283_POWER_MIN, st->power_max);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ltc4283_write_power_word(st, LTC4283_POWER_MAX, 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Clear possible power faults. */
-> +	return regmap_clear_bits(st->map, LTC4283_FAULT_LOG,
-> +				 LTC4283_PWR_FAIL_FAULT_MASK | LTC4283_PGI_FAULT_MASK);
-> +}
-> +
-> +static int ltc4283_write_power(struct ltc4283_hwmon *st, u32 attr, long val)
-> +{
-> +	switch (attr) {
-> +	case hwmon_power_max:
-> +		return ltc4283_write_power_byte(st, LTC4283_POWER_MAX_TH, val);
-> +	case hwmon_power_min:
-> +		return ltc4283_write_power_byte(st, LTC4283_POWER_MIN_TH, val);
-> +	case hwmon_power_reset_history:
-> +		return ltc4283_reset_power_hist(st);
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
-> +static int ltc4283_write_in_history(struct ltc4283_hwmon *st, u32 reg,
-> +				    long lowest, u32 fs)
-> +{
-> +	u32 __raw;
-> +	int ret;
-> +
-> +	__raw = DIV_ROUND_CLOSEST(BIT(16) * lowest, fs);
-> +	if (__raw == BIT(16))
-> +		__raw = U16_MAX;
-> +
-> +	ret = regmap_write(st->map, reg, __raw);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return regmap_write(st->map, reg + 1, 0);
-> +}
-> +
-> +static int ltc4283_write_in_byte(const struct ltc4283_hwmon *st,
-> +				 u32 reg, u32 fs, long val)
-> +{
-> +	u32 __raw;
-> +
-> +	val = clamp_val(val, 0, fs);
-> +	__raw = DIV_ROUND_CLOSEST(val * BIT(8), fs);
-> +	if (__raw == BIT(8))
-> +		__raw = U8_MAX;
-> +
-> +	return regmap_write(st->map, reg, __raw);
-> +}
-> +
-> +static int ltc4283_reset_in_hist(struct ltc4283_hwmon *st, u32 channel)
-> +{
-> +	u32 reg, fs;
-> +	int ret;
-> +
-> +	/*
-> +	 * Make sure to clear possible under/over voltage faults. Otherwise the
-> +	 * chip won't latch on again.
-> +	 */
-> +	if (channel == LTC4283_CHAN_VIN)
-> +		return regmap_clear_bits(st->map, LTC4283_FAULT_LOG,
-> +					 LTC4283_OV_FAULT_MASK | LTC4283_UV_FAULT_MASK);
-> +
-> +	if (channel == LTC4283_CHAN_VPWR)
-> +		return ltc4283_write_in_history(st, LTC4283_VPWR_MIN,
-> +						LTC4283_ADC2_FS_mV,
-> +						LTC4283_ADC2_FS_mV);
-> +
-> +	if (channel >= LTC4283_CHAN_ADI_1 && channel <= LTC4283_CHAN_DRAIN) {
-> +		fs = LTC4283_ADC2_FS_mV;
-> +		reg = LTC4283_ADC_2_MIN(channel - LTC4283_CHAN_ADI_1);
-> +	} else {
-> +		fs = LTC4283_ADC1_FS_uV;
-> +		reg = LTC4283_ADC_2_MIN_DIFF(channel - LTC4283_CHAN_ADIN12);
-> +	}
-> +
-> +	ret = ltc4283_write_in_history(st, reg, fs, fs);
-> +	if (ret)
-> +		return ret;
-> +	if (channel != LTC4283_CHAN_DRAIN)
-> +		return 0;
-> +
-> +	/* Then, let's also clear possible fet faults. Same as above. */
-> +	return regmap_clear_bits(st->map, LTC4283_FAULT_LOG,
-> +				 LTC4283_FET_BAD_FAULT_MASK | LTC4283_FET_SHORT_FAULT_MASK);
-> +}
-> +
-> +static int ltc4283_write_in_en(struct ltc4283_hwmon *st, u32 channel, bool en)
-> +{
-> +	unsigned int bit, adc_idx = channel - LTC4283_CHAN_ADI_1;
-> +	unsigned int reg = LTC4283_ADC_SELECT(adc_idx);
-> +	int ret;
-> +
-> +	bit = LTC4283_ADC_SELECT_MASK(adc_idx);
-> +	if (channel > LTC4283_CHAN_DRAIN)
-> +		/* Account for two reserved fields after DRAIN. */
-> +		bit <<= 2;
-> +
-> +	if (en)
-> +		ret = regmap_set_bits(st->map, reg, bit);
-> +	else
-> +		ret = regmap_clear_bits(st->map, reg, bit);
-> +	if (ret)
-> +		return ret;
-> +
-> +	__assign_bit(channel, &st->ch_enable_mask, en);
-> +	return 0;
-> +}
-> +
-> +static int ltc4283_write_minmax(struct ltc4283_hwmon *st, long val,
-> +				u32 channel, bool is_max)
-> +{
-> +	u32 reg;
-> +
-> +	if (channel == LTC4283_CHAN_VPWR) {
-> +		if (is_max)
-> +			return ltc4283_write_in_byte(st, LTC4283_VPWR_MAX_TH,
-> +						     LTC4283_ADC2_FS_mV, val);
-> +
-> +		return ltc4283_write_in_byte(st, LTC4283_VPWR_MIN_TH,
-> +					     LTC4283_ADC2_FS_mV, val);
-> +	}
-> +
-> +	if (channel >= LTC4283_CHAN_ADI_1 && channel <= LTC4283_CHAN_DRAIN) {
-> +		if (is_max) {
-> +			reg = LTC4283_ADC_2_MAX_TH(channel - LTC4283_CHAN_ADI_1);
-> +			return ltc4283_write_in_byte(st, reg,
-> +						     LTC4283_ADC2_FS_mV, val);
-> +		}
-> +
-> +		reg = LTC4283_ADC_2_MIN_TH(channel - LTC4283_CHAN_ADI_1);
-> +		return ltc4283_write_in_byte(st, reg, LTC4283_ADC2_FS_mV, val);
-> +	}
-> +
-> +	if (is_max) {
-> +		reg = LTC4283_ADC_2_MAX_TH_DIFF(channel - LTC4283_CHAN_ADIN12);
-> +		return ltc4283_write_in_byte(st, reg, LTC4283_ADC1_FS_uV,
-> +					     val * MILLI);
-> +	}
-> +
-> +	reg = LTC4283_ADC_2_MIN_TH_DIFF(channel - LTC4283_CHAN_ADIN12);
-> +	return ltc4283_write_in_byte(st, reg, LTC4283_ADC1_FS_uV, val * MILLI);
-> +}
-> +
-> +static int ltc4283_write_in(struct ltc4283_hwmon *st, u32 attr, long val,
-> +			    int channel)
-> +{
-> +	switch (attr) {
-> +	case hwmon_in_max:
-> +		return ltc4283_write_minmax(st, val, channel, true);
-> +	case hwmon_in_min:
-> +		return ltc4283_write_minmax(st, val, channel, false);
-> +	case hwmon_in_reset_history:
-> +		return ltc4283_reset_in_hist(st, channel);
-> +	case hwmon_in_enable:
-> +		return ltc4283_write_in_en(st, channel, !!val);
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
-> +static int ltc4283_write_curr_byte(const struct ltc4283_hwmon *st,
-> +				   u32 reg, long val)
-> +{
-> +	u32 temp = LTC4283_ADC1_FS_uV * DECA * MILLI;
-> +	u32 reg_val, isense_max;
-> +
-> +	isense_max = DIV_ROUND_CLOSEST(st->vsense_max * MICRO * DECA, st->rsense);
-> +	clamp_val(val, 0, isense_max);
-
-Result ignored.
-
-> +	reg_val = DIV_ROUND_CLOSEST_ULL(val * BIT_ULL(8) * st->rsense, temp);
-> +
-> +	return regmap_write(st->map, reg, reg_val);
-> +}
-> +
-> +static int ltc4283_write_curr_history(struct ltc4283_hwmon *st)
-> +{
-> +	int ret;
-> +
-> +	ret = ltc4283_write_in_history(st, LTC4283_SENSE_MIN,
-> +				       st->vsense_max * MILLI,
-> +				       LTC4283_ADC1_FS_uV);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Now, let's also clear possible overcurrent logs. */
-> +	return regmap_clear_bits(st->map, LTC4283_FAULT_LOG,
-> +				 LTC4283_OC_FAULT_MASK);
-> +}
-> +
-> +static int ltc4283_write_curr(struct ltc4283_hwmon *st, u32 attr, long val)
-> +{
-> +	switch (attr) {
-> +	case hwmon_curr_max:
-> +		return ltc4283_write_curr_byte(st, LTC4283_SENSE_MAX_TH, val);
-> +	case hwmon_curr_min:
-> +		return ltc4283_write_curr_byte(st, LTC4283_SENSE_MIN_TH, val);
-> +	case hwmon_curr_reset_history:
-> +		return ltc4283_write_curr_history(st);
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
-> +static int ltc4283_energy_enable_set(struct ltc4283_hwmon *st, long val)
-> +{
-> +	int ret;
-> +
-> +	/* Setting the bit halts the meter. */
-> +	val = !!val;
-> +	ret = regmap_update_bits(st->map, LTC4283_METER_CONTROL,
-> +				 LTC4283_METER_HALT_MASK,
-> +				 FIELD_PREP(LTC4283_METER_HALT_MASK, !val));
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->energy_en = val;
-> +
-> +	return 0;
-> +}
-> +
-> +static int ltc4283_write(struct device *dev, enum hwmon_sensor_types type,
-> +			 u32 attr, int channel, long val)
-> +{
-> +	struct ltc4283_hwmon *st = dev_get_drvdata(dev);
-> +
-> +	switch (type) {
-> +	case hwmon_power:
-> +		return ltc4283_write_power(st, attr, val);
-> +	case hwmon_in:
-> +		return ltc4283_write_in(st, attr, val, channel);
-> +	case hwmon_curr:
-> +		return ltc4283_write_curr(st, attr, val);
-> +	case hwmon_energy:
-> +		return ltc4283_energy_enable_set(st, val);
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
-> +static umode_t ltc4283_in_is_visible(const struct ltc4283_hwmon *st,
-> +				     u32 attr, int channel)
-> +{
-> +	/* If ADIO is set as a GPIO, don´t make it visible. */
-> +	if (channel >= LTC4283_CHAN_ADIO_1 && channel <= LTC4283_CHAN_ADIO_4) {
-> +		/* ADIOX pins come at index 0 in the gpio mask. */
-> +		channel -= LTC4283_CHAN_ADIO_1;
-> +		if (test_bit(channel, &st->gpio_mask))
-> +			return 0;
-> +	}
-> +
-> +	/* Also take care of differential channels. */
-> +	if (channel >= LTC4283_CHAN_ADIO12 && channel <= LTC4283_CHAN_ADIO34) {
-> +		channel -= LTC4283_CHAN_ADIO12;
-> +		/* If one channel in the pair is used, make it invisible. */
-> +		if (test_bit(channel * 2, &st->gpio_mask) ||
-> +		    test_bit(channel * 2 + 1, &st->gpio_mask))
-> +			return 0;
-> +	}
-> +
-> +	switch (attr) {
-> +	case hwmon_in_input:
-> +	case hwmon_in_highest:
-> +	case hwmon_in_lowest:
-> +	case hwmon_in_max_alarm:
-> +	case hwmon_in_min_alarm:
-> +	case hwmon_in_label:
-> +	case hwmon_in_lcrit_alarm:
-> +	case hwmon_in_crit_alarm:
-> +	case hwmon_in_fault:
-> +		return 0444;
-> +	case hwmon_in_max:
-> +	case hwmon_in_min:
-> +	case hwmon_in_enable:
-> +		return 0644;
-> +	case hwmon_in_reset_history:
-> +		return 0200;
-> +	default:
-> +		return 0;
-> +	}
-> +}
-> +
-> +static umode_t ltc4283_curr_is_visible(u32 attr)
-> +{
-> +	switch (attr) {
-> +	case hwmon_curr_input:
-> +	case hwmon_curr_highest:
-> +	case hwmon_curr_lowest:
-> +	case hwmon_curr_max_alarm:
-> +	case hwmon_curr_min_alarm:
-> +	case hwmon_curr_crit_alarm:
-> +	case hwmon_curr_label:
-> +		return 0444;
-> +	case hwmon_curr_max:
-> +	case hwmon_curr_min:
-> +		return 0644;
-> +	case hwmon_curr_reset_history:
-> +		return 0200;
-> +	default:
-> +		return 0;
-> +	}
-> +}
-> +
-> +static umode_t ltc4283_power_is_visible(u32 attr)
-> +{
-> +	switch (attr) {
-> +	case hwmon_power_input:
-> +	case hwmon_power_input_highest:
-> +	case hwmon_power_input_lowest:
-> +	case hwmon_power_label:
-> +	case hwmon_power_max_alarm:
-> +	case hwmon_power_min_alarm:
-> +		return 0444;
-> +	case hwmon_power_max:
-> +	case hwmon_power_min:
-> +		return 0644;
-> +	case hwmon_power_reset_history:
-> +		return 0200;
-> +	default:
-> +		return 0;
-> +	}
-> +}
-> +
-> +static umode_t ltc4283_is_visible(const void *data,
-> +				  enum hwmon_sensor_types type,
-> +				  u32 attr, int channel)
-> +{
-> +	switch (type) {
-> +	case hwmon_in:
-> +		return ltc4283_in_is_visible(data, attr, channel);
-> +	case hwmon_curr:
-> +		return ltc4283_curr_is_visible(attr);
-> +	case hwmon_power:
-> +		return ltc4283_power_is_visible(attr);
-> +	case hwmon_energy:
-> +		/* hwmon_energy_enable */
-> +		return 0644;
-> +	case hwmon_energy64:
-> +		/* hwmon_energy_input */
-> +		return 0444;
-> +	default:
-> +		return 0;
-> +	}
-> +}
-> +
-> +static const char * const ltc4283_in_strs[] = {
-> +	"VIN", "VPWR", "VADI1", "VADI2", "VADI3", "VADI4", "VADIO1", "VADIO2",
-> +	"VADIO3", "VADIO4", "DRNS", "DRAIN", "ADIN2-ADIN1", "ADIN4-ADIN3",
-> +	"ADIO2-ADIO1", "ADIO4-ADIO3"
-> +};
-> +
-> +static int ltc4283_read_labels(struct device *dev,
-> +			       enum hwmon_sensor_types type,
-> +			       u32 attr, int channel, const char **str)
-> +{
-> +	switch (type) {
-> +	case hwmon_in:
-> +		*str = ltc4283_in_strs[channel];
-> +		return 0;
-> +	case hwmon_curr:
-> +		*str = "ISENSE";
-> +		return 0;
-> +	case hwmon_power:
-> +		*str = "Power";
-> +		return 0;
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
-> +/*
-> + * Set max limits for ISENSE and Power as that depends on the max voltage on
-> + * rsense that is defined in ILIM_ADJUST. This is specially important for power
-> + * because for some rsense and vfsout values, if we allow the default raw 255
-> + * value, that would overflow long in 32bit archs when reading back the max
-> + * power limit.
-> + */
-> +static int ltc4283_set_max_limits(struct ltc4283_hwmon *st, struct device *dev)
-> +{
-> +	u32 temp = st->vsense_max * DECA * MICRO;
-> +	int ret;
-> +
-> +	ret = ltc4283_write_in_byte(st, LTC4283_SENSE_MAX_TH, LTC4283_ADC1_FS_uV,
-> +				    st->vsense_max * MILLI);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Power is given by ISENSE * Vout. */
-> +	st->power_max = DIV_ROUND_CLOSEST(temp, st->rsense) * LTC4283_ADC2_FS_mV;
-> +	return ltc4283_write_power_byte(st, LTC4283_POWER_MAX_TH, st->power_max);
-> +}
-> +
-> +static int ltc4283_parse_array_prop(const struct ltc4283_hwmon *st,
-> +				    struct device *dev, const char *prop,
-> +				    const u32 *vals, u32 n_vals)
-> +{
-> +	u32 prop_val;
-> +	int ret;
-> +	u32 i;
-> +
-> +	ret = device_property_read_u32(dev, prop, &prop_val);
-> +	if (ret)
-> +		return n_vals;
-> +
-> +	for (i = 0; i < n_vals; i++) {
-> +		if (prop_val != vals[i])
-> +			continue;
-> +
-> +		return i;
-> +	}
-> +
-> +	return dev_err_probe(dev, -EINVAL,
-> +			     "Invalid %s property value %u, expected one of: %*ph\n",
-> +			     prop, prop_val, n_vals, vals);
-> +}
-> +
-> +static int ltc4283_get_defaults(struct ltc4283_hwmon *st)
-> +{
-> +	u32 reg_val, ilm_adjust, c;
-> +	int ret;
-> +
-> +	ret = regmap_read(st->map, LTC4283_METER_CONTROL, &reg_val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->energy_en = !FIELD_GET(LTC4283_METER_HALT_MASK, reg_val);
-> +
-> +	ret = regmap_read(st->map, LTC4283_CONFIG_1, &reg_val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ilm_adjust = FIELD_GET(LTC4283_ILIM_MASK, reg_val);
-> +	st->vsense_max = LTC4283_VILIM_MIN_uV / MILLI + ilm_adjust;
-> +
-> +	/* VPWR and VIN are always enabled */
-> +	__set_bit(LTC4283_CHAN_VIN, &st->ch_enable_mask);
-> +	__set_bit(LTC4283_CHAN_VPWR, &st->ch_enable_mask);
-> +	for (c = LTC4283_CHAN_ADI_1; c < LTC4283_CHAN_MAX; c++) {
-> +		u32 chan = c - LTC4283_CHAN_ADI_1, bit;
-> +
-> +		ret = regmap_read(st->map, LTC4283_ADC_SELECT(chan), &reg_val);
-> +		if (ret)
-> +			return ret;
-> +
-> +		bit = LTC4283_ADC_SELECT_MASK(chan);
-> +		if (c > LTC4283_CHAN_DRAIN)
-> +			/* account for two reserved fields after DRAIN */
-> +			bit <<= 2;
-> +
-> +		if (!(bit & reg_val))
-> +			continue;
-> +
-> +		__set_bit(c, &st->ch_enable_mask);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const char * const ltc4283_pgio1_funcs[] = {
-> +	"inverted_power_good", "power_good", "gpio"
-> +};
-> +
-> +static const char * const ltc4283_pgio2_funcs[] = {
-> +	 "inverted_power_good", "power_good", "gpio", "active_current_limiting"
-> +};
-> +
-> +static const char * const ltc4283_pgio3_funcs[] = {
-> +	"inverted_power_good_input", "power_good_input", "gpio"
-> +};
-> +
-> +static const char * const ltc4283_pgio4_funcs[] = {
-> +	"inverted_external_fault", "external_fault", "gpio"
-> +};
-> +
-> +enum {
-> +	LTC4283_PIN_ADIO1,
-> +	LTC4283_PIN_ADIO2,
-> +	LTC4283_PIN_ADIO3,
-> +	LTC4283_PIN_ADIO4,
-> +	LTC4283_PIN_PGIO1,
-> +	LTC4283_PIN_PGIO2,
-> +	LTC4283_PIN_PGIO3,
-> +	LTC4283_PIN_PGIO4,
-> +};
-> +
-> +static int ltc4283_pgio_config(struct ltc4283_hwmon *st, struct device *dev)
-> +{
-> +	int ret, func;
-> +
-> +	func = device_property_match_property_string(dev, "adi,pgio1-func",
-> +						     ltc4283_pgio1_funcs,
-> +						     ARRAY_SIZE(ltc4283_pgio1_funcs));
-> +	if (func < 0 && func != -EINVAL)
-
-!= or == ?
-
-for all -EINVAL checks. At the very least,
-
-> +		return dev_err_probe(dev, func,
-> +				     "Invalid adi,pgio1-func property\n");
-
-The "Invalid" messages are confusing. Why say it is invalid when it isn't ?
-And why _only_ accept -EINVAL errors ? That seems odd.
-
-> +	if (func >= 0) {
-> +		if (func == LTC4283_PGIO_FUNC_GPIO) {
-> +			__set_bit(LTC4283_PIN_PGIO1, &st->gpio_mask);
-> +			/* If GPIO, default to an input pin. */
-> +			func++;
-> +		}
-> +
-> +		ret = regmap_update_bits(st->map, LTC4283_PGIO_CONFIG,
-> +					 LTC4283_PGIO1_CFG_MASK,
-> +					 FIELD_PREP(LTC4283_PGIO1_CFG_MASK, func));
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	func = device_property_match_property_string(dev, "adi,pgio2-func",
-> +						     ltc4283_pgio2_funcs,
-> +						     ARRAY_SIZE(ltc4283_pgio2_funcs));
-> +
-> +	if (func < 0 && func != -EINVAL)
-> +		return dev_err_probe(dev, func,
-> +				     "Invalid adi,pgio2-func property\n");
-> +	if (func >= 0) {
-> +		if (func != LTC4283_PGIO2_FUNC_ACLB) {
-> +			if (func == LTC4283_PGIO_FUNC_GPIO)  {
-> +				__set_bit(LTC4283_PIN_PGIO2, &st->gpio_mask);
-> +				func++;
-> +			}
-> +
-> +			ret = regmap_update_bits(st->map, LTC4283_PGIO_CONFIG,
-> +						 LTC4283_PGIO2_CFG_MASK,
-> +						 FIELD_PREP(LTC4283_PGIO2_CFG_MASK, func));
-> +		} else {
-> +			ret = regmap_set_bits(st->map, LTC4283_CONTROL_1,
-> +					      LTC4283_PIGIO2_ACLB_MASK);
-> +		}
-> +
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	func = device_property_match_property_string(dev, "adi,pgio3-func",
-> +						     ltc4283_pgio3_funcs,
-> +						     ARRAY_SIZE(ltc4283_pgio3_funcs));
-> +
-> +	if (func < 0 && func != -EINVAL)
-> +		return dev_err_probe(dev, func,
-> +				     "Invalid adi,pgio3-func property\n");
-> +	if (func >= 0) {
-> +		if (func == LTC4283_PGIO_FUNC_GPIO) {
-> +			__set_bit(LTC4283_PIN_PGIO3, &st->gpio_mask);
-> +			func++;
-> +		}
-> +
-> +		ret = regmap_update_bits(st->map, LTC4283_PGIO_CONFIG,
-> +					 LTC4283_PGIO3_CFG_MASK,
-> +					 FIELD_PREP(LTC4283_PGIO3_CFG_MASK, func));
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	func = device_property_match_property_string(dev, "adi,pgio4-func",
-> +						     ltc4283_pgio4_funcs,
-> +						     ARRAY_SIZE(ltc4283_pgio4_funcs));
-> +
-> +	if (func < 0 && func != -EINVAL)
-
-The usual -EINVAL question.
-
-> +		return dev_err_probe(dev, func,
-> +				     "Invalid adi,pgio4-func property\n");
-> +	if (func >= 0) {
-> +		if (func == LTC4283_PGIO_FUNC_GPIO) {
-> +			__set_bit(LTC4283_PIN_PGIO4, &st->gpio_mask);
-> +			func++;
-> +		} else {
-> +			st->ext_fault = true;
-> +		}
-> +
-> +		ret = regmap_update_bits(st->map, LTC4283_PGIO_CONFIG,
-> +					 LTC4283_PGIO4_CFG_MASK,
-> +					 FIELD_PREP(LTC4283_PGIO4_CFG_MASK, func));
-> +		if (ret)
-> +			return ret;
-> +	}
-
-Shouldn't this set the default value (inverted_external_fault) if the
-property is not provided (i.e., set st->ext_fault and write func = 0
-into LTC4283_PGIO4_CFG_MASK) ?
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int ltc4283_adio_config(struct ltc4283_hwmon *st, struct device *dev,
-> +			       const char *prop, u32 pin)
-> +{
-> +	u32 adc_idx;
-> +	int ret;
-> +
-> +	if (!device_property_read_bool(dev, prop))
-> +		return 0;
-> +
-> +	adc_idx = LTC4283_CHAN_ADIO_1 - LTC4283_CHAN_ADI_1 + pin;
-> +	ret = regmap_clear_bits(st->map, LTC4283_ADC_SELECT(adc_idx),
-> +				LTC4283_ADC_SELECT_MASK(adc_idx));
-> +	if (ret)
-> +		return ret;
-> +
-> +	__set_bit(pin, &st->gpio_mask);
-> +	return 0;
-> +}
-> +
-> +static int ltc4283_pin_config(struct ltc4283_hwmon *st, struct device *dev)
-> +{
-> +	int ret;
-> +
-> +	ret = ltc4283_pgio_config(st, dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ltc4283_adio_config(st, dev, "adi,gpio-on-adio1", LTC4283_PIN_ADIO1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ltc4283_adio_config(st, dev, "adi,gpio-on-adio2", LTC4283_PIN_ADIO2);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ltc4283_adio_config(st, dev, "adi,gpio-on-adio3", LTC4283_PIN_ADIO3);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return ltc4283_adio_config(st, dev, "adi,gpio-on-adio4", LTC4283_PIN_ADIO4);
-> +}
-> +
-> +static const char * const ltc4283_oc_fet_retry[] = {
-> +	"latch-off", "1", "7", "unlimited"
-> +};
-> +
-> +static const u32 ltc4283_fb_factor[] = {
-> +	100, 50, 20, 10
-> +};
-> +
-> +static const u32 ltc4283_cooling_dl[] = {
-> +	512, 1002, 2005, 4100, 8190, 16400, 32800, 65600
-> +};
-> +
-> +static const u32 ltc4283_fet_bad_delay[] = {
-> +	256, 512, 1002, 2005
-> +};
-> +
-> +static int ltc4283_setup(struct ltc4283_hwmon *st, struct device *dev)
-> +{
-> +	u32 val, chan;
-> +	int ret;
-> +
-> +	/* The part has an eeprom so let's get the needed defaults from it */
-> +	ret = ltc4283_get_defaults(st);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * Default to 1 micro ohm so we can probe without FW properties. Note
-> +	 * the below division expects rsense in nano ohms.
-> +	 */
-> +	st->rsense = 1 * MILLI;
-> +	ret = device_property_read_u32(dev, "adi,rsense-nano-ohms",
-> +				       &st->rsense);
-> +	if (!ret) {
-> +		if (st->rsense < CENTI)
-> +			return dev_err_probe(dev, -EINVAL,
-> +					     "adi,rsense-nano-ohms too small (< %lu)\n",
-> +					     CENTI);
-> +	}
-> +
-> +	/*
-> +	 * The resolution for rsense is tenths of micro (eg: 62.5 uOhm) which
-> +	 * means we need nano in the bindings. However, to make things easier to
-> +	 * handle (with respect to overflows) we divide it by 100 as we don't
-> +	 * really need the last two digits.
-> +	 */
-> +	st->rsense /= CENTI;
-> +
-> +	ret = device_property_read_u32(dev, "adi,current-limit-sense-microvolt",
-> +				       &st->vsense_max);
-> +	if (!ret) {
-> +		u32 reg_val;
-> +
-> +		if (!in_range(st->vsense_max, LTC4283_VILIM_MIN_uV,
-> +			      LTC4283_VILIM_RANGE)) {
-> +			return dev_err_probe(dev, -EINVAL,
-> +					     "adi,current-limit-sense-microvolt (%u) out of range [%u %u]\n",
-> +					     st->vsense_max, LTC4283_VILIM_MIN_uV,
-> +					     LTC4283_VILIM_MAX_uV);
-> +		}
-> +
-> +		st->vsense_max /= MILLI;
-> +		reg_val = FIELD_PREP(LTC4283_ILIM_MASK,
-> +				     st->vsense_max - LTC4283_VILIM_MIN_uV / MILLI);
-> +		ret = regmap_update_bits(st->map, LTC4283_CONFIG_1,
-> +					 LTC4283_ILIM_MASK, reg_val);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = ltc4283_parse_array_prop(st, dev, "adi,current-limit-foldback-factor",
-> +				       ltc4283_fb_factor, ARRAY_SIZE(ltc4283_fb_factor));
-> +	if (ret < 0)
-> +		return ret;
-> +	if (ret < ARRAY_SIZE(ltc4283_fb_factor)) {
-> +		ret = regmap_update_bits(st->map, LTC4283_CONFIG_1, LTC4283_FB_MASK,
-> +					 FIELD_PREP(LTC4283_FB_MASK, ret));
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = ltc4283_parse_array_prop(st, dev, "adi,cooling-delay-ms",
-> +				       ltc4283_cooling_dl, ARRAY_SIZE(ltc4283_cooling_dl));
-> +	if (ret < 0)
-> +		return ret;
-> +	if (ret < ARRAY_SIZE(ltc4283_cooling_dl)) {
-> +		ret = regmap_update_bits(st->map, LTC4283_CONFIG_2, LTC4283_COOLING_DL_MASK,
-> +					 FIELD_PREP(LTC4283_COOLING_DL_MASK, ret));
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = ltc4283_parse_array_prop(st, dev, "adi,fet-bad-timer-delay-ms",
-> +				       ltc4283_fet_bad_delay, ARRAY_SIZE(ltc4283_fet_bad_delay));
-> +	if (ret < 0)
-> +		return ret;
-
-This (and other attributes if missing) have a default and should not blindly
-return an error.
-
-> +	if (ret < ARRAY_SIZE(ltc4283_fet_bad_delay)) {
-> +		ret = regmap_update_bits(st->map, LTC4283_CONFIG_2, LTC4283_FTBD_DL_MASK,
-> +					 FIELD_PREP(LTC4283_FTBD_DL_MASK, ret));
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = ltc4283_set_max_limits(st, dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ltc4283_pin_config(st, dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (device_property_read_bool(dev, "adi,power-good-reset-on-fet")) {
-> +		ret = regmap_clear_bits(st->map, LTC4283_CONTROL_1,
-> +					LTC4283_PWRGD_RST_CTRL_MASK);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	if (device_property_read_bool(dev, "adi,fet-turn-off-disable")) {
-> +		ret = regmap_clear_bits(st->map, LTC4283_CONTROL_1,
-> +					LTC4283_FET_BAD_OFF_MASK);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	if (device_property_read_bool(dev, "adi,tmr-pull-down-disable")) {
-> +		ret = regmap_set_bits(st->map, LTC4283_CONTROL_1,
-> +				      LTC4283_THERM_TMR_MASK);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	if (device_property_read_bool(dev, "adi,dvdt-inrush-control-disable")) {
-> +		ret = regmap_clear_bits(st->map, LTC4283_CONTROL_1,
-> +					LTC4283_DVDT_MASK);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	if (device_property_read_bool(dev, "adi,undervoltage-retry-disable")) {
-> +		ret = regmap_clear_bits(st->map, LTC4283_CONTROL_2,
-> +					LTC4283_UV_RETRY_MASK);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	if (device_property_read_bool(dev, "adi,overvoltage-retry-disable")) {
-> +		ret = regmap_clear_bits(st->map, LTC4283_CONTROL_2,
-> +					LTC4283_OV_RETRY_MASK);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	if (device_property_read_bool(dev, "adi,external-fault-retry-enable")) {
-> +		if (!st->ext_fault)
-> +			return dev_err_probe(dev, -EINVAL,
-> +					     "adi,external-fault-retry-enable set but PGIO4 not configured\n");
-> +		ret = regmap_set_bits(st->map, LTC4283_CONTROL_2,
-> +				      LTC4283_EXT_FAULT_RETRY_MASK);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	if (device_property_read_bool(dev, "adi,fault-log-enable")) {
-> +		ret = regmap_set_bits(st->map, LTC4283_FAULT_LOG_CTRL,
-> +				      LTC4283_FAULT_LOG_EN_MASK);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = device_property_match_property_string(dev, "adi,overcurrent-retries",
-> +						    ltc4283_oc_fet_retry,
-> +						    ARRAY_SIZE(ltc4283_oc_fet_retry));
-> +	/* We still want to catch when an invalid string is given. */
-> +	if (ret != -EINVAL)
-
-Is that supposed to be "== -EINVAL" ?
-
-Because otherwise it returns immediately (even if there is no error)
-all the time.
-
-> +		return dev_err_probe(dev, ret,
-> +				     "adi,overcurrent-retries invalid value\n");
-> +	if (ret >= 0) {
-> +		ret = regmap_update_bits(st->map, LTC4283_CONTROL_2,
-> +					 LTC4283_OC_RETRY_MASK,
-> +					 FIELD_PREP(LTC4283_OC_RETRY_MASK, ret));
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = device_property_match_property_string(dev, "adi,fet-bad-retries",
-> +						    ltc4283_oc_fet_retry,
-> +						    ARRAY_SIZE(ltc4283_oc_fet_retry));
-> +	if (ret != -EINVAL)
-
-Same here.
-
-> +		return dev_err_probe(dev, ret,
-> +				     "adi,fet-bad-retries invalid value\n");
-> +	if (ret >= 0) {
-> +		ret = regmap_update_bits(st->map, LTC4283_CONTROL_2,
-> +					 LTC4283_FET_BAD_RETRY_MASK,
-> +					 FIELD_PREP(LTC4283_FET_BAD_RETRY_MASK, ret));
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	if (device_property_read_bool(dev, "adi,external-fault-fet-off-enable")) {
-> +		if (!st->ext_fault)
-> +			return dev_err_probe(dev, -EINVAL,
-> +					     "adi,external-fault-fet-off-enable set but PGIO4 not configured\n");
-> +		ret = regmap_set_bits(st->map, LTC4283_CONFIG_3,
-> +				      LTC4283_EXTFLT_TURN_OFF_MASK);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	if (device_property_read_bool(dev, "adi,vpower-drns-enable")) {
-> +		__clear_bit(LTC4283_CHAN_DRAIN, &st->ch_enable_mask);
-
-That kind of conflicts with the devicetree description, which says that the
-_drain_ voltage should be monitored if this property is enabled.
-
-> +		chan = LTC4283_CHAN_DRAIN - LTC4283_CHAN_ADI_1;
-> +		val = 1;
-> +	} else {
-> +		__clear_bit(LTC4283_CHAN_DRNS, &st->ch_enable_mask);
-> +		chan = LTC4283_CHAN_DRNS - LTC4283_CHAN_ADI_1;
-> +		val = 0;
-> +	}
-> +	/*
-> +	 * Then, let's by default disable the channel from the ADC2 that is
-> +	 * already being monitored by the VPWR channel. One can still enable it
-> +	 * later on if needed.
-> +	 */
-> +	ret = regmap_clear_bits(st->map, LTC4283_ADC_SELECT(chan),
-> +				LTC4283_ADC_SELECT_MASK(chan));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_update_bits(st->map, LTC4283_CONFIG_3,
-> +				 LTC4283_VPWR_DRNS_MASK,
-> +				 FIELD_PREP(LTC4283_VPWR_DRNS_MASK, val));
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Make sure the ADC has 12bit resolution since we're assuming that. */
-> +	ret = regmap_update_bits(st->map, LTC4283_PGIO_CONFIG_2,
-> +				 LTC4283_ADC_MASK,
-> +				 FIELD_PREP(LTC4283_ADC_MASK, 3));
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Energy reads (which are 6 byte block reads) rely on page access */
-> +	ret = regmap_set_bits(st->map, LTC4283_CONTROL_1, LTC4283_RW_PAGE_MASK);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * Make sure we are integrating power as we only support reporting
-> +	 * consumed energy.
-> +	 */
-> +	return regmap_clear_bits(st->map, LTC4283_METER_CONTROL,
-> +				 LTC4283_INTEGRATE_I_MASK);
-> +}
-> +
-> +static const struct hwmon_channel_info * const ltc4283_info[] = {
-> +	HWMON_CHANNEL_INFO(in,
-> +			   HWMON_I_LCRIT_ALARM | HWMON_I_CRIT_ALARM |
-> +			   HWMON_I_RESET_HISTORY | HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_LOWEST | HWMON_I_HIGHEST |
-> +			   HWMON_I_MAX | HWMON_I_MIN | HWMON_I_MIN_ALARM |
-> +			   HWMON_I_MAX_ALARM | HWMON_I_RESET_HISTORY |
-> +			   HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_LOWEST | HWMON_I_HIGHEST |
-> +			   HWMON_I_MAX | HWMON_I_MIN | HWMON_I_MIN_ALARM |
-> +			   HWMON_I_RESET_HISTORY | HWMON_I_MAX_ALARM |
-> +			   HWMON_I_ENABLE | HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_LOWEST | HWMON_I_HIGHEST |
-> +			   HWMON_I_MAX | HWMON_I_MIN | HWMON_I_MIN_ALARM |
-> +			   HWMON_I_RESET_HISTORY | HWMON_I_MAX_ALARM |
-> +			   HWMON_I_ENABLE | HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_LOWEST | HWMON_I_HIGHEST |
-> +			   HWMON_I_MAX | HWMON_I_MIN | HWMON_I_MIN_ALARM |
-> +			   HWMON_I_RESET_HISTORY | HWMON_I_MAX_ALARM |
-> +			   HWMON_I_ENABLE | HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_LOWEST | HWMON_I_HIGHEST |
-> +			   HWMON_I_MAX | HWMON_I_MIN | HWMON_I_MIN_ALARM |
-> +			   HWMON_I_RESET_HISTORY | HWMON_I_MAX_ALARM |
-> +			   HWMON_I_ENABLE | HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_LOWEST | HWMON_I_HIGHEST |
-> +			   HWMON_I_MAX | HWMON_I_MIN | HWMON_I_MIN_ALARM |
-> +			   HWMON_I_RESET_HISTORY | HWMON_I_MAX_ALARM |
-> +			   HWMON_I_ENABLE | HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_LOWEST | HWMON_I_HIGHEST |
-> +			   HWMON_I_MAX | HWMON_I_MIN | HWMON_I_MIN_ALARM |
-> +			   HWMON_I_RESET_HISTORY | HWMON_I_MAX_ALARM |
-> +			   HWMON_I_ENABLE | HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_LOWEST | HWMON_I_HIGHEST |
-> +			   HWMON_I_MAX | HWMON_I_MIN | HWMON_I_MIN_ALARM |
-> +			   HWMON_I_RESET_HISTORY | HWMON_I_MAX_ALARM |
-> +			   HWMON_I_ENABLE | HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_LOWEST | HWMON_I_HIGHEST |
-> +			   HWMON_I_MAX | HWMON_I_MIN | HWMON_I_MIN_ALARM |
-> +			   HWMON_I_RESET_HISTORY | HWMON_I_MAX_ALARM |
-> +			   HWMON_I_ENABLE | HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_LOWEST | HWMON_I_HIGHEST |
-> +			   HWMON_I_MAX | HWMON_I_MIN | HWMON_I_MIN_ALARM |
-> +			   HWMON_I_RESET_HISTORY | HWMON_I_MAX_ALARM |
-> +			   HWMON_I_ENABLE | HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_LOWEST | HWMON_I_HIGHEST |
-> +			   HWMON_I_MAX | HWMON_I_MIN | HWMON_I_MIN_ALARM |
-> +			   HWMON_I_RESET_HISTORY | HWMON_I_MAX_ALARM |
-> +			   HWMON_I_FAULT | HWMON_I_ENABLE | HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_LOWEST | HWMON_I_HIGHEST |
-> +			   HWMON_I_MAX | HWMON_I_MIN | HWMON_I_MIN_ALARM |
-> +			   HWMON_I_RESET_HISTORY | HWMON_I_MAX_ALARM |
-> +			   HWMON_I_ENABLE | HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_LOWEST | HWMON_I_HIGHEST |
-> +			   HWMON_I_MAX | HWMON_I_MIN | HWMON_I_MIN_ALARM |
-> +			   HWMON_I_RESET_HISTORY | HWMON_I_MAX_ALARM |
-> +			   HWMON_I_ENABLE | HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_LOWEST | HWMON_I_HIGHEST |
-> +			   HWMON_I_MAX | HWMON_I_MIN | HWMON_I_MIN_ALARM |
-> +			   HWMON_I_RESET_HISTORY | HWMON_I_MAX_ALARM |
-> +			   HWMON_I_ENABLE | HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_LOWEST | HWMON_I_HIGHEST |
-> +			   HWMON_I_MAX | HWMON_I_MIN | HWMON_I_MIN_ALARM |
-> +			   HWMON_I_RESET_HISTORY | HWMON_I_MAX_ALARM |
-> +			   HWMON_I_ENABLE | HWMON_I_LABEL),
-> +	HWMON_CHANNEL_INFO(curr,
-> +			   HWMON_C_INPUT | HWMON_C_LOWEST | HWMON_C_HIGHEST |
-> +			   HWMON_C_MAX | HWMON_C_MIN | HWMON_C_MIN_ALARM |
-> +			   HWMON_C_MAX_ALARM | HWMON_C_CRIT_ALARM |
-> +			   HWMON_C_RESET_HISTORY | HWMON_C_LABEL),
-> +	HWMON_CHANNEL_INFO(power,
-> +			   HWMON_P_INPUT | HWMON_P_INPUT_LOWEST |
-> +			   HWMON_P_INPUT_HIGHEST | HWMON_P_MAX | HWMON_P_MIN |
-> +			   HWMON_P_MAX_ALARM | HWMON_P_MIN_ALARM |
-> +			   HWMON_P_RESET_HISTORY | HWMON_P_LABEL),
-> +	HWMON_CHANNEL_INFO(energy,
-> +			   HWMON_E_ENABLE),
-> +	HWMON_CHANNEL_INFO(energy64,
-> +			   HWMON_E_INPUT),
-> +	NULL
-> +};
-> +
-> +static const struct hwmon_ops ltc4283_ops = {
-> +	.read = ltc4283_read,
-> +	.write = ltc4283_write,
-> +	.is_visible = ltc4283_is_visible,
-> +	.read_string = ltc4283_read_labels,
-> +};
-> +
-> +static const struct hwmon_chip_info ltc4283_chip_info = {
-> +	.ops = &ltc4283_ops,
-> +	.info = ltc4283_info,
-> +};
-> +
-> +static int ltc4283_show_fault_log(void *arg, u64 *val, u32 mask)
-> +{
-> +	struct ltc4283_hwmon *st = arg;
-> +	long alarm;
-> +	int ret;
-> +
-> +	ret = ltc4283_read_alarm(st, LTC4283_FAULT_LOG, mask, &alarm);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*val = alarm;
-> +
-> +	return 0;
-> +}
-> +
-> +static int ltc4283_show_in0_lcrit_fault_log(void *arg, u64 *val)
-> +{
-> +	return ltc4283_show_fault_log(arg, val, LTC4283_UV_FAULT_MASK);
-> +}
-> +DEFINE_DEBUGFS_ATTRIBUTE(ltc4283_in0_lcrit_fault_log,
-> +			 ltc4283_show_in0_lcrit_fault_log, NULL, "%llu\n");
-> +
-> +static int ltc4283_show_in0_crit_fault_log(void *arg, u64 *val)
-> +{
-> +	return ltc4283_show_fault_log(arg, val, LTC4283_OV_FAULT_MASK);
-> +}
-> +DEFINE_DEBUGFS_ATTRIBUTE(ltc4283_in0_crit_fault_log,
-> +			 ltc4283_show_in0_crit_fault_log, NULL, "%llu\n");
-> +
-> +static int ltc4283_show_fet_bad_fault_log(void *arg, u64 *val)
-> +{
-> +	return ltc4283_show_fault_log(arg, val, LTC4283_FET_BAD_FAULT_MASK);
-> +}
-> +DEFINE_DEBUGFS_ATTRIBUTE(ltc4283_fet_bad_fault_log,
-> +			 ltc4283_show_fet_bad_fault_log, NULL, "%llu\n");
-> +
-> +static int ltc4283_show_fet_short_fault_log(void *arg, u64 *val)
-> +{
-> +	return ltc4283_show_fault_log(arg, val, LTC4283_FET_SHORT_FAULT_MASK);
-> +}
-> +DEFINE_DEBUGFS_ATTRIBUTE(ltc4283_fet_short_fault_log,
-> +			 ltc4283_show_fet_short_fault_log, NULL, "%llu\n");
-> +
-> +static int ltc4283_show_curr1_crit_fault_log(void *arg, u64 *val)
-> +{
-> +	return ltc4283_show_fault_log(arg, val, LTC4283_OC_FAULT_MASK);
-> +}
-> +DEFINE_DEBUGFS_ATTRIBUTE(ltc4283_curr1_crit_fault_log,
-> +			 ltc4283_show_curr1_crit_fault_log, NULL, "%llu\n");
-> +
-> +static int ltc4283_show_power1_failed_fault_log(void *arg, u64 *val)
-> +{
-> +	return ltc4283_show_fault_log(arg, val, LTC4283_PWR_FAIL_FAULT_MASK);
-> +}
-> +DEFINE_DEBUGFS_ATTRIBUTE(ltc4283_power1_failed_fault_log,
-> +			 ltc4283_show_power1_failed_fault_log, NULL, "%llu\n");
-> +
-> +static int ltc4283_show_power1_good_input_fault_log(void *arg, u64 *val)
-> +{
-> +	return ltc4283_show_fault_log(arg, val, LTC4283_PGI_FAULT_MASK);
-> +}
-> +DEFINE_DEBUGFS_ATTRIBUTE(ltc4283_power1_good_input_fault_log,
-> +			 ltc4283_show_power1_good_input_fault_log, NULL, "%llu\n");
-> +
-> +static void ltc4283_debugfs_init(struct ltc4283_hwmon *st, struct i2c_client *i2c)
-> +{
-> +	debugfs_create_file_unsafe("in0_crit_fault_log", 0400, i2c->debugfs, st,
-> +				   &ltc4283_in0_crit_fault_log);
-> +	debugfs_create_file_unsafe("in0_lcrit_fault_log", 0400, i2c->debugfs, st,
-> +				   &ltc4283_in0_lcrit_fault_log);
-> +	debugfs_create_file_unsafe("in0_fet_bad_fault_log", 0400, i2c->debugfs, st,
-> +				   &ltc4283_fet_bad_fault_log);
-> +	debugfs_create_file_unsafe("in0_fet_short_fault_log", 0400, i2c->debugfs, st,
-> +				   &ltc4283_fet_short_fault_log);
-> +	debugfs_create_file_unsafe("curr1_crit_fault_log", 0400, i2c->debugfs, st,
-> +				   &ltc4283_curr1_crit_fault_log);
-> +	debugfs_create_file_unsafe("power1_failed_fault_log", 0400, i2c->debugfs, st,
-> +				   &ltc4283_power1_failed_fault_log);
-> +	debugfs_create_file_unsafe("power1_good_input_fault_log", 0400, i2c->debugfs,
-> +				   st, &ltc4283_power1_good_input_fault_log);
-> +}
-> +
-> +static bool ltc4283_is_word_reg(unsigned int reg)
-> +{
-> +	return reg >= LTC4283_SENSE && reg <= LTC4283_ADIO34_MAX;
-> +}
-> +
-> +static int ltc4283_reg_read(void *context, unsigned int reg, unsigned int *val)
-> +{
-> +	struct i2c_client *client = context;
-> +	int ret;
-> +
-> +	if (ltc4283_is_word_reg(reg))
-> +		ret = i2c_smbus_read_word_swapped(client, reg);
-> +	else
-> +		ret = i2c_smbus_read_byte_data(client, reg);
-> +
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	*val = ret;
-> +	return 0;
-> +}
-> +
-> +static int ltc4283_reg_write(void *context, unsigned int reg, unsigned int val)
-> +{
-> +	struct i2c_client *client = context;
-> +
-> +	if (ltc4283_is_word_reg(reg))
-> +		return i2c_smbus_write_word_swapped(client, reg, val);
-> +
-> +	return i2c_smbus_write_byte_data(client, reg, val);
-> +}
-> +
-> +static const struct regmap_bus ltc4283_regmap_bus = {
-> +	.reg_read = ltc4283_reg_read,
-> +	.reg_write = ltc4283_reg_write,
-> +};
-> +
-> +static bool ltc4283_writable_reg(struct device *dev, unsigned int reg)
-> +{
-> +	switch (reg) {
-> +	case LTC4283_SYSTEM_STATUS ... LTC4283_FAULT_STATUS:
-> +		return false;
-> +	case LTC4283_RESERVED_OC:
-> +		return false;
-> +	case LTC4283_RESERVED_86 ... LTC4283_RESERVED_8F:
-> +		return false;
-> +	case LTC4283_RESERVED_91 ... LTC4283_RESERVED_A1:
-> +		return false;
-> +	case LTC4283_RESERVED_A3:
-> +		return false;
-> +	case LTC4283_RESERVED_AC:
-> +		return false;
-> +	case LTC4283_POWER_PLAY_MSB ... LTC4283_POWER_PLAY_LSB:
-> +		return false;
-> +	case LTC4283_RESERVED_F1 ... LTC4283_RESERVED_FF:
-> +		return false;
-> +	default:
-> +		return true;
-> +	}
-> +}
-> +
-> +static const struct regmap_config ltc4283_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 16,
-> +	.max_register = 0xFF,
-> +	.writeable_reg = ltc4283_writable_reg,
-> +};
-> +
-> +static int ltc4283_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev, *hwmon;
-> +	struct auxiliary_device *adev;
-> +	struct ltc4283_hwmon *st;
-> +	int ret;
-> +
-> +	st = devm_kzalloc(dev, sizeof(*st), GFP_KERNEL);
-> +	if (!st)
-> +		return -ENOMEM;
-> +
-> +	if (!i2c_check_functionality(client->adapter,
-> +				     I2C_FUNC_SMBUS_BYTE_DATA |
-> +				     I2C_FUNC_SMBUS_WORD_DATA |
-> +				     I2C_FUNC_SMBUS_READ_I2C_BLOCK))
-> +		return -EOPNOTSUPP;
-> +
-> +	st->client = client;
-> +	st->map = devm_regmap_init(dev, &ltc4283_regmap_bus, client,
-> +				   &ltc4283_regmap_config);
-> +	if (IS_ERR(st->map))
-> +		return dev_err_probe(dev, PTR_ERR(st->map),
-> +				     "Failed to create regmap\n");
-> +
-> +	ret = ltc4283_setup(st, dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	hwmon = devm_hwmon_device_register_with_info(dev, "ltc4283", st,
-> +						     &ltc4283_chip_info, NULL);
-> +
-> +	if (IS_ERR(hwmon))
-> +		return PTR_ERR(hwmon);
-> +
-> +	ltc4283_debugfs_init(st, client);
-> +
-> +	if (!st->gpio_mask)
-> +		return 0;
-> +
-> +	adev = devm_auxiliary_device_create(dev, "gpio", &st->gpio_mask);
-> +	if (!adev)
-> +		return dev_err_probe(dev, -ENODEV, "Failed to add GPIO device\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id ltc4283_of_match[] = {
-> +	{ .compatible = "adi,ltc4283" },
-> +	{ }
-> +};
-> +
-> +static const struct i2c_device_id ltc4283_i2c_id[] = {
-> +	{ "ltc4283" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, ltc4283_i2c_id);
-> +
-> +static struct i2c_driver ltc4283_driver = {
-> +	.driver	= {
-> +		.name = "ltc4283",
-> +		.of_match_table = ltc4283_of_match,
-> +	},
-> +	.probe = ltc4283_probe,
-> +	.id_table = ltc4283_i2c_id,
-> +};
-> +module_i2c_driver(ltc4283_driver);
-> +
-> +MODULE_AUTHOR("Nuno Sá <nuno.sa@analog.com>");
-> +MODULE_DESCRIPTION("LTC4283 Hot Swap Controller driver");
-> +MODULE_LICENSE("GPL");
+T24gVHVlLCBNYXIgMTcsIDIwMjYsIFlpeHVuIExhbiB3cm90ZToNCj4gQWRkIHN1cHBvcnQgZm9y
+IHRoZSBEV0MzIFVTQiBjb250cm9sbGVyIHdoaWNoIGZvdW5kIGluIFNwYWNlbWlUIEszIFNvQy4N
+Cj4gDQo+IFNpZ25lZC1vZmYtYnk6IFlpeHVuIExhbiA8ZGxhbkBrZXJuZWwub3JnPg0KPiAtLS0N
+Cj4gIGRyaXZlcnMvdXNiL2R3YzMvZHdjMy1nZW5lcmljLXBsYXQuYyB8IDEgKw0KPiAgMSBmaWxl
+IGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy91c2Iv
+ZHdjMy9kd2MzLWdlbmVyaWMtcGxhdC5jIGIvZHJpdmVycy91c2IvZHdjMy9kd2MzLWdlbmVyaWMt
+cGxhdC5jDQo+IGluZGV4IGU4NDY4NDRlMDAyMy4uMjgyMTk5NjhiOGIwIDEwMDY0NA0KPiAtLS0g
+YS9kcml2ZXJzL3VzYi9kd2MzL2R3YzMtZ2VuZXJpYy1wbGF0LmMNCj4gKysrIGIvZHJpdmVycy91
+c2IvZHdjMy9kd2MzLWdlbmVyaWMtcGxhdC5jDQo+IEBAIC0yMTIsNiArMjEyLDcgQEAgc3RhdGlj
+IGNvbnN0IHN0cnVjdCBkd2MzX2dlbmVyaWNfY29uZmlnIGVpYzc3MDBfZHdjMyA9ICB7DQo+ICAN
+Cj4gIHN0YXRpYyBjb25zdCBzdHJ1Y3Qgb2ZfZGV2aWNlX2lkIGR3YzNfZ2VuZXJpY19vZl9tYXRj
+aFtdID0gew0KPiAgCXsgLmNvbXBhdGlibGUgPSAic3BhY2VtaXQsazEtZHdjMyIsIH0sDQo+ICsJ
+eyAuY29tcGF0aWJsZSA9ICJzcGFjZW1pdCxrMy1kd2MzIiwgfSwNCj4gIAl7IC5jb21wYXRpYmxl
+ID0gImZzbCxsczEwMjhhLWR3YzMiLCAmZnNsX2xzMTAyOF9kd2MzfSwNCj4gIAl7IC5jb21wYXRp
+YmxlID0gImVzd2luLGVpYzc3MDAtZHdjMyIsICZlaWM3NzAwX2R3YzN9LA0KPiAgCXsgLyogc2Vu
+dGluZWwgKi8gfQ0KPiANCj4gLS0gDQo+IDIuNTMuMA0KPiANCg0KQWNrZWQtYnk6IFRoaW5oIE5n
+dXllbiA8VGhpbmguTmd1eWVuQHN5bm9wc3lzLmNvbT4NCg0KQlIsDQpUaGluaA==
 
