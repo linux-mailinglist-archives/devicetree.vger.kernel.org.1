@@ -1,254 +1,858 @@
-Return-Path: <devicetree+bounces-277056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277057-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2H4UDfxnumnnWAIAu9opvQ
-	(envelope-from <devicetree+bounces-277056-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:53:16 +0100
+	id qAs8KZRoumnnWAIAu9opvQ
+	(envelope-from <devicetree+bounces-277057-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:55:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 751DD2B8802
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:53:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11DF52B88A9
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:55:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id CEEBF300BC98
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:53:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 73466302F735
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:54:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74E7738F92A;
-	Wed, 18 Mar 2026 08:53:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE953988F1;
+	Wed, 18 Mar 2026 08:54:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="HOdkvk6t"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q2Hxsybt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022135.outbound.protection.outlook.com [52.101.126.135])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8CAE36AB6E;
-	Wed, 18 Mar 2026 08:53:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.135
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773823988; cv=fail; b=ZWjLZnZUPdP28TjnngCb58matBX7s6y7g/HkEqjLicFxu79kZoaT1xeooINR1UyI13qwzBTKNJ4k65cBCY5a2U+hH+rzDwNmjj0x6fXJw70bT595fL0GE4zSoQvEcfjlGGzM3eC9Ezc3kRqk/oj91WbGtePdnQF6Ho4NLwJ+H7M=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773823988; c=relaxed/simple;
-	bh=Qu+Nq2BHQ+zzI2YcqflncdbpQaQ3aDReWRUj3INs0P8=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=MJqXZIgGR2WaRZgg6avmJa4KtfD6e/auRhfzdQnInkGlXMhiy3k4f4rr8GZugZC42PsNiZ5qKdOicJhvzegeFI//gltGa4VTTMm82ucNxRpNS7Dl7DccylksqLUmysjK0XEDp553rhxNJcqbN8Q60XNzMCrR3bpIZtxaTQDt0g8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=HOdkvk6t; arc=fail smtp.client-ip=52.101.126.135
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ewW9DpjUZiidwqYB51cmJZxrnmSRdMgMVDmtDBeHJ7Blpxwv7YSpEqx7dBz3C7t7bhIiwdGHrEE33ScsyR/G1VH1FynuX6Vt2Bf2H3Zg+j4pp1TlA/6KokpPnbaBubtHEj/XX51hmjUQCMVOAtrCpaKFphKYRckc3gHwkzsuJeSDMcroSvAJk7wVIVDNx40GiLZ3HvrMICkkFJ4KOEbjOfLMD3mo1tdwJvMGKqmKExqxlN/stVfq8BtbSrWPuPQI+12wWzTOxeC0WX6uq1QvhLnWM35nfG3UFrjoNgLKOKQgldaXgdT9BtmkWTC2dpAylhMhGL08d2GMeTjt/5dRiQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Qu+Nq2BHQ+zzI2YcqflncdbpQaQ3aDReWRUj3INs0P8=;
- b=BTuYrt/qlv48+dfl4/7UuFD51xWUKNZ0UlUu9pNJcOjgcmKia+1K7CvJObuXSzYjQNhIlIBJJ5KICHQiQlJ+89udOdfjQ/5b7fkij9f6VXgZ84kOfS1uF5OUdmBmv93BQurDoddByAEqLDyg3jnpNvlQaAgOnC2XdfUjIaEFuEMyosGSiFmxQcxLxREd3xx/wagpjT4SLNDHJi9AJz7AF1crajA8hDYypk8jD/CIxY7bwDCdyU8NQ3DF5xlqdQ8fXiolGkHU/I/l39MbZq/Eq9jUOh5tMzWN3hDWrsRT6KqBcairfDt8s2M5K8tTnod8jdPH3IXOUGfsBl6C/UQC4A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Qu+Nq2BHQ+zzI2YcqflncdbpQaQ3aDReWRUj3INs0P8=;
- b=HOdkvk6t8dcO7ikVJWc8C3IpY/+4jsh1AiqpF0cuhhIT11bhXqe4s+Hm9sODKwsQi/1kx4+azuzK/Oie8600cpMsnxsE7WZFxBBU51pmxPtABWPgWM9G5CTc5G9lLRZIxUuNm1cus6cKGZSSmsWhTcNKZovzb79E86z1iXaKdAcSJr9xyeMGizEIwE6Zk0gDOSWr7D6A2wG+Y2g1SUw+wsH4W0vLGIfxtlBgiyiL4n0hEQZBsFjTwXi+ZLSaf2hK30mvfCqXCWwbxsKtKkSlo2U9v4JvKoYouMWY/1MTZAApBnE0sfqZwBXXoJGrKrRlNbt4pmVj0pf6ruccFoi3kg==
-Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com (2603:1096:408::791)
- by TYZPR06MB5417.apcprd06.prod.outlook.com (2603:1096:400:203::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.24; Wed, 18 Mar
- 2026 08:53:02 +0000
-Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
- ([fe80::8c70:cb01:78fb:d9c0]) by TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
- ([fe80::8c70:cb01:78fb:d9c0%6]) with mapi id 15.20.9700.013; Wed, 18 Mar 2026
- 08:53:02 +0000
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Andrew Jeffery <andrew@codeconstruct.com.au>, Ulf Hansson
-	<ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
-	<joel@jms.id.au>, Ryan Chen <ryanchen.aspeed@gmail.com>, Adrian Hunter
-	<adrian.hunter@intel.com>, Philipp Zabel <p.zabel@pengutronix.de>, Andrew
- Jeffery <andrew@aj.id.au>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "openbmc@lists.ozlabs.org"
-	<openbmc@lists.ozlabs.org>, "linux-mmc@vger.kernel.org"
-	<linux-mmc@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v2 1/2] mmc: dt-bindings: sdhci-of-aspeed: Add AST2700
- fallback compatibles
-Thread-Topic: [PATCH v2 1/2] mmc: dt-bindings: sdhci-of-aspeed: Add AST2700
- fallback compatibles
-Thread-Index: AQHctdLYEgta6oUwokG3QEh/PPkOl7Wz7V8AgAAA4JCAAAUVgIAABEVw
-Date: Wed, 18 Mar 2026 08:53:02 +0000
-Message-ID:
- <TY2PPF5CB9A1BE6E474E78EED4F320F2B30F24EA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
-References: <20260317-sdhci-v2-0-39b1f063061b@aspeedtech.com>
- <20260317-sdhci-v2-1-39b1f063061b@aspeedtech.com>
- <20260318-abiding-sloppy-poodle-efd3e5@quoll>
- <TY2PPF5CB9A1BE666DEF10944BBA2A2256BF24EA@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
- <f46bf4fb-b6e5-4238-9c23-c435c4b8e275@kernel.org>
-In-Reply-To: <f46bf4fb-b6e5-4238-9c23-c435c4b8e275@kernel.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY2PPF5CB9A1BE6:EE_|TYZPR06MB5417:EE_
-x-ms-office365-filtering-correlation-id: aa107f9f-78d8-4463-ce0d-08de84cbc361
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|7416014|376014|56012099003|18002099003|22082099003|38070700021;
-x-microsoft-antispam-message-info:
- //FrzoTwZTDmu/7eUyjQC1NALcRKkv0sCmnfnmt10XSzVr9PIXsIUBNXYbB3O8xCWqzYniud9eDkqReH4P5EWcNpqUjJEbRXBCjrcozwD9l4O4037WStxd8fhlEokPiKGzkOsAP6rsyqVGS2CLsBkGOPeQVhNvA6jdHlzGLj7DjosNpEE4mLt2ihaU/PKrX/ap6BpCezxX3VqCkfuJQE22ZYxe3uQt8SvGuVWsM0gx2aUxT1a94toY/lxl7ogcD4O1Ep8nDS1GmMSJ7duExxjwchfqJ5xsfFbSFc4fC4xWHmXytmkxr2vzY3RIHG+gpWVXuyzLmP7iJ2cH/TQhzHlTFw+pXhLXu+RhXPMITEs1j2jKswfCU0M2M3HrgM+57cF6e1bF4fx0zJqztLxiKvUqn3FYUkyw9tBBJ3GdZlg0fM18gKWw2SCrrCBM+MwlZJ84GaXJyFbzbYpmG87nE5vqKfDKGizedBa9QnrLDQ5IKYHw0ZGnqOWJZXPLRTA++NUxUB11bzfECTTg62vZjE/PVQhCjriZ7MTNyc9wJE3WGljBWY1GHAckOy60QYBAKQS2AImOMM9IQDQCE+KOoS4lgNAQMz13oIWKb2EFJvnJECPjtl0x8qf8+o87+MIyoLbfiH9nMLiTobnkFpzH9Skv+p8uwJKtHg0bPzgSZ1FAQ/piqPpzSZWnJdh0xGI53ROKf+2pTocG4Ggz2XEpRb7nGbRg8gYyBiRhzljdgp1gga7kz6f3H+jlYd7HtV8C5GM+3emCdfVgLAwtHEz7NycU2ad5wPD5GLgjXROo0TKT4=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(56012099003)(18002099003)(22082099003)(38070700021);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?VHcxcWdLRWFPUTYzQjFXNlpDUWp1R08wSm9HSW9qM0tBTzc2T2JtMTcrMWlH?=
- =?utf-8?B?ZjVDQ0ZJTXFMOW5pQ21peWVMeCtMUjJxQjFtRHE1akVRSUYyb0hUeXhTaGRv?=
- =?utf-8?B?SHk3cmFwWi9JU3hVUVlVK3h2eDA2RHZ1ckFLblBqbEVJTkZRUGM5ZU01cjB4?=
- =?utf-8?B?cVg5ZDZLZlQ3RUFQQjhUYWpLamhmb3VXRGFxVFN5MlJNSzdnbGs3bU1XdExP?=
- =?utf-8?B?Mk14cGJlRnVwdmlBRDFldDJCWTV1SndGMjgvYm90QlVRajJjVVVvQUdlbXJB?=
- =?utf-8?B?ZmVLZXhBY09WRUVJWVRnMHk0dHM3WHBRZGpuZXVNTkV1dmhqZnZGYlFEODNv?=
- =?utf-8?B?eGkrSE5NQjVPaHdYS0tNVHo2cTh1cFF2WmplWTRCRWpsenhpeUptMFEvdUFJ?=
- =?utf-8?B?ZFo1ZmVrTTJ3TVRTcWVMSVA4cVE4TDg2aEZhaTY2VXhqZUxCQ1dYYlJMS1ZL?=
- =?utf-8?B?dnhFdzJ1bkFuL0V5MjJxVnR5RzhiTGFXS1VGbDQ2ZWtwUXMwT2VxTzFuaGsz?=
- =?utf-8?B?RnNwNTcwem9jcGtIZUVLb2FrUGN6aWhYSlJHSDh6NEh5Nm0xczJWV0tGcDRD?=
- =?utf-8?B?K2JUaDkyWXFlYjJ6cGtnTnU0UmsvMi93dldiNUtjeE9zV25qU1V2N2k4SVha?=
- =?utf-8?B?UzdPdGUvWlZsZ3cwbzFrM0JzT21KcTgvVTdTajd0UDYvWVp0VFQ2UDdrM2ZV?=
- =?utf-8?B?K3ZMRVVkbXVvT0tiMHZtaUVmcklZS0w5NkoxQXA4aUZnRTFWU0FieTZCVEpP?=
- =?utf-8?B?c21rZVFxbEtuRkx1SklORlR3a2tOR1d2TmtOYnZySno3UkpkbXZhaUt3N3JG?=
- =?utf-8?B?OThMc04yRUZRZjIyc0EyTnZNUzNIcGF2c3JNOWlqaHVrRDZXdEdyd2d6MkhH?=
- =?utf-8?B?bHUxQ0lGVnhBSkxHc0diRkVTNDBGTVc1Tk5pRXZqcEJNUUVOOVp5anZONmxu?=
- =?utf-8?B?MlFxUkQzVzFwY0JyNjE2amI1WXVyMmtJeUp5UGJRZC90Y3oxODJmOEdES3Zh?=
- =?utf-8?B?a1QxSzlnM1dBN1YwbkNCWUY1eno3a3lNb0VMemEwVUQ2UjVFMTVwNGkvOWRN?=
- =?utf-8?B?M3F1M1BpNFBwYzhBZnNGTXJFa3Z2Mit6UjhOMTd4OWkrZXk0YXY5OVR6R04z?=
- =?utf-8?B?c3RueEVOZmdZSHk1SGFuaXh2a0NOLzB1czVKSmJaQklobGFvVWQxZ3U0VjRL?=
- =?utf-8?B?VVFyWG9HNzhSazV4ZkMvSXYzVkN6L3hpdG13ajVZaUFaY2xkOC9qSitlQ0VF?=
- =?utf-8?B?b1NRY2MydmJpNlUrbVZ5UkpCNHFGc2tER3pXam5neG0zV2dOSXZrQk02Ynhr?=
- =?utf-8?B?VXFEdlQzNytHZnpHTnM5NWYraW5VNVdyL0dXaTFoaVF1S1BuMzhmNmcrZEM4?=
- =?utf-8?B?MytzNy9GcGJzTElSQ3RxTlh3Mnl0Rm5hUWg0ektibTNEYXFFNUtiK09hZzhq?=
- =?utf-8?B?K2dLWFlsWWdJSForNGgzdTgzMFllUTNsZm9aekdiMVUzcjRXRVRiZ04yWFlU?=
- =?utf-8?B?cng3dnRuRk5vcW0yekYrWEhDTHp1ZG5na1BVbGN2OW1mdGtnZDZXK2ozcG5a?=
- =?utf-8?B?dzdvRG9EWG1ySkVTa0Iwd3BmbTRxMktlVXVTQVdkMG5PQzRKY0RKM0ZaNkVk?=
- =?utf-8?B?YnhETXJVK0pNajBhT1RHTHFYRzNYRUYyNWcrS3ZPb2JlRkxQYjFjU3BrQ1Rp?=
- =?utf-8?B?bXdBUHc3TlNaQjVqMTQ4YTUxZG9LRFFTeEdPYldudS84UkFlUzNsZ0REQk05?=
- =?utf-8?B?cS9icXJSMGxrN3YwV2R6dk9TZ3pzckJicFNORURSUVZZZlErZ2pBUnBLamkv?=
- =?utf-8?B?L0JwYzF6cTBsa0xmakNhQkdyait1Q25mT3A2UVE0akN3NTh2aklQNEtSUDF3?=
- =?utf-8?B?bW1vMTFqTTVlbGwwZ21OenFqYzdPQzlKbzRaNHRjakIvSW44M3d2SmlhOEpx?=
- =?utf-8?B?T0VDdVBYRk1DZk1Va0NzZ3lOQTlzTnNBV3JlWjk4VHZjMk45enJ5ZE1lSXVG?=
- =?utf-8?B?ajFQeklDU202WHh6eWRIQzRXTnE3M0daYlI2ZzY4RUwybnF6czNOUlJFM2Y5?=
- =?utf-8?B?bVR0Mm0rV1cxdnZNZndQcW9wUEcyc1U5b3pGazFjVWFveTJYUjdady9ZeHBI?=
- =?utf-8?B?S245SVBJbEgybEhPRTlzQkdhUmp0eGRQRlZhSHQyYkpmZy82RHpzQkYyQ0hF?=
- =?utf-8?B?Q3FLaHlqUEJKQ1JaZTZaOFZBeER4ck12VzJ1SVRscG9XblhMaDdPQ1puQ3M3?=
- =?utf-8?B?R2J1a04rR2hvU1d0OFNLMTAwSnF0Qy9oM3dIR3o3aStvZE00M3NmeWtNOWZW?=
- =?utf-8?B?eEJsSlBQVWl5TFhzZy81RjY1L1pxeUEyS0UyeW5iSzRPK1dCRTZDQT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19427394781
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 08:54:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773824094; cv=none; b=MqpbvBH14YBoWnuFk7uJPk08S0B2MPUc6yxIb8+o5ZkPx2li/w3oXANAaZxw+k98K/r2qfnPHP6m5IFD0hmCHBMovVwa/p6L4thSdmYuMS3e0md4DybRr2VHfmTJoTt5Gn711p8MDm8LVnOmpGSTa7LWqI/y9423rbNFIsuRQcI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773824094; c=relaxed/simple;
+	bh=F1c8h7XQUYOJeOTIMckWeltHUyGqxXPnl+9HpmkhJHY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aPea4KXgBgqjdR1dWmORM75DXgdeB31UZp9RLOqvlZqJp/KmoxM55WTEpC6Ni9bUlG/fNtyGbP7h7wI+wa3X28YuENvYnSWcIwfHzUmw7Xpp15a5WvE2ltdlHDDe9rH839MR+SHvpTsjuWL+HwcrVHYbuQG0pWkcit0lFnvDrl4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q2Hxsybt; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-6616cb8c80cso10147649a12.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 01:54:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773824088; x=1774428888; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IMHDH7wleoQWnYp+U62Lq9iWZRrogiMrLKeiIrWugFQ=;
+        b=Q2HxsybtseDaOoYTgoW1kTPrEOGwFuEQ0IaQ6rBTzYuOyAnxMyZzaKT3rsmLr6hDOo
+         ztWCe20IlhnrPvYDbDNKldEgOC2FTmr0GMLxd4WC9Izml41B2DUnKP529i5LkFqSvyO3
+         2wyqwxJVS4jM7ET5uP8dtMIkkzGGvNlLtl8hqmxcqcX8yC8k7bOeId3NTv26dpUGTTqU
+         oTx/XsecV1Z136MrgLC/tJBawMf/Y18gEpbEm/CiYpwRMfC/j85ZsqSY77lsNZ/H4uls
+         9RwtgdUkRDECyFPEpnigxXSshmer9bDMQTwb8NsT/9FGvHEW2+8pjhIQfx/EYqBfyw8o
+         nulw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773824088; x=1774428888;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IMHDH7wleoQWnYp+U62Lq9iWZRrogiMrLKeiIrWugFQ=;
+        b=UN9RhA6PLSLogjkc5XjQS8NtRqZOXwYxtVmYUhhilbz2pvgOom2FOTfsgNv5Q7yMqn
+         y5aHPiqKSWvjUKNJovnDZMJz0t7AS+bNbqGYCVrH6Y4oXHKpFg9gU8pmpgLrBLElXeqB
+         htXeVbdppDQXgE5rZAYpj0V0t62Rf1/sOEIl6dnm/ZGKLUqCCAclZ97iBOvDoqMz/kBj
+         d9KUCJ+RvuxlW36d0RD+NhODSovJxRMV6eXsLzNgGXL9I0QGKQ6Q2IuXk835UBjdG3Nj
+         UIHVt+0N+GhS6vZq3u2iVfrS2U++pblVc64d4E3HVF0yq/J+6L1ZeD13EoGrKPqm5ATj
+         OJQA==
+X-Gm-Message-State: AOJu0YxoVwzkLR/zy6QgWpe6auiKj+9aSYEY9d4L3F6YyklVFyGRvr0H
+	jxU6jca/q8UOppVQpE56EJxwExcK2cM90lShlKHbwjBrHpjzwR7yzQtSUzgqs/hz
+X-Gm-Gg: ATEYQzxwZds7iG0znq2L3VcXojU2/ICRxWnBlGlqQIKHsEIQkMiBddIjlV1kQAKV9EL
+	iISFb+zcTBOS5tZaJ+gGFHtRHPz2fXeG4mw6vYWzdQE8KZ0eQfLQxxJmdkyCtJuGJGyHad09IMf
+	3Dagdj2cGkIQmFiOrPjXhqa7D8kpYEzgTcQLDKy+Op2eyekNGiJ/XeU5xBidBQet6RS/CwCtVB0
+	bBOCyNJ2ACTlcXvaKoDWAI1Mka3q/4kkijX5zeLcAx803qlfw5QursTfbCxUVTPTVMWrf4AOVuO
+	dC6JhRMq+R5Y4YhscgwgBiIlaamWeJNIE8yuf/Qsow0RYaW5PSpqO993ok7D0QZLre2Fy+oYgOD
+	qnFaFr41sFNOtqm5NgEmpkZWH16GbYummjIPMwdLe+66mKe0lACrjbRcyCJNrG25ncVKW8JCvgn
+	/hz+wl+NunX8HNLlyIq7VlVaDis0UCoaKIQtkOOk7F2g04zCXq3rkSaFQLOJCFo+OEe/pIVGVTE
+	NDwlMqP
+X-Received: by 2002:a17:906:fd8e:b0:b96:e593:fd32 with SMTP id a640c23a62f3a-b97f488554amr137876166b.12.1773824087475;
+        Wed, 18 Mar 2026 01:54:47 -0700 (PDT)
+Received: from fedora.tux.internal (85.191.71.118.dynamic.dhcp.aura-net.dk. [85.191.71.118])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9801c11fa0sm72259866b.28.2026.03.18.01.54.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Mar 2026 01:54:46 -0700 (PDT)
+From: Bruno Thomsen <bruno.thomsen@gmail.com>
+To: devicetree@vger.kernel.org,
+	linux-omap@vger.kernel.org
+Cc: Lars Alex Pedersen <lapeddk@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Tony Lindgren <tony@atomide.com>,
+	Roger Quadros <rogerq@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Bruno Thomsen <bruno.thomsen@gmail.com>
+Subject: [PATCH 1/2] ARM: dts: ti/omap: am335x: add kamstrup emperor platform
+Date: Wed, 18 Mar 2026 09:54:19 +0100
+Message-ID: <20260318085420.7680-1-bruno.thomsen@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked:
-	TY0kucMMF7sv1gPRYX7LOswk7Cf/z3aN1QMOPQLSITzRjwDFQufPvVQQJDi4LGT13hBszzaHUFlTkf+nQBNpZUtQZi/OH3+oJz9j+3GBoBpKGBjshxPEeGnsKTKRw4+JdcafrRS6mGu3ykQDV8KGd4OPYrilUuTrq8C5WxOEqL6k1LqpCy4xWwkHU3wA8sl4QYR2Y6n/CsqUz+HQRzbIiqFw0I/7ydJuj8goGfAkR0C9iSeFgyjHTACSEqh2x6OPFip0l6318mufNl2EQkIplRqsctVX/0adDgrt+F19MAx03vGSQUWJf+BnZFnE3M3TRFM1u/P/0XGooW79bz2nZQ==
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aa107f9f-78d8-4463-ce0d-08de84cbc361
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Mar 2026 08:53:02.4072
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ocuGfIXiblsIvmnfI4eBSzVVB14I5p0NZBXc/MYkI9Opn5jV8UCQSG3a0OiHebYM8HOQ0YU4Cb4ET2Rb0kbGJkVLqvjkLBGPQnsTIRiNJeU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB5417
-X-Spamd-Result: default: False [2.44 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[aspeedtech.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[aspeedtech.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277056-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,atomide.com,baylibre.com,kemnade.info,iki.fi];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FREEMAIL_CC(0.00)[codeconstruct.com.au,linaro.org,kernel.org,jms.id.au,gmail.com,intel.com,pengutronix.de,aj.id.au,lists.ozlabs.org,vger.kernel.org,lists.infradead.org];
-	DKIM_TRACE(0.00)[aspeedtech.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ryan_chen@aspeedtech.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277057-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brunothomsen@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,aspeedtech.com:dkim,aspeedtech.com:email,TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com:mid]
-X-Rspamd-Queue-Id: 751DD2B8802
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 11DF52B88A9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-PiBTdWJqZWN0OiBSZTogW1BBVENIIHYyIDEvMl0gbW1jOiBkdC1iaW5kaW5nczogc2RoY2ktb2Yt
-YXNwZWVkOiBBZGQgQVNUMjcwMA0KPiBmYWxsYmFjayBjb21wYXRpYmxlcw0KPiANCj4gT24gMTgv
-MDMvMjAyNiAwOTowOSwgUnlhbiBDaGVuIHdyb3RlOg0KPiA+PiBTdWJqZWN0OiBSZTogW1BBVENI
-IHYyIDEvMl0gbW1jOiBkdC1iaW5kaW5nczogc2RoY2ktb2YtYXNwZWVkOiBBZGQNCj4gPj4gQVNU
-MjcwMCBmYWxsYmFjayBjb21wYXRpYmxlcw0KPiA+Pg0KPiA+PiBPbiBUdWUsIE1hciAxNywgMjAy
-NiBhdCAwMTo1Njo0MlBNICswODAwLCBSeWFuIENoZW4gd3JvdGU6DQo+ID4+PiBEZXNjcmliZSBB
-U1QyNzAwIGFzIGNvbXBhdGlibGUgd2l0aCB0aGUgZXhpc3RpbmcgQVNUMjYwMCBTRA0KPiA+Pj4g
-Y29udHJvbGxlciBhbmQgU0RIQ0kgYmluZGluZ3MgYnkgcmVxdWlyaW5nIGZhbGxiYWNrIGNvbXBh
-dGlibGVzIGluIHRoZQ0KPiBkZXZpY2UgdHJlZS4NCj4gPj4+DQo+ID4+PiBBbHNvIHJlcXVpcmUg
-YHJlc2V0c2Agb24gdGhlIEFTVDI3MDAgU0QgY29udHJvbGxlciBub2RlLg0KPiA+Pj4NCj4gPj4+
-IFNpZ25lZC1vZmYtYnk6IFJ5YW4gQ2hlbiA8cnlhbl9jaGVuQGFzcGVlZHRlY2guY29tPg0KPiA+
-Pj4gLS0tDQo+ID4+PiBDaGFuZ2VzIGluIHYyOg0KPiA+Pj4gLSBhZGQgbWlzc2luZyBibGFuayBs
-aW5lDQo+ID4+PiAtIG1vZGlmeSBhc3QyNzAwIGNvbXBhdGlibGUgaXRlbXMgY29uc3QNCj4gPj4N
-Cj4gPj4gV2h5Pw0KPiA+Pg0KPiA+Pj4gLS0tDQo+ID4+PiAgLi4uL2RldmljZXRyZWUvYmluZGlu
-Z3MvbW1jL2FzcGVlZCxzZGhjaS55YW1sICAgICAgfCAzOQ0KPiA+PiArKysrKysrKysrKysrKysr
-Ky0tLS0tDQo+ID4+PiAgMSBmaWxlIGNoYW5nZWQsIDMxIGluc2VydGlvbnMoKyksIDggZGVsZXRp
-b25zKC0pDQo+ID4+Pg0KPiA+Pj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
-ZS9iaW5kaW5ncy9tbWMvYXNwZWVkLHNkaGNpLnlhbWwNCj4gPj4+IGIvRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL21tYy9hc3BlZWQsc2RoY2kueWFtbA0KPiA+Pj4gaW5kZXggZDI0
-OTUwY2NlYTk1Li45YzhlMDY4OTY0YTEgMTAwNjQ0DQo+ID4+PiAtLS0gYS9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvbW1jL2FzcGVlZCxzZGhjaS55YW1sDQo+ID4+PiArKysgYi9E
-b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbW1jL2FzcGVlZCxzZGhjaS55YW1sDQo+
-ID4+PiBAQCAtMjIsMTAgKzIyLDE0IEBAIGRlc2NyaXB0aW9uOiB8Kw0KPiA+Pj4NCj4gPj4+ICBw
-cm9wZXJ0aWVzOg0KPiA+Pj4gICAgY29tcGF0aWJsZToNCj4gPj4+IC0gICAgZW51bToNCj4gPj4+
-IC0gICAgICAtIGFzcGVlZCxhc3QyNDAwLXNkLWNvbnRyb2xsZXINCj4gPj4+IC0gICAgICAtIGFz
-cGVlZCxhc3QyNTAwLXNkLWNvbnRyb2xsZXINCj4gPj4+IC0gICAgICAtIGFzcGVlZCxhc3QyNjAw
-LXNkLWNvbnRyb2xsZXINCj4gPj4+ICsgICAgb25lT2Y6DQo+ID4+PiArICAgICAgLSBjb25zdDog
-YXNwZWVkLGFzdDI0MDAtc2QtY29udHJvbGxlcg0KPiA+Pj4gKyAgICAgIC0gY29uc3Q6IGFzcGVl
-ZCxhc3QyNTAwLXNkLWNvbnRyb2xsZXINCj4gPj4+ICsgICAgICAtIGNvbnN0OiBhc3BlZWQsYXN0
-MjYwMC1zZC1jb250cm9sbGVyDQo+ID4+DQo+ID4+IE5vLCBwcmV2aW91cyBjb2RlIHdhcyBjb3Jy
-ZWN0Lg0KPiA+Pg0KPiA+PiBJcyB0aGlzIHNvbWUgbWljcm9zbG9wIExMTSBwcm9kdWN0PyBJIHF1
-ZXN0aW9uZWQgc3R5bGUgbGFzdCB0aW1lIGFuZA0KPiA+PiBub3cgd2UgZ290IHJhbmRvbSBjaGFu
-Z2VzIHdpdGhvdXQgZXhwbGFuYXRpb24uDQo+ID4+DQo+ID4+IFBsZWFzZSBjb25maXJtIC0gZGlk
-IHlvdSB1c2UgYW55IExMTSBtaWNyb3Nsb3AgdG9vbHMgdG8gY3JlYXRlIHRoaXMgcGF0Y2g/DQo+
-ID4gTm8gSSBjcmVhdGUgaXQgd2l0aCBCNC4gQW5kIGNvbW1pdCBlYWNoIGJ5IGVhY2gsIEkgZG9u
-J3QgdXNlIExMTSB0byBwb3J0aW5nDQo+IHRoaXMuDQo+ID4NCj4gPj4gUGxlYXNlIGFsc28gY29u
-ZmlybSAtIHdobyBpbnRlcm5hbGx5IHJldmlld2VkIHRoaXMgcGF0Y2ggYmVmb3JlIHBvc3Rpbmc/
-DQo+ID4gSSBwb3J0IHRoaXMgYW5kIGRvIHRlc3QgaW4gbXkgc2lkZSBhbmQgY29uZmlybSBpdC4N
-Cj4gPg0KPiA+DQo+ID4gSW4NCj4gPiBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyNjAz
-MTQtZmxhdC10b3Bhei1wZWFjb2NrLTQ0MGE5Y0BxdW9sbC8jDQo+ID4gdA0KPiA+IFlvdSByZXF1
-ZXN0IGRyb3AgZHJpdmVyIGNvbXBhdGlibGU7DQo+ID4gQmFzZSBvbiB5b3VyIGluc3RydWN0aW9u
-LCBTbyBJIGRvIG15IHN0dWR5IGluIExpbnV4Lg0KPiA+IFVzZSBmb2xsb3dpbmcgdG8gZG8gY29t
-cGF0aWJsZS4gTm90IGFkZCBkcml2ZXIgY29tcGF0aWJsZSBzdHJpbmcuDQo+IA0KPiBSZXBsYWNp
-bmcgZW51bSBpbnRvIGxpc3Qgb2YgY29uc3QgaXMgbm90IHJlbGF0ZWQvcmVsZXZhbnQgdG8gd2hh
-dCB5b3Ugd2FudGVkIHRvDQo+IGFjaGlldmUuDQpUaGFua3MgeW91ciBmZWVkYmFjaywgSSBkbyBt
-eSBob21ld29yay4gRG8geW91IG1lYW4gZm9sbG93aW5nIG1vZGlmeSA/DQoNCnByb3BlcnRpZXM6
-DQogIGNvbXBhdGlibGU6DQogICAgb25lT2Y6DQphZGQgb25lT2YgS2VlcCBmb2xsb3dpbmcgZW51
-bSANCiAgICAgIC0gZW51bToNCiAgICAgICAgICAtIGFzcGVlZCxhc3QyNDAwLXNkaGNpDQogICAg
-ICAgICAgLSBhc3BlZWQsYXN0MjUwMC1zZGhjaQ0KICAgICAgICAgIC0gYXNwZWVkLGFzdDI2MDAt
-c2RoY2kNCkFuZCBhZGQgZm9sbG93aW5nIGl0ZW1zIA0KICAgICAgLSBpdGVtczoNCiAgICAgICAg
-ICAtIGNvbnN0OiBhc3BlZWQsYXN0MjcwMC1zZGhjaQ0KICAgICAgICAgIC0gY29uc3Q6IGFzcGVl
-ZCxhc3QyNjAwLXNkaGNpDQoNCg==
+Device tree can be used on the following 3 products:
+- Kamstrup READy Concentrator 1M (RC1M)
+- Kamstrup READy Concentrator 2M (RC2M)
+- Kamstrup READy Concentrator 2C (RC2C)
+
+Concentrators are used as 868MHz gateway for heat, cooling and water
+meters using wM-Bus, Kamstrup LinkIQ or OMS LPWAN communication protocols.
+
+RC1M only support one way communication (Rx only) where RC2M and RC2C
+support full two way communication (Rx/Tx) with meters.
+
+Signed-off-by: Bruno Thomsen <bruno.thomsen@gmail.com>
+Co-developed-by: Lars Alex Pedersen <lapeddk@gmail.com>
+Signed-off-by: Lars Alex Pedersen <lapeddk@gmail.com>
+---
+Note: AM33XX_PADCONF lines are longer then 100 columns but it's a common
+warning in am335x DTS.
+
+ arch/arm/boot/dts/ti/omap/am335x-emperor.dts | 690 +++++++++++++++++++
+ 1 file changed, 690 insertions(+)
+ create mode 100644 arch/arm/boot/dts/ti/omap/am335x-emperor.dts
+
+diff --git a/arch/arm/boot/dts/ti/omap/am335x-emperor.dts b/arch/arm/boot/dts/ti/omap/am335x-emperor.dts
+new file mode 100644
+index 000000000000..b135708e73fb
+--- /dev/null
++++ b/arch/arm/boot/dts/ti/omap/am335x-emperor.dts
+@@ -0,0 +1,690 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Device Tree Source for Kamstrup READy Concentrator 1M/2M/2C.
++ *
++ * Copyright (C) 2025 Kamstrup A/S
++ * Author: Bruno Thomsen <bruno.thomsen@gmail.com>
++ *         Lars Alex Pedersen <lapeddk@gmail.com>
++ */
++/dts-v1/;
++
++#include "am33xx.dtsi"
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/leds/common.h>
++
++/ {
++	model = "Kamstrup READy Concentrator 1M/2M/2C";
++	compatible = "kam,am335x-emperor", "ti,am33xx";
++
++	memory@80000000 {
++		device_type = "memory";
++		reg = <0x80000000 0x10000000>; /* 256 MB */
++	};
++
++	chosen {
++		stdout-path = &uart0;
++	};
++
++	leds {
++		compatible = "gpio-leds";
++		pinctrl-names = "default";
++		pinctrl-0 = <&leds_pins_default>;
++
++		led0 {
++			label = "led0";
++			gpios = <&gpio2 24 GPIO_ACTIVE_LOW>;
++			default-state = "off";
++		};
++
++		led1 {
++			label = "led1";
++			gpios = <&gpio2 22 GPIO_ACTIVE_LOW>;
++			default-state = "off";
++		};
++
++		led2 {
++			label = "led2";
++			gpios = <&gpio2 23 GPIO_ACTIVE_LOW>;
++			default-state = "off";
++		};
++
++		led3 {
++			label = "led3";
++			gpios = <&gpio2 25 GPIO_ACTIVE_LOW>;
++			default-state = "on";
++			linux,default-trigger = "heartbeat";
++		};
++	};
++
++	sdr-radio-control {
++		compatible = "gpio-leds";
++		pinctrl-names = "default";
++		pinctrl-0 = <&sdr_radio_control_pins_default>;
++
++		led_radio_power {
++			label = "RADIO_POWER";
++			gpios = <&gpio3 18 GPIO_ACTIVE_HIGH>;
++			default-state = "on";
++		};
++
++		led_radio_flash_mux {
++			label = "RADIO_FLASH_MUX";
++			gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>;
++			default-state = "on";
++		};
++
++		led_radio_reset {
++			label = "RADIO_RESET";
++			gpios = <&gpio3 20 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++
++		led_radio_flash_reset {
++			label = "RADIO_FLASH_RESET";
++			gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
++			default-state = "on";
++		};
++	};
++
++	regulators {
++		compatible = "simple-bus";
++
++		vcc_fixed: vcc_fixed {
++			compatible = "regulator-fixed";
++			regulator-name = "vcc_fixed";
++			regulator-min-microvolt = <3300000>;
++			regulator-max-microvolt = <3300000>;
++			regulator-boot-on;
++		};
++
++		vmmcsd_fixed: fixedregulator0 {
++			compatible = "regulator-fixed";
++			regulator-name = "vmmcsd_fixed";
++			regulator-min-microvolt = <3300000>;
++			regulator-max-microvolt = <3300000>;
++		};
++	};
++};
++
++/*
++ * Restrict 1.1 V operating point to increase SoC life-time
++ * by removing the follow opp's:
++ * - OPP120-1
++ * - OPP120-2
++ * - OPP120-2
++ * - OPP Turbo-2
++ * - OPP Nitro
++ *
++ * Note: This limit SoC operating point to maximum 600 MHz.
++ */
++&cpu0_opp_table {
++	/delete-node/ opp-120-600000000;
++	/delete-node/ opp-120-720000000;
++	/delete-node/ opp-720000000;
++	/delete-node/ opp-800000000;
++	/delete-node/ opp-1000000000;
++};
++
++&gpio0 {
++	gpio-line-names =
++		"MDIO_DATA",
++		"MDIO_CLK",
++		"SPI0_CLK",
++		"SPI0_MOSI",
++		"SPI0_MISO",
++		"SPI0_CS0",
++		"POWER_FAILURE",
++		"SPI1_CLK",
++		"SYS_BOOT12",
++		"SYS_BOOT13",
++		"SYS_BOOT14",
++		"SYS_BOOT15",
++		"RADIO_TEMP_CRIT",
++		"RADIO_TEMP_ALERT",
++		"I2C1_SDA",
++		"I2C1_SCL",
++		"MII1_TXD3",
++		"MII1_TXD2",
++		"USB0_DRVVBUS",
++		"RADIO_GPIO4",
++		"RADIO_IRQ",
++		"MII1_TXD1",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"MII1_TXD0",
++		"PHY_IRQ",
++		"NC",
++		"NC";
++};
++
++&gpio1 {
++	gpio-line-names =
++		"MMC1_DAT0",
++		"MMC1_DAT1",
++		"MMC1_DAT2",
++		"MMC1_DAT3",
++		"MMC1_DAT4",
++		"MMC1_DAT5",
++		"MMC1_DAT6",
++		"MMC1_DAT7",
++		"UART4_RX",
++		"UART4_TX",
++		"UART0_RX",
++		"UART0_TX",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"TEST_MODE",
++		"NC",
++		"RADIO_GPIO5",
++		"MMC1_CMD";
++};
++
++&gpio2 {
++	gpio-line-names =
++		"NC",
++		"NC",
++		"RADIO_GPIO0",
++		"RADIO_GPIO1",
++		"RADIO_GPIO2",
++		"RADIO_GPIO3",
++		"SYS_BOOT0",
++		"SYS_BOOT1",
++		"SYS_BOOT2",
++		"SYS_BOOT3",
++		"SYS_BOOT4",
++		"SYS_BOOT5",
++		"SYS_BOOT6",
++		"SYS_BOOT7",
++		"SYS_BOOT8",
++		"SYS_BOOT9",
++		"SYS_BOOT10",
++		"SYS_BOOT11",
++		"MII1_RXD3",
++		"MII1_RXD2",
++		"MII1_RXD1",
++		"MII1_RXD0",
++		"LED2",
++		"LED3",
++		"LED1",
++		"LED4",
++		"MMC0_DAT3",
++		"MMC0_DAT2",
++		"MMC0_DAT1",
++		"MMC0_DAT0",
++		"MMC0_CLK0",
++		"MMC0_CMD";
++};
++
++&gpio3 {
++	gpio-line-names =
++		"MII1_COL",
++		"MII1_CRS_DV",
++		"MII1_RXERR",
++		"MII1_TXEN",
++		"MII1_RXDV",
++		"I2C0_SDA",
++		"I2C0_SCL",
++		"NC",
++		"NC",
++		"MII1_TXCLK",
++		"MII1_RXCLK",
++		"NC",
++		"NC",
++		"NC",
++		"RTC_IRQ",
++		"RTC_TAMPER",
++		"RADIO_INIT_B",
++		"RADIO_PRG_DONE",
++		"RADIO_POWER",
++		"RADIO_FLASH_MUX",
++		"RADIO_RESET",
++		"RADIO_FLASH_RESET",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC",
++		"NC";
++
++	eeprom-wp-hog {
++		gpio-hog;
++		gpios = <13 GPIO_ACTIVE_HIGH>;
++		output-low;
++	};
++};
++
++&am33xx_pinmux {
++	pinctrl-names = "default";
++	pinctrl-0 = <
++		&pinctrl_board_pins_default
++		&sdr_radio_pins_default>;
++
++	temperature_pins: temperature-pins {
++		pinctrl-single,pins = <
++			// Critical radio temperature
++			AM33XX_PADCONF(AM335X_PIN_UART1_CTSN, PIN_INPUT_PULLUP, MUX_MODE7) /* (D18) uart1_ctsn.gpio0[12] */
++		>;
++	};
++
++	rtc_pins_default: rtc-pins {
++		pinctrl-single,pins = <
++			// RTC Interrupt
++			AM33XX_PADCONF(AM335X_PIN_MCASP0_ACLKX, PIN_INPUT, MUX_MODE7) /* (A13) mcasp0_aclkx.gpio3[14] */
++			// Tamper state
++			AM33XX_PADCONF(AM335X_PIN_MCASP0_FSX, PIN_INPUT, MUX_MODE7) /* (B13) mcasp0_fsx.gpio3[15] */
++			// Power failure
++			AM33XX_PADCONF(AM335X_PIN_SPI0_CS1, PIN_INPUT, MUX_MODE7) /* (C15) spi0_cs1.gpio0[6] */
++		>;
++	};
++
++	mii1_pins_default: mii1-pins {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_MII1_COL, PIN_INPUT, MUX_MODE0) /* (H16) gmii1_col.gmii1_col */
++			AM33XX_PADCONF(AM335X_PIN_MII1_CRS, PIN_INPUT, MUX_MODE0) /* (H17) gmii1_crs.gmii1_crs */
++			AM33XX_PADCONF(AM335X_PIN_MII1_RX_ER, PIN_INPUT, MUX_MODE0) /* (J15) gmii1_rxer.gmii1_rxer */
++			AM33XX_PADCONF(AM335X_PIN_MII1_TX_EN, PIN_OUTPUT, MUX_MODE0) /* (J16) gmii1_txen.gmii1_txen */
++			AM33XX_PADCONF(AM335X_PIN_MII1_RX_DV, PIN_INPUT, MUX_MODE0) /* (J17) gmii1_rxdv.gmii1_rxdv */
++			AM33XX_PADCONF(AM335X_PIN_MII1_TX_CLK, PIN_INPUT, MUX_MODE0) /* (K18) gmii1_txclk.gmii1_txclk */
++			AM33XX_PADCONF(AM335X_PIN_MII1_RX_CLK, PIN_INPUT, MUX_MODE0) /* (L18) gmii1_rxclk.gmii1_rxclk */
++			AM33XX_PADCONF(AM335X_PIN_MII1_TXD0, PIN_OUTPUT, MUX_MODE0) /* (K17) gmii1_txd0.gmii1_txd0 */
++			AM33XX_PADCONF(AM335X_PIN_MII1_TXD1, PIN_OUTPUT, MUX_MODE0) /* (K16) gmii1_txd1.gmii1_txd1 */
++			AM33XX_PADCONF(AM335X_PIN_MII1_TXD2, PIN_OUTPUT, MUX_MODE0) /* (K15) gmii1_txd2.gmii1_txd2 */
++			AM33XX_PADCONF(AM335X_PIN_MII1_TXD3, PIN_OUTPUT, MUX_MODE0) /* (J18) gmii1_txd3.gmii1_txd3 */
++			AM33XX_PADCONF(AM335X_PIN_MII1_RXD0, PIN_INPUT, MUX_MODE0) /* (M16) gmii1_rxd0.gmii1_rxd0 */
++			AM33XX_PADCONF(AM335X_PIN_MII1_RXD1, PIN_INPUT, MUX_MODE0) /* (L15) gmii1_rxd1.gmii1_rxd1 */
++			AM33XX_PADCONF(AM335X_PIN_MII1_RXD2, PIN_INPUT, MUX_MODE0) /* (L16) gmii1_rxd2.gmii1_rxd2 */
++			AM33XX_PADCONF(AM335X_PIN_MII1_RXD3, PIN_INPUT, MUX_MODE0) /* (L17) gmii1_rxd3.gmii1_rxd3 */
++		>;
++	};
++
++	mdio_pins_default: mdio-pins {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_MDC, PIN_OUTPUT_PULLUP, MUX_MODE0) /* (M18) mdio_clk.mdio_clk */
++			AM33XX_PADCONF(AM335X_PIN_MDIO, PIN_INPUT_PULLUP, MUX_MODE0) /* (M17) mdio_data.mdio_data */
++		>;
++	};
++
++	i2c0_pins_default: i2c0-pins {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_I2C0_SCL, PIN_INPUT, MUX_MODE0) /* (C16) I2C0_SCL.I2C0_SCL */
++			AM33XX_PADCONF(AM335X_PIN_I2C0_SDA, PIN_INPUT, MUX_MODE0) /* (C17) I2C0_SDA.I2C0_SDA */
++		>;
++	};
++
++	i2c1_pins_default: i2c1-pins {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_UART1_TXD, PIN_INPUT, MUX_MODE3) /* (D15) uart1_txd.I2C1_SCL */
++			AM33XX_PADCONF(AM335X_PIN_UART1_RXD, PIN_INPUT, MUX_MODE3) /* (D16) uart1_rxd.I2C1_SDA */
++		>;
++	};
++
++	spi0_pins_default: spi0-pins {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_SPI0_SCLK, PIN_INPUT, MUX_MODE0) /* (A17) spi0_sclk.spi0_sclk */
++			AM33XX_PADCONF(AM335X_PIN_SPI0_D0, PIN_INPUT_PULLUP, MUX_MODE0) /* (B17) spi0_d0.spi0_d0 */
++			AM33XX_PADCONF(AM335X_PIN_SPI0_D1, PIN_INPUT, MUX_MODE0) /* (B16) spi0_d1.spi0_d1 */
++			AM33XX_PADCONF(AM335X_PIN_SPI0_CS0, PIN_INPUT_PULLUP, MUX_MODE0) /* (A16) spi0_cs0.spi0_cs0 */
++		>;
++	};
++
++	uart0_pins_default: uart0-pins {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_UART0_RXD, PIN_INPUT_PULLUP, MUX_MODE0) /* (E15) uart0_rxd.uart0_rxd */
++			AM33XX_PADCONF(AM335X_PIN_UART0_TXD, PIN_OUTPUT, MUX_MODE0) /* (E16) uart0_txd.uart0_txd */
++		>;
++	};
++
++	uart4_pins_default: uart4-pins {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_UART0_CTSN, PIN_INPUT_PULLUP, MUX_MODE1) /* (E18) uart0_ctsn.uart4_rxd */
++			AM33XX_PADCONF(AM335X_PIN_UART0_RTSN, PIN_OUTPUT, MUX_MODE1) /* (E17) uart0_rtsn.uart4_txd */
++		>;
++	};
++
++	sdcard_pins_default: sdcard-pins {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_MMC0_CLK, PIN_INPUT, MUX_MODE0) /* (G17) mmc0_clk.mmc0_clk */
++			AM33XX_PADCONF(AM335X_PIN_MMC0_CMD, PIN_INPUT, MUX_MODE0) /* (G18) mmc0_cmd.mmc0_cmd */
++			AM33XX_PADCONF(AM335X_PIN_MMC0_DAT0, PIN_INPUT, MUX_MODE0) /* (G16) mmc0_dat0.mmc0_dat0 */
++			AM33XX_PADCONF(AM335X_PIN_MMC0_DAT1, PIN_INPUT, MUX_MODE0) /* (G15) mmc0_dat1.mmc0_dat1 */
++			AM33XX_PADCONF(AM335X_PIN_MMC0_DAT2, PIN_INPUT, MUX_MODE0) /* (F18) mmc0_dat2.mmc0_dat2 */
++			AM33XX_PADCONF(AM335X_PIN_MMC0_DAT3, PIN_INPUT, MUX_MODE0) /* (F17) mmc0_dat3.mmc0_dat3 */
++		>;
++	};
++
++	emmc_pins_default: emmc-pins {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_GPMC_CSN1, PIN_INPUT, MUX_MODE2) /* (U9) gpmc_csn1.mmc1_clk */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_CSN2, PIN_INPUT, MUX_MODE2) /* (V9) gpmc_csn2.mmc1_cmd */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD0, PIN_INPUT, MUX_MODE1) /* (U7) gpmc_ad0.mmc1_dat0 */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD1, PIN_INPUT, MUX_MODE1) /* (V7) gpmc_ad1.mmc1_dat1 */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD2, PIN_INPUT, MUX_MODE1) /* (R8) gpmc_ad2.mmc1_dat2 */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD3, PIN_INPUT, MUX_MODE1) /* (T8) gpmc_ad3.mmc1_dat3 */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD4, PIN_INPUT, MUX_MODE1) /* (U8) gpmc_ad4.mmc1_dat4 */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD5, PIN_INPUT, MUX_MODE1) /* (V8) gpmc_ad5.mmc1_dat5 */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD6, PIN_INPUT, MUX_MODE1) /* (R9) gpmc_ad6.mmc1_dat6 */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD7, PIN_INPUT, MUX_MODE1) /* (T9) gpmc_ad7.mmc1_dat7 */
++		>;
++	};
++
++	leds_pins_default: leds-pins {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_LCD_VSYNC, PIN_OUTPUT, MUX_MODE7) /* (U5) lcd_vsync.gpio2[22] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_HSYNC, PIN_OUTPUT, MUX_MODE7) /* (R5) lcd_hsync.gpio2[23] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_PCLK, PIN_OUTPUT, MUX_MODE7) /* (V5) lcd_pclk.gpio2[24] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_AC_BIAS_EN, PIN_OUTPUT, MUX_MODE7) /* (R6) lcd_ac_bias_en.gpio2[25] */
++		>;
++	};
++
++	sdr_radio_control_pins_default: sdr-radio-control-pins {
++		pinctrl-single,pins = <
++			AM33XX_PADCONF(AM335X_PIN_MCASP0_ACLKR, PIN_OUTPUT, MUX_MODE7) /* (B12) mcasp0_aclkr.gpio3[18] */
++			AM33XX_PADCONF(AM335X_PIN_MCASP0_FSR, PIN_OUTPUT, MUX_MODE7) /* (C13) mcasp0_fsr.gpio3[19] */
++			AM33XX_PADCONF(AM335X_PIN_MCASP0_AXR1, PIN_OUTPUT, MUX_MODE7) /* (D13) mcasp0_axr1.gpio3[20] */
++			AM33XX_PADCONF(AM335X_PIN_MCASP0_AHCLKX, PIN_OUTPUT, MUX_MODE7) /* (A14) mcasp0_ahclkx.gpio3[21] */
++		>;
++	};
++
++	sdr_radio_pins_default: sdr-radio-pins {
++		pinctrl-single,pins = <
++			// Radio irq
++			AM33XX_PADCONF(AM335X_PIN_XDMA_EVENT_INTR1, PIN_INPUT_PULLUP, MUX_MODE7) /* (D14) xdma_event_intr1.gpio0[20] */
++			// Radio init_b
++			AM33XX_PADCONF(AM335X_PIN_MCASP0_AXR0, PIN_INPUT_PULLUP, MUX_MODE7) /* (D12) mcasp0_axr0.gpio3[16] */
++			// Radio prog_done
++			AM33XX_PADCONF(AM335X_PIN_MCASP0_AHCLKR, PIN_INPUT_PULLUP, MUX_MODE7) /* (C12) mcasp0_ahclkr.gpio3[17] */
++			// Radio gpio0 to gpio5
++			AM33XX_PADCONF(AM335X_PIN_GPMC_ADVN_ALE, PIN_INPUT_PULLUP, MUX_MODE7) /* (R7) gpmc_advn_ale.gpio2[2] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_OEN_REN, PIN_INPUT_PULLUP, MUX_MODE7) /* (T7) gpmc_oen_ren.gpio2[3] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_WEN, PIN_INPUT_PULLUP, MUX_MODE7) /* (U6) gpmc_wen.gpio2[4] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_BEN0_CLE, PIN_INPUT_PULLUP, MUX_MODE7) /* (T6) gpmc_be0n_cle.gpio2[5] */
++			AM33XX_PADCONF(AM335X_PIN_ECAP0_IN_PWM0_OUT, PIN_INPUT_PULLUP, MUX_MODE7) /* (C18) eCAP0_in_PWM0_out.gpio0[7] */
++			AM33XX_PADCONF(AM335X_PIN_XDMA_EVENT_INTR0, PIN_INPUT_PULLUP, MUX_MODE7) /* (A15) xdma_event_intr0.gpio0[19] */
++		>;
++	};
++
++	pinctrl_board_pins_default: board-default-pins {
++		pinctrl-single,pins = <
++			// PHY irq
++			AM33XX_PADCONF(AM335X_PIN_RMII1_REF_CLK, PIN_INPUT_PULLUP, MUX_MODE7) /* (H18) rmii1_refclk.gpio0[29] */
++			// Production test
++			AM33XX_PADCONF(AM335X_PIN_GPMC_BEN1, PIN_INPUT_PULLUP, MUX_MODE7) /* (U18) gpmc_be1n.gpio1[28] */
++			// SYS_BOOT0 to SYS_BOOT15
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA0, PIN_INPUT, MUX_MODE7) /* (R1) lcd_data0.gpio2[6] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA1, PIN_INPUT, MUX_MODE7) /* (R2) lcd_data1.gpio2[7] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA2, PIN_INPUT, MUX_MODE7) /* (R3) lcd_data2.gpio2[8] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA3, PIN_INPUT, MUX_MODE7) /* (R4) lcd_data3.gpio2[9] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA4, PIN_INPUT, MUX_MODE7) /* (T1) lcd_data4.gpio2[10] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA5, PIN_INPUT, MUX_MODE7) /* (T2) lcd_data5.gpio2[11] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA6, PIN_INPUT, MUX_MODE7) /* (T3) lcd_data6.gpio2[12] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA7, PIN_INPUT, MUX_MODE7) /* (T4) lcd_data7.gpio2[13] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA8, PIN_INPUT, MUX_MODE7) /* (U1) lcd_data8.gpio2[14] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA9, PIN_INPUT, MUX_MODE7) /* (U2) lcd_data9.gpio2[15] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA10, PIN_INPUT, MUX_MODE7) /* (U3) lcd_data10.gpio2[16] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA11, PIN_INPUT, MUX_MODE7) /* (U4) lcd_data11.gpio2[17] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA12, PIN_INPUT, MUX_MODE7) /* (V2) lcd_data12.gpio0[8] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA13, PIN_INPUT, MUX_MODE7) /* (V3) lcd_data13.gpio0[9] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA14, PIN_INPUT, MUX_MODE7) /* (V4) lcd_data14.gpio0[10] */
++			AM33XX_PADCONF(AM335X_PIN_LCD_DATA15, PIN_INPUT, MUX_MODE7) /* (T5) lcd_data15.gpio0[11] */
++			// Unused gpio pins
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD8, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (U10) gpmc_ad8.gpio0[22] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD9, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (T10) gpmc_ad9.gpio0[23] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD10, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (T11) gpmc_ad10.gpio0[26] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD11, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (U12) gpmc_ad11.gpio0[27] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_WAIT0, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (T17) gpmc_wait0.gpio0[30] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (U17) gpmc_wpn.gpio0[31] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD12, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (T12) gpmc_ad12.gpio1[12] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD13, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (R12) gpmc_ad13.gpio1[13] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD14, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (V13) gpmc_ad14.gpio1[14] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD15, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (U13) gpmc_ad15.gpio1[15] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_A0, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (R13) gpmc_a0.gpio1[16] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_A1, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (V14) gpmc_a1.gpio1[17] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_A2, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (U14) gpmc_a2.gpio1[18] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_A3, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (T14) gpmc_a3.gpio1[19] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_A4, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (R14) gpmc_a4.gpio1[20] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_A5, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (V15) gpmc_a5.gpio1[21] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_A6, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (U15) gpmc_a6.gpio1[22] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_A6, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (T15) gpmc_a7.gpio1[23] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_A8, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (V16) gpmc_a8.gpio1[24] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_A9, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (U16) gpmc_a9.gpio1[25] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_A10, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (T16) gpmc_a10.gpio1[26] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_A11, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (V17) gpmc_a11.gpio1[27] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_CSN0, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (V6) gpmc_csn0.gpio1[29] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_CSN3, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (T13) gpmc_csn3.gpio2[0] */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_CLK, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (V12) gpmc_clk.gpio2[1] */
++			AM33XX_PADCONF(AM335X_PIN_USB1_DRVVBUS, PIN_INPUT_PULLDOWN, MUX_MODE7) /* (F15) USB1_DRVVBUS.gpio3[13] */
++		>;
++	};
++};
++
++/*
++ * I2C bus on baseband board (55501738)
++ */
++&i2c0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c0_pins_default>;
++	status = "okay";
++	clock-frequency = <400000>;
++
++	/*
++	 * SDR radio temperature sensor
++	 *
++	 * Unused hardware connected pins:
++	 * gpio0 pin 13: /ALERT INTERRUPT
++	 * gpio0 pin 12: /T_CRIT INTERRUPT
++	 */
++	sa56004: temperature-sensor@4c {
++		compatible = "nxp,sa56004";
++		reg = <0x4c>;
++		vcc-supply = <&vcc_fixed>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		channel@0 {
++			reg = <0x0>;
++			label = "baseboard-temperature";
++		};
++
++		channel@1 {
++			reg = <0x1>;
++			label = "fpga-temperature";
++		};
++	};
++
++	pcf2127: rtc@51 {
++		compatible = "nxp,pcf2127";
++		reg = <0x51>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&rtc_pins_default>;
++		interrupt-parent = <&gpio3>;
++		interrupts = <14 IRQ_TYPE_LEVEL_LOW>;
++		reset-source;
++	};
++
++	eeprom@54 {
++		compatible = "atmel,24c512";
++		reg = <0x54>;
++		pagesize = <128>;
++	};
++};
++
++/*
++ * I2C bus on radio board (55501946)
++ */
++&i2c1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c1_pins_default>;
++	status = "okay";
++	clock-frequency = <400000>;
++
++	eeprom@50 {
++		reg = <0x50>;
++		compatible = "atmel,24c512";
++		pagesize = <128>;
++	};
++};
++
++/*
++ * SPI bus on radio board (55501946)
++ */
++&spi0 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi0_pins_default>;
++	ti,spi-num-cs = <1>;
++
++	flash@0 {
++		compatible = "jedec,spi-nor";
++		reg = <0>;
++		spi-tx-bus-width = <1>;
++		spi-rx-bus-width = <1>;
++		spi-max-frequency = <10000000>;
++
++		/* Radio flash is 32 MBytes in size.
++		 * 64 KB blocks of configurations are located in the
++		 * last part of the storage.
++		 */
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++			partition@0 {
++				reg = <0x0 0xfe0000>;
++				label = "radio-program";
++			};
++			partition@fe0000 {
++				reg = <0xfe0000 0x10000>;
++				label = "radio-config";
++			};
++			partition@ff0000 {
++				reg = <0xff0000 0x10000>;
++				label = "baseband-config";
++			};
++		};
++	};
++};
++
++&uart0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart0_pins_default>;
++	status = "okay";
++};
++
++/*
++ * SDR radio low-level error logging.
++ * Works even if primary USB communcation has issues.
++ */
++&uart4 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart4_pins_default>;
++	status = "okay";
++};
++
++&usb {
++	status = "okay";
++};
++
++&usb_ctrl_mod {
++	status = "okay";
++};
++
++/*
++ * Host USB port 0 is used for SDR radio communication.
++ */
++&usb0_phy {
++	status = "okay";
++};
++
++&usb0 {
++	status = "okay";
++	dr_mode = "host";
++};
++
++&cppi41dma	{
++	status = "okay";
++};
++
++&cpsw_emac0 {
++	phy_id = <&davinci_mdio>, <7>;
++	phy-mode = "mii";
++	phy-handle = <&ethernetphy7>;
++};
++
++&mac {
++	pinctrl-names = "default";
++	pinctrl-0 = <&mii1_pins_default>;
++	status = "okay";
++	slaves = <1>;
++};
++
++&davinci_mdio {
++	pinctrl-names = "default";
++	pinctrl-0 = <&mdio_pins_default>;
++	status = "okay";
++
++	ethernetphy7: ethernet-phy@7 {
++		reg = <7>;
++		smsc,disable-energy-detect;
++	};
++};
++
++/* eMMC */
++&mmc1 {
++	status = "okay";
++	bus-width = <8>;
++	vmmc-supply = <&vmmcsd_fixed>;
++	vmmc_aux-supply = <&vmmcsd_fixed>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&emmc_pins_default>;
++
++	/*
++	 * am335x doesn't support DDR, so make sure the data signal is set
++	 * early in the clock cycle
++	 */
++	/delete-property/ ti,needs-special-hs-handling;
++};
++
++/* microSD card, used during manufacturing */
++&mmc2 {
++	status = "okay";
++	bus-width = <4>;
++	vmmc-supply = <&vmmcsd_fixed>;
++	vmmc_aux-supply = <&vmmcsd_fixed>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&sdcard_pins_default>;
++};
++
++&rtc {
++	ti,no-init;
++	status = "disabled";
++};
++
++&aes {
++	status = "okay";
++};
++
++&sham {
++	status = "okay";
++};
+
+base-commit: f338e77383789c0cae23ca3d48adcc5e9e137e3c
+-- 
+2.53.0
+
 
