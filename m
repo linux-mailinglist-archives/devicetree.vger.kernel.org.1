@@ -1,286 +1,216 @@
-Return-Path: <devicetree+bounces-277387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277388-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2PoXEIvhummDcwIAu9opvQ
-	(envelope-from <devicetree+bounces-277387-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:31:55 +0100
+	id mGzfEdrnumkpdAIAu9opvQ
+	(envelope-from <devicetree+bounces-277388-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:58:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A76182C052B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:31:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A6F22C0CD1
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:58:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 27E663045E35
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 17:26:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 48EBC3194A40
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 17:29:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3184A2FB97B;
-	Wed, 18 Mar 2026 17:26:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 760D53033CB;
+	Wed, 18 Mar 2026 17:29:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W4KeVKxG"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="hC2NGDgu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010067.outbound.protection.outlook.com [52.101.61.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A58F9262FE7
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 17:26:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773854809; cv=none; b=ZoI4Rct9YEAuxj9aN+XgNnx3MQKnLrwYT4xwumSw3wH1DDZHlc4WSO6E17bwXZZDMn6/NP7qDsFqkAsF7peDfStLpvV6uOaKIwoPkr43HFXVUtHikJnd95fWddNybghPqtXtGOIKjT1vnuWGbbqwBEclU+bAVpzE8URWsnCkpp0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773854809; c=relaxed/simple;
-	bh=W7ybQORcMKJdkf3BWpImd7y/jVljsB/C0BVysNSKorw=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m6OfNWb499QliiHQB17LWKZVqcrtjgvvzCfpf+ucUhv8JTDbGVxraamPrd1azfhBfakoeBIb8zf4pQGvhla47IbVzWQtgGGmI1EKwnnV24DXG4DUveFfbLmUGmelSXNObpHmnKe9QK3eWveb7QaEWqkQspvR/bKNtGAKcqCfT9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W4KeVKxG; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-48628ce9ab5so1129925e9.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 10:26:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773854806; x=1774459606; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=5EKjOvd8tsoDAzL2NTfko88oUtO7N2mQq0+WyC0PbRc=;
-        b=W4KeVKxG4tII1s7aQw0Jv0GkSiKCwRZCRTCuUq2kO7Mu8krmc+aFOp8tQOAv52faVq
-         OkE0IuRipgx1KER0lATSbnNYSK5TEnct+sFnXQN1Yk92p9PRflzF3NFyDdIMr4aHXBHw
-         bbksQOD01GgOI8qCKDKW6rILlRFSjWYu30i0FU1ByNaalW9jbuW0wcGItXBE0OE+AQW0
-         EBO12oaY35MHqV4AD3hUUVREyvwmc9NFA8MoOBbTMls2EjXKtscYx4wWCDTBknNpk97A
-         WYzHftWKzZItMkrr2puesclWa51a5piysgCTEXTHZ6RSoVEp9l1QV+LFdjOJ5pdCaIIw
-         w4Vw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773854806; x=1774459606;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5EKjOvd8tsoDAzL2NTfko88oUtO7N2mQq0+WyC0PbRc=;
-        b=KZ5g3KL0MZvC288LzKOVHkdYi/wkqPK3jFrE5Mx25P1Iwzvt+imOewminrbAyRiK05
-         1EHlCxRU2yjHGtaSKgjJ8ucE+y+/UiAvzplFpvupDVEwV2MlAD+IisjokIP31zccbB7r
-         jzcIcRpiOGJ9gBDpZlJ7aRJ+y1SP9tdNMLg8euIZnyCKG0oy9BGNotdY1WBxqxs14Yr0
-         4bWCcS+5o1Wph6tlYLC1BOjSG4w+Swm5TN6sGlLtWmro3MwRIPv6zd0EDnhp4d+RQQL5
-         zM800AA7eWBonEgku0oKbE2WCbTdrCaXMJIznJpQ5XbD+hILxaIGCy+OcmZgmoRRlQ7N
-         Kd9A==
-X-Forwarded-Encrypted: i=1; AJvYcCXQz41tYEaV+hTMsSXsTiRsw1sDE0wwRszKcpd//ND9iCN1p1p1Yro/2P62ZPMBi82HW9KC+Nb5FfeX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzopmq67vKazf7sP+So2mBv51SUldPakFPZUVpBhE0XCdCMA+Nz
-	V2Q7+f1tz42OZCl1LjNN3uIgjDLX3Yra+P4LsQtP9K+L7kT6KMhWas/7
-X-Gm-Gg: ATEYQzx8Sw162nVeh21OvMJ5DUveK2Ee9lQNOPeJYRZf5tUoVtVUKsLE+D3LlXp84YC
-	2AxKBjjGxWPVWNIdEtV/kHV6V3NWa0qtajQ//g4FwpOQFKLpmipsrQegWsdilFjnQjN4p6mJdjv
-	052/DSfTcTo75OlvB842+JROsjJZ21/ma2WhGpojHJm7RY/u39ziCzULuhXT26rvUh0LiIrzYKU
-	pT6P7y+NH3pVs6tWGDga5WUUY+ue4+bsWNYq8xuxPbpZiqMus2txlcplKAFsXJGbIUJH+7u9IVC
-	ScmpfPsC+gI64P8xsWdu1FZbNaxunu2DryMWBuNyhU6oN4roofZNHm69mG0pJT4ECFYJsmZSITf
-	fsY/+9xENhHDNH+xLNSFHEHdqYBP3mXshjq1Y0Vrd88oPWmB95TtFH3J47/Z7UmzW8Sn9dQDutz
-	CWllk/zEdeHfejdy5cTMQJORD9isAfXmOKDAPppTbemTZ0uAt56yshUg==
-X-Received: by 2002:a05:600c:8683:b0:485:f1d1:8f3d with SMTP id 5b1f17b1804b1-486f442e6e5mr52764705e9.6.1773854805737;
-        Wed, 18 Mar 2026 10:26:45 -0700 (PDT)
-Received: from Ansuel-XPS. (93-34-88-122.ip49.fastwebnet.it. [93.34.88.122])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486f4e48ad5sm113684005e9.1.2026.03.18.10.26.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Mar 2026 10:26:45 -0700 (PDT)
-Message-ID: <69bae055.050a0220.3719be.bf31@mx.google.com>
-X-Google-Original-Message-ID: <abrgUo4L_FqciUrn@Ansuel-XPS.>
-Date: Wed, 18 Mar 2026 18:26:42 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>,
-	Andrew Lunn <andrew@lunn.ch>, UNGLinuxDriver@microchip.com,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 2/8] dt-bindings: net: lan9645x: add LAN9645X
- switch bindings
-References: <20260303-dsa_lan9645x_switch_driver_base-v1-2-bff8ca1396f5@microchip.com>
- <4088b0ff-b718-4137-8518-4c9b9764d56d@lunn.ch>
- <20260303-mosaic-debate-90cf8c8bbb33@spud>
- <1db45715a3a12b76b838d20c0e5904c3222053e7.camel@microchip.com>
- <20260305-reliant-parchment-0ff685a9c78e@spud>
- <7b62ace495084794336b19a9685d6b14ea3981a0.camel@microchip.com>
- <20260306-pointless-purr-210540d4dc64@spud>
- <207c7a47e0802dd4c34ba90f2532dc2e0c3f7f05.camel@microchip.com>
- <20260318-visiting-tanning-7d1d6acff081@spud>
- <20260318-placidly-domain-3ea82d265517@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22C5F3033FB;
+	Wed, 18 Mar 2026 17:29:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.61.67
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773854946; cv=fail; b=OTHOfd3488dF5C58715xYKg+EGj1+1CKeCJRihXvY3ipQ5BaofsMjMwPKLHKfhcvb8F32U0u0uVhk1sEnXYCPBLwhWAt1KJxWPBSw9gnW4tnyqmeakgW50HQKoMv6Dvs5boulr+XdfnlQ6Z5jB1pwbQ3j5RODoKpF7WyvNTblDw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773854946; c=relaxed/simple;
+	bh=4k3CGfvuqRnFWHb6z9uSDpzgKKE2UlJjxN68G1AxnXU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Zl6bVG1x+wU0Z9+8qnVuhxYQLE841Su1hYVPulvLoL/H8aOL61pElB/opZnRiBN2Q+Gh72VqI8l/F5Xh+zDmB9v+ehSVWoMAkd2iPD/CaJp0kRQhz4z8hhcor+6zQOFZqlcgRYQndZAEVWQWrzgsSmPfZAhTrYFgdqEzi40K8uo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=hC2NGDgu; arc=fail smtp.client-ip=52.101.61.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UsYvPyQ55p6hq6Qntk3z/TCVv6qOJdFX8AzGQGRg/Rvn5qOP2qAd3krekugsGnhvl8q89CEyrJcmYlT3l9mq8b7Zg5bcL1phEVk2vHc1XrdpUHPomQiPCyiai06ldtn1pQOT4zYvTehibJEbaIfGn+BNsTAmpnFCrZwAA/4qkQSRX1SFI5Cd9rr7B0/ueGXQHJnZtZ2vm3eaEa9mpW2avzeLilrEbQWa5yzLJbnV+KGKoDLfU9LsoO80Xv706Memsqab/CuRYfaHJq9ePOMdfYEGkiPXyDu6Xd8QBUDLiOVoOItw76YsA89inFFTGXvzP1LudI/jX4Sn2JmHVZfpdA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=a3BiRDm9LD/TWNCy0470OWScGle1q0iYyCockNhQuSo=;
+ b=rN+6I//l37IuBgy92Af667BXH/0MvWvfhf6WN7O8lkcrZW28MmaXc2Q+z7OKaNf64qgkb4RIT41Eo5hvoXX58krxj2/l/rYBWG3BM74vVk95RMcJMlfKH3rcVCol5zIRia8kKtAzmn/tytNdZsk3Yxoh78Ki9zKUfzpW1H8RMSg5UXKNsyrBA+WtIch584jlu6Fbfoc3oKlgl+/IndTBu5wQBkpRPcs6VrRTW+GfDOkGqLSjOOfronzTTIH//72foE77C+6m/mdppEF3JQ+01lRSCb+XSLeAtAnvCQc407eCgldl39JKO7wFKQQfPgbLuAVaCt4raLizxULrcpsi6Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=bootlin.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=a3BiRDm9LD/TWNCy0470OWScGle1q0iYyCockNhQuSo=;
+ b=hC2NGDgukF2/1w3a+7BgSbRv2V+F9JIlo1xGvUcoIhNvGVn8YAfkP3PsJKCS4c9vGb39oSeFg3QVKewDQyyPuclbKd2r3Z5CypcjtlrSePNpvIEg0KH9yK5MFQQCWdp0y7QbXKSLhsiVGt6G37mPXS7eVugPkPRE2Gqunx0KHRlIyu/alAprAtdUxaQTO8GZZELwZ1J7pXB5gYIotb4di65OgG6Bl16naZf2++4P6Bt+m+sXVLzi1lt/vQBMgLTe6Ul62+a33OXhlkpUNOFqCX+hnOj1X1WWXErzfr2no3JV39b+tS4qobShI+3Zjz+3cGoZWlZ8s/kgDqrYvg/Qdg==
+Received: from DS7PR03CA0116.namprd03.prod.outlook.com (2603:10b6:5:3b7::31)
+ by MW6PR12MB8865.namprd12.prod.outlook.com (2603:10b6:303:23b::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.8; Wed, 18 Mar
+ 2026 17:28:59 +0000
+Received: from DM2PEPF00003FC6.namprd04.prod.outlook.com
+ (2603:10b6:5:3b7:cafe::1c) by DS7PR03CA0116.outlook.office365.com
+ (2603:10b6:5:3b7::31) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.27 via Frontend Transport; Wed,
+ 18 Mar 2026 17:28:35 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ DM2PEPF00003FC6.mail.protection.outlook.com (10.167.23.25) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9723.19 via Frontend Transport; Wed, 18 Mar 2026 17:28:58 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 18 Mar
+ 2026 10:28:42 -0700
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 18 Mar
+ 2026 10:28:42 -0700
+Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.9) by mail.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
+ Transport; Wed, 18 Mar 2026 10:28:36 -0700
+From: Akhil R <akhilrajeev@nvidia.com>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>, Frank Li
+	<Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Rafael J .
+ Wysocki" <rafael@kernel.org>, Robert Moore <robert.moore@intel.com>, "Len
+ Brown" <lenb@kernel.org>, Guenter Roeck <linux@roeck-us.net>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Eric Biggers <ebiggers@kernel.org>, "Fredrik
+ Markstrom" <fredrik.markstrom@est.tech>, Miquel Raynal
+	<miquel.raynal@bootlin.com>, Thierry Reding <thierry.reding@kernel.org>, "Jon
+ Hunter" <jonathanh@nvidia.com>, Suresh Mangipudi <smangipudi@nvidia.com>,
+	<linux-tegra@vger.kernel.org>, <linux-i3c@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-acpi@vger.kernel.org>, <acpica-devel@lists.linux.dev>,
+	<linux-hwmon@vger.kernel.org>
+CC: Akhil R <akhilrajeev@nvidia.com>
+Subject: [PATCH 00/12] i3c: Support ACPI and SETAASA device discovery
+Date: Wed, 18 Mar 2026 22:57:13 +0530
+Message-ID: <20260318172820.13771-1-akhilrajeev@nvidia.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260318-placidly-domain-3ea82d265517@spud>
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM2PEPF00003FC6:EE_|MW6PR12MB8865:EE_
+X-MS-Office365-Filtering-Correlation-Id: 58d55e1d-ae58-49ca-a505-08de8513d6b8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|36860700016|1800799024|376014|82310400026|18002099003|56012099003|921020;
+X-Microsoft-Antispam-Message-Info:
+	C207k49eGeYfeWgTvKukwBMnavd+6l9qhsTxrgfhOw7jLuPjCYGcCxApyNyX3HU71+sLqvAwcmU7xV/KODuKOD62tQGEG3cnfYOSxMczWZ1q6rl+Dnu7aYS0/4qNkgKrYn9AWRyZN4WZWVwlTeUuH+7eJe/uwBPRjzytPDO9wKVav2tVcaS/Auz4DXWY1ZOvwIQGPSt5cGZMg7pWTSWpOAR9DeLRVS1ioO3R8n6oFrgDEPKHk6WDYPalwSOc3w+PNH7PgPdjkLN+3j+6169GtyIoh96P0zoSpEpYcb2jRA2FohIpMvuHKnk6o20uyVJ5+ROhc0QRNBLop9/xVd2CZyfpDf42Hy+wQNSKFGcsyYkhk2/V8MrwX4eqEXoCX4uxNATrSd0q5YGyT9aAz7ZND2a8Q2HvQ8V9+Ya/FV5xhqzAx3uqiCghuT6YhnzvH6xSN3W9/2dcR9ng0NLxbmo/n+FCn+waUFQWVcXUE31DMLMqMNlU7wc7iF+Q+sqAcQopK3rTOAGC7MNN5/jS6W01ZeiygKAOW3znZ1HnCTkVAA4Fme6JBMjWKNGPNCcyQMPxuzfxAyau2A3RVJv8aDqtxI8Dh+qQsNZAcO+xNPNFcakZSd61IrLOMMFMqfqOgylOMHDHaBz0gthr/vr7/aIQ5Olf+WQOzCklfDd5sRMnpC225xi1EVDMNEjzLUw1hL2JFMdaZO2P2dpGSKnkmHvP9ySpy4OKHN5Pq1CCjBX8FX0oBvmVg9haA7nlhG3R925iQV+RrBeO9/w9FAWs8KX4w5SgCf5seNWGu71NqL6jveCvA0YvdSxz81dc4Vg8fW/0
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(7416014)(36860700016)(1800799024)(376014)(82310400026)(18002099003)(56012099003)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	G/fkhBe8M/g/1EhpytxjkyEdbQ7oIJ7dzh6omUbaSnKBhG9yjk4eMOuIs+SZvhNjUJdHBZxo3FmqPCUHbjcubv/BJ/GkEi0VKvJGR6qHVSmBM51QukHmiAUnmvtuzr2i8tcZJ9qU1RrB6A1YxNpqeu0IhSPElOz4bgRi3JdvftDHCQ65xIRENLVXmkqArqZAOsKKDML13piLPyD5H2Nzii7gV+EYfiwyUnmsvIC4HTa1OZM3HH7ZHmoOyVGM+eMl3zppeDmk5foPqTJA8W10LNp8Kiq0H5+GNjuKFqcWQ4MkhGctOOzIUYiKz8ftE7Fy5lEwns05K7l7yrasckLJNgynMvtTpQjH+RNxxRjh8uxi28CDWuxFFwSkHFuEcO3jQu2ePgRW2tM8iBa4+W0uhXrzico+m4799cYTHhGVRr2JOw+mr+anhNitomtDupUJ
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 17:28:58.5029
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 58d55e1d-ae58-49ca-a505-08de8513d6b8
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DM2PEPF00003FC6.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8865
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277387-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[microchip.com,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277388-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.746];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email,mx.google.com:mid,0.0.0.1:email]
-X-Rspamd-Queue-Id: A76182C052B
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[akhilrajeev@nvidia.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nvidia.com:mid];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.963];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: 9A6F22C0CD1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 05:20:03PM +0000, Conor Dooley wrote:
-> On Wed, Mar 18, 2026 at 05:18:42PM +0000, Conor Dooley wrote:
-> > Christian,
-> > 
-> > On Wed, Mar 18, 2026 at 03:19:20PM +0100, Jens Emil Schulz Ostergaard wrote:
-> > > Hi Conor,
-> > > 
-> > > On Fri, 2026-03-06 at 15:20 +0000, Conor Dooley wrote:
-> > > > On Fri, Mar 06, 2026 at 04:08:01PM +0100, Jens Emil Schulz Ostergaard wrote:
-> > > > > On Thu, 2026-03-05 at 18:31 +0000, Conor Dooley wrote:
-> > > > > > On Thu, Mar 05, 2026 at 01:57:37PM +0100, Jens Emil Schulz Ostergaard wrote:
-> > > > > > > On Tue, 2026-03-03 at 19:04 +0000, Conor Dooley wrote:
-> > > > > > > > On Tue, Mar 03, 2026 at 03:18:45PM +0100, Andrew Lunn wrote:
-> > > > > > > > > > +        properties:
-> > > > > > > > > > +          microchip,led-drive-mode:
-> > > > > > > > > > +            $ref: /schemas/types.yaml#/definitions/uint32
-> > > > > > > > > > +            description: |
-> > > > > > > > > > +              Set the LED drive mode for the copper PHY associated with
-> > > > > > > > > > +              this port.
-> > > > > > > > > > +
-> > > > > > > > > > +                0 - LED1 and LED2 in open-drain mode
-> > > > > > > > > > +                1 - LED1 in active drive mode (can be used for single-LED
-> > > > > > > > > > +                    configurations requiring active drive)
-> > > > > > > > > > +                2 - Reserved
-> > > > > > > > > > +                3 - LED1 and LED2 in active drive mode
-> > > > > > > > > > +            minimum: 0
-> > > > > > > > > > +            maximum: 3
-> > > > > > > > > 
-> > > > > > > > > I doubt the DT Maintainers will accept that. This looks a lot like a
-> > > > > > > > > value you write into a register. How are active drive and open-drain
-> > > > > > > > > described in other DT bindings? Is there something you can reuse?
-> > > > > > > > 
-> > > > > > > > I had a quick look and I didn't see anything really that stood out to me
-> > > > > > > > that would be a drop-in replacement.
-> > > > > > > > I also tried looking in the datasheet for more information on these
-> > > > > > > > modes, but I couldn't see anything obvious. For example, there were zero
-> > > > > > > > hits for "drain" in either LAN9645xS or LAN9645xF datasheets.
-> > > > > > > > 
-> > > > > > > > That said, yea you're right about DT maintainer feelings about it.
-> > > > > > > > There's a couple things I could suggest, but I'd like to know about what
-> > > > > > > > mode 1 means for LED2 first. If there's actually nothing similar, what
-> > > > > > > > about representing each led with a child node and having open-drain be
-> > > > > > > > the default with a property in the child for active-drive?
-> > > > > > > > 
-> > > > > > > > > 
-> > > > > > > > > For 1, what happens to LED2? Not used at all?
-> > > > > > > 
-> > > > > > > In mode 1 LED2 will be open-drain. This mode only makes sense if you have
-> > > > > > > just 1 LED. With two LEDs mode 0 or mode 3 should be used.
-> > > > > > 
-> > > > > > Could we then have child nodes for each led, and have a property in each
-> > > > > > that sets the mode to either open-drain or active-drive? Or am I just
-> > > > > > inserting complexity by asking for that?
-> > > > > 
-> > > > > I think it sounds sensible, I will add this.
-> > > > 
-> > > > 
-> > > > You don't need a property for each, just make one mode the default (prob
-> > > > open-drain given it's the 0 setting, but whatever is default out of
-> > > > reset for the part) and have the property for the other mode. Just
-> > > > some bool property like "microchip,active-drive" or whatever.
-> > > 
-> > > 
-> > > Based on your feedback I went with this under port properties:
-> > > 
-> > >           leds:
-> > >             patternProperties:
-> > >               '^led@[a-f0-9]+$':
-> > >                 $ref: /schemas/leds/common.yaml#
-> > > 
-> > >                 properties:
-> > >                   reg:
-> > >                     maxItems: 1
-> > > 
-> > >                   microchip,active-drive:
-> > >                     type: boolean
-> > >                     description:
-> > >                       Set the LED output to active drive mode. The default
-> > >                       is open-drain.
-> > > 
-> > >                 required:
-> > >                   - reg
-> > > 
-> > >                 unevaluatedProperties: false
-> > > 
-> > > and then the example has
-> > > 
-> > >           port@1 {
-> > >             reg = <1>;
-> > >             phy-mode = "gmii";
-> > >             phy-handle = <&cuphy1>;
-> > > 
-> > >             leds {
-> > >               #address-cells = <1>;
-> > >               #size-cells = <0>;
-> > > 
-> > >               led@0 {
-> > >                 reg = <0>;
-> > >                 microchip,active-drive;
-> > >               };
-> > > 
-> > >               led@1 {
-> > >                 reg = <1>;
-> > >                 microchip,active-drive;
-> > >               };
-> > >             };
-> > >           }
-> > > 
-> > > However, this does not pass dt_binding_check because we pull in $ref: dsa-port.yaml,
-> > > which pulls in ethernet-controller.yaml.
-> > > 
-> > > I believe the 'unevaluatedProperties: false' on LED nodes in ethernet-controller.yaml
-> > > prevents downstream bindings from adding vendor-specific LED properties.
-> > > 
-> > > Is the right move removing unevaluatedProperties: false from the LED node in
-> > > ethernet-controller.yaml, or is there a preferred way to extend per-port LEDs?
-> > 
-> > The addition looks recent enough, should probably ask Christian why it
-> > was done this way and if removing it makes sense. Christian?
-> > 
-> 
-> Ah shit, I autopiloted into sending. Actually +CC Christian this time.
+This patch series adds SETAASA device discovery to the I3C subsystem,
+enabling support for SPD5118 temperature sensors found on DDR5 memory
+modules. The changes also add ACPI support for all existing DAA
+methods like SETDASA, SETNEWDA as well as I2C devices on I3C bus.
 
-Hi, give me some time to experiment... AFAIK with my limited info on DT,
+SPD5118 and similar devices on DDR5 memory modules differ from typical
+I3C devices in their initialization. They use SETAASA broadcast CCC
+instead of ENTDAA for address assignment, and per JEDEC specification,
+are not required to have a Provisioned ID or implement standard device
+information CCC commands (GETPID, GETDCR, GETBCR).
 
-unevaluatedProperties permits to add vendor property as long as they are
-well defined. If the dt_binding_check is failing, then it's probably
-because unevaluatedProperties is finding that in the expected LED node
-there is extra stuff in the SCHEMA example.
+The series enables to describe all I3C and I2C devices on both Device
+Tree and the ACPI table, using unified device property APIs throughout
+the I3C core and the Synopsys DesignWare I3C master driver.
 
-But give me some time to experiment with some other SCHEMA.
+Please note that the series modifies drivers across multiple subsystems,
+like Device Tree bindings, ACPI, I3C and HWMON.
+
+Akhil R (12):
+  dt-bindings: i3c: Add mipi-i3c-static-method to support SETAASA
+  ACPICA: Read LVR from the I2C resource descriptor
+  i3c: master: Use unified device property interface
+  i3c: master: Support ACPI enumeration
+  i3c: master: Add support for devices using SETAASA
+  i3c: master: Add support for devices without PID
+  i3c: master: match I3C device through DT and ACPI
+  i3c: dw-i3c-master: Add SETAASA as supported CCC
+  i3c: dw-i3c-master: Add a quirk to skip clock and reset
+  i3c: dw-i3c-master: Add ACPI ID for Tegra410
+  hwmon: spd5118: Add I3C support
+  arm64: defconfig: Enable I3C and SPD5118 hwmon
+
+ .../devicetree/bindings/i3c/i3c.yaml          |  30 +-
+ arch/arm64/configs/defconfig                  |   3 +
+ drivers/acpi/acpica/rsserial.c                |   6 +-
+ drivers/hwmon/Kconfig                         |   7 +-
+ drivers/hwmon/spd5118.c                       |  66 +++-
+ drivers/i3c/master.c                          | 327 +++++++++++++++---
+ drivers/i3c/master/dw-i3c-master.c            |  66 ++--
+ include/acpi/acrestyp.h                       |   1 +
+ include/linux/i3c/ccc.h                       |   1 +
+ include/linux/i3c/master.h                    |  22 +-
+ 10 files changed, 439 insertions(+), 90 deletions(-)
 
 -- 
-	Ansuel
+2.50.1
+
 
