@@ -1,213 +1,146 @@
-Return-Path: <devicetree+bounces-277350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277351-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8L06Ky3dumk3cwIAu9opvQ
-	(envelope-from <devicetree+bounces-277350-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:13:17 +0100
+	id IH8iNADXumkXcgIAu9opvQ
+	(envelope-from <devicetree+bounces-277351-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 17:46:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 182342BFFD3
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:13:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D9642BF8F7
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 17:46:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0E1183417366
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 16:28:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C97703433B29
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 16:30:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A1A03C3C1D;
-	Wed, 18 Mar 2026 16:01:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAF543F54C1;
+	Wed, 18 Mar 2026 16:03:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43FC63B27DB;
-	Wed, 18 Mar 2026 16:01:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D25D83E4C63
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 16:03:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773849671; cv=none; b=TJxPSTKE4ws+M19F1SZLl3p0/bNbSBLgKDIGdbOtbqBo9kKmNwpO1ROF9AsCRqoz/ROC5J3fQQvM3SFCx+/BoYiIF2YtoaEr9msbRn5+AjaTbiaCWNH5UaYNAz7nE4wXAvtj5pztLAkF6vw0RU9qXl1AEPGRI+/mUPGS8WOVPGU=
+	t=1773849800; cv=none; b=DOtv/SoyalSpNWVXQPNlGIjcnLE6tGhmd/8deJiz1B9twd4oZlOrVKfxCb9crr9vq77vGU6NaGEgSHMsDLn6JoxGkwsMdN3azxYUFNZ6yAvRzhWQ0sNkg4mTz8HcydzO1DRqn8acqWtHe9pIM+W8pFbFVeXJ0cweDUmc0DiaJOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773849671; c=relaxed/simple;
-	bh=9lbXZPvYtJTGMGIkIWrytsOtkrhzDdxlxU1ozegV1Ao=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iGgRBq4vzZYhBdmvpw+IxvBPOwzjT16TTZi25vOO6e2X1wLQvOmc8U18lJFCRVEBDIWpHp41k9s0b1WfPuVk5VIVOC5nb3iN//4dr7F073Sis2FF78n67KrUJZYPPg0US76TPkfnNsfYsBeL8b0oW55K+Mwxv5AhoGoDvHbEEPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 75B7D1A25;
-	Wed, 18 Mar 2026 09:00:58 -0700 (PDT)
-Received: from [192.168.178.23] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F200B3F73B;
-	Wed, 18 Mar 2026 09:01:00 -0700 (PDT)
-Message-ID: <73a2e7fa-ab30-4d81-a4ff-0292b6adf346@arm.com>
-Date: Wed, 18 Mar 2026 17:00:13 +0100
+	s=arc-20240116; t=1773849800; c=relaxed/simple;
+	bh=XVuxTIuxemn5HdUQiQr8DhvvEOWckmMMrPQjvcKJhm0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jETBPG2LcQczfp+SvqAPsm3bobBLkmwHUX4gio9Q9pgFasTjn4uzdsqjlSzZ+HFdsjiHmsqM+Ixo1kOBkEIm78qDXjZ8rO6CPCr5AurXeTalhR2fRXATN1aLC/EwIxMoYkko0bcBOlLmYyphEUzQkhFRJOv+W3vShE7VOKscu1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-6027ef7e068so14903137.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 09:03:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773849794; x=1774454594;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Uo5OHzsqXu4hR47Gp7Kdyr+G1caq7dBmUC13A5J+n80=;
+        b=nxS5LWvE8duHCFFgWPBEy3whG1afFqikHD5gQ7o+T34Ur+2lATDOHhNDPWMCXDWive
+         KAKVdHWBiI+ZDhSWBvhJSOwXYLrg7wfeeweMRChm4NqaWvFSEVs4inCsmEp19DEx5rUD
+         iOY013dM4OzfT4qs3MTW1C58rYtpl3zBpzLnpps65lBv/9+9dXoAtSV70Z8EqJipnYhe
+         vwDTJIZNd9aaLy/k4xMkhKf+Smae7YgYehzGa9lpyvHMV9Iip9dse4AWh2QrmDwRFv/u
+         4KC7Xi4df5IyPXxbRmKjShi2Xj7M3uviY9zXNNONIhYocrmVgs6ETVKv/BgS9JTHIE/g
+         sKNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVH6gCU1lSf0enAut+voGMQrea9/1yGFZyX3RwlyLftRYimicBb0izQ6QNs+EvpXko1hKYr8AfL+FV/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPrwSxMkMW7o0g4056Awg0UbSBrQQyB1vKPfG1CbzqWax8vj0t
+	Xi3nTTKzS6n1dKhBCaFffa+CtdTlBlhg+c4u9aKlLQIoiVKueGPC+elh3r2v6a43ovA=
+X-Gm-Gg: ATEYQzxneDWYssptMnzIpwlg8toYZfKkZHxjziCnhUBZgI+xN09r/hNtcWxMgWOwphb
+	9JB6luvlu1s4u3YLQpupzaBjsNmvNZKlPl5lCFCtx37F9uMCNgHMUve/h36ztd2tNVosGSDduy9
+	QX1JABCdFNp5w9Gz4Zk6Wpiyde4zdhfcLP5PtmBV5B3M20UKaMbyngRIYMF190frKkTdboxG35B
+	2iIyVTpbgUk3CPHC70HmYOJbD2DxtEsDdOMLq5/4EhJYAo5X+V01llqhU8heNKw4zd87LBZ+wRQ
+	wTITwnm27oosPqbCm9APMgT6UXPwXEXIlmOziH/GTtd88peZOb86fwAO0R6wKyX1DwVdCsUBaxJ
+	bDB6X/SW68qu8OTk0C6ReWr49I9Czg5uLQ6UBNnIFsijoeelKWBGyH1KDXgD2enOZQJNSMrG9KE
+	5JHsnKEPaGdm4vqEo8cXtm/NHtBaSG2L3h+ewixV5pcOfLCxkvVXvYaLU2eGqYQM8I
+X-Received: by 2002:a05:6102:5108:b0:5f7:24e9:ece2 with SMTP id ada2fe7eead31-6027d379368mr2053460137.28.1773849793873;
+        Wed, 18 Mar 2026 09:03:13 -0700 (PDT)
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com. [209.85.221.180])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-6027ebfca15sm1600699137.6.2026.03.18.09.03.13
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Mar 2026 09:03:13 -0700 (PDT)
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-56a8e0ea02aso7465410e0c.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 09:03:13 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVeY/6immjbX9TnBHbtICNWocOUX3gI5810UHYOi3+rvyj3e/Pznf2gcrK6tawXUX+re8GJke2+cmMh@vger.kernel.org
+X-Received: by 2002:a05:6122:2521:b0:563:83b2:ef2d with SMTP id
+ 71dfb90a1353d-56ba71e7eaamr2380106e0c.16.1773849792902; Wed, 18 Mar 2026
+ 09:03:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/8] dt-bindings: arm: Add Live Firmware Activation
- binding
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Sudeep Holla <sudeep.holla@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Salman Nabi <salman.nabi@arm.com>,
- Vedashree Vidwans <vvidwans@nvidia.com>,
- Trilok Soni <trilokkumar.soni@oss.qualcomm.com>,
- Nirmoy Das <nirmoyd@nvidia.com>, vsethi@nvidia.com, vwadekar@nvidia.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20260317103336.1273582-1-andre.przywara@arm.com>
- <20260317103336.1273582-2-andre.przywara@arm.com>
- <20260318-inventive-tortoise-of-romance-c7ceba@quoll>
-Content-Language: en-US
-From: Andre Przywara <andre.przywara@arm.com>
-In-Reply-To: <20260318-inventive-tortoise-of-romance-c7ceba@quoll>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [0.14 / 15.00];
+References: <cover.1771344527.git.tommaso.merciai.xr@bp.renesas.com> <ca59fdcc6c32b8f6659aa9218f1a42d2bcd258c3.1771344527.git.tommaso.merciai.xr@bp.renesas.com>
+In-Reply-To: <ca59fdcc6c32b8f6659aa9218f1a42d2bcd258c3.1771344527.git.tommaso.merciai.xr@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 18 Mar 2026 17:03:01 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX-DeV5hfQAqK=ChxLATm+S1MjOsObYsssi4JFQmwn5Lw@mail.gmail.com>
+X-Gm-Features: AaiRm51eNz-z-fsHN9TtWH7481RQArMChCwXzqF0AFf2HRP5BqKDYm-f9uccbZQ
+Message-ID: <CAMuHMdX-DeV5hfQAqK=ChxLATm+S1MjOsObYsssi4JFQmwn5Lw@mail.gmail.com>
+Subject: Re: [PATCH 1/5] clk: renesas: r9a09g047: Add entries for the RSPIs
+To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org, 
+	biju.das.jz@bp.renesas.com, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277350-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277351-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,bp.renesas.com,renesas.com,kernel.org,baylibre.com];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	NEURAL_SPAM(0.00)[0.120];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andre.przywara@arm.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.603];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:url,devicetree.org:url]
-X-Rspamd-Queue-Id: 182342BFFD3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,glider.be:email,linux-m68k.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 4D9642BF8F7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
+On Tue, 17 Feb 2026 at 17:24, Tommaso Merciai
+<tommaso.merciai.xr@bp.renesas.com> wrote:
+> Add clock and reset entries for the Renesas RZ/G3E RSPI IPs.
+>
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
 
-On 3/18/26 09:04, Krzysztof Kozlowski wrote:
-> On Tue, Mar 17, 2026 at 11:33:27AM +0100, Andre Przywara wrote:
->> The Arm Live Firmware Activation spec [1] describes updating firmware
-> 
-> A nit, subject: drop second/last, redundant "binding". The
-> "dt-bindings" prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-clk for v7.1.
 
-Sure, will fix.
+Gr{oetje,eeting}s,
 
->> images during runtime, without requiring a reboot. Update images might
->> be deployed out-of-band, for instance via a BMC, in this case the OS
->> needs to be notified about the availability of a new image.
->>
->> This binding describes an interrupt that could be triggered by the
-> 
-> Describe hardware/firmware, not the binding.
-
-Right, sorry, this slipped through.
+                        Geert
 
 
->> platform, to notify about any changes.
->>
->> [1] https://developer.arm.com/documentation/den0147/latest/
->>
->> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
->> ---
->>   .../devicetree/bindings/arm/arm,lfa.yaml      | 45 +++++++++++++++++++
->>   1 file changed, 45 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/arm/arm,lfa.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/arm/arm,lfa.yaml b/Documentation/devicetree/bindings/arm/arm,lfa.yaml
->> new file mode 100644
->> index 000000000000..92f0564fd672
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/arm/arm,lfa.yaml
->> @@ -0,0 +1,45 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/arm/arm,lfa.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Arm Live Firmware Activation (LFA)
->> +
->> +maintainers:
->> +  - Andre Przywara <andre.przywara@arm.com>
->> +  - Sudeep Holla <sudeep.holla@arm.com>
->> +
->> +description:
->> +  The Arm Live Firmware Activation (LFA) specification [1] describes a
->> +  firmware interface to activate an updated firmware at runtime, without
->> +  requiring a reboot. Updates might be supplied out-of-band, for instance
->> +  via a BMC, in which case the platform needs to notify an OS about pending
->> +  image updates.
->> +  [1] https://developer.arm.com/documentation/den0147/latest/
->> +
->> +properties:
->> +  compatible:
->> +    const: arm,lfa
-> 
-> Does specification has a version? Does it support version discovery?
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Yes and yes. there is a mandatory LFA_GET_VERSION call, with major and 
-minor version.
-
-And please note that the discovery of the firmware functionality doesn't 
-rely on DT (or ACPI) at all - it uses discoverable SMCCC calls instead. 
-We just need this DT node to convey the (optional) platform specific 
-interrupt number.
-
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +    description: notification interrupt for changed firmware image status
->> +
->> +required:
->> +  - compatible
->> +  - interrupts
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +    firmware {
->> +        arm-lfa {
-> 
-> Node names should be generic. See also an explanation and list of
-> examples (not exhaustive) in DT specification:
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> If you cannot find a name matching your device, please check in kernel
-> sources for similar cases or you can grow the spec (via pull request to
-> DT spec repo).
-> 
-> arm-lfa is specific, so this could be as "fota" or "firmware-update"
-
-OK, will try to come up with a good name.
-
-Thanks for the review!
-
-Cheers,
-Andre
-
-
-> 
-> Best regards,
-> Krzysztof
-> 
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
