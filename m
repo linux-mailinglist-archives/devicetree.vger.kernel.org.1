@@ -1,83 +1,51 @@
-Return-Path: <devicetree+bounces-277208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277209-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mLW4Eq+fumkkZwIAu9opvQ
-	(envelope-from <devicetree+bounces-277208-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:50:55 +0100
+	id CN9yMqWgumlSZwIAu9opvQ
+	(envelope-from <devicetree+bounces-277209-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:55:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACB352BBD65
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:50:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E8652BBDC3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:55:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 27286301652A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:47:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E99BF3010175
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:53:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C34183D5225;
-	Wed, 18 Mar 2026 12:47:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11E33D669A;
+	Wed, 18 Mar 2026 12:53:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m1m12cZ7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lAbtT+sc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43D7E2874E3
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:47:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20C593C2774;
+	Wed, 18 Mar 2026 12:53:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773838076; cv=none; b=BDNVLPV2pR/Oqd2EAJuSL0uK8Vj2aAUp1FnxCIfz5+sOHr8Gy53wciiE4NBOpsYTeszv3bJLLNvv9582hkUtDHPyFMXXOTUpaGtVCOxsgMqFu+syGXvxei11hnPWT251DDMp4WjsW2Qeiga7zwJt4+/CKxuB/cKvcSK6PPBBs2Y=
+	t=1773838410; cv=none; b=isbU7irxUP7sCXrphil7Qy4HoLFyhyIimMSTYq8MQihQFc66E1FoapgEv1SA6KbiheZ3KQt4p97Avk99bN93GIYWgy2omrjV4sRDvEAT3YyY8bKBoynmJNoiJJlIPwBqJLREsYtgc7Mebljj3vmQ+61YD4bjdFF8yJTWc2PfUqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773838076; c=relaxed/simple;
-	bh=haKwnk7LAe5088Nk51Nv4mgC1HQ0jAtSjW0cfHLTAUo=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=oEw4qPyqe9BMjKBcAt3Rrll12v5I0xLufQ0JaEk0HW1TV4JuHYtep88qN6vLCW3OfAzwBNLfzm97mKcwnMmNad1zV+Vh77E2G7p2Cp+6mzq4lfl9MIfF+A+7BG+rx6s2fYbUaPe9HY0t3iAKYqmmeUh2qf/BTVO3qyxau9fMHb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m1m12cZ7; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b976e181895so832009166b.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 05:47:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773838074; x=1774442874; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=kPUTFEDRHwDnSlS2VHUl2pguJOQjDAxKt4qh2+1uSEo=;
-        b=m1m12cZ70ooiaStxdugJP38CgunagyuOhZ6l2WB7RTD8EhQiBzTzv9gohjaEjC6L0v
-         WaFATQSkko2vfgsYyHhHoQpeDubUO/sLEq2EFR9xEtgg3WFqhOYpCEMoRk1DZOJCA4AM
-         vSbiXFxjyH+DzGaf7R8kI6SqzCHqyf/ihIxa6jkiM0orpIa2euKDSArwJw3xPt26HPWK
-         JS+EgV+qd6bNCnWtZpeMPsFcouWwL39U1dDgiljUkeaFTqh+N1F/VKee6+31T+yh+JR+
-         hMofokjPD8PXm4xTCpumXYRHV/ySZU5lzpOqgNmNhfqzlR4z/x1Cyu/UmLOQ0BP6wCDN
-         p74A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773838074; x=1774442874;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kPUTFEDRHwDnSlS2VHUl2pguJOQjDAxKt4qh2+1uSEo=;
-        b=RhrMON3puqR4mKMHXoCUNfpcLcpE1K0gTxhsCPCeeLrsDvr0oGuALNP6PKNEdh/W1z
-         Hc3JJqiL4ejr9Mf/kQ17sQOnHMOpoh9Rhm0Qb/Ntr/60cvixd7i5Uc52sFrrEjYypY8D
-         2n9hZFwLsSYsY2FGxGb6idmPufGKzAV+Zt53LgY1+FW1WWdLc2EN9Dxx9WDBKMT4JCaa
-         5GH2Dq69JXz2GUnPnZDyo9ds19dd2fhWhGhbXx7RnI+LHYvo+dgR8tqt5ToCVEy9ONbo
-         Rvpu/YxFwYUlCdCBe1grvcpTmewg8KcM9aO5IZ/pjyaDlqvau/+aGFa2ZaGCjRRrxE0/
-         29aA==
-X-Forwarded-Encrypted: i=1; AJvYcCUh+Vq4fACwvW54FU6YcvHmeBu8xnbp8KaVVBHgV70ytgi5Cahg0zwnGlE4TowFToR8vrQrnq0tDMuh@vger.kernel.org
-X-Gm-Message-State: AOJu0YxU2TKUz0YW7bPECr8iQTCx+EhAiaYPuPveZG8paKx3zeBHk9CS
-	fSH0YlC85rjmkrz3+4H1cHL0pXJX6lKpxQ4FRZALgO/tc3HAX0oX3clc
-X-Gm-Gg: ATEYQzx8zGyMTpGwgN2uI2ExXVEyE/S/1yRRzfpO2IBsxJblWboYKTufSgbKPktht7C
-	H92WWummPCHIWkWS8axE5peSBUyjnzISCLmCE0w6Jj07SJI2PFh/eRHYEHHT6XJIcVBZHa1exr0
-	xUiyptWT7BSu5lNStjVpRgLkCLCB4cVtUa2HFO8KtdBpYUAoV8jXHdo0zWscxCcb523VOOJB7gM
-	IKeBLmubht7tv0HwGLuvx4sqNPPpzXPYuTmrnwSHdsl8atdfraaaUOXTn68bW5FFu0X79L91X+9
-	7td30QY6KMKlhleFeN/0WjA2IzAaIgD8uKNkWPmP9WRdBZsK5YiOlqs3lvXDyAyocLhop+0lSXH
-	QnEPa5KbxYfGv2+fTCZkoIGlpuHvzD2ebSbTgdAWw6W/uxtGaQIZA+h8O3+PpmCIxtmwHk+8PQV
-	DBqQmPAOgV16REgKZuF/4YJDMXgQ==
-X-Received: by 2002:a17:907:e115:b0:b97:94b8:f450 with SMTP id a640c23a62f3a-b97f47979aamr155736566b.5.1773838073330;
-        Wed, 18 Mar 2026 05:47:53 -0700 (PDT)
-Received: from [192.168.0.39] ([79.133.247.80])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b97f1689be2sm192663466b.34.2026.03.18.05.47.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Mar 2026 05:47:53 -0700 (PDT)
-Message-ID: <f740d1e0-551d-43c0-9681-6011d9cb702f@gmail.com>
-Date: Wed, 18 Mar 2026 14:47:51 +0200
+	s=arc-20240116; t=1773838410; c=relaxed/simple;
+	bh=P/Vm5bnnhjgQa9LOmRFPRLkr+IJSLtuPp0SEXtxvIOA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=s5NGcIkHo8yhkbYwxui8w/kaRtgu7/pdKRsp7xnkLC2nEHcC7arJqydmtyRHco1T5KNDgs28cKQ+zpFFTPzEHtNHDZtCZfaKW+8d46D4I7xjFO73WhNQjsM+YrRrPVo/8zXcZezh4YjSoO7uTfvynqd3VYT7qtDaSZGaGS3vxIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lAbtT+sc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BB35C19421;
+	Wed, 18 Mar 2026 12:53:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773838409;
+	bh=P/Vm5bnnhjgQa9LOmRFPRLkr+IJSLtuPp0SEXtxvIOA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=lAbtT+scLjoz3j0s6v4/LNU9om1FpNE9KKrvivOOzawuiZVJDTAuYBzQjHbGGRMnj
+	 AtihExshlbylJ0n3epl5zNZaq+YBzehwXzvKbI5OZ+OjmMCGrwnwnSSMquSKbySvGx
+	 cpVyGutf83pr9cUa+/Sgk2x7uFc570FlTJrvcw3Ze/TxKDD1Pr9midybdtKncEXnEb
+	 +M1+7+hN6NMPNKIRJdqUi3a4OS/t7c5DNOLaQIL970tVBr0HJOMjeI2Q8EHwYZaFzt
+	 VuwM10AF303OlTKQsZ2SP0CSemREK2chKc7GuOnX+EaY3PLitxd2CvPOglyNRAiBV6
+	 7j6wWOLE46eZg==
+Message-ID: <ccce197c-c514-43c8-8026-534966bb0438@kernel.org>
+Date: Wed, 18 Mar 2026 13:53:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,95 +53,108 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Erikas Bitovtas <xerikasxx@gmail.com>
-Subject: Re: [PATCH v4 1/7] dt-bindings: iio: light: vcnl4000: add regulators
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org
-References: <20260316-vcnl4000-regulators-v4-0-854fc2eaf54b@gmail.com>
- <20260316-vcnl4000-regulators-v4-1-854fc2eaf54b@gmail.com>
- <20260317-tricky-pony-of-assurance-7a8cac@quoll>
- <da9850da-af27-48d9-9e5e-2d187c35d262@gmail.com>
- <16b3eabc-ab88-418b-9eb3-367076a8bcce@kernel.org>
+Subject: Re: request for guidence
+To: ShiHao <i.shihao.999@gmail.com>, krzk+dt@kernel.org
+Cc: robh@kernel.org, conor+dt@kernel.org, broonie@kernel.org,
+ bjorn.andersson@oss.qualcomm.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <abqbUuruxPJsfBo3@fedora>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <16b3eabc-ab88-418b-9eb3-367076a8bcce@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <abqbUuruxPJsfBo3@fedora>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277208-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-277209-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: ACB352BBD65
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 6E8652BBDC3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
-
-On 3/17/26 5:42 PM, Krzysztof Kozlowski wrote:
-> On 17/03/2026 09:07, Erikas Bitovtas wrote:
->>>> +  vdd-supply: true
->>>> +  vddio-supply: true
->>>> +  vled-supply: true
->>>
->>> Same comments as before, I do not see improvements.
->>>
->>> Best regards,
->>> Krzysztof
->>>
->>
->> I explained why in v3. The message can be found here:
->> https://lore.kernel.org/linux-iio/cb92bb47-9078-475d-b242-71e3f9181a72@baylibre.com/T/#m6da277894cf5c2b473fbeebd4b7bafc7519ebc26
+On 18/03/2026 13:32, ShiHao wrote:
+> Hello everyone,
 > 
-> Apologies, I missed that. VDD and VLED are fine, but I2C bus supply is a
-> property of the I2C controller, not the device, therefore please drop VDDIO.
-> 
-> Best regards,
-> Krzysztof
+> I hope everyone is good. I am writing this letter to ask forsome guidance
+> on GSoC. I wanted some help regarding proposal since the application
+> period has began i wanted to ask whether to submit my prepared proposal
+> or not and wait for review by mentors first because the proposal template
+> is a bit different from google's suggested template that is why i have
+> some confusions. If anyone has some time to review my drafted proposal i
+> would be very thankful. Any help would be deeply appreciated
 
-VDDIO supply is needed for the pull-up resistors for the open drain I2C
-and interrupt lines. Without them, the device will send spurious
-interrupts. Such cases are already present in mainline, for example
-Awinic AW2013 led driver [1]:
-> there is usually more than just the I2C I/O lines. For AW2013 there is
-> at least also the open-drain interrupt line. On other ICs there could
-> also be arbitrary GPIO lines that are used in open-drain mode. Those
-> are completely unrelated to the I2C controller.
->
-> Do you have any suggestions how to handle the power supply for those?
+Hey,
 
-From the looks of it, it was agreed upon to rename the supply from VDDIO
-to VIO. Has anything changed since then and now there is a better way to
-represent this relationship?
+None of the people you Cc-ed here is involved in GSoC. You reached Linux
+kernel community, which has nothing to do with GSoC. I suggest
+contacting GSoC through whatever contact form the provided you on the
+application.
 
-[1]: https://lore.kernel.org/all/ZBoR0DPQ+AufzKHk@gerhold.net/#t
+Best regards,
+Krzysztof
 
