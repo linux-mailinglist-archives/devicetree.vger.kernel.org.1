@@ -1,192 +1,219 @@
-Return-Path: <devicetree+bounces-277492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277494-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UMVvJQ0gu2lofQIAu9opvQ
-	(envelope-from <devicetree+bounces-277492-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 22:58:37 +0100
+	id yA5NCdYju2lofgIAu9opvQ
+	(envelope-from <devicetree+bounces-277494-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 23:14:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3338F2C3324
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 22:58:37 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 790572C34B7
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 23:14:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 18DD3301CC68
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 21:58:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9DDD4303FAF2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 22:14:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2B48343D7F;
-	Wed, 18 Mar 2026 21:58:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDA1C363093;
+	Wed, 18 Mar 2026 22:14:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bbINCqq+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o9aZw+Gg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DE4021ADC7;
-	Wed, 18 Mar 2026 21:58:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C72D533DEDD;
+	Wed, 18 Mar 2026 22:14:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773871114; cv=none; b=lrNFNhQfvcdpScA5O8xqQfM8chlGxsXKfORHj9dB09w3crw6NNDUgvOnDIILgkoeDxxvYazLrnfm5M3cikB2OJX5WDJFvt21AphFee7Q9IoXAE+9QKONx0l/eB4NNlTKLJxgietVA7rMdD44zAXD5W9VX7c+Oe5xDALj6eOWvj0=
+	t=1773872064; cv=none; b=cFtLuS8lmcH2tHEyoJ9JlJ40zLrxJjiGiKrz4q6Riz/7lLkPg75BC/XgyKBHjyiZoaktJsa/9IVgmLvUJv8N+qbskAqm3mtK+9xuxPvRcC/wUmhzEeSB18bWBhT8V7LkODimT5lI/uZMYXgAA3zF53q2XOb2iYM6FzECAfGFsCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773871114; c=relaxed/simple;
-	bh=g+UfRkP0ayM7nlit+xXvMF47RJk+YzbVbcsTEDZHgVA=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=co6u/tmqsnoTt4vJguMmJOh4Nb+ibXhCsQxstAu2WKFGHFpKFcx1OT5zMlXmNmhF6BukfkVJzjWZDFICOEntGf64QgEdAhH2Zmo6V/BWuViqZ+IeCteKI12jwOlJxvbHYZ/IAsCNfqnCJ8rw9vMyafCTqk9/TwzVziTUK66lTP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bbINCqq+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A9CEC19421;
-	Wed, 18 Mar 2026 21:58:34 +0000 (UTC)
+	s=arc-20240116; t=1773872064; c=relaxed/simple;
+	bh=vAyd5i9QgWmNXiH7zOoCmSu78yF0HGi3HGDWdzOPJiE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LV1XSOdfEANUH8lN4IWwPjbgKeG6w5U9jiOFi+1CfiW3qykc0vAZ5xFWbS5rRnqKHGdJ0QBD7UKycxXq9vuxJrGdcTvOWWW3RuV1m/e8uhbwCgLoJccjgXhgmkJOk7W49BaTMXNToSbqAjCpDUAIYwwUaipFV5z3YAdQF90LKNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o9aZw+Gg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA819C19421;
+	Wed, 18 Mar 2026 22:14:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773871114;
-	bh=g+UfRkP0ayM7nlit+xXvMF47RJk+YzbVbcsTEDZHgVA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=bbINCqq+QGr4OWvGM+Asg8zE2iaZmTEvvOpUaWY1IeaK3ZsDKJm71QFgRR+VpJPSo
-	 LzzpRAQr+EsxbuZyal3Ew9cgEQfNQbF6Z7uxISaPB0df3VqX6kKQhcdULV8/ziy3Vs
-	 uYIo88kfuvE0WH6PN/3RzPVYhurGOkqoRxjr/Pwb89rOtmv7fPor972DZAkW0MapR9
-	 4NjJJHGj7j7wH3ZsK+KxlHopfyKqXw/mUnBL2Meyv94uWyzMfsfnN0ALQcY7fEk1by
-	 IEnr8DdjSDXXQe71Nhteew4nqipFCsZ73WwP/dp+z9i05PZSmjTOinRN7OYBV9eZvl
-	 W2oUEi1fTJyaA==
-Date: Wed, 18 Mar 2026 16:58:32 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Caleb James DeLisle <cjd@cjdns.fr>
-Cc: linux-pci@vger.kernel.org, linux-mips@vger.kernel.org,
-	naseefkm@gmail.com, ryder.lee@mediatek.com, bhelgaas@google.com,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
-	ansuelsmth@gmail.com, linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] PCI: Skip bridge window reads when window is not
- supported
-Message-ID: <20260318215832.GA476412@bhelgaas>
+	s=k20201202; t=1773872064;
+	bh=vAyd5i9QgWmNXiH7zOoCmSu78yF0HGi3HGDWdzOPJiE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=o9aZw+Gg0nHOp5Ibo5oK9H7Ce9dZCmevq+v/rju7q3H3vdfaTnuH4x0mCPHzNUFY4
+	 s9WrWfKgkHsjAcRdXpNJHX0Nf3vUpEeqpxNZvVBNjBhtiS9W7At9kODZozsv20j5sq
+	 cRkpcnyaR8XsGNJ5MuS28eLjk2DOwzyzV0iwEEGacnN+NsyhiGj6w+Q/Rrzu6NbWZs
+	 j5XtuSwmhUuo+BnPt/txOMBIbRADzC/DsX1ofsAESJSKSO6gy16a25Zt8pwIzy9M/H
+	 SuEEmup9A3pdEFU5W8B8Tw069z8PF1AObRFotfD7TeTwWhteYi8H4TkP8O6DoG5IA3
+	 EteTazBDOOwJw==
+Message-ID: <ad0d1ea1-4c5d-4cfc-af0d-8d843e7e0e9e@kernel.org>
+Date: Wed, 18 Mar 2026 23:14:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260316155157.679533-4-cjd@cjdns.fr>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/9] dt-bindings: regulator: Document MediaTek MT6392
+ PMIC Regulators
+To: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+Cc: linux-mediatek@lists.infradead.org,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sen Chu <sen.chu@mediatek.com>,
+ Sean Wang <sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>,
+ Lee Jones <lee@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Linus Walleij <linusw@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Julien Massot
+ <julien.massot@collabora.com>, Gary Bisson <bisson.gary@gmail.com>,
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+ Val Packett <val@packett.cool>, Fabien Parent <parent.f@gmail.com>,
+ Chen Zhong <chen.zhong@mediatek.com>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-gpio@vger.kernel.org
+References: <20260317184507.523060-1-l.scorcia@gmail.com>
+ <20260317184507.523060-4-l.scorcia@gmail.com>
+ <20260318-nickel-serval-of-tolerance-621bad@quoll>
+ <CAORyz2Laoo4EiLcHZ-ygLiFGW_h8qV7QxqNsMbueM=nov5zH0A@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CAORyz2Laoo4EiLcHZ-ygLiFGW_h8qV7QxqNsMbueM=nov5zH0A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277492-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277494-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[lists.infradead.org,gmail.com,kernel.org,mediatek.com,collabora.com,packett.cool,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[27];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,mediatek.com,google.com,kernel.org,collabora.com,lists.infradead.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.871];
+	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3338F2C3324
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 790572C34B7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 16, 2026 at 03:51:57PM +0000, Caleb James DeLisle wrote:
-> pci_read_bridge_io() and pci_read_bridge_mmio_pref() read bridge window
-> registers unconditionally. If the registers are hardwired to zero
-> (not implemented), both base and limit will be 0. Since (0 <= 0) is
-> true, a bogus window [mem 0x00000000-0x000fffff] or [io 0x0000-0x0fff]
-> gets created.
+On 18/03/2026 22:25, Luca Leonardo Scorcia wrote:
+>>
+>> Drop compatible. Regulator nodes do not have compatibles.
 > 
-> pci_read_bridge_windows() already detects unsupported windows by
-> testing register writability and sets io_window/pref_window flags
-> accordingly. Check these flags at the start of pci_read_bridge_io()
-> and pci_read_bridge_mmio_pref() to skip reading registers when the
-> window is not supported.
+> Thanks for this comment. It took me a while to understand what you
+> meant as most of the MediaTek PMIC regulator drivers still require the
+> compatible node to probe, including MT6397 that was the template for
+> this patch. I compared the driver to MT6359 that does not use it and I
+> am now working on the driver to not rely on it.
 > 
-> Suggested-by: Bjorn Helgaas <helgaas@kernel.org>
-> Link: https://lore.kernel.org/all/20260113210259.GA715789@bhelgaas/
-> Signed-off-by: Ahmed Naseef <naseefkm@gmail.com>
-> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
-
-I applied this to pci/resource for v7.1 with the following commit log:
-
-  PCI: Prevent assignment to unsupported bridge windows
-
-  Previously, pci_read_bridge_io() and pci_read_bridge_mmio_pref()
-  unconditionally set resource type flags (IORESOURCE_IO or IORESOURCE_MEM |
-  IORESOURCE_PREFETCH) when reading bridge window registers. For windows that
-  are not implemented in hardware, this may cause the allocator to assign
-  space for a window that doesn't exist.
-
-  For example, the EcoNET EN7528 SoC Root Port doesn't support the
-  prefetchable window, but since a downstream device had a prefetchable BAR,
-  the allocator mistakenly assigned a prefetchable window:
-
-    pci 0001:00:01.0: [14c3:0811] type 01 class 0x060400 PCIe Root Port
-    pci 0001:00:01.0: PCI bridge to [bus 01-ff]
-    pci 0001:00:01.0: bridge window [mem 0x28000000-0x280fffff]: assigned
-    pci 0001:00:01.0: bridge window [mem 0x28100000-0x282fffff pref]: assigned
-    pci 0001:01:00.0: BAR 0 [mem 0x28100000-0x281fffff 64bit pref]: assigned
-
-  pci_read_bridge_windows() already detects unsupported windows by testing
-  register writability and sets dev->io_window/pref_window accordingly.
-
-  Check dev->io_window/pref_window so we don't set the resource flags for
-  unsupported windows, which prevents the allocator from assigning space to
-  them.
-
-  After this commit, the prefetchable BAR is correctly allocated from the
-  non-prefetchable window:
-
-    pci 0001:00:01.0: bridge window [mem 0x28000000-0x281fffff]: assigned
-    pci 0001:01:00.0: BAR 0 [mem 0x28000000-0x280fffff 64bit pref]: assigned
-
-I also set the author to "Ahmed Naseef <naseefkm@gmail.com>" per
-https://lore.kernel.org/all/abRQYM1If/6Vv/tI@DESKTOP-TIT0J8O.localdomain
-
-You can make this work correctly next time by including a
-"From: Ahmed Naseef <naseefkm@gmail.com>" line as the very first line
-in the message body; see
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst?id=v6.19#n723
-
-> ---
->  drivers/pci/probe.c | 6 ++++++
->  1 file changed, 6 insertions(+)
+>> With this, you can also drop example as it won't be used.
 > 
-> diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-> index bccc7a4bdd79..4eacb741b4ec 100644
-> --- a/drivers/pci/probe.c
-> +++ b/drivers/pci/probe.c
-> @@ -395,6 +395,9 @@ static void pci_read_bridge_io(struct pci_dev *dev, struct resource *res,
->  	unsigned long io_mask, io_granularity, base, limit;
->  	struct pci_bus_region region;
->  
-> +	if (!dev->io_window)
-> +		return;
-> +
->  	io_mask = PCI_IO_RANGE_MASK;
->  	io_granularity = 0x1000;
->  	if (dev->io_window_1k) {
-> @@ -465,6 +468,9 @@ static void pci_read_bridge_mmio_pref(struct pci_dev *dev, struct resource *res,
->  	pci_bus_addr_t base, limit;
->  	struct pci_bus_region region;
->  
-> +	if (!dev->pref_window)
-> +		return;
-> +
->  	pci_read_config_word(dev, PCI_PREF_MEMORY_BASE, &mem_base_lo);
->  	pci_read_config_word(dev, PCI_PREF_MEMORY_LIMIT, &mem_limit_lo);
->  	base64 = (mem_base_lo & PCI_PREF_RANGE_MASK) << 16;
-> -- 
-> 2.39.5
+> Just to be sure - do you mean remove the compatible attribute from the
+> example, or the whole example section?
+
+The entire example because without the compatible it will be no-op.
+
 > 
+>>> +
+>>> +patternProperties:
+>>> +  "^(buck_)?v(core|proc|sys)$":
+>>
+>> Nope, underscores are not allowed. Use only hyphens.
+> 
+> Got it. I will actually completely remove the (buck_|ldo_) prefix
+> altogether as suggested in another comment.
+> 
+>>> +  "^(ldo_)?v(adc18|camio|cn18|io18)$":
+>>> +    description: LDOs with fixed 1.8V output
+>>
+>> If fixed, then encode it in the schema - min/max microvolt.
+> 
+> If possible I'd like some clarification here. According to Chen-Yu
+> Tsai comment [1], dtsi shouldn't contain voltage constraints. The way
+
+That's odd, because long time in the past I heard that DTS must
+absolutely set min/max constraints, because these are real hardware
+(board) constraints for each regulator, unlike the generic and broad
+ones from the driver.
+
+IOW, driver has what datasheet tells. DTS has what actually should be used.
+
+Also, I did not actually require to make min/max required, just they
+have to be specific/constrained.
+
+> I understood this is that electrical constraints are a matter of the
+> actual board layout, so if adjustments are needed they have to be in
+> the board dts. But you also specify "If fixed", so maybe there's an
+> exception to this rule when the constraint is "absolute" and boards
+> can't actually set a different value?
+
+Now I am confused. You wrote - LDOs with fixed 1.8V output - so board
+cannot set it to 2.0V for example. They are affixed. This regulator
+CANNOT physically produce anything else.
+
+At least this is the meaning of the text you wrote.
+
+
+Best regards,
+Krzysztof
 
