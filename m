@@ -1,246 +1,191 @@
-Return-Path: <devicetree+bounces-277165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277166-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SKudAJmOumnSXgIAu9opvQ
-	(envelope-from <devicetree+bounces-277165-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:38:01 +0100
+	id 2NVDItSOumnSXgIAu9opvQ
+	(envelope-from <devicetree+bounces-277166-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:39:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A18172BAEE8
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:38:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E968D2BAF0E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:38:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BB5313144171
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:33:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E84A5301C3E2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:35:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E1C93C277C;
-	Wed, 18 Mar 2026 11:33:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CFD1396D25;
+	Wed, 18 Mar 2026 11:35:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JYG1UqOF"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="N4aNhFNe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 282143939AF;
-	Wed, 18 Mar 2026 11:33:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A257377EC1;
+	Wed, 18 Mar 2026 11:35:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773833591; cv=none; b=g6x8mBU3nH7ZHFfmjkAtz1BUwwBA8ugN36ME9fUTYFUsfNq/EYClz1+AJVuEKVu4hZphclkDETL1nM903ozFQQukxG3mXNyjfGQpsJUjaoot8zlbdxjn36VdUWEpyS4Cc9MPkR9vmyMPXQ8MdQcwp0EcEAn+dVqoTfgbu7MDSiY=
+	t=1773833759; cv=none; b=EY8MJqac5K/iiyZANMFnl1rTWdSqevCtWVNGE8ML30g5LEjKAPawp9Wtk166itu1yYAJMhat+tHDQDNe3sl8bffMp62ViaKqblQ1Co8flvQ2JQLYEQQSDtY670W5327XzrZF+GdrLWKF0daJjS8lv4LmaXO7+gWAqE8UF7iCbIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773833591; c=relaxed/simple;
-	bh=YEj8bJTZScxY2qVm7WnrDujqI+DtPSQ2M+4Z7hJjhAk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uMVtCL8rrp8hYTLbOjRa4Uv7fW+4SkSVtucm95mjImOk7da7lo4bA7OtNU2sryPRkNaKlenN7JLW6s7WGVTuDVAZ9CGalZ+Lqhf2ui1wwg9+la1FPu+9DwIbXUwCxIStUZx7JygHoiQtvh5xbsZkFSpCFcyH5q5OpmVIx0Ffp8o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JYG1UqOF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD488C19421;
-	Wed, 18 Mar 2026 11:33:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773833590;
-	bh=YEj8bJTZScxY2qVm7WnrDujqI+DtPSQ2M+4Z7hJjhAk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JYG1UqOF72U7xdAoMhlDaaoiuW6hlyFsV21wqJRWXOrZMifKD6ATZhumcDlHPtgz5
-	 oaaICEOWWhFUVy+5/V/0I7MkKOK7ZzqDFwHgA5mJDOpY288V3OfnHlii7Oyy8PX3Ap
-	 RYrwMu4+xFNt1OOQDzP/5yaupLj3BVWOHVztBC10EaXZtKZCOsaTJVH9rb+5isx0Ga
-	 rr/MXS8CcTcLlbKK3E6De1J7AwC1Er1Mn6kb7NyRSKAlmVsOecAjdSbWIiw7P+o7At
-	 +bMjsTqAEPrK2RNtEM1eVC7VFnjXr4f2AkSkUE58ppy+N9cbURz5wM+MCYYxLAtvht
-	 GSr/Inth1b7Rw==
-Message-ID: <931beb71-868d-499c-9c1a-14d1ae777abf@kernel.org>
-Date: Wed, 18 Mar 2026 12:33:02 +0100
+	s=arc-20240116; t=1773833759; c=relaxed/simple;
+	bh=ZclFthZd77skOSmXkc5robMrKH8Po4/7YgiZhdHEFFw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=twhACpbp75vh8KoSG3cwn9rxL4hVdAuBtxKk2dBgW6n6dkEF+2o8gBCiUx9OM80SAxbbQMzoYRCCT1TCnGelOCUHv/86sp7mMpf44ccvI/TaSo/K2Dcczuxw4X12yX8Boa43w6NSej2UqBK1ZTdNuaCBO1CJLoHkpb+5I76Pucc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=N4aNhFNe; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773833758; x=1805369758;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ZclFthZd77skOSmXkc5robMrKH8Po4/7YgiZhdHEFFw=;
+  b=N4aNhFNenBvDOEGkIb5OVlLx8gN6CvcmcNyj5Ahx7PE78XiQiiSxUNIs
+   HAo7H8zQ0DbuMpov19NjO4712m8ork2bpZPe3XQyy5ER+77vk2cbI+DqV
+   0IarHNYbHxZTc04bT6nhroqVy+XlH1Z/+cGyAExREPmyzI4kfkb7Dv3Da
+   gIGcauW0/tMGkFHmb1DrT3LquskbkO1a0eHtDVax+cZEWn1uuoWceK/oT
+   2VuJIWSkZUeTTrNzYiM+2VjIeyAwKM6/vBlgl1+Bhw69UKWkvknmXo9zG
+   DmiTGp1q9JYG6IuvxhF/kofntW+Qf0uOhwtLsO+ZyqselRYBVl/TYPDPV
+   A==;
+X-CSE-ConnectionGUID: H7L47SbqTRSVxtBgsOWArA==
+X-CSE-MsgGUID: PD9HTcZ9TaiDvasuVu2ExQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="74770649"
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; 
+   d="scan'208";a="74770649"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2026 04:35:58 -0700
+X-CSE-ConnectionGUID: wxFsSdJrR9yJRjaUCARfHQ==
+X-CSE-MsgGUID: X0ORtggNTICqChi69o8byA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; 
+   d="scan'208";a="222578791"
+Received: from lkp-server01.sh.intel.com (HELO 63737dd503cb) ([10.239.97.150])
+  by orviesa009.jf.intel.com with ESMTP; 18 Mar 2026 04:35:52 -0700
+Received: from kbuild by 63737dd503cb with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1w2pBm-000000002qj-2OWn;
+	Wed, 18 Mar 2026 11:35:50 +0000
+Date: Wed, 18 Mar 2026 19:35:16 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andre Przywara <andre.przywara@arm.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Sudeep Holla <sudeep.holla@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, Salman Nabi <salman.nabi@arm.com>,
+	Vedashree Vidwans <vvidwans@nvidia.com>,
+	Trilok Soni <trilokkumar.soni@oss.qualcomm.com>,
+	Nirmoy Das <nirmoyd@nvidia.com>, vsethi@nvidia.com,
+	vwadekar@nvidia.com, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 7/8] firmware: smccc: lfa: Register DT interrupt
+Message-ID: <202603181913.NFRwBsN4-lkp@intel.com>
+References: <20260317103336.1273582-8-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 01/12] dt-bindings: crypto: qcom,ice: Allow
- power-domain and iface clk
-To: Harshal Dev <harshal.dev@oss.qualcomm.com>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Herbert Xu <herbert@gondor.apana.org.au>,
- "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Abel Vesa <abel.vesa@oss.qualcomm.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
- cros-qcom-dts-watchers@chromium.org, Eric Biggers <ebiggers@google.com>,
- Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
- Tengfei Fan <tengfei.fan@oss.qualcomm.com>,
- Bartosz Golaszewski <brgl@kernel.org>, David Wronek <davidwronek@gmail.com>,
- Luca Weiss <luca.weiss@fairphone.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Melody Olvera <quic_molvera@quicinc.com>,
- Alexander Koskovich <akoskovich@pm.me>, Brian Masney <bmasney@redhat.com>,
- Neeraj Soni <neeraj.soni@oss.qualcomm.com>,
- Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>,
- linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>
-References: <20260317-qcom_ice_power_and_clk_vote-v3-0-53371dbabd6a@oss.qualcomm.com>
- <20260317-qcom_ice_power_and_clk_vote-v3-1-53371dbabd6a@oss.qualcomm.com>
- <do62iaopjcahvn576gfcdbyo4yxudf4uit2sbifvjw3pwrlb7j@higm25fdesk3>
- <20260318-aboriginal-peach-bird-cacb8c@quoll>
- <24d4926d-63d0-479d-b938-6438364e9998@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <24d4926d-63d0-479d-b938-6438364e9998@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260317103336.1273582-8-andre.przywara@arm.com>
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277165-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gondor.apana.org.au,davemloft.net,kernel.org,oss.qualcomm.com,chromium.org,google.com,gmail.com,fairphone.com,linaro.org,quicinc.com,pm.me,redhat.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[30];
+	TAGGED_FROM(0.00)[bounces-277166-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: A18172BAEE8
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,intel.com:dkim,intel.com:email,intel.com:mid,git-scm.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E968D2BAF0E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 18/03/2026 11:30, Harshal Dev wrote:
-> 
-> 
-> On 3/18/2026 12:52 PM, Krzysztof Kozlowski wrote:
->> On Tue, Mar 17, 2026 at 05:12:36PM +0200, Dmitry Baryshkov wrote:
->>> On Tue, Mar 17, 2026 at 02:50:40PM +0530, Harshal Dev wrote:
->>>> Update the inline-crypto engine DT binding in a backward compatible manner
->>>> to allow specifying up to two clocks along with their names and associated
->>>> power-domain.
->>>
->>> This should come after the "why" part.
->>>
->>>>
->>>> When the 'clk_ignore_unused' flag is not passed on the kernel command line
->>>> occasional unclocked ICE hardware register access are observed when the
->>>> kernel disables the unused 'iface' clock before ICE can probe. On the other
->>>> hand, when the 'pd_ignore_unused' flag is not passed on the command line,
->>>> clock 'stuck' issues are observed if the power-domain required by ICE
->>>> hardware is unused and thus disabled before ICE probe could happen.
->>>
->>> You can simply say that ICE requires these clocks and these power
->>> domains to function. Accessing the hardware can fail if they are
->>> disabled by the kernel for whater reasons.
->>
->> Yeah, mentioning clk_ignore_unused/pd is redundant here.
-> 
-> Ack.
-> 
->>
->>>
->>>>
->>>> To avoid these scenarios, the 'iface' clock and the associated power-domain
->>>> should be specified in the ICE device tree node and enabled by ICE.
->>
->> And this repeats the first paragraph.
-> 
-> Ack.
-> 
->>
->>>>
->>>> Fixes: f6ff91a47ac57 ("dt-bindings: crypto: Add Qualcomm Inline Crypto Engine")
->>>> Signed-off-by: Harshal Dev <harshal.dev@oss.qualcomm.com>
->>>> ---
->>>>  .../bindings/crypto/qcom,inline-crypto-engine.yaml       | 16 +++++++++++++++-
->>>>  1 file changed, 15 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
->>>> index 876bf90ed96e..99c541e7fa8c 100644
->>>> --- a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
->>>> +++ b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
->>>> @@ -30,6 +30,16 @@ properties:
->>>>      maxItems: 1
->>>>  
->>>>    clocks:
->>>> +    minItems: 1
->>>> +    maxItems: 2
->>>> +
->>>> +  clock-names:
->>>> +    minItems: 1
->>>> +    items:
->>>> +      - const: core
->>>> +      - const: iface
->>>> +
->>>> +  power-domains:
->>>>      maxItems: 1
->>
->>
->> 1. What the DTS is doing here?
-> 
-> Okay. I will add a description of the expectation imposed by this binding on
-> the DTS in the commit message of this patch.
+Hi Andre,
 
-You target this to fixes. Your subject and PATCH prefix should state
-that. DTS is irrelevant in the git history in this context.
+kernel test robot noticed the following build warnings:
 
-I stated previous the reason why this must go to the fixes.
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on arm/for-next arm/fixes arm64/for-next/core clk/clk-next kvmarm/next rockchip/for-next shawnguo/for-next soc/for-next linus/master nferre-at91/at91-next v7.0-rc4 next-20260317]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Andre-Przywara/dt-bindings-arm-Add-Live-Firmware-Activation-binding/20260318-082717
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20260317103336.1273582-8-andre.przywara%40arm.com
+patch subject: [PATCH v2 7/8] firmware: smccc: lfa: Register DT interrupt
+config: arm64-randconfig-004-20260318 (https://download.01.org/0day-ci/archive/20260318/202603181913.NFRwBsN4-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 12.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260318/202603181913.NFRwBsN4-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603181913.NFRwBsN4-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/firmware/smccc/lfa_fw.c: In function 'lfa_register_dt':
+   drivers/firmware/smccc/lfa_fw.c:878:16: error: implicit declaration of function 'devm_request_threaded_irq'; did you mean 'devm_request_region'? [-Werror=implicit-function-declaration]
+     878 |         return devm_request_threaded_irq(dev, irq, lfa_irq_handler,
+         |                ^~~~~~~~~~~~~~~~~~~~~~~~~
+         |                devm_request_region
+   drivers/firmware/smccc/lfa_fw.c:880:42: error: 'IRQF_COND_ONESHOT' undeclared (first use in this function)
+     880 |                                          IRQF_COND_ONESHOT, NULL, NULL);
+         |                                          ^~~~~~~~~~~~~~~~~
+   drivers/firmware/smccc/lfa_fw.c:880:42: note: each undeclared identifier is reported only once for each function it appears in
+>> drivers/firmware/smccc/lfa_fw.c:881:1: warning: control reaches end of non-void function [-Wreturn-type]
+     881 | }
+         | ^
+   cc1: some warnings being treated as errors
 
 
-Best regards,
-Krzysztof
+vim +881 drivers/firmware/smccc/lfa_fw.c
+
+   863	
+   864	static int lfa_register_dt(struct device *dev)
+   865	{
+   866		struct device_node *np;
+   867		unsigned int irq;
+   868	
+   869		np = of_find_compatible_node(NULL, NULL, "arm,lfa");
+   870		if (!np)
+   871			return -ENODEV;
+   872	
+   873		irq = irq_of_parse_and_map(np, 0);
+   874		of_node_put(np);
+   875		if (!irq)
+   876			return -ENODEV;
+   877	
+   878		return devm_request_threaded_irq(dev, irq, lfa_irq_handler,
+   879						 lfa_irq_handler_thread,
+   880						 IRQF_COND_ONESHOT, NULL, NULL);
+ > 881	}
+   882	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
