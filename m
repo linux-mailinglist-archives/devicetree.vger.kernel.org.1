@@ -1,156 +1,171 @@
-Return-Path: <devicetree+bounces-277196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277197-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aNB3BP6dumngZgIAu9opvQ
-	(envelope-from <devicetree+bounces-277196-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:43:42 +0100
+	id qMQoAeadumngZgIAu9opvQ
+	(envelope-from <devicetree+bounces-277197-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:43:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A4B72BBB45
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:43:41 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 021892BBB27
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:43:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 000E631A2790
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:39:39 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 295F630482DC
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:40:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A91FD3D8906;
-	Wed, 18 Mar 2026 12:39:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="fcZEYG8D"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70A143D6CDC;
+	Wed, 18 Mar 2026 12:40:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D2553D88FE;
-	Wed, 18 Mar 2026 12:39:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 263EC3D666A
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:40:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773837561; cv=none; b=ET1X0E0GMywi4dFRyEp+OSX0w2YZwylTyrCYJuQq//QXKN6rA7WoE3WUx3dpoChJ4r2kG+jM4JCvpyC1aYpFBz69id+rdv82vYe9Dz50PbkrPVHJ1V1wUVutxx5Bae455Ex34MrHLM9oI1q9njmnazYI4tu8t4g9aWPx1XoXz0I=
+	t=1773837607; cv=none; b=AQM4Mra7MDYlwsBzvE4NZsoWnD5n35JpOEww9qcqsPB7pYOOqhloDvkgHAhnAv4tVmqOgYbFjI4koGAfwNK3P8Ng0FLfGg7gG4cVM+ItAU4uhQCTrQ8Safni0+4iPqg+aZ23YLF1o+JF2xJzKmcI5etyHEdtH15SrtlJXD1wNlI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773837561; c=relaxed/simple;
-	bh=ajpz9j4PDIG86qR5i5L9xxin8pmlylEmgrk8Tz5D+Gs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jVzDEOpBwk2LSz50LukhXPLxu5MPx3PnPEoeeu7321IAUvxZ9zwWUHq021Z5cihtzNKRNV2Q5/gBA9ozjwsqIKewyVozVG4n4nQY1IL3I4p/1bNiLUBrInuDjCCXsva1yZMo58A8fpuK9oYKXycItMURiDGExg/B0qJ3qwTsKDc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=fcZEYG8D; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1773837558;
-	bh=ajpz9j4PDIG86qR5i5L9xxin8pmlylEmgrk8Tz5D+Gs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fcZEYG8DcYj6oZa2FU1hLemwGfXlzzSOLhaOu4FL4dcD0pP1vyJDPjwmT2xUj6Dxo
-	 eiPALZXG6fDTRTCjxTCt9h1U8g/rpO3uvkQL9ymjDrmBCrsTXLXZXmBb7DeC+tyRkc
-	 AtB2nsZ6T3rocTCu9/8jk6hwwmNo2XM+TAVEk97AUkrfNLNi9+01ONA/NJ1waMscex
-	 OI5JMjHlVHclezUwygGrLx1sSHGsW0yPGVMRLvObzbkWYp36nblk4J8+KkUJeDwDRa
-	 Ya/uYJQ24yinY2xXBSuwPJ4sY2qpGsm2CNHOmEjMJhagisZBFLeAcROz3G4iK6FUWt
-	 MSGaosIbMixFA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id B6A8617E1380;
-	Wed, 18 Mar 2026 13:39:17 +0100 (CET)
-Message-ID: <8c73ca7d-254c-4b89-9b7a-d67afd6f909e@collabora.com>
-Date: Wed, 18 Mar 2026 13:39:17 +0100
+	s=arc-20240116; t=1773837607; c=relaxed/simple;
+	bh=2ogj76zhqhmxdVnoHmHagIWkf+8xLWmelrn3mfxdUaM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=TYAw1st8lgPCYogIyBr3CXYl2UU90riLsYmztyZNqmGwIOEmyDcrWaXDJxMqcnzyzSinfhS+TVSYjLUEis9enHs7tyg/ySLw3GJZ/tvDz6K/9QxtpLNwQFMSH6jKpz0J4ixLtGVTHZXV2JiFA0WLif/D1r24VcmhaMlAWse4QZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1w2qBf-0001Qv-Cj; Wed, 18 Mar 2026 13:39:47 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1w2qBe-000uRl-2b;
+	Wed, 18 Mar 2026 13:39:46 +0100
+Received: from pza by lupine with local (Exim 4.98.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1w2qBe-000000009ES-30Jx;
+	Wed, 18 Mar 2026 13:39:46 +0100
+Message-ID: <3e9022faae3dc6f5066a1e7cc3752a0193a55bc9.camel@pengutronix.de>
+Subject: Re: [PATCH v3] reset: spacemit: k3: Decouple composite reset lines
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Yixun Lan <dlan@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Junzhong Pan <junzhong.pan@spacemit.com>, Guodong Xu
+ <guodong@riscstar.com>, 	devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, 	spacemit@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Inochi Amaoto	 <inochiama@gmail.com>
+Date: Wed, 18 Mar 2026 13:39:46 +0100
+In-Reply-To: <20260317-01-k3-reset-usb-pci-v3-1-e4b9a43c7d45@kernel.org>
+References: <20260317-01-k3-reset-usb-pci-v3-1-e4b9a43c7d45@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 7/9] regulator: mt6392: Add support for MT6392
- regulator
-To: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
- linux-mediatek@lists.infradead.org
-Cc: Fabien Parent <parent.f@gmail.com>, Val Packett <val@packett.cool>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sen Chu <sen.chu@mediatek.com>,
- Sean Wang <sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>,
- Lee Jones <lee@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Linus Walleij <linusw@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Gary Bisson <bisson.gary@gmail.com>,
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- Julien Massot <julien.massot@collabora.com>,
- Chen Zhong <chen.zhong@mediatek.com>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-gpio@vger.kernel.org
-References: <20260317184507.523060-1-l.scorcia@gmail.com>
- <20260317184507.523060-8-l.scorcia@gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20260317184507.523060-8-l.scorcia@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spamd-Result: default: False [0.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277196-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,lists.infradead.org];
-	FREEMAIL_CC(0.00)[gmail.com,packett.cool,kernel.org,mediatek.com,collabora.com,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[spacemit.com,riscstar.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-277197-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DMARC_NA(0.00)[pengutronix.de];
+	FROM_HAS_DN(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,collabora.com:mid,packett.cool:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6A4B72BBB45
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.730];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	R_DKIM_NA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 021892BBB27
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Il 17/03/26 19:43, Luca Leonardo Scorcia ha scritto:
-> From: Fabien Parent <parent.f@gmail.com>
-> 
-> The MT6392 is a regulator found on boards based on the MediaTek
-> MT8167, MT8516, and probably other SoCs. It is a so called PMIC and
-> connects as a slave to a SoC using SPI, wrapped inside PWRAP.
-> 
-> Signed-off-by: Fabien Parent <parent.f@gmail.com>
-> Co-developed-by: Val Packett <val@packett.cool>
-> Signed-off-by: Val Packett <val@packett.cool>
-> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-> ---
->   drivers/regulator/Kconfig                  |   9 +
->   drivers/regulator/Makefile                 |   1 +
->   drivers/regulator/mt6392-regulator.c       | 487 +++++++++++++++++++++
->   include/linux/regulator/mt6392-regulator.h |  40 ++
->   4 files changed, 537 insertions(+)
->   create mode 100644 drivers/regulator/mt6392-regulator.c
->   create mode 100644 include/linux/regulator/mt6392-regulator.h
-> 
+On Di, 2026-03-17 at 02:36 +0000, Yixun Lan wrote:
+> Instead of grouping several different reset lines into one composite
+> reset, decouple them to individual ones which make it more aligned
+> with underlying hardware. And for DWC USB driver, it will match well
+> with the number of the reset property in the DT bindings.
+>=20
+> The DWC3 USB host controller in K3 SoC has three reset lines - AHB, VCC,
+> PHY. The PCIe controller also has three reset lines - DBI, Slave, Master.
+> Also three reset lines each for UCIE and RCPU block.
+>=20
+> As an agreement with maintainer, the reset IDs has been rearranged as
+> contiguous number and pushed as a fix for the driver, and reason is that
+> there isn't any consumer of reset driver so far,
 
-..snip..
+Unfortunately that does not seem to be the case for all APMU resets.
+A lore query for all changed IDs [1] yields a patch that adds ethernet
+device nodes using RESET_APMU_EMAC[012] [2].
 
-> +
-> +/* The array is indexed by id(MT6392_ID_XXX) */
-> +static struct mt6392_regulator_info mt6392_regulators[] = {
-> +	MT6392_BUCK("buck_vproc", VPROC, 700000, 1493750, 6250,
+[1] https://lore.kernel.org/all/?q=3Ddfb%3ARESET_APMU_USB2+OR+dfb%3ARESET_A=
+PMU_USB3_PORTA+OR+dfb%3ARESET_APMU_USB3_PORTB+OR+dfb%3ARESET_APMU_USB3_PORT=
+C+OR+dfb%3ARESET_APMU_USB3_PORTD+OR+dfb%3ARESET_APMU_QSPI+OR+dfb%3ARESET_AP=
+MU_QSPI_BUS+OR+dfb%3ARESET_APMU_DMA+OR+dfb%3ARESET_APMU_AES_WTM+OR+dfb%3ARE=
+SET_APMU_MCB_DCLK+OR+dfb%3ARESET_APMU_MCB_ACLK+OR+dfb%3ARESET_APMU_VPU+OR+d=
+fb%3ARESET_APMU_DTC+OR+dfb%3ARESET_APMU_GPU+OR+dfb%3ARESET_APMU_ALZO+OR+dfb=
+%3ARESET_APMU_MC+OR+dfb%3ARESET_APMU_CPU0_POP+OR+dfb%3ARESET_APMU_CPU0_SW+O=
+R+dfb%3ARESET_APMU_CPU1_POP+OR+dfb%3ARESET_APMU_CPU1_SW+OR+dfb%3ARESET_APMU=
+_CPU2_POP+OR+dfb%3ARESET_APMU_CPU2_SW+OR+dfb%3ARESET_APMU_CPU3_POP+OR+dfb%3=
+ARESET_APMU_CPU3_SW+OR+dfb%3ARESET_APMU_C0_MPSUB_SW+OR+dfb%3ARESET_APMU_CPU=
+4_POP+OR+dfb%3ARESET_APMU_CPU4_SW+OR+dfb%3ARESET_APMU_CPU5_POP+OR+dfb%3ARES=
+ET_APMU_CPU5_SW+OR+dfb%3ARESET_APMU_CPU6_POP+OR+dfb%3ARESET_APMU_CPU6_SW+OR=
++dfb%3ARESET_APMU_CPU7_POP+OR+dfb%3ARESET_APMU_CPU7_SW+OR+dfb%3ARESET_APMU_=
+C1_MPSUB_SW+OR+dfb%3ARESET_APMU_MPSUB_DBG+OR+dfb%3ARESET_APMU_UCIE+OR+dfb%3=
+ARESET_APMU_RCPU+OR+dfb%3ARESET_APMU_DSI4LN2_ESCCLK+OR+dfb%3ARESET_APMU_DSI=
+4LN2_LCD_SW+OR+dfb%3ARESET_APMU_DSI4LN2_LCD_MCLK+OR+dfb%3ARESET_APMU_DSI4LN=
+2_LCD_DSCCLK+OR+dfb%3ARESET_APMU_DSI4LN2_DPU_ACLK+OR+dfb%3ARESET_APMU_DPU_A=
+CLK+OR+dfb%3ARESET_APMU_UFS_ACLK+OR+dfb%3ARESET_APMU_EDP0+OR+dfb%3ARESET_AP=
+MU_EDP1+OR+dfb%3ARESET_APMU_PCIE_PORTA+OR+dfb%3ARESET_APMU_PCIE_PORTB+OR+df=
+b%3ARESET_APMU_PCIE_PORTC+OR+dfb%3ARESET_APMU_PCIE_PORTD+OR+dfb%3ARESET_APM=
+U_PCIE_PORTE+OR+dfb%3ARESET_APMU_EMAC0+OR+dfb%3ARESET_APMU_EMAC1+OR+dfb%3AR=
+ESET_APMU_EMAC2+OR+dfb%3ARESET_APMU_ESPI_MCLK+OR+dfb%3ARESET_APMU_ESPI_SCLK
+[2] https://lore.kernel.org/all/20260318035542.517554-1-inochiama@gmail.com=
+/
 
-s/buck_//g
-s/ldo_//g
+Please reorder the resets such that only the decoupled lines get new
+numbers. Especially EMAC resets should keep the same value.
 
-after which
+> so should not cause any ABI breakage.
+>
+> Also, the changes of DT binding header file and reset
+> driver are merged together as one single commit to avoid git-bisect
+> breakage.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+This addresses the only remaining checkpatch-warning:
 
+  WARNING: DT binding docs and includes should be a separate patch. See: Do=
+cumentation/devicetree/bindings/submitting-patches.rst
 
+which is ignored on purpose to avoid a bisection hazard.
+
+> Fixes: 938ce3b16582 ("reset: spacemit: Add SpacemiT K3 reset driver")
+> Fixes: 216e0a5e98e5 ("dt-bindings: soc: spacemit: Add K3 reset support an=
+d IDs")
+> Signed-off-by: Yixun Lan <dlan@kernel.org>
+
+regards
+Philipp
 
