@@ -1,108 +1,357 @@
-Return-Path: <devicetree+bounces-277443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277442-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wOipG5v3umlwdwIAu9opvQ
-	(envelope-from <devicetree+bounces-277443-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 20:06:03 +0100
+	id CHqOA133umlvdgIAu9opvQ
+	(envelope-from <devicetree+bounces-277442-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 20:05:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D93DA2C1C84
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 20:06:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9243A2C1C33
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 20:05:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 96156300333C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:06:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DADA830071E1
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:04:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 669383EE1DA;
-	Wed, 18 Mar 2026 19:06:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6AD03E9F73;
+	Wed, 18 Mar 2026 19:04:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=scrittaperbarca.com header.i=@scrittaperbarca.com header.b="PINaSBbp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dnP9N4NH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpcmd11120.aruba.it (smtpcmd11120.aruba.it [62.149.156.120])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 335383ED105
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 19:05:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.149.156.120
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773860760; cv=none; b=K1Mj5/SOJL7ImKOMGwFN5dlTIf0mcOCkfwHoYU4pCBtOONYFg1OOIy4VWMzWcPUYL8BHKy8o1BD7LGu5xxm/mWOQgwqLdhQ2xqGUt56uV7TgeTGZx75tu70VAAmYQFbPvBksyeaseMb6z32dD0Q6/UHrgjy8XUo5YxDnkmKjw7A=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773860760; c=relaxed/simple;
-	bh=oY33/4N7xTQrmUt4cyNLegoYbNkEv4yo0//GRNjtvtw=;
-	h=Date:To:From:Subject:Message-ID:MIME-Version:Content-Type; b=CvLFaFX5gVjREawNaz2lQoWuTIPmTya2g+ydubey25pBEyZQ4sowyvxvjHziL/1WsmMCUVSSjEQxG/ouQ28H2oI644vnwFUfD4M/T453JWzuBgseiAinE2UQJG9dsH2sFNhoRSLPqLVe/SzvaQzd+x/HTtHGk/crdb03cQ3kyVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=scrittaperbarca.com; spf=pass smtp.mailfrom=scrittaperbarca.com; dkim=pass (2048-bit key) header.d=scrittaperbarca.com header.i=@scrittaperbarca.com header.b=PINaSBbp; arc=none smtp.client-ip=62.149.156.120
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=scrittaperbarca.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=scrittaperbarca.com
-Received: from www.scrittaperbarca.com ([89.46.104.189])
-	by Aruba SMTP with ESMTPSA
-	id 2wAJwrNECfibd2wAJwYdzv; Wed, 18 Mar 2026 20:02:47 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=scrittaperbarca.com;
-	s=a1; t=1773860567; bh=oY33/4N7xTQrmUt4cyNLegoYbNkEv4yo0//GRNjtvtw=;
-	h=Date:To:From:Subject:MIME-Version:Content-Type;
-	b=PINaSBbp8b+HdmH0RQXFIGn+EhmYO31XvDO7AE0Dw4gtFdDqGCVT24BL8Mzg4fKWl
-	 XjZpodL/1jfGAbNGAQdHvfcB/BiEfos+RWuNF+neTQlAeko8DgEJwyesEDy6S4LbrC
-	 +Fd0aJfNBIsrLyoyuEM6M1y4g4G1ZfD+/PKb6Ocj9kmS3ru+QT4v0Dj6uPwsCk4d3O
-	 aYfwy4HIpf2F22FtzTq+D8van3MCRTG4iM0AKjwe7XO583m0WszOMYNAPs6tj+HtsC
-	 X4qnHV0Xky9OLSTsijqwfQDg2IX7FZUsedGdUGptaW2E4Po+XYkM11LLLICZVAkW5O
-	 2KCtdbb/oY9wg==
-Date: Wed, 18 Mar 2026 19:02:47 +0000
-To: devicetree@vger.kernel.org
-From: Scritta per Barca | Crea la tua scritta in acciaio inox <info@scrittaperbarca.com>
-Subject: Abbiamo ricevuto la tua richiesta
-Message-ID: <ocjAWWzAQWdxe4EcK0sqmf050mhKH2UIKsRaj3bzhYU@www.scrittaperbarca.com>
-X-Mailer: WPMailSMTP/Mailer/smtp 4.7.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D766919C546
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 19:03:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.218.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773860641; cv=pass; b=urC076TaO7ogeVq6zPEIg3xd5EpwbJp0BlGKcgTMrNwrMTV61ol3l3LYC5ORKTBEWvpG/VBKvVZbz+TEmZ6kJVGNr00D5I3EGCGo7A7db5ojBgp/Aq1Ki/xHtDWM1Q95XhgudeFDEbvvIgJumPtJ3yMBaX5srTxo3ylqgoYqaNQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773860641; c=relaxed/simple;
+	bh=T1+fx/WLpTfB9SQJibZ6lWXK3GEnUtk5g7rLlawTyh0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Nr5CY5+7DamhG069gRlmTCt0VJQannfrhi2RCBxhsd/hDhD/ZMMjpB6O4B/SszysDB7r1fYQJXgSho6sMpe8f7TTWnQOksHjIsd2W/utuITr17J6mOyHlUGso1V56N3nJSHwcOjxu1HkWs/UgngCo/+ewiIXXzipuaJCLCie6r4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dnP9N4NH; arc=pass smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b886fc047d5so20638966b.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:03:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773860638; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ATgIyXtWU9itBW+6+fMSjQevnb6PKHXHk2CSIVETJv0zLJgbE1B0Rwjy9Y9XtJu5cx
+         40EgH7ePu0YkuDDvpSEv0NmM+jNSfNjF3jCaQB7snvgwXyNXW2IPLUlmAe54DeKYVOho
+         mXtS4bjmy/CvEDv2ebfTrI0VjF5l183aKPIw0TIhA2f91dnbrK9VOYGIwp+2eT41cQ9g
+         R0w7Q807Nnr0FPO0Cs0wt257B6IC+dgqoaB9rSru7z5nriNdTJMcEq/G2dzReZzmi/Is
+         k2o98Ufo7qqXTH6bQJEUNd68CrXIAtm4zBJNpoRjm2obqW+FFm1+KlweFL1pj/TIhx1h
+         FU0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=04ig8Jpnhmqmb93VFIyiBP6MR+wj/njfRfrqGD7STpI=;
+        fh=ZG82n+H7suV9mJ4b7Fj4f3uQwa7/U67M4h6w4jGj0Vs=;
+        b=TOpYTOfK7yacj64gFzjhgtjSYBSHARfR1swan3tzqvXL9oYsLCFCIcXlJTnX1Bbnju
+         UuBK1Qg0YGsf3BdpNPfHROPcx+azbpg/jAULXrpxin8ttbibaM/3GjpsZvf64vYUr4nM
+         QGIx0CkdH5Jwt2UgQfbZHoivMADbCMEARUIMOucHBEDIeI77n/PCau/wMJi5fYqI8PgJ
+         HzN6gw00pGdgUvh+1kBTXRc20rMVhS/QBcAL/vEXMoF9m4JebFdnpKcMwXU/BvwZmfou
+         qsp6WGBomifRHR6FfJHjMaL9aJJMukWWbSBy+KldqbIHj8nnMgLBP3x/Lsms6zpW7vWB
+         +PjA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1773860638; x=1774465438; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=04ig8Jpnhmqmb93VFIyiBP6MR+wj/njfRfrqGD7STpI=;
+        b=dnP9N4NHO/fn1NCR86BmlTLBnppX+fJI2qrty6KzVKEs+tKSvODc/CXKU8byDw4x0g
+         vNcXT+YR0sXFcWS/Pw3Q5+p0q6jdExZPksq9Zkv8vOt0ZfcKsQGpn4JaXZcCO8BCd1jk
+         KSO6K47zEPI8al/jqeQH9YnEbDQyGc/X2xDHnVXjZyR9ZFmnfE7YNjuhdu4GUVKfgBUS
+         3NkRw3FPfCKndw0oizKf/lA1UzTZAq2Pry5A8fPIPhvN3ax4L9NB5P6Sdxw6eZkNFRJL
+         O//3njHue7pjHuI1wVCTWX/qzmYHG56HqkyqWZxE9+2S7u7o1VVdMyeU9vUydZxUpdM3
+         gwqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773860638; x=1774465438;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=04ig8Jpnhmqmb93VFIyiBP6MR+wj/njfRfrqGD7STpI=;
+        b=dZlEklb/HW3xjJ3uvfZ3phiBVtnEYMTPXsdyd5Bmlb/a9M0vZkp9psUNmJkmSOMVWn
+         ZrPRuB3PW7uYZy9WlPakLPQfSVcHQSIBItRQBg87cqyJcZ2yTqo5iO02OxpPGifYAgyh
+         BJ3uT/Q+0OfHyxHrczIXjtsAqn6w6WntIL81u0senIYuemzZnQBTU37IG58aAr28yeVg
+         HEJhJ2tbAugoBiu7HcFv5fei/LK+HNebNyKamX53+sr3piMMXd1c78pEmROpZC3145vk
+         gCGBtYzSXA6CnqhERKmsEPuWrD2q3kvWOi8znJoAJSNzcusv/+njEH3xlSMGAbnYHnP5
+         YyTA==
+X-Forwarded-Encrypted: i=1; AJvYcCVqtJwr/FDtj0dEYGduexdDNIvkm28XMk4BlJ3SymS0wVUfFMQ/Zyu8vnFVa5AZtb+mxburz8hqLWEv@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYu8OMO9tq7B4sWCVngr0IzobA6iOXnejjCzpvwq2JdAYstmhd
+	xI+hOs3Ub+TILxh7qjfHreNr4rKxH8QLkxZr7kz5BLSPHkyMi2g9L422hLW0bftlpgcL3nfxNPs
+	JqW9B/CGyaY3Ibu2lqtrb+RcQZmNDhsV3Zm1VzNhj5w==
+X-Gm-Gg: ATEYQzz8pe5iGSAH0rWYyhDcaIkELQr646SKl8A32hDMpD45A6L1Wef9O9yDrSZEZSe
+	LJ99i7nk9bK9zJFMp0wn9tpwejLyuUDLs0aJWqGhV6QZREuvDX4ALo3U7ND/hpBgp3C4nuUTeEk
+	EmY4MGFgNxlTyBkOwulW0Ju9ULQSRFwQZ7xAGDsuLoKcKsNTAyq88wcyDcLtw1UeJpS5wbFynDH
+	1clwn8AuwFtUxZmbzxmEiScko02zqpY+H8gpXJjqU7bhtedvBtKhu/KIpiz2knpgdZpBXulWgJB
+	0eIF4Lm7HHhVHDF/7WB+u45QrX6QRKKiQa5cZTPHNK/iphxiHe4=
+X-Received: by 2002:a17:907:96a3:b0:b94:1bd:13fa with SMTP id
+ a640c23a62f3a-b97f493bde3mr266129966b.21.1773860638142; Wed, 18 Mar 2026
+ 12:03:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CMAE-Envelope: MS4xfOuj+SpneBrwTM4wqvZSf3s5GPigNPy5sRCJdPF8Hfl5wdegpSRuh2zJGWcWOHjr6z6HgJ3d32zFTDgzXjSxDxDqwzC0ty+IcrsUIwUFdW7wNd4zvvda
- GKsKQR+/+SsY3LY0xVRJUDvPervYQwqtaOoCA/Fl7bb60HR/ToN/ghaDCVjHE1LcIGS2R5/8/c45lx5GydcKfhg6f/hW6rYwor1QHsHNaDza71BaxqGMWJxq
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[scrittaperbarca.com,none];
-	MID_RHS_WWW(0.50)[];
-	R_DKIM_ALLOW(-0.20)[scrittaperbarca.com:s=a1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+References: <20260313195801.2043306-1-shenwei.wang@nxp.com>
+ <20260313195801.2043306-4-shenwei.wang@nxp.com> <2aa1d063-181f-4145-9f1f-7e3012c4d0af@foss.st.com>
+ <104e9861-bfd4-4e0f-8967-a849edf7e6fb@lunn.ch> <CANLsYkx6KhspTjzpk51ywfgWcf-FR7-3XrH=MmBi_W6yZmMukA@mail.gmail.com>
+ <PAXPR04MB9185E1D7543DB60DE089423B894EA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+In-Reply-To: <PAXPR04MB9185E1D7543DB60DE089423B894EA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+Date: Wed, 18 Mar 2026 13:03:47 -0600
+X-Gm-Features: AaiRm50DCHDfwwIrpEvrd6IARu-OJyOKkB98w-Mz3i8yabOEb0YcC2ELSE3lijw
+Message-ID: <CANLsYkyvHBKVuRB9abg=WijMLAfaboBxb_eHWETQ6hU3C9Zmew@mail.gmail.com>
+Subject: Re: [PATCH v12 3/5] gpio: rpmsg: add generic rpmsg GPIO driver
+To: Shenwei Wang <shenwei.wang@nxp.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>, 
+	Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Frank Li <frank.li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Shuah Khan <skhan@linuxfoundation.org>, 
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>, 
+	"imx@lists.linux.dev" <imx@lists.linux.dev>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, dl-linux-imx <linux-imx@nxp.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[scrittaperbarca.com:+];
-	TAGGED_FROM(0.00)[bounces-277443-lists,devicetree=lfdr.de];
-	RCPT_COUNT_ONE(0.00)[1];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277442-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[lunn.ch,foss.st.com,kernel.org,lwn.net,nxp.com,pengutronix.de,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org,bgdev.pl];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[info@scrittaperbarca.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	REDIRECTOR_URL(0.00)[tinyurl.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,scrittaperbarca.com:dkim,www.scrittaperbarca.com:mid]
-X-Rspamd-Queue-Id: D93DA2C1C84
+	FROM_NEQ_ENVFROM(0.00)[mathieu.poirier@linaro.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	NEURAL_HAM(-0.00)[-0.851];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9243A2C1C33
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Ciao Makeenvemn,
+On Wed, 18 Mar 2026 at 12:46, Shenwei Wang <shenwei.wang@nxp.com> wrote:
+>
+>
+>
+> > -----Original Message-----
+> > From: Mathieu Poirier <mathieu.poirier@linaro.org>
+> > Sent: Wednesday, March 18, 2026 11:03 AM
+> > To: Andrew Lunn <andrew@lunn.ch>
+> > Cc: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>; Shenwei Wang
+> > <shenwei.wang@nxp.com>; Linus Walleij <linusw@kernel.org>; Bartosz
+> > Golaszewski <brgl@kernel.org>; Jonathan Corbet <corbet@lwn.net>; Rob He=
+rring
+> > <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dool=
+ey
+> > <conor+dt@kernel.org>; Bjorn Andersson <andersson@kernel.org>; Frank Li
+> > <frank.li@nxp.com>; Sascha Hauer <s.hauer@pengutronix.de>; Shuah Khan
+> > <skhan@linuxfoundation.org>; linux-gpio@vger.kernel.org; linux-
+> > doc@vger.kernel.org; linux-kernel@vger.kernel.org; Pengutronix Kernel T=
+eam
+> > <kernel@pengutronix.de>; Fabio Estevam <festevam@gmail.com>; Peng Fan
+> > <peng.fan@nxp.com>; devicetree@vger.kernel.org; linux-
+> > remoteproc@vger.kernel.org; imx@lists.linux.dev; linux-arm-
+> > kernel@lists.infradead.org; dl-linux-imx <linux-imx@nxp.com>; Bartosz
+> > Golaszewski <brgl@bgdev.pl>
+> > Subject: [EXT] Re: [PATCH v12 3/5] gpio: rpmsg: add generic rpmsg GPIO =
+driver
+> > On Tue, 17 Mar 2026 at 08:11, Andrew Lunn <andrew@lunn.ch> wrote:
+> > >
+> > > > > +struct rpmsg_gpio_info {
+> > > > > +   struct rpmsg_device *rpdev;
+> > > > > +   struct rpmsg_gpio_packet *reply_msg;
+> > > > > +   struct completion cmd_complete;
+> > > > > +   struct mutex lock;
+> > > > > +   void **port_store;
+> > > > > +};
+> > > >
+> > > > Except if I missunderstood Mathieu and Bjorn's request:
+> > > > "reuse all the design-work done in the gpio-virtio"
+> > > > We should find similar structures here to those defined in
+> > > > virtio_gpio.h.
+> > > > struct rpmsg_gpio_config {
+> > > >       __le16 ngpio;
+> > > >       __u8 padding[2];
+> > > >       __le32 gpio_names_size;
+> > > > };
+> > > >
+> > > > /* Virtio GPIO Request / Response */ struct virtio_gpio_request {
+> > > >       __le16 type;
+> > > >       __le16 gpio;
+> > > >       __le32 value;
+> > > > };
+> > >
+> > > The core of the issue is that Shenwei is stone walling any change
+> > > which makes it hard to keep the legacy firmware. It is possible to us=
+e
+> > > these structures, but it makes the extra code Shenwei needs to
+> > > translate this protocol to the legacy protocol more difficult. It
+> > > might need to keep state, etc.
+> > >
+> >
+> > I agree with everything Andrew points out above.
+> >
+> > > Two points...
+> > >
+> > > The firmware implements more than GPIO. There is definitely I2C as
+> > > well, the first version of the patch has bits of I2C code. Looking at=
+:
+> > >
+> > > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fl=
+wn.
+> > > net%2Fml%2Fall%2F20250922200413.309707-3-
+> > shenwei.wang%40nxp.com%2F&dat
+> > >
+> > a=3D05%7C02%7Cshenwei.wang%40nxp.com%7C4b8879a9c89a4a831cf508de850
+> > 7de18%
+> > >
+> > 7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C639094465992371367%
+> > 7CUnkn
+> > >
+> > own%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIl
+> > AiOiJX
+> > >
+> > aW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3Ds8tl8n
+> > m3eD
+> > > 9l%2FetyyE%2FPWwJh4wQalaaHr4OEwzpQ7NY%3D&reserved=3D0
+> > >
+> > > There is also RTC, and a few other things which don't directly map to
+> > > Linux subsystems, but maybe do have Linux drivers?
+> > >
+> > > Give how much pushback there has been on the existing protocol for
+> > > GPIO, it would be wise to assume that I2C, and RTC is going to get th=
+e
+> > > same amount of pushback. If any of these three, GPIO, I2C, or RTC
+> > > decide that only a new, clean protocol will be accepted, no legacy
+> > > shims, the firmware has to change, breaking compatibility to legacy
+> > > protocols, and the accepted shims become pointless Maintenance burden=
+.
+> > >
+> >
+> > I have made this point clear before: modeling legacy protocols in mainl=
+ine doesn't
+> > scale.  Mainline uses a single generic protocol, and yes, it means brea=
+king legacy
+> > protocols.  This is the cost of moving to a mainline kernel.  If people=
+ want to use
+> > the legacy firmware, they must stick with a legacy kernel.
+> >
+> > > Point two is that the customers who are pushing for these drivers to
+> > > be added to Mainline probably know that nearly nothing gets into
+> > > Mainline without some changes. There is some short term pain to
+> > > swapping to Mainline because of these changes, in this case, firmware
+> > > upgrades. But in the long run, it is worth the pain to be able to use
+> > > Mainline. And those customers who don't want to upgrade the firmware
+> > > can keep with the out of tree drives.
+> > >
+> > > So, what are our choices?
+> > >
+> > > 1) We accept the code as it is now, with the shim?
+> > >
+> >
+> > NAK
+> >
+> > > 2) We keep pushing for the virtio protocol, with the shim?
+> > >
+> >
+> > NAK
+> >
+> > > 3) We keep pushing for the virtio protocol, no shim, firmware changes
+> > >
+> >
+> > Nothing will get merged in the RPMSG subsystem that includes support fo=
+r the
+> > legacy protocol.  Not today, not in a month, not in 5 years.
+> >
+>
+> @Mathieu,
+> Your tone is unnecessary. If you believe this driver must
+> comply with a specific virtio protocol, then please point to the exact
+> specification instead of making blanket statements.
+>
+> If virtio is the direction you prefer, you are of course free to propose
+> and implement such support yourself.
+>
+> My patches are contributed in good faith to improve the ecosystem, and
+> this work clearly belongs to the GPIO subsystem. I don't understand why
+> you are asserting authority here without providing any technical
+> justification.
+>
 
-Abbiamo ricevuto la tua richiesta con i seguenti dati:
+All arguments have already been presented to you, we are now going in circl=
+es.
 
-Nome: Makeenvemn
-Email: devicetree@vger.kernel.org
-Messaggio:
-Lost your drive and smile? It happens to the best of us. But you can reclaim it with discreet, effective solutions shipped fast. Privacy first, quality assured. Explore our mood range today.  https://tinyurl.com/36bswubw#ILJZxj
+I am happy to look at a new revision of this work that complies with
+the comments Andrew, Arnaud and I provided.  I will not engage with
+you or your work until that time comes.
 
-Ti risponderemo il prima possibile.
-
-— Scritta per Barca | Crea la tua scritta in acciaio inox
-
+> @Linus Walleij,
+> From a technical standpoint, this GPIO driver is no different from
+> gpio-mxc, gpio-omap, or gpio-rda. If the concern is simply the use of
+> the word =E2=80=9Cgeneric=E2=80=9D in the name, I=E2=80=99m perfectly fin=
+e reverting it to an
+> NXP=E2=80=91specific driver.
+>
+> If maintaining a private GPIO driver is no longer acceptable going
+> forward, that=E2=80=99s also fine =E2=80=94 we can stop the discussion he=
+re. If you think
+> there are still technical limitations in the driver itself, I=E2=80=99m m=
+ore than
+> willing to continue improving it.
+>
+> But the goal is not to create a driver for another protocol that someone
+> claims perfect.
+>
+> Thanks,
+> Shenwei
+>
+> > > 4) We pause GPIO where it is today, and restart all the arguments wit=
+h
+> > >    the I2C driver. We can come back to the GPIO driver in a few month=
+s
+> > >    time once we have a better idea how I2C is going. And maybe we als=
+o
+> > >    need to see the watchdog driver, and argue about its protocol.
+> > >
+> > > I also understand ST has a generic I2C driver nearly ready, if that
+> > > gets merged first, that probably kills the NXP I2C protocol, and mayb=
+e
+> > > the NXP GPIO and RTC protocols.
+> > >
+> > > My vote is for 3. If not 3, then 4.
+> > >
+> >
+> > Strong vote for 3.
+> >
+> > >      Andrew
+> > >
 
