@@ -1,308 +1,301 @@
-Return-Path: <devicetree+bounces-277414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277417-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kOK4Cyntuml0dAIAu9opvQ
-	(envelope-from <devicetree+bounces-277414-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:21:29 +0100
+	id 8HOfOKftuml0dAIAu9opvQ
+	(envelope-from <devicetree+bounces-277417-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:23:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE30C2C126B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:21:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BD4F2C12FD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:23:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B7D6132CEAD3
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 17:52:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 974AC3012E93
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 17:56:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F75B359703;
-	Wed, 18 Mar 2026 17:52:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 183EE3921DE;
+	Wed, 18 Mar 2026 17:56:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FlkHo54T"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pwj5M45d"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF67435839D;
-	Wed, 18 Mar 2026 17:52:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B779137B01C;
+	Wed, 18 Mar 2026 17:56:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773856377; cv=none; b=QIk3GMg8O9F/GwivrJ1Pf9ow2W2DDwLrCp4jHD7fCD9ncgGglAS8G4ctk8PSVUCD2lNmNCoE2OXSW3DG+shXzXBnl4LvJuPjE5T7gJmlOqBFuZXe5l1YgXX29iwqrhb1dFNOztSfJny98O9Jl4ll8BKwJrD307lniXE1by1UarM=
+	t=1773856571; cv=none; b=u7UlZPh8Iiy19lddMSTJOI5ZqBQxZhxFvKDaNXa7BUpr4KVpN7p/VVjy+CrfeQ6MDkaueOSkx6FvrHCJg19zAjCZIBLoOGxg6rimwVCClHFTgYOgDzBAb0GIMd57Vi6w8/RHxua7zDJEXyvoeqsuQjO4PV9pscUlgAQvaHYoBcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773856377; c=relaxed/simple;
-	bh=7RhELfoamd+1f1X8vuupz5lvW6wqDowxnnhYEeX4noA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SmJ5pLyNiWgAXPkxX6NIhYLjTMHFyZlsxe0prv5NwdPuBPGTBu3WtMiQECnOhs9UqjnTFtDGIo+8U2jnQCohlxBiQzVJV1c4LTMhnxuOizAVOQ1kYbJgXnxNsoz+5FnsV6RmHW2hSiFMNrUYnpANmYk4uP497CrVKEhVrx20WrU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FlkHo54T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E97A2C19421;
-	Wed, 18 Mar 2026 17:52:52 +0000 (UTC)
+	s=arc-20240116; t=1773856571; c=relaxed/simple;
+	bh=Uvo457Wh7y4+UHfmA1m+9aW9HdSvK6o1Rnp5RB93Ae8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZfSIf7QxxAKnqQ2EDWHMGrpOafl3rCJqakK/FaU6R7DFR94++fFnYNHyilujLWuB2OtGkGuxJnVGHuZrZtqxQbcn4zy7rqxm0QmXglCA5ZBYzEYYQ+B2ml3KQ0aUOJ3Vn5a5/mG21/rC74DjjrT1UvC2XeIl/fQPsh5NwnR0EC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pwj5M45d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 14957C2BC87;
+	Wed, 18 Mar 2026 17:56:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773856376;
-	bh=7RhELfoamd+1f1X8vuupz5lvW6wqDowxnnhYEeX4noA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FlkHo54TQPrdvX0KKoD5mQgS7R2ornPusMzZgXsAAjpK1wR14Q25dhL3FoO+NFRne
-	 Tge8FZzhYFWJqLKEYm7pBjmeYQpMCnPNJcu702ZsOxL166yonfYSPEBekK5NZ53Zwa
-	 KduLdF/9llG0ap1QNfaP//L1vXJ6QSbXyJAoZOW/5rpuqFVT/XB85bAKP202tlYa/H
-	 cHsVssPe7EKhKlVl7iJB7wZaGMII93Ft8lagmNbsYIExi7BWTFxsGVQ1YfIohNt9uo
-	 3/9pR8anHFvNTSpZupNKdtM4QCh5zOEQa43YtZBe0/vH4JfJQkmhyby5QLIrwyj+Z/
-	 DdKRUi27K2cVw==
-Date: Wed, 18 Mar 2026 17:52:50 +0000
-From: Conor Dooley <conor@kernel.org>
-To: michael.riesch@collabora.com
-Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Jagan Teki <jagan@amarulasolutions.com>,
-	=?utf-8?B?0JrRg9C30L3QtdGG0L7QsiDQnNC40YXQsNC40Ls=?= <mai.kuznetsov.misha@gmail.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Collabora Kernel Team <kernel@collabora.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/9] media: dt-bindings: add rockchip rk3588 vicap
-Message-ID: <20260318-mumbo-lumber-b550932a5423@spud>
-References: <20250430-rk3588-vicap-v2-0-77de5ee9048e@collabora.com>
- <20250430-rk3588-vicap-v2-2-77de5ee9048e@collabora.com>
+	s=k20201202; t=1773856571;
+	bh=Uvo457Wh7y4+UHfmA1m+9aW9HdSvK6o1Rnp5RB93Ae8=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=pwj5M45dSRaeyr0JBBBEOYVnGw+cmWRmTMnkfbNCFzh6rxklvj7GY+/koJGN+7DhT
+	 xfLvnZDSs//dcA7LWhXM8LendIIEIxDZEj9WzbaKnGDOp3tut1sI5IU8Q0LU9p1nU4
+	 V6njkWd77SVjz8VP+fi1QBRFA7yesAs3bi3Dttt/0kbnPoZs8DdSFTHKRCyksaeaos
+	 iYWcagcKkdOpSGPrQOO22lyMERpLc6hS7XjJoIKDcurQoYb/LNuBMoIfyclDHQSPTR
+	 3UO9q7lI7ddzdv71c/bvLLKUrCl/nGDTPYXut0seI4CCkLIOI2lj5/ooMVwrtf4cz5
+	 wqlVA1Ry09MvQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 08DD510775FE;
+	Wed, 18 Mar 2026 17:56:11 +0000 (UTC)
+From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
+Subject: [PATCH RFC v2 0/9] AD9910 Direct Digital Synthesizer
+Date: Wed, 18 Mar 2026 17:56:00 +0000
+Message-Id: <20260318-ad9910-iio-driver-v2-0-e79f93becf11@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="jVdB2zejn0FZqmel"
-Content-Disposition: inline
-In-Reply-To: <20250430-rk3588-vicap-v2-2-77de5ee9048e@collabora.com>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADDnumkC/22NwQrCMBBEf6Xs2Uh2G0vrSRD8AK/Sw7ZJ2wVtJ
+ JGglP67oV49vhnmzQLRBXERjsUCwSWJ4ucMtCugn3genRKbGUhTpQlrxbZpUCsRr2yQ5IJqutI
+ Smp4OOEDePYMb5L05b3C9nKHN4STx5cNn+0m4VT8l6T/KhEqrsqPKMJuaUZ945rsf971/QLuu6
+ xcCgM4guAAAAA==
+X-Change-ID: 20260218-ad9910-iio-driver-9b3d214c251f
+To: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
+ Rodrigo Alencar <rodrigo.alencar@analog.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773856569; l=8760;
+ i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
+ bh=Uvo457Wh7y4+UHfmA1m+9aW9HdSvK6o1Rnp5RB93Ae8=;
+ b=SR/nFpnm9hGI+jcZfDTxLu2NZd/po8+ZMuiaaF9nhKfGlUgb6/q7MD+GfocPrYrVUKSe1Ki9w
+ RDaCqtkcuCSAKtk0MKyTX+jvsIQwBfXvRiDd9iIVlyC2Fj6mcqQGb8l
+X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
+ pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
+X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
+ with auth_id=561
+X-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Reply-To: rodrigo.alencar@analog.com
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277414-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277417-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_CC(0.00)[linux.intel.com,ideasonboard.com,kernel.org,sntech.de,rock-chips.com,amarulasolutions.com,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.934];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[rodrigo.alencar@analog.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.994];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CE30C2C126B
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8BD4F2C12FD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+This patch series adds support for the Analog Devices AD9910 DDS.
+This is a RFC so that we can agree/discuss on the design that follows:
 
---jVdB2zejn0FZqmel
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This is a follow-up of the V1 discussion. We are reaching into this
+channel composition agreement where physical channels may have
+sub-channels. That adds the flexibility necessary for this design.
+Nothing has been changed to iio-core yet, so I've just addressed
+comments, aiming to keep the discussion going forward.
 
-On Tue, Mar 17, 2026 at 10:32:20AM +0100, Michael Riesch via B4 Relay wrote:
-> From: Michael Riesch <michael.riesch@collabora.com>
->=20
-> Add documentation for the Rockchip RK3588 Video Capture (VICAP) unit.
-> To that end, make the existing rockchip,rk3568-vicap documentation
-> more general and introduce variant specific constraints.
->=20
-> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
-> ---
->  .../bindings/media/rockchip,rk3568-vicap.yaml      | 191 +++++++++++++++=
-+++---
->  1 file changed, 167 insertions(+), 24 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-vica=
-p.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.yaml
-> index 18cd0a5a5318..15a889ff8e52 100644
-> --- a/Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.yaml
-> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.yaml
-> @@ -15,9 +15,15 @@ description:
->    the data from camera sensors, video decoders, or other companion ICs a=
-nd
->    transfers it into system main memory by AXI bus.
-> =20
-> +  The Rockchip RK3588 Video Capture (VICAP) is similar to its RK3568
-> +  counterpart, but features six MIPI CSI-2 ports and additional connecti=
-ons
-> +  to the image signal processor (ISP) blocks.
-> +
->  properties:
->    compatible:
-> -    const: rockchip,rk3568-vicap
-> +    enum:
-> +      - rockchip,rk3568-vicap
-> +      - rockchip,rk3588-vicap
-> =20
->    reg:
->      maxItems: 1
-> @@ -26,37 +32,23 @@ properties:
->      maxItems: 1
-> =20
->    clocks:
-> -    items:
-> -      - description: ACLK
-> -      - description: HCLK
-> -      - description: DCLK
-> -      - description: ICLK
-> +    minItems: 4
-> +    maxItems: 5
-> =20
->    clock-names:
-> -    items:
-> -      - const: aclk
-> -      - const: hclk
-> -      - const: dclk
-> -      - const: iclk
-> +    minItems: 4
-> +    maxItems: 5
-> =20
->    iommus:
->      maxItems: 1
-> =20
->    resets:
-> -    items:
-> -      - description: ARST
-> -      - description: HRST
-> -      - description: DRST
-> -      - description: PRST
-> -      - description: IRST
-> +    minItems: 5
-> +    maxItems: 9
-> =20
->    reset-names:
-> -    items:
-> -      - const: arst
-> -      - const: hrst
-> -      - const: drst
-> -      - const: prst
-> -      - const: irst
-> +    minItems: 5
-> +    maxItems: 9
+The AD9910 DDS core can be driven through several independent mechanisms:
+single tone profiles, a digital ramp generator, an internal RAM playback
+engine, a parallel data port, and output shift keying. Each of these
+represents a distinct signal path into the DDS accumulator, so the driver
+models them as separate IIO output channels (all IIO_ALTVOLTAGE type).
+This per-channel separation allows userspace to configure each mode
+independently through its own set of sysfs attributes, and to
+enable/disable modes individually via IIO_CHAN_INFO_ENABLE, relying on
+the hardware's own mode selection architecture.
 
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: rockchip,rk3568-vicap
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 4
-> +          maxItems: 4
+The AD9910 register map is not suited for the regmap framework: register
+widths vary across the map (16, 32, and 64 bits). The driver instead
+implements direct SPI access helpers with a software register cache, using
+type-specific read/write/update functions (ad9910_reg{16,32,64}_{read,
+write,update}) that handle endianness conversion and cache coherency.
 
-Anything here that repeats the outermost constraint should be dropped,
-so no minItems here..
+Registers are cached for several reasons. The control/function registers
+(CFR1, CFR2) are frequently queried to determine the current operating
+mode (e.g., checking RAM_ENABLE before every profile register access),
+and caching avoids repeated SPI read transactions for what are
+essentially state checks. The cache also enables efficient
+read-modify-write updates on multi-byte registers: the update functions
+merge new field values with the cached register content without issuing
+a SPI read, and skip the write entirely when the value is unchanged.
+Finally, the profile registers serve dual purposes depending on whether
+RAM mode is active -- they hold single tone parameters (FTW, POW, ASF)
+in normal operation but are repurposed for RAM playback configuration
+(start/end address, step rate, operating mode) when RAM is enabled. A
+shadow register array (reg_profile[]) preserves the inactive mode's
+settings across transitions, so no state is lost when switching between
+single tone and RAM operation.
 
-> +
-> +        clock-names:
-> +          items:
-> +            - const: aclk
-> +            - const: hclk
-> +            - const: dclk
-> +            - const: iclk
-> +
-> +        resets:
-> +          minItems: 5
-> +          maxItems: 5
+RAM data is loaded through firmware upload infrastructure. Userspace
+writes the waveform data as a raw binary buffer (up to 4096 bytes for
+the full 1024x32-bit RAM), and the driver reverses the byte array and
+transfers it to the device in a single SPI transaction. Per-profile
+start/end addresses and playback parameters (operating mode, step rate,
+no-dwell control) are configured through the RAM channel's ext_info
+attributes.
 
-=2E..or here...
+Streaming data to the DDS core through the parallel data port at the
+PD_CLK rate is not covered by this series. That functionality would
+be added in a separate patch series, building on top of the IIO backend
+infrastructure to provide a proper buffered data path.
 
-> +
-> +        reset-names:
-> +          items:
-> +            - const: arst
-> +            - const: hrst
-> +            - const: drst
-> +            - const: prst
-> +            - const: irst
+As I am pushing implementation, as lot has been done already without much
+supervision or agreement, still I would be interested on hearing about
+the design choices discussed above. Here is the output for the iio_info
+at this point:
 
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: rockchip,rk3588-vicap
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 5
-> +          maxItems: 5
+iio:device3: ad9910
+  8 channels found:
+      altvoltage120:  (output)
+      7 channel-specific attributes found:
+          attr  0: en value: 0
+          attr  1: frequency_offset value: 0.000000
+          attr  2: frequency_scale value: 1
+          attr  3: label value: parallel_port
+          attr  4: phase_offset value: 0.000000
+          attr  5: sampling_frequency value: 250000000.000000
+          attr  6: scale_offset value: 0.000000
+      altvoltage140:  (output)
+      11 channel-specific attributes found:
+          attr  0: address_end value: 1023
+          attr  1: address_start value: 0
+          attr  2: destination value: frequency
+          attr  3: destination_available value: frequency phase amplitude polar
+          attr  4: en value: 0
+          attr  5: frequency value: 0.000000
+          attr  6: label value: ram_control
+          attr  7: operating_mode value: direct_switch
+          attr  8: operating_mode_available value: direct_switch ramp_up
+		           bidirectional bidirectional_continuous ramp_up_continuous
+				   sequenced sequenced_continuous
+          attr  9: phase value: 0.000000
+          attr 10: sampling_frequency value: 250000000.000000
+      altvoltage130:  (output)
+      11 channel-specific attributes found:
+          attr  0: destination value: frequency
+          attr  1: destination_available value: frequency phase amplitude
+          attr  2: en value: 0
+          attr  3: label value: digital_ramp_generator
+          attr  4: operating_mode value: bidirectional_continuous
+          attr  5: operating_mode_available value: bidirectional ramp_down
+		           ramp_up bidirectional_continuous
+      altvoltage110:  (output)
+      4 channel-specific attributes found:
+          attr  0: frequency value: 0.000000
+          attr  1: label value: single_tone
+          attr  2: phase value: 0.000000
+          attr  3: scale value: 0.000000
+      altvoltage132:  (output)
+      8 channel-specific attributes found:
+          attr  0: frequency value: 0.000000
+          attr  1: frequency_step value: 0.000000
+          attr  2: label value: digital_ramp_down
+          attr  3: phase value: 0.000000000
+          attr  4: phase_step value: 0.000000000
+          attr  5: sampling_frequency value: 250000000.000000
+          attr  6: scale value: 0.000000000
+          attr  7: scale_step value: 0.000000000
+      altvoltage131:  (output)
+      8 channel-specific attributes found:
+          attr  0: frequency value: 0.000000
+          attr  1: frequency_step value: 0.000000
+          attr  2: label value: digital_ramp_up
+          attr  3: phase value: 0.000000000
+          attr  4: phase_step value: 0.000000000
+          attr  5: sampling_frequency value: 250000000.000000
+          attr  6: scale value: 0.000000000
+          attr  7: scale_step value: 0.000000000
+      altvoltage100:  (output)
+      4 channel-specific attributes found:
+          attr  0: label value: phy
+          attr  1: powerdown value: 0
+          attr  2: profile value: 0
+          attr  3: sampling_frequency value: 1000000000
+      altvoltage150:  (output)
+      6 channel-specific attributes found:
+          attr  0: en value: 0
+          attr  1: label value: output_shift_keying
+          attr  2: pinctrl_en value: 0
+          attr  3: sampling_frequency value: 250000000.000000
+          attr  4: scale value: 0.000000
+          attr  5: scale_step value: 0.000000
+  4 debug attributes found:
+          debug attr  1: ram_data ERROR: Input/output error (5)
+          debug attr  2: ram_loading value: 0
+          debug attr  3: direct_reg_access value: 0x2
 
-=2E..or maxItems here...
+Kind regards,
 
-> +
-> +        clock-names:
-> +          items:
-> +            - const: aclk
-> +            - const: hclk
-> +            - const: dclk
-> +            - const: iclk0
+Rodrigo Alencar
 
-> +            - const: iclk1
-> +
-> +        resets:
-> +          minItems: 9
-> +          maxItems: 9
+Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+---
+Changes in v2:
+- Device-tree bindings changes.
+- RAM loading to use firmware update interface.
+- Rearrange of channels into a hierarchy.
+- Link to v1: https://lore.kernel.org/r/20260220-ad9910-iio-driver-v1-0-3b264aa48a10@analog.com
 
-=2E..or here.
+---
+Rodrigo Alencar (9):
+      dt-bindings: iio: frequency: add ad9910
+      iio: frequency: ad9910: initial driver implementation
+      iio: frequency: ad9910: add simple parallel port mode support
+      iio: frequency: ad9910: add digital ramp generator support
+      iio: frequency: ad9910: add RAM mode support
+      iio: frequency: ad9910: add output shift keying support
+      iio: frequency: ad9910: add channel labels
+      Documentation: ABI: testing: add docs for ad9910 sysfs entries
+      docs: iio: add documentation for ad9910 driver
 
-> +
-> +        reset-names:
-> +          items:
-> +            - const: arst
-> +            - const: hrst
-> +            - const: drst
-> +            - const: irst0
+ .../ABI/testing/sysfs-bus-iio-frequency-ad9910     |  182 ++
+ .../bindings/iio/frequency/adi,ad9910.yaml         |  189 ++
+ Documentation/iio/ad9910.rst                       |  654 ++++++
+ Documentation/iio/index.rst                        |    1 +
+ MAINTAINERS                                        |   10 +
+ drivers/iio/frequency/Kconfig                      |   20 +
+ drivers/iio/frequency/Makefile                     |    1 +
+ drivers/iio/frequency/ad9910.c                     | 2261 ++++++++++++++++++++
+ 8 files changed, 3318 insertions(+)
+---
+base-commit: ff0843ceb1fb11a6b73e0e77b932ef7967aecd4b
+change-id: 20260218-ad9910-iio-driver-9b3d214c251f
 
-Were you willing to reuse "irst" for the 0th irst, all the repetition
-wouldn't be needed. I assume it represents the reset for the port at
-address 0, so it wouldn't even be a different meaning on each device.
+Best regards,
+-- 
+Rodrigo Alencar <rodrigo.alencar@analog.com>
 
-> +            - const: irst1
-> +            - const: irst2
-> +            - const: irst3
-> +            - const: irst4
-> +            - const: irst5
-> +
->  additionalProperties: false
-> =20
->  examples:
->=20
-> --=20
-> 2.39.5
->=20
->=20
 
---jVdB2zejn0FZqmel
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabrmcgAKCRB4tDGHoIJi
-0kE+AQCiO8R6sREJ16rGB4nk0o2txYYzKiWx5flN3eu4tYAL+gD/RBcvFZzkcWgN
-cce8jKdYN4Rihg2tKuLCrikL1c2BDAw=
-=sCrK
------END PGP SIGNATURE-----
-
---jVdB2zejn0FZqmel--
 
