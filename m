@@ -1,237 +1,127 @@
-Return-Path: <devicetree+bounces-277011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277012-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aIPZHP5gumnFUgIAu9opvQ
-	(envelope-from <devicetree+bounces-277011-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:23:26 +0100
+	id kL75FtZfumnFUgIAu9opvQ
+	(envelope-from <devicetree+bounces-277012-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:18:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7F602B7D84
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:23:25 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DBD92B7BF5
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:18:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BE17C31A34DF
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:17:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 981E63046D32
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:17:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6EB03793B1;
-	Wed, 18 Mar 2026 08:16:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4DDF37881B;
+	Wed, 18 Mar 2026 08:17:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="akfrV6+2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dXHw3aKU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60D7F379990;
-	Wed, 18 Mar 2026 08:16:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9044E36CE16;
+	Wed, 18 Mar 2026 08:17:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773821819; cv=none; b=RLDyfSSelJ8VAJoSOooatsKOnVBrb9lvsAi8jsuJOmhBgFXGx/8AzN/B3tFzGUWk8prC9/joGJJuuN2s4ATI/W0iP33xQheKehlMaNYQtzUAzt3jTotSUWGE3OfOwb3/kz8jZPrvslJ1c3uBjCMbK6M+LPxUCssB1LFH4IaDc+c=
+	t=1773821838; cv=none; b=uRk2QBUOAuRTXwszrKVQ495DoCDQzIV95+VrSgX0MebtY1GYRYHxYvC9iEae1+EWXFR9H2QMDkygl6Sm9r1HG+AgukPTblrV/FmT5ZetPusWjB1NyxwKxO+hLFGV/eMIVqAgHWHFrdfY+tQDQhzEQNWkWUrhUeyLjchMKWRyapc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773821819; c=relaxed/simple;
-	bh=SSjbX/oZCVC7F7z2pKEuPTbc+cbByYqZJzcz3d9kuxI=;
+	s=arc-20240116; t=1773821838; c=relaxed/simple;
+	bh=+abhc8EHvLWzaaYvpz3TrPh7cY1194PGz+g1MgZc+zY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I+yBwTOJRQG2bSNaotX3BypizJqxm4dgXauKRcVlQ7lZ4CeOHmvIdhER9Ycr4tbPhL0cwvP8OlWTh1DFgRyoULD9P3CyVxmodnbJzvAJ55T62PWP1fQ2dgcoHMVOdrCaYCKbFGLEnx4Xx2UWFoRGpI6GDi8mPxciLy84x/AgKXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=akfrV6+2; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773821819; x=1805357819;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SSjbX/oZCVC7F7z2pKEuPTbc+cbByYqZJzcz3d9kuxI=;
-  b=akfrV6+29gEti379DW7HxuK/+fGfYPYrRfVmZ6kmh0h5qSdKTxoChMfU
-   BJ5Mt5DQXcE7qYkUEhZKAjRvWbJEToSlXC7QEacHruAeHJhBLSjyKWiZd
-   xOCfWRA+OhkJYRibwVQkn6rt2jeqX9ezs4PKicA98nz0FzXhJxDVmUkNF
-   KPKGhzmz00yEheDYgxoHW6SXUTg8w5YO9oLaRF2FgzsPfSDHhPsD8F9Xg
-   ypTik78q9/TNM3X+SpNZidZTvciEfibk39XF12gnrB8SmAsfI4lxNiGJ3
-   AOmXTHAJgLXVE3D/laHjxknP61B957dtj03/QmoF/Z1sIfWHV1U12zZ+D
-   g==;
-X-CSE-ConnectionGUID: WQxW0pCbTmmssZbaYD39MA==
-X-CSE-MsgGUID: QmlRrr93TAexgDfT9OzGlw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="75051594"
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; 
-   d="scan'208";a="75051594"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2026 01:16:59 -0700
-X-CSE-ConnectionGUID: whA4oRNTQyC1pMX7DvDd0Q==
-X-CSE-MsgGUID: IBLUXZ6+T4iZtJ1zcQn+UA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; 
-   d="scan'208";a="253026429"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.240])
-  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2026 01:16:55 -0700
-Date: Wed, 18 Mar 2026 10:16:52 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] iio: dac: ad5706r: Add support for AD5706R DAC
-Message-ID: <abpfdELI33a0Ncl3@ashevche-desk.local>
-References: <20260318-dev_ad5706r-v3-0-5d078f41e988@analog.com>
- <20260318-dev_ad5706r-v3-2-5d078f41e988@analog.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=U56OpiZQlsVq9WqJdeLK7mycOCt1F6ZIjBCuIsQbbrRhlwXy6y08l8nX77F2HIsoSX3qYaz6Jwy3Nnrz+XLX1jWh6LKX9tY0kkVwLd3Vc98qPO7Wpjyaol+Q8Hcj1jTq9WfuLycXSEGaSzwgByMNOz95jT/bB9a6hel9yhY5KDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dXHw3aKU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA473C19421;
+	Wed, 18 Mar 2026 08:17:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773821838;
+	bh=+abhc8EHvLWzaaYvpz3TrPh7cY1194PGz+g1MgZc+zY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dXHw3aKUkgy7I9GXTS/O1allwuhL9lmxu6GeDUEH8VuRGkqS46RBOQAZHbrlbQtI2
+	 pDB7vpJyO3GnC3efuFuwyBqd85rA/qJqci1auam+enTqKrp1oS7CgdYJm7MLLE8Gnw
+	 Uncdfw9pSZXO1+gKdFOdWvN6qaUPqU3IHFvCXqpgC0qkovu01wYlioPMiWxqLoy1vP
+	 UXpToFqXYHc6ajNjLjJEspfcG3CDMcJlvUUFaTfG7D30Wxbp4D7MTCyyF+0YnNGJlC
+	 LxSVSf31TiLzXlK+zfRB4quWMyHY51M8glSxQqsYjdj9mFqo9vQn7M0T7/n/sQS6Zi
+	 sRXK6mJL3/BsA==
+Date: Wed, 18 Mar 2026 09:17:15 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Alexey Charkov <alchark@flipper.net>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Gene Chen <gene_chen@richtek.com>, Heiko Stuebner <heiko@sntech.de>, 
+	Yuanshen Cao <alex.caoys@gmail.com>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH v2 5/5] arm64: dts: rockchip: Add HUSB311 Type-C
+ controller on RK3576 EVB1
+Message-ID: <20260318-able-goose-of-downpour-db3bbd@quoll>
+References: <20260317-husb311-v2-0-03c17c986abe@flipper.net>
+ <20260317-husb311-v2-5-03c17c986abe@flipper.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260318-dev_ad5706r-v3-2-5d078f41e988@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.66 / 15.00];
+In-Reply-To: <20260317-husb311-v2-5-03c17c986abe@flipper.net>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277011-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277012-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,linux.intel.com,linuxfoundation.org,richtek.com,sntech.de,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org,oss.qualcomm.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,ashevche-desk.local:mid]
-X-Rspamd-Queue-Id: C7F602B7D84
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,flipper.net:email]
+X-Rspamd-Queue-Id: 1DBD92B7BF5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 01:13:36PM +0800, Alexis Czezar Torreno wrote:
-> Add support for the Analog Devices AD5706R, a 4-channel 16-bit
-> current output digital-to-analog converter with SPI interface.
+On Tue, Mar 17, 2026 at 10:08:02PM +0400, Alexey Charkov wrote:
+> Rockchip RK3576 EVB1 board has a Hynetek HUSB311 USB Type-C controller on
+> its Type-C OTG port, which also supports DisplayPort Alternate Mode.
 > 
-> Features:
->   - 4 independent DAC channels
->   - Hardware and software LDAC trigger
->   - Configurable output range
->   - PWM-based LDAC control
->   - Dither and toggle modes
->   - Dynamically configurable SPI speed
-
-
+> Add the required DT nodes to enable basic HUSB311 operation.
+> 
+> Note that for full support of mode and orientation switching, the USBDP
+> PHY schema may need to be expanded, such as in [1]. This is left out for
+> now until the respective schema is finalized and merged.
+> 
+> [1] https://lore.kernel.org/linux-rockchip/20260313-rockchip-usbdp-cleanup-v3-1-3e8fe89a35b5@collabora.com/
+> 
+> Signed-off-by: Alexey Charkov <alchark@flipper.net>
 > ---
-> Changes since v1:
->   - Removed PWM, GPIO, clock generator, debugfs, regmap, IIO_BUFFER
+>  arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
 
-Why was regmap removed?! Was it not used?
+DTS patch must not be in this patchset. Don't mix it.
 
->   - Removed all custom ext_info sysfs attributes
->   - Simplified to basic raw read/write and read-only scale
->   - SPI read/write can handle multibyte registers
-
-...
-
-> +#include <linux/array_size.h>
-> +#include <linux/bits.h>
-> +#include <linux/cleanup.h>
-
-+ errno.h
-
-> +#include <linux/iio/iio.h>
-
-+ mod_devicetable.h
-
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/spi/spi.h>
-
-+ types.h
-
-> +#include <linux/unaligned.h>
-
-Follow IWYU principle.
-
-...
-
-> +static int ad5706r_read_raw(struct iio_dev *indio_dev,
-> +			    struct iio_chan_spec const *chan, int *val,
-> +			    int *val2, long mask)
-> +{
-> +	struct ad5706r_state *st = iio_priv(indio_dev);
-> +	u16 reg_val;
-> +	int ret;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		scoped_guard(mutex, &st->lock) {
-
-
-Can't it be simply guard()() ?
-
-> +			ret = ad5706r_spi_read(st, AD5706R_REG_DAC_DATA_READBACK_CH(chan->channel),
-
-It's too long line.
-
-> +					       &reg_val);
-> +
-> +			if (ret)
-> +				return ret;
-> +
-> +			*val = reg_val;
-> +		}
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_SCALE:
-> +		*val = 50;
-> +		*val2 = AD5706R_DAC_RESOLUTION;
-> +		return IIO_VAL_FRACTIONAL_LOG2;
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-
-...
-
-> +static int ad5706r_write_raw(struct iio_dev *indio_dev,
-> +			     struct iio_chan_spec const *chan, int val,
-> +			     int val2, long mask)
-> +{
-> +	struct ad5706r_state *st = iio_priv(indio_dev);
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		if (val < 0 || val >= AD5706R_DAC_MAX_CODE)
-
-in_range()?
-
-(will need minmax.h)
-
-> +			return -EINVAL;
-> +
-> +		guard(mutex)(&st->lock);
-> +		return ad5706r_spi_write(st,
-> +					 AD5706R_REG_DAC_INPUT_A_CH(chan->channel),
-> +					 val);
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Best regards,
+Krzysztof
 
 
