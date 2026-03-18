@@ -1,597 +1,206 @@
-Return-Path: <devicetree+bounces-277153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277154-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GG6XN86IumnSXgIAu9opvQ
-	(envelope-from <devicetree+bounces-277153-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:13:18 +0100
+	id yESjDq2KumnSXgIAu9opvQ
+	(envelope-from <devicetree+bounces-277154-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:21:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E4F72BA9A5
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:13:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6ACB2BAB92
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:21:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DC372313B511
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:06:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 42F60303F7DB
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E78D93D16EB;
-	Wed, 18 Mar 2026 11:05:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E41E392C47;
+	Wed, 18 Mar 2026 11:10:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dzq9mikP"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="NTwMZSDq";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="cO+rqxL5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C28233A7F57;
-	Wed, 18 Mar 2026 11:05:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06E022206A7
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 11:10:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773831902; cv=none; b=QT8uz/oez0eG8tJSwWVIpkG4VF6aW4r9Adzh1WMNw2+1dfOaHZDIbn2VzxfPNzx0NOaTzAjUMgwxfvqkthg0HspYxdcDP1o+eKxbwufYaPJ+ecnfIYrpw6mNhCDo6x2RCcu9h/y+XZczTqx5X/c1voMxdF5HIAjLwcp1Y2HV2iw=
+	t=1773832238; cv=none; b=fNhk+NRm6LUdpQmI+xnvGmI1c2jWt5onH8G6odqA/ZpmOqgWlQ27FTzdBULdiHC4i2VhmdOm7BImLlP4SYprgPELBGvfq+3DC0Kq8qS6znllOGYMFTzdRcNShI9o6/puMcZzrGzSpPBtQK+sGgOzwtPzCFbg8OEY85zovBpICYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773831902; c=relaxed/simple;
-	bh=o5FI3ztoAARK0LLXr0nwisM/p4BnlT3gUgABFxXU9WE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AGhYCZ4DXwimAObdEkL7Zr0KwhuI5GfQS8kq8BH8HkNfBGNYQ8FQONwl5oFG3dCd0YNcFdU82DY8Wgulz3XP8aIAtQs2jdjIWogTZgWY09L6m1MXGJ7iiMNq4duIoQML+rsGftn75PrU8tqSj4BFzYqO3Z0UyFUoCp7NiuDvj4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dzq9mikP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34AD8C19424;
-	Wed, 18 Mar 2026 11:04:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773831902;
-	bh=o5FI3ztoAARK0LLXr0nwisM/p4BnlT3gUgABFxXU9WE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=dzq9mikPCRvXNi8WOz6ET+aJeUsKvqy53m6B6Dd6Kudxbr+m2H6RuIJiK9OG3o8w/
-	 VRMuFWWAvsqUDmq3RrSqkeAENaR9Jbi2CpGERLsz6JH9WUdV04abvvuNpGmX5OfNSV
-	 lNgSBtPCpOFbOIfNdfjSssa2R7aJmfWnDqqB/msE9sE4/lagiA00kRvV/PN8YfES53
-	 WDHkp3f0kCtFYyQrHhRKmSDyx0p7ykxoBu1K/34OcWX57sqZgrWnkOfYS7BvvI28Ys
-	 wt2ZyjTnc4kw0jIOndz6DKbsArQW6rSQMgfSddweFkW4KmYTj0d00oKvg8tdVYbHMe
-	 2DbCbHKSoosLg==
-From: Conor Dooley <conor@kernel.org>
-To: linux-gpio@vger.kernel.org
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v13 5/5] riscv: dts: microchip: update mpfs gpio interrupts to better match the SoC
-Date: Wed, 18 Mar 2026 11:04:36 +0000
-Message-ID: <20260318-urology-arrest-655d9c341130@spud>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260318-gift-nearest-fd3ef3e4819b@spud>
-References: <20260318-gift-nearest-fd3ef3e4819b@spud>
+	s=arc-20240116; t=1773832238; c=relaxed/simple;
+	bh=Wzr/px40K4PZJ3ZIhvRyyB9TlQCt5K52nBlPY+y47xo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mWKgvYnCGdy1QAFHDHT69SZ3bD/NGgnaWm4jh/YPLKvmPOaryiKlRSSenoUj6/aYlMHK1va952I1i9R0yj0r8EkCog9k5qGL1GKeorNw4ZOLSqCB+6JFceRWq3eYLxMOH5MnXaHJIKmK2nykHGmDUSXwcYdxoTAIQRVtVXp0guQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NTwMZSDq; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=cO+rqxL5; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62I8OEUN2789509
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 11:10:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	J3VzrPi93tJPEaiIzqzHIrAU1vCpGSCKRnAoqPfFWwo=; b=NTwMZSDqcdIfNaxC
+	8PV7Av0Axa9If4zvBpa4qrzRX9TLxuzbYfODS5iSo5IVxoEDGDWY5OetWS/yq98Z
+	hLdBZEYId5moW1+Zbw7+c1NdgFUsVuTPH3zI+Fj2ZPpRMbIaTO9BhqxzvB1tFeJF
+	4N+6laAfA1mWUs25zb9xVbQtYjacV5illucWT8y6Pq9+tgZ2f03UEKomvwXAQqYF
+	97tmzF5jJBZKMHraW5UAEWs6sVOL9Jqt4SIhrn/Uz1BEHSytEaQwoYwGIJ4rB/go
+	cycWrWml4Lkc0u0dTbSqieXN2Gzt35HxuqxUMTqw7HcG/zfzvI8AFKjx5Qctolu0
+	sJs++w==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cyj4g286f-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 11:10:36 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-89c471045c9so26558666d6.2
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 04:10:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773832235; x=1774437035; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=J3VzrPi93tJPEaiIzqzHIrAU1vCpGSCKRnAoqPfFWwo=;
+        b=cO+rqxL5PS8AyZeEMKQPK4nYeNbPZgTaGg0WdO8RnD6W6pRf+ERqOwUoFZNjYQjA7Q
+         Qarwxwio7uvJe104khpN0L1y4SQOtMxQYni2M8JdQ4j8DJ+mKal3OelpBCV6HdmtEjM7
+         0FbUFCeqLQ9HmI6G2LgtxVpnvSoHotCKr0WHghmpZWNZM4095a+dEnKV8FdVK40v18k+
+         VoIbENQJz/qQcu0YkfQB1HHuNPkKU/JQXHoHoZGOpjitof5ZL5Z/uH9Kwr+XpAIEy0R1
+         pg6ZdqfzfpO3iyjETp3Ir+4sY6wx9TNY6RwK5imkns1PsmbjTr4YAMBCWq+qbRB6bhE4
+         F+Gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773832235; x=1774437035;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=J3VzrPi93tJPEaiIzqzHIrAU1vCpGSCKRnAoqPfFWwo=;
+        b=BNHPbIUUGEyZ4zXAtOXV7/GWfwA834GWK5bdZAnLrzkxLfHu0ldpgN/kLHIiZoStym
+         bO00JyK3p+q+7QdJ3C++9wbgSbG31vmoTw65k5tHZYsBgPK8C41MpYw+6BV7rN+qy/A9
+         CzY+mdoC/Gf6lXNg+gBJUP+Uyg7B+N+hMz9zVJAP1dJGmjCEjJZYOL8yYQyc+h23ZNNs
+         szkp5zxFwdL4a+QlCbUfOaheXYNQBK2bzEh5BQIaGTCNo/0GhTKzAbIXNcQ+nyOdqq0x
+         Oc4+ewCH5WfvTgYW0NL6vqyewRY41UsZnvRQr5VBJ5mOCIDxZCvc/BjKMNA00njEa93Q
+         dEhg==
+X-Forwarded-Encrypted: i=1; AJvYcCWqUP7wNO4DNYZlDjenAYgbRsuExa31yKNK4TFu3cp4Vetzk4fC520VBPW65IagPKNeX8Byg31uca5b@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxr8VVGQAfRje+CTDzFT+FnRYtvlEdURwEuBdY0Kkg/MJFlczoS
+	+7qU5USMNdumlWp9so3I2pirk9fIkX2VLy3HLNl2y6J38fZLfXhUomDZ/UXjH2VT2DcCzplrw86
+	jFCHdaPlTltCS5ISsnLYJdI5+3SMM43jMIjZ/nmWmVpU/pQiev6DOs55tfKSqV2j8
+X-Gm-Gg: ATEYQzykcNONdA/+YrmMwNDSgkarQvlExLYSTNZ278T46zgZIe4HBJkvxVDIIoUMU7z
+	zO8l3+0HvQXwo24sYDZQUFetD56DFMzs0wvcXxdWFIuvOsDvAFezkLwpwq6H3MGcN4tdDx+8H29
+	B1qkiB9+CNY5pLOpTyWZy2OjgvPVnGm4QPO0fcvQ3TsQd1lrCyHQLn41oQrUPs5FksYzuVwxlKH
+	THj6ChYeHsvbPElliO+gjVhwwrqpS3cqymXwpcTQ9YSR+1FEM8u1RPB3FR890JqZP66NUGIFvT8
+	+DyzSjCzQyMqTnChsbmfcQT7xGDde9jxeVfvXih1Pb+lwgAHkmBoa0hxWaPkCkQKntwkurY+L7U
+	R69nUhE8hPhOBrWngOpY39WHwVYqOokS7Qxo4EC1n4y/fhQk9bf/n5L2aitpdeNzEkjjoTgqszK
+	TnG4A=
+X-Received: by 2002:a05:6214:238f:b0:89c:5a0c:9f70 with SMTP id 6a1803df08f44-89c6b5dbad0mr29678766d6.6.1773832235368;
+        Wed, 18 Mar 2026 04:10:35 -0700 (PDT)
+X-Received: by 2002:a05:6214:238f:b0:89c:5a0c:9f70 with SMTP id 6a1803df08f44-89c6b5dbad0mr29678356d6.6.1773832234863;
+        Wed, 18 Mar 2026 04:10:34 -0700 (PDT)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b97f13e8e9dsm191715266b.13.2026.03.18.04.10.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Mar 2026 04:10:34 -0700 (PDT)
+Message-ID: <78efa6d6-5204-4146-b95b-9ebc18a546f5@oss.qualcomm.com>
+Date: Wed, 18 Mar 2026 12:10:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=17764; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=XWsxtdZxXvcj6PnwDUoVQA8OLlHvYW4uL5uDH6Hr0Bw=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJm72o5WzpoV6B9aVzB9Yv+OqKefzk/afac7omjmhvwT7 9//7ryT2VHKwiDGxSArpsiSeLuvRWr9H5cdzj1vYeawMoEMYeDiFICJyP9jZGjLNv9um2Dzzvfm VkPXeTHVtfNq4hiiZRn3/c1m2sBzjZPhf/YJ9d2WVZM4VvLa+8ntWNIzKW2DqdxOjzSdasvp6+t lGAA=
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/3] arm64: dts: qcom: Introduce Eliza Soc base dtsi
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        Abel Vesa <abel.vesa@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20260318-eliza-base-dt-v3-0-8a50bd2201ed@oss.qualcomm.com>
+ <20260318-eliza-base-dt-v3-2-8a50bd2201ed@oss.qualcomm.com>
+ <7a8c31ff-6458-4840-9b8e-a540a84244ea@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <7a8c31ff-6458-4840-9b8e-a540a84244ea@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=TPhIilla c=1 sm=1 tr=0 ts=69ba882c cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
+ a=g9LQQ-Mqx3jMhqGx0noA:9 a=QEXdDO2ut3YA:10 a=pJ04lnu7RYOZP9TFuWaZ:22
+X-Proofpoint-ORIG-GUID: 2PosWPfdJzYPObiWgXVRQO80rlvl2fPO
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDA5NSBTYWx0ZWRfXwv8f+fXWt3BW
+ 8C/6SPLrcoEQN7/HhuIosMPG+zxMe7rgpj7whswtAdxff828c1zFT5t22Uyj5Hfw2JutAn/i7NH
+ rX1E/O7ayu/dUG4OP9Cr2UDCxpQi+loqP/z/KgJMvCiGrANxy9HgBFOrYiduQK1UWatTKv26D6A
+ VySWMWxUjYfWHTzp/C3LEj0QDHdb9f876ZJSQlGnsh0zL1wWvJi5yDjnTP2HmF+0z3jU6J8o6np
+ /D+cCqEg5ic1hPNgUv/MhcLLokIrQ3XvtN1AKhHdqtL5H9PQScqiaylD8t9XYd5aSFXIGah9oS/
+ Qp/D8ZYFhgPtVxRZIw0oMFozBiMScOfhYEUixIdT1adVRKYzEEt9z8OWHIvg5GtA/AhFFv99ER1
+ 4+T93LMqpmSILoXy1F5URDWPmrgNnHiT3W6OwUDdnlGANHzw058FToL60XRIUrUU0b28FOvshC+
+ z4IfgX9+x5hHyR4F9SA==
+X-Proofpoint-GUID: 2PosWPfdJzYPObiWgXVRQO80rlvl2fPO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-18_01,2026-03-17_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 suspectscore=0 lowpriorityscore=0 bulkscore=0 malwarescore=0
+ spamscore=0 impostorscore=0 adultscore=0 priorityscore=1501 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603180095
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277153-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:dkim,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277154-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3E4F72BA9A5
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: B6ACB2BAB92
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On 3/18/26 11:45 AM, Krzysztof Kozlowski wrote:
+> On 18/03/2026 11:19, Abel Vesa wrote:
+>> +		};
 
-There are 3 GPIO controllers on this SoC, of which:
-- GPIO controller 0 has 14 GPIOs
-- GPIO controller 1 has 24 GPIOs
-- GPIO controller 2 has 32 GPIOs
+[...]
 
-All GPIOs are capable of generating interrupts, for a total of 70.
-There are only 41 IRQs available however, so a configurable mux is used
-to ensure all GPIOs can be used for interrupt generation.
-38 of the 41 interrupts are in what the documentation calls "direct
-mode", as they provide an exclusive connection from a GPIO to the PLIC.
-The 3 remaining interrupts are used to mux the interrupts which do not
-have a exclusive connection, one for each GPIO controller.
+>> +		cpu_pd7: power-domain-cpu7 {
+>> +			#power-domain-cells = <0>;
+>> +			power-domains = <&cluster_pd>;
+>> +			domain-idle-states = <&cluster2_c4>;
+> 
+> ...here.
+> 
+> Each cluster has different entry/exit latencies, but @Konrad insisted to
+> represent here only one cluster. I believe it is not correct, but I am
+> fine with it, however my question remains: how does this work in such
+> case - which domain idle state is really used?
+> 
+> It's more of a question to Konrad since he wanted one cluster...
 
-The mux was overlooked when the bindings and driver were originally
-written for the GPIO controllers on Polarfire SoC, and the interrupts
-property in the GPIO nodes used to try and convey what the mapping was.
-Instead, the mux should be a device in its own right, and the GPIO
-controllers should be connected to it, rather than to the PLIC.
-Now that a binding exists for that mux, fix the inaccurate description
-of the interrupt controller hierarchy.
+I *believe* cpuidle functions fine as-is (i.e. each CPU gets assigned the
+correct idle states etc. and the system/"one big cluster" PD is also correct)..
+I am open to being proven wrong
 
-GPIO controllers 0 and 1 do not have all 32 possible GPIO lines, so
-ngpios needs to be set to match the number of lines/interrupts.
-
-The m100pfsevp has conflicting interrupt mappings for controllers 0 and
-2, as they cannot both be using an interrupt in "direct mode" at the
-same time, so the default replaces this impossible configuration.
-
-Reviewed-by: Linus Walleij <linusw@kernel.org>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- .../boot/dts/microchip/mpfs-beaglev-fire.dts  | 29 +++++++++++++
- .../boot/dts/microchip/mpfs-disco-kit.dts     | 43 +++++++++++++------
- .../dts/microchip/mpfs-icicle-kit-common.dtsi | 37 ++++++++++++----
- .../boot/dts/microchip/mpfs-m100pfsevp.dts    | 41 ++++++++++++------
- .../boot/dts/microchip/mpfs-polarberry.dts    | 29 +++++++++++++
- .../riscv/boot/dts/microchip/mpfs-sev-kit.dts | 37 ++++++++++++----
- .../riscv/boot/dts/microchip/mpfs-tysom-m.dts | 35 ++++++++++++---
- arch/riscv/boot/dts/microchip/mpfs.dtsi       | 37 ++++++++++++++--
- 8 files changed, 237 insertions(+), 51 deletions(-)
-
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
-index f44ad8e6f4e49..0e1b0b8d394b9 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
-+++ b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
-@@ -164,6 +164,35 @@ imx219_0: endpoint {
- 	};
- };
- 
-+&irqmux {
-+	interrupt-map = <0 &plic 13>, <1 &plic 14>, <2 &plic 15>,
-+			<3 &plic 16>, <4 &plic 17>, <5 &plic 18>,
-+			<6 &plic 19>, <7 &plic 20>, <8 &plic 21>,
-+			<9 &plic 22>, <10 &plic 23>, <11 &plic 24>,
-+			<12 &plic 25>, <13 &plic 26>,
-+
-+			<32 &plic 27>, <33 &plic 28>, <34 &plic 29>,
-+			<35 &plic 30>, <36 &plic 31>, <37 &plic 32>,
-+			<38 &plic 33>, <39 &plic 34>, <40 &plic 35>,
-+			<41 &plic 36>, <42 &plic 37>, <43 &plic 38>,
-+			<44 &plic 39>, <45 &plic 40>, <46 &plic 41>,
-+			<47 &plic 42>, <48 &plic 43>, <49 &plic 44>,
-+			<50 &plic 45>, <51 &plic 46>, <52 &plic 47>,
-+			<53 &plic 48>, <54 &plic 49>, <55 &plic 50>,
-+
-+			<64 &plic 53>, <65 &plic 53>, <66 &plic 53>,
-+			<67 &plic 53>, <68 &plic 53>, <69 &plic 53>,
-+			<70 &plic 53>, <71 &plic 53>, <72 &plic 53>,
-+			<73 &plic 53>, <74 &plic 53>, <75 &plic 53>,
-+			<76 &plic 53>, <77 &plic 53>, <78 &plic 53>,
-+			<79 &plic 53>, <80 &plic 53>, <81 &plic 53>,
-+			<82 &plic 53>, <83 &plic 53>, <84 &plic 53>,
-+			<85 &plic 53>, <86 &plic 53>, <87 &plic 53>,
-+			<88 &plic 53>, <89 &plic 53>, <90 &plic 53>,
-+			<91 &plic 53>, <92 &plic 53>, <93 &plic 53>,
-+			<94 &plic 53>, <95 &plic 53>;
-+};
-+
- &mac0 {
- 	status = "okay";
- 	phy-mode = "sgmii";
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-disco-kit.dts b/arch/riscv/boot/dts/microchip/mpfs-disco-kit.dts
-index c068b9bb5bfdf..f769c9d5d7b47 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-disco-kit.dts
-+++ b/arch/riscv/boot/dts/microchip/mpfs-disco-kit.dts
-@@ -97,24 +97,10 @@ &core_pwm0 {
- };
- 
- &gpio1 {
--	interrupts = <27>, <28>, <29>, <30>,
--		     <31>, <32>, <33>, <47>,
--		     <35>, <36>, <37>, <38>,
--		     <39>, <40>, <41>, <42>,
--		     <43>, <44>, <45>, <46>,
--		     <47>, <48>, <49>, <50>;
- 	status = "okay";
- };
- 
- &gpio2 {
--	interrupts = <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>;
- 	status = "okay";
- };
- 
-@@ -130,6 +116,35 @@ &ihc {
- 	status = "okay";
- };
- 
-+&irqmux {
-+	interrupt-map = <0 &plic 13>, <1 &plic 14>, <2 &plic 15>,
-+			<3 &plic 16>, <4 &plic 17>, <5 &plic 18>,
-+			<6 &plic 19>, <7 &plic 20>, <8 &plic 21>,
-+			<9 &plic 22>, <10 &plic 23>, <11 &plic 24>,
-+			<12 &plic 25>, <13 &plic 26>,
-+
-+			<32 &plic 27>, <33 &plic 28>, <34 &plic 29>,
-+			<35 &plic 30>, <36 &plic 31>, <37 &plic 32>,
-+			<38 &plic 33>, <39 &plic 34>, <40 &plic 35>,
-+			<41 &plic 36>, <42 &plic 37>, <43 &plic 38>,
-+			<44 &plic 39>, <45 &plic 40>, <46 &plic 41>,
-+			<47 &plic 42>, <48 &plic 43>, <49 &plic 44>,
-+			<50 &plic 45>, <51 &plic 46>, <52 &plic 47>,
-+			<53 &plic 48>, <54 &plic 49>, <55 &plic 50>,
-+
-+			<64 &plic 53>, <65 &plic 53>, <66 &plic 53>,
-+			<67 &plic 53>, <68 &plic 53>, <69 &plic 53>,
-+			<70 &plic 53>, <71 &plic 53>, <72 &plic 53>,
-+			<73 &plic 53>, <74 &plic 53>, <75 &plic 53>,
-+			<76 &plic 53>, <77 &plic 53>, <78 &plic 53>,
-+			<79 &plic 53>, <80 &plic 53>, <81 &plic 53>,
-+			<82 &plic 53>, <83 &plic 53>, <84 &plic 53>,
-+			<85 &plic 53>, <86 &plic 53>, <87 &plic 53>,
-+			<88 &plic 53>, <89 &plic 53>, <90 &plic 53>,
-+			<91 &plic 53>, <92 &plic 53>, <93 &plic 53>,
-+			<94 &plic 53>, <95 &plic 53>;
-+};
-+
- &mac0 {
- 	phy-mode = "sgmii";
- 	phy-handle = <&phy0>;
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-common.dtsi b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-common.dtsi
-index e01a216e6c3a8..e25edc5f3b451 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-common.dtsi
-+++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-common.dtsi
-@@ -77,14 +77,6 @@ &core_pwm0 {
- };
- 
- &gpio2 {
--	interrupts = <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>;
- 	status = "okay";
- };
- 
-@@ -136,6 +128,35 @@ &ihc {
- 	status = "okay";
- };
- 
-+&irqmux {
-+	interrupt-map = <0 &plic 13>, <1 &plic 14>, <2 &plic 15>,
-+			<3 &plic 16>, <4 &plic 17>, <5 &plic 18>,
-+			<6 &plic 19>, <7 &plic 20>, <8 &plic 21>,
-+			<9 &plic 22>, <10 &plic 23>, <11 &plic 24>,
-+			<12 &plic 25>, <13 &plic 26>,
-+
-+			<32 &plic 27>, <33 &plic 28>, <34 &plic 29>,
-+			<35 &plic 30>, <36 &plic 31>, <37 &plic 32>,
-+			<38 &plic 33>, <39 &plic 34>, <40 &plic 35>,
-+			<41 &plic 36>, <42 &plic 37>, <43 &plic 38>,
-+			<44 &plic 39>, <45 &plic 40>, <46 &plic 41>,
-+			<47 &plic 42>, <48 &plic 43>, <49 &plic 44>,
-+			<50 &plic 45>, <51 &plic 46>, <52 &plic 47>,
-+			<53 &plic 48>, <54 &plic 49>, <55 &plic 50>,
-+
-+			<64 &plic 53>, <65 &plic 53>, <66 &plic 53>,
-+			<67 &plic 53>, <68 &plic 53>, <69 &plic 53>,
-+			<70 &plic 53>, <71 &plic 53>, <72 &plic 53>,
-+			<73 &plic 53>, <74 &plic 53>, <75 &plic 53>,
-+			<76 &plic 53>, <77 &plic 53>, <78 &plic 53>,
-+			<79 &plic 53>, <80 &plic 53>, <81 &plic 53>,
-+			<82 &plic 53>, <83 &plic 53>, <84 &plic 53>,
-+			<85 &plic 53>, <86 &plic 53>, <87 &plic 53>,
-+			<88 &plic 53>, <89 &plic 53>, <90 &plic 53>,
-+			<91 &plic 53>, <92 &plic 53>, <93 &plic 53>,
-+			<94 &plic 53>, <95 &plic 53>;
-+};
-+
- &mac0 {
- 	phy-mode = "sgmii";
- 	phy-handle = <&phy0>;
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts b/arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts
-index a8d623ee9fa4c..86234968df486 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts
-+++ b/arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts
-@@ -52,11 +52,36 @@ &i2c1 {
- 	status = "okay";
- };
- 
-+&irqmux {
-+	interrupt-map = <0 &plic 13>, <1 &plic 14>, <2 &plic 15>,
-+			<3 &plic 16>, <4 &plic 17>, <5 &plic 18>,
-+			<6 &plic 19>, <7 &plic 20>, <8 &plic 21>,
-+			<9 &plic 22>, <10 &plic 23>, <11 &plic 24>,
-+			<12 &plic 25>, <13 &plic 26>,
-+
-+			<32 &plic 27>, <33 &plic 28>, <34 &plic 29>,
-+			<35 &plic 30>, <36 &plic 31>, <37 &plic 32>,
-+			<38 &plic 33>, <39 &plic 34>, <40 &plic 35>,
-+			<41 &plic 36>, <42 &plic 37>, <43 &plic 38>,
-+			<44 &plic 39>, <45 &plic 40>, <46 &plic 41>,
-+			<47 &plic 42>, <48 &plic 43>, <49 &plic 44>,
-+			<50 &plic 45>, <51 &plic 46>, <52 &plic 47>,
-+			<53 &plic 48>, <54 &plic 49>, <55 &plic 50>,
-+
-+			<64 &plic 53>, <65 &plic 53>, <66 &plic 53>,
-+			<67 &plic 53>, <68 &plic 53>, <69 &plic 53>,
-+			<70 &plic 53>, <71 &plic 53>, <72 &plic 53>,
-+			<73 &plic 53>, <74 &plic 53>, <75 &plic 53>,
-+			<76 &plic 53>, <77 &plic 53>, <78 &plic 53>,
-+			<79 &plic 53>, <80 &plic 53>, <81 &plic 53>,
-+			<82 &plic 53>, <83 &plic 53>, <84 &plic 53>,
-+			<85 &plic 53>, <86 &plic 53>, <87 &plic 53>,
-+			<88 &plic 53>, <89 &plic 53>, <90 &plic 53>,
-+			<91 &plic 53>, <92 &plic 53>, <93 &plic 53>,
-+			<94 &plic 53>, <95 &plic 53>;
-+};
-+
- &gpio0 {
--	interrupts = <13>, <14>, <15>, <16>,
--		     <17>, <18>, <19>, <20>,
--		     <21>, <22>, <23>, <24>,
--		     <25>, <26>;
- 	ngpios = <14>;
- 	status = "okay";
- 
-@@ -75,14 +100,6 @@ mmc-sel-hog {
- };
- 
- &gpio2 {
--	interrupts = <13>, <14>, <15>, <16>,
--		     <17>, <18>, <19>, <20>,
--		     <21>, <22>, <23>, <24>,
--		     <25>, <26>, <27>, <28>,
--		     <29>, <30>, <31>, <32>,
--		     <33>, <34>, <35>, <36>,
--		     <37>, <38>, <39>, <40>,
--		     <41>, <42>, <43>, <44>;
- 	status = "okay";
- };
- 
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts b/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
-index ea0808ab10425..510d59153cd07 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
-+++ b/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
-@@ -30,6 +30,35 @@ ddrc_cache_hi: memory@1000000000 {
- 	};
- };
- 
-+&irqmux {
-+	interrupt-map = <0 &plic 13>, <1 &plic 14>, <2 &plic 15>,
-+			<3 &plic 16>, <4 &plic 17>, <5 &plic 18>,
-+			<6 &plic 19>, <7 &plic 20>, <8 &plic 21>,
-+			<9 &plic 22>, <10 &plic 23>, <11 &plic 24>,
-+			<12 &plic 25>, <13 &plic 26>,
-+
-+			<32 &plic 27>, <33 &plic 28>, <34 &plic 29>,
-+			<35 &plic 30>, <36 &plic 31>, <37 &plic 32>,
-+			<38 &plic 33>, <39 &plic 34>, <40 &plic 35>,
-+			<41 &plic 36>, <42 &plic 37>, <43 &plic 38>,
-+			<44 &plic 39>, <45 &plic 40>, <46 &plic 41>,
-+			<47 &plic 42>, <48 &plic 43>, <49 &plic 44>,
-+			<50 &plic 45>, <51 &plic 46>, <52 &plic 47>,
-+			<53 &plic 48>, <54 &plic 49>, <55 &plic 50>,
-+
-+			<64 &plic 53>, <65 &plic 53>, <66 &plic 53>,
-+			<67 &plic 53>, <68 &plic 53>, <69 &plic 53>,
-+			<70 &plic 53>, <71 &plic 53>, <72 &plic 53>,
-+			<73 &plic 53>, <74 &plic 53>, <75 &plic 53>,
-+			<76 &plic 53>, <77 &plic 53>, <78 &plic 53>,
-+			<79 &plic 53>, <80 &plic 53>, <81 &plic 53>,
-+			<82 &plic 53>, <83 &plic 53>, <84 &plic 53>,
-+			<85 &plic 53>, <86 &plic 53>, <87 &plic 53>,
-+			<88 &plic 53>, <89 &plic 53>, <90 &plic 53>,
-+			<91 &plic 53>, <92 &plic 53>, <93 &plic 53>,
-+			<94 &plic 53>, <95 &plic 53>;
-+};
-+
- /*
-  * phy0 is connected to mac0, but the port itself is on the (optional) carrier
-  * board.
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-sev-kit.dts b/arch/riscv/boot/dts/microchip/mpfs-sev-kit.dts
-index f9a8905794383..8f1908a105671 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-sev-kit.dts
-+++ b/arch/riscv/boot/dts/microchip/mpfs-sev-kit.dts
-@@ -56,15 +56,36 @@ &i2c0 {
- 	status = "okay";
- };
- 
-+&irqmux {
-+	interrupt-map = <0 &plic 13>, <1 &plic 14>, <2 &plic 15>,
-+			<3 &plic 16>, <4 &plic 17>, <5 &plic 18>,
-+			<6 &plic 19>, <7 &plic 20>, <8 &plic 21>,
-+			<9 &plic 22>, <10 &plic 23>, <11 &plic 24>,
-+			<12 &plic 25>, <13 &plic 26>,
-+
-+			<32 &plic 27>, <33 &plic 28>, <34 &plic 29>,
-+			<35 &plic 30>, <36 &plic 31>, <37 &plic 32>,
-+			<38 &plic 33>, <39 &plic 34>, <40 &plic 35>,
-+			<41 &plic 36>, <42 &plic 37>, <43 &plic 38>,
-+			<44 &plic 39>, <45 &plic 40>, <46 &plic 41>,
-+			<47 &plic 42>, <48 &plic 43>, <49 &plic 44>,
-+			<50 &plic 45>, <51 &plic 46>, <52 &plic 47>,
-+			<53 &plic 48>, <54 &plic 49>, <55 &plic 50>,
-+
-+			<64 &plic 53>, <65 &plic 53>, <66 &plic 53>,
-+			<67 &plic 53>, <68 &plic 53>, <69 &plic 53>,
-+			<70 &plic 53>, <71 &plic 53>, <72 &plic 53>,
-+			<73 &plic 53>, <74 &plic 53>, <75 &plic 53>,
-+			<76 &plic 53>, <77 &plic 53>, <78 &plic 53>,
-+			<79 &plic 53>, <80 &plic 53>, <81 &plic 53>,
-+			<82 &plic 53>, <83 &plic 53>, <84 &plic 53>,
-+			<85 &plic 53>, <86 &plic 53>, <87 &plic 53>,
-+			<88 &plic 53>, <89 &plic 53>, <90 &plic 53>,
-+			<91 &plic 53>, <92 &plic 53>, <93 &plic 53>,
-+			<94 &plic 53>, <95 &plic 53>;
-+};
-+
- &gpio2 {
--	interrupts = <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>;
- 	status = "okay";
- };
- 
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts b/arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts
-index d1120f5f2c015..bc15530a2979b 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts
-+++ b/arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts
-@@ -69,13 +69,36 @@ hwmon: hwmon@45 {
- 	};
- };
- 
-+&irqmux {
-+	interrupt-map = <0 &plic 13>, <1 &plic 14>, <2 &plic 15>,
-+			<3 &plic 16>, <4 &plic 17>, <5 &plic 18>,
-+			<6 &plic 19>, <7 &plic 20>, <8 &plic 21>,
-+			<9 &plic 22>, <10 &plic 23>, <11 &plic 24>,
-+			<12 &plic 25>, <13 &plic 26>,
-+
-+			<32 &plic 27>, <33 &plic 28>, <34 &plic 29>,
-+			<35 &plic 30>, <36 &plic 31>, <37 &plic 32>,
-+			<38 &plic 33>, <39 &plic 34>, <40 &plic 35>,
-+			<41 &plic 36>, <42 &plic 37>, <43 &plic 38>,
-+			<44 &plic 39>, <45 &plic 40>, <46 &plic 41>,
-+			<47 &plic 42>, <48 &plic 43>, <49 &plic 44>,
-+			<50 &plic 45>, <51 &plic 46>, <52 &plic 47>,
-+			<53 &plic 48>, <54 &plic 49>, <55 &plic 50>,
-+
-+			<64 &plic 53>, <65 &plic 53>, <66 &plic 53>,
-+			<67 &plic 53>, <68 &plic 53>, <69 &plic 53>,
-+			<70 &plic 53>, <71 &plic 53>, <72 &plic 53>,
-+			<73 &plic 53>, <74 &plic 53>, <75 &plic 53>,
-+			<76 &plic 53>, <77 &plic 53>, <78 &plic 53>,
-+			<79 &plic 53>, <80 &plic 53>, <81 &plic 53>,
-+			<82 &plic 53>, <83 &plic 53>, <84 &plic 53>,
-+			<85 &plic 53>, <86 &plic 53>, <87 &plic 53>,
-+			<88 &plic 53>, <89 &plic 53>, <90 &plic 53>,
-+			<91 &plic 53>, <92 &plic 53>, <93 &plic 53>,
-+			<94 &plic 53>, <95 &plic 53>;
-+};
-+
- &gpio1 {
--	interrupts = <27>, <28>, <29>, <30>,
--		     <31>, <32>, <33>, <47>,
--		     <35>, <36>, <37>, <38>,
--		     <39>, <40>, <41>, <42>,
--		     <43>, <44>, <45>, <46>,
--		     <47>, <48>, <49>, <50>;
- 	status = "okay";
- };
- 
-diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-index 5c2963e269b83..4f0d5bdee3da6 100644
---- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-@@ -254,7 +254,17 @@ pdma: dma-controller@3000000 {
- 		mss_top_sysreg: syscon@20002000 {
- 			compatible = "microchip,mpfs-mss-top-sysreg", "syscon", "simple-mfd";
- 			reg = <0x0 0x20002000 0x0 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
- 			#reset-cells = <1>;
-+
-+			irqmux: interrupt-controller@54 {
-+				compatible = "microchip,mpfs-irqmux";
-+				reg = <0x54 0x4>;
-+				#address-cells = <0>;
-+				#interrupt-cells = <1>;
-+				interrupt-map-mask = <0x7f>;
-+			};
- 		};
- 
- 		sysreg_scb: syscon@20003000 {
-@@ -471,36 +481,57 @@ mac1: ethernet@20112000 {
- 		gpio0: gpio@20120000 {
- 			compatible = "microchip,mpfs-gpio";
- 			reg = <0x0 0x20120000 0x0 0x1000>;
--			interrupt-parent = <&plic>;
-+			interrupt-parent = <&irqmux>;
- 			interrupt-controller;
- 			#interrupt-cells = <1>;
-+			interrupts = <0>, <1>, <2>, <3>,
-+				     <4>, <5>, <6>, <7>,
-+				     <8>, <9>, <10>, <11>,
-+				     <12>, <13>;
- 			clocks = <&clkcfg CLK_GPIO0>;
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			ngpios = <14>;
- 			status = "disabled";
- 		};
- 
- 		gpio1: gpio@20121000 {
- 			compatible = "microchip,mpfs-gpio";
- 			reg = <0x0 0x20121000 0x0 0x1000>;
--			interrupt-parent = <&plic>;
-+			interrupt-parent = <&irqmux>;
- 			interrupt-controller;
- 			#interrupt-cells = <1>;
-+			interrupts = <32>, <33>, <34>, <35>,
-+				     <36>, <37>, <38>, <39>,
-+				     <40>, <41>, <42>, <43>,
-+				     <44>, <45>, <46>, <47>,
-+				     <48>, <49>, <50>, <51>,
-+				     <52>, <53>, <54>, <55>;
- 			clocks = <&clkcfg CLK_GPIO1>;
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			ngpios = <24>;
- 			status = "disabled";
- 		};
- 
- 		gpio2: gpio@20122000 {
- 			compatible = "microchip,mpfs-gpio";
- 			reg = <0x0 0x20122000 0x0 0x1000>;
--			interrupt-parent = <&plic>;
-+			interrupt-parent = <&irqmux>;
- 			interrupt-controller;
- 			#interrupt-cells = <1>;
-+			interrupts = <64>, <65>, <66>, <67>,
-+				     <68>, <69>, <70>, <71>,
-+				     <72>, <73>, <74>, <75>,
-+				     <76>, <77>, <78>, <79>,
-+				     <80>, <81>, <82>, <83>,
-+				     <84>, <85>, <86>, <87>,
-+				     <88>, <89>, <90>, <91>,
-+				     <92>, <93>, <94>, <95>;
- 			clocks = <&clkcfg CLK_GPIO2>;
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			ngpios = <32>;
- 			status = "disabled";
- 		};
- 
--- 
-2.51.0
-
+Konrad
 
