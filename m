@@ -1,88 +1,95 @@
-Return-Path: <devicetree+bounces-277459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277460-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CEJrOxkKu2nbeQIAu9opvQ
-	(envelope-from <devicetree+bounces-277459-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 21:24:57 +0100
+	id AIJfMkcKu2nbeQIAu9opvQ
+	(envelope-from <devicetree+bounces-277460-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 21:25:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 904E12C2733
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 21:24:57 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id D07A32C275B
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 21:25:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E887130244C3
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 20:24:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CA35D3029445
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 20:25:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1017E36C0B2;
-	Wed, 18 Mar 2026 20:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B36D36D4EA;
+	Wed, 18 Mar 2026 20:25:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="C2or/c1n"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TXW3Sg8G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from hall.aurel32.net (hall.aurel32.net [195.154.119.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3B102C3260;
-	Wed, 18 Mar 2026 20:24:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.154.119.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 337CB36D4E3
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 20:25:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773865494; cv=none; b=P7+4fLPLMfLdy8j0gWWzSndS1krn0qjZPl3hRUhR9F6tY9P4HG7bcKjpzWc2bWOXTD669qhWAl22smlB1a5BjhrMG7IS6lsI5PbOs/seUkljXfQ3GYEM6lRweNKtoqc3uOlg952k+ZJiWK6xnQN75I6MH7WwsuL8dt8pnwA34uY=
+	t=1773865505; cv=none; b=WS4vfi05c6lmXUAD9lM9kysQWQCdoybbUvwHxrGO0yrY6T58COhj/Imu5gyqpQb+yWT8x/fUjU3OzxnAywE4ZUchoOCPzaQFFbBNoctfFl5to77MeuxSexvHhfxhCdDeBgmb2ogbaeYffzuPjDdWlc+07NiHjROZbxUF2oOHzrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773865494; c=relaxed/simple;
-	bh=HuY68fpkysrM76Huysj2jziHARJD9bmofcAGT2xtv2M=;
+	s=arc-20240116; t=1773865505; c=relaxed/simple;
+	bh=uSUd0T/ZiybLth957Mpc5O81gAE0RpkiqdCwRp84VZY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KD404rhF+fGHCHHASjh8C+6oZujlX0O95RE3jjFSToPu/s4gKqk9zZ742xmrfls8HTRBfZxakRB+QT8D3VnbcwhKmKihp9pdU659O0CXFLQadfi3JZ6G3nucPEPWYmuDSOv8I2Yz3f5gQGhSD1VoFVXsytEwkFRQlVXiDP8aNVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=C2or/c1n; arc=none smtp.client-ip=195.154.119.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aurel32.net
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
-	; s=202004.hall; h=In-Reply-To:Content-Type:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:From:Reply-To:
-	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
-	bh=DxuFz52fFq6pkfpxsifbWk1sah6P9t7hQOOOvkqb+BE=; b=C2or/c1nfGppJw2wonUiXwDl8M
-	U0MXuq4A+MilzgT1hA08TOf46BxtiuYqfLiIPH+8hF5Mx3Mq82OoHLIQgCnBnXE+DbG2PUpwwtzXx
-	Wgd73hUpBxRHZozfD1B2qsd//sDDigr4PnrgJa007CJpa8qPQcky64PQsKRkVM44LwPWRffjOI1GY
-	eWiNlGcUR6nFuB+qosOuEe71UK+34L3JJj9CheBs15AupuxmUYUL5ZI8bLq+VNMmouZM0YyNT6NDw
-	S6f2qE3u5r0qETOPWE7BaaPzh95TWUJ9gHgmw8iRqs/uDGeCaUZoHxbczSRLA095hJqUolwez8gWe
-	szD3vDRA==;
-Received: from authenticated user
-	by hall.aurel32.net with esmtpsa  (TLS1.3)  tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <aurelien@aurel32.net>)
-	id 1w2xRd-00000005fXL-1dM1;
-	Wed, 18 Mar 2026 21:24:45 +0100
-Date: Wed, 18 Mar 2026 21:24:44 +0100
-From: Aurelien Jarno <aurelien@aurel32.net>
-To: Iker Pedrosa <ikerpedrosam@gmail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@kernel.org>,
-	Michael Opdenacker <michael.opdenacker@rootcommit.com>,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Anand Moon <linux.amoon@gmail.com>
-Subject: Re: [PATCH v3 7/7] riscv: dts: spacemit: k1-bananapi-f3: add SD card
- support with UHS modes
-Message-ID: <absKDGLCw26xr7Z4@aurel32.net>
-Mail-Followup-To: Iker Pedrosa <ikerpedrosam@gmail.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@kernel.org>,
-	Michael Opdenacker <michael.opdenacker@rootcommit.com>,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Anand Moon <linux.amoon@gmail.com>
-References: <20260316-orangepi-sd-card-uhs-v3-0-aefd3b7832df@gmail.com>
- <20260316-orangepi-sd-card-uhs-v3-7-aefd3b7832df@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=rfcP6cJIpi4pamHViOlmfVUO1oanC4xy6Uf/yzsCOjglvnGNmQOpivzJ9xPWGQ7NXOjHUNWhhE87+JI/wQOy0u4LMNQsx17Zeb5oo9jFnxCMO0EC7vCKg6q36Iq7qHXB3MfvjFnlqveUsmXO9839OB6anr6lrqI2DoVgcOcAKxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TXW3Sg8G; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-82418b0178cso205550b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 13:25:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773865503; x=1774470303; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=/c7Z1vNAla1UqiQqigVemwFAmDse4jQT/gO6OkNgIBY=;
+        b=TXW3Sg8G6lDsRzA9AMxpxwlwo+Mu6GzZX3fClXco5bKn+Za+pYwoXFMW66Yh2OiGwr
+         BGFRe8boOBDHlME8SenqHAAcFpMh+ixja0adCj6Xz8+2N4yVfDOwUgWwtL6tTc8zkopo
+         erZYLAlzLM3SXl8yr7wVeLI6YRSzwp7TYBHezowPOZqwE0eAXB2oY/Ty9FTZjL3acX/1
+         Ut+S4KB06dEDPDpe4V++DqCLfyG2/nXFCuB3OANBPY0bksZZXjd4feRuR9RpoxsK0X//
+         8nmV+YRVJhdoCtqHcAmCUKHyzNRXEmDvLzlIFcj/Y3idcBO6d5+6bPLkboQ4PusqwhWn
+         Bs6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773865503; x=1774470303;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/c7Z1vNAla1UqiQqigVemwFAmDse4jQT/gO6OkNgIBY=;
+        b=IF3o6SFeM643Cn884CsT+aeanDTgtpkpbNwGfLvVTKTmi+eWQHPFxCcUSJI7KPfYl7
+         RJAQeVVDUaoQc/lM0+xSCp/xB9Rll+gfRNaFTFnTPvtPRCVtldFTyPKtJKo1EKReILJ5
+         egLhTXdHuFKhv+UitT6GYcph7zNvhRcNjl7cNDMIikEg5cZ5ffsx/zHtN5IcgAhCq9jN
+         8csg8rriYmVj8UgV0sh6H4uYUr1fM3Q69B/R+AUESrNPgeb0113qHRTN6RLsUvLaFURh
+         W2i/zb/J45HDCRi+YODmpycPrwvKcnLHC0xGxiIahm7AHABcdrRm58ZLvfI/HaPNStzi
+         qD8A==
+X-Forwarded-Encrypted: i=1; AJvYcCUx8g4OH/T33zRRXhJi6drvqw2rtdlKOpOZZp7BkkuUWBOmzF01+8pHjMdV552UMwzRGAgLoeJzFj6t@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3mrlvPTaCuTeLbxQaqCmM/E4+EitbLT/isYiOTMsS3oQUfkv/
+	0GRn116yxWf3/mRBlbR6BSLtQFS+KABoIR8H3yC54wwA6IuRcuTRjSfp
+X-Gm-Gg: ATEYQzwmIyAEjxCnvuI4aikQLEiCUXb22heBzwHMeRDcXvefM2coZ9vrk+uHYWSI4/j
+	zFP2TpDNlqq+Nli9psXjtbamx5xOnp6vr+LRzESr5lPb3eiI3uuwCqWLEVE+/99Dfv7upGJEgNK
+	AnjKV9ucy2ws8DM5DdtD76rxbTPfFswF+kRAgN7V/L3tbz7cc5ZRKiadsnECQgoQaQqcriY6ZJc
+	OZuwTR7DsCxsTDkxfAOZV7mnAn8yQcOxUIxuDzOinIgjow++R5PZPWU2vpqwXmg6jIN27WsLtxQ
+	JlRLED8qjYaHCPMLHBu9kzTS8xckbAfe0kCsXYB4ctJKHwjmmT5Am3nCq7fiFEyOkBCSwNyDr7R
+	4bPZ1KCYjeaf/nWzfp2akKCqefcQKTT58Z0vz/fC7IWfuWR+goOHXuzank3AAHke/qRSHjn6GAL
+	ZGoHl3x0m9VSneG2mY1O+BHRBSVOuF9OlCaTZMTN+s8Ep3
+X-Received: by 2002:a05:6a20:7f90:b0:38e:9220:ebbe with SMTP id adf61e73a8af0-39b99d6f450mr4339851637.23.1773865503486;
+        Wed, 18 Mar 2026 13:25:03 -0700 (PDT)
+Received: from google.com ([118.150.148.19])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c741e5691b8sm3286559a12.25.2026.03.18.13.24.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Mar 2026 13:25:03 -0700 (PDT)
+Date: Thu, 19 Mar 2026 04:24:56 +0800
+From: Kuan-Wei Chiu <visitorckw@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: andrew@codeconstruct.com.au, avifishman70@gmail.com,
+	tmaimon77@gmail.com, tali.perry1@gmail.com, srini@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	venture@google.com, yuenn@google.com, benjaminfair@google.com,
+	jserv@ccns.ncku.edu.tw, eleanor15x@gmail.com,
+	linux-arm-kernel@lists.infradead.org, openbmc@lists.ozlabs.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: nvmem: add nuvoton,npcm750-otp
+Message-ID: <absKGJbrWX5xtPX3@google.com>
+References: <20260318193538.246853-1-visitorckw@gmail.com>
+ <20260318193538.246853-2-visitorckw@gmail.com>
+ <228943f2-8f1a-4da7-8663-7f17f5e2f21c@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,125 +98,65 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260316-orangepi-sd-card-uhs-v3-7-aefd3b7832df@gmail.com>
-User-Agent: Mutt/2.2.13 (2024-03-09)
+In-Reply-To: <228943f2-8f1a-4da7-8663-7f17f5e2f21c@kernel.org>
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[aurel32.net,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[aurel32.net:s=202004.hall];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-277460-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277459-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
+	FREEMAIL_CC(0.00)[codeconstruct.com.au,gmail.com,kernel.org,google.com,ccns.ncku.edu.tw,lists.infradead.org,lists.ozlabs.org,vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.2:email];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[aurelien@aurel32.net,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[aurel32.net:+];
-	NEURAL_HAM(-0.00)[-0.980];
+	FROM_NEQ_ENVFROM(0.00)[visitorckw@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.835];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 904E12C2733
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D07A32C275B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
+Hi Krzysztof,
 
-On 2026-03-16 15:03, Iker Pedrosa wrote:
-> Add complete SD card controller support with UHS high-speed modes.
+On Wed, Mar 18, 2026 at 09:17:19PM +0100, Krzysztof Kozlowski wrote:
+> On 18/03/2026 20:35, Kuan-Wei Chiu wrote:
+> > +maintainers:
+> > +  - Kuan-Wei Chiu <visitorckw@gmail.com>
+> > +
+> > +allOf:
+> > +  - $ref: nvmem.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - nuvoton,npcm750-key-storage
+> > +      - nuvoton,npcm750-fuse-array
 > 
-> - Enable sdhci0 controller with 4-bit bus width
-> - Configure card detect GPIO with inversion
-> - Connect vmmc-supply to buck4 for 3.3V card power
-> - Connect vqmmc-supply to aldo1 for 1.8V/3.3V I/O switching
-> - Add dual pinctrl states for voltage-dependent pin configuration
-> - Support UHS-I SDR25, SDR50, and SDR104 modes
+> Your driver says these are exactly the same devices, so you got only one
+> compatible. Otherwise explain in commit msg why these are different
+> (current message speaks about purpose, but is not what is needed here).
 > 
-> This enables full SD card functionality including high-speed UHS modes
-> for improved performance.
-> 
-> Suggested-by: Anand Moon <linux.amoon@gmail.com>
-> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
-> ---
->  arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 23 +++++++++++++++++++++--
->  1 file changed, 21 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> index 404b69c47b91f8c37d74a3031dbad0d94a28d1b4..a7d480d01ccc0439dbf456ed5a81f467af68056a 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> @@ -222,7 +222,7 @@ buck3_1v8: buck3 {
->  				regulator-always-on;
->  			};
->  
-> -			buck4 {
-> +			buck4: buck4 {
->  				regulator-min-microvolt = <500000>;
->  				regulator-max-microvolt = <3300000>;
->  				regulator-ramp-delay = <5000>;
-> @@ -243,7 +243,7 @@ buck6 {
->  				regulator-always-on;
->  			};
->  
-> -			aldo1 {
-> +			aldo1: aldo1 {
->  				regulator-min-microvolt = <500000>;
->  				regulator-max-microvolt = <3400000>;
->  				regulator-boot-on;
-> @@ -369,3 +369,22 @@ hub_3_0: hub@2 {
->  		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
->  	};
->  };
-> +
-> +&sdhci0 {
-> +	pinctrl-names = "default", "state_uhs";
-> +	pinctrl-0 = <&mmc1_cfg>;
-> +	pinctrl-1 = <&mmc1_uhs_cfg>;
-> +	bus-width = <4>;
-> +	cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
-> +	cd-inverted;
+Thanks for the prompt review.
 
-Thanks for this driver. Unfortunately, this is not correct for the 
-Banana PI F3. The OrangePi RV2 buffers the signal from the SD card 
-connector through a transistor, inverting the signal. On the Banana PI 
-F3, the signal goes directly to the GPIO, and does not even have a 
-pull-up.
+I will drop the content-specific compatible strings and unify them into
+a single "nuvoton,npcm750-otp" in the upcoming v2 series.
 
-With the following change, I have been able to get the patchset working 
-as expected:
-
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index a7d480d01ccc0..72b0f75f936aa 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -375,8 +375,7 @@ &sdhci0 {
- 	pinctrl-0 = <&mmc1_cfg>;
- 	pinctrl-1 = <&mmc1_uhs_cfg>;
- 	bus-width = <4>;
--	cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
--	cd-inverted;
-+	cd-gpios = <&gpio K1_GPIO(80) (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
- 	no-mmc;
- 	no-sdio;
- 	disable-wp;
-
-Regards
-Aurelien
-
--- 
-Aurelien Jarno                          GPG: 4096R/1DDD8C9B
-aurelien@aurel32.net                     http://aurel32.net
+Regards,
+Kuan-Wei
 
