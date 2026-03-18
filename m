@@ -1,67 +1,64 @@
-Return-Path: <devicetree+bounces-277256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277257-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4AxBBGmxumkVawIAu9opvQ
-	(envelope-from <devicetree+bounces-277256-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:06:33 +0100
+	id 4BIoCC2yumlGawIAu9opvQ
+	(envelope-from <devicetree+bounces-277257-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:09:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00BB32BC9DA
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:06:31 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 547822BCB81
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:09:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2D731300FEC7
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:55:05 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id F3635304BB86
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:55:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66B213E8C61;
-	Wed, 18 Mar 2026 13:51:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D7EF3E95AC;
+	Wed, 18 Mar 2026 13:51:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZuzwE6wt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dtlMFYm4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 434133E8C56;
-	Wed, 18 Mar 2026 13:51:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 388213E95A7;
+	Wed, 18 Mar 2026 13:51:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773841880; cv=none; b=dLi4c71Ot4mm3eoRfYWB/12ELiRiwytdMaB+A8zT8GNoUj2mcngICvM6QCHynaA+Bt+abTetjpZjNsg+GFNxrRK6//bhOLc3Se2M4wncHyf8mLRhqAAdVAAS5Lx43FibJCp6MjAGe5g5hnzx3LCEBZ3FYvDABRHUCt+wPWAO9xU=
+	t=1773841881; cv=none; b=IEsRofPFkg8g60SLPJ7JvGt0a/ZOr0GrUmbCVuNgsAeFXXLnkk1WvmzfozugAaCAGFkSI18tCemCQSeHZcRtOrCzvWy61Ghn8IUWuTDT6xlpyB/bguvo0ed2rEqQvr2lYwFpF32/NfnT44iF+NrmiH+zF/pgSacJL4AdMJbZKWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773841880; c=relaxed/simple;
-	bh=eRabq99M3xj9xoKIDM+R18YTgPDBCwl+S6wGL6ihD0A=;
+	s=arc-20240116; t=1773841881; c=relaxed/simple;
+	bh=Yz3eASArpzZTvFjiIrKdZzdU5pYbcdKGZI4x3+3vhX0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gI6SpDxEtykqoErr4Gx0U+kOO7eOiviDrxnKdDkPIC8a7tJqsL7CaBxhonlCIqJUPmmGeLuuVzD9eQ3MgtzNOQ2i42tXPk9g1recy7kPiILU1aO12Iki5JtnLpG0ZB700EhNKTbCq0XWWhsoh5mZnrO/n9ETyVnZ/pnq1hGBcz4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZuzwE6wt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3245C2BC87;
-	Wed, 18 Mar 2026 13:51:18 +0000 (UTC)
+	 MIME-Version:Content-Type; b=BElraj1W4O1Wa9G4zxVl7/2LakmDe+l6yxOheycwsv+7K3W4mwhCe4HDHch2e6gHrYgWa4HuGQqb2J0lgND4rcCbhvkBYgJjUqfqyNDxq3iC5wPPD9oaz74jhU/TNDoUEzY2qI3cd1ePKMeUwBDXR+jJC5Qh/kj8X4O5zvAYOtw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dtlMFYm4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 375BCC19421;
+	Wed, 18 Mar 2026 13:51:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773841879;
-	bh=eRabq99M3xj9xoKIDM+R18YTgPDBCwl+S6wGL6ihD0A=;
+	s=k20201202; t=1773841881;
+	bh=Yz3eASArpzZTvFjiIrKdZzdU5pYbcdKGZI4x3+3vhX0=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ZuzwE6wtjsbzJCf2+aTEn3CLmqcpeI7rUvkQEfNfhUyKrgaMZxqeV/bEqjAHC2dG+
-	 Pdn6R5IPAKvvtZaE6xgKSSPmDjrzG6SegCSitbz4CPSGWfvE2WTxRfYqUVBY5mXc2a
-	 RC+aO3yiTW0s5wqlyPu5RdpKe0cIYBrVWxxxF4GmTjXh27bgb/0p5jCGmR1307piP1
-	 56c2N3nq84DV4DvQ7BH6Y51walPxhIOu+GY2x2xZCByIMdThCPMKwFa80jwHqHTXSC
-	 sl40rYvIo1JVp0B2nEX8asCUKWr6AZ+El8sLzTIxAja6pduWHEMjMLIjSuQBjMgxHo
-	 xH0LIk1M4VFbg==
+	b=dtlMFYm4oDPI/9qdzyegr4PM4OfRzCofr7mGGGnSK5v9wgudhaLkDxcbD7SLKoqPZ
+	 SM3iUAB2cKXtCGT6MguIi2oLd1zjO3xA3d75kDr0/pKJ+kx8MGGBrg0iENk2Be64hB
+	 kIdGGlTK6MBUOigmH2rsRqmqh2R8jPcQJLzh+xI+tzgyNHO6eecvPV7qRMi4SlhsKT
+	 5E9LUUZYTG4CW20rHX/MHXCXUj7awRcRijklfB2Lxp8t6kYvBO/Mu31FUITSBXKnwd
+	 DyEBMZ6vQfCgHS/KbW6bAVmnufYa2d/kG3PIjwiIeLOlkL/e8oSf25JXMQ8nc3hfzj
+	 tbDefY0LEe8pQ==
 From: Bjorn Andersson <andersson@kernel.org>
-To: konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Xin Liu <xin.liu@oss.qualcomm.com>
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Xueyao An <xueyao.an@oss.qualcomm.com>
 Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	tingwei.zhang@oss.qualcomm.com,
-	jie.gan@oss.qualcomm.com,
-	Abel Vesa <abel.vesa@oss.qualcomm.com>
-Subject: Re: [PATCH v3] arm64: dts: qcom: hamoa: Add remoteproc IOMMUS in EL2 device trees
-Date: Wed, 18 Mar 2026 08:50:30 -0500
-Message-ID: <177384182873.14526.13138679628509416816.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] arm64: dts: qcom: hamoa-iot-som: Add firmware-name to QUPv3 nodes
+Date: Wed, 18 Mar 2026 08:50:31 -0500
+Message-ID: <177384182896.14526.3852230362019935952.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260203063244.1498699-1-xin.liu@oss.qualcomm.com>
-References: <20260203063244.1498699-1-xin.liu@oss.qualcomm.com>
+In-Reply-To: <20260212082558.2811953-1-xueyao.an@oss.qualcomm.com>
+References: <20260212082558.2811953-1-xueyao.an@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,12 +70,12 @@ Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277256-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277257-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -90,34 +87,34 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 00BB32BC9DA
+X-Rspamd-Queue-Id: 547822BCB81
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Mon, 02 Feb 2026 22:32:44 -0800, Xin Liu wrote:
-> All the existing variants Hamoa boards are using Gunyah hypervisor
-> which means that, so far, Linux-based OS could only boot in EL1 on
-> those devices. However, it is possible for us to boot Linux at EL2
-> on these devices [1].
+On Thu, 12 Feb 2026 16:25:57 +0800, Xueyao An wrote:
+> Traditionally, firmware loading for Serial Engines (SE) in the QUP hardware
+> of Qualcomm SoCs has been managed by TrustZone (TZ). While this approach
+> ensures secure SE assignment and access control, it limits flexibility for
+> developers who need to enable various protocols on different SEs.
 > 
-> When running under Gunyah, the remote processor firmware IOMMU streams
-> are controlled by Gunyah. However, without Gunyah, the IOMMU is managed
-> by the consumer of this DeviceTree. Therefore, describe the firmware
-> streams for each remote processor.
+> Add the firmware-name property to QUPv3 nodes in the device tree to enable
+> firmware loading from the Linux environment. Handle SE assignments and
+> access control permissions directly within Linux, removing the dependency
+> on TrustZone.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: hamoa: Add remoteproc IOMMUS in EL2 device trees
-      commit: 47c88db49f6ced5592331c38ef95978fe3497704
+[1/1] arm64: dts: qcom: hamoa-iot-som: Add firmware-name to QUPv3 nodes
+      commit: 2f50108a6c04e0a68ee82a54f2d209d9c7551002
 
 Best regards,
 -- 
