@@ -1,181 +1,211 @@
-Return-Path: <devicetree+bounces-277052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277064-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sLiVKcZnumnnWAIAu9opvQ
-	(envelope-from <devicetree+bounces-277052-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:52:22 +0100
+	id EJYrFQ5qumnnWAIAu9opvQ
+	(envelope-from <devicetree+bounces-277064-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:02:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4914D2B87A1
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:52:22 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 078522B89DE
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:02:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AB1823017FBE
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:51:46 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6DCD1300DCF5
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:02:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B834A390C82;
-	Wed, 18 Mar 2026 08:51:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76EB039D6DF;
+	Wed, 18 Mar 2026 09:01:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LPtPphYN"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="cp7fSnBA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908041DD889;
-	Wed, 18 Mar 2026 08:51:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E783D359A97
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 09:01:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773823904; cv=none; b=VltUBid9sLzwKjcoUMwM4wiNwyjWJ8hStabbcfOakEL4DidG9B+YHtC/eUe/DwUQolDN5cQfzH+45+qz6HclswElgeoLHpJHylBe6TDxL/yfVcSIbdd1lC6nco1B4bx0Zga6kk48UuxKrkmdFdhK/Qe8dUtMS47DaH8PuhgUIJY=
+	t=1773824519; cv=none; b=l+j9qn0TYxT2izvSlRkWHsE52puaAe7D6WqLTC+7prjUp/9y6WyzPkl5amPLd05eVheb9b89iuvuW0FytRdzCpXTnQAcsm+X8fDvf+46PWbe6OWl+4erCs7WCrxbNPiuEIv0Mlnp02EoLWQ8ZtlGVpIqO3cRhUxRTS+vTrijLYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773823904; c=relaxed/simple;
-	bh=/O4uJLxBP1x0RPFjiDP/U3zIbVfq8Y+9lVJPyWWLG4I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WXzqWPmTquQx1ZrDSlaNgXk9l8cAsfSfCv4+1cKBCGlwQc0EcVN51kjolW5ovIqC/ik3rP2cxZLfuSsX9qhE2luQk0UOVb36WrPfNDhqtc9gHJ3NqhbXNI2ynyRFN/IFPx8aHgk8sbLjWGjT7YinWhSMU1xVgEhZLaBl7u7ITKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LPtPphYN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2068C19424;
-	Wed, 18 Mar 2026 08:51:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773823904;
-	bh=/O4uJLxBP1x0RPFjiDP/U3zIbVfq8Y+9lVJPyWWLG4I=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LPtPphYNZVgxPl9DcybBpjPYwmbFyPPGhPwYpttQQCZbpEI6rAptOYdxTnuAuoOrP
-	 sMkxP8HFL4gLTGwerekQO+XaN7WMO3MEXPNEnJD8CRx+Vj+sZmTIk5xAsvAGx4IzpY
-	 zPeNOCSRIF/GeSfeqcHewXB0qZkfqK3OUK98PqjjZLGrk5AUkrslQGFISv/QchyXS3
-	 forXeZ5LwyV/dkqjUlEhFxHfu/uDpOAoSI0nbcdDJgqxVsjxncZwuOQe95lkKYg3Hv
-	 XBqY9ndA0vJtsxS46WSs06ndvbL0mhZRXVAh1xs7SjfiJBt7waXXQsaWPagANbQ+nw
-	 e+QVLoAPURhlw==
-Message-ID: <52854742-b458-42db-881f-bef8eac3dab5@kernel.org>
-Date: Wed, 18 Mar 2026 09:51:39 +0100
+	s=arc-20240116; t=1773824519; c=relaxed/simple;
+	bh=QcX27Uqby1YRe+RtOgdEBmLaRDq/7Us0zPkNT2cLobo=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
+	 References:In-Reply-To; b=FIp1rp4UeNtrnFLlUMJcC5eqbhdxrMtYpoCd7PidjmtprPybLoo6EgyEZ/9eZW3rNBGfnfey64B/1dKcsoJAiGVtwaICUTZfCvpc6uaUdfkPCjVaYmBf7k1EIs3BejwUoVvNGcBsNfezKpq63f4pwrGNp++h+q8w7pGNHCTsHGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=cp7fSnBA; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id B48614E426E3;
+	Wed, 18 Mar 2026 08:51:53 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 7BE096004F;
+	Wed, 18 Mar 2026 08:51:53 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 059E5104506D1;
+	Wed, 18 Mar 2026 09:51:40 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1773823908; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=alSZ2fWiAi+9qwfblfCJyz0fVMs/+X5EwPZ2SQgxmLQ=;
+	b=cp7fSnBAyWP25/Vl+tF6iiCGYoJXIVWSHpR+5L4HAY2v19vJBUA+qoEwIqKJjlYpXVYFKU
+	Yq/xbInLIl8Xv1/Voi2LGVlm/wbox8/Amb44AfhPFY/gmjxrTRpemc4pjxTIQAMnoTLyw2
+	g/yB36lMoqLyAtZhDQpUwycEQlOiAqtyzbZUifcFFfHQl1LLamw5Gq3anHAcBrrd5KD/TD
+	UGdCu0DPDZUIVaCoYr5e7qCNStyb8YbtIuP9G/SVDOxsz8Fw6mDvQK2W2lA2o+OrgK7dw9
+	xfvyjQm57SPNyLS8gCsk6D63W1plQhrX2xNGRmpYFwIFl5mw4xP0uyeg54NoGA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Add qcs9075-radxa-airbox-q900
-To: Mecid Urganci <mecid@mecomediagroup.de>, andersson@kernel.org,
- konradybcio@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- richardcochran@gmail.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20260318083621.470826-1-mecid@mecomediagroup.de>
- <20260318083621.470826-2-mecid@mecomediagroup.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260318083621.470826-2-mecid@mecomediagroup.de>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Date: Wed, 18 Mar 2026 09:51:39 +0100
+Message-Id: <DH5S3DYT0PJQ.11ABZFGEU6ZPC@bootlin.com>
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+Subject: Re: [PATCH v2 0/2] drm: bridge: ti-sn65dsi83: Improve dual-link
+ LVDS support
+Cc: <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
+ <jernej.skrabec@gmail.com>, <maarten.lankhorst@linux.intel.com>,
+ <mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
+ <simona@ffwll.ch>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+ <conor+dt@kernel.org>, <valentin@compulab.co.il>,
+ <philippe.schenker@toradex.com>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+To: <tessolveupstream@gmail.com>, "Marek Vasut" <marex@nabladev.com>,
+ <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>
+X-Mailer: aerc 0.20.1
+References: <20260312043743.261475-1-tessolveupstream@gmail.com>
+ <9f694b2d-44bc-46ad-8aa3-b464c2f0da13@nabladev.com>
+ <176ed865-11a6-42de-89e0-06951b59a430@gmail.com>
+ <DH0X7QW3AH3C.PRNRA8CRSSKA@bootlin.com>
+ <49b79a0d-844b-4fee-bccb-706187ed76d1@gmail.com>
+In-Reply-To: <49b79a0d-844b-4fee-bccb-706187ed76d1@gmail.com>
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	MV_CASE(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_FROM(0.00)[bounces-277052-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,compulab.co.il,toradex.com,lists.freedesktop.org,vger.kernel.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,nabladev.com,intel.com,linaro.org,kernel.org];
+	TAGGED_FROM(0.00)[bounces-277064-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MAILSPIKE_FAIL(0.00)[172.232.135.74:query timed out];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 4914D2B87A1
+X-Rspamd-Queue-Id: 078522B89DE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 18/03/2026 09:36, Mecid Urganci wrote:
-> Add device tree binding for the Radxa AirBox Q900 board based on
-> the Qualcomm QCS9075 SoC.
+Hello Sudarshan,
 
-What is QCS9075? It's the first time this compatible appears and the
-only other reference is socinfo commit which told nothing.
+On Wed Mar 18, 2026 at 6:45 AM CET, tessolveupstream wrote:
+>>>> You might want to look at recently posted:
+>>>>
+>>>> [PATCH 2/3] drm/bridge: ti-sn65dsi83: halve horizontal syncs for dual =
+LVDS output
+>>>
+>>> Thanks for pointing this out.
+>>> I tried applying the patch =E2=80=9C[PATCH 2/3] drm/bridge: ti-sn65dsi8=
+3: halve horizontal syncs for dual LVDS output=E2=80=9D on top of the curre=
+nt tree and
+>>> removed the changes that I had previously added in the driver.
+>>> However, with this patch applied, I am currently seeing only the backli=
+ght turning on and no image on the LVDS panel.
+>>> For reference, the LVDS panel used on our platform is G133HAN01.1 and t=
+he
+>>> DSI-to-dual-link LVDS bridge is SN65DSI84ZXHR.
+>>
+>> Thanks for having tried.
+>>
+>> Can you please test with both the fixes in the series applied + the test
+>> pattern feature and report the results you get with and without test
+>> pattern enabled?
+>>
+>> The patches to apply are:
+>>
+>>  - https://lore.kernel.org/all/20260226-ti-sn65dsi83-dual-lvds-fixes-and=
+-test-pattern-v1-1-2e15f5a9a6a0@bootlin.com/
+>>  - https://lore.kernel.org/all/20260226-ti-sn65dsi83-dual-lvds-fixes-and=
+-test-pattern-v1-2-2e15f5a9a6a0@bootlin.com/
+>>  - https://lore.kernel.org/lkml/20260309-ti-sn65dsi83-dual-lvds-fixes-an=
+d-test-pattern-v2-1-e6aaa7e1d181@bootlin.com/
+>>
+>
+> Thanks for the suggestions.
+>
+> I tested the three patches together as mentioned, but the LVDS panel
+> still only shows the backlight and no image. I also tried removing the
+> test-pattern patch and retesting with only the remaining two fixes, but
+> the result remained the same =E2=80=94 only the backlight turns on and no=
+ image
+> is displayed.
 
-> 
-> Signed-off-by: Mecid Urganci <mecid@mecomediagroup.de>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index 8c3df8efaa4d..2c492f4d784a 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -909,6 +909,12 @@ properties:
->                - qcom,sa8775p-ride-r3
->            - const: qcom,sa8775p
->  
-> +      - items:
-> +          - enum:
-> +              - radxa,airbox-q900
-> +          - const: qcom,qcs9075
-> +          - const: qcom,sa8775p
+Sure, the test pattern patch does not change anything, unless you enable
+the test pattern.
 
-Why qcs9075 is compatible with sa8775p?
+>> The first thing I suggest doing on your side is testing with the 3 patch=
+es
+>> mentioned above.
+>>
+>> If you display works, good! Let us know (you can also add your Tested-by=
+ /
+>> Reviewed-by tags to the test_pattern patch too if applicable).
+>>
+>> If it doesn't work, compare the individual register values to find the
+>> differences, try to figure out why the working setting works and how to
+>> apply that change to the driver in away that keeps other boards
+>> working. You're welcome to come back here to discuss it in case you can'=
+t
+>> find out on your own.
+>>
+>
+> I tested the three patches as suggested, but the panel still shows only t=
+he
+> backlight with no visible image. I=E2=80=99m unsure how to translate the =
+working
+> register values into a generic fix based on display timings. Any guidance
+> on the right direction would be helpful.
 
-> +
->        - items:
->            - enum:
->                - qcom,lemans-evk
+What you should do is:
 
+ 1. with your patches, and while the display is enabled (and working) do
 
-Best regards,
-Krzysztof
+     cat /sys/kernel/debug/regmap/4-002c/registers >regs.working
+
+ 2. remove your patches, add the 3 I mentioned, and while the display is
+    enabled (but only backlight is working) do
+
+     cat /sys/kernel/debug/regmap/4-002c/registers >regs.broken
+
+Then compare regs.working and regs.broken. Which registers differ? Can you
+give a reason for the differences?
+
+You can come back with these values here so we may discuss them.
+
+Luca
+
+--
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
