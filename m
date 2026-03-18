@@ -1,203 +1,143 @@
-Return-Path: <devicetree+bounces-277017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277016-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AK2LJi1humnFUgIAu9opvQ
-	(envelope-from <devicetree+bounces-277017-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:24:13 +0100
+	id yHDjEH1humnFUgIAu9opvQ
+	(envelope-from <devicetree+bounces-277016-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:25:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AEFC2B7DA3
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:24:13 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D0252B7E34
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:25:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C464B30107AC
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:24:12 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 00F753026DB2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:23:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F304537D126;
-	Wed, 18 Mar 2026 08:24:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AD6737CD5E;
+	Wed, 18 Mar 2026 08:23:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FdWYyowz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zgva8rw/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69D5D37D104;
-	Wed, 18 Mar 2026 08:24:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB3FF37D132;
+	Wed, 18 Mar 2026 08:23:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773822248; cv=none; b=Ct1keQhRKmW18KJDpsOxm5tDEeZ1xqbbS2JGIeZL9YSF7gLLU+8Oc5Yfgwt4SVls6deEmECRLVET7ZOFiw6Kx9uwSvMXWM5pQ2vbhSVpJ+O0KuI+pX1CyoiBLM1u7bwovJ4ZWhSTPPyogr5sUzoysqo4ll83L6+l+fWkFStKaZw=
+	t=1773822236; cv=none; b=WYzqsFshLm5QDuQrz3QGgll/hiMMUcKZiE2IpNjuAvIyZIPxaBbmch791mKYG/woME6w+z6NFn8bmRxdneUEUnRElETtlWJhYK9HhJuh9UfAfZ4UJ5bEmJdRrn5CrJHaj23IEUDoFyGVUtK+4dQ81Xf9UITShEn5hHJaN5vTlLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773822248; c=relaxed/simple;
-	bh=zbrEzDQ0AblNhXke6/7cPNOTm3Avyhavj22x1LcfmRs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=XZQ0DDLVQw3VI8JzTcKRv8jT2lP0+gATWAoP0ntjPDb8/9Y6LoziBj0sp9pUu8Q3Mp+zF7VeLmsVD0q1dILX+I3xedxA3PxNx+VFYfMkzeHyyIy0MQozHp8ziMQb8IQo+geXhWdzMkoGUIkDtdHNeKsaK3b923jFPsYDwKjQT88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FdWYyowz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53225C19421;
-	Wed, 18 Mar 2026 08:24:03 +0000 (UTC)
+	s=arc-20240116; t=1773822236; c=relaxed/simple;
+	bh=Le0U2Y1VQsiAeth5ZUAWVvNLY7ryaX06wNoqTJ2H5Rg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XtDKC2BI1HG+9nenKhOsk9ug1PvtspsROCPHjBRs0UOMyN7OGjayKD7xuMy8rqP6QStwE7+CDmaJA9JaN3uhl+yJxeCFIkDwYfIOBlNZxJZzXdzejSD9pkHsC9y7//KdkYZjaTQGnDUv29MwvoG7mfAP58q+dLLXaYIvPQBISJA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zgva8rw/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7026C19421;
+	Wed, 18 Mar 2026 08:23:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773822247;
-	bh=zbrEzDQ0AblNhXke6/7cPNOTm3Avyhavj22x1LcfmRs=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=FdWYyowzn9WA2aJGuHLNRqX/QEe2NLHcUNCkhDUY64ztt4svOZmzxFrWlzmUHI6xU
-	 /uZ6hPer+e0gNtoBPTWwrX/4/7Y7NvBA8sBZlt870hhJjKBW7mlNFErn5jRqmcWzUI
-	 ZvuE9nLCPHP31SJgQXUPwHPO6asgJzE8clgaERBQLzu6N9cYSGvueZs5NEtbkDxERW
-	 0uJbhCBwzFOmdXng/YhTB1b3/JQeJfKObJH/IhHBdmBsZiqjuYj2FAYfYX/gYxNizC
-	 3PxPrHxwNqCsWYeU/7l/EP6+bQvr/f/z2ZIb4fdI4QjIBTDeTbHHgHvFBmLlYCncbE
-	 OJTQxjRlH3XgQ==
-From: Simon Horman <horms@kernel.org>
-To: a0987203069@gmail.com
-Cc: Simon Horman <horms@kernel.org>,
-	richardcochran@gmail.com,
-	devicetree@vger.kernel.org,
-	edumazet@google.com,
-	linux-stm32@st-md-mailman.stormreply.com,
-	joabreu@synopsys.com,
-	linux-kernel@vger.kernel.org,
-	krzk+dt@kernel.org,
-	pabeni@redhat.com,
-	kuba@kernel.org,
-	andrew+netdev@lunn.ch,
-	netdev@vger.kernel.org,
-	conor+dt@kernel.org,
-	schung@nuvoton.com,
-	linux-arm-kernel@lists.infradead.org,
-	davem@davemloft.net,
-	robh@kernel.org,
-	yclu4@nuvoton.com,
-	andrew@lunn.ch,
-	mcoquelin.stm32@gmail.com,
-	ychuang3@nuvoton.com,
-	openbmc@lists.ozlabs.org,
-	peppe.cavallaro@st.com,
-	alexandre.torgue@foss.st.com
-Subject: Re: [net-next,v14,3/3] net: stmmac: dwmac-nuvoton: Add dwmac glue for Nuvoton MA35 family
-Date: Wed, 18 Mar 2026 08:23:46 +0000
-Message-ID: <20260318082346.1825390-1-horms@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260316055427.1310569-4-a0987203069@gmail.com>
-References: <20260316055427.1310569-4-a0987203069@gmail.com>
+	s=k20201202; t=1773822235;
+	bh=Le0U2Y1VQsiAeth5ZUAWVvNLY7ryaX06wNoqTJ2H5Rg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Zgva8rw/5k/0Dh4QnHBpUHyuL6bnuEHy7r79/4mlQJt3zl9VOXKviytWvtq7JmKUS
+	 yOIxb3crr5caAEILYo7vTxqKjk1GIjrvtRH5MVi8aVMrTiVOdGQus1NAFhYl2eicVa
+	 PMN7ANS7yv37dqjJFTualnG+UOBrOuEDsbIp+z/uo1cxrd3tSE6veTSScPW4Hx9UM1
+	 wFTjqMYEosUfwfXk1T0JovH8kQsTFy0U+/zANK0YwHXX1/JD0jg1QKYa5aicU5I60E
+	 lKS8JUsvFwPtSyjwDMzJ93FXPSZu84fd0QCoGc/PuUSvOLTgPZYOH27LnnesgLrr/H
+	 BDS8nl/xxr7aw==
+Date: Wed, 18 Mar 2026 09:23:52 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Dawei Liu <dawei.liu.jy@renesas.com>
+Cc: "linux@roeck-us.net" <linux@roeck-us.net>, 
+	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, "robh@kernel.org" <robh@kernel.org>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"corbet@lwn.net" <corbet@lwn.net>, "skhan@linuxfoundation.org" <skhan@linuxfoundation.org>, 
+	"geert+renesas@glider.be" <geert+renesas@glider.be>, "magnus.damm" <magnus.damm@gmail.com>, 
+	Grant Peltier <grant.peltier.jg@renesas.com>, Linda Xin <linda.xin.jg@renesas.com>, 
+	"tabreztalks@gmail.com" <tabreztalks@gmail.com>
+Subject: Re: [PATCH v2 3/3] dt-bindings: hwmon: isl68137: Add compatible
+ strings for RAA228942 and RAA228943
+Message-ID: <20260318-neon-blazing-swallow-f7b60a@quoll>
+References: <20260316053541.3903-1-dawei.liu.jy@renesas.com>
+ <20260318021921.75-1-dawei.liu.jy@renesas.com>
+ <20260318021921.75-4-dawei.liu.jy@renesas.com>
+ <TYWPR01MB11935C44C0ACE3F319FC2ABC8D54EA@TYWPR01MB11935.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <TYWPR01MB11935C44C0ACE3F319FC2ABC8D54EA@TYWPR01MB11935.jpnprd01.prod.outlook.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277017-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277016-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[roeck-us.net,vger.kernel.org,kernel.org,lwn.net,linuxfoundation.org,glider.be,gmail.com,renesas.com];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,google.com,st-md-mailman.stormreply.com,synopsys.com,redhat.com,lunn.ch,nuvoton.com,lists.infradead.org,davemloft.net,lists.ozlabs.org,st.com,foss.st.com];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[horms@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7AEFC2B7DA3
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3D0252B7E34
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This is an AI-generated review of your patch. The human sending this
-email has considered the AI review valid, or at least plausible.
+On Wed, Mar 18, 2026 at 05:43:00AM +0000, Dawei Liu wrote:
+> Hi Krzysztof,
+> 
+> I've updated the commit message in v2 to clarify the compatibility,
+> as you suggested in your v1 review. The commit message now reads:
+> 
+>   "Both RAA228942 and RAA228943 are PMBus command compatible with the
+>    RAA228228/RAA228244/RAA228246 family and use the same 2-rail non-TC
+>    driver configuration."
+> 
+> Could you please review this v2 dt-bindings patch and provide your
+> Acked-by if it looks good to you?
 
-For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
----
-net: stmmac: dwmac-nuvoton: Add dwmac glue for Nuvoton MA35 family
+Why do you ping few hours after sending a patch? No, I will not Ack it
+becuse I have bunch of other patches to do and pinging after few hours
+makes a very bad impression. I have two weeks to respond to your patch.
 
-Add support for Gigabit Ethernet on Nuvoton MA35 series using dwmac
-driver.
+Considering that recently some Renesas contributors did not review patches
+still on the list but sent a fix to them, I find your request even less
+appropriate. Start reviewing patches on the list.
+(above is of course not a request to Renesas maintainers)
 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> 
+> Best Regards
+> Dawei Liu
+> 
+> -----Original Message-----
+> From: Dawei Liu 
+> Sent: Wednesday, March 18, 2026 10:20 AM
 
-[ ... ]
 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-> --- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-> +++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
+Best regards,
+Krzysztof
 
-[ ... ]
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
-> --- /dev/null
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
-> @@ -0,0 +1,136 @@
-
-[ ... ]
-
-> +static int nvt_gmac_probe(struct platform_device *pdev)
-> +{
-> +	struct plat_stmmacenet_data *plat_dat;
-> +	struct stmmac_resources stmmac_res;
-> +	struct device *dev = &pdev->dev;
-> +	struct nvt_priv_data *priv;
-> +	int ret;
-> +
-> +	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to get platform resources\n");
-> +
-> +	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
-> +	if (IS_ERR(plat_dat))
-> +		return dev_err_probe(dev, PTR_ERR(plat_dat), "Failed to get platform data\n");
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return dev_err_probe(dev, -ENOMEM, "Failed to allocate private data\n");
-> +
-> +	priv->regmap = syscon_regmap_lookup_by_phandle_args(dev->of_node, "nuvoton,sys",
-> +							    1, &priv->macid);
-> +	if (IS_ERR(priv->regmap))
-> +		ret = dev_err_probe(dev, PTR_ERR(priv->regmap), "Failed to get sys register\n");
-> +
-> +	if (priv->macid > 1)
-> +		ret = dev_err_probe(dev, -EINVAL, "Invalid sys arguments\n");
->                                                                                   ^^^^
-
-Does this code return the error on failure? The dev_err_probe() result is
-assigned to ret but the function continues execution without returning.
-
-Russell King's v12 review suggested using set_phy_intf_sel callback,
-which led to significant refactoring in v12. This refactoring appears to
-have inadvertently broken the error handling here and below.
-
-The code should be:
-	if (IS_ERR(priv->regmap))
-		return dev_err_probe(dev, PTR_ERR(priv->regmap), "Failed to get sys register\n");
-
-	if (priv->macid > 1)
-		return dev_err_probe(dev, -EINVAL, "Invalid sys arguments\n");
-
-See Russell's v12 review:
-https://lore.kernel.org/netdev/aYsurPBMnzWDZCco@shell.armlinux.org.uk/
-
-> +
-> +	plat_dat->bsp_priv = priv;
-> +	plat_dat->set_phy_intf_sel = nvt_set_phy_intf_sel;
-> +
-> +	return stmmac_pltfr_probe(pdev, plat_dat, &stmmac_res);
-> +}
-
-[ ... ]
 
