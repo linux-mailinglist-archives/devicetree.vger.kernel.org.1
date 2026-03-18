@@ -1,196 +1,183 @@
-Return-Path: <devicetree+bounces-276958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276961-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +GPxNBxKummWTwIAu9opvQ
-	(envelope-from <devicetree+bounces-276958-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 07:45:48 +0100
+	id KEXnHqNNumlUUAIAu9opvQ
+	(envelope-from <devicetree+bounces-276961-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:00:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F9732B6884
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 07:45:48 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 385E52B69C4
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:00:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 041573012E98
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 06:45:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 04F5B303F44F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 07:00:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1243E337B81;
-	Wed, 18 Mar 2026 06:45:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0201369207;
+	Wed, 18 Mar 2026 07:00:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kFABYIaP"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="QL6ANUiM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E05064A02;
-	Wed, 18 Mar 2026 06:45:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78C24364958;
+	Wed, 18 Mar 2026 07:00:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773816345; cv=none; b=Rvu0D+vqGi7A2gvZg26cOWEZWHmI1q5NoOMYltJvJVa+3Q26rkiAQ1RWKDxMRfSTKEl6lTCUtyWY8qOAB5pkOvGaxlRdsJpHOyzXNRKRDmNtKRwdeOhyNMlWfNWZfmKe9omUOQ/eOki0WJAbuG8IRD2QOiWlrf2oghpwWhOurFg=
+	t=1773817245; cv=none; b=FapSAq7FDVNdlgMx8fL3lCJAXkRwc1BVJvdgiCTpvOrHnpBPDfrqMW7sOXLGYwUYnsMcYgJ4iYqK3/bhv3LmpZMq41OVqKaC1hGhIlr7IcqQlnsWQpaIEhK2qjBxzJpyrqsNaLBpIGIdodu6yuzt3573Q288Ydbhav0/JPN/oZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773816345; c=relaxed/simple;
-	bh=ZUd+CCQuUav72keML0jeubBVvaXv19It0DQBtnhtBXQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TaC14E8PnoX0Gol77pYkfhRWi5qzBQXXzIBQs33Q+EvL3KC/X8WMdWFYZ76r5J57gQXuuk86svbO82OZ7aJ/PrpDV+A5R7FySiAWFGuxXiK0NuO0RUB7vCDhyAY6AAE0fxZ2K1FVs6Q7LFqWbHD2V5VNyBdFr70qFhIfBJerxuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kFABYIaP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 200D9C19421;
-	Wed, 18 Mar 2026 06:45:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773816344;
-	bh=ZUd+CCQuUav72keML0jeubBVvaXv19It0DQBtnhtBXQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kFABYIaPiax4xCQlJLXPaC8oIZIy8Ba0eUHa85gs2pFb5hbFt/RBt7VUhxvohKy39
-	 pMaLNaiE4NekkmxzrgcNLm2telRxPgeuD3Rgr0zBDiYdFJUsZ6WOuvHB7ohEPQdXg+
-	 XEjFyLBy7CTX5lDsT2RNypMpKE0VblG7ZA5leRZ56FkHEbiP8KWaRqwhOFfRlAls4z
-	 tNHVWqQmGcXyZ4JEtB/P7+cReMD/tm5fgEr3dKgNp76QQAtC+oAg4FYNzqmVA7PyiE
-	 inkyWWje9cI/RxVn9lVHonlYAFZ9fXiu5CyQPYBYj+3ytewVkh/V5nK+yrcvGFS2Kb
-	 2vtZXIIh4P32Q==
-Message-ID: <55ce2bd8-a289-40ca-97db-7d082251ea6a@kernel.org>
-Date: Wed, 18 Mar 2026 07:45:39 +0100
+	s=arc-20240116; t=1773817245; c=relaxed/simple;
+	bh=RPGS3auzLa3Zj9BdhQuQbW9we5KqcRRhPvqTLu9PTk4=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=sApZuVKkwKAE4tYC8Fsnk45vtMCO6HC1UMbs1ip+O3pBbWHK2oDVTMA709uwBoa1gLlGpXwEGkHxQUZsbCI19r/79tN/FEvERM3c29l1/KTmAF554F6tictOPWp5j5Kc3/yPV3bDEXLbJDBJxuxs7Md4hmTJ9Rr90oznhJzcgzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=QL6ANUiM; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62I5eamR4040894;
+	Wed, 18 Mar 2026 03:00:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=TiJ9EOuYS2LnjwDdLxbL/SbQL2K
+	6Fg/k80LArgn79NE=; b=QL6ANUiMSVeGRtZukn65yZXb/HKKZm4eWApMiutzu9g
+	cktgqbQ7ZpEe3IZBJpbTCQre7ySfrSHp0VfGbFafx6SDYPJOF7QZHtgXKU6Z2Afg
+	S7XjzoBkhVgSy+LIDnhBi7TBubLEHUYP6qrJJQ6F+nljAvEfTMWRwXXBLDuIdhYU
+	+11JFZzuJGDC4A6L+/WT3pK45X13CQNaILjZubsJW/WRcIt4aHv/FV2J6skaGbv4
+	J3qTyIySMsRtG3vDJTPZ/3j+opkWW1uhnEx420ZYe3Ct7250pl4dAGMUtB1aZH8/
+	k4C9hpVUCMLkM9gU6GEpfwOgW0lSzL/C+O/IB2r6RQQ==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4cyjessher-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Mar 2026 03:00:39 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 62I70cmp010593
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 18 Mar 2026 03:00:38 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Wed, 18 Mar 2026 03:00:38 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Wed, 18 Mar 2026 03:00:38 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Wed, 18 Mar 2026 03:00:38 -0400
+Received: from HYB-VFz9h4bIQxi.ad.analog.com (HYB-VFz9h4bIQxi.ad.analog.com [10.118.4.27])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 62I70PXG031847;
+	Wed, 18 Mar 2026 03:00:28 -0400
+From: Jan Carlo Roleda <jancarlo.roleda@analog.com>
+Subject: [PATCH 0/3] Add support for LTC3208 multi-display driver
+Date: Wed, 18 Mar 2026 14:59:19 +0800
+Message-ID: <20260318-upstream-ltc3208-v1-0-015f1f1e9065@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/7] Add support for Video, Camera, Graphics clock
- controllers on Eliza
-To: Taniya Das <taniya.das@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
- Imran Shaik <imran.shaik@oss.qualcomm.com>,
- Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20260317-eliza_mm_clock_controllers_v1-v1-0-4696eeda8cfb@oss.qualcomm.com>
- <253ee25d-3096-407d-8d2e-3c9d1072b2ae@kernel.org>
- <797d1615-860c-4829-a8f3-ee33ebeefad6@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <797d1615-860c-4829-a8f3-ee33ebeefad6@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-B4-Tracking: v=1; b=H4sIAEdNumkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDY0ML3dKC4pKi1MRc3ZySZGMjAwtd8+RkC0szi6Q0M8tUJaC2gqLUtMw
+ KsJHRsbW1AAFXP9FiAAAA
+X-Change-ID: 20260318-upstream-ltc3208-7cc8968bf69e
+To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-leds@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Jan Carlo Roleda <jancarlo.roleda@analog.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773817226; l=1135;
+ i=jancarlo.roleda@analog.com; s=20260317; h=from:subject:message-id;
+ bh=RPGS3auzLa3Zj9BdhQuQbW9we5KqcRRhPvqTLu9PTk4=;
+ b=kApm/6OFyYM6c1eAelPPofMIqIuS90Yhoz5f5nXcBUa4aktsetzMm32vJHQ45ziw955QZA4TO
+ IJx/Q1CVoCCCg4KRzMDlg/gtflVY+pk6en3Cz+uhfxx5GrJD+NSNIST
+X-Developer-Key: i=jancarlo.roleda@analog.com; a=ed25519;
+ pk=zPMh+eO6/Mj6tqaie75BLiTLQvE3f9pck0UejKLmLMc=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Authority-Analysis: v=2.4 cv=SpWdKfO0 c=1 sm=1 tr=0 ts=69ba4d97 cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=0sLvza09kfJOxVLZPwjg:22 a=uXIjobp8t2wMuQ0fPvqm:22 a=gAnH3GRIAAAA:8
+ a=YeJ3jcQhQBvMQWeA9nIA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: YQZuEsyxA8ll-ZIIWi4nXIjzVP0NOXSn
+X-Proofpoint-ORIG-GUID: YQZuEsyxA8ll-ZIIWi4nXIjzVP0NOXSn
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDA1NyBTYWx0ZWRfX1cR+muttv5OT
+ wLRJmCAHkSFH9IcL2kCuKJLJ022nYcZUKgYxZjfSC4h3f30iX/OmSfzncOgTPnq+uRrevG/uGeU
+ 1I/6WCX2ZBvPhlUHA8N9O+F6K6Ir7bjBP0Ke75mx2WMpZPnz9LJ/RiY7GWctcNUMLIQntT88lw7
+ y8pCuAsEsVbvGe4TJLY8vcXnliIh84v10QPubDdXhX6J7F3ckgvQS8k5XVuGSFTIZqTyCXRlXx8
+ lYSofVx4Vdv0AVu7jjJ5qyeS3rxgj5AJREygjIz6T4qfq1Il+ceYfp6DN9WeI2G664yXuWJh7uZ
+ RfX9eSrknlLy9a3+puk+3JmLtKfVnLTvx+q3xi8zQTtmbvV17gNvAj15AEoLruaJjdwTKhENh6V
+ cQ9kls++cjMhI5VNFVT9BX9mYCnnwuZKBK4XFdQXdPGHptaYSprIiFZH7RLXSnvgenZfMjnjiuV
+ MFAqwbLI3eEgUcr16hA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-17_05,2026-03-17_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 malwarescore=0 spamscore=0 clxscore=1011 priorityscore=1501
+ lowpriorityscore=0 adultscore=0 phishscore=0 suspectscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603180057
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276958-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DKIM_TRACE(0.00)[analog.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276961-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:dkim,analog.com:email,analog.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[jancarlo.roleda@analog.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7F9732B6884
+	PRECEDENCE_BULK(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 385E52B69C4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 18/03/2026 05:05, Taniya Das wrote:
-> 
-> 
-> On 3/17/2026 10:53 PM, Krzysztof Kozlowski wrote:
->> On 17/03/2026 18:14, Taniya Das wrote:
->>> Add driver for Eliza SoC camera, graphics and Video clock controllers.
->>> The camera clock controller supports the cambist clock controller and
->>> the regular camera clock controller.
->>>
->>> Dependency:
->>> https://lore.kernel.org/lkml/20260305-gpucc_sm8750_v2-v5-0-78292b40b053@oss.qualcomm.com/
->>>
->>> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
->>> ---
->>> Taniya Das (7):
->>>       dt-bindings: clock: qcom: Add video clock controller on Eliza SoC
->>>       dt-bindings: clock: qcom: document the Eliza GPU Clock Controller
->>>       dt-bindings: clock: qcom: Add support for CAMCC for Eliza
->>>       clk: qcom: videocc: Add video clock controller driver for Eliza
->>>       clk: qcom: gpucc: Add GPU Clock Controller driver for Eliza
->>>       clk: qcom: camcc: Add support for camera clock controller for Eliza
->>>       arm64: defconfig: Enable clock controllers on Qualcomm Eliza SoC
->>
->> On which device did you test it? Considering that you told me you did
->> not hear about integration branch with patches before, I have doubts you
->> could ever actually test it without our changes.
->>
-> 
-> This is SoC which is already tested with our internal mobile platforms.
-> The SoC w.r.t clocks remains same and has been verified and work well.
+The LTC3208 is a multi-display LED driver, using a high-efficiency, low
+noise charge pump to provide power to 5 channels (MAIN, SUB, RGB, CAM,
+AUX). Current for each LED is controlled by the I2C serial interface.
+Four AUX current sources can be independently assigned via the I2C port
+to the CAM, SUB, MAIN, or AUX DAC controlled displays
 
-So you did not test the patches.
+Signed-off-by: Jan Carlo Roleda <jancarlo.roleda@analog.com>
+---
+Jan Carlo Roleda (3):
+      Add Maintainers to LTC3208 LED Driver
+      leds: ltc3208: add driver
+      dt-bindings: leds: Document LTC3208 Multidisplay LED Driver
 
-> 
->> But regardless - on which hardware exactly?
-> 
-> These are our mobile Eliza MTP platform.
-
-???
-
+ .../devicetree/bindings/leds/adi,ltc3208.yaml      | 159 +++++++++++
+ MAINTAINERS                                        |   8 +
+ drivers/leds/Kconfig                               |  11 +
+ drivers/leds/Makefile                              |   1 +
+ drivers/leds/leds-ltc3208.c                        | 298 +++++++++++++++++++++
+ 5 files changed, 477 insertions(+)
+---
+base-commit: e68f95a51d1a8c1594b536c4d495cbea38d47561
+change-id: 20260318-upstream-ltc3208-7cc8968bf69e
 
 Best regards,
-Krzysztof
+-- 
+Jan Carlo Roleda <jancarlo.roleda@analog.com>
+
 
