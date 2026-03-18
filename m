@@ -1,191 +1,155 @@
-Return-Path: <devicetree+bounces-277266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277268-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oG03EB6zumlWawIAu9opvQ
-	(envelope-from <devicetree+bounces-277266-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:13:50 +0100
+	id WHf7IEOxumkVawIAu9opvQ
+	(envelope-from <devicetree+bounces-277268-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:05:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 381902BCD06
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:13:49 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2C3D2BC998
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:05:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7B5A630DF72B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:58:04 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D931830138AA
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:05:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 685A23DA5C4;
-	Wed, 18 Mar 2026 13:57:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8748D3DA5AF;
+	Wed, 18 Mar 2026 14:05:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tG0m2dOB"
+	dkim=pass (1024-bit key) header.d=pupin.rs header.i=@pupin.rs header.b="JxXP7nbE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 457153DA5BC
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 13:57:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail.imp.bg.ac.rs (mail.imp.bg.ac.rs [147.91.50.100])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED4A63DA5A6;
+	Wed, 18 Mar 2026 14:05:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=147.91.50.100
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773842252; cv=none; b=G3OWjAnT6TT8aCe12XHz7fGYchHctDZMzAsGhQhNbihal+3/aVKgG5juU3zTHAm7xtdrClHD30tKJFmClgGa11QCUHog5uGfQlZG8SQFv30SK4oroBF1fokKnw+yM4y3pdoNaeuOyIqBrpzFMsBN9Bw/m83et9Nscs4DdxQE+n8=
+	t=1773842749; cv=none; b=KAn/BTAWBjhqtpulrS1Ov877t1Xg42meXG2oA9vayh34XQ+TqVXdWsumfJFz2CmMq+iIraYKC2E2JoK6m2m37ssht+Yjkv14k2Qa7dOLGwIp9ajpm7hJ+2xUsxECXeaqJLRq0TYnKXSnUS7XwHAphuiirbAo6t3n8XYudxKErq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773842252; c=relaxed/simple;
-	bh=gnx7uWxAC+gLJ3Mdq7xy1t6BYYdm0AV9Cqp1s3NHoDM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nvPSSbnymaIfhp/nW4k5GQCdND7iZspd3WnlcsiZSsO7sS1h2C5Hb4kDyhmr//asgwZeOeoJ35Y8ZVmERdAmEsev6Pe6mTNPMKCDWJU+of7GS76DiG2CLTOenOUwRgHdkxmSAmHmAXCMHQ+67RrAMlibWOO5DOO6+nAdl0xhUNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tG0m2dOB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F9A5C19424
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 13:57:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773842252;
-	bh=gnx7uWxAC+gLJ3Mdq7xy1t6BYYdm0AV9Cqp1s3NHoDM=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=tG0m2dOB3VF+KR4QsAaWd375AEAaHi6goPXz2Rb0W8MyzyhFIxZxh58hjbc5jMyXW
-	 nHuf6T5X+HnlEOGoVuSeTmSRWkkTp27jM4oCIYekluJE1SI7Cv6HL9TgPdzGi4ngXT
-	 4cu0OV5zU0n/tb17vWImKB40GheDd4ujEFRxbLTd1+Kfq3cKxyOH8pPAC5HwAyDk2t
-	 ma0Oz6/AASaFYBJLVKB0qubSU/WVVM6a/L9X20mEqbir9lsr/kXNxv0R3nWCpVROBZ
-	 yc14qUDHVkASgLhn83xOX5adYu/xkAmSE62gBJ8iGjR/mOcZWqtruibHfnuDGP4bYf
-	 OWvXkCrubRKLQ==
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-6674cba2c50so1413094a12.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 06:57:32 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXNR94qERrWE12eqDVtl4DEl3ejNrgUtY2XgPCaGRzZCj6V2yTPNb7BTFx99uE6ROWXMEuSf6ygp1+n@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0j95GRW2oHh+AKW1lg8CqJ1ovFaugnrJTXdNj14GfygWwq1FS
-	phJbbb5FwaNqyxoaB6hfq4J7l8GyIwaBY1ltjPqaq0YEJChBdUYDRP31ZnWaISs8opeR3wkhn1q
-	gXaBBj3j1Hb6ecgsK7X2/XIjmBWlAxGA=
-X-Received: by 2002:a17:907:7244:b0:b93:f24a:127 with SMTP id
- a640c23a62f3a-b97d6de76a1mr489038566b.24.1773842250621; Wed, 18 Mar 2026
- 06:57:30 -0700 (PDT)
+	s=arc-20240116; t=1773842749; c=relaxed/simple;
+	bh=nc2q8zauiXZJVUjBOyzmWU2sDJFqFeETXgsoMoIkzlc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=cKyePgQeFlDyw4YsCx6gyDJH9KU39PcWESGUZchClml0uJhtCzSLpCmXBdd+J+kZCJlcyh2ltNIOyFD7KDi57a/I8wRs2B5b22J3ZpHuLPcHtli2JSunrn8USu/sFSTqQH21DPJ00g5XAvj+iJtUsBgb90380l0p8LOsm0frgB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=pupin.rs; spf=pass smtp.mailfrom=pupin.rs; dkim=pass (1024-bit key) header.d=pupin.rs header.i=@pupin.rs header.b=JxXP7nbE; arc=none smtp.client-ip=147.91.50.100
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=pupin.rs
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pupin.rs
+Received: from localhost (localhost [127.0.0.1])
+	by mail.imp.bg.ac.rs (Postfix) with ESMTP id AA8F6140C272C;
+	Wed, 18 Mar 2026 14:57:47 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pupin.rs; h=
+	content-transfer-encoding:mime-version:references:in-reply-to
+	:x-mailer:message-id:date:date:subject:subject:from:from
+	:received:received; s=dkim20260301; t=1773842267; bh=nc2q8zauiXZ
+	JVUjBOyzmWU2sDJFqFeETXgsoMoIkzlc=; b=JxXP7nbEPEgz0pOtkEK+fQ1gj4q
+	qXjK3JfOHL5NyWq9a0Dl3VomHjiYitKMQqF8nIzOIX+NZU8SnW/b1uAYQXiMoYn5
+	83eLN2af6+i/MAYUH904bGvI6PKVb8IONoHdzh4TGAtTReB8l5zPpajE4XyU/WDU
+	WgUhh7x8640C2dnc=
+X-Virus-Scanned: amavis at imp.bg.ac.rs
+Received: from mail.imp.bg.ac.rs ([127.0.0.1])
+ by localhost (mail.imp.bg.ac.rs [127.0.0.1]) (amavis, port 10024) with LMTP
+ id oXVziFM00TWn; Wed, 18 Mar 2026 14:57:47 +0100 (CET)
+X-Comment: SPF check N/A for local connections - client-ip=147.91.52.78; helo=phyvm-virtualbox; envelope-from=david.marinovic@pupin.rs; receiver=jic23@kernel.org 
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.imp.bg.ac.rs 6106A140C271C
+Received: from phyvm-VirtualBox (unknown [147.91.52.78])
+	by mail.imp.bg.ac.rs (Postfix) with ESMTPS id 6106A140C271C;
+	Wed, 18 Mar 2026 14:57:47 +0100 (CET)
+From: =?UTF-8?q?David=20Marinovi=C4=87?= <david.marinovic@pupin.rs>
+To: jic23@kernel.org
+Cc: andriy.shevchenko@intel.com,
+	dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	michael.hennerich@analog.com,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	David Marinovic <david.marinovic@pupin.rs>
+Subject: [PATCH v2 0/3] iio: dac: ltc2632: add support for LTC2654 DAC family
+Date: Wed, 18 Mar 2026 14:57:29 +0100
+Message-ID: <20260318135736.91564-1-david.marinovic@pupin.rs>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <5d4fb8998d9634c3e5a8ed17b80dae07@pupin.rs>
+References: <5d4fb8998d9634c3e5a8ed17b80dae07@pupin.rs>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260314162828.1055188-1-zhengxingda@iscas.ac.cn>
-In-Reply-To: <20260314162828.1055188-1-zhengxingda@iscas.ac.cn>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Wed, 18 Mar 2026 21:57:14 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H4OYVB21jH3PSzOi4GPU+t4LY664Yp=CeDhjFRKf9V07Q@mail.gmail.com>
-X-Gm-Features: AaiRm51L7NG5tsCrybND45L_NZrxxhNvUkDMnSa4KOQ_a2hgp11NA1VrtQjPUV4
-Message-ID: <CAAhV-H4OYVB21jH3PSzOi4GPU+t4LY664Yp=CeDhjFRKf9V07Q@mail.gmail.com>
-Subject: Re: [PATCH v3 0/8] Add support for LS7A LPC IRQ for MIPS Loongson systems
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Cc: Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	WANG Xuerui <kernel@xen0n.name>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	Jiaxun Yang <jiaxun.yang@flygoat.com>, Icenowy Zheng <uwu@icenowy.me>, Yao Zi <me@ziyao.cc>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	loongarch@lists.linux.dev, linux-mips@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[pupin.rs,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[pupin.rs:s=dkim20260301];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277266-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-277268-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chenhuacai@kernel.org,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,iscas.ac.cn:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 381902BCD06
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[david.marinovic@pupin.rs,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[pupin.rs:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: F2C3D2BC998
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi, Icenowy,
+From: David Marinovic <david.marinovic@pupin.rs>
 
-On Sun, Mar 15, 2026 at 12:28=E2=80=AFAM Icenowy Zheng <zhengxingda@iscas.a=
-c.cn> wrote:
->
-> This patchset tries to add support for Loongson 7A1000 PCH's LPC
-> interrupt controller to MIPS-based Loongson systems.
->
-> LPC, from software's perspective of view, is just ISA, so the interrupts
-> should be handled as legacy ones occupying the lowest 0-15 IRQ numbers.
-> Despite the current PCH LPC driver for ACPI-based LoongArch Loongson
-> machines handled it, the setup is fragile and depends on its specific
-> setup sequence (allocating the LPC IRQs first, and then allocate the
-> parent IRQ at PCH PIC). The refactor of extracting parent IRQ allocation
-> breaks this fragile sequence, so the first two commits is created to
-> address this issue (by reserving ISA interrupts from the dynamic
-> allocation space).
->
-> Then the remaining commits are just adding OF(DT) based initialization
-> of PCH LPC interrupt controller, like what happened on PCH PIC.
->
-> Tested on a Haier Boyue G51 system with legacy i8042 keyboard/mouse as
-> integrated ones.
->
-> Changes in v3:
-> - Override arch_dynirq_lower_bound() in MIPS Loongson64 / LoongArch
->   instead of modifying the global version of function.
-> - Added Rob's R-b to the binding patch.
->
-> Changes in v2:
-> - Rebased on top of `irq-drivers-2026-02-09` tag.
-> - Compatible changed to `loongson,ls7a-lpc` .
-> - Merged the patch for conditionally build of ACPI code to the patch
->   introducing OF code.
-> - Sorted function variable definitions.
-> - Reworded some commit messages as Thomas Glexiner suggests.
-> - Added __init to the LPC irqchip OF initialization code to prevent
->   section mismatch.
->
-> Icenowy Zheng (8):
->   MIPS: loongson64: Override arch_dynirq_lower_bound to reserve LPC IRQs
->   LoongArch: Override arch_dynirq_lower_bound to reserve LPC IRQs
-Use upper case for the first word, which means....
+Greetings!
 
->   dt-bindings: interrupt-controller: add LS7A PCH LPC
-s/add/Add/g
+I have mangled the first cover letter which may have caused confusion.
+It's my first time submitting a kernel patch so apologies in advanced.
 
->   irqchip/loongson-pch-lpc: extract non-ACPI-related code from ACPI init
-s/extract/Extract/g
+This is v2 of the LTC2654 DAC support patch series, addressing
+review feedback from Andy Shevchenko and Krzysztof Kozlowski.
 
->   irqchip/loongson-pch-lpc: add OF init code
-s/add/Add/g
+The LTC2654 is a quad-channel, 16-/12-bit DAC with internal
+reference voltage and SPI interface, sharing the same 24-bit
+SPI protocol as the LTC2632/2634/2636 family.
 
->   irqchip/loongson-pch-lpc: enable building on MIPS Loongson64
-s/enable/Enable/g
+The LTC2654L-16 variant has been tested on a Phytec phyCORE-STM32MP1
+board with the DAC connected via SPI1. The driver probes successfully
+and all 4 channels are accessible via the IIO sysfs interface.
 
->   MIPS: Loongson64: dts: sort nodes
-s/sort/Sort/g
+Changes in v2:
+- Added refactor patch dropping the enum and using individual
+  chip_info objects as requested by Andy Shevchenko
+- DT bindings patch now comes before the driver patch
+- DT bindings commit message now describes hardware not driver
+- DT bindings patch tested with make dt_binding_check and
+  scripts/checkpatch.pl --strict with no errors or warnings
 
->   MIPS: Loongson64: dts: add node for LS7A PCH LPC
-s/add/Add/g
+Question for Krzysztof Kozlowski. You mentioned "Several look compatible
+to me, so express it with fallback and drop unneeded entries in the driver."
+Does this mean a complete refactor of the existing entries?
 
-In addition, I think the last two patches should be in another series
-because they won't go to the irqchip tree.
+David Marinovic (3):
+  iio: dac: ltc2632: drop enum and use individual chip_info objects
+  dt-bindings: iio: dac: ltc2632: add LTC2654 compatible strings
+  iio: dac: ltc2632: add support for LTC2654 DAC family
 
-Huacai
+ .../bindings/iio/dac/lltc,ltc2632.yaml        |  12 +-
+ drivers/iio/dac/ltc2632.c                     | 367 +++++++++---------
+ 2 files changed, 188 insertions(+), 191 deletions(-)
 
->
->  .../loongson,pch-lpc.yaml                     | 52 +++++++++++
->  arch/loongarch/kernel/irq.c                   |  6 ++
->  arch/mips/boot/dts/loongson/ls7a-pch.dtsi     | 17 +++-
->  arch/mips/loongson64/init.c                   |  6 ++
->  drivers/irqchip/Kconfig                       |  1 -
->  drivers/irqchip/irq-loongson-pch-lpc.c        | 87 ++++++++++++++-----
->  6 files changed, 144 insertions(+), 25 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controlle=
-r/loongson,pch-lpc.yaml
->
-> --
-> 2.52.0
->
+-- 
+2.50.1
+
 
