@@ -1,381 +1,210 @@
-Return-Path: <devicetree+bounces-277059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277060-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cEtzHKhoumnnWAIAu9opvQ
-	(envelope-from <devicetree+bounces-277059-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:56:08 +0100
+	id 4GqUOfloumnnWAIAu9opvQ
+	(envelope-from <devicetree+bounces-277060-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:57:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 162652B88CF
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:56:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 584692B890D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:57:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5E6BA300B9CD
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:56:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4FEA13013269
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:56:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7EE13939D9;
-	Wed, 18 Mar 2026 08:56:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBF1739478B;
+	Wed, 18 Mar 2026 08:56:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KiScRrjX"
+	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b="afTqvm77"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 934AC287269;
-	Wed, 18 Mar 2026 08:56:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773824165; cv=none; b=sTXHqbynS2hL/17cSJIGAEPxP/J5X7gJBJKDi8Xp62bCH1uAPjn/n6qWX8BA/qnNZinqRt0GL8itB1G6neLXuoCXfZD5T8HUkRha1MQjOF3YOMynTQwEdvn8F00H5cS9If41tHLEhNWYW1OkJpZ+jGGnWUqBM8j5Dk0U8jXo+yc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773824165; c=relaxed/simple;
-	bh=25xQk1OMOB0x0hT2Fo3vaZByaRVPXWOX0KUfBuNAjaI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RL+7QFN5MSel2EftiLnKal3vk5KzhSEkPTHQmkE2ZGFR70RUgL/ivd5SS8KIgRZJ1+qndp32nGzRQYYJEueg2QusR1sITIh4aCWo4bhT8PnBWni5J2Z46diTIVWPP+Zuuz15cMES49cLBfEtiq/RfW7kGHR91pBrkVDuJAYfvHI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KiScRrjX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2557C19421;
-	Wed, 18 Mar 2026 08:56:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773824165;
-	bh=25xQk1OMOB0x0hT2Fo3vaZByaRVPXWOX0KUfBuNAjaI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KiScRrjXBAx8WpZrhMZM8BjWnXBdOrUJL57ikpRHCHnMCQubBk76fM/Xn+Qlvg5nY
-	 6uXetFyLpNSeAFFyTx1VNq1iu1DAo2bVbF1skkzRc185OM7OPuqGHl9QmSRpkNUzFB
-	 LO8KeJS3FCkMVe2hpfpE6Px+c9xSfLrLr2gE1ziYkp2KKIR1v4Q1T147HfJ4QW1AEh
-	 Yh/FX43i6mIdHUXkIPD7Ucq55ljM9fvgf2ikfvBUqKvMSFlQ68wN86v4xmfLE5RAzX
-	 iiGoLdk35RIEt3dAi3e5R5SXdx9Mkz3ZLBaAO7jSuUzhNG31aI71K/ncR9x7+IrziJ
-	 kPQHBHtA0B/pA==
-Message-ID: <edf0eab1-845b-494c-89c0-8822f7c3156c@kernel.org>
-Date: Wed, 18 Mar 2026 09:56:00 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F73F38F94E
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 08:56:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.218.48
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773824218; cv=pass; b=uGJ12iYfQ3DSvc/cQWWBppLkqLpwOZeQbs64FwdRbiUhcE7KWWSKt/ZgAY7LRVr7sTHrJGO31fJ7xX4fZpgysl4XtiEJhb6Xo9OacUBJZBDxRgrMxhdCUJmw+zF7iOwy1htJXfpO0cXRcLzcO/MXInUy3ukA/sWjvweSBPrITYA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773824218; c=relaxed/simple;
+	bh=L53pObIS0rYVHm+piAwTMbQG38WFZI9xZa3E0ELmHKg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=R0KF8A9KSfNxjcFuLojCvKt9gWpUPKPNv+iylQPy24STPIlylo+Gvw2v0/JlLObreDvgoYPHpd6TDncw6tuDxlIOwIShhKMivVEyLoSKFFQJpEoZ0wJ09mEcepnZEE3EbG8N9c7GuTCNIs9x9FYe6+8sxnvtRo7Is3vno4wtUB0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net; spf=pass smtp.mailfrom=flipper.net; dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b=afTqvm77; arc=pass smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flipper.net
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b97b7e0368eso461882566b.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 01:56:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773824215; cv=none;
+        d=google.com; s=arc-20240605;
+        b=CwNUe2g8oVyOHjXApl9ekKG5O5SAyNVSLf+uibKV9/AQuEWpZ/FY+RiW3QlMVybE4U
+         CUJReEU6fR03xMhkoe5MQW8jHJWWn19P2X0BLpxVVEH8I5tx+nu2meBQlSAnX3dg2bLZ
+         gFCQ8vn5BIVgQvcoM+Z8wrXBd4Q01GEsgMSBF6maV5WAUFjdlO6OU1TugG8bOho/ETVX
+         gVmP88xyigh0af6ZrqcBo4iOt1/Fbmv3K6V6JVGPim5CUOtJuhdF8qTDUF97ianmZHtb
+         I4MfSjQLQ8yTSlmu5oxh5TLJ4J98zu9Jb4lyZe7DTQe5aJ6Z+wM1zTM3nBuEwucPEl77
+         NXwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=BiHpCwGFAOs/wXB6PtDSepAcPps28mvRmd8j+A87AOk=;
+        fh=3grCqX5rN9qgoU7GZgqR80kGj9iO17vamFcE85ZLsGk=;
+        b=dCMYTS59gKJa0QWdA7UOhPSOdGBzgC5WPt90ejfr6stOb3e6dx1vrhxOYJR0gkG5sp
+         RJwx+RqLDjMDF0/v8gCgZFHp8VkkKnzD3BKPyQdHL5v/EIv4dYJNPZnjSMneRtxaKVde
+         4ll46CWAJ9CNj/Vmt7RukzcnRBUk2s0xX3kkaM4KUk2RxvxLPctEsMojQU4fBkw+lJHI
+         K4J6a2LD+KG/4Q6Dio/XOu9iO3e4egPBVT06Yicxk9Z818YvulBjhtgEBFiMhMIXXE0c
+         2+x93Wfjjr7O+qLxbYLNEtyxjDH2VGWwBXt67VQngjZFNWImf1kJgPKcGBY7+9Sd+AcU
+         sI4A==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=flipper.net; s=google; t=1773824215; x=1774429015; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BiHpCwGFAOs/wXB6PtDSepAcPps28mvRmd8j+A87AOk=;
+        b=afTqvm77EZBe9MDhzsOB7rzORylsTETQIndsnzjA24hK9joA8atogvXra65QNrJ2YZ
+         2phQ5WwzIXpoO2D3pt+yjKR633IW9/kf3ifE5MuVbt/NDKFvbpJyjWqg7lCXimFVl4Hm
+         FvlY3ZYSGCZFns6FUA/RpCKdYIM7R1kDRA/8UN//1edUNapMOB6QnU4opvflNTHS65Pv
+         MihTEAFz5MnCz+aOeVfCJDwn1nWeViV8PSQXdGI/22dFWQc05JbqtYGGNEmdtbAVbQaI
+         HiSJGvTaeDVi3BFHubORqwReEtWSoH4QRs8wYsLFWsGFOxiZ3MAmVZVPdx31CopNle5o
+         ihXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773824215; x=1774429015;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=BiHpCwGFAOs/wXB6PtDSepAcPps28mvRmd8j+A87AOk=;
+        b=fVGDcuiMEQrNwJa4V0wf9aKMXVbrHQbb2m1luQz8P/WGqWGQQjBy/wYbkHaP3gknAo
+         9AADK8S4JHrFK/vf80oT9g9rN2HbqopEJ4xhpm89iZ8oHE/9Gj/ESGTp4mOp4T6/eB1N
+         7hEgb4Q41FohEwTvuer2Dlf9mqEr33Zn9kffMhYu/BaFZ4VCnroEenVzneOEtvhKsR9o
+         B/WwSMSmAYTND7X7lKEW5bd+f/Aub5t+N9JaZmQyOAMVVFUt6GFblDSCkwvSX3BiyM8U
+         nGhMLhDdTJnoKihSW6JgrjBEE8IS117MpxIMd0bEPFgQIZGL8EZr3WGs0NMGeZ2fNxs6
+         0tzA==
+X-Forwarded-Encrypted: i=1; AJvYcCUzWmXkfe7GF8SKVktEi8/CR0ZyRmqjoOvVGqOPyv3GLu82b76yHSSWu+JNTqWD1Hf68TaDKp7iq+J5@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywo7hppRZvj8ly3wleElgwE+S0IunFoULX0idVQCmAex0syAz42
+	fJhqcz8DY6A/zmn/NVBPjFd2pcKdEudhucDuUMF+hvZ+iIaGWCY3WY5umGq+PuY/hRlJ5aBGQvd
+	A2nhbSNNLjr3tsC0a9TDciJRlepgZ0QDpUSDkRBeJjQ==
+X-Gm-Gg: ATEYQzzuLDrQIe33SE3YX7PAgzFUUxKndJw1btKfSExYeAZ9mUj6JOcsRoiDev3zzrk
+	S/NtpwwJSvniA5l3mFCVWrmJcthMbM3rFsHbUMHYPPDywWsMtc3tGdwe2JcmZzJ/EzD3PWC/IYB
+	ZNezEyFdqIglshJvrfSmKGDeGmIHD9r5JfrXhwoATHOVrs2GCiOU/L5HEw0oWypGD4f8u5TeeQB
+	Wrfcj5VmHqMd8g4fqclNw+UFR/xYHIaOgeGGGZM3DIFwps5AlI3lgTYpRkTW8jB478lHW5bB29I
+	7uDrqw0D
+X-Received: by 2002:a17:907:c02:b0:b96:edcd:cd04 with SMTP id
+ a640c23a62f3a-b97f4b16f67mr130546366b.49.1773824215550; Wed, 18 Mar 2026
+ 01:56:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add qcs9075-radxa-airbox-q900
-To: Mecid Urganci <mecid@mecomediagroup.de>, andersson@kernel.org,
- konradybcio@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- richardcochran@gmail.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20260318083621.470826-1-mecid@mecomediagroup.de>
- <20260318083621.470826-3-mecid@mecomediagroup.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260318083621.470826-3-mecid@mecomediagroup.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260317-husb311-v2-0-03c17c986abe@flipper.net>
+ <20260317-husb311-v2-5-03c17c986abe@flipper.net> <20260318-able-goose-of-downpour-db3bbd@quoll>
+ <d925c15d-add5-4f2a-8eac-fa7dd1b56bf2@kernel.org> <CAKTNdwH7RswOSBZyVKvsHfhZ3-xwyDs7ywOHuafMFb1-xNf0PA@mail.gmail.com>
+ <c816a7b4-5237-4732-85af-26b70dce57f5@kernel.org>
+In-Reply-To: <c816a7b4-5237-4732-85af-26b70dce57f5@kernel.org>
+From: Alexey Charkov <alchark@flipper.net>
+Date: Wed, 18 Mar 2026 12:56:40 +0400
+X-Gm-Features: AaiRm51Z1zxcom6oGEe1zlWDtcLo4AbRjORqgQ25Zd5ty1p7g_jEjtaNn5KvnQ8
+Message-ID: <CAKTNdwE-d5c9gzCxc0sXErc-M6TGdsf8M+ZZ0yoVAH9h_bqTkg@mail.gmail.com>
+Subject: Re: [PATCH v2 5/5] arm64: dts: rockchip: Add HUSB311 Type-C
+ controller on RK3576 EVB1
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Gene Chen <gene_chen@richtek.com>, 
+	Heiko Stuebner <heiko@sntech.de>, Yuanshen Cao <alex.caoys@gmail.com>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[flipper.net,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[flipper.net:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-277059-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277060-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[kernel.org,linux.intel.com,linuxfoundation.org,richtek.com,sntech.de,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org,oss.qualcomm.com];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alchark@flipper.net,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[flipper.net:+];
+	NEURAL_HAM(-0.00)[-0.998];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mecomediagroup.de:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,radxa.com:url]
-X-Rspamd-Queue-Id: 162652B88CF
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 584692B890D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 18/03/2026 09:36, Mecid Urganci wrote:
-> Add device tree support for the Radxa AirBox Q900 board based on the
-> Qualcomm QCS9075 SoC (Lemans Family).
-> 
-> This board features HDMI 2.0 via dp0, 2x USB 3.1 Gen 2 ports,
-> 2x 2.5GbE Ethernet ports and onboard UFS storage.
-> 
-> Further information: https://radxa.com/products/fogwise/airbox-q900/
-> 
-> Functionality has been tested and confirmed working via an Armbian
-> Debian Trixie build.
-> 
-> Signed-off-by: Mecid Urganci <mecid@mecomediagroup.de>
-> Made-with: Cursor
+On Wed, Mar 18, 2026 at 12:39=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On 18/03/2026 09:30, Alexey Charkov wrote:
+> > On Wed, Mar 18, 2026 at 12:19=E2=80=AFPM Krzysztof Kozlowski <krzk@kern=
+el.org> wrote:
+> >>
+> >> On 18/03/2026 09:17, Krzysztof Kozlowski wrote:
+> >>> On Tue, Mar 17, 2026 at 10:08:02PM +0400, Alexey Charkov wrote:
+> >>>> Rockchip RK3576 EVB1 board has a Hynetek HUSB311 USB Type-C controll=
+er on
+> >>>> its Type-C OTG port, which also supports DisplayPort Alternate Mode.
+> >>>>
+> >>>> Add the required DT nodes to enable basic HUSB311 operation.
+> >>>>
+> >>>> Note that for full support of mode and orientation switching, the US=
+BDP
+> >>>> PHY schema may need to be expanded, such as in [1]. This is left out=
+ for
+> >>>> now until the respective schema is finalized and merged.
+> >>>>
+> >>>> [1] https://lore.kernel.org/linux-rockchip/20260313-rockchip-usbdp-c=
+leanup-v3-1-3e8fe89a35b5@collabora.com/
+> >>>>
+> >>>> Signed-off-by: Alexey Charkov <alchark@flipper.net>
+> >>>> ---
+> >>>>  arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts | 20 +++++++++++++=
++++++++
+> >>>>  1 file changed, 20 insertions(+)
+> >>>
+> >>> DTS patch must not be in this patchset. Don't mix it.
+> >>
+> >> In case I am too vague: by don't mix it, I mean - separate DTS changes
+> >> to independent patchset. They cannot be combined into USB posting.
+> >
+> > Thanks Krzysztof. I will split them out in the next submission. I
+> > think it's important to first agree on the use of fallback compatibles
+> > and the best way to handle the (already queued up in next) ET7304
+> > patches this cycle before their bindings hit mainline. Then, I can
+> > rebase and squash/split everything as required.
+>
+> These are independent problems. But if you want to connect them, then
+> here you have:
+> If I review the patch, Greg will take everything, defeating the purpose
+> of my comment. So as you can see, I should rather not review them to
+> achieve one of my goals.
 
-Not a correct tag. Please read full docs about usage of LLM, because if
-you came with wrong tag, I assume you did not read the rest of it.
+I thought that having the DTS user with the binding that introduces
+its existence helps the initial discussion. With the DTS change being
+as minimal as it is here, it's definitely no biggie though.
 
-What's more, did you review this code before posting it?
-
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |    1 +
->  .../dts/qcom/qcs9075-radxa-airbox-q900.dts    | 1012 +++++++++++++++++
->  2 files changed, 1013 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-radxa-airbox-q900.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index a4dc9e8b2d25..c8b7dd67806d 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -180,6 +180,7 @@ qcs8300-ride-el2-dtbs := qcs8300-ride.dtb monaco-el2.dtbo
->  
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride-el2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= qcs9075-radxa-airbox-q900.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
->  
-> diff --git a/arch/arm64/boot/dts/qcom/qcs9075-radxa-airbox-q900.dts b/arch/arm64/boot/dts/qcom/qcs9075-radxa-airbox-q900.dts
-> new file mode 100644
-> index 000000000000..8b5202b527cb
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/qcs9075-radxa-airbox-q900.dts
-> @@ -0,0 +1,1012 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2026 Mecid Urganci
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +
-> +#include "lemans.dtsi"
-> +#include "lemans-pmics.dtsi"
-> +
-> +/ {
-> +	model = "Radxa AIRbox Q900";
-> +	compatible = "radxa,airbox-q900", "qcom,qcs9075", "qcom,sa8775p";
-> +
-> +	aliases {
-> +		ethernet0 = &ethernet0;
-> +		ethernet1 = &ethernet1;
-> +		i2c15 = &i2c15;
-> +		i2c18 = &i2c18;
-> +		serial0 = &uart10;
-> +		ufshc1 = &ufs_mem_hc;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	vcc_5v0_regulator: vcc-5v0-regulator {
-
-Please use name for all fixed regulators which matches current format
-recommendation: 'regulator-[0-9]v[0-9]'
-
-https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_5v0";
-> +		gpio = <&pmm8654au_3_gpios 6 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vcc_5v0_en_state>;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-boot-on;
-> +		enable-active-high;
-> +		regulator-always-on;
-> +	};
-> +
-> +	vcc5v0_usb30_otg_regulator: vcc5v0-usb30-otg-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc5v0_usb30_otg";
-> +		gpio = <&pmm8654au_2_gpios 3 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vcc3v3_usb30_otg_en_state>;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-boot-on;
-> +		enable-active-high;
-> +		regulator-always-on;
-> +	};
-> +
-> +	vcc5v0_usb30_regulator: vcc5v0-usb30-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc5v0_usb30";
-> +		gpio = <&pmm8654au_2_gpios 4 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vcc3v3_usb30_en_state>;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-boot-on;
-> +		enable-active-high;
-> +		regulator-always-on;
-> +	};
-> +
-> +	vcc_3v3_ssd_regulator: vcc-3p3-ssd-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_3v3_ssd";
-> +		gpio = <&pmm8654au_1_gpios 9 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vcc_3v3_ssd_en_state>;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		enable-active-high;
-> +		regulator-always-on;
-> +	};
-> +
-> +	vcc3v3_minipcie_regulator: vcc3v3-minipcie-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc3v3_minipcie";
-> +		gpio = <&pmm8654au_2_gpios 10 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vcc3v3_minipcie_en_state>;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		enable-active-high;
-> +		regulator-always-on;
-> +	};
-> +
-> +	gpio_leds: gpio-leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&status_led_state>, <&power_led_state>;
-> +
-> +		status-led {
-> +			gpios = <&pmm8654au_1_gpios 11 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "heartbeat";
-> +			function = LED_FUNCTION_STATUS;
-> +			color = <LED_COLOR_ID_BLUE>;
-> +		};
-> +
-> +		power-led {
-> +			gpios = <&tlmm 98 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "default-on";
-> +			function = LED_FUNCTION_POWER;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +		};
-> +	};
-> +
-> +	gpio_keys: gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-0 = <&gpio_keys_default>;
-> +		pinctrl-names = "default";
-> +
-> +		power-key {
-> +			label = "Power Off";
-> +			gpios = <&tlmm 97 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_POWER>;
-> +			wakeup-source;
-> +			debounce-interval = <30>;
-> +		};
-> +	};
-> +
-> +	fan0: gpio-fan {
-> +		compatible = "gpio-fan";
-> +		gpios = <&pmm8654au_1_gpios 12 GPIO_ACTIVE_HIGH>;
-> +		gpio-fan,speed-map = <0 0>, <5000 1>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&fan_en_state>;
-> +		#cooling-cells = <2>;
-> +	};
-> +
-> +	dp0-connector {
-
-dp-connector
-
-> +		compatible = "dp-connector";
-> +		label = "eDP0";
-> +		type = "full-size";
-> +
-> +		port {
-> +			dp0_connector_in: endpoint {
-> +				remote-endpoint = <&mdss0_dp0_out>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-
-...
-
-> +
-> +	gpio_keys_default: gpio-keys-default-state {
-> +		pins = "gpio97";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	power_led_state: power-led-state {
-> +		pins = "gpio98";
-> +		function = "gpio";
-> +		output-high;
-> +		bias-pull-up;
-> +	};
-> +};
-> +
-> +/ {
-> +	thermal-zones {
-> +		cpu-0-0-0-thermal {
-
-You should override given thermal zone by phandle/label style, not by
-full path.
-
-
+I appreciate your guidance on the fact that Greg applies a series as a
+whole. Will split up.
 
 Best regards,
-Krzysztof
+Alexey
 
