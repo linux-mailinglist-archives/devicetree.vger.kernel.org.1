@@ -1,167 +1,339 @@
-Return-Path: <devicetree+bounces-277091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277092-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6H7oCk12ummTWwIAu9opvQ
-	(envelope-from <devicetree+bounces-277091-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:54:21 +0100
+	id MEM8KAB3ummTWwIAu9opvQ
+	(envelope-from <devicetree+bounces-277092-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:57:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D4172B97BA
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:54:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2DFC2B9899
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:57:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5A99C318F1F6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:48:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5F6013056144
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:53:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 822852E5B27;
-	Wed, 18 Mar 2026 09:48:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 399E83B8BB1;
+	Wed, 18 Mar 2026 09:53:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=monolithicpower.com header.i=@monolithicpower.com header.b="SI+t3ZjG";
-	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="Kv/r/+wk"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="nM+sEIVm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from e242-7.smtp-out.us-west-1.amazonses.com (e242-7.smtp-out.us-west-1.amazonses.com [23.251.242.7])
-	(using TLSv1.2 with cipher AES128-SHA256 (128/128 bits))
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5F472652AF;
-	Wed, 18 Mar 2026 09:48:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=23.251.242.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 351AB391503
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 09:52:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773827296; cv=none; b=daiJpcN0LxuReBtxJN9CuB8E7t9+e2qmx66pmF2pbsySXRAIYtmKkG4TBERB9n+YGRcZ/MIz49CSTFy7fxr6Obx5cgAxaesed3tKkLHm5zG5nPmgXtK9775YGyjZ+zHAEJ5PaWxEg5IDTawQKTenqhWTBEsmldYB5bJQkvGHBqk=
+	t=1773827583; cv=none; b=NnIQdYauwMZ1ncvbqlR3Gq9sDgD1KrUSq5dlM0d4GfQgNOptyXT3skRhMgCVhk5nGjx7OWUcRM/mTu3ju5W8gtLeiszsSprG9P44K1rn4aWlfsPjnhvPJEfsNkc5xmCiGsR7gVbNRe5TDx3UN8XnSeCpFiMxNM9vDeTUYzHLxn8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773827296; c=relaxed/simple;
-	bh=OD5Twj5lEW1sLP1cIRM7AZB6/DFR58A6+GYFn0xb5So=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MIFlIdAk6HvbSAyOOlKiBirKGaRLbp3DI4UpbADa71SbziXk1b45+TapwYRbipweW+EEN+UZssgnlJB9pdlr26LXqjYS0Hm8xjszme3HVVz8QOHTVrd2H/1OpcUOF77lPWTT+9dgnOFHGHH/0Rkw7zSpMD0b4CGq6rtFJ1Q1BEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=monolithicpower.com; spf=pass smtp.mailfrom=mail-mps-ses.monolithicpower.com; dkim=pass (2048-bit key) header.d=monolithicpower.com header.i=@monolithicpower.com header.b=SI+t3ZjG; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=Kv/r/+wk; arc=none smtp.client-ip=23.251.242.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=monolithicpower.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mail-mps-ses.monolithicpower.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=rodjp4ft5fg4rp24cb2ntayvghblvgrq; d=monolithicpower.com;
-	t=1773827288;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding;
-	bh=OD5Twj5lEW1sLP1cIRM7AZB6/DFR58A6+GYFn0xb5So=;
-	b=SI+t3ZjGxmULUudakf8BP6l6uUPExIk6qgUTE5P1uxes+ySksxQGMsiJuGvOdKFe
-	jXgJdOy4LyiVOTXstUJ35rmvQ18Go5E1T3WiusRRyfQT220LtEDnvmeZrt8KJvN/O+6
-	E0ppB9LfyqGsHryMcFH3MSTk6d2F6XIYe1PrU8NpX3dIo1FlFdvoMtJcBQtL0WtEPzz
-	vS5dn3oOUkXwArEd0SepM6e4D49AY2wsLehavgBfNfMqZ/oHvtMl5h6/9yeJLm3woL9
-	hhcfOXQ7u94bJUV2KcYLhOZj1RMaiaZFp2GMsbaBiMNE1nN+6jbHQ70Zbc4I2lM8Waj
-	nwhRCqdiyQ==
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=voqdhibj3ww47nmt5hkqcrgg7xiynmza; d=amazonses.com; t=1773827288;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Feedback-ID;
-	bh=OD5Twj5lEW1sLP1cIRM7AZB6/DFR58A6+GYFn0xb5So=;
-	b=Kv/r/+wkVtCsEzSOK4/+GSsDEi1A05v+0LUUeBGjOlmsZc3J8rq591k/Y53dgz4z
-	E8rdZwc/QKKnol8tllCmv3lO5KOdEI/LgygI+bwJx4dBjcOA3bbHV5fRgz3St3M+FeL
-	wYS/Xtp2spCcaj5L4STyCnGQNHrxFJ3J2+mHkGIU=
-From: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-To: Yuxi.Wang@monolithicpower.com, linux@roeck-us.net, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, paweldembicki@gmail.com, 
-	carl.lee@amd.com, ythsu0511@gmail.com
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, wyx137120466@gmail.com
-Subject: [PATCH 2/2] hwmon: pmbus: mpq8785: add support for mpm3695-20 and mpm3690s-15
-Date: Wed, 18 Mar 2026 09:48:08 +0000
-Message-ID: <0111019d00586e60-e3a938c5-6b1d-47c8-9856-0fc717ece565-000000@us-west-1.amazonses.com>
-X-Mailer: git-send-email 2.51.0.windows.1
-In-Reply-To: <20260318094635.1873-1-Yuxi.Wang@monolithicpower.com>
-References: <20260318094635.1873-1-Yuxi.Wang@monolithicpower.com>
+	s=arc-20240116; t=1773827583; c=relaxed/simple;
+	bh=2Ux1TemWLvp+sIjI92wc40eoAdpnH+THH49uRMeftWo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=idZGzWS6oBAz0A/jn4jd3IAXfHkeHTkvw+uWxPzcE11XYP0faW/R+M6hEBFTdtjjRrImbtGSk9zkpm5/pEaH1fRC+/41Ufc0lhwYeKoJW87+szSJx6e35M8GQkePstpn5i15TiIFsDH6z4fTpa7JM0giM3TsXTYfU/HfI5YXRdY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=nM+sEIVm; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id A138FC55069;
+	Wed, 18 Mar 2026 09:53:17 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 1DFDF6004F;
+	Wed, 18 Mar 2026 09:52:53 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5646B10450753;
+	Wed, 18 Mar 2026 10:52:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1773827572; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=o1M9oXawm4eFa6tGNX2lOJuF+q+Hyfy5yyclVec63Vg=;
+	b=nM+sEIVm649wRcqk6fF4OFfpwwcKltTHgLFbZJiPgFcxQWt0krzhS2bYy2gmw1CZM9GdeF
+	lwrwqkfhoFYa8rCJk9CSqe8tiX2eXedn+4c3O4U5zSuNGw8k7tdGSfEVMoMoN+8KQlJLZu
+	IzePprWrdMfiwkCTBpFeUOPX+UojFkybeWz3sK0J69EuivBEoQsVUv/wNHwV4H/VDp00Qy
+	kdtM2TWqXShnjwtTlbrnLFMAf7XrxxF9A3X7+viX6Z3H9MbSrVeLOOAFMG/YW2mOzAOPck
+	LtdYTty+x5OgYtXZf93vjVvk3P3NBueHfktOzKntCDkvwjy0n4X2wVkpgqg2lw==
+Message-ID: <5c9eb2e9-1727-4c01-888d-56ffee6ca54a@bootlin.com>
+Date: Wed, 18 Mar 2026 10:52:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Feedback-ID: :1.us-west-1.CVpA5H5M7EMrIGr0u6+8nP6wkCH59pkYLxtNQh1UjuczBtN1WmV60RtUapmzBbQ7+P+SiHg5vbyEpY0uRvudPF12wRQI7xDHNKjWPMJN/yd9hVbV9UslJ09o7rVZZCRhPDXT8kPM9Nch5RQcZE90uz62B8giHS2hgInWMbQKX5A=:1.us-west-1.yP6/L6iaxFc47BvsTr22yvAX3nKjbzwVEN8jceuJEpw=:AmazonSES
-X-SES-Outgoing: 2026.03.18-23.251.242.7
-X-Spamd-Result: default: False [-0.16 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 2/2] net: mdio: add a driver for PIC64-HPSC/HX
+ MDIO controller
+To: Charles Perry <charles.perry@microchip.com>, netdev@vger.kernel.org
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260317184610.315852-1-charles.perry@microchip.com>
+ <20260317184610.315852-3-charles.perry@microchip.com>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <20260317184610.315852-3-charles.perry@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[monolithicpower.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[monolithicpower.com:s=rodjp4ft5fg4rp24cb2ntayvghblvgrq,amazonses.com:s=voqdhibj3ww47nmt5hkqcrgg7xiynmza];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277091-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277092-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
-	FREEMAIL_TO(0.00)[monolithicpower.com,roeck-us.net,kernel.org,gmail.com,amd.com];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Yuxi.Wang@monolithicpower.com,devicetree@vger.kernel.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[monolithicpower.com:+,amazonses.com:+];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amazonses.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,monolithicpower.com:dkim,monolithicpower.com:email,us-west-1.amazonses.com:mid]
-X-Rspamd-Queue-Id: 8D4172B97BA
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:email]
+X-Rspamd-Queue-Id: E2DFC2B9899
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for the MPS mpm3695-20 and mpm3690s-15.
+Hi Charles,
 
-Signed-off-by: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
----
- drivers/hwmon/pmbus/mpq8785.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+On 17/03/2026 19:46, Charles Perry wrote:
+> This adds an MDIO driver for PIC64-HPSC/HX. The hardware supports C22
+> and C45 but only C22 is implemented in this commit.
+> 
+> This MDIO hardware is based on a Microsemi design supported in Linux by
+> mdio-mscc-miim.c. However, The register interface is completely
+> different with pic64hpsc, hence the need for a separate driver.
+> 
+> The documentation recommends an input clock of 156.25MHz and a prescaler
+> of 39, which yields an MDIO clock of 1.95MHz.
+> 
+> The hardware supports an interrupt pin or a "TRIGGER" bit that can be
+> polled to signal transaction completion. This commit uses polling.
+> 
+> This was tested on Microchip HB1301 evalkit with a VSC8574 and a
+> VSC8541.
+> 
+> Signed-off-by: Charles Perry <charles.perry@microchip.com>
+> ---
+>  drivers/net/mdio/Kconfig          |   7 +
+>  drivers/net/mdio/Makefile         |   1 +
+>  drivers/net/mdio/mdio-pic64hpsc.c | 207 ++++++++++++++++++++++++++++++
+>  3 files changed, 215 insertions(+)
+>  create mode 100644 drivers/net/mdio/mdio-pic64hpsc.c
+> 
+> diff --git a/drivers/net/mdio/Kconfig b/drivers/net/mdio/Kconfig
+> index 44380378911b..7bdba8c3ddef 100644
+> --- a/drivers/net/mdio/Kconfig
+> +++ b/drivers/net/mdio/Kconfig
+> @@ -146,6 +146,13 @@ config MDIO_OCTEON
+>  	  buses. It is required by the Octeon and ThunderX ethernet device
+>  	  drivers on some systems.
+>  
+> +config MDIO_PIC64HPSC
+> +	tristate "PIC64-HPSC/HX MDIO interface support"
+> +	depends on HAS_IOMEM && OF_MDIO
+> +	help
+> +	  This driver supports the MDIO interface found on the PIC64-HPSC/HX
+> +	  SoCs.
+> +
+>  config MDIO_IPQ4019
+>  	tristate "Qualcomm IPQ4019 MDIO interface support"
+>  	depends on HAS_IOMEM && OF_MDIO
+> diff --git a/drivers/net/mdio/Makefile b/drivers/net/mdio/Makefile
+> index fbec636700e7..048586746026 100644
+> --- a/drivers/net/mdio/Makefile
+> +++ b/drivers/net/mdio/Makefile
+> @@ -20,6 +20,7 @@ obj-$(CONFIG_MDIO_MOXART)		+= mdio-moxart.o
+>  obj-$(CONFIG_MDIO_MSCC_MIIM)		+= mdio-mscc-miim.o
+>  obj-$(CONFIG_MDIO_MVUSB)		+= mdio-mvusb.o
+>  obj-$(CONFIG_MDIO_OCTEON)		+= mdio-octeon.o
+> +obj-$(CONFIG_MDIO_PIC64HPSC)		+= mdio-pic64hpsc.o
+>  obj-$(CONFIG_MDIO_REALTEK_RTL9300)	+= mdio-realtek-rtl9300.o
+>  obj-$(CONFIG_MDIO_REGMAP)		+= mdio-regmap.o
+>  obj-$(CONFIG_MDIO_SUN4I)		+= mdio-sun4i.o
+> diff --git a/drivers/net/mdio/mdio-pic64hpsc.c b/drivers/net/mdio/mdio-pic64hpsc.c
+> new file mode 100644
+> index 000000000000..1128b3a86804
+> --- /dev/null
+> +++ b/drivers/net/mdio/mdio-pic64hpsc.c
+> @@ -0,0 +1,207 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Microchip PIC64-HPSC/HX MDIO controller driver
+> + *
+> + * Copyright (c) 2026 Microchip Technology Inc. and its subsidiaries.
+> + */
+> +
+> +#include <linux/bitops.h>
+> +#include <linux/clk.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of_mdio.h>
+> +#include <linux/platform_device.h>
+> +
+> +#define MDIO_REG_PRESCALER     0x20
+> +#define MDIO_CFG_PRESCALE_MASK GENMASK(7, 0)
+> +
+> +#define MDIO_REG_FRAME_CFG_1 0x24
+> +#define MDIO_WDATA_MASK	     GENMASK(15, 0)
+> +
+> +#define MDIO_REG_FRAME_CFG_2	 0x28
+> +#define MDIO_TRIGGER_BIT	 BIT(31)
+> +#define MDIO_REG_DEV_ADDR_MASK	 GENMASK(20, 16)
+> +#define MDIO_PHY_PRT_ADDR_MASK	 GENMASK(8, 4)
+> +#define MDIO_OPERATION_MASK	 GENMASK(3, 2)
+> +#define MDIO_START_OF_FRAME_MASK GENMASK(1, 0)
+> +
+> +/* Possible value of MDIO_OPERATION_MASK */
+> +#define MDIO_OPERATION_WRITE BIT(0)
+> +#define MDIO_OPERATION_READ  BIT(1)
+> +
+> +#define MDIO_REG_FRAME_STATUS 0x2C
+> +#define MDIO_READOK_BIT	      BIT(24)
+> +#define MDIO_RDATA_MASK	      GENMASK(15, 0)
+> +
+> +#define MDIO_INT_I_ADDR 0x30
+> +#define MDIO_INT_I_BIT	BIT(0)
+> +
+> +#define MDIO_INT_E_ADDR 0x34
+> +#define MDIO_INT_E_BIT	BIT(0)
 
-diff --git a/drivers/hwmon/pmbus/mpq8785.c b/drivers/hwmon/pmbus/mpq8785.c
-index 87bd039c77b9..03889a197c4f 100644
---- a/drivers/hwmon/pmbus/mpq8785.c
-+++ b/drivers/hwmon/pmbus/mpq8785.c
-@@ -12,13 +12,15 @@
- 
- #define MPM82504_READ_TEMPERATURE_1_SIGN_POS	9
- 
--enum chips { mpm3695, mpm3695_25, mpm82504, mpq8785 };
-+enum chips { mpm3695, mpm3695_25, mpm82504, mpq8785, mpm3695_20, mpm3690s_15 };
- 
- static u16 voltage_scale_loop_max_val[] = {
- 	[mpm3695] = GENMASK(9, 0),
- 	[mpm3695_25] = GENMASK(11, 0),
- 	[mpm82504] = GENMASK(9, 0),
- 	[mpq8785] = GENMASK(10, 0),
-+	[mpm3695_20] = GENMASK(9, 0),
-+	[mpm3690s_15] = GENMASK(9, 0),
- };
- 
- static int mpq8785_identify(struct i2c_client *client,
-@@ -114,6 +116,8 @@ static const struct i2c_device_id mpq8785_id[] = {
- 	{ "mpm3695-25", mpm3695_25 },
- 	{ "mpm82504", mpm82504 },
- 	{ "mpq8785", mpq8785 },
-+	{ "mpm3695-20", mpm3695_20 },
-+	{ "mpm3690s-15", mpm3690s_15 },
- 	{ },
- };
- MODULE_DEVICE_TABLE(i2c, mpq8785_id);
-@@ -123,6 +127,8 @@ static const struct of_device_id __maybe_unused mpq8785_of_match[] = {
- 	{ .compatible = "mps,mpm3695-25", .data = (void *)mpm3695_25 },
- 	{ .compatible = "mps,mpm82504", .data = (void *)mpm82504 },
- 	{ .compatible = "mps,mpq8785", .data = (void *)mpq8785 },
-+	{ .compatible = "mps,mpm3695-20", .data = (void *)mpm3695_20 },
-+	{ .compatible = "mps,mpm3690s-15", .data = (void *)mpm3690s_15 },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, mpq8785_of_match);
-@@ -148,6 +154,8 @@ static int mpq8785_probe(struct i2c_client *client)
- 	case mpm3695:
- 	case mpm3695_25:
- 	case mpm82504:
-+	case mpm3695_20:
-+	case mpm3690s_15:
- 		info->format[PSC_VOLTAGE_OUT] = direct;
- 		info->m[PSC_VOLTAGE_OUT] = 8;
- 		info->b[PSC_VOLTAGE_OUT] = 0;
--- 
-2.39.2
+Thes INT_I/E don't seem to be used, you can drop them
+
+> +
+> +struct pic64hpsc_mdio_dev {
+> +	void __iomem *regs;
+> +};
+> +
+> +static int pic64hpsc_mdio_wait_trigger(struct mii_bus *bus)
+> +{
+> +	struct pic64hpsc_mdio_dev *priv = bus->priv;
+> +	u32 val;
+> +	int ret;
+> +
+> +	/* The MDIO_TRIGGER bit returns 0 when a transaction has completed. */
+> +	ret = readl_poll_timeout(priv->regs + MDIO_REG_FRAME_CFG_2, val,
+> +				 !(val & MDIO_TRIGGER_BIT), 50, 10000);
+> +
+> +	if (ret < 0)
+> +		dev_dbg(&bus->dev, "TRIGGER bit timeout: %x\n", val);
+> +
+> +	return ret;
+> +}
+> +
+> +static int pic64hpsc_mdio_read(struct mii_bus *bus, int mii_id, int regnum)
+> +{
+> +	struct pic64hpsc_mdio_dev *priv = bus->priv;
+> +	u32 val;
+> +	int ret;
+> +
+> +	ret = pic64hpsc_mdio_wait_trigger(bus);
+> +	if (ret)
+> +		return ret;
+> +
+> +	writel(MDIO_TRIGGER_BIT | FIELD_PREP(MDIO_REG_DEV_ADDR_MASK, regnum) |
+> +		       FIELD_PREP(MDIO_PHY_PRT_ADDR_MASK, mii_id) |
+> +		       FIELD_PREP(MDIO_OPERATION_MASK, MDIO_OPERATION_READ) |
+> +		       FIELD_PREP(MDIO_START_OF_FRAME_MASK, 1),
+> +	       priv->regs + MDIO_REG_FRAME_CFG_2);
+> +
+> +	ret = pic64hpsc_mdio_wait_trigger(bus);
+> +	if (ret)
+> +		return ret;
+> +
+> +	val = readl(priv->regs + MDIO_REG_FRAME_STATUS);
+> +
+> +	/* The MDIO_READOK is a 1-bit value reflecting the inverse of the MDIO
+> +	 * bus value captured during the 2nd TA cycle. A PHY/Port should drive
+> +	 * the MDIO bus with a logic 0 on the 2nd TA cycle, however, the
+> +	 * PHY/Port could optionally drive a logic 1, to communicate a read
+> +	 * failure. This feature is optional, not defined by the 802.3 standard
+> +	 * and not supported in standard external PHYs.
+> +	 */
+> +	if (!(bus->phy_ignore_ta_mask & 1 << mii_id) &&
+> +	    !FIELD_GET(MDIO_READOK_BIT, val)) {
+> +		dev_dbg(&bus->dev, "READOK bit cleared\n");
+> +		return -EIO;
+> +	}
+> +
+> +	ret = FIELD_GET(MDIO_RDATA_MASK, val);
+> +
+> +	return ret;
+> +}
+> +
+> +static int pic64hpsc_mdio_write(struct mii_bus *bus, int mii_id, int regnum,
+> +				u16 value)
+> +{
+> +	struct pic64hpsc_mdio_dev *priv = bus->priv;
+> +	int ret;
+> +
+> +	ret = pic64hpsc_mdio_wait_trigger(bus);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	writel(FIELD_PREP(MDIO_WDATA_MASK, value),
+> +	       priv->regs + MDIO_REG_FRAME_CFG_1);
+> +
+> +	writel(MDIO_TRIGGER_BIT | FIELD_PREP(MDIO_REG_DEV_ADDR_MASK, regnum) |
+> +		       FIELD_PREP(MDIO_PHY_PRT_ADDR_MASK, mii_id) |
+> +		       FIELD_PREP(MDIO_OPERATION_MASK, MDIO_OPERATION_WRITE) |
+> +		       FIELD_PREP(MDIO_START_OF_FRAME_MASK, 1),
+> +	       priv->regs + MDIO_REG_FRAME_CFG_2);
+> +
+> +	return 0;
+> +}
+> +
+> +static int pic64hpsc_mdio_probe(struct platform_device *pdev)
+> +{
+> +	struct device_node *np = pdev->dev.of_node;
+> +	struct device *dev = &pdev->dev;
+> +	struct pic64hpsc_mdio_dev *priv;
+> +	struct mii_bus *bus;
+> +	unsigned long rate;
+> +	struct clk *clk;
+> +	u32 bus_freq;
+> +	u32 div;
+> +	int ret;
+> +
+> +	bus = devm_mdiobus_alloc_size(dev, sizeof(*priv));
+> +	if (!bus)
+> +		return -ENOMEM;
+> +
+> +	priv = bus->priv;
+> +
+> +	priv->regs = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(priv->regs))
+> +		return PTR_ERR(priv->regs);
+> +
+> +	bus->name = KBUILD_MODNAME;
+> +	bus->read = pic64hpsc_mdio_read;
+> +	bus->write = pic64hpsc_mdio_write;
+
+Is there a plan to eventually add C45 ? if so, I'd put 'c22' somewhere
+in the names here.
+
+The rest seems OK to me, so with the extra macros removed,
+
+Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+
+Maxime
 
 
