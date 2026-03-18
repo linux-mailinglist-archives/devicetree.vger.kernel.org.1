@@ -1,124 +1,148 @@
-Return-Path: <devicetree+bounces-277258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277260-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kAM/FHmvumlXagIAu9opvQ
-	(envelope-from <devicetree+bounces-277258-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:58:17 +0100
+	id OJVnDFSyumlWawIAu9opvQ
+	(envelope-from <devicetree+bounces-277260-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:10:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCBB82BC7A5
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:58:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FF272BCBD2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:10:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CA9103049FEB
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:55:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D12EB31ABDE5
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:56:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0FAE3EAC82;
-	Wed, 18 Mar 2026 13:51:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BQ1HaFpa"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 037183DA5A2;
+	Wed, 18 Mar 2026 13:52:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CB1F3E9F8C;
-	Wed, 18 Mar 2026 13:51:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A362F3DB645
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 13:52:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773841882; cv=none; b=r+C2ajLQ6DjoN8vmy1iYI329/7VVuSYFoNyPq++StufwS68huycK/Im/09cKLWpuGK7jrmLzfaB7gek5NpovgC1vHG2oW671hSNp+g3kiZ2UK8HEDdeFCnXcpTZgANF61aA3TJX7zXmb97JfWgpGlKjNK/p+VURcen4hY/ER9tE=
+	t=1773841924; cv=none; b=ACJ39W0IcL9t59nACTNxi+vJ11N6GMmMf0Hbfp1n1rILMsa6YSjOFYcVQcwMKgyakhZVaNT9sfUNoWIjRrhYfK/C6xmeN9ZdCUR2j8d/KMTuzBYFDaZsmjxUJBfb0JfCpP8RP8OA9mNvhOIuPikF3kIpmnVdfv7R9ZCtULxj6XI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773841882; c=relaxed/simple;
-	bh=PgR4C/uVVgP5PRk1scjo2ui7uzU1sYhEQXIY1o7ZGeY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JQYIitLXtJEw2F62m4PJY1cLYqRgJLFx8uoUNt3PBwaGydZOaOHJMJJ8iim3pv1MVbaM2wFThA3TV2GSDX93rPLmUbzj7G3JrYVKSlXoVIqTJ66Lspia0kwMs4i7oFm/5HxJ0Ov0davWZzrqg4LjpPF9iaxeHxjgSJHzO9jhAsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BQ1HaFpa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53AB3C2BCAF;
-	Wed, 18 Mar 2026 13:51:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773841882;
-	bh=PgR4C/uVVgP5PRk1scjo2ui7uzU1sYhEQXIY1o7ZGeY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=BQ1HaFpaFdhGNM7zI7aSGHq79J2Z7OT6a9rb6P3jFx5yQXJYUhqQ5ezSUlJWZpveV
-	 bHVOBriVhZwBou9w/V//6bUR5BPWgS3nEtLECi+M3dEDkS9yf48EwN5u5FCORgWxUK
-	 rlWyMGz29YrYrumnx76v5TqWO4VbJhB9UoqfcLhWroeMG9WoDZiqjaiA0ENUIe9iu9
-	 PnG2J/z5T7wITpYe82Zy7O2fLiW5lcgEgoroENNb3Z1r3JpW+/4M5Cd27tuHA4bBxK
-	 gvRc2RkEF5VLKIzMWnBk3lJZBP8rzCTYiGwf5VACxvpLnWYKImKp49g1knMSQs3HT3
-	 ck+LH79yBpFQw==
-From: Bjorn Andersson <andersson@kernel.org>
-To: =?UTF-8?q?Kamil=20Go=C5=82da?= <kamil.golda@protonmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Yedaya Katsman <yedaya.ka@gmail.com>
-Cc: linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v5] arm64: dts: qcom: sm6125-xiaomi-laurel-sprout: Add Focaltech FT3518 touchscreen
-Date: Wed, 18 Mar 2026 08:50:32 -0500
-Message-ID: <177384182898.14526.14370567378778247054.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260208-touchscreen-patches-v5-1-5821dff9c9a2@gmail.com>
-References: <20260208-touchscreen-patches-v5-1-5821dff9c9a2@gmail.com>
+	s=arc-20240116; t=1773841924; c=relaxed/simple;
+	bh=mc3ZFYJpuY7HB2PXajjFXvvAb7650Lo20RqY4OfXG3A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qQjAijxqTC9thGMvBDKp5p3Psk/e7s6g798vwb4bST3idnP4e4OK+mbNjiMZbkLPRhVw9pICaGIUeCbDKPC+fBnfd4vCA0mWLBSSveBFYlj0s2W1zqo/J1onk0PjMY82hoM+X70rXxeSV5pHJFpUqOWuTGWU2w+qzSwKiD1V1Wo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-56a9c5cb48bso2743590e0c.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 06:52:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773841923; x=1774446723;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=w6sswZwwQf+Uk3ubatnIwSJtpQ0I+frMKeY2sBRh71Q=;
+        b=mzvJc259lORXWsAibVftmcYIZJNIs/DLldrTV+0MBvuAwomSPtN66haq57JN6g+Rh9
+         p9YIYvX8vu4WDl1GYtz54ClJInEny13ane1DNffTUKj8gB2Doq/BiLDmg075ZpICUhZe
+         J2PIlt3IY4LL0h7VvuTbtpl3L6ai5xrDaE5hm0SWohBgtDog2COswtkY672IIfFN7bua
+         3ugUDx5jcqW/7ov5GKHIH3tDJGcTtdnZYucGonJEYsHU6gBFumkkTlgseIcmA1EAmIA4
+         h4A1QNS94AJpNNldMMK9aqoBO94VSjomRCAZRFg8juyTr/wNqQXEFakkqulbgtVdBYMV
+         gqqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUddTpQDYjRSY19vG1kjewROAREUFJnV3uvWo/54jLU5EZJWdEVa/dMw6epI1NViAgnQxlTyobmuhqq@vger.kernel.org
+X-Gm-Message-State: AOJu0YyyIFN+A54Yy4FbvaU7t4UAvIdpriAXwpWplST8vdr+f1Xwo14s
+	jNAffvioe8PpVv973eOINMjTEF+aNZzFN+a0BdV5UQcCQuCyoXgFU25CxN86A7gixOU=
+X-Gm-Gg: ATEYQzyB6CIgM4uvVbM3nnBfQ7SyZnbg1ZxJxV6BYFQoha4EZn5uA+pngjiJinjeNcd
+	parQenEFwTd7wlQZ5hQUrGSe2RpPGR+rxMlQe75bP7T1AR8FBaaHhd1mQ95oACmVqCaO1rV3jrG
+	dgwBw69x/0BDCYun3tiexwF/NrK4UdKTfLGNzt2uTjzMriYhYjYkpch1xV9+XijgtttXi4Q6b0X
+	gniLproDKvhx3H+2taUOEDg2Yj77Csx5HXLtQK81KT7pU37TynlzKnzlrNj6rXQ9qEyQ+JQxVAB
+	6I3rCDRXKcvA3sZ4MJgNSiTHv9gJv3VUe3hq6kIkF9mkhS+tvkWBUjikK5jgjWSHdz20fpqlJAt
+	tWgdZN4q8GFzjNbIDC4LQ6ZPEK0c3UGfJWeZfBVbvIrno2Td5yfautGouMzBt3JI0TSiMkeOJ0m
+	2jU3+zaZ8cdQ40MbGL/g4uR2Za4g6GE6POP3hN9PqkNuq8HtLkUPRsPEcFPMF5
+X-Received: by 2002:a05:6102:5089:b0:5ff:e0be:f52e with SMTP id ada2fe7eead31-6027ce10e62mr1378137137.0.1773841922545;
+        Wed, 18 Mar 2026 06:52:02 -0700 (PDT)
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-6027eddf4d3sm1430807137.8.2026.03.18.06.52.01
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Mar 2026 06:52:02 -0700 (PDT)
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-5ffd76e4c89so1382570137.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 06:52:01 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXckAAg31nyAjyFou7UsftqOnfFSThBOtJ1PnYzaC0qwf7L+aUUV7XozA4hK9iDEQ06VPyjJuw45p/g@vger.kernel.org
+X-Received: by 2002:a05:6102:3593:b0:5ff:efdc:e225 with SMTP id
+ ada2fe7eead31-6027d0a6617mr1533255137.3.1773841921455; Wed, 18 Mar 2026
+ 06:52:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+References: <20260123225957.1007089-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20260123225957.1007089-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20260123225957.1007089-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 18 Mar 2026 14:51:50 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWWm4Yxe=Q_yafOoG_AZG0wMKGys+pi8dNqcE9xVjO85w@mail.gmail.com>
+X-Gm-Features: AaiRm52Yqcbh7zN6n6HsuQX68d87mVfgXO7iiNKq2svci0KHhjSW3azun8ynZmA
+Message-ID: <CAMuHMdWWm4Yxe=Q_yafOoG_AZG0wMKGys+pi8dNqcE9xVjO85w@mail.gmail.com>
+Subject: Re: [PATCH 2/4] arm64: dts: renesas: r9a09g077m44-rzt2h-evk: Clarify
+ SD0 power jumpers
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277258-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,bp.renesas.com,renesas.com];
+	TAGGED_FROM(0.00)[bounces-277260-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[protonmail.com,kernel.org,gmail.com];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	MISSING_XM_UA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DCBB82BC7A5
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.996];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:email,mail.gmail.com:mid,glider.be:email,linux-m68k.org:email]
+X-Rspamd-Queue-Id: 8FF272BCBD2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Sat, 24 Jan 2026 at 00:00, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Clarify the board setup requirements for using SDHI0 on the RZ/T2H EVK by
+> documenting the CN78 jumper positions needed to supply SD0 power for
+> either the default eMMC configuration or the SD card slot configuration.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Sun, 08 Feb 2026 23:24:23 +0200, Yedaya Katsman wrote:
-> Add device tree node for the Focaltech FT3518 touchscreen on
-> Xiaomi Mi A3 (laurel-sprout).
-> 
-> Enable qupv3_id_0 and i2c2 bus that the touchscreen is on.
-> 
-> Downstream references:
-> Link: https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/laurel-r-oss/arch/arm64/boot/dts/qcom/trinket-pinctrl.dtsi
-> Link: https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/laurel-r-oss/arch/arm64/boot/dts/qcom/laurel_sprout-qrd.dtsi
-> 
-> [...]
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v7.1.
 
-Applied, thanks!
+Gr{oetje,eeting}s,
 
-[1/1] arm64: dts: qcom: sm6125-xiaomi-laurel-sprout: Add Focaltech FT3518 touchscreen
-      commit: ea062e42832274cc8fb0587ea8852e1558cef0e1
+                        Geert
 
-Best regards,
 -- 
-Bjorn Andersson <andersson@kernel.org>
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
