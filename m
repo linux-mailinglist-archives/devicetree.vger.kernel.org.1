@@ -1,183 +1,247 @@
-Return-Path: <devicetree+bounces-277213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277217-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iIvSLWKkummyZwIAu9opvQ
-	(envelope-from <devicetree+bounces-277213-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:10:58 +0100
+	id HZWmBOKkummaaAIAu9opvQ
+	(envelope-from <devicetree+bounces-277217-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:13:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B286D2BBF83
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:10:57 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F8F52BBFF2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:13:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AA93730093BB
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:10:54 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 57FCA30093BB
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:13:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22E1C3D7D66;
-	Wed, 18 Mar 2026 13:10:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 374EF3D75B3;
+	Wed, 18 Mar 2026 13:13:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KmSr1DaX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NN91kXR1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE1FD3D75CD;
-	Wed, 18 Mar 2026 13:10:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED8933D3482
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 13:12:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773839446; cv=none; b=NUSIaCalieuVzo/ICxe3OLIIe3Y+ZjLKC7PyJQiu7rZyCnu9TuAhOb0IlMH0vPO1LJyKzU2eSZF9OlH5mcyADlB7CLlJZaRMnLwGQMjWKeOr3cqbek5/sJwbwm6Efva4SmRm0XHIMniUrEjjnaZ/BqrVTf5MLuKVKGOxrjVh194=
+	t=1773839580; cv=none; b=I0/LKpY9GEAT+a+hYgtUnEItEd8mgYS5oy3Mp/Vi+dBC2bqSRk59VKaDQ5N6GbbWPOzeVwYxghsb1yJYM4wUpqe8L4HdSm29Ls7ovpiMi+mzeSueMOKAXLsQo76pEkJnNaC+reS12jjP+3hm+5U4/gLx13SvBHj2FAzsJ6g9DZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773839446; c=relaxed/simple;
-	bh=gPU1ClQ6+Ep52PUchjVnFrsFHmBmnXK3sRcxeJG3IDg=;
+	s=arc-20240116; t=1773839580; c=relaxed/simple;
+	bh=OdQCTcowNhAMMHZuTr+edOMBX9ASYFb/KgzSCNzEfFM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dcv0PxXFPZ8Syv+qQ2hOfoqUSDqX2mEQ0r1tKMWJjHPxC2MGfrJZDxQjzGYjh01XOs3/2HvFowfefM4VkS082apD84i77yRjPXnJ7Oyf2bdyWBSS0SRfdc/PCxw/hMxBODnvs4KiRURSYkT/Pt/thlKPkyS2uNYaE+bIwSrwCI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KmSr1DaX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CC7AC2BCAF;
-	Wed, 18 Mar 2026 13:10:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773839445;
-	bh=gPU1ClQ6+Ep52PUchjVnFrsFHmBmnXK3sRcxeJG3IDg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KmSr1DaXiYWC5S/3tZLCUuKwaDRgXiBt1JieiZDmmWkS11a/UWK4V3w5wWWl649AL
-	 DZz9sTq1DKuyqntEdeUBoUsfL2/2QI3VmHvHR7Dnqi+0ZS7MXksktFqdq9P134BcXg
-	 UaYRoNLlpL2Ll+CX0IVWPfJMo5SpaIbMNFHTZoM2HCqLUeQ23pfHtZugDgIyGL2Ev7
-	 0z/80suLcti3bxCgdS/kI2oqm3+mHCHyfdrby7jkdCDS4J0a8x/rDgotoaiqBxsWOA
-	 laUOaiZTJdXfaVn0bEsWkjAH9m+i6BhDBCpNTz/g4jvUpfXQHn95klDLbEauzdGMn5
-	 5t/GPal069AaA==
-Date: Wed, 18 Mar 2026 21:10:43 +0800
-From: Yixun Lan <dlan@kernel.org>
-To: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Junzhong Pan <junzhong.pan@spacemit.com>,
-	Guodong Xu <guodong@riscstar.com>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Inochi Amaoto <inochiama@gmail.com>
-Subject: Re: [PATCH v3] reset: spacemit: k3: Decouple composite reset lines
-Message-ID: <20260318131043-GKA488271@kernel.org>
-References: <20260317-01-k3-reset-usb-pci-v3-1-e4b9a43c7d45@kernel.org>
- <3e9022faae3dc6f5066a1e7cc3752a0193a55bc9.camel@pengutronix.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VpdwEIcVlgEGcqMdMvF/k9Rtp9VI/DVz4eleNaY6RIlUHeMv1IiW+vTuYjZjgMYPHrvVxMn3Jw8qEzmeUpbGOJNXVWIqmzYgVTQtvp7z1QoSqDGDiiiqWBk0kQUhDcFTH+ewrH8QYMF4FNkQ4LBpeVhDkD3cDp+HnN0VIPB8OO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NN91kXR1; arc=none smtp.client-ip=209.85.215.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-c70ea5e9e9dso3223871a12.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 06:12:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773839578; x=1774444378; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=a38AgtgrSL45qQSDWrOkOi7hxNfM+B9cZh1RZkzmCEM=;
+        b=NN91kXR1KBFUWH2LCTrwNH9CAKvd2+gcA74C1KxOg2JmLznRUAUaDS/T5+mpLKhtHU
+         5Wn33SyIlmjSVzR6BdMzvg6RCZd9mO+wWGxs5IU5yrk3UWc8BnUyoY2gtQUQKaNjanLA
+         egn8stiMUBTB6dv1teQo5Kfdjxc45Fd+iJjkUFm/0RHRMFkzlSrh6Ch5XwA+EqNJtEdm
+         gfYYZeqInlcAxOZksN3WkPCHqnMhiwe0/qumJbmvyiyHEMDbaODL7r+JNslBG9GIDSAE
+         OUI2x1F52vDHysXhi7aRe1+lbwNw4aGQZ2z8hISzQ17Gnzij8p1i95HWhL2gwLEMR8Yx
+         q2+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773839578; x=1774444378;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=a38AgtgrSL45qQSDWrOkOi7hxNfM+B9cZh1RZkzmCEM=;
+        b=ptxsV4XtWCvhmm0e4anrJbKDN0LAUbMxdXd79uj98NFposNuIef5QiCGVw1hooWdvI
+         gyP0+uEGe3leLwXoq9Wzvb4KMTOM6l+YuFpztnxye+kYfBrsFhMiJ0miDErGfvfoYpEj
+         WsLhJHzli+5cSNReXYgw4geOHuUxfBQ6OIc4+95sQ74J7tYP63+m6oj2J+4ClnDL/w3s
+         ffGi+oxc8LBHDWGKcLbwC53GQg5MCwsgjK+fbp7WFUGQNV6RuRcfu0b2Dy76jWasVO/b
+         XwZlauILj47lFA7S6MHgEADmKibp6H+AMX7OJlfduOklKqL1dDPUcH0N9XYodZ1Ga3Jg
+         6tnw==
+X-Forwarded-Encrypted: i=1; AJvYcCUkz2wsD42ZWozQUqnuCYcwKM8d24sMG21OwP3Mp+jIYs68BESzZJgWdB7TscHS/JpOoqvSn5oVfSMp@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEEgrj2YcX6pacZhqr0J6M60Kzp4QNm136azBrzYqc+TAyAa2V
+	pP3SNOGDCDZHWN3Lmo6CMUOYqWX1gTkg27NHYVHzDb0atSjOTBkMHOlw
+X-Gm-Gg: ATEYQzwjjPSpOPwjG/EQenXef39R4r44LhwV83eWG1lsSGaT/VM6vZ4AGLpNZlWwS3f
+	Loe7C4psRHO/rERX7UOe4HeMxYqAAC22eWIq+BknMYX+Zb9zD80/ISKifKZGfkaXqGRg40j9D/w
+	T6q5i6OmtLzjYEj7byUpVgrftYANyYhHPjWYETDTlHmkwzUSOX3B3ZqYLyZotz7xGZJh1viTta9
+	qpx8BdnQVucp71fxADIipH1LVQ1DCLlSWMQD9X/XfDT+X4iF96GKc1S1R+mHTt288ebhO8Nteyj
+	FKb30+8FdtH8FmL2cHpDMMy1TCCNCqAz+wOHZkZXQO9WAxfj0br0P4cDdThLNt7+RDQD44sj8hr
+	tpwFwHPXTxXPl3Gr7Efw/RqwsEauDsgS3vEd2M8GE1KBf+Wh0qGLNBlKDqKaLuNR0kXZ24JDDLh
+	ct1OQ3Bd4RKgHmjudNUmW8CBoJcMnwSRi6RsVUCGo=
+X-Received: by 2002:a17:90b:1d52:b0:35b:982a:28c7 with SMTP id 98e67ed59e1d1-35bb9e3cf19mr3027930a91.5.1773839578116;
+        Wed, 18 Mar 2026 06:12:58 -0700 (PDT)
+Received: from DESKTOP-TIT0J8O.localdomain ([49.47.198.15])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35bada5c760sm6280105a91.5.2026.03.18.06.12.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Mar 2026 06:12:57 -0700 (PDT)
+Date: Wed, 18 Mar 2026 17:12:49 +0400
+From: Ahmed Naseef <naseefkm@gmail.com>
+To: Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, Caleb James DeLisle <cjd@cjdns.fr>,
+	linux-pci@vger.kernel.org, linux-mips@vger.kernel.org,
+	ryder.lee@mediatek.com, bhelgaas@google.com, lpieralisi@kernel.org,
+	kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com, ansuelsmth@gmail.com,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 3/3] PCI: Skip bridge window reads when window is not
+ supported
+Message-ID: <abqk0VUyLF+iqVXw@DESKTOP-TIT0J8O.localdomain>
+References: <20260316155157.679533-4-cjd@cjdns.fr>
+ <20260317212908.GA109023@bhelgaas>
+ <abpFjQJ5RNcbzbmz@DESKTOP-TIT0J8O.localdomain>
+ <fc927b7f-a820-d3c2-581c-ab6db562bcfb@linux.intel.com>
+ <2d47f78f-22cf-78c8-8312-3ffb095d2693@linux.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <3e9022faae3dc6f5066a1e7cc3752a0193a55bc9.camel@pengutronix.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2d47f78f-22cf-78c8-8312-3ffb095d2693@linux.intel.com>
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,spacemit.com,riscstar.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
-	TAGGED_FROM(0.00)[bounces-277213-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-277217-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,cjdns.fr,vger.kernel.org,mediatek.com,google.com,gmail.com,collabora.com,lists.infradead.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[naseefkm@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B286D2BBF83
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[DESKTOP-TIT0J8O.localdomain:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3F8F52BBFF2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Philipp,
+On Wed, Mar 18, 2026 at 02:18:22PM +0200, Ilpo Järvinen wrote:
+> On Wed, 18 Mar 2026, Ilpo Järvinen wrote:
+> 
+> > On Wed, 18 Mar 2026, Ahmed Naseef wrote:
+> > 
+> > > On Tue, Mar 17, 2026 at 04:29:08PM -0500, Bjorn Helgaas wrote:
+> > > > On Mon, Mar 16, 2026 at 03:51:57PM +0000, Caleb James DeLisle wrote:
+> > > > > pci_read_bridge_io() and pci_read_bridge_mmio_pref() read bridge window
+> > > > > registers unconditionally. If the registers are hardwired to zero
+> > > > > (not implemented), both base and limit will be 0. Since (0 <= 0) is
+> > > > > true, a bogus window [mem 0x00000000-0x000fffff] or [io 0x0000-0x0fff]
+> > > > > gets created.
+> > > > > 
+> > > > > pci_read_bridge_windows() already detects unsupported windows by
+> > > > > testing register writability and sets io_window/pref_window flags
+> > > > > accordingly. Check these flags at the start of pci_read_bridge_io()
+> > > > > and pci_read_bridge_mmio_pref() to skip reading registers when the
+> > > > > window is not supported.
+> > > > 
+> > > > The fundamental problem here is that assigned space to a bridge window
+> > > > that isn't implemented.  I wish we understood the connection between
+> > > > this "read window" path and the assignment path.
+> > > > 
+> > > > Maybe this patch fixes it because we enter pci_read_bridge_mmio_pref()
+> > > > with res->flags being NULL, and we set IORESOURCE_MEM |
+> > > > IORESOURCE_PREFETCH again, which makes it look like we can assign
+> > > > space for it?
+> > > 
+> > > Yes, that's exactly right.
+> > > 
+> > > > 
+> > > > If that's the case, I think it would improve the commit log to mention
+> > > > the actual mechanism by which we avoid assigning space.
+> > > > 
+> > > 
+> > > How about this:
+> > > 
+> > >   pci_read_bridge_io() and pci_read_bridge_mmio_pref() read
+> > >   bridge window registers unconditionally. If the registers
+> > >   are hardwired to zero (not implemented), both base and limit
+> > >   will be 0. Since (0 <= 0) is true, these functions set
+> > >   IORESOURCE_IO or IORESOURCE_MEM | IORESOURCE_PREFETCH on
+> > >   the bridge resource. This causes the allocator to assign
+> > >   space for the window even though the hardware can't
+> > >   implement it.
+> > > 
+> > >   pci_read_bridge_windows() already detects unsupported windows
+> > >   by testing register writability and sets io_window/pref_window
+> > >   flags accordingly. Check these flags at the start of
+> > >   pci_read_bridge_io() and pci_read_bridge_mmio_pref() to skip
+> > >   reading registers when the window is not supported, so the
+> > >   resource flags remain clear and the allocator does not assign
+> > >   space for non-existent windows.
+> > 
+> > At least to me the proposed text reads much better than the original.
+> > The original text required reading between the lines to connect the dots, 
+> > whereas this new one clearly explains what causes what.
+> 
+> Hi again,
+> 
+> Reading the code I think the entire 0 <= 0 part is a red herring 
+> when it comes to the current code, the flags are always set by the 
+> functions!
+> 
+> The code would only add IORESOURCE_UNSET | IORESOURCE_DISABLED if the 
+> base <= limit check fails but that's still wrong because it says to the 
+> resource allocation code that it can enable that bridge window if it needs 
+> to.
+> 
+> Prior to the commit 8278c6914306 ("PCI: Preserve bridge window resource 
+> type flags") the base <= limit check did play some role (maybe the 
+> original commit message was based on some older tree than the most current 
+> one).
 
-On 13:39 Wed 18 Mar     , Philipp Zabel wrote:
-> On Di, 2026-03-17 at 02:36 +0000, Yixun Lan wrote:
-> > Instead of grouping several different reset lines into one composite
-> > reset, decouple them to individual ones which make it more aligned
-> > with underlying hardware. And for DWC USB driver, it will match well
-> > with the number of the reset property in the DT bindings.
-> >=20
-> > The DWC3 USB host controller in K3 SoC has three reset lines - AHB, VCC,
-> > PHY. The PCIe controller also has three reset lines - DBI, Slave, Maste=
-r.
-> > Also three reset lines each for UCIE and RCPU block.
-> >=20
-> > As an agreement with maintainer, the reset IDs has been rearranged as
-> > contiguous number and pushed as a fix for the driver, and reason is that
-> > there isn't any consumer of reset driver so far,
->=20
-> Unfortunately that does not seem to be the case for all APMU resets.
-> A lore query for all changed IDs [1] yields a patch that adds ethernet
-> device nodes using RESET_APMU_EMAC[012] [2].
->=20
-Yes, although the ethernet use this ID, but I don't think we should worry
-about that, since the ethernet patch is still under review, and ideally it
-will be merged after this reordering patch, unless you disagree? and insist
-the RESET_APMU_EMAC should not be changed?
+Thank you for catching that. We were testing on LTS kernel
+6.12 (downstream OpenWrt) where the commit 8278c6914306
+("PCI: Preserve bridge window resource type flags") is not
+present . In that tree the flags are still only set inside
+the base <= limit check, which is why the commit message
+focused on that path.
+  
+For current mainline, how about this for the commit message:
+
+  pci_read_bridge_io() and pci_read_bridge_mmio_pref()
+  unconditionally set resource type flags (IORESOURCE_IO
+  or IORESOURCE_MEM | IORESOURCE_PREFETCH) when reading
+  bridge window registers. For windows that are not
+  implemented in hardware, this causes the allocator to
+  assign space for a window that doesn't exist.
+
+  pci_read_bridge_windows() already detects unsupported
+  windows by testing register writability and sets
+  io_window/pref_window flags accordingly. Check these
+  flags at the start of pci_read_bridge_io() and
+  pci_read_bridge_mmio_pref() to skip them entirely when
+  the window is not supported, so the resource flags
+  remain clear and the allocator does not assign space
+  for non-existent windows.
 
 
-> [1] https://lore.kernel.org/all/?q=3Ddfb%3ARESET_APMU_USB2+OR+dfb%3ARESET=
-_APMU_USB3_PORTA+OR+dfb%3ARESET_APMU_USB3_PORTB+OR+dfb%3ARESET_APMU_USB3_PO=
-RTC+OR+dfb%3ARESET_APMU_USB3_PORTD+OR+dfb%3ARESET_APMU_QSPI+OR+dfb%3ARESET_=
-APMU_QSPI_BUS+OR+dfb%3ARESET_APMU_DMA+OR+dfb%3ARESET_APMU_AES_WTM+OR+dfb%3A=
-RESET_APMU_MCB_DCLK+OR+dfb%3ARESET_APMU_MCB_ACLK+OR+dfb%3ARESET_APMU_VPU+OR=
-+dfb%3ARESET_APMU_DTC+OR+dfb%3ARESET_APMU_GPU+OR+dfb%3ARESET_APMU_ALZO+OR+d=
-fb%3ARESET_APMU_MC+OR+dfb%3ARESET_APMU_CPU0_POP+OR+dfb%3ARESET_APMU_CPU0_SW=
-+OR+dfb%3ARESET_APMU_CPU1_POP+OR+dfb%3ARESET_APMU_CPU1_SW+OR+dfb%3ARESET_AP=
-MU_CPU2_POP+OR+dfb%3ARESET_APMU_CPU2_SW+OR+dfb%3ARESET_APMU_CPU3_POP+OR+dfb=
-%3ARESET_APMU_CPU3_SW+OR+dfb%3ARESET_APMU_C0_MPSUB_SW+OR+dfb%3ARESET_APMU_C=
-PU4_POP+OR+dfb%3ARESET_APMU_CPU4_SW+OR+dfb%3ARESET_APMU_CPU5_POP+OR+dfb%3AR=
-ESET_APMU_CPU5_SW+OR+dfb%3ARESET_APMU_CPU6_POP+OR+dfb%3ARESET_APMU_CPU6_SW+=
-OR+dfb%3ARESET_APMU_CPU7_POP+OR+dfb%3ARESET_APMU_CPU7_SW+OR+dfb%3ARESET_APM=
-U_C1_MPSUB_SW+OR+dfb%3ARESET_APMU_MPSUB_DBG+OR+dfb%3ARESET_APMU_UCIE+OR+dfb=
-%3ARESET_APMU_RCPU+OR+dfb%3ARESET_APMU_DSI4LN2_ESCCLK+OR+dfb%3ARESET_APMU_D=
-SI4LN2_LCD_SW+OR+dfb%3ARESET_APMU_DSI4LN2_LCD_MCLK+OR+dfb%3ARESET_APMU_DSI4=
-LN2_LCD_DSCCLK+OR+dfb%3ARESET_APMU_DSI4LN2_DPU_ACLK+OR+dfb%3ARESET_APMU_DPU=
-_ACLK+OR+dfb%3ARESET_APMU_UFS_ACLK+OR+dfb%3ARESET_APMU_EDP0+OR+dfb%3ARESET_=
-APMU_EDP1+OR+dfb%3ARESET_APMU_PCIE_PORTA+OR+dfb%3ARESET_APMU_PCIE_PORTB+OR+=
-dfb%3ARESET_APMU_PCIE_PORTC+OR+dfb%3ARESET_APMU_PCIE_PORTD+OR+dfb%3ARESET_A=
-PMU_PCIE_PORTE+OR+dfb%3ARESET_APMU_EMAC0+OR+dfb%3ARESET_APMU_EMAC1+OR+dfb%3=
-ARESET_APMU_EMAC2+OR+dfb%3ARESET_APMU_ESPI_MCLK+OR+dfb%3ARESET_APMU_ESPI_SC=
-LK
-> [2] https://lore.kernel.org/all/20260318035542.517554-1-inochiama@gmail.c=
-om/
->=20
-> Please reorder the resets such that only the decoupled lines get new
-> numbers. Especially EMAC resets should keep the same value.
->=20
-> > so should not cause any ABI breakage.
-> >
-> > Also, the changes of DT binding header file and reset
-> > driver are merged together as one single commit to avoid git-bisect
-> > breakage.
->=20
-> This addresses the only remaining checkpatch-warning:
->=20
->   WARNING: DT binding docs and includes should be a separate patch. See: =
-Documentation/devicetree/bindings/submitting-patches.rst
->=20
-> which is ignored on purpose to avoid a bisection hazard.
->=20
-> > Fixes: 938ce3b16582 ("reset: spacemit: Add SpacemiT K3 reset driver")
-> > Fixes: 216e0a5e98e5 ("dt-bindings: soc: spacemit: Add K3 reset support =
-and IDs")
-> > Signed-off-by: Yixun Lan <dlan@kernel.org>
->=20
-> regards
-> Philipp
+Ahmed Naseef
 
---=20
-Yixun Lan (dlan)
+> 
+> -- 
+>  i.
+
 
