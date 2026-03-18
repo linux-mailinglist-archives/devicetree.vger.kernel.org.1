@@ -1,220 +1,195 @@
-Return-Path: <devicetree+bounces-277475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277476-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uNRAD6cQu2nGegIAu9opvQ
-	(envelope-from <devicetree+bounces-277475-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 21:52:55 +0100
+	id aAAuD/EXu2k+fAIAu9opvQ
+	(envelope-from <devicetree+bounces-277476-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 22:24:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAE7E2C2B3B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 21:52:54 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 385B52C2F2D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 22:24:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 83AD2304C7C2
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 20:52:39 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 54AC53009380
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 21:23:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8466936EAB8;
-	Wed, 18 Mar 2026 20:52:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72634377022;
+	Wed, 18 Mar 2026 21:23:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k7zvu5MI"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="wf3x76I2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C35336CDEB;
-	Wed, 18 Mar 2026 20:52:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 092FB293B75;
+	Wed, 18 Mar 2026 21:23:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773867158; cv=none; b=m/5t9bhECYXyR57iZg9hcGnOM+mHrXwKEmSbzOFcXfHBbRMASxOlkh10nswASmUYveoH1yTHXb1t8S/CRW1qAszBnIVzcUiAs8ba4kJZ5W2z4yPRYWgWvJDulydd7dfcQXK8NWdqotrdUCUAdf+/2IsYz7knJLlz09UlhhiTPyg=
+	t=1773869035; cv=none; b=soSQzeoh3vQRFRfiH2+ZQ2fUnh+BXeO2oqT55vDfMv+psSblvihNK3EJhHswnI8AY4IOR3qxIkotsuPoxD3bxlyl+2ELuOyMz0bgEOvs1LDD5I/VzrHi7R1ucAOhTd1GGvXwrJgd9JWX2oyoizKRs3K97VUtWdlladLxbiOO5EI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773867158; c=relaxed/simple;
-	bh=kbGM3c4xh2xtlPKItuu8b0plWdnAptUOEmkS13CYnz8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=khU+CvzlJ6E3i8P/yZqbQ78bHcQSp04efTuoG5gRRpqgKcpxagUxlPHjwfcJfqLGN9j/Nwo1IjJmDSrFWgchtAzkFvs2XSilLw2+C2+Ac6yn9DtJ6h8vS2fJJVsMaUNgOfAdIa/aUYzNUXOF6y41NAcw1QksAQKmKnaiCHHkjmY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k7zvu5MI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EF7BC19421;
-	Wed, 18 Mar 2026 20:52:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773867157;
-	bh=kbGM3c4xh2xtlPKItuu8b0plWdnAptUOEmkS13CYnz8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=k7zvu5MIc5CYIGmjWx+P+mS8/hs2GooJWHfXhDPqFeWyum4sz6NQ2neYQyXlUtlCv
-	 SOoz9lLS4EQYDGViVf0oRa8oUQ4wZWHCy5DjVMkrRZlzhDZfSxX8btIRC6pKKcZtqq
-	 HqFvYKZdPu6NZcu/RPV8yxBpMtnFC8Ki3vcf/rOBJrcG5AcAzdMR2gnTomxyf7IP8H
-	 zHZMPsz/wlq4Amx6dQtpM7EHwIuIilXwCtH35+nfGyIdYuPry8qYRVdyy1g3sS3ITk
-	 esmcmpAq0Qm7xqoPTPtpTIaBIFFTr4xbzEGttviQsDf6G2SgDxhQSQi5C5yhB9KCwG
-	 yOFQuYZFuGWzw==
-From: Mike Rapoport <rppt@kernel.org>
-To: Andrew Morton <akpm@linux-foundation.org>
-Cc: Alexander Potapenko <glider@google.com>,
-	Alexander Viro <viro@zeniv.linux.org.uk>,
-	Andreas Larsson <andreas@gaisler.com>,
-	Ard Biesheuvel <ardb@kernel.org>,
-	Borislav Petkov <bp@alien8.de>,
-	Brendan Jackman <jackmanb@google.com>,
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Christian Brauner <brauner@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	David Hildenbrand <david@kernel.org>,
-	Dmitry Vyukov <dvyukov@google.com>,
-	Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-	Ingo Molnar <mingo@redhat.com>,
-	Jan Kara <jack@suse.cz>,
-	Johannes Weiner <hannes@cmpxchg.org>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Marco Elver <elver@google.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Michal Hocko <mhocko@suse.com>,
-	Mike Rapoport <rppt@kernel.org>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Rob Herring <robh@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Suren Baghdasaryan <surenb@google.com>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Vlastimil Babka <vbabka@kernel.org>,
-	Will Deacon <will@kernel.org>,
-	Zi Yan <ziy@nvidia.com>,
-	devicetree@vger.kernel.org,
-	iommu@lists.linux.dev,
-	kasan-dev@googlegroups.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-efi@vger.kernel.org,
-	linux-fsdevel@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mm@kvack.org,
-	linux-trace-kernel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org,
-	sparclinux@vger.kernel.org,
-	x86@kernel.org
-Subject: [PATCH 9/8] memblock tests: add stubs required for free_reserved_area()
-Date: Wed, 18 Mar 2026 22:52:21 +0200
-Message-ID: <20260318205221.1402161-1-rppt@kernel.org>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260318105827.1358927-1-rppt@kernel.org>
-References: <20260318105827.1358927-1-rppt@kernel.org>
+	s=arc-20240116; t=1773869035; c=relaxed/simple;
+	bh=diJ9QPPY6KW09PwuO6V9voRGxd18I3VD+Tg2MitGWWU=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Vc++L/GMen1W64az9mb0LO0LKUeGvpZk9cva5A0sFZj6p3/iT7pskwjQeZ5zdNkOQyN5I1Sg77+0ynBnXiMS7DKZdiRDCrzxhqoJDLv5ZVvGRWQZgg+GI1a+FyARpCJE6eGUtwXQtj3+D/GcAUK/vQ4pwkBHWVhe0Z0Rp9oxmmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=wf3x76I2; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1773869034; x=1805405034;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=diJ9QPPY6KW09PwuO6V9voRGxd18I3VD+Tg2MitGWWU=;
+  b=wf3x76I2cZ5jkqsHA221WKYqlZD55zInLdt1ONPAVqVKqlZwufEFpLBZ
+   hO7N/UznKRkXZZV1Uh+nCXSQaq87nTjheqB1CqgvDtO86uaeUKQOEr3AL
+   hMYm1dCqp8L7Oo5V0m1tHfYp11+teCEacOznmFa2bR1Iuwjp7tNAj88v1
+   RTjF7s5hcQ7BvfofVQrQEXAYChT4xvGQGkLO2kAFtN0nt6p3bu5MLv3O7
+   nBdD94EQMS1ZOgO+Lf01XmKNGwunNHNL7mmfpdX714B1k81mL3BPKtXSH
+   I6pUfj7tT/jZowigaO0WBNfqjo1JRiMnnOr18emXnSsVejSDLIMBb30bX
+   Q==;
+X-CSE-ConnectionGUID: fmMH9kipSzyI1CxnMFzQBQ==
+X-CSE-MsgGUID: pae+xRSJQsmKA7b9gwOPtQ==
+X-IronPort-AV: E=Sophos;i="6.23,128,1770620400"; 
+   d="scan'208";a="54865784"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 18 Mar 2026 14:23:53 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Wed, 18 Mar 2026 14:23:27 -0700
+Received: from bby-cbu-swbuild03.eng.microchip.com (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58 via Frontend Transport; Wed, 18 Mar 2026 14:23:24 -0700
+Date: Wed, 18 Mar 2026 14:23:23 -0700
+From: Charles Perry <charles.perry@microchip.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Charles Perry <charles.perry@microchip.com>, <netdev@vger.kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, "Paolo
+ Abeni" <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiner
+ Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: document Microchip
+ PIC64-HPSC/HX MDIO controller
+Message-ID: <absXy5Qmd/iHWofD@bby-cbu-swbuild03.eng.microchip.com>
+References: <20260317184610.315852-1-charles.perry@microchip.com>
+ <20260317184610.315852-2-charles.perry@microchip.com>
+ <20260318-suspense-arming-fe118c3f15c6@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20260318-suspense-arming-fe118c3f15c6@spud>
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[google.com,zeniv.linux.org.uk,gaisler.com,kernel.org,alien8.de,arm.com,davemloft.net,linux.intel.com,linaro.org,redhat.com,suse.cz,cmpxchg.org,oracle.com,linux.ibm.com,samsung.com,ellerman.id.au,suse.com,gmail.com,zytor.com,nvidia.com,vger.kernel.org,lists.linux.dev,googlegroups.com,lists.infradead.org,kvack.org,lists.ozlabs.org];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-277475-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[49];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rppt@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[microchip.com,vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk];
+	TAGGED_FROM(0.00)[bounces-277476-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.991];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BAE7E2C2B3B
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[microchip.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[charles.perry@microchip.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.938];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,microchip.com:dkim,microchip.com:email]
+X-Rspamd-Queue-Id: 385B52C2F2D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+On Wed, Mar 18, 2026 at 05:48:08PM +0000, Conor Dooley wrote:
+> On Tue, Mar 17, 2026 at 11:46:09AM -0700, Charles Perry wrote:
+> > This MDIO hardware is based on a Microsemi design supported in Linux by
+> > mdio-mscc-miim.c. However, The register interface is completely different
+> > with pic64hpsc, hence the need for separate documentation.
+> > 
+> > The hardware supports C22 and C45.
+> > 
+> > The documentation recommends an input clock of 156.25MHz and a prescaler
+> > of 39, which yields an MDIO clock of 1.95MHz.
+> > 
+> > The hardware supports an interrupt pin to signal transaction completion
+> > which is not strictly needed as the software can also poll a "TRIGGER"
+> > bit for this.
+> > 
+> > Signed-off-by: Charles Perry <charles.perry@microchip.com>
+> > ---
+> >  .../net/microchip,pic64hpsc-mdio.yaml         | 61 +++++++++++++++++++
+> >  1 file changed, 61 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/net/microchip,pic64hpsc-mdio.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/microchip,pic64hpsc-mdio.yaml b/Documentation/devicetree/bindings/net/microchip,pic64hpsc-mdio.yaml
+> > new file mode 100644
+> > index 000000000000..21c76199c11b
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/microchip,pic64hpsc-mdio.yaml
+> > @@ -0,0 +1,61 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/microchip,pic64hpsc-mdio.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Microchip PIC64-HPSC/HX MDIO controller
+> > +
+> > +maintainers:
+> > +  - Charles Perry <charles.perry@microchip.com>
+> > +
+> > +description: |
+> > +  Microchip PIC64-HPSC/HX SoCs have two MDIO bus controller. This MDIO bus
+> > +  controller supports C22 and C45 register access. It is named "MDIO Initiator"
+> > +  in the documentation.
+> > +
+> > +allOf:
+> > +  - $ref: mdio.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - const: microchip,pic64hpsc-mdio
+> > +      - items:
+> > +          - const: microchip,pic64hx-mdio
+> > +          - const: microchip,pic64hpsc-mdio
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  clock-frequency: true
+> 
+> Does this genuinely have no constraints?
 
-After moving free_reserved_area() function to mm/memblock.c memblock
-tests lack stubs for several functions and macros this function calls.
+It's going to divide the input frequency by 2 to 512 (the prescaler is 8
+bit long), so assuming an input clock of 156.25 MHz, the bounds are 305KHz
+to 78MHz. The standard is 2.5MHz.
 
-Add them.
+I can add a maximum and minimum here since I do have some validation on
+this in the driver which will bail out if this is out of bound.
 
-Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
----
- tools/include/linux/mm.h          |  1 +
- tools/testing/memblock/internal.h | 28 +++++++++++++++++++++++++---
- 2 files changed, 26 insertions(+), 3 deletions(-)
-
-diff --git a/tools/include/linux/mm.h b/tools/include/linux/mm.h
-index 028f3faf46e7..4407d8396108 100644
---- a/tools/include/linux/mm.h
-+++ b/tools/include/linux/mm.h
-@@ -17,6 +17,7 @@
- 
- #define __va(x) ((void *)((unsigned long)(x)))
- #define __pa(x) ((unsigned long)(x))
-+#define __pa_symbol(x) ((unsigned long)(x))
- 
- #define pfn_to_page(pfn) ((void *)((pfn) * PAGE_SIZE))
- 
-diff --git a/tools/testing/memblock/internal.h b/tools/testing/memblock/internal.h
-index 009b97bbdd22..7ff61172ab24 100644
---- a/tools/testing/memblock/internal.h
-+++ b/tools/testing/memblock/internal.h
-@@ -11,9 +11,16 @@ static int memblock_debug = 1;
- 
- #define pr_warn_ratelimited(fmt, ...)    printf(fmt, ##__VA_ARGS__)
- 
-+#define K(x) ((x) << (PAGE_SHIFT-10))
-+
- bool mirrored_kernelcore = false;
- 
- struct page {};
-+static inline void *page_address(struct page *page)
-+{
-+	BUG();
-+	return page;
-+}
- 
- void memblock_free_pages(unsigned long pfn, unsigned int order)
- {
-@@ -23,10 +30,25 @@ static inline void accept_memory(phys_addr_t start, unsigned long size)
- {
- }
- 
--static inline unsigned long free_reserved_area(void *start, void *end,
--					       int poison, const char *s)
-+unsigned long free_reserved_area(void *start, void *end, int poison, const char *s);
-+void free_reserved_page(struct page *page);
-+
-+static inline bool deferred_pages_enabled(void)
-+{
-+	return false;
-+}
-+
-+#define for_each_valid_pfn(pfn, start_pfn, end_pfn)			 \
-+	for ((pfn) = (start_pfn); (pfn) < (end_pfn); (pfn)++)
-+
-+static inline void *kasan_reset_tag(const void *addr)
-+{
-+	return (void *)addr;
-+}
-+
-+static inline bool __is_kernel(unsigned long addr)
- {
--	return 0;
-+	return false;
- }
- 
- #endif
--- 
-2.51.0
-
+Thanks,
+Charles
 
