@@ -1,241 +1,208 @@
-Return-Path: <devicetree+bounces-277117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277122-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MKsxIBiBumldXQIAu9opvQ
-	(envelope-from <devicetree+bounces-277117-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:40:24 +0100
+	id yOPkHjyBumldXQIAu9opvQ
+	(envelope-from <devicetree+bounces-277122-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:41:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA7522BA102
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:40:23 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE41C2BA126
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:40:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E8532307B7DE
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:39:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D3B243013852
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:40:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C9313932CE;
-	Wed, 18 Mar 2026 10:39:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99D67396D12;
+	Wed, 18 Mar 2026 10:40:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GDu7bQQp";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DV72IvRa"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Xl8kAqor"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A866378D98
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 10:39:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBA7937CD27
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 10:40:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773830366; cv=none; b=SwQOrH+GKTPY8eJAQdEzleW15Wdaw+MdZheF3e+WZiEeEjYt4Ay0G9PDK9xl+LrFQijmhxyAybcXcNcy5S9/OhNT7zLhcN/4t7xB52UJ1LeARihHGNWoydxyqA8iuzEi+MJf/JOGcNFa1GGp/hdb3rpsUvx7gampcU+PboXz17s=
+	t=1773830446; cv=none; b=ElHBLvYwAgnxbawkDRqN+en6s0TvLNh1s+SCW6XdChsyi4VsliGVVK2GCrPWTW5qibdrx01CqgVnON8Ff3B8oZueDYjaStiMOVV7AR2CR8c3OV7YLos7cVzcVwwSNneV20dT9/4IdKGT6iWLDLBKB9OXcGjqetQCITguDVH7glE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773830366; c=relaxed/simple;
-	bh=Lu/1Gg8AcMocYblP2/duop3ZtFJxThXGBBLZjOrc7z4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tRR1Sln653imuROuKeoiawZOuV/Zwzz7897y0x92C3lliYOZ0Ys1mkONaDzf7GsilurfYple3eYMkg2+5gD0K7ix8EWS3U0QCo8JdzgUnt5eccHEFOa0gkFeFtyEeK165/P5IPyNx483kJpln4nG/vv+wYWRs2mDnbQxmWcZIHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GDu7bQQp; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DV72IvRa; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62I773PS2614274
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 10:39:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ZHCpdutiIPCDZe+ZxRsP2OGSZ1DdSpbzypkIBafBf9w=; b=GDu7bQQp8kU3xilx
-	vimp/0nqTr3r4KyTjQaIfFFSxP+/Lpv+Evn806VhWahbu+1rRNhxiauk3EiWKOh1
-	Vni9DfG6utPiv9mOeO4nsocC93yZZYTUyn8aqjvvCZWerCiXy7j1vCnnDUZjmgoi
-	IHDvtf75wPK0yDFT48penoWismdDG6i2y3Vm0AQsVtN4ikXnN46IrYObXbcUp1K8
-	S3hpapmvBvmaak7zibxupSi1ea31CwRmDUV33UIujA9Ijv4Lq3YPajv0VNFR77TS
-	qkVQeMTnCDXT5B5UwnQ+Oz4vDOHZ/94/dbMlvllGZlYrj/e/tWEcB4X5hVJkgJOg
-	ia5o2w==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cyqcdrwev-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 10:39:23 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2b06395b8deso28045885ad.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 03:39:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773830362; x=1774435162; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZHCpdutiIPCDZe+ZxRsP2OGSZ1DdSpbzypkIBafBf9w=;
-        b=DV72IvRaihcfqn8cXEfgNc9d08CkSCaO1Hic66qSh8l907OsyF53kP9ycsfQdOxydV
-         2A2G/7/8LFAPPEqfWYmQwCc5pJaCug/YLniqMcVd5h6gRqdyU2MGy+gS/t5PGOUPzezc
-         zRvrBI9sPvyrVm1KPM0g0SEs6tSRMHesEAB6U24nfuh8ryRyCYFiZiWWi2cqTzn5vjFu
-         ZhDpVtdwFJd8FC3t/bH07/j16zVpVhGJFarcdjTkFMPPhQ9FOzZyYFLxwD6bkynTFzzT
-         SS6ZBhZxChhkwxOI98QNxPzd4ESfiYMz1rv1TDTkxMVv4O0ZbIovZd3frjkWbK/WRrMP
-         Be8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773830362; x=1774435162;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZHCpdutiIPCDZe+ZxRsP2OGSZ1DdSpbzypkIBafBf9w=;
-        b=FYPkF0rOrLoFYIdbZMe88e32xbT+T0JoIaUIas4EJ9O02ePRmgZbDS82RcmyHHWJbC
-         4Sl5pKQb4Ap+1mkOiz+pOnE2/Y/VSSTKuOmb5jCuAb30av46BY5nCshYNOf3v2C5tCuq
-         E44EGEfYztP1t/sKUgGmXJXfUO+QUm8c1vOUyy1E1rrINT9lqFu+JVltSPqD7sSz5WQ8
-         36RbMzmgS804vQAmRNNj5ZbKek05nUg47tRkAw9x9tFmF7xqVOnQH7pC+EOOGNQ4Q6N5
-         jt9n5mTzNCO5ftcPoBlIG5MnyNpx6yRlLJ65GTMhumogEAPw0omwc/xv/yVN4jtm5yMN
-         IgiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVSKoPYR4dF9fiJHRD63ffD7gpaMN3bnCLSItU3rvdjIoPu+zpTcraenB9VXiUgXxuDmPkwVF7MaNs/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxv6jdbsSDVuJ97SE1W7HZGvkT7BpjvhUotEnjUoLc/lR9Eo7vy
-	PR8BzlFb3Pa6oSuOxss5Z/g2ceUfD9J19etQw3jZbOkCX4a2qNUyawoHaoMgtq40+3b+0T3qLiS
-	5e0SXkXpaElRvDOwO9ba5jlD1WJDo2Sfr5uBPtKQBBe5v2SKmCX55b8hfe/zjtPsK
-X-Gm-Gg: ATEYQzxpIq3PW/qmK/gQkaVEfQOQKepHTYVbH9bXjoubIU8Zcy2yN1zGFSKagNATogL
-	i62F7alLOInfgYgKrSif9IMs5pdJb+zddlU7+icvPqwcO5a94UgVgOBfVbCPHpqYI7aa2id5SM/
-	Ncan2s4vBv3Wed0aOHUT70Pvm6T5QZUyMFVj6/MqNbjDQ1iC/+9Q87noX6vtU+wCpyNRWi8G72q
-	OncapHHXrOudlmTY/BB547k6+BuLuVy8IwGLaf2qlGM73c9HrUMkflxGTC1pS8GBMjOjprI5O2p
-	dih86zG1jiLZOmhLjUOJt6oTXQV8Kes72A7FaHu9NeK3/vowP0EIaxn9tNj1767/8IW61KwiUfb
-	kaf7UwikmfJ1wkC4mYRfZWqrh95HK0Cj2A2a9jt7jGOD54BkkIrg=
-X-Received: by 2002:a17:903:1112:b0:2b0:5be9:f423 with SMTP id d9443c01a7336-2b06e40e3b2mr29694615ad.43.1773830362401;
-        Wed, 18 Mar 2026 03:39:22 -0700 (PDT)
-X-Received: by 2002:a17:903:1112:b0:2b0:5be9:f423 with SMTP id d9443c01a7336-2b06e40e3b2mr29694415ad.43.1773830361919;
-        Wed, 18 Mar 2026 03:39:21 -0700 (PDT)
-Received: from [10.217.223.121] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b06e419270sm21556485ad.1.2026.03.18.03.39.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Mar 2026 03:39:21 -0700 (PDT)
-Message-ID: <8d210e75-f471-484e-8a0c-9b8ee7900106@oss.qualcomm.com>
-Date: Wed, 18 Mar 2026 16:09:12 +0530
+	s=arc-20240116; t=1773830446; c=relaxed/simple;
+	bh=Yq4NW2A5bHU2Y5yi98k+HQqdCscIVT014jd+PVCM62s=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=Eo8o7R1vRtk66AG7dtDR1w1yH9wO/n6fd74tFkKHfnCRAc4CuPonaFa4uLNloudg0Qpx/97LeST7WivZOWU2eJOqIsU//jDq3uQ5NtXwFhB5AT1TKWBxA8UjeTJWOpxpmdmIKmKXhmp9HGKhSzKk3Z4P4W7UUfXXGFkZG5oKJeI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Xl8kAqor; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id F04911A2E94;
+	Wed, 18 Mar 2026 10:40:41 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B8AD86004F;
+	Wed, 18 Mar 2026 10:40:41 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 76FE710450640;
+	Wed, 18 Mar 2026 11:40:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1773830441; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=MTpDYX+upBLp9SRW+OziKTrzB+mfPMcb5cpom+85poA=;
+	b=Xl8kAqorr9x26xPNdldYAncL7sNq+jQvTPr/yiNg5ZUPkUOs2+PKu2dX/uagdKQfulmjN/
+	2+MhpkqlwGI9vR86BRpHp10uLJJlWNQ+ylat5Djjw10mG2zP4PjBi95CS2oX+T5gGn57jG
+	DttZzB3s6kjF99hmQ+LWweczKSJs02TzIMSGpvWModpi7mcbvFaAYxtJ/1+NMvIlqQOo2C
+	cxW3iCiA6vwYeWCkzePysalM7tCv5Y2X61Gedku3xnN1glWj1lZ6xZqCATgYkwu5G+zkPs
+	aVtGbiP/Tib1oluIGzRklUcYePBpnX3YC1cq69W4L+1EOnDdr6Sjj9tMed523A==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Gabor Juhos <j4g8y7@gmail.com>, Andrew Lunn <andrew@lunn.ch>, Sebastian
+ Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?utf-8?Q?Miqu=C3=A8l?= Raynal
+ <miquel.raynal@bootlin.com>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Gabor Juhos <j4g8y7@gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: marvell: armada-37xx: drop
+ 'marvell,usb-misc-reg' from USB host nodes
+In-Reply-To: <20260317-armada-37xx-drop-usb-misc-reg-v2-1-ddff72114414@gmail.com>
+References: <20260317-armada-37xx-drop-usb-misc-reg-v2-1-ddff72114414@gmail.com>
+Date: Wed, 18 Mar 2026 11:40:37 +0100
+Message-ID: <875x6t5ska.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 12/12] soc: qcom: ice: Allow explicit votes on 'iface'
- clock for ICE
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Abel Vesa <abel.vesa@oss.qualcomm.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
-        cros-qcom-dts-watchers@chromium.org,
-        Eric Biggers <ebiggers@google.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-        Tengfei Fan <tengfei.fan@oss.qualcomm.com>,
-        Bartosz Golaszewski <brgl@kernel.org>,
-        David Wronek <davidwronek@gmail.com>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Alexander Koskovich <akoskovich@pm.me>
-Cc: Brian Masney <bmasney@redhat.com>,
-        Neeraj Soni <neeraj.soni@oss.qualcomm.com>,
-        Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>
-References: <20260317-qcom_ice_power_and_clk_vote-v3-0-53371dbabd6a@oss.qualcomm.com>
- <20260317-qcom_ice_power_and_clk_vote-v3-12-53371dbabd6a@oss.qualcomm.com>
- <8863f38b-51df-43ea-995c-08b9fb04f4dc@kernel.org>
-Content-Language: en-US
-From: Harshal Dev <harshal.dev@oss.qualcomm.com>
-In-Reply-To: <8863f38b-51df-43ea-995c-08b9fb04f4dc@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDA4OSBTYWx0ZWRfX6+Pl6ItALBew
- aefmUxWKIJ/P8pNaGpU8t8f7n7IfwUbuCvRly7xQAcVrpyFTqszrncVjdcE4PfJu+IiZIP3iIMe
- 5dpVXhlInLUiB62OCRmXuq/TM2VtJvW+1daAq3+tRDtj/6jLV2A7sjVCJWtfm6yJaJnahIFUXTT
- qXQClaRs6ixzLScCfYjhEN6YflZRb3HRXtLRJV8t59svSGWdIUMVvvu1ghrImC5hz3EJjIapDY0
- QW/pOHUYq0sCZuLlSd4xL9/ZubchPpRZEmsfer+FxkkViy6TR+wdYVP3VUkF42GnUCsxK/QJHp4
- 49g/jKuO1LEGg2AaO9IZYt7jEzqA4aTLrltSY3Tuet5r3hlToqGeP3u9J9dLRb2tSAaruSThpjC
- PjzhA27z3DccvUVvePf0WRaWT34FSJLEcpWO9vb3jrEvxscwNeJS4q1tHZGgON9wMu3RwAaH0Qz
- QmO8tAdPafDSyY39nog==
-X-Proofpoint-ORIG-GUID: xzqAlHBI2xTb0-o9rGMZ3VIiOT6akQTz
-X-Authority-Analysis: v=2.4 cv=H87WAuYi c=1 sm=1 tr=0 ts=69ba80db cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
- a=EUspDBNiAAAA:8 a=7T9o6mVONip3bYQ_lJkA:9 a=QEXdDO2ut3YA:10
- a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-GUID: xzqAlHBI2xTb0-o9rGMZ3VIiOT6akQTz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-18_01,2026-03-17_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 spamscore=0 adultscore=0 lowpriorityscore=0 malwarescore=0
- suspectscore=0 bulkscore=0 priorityscore=1501 phishscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603180089
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277117-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email];
-	FREEMAIL_TO(0.00)[kernel.org,gondor.apana.org.au,davemloft.net,oss.qualcomm.com,chromium.org,google.com,gmail.com,fairphone.com,linaro.org,quicinc.com,pm.me];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[harshal.dev@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-277122-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,lunn.ch,kernel.org,bootlin.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	DBL_PROHIBIT(0.00)[0.0.226.144:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gregory.clement@bootlin.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: DA7522BA102
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:url,5e000:email]
+X-Rspamd-Queue-Id: CE41C2BA126
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
++Miqu=C3=A8l
 
+Hello Gabor,
 
-On 3/18/2026 1:03 PM, Krzysztof Kozlowski wrote:
-> On 17/03/2026 10:20, Harshal Dev wrote:
->> Since Qualcomm inline-crypto engine (ICE) is now a dedicated driver
->> de-coupled from the QCOM UFS driver, it explicitly votes for its required
->> clocks during probe. For scenarios where the 'clk_ignore_unused' flag is
->> not passed on the kernel command line, to avoid potential unclocked ICE
->> hardware register access during probe the ICE driver should additionally
->> vote on the 'iface' clock.
->> Also update the suspend and resume callbacks to handle un-voting and voting
->> on the 'iface' clock.
->>
->> Fixes: 2afbf43a4aec6 ("soc: qcom: Make the Qualcomm UFS/SDCC ICE a dedicated driver")
->> Signed-off-by: Harshal Dev <harshal.dev@oss.qualcomm.com>
->> ---
->>  drivers/soc/qcom/ice.c | 17 +++++++++++++++--
-> 
-> Why the driver patch is after the DTS patches? It is explicitly
-> documented as no-go.
+Thanks it is better,
 
-I will re-order this patch to come after the DT-binding patch and before
-the DTS patches.
+> The 'marvell,usb-misc-reg' property is present both in the EHCI and
+> in the XHCI USB host device nodes, however it is not documented. Thus
+> 'make dtbs_check' produces warnings like these:
+>
+>   /arch/arm64/boot/dts/marvell/armada-3720-db.dtb: usb@58000 (marvell,arm=
+ada3700-xhci): Unevaluated properties are not allowed ('marvell,usb-misc-re=
+g' was unexpected)
+>           from schema $id: http://devicetree.org/schemas/usb/generic-xhci=
+.yaml
+>   /arch/arm64/boot/dts/marvell/armada-3720-db.dtb: usb@5e000 (marvell,arm=
+ada-3700-ehci): Unevaluated properties are not allowed ('marvell,usb-misc-r=
+eg' was unexpected)
+>           from schema $id: http://devicetree.org/schemas/usb/generic-ehci=
+.yaml
+>
+> Apart from the fact that the properties are not documented, those are
+> not even used by any USB host drivers. Due to this, drop the properties
+> in order to get rid of the warnings.
+>
+> Note:
+>
+> With the same name, there is a property used for the Armada 3700 USB
+> UTMI PHYs of which dt-bindings documentation has been added in commit
+> e60958699afa ("dt-bindings: phy: mvebu-utmi: add UTMI PHY bindings").
+>
+> Additionally, the property is handled by the 'phy-mvebu-a3700-utmi'
+> driver since commit cc8b7a0ae866 ("phy: add A3700 UTMI PHY driver").
+>
+> When the nodes of the UTMI PHYs has been added to the SoC dtsi by
+> commit 05d168a56fae ("arm64: dts: marvell: armada-37xx: declare USB2
+> UTMI PHYs"), the properties has been added to the USB host controller
+> nodes also. According to the commit message this was intentional,
 
-Regards,
-Harshal
+Miquel will confirm that, after speaking with him, it appears to be a
+mistake rather than an intentional act.
 
-> 
-> You do not understand how patches are being applied and you think you
-> can fix inherent problems in bisectability by creating incorrect order
-> of patches. No, you cannot. Read maintainer soc profile and entire
-> development-process document, so you understand how patches are applied,
-> what are branches, what is current RC and how kernel is effectively
-> released.
-> 
+Gr=C3=A9gory
+
+> however in regard to the USB hosts, neither the respective documentation,
+> nor driver support has been added into the tree since that.
+>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Gabor Juhos <j4g8y7@gmail.com>
+> ---
+> Changes in v2:
+>   - add Reviewed-by tag from Andrew
+>   - change subject and reword commit message
+>   - Link to v1: https://lore.kernel.org/r/20260304-armada-37xx-drop-usb-m=
+isc-reg-v1-1-800c1b746b7a@gmail.com
+> ---
+>  arch/arm64/boot/dts/marvell/armada-37xx.dtsi | 2 --
+>  1 file changed, 2 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi b/arch/arm64/bo=
+ot/dts/marvell/armada-37xx.dtsi
+> index ea1824f5321fbb32fc4373c08a0d94bca1dc793b..44c47409f8793ae1266303607=
+812ef481edbfbc5 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
+> @@ -369,7 +369,6 @@ usb3: usb@58000 {
+>  				compatible =3D "marvell,armada3700-xhci",
+>  				"generic-xhci";
+>  				reg =3D <0x58000 0x4000>;
+> -				marvell,usb-misc-reg =3D <&usb32_syscon>;
+>  				interrupts =3D <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
+>  				clocks =3D <&sb_periph_clk 12>;
+>  				phys =3D <&comphy0 0>, <&usb2_utmi_otg_phy>;
+> @@ -393,7 +392,6 @@ usb32_syscon: system-controller@5d800 {
+>  			usb2: usb@5e000 {
+>  				compatible =3D "marvell,armada-3700-ehci";
+>  				reg =3D <0x5e000 0x1000>;
+> -				marvell,usb-misc-reg =3D <&usb2_syscon>;
+>  				interrupts =3D <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
+>  				phys =3D <&usb2_utmi_host_phy>;
+>  				phy-names =3D "usb";
+>
+> ---
+> base-commit: 98226a594f313442fcba38cefc1df0b6c1691c7e
+> change-id: 20260304-armada-37xx-drop-usb-misc-reg-e9635498cae6
+>
 > Best regards,
-> Krzysztof
+> --=20
+> Gabor Juhos <j4g8y7@gmail.com>
+>
 
+--=20
+Gr=C3=A9gory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
