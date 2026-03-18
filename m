@@ -1,216 +1,195 @@
-Return-Path: <devicetree+bounces-277179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277180-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KLkbIdqUumnBZAIAu9opvQ
-	(envelope-from <devicetree+bounces-277179-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:04:42 +0100
+	id oBu8Cg2WumnSXgIAu9opvQ
+	(envelope-from <devicetree+bounces-277180-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:09:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4D682BB36F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:04:41 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C34762BB408
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:09:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EE7EB301A926
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:04:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id ACD733014131
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:09:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24FBF3D4123;
-	Wed, 18 Mar 2026 12:04:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8279D3A1E67;
+	Wed, 18 Mar 2026 12:09:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="e05Xubgv"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="N81CMaN1";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XNufPPMi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C7393CD8C4;
-	Wed, 18 Mar 2026 12:04:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59890364EB7
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:09:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773835458; cv=none; b=Y50RsOroDDJajc2s/h52iI/IqDcWRONU/NiCITVIQx15WKJc/5YnWl3c3FRSbozS3V3hQzDqHEd6GTOrBzMEFkg+yzOLVY6/Qgb14+50jcOG+X14x3KxXEmZePyyvEaop7/U4TdHrl6hx+nJajoXgjP9r9dGscK4bnw2hzLYTRk=
+	t=1773835786; cv=none; b=aV6Ht2nVwIWWCK1fX4vpEZgufBp2cXdAempKx6vSF60JfBhAk+YZYwBegtMqSMNk/03O6ZDwLFkRPQ9fVSmtAGHcNYvsjnJFM3JxajCHih4Z4TO++FP5WeHfA4XUuAESkqS617xCG3xOj4zKTl1Nn+oDiSzXtL2Se3LGNsNCUjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773835458; c=relaxed/simple;
-	bh=Xc1j0xbckMquE+7Oq8YBPSx/m+/CmsUtSO9wmdNglrk=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=eEybsk1kcCpsb2wffW1X9o3i9FmQKjhXVkTgCTtV1OBeXOIvuk/CLqVXoUrdbGARWwd+dIMYTY1jS6D7vMms6x7u647KwEFpSVXAggsxzBAQWf2yJo6cqn0UyEIypyHWrnPyCZCHge4um+1OWxXMATGAUUQ9/rqfZAjD+jY/PjU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=e05Xubgv; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773835457; x=1805371457;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=Xc1j0xbckMquE+7Oq8YBPSx/m+/CmsUtSO9wmdNglrk=;
-  b=e05Xubgv+8yknuXNW0AdNEtvLhGuo6hd4K+kPcxfcnf2RBtmKc6O7rwv
-   061Vi84+Oo4c7AGVSDRaqo6VFn1k3Oot2HmKSYlhgr/Gx+uVhNpoyd297
-   WTyP4TAYxRf+E5ItRp9oMaVO4rQoQrchN0G358BN1yujzPXLQwjOWctp/
-   tzd59CH2h7dCusnaD8VmHEvAvROC2x/EaJGiUMrsQCmscg0IMqvp0CzsD
-   7F1ZUzaP0LFd9F0bBVxjjxUfOJ1KTHUcWs73SvtAmrVVJylfsDCN4kswy
-   gMJEAiwLN6UdBaUmOhfgutRq11oIAxZinjfHHVAhA3J3ge0AlkebJRaUh
-   w==;
-X-CSE-ConnectionGUID: EnUSF7zsR3iKG43dCYzRUg==
-X-CSE-MsgGUID: xuZspob/TP6KBXGQ/4jXjw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="74772562"
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; 
-   d="scan'208";a="74772562"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2026 05:04:16 -0700
-X-CSE-ConnectionGUID: 0e+BTQM+QiOAM98/VBXl7w==
-X-CSE-MsgGUID: Eyq3oyOITGu+yo1pzh9H9g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; 
-   d="scan'208";a="245630682"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.55])
-  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2026 05:04:09 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Wed, 18 Mar 2026 14:04:06 +0200 (EET)
-To: Ahmed Naseef <naseefkm@gmail.com>
-cc: Bjorn Helgaas <helgaas@kernel.org>, Caleb James DeLisle <cjd@cjdns.fr>, 
-    linux-pci@vger.kernel.org, linux-mips@vger.kernel.org, 
-    ryder.lee@mediatek.com, bhelgaas@google.com, lpieralisi@kernel.org, 
-    kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org, 
-    krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
-    angelogioacchino.delregno@collabora.com, ansuelsmth@gmail.com, 
-    linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
-    LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] PCI: Skip bridge window reads when window is not
- supported
-In-Reply-To: <abpFjQJ5RNcbzbmz@DESKTOP-TIT0J8O.localdomain>
-Message-ID: <fc927b7f-a820-d3c2-581c-ab6db562bcfb@linux.intel.com>
-References: <20260316155157.679533-4-cjd@cjdns.fr> <20260317212908.GA109023@bhelgaas> <abpFjQJ5RNcbzbmz@DESKTOP-TIT0J8O.localdomain>
+	s=arc-20240116; t=1773835786; c=relaxed/simple;
+	bh=MasSu6LrX5lPgNjrXNQ4hDcLWXBWHEq2tH9/laGLU2k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=H/+B7v3irb5vFU4dKC0SdEanMWsneEnk/cAiyM64gkQEXhbfXSzieYwF1CpwcOTwuCIWleXtiwzoWrfy+GafjcLPN3CaWywJSnp4gPLMd0YbgCsDW/Z4JwYpRE6suG5bnER/4jxfYyrVN1W7Al5DXauupljbUBIqJIctwbW/EcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=N81CMaN1; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XNufPPMi; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62IC8nkL1459033
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:09:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	2PHXU7+o+q6TQfOmo9FWcPNUGxEdG3zDnyw8T7/zKsc=; b=N81CMaN1MU+ZxPW5
+	C8Xe6kBgG+huzIe9651hcdfMEN6KBbk9eTZaHIL4iglggKQA7mA2EaggnQTgMD8Y
+	TPlfvFceRpBcKh9V/dO8Fdix7OIv1MLtwlxjBBNFLF2/qFE69WQguPYLQXbq0IiK
+	FUuWasjVu6dJMnVXPwi1Xss6mCbeHC/ltO60RRkvpbcULK+2dKVjMSZS9j0u6UUH
+	EPrDzl/GMBd/96L53+8KeXKi04JUmhSxhNsr9AywCpnz45rIljusJ8hCSkwFwp8Q
+	50Q+NSc8UpaDItT/P0ABcFhck7VlTekw/kbGeKs3tkplYPKlw/1lUhD7xOMtwhWk
+	4i9Wbg==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cyut1804t-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:09:44 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-5091c7384edso46700131cf.2
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 05:09:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773835784; x=1774440584; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2PHXU7+o+q6TQfOmo9FWcPNUGxEdG3zDnyw8T7/zKsc=;
+        b=XNufPPMi9EDOjpXfKcMUliELbRM5b3ydYVXO5cBOH9efhUsaaMKLtKl4fruEMvCFrg
+         SODOMUKSP2V8Jv9xTDWEhFF/VyNGUpW7iQjmlge4wCptGvMoI6A0FFjDNRUq5gGq23Ms
+         Ifbra/YNKQrh4kevSlWolJsWWFcGbkYFoMAa4s9MTgZ2QGdfMWJl07ap1ei8HEdEV8WE
+         I6iUXqrvdIcGU6ai75rCm9HAR7WnqsleFh1z7UFijJ/q+UKk1tdQvLgi3KgXFErPiop+
+         V1yahOhRSogYm1dVMLft8xYEDBw5aT1XWcUZuC9qeXzo6sEkYDzGLBOCC+VYZBgq5RNH
+         jWXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773835784; x=1774440584;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2PHXU7+o+q6TQfOmo9FWcPNUGxEdG3zDnyw8T7/zKsc=;
+        b=noLDyNQJFKnX9y8xM0bF32L1hQcb6J2jIpKdPXqmD3F/BBKSX2/DLm3hD59ZcIYSyZ
+         tbvL/EKD/D4Ek7Skz0Mfij/Ip2vEUh9VPAiIjqcp9zlytljwL/q6xgAAuSbtLfvTxB1C
+         zuTKpTTArvPr+quhkFZunlp9XSLmAJzyQBmNx01WhbgC6rmt+S/cE+p/YvaAp1gLGc2f
+         9fKOhcQVDzIxLA/jz0JcJ00gYbtbq46n47CALbPFvdrY/+E6NSz53eh4yUrk4cOQMAG0
+         oHlYqbG+bqrjJy/qOwM1G6f8fzJKYWFc8WcBAi/5nE3OHtnzPsFT7Ha5dOVS5EhwyeCd
+         tF5w==
+X-Forwarded-Encrypted: i=1; AJvYcCUKJsJuvQY5rytVAt16OAUxoxIuHRi1iDC3LmvmSy5M/WytnrPJraTgHjVbFWLYwNiky/O9uE+eNHQ2@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKaAmKE2OTKHnfZP+aSYSqxTYX6dsNnbsy0cOLCYyiUKHF/gic
+	Glaig8YYMB2Fs0YvAFdDtej+UP/6G32BDeB5cy2Fze1o5wP7arxod3tefADF66lAYRCIUNo49C+
+	ItRzG6kEGwkbczYQxOly+zbeujf0NuQHckFTCjbGbLw1HLKFEohG8yT7YiZ0Udgw7
+X-Gm-Gg: ATEYQzxpC/1WPhSNlwsuvPCq44lobv0hlDnW4TMQJnK1las8zXqM2O3+4wZ8mvbxhzr
+	e9dx2vF9yf0Uubg/UMtU3ad2mqAlMOz/3MEWzrq9YqLOgvLrnp7RDjTXnwLll1rmnG5IDIINCnJ
+	SUsoMzTOMBDbLlHO0MH+YnVvAsIjWuCt1Yg1nLkfHGyi9iVUJ+FJSlDci7JVNT7SHoFz8rIak+9
+	GusyZx0OcYlnv7pSU63HMceLsFuUF+0NIFxWOmQpgyzpXbqMLprB/Ud+Ocp4CUEGjV/7eSn8INM
+	KArUkjO8gg4z4sqndoh1kbK3rtoXzXFWYqnPxHGOdFLK0n3TlEmiTT+6x35Vu/Cdp32F6fUboW8
+	yor0o8qAFskddLmBbp9E/VslA+Oe1fEzfVsuynyfLAhpcaqsLWinnmFfEEZstiTDGtvqmVr8SzO
+	9+8+4=
+X-Received: by 2002:a05:622a:34c:b0:509:9d9:e19c with SMTP id d75a77b69052e-50b147690e5mr27514421cf.1.1773835783602;
+        Wed, 18 Mar 2026 05:09:43 -0700 (PDT)
+X-Received: by 2002:a05:622a:34c:b0:509:9d9:e19c with SMTP id d75a77b69052e-50b147690e5mr27513831cf.1.1773835782975;
+        Wed, 18 Mar 2026 05:09:42 -0700 (PDT)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b97f16ddd39sm190290366b.43.2026.03.18.05.09.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Mar 2026 05:09:42 -0700 (PDT)
+Message-ID: <74c7e115-2a64-48ab-9fc6-14efcd46717f@oss.qualcomm.com>
+Date: Wed, 18 Mar 2026 13:09:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: qcm6490-fairphone-fp5: Sort pinctrl
+ nodes by pins
+To: Luca Weiss <luca.weiss@fairphone.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20260313-fp5-s5kjn1-v1-0-fa4f1c727318@fairphone.com>
+ <20260313-fp5-s5kjn1-v1-1-fa4f1c727318@fairphone.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260313-fp5-s5kjn1-v1-1-fa4f1c727318@fairphone.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: cjEICBPX2Tn-TJBExkkYK0zxCYB4THzm
+X-Authority-Analysis: v=2.4 cv=ModfKmae c=1 sm=1 tr=0 ts=69ba9608 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8 a=x2qkw7L4rmU9F7zQ9u4A:9 a=QEXdDO2ut3YA:10
+ a=AYr37p2UDEkA:10 a=uxP6HrT_eTzRwkO_Te1X:22 a=Soq9LBFxuPC4vsCAQt-j:22
+X-Proofpoint-ORIG-GUID: cjEICBPX2Tn-TJBExkkYK0zxCYB4THzm
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDEwMiBTYWx0ZWRfX5a1XLKWW+/1u
+ b7v0ygVSzaK9ztY5q1BZfzWb0HzHw7uqM32e4KVxO9BcUvZIjCJJjnGVkSxWJ3rMD8ZmpGhdu6C
+ KGTlP4nqFJx0c6deYpua8VIujKE6JUDbMkX52qZHvsKY+Hig6NZZbJ31O/DCdzFYuV90eY+mf53
+ Q/GC0vhT9sk1RU73JKrz0ApEGFH/SJWlrTTI0QCnHafCnt6QBZfPTxSMO/pnNnKSdouQRP853Z0
+ cLJmFaThESyTUTuzOnQe/YGg5gpDc5UyJ+zgnYGStNplsysFqIM+hx2zvVg229uP6r+JG/Co8LN
+ i85tGmflqdPjnpzCDyfR4SlMvong4AQ/0lnfiycSm2yUgrjEw1OvUDhT/BYE9jBhUHj/dXh3fFl
+ MCUsQNHOZxpdLoRmWdQsHmcXTXhTfHUnZ6uefDxFLuIri6YjYftLMnezBO+Fvn1z16WEaoZSH2G
+ W983/yswIBWDV1nv5Cw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-18_01,2026-03-17_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 impostorscore=0 priorityscore=1501
+ lowpriorityscore=0 bulkscore=0 clxscore=1015 adultscore=0 spamscore=0
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
+ definitions=main-2603180102
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277179-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,cjdns.fr,vger.kernel.org,mediatek.com,google.com,gmail.com,collabora.com,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277180-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ilpo.jarvinen@linux.intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[cjdns.fr:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,linux.intel.com:mid]
-X-Rspamd-Queue-Id: E4D682BB36F
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: C34762BB408
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 18 Mar 2026, Ahmed Naseef wrote:
+On 3/13/26 5:00 PM, Luca Weiss wrote:
+> As per DTS Coding Style, sort pinctrl subnodes by the "pins" property,
+> in preparation to add more pinctrl states.
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
 
-> On Tue, Mar 17, 2026 at 04:29:08PM -0500, Bjorn Helgaas wrote:
-> > On Mon, Mar 16, 2026 at 03:51:57PM +0000, Caleb James DeLisle wrote:
-> > > pci_read_bridge_io() and pci_read_bridge_mmio_pref() read bridge window
-> > > registers unconditionally. If the registers are hardwired to zero
-> > > (not implemented), both base and limit will be 0. Since (0 <= 0) is
-> > > true, a bogus window [mem 0x00000000-0x000fffff] or [io 0x0000-0x0fff]
-> > > gets created.
-> > > 
-> > > pci_read_bridge_windows() already detects unsupported windows by
-> > > testing register writability and sets io_window/pref_window flags
-> > > accordingly. Check these flags at the start of pci_read_bridge_io()
-> > > and pci_read_bridge_mmio_pref() to skip reading registers when the
-> > > window is not supported.
-> > 
-> > The fundamental problem here is that assigned space to a bridge window
-> > that isn't implemented.  I wish we understood the connection between
-> > this "read window" path and the assignment path.
-> > 
-> > Maybe this patch fixes it because we enter pci_read_bridge_mmio_pref()
-> > with res->flags being NULL, and we set IORESOURCE_MEM |
-> > IORESOURCE_PREFETCH again, which makes it look like we can assign
-> > space for it?
-> 
-> Yes, that's exactly right.
-> 
-> > 
-> > If that's the case, I think it would improve the commit log to mention
-> > the actual mechanism by which we avoid assigning space.
-> > 
-> 
-> How about this:
-> 
->   pci_read_bridge_io() and pci_read_bridge_mmio_pref() read
->   bridge window registers unconditionally. If the registers
->   are hardwired to zero (not implemented), both base and limit
->   will be 0. Since (0 <= 0) is true, these functions set
->   IORESOURCE_IO or IORESOURCE_MEM | IORESOURCE_PREFETCH on
->   the bridge resource. This causes the allocator to assign
->   space for the window even though the hardware can't
->   implement it.
-> 
->   pci_read_bridge_windows() already detects unsupported windows
->   by testing register writability and sets io_window/pref_window
->   flags accordingly. Check these flags at the start of
->   pci_read_bridge_io() and pci_read_bridge_mmio_pref() to skip
->   reading registers when the window is not supported, so the
->   resource flags remain clear and the allocator does not assign
->   space for non-existent windows.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-At least to me the proposed text reads much better than the original.
-The original text required reading between the lines to connect the dots, 
-whereas this new one clearly explains what causes what.
-
---
- i.
-
-> Ahmed Naseef
-> 
-> > > Suggested-by: Bjorn Helgaas <helgaas@kernel.org>
-> > > Link: https://lore.kernel.org/all/20260113210259.GA715789@bhelgaas/
-> > > Signed-off-by: Ahmed Naseef <naseefkm@gmail.com>
-> > > Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
-> > > ---
-> > >  drivers/pci/probe.c | 6 ++++++
-> > >  1 file changed, 6 insertions(+)
-> > > 
-> > > diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-> > > index bccc7a4bdd79..4eacb741b4ec 100644
-> > > --- a/drivers/pci/probe.c
-> > > +++ b/drivers/pci/probe.c
-> > > @@ -395,6 +395,9 @@ static void pci_read_bridge_io(struct pci_dev *dev, struct resource *res,
-> > >  	unsigned long io_mask, io_granularity, base, limit;
-> > >  	struct pci_bus_region region;
-> > >  
-> > > +	if (!dev->io_window)
-> > > +		return;
-> > > +
-> > >  	io_mask = PCI_IO_RANGE_MASK;
-> > >  	io_granularity = 0x1000;
-> > >  	if (dev->io_window_1k) {
-> > > @@ -465,6 +468,9 @@ static void pci_read_bridge_mmio_pref(struct pci_dev *dev, struct resource *res,
-> > >  	pci_bus_addr_t base, limit;
-> > >  	struct pci_bus_region region;
-> > >  
-> > > +	if (!dev->pref_window)
-> > > +		return;
-> > > +
-> > >  	pci_read_config_word(dev, PCI_PREF_MEMORY_BASE, &mem_base_lo);
-> > >  	pci_read_config_word(dev, PCI_PREF_MEMORY_LIMIT, &mem_limit_lo);
-> > >  	base64 = (mem_base_lo & PCI_PREF_RANGE_MASK) << 16;
-> > > -- 
-> > > 2.39.5
-> > > 
-> 
+Konrad
 
