@@ -1,101 +1,101 @@
-Return-Path: <devicetree+bounces-277200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277201-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sFsrHnOeumngZgIAu9opvQ
-	(envelope-from <devicetree+bounces-277200-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:45:39 +0100
+	id mDeYBoaeumngZgIAu9opvQ
+	(envelope-from <devicetree+bounces-277201-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:45:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7068A2BBC06
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:45:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F2D72BBC40
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:45:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D7E4030329EE
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:41:41 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0CCE4305AA1C
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:41:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D201C3D75BF;
-	Wed, 18 Mar 2026 12:41:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6AA23D6698;
+	Wed, 18 Mar 2026 12:41:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="k6Bv47XU";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="b+lVgcvE"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZI695LtZ";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="a4p1A3I5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 029FA3D6CD2
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:41:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C506C3D75CC
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:41:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773837682; cv=none; b=MgoHGk0ujkrMzMv1QQ3SoIntaK8VS7eug+g6PZcxRVQZXHJfomtowxdn+Jof2WxrwkM997CoDI9c/drCAVIcuNr2q77hr2i89yrPlXdk7QwY0OuBQ7VQyzNbsNv3fsaLEgIcdWEhCrZN6sU3P0IdYBM8Iy0E/deYhBjTNACWdGQ=
+	t=1773837685; cv=none; b=aWekJ4KZHWWPRl7jFuDJdPm6XN+uYCcd3jtS+N5g9m8RYVZwiRLuFDYKV2tQsrhRPcrkFnBNYjx7HEc8mIejhTzlxpLpi5RygqDNGh4AlSRWNPTH2l8pDn5NuYo39PbmokfyIdQHYXbA9TU4eWg2O7UjegtVSfPC7/XgJWZs+8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773837682; c=relaxed/simple;
-	bh=gq3GRU07OiVzXRDbORYmB59Wo9kFN+asNf2aad6hpvQ=;
+	s=arc-20240116; t=1773837685; c=relaxed/simple;
+	bh=vHVi3HpnuTyeFgM6r7yOwJKxtmmp832ydAxUg9JS4kc=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ai4qnkZ+1dtMr30hRhhwElc0JdaPpyXmKy7/e8k0r0gjMA8BjzwUelLw8N0oEIp0KuXSyASTn7cs8TWCC64SZzWLjzgPSKvY8F686fbBKrLJBTYykCWCe066L5FNdq2Asxh16q7E1WQo9XbWWA/eaaXKP+Ywa27NKYt0eTtGy/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=k6Bv47XU; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=b+lVgcvE; arc=none smtp.client-ip=205.220.180.131
+	 MIME-Version; b=NjaA8aymTV5+npY00jqdki610tmNDBjSxaCr5Eco3non26ExjjiBMbD0xxp5+32MPlVwxbyxdKl61sin3txOeIi2Sp2ATpd5AgmZiN1JMd548u3mZvXKM2oxyyx6QsgDPXLmyXdWEWLRPEJW1U73VuO4ziIY8f9mp9VkG9bcKq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZI695LtZ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=a4p1A3I5; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62IC8nUc1458995
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:41:20 GMT
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62I8Fcie2790978
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:41:23 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=Zs504dbaWka
-	zNB1r3EYrSBuZly5N8YBYHRPiLtoDqzQ=; b=k6Bv47XUdfYTySDrLRFpXqKc2HI
-	P9kg7f5/RYqpJjx3Z8659MuNVQcXDJOy1Xl2B6q1R/2v1SIiRSIWtyPfJNl7Xhy/
-	HqCfSeAxiaJavV5nc10b8vTj6ItadipEIdj9sCAojAvDO8DrMkF+YTXSOrdl7qX5
-	k4Iw3vBCkaAbRO17XZrIB5DaInoCMiIvvZbN5wNWK1Dwyk9/KwAqaRbi+rXnV97/
-	8UbwyrmkkQY8o7dMFeZDxzLCbo55CjwLqZ8XC5afMsMEh+aYCY6SpTx/aac+vP8H
-	cQetHtZPpO0WhU9dFrbyTnbJZZYC/6ivq+apmZpKfC8hfZlGw0HOk5pAA5Q==
-Received: from mail-dy1-f198.google.com (mail-dy1-f198.google.com [74.125.82.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cyut183f6-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=MNPeDJEhaPj
+	BjdqxIt+R7AAcY2Fwhn6fypcd/nzle7o=; b=ZI695LtZt435IrnQ3dyLIJvFq/y
+	AHro0ovAJV5zZyzyEkt7J/01qRW/yer4RPhX8bICRx2/6FnaOV3YC6wivc4NM2U7
+	u9bJB6MmbcNYKlqHyhWu0nuxWENjJeXBWnPtiNT6NcMpC9QfRsyCWtAMeZ01UnXd
+	SaHwm2sr9Amcvro+NSzZN/mwXY+JY0Pc+KGC8ZmLCIoaRybfNOGhWmpKzfOigw3y
+	4112nAcV/uBQMZxMBj7DCKn9nVyUQ6foT/6Ap9MWZELZy3GO3Gsc9yOvDCnBkrXX
+	nU8wn6xUcTMy8aLwKdJz5qE5CfcX12XI/LX95c+4VqJvzGo3Ne4CJOdDqoA==
+Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com [74.125.82.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cyj4g2hpw-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:41:19 +0000 (GMT)
-Received: by mail-dy1-f198.google.com with SMTP id 5a478bee46e88-2ba9a744f7dso6314538eec.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 05:41:19 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:41:23 +0000 (GMT)
+Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-2c0d15416b3so33254781eec.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 05:41:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773837679; x=1774442479; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1773837682; x=1774442482; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Zs504dbaWkazNB1r3EYrSBuZly5N8YBYHRPiLtoDqzQ=;
-        b=b+lVgcvEtWX+8Afo+rs4+QU1NxCyIWGx3x1VoEZPx5xUdffzGXALPVfopBE8+q5u65
-         REFXpu0wEGD4ZXr8RHdWNhyI1RdWQPYvOCaB+t5GYmwJFBISoI+zevnqxa62zbT/HOOd
-         g1Sjq9vcFdYOXs8pF6E4KGh0euGqwBl+kxWmHv6zg5N+hAQoz+kA7VQ7KGDzoSkjZgvK
-         +CDHKxYAH9rfCyVyfAUFKOHHyNSui7npRYyYE0VNHjWhhB0kWePu6rmou8FV6m5TjKqn
-         CtYiD/bmD6eb8FB9YF6RfkyGLuKw+AOOeEvCxECDMNFUjOIaeBofyLjnT9Asjx3K9lsp
-         A0tA==
+        bh=MNPeDJEhaPjBjdqxIt+R7AAcY2Fwhn6fypcd/nzle7o=;
+        b=a4p1A3I5SYck7RAFADubjSvk4rEM2Hg2dvvGdZKBvHo6qXOkSevC3ZIO8GD5NwFgoH
+         C2GWZk5EcRYBbfJfapx46vbR3r/VOVJ3IgwGKAWojAKo/iHdsORXbGrCwVRkcdOKz1i1
+         yGGr2JctoHmN4J2jlewgeDw6Ue4CpsmIBgkBOnPNx3v805XGFtEzF4wdStScz7YUxP0i
+         iajZ9HVveQhP1qkVbpXtDR4dpejIB2L9/B0viRfZuzhC/bxjRRpSiipq63U8SmsM7NRI
+         KtdHZFKLNf8oS5GxspCSAt8NxUPg1CSNFW8/lvjTSAvvHP8B3NlCbK77iRZ9HmlBvDlU
+         02Bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773837679; x=1774442479;
+        d=1e100.net; s=20251104; t=1773837682; x=1774442482;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=Zs504dbaWkazNB1r3EYrSBuZly5N8YBYHRPiLtoDqzQ=;
-        b=Pj7DAfMRWPunNJYaDWxYxP06EVw56niPSjTcGAf0so3vdG6yS+zO+rWjPra2x0M+Oh
-         emPANta7vTiGUtAgqjpBYWbhPOdLxDNGWC+VTY+CkqGeizi1DeBCyjETu0m57n7sfX5o
-         X2w2M+8bfKdyImGWSFXW3HpE4gJw+Ccj21y5ODWZ0LLLjny6Kzq3VfmOGYM0dMTssANC
-         UamYZe5xuCW8FVPF0zb9aOWagFQLS0p0DUaR5IAo2zmni2uPa5UQwopskHyJq99lIbuj
-         cuJFihGPx0LcTutvBx/5m5tSR7Gi4LYGcj3pwR2647V9K60tqZl74WNp8xRTaJgrTx9j
-         b/6w==
-X-Forwarded-Encrypted: i=1; AJvYcCW5p7PMLd5dCsWAYa1/YTwm7YanKD//Ujra9BhegZ39PjoWFzUMqzDJeKBr0XLKBYlvmE2nIUA17/ub@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9FQwE7m5bhKJrm8BymuajGjQSA1j0IEjeHxLxveM59xf0+oPU
-	tFSrqzI0/PbigDKNtMC5Gr4vA8Mc3smySUWG6d7+ExhHXIGewViTBiGl8xTGupXm/eIdnVAWKCx
-	jRUqn8/VDH6ci8BHZY2JFxTzRJruAqgz3anQ1ulm3Wor85FLfj/Th7tsaaagYhQOf
-X-Gm-Gg: ATEYQzzDhIN2duTqjIFqTmfxDoPVcEvAKol7DU01Y9bAaPj8iEEfoYIloJS89FKMB7W
-	YgBEj4Xhwns+hw8e2MQRYXUuqfSo8PJQZpleEuRJ+uDPpThMolDDyypF/O5blBKhhGDwEyomw7F
-	I2FSruPiZAyJOUHdhAQnnr5V8mBaXTM8TF++20kKB2pqIdYUuG2ljnDKJq3TpT+v3Ri4Pxu6nyI
-	VanIXG9SuUvwDDH9ft6ZvlV0jQ2DqdjWugHjD8W8cPEbNgGwZP81gu9uMr9njRzixO32UJyLJ7P
-	L+siXxL3ZusOOIQv4CWqzz8SlQZf3MPrahFfpq67ha2A+hZcOmubQ2buw7lNHyX2fOAuQ9FoKcR
-	qg/esuKvBDeAjylQ46WeWuMjmbvXOGiZKxkRMKY595jhGrvcAlEgaiAEB91QkZQjea+uRm2ZGMX
-	v1gkt8pLXtnA==
-X-Received: by 2002:a05:7300:caa:b0:2be:290c:8ad5 with SMTP id 5a478bee46e88-2c0e51bea18mr1454671eec.23.1773837678676;
-        Wed, 18 Mar 2026 05:41:18 -0700 (PDT)
-X-Received: by 2002:a05:7300:caa:b0:2be:290c:8ad5 with SMTP id 5a478bee46e88-2c0e51bea18mr1454653eec.23.1773837677900;
-        Wed, 18 Mar 2026 05:41:17 -0700 (PDT)
+        bh=MNPeDJEhaPjBjdqxIt+R7AAcY2Fwhn6fypcd/nzle7o=;
+        b=L8jM9XCVYM0aoH0ObvHwsHaH1oU3J6g+gnt6FqAyQ6kQ77v7npQV3qFNofdakE/JQU
+         qnA9Q+dPpOZxW450lAUKgPHNdTtOIzGglgYkJFoKIDGKRCj3GjGqj0W9+KGE3b6lo3/0
+         Erv9NUDnz3+atDaKPRjXLeItqDs6HORnm+5NiqdnnTYUzHr1MC1QFi1Zma5C2bLSB1i0
+         ei4LW7kvaZp/cLzQwDdbehk1ygCOvJYU7GC9pPFslsnrYwNGJSJnBzuuXf6AYna3rtlz
+         jnWZ+OjEIgT7gyr7Wy+N8MrFXMXFsYTzd6GiHzaFzN2IUxuLomH7POdBB0LOBKxjupdD
+         gZzA==
+X-Forwarded-Encrypted: i=1; AJvYcCXTPym+oUPWVj4T6kqmrMbIa97GjHQ/N5gjqUe/nNorA/9yiGCurbEg6WSXhksYxK3Kg5LvbCmq6V2B@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYXUFTMuyUD4wOgsrP31AkhGhr1rWSuAfxEuBNdMOvJ1TiH51x
+	9uS9xlfMWwBD4K5JNLAWewPLjsS3oS/nGma4lw1cAhTzlYyAVOIVma0dwJtn4ceKDHh+dTtE9MB
+	VXzQwwKjVj5KDQa29w/Xjq6tEN8Xz/d1i5CxwzmSVDcNML4E7j9FKjDakMHk00zcy
+X-Gm-Gg: ATEYQzy65YRs9noPvJvJYX+v6YHoTIj4ngrjlQij68vSjUYpXgTrtJqAUzyrdIf6ctW
+	tn6Oc/vQuMBADC+klSLtO1kqMpiTP+19o0JCcuYtC1DmIl4y8ZcykaRy+moqoMkQLEvj4TmTHHP
+	5dgtRiY55u/tK9WB8BnQHPmJcYouYtoN15X65g09xQi0+gbltMTq4mQgEfiSyPAi2ub1EYRipD6
+	e7YG4Xz6dGoaQ63NAb4VifY1c90jBeKsnxiGeaHiFKL6EU3mN3FHHFC0Nhrspb2qh4LW5Kd0WbX
+	o6sHuS3M51q+Em9d/DKufAQOm7Q2DvlqBcwAO2nqjJHuc5FS5mw8dRNI93+i/DLqnGdqvY51zUS
+	S4VoKngyVDWs3VBS2H6UQ+ebMGrQhyxHKXZemkRjbPOioBnA7x3z8d7wMtrK4coRAA8nuf9OSf6
+	+DR5ByppHW0Q==
+X-Received: by 2002:a05:7301:6785:b0:2c0:dae2:9c50 with SMTP id 5a478bee46e88-2c0e5115c33mr1504542eec.31.1773837682077;
+        Wed, 18 Mar 2026 05:41:22 -0700 (PDT)
+X-Received: by 2002:a05:7301:6785:b0:2c0:dae2:9c50 with SMTP id 5a478bee46e88-2c0e5115c33mr1504509eec.31.1773837681133;
+        Wed, 18 Mar 2026 05:41:21 -0700 (PDT)
 Received: from hu-ggarmidi-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2c0e53b5fa1sm4454521eec.10.2026.03.18.05.41.17
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2c0e53b5fa1sm4454521eec.10.2026.03.18.05.41.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Mar 2026 05:41:17 -0700 (PDT)
+        Wed, 18 Mar 2026 05:41:20 -0700 (PDT)
 From: Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>
 To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
         krzk+dt@kernel.org, conor+dt@kernel.org
@@ -103,10 +103,13 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, sibi.sankar@oss.qualcomm.com,
         pankaj.patil@oss.qualcomm.com, rajendra.nayak@oss.qualcomm.com,
         qiang.yu@oss.qualcomm.com,
-        Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>
-Subject: [PATCH v2 2/3] arm64: dts: qcom: Commonize Glymur CRD DTSI
-Date: Wed, 18 Mar 2026 05:40:59 -0700
-Message-Id: <20260318124100.212992-3-gopikrishna.garmidi@oss.qualcomm.com>
+        Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>,
+        Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
+        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+        Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
+Subject: [PATCH v2 3/3] arm64: dts: qcom: Add Mahua SoC and CRD
+Date: Wed, 18 Mar 2026 05:41:00 -0700
+Message-Id: <20260318124100.212992-4-gopikrishna.garmidi@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260318124100.212992-1-gopikrishna.garmidi@oss.qualcomm.com>
 References: <20260318124100.212992-1-gopikrishna.garmidi@oss.qualcomm.com>
@@ -117,30 +120,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: VoWQISk86wfwVovPKWS9FnjRNwS6hEYz
-X-Authority-Analysis: v=2.4 cv=ModfKmae c=1 sm=1 tr=0 ts=69ba9d6f cx=c_pps
- a=wEP8DlPgTf/vqF+yE6f9lg==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+X-Authority-Analysis: v=2.4 cv=TPhIilla c=1 sm=1 tr=0 ts=69ba9d73 cx=c_pps
+ a=PfFC4Oe2JQzmKTvty2cRDw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
  a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=EUspDBNiAAAA:8
- a=Lx9aQ9xY3w96JebXmp4A:9 a=bBxd6f-gb0O0v-kibOvt:22
-X-Proofpoint-ORIG-GUID: VoWQISk86wfwVovPKWS9FnjRNwS6hEYz
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDEwOCBTYWx0ZWRfXw4Nkxih4G25N
- 5YQsqVipZKBAuGTH5Cwp4klKpX9UPCQzBGUEVlIKGQ3C3IbCy57NEhcdEBcV5113duIsepuFe9K
- 4Mx4Q7I98KU+2dX2CKEBvNz8ekpuD9TU6h3T6RN0cqWxnI/kAR9qMbiMQvJXSELdtvQ4eiXgn6w
- ijBdXPhKHc47t/5vCM6n89WhvBmuQsC0sbwHkaKbby4e/03bTL1FDTdQGZyOWqcSVSV1OhCnmlQ
- YmO66mgUV6GamyIbjKglbBYJcmegYOXBxU1kV61DO8o6rSfIp5a3fB0q1fFUo3Ki8jus+yPqFYl
- NSTO1tbgErrc5+z4K+g/qUW2X1cz/p3WPFkDUmoIEGYDc6y2FDEbh2ZE4Eoeaj6X7UNKHsXuMoJ
- bLtACwANAmZAEPL+o2KvxeLkgF00HWXzpMs/CZZ+du+1ZloFHaw3Fxr2NPrakL70/+KjXIkgSAR
- +3zz1Z3MHvv6wStuR+w==
+ a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22 a=EUspDBNiAAAA:8
+ a=4nuuKY_MPYQNcC36K5wA:9 a=6Ab_bkdmUrQuMsNx7PHu:22
+X-Proofpoint-ORIG-GUID: AiFx1flg9XuRvE3x_5Eq2JZlsKho8593
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDEwOCBTYWx0ZWRfX2ZbM29HvcAN5
+ AlZXUhrqZkt9lPprKtHfNF1Vv+PKVI6FzhufivbdEkZPp8b1pmMOPExcWm6Cd4I19rUKGEfoFxk
+ ta0Wh7vB7EjINmElNwFG8C0yQ0/37FN3Ojx3QUtIfKQZHgNHNl1NB0MkP2VgNcwL/qbRZ8JJpjV
+ 53dX4u+JiAckeGOsbVjiBhWHPLlLob8sXOVUY6gFK1kZuo5+gMSnVuVOS5nUapG8mxp4IyRqYLd
+ o2Y7ndMZ7GEaFL0fqjwd9IHxj02X3buhB4cjkliYa3BZBVyWmJqpkFLEuLRNi8yhO+oAdwKwsZL
+ dbIgh/NZMD/utsAPlSwTgAw75sW5STZj1d0rDQ1LPLObJ/djTFnDzKqzsb/mioka62IIaojheqm
+ bFJ21I8twAHLwRe+3Kv+MbjDMFWg3sYjARJnLNmG5gdorEFLAt/NjNzEP4mfM4LsuuZcWCNCBdf
+ 0jo60eZqE22//iWMq1A==
+X-Proofpoint-GUID: AiFx1flg9XuRvE3x_5Eq2JZlsKho8593
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-03-18_01,2026-03-17_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 impostorscore=0 priorityscore=1501
- lowpriorityscore=0 bulkscore=0 clxscore=1015 adultscore=0 spamscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
- definitions=main-2603180108
+ phishscore=0 suspectscore=0 lowpriorityscore=0 bulkscore=0 malwarescore=0
+ spamscore=0 impostorscore=0 adultscore=0 priorityscore=1501 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603180108
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
@@ -152,12 +154,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277200-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277201-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_NEQ_ENVFROM(0.00)[gopikrishna.garmidi@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -168,654 +170,425 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 7068A2BBC06
+X-Rspamd-Queue-Id: 4F2D72BBC40
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Commonize the existing Glymur CRD DTSI to allow reuse with Mahua CRDs.
+Introduce support for the Mahua SoC and the CRD based on it. Some of
+the notable differences are the absent CPU cluster, interconnect, TLMM,
+thermal zones and adjusted PCIe west clocks. Everything else should
+work as-is.
 
-Leave the PCIe3b nodes disabled by default, since the UEFI has the instance
-disabled to avoid boot delays due to link failures.
-
+Co-developed-by: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
+Signed-off-by: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
+Co-developed-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+Co-developed-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
+Signed-off-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
 Signed-off-by: Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>
 ---
- arch/arm64/boot/dts/qcom/glymur-crd.dts       | 586 +-----------------
- .../qcom/{glymur-crd.dts => glymur-crd.dtsi}  |   7 -
- 2 files changed, 1 insertion(+), 592 deletions(-)
- copy arch/arm64/boot/dts/qcom/{glymur-crd.dts => glymur-crd.dtsi} (99%)
+ arch/arm64/boot/dts/qcom/Makefile            |   1 +
+ arch/arm64/boot/dts/qcom/glymur.dtsi         |   2 +-
+ arch/arm64/boot/dts/qcom/mahua-crd.dts       |  21 ++
+ arch/arm64/boot/dts/qcom/mahua.dtsi          | 299 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/pmcx0102.dtsi       |   2 +-
+ arch/arm64/boot/dts/qcom/pmh0104-glymur.dtsi |   4 +-
+ 6 files changed, 325 insertions(+), 4 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/mahua-crd.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/mahua.dtsi
 
-diff --git a/arch/arm64/boot/dts/qcom/glymur-crd.dts b/arch/arm64/boot/dts/qcom/glymur-crd.dts
-index 877945319012..0efd9e27c82f 100644
---- a/arch/arm64/boot/dts/qcom/glymur-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/glymur-crd.dts
-@@ -6,593 +6,9 @@
- /dts-v1/;
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index 317af937d038..e85ff36012f1 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -44,6 +44,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-camera.dtb
+ lemans-evk-el2-dtbs := lemans-evk.dtb lemans-el2.dtbo
  
- #include "glymur.dtsi"
--#include "pmcx0102.dtsi"        /* SPMI0: SID-2/3 SPMI1: SID-2/3 */
--#include "pmh0101.dtsi"         /* SPMI0: SID-1                  */
--#include "pmh0110-glymur.dtsi"  /* SPMI0: SID-5/7 SPMI1: SID-5   */
--#include "pmh0104-glymur.dtsi"  /* SPMI0: SID-8/9 SPMI1: SID-11  */
--#include "pmk8850.dtsi"         /* SPMI0: SID-0                  */
--#include "smb2370.dtsi"         /* SPMI2: SID-9/10/11            */
+ dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-el2.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= mahua-crd.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= milos-fairphone-fp6.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= monaco-evk.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= msm8216-samsung-fortuna3g.dtb
+diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
+index e269cec7942c..4e0b44af073e 100644
+--- a/arch/arm64/boot/dts/qcom/glymur.dtsi
++++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
+@@ -282,7 +282,7 @@ core5 {
+ 				};
+ 			};
+ 
+-			cluster2 {
++			cpu_map_cluster2: cluster2 {
+ 				core0 {
+ 					cpu = <&cpu12>;
+ 				};
+diff --git a/arch/arm64/boot/dts/qcom/mahua-crd.dts b/arch/arm64/boot/dts/qcom/mahua-crd.dts
+new file mode 100644
+index 000000000000..9c8244e892dd
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/mahua-crd.dts
+@@ -0,0 +1,21 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
++ */
++
++/dts-v1/;
++
++#include "mahua.dtsi"
 +#include "glymur-crd.dtsi"
++
++/delete-node/ &pmcx0102_d_e0;
++/delete-node/ &pmcx0102_d0_thermal;
++/delete-node/ &pmh0104_i_e0;
++/delete-node/ &pmh0104_i0_thermal;
++/delete-node/ &pmh0104_j_e0;
++/delete-node/ &pmh0104_j0_thermal;
++
++/ {
++	model = "Qualcomm Technologies, Inc. Mahua CRD";
++	compatible = "qcom,mahua-crd", "qcom,mahua";
++};
+diff --git a/arch/arm64/boot/dts/qcom/mahua.dtsi b/arch/arm64/boot/dts/qcom/mahua.dtsi
+new file mode 100644
+index 000000000000..7aa8d26b2b3a
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/mahua.dtsi
+@@ -0,0 +1,299 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
++ */
++
++/* Mahua is heavily based on Glymur, with some meaningful differences */
++#include "glymur.dtsi"
++
++/delete-node/ &cluster2_pd;
++/delete-node/ &cpu_map_cluster2;
++/delete-node/ &cpu12;
++/delete-node/ &cpu13;
++/delete-node/ &cpu14;
++/delete-node/ &cpu15;
++/delete-node/ &cpu16;
++/delete-node/ &cpu17;
++/delete-node/ &cpu_pd12;
++/delete-node/ &cpu_pd13;
++/delete-node/ &cpu_pd14;
++/delete-node/ &cpu_pd15;
++/delete-node/ &cpu_pd16;
++/delete-node/ &cpu_pd17;
++/delete-node/ &tsens6;
++/delete-node/ &tsens7;
++
++&aggre1_noc {
++	compatible = "qcom,mahua-aggre1-noc", "qcom,glymur-aggre1-noc";
++};
++
++&aggre2_noc {
++	compatible = "qcom,mahua-aggre2-noc", "qcom,glymur-aggre2-noc";
++};
++
++&aggre3_noc {
++	compatible = "qcom,mahua-aggre3-noc", "qcom,glymur-aggre3-noc";
++};
++
++&aggre4_noc {
++	compatible = "qcom,mahua-aggre4-noc", "qcom,glymur-aggre4-noc";
++};
++
++&clk_virt {
++	compatible = "qcom,mahua-clk-virt", "qcom,glymur-clk-virt";
++};
++
++&cnoc_main {
++	compatible = "qcom,mahua-cnoc-main", "qcom,glymur-cnoc-main";
++};
++
++&config_noc {
++	compatible = "qcom,mahua-cnoc-cfg";
++};
++
++&hsc_noc {
++	compatible = "qcom,mahua-hscnoc";
++};
++
++&lpass_ag_noc {
++	compatible = "qcom,mahua-lpass-ag-noc", "qcom,glymur-lpass-ag-noc";
++};
++
++&lpass_lpiaon_noc {
++	compatible = "qcom,mahua-lpass-lpiaon-noc", "qcom,glymur-lpass-lpiaon-noc";
++};
++
++&lpass_lpicx_noc {
++	compatible = "qcom,mahua-lpass-lpicx-noc", "qcom,glymur-lpass-lpicx-noc";
++};
++
++&mc_virt {
++	compatible = "qcom,mahua-mc-virt";
++};
++
++&mmss_noc {
++	compatible = "qcom,mahua-mmss-noc", "qcom,glymur-mmss-noc";
++};
++
++&nsi_noc {
++	compatible = "qcom,mahua-nsinoc", "qcom,glymur-nsinoc";
++};
++
++&nsp_noc {
++	compatible = "qcom,mahua-nsp-noc", "qcom,glymur-nsp-noc";
++};
++
++&oobm_ss_noc {
++	compatible = "qcom,mahua-oobm-ss-noc", "qcom,glymur-oobm-ss-noc";
++};
++
++&pcie_east_anoc {
++	compatible = "qcom,mahua-pcie-east-anoc", "qcom,glymur-pcie-east-anoc";
++};
++
++&pcie_east_slv_noc {
++	compatible = "qcom,mahua-pcie-east-slv-noc", "qcom,glymur-pcie-east-slv-noc";
++};
++
++&pcie_west_anoc {
++	compatible = "qcom,mahua-pcie-west-anoc";
++	clocks = <&gcc GCC_AGGRE_NOC_PCIE_3B_WEST_SF_AXI_CLK>,
++		 <&gcc GCC_AGGRE_NOC_PCIE_4_WEST_SF_AXI_CLK>,
++		 <&gcc GCC_AGGRE_NOC_PCIE_6_WEST_SF_AXI_CLK>;
++};
++
++&pcie_west_slv_noc {
++	compatible = "qcom,mahua-pcie-west-slv-noc";
++};
++
++&system_noc {
++	compatible = "qcom,mahua-system-noc", "qcom,glymur-system-noc";
++};
++
++&tlmm {
++	compatible = "qcom,mahua-tlmm";
++};
++
++&thermal_zones {
++	/delete-node/ aoss-6-thermal;
++	/delete-node/ aoss-7-thermal;
++	/delete-node/ cpu-2-0-0-thermal;
++	/delete-node/ cpu-2-0-1-thermal;
++	/delete-node/ cpu-2-1-0-thermal;
++	/delete-node/ cpu-2-1-1-thermal;
++	/delete-node/ cpu-2-2-0-thermal;
++	/delete-node/ cpu-2-2-1-thermal;
++	/delete-node/ cpu-2-3-0-thermal;
++	/delete-node/ cpu-2-3-1-thermal;
++	/delete-node/ cpu-2-4-0-thermal;
++	/delete-node/ cpu-2-4-1-thermal;
++	/delete-node/ cpu-2-5-0-thermal;
++	/delete-node/ cpu-2-5-1-thermal;
++	/delete-node/ cpullc-2-0-thermal;
++	/delete-node/ cpuillc-2-1-thermal;
++	/delete-node/ ddr-2-thermal;
++	/delete-node/ gpu-3-0-thermal;
++	/delete-node/ gpu-3-1-thermal;
++	/delete-node/ gpu-3-2-thermal;
++	/delete-node/ qmx-2-0-thermal;
++	/delete-node/ qmx-2-1-thermal;
++	/delete-node/ qmx-2-2-thermal;
++	/delete-node/ qmx-2-3-thermal;
++	/delete-node/ qmx-2-4-thermal;
++	/delete-node/ video-1-thermal;
++
++	ddr-1-thermal {
++		thermal-sensors = <&tsens1 7>;
++	};
++
++	video-0-thermal {
++		thermal-sensors = <&tsens1 8>;
++	};
++
++	nsphvx-0-thermal {
++		thermal-sensors = <&tsens4 1>;
++	};
++
++	nsphvx-1-thermal {
++		thermal-sensors = <&tsens4 2>;
++	};
++
++	nsphvx-2-thermal {
++		thermal-sensors = <&tsens4 3>;
++	};
++
++	nsphvx-3-thermal {
++		thermal-sensors = <&tsens4 4>;
++	};
++
++	nsphmx-0-thermal {
++		thermal-sensors = <&tsens4 5>;
++	};
++
++	nsphmx-1-thermal {
++		thermal-sensors = <&tsens4 6>;
++	};
++
++	nsphmx-2-thermal {
++		thermal-sensors = <&tsens4 7>;
++	};
++
++	nsphmx-3-thermal {
++		thermal-sensors = <&tsens4 8>;
++	};
++
++	camera-0-thermal {
++		thermal-sensors = <&tsens4 9>;
++	};
++
++	camera-1-thermal {
++		thermal-sensors = <&tsens4 10>;
++	};
++
++	gpu-0-0-thermal {
++		thermal-sensors = <&tsens5 1>;
++	};
++
++	gpu-0-1-thermal {
++		thermal-sensors = <&tsens5 2>;
++	};
++
++	gpu-0-2-thermal {
++		thermal-sensors = <&tsens5 3>;
++	};
++
++	gpu-1-0-thermal {
++		thermal-sensors = <&tsens5 4>;
++	};
++
++	gpu-1-1-thermal {
++		thermal-sensors = <&tsens5 5>;
++	};
++
++	gpu-1-2-thermal {
++		thermal-sensors = <&tsens5 6>;
++	};
++
++	gpu-2-0-thermal {
++		thermal-sensors = <&tsens5 7>;
++	};
++
++	gpu-2-1-thermal {
++		thermal-sensors = <&tsens5 8>;
++	};
++
++	gpu-2-2-thermal {
++		thermal-sensors = <&tsens5 9>;
++	};
++
++	gpuss-0-thermal {
++		thermal-sensors = <&tsens5 10>;
++	};
++
++	gpuss-1-thermal {
++		thermal-sensors = <&tsens5 11>;
++	};
++
++	gpuss-2-thermal {
++		thermal-sensors = <&tsens5 12>;
++
++		trips {
++			trip-point0 {
++				temperature = <90000>;
++				hysteresis = <5000>;
++				type = "hot";
++			};
++
++			gpuss-2-critical {
++				temperature = <115000>;
++				hysteresis = <1000>;
++				type = "critical";
++			};
++		};
++	};
++
++	gpuss-3-thermal {
++		thermal-sensors = <&tsens5 13>;
++
++		trips {
++			trip-point0 {
++				temperature = <90000>;
++				hysteresis = <5000>;
++				type = "hot";
++			};
++
++			gpuss-3-critical {
++				temperature = <115000>;
++				hysteresis = <1000>;
++				type = "critical";
++			};
++		};
++	};
++
++	gpuss-4-thermal {
++		thermal-sensors = <&tsens5 14>;
++
++		trips {
++			trip-point0 {
++				temperature = <90000>;
++				hysteresis = <5000>;
++				type = "hot";
++			};
++
++			gpuss-4-critical {
++				temperature = <115000>;
++				hysteresis = <1000>;
++				type = "critical";
++			};
++		};
++	};
++};
++
++&tsens4 {
++	#qcom,sensors = <11>;
++};
++
++&tsens5 {
++	#qcom,sensors = <15>;
++};
++
+diff --git a/arch/arm64/boot/dts/qcom/pmcx0102.dtsi b/arch/arm64/boot/dts/qcom/pmcx0102.dtsi
+index c3ccd2b75609..db2da9ef4f01 100644
+--- a/arch/arm64/boot/dts/qcom/pmcx0102.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmcx0102.dtsi
+@@ -46,7 +46,7 @@ trip1 {
+ 			};
+ 		};
  
- / {
- 	model = "Qualcomm Technologies, Inc. Glymur CRD";
- 	compatible = "qcom,glymur-crd", "qcom,glymur";
--
--	aliases {
--		serial0 = &uart21;
--		serial1 = &uart14;
--		i2c0 = &i2c0;
--		i2c1 = &i2c4;
--		i2c2 = &i2c5;
--		spi0 = &spi18;
--	};
--
--	chosen {
--		stdout-path = "serial0:115200n8";
--	};
--
--	clocks {
--		xo_board: xo-board {
--			compatible = "fixed-clock";
--			clock-frequency = <38400000>;
--			#clock-cells = <0>;
--		};
--
--		sleep_clk: sleep-clk {
--			compatible = "fixed-clock";
--			clock-frequency = <32000>;
--			#clock-cells = <0>;
--		};
--	};
--
--	gpio-keys {
--		compatible = "gpio-keys";
--
--		pinctrl-0 = <&key_vol_up_default>;
--		pinctrl-names = "default";
--
--		key-volume-up {
--			label = "Volume Up";
--			linux,code = <KEY_VOLUMEUP>;
--			gpios = <&pmh0101_gpios 6 GPIO_ACTIVE_LOW>;
--			debounce-interval = <15>;
--			linux,can-disable;
--			wakeup-source;
--		};
--	};
--
--	vreg_nvme: regulator-nvme {
--		compatible = "regulator-fixed";
--
--		regulator-name = "VREG_NVME_3P3";
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--
--		gpio = <&pmh0101_gpios 14 GPIO_ACTIVE_HIGH>;
--		enable-active-high;
--
--		pinctrl-0 = <&nvme_reg_en>;
--		pinctrl-names = "default";
--
--		regulator-boot-on;
--	};
--
--	vreg_nvmesec: regulator-nvmesec {
--		compatible = "regulator-fixed";
--
--		regulator-name = "VREG_NVME_SEC_3P3";
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--
--		gpio = <&pmh0110_f_e1_gpios 14 GPIO_ACTIVE_HIGH>;
--		enable-active-high;
--
--		pinctrl-0 = <&nvme_sec_reg_en>;
--		pinctrl-names = "default";
--
--		regulator-boot-on;
--	};
--
--	vreg_wlan: regulator-wlan {
--		compatible = "regulator-fixed";
--
--		regulator-name = "VREG_WLAN_3P3";
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--
--		gpio = <&tlmm 94 GPIO_ACTIVE_HIGH>;
--		enable-active-high;
--
--		pinctrl-0 = <&wlan_reg_en>;
--		pinctrl-names = "default";
--
--		regulator-boot-on;
--	};
--
--	vreg_wwan: regulator-wwan {
--		compatible = "regulator-fixed";
--
--		regulator-name = "VREG_WWAN_3P3";
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--
--		gpio = <&tlmm 246 GPIO_ACTIVE_HIGH>;
--		enable-active-high;
--
--		pinctrl-0 = <&wwan_reg_en>;
--		pinctrl-names = "default";
--	};
--};
--
--&apps_rsc {
--	regulators-0 {
--		compatible = "qcom,pmh0101-rpmh-regulators";
--		qcom,pmic-id = "B_E0";
--
--		vreg_bob1_e0: bob1 {
--			regulator-name = "vreg_bob1_e0";
--			regulator-min-microvolt = <2200000>;
--			regulator-max-microvolt = <4224000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
--		};
--
--		vreg_bob2_e0: bob2 {
--			regulator-name = "vreg_bob2_e0";
--			regulator-min-microvolt = <2540000>;
--			regulator-max-microvolt = <3600000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
--		};
--
--		vreg_l1b_e0_1p8: ldo1 {
--			regulator-name = "vreg_l1b_e0_1p8";
--			regulator-min-microvolt = <1800000>;
--			regulator-max-microvolt = <1800000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l2b_e0_2p9: ldo2 {
--			regulator-name = "vreg_l2b_e0_2p9";
--			regulator-min-microvolt = <2904000>;
--			regulator-max-microvolt = <2904000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l7b_e0_2p79: ldo7 {
--			regulator-name = "vreg_l7b_e0_2p79";
--			regulator-min-microvolt = <2790000>;
--			regulator-max-microvolt = <2792000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l8b_e0_1p50: ldo8 {
--			regulator-name = "vreg_l8b_e0_1p50";
--			regulator-min-microvolt = <1504000>;
--			regulator-max-microvolt = <1504000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l9b_e0_2p7: ldo9 {
--			regulator-name = "vreg_l9b_e0_2p7";
--			regulator-min-microvolt = <2704000>;
--			regulator-max-microvolt = <2704000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l10b_e0_1p8: ldo10 {
--			regulator-name = "vreg_l10b_e0_1p8";
--			regulator-min-microvolt = <1800000>;
--			regulator-max-microvolt = <1800000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l11b_e0_1p2: ldo11 {
--			regulator-name = "vreg_l11b_e0_1p2";
--			regulator-min-microvolt = <1200000>;
--			regulator-max-microvolt = <1200000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l12b_e0_1p14: ldo12 {
--			regulator-name = "vreg_l12b_e0_1p14";
--			regulator-min-microvolt = <1144000>;
--			regulator-max-microvolt = <1144000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l15b_e0_1p8: ldo15 {
--			regulator-name = "vreg_l15b_e0_1p8";
--			regulator-min-microvolt = <1800000>;
--			regulator-max-microvolt = <1800000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l17b_e0_2p4: ldo17 {
--			regulator-name = "vreg_l17b_e0_2p4";
--			regulator-min-microvolt = <2400000>;
--			regulator-max-microvolt = <2700000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l18b_e0_1p2: ldo18 {
--			regulator-name = "vreg_l18b_e0_1p2";
--			regulator-min-microvolt = <1200000>;
--			regulator-max-microvolt = <1200000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--	};
--
--	regulators-1 {
--		compatible = "qcom,pmcx0102-rpmh-regulators";
--		qcom,pmic-id = "C_E1";
--
--		vreg_l1c_e1_0p82: ldo1 {
--			regulator-name = "vreg_l1c_e1_0p82";
--			regulator-min-microvolt = <832000>;
--			regulator-max-microvolt = <832000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l2c_e1_1p14: ldo2 {
--			regulator-name = "vreg_l2c_e1_1p14";
--			regulator-min-microvolt = <1144000>;
--			regulator-max-microvolt = <1144000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l3c_e1_0p89: ldo3 {
--			regulator-name = "vreg_l3c_e1_0p89";
--			regulator-min-microvolt = <890000>;
--			regulator-max-microvolt = <980000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l4c_e1_0p72: ldo4 {
--			regulator-name = "vreg_l4c_e1_0p72";
--			regulator-min-microvolt = <720000>;
--			regulator-max-microvolt = <720000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--	};
--
--	regulators-2 {
--		compatible = "qcom,pmh0110-rpmh-regulators";
--		qcom,pmic-id = "F_E0";
--
--		vreg_s7f_e0_1p32: smps7 {
--			regulator-name = "vreg_s7f_e0_1p32";
--			regulator-min-microvolt = <1320000>;
--			regulator-max-microvolt = <1352000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_s8f_e0_0p95: smps8 {
--			regulator-name = "vreg_s8f_e0_0p95";
--			regulator-min-microvolt = <952000>;
--			regulator-max-microvolt = <1200000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_s9f_e0_1p9: smps9 {
--			regulator-name = "vreg_s9f_e0_1p9";
--			regulator-min-microvolt = <1900000>;
--			regulator-max-microvolt = <2000000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l2f_e0_0p82: ldo2 {
--			regulator-name = "vreg_l2f_e0_0p82";
--			regulator-min-microvolt = <832000>;
--			regulator-max-microvolt = <832000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l3f_e0_0p72: ldo3 {
--			regulator-name = "vreg_l3f_e0_0p72";
--			regulator-min-microvolt = <720000>;
--			regulator-max-microvolt = <720000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l4f_e0_0p3: ldo4 {
--			regulator-name = "vreg_l4f_e0_0p3";
--			regulator-min-microvolt = <1080000>;
--			regulator-max-microvolt = <1200000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--	};
--
--	regulators-3 {
--		compatible = "qcom,pmh0110-rpmh-regulators";
--		qcom,pmic-id = "F_E1";
--
--		vreg_s7f_e1_0p3: smps7 {
--			regulator-name = "vreg_s7f_e1_0p3";
--			regulator-min-microvolt = <300000>;
--			regulator-max-microvolt = <1200000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l1f_e1_0p82: ldo1 {
--			regulator-name = "vreg_l1f_e1_0p82";
--			regulator-min-microvolt = <832000>;
--			regulator-max-microvolt = <832000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l2f_e1_0p83: ldo2 {
--			regulator-name = "vreg_l2f_e1_0p83";
--			regulator-min-microvolt = <832000>;
--			regulator-max-microvolt = <832000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l4f_e1_1p08: ldo4 {
--			regulator-name = "vreg_l4f_e1_1p08";
--			regulator-min-microvolt = <1080000>;
--			regulator-max-microvolt = <1320000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--	};
--
--	regulators-4 {
--		compatible = "qcom,pmh0110-rpmh-regulators";
--		qcom,pmic-id = "H_E0";
--
--		vreg_l1h_e0_0p89: ldo1 {
--			regulator-name = "vreg_l1h_e0_0p89";
--			regulator-min-microvolt = <832000>;
--			regulator-max-microvolt = <832000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l2h_e0_0p72: ldo2 {
--			regulator-name = "vreg_l2h_e0_0p72";
--			regulator-min-microvolt = <832000>;
--			regulator-max-microvolt = <832000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l3h_e0_0p32: ldo3 {
--			regulator-name = "vreg_l3h_e0_0p32";
--			regulator-min-microvolt = <320000>;
--			regulator-max-microvolt = <2000000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--
--		vreg_l4h_e0_1p2: ldo4 {
--			regulator-name = "vreg_l4h_e0_1p2";
--			regulator-min-microvolt = <1080000>;
--			regulator-max-microvolt = <1320000>;
--			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--		};
--	};
--};
--
--&pcie3b {
--	vddpe-3v3-supply = <&vreg_nvmesec>;
--
--	pinctrl-0 = <&pcie3b_default>;
--	pinctrl-names = "default";
--
--	status = "okay";
--};
--
--&pcie3b_phy {
--	vdda-phy-supply = <&vreg_l3c_e1_0p89>;
--	vdda-pll-supply = <&vreg_l2c_e1_1p14>;
--
--	status = "okay";
--};
--
--&pcie3b_port0 {
--	reset-gpios = <&tlmm 155 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 157 GPIO_ACTIVE_LOW>;
--};
--
--&pcie4 {
--	vddpe-3v3-supply = <&vreg_wlan>;
--
--	pinctrl-0 = <&pcie4_default>;
--	pinctrl-names = "default";
--
--	status = "okay";
--};
--
--&pcie4_phy {
--	vdda-phy-supply = <&vreg_l1c_e1_0p82>;
--	vdda-pll-supply = <&vreg_l4f_e1_1p08>;
--
--	status = "okay";
--};
--
--&pcie4_port0 {
--	reset-gpios = <&tlmm 146 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 148 GPIO_ACTIVE_LOW>;
--};
--
--&pcie5 {
--	vddpe-3v3-supply = <&vreg_nvme>;
--
--	pinctrl-0 = <&pcie5_default>;
--	pinctrl-names = "default";
--
--	status = "okay";
--};
--
--&pcie5_phy {
--	vdda-phy-supply = <&vreg_l2f_e0_0p82>;
--	vdda-pll-supply = <&vreg_l4h_e0_1p2>;
--
--	status = "okay";
--};
--
--&pcie5_port0 {
--	reset-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
--};
--
--&pcie6 {
--	vddpe-3v3-supply = <&vreg_wwan>;
--
--	pinctrl-0 = <&pcie6_default>;
--	pinctrl-names = "default";
--
--	status = "okay";
--};
--
--&pcie6_phy {
--	vdda-phy-supply = <&vreg_l1c_e1_0p82>;
--	vdda-pll-supply = <&vreg_l4f_e1_1p08>;
--
--	status = "okay";
--};
--
--&pcie6_port0 {
--	reset-gpios = <&tlmm 149 GPIO_ACTIVE_LOW>;
--	wake-gpios = <&tlmm 151 GPIO_ACTIVE_LOW>;
--};
--
--&pmh0101_gpios {
--	nvme_reg_en: nvme-reg-en-state {
--		pins = "gpio14";
--		function = "normal";
--		bias-disable;
--	};
--};
--
--&pmh0110_f_e1_gpios {
--	nvme_sec_reg_en: nvme-reg-en-state {
--		pins = "gpio14";
--		function = "normal";
--		bias-disable;
--	};
--};
--
--&pmh0101_gpios {
--	key_vol_up_default: key-vol-up-default-state {
--		pins = "gpio6";
--		function = "normal";
--		output-disable;
--		bias-pull-up;
--	};
--};
--
--&pmk8850_rtc {
--	qcom,no-alarm;
--};
--
--&pon_resin {
--	linux,code = <KEY_VOLUMEDOWN>;
--	status = "okay";
--};
--
--&tlmm {
--	gpio-reserved-ranges = <4 4>, /* EC TZ Secure I3C */
--			       <10 2>, /* OOB UART */
--			       <44 4>; /* Security SPI (TPM) */
--
--	pcie4_default: pcie4-default-state {
--		clkreq-n-pins {
--			pins = "gpio147";
--			function = "pcie4_clk_req_n";
--			drive-strength = <2>;
--			bias-pull-up;
--		};
--
--		perst-n-pins {
--			pins = "gpio146";
--			function = "gpio";
--			drive-strength = <2>;
--			bias-disable;
--		};
--
--		wake-n-pins {
--			pins = "gpio148";
--			function = "gpio";
--			drive-strength = <2>;
--			bias-pull-up;
--		};
--	};
--
--	pcie5_default: pcie5-default-state {
--		clkreq-n-pins {
--			pins = "gpio153";
--			function = "pcie5_clk_req_n";
--			drive-strength = <2>;
--			bias-pull-up;
--		};
--
--		perst-n-pins {
--			pins = "gpio152";
--			function = "gpio";
--			drive-strength = <2>;
--			bias-disable;
--		};
--
--		wake-n-pins {
--			pins = "gpio154";
--			function = "gpio";
--			drive-strength = <2>;
--			bias-pull-up;
--		};
--	};
--
--	pcie6_default: pcie6-default-state {
--		clkreq-n-pins {
--			pins = "gpio150";
--			function = "pcie6_clk_req_n";
--			drive-strength = <2>;
--			bias-pull-up;
--		};
--
--		perst-n-pins {
--			pins = "gpio149";
--			function = "gpio";
--			drive-strength = <2>;
--			bias-disable;
--		};
--
--		wake-n-pins {
--			pins = "gpio151";
--			function = "gpio";
--			drive-strength = <2>;
--			bias-pull-up;
--		};
--	};
--
--	pcie3b_default: pcie3b-default-state {
--		clkreq-n-pins {
--			pins = "gpio156";
--			function = "pcie3b_clk";
--			drive-strength = <2>;
--			bias-pull-up;
--		};
--
--		perst-n-pins {
--			pins = "gpio155";
--			function = "gpio";
--			drive-strength = <2>;
--			bias-disable;
--		};
--
--		wake-n-pins {
--			pins = "gpio157";
--			function = "gpio";
--			drive-strength = <2>;
--			bias-pull-up;
--		};
--	};
--
--	wlan_reg_en: wlan-reg-en-state {
--		pins = "gpio94";
--		function = "gpio";
--		drive-strength = <2>;
--		bias-disable;
--	};
--
--	wwan_reg_en: wwan-reg-en-state {
--		pins = "gpio246";
--		function = "gpio";
--		drive-strength = <2>;
--		bias-disable;
--	};
- };
-diff --git a/arch/arm64/boot/dts/qcom/glymur-crd.dts b/arch/arm64/boot/dts/qcom/glymur-crd.dtsi
-similarity index 99%
-copy from arch/arm64/boot/dts/qcom/glymur-crd.dts
-copy to arch/arm64/boot/dts/qcom/glymur-crd.dtsi
-index 877945319012..abc6cc8bb0a8 100644
---- a/arch/arm64/boot/dts/qcom/glymur-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/glymur-crd.dtsi
-@@ -3,9 +3,6 @@
-  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-  */
+-		pmcx0102-d0-thermal {
++		pmcx0102_d0_thermal: pmcx0102-d0-thermal {
+ 			polling-delay-passive = <100>;
+ 			thermal-sensors = <&pmcx0102_d_e0_temp_alarm>;
  
--/dts-v1/;
--
--#include "glymur.dtsi"
- #include "pmcx0102.dtsi"        /* SPMI0: SID-2/3 SPMI1: SID-2/3 */
- #include "pmh0101.dtsi"         /* SPMI0: SID-1                  */
- #include "pmh0110-glymur.dtsi"  /* SPMI0: SID-5/7 SPMI1: SID-5   */
-@@ -372,15 +369,11 @@ &pcie3b {
+diff --git a/arch/arm64/boot/dts/qcom/pmh0104-glymur.dtsi b/arch/arm64/boot/dts/qcom/pmh0104-glymur.dtsi
+index d89cceda53a3..7a1e5f355c17 100644
+--- a/arch/arm64/boot/dts/qcom/pmh0104-glymur.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmh0104-glymur.dtsi
+@@ -8,7 +8,7 @@
  
- 	pinctrl-0 = <&pcie3b_default>;
- 	pinctrl-names = "default";
--
--	status = "okay";
- };
+ /{
+ 	thermal_zones {
+-		pmh0104-i0-thermal {
++		pmh0104_i0_thermal: pmh0104-i0-thermal {
+ 			polling-delay-passive = <100>;
+ 			thermal-sensors = <&pmh0104_i_e0_temp_alarm>;
  
- &pcie3b_phy {
- 	vdda-phy-supply = <&vreg_l3c_e1_0p89>;
- 	vdda-pll-supply = <&vreg_l2c_e1_1p14>;
--
--	status = "okay";
- };
+@@ -27,7 +27,7 @@ trip1 {
+ 			};
+ 		};
  
- &pcie3b_port0 {
+-		pmh0104-j0-thermal {
++		pmh0104_j0_thermal: pmh0104-j0-thermal {
+ 			polling-delay-passive = <100>;
+ 			thermal-sensors = <&pmh0104_j_e0_temp_alarm>;
+ 
 -- 
 2.34.1
 
