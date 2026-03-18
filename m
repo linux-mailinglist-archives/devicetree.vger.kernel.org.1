@@ -1,82 +1,85 @@
-Return-Path: <devicetree+bounces-276987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276988-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GKmuNWxVumm8UQIAu9opvQ
-	(envelope-from <devicetree+bounces-276987-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:34:04 +0100
+	id +PFXJxpWumm8UQIAu9opvQ
+	(envelope-from <devicetree+bounces-276988-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:36:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 821402B6FC0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:34:04 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB1112B70A7
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:36:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6E352301A9DC
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 07:34:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C891C306D8E6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 07:34:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15A6C368279;
-	Wed, 18 Mar 2026 07:34:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1832436AB54;
+	Wed, 18 Mar 2026 07:34:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="q5DorV5K"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="A21rrs3W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C5C7354AF2
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 07:34:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FBA536AB52
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 07:34:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773819242; cv=none; b=CS8+qWRrFYZNAYvFUyYk9WZNofX5GT+LBuOwiueUDLoPvDiLSmUe7BpFbm7w4EHjaz1CPE29so8IV0zGJWZ6XRa61FoP+1cr6H+xRp/JFrWdfrZoH7uOMv6Z7uSbNxAVXqI5VjorT3+E4wQ7qpIpVOk0Uk0kTLR8qD9j+M+h+QQ=
+	t=1773819251; cv=none; b=Lmjq1E6umEJg7/TkG02frEvm4xkaP1JqjZV93llWqrAlsMtuHW9UKGsa3mxy9IhSmfsbPI0W4ZBHPYYuJMp58dVuoFgfFail72KJR9Q9HhF5akSTaY6YO4+EEgBX7scY+x9uqQgJp8HbKnyItBPrDfvtoP5vZQ5B0EVJF03qXxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773819242; c=relaxed/simple;
-	bh=neM/5kNOWt4/kz/h9PchhzIR2mR2hFmsD8O5TF68+Hc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qxc4wyKwF0Nk8zjQaIwYn35MvSWDp6lJ5xWxn2ZH502rfqh9MzhCn6lNo+zBdUUbeoC1yGyqiX6IqT2BhIyQU4k4rviu9y52SMp7z/KRAhic4zVWzP5m+z+l4H4C02eJG7Cn7nQSqjS9x1J6QBYJSsUZixYLsePLjVRAyKY+Yr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=q5DorV5K; arc=none smtp.client-ip=209.85.221.41
+	s=arc-20240116; t=1773819251; c=relaxed/simple;
+	bh=6A5gFZh4PkcNk73aLwTIO4LGvMMWoLrc+UDvXMTkc9g=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=WdU/bc1ORg5KOk1GEemt44VuF90/kUfZ/vd14zGfVHqA1pu/MRXxa7iqvsOXiuouErkq6ULTe+lwxIm+5xxyCi/axbu32PgDFRibxFvaFEx4mClXVWIEDk6kJ6Jp3SBhvV+84yGZt1sPJ5mBBjxZNJBKz5FxaDDAAfrqTx3563o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=A21rrs3W; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-43b4d734678so1376623f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 00:34:00 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-48540d21f7dso73688255e9.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 00:34:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1773819239; x=1774424039; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pSUUSmmsogfaETb+4P0uT6nWdrd+bWZzxMlOvJd/ddk=;
-        b=q5DorV5KMtZVTIy0G86E4etetQgly7u4ZFd6ugdZdOlrm4EBPSOr6GajEzh2MjMmjS
-         7EXZHlQgcnEWLFJdx7e2LKS1yG87biWcyqpqNfCQFIx1jA1l5VWgbsIhD++kuozG3uu6
-         pQN/PkBc9lL3wS7eWehNfdiHtJMrvrJuOW+AU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773819239; x=1774424039;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=amarulasolutions.com; s=google; t=1773819248; x=1774424048; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pSUUSmmsogfaETb+4P0uT6nWdrd+bWZzxMlOvJd/ddk=;
-        b=kOQ71/CeiG+1R7Y6ZuInc2P1DzVPM0B6cJ8lqh+9dvRMeZsgEHeg+aE0babXcaBp8R
-         jI12V0zUIht+CQ2/YRyJja87Ryptmr+jpP+JhYRRvz81b/WI7iVUyeT14dGkq3kGVrZ1
-         0KAE5LRm1aBqi7CvqqAULik3jJH7lgLCVHQshEn/DlKcNDGpfjiHYbWZIGnxh/c1bjRt
-         ipdJurAttABMj7oiIsSLW9p4dnjiEHyDcAZfmxC9xXC1Iw5dgA6L0AwrvuQ6Y4CAjIVO
-         PVG5ogoYXMh9sRV6r+bo14CjRdqdFC9RiNQHL85D8EnyuuTZNF0+wyYGPR7k/rJyoNxO
-         5o1w==
-X-Forwarded-Encrypted: i=1; AJvYcCXysNBqbdYYe0Y9LG4IVbzXPJAmhXAjt+Nfdauy0HEfTyOVhSlMRo9ndSUmPL150SPXvnaBJQL1ab4y@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6DQKO+lER0UtHf4sZgIuefKs+amDGDtwq6VQkcv4PC6lKtU5C
-	9eA59MnkBJ9uyOJPRVJU3+uFBtouwdABmlbcSLV/46A400tjpMFUb47kkl+KpBJfZQU=
-X-Gm-Gg: ATEYQzzlaTCGL+LC9dnni1J7K2woV+n8wGCoZSh+CAx58eXaEo39VsmTbQIJ5qfFj61
-	ziVyWEN+AwnJ7AxcAVqTFaHijuH2N3mCdiPrifLVhaXo1tuF8tIiyKOZYol2uZHwgJ/F/UGOz5j
-	1o3NHggEhVo9RWlet27VRIBuKrii15Ep9+n8PBHu8Hm/Xb0VpYMFByZpoVFVcSaFbLVySC5WgGl
-	vdDvRdIi0mFzD3hEGWzIwWFT3MoOCN4vIOit99mpL+saClxVd9iOO6hWlbAxHxCYbn7lo6bS+Wi
-	qiO4jR3PtXh3ro1DbpbeE3PfIvG1SC2WCO8TDvWjDnFKaYEypHyRxs9o4ylI9SOQvnWeoxzjd57
-	rn+ihYahj/u27SveeI0H+aF8NlP403lA6PmvcEtRXoKeFVTpyNof17KKfFdsm1RZdEXVm6qmosw
-	HwB0qWjbTNbilnB6X0U02H7MQMxolJE9RRmvF3RDFQmmsreZPtARx6L2aUa+INtyepLl90eZwfY
-	7P8Hnd7Z3kNIcbSlY1s1vjj2Q2M6cBBvb7ErAwe4y7eGDLQr79FIurpyVGA0GypI6iu5z267nk9
-	icd8fBFvMOSvYeGRX28T1g==
-X-Received: by 2002:a05:600c:8518:b0:485:4328:407a with SMTP id 5b1f17b1804b1-486f44435d3mr34511445e9.19.1773819238694;
-        Wed, 18 Mar 2026 00:33:58 -0700 (PDT)
+        bh=zo4QCx8aR6J7VFChxL1u3Y+zYNsaTehJkZimdyWgxLs=;
+        b=A21rrs3W3kzSRmsrTRUOiUpNgkbpzavkt5e86pIXTyuiBQzjLgnMZMVR5GRXYfbFdh
+         U/ooxfLDoOSkzvDIeRE55JSYwhdMBJH63akBVjQqpD5av8TnNe6EXIdrk2/wWGN0M94t
+         +6yf6/h/08WRcBmhS4OLQn+7VdeqJ4gCvaBjM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773819248; x=1774424048;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=zo4QCx8aR6J7VFChxL1u3Y+zYNsaTehJkZimdyWgxLs=;
+        b=iqSaI/0bb6iphOQ/HulPhmAp3NV1lpYYvJc6lGvMafTENwimYJ5+cI+lRunbUjMua/
+         8nN/BEyRi2A8/uWg8SX0T3WNk+Ho43B1aiURvNf6WJaSF+SQOaCBD8C18kxZU6ieoZ5M
+         HUAm5aM2PtsiRfihOlc3st4rpxbS1A7edb+Cp2mBstmuaozG55WvyPHENqjwHcAwDLBH
+         wvZoiXrB85XVGygY3/D4KO55BtqELNgNJtMNyaAf4G6cAPA5Bpb3zvnDLKIqqmCa+yex
+         xSFlocYk3eehKuDIAEILwqIEVXGQU7X2oEgrGlEAWU4/49HJGGDlVvNaDES6p9YDqjS7
+         1sQw==
+X-Forwarded-Encrypted: i=1; AJvYcCWhhWsVyeQouHSj53dXOAfpI8AoAIW1V4cxOOYO/G1E7gF6qlEOSy+4KdbB0/K3hrlcKI9FHxsRx02E@vger.kernel.org
+X-Gm-Message-State: AOJu0YyaPdkhbot3HxfeoAJKu+B0DrW2kWUP2TGf0bxIzD4eSjlHgvm5
+	8G5SIKIF61E7fslhr2ffIksgxjafR9XdTVzz1ihH2OpI/LwhKKle3qaiER0ZioZ4dAY=
+X-Gm-Gg: ATEYQzzpUkQK3y2JwdMfgOA/LektyrdL3he/gsfE3i9Oz9vCUSVax8yb7IpT9i9SXFH
+	xOx2LWyKUO0FSH1ERyG8KG2qCHND18eJF3W7NTiqyZlp8Ib304tSe3lBlweJ+326L6H24bTw7ZR
+	OvLMCzJpI5h3co/NLHeLrrAfORiCdglEecTYeyGDvZJu9d4diBhXS4AWgRikoN5Cnx+UWfvqE35
+	QOpmol2spRmP5jhDFprIq/114QCuv1DTJIWYtktsJj92Ye9i4AsIjOFIQ2xgxxu2szC+YzwlZ/Z
+	a+k8owmfMk27ZWVFPw6uYgtTg+kE/+U10CXrwWvj4GXRyHcRddbEu9ydcumMtbga3r4R2mgkMoB
+	ebX3gdUsegpEJGR2Qv5OaI5IzhHe2oKTMx+CCQSKr3s059RQ2wfURNDoUkaovuXlxHLLqxYJHqG
+	CD7BAlH+c3iWD8gu+ED3JJe+8zRRwvYq+7kGuWdOCImfxi+w1Aj6B8q7MCdUqArxEood2PzxgpB
+	9Zo5lQXQiy3XnB+Pn7KkrGjtLWXb6cyfkAS/5xf0tSifz+wMpp4jX7zC8rW0tmCKvYno4+Y7xZY
+	lHS3jq+ToNWM0o1viVhR0g==
+X-Received: by 2002:a05:600c:8b65:b0:483:badb:618e with SMTP id 5b1f17b1804b1-486f44377dcmr38308265e9.8.1773819247958;
+        Wed, 18 Mar 2026 00:34:07 -0700 (PDT)
 Received: from dario-ThinkPad-P14s-Gen-5.homenet.telecomitalia.it (host-87-9-97-160.retail.telecomitalia.it. [87.9.97.160])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486f45f7e96sm25615765e9.0.2026.03.18.00.33.55
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486f45f7e96sm25615765e9.0.2026.03.18.00.34.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Mar 2026 00:33:58 -0700 (PDT)
+        Wed, 18 Mar 2026 00:34:06 -0700 (PDT)
 From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 To: linux-kernel@vger.kernel.org
 Cc: linux-amarula@amarulasolutions.com,
 	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Rob Herring <robh@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	David Airlie <airlied@gmail.com>,
 	Jessica Zhang <jesszhan0024@gmail.com>,
@@ -85,15 +88,16 @@ Cc: linux-amarula@amarulasolutions.com,
 	Maxime Ripard <mripard@kernel.org>,
 	Michael Walle <mwalle@kernel.org>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
 	Simona Vetter <simona@ffwll.ch>,
 	Thomas Zimmermann <tzimmermann@suse.de>,
 	devicetree@vger.kernel.org,
 	dri-devel@lists.freedesktop.org
-Subject: [PATCH v5 0/4] drm/panel: ilitek-ili9806e: add Rocktech RK050HR345-CT106A support
-Date: Wed, 18 Mar 2026 08:32:49 +0100
-Message-ID: <20260318073346.18041-1-dario.binacchi@amarulasolutions.com>
+Subject: [PATCH v5 3/4] dt-bindings: ili9806e: add Rocktech RK050HR345-CT106A display
+Date: Wed, 18 Mar 2026 08:32:52 +0100
+Message-ID: <20260318073346.18041-4-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260318073346.18041-1-dario.binacchi@amarulasolutions.com>
+References: <20260318073346.18041-1-dario.binacchi@amarulasolutions.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -107,7 +111,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[amarulasolutions.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[amarulasolutions.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -115,10 +119,10 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_CC(0.00)[amarulasolutions.com,kernel.org,gmail.com,linux.intel.com,linaro.org,ffwll.ch,suse.de,vger.kernel.org,lists.freedesktop.org];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-276987-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-276988-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[dario.binacchi@amarulasolutions.com,devicetree@vger.kernel.org];
@@ -129,65 +133,108 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amarulasolutions.com:dkim,amarulasolutions.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 821402B6FC0
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amarulasolutions.com:dkim,amarulasolutions.com:email,amarulasolutions.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url,0.0.0.0:email]
+X-Rspamd-Queue-Id: AB1112B70A7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This series extends the Ilitek ILI9806E panel driver to support the
-Rocktech RK050HR345-CT106A model via SPI.
+Document the Rocktech 5" 480x854 panel based on the Ilitek ILI9806E
+controller.
 
-To achieve this, the current driver (previously restricted to DSI) is
-refactored to support both DSI and SPI variants independently.
+This panel uses SPI for control and an RGB interface for display
+data, so adjust the binding requirements accordingly.
 
-The series includes:
- - A refactoring of the existing driver and Kconfig to support
-   multiple buses.
- - DT binding documentation for the Rocktech RK050HR345-CT106A.
- - The implementation of the SPI-based driver for the Rocktech panel.
+Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Changes in v5:
-- Add Reviewed-by tag of Neil Armstrong for patches:
-  - 1/4 drm/panel: ilitek-ili9806e: rename to specific DSI driver
-  - 2/4 drm/panel: ilitek-ili9806e: split core and DSI logic
+---
 
-Changes in v4:
-- Fix "WARNING: unmet direct dependencies detected for
-  DRM_PANEL_ILITEK_ILI9806E_CORE" reported by kernel test robot
+(no changes since v3)
 
 Changes in v3:
 - Add Reviewed-by tag of Rob Herring
 
 Changes in v2:
-- Introduce DRM_PANEL_ILITEK_ILI9806E_CORE hidden kconfig option.
-- Split core and DSI logic.
-- Restore vdd-supply as required for both DSI and SPI types in the
-  dt-bindings.
-- Dop useless settings in case of rocktech,rk050hr345-ct106a in the
-  dt-bindings.
+- Restore vdd-supply as required for both DSI and SPI types
+- Dop useless settings in case of rocktech,rk050hr345-ct106a
 
-Dario Binacchi (4):
-  drm/panel: ilitek-ili9806e: rename to specific DSI driver
-  drm/panel: ilitek-ili9806e: split core and DSI logic
-  dt-bindings: ili9806e: add Rocktech RK050HR345-CT106A display
-  drm/panel: ilitek-ili9806e: add Rocktech RK050HR345-CT106A SPI panel
+ .../display/panel/ilitek,ili9806e.yaml        | 38 ++++++++++++++++++-
+ 1 file changed, 36 insertions(+), 2 deletions(-)
 
- .../display/panel/ilitek,ili9806e.yaml        |  38 ++-
- MAINTAINERS                                   |   3 +-
- drivers/gpu/drm/panel/Kconfig                 |  22 +-
- drivers/gpu/drm/panel/Makefile                |   4 +-
- .../drm/panel/panel-ilitek-ili9806e-core.c    | 134 ++++++++
- .../drm/panel/panel-ilitek-ili9806e-core.h    |  15 +
- ...ili9806e.c => panel-ilitek-ili9806e-dsi.c} | 153 +++------
- .../gpu/drm/panel/panel-ilitek-ili9806e-spi.c | 323 ++++++++++++++++++
- 8 files changed, 576 insertions(+), 116 deletions(-)
- create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9806e-core.c
- create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9806e-core.h
- rename drivers/gpu/drm/panel/{panel-ilitek-ili9806e.c => panel-ilitek-ili9806e-dsi.c} (82%)
- create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9806e-spi.c
-
+diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
+index f80307579485..2080d9e0ffac 100644
+--- a/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
++++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/display/panel/ilitek,ili9806e.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Ilitek ILI9806E based MIPI-DSI panels
++title: Ilitek ILI9806E based panels
+ 
+ maintainers:
+   - Michael Walle <mwalle@kernel.org>
+@@ -18,6 +18,7 @@ properties:
+       - enum:
+           - densitron,dmt028vghmcmi-1d
+           - ortustech,com35h3p70ulc
++          - rocktech,rk050hr345-ct106a
+       - const: ilitek,ili9806e
+ 
+   reg:
+@@ -30,11 +31,24 @@ required:
+   - compatible
+   - reg
+   - vdd-supply
+-  - vccio-supply
+   - reset-gpios
+   - backlight
+   - port
+ 
++if:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - rocktech,rk050hr345-ct106a
++then:
++  $ref: /schemas/spi/spi-peripheral-props.yaml#
++  required:
++    - spi-max-frequency
++else:
++  required:
++    - vccio-supply
++
+ unevaluatedProperties: false
+ 
+ examples:
+@@ -60,5 +74,25 @@ examples:
+             };
+         };
+     };
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
+ 
++        panel@0 {
++            compatible = "rocktech,rk050hr345-ct106a", "ilitek,ili9806e";
++            reg = <0>;
++            vdd-supply = <&reg_vdd_panel>;
++            spi-max-frequency = <10000000>;
++            reset-gpios = <&gpiob 6 GPIO_ACTIVE_LOW>;
++            backlight = <&backlight>;
++            port {
++                panel_in_rgb: endpoint {
++                    remote-endpoint = <&ltdc_out_rgb>;
++                };
++            };
++        };
++    };
+ ...
 -- 
 2.43.0
 
-base-commit: a989fde763f4f24209e4702f50a45be572340e68
 
