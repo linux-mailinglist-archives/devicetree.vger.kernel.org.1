@@ -1,281 +1,124 @@
-Return-Path: <devicetree+bounces-277061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277062-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gN6MAP5oumnnWAIAu9opvQ
-	(envelope-from <devicetree+bounces-277061-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:57:34 +0100
+	id wGCDM95pumnnWAIAu9opvQ
+	(envelope-from <devicetree+bounces-277062-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:01:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCB762B8915
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:57:33 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C1802B89C0
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:01:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 53703300BBAE
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:57:33 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 43CB3300B9D1
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:01:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42BD43939D9;
-	Wed, 18 Mar 2026 08:57:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03E0B374174;
+	Wed, 18 Mar 2026 09:01:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dfoQfUed"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oNYnbJhJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF4F638F22E
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 08:57:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3672330D54;
+	Wed, 18 Mar 2026 09:01:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773824250; cv=none; b=HF4SN+iIbBFF+uDMxgQ2uB/pLoTGQs2Be8sD7FWuhArMVZPJUDw86USIO7OWDcpQs5H2g7bzk19tnk3aGMJo94v8G1pEoUSRdkglpyqsqUXuNXj6YYH66KCg907NLbLfpph95laj/7i1Q8L4AAx6UK/tXi4m6lceFu0RSXr9YM8=
+	t=1773824468; cv=none; b=fYewY9kD9HdtBy+wiRy2Co5NSCkqNGxn+GZKRS+XZEnfBl4exccv11i4+qEwWYqkTo6p9nZdM9/TK/aINLTiOkBPPQpG4goMTsrpNleaWORuHpwqnwWs8FTWV3prT6U4i27kfdtnOMWbAhoreMYJP9VG70oPvVreWK1xHgSkwTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773824250; c=relaxed/simple;
-	bh=NUWaA211MVtgOyFvRrtpZ0xN6iYxcwddItz9sEVKQiA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=M0sigzQxSLtdeH8ebM0ZF2Q8ps4N2j+igjyOBZbIQbwPh3FniFz8FXlxSBCQ4p4WMocmhmBLOexa8+FnsoiUJR/KEGMxzW213emD1VK5leRS9oMHiA5/c0pMGJwJ4W7MB/r+d9HWTUWidcnpHM5Q8Nlb+feBvH0WZlKQ76tIVAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dfoQfUed; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-48628ce9ab5so22243445e9.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 01:57:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773824247; x=1774429047; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:from:references:cc:to:subject:reply-to:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OudNO2OnvwTpIE96QJS7IaE3Xw3RCtNFDCoe4J2lk3A=;
-        b=dfoQfUedNNvnmlDimCSR7G1+W7Rus9ksSpMCSVrMamWPCWFYIT7R58P2hoEBa2XyIf
-         EoW3p54zCFkPH07K0Gca5PfiNWfhhf8slp3Q6IOMCsGYmwkT8yebOFK2uB8ei06lulfN
-         hfSeiuW00qU4bBXQTLBa29v3W3eDRGDTygrJ3Vm+esjPxxwbg9wVAt7JXiS5b99BtHEC
-         nnrgdhWBTQMIj2SgGq7l0YBxwTzbu8s/66Sx+OzzgVokVSCv3PLGEImxiRQYv4fojWhd
-         CIbd+TpqV4LPGrFz6F4aoRpSveJm+dXbPT/COLpwSGqp3I7btL7swU8fxdfmO0H7VAWG
-         /AiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773824247; x=1774429047;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:from:references:cc:to:subject:reply-to:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OudNO2OnvwTpIE96QJS7IaE3Xw3RCtNFDCoe4J2lk3A=;
-        b=Q4EdWgvcXRf3JhhCjlh8I0hRntgs09J29/OC4CT706ISvShzLjGaokmQV+uZbhs1ML
-         FbLoNDnWwwnN9NxeMLRIgCojL7x00+0YHHi4J5+k3JpcmnYu2INVOjH/5hRXYe8TbeqN
-         LVwuA77Z2q2yf71Uz8NInrfahfLSVQF5FWNp4SecMMsiaEzSxU/vaBQo8J6l9OnuMJjw
-         X2hztb7qQdCvRM3eXMzVudiYelRb5uM7ICubddrz4B9gqR5UvIPQwJCD0EnSLEdqA/2S
-         EQdveoWf7RROdH4b9MUmq6pm+ZkkWvMJHD9EEYi7FxgaGQuqkuHJLWhL/vDEz6b9NqNX
-         afPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW6ColVcbe6p859wACz8Ohqil2+6kHd+LSWw0fQMy+5Ql20RQEtuDAei2cyGG1sKGZ4eLLGuw868pBo@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTDUG+ddWX909n1N0OyML8Xiu7yenk8fZe50ae8728frkZE4CS
-	ZmFrnAEZRWwb0B8SHtpP7BV/iDYVie19qCxl+WHAxm1ajvj0hhinLbN/Tt4IyAhnbYU=
-X-Gm-Gg: ATEYQzxvFQXPs6gJl+v6nAjsLkzhI+xRRNlUgXi8GJcXlLweElzH42nEme/sJEoRd9b
-	DIH8umVs5+FiAsTb0ZEUCmVxs0GgI/r14EuSIpr7HwW/u2RbEeeIKOOgDA91Mpj0uGB5l7Vh+cK
-	xvZt1TpmMhsR/E0E3EMZ3C9X0AldRikjNphlBlaFGsBaajtShx8gfS3JqLjFxCAf9wIeTtsAX8a
-	kDk6ryhrqAvHWBfqL4jXSh2wdp4xVfWcYCdqH6attxWJprHsWQf9qiGxOIm/C8PS7tUiKD5tFTR
-	D/23ceovacZeuAsP6IknNIhRLAVT7Ej2h5wgXZmIrWiaBBFXjZL2FGfaCDQ42PA956g4qnMTnro
-	H4Bt/RBMxVAuXeBHS9jj/JRT2ae9Rh/zyqvfcGrRgq0bZ/rhyT6PRghClUpQ/dCDopKNLbvYlx0
-	5VWdrMOidtjixvnkwMxL4b02vYanTVMMVIG1rcFgSBoy5kQJsMLjQH6ZshwfKKmhP8J2IbI0b3B
-	QYp7CU=
-X-Received: by 2002:a05:600c:4fc4:b0:485:3423:727d with SMTP id 5b1f17b1804b1-486f4476ce8mr38072065e9.26.1773824246935;
-        Wed, 18 Mar 2026 01:57:26 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:106d:1080:ac75:790f:ef3c:2eb0? ([2a01:e0a:106d:1080:ac75:790f:ef3c:2eb0])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4856eaffbbdsm124891015e9.15.2026.03.18.01.57.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Mar 2026 01:57:26 -0700 (PDT)
-Message-ID: <b48e092a-fcee-4065-a8ef-862245b9e2eb@linaro.org>
-Date: Wed, 18 Mar 2026 09:57:25 +0100
+	s=arc-20240116; t=1773824468; c=relaxed/simple;
+	bh=Y7NA/QDIalWo3D2nRcGD3UiRiGnKtgUyJPIS23k/YlA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gM5FRhncQRgkIX36DibsxJ5jpbQXUlY1nGINNZYJ70bl0+mex5NwrRYMa1anLSyE/tS+J2KFsROKFBwBEU5GzCGuWGnkL95Yl1dvvetO8rWR1HzgZde3/qLQsSHZ5zK/o+o6uXMUB22lVEJOvAXfzIs4E4fG88e8Dgrl4NjeL7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oNYnbJhJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E842EC19421;
+	Wed, 18 Mar 2026 09:01:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773824468;
+	bh=Y7NA/QDIalWo3D2nRcGD3UiRiGnKtgUyJPIS23k/YlA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oNYnbJhJQKFMBTOaoOaL8B3vntvOGTJkSyS/fiTuXvhdF4d5UlKf03QNdWwm6N8N+
+	 xjbBULijEY1lvlNOH023Kplgl+ZhyRFTN3KA7jzoingqBX3gHGgOqGE7SQMroxZRrR
+	 UHytpJQlqFMRtaYh71y5QfcKcbh0mXpmbDBUyKMw5nDLst6AY8qZLaq6ONVvd6z5K/
+	 WR5ytD4+hI8JcG9hAjUodVBrcE53o9X/WUS8VeKiaaR/PTpKeeY+jxNMD+/4bYHS25
+	 EFyGlO9Ui/E6U1G8a850TbCwzg/cdM1X09u/MKXtq1pjYN1usq319IIJLZnqUm87z/
+	 mzVhOiUfKgyNA==
+Date: Wed, 18 Mar 2026 10:01:05 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Yixun Lan <dlan@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Ze Huang <huang.ze@linux.dev>, 
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Paul Walmsley <pjw@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Emil Renner Berthing <kernel@esmil.dk>, 
+	Junzhong Pan <junzhong.pan@spacemit.com>, Inochi Amaoto <inochiama@gmail.com>, linux-usb@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] riscv: dts: spacemit: k3: Add USB2.0 support
+Message-ID: <20260318-belligerent-boa-of-resistance-4b98a0@quoll>
+References: <20260317-02-k3-usb20-support-v1-0-d89f59062ad4@kernel.org>
+ <20260317-02-k3-usb20-support-v1-3-d89f59062ad4@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add qcs9075-radxa-airbox-q900
-To: Mecid Urganci <mecid@mecomediagroup.de>, andersson@kernel.org,
- konradybcio@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- richardcochran@gmail.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20260318083621.470826-1-mecid@mecomediagroup.de>
- <20260318083621.470826-3-mecid@mecomediagroup.de>
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20260318083621.470826-3-mecid@mecomediagroup.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260317-02-k3-usb20-support-v1-3-d89f59062ad4@kernel.org>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-277061-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-277062-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,linux.dev,synopsys.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,esmil.dk,spacemit.com,gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RSPAMD_EMAILBL_FAIL(0.00)[dlan.kernel.org:query timed out];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	REPLYTO_EQ_FROM(0.00)[]
-X-Rspamd-Queue-Id: DCB762B8915
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 2C1802B89C0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
-
-On 3/18/26 09:36, Mecid Urganci wrote:
-> Add device tree support for the Radxa AirBox Q900 board based on the
-> Qualcomm QCS9075 SoC (Lemans Family).
+On Tue, Mar 17, 2026 at 11:53:04AM +0000, Yixun Lan wrote:
+> The USB2.0 controller on Pico-ITX board connnects to a Terminus FE1.1 Hub
+> which fully USB2.0 protocol compliant and provides 4 ports.
 > 
-> This board features HDMI 2.0 via dp0, 2x USB 3.1 Gen 2 ports,
-> 2x 2.5GbE Ethernet ports and onboard UFS storage.
-> 
-> Further information: https://radxa.com/products/fogwise/airbox-q900/
-> 
-> Functionality has been tested and confirmed working via an Armbian
-> Debian Trixie build.
-> 
-> Signed-off-by: Mecid Urganci <mecid@mecomediagroup.de>
-> Made-with: Cursor
+> Signed-off-by: Yixun Lan <dlan@kernel.org>
 > ---
->   arch/arm64/boot/dts/qcom/Makefile             |    1 +
->   .../dts/qcom/qcs9075-radxa-airbox-q900.dts    | 1012 +++++++++++++++++
->   2 files changed, 1013 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-radxa-airbox-q900.dts
+>  arch/riscv/boot/dts/spacemit/k3-pico-itx.dts | 24 +++++++++++++++++++++
+>  arch/riscv/boot/dts/spacemit/k3.dtsi         | 31 ++++++++++++++++++++++++++++
+>  2 files changed, 55 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index a4dc9e8b2d25..c8b7dd67806d 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -180,6 +180,7 @@ qcs8300-ride-el2-dtbs := qcs8300-ride.dtb monaco-el2.dtbo
->   
->   dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride-el2.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= qcs9075-radxa-airbox-q900.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
->   
-> diff --git a/arch/arm64/boot/dts/qcom/qcs9075-radxa-airbox-q900.dts b/arch/arm64/boot/dts/qcom/qcs9075-radxa-airbox-q900.dts
-> new file mode 100644
-> index 000000000000..8b5202b527cb
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/qcs9075-radxa-airbox-q900.dts
-> @@ -0,0 +1,1012 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2026 Mecid Urganci
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +
-> +#include "lemans.dtsi"
-> +#include "lemans-pmics.dtsi"
-> +
-> +/ {
-> +	model = "Radxa AIRbox Q900";
 
-The radxa pages shows "Radxa Fogwise® AIRbox Q900", why did you drop Fogwise ?
+DTS cannot be combined in this patchset and must be split. Don't mix
+patches from independent subsystems when you send something explicitly
+targeting only one subsystem.
+See also: Documentation/devicetree/bindings/submitting-patches.rst
 
-> +	compatible = "radxa,airbox-q900", "qcom,qcs9075", "qcom,sa8775p";
-> +
-
-<snip>
-
-> +
-> +	dp0-connector {
-> +		compatible = "dp-connector";
-> +		label = "eDP0";
-> +		type = "full-size";
-> +
-> +		port {
-> +			dp0_connector_in: endpoint {
-> +				remote-endpoint = <&mdss0_dp0_out>;
-> +			};
-> +		};
-
-The device has an HDMI output, and this is probably provided by a DP to HDMI IC,
-please represent it here.
-
-> +	};
-> +};
-> +
-
-<snip>
-
-> +};
-> +
-> +/ {
-> +	thermal-zones {
-> +		cpu-0-0-0-thermal {
-> +			polling-delay-passive = <1000>;
-> +			polling-delay = <5000>;
-> +
-> +			trips {
-> +				fan_on: fan-on {
-> +					temperature = <40000>;
-> +					hysteresis = <5000>;
-> +					type = "active";
-> +				};
-> +			};
-> +
-> +			cooling-maps {
-> +				map-fan {
-> +					trip = <&fan_on>;
-> +					cooling-device = <&fan0 1 1>;
-> +				};
-> +			};
-> +		};
-> +	};
-
-So the fan only cools the cpu0 ?? not the gpu ?
-
-Neil
-
-> +};
+Best regards,
+Krzysztof
 
 
