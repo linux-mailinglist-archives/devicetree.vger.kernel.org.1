@@ -1,277 +1,259 @@
-Return-Path: <devicetree+bounces-277428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277429-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wC3KMy70ummHdQIAu9opvQ
-	(envelope-from <devicetree+bounces-277428-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:51:26 +0100
+	id +PIfGMfsuml0dAIAu9opvQ
+	(envelope-from <devicetree+bounces-277429-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:19:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 014602C19D0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:51:25 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03D042C1226
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:19:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id EEA7F304A87D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:14:19 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BD316301A9C6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:19:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 364193B8943;
-	Wed, 18 Mar 2026 18:14:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D51E3CD8A3;
+	Wed, 18 Mar 2026 18:19:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P9VzqLKX"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="wC05hgGu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E705B1D6193
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 18:14:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B1C01F192E
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 18:19:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773857658; cv=none; b=jNwNW7VeD84fFSKC2/t+smO9MpfFi3DHjz5cJvSl/+FCI+GUsWPKWUW4vynDVHUc/SESqljXFkJkUWcnUIWbvnUTaOxjDNobsv2cCnPbmrh2I+IVjJqvbVHeLVLzcvyIyGQbOKfcWMUWiF+ADWMQghyIIo6TzhEtQ2OXeV6vaiE=
+	t=1773857989; cv=none; b=rnIwHfOkDCiIjPcIvzDEhqz6EbvIp3iMJY37kfuucpLvQkzsfscOUToWAxTugUvKqkl9hWPNJg94ZnvCyZwI6kgTAYfRvBUzg53OTVuDnp+UxLISSu/fArRC0OI2OpEMxgWUEWF4fFxyf/N7jAnhRCfZI9lfRy05/Y2Wy+Jia2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773857658; c=relaxed/simple;
-	bh=igC4GtGcZsVAZDSM5+M30pXkTVcmavnjQO89/dgMWsM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=C6DD6zSmRm6NzcZGo2e77KCCknx/zjWPMjvdo77AdxrJVSz0sOoLjSk87PxQUQhZq4IRnuuh64ssUqAk5v+hfuqoLt7s1ZGbk70rYijeUDepumnksuU5/8o6SIrbQ2FBrJCypfe/l9Y+oiz8vKjM5OU31Bthnd5Zfw/mi8lcH4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P9VzqLKX; arc=none smtp.client-ip=209.85.215.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-c741699483bso43726a12.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 11:14:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773857656; x=1774462456; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7pQsVn9jrlP82x/zoMf5r2Nw6PzXMQncCNeTmBbiDt4=;
-        b=P9VzqLKX0YqDtLZkBRPD0IRK+h6KqqeYbBNeBMGA8E/snLVNCVWXfjqK8PhYE4k1JN
-         2cc5oe1L/u6Salxrfgf7tXMyvJoCP7E1xLrlaiubhIf2vWfqVvNf3r2EdFFEeLN6gybH
-         iT6juVFplHz8MGiUYFy5EQeyCRvpVzxkX2FpqK6Pl8Oq7aVYcPlfDn2996CkT842PAav
-         YLKWc5ue33MidAner8D0NbUNWeSU4znIACUeEefVNJr383ux5o32yhzdRwRQUyBiA9ze
-         hXj/lCwH1UsieoWCLehFBNMZewTcGuqNn0OOhYR3V6uVo0o5WNeZcAuuo9f1BVh78YI3
-         XG2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773857656; x=1774462456;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7pQsVn9jrlP82x/zoMf5r2Nw6PzXMQncCNeTmBbiDt4=;
-        b=gXoOO3pOGpgPzprT7J3wBRTisyEjM0sA9kLWruqkmPVzxA6COPz9hmE8GQ4CwHv/tM
-         +XtC3yI2bfW1SUwXJ6awjfd/rMnWF4W6BgQuAn4mO0cW5xafG4xvJ5hcpeg0MFJ5gaQz
-         Qo0HztE3/I3sDI0uoiOo19QwCzgsN41VEjrH/RRENUjyHn98L392ZnhQVRmuH62KYVEx
-         Y+qhMxtr3d8XQQ6Cb/hlCP0cY+vdmT0WvpHcOwZ3tdBDDzMjPCnnmMSGYiwM7l5RPSqe
-         yXOpSfBzX1g74x19gIzPzxwQJYdeme9Ab1gz9gW+iESHATlVU0Y+Gg9Lfr8V+6ald2Aw
-         vN5A==
-X-Forwarded-Encrypted: i=1; AJvYcCUcsVqN7bAG46aHwDqzqWit41TPtPSBG16UZmcOuv3Qbk5HtSqOdCcJEdZ3E4iHz0FITubde57pz4Sf@vger.kernel.org
-X-Gm-Message-State: AOJu0YyifJbhRnUrUzXcM9RY9EbFVNVFXLsgTdsR0L0KM39Z6Alj0D2Z
-	RzBY3SAVKoo6NYcsH97nppa0OLssGCK4Xc9bu1zXLsjeBN2tdjQlFvPF
-X-Gm-Gg: ATEYQzwoX86XxOCZLmziIfx7z4cP7teTsYYMS2G6l1TE0tcXFJGqEnMnQ04Lg9d1hHL
-	Ag83w9FTkBcQ8x76zmV6rnS4E+nNG0VFLphJVzhnPVkZb+05cwJqg5HisIuX8oBZLxa6yhH3SnL
-	JMm6mIUgybdIsVUHtnS22HEldRk7VF+FNqeml28qPcTDudOSh6lm2P6QK/anIdL91iCS5hvmDhN
-	9gVqURipaUg5kkS+P7AnefWrNioyPRsmNdGBSmHREjEG1bEoEr+OarWigMEfDQ7y0hIWcJicf+N
-	n0GFJPd1FattchjR8YGgUkT6EnQJRY5SGK6jJsyiVNU+gzO8az2oH/ZtZ9dvN0vEadXucSUIKTq
-	Hs82x494LPsTmx5l2xXd/fZjVesf4eZu5unUCfxtf34Lc3nVv5SgZSTkyMPs9M8eUUPotsaBknv
-	shhkvc36KaI72GrLbPmJ31+7gQeHWC8gFtb6SSkFI24myQebvC/xDUQe9fV8NzH4hlTqyD23G0
-X-Received: by 2002:a17:903:b8f:b0:29f:301a:f6cf with SMTP id d9443c01a7336-2b06e4073ecmr43361215ad.35.1773857656176;
-        Wed, 18 Mar 2026 11:14:16 -0700 (PDT)
-Received: from chaitanya-virtualbox.. ([103.249.241.54])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b06e41927bsm44617185ad.10.2026.03.18.11.14.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Mar 2026 11:14:15 -0700 (PDT)
-From: Chaitanya Sabnis <chaitanya.msabnis@gmail.com>
-To: lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Chaitanya Sabnis <chaitanya.msabnis@gmail.com>
-Subject: [PATCH] dt-bindings: sound: Convert Hisilicon hi6210 I2S to dt-schema
-Date: Wed, 18 Mar 2026 23:43:03 +0530
-Message-ID: <20260318181303.5262-1-chaitanya.msabnis@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1773857989; c=relaxed/simple;
+	bh=vj7tS7uIMvZSXYU425dVU9YT132ngTU9jfQFxZte628=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kW8bGS7dOfAkfPe3YeYKFR5no97e6R3P7HAQ70W91FHS/ZkI1W6csiLhBXoSIMRPDJiCFAKjfEpQpBwOpGosZIiIFQr5eVm7SYqbM7kMQCg2XsexTeLXuXxq818Jh8skNBTrAeUewfYerhrWnLL/5dPbl97nNwufVbsKfnkHiw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=wC05hgGu; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id A7D46C5506C;
+	Wed, 18 Mar 2026 18:20:08 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id E1C1D6004F;
+	Wed, 18 Mar 2026 18:19:43 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2878510450431;
+	Wed, 18 Mar 2026 19:19:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1773857982; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=GFiGghzPl6g8oEQeQrcO9TafT5x7gCN92iALR8Yy2dM=;
+	b=wC05hgGuVfa+8EvwpROQS7dqjARjeKaWIU113kVPpWKO9oJMZR7+p4+5qakt+7dNOXwT4Y
+	5DnoW5/51sYHsUt67qtSiLOELpz0LbWYtNq1eu4fVCpGKQ6H/1t0Is4PMy5YWyuE783a7j
+	LQ6shnjEo6aAPupfW+6MPI4Xq1QbP1evicCA6W18jltj/xHBBkMs8k1sxpMPX5/LhR0jDu
+	YRrNoRzGBVtsGscmtlEpz9wGUVJD0neM+6vaOnJkRaC396auEzOO/ADgY2/2MlyIYZD2B1
+	WYQ4YdXSQXv1ymLaqL15eMTElJc49798VPeRb9dxn+z1nWK5ClpPEz56vJ5JFA==
+Date: Wed, 18 Mar 2026 19:19:36 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Akhil R <akhilrajeev@nvidia.com>
+Cc: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Robert Moore <robert.moore@intel.com>, Len Brown <lenb@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Eric Biggers <ebiggers@kernel.org>,
+	Fredrik Markstrom <fredrik.markstrom@est.tech>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Thierry Reding <thierry.reding@kernel.org>,
+	Jon Hunter <jonathanh@nvidia.com>,
+	Suresh Mangipudi <smangipudi@nvidia.com>,
+	linux-tegra@vger.kernel.org, linux-i3c@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev,
+	linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH 11/12] hwmon: spd5118: Add I3C support
+Message-ID: <202603181819360a32c641@mail.local>
+References: <20260318172820.13771-1-akhilrajeev@nvidia.com>
+ <20260318172820.13771-12-akhilrajeev@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-1.66 / 15.00];
+In-Reply-To: <20260318172820.13771-12-akhilrajeev@nvidia.com>
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277428-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277429-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FROM_NEQ_ENVFROM(0.00)[chaitanyamsabnis@gmail.com,devicetree@vger.kernel.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.896];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexandre.belloni@bootlin.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	NEURAL_HAM(-0.00)[-0.990];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 014602C19D0
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:url,nvidia.com:email,roeck-us.net:email,exactcode.de:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 03D042C1226
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Convert the Hisilicon hi6210 I2S controller hardware binding from
-legacy plain text to modern YAML dt-schema format.
+On 18/03/2026 22:57:24+0530, Akhil R wrote:
+> Add a regmap config and a probe function to support for I3C based
+> communication to SPD5118 devices.
+> 
+> On an I3C bus, SPD5118 are enumerated via SETAASA and always require an
+> ACPI or device tree entry. The device matching is hence through the OF
+> match tables only and do not need an I3C class match table. The device
+> identity is verified in the type registers before proceeding to the
+> common probe function.
+> 
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> ---
+>  drivers/hwmon/Kconfig   |  7 +++--
+>  drivers/hwmon/spd5118.c | 66 ++++++++++++++++++++++++++++++++++++++++-
+>  2 files changed, 70 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+> index 8af80e17d25e..23604c05ad22 100644
+> --- a/drivers/hwmon/Kconfig
+> +++ b/drivers/hwmon/Kconfig
+> @@ -2300,10 +2300,13 @@ config SENSORS_SPD5118
+>  	tristate "SPD5118 Compliant Temperature Sensors"
+>  	depends on I2C
 
-Signed-off-by: Chaitanya Sabnis  <chaitanya.msabnis@gmail.com>
----
- .../bindings/sound/hisilicon,hi6210-i2s.txt   | 42 ----------
- .../bindings/sound/hisilicon,hi6210-i2s.yaml  | 77 +++++++++++++++++++
- 2 files changed, 77 insertions(+), 42 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/hisilicon,hi6210-i2s.txt
- create mode 100644 Documentation/devicetree/bindings/sound/hisilicon,hi6210-i2s.yaml
+Please use I3C_OR_I2C here
 
-diff --git a/Documentation/devicetree/bindings/sound/hisilicon,hi6210-i2s.txt b/Documentation/devicetree/bindings/sound/hisilicon,hi6210-i2s.txt
-deleted file mode 100644
-index 7a296784eb37..000000000000
---- a/Documentation/devicetree/bindings/sound/hisilicon,hi6210-i2s.txt
-+++ /dev/null
-@@ -1,42 +0,0 @@
--* Hisilicon 6210 i2s controller
--
--Required properties:
--
--- compatible: should be one of the following:
--   - "hisilicon,hi6210-i2s"
--- reg: physical base address of the i2s controller unit and length of
--   memory mapped region.
--- interrupts: should contain the i2s interrupt.
--- clocks: a list of phandle + clock-specifier pairs, one for each entry
--  in clock-names.
--- clock-names: should contain following:
--   - "dacodec"
--   - "i2s-base"
--- dmas: DMA specifiers for tx dma. See the DMA client binding,
--  Documentation/devicetree/bindings/dma/dma.txt
--- dma-names: should be "tx" and "rx"
--- hisilicon,sysctrl-syscon: phandle to sysctrl syscon
--- #sound-dai-cells: Should be set to 1 (for multi-dai)
--   - The dai cell indexes reference the following interfaces:
--       0: S2 interface
--       (Currently that is the only one available, but more may be
--        supported in the future)
--
--Example for the hi6210 i2s controller:
--
--i2s0: i2s@f7118000{
--	compatible = "hisilicon,hi6210-i2s";
--	reg = <0x0 0xf7118000 0x0 0x8000>; /* i2s unit */
--	interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>; /* 155 "DigACodec_intr"-32 */
--	clocks = <&sys_ctrl HI6220_DACODEC_PCLK>,
--		 <&sys_ctrl HI6220_BBPPLL0_DIV>;
--	clock-names = "dacodec", "i2s-base";
--	dmas = <&dma0 15 &dma0 14>;
--	dma-names = "rx", "tx";
--	hisilicon,sysctrl-syscon = <&sys_ctrl>;
--	#sound-dai-cells = <1>;
--};
--
--Then when referencing the i2s controller:
--	sound-dai = <&i2s0 0>; /* index 0 => S2 interface */
--
-diff --git a/Documentation/devicetree/bindings/sound/hisilicon,hi6210-i2s.yaml b/Documentation/devicetree/bindings/sound/hisilicon,hi6210-i2s.yaml
-new file mode 100644
-index 000000000000..ba740ebfc2f9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/hisilicon,hi6210-i2s.yaml
-@@ -0,0 +1,77 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/hisilicon,hi6210-i2s.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HiSilicon hi6210 I2S controller
-+
-+maintainers:
-+  - Chaitanya Sabnis <chaitanya.msabnis@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: hisilicon,hi6210-i2s
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: dacodec
-+      - const: i2s-base
-+
-+  dmas:
-+    maxItems: 2
-+
-+  dma-names:
-+    items:
-+      - const: rx
-+      - const: tx
-+
-+  hisilicon,sysctrl-syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: phandle to sysctrl syscon
-+
-+  "#sound-dai-cells":
-+    const: 1
-+    description: |
-+      The dai cell indexes reference the following interfaces:
-+        0: S2 interface
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - dmas
-+  - dma-names
-+  - hisilicon,sysctrl-syscon
-+  - "#sound-dai-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/hi6220-clock.h>
-+
-+    i2s@f7118000 {
-+        compatible = "hisilicon,hi6210-i2s";
-+        reg = <0xf7118000 0x8000>;
-+        interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&sys_ctrl HI6220_DACODEC_PCLK>,
-+                 <&sys_ctrl HI6220_BBPPLL0_DIV>;
-+        clock-names = "dacodec", "i2s-base";
-+        dmas = <&dma0 15>, <&dma0 14>;
-+        dma-names = "rx", "tx";
-+        hisilicon,sysctrl-syscon = <&sys_ctrl>;
-+        #sound-dai-cells = <1>;
-+    };
+>  	select REGMAP_I2C
+> +	select REGMAP_I3C if I3C
+>  	help
+>  	  If you say yes here you get support for SPD5118 (JEDEC JESD300)
+> -	  compliant temperature sensors. Such sensors are found on DDR5 memory
+> -	  modules.
+> +	  compliant temperature sensors using I2C or I3C bus interface.
+> +	  Such sensors are found on DDR5 memory modules.
+> +
+> +	  This driver supports both I2C and I3C interfaces.
+>  
+>  	  This driver can also be built as a module. If so, the module
+>  	  will be called spd5118.
+> diff --git a/drivers/hwmon/spd5118.c b/drivers/hwmon/spd5118.c
+> index 5da44571b6a0..d70123e10616 100644
+> --- a/drivers/hwmon/spd5118.c
+> +++ b/drivers/hwmon/spd5118.c
+> @@ -18,6 +18,7 @@
+>  #include <linux/bits.h>
+>  #include <linux/err.h>
+>  #include <linux/i2c.h>
+> +#include <linux/i3c/device.h>
+>  #include <linux/hwmon.h>
+>  #include <linux/module.h>
+>  #include <linux/mutex.h>
+> @@ -482,6 +483,25 @@ static const struct regmap_config spd5118_regmap16_config = {
+>  	.cache_type = REGCACHE_MAPLE,
+>  };
+>  
+> +/*
+> + * I3C uses 2-byte register addressing -
+> + *   Byte 1: MemReg | BlkAddr[0] | Address[5:0]
+> + *   Byte 2: 0000   | BlkAddr[4:1]
+> + *
+> + * The low byte carries the register/NVM address and the high byte carries the
+> + * upper block address bits, so little-endian format is required. No range
+> + * config is needed since I3C does not use MR11 page switching.
+> + */
+> +static const struct regmap_config spd5118_regmap_i3c_config = {
+> +	.reg_bits = 16,
+> +	.val_bits = 8,
+> +	.max_register = 0x7ff,
+> +	.reg_format_endian = REGMAP_ENDIAN_LITTLE,
+> +	.writeable_reg = spd5118_writeable_reg,
+> +	.volatile_reg = spd5118_volatile_reg,
+> +	.cache_type = REGCACHE_MAPLE,
+> +};
+> +
+>  static int spd5118_suspend(struct device *dev)
+>  {
+>  	struct spd5118_data *data = dev_get_drvdata(dev);
+> @@ -770,7 +790,51 @@ static struct i2c_driver spd5118_i2c_driver = {
+>  	.address_list	= IS_ENABLED(CONFIG_SENSORS_SPD5118_DETECT) ? normal_i2c : NULL,
+>  };
+>  
+> -module_i2c_driver(spd5118_i2c_driver);
+> +/* I3C */
+> +
+> +static int spd5118_i3c_probe(struct i3c_device *i3cdev)
+> +{
+> +	struct device *dev = i3cdev_to_dev(i3cdev);
+> +	struct regmap *regmap;
+> +	unsigned int regval;
+> +	int err;
+> +
+> +	regmap = devm_regmap_init_i3c(i3cdev, &spd5118_regmap_i3c_config);
+> +	if (IS_ERR(regmap))
+> +		return dev_err_probe(dev, PTR_ERR(regmap), "regmap init failed\n");
+> +
+> +	/* Verify this is a SPD5118 device */
+> +	err = regmap_read(regmap, SPD5118_REG_TYPE, &regval);
+> +	if (err)
+> +		return err;
+> +
+> +	if (regval != 0x51) {
+> +		dev_err(dev, "unexpected device type 0x%02x, expected 0x51\n", regval);
+> +		return -ENODEV;
+> +	}
+> +
+> +	err = regmap_read(regmap, SPD5118_REG_TYPE + 1, &regval);
+> +	if (err)
+> +		return err;
+> +
+> +	if (regval != 0x18) {
+> +		dev_err(dev, "unexpected device type 0x%02x, expected 0x18\n", regval);
+> +		return -ENODEV;
+> +	}
+> +
+> +	return spd5118_common_probe(dev, regmap, false);
+> +}
+> +
+> +static struct i3c_driver spd5118_i3c_driver = {
+> +	.driver = {
+> +		.name	= "spd5118_i3c",
+> +		.of_match_table = spd5118_of_ids,
+> +		.pm = pm_sleep_ptr(&spd5118_pm_ops),
+> +	},
+> +	.probe		= spd5118_i3c_probe,
+> +};
+> +
+> +module_i3c_i2c_driver(spd5118_i3c_driver, &spd5118_i2c_driver);
+>  
+>  MODULE_AUTHOR("René Rebe <rene@exactcode.de>");
+>  MODULE_AUTHOR("Guenter Roeck <linux@roeck-us.net>");
+> -- 
+> 2.50.1
+> 
+
 -- 
-2.43.0
-
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
