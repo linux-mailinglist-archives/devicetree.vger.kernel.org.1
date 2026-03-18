@@ -1,85 +1,105 @@
-Return-Path: <devicetree+bounces-276886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276887-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4HcxHGP1uWnRPwIAu9opvQ
-	(envelope-from <devicetree+bounces-276886-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 01:44:19 +0100
+	id YHqZNpj6uWlfQAIAu9opvQ
+	(envelope-from <devicetree+bounces-276887-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 02:06:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FF8C2B4AD3
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 01:44:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F2EE2B4D52
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 02:06:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BF610301DECE
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 00:44:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E8F76308831F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 01:06:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36EA721E091;
-	Wed, 18 Mar 2026 00:44:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9BB4225760;
+	Wed, 18 Mar 2026 01:06:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pardini.net header.i=@pardini.net header.b="Am4pLtbB"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="E3N7zgro";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DocRfgfA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f170.google.com (mail-dy1-f170.google.com [74.125.82.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E1DB21771C
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 00:44:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9256F63CB
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 01:06:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773794649; cv=none; b=fl8o72vRpF4f9ZFDK9kAuKBN8OZ0PqLQh0GtsxYvxj0LjuqxVU3+DG2x/YLIdUXS7aASozY5vJU2YGE3yTDyYsAt5KLOM43+LXuLEDDv4B/FsUxvcncsXJXObmqs/3javex4loRm+xS3PoABXmuGICxHjG57jvHryohj+4g917o=
+	t=1773795990; cv=none; b=MvDN6KtKmmNBhV4tZno3WHV6vsCeC+utbG5+TOHcwWf4Ebw0p6E/Va6Ggjyi84S73xVoTvn7bW3NICZ9Fjz1E+isl613mp3P+fYMj8kndAzuBJR1i2LvJex038MjoMB+ODIkQXPaHH3bpfOVjnsp2X8cr3vYYQ+uaMZquPSPL9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773794649; c=relaxed/simple;
-	bh=NGoE1cDoBcTftVSQ+ZwV650yL2LvXWLP8EZteCeKrZU=;
+	s=arc-20240116; t=1773795990; c=relaxed/simple;
+	bh=IXNKo6w4PAmPv4oifGkjnRgQHeLXuvDgRlt4GRw+2g8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SphBn8AgSOomRslLvTDWAWJvuf2DNRiTw0fUbLEAZkzCLwgCipys/ECWnLRySHzdwYi2Ckv30Tnp3edgcPWyuwUhJIxxRiCMMRAnynfyEzkA/KO8cXmJeYuH7HzejuFEA1Ej50cQczyAhrfKeL9QSwIiKqRngrrwQsFbQlln8Es=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pardini.net; spf=pass smtp.mailfrom=pardini.net; dkim=pass (2048-bit key) header.d=pardini.net header.i=@pardini.net header.b=Am4pLtbB; arc=none smtp.client-ip=74.125.82.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pardini.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pardini.net
-Received: by mail-dy1-f170.google.com with SMTP id 5a478bee46e88-2ba9c484e5eso7610797eec.1
-        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 17:44:07 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=c+NMpwOb3ITB7NFPUR+biPZJZ/Jwp9Jf3RvFg+yyLM+YceshMD7krKRIW4eU6+5AnUotgrkYO3+CSEqd2vIiIcveGC8YKeWNUvWztk4C+xapS7SskR1oCMKYWchjfrJpTrCofBuRJRotae9bF07o9NDLlF2UzmoCg0Q2oqNpO/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=E3N7zgro; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DocRfgfA; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62HIJqIq3165228
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 01:06:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	jCyetuy2W7yLJXH1MrmSQIQFxypgDGqmngvv9gJ+Szw=; b=E3N7zgroMCUbjP4m
+	6qBbZXIAzF4rKqXb0qqWKLOAeP3BC05hP8De3lF8ucaVJ5QArb2wXcehTFeeTLaU
+	73KB3t7ZyDuCPiF6owK+GJnKw/ElZY4YBAmbab7odZkGMyYkqKjr2bxw3MNGNDhs
+	3UJ6fVpY8M89PGPa9bmdHDyo4ssT/LPK1vWawWZuG3Q2KoAaq6xA6Pg/anueO4Lb
+	iO8QOH6/Mj8nm/txyYxbRBRuj0+wwoBnBE16gFQcILf8YoKsddZ0fmYpDrUi1BKx
+	SW/O79hpQrougel/TqG2uM22akyv8TAvjp48BXVwZNB6iBnA3UkpIfA3WUsNzi3t
+	r6jMGQ==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cy4v6u3b1-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 01:06:27 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-829ad81b132so22564719b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 18:06:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pardini.net; s=google; t=1773794646; x=1774399446; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1773795987; x=1774400787; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Z3klIIEcX92zdVI267329I5bjpI/sVO4ClpefsxUOMo=;
-        b=Am4pLtbBfWD8PZl2n9Y7ItBgJdRHbJJ4wRz1cPJQN8FUEya/Yygcsn9a72XH9rRWm4
-         hUEHdRynGCs+9UQrxAKx6CLuDjmWX375X8Ha5BuBSObcR92FES47CDAZ8okf0eG8NarZ
-         cc82nxQnts02QJ1FtHaQ80BoklPoMIllO/RA2cOB6PBO6MBoEG2pOwG9LS4SnxOOh/eh
-         NEUPYIfHI9ARRZXQjl7OPyoBHEXwtQgolKeRhgNxoqd9JXcuLouqS9v7sknKygdMPaoo
-         qzNJvxdC4htViSbAY1sfr0z+3QF+oBZVuVtYBnJLhRsh7VTo/GKHM832wjW3SK5Q0/FO
-         fc3w==
+        bh=jCyetuy2W7yLJXH1MrmSQIQFxypgDGqmngvv9gJ+Szw=;
+        b=DocRfgfArD8/VXTGc72Pf2U5oTqYcnbAGZYkUqNdBLTUfZFTRaKpEpnnDtiymo/HO3
+         ZLO4cXxX1lQZ5PuXayGrHbojXAz0Rpj57hpo6AQd9Izbp42tusDf/VaAlxmZsp8E18pN
+         RovuP47eZGZ2lneQz02rvCfQBBQs0Lg3iql9Gl5q9YVeQieWF296BLuvs0I8hXR09khL
+         yKJxlYVls2GEsriDuQUrs4ZugUIufVHeFvwKaBC3WYa+ri5uoV0F0go7IJIB1U3VhbBt
+         oHlEksCV7Utg2CFdB6v1ZoGaNolmAApAyRGji5WeH+O3o59U+BNWxtlOuJRe5soUzNwf
+         yZhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773794646; x=1774399446;
+        d=1e100.net; s=20251104; t=1773795987; x=1774400787;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Z3klIIEcX92zdVI267329I5bjpI/sVO4ClpefsxUOMo=;
-        b=D6lPskG74XafyN7q4tM4+zC1ZUxcLC72E3BgWkz/BHcKu9roeyRWWJJo05AaEIursT
-         YwmXMRqSStWIKfxK/MerLeFlin/JuDVWWiKc4TePCpC4+ZKaoMGQ6MlLVFQ1Z8EleaKP
-         yDiSbPxBOtFYGYzeJI4k/8uZJGncp2nYP5slopioC3zZ1MpK5REt7TCvzvXIqbD+jolp
-         2kT5K59xew6WF5vxcPGLvhM3Of5eQN+RmyfY4vuGCLTkUXrgQJQeoFAOPRVwqLYoEHmT
-         K+TVEfCu53y4vXEPyfItZQ5Y7f2RDW6G+dfYLiGDk+f/ZuVvmOyopKTjWlyEzuMDSnUU
-         VoOw==
-X-Forwarded-Encrypted: i=1; AJvYcCXKJBss5yHmnrxkzEpeovyxAqaAtI1F22CThO7qSItvxb6N8HKlPMSyl0KB++4/u+57AfOjd8edlORn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5oA4LT2NURQJplfF/RRODbVyeWCBh5G+sH/nQJY8cSK68d2sP
-	PWpV5VaIXpSGCkByu6AvWcGJhrHXUmdl1BYgsZUKDamY9u6bJLjJAV9/P/RgWTa9rw==
-X-Gm-Gg: ATEYQzyDWHrcewg48eZDnb2vzUSbmEOubGFRlToKEJOspjqJKjmTyQSlpSxlci0Vmpg
-	Fvn7LzlaPVFqLZsmqca5AoARpT/ccJS4GY8LYGfuCnlCEt7F9k7cxRSA94gEyyl4WwNfGXnZB0Q
-	KqN36+I/AGVTGK597caIG64Mn/rcWXk7BmVtTRo3TmlEOt5gjsQxQ32GWCRXwXNHNYyppwp424W
-	w4MysFFXaLbFanH4HfEDOtxxmTQDxAncmdoYXwasj6N9eITTfH7gdFZGR43b3N9VDYUKNX02/fd
-	v2jAkTMFnMO2BkZCULyi3pE61gchT3BlmXL3/i2TWoFdKHrR2qB6Mxy8tFuZ2QpUv6xRvTJt+ga
-	VqP30Egb+6fIYVwNdqr8rPzG9KPABPVr0uldTsg2Uc3Kc1KQVDSRat+XYIR++zPPcTwgkXUe3DQ
-	H+b4TdzJG3XKyce1MGUqBXvj0HOB6ocJvkylgAK4PBcB2KODUDSkC1VrQ/cSAZDF3yGaTqZzJY8
-	Z8XBBjnHk4J4+8wkQ==
-X-Received: by 2002:a05:7300:ad2d:b0:2ba:6723:503d with SMTP id 5a478bee46e88-2c0e5193913mr637584eec.20.1773794646317;
-        Tue, 17 Mar 2026 17:44:06 -0700 (PDT)
-Received: from ?IPV6:2804:7f0:6980:fbfc:7d22:811:8e46:acbe? ([2804:7f0:6980:fbfc:7d22:811:8e46:acbe])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2c0e55ee672sm1972724eec.28.2026.03.17.17.44.02
+        bh=jCyetuy2W7yLJXH1MrmSQIQFxypgDGqmngvv9gJ+Szw=;
+        b=tWp0P7LiqLEVTKW1bgmJIOAIW9klAjquxB39QWxL+Zu2DknLKp2r52iXvxerc+cPTZ
+         DLl/Sgl5wKJ9lVkudBm3qsjG54ELaRg8gBH/dj7adWST82LZRwx790bLR7qaQBsrPIRv
+         cmToR+ht53HL5f4ZhX98Zsa7iW3HkLFMrPo3WEtqMUbuexBgdwERD4S8FpEFRoIS6mK2
+         MRC2pa6SpbyCAPM4Kkipn1lYVOaeqBZJjjKpSmBL3AWvGuI24wY4Es2cLzrxhplU38Sr
+         tmvNV6qpxyvFX0mcyh7GYP3TmSGE6CNtuNQSDGx807NhxdBtG0EaMfa5Hu1X1D2zUs3m
+         UK3A==
+X-Forwarded-Encrypted: i=1; AJvYcCWcMUvo8cEhfc6hRRnJvK6PWNUHv0dWqrjtX4qh64z5KHghoaV8HuOMKywl8+jBXcpUUOGybHouIhVf@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOlMppGSYALvhAvP4RxaRLY6NXO+2SSgfiXcr0EbCEI9jWSxs+
+	KrYP3G4VNdd1/jRlM895pHZQkewb5llBEreywTZcMPxSKSSusqNpisUkG6iu3UcMK/XnTBCpBHf
+	P9pMsclG9xg639wIaqJXIASAUmZYIcb0uq9nTwNZEMj1aoTVEFrhHCnAP6PC0rlw+
+X-Gm-Gg: ATEYQzzSShcvftVeVYZE9Bow7P+mVGEsAqMFzJfkGkoFyG3JCe9uNkyVA8i4bEzpaIo
+	pRy151iXLxhVwC0neYPYPiHK/xW8pnhEY5pJakwYM8lkHsHkUtk2MZylMsmQTtEm4D62yuTHAdr
+	DiLrmHCruD9Rzc99qnwq/B+TwucnAyyO9x3c3kuHRtkZxADW/U5gPxfj40RhIS1wwfA6gJitCjx
+	2qA59Vy5INeRAXsQVTMYnuQ6lO5EUgkdXz9FgQTK4/D7ABvCzshpg+C/zDrk4bS/urswGMEDNoB
+	/liIMFZuEaLsbq5/2hZpu4O9JDyZgefha/jwGpCZj2sFetPLfhURlN6cua6tDjgq4323qrzNY5I
+	DdYEyL+8Y5RbcWcoVi4HoqdQIo5rg66UPcSs14jPO4X9gXk3qTBzNUMRmBh+LKfLGGOHMunJMke
+	e0P0MCGogxSqs=
+X-Received: by 2002:a05:6a00:3d53:b0:829:8942:2c85 with SMTP id d2e1a72fcca58-82a6acaaec3mr1506166b3a.17.1773795987109;
+        Tue, 17 Mar 2026 18:06:27 -0700 (PDT)
+X-Received: by 2002:a05:6a00:3d53:b0:829:8942:2c85 with SMTP id d2e1a72fcca58-82a6acaaec3mr1506122b3a.17.1773795986406;
+        Tue, 17 Mar 2026 18:06:26 -0700 (PDT)
+Received: from [10.133.33.170] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82a6bdd776bsm664244b3a.49.2026.03.17.18.06.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Mar 2026 17:44:05 -0700 (PDT)
-Message-ID: <c8f0883b-6000-4439-a716-4436100ffc25@pardini.net>
-Date: Tue, 17 Mar 2026 21:44:00 -0300
+        Tue, 17 Mar 2026 18:06:25 -0700 (PDT)
+Message-ID: <be947dff-881d-4c3f-821c-9b9806ce4f9d@oss.qualcomm.com>
+Date: Wed, 18 Mar 2026 09:06:18 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,96 +107,305 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] clk: rockchip: rk3588: add I2S MCLK output gate
- clocks
-To: Daniele Briguglio <hello@superkali.me>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-References: <20260316-rk3588-mclk-gate-grf-v1-0-66fb9a246718@superkali.me>
+Subject: Re: [PATCH v15 2/7] coresight: tmc: add create/clean functions for
+ etr_buf_list
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Jie Gan <jie.gan@oss.qualcomm.com>, Mike Leach <mike.leach@arm.com>,
+        James Clark <james.clark@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20260313-enable-byte-cntr-for-ctcu-v15-0-1777f14ed319@oss.qualcomm.com>
+ <20260313-enable-byte-cntr-for-ctcu-v15-2-1777f14ed319@oss.qualcomm.com>
+ <1c4ab892-6f01-40ff-83e2-9060aa69616f@arm.com>
 Content-Language: en-US
-From: Ricardo Pardini <ricardo@pardini.net>
-In-Reply-To: <20260316-rk3588-mclk-gate-grf-v1-0-66fb9a246718@superkali.me>
+From: Jie Gan <jie.gan@oss.qualcomm.com>
+In-Reply-To: <1c4ab892-6f01-40ff-83e2-9060aa69616f@arm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Proofpoint-ORIG-GUID: PdNaBHB-ILF9tF7Lor3BZWAfAv12G8_Z
+X-Authority-Analysis: v=2.4 cv=Aa683nXG c=1 sm=1 tr=0 ts=69b9fa93 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
+ a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=Ihr8kAaVTVC09hDvwRkA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: PdNaBHB-ILF9tF7Lor3BZWAfAv12G8_Z
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDAwNyBTYWx0ZWRfX7Qf90zavsuru
+ n68orHMT/zRT6trk4AOmUqZ+9TRpc0yUbizXZ/0CsNzxWXDhReRs4QXv/WxE70OAlyUt8GE/X4+
+ 8z0cWpxVqkY4WihJT/yeomeQIUMikYEglGfeXPRbrxACFOL0N8euKvTWWDd2jRae0adhbFEb8an
+ a3mfkPEZoiUod0MAUG1DzDQajwBbib3Oa4a0ibUXUpxqVWWApG9dc/1J2tno2CrGIUsePRG/83Q
+ 0gSEJWNi5oL+BYLOHM6FNqPJn8leiaBBDmpMH6zJVqIVdmLzot7J0nrqJgRLDcuMO5fPZUbVAQ0
+ KyGc0BRqEAQb8anyijNj99CE1adt4WH7vA8irm8p2eMSzSSH8g/rmjCw2xkT/2fbLb58jHBX6NG
+ 7CMSvRZC+gD0uZ3758LloW8tQmJhT71doKfTcAoUA5WcxqNIj2NuAV0KpO0GyZ+aEVbJss1CaQ1
+ wGgQ7S+2auEArRxyQgw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-17_05,2026-03-17_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=0 priorityscore=1501 malwarescore=0 clxscore=1015
+ impostorscore=0 lowpriorityscore=0 spamscore=0 phishscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603180007
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[pardini.net:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276886-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pardini.net];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[pardini.net:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276887-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ricardo@pardini.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[jie.gan@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,pardini.net:dkim,pardini.net:email,pardini.net:mid,0.0.0.10:email]
-X-Rspamd-Queue-Id: 2FF8C2B4AD3
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 3F2EE2B4D52
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 16/03/2026 10:06, Daniele Briguglio wrote:
-> On RK3588, the four I2S master clock (MCLK) outputs to external IO
-> pins are gated by bits in SYS_GRF SOC_CON6 (offset 0x0318). These
-> are set-to-disable gates with hiword mask semantics.
+
+
+On 3/17/2026 7:01 PM, Suzuki K Poulose wrote:
+> On 13/03/2026 09:02, Jie Gan wrote:
+>> Introduce functions for creating and inserting or removing the
+>> etr_buf_node to/from the etr_buf_list.
+>>
+>> The byte-cntr functionality requires two etr_buf to receive trace data.
+>> The active etr_buf collects the trace data from source device, while the
+>> byte-cntr reading function accesses the deactivated etr_buf after is
+>> has been filled and synced, transferring data to the userspace.
+>>
+>> Reviewed-by: Mike Leach <mike.leach@linaro.org>
+>> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
+>> ---
+>>   drivers/hwtracing/coresight/coresight-tmc-core.c |   1 +
+>>   drivers/hwtracing/coresight/coresight-tmc-etr.c  | 108 +++++++++++++ 
+>> ++++++++++
+>>   drivers/hwtracing/coresight/coresight-tmc.h      |  17 ++++
+>>   3 files changed, 126 insertions(+)
+>>
+>> diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c b/ 
+>> drivers/hwtracing/coresight/coresight-tmc-core.c
+>> index c89fe996af23..bac3278ef4dd 100644
+>> --- a/drivers/hwtracing/coresight/coresight-tmc-core.c
+>> +++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
+>> @@ -835,6 +835,7 @@ static int __tmc_probe(struct device *dev, struct 
+>> resource *res)
+>>           idr_init(&drvdata->idr);
+>>           mutex_init(&drvdata->idr_mutex);
+>>           dev_list = "tmc_etr";
+>> +        INIT_LIST_HEAD(&drvdata->etr_buf_list);
+>>           break;
+>>       case TMC_CONFIG_TYPE_ETF:
+>>           desc.groups = coresight_etf_groups;
+>> diff --git a/drivers/hwtracing/coresight/coresight-tmc-etr.c b/ 
+>> drivers/hwtracing/coresight/coresight-tmc-etr.c
+>> index 4dc1defe27a5..fdf23e1c932f 100644
+>> --- a/drivers/hwtracing/coresight/coresight-tmc-etr.c
+>> +++ b/drivers/hwtracing/coresight/coresight-tmc-etr.c
+>> @@ -1918,6 +1918,114 @@ const struct coresight_ops tmc_etr_cs_ops = {
+>>       .panic_ops    = &tmc_etr_sync_ops,
+>>   };
+>> +/**
+>> + * tmc_clean_etr_buf_list - clean the etr_buf_list.
+>> + * @drvdata:    driver data of the TMC device.
+>> + *
+>> + * Remove unused buffers from @drvdata->etr_buf_list and free them.
+>> + */
+>> +void tmc_clean_etr_buf_list(struct tmc_drvdata *drvdata)
+>> +{
+>> +    struct etr_buf_node *nd, *next;
+>> +    unsigned long flags;
+>> +
+>> +    lockdep_assert_held(&drvdata->spinlock);
+>> +    list_for_each_entry_safe(nd, next, &drvdata->etr_buf_list, link) {
+>> +        if (nd->sysfs_buf == drvdata->sysfs_buf) {
+>> +            if (coresight_get_mode(drvdata->csdev) != 
+>> CS_MODE_DISABLED) {
+>> +                /*
+>> +                 * Dont free the sysfs_buf, just remove it from list.
+>> +                 * drvdata->sysfs_buf will hold the buffer and free 
+>> it later.
+>> +                 */
+>> +                nd->sysfs_buf = NULL;
+>> +                list_del(&nd->link);
+>> +                kfree(nd);
+>> +                continue;
+>> +            }
+>> +        }
+>> +        /* Free allocated buffers which are not utilized by ETR */
+>> +        raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
 > 
-> The TRM documents the reset value of these bits as 0 (gate open),
-> but in practice the Rockchip firmware (BL31) may set them during
-> early boot, preventing the MCLK signal from reaching external audio
-> codecs. The kernel should manage these gates explicitly so that
-> audio functionality does not depend on bootloader register state.
+> This is dangerous ! Restoring the irqflags to an uninitialised value 
+> from a different function thant where it was locked. Please clean this up
+> 
 
-Hi Daniele,
+Noted, will take care of it in the future.
 
-This series fixes ES8388 audio on a board (Mekotronics R58X-Pro) which 
-I've not "yet" sent to the list due to lack of time but also because 
-analog audio was not working.
+Thanks,
+Jie
 
-Without these patches, the i2s0_8ch_mclkout_to_io gate remains closed
-(enable_count=0 in the clk_summary), and the codec receives no master
-clock. DAPM reports all widgets as powered on and playback streams run
-without errors, but the hardware produces no sound — a rather
-frustrating failure mode to debug.
+> Suzuki
+> 
+> 
+>> +        tmc_etr_free_sysfs_buf(nd->sysfs_buf);
+>> +        raw_spin_lock_irqsave(&drvdata->spinlock, flags);
+>> +        drvdata->sysfs_buf = NULL;
+>> +        nd->sysfs_buf = NULL;
+>> +        list_del(&nd->link);
+>> +        kfree(nd);
+>> +    }
+>> +}
+>> +EXPORT_SYMBOL_GPL(tmc_clean_etr_buf_list);
+>> +
+>> +/**
+>> + * tmc_create_etr_buf_list - create a list to manage the etr_buf_node.
+>> + * @drvdata:    driver data of the TMC device.
+>> + * @num_nodes:    number of nodes want to create with the list.
+>> + *
+>> + * Return 0 upon success and return the error number if fail.
+>> + */
+>> +int tmc_create_etr_buf_list(struct tmc_drvdata *drvdata, int num_nodes)
+>> +{
+>> +    struct etr_buf_node *new_node;
+>> +    struct etr_buf *sysfs_buf;
+>> +    unsigned long flags;
+>> +    int i = 0, ret = 0;
+>> +
+>> +    lockdep_assert_held(&drvdata->spinlock);
+>> +    /* We dont need a list if there is only one node */
+>> +    if (num_nodes < 2)
+>> +        return -EINVAL;
+>> +
+>> +    /* We expect that sysfs_buf in drvdata has already been 
+>> allocated. */
+>> +    if (drvdata->sysfs_buf) {
+>> +        raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
+>> +        /* Directly insert the allocated sysfs_buf into the list 
+>> first */
+>> +        new_node = kzalloc_obj(*new_node, GFP_KERNEL);
+>> +        if (IS_ERR(new_node))
+>> +            return PTR_ERR(new_node);
+>> +
+>> +        raw_spin_lock_irqsave(&drvdata->spinlock, flags);
+>> +        new_node->sysfs_buf = drvdata->sysfs_buf;
+>> +        new_node->is_free = false;
+>> +        list_add(&new_node->link, &drvdata->etr_buf_list);
+>> +        i++;
+>> +    }
+>> +
+>> +    raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
+>> +    while (i < num_nodes) {
+>> +        new_node = kzalloc_obj(*new_node, GFP_KERNEL);
+>> +        if (IS_ERR(new_node)) {
+>> +            ret = PTR_ERR(new_node);
+>> +            break;
+>> +        }
+>> +
+>> +        sysfs_buf = tmc_alloc_etr_buf(drvdata, drvdata->size, 0, 
+>> cpu_to_node(0), NULL);
+>> +        if (IS_ERR(sysfs_buf)) {
+>> +            kfree(new_node);
+>> +            ret = PTR_ERR(sysfs_buf);
+>> +            break;
+>> +        }
+>> +
+>> +        /* We dont have a available sysfs_buf in drvdata, setup one */
+>> +        if (!drvdata->sysfs_buf) {
+>> +            drvdata->sysfs_buf = sysfs_buf;
+>> +            new_node->is_free = false;
+>> +        } else
+>> +            new_node->is_free = true;
+>> +
+>> +        new_node->sysfs_buf = sysfs_buf;
+>> +        list_add(&new_node->link, &drvdata->etr_buf_list);
+>> +        i++;
+>> +    }
+>> +
+>> +    /* Clean the list if there is an error */
+>> +    if (ret)
+>> +        tmc_clean_etr_buf_list(drvdata);
+>> +
+>> +    raw_spin_lock_irqsave(&drvdata->spinlock, flags);
+>> +
+>> +    return ret;
+>> +}
+>> +EXPORT_SYMBOL_GPL(tmc_create_etr_buf_list);
+>> +
+>>   int tmc_read_prepare_etr(struct tmc_drvdata *drvdata)
+>>   {
+>>       int ret = 0;
+>> diff --git a/drivers/hwtracing/coresight/coresight-tmc.h b/drivers/ 
+>> hwtracing/coresight/coresight-tmc.h
+>> index 319a354ede9f..81237944b986 100644
+>> --- a/drivers/hwtracing/coresight/coresight-tmc.h
+>> +++ b/drivers/hwtracing/coresight/coresight-tmc.h
+>> @@ -208,6 +208,19 @@ struct tmc_resrv_buf {
+>>       s64        len;
+>>   };
+>> +/**
+>> + * @sysfs_buf:    Allocated sysfs_buf.
+>> + * @is_free:    Indicates whether the buffer is free to choose.
+>> + * @pos:    Position of the buffer.
+>> + * @link:    list_head of the node.
+>> + */
+>> +struct etr_buf_node {
+>> +    struct etr_buf        *sysfs_buf;
+>> +    bool            is_free;
+>> +    loff_t            pos;
+>> +    struct list_head    link;
+>> +};
+>> +
+>>   /**
+>>    * struct tmc_drvdata - specifics associated to an TMC component
+>>    * @atclk:    optional clock for the core parts of the TMC.
+>> @@ -245,6 +258,7 @@ struct tmc_resrv_buf {
+>>    *        (after crash) by default.
+>>    * @crash_mdata: Reserved memory for storing tmc crash metadata.
+>>    *         Used by ETR/ETF.
+>> + * @etr_buf_list: List that is used to manage allocated etr_buf.
+>>    */
+>>   struct tmc_drvdata {
+>>       struct clk        *atclk;
+>> @@ -275,6 +289,7 @@ struct tmc_drvdata {
+>>       struct etr_buf        *perf_buf;
+>>       struct tmc_resrv_buf    resrv_buf;
+>>       struct tmc_resrv_buf    crash_mdata;
+>> +    struct list_head        etr_buf_list;
+>>   };
+>>   struct etr_buf_operations {
+>> @@ -447,5 +462,7 @@ struct etr_buf *tmc_etr_get_buffer(struct 
+>> coresight_device *csdev,
+>>                      enum cs_mode mode,
+>>                      struct coresight_path *path);
+>>   extern const struct attribute_group coresight_etr_group;
+>> +void tmc_clean_etr_buf_list(struct tmc_drvdata *drvdata);
+>> +int tmc_create_etr_buf_list(struct tmc_drvdata *drvdata, int num_nodes);
+>>   #endif
+>>
+> 
+> 
 
-With the series applied and the board DTS updated to reference
-I2S0_8CH_MCLKOUT_TO_IO from the codec node:
-
-     es8388: audio-codec@10 {
-         compatible = "everest,es8388", "everest,es8328";
-         reg = <0x10>;
-         clocks = <&cru I2S0_8CH_MCLKOUT_TO_IO>;
-         assigned-clocks = <&cru I2S0_8CH_MCLKOUT>;
-         assigned-clock-rates = <12288000>;
-         ...
-     };
-
-audio playback then works correctly, tested on headphone output; thus:
-
-Tested-by: Ricardo Pardini <ricardo@pardini.net>
-
-Thanks a lot!
-
---
-Regards,
-Ricardo
 
