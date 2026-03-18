@@ -1,283 +1,302 @@
-Return-Path: <devicetree+bounces-276981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276982-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qMA6DFBTumm8UQIAu9opvQ
-	(envelope-from <devicetree+bounces-276981-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:25:04 +0100
+	id MMX3IYJSumkAUQIAu9opvQ
+	(envelope-from <devicetree+bounces-276982-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:21:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB3B82B6E43
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:25:03 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28C402B6D77
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:21:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1086E30F9317
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 07:19:36 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4230E301868C
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 07:21:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5A7336A01B;
-	Wed, 18 Mar 2026 07:19:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 058B036AB73;
+	Wed, 18 Mar 2026 07:21:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b="VYZ8K1zD"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="B5MKpL9w";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="kqkX/5SM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D41936997D
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 07:19:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92D4F368977
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 07:21:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773818375; cv=none; b=S3/8uYgHpMsuDTotYFJlWOQa5Y4Xl2YB13sSrSujVtWuBbquCOftjLt2S7hPLm6nRnS693GZogsxLnpqX2yXD6tCIDGmEUewnAZkO/p8LNYfB1/XCVONTx9dkVpyY8NSs9NM4Mtk+pqPyx8DbrXXdNerXl15kFUhT0GHD0FpsO8=
+	t=1773818492; cv=none; b=ayynjJZujd3WGrrjZAji3SYVuhT3SeLyk6wDj3lKlCHsUcW7KvfTzkkItkxEmYzf89LXgSBUF1Wrf1RKiAZG59wet+u3j6zAJAYFKifqx+rqkdLZZ6wkSLploJkxAzHHlaFNAx2SQdyJRg0Jz0tiERYu2VIld5zrY8gS/YOyZ78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773818375; c=relaxed/simple;
-	bh=zD+neBIaLn25buSkXOiOMDlEitHsQGHr2PhaQ1S9Jo4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=iu96kFefXFpUxXtligleRKUoIQEvencV5uuja074xNQi/e0TSM0ykDO5xGMmNBEi29O3cxwyJccZr73rIytIYTlHNtGaXwF+3/hmoBchEbS0sBp7Fbbggy0dylIdU6tPsmKUE9VcaH84q28yeAxKbY0NAA738FaIeQ6rbA/khsk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com; spf=pass smtp.mailfrom=vayavyalabs.com; dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b=VYZ8K1zD; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vayavyalabs.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-829a27414a3so4061592b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 00:19:34 -0700 (PDT)
+	s=arc-20240116; t=1773818492; c=relaxed/simple;
+	bh=Zg5AMgU+Rfbc6lXhdJRs/m90+7lDT7VWHZ0ukmlenNE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=khUdPPIzb5cRYlkxAdxQjKwFrQnm4S1nkLqEQG7q360a9M9saLMC7tZDDlnXZsiOuQYCWcs7/4oAjPtzKh5G6BPGidulr3gTkvzBOawS49oKS8jSobWcMEIIn5TcpX2iFyVDbiI75UPst5/3d/68EcscTjLs2pJBXdOpz7rzPwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=B5MKpL9w; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=kqkX/5SM; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62I2iId42730162
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 07:21:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YylNgRIFLdDGow16+9WuHWE7gEEdV3w331tMJHgwFVE=; b=B5MKpL9wxZO1hv95
+	3H3e8e8jZSxzeg/GlIrj42LJg5/klTvj6tNtab5vdccOwxbvyCM2N5IvkFD6UNU9
+	ukoE4VbvTPk7Ss8bfwi+YiB6P9s1oWWRMmsr/nrtFvR73Kuu4Oouk+P0ba60MRi6
+	WW+ToHCyVje0wTWb3+NehMYWM+RmiRWqgHiDHDT1MoAcgo16qHsWy6Xwg5O+LE7O
+	rqxTUaBb/mxCfM+otbuZRyVALxArUg/EPzKKDzcWfPrbr0AA8YpfUWyKXlofkrU8
+	5sLX8O5ngK5AQ9brOk25h1UORVRj0HssfOsVfs0nWKTv1YMzg+Kgo49c+ptj8hPX
+	s1T33Q==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cy8kjuk8u-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 07:21:29 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2b0565d77a6so37177705ad.2
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 00:21:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vayavyalabs.com; s=google; t=1773818374; x=1774423174; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gFX7q4zLow3FVt1OZdVBMtLthNdfCp6eUiWqYB1YR1E=;
-        b=VYZ8K1zDPWtRKaMWlaQyy8QW+G3itbRBKpESXAmLppCnBLvgbUqogBMXsBQtYnanZ4
-         cor+84sC/WDJgY5SyGv2woKNNQPRgYNv+bDIP92sWvxRV32fkeCVpA/Wec+ZuM4hINcG
-         0lDsjeTETmNAKsKTJRjwcIx1t5myzisvhB/8U=
+        d=oss.qualcomm.com; s=google; t=1773818488; x=1774423288; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YylNgRIFLdDGow16+9WuHWE7gEEdV3w331tMJHgwFVE=;
+        b=kqkX/5SMbd3+jdqaBfIuE5Z/q3C1Vz3F3w8QyRm28b3ZSwTQVt3hEug0PqiIWK11l4
+         6HiahNAUMXc/JYRfJT+T2CJUAHJUAMLmG0hQ84GZU8R8RZ8O4EpDan7rv70JVvoNdE61
+         a0MrCdx8r388C7cDRIHv18qjbaDToxyw43BOY48dW1jI2R8uduKJxVvxO2ftENexSdF8
+         QKzznw4gUSI0LUASqb7gm/9iwcKBv45kIUzLyTwf/47zX5TVnConQYTch9/SIQZV/DbA
+         PeNL7dGwjeJ51KvYAQYLg6Yw3wiFKKPBOU6Lgxh8wOS4WeEOVRKBsBgv7xJdEkW3pmSP
+         /HDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773818374; x=1774423174;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=gFX7q4zLow3FVt1OZdVBMtLthNdfCp6eUiWqYB1YR1E=;
-        b=rPhBBG56o/0roVn97gjbRlXY5/PhHivGSPbbHWxrnS+adw/oWmyD803Y2B9hkAEP4Z
-         1TiOFwtr9CjehWEt6slgWf0wbpAzb2+WHlfC7SPbUdkfo1yjxKBSejofZUTYBP/67X4c
-         yzm7FS45DHFRNrv+Boy9R7L6XS+bqKSy7jTHa3Sgf/L/uCbzoQBj0+p4FtDeaVMAMCrZ
-         QMhYFlktM4aaCETwTn0fup2/ZU2UuPD4QnWffEItwrB4i0tPMi6lQzG8uXcYzhaEcYRa
-         LgyyFmUdog+1h23UvmApiGexb6MxR/wLmppHAI48PGQw/q7fdQeVQS12k6AgGa9FXR++
-         j0DA==
-X-Forwarded-Encrypted: i=1; AJvYcCVh8+rK9T7u7T68Mxya6Ko+nLs9HxQ3kRMASwCeHumbNK/C1PbiitD/MwIgH5sq/CfBPOTDWELKeXbR@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLQWwfyeYp5IXUWj3YTNwPlVDRrWDAIkhWVs02SU1yneh3ZLuF
-	bIoRKv9975waE4Bsav2jvUCjdZ2ITeyLU8a0H2WaY1siEb65tXkRbe+aXojj+Z6oShA=
-X-Gm-Gg: ATEYQzznHVK7W3vAzdCF+kB4ZaOBfRwl1Jey8J5eT+bewmKw4NhqBan4NbY4GD8byto
-	FR8HloL92MF1YNjP/e/mha6wF0xGyxIWpbeisYRPGynOBMZ6mKi8aPquUWXt03vERCaoqGR6i4L
-	aVNuOsbBAtQR6amhPTmQ9f9+YMkA+YndWZcRxVhNSipcpQMSdV110glNGgfi2qO//J2oZk3ceQE
-	C39FOEC0mBLcFdYXfXGRmY8usSEOx22NvjcUAGHfFdMof8geDmULsnQF0Kjk/TcdeGXYYPv+Gal
-	jJ4Vfa0jtSqaSZ1mvVRyMBkMi9iUPxRczSmPw8NgI2+rYNCKHpf0ExC1Oo+U7S53+Un0pqHSnmr
-	odVY52AQ85EMmKE1vnxpb6PeLC+M52X/8UNzSr69/Q8Bm5t2DlIJ6PFLAPYQL9Rl1FHovn5fxXV
-	v1F5ybzhb2FtZwLEsz8KqFbFul2/ieGvD31nau46buzuoaEwgi/flouk4Y3Xq0xAyUyEF4ooAky
-	mee2nhjUpCrtjwOEOl7qVBxKtsODJKBXNdx+XxBymuDimVYI8f8BqMc+uWV32p9PtY=
-X-Received: by 2002:a05:6a00:2da1:b0:821:7d7e:41d5 with SMTP id d2e1a72fcca58-82a6ae85509mr2286973b3a.52.1773818373896;
-        Wed, 18 Mar 2026 00:19:33 -0700 (PDT)
-Received: from localhost.localdomain ([103.108.57.9])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82a6bee89d5sm1613669b3a.51.2026.03.18.00.19.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Mar 2026 00:19:33 -0700 (PDT)
-From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-To: linux-crypto@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	herbert@gondor.apana.org.au,
-	robh@kernel.org
-Cc: conor+dt@kernel.org,
-	Ruud.Derwig@synopsys.com,
-	manjunath.hadli@vayavyalabs.com,
-	adityak@vayavyalabs.com,
-	navami.telsang@vayavyalabs.com,
-	bhoomikak@vayavyalabs.com,
-	Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Subject: [PATCH v11 4/4] crypto: spacc - Add SPAcc Kconfig and Makefile
-Date: Wed, 18 Mar 2026 12:48:08 +0530
-Message-Id: <20260318071808.817074-5-pavitrakumarm@vayavyalabs.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260318071808.817074-1-pavitrakumarm@vayavyalabs.com>
-References: <20260318071808.817074-1-pavitrakumarm@vayavyalabs.com>
+        d=1e100.net; s=20251104; t=1773818488; x=1774423288;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YylNgRIFLdDGow16+9WuHWE7gEEdV3w331tMJHgwFVE=;
+        b=k06hvGkTB/10tbz50ViOfY4Z0MGQvp+MlrMDAIJM2onmUvfIW9MqDgkGAm45AnpFRR
+         FpUhwnZTIXfAXG1Ymbj4zKEETtb4xz1sb3tw/450JyoiqUdgvBJU1/gIwJUXpdYhJwSf
+         TwM9aNuF8Gx+6+o0Ywq0xgRAVn3aaED0Qr4SvnYLLGYJZs3jc5xATLPZgekqNHyt9FiC
+         WsGUUzSt+WpUJfnn1VpWJMdcvzuXzPUNc3bw/dMmnNelwS0EyrMGdpXotUS5oBn2/Mpc
+         Z9jsyx+evPgcW7D8Y/Xy46B+R1FN6mYZ1Oe42L+BHmobObKinjrDixktvOt4OpBsGzzF
+         YhxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXfWg4ORec6EeoEGwhIJV8a4t5yRDVY7KATnYihhDcNi+bWkO+K7wcDE0KDnh30xAHcGtiFJJBDvoGo@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywq2Iqa19+ruQficyvZFXV8JzG5jahtxEybR0qYEPi+yV+CVj3O
+	AOih+Z822WyJKJ1vDUrZeFT/RINnLod7KHf+kdnZqqWk5Ofj6yHNR4LJBNSDmRZkW/Sfd1O+L4u
+	zj8GE2KzBSdZxmRX/Ub9R9fYyCs126fvLX9TCt3ecx+ralUyza8OzhqBG522caNAe
+X-Gm-Gg: ATEYQzzN37o3OeDB06jQHBaCWLMiPv2kVTdhGdEztWbhZOqubC4fPqowI44SWZmmH2A
+	grf3AMpII2+NP7ppa79tqqoC1VQAB0wJU1bIHci/qw1TN5MXdxgkmKcsHiLRXC0JoSBRkgKsvc9
+	RFYenplrEAZj0oc9nPTnEP2NSG4ofKl1q7x4S06+oU/MaI1kfIi37reGXl8iNRoAsSFqnTAMBOE
+	Xl6o6LHQs70YcM6p0502Q+Fym4sbtkdMAAeM2QOEfHCG95aC+KCl/1ujMDtOJU921zXTn+0dWQL
+	CjPbUWPVtoJD2J1dWcJ8+hDdFRHYnBMYiONA0Mwp/2ujOMc7vP1JYFOVEFMgiksxhafTIxDbMQd
+	B/usJJzlrZmU3tkF3bBIVz4zPdmUGtQotLdQRoH8Rj8QCZnL0SoQ=
+X-Received: by 2002:a17:902:e94d:b0:2b0:608d:d8a8 with SMTP id d9443c01a7336-2b06e3230femr23641265ad.1.1773818488371;
+        Wed, 18 Mar 2026 00:21:28 -0700 (PDT)
+X-Received: by 2002:a17:902:e94d:b0:2b0:608d:d8a8 with SMTP id d9443c01a7336-2b06e3230femr23641015ad.1.1773818487824;
+        Wed, 18 Mar 2026 00:21:27 -0700 (PDT)
+Received: from [10.217.223.121] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b06e619ec3sm17610455ad.69.2026.03.18.00.21.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Mar 2026 00:21:27 -0700 (PDT)
+Message-ID: <1b1028b3-22c9-4b00-952f-804f192d8870@oss.qualcomm.com>
+Date: Wed, 18 Mar 2026 12:51:18 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 01/12] dt-bindings: crypto: qcom,ice: Allow
+ power-domain and iface clk
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abel Vesa <abel.vesa@oss.qualcomm.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
+        cros-qcom-dts-watchers@chromium.org,
+        Eric Biggers <ebiggers@google.com>,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+        Tengfei Fan <tengfei.fan@oss.qualcomm.com>,
+        Bartosz Golaszewski <brgl@kernel.org>,
+        David Wronek <davidwronek@gmail.com>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Alexander Koskovich <akoskovich@pm.me>,
+        Brian Masney <bmasney@redhat.com>,
+        Neeraj Soni <neeraj.soni@oss.qualcomm.com>,
+        Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>
+References: <20260317-qcom_ice_power_and_clk_vote-v3-0-53371dbabd6a@oss.qualcomm.com>
+ <20260317-qcom_ice_power_and_clk_vote-v3-1-53371dbabd6a@oss.qualcomm.com>
+ <do62iaopjcahvn576gfcdbyo4yxudf4uit2sbifvjw3pwrlb7j@higm25fdesk3>
+Content-Language: en-US
+From: Harshal Dev <harshal.dev@oss.qualcomm.com>
+In-Reply-To: <do62iaopjcahvn576gfcdbyo4yxudf4uit2sbifvjw3pwrlb7j@higm25fdesk3>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDA2MSBTYWx0ZWRfX3z4VFzOUn3nm
+ 2Rrnt/oLnzFKd5iv4NbD8yUC+eEILtNzHs5gUZjYmd+Oi0Ii9d6QeMENhIQQBdKU3MQBXZuZvlo
+ L5pJJD4uL4Lcn1yLXDSRzKsfD4S0EV9M0/tkKIZ5/iiusiOO4sb7/BWznX5WGGR6roQ12ZqyFFl
+ rOU598rY35BiLSMuhvrshk7HOAnq7syu82x8Lzgik53vW0KbqgCDZNIZacn3ERTUKcRW2Q2Ez3N
+ boqV8FuDgMhYwkJWsC5yn9StP0G+3ugwb7Zxqnxp0u76iam+XPE0/M4GOJ7Ktg5qd+7ZxvHDJcn
+ 3NL0vf/AMryXPyGxwpzM/r/VP26xq8urqeTfeXCDqSYsc+0PBpNAAmPtRZzRmHgWkDTjJ/vTUj8
+ 5M/SaC35QaExsz4qNonL0h2VYOIdiyV1WBNWWGKnkyPVZHncSbgEvV1ZVABzTLdw/fdVJtvfdeT
+ BXjVbfvXf7PufVUDZYg==
+X-Authority-Analysis: v=2.4 cv=P8I3RyAu c=1 sm=1 tr=0 ts=69ba5279 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
+ a=EUspDBNiAAAA:8 a=vZp64IP-UYAUPCcu32UA:9 a=QEXdDO2ut3YA:10
+ a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-ORIG-GUID: tRj3rtsXA0OI_w1bqb1QYsmSazw6DWtX
+X-Proofpoint-GUID: tRj3rtsXA0OI_w1bqb1QYsmSazw6DWtX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-17_05,2026-03-17_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 clxscore=1015 priorityscore=1501 suspectscore=0
+ lowpriorityscore=0 adultscore=0 spamscore=0 malwarescore=0 bulkscore=0
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
+ definitions=main-2603180061
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[vayavyalabs.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[vayavyalabs.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gondor.apana.org.au,davemloft.net,kernel.org,oss.qualcomm.com,chromium.org,google.com,gmail.com,fairphone.com,linaro.org,quicinc.com,pm.me,redhat.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-276982-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276981-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[vayavyalabs.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pavitrakumarm@vayavyalabs.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[harshal.dev@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vayavyalabs.com:dkim,vayavyalabs.com:email,vayavyalabs.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,synopsys.com:email]
-X-Rspamd-Queue-Id: AB3B82B6E43
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 28C402B6D77
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add Makefile and Kconfig for SPAcc driver.
+Hi Dmitry ,
 
-Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
-Signed-off-by: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
----
- drivers/crypto/Kconfig            |  1 +
- drivers/crypto/Makefile           |  1 +
- drivers/crypto/dwc-spacc/Kconfig  | 88 +++++++++++++++++++++++++++++++
- drivers/crypto/dwc-spacc/Makefile |  8 +++
- 4 files changed, 98 insertions(+)
- create mode 100644 drivers/crypto/dwc-spacc/Kconfig
- create mode 100644 drivers/crypto/dwc-spacc/Makefile
+On 3/17/2026 8:42 PM, Dmitry Baryshkov wrote:
+> On Tue, Mar 17, 2026 at 02:50:40PM +0530, Harshal Dev wrote:
+>> Update the inline-crypto engine DT binding in a backward compatible manner
+>> to allow specifying up to two clocks along with their names and associated
+>> power-domain.
+> 
+> This should come after the "why" part.
 
-diff --git a/drivers/crypto/Kconfig b/drivers/crypto/Kconfig
-index 8d3b5d2890f8b..b644f80ed40d4 100644
---- a/drivers/crypto/Kconfig
-+++ b/drivers/crypto/Kconfig
-@@ -781,6 +781,7 @@ config CRYPTO_DEV_BCM_SPU
- 	  ahash, and aead algorithms with the kernel cryptographic API.
+Ack.
 
- source "drivers/crypto/stm32/Kconfig"
-+source "drivers/crypto/dwc-spacc/Kconfig"
+> 
+>>
+>> When the 'clk_ignore_unused' flag is not passed on the kernel command line
+>> occasional unclocked ICE hardware register access are observed when the
+>> kernel disables the unused 'iface' clock before ICE can probe. On the other
+>> hand, when the 'pd_ignore_unused' flag is not passed on the command line,
+>> clock 'stuck' issues are observed if the power-domain required by ICE
+>> hardware is unused and thus disabled before ICE probe could happen.
+> 
+> You can simply say that ICE requires these clocks and these power
+> domains to function. Accessing the hardware can fail if they are
+> disabled by the kernel for whater reasons.
+>
 
- config CRYPTO_DEV_SAFEXCEL
- 	tristate "Inside Secure's SafeXcel cryptographic engine driver"
-diff --git a/drivers/crypto/Makefile b/drivers/crypto/Makefile
-index 283bbc650b5b2..d106c1c729060 100644
---- a/drivers/crypto/Makefile
-+++ b/drivers/crypto/Makefile
-@@ -42,6 +42,7 @@ obj-$(CONFIG_CRYPTO_DEV_BCM_SPU) += bcm/
- obj-y += inside-secure/
- obj-$(CONFIG_CRYPTO_DEV_ARTPEC6) += axis/
- obj-y += xilinx/
-+obj-y += dwc-spacc/
- obj-y += hisilicon/
- obj-y += loongson/
- obj-$(CONFIG_CRYPTO_DEV_AMLOGIC_GXL) += amlogic/
-diff --git a/drivers/crypto/dwc-spacc/Kconfig b/drivers/crypto/dwc-spacc/Kconfig
-new file mode 100644
-index 0000000000000..f9752e6f664b8
---- /dev/null
-+++ b/drivers/crypto/dwc-spacc/Kconfig
-@@ -0,0 +1,88 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+
-+config CRYPTO_DEV_SPACC
-+	tristate "Support for dwc_spacc Security Protocol Accelerator"
-+	depends on HAS_DMA
-+	select CRYPTO_ENGINE
-+	default n
-+
-+	help
-+	  This enables support for SPAcc Hardware Accelerator.
-+
-+config CRYPTO_DEV_SPACC_HASH
-+	bool "Enable HASH functionality"
-+	depends on CRYPTO_DEV_SPACC
-+	default y
-+	select CRYPTO_HASH
-+	select CRYPTO_SHA1
-+	select CRYPTO_MD5
-+	select CRYPTO_SHA256
-+	select CRYPTO_SHA512
-+	select CRYPTO_HMAC
-+	select CRYPTO_SM3
-+	select CRYPTO_CMAC
-+	select CRYPTO_MICHAEL_MIC
-+	select CRYPTO_XCBC
-+	select CRYPTO_AES
-+	select CRYPTO_SM4_GENERIC
-+
-+	help
-+	  Say y to enable Hash functionality of SPAcc.
-+
-+config CRYPTO_DEV_SPACC_AUTODETECT
-+	bool "Enable Autodetect functionality"
-+	depends on CRYPTO_DEV_SPACC
-+	default y
-+	help
-+	  Say y to enable Autodetect functionality of SPAcc.
-+
-+config CRYPTO_DEV_SPACC_DEBUG_TRACE_IO
-+	bool "Enable Trace MMIO reads/writes stats"
-+	depends on CRYPTO_DEV_SPACC
-+	default n
-+	help
-+	  Say y to enable Trace MMIO reads/writes stats.
-+	  To Debug and trace IO register read/write oprations.
-+
-+config CRYPTO_DEV_SPACC_DEBUG_TRACE_DDT
-+	bool "Enable Trace DDT entries stats"
-+	default n
-+	depends on CRYPTO_DEV_SPACC
-+	help
-+	  Say y to enable Enable DDT entry stats.
-+	  To Debug and trace DDT opration
-+
-+config CRYPTO_DEV_SPACC_SECURE_MODE
-+	bool "Enable Spacc secure mode stats"
-+	default n
-+	depends on CRYPTO_DEV_SPACC
-+	help
-+	  Say y to enable SPAcc secure modes stats.
-+
-+config CRYPTO_DEV_SPACC_PRIORITY
-+	int "VSPACC priority value"
-+	depends on CRYPTO_DEV_SPACC
-+	range 0 15
-+	default 1
-+	help
-+	  Default arbitration priority weight for this Virtual SPAcc instance.
-+	  Hardware resets this to 1. Higher values means higher priority.
-+
-+config CRYPTO_DEV_SPACC_INTERNAL_COUNTER
-+	int "SPAcc internal counter value"
-+	depends on CRYPTO_DEV_SPACC
-+	range 100000 1048575
-+	default 100000
-+	help
-+	  This value configures a hardware watchdog counter in the SPAcc engine.
-+	  The counter starts ticking when a completed cryptographic job is
-+	  sitting in the STATUS FIFO. If the job remains unprocessed for the
-+	  configured duration, an interrupt is triggered to ensure it is serviced.
-+
-+config CRYPTO_DEV_SPACC_CONFIG_DEBUG
-+	bool "Enable SPAcc debug logs"
-+	default n
-+	depends on CRYPTO_DEV_SPACC
-+	help
-+          Say y to enable additional debug prints and diagnostics in the
-+	  SPAcc driver. Disable this for production builds.
-diff --git a/drivers/crypto/dwc-spacc/Makefile b/drivers/crypto/dwc-spacc/Makefile
-new file mode 100644
-index 0000000000000..45d0166dfc8f7
---- /dev/null
-+++ b/drivers/crypto/dwc-spacc/Makefile
-@@ -0,0 +1,8 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+obj-$(CONFIG_CRYPTO_DEV_SPACC) += snps-spacc.o
-+snps-spacc-objs = spacc_hal.o spacc_core.o \
-+spacc_manager.o spacc_interrupt.o spacc_device.o
-+
-+ifeq ($(CONFIG_CRYPTO_DEV_SPACC_HASH),y)
-+snps-spacc-objs += spacc_ahash.o
-+endif
---
-2.25.1
+Ack.
+
+>>
+>> To avoid these scenarios, the 'iface' clock and the associated power-domain
+>> should be specified in the ICE device tree node and enabled by ICE.
+>>
+>> Fixes: f6ff91a47ac57 ("dt-bindings: crypto: Add Qualcomm Inline Crypto Engine")
+>> Signed-off-by: Harshal Dev <harshal.dev@oss.qualcomm.com>
+>> ---
+>>  .../bindings/crypto/qcom,inline-crypto-engine.yaml       | 16 +++++++++++++++-
+>>  1 file changed, 15 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+>> index 876bf90ed96e..99c541e7fa8c 100644
+>> --- a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+>> +++ b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+>> @@ -30,6 +30,16 @@ properties:
+>>      maxItems: 1
+>>  
+>>    clocks:
+>> +    minItems: 1
+>> +    maxItems: 2
+>> +
+>> +  clock-names:
+>> +    minItems: 1
+>> +    items:
+>> +      - const: core
+>> +      - const: iface
+>> +
+>> +  power-domains:
+>>      maxItems: 1
+>>  
+>>    operating-points-v2: true
+>> @@ -52,7 +62,11 @@ examples:
+>>        compatible = "qcom,sm8550-inline-crypto-engine",
+>>                     "qcom,inline-crypto-engine";
+>>        reg = <0x01d88000 0x8000>;
+>> -      clocks = <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
+>> +      clocks = <&gcc GCC_UFS_PHY_ICE_CORE_CLK>,
+>> +               <&gcc GCC_UFS_PHY_AHB_CLK>;
+>> +      clock-names = "core",
+>> +                    "iface";
+> 
+> We don't actually need names here. You can use indices instead, making
+> the change completely backwards-compatible.
+>
+
+I do not have very concrete objections to this. But introducing the clock
+names isn't breaking backward compatibility either. I wanted to continue
+using the names since the ICE driver has been following the tradition of
+referring these clocks via names since it was part of the UFS/EMMC driver.
+
+This also helps me avoid touching the ICE driver source code for specifying
+the index of the clocks.
+
+Let me know if continuing to use the names is a no-go from you for some
+other reason.
+
+Thanks,
+Harshal
+
+ 
+>> +      power-domains = <&gcc UFS_PHY_GDSC>;
+>>  
+>>        operating-points-v2 = <&ice_opp_table>;
+>>  
+>>
+>> -- 
+>> 2.34.1
+>>
+> 
 
 
