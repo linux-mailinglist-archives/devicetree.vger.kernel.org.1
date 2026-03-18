@@ -1,229 +1,168 @@
-Return-Path: <devicetree+bounces-277211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277212-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eEX4K6ejummyZwIAu9opvQ
-	(envelope-from <devicetree+bounces-277211-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:07:51 +0100
+	id uCFVDQ+lummaaAIAu9opvQ
+	(envelope-from <devicetree+bounces-277212-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:13:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABA402BBF27
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:07:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D01D2BC02C
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:13:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D82263007A50
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:07:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 26FBF30C3999
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:09:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 399C23D6467;
-	Wed, 18 Mar 2026 13:07:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 764433D75AB;
+	Wed, 18 Mar 2026 13:09:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FNdJbf1E"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fI02eSrZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0369D33B6E3
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 13:07:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773839265; cv=none; b=B5Xteu43hQw0BfbTNiT19uL0/UMlSlEtbnYqlt4Qbju+Vlg6N+e0UzufVfYPnTeCTM2CjkpI2TLJ73llwQHNW8nAxumOVo9faMrEJqY58EPohURUUmJhYaeL8hnbQx4+QSvncsdTXdd865WDpNpsnWaqVwsR7RAmdISXwoI93Wo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773839265; c=relaxed/simple;
-	bh=LfmrTgf/ojK7DT+NypOmSIL+kXWQlCzoNSxMkoXMuNc=;
-	h=From:To:Subject:Date:Message-Id:MIME-Version; b=LX9oBiOSM743VSPkhKHZJkaPHX2GM3skhWUFiuAzEw0CPXBtCElDbChpEzPrNFp80Ef/VqSq18HK0F/5FMcLRZ8WPL9g9fpG2JGAf/QzL5yPVgFz8VvZ1jvQgbiIVGQlrhS9p+Yq3PAerLZZrDeW6O5zBi0/DTBVSYbAUBD+vyI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FNdJbf1E; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F34E3BED11
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 13:09:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773839397; cv=pass; b=R/ipyAeo63I9GII503KAL2TtW7XsCs3jhY/nk7U89n1f1RTMWcAkZ/rAAsyX93RnPSbvyjdOkZUtBvLKGtk1Go1jQjF8uDesGRofw5zZGVnUWngU6E0U5I9fkO7xz/W84TS3ACEa4DoBijx4dxqjkY1HttQDvwfOLR+a9VPvlLY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773839397; c=relaxed/simple;
+	bh=mX2Hn+cjlm40dMz9dWd5Wuvnl08iJaqNpJW4nK9UZ5c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nh1KPpf+nSlPrFGphDAzljBvf1vg4lc8dnkYNXU5O6CSiNq4SAhOAyGlx0RXlBd7PC3sinNMN5WCp1qLFhvp1WygaeNkUbuKieSv5SN1FY9U3LZHrRa7Hgj3zqDs4kYLJ02LrZY0GPU4+FYEbTEddh7mc9CwzIGeF/reKImCEZM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fI02eSrZ; arc=pass smtp.client-ip=209.85.167.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-359f35dfef6so3567811a91.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 06:07:43 -0700 (PDT)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5a27b5ad832so595181e87.2
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 06:09:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773839394; cv=none;
+        d=google.com; s=arc-20240605;
+        b=bOOWLfwDv0yMFKX/1NNvqPBwpyOVM2LVsQNsHKIdF9RFkG01KArOIB++QDKJqRS6n0
+         VBeJMnoRcjxipGLVDW2k+w8jr+gyOSAEPpgbbxjc/RhhuzVfj00AOXmw6NbNnFzQi3xI
+         lEsSTybH119bkW6vgNhk6jcKmARO/xNKRsqrYPcgUDTN4E622BQXqmYOFxd5sqVCw7Oe
+         igyRXr4csGgCFyWZ+Ral/WqKDogP8M6f03clF7Gh0b9XtHGaTRMn9sIT4NFuM1/H3Gdk
+         EyB9oHQtyeLx/5a4mkVOE79e2gbeeJ12iOMmEUxPlpOSNZU1f2RvWimv60RMNxoEG8np
+         N9Vw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=mX2Hn+cjlm40dMz9dWd5Wuvnl08iJaqNpJW4nK9UZ5c=;
+        fh=dRFM6GFkDN++bMfo8bSSuX+M12aLDj0HMEhNzDnMarc=;
+        b=eSAHnX1U61P3VQztOslHeNGvGXkl9VUXmMCb8iz1HxRhU4VMdnD5sjLAspyI3o5K1X
+         UD1X4+ZsDjY9llzzgLnv33KkvK9DVn3vSxwW1EAZGn9ADFaWAJ+NjYbx5WB4PycLpJwe
+         zqO9RhW+FsWZfOq7PaK3UmUuECNjy+s+e4Wa34BPPYEW5PM1gAD/+4SrmGUbxqS6EKi8
+         MYbUVHyulxNJP49E7i88lkUDBPqJstKIN/z2sU+WQpFTne0yNuEBSsKBqtAaFRWvj88z
+         fq8ttpB3dv0zJ8ZJ0787xs5ctsXOhqEPkbx9a7vrHce6XakCmn3bH/gHhRFjTPjzUHZC
+         2tSA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773839263; x=1774444063; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=sm0CcoDen686zb2q6eiuQx7mweJvAGSwVDuf2RW0DNs=;
-        b=FNdJbf1E6strr40En/TPLv/ZGVls7OKTDSyAFC8ptjgsyMfCKklz9LmP+RFf1vyQQe
-         ip84iElpM4i/IPfUhMxavJro30RDwVL4y4WbjHNiCGZAAN3gpYRjg2EyrjBI36iV0y1j
-         Yy+GAcGI7rpLaeVlJTyu02+bYi/YPEQxmr1GsY9YPn9IXljt06WL+cL8SUeKTB5MSMOQ
-         hENo/qBVaRRGtlPTVqukrM14hW1ZEQMJXJ1jMqswFH4GSCxW6PadP8Y6atf02VkNQIGG
-         8Dxb2xsy8TZ9K0pLL8frTUGRzO3FkUSDIYAFEuP5pdSUeE8MJ70kFCozlr+7xoatPUBB
-         Vg7w==
+        d=gmail.com; s=20230601; t=1773839394; x=1774444194; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mX2Hn+cjlm40dMz9dWd5Wuvnl08iJaqNpJW4nK9UZ5c=;
+        b=fI02eSrZkRC1LLwoic8QysLHYwQniZ4lWJdHZ2CjCjRPtuMVJjDMhGpJmvcrwPYtqj
+         uk2l/ls/85p0qaFlgNg0qD7t+sbfC1HCNBhs9wV9b+pINqrbXyXsN9T8SBBZaAabQ0gq
+         vQWdrE6XQWeGKHztHk8YxcCTXGT2yVzaVerbGsGTc9JLbJNQLjxGYeJtGLloy5sKlRyv
+         7OB/edYkH/kO1tyk3OfXqtznIwKbpojYacRlv9DtiWSwnFRz4qyoos1asYyJH8azgVGk
+         rb4UVNKk5JbLShdYxCdTKh7pyzrdRAj0FAXxf8ekQmFRANFPxMhKUOItReunSNcdboZn
+         pdxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773839263; x=1774444063;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sm0CcoDen686zb2q6eiuQx7mweJvAGSwVDuf2RW0DNs=;
-        b=bf/pa6enitMGWgIMX1uDPpt7vlwnaAOFP/u0yin+edWrGPK/bx7z1hey+w/BpjG781
-         j/vnT/J/z56oSIK/vmdLI4Hw6oHZzwnkULNppqIA4U6A9wUHcC8zwGqqMz/r/uBAOUQC
-         saeDhXfqZERrug4o2TuWyOgPWYk8UC+inE+bRPs/Ql/C98gIHNoZJKN4QXIHbTZ3X/fU
-         iuFVQlWuNRouksgEk+uDdilm4qPWgmri9JyvdzsLOurwFvff2T1xc9GBYYM++/P9vCK+
-         gS9gv3+eAUF6+Zr0yRr7vc1wJESWa+zZrfkMDPwRYGibGx3/MiCyUNueab9l75MkEui6
-         mmKA==
-X-Forwarded-Encrypted: i=1; AJvYcCVbt0oMImN/qlRcfSZ9modMctVEcHE9sCwl4vBwXo6y/GZuNKt/by1frX7mhIiKXuV7XFBsLZbu4+bU@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpwVc+roZcsNyCpg8ZqINA6h4oIzDG9gqVg9Y0iSoHWW3UI501
-	KY4vGJlF/8TUR+5XvMm39sM0/uG+HqbEYJCTWb9k9rItXEqZBIuMbjTb
-X-Gm-Gg: ATEYQzydOOrl1bPQSNgrW9CixF/msjB99n+WFzCoIyGngHfYh2lGNKeP689NH18haEW
-	UyS8PkO+suL8IedrqGCBqOm+FXlvD3eJBgARhU5xbaFopyiegLmPy+TtriKC5Lgmc3zqomHEAHd
-	qKPw3zb5pU5PcnvxRtldWWZQdI/xNKTXZihLnJ6rYjNwu53ncNzO2N6m7fbasaV+vmADmO1IfYc
-	a9BFM453ZvkjTu0k7EnVq1f5Pms9ikPGX0FjfosmOucBCukmM39oj1rGtmA3gfLakjzBwxGjvWs
-	oYv8YID2PrgQzdvdhYkQGBXsYTEgyhbcoLlmNUdO66xXj4sexE7eGyJiqdD5j/A0tZSbgyzolKX
-	8nPDWiMD7mP+rgCuwqeJKy6BgvcnsgCfl46fM2JXbLQj+kCy+JEQ58nFDa/0ffd87Y51hZkgspP
-	lHzbWW7zOjSkojrpsluoh+1upUg3WTDLNS0Xec33Zo22pSAxjuUqT06CnNpRVl3o1Ub1tT7xMQp
-	femwXKD2zQSw6mmfWZGs10t5d7u49JYVERwFAFt
-X-Received: by 2002:a17:90b:17cd:b0:35b:96bb:47b9 with SMTP id 98e67ed59e1d1-35bb9efae60mr2420291a91.19.1773839263179;
-        Wed, 18 Mar 2026 06:07:43 -0700 (PDT)
-Received: from lorddaniel-VivoBook-ASUSLaptop-K3502ZA-S3502ZA.. ([2401:4900:881f:243e:f3ca:95c3:4873:c02b])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35badbcda60sm6205760a91.14.2026.03.18.06.07.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Mar 2026 06:07:42 -0700 (PDT)
-From: Piyush Patle <piyushpatle228@gmail.com>
-To: lars@metafoo.de,
-	nuno.sa@analog.com,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3] ASoC: dt-bindings: adi,ssm2305: Convert to DT schema
-Date: Wed, 18 Mar 2026 18:37:33 +0530
-Message-Id: <20260318130733.52477-1-piyushpatle228@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20251104; t=1773839394; x=1774444194;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=mX2Hn+cjlm40dMz9dWd5Wuvnl08iJaqNpJW4nK9UZ5c=;
+        b=R2ivg5LibbBhTu0gvtMCVBAioLcS/mGIbHK8+J41T3v1+w+VL2HVFT2nrciLvTUfQv
+         RXavu8HLFDVeWDABTSbRgW3TNeSWuERNA0OHIIasVr5Q1mjVLbPYk3BGl67O+CIwhGB0
+         EcsaeIxvWPetppa4XqJOyD57EdtQMUBjLCKDYwWNykjD+koHYx/EZWD4l/Vi6rPD7yHE
+         tNz0wZD+rHB47wz35fMRCZU6FO2xPJVrEXrE0kaZtwGZtOD0biPG9CBPVrWB8gXof+Xn
+         PYNjCmJ7+VZDulfGZ1UrxwdWWnK9h0Zykf0Hs8DvX/ZKbINEGZuW2X+XHLBnkl8mfH9Q
+         6OYg==
+X-Forwarded-Encrypted: i=1; AJvYcCUm/Ug2eHkwsBcXSbw5vLCfKBdTjzEyOK7EeEyzoTW+7o3AMMZaUMVqOtYw0ttQaxICdsHmu7zzW94Y@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCEMBOiH6s/Nh14yzKb9n5DqceBe7lnFCFNDSsXN9+MnVQ7JFC
+	/YP/tPtYc1z6aYCJ7aeIjyInBMH4JxdVEXMUHFQz4L5mRa9z4C0Z6N/qSVb4McXhdB+jLyR7kKO
+	HNEqLdbtK/1rzzI6KnAI7/dshndGWegg=
+X-Gm-Gg: ATEYQzzc2fT9g4DttbR3WfazKF6H3jlnc2Qr6sl8WbybxLUywI3JdFi1get6ubS6GHG
+	PaDLpByvqAXrN7Gu68sl2N87SITum7sCjgwtKcGoxSvuGYDiw6fXpUYwQCkKNMD4zmtgte5ONMu
+	s/gYc16RbcOvh9BWe1BOPRt4ltA0nZHFRoiJAUR0N6DWHwkRkllRiV+wZ2K//UQRe2QXpNdkPuu
+	GkJ6nJqlDu+/cIkIHlXtwsbsyWkK3o/hY6nZM8vew1ar220VSUl7M/AwMD053PrZCVpdq+yNNlX
+	Ln7Uz0yd19UZFO1j/6pp3nDpHxKQVesYF5wMuWKRgWoeSAuz4wKHU/s2240bPRlQWfE04aUheR7
+	cOqb/aMTu
+X-Received: by 2002:ac2:4469:0:b0:5a1:3ee1:2756 with SMTP id
+ 2adb3069b0e04-5a279598756mr970100e87.4.1773839393861; Wed, 18 Mar 2026
+ 06:09:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+References: <20260316211348.230923-1-piyushpatle228@gmail.com>
+ <20260317-cassowary-of-authentic-agility-05dec5@quoll> <fc4cd40e-ad7e-4851-a483-125b1c1c1697@sirena.org.uk>
+In-Reply-To: <fc4cd40e-ad7e-4851-a483-125b1c1c1697@sirena.org.uk>
+From: Piyush Patle <piyushpatle228@gmail.com>
+Date: Wed, 18 Mar 2026 18:39:16 +0530
+X-Gm-Features: AaiRm51JPC636QkcUizg--m4enX73V5zKFNfoYdrsLB9EQZyZFUybJRy9GnWn0A
+Message-ID: <CAMB+xkYRcRw9q7u5oQSJ=R7op91tQ5rgPeVpMfS_oULKjoPsew@mail.gmail.com>
+Subject: Re: [PATCH v2] ASoC: dt-bindings: adi,ssm2305: Convert to DT schema
+To: Mark Brown <broonie@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, lars@metafoo.de, nuno.sa@analog.com, 
+	lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-277212-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277211-lists,devicetree=lfdr.de];
-	TO_DN_NONE(0.00)[];
-	FREEMAIL_TO(0.00)[metafoo.de,analog.com,gmail.com,kernel.org,vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[piyushpatle228@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,metafoo.de,analog.com,gmail.com,vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[piyushpatle228@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email,devicetree.org:url]
-X-Rspamd-Queue-Id: ABA402BBF27
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8D01D2BC02C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Convert the SSM2305 speaker amplifier binding from text format to
-DT schema to enable dtbs_check validation.
+On Tue, Mar 17, 2026 at 6:23=E2=80=AFPM Mark Brown <broonie@kernel.org> wro=
+te:
+>
+> On Tue, Mar 17, 2026 at 08:28:12AM +0100, Krzysztof Kozlowski wrote:
+> > On Tue, Mar 17, 2026 at 02:43:48AM +0530, Piyush Patle wrote:
+> > > Convert the SSM2305 speaker amplifier binding from text format to
+> > > YAML schema to enable dtbs_check validation.
+>
+> > Missing DCO. Apply your patch and check yourself.
+>
+> Specifically the issue here is that your signoff needs to go before the
+> --- since everything in the changelog after that gets deleted.
 
-Signed-off-by: Piyush Patle <piyushpatle228@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
----
-Changes in v3:
-- Fix Signed-off-by placement
-- Replace "YAML schema" with "DT schema" in commit body
-- Add missing Reviewed-by tag
-
-Changes in v2:
-- Fix subject prefix to ASoC: dt-bindings:
-
- .../devicetree/bindings/sound/adi,ssm2305.txt | 14 ------
- .../bindings/sound/adi,ssm2305.yaml           | 46 +++++++++++++++++++
- 2 files changed, 46 insertions(+), 14 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/adi,ssm2305.txt
- create mode 100644 Documentation/devicetree/bindings/sound/adi,ssm2305.yaml
-
-diff --git a/Documentation/devicetree/bindings/sound/adi,ssm2305.txt b/Documentation/devicetree/bindings/sound/adi,ssm2305.txt
-deleted file mode 100644
-index a9c9d83c8a30..000000000000
---- a/Documentation/devicetree/bindings/sound/adi,ssm2305.txt
-+++ /dev/null
-@@ -1,14 +0,0 @@
--Analog Devices SSM2305 Speaker Amplifier
--========================================
--
--Required properties:
--  - compatible : "adi,ssm2305"
--  - shutdown-gpios : The gpio connected to the shutdown pin.
--                     The gpio signal is ACTIVE_LOW.
--
--Example:
--
--ssm2305: analog-amplifier {
--	compatible = "adi,ssm2305";
--	shutdown-gpios = <&gpio3 20 GPIO_ACTIVE_LOW>;
--};
-diff --git a/Documentation/devicetree/bindings/sound/adi,ssm2305.yaml b/Documentation/devicetree/bindings/sound/adi,ssm2305.yaml
-new file mode 100644
-index 000000000000..b841da2dc284
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/adi,ssm2305.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/adi,ssm2305.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices SSM2305 Class-D Speaker Amplifier
-+
-+maintainers:
-+  - Lars-Peter Clausen <lars@metafoo.de>
-+
-+description:
-+  The SSM2305 is a filterless, high efficiency, mono 2.8 W Class-D
-+  audio amplifier with a micropower shutdown mode controlled via a
-+  dedicated active-low GPIO pin.
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: adi,ssm2305
-+
-+  shutdown-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO connected to the shutdown pin (SD) of the SSM2305.
-+      The pin is active-low; asserting it puts the device into
-+      micropower shutdown mode.
-+
-+required:
-+  - compatible
-+  - shutdown-gpios
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    analog-amplifier {
-+        compatible = "adi,ssm2305";
-+        shutdown-gpios = <&gpio3 20 GPIO_ACTIVE_LOW>;
-+    };
-+
-+...
--- 
-2.34.1
-
+Thank you for the feedback. I have fixed the issues and will send v3
+shortly with:
+- Signed-off-by and Reviewed-by placed correctly before ---
+- "YAML schema" replaced with "DT schema" in commit body
 
