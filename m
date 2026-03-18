@@ -1,118 +1,107 @@
-Return-Path: <devicetree+bounces-277201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277203-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mDeYBoaeumngZgIAu9opvQ
-	(envelope-from <devicetree+bounces-277201-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:45:58 +0100
+	id ML5mKAWfumkkZwIAu9opvQ
+	(envelope-from <devicetree+bounces-277203-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:48:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F2D72BBC40
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:45:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C96E2BBCBE
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 13:48:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0CCE4305AA1C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:41:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 55C7E302205F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:45:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6AA23D6698;
-	Wed, 18 Mar 2026 12:41:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EADB3D75A5;
+	Wed, 18 Mar 2026 12:45:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZI695LtZ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="a4p1A3I5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C+q2969g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C506C3D75CC
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:41:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F23C43D6CD5
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:45:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773837685; cv=none; b=aWekJ4KZHWWPRl7jFuDJdPm6XN+uYCcd3jtS+N5g9m8RYVZwiRLuFDYKV2tQsrhRPcrkFnBNYjx7HEc8mIejhTzlxpLpi5RygqDNGh4AlSRWNPTH2l8pDn5NuYo39PbmokfyIdQHYXbA9TU4eWg2O7UjegtVSfPC7/XgJWZs+8k=
+	t=1773837915; cv=none; b=kaNdZZhSaTOsYP59S27Bth3wzE2VJLNRD7McwVzRXkofKx2tqb5R/sPpByIE9kDZgTAkkNmpdjkpZToWWWhqhu7v1ErNW8qcFtInsRQV7iMJ4/sdlG81hKmKc1jULj5EXGUoP6GXm/veD7M3tAS7sDRqOfVRmPiA1A1tMEmN7X8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773837685; c=relaxed/simple;
-	bh=vHVi3HpnuTyeFgM6r7yOwJKxtmmp832ydAxUg9JS4kc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=NjaA8aymTV5+npY00jqdki610tmNDBjSxaCr5Eco3non26ExjjiBMbD0xxp5+32MPlVwxbyxdKl61sin3txOeIi2Sp2ATpd5AgmZiN1JMd548u3mZvXKM2oxyyx6QsgDPXLmyXdWEWLRPEJW1U73VuO4ziIY8f9mp9VkG9bcKq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZI695LtZ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=a4p1A3I5; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62I8Fcie2790978
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:41:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=MNPeDJEhaPj
-	BjdqxIt+R7AAcY2Fwhn6fypcd/nzle7o=; b=ZI695LtZt435IrnQ3dyLIJvFq/y
-	AHro0ovAJV5zZyzyEkt7J/01qRW/yer4RPhX8bICRx2/6FnaOV3YC6wivc4NM2U7
-	u9bJB6MmbcNYKlqHyhWu0nuxWENjJeXBWnPtiNT6NcMpC9QfRsyCWtAMeZ01UnXd
-	SaHwm2sr9Amcvro+NSzZN/mwXY+JY0Pc+KGC8ZmLCIoaRybfNOGhWmpKzfOigw3y
-	4112nAcV/uBQMZxMBj7DCKn9nVyUQ6foT/6Ap9MWZELZy3GO3Gsc9yOvDCnBkrXX
-	nU8wn6xUcTMy8aLwKdJz5qE5CfcX12XI/LX95c+4VqJvzGo3Ne4CJOdDqoA==
-Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com [74.125.82.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cyj4g2hpw-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 12:41:23 +0000 (GMT)
-Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-2c0d15416b3so33254781eec.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 05:41:23 -0700 (PDT)
+	s=arc-20240116; t=1773837915; c=relaxed/simple;
+	bh=7h/HGlld4QUZ8/6amWHzk8Y1v7CTpf+63EYDdvnKPsc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CHs4JfRTVZ8sqRdb0XEtMd/1YjLj0UmsKCxUQpd+aLpgOkdtgnSBEXPyWw9GAaXY1e/LjL+OJ8f5Pby12ICwEq/hG2gS6DudSFpmZSTxgvOwZLydThEVNVfV/Y/lnrXqaF8NzeEdk85DHZPOvzTyO4A5N/IskvwEcqt57zC5YGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C+q2969g; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4856cd3f1ffso7585365e9.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 05:45:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773837682; x=1774442482; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MNPeDJEhaPjBjdqxIt+R7AAcY2Fwhn6fypcd/nzle7o=;
-        b=a4p1A3I5SYck7RAFADubjSvk4rEM2Hg2dvvGdZKBvHo6qXOkSevC3ZIO8GD5NwFgoH
-         C2GWZk5EcRYBbfJfapx46vbR3r/VOVJ3IgwGKAWojAKo/iHdsORXbGrCwVRkcdOKz1i1
-         yGGr2JctoHmN4J2jlewgeDw6Ue4CpsmIBgkBOnPNx3v805XGFtEzF4wdStScz7YUxP0i
-         iajZ9HVveQhP1qkVbpXtDR4dpejIB2L9/B0viRfZuzhC/bxjRRpSiipq63U8SmsM7NRI
-         KtdHZFKLNf8oS5GxspCSAt8NxUPg1CSNFW8/lvjTSAvvHP8B3NlCbK77iRZ9HmlBvDlU
-         02Bw==
+        d=gmail.com; s=20230601; t=1773837907; x=1774442707; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8uibrI3W9d4RMuqjhPjL4rWVHNQ9ZJs9HJd7qxmHcrQ=;
+        b=C+q2969grF5WkLXMY13vy1mjIpwQybgMCbfp87o88Ot1SK+kaIe9V3vPYrDdinRg8a
+         gwpvZoFUeIBI2vrFi2BHtQnmQRuMT//5D+evRX/CP1qclJqfipf6zN59C1TLLaGo48Hp
+         HCHwkuZK5pHL86gdTf1cZGExJXz5Rc6xz073GUNfpTpDt3CPSTQ3AFXD1CF/KbwUgsiH
+         EhdCg/Xg2pky15tDkJEFqOXAgKgL8QzjiSQ71Kr5/hghHxAVwtWXDnA7DnqaMXC8gVy+
+         topYdfrpNIvsHKLYiYtle+LNXy0cx13OX+w0aqb6NnV8Bc6E7jyrNEB2UQSl7g5UOsxZ
+         K1Og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773837682; x=1774442482;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=MNPeDJEhaPjBjdqxIt+R7AAcY2Fwhn6fypcd/nzle7o=;
-        b=L8jM9XCVYM0aoH0ObvHwsHaH1oU3J6g+gnt6FqAyQ6kQ77v7npQV3qFNofdakE/JQU
-         qnA9Q+dPpOZxW450lAUKgPHNdTtOIzGglgYkJFoKIDGKRCj3GjGqj0W9+KGE3b6lo3/0
-         Erv9NUDnz3+atDaKPRjXLeItqDs6HORnm+5NiqdnnTYUzHr1MC1QFi1Zma5C2bLSB1i0
-         ei4LW7kvaZp/cLzQwDdbehk1ygCOvJYU7GC9pPFslsnrYwNGJSJnBzuuXf6AYna3rtlz
-         jnWZ+OjEIgT7gyr7Wy+N8MrFXMXFsYTzd6GiHzaFzN2IUxuLomH7POdBB0LOBKxjupdD
-         gZzA==
-X-Forwarded-Encrypted: i=1; AJvYcCXTPym+oUPWVj4T6kqmrMbIa97GjHQ/N5gjqUe/nNorA/9yiGCurbEg6WSXhksYxK3Kg5LvbCmq6V2B@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYXUFTMuyUD4wOgsrP31AkhGhr1rWSuAfxEuBNdMOvJ1TiH51x
-	9uS9xlfMWwBD4K5JNLAWewPLjsS3oS/nGma4lw1cAhTzlYyAVOIVma0dwJtn4ceKDHh+dTtE9MB
-	VXzQwwKjVj5KDQa29w/Xjq6tEN8Xz/d1i5CxwzmSVDcNML4E7j9FKjDakMHk00zcy
-X-Gm-Gg: ATEYQzy65YRs9noPvJvJYX+v6YHoTIj4ngrjlQij68vSjUYpXgTrtJqAUzyrdIf6ctW
-	tn6Oc/vQuMBADC+klSLtO1kqMpiTP+19o0JCcuYtC1DmIl4y8ZcykaRy+moqoMkQLEvj4TmTHHP
-	5dgtRiY55u/tK9WB8BnQHPmJcYouYtoN15X65g09xQi0+gbltMTq4mQgEfiSyPAi2ub1EYRipD6
-	e7YG4Xz6dGoaQ63NAb4VifY1c90jBeKsnxiGeaHiFKL6EU3mN3FHHFC0Nhrspb2qh4LW5Kd0WbX
-	o6sHuS3M51q+Em9d/DKufAQOm7Q2DvlqBcwAO2nqjJHuc5FS5mw8dRNI93+i/DLqnGdqvY51zUS
-	S4VoKngyVDWs3VBS2H6UQ+ebMGrQhyxHKXZemkRjbPOioBnA7x3z8d7wMtrK4coRAA8nuf9OSf6
-	+DR5ByppHW0Q==
-X-Received: by 2002:a05:7301:6785:b0:2c0:dae2:9c50 with SMTP id 5a478bee46e88-2c0e5115c33mr1504542eec.31.1773837682077;
-        Wed, 18 Mar 2026 05:41:22 -0700 (PDT)
-X-Received: by 2002:a05:7301:6785:b0:2c0:dae2:9c50 with SMTP id 5a478bee46e88-2c0e5115c33mr1504509eec.31.1773837681133;
-        Wed, 18 Mar 2026 05:41:21 -0700 (PDT)
-Received: from hu-ggarmidi-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2c0e53b5fa1sm4454521eec.10.2026.03.18.05.41.20
+        d=1e100.net; s=20251104; t=1773837907; x=1774442707;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8uibrI3W9d4RMuqjhPjL4rWVHNQ9ZJs9HJd7qxmHcrQ=;
+        b=mh3epo2sqg9IZHi7vqu7PE6RcHI6IxKk+HwYfWeTmxPIsWmV3BV4iQ25FZ4pB6qHCF
+         +QEE3CfsKNOVKLQA0wTpM6Mg7yZPrz8VvBEPNdIS/gS1wmstyHLKslu6ikJwV51w+aK9
+         affHrC565yt9Y+b91YL53G3WdkNDwLhn0Zkpb4p39Ka7WC/sq9Gymc0K5fdJBqZj6V4K
+         NKh9NeRNmepO7TNbD53NLKzZgfVfsflPk2ry8mtIGTj86lrdmppjk/jfh3hbjiJYrG2v
+         kv7dArTIn0Ndb15tWA1GGvvWDgSA4ys9pKO0r34dGluaTGLl5RSsUl18yocnvFQOpPAM
+         xnOg==
+X-Forwarded-Encrypted: i=1; AJvYcCXx8Kc807fY9ULaWQOUIRepzqxS1i/AtwMmtH06ocpWGl6iH0LibnR/b9DEtuaYDEIbtt0gTfelOi+h@vger.kernel.org
+X-Gm-Message-State: AOJu0YzidLAVvXhR5KT8hJ5BYPaKsIbLJLsNhcUsvkQNaOXFQBW3MWEp
+	ggBGxhnSTfKijiXLYYTnGPsAniVRqffhNqpm53Z5TxLdrhpT3kCTtaZ6
+X-Gm-Gg: ATEYQzyatDUjPYwG5c5CGdaXi/uKnKF+q8aYo7xBCS5H4X0earRaZqNo/pT2FeeXbow
+	MXtouV0ZMIn3emQ/ge0V+l5PBRgFD2gdhq4pIXofDU1VNkuUm/AXJymhP1yFLG0+Cfy3gzIQToP
+	XACKXCjSldi9fJxrszdXw7za7tZZETLR3ExOjG0gD6j3WewELS1FayJUtd+PtLy6jVMqyAlRUwn
+	9/gWB5Xd/Q7qJTeM19gPZ19cXj8jI4uaVu4AiWmAXvaReQeedv5/W5WGV8Ci6/QSBq69qUv7CJl
+	fx61vg89v4ComkIpHlfK8YAX/046+5M5HfbSpFzfvOmDgQJdg7vuNEf2sxWQTotqIQ7847BoF8s
+	Dotm6/ttE/P8Xmo4HALRCQfDtvu/QRzV4fiSXV9Y90DDXPyH3qtksW3YReHbW92zcdgV7BJu++Q
+	DgB/A6d7Dr9Dh7I4FgdrPSr1BUJnSLj2lgzRPv1daCL+qH4iPLaE7iEMPrs1Yq/EmX36hgm0QRv
+	GTuRbUnBOtMJxXUOPBAIQbNZ9/p4T1wgBU2QfQjsOdW0gg=
+X-Received: by 2002:a05:600c:c8d:b0:485:2fe9:336f with SMTP id 5b1f17b1804b1-486f446d88bmr53075075e9.30.1773837906381;
+        Wed, 18 Mar 2026 05:45:06 -0700 (PDT)
+Received: from iku.example.org ([2a06:5906:61b:2d00:5f14:a98b:b4be:efbd])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b518985f6sm7888162f8f.25.2026.03.18.05.45.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Mar 2026 05:41:20 -0700 (PDT)
-From: Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sibi.sankar@oss.qualcomm.com,
-        pankaj.patil@oss.qualcomm.com, rajendra.nayak@oss.qualcomm.com,
-        qiang.yu@oss.qualcomm.com,
-        Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>,
-        Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
-        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
-        Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
-Subject: [PATCH v2 3/3] arm64: dts: qcom: Add Mahua SoC and CRD
-Date: Wed, 18 Mar 2026 05:41:00 -0700
-Message-Id: <20260318124100.212992-4-gopikrishna.garmidi@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260318124100.212992-1-gopikrishna.garmidi@oss.qualcomm.com>
-References: <20260318124100.212992-1-gopikrishna.garmidi@oss.qualcomm.com>
+        Wed, 18 Mar 2026 05:45:05 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: John Madieu <john.madieu.xa@bp.renesas.com>,
+	linux-pci@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/5] Add PCIe support for RZ/V2N and RZ/V2H(P) SoCs
+Date: Wed, 18 Mar 2026 12:44:45 +0000
+Message-ID: <20260318124450.163471-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -120,476 +109,76 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=TPhIilla c=1 sm=1 tr=0 ts=69ba9d73 cx=c_pps
- a=PfFC4Oe2JQzmKTvty2cRDw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22 a=EUspDBNiAAAA:8
- a=4nuuKY_MPYQNcC36K5wA:9 a=6Ab_bkdmUrQuMsNx7PHu:22
-X-Proofpoint-ORIG-GUID: AiFx1flg9XuRvE3x_5Eq2JZlsKho8593
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDEwOCBTYWx0ZWRfX2ZbM29HvcAN5
- AlZXUhrqZkt9lPprKtHfNF1Vv+PKVI6FzhufivbdEkZPp8b1pmMOPExcWm6Cd4I19rUKGEfoFxk
- ta0Wh7vB7EjINmElNwFG8C0yQ0/37FN3Ojx3QUtIfKQZHgNHNl1NB0MkP2VgNcwL/qbRZ8JJpjV
- 53dX4u+JiAckeGOsbVjiBhWHPLlLob8sXOVUY6gFK1kZuo5+gMSnVuVOS5nUapG8mxp4IyRqYLd
- o2Y7ndMZ7GEaFL0fqjwd9IHxj02X3buhB4cjkliYa3BZBVyWmJqpkFLEuLRNi8yhO+oAdwKwsZL
- dbIgh/NZMD/utsAPlSwTgAw75sW5STZj1d0rDQ1LPLObJ/djTFnDzKqzsb/mioka62IIaojheqm
- bFJ21I8twAHLwRe+3Kv+MbjDMFWg3sYjARJnLNmG5gdorEFLAt/NjNzEP4mfM4LsuuZcWCNCBdf
- 0jo60eZqE22//iWMq1A==
-X-Proofpoint-GUID: AiFx1flg9XuRvE3x_5Eq2JZlsKho8593
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-18_01,2026-03-17_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 suspectscore=0 lowpriorityscore=0 bulkscore=0 malwarescore=0
- spamscore=0 impostorscore=0 adultscore=0 priorityscore=1501 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603180108
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_RHS_MATCH_TO(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-277203-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277201-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email];
+	FREEMAIL_TO(0.00)[bp.renesas.com,google.com,kernel.org,pengutronix.de,glider.be,gmail.com,sang-engineering.com];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FROM_NEQ_ENVFROM(0.00)[gopikrishna.garmidi@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com,renesas.com];
+	FROM_NEQ_ENVFROM(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 4F2D72BBC40
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bp.renesas.com:mid]
+X-Rspamd-Queue-Id: 3C96E2BBCBE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Introduce support for the Mahua SoC and the CRD based on it. Some of
-the notable differences are the absent CPU cluster, interconnect, TLMM,
-thermal zones and adjusted PCIe west clocks. Everything else should
-work as-is.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Co-developed-by: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
-Signed-off-by: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
-Co-developed-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-Co-developed-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
-Signed-off-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
-Signed-off-by: Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/Makefile            |   1 +
- arch/arm64/boot/dts/qcom/glymur.dtsi         |   2 +-
- arch/arm64/boot/dts/qcom/mahua-crd.dts       |  21 ++
- arch/arm64/boot/dts/qcom/mahua.dtsi          | 299 +++++++++++++++++++
- arch/arm64/boot/dts/qcom/pmcx0102.dtsi       |   2 +-
- arch/arm64/boot/dts/qcom/pmh0104-glymur.dtsi |   4 +-
- 6 files changed, 325 insertions(+), 4 deletions(-)
- create mode 100644 arch/arm64/boot/dts/qcom/mahua-crd.dts
- create mode 100644 arch/arm64/boot/dts/qcom/mahua.dtsi
+Hi all,
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 317af937d038..e85ff36012f1 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -44,6 +44,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-camera.dtb
- lemans-evk-el2-dtbs := lemans-evk.dtb lemans-el2.dtbo
- 
- dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-el2.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= mahua-crd.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= milos-fairphone-fp6.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= monaco-evk.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8216-samsung-fortuna3g.dtb
-diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
-index e269cec7942c..4e0b44af073e 100644
---- a/arch/arm64/boot/dts/qcom/glymur.dtsi
-+++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
-@@ -282,7 +282,7 @@ core5 {
- 				};
- 			};
- 
--			cluster2 {
-+			cpu_map_cluster2: cluster2 {
- 				core0 {
- 					cpu = <&cpu12>;
- 				};
-diff --git a/arch/arm64/boot/dts/qcom/mahua-crd.dts b/arch/arm64/boot/dts/qcom/mahua-crd.dts
-new file mode 100644
-index 000000000000..9c8244e892dd
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/mahua-crd.dts
-@@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-+ */
-+
-+/dts-v1/;
-+
-+#include "mahua.dtsi"
-+#include "glymur-crd.dtsi"
-+
-+/delete-node/ &pmcx0102_d_e0;
-+/delete-node/ &pmcx0102_d0_thermal;
-+/delete-node/ &pmh0104_i_e0;
-+/delete-node/ &pmh0104_i0_thermal;
-+/delete-node/ &pmh0104_j_e0;
-+/delete-node/ &pmh0104_j0_thermal;
-+
-+/ {
-+	model = "Qualcomm Technologies, Inc. Mahua CRD";
-+	compatible = "qcom,mahua-crd", "qcom,mahua";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/mahua.dtsi b/arch/arm64/boot/dts/qcom/mahua.dtsi
-new file mode 100644
-index 000000000000..7aa8d26b2b3a
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/mahua.dtsi
-@@ -0,0 +1,299 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-+ */
-+
-+/* Mahua is heavily based on Glymur, with some meaningful differences */
-+#include "glymur.dtsi"
-+
-+/delete-node/ &cluster2_pd;
-+/delete-node/ &cpu_map_cluster2;
-+/delete-node/ &cpu12;
-+/delete-node/ &cpu13;
-+/delete-node/ &cpu14;
-+/delete-node/ &cpu15;
-+/delete-node/ &cpu16;
-+/delete-node/ &cpu17;
-+/delete-node/ &cpu_pd12;
-+/delete-node/ &cpu_pd13;
-+/delete-node/ &cpu_pd14;
-+/delete-node/ &cpu_pd15;
-+/delete-node/ &cpu_pd16;
-+/delete-node/ &cpu_pd17;
-+/delete-node/ &tsens6;
-+/delete-node/ &tsens7;
-+
-+&aggre1_noc {
-+	compatible = "qcom,mahua-aggre1-noc", "qcom,glymur-aggre1-noc";
-+};
-+
-+&aggre2_noc {
-+	compatible = "qcom,mahua-aggre2-noc", "qcom,glymur-aggre2-noc";
-+};
-+
-+&aggre3_noc {
-+	compatible = "qcom,mahua-aggre3-noc", "qcom,glymur-aggre3-noc";
-+};
-+
-+&aggre4_noc {
-+	compatible = "qcom,mahua-aggre4-noc", "qcom,glymur-aggre4-noc";
-+};
-+
-+&clk_virt {
-+	compatible = "qcom,mahua-clk-virt", "qcom,glymur-clk-virt";
-+};
-+
-+&cnoc_main {
-+	compatible = "qcom,mahua-cnoc-main", "qcom,glymur-cnoc-main";
-+};
-+
-+&config_noc {
-+	compatible = "qcom,mahua-cnoc-cfg";
-+};
-+
-+&hsc_noc {
-+	compatible = "qcom,mahua-hscnoc";
-+};
-+
-+&lpass_ag_noc {
-+	compatible = "qcom,mahua-lpass-ag-noc", "qcom,glymur-lpass-ag-noc";
-+};
-+
-+&lpass_lpiaon_noc {
-+	compatible = "qcom,mahua-lpass-lpiaon-noc", "qcom,glymur-lpass-lpiaon-noc";
-+};
-+
-+&lpass_lpicx_noc {
-+	compatible = "qcom,mahua-lpass-lpicx-noc", "qcom,glymur-lpass-lpicx-noc";
-+};
-+
-+&mc_virt {
-+	compatible = "qcom,mahua-mc-virt";
-+};
-+
-+&mmss_noc {
-+	compatible = "qcom,mahua-mmss-noc", "qcom,glymur-mmss-noc";
-+};
-+
-+&nsi_noc {
-+	compatible = "qcom,mahua-nsinoc", "qcom,glymur-nsinoc";
-+};
-+
-+&nsp_noc {
-+	compatible = "qcom,mahua-nsp-noc", "qcom,glymur-nsp-noc";
-+};
-+
-+&oobm_ss_noc {
-+	compatible = "qcom,mahua-oobm-ss-noc", "qcom,glymur-oobm-ss-noc";
-+};
-+
-+&pcie_east_anoc {
-+	compatible = "qcom,mahua-pcie-east-anoc", "qcom,glymur-pcie-east-anoc";
-+};
-+
-+&pcie_east_slv_noc {
-+	compatible = "qcom,mahua-pcie-east-slv-noc", "qcom,glymur-pcie-east-slv-noc";
-+};
-+
-+&pcie_west_anoc {
-+	compatible = "qcom,mahua-pcie-west-anoc";
-+	clocks = <&gcc GCC_AGGRE_NOC_PCIE_3B_WEST_SF_AXI_CLK>,
-+		 <&gcc GCC_AGGRE_NOC_PCIE_4_WEST_SF_AXI_CLK>,
-+		 <&gcc GCC_AGGRE_NOC_PCIE_6_WEST_SF_AXI_CLK>;
-+};
-+
-+&pcie_west_slv_noc {
-+	compatible = "qcom,mahua-pcie-west-slv-noc";
-+};
-+
-+&system_noc {
-+	compatible = "qcom,mahua-system-noc", "qcom,glymur-system-noc";
-+};
-+
-+&tlmm {
-+	compatible = "qcom,mahua-tlmm";
-+};
-+
-+&thermal_zones {
-+	/delete-node/ aoss-6-thermal;
-+	/delete-node/ aoss-7-thermal;
-+	/delete-node/ cpu-2-0-0-thermal;
-+	/delete-node/ cpu-2-0-1-thermal;
-+	/delete-node/ cpu-2-1-0-thermal;
-+	/delete-node/ cpu-2-1-1-thermal;
-+	/delete-node/ cpu-2-2-0-thermal;
-+	/delete-node/ cpu-2-2-1-thermal;
-+	/delete-node/ cpu-2-3-0-thermal;
-+	/delete-node/ cpu-2-3-1-thermal;
-+	/delete-node/ cpu-2-4-0-thermal;
-+	/delete-node/ cpu-2-4-1-thermal;
-+	/delete-node/ cpu-2-5-0-thermal;
-+	/delete-node/ cpu-2-5-1-thermal;
-+	/delete-node/ cpullc-2-0-thermal;
-+	/delete-node/ cpuillc-2-1-thermal;
-+	/delete-node/ ddr-2-thermal;
-+	/delete-node/ gpu-3-0-thermal;
-+	/delete-node/ gpu-3-1-thermal;
-+	/delete-node/ gpu-3-2-thermal;
-+	/delete-node/ qmx-2-0-thermal;
-+	/delete-node/ qmx-2-1-thermal;
-+	/delete-node/ qmx-2-2-thermal;
-+	/delete-node/ qmx-2-3-thermal;
-+	/delete-node/ qmx-2-4-thermal;
-+	/delete-node/ video-1-thermal;
-+
-+	ddr-1-thermal {
-+		thermal-sensors = <&tsens1 7>;
-+	};
-+
-+	video-0-thermal {
-+		thermal-sensors = <&tsens1 8>;
-+	};
-+
-+	nsphvx-0-thermal {
-+		thermal-sensors = <&tsens4 1>;
-+	};
-+
-+	nsphvx-1-thermal {
-+		thermal-sensors = <&tsens4 2>;
-+	};
-+
-+	nsphvx-2-thermal {
-+		thermal-sensors = <&tsens4 3>;
-+	};
-+
-+	nsphvx-3-thermal {
-+		thermal-sensors = <&tsens4 4>;
-+	};
-+
-+	nsphmx-0-thermal {
-+		thermal-sensors = <&tsens4 5>;
-+	};
-+
-+	nsphmx-1-thermal {
-+		thermal-sensors = <&tsens4 6>;
-+	};
-+
-+	nsphmx-2-thermal {
-+		thermal-sensors = <&tsens4 7>;
-+	};
-+
-+	nsphmx-3-thermal {
-+		thermal-sensors = <&tsens4 8>;
-+	};
-+
-+	camera-0-thermal {
-+		thermal-sensors = <&tsens4 9>;
-+	};
-+
-+	camera-1-thermal {
-+		thermal-sensors = <&tsens4 10>;
-+	};
-+
-+	gpu-0-0-thermal {
-+		thermal-sensors = <&tsens5 1>;
-+	};
-+
-+	gpu-0-1-thermal {
-+		thermal-sensors = <&tsens5 2>;
-+	};
-+
-+	gpu-0-2-thermal {
-+		thermal-sensors = <&tsens5 3>;
-+	};
-+
-+	gpu-1-0-thermal {
-+		thermal-sensors = <&tsens5 4>;
-+	};
-+
-+	gpu-1-1-thermal {
-+		thermal-sensors = <&tsens5 5>;
-+	};
-+
-+	gpu-1-2-thermal {
-+		thermal-sensors = <&tsens5 6>;
-+	};
-+
-+	gpu-2-0-thermal {
-+		thermal-sensors = <&tsens5 7>;
-+	};
-+
-+	gpu-2-1-thermal {
-+		thermal-sensors = <&tsens5 8>;
-+	};
-+
-+	gpu-2-2-thermal {
-+		thermal-sensors = <&tsens5 9>;
-+	};
-+
-+	gpuss-0-thermal {
-+		thermal-sensors = <&tsens5 10>;
-+	};
-+
-+	gpuss-1-thermal {
-+		thermal-sensors = <&tsens5 11>;
-+	};
-+
-+	gpuss-2-thermal {
-+		thermal-sensors = <&tsens5 12>;
-+
-+		trips {
-+			trip-point0 {
-+				temperature = <90000>;
-+				hysteresis = <5000>;
-+				type = "hot";
-+			};
-+
-+			gpuss-2-critical {
-+				temperature = <115000>;
-+				hysteresis = <1000>;
-+				type = "critical";
-+			};
-+		};
-+	};
-+
-+	gpuss-3-thermal {
-+		thermal-sensors = <&tsens5 13>;
-+
-+		trips {
-+			trip-point0 {
-+				temperature = <90000>;
-+				hysteresis = <5000>;
-+				type = "hot";
-+			};
-+
-+			gpuss-3-critical {
-+				temperature = <115000>;
-+				hysteresis = <1000>;
-+				type = "critical";
-+			};
-+		};
-+	};
-+
-+	gpuss-4-thermal {
-+		thermal-sensors = <&tsens5 14>;
-+
-+		trips {
-+			trip-point0 {
-+				temperature = <90000>;
-+				hysteresis = <5000>;
-+				type = "hot";
-+			};
-+
-+			gpuss-4-critical {
-+				temperature = <115000>;
-+				hysteresis = <1000>;
-+				type = "critical";
-+			};
-+		};
-+	};
-+};
-+
-+&tsens4 {
-+	#qcom,sensors = <11>;
-+};
-+
-+&tsens5 {
-+	#qcom,sensors = <15>;
-+};
-+
-diff --git a/arch/arm64/boot/dts/qcom/pmcx0102.dtsi b/arch/arm64/boot/dts/qcom/pmcx0102.dtsi
-index c3ccd2b75609..db2da9ef4f01 100644
---- a/arch/arm64/boot/dts/qcom/pmcx0102.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pmcx0102.dtsi
-@@ -46,7 +46,7 @@ trip1 {
- 			};
- 		};
- 
--		pmcx0102-d0-thermal {
-+		pmcx0102_d0_thermal: pmcx0102-d0-thermal {
- 			polling-delay-passive = <100>;
- 			thermal-sensors = <&pmcx0102_d_e0_temp_alarm>;
- 
-diff --git a/arch/arm64/boot/dts/qcom/pmh0104-glymur.dtsi b/arch/arm64/boot/dts/qcom/pmh0104-glymur.dtsi
-index d89cceda53a3..7a1e5f355c17 100644
---- a/arch/arm64/boot/dts/qcom/pmh0104-glymur.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pmh0104-glymur.dtsi
-@@ -8,7 +8,7 @@
- 
- /{
- 	thermal_zones {
--		pmh0104-i0-thermal {
-+		pmh0104_i0_thermal: pmh0104-i0-thermal {
- 			polling-delay-passive = <100>;
- 			thermal-sensors = <&pmh0104_i_e0_temp_alarm>;
- 
-@@ -27,7 +27,7 @@ trip1 {
- 			};
- 		};
- 
--		pmh0104-j0-thermal {
-+		pmh0104_j0_thermal: pmh0104-j0-thermal {
- 			polling-delay-passive = <100>;
- 			thermal-sensors = <&pmh0104_j_e0_temp_alarm>;
- 
+This series adds support for the PCIe host controllers found on the
+Renesas RZ/V2N and RZ/V2H(P) SoCs. The RZ/V2N controller is similar
+to the existing RZ/G3E variant but uses a different device ID, while
+the RZ/V2H(P) controller includes additional features for PCIe lane
+control and supports multilink operation with two independent channels.
+
+The series includes the following changes:
+- Add device tree bindings for the RZ/V2N and RZ/V2H(P) PCIe
+  controllers, documenting their capabilities and requirements.
+- Update the rzg3s-host driver to support the new SoCs, including
+  handling for multiple PCIe channels and shared reset controls.
+
+Note, Ive created two seprate commits for bindings file for easier
+review if these needs to be merged into one please let me know.
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (5):
+  dt-bindings: pci: renesas,r9a08g045-pcie: Add RZ/V2N support
+  dt-bindings: pci: renesas,r9a08g045-pcie: Add RZ/V2H(P) support
+  PCI: rzg3s-host: Use shared reset controls for power domain resets
+  PCI: rzg3s-host: Prepare System Controller handling for multiple PCIe
+    channels
+  PCI: rzg3s-host: Add support for RZ/V2H(P) SoC
+
+ .../bindings/pci/renesas,r9a08g045-pcie.yaml  |  43 +++-
+ drivers/pci/controller/pcie-rzg3s-host.c      | 194 ++++++++++++++++--
+ 2 files changed, 211 insertions(+), 26 deletions(-)
+
 -- 
-2.34.1
+2.53.0
 
 
