@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-277499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277500-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qMrSI6Isu2mRgAIAu9opvQ
-	(envelope-from <devicetree+bounces-277499-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 23:52:18 +0100
+	id sLj8A1Mtu2mRgAIAu9opvQ
+	(envelope-from <devicetree+bounces-277500-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 23:55:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F02D82C3A58
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 23:52:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67AA32C3A96
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 23:55:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9B349301BF7B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 22:52:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BB52D303A5F3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 22:55:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65CB92C027B;
-	Wed, 18 Mar 2026 22:52:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D02C33AD8B;
+	Wed, 18 Mar 2026 22:55:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DrNQFW8q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tiYc4gMi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42B349460;
-	Wed, 18 Mar 2026 22:52:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE2F43019AA;
+	Wed, 18 Mar 2026 22:55:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773874335; cv=none; b=HswKfGRYcQDJt7FMAjC4jfQDTMk/3rCHUYK6H72AKqEUbywovOKjIWHN9KgufUFdOjSJxSydKbhBgtVsqHrQWhAsHlIIrqI7mpEghIOGjQB25ICxs2IAzlg871Y41rstkIRUD3zAPCW46E+hVhPs0oBSM/IiVcR4n4iz0kVoA1g=
+	t=1773874511; cv=none; b=rZqk/P7jlfp58vjckRBfnampcMIcdOgIxpj6eJIQobP7DwrWvpaWMnVFMsUvM1Gkp6Lb7wyBvIOKjXDvwLsxmJbYnOfYneVs97tz2TCHKUIwMQYj1cYZ9z0N0cMJWj8bKH9fjNgCbpWQ2j3kwKQtv4RlzyU66V64MfBsvpB7/b0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773874335; c=relaxed/simple;
-	bh=vEW+5Rlcz83bpTL6L2NmD5eXowsBFkHpcNjfS2kXynk=;
+	s=arc-20240116; t=1773874511; c=relaxed/simple;
+	bh=7kzndOAkzNwSabKuNJD2+iud539bSd2lvwAqo64cNM8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ir6KJBUhODhUX0I0ekHr/YpvVDgWbhKTLXnlK+pnB+Pc4yBbGOj4L8VixBVOD6E231glghBGJApHxJeD6fHBlHWZF+IBABwnAjZ5T0WYXAwUTc6nyoHNhdpC0+urDxuctSGFGrk0uCKAJXSBNdK9aFhy963g8HdqRDy7nlfIkF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DrNQFW8q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B45A9C19421;
-	Wed, 18 Mar 2026 22:52:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bQkeuAqzlgnngeVwsyMDL/7CAVhmM7fggr/HN2ESmhx+MV4Yi3llOxyWD1y5n824jIEdUc874xMY+KO5JWOyVxHhop52orABq/wo1pXCCtwgNN9ZPahc0eWG/UjlwvllfTfm81HLobYec/EqwDYLp1bKC68SK1SOQSLpplKuNqc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tiYc4gMi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7591AC19421;
+	Wed, 18 Mar 2026 22:55:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773874334;
-	bh=vEW+5Rlcz83bpTL6L2NmD5eXowsBFkHpcNjfS2kXynk=;
+	s=k20201202; t=1773874511;
+	bh=7kzndOAkzNwSabKuNJD2+iud539bSd2lvwAqo64cNM8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DrNQFW8qNlX6JYkmXRJ62gRdNCmpLI7csVRur4//NUovMiVZlTOclSb7gfUFIa7Ax
-	 ZR+2FvqMT+rHVzT5uTo1Nbf34gqoDz1NmUc7/nd02iicc8l9cFJd/G2Dy/wJrSF6LI
-	 Ne+VJ0oIene4CkOwY6Tbd/KQseH8Z9MbuixX4Pxa6dc3XeBfEIcw6tg0rAf6DS3ILM
-	 6TRYIXAadBEvewdUnIyMbNzE6NjwH/yvTJkXBh6HRGIafeX7TrDRbMigwQW7czIft+
-	 C+5BtrwyUb31movnBWHXXV6SN8D3vRVOS9ErQGRZNp9GY6ZjTtX+nPR5gt42Jxh2FO
-	 Au0NRQ3zlNt9w==
-Date: Wed, 18 Mar 2026 17:52:13 -0500
+	b=tiYc4gMiC6ZsfHL+tdSxZrH8VEofgrTGh0QkUXATKWsmdyQm4hSn1fKY99FwenMPn
+	 SE7x8AuvXggAthBPrEnNuSOi1Lx1fDbEptK7Hj4jkGGh3h8vLUBUPB7u4q5teU+I8y
+	 mVJP/LUdDR3TRVPuyW+qzfAXKYLfG8P8Exf5n47dj5zzOMj10aRbDxjahSazwMCNqt
+	 /WyczKBzgO6oMixBZDK+mXbrdKi6BWw28+P0lB8VnXBimrrVdZkmmC8C8iTr5FZciM
+	 RTirlHYH9odxiu5trU4RqOzmc2wP8i4728uyr5SWNEoQ7DHaQ0f7yftrH2uIU/M/n+
+	 0vdrHH2SfO/eg==
+Date: Wed, 18 Mar 2026 17:55:10 -0500
 From: Rob Herring <robh@kernel.org>
-To: Florian Eckert <fe@dev.tdt.de>
-Cc: Thomas Gleixner <tglx@kernel.org>,
+To: Vyacheslav Yurkov <V.Yurkov.EXT@bruker.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Eckert.Florian@googlemail.com,
-	ms@dev.tdt.de
-Subject: Re: [PATCH 1/2] dt-bindings: Add Lightning Mountain MSI interrupt
- controller bindings
-Message-ID: <20260318225213.GA631106-robh@kernel.org>
-References: <20260318-irq-intel-soc-msi-v1-0-0e8cdf844fa8@dev.tdt.de>
- <20260318-irq-intel-soc-msi-v1-1-0e8cdf844fa8@dev.tdt.de>
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	Vyacheslav Yurkov <uvv.mail@gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: Add clock guard DT description
+Message-ID: <20260318225510.GA639444-robh@kernel.org>
+References: <20260318-feature-clock-guard-v1-0-6137cb4084b7@bruker.com>
+ <20260318-feature-clock-guard-v1-2-6137cb4084b7@bruker.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,118 +65,142 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260318-irq-intel-soc-msi-v1-1-0e8cdf844fa8@dev.tdt.de>
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+In-Reply-To: <20260318-feature-clock-guard-v1-2-6137cb4084b7@bruker.com>
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277499-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,googlemail.com,dev.tdt.de];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,vger.kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-277500-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.966];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.473];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: F02D82C3A58
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 67AA32C3A96
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 02:10:40PM +0100, Florian Eckert wrote:
-> Add device tree bindings for the Lightning Mountain (LGM) MSI interrupt
-> controller.
+On Wed, Mar 18, 2026 at 05:43:40PM +0000, Vyacheslav Yurkov wrote:
+> Describe device tree binding for virtual clock controller guard.
+
+No idea what this means. Please explain how I would identify this h/w.
+
+We generally don't do bindings for virtual devices and we don't do 
+single clock bindings (other than some we are stuck with).
+
 > 
-> Signed-off-by: Florian Eckert <fe@dev.tdt.de>
+> Signed-off-by: Vyacheslav Yurkov <uvv.mail@gmail.com>
+> Signed-off-by: Vyacheslav Yurkov <V.Yurkov.EXT@bruker.com>
 > ---
->  .../interrupt-controller/intel,soc-msi.yaml        | 45 ++++++++++++++++++++++
->  1 file changed, 45 insertions(+)
+>  .../bindings/clock/clock-controller-guard.yaml     | 79 ++++++++++++++++++++++
+>  1 file changed, 79 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/intel,soc-msi.yaml b/Documentation/devicetree/bindings/interrupt-controller/intel,soc-msi.yaml
+> diff --git a/Documentation/devicetree/bindings/clock/clock-controller-guard.yaml b/Documentation/devicetree/bindings/clock/clock-controller-guard.yaml
 > new file mode 100644
-> index 0000000000000000000000000000000000000000..5ab295c7dd000059817ae411abe3d57713a83ee8
+> index 000000000000..71c2d80de1f0
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/intel,soc-msi.yaml
-> @@ -0,0 +1,45 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2025 TDT AG.
+> +++ b/Documentation/devicetree/bindings/clock/clock-controller-guard.yaml
+> @@ -0,0 +1,79 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/intel,soc-msi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +$id: "http://devicetree.org/schemas/clock/clock-controller-guard.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 > +
-> +title: Intel LGM Interrupt Controller
+> +title: Clock Controller Guard
 > +
 > +maintainers:
-> +  - Florian Eckert <fe@dev.tdt.de>
+> +  - Vyacheslav Yurkov <V.Yurkov.EXT@bruker.com>
 > +
 > +description: |
-
-Don't need '|' if no formatting.
-
-> +  This interrupt controller is found in the Intel LGM.
+> +  Clock controller that guards upstream clocks and/or GPIO
+> +  signals and exposes them as a single clock output.
 > +
 > +properties:
 > +  compatible:
+> +    const: clock-controller-guard
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +  clocks:
+> +    description: Input clocks that will be guarded.
+> +    minItems: 0
+> +
+> +  clock-names: Input clock names.
+> +    minItems: 0
+> +
+> +  clock-output-names:
+> +    description: Names of the clock provided by this controller.
+> +    minItems: 1
 > +    items:
-> +      - enum:
-> +          - intel,soc-msi.yaml
-
-Besides the obvious problem here, compatibles should be SoC specific.
-
+> +      type: string
 > +
-> +  reg:
-> +    maxItems: 1
+> +  gpios:
+> +    description: |
+> +      GPIOs used to control or guard the clocks.
+> +    minItems: 0
+> +    maxItems: 32
 > +
-> +  interrupt-controller: true
+> +  gpio-names:
+> +    description: Names corresponding to each GPIO.
+> +    minItems: 0
+> +    maxItems: 32
 > +
-> +  '#interrupt-cells':
-> +    const: 2
-
-This is an interrupt controller that generates MSIs from interrupts, or 
-an MSI controller that receives MSIs and generates an interrupt. I can't 
-tell. The description sounds like the latter. The schema looks like the 
-former.
-
+> +    items:
+> +      type: string
 > +
 > +required:
 > +  - compatible
-> +  - reg
-> +  - interrupt-controller
-> +  - '#interrupt-cells'
+> +  - "#clock-cells"
+> +anyOf:
+> +  - required:
+> +      - clocks
+> +  - required:
+> +      - gpios
+> +dependencies:
+> +  gpio-names: [gpios]
+> +  clock-names: [clocks]
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    soc_msi: soc_msi@e00e0000 {
-
-msi-controller@... or interrupt-controller@...
-
-depending on the above answer.
-
-> +        compatible = "intel,soc-msi";
-> +        reg = <0xe00e0000 0x800>;
-> +        interrupt-controller;
-> +        #interrupt-cells = <1>;
+> +    clkctrl: clock-controller {
+> +        compatible = "clock-controller-guard";
+> +        #clock-cells = <1>;
+> +
+> +        clocks = <&clk0 0>, <&pll 0>;
+> +
+> +        gpios = <&gpio0 4 GPIO_ACTIVE_HIGH>,
+> +                <&gpio0 5 GPIO_ACTIVE_HIGH>,
+> +                <&gpio1 2 GPIO_ACTIVE_LOW>;
+> +
+> +        gpio-names = "gpio0", "gpio1", "gpio2";
+> +
+> +        clock-output-names = "clkout0";
 > +    };
 > 
 > -- 
-> 2.47.3
+> 2.34.1
 > 
 
