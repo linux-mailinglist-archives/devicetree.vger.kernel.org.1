@@ -1,153 +1,148 @@
-Return-Path: <devicetree+bounces-277010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277006-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qHx/M8pfumnFUgIAu9opvQ
-	(envelope-from <devicetree+bounces-277010-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:18:18 +0100
+	id SLGCLkNhumnFUgIAu9opvQ
+	(envelope-from <devicetree+bounces-277006-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:24:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD6E62B7BE6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:18:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 685BB2B7DE7
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:24:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 64081302F4CF
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:17:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C48A1317531D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:13:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F7F9379998;
-	Wed, 18 Mar 2026 08:16:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 838EB37883E;
+	Wed, 18 Mar 2026 08:13:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F177437997C
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 08:16:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02C0C378805
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 08:13:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773821817; cv=none; b=XFLskcUGeDEflMT7PqvUOxVVuIukRk0xoyyXvRaBcHiHTJWwXW8MRursNbataiYlychFkyHStYRP+ahPJRot9MgvyTMvv4POuRKniZnDzx3Vf5ieQtZ64Nmx20cjimcE4SAq+haQSDPZdV10Q8P4Mn2m35XMWYDSEZExzITZlGw=
+	t=1773821625; cv=none; b=EPxgeSWetEMHh0grNuFhMaQtEtlZkgrNge6skjkLyAARnntD403LtfUq2Qg82hMQTNUw66eePpjRAnyqk75TaBQGSRPrE/umOQX35th4L72LA9GJW0T6Az+bQBxuqt48uY1Fc0zG4f/RJV0l3QcGkL8KsELtAB9efk2Qz002U4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773821817; c=relaxed/simple;
-	bh=KAICH7AyRNLHyx9na4VNik7GvrikW4tPpi3l7+AtXfk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HWSFaspiBAXYj9097w6VgC5GPUiRO7qLd9SxItTphUnorwJHLLE0IFz19nzKBt8dj4ANZlnkodrLYMVyc93UpQAEOtHLPRy2SdVysQ4YslAXalm0FS1y/qbBZJWs9j7bfzThScBZ75604PxLt57tv2uc6ZegVpDuEiqxVmJduSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-899eabc5292so75343716d6.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 01:16:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773821815; x=1774426615;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yLFVo6AiXNHbx6lUNUpPWDsgWE1jK824gYrpCYtdfM0=;
-        b=B+XC/o+wuCzP2kf16cKv6EHqkwf9iwqzJPgp3iQWl+l5vOQ0pYU8/GHriYT3XfcPbg
-         GCO+QvOkJDmlv039f2vwkQSK4V2v1tcFyKCKNWC/17VSG5uQBVqO9td6VkC4+osvcqeD
-         ifXYfLyuRHtq29asGXSY6ZIo6xR3ptjV/kDGmgg+rOkCJY7Z7eh+bx2cLRElItGStgeV
-         GsbIE1tPwVfXQttrxP0CcJfLBadU7rS0LfmR7sVJWDhkYJVi4kXgEIX1nWS873dAjA1D
-         tE3Mo8ohuit2Q53422bL/6SGD0CfquVXgfcHgC+y3d6Vy/k4/pLX3uFkonJz91iB5sjR
-         usDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWI3fDLSRfb+W8aB3EiJWv+DdddP4BqBQK46UIrlND8KyfAboELa1iFkYCk8zA869Csl+o3g89wyk9f@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyw6APMtE8RYE43OXy+9Bs8AmSCvoGBJSk2U40MW/wpHKTIhIEG
-	EOcVY5r2jBKGpdNGvRHNiZww8LpOUvvPUkL4Ob2n2sBuErsawU5V4Km47WV2VhOYX+g=
-X-Gm-Gg: ATEYQzzKA8O2xkRIjCWezMjHo4mgFxXY+gJCkZFF12rfDbibcSeNSRhiOCzMmWEE2dx
-	M+no7QG3VmBw+CPtuRCe64hI4IYW+OM0QkGqOVDO14jiTLfLzc9I77C5qMLGLkN0Ppy9LLOS3VY
-	eA4DlaqdCMmPlAn9qxlmzbdeX9g4v+75jVcG124n3ZBOmvz1mgJmnm8awAP26vOXIehR7MB48iD
-	bbfj+79c+rwqXTgoHrmaKJRR5PSXlo5D9WzRWAEbVTAdDy8hJ939fB6k02b5WXbHxnZmkLEjqjj
-	dIK7Bb3Al4j0vjzhzSoNyT9ZcK9F2rjVBDp6jWbc1KcmgnDOhJIWBrdaY8KBczf3qf8+moVKi6s
-	8zCSZ3ukOBZScWkwTi38r3Ba3Mue2mtZ7i4yXISItVkzlVCsw4+KL98ldWbHK0t/utAlHn6BpbD
-	BN0tHTWMFSgSuzJv69vI09W3cfwUmh3UMR8kEJqJhOTcbf6RPfVk6bMk0ItwlWnhGh
-X-Received: by 2002:a05:6214:5006:b0:89c:5557:88ca with SMTP id 6a1803df08f44-89c6b4ce2acmr37664556d6.14.1773821814807;
-        Wed, 18 Mar 2026 01:16:54 -0700 (PDT)
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com. [209.85.222.176])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-89c6b8dfcb7sm15615426d6.4.2026.03.18.01.16.52
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Mar 2026 01:16:52 -0700 (PDT)
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-8cbc593a67aso166996085a.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 01:16:52 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXr+n99bcmL8bPJFHKi7lwnDO3GSIj1jO9CqSycbCxU5IjQ6QUMTuv7tkLQFdjGZ7qNV9Rwmsd+l7vM@vger.kernel.org
-X-Received: by 2002:a05:6102:945:b0:5f8:e323:580d with SMTP id
- ada2fe7eead31-6027d1284cbmr1153417137.11.1773821475435; Wed, 18 Mar 2026
- 01:11:15 -0700 (PDT)
+	s=arc-20240116; t=1773821625; c=relaxed/simple;
+	bh=MmkOXjYBLk3W+cn5pndelBU7hiWffECq0yY9Pl0anTk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WuYypIMpz2yKNbIJZWNxkypNgB5+j6xlIxKgSGQL3tXfcKzS9JxhVN1p+eEP4XhgedVHfOR0nCQ6ub9cFG1Pvvq8y9V+uMEk4BrO1djProoO5Ocf9qsPo/2n7I7SM7aefK/i33GqxcimhPExjxLGoWP8xdXbAIKwSPW0KMKCnYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w2m1f-0001D1-MD; Wed, 18 Mar 2026 09:13:11 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w2m1e-000sRb-3C;
+	Wed, 18 Mar 2026 09:13:11 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w2m1e-000000097Ag-3gyK;
+	Wed, 18 Mar 2026 09:13:10 +0100
+Date: Wed, 18 Mar 2026 09:13:10 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Peter Rosin <peda@axentia.se>, Linus Walleij <linusw@kernel.org>,
+	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	linux-gpio@vger.kernel.org, David Jander <david@protonic.nl>
+Subject: Re: [PATCH v5 0/7] mfd: Add support for NXP MC33978/MC34978 MSDI
+Message-ID: <abpelu6kqbvOb2mx@pengutronix.de>
+References: <20260316140514.1406588-1-o.rempel@pengutronix.de>
+ <e2466bab-4147-4fb3-99ba-68d36c0f18c1@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260317194442.468147-1-biju.das.jz@bp.renesas.com> <TY3PR01MB11346876072AAF91064B2700D8641A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB11346876072AAF91064B2700D8641A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 18 Mar 2026 09:11:03 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUiomf+6O5eDUBAt-41D-Lhvnda7w_bbdj-EQppapjdUg@mail.gmail.com>
-X-Gm-Features: AaiRm52dBzFdESjaYAuu__pn42Q-OWaaQ-EFK2jgv-IViv74in_nOyYaaSxkIRo
-Message-ID: <CAMuHMdUiomf+6O5eDUBAt-41D-Lhvnda7w_bbdj-EQppapjdUg@mail.gmail.com>
-Subject: Re: [PATCH v4 0/9] Add support for Renesas RZ/G3L SoC and SMARC-EVK platform
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: "biju.das.au" <biju.das.au@gmail.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, "magnus.damm" <magnus.damm@gmail.com>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <e2466bab-4147-4fb3-99ba-68d36c0f18c1@roeck-us.net>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,linuxfoundation.org,kernel.org,baylibre.com,glider.be,vger.kernel.org,bp.renesas.com];
-	DMARC_NA(0.00)[linux-m68k.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-277010-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-277006-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.932];
+	MID_RHS_MATCH_FROM(0.00)[];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.698];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,renesas.com:email,mail.gmail.com:mid,linux-m68k.org:email]
-X-Rspamd-Queue-Id: CD6E62B7BE6
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,pengutronix.de:mid,pengutronix.de:url]
+X-Rspamd-Queue-Id: 685BB2B7DE7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Biju,
+On Tue, Mar 17, 2026 at 03:12:11PM -0700, Guenter Roeck wrote:
+> Hi,
+> 
+> On 3/16/26 07:05, Oleksij Rempel wrote:
+> > This series adds support for the NXP MC33978/MC34978 Multiple Switch Detection
+> > Interface (MSDI) via the MFD framework.
+> > 
+> > Architecture overview:
+> > * mfd: Core driver handling 2-frame pipelined SPI, regulator sequencing, and
+> >    linear irq_domain. Harvests status bits from SPI MISO MSB.
+> > * pinctrl: Exposes 22 physical switch inputs as standard GPIOs. Proxies IRQs to
+> >    the MFD domain.
+> > * hwmon: Exposes thermal limits, VBATP/VDDQ voltage boundaries, and dynamic
+> >    fault alarms.
+> > * mux: Controls the 24-to-1 AMUX routing analog signals (switch voltages,
+> >    temperature, VBATP) to an external ADC.
+> > 
+> > Initial pinctrl implementation by David Jander, reworked into this MFD
+> > architecture.
+> > 
+> 
+> Please have a look at the AI review feedback at
+> https://sashiko.dev/#/patchset/20260316140514.1406588-1-o.rempel%40pengutronix.de
+> 
+> It didn't run on all patches of the series, and I don't know how accurate
+> the feedback for the non-hwmon patches is, but at least for the hwmon
+> patch I agree with its findings.
 
-On Tue, 17 Mar 2026 at 20:59, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Please ignore this series . I missed to addresses for Patch#4. I have sent a new
-> version[1] fixing it. Sorry for the noise.
->
-> [1] https://lore.kernel.org/linux-renesas-soc/20260317195650.468330-1-biju.das.jz@bp.renesas.com/T/#t
 
-You have sent two "v4" versions with different Message-IDs,
-which are treated as different series by both b4 and lore.
-Please bump to v5 and resend.
+There are valid findings. I'll address them. Thx!
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
+Best Regards,
+Oleksij
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
