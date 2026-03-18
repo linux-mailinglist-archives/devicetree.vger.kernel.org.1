@@ -1,228 +1,200 @@
-Return-Path: <devicetree+bounces-277087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277088-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2JxTCUF1umm/WwIAu9opvQ
-	(envelope-from <devicetree+bounces-277087-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:49:53 +0100
+	id QCTXHrJ1umm/WwIAu9opvQ
+	(envelope-from <devicetree+bounces-277088-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:51:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B68C22B963C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:49:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id F37CE2B96F7
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:51:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E1EF03037435
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:45:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A3A743051A86
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:46:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 867E23A7857;
-	Wed, 18 Mar 2026 09:44:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39E94333440;
+	Wed, 18 Mar 2026 09:46:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LqKOsjZ4";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ZLdXVj2g"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PIyg29IR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D5A53B52F7
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 09:44:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3142B2E5B27;
+	Wed, 18 Mar 2026 09:46:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773827094; cv=none; b=YEym0Lk3zkLhPjLVOdhwzfY+WFOneTnbG6p0juVbH7oJmG5yBQJu3f0J8BM+zxmYHgAqrXylI+uQSaAicDz6pkGnSVs1Ky/OkqG76Nwqo/+GkqmKyEQttcmLkZrzB9SrP/k/DXF4lACJcgfF2aXljON/3RemYL1VkvTAIf73xsM=
+	t=1773827211; cv=none; b=a6zEqd+viziiQ6TnI387RWAMkEovE/3w/2nGiWAzNIJ2j/ZM+cIE82ZANGL5B7p4gYZc/lEJGHFsZhutI6UEeFhAyTefoYw0JBn5p3tt0GeitsV/99btTWydkyFw3K5V/CdVb1EUQJIcTYjXpPNyet7N6dlEJKyW8O/ZNBEJOnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773827094; c=relaxed/simple;
-	bh=mIywxV+98elXwDiIMtGd5IEKkhRCt5Arbn2dohoh/1U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kfH3njE+ergvjVivF9hInd4j2GmsMZfiRau9soUUKGZTRl0dGCNpqCdO2Ot4J15vAjucMsB6kN9yJpLcSh3TWLsBTLgD40xRihFY65MBwXgo78Qw3GPp7hjDK5zODcAROmQwalPhCdV+WSyoDgGN3tl0PgJfpKVQDPDRfkm4+Lw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LqKOsjZ4; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZLdXVj2g; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62I6ZI0K2878120
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 09:44:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4iYQQUUil/57LBAD3eiyFUNUgqmJlQBgw87fPx+tjj4=; b=LqKOsjZ4yUtfuBPr
-	zZuGQ70GagYg5pXHip6JqM5qQncLb4k68YKS1XO0l4eD9cs+/8e0/XuxbT6ik3co
-	EtuYk2u77HLbvJv96Z2YMxyfDcIKDjZjqhvkqbm3tmIe8Oh8dAMP1kHlPjEoyzBU
-	vAA8XfwkiL9Sm2RIeH7rRNx8Nd+FezU0I2NLLIX8CboKo3TGE6nWZTbvQVW2OOV6
-	4yaVwbK2QhklZ7PpUCIgZu7FvPBoGQLkExRGfQeg9wNdhqu8QKuGOK0nA+yZOIkI
-	HZR/pvnrYDD5UimVkqwtu0roE4u10oGhGX+xNt6xnLDbVyPA4MJSMnlyQZUSnuwb
-	y3TUdw==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cypwr0vru-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 09:44:46 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-50910ca6ccaso86937061cf.3
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 02:44:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773827085; x=1774431885; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4iYQQUUil/57LBAD3eiyFUNUgqmJlQBgw87fPx+tjj4=;
-        b=ZLdXVj2gPodbJIZoEdPiidUe4T0s4gHk+y+hdt8zBoNXzhQ6e9Z/ZPZJwNo4qXKuX0
-         /jaDawN8b7k+0nSWK7B+tc11mKVEyi947CkuIyqR9+mudqqsBPH7NmiqrkKihFba79Or
-         +KR66eIGNuZn9knDkZZSBTko+h7wyNZCge8735r1vKmQeowLWehQKUzy7VmkZxAxHpwI
-         PeXyH1Yb9YzO3dm7Yk/VxA1vb/k3gAlrA4Dlo0EY9cd79b3cvTRTLBGB+pJFuBQvIU2X
-         D2fMIYA0bzGaNapVfWw+Fgjaqmwws5YSI60QqKt+0h6gyAMjGFSW9z78HbbBWqWSNlAV
-         g2+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773827085; x=1774431885;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4iYQQUUil/57LBAD3eiyFUNUgqmJlQBgw87fPx+tjj4=;
-        b=OxIXsUpZPRNRvYjqdMD0qjMhxlepjAUsovux5IHUPsz8nqMHIhdAJEP8++oHyLCQ9S
-         ii4I6qZP99D0rhjkV8bmVENu1UN4kLatYIzie6H8QYSMBdo/K0ZaKIbsNcZoLGj7wfyh
-         imdEw1SnIU8AeOtJX5ZzRJTeohob19haFQpmoPvHqqunHOhzikblmXj/ZEtSTZdYSJ88
-         zZWTki7Jy8kdadsb7RXc+8fHb3N7xEbCOu/18OF6dVsxzXc2VGCz4MlIWTD6acsg5KUd
-         YG2bumMr1+mjhrTrlQrYoUvyYaK2QFhkldzXJF7gZ2BnfZTyPEej1tdNgGFgL+LGhImI
-         GshQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWACUKUUAuQRWxaICIR+bdue6rkN9F+hikeTbjEKS5C27kH0eFMQn8dz9yhDRPct9W012ltcsSQjlPS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyf+yQT5WL5HYYZvYw4fPMw75KS04UC90W4bcaG4nPzrZO7LVMa
-	b2MbZ5VGGCNFlQAoP1ZD1zcwAL3su/cDIP49KKcwkrH2N+CgQFcF9t+eFh53IkobeYzTyjYRo5R
-	h2cf8uyrQv81/I4qDQsLaY1b0/KB2xYqJIihLUIaB363ApwGxsIofjMD0xCO8oylM
-X-Gm-Gg: ATEYQzzXGzRRE6NndcyGJakrYwlBTpaW2V2zo67ruJs4JSC2BnZt0Lbl01SmCWcY63b
-	aIa7TlJxioNUdDE32N42O8I2AqExpzxGr7WcQiGQhNXvAEWZFh+wxKbPV0xzmnA1amScyps5Ayz
-	GXE27GE7I4wvG0ZL6IF4z/XsoQMDmfMlGvZZonmgdV9IBnS9oPKJGILWdD78m/7AnVsCw0XZo65
-	gEqHPmSGKUdrtOh1kxjAf9BqI2DdJfwLZhN6fUbtIYseMyDfXLw5QTd6mFwfbYSi6E8BC9JsPLv
-	i1CPseL3kiXYmQUX4ZNaiG5dVsIHs9IYTUzZmbOxUaAL1LrE+ZMgqQVmJhIbjpZI6E/OhOxuH1j
-	09onFHEoG4qkThYhfAk/yKDZvp1Yk2msVAoenbkYL9FCKmp6rGA8xOgXLSSw5INsjh+1Yr+m9uQ
-	rXk8Q=
-X-Received: by 2002:a05:622a:1899:b0:509:2a92:809f with SMTP id d75a77b69052e-50b1474847emr24335191cf.1.1773827085617;
-        Wed, 18 Mar 2026 02:44:45 -0700 (PDT)
-X-Received: by 2002:a05:622a:1899:b0:509:2a92:809f with SMTP id d75a77b69052e-50b1474847emr24334991cf.1.1773827085200;
-        Wed, 18 Mar 2026 02:44:45 -0700 (PDT)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b97f142cb46sm167704366b.21.2026.03.18.02.44.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Mar 2026 02:44:44 -0700 (PDT)
-Message-ID: <37ba895f-95ac-44f5-ad54-20b04a079250@oss.qualcomm.com>
-Date: Wed, 18 Mar 2026 10:44:39 +0100
+	s=arc-20240116; t=1773827211; c=relaxed/simple;
+	bh=ihjhU69L0KQ3hSQ0nv4BylA0DtPfOoTddmdqvoNOxvU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rqIVXrEHSEFWEbU+28c84kTeWLSU5vvZ5LbEcT48S63Tm1X1lo97JNlFa/+TosSM7vWzmOkS2l4q1ziEq+N5xAbFKn8R0/iZ94vPuqjv83SmNZFZvnX+hBnAhgdaQI5E4fq/SYExIDpOz+WHDOYWdxNFgXx6U/GBXWWMcERwjws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PIyg29IR; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773827205; x=1805363205;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ihjhU69L0KQ3hSQ0nv4BylA0DtPfOoTddmdqvoNOxvU=;
+  b=PIyg29IRNa8/jPIpJuF918iVGSnPAQXrCDOtYpepU6H070bPA3WkEWYt
+   99lIj0uUzeqTN0cI7dtt4ogAfxOvgfQoyaKIdIaGG0RvGMJpwLNrRzoiN
+   q19rDfhZkCGTs5uZtDIod7BRmBDG1ZvwmDHMQXBXHNvP7g8N+AxUy2r7u
+   ZvL4H74GhRNCHKJQQSMhDAki2ITCANn8s/uINorWJA/S5QuT+AlsnOsu6
+   C0j4N/HmLzlOhpErE2k5kLoyGmdlQdeCvfZl92/r7uxBMuwRyd8mtoLFR
+   LZs0fMMdnmV0jFVCCmA6Mh6bDG7Pv0jn1EFxHjLk4qCaQAUxM/aiWRCYe
+   Q==;
+X-CSE-ConnectionGUID: meLCc36xSx6Kbl5whE9Usg==
+X-CSE-MsgGUID: +xhpXrfiTXq/WbA880uf3g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="92445784"
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; 
+   d="scan'208";a="92445784"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2026 02:46:44 -0700
+X-CSE-ConnectionGUID: qElVMAsgSNywk+Ymp68ONA==
+X-CSE-MsgGUID: l7BvO4LYShC41yWRpNUvPg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; 
+   d="scan'208";a="227515662"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.240])
+  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2026 02:46:40 -0700
+Date: Wed, 18 Mar 2026 11:46:37 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Cc: Michal Simek <michal.simek@amd.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, saikrishna12468@gmail.com,
+	git@amd.com
+Subject: Re: [PATCH 3/5] iio: adc: xilinx-xadc: Replace module macro with
+ custom init/exit functions
+Message-ID: <abp0fWQVqhNeQVG7@ashevche-desk.local>
+References: <20260220053941.611415-1-sai.krishna.potthuri@amd.com>
+ <20260220053941.611415-4-sai.krishna.potthuri@amd.com>
+ <aZgS2c45nGTozHkv@smile.fi.intel.com>
+ <fab2599c-e749-4aa1-8157-c7ac358c6f36@amd.com>
+ <aZgWvjWBusT_JQgE@smile.fi.intel.com>
+ <ca6050a2-72a5-4d13-b89c-10e78364e5fc@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8750: Enable TSENS and thermal
- zones
-To: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        aastha.pandey@oss.qualcomm.com, dipa.mantre@oss.qualcomm.com,
-        Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>
-References: <20260313-sm8750_tsens-v1-0-250fcc3794a2@oss.qualcomm.com>
- <20260313-sm8750_tsens-v1-2-250fcc3794a2@oss.qualcomm.com>
- <c4376a88-a490-4b58-bff3-b0f4d2f731b7@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <c4376a88-a490-4b58-bff3-b0f4d2f731b7@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=bIcb4f+Z c=1 sm=1 tr=0 ts=69ba740e cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
- a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=RYkhNht3YKPCQp1dbvQA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: 7lY97Fv7GMZDI0_iJfLcZlgNpBhBj7vk
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDA4MCBTYWx0ZWRfX1ejqKbmlAZHc
- ugvhI1derJM8Pao4cioFO3zfLOXWqrcbJahY1hQsrTVW50dDCoULCHZFTUk+J9+Ac0YGkdyowd8
- WbXUmhq7dRxX8WjgxrKC48UIXtTtAygMl+TgcoI8d/GhHYCI+5ZFN7upVtUJGwB9wDydvM49v7b
- CBpHBclmuowLQQrTgymBpP0eAYeFizKm1eZsx8XE6P7BHEgom73q4ij3JQMkDMlWPci11pd7KDD
- jIhEZI1g3TwQpVo3l4YDNSRdUm16CXiSf/IsrTgqPGN5tbxlvmR1O7m4lfrP1CIE5xFGnchyFKt
- 4bqRaL7cdGLgL2Sg2g3F4Xp+6fPl9almfLCwkFh24xBayYhx88GwAAoScmyZtp6V7hl98lPx5WF
- imr7jaR6zuNqkVc9so9LvLZSGeKzAPJDj5dcoJyIEMYhhwud6wvdaqJGCY85nwWIdseXPhlpPr3
- 6NyGX5A1/aKGXdwpicg==
-X-Proofpoint-GUID: 7lY97Fv7GMZDI0_iJfLcZlgNpBhBj7vk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-18_01,2026-03-17_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 impostorscore=0 malwarescore=0 adultscore=0 lowpriorityscore=0
- clxscore=1015 priorityscore=1501 bulkscore=0 phishscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603180080
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ca6050a2-72a5-4d13-b89c-10e78364e5fc@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277087-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[quicinc.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,gmail.com,intel.com,arm.com];
+	FREEMAIL_CC(0.00)[amd.com,kernel.org,baylibre.com,analog.com,vger.kernel.org,lists.infradead.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-277088-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: B68C22B963C
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ashevche-desk.local:mid]
+X-Rspamd-Queue-Id: F37CE2B96F7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/18/26 10:44 AM, Konrad Dybcio wrote:
-> On 3/13/26 11:34 AM, Gaurav Kohli wrote:
->> From: Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>
->>
->> The sm8750 includes four TSENS instances, with a total of 47 thermal
->> sensors distributed across various locations on the SoC.
->>
->> The TSENS max/reset threshold is configured to 130°C in the hardware.
->> Enable all TSENS instances, and define the thermal zones with a hot trip
->> at 120°C and critical trip at 125°C.
->>
->> Signed-off-by: Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>
->> Signed-off-by: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
->> ---
+On Wed, Mar 18, 2026 at 02:43:41PM +0530, Sai Krishna Potthuri wrote:
+> On 2/20/2026 1:39 PM, Andy Shevchenko wrote:
+> > On Fri, Feb 20, 2026 at 08:54:26AM +0100, Michal Simek wrote:
+> > > On 2/20/26 08:52, Andy Shevchenko wrote:
+> > > > On Fri, Feb 20, 2026 at 11:09:39AM +0530, Sai Krishna Potthuri wrote:
+> > > > > Replace module_platform_driver() macro with custom init and exit functions
+> > > > > to prepare for supporting multiple bus interfaces (platform + I2C).
+> > > > 
+> > > > No, this is not how it should be done.
+> > > 
+> > > And how should it be done? separate file?
+> > 
+> > I answered somewhere else, but I can elaborate here as well.
+> > 
+> > The idea, yes, to have the driver in the parts:
+> >   _core.c
+> >   _platform.c
+> >   _i2c.c
+> > 
+> > To achieve that, it needs first to split the driver followed by likely
+> > conversion to regmap. With that done it may be used in i2c with a little
+> > code added into _i2c.c.
+> > 
+> > We have examples in kernel for that.
+> > 
+> > 0daede80f870 ("i2c: designware: Convert driver to using regmap API")
+> > fcb82a939df8 ("i2c: designware: Add Baikal-T1 System I2C support")
 > 
-> [...]
+> Sorry for the delayed response. I have gone through regmap implementation to
+> understand the approach and started converting the XADC driver accordingly.
+> During the implementation, I see few challenges with using the standard
+> regmap MMIO and I2C interfaces, which requires defining custom regmap
+> read/write hooks for both MMIO and I2C.
 > 
->> +		cpu-0-0-0-thermal {
->> +			thermal-sensors = <&tsens0 1>;
->> +
->> +			trips {
->> +				trip-point0 {
->> +					temperature = <120000>;
->> +					hysteresis = <5000>;
->> +					type = "hot";
->> +				};
+> For the platform/MMIO case,
+> Zynq platform has its own FIFO-based mechanism for hardware reads and
+> writes, whereas the AXI variants require additional offset manipulation
+> before accessing the registers. These platform-specific requirements force
+> us to use custom read/write implementations rather than the standard regmap
+> MMIO helpers.
 > 
-> Are we going to use these trip points for the CPUs? If not, let's only
-> keep the critical ones (again, for CPUs specifically since they get
-> externally throttled)
+> For the I2C case,
+> 32-bit DRP packet needs to be framed before issuing any I2C transactions.
+> Since this packet framing logic is specific to the XADC DRP interface, it
+> again requires a custom read/write implementations.
+> 
+> Considering all these, regmap may end up as a wrapper on top of these custom
+> xadc_ops read/write functions, which may not add any additional value. Since
+> the XADC driver already has the xadc_ops to support custom read/write
+> implementations, can we continue using the existing xadc_ops read/write
+> paths and skip the regmap conversion?
 
-Other than that:
+Thanks for elaboration. Indeed, the regmap approach in this situation gives
+not much of benefit (there still is, nevertheless).
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+So, the compromise may be done in a way that you define custom IO accessors
+and respecting callbacks in the private data structure first, then split
+the driver to _core and existing _platform driver. Add _i2c on top of this
+refactoring.
 
-Konrad
+> Please let me know if I am missing anything in my understanding.
+
+> I will still proceed with splitting the driver into three files (core,
+> platform, and I2C), as you suggested.
+
+Sure, this needs to be done independently on regmap.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
