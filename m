@@ -1,197 +1,184 @@
-Return-Path: <devicetree+bounces-277045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277043-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eCuwFRNnumnnWAIAu9opvQ
-	(envelope-from <devicetree+bounces-277045-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:49:23 +0100
+	id gJGVEoJlumklWAIAu9opvQ
+	(envelope-from <devicetree+bounces-277043-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:42:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 043742B8695
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:49:22 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B63842B8448
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:42:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E406C3186FBE
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:42:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9DAC0301487F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:42:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E976390C82;
-	Wed, 18 Mar 2026 08:42:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KKxqo56/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6308238A292;
+	Wed, 18 Mar 2026 08:42:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77BA838F225
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 08:42:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B06A388E4F
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 08:41:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773823329; cv=none; b=LTwBlk2blt9R7tsONRn2VmtR6oFsj3+AAWnC0G698+z51lR/m7f5f/OKaUwNEV473jyEtGoLHWtONbm84Bi2IciVn4TU8EAxL+BHRLbqLmqoxFYpV4UtFXIubSiQQN2z/mfqQ8oQLkmb8K5AiORTpKixra9wScR9ufYTF4clOkQ=
+	t=1773823324; cv=none; b=jkFvsy67kyOdXD0h88yAKQBlZqql7WkmcN/aftAMgsYbBIEJwb1DDrbIyW0INyXSS4qqLkvkpDoYU29IrSsSCaRvXdU4WEeaApnRXu9wFw6tvjt1xOwikytU4V7zLj27dlcFSwUrzpgV9x7+HGENjWAwZmQ/thlEVKIcRxBCBeQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773823329; c=relaxed/simple;
-	bh=wbA039UCsYa08sITTRO9QFA+3yS8Mc/n5hbUqkI0bd0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=XSYkK7fZ7auf+ZXZAENAZiXFPEmludhCsekCa9N5+lmpmS8wDXFyh889N5Zh3L6oiaoiu7J3xaGaD6TY0Os3bq5/Sd/KnvH6DhDyHUMZHfalxBPisRyf0cTLdvDj0aFwwD0OT0SSAXlJj7bYJNnjGdW8JpGc69vSx2fW8eXqGhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KKxqo56/; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1773823324; c=relaxed/simple;
+	bh=1Q3Co6bxbshrYxrPl4jn/U2T1xBX3gjFWpDnRI8lYDQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ewec244T/xrlcf6QxBq9+mnAOGFbwTQqbXQui+rJjhC8XaAlZ6jG2tnxNc7rpC+uvctLkTXfmWyhDBeS22I0bdoliLIE49+aNCRsqB+02A74dDiQkj9QY2OVg4KrqQ5C5F1A3+InmIbDjqc77yZpIa8+vps4pL71Hi/j8hGav1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-48334ee0aeaso59085535e9.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 01:42:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773823323; x=1774428123; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0KopvcsoMbI+TYFAx+ful2vEATKS7wTJcITfhebXYt4=;
-        b=KKxqo56/q9Fdp9bpzBZIocVR/aZN6g4VxiF5kpNBSwoP4sV4O+tH0+Te6x7dzKFN2f
-         2W79uOL8JpRxUUfK96jD/EKTZoKLe60awX3KkqXyxPvvXUbgaxbJ6vOSKB+f3xNsLmld
-         fPFiSDBhGe2VrhEPDupAD0IMHo7l+yeObgXsdOmksDgvo9BJrZhTBBHA1uDgkscQ4eiq
-         y1NyTJpc5E2j++lAVVC1q03YC4A5DvG4tqDQj6GKGDRcjOg7/PG7/ZE9Bzu2JDMH51s3
-         /mqKQO6QRCj0HeIID93IzMoYlS6V7CB0ZCDrgyZrniCxHUR72D8S+1uZRyw/LoUW9zOi
-         ArsA==
+Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-94de664b541so1815708241.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 01:41:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773823323; x=1774428123;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=0KopvcsoMbI+TYFAx+ful2vEATKS7wTJcITfhebXYt4=;
-        b=ejcgjnLi15eN5hw4eAyQIWSGs6aIN/8HAx4G0EXzmvbQtMUhSySJn37lovGDA9ZFo+
-         jL1WcpomNkRkWbrTjLZRYnqwpsvkCgOniytpnweriwoIXGAxUKJXHSNm6PfoLAmio4n5
-         VUUk441WO+eTz9d6mp8wJZRqyPNha9Ha9EROwHv7zvoxVNEQSO/nuDV3YTZJa++S8Hct
-         7E9ye6Xl9ZoqvXGO5h4sFcv1GLjjJNPZ/Bgz8PSxLqP4BVQP7cEhaQvHwKpBBP43Chdn
-         rmib0Bnk0IRFjw3+p4oUoiCnMneu2dDSewDyM/cO4Mbt8hGtDqWxS/zSlclCJTy2U95N
-         da6g==
-X-Forwarded-Encrypted: i=1; AJvYcCVsCr2uU3gvF0lqCtc1knPrNfpIwPxgsryu3pt9HoVfPYMyfTxM/0VoY1yxnNQnrxb4RTYJ+4aHYyM6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/lNvFZn2n1JDEsjOBlbJqhvI2B+/Cu12v09i1FfXnuCtLhQ5N
-	ZnyXzFZong2hjCuXWpZ7+eQCUuj4AC3sR9D7LBmb6o1LXBB+h5b+lLwv
-X-Gm-Gg: ATEYQzxv4l2o841JSARnt9+0VD/WdSTY1dP3MNNRmoQwIUN2qoFBBDB9WwEEizZ+vlx
-	XHAfLGULt42xJ4XB20fB2z+0kaskirHrVl1Tf5MhtpzL+73nwWCz5IwmOQ4u0yP4Gz02nJjfnS5
-	hESljd3Z5SKCBO4ycr9bN3H/1k6jCVQxrgGEqiPr/0NyRf18PuMc5LT/JNOMj1CTH5s2IutwQBo
-	/VEdgwEby54bpVdTzKq8CPmHDdNAeBLZjIhWHyPGiw9lMpQVv9VCnQZMeHiext8KTuQCzHmoGoO
-	afpiwZlIXBBjbrd3XycnI4AoqA6nH/zbWmISBvTP1aEg+fMOiHBomZWvjMFL63lqpgkbvx4DPJA
-	qN0FA9iYTeKnOoqd4x/BoEjReTR6tK9+FDtRGWz/t728xNskXZgRC/IbqvhIijIKAl1WUdSva+Q
-	OzwfJw91pv9pBfEEZ91BNX6i5pOj0yvZP8ahR+P7orc3H05sH4
-X-Received: by 2002:a05:600c:630a:b0:485:5574:8ccc with SMTP id 5b1f17b1804b1-486f445122amr39667205e9.13.1773823322358;
-        Wed, 18 Mar 2026 01:42:02 -0700 (PDT)
-Received: from localhost.localdomain ([2a00:23c4:a758:8a01:d643:4385:f93a:2085])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b5184961csm6389350f8f.6.2026.03.18.01.42.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Mar 2026 01:42:02 -0700 (PDT)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v5 8/9] arm64: dts: renesas: renesas-smarc2: Move usb3 nodes to board DTS
-Date: Wed, 18 Mar 2026 08:41:43 +0000
-Message-ID: <20260318084151.122674-9-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260318084151.122674-1-biju.das.jz@bp.renesas.com>
-References: <20260318084151.122674-1-biju.das.jz@bp.renesas.com>
+        d=1e100.net; s=20251104; t=1773823318; x=1774428118;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tqPUDw6RZ7tI/8SbuWaBeZ31o+A7cvn/glmx6dclWwI=;
+        b=KmAV0OF93hbAeH/lO9uJD2zBHb1Vyk5wdouosQn4L7eDltIHsanvrXYyMd7R3LX0es
+         knOSeU+cuJoUcpr1xohUDXiuDLzi2tEkGN1tx36rFtKfiwupeMJ4i4ngxdWTKwkWYBQy
+         sLfUUFnpm9lDovWNIXyjkO2UO79y4aSjC8ttwCR1QWFG04rJv+MtLhRSkqH+DwqAxWlS
+         +kEkB+8PTBzf5hCoTURTHcWCXzWuoSWab6F4LtJRLQ7tfsIy+Cios+/+xEbow0XjrhOK
+         2EtlCzWPJN2cTnhXQQaueQAaOY7czfa9+rH1MvSwIMw2t5YeeT5Sc250YJKuTfjicYmC
+         mPrg==
+X-Forwarded-Encrypted: i=1; AJvYcCUdvKxIapvyGFD7V6OTtRN/zCeoAdw5B7pcJyPdhIzpKbqinEke9CbYw0ksRJCaBYKCFvRITt7S6TPH@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAMwIXtTmVa2pGHELe4pHWSdJKHaf9uYtjKnYR3KQHagy4GHz9
+	RTSc+Eh/Kc8ELKVVLrPbcNAO5IrFVoRTjV0Vqg3uB+NteRFi0eHxh22i7BLwgksY820=
+X-Gm-Gg: ATEYQzwEsc6ml+KYzUadpR+NSQGg3Vh9B+4W1VpwQXu5fCJwGdwapuor18+qAuU3xTx
+	8vu2a+0Ztooiq3a1KP2vQFyNJ2jJqJY3YUWw6atFEiV/tFK0HBstc9uG7GC4UeZ3XcGIQmIEaDQ
+	XWlvp8FHD5I2VvcfKGL+KVd4dMmB2b4Ejnlyq3GK7WCCVKuyXkAsOWDCe3CYlyn1cYXpg5PthW7
+	S5PYlmyJKO+LcHgQEVQ7uCTp+IkzmMmb+2XLYkdxlACtJRqD6Db4F1hPT6F+W9ocbJoeTeepQBe
+	zY8hbA7A/dn9QNn6wtrDA16l8hnUM8a5O3Coy+5QBrDTgYkuWndtt+GFoN6hpeec3TDspkHz/Mf
+	ry0jNJDn4yzv1xPsqp6kXly0Gtj2wCffD6Y90ZelkBqw9nWqcKwvJ+QorZ+id1WMCEKUanM+1kV
+	zzA78qvCu8kEu37Y94pFIZMQwPUSf62qEoJrb7jynoHq/wmW9XGBGgT9m/5ajn
+X-Received: by 2002:a05:6102:5123:b0:5ff:2569:cff1 with SMTP id ada2fe7eead31-6027d159d7fmr1258986137.15.1773823317799;
+        Wed, 18 Mar 2026 01:41:57 -0700 (PDT)
+Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com. [209.85.222.48])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-9510328f67dsm1068422241.4.2026.03.18.01.41.55
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Mar 2026 01:41:56 -0700 (PDT)
+Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-950cc286d86so955560241.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 01:41:55 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUv7QoXCTcUZRw2kN1coXUOza2yiOmzKP1nbvQkP1A7SvBNFytEcWZ3fACkeHgvdRSLEewLxHVBYjwh@vger.kernel.org
+X-Received: by 2002:a05:6102:5087:b0:5ff:e39d:9f9b with SMTP id
+ ada2fe7eead31-6027d159e7fmr1126209137.16.1773823315107; Wed, 18 Mar 2026
+ 01:41:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-1.66 / 15.00];
+References: <20260316154159.1.I0a4d03104ecd5103df3d76f66c8d21b1d15a2e38@changeid>
+ <abkCPU3rxHI49N4_@shikoro> <abkD-VLprcbbEbB1@ashevche-desk.local>
+In-Reply-To: <abkD-VLprcbbEbB1@ashevche-desk.local>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 18 Mar 2026 09:41:44 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVX4tfko8iv-EdwO-bBcwCd+cPkb9aP8qJbcM1F4zdz4g@mail.gmail.com>
+X-Gm-Features: AaiRm52_MgNfiAr79FL-62Ac0xXnTx-AfzVYThIE_IN0tF6AadQcPRzCkdJNUOc
+Message-ID: <CAMuHMdVX4tfko8iv-EdwO-bBcwCd+cPkb9aP8qJbcM1F4zdz4g@mail.gmail.com>
+Subject: Re: [PATCH] device property: Make modifications of fwnode "flags"
+ thread safe
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Douglas Anderson <dianders@chromium.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, stable@vger.kernel.org, 
+	Andrew Lunn <andrew@lunn.ch>, Daniel Scally <djrscally@gmail.com>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Len Brown <lenb@kernel.org>, Mark Brown <broonie@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+	Russell King <linux@armlinux.org.uk>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Saravana Kannan <saravanak@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	devicetree@vger.kernel.org, driver-core@lists.linux.dev, imx@lists.linux.dev, 
+	linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-spi@vger.kernel.org, netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [0.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277045-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[sang-engineering.com,chromium.org,linuxfoundation.org,kernel.org,vger.kernel.org,lunn.ch,gmail.com,davemloft.net,google.com,nxp.com,linux.intel.com,redhat.com,pengutronix.de,armlinux.org.uk,lists.linux.dev,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-277043-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
-	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_FIVE(0.00)[5];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[34];
+	MIME_TRACE(0.00)[0:+];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.884];
+	TAGGED_RCPT(0.00)[devicetree,renesas];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bp.renesas.com:mid]
-X-Rspamd-Queue-Id: 043742B8695
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:email,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: B63842B8448
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
+Hi Andy,
 
-The SMARC2 board DTSI is common to multiple SoCs. Move the USB3 nodes to
-the board DTS, as some SoCs (e.g. RZ/G3{S,L}) do not support USB3.
+On Tue, 17 Mar 2026 at 08:34, Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+> On Tue, Mar 17, 2026 at 08:26:53AM +0100, Wolfram Sang wrote:
+>
+> ...
+>
+> > Thanks for tackling this issue! I agree it should be fixed, just
+> > wondered about one thing:
+> >
+> > > While flags are often modified while under the "fwnode_link_lock",
+> > > this is not universally true.
+> >
+> > Is it a possibility to use the lock in all code paths instead?
+> > Because...
+> >
+> > >     struct list_head consumers;
+> > > -   u8 flags;
+> > > +   unsigned long flags;
+> >
+> > ... this change costs some memory on every system. Maybe it can be
+> > avoided?
+>
+> How much memory does it cost? On most 64-bit architectures is +4 bytes,
+> rarely +0 bytes, on m68k it might be +2bytes. On 32-bit it most likely
+> +0 bytes. I expect that 64-bit machines will cope with this bump.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v4->v5:
- * No change
-v3->v4:
- * Updated commit description
- * Collected the tag
-v2->v3:
- * No change
-v1->v2:
- * No change
----
- arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts | 6 ++++++
- arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi    | 8 --------
- 2 files changed, 6 insertions(+), 8 deletions(-)
+On all architectures with natural alignment of pointers and longs,
+it won't cost a thing: struct list_head contains pointers, so the
+struct must be padded to a multiple of 4 or 8 bytes anyway.
+On m68k[*],  it will cost 2 bytes, as the existing padding is just a
+single byte.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-index 1ba50512f4ef..9e66f2179807 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-@@ -264,7 +264,13 @@ &sdhi1 {
- 	vqmmc-supply = <&vqmmc_sd1_pvdd>;
- };
- 
-+&usb3_phy {
-+	status = "okay";
-+};
-+
- &xhci {
- 	pinctrl-0 = <&usb3_pins>;
- 	pinctrl-names = "default";
-+
-+	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-index e2a34577a1a1..696a933af808 100644
---- a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-+++ b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-@@ -111,11 +111,3 @@ &sdhi1 {
- 
- 	status = "okay";
- };
--
--&usb3_phy {
--	status = "okay";
--};
--
--&xhci {
--	status = "okay";
--};
+[*] Iff m68k ever switches to 32-bit alignment, there won't be an
+    additional cost due to the change of flags here, but of course
+    there would be a cost all over the place.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.43.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
