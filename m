@@ -1,390 +1,120 @@
-Return-Path: <devicetree+bounces-276968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276969-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MPSNIGJOumlUUAIAu9opvQ
-	(envelope-from <devicetree+bounces-276968-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:04:02 +0100
+	id 4NGYMptOumlUUAIAu9opvQ
+	(envelope-from <devicetree+bounces-276969-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:04:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B2A52B6A9E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:04:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44F282B6AC3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:04:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E744D3087071
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 07:02:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C998C3050A31
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 07:03:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D12F368967;
-	Wed, 18 Mar 2026 07:02:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4D96368973;
+	Wed, 18 Mar 2026 07:03:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=monolithicpower.com header.i=@monolithicpower.com header.b="Y7HqJBO+";
-	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="gs97/PXx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ts/QV93o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from e242-10.smtp-out.us-west-1.amazonses.com (e242-10.smtp-out.us-west-1.amazonses.com [23.251.242.10])
-	(using TLSv1.2 with cipher AES128-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1262366DC0;
-	Wed, 18 Mar 2026 07:02:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=23.251.242.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A188A366DC0;
+	Wed, 18 Mar 2026 07:03:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773817375; cv=none; b=jFRdmROK5Z9kU2Bw1ZkJPHn4ZIifC7Vk9zNR0ueeoJhCW2exIUM6V5Atymwo64E5itskRUjJPk5o0vh+1GAFBC7udZ2tPchQXrSmiOOgLHkm7lZR8lrlzvlPR4fxif37fPCxotwvQ+24AV20wMTUZX2vBZ9OH2KqPAzyBPslVsk=
+	t=1773817412; cv=none; b=FN2kfEv3vwXT5DsmB5U3TgTE/z/VXk8hYawBcXP/gHd1aSwcG/2hEYJOaesUJ5FkQaRZcO3GRs2cJC2Pb7dGwvdB6i3P8wfAjTfYWM+6On71YVdzKIx1ZMutGhij0MhfJ9BtxmmdpCSfDMAVNT8ChTBSP9dooN42qi/5jJH9kYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773817375; c=relaxed/simple;
-	bh=hMXaoiJeX9xkYSQo8SHDLChuKJFLqa7mrUOytbk9xf0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Pr2tDRxsPP3p3xfIsH+e2Xv4K49L97hWTxTsXcttGVIvHt836WXwLuLpgtxwnWeF4bg/2Ee63WMDRCQ0mMgcFMTxNR1mJpsjn/Xr84fVX8ifU9MOhMjdcTDbJ70Ez2W9QTIxORf41xwdcCP3fgr8Oa+BT5+Uva7yctp7ipKReCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=monolithicpower.com; spf=pass smtp.mailfrom=mail-mps-ses.monolithicpower.com; dkim=pass (2048-bit key) header.d=monolithicpower.com header.i=@monolithicpower.com header.b=Y7HqJBO+; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=gs97/PXx; arc=none smtp.client-ip=23.251.242.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=monolithicpower.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mail-mps-ses.monolithicpower.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=rodjp4ft5fg4rp24cb2ntayvghblvgrq; d=monolithicpower.com;
-	t=1773817373;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding;
-	bh=hMXaoiJeX9xkYSQo8SHDLChuKJFLqa7mrUOytbk9xf0=;
-	b=Y7HqJBO+bGz6U2XW0Tksq1w1ttI5bB7/aFKs6nZWJSNojo1HmhItQXl8qwAsx2TA
-	PPYz3l1S7zAwOLulezaR54S+j69jnYaHepcN86rnG2B119MnMO0rRy+GnG0xwamXhVW
-	SN8AIMrch50P52kSHmLGPYxLzWeb2IDIx3m7fwAw3UzFQX8rdBN3vg/0u9uSJ3d8j6q
-	KE5ov4R1dtxvETAGBwFGqJV9uuVpGmBCxxUaFiJopXQS0PCfrc2W4RiYnaAsUfyS9C6
-	ZCs0MAEBsnJflTiD+JWxL7hOCrpv7otKzZnRqDjiT/oit01FxBu7AqdEkW3UY2aS1QV
-	1x0I36Lnag==
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=voqdhibj3ww47nmt5hkqcrgg7xiynmza; d=amazonses.com; t=1773817373;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Feedback-ID;
-	bh=hMXaoiJeX9xkYSQo8SHDLChuKJFLqa7mrUOytbk9xf0=;
-	b=gs97/PXxIPpHcCueLEVXf0qOuAa5KlvBf/wqbZzlCC/dhRlbBvr0u8dFcY6AHbrz
-	CZpea4xnkCccXSUZ7qLOwBUMFR1adTG7cpQKIoMhvJJ3ItpXg2Gz0sfGJVKCsGUqTjj
-	MsmheaRdlG5hhZkKTvGGDL2FPNCewrsJDoraMYLI=
-From: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-To: Yuxi.Wang@monolithicpower.com, linux@roeck-us.net, corbet@lwn.net, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: wyx137120466@gmail.com, linux-hwmon@vger.kernel.org, 
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: [PATCH 2/2] hwmon: add mpm369x driver
-Date: Wed, 18 Mar 2026 07:02:53 +0000
-Message-ID: <0111019cffc12220-1800bb62-f2e0-4194-99a3-7d2ba03532c6-000000@us-west-1.amazonses.com>
-X-Mailer: git-send-email 2.51.0.windows.1
-In-Reply-To: <20260318070115.1609-1-Yuxi.Wang@monolithicpower.com>
-References: <20260318070115.1609-1-Yuxi.Wang@monolithicpower.com>
+	s=arc-20240116; t=1773817412; c=relaxed/simple;
+	bh=gRHdCWV8tqoJUtCV3OMyo7dNo4HVb79QhQvB6N0dZgc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VL3T1ef7wRKrcdGovf+VHPx++Ov4Bmfmk4fIiLdqdVkuJK2Q7F2fEQqzJia0gVWDXjfavdzPOlepe7exSMTIf5CzmSO19KBQi+n5LXmNTYH00GbizDVGToXzvjxj7O9aKTc7fa8U3CqUISIHClRg3ZQXFhBw5rma1jzUbIlK7GQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ts/QV93o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF03CC19421;
+	Wed, 18 Mar 2026 07:03:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773817412;
+	bh=gRHdCWV8tqoJUtCV3OMyo7dNo4HVb79QhQvB6N0dZgc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ts/QV93oq1lwlrBL/llm41nF8LNVDG8wHZMQluFG5Sh12SqdO250RCteIrxoZMhDD
+	 jjfu1tTAZ4PtyE1MstdXCOKLbKWEB//tuPrHdpYo/e/Ogcl6LDC3MMaQfRTrX/6DVB
+	 UPqL9SC7GT3iCa0QKgYY5qbF3GKNPAR6sTQ5CDCpVnrnttEKAYZz2U3tLQEKM4d1BJ
+	 bGgQRF/l9ywd6CUUqSSKDtn6ORZx72gYULpO2oU+7Vt4rPn5bIHuxEX+f7/XswzvkA
+	 BmWeQJqmO5OJOrvqEhHRSqlOqkil2Xnblq+TzDMLHE4o9AfDaxBT/njtSFJ8b6j+Q+
+	 o08CXvwG9wz0Q==
+Date: Wed, 18 Mar 2026 08:03:29 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>, 
+	Matthias Kaehlcke <mka@chromium.org>, Mike Looijmans <mike.looijmans@topic.nl>, 
+	Pin-yen Lin <treapking@chromium.org>, Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
+	J =?utf-8?Q?=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>, Jens Glathe <jens.glathe@oldschoolsolutions.biz>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v6 0/4] Enable secondary USB controller in host mode
+Message-ID: <20260318-neon-vigorous-prawn-dce7f3@quoll>
+References: <20260318040644.3591478-1-swati.agarwal@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Feedback-ID: :1.us-west-1.CVpA5H5M7EMrIGr0u6+8nP6wkCH59pkYLxtNQh1UjuczBtN1WmV60RtUapmzBbQ7+P+SiHg5vbyEpY0uRvudPF12wRQI7xDHNKjWPMJN/yd9hVbV9UslJ09o7rVZZCRhPDXT8kPM9Nch5RQcZE90uz62B8giHS2hgInWMbQKX5A=:1.us-west-1.yP6/L6iaxFc47BvsTr22yvAX3nKjbzwVEN8jceuJEpw=:AmazonSES
-X-SES-Outgoing: 2026.03.18-23.251.242.10
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260318040644.3591478-1-swati.agarwal@oss.qualcomm.com>
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[monolithicpower.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[monolithicpower.com:s=rodjp4ft5fg4rp24cb2ntayvghblvgrq,amazonses.com:s=voqdhibj3ww47nmt5hkqcrgg7xiynmza];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276968-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_NONE(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Yuxi.Wang@monolithicpower.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	NEURAL_HAM(-0.00)[-0.999];
-	DKIM_TRACE(0.00)[monolithicpower.com:+,amazonses.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_FROM(0.00)[bounces-276969-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[us-west-1.amazonses.com:mid,monolithicpower.com:dkim,monolithicpower.com:email,linaro.org:email,amazonses.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1B2A52B6A9E
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 44F282B6AC3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for mps mpm369x chip family,
-which includes mpm3695-20 and mpm3690S-15.
+On Wed, Mar 18, 2026 at 09:36:40AM +0530, Swati Agarwal wrote:
+> Enable secondary USB controller in host mode.
+> 
+> This patch depends on:
+> https://lore.kernel.org/all/20260306091355.1178333-1-swati.agarwal@oss.qualcomm.com/
 
-Signed-off-by: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
----
- Documentation/hwmon/index.rst   |   1 +
- Documentation/hwmon/mpm369x.rst |  75 +++++++++++++++++++++
- MAINTAINERS                     |   7 ++
- drivers/hwmon/pmbus/Kconfig     |   9 +++
- drivers/hwmon/pmbus/Makefile    |   1 +
- drivers/hwmon/pmbus/mpm369x.c   | 115 ++++++++++++++++++++++++++++++++
- 6 files changed, 208 insertions(+)
- create mode 100644 Documentation/hwmon/mpm369x.rst
- create mode 100644 drivers/hwmon/pmbus/mpm369x.c
+Honestly? No. Drivers cannot depend on DTS.
 
-diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-index b2ca8513cfcd..340df0ccc9f1 100644
---- a/Documentation/hwmon/index.rst
-+++ b/Documentation/hwmon/index.rst
-@@ -190,6 +190,7 @@ Hardware Monitoring Kernel Drivers
-    mp5990
-    mp9941
-    mp9945
-+   mpm369x
-    mpq8785
-    nct6683
-    nct6775
-diff --git a/Documentation/hwmon/mpm369x.rst b/Documentation/hwmon/mpm369x.rst
-new file mode 100644
-index 000000000000..df15eb1f81c3
---- /dev/null
-+++ b/Documentation/hwmon/mpm369x.rst
-@@ -0,0 +1,75 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+Kernel driver mpm369x
-+====================
-+
-+Supported chips:
-+
-+  * MPS mpm3695-20
-+
-+    Prefix: 'mpm3695-20'
-+
-+  * MPS mpm3690S-15
-+
-+    Prefix: 'mpm3690S-15'
-+
-+Author:
-+
-+	Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-+
-+Description
-+-----------
-+
-+This driver implements support for Monolithic Power Systems, Inc. (MPS)
-+MPM3695-20 and MPM3690S-15 Controller.
-+
-+Device compliant with:
-+
-+- PMBus rev 1.3 interface.
-+
-+The driver exports the following attributes via the 'sysfs' files
-+for input voltage:
-+
-+**in1_input**
-+
-+**in1_label**
-+
-+**in1_crit**
-+
-+**in1_crit_alarm**
-+
-+The driver provides the following attributes for output voltage:
-+
-+**in2_input**
-+
-+**in2_label**
-+
-+**in2_lcrit**
-+
-+**in2_lcrit_alarm**
-+
-+**in2_rated_max**
-+
-+**in2_rated_min**
-+
-+The driver provides the following attributes for output current:
-+
-+**curr1_input**
-+
-+**curr1_label**
-+
-+**curr1_max**
-+
-+**curr1_max_alarm**
-+
-+The driver provides the following attributes for temperature:
-+
-+**temp1_input**
-+
-+**temp1_crit**
-+
-+**temp1_crit_alarm**
-+
-+**temp1_max**
-+
-+**temp1_max_alarm**
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 96ea84948d76..26b2949b2dd6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17948,6 +17948,13 @@ S:	Maintained
- F:	Documentation/hwmon/mp9945.rst
- F:	drivers/hwmon/pmbus/mp9945.c
- 
-+MPS MPM369X DRIVER
-+M:	Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-+L:	linux-hwmon@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/hwmon/mpm369x.rst
-+F:	drivers/hwmon/pmbus/mpm369x.c
-+
- MR800 AVERMEDIA USB FM RADIO DRIVER
- M:	Alexey Klimov <alexey.klimov@linaro.org>
- L:	linux-media@vger.kernel.org
-diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-index fc1273abe357..4aadecd49209 100644
---- a/drivers/hwmon/pmbus/Kconfig
-+++ b/drivers/hwmon/pmbus/Kconfig
-@@ -517,6 +517,15 @@ config SENSORS_MP9945
- 	  This driver can also be built as a module. If so, the module will
- 	  be called mp9945.
- 
-+config SENSORS_MPM369X
-+	tristate "MPS MPM369X"
-+	help
-+	  If you say yes here you get hardware monitoring support for MPS
-+	  MPM369X chip family.
-+
-+	  This driver can also be built as a module. If so, the module will
-+	  be called mpm369x.
-+
- config SENSORS_MPQ7932_REGULATOR
- 	bool "Regulator support for MPQ7932"
- 	depends on SENSORS_MPQ7932 && REGULATOR
-diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-index d6c86924f887..58f38f2013b0 100644
---- a/drivers/hwmon/pmbus/Makefile
-+++ b/drivers/hwmon/pmbus/Makefile
-@@ -52,6 +52,7 @@ obj-$(CONFIG_SENSORS_MP5926)	+= mp5926.o
- obj-$(CONFIG_SENSORS_MP5990)	+= mp5990.o
- obj-$(CONFIG_SENSORS_MP9941)	+= mp9941.o
- obj-$(CONFIG_SENSORS_MP9945)	+= mp9945.o
-+obj-$(CONFIG_SENSORS_MPM369X)	+= mpm369x.o
- obj-$(CONFIG_SENSORS_MPQ7932)	+= mpq7932.o
- obj-$(CONFIG_SENSORS_MPQ8785)	+= mpq8785.o
- obj-$(CONFIG_SENSORS_PLI1209BC)	+= pli1209bc.o
-diff --git a/drivers/hwmon/pmbus/mpm369x.c b/drivers/hwmon/pmbus/mpm369x.c
-new file mode 100644
-index 000000000000..3f1fe9c28ca7
---- /dev/null
-+++ b/drivers/hwmon/pmbus/mpm369x.c
-@@ -0,0 +1,115 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * mpm369x.c  - pmbus driver for mps mpm369x
-+ *
-+ * Copyright 2026 Monolithic Power Systems, Inc
-+ *
-+ * Author: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/pmbus.h>
-+#include "pmbus.h"
-+
-+#define PAGE	0x01
-+#define MPM369x_FUNC	(PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | \
-+			 PMBUS_HAVE_IOUT | PMBUS_HAVE_TEMP | \
-+			 PMBUS_HAVE_STATUS_VOUT | PMBUS_HAVE_STATUS_IOUT | \
-+			 PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_STATUS_TEMP)
-+
-+static int mpm369x_read_byte_data(struct i2c_client *client, int page,
-+				  int reg)
-+{
-+	return -ENODATA;
-+}
-+
-+static int mpm369x_read_word_data(struct i2c_client *client, int page, int phase,
-+				  int reg)
-+{
-+	int ret;
-+
-+	switch (reg) {
-+	case PMBUS_READ_TEMPERATURE_1:
-+		ret = pmbus_read_word_data(client, page, phase, reg);
-+		if (ret < 0)
-+			return ret;
-+		/*
-+		 * Because the Temperature format used by the chip is a 2-byte,
-+		 * twos complement integer and the sign bit is bits[9].
-+		 * Report that signed short integer.
-+		 */
-+		if (ret & 0x200)
-+			ret = (ret & 0x1ff) | 0xfe00;
-+		break;
-+	default:
-+		ret = -ENODATA;
-+		break;
-+	}
-+	return ret;
-+}
-+
-+static struct pmbus_driver_info mpm369x_info = {
-+	.pages = PAGE,
-+	.format[PSC_VOLTAGE_IN] = direct,
-+	.format[PSC_CURRENT_OUT] = direct,
-+	.format[PSC_VOLTAGE_OUT] = direct,
-+	.format[PSC_TEMPERATURE] = direct,
-+
-+	.m[PSC_VOLTAGE_IN] = 40,
-+	.b[PSC_VOLTAGE_IN] = 0,
-+	.R[PSC_VOLTAGE_IN] = 0,
-+
-+	.m[PSC_CURRENT_OUT] = 16,
-+	.b[PSC_CURRENT_OUT] = 0,
-+	.R[PSC_CURRENT_OUT] = 0,
-+
-+	.m[PSC_VOLTAGE_OUT] = 800,
-+	.b[PSC_VOLTAGE_OUT] = 0,
-+	.R[PSC_VOLTAGE_OUT] = 0,
-+
-+	.m[PSC_TEMPERATURE] = 1,
-+	.b[PSC_TEMPERATURE] = 0,
-+	.R[PSC_TEMPERATURE] = 3,
-+
-+	.read_word_data = mpm369x_read_word_data,
-+	.read_byte_data = mpm369x_read_byte_data,
-+	.func[0] = MPM369x_FUNC,
-+};
-+
-+static int mpm369x_probe(struct i2c_client *client)
-+{
-+	return pmbus_do_probe(client, &mpm369x_info);
-+}
-+
-+static const struct i2c_device_id mpm369x_id[] = {
-+	{ "MPM3695-20", 0 },
-+	{ "MPM3690S-15", 1 },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, mpm369x_id);
-+
-+static const struct of_device_id mpm369x_of_match[] = {
-+	{ .compatible = "mps,mpm3695-20" },
-+	{ .compatible = "mps,mpm3690S-15" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, mpm369x_of_match);
-+
-+static struct i2c_driver mpm369x_driver = {
-+	.probe = mpm369x_probe,
-+	.driver = {
-+			.name = "mpm369x",
-+			.of_match_table = mpm369x_of_match,
-+		   },
-+	.id_table = mpm369x_id,
-+};
-+
-+module_i2c_driver(mpm369x_driver);
-+MODULE_AUTHOR("Yuxi Wang <Yuxi.Wang@monolithicpower.com>");
-+MODULE_DESCRIPTION("MPS MPM369x pmbus driver");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("PMBUS");
--- 
-2.39.2
+Also, combining here USB is a no-go. Do not combine independent
+patchsets into one patchset.
+
+I also do not see how you addressed my comments from previous version.
+You never bothered to respond and I do not see them implemented.
+
+Best regards,
+Krzysztof
 
 
