@@ -1,201 +1,240 @@
-Return-Path: <devicetree+bounces-277378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277379-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cHrMOe7dumk3cwIAu9opvQ
-	(envelope-from <devicetree+bounces-277378-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:16:30 +0100
+	id KOlbFTjmummdcwIAu9opvQ
+	(envelope-from <devicetree+bounces-277379-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:51:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7661F2C00D5
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:16:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2D022C0ABD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:51:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BEE8430F4701
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 17:09:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F163431FB47E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 17:12:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F3EB332901;
-	Wed, 18 Mar 2026 17:09:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C7C63446DE;
+	Wed, 18 Mar 2026 17:12:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UCLlQRwx";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HlGZA8vw"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="pz9Bl2rh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DE1333C1B7
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 17:09:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43D7C3321BF;
+	Wed, 18 Mar 2026 17:12:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773853776; cv=none; b=sFrXdZG7K4bjHbSRCqG9w/DXZcHVkPSX3of5EjNJQBy35W0VEuupkwv/anYMeUaT5FszGXQFsd0jJMvKbzJhdP/bcDunXsQYrA84rzU0V/oYhkdZF1+B/371iHdIrfB+1jW7qMcF3fksMRCO0pRXl5VvPa0vkXpFwN2Yb1poBB4=
+	t=1773853973; cv=none; b=Dl3IrisTHJAGUctlM2pkj2a3jJzvxEm61LvHkyZnsJq75t/dR3odVYFDjSiqrnZTEctvG6xzPnRStUd8Y/ef4BrmsfwUcRa2SEv/eZ736UvO0+QXQ6kGY5lo6wqONbnQM4jocBIIpMT4TOaDatbiTHE2pTtgJiqcQEkQMCODY6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773853776; c=relaxed/simple;
-	bh=NH9+OVtPdDHqeC7pTIE8pHeL4cphd9YvgiXAgWcJH9E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Umss1QgKeuLAc5SlnTkTUUA9rSiJxE1H4jrw1z9FneS976cQpGrhfvVzsVyIOFU4IIcJFjysUMq0WbbSP9tzFCufG9MZ4/riyvM6zLXO3ApiaIYHJZlAUjV9zDu+TsJALkestbhBy2QDTNBR+as0aGacoU6pHdtr1ycgBGkinMA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UCLlQRwx; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HlGZA8vw; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62IFgu4V914354
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 17:09:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	KWy6AvBvJuSLSKIvUfXuWYTFb2xoDYuunAiAip6CnCI=; b=UCLlQRwx62Gtdcyb
-	ef2BYcyCI2drwNJtS0Il8DPuhISa0lef9Im2M6XGJ9dj1Tsd87TBoi0uNzszE+rT
-	HVYimFrYPRXYM8AUDfpUyKwqljflitDuWMBT7i+7FDoF5xEZvVLmiDhlHHpa20l/
-	Yv5IWiE9KLKSvUzo8O5snY6IRaaSlPRdo+utQqbK+v5nE4zyFnQyuimqtEIXRrbt
-	lxNdcJ0w6e/PTJm63495s3A7pR+ehYCF5QM7Rty+z41KwXViT1qQTYFFdG9apV7i
-	/SSr9j50skXti4oQLO7as/+hm+N0MeLcVwddd55mjmxTSrPV3CWIu1b6XwGehtkv
-	/FFp1w==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cytxys9re-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 17:09:34 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-35641c14663so221120a91.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 10:09:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773853774; x=1774458574; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KWy6AvBvJuSLSKIvUfXuWYTFb2xoDYuunAiAip6CnCI=;
-        b=HlGZA8vwDVhxVz4YSue7d+kIuPcgI8IEYaKAr/kj8CTiOFRaTlkJGA0Cz0LFObcXZX
-         yrHdkzHpKtpDY7c65hWRocWCUEzH+Ri8hRjiUTp01FgadmV9wKqpO3iADPCqml0+F1kB
-         CHQinusphM3jBYQH8Yi8l1mlWQf67q/zuDRRTiziyux9KLCVxa+yihYmnGm2jmvAPZTK
-         zDqR4/LgpqPTflOVDfU+F9RWMmBICAOTSUmtQh2bbXtPjyiAE1gArtBCQpU3/+WaLUah
-         lvpajFkc8Ye2bWuV7B8kQRm1orV+aIwXvUTSnra2H7CBQsqeGNNc86iOvJNAK1AajNUy
-         SLOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773853774; x=1774458574;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KWy6AvBvJuSLSKIvUfXuWYTFb2xoDYuunAiAip6CnCI=;
-        b=HCoRPBGRha8vllEbWfLqTGE/Mbl6WEbHpWnfRro43bYqpxDNFopRmVRh7RAAPVGDsw
-         uKX+3wzFp+QKvVeiIdNyP2MxyI0N5iUIj132Md+ifC1LrA7aDenixEo84c6D59fhTsvG
-         kPokGKEOKgL3IX3k3ozl2hu+jJCUc2RATR0kiqFgZt5aC3GiUmnMf9mJ3SIV/Io+fIFu
-         cJd2w+MKwiwAHl4JgjB4OX07U1lgwbRl5pKjKpUOetm6BrDadhPNwm1c3h+0hCVTtgwq
-         zu88u7ae+EOkn4mDpRt+mG3iUq7LD9WtJkyF3zliiOf3wtn6OLqDyr5s7YL0FxUmWboI
-         GMTA==
-X-Forwarded-Encrypted: i=1; AJvYcCW1sBaNL/ZuZJ8dNuOtt1vSzRSrUyQj31kHQaSVUl/GTOsRgZjH+4bzHtaitqSSS6/QCTkOkencpyW2@vger.kernel.org
-X-Gm-Message-State: AOJu0YynhUxKOTQ/LD4Fktb560SH2PUzA5BUnM/dEfXLrmJKnnMCLiUc
-	E2ZDtUGXaonAAu+LlUEuMfFBukAv1cA5Wh4Ey6qtbt09NF9fjFfeN3qcrlAIvuW+IFVSUCxAiuz
-	s6+k/Gj7zK45i1rStiDc+A6HHc9+wKP/dkKS8z/nQbhWttaOio6ENDNfkCwQRfTGy
-X-Gm-Gg: ATEYQzwenYl0c9rPQD/aI92xySCo48uvU1IBTgIMQmw0HBq4BiRxkcu1MjNnf1T/14N
-	l0pPjVOqqpCKiVIbGoKXaEilhvcxJbT6Ey/U39an1fFeoHU5PdKkChDEqgX6mBX91Tsl1dWTFUI
-	9cE43YHcQyBjMxkjPj+///yfoGf/KChOmPvIT3kXEpP6Cei2v26jJFny5vs0FP58k6I3T9WrNgz
-	rp8SGc/gDtX97SlUokTfaEGbfhe4r/bWpxLFIB0hhXhhx7zdj3pPHmksnIgL8oQRxvfPSV8Wc/e
-	O0cnxcBkQVws/8EJSjZXH+bFwM/0LzKdiJ+XAbXXDJiSYLqTKp4AaGa7B7qp/r1A3T4Zcd27Pap
-	osaB9L6cYP/YuwpmzMdJnF+KFy8cl1NGFAEntA5DBQVAoy9iY/w==
-X-Received: by 2002:a17:90b:3e47:b0:359:7b9a:2cf4 with SMTP id 98e67ed59e1d1-35bb9d92ce0mr3656542a91.0.1773853773974;
-        Wed, 18 Mar 2026 10:09:33 -0700 (PDT)
-X-Received: by 2002:a17:90b:3e47:b0:359:7b9a:2cf4 with SMTP id 98e67ed59e1d1-35bb9d92ce0mr3656516a91.0.1773853773480;
-        Wed, 18 Mar 2026 10:09:33 -0700 (PDT)
-Received: from [192.168.0.195] ([49.204.29.107])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35bc62b514bsm171902a91.3.2026.03.18.10.09.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Mar 2026 10:09:33 -0700 (PDT)
-Message-ID: <cd63e6e4-e8c5-4c26-b929-cf47e9b58250@oss.qualcomm.com>
-Date: Wed, 18 Mar 2026 22:39:27 +0530
+	s=arc-20240116; t=1773853973; c=relaxed/simple;
+	bh=+soT7CgPwsST9+iURXHYHL9umDg0X2h2QIjg8vunO8s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OfHMteEIPQaC5pwpuztDAbuO+ODLUv489N/Gr0j3F5l3+TUd1+P3FfwXSgh/uOIW4OzfLPjtiPTuvyz6LMbxEeP1667gl7YFIFUKvd63XF9GYa+jqj5gcNMJEjyC6pYIDkuKUuAu474YoJPIjEcltc+61COq7TNRIlkNc5hYBvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=pz9Bl2rh; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from killaraus.ideasonboard.com (2001-14ba-703d-e500--2a1.rev.dnainternet.fi [IPv6:2001:14ba:703d:e500::2a1])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 5238A460;
+	Wed, 18 Mar 2026 18:11:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1773853895;
+	bh=+soT7CgPwsST9+iURXHYHL9umDg0X2h2QIjg8vunO8s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pz9Bl2rhS7eXokxqUPjNjmWUUp7wHg0T1jQxnEbQJl0yhN3nJKi4xvbUVL2cFo1/i
+	 lYqtqNJGEPnNeQuNTmQYnkMYyda7kVrc2FmAIxx22wzBIl46AWxJ24hrYn8xKnJwJZ
+	 UK/OrXRCxCUfhjKBfnGQ6ZVBAS29IK1JA8hchtzw=
+Date: Wed, 18 Mar 2026 19:12:46 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Tommaso Merciai <tomm.merciai@gmail.com>,
+	Martin Hecht <mhecht73@gmail.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Jacopo Mondi <jacopo+renesas@jmondi.org>,
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Dongchun Zhu <dongchun.zhu@mediatek.com>,
+	Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+	Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+	Todor Tomov <todor.too@gmail.com>,
+	"Paul J. Murphy" <paul.j.murphy@intel.com>,
+	Daniele Alessandrelli <daniele.alessandrelli@gmail.com>,
+	Marco Felsch <kernel@pengutronix.de>,
+	Lubomir Rintel <lkundrak@v3.sk>, linux-renesas-soc@vger.kernel.org,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] media: dt-bindings: i2c: Drop redundant endpoint
+ properties
+Message-ID: <20260318171246.GH633439@killaraus.ideasonboard.com>
+References: <20260316134533.56941-3-krzysztof.kozlowski@oss.qualcomm.com>
+ <20260316135352.GA31616@killaraus.ideasonboard.com>
+ <a429887b-13f7-4ba3-9260-ddae92adfe51@oss.qualcomm.com>
+ <abg7rvczKjyIA5jN@kekkonen.localdomain>
+ <138cc10a-b30a-4fcc-8401-ed8ac89ac04c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: clock: qcom,eliza-dispcc: Add Eliza
- SoC display CC
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260318-clk-qcom-dispcc-eliza-v2-0-8c05581168d1@oss.qualcomm.com>
- <20260318-clk-qcom-dispcc-eliza-v2-1-8c05581168d1@oss.qualcomm.com>
-Content-Language: en-US
-From: Taniya Das <taniya.das@oss.qualcomm.com>
-In-Reply-To: <20260318-clk-qcom-dispcc-eliza-v2-1-8c05581168d1@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: dP_EPBSdj3eLDlbhOLwiPWMfQj2NMFr4
-X-Authority-Analysis: v=2.4 cv=FKAWBuos c=1 sm=1 tr=0 ts=69badc4e cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=kWG1ar9lY4jofqPRq7zosA==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
- a=biJtGA3NR2aAF7uD6uoA:9 a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDE0NiBTYWx0ZWRfX8OOWFkZ3sS8M
- gSrZfVlAYdC4J3L5CM9fxp3ijezbngdyFnuU1fpgSIxgBHVsPq+H9aTgTTX/90pbY1I4KyX1tWv
- Nfdg8dsPjto7aDeBQkHjzv4SJjL59VsX7493RN9yVEHLTRv6BW0HoAmafEYtZuhcxv6esFvMxNE
- N8gYOhtHaxUgD2km7KPwLghSCvgEtBErwfioh1CFGthXgaXXq+ixVjxJ8nLoi2R8BWJE3ep3/MB
- 6WZIcZbsnnFyU+QyS33FxvRwqM+oE5nnfDbSmZISUbeEYhf+7R3KmOmQWMNweMWF61HJaxmkw76
- x7xglDI6B2r3Pj5bzh6LKydEWPJV6wVWFqevz4ALaBYldPBqLPRfL2BwoGaaXJ8ptdmXTLv4UBz
- 0dXAVTX4bGYbzHTxkla9xttdbAO/vSIG6VHZrJMtluWSGK/lO9abcMHONpPJJ1Po4OGkO+S4oop
- bfdnoe9zUCXWRwEQ4aQ==
-X-Proofpoint-ORIG-GUID: dP_EPBSdj3eLDlbhOLwiPWMfQj2NMFr4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-18_01,2026-03-17_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 suspectscore=0 adultscore=0 bulkscore=0
- clxscore=1015 spamscore=0 lowpriorityscore=0 impostorscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603180146
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <138cc10a-b30a-4fcc-8401-ed8ac89ac04c@oss.qualcomm.com>
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277378-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[taniya.das@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-277379-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[linux.intel.com,gmail.com,kernel.org,foss.st.com,jmondi.org,ideasonboard.com,ragnatech.se,raspberrypi.com,glider.be,linaro.org,mediatek.com,bootlin.com,theobroma-systems.com,intel.com,pengutronix.de,v3.sk,vger.kernel.org,bp.renesas.com];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-0.993];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 7661F2C00D5
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.959];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ideasonboard.com:dkim,killaraus.ideasonboard.com:mid]
+X-Rspamd-Queue-Id: C2D022C0ABD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Hello Krzysztof,
 
+On Mon, Mar 16, 2026 at 07:02:41PM +0100, Krzysztof Kozlowski wrote:
+> On 16/03/2026 18:19, Sakari Ailus wrote:
+> > On Mon, Mar 16, 2026 at 03:42:09PM +0100, Krzysztof Kozlowski wrote:
+> >> On 16/03/2026 14:53, Laurent Pinchart wrote:
+> >>> On Mon, Mar 16, 2026 at 02:45:34PM +0100, Krzysztof Kozlowski wrote:
+> >>>> The "endpoint" node references video-interfaces.yaml schema with
+> >>>> "unevaluatedProperties: false" which means that all properties from
+> >>>> referenced schema apply.  Listing some of them with ": true" is simply
+> >>>> redundant and does not make this code easier to read.
+> >>>
+> >>> I think you know my opinion on this topic. I believe we would be better
+> >>> off by turning "unevaluatedProperties: false" into
+> >>> "additionalProperties: false" here, and keeping the list of applicable
+> >>> properties. It brings value to device tree authors by telling which
+> >>> properties are applicable to the device at hand. For instance ... (see
+> >>> below)
+> >>
+> >> (let me trim)
+> >>
+> >>>> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
+> >>>> index 2d7937a372a2..7a05a1eda58d 100644
+> >>>> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
+> >>>> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5647.yaml
+> >>>> @@ -51,9 +51,6 @@ properties:
+> >>>>          $ref: /schemas/media/video-interfaces.yaml#
+> >>>>          unevaluatedProperties: false
+> >>>>  
+> >>>> -        properties:
+> >>>> -          clock-noncontinuous: true
+> >>>> -
+> >>>
+> >>> ... Without this, an integrator will need to dive into driver code to
+> >>> know if non-continuous clock is usable for the device.
+> >>
+> >> I see. Our usual interpretation of common schema, expressed by @Rob in
+> >> few places, that eventually all properties might be applicable. This
+> >> applies especially for ABI tied to the core Linux specifics, e.g.
+> >> rotation and orientation from video-interface-devices.yaml.
+> >>
+> >> Absolutely every sensor can be mounted rotated, therefore every binding
+> >> referencing video-interface-devices should allow it, even if driver is
+> >> not using it. Because basically that's the ABI we want to define for
+> >> each sensor, thus each binding referencing common schema should have
+> >> "unevaluatedProps: true" without listing them.
 
-On 3/18/2026 4:09 PM, Krzysztof Kozlowski wrote:
-> +  power-domains:
-> +    items:
-> +      - description: MMCX power domain
-> +
-> +  required-opps:
-> +    items:
-> +      - description: MMCX performance point
-> +
+Yes, that's totally fine. I agree that properties defined in
+video-interface-devices.yaml should not be listed in individual
+bindings. They're generic, and all of them are applicable to each image
+sensor device. That part is fine, I think we have no disagreement.
 
-Eliza, does not have MMCX rail, it is all connected to CX.
+> >> Similarly touchscreen.yaml.
+> >>
+> >> OTOH, second option, properties which are strictly hardware, e.g. name
+> >> of power supply or whether clock has or has not non-continuous mode,
+> >> should be allowed only when they match the hardware. Such bindings
+> >> should use "additionalProperties: false" so the hardware description is
+> >> constrained/fixed/specific.
+> > 
+> > The patch may be technically correct but I'm afraid it won't improve the
+> > bindings but rather the opposite: it removes information telling whether a
+> > property is relevant for a given device.
+> > 
+> > I bet there are a lot of possibilities to write invalid DTS while the
+> > checker says it's fine (missing data-lanes or link-frequencies, for
+> > instance). That may have been the case before the patch but I'd make
+> > properties a driver needs to function mandatory rather than removing them
+> > from bindings altogether.
+> 
+> That's pretty different problem and I am not removing any mandatory
+> properties. I changed absolutely nothing from functional point of view.
+> 
+> > It'd been on my to-do list to split the current video-interfaces.yaml into
+> > several files: generic camera sensor properties, CSI-2 interface
+> > properties, DVP/Bt.656 interface properties and the rest (full list
+> > probably requires more thought). That way we could only include properties
+> > that are relevant for the device without necessarily listing each one for
+> > all bindings.
+> > 
+> > I'd also continue to list boolean properties relevant for devices as well
+> > as other properties that are relevant for a device but not mandatory.
+> 
+> I don't think there is such goal and particular subsystem does not get
+> exception here. What is relevant for device comes either from the
+> hardware or implemented ABI, as I explained. Bindings arbitrarily
+> choosing "I think this might be relevant" from some big schema with
+> irrelevant pieces is not manageable and not correct.
+
+But that's not what we're discussing. The properties you're dropping
+here are not "arbitrarily" choosen as being relevant. Whether it is
+possible or not to use a non-continuous clock is a hardware property,
+it's not an arbitrary choice.
+
+Your patch will not change anything when it comes to validation of DT by
+tools using the schema, but it drops important information relevant to
+DT writers. What I recommend instead is to switch from
+"unevaluatedProperties: false" to "additionalProperties: false". Not
+only will we keep the information, but it will also be enforced properly
+by tools.
+
+> The common schema should be rather entirely relevant thus making such
+> arbitrary choice what could be "more relevant" not even needed.
+
+Sakari mentioned splitting video-interfaces.yaml into multiple files,
+which may help, but I don't think it will solve the problem completely.
+Even with a video-interface-csi2.yaml, whether or not the clock can be
+non-continuous, or if the data lines polarity can be configured, is a
+hardware property.
 
 -- 
-Thanks,
-Taniya Das
+Regards,
 
+Laurent Pinchart
 
