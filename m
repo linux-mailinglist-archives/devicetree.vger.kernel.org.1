@@ -1,384 +1,209 @@
-Return-Path: <devicetree+bounces-277098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277099-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GKfNImR4ummTWwIAu9opvQ
-	(envelope-from <devicetree+bounces-277098-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:03:16 +0100
+	id 6Bp1GZB6ummTWwIAu9opvQ
+	(envelope-from <devicetree+bounces-277099-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:12:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 274942B99B0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:03:16 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7362E2B9AFC
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:12:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7EE903005ABE
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:03:15 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A1FE930069BB
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 10:08:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4655D3BA251;
-	Wed, 18 Mar 2026 10:02:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E938335F5FD;
+	Wed, 18 Mar 2026 10:08:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mecomediagroup.de header.i=@mecomediagroup.de header.b="WlZkZAw9"
+	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b="5PH08Mmr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.yourmailgateway.de (relay.yourmailgateway.de [188.68.63.166])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C9993B3893;
-	Wed, 18 Mar 2026 10:02:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.68.63.166
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773828175; cv=none; b=qbIZdiVDHtuUG7s5YMRDx6wbFKjhDv3oSiuz6TXYmhCxK1RQ0APA/y9fxwJ0Wa2hj7NqLxFNa+xbKSe+RlZj0hmfA8H8WHVxlggjzsiPSjifNV6QxsXAxQ+4/o46x3gpO7Yz3OAzjw5EYl7t3rt+PW6u46RT2QJWSniZsmHZV9M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773828175; c=relaxed/simple;
-	bh=h1maZnca79zKEeBY2WSnihjzhk+DG97FDZ+EIpzcPto=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=pPqtiAKlQCbYvHVckqy/qzO0MdzeZm9pP55I9AgVQ9uIGoIyTLqPM6w4MWWEqBvLM+Ns2HnaCuAMe344VBWQBeT0WfDWrNKff9K8WiapY6JU8otrxh2Jc55sDWx50kF4cPTlNhz8biaAj8W8L3Pfkg0kJYamraAdmSlzBTFjuKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mecomediagroup.de; spf=pass smtp.mailfrom=mecomediagroup.de; dkim=pass (2048-bit key) header.d=mecomediagroup.de header.i=@mecomediagroup.de header.b=WlZkZAw9; arc=none smtp.client-ip=188.68.63.166
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mecomediagroup.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mecomediagroup.de
-Received: from mors-relay-8202.netcup.net (localhost [127.0.0.1])
-	by mors-relay-8202.netcup.net (Postfix) with ESMTPS id 4fbPWg4f1jz41nt;
-	Wed, 18 Mar 2026 11:02:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mecomediagroup.de;
-	s=key2; t=1773828143;
-	bh=h1maZnca79zKEeBY2WSnihjzhk+DG97FDZ+EIpzcPto=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=WlZkZAw91fF10jBPcD5sB7Tzvw9b+B0e5kz6mGgxvpNxvZ+s72U+DL23Q63T7JoXP
-	 KAZvoy7u5Zxrme9J5TftYAoOIlzCnHzJxJ2Ifq1S7G/TvpdS0ynRMjPQBEeeCxiFsm
-	 OqcsOrAatDeAsoEyeUbIlOxYOxcdSyztimRl+lccqavsUqgzVXsLtyaYn1dQlUio3K
-	 61NCX6Vx9JE1ntOx3gIclqvtRjZT3wgxt5Ive9rPpRPZMwKOkO2RZDhy77/eE6thkh
-	 OHsKhb4AJllV7ew1cFMEeqOXhEqnNAjcU2snnS8os0sLOCsEca4rquJYiR6BdRHd5R
-	 Za7JYrSeJFMkA==
-Received: from policy01-mors.netcup.net (unknown [46.38.225.35])
-	by mors-relay-8202.netcup.net (Postfix) with ESMTPS id 4fbPWQ06Phz3ynd;
-	Wed, 18 Mar 2026 11:02:10 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at policy01-mors.netcup.net
-X-Spam-Flag: NO
-X-Spam-Score: -2.898
-X-Spam-Level: 
-Received: from mxe95c.netcup.net (unknown [10.243.12.53])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by policy01-mors.netcup.net (Postfix) with ESMTPS id 4fbPWP0T1Cz8t42;
-	Wed, 18 Mar 2026 11:02:09 +0100 (CET)
-Received: from webmail01.netcup.net (unknown [46.38.249.153])
-	by mxe95c.netcup.net (Postfix) with ESMTPA id 8F9E080CA4;
-	Wed, 18 Mar 2026 11:02:07 +0100 (CET)
-Authentication-Results: mxe95c;
-        spf=pass (sender IP is 46.38.249.153) smtp.mailfrom=mecid@mecomediagroup.de smtp.helo=webmail01.netcup.net
-Received-SPF: pass (mxe95c: connection is authenticated)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A84033A7F42
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 10:08:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.218.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773828522; cv=pass; b=bpeiI258ZT3lS9LyoJ161VMzdOIVpRzPEKybDhWig9kHj2jsLLK2p3LKDIyzpqwmWhhWePHvf/cBZRdtIjTeih7NPbIJhA7DR/nd+Ief5hiySCIBdjU1qiq739d7+e56vUD5jJBsVSeC8+GJYF+ScaG2Wlu+ZxfTV5r60Yqe9i8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773828522; c=relaxed/simple;
+	bh=QeBwEzpkQBoucAoNzKR5pXm1ojBrdQj1YQVWxIyUZ6o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TDjEuJ3sS4B3cgkROSJx7pE+Odis/XJSyl5koSv6tc87Cf7bGGoW6Ocp+NZwNzWQtYllRGGbBon/S2uYWuew6+zLpSXXywtxG3qDYB1MQXrOw85504lMKoRlvksXFZyOX2A9NHiz7c7+dvOyNb4Wum4Yy8lhKJA9d0sOXqMZt/M=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net; spf=pass smtp.mailfrom=flipper.net; dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b=5PH08Mmr; arc=pass smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flipper.net
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-b97a06d7629so571347066b.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 03:08:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773828513; cv=none;
+        d=google.com; s=arc-20240605;
+        b=gVXVP9eGFcAHbHFIKC4leBZ0tBE5v5VlsABKm6QPOFaiJ8EUpi36OGOGLdbWYOXW1Y
+         VybZRyF0F34kyq1XOPeDMMz27q6MaeThw9wMpuz10usSdU5vOm5HO5fRFGLP5lq2rNRO
+         8VUcPed3ccXRgW8LrIEnG/JNOb2G19cEfjeqitn/ADE6gzKghnSKGYyIxtdxujQeq62m
+         sPNPV9JWiMwSsmhG0+93b9iKlW2kGOTsyHoqQlzMCIyMc+O0XlTSBJHWOhOkswjdo3Ts
+         l7S3i425fUgGLiI9eanjYNvbxxWopT3yETmAWSz1DwJg2FyFQRH1k3ECkXC+htHIbxcL
+         AW4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=vA3prr0pqra4fvY8vHWhez7S8tBJXQJ9txp+/8w8yfU=;
+        fh=WnyTmqtK2b0YVbiz70RxG5RZBdGiF/j6eLCMuUR9fus=;
+        b=Of41boLoZXl8rFRYSq8crmGnpv9UKLM6XW1/T0NWI6hzIZDIC2v1K1RIiGSobavF7F
+         0xAulAorf4jW21fPO3Uvay4qBqBKbLQEpaqrKMAF6kX8xo7kzWk55xnyBKjP1kDLSs4l
+         oRNAAt4IsFZwtYczSUotBkMgP4cNKgYAvGJMsWNVnTS8YG1ZY4af1KDx+KW8qcmnp6WR
+         ILQxerNqyYkePbGfJV6jz1HBu77iP43X7qDniSHtJp/M8qZcvXCsX/SZuRxVS4TQMr7K
+         DaLSj22knQmGXpdWHVAqjatwWXGCZKoWiOvC3uxv8eE7TH12x0hRKDYJmBds6AwkEeTQ
+         gHsA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=flipper.net; s=google; t=1773828513; x=1774433313; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vA3prr0pqra4fvY8vHWhez7S8tBJXQJ9txp+/8w8yfU=;
+        b=5PH08MmrYQuBIHjHEFqxdobbKawbDu7m48yaplt4qym8hzW3tiwTW/15LPFfeT1m9o
+         EorOizKk5k4hUhQ9tZ98jLyMVwJXCi+JAXmZWAEWsPrWR9krbrYEtBDIeYG+7kQxirgG
+         zKCYAWfMunFRu1+kTyEV5rIw7uqbC20Kr5JsCPE+hZbEorIO3kkSLYYMcH/b9ezTK0sy
+         +leJTauMV0yQ//Ph/YGH/tG2VXR0dScUB65Q8EPIfUDvTOEPS4FaGBjbdNd285Gt85PE
+         48s52xjHlwf2TWbX/6CGboPSx0IVTAZH937pIrBnTMnMwmyxDQcPt2GpOTsJGZLRMZdl
+         9n3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773828513; x=1774433313;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=vA3prr0pqra4fvY8vHWhez7S8tBJXQJ9txp+/8w8yfU=;
+        b=c2eFGDuSk5k/EEzK+qq/SdD1kjEgVj1AjL906yq0wBpL+3gZIOOFqsgCfJvxbYYnqu
+         OqXpsGUX110TdciiiFAZJByou6IVn8RIrTcMoIbKhN6eIqxMoFgHGIKMpuvpsVvJMfDg
+         RK2VqTbAwFfJKWQLonJaAyYt6jrDathaZwlDoa4w7r7HDaKvR6WT9Y1jc1HvZUGt/mKB
+         w2NEPLtvSHfYHQYCEoabCWLIj9BW6X00wspM5LAjd+KA3qsxFPisLnjQ4l+aH6f3tTdW
+         WLoIpm7Q4WhjPsxAR3afRUnv1cXuduSGyUzsJn7LIGsKYXeH1CYDESabOqheYq5kd5YB
+         hcAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXmySX3Fm0qitBN2zNx28/NSrfe0CilpuuOlIyW0nYV9m4dOLCEDOvm+KupFp3Xy9OnjZpnTnDtUdmg@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAg/GRKzAihLZtfjwEO1K03WpcTODzqahsNO2xRPm7/I2ILc0R
+	UnMmlfEEwAJ56J2xZUYED6hOi3VFVW9dPMIcl0OVZ5spgAM+OE/nZprKxLvHsxVavxGPxiShKjL
+	GN8eyAb4YSuefqsqtJ4N0Y+qOdYEq3jinl4dg5LHVKg==
+X-Gm-Gg: ATEYQzwJx3s+J6jgywFV6FK+BOVtcBYHkJRw42J4E36iwZUEuH0drIMQb+PCiKegFG2
+	xhzLWp+HfKnac7KZpgiDmOWME9q7FZY2PCBCyYt1k32GisYIv+5HpWapeTZHnelNQa0HWnkVve4
+	IEKq1gVqe7Q4rfJXKJOPPVrW+AYgQITuKciVgRdzKov2zyDhHIsXzr33LGz2Kb+9wA7eYmQ7HVB
+	tcyKXQo1Vjadg8LQVAy59e70rbXo2G1EIZ6VKiIJnCTm8GNkQLnMm/kVsrp0XSC7yQxo0GlRYiI
+	KyEUEJU=
+X-Received: by 2002:a17:906:4784:b0:b97:ad7c:64cb with SMTP id
+ a640c23a62f3a-b97f4abcd3bmr149390566b.44.1773828513373; Wed, 18 Mar 2026
+ 03:08:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Wed, 18 Mar 2026 11:02:07 +0100
-From: mecid@mecomediagroup.de
+References: <20260318-husb311-v3-0-2b32e6192b9c@flipper.net>
+ <20260318-husb311-v3-2-2b32e6192b9c@flipper.net> <c7129177-1265-4bf3-9925-48146bde37bf@kernel.org>
+In-Reply-To: <c7129177-1265-4bf3-9925-48146bde37bf@kernel.org>
+From: Alexey Charkov <alchark@flipper.net>
+Date: Wed, 18 Mar 2026 14:08:18 +0400
+X-Gm-Features: AaiRm535_GbWw5AUGnVGXLuLzlNfnDHGSXBhv5FW1noP-OPW1VXZBuUsNdmUPdo
+Message-ID: <CAKTNdwHrmpLLf0Oh27Td3YG0qsGKxhDBLRh4_hL3+kGWwKFvZw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] dt-bindings: usb: richtek,rt1711h: Switch ETEK
+ ET7304 to use a fallback compatible
 To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, richardcochran@gmail.com,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add qcs9075-radxa-airbox-q900
-In-Reply-To: <edf0eab1-845b-494c-89c0-8822f7c3156c@kernel.org>
-References: <20260318083621.470826-1-mecid@mecomediagroup.de>
- <20260318083621.470826-3-mecid@mecomediagroup.de>
- <edf0eab1-845b-494c-89c0-8822f7c3156c@kernel.org>
-User-Agent: Roundcube Webmail/1.4.15
-Message-ID: <6a143ac02440b2d87cb86265e814d916@mecomediagroup.de>
-X-Sender: mecid@mecomediagroup.de
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-PPP-Message-ID: <177382812792.1797080.6434826329839345598@mxe95c.netcup.net>
-X-NC-CID: jMriU/DPGFwjJRiJgd+xykErDJknHmBq0g/VcpeAqQ2nHbFIuLpJ
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mecomediagroup.de,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[mecomediagroup.de:s=key2];
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Gene Chen <gene_chen@richtek.com>, 
+	Yuanshen Cao <alex.caoys@gmail.com>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[flipper.net,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[flipper.net:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[mecomediagroup.de:+];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277098-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277099-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mecomediagroup.de:dkim,mecomediagroup.de:email,mecomediagroup.de:mid];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_CC(0.00)[kernel.org,linux.intel.com,linuxfoundation.org,richtek.com,gmail.com,collabora.com,vger.kernel.org,oss.qualcomm.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mecid@mecomediagroup.de,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alchark@flipper.net,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[flipper.net:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 274942B99B0
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mail.gmail.com:mid,flipper.net:dkim,flipper.net:email]
+X-Rspamd-Queue-Id: 7362E2B9AFC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 2026-03-18 09:56, Krzysztof Kozlowski wrote:
-> On 18/03/2026 09:36, Mecid Urganci wrote:
->> Add device tree support for the Radxa AirBox Q900 board based on the
->> Qualcomm QCS9075 SoC (Lemans Family).
->> 
->> This board features HDMI 2.0 via dp0, 2x USB 3.1 Gen 2 ports,
->> 2x 2.5GbE Ethernet ports and onboard UFS storage.
->> 
->> Further information: https://radxa.com/products/fogwise/airbox-q900/
->> 
->> Functionality has been tested and confirmed working via an Armbian
->> Debian Trixie build.
->> 
->> Signed-off-by: Mecid Urganci <mecid@mecomediagroup.de>
->> Made-with: Cursor
-> 
-> Not a correct tag. Please read full docs about usage of LLM, because if
-> you came with wrong tag, I assume you did not read the rest of it.
-> 
-> What's more, did you review this code before posting it?
+On Wed, Mar 18, 2026 at 1:27=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 18/03/2026 10:23, Alexey Charkov wrote:
+> > As stated in [1], ETEK ET7304 is functionally identical to Richtek RT17=
+15,
+>
+> Functionally sounds like its functions/features. You mean the register
+> layout is identical?
 
-Sorry for the confusion as this is my first time sending a patch 
-upstream and I tried to address what could come up with an LLM as 
-sparing partner before.
+Both actually. The only difference is the VID reported in registers.
+Will reflect in the wording.
 
-I did review the code and tested for functionality.
+> > so reflect it in the bindings via a fallback compatible.
+> >
+> > As there are various TCPCI chips by different vendors reimplementing th=
+e
+> > registers and behavior of the RT1711H/RT1715, fallback compatibles will
+> > scale better.
+> >
+> > [1]
+> > Link: https://lore.kernel.org/all/20260220-et7304-v3-2-ede2d9634957@gma=
+il.com/
+>
+> [1] should be after the URL, rather.
 
-> 
->> ---
->>  arch/arm64/boot/dts/qcom/Makefile             |    1 +
->>  .../dts/qcom/qcs9075-radxa-airbox-q900.dts    | 1012 
->> +++++++++++++++++
->>  2 files changed, 1013 insertions(+)
->>  create mode 100644 
->> arch/arm64/boot/dts/qcom/qcs9075-radxa-airbox-q900.dts
->> 
->> diff --git a/arch/arm64/boot/dts/qcom/Makefile 
->> b/arch/arm64/boot/dts/qcom/Makefile
->> index a4dc9e8b2d25..c8b7dd67806d 100644
->> --- a/arch/arm64/boot/dts/qcom/Makefile
->> +++ b/arch/arm64/boot/dts/qcom/Makefile
->> @@ -180,6 +180,7 @@ qcs8300-ride-el2-dtbs := qcs8300-ride.dtb 
->> monaco-el2.dtbo
->> 
->>  dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride-el2.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
->> +dtb-$(CONFIG_ARCH_QCOM)	+= qcs9075-radxa-airbox-q900.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
->> 
->> diff --git a/arch/arm64/boot/dts/qcom/qcs9075-radxa-airbox-q900.dts 
->> b/arch/arm64/boot/dts/qcom/qcs9075-radxa-airbox-q900.dts
->> new file mode 100644
->> index 000000000000..8b5202b527cb
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/qcs9075-radxa-airbox-q900.dts
->> @@ -0,0 +1,1012 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +/*
->> + * Copyright (c) 2026 Mecid Urganci
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/leds/common.h>
->> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->> +
->> +#include "lemans.dtsi"
->> +#include "lemans-pmics.dtsi"
->> +
->> +/ {
->> +	model = "Radxa AIRbox Q900";
->> +	compatible = "radxa,airbox-q900", "qcom,qcs9075", "qcom,sa8775p";
->> +
->> +	aliases {
->> +		ethernet0 = &ethernet0;
->> +		ethernet1 = &ethernet1;
->> +		i2c15 = &i2c15;
->> +		i2c18 = &i2c18;
->> +		serial0 = &uart10;
->> +		ufshc1 = &ufs_mem_hc;
->> +	};
->> +
->> +	chosen {
->> +		stdout-path = "serial0:115200n8";
->> +	};
->> +
->> +	vcc_5v0_regulator: vcc-5v0-regulator {
-> 
-> Please use name for all fixed regulators which matches current format
-> recommendation: 'regulator-[0-9]v[0-9]'
-> 
-> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-> 
+Noted, thanks, will adjust.
 
-Will address in V2, thank you!
+> > Signed-off-by: Alexey Charkov <alchark@flipper.net>
+> > ---
+> >  Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml | 11 ++++++=
++----
+> >  1 file changed, 7 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml=
+ b/Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml
+> > index 1eb611f35998..62169daddb4c 100644
+> > --- a/Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml
+> > @@ -18,10 +18,13 @@ description: |
+> >
+> >  properties:
+> >    compatible:
+> > -    enum:
+> > -      - etekmicro,et7304
+> > -      - richtek,rt1711h
+> > -      - richtek,rt1715
+> > +    oneOf:
+> > +      - const: richtek,rt1711h
+> > +      - const: richtek,rt1715
+>
+> That's still an enum. Don't change the format.
 
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vcc_5v0";
->> +		gpio = <&pmm8654au_3_gpios 6 GPIO_ACTIVE_HIGH>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&vcc_5v0_en_state>;
->> +		regulator-min-microvolt = <5000000>;
->> +		regulator-max-microvolt = <5000000>;
->> +		regulator-boot-on;
->> +		enable-active-high;
->> +		regulator-always-on;
->> +	};
->> +
->> +	vcc5v0_usb30_otg_regulator: vcc5v0-usb30-otg-regulator {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vcc5v0_usb30_otg";
->> +		gpio = <&pmm8654au_2_gpios 3 GPIO_ACTIVE_HIGH>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&vcc3v3_usb30_otg_en_state>;
->> +		regulator-min-microvolt = <5000000>;
->> +		regulator-max-microvolt = <5000000>;
->> +		regulator-boot-on;
->> +		enable-active-high;
->> +		regulator-always-on;
->> +	};
->> +
->> +	vcc5v0_usb30_regulator: vcc5v0-usb30-regulator {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vcc5v0_usb30";
->> +		gpio = <&pmm8654au_2_gpios 4 GPIO_ACTIVE_HIGH>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&vcc3v3_usb30_en_state>;
->> +		regulator-min-microvolt = <5000000>;
->> +		regulator-max-microvolt = <5000000>;
->> +		regulator-boot-on;
->> +		enable-active-high;
->> +		regulator-always-on;
->> +	};
->> +
->> +	vcc_3v3_ssd_regulator: vcc-3p3-ssd-regulator {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vcc_3v3_ssd";
->> +		gpio = <&pmm8654au_1_gpios 9 GPIO_ACTIVE_HIGH>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&vcc_3v3_ssd_en_state>;
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		regulator-boot-on;
->> +		enable-active-high;
->> +		regulator-always-on;
->> +	};
->> +
->> +	vcc3v3_minipcie_regulator: vcc3v3-minipcie-regulator {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vcc3v3_minipcie";
->> +		gpio = <&pmm8654au_2_gpios 10 GPIO_ACTIVE_HIGH>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&vcc3v3_minipcie_en_state>;
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		regulator-boot-on;
->> +		enable-active-high;
->> +		regulator-always-on;
->> +	};
->> +
->> +	gpio_leds: gpio-leds {
->> +		compatible = "gpio-leds";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&status_led_state>, <&power_led_state>;
->> +
->> +		status-led {
->> +			gpios = <&pmm8654au_1_gpios 11 GPIO_ACTIVE_HIGH>;
->> +			linux,default-trigger = "heartbeat";
->> +			function = LED_FUNCTION_STATUS;
->> +			color = <LED_COLOR_ID_BLUE>;
->> +		};
->> +
->> +		power-led {
->> +			gpios = <&tlmm 98 GPIO_ACTIVE_HIGH>;
->> +			linux,default-trigger = "default-on";
->> +			function = LED_FUNCTION_POWER;
->> +			color = <LED_COLOR_ID_GREEN>;
->> +		};
->> +	};
->> +
->> +	gpio_keys: gpio-keys {
->> +		compatible = "gpio-keys";
->> +
->> +		pinctrl-0 = <&gpio_keys_default>;
->> +		pinctrl-names = "default";
->> +
->> +		power-key {
->> +			label = "Power Off";
->> +			gpios = <&tlmm 97 GPIO_ACTIVE_LOW>;
->> +			linux,code = <KEY_POWER>;
->> +			wakeup-source;
->> +			debounce-interval = <30>;
->> +		};
->> +	};
->> +
->> +	fan0: gpio-fan {
->> +		compatible = "gpio-fan";
->> +		gpios = <&pmm8654au_1_gpios 12 GPIO_ACTIVE_HIGH>;
->> +		gpio-fan,speed-map = <0 0>, <5000 1>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&fan_en_state>;
->> +		#cooling-cells = <2>;
->> +	};
->> +
->> +	dp0-connector {
-> 
-> dp-connector
-> 
->> +		compatible = "dp-connector";
->> +		label = "eDP0";
->> +		type = "full-size";
->> +
->> +		port {
->> +			dp0_connector_in: endpoint {
->> +				remote-endpoint = <&mdss0_dp0_out>;
->> +			};
->> +		};
->> +	};
->> +};
->> +
-> 
-> ...
-> 
->> +
->> +	gpio_keys_default: gpio-keys-default-state {
->> +		pins = "gpio97";
->> +		function = "gpio";
->> +		drive-strength = <2>;
->> +		bias-pull-up;
->> +	};
->> +
->> +	power_led_state: power-led-state {
->> +		pins = "gpio98";
->> +		function = "gpio";
->> +		output-high;
->> +		bias-pull-up;
->> +	};
->> +};
->> +
->> +/ {
->> +	thermal-zones {
->> +		cpu-0-0-0-thermal {
-> 
-> You should override given thermal zone by phandle/label style, not by
-> full path.
+Ack, will make it oneOf: enum: ..., items: ...
 
-Will address in V2 here too.
-
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-
-Thank you for feedback,
-Mecid Urganci
+Thanks a lot,
+Alexey
 
