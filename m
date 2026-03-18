@@ -1,254 +1,184 @@
-Return-Path: <devicetree+bounces-277147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277148-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KC5lHEOJumnSXgIAu9opvQ
-	(envelope-from <devicetree+bounces-277147-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:15:15 +0100
+	id yMJ6O5SIumnSXgIAu9opvQ
+	(envelope-from <devicetree+bounces-277148-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:12:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD9632BAA30
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:15:14 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66FF42BA936
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 12:12:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1195131CEEF3
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:02:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 815E0310EAE0
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 11:05:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E9DC3C3C1E;
-	Wed, 18 Mar 2026 11:00:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CDC43BA248;
+	Wed, 18 Mar 2026 11:04:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qrp1DZft"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fi54/hpm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0F9B3C345D;
-	Wed, 18 Mar 2026 11:00:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99AE62135D7;
+	Wed, 18 Mar 2026 11:04:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773831610; cv=none; b=rzBuw6TpHc8SsLYIPPR37ybWFSEajPTG4fkgmisCKu9YBAaC4+h59gsbYwap8SvhV+beCIccCPY4PU2rDvkaWgX11o2P+gx4ngInGhxb5IJU39onnmBtBTzmvn36gkI5jbIpAauvVdMMe90yNMwgPu7F0aEzWKZlapzg5r1dWKo=
+	t=1773831884; cv=none; b=lqxvOKrMY2HasIsT4hkpvnR521UprjB39xnvDMCPlC7BIgrBtyd8Env+FNdHdmLOjbsGs2V4hubjN88KQbu2pRdckfu3rXfzXHmW/c3AdKgjytPKrRgc+QLB/4c6xf3XyYoFQkEMg+I2CNdWvw4oK+t7AkSwj0GFpdre9/coX2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773831610; c=relaxed/simple;
-	bh=uXF/4wNn5jtAs8jN3yAYT5aUpVgj2iPt6T43Ush51L8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MDGLHKuXRGuTKbtdOCquq8qhfQhkpTmgIQ6HilOYNJ8A3wtq/b1hvxZMSu3j4M4PpYkM1kUvXXHAHi9q/ovhcFCwxTIwZt9hUTA/2rG2zPfJkoLq2318ETbl443HsiAxlAwX5lAi9UQJgohKQohXfuJBVG72Thl+tFga7uG49kw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qrp1DZft; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E442EC2BCB3;
-	Wed, 18 Mar 2026 10:59:58 +0000 (UTC)
+	s=arc-20240116; t=1773831884; c=relaxed/simple;
+	bh=BNq/aLjGiRsU/woSk9KXvzCzt9H8uG+UKL6Hc0amgqE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ssMobaGhSDMehW2Dy0yjtRpLKBFJV6vpUdDJN/OjRqtoD7/fv/NvHn8itw3QCMO8uA07JUvvaRIZzupws5HvecmVrNWlSXE35g2T2NN8gO/r9UZD2CBpLt2uUaWEZ1OZyaXhT3647CYBUle0X8rPQRudNt4I+qc0X/C70I8Z/Rw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fi54/hpm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C5F2C19424;
+	Wed, 18 Mar 2026 11:04:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773831609;
-	bh=uXF/4wNn5jtAs8jN3yAYT5aUpVgj2iPt6T43Ush51L8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Qrp1DZftNL2mANGaUskZ2ndurPvv1Q5xEZdHwqNMTXTU49FdJOksisWCNrwlXC6Ur
-	 af1XIUzkZN16ANirbz+13SpX4Ycz2NHapzQwFaoBxPeYsZxWBk7kNquGT+gKC0UPal
-	 1odcL5f7nAH1h90rlpECzOJP2yoKQZ8CZiZWUIZGJZhr5om6GULjPnRiyF5QjirbGG
-	 nNG6QPMx1+15rdYzlM0CO+nI6MMsPVBSOXQB4ZINbwOikGfe9GWbWqT3NJ+AtTnIMu
-	 Wq+pDjER0gzCMZLFc44nIa/fO0bSvNdhsToGSVGPjBOVfA+qN49Eqsy8N1SkE37UMo
-	 GOPaLPgqmqj5Q==
-From: Mike Rapoport <rppt@kernel.org>
-To: Andrew Morton <akpm@linux-foundation.org>
-Cc: Alexander Potapenko <glider@google.com>,
-	Alexander Viro <viro@zeniv.linux.org.uk>,
-	Andreas Larsson <andreas@gaisler.com>,
-	Ard Biesheuvel <ardb@kernel.org>,
-	Borislav Petkov <bp@alien8.de>,
-	Brendan Jackman <jackmanb@google.com>,
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Christian Brauner <brauner@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	David Hildenbrand <david@kernel.org>,
-	Dmitry Vyukov <dvyukov@google.com>,
-	Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-	Ingo Molnar <mingo@redhat.com>,
-	Jan Kara <jack@suse.cz>,
-	Johannes Weiner <hannes@cmpxchg.org>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Marco Elver <elver@google.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Michal Hocko <mhocko@suse.com>,
-	Mike Rapoport <rppt@kernel.org>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	"H. Peter Anvin" <hpa@zytor.com>,
+	s=k20201202; t=1773831884;
+	bh=BNq/aLjGiRsU/woSk9KXvzCzt9H8uG+UKL6Hc0amgqE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=fi54/hpmBZjRTodk9ob7bkwP4VJX3bjuKqnaUMdcL1kbSj8bhDCgLdL0SzZxXvoMg
+	 aXNaBNRFXr2A7WmmrtioF0KlnobKG5ohyzuhhb/WFj8qhI0TJjqpqN0RFtBzgt2uwG
+	 qCUQK8Qg9mzM9g62Bo6B5L1ai5Arm4lby1DPq4XHcWFk1tJ0R5VqlySzJCVEAazewR
+	 irXMbgEZZ7CnZ77smLdx+NwcXjOgRmz3x8uBHn21zPc13o7LUDU6BI9ODTUj06F4tF
+	 3Vn18Zlu05cV36lJRRdjkft2dEMLlGBhHduK00ZXhlvxnUtkEQr8TmwZloi/maIRME
+	 9wALt3QWZvTQg==
+From: Conor Dooley <conor@kernel.org>
+To: linux-gpio@vger.kernel.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
 	Rob Herring <robh@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Suren Baghdasaryan <surenb@google.com>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Vlastimil Babka <vbabka@kernel.org>,
-	Will Deacon <will@kernel.org>,
-	Zi Yan <ziy@nvidia.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	linux-riscv@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	iommu@lists.linux.dev,
-	kasan-dev@googlegroups.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-efi@vger.kernel.org,
-	linux-fsdevel@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mm@kvack.org,
-	linux-trace-kernel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org,
-	sparclinux@vger.kernel.org,
-	x86@kernel.org
-Subject: [PATCH 8/8] memblock: warn when freeing reserved memory before memory map is initialized
-Date: Wed, 18 Mar 2026 12:58:27 +0200
-Message-ID: <20260318105827.1358927-9-rppt@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v13 0/5] PolarFire SoC GPIO interrupt support
+Date: Wed, 18 Mar 2026 11:04:31 +0000
+Message-ID: <20260318-gift-nearest-fd3ef3e4819b@spud>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260318105827.1358927-1-rppt@kernel.org>
-References: <20260318105827.1358927-1-rppt@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2938; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=+szdxvWDurJ/Utg3qh2x6m2C3UpR9hPCewe/zECfwsc=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJm72o5UTjx1t3mm8QWfjM6Llw32cOf9Opu/LfxZO08xd 5Gx8NSFHaUsDGJcDLJiiiyJt/tapNb/cdnh3PMWZg4rE8gQBi5OAZiI3FJGhmev9hYv2vHq7KWQ kgn7jl/WtrfR7L0Rev8in+y0nqkX9YMY/qc/e9eUbrncTaDr5uHPDXwSetWq8hGWTxcz7OlYkZO UwwgA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[google.com,zeniv.linux.org.uk,gaisler.com,kernel.org,alien8.de,arm.com,davemloft.net,linux.intel.com,linaro.org,redhat.com,suse.cz,cmpxchg.org,oracle.com,linux.ibm.com,samsung.com,ellerman.id.au,suse.com,gmail.com,zytor.com,nvidia.com,vger.kernel.org,lists.linux.dev,googlegroups.com,lists.infradead.org,kvack.org,lists.ozlabs.org];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-277147-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277148-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[49];
 	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rppt@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CD9632BAA30
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 66FF42BA936
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+From: Conor Dooley <conor.dooley@microchip.com>
 
-When CONFIG_DEFERRED_STRUCT_PAGE_INIT is enabled, freeing of reserved
-memory before the memory map is fully initialized in deferred_init_memmap()
-would cause access to uninitialized struct pages and may crash when
-accessing spurious list pointers, like was recently discovered during
-discussion about memory leaks in x86 EFI code [1].
+Yo,
 
-The trace below is from an attempt to call free_reserved_page() before
-page_alloc_init_late():
+Here's a v3 with an extra patch updating the gpio binding from fished
+out from my old branch, fixing the examples and setting the permitted
+values of gpios for the controllers on polarfire soc and the existing
+binding patch's example fixed.
 
-[    0.076840] BUG: unable to handle page fault for address: ffffce1a005a0788
-[    0.078226] #PF: supervisor read access in kernel mode
-[    0.078226] #PF: error_code(0x0000) - not-present page
-[    0.078226] PGD 0 P4D 0
-[    0.078226] Oops: Oops: 0000 [#1] PREEMPT SMP NOPTI
-[    0.078226] CPU: 0 UID: 0 PID: 0 Comm: swapper/0 Not tainted 6.12.68-92.123.amzn2023.x86_64 #1
-[    0.078226] Hardware name: Amazon EC2 t3a.nano/, BIOS 1.0 10/16/2017
-[    0.078226] RIP: 0010:__list_del_entry_valid_or_report+0x32/0xb0
-...
-[    0.078226]  __free_one_page+0x170/0x520
-[    0.078226]  free_pcppages_bulk+0x151/0x1e0
-[    0.078226]  free_unref_page_commit+0x263/0x320
-[    0.078226]  free_unref_page+0x2c8/0x5b0
-[    0.078226]  ? srso_return_thunk+0x5/0x5f
-[    0.078226]  free_reserved_page+0x1c/0x30
-[    0.078226]  memblock_free_late+0x6c/0xc0
+Bartosz, you acked the gpio driver patch, are you expecting the whole
+lot to go together via the soc tree or something?
 
-Currently there are not many callers of free_reserved_area() and they all
-appear to be at the right timings.
+Cheers,
+Conor.
 
-Still, in order to protect against problematic code moves or additions of
-new callers add a warning that will inform that reserved pages cannot be
-freed until the memory map is fully initialized.
+v13:
+- fix the binding example
+- add a new binding patch
 
-[1] https://lore.kernel.org/all/e5d5a1105d90ee1e7fe7eafaed2ed03bbad0c46b.camel@kernel.crashing.org/
+v12:
+- Implemented mux driver feedback from Hervé.
+- Reworked the gpio interrupt stuff per Linus' feedback, so didn't pick
+  up Hervés tag.
+- Modified the binding description to cover the 6 always "direct mode"
+  interrupts on gpio controller 1.
 
-Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
----
- mm/internal.h   | 10 ++++++++++
- mm/memblock.c   |  5 +++++
- mm/page_alloc.c | 10 ----------
- 3 files changed, 15 insertions(+), 10 deletions(-)
+CC: Thomas Gleixner <tglx@linutronix.de>
+CC: Herve Codina <herve.codina@bootlin.com>
+CC: Conor Dooley <conor.dooley@microchip.com>
+CC: Daire McNamara <daire.mcnamara@microchip.com>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: Paul Walmsley <pjw@kernel.org>
+CC: Palmer Dabbelt <palmer@dabbelt.com>
+CC: Albert Ou <aou@eecs.berkeley.edu>
+CC: Alexandre Ghiti <alex@ghiti.fr>
+CC: Linus Walleij <linusw@kernel.org>
+CC: Bartosz Golaszewski <brgl@kernel.org>
+CC: linux-riscv@lists.infradead.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+CC: linux-gpio@vger.kernel.org
 
-diff --git a/mm/internal.h b/mm/internal.h
-index cb0af847d7d9..f60c1edb2e02 100644
---- a/mm/internal.h
-+++ b/mm/internal.h
-@@ -1233,7 +1233,17 @@ static inline void vunmap_range_noflush(unsigned long start, unsigned long end)
- #ifdef CONFIG_DEFERRED_STRUCT_PAGE_INIT
- DECLARE_STATIC_KEY_TRUE(deferred_pages);
- 
-+static inline bool deferred_pages_enabled(void)
-+{
-+	return static_branch_unlikely(&deferred_pages);
-+}
-+
- bool __init deferred_grow_zone(struct zone *zone, unsigned int order);
-+#else
-+static inline bool deferred_pages_enabled(void)
-+{
-+	return false;
-+}
- #endif /* CONFIG_DEFERRED_STRUCT_PAGE_INIT */
- 
- void init_deferred_page(unsigned long pfn, int nid);
-diff --git a/mm/memblock.c b/mm/memblock.c
-index bd5758ff07f2..780e70d4971a 100644
---- a/mm/memblock.c
-+++ b/mm/memblock.c
-@@ -896,6 +896,11 @@ static unsigned long __free_reserved_area(phys_addr_t start, phys_addr_t end,
- {
- 	unsigned long pages = 0, pfn;
- 
-+	if (deferred_pages_enabled()) {
-+		WARN(1, "Cannot free reserved memory because of deferred initialization of the memory map");
-+		return 0;
-+	}
-+
- 	for_each_valid_pfn(pfn, PFN_UP(start), PFN_DOWN(end)) {
- 		struct page *page = pfn_to_page(pfn);
- 		void *direct_map_addr;
-diff --git a/mm/page_alloc.c b/mm/page_alloc.c
-index df3d61253001..9ac47bab2ea7 100644
---- a/mm/page_alloc.c
-+++ b/mm/page_alloc.c
-@@ -331,11 +331,6 @@ int page_group_by_mobility_disabled __read_mostly;
-  */
- DEFINE_STATIC_KEY_TRUE(deferred_pages);
- 
--static inline bool deferred_pages_enabled(void)
--{
--	return static_branch_unlikely(&deferred_pages);
--}
--
- /*
-  * deferred_grow_zone() is __init, but it is called from
-  * get_page_from_freelist() during early boot until deferred_pages permanently
-@@ -348,11 +343,6 @@ _deferred_grow_zone(struct zone *zone, unsigned int order)
- 	return deferred_grow_zone(zone, order);
- }
- #else
--static inline bool deferred_pages_enabled(void)
--{
--	return false;
--}
--
- static inline bool _deferred_grow_zone(struct zone *zone, unsigned int order)
- {
- 	return false;
+Conor Dooley (5):
+  dt-bindings: gpio: fix microchip,mpfs-gpio interrupt documentation
+  gpio: mpfs: Add interrupt support
+  dt-bindings: soc: microchip: document PolarFire SoC's gpio interrupt
+    mux
+  soc: microchip: add mpfs gpio interrupt mux driver
+  riscv: dts: microchip: update mpfs gpio interrupts to better match the
+    SoC
+
+ .../bindings/gpio/microchip,mpfs-gpio.yaml    |  24 ++-
+ .../soc/microchip/microchip,mpfs-irqmux.yaml  | 103 ++++++++++
+ .../microchip,mpfs-mss-top-sysreg.yaml        |   4 +
+ MAINTAINERS                                   |   2 +-
+ .../boot/dts/microchip/mpfs-beaglev-fire.dts  |  29 +++
+ .../boot/dts/microchip/mpfs-disco-kit.dts     |  43 +++--
+ .../dts/microchip/mpfs-icicle-kit-common.dtsi |  37 +++-
+ .../boot/dts/microchip/mpfs-m100pfsevp.dts    |  41 ++--
+ .../boot/dts/microchip/mpfs-polarberry.dts    |  29 +++
+ .../riscv/boot/dts/microchip/mpfs-sev-kit.dts |  37 +++-
+ .../riscv/boot/dts/microchip/mpfs-tysom-m.dts |  35 +++-
+ arch/riscv/boot/dts/microchip/mpfs.dtsi       |  37 +++-
+ drivers/gpio/Kconfig                          |   1 +
+ drivers/gpio/gpio-mpfs.c                      | 122 +++++++++++-
+ drivers/soc/microchip/Kconfig                 |  11 ++
+ drivers/soc/microchip/Makefile                |   1 +
+ drivers/soc/microchip/mpfs-irqmux.c           | 181 ++++++++++++++++++
+ 17 files changed, 673 insertions(+), 64 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-irqmux.yaml
+ create mode 100644 drivers/soc/microchip/mpfs-irqmux.c
+
 -- 
 2.51.0
 
