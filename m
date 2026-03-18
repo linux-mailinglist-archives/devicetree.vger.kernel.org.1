@@ -1,469 +1,255 @@
-Return-Path: <devicetree+bounces-276920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276918-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yAjDNNg2umnXSwIAu9opvQ
-	(envelope-from <devicetree+bounces-276920-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 06:23:36 +0100
+	id OMqbL5A1ummzSwIAu9opvQ
+	(envelope-from <devicetree+bounces-276918-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 06:18:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 510472B5E79
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 06:23:36 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C67C2B5E1D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 06:18:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AEC14304736F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 05:23:33 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C1A2B3021401
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 05:18:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57B6235C1BA;
-	Wed, 18 Mar 2026 05:23:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E01F035B651;
+	Wed, 18 Mar 2026 05:18:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="nNilyFKw"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="G5mhAI9u";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="fEafNq6G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDC54330328;
-	Wed, 18 Mar 2026 05:23:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0EBB35B63B
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 05:18:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773811412; cv=none; b=bLfZ3ax9GdrPPXjSUdKfze57UDe7SQTsn9SE0j0Wk+p52xJ15kjN1SR4NXoTN1+IPNrWdVdjkcT+22K+RVVd4EX69RANaWsQaF1HWlbHdE4+4c2lVNMW7hbjudkAsqNG2EUlQ1PNKN1yquYde0jD6vQjB1B6oGPiM/B1WyGM4dc=
+	t=1773811086; cv=none; b=JHFemaIehJWDpcICzo/QRcdtoptIzD7UhU+Unnm0yZ1UHeFQxnTdH0JPWP7onVfzmNnGWTd/55FGdi2PWHIJeE2HmecM9LkTTzoryo3Pozn5IkZO3C6F9l2KThAngZP7Yb6JegSTIjyooXwx6/Td1jDsmt3QTSMv3sNILFBJ0Bo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773811412; c=relaxed/simple;
-	bh=uZbgwqq5HelbbEUfAxe/zYIfqR46rGBfmdkZd0lo5UE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=ugdmKvY20XspLjHQfy0UB31rz85DfBrzAuQI932zgDvt6sY2nxpZlyJt8NtyQo0WgLTy+u0uYGDqjeOycMW1QrcRmmLYigneGT63HimDnsalHRnt5q1ahBBkUfBft8KKubea+ku6vHxFjuEJkY1kAsTdyDCoG9s+1eVuqUsHYSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=nNilyFKw; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62I1VGOn1782538;
-	Wed, 18 Mar 2026 01:23:13 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=p8DKZ
-	7IsXdtYeq1ssMjT9mej5XHR2evTbsH0yGEQ6n0=; b=nNilyFKwhx3vMaXCUOrzC
-	gCJ/AWyv0NsEeLJw6olvuwKisqHCQ8f7goz2VeuRQgH6ZSO8SDKxDeEYpiiLs5uH
-	zzQDBHOdGvptBI/cfjzeZLND1b86g+9dv23D71Vg/AS+mDB260d03sAt3EwPlVUO
-	NajF/tezvypUjZxEBo66XZWVWFp6on+SQY2WIoenCFGv+uY0hBFpdSdRGPFAeMYY
-	WPWCzKUuabzTlTsKYDLSos38Pp3OFXz18IjtpHJEoIH5ncnDXqwY8iSxxs45bXmG
-	+1soMuR4aVGGY/WGk8JZ1IAVI8oL7YQRPHnMA0EQAjbbu/cksxPT5XppsA6KT/bu
-	A==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4cyjf80x6v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Mar 2026 01:23:13 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 62I5NCU9064830
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 18 Mar 2026 01:23:12 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Wed, 18 Mar 2026 01:23:12 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Wed, 18 Mar 2026 01:23:12 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Wed, 18 Mar 2026 01:23:12 -0400
-Received: from ATORRENO-L02.ad.analog.com (ATORRENO-L02.ad.analog.com [10.118.4.23])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 62I5Mpcg023858;
-	Wed, 18 Mar 2026 01:23:05 -0400
-From: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-Date: Wed, 18 Mar 2026 13:13:36 +0800
-Subject: [PATCH v3 2/2] iio: dac: ad5706r: Add support for AD5706R DAC
+	s=arc-20240116; t=1773811086; c=relaxed/simple;
+	bh=TSqTxmuR9gruLC5O+82/noHagn8qSom33KsPlr5F4Sw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RJxffETWg1yePDeKkLMjTXc1LV1qCdaTZtMK8LeM99JlulNDLoX/Tb8y2QkSjN15iO4372oelHkbLz7gXgjZRUqpdTF1AnDujjaMEbeFktmnxuc5wK3YM58aNeShHuqXZQO/Pq8VL9Lrt4LTMDC05+8SX6QHKwzt1SGwHCxvOZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=G5mhAI9u; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=fEafNq6G; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62I18VLw1050604
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 05:18:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	y2mg0QR9TLwLOfpBjSlWxmbc0ej+1lkkURV/8z0MaEM=; b=G5mhAI9uG0Tzu7ki
+	8gUUaMnulXEaMqC+G8Pb28FcAiuPp0Z/Ipw8GcE2b4p9NISpKffPi6qlti9AUe4r
+	mB0gt9UfUxMNwBXdthWF7l3/ERWv4tsVSG+ndraW0AunP6ycESWrE3UqMl+JunDy
+	gYjGy5dvNmpIxKleC8aebj8qrNPuHBBYA9G6ibopIMcJTXuN//auC9J1zHTzZ2H+
+	hxmjSRKM5n+/b4s3jqB36PIRdAo0kLD7mg8+N2EyFQtKRynBq6ml4nqjZAqOw5tc
+	kEFYv8Ejd/R1Zl0N71TQAt3JFR2KIT2hcgMqZfn4hc7EWeveN9oMbniSL+X+rMqv
+	IbHCRQ==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cyj4egsvs-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 05:18:04 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2b056b2f0cfso41099655ad.0
+        for <devicetree@vger.kernel.org>; Tue, 17 Mar 2026 22:18:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773811084; x=1774415884; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=y2mg0QR9TLwLOfpBjSlWxmbc0ej+1lkkURV/8z0MaEM=;
+        b=fEafNq6Gp8aGRft3ZUA+ANiNbGn+XPaWwdrMCJ5QmQ2nhsDJJikjLnte23nLDyKLwG
+         FnHSjrMJdU5/jOSzmmSboHUKqfZjbeNFyH8TiZgxaBOFyO2ZLq6ejyvfYyM1V7uTuDd2
+         UNMLCsi1yROvZdJZrlVp/g8nYrvEbLgHenpyZsSsWJ2skHBE4cd55Sru913jJtdWalPm
+         Edgr4A84FrVvHnfFRPCaDGPtTKaUiEj5wEwtf2srKF1/3JkkMsdOn7+gf++5q4uPFjZ1
+         MPySGB71lBvUyOHHQ8a1EC+hXJblRqWCpSs0zDgZJlJLlsqQkfMER1dvovxuTLYoeDmQ
+         FCng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773811084; x=1774415884;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=y2mg0QR9TLwLOfpBjSlWxmbc0ej+1lkkURV/8z0MaEM=;
+        b=qYVzt3L6Ou2hkQs+uW1HAdqVfBXx3Q7BYUWwmTmjVv7d+9bRtnuYQhbc5n1b0BKRhl
+         aoQwCHPd9TuO4A+m1Dv4P5Vf0ylNKh4DA319K3VXQqL4HjTlrzv9VYnFbIhlNW0uV9lh
+         PKgMrniTTQ8WI9BYI2EML77GvDjW7np2ejzRxiKi5B/Lh6HSiiCbCChCxcz0IEBPpeU4
+         6urNB97L8EI2+HTzbfnGUsk8RCufzMHxdEJDqirx2sLObALc9ir7gWktq9YHlESIkYq7
+         bS3cgSdNlW6JRy5ym41MVcl0/W2Y992VXencrbYfkyCgJvjkDjiF20OhbT6DJRekLhZ3
+         mj/w==
+X-Forwarded-Encrypted: i=1; AJvYcCWGKuCxCy8NYBeRr7d4w+fEOIXQbO1ZV8eUn7gqNV/u46keeSmPKVpJ/wAH94Viv7KgPBxjs6HCw2AN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxmY/fvC4yjq9KiaQOIkJTG2HfkPsVyjKVw3j2hdURMjUmBpQn/
+	WMHltUUpIrZZW7oMFER33Z89XfBXc1R2hetIUrfJukqfcHsdALXsUe5UoNwfCGiXbycF/dAvQY7
+	F9L6jVUmMBuMlJDGrK+VPwDTIG+IKID8pOf6EwCusMlmefAt4L9IBA9cHEFMl3MQK
+X-Gm-Gg: ATEYQzwMHR/DSbplGrSu+x7iTrfNGOpj7fGTKp12baZshzDdcQxbgcu6hfLpGfF99hK
+	zvDFBi1oTJqQO293NfWNtUOInDcFP8pwh1MCVPJhzi/nq3Cif4D+yk9l7VG1nwRUctkhDsQwD/T
+	ftjXFN8hlJ9rZKwpjWyOAiuKeIiy4YF1DPmyFhF+5bfVs2WTJa+lzGweK9EPsZcr492QQNXXWk1
+	Gf1zUNoxqyPe1okmg1/ZiU1zMI3mBj2dxyg6SgVDnH8OOa9BTk+YaNOggCrmvVfk2gbUUJK2+bi
+	Qs5cIHU1TaVAVOy5Qt9kC6LS/V0Jj3bC93Lvdrh9M6gMXITcAnFFi0LWVBiDqQ5+yKzm5FgPCDd
+	FwIBbdioKFl9q9cDYsyENTpFbSUznjqVsmr4jtoEKqwkhJNsROpBzSg==
+X-Received: by 2002:a05:6a20:9f8d:b0:398:7a05:f0b7 with SMTP id adf61e73a8af0-39b9a000545mr1828053637.58.1773811083975;
+        Tue, 17 Mar 2026 22:18:03 -0700 (PDT)
+X-Received: by 2002:a05:6a20:9f8d:b0:398:7a05:f0b7 with SMTP id adf61e73a8af0-39b9a000545mr1828026637.58.1773811083429;
+        Tue, 17 Mar 2026 22:18:03 -0700 (PDT)
+Received: from [10.0.0.3] ([106.222.229.118])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c741e0b3359sm1221112a12.2.2026.03.17.22.17.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Mar 2026 22:18:02 -0700 (PDT)
+Message-ID: <27f25b77-3ddf-2f5c-f118-3dd3a27c2368@oss.qualcomm.com>
+Date: Wed, 18 Mar 2026 10:47:57 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20260318-dev_ad5706r-v3-2-5d078f41e988@analog.com>
-References: <20260318-dev_ad5706r-v3-0-5d078f41e988@analog.com>
-In-Reply-To: <20260318-dev_ad5706r-v3-0-5d078f41e988@analog.com>
-To: Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich
-	<Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        "David
- Lechner" <dlechner@baylibre.com>,
-        =?utf-8?q?Nuno_S=C3=A1?=
-	<nuno.sa@analog.com>,
-        Andy Shevchenko <andy@kernel.org>, Rob Herring
-	<robh@kernel.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 6/6] arm64: dts: qcom: sm8750: correct Iris corners for
+ the MXC rail
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Taniya Das <taniya.das@oss.qualcomm.com>,
+        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Alexis Czezar Torreno
-	<alexisczezar.torreno@analog.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773811371; l=8407;
- i=alexisczezar.torreno@analog.com; s=20250213; h=from:subject:message-id;
- bh=uZbgwqq5HelbbEUfAxe/zYIfqR46rGBfmdkZd0lo5UE=;
- b=zp6qNOZgWHstE5+dvT8AmvFTemdyFgD7mmnXj95wgjXkqfdwM9rXpkms2gGT5PTxDUhwifTOb
- A4xXein9VQ/B+S2LMoWuc0bO6uKZnoZe1ftcJiNFhKI/UtddlgCqcUH
-X-Developer-Key: i=alexisczezar.torreno@analog.com; a=ed25519;
- pk=XpXmJnRjnsKdDil6YpOlj9+44S+XYXVFnxvkbmaZ+10=
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Authority-Analysis: v=2.4 cv=Rcidyltv c=1 sm=1 tr=0 ts=69ba36c1 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=0sLvza09kfJOxVLZPwjg:22 a=Z0pTeXoby7EwIRygza74:22 a=gAnH3GRIAAAA:8
- a=VwQbUJbxAAAA:8 a=K5jOpT_a_M5dHkYSQTUA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-ORIG-GUID: LqZpv0a8payhhv7RYWhJJG3qcFoWVqcX
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDA0MyBTYWx0ZWRfX5flpDnxywTbX
- 1WRhIc/Juq93sKDNHGFcp7N7VUQXE4xlYQy5KBwDxr4nYO/FpNk77kunn497nHm/F1+MRhFgIT2
- g2hjIdj3h28wruxmatMmvdqYKP+XjUz0CNkQSrmC5wOC5yKSLkNcbchuIPvmP0hSj+NNUIG/P/A
- 8ga+XYTQpldOB1JOGmZ/v6I5a4RzU22CCKBVD671qx+dQx1ugmoMyEtZaVXXt6Kd4JiXnYRoeVd
- ZNqTiBGG95pb7WOfhvusDDcH3zMwce1pQZqB/RJ86C6KFnp/QT+Vre0eSAjzhpKlbVSWG6L/oxQ
- lH6WefD2NMbCR8w0MB77vJ/7mrBtozg+RAMVb0b3TR30t9vXM2pb5Gfjs9/WYtkMOvdQ3FB5L3R
- dg9i+0O9EI1dTfilTX9b4kVvn4kgTCHSQnWHX6My5AxTTOrLxbViPx71rcK2Vv2IKQ3a95fUr+X
- Lh7hgrJsOAoDhnYqH8g==
-X-Proofpoint-GUID: LqZpv0a8payhhv7RYWhJJG3qcFoWVqcX
+        Conor Dooley <conor+dt@kernel.org>
+Cc: Stephan Gerhold <stephan.gerhold@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20260313-iris-fix-corners-v1-0-32a393c25dda@oss.qualcomm.com>
+ <20260313-iris-fix-corners-v1-6-32a393c25dda@oss.qualcomm.com>
+Content-Language: en-US
+From: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
+In-Reply-To: <20260313-iris-fix-corners-v1-6-32a393c25dda@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=T4+BjvKQ c=1 sm=1 tr=0 ts=69ba358c cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=RgczR8+8wRjDfzPIf2UjDw==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
+ a=EUspDBNiAAAA:8 a=-AVdbO5R1FNXJZyXHBMA:9 a=QEXdDO2ut3YA:10
+ a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDA0MiBTYWx0ZWRfX/7209rkh5DBW
+ hyOHJ7eBp45iQJL5zX+GbwhtZM/0SKsg0b2HO4dx7eFTTTqGthsnEuT2Zp2i7YhHGfptxWXuPDP
+ sBhbFnHRjSCfLOhY6ggbeMG23Iexv5+AfJyTWNx2YxJPXYLK3JnamvZumT4zmSTDTANW2ya4dt4
+ O0yaLWd9x8CMYRXZTDZ2Ef/GcmOMNjZ6H+/LQIdUD05R/dsy1zJovWUY0tfyVM9Nb8eUKKEsms1
+ 6a0ajYxRwKCXsC3iasR8LQdlbYUN9UTJo8PmoN+WpA0CUHkrevrhbzCcUzI14ZbXzIxONJiyrPu
+ 57aAt4yfhX80i6BzMVg8wSKRs5PRQx6z0qrxfKB0n5RF7LfE2PHUrj3VFt1xwgLAHqPskM9nxNt
+ MmaaWjaksgHhmKyRqOOjx50ao1iE9t4WN6hyosLY+2+cfwnjiAv5t9JzTjbKxB/5GM7CSSTOOW1
+ T5+GvemUW5AVc5bSXUg==
+X-Proofpoint-GUID: E00tDJmA5znKXSsPVlssjPa_chorIdFg
+X-Proofpoint-ORIG-GUID: E00tDJmA5znKXSsPVlssjPa_chorIdFg
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-03-17_05,2026-03-17_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 impostorscore=0 lowpriorityscore=0 phishscore=0 spamscore=0
- adultscore=0 priorityscore=1501 suspectscore=0 malwarescore=0 bulkscore=0
+ spamscore=0 clxscore=1015 lowpriorityscore=0 adultscore=0 phishscore=0
+ bulkscore=0 priorityscore=1501 impostorscore=0 malwarescore=0 suspectscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603180043
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603180042
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-276920-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,analog.com:dkim,analog.com:mid,analog.com:email,analog.com:url];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-276918-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[analog.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexisczezar.torreno@analog.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dikshita.agarwal@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 510472B5E79
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 5C67C2B5E1D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for the Analog Devices AD5706R, a 4-channel 16-bit
-current output digital-to-analog converter with SPI interface.
 
-Features:
-  - 4 independent DAC channels
-  - Hardware and software LDAC trigger
-  - Configurable output range
-  - PWM-based LDAC control
-  - Dither and toggle modes
-  - Dynamically configurable SPI speed
 
-Signed-off-by: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
+On 3/13/2026 8:57 PM, Dmitry Baryshkov wrote:
+> The corners of the MVS0 / MVS0C clocks on the MMCX rail don't always
+> match the PLL corners on the MXC rail. Correct the performance corners
+> for the MXC rail following the PLL documentation.
+> 
+> Fixes: c0d11ff90475 ("arm64: dts: qcom: sm8750: Add Iris VPU v3.5")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8750.dtsi | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> index f56b1f889b85..f34f112d3aa3 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> @@ -2945,19 +2945,19 @@ iris_opp_table: opp-table {
+>  
+>  				opp-240000000 {
+>  					opp-hz = /bits/ 64 <240000000>;
+> -					required-opps = <&rpmhpd_opp_low_svs_d1>,
+> +					required-opps = <&rpmhpd_opp_svs>,
+>  							<&rpmhpd_opp_low_svs_d1>;
+>  				};
+>  
+>  				opp-338000000 {
+>  					opp-hz = /bits/ 64 <338000000>;
+> -					required-opps = <&rpmhpd_opp_low_svs>,
+> +					required-opps = <&rpmhpd_opp_svs>,
+>  							<&rpmhpd_opp_low_svs>;
+>  				};
+>  
+>  				opp-420000000 {
+>  					opp-hz = /bits/ 64 <420000000>;
+> -					required-opps = <&rpmhpd_opp_svs>,
+> +					required-opps = <&rpmhpd_opp_svs_l1>,
+>  							<&rpmhpd_opp_svs>;
+>  				};
+>  
+> @@ -2969,19 +2969,19 @@ opp-444000000 {
+>  
+>  				opp-533333334 {
+>  					opp-hz = /bits/ 64 <533333334>;
+> -					required-opps = <&rpmhpd_opp_nom>,
+> +					required-opps = <&rpmhpd_opp_svs_l1>,
+>  							<&rpmhpd_opp_nom>;
+>  				};
+>  
+>  				opp-570000000 {
+>  					opp-hz = /bits/ 64 <570000000>;
+> -					required-opps = <&rpmhpd_opp_nom_l1>,
+> +					required-opps = <&rpmhpd_opp_nom>,
+>  							<&rpmhpd_opp_nom_l1>;
+>  				};
+>  
+>  				opp-630000000 {
+>  					opp-hz = /bits/ 64 <630000000>;
+> -					required-opps = <&rpmhpd_opp_turbo>,
+> +					required-opps = <&rpmhpd_opp_nom>,
+>  							<&rpmhpd_opp_turbo>;
+>  				};
+>  			};
+> 
 
----
-Changes since v1:
-  - Removed PWM, GPIO, clock generator, debugfs, regmap, IIO_BUFFER
-  - Removed all custom ext_info sysfs attributes
-  - Simplified to basic raw read/write and read-only scale
-  - SPI read/write can handle multibyte registers
----
----
- MAINTAINERS               |   1 +
- drivers/iio/dac/Kconfig   |  10 +++
- drivers/iio/dac/Makefile  |   1 +
- drivers/iio/dac/ad5706r.c | 222 ++++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 234 insertions(+)
+Reviewed-by: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 17a3d2d45fccb9cd3c93fd35666fb85d17d53cde..3d7bd98b4d1b55836e40687a9a3ac9f4935a8acb 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1502,6 +1502,7 @@ L:	linux-iio@vger.kernel.org
- S:	Supported
- W:	https://ez.analog.com/linux-software-drivers
- F:	Documentation/devicetree/bindings/iio/dac/adi,ad5706r.yaml
-+F:	drivers/iio/dac/ad5706r.c
- 
- ANALOG DEVICES INC AD7091R DRIVER
- M:	Marcelo Schmitt <marcelo.schmitt@analog.com>
-diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
-index db9f5c711b3df90641f017652fbbef594cc1627d..8ccbdf6dfbca8640a47bf05b4afc6b4bf90a7e26 100644
---- a/drivers/iio/dac/Kconfig
-+++ b/drivers/iio/dac/Kconfig
-@@ -178,6 +178,16 @@ config AD5624R_SPI
- 	  Say yes here to build support for Analog Devices AD5624R, AD5644R and
- 	  AD5664R converters (DAC). This driver uses the common SPI interface.
- 
-+config AD5706R
-+	tristate "Analog Devices AD5706R DAC driver"
-+	depends on SPI
-+	help
-+	  Say yes here to build support for Analog Devices AD5706R 4-channel,
-+	  16-bit current output DAC.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called ad5706r.
-+
- config AD9739A
- 	tristate "Analog Devices AD9739A RF DAC spi driver"
- 	depends on SPI
-diff --git a/drivers/iio/dac/Makefile b/drivers/iio/dac/Makefile
-index 2a80bbf4e80ad557da79ed916027cedff286984b..0034317984985035f7987a744899924bfd4612e3 100644
---- a/drivers/iio/dac/Makefile
-+++ b/drivers/iio/dac/Makefile
-@@ -21,6 +21,7 @@ obj-$(CONFIG_AD5449) += ad5449.o
- obj-$(CONFIG_AD5592R_BASE) += ad5592r-base.o
- obj-$(CONFIG_AD5592R) += ad5592r.o
- obj-$(CONFIG_AD5593R) += ad5593r.o
-+obj-$(CONFIG_AD5706R) += ad5706r.o
- obj-$(CONFIG_AD5755) += ad5755.o
- obj-$(CONFIG_AD5758) += ad5758.o
- obj-$(CONFIG_AD5761) += ad5761.o
-diff --git a/drivers/iio/dac/ad5706r.c b/drivers/iio/dac/ad5706r.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..840ee7b6db2e05ea35b27ff776f0c5c8a961d9c1
---- /dev/null
-+++ b/drivers/iio/dac/ad5706r.c
-@@ -0,0 +1,222 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * AD5706R 16-bit Current Output Digital to Analog Converter
-+ *
-+ * Copyright 2026 Analog Devices Inc.
-+ */
-+
-+#include <linux/array_size.h>
-+#include <linux/bits.h>
-+#include <linux/cleanup.h>
-+#include <linux/iio/iio.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/spi/spi.h>
-+#include <linux/unaligned.h>
-+
-+/* SPI frame layout */
-+#define AD5706R_RD_MASK			BIT(15)
-+#define AD5706R_ADDR_MASK		GENMASK(11, 0)
-+
-+/* Registers */
-+#define AD5706R_REG_DAC_INPUT_A_CH(x)		(0x60 + ((x) * 2))
-+#define AD5706R_REG_DAC_DATA_READBACK_CH(x)	(0x68 + ((x) * 2))
-+
-+#define AD5706R_DAC_RESOLUTION		16
-+#define AD5706R_DAC_MAX_CODE		BIT(16)
-+#define AD5706R_MULTIBYTE_REG_START	0x14
-+#define AD5706R_MULTIBYTE_REG_END	0x71
-+#define AD5706R_SINGLE_BYTE_LEN		1
-+#define AD5706R_DOUBLE_BYTE_LEN		2
-+
-+struct ad5706r_state {
-+	struct spi_device *spi;
-+	struct mutex lock; /* Protects SPI transfers */
-+
-+	u8 tx_buf[4] __aligned(ARCH_DMA_MINALIGN);
-+	u8 rx_buf[2];
-+};
-+
-+static int ad5706r_reg_len(unsigned int reg)
-+{
-+	if (reg >= AD5706R_MULTIBYTE_REG_START && reg <= AD5706R_MULTIBYTE_REG_END)
-+		return AD5706R_DOUBLE_BYTE_LEN;
-+
-+	return AD5706R_SINGLE_BYTE_LEN;
-+}
-+
-+static int ad5706r_spi_write(struct ad5706r_state *st, u16 reg, u16 val)
-+{
-+	unsigned int num_bytes = ad5706r_reg_len(reg);
-+	struct spi_transfer xfer = {
-+		.tx_buf = st->tx_buf,
-+		.len = num_bytes + 2,
-+	};
-+
-+	put_unaligned_be16(reg, &st->tx_buf[0]);
-+
-+	if (num_bytes == 1)
-+		st->tx_buf[2] = val;
-+	else if (num_bytes == 2)
-+		put_unaligned_be16(val, &st->tx_buf[2]);
-+	else
-+		return -EINVAL;
-+
-+	return spi_sync_transfer(st->spi, &xfer, 1);
-+}
-+
-+static int ad5706r_spi_read(struct ad5706r_state *st, u16 reg, u16 *val)
-+{
-+	unsigned int num_bytes = ad5706r_reg_len(reg);
-+	u16 cmd;
-+	int ret;
-+
-+	struct spi_transfer xfer[] = {
-+		{
-+			.tx_buf = st->tx_buf,
-+			.len = 2,
-+		},
-+		{
-+			.rx_buf = st->rx_buf,
-+			.len = num_bytes,
-+		},
-+	};
-+
-+	cmd = AD5706R_RD_MASK | (reg & AD5706R_ADDR_MASK);
-+	put_unaligned_be16(cmd, &st->tx_buf[0]);
-+
-+	ret = spi_sync_transfer(st->spi, xfer, ARRAY_SIZE(xfer));
-+	if (ret)
-+		return ret;
-+
-+	if (num_bytes == 1)
-+		*val = st->rx_buf[0];
-+	else if (num_bytes == 2)
-+		*val = get_unaligned_be16(st->rx_buf);
-+	else
-+		return -EINVAL;
-+
-+	return 0;
-+}
-+
-+static int ad5706r_read_raw(struct iio_dev *indio_dev,
-+			    struct iio_chan_spec const *chan, int *val,
-+			    int *val2, long mask)
-+{
-+	struct ad5706r_state *st = iio_priv(indio_dev);
-+	u16 reg_val;
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		scoped_guard(mutex, &st->lock) {
-+			ret = ad5706r_spi_read(st, AD5706R_REG_DAC_DATA_READBACK_CH(chan->channel),
-+					       &reg_val);
-+
-+			if (ret)
-+				return ret;
-+
-+			*val = reg_val;
-+		}
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SCALE:
-+		*val = 50;
-+		*val2 = AD5706R_DAC_RESOLUTION;
-+		return IIO_VAL_FRACTIONAL_LOG2;
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int ad5706r_write_raw(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan, int val,
-+			     int val2, long mask)
-+{
-+	struct ad5706r_state *st = iio_priv(indio_dev);
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		if (val < 0 || val >= AD5706R_DAC_MAX_CODE)
-+			return -EINVAL;
-+
-+		guard(mutex)(&st->lock);
-+		return ad5706r_spi_write(st,
-+					 AD5706R_REG_DAC_INPUT_A_CH(chan->channel),
-+					 val);
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info ad5706r_info = {
-+	.read_raw = ad5706r_read_raw,
-+	.write_raw = ad5706r_write_raw,
-+};
-+
-+#define AD5706R_CHAN(_channel) {				\
-+	.type = IIO_CURRENT,					\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |		\
-+			      BIT(IIO_CHAN_INFO_SCALE),	\
-+	.output = 1,						\
-+	.indexed = 1,						\
-+	.channel = _channel,					\
-+}
-+
-+static const struct iio_chan_spec ad5706r_channels[] = {
-+	AD5706R_CHAN(0),
-+	AD5706R_CHAN(1),
-+	AD5706R_CHAN(2),
-+	AD5706R_CHAN(3),
-+};
-+
-+static int ad5706r_probe(struct spi_device *spi)
-+{
-+	struct iio_dev *indio_dev;
-+	struct ad5706r_state *st;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	st = iio_priv(indio_dev);
-+	st->spi = spi;
-+
-+	ret = devm_mutex_init(&spi->dev, &st->lock);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->name = "ad5706r";
-+	indio_dev->info = &ad5706r_info;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->channels = ad5706r_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(ad5706r_channels);
-+
-+	return devm_iio_device_register(&spi->dev, indio_dev);
-+}
-+
-+static const struct of_device_id ad5706r_of_match[] = {
-+	{ .compatible = "adi,ad5706r" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, ad5706r_of_match);
-+
-+static const struct spi_device_id ad5706r_id[] = {
-+	{ "ad5706r" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(spi, ad5706r_id);
-+
-+static struct spi_driver ad5706r_driver = {
-+	.driver = {
-+		.name = "ad5706r",
-+		.of_match_table = ad5706r_of_match,
-+	},
-+	.probe = ad5706r_probe,
-+	.id_table = ad5706r_id,
-+};
-+module_spi_driver(ad5706r_driver);
-+
-+MODULE_AUTHOR("Alexis Czezar Torreno <alexisczezar.torreno@analog.com>");
-+MODULE_DESCRIPTION("AD5706R 16-bit Current Output DAC driver");
-+MODULE_LICENSE("GPL");
-
--- 
-2.34.1
-
+Thanks,
+Dikshita
 
