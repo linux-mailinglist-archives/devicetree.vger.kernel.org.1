@@ -1,51 +1,43 @@
-Return-Path: <devicetree+bounces-277349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277350-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kPyiB0vMumm6bwIAu9opvQ
-	(envelope-from <devicetree+bounces-277349-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 17:01:15 +0100
+	id 8L06Ky3dumk3cwIAu9opvQ
+	(envelope-from <devicetree+bounces-277350-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:13:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B71C12BEDAE
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 17:01:14 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 182342BFFD3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:13:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 375183003420
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:50:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0E1183417366
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 16:28:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CDC5397685;
-	Wed, 18 Mar 2026 15:47:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A9llyZlQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A1A03C3C1D;
+	Wed, 18 Mar 2026 16:01:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19BB63321DE;
-	Wed, 18 Mar 2026 15:47:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43FC63B27DB;
+	Wed, 18 Mar 2026 16:01:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773848878; cv=none; b=fgMn4et62GQvNh/esLX/EQnKHMrem6BrXWsRNZNkFaJiD5bybS/1I8AxyRT4kz1GGr02zqIo2PHUunDNuTelEHVNVOaEOBwuQmWeH1UzIk4snw2KRwoADWTC5naNbQIjOwwFC6blb3FjpLKfli5FVNFOvaw+gMFcSDEavd4qFoQ=
+	t=1773849671; cv=none; b=TJxPSTKE4ws+M19F1SZLl3p0/bNbSBLgKDIGdbOtbqBo9kKmNwpO1ROF9AsCRqoz/ROC5J3fQQvM3SFCx+/BoYiIF2YtoaEr9msbRn5+AjaTbiaCWNH5UaYNAz7nE4wXAvtj5pztLAkF6vw0RU9qXl1AEPGRI+/mUPGS8WOVPGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773848878; c=relaxed/simple;
-	bh=RTyfBxkZwbvXmv5eVw/ACzMIZeFuso5CWjPNp8sZMvI=;
+	s=arc-20240116; t=1773849671; c=relaxed/simple;
+	bh=9lbXZPvYtJTGMGIkIWrytsOtkrhzDdxlxU1ozegV1Ao=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SzWZbTSxA9t/OcO8PH/2oA07avIobq6Nzp7+7HcQ5J1zGtzjKmW8nMas/4aGvI7R5/YUwwzAa1PLPSasZ66Y3/CyQ1wdk6I7pTUJ+1ocDUcA9BKQ9Ip20GrBLL4N623goB6TjN0MrUMyLOnLvgN8CQvPwZacienIY+cu8U/Ril8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A9llyZlQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB980C19421;
-	Wed, 18 Mar 2026 15:47:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773848877;
-	bh=RTyfBxkZwbvXmv5eVw/ACzMIZeFuso5CWjPNp8sZMvI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=A9llyZlQ7EpMKH9s6UnF4vpcRhZ0687nFqv66OO3c/3VvMtOLYwZdH8rPIaU65kZ8
-	 v3q1RQIwZITvdCLUKcGfw/FbvqwW4QNRU/JAiQnA9NuTkAHVp0GxxgaDQtOJLKLA8+
-	 6t/rBs1AiXHBcL0vZdRkHZrIu5Jh6JxeGuW66ATE2ZhWJFCmCq7/cc7PFQ6oWcNjSv
-	 rUTJGjCPg0477zsXKVlUIh4L2tndc1NkhG10oeBg0pEvb71CWvkM/ODj1v+OY6z6Ia
-	 6elH/eNJ8Ds1WF5KI7DcGKDemTHUNFmji/0ToymhDicguLHNLFh392bmYa9PmG3vP7
-	 UaOF229wyiraQ==
-Message-ID: <baa40d8c-cd0e-4661-b951-fe992c8e96bd@kernel.org>
-Date: Wed, 18 Mar 2026 15:47:53 +0000
+	 In-Reply-To:Content-Type; b=iGgRBq4vzZYhBdmvpw+IxvBPOwzjT16TTZi25vOO6e2X1wLQvOmc8U18lJFCRVEBDIWpHp41k9s0b1WfPuVk5VIVOC5nb3iN//4dr7F073Sis2FF78n67KrUJZYPPg0US76TPkfnNsfYsBeL8b0oW55K+Mwxv5AhoGoDvHbEEPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 75B7D1A25;
+	Wed, 18 Mar 2026 09:00:58 -0700 (PDT)
+Received: from [192.168.178.23] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F200B3F73B;
+	Wed, 18 Mar 2026 09:01:00 -0700 (PDT)
+Message-ID: <73a2e7fa-ab30-4d81-a4ff-0292b6adf346@arm.com>
+Date: Wed, 18 Mar 2026 17:00:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,127 +45,169 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] phy: qcom-mipi-csi2: Add a CSI2 MIPI DPHY driver
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Vinod Koul
- <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260315-x1e-csi2-phy-v4-0-90c09203888d@linaro.org>
- <20260315-x1e-csi2-phy-v4-2-90c09203888d@linaro.org>
- <3f11de22-b729-4d06-b6c8-18e649e1979c@linaro.org>
- <80ddc2b4-d6f8-4e8d-a45e-69c05d100aa2@linaro.org>
- <LVgLN97iqkeyLxlaeg0ynzL1KDsmCLzzvTmrRhlZ3BP3AWB1hVEjhG4fu2CdoVrCVOpAlemwqN7mC_0P-fCVdg==@protonmail.internalid>
- <16b10f17-ecd3-4cdd-ac3f-f64127d60ace@linaro.org>
-From: Bryan O'Donoghue <bod@kernel.org>
+Subject: Re: [PATCH v2 1/8] dt-bindings: arm: Add Live Firmware Activation
+ binding
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Sudeep Holla <sudeep.holla@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Salman Nabi <salman.nabi@arm.com>,
+ Vedashree Vidwans <vvidwans@nvidia.com>,
+ Trilok Soni <trilokkumar.soni@oss.qualcomm.com>,
+ Nirmoy Das <nirmoyd@nvidia.com>, vsethi@nvidia.com, vwadekar@nvidia.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20260317103336.1273582-1-andre.przywara@arm.com>
+ <20260317103336.1273582-2-andre.przywara@arm.com>
+ <20260318-inventive-tortoise-of-romance-c7ceba@quoll>
 Content-Language: en-US
-In-Reply-To: <16b10f17-ecd3-4cdd-ac3f-f64127d60ace@linaro.org>
+From: Andre Przywara <andre.przywara@arm.com>
+In-Reply-To: <20260318-inventive-tortoise-of-romance-c7ceba@quoll>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [0.14 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277349-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bod@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277350-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B71C12BEDAE
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andre.przywara@arm.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.603];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:url,devicetree.org:url]
+X-Rspamd-Queue-Id: 182342BFFD3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 18/03/2026 15:07, Neil Armstrong wrote:
-> On 3/18/26 14:17, Bryan O'Donoghue wrote:
->> On 18/03/2026 10:15, Neil Armstrong wrote:
->>>> +    /*
->>>> +     * phy_configure_opts_mipi_dphy.lanes starts from zero to
->>>> +     * the maximum number of enabled lanes.
->>>> +     *
->>>> +     * TODO: add support for bitmask of enabled lanes and polarities
->>>> +     * of those lanes to the phy_configure_opts_mipi_dphy struct.
->>>> +     * For now take the polarities as zero and the position as fixed
->>>> +     * this is fine as no current upstream implementation maps otherwise.
->>>> +     */
->>>
->>> This is wrong since you loose the lanes mapping defined in DT, which is still in CAMSS
->>> but is a PHY property. The lanes layout is not a property of the CSI controller,
->>> CSI controller only need to know the lanes count, and not the layout.
+Hi,
+
+On 3/18/26 09:04, Krzysztof Kozlowski wrote:
+> On Tue, Mar 17, 2026 at 11:33:27AM +0100, Andre Przywara wrote:
+>> The Arm Live Firmware Activation spec [1] describes updating firmware
+> 
+> A nit, subject: drop second/last, redundant "binding". The
+> "dt-bindings" prefix is already stating that these are bindings.
+> See also:
+> https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+Sure, will fix.
+
+>> images during runtime, without requiring a reboot. Update images might
+>> be deployed out-of-band, for instance via a BMC, in this case the OS
+>> needs to be notified about the availability of a new image.
 >>
->> Lane layout is a PHY concern but, the PHY API gives us phy_configure_opts_mipi_dphy which should be extended to provide layout and polarity. This would then be of benefit to more than just qcom/camss.
+>> This binding describes an interrupt that could be triggered by the
 > 
-> Why ? the only concern between a controller and a PHY is the lane count to calculate the bandwidth, the actual pin layout is certainly not a controller concern.
+> Describe hardware/firmware, not the binding.
 
-Controllers already get the lane count by way of data-lanes = <x y z q> 
-or <x y> or <x> if we didn't do that we would need to specify the 
-data-lanes in the controller and again in the PHY.
+Right, sorry, this slipped through.
 
+
+>> platform, to notify about any changes.
 >>
->> Right now none of the CAMSS users for this driver depend on any other mapping and I propose a separate series to fix phy_configure_opts_mipi_dphy rather than introduce data-lanes to DPHY.
+>> [1] https://developer.arm.com/documentation/den0147/latest/
+>>
+>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+>> ---
+>>   .../devicetree/bindings/arm/arm,lfa.yaml      | 45 +++++++++++++++++++
+>>   1 file changed, 45 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/arm/arm,lfa.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/arm,lfa.yaml b/Documentation/devicetree/bindings/arm/arm,lfa.yaml
+>> new file mode 100644
+>> index 000000000000..92f0564fd672
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/arm/arm,lfa.yaml
+>> @@ -0,0 +1,45 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/arm/arm,lfa.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Arm Live Firmware Activation (LFA)
+>> +
+>> +maintainers:
+>> +  - Andre Przywara <andre.przywara@arm.com>
+>> +  - Sudeep Holla <sudeep.holla@arm.com>
+>> +
+>> +description:
+>> +  The Arm Live Firmware Activation (LFA) specification [1] describes a
+>> +  firmware interface to activate an updated firmware at runtime, without
+>> +  requiring a reboot. Updates might be supplied out-of-band, for instance
+>> +  via a BMC, in which case the platform needs to notify an OS about pending
+>> +  image updates.
+>> +  [1] https://developer.arm.com/documentation/den0147/latest/
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: arm,lfa
 > 
-> None of the upstream users of camss.
+> Does specification has a version? Does it support version discovery?
 
-No, we are establishing from x1 use of standard drivers/phy. New users 
-will do it this way. The posted dtsi for the laptops can use the linear 
-lane layout and default polarities.
+Yes and yes. there is a mandatory LFA_GET_VERSION call, with major and 
+minor version.
 
-In a follow on series we can extend phy_configure_opts_mipi_dphy to 
-parse data-lanes = <> into count and mask, to the benefit of any user of 
-phy_configure_opts_mipi_dphy.
+And please note that the discovery of the firmware functionality doesn't 
+rely on DT (or ACPI) at all - it uses discoverable SMCCC calls instead. 
+We just need this DT node to convey the (optional) platform specific 
+interrupt number.
 
-Since that will touch more then qcom specific stuff and will touch at 
-least two subsystems, that should be its own separate series.
-
-> The problem is even larger, as you replied in [1], the csiphy is still exposed as a media element from the CAMSS driver, this means this driver is not complete,
-> it should be a media driver entirely with eventually an internal PHY aux driver, but this would be entirely implementation specific.
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +    description: notification interrupt for changed firmware image status
+>> +
+>> +required:
+>> +  - compatible
+>> +  - interrupts
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +
+>> +    firmware {
+>> +        arm-lfa {
 > 
-> Either the PHY is standalone and the PHY consumer only calls phy_open/init/configure/power_on/power_off/exit, otherwise it's not a fully standaline PHY but a composite device like here.
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> If you cannot find a name matching your device, please check in kernel
+> sources for similar cases or you can grow the spec (via pull request to
+> DT spec repo).
+> 
+> arm-lfa is specific, so this could be as "fota" or "firmware-update"
 
-This is not a composite device any more than the existing upstream
-implementations which follow the same model:
+OK, will try to come up with a good name.
 
-- Cadence CSI2RX + Cadence DPHY (TI J721E/AM62A)
-- Rockchip rkisp1 + phy-rockchip-inno-csidphy
+Thanks for the review!
 
-Both use phys = <&phandle>, the media driver manages V4L2 endpoints
-and lane counts, the PHY driver handles the electrical layer via
-phy_configure().
+Cheers,
+Andre
 
-To this list we will add qcom camss, there's nothing exotic being proposed.
 
-> I propose that you write a proper media driver for the qcom csiphy, which eventually spins a PHY driver as an aux device.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-None of these SoC D-PHYs are written as V4L2 media drivers that spawn 
-auxiliary devices. They all use the phys = <&phandle> model. The media 
-driver manages the V4L2 endpoints and lane counts, passing the 
-configuration down via phy_configure_opts_mipi_dphy.
-
-I just don't see what is so special about CAMSS that it needs to have 
-its own special PHY implementation. drivers/phy the standard API and 
-specification of data-lanes etc in the controller seems pretty "bog 
-standard".
-
----
-bod
 
