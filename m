@@ -1,216 +1,227 @@
-Return-Path: <devicetree+bounces-277411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277412-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MP3LC3/kummdcwIAu9opvQ
-	(envelope-from <devicetree+bounces-277411-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:44:31 +0100
+	id 6Bx6Jnvsuml0dAIAu9opvQ
+	(envelope-from <devicetree+bounces-277412-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:18:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B9CD2C082A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 18:44:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 180312C11D3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 19:18:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7726D30374A1
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 17:44:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DD55F317B987
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 17:48:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B50D347BB9;
-	Wed, 18 Mar 2026 17:43:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFFE9355F4F;
+	Wed, 18 Mar 2026 17:48:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q8lftdfx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ujlpz/bS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27097346E40;
-	Wed, 18 Mar 2026 17:43:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD03354ADB;
+	Wed, 18 Mar 2026 17:48:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773855838; cv=none; b=soxbP1bO29GPk6oUN/E1zSPAknXRbVL4HgBLvKmSyQJCeNAs3RFhr6w7HZ4dWok8bjczY43vIJfWx9/YoS0Qk9vldv+BhIiR7ReBqKHBKdjEWR3Oe4wRh94CBqDxHTivW5id8xmurIjdCtZFEF+SAS8+qJTtu1PQd0l0d2MNLV8=
+	t=1773856093; cv=none; b=Ze+0QejGW8Fzzt7Hc2PITNkFYym9qSQ4NlZSUu4II7121C3irX6Hfqj+qXf37nFRnBYva72lwJvm8NSDQxy2wovMNlW9hLqwcWhSqefiABAjtOG5irK08k4Zt8OKJb6RyKHfY6/8eEa9W/7hWNr2vlX2lmlJsasc4yQxzku1U+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773855838; c=relaxed/simple;
-	bh=SKqsviwo7A+gRl+aMrQwi20LwNBzCIOen4gxdDOVVEE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qQpzehiTkesVDUcaDTZ6II/DzOkOEXp2V1i7YS1jdP7+RfZNJbxtgHQrTHkwTAHeePysOxj86g/n1D3Ci6BFDHQcH4ouwT9pInjBqLWQiBVr7MFb8OVXAeQPVVayyyvctVZue7nGNdtFYtE/qDH64oOkgZo5hEqpdzuXRhm8IWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q8lftdfx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C871FC2BCB3;
-	Wed, 18 Mar 2026 17:43:57 +0000 (UTC)
+	s=arc-20240116; t=1773856093; c=relaxed/simple;
+	bh=pQAFIbZIhmMTLc/mYEA5XgMpFNoRH/fDy2E8vDEfznc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eGRNZgbYXJ34tQsVClRzcA4Yp5jxVFdTt6GD62/rRLp1XW6R3wAtGYfQVmNs0XZxFlujpysVk5QVcEscrvV8VhiL4kb2QkqhxCRWdlzb+BcKbQUmoE46Cco4A1bV/QGi81bMYsKSJU6SU3gYZ20A0fRSbCZ+icf2MIm0zvzy3yU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ujlpz/bS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A08B2C2BC87;
+	Wed, 18 Mar 2026 17:48:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773855837;
-	bh=SKqsviwo7A+gRl+aMrQwi20LwNBzCIOen4gxdDOVVEE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=q8lftdfxc3thx0Yp0eAVTNaPJgWVeglv+2vDzJRSJnhP5thiXRNp+m6HBmnHvzu/O
-	 0ZA6Ax3VLfr/+n0lbhxSTrD4MSezAmEFKhIPY97rS99XLk+KKWJLC8pA/sFxDlPRmY
-	 SykHnzgTsKwijexMIc8x4Ji7kLa69W2H7YKBoTBvXasZIKBdTOcYurzduobF2YHrMm
-	 Xg2jDSpc9fqjoSNAcn6EE9aeof+Bi7H+iLnEnqr4HBwzCPS1AhKfDqiPwWeyKe7AcW
-	 aXF28bjh/6TV6Btir1w01lQC5DGJba9BG1zjBLrgj14cbdzxArutH+qhCww/u27KuR
-	 xATM7MtFPkqdA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B9EA510775F9;
-	Wed, 18 Mar 2026 17:43:57 +0000 (UTC)
-From: Vyacheslav Yurkov via B4 Relay <devnull+V.Yurkov.EXT.bruker.com@kernel.org>
-Date: Wed, 18 Mar 2026 17:43:40 +0000
-Subject: [PATCH 2/2] dt-bindings: Add clock guard DT description
+	s=k20201202; t=1773856093;
+	bh=pQAFIbZIhmMTLc/mYEA5XgMpFNoRH/fDy2E8vDEfznc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ujlpz/bSwy+wfDQI5dQccWTn2L8KOYRsJbmmybLyDl+peieYdfDde8nj/IpVYcEYI
+	 7ackhbtq8Yxc5Xg9TBBQH7zCyFewJSwOLR45mbnv0+OPXpUh4OHwxkaa7XoCoaxNPG
+	 JsAP82j4T9J1XuAmlzbDc4af3CvFHAY9vy2904MYg+ea+Ut4HknYizButIAZEMzqYd
+	 kw3YJ/FDX0s9DKkKTWfV+lqsWWWxm6MaWQzJ4A1veKmGU+GtOZnG7QjGCtAyCWyLSF
+	 Vldoxrq7dJmwZgVLgR9GqQMTu7nzDNKjRCjHFh3Jefdi4WplhDavc7Je0mbbClX8Ss
+	 r1rMTkjuCUsmw==
+Date: Wed, 18 Mar 2026 17:48:08 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Charles Perry <charles.perry@microchip.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: document Microchip
+ PIC64-HPSC/HX MDIO controller
+Message-ID: <20260318-suspense-arming-fe118c3f15c6@spud>
+References: <20260317184610.315852-1-charles.perry@microchip.com>
+ <20260317184610.315852-2-charles.perry@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260318-feature-clock-guard-v1-2-6137cb4084b7@bruker.com>
-References: <20260318-feature-clock-guard-v1-0-6137cb4084b7@bruker.com>
-In-Reply-To: <20260318-feature-clock-guard-v1-0-6137cb4084b7@bruker.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, Vyacheslav Yurkov <uvv.mail@gmail.com>, 
- Vyacheslav Yurkov <V.Yurkov.EXT@bruker.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773855836; l=2408;
- i=V.Yurkov.EXT@bruker.com; s=20260318; h=from:subject:message-id;
- bh=nftM24g/uBu7svtXQ2MG9cVaqhavKUW1WxRDBq2fT/8=;
- b=X2/vy2XIiAWf10c3i4jfNnsT3rbtNRB5XzDMQ6dTUyDDEVRFiKnKtPk2VM1XG5imdC/j6VpsM
- ZWx52GXBR50C/jUU9qkf7h6U6EbGe+uhJ6GJ+vgvqvQTIzlOIf9Gnf+
-X-Developer-Key: i=V.Yurkov.EXT@bruker.com; a=ed25519;
- pk=snJmgYVOKlp7aQtK9tWnEI7QTYxpPpJJvxdVsnxA7Fk=
-X-Endpoint-Received: by B4 Relay for V.Yurkov.EXT@bruker.com/20260318 with
- auth_id=686
-X-Original-From: Vyacheslav Yurkov <V.Yurkov.EXT@bruker.com>
-Reply-To: V.Yurkov.EXT@bruker.com
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="IW4jHSdMH+tE+sFx"
+Content-Disposition: inline
+In-Reply-To: <20260317184610.315852-2-charles.perry@microchip.com>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277411-lists,devicetree=lfdr.de,V.Yurkov.EXT.bruker.com];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,bruker.com];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277412-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_PROHIBIT(0.00)[0.0.0.0:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.989];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	HAS_REPLYTO(0.00)[V.Yurkov.EXT@bruker.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bruker.com:email,bruker.com:replyto,bruker.com:mid]
-X-Rspamd-Queue-Id: 9B9CD2C082A
+	NEURAL_HAM(-0.00)[-0.872];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url,microchip.com:email]
+X-Rspamd-Queue-Id: 180312C11D3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Vyacheslav Yurkov <V.Yurkov.EXT@bruker.com>
 
-Describe device tree binding for virtual clock controller guard.
+--IW4jHSdMH+tE+sFx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Vyacheslav Yurkov <uvv.mail@gmail.com>
-Signed-off-by: Vyacheslav Yurkov <V.Yurkov.EXT@bruker.com>
----
- .../bindings/clock/clock-controller-guard.yaml     | 79 ++++++++++++++++++++++
- 1 file changed, 79 insertions(+)
+On Tue, Mar 17, 2026 at 11:46:09AM -0700, Charles Perry wrote:
+> This MDIO hardware is based on a Microsemi design supported in Linux by
+> mdio-mscc-miim.c. However, The register interface is completely different
+> with pic64hpsc, hence the need for separate documentation.
+>=20
+> The hardware supports C22 and C45.
+>=20
+> The documentation recommends an input clock of 156.25MHz and a prescaler
+> of 39, which yields an MDIO clock of 1.95MHz.
+>=20
+> The hardware supports an interrupt pin to signal transaction completion
+> which is not strictly needed as the software can also poll a "TRIGGER"
+> bit for this.
+>=20
+> Signed-off-by: Charles Perry <charles.perry@microchip.com>
+> ---
+>  .../net/microchip,pic64hpsc-mdio.yaml         | 61 +++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/microchip,pic64=
+hpsc-mdio.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/microchip,pic64hpsc-md=
+io.yaml b/Documentation/devicetree/bindings/net/microchip,pic64hpsc-mdio.ya=
+ml
+> new file mode 100644
+> index 000000000000..21c76199c11b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/microchip,pic64hpsc-mdio.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/microchip,pic64hpsc-mdio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip PIC64-HPSC/HX MDIO controller
+> +
+> +maintainers:
+> +  - Charles Perry <charles.perry@microchip.com>
+> +
+> +description: |
+> +  Microchip PIC64-HPSC/HX SoCs have two MDIO bus controller. This MDIO b=
+us
+> +  controller supports C22 and C45 register access. It is named "MDIO Ini=
+tiator"
+> +  in the documentation.
+> +
+> +allOf:
+> +  - $ref: mdio.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: microchip,pic64hpsc-mdio
+> +      - items:
+> +          - const: microchip,pic64hx-mdio
+> +          - const: microchip,pic64hpsc-mdio
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-frequency: true
 
-diff --git a/Documentation/devicetree/bindings/clock/clock-controller-guard.yaml b/Documentation/devicetree/bindings/clock/clock-controller-guard.yaml
-new file mode 100644
-index 000000000000..71c2d80de1f0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/clock-controller-guard.yaml
-@@ -0,0 +1,79 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/clock/clock-controller-guard.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Clock Controller Guard
-+
-+maintainers:
-+  - Vyacheslav Yurkov <V.Yurkov.EXT@bruker.com>
-+
-+description: |
-+  Clock controller that guards upstream clocks and/or GPIO
-+  signals and exposes them as a single clock output.
-+
-+properties:
-+  compatible:
-+    const: clock-controller-guard
-+
-+  "#clock-cells":
-+    const: 1
-+
-+  clocks:
-+    description: Input clocks that will be guarded.
-+    minItems: 0
-+
-+  clock-names: Input clock names.
-+    minItems: 0
-+
-+  clock-output-names:
-+    description: Names of the clock provided by this controller.
-+    minItems: 1
-+    items:
-+      type: string
-+
-+  gpios:
-+    description: |
-+      GPIOs used to control or guard the clocks.
-+    minItems: 0
-+    maxItems: 32
-+
-+  gpio-names:
-+    description: Names corresponding to each GPIO.
-+    minItems: 0
-+    maxItems: 32
-+
-+    items:
-+      type: string
-+
-+required:
-+  - compatible
-+  - "#clock-cells"
-+anyOf:
-+  - required:
-+      - clocks
-+  - required:
-+      - gpios
-+dependencies:
-+  gpio-names: [gpios]
-+  clock-names: [clocks]
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    clkctrl: clock-controller {
-+        compatible = "clock-controller-guard";
-+        #clock-cells = <1>;
-+
-+        clocks = <&clk0 0>, <&pll 0>;
-+
-+        gpios = <&gpio0 4 GPIO_ACTIVE_HIGH>,
-+                <&gpio0 5 GPIO_ACTIVE_HIGH>,
-+                <&gpio1 2 GPIO_ACTIVE_LOW>;
-+
-+        gpio-names = "gpio0", "gpio1", "gpio2";
-+
-+        clock-output-names = "clkout0";
-+    };
+Does this genuinely have no constraints?
 
--- 
-2.34.1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    bus {
+> +        #address-cells =3D <2>;
+> +        #size-cells =3D <2>;
+> +
+> +        mdio@4000C21E000 {
+> +            compatible =3D "microchip,pic64hpsc-mdio";
+> +            reg =3D <0x400 0x0C21E000 0x0 0x1000>;
+> +            #address-cells =3D <1>;
+> +            #size-cells =3D <0>;
+> +
+> +            phy0: ethernet-phy@0 {
+> +                reg =3D <0>;
+> +            };
+> +        };
+> +    };
+> --=20
+> 2.47.3
+>=20
 
+--IW4jHSdMH+tE+sFx
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabrlWAAKCRB4tDGHoIJi
+0lGMAQCFZMsheMTY8r7+nrjrKxb4dPNODqhfXUgAgD0LntsgdgD9EWcX+5BL8OPD
+NRnL08pK+yY0gvYbjGj2Z9MIy72oOgM=
+=nn8N
+-----END PGP SIGNATURE-----
+
+--IW4jHSdMH+tE+sFx--
 
