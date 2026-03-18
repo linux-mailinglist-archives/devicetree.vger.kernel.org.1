@@ -1,138 +1,213 @@
-Return-Path: <devicetree+bounces-276996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276997-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eGZEFGpcumnFUgIAu9opvQ
-	(envelope-from <devicetree+bounces-276996-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:03:54 +0100
+	id qJ5FGQtdumnFUgIAu9opvQ
+	(envelope-from <devicetree+bounces-276997-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:06:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0A612B76C9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:03:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDECC2B7773
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 09:06:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CD0C33056B65
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:00:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C64843102E76
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:02:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A947375AAC;
-	Wed, 18 Mar 2026 08:00:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7DEB377022;
+	Wed, 18 Mar 2026 08:02:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FRtrdj17"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iVSHrYnd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51BA82153EA;
-	Wed, 18 Mar 2026 08:00:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E1612D879E
+	for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 08:02:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773820837; cv=none; b=ThOMv6K0g2f/soLWdGsty6cbdJ6RbvZlTV1guGW0+rE++NE9iX7A14p3ZvbuP+w78zOUx9KwgtfRT0DXejs8R4fFMJ3THAFZ/XMKDVPvFxdnT/tszBppDFQ/TQj9MTGgr/ny4rJHS0khZwYBpR1gSchawv4ScYHRd45MzajOKMo=
+	t=1773820951; cv=none; b=QMrrDuyW+R1kHs1pQ6L1csB7oO6cpR/jTQQv/l2V7PpT1WkBMTvPQSNOUrk3f+Koo/4WNaqA1HML9ZQVDp458jmrE/xWi2eL9YbO/fEyR4mfQryHunttJpo9b2HjsB3UWpBAD77bfWTe7uP4jrqxhmJPaV/2v2E1+NcnxY6ZgvY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773820837; c=relaxed/simple;
-	bh=JcYUVdQClTfAto/aY5CwUWdQ3GX10YbnZOm9buLexog=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DVBErReMjS2lui0VlI1pM9DCdE/zoA7Hd5+wu3e4rnZ0UqPXtldZacWzpIBJQsoObMVXM32v2chRvrjRA447/HVOo21ybZs4F8VNy4itQdIu3yHog1TbSVYv9C8L6pJ/ybdeNj/0rj8v8boOh6vTiAs6gwqfUWBcuuR9NbPcAIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FRtrdj17; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 562BDC19421;
-	Wed, 18 Mar 2026 08:00:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773820836;
-	bh=JcYUVdQClTfAto/aY5CwUWdQ3GX10YbnZOm9buLexog=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FRtrdj17e5PnFocx4e8uTwccB5PYZJnN2Hrghz3EhlFXphiSE/gk5h8yheDrnkFcm
-	 0GqXxk6uQR3SFM64fo3FLs8iHz0ytpD5c4h/q/ZnqQSKfc/yIgLmxU247AHQYaIrdc
-	 CItWLx0eWaXIXqLFLbeDMOEDfiZERZQOUMeOzAPy/OsKk5eqw/ckKtqMYEZkn7SRxL
-	 VzW/ptiOE2mJ3hLr1Ohm2vYgyq/h6B+gZST1VqooMasZa1TxQwdIwfz6cl0yg5pvKC
-	 oji6EO1jNayiZGfCfuKVTX+q2FIoSOAOdp5B/XV5jJArW5tSLtzrc1zBJ6TzNipcge
-	 gZ9qDWeSJ4iwg==
-Date: Wed, 18 Mar 2026 09:00:34 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Mark Rutland <mark.rutland@arm.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Sudeep Holla <sudeep.holla@kernel.org>, 
-	Salman Nabi <salman.nabi@arm.com>, Vedashree Vidwans <vvidwans@nvidia.com>, 
-	Trilok Soni <trilokkumar.soni@oss.qualcomm.com>, Nirmoy Das <nirmoyd@nvidia.com>, vsethi@nvidia.com, 
-	vwadekar@nvidia.com, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/8] Arm Live Firmware Activation (LFA) support
-Message-ID: <20260318-courageous-omniscient-fulmar-23abc4@quoll>
-References: <20260317103336.1273582-1-andre.przywara@arm.com>
+	s=arc-20240116; t=1773820951; c=relaxed/simple;
+	bh=k5+ioRK98mlQzq477qk0bPbZYNlkLektvdoNCHlx7qo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XHdGd+Zb3fo4v3csf8dwtFzqh0S80jx4qwgqmHONIK5LeknY8uVR/gk5LQ1rYblAF2ytIHSRVUHJB3gT2N96KvT6qzHyi5/zXn8JLh1sCj0RJKxqfmZOmY/tgymSFpHYFzPoK2OnT6gE7pFxLD6ULZkat4xfKWmV6PpIe9bt/Dg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iVSHrYnd; arc=none smtp.client-ip=209.85.215.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-c7412b07f22so295785a12.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 01:02:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773820949; x=1774425749; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=nYpecVbBpabNdzvAamyH5iv0Fckev7pwJobjRD7/cs8=;
+        b=iVSHrYnddtjWC4bfJA+FNDb4Tlxl5jY5tVxNaArO391uCDPwq9WN6owWOnLPNq6OGY
+         JayOPRJdXzTsPINO8wdQNrg/KX/J7kpWJzafKO2W1DSLIptKJmZodHAMtTBOE29PV0XN
+         CbeoIB7cD/wR0+fQ53cKZSNbXFh8uAVSYznyuSLc1N7xKW2R1ltjHQ/LtEZR57hOJWwL
+         LQ+W7WV6sCvYzUq05SupkOMH9O6zZes/BxqUs9CY3p2jMvtjgLFjmTcXHySuT7gBIgme
+         cNKfYQuAh8sZ69Nwm/e2FqYUE6AzsRb24ahUIXahZmKlXNJ5l/AhEiSTyuk+fBN/TQQN
+         yTWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773820949; x=1774425749;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nYpecVbBpabNdzvAamyH5iv0Fckev7pwJobjRD7/cs8=;
+        b=jWoTZNqmGPH7V9a/AaQ8NDExP+/VSedNi7ZeIs8UUKPC9tTDOGtsT04VoR+HnlYSra
+         iVElFXet3P2b7oImGMfOOI7nCHc5+zDqwwJSuUXaVjQDtrWtETnwQDzbxa0MBs24Qayt
+         8LshNMd1YjEj3FQZ54L+am0JXzTFcX/a6W+rd5zoUU7ID5ra6FTn40KPs7dIB9vLdiui
+         LbB4qbUDLPlEMQwYQ5jfml8OVY7l/MEiLuk4fbAzThF532nfzCnmABa45FXNs4wkVF1n
+         iJK/KTOXyy827JpeJNAnugZGltZxAa8QHFZjQyA6GIVu0j+oiOT/yD5XMbW94mWofxAK
+         8ijA==
+X-Forwarded-Encrypted: i=1; AJvYcCU08GQmVzjUsmq6ggoLWEH42I+TSbZQ/VW+OjpbI99J50IQiuKeqHWjiSkcNIh5gLZdF8gQDjJBFtTn@vger.kernel.org
+X-Gm-Message-State: AOJu0YyULmLR0WW0YWL2Xu0Zg3m4t7mTrEz8q5uNwoOh/VGI7VgYtcLj
+	+UtYr8PuPvkHNfNubimfOR4sXjxFHLqgrCl7kODL1BYomymgbC7IBE35
+X-Gm-Gg: ATEYQzxFmI0AYBUMX29XGjou82/lbpeZLsHZ/XJ5sNusnYAcOAMaO6EPcASl3dbRa42
+	SRbRU7r5bjR4aaFq4pJXwSpmb6RMj2vn0GhU7QotzMIzVLxGKyFZ6qSfsvsNyIOYBJVd6Yzky17
+	ATXW3D0lweerERZiFVtnCe5FVNJ795c/Famn/fI5WdlOt2OuQCrnTndYHVjt9D3lg1aOFXBcmat
+	j0QWgX79L4DnmPeBA/jh5Xa6H8e0mKT4MCaz0Y27/L+63xpS/NbmpHiVNlvu25dtiNeMPBZSqKy
+	3TWuPj6/flY+3WfIQUke91qtojirvCQuNWTul6dIuJtnag3Pw8o1Hhl0nYMsKymDHXiXBvPXl/C
+	6LDqTJi9NPVC6Plcg20SXvn6L42owgdk+vPeczkSIDXq3baRv9HjqK8ZYnxUci2ywj+f/t5Tazr
+	3ddz4yQqo+B1dLVO4w8PZCC2z3gPTvl4CHFuSuZpqe0q6UYQTkCE3BRa8BHiakMQ1RT/khVxrQ
+X-Received: by 2002:a05:6a21:1391:b0:395:acfc:b66b with SMTP id adf61e73a8af0-39b977dc39bmr2479592637.8.1773820948667;
+        Wed, 18 Mar 2026 01:02:28 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c741e5694acsm1717392a12.24.2026.03.18.01.02.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Mar 2026 01:02:28 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <69ee987f-37d6-424f-bcf0-9a13c176b08b@roeck-us.net>
+Date: Wed, 18 Mar 2026 01:02:27 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260317103336.1273582-1-andre.przywara@arm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Add mps mpm369x driver bindings
+To: Yuxi Wang <Yuxi.Wang@monolithicpower.com>, corbet@lwn.net,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: wyx137120466@gmail.com, linux-hwmon@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20260318070115.1609-1-Yuxi.Wang@monolithicpower.com>
+ <0111019cffc080de-4f80c201-5cfb-4bcc-ab98-8c8747aa4639-000000@us-west-1.amazonses.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <0111019cffc080de-4f80c201-5cfb-4bcc-ab98-8c8747aa4639-000000@us-west-1.amazonses.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276996-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-276997-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E0A612B76C9
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,roeck-us.net:mid,monolithicpower.com:email]
+X-Rspamd-Queue-Id: DDECC2B7773
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 17, 2026 at 11:33:26AM +0100, Andre Przywara wrote:
-> Changelog v1 .. v2:
-> - restrict build to arm64 (the LFA spec only supports AArch64)
-> - rename and extend central data structure to fw_image
-> - use separate GPR register sets for some SMC calls
-> - provide wrapper for error messages to prevent out-of-bound access
-> - return GUID in the "name" sysfs file when image is unknown
-> - fix wrong attribute in pending version number show function
-> - add missing include files and order them properly
-> - fix memory leaks in error cleanup paths
-> - handle lifetime using embedded kobjects and a kset
-> - drop global lfa_lock, use kset list lock and kobject refcount instead
-> - add DT binding documentation
-> - add timeout and watchdog re-arming (contributed by Veda)
-> - relax timeout period and do not block while waiting
-> - register ACPI notification (contributed by Veda) and DT interrupt 
-> - refactor ACPI notification code to allow sharing with DT code
-> - use faux device instead of platform driver
-> - add auto_activate file to control automatic activation
-> - introduce rwsem mutex to prevent using stale sequence ID
-> - use labels and goto instead of infinite loop when retrying activation
-> - initialise workqueue only once (thanks to Nirmoy)
-> - various cleanups on reported messages and code formatting
-> - rebase on top of v7.0-rc1
+On 3/18/26 00:02, Yuxi Wang wrote:
+> Add a device tree bindings for mpm369x device family,
+> which includes mpm3695-20 and mpm3690S-15.
 > 
-> Changelog RFC .. v1:
+> Signed-off-by: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
+> ---
+>   Documentation/devicetree/bindings/trivial-devices.yaml | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index a482aeadcd44..7b9d9bc89d07 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -342,6 +342,10 @@ properties:
+>               # Monolithic Power Systems Inc. digital step-down converter mp9945
+>             - mps,mp9945
+>               # Temperature sensor with integrated fan control
+> +          - mps,mpm3695-20
+> +            # Monolithic Power Systems Inc. multi-phase controller mpm3695-20
+> +          - mps,mpm3690S-15
+> +            # Monolithic Power Systems Inc. multi-phase controller mpm3690S-15
 
-Please start using b4 for developing patches. RFC is v1. RFCv2 is v2.
-Whatever next is always + 1. Otherwise please share how v1 and RFC can be
-easily compared with b4 diff...
+Each of the series supports several power levels,
+indicated by the -xx extension.
 
-> - Updated SMCCC version 1.1 to 1.2 per the LFA specification requirement.
-> - Changed "image_props" array to a linked list to support the dynamic
+For the most part, the chip variants are register compatible, with few exceptions.
+Specifying the extension in the devicetree compatible string therefore does
+no make sense unless really needed.
 
-Best regards,
-Krzysztof
+Guenter
+
+>             - national,lm63
+>               # Temperature sensor with integrated fan control
+>             - national,lm64
 
 
