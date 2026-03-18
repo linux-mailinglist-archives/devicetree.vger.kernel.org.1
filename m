@@ -1,133 +1,125 @@
-Return-Path: <devicetree+bounces-276964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-276965-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MKQkEQhOumlUUAIAu9opvQ
-	(envelope-from <devicetree+bounces-276964-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:02:32 +0100
+	id 2NuEF9pNumlUUAIAu9opvQ
+	(envelope-from <devicetree+bounces-276965-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:01:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C62872B6A3F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:02:31 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F2F12B6A1A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 08:01:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 040F53055D44
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 07:01:16 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B2531300C37A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 07:01:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36E45366DC0;
-	Wed, 18 Mar 2026 07:01:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E175E364037;
+	Wed, 18 Mar 2026 07:01:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S7CbR3HA"
+	dkim=pass (2048-bit key) header.d=monolithicpower.com header.i=@monolithicpower.com header.b="FRiS6MAP";
+	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="D9JJ7YUH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from e242-11.smtp-out.us-west-1.amazonses.com (e242-11.smtp-out.us-west-1.amazonses.com [23.251.242.11])
+	(using TLSv1.2 with cipher AES128-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12DC73314BF;
-	Wed, 18 Mar 2026 07:01:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC2A175A72;
+	Wed, 18 Mar 2026 07:01:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=23.251.242.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773817275; cv=none; b=DevfVAU8srFGNDe2UBQdhThPaIjVBA5pdUzdqrRmV6/Npjkf9GWH//LFkFk37LO2ywh2H4ri03aCZBK+Kjr9+0XIMQhydsFRCVKR1dL11JfAyzjd280Bfd6GiH0F0UVjR8NL45+jyLtoFWgir0lSq6fJfQ+IB7t7JKfJs71X2do=
+	t=1773817298; cv=none; b=XKUw1UEkLAdSaK3TGuMy8nAuOuBein/G8vP2+SJLSQ5XQj8cy9jDD3neRXgsLa04PLrD2qlfCGl6eZ/1xBXGKfzS+vEuChBQVH9Q2ppfrTKyWPMWJswXJyZRF+WnlR/RzGftUDLQUmTN1CNL/Quw5y8bysX9imkfOnnXiqhuYeA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773817275; c=relaxed/simple;
-	bh=HTxLQs3QFVzm6RIWwR2ITebygYXn4sB3p88/LdMHG0I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WyKcS/tEVSD+hdAzfQ24SH0gNLgIjlYI9lO1rDm9FDn+aPOcg6/gzokEydzIXMcQ5Pol+eGfQE18dUDxFdoUoKM+qsb0ltAw2ZidN9zZd4scDFrTw/p8a3HUuMutQBqf6ZWxQyBKrV0vvPZ3hNS79vw30CZps59XjGaEdqUpt5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S7CbR3HA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25592C19421;
-	Wed, 18 Mar 2026 07:01:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773817274;
-	bh=HTxLQs3QFVzm6RIWwR2ITebygYXn4sB3p88/LdMHG0I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S7CbR3HAGCKAcUdpb3A8Wb+DLoq5OHDFaD4WRJ9gW8G1jHCUnapFRA4TaC/jgbD0V
-	 1OAOdaKDW8rcEZHt5pyZ8ZjwoveNuvUGLafX+YkS2iKTYpxRwBHXNnSadGQBjoSv0Y
-	 h6fVVuya69Nnlq0oXEMJfcjV1R/KODL+B/gtkzY7DJCJEFrpaouBRkneUQjWyn/mEC
-	 wogaLeMBRJzYmNe9uoGJhjvNmRFHBs85ZBo9uIg/+bP4Ev5bEy9ru0a2SVJhloBvBY
-	 gzW7M12MLlrLgprMrkppd74sWxhF5mf4DRf1fboa4i5cb4d/lVu+MsdNT5mYcM080q
-	 aNSgSQ8pqPVew==
-Date: Wed, 18 Mar 2026 08:01:12 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>, 
-	Matthias Kaehlcke <mka@chromium.org>, Mike Looijmans <mike.looijmans@topic.nl>, 
-	Pin-yen Lin <treapking@chromium.org>, Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
-	J =?utf-8?Q?=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>, Jens Glathe <jens.glathe@oldschoolsolutions.biz>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v6 1/4] dt-bindings: usb: Add binding for Genesys Logic
- GL3590 hub
-Message-ID: <20260318-devious-spider-of-endurance-ede46f@quoll>
-References: <20260318040644.3591478-1-swati.agarwal@oss.qualcomm.com>
- <20260318040644.3591478-2-swati.agarwal@oss.qualcomm.com>
+	s=arc-20240116; t=1773817298; c=relaxed/simple;
+	bh=09LSl1IjkmHBf8mV71JJJzNERuhqiOeb5UUbP7HCg50=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Oh/d5sU9UrkOh+gI2cRdn4uz2JBZKwAj8yQUVsuku/E24oaXXE1HYzFL+G2DE0xM5+u4nyEVPMmLi7BSVvrCKh6Usxy3Gd7f94wPAoljfIlWmqE1dZi2vU+BkY5ub96ZvWHEHbWMka8cY6GMvS4ThYaDvzDKJOs/LZHTxmLi8jA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=monolithicpower.com; spf=pass smtp.mailfrom=mail-mps-ses.monolithicpower.com; dkim=pass (2048-bit key) header.d=monolithicpower.com header.i=@monolithicpower.com header.b=FRiS6MAP; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=D9JJ7YUH; arc=none smtp.client-ip=23.251.242.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=monolithicpower.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mail-mps-ses.monolithicpower.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=rodjp4ft5fg4rp24cb2ntayvghblvgrq; d=monolithicpower.com;
+	t=1773817297;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Transfer-Encoding;
+	bh=09LSl1IjkmHBf8mV71JJJzNERuhqiOeb5UUbP7HCg50=;
+	b=FRiS6MAPpaXonbSlKUXNq374yfiFg5aH43rTnVABgPAMk738R/2cefE9K5oiOsrC
+	MuikkgxCD5QS/bFtsBEVN0ONIJP128AYjuRXy882fyYs2odqueQtxC3dDJX5zv1PYRA
+	WplC5M7Yt6WpE4UK7dJ9KihFOohgPXGN+227v/+90aeu3iWwF1xP6+hXQFZ/vxqhRkh
+	tuI7AewigL8LluosUjazhKoTicR/yHVwOlEzqsnSMm4ZzGxE0sUyVhsD7P8Z4H7OfO7
+	pJpSyGvza55UqEqXz0dUbp8tUkhIwkwSzqyqBqI0cYKS27rZ5BTV0d8F5fTIJ7BeMNJ
+	dia1r7XpzA==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=voqdhibj3ww47nmt5hkqcrgg7xiynmza; d=amazonses.com; t=1773817297;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Feedback-ID;
+	bh=09LSl1IjkmHBf8mV71JJJzNERuhqiOeb5UUbP7HCg50=;
+	b=D9JJ7YUHDTVLJwwCVg0TWcuGnf8XIBxjdzV1/jKwTM0vfo8JJbS5ugSQe7sanFw6
+	MFECqEACOd8A9zy5uipXv5HnCV1sK6bjnS1QuPqAc2qX85XlsT+QFYPYnGxnI0cRVUH
+	eQlue95Sa5iwEyrMRmMI5eN795HmclINPNVr9hOY=
+From: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
+To: Yuxi.Wang@monolithicpower.com, linux@roeck-us.net, corbet@lwn.net, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: wyx137120466@gmail.com, linux-hwmon@vger.kernel.org, 
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: [PATCH 0/2] hwmon: Add support for MPS mpm369x chip family
+Date: Wed, 18 Mar 2026 07:01:36 +0000
+Message-ID: <0111019cffbff6a6-a0442cd4-b306-4acf-92a1-987e86b10639-000000@us-west-1.amazonses.com>
+X-Mailer: git-send-email 2.51.0.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260318040644.3591478-2-swati.agarwal@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
+Feedback-ID: :1.us-west-1.CVpA5H5M7EMrIGr0u6+8nP6wkCH59pkYLxtNQh1UjuczBtN1WmV60RtUapmzBbQ7+P+SiHg5vbyEpY0uRvudPF12wRQI7xDHNKjWPMJN/yd9hVbV9UslJ09o7rVZZCRhPDXT8kPM9Nch5RQcZE90uz62B8giHS2hgInWMbQKX5A=:1.us-west-1.yP6/L6iaxFc47BvsTr22yvAX3nKjbzwVEN8jceuJEpw=:AmazonSES
+X-SES-Outgoing: 2026.03.18-23.251.242.11
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[monolithicpower.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[monolithicpower.com:s=rodjp4ft5fg4rp24cb2ntayvghblvgrq,amazonses.com:s=voqdhibj3ww47nmt5hkqcrgg7xiynmza];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-276964-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-276965-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	TO_DN_NONE(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Yuxi.Wang@monolithicpower.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[monolithicpower.com:+,amazonses.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:url]
-X-Rspamd-Queue-Id: C62872B6A3F
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amazonses.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6F2F12B6A1A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 09:36:41AM +0530, Swati Agarwal wrote:
+Add mpm369x driver in hwmon and add dt-binding for it.
 
-A nit, subject: drop second/last, redundant "binding fir". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+Yuxi Wang (2):
+  dt-bindings: hwmon: Add mps mpm369x driver bindings
+  hwmon: add mpm369x driver
 
->    reg: true
-> @@ -26,6 +27,10 @@ properties:
->      description:
->        The regulator that provides 3.3V or 5.0V core power to the hub.
->  
-> +  vdd12-supply:
-> +    description:
-> +      The regulator that provides 1.2V power to the hub.
-> +
->    peer-hub: true
->  
->    ports:
-> @@ -69,6 +74,17 @@ allOf:
->          peer-hub: true
->          vdd-supply: true
+ .../devicetree/bindings/trivial-devices.yaml  |   4 +
+ Documentation/hwmon/index.rst                 |   1 +
+ Documentation/hwmon/mpm369x.rst               |  75 ++++++++++++
+ MAINTAINERS                                   |   7 ++
+ drivers/hwmon/pmbus/Kconfig                   |   9 ++
+ drivers/hwmon/pmbus/Makefile                  |   1 +
+ drivers/hwmon/pmbus/mpm369x.c                 | 115 ++++++++++++++++++
+ 7 files changed, 212 insertions(+)
+ create mode 100644 Documentation/hwmon/mpm369x.rst
+ create mode 100644 drivers/hwmon/pmbus/mpm369x.c
 
-Here and in other cases you forgot to forbid new property (: false).
-
-Best regards,
-Krzysztof
+-- 
+2.39.2
 
 
