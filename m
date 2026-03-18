@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-277281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277282-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ENlAITO0umlWawIAu9opvQ
-	(envelope-from <devicetree+bounces-277281-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:18:27 +0100
+	id cPwLHhi3umlWawIAu9opvQ
+	(envelope-from <devicetree+bounces-277282-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:30:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D79B2BCEC5
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:18:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CB722BD290
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 15:30:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 76E963087474
-	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:16:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 73A9E32A66CE
+	for <lists+devicetree@lfdr.de>; Wed, 18 Mar 2026 14:17:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91F043DA7C8;
-	Wed, 18 Mar 2026 14:16:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A71FB3DCDB5;
+	Wed, 18 Mar 2026 14:17:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ufsSYwWS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l2n98eIW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E7EB38F94E;
-	Wed, 18 Mar 2026 14:16:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 143ED3DCD9B;
+	Wed, 18 Mar 2026 14:17:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773843360; cv=none; b=JpWEJD4HCMg8Te/xNaFN9QyDymrveuwvn0AmjMYQ3YHU5tqWJ4I/KKhi7wzpgZDanjNiOpNNorscnMK0c/WUGEnXLdvR1g2h/brU/buKDPSseVSmuEdM/LqIkCHsRsSAOyOp6B0nBJj3iBenQQjqEmE7ZQcmhULqdqBKcudOQQk=
+	t=1773843424; cv=none; b=aHXaoAosOgTWfeHuTeQZPqrsD8FlEC6tpBfiLUGVGcajB0et9c656qbDovkAAFrOM0ljMcqUVcODsTuo3tRT5jgbockj4Woo30czX17l5OjJpmsRv+KVcEhOLrNtSu4zbVC23OEzmx+Zo3MSLClAbgMcvhg8BEjxxcOjp1Pf5S4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773843360; c=relaxed/simple;
-	bh=hxR+a0dcbuyncasg0vnGK4TX7aakF7otRlHChS0Ciqo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=frcNcvk7FwRL9vC9sDIT/jG88iWwNAK2Isw7C/02wShY2bX9YqdrpcFP1kO7t55dvXsu0EhjVHYVQ+KGmJrHh4ZBDBhnAScx0/OOTIkeiCjf/AzioES390nMJykXHHjfxvBL7nYW1h6KVmn7tcXtjnYe0tHl1h4QiENY62A3IRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ufsSYwWS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71130C19421;
-	Wed, 18 Mar 2026 14:15:58 +0000 (UTC)
+	s=arc-20240116; t=1773843424; c=relaxed/simple;
+	bh=Nka2tAu2xfrAzh/LVz+kPzjJGV26abtbTSAN+jQ1zCs=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=HazUw2u3FVdjMMxhzhgw+rx2TUXsyEa4z2lFarn7QQUHQHcsKLkb3XOBURWg0pImJzGFC3Wll48aCvthROLT/cia+bW7IBSJJaEc9dmaFAMSMC8NwkCFnV3V9rC3WV0MpIghX6i2IqkG0AMFRl7cqKBxhSkxmUhGE+uCN2SpMVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l2n98eIW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B834CC19421;
+	Wed, 18 Mar 2026 14:16:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773843360;
-	bh=hxR+a0dcbuyncasg0vnGK4TX7aakF7otRlHChS0Ciqo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ufsSYwWS3wzaboFTpXZbOGi3uUdkOzDyah4YQhgrkF9k18O0qVLC5vKktPaqISr/Y
-	 mHX7PV/M12dC2UjO+1jzWoyUUnwLjW2EaQEQJgwhDuWW+H7SkVGTz9TumleA9AhDFM
-	 srj1HC/KFEUR28kB1y7BQXOuLk2Py7EAFojyXvxA59SgcAEplIPyuS/mkUkYm+sRjP
-	 tomMF9iac3RaPp9ScPDVog8IBlCWoeFtN0QmE2yIG3poNuzpxQJWfGGeiJHlSstPdJ
-	 IlabWcXia+AlXPKACBhYCCP2sEB/XshGocCb9N1f5ZdfQbJ5h4Zg87Q6fWXSw2JTmW
-	 LG/nBwHQl9kiw==
-Message-ID: <40d02335-90c2-4b14-a9df-d9ff1a75ddd2@kernel.org>
-Date: Wed, 18 Mar 2026 15:15:56 +0100
+	s=k20201202; t=1773843423;
+	bh=Nka2tAu2xfrAzh/LVz+kPzjJGV26abtbTSAN+jQ1zCs=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
+	b=l2n98eIWgaO3CjkFjgd0Sou85/DdxxIF5f5x0NNXjCnRCCUzjcWJiinkayJ878aww
+	 BMJ0pXZVJUefOLLhpj2fMemzle19sO2O1t5wBOu4oWg54p9ZGJdEhdeS/Czy9hnQXA
+	 eulz6Qr5rpmd86XRFktfVxpPiPuG0bWwvXiusqCzjYmb/h8nhtFZfXIiV7SJql6pbr
+	 L4xv+2VnZl426NR2cd+2lb906X8FppURSFBE0mng0zk5Fvon36cCbedPT6Sf5MOPBk
+	 nKWZjGbed3op7zsa/QhDxrRfMTA0/5KlsKm4GWT7flFR84ReuRSkL4lH9ODOoxK1Dd
+	 vepd5z1nkYYfQ==
+Message-ID: <11428d25-7bea-4be6-a6ee-bfeac1d50807@kernel.org>
+Date: Wed, 18 Mar 2026 15:16:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,124 +53,197 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: request for guidence
-To: ShiHao <i.shihao.999@gmail.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, broonie@kernel.org,
- bjorn.andersson@oss.qualcomm.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <abqbUuruxPJsfBo3@fedora>
- <ccce197c-c514-43c8-8026-534966bb0438@kernel.org> <abqr0Qpcx_2BQINg@fedora>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+From: Vlastimil Babka <vbabka@kernel.org>
+Subject: Re: [PATCH 3/8] mm: move free_reserved_area() to mm/memblock.c
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <abqr0Qpcx_2BQINg@fedora>
+To: Mike Rapoport <rppt@kernel.org>, Andrew Morton <akpm@linux-foundation.org>
+Cc: Alexander Potapenko <glider@google.com>,
+ Alexander Viro <viro@zeniv.linux.org.uk>,
+ Andreas Larsson <andreas@gaisler.com>, Ard Biesheuvel <ardb@kernel.org>,
+ Borislav Petkov <bp@alien8.de>, Brendan Jackman <jackmanb@google.com>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Christian Brauner <brauner@kernel.org>, "David S. Miller"
+ <davem@davemloft.net>, Dave Hansen <dave.hansen@linux.intel.com>,
+ David Hildenbrand <david@kernel.org>, Dmitry Vyukov <dvyukov@google.com>,
+ Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+ Ingo Molnar <mingo@redhat.com>, Jan Kara <jack@suse.cz>,
+ Johannes Weiner <hannes@cmpxchg.org>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>, Marco Elver <elver@google.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Masami Hiramatsu <mhiramat@kernel.org>, Michael Ellerman
+ <mpe@ellerman.id.au>, Michal Hocko <mhocko@suse.com>,
+ Nicholas Piggin <npiggin@gmail.com>, "H. Peter Anvin" <hpa@zytor.com>,
+ Rob Herring <robh@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Saravana Kannan <saravanak@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Thomas Gleixner <tglx@kernel.org>,
+ Will Deacon <will@kernel.org>, Zi Yan <ziy@nvidia.com>,
+ devicetree@vger.kernel.org, iommu@lists.linux.dev,
+ kasan-dev@googlegroups.com, linux-arm-kernel@lists.infradead.org,
+ linux-efi@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mm@kvack.org,
+ linux-trace-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ sparclinux@vger.kernel.org, x86@kernel.org
+References: <20260318105827.1358927-1-rppt@kernel.org>
+ <20260318105827.1358927-4-rppt@kernel.org>
+In-Reply-To: <20260318105827.1358927-4-rppt@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277281-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277282-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[google.com,zeniv.linux.org.uk,gaisler.com,kernel.org,alien8.de,arm.com,davemloft.net,linux.intel.com,linaro.org,redhat.com,suse.cz,cmpxchg.org,oracle.com,linux.ibm.com,samsung.com,ellerman.id.au,suse.com,gmail.com,zytor.com,nvidia.com,vger.kernel.org,lists.linux.dev,googlegroups.com,lists.infradead.org,kvack.org,lists.ozlabs.org];
+	RCPT_COUNT_TWELVE(0.00)[48];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[vbabka@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[7];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0D79B2BCEC5
+	TAGGED_RCPT(0.00)[devicetree];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1CB722BD290
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 18/03/2026 14:42, ShiHao wrote:
-> On Wed, Mar 18, 2026 at 01:53:25PM +0100, Krzysztof Kozlowski wrote:
+On 3/18/26 11:58, Mike Rapoport wrote:
+> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+> 
+> free_reserved_area() is related to memblock as it frees reserved memory
+> back to the buddy allocator, similar to what memblock_free_late() does.
+> 
+> Move free_reserved_area() to mm/memblock.c to prepare for further
+> consolidation of the functions that free reserved memory.
+> 
+> No functional changes.
+> 
+> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+
+Acked-by: Vlastimil Babka (SUSE) <vbabka@kernel.org>
+
+
+> ---
+>  mm/memblock.c   | 37 ++++++++++++++++++++++++++++++++++++-
+>  mm/page_alloc.c | 36 ------------------------------------
+>  2 files changed, 36 insertions(+), 37 deletions(-)
+> 
+> diff --git a/mm/memblock.c b/mm/memblock.c
+> index b3ddfdec7a80..8f3010dddc58 100644
+> --- a/mm/memblock.c
+> +++ b/mm/memblock.c
+> @@ -893,6 +893,42 @@ int __init_memblock memblock_remove(phys_addr_t base, phys_addr_t size)
+>  	return memblock_remove_range(&memblock.memory, base, size);
+>  }
 >  
->> Hey,
->>
->> None of the people you Cc-ed here is involved in GSoC. You reached Linux
->> kernel community, which has nothing to do with GSoC. I suggest
->> contacting GSoC through whatever contact form the provided you on the
->> application.
->>
->> Best regards,
->> Krzysztof
-> 
-> 
-> hello Krzysztof,
-> 
->       Thanks for your response. However i mailed them and got no
->       response. It was instructed on the page  to contact respective
->       mainling list. Also my mentors seems to be busy I submitted several
+> +unsigned long free_reserved_area(void *start, void *end, int poison, const char *s)
+> +{
+> +	void *pos;
+> +	unsigned long pages = 0;
+> +
+> +	start = (void *)PAGE_ALIGN((unsigned long)start);
+> +	end = (void *)((unsigned long)end & PAGE_MASK);
+> +	for (pos = start; pos < end; pos += PAGE_SIZE, pages++) {
+> +		struct page *page = virt_to_page(pos);
+> +		void *direct_map_addr;
+> +
+> +		/*
+> +		 * 'direct_map_addr' might be different from 'pos'
+> +		 * because some architectures' virt_to_page()
+> +		 * work with aliases.  Getting the direct map
+> +		 * address ensures that we get a _writeable_
+> +		 * alias for the memset().
+> +		 */
+> +		direct_map_addr = page_address(page);
+> +		/*
+> +		 * Perform a kasan-unchecked memset() since this memory
+> +		 * has not been initialized.
+> +		 */
+> +		direct_map_addr = kasan_reset_tag(direct_map_addr);
+> +		if ((unsigned int)poison <= 0xFF)
+> +			memset(direct_map_addr, poison, PAGE_SIZE);
+> +
+> +		free_reserved_page(page);
+> +	}
+> +
+> +	if (pages && s)
+> +		pr_info("Freeing %s memory: %ldK\n", s, K(pages));
+> +
+> +	return pages;
+> +}
+> +
+>  /**
+>   * memblock_free - free boot memory allocation
+>   * @ptr: starting address of the  boot memory allocation
+> @@ -1776,7 +1812,6 @@ void __init memblock_free_late(phys_addr_t base, phys_addr_t size)
+>  		totalram_pages_inc();
+>  	}
+>  }
+> -
+>  /*
+>   * Remaining API functions
+>   */
+> diff --git a/mm/page_alloc.c b/mm/page_alloc.c
+> index 2d4b6f1a554e..df3d61253001 100644
+> --- a/mm/page_alloc.c
+> +++ b/mm/page_alloc.c
+> @@ -6234,42 +6234,6 @@ void adjust_managed_page_count(struct page *page, long count)
+>  }
+>  EXPORT_SYMBOL(adjust_managed_page_count);
+>  
+> -unsigned long free_reserved_area(void *start, void *end, int poison, const char *s)
+> -{
+> -	void *pos;
+> -	unsigned long pages = 0;
+> -
+> -	start = (void *)PAGE_ALIGN((unsigned long)start);
+> -	end = (void *)((unsigned long)end & PAGE_MASK);
+> -	for (pos = start; pos < end; pos += PAGE_SIZE, pages++) {
+> -		struct page *page = virt_to_page(pos);
+> -		void *direct_map_addr;
+> -
+> -		/*
+> -		 * 'direct_map_addr' might be different from 'pos'
+> -		 * because some architectures' virt_to_page()
+> -		 * work with aliases.  Getting the direct map
+> -		 * address ensures that we get a _writeable_
+> -		 * alias for the memset().
+> -		 */
+> -		direct_map_addr = page_address(page);
+> -		/*
+> -		 * Perform a kasan-unchecked memset() since this memory
+> -		 * has not been initialized.
+> -		 */
+> -		direct_map_addr = kasan_reset_tag(direct_map_addr);
+> -		if ((unsigned int)poison <= 0xFF)
+> -			memset(direct_map_addr, poison, PAGE_SIZE);
+> -
+> -		free_reserved_page(page);
+> -	}
+> -
+> -	if (pages && s)
+> -		pr_info("Freeing %s memory: %ldK\n", s, K(pages));
+> -
+> -	return pages;
+> -}
+> -
+>  void free_reserved_page(struct page *page)
+>  {
+>  	clear_page_tag_ref(page);
 
-I could not find any GSoC page telling that DT is the respective list to
-contact about your application. Or that me or Mark or Bjorn are... Where
-did you find it, so we can ask GSoC organizers to correct the docs?
-
->       DT conversion got no rely till now. The application period has began
->       i don't know whom should i discuss all this then my mentros.
-
-On the GSoC pages, there is list of people from Linux Foundation to
-reach. Unfortunately I do not know with whom else you could contact, but
-I am sure that Linux kernel maintainers are not the ones to discuss it.
-GSoC is Google's or Linux Foundation program, nothing to do with us.
-
-Best regards,
-Krzysztof
 
