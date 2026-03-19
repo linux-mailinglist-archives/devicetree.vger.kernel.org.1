@@ -1,152 +1,168 @@
-Return-Path: <devicetree+bounces-277913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277914-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4BkjGoYqvGn4twIAu9opvQ
-	(envelope-from <devicetree+bounces-277913-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:55:34 +0100
+	id qB5ZNZ8svGn4twIAu9opvQ
+	(envelope-from <devicetree+bounces-277914-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:04:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F9DE2CF337
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:55:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFEA22CF673
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:04:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 37E993001FEA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:55:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5239E3224B7D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C64DC3EDACB;
-	Thu, 19 Mar 2026 16:55:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD163EF0A3;
+	Thu, 19 Mar 2026 16:56:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mBI+koqG"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="UxhiqN+q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B94B3ED5AC;
-	Thu, 19 Mar 2026 16:55:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34A7C3EDACB;
+	Thu, 19 Mar 2026 16:55:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773939331; cv=none; b=Auxe0ekOe28Hqm3i87ZQyxtHa+yy/1s2s7zXEaa15KXl8jfOst1js+XLQ7a048ddca0h1t+mld2eDPQVXavbVOiZmH3fGQmonk1d4K1GjrZDGQ2i0Xd/5XAnS2CyemLJ+KuqaBYz0ZKGX+/ZH93JZ8/xqXqQh0c/IOiiw+Imf8M=
+	t=1773939361; cv=none; b=jtXQNjXKBEcTPsXeVfqaLUR+Q1gZAdB0o6gFc0Jg8tkIVBpyDXNMUj6FehTs/Z0uKszJ0ZatQjiwTN1zNQZFvuTUYNnc7iWorb2Mk6jH8ZbVp4Ju5UMUckzn49FXKswXdnbD1MQ5OQBbJ/WtyOJBoT0/8yr4XqzYYHk9Jp/kRbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773939331; c=relaxed/simple;
-	bh=M2SBBNV5aKTGPPzCrrx50PyGmFS9nxiImbbU0ZNYNGI=;
+	s=arc-20240116; t=1773939361; c=relaxed/simple;
+	bh=Dr+uAEpjHqXv3/qjlndkWpa0dISEDuW0xo9W272ExUU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BFDdXhVpwYu4TSQX1XRetFl8j3eszL1eG/PiOmzuLKFD2kJ8kvalE9r/y00ZbORPt2KEu958XkGvl5nO0QcPG9GHaNcwkfrAuJXLxJtHQdyn5JauCRNTVluoD1OmBn/YhYWkxicGeYaB0U57ueFy7+8l6DDTUj6W1l0iWigZUzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mBI+koqG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71E44C19425;
-	Thu, 19 Mar 2026 16:55:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773939331;
-	bh=M2SBBNV5aKTGPPzCrrx50PyGmFS9nxiImbbU0ZNYNGI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mBI+koqG61T/KphSEnJ3BUrMX1uJmjHDSDHajPSRnjIUStpRAAnYpleaIC7X8hFQR
-	 Hi61v9TJiWcea+hKfS3P/1iND0Kl+fC3odgqx4NWTnaDWmjmx3S2UD5aarDPHL84qJ
-	 JUG2rUg+KbJmUH7k6k5svVYtrqOUfcryK356llc3zVzw2Gmlk4raEVxUUA/uxyngHr
-	 cUFNM/a81JNn8raunT/sshkKIya+yWgi4sb22I75JGVFZ/jCM3X1yCCd8Z1AJ8YMPn
-	 KEA4/VYxwSjsPWAJ/pI7mlcp6WibPQj1miTfHr77bOfFzNE60/EcyQR8q9UB0M1IOP
-	 MzzGlwOhOwUKA==
-Date: Thu, 19 Mar 2026 16:55:27 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Zaixiang Xu <zaixiang.xu.dev@gmail.com>
-Cc: linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add GXCAS Technology
-Message-ID: <20260319-starboard-decent-059a83babb19@spud>
-References: <1773920314-17755-1-git-send-email-zaixiang.xu.dev@gmail.com>
- <1773920314-17755-2-git-send-email-zaixiang.xu.dev@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=fTabQG6FlxscA0FSDbQelvMWZT5OIRcXv9jTtaK35IAkBHrNHJZMGcF1o6kgwmfUVMNScSlrOHHoeXbQDoxEBJ1vDArgVdmWpEEIZ5AOinbXuRsjXOEc+a7SBS4UIz0FSO0D2cXI9cY3pTkSAAoiKkZ0EKMa40fYZXNGYUanf8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=UxhiqN+q; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=OpCCAn5xRJ/+SZkKFEIofulYy8jyKi1O4LEx0OQJBHI=; b=UxhiqN+qiq5tDICKxEyPSWdWx0
+	27gAoVRaRFp11Rz/uGHPHxGycIu8u6krY1+pdNgkzRAvS5kGvfC04pc/7K2tE3w+F2eC73xsVdbuc
+	1wgKDgzqjYNDdRF/YBNl9iivouTsWfPyEGay4MFrv2mJ+kWXZE3bQyEzaD24yMmDOqSQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1w3Geu-00CQ3g-9g; Thu, 19 Mar 2026 17:55:44 +0100
+Date: Thu, 19 Mar 2026 17:55:44 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Charles Perry <charles.perry@microchip.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 2/2] net: mdio: add a driver for PIC64-HPSC/HX
+ MDIO controller
+Message-ID: <6dc9a358-4140-457f-bdfb-b4fb22aaf88e@lunn.ch>
+References: <20260317184610.315852-1-charles.perry@microchip.com>
+ <20260317184610.315852-3-charles.perry@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="LFmX4B17aUj1/g9f"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1773920314-17755-2-git-send-email-zaixiang.xu.dev@gmail.com>
-X-Spamd-Result: default: False [-3.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+In-Reply-To: <20260317184610.315852-3-charles.perry@microchip.com>
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277913-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277914-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.987];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,gxcas.com:url]
-X-Rspamd-Queue-Id: 0F9DE2CF337
+	NEURAL_HAM(-0.00)[-0.956];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lunn.ch:dkim,lunn.ch:mid]
+X-Rspamd-Queue-Id: EFEA22CF673
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+> +static int pic64hpsc_mdio_probe(struct platform_device *pdev)
+> +{
+> +	struct device_node *np = pdev->dev.of_node;
+> +	struct device *dev = &pdev->dev;
+> +	struct pic64hpsc_mdio_dev *priv;
+> +	struct mii_bus *bus;
+> +	unsigned long rate;
+> +	struct clk *clk;
+> +	u32 bus_freq;
+> +	u32 div;
+> +	int ret;
+> +
+> +	bus = devm_mdiobus_alloc_size(dev, sizeof(*priv));
+> +	if (!bus)
+> +		return -ENOMEM;
+> +
+> +	priv = bus->priv;
+> +
+> +	priv->regs = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(priv->regs))
+> +		return PTR_ERR(priv->regs);
+> +
+> +	bus->name = KBUILD_MODNAME;
+> +	bus->read = pic64hpsc_mdio_read;
+> +	bus->write = pic64hpsc_mdio_write;
+> +	snprintf(bus->id, MII_BUS_ID_SIZE, "%s", dev_name(dev));
+> +	bus->parent = dev;
+> +
+> +	clk = devm_clk_get_optional_enabled(dev, NULL);
+> +	if (IS_ERR(clk))
+> +		return PTR_ERR(clk);
 
---LFmX4B17aUj1/g9f
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+What is the use case for not listing the clock? Optional clocks are
+generally because it was forgotten about in the initial driver, and
+added later. In order to not break backwards compatibility, the clock
+needs to be optional.
 
-On Thu, Mar 19, 2026 at 07:38:32PM +0800, Zaixiang Xu wrote:
-> Add vendor prefix for Beijing Galaxy-CAS Technology Co., Ltd. (GXCAS).
+But this is a new driver. Why not make it required?
 
-Worth citing that gxcas comes from their website:
-https://www.gxcas.com/en/index.html
+> +
+> +	of_property_read_u32(np, "clock-frequency", &bus_freq);
+> +
+> +	if (bus_freq) {
+> +		if (!clk) {
+> +			dev_err(dev,
+> +				"cannot use clock-frequency without a clock\n");
+> +			return -EINVAL;
+> +		}
 
-With that,
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: changes-requested
+And this then gets simpler.
 
->=20
-> Signed-off-by: Zaixiang Xu <zaixiang.xu.dev@gmail.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
-umentation/devicetree/bindings/vendor-prefixes.yaml
-> index ee7fd3cfe203..354836eb8e72 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -676,6 +676,8 @@ patternProperties:
->      description: Gateworks Corporation
->                   use "gateworks" vendor prefix
->      deprecated: true
-> +  "^gxcas,.*":
-> +    description: Beijing Galaxy-CAS Technology Co., Ltd.
->    "^hannstar,.*":
->      description: HannStar Display Corporation
->    "^haochuangyi,.*":
-> --=20
-> 2.34.1
->=20
+> +
+> +		rate = clk_get_rate(clk);
+> +
+> +		div = DIV_ROUND_UP(rate, 2 * bus_freq) - 1;
+> +		if (div == 0 || div & ~MDIO_CFG_PRESCALE_MASK) {
+> +			dev_err(dev, "Incorrect MDIO clock frequency\n");
 
---LFmX4B17aUj1/g9f
-Content-Type: application/pgp-signature; name="signature.asc"
+I think "Out of range" is more correct.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabwqfwAKCRB4tDGHoIJi
-0r8gAQDBLYWZiS6P1c6wBWa+7WFzFkM+1X/9JL8s39YSlhefkgEA++7+8rY4edEL
-5etJLz3B1dvtUZJnAifjdq2Qz8SAhAs=
-=wfm3
------END PGP SIGNATURE-----
-
---LFmX4B17aUj1/g9f--
+	Andrew
 
