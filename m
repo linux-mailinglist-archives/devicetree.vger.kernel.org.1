@@ -1,195 +1,246 @@
-Return-Path: <devicetree+bounces-277584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277586-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aBwKMBaYu2nwlgIAu9opvQ
-	(envelope-from <devicetree+bounces-277584-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 07:30:46 +0100
+	id wJYtK6WZu2nwlgIAu9opvQ
+	(envelope-from <devicetree+bounces-277586-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 07:37:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2030F2C6C4E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 07:30:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 570EA2C6DBF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 07:37:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ECF2A3051865
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 06:30:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3EA26304FF9A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 06:37:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A604234B434;
-	Thu, 19 Mar 2026 06:30:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1981A34E743;
+	Thu, 19 Mar 2026 06:37:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="XZyaU7kh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KEUIS8Pe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010061.outbound.protection.outlook.com [52.101.84.61])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03F45346FA9;
-	Thu, 19 Mar 2026 06:30:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.61
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773901808; cv=fail; b=AKlvyO2NsN2ZV34W/GWMtlHsEpnjxUvCCUL4DK3/bYJ0qtdrW11/9L9gxQ5kTkiWDR8AUi6mSterJXOA0fzASqrKxOQ6B7mpSqY8Umrnng4F6qLtg734V2P7WpwOjPWBCNwAwkG/nejK8Py/PEZES9Qx6JlureQHkEq53IXjr50=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773901808; c=relaxed/simple;
-	bh=zgSMC783ekID2iMZS/ciXQ40YRkdYQ88GanGBYX3FDk=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=rk4YKbN9ljJKgXVoq2P89PBkoiGro/88pybR4dXt1GscavW+8EnUjadKHDoFv/7rmzxl3i040mpMPSHcncHC3ipZ3oW27wx6+45EZfb23n4Oz2JhHHnSLiEUNxu8BzImwe9LHhxzygk8w8GyLn1Yxp+3kkq3FTqHPUsLih/NB5U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=XZyaU7kh; arc=fail smtp.client-ip=52.101.84.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=k468Ft2srS/N3jk85KgIFBlY6erILGBzYv6zfbl17giLKampjlgQOD4SHGLdk4JGi6sJTBtV786+oi0FWy5ce8aXsp73RYKYQ83P4Pm5wfVEGRfk5DRv13BEMnt5WsXw6vCGP5o0l95929bldh9DNfakXjTB/JVOiunQWs6jSJiXB4ngsxf2OdaluhlpAkC2HqAefj3l8thHqP2etcDAP3M6eRrKMAoVOS4OO20WoXadtxZBquZE/bVZKV5FxYAzLmZidRkEEg+Fab7nbKmycbZfIfuldthJ1vbHo8iRKN0F4nhY9rBgP8HNw0npl2McCeGEnJVv7rzZhbGdURTrjw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zgSMC783ekID2iMZS/ciXQ40YRkdYQ88GanGBYX3FDk=;
- b=GbklyaFnQBcjn2f0NmV/34UQcLkf+2+44w5RfzSab73ClwFq2XTLMvmwVGC9/+1davU/pRyEpAbep7qAaegzxM2YJx71jn32Taj0q13ZQTNas4Z7TYUm7MfTI8p5nuySZa/TXY7lyuCYUH62oFiUVG484My43g8rx0sHXK+mVIJd38rIv8+Y+R3HwBjF9DEiEGT2197b1TfYmbV+wlvAqS3twem3MkGvJOtUpNez8615XDyTUs/XOw5iPV8PVl2GlcQepYw6j7ybVbzg0+oYm5xCz813RsHUG7WsBATQLyJ4+OLf3CGY7+vpVasXN2+TCzmQrIELimlyng+Ak25vCw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zgSMC783ekID2iMZS/ciXQ40YRkdYQ88GanGBYX3FDk=;
- b=XZyaU7khcBZtI0wi61s4nRLEfGPKxeGkfotX/vJfzdAQ6PEGEDWmsDqrxLr9M2aajOMFaPa7UC9TZAQZnzHbRAA5I/0G79UDvxkTIuh5Ugs/qvSb1WJHTQG9PKNSzMNo0aKcVfRKMXcwthzQx7ipVNPiMZQkKOWk4aatQQdIU8mMuh//jmKpGve3OmuC9vKfA2h7rYPeTITT+Jg/Sk+/iU+7VYvX7T/LiKYlWvgml0080nX2L9q5YcnfE3qsRer5Q/TbayPEX/RaqMEQKPnFJdRR5GZw5itGz/m000kEdLMkcYNgomniiCN0k7MJbjesq01p3oYoJ1vKL/0BzRZUow==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from GVXPR04MB12316.eurprd04.prod.outlook.com (2603:10a6:150:2c6::8)
- by AM7PR04MB7160.eurprd04.prod.outlook.com (2603:10a6:20b:119::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Thu, 19 Mar
- 2026 06:29:59 +0000
-Received: from GVXPR04MB12316.eurprd04.prod.outlook.com
- ([fe80::fc6e:ca22:f065:def4]) by GVXPR04MB12316.eurprd04.prod.outlook.com
- ([fe80::fc6e:ca22:f065:def4%6]) with mapi id 15.20.9723.018; Thu, 19 Mar 2026
- 06:30:00 +0000
-Message-ID: <cd5ef40c-f8dc-42d7-a747-5c20e37bdc7a@oss.nxp.com>
-Date: Thu, 19 Mar 2026 08:32:58 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Add i.MX95 19x19 FRDM PRO
- board
-To: Joseph Guo <qijian.guo@nxp.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- xinyu.chen@nxp.com, qijian.guo@oss.nxp.com, justin.jiang@nxp.com
-References: <20260318-imx95_frdm_pro-v1-0-8c00e59f0b1b@nxp.com>
- <20260318-imx95_frdm_pro-v1-1-8c00e59f0b1b@nxp.com>
-Content-Language: en-US
-From: Daniel Baluta <daniel.baluta@oss.nxp.com>
-In-Reply-To: <20260318-imx95_frdm_pro-v1-1-8c00e59f0b1b@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AS4P191CA0009.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d5::16) To GVXPR04MB12316.eurprd04.prod.outlook.com
- (2603:10a6:150:2c6::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E71623451CF;
+	Thu, 19 Mar 2026 06:37:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773902236; cv=none; b=nvTbYGO8CORC5hGHix9Dsoid4MD22ZCqKbEjUCDbBF3/QBAZ0aOtlJ3U+V2oQ7rmjSm/8Xkb6nFuP6C7D6id7xZ5r0pTg7x4x4Uf8mRcoo3tTIBx1bYzrf2vss/mRBP8d1XF8ec1xmJyJsCYUQ5R9+S6olLDrjgYQnXmBqy+ZXU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773902236; c=relaxed/simple;
+	bh=aQtf1QyfWihskNd+yhRowaU+HVhe6DaMsigMxME3Zog=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LaqtCSCzWybSUCPgTS1aHaZWgO5pgECOpXALKis+9Ql45WbpysFkO66eXY3eOPHtfmIHBZ275WX1Ji0FkoUpbzZRgsRmXFkpS5IWmkLE1j6oWwHuV6PIL4wX2nNFopgh5++t+Ru0+2NKFEgKs6LFPAt0RqVAyXGP3JIpzqn5Xzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KEUIS8Pe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7F365C19424;
+	Thu, 19 Mar 2026 06:37:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773902235;
+	bh=aQtf1QyfWihskNd+yhRowaU+HVhe6DaMsigMxME3Zog=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=KEUIS8Ped1m5x3qvaP0KTM6X84H/Qj67ZMMxDbqgNHIdSx/Uueiyfu/9OsTxBgMqq
+	 PRYfB1+/dUdepVDSfrfAAYnnF9inhbuiye/wXEkALqarcK1QaNgQbNfTQuyzvWc05a
+	 80IjoElSskjAQz/nhoYhSbI7o7aTcpa7lI92MPO5gmCSPzVkZXphbItkhjMZXoQpKn
+	 CUERJmxg9Zgr9Mr8Ea8ekGTwKxzU4nOWsw18Ox4ac491r1i5l+Z+eurLrnbhOJ5u6G
+	 XPa8xtq3xuAM+Z0UPmXOkKiNwteuIudkhKTbyDTx5hZV/tipTEk4d74YAniYbYZslJ
+	 5CXeGdve+sgPA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 69A501075265;
+	Thu, 19 Mar 2026 06:37:15 +0000 (UTC)
+From: Hermes Wu via B4 Relay <devnull+Hermes.wu.ite.com.tw@kernel.org>
+Subject: [PATCH v4 0/2] Add ITE IT6162 MIPI DSI to HDMI bridge driver
+Date: Thu, 19 Mar 2026 14:37:10 +0800
+Message-Id: <20260319-upstream-6162-v4-0-7268483ef03d@ite.com.tw>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GVXPR04MB12316:EE_|AM7PR04MB7160:EE_
-X-MS-Office365-Filtering-Correlation-Id: d2b9bb63-dadf-403c-80e6-08de8580f28d
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|19092799006|1800799024|366016|22082099003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info:
-	c2hDdJyLRKOAABhGokJJU4a/+0FAidJIUogtDJ8E8VjFxOwLujfSAPRprouGSDdY+PereZsExqPNbBUOFvnRt+/UlEsVC9LBkBMAlhV0SY2xLNstmyvuNr+UudvhJ5UDwDIfAIoKQ71AUuw0HFI7/NdHuJDwkwIS3NgMOwF7iQvJgjQ6DK0aEYMtBtr3+NOgLYTbLUYnKuaNYkV6Kw51uKRidAKsosBcwWOQNKJ+F+Nby6oJd/ZnRFpTEeuyh+26b7DXUaE97jTU4ZlJCMUUBtXswgh59MvVS3qeTWcgtKt2EOtV4SQFYOI4mIpx1yReJ8ULzVAHl7UWBwQ/0Ae7T/tV8YnIRCokTGlQqO1hlUV7RC5zV2ZQRwc7kdlvzxJbKegkE7p+d8o1hdBpT9Nguz98DN2LpccdsWRfkxtCqxfCpnxKGpdOah44oKHimxPMKKvcX1uwGxn2kFBDtXVOJtAsK6W3WUhEVtxOMVHRagEwEqn3YHZ4OEPFyVk4cGVHsHey5SDLvaPKe7skM+CdNVL3mPwIZBzo4Vex0DxOAMq+7PzTRsoPs/a5yaTO0NBz22UIoqiDmVB3w0U6f3IVwtjvi+RT+Z6ADWXUZ34DXB4jIVN/YJEY59IeL1uKXXCsf/i4GiwWSrpwpk/KIkx14NLh4nYntGQ2prQxjglpONO0RQdghcWlKJwihlK8FwswV8hVpw09iDZTtxyEhqNovAVElHfqZefuhpAFt4YT+Js=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12316.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(19092799006)(1800799024)(366016)(22082099003)(56012099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?TjlaQVc2TWwzR1pmblVOK0h6ell1aVpadGszOW8rRzJEeSsvaXlramE1MlFh?=
- =?utf-8?B?TU55bHU2d1k2L1QxOTUwazdSR3hHWWwyZkZCSmRUNCtmRDhWNWtkOVE0NnFL?=
- =?utf-8?B?ZGFlTEoyUDdPcW0zZjFHWFdJWmkyTzdVdkVSSkEyVlRWblhyNldTLzErcjdV?=
- =?utf-8?B?OE5SeXp2ZTZGejVURzN2Z21Hd0U2anIvdzdXWXU1NDV3TXp4VmN0VU5nbytu?=
- =?utf-8?B?RlZHWC8xSkRaRXFER3o5VWpLOFNLb1FWSitqNi9aVTBZTWdkSU50ZTlqeG16?=
- =?utf-8?B?MUtmSEdiMUtPbTVlaUxxV2RscTh0a0srclRjRDQzSnNudDNtZ2NneU1jV3dX?=
- =?utf-8?B?U1lSUmZQV1M5NGZIdURqb0c0NkRveElyZmxmQTJ6L3VMQStaTm8xa3dBbDJN?=
- =?utf-8?B?VHZuV0dKSnl2UzNyUmFoMTN5ZC8rTzhYMXVQWlRGVjhzbjlhcDJhUERPbWY3?=
- =?utf-8?B?S1R2V1BNUmtzSmU4OC9HT3B4OWlnbkxpWHpENUdYOWE0YVBjWHpza3BSOHNU?=
- =?utf-8?B?bGRDMEhtSUxzdHZPSVdsenhrOG1NM2ZsM0ZtNlE3RWRtcDFtSEdXMWtsWnV1?=
- =?utf-8?B?TG9vWmxpZmc3eEhEdWwyQTdoSVkyVU5ENzNFT3RPZU01RVBHNHJwdTRlOFFK?=
- =?utf-8?B?T1Y5eEhWdnlYaEUyZElzUmVldCt5RFIyRUtnT3VLcUlPYjFCVUlTUWdReXlZ?=
- =?utf-8?B?TTVUWWpSczJhUStXU0dEVk1DVlFxQ2xGWDd0T2tnWUZxT25sMEZFS09zUjlD?=
- =?utf-8?B?alNGVDlvOU56UFROWWVjSnhjT29ZL2VkalFpa3EvSm5Vb3krM0ZYWGx5KzF0?=
- =?utf-8?B?SkJ2azhIUXFLd2Z4aElWQlFTMS9HRVhlZkltdnRzL3ZzbnMyL09FZkJvdHNy?=
- =?utf-8?B?T1dIclFMWThwbVYxS0h6MDNMRGxrNkxDYzJua1hBeEVDWTlwZG9DQnRBSGJF?=
- =?utf-8?B?ajEyUnZNcVhGV2F5YVdSaVAwYVZBaEN5RFhlNmVWUjhtdGFhVnRtcnovNk9T?=
- =?utf-8?B?eTBUOEVvdUFvdW9ITmpBMFRCSE1LUU4vSUFYbmFaemM1MkduM1lXejN2TFB2?=
- =?utf-8?B?YlI4bGZkM29PTXhFcS9VYXNhTi9nR0VTVGVnVTVia1gyRFdrcCswQmlhMDA5?=
- =?utf-8?B?NE9DMlZIT3hSNmpBY3p5L2kxYk5pUTRMd3NFaE5NWjFWakRWYVlCdUQzeE1q?=
- =?utf-8?B?ejBQUTlFMGgwVXROWXlMVHBDUUZUZllGa3Btb1Z3dFBGZkRIbWQxdCtlWTYr?=
- =?utf-8?B?TEZDK214NHBwY09TaGVxeEZJUW9EUFJOeEEwYnhvekt4cmhOdWdjWnRraFVz?=
- =?utf-8?B?WWFpM1hCNUtXdTRQdFlNQzdhRGg0TFhuMlB4NEtOb3Q0QkRxaDhUV3RCUnQw?=
- =?utf-8?B?Z01yM0Z4Mml5UkxhVlY4TFVWOWQ3WjdvMFJEeEJWWUkzUGYwcFE5V3Q1R2Vi?=
- =?utf-8?B?QTRRUXA0RDBlcUkrUlNEb0IzVCtxd05MYlFSdVBJQmhJYkszMUF0Mk5DVi82?=
- =?utf-8?B?ZGsxSTh1NDhVdGtZK05CWDhvL0EvVzdRdm9lWG5qTnQ5cFNKaWh4NWI0N0l3?=
- =?utf-8?B?YXAvV2JDSVlyTFZHRGVpZHMwNlQrYzhOeEloZmlUd2tKTnpXZVZYYk9wYXV1?=
- =?utf-8?B?dHJjUnZ4U1hDNFRudDFLeUdYZmpRU1hoYW1VM2JKSG9FK3hyZlRiQjJ0UEt3?=
- =?utf-8?B?THhld1l5Mmo3SHByejZDNTkzdDhoalAybEtsRXphY3FpeUxqazI0RnRZeUhk?=
- =?utf-8?B?SSs4Mm1TQ214MVpBVmFFRnFqMkRGZ0ZBN0IvUzArNVhzS21NYVFhQ3lMRjV2?=
- =?utf-8?B?d1FpbjZ1UGZINVFZcG5vbXJBSTNQOWdCYmZmcnFRUjBDQXI3ZUptSm0zYlN1?=
- =?utf-8?B?STNhdDBZN1BIVWdIVnEwU0tGUTZPSlVETzJrcmU3eU1sL1B0cG41Zlg2eEdz?=
- =?utf-8?B?NU9MdjgrSVpOaUcrWkYwMGsxamo2RU1KNFdQTWV0OWVMODNiM2ZYZGtkVTRF?=
- =?utf-8?B?SHZFVGQyamxOaE9CM1g0eHFobEI1ZUYzQ3J2emw5a2trSHJhcTVXTlZlc3A1?=
- =?utf-8?B?OGNKTThaUlBWUXdydkFDRlY4OFU1YXl3ZGQycmJxakZ4SWtyc0FQQlhjQUdq?=
- =?utf-8?B?NnNKT1dDMElXak9zNXh0SWhuU0tOTURsc04xbFJvNW0vNlBaNmVPaS9Zc050?=
- =?utf-8?B?bWhDdmJtZ3loZHhPSUJmOHJ4SEwrYUljVGpuSFZHa1J6eWdaczY0L2NuUEcv?=
- =?utf-8?B?bm1aMG1hZjk5MktMTU9zbzUrOVYxWE5CcGNTS3gxOVZZYzZRcTRlZkVORFQx?=
- =?utf-8?B?S2x4N09aT2FGLzRUOWFmaVdGcjdVTVI5L3owVVd2OU5sMVFERzFXUT09?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2b9bb63-dadf-403c-80e6-08de8580f28d
-X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB12316.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2026 06:30:00.6888
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DO+NS0XGHCivrpCU9ngNeIXxF/FCLO/8Z7yzmQ5owoS8sMybXT4JTON6bwE5OqZlK0lHuPOCEmvlwWp1OkpjRQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7160
-X-Spamd-Result: default: False [1.94 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJaZu2kC/3XNyQ6CMBSF4VchXVvSAVt05XsYF/T2VrpgSIuoI
+ by7hY0DcXlu+v2dSMTgMZJjNpGAo4++a9ModhmBumqvSL1NmwgmFBNC0lsfh4BVQxVXgkq956h
+ L66CyJJk+oPOPtXe+pF37OHThueZHvlz/lUZOGUUDoBSA4Q5PfsAcuiYf7mRJjeLNJTv8cpG4R
+ WONgrJMDzZcfnC++V0mXhYH7YyGomDqi8/z/AI45IOfKQEAAA==
+X-Change-ID: 20260223-upstream-6162-3751e78dfcad
+To: Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Pet.Weng@ite.com.tw, Kenneth.Hung@ite.com.tw, 
+ Hermes Wu <Hermes.Wu@ite.com.tw>, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Hermes Wu <Hermes.wu@ite.com.tw>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773902234; l=5646;
+ i=Hermes.wu@ite.com.tw; s=20241230; h=from:subject:message-id;
+ bh=aQtf1QyfWihskNd+yhRowaU+HVhe6DaMsigMxME3Zog=;
+ b=1tgSRK9GJy46G8ZDS4rS86+ckAOV8HMMAGJJmZfODyJ+y9sSihlQVWho8MQWw8M6WCwKJc9hI
+ DUZdMpPLUXwD2eTT1wiZT6do7YCK8vaPsTZV9pznd4x8MJAiFcVe5lw
+X-Developer-Key: i=Hermes.wu@ite.com.tw; a=ed25519;
+ pk=qho5Dawp2WWj9CGyjtJ6/Y10xH8odjRdS6SXDaDAerU=
+X-Endpoint-Received: by B4 Relay for Hermes.wu@ite.com.tw/20241230 with
+ auth_id=310
+X-Original-From: Hermes Wu <Hermes.wu@ite.com.tw>
+Reply-To: Hermes.wu@ite.com.tw
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277584-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[nxp.com,kernel.org,pengutronix.de,gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-277586-lists,devicetree=lfdr.de,Hermes.wu.ite.com.tw];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de];
 	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel.baluta@oss.nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
-	NEURAL_HAM(-0.00)[-0.995];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.989];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,NXP1.onmicrosoft.com:dkim,nxp.com:email,oss.nxp.com:mid]
-X-Rspamd-Queue-Id: 2030F2C6C4E
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_REPLYTO(0.00)[Hermes.wu@ite.com.tw];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 570EA2C6DBF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/18/26 10:04, Joseph Guo wrote:
-> Add the i.MX95 19x19 FRDM PRO board in the binding document.
->
-> Signed-off-by: Joseph Guo <qijian.guo@nxp.com>
-Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+This patch series adds support for the ITE IT6162 MIPI DSI to HDMI
+bridge chip. The IT6162 is an I2C-controlled bridge that receives MIPI
+DSI input and outputs HDMI signals.
+
+The device supports the following configurations:
+  - Single MIPI DSI input: up to 4K @ 30Hz
+  - Dual MIPI DSI input (combined): up to 4K @ 60Hz
+
+This series introduces:
+  - dt-bindings: Add YAML binding document for ITE IT6162
+  - drm/bridge: Add ITE IT6162 MIPI DSI to HDMI bridge driver
+
+Signed-off-by: Hermes Wu <Hermes.wu@ite.com.tw>
+---
+Changes in v4:
+- Documentation/devicetree/bindings/display/bridge/ite,it6162.yaml:
+  * Drop ite,support-hdcp
+  * Drop endpoint properties already in video-interfaces.yaml
+  * Fix data-lanes in example with <0 1 2 3>
+  * Add blanking line in example before endpoint subnode starts
+  * Add reset-gpio and power controls to required
+
+- drivers/gpu/drm/bridge/ite-it6162.c:
+  * Drop struc it6162_audio
+  * Add HDCP_AUTO in enum hdcp_ver{}, FW enable HDCP by sink capability.
+  * Call drm_atomic_helper_connector_hdmi_clear_audio_infoframe()
+    in it6162_bridge_hdmi_audio_shutdown()
+  * Drop it6162_bridge_hdmi_audio_startup()
+  * Add hdmi_clear_hdmi_infoframe and hdmi_write_hdmi_infoframe
+  * Drop it6162_parse_dt() due to "ite,support-hdcp" is removed from DT.
+  * add DRM_BRIDGE_OP_HDMI to it6162->bridge.ops
+
+- Link to v3: https://lore.kernel.org/r/20260313-upstream-6162-v3-0-8497fb7c4406@ite.com.tw
+
+Changes in v3:
+- Documentation/devicetree/bindings/display/bridge/ite,it6162.yaml:  
+  * Fix lane-polarities: remove $ref redefinition, allow via video-interfaces.yaml
+  * Improve ite,support-hdcp description to clarify FW-based HDCP behavior
+  * Remove descriptions repeating schema constraints
+  * Remove stray comment in ports required section
+  * Fix data-lanes spacing in example: <1 2 3 4>
+  * Add missing newline at end of file
+  * Add missing change log  that Reviewed-by tag was removed when V1->V2
+
+- drivers/gpu/drm/bridge/ite-it6162.c:
+  * Fix OFFSET_VERSION_H register offset from 0x03 to 0x05
+  * Add MIPI_PORT_EN_MASK macro combining MIPI_PORT1_EN_MASK and MIPI_PORT0_EN_MASK
+  * Rename HDCP enums: NO_HDCP -> HDCP_DISABLE, NO_HDCP_STATE -> HDCP_STATE_IDLE,
+    AUTH_DONE -> HDCP_STATE_AUTH_DONE, AUTH_FAIL -> HDCP_STATE_AUTH_FAIL
+  * Rename it6162_infoblock_complete() to it6162_wait_command_complete()
+  * Rename it6162_infoblock_host_set() to it6162_infoblock_trigger() 
+  * Remove it6162_infoblock_mipi_config() and it6162_infoblock_write_msg()
+    wrappers, inline into it6162_reset_init() and
+    it6162_mipi_set_video_timing() respectively
+  * Remove it6162_set_default_config() wrapper, inline into
+    it6162_reset_init()  
+  * Fix typo: hdcp_encyption -> hdcp_encryption
+  * Fix typo: it6162_hdcp_read_infomation -> it6162_hdcp_read_information
+  * Remove dev_err_probe() usage outside of probe path
+  * Remove verbose success-path dev_info/dev_dbg logging throughout
+  * Replace __func__ usage in error messages with descriptive strings
+  * Fix double error printing in probe for it6162_init_pdata failure path
+  * Fix uninitialized variable warning: initialize cp_status to
+    DRM_MODE_CONTENT_PROTECTION_DESIRED at declaration; move
+    drm_hdcp_update_content_protection() inside the state-change block
+  * Fix audio sample width mapping: case 20 now maps to WORD_LENGTH_20BIT,
+    case 24 to WORD_LENGTH_24BIT
+  * Remove stray drm_dbg("it6162_bridge_atomic_disable") call
+  * Remove drm_dbg() calls from it6162_display_mode_to_settings()
+  * Drop unused struct it6162 * parameter from it6162_avi_to_video_setting()
+    and it6162_display_mode_to_settings()
+  * Fold it6162_set_default_config() body directly into it6162_reset_init(),
+    removing the wrapper
+  * it6162_infoblock_request_data(): split command complete polling and
+    buffer status check into two steps; use wait_event_timeout() for
+    data_buf_sts since it is updated asynchronously by the interrupt
+    handler; add wait_queue_head_t data_buf_wait to struct it6162 and
+    wake_up() in interrupt handler
+
+- Link to v2: https://lore.kernel.org/r/20260309-upstream-6162-v2-0-debdb6c88030@ite.com.tw
+
+Changes in v2:
+- dt-bindings:
+  * Drop Reviewed-by tag due to below changes
+  * Add property "ite,spport-hdcp" to enable HDCP
+  * Add property "lane-polarities" and "clock-noncontinuous" for DSI
+    setting
+
+- drm/bridge:
+  * Drop unused element in struct it6162
+  * Remove regmap wrappers
+  * Use FIELD_PREP for bitfield operations
+  * Update HDCP status with drm_hdcp_update_content_protection()
+  * Add AVI, AUDIO, and SPD infoframe control
+  * Remove conversion from drm_display_mode to videomode
+  * Fix regulator/gpio error handling in it6162_init_pdata() to return proper error codes
+
+- MAINTAINERS
+  * squash to driver patch
+
+- Link to v1: https://lore.kernel.org/r/20260223-upstream-6162-v1-0-ebcc66ccb1fe@ite.com.tw
+
+---
+Hermes Wu (2):
+      dt-bindings: display: bridge: Add ITE IT6162 MIPI DSI to HDMI bridge
+      drm/bridge: Add ITE IT6162 MIPI DSI to HDMI bridge driver
+
+ .../bindings/display/bridge/ite,it6162.yaml        |  169 ++
+ MAINTAINERS                                        |    7 +
+ drivers/gpu/drm/bridge/Kconfig                     |   17 +
+ drivers/gpu/drm/bridge/Makefile                    |    1 +
+ drivers/gpu/drm/bridge/ite-it6162.c                | 1628 ++++++++++++++++++++
+ 5 files changed, 1822 insertions(+)
+---
+base-commit: 2622649ad6cdbb3e77bfafc8c0fe686090b77f70
+change-id: 20260223-upstream-6162-3751e78dfcad
+
+Best regards,
+-- 
+Hermes Wu <Hermes.wu@ite.com.tw>
+
 
 
