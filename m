@@ -1,205 +1,240 @@
-Return-Path: <devicetree+bounces-278028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278029-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yMbTM8NZvGlxxQIAu9opvQ
-	(envelope-from <devicetree+bounces-278028-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 21:17:07 +0100
+	id 6PUqFd5ZvGlxxQIAu9opvQ
+	(envelope-from <devicetree+bounces-278029-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 21:17:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37CC62D1FCE
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 21:17:07 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id F126D2D1FF9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 21:17:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C5E6D3097FB3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:17:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E821430065F5
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:17:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C67734D4F8;
-	Thu, 19 Mar 2026 20:17:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85CA13921DB;
+	Thu, 19 Mar 2026 20:17:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dSOKbBpu"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="XSn1UM0i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 186914207A;
-	Thu, 19 Mar 2026 20:17:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D82DB37C936;
+	Thu, 19 Mar 2026 20:17:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773951425; cv=none; b=pSWlFttm0ZTOS1lN9EsTkuLCIGgIJUZCnWl9jE6mSx7vU8Nv2hZXHfJ0txaPGvJ3IW6rv4jI5pkaajPUcrld4pk8TIysUNHrLsn1VZpJ1tPSeQzY5lQWUIi/niZzkpNer74HjOzonShRT2Jvvv9mKjyq82FobGDTZMvdAuiFjqA=
+	t=1773951451; cv=none; b=fd6XHkk21vK6xzcm0E/7x9VjAUdoJ+VFbTmN9Txfm/4SHokHTUulrZGmP24C/E08uDSHAF9IZZ8okdNbsAfBYl0mX/4DEQcxrH68rhneUDbVIf/xoMZDXrkTKCfVGuZaucA30SyMg54acCjXeVqRhVvRMjQngjczq8j5l0uK1eg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773951425; c=relaxed/simple;
-	bh=UEKFw10HNYR+CnbFlqaDj3B2T2m8yoDnNnkH8LFTx0Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U8H33E/aNVvB5hMifa0oW4WVEZM9UlHXLls/WmMqKtHaaB7N9R2mOd0zifhtrGdJDJclrgjcZ1aFeE2g79JhMX6O1aCzlGlOL481waSu805dtuUCMmSjid7+rxPKuu5XFt57nTwMukbYVm/oHFHR9ywrluvI3wSwqqwzfiZpDGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dSOKbBpu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9B7DC19424;
-	Thu, 19 Mar 2026 20:17:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773951424;
-	bh=UEKFw10HNYR+CnbFlqaDj3B2T2m8yoDnNnkH8LFTx0Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dSOKbBpuzRnDA4S9IKhvA8Q1W5c2OkwMGqIMtm9gYPdmfuhF/Fg/3xsVad8bCZte8
-	 Hh6LzTl6E7wONqN5GXqFgMsla21IaiKV0nb2HEKrYa/vIDgBqPjzz728zwPuEKARGL
-	 EWOcJ/m7KZrwji81VdXkNue3+9CwAkC7GAWhpFm5NhGiYiStii3IWANzgZmx+QG53L
-	 Cr9DJLC3tFjSTYi7qz5vFOATtJEQRN2VZYbTC7+VX8x6xQDP4F2yjdgSCpsmqdWNdd
-	 /fy3SOMMH5l7ldiWESE9P7Cbcm6iGq/tZRMhsEQjQjKn02sIR4JyFwOzKxO0VywKy1
-	 4RcRgK2hniXdg==
-Message-ID: <082fc1db-c4b6-405f-b85e-81b9afcbd8cf@kernel.org>
-Date: Thu, 19 Mar 2026 21:17:01 +0100
+	s=arc-20240116; t=1773951451; c=relaxed/simple;
+	bh=SJc82/8eM3kVxshNmxbCcuC7mGyl2ALhI0FOpd/mDSk=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=u6KgLFTexqaccmpx4don16TOVHwU0c8Uoo2f0oIHcyB5IHtfSu6cmsVjPLdm9Zaxqto4OmzqKogsdd0/VegxXOjNeUYJP+mlOlRCNKITDlDKpgSIEx+fnBQ4mW/8A8t1qUI81UVhPYC6eCydB8EeZOQwA3bQpZkLWgQU1rtchR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=XSn1UM0i; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1773951444;
+	bh=SJc82/8eM3kVxshNmxbCcuC7mGyl2ALhI0FOpd/mDSk=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=XSn1UM0iMvGkIMuXoM2z3x7folqKQErwqtBMI9oBsak16upaIuzzNgOl6EzCBLAfH
+	 mpoPqZ7DjyK/cCE7f8F3bWTuJKhSYJ54UyhJgZaIem4fGZr/skHi72K31lXuDUQRPU
+	 BlOS+PeRcSfXDHRo+IIIZzuNSBf3zjRwJ9/bj2SeHFUtER+fIncBDlHJ6spw/6UmNY
+	 g6HS5JNO6R1SsSxzZcweXNy007VW/dP/GnIV6sL7NyDGnMbHl7RW3nCrtjfhlQ22/c
+	 0w9//wKoZYnDqJj4KnJJWmakHNSmLo4r6nHWtfnfmYm/RsberLWKd5VuTdMF0bIk5X
+	 +3hfjF+G2XJ9w==
+Received: from [IPv6:2606:6d00:11:b76d::5ac] (unknown [IPv6:2606:6d00:11:b76d::5ac])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1F7A517E0CF3;
+	Thu, 19 Mar 2026 21:17:20 +0100 (CET)
+Message-ID: <23f0c1f7a9656562d2be6c1ef3439f484ac76f92.camel@collabora.com>
+Subject: Re: [PATCH v5 5/6] media: dt-bindings: mediatek,vcodec-encoder: Add
+ MT8196
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Irui Wang <irui.wang@mediatek.com>, Hans Verkuil
+ <hverkuil-cisco@xs4all.nl>,  Mauro Carvalho Chehab	 <mchehab@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, Matthias Brugger	
+ <matthias.bgg@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	wenst@chromium.org, angelogioacchino.delregno@collabora.com, Tiffany Lin	
+ <tiffany.lin@mediatek.com>, kyrie wu <kyrie.wu@mediatek.com>
+Cc: Yunfei Dong <yunfei.dong@mediatek.com>, Maoguang Meng	
+ <maoguang.meng@mediatek.com>, Longfei Wang <longfei.wang@mediatek.com>, 
+	Project_Global_Chrome_Upstream_Group@mediatek.com,
+ linux-media@vger.kernel.org, 	devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+Date: Thu, 19 Mar 2026 16:17:19 -0400
+In-Reply-To: <20260302035244.8994-6-irui.wang@mediatek.com>
+References: <20260302035244.8994-1-irui.wang@mediatek.com>
+	 <20260302035244.8994-6-irui.wang@mediatek.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-bBjSb7ezX0aFK1Nuxe2Z"
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] hwmon: (sht3x) Add support for GXCAS GXHT30
-To: Zaixiang Xu <zaixiang.xu.dev@gmail.com>, linux@roeck-us.net
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <1773919186-17515-1-git-send-email-zaixiang.xu.dev@gmail.com>
- <1773919186-17515-4-git-send-email-zaixiang.xu.dev@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <1773919186-17515-4-git-send-email-zaixiang.xu.dev@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278028-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278029-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[mediatek.com,xs4all.nl,kernel.org,gmail.com,chromium.org,collabora.com];
+	HAS_ORG_HEADER(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,roeck-us.net];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.dufresne@collabora.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:url,sensirion.com:email]
-X-Rspamd-Queue-Id: 37CC62D1FCE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,collabora.com:dkim,collabora.com:email,collabora.com:mid,mediatek.com:email]
+X-Rspamd-Queue-Id: F126D2D1FF9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 19/03/2026 12:19, Zaixiang Xu wrote:
-> Add support for GXCAS GXHT30 sensor to the sht3x driver. The GXHT30 is software compatible with the Sensirion SHT3x series.
 
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+--=-bBjSb7ezX0aFK1Nuxe2Z
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> Signed-off-by: Zaixiang Xu <zaixiang.xu.dev@gmail.com>
+Le lundi 02 mars 2026 =C3=A0 11:52 +0800, Irui Wang a =C3=A9crit=C2=A0:
+> Add support for MT8196 video encoder which uses VCP (Video Co-Processor)
+> for firmware management. Unlike previous platforms that use SCP/VPU, MT81=
+96
+> requires VCP to load and execute the video encoding firmware, with the
+> encoder communicating through VCP to perform encoding operations.
+>=20
+> Add the "mediatek,mt8196-vcodec-enc" compatible string and introduce
+> the "mediatek,vcp" property to reference the VCP device, which is
+> required for MT8196 encoder operation.
+>=20
+> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+
+Please, keep the bindings early in your future patchset. I need read the bi=
+nding
+first to understand what is the code pulling from the DT. I'll move when
+applying.
+
+Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+
+Nicolas
+
 > ---
->  drivers/hwmon/sht3x.c | 16 +++++++++++++++-
->  1 file changed, 15 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/hwmon/sht3x.c b/drivers/hwmon/sht3x.c
-> index 08306ccb6d0b..4e2e5671610a 100644
-> --- a/drivers/hwmon/sht3x.c
-> +++ b/drivers/hwmon/sht3x.c
-> @@ -934,13 +934,26 @@ static const struct i2c_device_id sht3x_ids[] = {
->  	{"sht3x", sht3x},
->  	{"sts3x", sts3x},
->  	{"sht85", sht3x},
-> +	{"gxht30", sht3x},
->  	{}
->  };
->  
->  MODULE_DEVICE_TABLE(i2c, sht3x_ids);
->  
-> +static const struct of_device_id sht3x_of_match[] = {
-> +	{ .compatible = "sensirion,sht3x" },
-> +	{ .compatible = "sensirion,sts3x" },
-> +	{ .compatible = "sensirion,sht85" },
-> +	{ .compatible = "gxcas,gxht30" },
-
-If this does not go to trivial devices, then they all look compatible so
-this should be expressed with fallback.
-
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, sht3x_of_match);
+> =C2=A0.../media/mediatek,vcodec-encoder.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 22 +++++++++++++++++++
+> =C2=A01 file changed, 22 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-
+> encoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-
+> encoder.yaml
+> index ebc615584f92..72698456374a 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yam=
+l
+> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yam=
+l
+> @@ -24,6 +24,7 @@ properties:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 - mediatek,mt8188-vcodec-enc
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 - mediatek,mt8192-vcodec-enc
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 - mediatek,mt8195-vcodec-enc
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 - mediatek,mt8196-vcodec-enc
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: med=
+iatek,mt8186-vcodec-enc
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: med=
+iatek,mt8183-vcodec-enc
+> @@ -58,6 +59,13 @@ properties:
+> =C2=A0=C2=A0=C2=A0=C2=A0 description:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Describes point to scp.
+> =C2=A0
+> +=C2=A0 mediatek,vcp:
+> +=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/phandle
+> +=C2=A0=C2=A0=C2=A0 description:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Reference to the VCP (Video Co-Processor)=
+ device that loads and
+> executes
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 the video encoding firmware. The encoder =
+communicates with the firmware
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 through VCP to perform encoding operation=
+s.
 > +
->  static struct i2c_driver sht3x_i2c_driver = {
-> -	.driver.name = "sht3x",
-> +	.driver = {
-> +		.name = "sht3x",
-> +		.of_match_table = sht3x_of_match,
-> +	},
->  	.probe       = sht3x_probe,
->  	.id_table    = sht3x_ids,
->  };
-> @@ -948,5 +961,6 @@ module_i2c_driver(sht3x_i2c_driver);
->  
->  MODULE_AUTHOR("David Frey <david.frey@sensirion.com>");
->  MODULE_AUTHOR("Pascal Sachs <pascal.sachs@sensirion.com>");
-> +MODULE_AUTHOR("Your Name <zaixiang.xu.dev@gmail.com>");
+> =C2=A0=C2=A0 power-domains:
+> =C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
+> =C2=A0
+> @@ -76,6 +84,20 @@ required:
+> =C2=A0=C2=A0 - iommus
+> =C2=A0
+> =C2=A0allOf:
+> +=C2=A0 - if:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 contains:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 - mediatek,mt8196-vcodec-enc
+> +
+> +=C2=A0=C2=A0=C2=A0 then:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 required:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - mediatek,vcp
+> +=C2=A0=C2=A0=C2=A0 else:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mediatek,vcp: false
+> +
+> =C2=A0=C2=A0 - if:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
 
-Your or my name?
+--=-bBjSb7ezX0aFK1Nuxe2Z
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
->  MODULE_DESCRIPTION("Sensirion SHT3x humidity and temperature sensor driver");
->  MODULE_LICENSE("GPL");
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCabxZzwAKCRDZQZRRKWBy
+9IqXAQDF76U2cvFTsz2ZaZxdPMcC9u+fE/gNu8I5yWnHNbtYIQD/WcXLJEafGTUM
+XIIWRgQEBp85aiMUpBpYHVj4Ms6qdwE=
+=NuJr
+-----END PGP SIGNATURE-----
 
-Best regards,
-Krzysztof
+--=-bBjSb7ezX0aFK1Nuxe2Z--
 
