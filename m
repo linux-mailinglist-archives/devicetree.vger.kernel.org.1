@@ -1,257 +1,264 @@
-Return-Path: <devicetree+bounces-277706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277703-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mLYNK27Tu2k4owIAu9opvQ
-	(envelope-from <devicetree+bounces-277706-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:43:58 +0100
+	id AG1DGDDUu2k4owIAu9opvQ
+	(envelope-from <devicetree+bounces-277703-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:47:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 315BD2C9AC0
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:43:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A94982C9B72
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:47:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8B5A93025E62
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:43:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7E85E314CEC2
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:42:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB20F3C3C08;
-	Thu, 19 Mar 2026 10:43:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 429133C344C;
+	Thu, 19 Mar 2026 10:42:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lTQUYx2a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uel6/ql+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97A703C2797;
-	Thu, 19 Mar 2026 10:43:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CCEB3C276D;
+	Thu, 19 Mar 2026 10:42:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773917009; cv=none; b=svxpnjuBvR+ZFaBxDOMwJqoGvgH3DLMjE3bInTZXvnOa90s1c53WBjpTM0VMwc2PY+TKzQv3z7ayGxTe7YrIuOxsFRcMMB44xyIHdXSVj/VyS9PP7jStz6UOtIyzY/EwyEz5Z2KYIi1HqOtFzZQuvDaF1fp7G5wgWXAwXPW9qR0=
+	t=1773916924; cv=none; b=DnVXKV0XGKbgGGorrOeYTN+g1btiUeomPCaEvsrdLEgFesTyPyOYnK70VxpmrkpK+lMjCnxgN+tZ/XPDiFoTy2q3jL28MMr3oLPfr2a6IdynOQD9HnKPEp19cXVma7xD3ue9w8LJMwWmnKJYPW1mn29cmfGvYTNHbE8dsTV16c8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773917009; c=relaxed/simple;
-	bh=1mkrXC3RQ6SL23C6/feIRzIVGYkVFU3Pio4Lw1R1BOU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rOzKi9fcAWEue7yFj2EAygmCQ7rN02KS8iMTBPeMEwZ7b3FW3yBOvc9dKCfQN7cxChOfM35xikV1iHWJRjfL4ubLjcH3fpwCEiFnPP85+A/A2FtnaY4w7d7cFw4suaWp8/8Hb7sSXAbEsAQ6F4JuV0YDBl/n4fyzjfdhmETSzFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lTQUYx2a; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773917008; x=1805453008;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1mkrXC3RQ6SL23C6/feIRzIVGYkVFU3Pio4Lw1R1BOU=;
-  b=lTQUYx2a/lcFZ7jfPXuk+KPC7opJDqJ8K9B5pNjFm0FaWa1VtsglAl+0
-   RlHTPk/qYq8LN9XIag1sDNX3S18wdB8gcIzDBE1bhXBR4qInRNWHc4NU3
-   ebNKc8PFBaYqS1JRQ3t6l37NrOBPtjdwiFUkteruJMk9qdoOMqKC+OCHg
-   ONJreqDNXPiCC/gBFG18uKohLmd2SChz8yN4anZZMshqHk9LeWhHN5hoj
-   BNSZGh8FEukZ0kGjJCoks5sqX6rC3L95BGYtd6QY5FrKrYeqwdO5RC0ZZ
-   8xGTTlh94e9iHRXDsNHnAyvp6N4N0gaAgFxwcwTnXjvFTJidlosGQiAv+
-   g==;
-X-CSE-ConnectionGUID: MCzhcTUWQDatNpcC+NCPhA==
-X-CSE-MsgGUID: GKms44x0Sa+q5wh1K+z6WQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="86062383"
-X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; 
-   d="scan'208";a="86062383"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2026 03:43:27 -0700
-X-CSE-ConnectionGUID: 6vuF5eRNRZWlpHYghl+ZMw==
-X-CSE-MsgGUID: J0mrvFuhSGmhEDGiKLM8Fg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; 
-   d="scan'208";a="253401527"
-Received: from lkp-server02.sh.intel.com (HELO a51c2a36b9df) ([10.239.97.151])
-  by orviesa002.jf.intel.com with ESMTP; 19 Mar 2026 03:43:24 -0700
-Received: from kbuild by a51c2a36b9df with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1w3AqX-000000000mx-2GTd;
-	Thu, 19 Mar 2026 10:43:21 +0000
-Date: Thu, 19 Mar 2026 18:41:03 +0800
-From: kernel test robot <lkp@intel.com>
-To: Florian Eckert <fe@dev.tdt.de>, Thomas Gleixner <tglx@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Florian Eckert <fe@dev.tdt.de>,
-	Eckert.Florian@googlemail.com, ms@dev.tdt.de
-Subject: Re: [PATCH 2/2] irqchip: Add Lightning Mountain irqchip support
-Message-ID: <202603191849.1i02oaur-lkp@intel.com>
-References: <20260318-irq-intel-soc-msi-v1-2-0e8cdf844fa8@dev.tdt.de>
+	s=arc-20240116; t=1773916924; c=relaxed/simple;
+	bh=aJWa94CtA9j8mAxqF/xpiC4QvlVH32SKPSkyFhKrjJY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nYTaPhSlNu1R7Qi8f2et6VbXrGyqZ3FIeERY40F1mbp1Ci9zHV84o69VEQ87zdEQSabCJGFw0+lLUgIIuyDJoRptAsh9KXzE8Eq1cxrfudbkNlebT6B+W0/5aEamn0+c0pFuhzGlLKjW25F5s4WR8O0a60MFftsx1BradVY9rnI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uel6/ql+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFC83C19424;
+	Thu, 19 Mar 2026 10:42:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773916924;
+	bh=aJWa94CtA9j8mAxqF/xpiC4QvlVH32SKPSkyFhKrjJY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=uel6/ql+pRfFm5jj4EAWzusvayTD9UKGYdJKZpdUNDWTM9gCB65uPPjSXy890p0Zl
+	 rlVLyO9LBJ7/0YVY3KV4/YpIL71uXYJsTMXSlKbxPt2rvKrIJXVC2Y4MA8YUca2m7H
+	 iwobC4JQIiqy2xL0t0iAlS8fugXg4/VmQVKPWKY92ddK+o1qWf0hpSudCYUs8a3j8U
+	 mVi9YDAdVLHw1oHj0H0e6xVri9q6ddRqDbvFnLUCmc1/Q3eaUhZeT2uux0UFoi0THD
+	 mGFTqQsqBfDsa34l68AAYFnZO+DrXcxZkeFoBbGnm3Vi4sO9KUJ2qRshdUmOGiky25
+	 grOO0Aryv0V7g==
+Message-ID: <0068d43a-e875-4f4e-aff6-3e8330e66c82@kernel.org>
+Date: Thu, 19 Mar 2026 11:41:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260318-irq-intel-soc-msi-v1-2-0e8cdf844fa8@dev.tdt.de>
-X-Spamd-Result: default: False [0.34 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v21 2/6] dt-bindings: remoteproc: Add STM32 TEE-controlled
+ rproc binding
+To: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Jens Wiklander <jens.wiklander@linaro.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sumit Garg <sumit.garg@kernel.org>,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-remoteproc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, op-tee@lists.trustedfirmware.org,
+ devicetree@vger.kernel.org
+References: <20260317180329.1207625-1-arnaud.pouliquen@foss.st.com>
+ <20260317180329.1207625-3-arnaud.pouliquen@foss.st.com>
+ <20260319-glistening-ultramarine-ibis-1eb3d6@quoll>
+ <420953af-6a12-4277-8c31-062db01f78cc@foss.st.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <420953af-6a12-4277-8c31-062db01f78cc@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.linux.dev,vger.kernel.org,dev.tdt.de,googlemail.com];
-	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277706-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277703-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.937];
+	NEURAL_HAM(-0.00)[-0.993];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid,01.org:url]
-X-Rspamd-Queue-Id: 315BD2C9AC0
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[st.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lkml.org:url,devicetree.org:url]
+X-Rspamd-Queue-Id: A94982C9B72
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Florian,
+On 19/03/2026 11:31, Arnaud POULIQUEN wrote:
+> Hello Krzysztof,
+> 
+> 
+> On 3/19/26 09:06, Krzysztof Kozlowski wrote:
+>> On Tue, Mar 17, 2026 at 07:03:23PM +0100, Arnaud Pouliquen wrote:
+>>> Add a Device Tree binding for the STM32 remote processor controlled
+>>> via a Trusted Application running in OP-TEE.
+>>> This binding describes the interface and properties required for STM32MP
+>>> remoteproc instances managed by the TEE rproc service, including a
+>>> linkage to the TEE backend through the property "rproc-tee-phandle".
+>>>
+>>> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+>>> ---
+>>> V21 updates:
+>>> - the m4 node is no more declared as a child of the optee-rproc node
+>>> - "rproc-tee-phandle" property is introduced to reference the optee-rproc
+>>> ---
+>>>   .../remoteproc/st,stm32-rproc-tee.yaml        | 108 ++++++++++++++++++
+>>>   1 file changed, 108 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/remoteproc/st,stm32-rproc-tee.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc-tee.yaml b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc-tee.yaml
+>>> new file mode 100644
+>>> index 000000000000..ca4dd1c8e7b0
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc-tee.yaml
+>>> @@ -0,0 +1,108 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/remoteproc/st,stm32-rproc-tee.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: STMicroelectronics STM32 remote processor controlled via TEE
+>>> +
+>>> +maintainers:
+>>> +  - Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+>>> +
+>>> +description: |
+>>> +  STM32MP remote processor controlled by a Trusted Application
+>>> +  running in OP-TEE. This node is a child of the TEE remoteproc service
+>>> +  (UUID 80a4c275-0a47-4905-8285-1486a9771a08) and exposes a remoteproc
+>>> +  instance managed by the Linux remoteproc core via the TEE rproc service.
+>>> +
+>>> +  Firmware loading, authentication and remote processor start/stop are managed
+>>> +  by the TEE application. The STM32-specific driver handles platform resources
+>>> +  such as the mailboxes and reserved-memory.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: st,stm32mp1-m4-tee
+>>
+>> Drop "tee", it suggests that compatible is tied to implementation of FW
+>> you put there.
+> 
+> The "st,stm32mp1-m4" compatible string already exists in 
 
-kernel test robot noticed the following build warnings:
+Then probably this binding needs changes, because in general you should
+not have two compatibles for the same hardware. Maybe that's special
+case, but then needs explanations in commit msg why is that.
 
-[auto build test WARNING on f338e77383789c0cae23ca3d48adcc5e9e137e3c]
+> drivers/remoteproc/stm32_rproc.c, and "st,stm32mp1-m4-tee" compatible is 
+> upstreamed in OP-TEE.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Florian-Eckert/dt-bindings-Add-Lightning-Mountain-MSI-interrupt-controller-bindings/20260319-033849
-base:   f338e77383789c0cae23ca3d48adcc5e9e137e3c
-patch link:    https://lore.kernel.org/r/20260318-irq-intel-soc-msi-v1-2-0e8cdf844fa8%40dev.tdt.de
-patch subject: [PATCH 2/2] irqchip: Add Lightning Mountain irqchip support
-config: um-allyesconfig (https://download.01.org/0day-ci/archive/20260319/202603191849.1i02oaur-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260319/202603191849.1i02oaur-lkp@intel.com/reproduce)
+That is not our problem and strong no-go. Other projects are supposed to
+participate in upstream bindings review and take the bindings once they
+are reviewed and accepted here. If they take without review, it's their
+problem.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603191849.1i02oaur-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/irqchip/irq-intel-soc-msi.c: In function 'nmi_msi_compose_msg':
-   drivers/irqchip/irq-intel-soc-msi.c:138:18: error: 'apic' undeclared (first use in this function)
-     138 |         destid = apic->calc_dest_apicid(cpuid);
-         |                  ^~~~
-   drivers/irqchip/irq-intel-soc-msi.c:138:18: note: each undeclared identifier is reported only once for each function it appears in
-   drivers/irqchip/irq-intel-soc-msi.c:141:25: error: 'arch_msi_msg_addr_lo_t' {aka 'struct arch_msi_msg_addr_lo'} has no member named 'base_address'
-     141 |         msg.arch_addr_lo.base_address = X86_MSI_BASE_ADDRESS_LOW;
-         |                         ^
-   drivers/irqchip/irq-intel-soc-msi.c:141:41: error: 'X86_MSI_BASE_ADDRESS_LOW' undeclared (first use in this function)
-     141 |         msg.arch_addr_lo.base_address = X86_MSI_BASE_ADDRESS_LOW;
-         |                                         ^~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/irqchip/irq-intel-soc-msi.c:142:25: error: 'arch_msi_msg_addr_lo_t' {aka 'struct arch_msi_msg_addr_lo'} has no member named 'dest_mode_logical'
-     142 |         msg.arch_addr_lo.dest_mode_logical = apic->dest_mode_logical;
-         |                         ^
-   drivers/irqchip/irq-intel-soc-msi.c:143:25: error: 'arch_msi_msg_addr_lo_t' {aka 'struct arch_msi_msg_addr_lo'} has no member named 'redirect_hint'
-     143 |         msg.arch_addr_lo.redirect_hint = 0;
-         |                         ^
-   drivers/irqchip/irq-intel-soc-msi.c:144:25: error: 'arch_msi_msg_addr_lo_t' {aka 'struct arch_msi_msg_addr_lo'} has no member named 'destid_0_7'
-     144 |         msg.arch_addr_lo.destid_0_7 = destid & 0xFF;
-         |                         ^
-   drivers/irqchip/irq-intel-soc-msi.c:146:26: error: 'X86_MSI_BASE_ADDRESS_HIGH' undeclared (first use in this function)
-     146 |         msg.address_hi = X86_MSI_BASE_ADDRESS_HIGH;
-         |                          ^~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/irqchip/irq-intel-soc-msi.c:152:22: error: 'arch_msi_msg_data_t' {aka 'struct arch_msi_msg_data'} has no member named 'is_level'
-     152 |         msg.arch_data.is_level = 0;
-         |                      ^
-   drivers/irqchip/irq-intel-soc-msi.c:153:22: error: 'arch_msi_msg_data_t' {aka 'struct arch_msi_msg_data'} has no member named 'delivery_mode'
-     153 |         msg.arch_data.delivery_mode = APIC_DELIVERY_MODE_NMI;
-         |                      ^
-   drivers/irqchip/irq-intel-soc-msi.c:153:39: error: 'APIC_DELIVERY_MODE_NMI' undeclared (first use in this function)
-     153 |         msg.arch_data.delivery_mode = APIC_DELIVERY_MODE_NMI;
-         |                                       ^~~~~~~~~~~~~~~~~~~~~~
-   drivers/irqchip/irq-intel-soc-msi.c: In function 'soc_msi_compose_msg':
-   drivers/irqchip/irq-intel-soc-msi.c:164:9: error: implicit declaration of function '__irq_msi_compose_msg'; did you mean 'nmi_msi_compose_msg'? [-Wimplicit-function-declaration]
-     164 |         __irq_msi_compose_msg(irqd_cfg(data), msg, false);
-         |         ^~~~~~~~~~~~~~~~~~~~~
-         |         nmi_msi_compose_msg
-   drivers/irqchip/irq-intel-soc-msi.c:164:31: error: implicit declaration of function 'irqd_cfg' [-Wimplicit-function-declaration]
-     164 |         __irq_msi_compose_msg(irqd_cfg(data), msg, false);
-         |                               ^~~~~~~~
-   drivers/irqchip/irq-intel-soc-msi.c: In function 'soc_msi_domain_alloc':
-   drivers/irqchip/irq-intel-soc-msi.c:198:31: error: storage size of 'info' isn't known
-     198 |         struct irq_alloc_info info;
-         |                               ^~~~
-   drivers/irqchip/irq-intel-soc-msi.c:229:9: error: implicit declaration of function 'init_irq_alloc_info' [-Wimplicit-function-declaration]
-     229 |         init_irq_alloc_info(&info, NULL);
-         |         ^~~~~~~~~~~~~~~~~~~
->> drivers/irqchip/irq-intel-soc-msi.c:198:31: warning: unused variable 'info' [-Wunused-variable]
-     198 |         struct irq_alloc_info info;
-         |                               ^~~~
-   drivers/irqchip/irq-intel-soc-msi.c: In function 'intel_soc_msi_probe':
-   drivers/irqchip/irq-intel-soc-msi.c:304:46: error: 'x86_vector_domain' undeclared (first use in this function)
-     304 |         domain = irq_domain_create_hierarchy(x86_vector_domain, 0,
-         |                                              ^~~~~~~~~~~~~~~~~
+Imagine that: some whatever project takes whatever crap (not saying
+Optee is like that, just imagine for sake of discussion) and then you
+send bindings to upstream and claim "that project took it, so you must
+do as well". Great loophole to squeeze poor stuff to the kernel, so any
+such argument is for me a warning sign.
 
 
-vim +/info +198 drivers/irqchip/irq-intel-soc-msi.c
+> 
+> Notice that I have also the stm32mp2 SoC to upstream expecting to have 
+> similar compatible:
+> - st,stm32mp1-m33
+> - st,stm32mp2-m33-tee
+> 
+> Depending on the compatible string, the hardware behavior changes.
+> With the "xxxx-tee" compatible, OP-TEE also manages the isolation of 
+> remote processor resources (memory, clock reset, peripherals).
+> Without the "xxxx-tee" compatible, OP-TEE have to ensure that the Linux
+> has the good access right to manage the remote processor.
 
-   192	
-   193	static int soc_msi_domain_alloc(struct irq_domain *domain, unsigned int virq,
-   194					unsigned int nr_irqs, void *arg)
-   195	{
-   196		struct msi_domain_info *msi_info = domain->host_data;
-   197		struct irq_fwspec *fwspec = arg;
- > 198		struct irq_alloc_info info;
-   199		irq_hw_number_t hwirq;
-   200		unsigned int type;
-   201		void *chip_data;
-   202		int i, ret;
-   203	
-   204		if (!msi_info)
-   205			return -EINVAL;
-   206	
-   207		chip_data = msi_info->chip_data;
-   208	
-   209		ret = soc_msi_domain_xlate(domain, fwspec, &hwirq, &type);
-   210		if (ret)
-   211			return ret;
-   212	
-   213		if (irq_find_mapping(domain, hwirq) > 0)
-   214			return -EEXIST;
-   215	
-   216		/*
-   217		 * All NMI interrupts go to vector 2, no irq mapping needed.
-   218		 * What we want is to configure hardware once, don't do anything else.
-   219		 * 0 means it will continue to initialize other stuff in the irqdomain.
-   220		 * We can just return other value after hw initialized. In this case,
-   221		 * irqdomain will release all resources.
-   222		 */
-   223		if (soc_nmi_msi(hwirq)) {
-   224			nmi_msi_compose_msg((struct soc_msi_dev *)chip_data, hwirq);
-   225			return -EINVAL;
-   226		}
-   227	
-   228		/* Translate to X86 favorite arguments */
-   229		init_irq_alloc_info(&info, NULL);
-   230	
-   231		/* Need to allocate from x86 vector domain */
-   232		ret = irq_domain_alloc_irqs_parent(domain, virq, nr_irqs, &info);
-   233		if (ret < 0)
-   234			return ret;
-   235	
-   236		for (i = 0; i < nr_irqs; i++) {
-   237			irq_domain_set_info(domain, virq + i, hwirq + i,
-   238					    &soc_msi_irq_chip, chip_data,
-   239					    handle_edge_irq, chip_data, "edge");
-   240		}
-   241	
-   242		return 0;
-   243	}
-   244	
+Still the same device, no?
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+You can have a property defining how Linux should access such device,
+e.g. because FW does this and that.
+
+> 
+> For instance if st,stm32mp1-m4-tee is set instead of st,stm32mp1-m4, on
+> linux side
+> - only memory regions used for IPC should be declared
+> - memory regions containing the remote firmware must not be declared as 
+> not accessible by the Linux ( managed by OP-TEE).
+> - resets must not be declared ( managed by OP-TEE)
+> 
+> You probably don't remember, as it was a long time ago, but we already 
+> discussed this point with Rob[1].
+> [1] https://lkml.org/lkml/2024/1/18/100
+> 
+> Do it still reasonable to you and Rob or should we find an alternative?
+
+Get ack from Rob then.
+
+
+Best regards,
+Krzysztof
 
