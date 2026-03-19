@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-277970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277971-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qE39B/09vGlxvgIAu9opvQ
-	(envelope-from <devicetree+bounces-277970-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:18:37 +0100
+	id 8DPILJA+vGn6vgIAu9opvQ
+	(envelope-from <devicetree+bounces-277971-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:21:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0815F2D0B71
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:18:36 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5560B2D0BB6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:21:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5603E3004D34
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:18:26 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A1A02300AB32
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:21:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E73B93F789E;
-	Thu, 19 Mar 2026 18:18:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46EA03EDAC1;
+	Thu, 19 Mar 2026 18:21:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l4DGVGsF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YlBxdj/U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 237063F23CA
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 18:18:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B21337D108
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 18:20:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773944301; cv=none; b=gOFTpVRbqQtY9sm0rNSK9VGNK0XWmVukrUHddx9ljFrRhfQbMrpAEGyDGE1Vk4u77rYF9PNV4pTQgg8ZrDifSZrGBMOq1DI0veB5P78JiuZgRvSCi8RH6BcQeT6axIA01wuvRIXwDsvuSdOTOJa2eTLTVFEAC0MYCdk9cru7y7E=
+	t=1773944460; cv=none; b=grvQLp6rhifk88Nt1zmkJ7r9Jgqnkupj9T2A1umNzabI4z+8vGZpjgrYQmGqlwUGeTiJJIo1SBHxydSvrO/j8BOl1Vf9XCaAijjxOIj3hh4clxvY3EJ9DdKn4g2We0qSfG+VSEcBxp0VOjK83faXdpVEKOoqg6iLZvI3edW+gqs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773944301; c=relaxed/simple;
-	bh=+P62lCyslziHirakPNqXdOPn6Fjwa7PkX2vn0IPAZ80=;
+	s=arc-20240116; t=1773944460; c=relaxed/simple;
+	bh=xLp5nerlY+dL4zLc/Aw4YGKqpL2yoqHnQ/iRGy1O+wA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Jq7goHL8xDg1fjLCcEZiqSSMKsZ2gBvXI0OIFZRddAukU8WJwjGQVEPaYTQ7GN4D2Yjq8geoToR4bfX0g5EnRYOLBqp11kLvaUtLQ/JEdcu5Xcs8Ce+/ZelPjeGaaWaho+BUvFbIYB9DgKuux4tF2+xa9gNV/Xi1PSRg88dYeV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l4DGVGsF; arc=none smtp.client-ip=209.85.214.182
+	 In-Reply-To:Content-Type; b=HDjeOe+3ewXuKXD8H4eKqidbpAcN/5pvvq41+G7tZ3y//lI8OZyUJykSmdVkjpUHIgifS38/m1h1/kcdJJwr+mgMKqEcfSaB4OtJHqSR27jjFvSkhegcXg77UK6uVRlz4xQAGgx9oWETXSRWirD5ckUgbT+wBoQ6v/c/zlRtilA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YlBxdj/U; arc=none smtp.client-ip=209.85.216.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2ad617d5b80so8103485ad.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 11:18:20 -0700 (PDT)
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-359f35dfef6so748287a91.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 11:20:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773944299; x=1774549099; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1773944458; x=1774549258; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=1vPUKgYITPtV5efaod4XQSqJVTqQ2Kq4WAF8AXorjoc=;
-        b=l4DGVGsF2CzVVzFvdI8h8zU9M37UF7b8ln0YS5Co6u3pYu74cLgmcG0MIQIvfTpnLq
-         aP7JROkN12lMP29/XI4pjoGSeL4MIlb97wGdTNifx4g6NpqF7mhB0Ydzr9F2suwse0vZ
-         7msClH3TeEImNssm7Bt/ipX/mMMfNrYFc8JMrBD9wk2yoVvCfsSTFVOjkpBnwGN64m5/
-         myltr8646AiiYfdOrUrF5e1PAtK9v78F8r3zVoLsf7ft0JaLhSoc25naXMH1HSIiSC4p
-         yETA6oqj321UO7KEZK+agr8CRWhxVe2uFvmspwOb1mcBCR5YqHGVhdKs/eSGDseggMeA
-         JsBA==
+        bh=waGlNDzVjeptbexObWtVTHYHPkYJN1y+VrcTRjBpPQs=;
+        b=YlBxdj/UX66u1Es+9rXiMPkvwhtzUvb16VLSoOW1UPZKXhL497/yxrmC0YPQfK3MeH
+         lryT04Mmm1nnXiwQ+I81tN2U+xXluIihqUJt6AJcoLrgtEUBOmC+dL9WPn4Jt9mzq8ai
+         AQZy3jEI1uhNiZxgO7RMZgNXmX6Iw3zy+h7FJR1tR6xJUVR4vC1jpP/ityq95mFluvvA
+         NIt6TRo9X+nNQUIuig883vQpOcRjXHKmsl2bjvkVsM1kJ69YOmaecQkRZpKqofVHSJ6i
+         b+ok0/733B/w8JrKLL+UgfC2ozP0Mc3StAop7z+eY1Cw4HCwYYRgppnoYPxwUoXWDeSo
+         UgVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773944299; x=1774549099;
+        d=1e100.net; s=20251104; t=1773944458; x=1774549258;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1vPUKgYITPtV5efaod4XQSqJVTqQ2Kq4WAF8AXorjoc=;
-        b=TcMjpCkeo95vXwvt3YWS3JhXbVWE7g7QhE2hcTHn+ibKdo5p+DOEZqGj9KQWQyKJKP
-         4MYGo3IkLLBx4d/fvlSoyO1Xd2P6ghpJ+2Z4ojYIOrCeckukMk1WyTcClyND7PM3dvd+
-         mwbfCSqsvKhdoIhnfR0+PaSs3iKG8bqycs8WcFuAvlMNPjXTsSz2Cw8U0pFT1+zyXo+/
-         QFri5PLnDbzI3gw1BhLMpRunNJdnsJkEhRBE53GVPYozsb9IY7n9hAjx6iT9hvJgDzUR
-         DGvsDRpOcOUwC9NYCO5eJw1X+mtsqfebA8n+mxtLmQVfCyranLo9A7bHS0/pQAmzL1Fu
-         TfSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX76fH7kjy9RZ1QpNyJgZ6u1dB25jRvHV+f0Qbn4EHo/Cj+w6Ee5nqYSN50EPx0QqOyJ/QyindFeg6C@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQQp+q6sX8jvxwG1MgAAXz2ccm1nbzMeRjEWXrB2P+FceSKTqF
-	jhyNJJ1wGo5Yjk+svFo+Dw3b8YyzauGZ92+gIvpavKmSKxwrvPZuFQMc
-X-Gm-Gg: ATEYQzylVRrNwYvyWO/ypln/epugxntX/0c1yaHuC7LJpjJTodq/3qHB6ytArtUhcMz
-	d8W9wHd64CQY1uoStxoKCs2l0Xsux70GwGxLlU+Mtsi13zdOrGV/LxZ1Tx9Xne7TykTQOHsx14p
-	Doi4gvzMsNYjQ6bEXGlwJH47J7kVjejLiTqRR8cpmjBMy7tvt0o0vnNBRABYBwGuOT6G+a/iPNT
-	hfiA+06d08hiC9ESSaLTbYIpyrR5AeNws8n81xnKVSthB1/50YbeD0ShuqdqMKMdBQAlpJa5SiN
-	Q9/H5SMUUBWT5acwn8kYqL1newiXcCRl3iJV7ZjIDsj1BD208HUspCN2vBzgIVDHtWTFrKMqvbX
-	7+MGAP7gq1S6U/o11sw4OJUOvr8zz8wVEdo3R6C4Z1+EQc0MBB9ivEVQwJDHYsEwNgw+8xCEr3G
-	TlPQDs1TqBw6Vxxfn8mGzsVuVbeA4xzjO3tuu3vZLOw1qkGd6KUDM96dwsozIYj3VbThQT3ZHZR
-	5Oq5rj07FM=
-X-Received: by 2002:a17:902:da8b:b0:2b0:7a50:887c with SMTP id d9443c01a7336-2b082819356mr2189405ad.50.1773944299366;
-        Thu, 19 Mar 2026 11:18:19 -0700 (PDT)
+        bh=waGlNDzVjeptbexObWtVTHYHPkYJN1y+VrcTRjBpPQs=;
+        b=M3uSyT/zmIuAfNuyPru2dswwbGfWpYmNWG99LLxx8ikNbSq++pMjtAnYSL3fC2T3ka
+         Eh5YLZqlC6Ee87TFC+Ze8OiLzkGcrrdwrKQ/EPY77SGtkCH3FwkudgVRrLZLeUPLglhS
+         XtpRXFx1ioc8tk5nQttPD4Xm+TpwlLTttkcwCxhRZDhq0p/U2lwA2gS9BPzmg6AyVK+c
+         JJpRcQI6I8mJr20ZP0aqolS/cyqE85Vrnkux1EaTi3lqmeAkvzB73PwQizbOu6t9nHyA
+         qBSCMBMcI5GGVVmQ1HHoeUp5sfZnIzSn2mqBQ1ZY3s7NdIQiKX8wt6AEbhpWXbzoOuIt
+         TtQg==
+X-Forwarded-Encrypted: i=1; AJvYcCV0MmeaJUZ8Tpr+gxLLmSU3Beem1dVi1tvM2P+lMz4QnZfVUUj2oAj060Mp8iSgN3xKciDBn8noaaa7@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZs+6M4cYuiPbjPIGlkWUEAzBpwNXgGQlMSyOcMJs4uDpnN3oD
+	MvSCtPv1g1MmU+uU2H1WfBV+N+vZinA4KK1SP3aOGZrLJ/+t6gvDY72F
+X-Gm-Gg: ATEYQzyqLkI2QhNUd8BTap2w1oKeQku3IsfQNoqYr4j7GRCTZcPbzS7PSsavE+fNhJM
+	+BgNv896HibArpz1lcOCicHmvgsZaagmTdn+aCffsbfoT9lnG1yL1X7ze5Zpv6sBx0d0ZzD9ip1
+	dOytTyQR0rbeZreqUTlRtgTh9MkNs0Jhy0jBge0HscGa6U6JRqNwEDTGwoZC6xVNOk8QtkN0YEX
+	ldL4rj0oI4wSBFoCXOuwvcRLPUwctIfgROfbxGUvzxkDhlsr0t3bTqNcGwhjzbqcQlRt0CQ369G
+	5NcE3DAyF+m+IsuDnb+VGaIZsajJU/6TePwnF1f13YlueFBRtz951T7p5izrSMJm53Lw3cp2ZPA
+	+TUZuRbA3MJwZtC9Nh+0/0B+t7nBWyk+RDSiRFengLtEdhdnVWLyxdz6lm2zefCUdtcK7oddGDs
+	6+fwlarbwOnoFEj1GYE/whbVr4MeIbbvtpPhN6IKOlos0uHX+NpI2EFPqPYo54jIRVXNat1ceh0
+	IzGjMMDlQk=
+X-Received: by 2002:a17:90b:35c3:b0:35b:9aaf:21c2 with SMTP id 98e67ed59e1d1-35bd2be72e2mr137559a91.13.1773944458271;
+        Thu, 19 Mar 2026 11:20:58 -0700 (PDT)
 Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b06e61119bsm62450855ad.64.2026.03.19.11.18.17
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35bd271c674sm40002a91.12.2026.03.19.11.20.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Mar 2026 11:18:18 -0700 (PDT)
+        Thu, 19 Mar 2026 11:20:57 -0700 (PDT)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <ae1bba2a-5015-480f-9610-d1be5a6d7211@roeck-us.net>
-Date: Thu, 19 Mar 2026 11:18:16 -0700
+Message-ID: <8e9a351d-af3c-4a66-956b-9adab716de9e@roeck-us.net>
+Date: Thu, 19 Mar 2026 11:20:56 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,19 +88,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 11/12] hwmon: spd5118: Add I3C support
-To: Akhil R <akhilrajeev@nvidia.com>
-Cc: Frank.Li@nxp.com, acpica-devel@lists.linux.dev,
- alexandre.belloni@bootlin.com, conor+dt@kernel.org,
- devicetree@vger.kernel.org, ebiggers@kernel.org, fredrik.markstrom@est.tech,
- jonathanh@nvidia.com, krzk+dt@kernel.org, lenb@kernel.org,
- linux-acpi@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-tegra@vger.kernel.org, miquel.raynal@bootlin.com,
- p.zabel@pengutronix.de, rafael@kernel.org, robert.moore@intel.com,
- robh@kernel.org, smangipudi@nvidia.com, thierry.reding@kernel.org
-References: <7cc8ab1f-6c9a-4e3f-a1bc-266e020d8179@roeck-us.net>
- <20260319175533.19480-1-akhilrajeev@nvidia.com>
+Subject: Re: [PATCH v2 3/3] hwmon: (sht3x) Add support for GXCAS GXHT30
+To: Zaixiang Xu <zaixiang.xu.dev@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <1773920314-17755-1-git-send-email-zaixiang.xu.dev@gmail.com>
+ <1773920314-17755-4-git-send-email-zaixiang.xu.dev@gmail.com>
 Content-Language: en-US
 From: Guenter Roeck <linux@roeck-us.net>
 Autocrypt: addr=linux@roeck-us.net; keydata=
@@ -146,211 +140,100 @@ Autocrypt: addr=linux@roeck-us.net; keydata=
  F0WaMvQMNrk9UAUziVcUkLU52NS9SXqpVg8vgrO0JKx97IXFPcNh0DWsSj/0Y8HO/RDkGXYn
  FDMj7fZSPKyPQPmEHg+W/KzxSSfdgWIHF2QaQ0b2q1wOSec4Rti52ohmNSY+KNIW/zODhugJ
  np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20260319175533.19480-1-akhilrajeev@nvidia.com>
+In-Reply-To: <1773920314-17755-4-git-send-email-zaixiang.xu.dev@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277970-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_FROM(0.00)[bounces-277971-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[roeck-us.net];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.992];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,nvidia.com:email]
-X-Rspamd-Queue-Id: 0815F2D0B71
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sensirion.com:email]
+X-Rspamd-Queue-Id: 5560B2D0BB6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/19/26 10:55, Akhil R wrote:
-> On Thu, 19 Mar 2026 07:34:18 -0700, Guenter Roeck wrote:
->> On 3/18/26 21:35, Akhil R wrote:
->>> On Wed, 18 Mar 2026 11:53:49 -0700, Guenter Roeck wrote:
->>>> On 3/18/26 10:27, Akhil R wrote:
->>>>> Add a regmap config and a probe function to support for I3C based
->>>>> communication to SPD5118 devices.
->>>>>
->>>>> On an I3C bus, SPD5118 are enumerated via SETAASA and always require an
->>>>> ACPI or device tree entry. The device matching is hence through the OF
->>>>> match tables only and do not need an I3C class match table. The device
->>>>> identity is verified in the type registers before proceeding to the
->>>>> common probe function.
->>>>>
->>>>> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
->>>>> ---
->>>>>     drivers/hwmon/Kconfig   |  7 +++--
->>>>>     drivers/hwmon/spd5118.c | 66 ++++++++++++++++++++++++++++++++++++++++-
->>>>>     2 files changed, 70 insertions(+), 3 deletions(-)
->>>>>
->>>>> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
->>>>> index 8af80e17d25e..23604c05ad22 100644
->>>>> --- a/drivers/hwmon/Kconfig
->>>>> +++ b/drivers/hwmon/Kconfig
->>>>> @@ -2300,10 +2300,13 @@ config SENSORS_SPD5118
->>>>>     	tristate "SPD5118 Compliant Temperature Sensors"
->>>>>     	depends on I2C
->>>>>     	select REGMAP_I2C
->>>>
->>>> I also had
->>>> 	depends on I3C || I3C=n
->>>> in my version at
->>>>
->>>> https://patchwork.kernel.org/project/linux-hwmon/patch/20250419161356.2528986-6-linux@roeck-us.net/
->>>>
->>>> which I guess matches the more recent "depends on I3C_OR_I2C".
->>>
->>> Ack. Will update.
->>>
->>>>
->>>>> +	select REGMAP_I3C if I3C
->>>>>     	help
->>>>>     	  If you say yes here you get support for SPD5118 (JEDEC JESD300)
->>>>> -	  compliant temperature sensors. Such sensors are found on DDR5 memory
->>>>> -	  modules.
->>>>> +	  compliant temperature sensors using I2C or I3C bus interface.
->>>>> +	  Such sensors are found on DDR5 memory modules.
->>>>> +
->>>>> +	  This driver supports both I2C and I3C interfaces.
->>>>>     
->>>>>     	  This driver can also be built as a module. If so, the module
->>>>>     	  will be called spd5118.
->>>>> diff --git a/drivers/hwmon/spd5118.c b/drivers/hwmon/spd5118.c
->>>>> index 5da44571b6a0..d70123e10616 100644
->>>>> --- a/drivers/hwmon/spd5118.c
->>>>> +++ b/drivers/hwmon/spd5118.c
->>>>> @@ -18,6 +18,7 @@
->>>>>     #include <linux/bits.h>
->>>>>     #include <linux/err.h>
->>>>>     #include <linux/i2c.h>
->>>>> +#include <linux/i3c/device.h>
->>>>>     #include <linux/hwmon.h>
->>>>>     #include <linux/module.h>
->>>>>     #include <linux/mutex.h>
->>>>> @@ -482,6 +483,25 @@ static const struct regmap_config spd5118_regmap16_config = {
->>>>>     	.cache_type = REGCACHE_MAPLE,
->>>>>     };
->>>>>     
->>>>> +/*
->>>>> + * I3C uses 2-byte register addressing -
->>>>> + *   Byte 1: MemReg | BlkAddr[0] | Address[5:0]
->>>>> + *   Byte 2: 0000   | BlkAddr[4:1]
->>>>> + *
->>>>> + * The low byte carries the register/NVM address and the high byte carries the
->>>>> + * upper block address bits, so little-endian format is required. No range
->>>>> + * config is needed since I3C does not use MR11 page switching.
->>>>> + */
->>>>> +static const struct regmap_config spd5118_regmap_i3c_config = {
->>>>> +	.reg_bits = 16,
->>>>> +	.val_bits = 8,
->>>>> +	.max_register = 0x7ff,
->>>>> +	.reg_format_endian = REGMAP_ENDIAN_LITTLE,
->>>>
->>>> Should this be added to spd5118_regmap16_config instead, or is there reason
->>>> to assume that I2C 16-bit addressing differs from I3C addressing ?
->>>
->>> I did not see any difference for I2C in the specification, but I assumed the
->>> existing format would have been working and I thought not to change them.
->>> Changing the I2C format would also require a change in the is_16bit nvmem_read
->>> formula.
->>>
->>>>
->>>>> +	.writeable_reg = spd5118_writeable_reg,
->>>>> +	.volatile_reg = spd5118_volatile_reg,
->>>>> +	.cache_type = REGCACHE_MAPLE,
->>>>> +};
->>>>> +
->>>>>     static int spd5118_suspend(struct device *dev)
->>>>>     {
->>>>>     	struct spd5118_data *data = dev_get_drvdata(dev);
->>>>> @@ -770,7 +790,51 @@ static struct i2c_driver spd5118_i2c_driver = {
->>>>>     	.address_list	= IS_ENABLED(CONFIG_SENSORS_SPD5118_DETECT) ? normal_i2c : NULL,
->>>>>     };
->>>>>     
->>>>> -module_i2c_driver(spd5118_i2c_driver);
->>>>> +/* I3C */
->>>>> +
->>>>> +static int spd5118_i3c_probe(struct i3c_device *i3cdev)
->>>>> +{
->>>>> +	struct device *dev = i3cdev_to_dev(i3cdev);
->>>>> +	struct regmap *regmap;
->>>>> +	unsigned int regval;
->>>>> +	int err;
->>>>> +
->>>>> +	regmap = devm_regmap_init_i3c(i3cdev, &spd5118_regmap_i3c_config);
->>>>> +	if (IS_ERR(regmap))
->>>>> +		return dev_err_probe(dev, PTR_ERR(regmap), "regmap init failed\n");
->>>>> +
->>>>> +	/* Verify this is a SPD5118 device */
->>>>> +	err = regmap_read(regmap, SPD5118_REG_TYPE, &regval);
->>>>> +	if (err)
->>>>> +		return err;
->>>>> +
->>>>> +	if (regval != 0x51) {
->>>>> +		dev_err(dev, "unexpected device type 0x%02x, expected 0x51\n", regval);
->>>>> +		return -ENODEV;
->>>>> +	}
->>>>> +
->>>>> +	err = regmap_read(regmap, SPD5118_REG_TYPE + 1, &regval);
->>>>> +	if (err)
->>>>> +		return err;
->>>>> +
->>>>> +	if (regval != 0x18) {
->>>>> +		dev_err(dev, "unexpected device type 0x%02x, expected 0x18\n", regval);
->>>>> +		return -ENODEV;
->>>>> +	}
->>>>> +
->>>>
->>>> I don't think this should dump error messages. Also, it might be desirable
->>>> to use a single regmap operation to read both values.
->>>
->>> Ack. Will use regmap_bulk_read() and will remove the error dump.
->>>
->>>>
->>>>> +	return spd5118_common_probe(dev, regmap, false);
->>>>
->>>> Why is_16bit=false ?
->>>
->>> We don't need the encoding formula for the nvmem address with I3C. Since it
->>> uses little-endian, (page * 0x100 + SPD5118_EEPROM_BASE) translates to the
->>> correct address. Or did I overlook something?
->>>
->>
->> Testing of the 16-bit code was limited: I had to set the SPD on a system
->> manually to 16-bit mode to get it working, and that only worked until the system
->> was reset. Its whole point was to prepare for I3C mode. If that fails, the entire
->> 16-bit code in the driver is potentially wrong and should be pulled out before
->> adding I3C code. It can be added back later if/when a system actually utilizing
->> it is found.
-> 
-> Thanks for letting me know. I will add a patch to remove the I2C 16-bit sections in
-> the next revision as a prerequistie to this patch. Hope that sounds good.
+On 3/19/26 04:38, Zaixiang Xu wrote:
+> Add support for GXCAS GXHT30 sensor to the sht3x driver. The GXHT30 is software compatible with the Sensirion SHT3x series.
 > 
 
-Please do.
+Line length. Please run checkpatch --strict on your patches.
+
+
+> Signed-off-by: Zaixiang Xu <zaixiang.xu.dev@gmail.com>
+> ---
+>   drivers/hwmon/sht3x.c | 16 +++++++++++++++-
+>   1 file changed, 15 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/hwmon/sht3x.c b/drivers/hwmon/sht3x.c
+> index 08306ccb6d0b..4384c18115e9 100644
+> --- a/drivers/hwmon/sht3x.c
+> +++ b/drivers/hwmon/sht3x.c
+> @@ -934,13 +934,26 @@ static const struct i2c_device_id sht3x_ids[] = {
+>   	{"sht3x", sht3x},
+>   	{"sts3x", sts3x},
+>   	{"sht85", sht3x},
+> +	{"gxht30", sht3x},
+>   	{}
+>   };
+>   
+>   MODULE_DEVICE_TABLE(i2c, sht3x_ids);
+>   
+> +static const struct of_device_id sht3x_of_match[] = {
+> +	{ .compatible = "sensirion,sht3x" },
+> +	{ .compatible = "sensirion,sts3x" },
+> +	{ .compatible = "sensirion,sht85" },
+> +	{ .compatible = "gxcas,gxht30" },
+
+As mentioned in the bindings feedback, those should be explicit chip
+names and not include wildcards.
+
+Also, this is doing more than advertised in the commit description.
+It adds explicit devicetree bindings support. That should be a separate patch.
 
 Thanks,
 Guenter
 
-
-> Best Regards,
-> Akhil
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, sht3x_of_match);
+> +
+>   static struct i2c_driver sht3x_i2c_driver = {
+> -	.driver.name = "sht3x",
+> +	.driver = {
+> +		.name = "sht3x",
+> +		.of_match_table = sht3x_of_match,
+> +	},
+>   	.probe       = sht3x_probe,
+>   	.id_table    = sht3x_ids,
+>   };
+> @@ -948,5 +961,6 @@ module_i2c_driver(sht3x_i2c_driver);
+>   
+>   MODULE_AUTHOR("David Frey <david.frey@sensirion.com>");
+>   MODULE_AUTHOR("Pascal Sachs <pascal.sachs@sensirion.com>");
+> +MODULE_AUTHOR("Zaixiang Xu <zaixiang.xu.dev@gmail.com>");
+>   MODULE_DESCRIPTION("Sensirion SHT3x humidity and temperature sensor driver");
+>   MODULE_LICENSE("GPL");
 
 
