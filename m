@@ -1,160 +1,215 @@
-Return-Path: <devicetree+bounces-278038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278039-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iCkGL41tvGkPygIAu9opvQ
-	(envelope-from <devicetree+bounces-278038-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 22:41:33 +0100
+	id 2HtNDhJ5vGnOzAIAu9opvQ
+	(envelope-from <devicetree+bounces-278039-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 23:30:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B07F2D2C29
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 22:41:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A71422D2FAA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 23:30:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 34C4A30C2942
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 21:39:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 65518301BC1F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 22:30:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB53F405AB6;
-	Thu, 19 Mar 2026 21:39:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E70373D6694;
+	Thu, 19 Mar 2026 22:30:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="yibeny0u"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HKNZ/F9r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FDCE3B19DB;
-	Thu, 19 Mar 2026 21:39:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D76B3BC687;
+	Thu, 19 Mar 2026 22:30:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773956350; cv=none; b=JAxtaMBDZIB6k7VY0rCWQ8dcAw226hBJBl/MhuZSAn/Np9PzFxjDZ8uzoa1++l3uywNuDrqmjxvyxOIdxHtRN3ZrnMO36QDLwUhqVbRx/51ck1IGDuASrI4UgoLcwR19k1F6myAGw+p2ZWmT0FWDxYPr1wa9od5Xk9FggEZYm18=
+	t=1773959439; cv=none; b=K7L/8NCSkLWhQ73yOxuvq+bS0cYCDODUJrCWGTMLj+jcndh9r91fGiyVbDg7eLE6uFDFnIgWdzNO1Wfh/q6XoUWbYipC6TMyUrUMQjjsFTTb+Ax+84bGuqR+X60VSs1TXt6SOdozQoJXKCfaWeycwJ80oPtehgKPYfHWtfgXmx4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773956350; c=relaxed/simple;
-	bh=VBkAAsTwbhuITRRUENQb3hb+oY6xnELFcZfpCbzNHe8=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E0ao2M3U2/iCHX+phsTWlLU2RUmC+QfSM5TpMoP2IAQF/ad4wj0fFvVUAar4YgUgqoNvYu0CoULkRoz+DvYGHosj+jOzmTZFQKbnOdYVwA1h88PriUL994dWwAZrS+xxsAFbIczONo3P/C3YfgdlRaB9SONePZWI3/5gd/Yp1yU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=yibeny0u; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+	s=arc-20240116; t=1773959439; c=relaxed/simple;
+	bh=GSmh01TI+tUxEiixWhIp+rzE37rCWixe1ShKAvCI1n0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=foTeZJdl3rYvdUun5qg5KLy3j6wcY4FIsvJS4PKu6t4RMiBfn7p1bU9lYsl2HkLwybH7R2W5ysPOSSD1AvefBwvhk2IpTAfQ/TkekN6DF14CYbACIrHH79NvKCM2d/NbMzl7EOhDOc+LS5Xv+JKbDnakH1rlLuzjSB7ryYUpWOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HKNZ/F9r; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1773956349; x=1805492349;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773959438; x=1805495438;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=VBkAAsTwbhuITRRUENQb3hb+oY6xnELFcZfpCbzNHe8=;
-  b=yibeny0u2TGwmSZQPrnEaaMF2d5g/ImSE03/taTqGYnqaB+uwkpgXpvs
-   mAVOoVZQKb+0CxQcfm+nBpijmcPUWJFeqDWlt5E/G0h6yky0EWkExQnTH
-   SsIDohB2dTtDXpP+Pndqj/1CptcKjlidhGCpUHtapqU2t1f+hkq6TkyaU
-   Hp+fSPoPL5Ule/6KEsECfSvf7ts2cHmX3G11lMP4l+6XCNCDaSjZ0gbEf
-   Z/yIcZRhW+/qdDmG2T89gnw1IzHmRZW8K3Lhh5eQjsKNnnaAvuMASruWh
-   BUNUpL1avLURNDZX5QF3mzX5AdG2WZnjYwutZu8bxCkte6FVO6sjqYPaH
-   w==;
-X-CSE-ConnectionGUID: 636hfaD1Q8yRWTBhR6ZOXA==
-X-CSE-MsgGUID: mghhuflPTCa1A3FeMWwUxg==
-X-IronPort-AV: E=Sophos;i="6.23,130,1770620400"; 
-   d="scan'208";a="222199135"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2026 14:39:03 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex4.mchp-main.com (10.10.87.33) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.35; Thu, 19 Mar 2026 14:38:49 -0700
-Received: from bby-cbu-swbuild03.eng.microchip.com (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58 via Frontend Transport; Thu, 19 Mar 2026 14:38:48 -0700
-Date: Thu, 19 Mar 2026 14:38:46 -0700
-From: Charles Perry <charles.perry@microchip.com>
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Charles Perry <charles.perry@microchip.com>, <netdev@vger.kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, "Paolo
- Abeni" <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiner
- Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next 2/2] net: mdio: add a driver for PIC64-HPSC/HX
- MDIO controller
-Message-ID: <abxs5isE0pAPQL9t@bby-cbu-swbuild03.eng.microchip.com>
-References: <20260317184610.315852-1-charles.perry@microchip.com>
- <20260317184610.315852-3-charles.perry@microchip.com>
- <6dc9a358-4140-457f-bdfb-b4fb22aaf88e@lunn.ch>
- <abxN9aGnCYA6s13u@bby-cbu-swbuild03.eng.microchip.com>
- <10f97968-ddb7-4a96-b08e-d4355cf82a79@lunn.ch>
+  bh=GSmh01TI+tUxEiixWhIp+rzE37rCWixe1ShKAvCI1n0=;
+  b=HKNZ/F9roeOV0ScHu520FmT7ZRzErzMq7lSV+zed1nQRZ4b7ofcmy1XU
+   9oAld7tbiVOMIqEiMd3/wgySvOxP5O4s4njubPRzwSC+GwitiMdSpMV7k
+   bRJGkolCkVYQKooV9YCI1Gf2Fh1TfwD0EMrtCHdA6Dzm8GKOs+1v/3n/O
+   kirYP2spDsC1jc5iUu6K3YoDq6z9Bhpiz42F84TrLrYXK/qKNwU+s5tjy
+   BeKnzS1jD52RL9dFZEAZslUXS8iRt7gKaYa+VZrTxrW+Qyjf7/ATqhlhd
+   ZrMC6CABnqMrleUtfh4RUirpQdy2vW8T1BNQsCnxHFW4GT2y/0ZpLxT03
+   Q==;
+X-CSE-ConnectionGUID: chnVPTvDR/qii1UFfYeXvg==
+X-CSE-MsgGUID: apmvh04iSfysOh/3358K8g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="77651152"
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
+   d="scan'208";a="77651152"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2026 15:30:38 -0700
+X-CSE-ConnectionGUID: 6kxmqmWCQDqS4yjIhwQwsw==
+X-CSE-MsgGUID: oUdKaFgURGeW7LGphmxZQQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
+   d="scan'208";a="246129160"
+Received: from lkp-server02.sh.intel.com (HELO a51c2a36b9df) ([10.239.97.151])
+  by fmviesa002.fm.intel.com with ESMTP; 19 Mar 2026 15:30:33 -0700
+Received: from kbuild by a51c2a36b9df with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1w3LsB-000000001jN-24aY;
+	Thu, 19 Mar 2026 22:29:54 +0000
+Date: Fri, 20 Mar 2026 06:28:21 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ahmed Tiba <ahmed.tiba@arm.com>, linux-acpi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-cxl@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Ahmed Tiba <ahmed.tiba@arm.com>, Michael.Zhao2@arm.com,
+	robh@kernel.org, linux-arm-kernel@lists.infradead.org,
+	Dmitry.Lamerov@arm.com, rafael@kernel.org, conor@kernel.org,
+	will@kernel.org, bp@alien8.de, catalin.marinas@arm.com,
+	krzk+dt@kernel.org, linux-doc@vger.kernel.org,
+	mchehab+huawei@kernel.org, tony.luck@intel.com
+Subject: Re: [PATCH v3 10/10] RAS: add firmware-first CPER provider
+Message-ID: <202603200642.s4i4HaHu-lkp@intel.com>
+References: <20260318-topics-ahmtib01-ras_ffh_arm_internal_review-v3-10-48e6a1c249ef@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <10f97968-ddb7-4a96-b08e-d4355cf82a79@lunn.ch>
-X-Spamd-Result: default: False [-0.66 / 15.00];
+In-Reply-To: <20260318-topics-ahmtib01-ras_ffh_arm_internal_review-v3-10-48e6a1c249ef@arm.com>
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[microchip.com,vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk];
-	TAGGED_FROM(0.00)[bounces-278038-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-278039-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[microchip.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[charles.perry@microchip.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.954];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:dkim]
-X-Rspamd-Queue-Id: 2B07F2D2C29
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-0.971];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,huawei];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
+X-Rspamd-Queue-Id: A71422D2FAA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 19, 2026 at 08:53:01PM +0100, Andrew Lunn wrote:
-> > My idea is that if someone wants to use whatever is the hardware default
-> > or what was set by the bootloader, they have an option to do so. For that
-> > reason, I made the clock and the clock-frequency optional. This is
-> > something I can do without if you think it will homogenize better with new
-> > drivers.
-> > 
-> > Now I just realized that I can achieve this by just making the
-> > clock-frequency optional and not the clock.
-> 
-> It gets complicated pretty quickly, if you leave things open.
-> 
-> 802.3 sets a maximum of 2.5Mhz. When this driver takes over the
-> hardware, and there is no hint from device tree what frequency to use,
-> but the hardware is configured to 50Mhz, what should it do? Trust the
-> bootloader? Or assume the bootloader or something else has messed it
-> up? Same goes for 1KHz?
-> 
-> Is the hardware default documented in the datasheet? Does it default
-> to 2.5Mhz?
+Hi Ahmed,
 
-No, it defaults to something rather slow: 610 KHz (assuming the input clock
-is 156.25MHz, divides by 256)
+kernel test robot noticed the following build warnings:
 
-> 
-> >  - mdio-airoha.c: use 2.5MHz if not specified
-> 
-> I personally would do this. This keeps you in line with 802.3. Anybody
-> wanting to do anything else then uses clock-frequency, so the
-> intention is clearly documented.
+[auto build test WARNING on 2d1373e4246da3b58e1df058374ed6b101804e07]
 
-Ok, sounds good, I'll use this policy.
+url:    https://github.com/intel-lab-lkp/linux/commits/Ahmed-Tiba/ACPI-APEI-GHES-share-macros-via-a-private-header/20260319-115432
+base:   2d1373e4246da3b58e1df058374ed6b101804e07
+patch link:    https://lore.kernel.org/r/20260318-topics-ahmtib01-ras_ffh_arm_internal_review-v3-10-48e6a1c249ef%40arm.com
+patch subject: [PATCH v3 10/10] RAS: add firmware-first CPER provider
+config: riscv-randconfig-002-20260320 (https://download.01.org/0day-ci/archive/20260320/202603200642.s4i4HaHu-lkp@intel.com/config)
+compiler: clang version 23.0.0git (https://github.com/llvm/llvm-project 4abb927bacf37f18f6359a41639a6d1b3bffffb5)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260320/202603200642.s4i4HaHu-lkp@intel.com/reproduce)
 
-Thanks,
-Charles
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603200642.s4i4HaHu-lkp@intel.com/
 
+All warnings (new ones prefixed by >>):
+
+   In file included from drivers/acpi/apei/ghes_cper.c:44:
+>> include/acpi/ghes_cper.h:105:30: warning: declaration of 'enum fixed_addresses' will not be visible outside of this function [-Wvisibility]
+     105 |                       u64 *buf_paddr, enum fixed_addresses fixmap_idx);
+         |                                            ^
+   include/acpi/ghes_cper.h:108:24: warning: declaration of 'enum fixed_addresses' will not be visible outside of this function [-Wvisibility]
+     108 |                         u64 buf_paddr, enum fixed_addresses fixmap_idx);
+         |                                             ^
+   include/acpi/ghes_cper.h:111:25: warning: declaration of 'enum fixed_addresses' will not be visible outside of this function [-Wvisibility]
+     111 |                         u64 *buf_paddr, enum fixed_addresses fixmap_idx);
+         |                                              ^
+   include/acpi/ghes_cper.h:115:24: warning: declaration of 'enum fixed_addresses' will not be visible outside of this function [-Wvisibility]
+     115 |                         u64 buf_paddr, enum fixed_addresses fixmap_idx,
+         |                                             ^
+   4 warnings generated.
+
+
+vim +105 include/acpi/ghes_cper.h
+
+7f6d32e88c31e2 Ahmed Tiba 2026-03-18  102  
+7f6d32e88c31e2 Ahmed Tiba 2026-03-18  103  int ghes_read_estatus(struct ghes *ghes,
+7f6d32e88c31e2 Ahmed Tiba 2026-03-18  104  		      struct acpi_hest_generic_status *estatus,
+7f6d32e88c31e2 Ahmed Tiba 2026-03-18 @105  		      u64 *buf_paddr, enum fixed_addresses fixmap_idx);
+7f6d32e88c31e2 Ahmed Tiba 2026-03-18  106  void ghes_clear_estatus(struct ghes *ghes,
+7f6d32e88c31e2 Ahmed Tiba 2026-03-18  107  			struct acpi_hest_generic_status *estatus,
+7f6d32e88c31e2 Ahmed Tiba 2026-03-18  108  			u64 buf_paddr, enum fixed_addresses fixmap_idx);
+7f6d32e88c31e2 Ahmed Tiba 2026-03-18  109  int __ghes_peek_estatus(struct ghes *ghes,
+7f6d32e88c31e2 Ahmed Tiba 2026-03-18  110  			struct acpi_hest_generic_status *estatus,
+7f6d32e88c31e2 Ahmed Tiba 2026-03-18  111  			u64 *buf_paddr, enum fixed_addresses fixmap_idx);
+7f6d32e88c31e2 Ahmed Tiba 2026-03-18  112  int __ghes_check_estatus(struct ghes *ghes,
+7f6d32e88c31e2 Ahmed Tiba 2026-03-18  113  			 struct acpi_hest_generic_status *estatus);
+7f6d32e88c31e2 Ahmed Tiba 2026-03-18  114  int __ghes_read_estatus(struct acpi_hest_generic_status *estatus,
+7f6d32e88c31e2 Ahmed Tiba 2026-03-18  115  			u64 buf_paddr, enum fixed_addresses fixmap_idx,
+7f6d32e88c31e2 Ahmed Tiba 2026-03-18  116  			size_t buf_len);
+dacb62d12abb41 Ahmed Tiba 2026-03-18  117  int ghes_estatus_cached(struct acpi_hest_generic_status *estatus);
+dacb62d12abb41 Ahmed Tiba 2026-03-18  118  void ghes_estatus_cache_add(struct acpi_hest_generic *generic,
+dacb62d12abb41 Ahmed Tiba 2026-03-18  119  			    struct acpi_hest_generic_status *estatus);
+40686d3c8f0a4d Ahmed Tiba 2026-03-18  120  int ghes_register_vendor_record_notifier(struct notifier_block *nb);
+40686d3c8f0a4d Ahmed Tiba 2026-03-18  121  void ghes_unregister_vendor_record_notifier(struct notifier_block *nb);
+648c11f76ec605 Ahmed Tiba 2026-03-18  122  void ghes_defer_non_standard_event(struct acpi_hest_generic_data *gdata,
+648c11f76ec605 Ahmed Tiba 2026-03-18  123  				   int sev);
+0eb637ae58ed14 Ahmed Tiba 2026-03-18  124  int ghes_severity(int severity);
+0eb637ae58ed14 Ahmed Tiba 2026-03-18  125  bool ghes_handle_memory_failure(struct acpi_hest_generic_data *gdata,
+0eb637ae58ed14 Ahmed Tiba 2026-03-18  126  				int sev, bool sync);
+0eb637ae58ed14 Ahmed Tiba 2026-03-18  127  bool ghes_handle_arm_hw_error(struct acpi_hest_generic_data *gdata,
+0eb637ae58ed14 Ahmed Tiba 2026-03-18  128  			      int sev, bool sync);
+0eb637ae58ed14 Ahmed Tiba 2026-03-18  129  void ghes_handle_aer(struct acpi_hest_generic_data *gdata);
+0eb637ae58ed14 Ahmed Tiba 2026-03-18  130  void ghes_log_hwerr(int sev, guid_t *sec_type);
+0eb637ae58ed14 Ahmed Tiba 2026-03-18  131  void __ghes_print_estatus(const char *pfx,
+0eb637ae58ed14 Ahmed Tiba 2026-03-18  132  			  const struct acpi_hest_generic *generic,
+0eb637ae58ed14 Ahmed Tiba 2026-03-18  133  			  const struct acpi_hest_generic_status *estatus);
+0eb637ae58ed14 Ahmed Tiba 2026-03-18  134  int ghes_print_estatus(const char *pfx,
+0eb637ae58ed14 Ahmed Tiba 2026-03-18  135  		       const struct acpi_hest_generic *generic,
+0eb637ae58ed14 Ahmed Tiba 2026-03-18  136  		       const struct acpi_hest_generic_status *estatus);
+0eb637ae58ed14 Ahmed Tiba 2026-03-18  137  void ghes_cper_handle_status(struct device *dev,
+0eb637ae58ed14 Ahmed Tiba 2026-03-18  138  			     const struct acpi_hest_generic *generic,
+0eb637ae58ed14 Ahmed Tiba 2026-03-18  139  			     const struct acpi_hest_generic_status *estatus,
+0eb637ae58ed14 Ahmed Tiba 2026-03-18  140  			     bool sync);
+baccdf38fe1b81 Ahmed Tiba 2026-03-18  141  void cxl_cper_post_prot_err(struct cxl_cper_sec_prot_err *prot_err,
+baccdf38fe1b81 Ahmed Tiba 2026-03-18  142  			    int severity);
+baccdf38fe1b81 Ahmed Tiba 2026-03-18  143  int cxl_cper_register_prot_err_work(struct work_struct *work);
+baccdf38fe1b81 Ahmed Tiba 2026-03-18  144  int cxl_cper_unregister_prot_err_work(struct work_struct *work);
+baccdf38fe1b81 Ahmed Tiba 2026-03-18  145  int cxl_cper_prot_err_kfifo_get(struct cxl_cper_prot_err_work_data *wd);
+baccdf38fe1b81 Ahmed Tiba 2026-03-18  146  void cxl_cper_post_event(enum cxl_event_type event_type,
+baccdf38fe1b81 Ahmed Tiba 2026-03-18  147  			 struct cxl_cper_event_rec *rec);
+baccdf38fe1b81 Ahmed Tiba 2026-03-18  148  int cxl_cper_register_work(struct work_struct *work);
+baccdf38fe1b81 Ahmed Tiba 2026-03-18  149  int cxl_cper_unregister_work(struct work_struct *work);
+baccdf38fe1b81 Ahmed Tiba 2026-03-18  150  int cxl_cper_kfifo_get(struct cxl_cper_work_data *wd);
+7f6d32e88c31e2 Ahmed Tiba 2026-03-18  151  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
