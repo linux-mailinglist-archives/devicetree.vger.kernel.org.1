@@ -1,169 +1,241 @@
-Return-Path: <devicetree+bounces-277966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277967-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6OYjIVs8vGlxvgIAu9opvQ
-	(envelope-from <devicetree+bounces-277966-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:11:39 +0100
+	id qN20JA49vGlxvgIAu9opvQ
+	(envelope-from <devicetree+bounces-277967-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:14:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C6992D09EF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:11:39 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id AED1A2D0AA3
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:14:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7957C3006440
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:11:38 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5C806302D680
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:13:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52339396B73;
-	Thu, 19 Mar 2026 18:11:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8E173F1640;
+	Thu, 19 Mar 2026 18:13:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pYRSsWBS"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="cj4mfCsM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f100.google.com (mail-ot1-f100.google.com [209.85.210.100])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D89335CB89;
-	Thu, 19 Mar 2026 18:11:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32620372EF9
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 18:13:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.100
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773943894; cv=none; b=tGNpll3IQ93K3GBmE9CzSlJGhvdOEne4nKqPzANi8tqN/nZ4iyBnPa5Bi9Xtx7KypvMmZT4HrZ72eijFla2ThODHpoM+/vH9a1NE2EpbnMEEBwiYDgUI1xHV5rKQcZDYs35Dt6K4FXQTMyIv9y6URH5Ru/y6GYxOP8zqUOT5OxA=
+	t=1773943989; cv=none; b=AfM27xoWlyo1Swse63Lb2a5Bbgbv+OsHHD9PFPzq8hXJQBuCBNdzNtPdOQHL1k1m4/dwRDsQchITWewAX2AvOLtfkvGcPhwivYTMKk0+a2A7IPbJAJejXSQlOfolwap1hHx1HOJ7O8z1Yq4ueeULgOaBEYIrKASEWgTIbfIQWzE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773943894; c=relaxed/simple;
-	bh=PEuTwepKNSXXSpxI3aWzNMV/PyWqgVwaIgAdlvvTHwU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eXXoZaND7EuduFZkmpfXQ2D2QJfhcU5WkCLSE+c8HfUy4CXtMqYY0vEfj/nHZvo1MyBvxtDfHyr86CXijefIeB7nd6trOv2e0sSHQEqFLhWmQaojRwt6wfqPOiop6AxhoJLF9pAHIv9uLS0t5wsCTHQu6D0ynzgNlHhLtlNKDVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pYRSsWBS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6524C19424;
-	Thu, 19 Mar 2026 18:11:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773943893;
-	bh=PEuTwepKNSXXSpxI3aWzNMV/PyWqgVwaIgAdlvvTHwU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pYRSsWBSzU0uWsM51ZdWbRkCPJJcqcoV49iXasGPhokhuAR8gkh6VLgsogt/4OeY1
-	 7G96hOvs0VuyGPPdJCVs4MOKonwkL+ZJPMlfGcnFkmJw638KTqLjGUaEf0lEakhglK
-	 nSo3z57eoykB1iOIX/b4SpVSTA83Lest612qAsP0fRDK12XTmKvfKO72sYNaM7Z1UN
-	 IEIpc2gi1oNlzadzkAPKBpfuD4HaBp7k1wVSplQY1xCgLopN/kd/fucbgbCQneBC6k
-	 5H9Jyu/rs4qwzUR905oYT3xWEVscWeHn8vszq0GNFkPOUo3QxVp3UBr9NHpWJRlHyz
-	 Xb16k30UHcOfg==
-Date: Thu, 19 Mar 2026 18:11:26 +0000
-From: Mark Brown <broonie@kernel.org>
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	"magnus.damm" <magnus.damm@gmail.com>,
-	Thomas Gleixner <tglx@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	"Claudiu.Beznea" <claudiu.beznea@tuxon.dev>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	John Madieu <john.madieu@gmail.com>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>
-Subject: Re: [PATCH 00/22] ASoC: rsnd: Add audio support for the Renesas
- RZ/G3E SoC
-Message-ID: <c5ecd391-5a58-411b-8a58-03e6fdc0aa5e@sirena.org.uk>
-References: <20260319155334.51278-1-john.madieu.xa@bp.renesas.com>
- <b2347c14-7f29-4453-938b-8287f45aa5fd@sirena.org.uk>
- <TY6PR01MB1737704E431A765933FA6D097FF4FA@TY6PR01MB17377.jpnprd01.prod.outlook.com>
+	s=arc-20240116; t=1773943989; c=relaxed/simple;
+	bh=TNd8KsiBfNAW4PY5mSr5UDbgWlxUXbASdNC041mAE7U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tUZAwrQq2x9QBeru/z1b/O/RkKKA+EsFxHytUmMmJ5VKWd/KDh8NJH9pSvtOaAhgz5UpxBQiWnB7YX4lQhElSpC9s7em7bl6fP6pS3RxZsFkx4G2xCNdhJbpeZ+mLd5djqMgUuSOoPr8XnefoMsNOeRgzarnpwHCjtZWUuIqeQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=cj4mfCsM; arc=none smtp.client-ip=209.85.210.100
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-ot1-f100.google.com with SMTP id 46e09a7af769-7d750eeaec3so591981a34.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 11:13:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773943987; x=1774548787;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:dkim-signature:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=dgB/oAPv2Ng5VSm6Q6qVgOpNaKbrs+RRk8Mf2PFJJLc=;
+        b=HZ9RFgNrKZ1CKDFun1vKcjHgurzlW4VbTuIfcibwphC1b/RdVbdciO5ES+X5wEoIom
+         5F84v7yAH+jGUpZEGVSDrGNINMVAa4ZLhozVJdPOwjKTpFH9ZZtMBU70uGKnJ0+SVpM6
+         ihz39ioOoY5gxA0LGxiI58nOPt/BPvqAnh9NCNqeo3CGaCk37R+2TuTPvTU76s7UtuXd
+         dd4pk1iXSWxYou5IRB2jX9Q/dUqpIOoLPO7bAETneTNCEfPLb+cKgCU8ZQcRj+6e1O3g
+         En9xLp0EMgeJP+V4NyQimYP6l4CAVfs9bzczwPq4Ww+lIGh8VqbAPf1iYRA94f2Jcatc
+         HSng==
+X-Gm-Message-State: AOJu0YwBJzSxKcuwUkZPFLPOg6oQswP+XYsWLCA2g6G4ynf6KjJ3M24n
+	o0MJ1LXSB6kPlEEGefQuvJ2dAUY3UfagKmQtAGo51ZRzzHFd7Jsn/QDsrE6fqinfwFK8Y0xWVXv
+	pIvgoYGBmYOnTdKABd8zBsoF4lnhb4Sw0p3bXX7uKBmA95VocSQUsfCu+5d5QM0cs/6iaG6IYDB
+	j93xA7UCIZ29iKxv/6kcHY1182w8dA4M/pqI86tniQsM/SVQPoA6cuBW13TRoBqtkPdASZ/A85H
+	ems4T7BS7nwCEfFgrkomg==
+X-Gm-Gg: ATEYQzyzc0gHRqm0nzJemoIWgxiDt5hrOSw8p+x0qnKfyU+9Dr3b9eQIgi3HMjYmE6Z
+	66Ye9aiSZ6OVNd1hr/RbDs491v9zYHoQXvJVFApLNC/ohsdudKsa5cbzx+N4LVyCV6tdu+y3dPx
+	VvaYm70KyP9JSazQI123QPwjgQ8lkQ7v0oNRLcdI3tPdXjhGq3vunmRl2o6wzYVPxG5bkTIKTNW
+	nyRbxW+zCP72iO4kooQ42hP7wIvuAjfZMJROadN7kzprHacNvYsxFklq3qxd4U0o8ucazn6D3tT
+	mW3LrS8ytxpzGdPjgdEiiEQkzWTrzyMzxfABTFMb5IpxPe0gnUrc+H576n3TATjbk5DhJeTVLha
+	mUNJlb7VsVjIF5fTRGU0j5K2ABbLbex72JK8kBaavIl+XRbvRWdyKSFqFkTpUI1bdNyf0D95pLw
+	LBUTu73NffD71shrquASrA+iY2Yrh6w6YcTgXwUnxUn+Ew97KgX1oDo7J4AdTtJXEg
+X-Received: by 2002:a05:6820:4b86:b0:67b:f43f:dd3d with SMTP id 006d021491bc7-67c22ed1412mr308528eaf.28.1773943986937;
+        Thu, 19 Mar 2026 11:13:06 -0700 (PDT)
+Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-118.dlp.protect.broadcom.com. [144.49.247.118])
+        by smtp-relay.gmail.com with ESMTPS id 006d021491bc7-67c0d796ba9sm504654eaf.0.2026.03.19.11.13.05
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 19 Mar 2026 11:13:06 -0700 (PDT)
+X-Relaying-Domain: broadcom.com
+X-CFilter-Loop: Reflected
+Received: by mail-dy1-f197.google.com with SMTP id 5a478bee46e88-2c0f6593ef5so880234eec.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 11:13:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1773943985; x=1774548785; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=dgB/oAPv2Ng5VSm6Q6qVgOpNaKbrs+RRk8Mf2PFJJLc=;
+        b=cj4mfCsMnZcxs2btvO+5OBWwr4i4kyF2dfw0P9/mDgru7tjhHA8j4ffTG9O3HweDl8
+         sTA5f0dHhO+cCVkYxMn2F51nJyDXWMWIQiT2s9P12tQFY1Hz8Y9H/iV8weucSnPMzuKk
+         bmwaVcMx007B8EpwrgFgeH0OAULUf22TMluB8=
+X-Received: by 2002:a05:7300:f68c:b0:2c0:d233:d7c0 with SMTP id 5a478bee46e88-2c1096d532dmr198792eec.21.1773943984516;
+        Thu, 19 Mar 2026 11:13:04 -0700 (PDT)
+X-Received: by 2002:a05:7300:f68c:b0:2c0:d233:d7c0 with SMTP id 5a478bee46e88-2c1096d532dmr198770eec.21.1773943983785;
+        Thu, 19 Mar 2026 11:13:03 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2c0e536894bsm9978899eec.5.2026.03.19.11.13.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Mar 2026 11:13:03 -0700 (PDT)
+Message-ID: <4d4a244d-f179-4e24-b8ff-b3f77bc83f8d@broadcom.com>
+Date: Thu, 19 Mar 2026 11:13:01 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="fMzgYkzZqeqbY0hA"
-Content-Disposition: inline
-In-Reply-To: <TY6PR01MB1737704E431A765933FA6D097FF4FA@TY6PR01MB17377.jpnprd01.prod.outlook.com>
-X-Cookie: Given my druthers, I'd druther not.
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] ARM: dts: broadcom: bcm2835-rpi: Move the firmware
+ node down 1 level
+To: Marek Szyprowski <m.szyprowski@samsung.com>,
+ "Rob Herring (Arm)" <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>
+Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260114015810.701076-2-robh@kernel.org>
+ <CGME20260114182227eucas1p16eee8f1fbf41f998214b89517793bb0c@eucas1p1.samsung.com>
+ <a9a202c1-048f-473e-b8f4-6f0550bdba2c@broadcom.com>
+ <86bce6c0-dbaf-4508-9f40-ff209c85a76d@samsung.com>
+Content-Language: en-US, fr-FR
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <86bce6c0-dbaf-4508-9f40-ff209c85a76d@samsung.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[broadcom.com,reject];
+	R_DKIM_ALLOW(-0.20)[broadcom.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277966-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[broadcom.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,samsung.com:email,broadcom.com:dkim,broadcom.com:mid];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[glider.be,renesas.com,kernel.org,baylibre.com,gmail.com,perex.cz,suse.com,pengutronix.de,tuxon.dev,bp.renesas.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277967-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.953];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sirena.org.uk:mid]
-X-Rspamd-Queue-Id: 2C6992D09EF
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[florian.fainelli@broadcom.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.996];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: AED1A2D0AA3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On 3/19/26 04:19, Marek Szyprowski wrote:
+> On 14.01.2026 19:22, Florian Fainelli wrote:
+>> On 1/13/2026 5:58 PM, Rob Herring (Arm) wrote:
+>>> Commit 32eea985999b ("ARM: dts: broadcom: bcm2835-rpi: Move non
+>>> simple-bus nodes to root level") moved the firmware nodes into the
+>>> standard /firmware. However, /firmware is intended to be just a
+>>> container for firmware nodes as it is possible to have multiple types of
+>>> firmware (e.g. SCMI, OP-TEE, etc.). Move the RPi firmware down a level.
+>>>
+>>> Fixes: 32eea985999b ("ARM: dts: broadcom: bcm2835-rpi: Move non
+>>> simple-bus nodes to root level")
+>>> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
+>>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+>>> ---
+>>> This is only half the fix. Unfortunately, a kernel change[1] is also
+>>> needed to make this all work. I do plan for that to go to stable. I'll
+>>> leave it up to the Broadcom maintainers whether it's preferred to revert
+>>> the fixed patches or apply these fixes. A 3rd option is revert for now
+>>> and apply these DT changes some time later to give some time for stable
+>>> updates.
+>>
+>> Let's wait until your fix for the /firmware match table gets applied
+>> and then I will pick up your two changes.
+> 
+> 
+> Florian: I've noticed that the $subject patch has been applied to
+> yesterday's linux-next as commit 0603d8af97ff, but the code applied in
+> Your tree differs from what has been posted in this thread. See:
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi?h=next-20260318&id=0603d8af97fff097daa118faf04d9f439b2227ec
+> 
+> https://lore.kernel.org/all/20260114015810.701076-2-robh@kernel.org/
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi?h=next-20260318
+> 
+> 
+> The "firmware" node in Your tree is under "soc" node, but without adding
+> a "compatible = simple-mfd;" property there it won't be populated, what
+> breaks operation of all drivers requiring the firmware driver(s).
 
---fMzgYkzZqeqbY0hA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Yes I see what happened here, Rob's patch is dependent upon 32eea985999b 
+which I had initially applied then dropped, and then I did not (re)apply 
+it again as a prerequisite for that one we are replying to and I 
+incorrectly resolved the conflict as a result. It should have been clear 
+that no conflict resolution should have been necessary, *sigh*.
 
-On Thu, Mar 19, 2026 at 05:45:05PM +0000, John Madieu wrote:
+This is now fixed and pushed out, sorry about that, definitively a 
+sloppy move here.
 
-> > Are there any non-runtime dependencies between the various patches here?
-> > It's a fairly large series touching multiple subsystems, we'll need to
-> > work out how it gets merged.  It looks to be mainly ASoC but perhaps the
-> > other subsystem changes are independent and can just go via their tree?
+Will let that simmer in linux-next for a day and then sent out the pull 
+requests.
 
-> The series contains the full chunk of patches for audio IP to work, so they
-> depend on each other for runtime to work. However, patches will go through
-> different trees and will eventually meet in linux-next or a release.
-
-> In addition to that, DMA (patch 06/22) has hard dependency on IRQ (path 05/22).
-
-> The merge strategy could be:
-
->  * Patch 01, 03/22 => Clock
->  * Patches 05-06 /22 => DMA
->  * Patches 07-17/22 => ASoC
->  * Patches 02, 18-22/22 => DT
-
-> Next time I'll take care of clarifying this in cover letter.
-
-Please just split out the things that can go separately to their
-subsystems, it'll make everything clearer.
-
---fMzgYkzZqeqbY0hA
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmm8PE0ACgkQJNaLcl1U
-h9BZogf/dju696vjbtY2d6yxFZwNxwRKoyCm4LzmbNjYFofMnbkomP5pL1jKzT5I
-bnBJiohxLx580f/u8Cjl7ZJzROu3oLTtjsUk9WSJ7Mje1d/mFoAAwAJhStS0bEit
-us/yCS8YWqKyozxWxOrNkLrH8SZddZ5bzkRu1y7pbHpbmYqZTDSK5FWQlhMoIY1y
-IIPEo6hQsGRjSKNsKoxs+Oesy88U47DvVyjSto3z3Ahakm87EvfZo5DsSoGJy52A
-qQXLil2VJUhpVWXezAhF1tSS+hFUEW4xC5K+1FZ9xV5E/3acIyrf0INEgsTX+fu0
-g3Y6IAB0ZWoo528O9j6n2cjioW7rKQ==
-=eogU
------END PGP SIGNATURE-----
-
---fMzgYkzZqeqbY0hA--
+Thanks again Marek for catching this, my test rack does not currently 
+have a working RPi system, something to address.
+-- 
+Florian
 
