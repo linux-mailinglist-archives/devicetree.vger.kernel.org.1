@@ -1,115 +1,208 @@
-Return-Path: <devicetree+bounces-277599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277600-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2PqHJ6qtu2k8mgIAu9opvQ
-	(envelope-from <devicetree+bounces-277599-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:02:50 +0100
+	id UJpiF5iuu2k8mgIAu9opvQ
+	(envelope-from <devicetree+bounces-277600-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:06:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B427C2C79CD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:02:49 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6F922C7A56
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:06:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CFC0630089AB
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 08:02:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 44E4B313A787
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 08:04:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 330BD3A0E80;
-	Thu, 19 Mar 2026 08:02:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8974A3A641D;
+	Thu, 19 Mar 2026 08:04:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="kNnY/Y50"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="a8OcSNGB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 446A930EF97;
-	Thu, 19 Mar 2026 08:02:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B344358362;
+	Thu, 19 Mar 2026 08:04:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773907365; cv=none; b=JO9Zk3HF6BnAvlXRxh3Lk0zHzShHYZ74QHse7ejShBCoStaisCS/rRy3CvgRv4Lzei+ExU/Hbvj5A1wuelDGJj115rpuKWKWu2bQ7iy9mmwpHMvCyEMjkQjvmmMuAg2Bx/yYCkhmWnt8W+8cbJyI3l+qbrD3E0Zt9Te5RdlXAkg=
+	t=1773907451; cv=none; b=UGZTOSIEdhlVx/+OWfiR4NsN0cpJrMNlR3zscaZ8HwlE5cXT3wcVF3QaM7+iHkda+B0ST+D7qac6WLQPygY9YXq5sNTPEncFy2/IxYWzh+feDLIQDENb0EjkMXPYq063EzYWI1T9+n/v9O79xZxyd54FM7vXXLUspkmAc+eeNeE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773907365; c=relaxed/simple;
-	bh=h0yD8IH+wK2AwJtBvP6hcdTAqqLEEeROY22oW47UUj8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kRI/HZkr+9vmsgpksCrD7Zxr7nO1mFv3cbTBQRydh+ockLZfKoWptrTlZeac6D4NKZPhPqbJiMlcXa4nwS7/M1oxL32jmnQ6iUUUcL6lVGOYekmOwKAU0vzUrJo2epFQmA+2MjIhAqMhDgExuroZ1p1k9pwA816v2X8Z6qG+GZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=kNnY/Y50; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id A93231F94A;
-	Thu, 19 Mar 2026 09:02:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1773907353;
-	bh=h0yD8IH+wK2AwJtBvP6hcdTAqqLEEeROY22oW47UUj8=; h=From:To:Subject;
-	b=kNnY/Y50A8rFL63mhjwBf0svsePueD2Fg8iR7BnGe8XFetqWnNHnWwPRgLEsDvY/F
-	 eb5H7eA6rmjKwnbXeJ0XFYkYQSlZvmv9laXtzMZdsWDMplGtaOAhdJHhcOVL3Qs6XY
-	 ANdM0D6Cs38oqT1SDrv8kx17rQkHwTLIixm9XzQvT+8X/ycBF1exWilnMQoAhwZCsc
-	 KHRvkAdWbgrP0vC64ZlgaSndfYHrcFYRBLKU7dvKE7/79sSuekt8JQahOP0bRI5yzP
-	 eMr7IR0MVjgc29t1Sli7a3aoXRuJW4n9JDHNNsmO2UquzpFTuN0K4rU2YVsR1i00KO
-	 I+0/6ehcEILCw==
-Date: Thu, 19 Mar 2026 09:02:28 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Judith Mendez <jm@ti.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Moteen Shah <m-shah@ti.com>,
-	Andrew Davis <afd@ti.com>
-Subject: Re: [PATCH v2 0/3] Fix MMC pin pull configurations
-Message-ID: <20260319080228.GA6079@francesco-nb>
-References: <20260223233731.2690472-1-jm@ti.com>
+	s=arc-20240116; t=1773907451; c=relaxed/simple;
+	bh=oddScRKYzaeDQ9pGWNCQ6oWoxk9xdprHLqYG2eBVmlQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dYDOshDJt3CCTY2OBLQeEOuF/7QnRMXMXEmg/PaXe3BXiL3fh40n4dlzwbSUGni6ya5lHVnA1TSmexDwwCMti7LIZz7RjH2P/auaBhJ9RPkdkeYgUchJm9j8gp4wL+5p0gAFypVMXbyrHy9YaWAXs3hwAeXlUDw15Lr/1kedjPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=a8OcSNGB; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1773907448;
+	bh=oddScRKYzaeDQ9pGWNCQ6oWoxk9xdprHLqYG2eBVmlQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=a8OcSNGBcqdOsgpeikZ6TXswpBrTS9I3QHnKk4mNa0ibBWD068edwm47HjayT4h9W
+	 kxWXUEBdKKC3YD7ccz827IEJHKzS+rNgyqGqeYACcKdFDPNLbot5QEmfSaYqxiNZef
+	 Z7Me4f46esE/NOqrpk5CnbXQb6wR7RTn8E0qZq7mq9DoIfsAk01VzTJo2FSBq8ZZGc
+	 LsHtwOI8bBu5RjlzRVl7IoJAvLTZ2O4HTJyXlwwqo8OT6fexWio6egKG2laLdeJ0RM
+	 cfmnbWJPA03dE3djLFFy3BHb+pBsujxk8g5X/ZGCXG90x3S3PipBHzGxjnmySWmJEG
+	 PGL7qpyblQgng==
+Received: from [10.40.0.100] (185-67-175-126.lampert.tv [185.67.175.126])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: mriesch)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 79FE417E0EB4;
+	Thu, 19 Mar 2026 09:04:07 +0100 (CET)
+Message-ID: <d9a9be92-7439-4899-8be2-adf7f0490790@collabora.com>
+Date: Thu, 19 Mar 2026 09:04:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260223233731.2690472-1-jm@ti.com>
-X-Spamd-Result: default: False [-1.66 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/9] media: dt-bindings: add rockchip rk3588 vicap
+To: Conor Dooley <conor@kernel.org>
+Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Jagan Teki <jagan@amarulasolutions.com>,
+ =?UTF-8?B?0JrRg9C30L3QtdGG0L7QsiDQnNC40YXQsNC40Ls=?=
+ <mai.kuznetsov.misha@gmail.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Collabora Kernel Team <kernel@collabora.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250430-rk3588-vicap-v2-0-77de5ee9048e@collabora.com>
+ <20250430-rk3588-vicap-v2-2-77de5ee9048e@collabora.com>
+ <20260318-mumbo-lumber-b550932a5423@spud>
+Content-Language: en-US
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <20260318-mumbo-lumber-b550932a5423@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[dolcini.it,none];
-	R_DKIM_ALLOW(-0.20)[dolcini.it:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-277600-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277599-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_CC(0.00)[linux.intel.com,ideasonboard.com,kernel.org,sntech.de,rock-chips.com,amarulasolutions.com,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[francesco@dolcini.it,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[dolcini.it:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,dolcini.it:dkim]
-X-Rspamd-Queue-Id: B427C2C79CD
+	NEURAL_HAM(-0.00)[-0.990];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[michael.riesch@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:dkim,collabora.com:mid]
+X-Rspamd-Queue-Id: B6F922C7A56
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello Judith,
+Hi Conor,
 
-On Mon, Feb 23, 2026 at 05:37:28PM -0600, Judith Mendez wrote:
-> This series corrects MMC pin pull-up/pull-down configurations across
-> TI AM62L EVM, AM62P SK, & AM62 LP SK boards to properly match their
-> hardware design.
+On 3/18/26 18:52, Conor Dooley wrote:
+> [...]
+>>  
+>>    resets:
+>> -    items:
+>> -      - description: ARST
+>> -      - description: HRST
+>> -      - description: DRST
+>> -      - description: PRST
+>> -      - description: IRST
+>> +    minItems: 5
+>> +    maxItems: 9
+>>  
+>>    reset-names:
+>> -    items:
+>> -      - const: arst
+>> -      - const: hrst
+>> -      - const: drst
+>> -      - const: prst
+>> -      - const: irst
+>> +    minItems: 5
+>> +    maxItems: 9
+> 
+>> +allOf:
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: rockchip,rk3568-vicap
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          minItems: 4
+>> +          maxItems: 4
+> 
+> Anything here that repeats the outermost constraint should be dropped,
+> so no minItems here..
 
-On AM62P the first mmc controller has no pinctrl, how is the situation
-on this specific interface?
+I already took a look at similar VICAPs (e.g., R3576) that will have
+more clocks. This is way I left this one in here.
 
-Francesco
+But I guess I will remove it and add it again when e.g. RK3576 VICAP
+support is added.
 
+>> [...]
+> 
+>> +
+>> +        reset-names:
+>> +          items:
+>> +            - const: arst
+>> +            - const: hrst
+>> +            - const: drst
+>> +            - const: irst0
+> 
+> Were you willing to reuse "irst" for the 0th irst, all the repetition
+> wouldn't be needed. I assume it represents the reset for the port at
+> address 0, so it wouldn't even be a different meaning on each device.
+
+Not quite I think. "{a,h,d}rst" are the same on all variants, then there
+is "prst" and "irst" on RK3568 and "irst{0-5}" on RK3588. So I thought
+that writing it out explicitly for each variant is more readable (even
+though it may need a few characters more).
+
+OK?
+
+I'll try to send out a new version later today.
+
+Best regards,
+Michael
+
+> 
+>> +            - const: irst1
+>> +            - const: irst2
+>> +            - const: irst3
+>> +            - const: irst4
+>> +            - const: irst5
+>> +
+>>  additionalProperties: false
+>>  
+>>  examples:
+>>
+>> -- 
+>> 2.39.5
+>>
+>>
 
 
