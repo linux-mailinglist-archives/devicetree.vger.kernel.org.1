@@ -1,191 +1,218 @@
-Return-Path: <devicetree+bounces-277681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277682-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CC5NCU/Mu2mXogIAu9opvQ
-	(envelope-from <devicetree+bounces-277681-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:13:35 +0100
+	id +A3qAHrMu2leoQIAu9opvQ
+	(envelope-from <devicetree+bounces-277682-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:14:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66B032C94DC
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:13:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D0CD2C9511
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:14:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0E0D430293D6
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:09:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A9A3E3011BD0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:11:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DC9C370D51;
-	Thu, 19 Mar 2026 10:09:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26B583AD536;
+	Thu, 19 Mar 2026 10:11:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="JB/zsiTo"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Qq1aFvM5";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Z67Vvhda"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ultrarisc.com (unknown [218.76.62.146])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F0A1379999;
-	Thu, 19 Mar 2026 10:09:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=218.76.62.146
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05AF6377EC6
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 10:11:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773914991; cv=none; b=BikOzasHSftnOUqLe5mF90FZvgakqVBgy2jl1voZEaTH1C6SlZbBlESWuN8V00ReYdXB0n5jSry4smS4mrc7isvF7EAvYPy1FvjgmzAaXe+bkKwfQmEJgTYnyy1wdRtPaBihScVMR9zDTSt4rWrtJEBkdcTZ2fxGIbNcGk5IwqY=
+	t=1773915087; cv=none; b=td5aF9r3m0g2q+ecJucai2uOwN7iutET7NllBeAXWWIn22FiuEqX7/0w+OZqxvw7EZjYkyxFkc+M+tGMWw3OKC7CrMyigrP8U4V0HFml9Jh084yZD3PhJ5TJTaLvw1k/ShYCnIa9vQvQOrZwlvfEZkpeUvhWFb1SwBuOAA+OfPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773914991; c=relaxed/simple;
-	bh=FDsasxUAcM2aks4WAPlnuBI/DJ39aq2QyDS6b0IaW0c=;
-	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
-	 References:Date:Message-Id; b=gTDPKf5I+K4mI344ydAY/Ltd5FNMAYEyeE3WxClkUo8pbqBFNUAKaUb+FKWO2P4N1PJEjhyEo3XLwk8LavFQLvZCmoyz2Z+WqGx1HKZwAbeOm8v2jeZ5OG95gm7zrravT4bRgjzdqGNbQp4iyZOTkBAlfoVrXyVGAEAnycuT4v0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=pass smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=JB/zsiTo; arc=none smtp.client-ip=218.76.62.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ultrarisc.com
+	s=arc-20240116; t=1773915087; c=relaxed/simple;
+	bh=XOZUY27ypCNr0S+rMw9sTrGvwCbDrhILYX6co7i+zrw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fRzP1svYq9s7hH3Vj7pvX538hTwE+ihzhbanZMwSMubd/xkifOTokYIPzGPs/GqzCk7bsmqKmuG5oQKTzQxlC5in+IjsZFtCKIK0W8RQC1XvQFnuCRYZnLwjNXHRJAA0pZ5sekZdtksABoL0iOsnyLBeS5JOnb0Zk1R3xcBDoqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Qq1aFvM5; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Z67Vvhda; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62J73u7r1770587
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 10:11:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	vEUcGY3f4Gqjgww8Sex94zRcZTYG2w9tuzC3vEsk9pU=; b=Qq1aFvM514N/5omp
+	MeOX0WZX7jktngiWpDBBdMivzRD/jxJFe71DEaEnlXDmVqdlJPoRqMcCizM8keOX
+	iDRqbR6dS/l7EkAfdVTV2Di6x7ZZjXraKHTvhLJV71Hu9gdKv1kSyoYL8EX6+dJV
+	PEBuL9+BbtSdWd2iHtN9rV+24hKz3BDbALbRijKL/WyMMhK1HOwsGdBujL0nCaSz
+	5pjyMy2uCLR/IjwO5cUyYV8PvTNuleaAomGErNrXGMwQ5I3fFQefjm8iL8cttFgB
+	CnSH0dPeoFr1tM8FFF9wMGQsHI32UmUZsvj3UsFZzOOc4zEuvnYpKUhaYMeIc8uC
+	glXuRA==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cyy75u256-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 10:11:25 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-895375da74bso7578996d6.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 03:11:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ultrarisc.com; s=dkim; h=Received:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Subject:From:To:Cc:In-Reply-To:
-	References:Date:Message-Id; bh=pl6+j3qZ6SPny0RsBwu35gcI0En9PkQfw
-	3D0Ql0HKkA=; b=JB/zsiToGsDec65b0by5RGbK2X0wDr3EoNxR7MNjJWWpJwH4u
-	gTXaZSuUDYbyoH8wckvl7kAxSACrU/OaCEp+wU04Gu0Vh2hEQJqIxIRVDZilH8Zy
-	eY6z4UlCdlFFJ6KqPqlg0c5QiqCKaAVPrwW5G0PaPRIzEzxSog35/2K5t4=
-Received: from [127.0.0.1] (unknown [192.168.100.1])
-	by localhost.localdomain (Coremail) with SMTP id AQAAfwAHtSSRy7tpApIBAA--.1409S2;
-	Thu, 19 Mar 2026 18:10:25 +0800 (CST)
+        d=oss.qualcomm.com; s=google; t=1773915084; x=1774519884; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vEUcGY3f4Gqjgww8Sex94zRcZTYG2w9tuzC3vEsk9pU=;
+        b=Z67VvhdasgU/aROjG1wgxkUJEBf2Ylc+nAr2Fh7sFNbQ28QbwIg7BxMztBCCKvklfU
+         JftSF8ID1lYRvZBPLL/gmrKLKxrDb6Pkx4YznobWaoUKE8mmW02ewbjrmwWOa1gO8IMt
+         qhBLaXlvdMLJwwTa6aFjR0VpfRaTyxvHHVw/hAKQTEPXmuuVG1QqkTkuBRqTDTItneQy
+         3aAklQOwVgRnQaI/WR0YvEPMelyg9YzuXxwLKHfYz2AlDQCp2CK8N/j9/oe4okffasDB
+         /J+hGcroDOs5JdSeIB/hk6sAXsZzeUqHePRlzZG34CM7SHLNfRjL+M8qkiJEgzKRXs41
+         7Npw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773915084; x=1774519884;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vEUcGY3f4Gqjgww8Sex94zRcZTYG2w9tuzC3vEsk9pU=;
+        b=JBF9ybu8vmXzzCHFLEbxG2QMqb+D07dtUqS5BvRPH+7v5rh9F9RlD2hy/DRV0QnekI
+         g3+V4XD7O0K6E714WH3Ms5XdWNnlpKeGVmfRfrDG+LTi9wk7i9yeyZ36LRPMZ8swSwr/
+         0lBPzpdeTDItTQqXQ9eLrMNB1ljgj5o6dWSulQXutGYkVGjZzKq6BlvrB7TEAMLRRR2h
+         jfLO6ZivpoWW6UOrsbypzPhKv4q/jQwxuBnYNOD/aWVk9kIVODzg93vQjOwDT3uMUvbO
+         LaXh9sa7iGJOJH02kcir1FwezwhecU2B/dElmhsDLc6H5jV9KR7LLGwWXggG7Luymb0K
+         Vceg==
+X-Forwarded-Encrypted: i=1; AJvYcCVrhy4dIUigCEN2Iu2zq9UG1nHr/QLtAWpKTYt2+OoWzG19GQjUGi8Gj0x891R/zN8kJoZSqjoXRsWx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6zedr+wGIEpI41GYkuzeGAvhGU/kSqHW7ITpYR/oxV1xFvSPa
+	jrGKJpi18Jhvn3QXNWHGAfovcuvAaPjSbSjEpKGQ5YGmRrw7cFATySalKpPcB+3n5/h5yS6JgtZ
+	NgnRH09abXf8DykRail6sANLB4Xao7yQICxTTGFNzhVYgbSwtRsmZvWiSO/lZZox8
+X-Gm-Gg: ATEYQzxeZVCGtzHsu7X8IILLyLd4L0ai/da2fgeB4vDf+Q6PxDtmDFwah/zb5KLNe1h
+	ZKk2Gm0UiGwTYzGwzubMfWb3M5vYvvcxnYBgXTC+l0tQWikcviERrKiEEABHld1oyjAMrmA0FgC
+	tRN2+Ks6teO3klkrILL1yB0pLjZ62K7pLX7i0EiZ4Yvdo38ZjlXaXgv/pAdfGMqcII+90Kkp3p1
+	UXkM/EfOLBeCsTFulhmJ+UohX4B0VaV0ATYYn8mMMUuCX4IOP3V5xtBwozmiH/JlIlldGkSuuMH
+	WfDOZWV3WEte5oA01fmIOz6OGjy46/oTWbH+phqIrq10xQogBtudq6xDzH4U3K99297rKt3DmYs
+	N8CseG7TV1NB2K2GfSnrUCI/NOAPTbjzyKHztEN0ghDMdcRwSmP9QBbZk2fGeSTRzPBR77mpAo/
+	PybnA=
+X-Received: by 2002:ad4:5745:0:b0:89a:575e:ec01 with SMTP id 6a1803df08f44-89c6b4bed89mr85523846d6.1.1773915084173;
+        Thu, 19 Mar 2026 03:11:24 -0700 (PDT)
+X-Received: by 2002:ad4:5745:0:b0:89a:575e:ec01 with SMTP id 6a1803df08f44-89c6b4bed89mr85523586d6.1.1773915083703;
+        Thu, 19 Mar 2026 03:11:23 -0700 (PDT)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b980cad9c11sm224042066b.12.2026.03.19.03.11.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Mar 2026 03:11:22 -0700 (PDT)
+Message-ID: <c2b89cb3-dfc0-4793-8b0c-8ada5e535207@oss.qualcomm.com>
+Date: Thu, 19 Mar 2026 11:11:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH 3/4] dt-bindings: PCI: Add UltraRISC DP1000 PCIe
- controller
-From: Jia Wang <wangjia@ultrarisc.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Jia Wang <wangjia@ultrarisc.com>, Conor Dooley <conor+dt@kernel.org>, 
- devicetree@vger.kernel.org, Jingoo Han <jingoohan1@gmail.com>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-riscv@lists.infradead.org, 
- Xincheng Zhang <zhangxincheng@ultrarisc.com>, linux-kernel@vger.kernel.org, 
- linux-pci@vger.kernel.org, Alexandre Ghiti <alex@ghiti.fr>, 
- Palmer Dabbelt <palmer@dabbelt.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Paul Walmsley <pjw@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>
-In-Reply-To: <177364929764.1046214.13699651740074271027.robh@kernel.org>
-References: <20260316-ultrarisc-pcie-v1-0-ef2946ede698@ultrarisc.com>
- <20260316-ultrarisc-pcie-v1-3-ef2946ede698@ultrarisc.com>
- <177364929764.1046214.13699651740074271027.robh@kernel.org>
-Date: Thu, 19 Mar 2026 18:09:35 +0800
-Message-Id: <177391497590.2824357.9030407054711939789.b4-reply@b4>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773914976; l=2688;
- i=wangjia@ultrarisc.com; s=20260309; h=from:subject:message-id;
- bh=FDsasxUAcM2aks4WAPlnuBI/DJ39aq2QyDS6b0IaW0c=;
- b=gOkDhGLqisBONr0ktCvrVB+i65X0cLepvAmTgmCLMkQRoh5JJ3pdv3Zmoz8taqeI1a1NRgmWH
- t58CiJrwyh3DUheOizd8l87ZVSPR8frdFrJWSL9bdbSSVZg6+UvFfKa
-X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
- pk=XvYkrelqJIIzobY7j+nIg8rsfv5kzaOzuc1UPhd087U=
-X-CM-TRANSID:AQAAfwAHtSSRy7tpApIBAA--.1409S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxXFy8Cr1fZFWfWr4UuF4Uurg_yoW5Xw1fp3
-	y2krn3tFWvvr13Ww4fta4xK3WrXrn7Aay3tF4DGr17tF15u3Wrt39xKw15uF1DGw48ZFy3
-	Ar1a9w4xG3y2yaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUU9l14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
-	6F4UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
-	4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
-	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
-	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
-	n2kIc2xKxwCY1x0262kKe7AKxVW8ZVWrXwCY02Avz4vE-syl42xK82IYc2Ij64vIr41l4I
-	8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AK
-	xVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcV
-	AFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8I
-	cIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r
-	4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjTRNJ5oDUUUU
-X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQALEWm7kgkAFQABsG
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] arm64: dts: qcom: monaco-evk: add lt8713sx bridge
+ with displayport
+To: Vishnu Saini <vishnu.saini@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, prahlad.valluru@oss.qualcomm.com,
+        Prahlad Valluru <vvalluru@qti.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20260319-lt8713sx-bridge-linux-for-next-v4-0-da886ec78fe3@oss.qualcomm.com>
+ <20260319-lt8713sx-bridge-linux-for-next-v4-1-da886ec78fe3@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260319-lt8713sx-bridge-linux-for-next-v4-1-da886ec78fe3@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE5MDA4MSBTYWx0ZWRfXxWTYVi66pU+k
+ Ig6NUGoiwDGpzrBfVhiDEYUEL9ZzYySElf3/ysxgDLtxfWq9G00pG6hO1wWP62yvucHL70PwY0X
+ Bfhs/5cx5YLZwZsiNs2Ty6HlLh943QmnsJ7I9q2XwdQcdkS5oafM0ax+h3VHtBL6VcKXXlyY0sS
+ zX+17SgVm6ExMRcUHY1CTDO+A3F9TZ0C3hpgjjgEb2wnEPLYB5xqDaD3seD05a/yddbzn06kqtb
+ dauqziVn7837awiu9hFas/46Bm43kEXUxbSYWY4TyOpNAlkbhywR4em8iSvV+6UE5AGKI66Aego
+ bJoCmOmSsoaMCagiJEXlEj2JwrHx+iA3tBjf51vLQMKieX/mwW+oM1wrwl+1N5KuC0lvk1kNdnA
+ yMgZ1zelZKebXEuL70oWbPUIWHH5DeUnNOJeFJSYU4/Zn3a1SZffGZdC8ntxBJEnxcbsNAGOq5f
+ 8POrnam3DydPVR+KVXQ==
+X-Proofpoint-ORIG-GUID: hWoSfwEiNXKqx_k_nry0NWTW3S4vfqc-
+X-Authority-Analysis: v=2.4 cv=A7hh/qWG c=1 sm=1 tr=0 ts=69bbcbcd cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
+ a=EUspDBNiAAAA:8 a=43412JA_M9IFo7LN_h8A:9 a=QEXdDO2ut3YA:10
+ a=OIgjcC2v60KrkQgK7BGD:22
+X-Proofpoint-GUID: hWoSfwEiNXKqx_k_nry0NWTW3S4vfqc-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-19_01,2026-03-17_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 lowpriorityscore=0 clxscore=1015 bulkscore=0
+ suspectscore=0 impostorscore=0 spamscore=0 phishscore=0 adultscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
+ definitions=main-2603190081
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
-	R_DKIM_ALLOW(-0.20)[ultrarisc.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-277681-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-277682-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.978];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[ultrarisc.com,kernel.org,vger.kernel.org,gmail.com,google.com,lists.infradead.org,ghiti.fr,dabbelt.com,eecs.berkeley.edu];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DKIM_TRACE(0.00)[ultrarisc.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ultrarisc.com:dkim,ultrarisc.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 66B032C94DC
+	DBL_PROHIBIT(0.00)[0.0.0.0:email];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 6D0CD2C9511
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 2026-03-16 03:21 -0500, Rob Herring (Arm) wrote:
+On 3/18/26 8:08 PM, Vishnu Saini wrote:
+> Monaco-evk has LT8713sx which act as DP to 3 DP output
+> converter. Edp PHY from monaco soc is connected to lt8713sx
+> as input and output of lt8713sx is connected to 3 mini DP ports.
 > 
-> On Mon, 16 Mar 2026 15:06:59 +0800, Jia Wang wrote:
-> > Add UltraRISC DP1000 SoC PCIe controller devicetree bindings.
-> > 
-> > Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
-> > ---
-> >  .../bindings/pci/ultrarisc,dp1000-pcie.yaml        | 108 +++++++++++++++++++++
-> >  1 file changed, 108 insertions(+)
-> > 
+> Two ports are available in mainboard and one port
+> is available on Mezz board.
 > 
-> My bot found errors running 'make dt_binding_check' on your patch:
+> lt8713sx is connected to soc over i2c0 and with reset gpio
+> connected to pin6 of ioexpander5.
 > 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/pci/ultrarisc,dp1000-pcie.yaml:26:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
-> ./Documentation/devicetree/bindings/pci/ultrarisc,dp1000-pcie.yaml:38:19: [error] syntax error: mapping values are not allowed here (syntax)
+> Enable the edp nodes from monaco and enable lontium lt8713sx
+> bridge node.
 > 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/ultrarisc,dp1000-pcie.yaml: ignoring, error parsing file
-> make[2]: *** Deleting file 'Documentation/devicetree/bindings/pci/ultrarisc,dp1000-pcie.example.dts'
-> Documentation/devicetree/bindings/pci/ultrarisc,dp1000-pcie.yaml:38:19: mapping values are not allowed here
-> make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/pci/ultrarisc,dp1000-pcie.example.dts] Error 1
-> make[2]: *** Waiting for unfinished jobs....
-> ./Documentation/devicetree/bindings/pci/ultrarisc,dp1000-pcie.yaml:38:19: mapping values are not allowed here
-> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1606: dt_binding_check] Error 2
-> make: *** [Makefile:248: __sub-make] Error 2
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.kernel.org/project/devicetree/patch/20260316-ultrarisc-pcie-v1-3-ef2946ede698@ultrarisc.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
->
-Thanks for the report.
+> Co-developed-by: Prahlad Valluru <vvalluru@qti.qualcomm.com>
+> Signed-off-by: Prahlad Valluru <vvalluru@qti.qualcomm.com>
+> Signed-off-by: Vishnu Saini <vishnu.saini@oss.qualcomm.com>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
 
-I’ve re-run `make dt_binding_check` locally with updated `yamllint` and
-`dtschema`, and I can reproduce the issues you pointed out.
+[...]
 
-I will fix the indentation and correct the syntax error, re-validate the
-schema using the full `dt_binding_check`, and send a v2.
+> +			port@0 {
+> +				reg = <0>;
+> +				lt8713sx_dp_in: endpoint {
 
-Thanks for the guidance.
+nit: it'd be neat to have a \n before the property and the following
+subnodes
 
-Best regards,
-Jia 
+otherwise
 
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
+Konrad
 
