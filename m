@@ -1,193 +1,143 @@
-Return-Path: <devicetree+bounces-277906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277907-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oHrdL10qvGn4twIAu9opvQ
-	(envelope-from <devicetree+bounces-277906-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:54:53 +0100
+	id CNAAO8MqvGn4twIAu9opvQ
+	(envelope-from <devicetree+bounces-277907-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:56:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 228F72CF303
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:54:53 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 001872CF37D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:56:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C4278326EF55
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:43:38 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EE786302BBBB
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:46:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E15615E97;
-	Thu, 19 Mar 2026 16:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59CD13ED139;
+	Thu, 19 Mar 2026 16:46:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gbGhuo/r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k/at+ofX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 206273EC2D7
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 16:43:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.178
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773938616; cv=pass; b=g19BeqYiV4iVVYR3zZSH3Dk2Qg2VphHspOKoE8x/fPLzwKpyd+Uto77eDEnyF2TFM0tFFUkvhR0okQ8FBRwIDC272BWy0adxjN7uJ7sQdX2nK88WKYEcLRjQIy0snlk+T/Wiu1cmrFSbhB6ScYQSixacrr7NZ6NFefh9DBbm2TE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773938616; c=relaxed/simple;
-	bh=l0eU5c0HgKDSlNJCITX3MHjJtcSK/SPj94MpY96kAVk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=h+JGZ9RnO0QEcFjR/3IqPf82gOpw6cOJMi4jpipJLdv4vJCuJYyXX89jMacJ/dDwz1Tua/+zJGoZV+KjA2kV5tw1gius2FbreGh3d6UIx8jV1gegCzH39xnQN7pzPaD7iIui5pkfJ+daDboRNiuY0WFkfOZeX/IG6IEVFhzoKeI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gbGhuo/r; arc=pass smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-3878de20527so8793561fa.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 09:43:30 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773938609; cv=none;
-        d=google.com; s=arc-20240605;
-        b=HQ9dP17jo6tFpjvH2drYAhTTus6zCEB8hciiYkcDG/zxcbCWpjz54XWToBbbW4W0mS
-         4Hj1+Q9pAQLkxZTH4O5XTTpD0hKbRFogzJNRe7Ld7jBIPOwlxkNU178u8BcyKuazRqFe
-         uchsu0S+naomEA4SlbcRhJlkajjXue045bhKZ2ZpYoMmyoiLKfKNjQLFZlWRAPPl+Dey
-         VEFPu6o000KFMmpj4gvGrlXsVunWPWBmo0yBPlRGLuhOUrkTwIRWZ/Efg86tHbLKrYs7
-         v8F13i4jBSYGdf6aKK60/SI80EuX0x/sFJgfZMnWOcfj0aVUNjreYHacpZKJeSTWhhaS
-         3+sA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=l0eU5c0HgKDSlNJCITX3MHjJtcSK/SPj94MpY96kAVk=;
-        fh=kv9rz9TZmD1UZsSEMJ3DFhZharMpeeiyUkZmc++DmVU=;
-        b=aHq/0dNUCuZbshtczE00X4cOlo9oMQ5CH/Mc9TQiO3/CrW2B84kzNViomq1gAW3KN/
-         2xt3G3nYf9S+Gf6L8NKbYTZijxR2LtQrar5Nu/TSlAiFWjQTlO6Lay9Qc2lSqOW65DIQ
-         mGTQrVnWYqtDsgrujCBBbKkOciWoCUTic772dDzVM+oiAM/x2Bt3MUiGTSOXlN0Psxmj
-         WV1YFHKR9odcHWyyVxr9aw9eKraxfysxSdan8G5KYJDvSEobesRwzuZfSB5tvu6xZrpV
-         8tGBQRbjohTrqbL8du2uoxheHkS+gU2kRiHAGC/heFwRcFyE26L7/UO9qMRPsQQKQaXd
-         +OWQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773938609; x=1774543409; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l0eU5c0HgKDSlNJCITX3MHjJtcSK/SPj94MpY96kAVk=;
-        b=gbGhuo/rG1KM01mbmrI/+n1PIhq6yLZERMlC49+Hvy5VWBMsywIYe1BtX10hy6z3NN
-         Wq7WOe5trpwgbz9VXuddO7NeUPzPLCKRqvlYHwRXlj2ypsQt1s7F/4l+uoVfHhs9la5S
-         Y1bb4CQexfezFo5JZPV7ZJ8PE4PVUdw+vPyAj7YcQz7nvo8Am1XPpTyUfE6iUY2pCk1M
-         HU/eH4nTrEPb3S2WVOyONRbuBE8iJsJnubWqzp64+/xrtra6Ih4tNuFaUE7vczLQZSKv
-         zEuHALM0AbYRZ6mkwWYUNcpM0yeSegF2olmHzpb55wWbrwOaqo0XM/X7RFlbmOUIQQj6
-         fKWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773938609; x=1774543409;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=l0eU5c0HgKDSlNJCITX3MHjJtcSK/SPj94MpY96kAVk=;
-        b=AuBpSIOUQsW0JBSjV7D5UZ/i2C//g8IPT2v9Rob0skUPjLhdpgA0d80AWTk/AkdPOu
-         vnBbdhNcg+4E4c3rPwxu9h5OBsuqMwttJAgmRRTTQVdsuQSQ5Ybm6z10dTWnuP8DHEJ5
-         /ldeVeS+NjdiXzDaWeV+eBlYR0FBfmCCwyUXQRMbsuWVXmLcsX6n7y8QhB4rRsTLgj61
-         FM0K3M6O8NwOgz1XQ5S849M46kYrGNCTOWsAT2vp7mVO79+4ziIn7fviOhG+mvUv4imo
-         kT2/70YOZQcTeScse+I/qJgK1D62IIks86o2c70L878snFO+NqigY9ba9QCMUEot1pn/
-         v/zA==
-X-Forwarded-Encrypted: i=1; AJvYcCXT7nMlYY1fNl4foqWPemEbQd4tHuZPo1QmGo30Y+c9wYVkL5CMZm3u+5a+su1lFUBdoHKR9ODgI+iZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzaRdgcN1kepUHBO5FnYy2psT5OZZyehtf7x/FFWyz70/w3pZEN
-	fE/A0bimHy8qmABMDwdlUWO+7Kh0garhti86bdTFh3QrQybnbAUOZRGDYNESFbu3DJglqEPPJK0
-	DnXq9zOIojpEw9ycKbSPiDAWCc4goBfVP3+rfYnMXlw==
-X-Gm-Gg: ATEYQzyEEsRcXd7ynMB6gnUX+LN3iRBZc1srBJV9tggvdX9G0N9jnpLfeisAosH/VjX
-	1hlGRnNEL0/iQHyEYTl7ixzfj0LNINZZcpZaZo7del6rGcC/9KCigjN0XxB8Rk9YW1VC4eoIxCg
-	1tx+Dfo4F4wT1xSulK2e1M9hNGzD4c+ZTOiTOXuu03Sz45bZN9azhGlviLDHq+vlBidWqiYBYvQ
-	Kl1WddcnzyNFEQVFTH2fvJ8Ukr29xVwkd9vnP6b4D4FBLw+QxTBNH9+CUXzpWPkUiei+oJ1gb1K
-	WXrcy8Ja
-X-Received: by 2002:a05:651c:324d:b0:38b:f0aa:36e7 with SMTP id
- 38308e7fff4ca-38bf96ddf40mr439181fa.31.1773938608940; Thu, 19 Mar 2026
- 09:43:28 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D643C8701;
+	Thu, 19 Mar 2026 16:46:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773938813; cv=none; b=Q6kOJhX603vyKNiEf221D1leMx6MLzgzDtcU32Ru6y+WKG20j/+/c63s0UuBgFaxTThirowkmEvf9S5jlFVuhA3pyPA9kuz2Mj/mau1PyxnIuikEW5N0qwqNNSGMba+408KknNOKkOMHS+ChgPKE/DLrecXkxEXL+E9OAYCADsw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773938813; c=relaxed/simple;
+	bh=GERYy/Od5aPTBnAMxVWqrm0W+xyQqIzbtLRcFBlUSXc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gXbRbiVQ03g/DimOSsPBTUZVyyfyvOwSbgnoBkyaaSXSBAbUDHHdVnisCxtg+JcpbQCOflr73yZ7tYba/+SRlfF+S03iVZL+g3x6A1cEhjLk76fYrn/7GyItJyDMJUeII8UBtvaPTOJclT9DWa2DoxhXQLWLQhFoT2AUXG47BgU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k/at+ofX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 407F2C19424;
+	Thu, 19 Mar 2026 16:46:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773938813;
+	bh=GERYy/Od5aPTBnAMxVWqrm0W+xyQqIzbtLRcFBlUSXc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k/at+ofX7q/fOxkkWtA1a3d20d6tomeA6a+qzkSx4Zef2UBw4c06vUNwA6k9gBHxG
+	 22tMGg0AXXjk9TapBGrDzncRM29vypwQJTezup8K+ThrcFIXmobYUnTstL9BJOA1S2
+	 l1DoLJSdcUuFWNsuox9CcFXuxBn1blcwJoKfbKRk0OHKUTogRW0xjg+VBENjaaL0yn
+	 flU78toU+k6ctFPaYpw2ftk92H+LodGA8tfkd9AMRacUUtzo/qMIG+IZk2iJKIbdZh
+	 XdbWKtQ+TWslGce9FIw3OdiNf56i9jMlA8LicVCPz3cLyD090tGKFEZyOKAzMZTFQv
+	 uBoifCRwX1LMQ==
+Date: Thu, 19 Mar 2026 16:46:47 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: renesas,r9a09g077: Document
+ pin configuration properties
+Message-ID: <20260319-delegator-clinking-732b793c0682@spud>
+References: <20260319141515.2053556-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260319141515.2053556-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260318-gs101-pd-v8-0-241523460b10@linaro.org>
- <20260318-gs101-pd-v8-5-241523460b10@linaro.org> <CGME20260319101424eucas1p2d5dca06240e8760046fb40507ffb3bba@eucas1p2.samsung.com>
- <CAPDyKFrprMSLOBMB_BHbi=j6UXV4dXBn-H8M1BsqDWNSCJwvuA@mail.gmail.com>
- <c5ba58fb-50f1-4067-a099-97169ea81f68@samsung.com> <ae31c62c940e99077d44e1935465dce7db0e4c06.camel@linaro.org>
- <4809918d-fdf1-48c0-bc10-fcf75837cb81@samsung.com>
-In-Reply-To: <4809918d-fdf1-48c0-bc10-fcf75837cb81@samsung.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 19 Mar 2026 17:42:52 +0100
-X-Gm-Features: AaiRm53oqCm_eJUl4m-8pk5SCQoZ-_Pm5z0ieeorC9RntVzrStWwABAEThg9uu0
-Message-ID: <CAPDyKFp8zsbgRA746Sds+1y4C0FvyohF7AFVsEghVkhukGZafg@mail.gmail.com>
-Subject: Re: [PATCH v8 05/10] pmdomain: samsung: convert to using regmap
-To: Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	Juan Yescas <jyescas@google.com>, Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3Rx0+W9iJ6oCNSUj"
+Content-Disposition: inline
+In-Reply-To: <20260319141515.2053556-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-277907-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277906-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,samsung.com,gmail.com,google.com,android.com,lists.infradead.org,vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[glider.be,kernel.org,gmail.com,vger.kernel.org,bp.renesas.com,renesas.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.990];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ulf.hansson@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	NEURAL_HAM(-0.00)[-0.906];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,samsung.com:email,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 228F72CF303
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,microchip.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 001872CF37D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 19 Mar 2026 at 16:57, Marek Szyprowski <m.szyprowski@samsung.com> w=
-rote:
->
-> On 19.03.2026 12:58, Andr=C3=A9 Draszik wrote:
-> > On Thu, 2026-03-19 at 11:29 +0100, Marek Szyprowski wrote:
-> >> On 19.03.2026 11:13, Ulf Hansson wrote:
-> >>> As a follow-up patch on top, please consider converting the open-code=
-d
-> >>> polling loop above into a readx_poll_timeout_atomic().
-> >> This has been tried and it doesn't work in all cases required for powe=
-r
-> >> domain driver:
-> >>
-> >> https://lore.kernel.org/all/5c19e4ef-c4fd-4bf5-88b3-46c86751b14e@samsu=
-ng.com/
-> >>
-> >> Probably a comment about that could be added directly to this code to
-> >> avoid such conversion and breakage in the future.
-> > I am planning to revisit this in the future and am hoping that we can
-> > figure out what goes wrong when using regmap_read_poll_timeout().
-> >
-> > Hopefully such a comment would only be short-lived, so maybe not really
-> > worth it? I can add it, though, if you prefer.
->
-> Well, I think I've already pointed what goes wrong with
-> regmap_read_poll_timeout() in the above mentioned thread. You would need
-> to use regmap_read_poll_timeout_atomic() and modify it the same way as
-> commit 7349a69cf312 did for read_poll_timeout_atomic().
 
-Thanks a lot for bringing this to our attention!
+--3Rx0+W9iJ6oCNSUj
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-To me, it looks like the regmap helpers should really use
-readx_poll_timeout_atomic, rather than open-coding the loop from the
-regular iopoll helpers.
+On Thu, Mar 19, 2026 at 02:15:14PM +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>=20
+> Document the pin configuration properties supported by the RZ/T2H
+> pinctrl driver.
+>=20
+> The RZ/T2H SoC allows configuring several electrical characteristics
+> through the DRCTLm (I/O Buffer Function Switching) registers. These
+> registers control drive strength, bias configuration, Schmitt trigger
+> input, and output slew rate.
+>=20
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Kind regards
-Uffe
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
+
+--3Rx0+W9iJ6oCNSUj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabwodwAKCRB4tDGHoIJi
+0obrAQCvn8s5zeSyCDwl6roxhUmsJ2AOWtXmnnMei69Ua/54BQD9Gu5+UPyrs1S2
+/1MPDUeTa29xuFrnuxrwqf2NzNGttw0=
+=xOc/
+-----END PGP SIGNATURE-----
+
+--3Rx0+W9iJ6oCNSUj--
 
