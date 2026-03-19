@@ -1,258 +1,363 @@
-Return-Path: <devicetree+bounces-277951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277952-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8FVfBfc7vGl3uwIAu9opvQ
-	(envelope-from <devicetree+bounces-277951-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:09:59 +0100
+	id uI2DLAo8vGl3uwIAu9opvQ
+	(envelope-from <devicetree+bounces-277952-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:10:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C2812D0966
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:09:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 357B42D097D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:10:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3191F30AD4B6
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:58:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A1B8B302E932
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:58:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C5713BED7D;
-	Thu, 19 Mar 2026 17:58:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2250B39448C;
+	Thu, 19 Mar 2026 17:58:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Q3m9VfYY"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BxHw+uAK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (mail-westusazon11012020.outbound.protection.outlook.com [52.101.43.20])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A6893815E9;
-	Thu, 19 Mar 2026 17:58:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.43.20
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773943105; cv=fail; b=eV5/FoPRfH3WMYeUJafGX4/vx6MNDtyQLK6stCXsIS9YzW4Ckn/mhsayhaTzA3EeHHXySrH77kfmkdgqFnltCYKfPtGEYstm92nQRWnG3HozaADFewaxefKCoK9N2IDf5h8lqwUJ7mGX8168nPaHuh45ETqjzjSc2exzwYnazj8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773943105; c=relaxed/simple;
-	bh=VLsenZxLnVcdRmK4s1PB/cpHtZ3PUjVtjL/9WhxKudM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=EvN8QxfAfaxVhJZ8IfqYSHz0iW6gb0ewXl/i7poM7dvfU+PTLeMUi+WIdP4+V0YPSCmP/+2YjQAV4OkTuvolVoc1sbCR4lC/9Oy52OHVoqIokfELz5SKIIZwVzN7jpbdGCBGyjHCsmr+E93TH6zeOfdnh4NHR85cblg+n4HhbVg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Q3m9VfYY; arc=fail smtp.client-ip=52.101.43.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DPce9mTtG4CnNzYFdJVZPps9pay9j4D2mzZ5IX3y34Fq2Qi7xqcifdpMlluGch07UkHbBUAbrL+krVAbyy/JlavISVJN2PrcbqMbDM9Ec7ydUBGpMhSCJCUSvLxPEaEjKVzcbMd+IeQ+UmDl6jfONCQCw5zAAwmxKdz13jsGoVnWeCznFkW14m3A5rpi+nyr+y1/DHwpO3DMpSoYVCr11I1n7t5YvR4IO9miIeKR4mtsRyWTqUqHLafRxEzfZYPpLJD79pG7QWeeYrHaqp2M4lAR4dUZHmDH3KwlAj983QMrhyQ2inXDCbcLvCu7fS2O48LR1NhAJ8n1Uw3J1hqdYQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Mqf7YkB52zMt2nbDstugVZMbpccqIvvjsISXO24hPqU=;
- b=O6B/9ak6ieDA6RaM4CJPht3TmkBBUSxYw4eiiiiDx5VecB/AALcnhuLBVhbvkQfT7Muey+YrQp8lHHnL402IRTDMGZ848zqT90ZrIEjFc/VHA+98YjjK4/kIVka4GY/PFIjb8JESaeZEZ1R+wcrkSsy9jCsGjSjB1aP5FgXlw/snVPsmllaCnojFUypXhUWLT3EZLu3KQOfSFfOK7OneXrJg+mJzxo/noZ9Pe2azFvrk4jB6/aPTBRWR6E5ztRZkkA2427M/o0soSu+VKFZiHg0n9XujkDcITbMeGY0260glcPTZ5c4Mkdn1A8G2VM/UeeGMX2+Eeik/lfQlqvN3Ag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Mqf7YkB52zMt2nbDstugVZMbpccqIvvjsISXO24hPqU=;
- b=Q3m9VfYYdB/fL/1nhoBaqKVIx2ertuqQbwjxoNLaS3fj7A+CWsY09F5YvkmrIe/ohyEo7ewq8E3iH2q04eR7CCI36Nvhn5D0YO2Hb5DPnzq1knkjE6cYYJrmbjHJDp5ZHhrAMm48kEe2yof15kRvDGLoMoqy5R8HQu07j6Ttslc=
-Received: from SJ0PR13CA0182.namprd13.prod.outlook.com (2603:10b6:a03:2c3::7)
- by SAWPR10MB997813.namprd10.prod.outlook.com (2603:10b6:806:4e4::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Thu, 19 Mar
- 2026 17:58:21 +0000
-Received: from CO1PEPF00012E64.namprd05.prod.outlook.com
- (2603:10b6:a03:2c3:cafe::d) by SJ0PR13CA0182.outlook.office365.com
- (2603:10b6:a03:2c3::7) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.20 via Frontend Transport; Thu,
- 19 Mar 2026 17:58:20 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- CO1PEPF00012E64.mail.protection.outlook.com (10.167.249.73) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9723.19 via Frontend Transport; Thu, 19 Mar 2026 17:58:20 +0000
-Received: from DLEE206.ent.ti.com (157.170.170.90) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 19 Mar
- 2026 12:58:20 -0500
-Received: from DLEE204.ent.ti.com (157.170.170.84) by DLEE206.ent.ti.com
- (157.170.170.90) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 19 Mar
- 2026 12:58:19 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE204.ent.ti.com
- (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 19 Mar 2026 12:58:19 -0500
-Received: from [10.249.132.48] ([10.249.132.48])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62JHwEHd2956565;
-	Thu, 19 Mar 2026 12:58:15 -0500
-Message-ID: <517d5c73-5e84-47e9-9d1e-4991bd550a42@ti.com>
-Date: Thu, 19 Mar 2026 23:28:14 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EAE13EFD21;
+	Thu, 19 Mar 2026 17:58:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773943129; cv=none; b=l5IaBiSRPefJo56fuAXX9GeU6COBL+JVu8f5zC/+vJOH059bqzhIbUTQsgxFItZDMz8ia6Z1iygFdPwI9326N1RN1aJBwgbJsvHvr2a5C/VkTPBKdQqXW7FA3WDFHgj7vTsINlsDUWd4wSObAAUxU7zcfo8XM/T98C/zSn6WOuY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773943129; c=relaxed/simple;
+	bh=HwTyo/5WYUr5YkScc9lyA3lElCIJ1FNPsB40BEMRe0k=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=SflN7JosMhf4qqAmZeVIMrnUE/g9Bre0aoUzjmo0TQEUVynvekz4MOLNLxIGyr+a7bewXByHK4zoXS+9s+dtkJDgLQQWspV46m9etALApXV3TcbLpXdsakUGGRCnknvfjRMoQKOThqRCRepR9U3uUGw53gd+z3NP9nK3y+VKFYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BxHw+uAK; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1773943125;
+	bh=HwTyo/5WYUr5YkScc9lyA3lElCIJ1FNPsB40BEMRe0k=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=BxHw+uAK7Mlff7qIcPlCXGqcieoUyWinVXZfcbb9rLr2ZtojOufM1qweP1VbTPJg9
+	 U/QJ7ZFRfc0E/5dNXLWqodYZj9Qq0I55+gtgdLMl2BH0TEC+LWJAUJJeBpSisYywXb
+	 H/gle1NsJGmn9iENz4Nohf34p4o8BlhRBfG8A74FUWTqTHmo1Fp40U89tQn2kT43FJ
+	 k2UjYVVRNq9scpPQQQ30cjiV3JUsGCGpBJdluB+JM3sdWiiiKchlBqyAUWRe8RIqAA
+	 Zz+lJ9INv3k4+DR9d0ZCGRfKY4XnQ8bECB+P+1vJIFGzbuuut2tegYMONiZyXF/x2A
+	 UAT/r3ooWcNvg==
+Received: from [IPv6:2606:6d00:11:b76d::5ac] (unknown [IPv6:2606:6d00:11:b76d::5ac])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 81F3117E01B1;
+	Thu, 19 Mar 2026 18:58:42 +0100 (CET)
+Message-ID: <658584073c66f5f3eca72bee2e2280327e803a22.camel@collabora.com>
+Subject: Re: [PATCH v7 04/10] media: mediatek: vcodec: Refactor Decoder
+ profile & level Handling
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Kyrie Wu <kyrie.wu@mediatek.com>, Tiffany Lin
+ <tiffany.lin@mediatek.com>,  Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+ Yunfei Dong <yunfei.dong@mediatek.com>, Mauro Carvalho Chehab	
+ <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger	
+ <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
+ <angelogioacchino.delregno@collabora.com>, Hans Verkuil
+ <hverkuil@xs4all.nl>,  Nathan Hebert <nhebert@chromium.org>, Arnd Bergmann
+ <arnd@arndb.de>, Irui Wang <irui.wang@mediatek.com>,  George Sun
+ <george.sun@mediatek.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, 	linux-mediatek@lists.infradead.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz
+	 <andrzejtp2010@gmail.com>, Yilong Zhou <yilong.zhou@mediatek.com>
+Date: Thu, 19 Mar 2026 13:58:39 -0400
+In-Reply-To: <20260127024248.18406-5-kyrie.wu@mediatek.com>
+References: <20260127024248.18406-1-kyrie.wu@mediatek.com>
+	 <20260127024248.18406-5-kyrie.wu@mediatek.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-/GspWsZFGaUupRr8a+jt"
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] arm64: dts: ti: k3-am642-evm: Add ICSSG0 overlay
- for dual EMAC support
-To: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>, <srk@ti.com>,
-	<danishanwar@ti.com>
-References: <20260311053852.1034244-1-m-malladi@ti.com>
- <20260311053852.1034244-2-m-malladi@ti.com>
- <8598edfa-4201-47b4-8929-be80dcca4617@ti.com>
-Content-Language: en-US
-From: "Malladi, Meghana" <m-malladi@ti.com>
-In-Reply-To: <8598edfa-4201-47b4-8929-be80dcca4617@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF00012E64:EE_|SAWPR10MB997813:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8e259962-6afd-4a77-2112-08de85e11b84
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700016|376014|1800799024|82310400026|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info:
-	mtairyA/iKqEnquioRmRYxJhtCUm1NLV+hSOxmbljWC0Liro2vZSC7AyfTCwH2e0RrSbUN5QDTBHhMknr7LWq+jZ03FSOQMclEOZPKB7wHUOaAa9gERN2Za8olCRGoFXrUnj1cSEB8ZK2zZFwy5k2ZbWh7uzk4w4e1baG4zQL3E30+BLXczEa3tZ6i1196PAkR8OODzDXe3VBQg+fGgdPZoTIihqgvfaqkerXOlOY1n1ZBgvG9z/MB4UqguGMfh3WvqftxkhgvnUErLr/QM6P3Gqk/tS45nd8jvAtLRPrH912WiRMDgToXpaEPojtLcZqRBv9SGod1ABLeSFDqNLo4zntQkuNsYsk17yuxy4wwz+oyDGEPdB20cUk+eTookNgbBVYWcxTeB1+GFVVDoDonVUXHR0wbDRZmnl49+33pD7nIEbTtnYxeMlfZwBBOf9Mmkfawj1HxYtdoy8bkPAfWMdMJaKgIHpZ9+qtuD1aDauuCXTVQyhSVVIQCt5dwQWiHqtzeneW+atLaKX+mYhotNKbVkKYtU+QS2x0BXkD2sGkgql6sx45bHG8g0SmX8h8GeHgzqqdXa9ESzClXxtlHuIFcxRBBZ9plAWYceclwqTYItgDmXo6L8FQv43qkZq6qpt6MhYdrHTN81MrSbTmeyB06JQcso3Bsu04CoLY6oAbJTwz7BeZ+LVTdcWuX2K6rhorXCgL2iBsAm/3eFZdA62osbcGjyC+vrCR2lUpsI=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(376014)(1800799024)(82310400026)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	KEsgc8IcACByod9gRcXyeqfwCKgaTfLJ5nJ554OkNos97MMXGKY0StJxZ88YTZb9ic6egHEBOiTNy9FmoxXylI6945C9b0j06+mqFB8Z8ZnVFRBkSCy9HjAafe9GvT5x9QWBW7O5s9Jj6zlN2UT3El/ipmzRX+8RnJmY9755B9hoLpA5hnQUUQeJzqY5oo9JVAwgMdvrLO/93JEAmf3XLmHhyiUAG9pmedSUZ4ZtoizQnepqE1CFJvPzz9d/VleUsGepdWTPZ7UOr39OVyOYZ+gS9+RN35rd/FJ8F+AOUoEuvO+f0sypUFNWZSikjRqL7zGL0GWqRUJSS5yulCPNNgkrD8ZhENs8t2ITAYDiQDtapFZQu7h2rCp18bVErj3NRluIXyWEgj49Ie5Ch1s/z2k3uzKIQYsrvxjQvJlWkQBcG44NAwFwiBDSdYKEyCcq
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2026 17:58:20.7711
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8e259962-6afd-4a77-2112-08de85e11b84
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF00012E64.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SAWPR10MB997813
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277951-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277952-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:dkim,ti.com:mid,ti.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[mediatek.com,kernel.org,gmail.com,collabora.com,xs4all.nl,chromium.org,arndb.de,vger.kernel.org,lists.infradead.org];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,mediatek.com];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	DKIM_TRACE(0.00)[ti.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m-malladi@ti.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.dufresne@collabora.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	NEURAL_HAM(-0.00)[-0.997];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 6C2812D0966
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mediatek.com:email,collabora.com:dkim,collabora.com:email,collabora.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 357B42D097D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Vignesh,
 
-On 3/14/2026 6:01 PM, Vignesh Raghavendra wrote:
-> Hi
-> 
-> [...]
-> 
-> On 11/03/26 11:08, Meghana Malladi wrote
->> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-icssg0.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg0.dtso
->> new file mode 100644
->> index 000000000000..f19acf1896c3
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg0.dtso
->> @@ -0,0 +1,168 @@
->> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
->> +/**
->> + * DT overlay for enabling ICSSG0 dual EMAC on AM642 EVM
->> + *
->> + * AM642 EVM Product link: https://www.ti.com/tool/TMDS64EVM
->> + * DP83TG720 daughter card link: https://www.ti.com/tool/DP83TG720-IND-SPE-EVM
->> + *
->> + * Copyright (C) 2020-2026 Texas Instruments Incorporated - https://www.ti.com/
->> + */
->> +
->> +/dts-v1/;
->> +/plugin/;
->> +
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include "k3-pinctrl.h"
->> +
->> +&{/} {
->> +	icssg0_eth: icssg0-eth {
->> +		compatible = "ti,am642-icssg-prueth";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pru_icssg0_rgmii1_pins_default>, <&pru_icssg0_rgmii2_pins_default>;
->> +		sram = <&oc_sram>;
->> +
->> +		dmas = <&main_pktdma 0xc100 0>, /* egress slice 0 */
->> +		       <&main_pktdma 0xc101 0>, /* egress slice 0 */
->> +		       <&main_pktdma 0xc102 0>, /* egress slice 0 */
->> +		       <&main_pktdma 0xc103 0>, /* egress slice 0 */
->> +		       <&main_pktdma 0xc104 0>, /* egress slice 1 */
->> +		       <&main_pktdma 0xc105 0>, /* egress slice 1 */
->> +		       <&main_pktdma 0xc106 0>, /* egress slice 1 */
->> +		       <&main_pktdma 0xc107 0>, /* egress slice 1 */
->> +		       <&main_pktdma 0x4100 0>, /* ingress slice 0 */
->> +		       <&main_pktdma 0x4101 0>; /* ingress slice 1 */
-> 
-> 
-> Any particular reason to use ASEL = 0 unlike every other definition of
-> main_pktdma that uses ASEL=15?
+--=-/GspWsZFGaUupRr8a+jt
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This wasn't intentional change. I used claude for making these changes, 
-so missed this. Thanks for catching it, will fix it in next version.
+Le mardi 27 janvier 2026 =C3=A0 10:42 +0800, Kyrie Wu a =C3=A9crit=C2=A0:
+> This commit refactors the handling of decoder parameters for H264,
+> H265, and VP9 codecs by introducing a new structure to standardize
+> supported level and profile information. By leveraging this changes,
 
-> 
->> +		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
->> +			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
->> +			    "rx0", "rx1";
->> +
->> +		interrupt-parent = <&icssg0_intc>;
->> +		interrupts = <24 0 2>, <25 1 3>;
->> +		interrupt-names = "tx_ts0", "tx_ts1";
->> +
->> +		ti,prus = <&pru0_0>, <&rtu0_0>, <&tx_pru0_0>, <&pru0_1>, <&rtu0_1>, <&tx_pru0_1>;
->> +		firmware-name = "ti-pruss/am64x-sr2-pru0-prueth-fw.elf",
->> +				"ti-pruss/am64x-sr2-rtu0-prueth-fw.elf",
->> +				"ti-pruss/am64x-sr2-txpru0-prueth-fw.elf",
->> +				"ti-pruss/am64x-sr2-pru1-prueth-fw.elf",
->> +				"ti-pruss/am64x-sr2-rtu1-prueth-fw.elf",
->> +				"ti-pruss/am64x-sr2-txpru1-prueth-fw.elf";
->> +
->> +		ti,pruss-gp-mux-sel = <2>,	/* MII mode */
->> +				      <2>,
->> +				      <2>,
->> +				      <2>,	/* MII mode */
->> +				      <2>,
->> +				      <2>;
->> +
->> +		ti,mii-g-rt = <&icssg0_mii_g_rt>;
->> +		ti,mii-rt = <&icssg0_mii_rt>;
->> +		ti,iep = <&icssg0_iep0>,  <&icssg0_iep1>;
->> +		ti,pa-stats = <&icssg0_pa_stats>;
->> +
-> 
+this changes -> this change
 
--- 
-Thanks,
-Meghana Malladi
+cheers,
+Nicolas
 
+> chipset-specific conditional logic in the codec configuration
+> functions is significantly reduced.
+>=20
+> Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+> ---
+> =C2=A0.../vcodec/decoder/mtk_vcodec_dec_drv.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 | 16 ++++
+> =C2=A0.../vcodec/decoder/mtk_vcodec_dec_stateless.c | 93 ++++------------=
+---
+> =C2=A02 files changed, 34 insertions(+), 75 deletions(-)
+>=20
+> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_de=
+c_drv.h b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv=
+.h
+> index bb293ada6fb2..f38b5dc4bb74 100644
+> --- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
+> +++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
+> @@ -76,6 +76,16 @@ struct vdec_pic_info {
+> =C2=A0	unsigned int reserved;
+> =C2=A0};
+> =C2=A0
+> +/**
+> + * struct mtk_vcodec_dec_params - decoder supported parameters
+> + * @level: decoder supported vcodec level
+> + * @profile: decoder supported vcodec profile
+> + */
+> +struct mtk_vcodec_dec_params {
+> +	s64 level;
+> +	s64 profile;
+> +};
+> +
+> =C2=A0/**
+> =C2=A0 * struct mtk_vcodec_dec_pdata - compatible data for each IC
+> =C2=A0 * @init_vdec_params: init vdec params
+> @@ -96,6 +106,9 @@ struct vdec_pic_info {
+> =C2=A0 * @is_subdev_supported: whether support parent-node architecture(s=
+ubdev)
+> =C2=A0 * @uses_stateless_api: whether the decoder uses the stateless API =
+with requests
+> =C2=A0 * @chip_name: platforms configuration values
+> + * @h264_params: H264 decoder default supported params
+> + * @h265_params: H265 decoder default supported params
+> + * @vp9_params: VP9 decoder default supported params
+> =C2=A0 */
+> =C2=A0struct mtk_vcodec_dec_pdata {
+> =C2=A0	void (*init_vdec_params)(struct mtk_vcodec_dec_ctx *ctx);
+> @@ -118,6 +131,9 @@ struct mtk_vcodec_dec_pdata {
+> =C2=A0	bool is_subdev_supported;
+> =C2=A0	bool uses_stateless_api;
+> =C2=A0	unsigned int chip_name;
+> +	struct mtk_vcodec_dec_params h264_params;
+> +	struct mtk_vcodec_dec_params h265_params;
+> +	struct mtk_vcodec_dec_params vp9_params;
+> =C2=A0};
+> =C2=A0
+> =C2=A0/**
+> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_de=
+c_stateless.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_d=
+ec_stateless.c
+> index aba28d276bdf..a1f419202a24 100644
+> --- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_state=
+less.c
+> +++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_state=
+less.c
+> @@ -549,106 +549,49 @@ static const struct v4l2_ctrl_ops mtk_vcodec_dec_c=
+trl_ops =3D {
+> =C2=A0static void mtk_vcodec_dec_fill_h264_level(struct v4l2_ctrl_config =
+*cfg,
+> =C2=A0					=C2=A0=C2=A0 struct mtk_vcodec_dec_ctx *ctx)
+> =C2=A0{
+> -	switch (ctx->dev->chip_name) {
+> -	case 8192:
+> -	case 8188:
+> -		cfg->max =3D V4L2_MPEG_VIDEO_H264_LEVEL_5_2;
+> -		break;
+> -	case 8195:
+> -	case 8196:
+> -		cfg->max =3D V4L2_MPEG_VIDEO_H264_LEVEL_6_0;
+> -		break;
+> -	case 8183:
+> -	case 8186:
+> -		cfg->max =3D V4L2_MPEG_VIDEO_H264_LEVEL_4_2;
+> -		break;
+> -	default:
+> -		cfg->max =3D V4L2_MPEG_VIDEO_H264_LEVEL_4_1;
+> -		break;
+> -	}
+> +	struct mtk_vcodec_dec_dev *pdev =3D ctx->dev;
+> +
+> +	cfg->max =3D pdev->vdec_pdata->h264_params.level;
+> =C2=A0}
+> =C2=A0
+> =C2=A0static void mtk_vcodec_dec_fill_h264_profile(struct v4l2_ctrl_confi=
+g *cfg,
+> =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0 struct mtk_vcodec_dec_ctx *ctx)
+> =C2=A0{
+> -	switch (ctx->dev->chip_name) {
+> -	case 8188:
+> -	case 8195:
+> -	case 8196:
+> -		cfg->max =3D V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_10;
+> -		break;
+> -	default:
+> -		cfg->max =3D V4L2_MPEG_VIDEO_H264_PROFILE_HIGH;
+> -		break;
+> -	}
+> +	struct mtk_vcodec_dec_dev *pdev =3D ctx->dev;
+> +
+> +	cfg->max =3D pdev->vdec_pdata->h264_params.profile;
+> =C2=A0}
+> =C2=A0
+> =C2=A0static void mtk_vcodec_dec_fill_h265_level(struct v4l2_ctrl_config =
+*cfg,
+> =C2=A0					=C2=A0=C2=A0 struct mtk_vcodec_dec_ctx *ctx)
+> =C2=A0{
+> -	switch (ctx->dev->chip_name) {
+> -	case 8188:
+> -		cfg->max =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_5_1;
+> -		break;
+> -	case 8195:
+> -	case 8196:
+> -		cfg->max =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_5_2;
+> -		break;
+> -	default:
+> -		cfg->max =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_4;
+> -		break;
+> -	}
+> +	struct mtk_vcodec_dec_dev *pdev =3D ctx->dev;
+> +
+> +	cfg->max =3D pdev->vdec_pdata->h265_params.level;
+> =C2=A0}
+> =C2=A0
+> =C2=A0static void mtk_vcodec_dec_fill_h265_profile(struct v4l2_ctrl_confi=
+g *cfg,
+> =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0 struct mtk_vcodec_dec_ctx *ctx)
+> =C2=A0{
+> -	switch (ctx->dev->chip_name) {
+> -	case 8188:
+> -	case 8195:
+> -	case 8196:
+> -		cfg->max =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10;
+> -		break;
+> -	default:
+> -		cfg->max =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE;
+> -		break;
+> -	}
+> +	struct mtk_vcodec_dec_dev *pdev =3D ctx->dev;
+> +
+> +	cfg->max =3D pdev->vdec_pdata->h265_params.profile;
+> =C2=A0}
+> =C2=A0
+> =C2=A0static void mtk_vcodec_dec_fill_vp9_level(struct v4l2_ctrl_config *=
+cfg,
+> =C2=A0					=C2=A0 struct mtk_vcodec_dec_ctx *ctx)
+> =C2=A0{
+> -	switch (ctx->dev->chip_name) {
+> -	case 8192:
+> -	case 8188:
+> -		cfg->max =3D V4L2_MPEG_VIDEO_VP9_LEVEL_5_1;
+> -		break;
+> -	case 8195:
+> -	case 8196:
+> -		cfg->max =3D V4L2_MPEG_VIDEO_VP9_LEVEL_5_2;
+> -		break;
+> -	case 8186:
+> -		cfg->max =3D V4L2_MPEG_VIDEO_VP9_LEVEL_4_1;
+> -		break;
+> -	default:
+> -		cfg->max =3D V4L2_MPEG_VIDEO_VP9_LEVEL_4_0;
+> -		break;
+> -	}
+> +	struct mtk_vcodec_dec_dev *pdev =3D ctx->dev;
+> +
+> +	cfg->max =3D pdev->vdec_pdata->vp9_params.level;
+> =C2=A0}
+> =C2=A0
+> =C2=A0static void mtk_vcodec_dec_fill_vp9_profile(struct v4l2_ctrl_config=
+ *cfg,
+> =C2=A0					=C2=A0=C2=A0=C2=A0 struct mtk_vcodec_dec_ctx *ctx)
+> =C2=A0{
+> -	switch (ctx->dev->chip_name) {
+> -	case 8188:
+> -	case 8195:
+> -	case 8196:
+> -		cfg->max =3D V4L2_MPEG_VIDEO_VP9_PROFILE_2;
+> -		break;
+> -	default:
+> -		cfg->max =3D V4L2_MPEG_VIDEO_VP9_PROFILE_1;
+> -		break;
+> -	}
+> +	struct mtk_vcodec_dec_dev *pdev =3D ctx->dev;
+> +
+> +	cfg->max =3D pdev->vdec_pdata->vp9_params.profile;
+> =C2=A0}
+> =C2=A0
+> =C2=A0static void mtk_vcodec_dec_reset_controls(struct v4l2_ctrl_config *=
+cfg,
+
+--=-/GspWsZFGaUupRr8a+jt
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCabw5TwAKCRDZQZRRKWBy
+9FyUAP4sMXwt3Br3AkviE1yy7rNUYdsYuv79azZRuF+fODYIYQD/Q6QSRoULxKsh
+TVAryWLpAii5TtJJoXx7f3Bi3SBqcgQ=
+=TJFP
+-----END PGP SIGNATURE-----
+
+--=-/GspWsZFGaUupRr8a+jt--
 
