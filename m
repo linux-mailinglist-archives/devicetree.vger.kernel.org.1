@@ -1,184 +1,179 @@
-Return-Path: <devicetree+bounces-277754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277756-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OBhVD4rnu2njpQIAu9opvQ
-	(envelope-from <devicetree+bounces-277754-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:09:46 +0100
+	id mD2VMGTou2njpQIAu9opvQ
+	(envelope-from <devicetree+bounces-277756-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:13:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90AFA2CAF64
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:09:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 337272CB00E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:13:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 405993207093
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:00:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 03BAC3017F8D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:13:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FD453D1CD6;
-	Thu, 19 Mar 2026 11:59:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB7783CCFCC;
+	Thu, 19 Mar 2026 12:13:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DMkyFP2+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P9ClHo90"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 049513D1CB4
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 11:59:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5808390C98;
+	Thu, 19 Mar 2026 12:13:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773921564; cv=none; b=CdiqoIeufOHGwPfQQb/oGPcGXVPtztOZ2lEkSlRQSDCOTLfcA/FLyN132fBoG5x3qpNuA054cL/vXrk67RM0S5ekcVujpbllVR0YwUy7orRVIE24IGSgkCx4yz3LR3rSvR1wxOb7IO1s/9Qq17cS5vbDY1Qy1wECM2K+8h32SBU=
+	t=1773922399; cv=none; b=NobfpjrxA1Dfmp2CLk7KJytY8GfdEp1XEIiQCvkgfo+0uyXn3UkX/a57a4NjuWFw2GyPJfdukQenrx+wu60kp+AjOTnCZr7diUbmhjhdmr6Qj7I4D/1Y04WQO+VShCmCu1o/fcdR6Q4lpJ+5/mFpTwJJ8bYki3Xu4ukqZQAFXNs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773921564; c=relaxed/simple;
-	bh=TzB0TDBcyModHlhscKkRyhu+DntXkSWYAGvIUGrcGVo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Brp4C3lNoOhbICnOxUQIPDytnGOC1AbQeicMGuolLRtXOGzkuR56s7LVOaGDmJTvoG6uRQrrWRTS5GwTFutmmNrI5cTnPerfMUBk+iI4rNOtWwkS4bmZcWP5Wbov6FMa7jFQ6gdEX9esQcsNkJD2AJn68mNSYwRGGXL2RQ4YpmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DMkyFP2+; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b941762394aso73517766b.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 04:59:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773921558; x=1774526358; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WUcQHeprPMeRllf18ooNN99GRIW3qgL3Mo3SFM1oI1s=;
-        b=DMkyFP2+RoShdqM5fkCewz3/YopJRFfIKyjB/7aWy43bEWh7HaSr/E5vUqANaoMSuX
-         epwv4rj/yKxfFnO5X7ZoNgVkm/eLO5nUnAKPaZolMz/hEvbO9vzUkCqbJcf/5tiFR8xK
-         lJNhKfZL3YFeyYEb0R2KAWan3neVPFB5CzaPTHyj3ltIPH0ECgf2aWlbwVlRFe/qCTJf
-         /ecaUNRmxeNcWfc7BNh4H7VxZORFDn+yd9o3UEAq7aBhCQsYbvuMm2DQ3mvRS9rU5Fxm
-         Ssc08XU5QG2VdaDTCJPv1Ze9w/2da9rPljuW0wFIs2r46kQF5Tjy6YY4xQ7rRaORXjel
-         2vqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773921558; x=1774526358;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=WUcQHeprPMeRllf18ooNN99GRIW3qgL3Mo3SFM1oI1s=;
-        b=gDIVRpSZI++4nN8A56uD30pBbCyWMc5T0Nz1JlEW+2SSnjVQZ237Q4FY3s7pdE5kvF
-         3FICruVtqDllp219mEjaCvb1iVblk6HtRQB+7cCwenJl9y8TkMrYUr5TMWTwNmcYVouv
-         BQdFZTG5VtRwkB3Gpe9gh6JFmiaFjufo0e9flXCsghI5ExwI6gRL9J8V9p3zZN0mDG7N
-         y5rQOykBfPUmDcPO6fIpUCEsu8xvGhBtjAKZ0dSZvtiq4zQ58kWbrm9fDaxn48yfJtS8
-         lHhCKF/fdbs3TF8mLDGDVWuT3//NNk8AvBbkj+ti9ozoKrzEzknXWgQtbPVI+z4e/xpW
-         8pgw==
-X-Forwarded-Encrypted: i=1; AJvYcCUR52Ebq1H4PyhdaLnAcDJYdMBpL++0ee+7Lhe5mu47EbOsDxABSfqCRZcQxaM/Oxan6JbP72WrTlLf@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJQP4XiRswSd6NbKU87Ndx2A0mztfQJhsGkF6zGMuZTRIhmU/0
-	v6+XZxFqzb3wwGWCDEKPUQVcgchwwOFIYjoK0VuICLccBWylKvSh8vBt
-X-Gm-Gg: ATEYQzzCM+rDpEO6VI3TdcR2X3s/CYGgTsiq7MoUh8H4/e9Q5mdiC53J2oLEYiiHaiC
-	2dmGQFEQOYLlJKR2E9VTOiaUxLffImaztiBx9CjHjp9ZCjEjenH18FhQ5ncvGslKr//kOzI+9el
-	I5zSI9GMpH0N4wgt4H2HKpbIqPAu4m35r7lOgvaqBl16GQogb7JRo1cO2NeQ71dv6j16mNHokKd
-	NGstn2SEH7dxBzWeM58vktY3oMDlTmcIlLpfaYAyONHWOxWFxUkgnU2N8MJEXIKj59A7i+ebZpb
-	eXEot5/A5jwD1v7uffWbQFDBB+hG1f03RwgTr/j4hNTxiaqNqML/7qqUoL/0r+OSs14CsPUtNq7
-	Vz052pR0+dwXBwvKATWo689lw3HiYnwW8FRNUGdovrK3Y2YU6BhJUFVZq7tVQqWuWbMAPyj2wdB
-	Swy1sWwM2B/1TE1YwV8ARUsYjqxA==
-X-Received: by 2002:a17:907:806:b0:b97:a9ac:5e05 with SMTP id a640c23a62f3a-b97f4a700e4mr524920666b.35.1773921557711;
-        Thu, 19 Mar 2026 04:59:17 -0700 (PDT)
-Received: from [192.168.0.39] ([79.133.247.80])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b97f16d3380sm461399166b.42.2026.03.19.04.59.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Mar 2026 04:59:17 -0700 (PDT)
-From: Erikas Bitovtas <xerikasxx@gmail.com>
-Date: Thu, 19 Mar 2026 13:58:46 +0200
-Subject: [PATCH v5 8/8] iio: light: vcnl4000: add support for regulators
+	s=arc-20240116; t=1773922399; c=relaxed/simple;
+	bh=242mm6cRJQRlU+5O08xqxDJc8ydu7+VMU7XqhSsN8pQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=At/InCZsFbHgnXVOkQvIsL3EBmfCDMkq4ZZzGDb3e3magCC8oIzEI207sW1r1Jk2V1qu2FJyNFfuPkOx7fb9lNAxHmn4kmt2WJTJRv3sh+TpqydrRyWynj7Y0881zB+cjYJTkn8TbPG3TwFMg1wlWTbKCK2vbbu6F2rgkwnGQSA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P9ClHo90; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70B10C19424;
+	Thu, 19 Mar 2026 12:13:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773922399;
+	bh=242mm6cRJQRlU+5O08xqxDJc8ydu7+VMU7XqhSsN8pQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=P9ClHo902EHXVrl50uoJyMsl4U+JSWuP/kMTNWtCZ8E9WvlH6wCI7P0zL0gOOu8oo
+	 mALhPAMzkJfo7kgplRIOF8ZeewNYjrQfvbwXHEKbKBo5ee89LGTZ6XYj3UDqyMl8ah
+	 mstUA4RWIIRzOohtuH0mWOoFIMITOe/Bu5PHkmSI1MV3RtTSraGi7dnwS6Hw1YQ2rP
+	 rkEcs+OkwvVAKM9vqrGhoXzd1KT9IU6nHea8/+b8Ns16xJxPg7IiWgLh8+wCyp7K3d
+	 9CvY59WipNCHbE9xNkz/TAreL1eiT23loVmArAqMKMImCKUsWQ4K6MgT0hjaNSu1Sn
+	 g8FQXtE/lZSgw==
+Message-ID: <1e81ad50-19c9-4648-9f43-3570757e75bc@kernel.org>
+Date: Thu, 19 Mar 2026 13:13:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260319-vcnl4000-regulators-v5-8-a025d3332805@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/8] dt-bindings: iio: light: vcnl4000: add regulators
+To: Erikas Bitovtas <xerikasxx@gmail.com>, Jonathan Cameron
+ <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org
 References: <20260319-vcnl4000-regulators-v5-0-a025d3332805@gmail.com>
-In-Reply-To: <20260319-vcnl4000-regulators-v5-0-a025d3332805@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- phone-devel@vger.kernel.org, Erikas Bitovtas <xerikasxx@gmail.com>, 
- Raymond Hackley <raymondhackley@protonmail.com>
-X-Mailer: b4 0.14.3
+ <20260319-vcnl4000-regulators-v5-1-a025d3332805@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260319-vcnl4000-regulators-v5-1-a025d3332805@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277754-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277756-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,baylibre.com,analog.com,pmeerw.net];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,gmail.com,protonmail.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.972];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.995];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,protonmail.com:email,baylibre.com:email]
-X-Rspamd-Queue-Id: 90AFA2CAF64
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vishay.com:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,baylibre.com:email]
+X-Rspamd-Queue-Id: 337272CB00E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add supply, I2C and cathode voltage regulators to the sensor and enable
-them. This keeps the sensor powered on even after its only supply shared
-by another device shuts down.
+On 19/03/2026 12:58, Erikas Bitovtas wrote:
+> These sensors can accept 2 supplies - one for the sensor and one for IR
+> LED [1]. Add supply properties for the sensor - 2 for the sensors and
+> one external, for their open drain interrupt line, to ensure the sensor
+> is powered on before proceeding with setup.
+> 
+> [1] https://www.vishay.com/docs/84274/vcnl4040.pdf
+> 
+> Reviewed-by: David Lechner <dlechner@baylibre.com>
+> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+> index 2ba4d5de4ec4..44882a90bc76 100644
+> --- a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+> +++ b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+> @@ -33,6 +33,10 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  vdd-supply: true
+> +  vio-supply: true
 
-Reported-by: Raymond Hackley <raymondhackley@protonmail.com>
-Reviewed-by: David Lechner <dlechner@baylibre.com>
-Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
----
- drivers/iio/light/vcnl4000.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+That's still a property of I2C bus controller, but if you disagree then
+I expect following Rob's comment.
+https://lore.kernel.org/all/20230321220825.GA1685482-robh@kernel.org/
 
-diff --git a/drivers/iio/light/vcnl4000.c b/drivers/iio/light/vcnl4000.c
-index 0a4d82679cfe..9650dbc41f2b 100644
---- a/drivers/iio/light/vcnl4000.c
-+++ b/drivers/iio/light/vcnl4000.c
-@@ -24,6 +24,7 @@
- #include <linux/interrupt.h>
- #include <linux/module.h>
- #include <linux/pm_runtime.h>
-+#include <linux/regulator/consumer.h>
- #include <linux/units.h>
- 
- #include <linux/iio/buffer.h>
-@@ -1985,6 +1986,7 @@ static int vcnl4010_probe_trigger(struct iio_dev *indio_dev)
- static int vcnl4000_probe(struct i2c_client *client)
- {
- 	const struct i2c_device_id *id = i2c_client_get_device_id(client);
-+	const char * const regulator_names[] = { "vdd", "vio", "vled" };
- 	struct device *dev = &client->dev;
- 	struct vcnl4000_data *data;
- 	struct iio_dev *indio_dev;
-@@ -2000,6 +2002,11 @@ static int vcnl4000_probe(struct i2c_client *client)
- 	data->id = id->driver_data;
- 	data->chip_spec = &vcnl4000_chip_spec_cfg[data->id];
- 
-+	ret = devm_regulator_bulk_get_enable(dev, ARRAY_SIZE(regulator_names),
-+					     regulator_names);
-+	if (ret)
-+		return ret;
-+
- 	ret = devm_mutex_init(dev, &data->vcnl4000_lock);
- 	if (ret)
- 		return ret;
-
--- 
-2.53.0
-
+Best regards,
+Krzysztof
 
