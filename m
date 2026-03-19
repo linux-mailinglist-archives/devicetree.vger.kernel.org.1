@@ -1,201 +1,157 @@
-Return-Path: <devicetree+bounces-277911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277912-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wLYWJ8gqvGn4twIAu9opvQ
-	(envelope-from <devicetree+bounces-277911-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:56:40 +0100
+	id wI5qKJQrvGn4twIAu9opvQ
+	(envelope-from <devicetree+bounces-277912-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:00:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F394A2CF38B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:56:39 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id A28652CF451
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:00:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5D3C93220613
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:50:03 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A1F2A3051E01
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:50:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCED53EB7FF;
-	Thu, 19 Mar 2026 16:49:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 790133806B3;
+	Thu, 19 Mar 2026 16:50:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GgPXdXWP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ljg/R4bb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98CEE3E9F72;
-	Thu, 19 Mar 2026 16:49:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54F4D202F71;
+	Thu, 19 Mar 2026 16:50:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773938996; cv=none; b=lJytit+RiCxhRDCw+pgP0ZPY7or5W912XNiEeg0UvMKblikzi9YQVkRRpDF6WUFsYN+wrzZoKzXYtiHWuXu9gwyXFxeLBGxpqba60ZBkCZK/UswzMYuYlFva44Len0+axf+AjxdGcLuwulqa56miZPbgVibftMLBGSMJTSur33Y=
+	t=1773939039; cv=none; b=RqsbiP/kn8xkgHVgLpN8qCChszhrXNlOcLA1A2oHs3k+OXgQR7cZ3gAS3rGBhe/G52tg3edWmcZ+YaPiJK6OB6h1uiYgX2eq24ORnr4jRr6a16AnKBNCnkGyVvBaf7f+j2nO7LaJwBapLMnJ3LHJAsr7xWGS9qCrPjFaInWrN5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773938996; c=relaxed/simple;
-	bh=OFhuQ54VXhEfWoDHGTnof5aCH2ea5vI6aK1ZVUtVPSU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KIlPQCSk4VYn3VDQ9yWF8kZhlbZk3MynQIkit2YNH8y2nJ/8lNpbxab1hGS2Uia5v5fn+ugZXJkD7XNdvCdfJXAaDoebdszLEvVn5XgP0Cuy1OY7jik6yaVummDCN4iKkCWplE73Z5GhGqQrZovaVi3iD7RXuTYi7p+EVuNRmY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GgPXdXWP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21719C19425;
-	Thu, 19 Mar 2026 16:49:52 +0000 (UTC)
+	s=arc-20240116; t=1773939039; c=relaxed/simple;
+	bh=D77Ddz8qw4n1xbohbw2VGFHt286qHhhuOUnGY/tnSmk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=C/yDHYCAYBxSxKKhYN8FiOj90Hq4+GHN18SMffq0ejx7ZvSKvzfsWzwBbwIClrohnhLaeEWifZj/mSxnTvXQ2um7fjH78f/ihFz9EGmz9jm9cmwocBe/xsH+eFm+8kpVGNtN4dF5e6MYvPJsdWF+TG+ivXbdQyuP/5wlG1r57cI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ljg/R4bb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A612C2BCAF;
+	Thu, 19 Mar 2026 16:50:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773938996;
-	bh=OFhuQ54VXhEfWoDHGTnof5aCH2ea5vI6aK1ZVUtVPSU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GgPXdXWPJrlcMfUbczUuNIilzilEjjvGml2s3oYBDAujA+IvbevN9nvymrKjURyS2
-	 vdd4Lngt0fctxegcl0UMNkKWVn9OSHYudiI7yjecJmMt0FpxF8S0ZamuU8WkoKaIAT
-	 NB2j0aUN/IWuuGZAVsTes7LJm+yOdskUQRTEyuG/uKtdDdON7efQOIfLkAAwwiiS4C
-	 JDkIIkEsiICIQY+NhF28SBKUtLNqSuWvIpHgSwdFSPZwdaUvcK4wRUwMY13H0ncml+
-	 GTrd/ighutP1hz1PhAPizp8q6HDjuoyW7x52Mw/WR3QxpcEzbEu3jIICxAsJivhxiX
-	 FlJH4h8pQgZYA==
-Message-ID: <12a06779-cbbb-4dc2-b564-7b9cdff6796b@kernel.org>
-Date: Thu, 19 Mar 2026 17:49:51 +0100
+	s=k20201202; t=1773939039;
+	bh=D77Ddz8qw4n1xbohbw2VGFHt286qHhhuOUnGY/tnSmk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ljg/R4bbBSiaM3KzZCNF04vLF0LtaB5TTp5JofndPK859nkZhiQIYOXp7lRbcq+Xn
+	 XSUTDHJ7UXb5VS5oGodmddZvcnD2xLyh9jZzRhRmtVJl8shsQdHPs5m6aiBrVMcUaT
+	 WKHdrpjLVB+HP0K/d130LSEZCnYzHfeS5KVri7LyrvGiR5wK9H0vjDuA5BEIjhq8l6
+	 SKnuZEFSFwp1i2IxXai9Mnk+kIsiBL/6XpH7RLbh9AqcHdKYbh4Xnt8sahw8lRkmVG
+	 iLmaS9uwiovoWvzMUkZ3OUj8onDSeV6da53FeLDMyTRyKGj5YwtJ2u7eyjdxniI2CI
+	 MTgjW5CpYZXAw==
+Date: Thu, 19 Mar 2026 16:50:34 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Vyacheslav Yurkov <uvv.mail@gmail.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Vyacheslav Yurkov <V.Yurkov.EXT@bruker.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: Add clock guard DT description
+Message-ID: <20260319-yearly-wrongful-883f7fd86a69@spud>
+References: <20260318-feature-clock-guard-v1-0-6137cb4084b7@bruker.com>
+ <20260318-feature-clock-guard-v1-2-6137cb4084b7@bruker.com>
+ <20260318225510.GA639444-robh@kernel.org>
+ <7c7034a7-686a-42c2-bdba-6f31b5179f7c@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] dt-bindings: iio: adc: xilinx-xadc: convert to YAML
- format
-To: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>,
- David Lechner <dlechner@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Michal Simek <michal.simek@amd.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, saikrishna12468@gmail.com, git@amd.com
-References: <20260220053941.611415-1-sai.krishna.potthuri@amd.com>
- <20260220053941.611415-6-sai.krishna.potthuri@amd.com>
- <20260221-dancing-papaya-wolverine-db8afd@quoll>
- <b89933a3-5f25-466c-a2f5-6e231aa12749@amd.com>
- <21d425bc-9406-401b-9817-7255ba3d31fc@baylibre.com>
- <e4c9729f-1785-4d10-a337-37b0d26fe30b@amd.com>
- <f1706ec0-3995-4fdf-a9fb-8e1e688438a7@baylibre.com>
- <05bcc5b7-b3e8-40fb-be70-413c74afcfb1@amd.com>
- <cf749e8c-f141-4367-81ad-827e02273ec5@baylibre.com>
- <6a4e3d95-875f-4c2b-8443-c2f2b19ff166@amd.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <6a4e3d95-875f-4c2b-8443-c2f2b19ff166@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="oewIK0RQAgPXmJv9"
+Content-Disposition: inline
+In-Reply-To: <7c7034a7-686a-42c2-bdba-6f31b5179f7c@gmail.com>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277911-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277912-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,analog.com,amd.com,vger.kernel.org,lists.infradead.org,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.994];
+	NEURAL_HAM(-0.00)[-0.958];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: F394A2CF38B
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A28652CF451
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 19/03/2026 16:49, Sai Krishna Potthuri wrote:
->>>>>>>>
->>>>>>>>> +
->>>>>>>>> +$defs:
->>>>>>>>
->>>>>>>> Why this is a def, not used directly? I see only one usage of this def.
->>>>>>>
->>>>>>> I am getting the below error if i define the patternProperties directly.
->>>>>>> Seems like complex vendor peroperties should be referenced via $ref.
->>>>>>> Please suggest if there is any better way to deal this.
->>>>>>
->>>>>> It is hard to say without seeing the new version of what you wrote.
->>>>>
->>>>> In v1 series, i created $def and referenced this in xlnx,channels to avoid the error that i mentioned.
->>>>
->>>> Is the code below the code that causes the error?
->>>
->>> No, the below code is not creating the error but Krzysztof asked the question on this code,
->>> "Why this is a def, not used directly? I see only one usage of this def."
->>>
->>> I am saying if i don't use the def and use it directly i am seeing the error that i mentioned. So, asking is there any better way to handle this case other than using def.
->>
->> If you could show us the actual code that is causing the error, then
->> we could perhaps spot a mistake or suggest an alternative.
 
-Thanks David, I am surprised how many emails we need to exchange just to
-see the actual code.
+--oewIK0RQAgPXmJv9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> Thanks. Here is the code that is causing the error
-> ("properties:xlnx,channels:type: 'boolean' was expected").
-> 
-> xlnx,channels:
+On Thu, Mar 19, 2026 at 06:50:52AM +0100, Vyacheslav Yurkov wrote:
+> On 18.03.2026 23:55, Rob Herring wrote:
+> > On Wed, Mar 18, 2026 at 05:43:40PM +0000, Vyacheslav Yurkov wrote:
+> > > Describe device tree binding for virtual clock controller guard.
+> > No idea what this means. Please explain how I would identify this h/w.
+> >=20
+> > We generally don't do bindings for virtual devices and we don't do
+> > single clock bindings (other than some we are stuck with).
+> >=20
+>=20
+> I described a use case in my cover letter (PATCH 0). Perhaps our approach=
+ to
+> tackle the issue is not correct in the first place. The term "virtual clo=
+ck
+> controller guard" is something we named it, but it's literally just a clo=
+ck
+> provider which combines several other clocks and input GPIO signals in or=
+der
+> for the consumers to check whether they are allowed to probe already or h=
+ave
+> to wait until the input clocks are enabled.
 
-Device nodes do not have any prefixes. Just take a look at any DTS or
-any binding.
+Can you explain how this is different to gpio-gate-clock? AFAICT, you're
+trying to support clocks that are enabled by a gpio, and that's what it
+is for.
 
-Probably that's the reason, because nothing in this code looks
-particularly odd. Anyway, please do not come with odd syntax in the code
-without any explanation, just to make it passing the tests, so for
-example ignoring the checks we have.
+>=20
+> So in essence it's like a helper driver to simplify consumers probe
+> procedure. Does it make sense? If you don't do bindings for virtual HW, h=
+ow
+> else would you approach this?
 
+--oewIK0RQAgPXmJv9
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
-Krzysztof
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabwpWgAKCRB4tDGHoIJi
+0mS1AQCyfP+fyjGDQgMM0Ynzsf4cG2N0hvkv75PMmo5yKprjkwEAok9cVR3iRzxh
+QIQXM6kQ9Q1ooh/QME9VlGL6Bftgxg8=
+=9Lod
+-----END PGP SIGNATURE-----
+
+--oewIK0RQAgPXmJv9--
 
