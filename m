@@ -1,186 +1,123 @@
-Return-Path: <devicetree+bounces-277621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277622-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UNZ1J4K5u2mtmwIAu9opvQ
-	(envelope-from <devicetree+bounces-277621-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:53:22 +0100
+	id cDlAJaa5u2mtmwIAu9opvQ
+	(envelope-from <devicetree+bounces-277622-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:53:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A17712C81B5
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:53:21 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56C982C81CB
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:53:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 71CA430157C3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 08:53:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 41480301DD79
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 08:53:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F87E359A95;
-	Thu, 19 Mar 2026 08:53:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E62AE3AE706;
+	Thu, 19 Mar 2026 08:53:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="W3qBLApM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sPHwLOEx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF6F023ABBF;
-	Thu, 19 Mar 2026 08:53:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C36583AE6F7;
+	Thu, 19 Mar 2026 08:53:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773910394; cv=none; b=HgTrxT0All5ZBbXKnp555MLHdt6jX5wmyA7HrP52MoZe10OSEHQJOQGuGo1LqjF7aKTbxXEuGvcnkJTPKZ5ao8KMvqFU5hSqUIbpmWZ4d+fsxqgTLn7N3q31SDbmjtpXqhVQWjwP7olsZ92Bh+AM/xcRWl43ykbLi5msRo7t7Qs=
+	t=1773910421; cv=none; b=Gt1gtN5sxsTuZzActtRuqCIoP6NvlP0vGNqiLzIE/ivwjqozoBjr1l4TIXTKWvmddatt8Ft2VZq7kmFRHh7LsiVINvtd3xCbXCzEH3cIpi4HVqKMKFhsjclDsMotoB52vVUE82+yhPhVjjRqykqf90fteveK7LXSjc2phYvc6vo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773910394; c=relaxed/simple;
-	bh=XcgTkBn1hvnVeb3QtXPkrP+XToR4/t8Vz09bJHiC/Fc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Bd/kSNHpj6ji//pklLpDdchQPvh3zCwTgZCiLH4fYBHzC+HOxupJmMSppfS2NkhDOc4rGPv8Ik78YpUFJ7aKzj589HZF+GScr9sSWcxVro1Zku3mTWFf9VbB0ITQEi02/BhfgrHC9I9qsH5desHYGGdv8Rd8WXq+XdG449Zy1t0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=W3qBLApM; arc=none smtp.client-ip=188.40.3.216
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=ew.tq-group.com; s=default2602; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=Cy4910z4yKJ6chHebZmM0+S0xkDCsGUvQzxCGdWrqlo=; b=W3qBLApMiwlOSyK7y9elQXdTFi
-	Ic0InLtfkfyj1C62uw3fTiOnT+O35+LH4qoEWpSFVLiOJKHcuyrOPj4cl7gOUKW2yyZ3LXWl6Pbyn
-	mMBFpnsXxRWDN7EWDUM50FKvaIWP4C01mMX7o9WTRt8SPK18qccGeHVvbxm96fvqq0T/NHc0Xf4Va
-	toG7EHiV0OA9zZTf6fIByGYVeqh2CJGFC+ybWqLlGa7pqlNAx8t+x7wKFe1i3oyQRmMd3DGzG96N0
-	ZYJdmolg1BIT0yEwkQGihJQYjVxe5nAuGmedBO4Fv4wW1hcWpByAFscuGxTyukKWCbOf6lmBdmSuB
-	ZuBfNjzg==;
-Received: from sslproxy03.your-server.de ([88.198.220.132])
-	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <nora.schiffer@ew.tq-group.com>)
-	id 1w397i-000Gux-1c;
-	Thu, 19 Mar 2026 09:52:58 +0100
-Received: from localhost ([127.0.0.1])
-	by sslproxy03.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <nora.schiffer@ew.tq-group.com>)
-	id 1w397h-000NT9-1X;
-	Thu, 19 Mar 2026 09:52:57 +0100
-Message-ID: <4cd1dc92490b7e441378c85da3a0e14010ba74d0.camel@ew.tq-group.com>
-Subject: Re: [PATCH 6/7] net: ethernet: ti: am65-cpsw: add support for J722S
- SoC family
-From: Nora Schiffer <nora.schiffer@ew.tq-group.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>,  Eric Dumazet <edumazet@google.com>, Jakub Kicinski
- <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,  Nishanth Menon
- <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo
- <kristo@kernel.org>
-Cc: Siddharth Vadapalli <s-vadapalli@ti.com>, Rob Herring <robh@kernel.org>,
-  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, Neil Armstrong
- <neil.armstrong@linaro.org>,  netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux@ew.tq-group.com
-Date: Thu, 19 Mar 2026 09:52:56 +0100
-In-Reply-To: <4cc3dd9fab460d35215c8f97496b9ae16c5bcb22.1773751309.git.nora.schiffer@ew.tq-group.com>
-References: <cover.1773751309.git.nora.schiffer@ew.tq-group.com>
-	 <4cc3dd9fab460d35215c8f97496b9ae16c5bcb22.1773751309.git.nora.schiffer@ew.tq-group.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.3-0ubuntu1.1 
+	s=arc-20240116; t=1773910421; c=relaxed/simple;
+	bh=xYHImYfHrAusksE/SpjZQ+in7j8UXG5KBq/tmynCpQw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=D0+U0/iIjvi5Igiu8hCLwFnpHTCFmRc9FbIYC3Bz3TS79NUMrv5vgFCiYluz8PCtwwg74P1/3/pMlRzlVKDn4g4k+vwuBdY0L/BBn7BE156OlPwj6a+u7Boe0MMQVLSe8IUPRRFlVbhSGjEAxqLY9xFV4ziDtkI8FSfeLPH5WGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sPHwLOEx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2140C2BCB0;
+	Thu, 19 Mar 2026 08:53:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773910421;
+	bh=xYHImYfHrAusksE/SpjZQ+in7j8UXG5KBq/tmynCpQw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sPHwLOExhZnduMELsY52wbb1vCMSrz4QNIozsTSmgQoxf1YJv82jpqqxBHV+iXtmO
+	 S3Y/2pIDsKQi3st3Qtx6bCACq2TR1j/W+859DUktnqELWILNrrURCGxNxiATp0XlVd
+	 9ML5f2wyRAAQstl95uienRCa3YM9ElbTHPMy2Gbe8K58iIei6LvjbfuRCcFexJarOF
+	 Xf87C/YfM3HDeECWLvDXGsSbgOC3R9jSmWPezsfq1LpESFqGOABnd+MLIA7ynJEk1f
+	 UtFaSJtUrIhdh7SrwzSuoJt/Soe5l1n4njpiV4U1bLkx4HnUS/flpTSNOxtdgRg/uY
+	 MV1OwC//1fbtQ==
+Date: Thu, 19 Mar 2026 09:53:38 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Alexey Charkov <alchark@flipper.net>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Gene Chen <gene_chen@richtek.com>, Yuanshen Cao <alex.caoys@gmail.com>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH v4 2/4] dt-bindings: usb: richtek,rt1711h: Switch ETEK
+ ET7304 to use a fallback compatible
+Message-ID: <20260319-hopping-translucent-dugong-dfd4e7@quoll>
+References: <20260318-husb311-v4-0-69e029255430@flipper.net>
+ <20260318-husb311-v4-2-69e029255430@flipper.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Virus-Scanned: Clear (ClamAV 1.4.3/27945/Thu Mar 19 07:24:38 2026)
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260318-husb311-v4-2-69e029255430@flipper.net>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277621-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277622-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[ew.tq-group.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nora.schiffer@ew.tq-group.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,linux.intel.com,linuxfoundation.org,richtek.com,gmail.com,collabora.com,vger.kernel.org,oss.qualcomm.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.957];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tq-group.com:email,tq-group.com:url,ew.tq-group.com:dkim,ew.tq-group.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A17712C81B5
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email,flipper.net:email]
+X-Rspamd-Queue-Id: 56C982C81CB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 2026-03-18 at 15:05 +0100, Nora Schiffer wrote:
-> The J722S CPSW3G is mostly identical to the AM64's, but additionally
-> supports SGMII.
->=20
-> Signed-off-by: Nora Schiffer <nora.schiffer@ew.tq-group.com>
+On Wed, Mar 18, 2026 at 06:32:54PM +0400, Alexey Charkov wrote:
+> As stated in [1], ETEK ET7304 is identical to Richtek RT1715, except for
+> the VID value in its registers, so reflect it in the bindings via a
+> fallback compatible.
+> 
+> As there are various TCPCI chips by different vendors reimplementing the
+> registers and behavior of the RT1711H/RT1715, fallback compatibles will
+> scale better.
+> 
+> Link: https://lore.kernel.org/all/20260220-et7304-v3-2-ede2d9634957@gmail.com/ [1]
+> Signed-off-by: Alexey Charkov <alchark@flipper.net>
 > ---
->  drivers/net/ethernet/ti/am65-cpsw-nuss.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
->=20
-> diff --git a/drivers/net/ethernet/ti/am65-cpsw-nuss.c b/drivers/net/ether=
-net/ti/am65-cpsw-nuss.c
-> index d9400599e80a4..fc57d5e6edf4c 100644
-> --- a/drivers/net/ethernet/ti/am65-cpsw-nuss.c
-> +++ b/drivers/net/ethernet/ti/am65-cpsw-nuss.c
-> @@ -3468,6 +3468,13 @@ static const struct am65_cpsw_pdata am64x_cpswxg_p=
-data =3D {
->  	.fdqring_mode =3D K3_RINGACC_RING_MODE_RING,
->  };
-> =20
-> +static const struct am65_cpsw_pdata j722s_cpswxg_pdata =3D {
-> +	.quirks =3D AM64_CPSW_QUIRK_DMA_RX_TDOWN_IRQ | AM64_CPSW_QUIRK_CUT_THRU=
-,
+>  Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
 
-Ah, I just realized that I sent the wrong version of this patch,
-AM64_CPSW_QUIRK_CUT_THRU only exists in the TI vendor kernel... sorry about
-this, will fix in v2.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Can someone from TI answer if AM64_CPSW_QUIRK_DMA_RX_TDOWN_IRQ is needed fo=
-r the
-J722S?
+Best regards,
+Krzysztof
 
-Best,
-Nora
-
-
-
-> +	.ale_dev_id =3D "am64-cpswxg",
-> +	.fdqring_mode =3D K3_RINGACC_RING_MODE_RING,
-> +	.extra_modes =3D BIT(PHY_INTERFACE_MODE_SGMII),
-> +};
-> +
->  static const struct am65_cpsw_pdata j7200_cpswxg_pdata =3D {
->  	.quirks =3D 0,
->  	.ale_dev_id =3D "am64-cpswxg",
-> @@ -3495,6 +3502,7 @@ static const struct of_device_id am65_cpsw_nuss_of_=
-mtable[] =3D {
->  	{ .compatible =3D "ti,am654-cpsw-nuss", .data =3D &am65x_sr1_0},
->  	{ .compatible =3D "ti,j721e-cpsw-nuss", .data =3D &j721e_pdata},
->  	{ .compatible =3D "ti,am642-cpsw-nuss", .data =3D &am64x_cpswxg_pdata},
-> +	{ .compatible =3D "ti,j722s-cpsw-nuss", .data =3D &j722s_cpswxg_pdata},
->  	{ .compatible =3D "ti,j7200-cpswxg-nuss", .data =3D &j7200_cpswxg_pdata=
-},
->  	{ .compatible =3D "ti,j721e-cpswxg-nuss", .data =3D &j721e_cpswxg_pdata=
-},
->  	{ .compatible =3D "ti,j784s4-cpswxg-nuss", .data =3D &j784s4_cpswxg_pda=
-ta},
-
---=20
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-https://www.tq-group.com/
 
