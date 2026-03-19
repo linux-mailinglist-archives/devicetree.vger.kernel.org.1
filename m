@@ -1,146 +1,159 @@
-Return-Path: <devicetree+bounces-277739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277740-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CKLBKt/iu2njpQIAu9opvQ
-	(envelope-from <devicetree+bounces-277739-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:49:51 +0100
+	id ANKBONjhu2lXpQIAu9opvQ
+	(envelope-from <devicetree+bounces-277740-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:45:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12DF82CA9B4
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:49:51 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2C6E2CA88F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:45:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7F1DB304E82A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:43:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 62F403019C86
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:45:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F1AC344D8B;
-	Thu, 19 Mar 2026 11:43:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B97DD3AEF54;
+	Thu, 19 Mar 2026 11:45:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="C7U4UADd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D209F330D25
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 11:43:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2316377EB5;
+	Thu, 19 Mar 2026 11:45:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773920589; cv=none; b=Qsf+v7IyqNpggmI7rToReP43ESaG8w22hkhGGIre6HLwc7kyO7TbGpXbBW4zePbJjxnn7ao7fQihQSoA1bbi21uZi8hySREZRcnamz6cLAkON0jczL9UN86H7i5/DWMNjqEMKETDNcizLQBEmcYTbTLfa1e2CjlkAnZio9IOlTo=
+	t=1773920725; cv=none; b=BUTfYIWk2WQLq0DO9frzQlvum1blsJwMbk7MQ+miqruGnxKwgWBQcq5O/t0W4DdbPRZQGoqOHvh6gHVnoRR3ZzfIKgV27WgXBtOgF8Bg+MHtC0SUvE8rGfS+2r6270gxoFRYcNOtZTa5c1uTLzJc3hDbMHP8ujJsvWJvnUN2Yv4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773920589; c=relaxed/simple;
-	bh=WD3OhxPt7AGwPXXUuX04Kf61gHCpJaNK7fNNQEm3uaA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=EqdjL0069xQU8YkebIW12kYLBveWsgm16i+cEjYD+NXi7WleIU8JPdX43tBk1b/CEUxnsgzUEVYM5VpjrT+O+OnuOV6MgUkFuVy0b+FBwUTMFlIVjv0Uv49dWFMJnASEPward81YuJxzhtfhzUfs1UREGhlEyZvmGx4Xx3N7CR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1w3Bm5-0007xc-Cs; Thu, 19 Mar 2026 12:42:49 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1w3Bm3-0014CP-2s;
-	Thu, 19 Mar 2026 12:42:47 +0100
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1w3Bm3-00000000Byb-3NCL;
-	Thu, 19 Mar 2026 12:42:47 +0100
-Message-ID: <c0a6d0346e2b766ab4dab3340445c45843f28b60.camel@pengutronix.de>
-Subject: Re: [PATCH v3] reset: spacemit: k3: Decouple composite reset lines
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Yixun Lan <dlan@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Junzhong Pan
- <junzhong.pan@spacemit.com>, Guodong Xu	 <guodong@riscstar.com>,
- devicetree@vger.kernel.org, 	linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, 	linux-kernel@vger.kernel.org, Inochi Amaoto
- <inochiama@gmail.com>
-Date: Thu, 19 Mar 2026 12:42:47 +0100
-In-Reply-To: <20260318131043-GKA488271@kernel.org>
-References: <20260317-01-k3-reset-usb-pci-v3-1-e4b9a43c7d45@kernel.org>
-	 <3e9022faae3dc6f5066a1e7cc3752a0193a55bc9.camel@pengutronix.de>
-	 <20260318131043-GKA488271@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1773920725; c=relaxed/simple;
+	bh=V9PeQHG+J9/hfCBxtV3PFI1VLoNo23MIN/xtY1+w03U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZWpwVdxFXwUhfNZGHPGxUD0ynm8nwTvXY1odwZlsrOm0VydIbNSRFoollh4KNVzs8+LUHih4+BfZYyszSEA4zLe2oS1/nHCFBtj3bktkM/kCG+2S5ogGf3vYjqvDkufUxbQCjggCsRSWQJ7zildf94Pr+MEaUFNCnZD8E3FMb+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=C7U4UADd; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773920723; x=1805456723;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=V9PeQHG+J9/hfCBxtV3PFI1VLoNo23MIN/xtY1+w03U=;
+  b=C7U4UADdaih0xq5LABlZbGG/xz5fjhgMytFo6YYZELMZXtYxApYHcd87
+   AIVng7ByDwYgMYH8DJuANp6Ek0/D6qsBpU9DCGq9Rp5eZSBC7Mcwyle1z
+   TABaOrOrOwF5QTKKA/kJrca9OEYkKplktpXkO+O1iN27o7HrN5yl4QOZl
+   i2FBA3bJVGvH/67WPzyjJoZYbD9UtbWz19g57W8m9UU9Kf4Bj1VSYrz0r
+   FvUdPQMhd+ylnyjcPmkRXOzBXeJT+gfBkn5LZEELEKtn+8bjF+ZYtyt83
+   p6GnDWl9YQ6pgBQ4Q1nUZpLij2cvxo5WWwtSrsRHM81ObSFI1cMFbq9lR
+   g==;
+X-CSE-ConnectionGUID: MJCqAkZNTR2Iw87RSoSlVQ==
+X-CSE-MsgGUID: KIqoiJCpS/6WnaMWiEaVTw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="74874167"
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; 
+   d="scan'208";a="74874167"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2026 04:45:23 -0700
+X-CSE-ConnectionGUID: wbbZ3gjpTNqxjJxVG5x4oQ==
+X-CSE-MsgGUID: Esg5765uRLSzoQtLgt5Ntw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; 
+   d="scan'208";a="247246308"
+Received: from lkp-server02.sh.intel.com (HELO a51c2a36b9df) ([10.239.97.151])
+  by fmviesa001.fm.intel.com with ESMTP; 19 Mar 2026 04:45:20 -0700
+Received: from kbuild by a51c2a36b9df with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1w3BoU-000000000tJ-0O1j;
+	Thu, 19 Mar 2026 11:45:18 +0000
+Date: Thu, 19 Mar 2026 19:44:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Florian Eckert <fe@dev.tdt.de>, Thomas Gleixner <tglx@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Florian Eckert <fe@dev.tdt.de>, Eckert.Florian@googlemail.com,
+	ms@dev.tdt.de
+Subject: Re: [PATCH 2/2] irqchip: Add Lightning Mountain irqchip support
+Message-ID: <202603191903.MUNojwHX-lkp@intel.com>
+References: <20260318-irq-intel-soc-msi-v1-2-0e8cdf844fa8@dev.tdt.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spamd-Result: default: False [0.04 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260318-irq-intel-soc-msi-v1-2-0e8cdf844fa8@dev.tdt.de>
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,spacemit.com,riscstar.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_CC(0.00)[lists.linux.dev,vger.kernel.org,dev.tdt.de,googlemail.com];
+	TAGGED_FROM(0.00)[bounces-277740-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-277739-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DMARC_NA(0.00)[pengutronix.de];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.616];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	R_DKIM_NA(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 12DF82CA9B4
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-0.936];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
+X-Rspamd-Queue-Id: F2C6E2CA88F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mi, 2026-03-18 at 21:10 +0800, Yixun Lan wrote:
-> Hi Philipp,
->=20
-> On 13:39 Wed 18 Mar     , Philipp Zabel wrote:
-> > On Di, 2026-03-17 at 02:36 +0000, Yixun Lan wrote:
-> > > Instead of grouping several different reset lines into one composite
-> > > reset, decouple them to individual ones which make it more aligned
-> > > with underlying hardware. And for DWC USB driver, it will match well
-> > > with the number of the reset property in the DT bindings.
-> > >=20
-> > > The DWC3 USB host controller in K3 SoC has three reset lines - AHB, V=
-CC,
-> > > PHY. The PCIe controller also has three reset lines - DBI, Slave, Mas=
-ter.
-> > > Also three reset lines each for UCIE and RCPU block.
-> > >=20
-> > > As an agreement with maintainer, the reset IDs has been rearranged as
-> > > contiguous number and pushed as a fix for the driver, and reason is t=
-hat
-> > > there isn't any consumer of reset driver so far,
-> >=20
-> > Unfortunately that does not seem to be the case for all APMU resets.
-> > A lore query for all changed IDs [1] yields a patch that adds ethernet
-> > device nodes using RESET_APMU_EMAC[012] [2].
-> >=20
-> Yes, although the ethernet use this ID, but I don't think we should worry
-> about that, since the ethernet patch is still under review, and ideally i=
-t
-> will be merged after this reordering patch, unless you disagree? and insi=
-st
-> the RESET_APMU_EMAC should not be changed?
+Hi Florian,
 
-Yes, please. Somebody might have picked up those patches from the list
-and we can easily avoid the risk of breaking their ethernet with v7.0
-by not reordering all resets. Let's do that.
+kernel test robot noticed the following build errors:
 
-regards
-Philipp
+[auto build test ERROR on f338e77383789c0cae23ca3d48adcc5e9e137e3c]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Florian-Eckert/dt-bindings-Add-Lightning-Mountain-MSI-interrupt-controller-bindings/20260319-033849
+base:   f338e77383789c0cae23ca3d48adcc5e9e137e3c
+patch link:    https://lore.kernel.org/r/20260318-irq-intel-soc-msi-v1-2-0e8cdf844fa8%40dev.tdt.de
+patch subject: [PATCH 2/2] irqchip: Add Lightning Mountain irqchip support
+config: riscv-allyesconfig (https://download.01.org/0day-ci/archive/20260319/202603191903.MUNojwHX-lkp@intel.com/config)
+compiler: clang version 16.0.6 (https://github.com/llvm/llvm-project 7cbf1a2591520c2491aa35339f227775f4d3adf6)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260319/202603191903.MUNojwHX-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603191903.MUNojwHX-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/irqchip/irq-intel-soc-msi.c:17:10: fatal error: 'asm/irqdomain.h' file not found
+   #include <asm/irqdomain.h>
+            ^~~~~~~~~~~~~~~~~
+   1 error generated.
+
+
+vim +17 drivers/irqchip/irq-intel-soc-msi.c
+
+    16	
+  > 17	#include <asm/irqdomain.h>
+    18	#include <asm/apic.h>
+    19	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
