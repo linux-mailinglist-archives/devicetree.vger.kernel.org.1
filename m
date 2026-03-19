@@ -1,159 +1,203 @@
-Return-Path: <devicetree+bounces-277607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277608-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MA5/Bt2wu2k8mgIAu9opvQ
-	(envelope-from <devicetree+bounces-277607-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:16:29 +0100
+	id ACMrJS6yu2k8mgIAu9opvQ
+	(envelope-from <devicetree+bounces-277608-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:22:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 213422C7BC4
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:16:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 229842C7CA6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:22:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 39232300D4DD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 08:16:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B81BA31F8630
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 08:18:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7E99368972;
-	Thu, 19 Mar 2026 08:16:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AF5430F7F3;
+	Thu, 19 Mar 2026 08:18:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VG+w61xT"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="QSlaybSr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013048.outbound.protection.outlook.com [40.107.162.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85D5C2E7180;
-	Thu, 19 Mar 2026 08:16:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773908183; cv=none; b=s+3DhGmj46+qfPOafRfKv0oQRzjIarSKHAJZAeQdhxgmhlqgiYF0S+KDGSGm6GmDwbpwMye8c4gRNC/VGyDl8+aht3fZ5+wnLLceJ08d6/fyx4YwitSXh2lvvS1UEVJ1bghBPLidcprZL9bapYcA5RWy9pJop977Yv4IliMNlHE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773908183; c=relaxed/simple;
-	bh=r3IeYS8hW1srdAKxbHBU3Z1pFg9Grc+Dt8XhxBV4PL8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kix/1jZ3Iz9jn60z9ghLPm2V2hkweBbVZw30jrFJ1yrFGRXmYTFm0+ZuJz703o8Sc/e+6szDHvEqCNMr0YF3vDO/tfm+1Jq3hm3doj7ceHmisdyG2DppsM0z4DhK0vR81LRnAaOeHwnttuzytNFc+zKaZhaUZhZrCSkcJ/s2cW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VG+w61xT; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773908180; x=1805444180;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=r3IeYS8hW1srdAKxbHBU3Z1pFg9Grc+Dt8XhxBV4PL8=;
-  b=VG+w61xTgp3FXOVV2vorRb2ehfI8Tmq2ucDB2SjcO37IHALYMjsJJl9K
-   tE8zWRKgmWerLy65j0oeKRP5IS+nGkQJZeo3vTD3LBd8M7QQMMeN05G9G
-   GNPPhWAqj1wu98I8gZMifiN4JAj6d/AQhibao/YlL5z6Lk0PLX//g2o52
-   fZsCBCgwG6eKrdV0y+75BPDI3W/o1fDTNl/K+JFZusYeyiXiuZtb7KK4q
-   LMQjMeRNAhxoAkIIGielnzB8iRnP0vX2+XpVK8uzuvpulBYmhCJCW8s6R
-   eT1MlCvi4Y+TMdqkLCz6Rfue2p04+hUX78Y08nf3yjQcPZOP3hZ4W7nVM
-   g==;
-X-CSE-ConnectionGUID: h+aYAs8iSseS03QJFw7kCw==
-X-CSE-MsgGUID: jSd1vJmrQUyvvp0Tt+4z6w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="85602415"
-X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; 
-   d="scan'208";a="85602415"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2026 01:16:20 -0700
-X-CSE-ConnectionGUID: KcOGHWmzS4ySIdEvVBXEOg==
-X-CSE-MsgGUID: bnCQ+ctGTx+SvZsKF8aOnw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; 
-   d="scan'208";a="220294281"
-Received: from igk-lkp-server01.igk.intel.com (HELO 9958d990ccf2) ([10.211.93.152])
-  by fmviesa008.fm.intel.com with ESMTP; 19 Mar 2026 01:16:18 -0700
-Received: from kbuild by 9958d990ccf2 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1w38YB-000000004nd-3SRY;
-	Thu, 19 Mar 2026 08:16:15 +0000
-Date: Thu, 19 Mar 2026 09:15:18 +0100
-From: kernel test robot <lkp@intel.com>
-To: Vyacheslav Yurkov via B4 Relay <devnull+V.Yurkov.EXT.bruker.com@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	Vyacheslav Yurkov <uvv.mail@gmail.com>
-Subject: Re: [PATCH 1/2] clk: Add clock controller guard
-Message-ID: <202603190902.jG6JLJIo-lkp@intel.com>
-References: <20260318-feature-clock-guard-v1-1-6137cb4084b7@bruker.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDEA936AB42;
+	Thu, 19 Mar 2026 08:18:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.48
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773908324; cv=fail; b=myO/fPyOY1wkms3bCn8qKMvU+PDGakc+wVeJel/20ofTVKjeR1svcPH3t1Wv2/vFbjGIA6Rh4tZXrMmO0YMv07r+vXkMA90mcPIgXL13/Je8tF+8C0qtASrO8Xv6GvLSrSnRXqIuBiZJRIVqYCtM9r301wKNeSO5hWA/0BG3Kxg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773908324; c=relaxed/simple;
+	bh=MvUN/J0apKa1rxwKDD7PHpWHu1MOH+2SZmhm6MT3BOk=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=EmOukoZLZcYFbvb3mIFZk8Fpc1c6TFA3kOrczh4jjTPQY4X1MPgNxdgOqS+uxx7O2IChH3OSNmOv1jVZXJSuccPyP03O5/Zya2+gOfKV/imaSLvTevXesO8W0TiNM97r1mdyxmD1suzJciTLnEWRQyXg/4X9CRS0VcVUAX2ja7w=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=QSlaybSr; arc=fail smtp.client-ip=40.107.162.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rEjrtsV/Yvh91hxsGwt/yk6HjYU6nLO14UCjvjC/rk82OHJLPdVHolI9sn6RQMYoqklW4tk/C1gs+zj3Njab+bNjgB4N739i5cVNxOyzgrHBYWlmP/8VGAHeabhctszI8phKipXvvAkUIuOtCfRS1Vt0E4NtxRy3CznIPSSfkJG6oVIOPKVwGCeQZCvfmTEOdjUghI2dUIEO7aBGzAM2bpF3+BHrg2Avnd8um4mkG78pCops4f7gY30hArjId4UZATvny47PmjnUnumerJOk9zFTTQG64XL9e5l41J+BT0Ahds7/VEG4FNDmD26Xrq2qWCSVPhOJ6EH7aaJiAPcWqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wRRp63JDpyoCD+LSm90Xqp3hM18f4pZc+11ONlWFmc0=;
+ b=AX+FRGMPj8M0VXN4Q7fRHuVoyS8LVRP3uMRdo6ob7ENlndaUaPCJ+u+Jl7oU9tKo5dx/aw4OLm8g4DZakYY+0jnlr85cm2YnU07rF6MckqACS5tP6Na2l/zcwznvs5kjBqK3mBFUu29VjuGSLqjTx0Wz+s7924gi1O6XXStuUskzI+mKyWaSphJRTuR03KyXRIMlK85Sy9212MgzUE/ib8B2R8eQz/aLu4aQRlOKby6Mp0eygBocKcDneT6s1AK3zIUeDvVLtbOuVUroo1mc/XhX+jO4R9YMq2mpsjhqsHPkkn5VX4zYeJkRcDrqqYP8r5MzLhUVu/DFXvoxm+mvfA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wRRp63JDpyoCD+LSm90Xqp3hM18f4pZc+11ONlWFmc0=;
+ b=QSlaybSr3WjxrlDfXzmYg1b/PdjE6yOCxwsUt6rPjld6WQxRRJD39qDObbBcAo60L1txZXL79KABatYr21Uy761GGiQrAYCrrCqYbVy+s3ZSu2ywCPJCfiKo/SPadV2VBAM//8d1Tgd8qAADfaxNGXOqzBUP0VZBESy9uRr+jTK21giukByYpVC70pq3pZkHTnLcJPAuvO0TYJsprtQ9beY1JiPhbvvc2WcrPd2PWOPKypy/3GEscceB3jzyQwxpwhmnQmf/PybcFZRwsANFh16AK0iCFNPIO5Q4K6m7ueREsln5avn7Kuc8xQazwHw1yD9jJdPrhKJ6nyryfNbM5Q==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS4PR04MB9386.eurprd04.prod.outlook.com (2603:10a6:20b:4e9::8)
+ by GV1PR04MB11516.eurprd04.prod.outlook.com (2603:10a6:150:284::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Thu, 19 Mar
+ 2026 08:18:33 +0000
+Received: from AS4PR04MB9386.eurprd04.prod.outlook.com
+ ([fe80::1fdb:9c8f:5400:8bdb]) by AS4PR04MB9386.eurprd04.prod.outlook.com
+ ([fe80::1fdb:9c8f:5400:8bdb%4]) with mapi id 15.20.9723.018; Thu, 19 Mar 2026
+ 08:18:30 +0000
+From: Joy Zou <joy.zou@nxp.com>
+Subject: [PATCH 0/2] Add i.MX91 9x9 QSB basic support
+Date: Thu, 19 Mar 2026 16:18:48 +0800
+Message-Id: <20260319-b4-imx91-qsb-dts-v1-0-2eedc01d8af0@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGixu2kC/32NQQ6DIBBFr2Jm3WkAbYWueo/GBSLUWQgKxtgY7
+ l7qAbp8L/nvH5BsJJvgUR0Q7UaJgi/ALxWYUfu3RRoKg2DizmqusG+Qpl1xXFKPw5rQWCaV64W
+ sbzWU2Ryto/1MvrrCI6U1xM/5sPGf/RPbODJUrmmN1tK0Qj79Pl9NmKDLOX8Bq8EDgK4AAAA=
+X-Change-ID: 20260319-b4-imx91-qsb-dts-ce089fb28353
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Ye Li <ye.li@nxp.com>, 
+ Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ Joy Zou <joy.zou@nxp.com>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: SGXP274CA0004.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b8::16)
+ To AS4PR04MB9386.eurprd04.prod.outlook.com (2603:10a6:20b:4e9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260318-feature-clock-guard-v1-1-6137cb4084b7@bruker.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4PR04MB9386:EE_|GV1PR04MB11516:EE_
+X-MS-Office365-Filtering-Correlation-Id: 39701a92-065a-4c92-ff12-08de85901ac1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|366016|52116014|376014|1800799024|7416014|18002099003|56012099003|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	Z9RMRkjDouD7LWS8ujBj1UazPOvnLVi96XxO7E0aLKqpg3JB1KoPRUU9qoj5gqxUkVwjuJ3xbtO8drClAWDX9TLD0VAwtCOV4vO7iXhQBnWwqLcL0aV8ibixamRGYuJrcBQAu41fszPBPOwsTDqdCPQLjL6GDSAI4hiMREvwcdKBipYJ4FNGUNCcweaWqScXXxkkiCOan2srZv0yyo202FbO+1BTUAAm7yDJNIlHG7jjGrUM8M1I+QM1PI40YBYqYhncq9D3FGwrLq5A+V1wVKx99kLcYtErFqTfzUSbLiMQWX+gRKxLK+XXdUPTKXAZcXhrtYwGYvCkRTwMlCWeZtQ9IS47E9hN4AsnlvB62qZty7bnanhPNUWcBSwS+bBTtaR8OXhiHad2GeR1PVki6zDUJF3Y9fhAT5r5IjL8NOq9Z+/3tRHTaVqahaDjGhVIs3G7BE2KandYJI3nmCpGtsG7RFtkDxIDUAh3pNY3zY+XY77ZWTvucW73CrdGU76NviubRb1+0I01qQSALIy3hrJ3rTqObqdMoZwQOFcnsaf28zSkYVD8Gsc/QDltamzkw8kxWzvRLKQUK4BqBllCZOD5eKqQuWWCDjpuMdCYg7J4HeLOELRStOqwVBgGcIeNQUl9IwI9gHbMJH/JjrorP94/7bMdZs5HYo9TbIA8gdRtDIh2KU+6+3RMEFVIfD5nUfUw6MHWasbKY2bl52E7/lLbIWOMuArwNZ0MIPG1l8wsEfcIJSoyg/zPEvMLLZfpSyXfD6/whtp0ae11WHgTvcLj3sds/EeffO6/NtRkSfPod408fEctKkhwQ0cJc+Rc
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9386.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(52116014)(376014)(1800799024)(7416014)(18002099003)(56012099003)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?UlFVWmZBU2RCdmJYb0pVclp0RWN2bmdnOE40RkQzc3o4MUc0eUFLZWhvU1Vw?=
+ =?utf-8?B?QVV0RXljUkNscWdoOTFaOHdvdEZEaGQzQURVS0JNcU9ZQllqRHFlSHJDdmt6?=
+ =?utf-8?B?M0loaEFYZThkQ1BVYjFQaHNRWWtLNVVYd25pMXpZK29ZS29Hb0JRUWJ2TWhx?=
+ =?utf-8?B?eElJSXIyT3VRRDNsQ0F2KzduazAyaTViWVRxMkFRTzhyVmsxVjBzem12WHpP?=
+ =?utf-8?B?c0s0RUp3Mmh6c0xCVTBiVEluRmVkSWd0Rnc2dHBZWkd2TGg0R3Jna3JFK1lv?=
+ =?utf-8?B?Q25ZSy9RMWt6enBkN2R1bTgwTEZka0tUTktoSzBuVnFBZXpxaFpJWWttbjg2?=
+ =?utf-8?B?eCsrS01IZmt0YkFuWDljcHM4VHVGRnpmUmpQMUZpQ3RZTWpDcXh6aFQ1M2J2?=
+ =?utf-8?B?WlVVKzhJTjFHM09lKzVJcXExQW5IL1V6cFNzTjRPUUttYk5YU1ZZbzd6MVVD?=
+ =?utf-8?B?Nk9ncSs0WkFDZFBTNFdEL21DWEJsMWN0SHVTVjB2QUQ2M2p3cDF5SWw5WExz?=
+ =?utf-8?B?aDNRVm96R0J1QlZJay80YW94VjZtUzVFR3NEcHRwOCtxUS9uaml1eVZERFBM?=
+ =?utf-8?B?OUZiQXE1TnQ4VmcxMVFOeS9CbE9PS0Z2VlZkWG5tcnBzSXFWejZrKy9uMjhW?=
+ =?utf-8?B?THZMKzFEeHhIczRZV29IMmZPUldlZ1k1L3A1bERncXg2UnNMMks2S1psTTd2?=
+ =?utf-8?B?UkYxd3NJUDhCU2F5UVdDSVZXTTRuaG1LZzhHYnE1U2x1ZmZXS1Vyb2gzdElk?=
+ =?utf-8?B?QzhRUTFTY1pLdXJESmM1RXJTamRsUDE5R2dITGM4dWV4Mnd6OGI1YUdPUUg2?=
+ =?utf-8?B?NHRGekQvVVR2d1hJeGRzMEd4Y2ZMdm1QLzRCSWg1MmhiTHRBdlNNcnRidUhh?=
+ =?utf-8?B?MzlvelF3aUxmNmpIdXVFMjgxbVVFZWQzVDlHTkpyM3FwWmJ0NFZJVFhNZ1Yr?=
+ =?utf-8?B?R0dWVkZtSFMvei94UkxXOHpCc1JwQWJQRXNHNC9PVVBUWTRWT3c0NFBSV1RN?=
+ =?utf-8?B?TkhGb0luMlgrMXdQMUxFMElMN2tRYUlWZUhhSkh5bWNnTWFUdmVjSjZuN0NJ?=
+ =?utf-8?B?QUVlK0xac3czOFhjWlgzWnlSS3FUbTY1c29hRnVqTWhid0lsYVZkMk5tMGNY?=
+ =?utf-8?B?ZnpnNmRnQ09wS1BxU3dPNEJOR0FJNUtiMWswRWJDeW1VQTJJOWtyRUZYR05Y?=
+ =?utf-8?B?My96UXhkZ2FCTmRNYmlncG00bkpxWWZSeWU4ZDFVd1BQa0VpU1ZxYUdKR3cv?=
+ =?utf-8?B?Nm53a1c1d1pmOEtFbG5mQlp5dHpoVUZaRkxMbjFTQjZTYnNQMy8wVGN1Q1Rj?=
+ =?utf-8?B?TUM5aFhqMHRvZ2hwKzNFblQvcm5RMlpJdUxaWTYyVUtJbENlb2dkNXRjQnhE?=
+ =?utf-8?B?YkxBQzZ2SHMzVjk5RCs1QnQzQU15WUNCSm5WNVpyclVpZCtVQUNKa25iU09y?=
+ =?utf-8?B?ZXNmMWFkTVdzN2oyQUY3RkRWZUlweUcrNVBDWjFxY3J3YnljTHkra2dOb2wx?=
+ =?utf-8?B?U0xmaTZvQ3pWYWtPRmRrbmFkOVdIMXRQWkxpaEhmeFJiUnZINGc3REJnTGlG?=
+ =?utf-8?B?dzMvZFdUOXVJZlZQR3NiVm1PZ3lDcGt2Z2J2VkNuc0JjQzczaUNwS0xsZVkr?=
+ =?utf-8?B?VUUxRHBHTDd5MlU2MkpFVWtTeSt6Nitrem5XZmNQOSt5RWNmZzBIK0NpMkNn?=
+ =?utf-8?B?UkFpL2dmMFdtdDdJWW5zRGQ3Zm5UQUdIRVlBM1ZycWlvQW5ndDhpdjFKTkY0?=
+ =?utf-8?B?VXdUSEMvdzJ0OVlkbStTSVRqY0ZCeDJYMnJVMlVlZXE2OGhGMzZ5Wk4zblpQ?=
+ =?utf-8?B?Zk0xTFFUckxCeTdCMER2WURDc3RXK3crSXFTaWEzTjZNcmsyU0NzRldVR3RN?=
+ =?utf-8?B?QzRMYjYvNXB0b1ZQUmJsK2cvaWxKbEdzKzNpRVFSV0tZOThUZkw3dU9RcEx0?=
+ =?utf-8?B?MDhyZlFnWHlvVEZtbmpmbll4MFNhbFR5Vk9lTzBHa3JkdWVkNHVWU0pkM1Nm?=
+ =?utf-8?B?TWgrRno1eGw1OXN5c25MVG1KMnBoWHV6MEFQWURWQjdMU2VVZGZhZXFyVTds?=
+ =?utf-8?B?MTZCNDBmRlYveTM1N2k3dDlJYjRYTUhVRFZpcURlRG9seDdrbGNURW5SSGFi?=
+ =?utf-8?B?eGlGTVA4aTgvSFNzbHU0bURGTTNTaXhZS29mVTdEdGRYeXdzdWpNTitwZEx4?=
+ =?utf-8?B?RG5VYWZWVXBvVUQ5ZjFma2xkU0JtZTk4RG9Gb0NPMy9ZZ3FWSkpUaGh0VktP?=
+ =?utf-8?B?aVlGcDIvN1dnZ0ZaQ0VjRVZVdS8yK1dBSWsyUC8xS05FQ0tnV0dMcmh0UEdo?=
+ =?utf-8?B?OEIyUWRvRThvbzBsRVFrMGxwRExTakxsOG9rTmNQdWlHYXpzcVFXZz09?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 39701a92-065a-4c92-ff12-08de85901ac1
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9386.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2026 08:18:30.5278
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: G+z5wg0EmNYFQe+Zpx0vASGEHubGzWgbSyVCfCZkueHX75YqHrqjWsUMT6B4VY9i
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB11516
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.linux.dev,vger.kernel.org,gmail.com];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277608-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277607-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.939];
-	TAGGED_RCPT(0.00)[devicetree,V.Yurkov.EXT.bruker.com,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,01.org:url]
-X-Rspamd-Queue-Id: 213422C7BC4
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[joy.zou@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	NEURAL_HAM(-0.00)[-0.995];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 229842C7CA6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Vyacheslav,
+Add i.MX91 9x9 QSB basic support.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Joy Zou <joy.zou@nxp.com>
+---
+Joy Zou (2):
+      dt-bindings: arm: fsl: add i.MX91 9x9 QSB board
+      arm64: dts: freescale: add i.MX91 9x9 QSB basic support
 
-[auto build test WARNING on 4f3df2e5ea69f5717d2721922aff263c31957548]
+ Documentation/devicetree/bindings/arm/fsl.yaml  |   1 +
+ arch/arm64/boot/dts/freescale/Makefile          |   1 +
+ arch/arm64/boot/dts/freescale/imx91-9x9-qsb.dts | 425 ++++++++++++++++++++++++
+ 3 files changed, 427 insertions(+)
+---
+base-commit: 8e42d2514a7e8eb8d740d0ba82339dd6c0b6463f
+change-id: 20260319-b4-imx91-qsb-dts-ce089fb28353
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Vyacheslav-Yurkov-via-B4-Relay/clk-Add-clock-controller-guard/20260319-151001
-base:   4f3df2e5ea69f5717d2721922aff263c31957548
-patch link:    https://lore.kernel.org/r/20260318-feature-clock-guard-v1-1-6137cb4084b7%40bruker.com
-patch subject: [PATCH 1/2] clk: Add clock controller guard
-reproduce: (https://download.01.org/0day-ci/archive/20260319/202603190902.jG6JLJIo-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603190902.jG6JLJIo-lkp@intel.com/
-
-versioncheck warnings: (new ones prefixed by >>)
-   INFO PATH=/opt/cross/rustc-1.88.0-bindgen-0.72.1/cargo/bin:/opt/cross/clang-20/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-   /usr/bin/timeout -k 100 3h /usr/bin/make KCFLAGS=\ -fno-crash-diagnostics\ -Wno-error=return-type\ -Wreturn-type\ -funsigned-char\ -Wundef\ -falign-functions=64 W=1 --keep-going LLVM=1 -j32 ARCH=x86_64 versioncheck 
-   find ./* \( -name SCCS -o -name BitKeeper -o -name .svn -o -name CVS -o -name .pc -o -name .hg -o -name .git \) -prune -o \
-   	-name '*.[hcS]' -type f -print | sort \
-   	| xargs perl -w ./scripts/checkversion.pl
->> ./drivers/clk/clkctrl-guard.c: 16 linux/version.h not needed.
-   ./samples/bpf/spintest.bpf.c: 8 linux/version.h not needed.
-   ./tools/lib/bpf/bpf_helpers.h: 446: need linux/version.h
-   ./tools/testing/selftests/bpf/progs/dev_cgroup.c: 9 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/netcnt_prog.c: 3 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_map_lock.c: 4 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_send_signal_kern.c: 4 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_spin_lock.c: 4 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_tcp_estats.c: 37 linux/version.h not needed.
-   ./tools/testing/selftests/wireguard/qemu/init.c: 27 linux/version.h not needed.
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Joy Zou <joy.zou@nxp.com>
+
 
