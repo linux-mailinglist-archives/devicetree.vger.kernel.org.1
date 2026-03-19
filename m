@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-277943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277944-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +AWSAeI5vGl3uwIAu9opvQ
-	(envelope-from <devicetree+bounces-277943-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:01:06 +0100
+	id iHrUAFs6vGl3uwIAu9opvQ
+	(envelope-from <devicetree+bounces-277944-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:03:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A2F32D0724
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:01:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32FEA2D079D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:03:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E6816327A714
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:49:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3C6F7326BC90
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:50:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E80103F54AE;
-	Thu, 19 Mar 2026 17:48:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 915FB3F20FD;
+	Thu, 19 Mar 2026 17:49:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="HQsmF872"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="VP6+Xiuf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBF603E3D8E
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 17:48:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0471C38A739
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 17:48:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773942537; cv=none; b=TfxREnl45jD6mCQIBYkvy1RFgnsHD0RuaHeS935B039z/fha4yC4mO2U3G9eMRBZRKVZTefCeJQEeFKxs9qxYQ7LL6tXQjBFYNNsY3vUGbREOEpbMkoiFHncz5e5stvEmSkudXw+wtKayzCbBre757BkXP0XhRGiobOVQT2lOb4=
+	t=1773942544; cv=none; b=q85d2MUeJ3b7CeBywGPKKhZfMI2+wv0KOGuO0gL1tpDT4HzfnV4eoP7DOlreA41ZcIlWLqKoa4TvcRz8YC8OkizPJ1UW4o65P/QsJSYEK84KASspXkkaiRevT18nBImCHISEa3wqN9adviuV5RhdUDebRiHzEmy78RewLe+JL0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773942537; c=relaxed/simple;
-	bh=8UwCfsFW6W5qZaITliwOOZSS/sb/aqUjjutyqHx9lXc=;
+	s=arc-20240116; t=1773942544; c=relaxed/simple;
+	bh=VYpA0DQ8G9DeBFM/wAWmznKvooMNjsjpUnKlx2bZcCU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Up76rzfy5D67dy9k2BBM48lMpRkFBnVL58M2XqzrZSxqDV2dkAwzuk9Xm/fMNCXKFC538UhMXqxkQ4NFwgHhE1RaWeXX8AtQqgKkUP6MyYcjhu3fo4HU0cqiQzhgQe/pyqNk9F8pbBmgHRwPGIQQ/dtqR6iVbY6agxbnDqqfXcE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=HQsmF872; arc=none smtp.client-ip=170.10.129.124
+	 MIME-Version; b=LWb8iteF4NwPvM/FUvDzbr7dM9rt0UDNPQ9LEElTb3On5WOSlXV/w36FXqbIZbllFtTde4nq8WO9GJzWDQ+c90MdzWGkSCpNQPsqkyxuLjOw42PEFv/sdge4zgiuq/xeMaqLMwhjolcBL2Y3LbVeYC2L1kXDElHP14XhqrU/kIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=VP6+Xiuf; arc=none smtp.client-ip=170.10.133.124
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1773942530;
+	s=mimecast20190719; t=1773942536;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=HRgfhcPZaouIM+HcER/z7TWvKLpRBcsHTt9Q5NsvwFs=;
-	b=HQsmF872D5XgiVXO62fm5U6fReDvm0QZ6jRrk1D2DIBYioZQ+tCJzC/lUyIrnkGCZOh/uX
-	mQx34XOINTYIKaFduK+sEUPHR75LttGIeb58HhXwYBxwHmqNg/sZ+SZl8nqC2xulr1wRXT
-	f+VRq1T16nKHIlHfOBEmnTx3w56xCTo=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+	bh=X3OjAkiL/S+3p+HfwQkXwnxSsIlnuXX4GUVvffn+aHY=;
+	b=VP6+XiufyUk0EFI58C55A2a7FdPx88FWWPbko/qeKPRKMytw2HbU0SQGMlcZRkpk7w8Z1s
+	Mlraf1SPWx5671pBBieK2Bp9R7MBIm/PZcJV9DbaLpZF7s4HKlAiOAlsOh7B3AR7KAktNz
+	qgbhfQyfr1oFSh4/aHBkzLlGy5n7AJk=
+Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
  (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-297-6gHPlkLePICuRXCXkH9NaA-1; Thu,
- 19 Mar 2026 13:48:46 -0400
-X-MC-Unique: 6gHPlkLePICuRXCXkH9NaA-1
-X-Mimecast-MFC-AGG-ID: 6gHPlkLePICuRXCXkH9NaA_1773942525
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-364-qdM941obPXSKZkKVZrcktw-1; Thu,
+ 19 Mar 2026 13:48:52 -0400
+X-MC-Unique: qdM941obPXSKZkKVZrcktw-1
+X-Mimecast-MFC-AGG-ID: qdM941obPXSKZkKVZrcktw_1773942529
 Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 34EB31956094;
-	Thu, 19 Mar 2026 17:48:45 +0000 (UTC)
+	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 7F08719560B5;
+	Thu, 19 Mar 2026 17:48:49 +0000 (UTC)
 Received: from p16v.luc.cera.cz (unknown [10.44.32.41])
-	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 7662630001A1;
-	Thu, 19 Mar 2026 17:48:41 +0000 (UTC)
+	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 9AE3D30001A1;
+	Thu, 19 Mar 2026 17:48:45 +0000 (UTC)
 From: Ivan Vecera <ivecera@redhat.com>
 To: netdev@vger.kernel.org
 Cc: Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
@@ -75,9 +75,9 @@ Cc: Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
 	Rob Herring <robh@kernel.org>,
 	devicetree@vger.kernel.org,
 	Pasi Vaananen <pvaanane@redhat.com>
-Subject: [PATCH net-next 3/5] dpll: zl3073x: add ref sync and output clock type helpers
-Date: Thu, 19 Mar 2026 18:48:24 +0100
-Message-ID: <20260319174826.7623-4-ivecera@redhat.com>
+Subject: [PATCH net-next 4/5] dt-bindings: dpll: add ref-sync-sources property
+Date: Thu, 19 Mar 2026 18:48:25 +0100
+Message-ID: <20260319174826.7623-5-ivecera@redhat.com>
 In-Reply-To: <20260319174826.7623-1-ivecera@redhat.com>
 References: <20260319174826.7623-1-ivecera@redhat.com>
 Precedence: bulk
@@ -94,7 +94,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -103,7 +103,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277943-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277944-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[redhat.com:+];
 	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -113,214 +113,101 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.904];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5A2F32D0724
+	NEURAL_HAM(-0.00)[-0.910];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 32FEA2D079D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add ZL_REF_SYNC_CTRL_MODE_REFSYNC_PAIR and ZL_REF_SYNC_CTRL_PAIR
-register definitions.
+Add ref-sync-sources phandle-array property to the dpll-pin schema
+allowing board designers to declare which input pins can serve as
+sync sources in a Reference-Sync pair.  A Ref-Sync pair consists of
+a clock reference and a low-frequency sync signal where the DPLL locks
+to the clock but phase-aligns to the sync reference.
 
-Add inline helpers to get and set the sync control mode and sync pair
-fields of the reference sync control register:
-
-  zl3073x_ref_sync_mode_get/set() - ZL_REF_SYNC_CTRL_MODE field
-  zl3073x_ref_sync_pair_get/set() - ZL_REF_SYNC_CTRL_PAIR field
-
-Add inline helpers to get and set the clock type field of the output
-mode register:
-
-  zl3073x_out_clock_type_get/set() - ZL_OUTPUT_MODE_CLOCK_TYPE field
-
-Convert existing esync callbacks to use the new helpers.
+Update both examples in the Microchip ZL3073x binding to demonstrate
+the new property with a 1 PPS sync source paired to a clock source.
 
 Signed-off-by: Ivan Vecera <ivecera@redhat.com>
 ---
- drivers/dpll/zl3073x/dpll.c | 24 ++++++++-----------
- drivers/dpll/zl3073x/out.h  | 22 ++++++++++++++++++
- drivers/dpll/zl3073x/ref.h  | 46 +++++++++++++++++++++++++++++++++++++
- drivers/dpll/zl3073x/regs.h |  2 ++
- 4 files changed, 80 insertions(+), 14 deletions(-)
+ .../devicetree/bindings/dpll/dpll-pin.yaml    | 11 +++++++
+ .../bindings/dpll/microchip,zl30731.yaml      | 30 ++++++++++++++-----
+ 2 files changed, 34 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/dpll/zl3073x/dpll.c b/drivers/dpll/zl3073x/dpll.c
-index 79ef62d69a32d..276f0a92db0b1 100644
---- a/drivers/dpll/zl3073x/dpll.c
-+++ b/drivers/dpll/zl3073x/dpll.c
-@@ -137,7 +137,7 @@ zl3073x_dpll_input_pin_esync_get(const struct dpll_pin *dpll_pin,
- 	esync->range = esync_freq_ranges;
- 	esync->range_num = ARRAY_SIZE(esync_freq_ranges);
+diff --git a/Documentation/devicetree/bindings/dpll/dpll-pin.yaml b/Documentation/devicetree/bindings/dpll/dpll-pin.yaml
+index 51db93b77306f..7084f102e274c 100644
+--- a/Documentation/devicetree/bindings/dpll/dpll-pin.yaml
++++ b/Documentation/devicetree/bindings/dpll/dpll-pin.yaml
+@@ -36,6 +36,17 @@ properties:
+     description: String exposed as the pin board label
+     $ref: /schemas/types.yaml#/definitions/string
  
--	switch (FIELD_GET(ZL_REF_SYNC_CTRL_MODE, ref->sync_ctrl)) {
-+	switch (zl3073x_ref_sync_mode_get(ref)) {
- 	case ZL_REF_SYNC_CTRL_MODE_50_50_ESYNC_25_75:
- 		esync->freq = ref->esync_n_div == ZL_REF_ESYNC_DIV_1HZ ? 1 : 0;
- 		esync->pulse = 25;
-@@ -173,8 +173,7 @@ zl3073x_dpll_input_pin_esync_set(const struct dpll_pin *dpll_pin,
- 	else
- 		sync_mode = ZL_REF_SYNC_CTRL_MODE_50_50_ESYNC_25_75;
- 
--	ref.sync_ctrl &= ~ZL_REF_SYNC_CTRL_MODE;
--	ref.sync_ctrl |= FIELD_PREP(ZL_REF_SYNC_CTRL_MODE, sync_mode);
-+	zl3073x_ref_sync_mode_set(&ref, sync_mode);
- 
- 	if (freq) {
- 		/* 1 Hz is only supported frequency now */
-@@ -578,7 +577,7 @@ zl3073x_dpll_output_pin_esync_get(const struct dpll_pin *dpll_pin,
- 	const struct zl3073x_synth *synth;
- 	const struct zl3073x_out *out;
- 	u32 synth_freq, out_freq;
--	u8 clock_type, out_id;
-+	u8 out_id;
- 
- 	out_id = zl3073x_output_pin_out_get(pin->id);
- 	out = zl3073x_out_state_get(zldev, out_id);
-@@ -601,8 +600,7 @@ zl3073x_dpll_output_pin_esync_get(const struct dpll_pin *dpll_pin,
- 	esync->range = esync_freq_ranges;
- 	esync->range_num = ARRAY_SIZE(esync_freq_ranges);
- 
--	clock_type = FIELD_GET(ZL_OUTPUT_MODE_CLOCK_TYPE, out->mode);
--	if (clock_type != ZL_OUTPUT_MODE_CLOCK_TYPE_ESYNC) {
-+	if (zl3073x_out_clock_type_get(out) != ZL_OUTPUT_MODE_CLOCK_TYPE_ESYNC) {
- 		/* No need to read esync data if it is not enabled */
- 		esync->freq = 0;
- 		esync->pulse = 0;
-@@ -635,8 +633,8 @@ zl3073x_dpll_output_pin_esync_set(const struct dpll_pin *dpll_pin,
- 	struct zl3073x_dpll_pin *pin = pin_priv;
- 	const struct zl3073x_synth *synth;
- 	struct zl3073x_out out;
--	u8 clock_type, out_id;
- 	u32 synth_freq;
-+	u8 out_id;
- 
- 	out_id = zl3073x_output_pin_out_get(pin->id);
- 	out = *zl3073x_out_state_get(zldev, out_id);
-@@ -648,15 +646,13 @@ zl3073x_dpll_output_pin_esync_set(const struct dpll_pin *dpll_pin,
- 	if (zl3073x_out_is_ndiv(&out))
- 		return -EOPNOTSUPP;
- 
--	/* Select clock type */
-+	/* Update clock type in output mode */
- 	if (freq)
--		clock_type = ZL_OUTPUT_MODE_CLOCK_TYPE_ESYNC;
-+		zl3073x_out_clock_type_set(&out,
-+					   ZL_OUTPUT_MODE_CLOCK_TYPE_ESYNC);
- 	else
--		clock_type = ZL_OUTPUT_MODE_CLOCK_TYPE_NORMAL;
--
--	/* Update clock type in output mode */
--	out.mode &= ~ZL_OUTPUT_MODE_CLOCK_TYPE;
--	out.mode |= FIELD_PREP(ZL_OUTPUT_MODE_CLOCK_TYPE, clock_type);
-+		zl3073x_out_clock_type_set(&out,
-+					   ZL_OUTPUT_MODE_CLOCK_TYPE_NORMAL);
- 
- 	/* If esync is being disabled just write mailbox and finish */
- 	if (!freq)
-diff --git a/drivers/dpll/zl3073x/out.h b/drivers/dpll/zl3073x/out.h
-index edf40432bba5f..660889c57bffa 100644
---- a/drivers/dpll/zl3073x/out.h
-+++ b/drivers/dpll/zl3073x/out.h
-@@ -42,6 +42,28 @@ const struct zl3073x_out *zl3073x_out_state_get(struct zl3073x_dev *zldev,
- int zl3073x_out_state_set(struct zl3073x_dev *zldev, u8 index,
- 			  const struct zl3073x_out *out);
- 
-+/**
-+ * zl3073x_out_clock_type_get - get output clock type
-+ * @out: pointer to out state
-+ *
-+ * Return: clock type of given output (ZL_OUTPUT_MODE_CLOCK_TYPE_*)
-+ */
-+static inline u8 zl3073x_out_clock_type_get(const struct zl3073x_out *out)
-+{
-+	return FIELD_GET(ZL_OUTPUT_MODE_CLOCK_TYPE, out->mode);
-+}
++  ref-sync-sources:
++    description: |
++      List of phandles to input pins that can serve as the sync source
++      in a Reference-Sync pair with this pin acting as the clock source.
++      A Ref-Sync pair consists of a clock reference and a low-frequency
++      sync signal.  The DPLL locks to the clock reference but
++      phase-aligns to the sync reference.
++      Only valid for input pins.  Each referenced pin must be a
++      different input pin on the same device.
++    $ref: /schemas/types.yaml#/definitions/phandle-array
 +
-+/**
-+ * zl3073x_out_clock_type_set - set output clock type
-+ * @out: pointer to out state
-+ * @type: clock type (ZL_OUTPUT_MODE_CLOCK_TYPE_*)
-+ */
-+static inline void
-+zl3073x_out_clock_type_set(struct zl3073x_out *out, u8 type)
-+{
-+	FIELD_MODIFY(ZL_OUTPUT_MODE_CLOCK_TYPE, &out->mode, type);
-+}
-+
- /**
-  * zl3073x_out_signal_format_get - get output signal format
-  * @out: pointer to out state
-diff --git a/drivers/dpll/zl3073x/ref.h b/drivers/dpll/zl3073x/ref.h
-index 06d8d4d97ea26..09fab97a71d7e 100644
---- a/drivers/dpll/zl3073x/ref.h
-+++ b/drivers/dpll/zl3073x/ref.h
-@@ -106,6 +106,52 @@ zl3073x_ref_freq_set(struct zl3073x_ref *ref, u32 freq)
- 	return 0;
- }
+   supported-frequencies-hz:
+     description: List of supported frequencies for this pin, expressed in Hz.
  
-+/**
-+ * zl3073x_ref_sync_mode_get - get sync control mode
-+ * @ref: pointer to ref state
-+ *
-+ * Return: sync control mode (ZL_REF_SYNC_CTRL_MODE_*)
-+ */
-+static inline u8
-+zl3073x_ref_sync_mode_get(const struct zl3073x_ref *ref)
-+{
-+	return FIELD_GET(ZL_REF_SYNC_CTRL_MODE, ref->sync_ctrl);
-+}
-+
-+/**
-+ * zl3073x_ref_sync_mode_set - set sync control mode
-+ * @ref: pointer to ref state
-+ * @mode: sync control mode (ZL_REF_SYNC_CTRL_MODE_*)
-+ */
-+static inline void
-+zl3073x_ref_sync_mode_set(struct zl3073x_ref *ref, u8 mode)
-+{
-+	FIELD_MODIFY(ZL_REF_SYNC_CTRL_MODE, &ref->sync_ctrl, mode);
-+}
-+
-+/**
-+ * zl3073x_ref_sync_pair_get - get sync pair reference index
-+ * @ref: pointer to ref state
-+ *
-+ * Return: paired reference index
-+ */
-+static inline u8
-+zl3073x_ref_sync_pair_get(const struct zl3073x_ref *ref)
-+{
-+	return FIELD_GET(ZL_REF_SYNC_CTRL_PAIR, ref->sync_ctrl);
-+}
-+
-+/**
-+ * zl3073x_ref_sync_pair_set - set sync pair reference index
-+ * @ref: pointer to ref state
-+ * @pair: paired reference index
-+ */
-+static inline void
-+zl3073x_ref_sync_pair_set(struct zl3073x_ref *ref, u8 pair)
-+{
-+	FIELD_MODIFY(ZL_REF_SYNC_CTRL_PAIR, &ref->sync_ctrl, pair);
-+}
-+
- /**
-  * zl3073x_ref_is_diff - check if the given input reference is differential
-  * @ref: pointer to ref state
-diff --git a/drivers/dpll/zl3073x/regs.h b/drivers/dpll/zl3073x/regs.h
-index 5ae50cb761a97..d425dc67250fe 100644
---- a/drivers/dpll/zl3073x/regs.h
-+++ b/drivers/dpll/zl3073x/regs.h
-@@ -213,7 +213,9 @@
- #define ZL_REG_REF_SYNC_CTRL			ZL_REG(10, 0x2e, 1)
- #define ZL_REF_SYNC_CTRL_MODE			GENMASK(2, 0)
- #define ZL_REF_SYNC_CTRL_MODE_REFSYNC_PAIR_OFF	0
-+#define ZL_REF_SYNC_CTRL_MODE_REFSYNC_PAIR	1
- #define ZL_REF_SYNC_CTRL_MODE_50_50_ESYNC_25_75	2
-+#define ZL_REF_SYNC_CTRL_PAIR			GENMASK(7, 4)
+diff --git a/Documentation/devicetree/bindings/dpll/microchip,zl30731.yaml b/Documentation/devicetree/bindings/dpll/microchip,zl30731.yaml
+index 17747f754b845..fa5a8f8e390cd 100644
+--- a/Documentation/devicetree/bindings/dpll/microchip,zl30731.yaml
++++ b/Documentation/devicetree/bindings/dpll/microchip,zl30731.yaml
+@@ -52,11 +52,19 @@ examples:
+           #address-cells = <1>;
+           #size-cells = <0>;
  
- #define ZL_REG_REF_ESYNC_DIV			ZL_REG(10, 0x30, 4)
- #define ZL_REF_ESYNC_DIV_1HZ			0
+-          pin@0 { /* REF0P */
++          sync0: pin@0 { /* REF0P - 1 PPS sync source */
+             reg = <0>;
+             connection-type = "ext";
+-            label = "Input 0";
+-            supported-frequencies-hz = /bits/ 64 <1 1000>;
++            label = "SMA1";
++            supported-frequencies-hz = /bits/ 64 <1>;
++          };
++
++          pin@1 { /* REF0N - clock source, can pair with sync0 */
++            reg = <1>;
++            connection-type = "ext";
++            label = "SMA2";
++            supported-frequencies-hz = /bits/ 64 <10000 10000000>;
++            ref-sync-sources = <&sync0>;
+           };
+         };
+ 
+@@ -90,11 +98,19 @@ examples:
+           #address-cells = <1>;
+           #size-cells = <0>;
+ 
+-          pin@0 { /* REF0P */
++          sync1: pin@0 { /* REF0P - 1 PPS sync source */
+             reg = <0>;
+-            connection-type = "ext";
+-            label = "Input 0";
+-            supported-frequencies-hz = /bits/ 64 <1 1000>;
++            connection-type = "gnss";
++            label = "GNSS_1PPS_IN";
++            supported-frequencies-hz = /bits/ 64 <1>;
++          };
++
++          pin@1 { /* REF0N - clock source */
++            reg = <1>;
++            connection-type = "gnss";
++            label = "GNSS_10M_IN";
++            supported-frequencies-hz = /bits/ 64 <10000000>;
++            ref-sync-sources = <&sync1>;
+           };
+         };
+ 
 -- 
 2.52.0
 
