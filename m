@@ -1,179 +1,158 @@
-Return-Path: <devicetree+bounces-277756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277757-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mD2VMGTou2njpQIAu9opvQ
-	(envelope-from <devicetree+bounces-277756-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:13:24 +0100
+	id YD2FAMfru2liqQIAu9opvQ
+	(envelope-from <devicetree+bounces-277757-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:27:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 337272CB00E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:13:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA40D2CB288
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:27:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 03BAC3017F8D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:13:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 43CFB300A771
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:27:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB7783CCFCC;
-	Thu, 19 Mar 2026 12:13:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D393B37AA76;
+	Thu, 19 Mar 2026 12:27:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P9ClHo90"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="cyzQxvzm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m32117.qiye.163.com (mail-m32117.qiye.163.com [220.197.32.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5808390C98;
-	Thu, 19 Mar 2026 12:13:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CE5F364E8B
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 12:27:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.117
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773922399; cv=none; b=NobfpjrxA1Dfmp2CLk7KJytY8GfdEp1XEIiQCvkgfo+0uyXn3UkX/a57a4NjuWFw2GyPJfdukQenrx+wu60kp+AjOTnCZr7diUbmhjhdmr6Qj7I4D/1Y04WQO+VShCmCu1o/fcdR6Q4lpJ+5/mFpTwJJ8bYki3Xu4ukqZQAFXNs=
+	t=1773923267; cv=none; b=Sc61gBwgXums9eNAso76fNxExjO4I43MQp5TMQ38otXc9kJE5r6xm7QWycNPTa0PH/Bh+qnqG2AMSI5/ymRtk22ltwhhVAWZgG1PRVCEciqSGygiKkD5yhOH+40qKOhL0yLDCZ4sG8L97C/yqAwiw14Wms+5PLutcg7YjJxDrfg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773922399; c=relaxed/simple;
-	bh=242mm6cRJQRlU+5O08xqxDJc8ydu7+VMU7XqhSsN8pQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=At/InCZsFbHgnXVOkQvIsL3EBmfCDMkq4ZZzGDb3e3magCC8oIzEI207sW1r1Jk2V1qu2FJyNFfuPkOx7fb9lNAxHmn4kmt2WJTJRv3sh+TpqydrRyWynj7Y0881zB+cjYJTkn8TbPG3TwFMg1wlWTbKCK2vbbu6F2rgkwnGQSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P9ClHo90; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70B10C19424;
-	Thu, 19 Mar 2026 12:13:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773922399;
-	bh=242mm6cRJQRlU+5O08xqxDJc8ydu7+VMU7XqhSsN8pQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=P9ClHo902EHXVrl50uoJyMsl4U+JSWuP/kMTNWtCZ8E9WvlH6wCI7P0zL0gOOu8oo
-	 mALhPAMzkJfo7kgplRIOF8ZeewNYjrQfvbwXHEKbKBo5ee89LGTZ6XYj3UDqyMl8ah
-	 mstUA4RWIIRzOohtuH0mWOoFIMITOe/Bu5PHkmSI1MV3RtTSraGi7dnwS6Hw1YQ2rP
-	 rkEcs+OkwvVAKM9vqrGhoXzd1KT9IU6nHea8/+b8Ns16xJxPg7IiWgLh8+wCyp7K3d
-	 9CvY59WipNCHbE9xNkz/TAreL1eiT23loVmArAqMKMImCKUsWQ4K6MgT0hjaNSu1Sn
-	 g8FQXtE/lZSgw==
-Message-ID: <1e81ad50-19c9-4648-9f43-3570757e75bc@kernel.org>
-Date: Thu, 19 Mar 2026 13:13:14 +0100
+	s=arc-20240116; t=1773923267; c=relaxed/simple;
+	bh=fnSDmun6zZ+InKxdVDlXAakkKqpAKwdWZ3665vM2g5I=;
+	h=Cc:Subject:To:References:From:Message-ID:Date:MIME-Version:
+	 In-Reply-To:Content-Type; b=RYTpibUPkoiEHP+m3MEAbLFKvcAngLcL2RoLo2zZ2OLt4vmPaju29nIl8z/qqPxh3ecVMPPw/QaB2iHMGDcnmvk6KRC8pBCL/wUglM9CQ7ek5W32FuVQYuZQSBItqPAuoHp8j57UzvDBUPaPqSjyW+LK08axoapO9aSk4m87YdU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=cyzQxvzm; arc=none smtp.client-ip=220.197.32.117
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.17] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3792bf622;
+	Thu, 19 Mar 2026 20:27:37 +0800 (GMT+08:00)
+Cc: shawn.lin@rock-chips.com, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ heiko@sntech.de, jonas@kwiboo.se
+Subject: Re: [PATCH v2] arm64: dts: rockchip: rock-3b: Model PI6C20100 as
+ gated-fixed-clock
+To: MidG971 <midgy971@gmail.com>
+References: <7008e941-e4b0-a060-1cd7-55070fd5831f@rock-chips.com>
+ <20260319101911.31348-1-midgy971@gmail.com>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+Message-ID: <b7060437-a46e-81fa-be2b-506a1b82be12@rock-chips.com>
+Date: Thu, 19 Mar 2026 20:27:35 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/8] dt-bindings: iio: light: vcnl4000: add regulators
-To: Erikas Bitovtas <xerikasxx@gmail.com>, Jonathan Cameron
- <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org
-References: <20260319-vcnl4000-regulators-v5-0-a025d3332805@gmail.com>
- <20260319-vcnl4000-regulators-v5-1-a025d3332805@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260319-vcnl4000-regulators-v5-1-a025d3332805@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+In-Reply-To: <20260319101911.31348-1-midgy971@gmail.com>
+Content-Type: text/plain; charset=gbk; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9d0610cdfe09cckunma0125ffa661f67
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkxDH1ZNHk9CTUhOShpOS01WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpKQk
+	xVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=cyzQxvzm4R28cdZsEor86BWIsLK5KuqaVtYyhYPGQOXvke8pFMIlfSVAxaeEuquDRUgEKtGoYXQgBqK/w6V0hbqgxQ7s2/vMtW81y5YFAzctbkrRv+98A819iUKNEu+mckdE2RH70y2hmwhNBXO6QiO6UbKyg3Fkvnx8zMQ5nwo=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=wKS4bpN/zGnfXpSFFB4RUvieqFi2QAKBmfyhobnZlxo=;
+	h=date:mime-version:subject:message-id:from;
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277756-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,baylibre.com,analog.com,pmeerw.net];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277757-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.995];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[shawn.lin@rock-chips.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vishay.com:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,baylibre.com:email]
-X-Rspamd-Queue-Id: 337272CB00E
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,infradead.org:email,infradead.org:url,lwn.net:url,rock-chips.com:dkim,rock-chips.com:mid]
+X-Rspamd-Queue-Id: AA40D2CB288
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 19/03/2026 12:58, Erikas Bitovtas wrote:
-> These sensors can accept 2 supplies - one for the sensor and one for IR
-> LED [1]. Add supply properties for the sensor - 2 for the sensors and
-> one external, for their open drain interrupt line, to ensure the sensor
-> is powered on before proceeding with setup.
+在 2026/03/19 星期四 18:19, MidG971 写道:
+> On 2026/03/04, Shawn Lin wrote:
+>> IIUC, you are using Claude to help generate this patch, please
+>> describe it properly, for example,
+>>
+>> Co-developed-by: Claude claude-opus-4-20250514 [1]
+>> or
+>> Assisted-by: Claude:claude-3-opus [2]
+>>
+>> [1] https://lwn.net/Articles/1031473/
+>> [2] https://docs.kernel.org/process/coding-assistants.html
 > 
-> [1] https://www.vishay.com/docs/84274/vcnl4040.pdf
+> Thank you for the guidance. I used Claude as a coding assistant and
+> will use the proper tag in v3:
 > 
-> Reviewed-by: David Lechner <dlechner@baylibre.com>
-> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
-> ---
->  Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+>    Assisted-by: Claude:claude-3-opus
+>    Signed-off-by: MidG971 <midgy971@gmail.com>
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
-> index 2ba4d5de4ec4..44882a90bc76 100644
-> --- a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
-> +++ b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
-> @@ -33,6 +33,10 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> +  vdd-supply: true
-> +  vio-supply: true
+>> There is a missing pipe clock which should be fixed. Please
+>> refer to David's patch[3].
+>>
+>> [3] https://lore.kernel.org/linux-rockchip/d981fa84-bd05-ac9d-98ca-89ee47177829@rock-chips.com/T/#m6a8289609e6a60691d3c06358b6322c7aa5e43d1
+> 
+> Since our board-level &pcie3x2 override replaces the clocks property
+> entirely, v3 adds CLK_PCIE30X2_PIPE_DFT ("pipe") as well, consistent
+> with David's base DTS patch.
+> 
+> I tested v3 on the ROCK 3B (kernel 6.19.0-rc5): pcie3x2 probes
+> successfully and the NVMe device is detected at 15.75 Gb/s. The
+> pcie30_refclk clock appears in the clock tree at 100MHz with pcie3x2
+> as its consumer.
+> 
+> One note on the pipe clock test: CLK_PCIE30X2_PIPE_DFT is defined in
+> rk3568-cru.h but was not yet registered in the CRU driver in the
+> tested kernel build, so the pipe clock was excluded from the
+> functional test (pcie3x2 probe fails with -ENOENT at clock index 5
+> when it is included). The gated-fixed-clock node and ref clock were
+> verified working. I expect the pipe clock will work once the CRU
+> driver registers it alongside David's DTS patch.
 
-That's still a property of I2C bus controller, but if you disagree then
-I expect following Rob's comment.
-https://lore.kernel.org/all/20230321220825.GA1685482-robh@kernel.org/
+Pipe clock support was applied and appears in linux-next[1], you could
+pick it into your tested kernel build if you'd like to have a try.
 
-Best regards,
-Krzysztof
+[1]https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=41b1a6760959017c4fa1dbc7c3cc318406ab1455
+
+> 
+> v3 is sent separately.
+> 
+> Best regards,
+> MidG971
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> 
 
