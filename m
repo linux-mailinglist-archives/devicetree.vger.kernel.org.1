@@ -1,156 +1,216 @@
-Return-Path: <devicetree+bounces-277648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277649-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wOG5HG7Bu2n1ngIAu9opvQ
-	(envelope-from <devicetree+bounces-277648-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:27:10 +0100
+	id OH3iDabGu2n1oAIAu9opvQ
+	(envelope-from <devicetree+bounces-277649-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:49:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 024FE2C8A29
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:27:09 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74DB52C904F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:49:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5EBEA328D479
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:19:32 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 85EAB30C3526
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:23:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 378FD3B8D61;
-	Thu, 19 Mar 2026 09:18:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LIUB+diq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEC8C3B38A2;
+	Thu, 19 Mar 2026 09:22:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C84B03B47DD
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 09:18:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C15B3A543E
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 09:22:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773911900; cv=none; b=fsNpRHAIfpfvL7kwlLej4FHH8AgVXmtfDadt0hnnyPX3NSh93N0kMjbFEQeS5nREzx8/HN13XH5BCkd+6VHcBfEL/t2XZ3ikiUmB4nRFHunGuSjNCoPe6wl1YdyWpwgFO+2gdsY6ZlK63w7QHZZeaKCVLL88a39wkc1c2OkivRs=
+	t=1773912177; cv=none; b=hbLCCAJjYnTJjGmDYqa9VPkwD2Js74WuRMmvDCS7FR21rIpz5dem8w1nYMk8wPaIoBMlY9dmEOASMENKTjwXrmSjG1vuLLhH2tVjMNMZvfPMOnL+lmjYqW9Kod+osnN2gszaatSNQ5h1mktT98LXDT0Fp9WGrsXngnku1Tm1jKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773911900; c=relaxed/simple;
-	bh=zEXXn1MspTZ2rAYnF/7wGHtscAvFKis7T9kv6P47gTk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jrVrSy3ECfE4QINiEV8UmrYIYAXmkvrRr1KWZVdZ9cU+zFFUATpnzhfXMcKNT/T+e/b0deDHM2k6zqZI+FO4iU/o/Zt7gxKJw9C6+DAzbQpNfHa5mtE55UQfNOh1SP0aaN18iPa+8g9a9pPJlsYSAcCNvkAXSRmfDbTuwAxug7U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LIUB+diq; arc=none smtp.client-ip=209.85.210.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1773912177; c=relaxed/simple;
+	bh=xsYlSEBKEhAJUI/2k2Ae0493EyKzWTyh8Ac20dOwYA8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BhM7B2VD3wX9Z/lSPKVxFIYHAO0rBhUpY7G67EpC7PlZxYxrlJYLAsjN9bmxjvmylwynx2W7for/n8HHt2MBlZ8zbcpN4R+b+rnrzYJ80wKXGmN5zy9/efvlN6eDDayNnnOrrxlefT/fgDxRKJ2Akb01/vhGnM2MQ0xr1QOqz38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-829781b2b01so521696b3a.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 02:18:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773911897; x=1774516697; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=MJMOAJBWLr5Df9WGW21xRpmJxqWD0Nz3f9kgoVuXs4k=;
-        b=LIUB+diqgN8/MeWgttSO3iGkmxHfby5sCtKNrrNwVCs9R5oqBDlCEZzVjzAZe0NlLc
-         G34w5YNq7oEgI3fA/Y6ZsWE9HqgqgoQHyoKnmY8Q2OFCVamsZWfY7RottjLAkqE3I5yF
-         9Mqmb4vYGWB/4xGahsXKcnrV3q8OZDZxFC+O6pA7MrOdXl/0TV9j/5fs08L6NA6GjdCt
-         iYwiZpCRlZqcslJ3SFtroy8KmaIdkLYiw1xIPWtZKmXp83Si/2Tf3GBWS+kRYb8/OKVE
-         kYpGCaQxI9gO8hIIYBLjaTRSZa3GswWSLegIKLVTi31ArQZc/S+SILBMNAMp4GqzpY7A
-         ntYg==
+Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-5674d8be45eso241185e0c.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 02:22:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773911897; x=1774516697;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MJMOAJBWLr5Df9WGW21xRpmJxqWD0Nz3f9kgoVuXs4k=;
-        b=W1KMtUfE84YckElxsHX1VG/NUeKlcvrFuFdX48ekdvCmPBDMBpQ2o4+yybqX1Fi8BL
-         +bOYBpm01s0jPyRE8dXw0oDOmh+YLtDTdcVwH5BDhVkgn56dTaq5WkN8S4MplsexlZDE
-         NPq/FT1Yb01KxYT6gkbJXshjzo9Q7A7Q7Kmg4Da6DO4kuvpraxfBgUA1Qk7rvdRghKOs
-         gYO3IU38w0o5Q0a7IFlIAZVwpsy/LWUB9yFHegguhlszD0K8CqTcjM7f/zrLZCv82rH0
-         pJvSMawUsOW6H5NBRWfrBcYKH58dOhtOznCeiDsAbQi+M2H2AynME6UJTykOMMNaOjDH
-         wwEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWunctAVAkYRX2JdO/LIeWbE9QeNGtLUFHyXzz9fctTBH1ofq8U7rF7iLPoWuQrAxcosgTmfWgG3awk@vger.kernel.org
-X-Gm-Message-State: AOJu0YzW/qpCmDmJaYY8cPj0kA4fEuwkUAxZ6Y3nfIQn2xU8L+9W/JAv
-	qBJiUAGcTsk0kTUKtY5go3jHbTHhtoEsFIXBTH2r9eJhS5qKddeyXXdF
-X-Gm-Gg: ATEYQzy075pBdzEi9FyNuHFaabwufO8sPf6RZuG8UxZinX0bWeON4A0NzqvDF7Qg6cl
-	0n3pg709pBdvy5Bd/wKIQ2M+uxYl1uYnHxrvLAX2OwWGvu5dRX592APTE55DllCxeEpcHCG3m0o
-	dm3Egpm6B9uSjyfP4YTrkTJfsDgItU53TBnQhTqDLspjoDra5p4zxOde7SgXqfKf18qh5Z5KBqX
-	fnANDeAdfZ9Nxbz/VauUqJM3ifMAm6wv/z8xg0eTqb+oFI8gajKmmEoTOyG1snXfB7BHfDjTx0m
-	BkpWfCBC8s4kwGexHFeJaYwGfHXrItM311TmDX7NXMMd7OPhMaFKu+MRSFzAmb+syOfH+TyOwMw
-	qNAU/mhWV0UUgeEoj51u6mbMoosnhxuInxMURdbJCt4BuRqSmkjzn1+uHaVVbz6jw1CeWUpnqUl
-	TbsX7aCXNOhckDZhHFGu4=
-X-Received: by 2002:a05:6a00:a96:b0:82a:5ef0:20fb with SMTP id d2e1a72fcca58-82a6add7085mr6096505b3a.26.1773911896794;
-        Thu, 19 Mar 2026 02:18:16 -0700 (PDT)
-Received: from fedora ([122.173.30.71])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82a6bef9a32sm5995188b3a.58.2026.03.19.02.18.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Mar 2026 02:18:16 -0700 (PDT)
-Date: Thu, 19 Mar 2026 14:47:40 +0530
-From: ShiHao <i.shihao.999@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: robh@kernel.org, conor+dt@kernel.org, broonie@kernel.org,
-	bjorn.andersson@oss.qualcomm.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: request for guidence
-Message-ID: <abu_NBSH79OyN5do@fedora>
-References: <abqbUuruxPJsfBo3@fedora>
- <ccce197c-c514-43c8-8026-534966bb0438@kernel.org>
- <abqr0Qpcx_2BQINg@fedora>
- <40d02335-90c2-4b14-a9df-d9ff1a75ddd2@kernel.org>
+        d=1e100.net; s=20251104; t=1773912175; x=1774516975;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3R7oKWv2gVUp+Av/4dtqoK+ZAhQyBi15VK3avPppXR4=;
+        b=r3gkmjLNIXXls8O1y4L5/iuBioI8IC0TDdhlSc0HyU8/Ki26T3C3xUyQMzkIRXzIi8
+         11Z3SHGkz6YYCr+dovU5RguqSvjLtxVhgjK395rNWruG/ouD7b4/F3oSrlRTjeaD3LRX
+         pt19lHZajweoSfxSRbe0SCpz4LJoM9m5mhbK2gAIt+Q0wX0r5O4nqz9ZuMIQJYDAXUFs
+         rBdVATt0iXaj5SeP/P3P9UszDkcgCyq00ovOzFyhXNA5JxkiaarpC22m0z62VOg/3Mji
+         utTpOeKYCGGjnD5l2xI3rVJDnt3vBvCQJkvVfo/IZq2Id5sb4XR2yeFek8zAa5EuaRwD
+         Yt/A==
+X-Forwarded-Encrypted: i=1; AJvYcCUIfOuKdNWFPJI/Queb10/mdS/aO78iwKV6JwNkcG7ojAx7pDjWd9opErlWLsRLpR/Ny4mD3o/XV4NP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxh6uXEaE6QMtDEliL8DTcahtu5ioYF5owuDlxhA/kZEVh9ZWpx
+	iJZoO6cgXfnWIlL7u59gVwu5tKqBIxd/2UazbE0lpOMUXDtd5OBdjgwhT8uXnMfP
+X-Gm-Gg: ATEYQzyZ+ysMZ8mr3BL1lUqfQ593US9Dn1uJtASzqAt06lUbC3L9LiA97LOy7Ps9gT4
+	YtZ8TFx+kpg/+mBSIz9TE52rYjZ9YV4puRufTuqVGfAtt4H7+EiS0cxZdE1YAt8F6tNafKDvSRm
+	pWzC3ciuGsvGl4G+aGEF4Dfxmaym5AtDOdVyJUddSesbGYb+Xk67pJhNrA9umtoIDSeB0YDGpZA
+	HRgyLLwdk4PQjZ7i1EcPmjIVy2wIdVvnehIxVxXxEI1qOpeQEXbJRxt8qB1WEdC3iK9mCcdvgDY
+	4VeK2+rOQirw+/hQfMKOm2ornQ0UCu7KLiaaFz3FgKKzaWdC1WLVn2LV5OFuAlqPGH4Jx7iXnI9
+	iVjK/69Dm5ZqyLtCTwgaJnm7a8XbUpvNKL/Vlj+Ju+bBm7p75+loHyTehJe2mrgTAG3e5voeafS
+	oyUcN9Zpn+ZQIYeB4R1/F73qY+a9Nj1iM/Mhhq86nEzUHhu+Qf6hX3gwZZL2Kc
+X-Received: by 2002:a05:6122:4683:b0:563:72d8:ea6 with SMTP id 71dfb90a1353d-56ba716bd87mr3249050e0c.10.1773912175307;
+        Thu, 19 Mar 2026 02:22:55 -0700 (PDT)
+Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56ba6fed60esm3217659e0c.12.2026.03.19.02.22.53
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Mar 2026 02:22:54 -0700 (PDT)
+Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-5ffa0b23a60so246553137.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 02:22:53 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWoOn7Np+KgZqFMQgzX19hkO2+H5XCBJdLxCkWoDM8IWYebpgIJDYCOz/W357os/egPeFa56LoErNaZ@vger.kernel.org
+X-Received: by 2002:a05:6102:38cb:b0:5fc:2b19:f7d9 with SMTP id
+ ada2fe7eead31-6027d38b928mr2511117137.29.1773912173468; Thu, 19 Mar 2026
+ 02:22:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <40d02335-90c2-4b14-a9df-d9ff1a75ddd2@kernel.org>
-X-Spamd-Result: default: False [-1.66 / 15.00];
+References: <20260319-topic-sm8650-ayaneo-pocket-s2-upd-bindings-v1-1-84e4ef564022@linaro.org>
+In-Reply-To: <20260319-topic-sm8650-ayaneo-pocket-s2-upd-bindings-v1-1-84e4ef564022@linaro.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 19 Mar 2026 10:22:42 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUACGC4rdXfvO-N-cgNAEzhczB0VYbMoxZMyazSAp6jWg@mail.gmail.com>
+X-Gm-Features: AaiRm53HlmfFuAaNSpgq0fW3s48A2x_PU6s94_11fvKsqDZNlyduvi7IWb1MQfU
+Message-ID: <CAMuHMdUACGC4rdXfvO-N-cgNAEzhczB0VYbMoxZMyazSAp6jWg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: usb: document the Renesas
+ UPD720201/UPD720202 USB 3.0 xHCI Host Controller
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-usb@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, 
+	Marek Vasut <marek.vasut+renesas@mailbox.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [0.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277648-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ishihao999@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,gmail.com,vger.kernel.org,mailbox.org];
+	TAGGED_FROM(0.00)[bounces-277649-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	NEURAL_SPAM(0.00)[0.400];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.974];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 024FE2C8A29
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,mail.gmail.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,linaro.org:email,0.0.0.0:email]
+X-Rspamd-Queue-Id: 74DB52C904F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 03:15:56PM +0100, Krzysztof Kozlowski wrote:
+CC Marek (for Sparrow Hawk)
 
-> I could not find any GSoC page telling that DT is the respective list to
-> contact about your application. Or that me or Mark or Bjorn are... Where
-
-Hello Krzysztof,
-
-well it is actually said here.
-https://github.com/LinuxFoundationGSoC/ProjectIdeas/wiki/Contributor-Application-Template
-> On the GSoC pages, there is list of people from Linux Foundation to
-> reach. Unfortunately I do not know with whom else you could contact, but
-> I am sure that Linux kernel maintainers are not the ones to discuss it.
-> GSoC is Google's or Linux Foundation program, nothing to do with us.
-> 
+On Thu, 19 Mar 2026 at 09:49, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+> Document the Renesas UPD720201/UPD720202 USB 3.0 xHCI Host Controller,
+> which connects over PCIe and requires specific power supplies to
+> start up.
+>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+> - [1] https://lore.kernel.org/all/20260220-topic-sm8650-ayaneo-pocket-s2-base-v5-1-1ad79caa1efa@linaro.org/
+> ---
+>  .../bindings/usb/renesas,upd720201-pci.yaml        | 61 ++++++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/usb/renesas,upd720201-pci.yaml b/Documentation/devicetree/bindings/usb/renesas,upd720201-pci.yaml
+> new file mode 100644
+> index 000000000000..8b8be572c930
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/renesas,upd720201-pci.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/renesas,upd720201-pci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: UPD720201/UPD720202 USB 3.0 xHCI Host Controller (PCIe)
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +
+> +description:
+> +  UPD720201 USB 3.0 xHCI Host Controller via PCIe x1 Gen2 interface.
+> +  The UPD720202 supports up to two downstream ports, while UPD720201
+> +  supports up to four downstream USB 3.0 rev1.0 ports.
+> +
+> +properties:
+> +  compatible:
+> +    const: pci1912,0014
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  avdd33-supply:
+> +    description: +3.3 V power supply for analog circuit
+> +
+> +  vdd10-supply:
+> +    description: +1.05 V power supply
+> +
+> +  vdd33-supply:
+> +    description: +3.3 V power supply
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - avdd33-supply
+> +  - vdd10-supply
+> +  - vdd33-supply
+> +
+> +allOf:
+> +  - $ref: usb-xhci.yaml
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +    pcie@0 {
+> +        reg = <0x0 0x1000>;
+> +        ranges = <0x02000000 0x0 0x100000 0x10000000 0x0 0x0>;
+> +        #address-cells = <3>;
+> +        #size-cells = <2>;
+> +        device_type = "pci";
+> +
+> +        usb-controller@0 {
+> +            compatible = "pci1912,0014";
+> +            reg = <0x0 0x0 0x0 0x0 0x0>;
+> +            avdd33-supply = <&avdd33_reg>;
+> +            vdd10-supply = <&vdd10_reg>;
+> +            vdd33-supply = <&vdd33_reg>;
+> +        };
+> +    };
+>
+> ---
+> base-commit: 8e42d2514a7e8eb8d740d0ba82339dd6c0b6463f
+> change-id: 20260319-topic-sm8650-ayaneo-pocket-s2-upd-bindings-331b26d4fbf6
+>
 > Best regards,
-> Krzysztof
-
-However lets drop this i submitted my proposal today so, beside
-this i got one questions that is it okay to convert bindings
-outside gsoc. Thanks for your help and sorry if i wasted your
-time.
-
-
-Best regards
- Shihao
+> --
+> Neil Armstrong <neil.armstrong@linaro.org>
 
