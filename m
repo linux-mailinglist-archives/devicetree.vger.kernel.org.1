@@ -1,496 +1,234 @@
-Return-Path: <devicetree+bounces-277815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277816-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SL8OOncIvGkArgIAu9opvQ
-	(envelope-from <devicetree+bounces-277815-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:30:15 +0100
+	id kGG+GAEHvGkArgIAu9opvQ
+	(envelope-from <devicetree+bounces-277816-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:24:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 486932CCD69
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:30:15 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5F152CCB43
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:24:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9C25A305D1F3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:23:03 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3BFEB300F589
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:24:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC24335A3BB;
-	Thu, 19 Mar 2026 14:23:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DCDD35A38F;
+	Thu, 19 Mar 2026 14:23:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="MEYmk60L"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ewZhMDQb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011066.outbound.protection.outlook.com [40.107.130.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 074D32D9EF4;
-	Thu, 19 Mar 2026 14:22:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.66
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773930181; cv=fail; b=ioGcdvo5y/iHcFGnRYMs0Q3CSle8ZONk31SpFSIaYQighWy2WGGtT2T6TuqBZW9b6V9Iosc14v+8h11S493hJ+uzaj8ukFEcBJSpRN9QJsJpjYNHOV7Dnyg80h4gNV1WobO57567Wwj1n0AZHxeeTQmrBb9AYR9IqbSR4gG8buE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773930181; c=relaxed/simple;
-	bh=JJdjyswDZ8kjJ/f4qrpSP5TEOi2grh5Ksy+C+gVWYCM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Tq8POupR+Ea2leNt7PCQU1DQVJk7nwkwe2SqosyQ7qrOaX/h9AeCO0MRZRYoPpyoPU1FVfb7rtwCd9ggDpwTZiVX3yxCHpl5XeWth1SMFYyQ4UYtbpBhXndhzQuw1Do9BZCK1kDrNcBhek+921CcOGDMXwfkrbXHO8Pz/LP44r8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=MEYmk60L; arc=fail smtp.client-ip=40.107.130.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=i9MmapC5umykwL6kwdyuVeumvDLlQ/ecAg42txZo3A6pQuPTT4CzkswoWXHscX+KdgspXML0m5iksxM4g9ZTDABcQHC+bu/nArEhT6fauu8P63/XAFw6R+RXePJbZ93W1E/fO3mvQ9ksa3Zvj8qGElsZjJxCZbnFR8dwkuygQwHukEDWWuX7C5vfQwzANBlK/iHRaBbGEeRHYGCrKOLKPtfK1XtiwO6lHR7Mccm9zJ2qetow2ADkoDVTgPoCj35rGjXDJqtLOsrT8hQBoJLN/MSLzjyF/HbNSu+s1++GxtMG6XlcRp5RD28eeq2lGJ3Z5qepcAJh8b/LgdA3PWRiIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KMql4daNQ5mP2+uWpgytvud9fYkRBNok6N9mz5koM2I=;
- b=cD7KyPr1huD0GKRjR1FHIEU/j17vCUaWl5nOxmClf43crB66VJOx+WfHmO0IakBh6JODy5kUTRokrJiM1GTLFVe3oHu3yCVc4EMUOGMbWUSFbvr6VeLXvSKXfRW6EpcSrZmUMTQD8cBG9NsKO2oN7Ut6FABIl0odwg/j535k1tnBBPqUwLGeK2CHH4mt5A2Lo45NPGAR0KdWnui5Qc2NdRX2E8zlPy4ZhSyDXlUaUGGDLkZCwMVP96uzHwKn2gkSxx3JLHEguSdezKHJGSdoYk/LBH+e3nauptr16wNZVXVBrDA54Q0kjtjcJ6FfvNZId6LS9hGWXu+s5fYJDsjcYg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KMql4daNQ5mP2+uWpgytvud9fYkRBNok6N9mz5koM2I=;
- b=MEYmk60LDUm0aca99t269N4ua0uIG4eVKW97Iw7NQr1zPzMqUXdTWJPsDYrOz/DFPM/PzdwA3yNusywDOv/8mlpZVge+VZvMSGcNKWYXqIovDwP02IxQVYtHZRjUlpcjBp17A9bnMUNptyyuKzRiW+5m8gqsIGUjcazWTNJoXo4ys92A6VGvuJVhLJPu6/ybKIhHIu7m6efEp6VC5OQL97UR+8neU/EwZF7zfLrnsnSq3SEFQ+E9LAuBIr16W62YeD20524YV0mC5lYlivbDakCrMzWoXOWyYfDYRkyOm3+chaOIL/o6GSizJmKF4w8nAp7DRUV/P5ONsorwPJie4Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by PA4PR04MB9710.eurprd04.prod.outlook.com (2603:10a6:102:268::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Thu, 19 Mar
- 2026 14:22:55 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9723.018; Thu, 19 Mar 2026
- 14:22:54 +0000
-Date: Thu, 19 Mar 2026 10:22:47 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Akhil R <akhilrajeev@nvidia.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Robert Moore <robert.moore@intel.com>, Len Brown <lenb@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Eric Biggers <ebiggers@kernel.org>,
-	Fredrik Markstrom <fredrik.markstrom@est.tech>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Jon Hunter <jonathanh@nvidia.com>,
-	Suresh Mangipudi <smangipudi@nvidia.com>,
-	linux-tegra@vger.kernel.org, linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev,
-	linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH 03/12] i3c: master: Use unified device property interface
-Message-ID: <abwGt8IyQxb5A4vg@lizhi-Precision-Tower-5810>
-References: <20260318172820.13771-1-akhilrajeev@nvidia.com>
- <20260318172820.13771-4-akhilrajeev@nvidia.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260318172820.13771-4-akhilrajeev@nvidia.com>
-X-ClientProxiedBy: SN7PR18CA0021.namprd18.prod.outlook.com
- (2603:10b6:806:f3::12) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75F1533A9C6
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 14:23:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773930237; cv=none; b=hxhi9Pq/9uHR29W+ROrpi1fuiOqm5SVzbVh7RWa8v7zOups/TsXIRtmESdqWBWlOST/QNOJfY2HyuRkx7s9SP4XRBB+UeZ0+lOhVEiQSsaS9fv3sCzQannrqSfnLyujKk9rFusUSkglEi9j9lsmokQzAuDkprS2Af4KuvPhtJg4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773930237; c=relaxed/simple;
+	bh=FFqdeaDL7lqKGZ3fe3twoZ7NOyENN7PD9m4VnMm6UzM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Bb6caMSbSB7zSvSofNWPyaxoeowtu9F5pfCgbWHtcrdbkswHJ9Vj251TorLhVztedGiNvnrwQrYfibuXWwg7qCL2U/7TohcANGtzln0bsCNWZLQRsX3AIm5Q1P4qQ/PgXvAUZ6pyVuBgt9q56FQYdWL/+bFJ1C+BeA8r7XHe1bI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ewZhMDQb; arc=none smtp.client-ip=209.85.167.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-467166cb638so437142b6e.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 07:23:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1773930234; x=1774535034; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KeNjfj/LpvbccEUPQ7WMLYgOxZOBhYnhu+wpfuHYq6E=;
+        b=ewZhMDQbKQ9/HgQM+61OR/p6stMSNEhJ7kjaXXLfizRhLhlfmw1bvFIPuSGcIVqaJ1
+         twdessCVjqw0O9dqVJe2izcSQ3dg2Ve2yMNFeSOgrAvU0Cr18nsHcGOvdn16RdcXyUgV
+         r0Evx2svRJknqBQt4lk3ZF869OAx5TGwfAIjblpH1+9U2o/vTKyusCbJ6eLPT1YkUX0W
+         +HdxfqmwFvJFya4snRzlakcOPom8EjB/A52y5bvCwf6Oh28QLm6cq5vy81ZYPwKcziKs
+         4wTgvq61jbCF1eqmWGmTexX2ysQiFhuj+7XPlYh2uB1h4BatTLxzLFNRDEpdihPR6rKv
+         QQJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773930234; x=1774535034;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KeNjfj/LpvbccEUPQ7WMLYgOxZOBhYnhu+wpfuHYq6E=;
+        b=lkPoJwdBhopwS25YGLU/EWxTyN1GtzsanjnLguyMrDL6bnJe6vO2Jrm03OCCfMi6f1
+         E8wOEb41y9GeZi7UI2Efpj9XEWE9yzVXW7c5TkqAjj4Ygt0p7WnH911uqPVdLZ64ZASw
+         UUp80S4yHtHObdKRX3e9cww7+OOdCAuxOPCRfNMDt7bVCc4/FCEmmrL76htGXQbwJgtT
+         NG8r6gJt5Zg7LNA+2MwpXDFHd+D+Af9VHIskrv5eYFcQ8wAVDnYuMd7Rw09uCzjLVppC
+         YEK+Kox+o3tXhr7xMNB63YdzCJLyhLP2t0gTn8axYwfINEtWvcNP/mmsmSugPtdev+AP
+         rA/g==
+X-Forwarded-Encrypted: i=1; AJvYcCXeBlTLiPW4GgjjtyRQGHPC+evLADt7SNpTwQL50ILccm4Yangkqlf8sP/PzCFMVq1skN8GgJgqrOog@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjwQzXLjfgQbv8yDVxp7c1AEJwQIRunmM4Ytj+YT1PyJi33rR+
+	MvQDiooN4UQVzyn0bdXw6ZFlVeDRFO02TfRLA8BrGh5TTVvYzDbzNOzfg16RiE7fMFA=
+X-Gm-Gg: ATEYQzyUBKRhF1B6njh48MYBmXoGN3GssOU4d3i5r27J/qurByScepbZwFpql7LkSaj
+	iF+ZuaQeV8H5i26Sv3C7R1dGVLUzHdfTYW4cZSlbyz7EaUJInQIcp7g3IC5Q6uEHeHo/xWdXjoo
+	iBeEXG7nJEzNaTr4aFpCbdsE4KefBpz7fhkBLRXYjRdu6JVCL68yUaowYeo2YUKo+zH/kI1kW2R
+	cEp0Qx9yWGmqPUc0AWObb5Nldt58DyVwQp+GgndpQB4x5DJ3sjdrTLsIM9L2OoyYT5QifaaS5Aq
+	supGTtslgX9klqOEzGsQAw2puc1YieCeW93cu7ES4wgBEcHv1iGdWvlO1IypLcwpZKHBeNdcvdT
+	3tVTa8xdhJCRyKex3iLDWlC0x18YKauh5w9hP7f4PTkBS1X9a2mt8b44LKBE0Ol7wCeD7ANEuBJ
+	/b6RJlLHdRm9G44qTYtVuKtXH3ottI2e09f9uQeeD3+I/+EeVn87OpQyyFWISKWADTgWayrgK+F
+	w==
+X-Received: by 2002:a05:6808:19a8:b0:467:819:dc61 with SMTP id 5614622812f47-467ba28b325mr4636001b6e.23.1773930234228;
+        Thu, 19 Mar 2026 07:23:54 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:244c:fc8c:8216:1344? ([2600:8803:e7e4:500:244c:fc8c:8216:1344])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7d7e878b627sm82482a34.15.2026.03.19.07.23.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Mar 2026 07:23:53 -0700 (PDT)
+Message-ID: <21d425bc-9406-401b-9817-7255ba3d31fc@baylibre.com>
+Date: Thu, 19 Mar 2026 09:23:52 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|PA4PR04MB9710:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4e131c6a-33c8-43ff-8ece-08de85c302ac
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|1800799024|366016|376014|7416014|52116014|38350700014|22082099003|56012099003|18002099003|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	9L0Eec0uk9ZaOBVq+H0y/rukxWyK3ezgRk05usIn0mkzLoiJCpVDIsvGea09tSmGnfsFGO4C0fUx+gP1q6unu5bKOue/hYGoVRRnRhw53MbgXsNn7vIobvZhuVDM/0EswwR59mbXHbxJRhqhLHdNvQc/OnjeWF11UxgqIzRfI3qnSFq4QcmeuiakIWtSD7cvmd9Q/vXaWPw04Z9Sj5aH0iGCmb6Vmk3vlTkXwwMp34fg50o1g5aRiOMIVcYx3eBCDwdpx73y65YAb9+l9cSl5qQc/iOJ/jaj/1q9LFIt/Nq0OW5r73TwNpGB5OjikuKiIFje0RzBxzA4jT0ozHTaJIL+QeA9A4foIgbJqVWD08nDSe7CUc4A3pg1gGZA/bNj0bBEc5hWvSOU38dWr3J46uGN4M9/0mATDGF7yDn6yooIBn3qg0f8naehxPvndHcKX9sGAe+2ZDUHzCHgsosa8WP3Wx05g5sX9wqYKTzrIFlZO116A7SEQo6sG/JJ/h0E4/vZwfGPPK/jjyaSggbKKR69oFY0a2Ky4f+ymMQpxQKoty47E2QAkxVYd2iHzEMITrWmsOO4kFmj3iFN99YgWvO6gJkNCWSZ7i18frTEDuunERePfffV1Jym5INtfbXfWiCbAJ60rW6PIT8/acuQcaVQIJOyF0l0Ns+sMEe15VDv+tN7LA2V1epSGNeQCTaKZIS6jJ5joosZEmMfZxf3GGbf6OXvd5VYzAeVFg4EcpSqJbegJ9pyWhnb8cYT2F1vcG74ATYFIwkWRq9hhmCtaaYrxa11cG4d6nTCAW1VTP4=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(366016)(376014)(7416014)(52116014)(38350700014)(22082099003)(56012099003)(18002099003)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?iW+RoJ1br3hNO2AeQAKNo43NAinAHEJKu3m2XkRmrX9VFUWCt/n4uz46c39C?=
- =?us-ascii?Q?SXviorWH6TVJhCaAcNJjvvXCAi0w8offHdrBwz1WUTXPI3Vm/GDNqo69ZJkU?=
- =?us-ascii?Q?L0efFOIw645l1g2BIBZPl3dZ/cvGrgmU2kbGv6blN6WOs04KBuYXo3KdkmXu?=
- =?us-ascii?Q?EJGSiPDi1Ql9OpfZLlHbOfth005pMhyu0YHCX3PTEs2gUD7AT7R3+1i1mevX?=
- =?us-ascii?Q?sHiUX16nXYT6h3pVh74aNRZB5KDNvufbPwmMKPvVxrJnxyTbwisqU1W9CVqZ?=
- =?us-ascii?Q?xnX0Jaw2M2vH47CM0LmCZFLyQOoAeudnUA4jWciSHVUpEiRahvjgP4m9wxg8?=
- =?us-ascii?Q?dzFI9O3dSu3Qj5HNKXj1Z1JhWNEysocds2RUVh0PC/CU7GFSMONirE2pv9e5?=
- =?us-ascii?Q?HytR5aihQcnOHlVEa/njgYljdzblGv/sbxOlYe6cgB241fUplzFP/thtYikL?=
- =?us-ascii?Q?P0uBCZzM5xUKXsiARAcJeS5y0UEpTZrI2ZbyWAZlnbzr12cNXpC4JQ8BN/X/?=
- =?us-ascii?Q?vunJlkKfQxLqhOm0gt8kwsMlNLm3k7tsA5Y0i/x6YtXy0m/mpImhcxGvoeom?=
- =?us-ascii?Q?fzbNqwM4bQHsTNbkVm0qvjWMey1jLAW+GivRTEsN3y2nC72nUhan9XphR+J5?=
- =?us-ascii?Q?jEq/C+aM1EUWdmvnirS42nQxcvSIx6ndfoTV5QbsNTs2jVexK5eKQS51yuTy?=
- =?us-ascii?Q?2tu6ogXrmTXKtTd3EFWR1SA9z3mLSFfV9RCk5xgPc67dLCsBQtKYkOG3thJ4?=
- =?us-ascii?Q?fHlfWB22ytdT/pf/j/7IK2Aw089aorwnuwknykB9OWN8CiFbwC1ZWwIVYntN?=
- =?us-ascii?Q?bPPZcR5F6asU8qjPmqU9GsD0A9BzBfNOloIu19avIGYWp+23/e8yKu005Hw0?=
- =?us-ascii?Q?sKH3GDpsPKxpckmQ/37kwedNeTIZ9YBUE5LIYnVs43SZGjW0iYVhGUGCtg/d?=
- =?us-ascii?Q?JXwUUT4R9LxSmg3ilR/8PeAwQXIXmQPIb2Nntx2m0Rf2kfxA1pk8vTA606YE?=
- =?us-ascii?Q?91lZJCUR7qoQkxMGKm/61mS6L9/aFx6eaxb/+7RghzGo7bAiUegeaXSNRXFP?=
- =?us-ascii?Q?J/7fddlh2eXBTjs43lTtlnqty+s66MlZaJhpnZBEHAVwMpxJHhRIvSWFsLwQ?=
- =?us-ascii?Q?h27J8zap6gtElcDJVhB+/HvBVJntQiXUdYllA0lS2APA1FLMcSOvqWR68Z2B?=
- =?us-ascii?Q?iSIzDKeDnvladNHCOX2M3lRib/0LzPnjzEif2ReAZrrenbVd9nDnQFpINIZ5?=
- =?us-ascii?Q?dIqUaBgNaJl47Ku4GjqYSu76K5zGaxkDwdQ/AfS9Sq2KLP9HkRZ9Wd/SaG2Q?=
- =?us-ascii?Q?8qXPuXsF3tlkF7uPNMdEh0t/CYiyGAiyvq91Whn2zHWa19Nt+CvrKO6ACccO?=
- =?us-ascii?Q?ciMvM7NO9SzSti8O4OHtMxxVRLQQ5jn1LeP7UmCdmqK/WjDpf+gNAXrBL3c3?=
- =?us-ascii?Q?RGer3h96tPu5avMLxBbdpy7j3nf9ZFyll0a7OTUa4iO1iTtamtizwdIR8v2S?=
- =?us-ascii?Q?RbPvwpVViwSk+lmy8zbMAOYErz1mgzpO7el/P9Det62bmSeHqxSHttmS5wRh?=
- =?us-ascii?Q?kbpdltPUOyUdZj44NlIMXVczwZ1SrqTQ3Abp/HsogjOJqi2OwoUk5dWBQGhr?=
- =?us-ascii?Q?BVyOxzvU6z8XIM654xIP7WpgCmcBqxeZo+5L4bscHluaFViDvRFMa/whubNo?=
- =?us-ascii?Q?0CsZ9SlPJaSZpviD/+uL2CzHKMclMw99LzQwFmf0xhvG7R0e?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e131c6a-33c8-43ff-8ece-08de85c302ac
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2026 14:22:54.8599
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VlxZsFnnSSghjsW1Y9qRMezLvzaC/7oceXlyxnOSRSMA7mZiUMqeQEQydFSMg4/Jk0SYbXOLPxKkvU/uHgaMIg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9710
-X-Spamd-Result: default: False [1.84 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/5] dt-bindings: iio: adc: xilinx-xadc: convert to YAML
+ format
+To: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Michal Simek <michal.simek@amd.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, saikrishna12468@gmail.com, git@amd.com
+References: <20260220053941.611415-1-sai.krishna.potthuri@amd.com>
+ <20260220053941.611415-6-sai.krishna.potthuri@amd.com>
+ <20260221-dancing-papaya-wolverine-db8afd@quoll>
+ <b89933a3-5f25-466c-a2f5-6e231aa12749@amd.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <b89933a3-5f25-466c-a2f5-6e231aa12749@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277815-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277816-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[baylibre.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,analog.com,amd.com,vger.kernel.org,lists.infradead.org,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	NEURAL_HAM(-0.00)[-0.969];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.989];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nvidia.com:email,nxp.com:dkim,nxp.com:email]
-X-Rspamd-Queue-Id: 486932CCD69
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url]
+X-Rspamd-Queue-Id: E5F152CCB43
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 10:57:16PM +0530, Akhil R wrote:
-> Replace all OF-specific functions with unified device property functions
-> as a prerequisite to support both ACPI and device tree.
->
-> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+On 3/19/26 8:52 AM, Sai Krishna Potthuri wrote:
+> Hi Krzysztof,
+> 
+> On 2/21/2026 4:08 PM, Krzysztof Kozlowski wrote:
+>> On Fri, Feb 20, 2026 at 11:09:41AM +0530, Sai Krishna Potthuri wrote:
+>>> Convert the xilinx-xadc.txt Devicetree binding to a YAML schema format
+>>> and remove the old text binding.
+>>>
+>>> +
+>>> +  xlnx,channels:
+>>> +    $ref: '#/$defs/channels'
+>>> +
+>>> +allOf:
+>>
+>> Missing ref since you use unevaluatedProperties...
+>>
+>>> +  - if:
+>>> +      required:
+>>> +        - xlnx,external-mux
+>>> +      properties:
+>>> +        xlnx,external-mux:
+>>> +          enum:
+>>> +            - single
+>>> +            - dual
+>>> +    then:
+>>> +      required:
+>>> +        - xlnx,external-mux-channel
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +
+>>> +unevaluatedProperties: false
+>>
+>> or you meant additionalProperties?
+>>
+>>> +
+>>> +$defs:
+>>
+>> Why this is a def, not used directly? I see only one usage of this def.
+> 
+> I am getting the below error if i define the patternProperties directly.
+> Seems like complex vendor peroperties should be referenced via $ref.
+> Please suggest if there is any better way to deal this.
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+It is hard to say without seeing the new version of what you wrote.
 
-> ---
->  drivers/i3c/master.c       | 91 ++++++++++++++++++++++----------------
->  include/linux/i3c/master.h |  5 ++-
->  2 files changed, 55 insertions(+), 41 deletions(-)
->
-> diff --git a/drivers/i3c/master.c b/drivers/i3c/master.c
-> index c32847bc4d0d..2c479fecbfdf 100644
-> --- a/drivers/i3c/master.c
-> +++ b/drivers/i3c/master.c
-> @@ -5,16 +5,19 @@
->   * Author: Boris Brezillon <boris.brezillon@bootlin.com>
->   */
->
-> +#include <linux/acpi.h>
->  #include <linux/atomic.h>
->  #include <linux/bug.h>
->  #include <linux/device.h>
->  #include <linux/dma-mapping.h>
->  #include <linux/err.h>
->  #include <linux/export.h>
-> +#include <linux/i2c.h>
->  #include <linux/kernel.h>
->  #include <linux/list.h>
->  #include <linux/of.h>
->  #include <linux/pm_runtime.h>
-> +#include <linux/property.h>
->  #include <linux/slab.h>
->  #include <linux/spinlock.h>
->  #include <linux/workqueue.h>
-> @@ -497,7 +500,7 @@ static void i3c_bus_cleanup(struct i3c_bus *i3cbus)
->  	mutex_unlock(&i3c_core_lock);
->  }
->
-> -static int i3c_bus_init(struct i3c_bus *i3cbus, struct device_node *np)
-> +static int i3c_bus_init(struct i3c_bus *i3cbus, struct fwnode_handle *fwnode)
->  {
->  	int ret, start, end, id = -1;
->
-> @@ -507,8 +510,8 @@ static int i3c_bus_init(struct i3c_bus *i3cbus, struct device_node *np)
->  	i3c_bus_init_addrslots(i3cbus);
->  	i3cbus->mode = I3C_BUS_MODE_PURE;
->
-> -	if (np)
-> -		id = of_alias_get_id(np, "i3c");
-> +	if (fwnode && is_of_node(fwnode))
-> +		id = of_alias_get_id(to_of_node(fwnode), "i3c");
->
->  	mutex_lock(&i3c_core_lock);
->  	if (id >= 0) {
-> @@ -811,7 +814,7 @@ static void i3c_masterdev_release(struct device *dev)
->  	WARN_ON(!list_empty(&bus->devs.i2c) || !list_empty(&bus->devs.i3c));
->  	i3c_bus_cleanup(bus);
->
-> -	of_node_put(dev->of_node);
-> +	fwnode_handle_put(dev->fwnode);
->  }
->
->  static const struct device_type i3c_masterdev_type = {
-> @@ -995,7 +998,7 @@ static void i3c_device_release(struct device *dev)
->
->  	WARN_ON(i3cdev->desc);
->
-> -	of_node_put(i3cdev->dev.of_node);
-> +	fwnode_handle_put(dev->fwnode);
->  	kfree(i3cdev);
->  }
->
-> @@ -1783,7 +1786,7 @@ i3c_master_register_new_i3c_devs(struct i3c_master_controller *master)
->  			     desc->info.pid);
->
->  		if (desc->boardinfo)
-> -			desc->dev->dev.of_node = desc->boardinfo->of_node;
-> +			device_set_node(&desc->dev->dev, desc->boardinfo->fwnode);
->
->  		ret = device_register(&desc->dev->dev);
->  		if (ret) {
-> @@ -2402,8 +2405,8 @@ EXPORT_SYMBOL_GPL(i3c_master_add_i3c_dev_locked);
->  #define OF_I3C_REG1_IS_I2C_DEV			BIT(31)
->
->  static int
-> -of_i3c_master_add_i2c_boardinfo(struct i3c_master_controller *master,
-> -				struct device_node *node, u32 *reg)
-> +i3c_master_add_i2c_boardinfo(struct i3c_master_controller *master,
-> +			     struct fwnode_handle *fwnode, u32 *reg)
->  {
->  	struct i2c_dev_boardinfo *boardinfo;
->  	struct device *dev = &master->dev;
-> @@ -2413,9 +2416,13 @@ of_i3c_master_add_i2c_boardinfo(struct i3c_master_controller *master,
->  	if (!boardinfo)
->  		return -ENOMEM;
->
-> -	ret = of_i2c_get_board_info(dev, node, &boardinfo->base);
-> -	if (ret)
-> -		return ret;
-> +	if (is_of_node(fwnode)) {
-> +		ret = of_i2c_get_board_info(dev, to_of_node(fwnode), &boardinfo->base);
-> +		if (ret)
-> +			return ret;
-> +	} else {
-> +		return -EINVAL;
-> +	}
->
->  	/*
->  	 * The I3C Specification does not clearly say I2C devices with 10-bit
-> @@ -2431,14 +2438,14 @@ of_i3c_master_add_i2c_boardinfo(struct i3c_master_controller *master,
->  	boardinfo->lvr = reg[2];
->
->  	list_add_tail(&boardinfo->node, &master->boardinfo.i2c);
-> -	of_node_get(node);
-> +	fwnode_handle_get(fwnode);
->
->  	return 0;
->  }
->
->  static int
-> -of_i3c_master_add_i3c_boardinfo(struct i3c_master_controller *master,
-> -				struct device_node *node, u32 *reg)
-> +i3c_master_add_i3c_boardinfo(struct i3c_master_controller *master,
-> +			     struct fwnode_handle *fwnode, u32 *reg)
->  {
->  	struct i3c_dev_boardinfo *boardinfo;
->  	struct device *dev = &master->dev;
-> @@ -2461,7 +2468,7 @@ of_i3c_master_add_i3c_boardinfo(struct i3c_master_controller *master,
->
->  	boardinfo->static_addr = reg[0];
->
-> -	if (!of_property_read_u32(node, "assigned-address", &init_dyn_addr)) {
-> +	if (!fwnode_property_read_u32(fwnode, "assigned-address", &init_dyn_addr)) {
->  		if (init_dyn_addr > I3C_MAX_ADDR)
->  			return -EINVAL;
->
-> @@ -2478,14 +2485,14 @@ of_i3c_master_add_i3c_boardinfo(struct i3c_master_controller *master,
->  		return -EINVAL;
->
->  	boardinfo->init_dyn_addr = init_dyn_addr;
-> -	boardinfo->of_node = of_node_get(node);
-> +	boardinfo->fwnode = fwnode_handle_get(fwnode);
->  	list_add_tail(&boardinfo->node, &master->boardinfo.i3c);
->
->  	return 0;
->  }
->
-> -static int of_i3c_master_add_dev(struct i3c_master_controller *master,
-> -				 struct device_node *node)
-> +static int i3c_master_add_dev(struct i3c_master_controller *master,
-> +			      struct fwnode_handle *fwnode)
->  {
->  	u32 reg[3];
->  	int ret;
-> @@ -2493,7 +2500,7 @@ static int of_i3c_master_add_dev(struct i3c_master_controller *master,
->  	if (!master)
->  		return -EINVAL;
->
-> -	ret = of_property_read_u32_array(node, "reg", reg, ARRAY_SIZE(reg));
-> +	ret = fwnode_property_read_u32_array(fwnode, "reg", reg, ARRAY_SIZE(reg));
->  	if (ret)
->  		return ret;
->
-> @@ -2502,25 +2509,25 @@ static int of_i3c_master_add_dev(struct i3c_master_controller *master,
->  	 * dealing with an I2C device.
->  	 */
->  	if (!reg[1])
-> -		ret = of_i3c_master_add_i2c_boardinfo(master, node, reg);
-> +		ret = i3c_master_add_i2c_boardinfo(master, fwnode, reg);
->  	else
-> -		ret = of_i3c_master_add_i3c_boardinfo(master, node, reg);
-> +		ret = i3c_master_add_i3c_boardinfo(master, fwnode, reg);
->
->  	return ret;
->  }
->
-> -static int of_populate_i3c_bus(struct i3c_master_controller *master)
-> +static int fwnode_populate_i3c_bus(struct i3c_master_controller *master)
->  {
->  	struct device *dev = &master->dev;
-> -	struct device_node *i3cbus_np = dev->of_node;
-> +	struct fwnode_handle *fwnode = dev_fwnode(dev);
->  	int ret;
->  	u32 val;
->
-> -	if (!i3cbus_np)
-> +	if (!fwnode)
->  		return 0;
->
-> -	for_each_available_child_of_node_scoped(i3cbus_np, node) {
-> -		ret = of_i3c_master_add_dev(master, node);
-> +	fwnode_for_each_available_child_node_scoped(fwnode, child) {
-> +		ret = i3c_master_add_dev(master, child);
->  		if (ret)
->  			return ret;
->  	}
-> @@ -2530,10 +2537,10 @@ static int of_populate_i3c_bus(struct i3c_master_controller *master)
->  	 * on the bus are not supporting typical rates, or if the bus topology
->  	 * prevents it from using max possible rate.
->  	 */
-> -	if (!of_property_read_u32(i3cbus_np, "i2c-scl-hz", &val))
-> +	if (!device_property_read_u32(dev, "i2c-scl-hz", &val))
->  		master->bus.scl_rate.i2c = val;
->
-> -	if (!of_property_read_u32(i3cbus_np, "i3c-scl-hz", &val))
-> +	if (!device_property_read_u32(dev, "i3c-scl-hz", &val))
->  		master->bus.scl_rate.i3c = val;
->
->  	return 0;
-> @@ -2588,7 +2595,7 @@ static u8 i3c_master_i2c_get_lvr(struct i2c_client *client)
->  	u8 lvr = I3C_LVR_I2C_INDEX(2) | I3C_LVR_I2C_FM_MODE;
->  	u32 reg[3];
->
-> -	if (!of_property_read_u32_array(client->dev.of_node, "reg", reg, ARRAY_SIZE(reg)))
-> +	if (!fwnode_property_read_u32_array(client->dev.fwnode, "reg", reg, ARRAY_SIZE(reg)))
->  		lvr = reg[2];
->
->  	return lvr;
-> @@ -2707,7 +2714,8 @@ static int i3c_master_i2c_adapter_init(struct i3c_master_controller *master)
->  	struct i2c_adapter *adap = i3c_master_to_i2c_adapter(master);
->  	struct i2c_dev_desc *i2cdev;
->  	struct i2c_dev_boardinfo *i2cboardinfo;
-> -	int ret, id;
-> +	struct fwnode_handle *fwnode = dev_fwnode(&master->dev);
-> +	int ret, id = -1;
->
->  	adap->dev.parent = master->dev.parent;
->  	adap->owner = master->dev.parent->driver->owner;
-> @@ -2716,7 +2724,9 @@ static int i3c_master_i2c_adapter_init(struct i3c_master_controller *master)
->  	adap->timeout = HZ;
->  	adap->retries = 3;
->
-> -	id = of_alias_get_id(master->dev.of_node, "i2c");
-> +	if (fwnode && is_of_node(fwnode))
-> +		id = of_alias_get_id(to_of_node(fwnode), "i2c");
-> +
->  	if (id >= 0) {
->  		adap->nr = id;
->  		ret = i2c_add_numbered_adapter(adap);
-> @@ -3017,7 +3027,7 @@ int i3c_master_register(struct i3c_master_controller *master,
->  		return ret;
->
->  	master->dev.parent = parent;
-> -	master->dev.of_node = of_node_get(parent->of_node);
-> +	device_set_node(&master->dev, fwnode_handle_get(dev_fwnode(parent)));
->  	master->dev.bus = &i3c_bus_type;
->  	master->dev.type = &i3c_masterdev_type;
->  	master->dev.release = i3c_masterdev_release;
-> @@ -3036,13 +3046,13 @@ int i3c_master_register(struct i3c_master_controller *master,
->  	master->dev.coherent_dma_mask = parent->coherent_dma_mask;
->  	master->dev.dma_parms = parent->dma_parms;
->
-> -	ret = i3c_bus_init(i3cbus, master->dev.of_node);
-> +	ret = i3c_bus_init(i3cbus, dev_fwnode(&master->dev));
->  	if (ret)
->  		goto err_put_dev;
->
->  	dev_set_name(&master->dev, "i3c-%d", i3cbus->id);
->
-> -	ret = of_populate_i3c_bus(master);
-> +	ret = fwnode_populate_i3c_bus(master);
->  	if (ret)
->  		goto err_put_dev;
->
-> @@ -3300,11 +3310,14 @@ static int __init i3c_init(void)
->  {
->  	int res;
->
-> -	res = of_alias_get_highest_id("i3c");
-> -	if (res >= 0) {
-> -		mutex_lock(&i3c_core_lock);
-> -		__i3c_first_dynamic_bus_num = res + 1;
-> -		mutex_unlock(&i3c_core_lock);
-> +	/* of_alias_get_highest_id is DT-specific, only call for DT systems */
-> +	if (IS_ENABLED(CONFIG_OF)) {
-> +		res = of_alias_get_highest_id("i3c");
-> +		if (res >= 0) {
-> +			mutex_lock(&i3c_core_lock);
-> +			__i3c_first_dynamic_bus_num = res + 1;
-> +			mutex_unlock(&i3c_core_lock);
-> +		}
->  	}
->
->  	res = bus_register_notifier(&i2c_bus_type, &i2cdev_notifier);
-> diff --git a/include/linux/i3c/master.h b/include/linux/i3c/master.h
-> index 592b646f6134..6b03a3ce574c 100644
-> --- a/include/linux/i3c/master.h
-> +++ b/include/linux/i3c/master.h
-> @@ -177,7 +177,8 @@ struct i3c_device_ibi_info {
->   * @pid: I3C Provisioned ID exposed by the device. This is a unique identifier
->   *	 that may be used to attach boardinfo to i3c_dev_desc when the device
->   *	 does not have a static address
-> - * @of_node: optional DT node in case the device has been described in the DT
-> + * @fwnode: Firmware node (DT or ACPI) in case the device has been
-> + *	    described in firmware
->   *
->   * This structure is used to attach board-level information to an I3C device.
->   * Not all I3C devices connected on the bus will have a boardinfo. It's only
-> @@ -189,7 +190,7 @@ struct i3c_dev_boardinfo {
->  	u8 init_dyn_addr;
->  	u8 static_addr;
->  	u64 pid;
-> -	struct device_node *of_node;
-> +	struct fwnode_handle *fwnode;
->  };
->
->  /**
-> --
-> 2.50.1
->
+
+
+> 
+> linux-xlnx/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.yaml: properties:xlnx,channels:type: 'boolean' was expected
+>     hint: A vendor boolean property can use "type: boolean"
+>     from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+>   LINT    ../Documentation/devicetree/bindings
+>   DTEX    Documentation/devicetree/bindings/iio/adc/xilinx-xadc.example.dts
+>   DTC [C] Documentation/devicetree/bindings/iio/adc/xilinx-xadc.example.dtb
+> 
+> 
+> Regards
+> Sai Krishna
+> 
+>>
+>>> +  channels:
+>>> +    type: object
+>>> +    description: List of external channels that are connected to the ADC
+>>> +    properties:
+>>> +      '#address-cells':
+>>> +        const: 1
+>>> +      '#size-cells':
+>>> +        const: 0
+>>> +
+>>> +    patternProperties:
+>>> +      "^channel@([0-9]|1[0-6])$":
+>>> +        type: object
+>>> +        properties:
+>>> +          reg:
+>>> +            minimum: 0
+>>> +            maximum: 16
+>>> +            description: |
+>>> +              Pair of pins the channel is connected to:
+>>> +                0: VP/VN
+>>> +                1-16: VAUXP[0-15]/VAUXN[0-15]
+>>> +              Note each channel number should only be used at most once.
+>>> +
+>>> +          xlnx,bipolar:
+>>> +            type: boolean
+>>> +            description: If set, the channel is used in bipolar mode
+>>> +
+>>> +        required:
+>>> +          - reg
+>>> +
+>>> +        unevaluatedProperties: false
+>>
 
