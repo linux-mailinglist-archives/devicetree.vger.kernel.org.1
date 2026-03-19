@@ -1,225 +1,257 @@
-Return-Path: <devicetree+bounces-278040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278041-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wCFDNV15vGnOzAIAu9opvQ
-	(envelope-from <devicetree+bounces-278040-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 23:31:57 +0100
+	id weXBL2OFvGkC0AIAu9opvQ
+	(envelope-from <devicetree+bounces-278041-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 00:23:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35C0A2D2FCD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 23:31:57 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3706D2D4078
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 00:23:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D721E3015CAA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 22:31:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9D3F63013890
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 23:23:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57542401485;
-	Thu, 19 Mar 2026 22:31:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D54803A1A43;
+	Thu, 19 Mar 2026 23:23:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WzbeDWpu"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="JwUnumPq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D96ED29BD91
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 22:31:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.41
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773959515; cv=pass; b=C2Fm9lXgfVzIRHndxFTitiA9lFb4jcO4aC3JmKUgq3JeeSI6AHVZtrJZmR2BCe7zv3zB+gcZy6OkjUuAclyW1A8KiTUMTqAqc/Mo5S2hNcsSGX6lDV8Q/bcyritHR2qdyFQieGqIP+d9g7qLz63kWD2x8sOH90CHZZWjDEcRTAc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773959515; c=relaxed/simple;
-	bh=mit0KJzLUgP4cy0lfJX9+xslzDEkhkVsK4QH9qQkfJY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=b91gfo43DdpDrAXO4JKTxLtO5TFAMJUdQNOxB1nk/1FCP9Ww0TuRJl8hEfX49xxSn3YjTUFFILN0QbqXP9Pi+5oO+tL97SIjIypVr5v6/M1/c99E1EJ3D0SpFtiRuerOPh//W+K4xGZxRaXfY0o8gXR3YcrRZtOvjWQ/XMt3Ck4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WzbeDWpu; arc=pass smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5a12cd0bd79so1452519e87.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 15:31:53 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773959512; cv=none;
-        d=google.com; s=arc-20240605;
-        b=HETIO/NwRdF+w0gfw+kR5jp/+SJ6plKybyo90goOOOYDJMTLV5bDon0oIsCmikPUFz
-         GRBtb5hA1WH3VzVzy3/9lFFVVSTcGXQwWB/UdcJf67c338YevBDw7XaIz5nn+xKpoCha
-         g85QkcVjShXYBnyRCZlExYqGbaQVFjLkUo6g6UuZrPX6TkJb79biAzBwC69eJ7WaH7Wu
-         LxZTRkh0mV34LPwt8bmKTIvQ+E0UBwK/IALgSzeRBsIpkSNQQodDtD9nBXXHImBei/3w
-         QSn6cqLoYgVQBCL6QYdDYQSLOzUAuQIxOwxR+qoQa2+DJAb+CgqRssg901INHoT40paL
-         MHJw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=nt8XMePWEklKsT16TIWwyu3AEb1T4eMX52Gzu+7bRRk=;
-        fh=yrX4jCAlDiEVVh7DtPpJo1ApCffBOoXOHXdMIQKdl34=;
-        b=K1m2LSwJZflHwyMsUUn4Tivv23S4E+/nNWyyfMqX1CESZrTfTZa4D3WR+a0fNusR7b
-         xk/KcoDGH85YRQcA8g6VfUTNLxEP65p6h3hysnvqITbeh74j2NS3qfIiMWSiDzCi409o
-         SkomaaX0jogozbkLx1EbuAnMM/cNnn5qRnEWcbP1KLtiVYnWa2yjJoXWrXPdKQkuNsZP
-         0bQAjcvc+ueJg86X1NYGrAwO8sEBqmOtzyJT9rm9FY5Blf2SNW6uMOWY/V+yw5pZHDUb
-         WLnn5DVKrnEKB/kcTldZuYS4srgyelLRJWxf9pqwe7z1yDGCZLz22WREddEEqHku+xz3
-         ORXA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773959512; x=1774564312; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nt8XMePWEklKsT16TIWwyu3AEb1T4eMX52Gzu+7bRRk=;
-        b=WzbeDWpu2Z64zv82n6ECxgmIjMpVLzjWkmbzZlJ3D+1Mzxf9OLfqECSCzZugi8umwQ
-         6h2jvmMqP3dbWz/to4mUelTyR+BQ9I7sqhcITGFCWGTj5QnMoog6l99BNWbqtJtgTDsU
-         PjuP93SoH9i0l1xdcLFN6VwEYLdp1nVG3PvyBO9Y5sPkOMmQyR9z5soapEEFtryMTUR1
-         tDRLaxkj/9fE14GDxLi9no1zqGDeHw4JP/NBcJX9nnMzAygGAlyK0zFIjBNNKnHhZ6JP
-         WX/jkt9XmB2+KxjJJPYhDQGuCgcTX+YvNAUtJh+fTPyABVn3Z0EAFIKJJJPSc30UEmQB
-         rcPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773959512; x=1774564312;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=nt8XMePWEklKsT16TIWwyu3AEb1T4eMX52Gzu+7bRRk=;
-        b=McXGj0FhFfDG6f5VcyHOa666sQ35m4FjyQxrWsGINDl7EJ+44GI28OJU9pgvGgCNyg
-         67gpU+vtO4fTeOwDVugReboJJ0poHUFv+OFTqCMv4ek+9GUiA5o9ulzZIVaovI+T32vW
-         9h42PJSs4U6P2TJBJki3N42vnWuWlTNitZCVuymCXM2KQM6VQMsiG8JrtMhStH+1jNPD
-         7IJsUDJ0YLdhCyoSPNZeoolAY8a3fzT//MhdGR67HdSDNUNTIolMPaaIJkaSlBUXV/h3
-         3Ch1UtvHSGvKJGTU1GYvwQn5E9JUVZX4xFClGofV1bXHzfxv/3vHIp8jjJpJ0OqFjf3Q
-         sWxg==
-X-Forwarded-Encrypted: i=1; AJvYcCXgP05PQ2bk6Fydh56Em6OsLb35T416kRkp9NnBIBilkc/at2Boa9X+hSVSC9ndpXiNKSyS5PjvS83o@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyxph3ruXHAXBuovfxFEZhM05fpUviCgRlU989tHsGBL5vIqonS
-	PNAIYIwtWnifBj8xnHPf95au1wBcuCCNb6ru9+vP7urOcfLEL89qOLwVrgHjAfWnV3WjFsCvuT1
-	+rg4tlXrs3bKF0nHuAFutuB7TcARPHGE=
-X-Gm-Gg: ATEYQzy9UjQ0yf29r+ClxNftXMHkbDLjW3PWXDre3vp+llbsgebLwrGXi2/+62//kGh
-	kFX9iqtXpZQXTZnuPGT2XcALJI7O5eLhB3P559iuZFw5rRiuNEoPbBD5EGJGtCbAfxuJDI8Vd4n
-	TEStFNRucepP4eFDBZvKFlqC8WPFLp4cDk0pbZe4ThT09dEzhAsRCSs3L3yp6WUN4gPRZbrvKlB
-	SxDymJAJcyvNqRoQX9DYCruo6JZaZWvGjmpS7xzPe1UlKK8QaLwK9Nwul7NTgX7DdtvSKPbHjge
-	VbF62X29EQMXaNS/954vRX+CPIRFVnqudg3rVPKkbMOeHZTPlatFn4Jj+1gwHhoBhuyM
-X-Received: by 2002:a05:6512:31ce:b0:5a2:7b95:af0 with SMTP id
- 2adb3069b0e04-5a285b44041mr293044e87.25.1773959511843; Thu, 19 Mar 2026
- 15:31:51 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D14237268E;
+	Thu, 19 Mar 2026 23:23:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773962590; cv=none; b=sgXTGklJX/DvkcPKTTkpXzIFalXy4w98nVnb6lmAy5MJmbKoD1JqnNVK3DGfY/kY5tDmJ9C2tdn2bJIzlZhZlvNd0V0BsjtxdQIjIF99UMwUF8KW7ZCkIK2tbmlHhehDeQzLeUlCb+OSa9peRd4ONO+cxXRokPQNrjAX1+Z2h74=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773962590; c=relaxed/simple;
+	bh=O1yGe/x9bPDoJuw8MAlkhNqRUV1/8GInglDR04iBELc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FGA3FjAd6wSXfu7g/hL3mCelAfhNAfYOJJcUp4bnZYAEK8+fhnqPSeI2ezuYQHWUCqD8Yr/Ublhirk5TZ/nMmtW92nAft2EOgeW18N1i5Spl1+XwGgFckUInErtb2YtyybJ9qo7T5whVbItMNY5nIdc1XQTvYURontu+tBmtWHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=JwUnumPq; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from killaraus.ideasonboard.com (2001-14ba-703d-e500--2a1.rev.dnainternet.fi [IPv6:2001:14ba:703d:e500::2a1])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 5CFEA2D5;
+	Fri, 20 Mar 2026 00:21:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1773962513;
+	bh=O1yGe/x9bPDoJuw8MAlkhNqRUV1/8GInglDR04iBELc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JwUnumPqh3rA/7TrbDGF0mIB6W4NUe9XMLh8sb4leVTJaEzcWsPh5EaM00kmUEdc2
+	 yDVcaD1p9XUpHYjMyruS7uybEUSlGMIrL1EPKqd9dGVruqpoxCadzJRRc94zVqWAMt
+	 XoRZ8qlmuFMuCkU8reiNa8vtF3LBpS7sM4xwS/NY=
+Date: Fri, 20 Mar 2026 01:23:05 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Guoniu Zhou <guoniu.zhou@oss.nxp.com>
+Cc: Rui Miguel Silva <rmfrfs@gmail.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Purism Kernel Team <kernel@puri.sm>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Frank Li <Frank.Li@nxp.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v10 2/5] media: imx8mq-mipi-csi2: Use
+ devm_clk_bulk_get_all() to fetch clocks
+Message-ID: <20260319232305.GA967713@killaraus.ideasonboard.com>
+References: <20251205-csi2_imx8ulp-v10-0-190cdadb20a3@nxp.com>
+ <20251205-csi2_imx8ulp-v10-2-190cdadb20a3@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260311-ayn-qcs8550-v2-0-e66986e0f0cb@gmail.com>
- <20260311-ayn-qcs8550-v2-2-e66986e0f0cb@gmail.com> <4757fd22-fe9f-4228-a0a5-11d9309549ac@packett.cool>
-In-Reply-To: <4757fd22-fe9f-4228-a0a5-11d9309549ac@packett.cool>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Thu, 19 Mar 2026 17:31:40 -0500
-X-Gm-Features: AaiRm50YUdnjEIFoQzOS88tsT0r32B87raRY5860v1pJ-Ke5qGg8NEzyLj1w_kI
-Message-ID: <CALHNRZ97zmk0BmctznXrrnyyk50XH506GrdWSU-mEeN3NVEBFQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] arm64: dts: qcom: Add AYN QCS8550 Common
-To: Val Packett <val@packett.cool>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Teguh Sobirin <teguh@sobir.in>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251205-csi2_imx8ulp-v10-2-190cdadb20a3@nxp.com>
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278040-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278041-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,posteo.de,puri.sm,kernel.org,pengutronix.de,nxp.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MISSING_XM_UA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	NEURAL_HAM(-0.00)[-0.599];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[webgeek1234@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.958];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 35C0A2D2FCD
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ideasonboard.com:dkim,ideasonboard.com:email]
+X-Rspamd-Queue-Id: 3706D2D4078
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 11, 2026 at 7:49=E2=80=AFPM Val Packett <val@packett.cool> wrot=
-e:
->
-> On 3/11/26 2:44 PM, Aaron Kling wrote:
->
-> > From: Teguh Sobirin <teguh@sobir.in>
-> >
-> > This adds a base dtb of everything common between the AYN QCS8550
-> > devices. It is intended to be extended by device specific overlays.
-> >
-> > Signed-off-by: Teguh Sobirin <teguh@sobir.in>
-> > Co-developed-by: Aaron Kling <webgeek1234@gmail.com>
-> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> > ---
-> >   arch/arm64/boot/dts/qcom/Makefile                  |    1 +
-> >   arch/arm64/boot/dts/qcom/qcs8550-ayntec-common.dts | 1777 +++++++++++=
-+++++++++
-> >   2 files changed, 1778 insertions(+)
-> > [=E2=80=A6]
-> > +/ {
-> > +     model =3D "AYN QCS8550 Common";
-> > +     compatible =3D "ayntec,qcs8550-common", "qcom,qcs8550", "qcom,sm8=
-550";
->
-> Huh?.. All existing -common files are .dtsi includes without their own
-> model/compatible, and the compile-time "dtbo" support is only used for
-> EL2 where we want to apply the same thing to many many devices without
-> polluting the tree with extra glue files. I don't see why this should be
-> a "common device" with its own compatible string, and not just a dtsi.
->
-> > [=E2=80=A6]
-> > +&gpu {
-> > +     status =3D "okay";
-> > +
-> > +     zap-shader {
-> > +             firmware-name =3D "qcom/sm8550/a740_zap.mbn";
-> > +     };
-> > +};
->
-> Please use the &gpu_zap_shader label.
->
-> And does the generic zap actually just work?
->
-> > [=E2=80=A6]
-> > +&i2c0 {
-> > +     clock-frequency =3D <400000>;
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&i2c4 {
-> > +     clock-frequency =3D <400000>;
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&i2c12 {
-> > +     clock-frequency =3D <400000>;
-> > +     status =3D "okay";
-> > +};
-> If the individual devices actually use these busses, better to enable
-> them inside of their .dts as well I think?
-> > +&iris {
-> > +     status =3D "okay";
-> > +};
-> Works with generic firmware?
-> > [=E2=80=A6]
-> > +&pcie0 {
-> > +     wake-gpios =3D <&tlmm 96 GPIO_ACTIVE_HIGH>;
-> > +     perst-gpios =3D <&tlmm 94 GPIO_ACTIVE_LOW>;
-> Current binding is to put these inside of the &pcieportN (renaming
-> 'perst' to 'reset' which I just noticed I failed to do for one of my own
-> files :D), see x1e78100-lenovo-thinkpad-t14s.dtsi for an example.
+Hi Guoniu,
 
-I tried making this change, but the pcie port failed to probe. I also
-notice that all existing sm8550 devices still use the 'old' syntax.
+Thank you for the patch.
 
-Aaron
+On Fri, Dec 05, 2025 at 05:07:44PM +0800, Guoniu Zhou wrote:
+> From: Guoniu Zhou <guoniu.zhou@nxp.com>
+> 
+> Use devm_clk_bulk_get_all() helper to simplify clock handle code.
+> 
+> No functional changes intended.
+> 
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
+> ---
+>  drivers/media/platform/nxp/imx8mq-mipi-csi2.c | 55 ++++++++++-----------------
+>  1 file changed, 20 insertions(+), 35 deletions(-)
+> 
+> diff --git a/drivers/media/platform/nxp/imx8mq-mipi-csi2.c b/drivers/media/platform/nxp/imx8mq-mipi-csi2.c
+> index 371b4e81328c107269f89da23818ab0abd0179da..0e3a41cd35edfefc51b5631e2c36fd76e3e14d83 100644
+> --- a/drivers/media/platform/nxp/imx8mq-mipi-csi2.c
+> +++ b/drivers/media/platform/nxp/imx8mq-mipi-csi2.c
+> @@ -71,21 +71,6 @@ enum {
+>  	ST_SUSPENDED	= 4,
+>  };
+>  
+> -enum imx8mq_mipi_csi_clk {
+> -	CSI2_CLK_CORE,
+> -	CSI2_CLK_ESC,
+> -	CSI2_CLK_UI,
+> -	CSI2_NUM_CLKS,
+> -};
+> -
+> -static const char * const imx8mq_mipi_csi_clk_id[CSI2_NUM_CLKS] = {
+> -	[CSI2_CLK_CORE] = "core",
+> -	[CSI2_CLK_ESC] = "esc",
+> -	[CSI2_CLK_UI] = "ui",
+> -};
+> -
+> -#define CSI2_NUM_CLKS	ARRAY_SIZE(imx8mq_mipi_csi_clk_id)
+> -
+>  struct imx8mq_plat_data {
+>  	int (*enable)(struct csi_state *state, u32 hs_settle);
+>  	void (*disable)(struct csi_state *state);
+> @@ -111,7 +96,9 @@ struct csi_state {
+>  	struct device *dev;
+>  	const struct imx8mq_plat_data *pdata;
+>  	void __iomem *regs;
+> -	struct clk_bulk_data clks[CSI2_NUM_CLKS];
+> +	struct clk_bulk_data *clks;
+> +	struct clk *esc_clk;
+> +	u32 num_clks;
+>  	struct reset_control *rst;
+>  	struct regulator *mipi_phy_regulator;
+>  
+> @@ -384,24 +371,16 @@ static void imx8mq_mipi_csi_set_params(struct csi_state *state)
+>  			      CSI2RX_SEND_LEVEL);
+>  }
+>  
+> -static int imx8mq_mipi_csi_clk_enable(struct csi_state *state)
+> -{
+> -	return clk_bulk_prepare_enable(CSI2_NUM_CLKS, state->clks);
+> -}
+> -
+> -static void imx8mq_mipi_csi_clk_disable(struct csi_state *state)
+> -{
+> -	clk_bulk_disable_unprepare(CSI2_NUM_CLKS, state->clks);
+> -}
+> -
+> -static int imx8mq_mipi_csi_clk_get(struct csi_state *state)
+> +static struct clk *find_esc_clk(struct csi_state *state)
+
+imx8mq_mipi_csi_find_esc_clk().
+
+>  {
+>  	unsigned int i;
+>  
+> -	for (i = 0; i < CSI2_NUM_CLKS; i++)
+> -		state->clks[i].id = imx8mq_mipi_csi_clk_id[i];
+> +	for (i = 0; i < state->num_clks; i++) {
+> +		if (!strcmp(state->clks[i].id, "esc"))
+> +			return state->clks[i].clk;
+> +	}
+>  
+> -	return devm_clk_bulk_get(state->dev, CSI2_NUM_CLKS, state->clks);
+> +	return ERR_PTR(-ENODEV);
+>  }
+>  
+>  static int imx8mq_mipi_csi_calc_hs_settle(struct csi_state *state,
+> @@ -456,7 +435,7 @@ static int imx8mq_mipi_csi_calc_hs_settle(struct csi_state *state,
+>  	 * documentation recommends picking a value away from the boundaries.
+>  	 * Let's pick the average.
+>  	 */
+> -	esc_clk_rate = clk_get_rate(state->clks[CSI2_CLK_ESC].clk);
+> +	esc_clk_rate = clk_get_rate(state->esc_clk);
+>  	if (!esc_clk_rate) {
+>  		dev_err(state->dev, "Could not get esc clock rate.\n");
+>  		return -EINVAL;
+> @@ -783,7 +762,7 @@ static void imx8mq_mipi_csi_pm_suspend(struct device *dev)
+>  
+>  	if (state->state & ST_POWERED) {
+>  		imx8mq_mipi_csi_stop_stream(state);
+> -		imx8mq_mipi_csi_clk_disable(state);
+> +		clk_bulk_disable_unprepare(state->num_clks, state->clks);
+>  		state->state &= ~ST_POWERED;
+>  	}
+>  
+> @@ -801,7 +780,7 @@ static int imx8mq_mipi_csi_pm_resume(struct device *dev)
+>  
+>  	if (!(state->state & ST_POWERED)) {
+>  		state->state |= ST_POWERED;
+> -		ret = imx8mq_mipi_csi_clk_enable(state);
+> +		ret = clk_bulk_prepare_enable(state->num_clks, state->clks);
+>  	}
+>  	if (state->state & ST_STREAMING) {
+>  		sd_state = v4l2_subdev_lock_and_get_active_state(sd);
+> @@ -1027,9 +1006,15 @@ static int imx8mq_mipi_csi_probe(struct platform_device *pdev)
+>  	if (IS_ERR(state->regs))
+>  		return PTR_ERR(state->regs);
+>  
+> -	ret = imx8mq_mipi_csi_clk_get(state);
+> +	ret = devm_clk_bulk_get_all(dev, &state->clks);
+>  	if (ret < 0)
+> -		return ret;
+> +		return dev_err_probe(dev, ret, "Failed to get clocks\n");
+> +
+> +	state->num_clks = ret;
+> +
+> +	state->esc_clk = find_esc_clk(state);
+> +	if (IS_ERR(state->esc_clk))
+> +		return dev_err_probe(dev, PTR_ERR(state->esc_clk), "Couldn't find esc clock\n");
+
+This could be line-wrapped.
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+I can make those small changes when applying if there's no other need to
+submit a new version.
+
+>  
+>  	platform_set_drvdata(pdev, &state->sd);
+>  
+> 
+
+-- 
+Regards,
+
+Laurent Pinchart
 
