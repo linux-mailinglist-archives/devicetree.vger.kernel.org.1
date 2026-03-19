@@ -1,191 +1,397 @@
-Return-Path: <devicetree+bounces-277931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277932-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8OnsGqwvvGnquAIAu9opvQ
-	(envelope-from <devicetree+bounces-277931-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:17:32 +0100
+	id EIntN4sxvGnxuQIAu9opvQ
+	(envelope-from <devicetree+bounces-277932-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:25:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 146422CFC0D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:17:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 594AA2CFEB9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:25:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 446EB3008C2A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:17:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 983903003996
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:25:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08318318EF6;
-	Thu, 19 Mar 2026 17:17:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 833453803CD;
+	Thu, 19 Mar 2026 17:25:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vITGmSga"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fIkEBdeq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D76702750E6;
-	Thu, 19 Mar 2026 17:17:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F9BF273D9F;
+	Thu, 19 Mar 2026 17:25:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773940649; cv=none; b=mtvaauic8qo8kvwX+mKs5zl8lesPeffHEiBSPKr60Udpc56MwnKABQ/Ij2fIVWaKXsBvI9ataDnvdpB3w3tNQC9r4wk234OwBFIlR1e+lBJWtZHbEfKGmj+0P1eUC4HATYHCEw/8CSTWTEbn1bptFNnlZflNptp+oofL03A1wr8=
+	t=1773941128; cv=none; b=N+s182pgZtFO8TG7Ai5e8T+OY/QSK8CqTKxTGVqx/NsaobPWrtVdRthqGN9MpN6T2lcdOPnidf1E40/GiGcAVJPzpiygn75XljWG3Vx4qHViVBwBzOlBQknakVFP+VI2CxJwaGMGL3z/vmfO/faAYvmrvhtY5wcF4po5U1upDBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773940649; c=relaxed/simple;
-	bh=s1URZtMYRdo2m24AfGzq+HczpETBJJYGDMsU+ejJkek=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=TsMEFXu/srN/SLJXs7z4x4cR/K8V8SfF7DPlI2mfET6jMVSEqyA4XS/tWH9SB3Ut2Lhqh+/3HP6KdUoPMAqojT+wqiRUvm2tdBSqdYcNtT9B8ZjCKnnugQOWAGBrgCNUSsydM0bXePZAWLms+JZ/tmEbTSCptEs41pdktyBgGDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vITGmSga; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F9FCC2BCAF;
-	Thu, 19 Mar 2026 17:17:29 +0000 (UTC)
+	s=arc-20240116; t=1773941128; c=relaxed/simple;
+	bh=ZosU4qn2Z1lRqQztdPFT/iatRJLCxlOP2ozjz8l9+og=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ofsfnild8jZmeAFlN7QzG55KotxVbV4ZfK7IwJMiP/JN49ggpAFIyq8KhKeZTjXGdCPKMlutuVEsMfokEo7vwShaE+0CwBhCtSpqkoHsY4r3jXqfqEzXKXN3VjFkNJa4Ymmqd4eHM6wlEABZkPcfr+99rkgTDXcqlmAyTvsD2ZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fIkEBdeq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BCCAC19424;
+	Thu, 19 Mar 2026 17:25:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773940649;
-	bh=s1URZtMYRdo2m24AfGzq+HczpETBJJYGDMsU+ejJkek=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=vITGmSgaVDGo35wP0edDRbyzFYwuN5X4rd0VjuPbprttAsBRd+5vhNnDcLSXaR6Eq
-	 CMa6IlaN6BSzu/792cXFr76CuUvzspffPNMdUDuKNmYjRSOJoluuHcRGKJijBHmqiX
-	 NuBMLA306VPdMONBe31tc9geYDlMFfEmvF+wnxuJIIG1PN36Sgple7lbcM6Ipc1JbI
-	 7yHh4Dd1bCY0EP0GEcI92Zq6lAaT7GUiUUS790Yf58ENBWeM9IZqSd7MHFoqF1RBeX
-	 byTfveamzLFTG42yrAoJqdNzeNNU5lTKD2f6WCVPqw25nq+TNY3blWpXyc6XvTbweu
-	 1GdgGF5ukjv8w==
-Date: Thu, 19 Mar 2026 12:17:28 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>, andersson@kernel.org,
-	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, jingoohan1@gmail.com, lpieralisi@kernel.org,
-	kwilczynski@kernel.org, bhelgaas@google.com,
-	johan+linaro@kernel.org, vkoul@kernel.org, kishon@kernel.org,
-	neil.armstrong@linaro.org, abel.vesa@linaro.org, kw@linux.com,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
-	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com
-Subject: Re: [PATCH v1 1/1] arm64: dts: qcom: hamoa: Move PCIe PERST and Wake
- GPIOs to port nodes
-Message-ID: <20260319171728.GA505341@bhelgaas>
+	s=k20201202; t=1773941128;
+	bh=ZosU4qn2Z1lRqQztdPFT/iatRJLCxlOP2ozjz8l9+og=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fIkEBdeqplbwtedyY41wxDL+TPIMyxwMPdYZhp0tBaoZYZ7qOyHYYO5ZUOemHH9pY
+	 PDLF8mIXTOnxR2jZJqCYW6w05qtrdGmmjjfesXioug7wahE9xe3Mjwt9GMGa6vp4oB
+	 BgBurnJe9ZBzZK42yQkT5zMO2h3FWVDT4QG21G0rmFHOWLJc3f6v2ufP3mKgG5VrsV
+	 SQT2uUL0+Uy4WNs9AbKyYviWIICT7rPCZMuLioA4wUahIkgjf2wAHHBLS1L3j2Suxf
+	 ZuZDavwRrNIWBCI0M2K8Iq5yPszkf6oK7DcPkKc4XTfBj5oqT8K0E3QgnhjGwzbFJv
+	 lvIOo47IrZIaA==
+Date: Thu, 19 Mar 2026 17:25:23 +0000
+From: Conor Dooley <conor@kernel.org>
+To: rodrigo.alencar@analog.com
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>
+Subject: Re: [PATCH RFC v2 1/9] dt-bindings: iio: frequency: add ad9910
+Message-ID: <20260319-annex-varying-afbddcb825b7@spud>
+References: <20260318-ad9910-iio-driver-v2-0-e79f93becf11@analog.com>
+ <20260318-ad9910-iio-driver-v2-1-e79f93becf11@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fYwfFjjWcyX3QhEy"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f5vqy4tfhfxeu4li33qffjzrlgqgbflidds35qdni3trdoues2@kvuzjxenrdff>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+In-Reply-To: <20260318-ad9910-iio-driver-v2-1-e79f93becf11@analog.com>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277931-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277932-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,gmail.com,google.com,linaro.org,linux.com,vger.kernel.org,lists.infradead.org,quicinc.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.888];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,linaro];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 146422CFC0D
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.0:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.958];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,analog.com:email,analog.com:url]
+X-Rspamd-Queue-Id: 594AA2CFEB9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 19, 2026 at 10:58:36AM +0530, Manivannan Sadhasivam wrote:
-> On Tue, Mar 17, 2026 at 12:13:19PM -0500, Bjorn Helgaas wrote:
-> > On Sat, Mar 14, 2026 at 07:50:50PM +0530, Manivannan Sadhasivam wrote:
-> > > On Fri, Mar 13, 2026 at 11:45:42AM -0500, Bjorn Helgaas wrote:
-> > > > On Fri, Mar 13, 2026 at 05:46:18PM +0800, Ziyue Zhang wrote:
-> > > > > Commit 960609b22be5 ("arm64: dts: qcom: hamoa: Move PHY, PERST, and Wake
-> > > > > GPIOs to PCIe port nodes and add port Nodes for all PCIe ports") did not
-> > > > > convert all Hamoa‑based platforms to the new method of defining PERST and
-> > > > > Wake GPIOs in the PCIe root port nodes.
-> > > > > 
-> > > > > Without the change PCIe probe will fail. The probe failure happens because
-> > > > > the PHY stays in the controller node while the PERST/Wake GPIOs were moved
-> > > > > to the port nodes.
-> > > > > 
-> > > > > This fixes probe failures seen on the following platforms:
-> > > > >  - x1-hp-omnibook-x14
-> > > > >  - x1-microsoft-denali
-> > > > >  - x1e80100-lenovo-yoga-slim7x
-> > > > >  - x1e80100-medion-sprchrgd-14-s1
-> > > > >  - x1p42100-lenovo-thinkbook-16
-> > > > >  - x1-asus-zenbook-a14
-> > > > >  - x1-crd
-> > > > >  - x1-dell-thena
-> > > > > 
-> > > > > Fixes: 960609b22be5 ("arm64: dts: qcom: hamoa: Move PHY, PERST, and Wake GPIOs to PCIe port nodes and add port Nodes for all PCIe ports")
-> > > > 
-> > > > Are you saying that DTs in the field broke because of some kernel
-> > > > change?  That's not supposed to happen.  Even though PHY, PERST, and
-> > > > Wake GPIOs should be described in Root Port nodes instead of the Root
-> > > > Complex node in *future* DTs, the kernel is still supposed to accept
-> > > > the old style with them described in the Root Complex node.
-> > > 
-> > > This is not related to the driver change. The driver correctly
-> > > parses all Root Port properties either in the Root Complex node (old
-> > > binding) or Root Port node (new binding). But commit 960609b22be5,
-> > > left converting mentioned board DTS to the new binding, leaving
-> > > those affected platforms in a half baked state i.e., some properties
-> > > in RC node and some in Root Port node. Driver cannot parse such
-> > > combinations, so it fails correctly so.
-> > 
-> > The commit log mentions probe failures on some machines.  I'd like it
-> > to be more clear about who is affected and what they need to do to fix
-> > their machines.
-> 
-> There is already a list of affected machines mentioned in the commit
-> message.
->
-> And for fix, they just need to apply this patch. Or once this patch
-> gets merged into v7.0-rcS, v7.0 will have no issue.
->
-> >  If it only affects developers who generated DTs based on
-> >  960609b22be5 for internal testing, we should say that so it's
-> >  clear that no end users will see any regressions or boot
-> >  failures.
-> 
-> Whoever have included commit 960609b22be5 in their kernel and using
-> the above mentioned machines will see the failure. But looks like no
-> one really tested v7.0-rcS on these machines as we haven't gotten
-> any reports so far.
 
-Two points:
+--fYwfFjjWcyX3QhEy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-  - a2fbecdbbb9d ("PCI: qcom: Add support for parsing the new Root
-    Port binding") is intended for hardware with multiple Root Ports
-    with independent PHY/reset controls.
+On Wed, Mar 18, 2026 at 05:56:01PM +0000, Rodrigo Alencar via B4 Relay wrot=
+e:
+> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+>=20
+> DT-bindings for AD9910, a 1 GSPS DDS with 14-bit DAC. It includes
+> configurations for clocks, DAC current, reset and basic GPIO control.
+>=20
+> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> ---
+>  .../bindings/iio/frequency/adi,ad9910.yaml         | 189 +++++++++++++++=
+++++++
+>  MAINTAINERS                                        |   7 +
+>  2 files changed, 196 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,ad9910.y=
+aml b/Documentation/devicetree/bindings/iio/frequency/adi,ad9910.yaml
+> new file mode 100644
+> index 000000000000..68eaefea3f5a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/frequency/adi,ad9910.yaml
+> @@ -0,0 +1,189 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/frequency/adi,ad9910.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD9910 Direct Digital Synthesizer
+> +
+> +maintainers:
+> +  - Rodrigo Alencar <rodrigo.alencar@analog.com>
+> +
+> +description:
+> +  The AD9910 is a 1 GSPS direct digital synthesizer (DDS) with an integr=
+ated
+> +  14-bit DAC. It features single tone mode with 8 configurable profiles,
+> +  a digital ramp generator, RAM control, OSK, and a parallel data port f=
+or
+> +  high-speed streaming.
+> +
+> +  https://www.analog.com/en/products/ad9910.html
+> +
+> +properties:
+> +  compatible:
+> +    const: adi,ad9910
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 70000000
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 2
+> +    description:
+> +      First clock is always the reference clock (REF_CLK), while the sec=
+ond
+> +      clock is an optional synchronization clock (SYNC_IN).
 
-    The driver will always fall back to PHY/reset info in the host
-    bridge, so I think the only reason to do 960609b22be5 and this fix
-    is if hamoa.dtsi will also be used for hardware with multiple Root
-    Ports.  If there's no plan for multiple RPs with hamoa.dtsi,
-    reverting 960609b22be5 is another, less risky, option.
+This should be an items list, like:
+items:
+  - description: foo
+  - description: bar
 
-  - 960609b22be5 only touches .dtsi and .dts files; it doesn't change
-    the kernel itself.
+> +
+> +  clock-names:
+> +    oneOf:
+> +      - items:
+> +          - const: ref_clk
 
-    So I assume this issue only affects somebody who used v7.0-rc1 to
-    rebuild the DTB for one of those machines and then installed that
-    new DTB on their system.  That sounds like developers to me, not
-    end users.
+s/_clk//, not like it can be anything else!
 
-    The commit log already mentions the affected machines.  I'm
-    suggesting that it should also say something about the fact that
-    only DTBs built with 960609b22be5 are affected, i.e., DTBs built
-    with 960609b22be5 but without this fix are incompatible with the
-    kernel driver.
+> +      - items:
+> +          - const: ref_clk
+> +          - const: sync_in
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  clock-output-names:
+> +    minItems: 1
+> +    maxItems: 3
+> +    items:
+> +      enum: [ sync_clk, pdclk, sync_out ]
+
+I'd say same here, but then you've got some issues with differentiation,
+so idk.
+
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
+
+Items list here please, the -names property shouldn't be the only place
+one can figure out what goes where.
+
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      enum: [ drover, ram_swp_ovr ]
+> +
+> +  dvdd-io33-supply:
+> +    description: 3.3V Digital I/O supply.
+> +
+> +  avdd33-supply:
+> +    description: 3.3V Analog DAC supply.
+> +
+> +  dvdd18-supply:
+> +    description: 1.8V Digital Core supply.
+> +
+> +  avdd18-supply:
+> +    description: 1.8V Analog Core supply.
+> +
+> +  reset-gpios:
+> +    description:
+> +      GPIOs controlling the Main Device reset.
+> +
+> +  io-reset-gpios:
+> +    maxItems: 1
+> +    description:
+> +      GPIO controlling the I/O_RESET pin.
+> +
+> +  powerdown-gpios:
+> +    maxItems: 1
+> +    description:
+> +      GPIO controlling the EXT_PWR_DWN pin.
+> +
+> +  update-gpios:
+> +    maxItems: 1
+> +    description:
+> +      GPIO controlling the I/O_UPDATE pin.
+> +
+> +  profile-gpios:
+> +    minItems: 3
+> +    maxItems: 3
+> +    description:
+> +      GPIOs controlling the PROFILE[2:0] pins for profile selection.
+> +
+> +  sync-err-gpios:
+> +    maxItems: 1
+> +    description:
+> +      GPIO used to read SYNC_SMP_ERR pin status.
+> +
+> +  adi,pll-enable:
+> +    type: boolean
+> +    description:
+> +      Indicates that a loop filter is connected and the internal PLL is =
+enabled.
+> +      Often used when the reference clock is provided by a crystal or by=
+ a
+> +      single-ended on-board oscillator.
+> +
+> +  adi,charge-pump-current-microamp:
+> +    minimum: 212
+> +    maximum: 387
+> +    default: 387
+> +    description:
+> +      PLL charge pump current in microamps. Only applicable when the int=
+ernal
+> +      PLL is enabled. The value is rounded to the nearest supported step=
+=2E This
+> +      value depends mostly on the loop filter design.
+> +
+> +  adi,refclk-out-drive-strength:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum: [ disabled, low, medium, high ]
+> +    default: disabled
+> +    description:
+> +      Reference clock output (DRV0) drive strength. Only applicable when
+> +      the internal PLL is enabled.
+> +
+> +  adi,dac-output-current-microamp:
+> +    minimum: 8640
+> +    maximum: 31590
+> +    default: 20070
+> +    description:
+> +      DAC full-scale output current in microamps.
+> +
+> +dependencies:
+> +  adi,charge-pump-current-microamp: [ 'adi,pll-enable' ]
+> +  adi,refclk-out-drive-strength: [ 'adi,pll-enable' ]
+> +  interrupts: [ interrupt-names ]
+> +  clocks: [ clock-names ]
+> +  '#clock-cells': [ clock-output-names ]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+
+Worth pointing out, you haven't made either clock-names or
+interrupt-names (when interrupts are used) mandatory, so the properties
+cannot be used by a driver. I suggest you make clock-names mandatory and
+interrupts depend on interrupt-names.
+
+pw-bot: changes-requested
+
+Cheers,
+Conor.
+
+> +  - dvdd-io33-supply
+> +  - avdd33-supply
+> +  - dvdd18-supply
+> +  - avdd18-supply
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    spi {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +        dds@0 {
+> +            compatible =3D "adi,ad9910";
+> +            reg =3D <0>;
+> +            spi-max-frequency =3D <1000000>;
+> +            clocks =3D <&ad9910_refclk>;
+> +            clock-names =3D "ref_clk";
+> +
+> +            dvdd-io33-supply =3D <&vdd_io33>;
+> +            avdd33-supply =3D <&vdd_a33>;
+> +            dvdd18-supply =3D <&vdd_d18>;
+> +            avdd18-supply =3D <&vdd_a18>;
+> +
+> +            reset-gpios =3D <&gpio 0 GPIO_ACTIVE_HIGH>;
+> +            io-reset-gpios =3D <&gpio 1 GPIO_ACTIVE_HIGH>;
+> +            powerdown-gpios =3D <&gpio 2 GPIO_ACTIVE_HIGH>;
+> +            update-gpios =3D <&gpio 3 GPIO_ACTIVE_HIGH>;
+> +            profile-gpios =3D <&gpio 4 GPIO_ACTIVE_HIGH>,
+> +                            <&gpio 5 GPIO_ACTIVE_HIGH>,
+> +                            <&gpio 6 GPIO_ACTIVE_HIGH>;
+> +
+> +            adi,pll-enable;
+> +            adi,charge-pump-current-microamp =3D <387>;
+> +            adi,refclk-out-drive-strength =3D "disabled";
+> +        };
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 08d8ddf4ef68..2ca8b68e5daa 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1630,6 +1630,13 @@ W:	https://ez.analog.com/linux-software-drivers
+>  F:	Documentation/devicetree/bindings/iio/dac/adi,ad9739a.yaml
+>  F:	drivers/iio/dac/ad9739a.c
+> =20
+> +ANALOG DEVICES INC AD9910 DRIVER
+> +M:	Rodrigo Alencar <rodrigo.alencar@analog.com>
+> +L:	linux-iio@vger.kernel.org
+> +S:	Supported
+> +W:	https://ez.analog.com/linux-software-drivers
+> +F:	Documentation/devicetree/bindings/iio/frequency/adi,ad9910.yaml
+> +
+>  ANALOG DEVICES INC MAX22007 DRIVER
+>  M:	Janani Sunil <janani.sunil@analog.com>
+>  L:	linux-iio@vger.kernel.org
+>=20
+> --=20
+> 2.43.0
+>=20
+>=20
+
+--fYwfFjjWcyX3QhEy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabwxggAKCRB4tDGHoIJi
+0p/8AQDmCRKAeeiKuUKKrZ4alKEChjbHTWeGE4Uf0O9x+my1LQEA5BkA4f5G7QyP
+iUXW1a4HWxsb5kzZf3WUeJU8u0TBzAU=
+=nta5
+-----END PGP SIGNATURE-----
+
+--fYwfFjjWcyX3QhEy--
 
