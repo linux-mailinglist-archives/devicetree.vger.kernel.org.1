@@ -1,204 +1,168 @@
-Return-Path: <devicetree+bounces-277823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278062-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UORKEn8LvGkArgIAu9opvQ
-	(envelope-from <devicetree+bounces-277823-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:43:11 +0100
+	id 4HmFBzvGvGkY2wIAu9opvQ
+	(envelope-from <devicetree+bounces-278062-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 04:59:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6A7A2CD124
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:43:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 758E12D5AB5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 04:59:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6C770300C830
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:38:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B623A30C624F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 03:59:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0739A3D6683;
-	Thu, 19 Mar 2026 14:38:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1777B2C11CB;
+	Fri, 20 Mar 2026 03:59:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r2kuo2AK"
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="LUam4bT9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A46F3D47A9;
-	Thu, 19 Mar 2026 14:38:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F4E029DB9A;
+	Fri, 20 Mar 2026 03:59:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773931112; cv=none; b=pO1m6xS+kv3EC/T7fr6QPyxfXTkwYKO8Xixdghgcaimtp4FIZcYw5TqnNthDvYmtpe/g+mnY0p4B+Vw93pzi24syOskg3WhHQAd0kHY+P4GLfJ8l59KCUxi2MDU4qU/y1IkyXBCdIn66I3T743M9LFFPlJ4dkeiCT6OiS69m/RQ=
+	t=1773979151; cv=none; b=tWdOH/Le36VyijlP3H/Y1LigbpmkARB8qLhxaa7JNToV+I2OsgaJQn1kNH6Jrm2aVG1ewavIFNjAsfnjYchk3cgdsox29Ep+5Btaz/ktUUYFdiWLfnPV0FsdlxVV63GGMSPfXiNV6jJ7Z4XK95y1W8uVWk+c33W+4Jl39Jk/r+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773931112; c=relaxed/simple;
-	bh=xVDCvmHcqvISvprP7lO7W6ddF7WUVJ7W2Df/HLSX/ok=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HjsBq5fsyZUGyQo5gE22UtJUU0tLWzd4Y8ZiytwHeNXAt9GEHcpk/G0vorJC3qcFrpIzTbl7z6Q16JYvMqGCBQEOR8w3aFESvZlysCW2M742bdOfWkh8XfiPwIxLnyIiF7kwLjV6S3t4X06wlB3aFKLxVePBp1s7ajD5Su0LrCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r2kuo2AK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BF48C19424;
-	Thu, 19 Mar 2026 14:38:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773931112;
-	bh=xVDCvmHcqvISvprP7lO7W6ddF7WUVJ7W2Df/HLSX/ok=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=r2kuo2AK5XKO3e1cpuhsJqbCb932nj+lOW/XRoTa5IcwOsYufpH27/bdev1IWsa1u
-	 06RQxeQl/XeWFQgYAWyGwcW5uMHorjRHwCOYXGGMdK/H0mukpftjtUsvYkwmn3yiAc
-	 WYOMz4kGTBIc2VNAKd/AEq7K/U7FFGzBaAY3bVzq/lvRzUn9/3mNktUBWDHKNyClte
-	 e/ZljoGXAcB0WQ/oNTRV2y2l47eqZ+AS7p4psAhMwF017vRcEWhUqAk79CkKh1WPMf
-	 4aBY8Jhk7/iXZhtfBoeGcrpQQfT8t5vpZ5igasBjHvm57milfLFqCtehtwcTcSAJ4m
-	 CuiVgcEZPVTYQ==
-Date: Thu, 19 Mar 2026 14:38:25 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Michael Riesch <michael.riesch@collabora.com>
-Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Jagan Teki <jagan@amarulasolutions.com>,
-	=?utf-8?B?0JrRg9C30L3QtdGG0L7QsiDQnNC40YXQsNC40Ls=?= <mai.kuznetsov.misha@gmail.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Collabora Kernel Team <kernel@collabora.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/9] media: dt-bindings: add rockchip rk3588 vicap
-Message-ID: <20260319-unrobed-simile-1c1393962ff9@spud>
-References: <20250430-rk3588-vicap-v2-0-77de5ee9048e@collabora.com>
- <20250430-rk3588-vicap-v2-2-77de5ee9048e@collabora.com>
- <20260318-mumbo-lumber-b550932a5423@spud>
- <d9a9be92-7439-4899-8be2-adf7f0490790@collabora.com>
+	s=arc-20240116; t=1773979151; c=relaxed/simple;
+	bh=YbULbe6xEG80wWHH4RWlziMg66NsPPNMV1BvJwUB/Ck=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LEFAMoALxOaemYGXgX4nH83bv/9F6PC2kQxKiufCUodb4lZmXovZE2Jczvy0/eAtkQKIH9G+nmpaigXGy83yS/Q8nCCdA0BZ8I1UcZjcegDvDh0p2c1THS7An92oiUmtXM0LIXWgOiYG824njgZkcg8RoIzkxgHpY3N6iFQBryA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=LUam4bT9; arc=none smtp.client-ip=178.251.229.89
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2BC70110E34;
+	Fri, 20 Mar 2026 04:58:55 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
+	s=dkim; t=1773979140;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=AWHHdDNqh9ZvQHUva5HwCaoi+Z9+EM+dvDGmkXuDbcA=;
+	b=LUam4bT9N39dUOjkSfM0tn5oFZ5aiQ2mhPAM2uOUWYPu/xIVUGDe91ds7BEtiZLZbk6gso
+	8+AY7JYZ3W/8efj1E9nKSEA6Mgj0d8JNAO9wQWczaVWscGHVpzEwktVGP0oKNLPbUBI4GZ
+	q40E0XvRSYCl+wyPg7qnwx84GfGBtbMZAdElMSk26120WNBMLsT3ZLDZwF95j4Kau2V4+L
+	pa7hEBDamt+m2mxLKQQ/djwMcyI6/Vpfj2L8qJythU0gavHe2i74gp6xrTsxuMUg65pkj4
+	o38n69GjSMQNbOMzNw5qxXRRmKMhVgnEIR4hwyPF56oArqBk4O0UpLlnuh8j0g==
+Message-ID: <40b3d1c8-0cf2-470d-8223-751240061735@nabladev.com>
+Date: Thu, 19 Mar 2026 15:38:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="gs5QsPffFgv1KN45"
-Content-Disposition: inline
-In-Reply-To: <d9a9be92-7439-4899-8be2-adf7f0490790@collabora.com>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 1/9] dt-bindings: display: fsl,ldb: Add i.MX94 LDB
+To: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Marco Felsch <m.felsch@pengutronix.de>
+Cc: Liu Ying <victor.liu@nxp.com>, imx@lists.linux.dev,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+ dri-devel@lists.freedesktop.org, Frank Li <Frank.Li@nxp.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260304-dcif-upstreaming-v8-0-bec5c047edd4@oss.nxp.com>
+ <20260304-dcif-upstreaming-v8-1-bec5c047edd4@oss.nxp.com>
+ <b7968f1a-c4bc-4bad-bcf8-407ff2d8db27@nxp.com>
+ <dmqbmmpyi3ssvq67iqwbt6ww7tsaik7ifi5dnupmuhep7u5saz@ads5g7ette3y>
+ <mx6b5svmvlonil4efuiaxcmtygn7lld3nj7gcxnnauaryt2yed@gohjshakc2g6>
+Content-Language: en-US
+From: Marek Vasut <marex@nabladev.com>
+In-Reply-To: <mx6b5svmvlonil4efuiaxcmtygn7lld3nj7gcxnnauaryt2yed@gohjshakc2g6>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
+	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277823-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278062-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_CC(0.00)[linux.intel.com,ideasonboard.com,kernel.org,sntech.de,rock-chips.com,amarulasolutions.com,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[nxp.com,lists.linux.dev,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,denx.de,lists.freedesktop.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.945];
+	NEURAL_HAM(-0.00)[-0.992];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nabladev.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A6A7A2CD124
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nabladev.com:dkim,nabladev.com:mid,linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 758E12D5AB5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
---gs5QsPffFgv1KN45
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Mar 19, 2026 at 09:04:06AM +0100, Michael Riesch wrote:
-> Hi Conor,
->=20
-> On 3/18/26 18:52, Conor Dooley wrote:
-> > [...]
-> >> =20
-> >>    resets:
-> >> -    items:
-> >> -      - description: ARST
-> >> -      - description: HRST
-> >> -      - description: DRST
-> >> -      - description: PRST
-> >> -      - description: IRST
-> >> +    minItems: 5
-> >> +    maxItems: 9
-> >> =20
-> >>    reset-names:
-> >> -    items:
-> >> -      - const: arst
-> >> -      - const: hrst
-> >> -      - const: drst
-> >> -      - const: prst
-> >> -      - const: irst
-> >> +    minItems: 5
-> >> +    maxItems: 9
-> >=20
-> >> +allOf:
-> >> +  - if:
-> >> +      properties:
-> >> +        compatible:
-> >> +          contains:
-> >> +            const: rockchip,rk3568-vicap
-> >> +    then:
-> >> +      properties:
-> >> +        clocks:
-> >> +          minItems: 4
-> >> +          maxItems: 4
-> >=20
-> > Anything here that repeats the outermost constraint should be dropped,
-> > so no minItems here..
->=20
-> I already took a look at similar VICAPs (e.g., R3576) that will have
-> more clocks. This is way I left this one in here.
->=20
-> But I guess I will remove it and add it again when e.g. RK3576 VICAP
-> support is added.
->=20
-> >> [...]
-> >=20
-> >> +
-> >> +        reset-names:
-> >> +          items:
-> >> +            - const: arst
-> >> +            - const: hrst
-> >> +            - const: drst
-> >> +            - const: irst0
-> >=20
-> > Were you willing to reuse "irst" for the 0th irst, all the repetition
-> > wouldn't be needed. I assume it represents the reset for the port at
-> > address 0, so it wouldn't even be a different meaning on each device.
->=20
-> Not quite I think. "{a,h,d}rst" are the same on all variants, then there
-> is "prst" and "irst" on RK3568 and "irst{0-5}" on RK3588. So I thought
-> that writing it out explicitly for each variant is more readable (even
-> though it may need a few characters more).
-
-
-Ah right, I didn't see the prst one somehow. Ignore me so.
-
---gs5QsPffFgv1KN45
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabwKYQAKCRB4tDGHoIJi
-0vI1AP9iqd2CvDCVFRnFVh5XA4+IKjf2bhkzQrjtjDQ4SFrupAEA+VRt+iWztoun
-oOwvNknPS9jj2rDN9dV2GlO7x5HP/wU=
-=of5J
------END PGP SIGNATURE-----
-
---gs5QsPffFgv1KN45--
+On 3/19/26 9:57 AM, Laurentiu Palcu wrote:
+> On Fri, Mar 06, 2026 at 09:46:57AM +0100, Marco Felsch wrote:
+>> On 26-03-06, Liu Ying wrote:
+>>> On Wed, Mar 04, 2026 at 11:34:10AM +0000, Laurentiu Palcu wrote:
+>>>> i.MX94 has a single LVDS port and share similar LDB and LVDS control
+>>>> registers as i.MX8MP and i.MX93.
+>>>>
+>>>> Signed-off-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+>>>> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> ---
+>>>>   Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml | 2 ++
+>>>>   1 file changed, 2 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+>>>> index 7f380879fffdf..fb70409161fc0 100644
+>>>> --- a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+>>>> +++ b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+>>>> @@ -20,6 +20,7 @@ properties:
+>>>>         - fsl,imx6sx-ldb
+>>>>         - fsl,imx8mp-ldb
+>>>>         - fsl,imx93-ldb
+>>>> +      - fsl,imx94-ldb
+>>>
+>>> Cc'ing Marco.
+>>>
+>>> Recently, Marco said that LDB node should not have a reg property...
+>>>
+>>> https://lore.kernel.org/all/4sofljffovrorpxe2os3jl745qfjoglvl54oqf3v7r5bk5f6aq@6y3jwn4abiqy/
+>>
+>> Yes, this has to be dropped. All variants of this specific "IP" use the
+>> same approach. This "IP" is part of a general purpose register layout
+>> with very loose reg-field definitions: e.g. resets and clk-gatting share
+>> the same register. Or a mux reg-field shares the same register as a
+>> MIPI-{C,D}SI configuration reg-field. Therefore this "IP" is part of a
+>> syscon and should be abstracted as such within the DT.
+> 
+> Even though I understand the logic behind why 'reg' should be dropped,
+> I'm not exactly sure how to proceed with this. It appears Marek made the
+> 'reg' required in this commit (merely 2 months ago):
+> 
+> 8aa2f0ac08d3b - dt-bindings: display: bridge: ldb: Add check for reg and reg-names
+> 
+> Should the above patch simply be reverted and have 'reg' as optional again?
+> Or should the 'reg' and 'reg-names' be removed completely from the
+> binding.
+> 
+> @Marek, any comments?
+The LDB driver was always written with parsing 'reg' out of the DT, so 
+encoding the register offsets into the driver was a mistake. The LDB 
+controls two registers, which can be comfortably described in DT.
 
