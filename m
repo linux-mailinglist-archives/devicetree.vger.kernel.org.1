@@ -1,65 +1,59 @@
-Return-Path: <devicetree+bounces-277912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277913-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wI5qKJQrvGn4twIAu9opvQ
-	(envelope-from <devicetree+bounces-277912-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:00:04 +0100
+	id 4BkjGoYqvGn4twIAu9opvQ
+	(envelope-from <devicetree+bounces-277913-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:55:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A28652CF451
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:00:03 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F9DE2CF337
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:55:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A1F2A3051E01
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:50:40 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 37E993001FEA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:55:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 790133806B3;
-	Thu, 19 Mar 2026 16:50:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C64DC3EDACB;
+	Thu, 19 Mar 2026 16:55:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ljg/R4bb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mBI+koqG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54F4D202F71;
-	Thu, 19 Mar 2026 16:50:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B94B3ED5AC;
+	Thu, 19 Mar 2026 16:55:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773939039; cv=none; b=RqsbiP/kn8xkgHVgLpN8qCChszhrXNlOcLA1A2oHs3k+OXgQR7cZ3gAS3rGBhe/G52tg3edWmcZ+YaPiJK6OB6h1uiYgX2eq24ORnr4jRr6a16AnKBNCnkGyVvBaf7f+j2nO7LaJwBapLMnJ3LHJAsr7xWGS9qCrPjFaInWrN5E=
+	t=1773939331; cv=none; b=Auxe0ekOe28Hqm3i87ZQyxtHa+yy/1s2s7zXEaa15KXl8jfOst1js+XLQ7a048ddca0h1t+mld2eDPQVXavbVOiZmH3fGQmonk1d4K1GjrZDGQ2i0Xd/5XAnS2CyemLJ+KuqaBYz0ZKGX+/ZH93JZ8/xqXqQh0c/IOiiw+Imf8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773939039; c=relaxed/simple;
-	bh=D77Ddz8qw4n1xbohbw2VGFHt286qHhhuOUnGY/tnSmk=;
+	s=arc-20240116; t=1773939331; c=relaxed/simple;
+	bh=M2SBBNV5aKTGPPzCrrx50PyGmFS9nxiImbbU0ZNYNGI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C/yDHYCAYBxSxKKhYN8FiOj90Hq4+GHN18SMffq0ejx7ZvSKvzfsWzwBbwIClrohnhLaeEWifZj/mSxnTvXQ2um7fjH78f/ihFz9EGmz9jm9cmwocBe/xsH+eFm+8kpVGNtN4dF5e6MYvPJsdWF+TG+ivXbdQyuP/5wlG1r57cI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ljg/R4bb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A612C2BCAF;
-	Thu, 19 Mar 2026 16:50:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BFDdXhVpwYu4TSQX1XRetFl8j3eszL1eG/PiOmzuLKFD2kJ8kvalE9r/y00ZbORPt2KEu958XkGvl5nO0QcPG9GHaNcwkfrAuJXLxJtHQdyn5JauCRNTVluoD1OmBn/YhYWkxicGeYaB0U57ueFy7+8l6DDTUj6W1l0iWigZUzc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mBI+koqG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71E44C19425;
+	Thu, 19 Mar 2026 16:55:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773939039;
-	bh=D77Ddz8qw4n1xbohbw2VGFHt286qHhhuOUnGY/tnSmk=;
+	s=k20201202; t=1773939331;
+	bh=M2SBBNV5aKTGPPzCrrx50PyGmFS9nxiImbbU0ZNYNGI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ljg/R4bbBSiaM3KzZCNF04vLF0LtaB5TTp5JofndPK859nkZhiQIYOXp7lRbcq+Xn
-	 XSUTDHJ7UXb5VS5oGodmddZvcnD2xLyh9jZzRhRmtVJl8shsQdHPs5m6aiBrVMcUaT
-	 WKHdrpjLVB+HP0K/d130LSEZCnYzHfeS5KVri7LyrvGiR5wK9H0vjDuA5BEIjhq8l6
-	 SKnuZEFSFwp1i2IxXai9Mnk+kIsiBL/6XpH7RLbh9AqcHdKYbh4Xnt8sahw8lRkmVG
-	 iLmaS9uwiovoWvzMUkZ3OUj8onDSeV6da53FeLDMyTRyKGj5YwtJ2u7eyjdxniI2CI
-	 MTgjW5CpYZXAw==
-Date: Thu, 19 Mar 2026 16:50:34 +0000
+	b=mBI+koqG61T/KphSEnJ3BUrMX1uJmjHDSDHajPSRnjIUStpRAAnYpleaIC7X8hFQR
+	 Hi61v9TJiWcea+hKfS3P/1iND0Kl+fC3odgqx4NWTnaDWmjmx3S2UD5aarDPHL84qJ
+	 JUG2rUg+KbJmUH7k6k5svVYtrqOUfcryK356llc3zVzw2Gmlk4raEVxUUA/uxyngHr
+	 cUFNM/a81JNn8raunT/sshkKIya+yWgi4sb22I75JGVFZ/jCM3X1yCCd8Z1AJ8YMPn
+	 KEA4/VYxwSjsPWAJ/pI7mlcp6WibPQj1miTfHr77bOfFzNE60/EcyQR8q9UB0M1IOP
+	 MzzGlwOhOwUKA==
+Date: Thu, 19 Mar 2026 16:55:27 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Vyacheslav Yurkov <uvv.mail@gmail.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Vyacheslav Yurkov <V.Yurkov.EXT@bruker.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: Add clock guard DT description
-Message-ID: <20260319-yearly-wrongful-883f7fd86a69@spud>
-References: <20260318-feature-clock-guard-v1-0-6137cb4084b7@bruker.com>
- <20260318-feature-clock-guard-v1-2-6137cb4084b7@bruker.com>
- <20260318225510.GA639444-robh@kernel.org>
- <7c7034a7-686a-42c2-bdba-6f31b5179f7c@gmail.com>
+To: Zaixiang Xu <zaixiang.xu.dev@gmail.com>
+Cc: linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add GXCAS Technology
+Message-ID: <20260319-starboard-decent-059a83babb19@spud>
+References: <1773920314-17755-1-git-send-email-zaixiang.xu.dev@gmail.com>
+ <1773920314-17755-2-git-send-email-zaixiang.xu.dev@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,91 +61,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="oewIK0RQAgPXmJv9"
+	protocol="application/pgp-signature"; boundary="LFmX4B17aUj1/g9f"
 Content-Disposition: inline
-In-Reply-To: <7c7034a7-686a-42c2-bdba-6f31b5179f7c@gmail.com>
-X-Spamd-Result: default: False [-2.26 / 15.00];
+In-Reply-To: <1773920314-17755-2-git-send-email-zaixiang.xu.dev@gmail.com>
+X-Spamd-Result: default: False [-3.76 / 15.00];
 	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-277913-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277912-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.958];
+	NEURAL_HAM(-0.00)[-0.987];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A28652CF451
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,gxcas.com:url]
+X-Rspamd-Queue-Id: 0F9DE2CF337
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---oewIK0RQAgPXmJv9
+--LFmX4B17aUj1/g9f
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 19, 2026 at 06:50:52AM +0100, Vyacheslav Yurkov wrote:
-> On 18.03.2026 23:55, Rob Herring wrote:
-> > On Wed, Mar 18, 2026 at 05:43:40PM +0000, Vyacheslav Yurkov wrote:
-> > > Describe device tree binding for virtual clock controller guard.
-> > No idea what this means. Please explain how I would identify this h/w.
-> >=20
-> > We generally don't do bindings for virtual devices and we don't do
-> > single clock bindings (other than some we are stuck with).
-> >=20
->=20
-> I described a use case in my cover letter (PATCH 0). Perhaps our approach=
- to
-> tackle the issue is not correct in the first place. The term "virtual clo=
-ck
-> controller guard" is something we named it, but it's literally just a clo=
-ck
-> provider which combines several other clocks and input GPIO signals in or=
-der
-> for the consumers to check whether they are allowed to probe already or h=
-ave
-> to wait until the input clocks are enabled.
+On Thu, Mar 19, 2026 at 07:38:32PM +0800, Zaixiang Xu wrote:
+> Add vendor prefix for Beijing Galaxy-CAS Technology Co., Ltd. (GXCAS).
 
-Can you explain how this is different to gpio-gate-clock? AFAICT, you're
-trying to support clocks that are enabled by a gpio, and that's what it
-is for.
+Worth citing that gxcas comes from their website:
+https://www.gxcas.com/en/index.html
+
+With that,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: changes-requested
 
 >=20
-> So in essence it's like a helper driver to simplify consumers probe
-> procedure. Does it make sense? If you don't do bindings for virtual HW, h=
-ow
-> else would you approach this?
+> Signed-off-by: Zaixiang Xu <zaixiang.xu.dev@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
+umentation/devicetree/bindings/vendor-prefixes.yaml
+> index ee7fd3cfe203..354836eb8e72 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -676,6 +676,8 @@ patternProperties:
+>      description: Gateworks Corporation
+>                   use "gateworks" vendor prefix
+>      deprecated: true
+> +  "^gxcas,.*":
+> +    description: Beijing Galaxy-CAS Technology Co., Ltd.
+>    "^hannstar,.*":
+>      description: HannStar Display Corporation
+>    "^haochuangyi,.*":
+> --=20
+> 2.34.1
+>=20
 
---oewIK0RQAgPXmJv9
+--LFmX4B17aUj1/g9f
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabwpWgAKCRB4tDGHoIJi
-0mS1AQCyfP+fyjGDQgMM0Ynzsf4cG2N0hvkv75PMmo5yKprjkwEAok9cVR3iRzxh
-QIQXM6kQ9Q1ooh/QME9VlGL6Bftgxg8=
-=9Lod
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabwqfwAKCRB4tDGHoIJi
+0r8gAQDBLYWZiS6P1c6wBWa+7WFzFkM+1X/9JL8s39YSlhefkgEA++7+8rY4edEL
+5etJLz3B1dvtUZJnAifjdq2Qz8SAhAs=
+=wfm3
 -----END PGP SIGNATURE-----
 
---oewIK0RQAgPXmJv9--
+--LFmX4B17aUj1/g9f--
 
