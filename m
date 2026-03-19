@@ -1,115 +1,126 @@
-Return-Path: <devicetree+bounces-277909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277908-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8HT3Ef0qvGn4twIAu9opvQ
-	(envelope-from <devicetree+bounces-277909-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:57:33 +0100
+	id IFiSGKwovGkxtgIAu9opvQ
+	(envelope-from <devicetree+bounces-277908-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:47:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DA892CF3B2
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:57:32 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE9572CF11F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:47:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A894A30363B9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:47:53 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 473153006176
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:47:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 575793EE1DB;
-	Thu, 19 Mar 2026 16:47:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B96D3ED127;
+	Thu, 19 Mar 2026 16:47:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="1IfSxMD2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O6O09R++"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A47AD283FE6;
-	Thu, 19 Mar 2026 16:47:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D5493ECBE3;
+	Thu, 19 Mar 2026 16:47:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773938860; cv=none; b=MAN6clt+4JjVWKA0PTTBGeHfPYd+OHAMKThkQGniOgLzPm+weXp3s1mtWGdiFQ0DmHLVBMpJZraReUChyGw3F/6kYw11p6amMWEE9zn/PlqTE1sdMvYa46xMcDTwzS3Qi7qhvaPlL2nEgwKHsrcPyj30ejxxHs4oylLIUHdEc2k=
+	t=1773938852; cv=none; b=M4emR2ItV7VBTOPaKt366hSUB4JktjqMGZ6Lf2FfejknAnf3VVHJMPY7QYgZ5QufjAdr0nn2oXJaX6/5R+yeWReeeQbmKQHn3cKKeX7ELSL2mzRmjpVAD4HGjmbzJQuu93o62Rv+8HEc8ozmgVh98qEwcpcdKETzx6ETTfYIghU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773938860; c=relaxed/simple;
-	bh=g4Tvq8CkWxqrelZzfJ83az7+uXnOXpYXLq/DjGrFSoY=;
+	s=arc-20240116; t=1773938852; c=relaxed/simple;
+	bh=Q9bmMfFx9VaqawS+DAi/VMX7Ox1YGfZETdSY0ka144s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XDT9Pk17gXexMZXHGJdJ3rePDy1x0hLIiyV0DR9b96MIfAXsnOxwM9uwmBcEDsugUPR41OdAEcRZ0Sm/evI5TofVBEacljnjgXW8Lq7K+zs2mYQAL7gSjciEObOF3xqhZuT4lpDSK+Awq8PogS9LforyLoPCXO8sarq9KPDFB8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=1IfSxMD2; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=vP2q63Krwp1ZYUbVHlEUrPz5JO0vXusTHqO5My0Upkc=; b=1IfSxMD24FW4L5sRcBs3T1O0k0
-	qJzXMyAXWNGlL6QcMD1H7WOQ71f5LKlq3ErblhEBXpnpYCez/pUzjUtF29AIYklUXlylmMDZGQWQv
-	sGYZd+i1/XBh83cwmRPvFANJzASLhmWPYLR70k4Vu6/yebSRufrMCsW1rx5E7jJ9J0i0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1w3GWq-00CPwy-Rs; Thu, 19 Mar 2026 17:47:24 +0100
-Date: Thu, 19 Mar 2026 17:47:24 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Charles Perry <charles.perry@microchip.com>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: document Microchip
- PIC64-HPSC/HX MDIO controller
-Message-ID: <bd7f6434-3f23-44ae-bb10-d23b6dce057a@lunn.ch>
-References: <20260317184610.315852-1-charles.perry@microchip.com>
- <20260317184610.315852-2-charles.perry@microchip.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=RzMUElKkciMtuOyG4M1cELaCLNTNgzhqLOQm2lwjB/etz9flLdnBOCmLjH5iB1PhZ2ZU40EuOrWJgtBfUzaPpTiqmsx3rNVd+WF3i5HBe4x+xkZjqDMl/TelMyobgeL0wSrvrmARCAkdhGBKIy3lGksr/z8oR4yrmMeKmdmxncY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O6O09R++; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 548C6C19425;
+	Thu, 19 Mar 2026 16:47:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773938852;
+	bh=Q9bmMfFx9VaqawS+DAi/VMX7Ox1YGfZETdSY0ka144s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=O6O09R++VeRZeBLvlRglepXSbWOnsIhuBkcGpNhTMB1/MxNyYTeJapekjDaW9ym/U
+	 g3WiEdfd8R7uBK2Xz+c723Mt4iJoIhcaf2D0KORmNFiAcBex9S3LDRiAatMQMSmEp6
+	 hxCeFN1P2frgIgp4rTTbaO08bJzT3s/ict3CmhuZ7Od9S9bnxl1tk3RYNwiYwtltlO
+	 BmL3gyQPevLioogcVVd92zpTvWC7r9ofVSUz2yQElRmOw+UfqSCYLuP3sXupZcEHPc
+	 D/laaMiHxUOPr3yX1/rh+tkLZh0/blr5EGrrm3OO7RF/31GDgPmVJKMZcumqeUrw2y
+	 q7Y2i0DjnTmwQ==
+Date: Thu, 19 Mar 2026 16:47:27 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
+	Martin Schmiedel <Martin.Schmiedel@tq-group.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com, Daniel Baluta <daniel.baluta@nxp.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: fsl: add MBa93xxLA-MINI
+Message-ID: <20260319-theater-aspire-8500b91fbdaa@spud>
+References: <20260319125013.2421621-1-alexander.stein@ew.tq-group.com>
+ <20260319125013.2421621-2-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="/6QbIyqIGRlgMuc7"
 Content-Disposition: inline
-In-Reply-To: <20260317184610.315852-2-charles.perry@microchip.com>
-X-Spamd-Result: default: False [-0.66 / 15.00];
+In-Reply-To: <20260319125013.2421621-2-alexander.stein@ew.tq-group.com>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277909-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-277908-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,tq-group.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,ew.tq-group.com];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.962];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:dkim,lunn.ch:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4DA892CF3B2
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.981];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: EE9572CF11F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-> The hardware supports an interrupt pin to signal transaction completion
-> which is not strictly needed as the software can also poll a "TRIGGER"
-> bit for this.
 
-Experience with the FEC is that using interrupts is slower, but you
-save some CPU load. The vast majority of MDIO devices poll.
+--/6QbIyqIGRlgMuc7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-     Andrew
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
+
+--/6QbIyqIGRlgMuc7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabwongAKCRB4tDGHoIJi
+0uTNAPsEyayXseF02444xp1C/jh1jrMtTIiGUoPEhRjgH5ffcwEApfj3NtwQgBqm
+vlSCD93D6v9TigARn+e896cjCGUAoAU=
+=JafL
+-----END PGP SIGNATURE-----
+
+--/6QbIyqIGRlgMuc7--
 
