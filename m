@@ -1,191 +1,120 @@
-Return-Path: <devicetree+bounces-277559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277560-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yKzqIp1zu2kdkQIAu9opvQ
-	(envelope-from <devicetree+bounces-277559-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 04:55:09 +0100
+	id aAzZB79zu2kdkQIAu9opvQ
+	(envelope-from <devicetree+bounces-277560-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 04:55:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E98BF2C5BD7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 04:55:08 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 091602C5BF4
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 04:55:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5E5E4315712D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 03:54:32 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E2292301280A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 03:55:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 690893491F5;
-	Thu, 19 Mar 2026 03:54:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 451D13242D9;
+	Thu, 19 Mar 2026 03:55:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fu79RbvP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cr4h4uGg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 761A933BBD2
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 03:53:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2007C13B293;
+	Thu, 19 Mar 2026 03:55:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773892441; cv=none; b=pyAAdjfrx1I1QGoQPgTtKOEhNZOKNZK+0rWGTBEvFD+KCvEXY3FO3QZpC9XgkOJZ/qnuHl+jCyx/FlrfiuekTQAHlbXeWOPoiDzGcn5bZRyGBmisJGBSd0tcB0D75Uv0esh5BOxi7YJzTXAvyBpqioYX78TsVMLGsA3h/u2p+rw=
+	t=1773892534; cv=none; b=Wby6h35ijNDOjufV1/Nvafx6xRYO0rqTLu8dchv1gecmORuUGqZDZnlgHt6MO0mLUQ1GPa0PRm3RRGDjAs306f0NtatjmxzN4A5MhELHj0FeXd7deJbCFbhWWWZBMN5rgI8mCndQ59rqgWLS+PoKSu9hCXoRclZMdCOtnV+8x7U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773892441; c=relaxed/simple;
-	bh=klhMHuVpGd/rhVdAZe4iRc7tGTgbd9SIhXdCtnCGRxo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DQdXZj/75/I3ENlffNbqeCgTb77uxGuOkCSrcoVDfMWcFfIQgm1Kg4ntjcrFr/j68Vl4cDKCw41Hv7ppWknFI4aXNkP2L+VPYS1NOXgeAJ61DnoCkVy0kbVSLYM22mYJAy7wrNoQGE4ICqEgqNreFbSArEMaepX05XkDA/OsitE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fu79RbvP; arc=none smtp.client-ip=209.85.216.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-35b97ed057cso353819a91.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 20:53:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773892430; x=1774497230; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rUnbmXHqSDL7dPZI/Qu8hE1Nu6Gyv0faqBQ59rr7QWo=;
-        b=Fu79RbvPzoIityZHhaFb91hS/ALftTTmA3vnoBQ2qWQbBqoecM2UHnaacenId/tw0a
-         MVtVwSFysyqHkoa4zxth/KHlCMWkhBu17Ny375B+h7Bbw67fhhHvZOwL934FdeVGHfmq
-         +kDurj2Gd3ZOFcX1GOdN3pxKlHzPTfNKuUeJNv4BexBDSA9qv8b59QpQ6LACO3dbdqZa
-         KDED/5uuY0/kbEAZoEal36Si0QrQTVcMk8L1IprrJgi9I5WOsWBFaFAuE/Rud6qelbPM
-         mWufkVVBJH1ESz81W/YadfaAAWTWmolbB0wPftRsULVJih/rtjWP8yKBrwnAl80wPWVE
-         ZYmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773892430; x=1774497230;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=rUnbmXHqSDL7dPZI/Qu8hE1Nu6Gyv0faqBQ59rr7QWo=;
-        b=GGVEMtrlR69SqQDc3jwZ4vGW4QoEO6+qDcXsfy7FnQOAzU3ZqR0qEAJWmXA4YXzWD5
-         nLCp6dq+rn0TU+TbwsOmektwsK/Wzjzk9niCHSBpFv+xCDbhpA1zbGrPCEGSOYMfmH/O
-         eKDo+8hNvkLUis/OnlsDC5GNm43ZucndlpNE6pLxndf4eCp0m5ktbAYEzTyexi9ZQfzV
-         9pWdqLHxvMzQWaORVdx95q24Debo+5RpbpYp7hdxcn5nL5htYQ3ZoKfiIOU/oIFKfmmv
-         V3Vui1/5dUx9Xh7jUVT2Xa2GAoQjvWDJvzyHWXBJURO8UGSqAkLEQmLb3BDP8/uMy/Sv
-         MMLQ==
-X-Gm-Message-State: AOJu0Yyx8uaMKT0McNbks+KIHyVoMRdGN4O+xSLo/hzBFRKRewmGhhxh
-	pQ4o94STqkS0XRyDj9K+EClDRHsSuR2U2gBRwHhwPzSOR0rD2QPWJQT+LA1P7wE3
-X-Gm-Gg: ATEYQzzLxEnkmFXlDgmtfrHDSMCBagDllM6b+6VKMNP3saSCduve+NUygAGNVIknokJ
-	dWeYJUrm7ZtXxc4iFW3UhsMR0VBsQPfWUCnJETWSd3jTld2KS/uyFUikQyLvOcOTUpAsbC+pwkr
-	IDDhc4lwfWYR0JKXr90YMoHSrCvX1OYgT4RlaJR/jL+1ersSN87wU0CaFlcNwy7VG/WCu6sXNwE
-	P1/snuzZlR+WIDqfiWlUfj81H3yJFdWo6Zn79r1C1KlQtxd0yr7USCGHCqjTHsVPgbaWQJKb3p2
-	3K0k57yPwQ+9uu6C9JUVHwxXfRCkr0SLKqrXK6DhkUJ1lAfZ5K5IZ13grN1hKTF6Yq2j2tGPRsK
-	zX+1TmfHClz48tO4C89diA6gjwloz+bgQT4p5ZQp2yX8Ze8cMSrz9/0Dc71aLsvNIGfbYQbzZO1
-	cRTx1RGLt0CleS8W6hjEy3j/Zq10sFYhTeWqG0RmAHrPQfbVpRL8n5aOc=
-X-Received: by 2002:a17:90b:5346:b0:352:f2a6:334 with SMTP id 98e67ed59e1d1-35bb9ef6093mr4927666a91.16.1773892430381;
-        Wed, 18 Mar 2026 20:53:50 -0700 (PDT)
-Received: from ryzen ([2601:644:8000:56f5::8bd])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35bc60ecb30sm1159145a91.12.2026.03.18.20.53.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Mar 2026 20:53:49 -0700 (PDT)
-From: Rosen Penev <rosenp@gmail.com>
-To: devicetree@vger.kernel.org
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
-	Hauke Mehrtens <hauke@hauke-m.de>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM5301X ARM ARCHITECTURE),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 6/6] ARM: dts: BCM5301X: EA9200: set MAC from nvram
-Date: Wed, 18 Mar 2026 20:53:24 -0700
-Message-ID: <20260319035324.269905-7-rosenp@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260319035324.269905-1-rosenp@gmail.com>
-References: <20260319035324.269905-1-rosenp@gmail.com>
+	s=arc-20240116; t=1773892534; c=relaxed/simple;
+	bh=aYVIRntfK6i+k67CFFrpk34Ovp8peftZCkHYeOOi51c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hVUMts+GCn5iKwq5nCWojnobst/1TO5MVLOsAfGg2iXsBGaN37BhpBtNxkR6O+kXjtZNBQDgAXVXvo5/Ry91If5rEjIcRwYXKj9NlYgr2Sn6RqtXx3sxLV36h8D6jV3g3Z9ilcpcpSjLsKIKLluquS7OZuA0Gu7HqSGUNOTckWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cr4h4uGg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FC0DC19425;
+	Thu, 19 Mar 2026 03:55:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773892533;
+	bh=aYVIRntfK6i+k67CFFrpk34Ovp8peftZCkHYeOOi51c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cr4h4uGg50dNoH9I0uwRQWAfSyj/MDejNyjJTP5m+U60RLIaSg1iA6MiWb0Y1aFDT
+	 zoLzdLogp0MbOM6WEmNHmPbdSo//xpU2aamXcTpSMyu2TkkIUOnr7gTa2ry0fYpICJ
+	 YBMcPJqecOHVv6pTSor6MBhbdh2w1j+WFkPMwNlvCAMimUZadi0MXc7XGDIXfw0idE
+	 PyMdM2fNn5XpWt/6EN8JpKJSFk1WPYMPTrYqa+XtS7Ln/DhI/u5FJnQqiCccY+ujGZ
+	 pTQWxeD5AB5YTLP7CFabhM8BDKG6t5XzYrEUP1WLu4223XMvtwm5WdjUUI0Vbkc9He
+	 TFIiCcnxS0JOg==
+Date: Wed, 18 Mar 2026 22:55:29 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v3] arm64: dts: qcom: glymur-crd: Enable keyboard,
+ trackpad and touchscreen
+Message-ID: <abtzM6iAXmkene8W@baldur>
+References: <20260313-glymur-dts-crd-enable-kbd-tp-ts-v3-1-66c5ddfee97d@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260313-glymur-dts-crd-enable-kbd-tp-ts-v3-1-66c5ddfee97d@oss.qualcomm.com>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[broadcom.com,hauke-m.de,gmail.com,kernel.org,lists.infradead.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277559-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rosenp@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-277560-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.995];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	RCPT_COUNT_SEVEN(0.00)[10];
-	NEURAL_HAM(-0.00)[-0.838];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.0:email]
-X-Rspamd-Queue-Id: E98BF2C5BD7
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 091602C5BF4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Especially needed for the WAN port, which is part of the switch and
-inherits the MAC from GMAC2. Added extra definitions for the wifi
-interfaces to make everything clear.
+On Fri, Mar 13, 2026 at 03:53:22PM +0200, Abel Vesa wrote:
+[..]
+> base-commit: f90aadf1c67c8b4969d1e5e6d4fd7227adb6e4d7
+> change-id: 20260309-glymur-dts-crd-enable-kbd-tp-ts-c80c0cb78940
+> prerequisite-change-id: 20260109-dts-qcom-glymur-crd-add-edp-03f0adde9750:v4
+> prerequisite-patch-id: df42484b224c01014637ec5a8f56bab459890557
+> prerequisite-patch-id: d986d8d948eaf7b80028b2244750dc7aff7de307
+> prerequisite-patch-id: 7ec5f802a334d96421d8f95d4d9e9773655cc947
+> prerequisite-patch-id: 8d9e016b49979fa817cf9eab70b809fdb9d4656f
+> prerequisite-patch-id: 6a291fd702870ca28d64439313d498593996b741
+> prerequisite-patch-id: c96958ab5c5605fb9577645ac5bfe5912cdfebfe
+> prerequisite-patch-id: bfa283218723a48e54fcd842484b004c877339b7
+> prerequisite-patch-id: 346f2db0933c551a039f63b945f989a5c8320657
+> prerequisite-patch-id: 919020405b70d588fa4356a5cbfb44e67006102e
+> 
 
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
----
- arch/arm/boot/dts/broadcom/bcm4709-linksys-ea9200.dts | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+"4 out of 5 hunks FAILED"
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm4709-linksys-ea9200.dts b/arch/arm/boot/dts/broadcom/bcm4709-linksys-ea9200.dts
-index d8aab570dbe8..8037eac1c3b7 100644
---- a/arch/arm/boot/dts/broadcom/bcm4709-linksys-ea9200.dts
-+++ b/arch/arm/boot/dts/broadcom/bcm4709-linksys-ea9200.dts
-@@ -115,6 +115,8 @@ wifi@0,0 {
- 				reg = <0x0000 0 0 0 0>;
- 				ieee80211-freq-limit = <5170000 5250000>;
- 				brcm,ccode-map = "JP-JP-78", "US-Q2-86";
-+				nvmem-cells = <&et2macaddr 2>;
-+				nvmem-cell-names = "mac-address";
- 			};
- 		};
- 
-@@ -129,6 +131,8 @@ wifi@0,0 {
- 				compatible = "brcm,bcm4366-fmac", "brcm,bcm4329-fmac";
- 				reg = <0x0000 0 0 0 0>;
- 				brcm,ccode-map = "JP-JP-78", "US-Q2-86";
-+				nvmem-cells = <&et2macaddr 3>;
-+				nvmem-cell-names = "mac-address";
- 			};
- 		};
- 	};
-@@ -140,6 +144,8 @@ wifi@0,0 {
- 		reg = <0x0000 0 0 0 0>;
- 		ieee80211-freq-limit = <5735000 5835000>;
- 		brcm,ccode-map = "JP-JP-78", "US-Q2-86";
-+		nvmem-cells = <&et2macaddr 4>;
-+		nvmem-cell-names = "mac-address";
- 	};
- };
- 
-@@ -155,6 +161,11 @@ &usb3 {
- 	vcc-gpios = <&chipcommon 14 GPIO_ACTIVE_HIGH>;
- };
- 
-+&gmac2 {
-+	nvmem-cells = <&et2macaddr 0>;
-+	nvmem-cell-names = "mac-address";
-+};
-+
- &srab {
- 	status = "okay";
- 
--- 
-2.53.0
+Can you please clean up the dependencies so that I can merge this?
 
+Regards,
+Bjorn
 
