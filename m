@@ -1,84 +1,117 @@
-Return-Path: <devicetree+bounces-278017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278016-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +MTeMehTvGkXwwIAu9opvQ
-	(envelope-from <devicetree+bounces-278017-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:52:08 +0100
+	id WBw9HIVTvGkXwwIAu9opvQ
+	(envelope-from <devicetree+bounces-278016-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:50:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A9472D1CF1
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:52:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8EC32D1CCB
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:50:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A5E12307D61C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:52:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DE69730774F6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:50:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 020603290BD;
-	Thu, 19 Mar 2026 19:52:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DF40358372;
+	Thu, 19 Mar 2026 19:50:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Y9KSTumr"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="V3YLXYGI";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="L/SiMi9o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77D7B2E8B82;
-	Thu, 19 Mar 2026 19:52:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0D072E8B82
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 19:50:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773949925; cv=none; b=pL2oXuACW2ZFG6BHYTWRajCrh2058qv086/of/UPgfSdhp2+a0KO/FNzYhzZ1gZbXenADnzdaMfBFswUU7Bs1h690XScpD5f4xB+3NyrMO/JG2LeDnT67ZobCS0Aqf6AEGNv/4H7WT7RB9XTnlyThr/xGazJ48dN8UDrdk3/WmU=
+	t=1773949825; cv=none; b=WeNH2+dcPcUMdkkepzS1M584D7y7Ww5+rLaYXZtm5u0cOhmWObx37+fOsdtR8AWvGTH6uNjW/DUmn6S0vku5Vu895iS93Uflp7L/D//YHxk9dhu3VI+HxWZwkVyIt9v1CJ0x6plzGLVO6qd8RKRJ6tVUHCh3RSxYMK5NlwoRgvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773949925; c=relaxed/simple;
-	bh=qs3MDYOmJNxqPiaOylmC/7JTWLNZLoYJUn+b+IyOadk=;
+	s=arc-20240116; t=1773949825; c=relaxed/simple;
+	bh=i74+LUsljeq5OURT5idEOfUI+4H734ibDR81rFe92x0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IJcIymMNXdvMN7vqY2MW3bxi10IuDjdCaqb2n38QAf27JnnrolLnuYC7fezYR1jygPaLlm5+fomGS6dSnSy39pNbeiP+wlrelVDTtV67SuETZEc7k/Zyyti3AxGEqUeCJyyqc6mXS3fSmrc6AUH7JjyU8TZmmW5pKZHPZxhuI24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Y9KSTumr; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773949925; x=1805485925;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=qs3MDYOmJNxqPiaOylmC/7JTWLNZLoYJUn+b+IyOadk=;
-  b=Y9KSTumrgfq6u7VmuAudz45Bml0AGR/yORRvhHhfQxVI743khCIbgImk
-   uPYx+sW7qV8Ml/6aotWQ+7fkz6jRJh+oU7yiOdSPCLxMVbEQYtnk4rhx5
-   ON9VcZnZrMas8pNWGTxnYtrFqT3n0tEz1RqsbRDYBUredOElcubpiuZWQ
-   3eHdoexXR3wklkvMcx5mFl4VnwVuDeaimVkiigDc5PJdL73A4BFLIF05r
-   soCz3PwidKg9+3Yu27iQ8R3cMnN1t6FKm7/HVy0wbD6f0gjCQY3/J3u1T
-   iTXHoSNZWFuOO6EtDNt1DPUAI3zcya+Pz89pyZtfby2uVXDekLwuuDomq
-   Q==;
-X-CSE-ConnectionGUID: fbR68mXrRLy3J5HOGGNufA==
-X-CSE-MsgGUID: v1kki7bUS+28GDIya7GrDQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="86111598"
-X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; 
-   d="scan'208";a="86111598"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2026 12:52:04 -0700
-X-CSE-ConnectionGUID: X5xofAJnQ96x7XBDvhbv4Q==
-X-CSE-MsgGUID: ZkI01nfTTJW3PFJ/3lUbJw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; 
-   d="scan'208";a="218488427"
-Received: from lkp-server02.sh.intel.com (HELO a51c2a36b9df) ([10.239.97.151])
-  by fmviesa006.fm.intel.com with ESMTP; 19 Mar 2026 12:51:59 -0700
-Received: from kbuild by a51c2a36b9df with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1w3JPN-000000001bV-35vz;
-	Thu, 19 Mar 2026 19:51:53 +0000
-Date: Fri, 20 Mar 2026 03:49:57 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ahmed Tiba <ahmed.tiba@arm.com>, linux-acpi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-cxl@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Ahmed Tiba <ahmed.tiba@arm.com>,
-	Michael.Zhao2@arm.com, robh@kernel.org,
-	linux-arm-kernel@lists.infradead.org, Dmitry.Lamerov@arm.com,
-	rafael@kernel.org, conor@kernel.org, will@kernel.org, bp@alien8.de,
-	catalin.marinas@arm.com, krzk+dt@kernel.org,
-	linux-doc@vger.kernel.org, mchehab+huawei@kernel.org,
-	tony.luck@intel.com
-Subject: Re: [PATCH v3 10/10] RAS: add firmware-first CPER provider
-Message-ID: <202603200337.hRVhVYpU-lkp@intel.com>
-References: <20260318-topics-ahmtib01-ras_ffh_arm_internal_review-v3-10-48e6a1c249ef@arm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=aTJF/M/3vMtAThYea6lO3nWXRpPRdqFJC5lStPwFVy7ZSqapGreF4D/Jf32sgdBP3zaQMx60fbRphL/4OmVrNELPiuqWdAjNQF9kwh/juNMGNKKBbG7a0BoskPiAEJYTTwQ/gqDgbKZyzR0eUnUIiddIASi/Sje39DURJLnOdpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=V3YLXYGI; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=L/SiMi9o; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62JEg4V83369542
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 19:50:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=ZWhyfQUUVgTuDV3BF0ZoGSyB
+	bmACaRyf7XqBbb+fkzo=; b=V3YLXYGITNZAnyPHLOiWsytQDM30sKPDQi6cT5Vg
+	IEFhg7QYUZQ4TLWL7/XX3EYzd+z4fMI4Yit3MjK461GkvCgdnI2IzFRGQDo65zwo
+	+4RrnK5YyHpCAJLid33CzNuxfRCAFOoePwSDQFZUQDRCeHimi1zX2jSsO1r5rrrs
+	68VCIUk12+Z/JotO80LAPvmBDUGpC4NmCurk0mHghpL+eynqcb+bZugxJXZAEu/3
+	+0PWhClvdsj5LiyxQUFtZrrUVm4X7NTuD+mPicoejOWBwBx0ypT8yRc7oKANkWmC
+	Hv8kXSEBmaQqW9AGNJ9tlE6ScNtMafC2NBddxwRsJDKCPw==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d00f9mjq6-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 19:50:22 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-509070bda13so127018181cf.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 12:50:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773949822; x=1774554622; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZWhyfQUUVgTuDV3BF0ZoGSyBbmACaRyf7XqBbb+fkzo=;
+        b=L/SiMi9ohuSCj0pLip29T3KZd7odwzFxzSGJPhmVIj/oyC9FI3Q25DxYqahjkAN4LW
+         2toPzWSrkFkUXezovLsXjKRkWaRSSxOp/4Jo0RX9+0zpt6gsHpB8nqI2nbr88JYqp3Gf
+         UMVJcfXV792GbL1ijgcqv4IWCnYF1xAJJ1Xxsmko/NWlNWTXEDd1jQZKgojf6Tt3U+50
+         mUyigL6i6rzLsG1zCnj/F0r2AZp/4kmyjk3+CehCQWQSRy2yE+nhGNIyitE4MiQrVEcN
+         ERjGnWURy6pY1G3bBNiC3W9s25vMOkdoAA2cMYl5eGSdaBKyFZlTGSiiNBGe3sg11h87
+         WERg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773949822; x=1774554622;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZWhyfQUUVgTuDV3BF0ZoGSyBbmACaRyf7XqBbb+fkzo=;
+        b=GQRVfrj4R5VRiqvemvudAyfEFEgZOWTYVq5W4FK8IblXioU3lB8xmW1fI1mPpY23mh
+         8Lug9yVLYWJFnO51yEIVHR/pZrvy9VgWQ902baW5KIn8cPK50RU+DdPrlx9A62mHKPIG
+         HumyT8KyBttu0mlDYuCjT2eJoAnTEs5GR1GGn8G9bhee0hvO5SNrpQPum9RpNA7xI6lz
+         9aFH2BY0UmIWCBgsBJJPQFkMTXLK1bsbYmZhvNenPpQ+Hs7xzKAX28kHPXjeaPxiWjHL
+         UxtEZpjmhUp7f58Wh5s/HhlJbhdNMGIOJI+/UtUYaF9N12JZQchAgu/qnEt0NYF/m3sE
+         6yBg==
+X-Forwarded-Encrypted: i=1; AJvYcCUPKQm5OOJ5398RDaupsNXSMieAY728DYwrB+yDsr6P2EYly3bynAMHzYxdl6/C/nDWSCPAbxkozVC8@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEm5KP2Yluyp0NlbMd3xInyxDvKbPiyiXsfxIonAlmc1Gfadcl
+	MgF1HjSjLw/YQUkupp8xDFg+tBay83uX6n97jiD99paENYJm3F2QU4FPYlTP+uzaKBaD5nz2/6c
+	IlXb/2UiBesJ4GoZ80jvf5fk1LFmhEa0dLCMwWKZNY5x2pJoiRIlBxWXqTTFZCLHZ
+X-Gm-Gg: ATEYQzz6RxHaINHbqBReZsCRpnPKriApH5SeaSgl2BR9pj66d3Px/aDyFhFBTdvplLm
+	lnjL2yOsuHbaZhTZuyMjxno414i5fGEMeWgUdoznfSRliUGVC2XCuufjQgHp0FXUtjDRgX6NqPV
+	SIfosBJ+MnBXtEQolFgCePh1c/f+oeNT/GJfIhecd5gxF/IOYslDkxkCAQC+osxB8XlpShJqEgo
+	JMW9aOSG7RzyN3Qm0hApQ3OixJDk6D2GRNVN6SjmGt0uD/0GMCwDoTninUJvgdNRu6hVlzQhn84
+	KDVS1jrz0rWLP7T2iLyIGXG+CM6SDkDquenNDIwjo0r06OiKZBU80fxA8KyowPTcHvwssbfJpSM
+	eE/H751To+PpmOc3xag7zX1pASyPoGfhcA4n82mlcS13TYeE4UfWxiWXMFur+T6rwsI7AuJ1BAf
+	gbfcUfU2aD9f0Xvi+IwDoMCCNcr+zEysJ4NGI=
+X-Received: by 2002:a05:622a:146:b0:509:144a:43bd with SMTP id d75a77b69052e-50b245b4292mr63844071cf.3.1773949822263;
+        Thu, 19 Mar 2026 12:50:22 -0700 (PDT)
+X-Received: by 2002:a05:622a:146:b0:509:144a:43bd with SMTP id d75a77b69052e-50b245b4292mr63843611cf.3.1773949821713;
+        Thu, 19 Mar 2026 12:50:21 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a285207454sm96119e87.48.2026.03.19.12.50.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Mar 2026 12:50:20 -0700 (PDT)
+Date: Thu, 19 Mar 2026 21:50:19 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Abel Vesa <abelvesa@kernel.org>
+Subject: Re: [PATCH v6 1/2] arm64: dts: qcom: glymur: Describe
+ display-related nodes
+Message-ID: <r7xzq25ilolljlucp2b7nsabcyvht7udgq3psbs5kt5qv25lo6@icdwtfygd3nm>
+References: <20260319-dts-qcom-glymur-crd-add-edp-v6-0-f582e87ec874@oss.qualcomm.com>
+ <20260319-dts-qcom-glymur-crd-add-edp-v6-1-f582e87ec874@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,138 +120,82 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260318-topics-ahmtib01-ras_ffh_arm_internal_review-v3-10-48e6a1c249ef@arm.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+In-Reply-To: <20260319-dts-qcom-glymur-crd-add-edp-v6-1-f582e87ec874@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE5MDE1OCBTYWx0ZWRfX6Oh136yOtZSP
+ Nhb9JGf3CYA7NjLRNeMCTQcTf3bdMszZnQ9RcOGk8Pi8D/S92sE2ubEHNMTrwIyNzea839Joh2i
+ 03qHI7hIumwOdhluZQUvhwfTtbfgjNPsRFPyaQlBmmJXXCGcrZMhJXeizvtcGZKsgzVvmjg5Su6
+ 7si+sMjiMSZGIREHCsUpgHREek1abiSLUFdU4NnIRGslZ9eyGMLeFHV9UJO2CWBN35CuED9eQUJ
+ ImCYTXDEptm31GCewE37EoAprVBimKQzKKD5Vywhc+gjT/OEaQGgA3oXriqUMszddpGd3S6EiZg
+ u/G9h1KR28MsB7TPWr7LxCbo5y93PbjJEcMR1oiq0CX+zRh55qb1xeZ8uwO6rvKFAAv/NJMuEqb
+ F0FxSQdBJ8ureXVs3PisSyi+sM/Kvs/uQ515f471lZaHYJMCVmOH6m9WjCbsqx21M/3RxzLywx/
+ 7x/vCxxnIALiKSU5Djg==
+X-Proofpoint-GUID: e5KbewEpOxhrks9JyfbOZP56K7AVeVKQ
+X-Proofpoint-ORIG-GUID: e5KbewEpOxhrks9JyfbOZP56K7AVeVKQ
+X-Authority-Analysis: v=2.4 cv=MJttWcZl c=1 sm=1 tr=0 ts=69bc537e cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22 a=KKAkSRfTAAAA:8
+ a=EUspDBNiAAAA:8 a=j_cfvXHPzrGlstGZ7DoA:9 a=CjuIK1q_8ugA:10
+ a=kacYvNCVWA4VmyqE58fU:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-19_03,2026-03-19_05,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 phishscore=0 spamscore=0 lowpriorityscore=0 priorityscore=1501
+ suspectscore=0 bulkscore=0 malwarescore=0 impostorscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603190158
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278017-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278016-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email,oss.qualcomm.com:dkim];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.965];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,huawei];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.995];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,01.org:url]
-X-Rspamd-Queue-Id: 1A9472D1CF1
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: D8EC32D1CCB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Ahmed,
+On Thu, Mar 19, 2026 at 05:15:14PM +0200, Abel Vesa wrote:
+> From: Abel Vesa <abel.vesa@linaro.org>
+> 
+> The MDSS (Mobile Display SubSystem) on Glymur provides four DisplayPort
+> controllers. Describe them together with the display controller and eDP
+> PHY. Also add the combo PHY link and vco_div clocks to the display clock
+> controller, and connect the PHYs and DP endpoints in the graph.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/glymur.dtsi | 466 ++++++++++++++++++++++++++++++++++-
+>  1 file changed, 458 insertions(+), 8 deletions(-)
+> 
 
-kernel test robot noticed the following build warnings:
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-[auto build test WARNING on 2d1373e4246da3b58e1df058374ed6b101804e07]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Ahmed-Tiba/ACPI-APEI-GHES-share-macros-via-a-private-header/20260319-115432
-base:   2d1373e4246da3b58e1df058374ed6b101804e07
-patch link:    https://lore.kernel.org/r/20260318-topics-ahmtib01-ras_ffh_arm_internal_review-v3-10-48e6a1c249ef%40arm.com
-patch subject: [PATCH v3 10/10] RAS: add firmware-first CPER provider
-config: nios2-allmodconfig (https://download.01.org/0day-ci/archive/20260320/202603200337.hRVhVYpU-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 11.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260320/202603200337.hRVhVYpU-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603200337.hRVhVYpU-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/ras/cper-esource.c:26:
->> include/acpi/ghes_cper.h:105:44: warning: 'enum fixed_addresses' declared inside parameter list will not be visible outside of this definition or declaration
-     105 |                       u64 *buf_paddr, enum fixed_addresses fixmap_idx);
-         |                                            ^~~~~~~~~~~~~~~
-   include/acpi/ghes_cper.h:108:45: warning: 'enum fixed_addresses' declared inside parameter list will not be visible outside of this definition or declaration
-     108 |                         u64 buf_paddr, enum fixed_addresses fixmap_idx);
-         |                                             ^~~~~~~~~~~~~~~
-   include/acpi/ghes_cper.h:111:46: warning: 'enum fixed_addresses' declared inside parameter list will not be visible outside of this definition or declaration
-     111 |                         u64 *buf_paddr, enum fixed_addresses fixmap_idx);
-         |                                              ^~~~~~~~~~~~~~~
-   include/acpi/ghes_cper.h:115:45: warning: 'enum fixed_addresses' declared inside parameter list will not be visible outside of this definition or declaration
-     115 |                         u64 buf_paddr, enum fixed_addresses fixmap_idx,
-         |                                             ^~~~~~~~~~~~~~~
-   drivers/ras/cper-esource.c: In function 'cper_esource_ack':
-   drivers/ras/cper-esource.c:84:23: error: implicit declaration of function 'readq'; did you mean 'readl'? [-Werror=implicit-function-declaration]
-      84 |                 val = readq(ctx->ack.addr);
-         |                       ^~~~~
-         |                       readl
-   drivers/ras/cper-esource.c:87:17: error: implicit declaration of function 'writeq'; did you mean 'writel'? [-Werror=implicit-function-declaration]
-      87 |                 writeq(val, ctx->ack.addr);
-         |                 ^~~~~~
-         |                 writel
-   cc1: some warnings being treated as errors
-
-
-vim +105 include/acpi/ghes_cper.h
-
-7f6d32e88c31e2 Ahmed Tiba 2026-03-18  102  
-7f6d32e88c31e2 Ahmed Tiba 2026-03-18  103  int ghes_read_estatus(struct ghes *ghes,
-7f6d32e88c31e2 Ahmed Tiba 2026-03-18  104  		      struct acpi_hest_generic_status *estatus,
-7f6d32e88c31e2 Ahmed Tiba 2026-03-18 @105  		      u64 *buf_paddr, enum fixed_addresses fixmap_idx);
-7f6d32e88c31e2 Ahmed Tiba 2026-03-18  106  void ghes_clear_estatus(struct ghes *ghes,
-7f6d32e88c31e2 Ahmed Tiba 2026-03-18  107  			struct acpi_hest_generic_status *estatus,
-7f6d32e88c31e2 Ahmed Tiba 2026-03-18  108  			u64 buf_paddr, enum fixed_addresses fixmap_idx);
-7f6d32e88c31e2 Ahmed Tiba 2026-03-18  109  int __ghes_peek_estatus(struct ghes *ghes,
-7f6d32e88c31e2 Ahmed Tiba 2026-03-18  110  			struct acpi_hest_generic_status *estatus,
-7f6d32e88c31e2 Ahmed Tiba 2026-03-18  111  			u64 *buf_paddr, enum fixed_addresses fixmap_idx);
-7f6d32e88c31e2 Ahmed Tiba 2026-03-18  112  int __ghes_check_estatus(struct ghes *ghes,
-7f6d32e88c31e2 Ahmed Tiba 2026-03-18  113  			 struct acpi_hest_generic_status *estatus);
-7f6d32e88c31e2 Ahmed Tiba 2026-03-18  114  int __ghes_read_estatus(struct acpi_hest_generic_status *estatus,
-7f6d32e88c31e2 Ahmed Tiba 2026-03-18  115  			u64 buf_paddr, enum fixed_addresses fixmap_idx,
-7f6d32e88c31e2 Ahmed Tiba 2026-03-18  116  			size_t buf_len);
-dacb62d12abb41 Ahmed Tiba 2026-03-18  117  int ghes_estatus_cached(struct acpi_hest_generic_status *estatus);
-dacb62d12abb41 Ahmed Tiba 2026-03-18  118  void ghes_estatus_cache_add(struct acpi_hest_generic *generic,
-dacb62d12abb41 Ahmed Tiba 2026-03-18  119  			    struct acpi_hest_generic_status *estatus);
-40686d3c8f0a4d Ahmed Tiba 2026-03-18  120  int ghes_register_vendor_record_notifier(struct notifier_block *nb);
-40686d3c8f0a4d Ahmed Tiba 2026-03-18  121  void ghes_unregister_vendor_record_notifier(struct notifier_block *nb);
-648c11f76ec605 Ahmed Tiba 2026-03-18  122  void ghes_defer_non_standard_event(struct acpi_hest_generic_data *gdata,
-648c11f76ec605 Ahmed Tiba 2026-03-18  123  				   int sev);
-0eb637ae58ed14 Ahmed Tiba 2026-03-18  124  int ghes_severity(int severity);
-0eb637ae58ed14 Ahmed Tiba 2026-03-18  125  bool ghes_handle_memory_failure(struct acpi_hest_generic_data *gdata,
-0eb637ae58ed14 Ahmed Tiba 2026-03-18  126  				int sev, bool sync);
-0eb637ae58ed14 Ahmed Tiba 2026-03-18  127  bool ghes_handle_arm_hw_error(struct acpi_hest_generic_data *gdata,
-0eb637ae58ed14 Ahmed Tiba 2026-03-18  128  			      int sev, bool sync);
-0eb637ae58ed14 Ahmed Tiba 2026-03-18  129  void ghes_handle_aer(struct acpi_hest_generic_data *gdata);
-0eb637ae58ed14 Ahmed Tiba 2026-03-18  130  void ghes_log_hwerr(int sev, guid_t *sec_type);
-0eb637ae58ed14 Ahmed Tiba 2026-03-18  131  void __ghes_print_estatus(const char *pfx,
-0eb637ae58ed14 Ahmed Tiba 2026-03-18  132  			  const struct acpi_hest_generic *generic,
-0eb637ae58ed14 Ahmed Tiba 2026-03-18  133  			  const struct acpi_hest_generic_status *estatus);
-0eb637ae58ed14 Ahmed Tiba 2026-03-18  134  int ghes_print_estatus(const char *pfx,
-0eb637ae58ed14 Ahmed Tiba 2026-03-18  135  		       const struct acpi_hest_generic *generic,
-0eb637ae58ed14 Ahmed Tiba 2026-03-18  136  		       const struct acpi_hest_generic_status *estatus);
-0eb637ae58ed14 Ahmed Tiba 2026-03-18  137  void ghes_cper_handle_status(struct device *dev,
-0eb637ae58ed14 Ahmed Tiba 2026-03-18  138  			     const struct acpi_hest_generic *generic,
-0eb637ae58ed14 Ahmed Tiba 2026-03-18  139  			     const struct acpi_hest_generic_status *estatus,
-0eb637ae58ed14 Ahmed Tiba 2026-03-18  140  			     bool sync);
-baccdf38fe1b81 Ahmed Tiba 2026-03-18  141  void cxl_cper_post_prot_err(struct cxl_cper_sec_prot_err *prot_err,
-baccdf38fe1b81 Ahmed Tiba 2026-03-18  142  			    int severity);
-baccdf38fe1b81 Ahmed Tiba 2026-03-18  143  int cxl_cper_register_prot_err_work(struct work_struct *work);
-baccdf38fe1b81 Ahmed Tiba 2026-03-18  144  int cxl_cper_unregister_prot_err_work(struct work_struct *work);
-baccdf38fe1b81 Ahmed Tiba 2026-03-18  145  int cxl_cper_prot_err_kfifo_get(struct cxl_cper_prot_err_work_data *wd);
-baccdf38fe1b81 Ahmed Tiba 2026-03-18  146  void cxl_cper_post_event(enum cxl_event_type event_type,
-baccdf38fe1b81 Ahmed Tiba 2026-03-18  147  			 struct cxl_cper_event_rec *rec);
-baccdf38fe1b81 Ahmed Tiba 2026-03-18  148  int cxl_cper_register_work(struct work_struct *work);
-baccdf38fe1b81 Ahmed Tiba 2026-03-18  149  int cxl_cper_unregister_work(struct work_struct *work);
-baccdf38fe1b81 Ahmed Tiba 2026-03-18  150  int cxl_cper_kfifo_get(struct cxl_cper_work_data *wd);
-7f6d32e88c31e2 Ahmed Tiba 2026-03-18  151  
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
