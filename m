@@ -1,73 +1,75 @@
-Return-Path: <devicetree+bounces-277822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277823-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aDDYGzwLvGkArgIAu9opvQ
-	(envelope-from <devicetree+bounces-277822-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:42:04 +0100
+	id UORKEn8LvGkArgIAu9opvQ
+	(envelope-from <devicetree+bounces-277823-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:43:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8C6A2CD0D1
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:42:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6A7A2CD124
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:43:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C8F8830193B2
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:37:35 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6C770300C830
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:38:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A34753A7827;
-	Thu, 19 Mar 2026 14:37:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0739A3D6683;
+	Thu, 19 Mar 2026 14:38:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NpRLQu8l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r2kuo2AK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 800D52D4B40;
-	Thu, 19 Mar 2026 14:37:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A46F3D47A9;
+	Thu, 19 Mar 2026 14:38:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773931054; cv=none; b=VIlxOq5A9PsWyVnHLxbFgXyPbkHYEAqbIFZqe3Q5yccd5EFPLyS+u00/s51zMgWBvhLe1W+brtN2skQg0JMy4mZUJmkFOy3lJYpEb/g0Mg2AFlXdEcLrEA7v8sDXUfD8pJmruQ8dfY2zFOfRn0DI4kQ7crjkgxFFCvaJElS87SM=
+	t=1773931112; cv=none; b=pO1m6xS+kv3EC/T7fr6QPyxfXTkwYKO8Xixdghgcaimtp4FIZcYw5TqnNthDvYmtpe/g+mnY0p4B+Vw93pzi24syOskg3WhHQAd0kHY+P4GLfJ8l59KCUxi2MDU4qU/y1IkyXBCdIn66I3T743M9LFFPlJ4dkeiCT6OiS69m/RQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773931054; c=relaxed/simple;
-	bh=KLDhtxsHsK8rztqKAtAqMROmIfFr0P5kwaXY6DoAmsY=;
+	s=arc-20240116; t=1773931112; c=relaxed/simple;
+	bh=xVDCvmHcqvISvprP7lO7W6ddF7WUVJ7W2Df/HLSX/ok=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cbLrG/UpC3alPPj+5IHAnqZqB+RHJwW23mC5yfK/Mukv/Uj+LbDGOPVKnm4vNyO9h9+EGE9zAqOW5mK9qOwttTXSLpP1UTBlyEiNr1PajKu68L39/IgrZGUxfj0k8Go4DUxpjcUXInW3CdB57Ov/6f9IAkQvCXeGg8SgK6vYU3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NpRLQu8l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46C01C19424;
-	Thu, 19 Mar 2026 14:37:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HjsBq5fsyZUGyQo5gE22UtJUU0tLWzd4Y8ZiytwHeNXAt9GEHcpk/G0vorJC3qcFrpIzTbl7z6Q16JYvMqGCBQEOR8w3aFESvZlysCW2M742bdOfWkh8XfiPwIxLnyIiF7kwLjV6S3t4X06wlB3aFKLxVePBp1s7ajD5Su0LrCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r2kuo2AK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BF48C19424;
+	Thu, 19 Mar 2026 14:38:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773931054;
-	bh=KLDhtxsHsK8rztqKAtAqMROmIfFr0P5kwaXY6DoAmsY=;
+	s=k20201202; t=1773931112;
+	bh=xVDCvmHcqvISvprP7lO7W6ddF7WUVJ7W2Df/HLSX/ok=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NpRLQu8lLh5mgVxrGIq5qNOsH7ANyRHYIRnYo1YmESCVUnnBBcCR9Mi0p/tf7XxNs
-	 D3LrNInZhWa7j6aLAOqDUqy0HseKeaXPXOASXsuDPisTzcxtZyofvkZHNUWZgfkSvJ
-	 PBh23kpF9RDHhRtqv+t4kHkCH7sOtzU4U8dPesWJWHlu66+UjWwAOwYlDz2SHhmI4S
-	 qGeKyjJhfMUqpfghEcpQ/qzz3vZFdle7At8qkf9LFCZKRxheQamD6zFkIBD8VViVi1
-	 seG/T87aAQWxehb6O3OfoFmaRSvuGiPYGphZd3+5wjxai0kBgrTp7Qe8TiKzmHQU2m
-	 YRZN1lMY069Lw==
-Date: Thu, 19 Mar 2026 14:37:27 +0000
+	b=r2kuo2AK5XKO3e1cpuhsJqbCb932nj+lOW/XRoTa5IcwOsYufpH27/bdev1IWsa1u
+	 06RQxeQl/XeWFQgYAWyGwcW5uMHorjRHwCOYXGGMdK/H0mukpftjtUsvYkwmn3yiAc
+	 WYOMz4kGTBIc2VNAKd/AEq7K/U7FFGzBaAY3bVzq/lvRzUn9/3mNktUBWDHKNyClte
+	 e/ZljoGXAcB0WQ/oNTRV2y2l47eqZ+AS7p4psAhMwF017vRcEWhUqAk79CkKh1WPMf
+	 4aBY8Jhk7/iXZhtfBoeGcrpQQfT8t5vpZ5igasBjHvm57milfLFqCtehtwcTcSAJ4m
+	 CuiVgcEZPVTYQ==
+Date: Thu, 19 Mar 2026 14:38:25 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Nora Schiffer <nora.schiffer@ew.tq-group.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Siddharth Vadapalli <s-vadapalli@ti.com>,
+To: Michael Riesch <michael.riesch@collabora.com>
+Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	linux@ew.tq-group.com
-Subject: Re: [PATCH 3/7] dt-bindings: net: ti: k3-am654-cpsw-nuss: Add
- ti,j722s-cpsw-nuss compatible
-Message-ID: <20260319-embroider-cloud-0f8b7ea975eb@spud>
-References: <cover.1773751309.git.nora.schiffer@ew.tq-group.com>
- <1382fed198246f1563dea091478757aebc4e4948.1773751309.git.nora.schiffer@ew.tq-group.com>
- <20260318-sustained-reshuffle-eaf180729a9c@spud>
- <37396c094c7124169ca376cf6aea5350971aec54.camel@ew.tq-group.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	=?utf-8?B?0JrRg9C30L3QtdGG0L7QsiDQnNC40YXQsNC40Ls=?= <mai.kuznetsov.misha@gmail.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Collabora Kernel Team <kernel@collabora.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/9] media: dt-bindings: add rockchip rk3588 vicap
+Message-ID: <20260319-unrobed-simile-1c1393962ff9@spud>
+References: <20250430-rk3588-vicap-v2-0-77de5ee9048e@collabora.com>
+ <20250430-rk3588-vicap-v2-2-77de5ee9048e@collabora.com>
+ <20260318-mumbo-lumber-b550932a5423@spud>
+ <d9a9be92-7439-4899-8be2-adf7f0490790@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,93 +77,128 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xd7J1FUbMSfddi+G"
+	protocol="application/pgp-signature"; boundary="gs5QsPffFgv1KN45"
 Content-Disposition: inline
-In-Reply-To: <37396c094c7124169ca376cf6aea5350971aec54.camel@ew.tq-group.com>
+In-Reply-To: <d9a9be92-7439-4899-8be2-adf7f0490790@collabora.com>
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277822-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277823-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_CC(0.00)[linux.intel.com,ideasonboard.com,kernel.org,sntech.de,rock-chips.com,amarulasolutions.com,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.966];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.945];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,tq-group.com:email]
-X-Rspamd-Queue-Id: D8C6A2CD0D1
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A6A7A2CD124
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---xd7J1FUbMSfddi+G
+--gs5QsPffFgv1KN45
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 19, 2026 at 09:55:24AM +0100, Nora Schiffer wrote:
-> On Wed, 2026-03-18 at 17:35 +0000, Conor Dooley wrote:
-> > On Wed, Mar 18, 2026 at 03:05:25PM +0100, Nora Schiffer wrote:
-> > > The J722S CPSW3G is mostly identical to the AM64's, but additionally
-> > > supports SGMII.
-> > >=20
-> > > Signed-off-by: Nora Schiffer <nora.schiffer@ew.tq-group.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml | 1=
- +
-> > >  1 file changed, 1 insertion(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-n=
-uss.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
-> > > index a959c1d7e643a..9ab8237c7f79e 100644
-> > > --- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
-> > > +++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
-> > > @@ -59,6 +59,7 @@ properties:
-> > >        - ti,j7200-cpswxg-nuss
-> > >        - ti,j721e-cpsw-nuss
-> > >        - ti,j721e-cpswxg-nuss
-> > > +      - ti,j722s-cpsw-nuss
-> >=20
-> > For all these bindings, why is a fallback not suitable? Seems like it'd
-> > be possible here, since there's just a new feature. Is there some other
-> > programming model difference?
+On Thu, Mar 19, 2026 at 09:04:06AM +0100, Michael Riesch wrote:
+> Hi Conor,
 >=20
-> I think a fallback makes sense, I didn't add one because other variants d=
-erived
-> from the AM64 don't have one either. I can include a fallback in v2 (for =
-all 3
-> bindings in this series).
+> On 3/18/26 18:52, Conor Dooley wrote:
+> > [...]
+> >> =20
+> >>    resets:
+> >> -    items:
+> >> -      - description: ARST
+> >> -      - description: HRST
+> >> -      - description: DRST
+> >> -      - description: PRST
+> >> -      - description: IRST
+> >> +    minItems: 5
+> >> +    maxItems: 9
+> >> =20
+> >>    reset-names:
+> >> -    items:
+> >> -      - const: arst
+> >> -      - const: hrst
+> >> -      - const: drst
+> >> -      - const: prst
+> >> -      - const: irst
+> >> +    minItems: 5
+> >> +    maxItems: 9
+> >=20
+> >> +allOf:
+> >> +  - if:
+> >> +      properties:
+> >> +        compatible:
+> >> +          contains:
+> >> +            const: rockchip,rk3568-vicap
+> >> +    then:
+> >> +      properties:
+> >> +        clocks:
+> >> +          minItems: 4
+> >> +          maxItems: 4
+> >=20
+> > Anything here that repeats the outermost constraint should be dropped,
+> > so no minItems here..
+>=20
+> I already took a look at similar VICAPs (e.g., R3576) that will have
+> more clocks. This is way I left this one in here.
+>=20
+> But I guess I will remove it and add it again when e.g. RK3576 VICAP
+> support is added.
+>=20
+> >> [...]
+> >=20
+> >> +
+> >> +        reset-names:
+> >> +          items:
+> >> +            - const: arst
+> >> +            - const: hrst
+> >> +            - const: drst
+> >> +            - const: irst0
+> >=20
+> > Were you willing to reuse "irst" for the 0th irst, all the repetition
+> > wouldn't be needed. I assume it represents the reset for the port at
+> > address 0, so it wouldn't even be a different meaning on each device.
+>=20
+> Not quite I think. "{a,h,d}rst" are the same on all variants, then there
+> is "prst" and "irst" on RK3568 and "irst{0-5}" on RK3588. So I thought
+> that writing it out explicitly for each variant is more readable (even
+> though it may need a few characters more).
 
-Unless someones got a good reason not to, I think you should do so.
 
---xd7J1FUbMSfddi+G
+Ah right, I didn't see the prst one somehow. Ignore me so.
+
+--gs5QsPffFgv1KN45
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabwKJwAKCRB4tDGHoIJi
-0mZPAQDOmTS3hQH1+4EWz3iVgYp6/DejsN7lwqlJyuo0AsAX4AEApNRPLGqBM0jO
-szx8cd91ntJY8h7pt4Fw5f8sH3YbFA8=
-=r2h7
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabwKYQAKCRB4tDGHoIJi
+0vI1AP9iqd2CvDCVFRnFVh5XA4+IKjf2bhkzQrjtjDQ4SFrupAEA+VRt+iWztoun
+oOwvNknPS9jj2rDN9dV2GlO7x5HP/wU=
+=of5J
 -----END PGP SIGNATURE-----
 
---xd7J1FUbMSfddi+G--
+--gs5QsPffFgv1KN45--
 
