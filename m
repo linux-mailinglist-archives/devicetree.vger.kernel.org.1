@@ -1,134 +1,150 @@
-Return-Path: <devicetree+bounces-277504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277505-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qATQFA1Hu2kliQIAu9opvQ
-	(envelope-from <devicetree+bounces-277504-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 01:45:01 +0100
+	id MHbNBA9Tu2lMigIAu9opvQ
+	(envelope-from <devicetree+bounces-277505-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 02:36:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8CBE2C427A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 01:45:00 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id C62C52C4877
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 02:36:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DEDF43039333
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 00:44:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id F23D330185CA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 01:36:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6ACE239E9B;
-	Thu, 19 Mar 2026 00:44:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D36A7333440;
+	Thu, 19 Mar 2026 01:35:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GZdA4du1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fwUaiouL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82AED238C1F;
-	Thu, 19 Mar 2026 00:44:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E86633263B;
+	Thu, 19 Mar 2026 01:35:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773881077; cv=none; b=pAo08Nn2WWK9TbT0An5+Nz3T03tdsB5mHjnHsk5Y/1hdQV4kgKuAyXPagImJK9Lbb5ePguVYKC7puH9sRPq8HJdpqf8ZPeuT+9ZN8fTIJsc6fZLXeSK+Z694vSlN1ckPVTecT41yThU9LkMcOraJCWovbVuSU/4xjX+1mxwhaa8=
+	t=1773884158; cv=none; b=LqxtIPrKWi51h+owyD/D6PC0GGIzRZQexHfO/erp1p5/sv9FJx9OypamgVXopA+AUgr3FFlWmK5Ni0xxBljFwO+MeC9lN5skeQj312/zlRUFjo17E0eknLD3XRwoFlCnpaQA7Of5BdYD2jfVyr1TcOTuw/Y9Cix8+MjkDURKDQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773881077; c=relaxed/simple;
-	bh=GzYi/jrtTlNMK+iHdYJOu1dfREM0Aom7yQwJfnjWg4Q=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=vEkvUTR2fIZOChbGx0OnEyVWHH91WscSyBpFR0SLf3JNSG8AHW0CBO03COGGkuKSZvBeOHy6sxc/fcBcBJaUnjKVXirU3w1gOrx1/iOlYTI/RdbKaplpeNz2ZkMQHQgSe+MgOAfSA4zIMJgrWyooj3w0iHUAex8Fkkr8ReH9fas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GZdA4du1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D50CC19421;
-	Thu, 19 Mar 2026 00:44:37 +0000 (UTC)
+	s=arc-20240116; t=1773884158; c=relaxed/simple;
+	bh=4w28ebdGYqA8tTr4BHfNuPsWGEG6U/lm63Wl2wf0TBA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RVTH6aAOQVzVOdf64LzDntZtlsjRuTMV6Vm3Bwib0vUQAMP3z5A0P393jcKmV2wrzkV5ezWV9iz579yQysyKoAawoQWzhQvnZ2tHCTA1yor7Yaio2RRzeIEWF/0TXYenVGMEQ3QAy6W4Y5YQCFfxhOn6okWrfwoo2XGq0pOLccE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fwUaiouL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3316EC2BC9E;
+	Thu, 19 Mar 2026 01:35:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773881077;
-	bh=GzYi/jrtTlNMK+iHdYJOu1dfREM0Aom7yQwJfnjWg4Q=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=GZdA4du1hSwVH6gEngWuvUXJLLxvgHfzJoj7LOqqcxRehRV8Oxm75U69uiQPTl5l4
-	 lmomRsONz8dRTJ/ri+g+7b06krdM5DntAS9ks7SBRKpB4XX1lhFm54t3l8RkT0dN4A
-	 W7viOxlXlUYIJ2BH31tfR6dzQNlLSSfpF9o4KHZQoiYmHnbVDrR/AMHBU3UyCNi+iO
-	 95Hl43J3+O8z16eadzrF0wpKSklZqyEak31jqtF9OwImDt3Wd+xtrpNKySJkC24NKm
-	 ohkCl7/fwogmRAQR2n/DmK+XC+qIrAQlXsaNoLanyWUIRw6ojFxUAlMPwiGJJMa3im
-	 1Hv27hVqUokbQ==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id B9FA53808200;
-	Thu, 19 Mar 2026 00:44:29 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1773884157;
+	bh=4w28ebdGYqA8tTr4BHfNuPsWGEG6U/lm63Wl2wf0TBA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fwUaiouLeCVh83DZNEfaWAqt57nbm27xrV8R81wqL+pE/3ivZvZFzoISi2L3Hq8zg
+	 483CimfC2jMjhN7hbk/54ipCETlqhSX33z7TxUvNEyWHdJ85O5BjK9QBKVx1qrT0XY
+	 4j0YQPQgNhDeqV1CkMQdB+jv+lvK23SF2QNH10LPzkig4NhJ6Y9nD31eteqhkkxAXU
+	 vXZXErlT2YAY8q0C3JhlhEtT7HcoBbQS/UgOp6WvBJKDeuvdUtVyCeoI60dKi11Ozp
+	 ZBG0HMpHCYdIRFrZeChc46p7DE55v7npzyzWF30PaRfdgeUyQvKfVt4OYSGGEWXmaG
+	 u5uJ0UG0qH42Q==
+Date: Thu, 19 Mar 2026 01:35:52 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Charles Perry <charles.perry@microchip.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: document Microchip
+ PIC64-HPSC/HX MDIO controller
+Message-ID: <20260319-spearfish-styling-9918d2d2e537@spud>
+References: <20260317184610.315852-1-charles.perry@microchip.com>
+ <20260317184610.315852-2-charles.perry@microchip.com>
+ <20260318-suspense-arming-fe118c3f15c6@spud>
+ <absXy5Qmd/iHWofD@bby-cbu-swbuild03.eng.microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2 0/2] dt-bindings: net: micrel: Fix KSZ8041RNLI
- dtbs_check
- warnings
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <177388106828.935482.9940657343984545762.git-patchwork-notify@kernel.org>
-Date: Thu, 19 Mar 2026 00:44:28 +0000
-References: <cover.1773734298.git.geert+renesas@glider.be>
-In-Reply-To: <cover.1773734298.git.geert+renesas@glider.be>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: eichest@gmail.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="TRfkxA2u8xk+P4Fr"
+Content-Disposition: inline
+In-Reply-To: <absXy5Qmd/iHWofD@bby-cbu-swbuild03.eng.microchip.com>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277504-lists,devicetree=lfdr.de,netdevbpf];
-	FREEMAIL_CC(0.00)[gmail.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[patchwork-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FROM_NO_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.959];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277505-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,netdev,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D8CBE2C427A
+	NEURAL_HAM(-0.00)[-0.962];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C62C52C4877
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello:
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+--TRfkxA2u8xk+P4Fr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 17 Mar 2026 09:02:44 +0100 you wrote:
-> Hi all,
-> 
-> "make dtbs_check" reports several warnings due to some KSZ8041RNLI PHY
-> nodes having the "micrel,led-mode" property, while the DT bindings
-> prohibit this.
-> 
-> Apparently the DT bindings are incorrect, so this patch series fixes
-> that, after a customary cleanup.
-> 
-> [...]
-
-Here is the summary with links:
-  - [v2,1/2] dt-bindings: net: micrel: Sort lists
-    https://git.kernel.org/netdev/net-next/c/46906242fe61
-  - [v2,2/2] dt-bindings: net: micrel: KSZ8041RNLI supports LED mode
-    https://git.kernel.org/netdev/net-next/c/22214fb2fad0
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+On Wed, Mar 18, 2026 at 02:23:23PM -0700, Charles Perry wrote:
+> > > +
+> > > +  clock-frequency: true
+> >=20
+> > Does this genuinely have no constraints?
+>=20
+> It's going to divide the input frequency by 2 to 512 (the prescaler is 8
+> bit long), so assuming an input clock of 156.25 MHz, the bounds are 305KHz
+> to 78MHz. The standard is 2.5MHz.
+>=20
+> I can add a maximum and minimum here since I do have some validation on
+> this in the driver which will bail out if this is out of bound.
 
 
+That sounds like a good idea, thanks.
+
+pw-bot: changes-requested
+
+Cheers,
+Conor.
+
+--TRfkxA2u8xk+P4Fr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabtS+AAKCRB4tDGHoIJi
+0iNNAP0fc5r0AJMWLrL1gpNT0MsvtIM8VnoN4U/3nEFwXGk4UgEAnchwFcZj0O8e
+/nYvTkQPoEHppZ0bMSqdtbTgR0R49gs=
+=+b5O
+-----END PGP SIGNATURE-----
+
+--TRfkxA2u8xk+P4Fr--
 
