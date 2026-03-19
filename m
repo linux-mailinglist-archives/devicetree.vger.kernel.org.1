@@ -1,143 +1,179 @@
-Return-Path: <devicetree+bounces-278012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278013-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iNEbEkJQvGkXwwIAu9opvQ
-	(envelope-from <devicetree+bounces-278012-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:36:34 +0100
+	id YChKAEZRvGkXwwIAu9opvQ
+	(envelope-from <devicetree+bounces-278013-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:40:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD7FC2D1B6B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:36:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 523822D1BE7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:40:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2A12C301A2EC
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:36:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0B68C3142963
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:38:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E038239C637;
-	Thu, 19 Mar 2026 19:36:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F1A53ED105;
+	Thu, 19 Mar 2026 19:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="q1+ZLUnf"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FM249Phy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A173D36215A;
-	Thu, 19 Mar 2026 19:36:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF0AF38551B;
+	Thu, 19 Mar 2026 19:38:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773948991; cv=none; b=XyuSSwNvBgCWeFyNtsooYVsWuouMek/DWbc+urROe4pXtbJp8quwdYLaOvIYD6xG10k6QtbO6BAwBuXFvtd70QU5BzS1oygwyGEVsVUkHY+imZTqwGAgXCpFbdG8NDUzR3gXnnhOklqAPGYqsPPG3mpM224g/d/dj/5GYLXGL2E=
+	t=1773949109; cv=none; b=JdfUvaFbxp1ZTcAkVcBzSCEB5g0EOGJqtorxK6mgM1Z6Uz6LVeJ5EKiJ8YPS+T2TqsUnPNm9kA7qR4RjxOKE1elqszxBdiS+V4ktdD1dYn9x03sKeMVVWM/UznxZYhV03PqQ1illDKW0Mrxp9ArO1r9zFVTXULgR+YeQ0sRDCOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773948991; c=relaxed/simple;
-	bh=uMzgjyr4lRvewX3BgJKQHuVDUC0MB9dePa5pKDuyr4k=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EKvelhFHR+6zZ58XUbF6G+W52W1rYrAvukOneCuT1fxlmhsVN0DedpVtewsVGBc7kSqeJwuFdfJMo+0osDA+ILlnZfGIIRUep9niZHC8LHDw2QLJdIzX2YtEeImbrvjQ4aT5sbNfblBurhx3+teJzyh0lwO5qdcvR2RXQSyZGOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=q1+ZLUnf; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+	s=arc-20240116; t=1773949109; c=relaxed/simple;
+	bh=YiPkuQ6dFBAJVz3h1COZnRhMIdto56/r+LybiYglshY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aqiQN2alWOlZfwLY+tfm0JPlk3kFkX5V+eLShIhhh4E9cQbOM1ZPj2H21TREQx5VNwJytcPq/BRryC4WtAHdrj/xynkiPOaHumfXwEWy2JBrHnM7Fu0ASOU4f9noTONkzqUdbTbI6GzGPSU7/pb5fIbsS04UHsy/RmMcqLYl56U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FM249Phy; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1773948990; x=1805484990;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773949109; x=1805485109;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=uMzgjyr4lRvewX3BgJKQHuVDUC0MB9dePa5pKDuyr4k=;
-  b=q1+ZLUnfedlvNgDROktQzTr4AnzAwkw3e66HH8UZ6/Gjy/XrLBZzvvac
-   vqNhgZjwLhV64OyeD2VuQtw0y4Flg6T+9FdIByHgeIn1nX+bCdI0xn0hH
-   WeStFsPQ1I44BmtnbTBQsDx47OUiZPW1BukB5quKLVYs/PyMAKU4m9s74
-   pAMoP9MitvwVI2g4T/dXO3Ws/1TR3QHbsndbxgnVsnpn75x1vnDsqJvAS
-   RZOSlcEXVLYI7KFb+syH+30wezD0Pm9WzT8rRm6m9Mdr8SacsosWEId2U
-   3aEJnv3ptVHvGsVvo7N/eU/lg1H7jr5/pxRlCZZSpjNW1Kq+lBvbMFz5D
+  bh=YiPkuQ6dFBAJVz3h1COZnRhMIdto56/r+LybiYglshY=;
+  b=FM249Phye4aUxx7pL1tvgiaxyaOKR+q4GsnzevUZPyZaRyqS5bGM374e
+   WqCT8VuRKRolKyJm23iAMvEHcxbfHRSgm54ItoQ2xITWf9u+VvffQMIfd
+   u05l+z0C0RB/wk7MA5kpm+eiF8/aYw8j5IGZhfJpmHk4xzDoTeydI5X87
+   GmkNOJUq5t7zwJJJkAUVbZ1Sv/V5mqkN2ST+h/VKcj7BNXHsETp63ksIu
+   3QWVlbUuzaYqANMM83Z5GCnZlgcfpyObvPEk+CyAOoGBW65n9k5NRfXrQ
+   ZlEmPcJqBVH8fGx5W4X7dQPD94GsCtsOvjFw/qWbLGwIh1fjxpEIlGWij
    w==;
-X-CSE-ConnectionGUID: tEdg3PYiQ/y+TKzMp0uzxg==
-X-CSE-MsgGUID: Pdk0O8/vQXmaWSXSe8toeA==
-X-IronPort-AV: E=Sophos;i="6.23,129,1770620400"; 
-   d="scan'208";a="55349439"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2026 12:36:29 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.87.71) by
- chn-vm-ex4.mchp-main.com (10.10.87.33) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.35; Thu, 19 Mar 2026 12:36:18 -0700
-Received: from bby-cbu-swbuild03.eng.microchip.com (10.10.85.11) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58 via Frontend Transport; Thu, 19 Mar 2026 12:36:15 -0700
-Date: Thu, 19 Mar 2026 12:36:07 -0700
-From: Charles Perry <charles.perry@microchip.com>
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Charles Perry <charles.perry@microchip.com>, <netdev@vger.kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, "Paolo
- Abeni" <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiner
- Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: document Microchip
- PIC64-HPSC/HX MDIO controller
-Message-ID: <abxQJ7XvrEVd0QOC@bby-cbu-swbuild03.eng.microchip.com>
-References: <20260317184610.315852-1-charles.perry@microchip.com>
- <20260317184610.315852-2-charles.perry@microchip.com>
- <1dec7b03-1ad1-4b7b-897a-5dc144dc18ee@lunn.ch>
+X-CSE-ConnectionGUID: /JIYWYIsSl69qcSBM9uIQw==
+X-CSE-MsgGUID: wKnhAUszTAC0ipIoY7KmGQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="86509949"
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; 
+   d="scan'208";a="86509949"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2026 12:38:26 -0700
+X-CSE-ConnectionGUID: idZKjUp0RY6ozfWI/qJtRg==
+X-CSE-MsgGUID: 4ESHFOJVSHKcgIfLaflrEg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; 
+   d="scan'208";a="227768956"
+Received: from lkp-server02.sh.intel.com (HELO a51c2a36b9df) ([10.239.97.151])
+  by fmviesa005.fm.intel.com with ESMTP; 19 Mar 2026 12:38:16 -0700
+Received: from kbuild by a51c2a36b9df with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1w3JC2-000000001au-1Cvf;
+	Thu, 19 Mar 2026 19:38:06 +0000
+Date: Fri, 20 Mar 2026 03:36:11 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ahmed Tiba <ahmed.tiba@arm.com>, linux-acpi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-cxl@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Ahmed Tiba <ahmed.tiba@arm.com>, Michael.Zhao2@arm.com,
+	robh@kernel.org, linux-arm-kernel@lists.infradead.org,
+	Dmitry.Lamerov@arm.com, rafael@kernel.org, conor@kernel.org,
+	will@kernel.org, bp@alien8.de, catalin.marinas@arm.com,
+	krzk+dt@kernel.org, linux-doc@vger.kernel.org,
+	mchehab+huawei@kernel.org, tony.luck@intel.com
+Subject: Re: [PATCH v3 10/10] RAS: add firmware-first CPER provider
+Message-ID: <202603200349.vMgMwlEs-lkp@intel.com>
+References: <20260318-topics-ahmtib01-ras_ffh_arm_internal_review-v3-10-48e6a1c249ef@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1dec7b03-1ad1-4b7b-897a-5dc144dc18ee@lunn.ch>
-X-Spamd-Result: default: False [-0.66 / 15.00];
+In-Reply-To: <20260318-topics-ahmtib01-ras_ffh_arm_internal_review-v3-10-48e6a1c249ef@arm.com>
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[microchip.com,vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk];
-	TAGGED_FROM(0.00)[bounces-278012-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-278013-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[microchip.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[charles.perry@microchip.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.953];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,bby-cbu-swbuild03.eng.microchip.com:mid,microchip.com:dkim]
-X-Rspamd-Queue-Id: DD7FC2D1B6B
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-0.972];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,huawei];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,01.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 523822D1BE7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 19, 2026 at 05:59:36PM +0100, Andrew Lunn wrote:
-> > The hardware supports an interrupt pin to signal transaction completion
-> > which is not strictly needed as the software can also poll a "TRIGGER"
-> > bit for this.
-> 
-> If the interrupt always exists, it is better to have it in DT. I
-> assume it will be in the SoC .dtsi file?
-> 
+Hi Ahmed,
 
-Yes, I have that interrupt in my .dtsi.
+kernel test robot noticed the following build errors:
 
-> Always requiring it makes the code simpler when somebody adds support
-> for interrupts. You don't need all the _optional_ and dealing with it
-> being missing etc.
-> 
+[auto build test ERROR on 2d1373e4246da3b58e1df058374ed6b101804e07]
 
-Good point, I'll add that to the required properties.
+url:    https://github.com/intel-lab-lkp/linux/commits/Ahmed-Tiba/ACPI-APEI-GHES-share-macros-via-a-private-header/20260319-115432
+base:   2d1373e4246da3b58e1df058374ed6b101804e07
+patch link:    https://lore.kernel.org/r/20260318-topics-ahmtib01-ras_ffh_arm_internal_review-v3-10-48e6a1c249ef%40arm.com
+patch subject: [PATCH v3 10/10] RAS: add firmware-first CPER provider
+config: hexagon-randconfig-001-20260320 (https://download.01.org/0day-ci/archive/20260320/202603200349.vMgMwlEs-lkp@intel.com/config)
+compiler: clang version 23.0.0git (https://github.com/llvm/llvm-project 4abb927bacf37f18f6359a41639a6d1b3bffffb5)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260320/202603200349.vMgMwlEs-lkp@intel.com/reproduce)
 
-Thanks,
-Charles
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603200349.vMgMwlEs-lkp@intel.com/
 
+All errors (new ones prefixed by >>):
+
+>> drivers/ras/cper-esource.c:84:9: error: call to undeclared function 'readq'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+      84 |                 val = readq(ctx->ack.addr);
+         |                       ^
+>> drivers/ras/cper-esource.c:87:3: error: call to undeclared function 'writeq'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+      87 |                 writeq(val, ctx->ack.addr);
+         |                 ^
+   2 errors generated.
+
+
+vim +/readq +84 drivers/ras/cper-esource.c
+
+    75	
+    76	static void cper_esource_ack(struct cper_esource *ctx)
+    77	{
+    78		u64 val;
+    79	
+    80		if (!ctx->ack.present)
+    81			return;
+    82	
+    83		if (ctx->ack.width == 64) {
+  > 84			val = readq(ctx->ack.addr);
+    85			val &= ctx->ack.preserve;
+    86			val |= ctx->ack.set;
+  > 87			writeq(val, ctx->ack.addr);
+    88		} else {
+    89			val = readl(ctx->ack.addr);
+    90			val &= (u32)ctx->ack.preserve;
+    91			val |= (u32)ctx->ack.set;
+    92			writel(val, ctx->ack.addr);
+    93		}
+    94	}
+    95	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
