@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-277821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277822-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WIrMDzkKvGkArgIAu9opvQ
-	(envelope-from <devicetree+bounces-277821-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:37:45 +0100
+	id aDDYGzwLvGkArgIAu9opvQ
+	(envelope-from <devicetree+bounces-277822-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:42:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 221962CCF72
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:37:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8C6A2CD0D1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:42:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 39BFC3027E3D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:36:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C8F8830193B2
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:37:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54EBE3D565D;
-	Thu, 19 Mar 2026 14:36:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A34753A7827;
+	Thu, 19 Mar 2026 14:37:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mvUwICwb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NpRLQu8l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F7EF3D47AF;
-	Thu, 19 Mar 2026 14:36:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 800D52D4B40;
+	Thu, 19 Mar 2026 14:37:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773930975; cv=none; b=GA+JcZCqEVcIegMWa7dKJKz974wsvRPiYbv19gVAjlqN+oGFrAzdaPRKiQsfJR32R+kFV6cP1JHSEnBNEBExyg95CD2Z7VpRIKh1/6NMJ2jbfgCmI4JvT4/Z+3DNowNTFpxWqqCNIw9ZgtYyAgTW+j1T5CBiOxcDzsLIMAD2EX0=
+	t=1773931054; cv=none; b=VIlxOq5A9PsWyVnHLxbFgXyPbkHYEAqbIFZqe3Q5yccd5EFPLyS+u00/s51zMgWBvhLe1W+brtN2skQg0JMy4mZUJmkFOy3lJYpEb/g0Mg2AFlXdEcLrEA7v8sDXUfD8pJmruQ8dfY2zFOfRn0DI4kQ7crjkgxFFCvaJElS87SM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773930975; c=relaxed/simple;
-	bh=0sWepENTLCOfrxR5/+c2+51Ax84QGBYsq5KpzSjrIW8=;
+	s=arc-20240116; t=1773931054; c=relaxed/simple;
+	bh=KLDhtxsHsK8rztqKAtAqMROmIfFr0P5kwaXY6DoAmsY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZHlDiv+SO8lk+p4YPVsyLpuZYwIwocESJdZX3XzLcrwIOyC9BAezwVnbYLBY7Tbt4E/GFTMcFRPbpr7YcDevkWM61WxhMwobSn7panbZ3KnjI+hW7NU0ln7mZWeoCB61zqwe01QnxzALqkYhT+i9KUUK7UfuBhQadtnZj2nHZ/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mvUwICwb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F69AC19424;
-	Thu, 19 Mar 2026 14:36:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cbLrG/UpC3alPPj+5IHAnqZqB+RHJwW23mC5yfK/Mukv/Uj+LbDGOPVKnm4vNyO9h9+EGE9zAqOW5mK9qOwttTXSLpP1UTBlyEiNr1PajKu68L39/IgrZGUxfj0k8Go4DUxpjcUXInW3CdB57Ov/6f9IAkQvCXeGg8SgK6vYU3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NpRLQu8l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46C01C19424;
+	Thu, 19 Mar 2026 14:37:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773930975;
-	bh=0sWepENTLCOfrxR5/+c2+51Ax84QGBYsq5KpzSjrIW8=;
+	s=k20201202; t=1773931054;
+	bh=KLDhtxsHsK8rztqKAtAqMROmIfFr0P5kwaXY6DoAmsY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mvUwICwbqieYDdbpxY5iLebUupFiC2wVL8ay+ylWDUNlIuiVGw8/F5wNm3tcOxksu
-	 RCp3W1hwcaffTSx66C0edF7Yh17YFHjch+ErvwR/Cdwl/zrbzfKGbhorLeBrgJv6HX
-	 Qi7utROptr6/Eg4YARflKNpC6eZIeFszZe6pMNQju5ASLMzui6VdzrRSgqQg1mPwwo
-	 OkFMbWehAhExqwlWkgZ0UdrRaa8KkqDesVAcEXtFUT9fH5GbzbS2T6mhBEHKM0wZ/0
-	 cwv/BbFBEMgkWe9/szEEGBWWpR/HzAHtwDLrvc6VSkNTUkp//hnT+VafrYCPmKofTW
-	 m4Qp3r1iojKlw==
-Date: Thu, 19 Mar 2026 14:36:09 +0000
+	b=NpRLQu8lLh5mgVxrGIq5qNOsH7ANyRHYIRnYo1YmESCVUnnBBcCR9Mi0p/tf7XxNs
+	 D3LrNInZhWa7j6aLAOqDUqy0HseKeaXPXOASXsuDPisTzcxtZyofvkZHNUWZgfkSvJ
+	 PBh23kpF9RDHhRtqv+t4kHkCH7sOtzU4U8dPesWJWHlu66+UjWwAOwYlDz2SHhmI4S
+	 qGeKyjJhfMUqpfghEcpQ/qzz3vZFdle7At8qkf9LFCZKRxheQamD6zFkIBD8VViVi1
+	 seG/T87aAQWxehb6O3OfoFmaRSvuGiPYGphZd3+5wjxai0kBgrTp7Qe8TiKzmHQU2m
+	 YRZN1lMY069Lw==
+Date: Thu, 19 Mar 2026 14:37:27 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Yixun Lan <dlan@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To: Nora Schiffer <nora.schiffer@ew.tq-group.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Siddharth Vadapalli <s-vadapalli@ti.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Ze Huang <huang.ze@linux.dev>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Junzhong Pan <junzhong.pan@spacemit.com>,
-	Inochi Amaoto <inochiama@gmail.com>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: usb: dwc3: spacemit: add support for K3
- SoC
-Message-ID: <20260319-garbage-scrunch-37dc1b72d56c@spud>
-References: <20260317-02-k3-usb20-support-v1-0-d89f59062ad4@kernel.org>
- <20260317-02-k3-usb20-support-v1-1-d89f59062ad4@kernel.org>
- <20260317-shortness-gecko-72f14fbc79f2@spud>
- <20260317214435-GKA453922@kernel.org>
- <20260318-crock-tinderbox-ae12024627d9@spud>
- <20260319024124-GKB489299@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com
+Subject: Re: [PATCH 3/7] dt-bindings: net: ti: k3-am654-cpsw-nuss: Add
+ ti,j722s-cpsw-nuss compatible
+Message-ID: <20260319-embroider-cloud-0f8b7ea975eb@spud>
+References: <cover.1773751309.git.nora.schiffer@ew.tq-group.com>
+ <1382fed198246f1563dea091478757aebc4e4948.1773751309.git.nora.schiffer@ew.tq-group.com>
+ <20260318-sustained-reshuffle-eaf180729a9c@spud>
+ <37396c094c7124169ca376cf6aea5350971aec54.camel@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,100 +75,93 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3mKkiWYjZ1K2L1Tq"
+	protocol="application/pgp-signature"; boundary="xd7J1FUbMSfddi+G"
 Content-Disposition: inline
-In-Reply-To: <20260319024124-GKB489299@kernel.org>
+In-Reply-To: <37396c094c7124169ca376cf6aea5350971aec54.camel@ew.tq-group.com>
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277821-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277822-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,linux.dev,synopsys.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,esmil.dk,spacemit.com,gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.957];
+	NEURAL_HAM(-0.00)[-0.966];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 221962CCF72
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,tq-group.com:email]
+X-Rspamd-Queue-Id: D8C6A2CD0D1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---3mKkiWYjZ1K2L1Tq
+--xd7J1FUbMSfddi+G
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 19, 2026 at 10:41:24AM +0800, Yixun Lan wrote:
-> Hi Conor,
->=20
-> On 17:21 Wed 18 Mar     , Conor Dooley wrote:
-> > On Wed, Mar 18, 2026 at 05:44:35AM +0800, Yixun Lan wrote:
-> > > Hi Conor,
+On Thu, Mar 19, 2026 at 09:55:24AM +0100, Nora Schiffer wrote:
+> On Wed, 2026-03-18 at 17:35 +0000, Conor Dooley wrote:
+> > On Wed, Mar 18, 2026 at 03:05:25PM +0100, Nora Schiffer wrote:
+> > > The J722S CPSW3G is mostly identical to the AM64's, but additionally
+> > > supports SGMII.
 > > >=20
-> > > On 12:55 Tue 17 Mar     , Conor Dooley wrote:
-> > > > On Tue, Mar 17, 2026 at 11:53:02AM +0000, Yixun Lan wrote:
-> > > > > Add compatible string for DWC3 USB controller found in SpacemiT K=
-3 SoC.
-> > > > > The USB2.0 host controller in K3 SoC actually use DWC3 IP but onl=
-y has
-> > > > > USB2.0 functionality, and requires only one USB2.0 PHY connected.
-> > > > >=20
-> > > > > Explicitly reduce number of phy property to minimal one.
-> > > >=20
-> > > > Is this valid for the existing compatible, will it work with only o=
-ne
-> > > > clock?
-> > > >=20
-> > > I didn't change clock binding, do you mean phy?
+> > > Signed-off-by: Nora Schiffer <nora.schiffer@ew.tq-group.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml | 1=
+ +
+> > >  1 file changed, 1 insertion(+)
 > > >=20
-> > > Both k1 and k3 work with one clock (no change here)
-> > >=20
-> > > for phy, the existing k1 requires two. for k3, one controller requires
-> > > one phy due to only has USB2.0 support, other controllers requires two
-> > > phys - USB2, USB3 PHY
+> > > diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-n=
+uss.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+> > > index a959c1d7e643a..9ab8237c7f79e 100644
+> > > --- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+> > > @@ -59,6 +59,7 @@ properties:
+> > >        - ti,j7200-cpswxg-nuss
+> > >        - ti,j721e-cpsw-nuss
+> > >        - ti,j721e-cpswxg-nuss
+> > > +      - ti,j722s-cpsw-nuss
 > >=20
-> > Yep, phy is what I meant. Sorry bout that. Since you're relaxing the
-> > constraints for the k1, can you please add a conditional section to the
-> > binding to enforce 2 phys min for k1?
-> >=20
+> > For all these bindings, why is a fallback not suitable? Seems like it'd
+> > be possible here, since there's just a new feature. Is there some other
+> > programming model difference?
 >=20
-> To be explicit, the change should be applied to both K1 and K3, even in K1
-> use case, it's perfectly fine for designer to choose enabling USB2.0
-> only, and leave the comb phy to pcie contoller, so only one phy required
+> I think a fallback makes sense, I didn't add one because other variants d=
+erived
+> from the AM64 don't have one either. I can include a fallback in v2 (for =
+all 3
+> bindings in this series).
 
-In that case, can you be more clear in the commit message about why this
-is also being done for the k1 please?
+Unless someones got a good reason not to, I think you should do so.
 
---3mKkiWYjZ1K2L1Tq
+--xd7J1FUbMSfddi+G
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabwJ1QAKCRB4tDGHoIJi
-0oqyAP4nXoDLetxoQs642+vVHye9yDClNXYMEPidUjtskTK5NwEA3z4OdmCZisdC
-OPflp/85AHIauaJjUPhuhi0GguyjGw0=
-=S1Ui
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabwKJwAKCRB4tDGHoIJi
+0mZPAQDOmTS3hQH1+4EWz3iVgYp6/DejsN7lwqlJyuo0AsAX4AEApNRPLGqBM0jO
+szx8cd91ntJY8h7pt4Fw5f8sH3YbFA8=
+=r2h7
 -----END PGP SIGNATURE-----
 
---3mKkiWYjZ1K2L1Tq--
+--xd7J1FUbMSfddi+G--
 
