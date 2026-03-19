@@ -1,127 +1,165 @@
-Return-Path: <devicetree+bounces-277836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277837-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mF8MOEkQvGkirwIAu9opvQ
-	(envelope-from <devicetree+bounces-277836-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:03:37 +0100
+	id qCnpNZ0QvGnbrwIAu9opvQ
+	(envelope-from <devicetree+bounces-277837-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:05:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5473B2CD599
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:03:37 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAD632CD5EB
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:05:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B33103035D5D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:00:19 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A9B1D3031896
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:02:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 842D53B6C1E;
-	Thu, 19 Mar 2026 15:00:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EE7E3DEAC9;
+	Thu, 19 Mar 2026 15:02:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RvfmUv0f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fJMRTh6w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C3EB3D646B;
-	Thu, 19 Mar 2026 15:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13F313D6694;
+	Thu, 19 Mar 2026 15:02:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773932418; cv=none; b=ng/+l6FlUITF/S+8idQwvGS6w57UI3cNrfV5obgwS9rZL2DOPCfxww5LvUzo1bHKQKGe9cc6KAUqXbQ+j3tOdJJIfVwGazH2yr5tjFWI83jOHl5Ry+ysJQw6U5n3hGxmcrvPEP/Mxg5Kzt5gINphQCvvzJFsroOgkhX9NAXsFPo=
+	t=1773932537; cv=none; b=FwxqT6KIt75ycaYiRhUFk3+LswGbXVPm7kT2G2ojovFfRvpfuQYfAD80UXVlX5zf8CYzb+jv+ZfqN+Ibkh7V/QaprGQG7DTRnfuoZSeFI8Vk6vX8H2D05fpvIsgVieBbxalfR8Er66GPlIfy84EPfrTG9UB5S7JT8/sAuSIsjj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773932418; c=relaxed/simple;
-	bh=CsP+MUt4iPBk3K+rHr/Zku37K/FzDX5EqoYMT/6dn4I=;
+	s=arc-20240116; t=1773932537; c=relaxed/simple;
+	bh=Tk+7MqRbg1rN/hTtmp+QAGUuOzujmsKIhS89zPp9YJg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QQYL1m3TTXnnXr8kRUo/7kOKeKt9KSuG8Pp/kdrRAn9nGqDB2F9jBAxSP0OKwxsvq/tGrs8s08avNjEkojtIB1jwZbngeeT9Ksc6x4WNkvH5SH85ca/gk/RPYvlJm3pgtWjq4BtbUrnYnyfMYYb7fSKF6tKocpFo8Ct8ZPcSaa8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RvfmUv0f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55284C19424;
-	Thu, 19 Mar 2026 15:00:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Oyd7pLImTWgGWW01trw24UlnDGjX8GmMy11I1UDZemLxlIpf17g131VgHgy59GS7HH7G2nVOxaJX2O3cCduE4PPgisPGFTRpjIxkK3jdaxPqYKPlVE2WZS2LToXPINC5Ywp8lLnNxfHBPp+TWrxcoC139Jv/qAuNbZHoW2V2UtI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fJMRTh6w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01D18C19425;
+	Thu, 19 Mar 2026 15:02:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773932417;
-	bh=CsP+MUt4iPBk3K+rHr/Zku37K/FzDX5EqoYMT/6dn4I=;
+	s=k20201202; t=1773932536;
+	bh=Tk+7MqRbg1rN/hTtmp+QAGUuOzujmsKIhS89zPp9YJg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RvfmUv0fP1ZP2Re77fPUb/GXQjzo8D7jWEIc38AyaSZdJpxJQHg8kogIFo4y9Qr2F
-	 ry2VLD6lNedLrUc15JjWWxxxAB+/LHfy5ZJay3lhJZ3QWnUREpd+5SFtJYK01SW6hQ
-	 QkVpClLQdGbXoxFp7NEwtLfQh+xwDYxa79wazz1OAfI4vExg/DhOz9fESUEANouNyS
-	 xwnKg7PMBjSkN9ZxuHFg6FgnA8stOY8ah2fUZlLKpPHmW8OkqaYqjWCQzP5nBkSMRv
-	 yf+2DjIY8brPjHQMUaryO/pwKjpC5/GfFz8qE67Kqm7afes+i1Rb/SIMjWukmRY3bx
-	 afXeZjFrQMFMg==
-Date: Thu, 19 Mar 2026 15:00:10 +0000
-From: Simon Horman <horms@kernel.org>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, wei.fang@nxp.com,
-	netdev@vger.kernel.org, xiaoning.wang@nxp.com,
-	vladimir.oltean@nxp.com, davem@davemloft.net,
-	linuxppc-dev@lists.ozlabs.org, krzk+dt@kernel.org, frank.li@nxp.com,
-	claudiu.manoil@nxp.com, chleroy@kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	robh@kernel.org, imx@lists.linux.dev, pabeni@redhat.com,
-	f.fainelli@gmail.com, linux@armlinux.org.uk, edumazet@google.com,
-	conor+dt@kernel.org, andrew+netdev@lunn.ch,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [net-next,13/14] net: dsa: netc: initialize buffer bool table
- and implement flow-control
-Message-ID: <20260319150010.GG1753385@horms.kernel.org>
-References: <20260316094152.1558671-14-wei.fang@nxp.com>
- <20260318145452.1898637-2-horms@kernel.org>
- <3dab3f5b-fb94-4c63-bcfd-aad4268e2ac3@kernel.org>
- <20260318152408.002d1bd6@kernel.org>
+	b=fJMRTh6w5n4nuekTX2apd//n6UlUZPiRPCTPtPFXPolcaWHg1kJ/m5TLv5fQNG8WO
+	 O3XVtwmJfBtbee7gR2ekIW8aq36+cxcCV4dy38bERTS1N3eMwoOdN7KRmuaPiICZ8D
+	 uKXXr1xfeO0mVNwSHVGOJInIe1DjpCVMuga6SyRfEWxpqOnQUsRAyUFZbsMxwJDv4M
+	 G/6Y+HDTxmhVqDcPSemJKpmraa7Ouc/Pzi8DJ2wV80xwSg1Hci2iuPbjaaJteS+Fvv
+	 /DxWpC7Emh+sUVsXgUVB3KlpU5QGTCOfxUFujNoHZbTefcCpTHOM5eHR44x/HqmeL8
+	 pas+B+WG/teOA==
+Date: Thu, 19 Mar 2026 15:02:07 +0000
+From: Lee Jones <lee@kernel.org>
+To: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+Cc: Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Steffen Trumtrar <kernel@pengutronix.de>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] leds: rgb: lp5860: add enable-gpio
+Message-ID: <20260319150207.GK554736@google.com>
+References: <20260310-v6-19-topic-ti-lp5860-enable-gpio-v2-0-3fcc617fe03a@pengutronix.de>
+ <20260310-v6-19-topic-ti-lp5860-enable-gpio-v2-2-3fcc617fe03a@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260318152408.002d1bd6@kernel.org>
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260310-v6-19-topic-ti-lp5860-enable-gpio-v2-2-3fcc617fe03a@pengutronix.de>
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277836-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277837-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,vger.kernel.org,davemloft.net,lists.ozlabs.org,lists.linux.dev,redhat.com,gmail.com,armlinux.org.uk,google.com,lunn.ch,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.962];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[horms@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,horms.kernel.org:mid]
-X-Rspamd-Queue-Id: 5473B2CD599
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.996];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,pengutronix.de:email]
+X-Rspamd-Queue-Id: DAD632CD5EB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 03:24:08PM -0700, Jakub Kicinski wrote:
-> On Wed, 18 Mar 2026 15:56:39 +0100 Krzysztof Kozlowski wrote:
-> > On 18/03/2026 15:54, Simon Horman wrote:
-> > > This is an AI-generated review of your patch. The human sending this
-> > > email has considered the AI review valid, or at least plausible.
-> > 
-> > Why are you removing the "PATCH" part in the email subject?
-> > 
-> > This completely messes up with the filters and causes this email to pop
-> > up in places it should not.
-> 
-> Sorry about that :/ We pull patch info form patchwork and for some
-> reason patchwork uses this notation for the "name" of the patch
-> when showing the list of patches in series info.
-> 
-> I'll hack up the scripts to fetch real thing from lore.
+On Tue, 10 Mar 2026, Steffen Trumtrar wrote:
 
-Thanks!
+> The VIO_EN pin can either be connected with VIO power supply or GPIO.
+> Get the GPIO from DT if provided and set it on chip enable and disable.
+> 
+> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+> ---
+>  drivers/leds/rgb/leds-lp5860-core.c       | 10 ++++++++++
+>  include/linux/platform_data/leds-lp5860.h |  1 +
+>  2 files changed, 11 insertions(+)
+> 
+> diff --git a/drivers/leds/rgb/leds-lp5860-core.c b/drivers/leds/rgb/leds-lp5860-core.c
+> index 28b4d86e11f1a..1f349aa53f7a9 100644
+> --- a/drivers/leds/rgb/leds-lp5860-core.c
+> +++ b/drivers/leds/rgb/leds-lp5860-core.c
+> @@ -61,6 +61,9 @@ static int lp5860_set_mc_brightness(struct led_classdev *cdev,
+>  
+>  static int lp5860_chip_enable_toggle(struct lp5860 *led, int enable)
+>  {
+> +	if (led->enable_gpiod)
+
+gpiod_direction_output() validates this for you.
+
+> +		gpiod_direction_output(led->enable_gpiod, enable);
+> +
+>  	return regmap_write(led->regmap, LP5860_REG_CHIP_EN, enable);
+>  }
+>  
+> @@ -170,6 +173,13 @@ int lp5860_device_init(struct device *dev)
+>  	struct lp5860 *lp = dev_get_drvdata(dev);
+>  	int ret;
+>  
+> +	lp->enable_gpiod = devm_gpiod_get_optional(lp->dev, "enable", GPIOD_ASIS);
+> +	if (IS_ERR(lp->enable_gpiod))
+> +		return PTR_ERR(lp->enable_gpiod);
+> +
+> +	if (lp->enable_gpiod)
+
+gpiod_set_consumer_name() validates this for you.
+
+> +		gpiod_set_consumer_name(lp->enable_gpiod, "LP5860 VIO enable");
+> +
+>  	ret = lp5860_chip_enable_toggle(lp, LP5860_CHIP_ENABLE);
+>  	if (ret)
+>  		return ret;
+> diff --git a/include/linux/platform_data/leds-lp5860.h b/include/linux/platform_data/leds-lp5860.h
+> index 7bc69a7a550dd..7258d0674ce59 100644
+> --- a/include/linux/platform_data/leds-lp5860.h
+> +++ b/include/linux/platform_data/leds-lp5860.h
+> @@ -257,6 +257,7 @@ struct lp5860_led {
+>  struct lp5860 {
+>  	struct device *dev;
+>  	struct regmap *regmap;
+> +	struct gpio_desc *enable_gpiod;
+>  	unsigned int leds_count;
+>  
+>  	DECLARE_FLEX_ARRAY(struct lp5860_led, leds);
+> 
+> -- 
+> 2.51.0
+> 
+> 
+
+-- 
+Lee Jones [李琼斯]
 
