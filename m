@@ -1,87 +1,86 @@
-Return-Path: <devicetree+bounces-277588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277589-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kDuhEPafu2kLmAIAu9opvQ
-	(envelope-from <devicetree+bounces-277588-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 08:04:22 +0100
+	id qIr7F6+gu2kLmAIAu9opvQ
+	(envelope-from <devicetree+bounces-277589-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 08:07:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A02FC2C70FB
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 08:04:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2C292C7154
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 08:07:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9AF5F30125CA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 07:04:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 27A45302DB51
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 07:07:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E82839D6EB;
-	Thu, 19 Mar 2026 07:04:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F56939DBD1;
+	Thu, 19 Mar 2026 07:07:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cFNRpJXf"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="S8vuUbf7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 725AC39DBEF;
-	Thu, 19 Mar 2026 07:04:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 608553016F1;
+	Thu, 19 Mar 2026 07:07:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773903857; cv=none; b=t9xPAzwVhSq9TilIdAmU49E5o1KGPqnKxbMkoxTPLOBujHmCky+LPCGoaDA9JK/0IEe6ihxP2RNE4j8SzC2GDTp6eTvh+6+5Hd1hL77PbyIz1qLWi4kEW13Jz126qvxqNk/H3wezt29BD4BJePFQ+kdDDU7vK0bqHoZWLoqh7b0=
+	t=1773904041; cv=none; b=lZy2g8Y4sDhcwjzP8Z4KNDmhKdne+rs2ZiyHivpUoS3WbCfVqSUmkY7ZBV/eHIDVVLvQrWqrU65u5+mN0oC6Ahd7CEHE/+zojQrAJ6bAPGagthPG4SaFWv0cZJiM1Cgh7YxWnixcwyCnZaptxeK+R1v5lJ5VEA1rsv6h4gyq6Sk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773903857; c=relaxed/simple;
-	bh=XWRb4tG0WfjZbF3L2bUwVIdS+/4y/LWaL3SwWGs47Z8=;
+	s=arc-20240116; t=1773904041; c=relaxed/simple;
+	bh=HqZvxv5M3Uc//u5TR+0IiGxebSg1L8EwiNhZt0Tr8Cg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XR298H+sR6LorSneqWhDNxNnLDScjaUUIo3D/6A8YuAm3SSIn2ff6P+hVCBIV1Wx5FVdavaWIVQIP+gMKo6YGHExwa6EyMDVvH38gbxpWIPHJ+yNrinJJb8NCj/htEuDSbBWHbXyDSGvyqh3DJeazCmSP/Y1+EgmLV5QCsGmobA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cFNRpJXf; arc=none smtp.client-ip=192.198.163.16
+	 Content-Type:Content-Disposition:In-Reply-To; b=iUCqul4V1zMDyR587y10mYQA4qeu3Y0zxg7c4/LHQ5iTWUJdpcU/XoCUCsKqo9ndcfIH2SVas0Y6mPEvBEnylxMvWtwItJ1xmE6ErpB3D1VYDe/VnZRpojeLdAz6o4XxsCKiS1vuzQmiojUw0a9vC4jeNYdpSH6Fj1KO24MQe5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=S8vuUbf7; arc=none smtp.client-ip=198.175.65.20
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773903854; x=1805439854;
+  t=1773904039; x=1805440039;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=XWRb4tG0WfjZbF3L2bUwVIdS+/4y/LWaL3SwWGs47Z8=;
-  b=cFNRpJXffnxMDHZ/rLN7fPnVMJHtYOy3KhcIN/9nrwaPhUVFjtdnlCuq
-   rcOMHJ+01yAj6LqyZpFNua7DgLFeaVTuTWZiJp3dYtDFn/oPNfaEKV6i9
-   uPEUXrxZqeIDlnb0B7wHnv4XSE3zoE7cuTl16VOWyiXUE6s/KwOxO08pP
-   BHU5w3oEzAMVYma3uvQyowYc0c6VY73AJqaJCiRGM8KcZi+QyLn0YAgIp
-   yU/AxkWyuMGzHvAC6vhof8rvaVhnC+UdRTjCkvoQYduqmfOTFCWlHnimn
-   IOZ8ZbhxFg0BwLfH8bgPjGmQBW/lmezUuB8TywteyhV+xdZuJnQWMDMuE
-   Q==;
-X-CSE-ConnectionGUID: chdl9EKISMW4KYRSdmHGDg==
-X-CSE-MsgGUID: cg6IH3SeRfuwfZMW5k+ZUA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="62538840"
+  bh=HqZvxv5M3Uc//u5TR+0IiGxebSg1L8EwiNhZt0Tr8Cg=;
+  b=S8vuUbf79tQFqHgjfE+3v0v3PRDVNhvffaZtCL2xKXHMcS+5x4NTT1dm
+   AJh2FysnSQX2JpRus2CPs6b+NFj7pnj+vxtRNirmFFJ3L+k8ug9FZNwfA
+   GPpFoi7qiGPJzTkznWVXYCoq3tbMVkqnadPl60diAEF8E7UXPZUi3sa7p
+   cELa6FSVHviOr6+Tp42tp8W4jYucQy18covuejwtoxNFVB8Ja+5NN7B34
+   XGTq2LuJd4zWWCM7sGgmkZmPOUP//SqhjOS8qie2a3BlW+pV2VpuyxfTM
+   Xv8SA1h818e8DWFW97NRaXcjk/AEweR7Mu76n4IxYe9k1Hu+JTMwayJLp
+   A==;
+X-CSE-ConnectionGUID: fbqmEUm5RturZtpvrUKCUQ==
+X-CSE-MsgGUID: da4YM3/BQgGKnTrW64+k/g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="74666116"
 X-IronPort-AV: E=Sophos;i="6.23,128,1770624000"; 
-   d="scan'208";a="62538840"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2026 00:04:13 -0700
-X-CSE-ConnectionGUID: 6kIld5kyQMCuWrGShd9Iow==
-X-CSE-MsgGUID: ePfOVPAlSMy5V8WuidXKGw==
+   d="scan'208";a="74666116"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2026 00:07:19 -0700
+X-CSE-ConnectionGUID: TisbXhG1RlqXgYBlscCYDQ==
+X-CSE-MsgGUID: pLxhv4gWRk2RBqMUIujc2A==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.23,128,1770624000"; 
-   d="scan'208";a="224890375"
-Received: from lkp-server02.sh.intel.com (HELO a51c2a36b9df) ([10.239.97.151])
-  by fmviesa004.fm.intel.com with ESMTP; 19 Mar 2026 00:04:08 -0700
-Received: from kbuild by a51c2a36b9df with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1w37Ps-000000000Sn-1nKh;
-	Thu, 19 Mar 2026 07:03:42 +0000
-Date: Thu, 19 Mar 2026 15:03:23 +0800
-From: kernel test robot <lkp@intel.com>
-To: Daniele Briguglio <hello@superkali.me>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+   d="scan'208";a="260772059"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.120])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2026 00:07:16 -0700
+Date: Thu, 19 Mar 2026 09:07:13 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: "Torreno, Alexis Czezar" <AlexisCzezar.Torreno@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	"Hennerich, Michael" <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	"Sa, Nuno" <Nuno.Sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: oe-kbuild-all@lists.linux.dev, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
-	Daniele Briguglio <hello@superkali.me>
-Subject: Re: [PATCH 3/3] clk: rockchip: rk3588: add GATE_GRF clocks for I2S
- MCLK output to IO
-Message-ID: <202603191419.MH6EuPga-lkp@intel.com>
-References: <20260316-rk3588-mclk-gate-grf-v1-3-66fb9a246718@superkali.me>
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] iio: dac: ad5706r: Add support for AD5706R DAC
+Message-ID: <abugoaMtEV75Fyk8@ashevche-desk.local>
+References: <20260318-dev_ad5706r-v3-0-5d078f41e988@analog.com>
+ <20260318-dev_ad5706r-v3-2-5d078f41e988@analog.com>
+ <abpfdELI33a0Ncl3@ashevche-desk.local>
+ <PH0PR03MB6351A1A32896F5CFF05A4C10F14FA@PH0PR03MB6351.namprd03.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,10 +89,11 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260316-rk3588-mclk-gate-grf-v1-3-66fb9a246718@superkali.me>
-X-Spamd-Result: default: False [0.34 / 15.00];
+In-Reply-To: <PH0PR03MB6351A1A32896F5CFF05A4C10F14FA@PH0PR03MB6351.namprd03.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
@@ -101,125 +101,97 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277588-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-277589-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.972];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid,01.org:url]
-X-Rspamd-Queue-Id: A02FC2C70FB
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.989];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,ashevche-desk.local:mid]
+X-Rspamd-Queue-Id: C2C292C7154
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Daniele,
+On Thu, Mar 19, 2026 at 05:23:07AM +0000, Torreno, Alexis Czezar wrote:
+> > On Wed, Mar 18, 2026 at 01:13:36PM +0800, Alexis Czezar Torreno wrote:
 
-kernel test robot noticed the following build errors:
+...
 
-[auto build test ERROR on b84a0ebe421ca56995ff78b66307667b62b3a900]
+> > > Changes since v1:
+> > >   - Removed PWM, GPIO, clock generator, debugfs, regmap, IIO_BUFFER
+> > 
+> > Why was regmap removed?! Was it not used?
+> 
+> As far as I understand it, regmap also gives access to debugfs. When I removed
+> debugfs I also added regmap as removed.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Daniele-Briguglio/dt-bindings-clock-rockchip-rk3588-cru-add-I2S-MCLK-output-to-IO-clock-IDs/20260316-222240
-base:   b84a0ebe421ca56995ff78b66307667b62b3a900
-patch link:    https://lore.kernel.org/r/20260316-rk3588-mclk-gate-grf-v1-3-66fb9a246718%40superkali.me
-patch subject: [PATCH 3/3] clk: rockchip: rk3588: add GATE_GRF clocks for I2S MCLK output to IO
-config: arm-allyesconfig (https://download.01.org/0day-ci/archive/20260319/202603191419.MH6EuPga-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260319/202603191419.MH6EuPga-lkp@intel.com/reproduce)
+Not only debugfs, and it's unrelated to the any custom debugfs interfaces in
+the driver, it's just a feature out-of-the-box of regmap.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603191419.MH6EuPga-lkp@intel.com/
+> For the spi write/read I am not using regmap as the device has some features
+> that I think regmap_read/write couldn't support. Namely the variable data width,
+> as the device only accepts exact amount of clock cycles. Future patches will also add
+> variable SPI speed.
 
-All errors (new ones prefixed by >>):
+We have a lot of flexibility in regmap core. Do you think it can be improved /
+extended to cover the cases like yours?
 
-   drivers/clk/rockchip/clk-rk3588.c: In function 'rk3588_clk_early_init':
->> drivers/clk/rockchip/clk-rk3588.c:2496:29: error: implicit declaration of function 'kzalloc_obj' [-Wimplicit-function-declaration]
-    2496 |                 sys_grf_e = kzalloc_obj(*sys_grf_e);
-         |                             ^~~~~~~~~~~
->> drivers/clk/rockchip/clk-rk3588.c:2496:27: error: assignment to 'struct rockchip_aux_grf *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-    2496 |                 sys_grf_e = kzalloc_obj(*sys_grf_e);
-         |                           ^
+> > >   - Removed all custom ext_info sysfs attributes
+> > >   - Simplified to basic raw read/write and read-only scale
+> > >   - SPI read/write can handle multibyte registers
 
+...
 
-vim +/kzalloc_obj +2496 drivers/clk/rockchip/clk-rk3588.c
+> > > +#include <linux/array_size.h>
+> > > +#include <linux/bits.h>
+> > > +#include <linux/cleanup.h>
+> > 
+> > + errno.h
+> > 
+> > > +#include <linux/iio/iio.h>
+> > 
+> > + mod_devicetable.h
+> > 
+> > > +#include <linux/module.h>
+> > > +#include <linux/mutex.h>
+> > > +#include <linux/spi/spi.h>
+> > 
+> > + types.h
+> > 
+> > > +#include <linux/unaligned.h>
+> > 
+> > Follow IWYU principle.
+> 
+> I did miss errno.h
 
-  2447	
-  2448	static void __init rk3588_clk_early_init(struct device_node *np)
-  2449	{
-  2450		struct rockchip_clk_provider *ctx;
-  2451		struct rockchip_aux_grf *sys_grf_e;
-  2452		struct regmap *sys_grf;
-  2453		unsigned long clk_nr_clks, max_clk_id1, max_clk_id2;
-  2454		void __iomem *reg_base;
-  2455	
-  2456		max_clk_id1 = rockchip_clk_find_max_clk_id(rk3588_clk_branches,
-  2457						ARRAY_SIZE(rk3588_clk_branches));
-  2458		max_clk_id2 = rockchip_clk_find_max_clk_id(rk3588_early_clk_branches,
-  2459						ARRAY_SIZE(rk3588_early_clk_branches));
-  2460		clk_nr_clks = max(max_clk_id1, max_clk_id2) + 1;
-  2461	
-  2462		reg_base = of_iomap(np, 0);
-  2463		if (!reg_base) {
-  2464			pr_err("%s: could not map cru region\n", __func__);
-  2465			return;
-  2466		}
-  2467	
-  2468		ctx = rockchip_clk_init_early(np, reg_base, clk_nr_clks);
-  2469		if (IS_ERR(ctx)) {
-  2470			pr_err("%s: rockchip clk init failed\n", __func__);
-  2471			iounmap(reg_base);
-  2472			return;
-  2473		}
-  2474		early_ctx = ctx;
-  2475	
-  2476		rockchip_clk_register_plls(ctx, rk3588_pll_clks,
-  2477					   ARRAY_SIZE(rk3588_pll_clks),
-  2478					   RK3588_GRF_SOC_STATUS0);
-  2479	
-  2480		rockchip_clk_register_armclk(ctx, ARMCLK_L, "armclk_l",
-  2481				mux_armclkl_p, ARRAY_SIZE(mux_armclkl_p),
-  2482				&rk3588_cpulclk_data, rk3588_cpulclk_rates,
-  2483				ARRAY_SIZE(rk3588_cpulclk_rates));
-  2484		rockchip_clk_register_armclk(ctx, ARMCLK_B01, "armclk_b01",
-  2485				mux_armclkb01_p, ARRAY_SIZE(mux_armclkb01_p),
-  2486				&rk3588_cpub0clk_data, rk3588_cpub0clk_rates,
-  2487				ARRAY_SIZE(rk3588_cpub0clk_rates));
-  2488		rockchip_clk_register_armclk(ctx, ARMCLK_B23, "armclk_b23",
-  2489				mux_armclkb23_p, ARRAY_SIZE(mux_armclkb23_p),
-  2490				&rk3588_cpub1clk_data, rk3588_cpub1clk_rates,
-  2491				ARRAY_SIZE(rk3588_cpub1clk_rates));
-  2492	
-  2493		/* Register SYS_GRF for I2S MCLK output to IO gate clocks */
-  2494		sys_grf = syscon_regmap_lookup_by_compatible("rockchip,rk3588-sys-grf");
-  2495		if (!IS_ERR(sys_grf)) {
-> 2496			sys_grf_e = kzalloc_obj(*sys_grf_e);
-  2497			if (sys_grf_e) {
-  2498				sys_grf_e->grf = sys_grf;
-  2499				sys_grf_e->type = grf_type_sys;
-  2500				hash_add(ctx->aux_grf_table, &sys_grf_e->node, grf_type_sys);
-  2501			}
-  2502		}
-  2503	
-  2504		rockchip_clk_register_branches(ctx, rk3588_early_clk_branches,
-  2505					       ARRAY_SIZE(rk3588_early_clk_branches));
-  2506	
-  2507		rockchip_clk_of_add_provider(np, ctx);
-  2508	}
-  2509	CLK_OF_DECLARE_DRIVER(rk3588_cru, "rockchip,rk3588-cru", rk3588_clk_early_init);
-  2510	
+You missed more as I showed above.
+
+> but it seems the IWYU is stricter than pragmatic.
+
+No, it's not true. The required headers is exactly very pragmatic in order to
+untangle the dependency hell we have in the kernel. You can browse the lore
+archive for that keyword and find tons of problems people reported in the past
+10+ years with that.
+
+> Will adhere to it better.
+
+Please, do.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With Best Regards,
+Andy Shevchenko
+
+
 
