@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-277902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277903-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sIdaDg4lvGkxtgIAu9opvQ
-	(envelope-from <devicetree+bounces-277902-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:32:14 +0100
+	id OMb3BA0mvGkxtgIAu9opvQ
+	(envelope-from <devicetree+bounces-277903-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:36:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C24A22CEDDD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:32:13 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 346622CEECF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:36:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A3C1030065C8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:32:12 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 267A4302FB99
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:32:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48BE73EDACB;
-	Thu, 19 Mar 2026 16:31:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7D0F3D7D78;
+	Thu, 19 Mar 2026 16:31:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UUU31YWP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CLNNrhcW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B07BD3ECBE7;
-	Thu, 19 Mar 2026 16:31:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71A793D8121;
+	Thu, 19 Mar 2026 16:31:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773937909; cv=none; b=OJs6rQ20MJJz/mGdcwxEAyHxDrQK2B4nQA3cKqk2czD3c3BAvLJIJm+UuEGgc3jizT75PPp2DL+WE1X65WYcXHW7YT3Ut3bVsuFhSpMcwS7lNncQaJRdUejAmEef+2ltsS0qPydOtxbrQpemg/e424eVDazJhKl3XotyONAEiew=
+	t=1773937912; cv=none; b=lop0QItf6n2MsizivuEbvlJrBRbKXKx8ygYzA8Z8EWTNhIEp4rck8ihmRlk+yU6YBN99ZrBweNRNDUtbYit6m6KDAqfNJod5jmWegYmMR11OyKOwwdyjlHlh9ONHdbR/eiQXXzXbg4Da1UCPHLd/XihU7tNbKkX7gfYytBwkvU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773937909; c=relaxed/simple;
-	bh=808siTn/eKlIL4fo1RdjLsJxG5BEBSTbGLlJxTqmWVM=;
+	s=arc-20240116; t=1773937912; c=relaxed/simple;
+	bh=Wbahtba5HIxMuWjTSaKR/tjyp9GROktgLQAr5GOLj2I=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hmBjETMAD0aY+0jo1DNuoKgr/2Sy+m8fN1bYfqcnZPt48S1MjhbSJJS3/p4v+Fq9XH8yjKHqv/2D9m9mxlnBLio/nmOmy69pdbijvRx+YFQI2sdcBjsRRUI9jT68HG94CCvhJRWqmVM46p/NJPdQgOV+w+Rd2SI0dOw8/7bSeZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UUU31YWP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AA6EC2BCAF;
-	Thu, 19 Mar 2026 16:31:46 +0000 (UTC)
+	 MIME-Version; b=PFXzjdiSsnd5jG81m0+i3sJvhLKEGE9X8K9orOFd0S/GFQp8uzAUyl3/Iuge7BREWytHy5PJV/cOofAO8GajwPHBTF/gld3ARjtTFzXKmaN9NqZW599VzZAUuEigSMEFk3fI4IH1eGqwHClnjtepqmvXrROLWgC69ZnC3vIww9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CLNNrhcW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97031C19425;
+	Thu, 19 Mar 2026 16:31:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773937909;
-	bh=808siTn/eKlIL4fo1RdjLsJxG5BEBSTbGLlJxTqmWVM=;
+	s=k20201202; t=1773937911;
+	bh=Wbahtba5HIxMuWjTSaKR/tjyp9GROktgLQAr5GOLj2I=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=UUU31YWPvBVPjtqb8P4Ak32O4yTKIRdPax3y2K8iJGZGx+yRPWgZS8KC4zfYJ2HTv
-	 Ktg1eKPA2Hp+SvGVDRMeQibvMwgHbYL1QEZWApUNX9YRM142B3hvsLVnKeViAhUTwq
-	 PSyEyW4j5hOOJzSrfE+7yxs7JAsPjgshDOeQurySZ6ehDt+pNmQFHulE4836nimQju
-	 t/eCELpRucFJOCV4KvEwLqh6pMJjobJiRwKTl7vAjvyH3iOU7V6kgkVeellw7NAMeB
-	 mJuakFcu10lQHn/CRfIT16Phu310duhfOr2af6mFG0JdVu0UkWJG4qpc6JZUnzTrl6
-	 QXVmPDwohEvMQ==
+	b=CLNNrhcW2g30jJ4F/93QLj6H0Yz/jdGC/6KTn4jnKINNTPZ4X/156LBlpv/mloHRY
+	 eOizrbgw1kr/O1zvARqZay/ZO0tGJyH9hpDtutnkzl7kFiHeH5WTKf+4oBVRjMGptB
+	 zlqpqOy6UZvbIy+4UmFbJpzmAql6YQwxr4IW3I1mkRm1mXr00V8lxOwXlAm3a7rIsF
+	 gCW0+3E92oswrclHL/1zGrUrob/aZL1s3/RDG2N92lesJ0eZhs+R5xCGTyjaPawlKY
+	 xAFyDmc9oFQtfT12vTwzjru7N17aoe0dJgJWvNeNhlk95DaW7hYAxH2YZEdU/TriYT
+	 NpZNVx3dukQ+A==
 From: Conor Dooley <conor@kernel.org>
 To: linux-riscv@lists.infradead.org
 Cc: conor@kernel.org,
@@ -56,9 +56,9 @@ Cc: conor@kernel.org,
 	Valentina.FernandezAlanis@microchip.com,
 	Brian.Burke@microchip.com,
 	cyril.jean@microchip.com
-Subject: [PATCH v1 3/5] riscv: dts: microchip: clean up beaglev-fire regulator node names
-Date: Thu, 19 Mar 2026 16:31:17 +0000
-Message-ID: <20260319-impale-perch-2b612429c555@spud>
+Subject: [PATCH v1 4/5] riscv: dts: microchip: add adc interrupt on beaglev-fire
+Date: Thu, 19 Mar 2026 16:31:18 +0000
+Message-ID: <20260319-speak-detached-f4e4384a2372@spud>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260319-outsell-hypnotic-94b480408ad4@spud>
 References: <20260319-outsell-hypnotic-94b480408ad4@spud>
@@ -68,7 +68,7 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1143; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=gip2ctW3zViKnQHwnuvE1rS87LP2hxhiGIYJwVK2hCY=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJl7VK4wr5PhXJHH4xzB69Cu+bDYblH24kMsyypXCH+QP zUl9d/sjlIWBjEuBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAEzkLhPD/9iWM7+DJ4oWnP6v ZLj58QmG9bZLxdlbbD7v/pW81r76yxxGhg2/OGQLXK9Imr6Lj++1P9q+zT/HVfF60+3pLNt+THJ 8zw8A
+X-Developer-Signature: v=1; a=openpgp-sha256; l=997; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=49hModmjRGQS7kbC86IMrIwIz56IHj7rQ9pX9Z/u1qc=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJl7VK7KRIgeO3zu+R4+4S7Vgk3H1Bdls3lnXFE+uOdp8 GTZX4q3O0pZGMS4GGTFFFkSb/e1SK3/47LDuectzBxWJpAhDFycAjAR9hmMDBdXxmTYqaU6Hgzk YlOpU3rF2LXhBdO71/9PFu0peHpaV5/hF9N+Zr+VKWLMoTvb/GY+fDspsYNN+FrctN8y2f2Z/5s VWAE=
 X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-1.16 / 15.00];
@@ -76,7 +76,7 @@ X-Spamd-Result: default: False [-1.16 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -85,7 +85,7 @@ X-Spamd-Result: default: False [-1.16 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277902-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277903-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -96,44 +96,42 @@ X-Spamd-Result: default: False [-1.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C24A22CEDDD
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.0.0.0:email]
+X-Rspamd-Queue-Id: 346622CEECF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-Recently the binding for regulator-fixed introduced preferred naming, in
-the regulator-XvY format. Change the existing regulators to match this
-pattern.
+The mcp3464r on the beaglev-fire has its interrupt wired up, but not
+present in the devicetree. Add it.
 
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
-index 2c0a420d89ff0..37c3525d490c0 100644
+index 37c3525d490c0..e8d0a825a5bfc 100644
 --- a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
 +++ b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
-@@ -63,14 +63,14 @@ imx219_vana: fixedregulator-0 {
- 		regulator-max-microvolt = <2800000>;
- 	};
+@@ -4,6 +4,7 @@
+ /dts-v1/;
  
--	imx219_vdig: fixedregulator-1 {
-+	imx219_vdig: regulator-1v8 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "imx219_vdig";
- 		regulator-min-microvolt = <1800000>;
- 		regulator-max-microvolt = <1800000>;
- 	};
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/interrupt-controller/irq.h>
+ #include "mpfs.dtsi"
+ #include "mpfs-beaglev-fire-fabric.dtsi"
  
--	imx219_vddl: fixedregulator-2 {
-+	imx219_vddl: regulator-1v2 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "imx219_vddl";
- 		regulator-min-microvolt = <1200000>;
+@@ -226,6 +227,7 @@ adc@0 {
+ 		spi-cpha;
+ 		spi-max-frequency = <5000000>;
+ 		microchip,hw-device-address = <1>;
++		interrupts-extended = <&gpio1 20 IRQ_TYPE_LEVEL_LOW>;
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 		status = "okay";
 -- 
 2.51.0
 
