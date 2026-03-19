@@ -1,61 +1,67 @@
-Return-Path: <devicetree+bounces-277662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277663-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6A7jB9HEu2n1ngIAu9opvQ
-	(envelope-from <devicetree+bounces-277662-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:41:37 +0100
+	id uK02MSnDu2n1ngIAu9opvQ
+	(envelope-from <devicetree+bounces-277663-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:34:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C2742C8DC5
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:41:36 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 608F12C8C14
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:34:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4DE16323BEFA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:30:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E32DA302E7EA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:34:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 294303B6BE1;
-	Thu, 19 Mar 2026 09:29:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2EFD37DEB8;
+	Thu, 19 Mar 2026 09:34:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BUV6n73Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gDncbqlm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 058BD3B6347;
-	Thu, 19 Mar 2026 09:29:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8332937DEA3;
+	Thu, 19 Mar 2026 09:34:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773912599; cv=none; b=N/3UMgdh6KisRkMD/ADgJypVbDjCts2d8XDFrCfVsS/0SZr6OtRzqd9vFu/aEGAi/F9j6SZoN/nxXuW281VPO4WbGw8/nxAyOcKJSZPuVe/cWcGJ/DKfDEte3sszx2jRsWNd1a+qpI309840eH4Ok1kz4GIcElWiZWMF8jg7MI0=
+	t=1773912853; cv=none; b=nH0LNYNSjdvSFeo3o6wNKn5rq0N24PioG1YH598bYn+Z/qd017tnUfPmnzdb0plai8o+hIX6xATQEwQd8f3MGltU1TSnBWipyiZSWk2cC6H242M+zAdsso6kzfYPJEG0jxp7kW6V1uPm409o8341Oyi9BBiW4/JQbfxgto7g/Xo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773912599; c=relaxed/simple;
-	bh=q1hnpwKppncTtL7PGsBSeRmrf3SRFAt7hcNLnymxJLg=;
+	s=arc-20240116; t=1773912853; c=relaxed/simple;
+	bh=/Ppb97Ypb2Q0b69Z2VZneA9BSfsBgNrulVOqfB+3t4g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=isxmDrzdSFJIbPeiSjlEWnGnd+Epz/ItEAm6cQLdsDi5PGWl9MSngPeYkXEVXJOAwqaHY6d4tt4qL0ctPrr2cXM/FOcQ4VTnkQzMcN1NANqzE8Mreds699+IdHZq23yLszj8hwC8dNP94mzPi2Y44AH5PbGvCeG7xVjA2QX1Akc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BUV6n73Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5500CC2BCB0;
-	Thu, 19 Mar 2026 09:29:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=EgGCzJp5eefOcYl0a09LrnqLTs5YlllgHK+j33qlHaoaV7CM8IeMSrzLHbRYjmJNm0S5RIAQGSlOWWj0lqzIReBnfDptnROlpdzvudKt1Zrn5HFO8vapecdtR+/MmzbUvQ4Xk6SIgTdZfxMd/gVR4e4zKdMDctROwVky5uYaqIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gDncbqlm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E054C19424;
+	Thu, 19 Mar 2026 09:34:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773912598;
-	bh=q1hnpwKppncTtL7PGsBSeRmrf3SRFAt7hcNLnymxJLg=;
+	s=k20201202; t=1773912852;
+	bh=/Ppb97Ypb2Q0b69Z2VZneA9BSfsBgNrulVOqfB+3t4g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BUV6n73QIi65p+I3UpXEvnZaaRhGLZclCrGu64+7Y0l8zy/1tQM1WSqcd27Pova9d
-	 UY4inUst1BFtZHVU6JtJTXpL5nuUo72YHdfqT3mrn/BF5pIW0DqhJNRKju2jywHPeP
-	 EvIkRZLmGcCXuTNzO/VK3OHUJewNV6NOi+tO9ZyE3M0swm9E7kevjBBxncrfJsudk5
-	 eiJJKkV5Fwz1ZuyNtavFwnlJFaFt+HsKcaUOMj35/zNSUZmOwZ4jkJVeyWDIxO7NCO
-	 6TjbL05UoLx60vi9JUc4GhN9shG7Nac/Gr/L7J+7vpeqyLnPv48Fx+gldHEb/eXzX2
-	 +NR8z80CedSlg==
-Date: Thu, 19 Mar 2026 10:29:56 +0100
+	b=gDncbqlmzv86BTzFpykRxi5JZWw76RvplueRa+eYbwzrleBAmBsWiQ8Betd2+GDD9
+	 dZUrOiNtGmuKLt9qVkku8rUVbCwKAM1xycP4VefWfS+QEx/ETPn60rrW21QomPyOM3
+	 AXfvNlygLhk0yGraCk9+Dh0OqMPjN0NIv0nT7xe3nbxnBGgpUPy9AfM7wIu8d0SSAb
+	 NbUQgIcHOjUJFnfor0NHCCf8wpl2GcatCg+CUmJAA4wxVInXyf6atH4YBF0mIcLSHh
+	 lUeZgsAaqujlgosWTvz41/oFuozhUG7MO1x85t0O0bxMQ+RO4HcSY8XXWsTR5s2Ws6
+	 O19pOLBgM/aJw==
+Date: Thu, 19 Mar 2026 10:34:10 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy: Add
- Eliza QMP PHY
-Message-ID: <20260319-fervent-aspiring-wasp-e4836c@quoll>
-References: <20260318-eliza-bindings-qmp-phy-v1-1-96a0d529ad2d@oss.qualcomm.com>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, John Madieu <john.madieu.xa@bp.renesas.com>, 
+	linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 2/5] dt-bindings: pci: renesas,r9a08g045-pcie: Add
+ RZ/V2H(P) support
+Message-ID: <20260319-outstanding-rustling-galago-79bbce@quoll>
+References: <20260318124450.163471-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260318124450.163471-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,48 +70,67 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260318-eliza-bindings-qmp-phy-v1-1-96a0d529ad2d@oss.qualcomm.com>
+In-Reply-To: <20260318124450.163471-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277662-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277663-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.980];
+	NEURAL_HAM(-0.00)[-0.963];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FREEMAIL_CC(0.00)[bp.renesas.com,google.com,kernel.org,pengutronix.de,glider.be,gmail.com,sang-engineering.com,vger.kernel.org,renesas.com];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9C2742C8DC5
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 608F12C8C14
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 11:54:36AM +0200, Abel Vesa wrote:
-> Document the compatible for the USB QMP PHY found on the Qualcomm Eliza
-> SoC.
-> 
-> It is fully compatible with the one found on Qualcomm SM8650, so add it
-> with the SM8650 as fallback.
+On Wed, Mar 18, 2026 at 12:44:47PM +0000, Prabhakar wrote:
+>      then:
+>        properties:
+>          interrupts:
+> @@ -236,6 +239,21 @@ allOf:
+>          reset-names:
+>            maxItems: 1
+>  
 
+I do not have above hunk in next from 16th March. Nothing about
+dependencies in cover letter or changelog. What am I missing?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a09g057-pcie
+> +    then:
+> +      properties:
+> +        linux,pci-domain:
+> +          enum: [0, 1]
+> +        num-lanes:
+> +          enum: [2, 4]
+> +      required:
+> +        - linux,pci-domain
+> +        - num-lanes
 
 Best regards,
 Krzysztof
