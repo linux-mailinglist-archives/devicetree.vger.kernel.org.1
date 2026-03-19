@@ -1,239 +1,206 @@
-Return-Path: <devicetree+bounces-277936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277937-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id COi9BrM2vGl3uwIAu9opvQ
-	(envelope-from <devicetree+bounces-277936-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:47:31 +0100
+	id OIbKMNc2vGnGvAIAu9opvQ
+	(envelope-from <devicetree+bounces-277937-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:48:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28E842D03F8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:47:29 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87DBD2D041E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:48:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 078CA305BFE4
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:45:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E727B3025C45
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:46:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ED233947AD;
-	Thu, 19 Mar 2026 17:45:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 293DB3ECBD5;
+	Thu, 19 Mar 2026 17:46:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="UMiRg/d2"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="k2nFkS3C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011036.outbound.protection.outlook.com [52.101.125.36])
+Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11011012.outbound.protection.outlook.com [52.101.52.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3A88393DDA;
-	Thu, 19 Mar 2026 17:45:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.36
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 188053E1D12;
+	Thu, 19 Mar 2026 17:46:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.52.12
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773942324; cv=fail; b=cOyVGAJgmAFmGPc4SDFqZ5DOcIKnSQWsD9/FERTuDZ1TODyBmuTZGXLmxVwxUAvuKsU0OQrBJ5UW/m1Qlm9L3Z7qk2AmiPL2/16l7q9TYIN+/kM77g4Awzchh8/DL6gd5kaMKO79H7aECgKCcNabrlKIRFP9v7WFvk4DJOziJ64=
+	t=1773942379; cv=fail; b=bFtf/icXm/MQks81GRmRbsLKPMfTooyTcECuD+jmGFiEDyoRPxsn+rHwClfApfNvJJAQph86P1/n6twRPAqEK27vIuaZu8eWgmhowID2T9ZflmZM1fEM8JXGmBT4fcKznqAoDtf5NN/W1dl2v5URwjKc6bHly4ZNa9zQUXgv9LE=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773942324; c=relaxed/simple;
-	bh=wgAanzvvX8ROEmHoOU1gKM9fow5/ctLHr3VB8ASo9+U=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=iXs2JE5tSlpXhFlhRFkUUg+efav5/VmdySjd14Sz67yVJXD654WdY8aH261CSSVURSQjkUG0cfIdv7CKvfKy6oIJTm8jNkKYcEUFO4shkXE2U6uEvWgYIXZf5c2reo7wa9opLAdq6wc1CarlrQ3alfj/VginB37OH+BIUDrBmXM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=UMiRg/d2; arc=fail smtp.client-ip=52.101.125.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+	s=arc-20240116; t=1773942379; c=relaxed/simple;
+	bh=9UfSM7JwRxfD0VmYUcVxCJeYyovzW7HgtT7czmheHMI=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mGTQfu+oMnVuu2+KTmxzUAP1Ry7g0p2BsAEgzVtr7AsKrG7vP3NPJwI5/oArukMqCgfAC5ZAsqJh46hGaDBJ2wlVEE3N9CtI+UTgnNwsfs5CWlddQ9uhUor9Q3AGplk1dc0THDGxMYCIiPRo1aCH8m6Hs97TUCmEFgAkqylYPN0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=k2nFkS3C; arc=fail smtp.client-ip=52.101.52.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EVDj0XKZ4+DSAVjcKGTfJq+Wj2PxuXEoObAvwc/sFivicGimw6a70ZaSOrDSPXqaiIs/L+dtM6WsKyMoj4Sqjo4v8YHt2bSaw3qlTTkZeqMqg8Dn/UrLfo6XqC+v4eX8WdcJjoabrQs9ryoK+5+UQiFJ9NcKHXpswRdduQW49jipe+wlpGYsJ7omvfuuYH0odIaKlBKVyIq0l+gAnZHVjYDHwShEBgLY61//PNNOd59Q/CSccu/CxUzvISYVE182pZVX/Y5DIRQZfJ1H4AOIaf3I7YubRRZVkxvcQAx9bbsOqGDjIM6FfJGw+snAkJWkbfe7CEMEo1fwtfedbbEe+Q==
+ b=GdnKL197F33qOGZBQNbuemgz4SEw/GhPPdaK3Jexq9bZm8u6s+9haqyRC2siQsBnha5MVGsugRTJfuNoYgbRowh3dyLlbAilyTn2s+pPKnKUb5Utaop/D5zisnRgTMS3QqMOmG78r0Z+kGwvD1piNbe0YENV3BL2YFXqOHPDbp+jlgSGG6M4EZqehqgT6zmBMrtpxTTjNzPmjFsOzdmELlXGHnTtjcdwFTvDmkaCKQ4p8QN00RkR+7Cog9+X5aMm9rHFVlWHbbHErYJ+YgA45zEFkds6vxL130mhBrK/SbNjXom8AB8qbTj/zREIErCZQgmA2qnbIdLOF0PVZXVqwQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2pEpVTwr3BkG9uxtVUJYt5VyekJ3UOWVQ/kyugMqBG8=;
- b=vUQt4eLjmWiaFIF4i+WiTYLzw1yN147wq2O3UZ/0HmkJsJ9PEOMWsA3SkRuIolp82+tm5wuJO+C+6jng37yGBctTV4F9HuK5/BmL0fDAQh4P1AZI2NE5OFzfoKmjQNwQFd15hjrSP4DjCxtRLAitaIHnUPpI+lxqiNR6ilL1xZQTSNS6w1qJ8xdiC9Lw8drkCea/rpC9qLs6jIwGs2orIkLa73JsVYQzpY65Y+3LuB5aXYMi3PotCVk2kbUQhVSRtUOIDEn4E6HMssnMrQ3xeWB5f2gPo+6c6ZSBdPSRRMiL74BrponQo5J0Fpo/dMBrzESV9wrN9+wtvXr69i37EQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
+ bh=Ep14gkdCOaBf8X4yx6FJqtjw6IeGTdaSDwtg4ALrv4A=;
+ b=c1xIwFNJHXHuSrnGyfXgPYQ4YVoKGqeg9xQ1HOYpEgcG7SbeV70xLR6pBKQMlhy42ugox+GJ9DpZBQpTCSjjH0b7swmmyYsv5FQqON4eh9wprtvdrZCnBzL6KZ4WGKCah1wpEa1tL250oIsktT88R7Y0DG+VJb7yd//fj2ODRTLgFnhZlWCigLhvNVNmXAjRVWOqWV2/QiIncZw/O+5S6eid6iXL0/LA62ARlmSnb/+78N5XzpphOlKrTWdUQRl1XEww7HfrDN37/6jPKQRz8a0mXWKduZg5M11K19noAbVV2NJcsEludpKNIiyC7b2NsP7LanNkF1E8+KoXjUppNw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.232) smtp.rcpttodomain=nxp.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2pEpVTwr3BkG9uxtVUJYt5VyekJ3UOWVQ/kyugMqBG8=;
- b=UMiRg/d282sGAl6ug88FDkXfGb9Y/vXtAU5UEwdEmyx4nLFxqBCSbdWCRlrdzali3F6D+kAgt+axOhWyEYF9yWRD3k/fWvTPx6ambaIjcd14hvIbGF+f5Dg4IqyV8VMkyvUVQhtx4O8lSpKHu5KRao7ICF8EGBrv9v259alUDMw=
-Received: from TY6PR01MB17377.jpnprd01.prod.outlook.com (2603:1096:405:35b::6)
- by OSZPR01MB8171.jpnprd01.prod.outlook.com (2603:1096:604:1a6::8) with
+ bh=Ep14gkdCOaBf8X4yx6FJqtjw6IeGTdaSDwtg4ALrv4A=;
+ b=k2nFkS3C3oOsQUSfS+7qjvqGckJl95hi1eSWpf+CiSnyT/Dqor9fIzhh65VYBKjs7/CYBO77jUgGUeMZ8C0fQVxU2YuBQEgj8dYiigF9kOwHRNSex0cVe2dzT7rawQ3f7Ao7EXPei/9nZAKM+RydpmqblKCpnnq2IvlGQ9rvIeDxr3it2+rH1Opeo7pYOfOmiJUe1oaZPZEhu8B7QhO/Zfia5S9DBy3pqmLxwA+7RtXhUVWgdpGitOB9CzyYKDF5WXYk3R5xpwiYpYNf2S1nfRqxHlvuWTqVCANwVitw/ziSK1f0CThHT0F5iCQ6AQq7RSGtGKKPjSZlWJwCCEwjWA==
+Received: from SJ0PR13CA0233.namprd13.prod.outlook.com (2603:10b6:a03:2c1::28)
+ by BL1PR12MB5876.namprd12.prod.outlook.com (2603:10b6:208:398::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.20; Thu, 19 Mar
- 2026 17:45:15 +0000
-Received: from TY6PR01MB17377.jpnprd01.prod.outlook.com
- ([fe80::f373:26d6:86c4:6aa3]) by TY6PR01MB17377.jpnprd01.prod.outlook.com
- ([fe80::f373:26d6:86c4:6aa3%4]) with mapi id 15.20.9723.018; Thu, 19 Mar 2026
- 17:45:05 +0000
-From: John Madieu <john.madieu.xa@bp.renesas.com>
-To: Mark Brown <broonie@kernel.org>
-CC: Geert Uytterhoeven <geert+renesas@glider.be>, Kuninori Morimoto
-	<kuninori.morimoto.gx@renesas.com>, Vinod Koul <vkoul@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael
- Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@kernel.org>, Liam Girdwood
-	<lgirdwood@gmail.com>, magnus.damm <magnus.damm@gmail.com>, Thomas Gleixner
-	<tglx@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
-	<tiwai@suse.com>, Philipp Zabel <p.zabel@pengutronix.de>, Claudiu.Beznea
-	<claudiu.beznea@tuxon.dev>, Biju Das <biju.das.jz@bp.renesas.com>, Fabrizio
- Castro <fabrizio.castro.jz@renesas.com>, Prabhakar Mahadev Lad
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>, John Madieu
-	<john.madieu@gmail.com>, "linux-renesas-soc@vger.kernel.org"
-	<linux-renesas-soc@vger.kernel.org>, "linux-clk@vger.kernel.org"
-	<linux-clk@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "dmaengine@vger.kernel.org"
-	<dmaengine@vger.kernel.org>, "linux-sound@vger.kernel.org"
-	<linux-sound@vger.kernel.org>
-Subject: RE: [PATCH 00/22] ASoC: rsnd: Add audio support for the Renesas
- RZ/G3E SoC
-Thread-Topic: [PATCH 00/22] ASoC: rsnd: Add audio support for the Renesas
- RZ/G3E SoC
-Thread-Index: AQHct7ixkWVMq6xq/UKX3UnPZEFuJLW2CY+AgAAVrMA=
-Date: Thu, 19 Mar 2026 17:45:05 +0000
-Message-ID:
- <TY6PR01MB1737704E431A765933FA6D097FF4FA@TY6PR01MB17377.jpnprd01.prod.outlook.com>
-References: <20260319155334.51278-1-john.madieu.xa@bp.renesas.com>
- <b2347c14-7f29-4453-938b-8287f45aa5fd@sirena.org.uk>
-In-Reply-To: <b2347c14-7f29-4453-938b-8287f45aa5fd@sirena.org.uk>
-Accept-Language: en-US, en-GB
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY6PR01MB17377:EE_|OSZPR01MB8171:EE_
-x-ms-office365-filtering-correlation-id: 05789536-6877-47d5-db23-08de85df4197
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|376014|7416014|38070700021|22082099003|18002099003|56012099003;
-x-microsoft-antispam-message-info:
- xxMkX8yJk3q8zQdQoY3YYrl7lu/viJx/57ubqODERPHNiqo9vvVcAc6/bBy0yF4VgT4nqBtSt7wRgFDsBcuUu+cHFbciXVRfxZ//pWI0ck+aSlfi/CJm++k5G04MD/WrSUV9mrAzqYb6qIZ44/kHgb+N96ja2BL2li0tlJKbmt6WI6xnF5lyjwqze+Iak1/TJ5MvQxrNffp8NcbwSYpIGX0wxlhVKzeQbT8KvkiHDE4IgjCn/XOydqG3cuMdC1h4Qj7KKb7c4xfJijvaErR3tpPM0oY/nhCTZC0ivE+8rYzGelsevAe1DHMhnVTdb3u2LIEl92KhkmCECS1OFZLsISmkXk4NlMD3xVTjR6nASZoIwQdgLA2xO4dgDuirwWqRMHVygyIXkpmsswA2s8mHXFvxlXjF2SuGJGMAmSEaTAG9D3chLo54m0lVwuWcDOTwSFrqFN93D5KABKKpZT8yuk5uMe8YKQ6EDBV7A0+jN+vJL4MHOrBAPgAmzE7kQmG3gWvjlGVrzD79tv9xsXUSak1AnNEs1HyFqHuphSyzk6VABKV5jU5CduvLDK6d28OSe/Y/Oz5KATYhQb88zLXqlzqIvtcvas1pzKBT2DLf0QC6fTSzIhVsg570a0TUTWXIfPeI4xOuXcE4q8vYtATc/muzvmSzMkoestWIi4WsakTK5J+Y5qqlWkLocHGjVznKfdf/NsKCNH+KghnCd2tiNMMX9q7/gKnX59NWtrDsR3JFSR60xXWDhKEntfZYZw4/ud2HlGE/y4SvkC+ugagadvQcUj+cGN4kCQAGrPiZr8w=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY6PR01MB17377.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(38070700021)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?gdHUo7/Yd+zpb5zcCjw/l34pM8JXuvfHpLSXveCua4aYtH0GBY3EPyFaTn2G?=
- =?us-ascii?Q?+JInaDKC7A/8zki4ETSUqcNt+hiA2nklwjIG+KE1wzUWs4/BM9bPfuS7yhYN?=
- =?us-ascii?Q?tj2yPjl47x2Blr4dAnSOEy+00JKGirBr1/x9BUzgy38y2l6XIJZnlr8C6dAa?=
- =?us-ascii?Q?97SGFQ50gBo52l1bsLJMnw4ARXtKuxcuPA0nhKfWHV3ud2QxADck5QpzMANx?=
- =?us-ascii?Q?dL97YcomQretk4QhQXriEGvthSs7If/zZavYiMgpFbpeRNy85rSNHp1Dik0t?=
- =?us-ascii?Q?oHfJ2NTQEjYxymJjTJ6/vU4dEIov1wXsUUkFnXIHphG/F0JGQJgv/Mb3LuxX?=
- =?us-ascii?Q?k9SKvyNTbhEeS4R0nTjuqx1SnQvXB5pJA0hG3nBjSCxX9q1vQvuIsk2pIBmL?=
- =?us-ascii?Q?q6MLtuPp4v85TyRl9540GC68CiSjr6lMn6hQimWvLuWg5mt52Uet19UPVBFq?=
- =?us-ascii?Q?gjLQWv7LCglZ+v3qMX4NwtRn9whBYVl+oV3qki05I3p+9m6x2w25llXvEnad?=
- =?us-ascii?Q?2NiKIFaSw9/EGUmPyn/2zWPZ2YIM5MVHMEAQzGG2YvDVLMDHmLRx1qSHzEOO?=
- =?us-ascii?Q?mSNwEnCWsSozTqYKNrQMdDE3Gw6lqlLHBMF0aZGCyRvBBx2yvKPBfT9FtQb+?=
- =?us-ascii?Q?JHfXXK1Gnp6gWXzn2jwrnZzBtZ55Qt6WwcnnU9t5OLRiKQP1SGnkf9zO1017?=
- =?us-ascii?Q?HRn0X2eOj2Yd2Xhgfn/riUOiBWKBtRe3it7sFwocya5ex+Sx/af/7y7EzDbK?=
- =?us-ascii?Q?Pc4n3fx0xYE45rVJSKFR6SD8WDrm8tlPKHBQ9AX2l6TmvIWf5wGhR5mwZOZN?=
- =?us-ascii?Q?G3d3cDSMXE6VvmkykAgiVdaf1pBS95rrKMrWVmc80lTBtUDCVrSkDc+aMuY/?=
- =?us-ascii?Q?MKSh/LZKeNHubSDTnsxsCQhNWv7+xIy/jo+mxwlyBzFhYM5FDi0WniDCCF3U?=
- =?us-ascii?Q?JLh4fvvHvJsVUUBBGrBNZwCjSrHBerM+4WTkmk9Sl4sHwaLZSuWuBXu3OTiT?=
- =?us-ascii?Q?Nd97J5/yYSn7CqBSoiGzw/e9RdrECL2d/SdVJM8xMh6U8XsBXEYXxXCCkDA3?=
- =?us-ascii?Q?vSoojyxtq7UDELGuH2OnrW6jpJ74s6wvOrXS4zp77npbDdnlBDlRukSHlz3d?=
- =?us-ascii?Q?MfkxwI0NzapOv1w3R9cs51zVo0P2kJvHuzWvG1Aro+xXcW6wdm/LWxKZ/Qj1?=
- =?us-ascii?Q?pQLdrCXyn7J8KEeEAxflbC02cGeZQTrNyFgrCinMC/zCQf+9XqV83X0X6dU+?=
- =?us-ascii?Q?rDUBYcbxNnYTSm4dwdjCBIxRsaysPsr2Ern1yQKTrVW5QSgJBGhxTLsQ3oGq?=
- =?us-ascii?Q?p0DQ3mv1UHyNSXRrdXd7O2Jv6tp7KRq5gZ8m0iCY/Bk2odcptO88O1Cphl/V?=
- =?us-ascii?Q?0j11WOBGLfTPip5MjUvXDiyn/xetB4gpAus3lkK6lZdjJCk5oiJEI20LoqrL?=
- =?us-ascii?Q?Au+opLCrpAkpZBkaO9a/MXDfIAenmgGNzKu487MIrFqqHMQT4bUY8kCPKtCO?=
- =?us-ascii?Q?VKRQ1DhHLvMIzsjUJJIwAYNe6SCH8MxVx/8mkiNm02lm1+dOwTQBQm/WVjv2?=
- =?us-ascii?Q?qBO8HIlpuD+NvsAjg76turEcgZIVudcc4ayR5ZrzOki1TtCFlpe2CEMNezVG?=
- =?us-ascii?Q?pZC1kjBz8T8IKO1Lf72CB0CV1J/PpVEPzJKz86QU8TYdkXqKGXbjxrHdaEe4?=
- =?us-ascii?Q?iA3I0B/nBYN8OASQEU3zzyqLywGLnLKwtI/yh8QoGK9gh0qF5J6X2wg/cSG0?=
- =?us-ascii?Q?/PrLmqJ6wiGp6A3AHGpJmwwtfdsALc4=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.13; Thu, 19 Mar
+ 2026 17:46:03 +0000
+Received: from SJ1PEPF00002310.namprd03.prod.outlook.com
+ (2603:10b6:a03:2c1:cafe::88) by SJ0PR13CA0233.outlook.office365.com
+ (2603:10b6:a03:2c1::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.19 via Frontend Transport; Thu,
+ 19 Mar 2026 17:46:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.232) by
+ SJ1PEPF00002310.mail.protection.outlook.com (10.167.242.164) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9723.19 via Frontend Transport; Thu, 19 Mar 2026 17:46:02 +0000
+Received: from drhqmail203.nvidia.com (10.126.190.182) by mail.nvidia.com
+ (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 19 Mar
+ 2026 10:45:53 -0700
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ drhqmail203.nvidia.com (10.126.190.182) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.20; Thu, 19 Mar 2026 10:45:53 -0700
+Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.9) by mail.nvidia.com
+ (10.126.190.180) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
+ Transport; Thu, 19 Mar 2026 10:45:47 -0700
+From: Akhil R <akhilrajeev@nvidia.com>
+To: <frank.li@nxp.com>
+CC: <acpica-devel@lists.linux.dev>, <akhilrajeev@nvidia.com>,
+	<alexandre.belloni@bootlin.com>, <conor+dt@kernel.org>,
+	<devicetree@vger.kernel.org>, <ebiggers@kernel.org>,
+	<fredrik.markstrom@est.tech>, <jonathanh@nvidia.com>, <krzk+dt@kernel.org>,
+	<lenb@kernel.org>, <linux-acpi@vger.kernel.org>,
+	<linux-hwmon@vger.kernel.org>, <linux-i3c@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+	<linux@roeck-us.net>, <miquel.raynal@bootlin.com>, <p.zabel@pengutronix.de>,
+	<rafael@kernel.org>, <robert.moore@intel.com>, <robh@kernel.org>,
+	<smangipudi@nvidia.com>, <thierry.reding@kernel.org>
+Subject: Re: [PATCH 04/12] i3c: master: Support ACPI enumeration
+Date: Thu, 19 Mar 2026 23:15:46 +0530
+Message-ID: <20260319174546.18329-1-akhilrajeev@nvidia.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <abwIUmXfapfi1k3D@lizhi-Precision-Tower-5810>
+References: <abwIUmXfapfi1k3D@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY6PR01MB17377.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 05789536-6877-47d5-db23-08de85df4197
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Mar 2026 17:45:05.7385
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002310:EE_|BL1PR12MB5876:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1b411289-d40a-48ab-b0ac-08de85df635f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|7416014|376014|1800799024|36860700016|18002099003|56012099003|22082099003;
+X-Microsoft-Antispam-Message-Info:
+	3tA3VluoEOjjYvpkzuNOuYqUD7udRa+EISr0nVZQ0S3rOiHNEI9sgXMQpa/b2kHSPMaSSBRy5K41au5RjZjzlLFuWBU/KSfi7RKT9QTzHuYi4hMMOkyMjxTozBQ0BF8xiaBOdmgm7FrPvRlyRT4nbxF6WfkdywQZY8VD0U/8gttcQGiAKpmdhAy/gESSQTFCN9v8AxXd/XwQiCyum7KfjNcRQkmlLEM5H8h2IbA581ndSu/teC+ximbSCpOA/0OEB+eAsgSy3RuZcRzgy77MXcfh1qzR1II8DS0W4emzonQIzrR3HF6q5ScZEBE0h3yEuHGT10qTLmxqBacqYmECGNKmgcsHTV1S+03mH8nW0mJp+s4npfZ5N1i03EV0ULoqcu+QXr2Ri0tdEI76L/Vvjw7hCJ/4jKETmtf3fIfFLRKtiHctdHyCIv5rUp/Pgq4EQLwZV67CpH2ytlbltJV9Rrt+9oENSPqAa9C+6s8FQWlmCTpgkJzU05mHdfNneJqutdTb30QiJhVZnO43WAbgYashgZsZIxNdixO05gUBHT9Qhux1fABdiFe90kOgcPyvhrM/xaIEHxkUqcb+kXOu0xdROYjOi7VldcAO9UNMKhzGpbL5/mgwk1TFsyWhzw+OmSu6cqKj94zJ7OL/V33I1bInqVs+8DfSS+40sMMRqiBvXU35U3UshlgJxYYSnV/fneRl0iUM2B+WIdg9E7RyQs00a8Al8ZsJD7lOFgzJCqx6SxT6GWpIAT4M9djQBa/3HY2RABGXLdYXeCvKyU8PeQ==
+X-Forefront-Antispam-Report:
+	CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(7416014)(376014)(1800799024)(36860700016)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	VKFzw6thxBZjESDrEYNHBhHwQDWBiIjdXhV02FH84i1bxHOH7KZES2Co2FnSSRjJwGGEKMzq0TmRgPak0zv9+FHGVdhT5EbKUH1hxjSMyej/JnH/QuB3k0HPPG4zzdc3okdkPCGV1a1pHsQ3LoiuaepymjCXbeLHGZ2TJkY3W/husmEvbmYduZoe7r137qrvVFmLKHnm3ZbpFznDzoWic7PdL1Hv5KMPtr2lTfGvplJ9gD3+jbuxACaxJ6UrcLNGKZjD9fVw2rWLws2Uv4qMiGBTdM8Ho+Adqpdf5qD1WZhAGJIj95Dl+TgZcV5WTC+T0wvQH717IPFVkY/iGgsBRjB7f4/KHN6kW5ZxeIs6ExgcIX6cFSq4A61xmFZLnIkMK7zKaRpkC5KNikNLIcNk3NjRnucIV8LX3U4Uus6rcYLx7LzrdGzHKydaYmpHqlex
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2026 17:46:02.4334
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: HDDMFCuCU9TMRsD33vGfsRymo/NRjLfZUrMe8TfbJQUJXay1f0pETflHkmudIPivpNSk5PorzgkCTzL/2P7ewu8dCZAHqkBft39Q9vYKTR0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSZPR01MB8171
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1b411289-d40a-48ab-b0ac-08de85df635f
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF00002310.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5876
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277936-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[glider.be,renesas.com,kernel.org,baylibre.com,gmail.com,perex.cz,suse.com,pengutronix.de,tuxon.dev,bp.renesas.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-277937-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[24];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[john.madieu.xa@bp.renesas.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[akhilrajeev@nvidia.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[bp.renesas.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	NEURAL_HAM(-0.00)[-0.949];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,renesas.com:email,bp.renesas.com:dkim]
-X-Rspamd-Queue-Id: 28E842D03F8
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	NEURAL_HAM(-0.00)[-0.965];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nvidia.com:mid,Nvidia.com:dkim];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: 87DBD2D041E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Thu, 19 Mar 2026 10:29:38 -0400, Frank Li wrote:
+> On Wed, Mar 18, 2026 at 10:57:17PM +0530, Akhil R wrote:
+>> Support ACPI enumeration for I2C and I3C devices on an I3C bus.
+>> Read _ADR and LVR from the ACPI resources and extract the data
+> 
+> ADR have _, but not _ before LVR, I am not familary with ACPI.
 
-Hi Mark,
+'_ADR' is a static ACPI object (or method), but LVR is not.
+LVR (Legacy Virtual Register) has to be read by parsing the
+ACPI I2C serial resource.
 
-Thanks for the feedback.
+> 
+>> as per the ACPI specification for an I3C bus. Also read
+>> mipi-i3c-static-address as per the MIPI DISCO specifications [1]
+>> to get the static address to be used.
+>>
+>> Although the existing subsystem allows host controllers to register
+>> through the ACPI table, it was not possible to describe I3C or I2C
+>> devices there.
+> 
+> why?
 
-> -----Original Message-----
-> From: Mark Brown <broonie@kernel.org>
-> Sent: Thursday, March 19, 2026 5:22 PM
-> To: John Madieu <john.madieu.xa@bp.renesas.com>
-> Subject: Re: [PATCH 00/22] ASoC: rsnd: Add audio support for the Renesas
-> RZ/G3E SoC
->=20
-> On Thu, Mar 19, 2026 at 04:53:12PM +0100, John Madieu wrote:
->=20
-> > This series includes:
-> >   - Clock driver support for audio clocks and resets
-> >   - DT bindings update for DMA ACK signal field
-> >   - IRQ chip extension for DMA ACK signal routing
-> >   - RZ-DMAC driver updates for ACK signal support
-> >   - R-Car Sound driver updates for RZ/G3E support
-> >   - System suspend/resume support
-> >   - Device tree nodes for RZ/G3E SMARC EVK
->=20
-> Are there any non-runtime dependencies between the various patches here?
-> It's a fairly large series touching multiple subsystems, we'll need to
-> work out how it gets merged.  It looks to be mainly ASoC but perhaps the
-> other subsystem changes are independent and can just go via their tree?
+The existing code relied on the 'reg' property to get PID, static address etc.
+ACPI table entries do not use reg property, instead use _ADR or other resource
+objects. Also for ACPI, MIPI recommends a different format which encodes the
+details in the _ADR object. The specification also includes a few additional
+properties like mipi-i3c-static-address, mipi-i3c-static-method etc. which
+the new code follows.
 
-The series contains the full chunk of patches for audio IP to work, so they
-depend on each other for runtime to work. However, patches will go through
-different trees and will eventually meet in linux-next or a release.
+> 
+>> This change enables describing the I3C or I2C devices
+> 
+> Don't use "This commit/change/" just Enable ...
 
-In addition to that, DMA (patch 06/22) has hard dependency on IRQ (path 05/=
-22).
+Ack. Will update.
 
-The merge strategy could be:
-
- * Patch 01, 03/22 =3D> Clock
- * Patches 05-06 /22 =3D> DMA
- * Patches 07-17/22 =3D> ASoC
- * Patches 02, 18-22/22 =3D> DT
-
-Next time I'll take care of clarifying this in cover letter.
-
-Regards,
-John
+Best Regards,
+Akhil
 
