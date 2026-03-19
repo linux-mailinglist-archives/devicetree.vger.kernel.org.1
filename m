@@ -1,210 +1,230 @@
-Return-Path: <devicetree+bounces-278002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278003-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OLdzEHJJvGknwgIAu9opvQ
-	(envelope-from <devicetree+bounces-278002-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:07:30 +0100
+	id +BR5JKJJvGknwgIAu9opvQ
+	(envelope-from <devicetree+bounces-278003-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:08:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B38412D1821
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:07:29 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C98D2D183E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:08:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D03CA3048060
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:07:14 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 91FB83006807
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:08:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3FB0359A76;
-	Thu, 19 Mar 2026 19:07:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="t1lzzWZM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B7E835BDBC;
+	Thu, 19 Mar 2026 19:08:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96ADC34D395
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 19:07:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 146CF21ABC9
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 19:08:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773947229; cv=none; b=JcxBo76Q3TSNhO/b5j9MJxu75GKVzKMXe4K0AH20zS+7PFd9HuxgT63S9EpI4Djiy5LTNoibKuPQURC4UCY/vuhpUEdPEroljonoj3bhl65ghfd+MRW/W48bf579spM45r3d4te4RsgO8YesGVN5TmYYbeuV2be7iwg2eMOtNDs=
+	t=1773947294; cv=none; b=rVeDRRdQbV4WhFR26exh0pyHhWPnXrla+VZezPAwUkicWeZnXvcbVA9aig44y7lsUo70TdTPrV3tTtCwVWD0oroVkFaLL7JWmNYpAH0Sv6/YrZhtt2NvwZOmtsOQayNGM0OAaWQOOncsG9GuwqQrJGQg7m2Kb4vcBlYheB1qTYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773947229; c=relaxed/simple;
-	bh=yW/IU3e25Zy4WJaB66NqymPliyoUarcBRbIx9wdpU0o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tF5q295ibVP6aZc/KFwhLLZfquKqIFKYVgAinXmGRNmfxMnRxWyIrW6FyYImVyxbRxBC9YfdlKYEoMLAZbczJg5+gLBwoqPUUIzeHsC8IsUDrh2cmqgGBMGO25LYk8qbQusV5xI41uCbiyW3z8HL8WP3etl2ZbyRPHNgp/A2Lbo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=t1lzzWZM; arc=none smtp.client-ip=209.85.161.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-67c1d6890f3so343306eaf.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 12:07:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1773947226; x=1774552026; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0qCQhLNUlaK92jVRFmSRxDAiEZoE/HXa9IGlyqo2jsM=;
-        b=t1lzzWZM5ng5qbMQmo3Orles0xIKvcsBntpdGd156f1a/3+T0aoVBC49MBXw6II3xM
-         a8GLgmHLbgL8DSBiciq3XFuRlmtiLFDnQUxaymVDG2gNKhpG91/STY/Kjxj8zBFwzqNM
-         ogiEzaGXs2+PsNZ+YYQyZWNk6x3Q32bGKzRiUUIRzfHeiXFcj2TcKjyedSMUvfL0TFQf
-         rcRCRXUenUqw9wdRj4cQW12JSEjg/Onsb+KBYPWf65GKmn6Ex+NVAH/lsY3OI2rrMTJh
-         LTyXVvpcmykCGXKtOxWs5xUMgdXb3BgAeMvxj2qFo/XJ38XiBuCVeUIBV33K4UHYfBe2
-         zEKA==
+	s=arc-20240116; t=1773947294; c=relaxed/simple;
+	bh=JrtkPabg5qRXMNb7b8TTMESGTuhXIyjlnOmXliDdUCg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FOe6TqTPMU8Hyews/Jzj7nxxw/ukPthsLXybQO17Gh5HNSyYdXwWSUw4lI8xfDNIqFv9uaQ2boz5ZRn0PxTVN+BfnApRHSnuPIEy56ZbjhxlFIXsnpQQLJxwfckMuaa5I6+oGy3cPbfpDP5SuzZHS+Ylhh2SJ/BbI3sr2Td4K/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2ad617d5b80so8413375ad.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 12:08:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773947226; x=1774552026;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0qCQhLNUlaK92jVRFmSRxDAiEZoE/HXa9IGlyqo2jsM=;
-        b=aqsn4i3K9gei4+otf06dz8SuojMQiMz9T0mDr9SajbrD/hdGXYlQk/YByjgsXreNd9
-         WLVgEbpRAUW9JeGALdYXXvRlxpIJpVILauaBz8hs6o3KE1uTG03RrHdX5QiaC0PlWRcC
-         Hh1o8UJVstHAEMJ7nXtuREfil7x0hf9Ic8BL9TAkTjEmUpRUN14pwCh8lYS2VLMiu/2M
-         JkTe63dwTj3S+iAt5xHkYS8k2yNdWNfdUu+47Cmm6fXz0ROP02gwlvbSKWXCtOwzgmue
-         DxMZXeIpfDGMhg3F4WYYGBaR9j6L8ZxV5ODZYggmPLfE+5pDaTV8PcQvB0js1ZIvhz5/
-         7FVw==
-X-Forwarded-Encrypted: i=1; AJvYcCVJI/qTFGzI9vNOShvtTs3K8ya4zc9tL+lTR5cHY0DhQ1m+MJS2jTuihRIeKO+zWX7G19pyVl3dwWjD@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfjXhVePizW3j3ngkSpOONjVW21+fDBW8lDohpTpEWHP8Jv8h9
-	YjjbvU0EUeaRRjg45Zri9gLqT2Hul1BNVFO1RQB9Q6TWjcURrYe1Yw3lN347nURRIK4=
-X-Gm-Gg: ATEYQzx2sqj9hc4VThRipxGlyJ/d6kk2qIpwZqAEhFV7kVofZvLZQQnrYmTMcmtpBzk
-	30TPER1pfFuPFN0+bXNY1FIhppXaEBJuarkxdeXMOQa5WMnQZuIZERP+8BTb9S4wLIi33mjDK4s
-	Mf9hg3dbli8SIlEiI1enWkIZEC33oC8t2CesM95f5BjiL6fSqq1FpqJRdpM7E7p/YYsm8xrwNoU
-	RO/FtBwCDlPGpPF+j4JKzTeKH5lccaoH6zSlJhp66zuRETnLsI3ccaHm7a9IZ8VOTdzQg2YvQ/U
-	vdji/GRmjRARgiNvCXXUIMV9WA+jpitIH3AtDLf9KzUfQ3QEYmYvpcMUfLKhGDQYDGm+GMhDT1/
-	uXjor9LW2mcD/3VVAwJX7VBX+vTCbPnUnDZpsTiDA/1rgspHofKvWscqB+sB/tU71AsNlxixFm1
-	wcB/ZE13Q7GGKyWcjYAIhDMEX8i2hjNOGN5gpUOGl+3jcxldBGHvMvgsbpy/yW4OxsFbU5s9r88
-	GGiq9Y2Xm4J
-X-Received: by 2002:a05:6820:806:b0:67b:a4cb:293f with SMTP id 006d021491bc7-67c235fb70fmr249017eaf.17.1773947226499;
-        Thu, 19 Mar 2026 12:07:06 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:500:244c:fc8c:8216:1344? ([2600:8803:e7e4:500:244c:fc8c:8216:1344])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-67c0d724e53sm3921843eaf.0.2026.03.19.12.07.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Mar 2026 12:07:06 -0700 (PDT)
-Message-ID: <faa4e46b-1cc6-4bab-b13e-c527a67ec4c4@baylibre.com>
-Date: Thu, 19 Mar 2026 14:07:04 -0500
+        d=1e100.net; s=20251104; t=1773947292; x=1774552092;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yTSBQ37exNchnpndmYARHtt6/gb7fr1HX5RwBesYqUk=;
+        b=ra58c95RjJxWGWCMPK1+01D+szosPHh/idzXnqKuYUbI4EERDaG8MAbZqPy6/cJbFm
+         2ONV8GDI+29P972HDIjO+OipKAbhJ1qLgT3SrJI/R+PNkoutxNjpSDvRPSrLVZNp5D10
+         EcWrrmezExySilYjGnqrLY1WqFkyNCUCARlVUesJbDVbig5NxMpfnKo7D/9Vw6GwpD3k
+         Lxt/LE2FV5QcYBmobvZcyA/gTnL4idZLQC3epDaP4QfdKy+wnLR/LYnX0D4Mcu1O4lq5
+         45QxaWUZILs1oFp+9IDyySwJbA29T2+UMx2equTHbslnS4D7KLk903f4SfFmQK7bhiGg
+         +bfA==
+X-Forwarded-Encrypted: i=1; AJvYcCViMLVEQCc/9Q7o5zcYL5+H1NoVqlF69csyT8hcSyHC3PxGXNavKlEcIJele9R3x46x8hDn1nq3BgyK@vger.kernel.org
+X-Gm-Message-State: AOJu0YyxYZ4WbWDZQDlh/xIt7fjrAg2lCbhybxGh+pqqyW1HAFIDAwL+
+	AW7Um+YsjV5B+6E6/fdgQbmBV5vx1KE8vlwpRFZVowZnL+S9r7suEet6
+X-Gm-Gg: ATEYQzzuovzaK/gvNtQJgArv3F41GoF6dmKeVbCtwRljKjuUmrlnxQS4QBYx57W1LgJ
+	OT+LDQ722sTMZL/TEVSLwQp54qmZRvxuE3JD3/9cnGPILAzuyfRBcXwwxH2YSDr/V6It4YRkCrz
+	Lr+72y2IwwiCUVFVH9a0bEHLIJiwnv8xyHtxFYcpfzhe3D2zMZr5rBcX+g+EwqaLzuqiGg/x2jN
+	C79XLYvbiA9Ejz4VH5Lm4b3+vKdijaBRSzmk7EDkBWRtvF20i6loMZFwBmyjd4njDVc/o3vovgr
+	mZCwwf4cR2sLw6+3SLrl2wjqII7pQhqetFzj+HWzzNMRWEbtTX1NmyQoUL9/NjjftN03vzkF8Zd
+	Kt1Cvzr7AxawXh9yLE5hzKjsXEIYEe2G+4Ux88ykKVNY+Xkiv2sTaiCHiZqL45scfhUCWKt+o1u
+	OMupkkQKUrxm4xQuLuo3A1j3f1CIEDOuuev3R6yfiPH/Esz6BtoZERsY9wXJQ32BUXJLnueKCvT
+	/xBmcmojPpLEJcpSCNVBYsf4Dep
+X-Received: by 2002:a17:902:f605:b0:2b0:5990:cf1e with SMTP id d9443c01a7336-2b0827d60cbmr3117265ad.33.1773947292120;
+        Thu, 19 Mar 2026 12:08:12 -0700 (PDT)
+Received: from archlinux.www.tp-link.com ([103.135.252.21])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b06e603b2asm68665345ad.55.2026.03.19.12.08.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Mar 2026 12:08:11 -0700 (PDT)
+From: Siratul Islam <email@sirat.me>
+To: linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: jic23@kernel.org,
+	dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	andy@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	Siratul Islam <email@sirat.me>
+Subject: [PATCH v6 0/2] iio: proximity: add driver for ST VL53L1X ToF sensor
+Date: Fri, 20 Mar 2026 01:07:12 +0600
+Message-ID: <20260319190738.151614-1-email@sirat.me>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] dt-bindings: iio: adc: xilinx-xadc: convert to YAML
- format
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Michal Simek <michal.simek@amd.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, saikrishna12468@gmail.com, git@amd.com
-References: <20260220053941.611415-1-sai.krishna.potthuri@amd.com>
- <20260220053941.611415-6-sai.krishna.potthuri@amd.com>
- <20260221-dancing-papaya-wolverine-db8afd@quoll>
- <b89933a3-5f25-466c-a2f5-6e231aa12749@amd.com>
- <21d425bc-9406-401b-9817-7255ba3d31fc@baylibre.com>
- <e4c9729f-1785-4d10-a337-37b0d26fe30b@amd.com>
- <f1706ec0-3995-4fdf-a9fb-8e1e688438a7@baylibre.com>
- <05bcc5b7-b3e8-40fb-be70-413c74afcfb1@amd.com>
- <cf749e8c-f141-4367-81ad-827e02273ec5@baylibre.com>
- <6a4e3d95-875f-4c2b-8443-c2f2b19ff166@amd.com>
- <12a06779-cbbb-4dc2-b564-7b9cdff6796b@kernel.org>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <12a06779-cbbb-4dc2-b564-7b9cdff6796b@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278002-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,analog.com,amd.com,vger.kernel.org,lists.infradead.org,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.992];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278003-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[sirat.me];
+	RCVD_TLS_LAST(0.00)[];
+	NEURAL_SPAM(0.00)[0.206];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,baylibre.com:mid,baylibre-com.20230601.gappssmtp.com:dkim]
-X-Rspamd-Queue-Id: B38412D1821
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[email@sirat.me,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3C98D2D183E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/19/26 11:49 AM, Krzysztof Kozlowski wrote:
-> On 19/03/2026 16:49, Sai Krishna Potthuri wrote:
->>>>>>>>>
->>>>>>>>>> +
->>>>>>>>>> +$defs:
->>>>>>>>>
->>>>>>>>> Why this is a def, not used directly? I see only one usage of this def.
->>>>>>>>
->>>>>>>> I am getting the below error if i define the patternProperties directly.
->>>>>>>> Seems like complex vendor peroperties should be referenced via $ref.
->>>>>>>> Please suggest if there is any better way to deal this.
->>>>>>>
->>>>>>> It is hard to say without seeing the new version of what you wrote.
->>>>>>
->>>>>> In v1 series, i created $def and referenced this in xlnx,channels to avoid the error that i mentioned.
->>>>>
->>>>> Is the code below the code that causes the error?
->>>>
->>>> No, the below code is not creating the error but Krzysztof asked the question on this code,
->>>> "Why this is a def, not used directly? I see only one usage of this def."
->>>>
->>>> I am saying if i don't use the def and use it directly i am seeing the error that i mentioned. So, asking is there any better way to handle this case other than using def.
->>>
->>> If you could show us the actual code that is causing the error, then
->>> we could perhaps spot a mistake or suggest an alternative.
-> 
-> Thanks David, I am surprised how many emails we need to exchange just to
-> see the actual code.
-> 
->>
->> Thanks. Here is the code that is causing the error
->> ("properties:xlnx,channels:type: 'boolean' was expected").
->>
->> xlnx,channels:
-> 
-> Device nodes do not have any prefixes. Just take a look at any DTS or
-> any binding.
-> 
-> Probably that's the reason, because nothing in this code looks
-> particularly odd. Anyway, please do not come with odd syntax in the code
-> without any explanation, just to make it passing the tests, so for
-> example ignoring the checks we have.
-> 
-> 
-> Best regards,
-> Krzysztof
+This series adds support for the STMicroelectronics VL53L1X
+Time-of-Flight ranging sensor.
 
-Since this is converting existing 12-years-old .txt bindings, I don't
-think we can "fix" the bindings by dropping the vendor prefix.
+The VL53L1X is a ToF laser-ranging sensor with I2C interface,
+capable of measuring distances up to 4 meters. The driver
+supports both interrupt-driven and polled operation.
 
-I think in cases like this, Rob will usually fix the tooling to ignore
-this as a special case. (I had a similar case last year on a conversion
-I did.)
+Why a separate driver is needed (instead of extending vl53l0x-i2c.c):
+The VL53L1X is fundamentally different from the VL53L0X despite the
+similar naming. Extending the existing driver would require rewriting
+the majority of it.
 
-So I think the right thing to do is to not use $def and explain in the
-commit message why the error is expected (we can't change existing bindings
-even though they are "wrong" by current standards).
+Key differences include:
+- A different register map (16-bit addresses vs. 8-bit addresses).
+- Requires a 91-byte firmware configuration blob to be loaded at boot.
+- Requires a VHV calibration cycle.
+- Has distance mode and timing budget configurations.
+- Uses the regmap API rather than raw i2c_smbus calls.
 
-If this was a new binding, we should be using the common adc.yaml for IIO
-ADCs which already has patterProperties for channels and a bipolar flag.
-But we are stuck with this vendor-prefixed one here.
+I also reviewed other drivers in drivers/iio/proximity/ and can
+confirm this IP block does not appear to be shared by any other
+existing driver.
+
+Tested on Raspberry Pi 5 with a VL53L1X breakout board.
+
+Note on vdd-supply:
+In v2, I added vdd-supply as required. Since I'm using the
+shared st,vl53l0x.yaml binding now, I had to drop that requirement
+to avoid breaking backward compatibility for existing st,vl53l0x
+devicetrees. The driver itself still uses non-optional
+devm_regulator_get() so no change there.
+
+---
+Changes in v6:
+- Make vdd-supply required. Add descriptions to vdd-supply and reset-gpios (per Jonathan).
+- Check reset_control_deassert() return value (per Andy).
+- Use volatile table for result registers and caching for the rest. Also mark write-only registers.
+
+
+Changes in v5:
+- Patch 1: No changes. Collected Reviewed-by tag from Krzysztof Kozlowski.
+- Switch XSHUT pin handling from the GPIO consumer API to the Reset controller API.
+- Drop <linux/gpio/consumer.h> and include <linux/reset.h>.
+
+
+Changes in v4:
+- Move i2c_check_functionality() to the top of probe before allocations.
+- Use struct u32_fract for oscillator correction math.
+- Explicitly set .cache_type = REGCACHE_NONE.
+- Document intentional predisable drain
+- Use dev_err_probe() for firmware boot timeout and remove duplicate IRQ request error message.
+- Use sizeof() in regmap bulk read/writes instead of hardcoded lengths.
+- Add missing headers (<linux/math.h>, <linux/time.h>, <asm/byteorder.h>).
+- Various formatting cleanups per Andy's review.
+
+
+Changes in v3:
+- Merge DT binding into existing st,vl53l0x.yaml (per Krzysztof).
+- Use "reset-gpios" in the binding but xshut_gpio in the driver since that's the actual pin name.
+- Replace manual polling loops in chip_init and read_proximity with regmap_read_poll_timeout().
+- Remove irq_get_trigger_type() and pass IRQF_NO_THREAD directly (per Andy).
+- Drop struct i2c_client from private data and store irq as int instead. Derive struct device from regmap where needed.
+- Add dev_err_probe() to first devm_request_irq() error path.
+- Replace linux/device.h with linux/dev_printk.h, add linux/array_size.h, linux/err.h, linux/types.h (per Andy).
+- Use USEC_PER_MSEC for poll timeouts.
+- Remove unnecessary casts.
+- Divide long config blob to 8 values per line.
+- Rename goto label to notify_and_clear_irq and drop unused dev_dbg.
+- Add datasheet section reference for boot delay comment.
+- vdd-supply no longer required in shared binding to avoid breaking existing st,vl53l0x devicetrees.
+
+
+Changes in v2:
+- Skip software reset in chip_init when xshut GPIO is available, since the device was already hardware-reset during power-on.
+- Rename "reset" GPIO to "xshut" to match the datasheet pin name and updated DT binding accordingly.
+- Make vdd-supply required in DT binding.
+- Use reg_sequence arrays and regmap_multi_reg_write() for distance mode configuration.
+- Switch to a hardirq handler with iio_trigger_poll() and IRQF_NO_THREAD instead of a threaded handler.
+- Drop IRQF_TRIGGER_FALLING fallback. Leave trigger type to firmware/DT.
+- Use iio_validate_own_trigger() instead of a custom validate_trigger, drop trig pointer from driver data.
+- Switch usleep_range() to fsleep() throughout and add comments for sleep values.
+- Don't fail probe on unknown model ID, just log with dev_info().
+- Split stop_ranging cleanup into its own devm action, separate from power_off.
+- Add missing includes: device.h, bitfield.h, completion.h, mod_devicetable.h.
+- Use FIELD_GET() for range status checks.
+- Move configure_irq() closer to probe(), use dev_err_probe() for its error paths.
+- Fix buffer ops symmetry: postdisable -> predisable.
+- Drop reg_format_endian from regmap config.
+- Various alignment and formatting fixes.
+
+Link to v5: https://lore.kernel.org/linux-iio/20260313113737.151881-1-email@sirat.me
+Link to v4: https://lore.kernel.org/linux-iio/20260312183721.40482-1-email@sirat.me
+Link to v3: https://lore.kernel.org/linux-iio/20260311224044.21480-1-email@sirat.me
+Link to v2: https://lore.kernel.org/linux-iio/20260308113728.40860-1-email@sirat.me
+Link to v1: https://lore.kernel.org/linux-iio/20260303090253.42076-1-email@sirat.me
+
+Siratul Islam (2):
+  dt-bindings: iio: proximity: add ST VL53L1X ToF sensor
+  iio: proximity: add driver for ST VL53L1X ToF sensor
+
+ .../bindings/iio/proximity/st,vl53l0x.yaml    |  17 +-
+ MAINTAINERS                                   |   7 +
+ drivers/iio/proximity/Kconfig                 |  15 +
+ drivers/iio/proximity/Makefile                |   1 +
+ drivers/iio/proximity/vl53l1x-i2c.c           | 820 ++++++++++++++++++
+ 5 files changed, 856 insertions(+), 4 deletions(-)
+ create mode 100644 drivers/iio/proximity/vl53l1x-i2c.c
+
+--
+2.53.0
 
 
