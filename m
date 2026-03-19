@@ -1,61 +1,52 @@
-Return-Path: <devicetree+bounces-277595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277596-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sOZwICGnu2mUmQIAu9opvQ
-	(envelope-from <devicetree+bounces-277595-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 08:34:57 +0100
+	id GB9mMAuru2ngmQIAu9opvQ
+	(envelope-from <devicetree+bounces-277596-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 08:51:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80E632C754B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 08:34:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 410472C7804
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 08:51:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9EA5D301AA90
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 07:34:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 833E730363B3
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 07:51:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 916033A3825;
-	Thu, 19 Mar 2026 07:34:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78B563A5438;
+	Thu, 19 Mar 2026 07:51:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=superkali.me header.i=@superkali.me header.b="Fa93/nJ1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uvJMQjdv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fr5000-r.dnsiaas.com (fr5000-r.dnsiaas.com [92.42.104.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37D5A3A0B11;
-	Thu, 19 Mar 2026 07:34:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.42.104.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDD8D3A4F2E;
+	Thu, 19 Mar 2026 07:51:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773905658; cv=none; b=KoX2Uz7rQ15LmciTOgVMKqsxK9nyJ5CS1MitcUhOFq/4QbT4qWOuKy9Fg6LSodDnSzQplJ1O/KhkuSt0GkZjvcR39i9r01sHbsblLgDJKYEuLQvTWLtDfG7wxU/ZjpNqObYgsyHDJEsumZvYonXKesd2A6O93K9j5/wZyGYoU6M=
+	t=1773906685; cv=none; b=YpajUNh6W4X2JAE4MH4+2CVqaIpJ1L1UO32qDQyDhCqucXsu8aXHjLZlAt0Ujo5ABqI3MfpKksdmeMEhkF3CqZm2UKewu2RvwdzFTl8ZRdl3l2jAnqCLjc+8CHkv7R/OAt4hMAnwkTrEEB25vunU45IRZnAEnYWwz5wivldzR7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773905658; c=relaxed/simple;
-	bh=RRXcYO4mT56fSVQOstELDSYSDSMhqXysPx/fily7Lbg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=KeVP1IZ/3PT59c4DAJDAPZypfb0p8vA5v5IXIhiaAZX/RsGYGRuB7Tk+NN945nbDYxHDbwKeYmnII21mXt46ZbaY6KC3xEurlL65KZUxw/YsXNCuTPaXk24e2yHr+MuGPCZRV/DWwUBo/7gOOWqFBgD4KvklcX0GSHA8QaKBPWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=superkali.me; spf=fail smtp.mailfrom=superkali.me; dkim=pass (2048-bit key) header.d=superkali.me header.i=@superkali.me header.b=Fa93/nJ1; arc=none smtp.client-ip=92.42.104.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=superkali.me
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=superkali.me
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=superkali.me; s=default; h=Cc:To:In-Reply-To:References:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=/eya4aDQvTnyY42odUn+c0tG4YGtX2GnC9CVns2UdOY=; b=Fa93/nJ1SHCkFv09DDPc9+WrYL
-	qnm5dK9CwdIuF0OcTKk1pR70Oco3mBMQtqx5+VB7RSujDXfaLRRD6J/4eEtFw4MGsRQg5zJZlBYRA
-	ljm7AftcVXQtxAtGIFTKoDHWxdu/3r3rfvrVFz1w3zJUXBtyok6jdaeVtn4Fh+R6E+3nWZ0sw6ET9
-	kXkuZaW04JqamnDg1VsiE8Fb29I+GM0BJQhABeOmWHYSBQpcfjxbqmLk4KvhW9epvxYqhbJhcR8yF
-	JG4LXaEQhzeqI6+4PxmRvnrUcHYG5mfIa3xomRp9fkJDv4GekJV4jO1DYmz+/NeS+rIKt/I83hc34
-	7xLuK5nw==;
-Received: from [109.52.2.233] (port=10095 helo=mac.lan)
-	by fr5000-r.dnsiaas.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.99.1)
-	(envelope-from <hello@superkali.me>)
-	id 1w37tS-0000000DgEs-3VvV;
-	Thu, 19 Mar 2026 08:34:08 +0100
-From: Daniele Briguglio <hello@superkali.me>
-Date: Thu, 19 Mar 2026 08:34:01 +0100
-Subject: [PATCH v2 3/3] clk: rockchip: rk3588: add GATE_GRF clocks for I2S
- MCLK output to IO
+	s=arc-20240116; t=1773906685; c=relaxed/simple;
+	bh=i1jMaR7Of+P2VM0u1uTYga1uly9QzP3vQQpTIT7NgaA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=uS3GgyvX1POAUxnNcGHSxeU4OUF6kF1BzkcfPJsQLR/370LVIelpWV8rk8krs70vntQ/q7SCFWp2GNL9jBf1FrDoAjtmgmkBwv91a4jCnA8Ms9wWF4GZbvQ/t2awevZt8EYCZrT97HAO4IZvT0Wf8tI8GvWwmpGthSPYP5GSXL8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uvJMQjdv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C74BC19424;
+	Thu, 19 Mar 2026 07:51:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773906684;
+	bh=i1jMaR7Of+P2VM0u1uTYga1uly9QzP3vQQpTIT7NgaA=;
+	h=From:Subject:Date:To:Cc:From;
+	b=uvJMQjdvIqKcJBM+oKLcnoS1HISYnv+tsFGZXhfWwwORjxOoIOapQT85B8s0t7ygQ
+	 F/WW6GxkHikvcvogK/1IbtJVZdWD+1eBURSOeITCAfAVMI2WykDqulpgmIOVwl7TD6
+	 YEM5QkPOkwdv72M4z8c6c2Gvx8Jg7K11FQ+znSyxWaJS2TQsFSCSP5h37zPsydqU9Z
+	 UlH9bTykDHDQ/7pNNKPqed82X3NUUxpx3k6/Yj01s8gPKRF3U6bf6rPUH555/Wej87
+	 5ReqOSuKEA3A/Cux5/sLtUBexCbh5djlo1tbO5rfCeGWysT7f1u5h+oNqCYYzoW299
+	 LNYQsqWP+Z7qw==
+From: Yixun Lan <dlan@kernel.org>
+Subject: [PATCH v2 0/2] usb: misc: Add Terminus FE1.1 USB2.0 Hub support
+Date: Thu, 19 Mar 2026 07:51:02 +0000
+Message-Id: <20260319-03-usb-hub-fe1-v2-0-e4e26809dd7d@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,184 +55,101 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260319-rk3588-mclk-gate-grf-v2-3-c4c8daab0762@superkali.me>
-References: <20260319-rk3588-mclk-gate-grf-v2-0-c4c8daab0762@superkali.me>
-In-Reply-To: <20260319-rk3588-mclk-gate-grf-v2-0-c4c8daab0762@superkali.me>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- Daniele Briguglio <hello@superkali.me>, kernel test robot <lkp@intel.com>
+X-B4-Tracking: v=1; b=H4sIAOaqu2kC/3XMSw7CIBSF4a00d+w1PKS0jtyH6QDqpSUaMGAbT
+ cPexc4d/ic53waZkqcM52aDRKvPPoYa4tDAOJswEfpbbRBMtExyjUziki3Oi0VHHKVqDZmT7oy
+ yUE/PRM6/d/A61J59fsX02f2V/9a/1MqRoeY0yr7rnbJ0uVMK9DjGNMFQSvkC/JZM9K0AAAA=
+X-Change-ID: 20260317-03-usb-hub-fe1-356aea478a5b
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Matthias Kaehlcke <mka@chromium.org>
+Cc: Junzhong Pan <panjunzhong@linux.spacemit.com>, 
+ Inochi Amaoto <inochiama@gmail.com>, spacemit@lists.linux.dev, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-usb@vger.kernel.org, Yixun Lan <dlan@kernel.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773905640; l=4935;
- i=hello@superkali.me; s=20260316; h=from:subject:message-id;
- bh=RRXcYO4mT56fSVQOstELDSYSDSMhqXysPx/fily7Lbg=;
- b=6wylI2my88AJ0f/POCTOB9wj2WP1YanNZ/nQ0a95gj2CwoHZOGAJbcGnCPhCpQ6XnX3tO2Vo5
- 2atK0jFaZWFAkT+GW+t3rnqct4SYcJ/DxsRRYAZdinNSnwSl9AYV8id
-X-Developer-Key: i=hello@superkali.me; a=ed25519;
- pk=5tynRWQdL93CDcapJ73FkcCRY2PeBOJOIAoIhRig53U=
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - fr5000-r.dnsiaas.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - superkali.me
-X-Get-Message-Sender-Via: fr5000-r.dnsiaas.com: authenticated_id: hello@superkali.me
-X-Authenticated-Sender: fr5000-r.dnsiaas.com: hello@superkali.me
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Spamd-Result: default: False [3.04 / 15.00];
-	DMARC_POLICY_REJECT(2.00)[superkali.me : SPF not aligned (relaxed),reject];
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1278; i=dlan@kernel.org;
+ h=from:subject:message-id; bh=i1jMaR7Of+P2VM0u1uTYga1uly9QzP3vQQpTIT7NgaA=;
+ b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpu6ruNkgp8o4z9dTuxMbkk/cRz4Pz3WTVcdyv6
+ xH3uI9M6vKJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCabuq7hsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
+ maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
+ QACgkQMarqR1lNu+2OgBAAjVjPxs+TeMSm2eKu0ytTWbx7GrC96OsPGNhKcAR+VZVYcy7uCwB6w
+ QcoVddOOU4F7HZ/MB2yU6+DmbFVr+Dw06y33psFK42Y/d7ntUN8Dh/8JfvpM9JYOkLIvNPx9si9
+ 2s0JrHKv78uYaa9NPKJUqYyTrQwgLSGxTMt6KqxlXte57KbPuiuvWDBfKtYy6oBuJbA7okylqWC
+ UxvZbwMSliGJrk7KKtPxDjgt9SR1FrE2W4oB+88Vz7S2HIyvkG7Z7O5AIjcncOxWVDPGksT0eb2
+ J74EclC0CPS/GDsAISRLkYqLcoEpr4tNyuprP5remjZkcMOiPa/FDP5oJf4JZhf0wIQX3Dg7KJZ
+ 7XDKnINo4Gn7HitYT4VEPXxWXTslzYojHPkwbrVcUuB01TWi2/W82W9B+laG2YyXcAgrSJbs0vn
+ zD6jIUXXiXkmcCtANuIfwbRiaKHJmhEH7RKxJeusLEV+AmUzCDShJXFdCzmogS0GpFWfigsOdSH
+ bEBhnOkZCiwK5WjhMbBftYMaPAzwuaLA4tWhJurxs7zf7iAsmjqbRB1ERgmTkyA+3q//Y10kkyM
+ HehYiAoPt0e0aNmQ+qWVTFx0clfy/xpnhoIYY3/CuZpFgA0WsL3p4OTxFIRv8OFbK0bbeb33IWm
+ 83OABDOPfuAcj0Wme0i+wStAPIJpWM=
+X-Developer-Key: i=dlan@kernel.org; a=openpgp;
+ fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_REJECT(1.00)[superkali.me:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-277596-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277595-lists,devicetree=lfdr.de];
-	HAS_X_GMSV(0.00)[hello@superkali.me];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	HAS_X_AS(0.00)[hello@superkali.me];
-	HAS_X_ANTIABUSE(0.00)[];
-	DKIM_TRACE(0.00)[superkali.me:-];
-	FROM_NEQ_ENVFROM(0.00)[hello@superkali.me,devicetree@vger.kernel.org];
-	NEURAL_HAM(-0.00)[-0.052];
-	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[linux.spacemit.com,gmail.com,lists.linux.dev,vger.kernel.org,kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	HAS_X_SOURCE(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.993];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_WP_URI(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,superkali.me:email,superkali.me:mid,intel.com:email]
-X-Rspamd-Queue-Id: 80E632C754B
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 410472C7804
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The I2S MCLK outputs on RK3588 are gated by bits in the SYS_GRF
-register SOC_CON6 (offset 0x318). These gates control whether the
-internal CRU MCLK signals reach the external IO pins connected to
-audio codecs.
+This series try to add support for Terminus FE1.1 USB2.0 Hub.
 
-The kernel should explicitly manage these gates so that audio
-functionality does not depend on bootloader register state. This is
-analogous to what was done for RK3576 SAI MCLK outputs [1].
+The FE1.1 Hub provide interesting choice of selecting power supply from
+either 3.3V or 5V, if need to use integrated 5V to 3.3v regulator, the 5V
+supply should be used. Otherwise, 5V pin can be set to NO-Connection,
+and use the 3.3v external supply source.
 
-Register the SYS_GRF as an auxiliary GRF with grf_type_sys in the
-early clock init, and add GATE_GRF entries for all four I2S MCLK
-output gates:
-
-  - I2S0_8CH_MCLKOUT_TO_IO (bit 0)
-  - I2S1_8CH_MCLKOUT_TO_IO (bit 1)
-  - I2S2_2CH_MCLKOUT_TO_IO (bit 2)
-  - I2S3_2CH_MCLKOUT_TO_IO (bit 7)
-
-Board DTS files that need MCLK on an IO pin can reference these
-clocks, e.g.:
-
-    clocks = <&cru I2S0_8CH_MCLKOUT_TO_IO>;
-
-Tested on the Youyeetoo YY3588 (RK3588) with an ES8388 codec on I2S0.
-
-[1] https://lore.kernel.org/r/20250305-rk3576-sai-v1-2-64e6cf863e9a@collabora.com/
-
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202603191419.MH6EuPga-lkp@intel.com/
-Signed-off-by: Daniele Briguglio <hello@superkali.me>
+Link: https://terminus-usa.com/wp-content/uploads/2024/06/FE1.1s-Product-Brief-Rev.-2.0-2023.pdf [1]
+Signed-off-by: Yixun Lan <dlan@kernel.org>
 ---
- drivers/clk/rockchip/clk-rk3588.c | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+Changes in v2:
+- drop patch 1, not add Terminus vendor prefix
+- reuse compatible data, no introduce new one
+- fix binding
+- Link to v1: https://lore.kernel.org/r/20260317-03-usb-hub-fe1-v1-0-71ec3989f5be@kernel.org
 
-diff --git a/drivers/clk/rockchip/clk-rk3588.c b/drivers/clk/rockchip/clk-rk3588.c
-index 1694223f4f84..4611b6ce8217 100644
---- a/drivers/clk/rockchip/clk-rk3588.c
-+++ b/drivers/clk/rockchip/clk-rk3588.c
-@@ -5,7 +5,9 @@
-  */
- 
- #include <linux/clk-provider.h>
-+#include <linux/mfd/syscon.h>
- #include <linux/of.h>
-+#include <linux/slab.h>
- #include <linux/of_address.h>
- #include <linux/platform_device.h>
- #include <linux/syscore_ops.h>
-@@ -892,6 +894,8 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
- 			RK3588_CLKGATE_CON(8), 0, GFLAGS),
- 	MUX(I2S2_2CH_MCLKOUT, "i2s2_2ch_mclkout", i2s2_2ch_mclkout_p, CLK_SET_RATE_PARENT,
- 			RK3588_CLKSEL_CON(30), 2, 1, MFLAGS),
-+	GATE_GRF(I2S2_2CH_MCLKOUT_TO_IO, "i2s2_2ch_mclkout_to_io", "i2s2_2ch_mclkout",
-+			0, 0x0318, 2, GFLAGS, grf_type_sys),
- 
- 	COMPOSITE(CLK_I2S3_2CH_SRC, "clk_i2s3_2ch_src", gpll_aupll_p, 0,
- 			RK3588_CLKSEL_CON(30), 8, 1, MFLAGS, 3, 5, DFLAGS,
-@@ -907,6 +911,8 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
- 			RK3588_CLKGATE_CON(8), 4, GFLAGS),
- 	MUX(I2S3_2CH_MCLKOUT, "i2s3_2ch_mclkout", i2s3_2ch_mclkout_p, CLK_SET_RATE_PARENT,
- 			RK3588_CLKSEL_CON(32), 2, 1, MFLAGS),
-+	GATE_GRF(I2S3_2CH_MCLKOUT_TO_IO, "i2s3_2ch_mclkout_to_io", "i2s3_2ch_mclkout",
-+			0, 0x0318, 7, GFLAGS, grf_type_sys),
- 	GATE(PCLK_ACDCDIG, "pclk_acdcdig", "pclk_audio_root", 0,
- 			RK3588_CLKGATE_CON(7), 11, GFLAGS),
- 	GATE(HCLK_I2S0_8CH, "hclk_i2s0_8ch", "hclk_audio_root", 0,
-@@ -935,6 +941,8 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
- 			RK3588_CLKGATE_CON(7), 10, GFLAGS),
- 	MUX(I2S0_8CH_MCLKOUT, "i2s0_8ch_mclkout", i2s0_8ch_mclkout_p, CLK_SET_RATE_PARENT,
- 			RK3588_CLKSEL_CON(28), 2, 2, MFLAGS),
-+	GATE_GRF(I2S0_8CH_MCLKOUT_TO_IO, "i2s0_8ch_mclkout_to_io", "i2s0_8ch_mclkout",
-+			0, 0x0318, 0, GFLAGS, grf_type_sys),
- 
- 	GATE(HCLK_PDM1, "hclk_pdm1", "hclk_audio_root", 0,
- 			RK3588_CLKGATE_CON(9), 6, GFLAGS),
-@@ -2220,6 +2228,8 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
- 			RK3588_PMU_CLKGATE_CON(2), 13, GFLAGS),
- 	MUX(I2S1_8CH_MCLKOUT, "i2s1_8ch_mclkout", i2s1_8ch_mclkout_p, CLK_SET_RATE_PARENT,
- 			RK3588_PMU_CLKSEL_CON(9), 2, 2, MFLAGS),
-+	GATE_GRF(I2S1_8CH_MCLKOUT_TO_IO, "i2s1_8ch_mclkout_to_io", "i2s1_8ch_mclkout",
-+			0, 0x0318, 1, GFLAGS, grf_type_sys),
- 	GATE(PCLK_PMU1, "pclk_pmu1", "pclk_pmu0_root", CLK_IS_CRITICAL,
- 			RK3588_PMU_CLKGATE_CON(1), 0, GFLAGS),
- 	GATE(CLK_DDR_FAIL_SAFE, "clk_ddr_fail_safe", "clk_pmu0", CLK_IGNORE_UNUSED,
-@@ -2439,6 +2449,8 @@ static struct rockchip_clk_branch rk3588_clk_branches[] = {
- static void __init rk3588_clk_early_init(struct device_node *np)
- {
- 	struct rockchip_clk_provider *ctx;
-+	struct rockchip_aux_grf *sys_grf_e;
-+	struct regmap *sys_grf;
- 	unsigned long clk_nr_clks, max_clk_id1, max_clk_id2;
- 	void __iomem *reg_base;
- 
-@@ -2479,6 +2491,17 @@ static void __init rk3588_clk_early_init(struct device_node *np)
- 			&rk3588_cpub1clk_data, rk3588_cpub1clk_rates,
- 			ARRAY_SIZE(rk3588_cpub1clk_rates));
- 
-+	/* Register SYS_GRF for I2S MCLK output to IO gate clocks */
-+	sys_grf = syscon_regmap_lookup_by_compatible("rockchip,rk3588-sys-grf");
-+	if (!IS_ERR(sys_grf)) {
-+		sys_grf_e = kzalloc_obj(*sys_grf_e);
-+		if (sys_grf_e) {
-+			sys_grf_e->grf = sys_grf;
-+			sys_grf_e->type = grf_type_sys;
-+			hash_add(ctx->aux_grf_table, &sys_grf_e->node, grf_type_sys);
-+		}
-+	}
-+
- 	rockchip_clk_register_branches(ctx, rk3588_early_clk_branches,
- 				       ARRAY_SIZE(rk3588_early_clk_branches));
- 
+---
+Yixun Lan (2):
+      dt-bindings: usb: Add support for Terminus FE1.1s USB2.0 Hub controller
+      usb: misc: onboard_usb_dev: Add Terminus FE1.1s USB2.0 Hub (1a40:0101)
 
+ .../devicetree/bindings/usb/terminus,fe11.yaml     | 62 ++++++++++++++++++++++
+ drivers/usb/misc/onboard_usb_dev.c                 |  2 +
+ drivers/usb/misc/onboard_usb_dev.h                 |  1 +
+ 3 files changed, 65 insertions(+)
+---
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+change-id: 20260317-03-usb-hub-fe1-356aea478a5b
+
+Best regards,
 -- 
-2.53.0
+Yixun Lan <dlan@kernel.org>
 
 
