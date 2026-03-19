@@ -1,194 +1,149 @@
-Return-Path: <devicetree+bounces-277644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277642-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UOcoIu++u2n1ngIAu9opvQ
-	(envelope-from <devicetree+bounces-277644-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:16:31 +0100
+	id 2HFmGArAu2n1ngIAu9opvQ
+	(envelope-from <devicetree+bounces-277642-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:21:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 568842C8762
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:16:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C17A52C8846
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:21:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3B4673012B6B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:16:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6B57D3224174
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:11:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E74493B47E0;
-	Thu, 19 Mar 2026 09:14:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C44083B95EE;
+	Thu, 19 Mar 2026 09:09:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="aaLSbhrJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TWiIl/PO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011055.outbound.protection.outlook.com [52.101.65.55])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9971A3B2FFC;
-	Thu, 19 Mar 2026 09:14:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.55
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773911694; cv=fail; b=ObjMoquazutsskjOx0RuEakZfmFP198vUnz1YAzKeBJklrRh1WWRvNcSFTaf/bxICfXa6ip9u/N6K4sZHqgLMtDiputzxhcUN2vteG8cqK01kq2jn35yioBk1v2ygIygHgbWlzOoYagV1urOLkVzfutfWpztJqDiVRFRB3wuFBI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773911694; c=relaxed/simple;
-	bh=UkAJkESbL8ymPIzjiMd/CTFC1/0iPf009LoB+03SfYo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=RNA+f0CVpPfsxpQrczEgqyp2hjM/CJN5yhUXxvZAdklgpmzQmr7XaMD44JPecsa+VQXBejDUSAFQDbuVcl8d9Detir1av/vFtV3P8uGvJxLw47eNn0w2Gbzpp8w/vSc7UEYBTu5l4WR7rNXaubZEDMvJAtnzRqGMtAJWhLpRnQ0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=aaLSbhrJ; arc=fail smtp.client-ip=52.101.65.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MAGzDd4LYIwY4YMnZB6t+O1F5SZKQD7NrGu0fq7wisq2ubX67jJPkv3IZncFzkaQHeoi2Xc43sjRlLq3Qpqx0AK/xVnow+4MDcrFaUSfpsRRmjcelO1Wo9usedzwihl8IeeFozhYaNb2VSqRklNHKUIaCuLkuStKCnGaIwsNpmPveFFGMD3up+VTZqC0jQ6afq7xDjAEEKAKahBbYiHCtSyleDe0Et5Sy4g1/9NT4BPffFl7YZDphDoWWK/RzSKAsO6o1CbhaRdtGOgs3TueGAa9aNLql1wEiVBh+T4zI72RpDRzUwLxTGFq4yOBa/bp4dwL8+Sg263OxoJ0Pnb0vA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=l9JnZOrWwVmCXYuTIISrDwf85N9dDWobwgGTD9M78+M=;
- b=v1Dic8QEJUUsDyarFk4Fdgg8oanf+2HxaxnrUSUtc2uIvfSrlBMHodawk9odJnBBaa1JsHi230+N2xZx+YrvkyxbkGVxNzd4CD+mm/EeE9kXQqeioELVJmTBQfLJ5e8+uQ484aq6T53AUfROFlZ2RLl4HIQ4x1IGhAqjbT4v0c0XM8vaLVDIR/hXo0+NfiJ9O/jE91GZUqZJgb7itg+SIkAknkVfXNXa3NJ5opS1Z9PStib6l2AiV+7/10ZYbsLPpIw70Z0Veo2PAr3dg6HGoqaRKt9PYHjE1tCdA4KH4CFRYJnmslHkyqWdgXAx41jP9sDQgC8976tanLfoD2bJsQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=l9JnZOrWwVmCXYuTIISrDwf85N9dDWobwgGTD9M78+M=;
- b=aaLSbhrJOQ8l8JjsgklOM86y/9gMMTYG7noKhmOTMT1A1b362EPicIbnYwUlq6363z/NtSwIa5DAol98peLy8M3E9uZeLlLn6Ds61OB8McivZs3UNudkf9DaP9sUgSQGINHcJ2eebv1UCrqZf5MmZ+V3u3lvFrtMjsTw4ngWSxEBVTuXJIuLlBpglaGYiAF10xlLKzQ3mAHO1HYO7vvxx2NKXEHtzazuClhqj5yherwdoMMXJI0SOXddLcu/sXv+ALCmcwtSLZwBI7Vy9DRdAyBrS+rhexswTCgVLgEvzM3RLMZl2N/mhMJcziqC5tIQzsbbfNSkASkOlZT0uigg6A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by VI0PR04MB10103.eurprd04.prod.outlook.com (2603:10a6:800:24c::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Thu, 19 Mar
- 2026 09:14:44 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::c67b:71cd:6338:9dce]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::c67b:71cd:6338:9dce%5]) with mapi id 15.20.9723.018; Thu, 19 Mar 2026
- 09:14:42 +0000
-Date: Thu, 19 Mar 2026 17:06:57 +0800
-From: Xu Yang <xu.yang_2@nxp.com>
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E8633B8D7B;
+	Thu, 19 Mar 2026 09:09:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773911355; cv=none; b=ZOAWRKpUVRdDXVqAEM1xph7SGIJtbzThwgPRvb6IksfQ++nIT4UdgEmQUOz071BmqEp9nMM2TFxupBOQy03OnnlV40piEyl1WXOLmA8LuOGr7ZpY4fhziC0mgzMkV7vfWJxaX2Nq5WDbUouTTEH8/PFQVVvdzVHmwROKkdj2V0A=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773911355; c=relaxed/simple;
+	bh=5fTdycH5VKTSl4J376j0I5Ed+rPRK+nrNrd6HDt7DFM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=J/lrZsasfvYw5kAyw+sqr7CDvk/s+7jz1YUBJYRa7e0i88g9GSmrYo9DpbRwBPetfWvHn2flYzkdaxtQ4o6ud2cP4+uOQL9TXs+URqY8cvpNrbKKLs7MylVx0sOMIMdfs7P6QkGOdNorTjrakqUYPW555VZtxJ0SLU3RSKsV7dk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TWiIl/PO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE707C2BC87;
+	Thu, 19 Mar 2026 09:09:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773911355;
+	bh=5fTdycH5VKTSl4J376j0I5Ed+rPRK+nrNrd6HDt7DFM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TWiIl/POzZoUbobwe0Pie6mk6kRAFA2FwhPIbxOoTtufktkFrweuwu6XM5HD/t7R5
+	 0g4l7hos+hr95QAIpmt+WNGt47xvosBvKKKT77lv/6bqzoAvAcCwJknuCHA3au6sZh
+	 yqUa1HkSrW31JDGcSCAeQw5wbXcUu/YRJ+F1jrvmJCKdf3gUg0mNlqiRuFKn4PYnk+
+	 g1EghhA2XK5TyCepOrFFFk5TVyC/sHxDZDrR6rFZiZoZgzB+Ttlv8bfqRqfACnUuo0
+	 zrDvFDbOOvmXOXsk01SwP/ZbKY7VzeveQyq8zmQRASNC9tDeOcfKNfMJwUbDqV5kmb
+	 H292zpKqgAd/Q==
+Date: Thu, 19 Mar 2026 10:09:12 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Cristian Cozzolino <cristian_ci@protonmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Li Jun <jun.li@nxp.com>, 
-	Badhri Jagan Sridharan <badhri@google.com>, linux-usb@vger.kernel.org, imx@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] usb: typec: tcpci: support setting orientation
- via GPIO
-Message-ID: <xhxmqikxhogfjqlkijj2ile7f3gld3txg3wcpryvl4cds6trmp@bekc767bb6cp>
-References: <20260316-support-setting-orientation-use-gpio-v3-0-0e6622b00dd9@nxp.com>
- <20260316-support-setting-orientation-use-gpio-v3-2-0e6622b00dd9@nxp.com>
- <abqWGW8vimyIq7hi@kuha>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <abqWGW8vimyIq7hi@kuha>
-X-ClientProxiedBy: SG2P153CA0004.APCP153.PROD.OUTLOOK.COM (2603:1096::14) To
- DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
+	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v2 1/6] dt-bindings: display: panel: Add Novatek NT35532
+ LCD DSI
+Message-ID: <20260319-amorphous-pastoral-turtle-851af9@quoll>
+References: <20260318-rimob-new-features-v2-0-c1bf8917449e@protonmail.com>
+ <20260318-rimob-new-features-v2-1-c1bf8917449e@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|VI0PR04MB10103:EE_
-X-MS-Office365-Filtering-Correlation-Id: 070d15d4-f943-4d29-767f-08de8597f490
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|19092799006|52116014|1800799024|366016|38350700014|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info:
-	wLI4zDl1grOOE0gkEo8aVm4ZWgkyqfV4m66/XA6uNS6oDoPb1VwAq/ZUuMeTHF1ZqeOXII2HHnd037yDYK3QbvbrlOwQEOflx089b4pB3CGqm4RYu2Vrn0fEzcw/d/+EScq4PeaR8As5j4aiK6b/t2kgH5ybRW0djcpkSfD1vZqrcgfMA5U3Xq9WzNvtOr6kFSUBNSKZ3qMCoTiXXX02KfjwCVykIKvpwjeYcBQgJIeX7CcEo6h8G3X7qh+I0AEEFlA4MFWM1Y/hQV0g13sDkIrBpn26NZMh1O5WVFv9/cPqrI9476RvtXGrB3YbV7jJs1fTzufg2W2pcbpTMOHcWof0FsADoACY3PjwPktCWCB1v1wz5gP/+Jl6OgPZlMC5NgUXLcr2wRAbZaIBxgIYYySMelXlM3MxBmkUoS6ijyEV33QVn0uKiNrxrLlPNizB8Drliohgtrm9kFjONzmlQURZa1NqLqXmRfRBTo1vtRIyMgQPqfl5db5cUqON75ld9uG0KatrO1N2kAFFAxBNbide5EEphAaZnAbMk7o3UfTDZI9wveHo4bGY8MEM7p98n1BPlrHS7AAdcdBA3Uew2RK9/PowDTxqLqtXO0iRFfE90VE4fzYAVm1ym+EuP/Ds6qRRY0kMtG7KDfUKZCsF0UeQNGTRQNcsH3VCMRXaYsaJ1d18rbwZfgU7liwuRQQqxrAgQR/xQ3wXPCNVHgewu17B1gJmeYwF0lJ7EicxWPVCWsLZ1xlvAIQAkK/SHKPGm0OCB6wyq/WvUabztrCEn0RIZERZNUcWDVwJjw/48Jw=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(19092799006)(52116014)(1800799024)(366016)(38350700014)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?aHNLwGaJpxEeAUa6mH7HR9y6xDJuyuFoVxB/CRS9vT3SRdzExZmTdatD2jtA?=
- =?us-ascii?Q?JmptD1UZ+8t6Q2ErI8htJbec/tDQE/vNQ3ce0LLQ89AYwXybl5RbPV7TABzn?=
- =?us-ascii?Q?SzxZG5qTfp6E2vX1lWkJGkD6zQQKWHi4zO8S5d6an7FBsv3SDruW/hygn0bF?=
- =?us-ascii?Q?UxMLoqFnti20SxTki6K/JnEURUgmjbUrB9tBZSOG5nrZ33V4N2n2LNKUyVRU?=
- =?us-ascii?Q?ut0ZaPou9o+zFCeJ4OaSgsPKRspL/QQm4Ol76j2QPIRnRUEVFX6VlNDat6KZ?=
- =?us-ascii?Q?RBdqriz5IhM1x/zNBR992JtW7oBOb2CoKUx6O4dPKW40+pjeRGckWWtP+rI5?=
- =?us-ascii?Q?p6GqCx4S0lbLusWFTRmi4iq0Ehns++nNrACh7Dgnrp4Qd8ttN2aZhr9W5DKB?=
- =?us-ascii?Q?ojidib4mBXxg5v5rRLraZQh0Hh67cFF0pR31Ef/d67x0Bn0cyYunENoP4+Yn?=
- =?us-ascii?Q?U1Y6oLQL662ZTF2Ihfe+EBni0FORoDXgaN9V4ZND5VLsZJdy0rn4+LGdk7+S?=
- =?us-ascii?Q?f8FgUX8CCc/Q9rvVK2WnH1YD48F6ye5b1Uzc48mnV531MslrfJxN5sDgC3kn?=
- =?us-ascii?Q?uJ/XT1HTsRgYguTOtoF+Njmghw4gcWOX9I/q5XMk8xobo+KY69mhWxA/g7F5?=
- =?us-ascii?Q?IOHaM/dle0O1hI3jiOuNDOWkAbENviyX7VLfEmbDOsqNRlxU6tOYaoWKCpff?=
- =?us-ascii?Q?UEkgV2vt70/epyvTi2YDsM9rOpiaQwfcLYOys5+nQyhRbSCpt2B6z5xCkQob?=
- =?us-ascii?Q?wuCHtbGGUWAP/vwUEPYGQTvcJLZE3Semw5LIqB6+hrf2OqvR65rpWJVXRNTq?=
- =?us-ascii?Q?WXFbe43/05MKK9Ppz8ywP4btM7PjwPL4ny20F0BkuCClLmOGU+uLNUZAyVj2?=
- =?us-ascii?Q?Pt7Qd0KDd/BKLHEYHOwpQdtllb9v5m5aCpQ9coOSooi5NYRmG0zQ/oTuE67D?=
- =?us-ascii?Q?bmFBn1Ois894JB5pKY3yaZPgsGbvfjYuIA7MLux0VTc2/IR1bIUzxgGkWlRI?=
- =?us-ascii?Q?Om839ttOXd2Y4oq1wZ0EmBaKqqp+eHON9Q4QEKz6kZ5L3b4byENX8IGRUxFV?=
- =?us-ascii?Q?bW6EAoOQmPXw1Upg2b+6o/YQ34Y9j10dB1ewsQTE/O8OGK4L4E1uJWE6Ilqr?=
- =?us-ascii?Q?N7Qh5oIrKIhdcsQ1VqEg//8KbxnJ/wK+CtWBwUyDU3zOBH9tFALWVtuVA5Vh?=
- =?us-ascii?Q?TxMKRzNtADGkRho0EfWQzx7gPGMMKbcnWBKETQmpdY9NhK8Ua7cyrwxPkyHo?=
- =?us-ascii?Q?h6u8aBZoIayPVRn6X23ErwSaVn01VmhdDlJOOd8gxpsEwNw/WS3NWyQ97VT6?=
- =?us-ascii?Q?pgutT0NF2orxtDH4NjECRUrteM/FzQDFhx1XQKCPF+MWU7/eTCJNOXLsVpMK?=
- =?us-ascii?Q?ZY2YuUDqLLcuVseCrRS24E7Rc1SSPyESE1/r0qRlsK/fT+9TF7Yv/oflRvr/?=
- =?us-ascii?Q?MscKfCWuxkhRaTleIMrWkcT0m/4Noc7YZQjrANPG70r7z8nvRu3XG6b4x8/2?=
- =?us-ascii?Q?HXOviXtouGVdENVBeud06VHo7loWlIfwHUcadW0YO/2he8qCjoL5tvE0NSqS?=
- =?us-ascii?Q?CLA6mtBD7JtAZv+YngNRuz29hheNP3JDBjlY2kppiguPDF0PCI0HsEXv+ZhD?=
- =?us-ascii?Q?KHjHpSPWwVLFAwctKdQYxqxDYmUh1mrwFiHB11IrJYYY3PHQIG6fV/HsMXWO?=
- =?us-ascii?Q?PbQk2LLJ3KxHZPQmZSdLivnF/DwRMIyqCYp54fJV9/z+Rqv5lWCvlVPrghEr?=
- =?us-ascii?Q?GsNQdmk/BQ=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 070d15d4-f943-4d29-767f-08de8597f490
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2026 09:14:42.7451
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: F3dte08BK9EYgUCq71DCm/22MnVqR3f/Z/P6yAReU+j69NZZKl6zASNdPiSqvCwr36n3xw3UTiNXG6R1VhePdg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10103
-X-Spamd-Result: default: False [1.84 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260318-rimob-new-features-v2-1-c1bf8917449e@protonmail.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277644-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277642-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_TO(0.00)[protonmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.981];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xu.yang_2@nxp.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.978];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org,lists.sr.ht];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,nxp.com:dkim]
-X-Rspamd-Queue-Id: 568842C8762
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C17A52C8846
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 02:10:01PM +0200, Heikki Krogerus wrote:
-> Hi,
-> 
-> Mon, Mar 16, 2026 at 05:41:56PM +0800, Xu Yang wrote:
-> > @@ -316,6 +318,10 @@ static int tcpci_set_orientation(struct tcpc_dev *tcpc,
-> >  	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
-> >  	unsigned int reg;
-> >  
-> > +	if (tcpci->orientation_gpio)
-> > +		return gpiod_set_value_cansleep(tcpci->orientation_gpio,
-> > +						orientation == TYPEC_ORIENTATION_NORMAL ? 0 : 1);
-> 
-> Sorry, I though this was covered in the last version. The condition
-> looks unnecessary, so:
-> 
-> 		return gpiod_set_value_cansleep(tcpci->orientation_gpio,
->                                         	orientation != TYPEC_ORIENTATION_NORMAL);
+On Wed, Mar 18, 2026 at 11:28:09PM +0100, Cristian Cozzolino wrote:
+> +  avdd-supply:
+> +    description: positive boost supply regulator
+> +
+> +  avee-supply:
+> +    description: negative boost supply regulator
+> +
+> +  vci-supply:
+> +    description: regulator that supplies the analog voltage
+> +
+> +  vddam-supply:
+> +    description: power supply for MIPI interface
+> +
+> +  vddi-supply:
+> +    description: regulator that supplies the I/O voltage
+> +
+> +  port: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reset-gpios
+> +  - avdd-supply
+> +  - avee-supply
+> +  - vci-supply
 
-OK. It's better now.
+Only VDDI is required according to datasheet (see page 11 and page 16).
+Others are needed only in specific configurations, which I would ignore
+for the simplicity of the binding. Drop these three.
 
-Thanks,
-Xu Yang
+Previous discussion point was about this - write bindings based on
+datasheet, since it is available.
+
+
+> +  - vddi-supply
+> +  - port
+> +
+> +additionalProperties: false
+
+Best regards,
+Krzysztof
+
 
