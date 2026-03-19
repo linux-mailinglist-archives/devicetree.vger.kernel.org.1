@@ -1,164 +1,201 @@
-Return-Path: <devicetree+bounces-277720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277721-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oKm0OG3du2lXpQIAu9opvQ
-	(envelope-from <devicetree+bounces-277720-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:26:37 +0100
+	id WEYeIJndu2lXpQIAu9opvQ
+	(envelope-from <devicetree+bounces-277721-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:27:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01A192CA444
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:26:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC0F92CA462
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:27:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D58E5303AF1E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:24:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C47593069609
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:25:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 753D83C5DA8;
-	Thu, 19 Mar 2026 11:24:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ql9sZNAJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC02D3BC678;
+	Thu, 19 Mar 2026 11:25:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 513883BC678;
-	Thu, 19 Mar 2026 11:24:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C7AA36EA8F;
+	Thu, 19 Mar 2026 11:25:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773919454; cv=none; b=MGkZAe1/NCqCERJPhCZCc3Jkpa8FGwIxOl48vz7zUdgd1udnqkVr7BN9pVw7MuozGtnpsoB3wAgBXYd9IftVhoVbdKJa9mJQfwrCfKZ/U9tKrrXZEqgQ3v/TWOdgh4fWZz3yj8uAP9RhAX0E8Se0NWQRKpEN08iqZq0GLwHWiuE=
+	t=1773919501; cv=none; b=Xnu9JAbDeijRirnJO1hgT+UgkXDB9mnk76wpD8gLeV3NjJG5rTfksIpwzCO7yhREDZDQMEsI0u+PxBXS8yE2ODbCadOGBV5ma2VFTtOC/+1UeVEzkh6nDG0vnBmhi3HaEz0J4kUdpTRjFA4fTAhUNO5mm0FAqT0iAS2h/aQ2stI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773919454; c=relaxed/simple;
-	bh=qyYfHN3/rEddBDUxIvXPa1XmaXZUY9tQUYPYQxlmioI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HFp4OwPAxkK5mEe25uPOdgY8ssLJonHoP0DbVApidTA7v6CzMYrUdriXMj2DX/nwotFFs6vpHtuM+itnHZN6YD8D2Wr1MIzjvuOFPuwL0Xk7oDzJccQUtmsn/cuYlJScrXNnGChb920GY/2A4cQpK79R3jF6nG9ffdAacOzXwuE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ql9sZNAJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13790C19424;
-	Thu, 19 Mar 2026 11:24:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773919454;
-	bh=qyYfHN3/rEddBDUxIvXPa1XmaXZUY9tQUYPYQxlmioI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ql9sZNAJ5IJDjLCE93U34vjaePEdQ7ctkWPb/kks8sNCMuk+0pfl/hPLsUo7j54T4
-	 bsbKOtQNUkMuhWfl9eHcdrNWA1jeHqW4N8v8IdEjs/7H1vsZRpMbIEirhEUa7TE7x+
-	 sZDfX2SdQ3BMx7DAUNnY3muvx1eEoRo6WfAxXQDk+AuBE5JnSA7RY41EapzfUCxeDU
-	 82sSgkOCGnJba1aFvm0S77EWd9d3+jzwiKjXruyui57pXMVZiO9GjbvfxgJACffHuV
-	 h+qr+TQHZ4C4Lh4LcGt1u8361xGnHVQ5fZzPOFDBQRXegb/zASSzKNJi0O1g6C8BKj
-	 WxHrDSZ1X6oZA==
-Date: Thu, 19 Mar 2026 11:24:05 +0000
-From: Lee Jones <lee@kernel.org>
-To: Akashdeep Kaur <a-kaur@ti.com>
-Cc: praneeth@ti.com, nm@ti.com, afd@ti.com, vigneshr@ti.com,
-	kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, aaro.koskinen@iki.fi, andreas@kemnade.info,
-	khilman@baylibre.com, rogerq@kernel.org, tony@atomide.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-	s-ramamoorthy@ti.com, vishalm@ti.com, sebin.francis@ti.com,
-	d-gole@ti.com, k-willis@ti.com
-Subject: Re: [PATCH 2/2] mfd: tps65219: Make poweroff handler conditional on
- system-power-controller
-Message-ID: <20260319112405.GJ554736@google.com>
-References: <20260310111846.1084623-1-a-kaur@ti.com>
- <20260310111846.1084623-3-a-kaur@ti.com>
+	s=arc-20240116; t=1773919501; c=relaxed/simple;
+	bh=Nfq5pK9pyK4G8NPUhxwYS2O5ETYUqVQ0kUIs4h8cftU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=fdJIAIV5mQfs9/oHta8NLjz8gArcp1ADQHXFrcfb1qDnW46AkEGXWgWsIkE/DV5pBuz0HE+i+Ph0/ujlJGPJh3FAdhwtHYujLX1KTJyW+rmeE3+dMcl1wtzXVW4Ga9LIPLF6qjznjGzsHdivMF9uYZJwC0vqE0BGhShQqh8oMrg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 371931A2722;
+	Thu, 19 Mar 2026 12:24:53 +0100 (CET)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 008B71A164A;
+	Thu, 19 Mar 2026 12:24:53 +0100 (CET)
+Received: from lsv03900.swis.in-blr01.nxp.com (lsv03900.swis.in-blr01.nxp.com [10.12.177.15])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 07C7E18000A4;
+	Thu, 19 Mar 2026 19:24:51 +0800 (+08)
+From: Lakshay Piplani <lakshay.piplani@nxp.com>
+To: linux-kernel@vger.kernel.org,
+	linux-i3c@lists.infradead.org,
+	alexandre.belloni@bootlin.com,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	broonie@kernel.org,
+	lee@kernel.org,
+	Frank.Li@nxp.com,
+	lgirdwood@gmail.com
+Cc: vikash.bansal@nxp.com,
+	priyanka.jain@nxp.com,
+	aman.kumarpandey@nxp.com,
+	lakshay.piplani@nxp.com
+Subject: [PATCH v7 0/7] Add support for NXP P3H2x4x I3C hub driver
+Date: Thu, 19 Mar 2026 16:54:34 +0530
+Message-Id: <20260319112441.3888957-1-lakshay.piplani@nxp.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260310111846.1084623-3-a-kaur@ti.com>
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Spamd-Result: default: False [1.64 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-277721-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277720-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FREEMAIL_TO(0.00)[vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,nxp.com,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.983];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[lakshay.piplani@nxp.com,devicetree@vger.kernel.org];
+	NEURAL_SPAM(0.00)[0.329];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	R_DKIM_NA(0.00)[];
+	TO_DN_NONE(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:email]
-X-Rspamd-Queue-Id: 01A192CA444
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:mid]
+X-Rspamd-Queue-Id: EC0F92CA462
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, 10 Mar 2026, Akashdeep Kaur wrote:
+This series adds a driver for the NXP P3H2x4x family of multiport I3C hub
+devices.
+ 
+This is an MFD driver integrating I3C hub and on-die regulators.
+ 
+The series introduces:
+- Core I3C master enhancements required for hub support
+- Generic I3C hub framework
+- MFD and regulator drivers for P3H2x4x
+- P3H2x4x I3C hub driver built on top of the generic layer
 
-> Currently, the TPS65219 driver unconditionally registers a poweroff
-> handler. This causes issues on systems where a different component
-> (such as TF-A firmware) should handle system poweroff instead.
-> 
-> Make the poweroff handler registration conditional based on the
-> "system-power-controller" device tree property. This follows the
-> standard kernel pattern where only the designated power controller
-> registers for system poweroff operations.
-> 
-> On systems where the property is absent, the PMIC will not register
-> a poweroff handler, allowing other poweroff mechanisms to function.
-> 
-> Signed-off-by: Akashdeep Kaur <a-kaur@ti.com>
-> ---
->  drivers/mfd/tps65219.c | 18 ++++++++++++------
->  1 file changed, 12 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/mfd/tps65219.c b/drivers/mfd/tps65219.c
-> index 7275dcdb7c44..beb816707d8f 100644
-> --- a/drivers/mfd/tps65219.c
-> +++ b/drivers/mfd/tps65219.c
-> @@ -541,13 +541,19 @@ static int tps65219_probe(struct i2c_client *client)
->  		return ret;
->  	}
->  
-> -	ret = devm_register_power_off_handler(tps->dev,
-> -					      tps65219_power_off_handler,
-> -					      tps);
-> -	if (ret) {
-> -		dev_err(tps->dev, "failed to register power-off handler: %d\n", ret);
-> -		return ret;
-> +	/*
-> +	 * Only register PMIC power-off handler if system-power-controller
-> +	 * property is present.
-> +	 */
-> +	if (of_device_is_system_power_controller(tps->dev->of_node)) {
+Changes in v7:
+- Fix kernel-doc warnings across I3C core and hub code
+- Rework DT binding schema and examples to pass dt_binding_check
+- Update MFD Kconfig to use I3C_OR_I2C
+- Convert CONFIG_I3C_HUB to tristate
+- Remove unnecessary CONFIG_I2C_SLAVE guards
+- Replace custom helpers with find_closest()
+- Use devm_regulator_get_enable_optional()
+- Link to v6: https://lore.kernel.org/linux-i3c/64c5070c-aa9e-427a-933e-91e168f0510c@kernel.org/T/#u
 
-The function name `of_device_is_system_power_controller()` is quite
-self-descriptive. Is this comment really necessary? The code seems clear
-enough without it.
+Changes in v6:
+- Update DT binding with vendor-prefixed properties
+- Add generic I3C hub support
+- Remove generic code from P3H2x4x driver
+- Link to v5: https://lore.kernel.org/linux-i3c/20260206120121.856471-1-aman.kumarpandey@nxp.com/T/#u
 
-> +		ret = devm_register_power_off_handler(tps->dev,
-> +						      tps65219_power_off_handler,
-> +						      tps);
-> +		if (ret)
-> +			return dev_err_probe(tps->dev, ret,
-> +					"failed to register power-off handler\n");
->  	}
-> +
->  	return 0;
->  }
->  
-> -- 
-> 2.34.1
-> 
+Changes in v5:
+- Update supply naming and descriptions
+- Improve MFD Kconfig/Makefile ordering
+- Link to v4: https://lore.kernel.org/linux-i3c/20260113114529.1692213-2-aman.kumarpandey@nxp.com/T/#u
+
+Changes in v4:
+- Split driver into MFD, regulator and I3C hub parts
+- Update I3C master for hub support
+- Fix DT binding issues
+- Link to v3: https://lore.kernel.org/linux-i3c/20250811-bittern-of-abstract-prestige-aaeda9@kuoka/T/#u
+
+Changes in v3:
+- Add MFD support for hub and regulators
+- Add regulator integration
+- Link to v2: https://lore.kernel.org/linux-i3c/17145d2f-5d07-4939-8381-74e27cde303c@kernel.org/T/#u
+
+Changes in v2:
+- Fix DT binding warnings
+- Refine DT parsing logic
+- Link to v1: https://lore.kernel.org/linux-i3c/822d6dca-b2c6-4439-ade5-219620ebc435@kernel.org/T/#u
+
+Aman Kumar Pandey (6):
+  i3c: master: Expose the APIs to support I3C hub
+  i3c: master: Add the APIs to support I3C hub
+  dt-bindings: i3c: Add NXP P3H2x4x i3c-hub support
+  mfd: p3h2x4x: Add driver for NXP P3H2x4x i3c hub and on-die regulator
+  regulator: p3h2x4x: Add driver for on-die regulators in NXP P3H2x4x
+    i3c hub
+  i3c: hub: p3h2x4x: Add support for NXP P3H2x4x I3C hub functionality
+
+Lakshay Piplani (1):
+  i3c: hub: Add support for the I3C interface in the I3C hub
+
+ .../devicetree/bindings/i3c/nxp,p3h2840.yaml  | 303 ++++++++++++
+ MAINTAINERS                                   |  15 +
+ drivers/i3c/Kconfig                           |  16 +
+ drivers/i3c/Makefile                          |   2 +
+ drivers/i3c/hub.c                             | 460 ++++++++++++++++++
+ drivers/i3c/hub/Kconfig                       |  11 +
+ drivers/i3c/hub/Makefile                      |   4 +
+ drivers/i3c/hub/p3h2840_i3c_hub.h             | 334 +++++++++++++
+ drivers/i3c/hub/p3h2840_i3c_hub_common.c      | 349 +++++++++++++
+ drivers/i3c/hub/p3h2840_i3c_hub_i3c.c         | 132 +++++
+ drivers/i3c/hub/p3h2840_i3c_hub_smbus.c       | 422 ++++++++++++++++
+ drivers/i3c/master.c                          | 173 ++++++-
+ drivers/mfd/Kconfig                           |  13 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/p3h2840.c                         | 125 +++++
+ drivers/regulator/Kconfig                     |  10 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/p3h2840_i3c_hub_regulator.c | 219 +++++++++
+ include/linux/i3c/device.h                    |   1 +
+ include/linux/i3c/hub.h                       | 107 ++++
+ include/linux/i3c/master.h                    |  10 +
+ include/linux/mfd/p3h2840.h                   |  27 +
+ 22 files changed, 2733 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/i3c/nxp,p3h2840.yaml
+ create mode 100644 drivers/i3c/hub.c
+ create mode 100644 drivers/i3c/hub/Kconfig
+ create mode 100644 drivers/i3c/hub/Makefile
+ create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub.h
+ create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub_common.c
+ create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
+ create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
+ create mode 100644 drivers/mfd/p3h2840.c
+ create mode 100644 drivers/regulator/p3h2840_i3c_hub_regulator.c
+ create mode 100644 include/linux/i3c/hub.h
+ create mode 100644 include/linux/mfd/p3h2840.h
 
 -- 
-Lee Jones [李琼斯]
+2.25.1
+
 
