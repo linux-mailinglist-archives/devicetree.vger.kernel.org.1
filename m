@@ -1,181 +1,211 @@
-Return-Path: <devicetree+bounces-277745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277747-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QDG7CgPlu2njpQIAu9opvQ
-	(envelope-from <devicetree+bounces-277745-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:58:59 +0100
+	id EDHAOrLmu2njpQIAu9opvQ
+	(envelope-from <devicetree+bounces-277747-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:06:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25FF42CAC44
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:58:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F8A02CAE21
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:06:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0147B3026BC3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:57:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4FD4932877EF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:00:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5056D3C9ED4;
-	Thu, 19 Mar 2026 11:56:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B4DC3D0931;
+	Thu, 19 Mar 2026 11:59:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C/ju+rrn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF3D133F589
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 11:56:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C15453CE4B7
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 11:59:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773921387; cv=none; b=eGDuc5RZQ9ELvNuuPP11kSSEAH7yOgIzfckwTGrPt7MlTd2RnyCluDn6Mg+DahZVEgw9SNtp0Y6P2SrVKcVB5yqX3YDJz/rODb91bwuTGxF6eqlAjZ3TOvAddNOF4++ILxPFQuHF1dwy6kb0vkFhcZqNU5i22ytQsjJ3oN36XXs=
+	t=1773921554; cv=none; b=cOhBcGAPicODxLTzqsWp6PFB6MiAsCEIPg4G5555hZWX0GFNQQ34McE0FVzLGQNsKEslaSfrePD2k69M2o0TgUVs5VB5j1h3Hpeza1lg0JciyDuT25hpJh16t8AIbUjK84YK3L1EUfvNuB/sJlHhj6FuUCBnRNM9nQKzkgxoEWA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773921387; c=relaxed/simple;
-	bh=9SAk7s4C28CC0IKD6BObzlcXaILvpHcNKuiTKMAlFxo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FLS5HDrb60nf3nI/S5hE9/Zwqlv21By4pGsIJqlJBdWqV/xYr0MW57/w9EdxdlhetYA1s8JW2VzBQNJTIH1XK4x7/XW9WZA/SfNiLsS2n9Lj3zp5CFmqmN0bhN9eOminF0xbTx2EoVi68Uq3STvrcfUOKUBthUvQuA6c0nQ8CiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1w3Byv-0001bT-8l; Thu, 19 Mar 2026 12:56:05 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1w3Byu-0014ET-1g;
-	Thu, 19 Mar 2026 12:56:04 +0100
-Received: from pengutronix.de (p4ffb2dc6.dip0.t-ipconnect.de [79.251.45.198])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 3925E5083C0;
-	Thu, 19 Mar 2026 11:56:04 +0000 (UTC)
-Date: Thu, 19 Mar 2026 12:56:03 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
-Cc: Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	NXP S32 Linux Team <s32@nxp.com>, Christophe Lizzi <clizzi@redhat.com>, 
-	Alberto Ruiz <aruizrui@redhat.com>, Enric Balletbo <eballetb@redhat.com>, 
-	Eric Chanudet <echanude@redhat.com>
-Subject: Re: [PATCH v2 0/5] can: flexcan: Add NXP S32N79 SoC support
-Message-ID: <20260319-orca-of-legal-science-88e67d-mkl@pengutronix.de>
-X-AI: stop_reason: "refusal"
-References: <20260319094032.427697-1-ciprianmarian.costea@oss.nxp.com>
+	s=arc-20240116; t=1773921554; c=relaxed/simple;
+	bh=1E4pd2YlmrhsMWoBYpF9Kx2qDHKMBYeRsjxeemOUgUs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=HZAir7aJL0BHrqU4alewU54alFzaKTEWCr2xb8bEdzYO3IcaeCMudAeEVnLtSd1MvfU8g2/jrkie+PFPCHKiE6K/1PbJRxcFYt5GOud2BObnE0U5J+u+o2I7nCh9y2GEXlGANmSIWVT722cZRkYgaZLsyQivj2WxF5/K1+k0ijs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C/ju+rrn; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-667acaeae82so902315a12.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 04:59:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773921547; x=1774526347; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IAgP3WIG5lWDJY/O2OUHFGAnFa87nCTWJrnk0yHPluI=;
+        b=C/ju+rrn+3ZRpWK5U7+UOtxDkEUI6N7ZTUOGO9KzRKyAfBNwGncXU9LwRat4TkLdrW
+         KGU3FRJgpcB/gp6BlbU841r9iZK9R5NOrDhTqG0lURWXqQCOZzMcqmjytj44f3aooFCv
+         DWdtK6h+7r8bPBC8ndl7mfXPaDPSGZOdUlZxSPeF3YyaTDs9VsrAexITvPczr6OM3nJE
+         HFom6rrxCXvk4nZbcLlct0mJ5DWoffDC7DFjGE9OwrPc7C1XfBpaETo1dlV9u8yHhOHE
+         bU8k5sTTvph8sU8RxX57LUktnCyCKAm7SSHv63zl1Tw8rhWUVXhMEi5rZj97vs49pgQr
+         +IkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773921547; x=1774526347;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IAgP3WIG5lWDJY/O2OUHFGAnFa87nCTWJrnk0yHPluI=;
+        b=RmCP8vObVjS7JW8QJmV/LQeCPRGd0AyqLx5EmrnJc1JBGsnicEOMm4FOBWGHebZ1fE
+         uiupMte6xBSnsf/IC6cVVdhX830VCEoWFgHdeG9IBqvDKQv6qUqn5G+0MFhoBlNLm5gc
+         A3Y8ATASikEwNE4g75n+Ef9asaxUHjX4q8e/MSaMX9wUnL+7oNUOa2J+ohxUpHXWZi4e
+         Er/rYuu+ZMF2YkUY+6rCEoof6P6jhuVUAS3Jt5t3K2VyTlNauZu2xiq2PAbmfmPsUxj6
+         GAkJ+JSgqOc4DJEWL22CTDD6oBccRFXKyucYtIXRjKiEabLhOT3lObyNf2Zmkumf3bvt
+         1kHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUuJr0SDkwnI2MP7GlQM4TtSz2mFbRZYPt13RiFjEpdpqlEb/1k9BQR9guFWoeat2Lz+I5w2nk4n6hZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz56UvNHyEtTJ5hguvxC36vBQIZAUzjBToyrXWv7I2qPmuL5G7z
+	wRFLDYbiB286S7BQdT2V5dvsykXIsz0po8JUbOaIkj8IWW9exV5FdwJ/
+X-Gm-Gg: ATEYQzwv/kIhqDsTg0EkojmGa5Dhbss7yA9Th+zVU87MyMt/TeuhBP2qwuRe4tvdTEj
+	M2MvbjLT7NZWIfUF046V/kaqsdYQVvKdrPkFOxONIFRgLdbHGvCt9DsLkJHlrSahGV+JEAONXSI
+	83qbBRxU6HIeRqidOAAeySUv8sMdm+3JZ6b0qGSR+GzJ5HFdR0pgrqE5XWzW7NhQssflzR3PMnj
+	ZkmK7GwK+1aDJi+2DPYZy07znbi4zerNAa5G+0Lfh8qDPw7hNLbF2Jg0V+ETRe6gMzcvX9ROhDy
+	olfvOVQsKUTmoyQlfKKdN2Ft5uT/lQg9p11uE5hF5kA7SXX8PSS+oZ/mFyrW9gN8AyhlLr1e/Y7
+	/9QC+LYmLR3hhQ30w5Y5x2FkxHD0v3Frll3kRTwmz2fwg49El4IoNz6Lhkh1T+/4bw/5DUJrND3
+	9OMWrErofWLBj06bVk5xlx3AvLEw==
+X-Received: by 2002:a17:907:60d5:b0:b97:b379:b3fa with SMTP id a640c23a62f3a-b97f4aa62dfmr468806566b.39.1773921546437;
+        Thu, 19 Mar 2026 04:59:06 -0700 (PDT)
+Received: from [192.168.0.39] ([79.133.247.80])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b97f16d3380sm461399166b.42.2026.03.19.04.59.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Mar 2026 04:59:05 -0700 (PDT)
+From: Erikas Bitovtas <xerikasxx@gmail.com>
+Subject: [PATCH v5 0/8] iio: light: vcnl4000: add regulator support
+Date: Thu, 19 Mar 2026 13:58:38 +0200
+Message-Id: <20260319-vcnl4000-regulators-v5-0-a025d3332805@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xzuitslxiv2ov2za"
-Content-Disposition: inline
-In-Reply-To: <20260319094032.427697-1-ciprianmarian.costea@oss.nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spamd-Result: default: False [-1.06 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/23NTWrEMAwF4KsMXtdF/q3pqvcoXViKkjFkkmK3p
+ mXI3asZKIQhyyfe+3RVjWvhpl5PV1W5l1bWRUJ4Oik652ViXQbJyoKN4AzoTsvsAUBXnr7n/LX
+ WppFGgymDIY5Klp+Vx/JzV98/JJ9Lk97v/Uk3t+u/Zw69bjToGFEaiThE9zZdcpmfab2om9ft3
+ rDHhhXD4sCIhBhSfjTc3vDHhhPDkc8+DQ7iS3w0/N6Ix4YXIwU/kuU8Bo97Y9u2P0e2b9iCAQA
+ A
+X-Change-ID: 20260310-vcnl4000-regulators-bcf1b8a01ce6
+To: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ phone-devel@vger.kernel.org, Erikas Bitovtas <xerikasxx@gmail.com>, 
+ Raymond Hackley <raymondhackley@protonmail.com>
+X-Mailer: b4 0.14.3
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277745-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,redhat.com];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277747-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,gmail.com,protonmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mkl@pengutronix.de,devicetree@vger.kernel.org];
-	NEURAL_SPAM(0.00)[0.179];
-	R_DKIM_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.966];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,nxp.com:email,pengutronix.de:mid,pengutronix.de:url]
-X-Rspamd-Queue-Id: 25FF42CAC44
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8F8A02CAE21
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+This patch series introduces support for voltage supply, I2C and cathode
+regulators. This fixes an issue where if a regulator is shared between
+the proximity sensor and some other device, and the other device is
+powered off, the proximity sensor would be powered off as well.
 
---xzuitslxiv2ov2za
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 0/5] can: flexcan: Add NXP S32N79 SoC support
-MIME-Version: 1.0
+One of the commits includes a Reported-by: tag without a Closes: tag -
+the report was done outside in a Matrix channel. A link to access the
+report requires sign-in, therefore it was left out.
 
-On 19.03.2026 10:40:27, Ciprian Costea wrote:
-> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
->
-> This patch series adds FlexCAN support for the NXP S32N79 SoC.
->
-> The S32N79 is an automotive-grade processor from NXP with multiple
-> FlexCAN instances. The FlexCAN IP integration on S32N79 differs from
-> other SoCs in the interrupt routing - it uses two separate interrupt
-> lines:
->   - one interrupt for mailboxes 0-127
->   - one interrupt for bus error detection and device state changes
->
-> The CAN controllers are connected through an irqsteer interrupt
-> controller in the RCU (Resource Control Unit) domain.
->
-> This series:
->   1. Adds dt-bindings documentation for S32N79 FlexCAN
->   2. Introduces FLEXCAN_QUIRK_IRQ_BERR to handle the two-interrupt
->      configuration
->   3. Adds S32N79 device data and compatible string to the driver
->   4. Adds FlexCAN device tree nodes for S32N79 SoC
->   5. Enables FlexCAN devices on the S32N79-RDB board
->
-> Tested on S32N79-RDB board with CAN and CAN FD communication.
+Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
+---
+Changes in v5:
+- Renamed vddio-supply to vio-supply.
+- Added parentheses to function calls in a variable usage commit message.
+- Moved the redundant "proximity-near-level" check removal into its own
+  patch.
+- Link to v4: https://lore.kernel.org/r/20260316-vcnl4000-regulators-v4-0-854fc2eaf54b@gmail.com
 
-I think DTS changes go into a separate series.
+Changes in v4:
+- Reworded device tree bindings commit into imperative mood and
+  clarified where do supplies come from.
+- Moved data->chip_spec->set_power_state() calls from init functions to
+  probe.
+- Removed explicit less than 0 checks for ret where unnecessary.
+- Moved the patch that adds regulators to the end of the series.
+- Added an explanation for removing duplicate prints in probe.
+- Fixed indentation for devm_regulator_bulk_get_enable() and i2c_smbus
+  writes in vcnl4200_init().
+- Removed a redundant check for "proximity-near-level" device property.
+- Link to v3: https://lore.kernel.org/r/20260314-vcnl4000-regulators-v3-0-3c4a48d30676@gmail.com
 
-Please also have a look at the AI review:
+Changes in v3:
+- Added a more detailed description for supplies in the dt-bindings commit.
+- Separated sorting includes into a commit of its own.
+- Replaced all occurrences of mutex_init with its device-managed
+  counterpart.
+- Moved client->dev variable declaration into a commit for adding
+  regulators.
+- Removed redundant dev_err messages in probe function.
+- Replaced all direct usages of client->dev and data->client into usages
+  by variable.
+- Link to v2: https://lore.kernel.org/r/20260312-vcnl4000-regulators-v2-0-2bdebbcbb58a@gmail.com
 
-https://sashiko.dev/#/patchset/20260318092215.23505-1-ciprianmarian.costea%=
-40oss.nxp.com
+Changes in v2:
+- Removed double quotes in includes.
+- Reordered includes alphabetically.
+- Enabled regulators before the mutex is initialized.
+- Replaced direct usage of &client->dev with a variable.
+- Link to v1: https://lore.kernel.org/r/20260311-vcnl4000-regulators-v1-0-66b6038ce563@gmail.com
 
-Especially on patch#3.
+---
+Erikas Bitovtas (8):
+      dt-bindings: iio: light: vcnl4000: add regulators
+      iio: light: vcnl4000: sort includes by their name
+      iio: light: vcnl4000: move power enablement from init to probe
+      iio: light: vcnl4000: replace mutex_init with devm_mutex_init
+      iio: light: vcnl4000: remove error messages for trigger and irq
+      iio: light: vcnl4000: use variables for I2C client and device instances
+      iio: light: vcnl4000: remove redundant check for proximity-near-level
+      iio: light: vcnl4000: add support for regulators
 
-I think we should split the main IRQ handler into 3 parts, message buff,
-bus error and state change.
+ .../bindings/iio/light/vishay,vcnl4000.yaml        |  7 ++
+ drivers/iio/light/vcnl4000.c                       | 90 ++++++++++++----------
+ 2 files changed, 56 insertions(+), 41 deletions(-)
+---
+base-commit: 8e42d2514a7e8eb8d740d0ba82339dd6c0b6463f
+change-id: 20260310-vcnl4000-regulators-bcf1b8a01ce6
 
-regards,
-Marc
+Best regards,
+-- 
+Erikas Bitovtas <xerikasxx@gmail.com>
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---xzuitslxiv2ov2za
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQSl+MghEFFAdY3pYJLMOmT6rpmt0gUCabvkUQAKCRDMOmT6rpmt
-0vKUAQDwbFhW/W03Hu77q7GEEYWqTGLJDuJC+wiHZTFx4SO5KgEAuB+vLYvGzlSO
-D4BK9Z3qYaKcq6JxEQhyIMUxoUVA/QQ=
-=vGIE
------END PGP SIGNATURE-----
-
---xzuitslxiv2ov2za--
 
