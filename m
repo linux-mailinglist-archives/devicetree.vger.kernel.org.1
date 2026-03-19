@@ -1,141 +1,143 @@
-Return-Path: <devicetree+bounces-277904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277905-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OOCGJCclvGkxtgIAu9opvQ
-	(envelope-from <devicetree+bounces-277904-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:32:39 +0100
+	id +OXhOrYmvGkxtgIAu9opvQ
+	(envelope-from <devicetree+bounces-277905-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:39:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 342D82CEE1B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:32:39 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE4192CEF31
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:39:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7427E30065D4
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:32:38 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2DBEF30516A3
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:33:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A74843EF0A2;
-	Thu, 19 Mar 2026 16:31:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VpOkEc66"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 840863ECBFE;
+	Thu, 19 Mar 2026 16:32:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5CA13CD8CE;
-	Thu, 19 Mar 2026 16:31:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29F2D3E8C46
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 16:32:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773937915; cv=none; b=j9b3IPCDXaLKy6SyckmwecSNH8c41AxeFbVp3Rw9R9GOxi+t+1zWotN0jm4mjze7cQFa7xjChxXk+hkXFJHN/4RK/WvSb4+Ouc8h80sdtZAeZqg6Uxwn7YyRl++iCUJw9zFaC9GA4PXiU3Jv6/fzXQNQYLpO8ppMIZMzWAP4hVY=
+	t=1773937949; cv=none; b=a4kxl5pbC3LX0xgvELW1Qqyi3X3ijy4Kn+vW0kyNxiCjCPvkAADQVirDGOy06uUyTFLJgfV+8b9DiHQpHKgYXO+47TCZhpGBE/QwiXNGsBLrcqyoSb9kRL0oxFPEGd7RdjqAuOy5ApTHg+kPggSj38VT/0V6ozr2GdJySOJ6t0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773937915; c=relaxed/simple;
-	bh=dDFNz/T2xe/eSJre+9Pi9oZ43RYZjCSo4zFbd4aQ8Q0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mJdVuoZkmnnJrQ8QJVAuLuKovEt7XZ/SWePY5m6uWroKE8Cwfc0pDPPcj3ZLzJQxoaizmbjIXTiGjp9B/JJeVVB5PjgObDqEzMmjYdO7ke9qI80oS3a+p2cT/tNDp3qSpWGO+BVyxXHHk58uZgbPTVdaBatCw5oRUUQg+nk9sGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VpOkEc66; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F1D3C2BCB0;
-	Thu, 19 Mar 2026 16:31:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773937914;
-	bh=dDFNz/T2xe/eSJre+9Pi9oZ43RYZjCSo4zFbd4aQ8Q0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=VpOkEc66b4o3LYrDoDPxPuA3DM2N48YRr/s8MZ9bdy3x24ypLd0bLrSwZxxszV1RI
-	 ZD+8ZDw3T7CvCmmtfRD2+YsYj8v7XbV5PKqLRzF7EMKsrTLFRGTVxmZPqy1E/vjXHJ
-	 XOzHOHAVLnsPfjGa9/Ci0/6wDbSlGAtVl9JItuENFzaX5dY58OUbcU2GccBgyJfvbM
-	 CM04+OxlLFXVXPMporDvR2z2hOHG21R6vULrVOD8twPARakuQaXvYfzakF6mOGtufd
-	 URsokauyv3bb2JKAcKfSgoxxBjWedJ1fciaYs0YsGDAEuJHq9SfIfkpioXaowHCJ0i
-	 GWjQqaqRtVHBg==
-From: Conor Dooley <conor@kernel.org>
-To: linux-riscv@lists.infradead.org
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Valentina.FernandezAlanis@microchip.com,
-	Brian.Burke@microchip.com,
-	cyril.jean@microchip.com
-Subject: [PATCH v1 5/5] riscv: dts: microchip: add gpio line names on beaglev-fire
-Date: Thu, 19 Mar 2026 16:31:19 +0000
-Message-ID: <20260319-silliness-follow-a53828f1379f@spud>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260319-outsell-hypnotic-94b480408ad4@spud>
-References: <20260319-outsell-hypnotic-94b480408ad4@spud>
+	s=arc-20240116; t=1773937949; c=relaxed/simple;
+	bh=st7Bx7OxBoVg7ANlPQJRDxKU7BhZR2ill3AXnEAT8zY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=me9YDnfWN9PTGB2odC4uAwVJM3KOMPUJ9c9EuSkLDVQrfPir6tDhXDrVMwfAUnxYDmS6Rv4G8fCYckivUAUbwQMgKrggifHNzIzeUnnOXTSehig/QwKd+gvjLUaoja1GQWFDBLj4WGsbJ6f7oZFDjQSiIr2J6mp8HVnowg/WES4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 615A22247
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 09:32:17 -0700 (PDT)
+Received: from [192.168.0.1] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 37E763F7BD
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 09:32:23 -0700 (PDT)
+Date: Thu, 19 Mar 2026 16:32:05 +0000
+From: Liviu Dudau <liviu.dudau@arm.com>
+To: Cunyuan Liu <cunyuan.liu@cixtech.com>
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	neil.armstrong@linaro.org, heiko@sntech.de, marex@nabladev.com,
+	dev@kael-k.io, prabhakar.mahadev-lad.rj@bp.renesas.com,
+	andre.przywara@arm.com, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	cix-kernel-upstream@cixtech.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add Arm Technology
+ (China) Co., Ltd.
+Message-ID: <abwlBZ0nORcTOUby@e142607>
+References: <20260313033119.33686-1-cunyuan.liu@cixtech.com>
+ <20260313033119.33686-2-cunyuan.liu@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1116; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=MEbSWdODM6nyqAj8PlnaLkIFvl2GmdURbDtDn2FTXtI=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJl7VK7+01DuPfm7XOb41Ijgzlxfmcj2mY0Vs4vbt3orG LXniV3vKGVhEONikBVTZEm83dcitf6Pyw7nnrcwc1iZQIYwcHEKwERSrRkZbjhOjg5k/PDlrJdB wtd/cqdZbxj5mN6b+StrzdzPVy9OuMTw31+Ec0X+mU6/w7NWPXx0WMVG0EL4FdurpkcPNVMypmz 4xAwA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-1.16 / 15.00];
+In-Reply-To: <20260313033119.33686-2-cunyuan.liu@cixtech.com>
+X-Spamd-Result: default: False [0.64 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277905-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277904-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,linaro.org,sntech.de,nabladev.com,kael-k.io,bp.renesas.com,arm.com,lists.freedesktop.org,vger.kernel.org,cixtech.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	NEURAL_HAM(-0.00)[-0.996];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[liviu.dudau@arm.com,devicetree@vger.kernel.org];
+	NEURAL_SPAM(0.00)[0.541];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 342D82CEE1B
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,arm.com:email,cixtech.com:email]
+X-Rspamd-Queue-Id: EE4192CEF31
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Fri, Mar 13, 2026 at 11:31:17AM +0800, Cunyuan Liu wrote:
+> Add "armchina" vendor prefix for Arm Technology (China) Co., Ltd.
+> 
+> Link: https://www.armchina.com/
+> 
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Cunyuan Liu <cunyuan.liu@cixtech.com>
 
-GPIO controller 2 has the gpio-line-names property, but the two other
-controllers do not. Add the property for these controllers too.
+Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+Rob, should I take the whole series through drm-misc-next or should I split the bindings
+into a separate pull?
 
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
-index e8d0a825a5bfc..99c1e05d4d169 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
-+++ b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
-@@ -95,6 +95,8 @@ &gpio0 {
- 		     <21>, <22>, <23>, <24>,
- 		     <25>, <26>;
- 	ngpios = <14>;
-+	gpio-line-names = "", "", "", "", "", "", "",
-+			  "", "", "", "", "", "SD_CARD_CS", "USER_BUTTON";
- 	status = "okay";
- };
- 
-@@ -106,6 +108,9 @@ &gpio1 {
- 		     <43>, <44>, <45>, <46>,
- 		     <47>, <48>, <49>, <50>;
- 	ngpios = <24>;
-+	gpio-line-names = "", "", "", "", "", "", "", "", "", "",
-+			  "", "", "", "", "", "", "", "", "", "",
-+			  "ADC_IRQn", "", "", "USB_OCn";
- 	status = "okay";
- };
- 
+Best regards,
+Liviu
+
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index ee7fd3cfe203..c7ca7f43925b 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -172,6 +172,8 @@ patternProperties:
+>      description: ARM Ltd.
+>    "^armadeus,.*":
+>      description: ARMadeus Systems SARL
+> +  "^armchina,.*":
+> +    description: Arm Technology (China) Co., Ltd.
+>    "^armsom,.*":
+>      description: ArmSoM Technology Co., Ltd.
+>    "^arrow,.*":
+> -- 
+> 2.53.0
+> 
+
 -- 
-2.51.0
-
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
 
