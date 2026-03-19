@@ -1,263 +1,343 @@
-Return-Path: <devicetree+bounces-277799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277800-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wPOBEJr+u2mzqwIAu9opvQ
-	(envelope-from <devicetree+bounces-277799-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:48:10 +0100
+	id 0MjDKjkBvGmurAIAu9opvQ
+	(envelope-from <devicetree+bounces-277800-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:59:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 281442CC2B3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:48:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43ED22CC4E6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:59:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 491383013717
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:48:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AE0A63009FAF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:50:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7A02280A21;
-	Thu, 19 Mar 2026 13:48:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A9B2259CA9;
+	Thu, 19 Mar 2026 13:50:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YGwlOTbk"
+	dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b="gmq0jwAt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94EBE284B29
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 13:47:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773928082; cv=none; b=VLTEdzbPUKPtzclPU6+k6Kuoyq+aSdOomDE4s4Sfiqeap6YQo8p3UPnzSOeCoEhMDmx2xeInqNl4212FCnjKxQfGReHRUfR08ZlE69vZoS90bVyg3F42rA8VE5i8GKbfqZMSX/z8HH0xvhndeXKok8aiboRkVSXJQebdlz3TGFM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773928082; c=relaxed/simple;
-	bh=bad/RDvoK0H6eC9tePqXPk3a25CbMMTO3jy//dcXajA=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=Ufwpg3pq2/c1vADV8N8db6Z0VLit+OFWD8M8Afh5QR9i12WNoPhaHKNTc6WDt1ArQQTherm9HY17skvCEVUQptiaeykLOWvKzEzWTshWXcYui9vhIgK8sk+4AzQ89mXa1WE6z+BU+3gv9lpKyra99cJhyDVIAOwhWP7G1v16tJw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YGwlOTbk; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 84421C42872;
-	Thu, 19 Mar 2026 13:48:20 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 7B8DF5FDEB;
-	Thu, 19 Mar 2026 13:47:55 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7E729104509C4;
-	Thu, 19 Mar 2026 14:47:48 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1773928074; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Cx839nwFg9x1myWgtHWJ12W7NUrDxF+NCqHOKy0Irew=;
-	b=YGwlOTbkR50NQYQfNXh2cJGHzaO3fEj40UV2vASwufkxtYNiRS+Tlx0STCBD19Q86PRn4O
-	COCxtnDSJ7gfxMrLrx//a2xnO71QErmyLNlgNBkYX1x0ic/zPzemW6N0mUdv86uGBodOXR
-	dyT/XSQW1UbGFUEl3ceKvBiXRmw1/snDgl+47+Q3T03+vzdU/B/+Xva5Y4OsyAJ18oUJfO
-	PHjHgnM1gKXjGjwbZBct3957MBU2yjN+oyHuXxVaXggPAjA4z/kjlbtrsBBaL8CpKKpHgy
-	BfbgET1O8h9dDVWuiOr1/B9d0U/eIdeDSzAI3OjS5nUlGAihybwqXd+hafRHnQ==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FFFC2D3A60
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 13:50:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.125.188.123
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773928254; cv=pass; b=l1Tn0bjk05x94SVPOR7RNUlPierqlHuooYyzeTkNvo3sS0/7xeBOW2TtDlNOcfU4Hoa18lEITcFSFTxCCLtVPZRx/EzczRW/hIkuld01k1vXx2zlLP353s42yrtgnvjuOuzrNYzJ8BMoqQBOJhsgKxB0H93rkc1C+nLNhKy7Mj8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773928254; c=relaxed/simple;
+	bh=wNe3zTjWXKubLpElCH4k7FK3v+Z2gPor4/nONBZYQbU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EzWQizm8DhtyCXjLZjEKDTz83BhuKZ/tmq6SS9N4dhZE2RbPWcYdRF8Lw+44hF6v8QekLnZBUj8bCMLAgzBAWDVrXpXuITwX9bHIUtYXnDd1rF2n2SamTmD8Nww7l7pFLyM8SbKlFc/5cvS4/isQYXA2kO73XMEU19Kzbet5frE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b=gmq0jwAt; arc=pass smtp.client-ip=185.125.188.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id BF91C3F98A
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 13:50:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20251003; t=1773928250;
+	bh=L/j+PNZ0FI8K56+I6MmSwOePj2ibMpgOJ+algsLEe2o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=gmq0jwAt/mcKk1TTVsJ31xwI3GStLHOX6XKM1NhCw3fbXD7RUCY7ktp7anEym3YHS
+	 afH0F3SIziUJaMFfA9N/7LByM8W3L4es0f0ft6HAIQMZEOikTrTEiE/TKruaCrItwL
+	 bKQFTv+HhJCKQdjKhbAuXzTj880E6drtgHTXPVlPsFUgYEd2hprJkufXqoSPaqU20K
+	 wQiz/kAhMoaO0AaGAWcwSe7q1AEOg2Z7FQCJsEazf0EZvptc51HhAnO4d9y7NBP38Y
+	 3U6SEQD9B0Ww7x10DtW5HXUsqhC/Gnh22ZqR67/LdVcE+41c3XTItwUpgjfZJnAPZq
+	 FEK1oj3YW0qsTVl4ozNLQgiTJl22L84nETSzSODi1xrkUgUCp/nEIl4U+Jxzh5dQTv
+	 vcZJSzUL7RJes8xDaHnauwYrM11sR3zxv+ieCyseXw93nhmJBi2zdP4LJUgWpFkbiv
+	 XDF/zuGWzBmr3h3U3JJJUjohiCL1sofw7Ea7ei/BarKUVSaNZAhtaya0y9Hdyb6bG4
+	 Pr1XhaAnfhaC/vIGbxhgKeAI7AjJwBbDuJx2zzWvtmOW0d+Zag3PJ2D0zuH64bo9wu
+	 0aPjTg5l3JXPTBI0xWiCfTUqGPjRSh4VAVN8RKWz4fauV6GAB0wuM3nIQBVQ863qkI
+	 fS5R7g6cE5IbqWl+FXfRlkzs=
+Received: by mail-ej1-f70.google.com with SMTP id a640c23a62f3a-b9360e9f43bso114755466b.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 06:50:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773928250; cv=none;
+        d=google.com; s=arc-20240605;
+        b=eo/lrUIKivc6Ad8mLxtujEUeIlOkzt4LRgqf6fjsErUMjdOz/HS9AupApOHm5yvOeE
+         Dv5pVwCy+pGtV6VJXLv1pK585f/pG5ssk18WD9oYYNGScWNvZJ6WPsjKGl8/6g+9VBHb
+         UHUS67TGnIzg6IYYvFkxGP8uH2NS9WuAZKloHVZ8Zv5u9u6nlxoYBMv9a2YJ8fUklLis
+         KPGRC7KCUvYNhYHQ2AwYY2QNeyb/isv/aF5rOhTdhRnElMgwbRWwRJMJ8Dx5c+2CxoMq
+         JbNiQdHK6isdm+s2zzFcpQoGN0W61qmd2+03VyXAQTd9LbeaRgLf5a52xr/V+ytgm+jm
+         LNJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version;
+        bh=L/j+PNZ0FI8K56+I6MmSwOePj2ibMpgOJ+algsLEe2o=;
+        fh=3zXrS5oWEHW+5C+Y8qnY++mGxtihk1JqXfBqQ0PRlVU=;
+        b=QXEuu1TLQFwnMqCkhIU5QNCo8iPu4djd+N+ktcfgdLTdJEX1Aq5ZhvlHJCc4WVeNzS
+         lu3z/3HaSXz61C6QRcQvQzX2SOUVreR3sTWbulgsMyldI8q0kvcmKOx/d20SBY/0DY/F
+         kYprwsZcRUU0NDbdNbXXpxvI5Bs0q9XIAeXGTBVoB2sFdzgFduRQtwFm4tF5Uz/KGWnW
+         rMcp0zfl5VF5tut85v+IKOyQ6uIpRWnBdgP1UFmef7n2Acm+XSRG7rRUtLchutWO11aj
+         u9wwsisOezS50A7/9vX+purI4dPL9pfzHbuIJ7qek8mVlDjcXOWsqZkSMmEJyI14JgDO
+         DcEA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773928250; x=1774533050;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=L/j+PNZ0FI8K56+I6MmSwOePj2ibMpgOJ+algsLEe2o=;
+        b=o6VVMyiQsovcjTLtera6MHEmfl8HeUP4+LV1bMXqlICcj+cgllx671VD8YnFPyppQX
+         2rHdJcTIdXPukPVhqUyXY5YYL0lh5fbYYw4kHmQykOYlyLR3q0WBYdOKX+hhlyAo5ZFy
+         TusyW1xsM5nIfFFObf6XIbGZa6DLnaTFq31lNnZYMjwY5HR1FLAx8PmYTUR4assgpbzp
+         CaUX01az4chgbO9b9IeWGgjfoabZ+55IONSLiK0l+hiYtN2Yci5OSHPel1cFqRoaFVAE
+         6gZAnAXQ/KGC5rn9MJiBf4iiZNosqDuFwhu3p7Cv8wNypwbAaZ43dBl7QIAjrF2wNyie
+         yWRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXQ/a0v3Eveql804ZuFnVFEOWjNWzL4K+2shCRK6IYVq2fs48RkIBYXk2qAbYbgE59ct/0JSGYRxrJ5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwtH8tUus1/Z3aYOfSpaVEd7khZZ6+wu0xEoblN/myAT1fBLfcj
+	+uT9h6BqvK1BQ491hxJrghJ81rEzAkOoQdNujZOjOzdWehkyjQaJi94vhWR+7iuT+MqReRctR2/
+	Ve/JDyTa/zqiV4fyrU8ooutHAG4bvw7SLSl9M97YRpYC/PKzsXfnv/ZxRiQ4Kazs2Dt6zBAtNfD
+	IV+Wz20bEIVu0dClZ5FB/hCSGXftMiIPX+fuUMh9x5fKihL/R9Qk6Ygw==
+X-Gm-Gg: ATEYQzwgDa+2UqBFpfc5ccx7tq6AjBYJit9hfqanxoIUhSn15Jw5eaQoYZNwMDHnB0g
+	bm/AA6ie2uJpwDqziXG/kdENWCIg5cxDU/Q/botiSqNGmoXW3zbvxa4ed7oroHzd9zO5zgG1qYY
+	lDynyZi38cW18bkg4KuUBxPSUeKXrgYA4DlhOMgAuAhBz3jA1I8GpvemA7EhVm/3uohOJg55yaX
+	wxtPz5aDEAqhW9qeOX6WDVP1hMAS8r9zNB3BsM=
+X-Received: by 2002:a17:906:1d01:b0:b97:6a2a:405b with SMTP id a640c23a62f3a-b97f498e062mr420852066b.37.1773928250212;
+        Thu, 19 Mar 2026 06:50:50 -0700 (PDT)
+X-Received: by 2002:a17:906:1d01:b0:b97:6a2a:405b with SMTP id
+ a640c23a62f3a-b97f498e062mr420848366b.37.1773928249601; Thu, 19 Mar 2026
+ 06:50:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20260313094618.1361418-1-ziyue.zhang@oss.qualcomm.com>
+ <20260313164542.GA1405513@bhelgaas> <en5a7jrgpbn4bsmw5qwprugb2qmjkqw2x5eey6jxxu63634duz@b43rhcsqkj3o>
+ <abdviJbrluDn2Vrx@baldur> <kqpgjzcxnazjohiop27exget6qrv37wn3csmixt5nmc6d5dkbg@n7qjo6flaabn>
+ <abtgaXSv-zRysJqO@baldur> <4byysnjodmlphwcevw5gb2asxbwwwlf526mtpwpkfi6crjxoqb@vyuktezfu2wu>
+In-Reply-To: <4byysnjodmlphwcevw5gb2asxbwwwlf526mtpwpkfi6crjxoqb@vyuktezfu2wu>
+From: Tobias Heider <tobias.heider@canonical.com>
+Date: Thu, 19 Mar 2026 14:50:37 +0100
+X-Gm-Features: AaiRm53OOBmjYF3wt3fYYuOja2T2t90m9EZO7Pd32ZcMTQGM6FDTvHdOzk-54EU
+Message-ID: <CAARv3RSag8n0=ut9KGm0yALRPVTiyQ+bBBbT+3Vf1sNOCBLbGA@mail.gmail.com>
+Subject: Re: [PATCH v1 1/1] arm64: dts: qcom: hamoa: Move PCIe PERST and Wake
+ GPIOs to port nodes
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>, 
+	Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>, konradybcio@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com, 
+	lpieralisi@kernel.org, kwilczynski@kernel.org, bhelgaas@google.com, 
+	johan+linaro@kernel.org, vkoul@kernel.org, kishon@kernel.org, 
+	neil.armstrong@linaro.org, abel.vesa@linaro.org, kw@linux.com, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com, 
+	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 19 Mar 2026 14:47:47 +0100
-Message-Id: <DH6T0NTZHP93.2DWN4BWDPP331@bootlin.com>
-Subject: Re: [PATCH v2 0/2] drm: bridge: ti-sn65dsi83: Improve dual-link
- LVDS support
-Cc: <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
- <jernej.skrabec@gmail.com>, <maarten.lankhorst@linux.intel.com>,
- <mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
- <simona@ffwll.ch>, <robh@kernel.org>, <krzk+dt@kernel.org>,
- <conor+dt@kernel.org>, <valentin@compulab.co.il>,
- <philippe.schenker@toradex.com>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-To: <tessolveupstream@gmail.com>, "Marek Vasut" <marex@nabladev.com>,
- <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-X-Mailer: aerc 0.20.1
-References: <20260312043743.261475-1-tessolveupstream@gmail.com>
- <9f694b2d-44bc-46ad-8aa3-b464c2f0da13@nabladev.com>
- <176ed865-11a6-42de-89e0-06951b59a430@gmail.com>
- <DH0X7QW3AH3C.PRNRA8CRSSKA@bootlin.com>
- <49b79a0d-844b-4fee-bccb-706187ed76d1@gmail.com>
- <DH5S3DYT0PJQ.11ABZFGEU6ZPC@bootlin.com>
- <a937f714-d013-4ac2-a52b-2893fc16f225@gmail.com>
-In-Reply-To: <a937f714-d013-4ac2-a52b-2893fc16f225@gmail.com>
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [4.34 / 15.00];
+	RECEIVED_BLOCKLISTDE(3.00)[209.85.218.70:received];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277799-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,nabladev.com,intel.com,linaro.org,kernel.org];
-	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,compulab.co.il,toradex.com,lists.freedesktop.org,vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_FROM(0.00)[bounces-277800-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	R_DKIM_ALLOW(0.00)[canonical.com:s=20251003];
+	GREYLIST(0.00)[pass,body];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,gmail.com,google.com,linaro.org,linux.com,vger.kernel.org,lists.infradead.org,quicinc.com];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_POLICY_ALLOW(0.00)[canonical.com,reject];
+	DKIM_TRACE(0.00)[canonical.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt,linaro];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.985];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 281442CC2B3
+	FROM_NEQ_ENVFROM(0.00)[tobias.heider@canonical.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c0a:e001:db::/64];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	NEURAL_SPAM(0.00)[0.978];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,canonical.com:dkim]
+X-Rspamd-Queue-Id: 43ED22CC4E6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu Mar 19, 2026 at 10:55 AM CET, tessolveupstream wrote:
+Resending because the previous mail ended up being HTML (sorry)
+
+On Thu, Mar 19, 2026 at 6:39=E2=80=AFAM Manivannan Sadhasivam <mani@kernel.=
+org> wrote:
 >
+> On Wed, Mar 18, 2026 at 09:42:56PM -0500, Bjorn Andersson wrote:
+> > On Mon, Mar 16, 2026 at 08:50:12AM +0530, Manivannan Sadhasivam wrote:
+> > > On Sun, Mar 15, 2026 at 09:53:33PM -0500, Bjorn Andersson wrote:
+> > > > On Sat, Mar 14, 2026 at 07:50:50PM +0530, Manivannan Sadhasivam wro=
+te:
+> > > > > On Fri, Mar 13, 2026 at 11:45:42AM -0500, Bjorn Helgaas wrote:
+> > > > > > On Fri, Mar 13, 2026 at 05:46:18PM +0800, Ziyue Zhang wrote:
+> > > > > > > Commit 960609b22be5 ("arm64: dts: qcom: hamoa: Move PHY, PERS=
+T, and Wake
+> > > > > > > GPIOs to PCIe port nodes and add port Nodes for all PCIe port=
+s") did not
+> > > > > > > convert all Hamoa=E2=80=91based platforms to the new method o=
+f defining PERST and
+> > > > > > > Wake GPIOs in the PCIe root port nodes.
+> > > > > > >
+> > > > > > > Without the change PCIe probe will fail. The probe failure ha=
+ppens because
+> > > > > > > the PHY stays in the controller node while the PERST/Wake GPI=
+Os were moved
+> > > > > > > to the port nodes.
+> > > > > > >
+> > > > > > > This fixes probe failures seen on the following platforms:
+> > > > > > >  - x1-hp-omnibook-x14
+> > > > > > >  - x1-microsoft-denali
+> > > > > > >  - x1e80100-lenovo-yoga-slim7x
+> > > > > > >  - x1e80100-medion-sprchrgd-14-s1
+> > > > > > >  - x1p42100-lenovo-thinkbook-16
+> > > > > > >  - x1-asus-zenbook-a14
+> > > > > > >  - x1-crd
+> > > > > > >  - x1-dell-thena
+> > > > > > >
+> > > > > > > Fixes: 960609b22be5 ("arm64: dts: qcom: hamoa: Move PHY, PERS=
+T, and Wake GPIOs to PCIe port nodes and add port Nodes for all PCIe ports"=
+)
+> > > > > >
+> > > > > > Are you saying that DTs in the field broke because of some kern=
+el
+> > > > > > change?  That's not supposed to happen.  Even though PHY, PERST=
+, and
+> > > > > > Wake GPIOs should be described in Root Port nodes instead of th=
+e Root
+> > > > > > Complex node in *future* DTs, the kernel is still supposed to a=
+ccept
+> > > > > > the old style with them described in the Root Complex node.
+> > > > > >
+> > > > >
+> > > > > This is not related to the driver change. The driver correctly pa=
+rses all Root
+> > > > > Port properties either in the Root Complex node (old binding) or =
+Root Port node
+> > > > > (new binding). But commit 960609b22be5, left converting mentioned=
+ board DTS to
+> > > > > the new binding, leaving those affected platforms in a half baked=
+ state i.e.,
+> > > > > some properties in RC node and some in Root Port node. Driver can=
+not parse such
+> > > > > combinations, so it fails correctly so.
+> > > > >
+> > > >
+> > > > Are you saying that above listed machines has broken PCIe support i=
+n
+> > > > v7.0-rc?
+> > > >
+> > >
+> > > I haven't verified it, but I'm pretty sure PCIe is broken on these pl=
+atforms.
+> > >
+> >
+> > In line with Bjorn's request, we shouldn't have to guess.
+> >
+> > > > It seems this is a (partial) revert of 960609b22be5, is this actual=
+ly
+> > > > fixing that change, or is it only applicable once some other change=
+s are
+> > > > applied?
+> > > >
+> > >
+> > > This change is fixing the issue in the respective board DTS and is a =
+standalone
+> > > fix on top of v7.0-rc1.
+> > >
+> >
+> > So 960609b22be5 was broken when I merged it?
+> >
 >
-> On 18-03-2026 14:21, Luca Ceresoli wrote:
->> Hello Sudarshan,
->>
->> On Wed Mar 18, 2026 at 6:45 AM CET, tessolveupstream wrote:
->>>>>> You might want to look at recently posted:
->>>>>>
->>>>>> [PATCH 2/3] drm/bridge: ti-sn65dsi83: halve horizontal syncs for dua=
-l LVDS output
->>>>>
->>>>> Thanks for pointing this out.
->>>>> I tried applying the patch =E2=80=9C[PATCH 2/3] drm/bridge: ti-sn65ds=
-i83: halve horizontal syncs for dual LVDS output=E2=80=9D on top of the cur=
-rent tree and
->>>>> removed the changes that I had previously added in the driver.
->>>>> However, with this patch applied, I am currently seeing only the back=
-light turning on and no image on the LVDS panel.
->>>>> For reference, the LVDS panel used on our platform is G133HAN01.1 and=
- the
->>>>> DSI-to-dual-link LVDS bridge is SN65DSI84ZXHR.
->>>>
->>>> Thanks for having tried.
->>>>
->>>> Can you please test with both the fixes in the series applied + the te=
-st
->>>> pattern feature and report the results you get with and without test
->>>> pattern enabled?
->>>>
->>>> The patches to apply are:
->>>>
->>>>  - https://lore.kernel.org/all/20260226-ti-sn65dsi83-dual-lvds-fixes-a=
-nd-test-pattern-v1-1-2e15f5a9a6a0@bootlin.com/
->>>>  - https://lore.kernel.org/all/20260226-ti-sn65dsi83-dual-lvds-fixes-a=
-nd-test-pattern-v1-2-2e15f5a9a6a0@bootlin.com/
->>>>  - https://lore.kernel.org/lkml/20260309-ti-sn65dsi83-dual-lvds-fixes-=
-and-test-pattern-v2-1-e6aaa7e1d181@bootlin.com/
->>>>
->>>
->>> Thanks for the suggestions.
->>>
->>> I tested the three patches together as mentioned, but the LVDS panel
->>> still only shows the backlight and no image. I also tried removing the
->>> test-pattern patch and retesting with only the remaining two fixes, but
->>> the result remained the same =E2=80=94 only the backlight turns on and =
-no image
->>> is displayed.
->>
->> Sure, the test pattern patch does not change anything, unless you enable
->> the test pattern.
->>
->>>> The first thing I suggest doing on your side is testing with the 3 pat=
-ches
->>>> mentioned above.
->>>>
->>>> If you display works, good! Let us know (you can also add your Tested-=
-by /
->>>> Reviewed-by tags to the test_pattern patch too if applicable).
->>>>
->>>> If it doesn't work, compare the individual register values to find the
->>>> differences, try to figure out why the working setting works and how t=
-o
->>>> apply that change to the driver in away that keeps other boards
->>>> working. You're welcome to come back here to discuss it in case you ca=
-n't
->>>> find out on your own.
->>>>
->>>
->>> I tested the three patches as suggested, but the panel still shows only=
- the
->>> backlight with no visible image. I=E2=80=99m unsure how to translate th=
-e working
->>> register values into a generic fix based on display timings. Any guidan=
-ce
->>> on the right direction would be helpful.
->>
->> What you should do is:
->>
->>  1. with your patches, and while the display is enabled (and working) do
->>
->>      cat /sys/kernel/debug/regmap/4-002c/registers >regs.working
->>
->>  2. remove your patches, add the 3 I mentioned, and while the display is
->>     enabled (but only backlight is working) do
->>
->>      cat /sys/kernel/debug/regmap/4-002c/registers >regs.broken
->>
->> Then compare regs.working and regs.broken. Which registers differ? Can y=
-ou
->> give a reason for the differences?
->>
->> You can come back with these values here so we may discuss them.
->>
+> Broken on the machines mentioned in the commit message, not for all Hamoa
+> platforms.
 >
-> I followed your suggestion and captured the register dumps in both cases.
+> > The commit message says that the commit was incomplete, in that it
+> > didn't fully convert from the old to the new style, so it sounds like
+> > the offending commit was incomplete - but I believe the offending commi=
+t
+> > was a workaround for the new solution not being in place and this commi=
+t
+> > mostly reverts the changes in the offending commit.
+> >
+>
+> So 960609b22be5 was supposed to move all the platforms from old PCIe bind=
+ing to
+> new for greater good, but it apparently decided to do so only for a subse=
+t of
+> the platforms for some reason which  don't know. But the problem arises d=
+ue to
+> 960609b22be5 changing the hamoa.dtsi to the new binding which also warran=
+ts the
+> platform DTS to also be changed to the new binding. If we only have eithe=
+r dtsi
+> or dts converted and not both to the new binding, the driver will get con=
+fused
+> and fail. And this is what exactly happended for below machines:
+>
+>  - x1-hp-omnibook-x14
+>  - x1-microsoft-denali
+>  - x1e80100-lenovo-yoga-slim7x
+>  - x1e80100-medion-sprchrgd-14-s1
+>  - x1p42100-lenovo-thinkbook-16
+>  - x1-asus-zenbook-a14
+>  - x1-crd
+>  - x1-dell-thena
 
-Thanks for getting the values.
+I can confirm the breakage for (some of) the listed devices on Ubuntu.
+We are experimenting with 7.0-rcs ahead of our 26.04 release.
 
-> In the working case, several of the timing registers remain at 0,
-> while in the broken case they are programmed with non-zero values.
+I'll try to collect some test feedback for the fix.
+I'd certainly appreciate this being included as an rc fix since
+currently half of
+the x1 laptop devices are broken.
 
-Yes, but read the documentation carefully and you will discover this is
-OK. Also you shuld analyze all the differences, some are very interesting.
-
-The differences are:
-
-  reg working broken  what changes
-  12:   53      55    CHA_DSI_CLK_RANGE
-  18:   6f      0f    HS_NEG_POLARITY, VS_NEG_POLARITY
-  19:   00      05    CHB_LVDS_VOD_SWING, CHA_LVDS_VOD_SWING
-  24:   00      38    CHA_VERTICAL_DISPLAY_SIZE_LOW (*)
-  25:   00      04    CHA_VERTICAL_DISPLAY_SIZE_HIGH (*)
-  2c:   10      15    CHA_HSYNC_PULSE_WIDTH_LOW
-  34:   28      2c    CHA_HORIZONTAL_BACK_PORCH
-  36:   00      0e    CHA_VERTICAL_BACK_PORCH (*)
-  38:   00      1d    CHA_HORIZONTAL_FRONT_PORCH (*)
-  3a:   00      08    CHA_VERTICAL_FRONT_PORCH (*)
-
-Values with (*) are those you mentioned above (zero in the working case,
-nonzero in the "broken" case). The docs for these registers says: "TEST
-PATTERN GENERATION PURPOSE ONLY". Those values are irrelevant when not
-using the test pattern.
-
-Your timings are all different. That means probably you have them
-incorrectly described in device tree or the panel driver, so the
-ti-sn65dsi83 driver computes them using a correct formula but based on
-incorrect inputs, thus producing incorrect output values into the
-registers. What are the timings in your dts or the panel drivers? If you
-don't understand the question: what is your panel description in device
-tree?
-
-About CHA_DSI_CLK_RANGE: what is your DSI clock?
-
-Finally I don't think the swing values are problematic, so I'd leave them
-as the last thing to check.
-
-Luca
-
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+>
+> > In other words, it's not clear to me, from the commit message, why this
+> > change is a -rc fix. Perhaps the author of the offending commit tricked
+> > me to merge that one, and that's what's being fixed?
+> >
+>
+> I wouldn't say that the author has tricked, but he was unaware of the fac=
+t that
+> changing SoC dtsi warrants change in all platforms, not a subset. I wante=
+d to
+> catch these kind of issues with DT binding validation, so I sent out a se=
+ries
+> earlier [1], but it got stuck. I'll push it forward.
+>
+> [1] https://lore.kernel.org/linux-pci/20251106-pci-binding-v2-0-bebe9345f=
+c4b@oss.qualcomm.com
+>
+> > Also, is the lack of Tested-by telling us that nobody has tested any of
+> > the v7.0-rc on the 8 listed Hamoa devices?
+> >
+>
+> Exactly. Otherwise, they would've seen the failure so obviously.
+>
+> >
+> >
+> > If it's actually needed, can we please have the commit message improved
+> > so that we can merge it into -rc?
+> >
+>
+> Sure. I'll work with Ziyue to reword it properly.
+>
+> - Mani
+>
+> --
+> =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=
+=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=
+=E0=AF=8D
+>
 
