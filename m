@@ -1,119 +1,241 @@
-Return-Path: <devicetree+bounces-277919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277920-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KGdkJfUtvGnquAIAu9opvQ
-	(envelope-from <devicetree+bounces-277919-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:10:13 +0100
+	id 8OAsG34tvGnquAIAu9opvQ
+	(envelope-from <devicetree+bounces-277920-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:08:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F7512CF88D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:10:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04FAE2CF79D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:08:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4D5FF30D867C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:01:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7852A308B423
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:02:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4A6D3EF0AC;
-	Thu, 19 Mar 2026 16:59:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACF883ED5AC;
+	Thu, 19 Mar 2026 17:01:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="3KYLWBb9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JhL3vCrN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F36CC3EF659;
-	Thu, 19 Mar 2026 16:59:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 891C9314D1D;
+	Thu, 19 Mar 2026 17:01:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773939588; cv=none; b=ZNdHcXk11P/iUoFjFfYlhQFaNPilMsp+7qqF3iSx+b/uIBZk0G9UB3ieuwAbj6Me3VFWjjUi7ZDVMMR7wIkhXsaEAFv9m7RAjDDpMode9UvRgYwpRUAUjMcd1k/VaokNwfBkWDXgrFpCIB7k3Ulr5uYqmmDYPgSyQA1JLpYXthU=
+	t=1773939685; cv=none; b=VXKbsHtweI52LsFOi5dioNc+VwpMyzArlJlFFHH/zS3w+P6dTbkzyqNg5h0itgKYxKN5eqLJuQO/i79lrjwZ1G3etpkb0g6qOoS0GQypYb0Gr0RkSz5yiqjVNMfIYSJu9mUkW0gbCXpNAF3ivWs+glxrJluwkBmeekaginIY/2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773939588; c=relaxed/simple;
-	bh=onLJ+pxMVmd7Pd+PgF+4SS2Hno3iBQGyuKeGVVy73To=;
+	s=arc-20240116; t=1773939685; c=relaxed/simple;
+	bh=YnoHs9DDBDclY2aVIF5CrrB8I8oHOlB+aOrQ+gjX4ao=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g68TYOaZ6aq+DTawaRJezbs4dp/gTGnleTmbHevBuCKMJJiL8JXSp/tXNf77fSe4j70K1QhAxKl/p4MPkKWJ//TOGwnp2kO+ENb89u0O7tAzFK+AnIrVaZBJ69au3OBhIPNxKVBbLV1Xyq2Jch0rY8YI4YgjToPglBIksSfzWZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=3KYLWBb9; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=mNsmJRzjMq9v6DLmEUk7yS3p8jyGsynvkUpJInBKrmU=; b=3KYLWBb9vjMusvjL0MM8pAmsAz
-	iXMIJWHbgdkhmW0TUIIcP7N7MuNqY3FgzkUAUL0lzh6IisgD55tcD6fTfObIP0xpsV3wI54AoUAP1
-	KDjJjsKFAs829xyA9oyDxG9tMGU511Z+cpzSMXIrseSPnODKuQM8qJLZvS/gxPqOQIVY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1w3Gie-00CQ8E-P7; Thu, 19 Mar 2026 17:59:36 +0100
-Date: Thu, 19 Mar 2026 17:59:36 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Charles Perry <charles.perry@microchip.com>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=K8tHTJodSMZlseLy1Ko7iwbgAsvIv28APeL5M2rz4q60DaVOGm10fPcHkaOVelNtERVjOSUplOcJf2wzw4k+TgDX7l8oKka0/C3TtvHgz6VCt5lAzhuDnJgoaPNHI4zwP/trTpwk5KpajDa2FktUxyMyhTt/91PgxB7PZsQrFkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JhL3vCrN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21068C19424;
+	Thu, 19 Mar 2026 17:01:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773939685;
+	bh=YnoHs9DDBDclY2aVIF5CrrB8I8oHOlB+aOrQ+gjX4ao=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JhL3vCrNSHWjEUrEs5mYl/I4UDL+oM7vVzEURoI8D877o72JcfOUMQDLp86/B3YDS
+	 nkC5XB4rowGcrTapLJu99yjS+DL0xASTblBjciHvfrSs7dHsw413YLRwUi5k7BovA/
+	 JBSGdg608vYqXkgEvA3PtwKu6PXk7SzBrqXBSAsN2d1b6QWeGgC4hgZkbeY19s9nVg
+	 SwJwvpp4lNejOMAdCWaPX0pC1lEP0RpEUbFtm14NhltqA6j0Pz7dQl7ZiwoU0Xuz7d
+	 LZRK45EeZ1ZOOYLFcJYRsvQ/61KACUUmvEjZZnxpMsZxW58QrqUHgcTL26YuwizXVH
+	 plsGA2AWL5xGw==
+Date: Thu, 19 Mar 2026 17:01:18 +0000
+From: Lee Jones <lee@kernel.org>
+To: Alexey Charkov <alchark@flipper.net>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: document Microchip
- PIC64-HPSC/HX MDIO controller
-Message-ID: <1dec7b03-1ad1-4b7b-897a-5dc144dc18ee@lunn.ch>
-References: <20260317184610.315852-1-charles.perry@microchip.com>
- <20260317184610.315852-2-charles.perry@microchip.com>
+	Chris Morgan <macromorgan@hotmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH v4 09/11] mfd: bq257xx: Add BQ25792 support
+Message-ID: <20260319170118.GP554736@google.com>
+References: <20260311-bq25792-v4-0-7213415d9eec@flipper.net>
+ <20260311-bq25792-v4-9-7213415d9eec@flipper.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260317184610.315852-2-charles.perry@microchip.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260311-bq25792-v4-9-7213415d9eec@flipper.net>
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277919-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277920-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[kernel.org,hotmail.com,gmail.com,vger.kernel.org,collabora.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.964];
+	NEURAL_HAM(-0.00)[-0.976];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,lunn.ch:dkim,lunn.ch:mid]
-X-Rspamd-Queue-Id: 4F7512CF88D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,flipper.net:email]
+X-Rspamd-Queue-Id: 04FAE2CF79D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-> The hardware supports an interrupt pin to signal transaction completion
-> which is not strictly needed as the software can also poll a "TRIGGER"
-> bit for this.
+On Wed, 11 Mar 2026, Alexey Charkov wrote:
 
-If the interrupt always exists, it is better to have it in DT. I
-assume it will be in the SoC .dtsi file?
+> Add register definitions and a new 'type' enum to be passed via MFD
+> private data to support the BQ25792, which is a newer variant of the
+> BQ257xx family.
+> 
+> BQ25792 shares similar logic of operation with the already supported
+> BQ25703A but has a completely different register map and different
+> electrical constraints.
+> 
+> Tested-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Alexey Charkov <alchark@flipper.net>
+> ---
+>  drivers/mfd/bq257xx.c       |  54 +++++-
+>  include/linux/mfd/bq257xx.h | 414 ++++++++++++++++++++++++++++++++++++++++++++
+>  2 files changed, 465 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/mfd/bq257xx.c b/drivers/mfd/bq257xx.c
+> index e9d49dac0a16..4445ded5b2eb 100644
+> --- a/drivers/mfd/bq257xx.c
+> +++ b/drivers/mfd/bq257xx.c
+> @@ -39,13 +39,47 @@ static const struct regmap_config bq25703_regmap_config = {
+>  	.val_format_endian = REGMAP_ENDIAN_LITTLE,
+>  };
+>  
+> -static const struct mfd_cell cells[] = {
+> +static const struct regmap_range bq25792_writeable_reg_ranges[] = {
+> +	regmap_reg_range(BQ25792_REG00_MIN_SYS_VOLTAGE,
+> +			 BQ25792_REG18_NTC_CONTROL_1),
+> +	regmap_reg_range(BQ25792_REG28_CHARGER_MASK_0,
+> +			 BQ25792_REG30_ADC_FUNCTION_DISABLE_1),
+> +};
+> +
+> +static const struct regmap_access_table bq25792_writeable_regs = {
+> +	.yes_ranges = bq25792_writeable_reg_ranges,
+> +	.n_yes_ranges = ARRAY_SIZE(bq25792_writeable_reg_ranges),
+> +};
+> +
+> +static const struct regmap_range bq25792_volatile_reg_ranges[] = {
+> +	regmap_reg_range(BQ25792_REG19_ICO_CURRENT_LIMIT,
+> +			 BQ25792_REG27_FAULT_FLAG_1),
+> +	regmap_reg_range(BQ25792_REG31_IBUS_ADC,
+> +			 BQ25792_REG47_DPDM_DRIVER),
+> +};
+> +
+> +static const struct regmap_access_table bq25792_volatile_regs = {
+> +	.yes_ranges = bq25792_volatile_reg_ranges,
+> +	.n_yes_ranges = ARRAY_SIZE(bq25792_volatile_reg_ranges),
+> +};
+> +
+> +static const struct regmap_config bq25792_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = BQ25792_REG48_PART_INFORMATION,
+> +	.cache_type = REGCACHE_MAPLE,
+> +	.wr_table = &bq25792_writeable_regs,
+> +	.volatile_table = &bq25792_volatile_regs,
+> +};
+> +
+> +static struct mfd_cell cells[] = {
 
-Always requiring it makes the code simpler when somebody adds support
-for interrupts. You don't need all the _optional_ and dealing with it
-being missing etc.
+This was `static const` before. And I don't see any code in here making
+changes to it.  Was the `const` dropped intentionally?
 
-      Andrew
+>  	MFD_CELL_NAME("bq257xx-regulator"),
+>  	MFD_CELL_NAME("bq257xx-charger"),
+>  };
+>  
+>  static int bq257xx_probe(struct i2c_client *client)
+>  {
+> +	const struct regmap_config *rcfg;
+>  	struct bq257xx_device *ddata;
+>  	int ret;
+>  
+> @@ -53,9 +87,21 @@ static int bq257xx_probe(struct i2c_client *client)
+>  	if (!ddata)
+>  		return -ENOMEM;
+>  
+> +	ddata->type = (uintptr_t)device_get_match_data(&client->dev);
+
+This logic seems a bit fragile. For non-DeviceTree platforms,
+`device_get_match_data()` will return `NULL` since the `i2c_device_id`
+table doesn't provide any match data. Casting `NULL` to `uintptr_t` will
+result in `0`, which corresponds to `BQ25703A`. This means the new
+`bq25792` will be misidentified as a `bq25703a` when instantiated
+without a DeviceTree node.  Even with DeviceTree, if a compatible string
+is matched but has no `.data` property, the same misidentification will
+occur.
+
+Perhaps it would be safer to explicitly handle the `NULL` case and make the
+identification logic more robust?  Or perhaps start your IDs from 1.
+
+>  	ddata->client = client;
+>  
+> -	ddata->regmap = devm_regmap_init_i2c(client, &bq25703_regmap_config);
+> +	switch (ddata->type) {
+> +	case BQ25703A:
+> +		rcfg = &bq25703_regmap_config;
+> +		break;
+> +	case BQ25792:
+> +		rcfg = &bq25792_regmap_config;
+> +		break;
+> +	default:
+> +		return dev_err_probe(&client->dev, -EINVAL, "Unsupported device type\n");
+
+Given the potential for `device_get_match_data()` to return `NULL` (which
+becomes `0`), this `default` case might not be reachable for invalid or
+un-matchable devices. A more explicit check on the match data before this
+`switch` might be better.
+
+> +	}
+> +
+> +	ddata->regmap = devm_regmap_init_i2c(client, rcfg);
+>  	if (IS_ERR(ddata->regmap)) {
+>  		return dev_err_probe(&client->dev, PTR_ERR(ddata->regmap),
+>  				     "Failed to allocate register map\n");
+> @@ -74,12 +120,14 @@ static int bq257xx_probe(struct i2c_client *client)
+>  
+>  static const struct i2c_device_id bq257xx_i2c_ids[] = {
+>  	{ "bq25703a" },
+> +	{ "bq25792" },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(i2c, bq257xx_i2c_ids);
+>  
+>  static const struct of_device_id bq257xx_of_match[] = {
+> -	{ .compatible = "ti,bq25703a" },
+> +	{ .compatible = "ti,bq25703a", .data = (void *)BQ25703A },
+> +	{ .compatible = "ti,bq25792", .data = (void *)BQ25792 },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, bq257xx_of_match);
+
+[...]
+
+-- 
+Lee Jones [李琼斯]
 
