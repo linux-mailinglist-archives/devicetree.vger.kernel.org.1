@@ -1,353 +1,194 @@
-Return-Path: <devicetree+bounces-277981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277982-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oP7+EdhCvGmAwAIAu9opvQ
-	(envelope-from <devicetree+bounces-277981-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:39:20 +0100
+	id uMUsMjpEvGmAwAIAu9opvQ
+	(envelope-from <devicetree+bounces-277982-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:45:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC9712D1269
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:39:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3184F2D139A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:45:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 273CF300C0D2
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:39:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C8CC930FE79C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:41:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA86530E0D5;
-	Thu, 19 Mar 2026 18:39:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36C1836F40E;
+	Thu, 19 Mar 2026 18:41:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UKnJUMj1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AeeiUoio"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62D5718EB0
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 18:39:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773945555; cv=pass; b=sVZ295EU7VlLpiJDzm4Rk1tMZgA3NQXJf/NLzxZIEkYCgTJlkenVggHsJYc1hE8oCEudPVeCi7ljZgQbZdQh4H9tCOGJQb+rw9A4+Ftk21ucIsCc/3yI0Tmcwmb+5PDPzrPzSAPPZ+hIF7h0jEpmVVt+sVaJDzdvZP2oi4tNPZg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773945555; c=relaxed/simple;
-	bh=wx98uaVcJlbyPJHok3qOz5VS+w/Uyhd4kectCkHQIts=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tCrMU5fipIIp688lEgmvVUnop6Q7i90qKqAxp0qGDGxwhUhC2ncnQ0qWpuwi/ltuZVvhzi3rzyViI8wCVn22+OZdzCTnhsL4FStbFN82deMnoW+oL21+P6NCvCrsSDlaSH6YYrBBiUx5SzBD4DeFRa6kvat8vICYXkhGpmXTXXg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UKnJUMj1; arc=pass smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAE80332918
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 18:41:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773945713; cv=none; b=iBepIyERjbQMMvrkfIH1GHVADEI/k2eaG5oj2izrxmaFyUNbrqzK2vEXhToYSNLTn6kAdbeYXC3PIMy+OELTwn0VbdFTeKUYC4b8boIdYQS1AcZnSbYpFzoZlyxfXPUa9OpgAHO7XfTL4gnv1wtaN9ehdDcUn6hz/IqZeBQa1cU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773945713; c=relaxed/simple;
+	bh=1wpmT3kyX1LpHVuDOa8WduzvRAXtfYcozUELimXaQV0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qH6ok4lZWWqLHIYtL7D+VfjO75AYoDj0PxDblI9uEARHqdOIEvaR0jTICmfCVvp3dRhksYXvsDkNNASy+DqjHiJR5YTB/GBfQT+dmf+dRvkLORnDJJ4O2M1V5Y0bHQ7mQJLFBOoUeqomPPsl2YlS9pCXoIgooSIWcIYsfl/SSHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AeeiUoio; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-59dcdf60427so1301267e87.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 11:39:14 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773945553; cv=none;
-        d=google.com; s=arc-20240605;
-        b=f6etJ2sB9nSmRt9FgfSKY3tTYTjcCGidMN5jPI37daZWiZZVQT6FTNyUgA83H+QW4R
-         rtwvXRwnLzTvG6n4Lk3o8Mt3TjfjWC1tE/JM3lFaoAtTuUc7f8GKTDDVw7c5Rbz4RBRa
-         qzeLeF6XZeGVq/fiKkJRGbi5iHJT4vmWkEa+DiOHwaYnciC6LjkddcjKBm33RQ7ryLk6
-         7BgK4Ct6Xwr3I7WhL9QeYPmSPTTzO0bOPlWucd0Cg//VRNHUNDbn8XMr570f4h8Rr4RU
-         vPPYLT93iTuwmsIXPaatB2aRddN9oiETpRLGk5ws5dyQazJpbeNLKnh08G6mefx89GJX
-         Z0pQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=5dtSkUt/0+k+zkoTrKcW+DOXMi+N2xx2OVINNsqDh8Y=;
-        fh=hFpJp/FOF3RiM9uUT4h1aQNhXmXuQJ8EfD1xm9SaH1o=;
-        b=DqAf09e4UmDeJ8QMYXxfn+qN/7SRIDFwye4NLmdTQrtvq60b/0KxRqngpQRC0lR6Dl
-         VPVoVZ9wwrNeT4usZ9Hoq4jk+8VkDiIl5FxzZH7El9NMq5k3m11Ap/27ACu9r0Q+N0/G
-         NjtMxEO1j86qc7KmeyeCptaevsZfNfrJi4YFxkmzxTNpPwPsrCUo7b4Uw7IoIEUzYluY
-         VzlOa+PxMczSxZRYTC7rLY60nRR6A/JLYSFc5PUu/Mrf9R+ajvOKIm5/fVx2E2R18B2x
-         9DNTJhEchkB/TPyN9Xx9nIuTdRJkmDvEsJg9j/kSZYhLcvDpabknDK1RHCn14SccaVWS
-         iJ9Q==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-486fe36cfabso1675085e9.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 11:41:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773945553; x=1774550353; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5dtSkUt/0+k+zkoTrKcW+DOXMi+N2xx2OVINNsqDh8Y=;
-        b=UKnJUMj1JfM2IsPyFvtJLT+HVnlnjjv1dRHVhfXsU0mMPsZUhDGm/yQ/gtYatuogtb
-         4G4xrig7N3So0mzDef7w2wx0ipr5XLtTkrfo59cBPuMy241/m3rOYYL6c+2ioqG2t5Lx
-         AzZviZTLHZMt2iIMBFq+VZkqG86yXmUOl+g/wz8lVQLU39Uswv+5MGKMwoTwgesFTsz7
-         LIEKbivT/3Q8nehkBG07nBb9sD4VP9zI6TBYAnG9iDFsyt0FHrhCqYRty9YNMoEcOEDl
-         Le6pSfkapgxaPsB+y2eDbDgBrSE1xys3rViAcIrQ8gPBVqHg7rZHnZXzae3diZCxEyPy
-         L7Kw==
+        d=gmail.com; s=20230601; t=1773945710; x=1774550510; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=p40Qcv2G6Nwq3NC4ZmBz0invegjnt7tZxrcbDvxluio=;
+        b=AeeiUoioftUrAOASvk5kU2xdEh4y65FWuJz4yVyNXr+TBnXV5G4+yjlF44QASsn6pX
+         XvQLkBPgH2OVD2thL3DoKQq3K9nmpW0D2f7hXJsq+aObltielnR5BTijNmwy8stzgFIH
+         KhbZPB2OG8a7ZeA6h3/zsQr1+AV77R2SKDcUQsZ5WC1ew94fDUqkFOXCZqap63vG2Vsm
+         UjNiWrElN5tmmcgIx3bxon3sNfnOtcmc7M89TI9K/5gqwk1ac7E0xSWGnqQLwSZAGs7O
+         GThBTHnpVxh8Y+fZjGemWZ43ICCD8yDKvJkR5dOeXcAp97YGDowfWVoky5Y/0M/baLzu
+         lWBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773945553; x=1774550353;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=5dtSkUt/0+k+zkoTrKcW+DOXMi+N2xx2OVINNsqDh8Y=;
-        b=W0fHfGGuxu2f2d3lWCi6S2k3Naaa6URfkqXmka2ixzkRKwdR3TdHKgTAkUnhcZTn7U
-         VOXZH6iPXTEY2eMLwiDWVHYCcWhmDm1ypb4C7fyEYj9cryX+NuOzZsQCCSEg9d1owHlf
-         16HjlaBRBDBe8i/yHQf+yFCP5Hmw3UXkIiVWvp8jqWjBaVx/iR9iOyT8PVwxzMr7NjFh
-         tBdgPkrX9aIxt0qxXmxKUoHFKNnSjkSh3POZKpQMrTAQy1Rs7YKl4tuLu8lFCi9pEDFU
-         ++p2x32/C6I/AmitSqbh1wuNFrQFc1vDeX5TPMKlH/TkTejooi3qmGznj8qw7xVzcqKd
-         zFZA==
-X-Forwarded-Encrypted: i=1; AJvYcCVfnO9F7OThLRF5LNtX/UMh1q48N/jTZEtDT3R4XShc0V1BPBRLZ+J5zYr+/S+fJ3fRadPTFF2xv3L+@vger.kernel.org
-X-Gm-Message-State: AOJu0YzgDEf7mrcgNyVBvsqfVADZN4c95GuaeOM+TcWARtBf3dvfvSFI
-	s9PM0qkgHxznM9n84c46FCZAnArR62BsIuUo4NLPTwvmb7ngtrEupPvpucHbEuRqkCWhR4Qr13v
-	nYUnuv1Bk2oFQAg61VUPybOtBRsO/fyk=
-X-Gm-Gg: ATEYQzwrwEFxmhmJnRmkKl76GIrtEF//No0ps359IQv8Kyv4TvCIgej0ynIca03KpH4
-	mwZzYqgHpg6nqOzqt2SMdWJIBiC+QJLdrK4WSUiyKwvItgjfJLhaxL3YSYaakBdc+hCjxfb9nC/
-	ZTXGk7eLwrKP0teNg8CWPc0eGwksIqEW50GrYfR9bFNW7fe99GA/b/dLv0Ojbb2Ne/LWOT8GjYa
-	4jnFOBpkoov06gtNPwN+jfnA9R+XOYzpD+hMbG2YKqCPEIO/Y+RpP9R8+z9wX/jhpLyWYaC/ynL
-	b475xmqDZlFdmoh1NnLPHmKAg8QSovsu64lRK7vFkeXqQ7ZIxDYsp3yS0YoStcrFqyh1
-X-Received: by 2002:a05:6512:23a9:b0:5a2:7a56:b30a with SMTP id
- 2adb3069b0e04-5a285b6cbedmr30959e87.26.1773945552458; Thu, 19 Mar 2026
- 11:39:12 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1773945710; x=1774550510;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p40Qcv2G6Nwq3NC4ZmBz0invegjnt7tZxrcbDvxluio=;
+        b=qMbshrinnUkYLIoHiNwoKkoX05HxNJfvzZo7s0/cWIbwH42Cxw0EqgF411L9Zqq5/N
+         7Btt8BAyRra8PGoxJctgOkokRnTMaLAPKdtyk8Oy09wdJFxfpoaIJsUhUDCCLaxAq+OE
+         FLxnMn5anfpKPyCNlkrfN3yooIh1zxSSX1+ZhzSYYE56pnuQyIOdi2hrzTObPAxIKAQ4
+         pA9+l3emSr6ard3v+spbJdf/egs2O3i+0p62YgNgO3oobcCnUVcbZKVTmCnGrI5fYK0M
+         yWhuQ+eT0njPwEcf9ZU6cC56kxOTatHgqFdQm2P5i5yQ7OyDQifEi1t0jMaeoz8jKwwp
+         2lgg==
+X-Forwarded-Encrypted: i=1; AJvYcCWqSN2GgtezGuLci+FzMH4pjNv0tef5Gy8Pdle6oHFZcfJRKSv8SHom0kZ6oZ7FqfpeqP/tCqucWu0i@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsYLZf4HEFa6BleIBuleXKRHchsMf2/vXdFWzl15h1Ii6lDx+d
+	lhuKAUOqhl2JlqFPsZyAh0zUsJh5x5S0UmfnxbSGGHPa1rO7rRVIjp68
+X-Gm-Gg: ATEYQzy4HA0mvvPRf60mzvELyYfA0YW3fGTpUte/y9b+bChnMRS6jniU7VZOncFI+tR
+	rRbanJp+OFeaTpHlI5B5IFwdyb2oYLFrwpS1aJ6Z6UHw4fvHD9vWoeSWc6hvpbtKfxJdiHPtMVa
+	LOere/jonY/G6vELxg4cGOMoiKt0RUns72Eu5YxenEb0TDH+2sZWm0tB6CPSjrsjeV5BWQaQ7oO
+	5shpP1uP22kW/64u2B4Fwgmr8a3RYlQZJuWU+Sg7Txcau8MRdGMB/lyBzy+nEsLZdrYvp/6LcYw
+	FNjxMP7uiMM/LmJNSXn0PrDGTIePfa6ssTjtdgtVE5QtKJKWxn0pXPv68WnbkTrZk3lIjeu4Vlr
+	W17yffZccbNU9Ybtp21n/ItBSK7M/JqZ/mkMvXzcfZXjwP0aPsptsA17ut6H/cMIh5Kvd07KNF4
+	1mKCtQ1Tle4MmC4ETmFVeUWjXYh59kQqk6hl5yZ7hhk7EiMDCccOgxPZiVSUgfVtOlFz7gUo5qd
+	8EOwJhdv0jdgNfI6pjaIfAR2cCNZdRwOx9d/W0=
+X-Received: by 2002:a05:600c:a312:b0:485:3989:b3e4 with SMTP id 5b1f17b1804b1-486fe8b7afdmr5739095e9.6.1773945709911;
+        Thu, 19 Mar 2026 11:41:49 -0700 (PDT)
+Received: from Lord-Beerus.station (net-188-152-100-94.cust.dsl.teletu.it. [188.152.100.94])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486f8b1fe65sm77289195e9.5.2026.03.19.11.41.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Mar 2026 11:41:49 -0700 (PDT)
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Cc: pierluigi.p@variscite.com,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH v4 00/11] arm64: dts: freescale: imx8mm-var-som: Align SOM and Symphony DTSs
+Date: Thu, 19 Mar 2026 19:40:20 +0100
+Message-ID: <cover.1773944896.git.stefano.r@variscite.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260311-ayn-qcs8550-v2-0-e66986e0f0cb@gmail.com>
- <20260311-ayn-qcs8550-v2-2-e66986e0f0cb@gmail.com> <c464d106-8e7b-41a5-b76c-ed5e7a82fb37@oss.qualcomm.com>
-In-Reply-To: <c464d106-8e7b-41a5-b76c-ed5e7a82fb37@oss.qualcomm.com>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Thu, 19 Mar 2026 13:39:00 -0500
-X-Gm-Features: AaiRm51t4avwyvzvLcAlaysld1xiugTPcZDvtm3iHLmSQI4lsTYBRd_nmd64Vzs
-Message-ID: <CALHNRZ-AC+0+JdjvvQLREE-nXAzV+kJc_9GMNjVs=tT8GxKBzQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] arm64: dts: qcom: Add AYN QCS8550 Common
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Teguh Sobirin <teguh@sobir.in>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277981-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.0:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[webgeek1234@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.691];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-277982-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[variscite.com,nxp.com,pengutronix.de,gmail.com,kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sobir.in:email,mail.gmail.com:mid,qualcomm.com:email,0.0.0.34:email]
-X-Rspamd-Queue-Id: DC9712D1269
+	NEURAL_HAM(-0.00)[-0.683];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,variscite.com:mid]
+X-Rspamd-Queue-Id: 3184F2D139A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 19, 2026 at 6:40=E2=80=AFAM Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
-> On 3/11/26 6:44 PM, Aaron Kling via B4 Relay wrote:
-> > From: Teguh Sobirin <teguh@sobir.in>
-> >
-> > This adds a base dtb of everything common between the AYN QCS8550
-> > devices. It is intended to be extended by device specific overlays.
-> >
-> > Signed-off-by: Teguh Sobirin <teguh@sobir.in>
-> > Co-developed-by: Aaron Kling <webgeek1234@gmail.com>
-> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> > ---
->
-> [...]
->
-> > +     pwm_fan: pwm-fan {
-> > +             compatible =3D "pwm-fan";
-> > +
-> > +             fan-supply =3D <&vdd_fan_5v0>;
-> > +             pwms =3D <&pm8550_pwm 3 50000>;
-> > +
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&fan_pwm_active>, <&fan_int>;
->
-> property-n
-> property-names
->
-> in this order, everywhere, please
+This series aligns the i.MX8MM VAR-SOM and VAR-SOM Symphony device
+trees with the latest hardware revisions.
 
-Ack
+The update consolidates the device tree descriptions to better reflect
+the actual hardware partitioning between the SOM and the carrier board.
+Nodes describing peripherals physically present on the SOM are kept in
+the SOM dtsi, while carrier-specific components are described in the
+corresponding carrier dts.
 
-> > +
-> > +             pulses-per-revolution =3D <4>;
-> > +             interrupt-parent =3D <&tlmm>;
-> > +             interrupts =3D <13 IRQ_TYPE_EDGE_FALLING>;
->
-> interrupts-extended =3D <&tlmm 13 IRQ_...>;
+The changes were tested on the latest VAR-SOM and Symphony hardware
+revision.
 
-Ack
+v3->v4:
+ - Remove "This patch" from commit messages
+ - Remove wrong enet reset gpio hog
+ - Add symphony legacy dtb to use old brcm wifi module
 
-> [...]
->
-> > +             model =3D "AYN-Odin2";
-> > +             audio-routing =3D
-> > +                             "IN1_HPHL", "HPHL_OUT",
->
-> Let's drop this empty linebreak
+v2->v3:
+ - Add clock-names porperty along with clocks
 
-Ack
+v1->v2:
+ - Moved phy LED configurations to symphony dts
+ - Added Wifi/BT dtsi variants for both iw61x and brcm legacy modules
 
->
-> > +                             "IN2_HPHR", "HPHR_OUT",
-> > +                             "AMIC2", "MIC BIAS2",
-> > +                             "TX SWR_INPUT1", "ADC2_OUTPUT";
-> > +
-> > +             speaker-i2s-dai-link {
-> > +                     link-name =3D "Primary MI2S Playback";
-> > +
-> > +                     cpu {
-> > +                             sound-dai =3D <&q6apmbedai PRIMARY_MI2S_R=
-X>;
-> > +                     };
->
-> 'co'dec < 'cp'u, please resort
+Stefano Radaelli (11):
+  arm64: dts: freescale: imx8mm-var-som: Move UART4 description to
+    Symphony
+  arm64: dts: freescale: imx8mm-var-som: Align fsl,pins tables
+  arm64: dts: freescale: imx8mm-var-som: Update FEC support with
+    MaxLinear PHY
+  arm64: dts: freescale: imx8mm-var-som: Add support for WM8904 audio
+    codec
+  arm64: dts: freescale: imx8mm-var-som: Add MCP251xFD CAN controller
+  arm64: dts: freescale: imx8mm-var-som: Rework WiFi/BT and add legacy
+    dts
+  arm64: dts: imx8mm-var-som-symphony: Move USB configuration from SOM
+  arm64: dts: imx8mm-var-som-symphony: Enable uSD on USDHC2
+  arm64: dts: imx8mm-var-som-symphony: Add TPM2 support
+  arm64: dts: imx8mm-var-som-symphony: Enable I2C4
+  arm64: dts: imx8mm-var-som-symphony: Enable PCIe
 
-Ack
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../imx8mm-var-som-symphony-legacy.dts        |  19 +
+ .../dts/freescale/imx8mm-var-som-symphony.dts | 214 +++++++++-
+ .../imx8mm-var-som-wifi-brcm-legacy.dtsi      |  12 +
+ .../imx8mm-var-som-wifi-bt-iw61x.dtsi         |  45 +++
+ .../boot/dts/freescale/imx8mm-var-som.dtsi    | 366 ++++++++++++------
+ 6 files changed, 514 insertions(+), 143 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony-legacy.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-var-som-wifi-brcm-legacy.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-var-som-wifi-bt-iw61x.dtsi
 
-> [...]
->
-> > +     vdd_fan_5v0: vdd-fan-5v0-regulator {
-> > +             compatible =3D "regulator-fixed";
-> > +             regulator-name =3D "vdd_fan_5v0";
-> > +
-> > +             regulator-min-microvolt =3D <5000000>;
-> > +             regulator-max-microvolt =3D <5000000>;
-> > +
-> > +             gpio =3D <&tlmm 109 GPIO_ACTIVE_HIGH>;
-> > +             enable-active-high;
-> > +
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&fan_pwr_active>;
-> > +
-> > +             regulator-state-mem {
-> > +                     regulator-off-in-suspend;
-> > +             };
->
-> oh, I didn't know this binding existed.. but it seems valid indeed!
->
-> [...]
->
-> > +&i2c12 {
-> > +     clock-frequency =3D <400000>;
-> > +     status =3D "okay";
->
-> Let's uniformly keep a \n before status
 
-Ack
+base-commit: aa31e3bb9b98a86e5dde5c0c637a11cc57470281
+-- 
+2.47.3
 
-> > +};
-> > +
-> > +&i2c_master_hub_0 {
-> > +     status =3D "okay";
->
-> Please add a clock-frequency
-> (you can read it back at runtime running a vendor kernel if you don't hav=
-e a
-> better source)
-
-Mmm. I'll see if I can find that. But I don't see any of the existing
-sm8550 devices setting this either.
-
-> [...]
->
-> > +     spk_amp_l: spk_amp_l@34 {
->
-> underscores are no bueno in node names (between ':' and '@'), and they sh=
-ould
-> be generic, let's try amplifier@
-
-Ack
-
-> [...]
->
-> > +&iris {
-> > +     status =3D "okay";
->
-> firmware-name?
-
-Not needed. These devices are unfused and can use the generic firmware
-like the devkits. I have verified this as noted in another response on
-this change.
-
-> [...]
->
-> > +&sdhc_2 {
-> > +     cd-gpios =3D <&pm8550_gpios 12 GPIO_ACTIVE_LOW>;
-> > +     pinctrl-names =3D "default", "sleep";
-> > +     pinctrl-0 =3D <&sdc2_default &sdc2_card_det_n>;
-> > +     pinctrl-1 =3D <&sdc2_sleep &sdc2_card_det_n>;
-> > +     vmmc-supply =3D <&vreg_l9b_2p9>;
-> > +     vqmmc-supply =3D <&vreg_l8b_1p8>;
-> > +     max-sd-hs-hz =3D <37500000>;
->
-> It's already in 8550.dtsi, you can drop it
-
-Ack
-
-> > +     no-sdio;
-> > +     no-mmc;
-> > +
-> > +     qcom,dll-config =3D <0x0007442c>;
->
-> Is that changed in your downstream tree?
-
-I honestly don't know. This existed in the mainline port dtsi mirrored
-by the vendor and I picked it up as-is. I grepped the downstream
-source release and I don't see anything named 'dll-config' in the
-sm8550 dt at all, only in older soc's brought in by the kernel fork. I
-know the fork I based on was chasing the issues with high speed sd
-cards that seem to have been recently fixed upstream. Maybe this was
-part of that. I can drop it given no one knows why it's here.
-
->
-> [...]
->
-> > +&swr1 {
-> > +     status =3D "okay";
-> > +     wcd_rx: codec@0,4 {
->
-> Let's keep a \n between properties and the subsequent subnodes,
-> also file-wide
-
-Ack
-
-> [...]
->
-> > +&tlmm {
-> > +     gpio-reserved-ranges =3D <32 8>;
-> > +
-> > +     dsi_p_rst_active: dsi-p-rst-active-state {
-> > +             pins =3D "gpio133";
->
-> https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
->
-> Let's order them by the pin index (it's a fairly new development so other
-> 8550 devices don't really have that)
-
-Ack
-
-> [...]
->
-> > +&usb_dp_qmpphy {
-> > +     vdda-phy-supply =3D <&vreg_l3e_1p2>;
-> > +     vdda-pll-supply =3D <&vreg_l3f_0p88>;
-> > +
-> > +     mode-switch;
->
-> Already present in sm8550.dtsi
-
-Ack
-
-Aaron
 
