@@ -1,265 +1,299 @@
-Return-Path: <devicetree+bounces-277833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277834-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id bFcVC1EPvGmFrwIAu9opvQ
-	(envelope-from <devicetree+bounces-277833-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:59:29 +0100
+	id uCnJMaYPvGmFrwIAu9opvQ
+	(envelope-from <devicetree+bounces-277834-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:00:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CF832CD4EA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:59:28 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFE1B2CD52D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:00:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4BEFF315EE5B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:58:11 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id F0CC130060A7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:58:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BC173DD501;
-	Thu, 19 Mar 2026 14:58:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D749E3DDDD4;
+	Thu, 19 Mar 2026 14:58:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="DjPKuzP8";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="rPKRDR6a"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ZSOfnffm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a4-smtp.messagingengine.com (fout-a4-smtp.messagingengine.com [103.168.172.147])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DB1C3DB645;
-	Thu, 19 Mar 2026 14:58:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.147
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF0D33DD520
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 14:58:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773932288; cv=none; b=VYlzQafQu0YR7d77EB/sqC2Dnp+IhBBvbnDF9Gjze4qtuIxFtoziRd2C2knS+v/E10fQWm3/MR+ofGxzYbXuEOP60XVwlpSKKg8RtDBGr68hZDQDZH2wPXiD8OBpXb5gv4Qt+M8a5QNewjd1bOeL5HED8vInrEzUjo4GE6o5fkQ=
+	t=1773932333; cv=none; b=s4prrdf6bo4REj9plRuDGhlLWz5XZMNjw5T6zr3YZ9+SM/w/85iIO1jLcBE5aYpmq4bk2Z4ggNqhXuZnDNJK1KPXwK2mxpzvWqtYs7+nF+JmQEjYJLsoqAHeZVDOr6mOoRCqcR5OW4u/sYUsM2L723880YLVRmWkirQj19T6U4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773932288; c=relaxed/simple;
-	bh=pgxNV0NukCTQwDip0+2Xj8IDia+pUtXJoQL4YDXa/cU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=JDhDWU/CnlZ/u7FhZfclee31uR6it3FtFIHbj+43enIcnj78zo4Uy86qAxiZg8vS4f9IIMDy+OfSTn7z4e3XUV5+LB0aNH/CWIY6ZdULqdbdLy7gl4kChMwEcl+40OjWSJK/k2lhd4YVrPP6As0TZS3SpLLaTEnk1BEsSIQ70Ug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=DjPKuzP8; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=rPKRDR6a; arc=none smtp.client-ip=103.168.172.147
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
-Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
-	by mailfout.phl.internal (Postfix) with ESMTP id 27D9DEC00FD;
-	Thu, 19 Mar 2026 10:58:04 -0400 (EDT)
-Received: from phl-frontend-03 ([10.202.2.162])
-  by phl-compute-06.internal (MEProxy); Thu, 19 Mar 2026 10:58:04 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:message-id:mime-version:reply-to
-	:subject:subject:to:to; s=fm3; t=1773932284; x=1774018684; bh=3m
-	nTyAhpYWz2zaDPLvJ2kJeO/ztsRtlNN1dUSgeAJpw=; b=DjPKuzP8SUF8zr9Zs4
-	tpLPVQnLeQ9Il+n7GTO111AOmoZHSV5Xk5ZLzAWYlBJSCJE6LsNTG27G0p5U2Vd8
-	MddQJOkWuAEo6s4tioBvc2jmNtwpFSGViTZ2aAjOs1mX6slIB4HGnrEw3myoglLy
-	bn3pPWAuNSUeLuQTWSMeVpoeJkk0fKwK3ahH/N7PhWY7V3bVRUKgXyjPjLDsgPfV
-	ML0dhJcKNKbvzYQ83y99sJ7n5Gm+kD4csG9rtr9+sZDysNUcLXMw0nuLww1vRB29
-	WVZvUfBmq9++q9zGZgi4/LoXasSVQG5WnzxUogubCWQTbNUYFDkH3jGT5POUDBx7
-	x4yA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
-	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm1; t=1773932284; x=1774018684; bh=3mnTyAhpYWz2zaDPLvJ2kJeO/zts
-	RtlNN1dUSgeAJpw=; b=rPKRDR6a96r2lY/dGZZXcA/lhDv1A7Z0Smvi/HGcnIf6
-	1St04c77cxzWulpsScPAP6S5F8zi3xsmpqFFBxUtxHXMqYX2d/LF2o1rv6X7yOrA
-	whBCXcQd23aE+A+yz72Tn2NnkIBv4IB1RLhFthl0JlwKl6cAoJe8CArpAN938myG
-	z4XVl/AXGVbgZLBNdSvpCkbklK+yoRW93mYd1HkzSfs4rWpBsOX6CZzqUpqmC2xd
-	8iwTWrvDOfu2M1qDDymWP2GoDJLkzrOoo/B2No8jXsULom/JyoYSIS2/qAdcdVON
-	HIp/v4R2Hh008GnZi1rps98C45RvVVK8EupDnOxMvw==
-X-ME-Sender: <xms:-w68ab77C32kNdd-CowSo6Mw3vzXRwZ1SoxppdkffthdJDPg6hiXsQ>
-    <xme:-w68aZH04Jv7dm4aejy0xAh_U9IcfNpl19cfN0tXXXWPFJ70JiCcQfxHbBME4OkaV
-    m_OK-P7aG9idoOjU8h8AL-JXkFnflMDhAMrsms7eQQJh51yxhJl_-4>
-X-ME-Received: <xmr:-w68aeApqTetZrojFw1I-TVb2NmBaG6kKah-eelCJoT8uJ_NZdkb8I5h04OECnJVKkDFnhjN1zTjbNQ4SfHPzcGJ6PgfLhR_ka-TBw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdeftdejfeduucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhephfffufggtgfgkffvvefosehtjeertdertdejnecuhfhrohhmpeflrghnnhgvucfi
-    rhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqnecuggftrfgrthhtvghrnhepgfffie
-    ffteeuffetuefggefhgfehtdfhkefgtdejueeuvdevkeetveevvdffkeehnecuvehluhhs
-    thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrghurd
-    hnvghtpdhnsggprhgtphhtthhopedutddpmhhouggvpehsmhhtphhouhhtpdhrtghpthht
-    ohepjhesjhgrnhhnrghurdhnvghtpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrh
-    hnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheptghonhho
-    rhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehsvhgvnheskhgvrhhnvghlrd
-    horhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthht
-    oheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpth
-    htoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrshgrhhhisehlihhs
-    thhsrdhlihhnuhigrdguvghvpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrh
-    drkhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:-w68aWyanuuoSzEXCOILLw5Xauao5bdie_X8jadmvin2U1goGfCtgw>
-    <xmx:-w68aa4LI8x0tAr8qZO8AYebamf782YayI6yyFhqGqtD8CiYgl98mQ>
-    <xmx:-w68afwftwbNruos5KToLy6ScGOd314v4q09wep5cN9H8nVqKLt7Vw>
-    <xmx:-w68aWch0DYfK8TgB_pNkiTbkmS_LnAEJcOA5FvovPvF0EDYfr9TCA>
-    <xmx:_A68aaYZLyYCUw22XfOmOHt_6tZgQoJdWRqefD4NWWQN8ds6fN4jLNok>
-Feedback-ID: i47b949f6:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 19 Mar 2026 10:58:03 -0400 (EDT)
-From: Janne Grunau <j@jannau.net>
-Date: Thu, 19 Mar 2026 15:57:52 +0100
-Subject: [PATCH] dt-bindings: arm: apple: Add M3 (t8112 and t603x) devices
+	s=arc-20240116; t=1773932333; c=relaxed/simple;
+	bh=mM0Qjq+/PhARnJ1OuOTZXrhsKNJy65FaO78/hLNdAgw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ws7mg52T/yxT1LASh3spGvr1UnyEWTNG6tzf48YCB0QMkH5H8yl9WJa7NLdiQMo7D/4H4DWM29HEhs7ryKGRR1KD99q5GtD1S0Nrzy9cl/pvnoRpC8I5g77ku+PfZvaMs23XyPOGREPdCihUUGjBcR/e67wnI4ery/C3qMX2ZEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ZSOfnffm; arc=none smtp.client-ip=209.85.167.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-466f59dbe4bso173501b6e.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 07:58:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1773932329; x=1774537129; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PamUifGDxzKgYduTgi5+Bz1Hbj65Bi8zeh///fvaP8k=;
+        b=ZSOfnffmH/dkxGYvWQoDZm6CezWNuce5MrgNhq9DdbZtYOxzl2PiC7WgovRE+RNbPq
+         cybRtCbsgDJHUDg1PkmGa9WaWe+CF8KdgCL7qKhkdVlVpt+6vuNjkz6opKLcL9SHxLbN
+         0KDcK82KR/pyAMmCQEnEr8EQQHyUZI5qVMK0H4SLXN1STT9uVO6r4C4J8Ce+oyORbEQW
+         LbUB0O9wvfMQPnxJzYVRitSK9PLpToAMZm6JpGNkxVNTDbqdCuxJ9Ed3tmpGSxvobMEM
+         wMpI6tsBNom6r/mHSvs0oKculL3wbUtssG4tBqxiltvdt7MQfhKOEBX4VYEnmLkBfHO0
+         F62g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773932329; x=1774537129;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PamUifGDxzKgYduTgi5+Bz1Hbj65Bi8zeh///fvaP8k=;
+        b=EmkjvKjWKQIAgqTgtI4SqG/gX9cWoeADt2Z8HYF3prVzmQRn8aEEdbgkLKARqHLlSw
+         0KeiFYSzdcBmr3utXecW651lXNPcG8ggdsNz0PCmSasasD/V5qhEzkrziS4i6e7vLCNz
+         ZhJxxlgCohgaH5yw7SLKrSSAu+GQTd0VoWNos3obTHK76+2UkbM4CfgQHf2vCqCp7Wm9
+         CF66ryznLedPvQTZi3BURNo9lFt0ldRPWXWZAFpBuBzu/P0/EvPWf9CpN+wXYlHfRG6+
+         va/vaOGE1Vpi0z5oHk24hUzeBW/CvwejU/wC4RjC2MBrdpdmQUfurQmV7LjrpLCOx4Kc
+         DTaA==
+X-Forwarded-Encrypted: i=1; AJvYcCV6tFddYjYfpsd+7XuZu+/AoVNgcf1SB2p6gsXXcx9A4XP7WycNGWeY2BGnpSfC+MW5JSQ2jLIx5Sg2@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRYCMWC8pl3Yg4KEZt1B+dsh9mkyKxCCjhuv4BclrUiv/jEKTy
+	2a3sqQDed9DQBavudYx7x4o57nrFTauYt08ltaNnYZtm7/GrjdmBVAT8yEjrOOsBaqU=
+X-Gm-Gg: ATEYQzxDz9gSebuYQz49JgnnAvlSne+Ii3f6b5aoBmcxPHhQz/PGlkcFZc3cdlASJMD
+	nIMj2ElCi/2WHBfcYecPU2LTnZEn0gc/6QAkFX1VRbdeDPpVCYN9IFSiURT05mESy7jkowjKcNM
+	QdOIWU/oLRd7X8nXJi1SS3tBALyCPwKi9Av7ZLLt6WRkfMnsV8OTukD5gNcaEqyjvn10/1KEbl+
+	5CTMJba9URZD6Nc4+UwAhDMf7FRPZfEOBIyQ+GNNwptMBnQOHEtyEC1wZhtl8z0I4U3nDHVlxPu
+	LlfJ3pV1OARGC+rJzvlHULp46odsff2OOUUjCOLmoQI4dMvS2Ju+PRpHB/7TWmP4tbly5DUpdAN
+	j6YkzgPDanRsv4uO5OLwanZPcoSBHtJjrinlMY3p1t0iVp41L/TE7GX9CXoKipAjh1RD+Q1cPZD
+	mwjax5JsGj0C0pEXGn916+ysL1aIzmUS2l3gG80qAbuFLfgablXBkY77I9KBCE7Idc7NRkSyhmZ
+	vshn+4Q5RI0
+X-Received: by 2002:a05:6808:1451:b0:467:1cf5:7684 with SMTP id 5614622812f47-467ba15eaddmr4227888b6e.6.1773932328449;
+        Thu, 19 Mar 2026 07:58:48 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:244c:fc8c:8216:1344? ([2600:8803:e7e4:500:244c:fc8c:8216:1344])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-41bd22dee78sm6087744fac.0.2026.03.19.07.58.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Mar 2026 07:58:47 -0700 (PDT)
+Message-ID: <f1706ec0-3995-4fdf-a9fb-8e1e688438a7@baylibre.com>
+Date: Thu, 19 Mar 2026 09:58:46 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260319-apple-m3-devices-dt-binding-v1-1-12052e195d6f@jannau.net>
-X-B4-Tracking: v=1; b=H4sIAO8OvGkC/x3M0QqEIBBA0V+Jed6B0gjbX4l9MGesgdZEIwLp3
- 5MeD1xugcxJOMO3KZD4lCx7qOg+DbjVhoVRqBpUq4ZWdxptjBvjXyPV2nFGOnCWQBIWNMZ5Ywd
- PvRqhHmJiL9d7n373/QDNx0uZbQAAAA==
-X-Change-ID: 20260313-apple-m3-devices-dt-binding-88cf8a6fd429
-To: Sven Peter <sven@kernel.org>, Neal Gompa <neal@gompa.dev>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Janne Grunau <j@jannau.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3987; i=j@jannau.net;
- s=yk2025; h=from:subject:message-id;
- bh=pgxNV0NukCTQwDip0+2Xj8IDia+pUtXJoQL4YDXa/cU=;
- b=owGbwMvMwCW2UNrmdq9+ahrjabUkhsw9fD9X3pjJtI3JS0P2SPXd4lBN1cYjD3OvrVv8e3FMI
- b9DQvLzjlIWBjEuBlkxRZYk7ZcdDKtrFGNqH4TBzGFlAhnCwMUpABM5/ojhr4jK72J7/wt21y5w
- ZBatY0yZxju9atKaqxt/RzF7eW5238TIMPvG7qxde5Z3/9vWvumt0kWR6HrV/89vtyYxa+26z35
- kJj8A
-X-Developer-Key: i=j@jannau.net; a=openpgp;
- fpr=8B336A6BE4E5695E89B8532B81E806F586338419
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/5] dt-bindings: iio: adc: xilinx-xadc: convert to YAML
+ format
+To: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Michal Simek <michal.simek@amd.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, saikrishna12468@gmail.com, git@amd.com
+References: <20260220053941.611415-1-sai.krishna.potthuri@amd.com>
+ <20260220053941.611415-6-sai.krishna.potthuri@amd.com>
+ <20260221-dancing-papaya-wolverine-db8afd@quoll>
+ <b89933a3-5f25-466c-a2f5-6e231aa12749@amd.com>
+ <21d425bc-9406-401b-9817-7255ba3d31fc@baylibre.com>
+ <e4c9729f-1785-4d10-a337-37b0d26fe30b@amd.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <e4c9729f-1785-4d10-a337-37b0d26fe30b@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[jannau.net:s=fm3,messagingengine.com:s=fm1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[jannau.net:+,messagingengine.com:+];
-	TAGGED_FROM(0.00)[bounces-277833-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[jannau.net];
+	TAGGED_FROM(0.00)[bounces-277834-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[baylibre.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,analog.com,amd.com,vger.kernel.org,lists.infradead.org,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[j@jannau.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.994];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.989];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,jannau.net:dkim,jannau.net:email,jannau.net:mid,messagingengine.com:dkim]
-X-Rspamd-Queue-Id: 9CF832CD4EA
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,baylibre-com.20230601.gappssmtp.com:dkim,baylibre.com:mid,devicetree.org:url]
+X-Rspamd-Queue-Id: AFE1B2CD52D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Apple M3 based devices follow the pattern of their M1 and M2
-predecessors. One notable difference is that the M3 Max SoC has two
-variants: t6031 and t6034.
-t6034 has 14 CPU cores, 30 GPU cores and a combined 384-bit LPPDR5
-memory bus while t6031 comes with 16 CPU cores, 40 GPU cores and a
-512-bit wide LPPDR5 interface. These are the only apparent
-differences between those two SoCs.
+On 3/19/26 9:49 AM, Sai Krishna Potthuri wrote:
+> Hi David Lechner,
+> 
+> On 3/19/2026 7:53 PM, David Lechner wrote:
+>> On 3/19/26 8:52 AM, Sai Krishna Potthuri wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On 2/21/2026 4:08 PM, Krzysztof Kozlowski wrote:
+>>>> On Fri, Feb 20, 2026 at 11:09:41AM +0530, Sai Krishna Potthuri wrote:
+>>>>> Convert the xilinx-xadc.txt Devicetree binding to a YAML schema format
+>>>>> and remove the old text binding.
+>>>>>
+>>>>> +
+>>>>> +  xlnx,channels:
+>>>>> +    $ref: '#/$defs/channels'
+>>>>> +
+>>>>> +allOf:
+>>>>
+>>>> Missing ref since you use unevaluatedProperties...
+>>>>
+>>>>> +  - if:
+>>>>> +      required:
+>>>>> +        - xlnx,external-mux
+>>>>> +      properties:
+>>>>> +        xlnx,external-mux:
+>>>>> +          enum:
+>>>>> +            - single
+>>>>> +            - dual
+>>>>> +    then:
+>>>>> +      required:
+>>>>> +        - xlnx,external-mux-channel
+>>>>> +
+>>>>> +required:
+>>>>> +  - compatible
+>>>>> +  - reg
+>>>>> +
+>>>>> +unevaluatedProperties: false
+>>>>
+>>>> or you meant additionalProperties?
+>>>>
+>>>>> +
+>>>>> +$defs:
+>>>>
+>>>> Why this is a def, not used directly? I see only one usage of this def.
+>>>
+>>> I am getting the below error if i define the patternProperties directly.
+>>> Seems like complex vendor peroperties should be referenced via $ref.
+>>> Please suggest if there is any better way to deal this.
+>>
+>> It is hard to say without seeing the new version of what you wrote.
+> 
+> In v1 series, i created $def and referenced this in xlnx,channels to avoid the error that i mentioned.
 
-Signed-off-by: Janne Grunau <j@jannau.net>
----
- Documentation/devicetree/bindings/arm/apple.yaml | 55 ++++++++++++++++++++++++
- 1 file changed, 55 insertions(+)
+Is the code below the code that causes the error?
 
-diff --git a/Documentation/devicetree/bindings/arm/apple.yaml b/Documentation/devicetree/bindings/arm/apple.yaml
-index 5c2629ec3d4cbcee49d3ff6a4db1cc8298e2a2e1..acfe9824921280458d0911ae9cbf609101f37380 100644
---- a/Documentation/devicetree/bindings/arm/apple.yaml
-+++ b/Documentation/devicetree/bindings/arm/apple.yaml
-@@ -96,6 +96,13 @@ description: |
-   - MacBook Pro (13-inch, M2, 2022)
-   - Mac mini (M2, 2023)
- 
-+  Devices based on the "M3" SoC:
-+
-+  - MacBook Air (13-inch, M3, 2024)
-+  - MacBook Air (15-inch, M3, 2024)
-+  - MacBook Pro (14-inch, M3, 2023)
-+  - iMac (24-inch, M3, 2023)
-+
-   Devices based on the "M1 Pro", "M1 Max" and "M1 Ultra" SoCs:
- 
-   - MacBook Pro (14-inch, M1 Pro, 2021)
-@@ -116,6 +123,14 @@ description: |
-   - Mac Studio (M2 Ultra, 2023)
-   - Mac Pro (M2 Ultra, 2023)
- 
-+  Devices based on the "M3 Pro", "M3 Max" and "M3 Ultra" SoCs:
-+
-+  - MacBook Pro (14-inch, M3 Pro, 2023)
-+  - MacBook Pro (14-inch, M3 Max, 2023)
-+  - MacBook Pro (16-inch, M3 Pro, 2023)
-+  - MacBook Pro (16-inch, M3 Max, 2023)
-+  - Mac Studio (M3 Ultra, 2025)
-+
-   The compatible property should follow this format:
- 
-   compatible = "apple,<targettype>", "apple,<socid>", "apple,arm-platform";
-@@ -297,6 +312,17 @@ properties:
-           - const: apple,t8112
-           - const: apple,arm-platform
- 
-+      - description: Apple M3 SoC based platforms
-+        items:
-+          - enum:
-+              - apple,j433 # iMac (24-inch, 2x USB-C, M3, 2023)
-+              - apple,j434 # iMac (24-inch, 4x USB-C, M3, 2023)
-+              - apple,j504 # MacBook Pro (14-inch, M3, 2023)
-+              - apple,j613 # MacBook Air (13-inch, M3, 2024)
-+              - apple,j615 # MacBook Air (15-inch, M3, 2024)
-+          - const: apple,t8122
-+          - const: apple,arm-platform
-+
-       - description: Apple M1 Pro SoC based platforms
-         items:
-           - enum:
-@@ -347,6 +373,35 @@ properties:
-           - const: apple,t6022
-           - const: apple,arm-platform
- 
-+      - description: Apple M3 Pro SoC based platforms
-+        items:
-+          - enum:
-+              - apple,j514s # MacBook Pro (14-inch, M3 Pro, 2023)
-+              - apple,j516s # MacBook Pro (16-inch, M3 Pro, 2023)
-+          - const: apple,t6030
-+          - const: apple,arm-platform
-+
-+      - description: Apple M3 Max SoC based platforms
-+        oneOf:
-+          - items:
-+              - enum:
-+                  - apple,j514c # MacBook Pro (14-inch, M3 Max, 16 cores, 2023)
-+                  - apple,j516c # MacBook Pro (16-inch, M3 Max, 16 cores, 2023)
-+              - const: apple,t6031
-+              - const: apple,arm-platform
-+          - items:
-+              - enum:
-+                  - apple,j514m # MacBook Pro (14-inch, M3 Max, 14 cores, 2023)
-+                  - apple,j516m # MacBook Pro (16-inch, M3 Max, 14 cores, 2023)
-+              - const: apple,t6034
-+              - const: apple,arm-platform
-+
-+      - description: Apple M3 Ultra SoC based platforms
-+        items:
-+          - const: apple,j575d # Mac Studio (M3 Ultra, 2025)
-+          - const: apple,t6032
-+          - const: apple,arm-platform
-+
- additionalProperties: true
- 
- ...
+> 
+> v1 code:
+>   xlnx,channels:
+>     $ref: '#/$defs/channels'
+> 
+>   $defs:
+>   channels:
 
----
-base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
-change-id: 20260313-apple-m3-devices-dt-binding-88cf8a6fd429
+Is this indent bug just from copying to email or does it exist in
+the source that is causing the error?
 
-Best regards,
--- 
-Janne Grunau <j@jannau.net>
+>     type: object
+>     description: List of external channels that are connected to the ADC
+>     properties:
+>       '#address-cells':
+>         const: 1
+>       '#size-cells':
+>         const: 0
+> 
+>     patternProperties:
+>       "^channel@([0-9]|1[0-6])$":
+>         type: object
+>         properties:
+>           reg:
+>             minimum: 0
+>             maximum: 16
+>             description: |
+>               Pair of pins the channel is connected to:
+>                 0: VP/VN
+>                 1-16: VAUXP[0-15]/VAUXN[0-15]
+>               Note each channel number should only be used at most once.
+> 
+>           xlnx,bipolar:
+>             type: boolean
+>             description: If set, the channel is used in bipolar mode
+> 
+>         required:
+>           - reg
+> 
+>         unevaluatedProperties: false
+> 
+>     required:
+>       - '#address-cells'
+>       - '#size-cells'
+> 
+>     unevaluatedProperties: false
+> 
+> 
+> Regards
+> Sai krishna
+> 
+> 
+>>
+>>
+>>
+>>>
+>>> linux-xlnx/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.yaml: properties:xlnx,channels:type: 'boolean' was expected
+>>>      hint: A vendor boolean property can use "type: boolean"
+>>>      from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+>>>    LINT    ../Documentation/devicetree/bindings
+>>>    DTEX    Documentation/devicetree/bindings/iio/adc/xilinx-xadc.example.dts
+>>>    DTC [C] Documentation/devicetree/bindings/iio/adc/xilinx-xadc.example.dtb
+>>>
+>>>
+>>> Regards
+>>> Sai Krishna
+>>>
+>>>>
+>>>>> +  channels:
+>>>>> +    type: object
+>>>>> +    description: List of external channels that are connected to the ADC
+>>>>> +    properties:
+>>>>> +      '#address-cells':
+>>>>> +        const: 1
+>>>>> +      '#size-cells':
+>>>>> +        const: 0
+>>>>> +
+>>>>> +    patternProperties:
+>>>>> +      "^channel@([0-9]|1[0-6])$":
+>>>>> +        type: object
+>>>>> +        properties:
+>>>>> +          reg:
+>>>>> +            minimum: 0
+>>>>> +            maximum: 16
+>>>>> +            description: |
+>>>>> +              Pair of pins the channel is connected to:
+>>>>> +                0: VP/VN
+>>>>> +                1-16: VAUXP[0-15]/VAUXN[0-15]
+>>>>> +              Note each channel number should only be used at most once.
+>>>>> +
+>>>>> +          xlnx,bipolar:
+>>>>> +            type: boolean
+>>>>> +            description: If set, the channel is used in bipolar mode
+>>>>> +
+>>>>> +        required:
+>>>>> +          - reg
+>>>>> +
+>>>>> +        unevaluatedProperties: false
+>>>>
+> 
 
 
