@@ -1,206 +1,219 @@
-Return-Path: <devicetree+bounces-277507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277508-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gHImFApXu2m5iwIAu9opvQ
-	(envelope-from <devicetree+bounces-277507-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 02:53:14 +0100
+	id OFrSIntXu2m5iwIAu9opvQ
+	(envelope-from <devicetree+bounces-277508-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 02:55:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 518972C49FC
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 02:53:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8AEF2C4A21
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 02:55:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 47A2C300693D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 01:53:10 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C2B5330069A8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 01:55:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC2B82E2DF2;
-	Thu, 19 Mar 2026 01:53:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A0392E5B27;
+	Thu, 19 Mar 2026 01:55:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pSLcPVWM"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="HV4xLyef"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013045.outbound.protection.outlook.com [40.107.162.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45566385509;
-	Thu, 19 Mar 2026 01:53:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773885188; cv=none; b=J7FGO5RIZZqIr5lZ1SEuPafqA5oauTfCToyBSi1GIgxjgE+LyKHXKcInU2mcIV4Q3o/0PQkJCMJLxtZxoYeKMiKtLP/SABHPY+QlDGhCgQJcnGBP3Sy0oEN+qGKP5f4SiIaDYvUJx5JqSx86qeUQe3BIUEQo/EETfCXZlO4/YRE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773885188; c=relaxed/simple;
-	bh=0E5OqoKU9mNupvcGG7Hc3GPoauqIcESgXzJArXxkHDg=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fLwWCxED2X35sz3UEV19qp0w7TtsJEMyeKbmMwrd82nmYNKSyntVnc8lJOwPnr55b9AUICnWorH7vedhicA45/tyCLBl3gAY/CmdrpPFFCwg/pitdbxStujJHkJwVl1Rp0iCo0psg1AvsTz5waya0HG2w/fGXlS0cKR3Sq4QJH8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pSLcPVWM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D009C19421;
-	Thu, 19 Mar 2026 01:53:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773885187;
-	bh=0E5OqoKU9mNupvcGG7Hc3GPoauqIcESgXzJArXxkHDg=;
-	h=Date:From:To:Subject:References:In-Reply-To:From;
-	b=pSLcPVWMa+BVZkgO5QU9TWEWwO46D3ZCp6PuP1rL14PuTB5QVLPGs+EnBUFsBQdEO
-	 cYwf+AvQGnbBvahVxPzDzTfbLLKOuBSdj2Nhog5MfpCY3pHL2xFWeIG64gu2ANaNev
-	 CmfGqIwmuKWsxaSaSPKcSibP5RAqfyclpuhkofyvUBsMeRsLeMHHG1g939ecovHH+u
-	 8+spxu7zhMfpLrpPAcBtD8UKBFvARQPB7FhdsyyF10F4je6O1cRmCPzHnHG72GvjOk
-	 fmnyAlBkGhAw0FoV1TW4yMiZG5LbCyorWpWFzW3LC+WbDEl6Z+sFXQtup8gEUMXY3m
-	 AJxrBFqB4k06w==
-Date: Thu, 19 Mar 2026 09:53:05 +0800
-From: Yixun Lan <dlan@kernel.org>
-To: Iker Pedrosa <ikerpedrosam@gmail.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Michael Opdenacker <michael.opdenacker@rootcommit.com>,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Anand Moon <linux.amoon@gmail.com>
-Subject: Re: [PATCH v3 7/7] riscv: dts: spacemit: k1-bananapi-f3: add SD card
- support with UHS modes
-Message-ID: <20260319015305-GKA489299@kernel.org>
-References: <20260316-orangepi-sd-card-uhs-v3-0-aefd3b7832df@gmail.com>
- <20260316-orangepi-sd-card-uhs-v3-7-aefd3b7832df@gmail.com>
- <absKDGLCw26xr7Z4@aurel32.net>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBF24336EDA;
+	Thu, 19 Mar 2026 01:54:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.45
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773885300; cv=fail; b=j/+Kyl/d0OD0sbAxXdHDu/nSdLJXG6PmNhmLD6lltZuGqbKUGyppoAU+hzsFSfhEKuMc/xQlXS/4KDttoEK4HN40ERp2EEHgPspAfpRHFUqLCCVJ+fS3vpeDOYrgBStcJghDqTDu05jjJ35UMJUT5oGOorzxv5ncVpzwJgO0zOo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773885300; c=relaxed/simple;
+	bh=aers2bSfFF8vHGcIjFN1aHCLtTvZHkVrSRcEsoL17J0=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=E4tTaDy4zRGwdlZgnNLRSHuCs8Xe7LtfqZQyAScyCdlpFV5JKJz57Enc2shOprh+joBJ0uv6J7LwPxNzjZwaFapxcqVM8Ft0UYuG6cy7Z1ZHYvRAYW8VSvb2KMVmrbhQFnqj2MOzr+f0osdUuC9rjAA1p3KmBIQEIz82k2jj3wQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=HV4xLyef; arc=fail smtp.client-ip=40.107.162.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=KbPNDFsoVgiVea0vFy3RmIxA1Pvm68blhQDHDp4cQc6/lZurVQuxMXdOCP0wPqGcDf0pdP7Cbki3x35YzSs4pTqVE9U0ufbdufW4cTpAdvozwRi4NDgTer102+jwhktg233C+vi5L7VkVbKp9u609Q5LVUEfTXdqy+/LcQCtNO0WGr5C6CGydNBqPGlYJDgAaO6Dq2eFMOqtxyQIMtXH4MJOvdIXlFMs5XG4LyQc1D5NdT3TI5G5SBT6X7G/Gx6mOXNmOQAXdzRoQxJEZVt3Yalic//C+OiJiTNO5Nzl/ci4oOHtvJA3RyiqBKk3hmD4rBnZtwrj4aGZPGb5VyV+CQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aers2bSfFF8vHGcIjFN1aHCLtTvZHkVrSRcEsoL17J0=;
+ b=P37gEEx8FwV+0Zyn+1q6PSFp4ySkGVI9gCKq8Fm0sCOk6Jb+ixDJxNk8Q/1HBxhoKpdp4hgmXufJTPeL0QdSMscWodrlvUQ+g1tFPvEiyBumG6oTBe9x661z54On0rEg+3xeEr6F74W2eSMgC80JHJc/WvjEKyjOsMkG2yHbHWi50fpniMGXE+OMUfzE6Uuc4/GP78e6Ffp74dS/AHwZuenSfYJ19dSCEaR9jTmUxiYCPebqNIIG0d0RriD8pDvuz2Nf493b30L+PwV58z4jfl03tx7y9QAp5ZtBeZrCrL9KgwTlUw0Kqh6fFEyO5PN7LDOBgFptrooG2P3cOxX8ag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aers2bSfFF8vHGcIjFN1aHCLtTvZHkVrSRcEsoL17J0=;
+ b=HV4xLyef5loopBuvQDSKPMWt17etqqpXXo7jq37H6TK4dI2s8eWZOAIFYOv4My29Dwxo8P7NCvg5R9nwiuHPefL3RIb7uRBlJu9WN/1TR0ClRh+aJEAjSj5L/6HK0bdrJQdtB1jDO5VewtDa3Hy9N9jWDJkGPIaFbEI6fWnt4+RcJOqdgD7g+mY8X3O7PSfrx9uh8L2GcyMT/8xG5GbVDAGqIjsgdVXt21n+/I+JINVO/7yVkbsKF6fIwUg3Hzxg5TYERnrbBRFqAZu2xkjWbbFBeemNctg3JK7WAXD8GSQXm8QAMpXSf6IUUcjyzmcVeKlsC9rZMCwCG3Fg75PITQ==
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ (2603:10a6:800:315::13) by DB9PR04MB10035.eurprd04.prod.outlook.com
+ (2603:10a6:10:4ed::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Thu, 19 Mar
+ 2026 01:54:53 +0000
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994]) by VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994%5]) with mapi id 15.20.9723.018; Thu, 19 Mar 2026
+ 01:54:54 +0000
+From: Sherry Sun <sherry.sun@nxp.com>
+To: "Daniel Baluta (OSS)" <daniel.baluta@oss.nxp.com>, "robh@kernel.org"
+	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, Frank Li <frank.li@nxp.com>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "kernel@pengutronix.de"
+	<kernel@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>, Hongxing
+ Zhu <hongxing.zhu@nxp.com>
+CC: "imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH] arm64: dts: imx95-15x15-evk: Disable PCIe bus in the
+ default dts
+Thread-Topic: [PATCH] arm64: dts: imx95-15x15-evk: Disable PCIe bus in the
+ default dts
+Thread-Index: AQHctbtlKkhQU/V59EiKwdkjRBejFLW0LMOAgAA2A1A=
+Date: Thu, 19 Mar 2026 01:54:54 +0000
+Message-ID:
+ <VI0PR04MB121147409F4203C7F156BC25F924FA@VI0PR04MB12114.eurprd04.prod.outlook.com>
+References: <20260317031024.444157-1-sherry.sun@nxp.com>
+ <6b5f1a67-b6ab-48b9-9cd0-1c154177d841@oss.nxp.com>
+In-Reply-To: <6b5f1a67-b6ab-48b9-9cd0-1c154177d841@oss.nxp.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: VI0PR04MB12114:EE_|DB9PR04MB10035:EE_
+x-ms-office365-filtering-correlation-id: 46f5d09f-0195-4e5f-0146-08de855a8421
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|7416014|376014|366016|19092799006|38070700021|56012099003|18002099003|22082099003;
+x-microsoft-antispam-message-info:
+ qgvR2/Gegu08TlMZpltBNySepekGnwz7chuhVpWWIS3fjzYseE/YCd6eWnLQ30W7HcBII78X4tTQgBruSESm40/1lNa8ozRjh+KExvXYzgEdZoY8QmD/fmkdEVNIgQ4xTR8jRflpFlIB3sdcO41D+XvvCrxemYhQXPnys8sU9uzM/qMSrvMtMWvZXp9ex4Yn74RVBG30oKZq99MenOm3VPrJPETk5yEqbgThL552/WpQlu7jO8u6XhGuuEqsPLqYBd13/O105KO+SI8tNxbMOCECcJGLpSggYy29DotYf2hK8qlryYDFOsf53BzNbhNIe7UOMcEKzmDM60sOxbrosqqkLEhEIFQLLtDyVvJsbqTPu0ZziLx5+pC/iWwL580WKuZaVtUt/W6SSHgvmOIXGcWgoBz/5gzH4inwGne1TcZO4ND9LAfdfpeCSeUGAE31HW/EqHr2GVaasPTBmQ9vcRebTvOmFC5v7zKRTEFxDXMLoAzsxhlkq8W7c31b4CTzvXl74svu4JK/16amlWWYtYC6LOFOOPnhla3dSu/QpXQrOPP8uUVeVfMJg0OyxS/g94CqDESfJQ9XiaRQzDBXKoA+RAMI1MkR9k1no9YEhAq21dje/SRvXeGUCbpywSlwbXev7iQqcB2XPU9/wRVnF3g0HAanPh+JWSTrf0F2dsbRuXTKC79ZrleIsmlgQXp3/xsvYQfnoZdGqKQG0l7D9Nzj3H8KlyxTPmAHQX2+3exYLfonKd+lz08tE4QaxJvcM2QYTSHILKDANTb7/NT45yqDwqvJECrN/i+FR0qIG04=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(19092799006)(38070700021)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?NWlmVDVZQ3JVZC9RdnpnWk1vSVc3NGUrdVhEYzVLRUdyMXV0ZFM2aHE0MGNm?=
+ =?utf-8?B?RTJpZkh5bDljb09wdk9iT3h6ZDlmbXR6ajkvRng4cjhncDFVY3ZEcVBqbURD?=
+ =?utf-8?B?RytZb3JGRnBMdkFnS1J5SytFcUlXVEtrZkRma0dKWW03RTYwc3Z1T3RZS0ti?=
+ =?utf-8?B?cGVYdEVlczU5WnRWL3hpTjJ0VGhYaVdvYUVsNHdCZ2hCUTN1QTdCTkt2ckRn?=
+ =?utf-8?B?ODdmby9wUjNXOUIxRWlrYlR2b0hncFBJS2p4Rmlha29GanN3cUpnZEpwbHJO?=
+ =?utf-8?B?Ym0zT2lsZVozYW9FQzJ3b2Qyb1ZMNTlSa0JVVmhCeXNqQzNFN29HMWx3MFVF?=
+ =?utf-8?B?cEZjY2NCZXM1OFJ6YjdpMmNpamFSOVhWQVpEWU5taGxkaGQrU3RnVE5oY0dY?=
+ =?utf-8?B?WW9aQnVVeVlyVGhDWC91YS9Zdml5ZUdUU1dyY0hBUUtTc0RuOWJJdEU5TmZW?=
+ =?utf-8?B?eU53Uy9EUStSdjZoRzY5YTRMUDFBcnNRV1pqbFRKbmJRZFNZamdHajlIa3Rm?=
+ =?utf-8?B?UDhzak9rQlhRcW4vdjRPcE9oMms0WkZzc1UvTFZxUjg3OUx3VCtQVFBkcE1N?=
+ =?utf-8?B?S2I3d2YzbVdFVzhxeG1QYXBDeVVyY25LbkRVSDBIN0xMdHFuak5NRWtFUXNV?=
+ =?utf-8?B?T0M5c25McXpvZDh0RGdnQ3VwWVQzWTVMYnpZK3M1NkprcDE0UEpxWnI4dURV?=
+ =?utf-8?B?c3VVRlgxdi9jV1E4TlZ6dzRaVWc1aFdTV1FOT0dwSDNUYXZ0ZGJTQTdzWmMy?=
+ =?utf-8?B?RTVIempDZG9NNTZsSFZPVFRLVllNdWI0UzhKTzJhUE1xZ1haM0Urbk1Ea3Ju?=
+ =?utf-8?B?VGMwTm5tNkc0dEEyK01LSmZRNWVKS3JHdmhYaElnaFhlSHN6ZE9Hb1ZjMHdX?=
+ =?utf-8?B?NllJaGV6K3dicGFTZ1Jsd09ySTFUOUZPb0FZZkEvSi9SQWZkK0lUY2FpejAx?=
+ =?utf-8?B?dFQvcnlKc2JzRGRob0NORVQwc0tORms2QVZpOHhNRXJkamQ2UklwM0RjQTg5?=
+ =?utf-8?B?M1hTWVJZYXpJTFNqYi9PVmhNUitEV2dBU0UrTDl6ZjhVMUZOU1FqbXorQ09M?=
+ =?utf-8?B?cEFqNFRLQmhsSE1KZkVBUjRaeFRVM2poSnRiTWVCZWV3bXMrWDFrNmNhVDNQ?=
+ =?utf-8?B?M2wrYzRHdWdIcG13T0NNRENETGZnc0dMTVkxb1dMSUZvUzVUUFZUdU5oOVdZ?=
+ =?utf-8?B?blJ4amNHUTAzc2h3TWxJRkdBVng5em9OQ3Znc3hlSGlJbndXL1c3NHBhRVlh?=
+ =?utf-8?B?WS9ONUZWNGxXYmFIek9wcDVSMklyRlA1R2J5T0hFdlVTQzFGQjRVbC92OHBD?=
+ =?utf-8?B?azJmSm9tUWhxWHAzNWhpNDVPaFhkTjZ2bjA4cjdtWEhlM0FXb2xDdXVBWUlL?=
+ =?utf-8?B?MHp4Zzc5QnZOSXhJZVdxWExyZjMyUkdMMFRvT0dhNW9Md09LVFBYWkllZVQ1?=
+ =?utf-8?B?ZzM4dmduRlowTmp1cjJ5MldWbFkyV3J5d1d2cmZxTUJvOXJQRkwxQ25LQ1VS?=
+ =?utf-8?B?T0RBeVhpSjFGUDBUa1RXa1MxWDBxeFI5dk9FVGNvYzdiNTV3Ukg2a3NFUEtw?=
+ =?utf-8?B?WE9aSVR5WTZhNnlkcENjTS9yV0EvcmtYUG8xT0J4SFRrb1ZWVDlMcEYxVUd3?=
+ =?utf-8?B?UldOamM0bis5b2dDTndib3lBQkMvOXBJUHdPQjREMzc5RTV1cE9obVdyeEoy?=
+ =?utf-8?B?S0JiRzQ2d01nRGkzVTFkZmUwNHAvZlRKQk10MzlZZUZxaGV1YWNyYzdjbis4?=
+ =?utf-8?B?dEpIZFdoYmFCcXRuUEZ2TU9IRFZTVmwzVjlQUmpxTklTVUNMRWkySldnREw2?=
+ =?utf-8?B?c0grUkpLMFBBdWFWRFVtZ0ExcDMxLytlVzJUbG05ckVidWdwdVptOFJTVWdy?=
+ =?utf-8?B?UWpzOGhBbzFHZlN2eW5aUnhPTEpXR21aWDBLRGZVOW51MU9ja1laMDlrRVVN?=
+ =?utf-8?B?MTB4eVJiZ3VQd1d2WmZOSThudTVWWmZFbDAwbWYvSGJjbitlRHZPTWtxNkh1?=
+ =?utf-8?B?bEhpM3RmQnV6TXpaTVl4eklRWWJ0dTFJMnR2Vk92Q1pTK0ZRSDVtMDdKNE81?=
+ =?utf-8?B?YkdFTmQ5dkFxY2g4c1FhNHAzeFYzeWZsdVVSclEvT1ZyZGVGclowZEY0RC9w?=
+ =?utf-8?B?L25KT0RvWG5ocXpONnhkVEE1ZHZRcDZ2N2EyKzI5ajVlaXFvTmdlTGNJcXAv?=
+ =?utf-8?B?bGx3QU1QVGhtdzZGenJUNXdsb1FIYTFpRisxSGtEMUZraGR2OWV6eGZTTU54?=
+ =?utf-8?B?QjJLT1dtNVgwOGZiSGZpNWc1M3JRUFBQZUhaTzhJc3lQcDZ3K1l3bVBGZWFW?=
+ =?utf-8?Q?fRxuq0bHF2nR3fjDDy?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <absKDGLCw26xr7Z4@aurel32.net>
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 46f5d09f-0195-4e5f-0146-08de855a8421
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Mar 2026 01:54:54.3318
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: EzUUJAlYielSfqcNABx3CACwBus2ckorPsKHPChgkaMiAkOWwA6pgfPQXbKqJtyCrOpkJeY0hp0yCjK1B0U+1A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB10035
+X-Spamd-Result: default: False [1.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-277508-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277507-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,linaro.org,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_TO(0.00)[oss.nxp.com,kernel.org,nxp.com,pengutronix.de,gmail.com];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.969];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.916];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.0.0.2:email,aurel32.net:email,aurel32.net:url]
-X-Rspamd-Queue-Id: 518972C49FC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,VI0PR04MB12114.eurprd04.prod.outlook.com:mid,nxp.com:dkim]
+X-Rspamd-Queue-Id: A8AEF2C4A21
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Aurelien,
-
-On 21:24 Wed 18 Mar     , Aurelien Jarno wrote:
-> Hi,
-> 
-> On 2026-03-16 15:03, Iker Pedrosa wrote:
-> > Add complete SD card controller support with UHS high-speed modes.
-> > 
-> > - Enable sdhci0 controller with 4-bit bus width
-> > - Configure card detect GPIO with inversion
-> > - Connect vmmc-supply to buck4 for 3.3V card power
-> > - Connect vqmmc-supply to aldo1 for 1.8V/3.3V I/O switching
-> > - Add dual pinctrl states for voltage-dependent pin configuration
-> > - Support UHS-I SDR25, SDR50, and SDR104 modes
-> > 
-> > This enables full SD card functionality including high-speed UHS modes
-> > for improved performance.
-> > 
-> > Suggested-by: Anand Moon <linux.amoon@gmail.com>
-> > Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
-> > ---
-> >  arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 23 +++++++++++++++++++++--
-> >  1 file changed, 21 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> > index 404b69c47b91f8c37d74a3031dbad0d94a28d1b4..a7d480d01ccc0439dbf456ed5a81f467af68056a 100644
-> > --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> > +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> > @@ -222,7 +222,7 @@ buck3_1v8: buck3 {
-> >  				regulator-always-on;
-> >  			};
-> >  
-> > -			buck4 {
-> > +			buck4: buck4 {
-> >  				regulator-min-microvolt = <500000>;
-> >  				regulator-max-microvolt = <3300000>;
-> >  				regulator-ramp-delay = <5000>;
-> > @@ -243,7 +243,7 @@ buck6 {
-> >  				regulator-always-on;
-> >  			};
-> >  
-> > -			aldo1 {
-> > +			aldo1: aldo1 {
-> >  				regulator-min-microvolt = <500000>;
-> >  				regulator-max-microvolt = <3400000>;
-> >  				regulator-boot-on;
-> > @@ -369,3 +369,22 @@ hub_3_0: hub@2 {
-> >  		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
-> >  	};
-> >  };
-> > +
-> > +&sdhci0 {
-> > +	pinctrl-names = "default", "state_uhs";
-> > +	pinctrl-0 = <&mmc1_cfg>;
-> > +	pinctrl-1 = <&mmc1_uhs_cfg>;
-> > +	bus-width = <4>;
-> > +	cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
-> > +	cd-inverted;
-> 
-> Thanks for this driver. Unfortunately, this is not correct for the 
-> Banana PI F3. The OrangePi RV2 buffers the signal from the SD card 
-> connector through a transistor, inverting the signal. On the Banana PI 
-> F3, the signal goes directly to the GPIO, and does not even have a 
-> pull-up.
-> 
-> With the following change, I have been able to get the patchset working 
-> as expected:
-> 
-> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> index a7d480d01ccc0..72b0f75f936aa 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> @@ -375,8 +375,7 @@ &sdhci0 {
->  	pinctrl-0 = <&mmc1_cfg>;
->  	pinctrl-1 = <&mmc1_uhs_cfg>;
->  	bus-width = <4>;
-> -	cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
-> -	cd-inverted;
-> +	cd-gpios = <&gpio K1_GPIO(80) (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-Have to mention, to use the pull-up, the patch to support gpio config should be applied
-https://lore.kernel.org/r/20260312-k1-gpio-set-config-v1-0-8c3541da16b1@pigmoral.tech
-
-if you don't want to introduce the dependency, add "broken-cd" property
-should also workaround this..
->  	no-mmc;
->  	no-sdio;
->  	disable-wp;
-> 
-> Regards
-> Aurelien
-> 
-> -- 
-> Aurelien Jarno                          GPG: 4096R/1DDD8C9B
-> aurelien@aurel32.net                     http://aurel32.net
-
--- 
-Yixun Lan (dlan)
+PiA+IC8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMCsgT1IgTUlUKQ0KPiA+ICsv
+Kg0KPiA+ICsgKiBDb3B5cmlnaHQgMjAyNiBOWFANCj4gPiArICovDQo+ID4gKw0KPiA+ICsvZHRz
+LXYxLzsNCj4gPiArL3BsdWdpbi87DQo+ID4gKw0KPiA+ICsmcGNpZTAgew0KPiA+ICsJc3RhdHVz
+ID0gIm9rYXkiOw0KPiA+ICt9Ow0KPiA+ICsNCj4gPiArJnVzZGhjMyB7DQo+ID4gKwlzdGF0dXMg
+PSAiZGlzYWJsZWQiOw0KPiA+ICt9Ow0KPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3Qv
+ZHRzL2ZyZWVzY2FsZS9pbXg5NS0xNXgxNS1ldmsuZHRzDQo+IGIvYXJjaC9hcm02NC9ib290L2R0
+cy9mcmVlc2NhbGUvaW14OTUtMTV4MTUtZXZrLmR0cw0KPiA+IGluZGV4IDdlYjEyZTdkNTAxNC4u
+YWZkODljZTNjYzViIDEwMDY0NA0KPiA+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNj
+YWxlL2lteDk1LTE1eDE1LWV2ay5kdHMNCj4gPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2Zy
+ZWVzY2FsZS9pbXg5NS0xNXgxNS1ldmsuZHRzDQo+ID4gQEAgLTU1Nyw3ICs1NTcsNyBAQCAmcGNp
+ZTAgew0KPiA+ICAJdnBjaWUtc3VwcGx5ID0gPCZyZWdfbTJfcHdyPjsNCj4gPiAgCXZwY2llM3Yz
+YXV4LXN1cHBseSA9IDwmcmVnX20yX3B3cj47DQo+ID4gIAlzdXBwb3J0cy1jbGtyZXE7DQo+ID4g
+LQlzdGF0dXMgPSAib2theSI7DQo+ID4gKwlzdGF0dXMgPSAiZGlzYWJsZWQiOw0KPiA+ICB9Ow0K
+PiANCj4gU2luY2UgdGhpcyBub2RlIGl0IGlzIG5vdCB1c2VkIGhlcmUgd291bGQgaXQgbWFrZSBt
+b3JlIHNlbnNlIHRvIG1vdmUgaXQNCj4gZGlyZWN0bHkgaW50byB0aGUgb3ZlcmxheSBmaWxlPw0K
+PiANCg0KSGkgRGFuaWVsLA0KRm9yIGlteDk1LTE1eDE1LWV2ayBib2FyZCwgdGhlIE0uMiBjb25u
+ZWN0b3IgaXMgcGh5c2ljYWxseSB3aXJlZCB0byBib3RoDQpVU0RIQzMgYW5kIFBDSWUwLCBhbmQg
+b25seSBvbmUgb2YgdGhlbSBjYW4gYmUgdXNlZCBhdCBhIHRpbWUuIEJlY2F1c2UNCnRoZSBIVyBy
+b3V0aW5nIGZvciBQQ0llMCBkb2VzIGV4aXN0IG9uIHRoZSBFVkssIEkgdGhpbmsgaXQgaXMgbW9y
+ZSBhcHByb3ByaWF0ZQ0KdG8ga2VlcCB0aGUgZnVsbCBQQ0llIG5vZGUgaW4gdGhlIGJhc2UgaW14
+OG1wLWV2ay5kdHMgYW5kIHVzZSBzdGF0dXMgPSAiZGlzYWJsZWQiDQp0byByZWZsZWN0IHRoZSBk
+ZWZhdWx0IGNvbmZpZ3VyYXRpb24gKFNESU8gV2lGaSB2aWEgVVNESEMzIG9uIE0uMikuIFRoZSBv
+dmVybGF5DQpmaWxlIGlzIG9ubHkgdXNlZCB0byBzd2l0Y2ggdGhlIGJvYXJkIGludG8g4oCcUENJ
+ZSBtb2Rl4oCdLiBLZWVwaW5nIHRoZSBIVw0KZGVzY3JpcHRpb24gaW4gdGhlIGJhc2UgRFRTIGF2
+b2lkcyBkdXBsaWNhdGlvbiBhbmQga2VlcHMgYSBzaW5nbGUgc291cmNlIG9mDQp0cnV0aCBmb3Ig
+dGhlIFBDSWUgbm9kZS4NCg0KQmVzdCBSZWdhcmRzDQpTaGVycnkNCg==
 
