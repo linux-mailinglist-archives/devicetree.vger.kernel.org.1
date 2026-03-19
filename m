@@ -1,239 +1,186 @@
-Return-Path: <devicetree+bounces-277619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277621-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WAyMMqe4u2lHmwIAu9opvQ
-	(envelope-from <devicetree+bounces-277619-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:49:43 +0100
+	id UNZ1J4K5u2mtmwIAu9opvQ
+	(envelope-from <devicetree+bounces-277621-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:53:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7317F2C8110
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:49:43 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id A17712C81B5
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:53:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C451B30175C3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 08:49:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 71CA430157C3
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 08:53:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CFA83A9DAB;
-	Thu, 19 Mar 2026 08:49:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F87E359A95;
+	Thu, 19 Mar 2026 08:53:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ssI5uC4x"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="W3qBLApM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2292136E485
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 08:49:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF6F023ABBF;
+	Thu, 19 Mar 2026 08:53:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773910179; cv=none; b=CNLiWNWk3dS8GcNwjcxmGv+Z4leybeXGlLo21kl4mIZpPYqo6mvMbSvKFFtCP0c0wCJwowt+kis+ufLMbPsT8NkdYu9erT5fCrXl83CLZZ4PQ+maxmHTos6QJLmwyXT3bNNpu9dCfoSA8Dppemp3qdIQj9luXLlTFIHmprzN9ew=
+	t=1773910394; cv=none; b=HgTrxT0All5ZBbXKnp555MLHdt6jX5wmyA7HrP52MoZe10OSEHQJOQGuGo1LqjF7aKTbxXEuGvcnkJTPKZ5ao8KMvqFU5hSqUIbpmWZ4d+fsxqgTLn7N3q31SDbmjtpXqhVQWjwP7olsZ92Bh+AM/xcRWl43ykbLi5msRo7t7Qs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773910179; c=relaxed/simple;
-	bh=PKfcAaytehaE12FwvKFXLQa+bPmlwbvvBAkR2zOUq9w=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Al/bXuNE+Mn5CPvKmYZ0Ic1X88GEhGaSioHhpNgZJmYZEczuLh+h2vPGqvxTVBieU4gw05F766oRfwnn65nyW7OSfmXO7PkKZu1RSDgfrR5SgOBznhgCoKZUHIxc5MTo47q75ks1XR6e2BQfLNwLkAPamiphYpHN1Dj3i/a4aHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ssI5uC4x; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4852c9b4158so3282495e9.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 01:49:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773910174; x=1774514974; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=AXSt9hgxZzuhW1cWmbZBCiyrQ/GNiAfgjBuW5QGInls=;
-        b=ssI5uC4x+AtvDFVgPv220uq2QxXucZz8j+U1our6RDpTy/Qsnx+fQe0RMP/hPLHPgg
-         Y9fp4oj9FKD86E9w+6lbZjYkHp5ZZFEfp8eDuTBzVJzewFy10OURCSKNk/PYWTZhjdBu
-         EP+XxL5O5XkqJ3RwwiIY08yUlcjFYj4pJW4P5qnnMetOU2mJ6T6Vn+wRcC6ghLOMJ+6P
-         bI79gb1m7bpWH7DbII3NMx8XOSWL8ebrmb4MeVcceCM2KVNxURnhUXk4GkHKh3dkMzmW
-         wrrZZUmAsCwc0YpMDpfypAnFFZkWB122VRKRUVMuEmOoYqmsdn5TRiZypw37dVbnC7hF
-         U2DA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773910174; x=1774514974;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AXSt9hgxZzuhW1cWmbZBCiyrQ/GNiAfgjBuW5QGInls=;
-        b=hIjjHzf8hd6IXIOQCT6LG464rQAmXt2/bFX7fm2Tvv46NB1N/acLP7Ph1dw9G4WOkC
-         sNftigK2/4sG6W8VJW/UyzwwWARYHF1FdaT+6PSA8kCRAFpzH5Aa7D5xE4HeeMfgsVSz
-         mgG3K6TZ/7ykOMhjm38VIt+LGDc11f7rG6KfY0zRyVqSVVG3mFisV47PlOn1peGGFGp5
-         IHFBTQgBNbTVXT799rwZOsmOl//8pSfsbVosCdaR659nEI8M1ilYEFtewBtTyzdmTNl2
-         PKTJ9YjSaiGz6y1VAAtyaF/c65wt8tsmJyw5iuqrj+FYXY0wf2ykaHWQPFCGj5dD5suw
-         AJWw==
-X-Forwarded-Encrypted: i=1; AJvYcCVIPEZdfkcIQEst8LNOaAP8e8fmy/aDgJ7SrlVnCrjiv5VGPQMrZa0X2Xu2TQiJWFjjOqYs/7CQxs17@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOoTZYHvmzMkTdgGNLRAUTzmpjUZxJOY8d0a48N00mJwg8ChEK
-	mGJziPPTlc462hH+xqKy0xd2+Lz2ng07StnlQsXIUZ+kLnQBAwwy8Gw8rt5Fu5N+hO4=
-X-Gm-Gg: ATEYQzz5AAtiCnvVsFQhmA72wdXKEDfPgV0BK0aC3TyrxPQONje4nIunEwUwemUrsZx
-	QLQjMBYsg0kQYgZzC83VJGnzut3HeVGlP+t6k4xMCUicgiDzvugwtTcsXEUac7ZuNWKxyVuPAC0
-	sN0qa6AL9QXdRCtPRVgtDG7EHEHEuZBHnP2dVR7LD1jwtzJTvcRLrVJlp6BFg1a9F6YfjQ3yKix
-	OFBUfnhs2Jh8/D+tILa0CilGCDWat8cTdImSHQyaJOF6zY5ZiJaHtAzr9OJVvANjnEzxVi+pBcC
-	g9Q8qcMiBz7rc4ldLSIIFel8xj0iZp+u12zjUEyNJYPns3vx60h2neBJlFjmbF82np//yxtE4Ac
-	Iq8S4girsViepYpV7n1m+QDkU9zXxcAaZRt+w/fQjOiJ71keAzghE4MrdfJ1dmr12WCuwVnJ+NF
-	Ujw9Rvo7MuF3Cr05oOX/1oshJ5HVSiRKXr/oaWs6mEbFVd
-X-Received: by 2002:a05:600c:1e8c:b0:485:3f58:d84 with SMTP id 5b1f17b1804b1-486f456f7fcmr104144125e9.32.1773910173992;
-        Thu, 19 Mar 2026 01:49:33 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b51892244sm15931330f8f.22.2026.03.19.01.49.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Mar 2026 01:49:33 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 19 Mar 2026 09:49:32 +0100
-Subject: [PATCH] dt-bindings: usb: document the Renesas UPD720201/UPD720202
- USB 3.0 xHCI Host Controller
+	s=arc-20240116; t=1773910394; c=relaxed/simple;
+	bh=XcgTkBn1hvnVeb3QtXPkrP+XToR4/t8Vz09bJHiC/Fc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Bd/kSNHpj6ji//pklLpDdchQPvh3zCwTgZCiLH4fYBHzC+HOxupJmMSppfS2NkhDOc4rGPv8Ik78YpUFJ7aKzj589HZF+GScr9sSWcxVro1Zku3mTWFf9VbB0ITQEi02/BhfgrHC9I9qsH5desHYGGdv8Rd8WXq+XdG449Zy1t0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=W3qBLApM; arc=none smtp.client-ip=188.40.3.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ew.tq-group.com; s=default2602; h=MIME-Version:Content-Transfer-Encoding:
+	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=Cy4910z4yKJ6chHebZmM0+S0xkDCsGUvQzxCGdWrqlo=; b=W3qBLApMiwlOSyK7y9elQXdTFi
+	Ic0InLtfkfyj1C62uw3fTiOnT+O35+LH4qoEWpSFVLiOJKHcuyrOPj4cl7gOUKW2yyZ3LXWl6Pbyn
+	mMBFpnsXxRWDN7EWDUM50FKvaIWP4C01mMX7o9WTRt8SPK18qccGeHVvbxm96fvqq0T/NHc0Xf4Va
+	toG7EHiV0OA9zZTf6fIByGYVeqh2CJGFC+ybWqLlGa7pqlNAx8t+x7wKFe1i3oyQRmMd3DGzG96N0
+	ZYJdmolg1BIT0yEwkQGihJQYjVxe5nAuGmedBO4Fv4wW1hcWpByAFscuGxTyukKWCbOf6lmBdmSuB
+	ZuBfNjzg==;
+Received: from sslproxy03.your-server.de ([88.198.220.132])
+	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <nora.schiffer@ew.tq-group.com>)
+	id 1w397i-000Gux-1c;
+	Thu, 19 Mar 2026 09:52:58 +0100
+Received: from localhost ([127.0.0.1])
+	by sslproxy03.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <nora.schiffer@ew.tq-group.com>)
+	id 1w397h-000NT9-1X;
+	Thu, 19 Mar 2026 09:52:57 +0100
+Message-ID: <4cd1dc92490b7e441378c85da3a0e14010ba74d0.camel@ew.tq-group.com>
+Subject: Re: [PATCH 6/7] net: ethernet: ti: am65-cpsw: add support for J722S
+ SoC family
+From: Nora Schiffer <nora.schiffer@ew.tq-group.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>,  Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+ <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,  Nishanth Menon
+ <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo
+ <kristo@kernel.org>
+Cc: Siddharth Vadapalli <s-vadapalli@ti.com>, Rob Herring <robh@kernel.org>,
+  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>,  netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux@ew.tq-group.com
+Date: Thu, 19 Mar 2026 09:52:56 +0100
+In-Reply-To: <4cc3dd9fab460d35215c8f97496b9ae16c5bcb22.1773751309.git.nora.schiffer@ew.tq-group.com>
+References: <cover.1773751309.git.nora.schiffer@ew.tq-group.com>
+	 <4cc3dd9fab460d35215c8f97496b9ae16c5bcb22.1773751309.git.nora.schiffer@ew.tq-group.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.3-0ubuntu1.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260319-topic-sm8650-ayaneo-pocket-s2-upd-bindings-v1-1-84e4ef564022@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAJu4u2kC/x3NywrCMBBA0V8ps3YgDw3qr0gXeUzqICYhU0Up/
- XeDy7O5dwOhziRwnTbo9GbhWgb0YYJ492Uh5DQMRhmnrL7gWhtHlOfZnRT6ry9UsdX4oBXF4Ks
- lDFwSl0XQWh2MS8ccsoMRbJ0yf/6z27zvPwRwNpV8AAAA
-X-Change-ID: 20260319-topic-sm8650-ayaneo-pocket-s2-upd-bindings-331b26d4fbf6
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2521;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=PKfcAaytehaE12FwvKFXLQa+bPmlwbvvBAkR2zOUq9w=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBpu7icBDJklxQpxU0BfUg1yJDWrUGd9owemrVySPNR
- yhF9ViqJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCabu4nAAKCRB33NvayMhJ0Ry1D/
- 0aXbCi1/dBA60Sd2YQSthrjqhpzp+v5onr1vloCB0eqn2NUowfJjnGcEhutdu4qmjkCUx2sYHMWyx+
- 9Io1fpWVG2v7nld+I+hqAg86AQFd89A2YZ5XJOKGaGJ4WFSDxMSn3xg7BlJBb2vQZxbF10noD2lu2r
- Udb7jQJpXWoDHKUZx1beozyl3iWLELG5TeSDelzFV4R3yOK7bCVYFSx+othevu8Am8ioWE1c8ZFsE5
- LPZNO2Jnv3xE5SiULMp6CXSdGo/ujuBOL4caIp8WRY6HPNW4ACKtWRlbMJNaxSLxMGxoK5VEheY3in
- E9bZNoygqCE7a3XLqCuFgPWpebzY1ddl6fB8zmXqF+k0evPIuR/nhVGbIhdpuqmgL4bnoY35xKaEDP
- 4uFQ8lpCzij+2j0WoPnldGpu3o4fWYwdR+gg03bNkHggTJUuQCSzkVje44/sR7nV3jTi6R1oK3k26N
- HklDzzVr6IKMTdkM/O8h7YT+ZDrV7VpdIltQewvjF0nyuAIwxXnabS7YcVKjhsW52xipRlp+LhR+L+
- E+s8TCZtrDBQwM2clvif+TqXUO6cisVihDU9q7uiMEAUrtIYb1uWPqWSNCIwnLN2Sv5csYaswVn27n
- 7j/S59T7khMH9E9Ql8A9IUD0MpwF/lq3ebFj7xNdFofG9izJVLIGr4KK1F0g==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Virus-Scanned: Clear (ClamAV 1.4.3/27945/Thu Mar 19 07:24:38 2026)
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[linuxfoundation.org,kernel.org,glider.be,gmail.com];
-	TAGGED_FROM(0.00)[bounces-277619-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277621-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.995];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[nora.schiffer@ew.tq-group.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linaro.org:dkim,linaro.org:email,linaro.org:mid,0.0.0.0:email]
-X-Rspamd-Queue-Id: 7317F2C8110
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tq-group.com:email,tq-group.com:url,ew.tq-group.com:dkim,ew.tq-group.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A17712C81B5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Document the Renesas UPD720201/UPD720202 USB 3.0 xHCI Host Controller,
-which connects over PCIe and requires specific power supplies to
-start up.
+On Wed, 2026-03-18 at 15:05 +0100, Nora Schiffer wrote:
+> The J722S CPSW3G is mostly identical to the AM64's, but additionally
+> supports SGMII.
+>=20
+> Signed-off-by: Nora Schiffer <nora.schiffer@ew.tq-group.com>
+> ---
+>  drivers/net/ethernet/ti/am65-cpsw-nuss.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>=20
+> diff --git a/drivers/net/ethernet/ti/am65-cpsw-nuss.c b/drivers/net/ether=
+net/ti/am65-cpsw-nuss.c
+> index d9400599e80a4..fc57d5e6edf4c 100644
+> --- a/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+> +++ b/drivers/net/ethernet/ti/am65-cpsw-nuss.c
+> @@ -3468,6 +3468,13 @@ static const struct am65_cpsw_pdata am64x_cpswxg_p=
+data =3D {
+>  	.fdqring_mode =3D K3_RINGACC_RING_MODE_RING,
+>  };
+> =20
+> +static const struct am65_cpsw_pdata j722s_cpswxg_pdata =3D {
+> +	.quirks =3D AM64_CPSW_QUIRK_DMA_RX_TDOWN_IRQ | AM64_CPSW_QUIRK_CUT_THRU=
+,
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
-- [1] https://lore.kernel.org/all/20260220-topic-sm8650-ayaneo-pocket-s2-base-v5-1-1ad79caa1efa@linaro.org/
----
- .../bindings/usb/renesas,upd720201-pci.yaml        | 61 ++++++++++++++++++++++
- 1 file changed, 61 insertions(+)
+Ah, I just realized that I sent the wrong version of this patch,
+AM64_CPSW_QUIRK_CUT_THRU only exists in the TI vendor kernel... sorry about
+this, will fix in v2.
 
-diff --git a/Documentation/devicetree/bindings/usb/renesas,upd720201-pci.yaml b/Documentation/devicetree/bindings/usb/renesas,upd720201-pci.yaml
-new file mode 100644
-index 000000000000..8b8be572c930
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/renesas,upd720201-pci.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/usb/renesas,upd720201-pci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: UPD720201/UPD720202 USB 3.0 xHCI Host Controller (PCIe)
-+
-+maintainers:
-+  - Neil Armstrong <neil.armstrong@linaro.org>
-+
-+description:
-+  UPD720201 USB 3.0 xHCI Host Controller via PCIe x1 Gen2 interface.
-+  The UPD720202 supports up to two downstream ports, while UPD720201
-+  supports up to four downstream USB 3.0 rev1.0 ports.
-+
-+properties:
-+  compatible:
-+    const: pci1912,0014
-+
-+  reg:
-+    maxItems: 1
-+
-+  avdd33-supply:
-+    description: +3.3 V power supply for analog circuit
-+
-+  vdd10-supply:
-+    description: +1.05 V power supply
-+
-+  vdd33-supply:
-+    description: +3.3 V power supply
-+
-+required:
-+  - compatible
-+  - reg
-+  - avdd33-supply
-+  - vdd10-supply
-+  - vdd33-supply
-+
-+allOf:
-+  - $ref: usb-xhci.yaml
-+
-+additionalProperties: true
-+
-+examples:
-+  - |
-+    pcie@0 {
-+        reg = <0x0 0x1000>;
-+        ranges = <0x02000000 0x0 0x100000 0x10000000 0x0 0x0>;
-+        #address-cells = <3>;
-+        #size-cells = <2>;
-+        device_type = "pci";
-+
-+        usb-controller@0 {
-+            compatible = "pci1912,0014";
-+            reg = <0x0 0x0 0x0 0x0 0x0>;
-+            avdd33-supply = <&avdd33_reg>;
-+            vdd10-supply = <&vdd10_reg>;
-+            vdd33-supply = <&vdd33_reg>;
-+        };
-+    };
+Can someone from TI answer if AM64_CPSW_QUIRK_DMA_RX_TDOWN_IRQ is needed fo=
+r the
+J722S?
 
----
-base-commit: 8e42d2514a7e8eb8d740d0ba82339dd6c0b6463f
-change-id: 20260319-topic-sm8650-ayaneo-pocket-s2-upd-bindings-331b26d4fbf6
+Best,
+Nora
 
-Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
 
+
+> +	.ale_dev_id =3D "am64-cpswxg",
+> +	.fdqring_mode =3D K3_RINGACC_RING_MODE_RING,
+> +	.extra_modes =3D BIT(PHY_INTERFACE_MODE_SGMII),
+> +};
+> +
+>  static const struct am65_cpsw_pdata j7200_cpswxg_pdata =3D {
+>  	.quirks =3D 0,
+>  	.ale_dev_id =3D "am64-cpswxg",
+> @@ -3495,6 +3502,7 @@ static const struct of_device_id am65_cpsw_nuss_of_=
+mtable[] =3D {
+>  	{ .compatible =3D "ti,am654-cpsw-nuss", .data =3D &am65x_sr1_0},
+>  	{ .compatible =3D "ti,j721e-cpsw-nuss", .data =3D &j721e_pdata},
+>  	{ .compatible =3D "ti,am642-cpsw-nuss", .data =3D &am64x_cpswxg_pdata},
+> +	{ .compatible =3D "ti,j722s-cpsw-nuss", .data =3D &j722s_cpswxg_pdata},
+>  	{ .compatible =3D "ti,j7200-cpswxg-nuss", .data =3D &j7200_cpswxg_pdata=
+},
+>  	{ .compatible =3D "ti,j721e-cpswxg-nuss", .data =3D &j721e_cpswxg_pdata=
+},
+>  	{ .compatible =3D "ti,j784s4-cpswxg-nuss", .data =3D &j784s4_cpswxg_pda=
+ta},
+
+--=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+https://www.tq-group.com/
 
