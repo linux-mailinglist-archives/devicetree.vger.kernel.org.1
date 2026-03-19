@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-278025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278026-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YPMqGKBYvGkUxQIAu9opvQ
-	(envelope-from <devicetree+bounces-278025-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 21:12:16 +0100
+	id sPhtIBhZvGkUxQIAu9opvQ
+	(envelope-from <devicetree+bounces-278026-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 21:14:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDC4D2D1F41
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 21:12:15 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21F5F2D1F76
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 21:14:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A7A1330A2FC7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:11:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 784E6301A7B6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:14:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9CC037C936;
-	Thu, 19 Mar 2026 20:11:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE59139E166;
+	Thu, 19 Mar 2026 20:14:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J0j1+UkN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n8xGZglW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C467D4207A;
-	Thu, 19 Mar 2026 20:11:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A796393DEE;
+	Thu, 19 Mar 2026 20:14:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773951116; cv=none; b=ny+YnPV+eifR7GimNlgpzG1JBSYi48jiSMfvPNtKXc7cUf56b7sSbJwknRYpcVjK+t5VZD1MTVMsuPsB3nAxQEOZc49M6aeUpyZobisWvcYwkP+azcuw0JJOfMQCCehCWsItg+yCd933AKosTwtdE4XoVKT56EiK3ArgAqHllGc=
+	t=1773951250; cv=none; b=bqvifDXsHslzWHEAcfPe4kXyJY6w9R/ZMiW5QT1Oqo2bZfzA5O3LqHv3la+Q3KtRlmyUMDpoAMRaiCU6TM1tXgMalJU+Hd6w9iW7YE0uv79xVAmGpx9EKFt6005jYiyS7rbVEfnlo+ODJSwlu/K7XZJr2GIoO8xgbF04tCaQydk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773951116; c=relaxed/simple;
-	bh=Oc2gCcNeG49sxkrY4UJ+RNT2vpAyb7bJGfww+rFV3Nc=;
+	s=arc-20240116; t=1773951250; c=relaxed/simple;
+	bh=baHxXKmmrekE+wmORgzIlyCdbkSg0eTvOx6vwAaoCf4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iNgfiHnO5mZG9fAdRWlGvSKPID5qQ9YibrH4uSrOUQDLzBkWS1fhbW8TXmZVA9HXELbvv0Os5W43ySNgfkHTK3TOAz+bdTs9QPe6QqpPPOsvpf5951zdAXErcgX4dkK5/+xx/71pc9X+28GXRO1lNUirDePXmaanEBj8B7u1XrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J0j1+UkN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29B7AC19424;
-	Thu, 19 Mar 2026 20:11:53 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=GsyL0pfUkslNZju/6V5BNGfmHPma7GDM9ZeyD2zPcHU25paqpXlhsQH/nXrWB6aIG4AWoHSzqBpXANlbHpQg62UF9/QVJdBfxwh8oRejhFofw+YzwL362bmNCIy1cpBJoKGq6m6fmrS2Aiq8LdSPgj8ckefo3LqLKnpmENoIiL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n8xGZglW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48750C19424;
+	Thu, 19 Mar 2026 20:14:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773951116;
-	bh=Oc2gCcNeG49sxkrY4UJ+RNT2vpAyb7bJGfww+rFV3Nc=;
+	s=k20201202; t=1773951250;
+	bh=baHxXKmmrekE+wmORgzIlyCdbkSg0eTvOx6vwAaoCf4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=J0j1+UkNVcC9s4n3io4VHVdfu6LWd/KPZZgwXERNPWgpUPYIG8gOtnMsjrzO1gscc
-	 XqCrR9NsRCNBnEQSxnFG2J9TWO8zJf5Sk2V59TndUSx1gN9cnLca1RL3WBqE0V79ZN
-	 nN30KUDpnGuodNH5p00MGhUjJYxlVXWKBzOTFDvmDKLd/nUgapx/t101vavJEUR1uS
-	 tNbCl0V93ClxNB4ER05dqMbKI8kPnuvpBzUrhr//9zU7DAvxVRW3aNAK+RWXhLB5Xf
-	 tylLs78Zzhxl/8NfkBujHqejIxYBsHK2pM9lkeGhWXmvzqsLSulF96tBXicDgUKnb8
-	 F1OD4gj0KCJpA==
-Message-ID: <21f2e3a2-ae8b-4997-a3c4-bb77663c04e8@kernel.org>
-Date: Thu, 19 Mar 2026 21:11:52 +0100
+	b=n8xGZglWvRVW4W3N9+zHZkb7SCx0JXep+wcsj3thCLMJWEj2vj15ZZtfjvOtbRAuT
+	 Iws3NvZNjcT9bKVqGzU22XNOVKKE5a4kqgox5t8SWXAmGr9owPNOHtXfp+kaWKVX8d
+	 2m/dCSbII7gN4IznSHovVvKyLHZG6LQPaj2Fo9Rd1B4B2fG/rFvIEDddF0f7C3B78m
+	 KbpRjbShc+2Zw3+6pK0X2Jvi9ir1XpRfdniqOAfmrdJh8vwOC6WRzzNQBcNrHpsuc5
+	 XvNJszPx0dqLiuBxuZyiSdQA0FY2EVhsQ1lJq9hYs+AMx1CDHjLVRDp2Iapsrkj/ad
+	 2PGWYv5BwLRLw==
+Message-ID: <b60be557-fea9-4ab9-ad48-965ead3ec8b2@kernel.org>
+Date: Thu, 19 Mar 2026 21:14:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,13 +53,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: arm: apple: Add M3 (t8112 and t603x) devices
-To: Janne Grunau <j@jannau.net>, Sven Peter <sven@kernel.org>,
- Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260319-apple-m3-devices-dt-binding-v1-1-12052e195d6f@jannau.net>
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add GXCAS Technology
+To: Zaixiang Xu <zaixiang.xu.dev@gmail.com>, linux@roeck-us.net
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <1773919186-17515-1-git-send-email-zaixiang.xu.dev@gmail.com>
+ <1773919186-17515-2-git-send-email-zaixiang.xu.dev@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,51 +105,50 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260319-apple-m3-devices-dt-binding-v1-1-12052e195d6f@jannau.net>
+In-Reply-To: <1773919186-17515-2-git-send-email-zaixiang.xu.dev@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278025-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-278026-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,roeck-us.net];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.994];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CDC4D2D1F41
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: 21F5F2D1F76
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 19/03/2026 15:57, Janne Grunau wrote:
-> The Apple M3 based devices follow the pattern of their M1 and M2
-> predecessors. One notable difference is that the M3 Max SoC has two
-> variants: t6031 and t6034.
-> t6034 has 14 CPU cores, 30 GPU cores and a combined 384-bit LPPDR5
-> memory bus while t6031 comes with 16 CPU cores, 40 GPU cores and a
-> 512-bit wide LPPDR5 interface. These are the only apparent
-> differences between those two SoCs.
+On 19/03/2026 12:19, Zaixiang Xu wrote:
+> Add vendor prefix for Beijing Galaxy-CAS Technology Co., Ltd. (GXCAS).
+> 
+> Signed-off-by: Zaixiang Xu <zaixiang.xu.dev@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-There is no user of this in this patchset and your commit msg or
-changelog must explain that. We don't take bindings without users.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
