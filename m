@@ -1,67 +1,65 @@
-Return-Path: <devicetree+bounces-277663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277664-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uK02MSnDu2n1ngIAu9opvQ
-	(envelope-from <devicetree+bounces-277663-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:34:33 +0100
+	id gJURGnvGu2n1ngIAu9opvQ
+	(envelope-from <devicetree+bounces-277664-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:48:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 608F12C8C14
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:34:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD6F52C9012
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:48:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E32DA302E7EA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:34:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2104F31C7824
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:39:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2EFD37DEB8;
-	Thu, 19 Mar 2026 09:34:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F26983B6BEF;
+	Thu, 19 Mar 2026 09:39:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gDncbqlm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GOg3CiWx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8332937DEA3;
-	Thu, 19 Mar 2026 09:34:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C66A53B3C04;
+	Thu, 19 Mar 2026 09:39:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773912853; cv=none; b=nH0LNYNSjdvSFeo3o6wNKn5rq0N24PioG1YH598bYn+Z/qd017tnUfPmnzdb0plai8o+hIX6xATQEwQd8f3MGltU1TSnBWipyiZSWk2cC6H242M+zAdsso6kzfYPJEG0jxp7kW6V1uPm409o8341Oyi9BBiW4/JQbfxgto7g/Xo=
+	t=1773913174; cv=none; b=fufcUdfuEfTyljTCq5hsp9u7MKXwzarYQ7NtJo3uTdKO1f7MF2z+mUvSmvn+Upl6uz36uo/uX9GN45ssXzRrDM0Pvobyxpbv+ufztfPpnmFH2AX8IctDKuKL6Rdy8fUdrUGhE0v+IlIRSQW4poJnzHVKpvJUIxbNuXAmNmxBWbU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773912853; c=relaxed/simple;
-	bh=/Ppb97Ypb2Q0b69Z2VZneA9BSfsBgNrulVOqfB+3t4g=;
+	s=arc-20240116; t=1773913174; c=relaxed/simple;
+	bh=HL07kykBNmLYTVHviBMszhXBKFTs8IpBAy5AxUjx0KM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EgGCzJp5eefOcYl0a09LrnqLTs5YlllgHK+j33qlHaoaV7CM8IeMSrzLHbRYjmJNm0S5RIAQGSlOWWj0lqzIReBnfDptnROlpdzvudKt1Zrn5HFO8vapecdtR+/MmzbUvQ4Xk6SIgTdZfxMd/gVR4e4zKdMDctROwVky5uYaqIE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gDncbqlm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E054C19424;
-	Thu, 19 Mar 2026 09:34:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ai7fnexEtCFliucNKYeWvqlqlNFfrxLcpSLEnXDsqW/VmWdY4kQcSGS1BL+YpeWEgragaYvR9LtNGVQ6n46aMYRwlgmOq+NmfaxFsD3EQbZWohhTufJ1meifiS9iVCkVSF9Ic4syRo9RuGSJ+/vSjVc9DeM9OfH8BofrsVqTRIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GOg3CiWx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24F9DC2BCB0;
+	Thu, 19 Mar 2026 09:39:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773912852;
-	bh=/Ppb97Ypb2Q0b69Z2VZneA9BSfsBgNrulVOqfB+3t4g=;
+	s=k20201202; t=1773913174;
+	bh=HL07kykBNmLYTVHviBMszhXBKFTs8IpBAy5AxUjx0KM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gDncbqlmzv86BTzFpykRxi5JZWw76RvplueRa+eYbwzrleBAmBsWiQ8Betd2+GDD9
-	 dZUrOiNtGmuKLt9qVkku8rUVbCwKAM1xycP4VefWfS+QEx/ETPn60rrW21QomPyOM3
-	 AXfvNlygLhk0yGraCk9+Dh0OqMPjN0NIv0nT7xe3nbxnBGgpUPy9AfM7wIu8d0SSAb
-	 NbUQgIcHOjUJFnfor0NHCCf8wpl2GcatCg+CUmJAA4wxVInXyf6atH4YBF0mIcLSHh
-	 lUeZgsAaqujlgosWTvz41/oFuozhUG7MO1x85t0O0bxMQ+RO4HcSY8XXWsTR5s2Ws6
-	 O19pOLBgM/aJw==
-Date: Thu, 19 Mar 2026 10:34:10 +0100
+	b=GOg3CiWxDFjsxLSkUH8Qfk+jPu+o4J/a0xdb4bZTwA/fG3E5UawPe/Cm5et9/lG+G
+	 1gpHCJm9onmOCrdZWAcHIkncJXDpXJ3rwpCQy4tlFD9JvRDSAZkaeubKh4nuGlRGUi
+	 87FbsrK8xJ6ijGZQeF/Va9jY5RIKdb9zW04cT2v5BFKmQXD59eN8UrwzoqrRcBo4R+
+	 P2B6vZX67FMEugDyOM35CH/PEQeesSebslTmgS+GfWqkqqAm7MGwFhujPuYpnUf/9y
+	 fsctllzw78w1rk2j39r5PziN70R8HmgViGlIosXPPc3wOOOjP70uMOmg+zvUE5oWMv
+	 oGB4vN2Hnnn5w==
+Date: Thu, 19 Mar 2026 10:39:32 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, John Madieu <john.madieu.xa@bp.renesas.com>, 
-	linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 2/5] dt-bindings: pci: renesas,r9a08g045-pcie: Add
- RZ/V2H(P) support
-Message-ID: <20260319-outstanding-rustling-galago-79bbce@quoll>
-References: <20260318124450.163471-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260318124450.163471-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Akhil R <akhilrajeev@nvidia.com>
+Cc: conor@kernel.org, Frank.Li@nxp.com, acpica-devel@lists.linux.dev, 
+	alexandre.belloni@bootlin.com, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	ebiggers@kernel.org, fredrik.markstrom@est.tech, jonathanh@nvidia.com, 
+	krzk+dt@kernel.org, lenb@kernel.org, linux-acpi@vger.kernel.org, 
+	linux-hwmon@vger.kernel.org, linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux@roeck-us.net, miquel.raynal@bootlin.com, 
+	p.zabel@pengutronix.de, rafael@kernel.org, robert.moore@intel.com, robh@kernel.org, 
+	smangipudi@nvidia.com, thierry.reding@kernel.org
+Subject: Re: [PATCH 01/12] dt-bindings: i3c: Add mipi-i3c-static-method to
+ support SETAASA
+Message-ID: <20260319-spiritual-defiant-galago-9bed7e@quoll>
+References: <20260318-tweed-herbicide-eb924ef056b8@spud>
+ <20260319084641.57672-1-akhilrajeev@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,67 +68,117 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260318124450.163471-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20260319084641.57672-1-akhilrajeev@nvidia.com>
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277663-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-277664-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.963];
+	NEURAL_HAM(-0.00)[-0.970];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[bp.renesas.com,google.com,kernel.org,pengutronix.de,glider.be,gmail.com,sang-engineering.com,vger.kernel.org,renesas.com];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 608F12C8C14
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mipi.org:url,nvidia.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BD6F52C9012
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 12:44:47PM +0000, Prabhakar wrote:
->      then:
->        properties:
->          interrupts:
-> @@ -236,6 +239,21 @@ allOf:
->          reset-names:
->            maxItems: 1
->  
+On Thu, Mar 19, 2026 at 02:16:41PM +0530, Akhil R wrote:
+> On Wed, 18 Mar 2026 17:31:50 +0000, Conor Dooley wrote:
+> > On Wed, Mar 18, 2026 at 10:57:14PM +0530, Akhil R wrote:
+> >> Add the 'mipi-i3c-static-method' property mentioned in the MIPI I3C
+> >> Discovery and Configuration Specification [1] to specify which discovery
+> >> method an I3C device supports during bus initialization. The property is
+> >> a bitmap, where a bit value of 1 indicates support for that method, and 0
+> >> indicates lack of support.
+> >> Bit 0: SETDASA CCC (Direct)
+> >> Bit 1: SETAASA CCC (Broadcast)
+> >> Bit 2: Other CCC (vendor / standards extension)
+> >> All other bits are reserved.
+> >> 
+> >> It is specifically needed when an I3C device requires SETAASA for the
+> >> address assignment. SETDASA will be supported by default if this property
+> >> is absent - which means for now the property just serves as a flag to
+> >> enable SETAASA, but keep the property as a bitmap to align with the
+> >> specifications.
+> >> 
+> >> [1] https://www.mipi.org/specifications/disco
+> >> 
+> >> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> >> ---
+> >>  .../devicetree/bindings/i3c/i3c.yaml          | 30 ++++++++++++++++---
+> >>  1 file changed, 26 insertions(+), 4 deletions(-)
+> >> 
+> >> diff --git a/Documentation/devicetree/bindings/i3c/i3c.yaml b/Documentation/devicetree/bindings/i3c/i3c.yaml
+> >> index e25fa72fd785..1705d90d4d79 100644
+> >> --- a/Documentation/devicetree/bindings/i3c/i3c.yaml
+> >> +++ b/Documentation/devicetree/bindings/i3c/i3c.yaml
+> >> @@ -31,10 +31,12 @@ properties:
+> >>        described in the device tree, which in turn means we have to describe
+> >>        I3C devices.
+> >>  
+> >> -      Another use case for describing an I3C device in the device tree is when
+> >> -      this I3C device has a static I2C address and we want to assign it a
+> >> -      specific I3C dynamic address before the DAA takes place (so that other
+> >> -      devices on the bus can't take this dynamic address).
+> >> +      Other use-cases for describing an I3C device in the device tree are:
+> >> +      - When the I3C device has a static I2C address and we want to assign
+> >> +        it a specific I3C dynamic address before the DAA takes place (so
+> >> +        that other devices on the bus can't take this dynamic address).
+> >> +      - When the I3C device requires SETAASA for its discovery and uses a
+> >> +        pre-defined static address.
+> >>  
+> >>    "#size-cells":
+> >>      const: 0
+> >> @@ -147,6 +149,26 @@ patternProperties:
+> >>            through SETDASA. If static address is not present, this address is assigned
+> >>            through SETNEWDA after assigning a temporary address via ENTDAA.
+> >>  
+> >> +      mipi-i3c-static-method:
+> >> +        $ref: /schemas/types.yaml#/definitions/uint32
+> >> +        minimum: 0x1
+> >> +        maximum: 0xff
+> >> +        default: 1
+> >> +        description: |
+> >> +          Bitmap describing which methods of Dynamic Address Assignment from a
+> >> +          static address are supported by this I3C Target. A bit value of 1
+> >> +          indicates support for that method, and 0 indicates lack of support.
+> > 
+> > I really am not keen on properties that are bitmaps, why can't we just
+> > use the strings "setdasa", "setaasa" etc?
+> 
+> The intention was to mirror the property described in the specification. Using
+> strings would not allow to use a combination of methods when a device supports
 
-I do not have above hunk in next from 16th March. Nothing about
-dependencies in cover letter or changelog. What am I missing?
+Why combination would not be allowed? Look:
+mipi-i3c-static-methods = "setdasa", "setaasa";
+Both are allowed.
 
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r9a09g057-pcie
-> +    then:
-> +      properties:
-> +        linux,pci-domain:
-> +          enum: [0, 1]
-> +        num-lanes:
-> +          enum: [2, 4]
-> +      required:
-> +        - linux,pci-domain
-> +        - num-lanes
+> more than one method. It also cannot represent the vendor extensions (Bit 2)
+> cleanly. Would this be better if we use macros instead of raw numbers?
+
+Hoes does setting bit 2 differ from a string "vendor"?
+
+> Please let me know your thoughts.
+> 
 
 Best regards,
 Krzysztof
