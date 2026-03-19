@@ -1,102 +1,104 @@
-Return-Path: <devicetree+bounces-277759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277760-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +IIDBEbuu2liqQIAu9opvQ
-	(envelope-from <devicetree+bounces-277759-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:38:30 +0100
+	id ALl9KGXuu2liqQIAu9opvQ
+	(envelope-from <devicetree+bounces-277760-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:39:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96FA72CB3DF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:38:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 439E22CB3F8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:39:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 40672307C494
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:36:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BF347313042B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:37:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 642D63C8718;
-	Thu, 19 Mar 2026 12:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D62438E10D;
+	Thu, 19 Mar 2026 12:37:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="a+mDoK5X";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="MjgnOQhx"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mYmS6RmR";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DcpAOcmn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BB7F2E03EA
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 12:36:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC5A233F5BE
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 12:36:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773923817; cv=none; b=T4R4DjPn8AGQKIXYsdLsmyQii6z6cJUzwdkJtGhXv7d4gtcWG5axX2nhmjRWJ1F9jESKWXL+/n+bUKFpYSyT5YuNQaD3YxYTZDDYOkYo99dN1ORVFj9lZU7ihr9chQrxrrvuJE+QCJhvidFP+xRulxYouhcJqXOpw0mwvAJup9Q=
+	t=1773923820; cv=none; b=cRJudVS6z8Q8mPU9HkhtLV+m4D7paXAZG6uprUKdbvoT5gTg7Udy+CzOnQkcD+ujdqwZrLKHrR6yphSSbIPz99HpjSZ0uS2CT2HJJdGVO7BPew4EFalk16O9uJx2PLAazHt5ayOPACUEOcx4F7FlSC5CUHi8AKRa2GbxG2OIMuQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773923817; c=relaxed/simple;
-	bh=Ca3elkhYK9p2hSJbJu2CmYzWJVZp7uk95TrLKvPgL60=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bcb9eQzbq/+cOEgshfrGRak9RcQNM6aER6vM6sbdxTs7prv8p+s9f2jE2sadeZjAit1FTTMPZhsIct2J8/PyAO/8MTL8c/I7/+JOnW4UOo0DNIwKpsaMqOAvQIH/Qvz1TOax/sBgXUeniGajm4uS2n2PvQyOU+z7rX5m2GViXW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=a+mDoK5X; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=MjgnOQhx; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1773923820; c=relaxed/simple;
+	bh=UtJ7ydnb90C+A+99IZ45a07v2oKn/gWiBJoTYBQTOtE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=bowzM7idr/Nes5FCXPPVFUZ28Fm6m5WQfJsf86WkimNTANqeB4UkoLg/y0QgY27luwyM08jTgqLeL2sh860wmpGFsAOx0BpMEo4Zj4uiabcYkWN9i77SBwInEa2lMcPqS8JWw1hon9F82mMfR2kpZOYfm9ONpDd7n0/32E83O5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mYmS6RmR; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DcpAOcmn; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62J73xKX2544624
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 12:36:54 GMT
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62J73wwE3771113
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 12:36:57 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=MUQB9o/3ODSXROu1lgN5NE
-	LvUl/+ZQ0tjQO3wbFTPGk=; b=a+mDoK5XU8aJGSBEvSyYGmxuz3P6CFB1ACWctw
-	5THLyInxEqWfsnzax5wJzXjmhmY48AhdhIZt8fZ+fX2H2GiQnJV9vYhvJ4u2zJLo
-	Lubdq6Ig11Yrs3Z5lDjjBHQJNIRA9k3P1Bvmf8v4Ahhx15dRbX5SDPBNK9xI1uuL
-	3N/rkVKmzf/5GxEnqJAVNsZwcIaAld9UZw01IxB7fIoGjoQg7yAr8ysJC9XtWLaD
-	M85ajUxCIphjVjryPqFa3CXB4dsZVgStOKKCbeZMEOdUslSHkDQb6c9qYUtdg/MX
-	ihljgN88BZUR9XzHvKvSorxmH1w4A3bjjwuTDmTKDtnNXetw==
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	IDw8+s51WWt5gy/4KDtSYXGvdvqkGMaHw4rLnpxpKzY=; b=mYmS6RmRWuG9mQKk
+	HN4tAFlHjvhB804/uVH8/x9gc7grp3dKPVN56UczGiiWAJ3SEfwChgTugCy7BLHS
+	vTt7x1D3lIPqVwoeCn2a5JADIXDd7WtKQab42z1lv9va33MK6U1+h3qVblB8BcHN
+	XkC/6jrkMLxAQcEo0ALhsy0Ny0YwdyCTD8K0w082NIP3UQoY6e/GHEB7NPT6bp4g
+	46M3/mJdrD8dWnN6NltOY71lsLGmN7yrwRgpJfxYKRzURkrAOJGOgFpcyN6QI76Q
+	PM3DIINnNJns1zdS1Di28ZfWTLEDBuvOKXZ7vaukGPd6ViXM2gqwTWjQRhluuvBe
+	nPHeZA==
 Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d0957sgxw-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d083r9q4j-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 12:36:54 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-50917996cfaso54449381cf.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 05:36:54 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 12:36:57 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-5092efe29dcso19205271cf.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 05:36:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773923813; x=1774528613; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=MUQB9o/3ODSXROu1lgN5NELvUl/+ZQ0tjQO3wbFTPGk=;
-        b=MjgnOQhxiw64haycCPOM8uIVNDGFgTMz7K1bWAyYeKpsHeW953rtVq5DNaHmFnnrUL
-         tsy+oexziCGAY2fps3SjHgs72c1B92MSnRHsQShMHo4kYjROE4pYV6cOmh/Wk6SSoKcu
-         7j22CyPe6S4ZPhgUkKOd8bA99mVvoP5Y7huj3cfnXMA5suxVdhla7texuwhSRZl6hyZY
-         bq+LOl2Ya+W3R5hwCoczkCYuMkmi0aX9yo9kYzSGBcfPve85n59AJ7bMVWjbswbN+/Oc
-         KHkFk9dsJYTj2hV+v0n439YE6H7cZRJw2tYbf8ubkLEJb1GjSJQV9i0Y7jr59qprWR9Q
-         lWIg==
+        d=oss.qualcomm.com; s=google; t=1773923816; x=1774528616; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IDw8+s51WWt5gy/4KDtSYXGvdvqkGMaHw4rLnpxpKzY=;
+        b=DcpAOcmnQ5B7hydpOFt6pz4CwGF7nsMp5w+g1FviKajiyhagfMvsWNW0PfdIUySimd
+         8WyUcr+OC9270ZSV8/CPZXtIXSWVHcIrf3AvkR9LK4F2v4Ma4fOa14qtm6R6+oVgTrcl
+         f/0Mte35kCSN7BSds/Acm0hyCEjN7NFueVO8GtF41H9CxHL44z1tcEKHBDLtIpQUKX7K
+         HFI8lHCi4/jbU6H4ityvshbuO+6O4bjv+JE6Ppc+wHrjbFBAXRKtV1FjUSEgWrl5SL7E
+         2KFhzsVeWqkpbqU89pQDgjKBqVXlyH46AvRCHmqQOvBuY9a7GD/C2hEI3P7+WmCHfhOP
+         N1Sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773923813; x=1774528613;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MUQB9o/3ODSXROu1lgN5NELvUl/+ZQ0tjQO3wbFTPGk=;
-        b=ntbJE+/tmFwcsNwZbyGznyZfHgi3PtfftrTSoikg/sZKueD6mqzP9SSzsrpZHTIsZf
-         j/GPoG/vkU+1C2RT4xA3gbqjsu9XvL9+TW+2pu5ZI1o1HXWzOKl0AQko65Z3ljMkk1Jr
-         AwgG8BxGHIXgZOYJI2Jhky0QyF5pV3+FTF7Srl3aRCvNm2V7/AFfowwxiBIRpvUFm5mf
-         2w5FXdKyzbuFKyjTBL+m9WNS88ngys9VSAX5k+Ixr4M+hTwwijj58JZSc5HGrOWeNZ+z
-         fhbqnH59yImCxXp2JyYI6cuEwwY2Z7WDAf+CcvmH4PZKECmkVKZoMZrgYk8wp/I4JeZa
-         OhEg==
-X-Forwarded-Encrypted: i=1; AJvYcCXSzToYGvDG5tJO8k0xC/kCzginaIzOLCjS8tEZRe0vHrYGeU1IeWaBFYKT8fDGOTJOGGV2X6V4fjyd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxju4Wcuts7sB8jC2DISmqVUvwTYvr1rvRHo3d1ovqZheSSzjsg
-	AetcpIwOew+r7GpT+2C2E+hXF7G+v5OsQ8iERVyKUrQiJcFGVzhI5NjHzU9xj/ReTvKXnq7MuXj
-	3VOHLIKafvAzSpYPSgdfvYxaYHoQSuUCPvLxtpzrlTfFd5D9u7T3E1uMYKheGaZ7t
-X-Gm-Gg: ATEYQzzxyANJzVJ/cWwuix8m9RIjrEv91iSH9n482ny5j7hDCR3zmJxgYmerYGAvB7U
-	SLwKYcuTll3o6gf7Ua9tNf5RyWcC983j381o2GdgGOJP3vq36tSUbZ2uXJG3qUGF4R8wsSP7kMz
-	qmUUtNxYTj0myhxU9pSrlEKkTbfNNTjRAJ1vJ1V3QAGd9hXtA7vD8MGc8g38Nf5scZIYTbrkeFX
-	jU94LcjSYbe0v/s0E828OpPv5iu8L8HbcoiJdmUkp/0M2xMad4EOj8QCPOsHmlbs2dueafbeWws
-	t2LL4nDcqnwLjzohUGxYB4F20v/7YLJZ9LeJEpFXurtM+sPtcYh9540ujxMsr473dod8cNgH8dZ
-	NYf+AcqbONthxFg4AZDQGN/J5aHw=
-X-Received: by 2002:ac8:5fcd:0:b0:509:2032:d231 with SMTP id d75a77b69052e-50b14897187mr86089121cf.53.1773923813187;
-        Thu, 19 Mar 2026 05:36:53 -0700 (PDT)
-X-Received: by 2002:ac8:5fcd:0:b0:509:2032:d231 with SMTP id d75a77b69052e-50b14897187mr86088541cf.53.1773923812449;
-        Thu, 19 Mar 2026 05:36:52 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1773923816; x=1774528616;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=IDw8+s51WWt5gy/4KDtSYXGvdvqkGMaHw4rLnpxpKzY=;
+        b=arD/ikMvrH6IpsmDSyGGdtegiwSHjEEEoeWiPOIQ7PGwH6BlZYyrsGOWGHDQdw09HK
+         q3qNNCi3XOfDZLb78kDb9j2U1rAFrQjKyZojZ3Wqb70mb7ZSr+KGPcnqpRC0sahmNkLr
+         MFsT5Cfl4HXOTfUWhpZc0Ml01Yh7CcMB9YawYntUJR2CBwK4YoTWkvv0fLBMj6TeVB5g
+         l3d7jJdX7nRiG5Dfd0l4lU0FEJvtmYCBnnsFbgc/zR+jkmawvSEr6xWlxK3gx12Cw7uA
+         YfMIOI//sfjLKM4ATBhY2gtNPhRsVdh4n71ccrKNbEFDKn9i/HA6t6TuJ1E62YFQLKlf
+         ObmA==
+X-Forwarded-Encrypted: i=1; AJvYcCWzWsthY72JHH9MjDqOOXeUI01tzkKlzngZAapfDgiEllLJsR8Ng/wblxyp+4n3eiA7JK9QkeUqWV6o@vger.kernel.org
+X-Gm-Message-State: AOJu0YzWoKLcYJRKPTbZYiA+Sv9XSznSnE/TpiUVrjfCC/GRPh4buc/2
+	DEKe+yZ63yZaAUwuw3A7G6LjYUoq4tR+cjcELL8Trlcz0dzNKquX/lua6LfbDYjl82merap+612
+	jIHsNBYZ6npKD6L3ARDKXjC0b4OkcKtCAcq+fxtUMlrlgWsNzeg1Y+SD5DqhrgdFc
+X-Gm-Gg: ATEYQzyuJftB3ic5IkjF+5oShE6SnNte+AG2i5B/D/mkOOFabfNXwvk85LfJcW3TnTg
+	UmCQD2cSLH+nt6A3g+vnPbBYOVf6P2xbmGKqY5tKOYNc4sxOZqwseYugC04QCniHiDVojy3Tdgv
+	+rOzRAozJAFhFwvwM1Ncx8PcHSrlnDHP01yRhfia7Zw4FotzV8IJFGR54SEKdyTeL2q2dz9Wo+y
+	I+tyLEsej5tk64pe5WluTk+KQvHQOwCzmrIdzeqMfynysOfvMz7eYY7FNFY+rM8dLcjXL6joTrB
+	I/8SE2bcz6iDXH0VKBtPOn9JbQDJEjtR/cHWzBcVuVYvXkBFG2uvja9jFw+Ut2dd81b9Cig6S7B
+	7JDnwpd7mU62d0NWhEo6kflN4Y78=
+X-Received: by 2002:a05:622a:aa0c:20b0:50b:2763:2bc7 with SMTP id d75a77b69052e-50b27633ec5mr23692721cf.31.1773923815680;
+        Thu, 19 Mar 2026 05:36:55 -0700 (PDT)
+X-Received: by 2002:a05:622a:aa0c:20b0:50b:2763:2bc7 with SMTP id d75a77b69052e-50b27633ec5mr23692021cf.31.1773923814885;
+        Thu, 19 Mar 2026 05:36:54 -0700 (PDT)
 Received: from hackbox.lan ([82.79.95.133])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486f463d6basm44962075e9.11.2026.03.19.05.36.50
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486f463d6basm44962075e9.11.2026.03.19.05.36.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Mar 2026 05:36:51 -0700 (PDT)
+        Thu, 19 Mar 2026 05:36:53 -0700 (PDT)
 From: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Subject: [PATCH v5 0/2] arm64: dts: qcom: glymur: Add USB support
-Date: Thu, 19 Mar 2026 14:36:43 +0200
-Message-Id: <20260319-dts-qcom-glymur-add-usb-support-v5-0-b1d9c03d5f09@oss.qualcomm.com>
+Date: Thu, 19 Mar 2026 14:36:44 +0200
+Subject: [PATCH v5 1/2] arm64: dts: qcom: glymur: Add USB related nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -105,13 +107,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIANvtu2kC/43Ry2rDMBAF0F8xWldBL8tyVvmP0oXkkROVOLb1M
- A3B/17ZLqSLBncjuDA6d2AeKFjvbEDH4oG8nVxw/S2H8q1AzUXfzhY7yBkxwiShpMYQAx6bvsP
- n671LHmsAnILBIQ1D7yOWtDISaiCcNSgrg7et+1ob3j+2HJL5tE1c2J8Jb8eUq+M2howOFueOz
- sVjoaxgwEoqdGXRIlxciL2/rytPdP2wbUf57nYTxQTXCiRwVUFL6KkP4TAmfV3qDvlZKyb2ZBn
- 7B8sy2wpLWq7AMAovWP5kOWH7LM+sUtwaJmuqyStW/Gb3TzSJzEoDjaBtqYCqP9h5nr8B7dQde
- BwCAAA=
-X-Change-ID: 20260109-dts-qcom-glymur-add-usb-support-617b6d9d032c
+Message-Id: <20260319-dts-qcom-glymur-add-usb-support-v5-1-b1d9c03d5f09@oss.qualcomm.com>
+References: <20260319-dts-qcom-glymur-add-usb-support-v5-0-b1d9c03d5f09@oss.qualcomm.com>
+In-Reply-To: <20260319-dts-qcom-glymur-add-usb-support-v5-0-b1d9c03d5f09@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -125,45 +123,45 @@ Cc: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
         Wesley Cheng <wesley.cheng@oss.qualcomm.com>,
         Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 X-Mailer: b4 0.15-dev-7ae85
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2489;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=19091;
  i=abel.vesa@oss.qualcomm.com; h=from:subject:message-id;
- bh=Ca3elkhYK9p2hSJbJu2CmYzWJVZp7uk95TrLKvPgL60=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBpu+3elyVKZ7Khi8xVncjHhYQgPXIWKev8AnRZS
- 9crVgxh0pqJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCabvt3gAKCRAbX0TJAJUV
- VnvtEAClIhBzRRqlSccRk7/mDidAyj/BaeH873agTSGEVqAouuDlql5M1cuJu1ooD7js5eoeImB
- GfiykTMX74FDq5Smp5hw2xW4uZjVRlv8Xg4EkZCBzB6ehm1MvnWsrZgP1/QoNCZeK8pyiDbQlVJ
- EiX4cf9YJnEJRh/t+S97lTfbZxqx8T8hov0dEqkYNS3xMnZoZLhVEQSnoH5yXIjnrxV1aznwzuc
- L79jnO0fZ6qko9nk9UXfyCRbOGbarrlgaPRdMaoQ17Nque0Ml2kJ50HNR4eLTedq+AIl8+THFoW
- KTB9awiiEq4sZwHsCCx1bgurmGzttm9u33oDnL7R8yRVL4v0F8rC/REtLLqJLx0h1yWpDXXULYN
- MqtyL2iTqTK0wr2xhvEAoKWgvswnesC5/1SZenFJP1+lNrbOmYdWBfSpkf7Y8vpJTXcnUOw6RwQ
- BwRo6vAMM52SFf8Qj4MT/lYMfDpZwiwd09RIFaRLrd6DhGOqVsK2hZHFWAgti09Vc9qGAxZsYM1
- AMuV7W/wCfs2KVx7F+aZWUBPy9ZlnnM6brZUW1EScb2h9KCl5xToiNJMMdvmEUVVlFx3u+5xvbO
- mK+NcuaDNoklxTInS+U54beimm1JIWVnWsq4FfW8Y5NrIo631IBAAq549tXNG0m/A0aI5mnIKqR
- UyVrBMlhdB6+kPw==
+ bh=GmNof+ZpJHWEEXlL0qmg9NlVFlgRi3w3L+aV4gzt1Eg=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBpu+3fUYQAxRNRSFWhQLQd3UUKZZ1nV4nd2jOvD
+ oNnQlWmWhyJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCabvt3wAKCRAbX0TJAJUV
+ VgrmEACf74avPZiAZ6gE+xBZpvKdrpvETWNiLN6tcVThnbSBACYKDhaj5olvp4IszlxqXUoyUH1
+ 5ZIQ0t4EIhc9mCxEZRqLvJXquE8PkFX0sE+WH70U7bePV9h1EPq4YBYrlIBqaDpMfZ14U1zNxIB
+ eXmL+4ev9ImmpzAH+BV9z9AsEVNwaqtNUbe2gb9jnNpH6eMlEvJYCw00bq35lzBcusuUL5CAjX9
+ 13Gfs7jPkTGbKsDr+9nN0eXKBDJFZf5xRRFTv/V+SDkxAJyOynkTrchqqxxEiVClYdwQ7JNxN1O
+ ecNXb0d0ogrh7NyAu9jEta9BMBqVkgObhcFqvnPEZnR8dd4ytVKJrwJTv58c3f1tZT7koSKhROV
+ s3o/uqyRMNqqL0p8oQRArtil6qldZlXuRXa12+5CUcl6w4Vy8yF0Msincg1KdJ5wPQhoe55PxNh
+ y5DUlec0cU54dk3eAa5BT0Isg1CQK0M93UfXzpAHydgK5DesJFIwX/FT+sKqjJnCalNokT+FLFe
+ 3MQ3/RpQvoOHxfH83eq9Z9SE8yYMwl6wiy02R3KMS9uBTUCE+trvgKR6kFIJE2xjuCQxgorNq/Y
+ q/QbYLhCM0crn5POOQB2yREgsnMR8iDpRYO43gxeQdsths6FFnuflBVdwD9bkOWV52pYHw8kXGE
+ 0kwn8KaI6qk0NMg==
 X-Developer-Key: i=abel.vesa@oss.qualcomm.com; a=openpgp;
  fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
-X-Proofpoint-ORIG-GUID: cUZXL7XSn2f7bTLAk3tbCnuBUN_kx685
-X-Proofpoint-GUID: cUZXL7XSn2f7bTLAk3tbCnuBUN_kx685
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE5MDA5OCBTYWx0ZWRfX5wcp69Dp6ZsJ
- 5n4ukrqOQjqZfVeMgwzwMCXjWzNn8f8ZCkfudvIfswGDlb8ueTdu3rEHR6vQlu6XFjheyf0If8l
- sVsJoVIb4VhlNvNFJctG7lPvcBldYGffUS9lOz0s6Q+q5jxTcNn2X4TlLn0o8QJZaMsutI5Mcmb
- JRcm0yypFCCMrDfZbsGLM8p0jVpSynsG8gctbFMW0So5WJYqBPMZLBOFuT5c2hN8sfd6o+Urvy0
- 9wI8O5B0/3EvFUk3jz8Ft9S7cJmVv+Gw/AQ6kXP8/m38jIs8WswdS0aZjwaHy/KE5aMwbugHeQh
- kpzaBrmVPwf/Xb6HoqvY1V9Sb0B66I+lvyNbvc7QySGspW3Y2b8pZNoDioQ0N/l/T/yABg4G0wC
- YG8hAiUBpuMDr9UjUXrrBsjxjMzeWk1Q6x9v078XIYeutTxnp/Ub3GUOC7dXmYlMOYSv4h4l24W
- xHWsNZrPzkFaxbAoI1Q==
-X-Authority-Analysis: v=2.4 cv=RZedyltv c=1 sm=1 tr=0 ts=69bbede6 cx=c_pps
+X-Proofpoint-GUID: vJK64olulE4afCjxf7rw4RCVg0ZZwO9H
+X-Proofpoint-ORIG-GUID: vJK64olulE4afCjxf7rw4RCVg0ZZwO9H
+X-Authority-Analysis: v=2.4 cv=ApTjHe9P c=1 sm=1 tr=0 ts=69bbede9 cx=c_pps
  a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=iKs3dpp2RB4k51ZqCjcyjQ==:17
  a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
- a=bC-a23v3AAAA:8 a=EUspDBNiAAAA:8 a=E5JcmwgiqHGAA_JIGHUA:9 a=QEXdDO2ut3YA:10
- a=a_PwQJl-kcHnX1M80qC6:22 a=FO4_E8m0qiDe52t0p3_H:22
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
+ a=EUspDBNiAAAA:8 a=8wER65Pd3tfT56eRIC8A:9 a=QEXdDO2ut3YA:10
+ a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE5MDA5OCBTYWx0ZWRfX2W4+L4DI9TaN
+ XZcXnXbhvs4OC1SdhwcTeP868FGy/TC2J5bd/4zrmH1sMFyyvcap0s5VVO91PPhdnDkHBZ7O0KM
+ lOEncNPwETuAVwgSMU0QPWGfehUcCdCutcEjLcMAS0b/4sqw80nDpQ3F5WpCYWgH41AKNt2qS4S
+ kDjlMuSV+S5LjSGFmzCCvY3p0Qp7oYVvTr7Q99aJ2xB5GdUm6D/kIKQjV+7HKGUqb+wQ5tIVxVA
+ eCdWp7iE0P6jJYMtu81mB6c2PD79dnvpMFeXujc139Dy9FvGWHNIhadcrEdGiU/S4u/iHgu6nI6
+ valTwucAUAv39ewOATnR2MhWe72r7FTeXawsod5I6Cx206NmqywFVmSeZnQscjwCF5BtNXTybUr
+ v8fGo2UWoeo16VjuTUeHDJzUgeH91bcQl4AQgx3Nlo8liHYw/afrhR5TOq6O18hU0i2TuJL2sDz
+ WHMKtC79Wt3bonsiTMg==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-03-19_01,2026-03-19_04,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 priorityscore=1501 impostorscore=0 suspectscore=0 adultscore=0
- spamscore=0 malwarescore=0 clxscore=1015 lowpriorityscore=0 phishscore=0
+ phishscore=0 lowpriorityscore=0 adultscore=0 malwarescore=0 suspectscore=0
+ clxscore=1015 impostorscore=0 priorityscore=1501 spamscore=0 bulkscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603190098
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -178,11 +176,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277759-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277760-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
@@ -193,67 +191,747 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 96FA72CB3DF
+X-Rspamd-Queue-Id: 439E22CB3F8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for USB on Glymur SoC and its Compute Reference Device.
+From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
 
-This unblocks the upstreaming of the display support, since 3 DP instances
-rely on some clocks provided by the combo PHYs.
+The Glymur USB subsystem contains three USB 3.2 Gen 2 controllers,
+one USB 3.2 multi-port controller, and one USB 2.0-only controller.
+This includes five SS USB QMP PHYs (three combo and two UNI) and six M31
+eUSB2 PHYs.
 
+All controllers are based on SNPS DWC3, so describe them as Qualcomm
+flattened DWC3 nodes.
+
+Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+Co-developed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Tested-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
 Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
 ---
-Changes in v5:
-- Rebased on next-20260318.
-- Reworded the commit messages to make them cleaner.
-- Dropped all the dependencies.
-- Link to v4: https://patch.msgid.link/20260309-dts-qcom-glymur-add-usb-support-v4-0-6bdc41f58d18@oss.qualcomm.com
+ arch/arm64/boot/dts/qcom/glymur.dtsi | 691 ++++++++++++++++++++++++++++++++++-
+ 1 file changed, 686 insertions(+), 5 deletions(-)
 
-Changes in v4:
-- Dropped the RFT as I've been able to test this myself now
-  and Pankaj tested it as well.
-- Added missing second compatible string to pmic-glink node.
-- Dropped the 3rd Type-C port support entirely from CRD dts
-  as the SKU that I have only has 2. Re-worded commit message
-  accordingly.
-- Forced dr_mode to host on both Type-C ports.
-- Picked Konrad's R-b tags for dts/dtsi patches.
-- Picked Pankaj's T-b tags for dts/dtsi patches.
-- Renamed the second PTN3222 from "_2" prefixed to "_1", as Konrad
-  suggested.
-- Link to v3: https://patch.msgid.link/20260302-dts-qcom-glymur-add-usb-support-v3-0-883eb2691a0d@oss.qualcomm.com
+diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
+index e269cec7942c..2aa9af8c96ce 100644
+--- a/arch/arm64/boot/dts/qcom/glymur.dtsi
++++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
+@@ -750,11 +750,11 @@ gcc: clock-controller@100000 {
+ 				 <0>,				/* UFS PHY RX Symbol 0 */
+ 				 <0>,				/* UFS PHY RX Symbol 1 */
+ 				 <0>,				/* UFS PHY TX Symbol 0 */
+-				 <0>,				/* USB3 PHY 0 */
+-				 <0>,				/* USB3 PHY 1 */
+-				 <0>,				/* USB3 PHY 2 */
+-				 <0>,				/* USB3 UNI PHY pipe 0 */
+-				 <0>,				/* USB3 UNI PHY pipe 1 */
++				 <&usb_0_qmpphy QMP_USB43DP_USB3_PIPE_CLK>,
++				 <&usb_1_qmpphy QMP_USB43DP_USB3_PIPE_CLK>,
++				 <&usb_2_qmpphy QMP_USB43DP_USB3_PIPE_CLK>,
++				 <&usb_mp_qmpphy0 QMP_USB43DP_USB3_PIPE_CLK>,
++				 <&usb_mp_qmpphy1 QMP_USB43DP_USB3_PIPE_CLK>,
+ 				 <0>,				/* USB4 PHY 0 pcie pipe */
+ 				 <0>,				/* USB4 PHY 0 Max pipe */
+ 				 <0>,				/* USB4 PHY 1 pcie pipe */
+@@ -2264,6 +2264,254 @@ &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
+ 			};
+ 		};
+ 
++		usb_hs_phy: phy@fa0000 {
++			compatible = "qcom,glymur-m31-eusb2-phy",
++				     "qcom,sm8750-m31-eusb2-phy";
++			reg = <0x0 0x00fa0000 0x0 0x154>;
++			#phy-cells = <0>;
++
++			clocks = <&tcsr TCSR_USB2_1_CLKREF_EN>;
++			clock-names = "ref";
++
++			resets = <&gcc GCC_QUSB2PHY_USB20_HS_BCR>;
++
++			status = "disabled";
++		};
++
++		usb_mp_hsphy0: phy@fa1000 {
++			compatible = "qcom,glymur-m31-eusb2-phy",
++				     "qcom,sm8750-m31-eusb2-phy";
++
++			reg = <0x0 0x00fa1000 0x0 0x29c>;
++			#phy-cells = <0>;
++
++			clocks = <&tcsr TCSR_USB2_1_CLKREF_EN>;
++			clock-names = "ref";
++
++			resets = <&gcc GCC_QUSB2PHY_HS0_MP_BCR>;
++
++			status = "disabled";
++		};
++
++		usb_mp_hsphy1: phy@fa2000  {
++			compatible = "qcom,glymur-m31-eusb2-phy",
++				     "qcom,sm8750-m31-eusb2-phy";
++
++			reg = <0x0 0x00fa2000 0x0 0x29c>;
++			#phy-cells = <0>;
++
++			clocks = <&tcsr TCSR_USB2_2_CLKREF_EN>;
++			clock-names = "ref";
++
++			resets = <&gcc GCC_QUSB2PHY_HS1_MP_BCR>;
++
++			status = "disabled";
++		};
++
++		usb_mp_qmpphy0: phy@fa3000 {
++			compatible = "qcom,glymur-qmp-usb3-uni-phy";
++			reg = <0x0 0x00fa3000 0x0 0x2000>;
++
++			clocks = <&gcc GCC_USB3_MP_PHY_AUX_CLK>,
++				 <&tcsr TCSR_USB3_0_CLKREF_EN>,
++				 <&rpmhcc RPMH_CXO_CLK>,
++				 <&gcc GCC_USB3_MP_PHY_COM_AUX_CLK>,
++				 <&gcc GCC_USB3_MP_PHY_PIPE_0_CLK>;
++			clock-names = "aux",
++				      "clkref",
++				      "ref",
++				      "com_aux",
++				      "pipe";
++
++			power-domains = <&gcc GCC_USB3_MP_SS0_PHY_GDSC>;
++
++			resets = <&gcc GCC_USB3_MP_SS0_PHY_BCR>,
++				 <&gcc GCC_USB3UNIPHY_PHY_MP0_BCR>;
++			reset-names = "phy",
++				      "phy_phy";
++
++			clock-output-names = "usb3_uni_phy_0_pipe_clk_src";
++			#clock-cells = <0>;
++			#phy-cells = <0>;
++
++			status = "disabled";
++		};
++
++		usb_mp_qmpphy1: phy@fa5000 {
++			compatible = "qcom,glymur-qmp-usb3-uni-phy";
++			reg = <0x0 0x00fa5000 0x0 0x2000>;
++
++			clocks = <&gcc GCC_USB3_MP_PHY_AUX_CLK>,
++				 <&tcsr TCSR_USB3_1_CLKREF_EN>,
++				 <&rpmhcc RPMH_CXO_CLK>,
++				 <&gcc GCC_USB3_MP_PHY_COM_AUX_CLK>,
++				 <&gcc GCC_USB3_MP_PHY_PIPE_1_CLK>;
++			clock-names = "aux",
++				      "clkref",
++				      "ref",
++				      "com_aux",
++				      "pipe";
++
++			power-domains = <&gcc GCC_USB3_MP_SS1_PHY_GDSC>;
++
++			resets = <&gcc GCC_USB3_MP_SS1_PHY_BCR>,
++				 <&gcc GCC_USB3UNIPHY_PHY_MP1_BCR>;
++			reset-names = "phy",
++				      "phy_phy";
++
++			clock-output-names = "usb3_uni_phy_1_pipe_clk_src";
++
++			#clock-cells = <0>;
++			#phy-cells = <0>;
++
++			status = "disabled";
++		};
++
++		usb_0_hsphy: phy@fd3000 {
++			compatible = "qcom,glymur-m31-eusb2-phy",
++				     "qcom,sm8750-m31-eusb2-phy";
++
++			reg = <0x0 0x00fd3000 0x0 0x29c>;
++			#phy-cells = <0>;
++
++			clocks = <&rpmhcc RPMH_CXO_CLK>;
++			clock-names = "ref";
++
++			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
++
++			status = "disabled";
++		};
++
++		usb_0_qmpphy: phy@fd5000 {
++			compatible = "qcom,glymur-qmp-usb3-dp-phy";
++			reg = <0x0 0x00fd5000 0x0 0x8000>;
++
++			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
++				 <&rpmhcc RPMH_CXO_CLK>,
++				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
++				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
++			clock-names = "aux",
++				      "ref",
++				      "com_aux",
++				      "usb3_pipe";
++
++			resets = <&gcc GCC_USB3_PHY_PRIM_BCR>,
++				 <&gcc GCC_USB3PHY_PHY_PRIM_BCR>;
++
++			reset-names = "phy",
++				      "common";
++
++			power-domains = <&gcc GCC_USB_0_PHY_GDSC>;
++
++			#clock-cells = <1>;
++			#phy-cells = <1>;
++
++			mode-switch;
++			orientation-switch;
++
++			status = "disabled";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++
++					usb_0_qmpphy_out: endpoint {
++					};
++				};
++
++				port@1 {
++					reg = <1>;
++
++					usb_0_qmpphy_usb_ss_in: endpoint {
++						remote-endpoint = <&usb_0_dwc3_ss>;
++					};
++				};
++
++				port@2 {
++					reg = <2>;
++
++					usb_dp_qmpphy_dp_in: endpoint {
++					};
++				};
++			};
++		};
++
++		usb_1_hsphy: phy@fdd000  {
++			compatible = "qcom,glymur-m31-eusb2-phy",
++				     "qcom,sm8750-m31-eusb2-phy";
++
++			reg = <0x0 0x00fdd000 0x0 0x29c>;
++			#phy-cells = <0>;
++
++			clocks = <&rpmhcc RPMH_CXO_CLK>;
++			clock-names = "ref";
++
++			resets = <&gcc GCC_QUSB2PHY_SEC_BCR>;
++
++			status = "disabled";
++		};
++
++		usb_1_qmpphy: phy@fde000 {
++			compatible = "qcom,glymur-qmp-usb3-dp-phy";
++			reg = <0x0 0x00fde000 0x0 0x8000>;
++
++			clocks = <&gcc GCC_USB3_SEC_PHY_AUX_CLK>,
++				 <&rpmhcc RPMH_CXO_CLK>,
++				 <&gcc GCC_USB3_SEC_PHY_COM_AUX_CLK>,
++				 <&gcc GCC_USB3_SEC_PHY_PIPE_CLK>,
++				 <&tcsr TCSR_USB4_1_CLKREF_EN>;
++			clock-names = "aux",
++				      "ref",
++				      "com_aux",
++				      "usb3_pipe",
++				      "clkref";
++
++			power-domains = <&gcc GCC_USB_1_PHY_GDSC>;
++
++			resets = <&gcc GCC_USB3_PHY_SEC_BCR>,
++				 <&gcc GCC_USB3PHY_PHY_SEC_BCR>;
++			reset-names = "phy",
++				      "common";
++
++			#clock-cells = <1>;
++			#phy-cells = <1>;
++
++			mode-switch;
++			orientation-switch;
++
++			status = "disabled";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++
++					usb_1_qmpphy_out: endpoint {
++					};
++				};
++
++				port@1 {
++					reg = <1>;
++
++					usb_1_qmpphy_usb_ss_in: endpoint {
++						remote-endpoint = <&usb_1_dwc3_ss>;
++					};
++				};
++
++				port@2 {
++					reg = <2>;
++
++					usb_1_qmpphy_dp_in: endpoint {
++					};
++				};
++			};
++		};
++
+ 		cnoc_main: interconnect@1500000 {
+ 			compatible = "qcom,glymur-cnoc-main";
+ 			reg = <0x0 0x01500000 0x0 0x17080>;
+@@ -3367,6 +3615,439 @@ lpass_ag_noc: interconnect@7e40000 {
+ 			#interconnect-cells = <2>;
+ 		};
+ 
++		usb_2_hsphy: phy@88e0000  {
++			compatible = "qcom,glymur-m31-eusb2-phy",
++				     "qcom,sm8750-m31-eusb2-phy";
++
++			reg = <0x0 0x088e0000 0x0 0x29c>;
++			#phy-cells = <0>;
++
++			clocks = <&tcsr TCSR_USB2_4_CLKREF_EN>;
++			clock-names = "ref";
++
++			resets = <&gcc GCC_QUSB2PHY_TERT_BCR>;
++
++			status = "disabled";
++		};
++
++		usb_2_qmpphy: phy@88e1000 {
++			compatible = "qcom,glymur-qmp-usb3-dp-phy";
++			reg = <0x0 0x088e1000 0x0 0x8000>;
++
++			clocks = <&gcc GCC_USB3_TERT_PHY_AUX_CLK>,
++				 <&rpmhcc RPMH_CXO_CLK>,
++				 <&gcc GCC_USB3_TERT_PHY_COM_AUX_CLK>,
++				 <&gcc GCC_USB3_TERT_PHY_PIPE_CLK>,
++				 <&tcsr TCSR_USB4_2_CLKREF_EN>;
++			clock-names = "aux",
++				      "ref",
++				      "com_aux",
++				      "usb3_pipe",
++				      "clkref";
++
++			power-domains = <&gcc GCC_USB_2_PHY_GDSC>;
++
++			resets = <&gcc GCC_USB3_PHY_TERT_BCR>,
++				 <&gcc GCC_USB3PHY_PHY_TERT_BCR>;
++			reset-names = "phy",
++				      "common";
++
++			#clock-cells = <1>;
++			#phy-cells = <1>;
++
++			mode-switch;
++			orientation-switch;
++
++			status = "disabled";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++
++					usb_2_qmpphy_out: endpoint {
++					};
++				};
++
++				port@1 {
++					reg = <1>;
++
++					usb_2_qmpphy_usb_ss_in: endpoint {
++						remote-endpoint = <&usb_2_dwc3_ss>;
++					};
++				};
++
++				port@2 {
++					reg = <2>;
++
++					usb_2_qmpphy_dp_in: endpoint {
++					};
++				};
++			};
++		};
++
++		usb_0: usb@a600000 {
++			compatible = "qcom,glymur-dwc3", "qcom,snps-dwc3";
++			reg = <0x0 0x0a600000 0x0 0xfc100>;
++
++			clocks = <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
++				 <&gcc GCC_USB30_PRIM_MASTER_CLK>,
++				 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
++				 <&gcc GCC_USB30_PRIM_SLEEP_CLK>,
++				 <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
++				 <&gcc GCC_CFG_NOC_USB_ANOC_AHB_CLK>,
++				 <&gcc GCC_CFG_NOC_USB_ANOC_SOUTH_AHB_CLK>;
++			clock-names = "cfg_noc",
++				      "core",
++				      "iface",
++				      "sleep",
++				      "mock_utmi",
++				      "noc_aggr_north",
++				      "noc_aggr_south";
++
++			interrupts-extended = <&intc GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>,
++					      <&intc GIC_SPI 371 IRQ_TYPE_LEVEL_HIGH>,
++					      <&pdc 90 IRQ_TYPE_EDGE_BOTH>,
++					      <&pdc 60 IRQ_TYPE_EDGE_BOTH>,
++					      <&pdc 17 IRQ_TYPE_EDGE_BOTH>;
++			interrupt-names = "dwc_usb3",
++					  "pwr_event",
++					  "dp_hs_phy_irq",
++					  "dm_hs_phy_irq",
++					  "ss_phy_irq";
++
++			power-domains = <&gcc GCC_USB30_PRIM_GDSC>;
++			resets = <&gcc GCC_USB30_PRIM_BCR>;
++
++			iommus = <&apps_smmu 0x1420 0x0>;
++			phys = <&usb_0_hsphy>,
++			       <&usb_0_qmpphy QMP_USB43DP_USB3_PHY>;
++			phy-names = "usb2-phy",
++				    "usb3-phy";
++
++			snps,hird-threshold = /bits/ 8 <0x0>;
++			snps,dis-u1-entry-quirk;
++			snps,dis-u2-entry-quirk;
++			snps,is-utmi-l1-suspend;
++			snps,usb3_lpm_capable;
++			snps,has-lpm-erratum;
++			tx-fifo-resize;
++			snps,dis_u2_susphy_quirk;
++			snps,dis_enblslpm_quirk;
++
++			usb-role-switch;
++
++			status = "disabled";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++
++					usb_0_dwc3_hs: endpoint {
++					};
++				};
++
++				port@1 {
++					reg = <1>;
++
++					usb_0_dwc3_ss: endpoint {
++						remote-endpoint = <&usb_0_qmpphy_usb_ss_in>;
++					};
++				};
++			};
++		};
++
++		usb_1: usb@a800000 {
++			compatible = "qcom,glymur-dwc3", "qcom,snps-dwc3";
++			reg = <0x0 0x0a800000 0x0 0xfc100>;
++
++			clocks = <&gcc GCC_CFG_NOC_USB3_SEC_AXI_CLK>,
++				 <&gcc GCC_USB30_SEC_MASTER_CLK>,
++				 <&gcc GCC_AGGRE_USB3_SEC_AXI_CLK>,
++				 <&gcc GCC_USB30_SEC_SLEEP_CLK>,
++				 <&gcc GCC_USB30_SEC_MOCK_UTMI_CLK>,
++				 <&gcc GCC_CFG_NOC_USB_ANOC_AHB_CLK>,
++				 <&gcc GCC_CFG_NOC_USB_ANOC_SOUTH_AHB_CLK>;
++			clock-names = "cfg_noc",
++				      "core",
++				      "iface",
++				      "sleep",
++				      "mock_utmi",
++				      "noc_aggr_north",
++				      "noc_aggr_south";
++
++			interrupts-extended = <&intc GIC_SPI 875 IRQ_TYPE_LEVEL_HIGH>,
++					      <&intc GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH>,
++					      <&pdc 88 IRQ_TYPE_EDGE_BOTH>,
++					      <&pdc 87 IRQ_TYPE_EDGE_BOTH>,
++					      <&pdc 76 IRQ_TYPE_EDGE_BOTH>;
++			interrupt-names = "dwc_usb3",
++					  "pwr_event",
++					  "dp_hs_phy_irq",
++					  "dm_hs_phy_irq",
++					  "ss_phy_irq";
++
++			resets = <&gcc GCC_USB30_SEC_BCR>;
++			power-domains = <&gcc GCC_USB30_SEC_GDSC>;
++
++			iommus = <&apps_smmu 0x1460 0x0>;
++
++			phys = <&usb_1_hsphy>,
++			       <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
++			phy-names = "usb2-phy",
++				    "usb3-phy";
++
++			snps,hird-threshold = /bits/ 8 <0x0>;
++			snps,dis-u1-entry-quirk;
++			snps,dis-u2-entry-quirk;
++			snps,is-utmi-l1-suspend;
++			snps,usb3_lpm_capable;
++			snps,has-lpm-erratum;
++			tx-fifo-resize;
++			snps,dis_u2_susphy_quirk;
++			snps,dis_enblslpm_quirk;
++
++			status = "disabled";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++
++					usb_1_dwc3_hs: endpoint {
++					};
++				};
++
++				port@1 {
++					reg = <1>;
++
++					usb_1_dwc3_ss: endpoint {
++						remote-endpoint = <&usb_1_qmpphy_usb_ss_in>;
++					};
++				};
++			};
++		};
++
++		usb_2: usb@a000000 {
++			compatible = "qcom,glymur-dwc3", "qcom,snps-dwc3";
++			reg = <0x0 0x0a000000 0x0 0xfc100>;
++
++			clocks = <&gcc GCC_CFG_NOC_USB3_TERT_AXI_CLK>,
++				 <&gcc GCC_USB30_TERT_MASTER_CLK>,
++				 <&gcc GCC_AGGRE_USB3_TERT_AXI_CLK>,
++				 <&gcc GCC_USB30_TERT_SLEEP_CLK>,
++				 <&gcc GCC_USB30_TERT_MOCK_UTMI_CLK>,
++				 <&gcc GCC_CFG_NOC_USB_ANOC_AHB_CLK>,
++				 <&gcc GCC_CFG_NOC_USB_ANOC_SOUTH_AHB_CLK>;
++			clock-names = "cfg_noc",
++				      "core",
++				      "iface",
++				      "sleep",
++				      "mock_utmi",
++				      "noc_aggr_north",
++				      "noc_aggr_south";
++
++			interrupts-extended = <&intc GIC_SPI 871 IRQ_TYPE_LEVEL_HIGH>,
++					      <&intc GIC_SPI 370 IRQ_TYPE_LEVEL_HIGH>,
++					      <&pdc 89 IRQ_TYPE_EDGE_BOTH>,
++					      <&pdc 81 IRQ_TYPE_EDGE_BOTH>,
++					      <&pdc 75 IRQ_TYPE_EDGE_BOTH>;
++			interrupt-names = "dwc_usb3",
++					  "pwr_event",
++					  "dp_hs_phy_irq",
++					  "dm_hs_phy_irq",
++					  "ss_phy_irq";
++
++			resets = <&gcc GCC_USB30_TERT_BCR>;
++			power-domains = <&gcc GCC_USB30_TERT_GDSC>;
++
++			iommus = <&apps_smmu 0x420 0x0>;
++
++			phys = <&usb_2_hsphy>,
++			       <&usb_2_qmpphy QMP_USB43DP_USB3_PHY>;
++			phy-names = "usb2-phy",
++				    "usb3-phy";
++
++			snps,hird-threshold = /bits/ 8 <0x0>;
++			snps,dis-u1-entry-quirk;
++			snps,dis-u2-entry-quirk;
++			snps,is-utmi-l1-suspend;
++			snps,usb3_lpm_capable;
++			snps,has-lpm-erratum;
++			tx-fifo-resize;
++			snps,dis_u2_susphy_quirk;
++			snps,dis_enblslpm_quirk;
++
++			status = "disabled";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++
++					usb_2_dwc3_hs: endpoint {
++					};
++				};
++
++				port@1 {
++					reg = <1>;
++
++					usb_2_dwc3_ss: endpoint {
++						remote-endpoint = <&usb_2_qmpphy_usb_ss_in>;
++					};
++				};
++			};
++		};
++
++		usb_hs: usb@a2f8800 {
++			compatible = "qcom,glymur-dwc3", "qcom,snps-dwc3";
++			reg = <0x0 0x0a200000 0x0 0xfc100>;
++
++			clocks = <&gcc GCC_CFG_NOC_USB2_PRIM_AXI_CLK>,
++				 <&gcc GCC_USB20_MASTER_CLK>,
++				 <&gcc GCC_AGGRE_USB2_PRIM_AXI_CLK>,
++				 <&gcc GCC_USB20_SLEEP_CLK>,
++				 <&gcc GCC_USB20_MOCK_UTMI_CLK>,
++				 <&gcc GCC_CFG_NOC_USB_ANOC_AHB_CLK>,
++				 <&gcc GCC_CFG_NOC_USB_ANOC_SOUTH_AHB_CLK>;
++			clock-names = "cfg_noc",
++				      "core",
++				      "iface",
++				      "sleep",
++				      "mock_utmi",
++				      "noc_aggr_north",
++				      "noc_aggr_south";
++
++			assigned-clocks = <&gcc GCC_USB20_MOCK_UTMI_CLK>,
++					  <&gcc GCC_USB20_MASTER_CLK>;
++			assigned-clock-rates = <19200000>, <200000000>;
++
++			interrupts-extended = <&intc GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
++					      <&intc GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>,
++					      <&pdc 92 IRQ_TYPE_EDGE_BOTH>,
++					      <&pdc 57 IRQ_TYPE_EDGE_BOTH>,
++					      <&intc GIC_SPI 239 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "dwc_usb3",
++					  "pwr_event",
++					  "dp_hs_phy_irq",
++					  "dm_hs_phy_irq",
++					  "hs_phy_irq";
++
++			resets = <&gcc GCC_USB20_PRIM_BCR>;
++
++			power-domains = <&gcc GCC_USB20_PRIM_GDSC>;
++			required-opps = <&rpmhpd_opp_nom>;
++
++			iommus = <&apps_smmu 0x0ce0 0x0>;
++
++			interconnects = <&aggre3_noc MASTER_USB2 QCOM_ICC_TAG_ALWAYS
++					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
++					<&hsc_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
++					 &config_noc SLAVE_USB2 QCOM_ICC_TAG_ACTIVE_ONLY>;
++			interconnect-names = "usb-ddr",
++					     "apps-usb";
++
++			phys = <&usb_hs_phy>;
++			phy-names = "usb2-phy";
++
++			snps,hird-threshold = /bits/ 8 <0x0>;
++			snps,dis-u1-entry-quirk;
++			snps,dis-u2-entry-quirk;
++			snps,is-utmi-l1-suspend;
++			snps,usb3_lpm_capable;
++			snps,has-lpm-erratum;
++			tx-fifo-resize;
++			snps,dis_u2_susphy_quirk;
++			snps,dis_enblslpm_quirk;
++
++			dr_mode = "host";
++
++			maximum-speed = "high-speed";
++
++			status = "disabled";
++		};
++
++		usb_mp: usb@a400000 {
++			compatible = "qcom,glymur-dwc3-mp", "qcom,snps-dwc3";
++			reg = <0x0 0x0a400000 0x0 0xfc100>;
++
++			clocks = <&gcc GCC_CFG_NOC_USB3_MP_AXI_CLK>,
++				 <&gcc GCC_USB30_MP_MASTER_CLK>,
++				 <&gcc GCC_AGGRE_USB3_MP_AXI_CLK>,
++				 <&gcc GCC_USB30_MP_SLEEP_CLK>,
++				 <&gcc GCC_USB30_MP_MOCK_UTMI_CLK>,
++				 <&gcc GCC_CFG_NOC_USB_ANOC_AHB_CLK>,
++				 <&gcc GCC_CFG_NOC_USB_ANOC_SOUTH_AHB_CLK>;
++			clock-names = "cfg_noc",
++				      "core",
++				      "iface",
++				      "sleep",
++				      "mock_utmi",
++				      "noc_aggr_north",
++				      "noc_aggr_south";
++
++			interrupts-extended = <&intc GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>,
++					      <&intc GIC_SPI 345 IRQ_TYPE_LEVEL_HIGH>,
++					      <&intc GIC_SPI 346 IRQ_TYPE_LEVEL_HIGH>,
++					      <&intc GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH>,
++					      <&intc GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>,
++					      <&pdc 12 IRQ_TYPE_LEVEL_HIGH>,
++					      <&pdc 11 IRQ_TYPE_LEVEL_HIGH>,
++					      <&pdc 14 IRQ_TYPE_LEVEL_HIGH>,
++					      <&pdc 13 IRQ_TYPE_LEVEL_HIGH>,
++					      <&pdc 78 IRQ_TYPE_LEVEL_HIGH>,
++					      <&pdc 77 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "dwc_usb3",
++					  "pwr_event_1",
++					  "pwr_event_2",
++					  "hs_phy_1",
++					  "hs_phy_2",
++					  "dp_hs_phy_1",
++					  "dm_hs_phy_1",
++					  "dp_hs_phy_2",
++					  "dm_hs_phy_2",
++					  "ss_phy_1",
++					  "ss_phy_2";
++
++			resets = <&gcc GCC_USB30_MP_BCR>;
++			power-domains = <&gcc GCC_USB30_MP_GDSC>;
++
++			iommus = <&apps_smmu 0xda0 0x0>;
++
++			phys = <&usb_mp_hsphy0>,
++			       <&usb_mp_qmpphy0>,
++			       <&usb_mp_hsphy1>,
++			       <&usb_mp_qmpphy1>;
++			phy-names = "usb2-0",
++				    "usb3-0",
++				    "usb2-1",
++				    "usb3-1";
++
++			snps,hird-threshold = /bits/ 8 <0x0>;
++			snps,dis-u1-entry-quirk;
++			snps,dis-u2-entry-quirk;
++			snps,is-utmi-l1-suspend;
++			snps,usb3_lpm_capable;
++			snps,has-lpm-erratum;
++			tx-fifo-resize;
++			snps,dis_u2_susphy_quirk;
++			snps,dis_enblslpm_quirk;
++
++			dr_mode = "host";
++
++			status = "disabled";
++		};
++
++
+ 		dispcc: clock-controller@af00000 {
+ 			compatible = "qcom,glymur-dispcc";
+ 			reg = <0x0 0x0af00000 0x0 0x20000>;
 
-Changes in v3:
-- Dropped the PTN3222 USB Redriver @0x4f, which isn't there actually.
-- Dropped extra newlines from pmic node, reported by Konrad.
-- Link to v2: https://patch.msgid.link/20260223-dts-qcom-glymur-add-usb-support-v2-0-f4e0f38db21d@oss.qualcomm.com
-
-Changes in v2:
-- Picked Rob's R-b tag for bindings patch.
-- Fixed CRD DT commit message according to Jack's suggestions
-- Sorted nodes in board DTS.
-- Added proper quirks to all controllers.
-- Added RPMH_CXO_CLK as ref clocks to the USB [01] HS PHYs
-- Replaced 0 with 0x0 in all reg ranges, as Dmitry suggested.
-- Renamed all usb_ss[0-2] to simply usb_[0-2], and the usb_2 to usb_hs
-  like Konrad suggested.
-- Link to v1: https://patch.msgid.link/20260113-dts-qcom-glymur-add-usb-support-v1-0-98d6d387df01@oss.qualcomm.com
-
----
-Wesley Cheng (2):
-      arm64: dts: qcom: glymur: Add USB related nodes
-      arm64: dts: qcom: glymur-crd: Enable USB support
-
- arch/arm64/boot/dts/qcom/glymur-crd.dts | 214 ++++++++++
- arch/arm64/boot/dts/qcom/glymur.dtsi    | 691 +++++++++++++++++++++++++++++++-
- 2 files changed, 900 insertions(+), 5 deletions(-)
----
-base-commit: 8e42d2514a7e8eb8d740d0ba82339dd6c0b6463f
-change-id: 20260109-dts-qcom-glymur-add-usb-support-617b6d9d032c
-
-Best regards,
---  
-Abel Vesa <abel.vesa@oss.qualcomm.com>
+-- 
+2.48.1
 
 
