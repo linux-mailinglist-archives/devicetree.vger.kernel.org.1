@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-277556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277557-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4FkAJWZzu2kdkQIAu9opvQ
-	(envelope-from <devicetree+bounces-277556-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 04:54:14 +0100
+	id QCvOB3Zzu2kdkQIAu9opvQ
+	(envelope-from <devicetree+bounces-277557-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 04:54:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D3D32C5BA9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 04:54:14 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 818FF2C5BB2
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 04:54:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9255C30A24F8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 03:54:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C231F3034335
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 03:54:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4372E328B7D;
-	Thu, 19 Mar 2026 03:53:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E56B4330D43;
+	Thu, 19 Mar 2026 03:53:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gdZIUfT/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nmp5aVx/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00D1930E0F2
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 03:53:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 428D7338936
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 03:53:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773892437; cv=none; b=BEW+U5Jvxq4jHYw2yqdc6KQbbpJtJQeOX4f0+jYCYCmEQIMH/HnYp7xDW2Wo6x1JxJPs04FvZaCepiUOjLMFkbn58moLAQjR6bzDrYUWR++mFFQA/KyXvKH8PJEijhn8uPTknvgh7Dgytrk622MObggWirbsfg3/VVdB5M8sgYM=
+	t=1773892438; cv=none; b=MtaRv/jirgQNnn1larR/8KANmhATdRaFzCaS2P8PwWu4aUrYeu2o3EPaIzg8+2omQwBFA5uD1c+2AzTX8EIg7YgBiforGp0IGPHG6sd+g6ExBaDCnp+IEt82jv+OGcYKYFzMBcHtRnBmrYY64ii3PfN2FJjPTDw4TIKXGofyP+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773892437; c=relaxed/simple;
-	bh=oPF6KHJgRYdqE4tgZRpqR+s8i2VAulBVC35EhiPw7EA=;
+	s=arc-20240116; t=1773892438; c=relaxed/simple;
+	bh=qUKEYzqx8HBOnb88x/qxpRpWtcibe86PCsdpFge9J5g=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qpqfYyRL9q/2I8OvM8qvIoQz5/O9dXKmOWl4TzsRGLcGQP61GoODFYZH0nKMW6QWHDfTY5n9mAx49uCCZanHGEkaeXsaDkU51Aj+is8vsW7LCnjlB9eYlrUmrFWK7I0Cjgsdrr1B9mAupBoAcJTcWSFtxJezloWzxEA+9astD44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gdZIUfT/; arc=none smtp.client-ip=209.85.216.44
+	 MIME-Version; b=lR4soio94u9MENywkE65khr2l6WTCaidwDpTcjgdvAzwyoddCm1M4V9NWRZdRyE0O4de9Do5CIweXlCIWtsV3broUufEEW1fPk/VfJqBsuLbURej+oGtVo6VJkwGM3+lZmgJWOfN2jqinwQbkIFbwNxM7AS4OYJkODyDpqe8Dpc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nmp5aVx/; arc=none smtp.client-ip=209.85.216.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-35b905a05a8so127913a91.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 20:53:47 -0700 (PDT)
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-35b905a05a8so127919a91.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 20:53:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773892426; x=1774497226; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1773892428; x=1774497228; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8e+wpvoY6yD1RG4Kj+AWSxyaFX8YNngg+IFhXCxexik=;
-        b=gdZIUfT/u//sJ/i3lfXOM1ojWXMdfw+YyFDlI3gnwoUFE7Y4EJ+J2eMWqcaEFj4LEr
-         LP5Eq13arPHT/B/gEwviC7vTpSmK65BFwC35prRjfejF2WDVmzU1b3yFddyRo89KRA5T
-         HwMNOMKtYm5DS7DEgmTQwwmtOFBxTEfjj2JNWXyYl5QrKexGAO7kJsZoLxFvtpeb4mQo
-         XfizjtU9FzM+5i3efMOAs/IZKgitac8VUUv0YDkykcfr3h0XMwzk0uX2Yx78z/rBuc4+
-         ji7yAQZnyVaPQj19H5N+L2jOYEKwDIKhYJhop622NevFe7m+2ZUf9sZLB7EtHzVOjnDU
-         YAjg==
+        bh=H3As/sXmvTb3Nrb+A3muL5/yG1ULkPfgGgdjrXA9Jlw=;
+        b=nmp5aVx/krJhaw16B5nYeY+BXy09HyzOs3pWgiLyzMhav+haT1O/v6P7a1MEm8gDCS
+         iWvVotypzVGdcWCE4vx/SCnhbFA1mdlS/tDA0ldU8MOjC/3rut/7wMbr7slPnUacp635
+         fwLbfnhk/z7yJ41EblON03nRVoRSQLd90SmAiydvpefDQ8SuodVSkNCSRIB31k+vQpY5
+         Prd9faNs5hIokktJvWz3fVhPoOrYEK60GQ7X7Xmfb6N9QLJSyNjEA67iKgeY6QjHY8b8
+         K8FQNE98pg8j1YQ5hUjGHGb/6R/7LrfRRMbow721Wbd0dxJTPvItJalqE8+r5aSo/3zj
+         asWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773892426; x=1774497226;
+        d=1e100.net; s=20251104; t=1773892428; x=1774497228;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=8e+wpvoY6yD1RG4Kj+AWSxyaFX8YNngg+IFhXCxexik=;
-        b=rd38HKGfgxUBeSlGaC0JY8bG4F6ZDNaLzs/q/9bJO+m+lFJm6/793Xn9TmRrQuJLEK
-         PR7PHWAohXCBGQoaUFY+APotNwINSuZMpZAIpMuD14p4pQGrZ2Neh7jtcgRLCWLiQhZU
-         9+7naAjImVKoRgg6cfR5IRsG+KvGNiWEcQSyjJV+dkRNE5SceuSkXFnqHaohdfKS9mN9
-         YJZkcbw8pPtDhPUNxT86BiEwWw8qpNaLy7NoEs5YAWzLp3A8gpuN4eeUcXutkvhkYy4/
-         cyeBFqmBTMTWAq+kwphBPHjNceLCmVMd3Nb3N7v37Mx8zcB2bwVdTKHUUr0H5Veb0NOt
-         t9Rw==
-X-Gm-Message-State: AOJu0YyzmGDoiqj+CPVXac3FTr3OdVSiFiS+1o8++bxPzO4ncRX8Wk/o
-	ii7yfb0QemS2r/hAx2hht+4+vTsE58p4ZgiAE30rX/H3IA1T6plecAB+frwNeb6Q
-X-Gm-Gg: ATEYQzx92irBBtkawRwpfpSccY12kozfOf2F2XpChpvP3LKB7VtApzuK79HWROyoSIa
-	ou2KPS/HASdD7F3uadtmqBHCUSqoxV0eBwP0VIdkGj6alzLWO8rcTI6hByC91UuG3m+GFN3eJju
-	Tf+DtIfS90uFkLzX0bKprj/mNQ7phAz6uMKjO/XA6yGIy1p+/2lvomhol+cd9+EZCJnjTRAIZQs
-	RTnOLWPO6zwZ/h+9MUvLwdSX0oJfgW0eRCepjN0D1XNeMmW0pd5wOU+sS7+6wuGr1IFrOPLpR+5
-	GuiIP2gwa5Ah1SgHh1YvTs3VDZTov9TQZfWOTB21K3n3IQPPtqLA7St6PLsS9TKgDonT0P+8IVS
-	HQI5ao6NckjI7ej9vmcNNcM2bZJoiW3m0MXMl24LJBOGFJTb2FePErdKcZCovPIS+NI6KyFdRGK
-	jGngN5IXOxb73qXr+QVqmPNF/1qkVse6GC0r/uOa4m1S9JWJZH5syIzsY=
-X-Received: by 2002:a17:90a:d003:b0:35b:9894:f6f9 with SMTP id 98e67ed59e1d1-35bb9ef531cmr4730069a91.18.1773892426512;
-        Wed, 18 Mar 2026 20:53:46 -0700 (PDT)
+        bh=H3As/sXmvTb3Nrb+A3muL5/yG1ULkPfgGgdjrXA9Jlw=;
+        b=oVODs1SrHCzX6vo8EuBZ52IhBHAsJttg499eV8SNlEH1COljFDXuY/eglj9CTfcPod
+         2JVu/+9tHnEFvM45TlGd8ZeIyyVPsGbLzzvf2IDZImMpEkYmUfDWiqmIzhLT1qOOSZGY
+         ZhCofQwhgAm06CiLQqzyzs4di59nC13FKjI8wNL+IN2QyiWmr6iiOWQ3TNX+YtJGQjsa
+         n0tQ9GuJSU11xccS98V23To3Gq4Fd01dOMnnZ50uoMr3hNjX5HuFZOdLw/3IUDSuTZbA
+         82P1dxD37cuh8/AqIjY2dOMGv2BUQX6AcG+wRORAA7Q8sidbOxZzSCzZtAII9jfUz/QI
+         NT7g==
+X-Gm-Message-State: AOJu0YwrgCBI3oLjZrWamJzDRYVWsWPPy2zT5yHbWbFNU78BckNQeuII
+	BSTJB4t5S8QR1HudZWp9SlGrzC/zDSjt0G+CzItktOZ+3kiHaNBbPLnP4fxCocE6
+X-Gm-Gg: ATEYQzzlEn0t1K8ji1M2G/EmFYJY5GaOCAdGt+h7ZJVyiBdLTQEiHKcOfUklSw4mEbR
+	gZh5Bj8jrJOuFyvMuvnNh/tsDPuAudEOUzYLBfca0lfsb9W2+xzJ9aTKpyLeHrDZUEKxMmz7/Ml
+	peGizMLYPbpUIMG/Fl7TZrzCVExr7LeGsoj2weXOwsnuzd6e0juzdQe9adORimYNnRm2VXHa17a
+	j55WhIDGxrNvHgjlJ2Vdw0mhi9Lvmizzx+ZRtOPFJauxfM0pEJCtxbcegodV5zL5aoNsw0JAooa
+	SrWy2RMYidozH+wcdViSuUi/FbMoTYfQCx4lxi+MqPc8Bf1K7lmAFnJEilGZOEIIP8oxzCqkBDM
+	pvA1O5Vt1s1yB7sHLhJx0LMw4us490sDl5L8tWW9z5oh/4qlBB0nP1FCh5EZ9jMBJQLNRzirZdB
+	WjqgXSfZnRwTXBXv48HZGfzq5PdxGOJv/MP0wfurdVP+Yo0VBKb1X6bG0=
+X-Received: by 2002:a17:90b:2d10:b0:359:ff8a:ee3c with SMTP id 98e67ed59e1d1-35bb9f11dcbmr4706091a91.23.1773892427775;
+        Wed, 18 Mar 2026 20:53:47 -0700 (PDT)
 Received: from ryzen ([2601:644:8000:56f5::8bd])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35bc60ecb30sm1159145a91.12.2026.03.18.20.53.45
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35bc60ecb30sm1159145a91.12.2026.03.18.20.53.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Mar 2026 20:53:45 -0700 (PDT)
+        Wed, 18 Mar 2026 20:53:47 -0700 (PDT)
 From: Rosen Penev <rosenp@gmail.com>
 To: devicetree@vger.kernel.org
 Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
@@ -86,9 +86,9 @@ Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
 	Conor Dooley <conor+dt@kernel.org>,
 	linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM5301X ARM ARCHITECTURE),
 	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 3/6] ARM: dts: BCM5301X: EA9200: add LEDs
-Date: Wed, 18 Mar 2026 20:53:21 -0700
-Message-ID: <20260319035324.269905-4-rosenp@gmail.com>
+Subject: [PATCH 4/6] ARM: dts: BCM5301X: EA9200: add wifi definitions
+Date: Wed, 18 Mar 2026 20:53:22 -0700
+Message-ID: <20260319035324.269905-5-rosenp@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260319035324.269905-1-rosenp@gmail.com>
 References: <20260319035324.269905-1-rosenp@gmail.com>
@@ -105,7 +105,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -113,11 +113,11 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_CC(0.00)[broadcom.com,hauke-m.de,gmail.com,kernel.org,lists.infradead.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277556-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277557-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[rosenp@gmail.com,devicetree@vger.kernel.org];
@@ -125,78 +125,83 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	RCPT_COUNT_SEVEN(0.00)[10];
-	NEURAL_HAM(-0.00)[-0.827];
+	NEURAL_HAM(-0.00)[-0.839];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3D3D32C5BA9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email,0.0.0.2:email]
+X-Rspamd-Queue-Id: 818FF2C5BB2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Allows control and configuration of device LEDs.
+brcm,ccode-map and ieee80211-freq-limit are needed to be specified on
+some of them for proper operation.
 
 Signed-off-by: Rosen Penev <rosenp@gmail.com>
 ---
- .../dts/broadcom/bcm4709-linksys-ea9200.dts   | 39 +++++++++++++++++++
- 1 file changed, 39 insertions(+)
+ .../dts/broadcom/bcm4709-linksys-ea9200.dts   | 50 +++++++++++++++++++
+ 1 file changed, 50 insertions(+)
 
 diff --git a/arch/arm/boot/dts/broadcom/bcm4709-linksys-ea9200.dts b/arch/arm/boot/dts/broadcom/bcm4709-linksys-ea9200.dts
-index a579c372d404..617fb55bc52f 100644
+index 617fb55bc52f..7b1363aa1144 100644
 --- a/arch/arm/boot/dts/broadcom/bcm4709-linksys-ea9200.dts
 +++ b/arch/arm/boot/dts/broadcom/bcm4709-linksys-ea9200.dts
-@@ -5,6 +5,8 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/leds/common.h>
-+
- #include "bcm4709.dtsi"
- #include "bcm5301x-nand-cs0-bch8.dtsi"
- 
-@@ -52,6 +54,43 @@ button-restart {
- 			gpios = <&chipcommon 17 GPIO_ACTIVE_LOW>;
- 		};
+@@ -93,6 +93,56 @@ led-3 {
  	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			color = <LED_COLOR_ID_AMBER>;
-+			function = LED_FUNCTION_WLAN;
-+			gpios = <&chipcommon 0 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "rfkill-none";
-+		};
-+
-+		led-1 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_USB;
-+			function-enumerator = <2>;
-+			gpios = <&chipcommon 6 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "usbport";
-+			trigger-sources = <&ohci_port2>, <&ehci_port2>;
-+		};
-+
-+		led-2 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_USB;
-+			function-enumerator = <3>;
-+			gpios = <&chipcommon 7 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "usbport";
-+			trigger-sources = <&ohci_port1>, <&ehci_port1>,
-+					  <&xhci_port1>;
-+		};
-+
-+		led-3 {
-+			color = <LED_COLOR_ID_WHITE>;
-+			function = LED_FUNCTION_POWER;
-+			gpios = <&chipcommon 8 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "default-on";
-+		};
-+	};
  };
  
++&pcie_bridge0 {
++	pcie@0,0 {
++		device_type = "pci';
++		reg = <0x0000 0 0 0 0>;
++		bus-range = <0x01 0xff>;
++
++		#address-cells = <3>;
++		#size-cells = <2>;
++		ranges;
++
++		pcie@1,0 {
++			device_type = "pci';
++			reg = <0x800 0 0 0 0>;
++
++			#address-cells = <3>;
++			#size-cells = <2>;
++
++			wifi@0,0 {
++				compatible = "brcm,bcm4366-fmac", "brcm,bcm4329-fmac";
++				reg = <0x0000 0 0 0 0>;
++				ieee80211-freq-limit = <5170000 5250000>;
++				brcm,ccode-map = "JP-JP-78", "US-Q2-86";
++			};
++		};
++
++		pcie@2,0 {
++			device_type = "pci';
++			reg = <0x1000 0 0 0 0>;
++
++			#address-cells = <3>;
++			#size-cells = <2>;
++
++			wifi@0,0 {
++				compatible = "brcm,bcm4366-fmac", "brcm,bcm4329-fmac";
++				reg = <0x0000 0 0 0 0>;
++				brcm,ccode-map = "JP-JP-78", "US-Q2-86";
++			};
++		};
++	};
++};
++
++&pcie_bridge1 {
++	wifi@0,0 {
++		compatible = "brcm,bcm4366-fmac", "brcm,bcm4329-fmac";
++		reg = <0x0000 0 0 0 0>;
++		ieee80211-freq-limit = <5735000 5835000>;
++		brcm,ccode-map = "JP-JP-78", "US-Q2-86";
++	};
++};
++
  &usb3_phy {
+ 	status = "okay";
+ };
 -- 
 2.53.0
 
