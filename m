@@ -1,134 +1,190 @@
-Return-Path: <devicetree+bounces-277762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277763-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mNtHCEPuu2liqQIAu9opvQ
-	(envelope-from <devicetree+bounces-277762-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:38:27 +0100
+	id CIE0OObuu2liqQIAu9opvQ
+	(envelope-from <devicetree+bounces-277763-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:41:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B73C2CB3C9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:38:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64D012CB455
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:41:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E56CA30074F7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:38:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9D7813020A72
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:38:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 679D236EAA6;
-	Thu, 19 Mar 2026 12:38:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD7E376483;
+	Thu, 19 Mar 2026 12:38:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PQv++LIQ"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="jhsRo+Tk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m49230.qiye.163.com (mail-m49230.qiye.163.com [45.254.49.230])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E463F3A9D95
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 12:38:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701FE37DE9C
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 12:38:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.230
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773923901; cv=none; b=gQUNZoikiAnu5Rp3ynYuIY0QxSeqm6er8flS6kIk11GxXTHi4OwZUj68JmiYs9M9zCkbyOgI9SChb7XgRYw7yhh/n4pFsuDbJCh0a6yPnIqzQpuUqUDINA5LstdJSuhfEkCpfieKBeAHr7vlnJCzLEFZ9ep+L3U+a7qWjURD5tI=
+	t=1773923924; cv=none; b=HWplkNR4UE9xurWx1zs5Nchl2ylkUQSbcFHFgDk1KgeX1kSWGL/wwehww5Yhu0tg4LKJ4d9tX+yXCEcZYACAQ2wc2aBHPDvnOLF0cJtrw0nm1wRFR+TpkCe9rSX3//GYd76bBzJ9x8gbsxu1Zn3uj3MMxsvPgHg3BvEoALzYa+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773923901; c=relaxed/simple;
-	bh=H6ZYwaeC+ssXlys6GfUeO2MkiM1tDavOy+eRjetjoUQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OHKO4Sja545MC32c8Oq4Jj2Lal8AwXuVJk4SL4KVAe+xjPKoI+Yyaz5QOXr4Jd+3JUYrqHOcKSUFDZpFlLnN7sSty9kyj7YjiAIkNBcP8SxgnrzH/sNOQ69IaHDag81RRx5qmj6BQJmTAq+VnBqnMpK40nLhtc0dVkGu0b32bMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PQv++LIQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 734A8C2BCB7
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 12:38:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773923900;
-	bh=H6ZYwaeC+ssXlys6GfUeO2MkiM1tDavOy+eRjetjoUQ=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=PQv++LIQV7bM2V0j2ljWiNNOl6XSFJHs0i+AjIJtIyOFqQx+VfPkpJ7KMib3dmtcS
-	 KZE69HABDWdwINUbml0/sbIZdVljBlLK4U1QxcstKW32KaJ8JARmaC/nOWveV4d6Kb
-	 QxejeMssXezdK9x4q6NZ9XRIpbKS1O56n0vsdnuq5QObYBmgYTvNNXxegIMS+OoXgI
-	 HiVE/Mi6HPHn+eeSYpkgjSEPPSZgz5/Sy8ppdagdtJ8/Upzphpu6P7hk+pHIa/7gO8
-	 JvEWLlL5OwZc5WPHqdqXcpKt3vf32unCBEREA7XdV7G/WU9w+XuvrxbFhUsyb9ed8E
-	 Nq25yDXvjZ1Ow==
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-79a74765703so8907767b3.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 05:38:20 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU76iOxEVyLMm6Avr6jbaZJ99u/NIpg1MzB882pg2LfbmLYJcpx0EuAA+1SmeFQtPRCsKkPb4VDo7Cv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxhyBIx9e3c78uwzng9poYQ9Im3ODopDzR1sWUOUH0HRzQEyRQP
-	j/c9E9XwHBXOSCX3w5Vp++Nh9uec/sWMCNMgVrT91b+a2Uh03eQYuiWfgyPNVymBE8rztZI/Rdg
-	4KaGJbqDce6rwqrtmxPjjkYE0sVEzNgQ=
-X-Received: by 2002:a05:690c:c4e8:b0:79a:7d50:fbc5 with SMTP id
- 00721157ae682-79a7d50ffe2mr42966847b3.49.1773923899626; Thu, 19 Mar 2026
- 05:38:19 -0700 (PDT)
+	s=arc-20240116; t=1773923924; c=relaxed/simple;
+	bh=lx3jx3mJBAE19MBhBXIKR0noFrq6K51hrNqDV1g9TKg=;
+	h=Cc:Subject:To:References:From:Message-ID:Date:MIME-Version:
+	 In-Reply-To:Content-Type; b=ruEScTUKOiqsrToTFTxvBC+8Bkb7mgjvuTXUu9olBfkrOvyvOOIWPuGXV67lCkyTb89/aNQHUue9dqNf7Z+EWJURn5XDQO4leqZUgq1SMnjmdLVEkbtELTNDSRrHjDA4r/iSWyRS28woP2VQcTskP5P5dwJ8wUIGzWci8IX5ilg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=jhsRo+Tk; arc=none smtp.client-ip=45.254.49.230
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.17] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3792bf95a;
+	Thu, 19 Mar 2026 20:38:33 +0800 (GMT+08:00)
+Cc: shawn.lin@rock-chips.com, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, heiko@sntech.de, jonas@kwiboo.se,
+ linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v3] arm64: dts: rockchip: rock-3b: Model PI6C20100 as
+ gated-fixed-clock
+To: MidG971 <midgy971@gmail.com>
+References: <20260319102247.32260-1-midgy971@gmail.com>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+Message-ID: <21dda954-8821-d6fa-a17a-68c4a256910f@rock-chips.com>
+Date: Thu, 19 Mar 2026 20:38:31 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260318-expressatt_camera_flash-v2-0-5c2b9a623dcb@gmail.com> <20260318-expressatt_camera_flash-v2-1-5c2b9a623dcb@gmail.com>
-In-Reply-To: <20260318-expressatt_camera_flash-v2-1-5c2b9a623dcb@gmail.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Thu, 19 Mar 2026 13:38:07 +0100
-X-Gmail-Original-Message-ID: <CAD++jLm7=Ae1F5yGZS3zakSPo5n5Xua2ciBqnGukuz1Ece0ZAw@mail.gmail.com>
-X-Gm-Features: AaiRm53Z3zQlQa8wtQcwRcXu_BTRQT3SjsYqIajcVpSARHSk8IVLPPh_mouVUHY
-Message-ID: <CAD++jLm7=Ae1F5yGZS3zakSPo5n5Xua2ciBqnGukuz1Ece0ZAw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: leds: rt8515: Support single-GPIO
- flash ICs with vin supply
-To: guptarud@gmail.com
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260319102247.32260-1-midgy971@gmail.com>
+Content-Type: text/plain; charset=gbk; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9d061accfa09cckunm4b242d8a662e73
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQh5JGFZLHU1JTh5IThoeTEJWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpKQk
+	xVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=jhsRo+TkAin0Ilaq5fdC01jbcgKkLr7LOnjclk26cla4Cr8i2/ckUBhoZn1z/Rep1vNsN9y7MtJ99IYRlwQ5A8554w1QOMRA115FHgqDggZSBAOzxJvWbF8ylU7obMdunFs0BR/7uyph+oWDqywpk8WU11c2vx2eMw1uOpG08hE=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=91vt8+tPv/jxW775EoJRQVELCIpxi7wPQqegSZPeGGo=;
+	h=date:mime-version:subject:message-id:from;
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-277762-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277763-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[shawn.lin@rock-chips.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.973];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 1B73C2CB3C9
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,rock-chips.com:dkim,rock-chips.com:email,rock-chips.com:mid,infradead.org:email,infradead.org:url]
+X-Rspamd-Queue-Id: 64D012CB455
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 7:34=E2=80=AFPM Rudraksha Gupta via B4 Relay
-<devnull+guptarud.gmail.com@kernel.org> wrote:
+在 2026/03/19 星期四 18:22, MidG971 写道:
+> The Radxa ROCK 3B uses a PI6C20100 PCIe reference clock buffer to
+> provide a 100MHz reference clock to the PCIe 3.0 PHY and controllers.
+> This chip is currently modeled only as a fixed regulator
+> (vcc3v3_pi6c_03), with no clock output representation.
+> 
+> The PI6C20100 is a clock generator, not a power supply. Model it
+> properly as a gated-fixed-clock, following the pattern established
+> for the Rock 5 ITX and other boards with similar PCIe clock buffer
+> chips.
+> 
+> The regulator node is kept as-is since it controls the power supply
+> to the PI6C20100 chip via GPIO0_D4. The new gated-fixed-clock node
+> references this regulator as its vdd-supply and provides a proper
+> 100MHz clock output. The pcie3x2 node is updated to include the
+> pipe and reference clocks, matching the approach used in
+> rk3588-rock-5-itx.dts.
 
-> From: Rudraksha Gupta <guptarud@gmail.com>
->
-> Some flash ICs use the same one-wire pulse-count protocol as the RT8515
-> but have only a single enable line for both flash and torch modes, plus
-> an optional input voltage supply (e.g. a GPIO-controlled fixed
-> regulator) that gates power to the chip.
->
-> Make ent-gpios optional and add a vin-supply property to support these
-> variants. Add a oneOf constraint requiring exactly one of ent-gpios or
-> vin-supply. Add a binding example showing the single-GPIO configuration
-> with an input supply.
->
-> Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
+Reviewed-by: Shawn Lin <shawn.lin@rock-chips.com>
 
-This looks right to me!
-Reviewed-by: Linus Walleij <linusw@kernel.org>
-
-Yours,
-Linus Walleij
+> 
+> Assisted-by: Claude:claude-3-opus
+> Signed-off-by: MidG971 <midgy971@gmail.com>
+> ---
+> 
+> Changes since v2 [1]:
+>   - Fix AI attribution: use Assisted-by tag instead of Signed-off-by (Shawn)
+>   - Add missing pipe clock (CLK_PCIE30X2_PIPE_DFT) to pcie3x2 clocks
+>     override (Shawn, referencing David's patch [2])
+> 
+> Changes since v1 [3]:
+>   - Drop phy-supply approach entirely (Jonas, Shawn)
+>   - Model PI6C20100 as gated-fixed-clock instead
+>   - Wire reference clock to pcie3x2 controller
+>   - Follow pattern from rk3588-rock-5-itx.dts
+> 
+> [1] https://lore.kernel.org/linux-rockchip/20260304132957.684616-1-midgy971@gmail.com/
+> [2] https://lore.kernel.org/linux-rockchip/d981fa84-bd05-ac9d-98ca-89ee47177829@rock-chips.com/T/#m6a8289609e6a60691d3c06358b6322c7aa5e43d1
+> [3] https://lore.kernel.org/linux-rockchip/20260213151452.535527-1-midgy971@gmail.com/
+> 
+>   arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 21 ++++++++++++++++++++-
+>   1 file changed, 20 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+> index c5f67dd6dfd9..1a2b3c4d5e6f 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+> @@ -56,7 +56,16 @@
+>   		};
+>   	};
+> 
+> -	/* pi6c pcie clock generator */
+> +	/* PI6C20100 PCIe reference clock buffer (100MHz) */
+> +	pcie30_refclk: pcie-clock-generator {
+> +		compatible = "gated-fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <100000000>;
+> +		clock-output-names = "pcie30_refclk";
+> +		vdd-supply = <&vcc3v3_pi6c_03>;
+> +	};
+> +
+> +	/* PI6C20100 power supply - active-high GPIO0_D4 */
+>   	vcc3v3_pi6c_03: regulator-3v3-vcc-pi6c-03 {
+>   		compatible = "regulator-fixed";
+>   		enable-active-high;
+> @@ -553,6 +562,15 @@
+>   };
+> 
+>   &pcie3x2 {
+> +	clocks = <&cru ACLK_PCIE30X2_MST>, <&cru ACLK_PCIE30X2_SLV>,
+> +		 <&cru ACLK_PCIE30X2_DBI>, <&cru PCLK_PCIE30X2>,
+> +		 <&cru CLK_PCIE30X2_AUX_NDFT>,
+> +		 <&cru CLK_PCIE30X2_PIPE_DFT>,
+> +		 <&pcie30_refclk>;
+> +	clock-names = "aclk_mst", "aclk_slv",
+> +		      "aclk_dbi", "pclk", "aux",
+> +		      "pipe", "ref";
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&pcie30x2m1_pins>;
+>   	reset-gpios = <&gpio2 RK_PD6 GPIO_ACTIVE_HIGH>;
+> --
+> 2.39.5
+> 
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> 
 
