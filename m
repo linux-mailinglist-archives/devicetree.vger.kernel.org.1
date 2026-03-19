@@ -1,241 +1,255 @@
-Return-Path: <devicetree+bounces-277920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277921-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8OAsG34tvGnquAIAu9opvQ
-	(envelope-from <devicetree+bounces-277920-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:08:14 +0100
+	id CKtZB1kuvGlcuQIAu9opvQ
+	(envelope-from <devicetree+bounces-277921-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:11:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04FAE2CF79D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:08:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1B302CF9A8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:11:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7852A308B423
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:02:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 969AC3391296
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:02:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACF883ED5AC;
-	Thu, 19 Mar 2026 17:01:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 359D13630A9;
+	Thu, 19 Mar 2026 17:02:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JhL3vCrN"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="RFcoEv91"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010015.outbound.protection.outlook.com [52.101.193.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 891C9314D1D;
-	Thu, 19 Mar 2026 17:01:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773939685; cv=none; b=VXKbsHtweI52LsFOi5dioNc+VwpMyzArlJlFFHH/zS3w+P6dTbkzyqNg5h0itgKYxKN5eqLJuQO/i79lrjwZ1G3etpkb0g6qOoS0GQypYb0Gr0RkSz5yiqjVNMfIYSJu9mUkW0gbCXpNAF3ivWs+glxrJluwkBmeekaginIY/2k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773939685; c=relaxed/simple;
-	bh=YnoHs9DDBDclY2aVIF5CrrB8I8oHOlB+aOrQ+gjX4ao=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K8tHTJodSMZlseLy1Ko7iwbgAsvIv28APeL5M2rz4q60DaVOGm10fPcHkaOVelNtERVjOSUplOcJf2wzw4k+TgDX7l8oKka0/C3TtvHgz6VCt5lAzhuDnJgoaPNHI4zwP/trTpwk5KpajDa2FktUxyMyhTt/91PgxB7PZsQrFkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JhL3vCrN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21068C19424;
-	Thu, 19 Mar 2026 17:01:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773939685;
-	bh=YnoHs9DDBDclY2aVIF5CrrB8I8oHOlB+aOrQ+gjX4ao=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JhL3vCrNSHWjEUrEs5mYl/I4UDL+oM7vVzEURoI8D877o72JcfOUMQDLp86/B3YDS
-	 nkC5XB4rowGcrTapLJu99yjS+DL0xASTblBjciHvfrSs7dHsw413YLRwUi5k7BovA/
-	 JBSGdg608vYqXkgEvA3PtwKu6PXk7SzBrqXBSAsN2d1b6QWeGgC4hgZkbeY19s9nVg
-	 SwJwvpp4lNejOMAdCWaPX0pC1lEP0RpEUbFtm14NhltqA6j0Pz7dQl7ZiwoU0Xuz7d
-	 LZRK45EeZ1ZOOYLFcJYRsvQ/61KACUUmvEjZZnxpMsZxW58QrqUHgcTL26YuwizXVH
-	 plsGA2AWL5xGw==
-Date: Thu, 19 Mar 2026 17:01:18 +0000
-From: Lee Jones <lee@kernel.org>
-To: Alexey Charkov <alchark@flipper.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Sebastian Reichel <sre@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH v4 09/11] mfd: bq257xx: Add BQ25792 support
-Message-ID: <20260319170118.GP554736@google.com>
-References: <20260311-bq25792-v4-0-7213415d9eec@flipper.net>
- <20260311-bq25792-v4-9-7213415d9eec@flipper.net>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C04CC30E0F2;
+	Thu, 19 Mar 2026 17:02:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773939729; cv=fail; b=rVPrEMfKbh8OuG6KVDSXW/t3vDG2E4gknTTyUxcX8vZKYRxVu1/tUgIMJvAA2BrdFWOXgpTovlDgbhMHB/1WJnO3aL8wkZakbEkCB/aCy18U/p3HGbZTRcx3dTUxwY6D6nrCpi9Mgt8RHVxEkQPQt0v5zrHzPEF8Cyk1oK3ja18=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773939729; c=relaxed/simple;
+	bh=f/Y+j50PoYS3WAfW378rU+2biVQYEODIMXmipgbmXpw=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jZDUIiRPSy5CDysqdGXFPoGAoOnnqk5E3vInd2wIeMM0jIWCy/EIGpny0u4DZFfi5t35PzaNiliTYKiwcqGe3dWdqxr8isK746nl6PHVi8sgsjiZ9CzOQXdDGqifMkuH/nIS9BYnCyWf11MQhX5g1blBpQmOTe9kQqeB2OepHVI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=RFcoEv91; arc=fail smtp.client-ip=52.101.193.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AHOdjySerL1nfl+R4lITEtQYc6OFlBs39KLJ6aRvxxogdlehKcRFhdouuxERNP70e2xb1NaIdfo0tP7LWifNOuZ0tJ/HSBmA5qMFymHQFDovjpKwOgyz1hLm5jc/OWDdrdl1i9jCB3tuCtr3UzcKBgKT8QKxnx5fZNpb3NT3Fiockt/oUbK5ZmcwJnxZ8ZyUAsUlSL6iek/mwjNs4WyjM/C/SFSoAbq0UzivGhd9fVD3rwr9yMKbe6UJjiAayHBOwSP1c5DVOZmMromtO82muawO2o6CtiHCFNsQ15wIigTpPpOM8ZsfY7P9pcc0ypiQe+IkJMsXiOrNAvyF1XlyvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/nuzwQ+YV2ly2TZVIhAsL1QhcGF7HbODxHykEIZX1M8=;
+ b=fjPYwcvZecWEjKZNfQxsQ7A1c3JS12Kg7ZFW5upx6xkNA43aFkvqF+vKNkHHpCtOzV30IMg8SE3fvXUnnJgapwX2KUAw4IRnfQVloWBs5N1cD2vS37tJ8igBL+r1gN5ohlRCodbiLTiOBbPm707JZA78d6X6D7K67yy+Gi++lshpsmT4Fl4EI1RO1iM2FyziAA7qHHeuVgQfvNZvzJPTGGP6HESgJTiFJPXX/kDRj0Qa3clGQnBrfb86HsLA1p63GVKC9/FWqhu+q3ZYixl+Hf5IqBMFUr6J7CkJYOOh7fC3XZH7RbgiyzW49yMWUe/nbEKpFpCqnZlnNxvZcFZb1g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/nuzwQ+YV2ly2TZVIhAsL1QhcGF7HbODxHykEIZX1M8=;
+ b=RFcoEv91mqVea5LzGnHHd//Z6N0/bnvbKArA0iSsy4ghEK/+pPfZb2PxsORtcVHngsz7G9HbpdRs+G1ZaT5FvNwuC+yJs3YmWM8Si5NcSi/OPogkC6GL2Q1/dK/rpvkRxf0S7CDh9aN+vaNmeBze0dtZnAofOhJs6zP7262TE8vcysEBUBCW7AEZHALBKghyB8yvKAQ9vyNaMmdUrSCPDlwZqI88aZNDmJEHx7U+ZOMyj66SQmVUKZUv1IiLAeaXfCeZlZ3WDAhNePyQjAczlhdLJTuV039eGgFC/XrzWGVR+MF0fGUjlBJAC9f4Cp74kviesspzbqvCU5UmiGqh5Q==
+Received: from CH0PR08CA0023.namprd08.prod.outlook.com (2603:10b6:610:33::28)
+ by SA1PR12MB999228.namprd12.prod.outlook.com (2603:10b6:806:4db::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.9; Thu, 19 Mar
+ 2026 17:02:02 +0000
+Received: from DM2PEPF00003FC2.namprd04.prod.outlook.com
+ (2603:10b6:610:33:cafe::dc) by CH0PR08CA0023.outlook.office365.com
+ (2603:10b6:610:33::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.20 via Frontend Transport; Thu,
+ 19 Mar 2026 17:02:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ DM2PEPF00003FC2.mail.protection.outlook.com (10.167.23.20) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9723.19 via Frontend Transport; Thu, 19 Mar 2026 17:02:02 +0000
+Received: from rnnvmail202.nvidia.com (10.129.68.7) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 19 Mar
+ 2026 10:01:38 -0700
+Received: from rnnvmail204.nvidia.com (10.129.68.6) by rnnvmail202.nvidia.com
+ (10.129.68.7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 19 Mar
+ 2026 10:01:37 -0700
+Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.9) by mail.nvidia.com
+ (10.129.68.6) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
+ Transport; Thu, 19 Mar 2026 10:01:30 -0700
+From: Akhil R <akhilrajeev@nvidia.com>
+To: <krzk@kernel.org>
+CC: <Frank.Li@nxp.com>, <acpica-devel@lists.linux.dev>,
+	<akhilrajeev@nvidia.com>, <alexandre.belloni@bootlin.com>,
+	<conor+dt@kernel.org>, <conor@kernel.org>, <devicetree@vger.kernel.org>,
+	<ebiggers@kernel.org>, <fredrik.markstrom@est.tech>, <jonathanh@nvidia.com>,
+	<krzk+dt@kernel.org>, <lenb@kernel.org>, <linux-acpi@vger.kernel.org>,
+	<linux-hwmon@vger.kernel.org>, <linux-i3c@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+	<linux@roeck-us.net>, <miquel.raynal@bootlin.com>, <p.zabel@pengutronix.de>,
+	<rafael@kernel.org>, <robert.moore@intel.com>, <robh@kernel.org>,
+	<smangipudi@nvidia.com>, <thierry.reding@kernel.org>,
+	<andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH 01/12] dt-bindings: i3c: Add mipi-i3c-static-method to support SETAASA
+Date: Thu, 19 Mar 2026 22:31:29 +0530
+Message-ID: <20260319170129.13441-1-akhilrajeev@nvidia.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20260319-spiritual-defiant-galago-9bed7e@quoll>
+References: <20260319-spiritual-defiant-galago-9bed7e@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260311-bq25792-v4-9-7213415d9eec@flipper.net>
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM2PEPF00003FC2:EE_|SA1PR12MB999228:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9e467f60-6797-4aa7-bba8-08de85d93dc0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700016|376014|7416014|1800799024|82310400026|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	FqbVXH/xR8zvdZfYz6ID58DjuORdo93IxHzdAh4JS7jvGdYEXIlLV8v8wsq2GhfmVJpfnbBYak6Hq+eon2QbHLuB4MQmZl2UNqv6+GSA4ljUh3t2TXrnrW7SavQoqJvWy7U9Mo3uURALpGsVrdw0rj96NKdSymr1OSUNkgJsvTeKQxdC0vRnKnqLTw/HyIfU+jTbBUZM9wPUm0hTJnOCcNwZGzj+LXxe8ff6UCqtg7AuGUGo9gMVtOAO+GS3hP4A0uNjONgIX53gkKhdRi7XpCSA5cFwPlmiBldUL5W1MDfEzRoNDbiK/RUoYld6rIKMcQ2Bk1dvp4rjFH4G+0ax7HPLzyaXiBUjXbysrJTqXy61rvs/7xDMgsHAkzSb9r71vxj9j+EmKstc8c6p5jiQ+IHdruwHi2vIm4uiaqu51ay9fVr7XW9GH+v3VLzznh1MqeTQmmU/gffIsMj17zZl9Dk2RA1qWUs6mKuMYcTwzcqiGkySsVJznUvTu6/andyjiAvWz5CGjqhPbWWpDR6zzdIzfUgdHBm4/7Ta+DVthDGl+fTM68OgYzjLRHbXAujqIYc2pB0VXU+AzhbrOeLYDKp6YcyhPMxmOmp0hcwaiaeJ1kylIo5ZVR/0QHd7Td2uWaEHAoWyJf0bV3l1OXPsuPhKr46LQFhyH1hTayykaUN95bX5ETNLnHgYNxis7+usMQCJv9kvH3TyxoG8vZy7xnY/gUyhMS3dzcmdG8ePmCIQTwqmdjUcA4pOz8D9IHDJr8WdaSYzXXPkQUtdCEnnOw==
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(36860700016)(376014)(7416014)(1800799024)(82310400026)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	dMZGcip0q1FqVHXKlC3emN8Yrwy0m5eTTUfx2UnOH+mZ0ZsNhFEqADbJP2aKgIbEDSWVLZ4LRl1We2eeuntjT+gQIzqcADYOo2v0bYSuvOB6elSUNNtMeVNj3nhoQNrfP/hbpGmcG/uHLNyyTehQ85PAdBriDmMo//VE4/jKCKic2CGBodDjnq8nKMtHcADWhL30IPiIUUlFOr0LPm4yONID8IqymlZayVBnAUFWtyuRvbg/OIzjOAR9yyAK8Ndrzlt8ZLISpUp1BN92zIeGSwmu+nPKTwgp2rsRxZ0esKhscve+OW1u6CEIPB+aKjJrvN7c04T5sQ5yoDYKKEMFz4DyL7ZA0j7bz4/OoD4xg0GiNeZ9Mr50I0mz3b5orXXDhBsG4ZbY7YsQgzItdIILptPGf176QQ0QdSl/gXIlvYNBIVKNSQv5XM8ICP32VL2w
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2026 17:02:02.2105
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9e467f60-6797-4aa7-bba8-08de85d93dc0
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DM2PEPF00003FC2.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB999228
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277920-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,hotmail.com,gmail.com,vger.kernel.org,collabora.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-277921-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[akhilrajeev@nvidia.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.976];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_NONE(0.00)[];
+	NEURAL_HAM(-0.00)[-0.942];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nvidia.com:email,nvidia.com:mid,mipi.org:url,Nvidia.com:dkim];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,flipper.net:email]
-X-Rspamd-Queue-Id: 04FAE2CF79D
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: A1B302CF9A8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 11 Mar 2026, Alexey Charkov wrote:
-
-> Add register definitions and a new 'type' enum to be passed via MFD
-> private data to support the BQ25792, which is a newer variant of the
-> BQ257xx family.
+On Thu, 19 Mar 2026 10:39:32 +0100, Krzysztof Kozlowski wrote:
+> On Thu, Mar 19, 2026 at 02:16:41PM +0530, Akhil R wrote:
+>> On Wed, 18 Mar 2026 17:31:50 +0000, Conor Dooley wrote:
+>> > On Wed, Mar 18, 2026 at 10:57:14PM +0530, Akhil R wrote:
+>> >> Add the 'mipi-i3c-static-method' property mentioned in the MIPI I3C
+>> >> Discovery and Configuration Specification [1] to specify which discovery
+>> >> method an I3C device supports during bus initialization. The property is
+>> >> a bitmap, where a bit value of 1 indicates support for that method, and 0
+>> >> indicates lack of support.
+>> >> Bit 0: SETDASA CCC (Direct)
+>> >> Bit 1: SETAASA CCC (Broadcast)
+>> >> Bit 2: Other CCC (vendor / standards extension)
+>> >> All other bits are reserved.
+>> >> 
+>> >> It is specifically needed when an I3C device requires SETAASA for the
+>> >> address assignment. SETDASA will be supported by default if this property
+>> >> is absent - which means for now the property just serves as a flag to
+>> >> enable SETAASA, but keep the property as a bitmap to align with the
+>> >> specifications.
+>> >> 
+>> >> [1] https://www.mipi.org/specifications/disco
+>> >> 
+>> >> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+>> >> ---
+>> >>  .../devicetree/bindings/i3c/i3c.yaml          | 30 ++++++++++++++++---
+>> >>  1 file changed, 26 insertions(+), 4 deletions(-)
+>> >> 
+>> >> diff --git a/Documentation/devicetree/bindings/i3c/i3c.yaml b/Documentation/devicetree/bindings/i3c/i3c.yaml
+>> >> index e25fa72fd785..1705d90d4d79 100644
+>> >> --- a/Documentation/devicetree/bindings/i3c/i3c.yaml
+>> >> +++ b/Documentation/devicetree/bindings/i3c/i3c.yaml
+>> >> @@ -31,10 +31,12 @@ properties:
+>> >>        described in the device tree, which in turn means we have to describe
+>> >>        I3C devices.
+>> >>  
+>> >> -      Another use case for describing an I3C device in the device tree is when
+>> >> -      this I3C device has a static I2C address and we want to assign it a
+>> >> -      specific I3C dynamic address before the DAA takes place (so that other
+>> >> -      devices on the bus can't take this dynamic address).
+>> >> +      Other use-cases for describing an I3C device in the device tree are:
+>> >> +      - When the I3C device has a static I2C address and we want to assign
+>> >> +        it a specific I3C dynamic address before the DAA takes place (so
+>> >> +        that other devices on the bus can't take this dynamic address).
+>> >> +      - When the I3C device requires SETAASA for its discovery and uses a
+>> >> +        pre-defined static address.
+>> >>  
+>> >>    "#size-cells":
+>> >>      const: 0
+>> >> @@ -147,6 +149,26 @@ patternProperties:
+>> >>            through SETDASA. If static address is not present, this address is assigned
+>> >>            through SETNEWDA after assigning a temporary address via ENTDAA.
+>> >>  
+>> >> +      mipi-i3c-static-method:
+>> >> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> >> +        minimum: 0x1
+>> >> +        maximum: 0xff
+>> >> +        default: 1
+>> >> +        description: |
+>> >> +          Bitmap describing which methods of Dynamic Address Assignment from a
+>> >> +          static address are supported by this I3C Target. A bit value of 1
+>> >> +          indicates support for that method, and 0 indicates lack of support.
+>> > 
+>> > I really am not keen on properties that are bitmaps, why can't we just
+>> > use the strings "setdasa", "setaasa" etc?
+>> 
+>> The intention was to mirror the property described in the specification. Using
+>> strings would not allow to use a combination of methods when a device supports
 > 
-> BQ25792 shares similar logic of operation with the already supported
-> BQ25703A but has a completely different register map and different
-> electrical constraints.
+> Why combination would not be allowed? Look:
+> mipi-i3c-static-methods = "setdasa", "setaasa";
+> Both are allowed.
 > 
-> Tested-by: Chris Morgan <macromorgan@hotmail.com>
-> Signed-off-by: Alexey Charkov <alchark@flipper.net>
-> ---
->  drivers/mfd/bq257xx.c       |  54 +++++-
->  include/linux/mfd/bq257xx.h | 414 ++++++++++++++++++++++++++++++++++++++++++++
->  2 files changed, 465 insertions(+), 3 deletions(-)
+>> more than one method. It also cannot represent the vendor extensions (Bit 2)
+>> cleanly. Would this be better if we use macros instead of raw numbers?
 > 
-> diff --git a/drivers/mfd/bq257xx.c b/drivers/mfd/bq257xx.c
-> index e9d49dac0a16..4445ded5b2eb 100644
-> --- a/drivers/mfd/bq257xx.c
-> +++ b/drivers/mfd/bq257xx.c
-> @@ -39,13 +39,47 @@ static const struct regmap_config bq25703_regmap_config = {
->  	.val_format_endian = REGMAP_ENDIAN_LITTLE,
->  };
->  
-> -static const struct mfd_cell cells[] = {
-> +static const struct regmap_range bq25792_writeable_reg_ranges[] = {
-> +	regmap_reg_range(BQ25792_REG00_MIN_SYS_VOLTAGE,
-> +			 BQ25792_REG18_NTC_CONTROL_1),
-> +	regmap_reg_range(BQ25792_REG28_CHARGER_MASK_0,
-> +			 BQ25792_REG30_ADC_FUNCTION_DISABLE_1),
-> +};
-> +
-> +static const struct regmap_access_table bq25792_writeable_regs = {
-> +	.yes_ranges = bq25792_writeable_reg_ranges,
-> +	.n_yes_ranges = ARRAY_SIZE(bq25792_writeable_reg_ranges),
-> +};
-> +
-> +static const struct regmap_range bq25792_volatile_reg_ranges[] = {
-> +	regmap_reg_range(BQ25792_REG19_ICO_CURRENT_LIMIT,
-> +			 BQ25792_REG27_FAULT_FLAG_1),
-> +	regmap_reg_range(BQ25792_REG31_IBUS_ADC,
-> +			 BQ25792_REG47_DPDM_DRIVER),
-> +};
-> +
-> +static const struct regmap_access_table bq25792_volatile_regs = {
-> +	.yes_ranges = bq25792_volatile_reg_ranges,
-> +	.n_yes_ranges = ARRAY_SIZE(bq25792_volatile_reg_ranges),
-> +};
-> +
-> +static const struct regmap_config bq25792_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = BQ25792_REG48_PART_INFORMATION,
-> +	.cache_type = REGCACHE_MAPLE,
-> +	.wr_table = &bq25792_writeable_regs,
-> +	.volatile_table = &bq25792_volatile_regs,
-> +};
-> +
-> +static struct mfd_cell cells[] = {
+> Hoes does setting bit 2 differ from a string "vendor"?
 
-This was `static const` before. And I don't see any code in here making
-changes to it.  Was the `const` dropped intentionally?
+Okay, a string array would handle those cases.
 
->  	MFD_CELL_NAME("bq257xx-regulator"),
->  	MFD_CELL_NAME("bq257xx-charger"),
->  };
->  
->  static int bq257xx_probe(struct i2c_client *client)
->  {
-> +	const struct regmap_config *rcfg;
->  	struct bq257xx_device *ddata;
->  	int ret;
->  
-> @@ -53,9 +87,21 @@ static int bq257xx_probe(struct i2c_client *client)
->  	if (!ddata)
->  		return -ENOMEM;
->  
-> +	ddata->type = (uintptr_t)device_get_match_data(&client->dev);
+I am concerned if this can be a string array for the ACPI because the MIPI
+specification defines the property differently. Would it be fine to deviate
+from that specification in the ACPI? Or do you suggest to keep it as bitmap
+for the ACPI and use strings in DT?
 
-This logic seems a bit fragile. For non-DeviceTree platforms,
-`device_get_match_data()` will return `NULL` since the `i2c_device_id`
-table doesn't provide any match data. Casting `NULL` to `uintptr_t` will
-result in `0`, which corresponds to `BQ25703A`. This means the new
-`bq25792` will be misidentified as a `bq25703a` when instantiated
-without a DeviceTree node.  Even with DeviceTree, if a compatible string
-is matched but has no `.data` property, the same misidentification will
-occur.
-
-Perhaps it would be safer to explicitly handle the `NULL` case and make the
-identification logic more robust?  Or perhaps start your IDs from 1.
-
->  	ddata->client = client;
->  
-> -	ddata->regmap = devm_regmap_init_i2c(client, &bq25703_regmap_config);
-> +	switch (ddata->type) {
-> +	case BQ25703A:
-> +		rcfg = &bq25703_regmap_config;
-> +		break;
-> +	case BQ25792:
-> +		rcfg = &bq25792_regmap_config;
-> +		break;
-> +	default:
-> +		return dev_err_probe(&client->dev, -EINVAL, "Unsupported device type\n");
-
-Given the potential for `device_get_match_data()` to return `NULL` (which
-becomes `0`), this `default` case might not be reachable for invalid or
-un-matchable devices. A more explicit check on the match data before this
-`switch` might be better.
-
-> +	}
-> +
-> +	ddata->regmap = devm_regmap_init_i2c(client, rcfg);
->  	if (IS_ERR(ddata->regmap)) {
->  		return dev_err_probe(&client->dev, PTR_ERR(ddata->regmap),
->  				     "Failed to allocate register map\n");
-> @@ -74,12 +120,14 @@ static int bq257xx_probe(struct i2c_client *client)
->  
->  static const struct i2c_device_id bq257xx_i2c_ids[] = {
->  	{ "bq25703a" },
-> +	{ "bq25792" },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(i2c, bq257xx_i2c_ids);
->  
->  static const struct of_device_id bq257xx_of_match[] = {
-> -	{ .compatible = "ti,bq25703a" },
-> +	{ .compatible = "ti,bq25703a", .data = (void *)BQ25703A },
-> +	{ .compatible = "ti,bq25792", .data = (void *)BQ25792 },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, bq257xx_of_match);
-
-[...]
-
--- 
-Lee Jones [李琼斯]
+Best Regards,
+Akhil
 
