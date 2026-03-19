@@ -1,207 +1,134 @@
-Return-Path: <devicetree+bounces-278008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278009-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UJAzLexOvGkXwwIAu9opvQ
-	(envelope-from <devicetree+bounces-278008-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:30:52 +0100
+	id 4MQIOUdPvGkXwwIAu9opvQ
+	(envelope-from <devicetree+bounces-278009-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:32:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 161B02D1ABD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:30:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53DDD2D1AF3
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 20:32:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 45538308A27A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:30:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EFDB83091F82
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:32:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5CE73CD8BA;
-	Thu, 19 Mar 2026 19:30:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE17638551B;
+	Thu, 19 Mar 2026 19:32:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="jYnor4XH"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="m3URgJTv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89B9139C01B
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 19:30:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F83F1B7F4;
+	Thu, 19 Mar 2026 19:32:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773948625; cv=none; b=HiL1COyyDkYOvkC5dEipoNcq0bfwvZEm0K0YGfglAv36ToHmC9zUpaeHLL/kSMVE82rgtF4YiP7QvhxFO2KJQKIvU6iSaR8gN3RZRHRMCpuNvO/2w03sGfD1Pg+/zMW88D5X0xg7x+t3PPn1AT6w1ume7Xr87k6q4R9+ekM5zTk=
+	t=1773948734; cv=none; b=VS5hmpgzi9BiXAySCVDY9qP7xyQHXF+P4QjBCi/9kCGsdNlOyw2Po35rytoZMjocOGVAxM34CK8oYFHUkaZU9Sejttg+WUhia0Suv8yHi99pfV6dUBxzm61zbEJNwYnslGHWMkZFgP21GvFcWIGUnYdU4P1IeXZGZ6BZ4G4V9YA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773948625; c=relaxed/simple;
-	bh=hEL0PHTo7AQhG/8GAXvMixzRPJPl6koSwFDjLudJkZ8=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=SLJlGrht7yzfL+sU23ZRaQQqJplRmFhAiCrm9gzHID+GZUv9ED2KN1Xwg13QSDsBzPht41NLo/vUL92jj9E8UcFlS4Qim73P9fus5BoTwkA6cuRTr/Uow6KQMNpVWLFEy8eat50NAgL2YuKij4x5MEYDwT08cWIHHDpx45raqDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=jYnor4XH; arc=none smtp.client-ip=185.67.36.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout01.posteo.de (Postfix) with ESMTPS id 4FABC240028
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 20:30:15 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.net; s=2017;
-	t=1773948616; bh=q3Ty2rMUXWrI+Dw+O8BMuW+g1hkiDWZuTXFRx7/LGyc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
-	 From;
-	b=jYnor4XHuX4y0Ei3ESr2vYmExzddT/I8MWa6hYnwSaMnVs3+xuIXPqOyFFM8XAz3I
-	 VtfnmKTxKJbKawbVeyreA+ivMjw+mqAZI+i8YxQohGf4d3HW6zYMZ2RSOqm7oI0FS1
-	 Eb8pwgM85IaC+QzlX6KnWzBIZWjVBBMhiwjAX36KGxmM2gzb20JL4SVuyryNTHxU/R
-	 GBirJz+So6m5hwVHn1QWiZ7ypub5+dYT7SyBKZ/3y4QoqfqFE2payE4cvMUT5YU+FA
-	 bStJ00oijwlRF2sZJsVNYWLRsIzE2AEkFNFmqsGySvZbEo1owegGqLhX1AlXuxVqgJ
-	 6EshfQUkWkDoA==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4fcG4K6pw3z6twZ;
-	Thu, 19 Mar 2026 20:30:09 +0100 (CET)
-From: Charalampos Mitrodimas <charmitro@posteo.net>
-To: Michael Riesch via B4 Relay
- <devnull+michael.riesch.collabora.com@kernel.org>
-Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,  Laurent Pinchart
- <laurent.pinchart@ideasonboard.com>,  Mauro Carvalho Chehab
- <mchehab@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Heiko Stuebner
- <heiko@sntech.de>,  Kever Yang <kever.yang@rock-chips.com>,  Jagan Teki
- <jagan@amarulasolutions.com>,  =?utf-8?B?0JrRg9C30L3QtdGG0L7QsiDQnNC40YU=?=
- =?utf-8?B?0LDQuNC7?=
- <mai.kuznetsov.misha@gmail.com>,  Sebastian Reichel
- <sebastian.reichel@collabora.com>,  Nicolas Dufresne
- <nicolas.dufresne@collabora.com>,  Collabora Kernel Team
- <kernel@collabora.com>,  Sakari Ailus <sakari.ailus@linux.intel.com>,
-  michael.riesch@collabora.com,  linux-media@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
-  linux-rockchip@lists.infradead.org,  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/9] Documentation: admin-guide: media: add rk3588 vicap
-In-Reply-To: <20250430-rk3588-vicap-v2-1-77de5ee9048e@collabora.com>
-References: <20250430-rk3588-vicap-v2-0-77de5ee9048e@collabora.com>
-	<20250430-rk3588-vicap-v2-1-77de5ee9048e@collabora.com>
-Date: Thu, 19 Mar 2026 19:30:14 +0000
-Message-ID: <m2h5qbd3cv.fsf@posteo.net>
+	s=arc-20240116; t=1773948734; c=relaxed/simple;
+	bh=sWzH7Ma2w4ORR525k3NQ2xPTPC6Jq9N/iNXEH+N0Zkw=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JMOJmdEeI9bSBX0z1HxYYeD4fRVVRBrM53HmbA5It7gx4K9WwYS+7gaXU7JvlXnRLNyRXzqlIMF0O44OEcSvB9AJO4cijiU9Q8RnNvSc71FnWEABHzpbDsnDpJ7ljBWChBd48M+l7BOA/Mfldm1Bq2iRayNwvNpmvLkx4wKCSXg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=m3URgJTv; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1773948733; x=1805484733;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=sWzH7Ma2w4ORR525k3NQ2xPTPC6Jq9N/iNXEH+N0Zkw=;
+  b=m3URgJTvT0zF3mmma1GAzqpgHoM8g1v7Vt05ADKQjIWOo9sKaJyeDFnw
+   msWooTpHYAJ6yxgxci0519l1+/Ol148atqF72iVbeR/g2Al4Sg3oDMqqw
+   D464mayG7tD7tTWUcOvVCFvyLF/30XJXD4E2QpU/rVjYoFLx1I2Pakkvq
+   vxPWBpDKYv91TNhelmizxFDSPn4uj6PSOTwenVG8ZWvGaqhnKmLBI4Wnf
+   XTgs9g789FayH+q5mDb2QKqocDESR28L9oyVgwaCNF4zUVeSkx442S3JX
+   0zn8IwBP1urjEM9w9+asWNOpWjTjT/w5WHNulwEC+ZMYqhWBgyB+yYj1n
+   g==;
+X-CSE-ConnectionGUID: iydcGjQOSDiQIzWT6DOG2Q==
+X-CSE-MsgGUID: L3t7vgZQQIyZs9vqt5tSHg==
+X-IronPort-AV: E=Sophos;i="6.23,129,1770620400"; 
+   d="scan'208";a="54181770"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2026 12:32:12 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
+ chn-vm-ex3.mchp-main.com (10.10.87.32) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.35; Thu, 19 Mar 2026 12:31:32 -0700
+Received: from bby-cbu-swbuild03.eng.microchip.com (10.10.85.11) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58 via Frontend Transport; Thu, 19 Mar 2026 12:31:30 -0700
+Date: Thu, 19 Mar 2026 12:31:28 -0700
+From: Charles Perry <charles.perry@microchip.com>
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Charles Perry <charles.perry@microchip.com>, <netdev@vger.kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, "Paolo
+ Abeni" <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiner
+ Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next 2/2] net: mdio: add a driver for PIC64-HPSC/HX
+ MDIO controller
+Message-ID: <abxPEEpcck3VFmMk@bby-cbu-swbuild03.eng.microchip.com>
+References: <20260317184610.315852-1-charles.perry@microchip.com>
+ <20260317184610.315852-3-charles.perry@microchip.com>
+ <dd0e5738-81a9-41a3-a872-76c2e3383770@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <dd0e5738-81a9-41a3-a872-76c2e3383770@lunn.ch>
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[posteo.net,none];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[posteo.net:s=2017];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[linux.intel.com,ideasonboard.com,kernel.org,sntech.de,rock-chips.com,amarulasolutions.com,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[posteo.net:+];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	TAGGED_FROM(0.00)[bounces-278008-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[charmitro@posteo.net,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[microchip.com,vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk];
+	TAGGED_FROM(0.00)[bounces-278009-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[microchip.com:+];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.848];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,michael.riesch.collabora.com,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:email,rkcif-rk3588-vicap.dot:url]
-X-Rspamd-Queue-Id: 161B02D1ABD
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[charles.perry@microchip.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.962];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bby-cbu-swbuild03.eng.microchip.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:dkim]
+X-Rspamd-Queue-Id: 53DDD2D1AF3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org> writes:
+On Thu, Mar 19, 2026 at 05:56:55PM +0100, Andrew Lunn wrote:
+> > +	platform_set_drvdata(pdev, bus);
+> 
+> Does not seem necessary.
 
-> From: Michael Riesch <michael.riesch@collabora.com>
->
-> Add a section that describes the Rockchip RK3588 VICAP.
->
-> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
-> ---
->  .../admin-guide/media/rkcif-rk3588-vicap.dot       | 29 ++++++++++++++++++++
->  Documentation/admin-guide/media/rkcif.rst          | 32 ++++++++++++++++++++++
->  2 files changed, 61 insertions(+)
->
-> diff --git a/Documentation/admin-guide/media/rkcif-rk3588-vicap.dot b/Documentation/admin-guide/media/rkcif-rk3588-vicap.dot
-> new file mode 100644
-> index 000000000000..f6d3404920b5
-> --- /dev/null
-> +++ b/Documentation/admin-guide/media/rkcif-rk3588-vicap.dot
-> @@ -0,0 +1,29 @@
-> +digraph board {
-> +        rankdir=TB
-> +        n00000007 [label="{{<port0> 0} | rkcif-mipi2\n/dev/v4l-subdev0 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-> +        n00000007:port1 -> n0000000a
-> +        n00000007:port1 -> n00000010 [style=dashed]
-> +        n00000007:port1 -> n00000016 [style=dashed]
-> +        n00000007:port1 -> n0000001c [style=dashed]
-> +        n0000000a [label="rkcif-mipi2-id0\n/dev/video0", shape=box, style=filled, fillcolor=yellow]
-> +        n00000010 [label="rkcif-mipi2-id1\n/dev/video1", shape=box, style=filled, fillcolor=yellow]
-> +        n00000016 [label="rkcif-mipi2-id2\n/dev/video2", shape=box, style=filled, fillcolor=yellow]
-> +        n0000001c [label="rkcif-mipi2-id3\n/dev/video3", shape=box, style=filled, fillcolor=yellow]
-> +        n00000025 [label="{{<port0> 0} | rkcif-mipi4\n/dev/v4l-subdev1 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-> +        n00000025:port1 -> n00000028
-> +        n00000025:port1 -> n0000002e [style=dashed]
-> +        n00000025:port1 -> n00000034 [style=dashed]
-> +        n00000025:port1 -> n0000003a [style=dashed]
-> +        n00000028 [label="rkcif-mipi4-id0\n/dev/video4", shape=box, style=filled, fillcolor=yellow]
-> +        n0000002e [label="rkcif-mipi4-id1\n/dev/video5", shape=box, style=filled, fillcolor=yellow]
-> +        n00000034 [label="rkcif-mipi4-id2\n/dev/video6", shape=box, style=filled, fillcolor=yellow]
-> +        n0000003a [label="rkcif-mipi4-id3\n/dev/video7", shape=box, style=filled, fillcolor=yellow]
-> +        n00000043 [label="{{<port0> 0} | dw-mipi-csi2rx fdd30000.csi\n/dev/v4l-subdev2 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-> +        n00000043:port1 -> n00000007:port0
-> +        n00000048 [label="{{<port0> 0} | dw-mipi-csi2rx fdd50000.csi\n/dev/v4l-subdev3 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-> +        n00000048:port1 -> n00000025:port0
-> +        n0000004d [label="{{} | imx415 3-001a\n/dev/v4l-subdev4 | {<port0> 0}}", shape=Mrecord, style=filled, fillcolor=green]
-> +        n0000004d:port0 -> n00000043:port0
-> +        n00000051 [label="{{} | imx415 4-001a\n/dev/v4l-subdev5 | {<port0> 0}}", shape=Mrecord, style=filled, fillcolor=green]
-> +        n00000051:port0 -> n00000048:port0
-> +}
-> diff --git a/Documentation/admin-guide/media/rkcif.rst b/Documentation/admin-guide/media/rkcif.rst
-> index 2558c121abc4..fcd7f8cfc5d3 100644
-> --- a/Documentation/admin-guide/media/rkcif.rst
-> +++ b/Documentation/admin-guide/media/rkcif.rst
-> @@ -77,3 +77,35 @@ and the following video devices:
->  .. kernel-figure:: rkcif-rk3568-vicap.dot
->      :alt:   Topology of the RK3568 Video Capture (VICAP) unit
->      :align: center
-> +
-> +Rockchip RK3588 Video Capture (VICAP)
-> +-------------------------------------
-> +
-> +The RK3588 Video Capture (VICAP) unit features a digital video port and six
-> +MIPI CSI-2 capture interfaces that can receive video data independently.
-> +The DVP accepts parallel video data, BT.656 and BT.1120.
-> +Since the BT.1120 protocol may feature more than one stream, the RK3568 VICAP
+Right, I forgot to remove that after I converted everything to devm_.
 
-Nit, should this be RK3588 instead of RK3568?
+Thanks,
+Charles
 
-> +DVP features four DMA engines that can capture different streams.
-> +Similarly, the RK3588 VICAP MIPI CSI-2 receivers feature four DMA engines each
-> +to handle different Virtual Channels (VCs).
-> +
-> +The rkcif driver represents this hardware variant by exposing the following
-> +V4L2 subdevices:
-> +
-> +* dw-mipi-csi2rx fdd30000.csi: MIPI CSI-2 receiver connected to MIPI DPHY0
-> +* dw-mipi-csi2rx fdd50000.csi: MIPI CSI-2 receiver connected to MIPI DPHY1
-> +* rkcif-mipi2: INTERFACE/CROP block for the MIPI CSI-2 receiver connected to
-> +  MIPI DPHY0
-> +* rkcif-mipi4: INTERFACE/CROP block for the MIPI CSI-2 receiver connected to
-> +  MIPI DPHY1
-> +
-> +and the following video devices:
-> +
-> +* rkcif-mipi2-id{0,1,2,3}: The DMA engines connected to the rkcif-mipi2
-> +  INTERFACE/CROP block.
-> +* rkcif-mipi4-id{0,1,2,3}: The DMA engines connected to the rkcif-mipi4
-> +  INTERFACE/CROP block.
-> +
-> +.. kernel-figure:: rkcif-rk3588-vicap.dot
-> +    :alt:   Topology of the RK3588 Video Capture (VICAP) unit
-> +    :align: center
+> 
+> 	Andrew
 
