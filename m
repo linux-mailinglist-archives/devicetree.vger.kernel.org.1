@@ -1,186 +1,206 @@
-Return-Path: <devicetree+bounces-277506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277507-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6H1cEF9Tu2lMigIAu9opvQ
-	(envelope-from <devicetree+bounces-277506-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 02:37:35 +0100
+	id gHImFApXu2m5iwIAu9opvQ
+	(envelope-from <devicetree+bounces-277507-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 02:53:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D511A2C48DC
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 02:37:34 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 518972C49FC
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 02:53:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1D881303F562
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 01:37:14 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 47A2C300693D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 01:53:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038572D97A4;
-	Thu, 19 Mar 2026 01:36:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC2B82E2DF2;
+	Thu, 19 Mar 2026 01:53:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a5BRtnw6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pSLcPVWM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43CBE33263B;
-	Thu, 19 Mar 2026 01:36:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45566385509;
+	Thu, 19 Mar 2026 01:53:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773884199; cv=none; b=KsJ1OdnsW/Y4KSQIn0YbtEuiDLis9GoXvOuXZRSHgaOC8B83jSE8O2E8Ut+74QRDflTnXgm+oWpL2crvGxA77il3MLjzFiJk68/BTBb4pGvGvI0yNBLSISt3BFJ9yYpfKZheKSxnsaf/xroZIdJNOzEr30qJgc1kmxnqm1Gia8A=
+	t=1773885188; cv=none; b=J7FGO5RIZZqIr5lZ1SEuPafqA5oauTfCToyBSi1GIgxjgE+LyKHXKcInU2mcIV4Q3o/0PQkJCMJLxtZxoYeKMiKtLP/SABHPY+QlDGhCgQJcnGBP3Sy0oEN+qGKP5f4SiIaDYvUJx5JqSx86qeUQe3BIUEQo/EETfCXZlO4/YRE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773884199; c=relaxed/simple;
-	bh=sQ9S+t4COwhuFxYoWBjkSUbfHgYR1riJrMiDGK+HRh8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A4qjoeUGTBSr2b+AxYRPuaSbn5LvebTYmrTnzxUnIODmSDZ3fi3KWdcoD1c/hi39wQwikLYgs5dtzG8WEsiO4hYJDay7yXY6lL7WEc01JlPhZkbOucrQAKEAofQMD2PAVbwJ6jBWGapZ1e1Y/f8WD6/U0LvsDxXkETxpulJx0J0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a5BRtnw6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4215C19421;
-	Thu, 19 Mar 2026 01:36:35 +0000 (UTC)
+	s=arc-20240116; t=1773885188; c=relaxed/simple;
+	bh=0E5OqoKU9mNupvcGG7Hc3GPoauqIcESgXzJArXxkHDg=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fLwWCxED2X35sz3UEV19qp0w7TtsJEMyeKbmMwrd82nmYNKSyntVnc8lJOwPnr55b9AUICnWorH7vedhicA45/tyCLBl3gAY/CmdrpPFFCwg/pitdbxStujJHkJwVl1Rp0iCo0psg1AvsTz5waya0HG2w/fGXlS0cKR3Sq4QJH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pSLcPVWM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D009C19421;
+	Thu, 19 Mar 2026 01:53:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773884198;
-	bh=sQ9S+t4COwhuFxYoWBjkSUbfHgYR1riJrMiDGK+HRh8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=a5BRtnw6drSdoWmxEklt+Rjt7mGp6DfUCqRw4LNPMcm4Ht23m1oQd1kG3az99XtTt
-	 mfD8a7x8C1E0od3DjgkYqtI8Oplqy2wo0mR+hxYgOZrdHm11EIBj5VnkeTxyEF2kew
-	 4vrPo0B99vs9znEg0qJD3tGBdPfYRSOneaKRC5Lcasy/GsNDZ48ySq2/ejIQMFWYdp
-	 9XVftGCZS3T4mWtWx3yOXylCr7UH/1u5FYrwXdHkEeflo4X3cWCLCkPBoNauZaAVmK
-	 reS5kcyJfgbXTtHp25oq3iSijm45Zzci9qk2dy4TgTXeZEQewMsknjHvuDIX/n8r0l
-	 0ia6wp+wIUPlg==
-Date: Thu, 19 Mar 2026 01:36:33 +0000
-From: Conor Dooley <conor@kernel.org>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Linus Walleij <linusw@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
+	s=k20201202; t=1773885187;
+	bh=0E5OqoKU9mNupvcGG7Hc3GPoauqIcESgXzJArXxkHDg=;
+	h=Date:From:To:Subject:References:In-Reply-To:From;
+	b=pSLcPVWMa+BVZkgO5QU9TWEWwO46D3ZCp6PuP1rL14PuTB5QVLPGs+EnBUFsBQdEO
+	 cYwf+AvQGnbBvahVxPzDzTfbLLKOuBSdj2Nhog5MfpCY3pHL2xFWeIG64gu2ANaNev
+	 CmfGqIwmuKWsxaSaSPKcSibP5RAqfyclpuhkofyvUBsMeRsLeMHHG1g939ecovHH+u
+	 8+spxu7zhMfpLrpPAcBtD8UKBFvARQPB7FhdsyyF10F4je6O1cRmCPzHnHG72GvjOk
+	 fmnyAlBkGhAw0FoV1TW4yMiZG5LbCyorWpWFzW3LC+WbDEl6Z+sFXQtup8gEUMXY3m
+	 AJxrBFqB4k06w==
+Date: Thu, 19 Mar 2026 09:53:05 +0800
+From: Yixun Lan <dlan@kernel.org>
+To: Iker Pedrosa <ikerpedrosam@gmail.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: renesas,r9a09g077: Document
- pin configuration properties
-Message-ID: <20260319-cleat-doorman-922ab3729b52@spud>
-References: <20251014191121.368475-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251014191121.368475-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251016-dimmed-affidavit-90bae7e162aa@spud>
- <CA+V-a8un1cF=acNjG=79_v7oaR8gzBQ+3z1As8AqrJnOnk-OUw@mail.gmail.com>
- <CA+V-a8vq2EvTb_hXxRzW_Rbp+BPLSaLsEVkvaTjc1zRin-RV=Q@mail.gmail.com>
- <20251208-headgear-header-e17e162f0f52@spud>
- <CA+V-a8s0gPbe2ffmN1G_7ibVL4+=FKUEQZu3_CwQL=U0T3--DQ@mail.gmail.com>
- <CAD++jL=J2UpxQSNrZhCMw2fJ0umM8NRtNys2zMBouAFBoK0m2A@mail.gmail.com>
- <CA+V-a8vNeJdbjJ6K9QkedHgAprC=Z0ckUztwe1ZapSiqjPKEsw@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Michael Opdenacker <michael.opdenacker@rootcommit.com>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org, Anand Moon <linux.amoon@gmail.com>
+Subject: Re: [PATCH v3 7/7] riscv: dts: spacemit: k1-bananapi-f3: add SD card
+ support with UHS modes
+Message-ID: <20260319015305-GKA489299@kernel.org>
+References: <20260316-orangepi-sd-card-uhs-v3-0-aefd3b7832df@gmail.com>
+ <20260316-orangepi-sd-card-uhs-v3-7-aefd3b7832df@gmail.com>
+ <absKDGLCw26xr7Z4@aurel32.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="np5LBp3+k11Z84gj"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CA+V-a8vNeJdbjJ6K9QkedHgAprC=Z0ckUztwe1ZapSiqjPKEsw@mail.gmail.com>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+In-Reply-To: <absKDGLCw26xr7Z4@aurel32.net>
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277506-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-277507-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,linaro.org,kernel.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.968];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,glider.be,linaro.org,gmail.com,vger.kernel.org,bp.renesas.com,renesas.com];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D511A2C48DC
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.969];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.0.0.2:email,aurel32.net:email,aurel32.net:url]
+X-Rspamd-Queue-Id: 518972C49FC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Hi Aurelien,
 
---np5LBp3+k11Z84gj
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 21:24 Wed 18 Mar     , Aurelien Jarno wrote:
+> Hi,
+> 
+> On 2026-03-16 15:03, Iker Pedrosa wrote:
+> > Add complete SD card controller support with UHS high-speed modes.
+> > 
+> > - Enable sdhci0 controller with 4-bit bus width
+> > - Configure card detect GPIO with inversion
+> > - Connect vmmc-supply to buck4 for 3.3V card power
+> > - Connect vqmmc-supply to aldo1 for 1.8V/3.3V I/O switching
+> > - Add dual pinctrl states for voltage-dependent pin configuration
+> > - Support UHS-I SDR25, SDR50, and SDR104 modes
+> > 
+> > This enables full SD card functionality including high-speed UHS modes
+> > for improved performance.
+> > 
+> > Suggested-by: Anand Moon <linux.amoon@gmail.com>
+> > Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
+> > ---
+> >  arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 23 +++++++++++++++++++++--
+> >  1 file changed, 21 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+> > index 404b69c47b91f8c37d74a3031dbad0d94a28d1b4..a7d480d01ccc0439dbf456ed5a81f467af68056a 100644
+> > --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+> > +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+> > @@ -222,7 +222,7 @@ buck3_1v8: buck3 {
+> >  				regulator-always-on;
+> >  			};
+> >  
+> > -			buck4 {
+> > +			buck4: buck4 {
+> >  				regulator-min-microvolt = <500000>;
+> >  				regulator-max-microvolt = <3300000>;
+> >  				regulator-ramp-delay = <5000>;
+> > @@ -243,7 +243,7 @@ buck6 {
+> >  				regulator-always-on;
+> >  			};
+> >  
+> > -			aldo1 {
+> > +			aldo1: aldo1 {
+> >  				regulator-min-microvolt = <500000>;
+> >  				regulator-max-microvolt = <3400000>;
+> >  				regulator-boot-on;
+> > @@ -369,3 +369,22 @@ hub_3_0: hub@2 {
+> >  		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
+> >  	};
+> >  };
+> > +
+> > +&sdhci0 {
+> > +	pinctrl-names = "default", "state_uhs";
+> > +	pinctrl-0 = <&mmc1_cfg>;
+> > +	pinctrl-1 = <&mmc1_uhs_cfg>;
+> > +	bus-width = <4>;
+> > +	cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
+> > +	cd-inverted;
+> 
+> Thanks for this driver. Unfortunately, this is not correct for the 
+> Banana PI F3. The OrangePi RV2 buffers the signal from the SD card 
+> connector through a transistor, inverting the signal. On the Banana PI 
+> F3, the signal goes directly to the GPIO, and does not even have a 
+> pull-up.
+> 
+> With the following change, I have been able to get the patchset working 
+> as expected:
+> 
+> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+> index a7d480d01ccc0..72b0f75f936aa 100644
+> --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+> @@ -375,8 +375,7 @@ &sdhci0 {
+>  	pinctrl-0 = <&mmc1_cfg>;
+>  	pinctrl-1 = <&mmc1_uhs_cfg>;
+>  	bus-width = <4>;
+> -	cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
+> -	cd-inverted;
+> +	cd-gpios = <&gpio K1_GPIO(80) (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+Have to mention, to use the pull-up, the patch to support gpio config should be applied
+https://lore.kernel.org/r/20260312-k1-gpio-set-config-v1-0-8c3541da16b1@pigmoral.tech
 
-On Wed, Mar 18, 2026 at 09:30:06PM +0000, Lad, Prabhakar wrote:
-> Hi All,
->=20
-> On Mon, Jan 19, 2026 at 12:10=E2=80=AFAM Linus Walleij <linusw@kernel.org=
-> wrote:
-> >
-> > Hi Lad,
-> >
-> > I think this back-and-forth must be a bit stressful. Sorry about that.
-> >
-> > On Wed, Jan 14, 2026 at 9:53=E2=80=AFPM Lad, Prabhakar
-> > <prabhakar.csengg@gmail.com> wrote:
-> >
-> > > > > > > > +      renesas,drive-strength:
-> > > > > > > > +        description:
-> > > > > > > > +          Drive strength configuration value. Valid values=
- are 0 to 3, representing
-> > > > > > > > +          increasing drive strength from low, medium, high=
- and ultra high.
-> > > > > > >
-> >
-> > > I got the feedback from the HW team "The RZ/T2H drive strength
-> > > (driving ability) is expressed using abstract levels such as Low,
-> > > Middle, and High. These values do not correspond directly to specific
-> > > mA units.
-> >
-> > But they do correspond to *something* electrical inside the
-> > silicon do they not? Then what is that?
-> >
-> > I think it is just 1, 2, 3 or 4 driver stages.
-> >
-> > > To determine how much current the pin can actually drive,
-> > > the engineer must refer to the electrical characteristics table.
-> > > Therefore, the drive strength in RZ/T2H is a parameter that switches
-> > > the internal output transistor mode rather than directly representing
-> > > a physical drive current.
-> > >
-> > > Consequently, expressing RZ/T2H drive strength in milli- or
-> > > micro-amps, as suggested by the reviewer, is inappropriate. To
-> > > accurately reflect the SoC's hardware specification, introducing a
-> > > custom property is essential."
-> >
-> Sorry for the confusion , there was a miscommunication regarding the
-> specs, but it=E2=80=99s all been sorted out. The drive-strength settings =
-on
-> this chip are 2.5/5/9/11.8 mA, I will represent them using the
-> drive-strength-microamp DT property and send a new version.
+if you don't want to introduce the dependency, add "broken-cd" property
+should also workaround this..
+>  	no-mmc;
+>  	no-sdio;
+>  	disable-wp;
+> 
+> Regards
+> Aurelien
+> 
+> -- 
+> Aurelien Jarno                          GPG: 4096R/1DDD8C9B
+> aurelien@aurel32.net                     http://aurel32.net
 
-neat :)
-
---np5LBp3+k11Z84gj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabtTIQAKCRB4tDGHoIJi
-0ql1AP9ysMDTWQsOxxKKrwhxFbvCogLtOnFCUjA40DK4MCrEfAD/bI+m0QT7sICr
-Vh5vZn/KFYCxnY42LSsUvytzeXUBYQo=
-=BFsu
------END PGP SIGNATURE-----
-
---np5LBp3+k11Z84gj--
+-- 
+Yixun Lan (dlan)
 
