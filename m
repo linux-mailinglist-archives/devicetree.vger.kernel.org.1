@@ -1,225 +1,176 @@
-Return-Path: <devicetree+bounces-277828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277831-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kCQ8HscNvGkirwIAu9opvQ
-	(envelope-from <devicetree+bounces-277828-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:52:55 +0100
+	id mKG1Gg4PvGkirwIAu9opvQ
+	(envelope-from <devicetree+bounces-277831-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:58:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D809A2CD37D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:52:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C3CC2CD4BB
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:58:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 230D6319B064
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:50:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 66D7E302F24A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:56:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B86633D646B;
-	Thu, 19 Mar 2026 14:50:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 238F13DC4DF;
+	Thu, 19 Mar 2026 14:56:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZsDc08I0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OU+QOCS2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 394973D47C2
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 14:50:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9CD33CD8BD
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 14:56:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773931831; cv=none; b=hnVIBye14cDvwjkyrrFCGvup7r2ZahpY8I57pRoR7VGWVH97V2kq8Z2BHgfchbEHOCZO2Romr665UkGybINyC13fcMIV3rjcLTSaVn06QXazZCT0VmrPqzjMMi1jTLgZ3BQCIBEi4dvuUBo51dUjmiDXNtKc7nknKgv6YG4oJPE=
+	t=1773932185; cv=none; b=YP6Iboxsn8oG1/JBmjiF/tzYW5RsX3Cz8xm2qxBuFe8O++gUA0IKzZ1sd1MLvHjo39cXPbejOhvF6Lbds8BoqEd+2e4XES9PTuoZgDDkVtPffiz88eJPPWeWacMIZSFTbwdX2y9QxV5x2eMTPo4F8phZ0uYAf7+I3/OQVOFf6jc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773931831; c=relaxed/simple;
-	bh=V9Y/KiRKm0Q2nZOxq2gO5P5vBXdG9g7AHdjXOu3l5Ds=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=SqVGygOy32aFGiq45tQSLMvdYxsmZRmoXYY8T/BUW9gx/9ChwkTbq6w5l4Gs1yOrdSJdR9LZH5bYEmVvKnttmnfSwppaVre9yygAsn+q/GFC0C7m6iwGJD/J4SiH+CU5t4i/Ov9zl8/33ramM1abbUM++67gdcn2CmKkaHCYXNg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZsDc08I0; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4852f8ac7e9so8167925e9.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 07:50:29 -0700 (PDT)
+	s=arc-20240116; t=1773932185; c=relaxed/simple;
+	bh=gd7SCs27uyPu79nVL6/LCI+yIXMU2kzESBFAMZUgfLI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lTH8QT/upIwwBdvVUzrJuWDS9ZZPcp6TWgCwkrNkfGJqlnSBhg5Wf/odzpjwjP41+Rk/4xpawt5g0HUI3WzaqGzyITc2tMhOn8hrfn8D1F9RmcCsQzTbK+3hd0Ru8pRH3mxiJloLFNYWbnp96Na0bTBLbdz/OVB6nSVi4W1c25o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OU+QOCS2; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-38a3c2261ffso1171411fa.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 07:56:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773931828; x=1774536628; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1773932182; x=1774536982; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8e2Ktq5sJeaHDP/JJnHCRh3f+LsDBElFuTwB6/IOVF0=;
-        b=ZsDc08I0rFYb4K3Irvn55F6SxJjpMd/xDXJ11IrB0XYIU7ueMwm8jJuFoRfOv1xkLT
-         I6rcY8Z8EXCAhh0WxML4IsMfH7uZUD3BVA1ldhUhXG/ws88xXAPhGtZhW6LNc5HNbiZk
-         ZVJWFCcIGA2hv1ZRitiLOVPUzqfeegHwT6NSX8DS4tYtlN/CJRXE29XxITSfFmeOVa0c
-         +tlqD2AUbWdG0ddkbNYi4SO/Gb24Jy+JcMicGeoAuDydE6IrFuIEYhhufANTxrTVU5yr
-         9UDnhwu3UaG+Cx1JM4cUas1CvhrBiSmaPhGiimrpBzK00pY0s7LLO+Ih+MhNV4ERltdU
-         0kTA==
+        bh=nFE8LLUUKG9iTuvDaB93WvqlPoGXC9p6rn4PhnM6x18=;
+        b=OU+QOCS22gmyJtPUxAd2+gZZf8fRVP81YY929OBTR1/7TmKG+QnvpvK5vx0f7hA9hv
+         GOcXrJ3H02NqKoDfh6e6xKYCrvW75SSP6QfRJLtH62ZPwgDyzw2eoDg8ClOK4YW1P0Az
+         hR3gm/65Q4xp0NPKN8HhshunAgoC6d9xzd/3sCjCCEs49A3MzX3kDsHYnn8dbq6UltDs
+         HUTyZXPg2zMmLSGEM1+Esf4BaW89RTp6GcPgxM+GPSGAwVH9DkoOgUE5c5IunV75l0sr
+         mTJWFuE5jfd0+j+YJmQ+zIjztR7WK2TbLLa+CTPWMhpv2sDAvfpn4GycDJfs7j6kQvzQ
+         x/Vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773931828; x=1774536628;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=8e2Ktq5sJeaHDP/JJnHCRh3f+LsDBElFuTwB6/IOVF0=;
-        b=B5RaIB7m+pyQVKH+z/Bpmp7VRYbqzae4DR1qfyPiWgBhY3dpf6aDpBoOErrRyCe121
-         ED08UaftYlLr7ERl1tAxq2oV3iVFZwR/VvggIHYc6UXlBpBFPvE01b6KXFcy/McPRyM9
-         PbNu0XH8vm/7T7jLvHLQDiiTIdDUb90s7eQyPjrF9X5vEIFayroR7znQWcQkzYYTT5VJ
-         Z36590uae/9CrQXINXdfxzXx11r22cO0sPa82tsdIz3MZnmfKDECWJuSrV+oZZi6taSN
-         VM56m15eAl0SM025vE3z2vjcY9mWmar1lQhBer2Y7PzmCM/BBwFieXelZwbBvocUpj/D
-         w2vQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXwhLGsRAu4m+yCUbsQiYlsifV/7hVdsA+B+H52vRChmh6QAj6AilykoxwVGifnuwZvToaswbqXuHdK@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUjsAgx5R6q1bWAe0XqQmp4HZPhdBBgJl93rtcjcgKzEsKfXOB
-	qMpwCvD6Dhuh9fSN9PV4XsKWRU9UnTsmTbWIONRBO5iGZ20mGvygNx8j
-X-Gm-Gg: ATEYQzx52i0FZMkdD5H8vcUk7EIArV0RDzVY/kqgO4rKxSeSqN2wswx62i2C33wKPPm
-	m50e9DVDzFRlfIIGtcBTAC+Maa8cfAYYD1GpBIo4vtLihNH3O4aNXO4D3Cy3yO8gxCW/fUvWOaI
-	YHiPpaZ1FPwogXdaG9g708SnCOe/1WUcZm2TLaZZ2tQ7JRgJzXDCBy9c6DPokZOkEtmAiw2lxQG
-	mRy5uz4DxgG9Zj7jd6wU4EeI1C2OVQUybNCEfuRUg5UAPp/ASt9TjJPiFDpMRqFb5v9O8Qspx52
-	sHM6YqbkQstpjnnNzsy2CuALRw3feLVj+c7vxOKBlpTdhRYtHUUsp0b2gYy3kuCj0YelouNZp5u
-	UYCLv9cvd54hF45kB96TKXbl6FPVBkMm9J5Y/23Z8QBg0RNBebaqM6XVVbOwasn973UCIg7Emmu
-	oZq9iLIyy+zBOsQC66/Pxy5V6iqln4VJbsJzblEQ==
-X-Received: by 2002:a05:600c:c491:b0:486:d76c:fa57 with SMTP id 5b1f17b1804b1-486f4469363mr125436735e9.17.1773931828190;
-        Thu, 19 Mar 2026 07:50:28 -0700 (PDT)
-Received: from debian.levillagebyca.com ([213.152.28.84])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486f8c351f8sm66819755e9.6.2026.03.19.07.50.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Mar 2026 07:50:27 -0700 (PDT)
-From: MidG971 <midgy971@gmail.com>
-To: linux-rockchip@lists.infradead.org
-Cc: shawn.lin@rock-chips.com,
-	heiko@sntech.de,
-	jonas@kwiboo.se,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	MidG971 <midgy971@gmail.com>
-Subject: [PATCH v4] arm64: dts: rockchip: rock-3b: Model PI6C20100 as
- gated-fixed-clock
-Date: Thu, 19 Mar 2026 15:51:20 +0100
-Message-Id: <20260319145120.99833-1-midgy971@gmail.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20260304132957.684616-1-midgy971@gmail.com>
-References: <20260304132957.684616-1-midgy971@gmail.com>
+        d=1e100.net; s=20251104; t=1773932182; x=1774536982;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nFE8LLUUKG9iTuvDaB93WvqlPoGXC9p6rn4PhnM6x18=;
+        b=Y75FoC06VuE/kGaZC143MW18ssmi7AzSPXW1CdvYzfSxWQWcB4WwvYQz+veZkyBGxm
+         oI6Rhr59677Y2UskMN+0WtUqwWZvvqFdS6iTV3j44o/qKZ/dbFHlfX8vZxYREmtuT3PO
+         nFsRuBYu1ZsUDGbmdgg76TFgaxvaACEVf9HuNhP3vFI7bgp3HdfrE4TRp0uyHTUbaEbT
+         kniJjKZheJBvQTeM8VaJHqtoTHGnmnwrYtGSTejI79ZRiogM8qzJXkGS26tGAtrw84fC
+         RgdubZSadjd9GmvHin520a/DWfAR04Z/4aO0YRi2g1xY8urxooYHrOq8pn8rvE0f3Osy
+         avFA==
+X-Forwarded-Encrypted: i=1; AJvYcCVyhQOS77Dv1hqqLiLt7LbmpYzWgGgw55J4CFpoMyFIz4nFBp8gZUakq2q4Fx24ZFUV9I2YDXUb/po5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmgpRVHIX0v0e7NmXkHRekWFryrZwNb49JgungX4fZCdaBv53Q
+	Y104syisi7KVAO3aRTxGZCnrgA388h46NJSVs3CX71oS107ZRH/CGN3ZRKDKSx8D0+g=
+X-Gm-Gg: ATEYQzxu0J9zzUPkKSnUeFCLK714y17mr1R/LKh3vgx55ir8/N8djdNbtMixe6MoCQq
+	Dmy92w9HBS9CooBCguE/FDkvmx7i/HYPKLvb16O1iBhyiThgLemZl2e643Pug40NCCXn3Hu2bCq
+	k0A3H8BMKUHof4F2aS+ezekixjAHfyVeaL/XxEmW6fCTt1Yikzv1s4//oSE7OCFz0tq4CPxmKMr
+	JQoQAofjP0hkZo1hopNR0J0cKhRWjYCmGAjn1R/UDBFRE9Cm6ddsRH/KlEmQepFhMNfA8qYd6eV
+	x2xuKttNF6h435D+c/j66v8fnOY/hgXU5knSQR1++Lh0emMAAHZyleMi+LusT8JMq97IhTlBvv1
+	YlJrU/sWFDXatkDZuh5x8gpZWzFI/KqUoZdtAZIeHNiCiqclQR/X2J6POMsnQqhB2cF6+PXPtbY
+	FuWPwA7HRhIZO2AkMFgP6l9J1AMpVe0QV9M/d3HhJOF7EChZTbHY8p7NXnEHOEVyvXT764mrDpN
+	Lwc6g==
+X-Received: by 2002:a05:6512:3b82:b0:5a2:7c19:414f with SMTP id 2adb3069b0e04-5a27c1941bfmr1196514e87.3.1773932181770;
+        Thu, 19 Mar 2026 07:56:21 -0700 (PDT)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a279c2be56sm1230577e87.19.2026.03.19.07.56.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Mar 2026 07:56:21 -0700 (PDT)
+Message-ID: <d6616fc0-75fb-47e2-96cd-ae81fa1a8e82@linaro.org>
+Date: Thu, 19 Mar 2026 16:56:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] phy: qcom-mipi-csi2: Add a CSI2 MIPI DPHY driver
+To: Bryan O'Donoghue <bod@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260315-x1e-csi2-phy-v4-0-90c09203888d@linaro.org>
+ <20260315-x1e-csi2-phy-v4-2-90c09203888d@linaro.org>
+ <3f11de22-b729-4d06-b6c8-18e649e1979c@linaro.org>
+ <80ddc2b4-d6f8-4e8d-a45e-69c05d100aa2@linaro.org>
+ <16b10f17-ecd3-4cdd-ac3f-f64127d60ace@linaro.org>
+ <ulenfus552ggobis4gmi7eh27tikdaxbgm2oj63b5l2vemlfxc@ib5f2xaqurj6>
+ <26XTdUyQTB41Oc4D5HnMtSm_QpZRjlkljQRJVw-u1Zp3Ltn9s4LVU-LQkP6drdl3Z3GGssLCCbsVYPFEqssHcQ==@protonmail.internalid>
+ <65e06b2e-eeb9-45af-97ac-4ae60f652361@linaro.org>
+ <9578400d-30ac-4d8c-9295-ee4ec8af3b2c@kernel.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <9578400d-30ac-4d8c-9295-ee4ec8af3b2c@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,kwiboo.se,lists.infradead.org,vger.kernel.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-277828-lists,devicetree=lfdr.de];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277831-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[midgy971@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	NEURAL_HAM(-0.00)[-0.912];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D809A2CD37D
+	NEURAL_HAM(-0.00)[-0.994];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0C3CC2CD4BB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Radxa ROCK 3B uses a PI6C20100 PCIe reference clock buffer to=0D
-provide a 100MHz reference clock to the PCIe 3.0 PHY and controllers.=0D
-This chip is currently modeled only as a fixed regulator=0D
-(vcc3v3_pi6c_03), with no clock output representation.=0D
-=0D
-The PI6C20100 is a clock generator, not a power supply. Model it=0D
-properly as a gated-fixed-clock, following the pattern established=0D
-for the Rock 5 ITX and other boards with similar PCIe clock buffer=0D
-chips.=0D
-=0D
-The regulator node is kept as-is since it controls the power supply=0D
-to the PI6C20100 chip via GPIO0_D4. The new gated-fixed-clock node=0D
-references this regulator as its vdd-supply and provides a proper=0D
-100MHz clock output. The pcie3x2 node is updated to include the=0D
-pipe and reference clocks, matching the approach used in=0D
-rk3588-rock-5-itx.dts.=0D
-=0D
-Assisted-by: Claude:claude-3-opus=0D
-Reviewed-by: Shawn Lin <shawn.lin@rock-chips.com>=0D
-Signed-off-by: Midgy BALON <midgy971@gmail.com>=0D
----=0D
-=0D
-Changes since v3 [1]:=0D
- - Add Reviewed-by from Shawn Lin=0D
-=0D
-Changes since v2 [2]:=0D
- - Fix AI attribution: use Assisted-by tag instead of Signed-off-by (Shawn)=
-=0D
- - Add missing pipe clock (CLK_PCIE30X2_PIPE_DFT) to pcie3x2 clocks=0D
-   override (Shawn, referencing David's patch [3])=0D
-=0D
-Changes since v1 [4]:=0D
- - Drop phy-supply approach entirely (Jonas, Shawn)=0D
- - Model PI6C20100 as gated-fixed-clock instead=0D
- - Wire reference clock to pcie3x2 controller=0D
- - Follow pattern from rk3588-rock-5-itx.dts=0D
-=0D
-[1] https://lore.kernel.org/linux-rockchip/20260304132957.684616-1-midgy971=
-@gmail.com/=0D
-[2] https://lore.kernel.org/linux-rockchip/20260304132957.684616-1-midgy971=
-@gmail.com/=0D
-[3] https://lore.kernel.org/linux-rockchip/d981fa84-bd05-ac9d-98ca-89ee4717=
-7829@rock-chips.com/T/#m6a8289609e6a60691d3c06358b6322c7aa5e43d1=0D
-[4] https://lore.kernel.org/linux-rockchip/20260213151452.535527-1-midgy971=
-@gmail.com/=0D
-=0D
- arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 21 ++++++++++++++++++++-=
-=0D
- 1 file changed, 20 insertions(+), 1 deletion(-)=0D
-=0D
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/arm64/b=
-oot/dts/rockchip/rk3568-rock-3b.dts=0D
-index c5f67dd6dfd9..1a2b3c4d5e6f 100644=0D
---- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts=0D
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts=0D
-@@ -56,7 +56,16 @@=0D
- 		};=0D
- 	};=0D
-=0D
--	/* pi6c pcie clock generator */=0D
-+	/* PI6C20100 PCIe reference clock buffer (100MHz) */=0D
-+	pcie30_refclk: pcie-clock-generator {=0D
-+		compatible =3D "gated-fixed-clock";=0D
-+		#clock-cells =3D <0>;=0D
-+		clock-frequency =3D <100000000>;=0D
-+		clock-output-names =3D "pcie30_refclk";=0D
-+		vdd-supply =3D <&vcc3v3_pi6c_03>;=0D
-+	};=0D
-+=0D
-+	/* PI6C20100 power supply - active-high GPIO0_D4 */=0D
- 	vcc3v3_pi6c_03: regulator-3v3-vcc-pi6c-03 {=0D
- 		compatible =3D "regulator-fixed";=0D
- 		enable-active-high;=0D
-@@ -553,6 +562,15 @@=0D
- };=0D
-=0D
- &pcie3x2 {=0D
-+	clocks =3D <&cru ACLK_PCIE30X2_MST>, <&cru ACLK_PCIE30X2_SLV>,=0D
-+		 <&cru ACLK_PCIE30X2_DBI>, <&cru PCLK_PCIE30X2>,=0D
-+		 <&cru CLK_PCIE30X2_AUX_NDFT>,=0D
-+		 <&cru CLK_PCIE30X2_PIPE_DFT>,=0D
-+		 <&pcie30_refclk>;=0D
-+	clock-names =3D "aclk_mst", "aclk_slv",=0D
-+		      "aclk_dbi", "pclk", "aux",=0D
-+		      "pipe", "ref";=0D
- 	pinctrl-names =3D "default";=0D
- 	pinctrl-0 =3D <&pcie30x2m1_pins>;=0D
- 	reset-gpios =3D <&gpio2 RK_PD6 GPIO_ACTIVE_HIGH>;=0D
---=0D
-2.39.5=0D
-=0D
+On 3/19/26 15:17, Bryan O'Donoghue wrote:
+> On 19/03/2026 13:08, Vladimir Zapolskiy wrote:
+>>> Why do you want a media driver? Isn't PHY driver enough?
+>>>
+>> As for today CAMSS CSIPHY are already media devices, and a user applies media
+>> specific properties to them, for instance media bus format, resolution etc.
+>> Technically this might be removed from CAMSS, but if so, then it should be
+>> done before this new PHY driver model is applied.
+>>
+>> --
+>> Best wishes,
+> 
+> There's no reason to remove that from CAMSS - it would be an ABI break
+> in user-space anyway.
+
+If technically CAMSS CSIPHY could be excluded from the list of CAMSS media
+subdevices, then for the sake of simplification it should be done for all
+supported platforms in advance, such a change will be independent from this
+particular phy series, and vice versa, this CAMSS only driver change will
+prepare a ground for media-less CAMSS CSIPHY device drivers, hence it shall
+precede this particular CAMSS CSIPHY series.
+
+For backward compatibility with userspace a noop stub will be good enough,
+it's not an issue at all.
+
+> The media entity in CAMSS msm_csiphyX handles format negotiation and
+> pipeline routing. The PHY driver handles electrical configuration. They
+> don't conflict and there multiple cited examples of this upstream already.
+> 
+
+-- 
+Best wishes,
+Vladimir
 
