@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-277626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277628-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +DsRFYe6u2mtmwIAu9opvQ
-	(envelope-from <devicetree+bounces-277626-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:57:43 +0100
+	id iHW5FrS6u2mtmwIAu9opvQ
+	(envelope-from <devicetree+bounces-277628-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:58:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDC822C82C3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:57:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B46872C8300
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:58:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3CEC23137C65
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 08:55:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EC7D931B4E50
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 08:55:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8980C3AE6EB;
-	Thu, 19 Mar 2026 08:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B5E3AF66C;
+	Thu, 19 Mar 2026 08:55:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="4E40rKP5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="akZdPIUn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F6BC2C0F69
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 08:55:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65F713AEF2D
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 08:55:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773910513; cv=none; b=Vwau5eOVtiO0qTnwcl8A/YwbLtGtFHUEO43gdpbCINMOOv9QPDonR/I9oI7C6ZdDFXVh4amHJZZQq1l50ul8/0y2Lq+mpo/Zfxa00WE2RfY5wcf1sH1I1lBXkvscp8k6EDlOxdHx/xeL8Seujq3BvxjxV1qaOXsRpX6OWNaUwFY=
+	t=1773910517; cv=none; b=esmOkU2jrXW6T0SGDNIYeQWRvxRGw3DdSyYmfXrz35WkuxgKt3d9/bWMa4Za/XlKiPw6rpZsDuq4maihvQQdUBre17BUPhbJlfhFfDv2KASw0XLHBDidmClF8Hpc1uw0Tq9gHMQzS9IF5+mGfJBrNfcRvFBtn7bXJKWUob4sJ8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773910513; c=relaxed/simple;
-	bh=IzA7DVYs76tgOv9WJWrIsFdXTl5V2IRyQcUpczSkiBE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=UWt9bdSrYWdfkGyqjcyelS9QfzObEh0EaV7lXkcfXh8GA4q/3otrlEpsFAUDgngAsl3idoRTod+eDxbQ8EfK4f0ehfPodjYKfxX2JiI0r70E4Y6rNBA9rml9g8Y+S1WM9pU5J2rO12mCq7Ke97ZWXluTOvggOB/Shzt6UlQn6XQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=4E40rKP5; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-b9813eed77eso74666166b.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 01:55:10 -0700 (PDT)
+	s=arc-20240116; t=1773910517; c=relaxed/simple;
+	bh=zrw23kbaB6w9Tx36goqR08XFMojlC5+6mg4vLV+ld8M=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=e1h6VzJ9o682Ts6Bt5E2q3D7EFA6Dk13rto6lAwU44TIiziXrdZKMSKAqmyamW06nimdbMkH3vaICLzCwiGYC1DIxgE0T8JfZhOtiJzeNsy9F06mmq5qrdejZw2fE/iGAmBCMUQA5kcevpvnxnhHhjIZWIiepXpHxwFbr96i3m0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=akZdPIUn; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-439c9bdc1eeso422603f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 01:55:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1773910509; x=1774515309; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=BHtIJcQ4yOLtdh3EcNfW3X1czpv1TxdBE8D7th0R/gQ=;
-        b=4E40rKP561ZGR08+kjOzLmw92B4RAvzpjP0wmeib/6YuKDtmDfR2pUvBTi8q0459ro
-         qV55hl03EWp0HWPt8m3PpzEYAq6eP1F/zzmkXwLtl4pG+/mdjaqDPUeUI1SwyjPQ8naR
-         1xQ16WFrHIKXXrTodK1RnVApuEw4Eh7aT+H+xVOuRmVlyC9dx1Syq/foPYPUWBT05yBN
-         H/I9ynFC+raXKdfYsEiZWpZN+nb2TDpE3wGvenC6QtpHnXETsomMCqOaMqkYVDCWzCvw
-         19PpyQCjbg8pxk/ko4eyue1sRoX9IXsBwt52utndRtoIoTWBV0DtIGj8gXMHuXGLZ4J6
-         hfGQ==
+        d=linaro.org; s=google; t=1773910513; x=1774515313; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=g2aJhnD/vRwXSeh3Fhk/ZXgYYRMhSjsCNQv0oxpRs+s=;
+        b=akZdPIUnHy2Bpu0VmBS89IRTh+tGrmxEp7YSD5pMx6k6Q0M7cwIawhE1dUnVfzuBZL
+         Bydk+pmdfnpAHmZOifBJxBArZG2RjTrs1oVOPUnYIyw2S7M8GEodGz800WDaQSNnYPsE
+         utHN2D+D6ybg0Nu7PdSgfP9zVeskmHXr6KmcKln7Mf6EnT6eIZMcPLTPeJvvNa1Ekc5q
+         u294kHDen4HGTcv7ujHvECi4OirHLBN+YngZlY73x8FEJ3YiGT93JbNcJCkkq7ZAS6W/
+         z/khAcM8I8zsbhQDXgEql6Lix9w6GgiD947qjdk3NJ8MXqNE0p1ibyZKcPGRewTNLCk+
+         llZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773910509; x=1774515309;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20251104; t=1773910513; x=1774515313;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=BHtIJcQ4yOLtdh3EcNfW3X1czpv1TxdBE8D7th0R/gQ=;
-        b=RZQPrtQ+/bJbBAQAGh4FVQ6KqXP7E3AHf9mVgCirrc7hg4fWVGW6ahL/8bLLrubhC0
-         n2Q7mXfGW1K4jRi9++1LiCWVxprnA+OFZ0b2PaTbJquG9bmZn5PDhX+yJ/pZCjhATCF+
-         a18thNJ3JoLoL50Hj6SY1Y6X6h1Itr307KxO26u2F2pU9Qh2IT4CELjdlnbkHgWd7hJD
-         tSN9lVuOiD49CEQ8v+9EUjikvd0DWTkxn7b3pYh6C217WrR7yeEgjjacviliPZAxBdoe
-         0yy4/z3QRDFsdv92Rj0BA635mnvKEX7KNuFmKzJRRFWlEg1gMy4j7oAa1ENLZ/ib97FK
-         606A==
-X-Forwarded-Encrypted: i=1; AJvYcCVLHMcgY+oZEP3+P+a20RZ5nzDSxv/SPlopdH9eHZ98YQdWzmaxHTzIEKdcQRL2UaNFvuUEoBQqwHJn@vger.kernel.org
-X-Gm-Message-State: AOJu0YytKZFOfCV4cFs98KgkHMwunsFfaQ+jNk05PVHSRQJESZ/jgQB4
-	Jxb6OB9fom1L8/oQtHTC0Rbo6GKYP7iOMXS2s84L6bhN56THFTJHY7hzhCp3jJPAOFw=
-X-Gm-Gg: ATEYQzyTTLqgZZs6XV4NQMkyxT8ghidLgGBhtKcDB3jlgxFLUEoLqptIrMNgK/aRLYR
-	CGZJx36DYT40u3TWwD8diMKzHSMxpodp+MIXA630DkDAg+Q7ADTcdq1j8GAlPTp2o4hSn+0tDdT
-	mCIfzlwsnM7sZNyJckokQ4MzD13x44ndVVAQPtbd38loQFntHZ1QK/JGtwkJ2y9Wpgg5MSOXPLP
-	8La+PcOVWUow6ziRqv+EKeMWn2HI0So+vrPEoqdqEQu81r1tJDgLOe9y+gi0Fgzj7PKofKZuriK
-	K1Hw8r/duitxaQ5JaZ4Px7Xp1iEE95kUfJwWGnSJjDr/BonKslxBfGIckxNVbC5dMo4Qy+cM28K
-	P/XUITFDDwCNiW7gCs4yfSoGRrQGoG0cAJRomTrrsa7agNI4oBYJBbYk0izONEYVK3OchNsXL8m
-	HPhDaU4X/cHxxGJhjaumBV/vsQYklkAvwt4SfuHVlwsdExRbxrRNwDoNI/qVKa2rCe36eKrpoJ4
-	qPAcnf7Y6tSecKN
-X-Received: by 2002:a17:907:a0e:b0:b97:f28c:fea6 with SMTP id a640c23a62f3a-b97f486677amr382865166b.8.1773910508797;
-        Thu, 19 Mar 2026 01:55:08 -0700 (PDT)
-Received: from [172.16.220.101] (144-178-202-139.static.ef-service.nl. [144.178.202.139])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b97f16d7ddfsm409472566b.44.2026.03.19.01.55.07
+        bh=g2aJhnD/vRwXSeh3Fhk/ZXgYYRMhSjsCNQv0oxpRs+s=;
+        b=eo5pSxDNXvYecmQlJFeXO76Pa99F9fUCo1dbTyQHs5EZEy+m+KPVOLW2ZOqVebAJY4
+         q5DNA849pcw0j283B8Uw4QyOgqpjuoCDL5M6aY9Ohov9Ec7M+BemSZAlYPim6hKvUKrg
+         VCUgvu4dC1Jvz8oV/rtzlcNI9Nj7g/6r13Gi3dD4wth4PL3yAiJuj39tat50ArDqN9W5
+         +64Yanrnh4lBqpmLMFJmIRXkxM+jv70BirRys7xA0fE7Iphv7F9Dn4c055ZUcUBlUV8m
+         45zu50khO6adaZnbxsD0uH0w5CjFmpFUCAc6V8jvBRo5S1r5L8p4rV50/R6XJ8ZbGBDn
+         FOng==
+X-Forwarded-Encrypted: i=1; AJvYcCVUxEwH321Nc0XGRVO7lbQgkAYi4vpS5xMYr58rVzX+UFND+SI1KgwRWQEcd4Yzd0RSwiCvQZ1oIO6u@vger.kernel.org
+X-Gm-Message-State: AOJu0YybvugddBX7DjFA8b7H7Oz7Wr915bAnPfPdd/lcdRWqBmD8et3t
+	CYpvCn462WsUU/yjVeEo8hmv+AgvVZKprqt4mfo7WIYkhPYHP2d/HaIFTlQmul3Kfbg=
+X-Gm-Gg: ATEYQzzBKvuZ7qgCAGfzB5bNMrPxZgK108lQ6SSDAh0kakNDRHgNNcWuZJzft6xd+O1
+	9c1OIYGoNglrUAQA+dBaEZd7oHSZTXyxo3w54HEjFsfVIzZValdmkE6zr1r1KJQM0KvlsHYCrkf
+	vPIzUpXYD7yT5WklHFYFYXSH4wDpfAoTSawWxEnBqW2gD7hoH9NpWmO2PJDKedByoEsKnZOtniL
+	OJemuHBXqATxxBAcOCLyT4Smq7FSOoc4lzsefDGDeFgDY8ZKu7mZPZRIGblL6a2+OvCOBn9yU/T
+	xbFht6qQDQlMqXVeApZGBJRYe/ompxWf6vcKQ3EAJxD4Y9IGly+2/Ec/STX5z6NNrTEh0N3bUKp
+	OuEragYhok6jhDN62qdemk7c5aaIdcoJRA7KTXIKru86H+4/w3nAv6IGpG3ELTNmbO1GNDboLwM
+	xwIdhSfNJwURj7iVi808JgXRBK8aOMzFsbBTkslpBk//U3
+X-Received: by 2002:a05:6000:40cb:b0:43b:4f97:9608 with SMTP id ffacd0b85a97d-43b527a7368mr11451596f8f.14.1773910512637;
+        Thu, 19 Mar 2026 01:55:12 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b518588a0sm23072267f8f.16.2026.03.19.01.55.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Mar 2026 01:55:08 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Thu, 19 Mar 2026 09:55:00 +0100
-Subject: [PATCH] arm64: dts: qcom: sm7225-fairphone-fp4: Fix conflicting
- bias pinctrl
+        Thu, 19 Mar 2026 01:55:12 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v6 0/5] arm64: dts: qcom: Add support for the Ayaneo Pocket
+ S2
+Date: Thu, 19 Mar 2026 09:55:06 +0100
+Message-Id: <20260319-topic-sm8650-ayaneo-pocket-s2-base-v6-0-797bf96df771@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,111 +87,162 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260319-fp4-uart1-fix-v1-1-f6b3fedef583@fairphone.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x2MQQqAMAzAviI9W9jmEOpXxINop73o6FSEsb87P
- CaQZEiswgmGJoPyI0nOo4JtG1j2+dgYZa0MzrjedJYwRI/3rJfFIC9S4I6MI++JoDZRuer/N06
- lfFnpZ2NfAAAA
-X-Change-ID: 20260319-fp4-uart1-fix-9fe390294499
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>, 
- Luca Weiss <luca.weiss@fairphone.com>
+X-B4-Tracking: v=1; b=H4sIAOq5u2kC/5XOTW7DIBCG4atErEvFgAfjrnqPqgt+hgS1NRZYV
+ qPIdy/Jpq68cZfvLJ5vbqxSSVTZy+nGCi2ppjy20E8n5i92PBNPoTWTQmoBEvicp+R5/TIaBbd
+ XO1LmU/YfNPMqubOVuECvOkMxGB1Yg6ZCMX0/Rt7eW19SnXO5PjYXuF//xS/ABXdOxQEjeGHw9
+ TONtuTnXM7s7i9ya/aHTNlMj0geHAbj4s5Uv6YU+pCpmomuHzwGDVaondltTDhmds00Qnoj+wE
+ 7BTsTN6YUh0xsJtjQHrUWKNo/5rquP3vSoaolAgAA
+X-Change-ID: 20260121-topic-sm8650-ayaneo-pocket-s2-base-05c348efd86d
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, Bartosz Golaszewski <brgl@kernel.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ KancyJoe <kancy2333@outlook.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773910507; l=1651;
- i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=IzA7DVYs76tgOv9WJWrIsFdXTl5V2IRyQcUpczSkiBE=;
- b=2S1wO6Nl6QAu+Y/oouP1Cgz4PwvApvauSatoiG+hngdXSOZLwdj3C8wvO3LwpUYBu/LBkWGhx
- eQ54Cx0biQRAQo921yxM/935gTwwW2HWLuIN7Ad0iPSXUOJaOfqHfwx
-X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
- pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3500;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=zrw23kbaB6w9Tx36goqR08XFMojlC5+6mg4vLV+ld8M=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBpu7nsszJs/FqL3KMrYDOOOifv9EJW3hrIP7kVI0ui
+ uHuA9oyJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCabu57AAKCRB33NvayMhJ0WoYD/
+ 9MFI3MCQ8UwJfOb/HO9DZgqVoTf0uRjzlLchxD1CyAp9CUoDyxcavBJ/57z0HqE4ACNfK7ebavrOlX
+ 4556xHWTIMurKfERPtQ8d9CEeAvE8aYRSwlKDmH2Nr0fvII7822w1SsAG+Eq3AXA8xc82iYEPjYqDB
+ 0wuWK8wYK2LKeYpbr/m+foyYoyOT89Sn9Kaq4GDumRVEAc7URBD3qL7xfDr+V0SWgWExwM+BP8Gr5a
+ Y35rzHBVeg5ByZFtOxl8RiGnHv3RQuvRkNcSHAaN/rTjmbRSBQyHndaddbLHMfZs9z9J5v2UvD84qK
+ z51CuHMtckrfBt/mp4633LbJSnUU6wIEEkU3cI08HjsEErOy4v0oQkzsYRRQ+kjHskM3mSQFvC4Ipr
+ cfW03ElcQqwrUo1KT5TH21WDstsCtWI82Wuz0R+fi9Lr3BBn8N9xAJsNgSbg+RCX3m2dAAR6ETxJ9H
+ E3bf6QXK2FN/svBw7lL8oeZvcE0WNWv/UjzGeLx6Y31/X0vNeIIBmJ2Ke0vWwJ2OA46/8Drm0fIs9O
+ xlKC32YG8wJzqGB7X3IjEaaqUPDzNt117bJBpIU7axXSbLHnfacXMKCI7vz0e6emAyR5UbiH0EjsYj
+ XOfsUiCI/XivfXokXW9DD+wd1qSN4W3Maoj7hZEs2TkpNB84PCncSfuxDf/A==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277626-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[fairphone.com:+];
+	TAGGED_FROM(0.00)[bounces-277628-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[linuxfoundation.org,kernel.org,glider.be,gmail.com,google.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,linaro.org,oss.qualcomm.com,outlook.com];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	NEURAL_HAM(-0.00)[-0.992];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,fairphone.com:dkim,fairphone.com:email,fairphone.com:mid]
-X-Rspamd-Queue-Id: CDC822C82C3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:email,linaro.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ayaneo.com:url]
+X-Rspamd-Queue-Id: B46872C8300
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The pinctrl nodes from sm6350.dtsi already contain a bias-* property, so
-that needs to be deleted, otherwise the dtb will contain two conflicting
-bias-* properties.
+The Ayaneo Pocket S2 is a gaming console based on the Qualcomm
+Snapdragon 8 Gen 3. It has an internal UFS storage, WiFi,
+Bluetooth, gaming buttons, SDCard, 2K display and USB-C
+connector.
 
-Reported-by: Conor Dooley <conor@kernel.org>
-Closes: https://lore.kernel.org/r/20260310-maritime-silly-05e7b7e03aa6@spud/
-Fixes: c4ef464b24c5 ("arm64: dts: qcom: sm7225-fairphone-fp4: Add Bluetooth")
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+Product Page [1].
+
+The Initial linux port was done by KancyJoe (Sunflower2333)
+at [2].
+
+The UPD720201 binding patch has been sent separately in [3]
+and is ready to be merged. The pci/pwrctrl changes were merged
+in the pci tree.
+
+[1] https://www.ayaneo.com/goods/9344082149621
+[2] https://github.com/sunflower2333/linux/tree/master
+[3] https://lore.kernel.org/all/20260319-topic-sm8650-ayaneo-pocket-s2-upd-bindings-v1-1-84e4ef564022@linaro.org/
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+Changes in v6:
+- Added the review tags
+- Dropped all the pci/pwrctrl applied patches
+- Sent the UPD720201 bindings in a separate patch
+- Link to v5: https://patch.msgid.link/20260220-topic-sm8650-ayaneo-pocket-s2-base-v5-0-1ad79caa1efa@linaro.org
 
-diff --git a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-index a3c2b26736f4..3964aae47fd4 100644
---- a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-+++ b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-@@ -1019,12 +1019,14 @@ &qup_uart1_cts {
- 	 * the Bluetooth module drives the pin in either
- 	 * direction or leaves the pin fully unpowered.
- 	 */
-+	/delete-property/ bias-disable;
- 	bias-bus-hold;
- };
- 
- &qup_uart1_rts {
- 	/* We'll drive RTS, so no pull */
- 	drive-strength = <2>;
-+	/delete-property/ bias-pull-down;
- 	bias-disable;
- };
- 
-@@ -1035,12 +1037,14 @@ &qup_uart1_rx {
- 	 * in tri-state (module powered off or not driving the
- 	 * signal yet).
- 	 */
-+	/delete-property/ bias-disable;
- 	bias-pull-up;
- };
- 
- &qup_uart1_tx {
- 	/* We'll drive TX, so no pull */
- 	drive-strength = <2>;
-+	/delete-property/ bias-pull-up;
- 	bias-disable;
- };
- 
+Changes in v5:
+- Rebased on -next
+- Collected tags
+- Rebased/renamed slot to generic based on changes from Bjorn
+- Link to v4: https://patch.msgid.link/20260216-topic-sm8650-ayaneo-pocket-s2-base-v4-0-802c82795431@linaro.org
+
+Changes in v4:
+- Renamed slot to generic, in the code as well, fixed Kconfig & commit message
+- Switched the UPD72020x bindings additionalProperties to true to allow devices subnodes
+- Collected acks
+- Link to v3: https://patch.msgid.link/20260206-topic-sm8650-ayaneo-pocket-s2-base-v3-0-5b79c5d61a03@linaro.org
+
+Changes in v3:
+- Made renesas,upd720201-pci bindings supplies required
+- Fixed description and example of renesas,upd720201-pci bindings
+- Renamed slot to generic, added renesas,upd720201-pci entry
+- Used PMIC_GPIO_STRENGTH_LOW instead of numbers
+- Removed all output-low in pinconf
+- Link to v2: https://patch.msgid.link/20260127-topic-sm8650-ayaneo-pocket-s2-base-v2-0-c55ec1b5d8bf@linaro.org
+
+Changes in v2:
+- Add proper regulators for the USB controller, with bindings & power ctrl
+- Add proper regulators for FAN
+- Dropped support for headset over USB-C, audio is connected to a jack port
+- Cleaned up Audio routing and fixed the DP endpoint index
+- Added i2c clk frequencies
+- Renamed fan node and used interrupts-extended
+- Dropped the usb-c self-powered
+- Reordered nodes alphabetically
+- Renamed pcieport1 to pcie1_port0
+- Link to v1: https://patch.msgid.link/20260121-topic-sm8650-ayaneo-pocket-s2-base-v1-0-bb3f95f1c085@linaro.org
 
 ---
-base-commit: de79886ae0ce739608514f6b1ae91c14c6a9e600
-change-id: 20260319-fp4-uart1-fix-9fe390294499
+KancyJoe (1):
+      arm64: dts: qcom: add basic devicetree for Ayaneo Pocket S2 gaming console
+
+Neil Armstrong (4):
+      arm64: defconfig: enable pci-pwrctrl-generic as module
+      dt-binding: vendor-prefixes: document the Ayaneo brand
+      dt-bindings: arm: qcom: document the Ayaneo Pocket S2
+      arm64: dts: qcom: sm8650: Add sound DAI prefix for DP
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    1 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |    2 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ .../boot/dts/qcom/sm8650-ayaneo-pocket-s2.dts      | 1551 ++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8650.dtsi               |   47 +-
+ arch/arm64/configs/defconfig                       |    1 +
+ 6 files changed, 1580 insertions(+), 23 deletions(-)
+---
+base-commit: 8e42d2514a7e8eb8d740d0ba82339dd6c0b6463f
+change-id: 20260121-topic-sm8650-ayaneo-pocket-s2-base-05c348efd86d
 
 Best regards,
 -- 
-Luca Weiss <luca.weiss@fairphone.com>
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
