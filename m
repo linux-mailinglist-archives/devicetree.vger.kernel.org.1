@@ -1,202 +1,181 @@
-Return-Path: <devicetree+bounces-277805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277806-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QA09IMwCvGmurAIAu9opvQ
-	(envelope-from <devicetree+bounces-277805-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:06:04 +0100
+	id sDvKNTADvGmurAIAu9opvQ
+	(envelope-from <devicetree+bounces-277806-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:07:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5E532CC5FB
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:06:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B04242CC675
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:07:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 89BD9303EB97
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:05:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3D862301706E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:07:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7E49307AF2;
-	Thu, 19 Mar 2026 14:05:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zOQ2VIIK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4708F303A01;
+	Thu, 19 Mar 2026 14:07:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 087CD3033E8
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 14:05:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FF0C2C21C1;
+	Thu, 19 Mar 2026 14:07:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773929113; cv=none; b=ENeMHch2GtMMUrKNNDvSWsFTYci+1JhciNE3cSPRIPd8vYHmFO8k2eK4gm+XLpGVnEIeqvGkdtFSYglLYiPA3bJlj27MN1kxCTKA5T8nefYgmOZFUWdvuyp4ap+anK5dDnEIVMo9RgFbsdHbjyfL1hA3euvIC6PsKsjKsAQFd/M=
+	t=1773929260; cv=none; b=eYCOjzcYFSnLOTc+muwcPp+wLhDsYjG3i/O2otUJ5HUVxFFt7mm6mjTdGsxxcZwozlNIFcdzvqK+NkFIOHCJqzl1PHTRxIW49JX3ZDOvuHg99a7PcvPsmXNymYK5cv6TibmJEk4LXg0TQREDhK1fRV0UhL7Jk9PpZ4BdZAxhMdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773929113; c=relaxed/simple;
-	bh=4L1Xe+B2zH5DjfgyXfNDDLqJOWMQ1gtfk0F2HLvrxgA=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=gCOAWrkJ+UmVBO7VqkG9Xjo6n/j+AOKnZ0LGx7Kl4d6UB+tHGy+wYZwzMxjtIyAYezzA8LoHhPDgX1U7Byyfk8TESMC6plhV7Qbd84OsQta47RwiAmI1map/fiDfrmGqTvwOi+dII8AC1qI4cmvnUZZ5JgluANg1kagqhqgYcuM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zOQ2VIIK; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-43b4121c40aso647164f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 07:05:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773929110; x=1774533910; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9e2+lA0DIZE3y9aERv7AEJRfbRg9zhF3NxdBRQrILoQ=;
-        b=zOQ2VIIKvVaDKa7Zz+cCop0jfUgHohpRW06iprse2byA2kf3ujMIXJTKJDCJW29GD6
-         Bj5w6SCP1ItVX67k9JCtW1GE81xZLmMHy/9nDDEh1OOgiCunJZ0gq6qLkJEQtw1y5dL3
-         8r/X7A5EQcTIm6ec1H0TDSuHgox19SKu9Z9ZEWG1P/U9GKOEw56N4nHEcnuGWOhTMdG6
-         JIHUEynb4JvWlLRE+m+FxiDsrZHnJo+0xQTm+JL6aetmToDv8CZkHMb9G620T19WNbJs
-         EnwVtQ1BY7c6oN57x84pgmzA9MBeIYBjw7AyYcqLDuNAaRgVkiVWQj+gH91kbDjBJR0k
-         DheA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773929110; x=1774533910;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9e2+lA0DIZE3y9aERv7AEJRfbRg9zhF3NxdBRQrILoQ=;
-        b=Afzac34iye42/8kQl8lCq4fsoIGy0HR6caGWT60qvBZK8uVBUWauhASXc0W4C1H9z+
-         XjD7sOs8tgbFW/l/cS2jbLBsi2Ww5ERHJp9W7jBXxNRiB3mjaKh6HnFuOJzvBouQIMoO
-         NVqJ0/24JmUe08hVjltArTas5G1rIi1rjirrjy8C/7IEONV1fiJNgZSu+WhZoZDZnNpe
-         hf09I/G1WU9yiudkac0i4bLZztgdh7oFHFeoDkxazWcs4pzesZ8SQUa4OxbOZ9xW9O0g
-         4VFSW4Usq3Fm/b//MuRTe4C8gp3cDV/R3C9HKz/12dI0bGKRBjJKaX8wEEIIKKXcff1N
-         oLWA==
-X-Forwarded-Encrypted: i=1; AJvYcCWgkKHARUPudR2BIdn88lnmhZjXPG/nK3bS/quExj8feMG54y0eWWlDV/NITTNOXP9lpFEuGPK/2iNG@vger.kernel.org
-X-Gm-Message-State: AOJu0YywmpLtZDmHjw6sy+Vr4mPBY5Y9pMFeKh42nS9CzK7ViQ0TZYKJ
-	5hdZFNz5mngiJTjgoIZjX+3lbbrxuahHMrwqtGv/DHolVJvPBXEQRpEVlkhgunp1Rh0=
-X-Gm-Gg: ATEYQzy30d4X2+eaC0faPHCFZ9AIw8NnbufYotn+oIRyuGFcQV6xHct3h/5gC8kKBw9
-	bB5k9Ou1XIPOq6ZFroUq8GII/wPfZ1qsy5ygWFYwCjLwisAD0asGCi5GYHcTV5uvDlhKMN0Fqz5
-	P2ds5dA94LhZD5NJxWZwJHIs8U6bfttt5ae7ARzClzlwXGrhvE433wpuxGq1TfdXQJHmTJMOa+N
-	wQaVSc2chWFpVcHYGX6QzLaZUTaVxLfP3tTLf53KcDJESUxTzzpV5qUbPQ/XyvX2vLwgsCZh1c1
-	8uz1QomKBEV/YY033BVqK3ZJtvFGcbKhsNT4A85u06R6CDSRQNCvMDSXwY2iwVxNAg4M1+6fllA
-	Fw/SVixRLuo3y9B9Oru2uqojRaj5lZelYhiAFAeJDAQ3O0t653jG8ZZzxwoxpoPRVh6Gjcr0+YW
-	U3yjkHbumc2PjRAnEeD/pmr6bdNfaruH5SYrnaqlm/D6dAwJau92mVfWt4D1qzCWCHRofUINI/T
-	X3Apvg=
-X-Received: by 2002:a05:6000:1865:b0:439:beba:300 with SMTP id ffacd0b85a97d-43b5279df60mr13775850f8f.1.1773929110168;
-        Thu, 19 Mar 2026 07:05:10 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:106d:1080:8e54:fbaf:8cb6:e9f7? ([2a01:e0a:106d:1080:8e54:fbaf:8cb6:e9f7])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b5184957bsm17767759f8f.5.2026.03.19.07.05.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Mar 2026 07:05:09 -0700 (PDT)
-Message-ID: <4d376a1b-37d7-4d37-8579-a0053f7b91f2@linaro.org>
-Date: Thu, 19 Mar 2026 15:05:08 +0100
+	s=arc-20240116; t=1773929260; c=relaxed/simple;
+	bh=3QqSwbtD1Tcur55Zx278QWcwjmn57PngAXFkMN7kU/g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lcruRwYcXi7hsqgWiezgsxDZSKFhE7l6MPnL7xg/2L7enCP8qEuC8Qe0fpdd+IT/27qlHXpovXWJ9Xhbs+t6sIc7KKModMVFUBDHsLqpNwWFG7HbX2bnKZU1kZdF8YutLmd4NY7Z8aHxiTF7pYdJW0vl4jMHAdOFNqHJ6BRXnhI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from duge-virtual-machine (unknown [183.192.222.244])
+	by APP-03 (Coremail) with SMTP id rQCowABnieAaA7xpRC4mCw--.14810S2;
+	Thu, 19 Mar 2026 22:07:24 +0800 (CST)
+From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+To: krzk@kernel.org,
+	ulf.hansson@linaro.org,
+	adrian.hunter@intel.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: pjw@kernel.org,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	gaohan@iscas.ac.cn,
+	me@ziyao.cc,
+	Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+Subject: [PATCH v5 0/3] Add SDHCI support for Canaan K230 SoC
+Date: Thu, 19 Mar 2026 22:07:02 +0800
+Message-ID: <20260319140705.123502-1-jiayu.riscv@isrc.iscas.ac.cn>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v4 2/2] phy: qcom-mipi-csi2: Add a CSI2 MIPI DPHY driver
-To: Bryan O'Donoghue <bod@kernel.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260315-x1e-csi2-phy-v4-0-90c09203888d@linaro.org>
- <20260315-x1e-csi2-phy-v4-2-90c09203888d@linaro.org>
- <3f11de22-b729-4d06-b6c8-18e649e1979c@linaro.org>
- <80ddc2b4-d6f8-4e8d-a45e-69c05d100aa2@linaro.org>
- <16b10f17-ecd3-4cdd-ac3f-f64127d60ace@linaro.org>
- <ulenfus552ggobis4gmi7eh27tikdaxbgm2oj63b5l2vemlfxc@ib5f2xaqurj6>
- <26XTdUyQTB41Oc4D5HnMtSm_QpZRjlkljQRJVw-u1Zp3Ltn9s4LVU-LQkP6drdl3Z3GGssLCCbsVYPFEqssHcQ==@protonmail.internalid>
- <65e06b2e-eeb9-45af-97ac-4ae60f652361@linaro.org>
- <9578400d-30ac-4d8c-9295-ee4ec8af3b2c@kernel.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <9578400d-30ac-4d8c-9295-ee4ec8af3b2c@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:rQCowABnieAaA7xpRC4mCw--.14810S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxur4fJF1fCw45Aw18tF1rXrb_yoW5CFWxpF
+	WUurZ8Gw4DGFyftF4xKa1ku3W3uws5J34UGw15X34UX398CFW5Xr9293WYqFyDGFZ7Gw4Y
+	yw15XFyrCrZ8ZaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
+	4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+	n2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
+	kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
+	67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
+	CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
+	MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
+	VFxhVjvjDU0xZFpf9x0JUd-B_UUUUU=
+X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-277805-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277806-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	NEURAL_SPAM(0.00)[0.250];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jiayu.riscv@isrc.iscas.ac.cn,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	REPLYTO_EQ_FROM(0.00)[]
-X-Rspamd-Queue-Id: E5E532CC5FB
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: B04242CC675
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/19/26 14:17, Bryan O'Donoghue wrote:
-> On 19/03/2026 13:08, Vladimir Zapolskiy wrote:
->>> Why do you want a media driver? Isn't PHY driver enough?
->>>
->> As for today CAMSS CSIPHY are already media devices, and a user applies media
->> specific properties to them, for instance media bus format, resolution etc.
->> Technically this might be removed from CAMSS, but if so, then it should be
->> done before this new PHY driver model is applied.
->>
->> -- 
->> Best wishes,
-> 
-> There's no reason to remove that from CAMSS - it would be an ABI break in user-space anyway.
-> 
-> The media entity in CAMSS msm_csiphyX handles format negotiation and pipeline routing. The PHY driver handles electrical configuration. They don't conflict and there multiple cited examples of this upstream already.
+This series is based on the k230 usbphy series[1].
 
-If csiphy component was only handling  electrical configuration, the only code handling csiphy would be phy API calls, not be part of the pipeline configuration. Today, it's a media element
+This patch series adds SDHCI support for the Canaan K230 SoC,
+which uses Synopsys DWCMSHC SDHCI controllers, include MMC0 and MMC1.
+The hardware designs of these two controllers are different.
+The MMC0 supports eMMC, while MMC1 only supports SDIO. Detailed
+information can be found in the vendor's manual[2].
 
-The whole CAMSS architecture is wrong, it should be modular, each hardware module should be an independent driver and all be connected via port/endpoint and configured with the media controller API.
+From the vendor's K230 manual:
+ - MMC0 supports eMMC5.0 and SDIO3.0, usually for eMMC chips.
+ - MMC1 only does SDIO3.0 in 4/1-bit mode up to SDR104, and the manual
+   clearly says it can't handle eMMC because of pin count and limits.
 
-If you _really_ want to move the "electrical configuration" part of the CSPIPHY out of camss frankendriver, fine, then first just create an internal PHY device as an aux device, then continue migrating _all_ CAMSS components into independent driver modules, then in the end re-architecture the whole DT description by adding a node per component with a proper port/endpoint representation to be configured via the media controller API.
+Therefore, there are two separate compatibles and the driver treats them
+differently.
 
-Neil
+Link: https://lore.kernel.org/all/20260121145526.14672-1-jiayu.riscv@isrc.iscas.ac.cn/ [1]
+Link: https://github.com/kendryte/k230_docs/blob/main/en/00_hardware/K230_Hardware_Design_Guide.md#mmc-circuit [2]
 
-> 
-> -- 
-> bod
+Changes in v5:
+- Drop the unnecessary line wrapping.
+- Drop k230_priv->k230_pdata.
+- Make a macro to uses container_of for pointer type conversion.
+- Add the tested-by tag.
+- Link to v4: https://lore.kernel.org/all/20260315054426.18383-1-jiayu.riscv@isrc.iscas.ac.cn/
+
+Changes in v4:
+- Drop the unnecessary line wrapping.
+- Drop the extra match_data pointer that was added in v3.
+- Add struct k230_pltfm_data which embeds struct dwcmshc_pltfm_data.
+- Use container_of() to get k230_pltfm_data.
+- Link to v3: https://lore.kernel.org/all/20260310064513.140093-1-jiayu.riscv@isrc.iscas.ac.cn/
+
+Changes in v3:
+- Drop the clock maxItems.
+- Add a const void *match_data to the struct dwcmshc_priv
+- Copy the match_data pointer to dwcmshc_priv in the common dwcmshc_probe
+- Link to v2: https://lore.kernel.org/all/20260226115923.75670-1-jiayu.riscv@isrc.iscas.ac.cn/
+
+Changes in v2:
+- Change the clock minItems to 5.
+- Add comments to explain the reason for setting SDHCI_PROG_CLOCK_MODE.
+- Write the power selection logic in the phy init cleaner.
+- Replace manual delay loop with read_poll_timeout.
+- Drop unnecessarily braces where a single statement will do.
+- Add the match_data pointer to dwcmshc_pltfm_data.
+- Add dwcmshc_k230_match_data struct to separate eMMC/SDIO config data
+- Split K230 into individual emmc/sdio platform data instances instead of
+  sharing one.
+- Remove redundant have_phy member in k230_priv.
+- Replace of_find_compatible_node with of_parse_phandle to get USB PHY
+  from DT phandle.
+- Link to v1: https://lore.kernel.org/all/20260204082908.27501-1-jiayu.riscv@isrc.iscas.ac.cn/
+
+Jiayu Du (3):
+  dt-bindings: mmc: Add sdhci support for Canaan k230
+  mmc: sdhci-dwcmshc: Add Canaan K230 DWCMSHC controller support
+  riscv: dts: canaan: Add mmc nodes for K230
+
+ .../bindings/mmc/snps,dwcmshc-sdhci.yaml      |  28 ++
+ .../boot/dts/canaan/k230-canmv-dshanpi.dts    |  57 ++++
+ .../dts/canaan/k230-canmv-module-dshanpi.dtsi |   7 +
+ arch/riscv/boot/dts/canaan/k230.dtsi          |  28 ++
+ drivers/mmc/host/sdhci-of-dwcmshc.c           | 260 ++++++++++++++++++
+ 5 files changed, 380 insertions(+)
+
+-- 
+2.53.0
 
 
