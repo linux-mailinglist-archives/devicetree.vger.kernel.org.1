@@ -1,248 +1,354 @@
-Return-Path: <devicetree+bounces-277962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277963-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6D1/Bdc8vGlxvgIAu9opvQ
-	(envelope-from <devicetree+bounces-277962-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:13:43 +0100
+	id kHuXAmU7vGl3uwIAu9opvQ
+	(envelope-from <devicetree+bounces-277963-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:07:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66F0F2D0A6F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:13:42 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A9CF2D08BC
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 19:07:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 830273008747
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:04:28 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 25EF1300D55A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:06:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56A7C2BD5A7;
-	Thu, 19 Mar 2026 18:04:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90CF33D47CF;
+	Thu, 19 Mar 2026 18:06:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ig7Y/LMQ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="b5EMQ616"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE44D30DD16
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 18:04:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.54
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773943467; cv=pass; b=dt6CSjThiyjj3AaS5Spn8lgPooZF8/1l9Rc+37ek9TNkOagQi3jRi3YaOeuS7Aku4mTXFcmSGNol3psFl07Ks737FCSDfOHa2v+D5W38kbpGhHjfndi66y3rdwLsqRvW/ZVEdd6tZaHSpjzAxX78NvTdv91/To8Bib/9bdIfE5s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773943467; c=relaxed/simple;
-	bh=UZsBgzIMMXUPHaJ0vVvA9p7eAdLYHTa6nA3WW5sxuik=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hpG2xXRKaqE2kqijm7N0O2PiT+9O9Vj4g2eExKhGkClSCPyqoxfC4MjMRsqyEILFcGS7GkQp1tWFH/keRQwiYVSIDc0PbWrxAbEESMCRJDAtLXRryLePQnyPqD6P+Z2zpqy28HzFQ5t9uSpyfF/1ycUTXUQTJnS142lBkkks4xo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ig7Y/LMQ; arc=pass smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-59e4a04f059so1271974e87.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 11:04:25 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773943464; cv=none;
-        d=google.com; s=arc-20240605;
-        b=PdzWXgPQ+M5mYKzpdDNaGmwa/UKbyBEXedtn5bhnDX1DutY/WbMoBiWO6I/ZMS6uVw
-         g9JMgzeoggRBVLiZauJRO2BtvOC6qn/qtmCOfh5IPwQA5HifkxralndSXeYT54g8pZyo
-         /OfLA2w81u5uQUvBj+cBwCYLeyUD9jEwopa18W4Y7EMJ7IFLADR4FFUiKGQVdZ8pLIqQ
-         +ZzLqJkrxQVOYXIOgmQKBMho/ceP957DL7bd9NxipeTIZo9wqS7IYgAiuPwmx2WXiTV6
-         H7SWyuo9fNTKw5d4VvCyanuM9S1Suy75KeYKiBjbuJk9gLSD4dbxoQeSJlkQ3mc9cC/K
-         P6fw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=egSQdqJank7GnU11HGBCHxRGl38gS7FGsg2P498OI9o=;
-        fh=58ubuGTWeZpCZLiPy59pKxaYJ+ezZIFjqf74364LAPM=;
-        b=D7aQpokAXgTylsNVPClTnE7nNGnA6wzK57cUJ5gQEWbaiE+Chn3IdD8QcbkmmcydYY
-         PVbyKdjC7q2vhUpT/yl0B5TrRruGJIgw5XUzYnN15kHQpeKVTXoqwkt5SjeEkVHOtuhZ
-         XeoLRqVgj4eVJqn4EFP+BeiClaDXXtfCgWMLrWzeILH5sqIG/FGtO5wA/TA0NIyiH3QN
-         PNbcIGJbDjj9XV4vyKfwmQUoMVn/czcwEkfLBofKZg99l/UITEFZ4IcS3uWr9ePoU6yJ
-         BwtcY2BTK5e1K5PBV7hOKLfRGq4l6MNM1YDvC6PQxDZv4WwxWkU6UT8eKnaZ2OM0zii4
-         SZHw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773943464; x=1774548264; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=egSQdqJank7GnU11HGBCHxRGl38gS7FGsg2P498OI9o=;
-        b=ig7Y/LMQERHxWJAiaYiAR+Rd6pFkaybexlHBUMBfIk745JPKH9vehg0oxt+1t+rF2R
-         7tqJeZ+uqS8y8XSXfPicnuFJWef5JxCBLKl+NiBN8a3rUxDoSHCwjYrnrcMKkShn1c53
-         c4oENoaSQICDEBACGxLM3nAcT5FgM0v1CSUTukjDITfVuKnhwPqEbW2LzzGie3rcApEo
-         rxq6vGv1LSsSws/9MQs1Yun054zNKl8iydLsN4VHqn6h3H2t6813FxV49jxTMZPNsXDW
-         THbY+JBbvi9nbVzEDOsEj/xWWq9B3reQpOZRLATTCLQvoJSfQbq98G1uOmIZODRHGV2z
-         MkXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773943464; x=1774548264;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=egSQdqJank7GnU11HGBCHxRGl38gS7FGsg2P498OI9o=;
-        b=sVEytSnKiM2BCuxOJq0x/YFkxmDJmcH3FN/aNjKIXICCO83hUTPN1B5p7AeksB9+99
-         Rxtnx3aMoosDnIAQkfmZodMy5KCNnCo0wY0qQwo7h6KL4OECBCpEZUVdN4C3u3yilfsy
-         MpcLbMQx34uCqMSHaHkZnRFoapw7U3LR1jaeZyBtaZ+BJBZP9v7E5yGsdjYMANPbudHW
-         jMLRWCP7lM4ufE136vyOWdx6sCw1vtNsrHH6kR4Ik2czKn+My3aEHv7fmpDWqunr83MW
-         HQRcpegEcnFttd9GQ/2TA8+ITbWcq10B9lSIdIXB/+mgU6EbHCxfmAGWbgesmuXm17n6
-         f8NA==
-X-Forwarded-Encrypted: i=1; AJvYcCWOXqCJQ/ltcj7z2x6Qhyz0bwjr9zAzzS2qXQBA7BzD5rS0Ok5Gw4e0Y14dh3r4v+G0yI+VrkFMoARD@vger.kernel.org
-X-Gm-Message-State: AOJu0YzcCoHeEi7JlAw16ijzZIpcgzh7lunyMI8cKDUCHOIPlbnILndp
-	aUjWuyKmM6+l+TKOgDYnSQ6nG3O/IObuMiROHLNPNnaVGmPpHnWzTAuhH1lLqtdjSSAdf1YGBbj
-	YaqEyLrBkGYOtE6K6SSd9DLFX8NhNQtw=
-X-Gm-Gg: ATEYQzxsZUKEQhTyN8PBiAxhfCld4UKRTPZHoe999rkw2vy7rUoUwcu6dVhgSDQfzPg
-	Pe8G2PbSr82q4m5DeZ1lenIx28TFDZ1+FtwfHPKv3rNaEZWFMGhZ4JPxnUCG4xLvjG1rKy2aDwT
-	ics7mJhjknf/k+M8rNB30F+FnG+V0kSzrMvBtPpi53uEfHk1566hTq4DFml4dLM8RE5wQk/+R9R
-	TM6BPGRrcBAnpvQoTHhed0hlCfNS+VyvPfJ1rfbYPmn4PKml0eox7xzICOtCTtvKWSebvFbHYVi
-	p7tCjeM/2Wsv8zAtotFUm/RJk5ayYjVAYr5U0mVu1riWiCc9NFH0f/95kSb6mkMujM4g
-X-Received: by 2002:a05:6512:1253:b0:5a2:7845:edf0 with SMTP id
- 2adb3069b0e04-5a285aefb65mr11300e87.9.1773943463675; Thu, 19 Mar 2026
- 11:04:23 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFE3038E5C1;
+	Thu, 19 Mar 2026 18:06:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773943562; cv=none; b=Ze0yWApkEuHiyQeIFrWbnprg57jeLJSELObFC+GPZjJoWn0NGPjnCCY2uHdIuCndbw8ZTqxkOXMjEZpvGVwcRFASuXYH9BoWyEt2kl1K7Hde4QUBG9FwE1r6RBeknUgoMjt8eFYzaYx7FtbphzfwM1kI1gnrKtcmBthx2ZUY6cU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773943562; c=relaxed/simple;
+	bh=vgIomdEFLpCH/ayWCgPxi7rIPZPRA/uLntpDcg/oA6Y=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=qUc+sQd/7Jt6Aa9vAU+WkgtmTWNnaE9j3AX0l9O+n037LGDYVtR9zjhaIh4DaFfnhN2aWSfIUszeie/r3OFD2Ud9x/JBraaqIPVdhRF2R0Bvs0BCT4i+WEJUI81VUz63lxLalXQvLYn42wZgBzzrbTTc4AfAgc/e0wIZOX3UM9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=b5EMQ616; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1773943559;
+	bh=vgIomdEFLpCH/ayWCgPxi7rIPZPRA/uLntpDcg/oA6Y=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=b5EMQ616dun3Le9dLPr9o2OIVE8CMKpIbyDhPulHbDK036sEpVSbTySzL0wmlu8ge
+	 lr64Xsbcagm5/8sPz1Y2c5jBnTG4pUGOQE1D826XX1uUpPTJd5JL0hTsj118MikWgc
+	 5hwt29P85AeYn1s00eRHTJb8UqBwp744lch7cbaJnfvi0QaBbGcbRErZ8Bimjpb55/
+	 Rj+6acv5q4scZ25v/Q3I8k4N6dxfvewxJMbrTEbBqNGb4JfKL52gzaZugAgTn44sVH
+	 DPefnfADoSePS0Ww/DQC8qPGwkktJIlqOsQU+7gd0KCxdDVMEswMIr/avCB3XVHytH
+	 oiUJcZX9bloEQ==
+Received: from [IPv6:2606:6d00:11:b76d::5ac] (unknown [IPv6:2606:6d00:11:b76d::5ac])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3676A17E127A;
+	Thu, 19 Mar 2026 19:05:56 +0100 (CET)
+Message-ID: <e49d7d5d2ae928e00486b1cfe8f255124d3958d8.camel@collabora.com>
+Subject: Re: [PATCH v7 05/10] media: mediatek: vcodec: Add Decoder profile &
+ level Initialization
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Kyrie Wu <kyrie.wu@mediatek.com>, Tiffany Lin
+ <tiffany.lin@mediatek.com>,  Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+ Yunfei Dong <yunfei.dong@mediatek.com>, Mauro Carvalho Chehab	
+ <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger	
+ <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
+ <angelogioacchino.delregno@collabora.com>, Hans Verkuil
+ <hverkuil@xs4all.nl>,  Nathan Hebert <nhebert@chromium.org>, Arnd Bergmann
+ <arnd@arndb.de>, Irui Wang <irui.wang@mediatek.com>,  George Sun
+ <george.sun@mediatek.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, 	linux-mediatek@lists.infradead.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz
+	 <andrzejtp2010@gmail.com>, Yilong Zhou <yilong.zhou@mediatek.com>
+Date: Thu, 19 Mar 2026 14:05:54 -0400
+In-Reply-To: <20260127024248.18406-6-kyrie.wu@mediatek.com>
+References: <20260127024248.18406-1-kyrie.wu@mediatek.com>
+	 <20260127024248.18406-6-kyrie.wu@mediatek.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-sy0z8PEWBL/CCb3Vp0df"
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260311-ayn-qcs8550-v2-0-e66986e0f0cb@gmail.com>
- <20260311-ayn-qcs8550-v2-2-e66986e0f0cb@gmail.com> <4757fd22-fe9f-4228-a0a5-11d9309549ac@packett.cool>
- <CALHNRZ_RU+uHXfUtSO+8pKOYfBuK9jbYgqWE70WMQ=5Qz2MvvQ@mail.gmail.com> <quybzbqxlohu6kiqmno2wzyltwejnc2vebxdgvdl3fdib7zg7u@wz3bkop7psu6>
-In-Reply-To: <quybzbqxlohu6kiqmno2wzyltwejnc2vebxdgvdl3fdib7zg7u@wz3bkop7psu6>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Thu, 19 Mar 2026 13:04:12 -0500
-X-Gm-Features: AaiRm51kg4TIvnntPBX3e6M7A651_LBTi1jXd-VrrNoMSelN0fLJA0d2wgB6F64
-Message-ID: <CALHNRZ9uA+xMnDg2fH3cCWVneJ6ZsBFq9y4x58JeQ_V0P7bv1g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] arm64: dts: qcom: Add AYN QCS8550 Common
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Val Packett <val@packett.cool>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Teguh Sobirin <teguh@sobir.in>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277962-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277963-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MISSING_XM_UA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	NEURAL_HAM(-0.00)[-0.743];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[webgeek1234@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[mediatek.com,kernel.org,gmail.com,collabora.com,xs4all.nl,chromium.org,arndb.de,vger.kernel.org,lists.infradead.org];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,mediatek.com];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.dufresne@collabora.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	NEURAL_HAM(-0.00)[-0.996];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,packett.cool:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,sobir.in:email]
-X-Rspamd-Queue-Id: 66F0F2D0A6F
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:mid,mediatek.com:email]
+X-Rspamd-Queue-Id: 0A9CF2D08BC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 12, 2026 at 10:19=E2=80=AFPM Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> wrote:
->
-> On Wed, Mar 11, 2026 at 08:39:37PM -0500, Aaron Kling wrote:
-> > On Wed, Mar 11, 2026 at 7:49=E2=80=AFPM Val Packett <val@packett.cool> =
-wrote:
-> > >
-> > > On 3/11/26 2:44 PM, Aaron Kling wrote:
-> > >
-> > > > From: Teguh Sobirin <teguh@sobir.in>
-> > > >
-> > > > This adds a base dtb of everything common between the AYN QCS8550
-> > > > devices. It is intended to be extended by device specific overlays.
-> > > >
-> > > > Signed-off-by: Teguh Sobirin <teguh@sobir.in>
-> > > > Co-developed-by: Aaron Kling <webgeek1234@gmail.com>
-> > > > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> > > > ---
-> > > >   arch/arm64/boot/dts/qcom/Makefile                  |    1 +
-> > > >   arch/arm64/boot/dts/qcom/qcs8550-ayntec-common.dts | 1777 +++++++=
-+++++++++++++
-> > > >   2 files changed, 1778 insertions(+)
-> > > > [=E2=80=A6]
-> > > > +/ {
-> > > > +     model =3D "AYN QCS8550 Common";
-> > > > +     compatible =3D "ayntec,qcs8550-common", "qcom,qcs8550", "qcom=
-,sm8550";
-> > >
-> > > Huh?.. All existing -common files are .dtsi includes without their ow=
-n
-> > > model/compatible, and the compile-time "dtbo" support is only used fo=
-r
-> > > EL2 where we want to apply the same thing to many many devices withou=
-t
-> > > polluting the tree with extra glue files. I don't see why this should=
- be
-> > > a "common device" with its own compatible string, and not just a dtsi=
-.
-> >
-> > My use case for these devices is Android, using a single base dtb and
-> > variant dtbo's in a single software build. Given the aosp boot image
-> > v4 setup, using individual dtb's would require different vendor_boot
-> > images, which would require multiple build targets. This setup allows
-> > for my use case, while also having individual dtb targets for a
-> > standard Linux use case. To my knowledge, the final device specific
-> > dtb from this is the same as a dtb using a common dtsi.
->
-> This needs to be explained in the commit message. But do you need then a
-> model/compatible in the default dtb?
->
-> >
-> > > > [=E2=80=A6]
-> > > > +&i2c0 {
-> > > > +     clock-frequency =3D <400000>;
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > > > +&i2c4 {
-> > > > +     clock-frequency =3D <400000>;
-> > > > +     status =3D "okay";
-> > > > +};
-> > > > +
-> > > > +&i2c12 {
-> > > > +     clock-frequency =3D <400000>;
-> > > > +     status =3D "okay";
-> > > > +};
-> > > If the individual devices actually use these busses, better to enable
-> > > them inside of their .dts as well I think?
-> >
-> > I can move them. I think the idea was that all variants do use these,
-> > but for different hardware, so might as well commonize this part. This
-> > part existed before I started working on the devices, so I can't say
-> > for sure.
->
-> Well, the only common part is the frequency & status, so not so much.
->
-> BTW: could you please uniformly add an empty line before the status
-> properties?
->
-> >
-> > > > +&iris {
-> > > > +     status =3D "okay";
-> > > > +};
-> > > Works with generic firmware?
-> >
-> > I have not been able to verify this. Unfortunately, there is not an
-> > aidl v4l2 c2 hal for aosp. If the expectation is that device specific
-> > firmware is needed, even for unfused devices, I can drop this section
-> > until I am able to use it. Or maybe Teguh could chime in if this works
-> > on ROCKNIX.
->
-> You can use ffmpeg to verify the unit. It has v4l2m2m codecs.
 
-I did get a static ffmpeg binary to run and transcoding using v4l2m2m
-hw codecs were working. So the generic firmware is fine.
+--=-sy0z8PEWBL/CCb3Vp0df
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Aaron
+Hi,
+
+Just to recap my expectations.
+
+Le mardi 27 janvier 2026 =C3=A0 10:42 +0800, Kyrie Wu a =C3=A9crit=C2=A0:
+> This commit initializes codec profile & level for VDEC. It sets
+> default values for H264, H265, and VP9 codecs across multiple
+> chipset configurations.
+>=20
+> Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+> ---
+> =C2=A0.../vcodec/decoder/mtk_vcodec_dec_stateful.c=C2=A0 | 12 +++
+> =C2=A0.../vcodec/decoder/mtk_vcodec_dec_stateless.c | 84 ++++++++++++++++=
++++
+> =C2=A02 files changed, 96 insertions(+)
+>=20
+> diff --git
+> a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateful.=
+c
+> b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateful.=
+c
+> index 8ddb61670dc6..a47906b9d717 100644
+> --- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_state=
+ful.c
+> +++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_state=
+ful.c
+> @@ -619,4 +619,16 @@ const struct mtk_vcodec_dec_pdata mtk_vdec_8173_pdat=
+a =3D {
+> =C2=A0	.is_subdev_supported =3D false,
+> =C2=A0	.hw_arch =3D MTK_VDEC_PURE_SINGLE_CORE,
+> =C2=A0	.chip_name =3D 8173,
+> +	.h264_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_H264_LEVEL_4_1,
+> +		.profile =3D V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
+> +	},
+> +	.h265_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
+> +		.profile =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
+> +	},
+> +	.vp9_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_VP9_LEVEL_4_0,
+> +		.profile =3D V4L2_MPEG_VIDEO_VP9_PROFILE_1,
+> +	},
+> =C2=A0};
+> diff --git
+> a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless=
+.c
+> b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless=
+.c
+> index a1f419202a24..b571c4ed3f79 100644
+> ---
+> a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless=
+.c
+> +++
+> b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless=
+.c
+> @@ -830,6 +830,18 @@ const struct mtk_vcodec_dec_pdata mtk_vdec_8183_pdat=
+a =3D {
+> =C2=A0	.is_subdev_supported =3D false,
+> =C2=A0	.hw_arch =3D MTK_VDEC_PURE_SINGLE_CORE,
+> =C2=A0	.chip_name =3D 8183,
+> +	.h264_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_H264_LEVEL_4_2,
+> +		.profile =3D V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
+> +	},
+> +	.h265_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
+> +		.profile =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
+> +	},
+> +	.vp9_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_VP9_LEVEL_4_0,
+> +		.profile =3D V4L2_MPEG_VIDEO_VP9_PROFILE_1,
+> +	},
+> =C2=A0};
+> =C2=A0
+> =C2=A0/* This platform data is used for one lat and one core architecture=
+. */
+> @@ -869,24 +881,72 @@ const struct mtk_vcodec_dec_pdata mtk_vdec_8188_pda=
+ta =3D
+> {
+> =C2=A0	MTK_STATELESS_DEC_DATA,
+> =C2=A0	.hw_arch =3D MTK_VDEC_LAT_SINGLE_CORE,
+> =C2=A0	.chip_name =3D 8188,
+> +	.h264_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_H264_LEVEL_5_2,
+> +		.profile =3D V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_10,
+> +	},
+> +	.h265_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_5_1,
+> +		.profile =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
+> +	},
+> +	.vp9_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_VP9_LEVEL_5_1,
+> +		.profile =3D V4L2_MPEG_VIDEO_VP9_PROFILE_2,
+> +	},
+> =C2=A0};
+> =C2=A0
+> =C2=A0const struct mtk_vcodec_dec_pdata mtk_vdec_8192_pdata =3D {
+> =C2=A0	MTK_STATELESS_DEC_DATA,
+> =C2=A0	.hw_arch =3D MTK_VDEC_LAT_SINGLE_CORE,
+> =C2=A0	.chip_name =3D 8192,
+> +	.h264_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_H264_LEVEL_5_2,
+> +		.profile =3D V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
+> +	},
+> +	.h265_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
+> +		.profile =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
+> +	},
+> +	.vp9_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_VP9_LEVEL_5_1,
+> +		.profile =3D V4L2_MPEG_VIDEO_VP9_PROFILE_1,
+> +	},
+> =C2=A0};
+> =C2=A0
+> =C2=A0const struct mtk_vcodec_dec_pdata mtk_vdec_8195_pdata =3D {
+> =C2=A0	MTK_STATELESS_DEC_DATA,
+> =C2=A0	.hw_arch =3D MTK_VDEC_LAT_SINGLE_CORE,
+> =C2=A0	.chip_name =3D 8195,
+> +	.h264_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_H264_LEVEL_6_0,
+> +		.profile =3D V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_10,
+> +	},
+> +	.h265_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_5_2,
+> +		.profile =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
+> +	},
+> +	.vp9_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_VP9_LEVEL_5_2,
+> +		.profile =3D V4L2_MPEG_VIDEO_VP9_PROFILE_2,
+> +	},
+> =C2=A0};
+> =C2=A0
+> =C2=A0const struct mtk_vcodec_dec_pdata mtk_vdec_8196_pdata =3D {
+> =C2=A0	MTK_STATELESS_DEC_DATA,
+> =C2=A0	.hw_arch =3D MTK_VDEC_LAT_SINGLE_CORE,
+> =C2=A0	.chip_name =3D 8196,
+> +	.h264_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_H264_LEVEL_6_0,
+> +		.profile =3D V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_10,
+> +	},
+> +	.h265_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_5_2,
+> +		.profile =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
+> +	},
+> +	.vp9_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_VP9_LEVEL_5_2,
+> +		.profile =3D V4L2_MPEG_VIDEO_VP9_PROFILE_2,
+> +	},
+> =C2=A0};
+> =C2=A0
+> =C2=A0const struct mtk_vcodec_dec_pdata mtk_vdec_single_core_pdata =3D {
+> @@ -910,6 +970,18 @@ const struct mtk_vcodec_dec_pdata mtk_vdec_8186_pdat=
+a =3D {
+> =C2=A0	MTK_STATELESS_DEC_DATA,
+> =C2=A0	.hw_arch =3D MTK_VDEC_PURE_SINGLE_CORE,
+> =C2=A0	.chip_name =3D 8186,
+> +	.h264_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_H264_LEVEL_4_2,
+> +		.profile =3D V4L2_MPEG_VIDEO_H264_PROFILE_HIGH,
+> +	},
+> +	.h265_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
+> +		.profile =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
+> +	},
+> +	.vp9_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_VP9_LEVEL_4_1,
+> +		.profile =3D V4L2_MPEG_VIDEO_VP9_PROFILE_1,
+> +	},
+> =C2=A0};
+
+All of the above should be squashed into patch 04. Patch 04 should be moved
+before any patches related to 8189.
+
+> =C2=A0
+> =C2=A0const struct mtk_vcodec_dec_pdata mtk_vdec_8189_pdata =3D {
+> @@ -928,4 +1000,16 @@ const struct mtk_vcodec_dec_pdata mtk_vdec_8189_pda=
+ta =3D
+> {
+> =C2=A0	.is_subdev_supported =3D true,
+> =C2=A0	.hw_arch =3D MTK_VDEC_PURE_SINGLE_CORE,
+> =C2=A0	.chip_name =3D 8189,
+> +	.h264_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_H264_LEVEL_5_2,
+> +		.profile =3D V4L2_MPEG_VIDEO_H264_PROFILE_HIGH_10,
+> +	},
+> +	.h265_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_4,
+> +		.profile =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE,
+> +	},
+> +	.vp9_params =3D {
+> +		.level =3D V4L2_MPEG_VIDEO_VP9_LEVEL_5_2,
+> +		.profile =3D V4L2_MPEG_VIDEO_VP9_PROFILE_2,
+> +	},
+> =C2=A0};
+
+This hunk should be squashed with what is actually patch 03.
+
+regards,
+Nicolas
+
+--=-sy0z8PEWBL/CCb3Vp0df
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCabw7AwAKCRDZQZRRKWBy
+9PwGAP9rzgY7L9M1ieTU8Siy2SFrsV3eHnECJj+0oyYlyTmLPgD/afPtu/772SoD
+pgdx2ZG6XqMN3qE5cvRAQHaBmhd/FgI=
+=pxH0
+-----END PGP SIGNATURE-----
+
+--=-sy0z8PEWBL/CCb3Vp0df--
 
