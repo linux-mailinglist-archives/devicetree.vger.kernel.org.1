@@ -1,92 +1,90 @@
-Return-Path: <devicetree+bounces-277571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277572-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cAWpDhqEu2nhlAIAu9opvQ
-	(envelope-from <devicetree+bounces-277571-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 06:05:30 +0100
+	id ISuQFq+Fu2khlQIAu9opvQ
+	(envelope-from <devicetree+bounces-277572-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 06:12:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B788C2C617B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 06:05:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3CA92C61AE
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 06:12:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 62D3F302EEB0
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 05:05:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4E848303D2E9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 05:12:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBC30292B54;
-	Thu, 19 Mar 2026 05:05:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 421AA38AC89;
+	Thu, 19 Mar 2026 05:12:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K6G+FcZv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Lr0htdfT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f170.google.com (mail-dy1-f170.google.com [74.125.82.170])
+Received: from mail-dy1-f171.google.com (mail-dy1-f171.google.com [74.125.82.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B057C279DB4
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 05:05:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 945063803C2
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 05:12:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773896727; cv=none; b=MeNl6AzlETRB66yMaJNsBhLbjx6HSfQwfLtbyqhPFaUjgL/5j0Wri0gijzWUDnR7i7IK9fLMlisGCY4hov55uEuTcspzxOWWQ30qyJP50sXrKH0aJhWX98J+OgERABtAoX3MxohtbSdqoKoHiAOibCOdlp577R7M3IwtK973by0=
+	t=1773897132; cv=none; b=j82gzgpVlo9/r7MZ9guBGkLEg269sOI7dcjaT3KUb2AnGzIZXRsl6Q1QXxZ9rJBt0AN+OCWx29Mygxf9R5DH8E3X/jhKF3/Dr4U9q8vhfnb4vMxXpv9n7+PH4cbiz7Wy8PoKnh9enhRGr07BLpUU0xlup7Is6C/LnfGaQgiMRXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773896727; c=relaxed/simple;
-	bh=t7AD1W4oc26vxJ396UlI2p+sFRRUjpy/QTkzcQyVREU=;
+	s=arc-20240116; t=1773897132; c=relaxed/simple;
+	bh=vIW79JnLiLXSaAv76cZHGspHo3wFZfnh6SIto6S7T/Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UuPLNUuS4zFbMe8xbsybUaLJx03/xFWD7tQzHDISvM83nEj6tHd1qcSth854r5irBmm8/1N97rnsMBfWnnj+n3FaXOHK4EYSVkHr37zi8FpGeXAUaP/b1l0UQ9yehXl8ILWsVCIhITJ03Nl1FVlV4Uuiges8K6G9zZ0wwKz6Gp8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K6G+FcZv; arc=none smtp.client-ip=74.125.82.170
+	 Content-Type:Content-Disposition:In-Reply-To; b=f3zPP/kbknKFv+0FMFeJ5SyQhNCwKV7GP7lfWaF+0Kd4Zfv7IQKqu2d2mcSFd+Eg8JF9IL8ZzJQ2edkTd8uip8aKJUi2HhcVFGB3Q3HCP1bblX1Q2AzQ+EfmuS7xGpIZPSepu0zncreBH7zXlcskhUuz4yjUgrscCNTE7G16S1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Lr0htdfT; arc=none smtp.client-ip=74.125.82.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f170.google.com with SMTP id 5a478bee46e88-2c0bcd8f194so895400eec.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 22:05:26 -0700 (PDT)
+Received: by mail-dy1-f171.google.com with SMTP id 5a478bee46e88-2b4520f6b32so1073788eec.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Mar 2026 22:12:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773896726; x=1774501526; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1773897128; x=1774501928; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=F8SjrRV9Yg0anFvQFZOjECns1z57O1adeI2TqSANhPE=;
-        b=K6G+FcZvUItiJregkDxTVKv2I7RMnxi2V98WZdh6KmwYAVSNfb1wvwtoU9IZTooE+o
-         bxDdqtFYtYdhHP1T42Twg5afbW7pmxJNrFJux4fh5AEdYgjzUWFm0BorTXHJy2+SzdsM
-         zYYf+afFNX83yTcTuxWtwMG2UbvDy/ZUJg9SS7g7oyqEMHNU0qrDT0ES8Hdem1VCX8md
-         Co2+AkFKREj4TzzW9ChZX3q3B/deil+fodi6J2NCC22ynF4udHF6BOJ8IbUb9ob6E9ad
-         cUJVm16/qDEOTg0HZqPLwr82sqCkdWSGji8YQ6W7f13gucK+thSCnS4+aAi181UelvwJ
-         6bBA==
+        bh=hqb9SO+Q6nFQgrXLgRcpJBL/MmDsCN3sih/lzoBOP1Y=;
+        b=Lr0htdfT7HXjnl4oNCdrDa+tgBhjY5N6n2Kvh11tMS6xTlisYPXVL0byvAjI45qpFJ
+         d5cUjfrB+e6DuMm+Iwq44nefDpzgwmT/Tn2m9HRzG/pQLYLveWWt+1Th4W+b5JYebNrW
+         OCRCDdnXQylOdc+1NVxXLVrvbRnuMy/HLFBm+HsDdqGPpQXbMYIyyfEPCxCBZAK8bLqv
+         3VBjuXHhjUcra9Kv6qX+wJfBysk/q+w8RnPK3PeiwmOouqmvz9f1xCGmMQY0V96eYapF
+         +NAaJAeG06NGnSdxWKZGGsdwwDSTzXt/UfrLEko9IShK/OYMdG12NTmMK5mwtx/98Iks
+         FlCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773896726; x=1774501526;
+        d=1e100.net; s=20251104; t=1773897128; x=1774501928;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=F8SjrRV9Yg0anFvQFZOjECns1z57O1adeI2TqSANhPE=;
-        b=d3q6sgvNxyU1WwIIkWt0L5LPTn4XyUR7sXecLWunvOxgFWwMK7tTmwtvJ8QxhmLJR9
-         E0nqNblxI7410yIJwaQxeEHGWomtsfXEHv0+HoNuW9apkpZM8D+cUWV1qzyV8QQcE4vc
-         VmssX8p98BIaAYGpCj0jCQijUPpdFm8XDB5lAsWtTI4lpB4CYaei6YsmlCWxevMZAxWO
-         hQjvJRilqMwC5ksSdiw1uAREtyWCBQPYK0yhQtWXzmfXXScYX2ZEAakoVm+dQ2OhTga2
-         Z7dvtvGnNrDOrHAtl8q5oG8DR4GzKyIk7XuNZXUB9BFt6dFoN4qGTAsxiKkwC/Xu7lcb
-         0rIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVPcWgAuomHl8jx2HXCEPYuDIbIi5pCnMRGmdeofg4dl7eX5QAbwtyc0AupU5gfvPo5SUxNREeLBQCs@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUZ7JZVYPzeo8ONaPXJxg549jgBqDNFBVUHfPveTTJXwtIPqS/
-	+WduAvOMZQaHP9oXZTy1ysHBgfLIzLGDlYXD8zrluiKJCADuq3gHBF+Q
-X-Gm-Gg: ATEYQzyUoWgHpubMNGMzT9pHlGeIijRKLRl352G+JaVl7jOcPUANIxr9Q7/9vz9dQ+8
-	bn40I02ki0JacJo9rRzue5PaJJllmmvl/ODvAMSAdFs9uWXqr8N6DO5ugEPe4JAsjZ1NiWsrvx1
-	8aqZwnaHFVSWDYeCJaeqVbeM1oECM4JJpjHtiYRunnQyABiwsh5SuPAHMTsQD9+LA0GOmFfZaJ3
-	dNu1g4YYpVpxAf1uNFeJPmFSivmRxmQmYICaTjbBenRKi7SEmpxLBcXB7UNelruLfi2LcFr7Oks
-	ZKzCDC87w3F5g0SNp9aqqV/Mtecv/Wxo98fuN4fipV1LKiNGPEP/EFb+/Mh8OOamTeOAgsxtMmQ
-	v6RTlTchn25Ze0Yo3p8oYqWt0x7jQqrzB65YGi3HXTLsbCcpKMu2ZIC4F2XT2WpbPGfH20nuISr
-	GwQ6fHud4j7OORyGSOp9rAsAL8U6kNwnEa+3lDbWzqW7ikw8ETg5+zz/CoopLA1wk=
-X-Received: by 2002:a05:7301:168b:b0:2be:ca4:e13f with SMTP id 5a478bee46e88-2c0e5085f7fmr2369601eec.23.1773896725720;
-        Wed, 18 Mar 2026 22:05:25 -0700 (PDT)
+        bh=hqb9SO+Q6nFQgrXLgRcpJBL/MmDsCN3sih/lzoBOP1Y=;
+        b=CW54/ptZiQKDoW7eQrKvG+2zpkSXn8w4VA/HzDJpm9bYwGoqQ3x2VLzrcm+pQATgRs
+         SkPck5NFU7tkmudxsCcIYHPYEMyMs8fXxYQHfqP9mFyCIACAywd8luZ7x0uIlVl+3Q4o
+         l25W3JUyAJkfwOPk0cpLMT8J1fSMX8TlbDaGprZK+foFoXUuZ6F+fScGO+k8dBu+pt8Y
+         aiYRj0fBGPRHr0mB9gaXz2rWXabq+Ktyqbq9KRlIxNcikOUyRhmrDnRs8BSw5Yx6Y2bP
+         9TAaGi5atRf6neuoxgz3S5P5QMkZakCwxyoQUFjjqrfcbRODDjz7UDkXurULN/+h9BaL
+         +V1A==
+X-Gm-Message-State: AOJu0Yw3vF2OaaIemVUkvdDnVRsWb38ZlwxcaVf3jkbeOnPl+IK8JL3e
+	e4bf3P7apo+envoV4UvLGd9CzrwDDDl8DQI83cSqqo+FNGTo5sx+z9Jr
+X-Gm-Gg: ATEYQzxmXMDi/6DNMYjiGm02NFHDAqLfwx4iw1Vw4Lv9bE94bDUYDoezo56lTUcxZMx
+	tgJHipq5p7zBXW6GBSKf62SRGeKApbkAsK2U1E7huk3yKxrw8J3KnczEicg29+XVTbriEhCJ+Vt
+	c3deCyMkGfi9TqppKpkdCy7fG0nA8+RUjpH4PPPMMNEb3pKRWuBC+GgEOi9Z7bRuZaEEpfWjJ53
+	OEvTTJLmGIVMVmgBtTko9ocWYEGf+iY/SQ0Z8AC27BUdZPtIPIQtkieev3hBIGsCMPup5C+vnHL
+	6Bq0tDVWYRAdd6K7ObuSjPDFZ62upLFHp5i+99Ney3tPgOubmazwYIpIYd0cP4UZwQ4jve8QI8w
+	ZvTJ4DNF0pKdexQuD/NddQ5DJ8W+ngtGj3WLtiuanmcNecrGnJcRSOD4XnHRs7SS2QijpgOtJF4
+	MqfwpYyAs2SXv5mbP0ApSvmF3TfiNGerIp3sFG3KtWWw2BoRmJoU9FveXWqYnlbxA=
+X-Received: by 2002:a05:7300:fd16:b0:2ba:85d6:e777 with SMTP id 5a478bee46e88-2c0e4f79dc9mr2238568eec.2.1773897128303;
+        Wed, 18 Mar 2026 22:12:08 -0700 (PDT)
 Received: from google.com ([2a00:79e0:2ebe:8:5966:2bd9:1ed:e7c4])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2c0fb178b82sm1036378eec.6.2026.03.18.22.05.24
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2c0e55ca0f6sm6652882eec.25.2026.03.18.22.12.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Mar 2026 22:05:25 -0700 (PDT)
-Date: Wed, 18 Mar 2026 22:05:22 -0700
+        Wed, 18 Mar 2026 22:12:07 -0700 (PDT)
+Date: Wed, 18 Mar 2026 22:12:04 -0700
 From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Eduard Bostina <egbostina@gmail.com>
-Cc: daniel.baluta@nxp.com, simona.toaca@nxp.com, d-gole@ti.com, 
-	m-chawdhry@ti.com, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: input: touchscreen: Convert TS-4800 to DT
- schema
-Message-ID: <abuEDqUuFElpmEwp@google.com>
-References: <20260316181038.9771-1-egbostina@gmail.com>
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Frank Li <Frank.Li@nxp.com>, Job Noorman <job@noorman.info>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, linux-input@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: touchscreen: trivial-touch: Move allOf:
+ after required:
+Message-ID: <abuFoZWWra-hVitk@google.com>
+References: <20260312224925.186077-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,42 +93,44 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260316181038.9771-1-egbostina@gmail.com>
-X-Spamd-Result: default: False [-2.16 / 15.00];
+In-Reply-To: <20260312224925.186077-1-marek.vasut+renesas@mailbox.org>
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277571-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277572-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.963];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.911];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: B788C2C617B
+	FREEMAIL_FROM(0.00)[gmail.com]
+X-Rspamd-Queue-Id: A3CA92C61AE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 16, 2026 at 08:10:37PM +0200, Eduard Bostina wrote:
-> Convert the TS-4800 touchscreen bindings to DT schema.
+On Thu, Mar 12, 2026 at 11:49:01PM +0100, Marek Vasut wrote:
+> Majority of schemas place allOf: after required: . Documentation
+> Documentation/devicetree/bindings/writing-schema.rst also hints at
+> this ordering. Trivially update this schema. No functional change.
 > 
-> Signed-off-by: Eduard Bostina <egbostina@gmail.com>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
 Applied, thank you.
 
