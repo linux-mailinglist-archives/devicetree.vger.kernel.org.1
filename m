@@ -1,168 +1,167 @@
-Return-Path: <devicetree+bounces-277914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277915-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qB5ZNZ8svGn4twIAu9opvQ
-	(envelope-from <devicetree+bounces-277914-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:04:31 +0100
+	id CM0jFsUsvGnquAIAu9opvQ
+	(envelope-from <devicetree+bounces-277915-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:05:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFEA22CF673
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:04:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D254C2CF6B5
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:05:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5239E3224B7D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:56:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C8B5532FD939
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 16:57:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD163EF0A3;
-	Thu, 19 Mar 2026 16:56:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C26E03EFD39;
+	Thu, 19 Mar 2026 16:56:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="UxhiqN+q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VfxAbked"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34A7C3EDACB;
-	Thu, 19 Mar 2026 16:55:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 152823F1659;
+	Thu, 19 Mar 2026 16:56:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773939361; cv=none; b=jtXQNjXKBEcTPsXeVfqaLUR+Q1gZAdB0o6gFc0Jg8tkIVBpyDXNMUj6FehTs/Z0uKszJ0ZatQjiwTN1zNQZFvuTUYNnc7iWorb2Mk6jH8ZbVp4Ju5UMUckzn49FXKswXdnbD1MQ5OQBbJ/WtyOJBoT0/8yr4XqzYYHk9Jp/kRbs=
+	t=1773939374; cv=none; b=cidSuD50Epp0OPuBiRo5l8qSCqjy/2OeS95PfIvyLz+a07/BTuZP3Zo9hKyUUbTCC3YIGDENkKqhGpYF/Uh3UR6HjupdV2/3aUDCJ0VUvXKtS4l1xSWygC1GXs5KRm3G3AxWChxLQyrpNlkAunmRLERfSBuIE2KtncH3EGU1PuQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773939361; c=relaxed/simple;
-	bh=Dr+uAEpjHqXv3/qjlndkWpa0dISEDuW0xo9W272ExUU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fTabQG6FlxscA0FSDbQelvMWZT5OIRcXv9jTtaK35IAkBHrNHJZMGcF1o6kgwmfUVMNScSlrOHHoeXbQDoxEBJ1vDArgVdmWpEEIZ5AOinbXuRsjXOEc+a7SBS4UIz0FSO0D2cXI9cY3pTkSAAoiKkZ0EKMa40fYZXNGYUanf8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=UxhiqN+q; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=OpCCAn5xRJ/+SZkKFEIofulYy8jyKi1O4LEx0OQJBHI=; b=UxhiqN+qiq5tDICKxEyPSWdWx0
-	27gAoVRaRFp11Rz/uGHPHxGycIu8u6krY1+pdNgkzRAvS5kGvfC04pc/7K2tE3w+F2eC73xsVdbuc
-	1wgKDgzqjYNDdRF/YBNl9iivouTsWfPyEGay4MFrv2mJ+kWXZE3bQyEzaD24yMmDOqSQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1w3Geu-00CQ3g-9g; Thu, 19 Mar 2026 17:55:44 +0100
-Date: Thu, 19 Mar 2026 17:55:44 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Charles Perry <charles.perry@microchip.com>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] net: mdio: add a driver for PIC64-HPSC/HX
- MDIO controller
-Message-ID: <6dc9a358-4140-457f-bdfb-b4fb22aaf88e@lunn.ch>
-References: <20260317184610.315852-1-charles.perry@microchip.com>
- <20260317184610.315852-3-charles.perry@microchip.com>
+	s=arc-20240116; t=1773939374; c=relaxed/simple;
+	bh=buYrNumzH/okacfb8t8YTg6twr52GbLA8hyuw2Qrde0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=M6aPlqTbge9HpIPY0dX3edqpUzvYbrQGoWwitdyAlBH5cmWc6vd7NVjhOZpqkaFCeZv+8CnVII2Knbb2LbzUAXJjmrQC0h/jfbMUrJVGQl7ARsmQrfDOCK6FjMKka6sjLWmT+0ew1tKMce3rN4znmkPK6Z2bKDsz7b4V/au7tLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VfxAbked; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1545C19424;
+	Thu, 19 Mar 2026 16:56:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773939373;
+	bh=buYrNumzH/okacfb8t8YTg6twr52GbLA8hyuw2Qrde0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VfxAbkedya6W5dDpsCCpwpmqzNrQQwq+Jsd47RPrQBhpDQg5YKcZg3o6RQS7d5chf
+	 0pZhvP2Kf9atcFnbXgfmOfakWJr2AgcWSZXtII5w6wS1sn3OrlzhgvgqHFHAakwhUE
+	 jLuGyXKwkdtQEuVFMCPzRKYB1pv8r9+IxZcmoraAeECHGHUEevPSs0l728rlx64hJ8
+	 azh+bRjkRGst9R32RskjuPDo42tPB9fQJ0l6DgcUtHbL4wTgo7qLtQ/xvJ+epBOR2P
+	 uG0spqZ8z3ngmo+1mYHLOh7ngaDTuOe1FGf+iHY68yf8o5L3tBi+VVch6pMJ0Pg07b
+	 VmbqZRxYFqwLw==
+Message-ID: <a42f837c-4b90-4e0f-a98f-793fbd20a140@kernel.org>
+Date: Thu, 19 Mar 2026 16:56:28 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260317184610.315852-3-charles.perry@microchip.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] phy: qcom-mipi-csi2: Add a CSI2 MIPI DPHY driver
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Bryan O'Donoghue <bod@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260315-x1e-csi2-phy-v4-0-90c09203888d@linaro.org>
+ <20260315-x1e-csi2-phy-v4-2-90c09203888d@linaro.org>
+ <3f11de22-b729-4d06-b6c8-18e649e1979c@linaro.org>
+ <80ddc2b4-d6f8-4e8d-a45e-69c05d100aa2@linaro.org>
+ <16b10f17-ecd3-4cdd-ac3f-f64127d60ace@linaro.org>
+ <ulenfus552ggobis4gmi7eh27tikdaxbgm2oj63b5l2vemlfxc@ib5f2xaqurj6>
+ <26XTdUyQTB41Oc4D5HnMtSm_QpZRjlkljQRJVw-u1Zp3Ltn9s4LVU-LQkP6drdl3Z3GGssLCCbsVYPFEqssHcQ==@protonmail.internalid>
+ <65e06b2e-eeb9-45af-97ac-4ae60f652361@linaro.org>
+ <9578400d-30ac-4d8c-9295-ee4ec8af3b2c@kernel.org>
+ <d6616fc0-75fb-47e2-96cd-ae81fa1a8e82@linaro.org>
+ <f3c62284-ac78-42c6-a4f0-cd984b7124cd@linaro.org>
+ <7eda931a-f30e-4e01-a130-996ec7f450d1@linaro.org>
+Content-Language: en-US
+From: Bryan O'Donoghue <bod@kernel.org>
+In-Reply-To: <7eda931a-f30e-4e01-a130-996ec7f450d1@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277914-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277915-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.956];
+	NEURAL_HAM(-0.00)[-0.997];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
+	FROM_NEQ_ENVFROM(0.00)[bod@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lunn.ch:dkim,lunn.ch:mid]
-X-Rspamd-Queue-Id: EFEA22CF673
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D254C2CF6B5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-> +static int pic64hpsc_mdio_probe(struct platform_device *pdev)
-> +{
-> +	struct device_node *np = pdev->dev.of_node;
-> +	struct device *dev = &pdev->dev;
-> +	struct pic64hpsc_mdio_dev *priv;
-> +	struct mii_bus *bus;
-> +	unsigned long rate;
-> +	struct clk *clk;
-> +	u32 bus_freq;
-> +	u32 div;
-> +	int ret;
-> +
-> +	bus = devm_mdiobus_alloc_size(dev, sizeof(*priv));
-> +	if (!bus)
-> +		return -ENOMEM;
-> +
-> +	priv = bus->priv;
-> +
-> +	priv->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(priv->regs))
-> +		return PTR_ERR(priv->regs);
-> +
-> +	bus->name = KBUILD_MODNAME;
-> +	bus->read = pic64hpsc_mdio_read;
-> +	bus->write = pic64hpsc_mdio_write;
-> +	snprintf(bus->id, MII_BUS_ID_SIZE, "%s", dev_name(dev));
-> +	bus->parent = dev;
-> +
-> +	clk = devm_clk_get_optional_enabled(dev, NULL);
-> +	if (IS_ERR(clk))
-> +		return PTR_ERR(clk);
+On 19/03/2026 16:08, Neil Armstrong wrote:
+> On 3/19/26 16:18, Bryan O'Donoghue wrote:
+>> On 19/03/2026 14:56, Vladimir Zapolskiy wrote:
+>>>> There's no reason to remove that from CAMSS - it would be an ABI break
+>>>> in user-space anyway.
+>>>
+>>> If technically CAMSS CSIPHY could be excluded from the list of CAMSS 
+>>> media
+>>> subdevices, then for the sake of simplification it should be done for 
+>>> all
+>>> supported platforms in advance, such a change will be independent 
+>>> from this
+>>> particular phy series, and vice versa, this CAMSS only driver change 
+>>> will
+>>> prepare a ground for media-less CAMSS CSIPHY device drivers, hence it 
+>>> shall
+>>> precede this particular CAMSS CSIPHY series.
+>>>
+>>> For backward compatibility with userspace a noop stub will be good 
+>>> enough,
+>>> it's not an issue at all.
+>>
+>> The standalone PHY driver doesn't require removing the CSIPHY media
+>> entity from CAMSS. They serve different purposes and coexist - its 
+>> important to have a NOP from user-space perspective for legacy and 
+>> indeed for new implementations.
+>>
+>> How the PHY gets represented in the kernel is of zero interest to 
+>> user-sapce.
+>>
+>> That said, stubbing out the media entity is independent work that can 
+>> happen in any order and IMO is a separate debate. Whether or not 
+>> CSIPHY init sequences live inside of a monolithic CAMSS driver or live 
+>> inside off a discrete csiphy driver is not related to the media graph.
+>>
+>> Happy to have that debate - and if indicated, carefully apply patches 
+>> separately.
+> 
+> So what does this actually solves ?
+> 
+> Neil
+Per-PHY voltage rails, per-PHY power domains and per-PHY OPP scaling.
 
-What is the use case for not listing the clock? Optional clocks are
-generally because it was forgotten about in the initial driver, and
-added later. In order to not break backwards compatibility, the clock
-needs to be optional.
+Using the PHY API instead of rolling our own, as well as separate nodes 
+in the DT.
 
-But this is a new driver. Why not make it required?
+We've been getting away with power-domains, opp scaling etc by sheer 
+luck. The feedback from the list alone now addressed in this driver 
+makes the conversion worthwhile.
 
-> +
-> +	of_property_read_u32(np, "clock-frequency", &bus_freq);
-> +
-> +	if (bus_freq) {
-> +		if (!clk) {
-> +			dev_err(dev,
-> +				"cannot use clock-frequency without a clock\n");
-> +			return -EINVAL;
-> +		}
-
-And this then gets simpler.
-
-> +
-> +		rate = clk_get_rate(clk);
-> +
-> +		div = DIV_ROUND_UP(rate, 2 * bus_freq) - 1;
-> +		if (div == 0 || div & ~MDIO_CFG_PRESCALE_MASK) {
-> +			dev_err(dev, "Incorrect MDIO clock frequency\n");
-
-I think "Out of range" is more correct.
-
-	Andrew
+---
+bod
 
