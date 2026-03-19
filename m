@@ -1,178 +1,164 @@
-Return-Path: <devicetree+bounces-277719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277715-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WE84EW3cu2n2pAIAu9opvQ
-	(envelope-from <devicetree+bounces-277719-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:22:21 +0100
+	id 6Ay+KfTbu2n2pAIAu9opvQ
+	(envelope-from <devicetree+bounces-277715-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:20:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 435462CA3B6
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:22:20 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 605562CA2C9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:20:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D108D3033E27
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:20:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 088F8300C0FF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:20:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 876EB3CCA1C;
-	Thu, 19 Mar 2026 11:20:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A2D73C9EE9;
+	Thu, 19 Mar 2026 11:20:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N912/xRI"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="A+0URX78"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B4883CCA12
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 11:20:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06E1D3C8700
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 11:20:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773919231; cv=none; b=gx2CyLx8PSMoWXWTzD7O91dXctS8hYteo7HRz4lChN23ZkY+sucYUfAtQGzTuRc400AiqcgGTnyhwtj62+k2mcc/LwOkn7eROwZj8sqJCGzTjmrxAw1FGwFQu5CP16pV3jciLwr9Bz4WLvNtCRr6NxN+bVwRifDAzMYtfLT9rLU=
+	t=1773919206; cv=none; b=ThZzP9QwwVDr7v77fUnMsf9LMfAjNwGOtvOis/tyC4qmV/JuXHDmaqFh6lCt4R9Pdt2md+gpLkjRPrRfdUvKo8uuw4T+Iizs+XI7OIgUzkb8e84dYjBWK7D9X38YMNaOmu5oiLMrln5p3I1h/BitZCLUeqT2o4RZyO6pGhfEAdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773919231; c=relaxed/simple;
-	bh=GhkLxLYPCxpc9PsKwvhUrQ5yGIUbYUQfRhs89HYd+aA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=UQZCvtuWVNPJHxQmGwy24j3VR9/m2v41HyP9zbHUCSBz/b3HHXbujNYR3r8D/krhrP20HrV3uwePwSi8cRk4NVCkhnZAcWNsH9aIDn7IV1yn7pxYpgSc1NEHPWVbnU7VnHtKGf2LIt0CO1u9ojnvYhsuHhQA3HV4UynqzoVtHDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N912/xRI; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2a7a9b8ed69so9885875ad.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 04:20:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773919229; x=1774524029; darn=vger.kernel.org;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=BX7UhLamXYXi9uao0OdKXRisI2hK+iFiIkDipABqS14=;
-        b=N912/xRItiKMuMp0iu25KMwfDFYVrFFDk9jZSndCWuIDTHe3aB5bNJjaeoV/+4VVf9
-         72h19e3BV5ppSBDhAvYMCPMFa2UDY1mrB5ktND0o6EiKb4FndtoslFRYtLeGkLRe/is0
-         oljm8XGeynW5vMun/UeyUMCSB2px9J6VEV1q9xx0Z5STdp7FIhwcj7fy7iAEJ19gVkVZ
-         D+Qp74StcoRRB3wP3TX76vpjUyn7Al/zR046rm1EEJ6ZvoiLNBxk7LN9UygINqKBt72Z
-         vqlvKeCbyfFDtR0/k6dieJQMDWX3HIQO80QjohGTqw2EiLoBjSvA1PMA/FR8hffS1D8i
-         FH3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773919229; x=1774524029;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BX7UhLamXYXi9uao0OdKXRisI2hK+iFiIkDipABqS14=;
-        b=RytdlnDIZ+usjdgjf0965sSsUGPKc39sHcGh0JU7Glnp52vesvjm4ZPeFgdH3WhDP6
-         cnH1u1rSIhHXU2TDOYyG6Ljz0CYTTEpqwJ9fiDRI/PVPhnfBJevdENkv8iZgOGLAWEDV
-         VaJmt5rppfYt6Or4QOEf1HJW/YpQZEB9pHJ/xH/j2d4YR9Nst8ONBKT73X5fUFTvNmPB
-         z/pUP3gPjCkj5Cdx6SYj8cn/ivGBfbGhVW/qmW/16JAdkwx9wOSxx9iC/noiytILAqR3
-         dNCUPUMLxP/lPa0dezHJ/aM4bu2umVrR178Hn1vm9wxnGcN/33yLvxDCPIJPTGZkc0b6
-         7W0g==
-X-Forwarded-Encrypted: i=1; AJvYcCWmHKSUfsAuBi9/XXRBonFXa7sepcxXH2KrQk0Zsot3khH28vos727QKI77SYkChrMnAC/BtAhE0Lgl@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqpSNGlyRwIygjeXjkXAf/q5FDfCALzGqis6zyO9V7slyl1VK0
-	sqftTOv/WqHsdRkU+ZObWoy2tamtfeuuuvQHAqrL1JKv3Rmk3dWZGlwh
-X-Gm-Gg: ATEYQzzqUEAmetAH7WOK+TRwzFfoiJgkTiAIvZgAVZYYqoRqr/7AFDWrlYE7dxrxFDz
-	eYD5IquhazCa7ojaWjmFQFjonAlDO2M7/jnyRNhy4P14D+CFAiL8UtYhqCoJ8KfvMQPHw+tt9Bz
-	B1Ro9rRI+W8+OkIqnEtGC0eFhyxyAo7FlYLmJB45lZlOY87peO2/lAkJpoeRRCbn4cr21KsKwCp
-	yudEUYxnJ81IXZI7J3P53otEt5rnsNYx1lKDnE7dNai5qjq/Je9qE5RVAxBmRcDauzqft4wieI1
-	C3Mxzsnyswn+FQA7oFbQNDRJQ3wbcHtJSC9D6w5EQyCxDTxLsXswonxZXEreWiqAiOSi6K9QewS
-	y6ITGziOpD8gsLyqAzHh4XSrL8bnYimbWaOU9ZP74e2N8uCJsyCkJRe9Bg8Aw3HFcEz7yqF//MM
-	TS4xLbosu0R50xE7NAZiIAuDHDU3lTvlVHhDS/Ua2GC9yFR96Fnwjk
-X-Received: by 2002:a17:902:e88e:b0:2b0:5cb3:e4bc with SMTP id d9443c01a7336-2b06e3528bamr62547695ad.16.1773919229455;
-        Thu, 19 Mar 2026 04:20:29 -0700 (PDT)
-Received: from ubuntu.localdomain ([27.217.83.168])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b06e4199easm76524585ad.5.2026.03.19.04.20.26
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 19 Mar 2026 04:20:29 -0700 (PDT)
-From: Zaixiang Xu <zaixiang.xu.dev@gmail.com>
-To: linux@roeck-us.net
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	zaixiang.xu.dev@gmail.com
-Subject: [PATCH 3/3] hwmon: (sht3x) Add support for GXCAS GXHT30
-Date: Thu, 19 Mar 2026 19:19:46 +0800
-Message-Id: <1773919186-17515-4-git-send-email-zaixiang.xu.dev@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1773919186-17515-1-git-send-email-zaixiang.xu.dev@gmail.com>
-References: <1773919186-17515-1-git-send-email-zaixiang.xu.dev@gmail.com>
+	s=arc-20240116; t=1773919206; c=relaxed/simple;
+	bh=Nl6fjlT3D0SK5ODg6k+Mgt6U//DQ4RN47fCjH4xZQeI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=fnsYzfCnqgCnyxPhvFdH/ox76um0erlAL2j91UjHRbQM2gbO1D7y/G8AsJEC+o9BPDnEnxPpMMIpnCE60vdykjTEdLBqFyPvBRIA1j9gSrevUnzYbt2TFV7t8Joth9gE1yEI2luKDYo2s1H/W+s6XShknbUGHu4kU2ITgAW+PuQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=A+0URX78; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20260319112002euoutp021cddf3027ac5dafa5435027cb0f2ff50~eOh2cfz2q1090110901euoutp02h
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 11:20:02 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20260319112002euoutp021cddf3027ac5dafa5435027cb0f2ff50~eOh2cfz2q1090110901euoutp02h
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1773919202;
+	bh=OMg0rkJLW9pmm80ccnxfiQROSU8NAOon9o2bCBKOtfs=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=A+0URX78R/8DxzDvSmu480/veK62Q19iLscD+xrtnAoiR08J6qMndWvbDpwm9R43q
+	 NWg6mSqpH6NmAz0pBO9GUk3NhO6HofowtC+ro7f5g7lGSQJD/Nuq6nCtqrSMPUE6f2
+	 hIM1rT6M0vtufwk+hi41YraZPIyltnEtQUc0cD3A=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20260319112001eucas1p13a5f80fe1877e4547b4b6aa27e4f5db3~eOh13Vykc2060420604eucas1p1W;
+	Thu, 19 Mar 2026 11:20:01 +0000 (GMT)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20260319112000eusmtip2860b5807312356c7523a69a643584d08~eOh1Lszz_1318713187eusmtip2f;
+	Thu, 19 Mar 2026 11:20:00 +0000 (GMT)
+Message-ID: <86bce6c0-dbaf-4508-9f40-ff209c85a76d@samsung.com>
+Date: Thu, 19 Mar 2026 12:19:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [-1.66 / 15.00];
+MIME-Version: 1.0
+User-Agent: Betterbird (Windows)
+Subject: Re: [PATCH 1/2] ARM: dts: broadcom: bcm2835-rpi: Move the firmware
+ node down 1 level
+To: Florian Fainelli <florian.fainelli@broadcom.com>, "Rob Herring (Arm)"
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Broadcom internal kernel review list
+	<bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>, Scott
+	Branden <sbranden@broadcom.com>
+Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Language: en-US
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <a9a202c1-048f-473e-b8f4-6f0550bdba2c@broadcom.com>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20260319112001eucas1p13a5f80fe1877e4547b4b6aa27e4f5db3
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20260114182227eucas1p16eee8f1fbf41f998214b89517793bb0c
+X-EPHeader: CA
+X-CMS-RootMailID: 20260114182227eucas1p16eee8f1fbf41f998214b89517793bb0c
+References: <20260114015810.701076-2-robh@kernel.org>
+	<CGME20260114182227eucas1p16eee8f1fbf41f998214b89517793bb0c@eucas1p1.samsung.com>
+	<a9a202c1-048f-473e-b8f4-6f0550bdba2c@broadcom.com>
+X-Spamd-Result: default: False [-0.65 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
+	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
-	FROM_NEQ_ENVFROM(0.00)[zaixiangxudev@gmail.com,devicetree@vger.kernel.org];
-	TO_DN_NONE(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277719-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[samsung.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277715-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[m.szyprowski@samsung.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.762];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.957];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sensirion.com:email]
-X-Rspamd-Queue-Id: 435462CA3B6
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,samsung.com:dkim,samsung.com:email,samsung.com:mid]
+X-Rspamd-Queue-Id: 605562CA2C9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for GXCAS GXHT30 sensor to the sht3x driver. The GXHT30 is software compatible with the Sensirion SHT3x series.
+On 14.01.2026 19:22, Florian Fainelli wrote:
+> On 1/13/2026 5:58 PM, Rob Herring (Arm) wrote:
+>> Commit 32eea985999b ("ARM: dts: broadcom: bcm2835-rpi: Move non
+>> simple-bus nodes to root level") moved the firmware nodes into the
+>> standard /firmware. However, /firmware is intended to be just a
+>> container for firmware nodes as it is possible to have multiple types of
+>> firmware (e.g. SCMI, OP-TEE, etc.). Move the RPi firmware down a level.
+>>
+>> Fixes: 32eea985999b ("ARM: dts: broadcom: bcm2835-rpi: Move non 
+>> simple-bus nodes to root level")
+>> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
+>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+>> ---
+>> This is only half the fix. Unfortunately, a kernel change[1] is also
+>> needed to make this all work. I do plan for that to go to stable. I'll
+>> leave it up to the Broadcom maintainers whether it's preferred to revert
+>> the fixed patches or apply these fixes. A 3rd option is revert for now
+>> and apply these DT changes some time later to give some time for stable
+>> updates.
+>
+> Let's wait until your fix for the /firmware match table gets applied 
+> and then I will pick up your two changes.
 
-Signed-off-by: Zaixiang Xu <zaixiang.xu.dev@gmail.com>
----
- drivers/hwmon/sht3x.c | 16 +++++++++++++++-
- 1 file changed, 15 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/hwmon/sht3x.c b/drivers/hwmon/sht3x.c
-index 08306ccb6d0b..4e2e5671610a 100644
---- a/drivers/hwmon/sht3x.c
-+++ b/drivers/hwmon/sht3x.c
-@@ -934,13 +934,26 @@ static const struct i2c_device_id sht3x_ids[] = {
- 	{"sht3x", sht3x},
- 	{"sts3x", sts3x},
- 	{"sht85", sht3x},
-+	{"gxht30", sht3x},
- 	{}
- };
- 
- MODULE_DEVICE_TABLE(i2c, sht3x_ids);
- 
-+static const struct of_device_id sht3x_of_match[] = {
-+	{ .compatible = "sensirion,sht3x" },
-+	{ .compatible = "sensirion,sts3x" },
-+	{ .compatible = "sensirion,sht85" },
-+	{ .compatible = "gxcas,gxht30" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, sht3x_of_match);
-+
- static struct i2c_driver sht3x_i2c_driver = {
--	.driver.name = "sht3x",
-+	.driver = {
-+		.name = "sht3x",
-+		.of_match_table = sht3x_of_match,
-+	},
- 	.probe       = sht3x_probe,
- 	.id_table    = sht3x_ids,
- };
-@@ -948,5 +961,6 @@ module_i2c_driver(sht3x_i2c_driver);
- 
- MODULE_AUTHOR("David Frey <david.frey@sensirion.com>");
- MODULE_AUTHOR("Pascal Sachs <pascal.sachs@sensirion.com>");
-+MODULE_AUTHOR("Your Name <zaixiang.xu.dev@gmail.com>");
- MODULE_DESCRIPTION("Sensirion SHT3x humidity and temperature sensor driver");
- MODULE_LICENSE("GPL");
+Florian: I've noticed that the $subject patch has been applied to 
+yesterday's linux-next as commit 0603d8af97ff, but the code applied in 
+Your tree differs from what has been posted in this thread. See:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi?h=next-20260318&id=0603d8af97fff097daa118faf04d9f439b2227ec
+
+https://lore.kernel.org/all/20260114015810.701076-2-robh@kernel.org/
+
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi?h=next-20260318
+
+
+The "firmware" node in Your tree is under "soc" node, but without adding 
+a "compatible = simple-mfd;" property there it won't be populated, what 
+breaks operation of all drivers requiring the firmware driver(s).
+
+
+Best regards
 -- 
-2.34.1
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
 
