@@ -1,192 +1,199 @@
-Return-Path: <devicetree+bounces-277764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277765-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KLh+FHvuu2liqQIAu9opvQ
-	(envelope-from <devicetree+bounces-277764-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:39:23 +0100
+	id 2BFZCI7wu2m1qQIAu9opvQ
+	(envelope-from <devicetree+bounces-277765-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:48:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5653D2CB40C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:39:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A80ED2CB55B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:48:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7447A3007A64
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:39:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BD5B630A24C5
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:47:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 504C53A5458;
-	Thu, 19 Mar 2026 12:39:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE41436CE14;
+	Thu, 19 Mar 2026 12:47:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eY1hSnri"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KYYIAucB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3AB9346E7D;
-	Thu, 19 Mar 2026 12:39:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB1F11386C9
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 12:47:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773923955; cv=none; b=E1CmeTpmoIrAEwQzAI7QV5wwOFzgdLawLEWGbjIHjYUjFQtLaki4KVfFjTRhOG9ek4Ccp3e9C2CqNmw9hD4fGw+GmLDoSgVK4h+lLfgl1xsE0OZXTQOPrHG6wOGmt43cUrYMP8Xp4JG5dxaRczj6rcQOkkaQg83IsNAMOy64GyU=
+	t=1773924478; cv=none; b=F7y2yURRf1bIKM8t8Z79Z0S8jvXkqMSjlJdGd+t5DpBhROZBhURaF1NvXuifUASaQWMrfdbSRbNOh03PectBECXLfTNn+l+ot7Rgmo+opCkmVrQsE1rt1p/CCFJ7Gl/XImLMa7fWZawg10ofipUBNq8rwitjANd80XB38CtWAj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773923955; c=relaxed/simple;
-	bh=b2hXWke5hff36ALTmkbm2tn3mf/2ht/PrV95s8fwmFg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lzgNJFLkqwdVBGpzVBZXUxCb2gITfBR05mi54mCbQkE5U6w3f+Q9biKRPSLS/CBh+7a8EewFwaWASFyffsUoMmcOm5egc0cZS3+0R3kaPYTxxt7zrbth7a+/SX8167FgSyKXVhP+Wgc9UqkoQRujG1RGSNIMVpqGxCwtqTBRZos=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eY1hSnri; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CA08C19424;
-	Thu, 19 Mar 2026 12:39:12 +0000 (UTC)
+	s=arc-20240116; t=1773924478; c=relaxed/simple;
+	bh=zTY+Se3NFvHBXt3d4ew0w2jM2I7U1Cal8UaC8rHErGM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LhAwUuItwMK5ll+D9KqNiwZ2535jheNSgURP9twUbJZrXXED/lc7MTCzohWgEHKWrR0NQ81AgXiF2RR5aChEE6A4KU8F840SAAXE2vrYItz6RMn+ELg2tQs6oful/WnSotjYia6j75t2hRJp0TJE6ANrnxf5qkJhRZ/Iw7ofhxE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KYYIAucB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CAE1C2BCAF
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 12:47:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773923955;
-	bh=b2hXWke5hff36ALTmkbm2tn3mf/2ht/PrV95s8fwmFg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eY1hSnriLeJDdlJCHc+2J3erwQYuT4CHImKIetRmHwP2f69N7R8Hp13tht/AatRqp
-	 df30Jf/SmLUINMmstl8HGToAeMNZpaRwj54bRPedeT4gDPL8cbcTZWlD+0QMkDkBgT
-	 n2Jq2+oLrtSp7D0l2Fb+LRMu+IH/e1PPMpxgWac3cOBjfCi9bB3TXYNsQDhDfIF6KW
-	 TCfU/zFq4PKqiqywLszg2KW/LpU4SMBBJ+Ca5/QevVYMinpyu0ftGxn8X6+Q7AWeON
-	 06XoHV5VrEnjnNf5sESSV4JlSOsEMfr4GLmiK71XNZ9H7BPoI6Pazb7SV1gaQC89XG
-	 wi49i0Z0JHHhQ==
-Message-ID: <12a5b597-a479-40cc-a39e-b82ed3624b5c@kernel.org>
-Date: Thu, 19 Mar 2026 13:39:11 +0100
+	s=k20201202; t=1773924478;
+	bh=zTY+Se3NFvHBXt3d4ew0w2jM2I7U1Cal8UaC8rHErGM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=KYYIAucB7njxEo1PVsQFHRNpjRT84zx60wmJ2jyXxdzr2HwVkU3Puy51MsdOdplbq
+	 FjQKHbJq53lwP5/rQPLvhBfDpf/00XGy6KchM3kbsQC4tNKPV5Eb6aNnAcRXoESGFA
+	 lQbN2yILFPG3pCPLfzh6UubKjDpiuJOsx9aw6ozdYAM26auPhx3jr4KDCXAN8H9KaI
+	 iHRv41pwjGEmZMAf8U766RUvXfmMPhpa1qiXKOgMVwHA5UcCS9ZUYZjWfzOPrka0rh
+	 bOexCLacfoVsdVfkBHu6DXVxEgIAPjlgDxFfCIjVLgVMOmxiqf5cHwntA0mzkBw6YU
+	 xwh1+63zZsDcA==
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-79a4e5caad6so9451507b3.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 05:47:58 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWhYdAroqE3Fj3X5Dqv4cd6JSvoErlLIQ4k/Eu1/BwOwAUD+tWRU+EFkMRjySQm+LhrOMBsY9iDJcsQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzM964uH5KqITdGiu84OmwRfCH6crJIdvSXmSL6XsO6QuXjGk9T
+	EmlgCu15lROTZjhqdtb/VsOTHzRiKceMy84gdj017uvEqEZvZ1slL9lbNuDvkUJJeoyUbcixUXA
+	3xdVuW8+IyXmLOII/3ar4LIB2vHlIvdU=
+X-Received: by 2002:a05:690c:6610:b0:798:5951:f42b with SMTP id
+ 00721157ae682-79a71c40194mr76142387b3.42.1773924477855; Thu, 19 Mar 2026
+ 05:47:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] ARM: dts: broadcom: bcm2835-rpi: Move the firmware
- node down 1 level
-To: Marek Szyprowski <m.szyprowski@samsung.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- "Rob Herring (Arm)" <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>
-Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260114015810.701076-2-robh@kernel.org>
- <CGME20260114182227eucas1p16eee8f1fbf41f998214b89517793bb0c@eucas1p1.samsung.com>
- <a9a202c1-048f-473e-b8f4-6f0550bdba2c@broadcom.com>
- <86bce6c0-dbaf-4508-9f40-ff209c85a76d@samsung.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <86bce6c0-dbaf-4508-9f40-ff209c85a76d@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+References: <20260318-expressatt_camera_flash-v2-0-5c2b9a623dcb@gmail.com> <20260318-expressatt_camera_flash-v2-2-5c2b9a623dcb@gmail.com>
+In-Reply-To: <20260318-expressatt_camera_flash-v2-2-5c2b9a623dcb@gmail.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Thu, 19 Mar 2026 13:47:47 +0100
+X-Gmail-Original-Message-ID: <CAD++jLmyYkxWmed+_TR90bQjOm80qOiFhy+ozO+oaStTCZgC6w@mail.gmail.com>
+X-Gm-Features: AaiRm505cPvbdwiTvmw3UtKWuDl2DXwZ-y3i9XjbmrEhtSPFBdQzKgyQpyb6AMc
+Message-ID: <CAD++jLmyYkxWmed+_TR90bQjOm80qOiFhy+ozO+oaStTCZgC6w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] leds: flash: rt8515: Support single-GPIO flash ICs
+ with vin supply
+To: guptarud@gmail.com, Mark Brown <broonie@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-277765-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277764-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.995];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.855];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:email]
-X-Rspamd-Queue-Id: 5653D2CB40C
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A80ED2CB55B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 19/03/2026 12:19, Marek Szyprowski wrote:
-> On 14.01.2026 19:22, Florian Fainelli wrote:
->> On 1/13/2026 5:58 PM, Rob Herring (Arm) wrote:
->>> Commit 32eea985999b ("ARM: dts: broadcom: bcm2835-rpi: Move non
->>> simple-bus nodes to root level") moved the firmware nodes into the
->>> standard /firmware. However, /firmware is intended to be just a
->>> container for firmware nodes as it is possible to have multiple types of
->>> firmware (e.g. SCMI, OP-TEE, etc.). Move the RPi firmware down a level.
->>>
->>> Fixes: 32eea985999b ("ARM: dts: broadcom: bcm2835-rpi: Move non 
->>> simple-bus nodes to root level")
->>> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
->>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
->>> ---
->>> This is only half the fix. Unfortunately, a kernel change[1] is also
->>> needed to make this all work. I do plan for that to go to stable. I'll
->>> leave it up to the Broadcom maintainers whether it's preferred to revert
->>> the fixed patches or apply these fixes. A 3rd option is revert for now
->>> and apply these DT changes some time later to give some time for stable
->>> updates.
->>
->> Let's wait until your fix for the /firmware match table gets applied 
->> and then I will pick up your two changes.
-> 
-> 
-> Florian: I've noticed that the $subject patch has been applied to 
-> yesterday's linux-next as commit 0603d8af97ff, but the code applied in 
-> Your tree differs from what has been posted in this thread. See:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi?h=next-20260318&id=0603d8af97fff097daa118faf04d9f439b2227ec
-> 
-> https://lore.kernel.org/all/20260114015810.701076-2-robh@kernel.org/
-> 
+Hi Rudraksha,
 
+this is a clear improvement! I like the directions this
+is going.
 
-And regardless firmware as non-MMIO cannot be placed in soc node.
-Nothing in patch SoB changelog explains why the patch was modified when
-applying (and it is substantial change).
+Mark Brown needs to look at how you're using regulators
+here.
 
-Best regards,
-Krzysztof
+On Wed, Mar 18, 2026 at 7:34=E2=80=AFPM Rudraksha Gupta via B4 Relay
+<devnull+guptarud.gmail.com@kernel.org> wrote:
+
+> From: Rudraksha Gupta <guptarud@gmail.com>
+>
+> Extend the RT8515 driver to support flash ICs that use only a single
+> GPIO for both flash and torch modes (no separate ENT pin), with an
+> optional vin regulator that gates power to the flash IC.
+>
+> When vin-supply is provided, the driver enables the regulator before
+> activating the LED and disables it when turning off.
+>
+> Make ent-gpios optional and validate at probe time that exactly one of
+> ent-gpios or vin-supply is provided. When ent-gpios is absent, the
+> driver uses enf-gpios for both flash and torch brightness control.
+>
+> Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
+
+(...)
+
+>         struct regulator *reg;
+> +       bool reg_enabled;
+
+I think you can actually ask a regulator if it is enabled already,
+regulator_is_enabled().
+
+Also as long as you enable and disable it the same number of
+times it also contains an internal reference count, so this is
+often enough.
+
+> +       if (rt->reg && rt->reg_enabled) {
+> +               regulator_disable(rt->reg);
+> +               rt->reg_enabled =3D false;
+> +       }
+
+I don't think you need to NULL-check rt-reg but not sure.
+
+Can you use regulator_is_enabled() instead of the bool local?
+
+> +               /* Enable the vin regulator if needed */
+> +               if (rt->reg && !rt->reg_enabled) {
+
+Dito
+
+> +               /* Enable the vin regulator if needed */
+> +               if (rt->reg && !rt->reg_enabled) {
+> +                       ret =3D regulator_enable(rt->reg);
+
+Dito
+
+>         if (state) {
+> +               /* Enable the vin regulator if needed */
+> +               if (rt->reg && !rt->reg_enabled) {
+
+Dito.
+
+> +       /* Optional VIN supply (e.g. GPIO-controlled fixed regulator) */
+> +       rt->reg =3D devm_regulator_get_optional(dev, "vin");
+> +       if (IS_ERR(rt->reg)) {
+> +               if (PTR_ERR(rt->reg) =3D=3D -ENODEV)
+> +                       rt->reg =3D NULL;
+
+I think the regulator callbacks are able to deal transparently
+with "regulators" that are -ENODEV, can you just let it pass?
+Anyway Mark knows what to do here.
+
+> +       /* Exactly one of ENT or VIN must be provided */
+> +       if (!rt->enable_torch =3D=3D !rt->reg)
+> +               return dev_err_probe(dev, -EINVAL,
+> +                                    "exactly one of ent-gpios or vin-sup=
+ply is required\n");
+
+Please drop this check.
+
+I think there can be systems using the torch but also define
+the regulator.
+
+Yours,
+Linus Walleij
 
