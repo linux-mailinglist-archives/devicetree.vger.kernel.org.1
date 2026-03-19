@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-277548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277549-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0FwSDEFvu2nGjwIAu9opvQ
-	(envelope-from <devicetree+bounces-277548-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 04:36:33 +0100
+	id 2OEGF1Bvu2nGjwIAu9opvQ
+	(envelope-from <devicetree+bounces-277549-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 04:36:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C523F2C593B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 04:36:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D361B2C5952
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 04:36:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 47EE73101D1C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 03:31:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2AFD2313344F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 03:32:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80D0938A714;
-	Thu, 19 Mar 2026 03:31:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 815B938945A;
+	Thu, 19 Mar 2026 03:31:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u/8DCXeH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m0tp6Cyv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C5CA3815E9;
-	Thu, 19 Mar 2026 03:31:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E483368962;
+	Thu, 19 Mar 2026 03:31:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773891106; cv=none; b=GXr4XgPLXv5hQiEhIBKj4c714yXnVpYwYV6iMhWhiHvePaGdGX3gAXQi2iEhCZOSER3vkX1GOP3sXgXzZi7KO6fwHxpLnBzhZx9ryAIdfbgq/6VEg6InUsCH3rLECMoISIOLXnjfqzd0RIqZbyBHLXU88GUMsZCm5CkKxrZTLvY=
+	t=1773891108; cv=none; b=cgs6OoSdVUvExIcuu8HJ8Jnv5V/YZLepTXVYe2p5k+QLoNd8fhRSNPxtFyfIFovE4E7ZeYoRLlPoHTUSLeU7ZVV3qXc/y4NKEVOv0tlY67lXdBoHWmqbmt/KAY4g8wPt8nfd1E3ecETZBk/+vY1uBsEKryUafIxVFSEPTn1O8jA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773891106; c=relaxed/simple;
-	bh=rs8XVVtDXMfPYej+yvM0L8FoEOSoVZnmjzPDI974A6o=;
+	s=arc-20240116; t=1773891108; c=relaxed/simple;
+	bh=GyApI7adkx9QEWsmVY5ZYKUDbWRo++YvHWqxhlLDThY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Bv+CJnR71HjsWc6HLpggtw5AP6+gLrt4mJPEHBj9wO0EMJoliBAoAGiuvAM9sUC3utp5HupgciR6Ntw2LN1inN7rO2LL5YoG2/h9zsWzbAgGU0sGBolpfLPHcUTqAXPKx4ulg0bj7jWwlGbhoFrcY1+qQ8wlaUGqSZ6UB+A3LHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u/8DCXeH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B29E4C2BCAF;
-	Thu, 19 Mar 2026 03:31:44 +0000 (UTC)
+	 MIME-Version:Content-Type; b=mMbgRx4IlP9pMvCRDNZTPQrb8bZSdn0nirIbxn0GE6yvWzlmwzmSLFvKQ/xj81duRV33Hd1gFrEJacWSt2vuQ+C48aTejnH/4qW/xnd5hY9hdw3ZgFc4An0SIjGXK3PLdHbEXKblCixjgVJUyUpZvLI6fwnyM49DWfn7xSVGMIY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m0tp6Cyv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97A88C19421;
+	Thu, 19 Mar 2026 03:31:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773891106;
-	bh=rs8XVVtDXMfPYej+yvM0L8FoEOSoVZnmjzPDI974A6o=;
+	s=k20201202; t=1773891108;
+	bh=GyApI7adkx9QEWsmVY5ZYKUDbWRo++YvHWqxhlLDThY=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=u/8DCXeH/f579y0EJFVYrYuggYGMYu0z55E5qCf8UcRAnPLMdC/674ki/V6vIH7nr
-	 Sfbr3sHm5VYgrqloDJHq9Zw3CBeatNCH57/ddAwMEddCPp+VA0Bg06KWpCflhlP9El
-	 KvfrAINy5ru2rxlFguYOecpzvRyW1S6tn0NQYMDNmkrIhQS0s9v+j2WIaHj795iQNV
-	 71sNEg/ar+eZBibXl7NdoHeFqOPU2u4qUGp3SN6ycsuVa/3aouGkU6CwAblFD4PGDj
-	 AI1opkyRRxS8gAsdC2jdP2Z4FZUGdjnaXv1IeMRMvCjr/OTFEUt3p0JWAjgdWzfRI0
-	 apLqXkYCzjJmw==
+	b=m0tp6Cyvb1ZUD0frCATUnCl5bwE20FO+IbPWP2PNO0BxSVrUHhzZwM2jHEum8zrj8
+	 9HWMCCrKlN6iYi9q1+iRBUPjrU6wIopeNFE5U6JOW2cExkvGTVOhIy5wFV3rV0/C/2
+	 fEN1b0gBjjiqev2Wo7TtehFKWDQ5iqm5xjLnr2TCcoOOgOzWcq5eJbXqPlNKgB4FZg
+	 iO3eYWLqhnf5J1ZN9RdcTDWuiTDUab4CQJd5ZcfXSh3qO1DrMd7t7xlKXyiaWNNEsf
+	 G/To7PUwMwip4Q81wBulfOL2ebkJTJmefl7CPLR2rpptxt4eZ57GuALo0KztanBjEJ
+	 EXXCHWTn5kPeQ==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konradybcio@kernel.org>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v5 0/2] arm64: dts: qcom: qcs6490-rb3gen2-industrial-mezzanine: Add TC9563 PCIe switch nodes
-Date: Wed, 18 Mar 2026 22:31:20 -0500
-Message-ID: <177389107877.16612.9840166813591947398.b4-ty@kernel.org>
+	Abel Vesa <abelvesa@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/6] arm64: dts: qcom: sm8x50: Enable UHS-I SDR50 and SDR104 SD card modes
+Date: Wed, 18 Mar 2026 22:31:21 -0500
+Message-ID: <177389107876.16612.12057285635588213890.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260317-industrial-mezzanine-pcie-v5-0-1358978517fe@oss.qualcomm.com>
-References: <20260317-industrial-mezzanine-pcie-v5-0-1358978517fe@oss.qualcomm.com>
+In-Reply-To: <20260314023715.357512-1-vladimir.zapolskiy@linaro.org>
+References: <20260314023715.357512-1-vladimir.zapolskiy@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,7 +76,7 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277548-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-277549-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -92,32 +91,41 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C523F2C593B
+X-Rspamd-Queue-Id: D361B2C5952
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Tue, 17 Mar 2026 13:07:06 +0530, Sushrut Shree Trivedi wrote:
-> Add nodes for the two additional TC9563 PCIe switches present on the
-> QCOM RB3Gen2 Industrial Mezzanine platform.
+On Sat, 14 Mar 2026 04:37:09 +0200, Vladimir Zapolskiy wrote:
+> The reported problem of some non-working UHS-I speed modes on SM8450
+> originates in commit 0a631a36f724 ("arm64: dts: qcom: Add device tree
+> for Sony Xperia 1 IV"), and then it was spread to all SM8450 powered
+> platforms by commit 9d561dc4e5cc ("arm64: dts: qcom: sm8450: disable
+> SDHCI SDR104/SDR50 on all boards").
 > 
-> One of the TC9563 is connected directly to the PCIe0 root-port while
-> the second TC9563 switch is connected in cascade fashion to another
-> already available TC9563 switch on PCIe1 via the former's downstream
-> port (DSP). The final PCIe hierarchy on the Industrial Mezz platform
-> would look something like below:
+> The tests show that the rootcause of the problem was related to an
+> overclocking of SD cards, and it's fixed later on by commit a27ac3806b0a
+> ("clk: qcom: gcc-sm8450: Use floor ops for SDCC RCGs").
 > 
 > [...]
 
 Applied, thanks!
 
-[1/2] arm64: dts: qcom: qcs6490-rb3gen2-industrial-mezzanine: Add TC9563 PCIe switch node for PCIe0
-      commit: 07a6bd7de086640838eb4b46aaf1c440bcd01d5a
-[2/2] arm64: dts: qcom: qcs6490-rb3gen2-industrial-mezzanine: Add second TC9563 PCIe switch node for PCIe1
-      commit: bdb33e4f15172d42d84b6b3bf90893dafbbfebcf
+[1/6] arm64: dts: qcom: sm8550: Fix xo clock supply of platform SD host controller
+      commit: 7f5542e0ad5396387604697f6d61b86b73e7ae01
+[2/6] arm64: dts: qcom: sm8650: Fix xo clock supply of SD host controller
+      commit: 75ac6441967e0898e1c6c1268ed5334e1422ed1f
+[3/6] arm64: dts: qcom: hamoa: Fix xo clock supply of platform SD host controller
+      commit: 771157329a63390748a43b91f467f29d3820f108
+[4/6] arm64: dts: qcom: sm8450: Enable UHS-I SDR50 and SDR104 SD card modes
+      commit: 77cd9162a37d57a7dcfe5a75296e85a93547b33a
+[5/6] arm64: dts: qcom: sm8550: Enable UHS-I SDR50 and SDR104 SD card modes
+      commit: 100246cda7b85d2aec0ee2dc0d449397b87d8e1a
+[6/6] arm64: dts: qcom: sm8650: Enable UHS-I SDR50 and SDR104 SD card modes
+      commit: eebafbff4c9bcef1d59d892b21cd6573dc014181
 
 Best regards,
 -- 
