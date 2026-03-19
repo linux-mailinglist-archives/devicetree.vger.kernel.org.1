@@ -1,215 +1,208 @@
-Return-Path: <devicetree+bounces-277691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277693-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uBPyD+zOu2mXogIAu9opvQ
-	(envelope-from <devicetree+bounces-277691-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:24:44 +0100
+	id mAf+IFfQu2k4owIAu9opvQ
+	(envelope-from <devicetree+bounces-277693-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:30:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB82A2C96D4
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:24:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D66542C97E7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:30:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C6540301187D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:22:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4B56430AB8FA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:29:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C28D13BFE2C;
-	Thu, 19 Mar 2026 10:22:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A850D374197;
+	Thu, 19 Mar 2026 10:29:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B5qUXGTY"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="C7xqy6Xa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE4AF3A16AD
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 10:22:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE23734D383
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 10:29:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773915732; cv=none; b=rLRuH6ytDZ1EUE/ClL5B2PW64UBEDRUkwbSi6rb7B8/r0tRvjCHm8N1gtWnY0wv51LECpSY4t+n4pkjWNi/PS1eo+mhkiT8EiQVOKTW8h6Cc2XkBw7ks1c5IED7TMiilhBrR9JezNDOOm2vbUiLJrQ44bO0VwLmsO92W4ie2SGw=
+	t=1773916193; cv=none; b=f2USSTEvWom3VUYT7OE3Skl+8FrkrQovS6uli6cGDnDtc0k9TsEcfswVK1xGiBzwmLbKdPBn2Lzv7mnKU8hVO1jA2vqjtBZ8VxCklriT/1Gk8tH/vLSDaj38Bl/3PAe8U0ZwAtne0+fTiCXL44hU15XFEP2y55tuR2oPm0Hzc2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773915732; c=relaxed/simple;
-	bh=4GokRgSrCaZllNf6Z3ukfoFoT3j+3PL0Wh2G7Gp8ido=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=VZ4/4uUaryS+Y/hu0J59d81mcRj1sIiJZJMX6QztRkRPm4cI+ncEeEQF3hi//GsXpifRUpflG1sepgxQ827ukleYS70itBtD9yNc0rQiI99qASYw/WPuAJJ/hwp2sOphpAu0WkAQiNJAW4QKojGbcdx3pwuRAQ5e5BF8QUj7BtY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B5qUXGTY; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-43b4f48c47cso563199f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 03:22:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773915728; x=1774520528; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fEgrB2T+whJlk9Y05dXgdk6oVsIuY+KNuAhr1hMqks0=;
-        b=B5qUXGTY1e/nN6DttFKmx3bml3YofdSEXbok+K3P93qzjI4J5/GaKKR+kxM/SiGO9c
-         4MNl+0KXHFFWaIPsIMdZ7UsZOZ9RYVa+KtL/ylHrYhr7VIVgtwn30jd6Jg6MOGlHiZgr
-         E9m8paRKlLB3N9z05u9r6XlMr7JsbX3Qjs61rZxlkEeueOKDZ77pZ7ZOzEvuEwOVu8SC
-         jqvxfZ2qWcZr41LMnBIsjSjwZhhFJuLMrJ3xH1ftpeMm/cvkEsCxgQxWaoGsp17DCFug
-         HVE2gWc3WTFZW7shDmzRxIvlws5Hi6yUPn9b+2U61ZKeFVBxC0Bf54k4gip4h53Pyz8t
-         oQBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773915728; x=1774520528;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fEgrB2T+whJlk9Y05dXgdk6oVsIuY+KNuAhr1hMqks0=;
-        b=f4PEDa+jqLkjD8HCMiQC5edvudVRrQySBqjZu8gK6xPPQEXbASRvNje3cn1nW1oF2d
-         sE+b4M1NaBoSqmnHvtAPlmEvqXefOZR98QR+pSBEsoF3RhVTAaVFLZuAO7uvAA6uz4rR
-         znGB2SfzrO+yOjKQjbnqv92P8UPQIT0d2lhGyyqi/m/GRewotV79C9sYyy2ncF4hxHM/
-         ts5OAot51FlKm7lzQdOPKarSgROSa+ahOzPMhC6oKTg6qko0ww9YC5YM7dVPrasQZpha
-         iKoO2QtVZj9nW/7NbZCMA4C6gm3gNUkGKuVn9BOXoBRp2LW7nvm4lHF9muhoiAmIM32C
-         Mqhw==
-X-Forwarded-Encrypted: i=1; AJvYcCW01GmCWoOxJ6etCb+8lCtZOy1+xgziM+uVEFL2NtRM0PgFxCatee146p3Lezco1ujvq1ArBwRQMm/w@vger.kernel.org
-X-Gm-Message-State: AOJu0YwMm6Xn73SXB9mFrOaevzJAb9fIocyTUmIhAVKF+RF6NkozT+gf
-	P0f5aXAvxYMyixIkwSdgtzGXUDSeAddAjeHiXDR/hdlME8vdscf16Gg6
-X-Gm-Gg: ATEYQzxWO0wXWYUwycsZsLjkHkBOOAJ9d5oC8GPe0zBfDyUTcj0YbX5OwcakbjYQT2Y
-	YHhcoJEZJQHW+1uvx8qZash24jr7aWuFmRJ/A3Gkzn1V8s/sgm+VW8N7EHWRXuMwuOZBWpu5Xo7
-	jSMZpGM7S2K63Fk+0rA2DZZBzPz3FDLYwHBpsJr4+1LyE8VJE39pe84LAiwe+ULZOB0Qq8ne6NT
-	c+ONpsXwsebdAf1dN39A5hxJRuSbH/sZ/Mo6imGGq/KQF7ebFDulfrFGRBi8pTPkgH8sN/5E190
-	IH85863ju3infL+4Kdot1+mblKYhLsoCmqyDTTrONWkq94ClBCB01+t+C0LemjGaz4MByRrMql3
-	JHCix1BJwZeE8iTz+t67Nda6GiJakQz2/uktI1JcPrRY3VMvwBu/BBaZupT451XnuP4GxM2VzMF
-	+iNIK2oLsRIezPfGSxnEX6kyg7wPH6tLwspLswGHiVV8kZrL83
-X-Received: by 2002:a05:6000:3104:b0:439:caf7:a5e5 with SMTP id ffacd0b85a97d-43b527c54eemr11777499f8f.31.1773915726959;
-        Thu, 19 Mar 2026 03:22:06 -0700 (PDT)
-Received: from debian.levillagebyca.com ([213.152.28.84])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b51852a64sm15352271f8f.14.2026.03.19.03.22.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Mar 2026 03:22:06 -0700 (PDT)
-From: MidG971 <midgy971@gmail.com>
-To: linux-rockchip@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	jonas@kwiboo.se,
-	shawn.lin@rock-chips.com,
-	MidG971 <midgy971@gmail.com>
-Subject: [PATCH v3] arm64: dts: rockchip: rock-3b: Model PI6C20100 as
- gated-fixed-clock
-Date: Thu, 19 Mar 2026 11:22:47 +0100
-Message-Id: <20260319102247.32260-1-midgy971@gmail.com>
-X-Mailer: git-send-email 2.39.5
+	s=arc-20240116; t=1773916193; c=relaxed/simple;
+	bh=DkSFWv460eF+SLnywqG+PsmtAxUHLUKrZGMYJd32AFA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=QZ3eQ30B277Y9zYV1tcyUbtnNndUxMqjPWAFmCaKg4T569bb6HpgUZBi6WVBTF/L6xise8N7zJICVl6S0L3YLmPw/Quha7FWfG201qIb3aO0fFd32y1wp/SMUVYtvnei2ct23mkTRqhYe3OcBTWZ9E/8XUpacbdRY+rRLv2GidQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=C7xqy6Xa; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20260319102948euoutp01b774214751e159d7f51420a839c67b0a~eN2AR1Ca20618706187euoutp01l
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 10:29:48 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20260319102948euoutp01b774214751e159d7f51420a839c67b0a~eN2AR1Ca20618706187euoutp01l
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1773916189;
+	bh=uKAPmcA2X9Bm9pJ7T+wzs/NFBFfUIopHAZt+of0O0TE=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=C7xqy6XartaJebAc/mio76XJgysOea9Dhzs17asXEowNuhnl4+zZPcqEs2aitk7Dw
+	 rx9J3fgwC7hVscoeFHjVoqHtn7LNCEL6lP6m2NHLhc/iouWTgywbvvbRGo6O6wySyS
+	 ADC4nFYUa7UILv6G6+6jFPm9zHvZNkSXdkjjWl+8=
+Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20260319102948eucas1p19b0586ca5935a60f9d5bcea3bbbccdac~eN1-1Tym32451224512eucas1p1g;
+	Thu, 19 Mar 2026 10:29:48 +0000 (GMT)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20260319102947eusmtip1f9e65f8316f14e8d08a56aea54338db7~eN1_23p1d2191621916eusmtip1f;
+	Thu, 19 Mar 2026 10:29:47 +0000 (GMT)
+Message-ID: <c5ba58fb-50f1-4067-a099-97169ea81f68@samsung.com>
+Date: Thu, 19 Mar 2026 11:29:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+User-Agent: Betterbird (Windows)
+Subject: Re: [PATCH v8 05/10] pmdomain: samsung: convert to using regmap
+To: Ulf Hansson <ulf.hansson@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?=
+	<andre.draszik@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar
+	<alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam
+	Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Peter
+	Griffin <peter.griffin@linaro.org>, Tudor Ambarus
+	<tudor.ambarus@linaro.org>, Juan Yescas <jyescas@google.com>, Will McVicker
+	<willmcvicker@google.com>, kernel-team@android.com,
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org
+Content-Language: en-US
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <CAPDyKFrprMSLOBMB_BHbi=j6UXV4dXBn-H8M1BsqDWNSCJwvuA@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20260319102948eucas1p19b0586ca5935a60f9d5bcea3bbbccdac
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20260319101424eucas1p2d5dca06240e8760046fb40507ffb3bba
+X-EPHeader: CA
+X-CMS-RootMailID: 20260319101424eucas1p2d5dca06240e8760046fb40507ffb3bba
+References: <20260318-gs101-pd-v8-0-241523460b10@linaro.org>
+	<20260318-gs101-pd-v8-5-241523460b10@linaro.org>
+	<CGME20260319101424eucas1p2d5dca06240e8760046fb40507ffb3bba@eucas1p2.samsung.com>
+	<CAPDyKFrprMSLOBMB_BHbi=j6UXV4dXBn-H8M1BsqDWNSCJwvuA@mail.gmail.com>
+X-Spamd-Result: default: False [-0.65 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,sntech.de,kwiboo.se,rock-chips.com,gmail.com];
-	TAGGED_FROM(0.00)[bounces-277691-lists,devicetree=lfdr.de];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	XM_UA_NO_VERSION(0.01)[];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-277693-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,samsung.com,gmail.com,linaro.org,google.com,android.com,lists.infradead.org,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[midgy971@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	NEURAL_HAM(-0.00)[-0.926];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CB82A2C96D4
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[m.szyprowski@samsung.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[samsung.com:+];
+	NEURAL_HAM(-0.00)[-0.271];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,samsung.com:dkim,samsung.com:email,samsung.com:mid]
+X-Rspamd-Queue-Id: D66542C97E7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Radxa ROCK 3B uses a PI6C20100 PCIe reference clock buffer to=0D
-provide a 100MHz reference clock to the PCIe 3.0 PHY and controllers.=0D
-This chip is currently modeled only as a fixed regulator=0D
-(vcc3v3_pi6c_03), with no clock output representation.=0D
-=0D
-The PI6C20100 is a clock generator, not a power supply. Model it=0D
-properly as a gated-fixed-clock, following the pattern established=0D
-for the Rock 5 ITX and other boards with similar PCIe clock buffer=0D
-chips.=0D
-=0D
-The regulator node is kept as-is since it controls the power supply=0D
-to the PI6C20100 chip via GPIO0_D4. The new gated-fixed-clock node=0D
-references this regulator as its vdd-supply and provides a proper=0D
-100MHz clock output. The pcie3x2 node is updated to include the=0D
-pipe and reference clocks, matching the approach used in=0D
-rk3588-rock-5-itx.dts.=0D
-=0D
-Assisted-by: Claude:claude-3-opus=0D
-Signed-off-by: MidG971 <midgy971@gmail.com>=0D
----=0D
-=0D
-Changes since v2 [1]:=0D
- - Fix AI attribution: use Assisted-by tag instead of Signed-off-by (Shawn)=
-=0D
- - Add missing pipe clock (CLK_PCIE30X2_PIPE_DFT) to pcie3x2 clocks=0D
-   override (Shawn, referencing David's patch [2])=0D
-=0D
-Changes since v1 [3]:=0D
- - Drop phy-supply approach entirely (Jonas, Shawn)=0D
- - Model PI6C20100 as gated-fixed-clock instead=0D
- - Wire reference clock to pcie3x2 controller=0D
- - Follow pattern from rk3588-rock-5-itx.dts=0D
-=0D
-[1] https://lore.kernel.org/linux-rockchip/20260304132957.684616-1-midgy971=
-@gmail.com/=0D
-[2] https://lore.kernel.org/linux-rockchip/d981fa84-bd05-ac9d-98ca-89ee4717=
-7829@rock-chips.com/T/#m6a8289609e6a60691d3c06358b6322c7aa5e43d1=0D
-[3] https://lore.kernel.org/linux-rockchip/20260213151452.535527-1-midgy971=
-@gmail.com/=0D
-=0D
- arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 21 ++++++++++++++++++++-=
-=0D
- 1 file changed, 20 insertions(+), 1 deletion(-)=0D
-=0D
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/arm64/b=
-oot/dts/rockchip/rk3568-rock-3b.dts=0D
-index c5f67dd6dfd9..1a2b3c4d5e6f 100644=0D
---- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts=0D
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts=0D
-@@ -56,7 +56,16 @@=0D
- 		};=0D
- 	};=0D
-=0D
--	/* pi6c pcie clock generator */=0D
-+	/* PI6C20100 PCIe reference clock buffer (100MHz) */=0D
-+	pcie30_refclk: pcie-clock-generator {=0D
-+		compatible =3D "gated-fixed-clock";=0D
-+		#clock-cells =3D <0>;=0D
-+		clock-frequency =3D <100000000>;=0D
-+		clock-output-names =3D "pcie30_refclk";=0D
-+		vdd-supply =3D <&vcc3v3_pi6c_03>;=0D
-+	};=0D
-+=0D
-+	/* PI6C20100 power supply - active-high GPIO0_D4 */=0D
- 	vcc3v3_pi6c_03: regulator-3v3-vcc-pi6c-03 {=0D
- 		compatible =3D "regulator-fixed";=0D
- 		enable-active-high;=0D
-@@ -553,6 +562,15 @@=0D
- };=0D
-=0D
- &pcie3x2 {=0D
-+	clocks =3D <&cru ACLK_PCIE30X2_MST>, <&cru ACLK_PCIE30X2_SLV>,=0D
-+		 <&cru ACLK_PCIE30X2_DBI>, <&cru PCLK_PCIE30X2>,=0D
-+		 <&cru CLK_PCIE30X2_AUX_NDFT>,=0D
-+		 <&cru CLK_PCIE30X2_PIPE_DFT>,=0D
-+		 <&pcie30_refclk>;=0D
-+	clock-names =3D "aclk_mst", "aclk_slv",=0D
-+		      "aclk_dbi", "pclk", "aux",=0D
-+		      "pipe", "ref";=0D
- 	pinctrl-names =3D "default";=0D
- 	pinctrl-0 =3D <&pcie30x2m1_pins>;=0D
- 	reset-gpios =3D <&gpio2 RK_PD6 GPIO_ACTIVE_HIGH>;=0D
---=0D
-2.39.5=0D
-=0D
+On 19.03.2026 11:13, Ulf Hansson wrote:
+> On Wed, 18 Mar 2026 at 16:28, André Draszik <andre.draszik@linaro.org> wrote:
+>> On platforms such as Google gs101, direct mmio register access to the
+>> PMU registers doesn't necessarily work and access must happen via a
+>> regmap created by the PMU driver instead.
+>>
+>> In preparation for supporting such SoCs convert the existing mmio
+>> accesses to using a regmap wrapper.
+>>
+>> With this change in place, a follow-up patch can update the driver to
+>> optionally acquire the PMU-created regmap without having to change the
+>> rest of the code.
+>>
+>> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+>> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> [...]
+>
+>> @@ -36,31 +35,42 @@ struct exynos_pm_domain {
+>>   static int exynos_pd_power(struct generic_pm_domain *domain, bool power_on)
+>>   {
+>>          struct exynos_pm_domain *pd;
+>> -       void __iomem *base;
+>>          u32 timeout, pwr;
+>> -       char *op;
+>> +       int err;
+>>
+>>          pd = container_of(domain, struct exynos_pm_domain, pd);
+>> -       base = pd->base;
+>>
+>>          pwr = power_on ? pd->local_pwr_cfg : 0;
+>> -       writel_relaxed(pwr, base);
+>> +       err = regmap_write(pd->regmap, 0, pwr);
+>> +       if (err) {
+>> +               pr_err("Regmap write for power domain %s %sable failed: %d\n",
+>> +                      domain->name, power_on ? "en" : "dis", err);
+>> +               return err;
+>> +       }
+>>
+>>          /* Wait max 1ms */
+>>          timeout = 10;
+>> -
+>> -       while ((readl_relaxed(base + 0x4) & pd->local_pwr_cfg) != pwr) {
+>> -               if (!timeout) {
+>> -                       op = (power_on) ? "enable" : "disable";
+>> -                       pr_err("Power domain %s %s failed\n", domain->name, op);
+>> -                       return -ETIMEDOUT;
+>> +       while (timeout-- > 0) {
+>> +               unsigned int val;
+>> +
+>> +               err = regmap_read(pd->regmap, 0x4, &val);
+>> +               if (err || ((val & pd->local_pwr_cfg) != pwr)) {
+>> +                       cpu_relax();
+>> +                       usleep_range(80, 100);
+>> +                       continue;
+>>                  }
+>> -               timeout--;
+>> -               cpu_relax();
+>> -               usleep_range(80, 100);
+>> +
+>> +               break;
+>>          }
+>>
+> [...]
+>
+> As a follow-up patch on top, please consider converting the open-coded
+> polling loop above into a readx_poll_timeout_atomic().
+
+This has been tried and it doesn't work in all cases required for power 
+domain driver:
+
+https://lore.kernel.org/all/5c19e4ef-c4fd-4bf5-88b3-46c86751b14e@samsung.com/
+
+Probably a comment about that could be added directly to this code to 
+avoid such conversion and breakage in the future.
+
+> That said, the series looks ready to me, but I am awaiting an ack from
+> a DT maintainer on patch4 before applying.
+
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
+
 
