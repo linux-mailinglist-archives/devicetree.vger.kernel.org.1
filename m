@@ -1,64 +1,72 @@
-Return-Path: <devicetree+bounces-277825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277826-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sLiRAM0KvGkArgIAu9opvQ
-	(envelope-from <devicetree+bounces-277825-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:40:13 +0100
+	id oB+pFJ4LvGkArgIAu9opvQ
+	(envelope-from <devicetree+bounces-277826-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:43:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E0642CD00F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:40:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3E8C2CD13A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:43:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B9DC13086057
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:39:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 127373055E79
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:43:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71D4537883E;
-	Thu, 19 Mar 2026 14:39:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mT+ZBbBa"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 182F83CF026;
+	Thu, 19 Mar 2026 14:43:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C2352DF6EA;
-	Thu, 19 Mar 2026 14:39:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5964E37FF52
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 14:43:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773931181; cv=none; b=Qif4AspTY3bLwLWKEYNTEH9RERyZX5cJraReMDFUWIxig3ImX1mxJRzCqOvygDjSAoteIbOSY+2RFkEIGE3KzxmLGBNTtC1momJzGoHnlth8TsM0cmBpu1hilUnsFEL1aAqUzb/oxQvCD67Sa8htOlQrnp7V//4TymNbfIumVxU=
+	t=1773931387; cv=none; b=M0hpLoIZbS9NAjXfwI4/tL1qLbkclNO2pk5wsd/ZNGL78i5KJoLTx0bxg4iUxbzfMoRIWUD8Ws4mkLPJQQb2OEAXbGODLgs2XnSdIaUvYJAURwYpflh5IsCgDsu4CiojZMOKBdFSYN6LYE9PP4nbpnVgHnn0a54M5frkjRjM/nU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773931181; c=relaxed/simple;
-	bh=HNVaOtoRdCYXT6gd3FxRG1pIEFjqEZUE1ASwiWFTJA0=;
+	s=arc-20240116; t=1773931387; c=relaxed/simple;
+	bh=Z6v+tojabDv9reJRrro6SYzGGsf5y9wNxSkAqWhGQVQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=njs4k/7tJlIeAhsr4E13PlltXFNLLUENO9y6xeRpiL8Dqz9KNBMBOKPj+pQ3zmaTiSZeB9mDL1odCcHI0Mc1luxv4xpLzJmcI7eCuYNDGiMtCJo6hRD6CnARv+2rn4zCpJCjukSY4oZdg0anZgVfnzx/n8YuppXGqLTUtUzATT4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mT+ZBbBa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2CD2C19424;
-	Thu, 19 Mar 2026 14:39:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773931180;
-	bh=HNVaOtoRdCYXT6gd3FxRG1pIEFjqEZUE1ASwiWFTJA0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mT+ZBbBaTwAEVSZoGmSo0Bu5a7DOA6GSLCEQjG5KZOzijgInyoCc1ZXe3SLswaLxD
-	 ZWwABlAeMjS+WsfEPHFy699QHaFHFkNrbNdxCYfnA9RPErURY2QdMf57eTE7AvZCzv
-	 CE2pcK10GzQTfjBxk6zIG6F7kRXrR3guOJY9qARso5BwZAEicYMv2KGJ48uV8Na4fX
-	 xq3+fmEkWwUclDV+oUhFsUJZaw4vTTdyzR1wbGCLS0JJcTyJhqMkhtuGCBJ5u8WN0g
-	 vwdA1ytsWSek8B55qPtA62BeGmAUGGyZeqAr1MfxJoXv5eouN07uHKBYIn5P8L0rqL
-	 usewqo6lEJRqA==
-Date: Thu, 19 Mar 2026 14:39:36 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sm7225-fairphone-fp4: Fix conflicting
- bias pinctrl
-Message-ID: <20260319-persecute-subzero-341eda9c575e@spud>
-References: <20260319-fp4-uart1-fix-v1-1-f6b3fedef583@fairphone.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=uXgDv5y2vRavJwYb5Vd3UCPK7QiQg9sxqw0gLlJvjlep54qSORwf+Rhkk/y35WCpTZjQnGsrpIFDPRTUwhl7/3q3AziotvOrx/u7i35e1v739LNBTs52EyF//31gtqSyOWUi7jauvLMT9htJgvhBv5U0mKfluz8nUqi4zFj53Uw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1w3EaB-0000ga-PD; Thu, 19 Mar 2026 15:42:43 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1w3EaB-0015no-0w;
+	Thu, 19 Mar 2026 15:42:43 +0100
+Received: from pengutronix.de (p4ffb2dc6.dip0.t-ipconnect.de [79.251.45.198])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id DC6AB5085C9;
+	Thu, 19 Mar 2026 14:42:42 +0000 (UTC)
+Date: Thu, 19 Mar 2026 15:42:42 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+Cc: Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	NXP S32 Linux Team <s32@nxp.com>, Christophe Lizzi <clizzi@redhat.com>, 
+	Alberto Ruiz <aruizrui@redhat.com>, Enric Balletbo <eballetb@redhat.com>, 
+	Eric Chanudet <echanude@redhat.com>
+Subject: Re: [PATCH v2 0/5] can: flexcan: Add NXP S32N79 SoC support
+Message-ID: <20260319-asparagus-taipan-of-sufficiency-fcf4de-mkl@pengutronix.de>
+X-AI: stop_reason: "refusal"
+References: <20260319094032.427697-1-ciprianmarian.costea@oss.nxp.com>
+ <20260319-orca-of-legal-science-88e67d-mkl@pengutronix.de>
+ <742c748b-8096-49a3-b1a4-3a8507f6f55d@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,123 +74,114 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="27GuC2fY6ZBWv570"
+	protocol="application/pgp-signature"; boundary="x2iosansca2ri4jm"
 Content-Disposition: inline
-In-Reply-To: <20260319-fp4-uart1-fix-v1-1-f6b3fedef583@fairphone.com>
-X-Spamd-Result: default: False [-2.26 / 15.00];
+In-Reply-To: <742c748b-8096-49a3-b1a4-3a8507f6f55d@oss.nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spamd-Result: default: False [-1.06 / 15.00];
 	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277825-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277826-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,redhat.com];
 	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.920];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mkl@pengutronix.de,devicetree@vger.kernel.org];
+	NEURAL_SPAM(0.00)[0.188];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,fairphone.com:email,microchip.com:email]
-X-Rspamd-Queue-Id: 3E0642CD00F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url]
+X-Rspamd-Queue-Id: A3E8C2CD13A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---27GuC2fY6ZBWv570
-Content-Type: text/plain; charset=us-ascii
+--x2iosansca2ri4jm
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 0/5] can: flexcan: Add NXP S32N79 SoC support
+MIME-Version: 1.0
 
-On Thu, Mar 19, 2026 at 09:55:00AM +0100, Luca Weiss wrote:
-> The pinctrl nodes from sm6350.dtsi already contain a bias-* property, so
-> that needs to be deleted, otherwise the dtb will contain two conflicting
-> bias-* properties.
->=20
-> Reported-by: Conor Dooley <conor@kernel.org>
-> Closes: https://lore.kernel.org/r/20260310-maritime-silly-05e7b7e03aa6@sp=
-ud/
-> Fixes: c4ef464b24c5 ("arm64: dts: qcom: sm7225-fairphone-fp4: Add Bluetoo=
-th")
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+On 19.03.2026 16:14:46, Ciprian Marian Costea wrote:
+> > Please also have a look at the AI review:
+> >
+> > https://sashiko.dev/#/patchset/20260318092215.23505-1-ciprianmarian.cos=
+tea%40oss.nxp.com
+> >
+> > Especially on patch#3.
+> >
+> > I think we should split the main IRQ handler into 3 parts, message buff,
+> > bus error and state change.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Thanks for pointing to the AI review.
+>
+> It raises two concerns:
+>
+> 1. Duplicate event processing (can be addressed by splitting the handler
+> as you've suggested).
+>
+> This is a pre-existing issue affecting S32G2 (NR_IRQ_3 with 4 IRQ lines
+> to the same handler) and MCF5441X (3 IRQ lines on the same handler).
+> I'll include this as a preparatory patch in the next version of the serie=
+s.
 
-Thanks Luca.
+Thanks. Until the S32G2 was added multiple IRQ handlers was a niche
+problem. But now it's relevant.
 
-> ---
->  arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts b/arch/arm=
-64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-> index a3c2b26736f4..3964aae47fd4 100644
-> --- a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-> @@ -1019,12 +1019,14 @@ &qup_uart1_cts {
->  	 * the Bluetooth module drives the pin in either
->  	 * direction or leaves the pin fully unpowered.
->  	 */
-> +	/delete-property/ bias-disable;
->  	bias-bus-hold;
->  };
-> =20
->  &qup_uart1_rts {
->  	/* We'll drive RTS, so no pull */
->  	drive-strength =3D <2>;
-> +	/delete-property/ bias-pull-down;
->  	bias-disable;
->  };
-> =20
-> @@ -1035,12 +1037,14 @@ &qup_uart1_rx {
->  	 * in tri-state (module powered off or not driving the
->  	 * signal yet).
->  	 */
-> +	/delete-property/ bias-disable;
->  	bias-pull-up;
->  };
-> =20
->  &qup_uart1_tx {
->  	/* We'll drive TX, so no pull */
->  	drive-strength =3D <2>;
-> +	/delete-property/ bias-pull-up;
->  	bias-disable;
->  };
-> =20
->=20
-> ---
-> base-commit: de79886ae0ce739608514f6b1ae91c14c6a9e600
-> change-id: 20260319-fp4-uart1-fix-9fe390294499
->=20
-> Best regards,
-> --=20
-> Luca Weiss <luca.weiss@fairphone.com>
->=20
+> 2. Concurrent skb_irq_queue access (pre-existing, separate scope)
+>
+> The __skb_queue_add_sort() calls on offload->skb_irq_queue are lockless.
+> When the mb and esr handlers run concurrently on different CPUs, both
+> can manipulate the list simultaneously.
+> This is a valid concern, but it's also pre-existing.
+>
+> The fix requires changes in CAN core's rx-offload.c rather than in
+> flexcan, so I think it would be better handled in a separate series.
+>
+> Would you agree ?
 
---27GuC2fY6ZBWv570
+ACK
+
+One option is to make struct can_rx_offload::skb_irq_queue per CPU.
+
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--x2iosansca2ri4jm
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabwKqAAKCRB4tDGHoIJi
-0hIYAP9n7Nzbkhhzi88pEdeoxPfi4Wh3Ii/PRmgWsIQgCD7EoAD/Xxm8phLSqXq9
-nUvdFafiz3mFQTzozvH1NmnawQcXgw0=
-=I7sb
+iHUEABYKAB0WIQSl+MghEFFAdY3pYJLMOmT6rpmt0gUCabwLYAAKCRDMOmT6rpmt
+0nL/AP4hauOOQHt8J4Raz4k3XL6AkFpJksPkVshPoYgYCYYbHwEA/m2fRk+vD+FQ
+N4xipgWJpMlSE+VrRksDVTDxb+1Acw4=
+=/RY/
 -----END PGP SIGNATURE-----
 
---27GuC2fY6ZBWv570--
+--x2iosansca2ri4jm--
 
