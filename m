@@ -1,181 +1,237 @@
-Return-Path: <devicetree+bounces-277926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277925-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uN4BNakvvGnquAIAu9opvQ
-	(envelope-from <devicetree+bounces-277926-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:17:29 +0100
+	id IBO+HfEwvGnxuQIAu9opvQ
+	(envelope-from <devicetree+bounces-277925-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:22:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BF562CFBFE
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:17:29 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFE0B2CFDE7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:22:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3B41A325D5EF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:10:13 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A067F3007B2E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:10:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4794F3ECBC8;
-	Thu, 19 Mar 2026 17:10:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEEA7389E08;
+	Thu, 19 Mar 2026 17:10:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="R2inxnc3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VTfgig03"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com (mail-westusazon11010004.outbound.protection.outlook.com [52.101.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D3A53E3C69;
-	Thu, 19 Mar 2026 17:10:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.85.4
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773940206; cv=fail; b=Ml1bRy2nr7oPiTLlUk743e9Xerh52fm3wp/6d1FKIZ/PHjVO8gEv+ZfZNuHlzW9qpQr3sCHNJMk9L12s8ARFzgf9cSlLTc6YAmOAveFiB5Lw+UY4Djoyu/j9yx2GcgZW3avlpIuQCLsQ9FX3nOfOCZHYS7PiQRZ4kBY+dkl69U0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773940206; c=relaxed/simple;
-	bh=kUFJEwI77rD7xt5KFcS86a+XmIy+FjxtnJ7Wo2O158U=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=X5tyyvhIHVrrUXw2RjLhP3FQjoZAL8APeYUu/QE+8DiiPp5mCZ+eG7XYdQhjfFcOau8GUqohvYfcarybYtgLZiLupjX1jvXlwtmDwH+khJWm9WacU686dGuDIcsDT/MtzeW5QPMUoLjmzYH7GX819+SJZYcMkFm/7lSbAu8xPvU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=R2inxnc3; arc=fail smtp.client-ip=52.101.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=X4hQHZbluaqv5oMY00KXAe3dquYW87pdc9sW0yeY2FTQDbmoq33HnHtJlZQ4Z6wuLneSD+Y9ss/zQFKNyl0fMG5V6Zejy2eLSyz6lf0Jwdx8MVPbOZrHxs7IsVllRMGKj5WVB9pyR2gHRT5vKIPno3V/ThSegjyJ0rO+HBB0SpnQx31pLrhAtOFY+uvXiXq8XhZ7HqUvN0ztaLMyfFmEb1nOWJTgJi0AuVnipH+cnx50r/J/RQr3Rx2CTm3qE3JuPjw9cdAjQvsrmHmhAjefbClCsXE93mB9RGQs9dJwGV+q4xHU+s7h5v448pxmb6w2D31ApNtQ0d209F/UJ5lsTg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BaQNuY7IkHJPE4pBKoU9PnUShsOQC9QfXE9WJBr+7EU=;
- b=FooTMruht9Mdma2+DHUqhoe2JJL0JxXzuLkSPFYrExfJw0/iupT+ZQho8xKFWgUC6Q9g0AwTuJ0dBx0Z3sJTLIRDS/jp9Tpa5fnUt4F4b14Drbn0hVLRE3DvzdUz4xq0lecxeh7GYGTLhYZLdGE9bnCzqCvDMVdB503uJvJfCdJhGggjgFd/+CbRah6vFuaU9tRKjJHJU9r0WzpCH8r9q1BBe2edthDvvqSruEVFzfyJnlN1EUx3U3UmssB9Ex53Kg8wPNHjTfsIEf/Wq0NGzMLn52MCpTnRNdqbcf1ihk9MT0rpVB1WT+c+ZEhq60Lnba+taVvylL3pm+/m31hBiw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.232) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BaQNuY7IkHJPE4pBKoU9PnUShsOQC9QfXE9WJBr+7EU=;
- b=R2inxnc3TdZR4EDOcPDLoWV9H2mq4EAWjrOYaBQg1xK4JIu1oaTNzYSDHBwlc5hKXoR5EGg6FLdo6SUUBnodX6WNXetLqXz8n8sVudFJWBF3Zh2LOo94KlufUFHKpM4KXTTo6oMhgLdXKQiBjOmO6C79XvUg5d1qvX85FK2FJL3cP4pgAVYjLzM+Zu2efjRLLcf9bdgTZHw/TG0/f6RT7A8RUMQ5rrIyyGqu6+hAiXn1uHpI2pQPC7uWFqUIMhoAu+PPfkx4p8XKq8F7uSJWXSXvH00Lvtcl98jambuxz7wLWV16cdWHdkyxlP+4gawrzs0LwohDqej8cuH6XPCU1w==
-Received: from BYAPR08CA0022.namprd08.prod.outlook.com (2603:10b6:a03:100::35)
- by MN2PR12MB4176.namprd12.prod.outlook.com (2603:10b6:208:1d5::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.9; Thu, 19 Mar
- 2026 17:09:58 +0000
-Received: from SJ1PEPF000023D3.namprd21.prod.outlook.com
- (2603:10b6:a03:100:cafe::31) by BYAPR08CA0022.outlook.office365.com
- (2603:10b6:a03:100::35) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.19 via Frontend Transport; Thu,
- 19 Mar 2026 17:09:58 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.232) by
- SJ1PEPF000023D3.mail.protection.outlook.com (10.167.244.68) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9745.0 via Frontend Transport; Thu, 19 Mar 2026 17:09:58 +0000
-Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
- (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 19 Mar
- 2026 10:09:37 -0700
-Received: from drhqmail203.nvidia.com (10.126.190.182) by
- drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.20; Thu, 19 Mar 2026 10:09:36 -0700
-Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.9) by mail.nvidia.com
- (10.126.190.182) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
- Transport; Thu, 19 Mar 2026 10:09:30 -0700
-From: Akhil R <akhilrajeev@nvidia.com>
-To: <krzk@kernel.org>
-CC: <Frank.Li@nxp.com>, <acpica-devel@lists.linux.dev>,
-	<akhilrajeev@nvidia.com>, <alexandre.belloni@bootlin.com>,
-	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>, <ebiggers@kernel.org>,
-	<fredrik.markstrom@est.tech>, <jonathanh@nvidia.com>, <krzk+dt@kernel.org>,
-	<lenb@kernel.org>, <linux-acpi@vger.kernel.org>,
-	<linux-hwmon@vger.kernel.org>, <linux-i3c@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-	<linux@roeck-us.net>, <miquel.raynal@bootlin.com>, <p.zabel@pengutronix.de>,
-	<rafael@kernel.org>, <robert.moore@intel.com>, <robh@kernel.org>,
-	<smangipudi@nvidia.com>, <thierry.reding@kernel.org>
-Subject: Re: [PATCH 12/12] arm64: defconfig: Enable I3C and SPD5118 hwmon
-Date: Thu, 19 Mar 2026 22:39:29 +0530
-Message-ID: <20260319170929.14543-1-akhilrajeev@nvidia.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260319-nano-manatee-of-vastness-fbafa1@quoll>
-References: <20260319-nano-manatee-of-vastness-fbafa1@quoll>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C823C30E0F2;
+	Thu, 19 Mar 2026 17:10:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773940203; cv=none; b=IS4O8eV3TebAvz91IfgHBnLUWUinvUwvNhEmSC8zpM3gvkukTLVaxjLbnNG2zXf7GmvkmSg/rRdoQsOKL8cCxaEOS26IqIEFssApFnNsWuRnpmdDPccCNmrmNQ53neJ+Lusq3BLX2QBhmWe1/VPFoReIizTkFjr3HxIvA42IWrg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773940203; c=relaxed/simple;
+	bh=ZWZOUB5qHhf+MSOL+JHwQZDSSAiLl4lmG0hYikT7Ib0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WhT2HKl6ij69XmQmAH6onow60V4rr+XUDkEF6p000MhfwUObw9/G1s1bIFrfiiqLer5dZdihNBz43n74ub/S9U4eMtLgEenebklKlHmevkFa3GXIUVbCJgq5OJS0Q160MFuh9XyvGod95CqVDuXj6wqfUQJHIaOLl42NWbeZwaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VTfgig03; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E6E1C19425;
+	Thu, 19 Mar 2026 17:10:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773940203;
+	bh=ZWZOUB5qHhf+MSOL+JHwQZDSSAiLl4lmG0hYikT7Ib0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VTfgig03pIG2YT4ZMShFatlL28g0InjshTPbK0BPyf/otVGT5mgH974x+qvUxzRmv
+	 jp50GqEiIgi6XHrT0XicM57gk4SKGNUcmTA/Iy5O6ReaKN9Ic0Ph/BtMTIYEiasw0G
+	 tFtAhypYXj9blEAp4cTxRtZl2M2ZWW4/t+2DLCe4PtUh0SFXmQdYRmfnX1fK7OQZX6
+	 KJ5J1ypJg+M9HwGEqkABLTkN130r82Fye1mPqLvBHIAyZRLxxbVXjnqxdUX2lVj+Ct
+	 Tu5pUFHffSDLFdGiYCg4w8LLmTWnSnodGVFyZDot93TCejTIS99Vi2wLZCH4RFNeIx
+	 vs+Ji7uViZVpw==
+Date: Thu, 19 Mar 2026 17:09:59 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Hendrik Noack <hendrik-noack@gmx.de>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ferass El Hafidi <funderscore@postmarketos.org>,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: Input: Add Wacom W9000-series
+ penabled touchscreens
+Message-ID: <20260319-swampland-unearned-aa64771c0141@spud>
+References: <20260319095303.19927-1-hendrik-noack@gmx.de>
+ <20260319095303.19927-2-hendrik-noack@gmx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D3:EE_|MN2PR12MB4176:EE_
-X-MS-Office365-Filtering-Correlation-Id: 191e28c2-8346-4376-9226-08de85da59a1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|36860700016|376014|7416014|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	pTCjEFMICPNfeIxZgwLQCkUPCteivtGZVoTD6Qe5NcBE5uCfN2nrg1pLr8YIn85ZgbI2LW5kedbUdMbhYQntMDs3DLCDlpSAqHUv1yBl4iJFpZLpBMJipYGwVbUsnju/wDk6txljXvlqHNy2Mlmd1tzvHObCPPoybqwsf6cgD6rzThDPVS4e7IgEudL7XtFi5CCkUDFfaPacmxD3nMOkfaA4SsAA87C0XO2yrBmeJSyDFE+o9hMnKa/aX+dKkYRpYo0E6mzuKvZiFDlRztUHycedJFvrikBqPlmAgChHjecw/lxEyGri3QivbJ6z/zrOZ1cKkokfZqb0zllr4dEEmEXdsGAMLOzH9y9esLiV6nmPkF1WPOWrk1pNfhJWqW4V+/irAaounQ1aTUkqmHiUoGy4t9eN9GIk8lRHzx8RkyZTjbuSmHPXVGOLdOLXm+niLOV2daIhsqzjbZ2QLiDKb/rGOTckAiZokNTG6JBxTb4chKlbupnraeeUzjrLcY3GPz0JUEaOPkTr+ImWH67KeeZbQfBAI3uomoBREEPxfMdFVfY2nSLrIxBKGXT63sYXGeO5ANEWjcv9tvyfMZrCiP0jRKeAWi0Wp733VP57xnF39AOAidHGU022XERoED4pLrKwEs2klpb+WFNUrcrvWnbDqzUD9TvQRdaUI58EE+OhQsFwuxOPDL6azWz/FKc+4xiI+1vZeVE7o4Wwh/ahYatzpYyuW/30csFuzgiZ32MzYM43j36fvDa4KqdItt/yIRQGqDzq1BmUuyY//VKFeA==
-X-Forefront-Antispam-Report:
-	CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700016)(376014)(7416014)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	/8ox9nUMLOfmMZrMRC8YSFGkLnbmaXy3L40PqWb1g8usApshy43afNkte0OMRi35nVmbATarDYoqDRroFofKZdVO8fs5nRurvDX8mt7NPDmwHu/0GxuCyIrHpdQX+SKq8bP+LDCxI8zcEPOVDR63K55VOdzXfDR7qpqcdA/CPsguAnrASxVJt8v9dlJ5yyesJVjdQJn0djmwJGVwqgO6SW4DPmf4UYkLUiTl4h+HTARo+nnSeC0SMb75kXYrN4jf3AdGATQnxGbVDfDEEvhEdoPaPdyQWjYi/sNqGCHrVQ5EtwFIh5Dn3KLLpwQ10MjS6HWsMSRRKKECeqRN6gbv/DCCLI42gCRYKjxVWDzcCC36SydKkvZH1UThVSdykl0bi2/jbVCcjS9VmVul79+e900fi0azi7fGkNlmDQsK1Is1bCHW+gfwXk2z2067thbj
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2026 17:09:58.5812
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 191e28c2-8346-4376-9226-08de85da59a1
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ1PEPF000023D3.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4176
-X-Spamd-Result: default: False [2.84 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="I4IDUA0hGiFU8QE0"
+Content-Disposition: inline
+In-Reply-To: <20260319095303.19927-2-hendrik-noack@gmx.de>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-277926-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[akhilrajeev@nvidia.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-277925-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmx.de];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,postmarketos.org,vger.kernel.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	NEURAL_HAM(-0.00)[-0.967];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nvidia.com:mid,Nvidia.com:dkim];
+	NEURAL_HAM(-0.00)[-0.916];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 7BF562CFBFE
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.56:email,microchip.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,devicetree.org:url,postmarketos.org:email,gmx.de:email]
+X-Rspamd-Queue-Id: BFE0B2CFDE7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 19 Mar 2026 10:40:34 +0100, Krzysztof Kozlowski wrote:
-> On Wed, Mar 18, 2026 at 10:57:25PM +0530, Akhil R wrote:
->> Add I3C subsystem support, DesignWare I3C master controller, and
->> SPD5118 hwmon sensor as modules to the defconfig.
-> 
-> Why? If there is no user of that, why would we want it? Your commit msg
-> should explain that.
 
-Ack. This is for Tegra410 which has a DesignWare I3C host controller.
-I will add this in the commit message.
+--I4IDUA0hGiFU8QE0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best Regards,
-Akhil
+On Thu, Mar 19, 2026 at 10:53:02AM +0100, Hendrik Noack wrote:
+> Add bindings for Wacom W9002 and two Wacom W9007 variants which can be
+> found in tablets.
+>=20
+> Co-developed-by: Ferass El Hafidi <funderscore@postmarketos.org>
+> Signed-off-by: Ferass El Hafidi <funderscore@postmarketos.org>
+> Signed-off-by: Hendrik Noack <hendrik-noack@gmx.de>
+> ---
+>  .../input/touchscreen/wacom,w9007a-lt03.yaml  | 73 +++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/w=
+acom,w9007a-lt03.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/wacom,w9=
+007a-lt03.yaml b/Documentation/devicetree/bindings/input/touchscreen/wacom,=
+w9007a-lt03.yaml
+> new file mode 100644
+> index 000000000000..6d1da6a435d3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/wacom,w9007a-lt=
+03.yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/touchscreen/wacom,w9007a-lt03.y=
+aml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Wacom W9000-series penabled I2C touchscreen
+> +
+> +maintainers:
+> +  - Hendrik Noack <hendrik-noack@gmx.de>
+> +
+> +description: |
+> +  The W9000-series are penabled touchscreen controllers by Wacom.
+> +
+> +  The firmware of controllers in different devices may differ. This can =
+also
+> +  affect the controller's behavior.
+> +
+> +allOf:
+> +  - $ref: touchscreen.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - wacom,w9002
+> +      - wacom,w9007a-lt03
+> +      - wacom,w9007a-v1
+
+Please provide information in your commit message as to why these
+devices are not compatible with one another.
+With that,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: changes-requested
+
+Cheers,
+Conor.
+
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  vdd-supply: true
+> +
+> +  flash-mode-gpios:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        digitizer@56 {
+> +            compatible =3D "wacom,w9007a-lt03";
+> +            reg =3D <0x56>;
+> +            interrupt-parent =3D <&gpd1>;
+> +            interrupts =3D <1 IRQ_TYPE_EDGE_RISING>;
+> +
+> +            vdd-supply =3D <&stylus_reg>;
+> +
+> +            flash-mode-gpios =3D <&gpd1 3 GPIO_ACTIVE_HIGH>;
+> +            reset-gpios =3D <&gpx0 1 GPIO_ACTIVE_LOW>;
+> +
+> +            touchscreen-x-mm =3D <216>;
+> +            touchscreen-y-mm =3D <135>;
+> +            touchscreen-inverted-x;
+> +        };
+> +    };
+> --=20
+> 2.43.0
+>=20
+
+--I4IDUA0hGiFU8QE0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabwt5wAKCRB4tDGHoIJi
+0nFGAQDsaY34PFG6oB2Drc+0zzerFjYEJyJXVQNcDSUuIhCSsQEAncq2f9kz6aPj
+WXiOy4dlKnZAAisGlgx3S3sbKEFyNwM=
+=lbPf
+-----END PGP SIGNATURE-----
+
+--I4IDUA0hGiFU8QE0--
 
