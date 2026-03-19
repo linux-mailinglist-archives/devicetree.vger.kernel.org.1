@@ -1,176 +1,118 @@
-Return-Path: <devicetree+bounces-277831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277832-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mKG1Gg4PvGkirwIAu9opvQ
-	(envelope-from <devicetree+bounces-277831-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:58:22 +0100
+	id iPFtOzYPvGkirwIAu9opvQ
+	(envelope-from <devicetree+bounces-277832-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:59:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C3CC2CD4BB
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:58:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A41B2CD4D1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 15:59:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 66D7E302F24A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:56:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3CB3F3034556
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 14:57:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 238F13DC4DF;
-	Thu, 19 Mar 2026 14:56:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A480372672;
+	Thu, 19 Mar 2026 14:57:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OU+QOCS2"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Q5V4v69q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9CD33CD8BD
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 14:56:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C91F2D7DD2;
+	Thu, 19 Mar 2026 14:57:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773932185; cv=none; b=YP6Iboxsn8oG1/JBmjiF/tzYW5RsX3Cz8xm2qxBuFe8O++gUA0IKzZ1sd1MLvHjo39cXPbejOhvF6Lbds8BoqEd+2e4XES9PTuoZgDDkVtPffiz88eJPPWeWacMIZSFTbwdX2y9QxV5x2eMTPo4F8phZ0uYAf7+I3/OQVOFf6jc=
+	t=1773932239; cv=none; b=pGUiMpkar5qrnTisJS4/s6sKQQs5y6GGQCmrr6eYlGZANvfrTKWJd3WeVhbWWxk9E3vn5/t42ys7SD7g5piL/+WxGd76u9U30KFRQRUKxF0e+LNN1PnzyKSbB1iOfQb1eDS5eFzvtQTVEoQtPEzUhV2Dk3Tr9IcQbv3Kc5/g0vM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773932185; c=relaxed/simple;
-	bh=gd7SCs27uyPu79nVL6/LCI+yIXMU2kzESBFAMZUgfLI=;
+	s=arc-20240116; t=1773932239; c=relaxed/simple;
+	bh=Rg0bdmkZjDIKnna0v1xQGh1Q6uk23KAWG2DpfPBbaM8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lTH8QT/upIwwBdvVUzrJuWDS9ZZPcp6TWgCwkrNkfGJqlnSBhg5Wf/odzpjwjP41+Rk/4xpawt5g0HUI3WzaqGzyITc2tMhOn8hrfn8D1F9RmcCsQzTbK+3hd0Ru8pRH3mxiJloLFNYWbnp96Na0bTBLbdz/OVB6nSVi4W1c25o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OU+QOCS2; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-38a3c2261ffso1171411fa.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 07:56:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773932182; x=1774536982; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nFE8LLUUKG9iTuvDaB93WvqlPoGXC9p6rn4PhnM6x18=;
-        b=OU+QOCS22gmyJtPUxAd2+gZZf8fRVP81YY929OBTR1/7TmKG+QnvpvK5vx0f7hA9hv
-         GOcXrJ3H02NqKoDfh6e6xKYCrvW75SSP6QfRJLtH62ZPwgDyzw2eoDg8ClOK4YW1P0Az
-         hR3gm/65Q4xp0NPKN8HhshunAgoC6d9xzd/3sCjCCEs49A3MzX3kDsHYnn8dbq6UltDs
-         HUTyZXPg2zMmLSGEM1+Esf4BaW89RTp6GcPgxM+GPSGAwVH9DkoOgUE5c5IunV75l0sr
-         mTJWFuE5jfd0+j+YJmQ+zIjztR7WK2TbLLa+CTPWMhpv2sDAvfpn4GycDJfs7j6kQvzQ
-         x/Vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773932182; x=1774536982;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nFE8LLUUKG9iTuvDaB93WvqlPoGXC9p6rn4PhnM6x18=;
-        b=Y75FoC06VuE/kGaZC143MW18ssmi7AzSPXW1CdvYzfSxWQWcB4WwvYQz+veZkyBGxm
-         oI6Rhr59677Y2UskMN+0WtUqwWZvvqFdS6iTV3j44o/qKZ/dbFHlfX8vZxYREmtuT3PO
-         nFsRuBYu1ZsUDGbmdgg76TFgaxvaACEVf9HuNhP3vFI7bgp3HdfrE4TRp0uyHTUbaEbT
-         kniJjKZheJBvQTeM8VaJHqtoTHGnmnwrYtGSTejI79ZRiogM8qzJXkGS26tGAtrw84fC
-         RgdubZSadjd9GmvHin520a/DWfAR04Z/4aO0YRi2g1xY8urxooYHrOq8pn8rvE0f3Osy
-         avFA==
-X-Forwarded-Encrypted: i=1; AJvYcCVyhQOS77Dv1hqqLiLt7LbmpYzWgGgw55J4CFpoMyFIz4nFBp8gZUakq2q4Fx24ZFUV9I2YDXUb/po5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzmgpRVHIX0v0e7NmXkHRekWFryrZwNb49JgungX4fZCdaBv53Q
-	Y104syisi7KVAO3aRTxGZCnrgA388h46NJSVs3CX71oS107ZRH/CGN3ZRKDKSx8D0+g=
-X-Gm-Gg: ATEYQzxu0J9zzUPkKSnUeFCLK714y17mr1R/LKh3vgx55ir8/N8djdNbtMixe6MoCQq
-	Dmy92w9HBS9CooBCguE/FDkvmx7i/HYPKLvb16O1iBhyiThgLemZl2e643Pug40NCCXn3Hu2bCq
-	k0A3H8BMKUHof4F2aS+ezekixjAHfyVeaL/XxEmW6fCTt1Yikzv1s4//oSE7OCFz0tq4CPxmKMr
-	JQoQAofjP0hkZo1hopNR0J0cKhRWjYCmGAjn1R/UDBFRE9Cm6ddsRH/KlEmQepFhMNfA8qYd6eV
-	x2xuKttNF6h435D+c/j66v8fnOY/hgXU5knSQR1++Lh0emMAAHZyleMi+LusT8JMq97IhTlBvv1
-	YlJrU/sWFDXatkDZuh5x8gpZWzFI/KqUoZdtAZIeHNiCiqclQR/X2J6POMsnQqhB2cF6+PXPtbY
-	FuWPwA7HRhIZO2AkMFgP6l9J1AMpVe0QV9M/d3HhJOF7EChZTbHY8p7NXnEHOEVyvXT764mrDpN
-	Lwc6g==
-X-Received: by 2002:a05:6512:3b82:b0:5a2:7c19:414f with SMTP id 2adb3069b0e04-5a27c1941bfmr1196514e87.3.1773932181770;
-        Thu, 19 Mar 2026 07:56:21 -0700 (PDT)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a279c2be56sm1230577e87.19.2026.03.19.07.56.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Mar 2026 07:56:21 -0700 (PDT)
-Message-ID: <d6616fc0-75fb-47e2-96cd-ae81fa1a8e82@linaro.org>
-Date: Thu, 19 Mar 2026 16:56:20 +0200
+	 In-Reply-To:Content-Type; b=FbcHc7CjbpwMDlOYKBwSlUC6SjUyK/HN+g550vJjyuLAJhKhx8CvasnYwQNej+7Z6Oqkhx0vWCLGBvQ1S9IDOZh61Gh+Emb///D/AFaS5IKogZRaAtb8VjAWbbzq2TNBiZpMpTBbOXNfDy1Uh3FnNZF7DaY/x8R77UCQj92SI4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Q5V4v69q; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4fc81K0X5sz9v0w;
+	Thu, 19 Mar 2026 15:57:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1773932229;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9AYNGofrov0NXk0mROSo5zmXiAHuqCpyPtaqK1jVNzc=;
+	b=Q5V4v69qe/Dz8wu3PC9jDGk1nQYMPceTNpFJs9TAAZBrJtxvs3NAc0qnJHt2hw4oYc+/fW
+	fgamqAamnCZLjNQyhshu5E+wkcphcb5Jp67lV8iuygSupkkQ4aAzxXR44f6+0Z0yoVrUT6
+	6pzOkmDErW7alRHb/ltGbkYYk84B7AmIFJLjCu3U3oCdY7kRjs8qnR2XJCMEMB1zQzCt+d
+	Eg1owXAji1Z7dLa4l9onxZjFRO+90GLKldlo+K08FjxPEeRjmtzZUR9/DcHL2VEZxTYMei
+	EQ9fXAzhPuUs4jop1Y4Tt0HQnO87IJqt6HqOlvUDGIvvvNMexVONc3kXfzSzZg==
+Message-ID: <20a8161e-3fee-418c-8168-86e9830016cd@mailbox.org>
+Date: Thu, 19 Mar 2026 15:57:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] phy: qcom-mipi-csi2: Add a CSI2 MIPI DPHY driver
-To: Bryan O'Donoghue <bod@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260315-x1e-csi2-phy-v4-0-90c09203888d@linaro.org>
- <20260315-x1e-csi2-phy-v4-2-90c09203888d@linaro.org>
- <3f11de22-b729-4d06-b6c8-18e649e1979c@linaro.org>
- <80ddc2b4-d6f8-4e8d-a45e-69c05d100aa2@linaro.org>
- <16b10f17-ecd3-4cdd-ac3f-f64127d60ace@linaro.org>
- <ulenfus552ggobis4gmi7eh27tikdaxbgm2oj63b5l2vemlfxc@ib5f2xaqurj6>
- <26XTdUyQTB41Oc4D5HnMtSm_QpZRjlkljQRJVw-u1Zp3Ltn9s4LVU-LQkP6drdl3Z3GGssLCCbsVYPFEqssHcQ==@protonmail.internalid>
- <65e06b2e-eeb9-45af-97ac-4ae60f652361@linaro.org>
- <9578400d-30ac-4d8c-9295-ee4ec8af3b2c@kernel.org>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <9578400d-30ac-4d8c-9295-ee4ec8af3b2c@kernel.org>
+Subject: Re: [PATCH] arm64: dts: beacon-renesom-baseboard: Remove LVDS Panel
+To: Adam Ford <aford173@gmail.com>, linux-renesas-soc@vger.kernel.org
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260319132907.2350458-1-aford173@gmail.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <20260319132907.2350458-1-aford173@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-MBO-RS-META: 6s97ex5syrdfiepe1ekur1n7bwrmpoz7
+X-MBO-RS-ID: e29b1375865aa8e802c
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-277831-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-277832-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[glider.be,gmail.com,kernel.org,vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-0.994];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0C3CC2CD4BB
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mailbox.org:dkim,mailbox.org:email,mailbox.org:mid]
+X-Rspamd-Queue-Id: 4A41B2CD4D1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/19/26 15:17, Bryan O'Donoghue wrote:
-> On 19/03/2026 13:08, Vladimir Zapolskiy wrote:
->>> Why do you want a media driver? Isn't PHY driver enough?
->>>
->> As for today CAMSS CSIPHY are already media devices, and a user applies media
->> specific properties to them, for instance media bus format, resolution etc.
->> Technically this might be removed from CAMSS, but if so, then it should be
->> done before this new PHY driver model is applied.
->>
->> --
->> Best wishes,
+On 3/19/26 2:29 PM, Adam Ford wrote:
+> The LVDS Panel was never shipped from Beacon, and there are device
+> tree errors, so rather than trying to fix them, remove it instead.
 > 
-> There's no reason to remove that from CAMSS - it would be an ABI break
-> in user-space anyway.
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+Reviewed-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
-If technically CAMSS CSIPHY could be excluded from the list of CAMSS media
-subdevices, then for the sake of simplification it should be done for all
-supported platforms in advance, such a change will be independent from this
-particular phy series, and vice versa, this CAMSS only driver change will
-prepare a ground for media-less CAMSS CSIPHY device drivers, hence it shall
-precede this particular CAMSS CSIPHY series.
-
-For backward compatibility with userspace a noop stub will be good enough,
-it's not an issue at all.
-
-> The media entity in CAMSS msm_csiphyX handles format negotiation and
-> pipeline routing. The PHY driver handles electrical configuration. They
-> don't conflict and there multiple cited examples of this upstream already.
-> 
-
--- 
-Best wishes,
-Vladimir
+Thank you ! (and good bye another DT checker warning)
 
