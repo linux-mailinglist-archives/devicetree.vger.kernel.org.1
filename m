@@ -1,159 +1,228 @@
-Return-Path: <devicetree+bounces-277934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277935-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MGGKLxA1vGl3uwIAu9opvQ
-	(envelope-from <devicetree+bounces-277934-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:40:32 +0100
+	id kFMeOkU4vGl3uwIAu9opvQ
+	(envelope-from <devicetree+bounces-277935-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:54:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 186552D0234
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:40:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 706FA2D058B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 18:54:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1340330A1840
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:38:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4C94B3014677
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 17:42:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CAEC391E65;
-	Thu, 19 Mar 2026 17:37:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A9F23F165D;
+	Thu, 19 Mar 2026 17:40:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mNDQyT9c"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VZ1ErVZo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3360391E4E;
-	Thu, 19 Mar 2026 17:37:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C145F3DD500
+	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 17:39:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773941879; cv=none; b=QpxnrkjG68V9hd+c8Dapt0w8kUWyGiBGx6267T1f1zrKkjrLVvjG1Ber7u6fhNi0V2e5HyH53BgojGjsi9ktylWD1nO9X7z7S/PCF8hehwpVgyr8zkLOQrTqlTJ6qbAllazUgss/cjMxBZbwfElCF+MfIAqiA+e2Wh3A9vn4FhE=
+	t=1773942005; cv=none; b=Zh+qDqSkIvUv+KNBVRe4i4REhElY6CUQFPtZ++cV0uSgPIBSd1E4y0C3TsLyAXKSfjuDeyMJe0QhXPLgJexmN+nnGzElYm+nr0oLdTi3a3XABbCfCXt0tfnsbMOFdUQkh52EUtwjpgbOlFwsGqBWil6Wup1WzKAU4z9jR8Bqu4I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773941879; c=relaxed/simple;
-	bh=UUWot43aWRLnUev4xtyp/4LzVdlfOnkeR4C3S3s58IM=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=Zsp8DWNwBxE4+ZZMUGyHhdV1JH5nMN6iWmlfxohKpYTLWBNRTHMVrB5HPm1lbcXSBLQSL09QFmkiNv855pTLgWuET8tdspGjtg2c/EvDVJzyP70VpjdiVQwjqO9MwXfjgVudrfYPnApjXvY6NGY5daLd8ZkZnu3pjJUcb458Igk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mNDQyT9c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08C09C19424;
-	Thu, 19 Mar 2026 17:37:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773941878;
-	bh=UUWot43aWRLnUev4xtyp/4LzVdlfOnkeR4C3S3s58IM=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=mNDQyT9c4y48XRSi2QtA8QkcDHLa/S0NIYX6zK0UwpVWo+0DHSaQ74dQcyVCymhse
-	 5pxHmBIUukDCcFoOV+WvddBeXJrd6h848hjdccL3q8Cv8xQce9Uh1lxE8ntTGvcvwR
-	 SoDDOPme0vBsxWCfXeI7Q04KBPoku6bQsiR2zESJyf1F0EZJXjTK2UwHFv6B8YpEy3
-	 ZtulK7yBoEQrTEMf0DkEvVI3MThkLBsXOUGVGEPEgE26dWfNao+DsuPLMQqqy/k7zZ
-	 emoYCU+Z8Fidcr+jCDFp26Q1ybW/GE3GIpgijGc3Xp9j+unAMAxO2AggEs+WRzGXIO
-	 usXN0SUjLkmcw==
-Date: Thu, 19 Mar 2026 12:37:57 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1773942005; c=relaxed/simple;
+	bh=K8lUyo5z6V19brJx0RL+7buzN6w590v5sjtJQ6fEL78=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=aezHPmTnBwkQ9WLW50P3esrXvMQZ7Dx6Agc+gYFIZesRSOpKlXY76zaDUDmsTayFXCcgVtveW8Uf3nJzvLTS1K2z2Qxkq+eNW/wUQYwafOzPWBNpxCViI0Xe0scOZQd4groy+DnyKQ/+6M36DWA7smWNMkIrCQJzQv28EOUwZms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VZ1ErVZo; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-48628ce9ab5so15916205e9.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 10:39:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1773941998; x=1774546798; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4DcGpNehVMlOMwMq5jxWCnF0zEBU9hVO79S4un3Z6Go=;
+        b=VZ1ErVZo9C2Nph80eujHIrMc6+MeGojb9RHnGuCbQy0Cv7U45JVutMbIqAIGn65eyo
+         jx96wkinj0HeP2BcO6UTqmD4Mcu6NmFyGZPutV/qtnVhaCSV3gGMTRksmzDHmlb3QkAy
+         IOLgftmvF0MH8U0lhjwEsVYvfMQnn9kbvrxxWXDGrGwwUD5TwGNQGSSlXagu0iy7zkD7
+         C+shDIL0mCa1pnVlSFokTH++I3T+Wh63g54moNQ+s9y9f6EpwAGTmqw5ONyqe2icnAwg
+         dNTAuVIJPoUDtZAWxxdBqsvFJ2k0UMIsVle2fJLGRcRlNkV0gsp5CPI7Azmz9vq9nNRb
+         MIJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773941998; x=1774546798;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4DcGpNehVMlOMwMq5jxWCnF0zEBU9hVO79S4un3Z6Go=;
+        b=Hqso7ZBImU76uVCCgzrC7caA4X2N3T7R2v+rZLt8XS3h+ATWcDw1POW6vJN4TCBCre
+         6gdQzo6M02ViQjy4//LrBO/XZFqY7+ZZlY3Qhk3Lr6gjNjCHLN8T+Wy7EvHkIq4sDNu2
+         kbZcxuUqtH8Lo+tCQIda5lZaaH1sSiALaZQAyZ7+JjRu8RjDVIZiuP8N4Noo/a0Z3Pql
+         rxXytTBWp3ltEl79zd+9++3/JqD0qBH/NC1HqMbyvu+ZnO28rf106gYnxwM0wcblj/eA
+         ztzd7pT3BCR4cxrKPeBcvUYSCAcZm2mdGDJWBRqDyl/L6vzcMyuLN78ZyKTK+jTP8PEo
+         Md5w==
+X-Forwarded-Encrypted: i=1; AJvYcCVLaoz2rVtpXXc2+ho89f7Bxq7nR7tXzUWFBUKdWU1Aqob3rCNZ1yacTYZNavwTEc6DHdScVDIojlvQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzabZGodDEzFiKdzaI0gr3OxH/9OU97V1ugryYTTIQWdx8RtZu6
+	4z+9KJB/OeGFrRGdQBYnF5EUSo+zbIVrhua3b1GkEy2eflxNEQqIgAWQ5PIwsE0JR50=
+X-Gm-Gg: ATEYQzy0xMmsThPJ3ewOMvNV0WpYMi0XUuGFpNIUl6EXhTpv9/0948BtHV9aRllkui3
+	MRI38Eep1CwXawKlb6YPQYuJ5WOumK/hurdTGWlVXJW04F4UqMyHiyJQC5AcdYFcR94BNy2ZsAH
+	u3CziBekcpG6GpTN+I+2it4BZqoRhXT/lQR9S6m/LQeiNynQV24XhNKTm6YAd82n9woBojghVAu
+	cMpXkNrw9Y6wsh/upJbuKEdBuSIsI0fuisSJFLV3NguOGIhDwe+seVfyYaJufmThh7TY640XQs4
+	vEsV3kBMqV0lshNabKH426/Q5CiZ6gUijG9FnOVeqsxJ4gPDpGJSXqVRfXpo78TAUXkCsPYW2R3
+	z0tpRA8dX5nXOiaoyB00JulnSdVgF+uv78hX2Q8o8EcIUvf/KxmRcigD8Y7xjL2FgdZrM9Y6J/H
+	epNbAX+2fLmSyOaIlMD4zUIcTFgcQelpKdRU99oaNE7k7+1kaEbLepXwgTuLSPTBYpvhZ5aood0
+	g3N
+X-Received: by 2002:a05:600c:3d90:b0:485:4535:73d with SMTP id 5b1f17b1804b1-486f442e607mr132291005e9.2.1773941997619;
+        Thu, 19 Mar 2026 10:39:57 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:106d:1080:55fd:bfb9:c88:691c? ([2a01:e0a:106d:1080:55fd:bfb9:c88:691c])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486fc4d90f4sm49410245e9.1.2026.03.19.10.39.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Mar 2026 10:39:57 -0700 (PDT)
+Message-ID: <117d9294-87ce-4060-9c8b-71190b649e64@linaro.org>
+Date: Thu, 19 Mar 2026 18:39:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
- Magnus Damm <magnus.damm@gmail.com>, Stephen Boyd <sboyd@kernel.org>, 
- Jaroslav Kysela <perex@perex.cz>, 
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
- Biju Das <biju.das.jz@bp.renesas.com>, Liam Girdwood <lgirdwood@gmail.com>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Vinod Koul <vkoul@kernel.org>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
- linux-sound@vger.kernel.org, Frank Li <Frank.Li@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- John Madieu <john.madieu@gmail.com>, linux-renesas-soc@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Thomas Gleixner <tglx@kernel.org>, linux-kernel@vger.kernel.org, 
- dmaengine@vger.kernel.org, linux-clk@vger.kernel.org
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-In-Reply-To: <20260319155334.51278-2-john.madieu.xa@bp.renesas.com>
-References: <20260319155334.51278-1-john.madieu.xa@bp.renesas.com>
- <20260319155334.51278-2-john.madieu.xa@bp.renesas.com>
-Message-Id: <177394187724.2938936.10407132258338013690.robh@kernel.org>
-Subject: Re: [PATCH 01/22] dt-bindings: clock: renesas: Add audio clock
- inputs for RZ/V2H family
-X-Spamd-Result: default: False [0.34 / 15.00];
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v4 2/2] phy: qcom-mipi-csi2: Add a CSI2 MIPI DPHY driver
+To: Bryan O'Donoghue <bod@kernel.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260315-x1e-csi2-phy-v4-0-90c09203888d@linaro.org>
+ <20260315-x1e-csi2-phy-v4-2-90c09203888d@linaro.org>
+ <3f11de22-b729-4d06-b6c8-18e649e1979c@linaro.org>
+ <80ddc2b4-d6f8-4e8d-a45e-69c05d100aa2@linaro.org>
+ <16b10f17-ecd3-4cdd-ac3f-f64127d60ace@linaro.org>
+ <ulenfus552ggobis4gmi7eh27tikdaxbgm2oj63b5l2vemlfxc@ib5f2xaqurj6>
+ <26XTdUyQTB41Oc4D5HnMtSm_QpZRjlkljQRJVw-u1Zp3Ltn9s4LVU-LQkP6drdl3Z3GGssLCCbsVYPFEqssHcQ==@protonmail.internalid>
+ <65e06b2e-eeb9-45af-97ac-4ae60f652361@linaro.org>
+ <9578400d-30ac-4d8c-9295-ee4ec8af3b2c@kernel.org>
+ <d6616fc0-75fb-47e2-96cd-ae81fa1a8e82@linaro.org>
+ <f3c62284-ac78-42c6-a4f0-cd984b7124cd@linaro.org>
+ <7eda931a-f30e-4e01-a130-996ec7f450d1@linaro.org>
+ <a42f837c-4b90-4e0f-a98f-793fbd20a140@kernel.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <a42f837c-4b90-4e0f-a98f-793fbd20a140@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,suse.com,gmail.com,perex.cz,renesas.com,bp.renesas.com,glider.be,pengutronix.de,tuxon.dev,vger.kernel.org,baylibre.com];
-	TAGGED_FROM(0.00)[bounces-277934-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.960];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-277935-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:dkim,linaro.org:replyto,linaro.org:mid];
+	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,renesas.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 186552D0234
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_EQ_FROM(0.00)[]
+X-Rspamd-Queue-Id: 706FA2D058B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On 3/19/26 17:56, Bryan O'Donoghue wrote:
+> On 19/03/2026 16:08, Neil Armstrong wrote:
+>> On 3/19/26 16:18, Bryan O'Donoghue wrote:
+>>> On 19/03/2026 14:56, Vladimir Zapolskiy wrote:
+>>>>> There's no reason to remove that from CAMSS - it would be an ABI break
+>>>>> in user-space anyway.
+>>>>
+>>>> If technically CAMSS CSIPHY could be excluded from the list of CAMSS media
+>>>> subdevices, then for the sake of simplification it should be done for all
+>>>> supported platforms in advance, such a change will be independent from this
+>>>> particular phy series, and vice versa, this CAMSS only driver change will
+>>>> prepare a ground for media-less CAMSS CSIPHY device drivers, hence it shall
+>>>> precede this particular CAMSS CSIPHY series.
+>>>>
+>>>> For backward compatibility with userspace a noop stub will be good enough,
+>>>> it's not an issue at all.
+>>>
+>>> The standalone PHY driver doesn't require removing the CSIPHY media
+>>> entity from CAMSS. They serve different purposes and coexist - its important to have a NOP from user-space perspective for legacy and indeed for new implementations.
+>>>
+>>> How the PHY gets represented in the kernel is of zero interest to user-sapce.
+>>>
+>>> That said, stubbing out the media entity is independent work that can happen in any order and IMO is a separate debate. Whether or not CSIPHY init sequences live inside of a monolithic CAMSS driver or live inside off a discrete csiphy driver is not related to the media graph.
+>>>
+>>> Happy to have that debate - and if indicated, carefully apply patches separately.
+>>
+>> So what does this actually solves ?
+>>
+>> Neil
+> Per-PHY voltage rails, per-PHY power domains and per-PHY OPP scaling.
+> 
+> Using the PHY API instead of rolling our own, as well as separate nodes in the DT.
+> 
+> We've been getting away with power-domains, opp scaling etc by sheer luck. The feedback from the list alone now addressed in this driver makes the conversion worthwhile.
 
-On Thu, 19 Mar 2026 16:53:13 +0100, John Madieu wrote:
-> RZ/V2H, RZ/V2N, and RZ/G3E support external audio clock inputs
-> (AUDIO_CLKA, AUDIO_CLKB, AUDIO_CLKC) that can be used by the Audio Clock
-> Generator (ADG) to derive internal audio clocks. These clocks are optional
-> and their frequencies are set by the board.
+The PHY API doesn't solve that, having proper nodes solves that, you could add a separate csiphy node, add a port/endpoint between camss and the csiphy and attach a camss aux driver to the node, and it would have the same effect with little code change.
+And this could be done for all the CAMSS hardware elements incrementally, and if you wish the move the electrical phy part under the phy API then you just spin a PHY aux driver controlled by the csiphy media element.
+
+I understand you find it simpler to use the phys property in camss, but it has plenty of drawbacks like not be able to describe data link properties specific to the CSIPHY properties or easily describe new hardware layouts without having a fixed association table between phy-names and whatever CAMSS media elements interconnections.
+
+My question would be that if we were to completely split out the CAMSS into several separate nodes linked with port/endpoint graph, to which hardware element the phys would be associated to ? is there a fixed connection between a CSID and a CSIPHY ? is seems the CSID gen2 & gen3 can actually connect to different CSIPHY meaning a CSIPHY is a not simple electrical PHY but can be dynamically connected to different consumers.
+There's no way we can handle that with the PHY API.
+
+Neil
+
 > 
-> Update the bindings to allow these optional clocks for all RZ/V2H family
-> SoCs.
-> 
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
 > ---
->  .../devicetree/bindings/clock/renesas,rzv2h-cpg.yaml   | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml: properties:clocks: {'minItems': 3, 'maxItems': 6, 'items': [{'description': 'AUDIO_EXTAL clock input'}, {'description': 'RTXIN clock input'}, {'description': 'QEXTAL clock input'}, {'description': 'AUDIO_CLKA clock input'}, {'description': 'AUDIO_CLKB clock input'}, {'description': 'AUDIO_CLKC clock input'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml: properties:clock-names: {'minItems': 3, 'maxItems': 6, 'items': [{'const': 'audio_extal'}, {'const': 'rtxin'}, {'const': 'qextal'}, {'const': 'audio_clka'}, {'const': 'audio_clkb'}, {'const': 'audio_clkc'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260319155334.51278-2-john.madieu.xa@bp.renesas.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+> bod
 
 
