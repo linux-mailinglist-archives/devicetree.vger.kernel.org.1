@@ -1,179 +1,187 @@
-Return-Path: <devicetree+bounces-277659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277661-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wJJMH6LBu2n1ngIAu9opvQ
-	(envelope-from <devicetree+bounces-277659-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:28:02 +0100
+	id mEtSH6DEu2n1ngIAu9opvQ
+	(envelope-from <devicetree+bounces-277661-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:40:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 419842C8A5F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:28:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90BC12C8D8D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:40:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 81AE53002B3D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:28:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4CE6931BECAC
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 09:28:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 660153B3C04;
-	Thu, 19 Mar 2026 09:28:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 036DA3B52E5;
+	Thu, 19 Mar 2026 09:28:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ukl0Swev"
+	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="WRlw7WGK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4232D3AF67F;
-	Thu, 19 Mar 2026 09:28:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from ultrarisc.com (unknown [218.76.62.146])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3398C3AF67F;
+	Thu, 19 Mar 2026 09:28:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=218.76.62.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773912480; cv=none; b=tLZhL+P0rBYGDV/lDODui79Q1nfbQFIn/RnRSUMQ1pK75dQWM9zYk9Y6uCXKIYQVlxWfxdGpw9BnXlXEpxuoOctq0ESIRj2zFW+X1IsIj002Nu6V4LVUMk70sQjNvBrEZ9mes+RT6G3ozx8mmL/IEpxnBUhxmz6TQfbPAjSvT0Y=
+	t=1773912514; cv=none; b=iAzrCCjjGMDGAIq2CVKiF2rNr+hSlspVvyq2SeF3KGxVKRwqzJK0PhnKedzZNBzmNKrVmVnw9+n5UXrW7jagUMJS+EPXNzH4KuA+s/8L6ywAXN1mjB8h+NfT7W10U2UvIs+pPGj2vKnqA14yWZ3ZQjukaygxnDq9TrV2qZCdADQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773912480; c=relaxed/simple;
-	bh=UL0uWT7mViBMlcKUUyyaKzsJOKKUBHxfs6aKaFxSGxc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rM/q/OEYUVWx7BrEuvj165ZXUwZnOXEOtgwidTSuYeLtE+Qz9vPgOwUf9eESIxHnnxzYAxAPgtMcucwyX7i5Jm5B6lJEelXqElyldzgsvnaICd4Zi7oeEjrRpqXe4v+R4pCCmw6Hhz6WNh2hDvXLml8aguIbLf+YyFpZ0YkFMkc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ukl0Swev; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42F8EC19424;
-	Thu, 19 Mar 2026 09:27:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773912479;
-	bh=UL0uWT7mViBMlcKUUyyaKzsJOKKUBHxfs6aKaFxSGxc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ukl0SwevjPDt9OVeLV2lRm2qjCh8uzLYgGB8A/wBVrmHsCA6pEvKbz8lWxeodp+mj
-	 F0gRTrhd0qWiarjwgMv3XvTfXs30lS4yZUjMTBPELzh9FGNpqKLA244nz/jSW2Snze
-	 ycsYP0vbKervwzifeTP9r9F0iIJE7/z7kfoF5QZGIJRUdcjBSNIiv5/L+fk0FjLqmU
-	 tvGBwD0qyiPUu+DthIhaLm6OFmFcqevNRTylnnt90TcnmWNZon+Vq9JKagw/VjpYin
-	 7IV03o0Rjxu5GPwQbYSEOTb5a7qlKVun4uhAP6R/36orNnac/CQ3QgpsZbKCXQZ2bA
-	 h2dkC3T62RkIw==
-Message-ID: <4155e0c4-55d2-4c2f-908a-f037f1284a15@kernel.org>
-Date: Thu, 19 Mar 2026 10:27:56 +0100
+	s=arc-20240116; t=1773912514; c=relaxed/simple;
+	bh=HyjOHcX/Kkm5YJCmy7d7XosInvEHySEKxeiBw8BnaXg=;
+	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
+	 References:Date:Message-Id; b=JKHPK2cISYV5KW2P8TuyL1DNVwFRNNXDiIzHRgmnVoYFc8cIvGcPv+AJfadqcQyK722W/gQRgPHpnHQlwtSxpXAz+C0Lq2VUujSIo4o2c2zVgZ+7gw4sxBZ7JI1GioFhvQY20m7DN9Ucj3LsYTAypF6z6IQQw/Gs+sO3t73TH6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=none smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=WRlw7WGK; arc=none smtp.client-ip=218.76.62.146
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ultrarisc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=ultrarisc.com; s=dkim; h=Received:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Subject:From:To:Cc:In-Reply-To:
+	References:Date:Message-Id; bh=Cb2BSk/vS4RMFR/eRi2Mqj3i3NHmiCtlF
+	UY132gU2I8=; b=WRlw7WGKELZnkFOU01QftyTjS01XcERQ1b1txIc/w62FXFwAJ
+	ZryMbQziFOHCQMEeolsz69lrUoVzYrKm+R9ycdAX/iv51fkafn5hyubTfQchxwlD
+	AmnZw7kBmgXyXR7nxTkvn1ulYoXSDmQBseOTj/9j26ODpjKL7gB9K9tg5U=
+Received: from [127.0.0.1] (unknown [192.168.100.1])
+	by localhost.localdomain (Coremail) with SMTP id AQAAfwDHJSXRwbtpGZEBAA--.1354S2;
+	Thu, 19 Mar 2026 17:28:50 +0800 (CST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: request for guidence
-To: ShiHao <i.shihao.999@gmail.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, broonie@kernel.org,
- bjorn.andersson@oss.qualcomm.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <abqbUuruxPJsfBo3@fedora>
- <ccce197c-c514-43c8-8026-534966bb0438@kernel.org> <abqr0Qpcx_2BQINg@fedora>
- <40d02335-90c2-4b14-a9df-d9ff1a75ddd2@kernel.org> <abu_NBSH79OyN5do@fedora>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <abu_NBSH79OyN5do@fedora>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Subject: Re: [PATCH 1/4] riscv: add UltraRISC SoC family Kconfig support
+From: Jia Wang <wangjia@ultrarisc.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Jia Wang <wangjia@ultrarisc.com>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>, 
+ Xincheng Zhang <zhangxincheng@ultrarisc.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-riscv@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+ devicetree@vger.kernel.org
+In-Reply-To: <20260317-renewably-unroasted-45c63bd0c95e@spud>
+References: <20260316-ultrarisc-pcie-v1-0-ef2946ede698@ultrarisc.com>
+ <20260316-ultrarisc-pcie-v1-1-ef2946ede698@ultrarisc.com>
+ <20260316-powdery-unbundle-b1166d13f53b@spud>
+ <177372998464.49340.13796019002628537253.b4-reply@b4>
+ <20260317-renewably-unroasted-45c63bd0c95e@spud>
+Date: Thu, 19 Mar 2026 17:28:00 +0800
+Message-Id: <177391248056.2824357.15290555460185288415.b4-reply@b4>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773912480; l=2034;
+ i=wangjia@ultrarisc.com; s=20260309; h=from:subject:message-id;
+ bh=HyjOHcX/Kkm5YJCmy7d7XosInvEHySEKxeiBw8BnaXg=;
+ b=dbe+ZDKMOUTE9vOXUKrpgdEyvkA1mgrYsYg8s3SHQDX1plXNscuNUdFD8b7GjSJFBn8zWvxmP
+ vxEd7WcNCwRCa15+4yAhlK8NFGig6QLVYgykFI8QPDDzCaCq0ImoLlZ
+X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
+ pk=XvYkrelqJIIzobY7j+nIg8rsfv5kzaOzuc1UPhd087U=
+X-CM-TRANSID:AQAAfwDHJSXRwbtpGZEBAA--.1354S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Kr1UKw4xZF15XFy7ZF4xWFg_yoW8Cw15pF
+	s5CF1YkFs8Jr1fAFZIqw45Wr4jkrsakr45XwnxWw18AFZ0krySkryktw15u3WUurZ5Jr1F
+	vF1ruasxZr15Za7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9l14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
+	4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+	n2kIc2xKxwCY1x0262kKe7AKxVW8ZVWrXwCY02Avz4vE-syl42xK82IYc2Ij64vIr41l4I
+	8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AK
+	xVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcV
+	AFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8I
+	cIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r
+	4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjTRNJ5oDUUUU
+X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAKEWm6QIkAGQACsb
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
+	R_DKIM_ALLOW(-0.20)[ultrarisc.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-277659-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-277661-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
+	NEURAL_HAM(-0.00)[-0.985];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[ultrarisc.com,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,google.com,gmail.com,lists.infradead.org,vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 419842C8A5F
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DKIM_TRACE(0.00)[ultrarisc.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ultrarisc.com:dkim,ultrarisc.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 90BC12C8D8D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 19/03/2026 10:17, ShiHao wrote:
-> On Wed, Mar 18, 2026 at 03:15:56PM +0100, Krzysztof Kozlowski wrote:
+On 2026-03-17 13:02 +0000, Conor Dooley wrote:
+> On Tue, Mar 17, 2026 at 02:46:24PM +0800, Jia Wang wrote:
+> > On 2026-03-16 14:39 +0000, Conor Dooley wrote:
+> > > On Mon, Mar 16, 2026 at 03:06:57PM +0800, Jia Wang wrote:
+> > > > The first SoC in the UltraRISC series is UR-DP1000, containing octa
+> > > > UltraRISC C100 cores.
+> > > > 
+> > > > Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
+> > > > ---
+> > > >  arch/riscv/Kconfig.socs | 10 ++++++++++
+> > > >  1 file changed, 10 insertions(+)
+> > > > 
+> > > > diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> > > > index d621b85dd63b..f49d3ccaacde 100644
+> > > > --- a/arch/riscv/Kconfig.socs
+> > > > +++ b/arch/riscv/Kconfig.socs
+> > > > @@ -84,6 +84,16 @@ config ARCH_THEAD
+> > > >  	help
+> > > >  	  This enables support for the RISC-V based T-HEAD SoCs.
+> > > >  
+> > > > +config ARCH_ULTRARISC
+> > > > +	bool "UltraRISC RISC-V SoCs"
+> > > > +	depends on MMU && !XIP_KERNEL
+> > > 
+> > > Why do you depend on "MMU && !XIP_KERNEL"?
+> > >
+> > Hi Conor,
+> > 
+> > Thanks for the review.
+> > 
+> > The dependency on "MMU" was added conservatively, but the DP1000 hardware
+> > does not strictly require MMU. I will remove this dependency in the
+> > next version of the patch.
+> > 
+> > The "!XIP_KERNEL" dependency is retained because the platform does not
+> > support executing the kernel directly from storage, so the kernel
+> > must be loaded into RAM before execution.
 > 
->> I could not find any GSoC page telling that DT is the respective list to
->> contact about your application. Or that me or Mark or Bjorn are... Where
-> 
-> Hello Krzysztof,
-> 
-> well it is actually said here.
-> https://github.com/LinuxFoundationGSoC/ProjectIdeas/wiki/Contributor-Application-Template
+> I would imagine the reason these are here is because you copied this
+> from one of the other entries. They have "depends on MMU && !XIP_KERNEL"
+> is because they have errata that require alternatives to resolve, and
+> alternatives require those conditions. IMO you should remove these entirely,
+> especially since XIP_KERNEL is about to be removed for riscv soon
+> anyway.
+Thanks for the clarification.
 
+I will remove the entire "depends on MMU && !XIP_KERNEL" line in the next
+revision.
 
-I guess this part:
-"ask on the mailing list or in the IRC channel of the appropriate workgroup"
-
-This is not the mailing list of that workgroup. I also do not know what
-is the mailing list of that GSoC workgroup - I think there is none.
-
->> On the GSoC pages, there is list of people from Linux Foundation to
->> reach. Unfortunately I do not know with whom else you could contact, but
->> I am sure that Linux kernel maintainers are not the ones to discuss it.
->> GSoC is Google's or Linux Foundation program, nothing to do with us.
->>
->> Best regards,
->> Krzysztof
-> 
-> However lets drop this i submitted my proposal today so, beside
-> this i got one questions that is it okay to convert bindings
-> outside gsoc. Thanks for your help and sorry if i wasted your
-> time.
-
-Just remember we do not need any AI/LLM conversions, because that part
-is already done. All TXT bindings are already converted that way.
+Thanks again for the guidance.
 
 Best regards,
-Krzysztof
+Jia
+
 
