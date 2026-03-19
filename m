@@ -1,199 +1,157 @@
-Return-Path: <devicetree+bounces-277765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277766-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2BFZCI7wu2m1qQIAu9opvQ
-	(envelope-from <devicetree+bounces-277765-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:48:14 +0100
+	id 0HP5EtPxu2kgqgIAu9opvQ
+	(envelope-from <devicetree+bounces-277766-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:53:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A80ED2CB55B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:48:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F4652CB6D3
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 13:53:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BD5B630A24C5
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:47:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 95FB3310A3B9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 12:50:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE41436CE14;
-	Thu, 19 Mar 2026 12:47:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDEE53CFF7B;
+	Thu, 19 Mar 2026 12:50:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KYYIAucB"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="fDIadPVk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB1F11386C9
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 12:47:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 898873603C2;
+	Thu, 19 Mar 2026 12:50:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773924478; cv=none; b=F7y2yURRf1bIKM8t8Z79Z0S8jvXkqMSjlJdGd+t5DpBhROZBhURaF1NvXuifUASaQWMrfdbSRbNOh03PectBECXLfTNn+l+ot7Rgmo+opCkmVrQsE1rt1p/CCFJ7Gl/XImLMa7fWZawg10ofipUBNq8rwitjANd80XB38CtWAj4=
+	t=1773924625; cv=none; b=jQnVAq+t5U0Mm7l1fr6SyDEm4U82j1R02C8FN6YVQSYxk+4gLnFx695cjFEqJBPWIHLCKmH66h1M/sgT8GhXk/omxOzBOHQgmqO6GhFJAZdfeOzPbrh5W13Lt2I4eEFvNVKsAdlsSCEdU7msE6Uq/FncxJaw0oppW/LzkWjGELk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773924478; c=relaxed/simple;
-	bh=zTY+Se3NFvHBXt3d4ew0w2jM2I7U1Cal8UaC8rHErGM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LhAwUuItwMK5ll+D9KqNiwZ2535jheNSgURP9twUbJZrXXED/lc7MTCzohWgEHKWrR0NQ81AgXiF2RR5aChEE6A4KU8F840SAAXE2vrYItz6RMn+ELg2tQs6oful/WnSotjYia6j75t2hRJp0TJE6ANrnxf5qkJhRZ/Iw7ofhxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KYYIAucB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CAE1C2BCAF
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 12:47:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773924478;
-	bh=zTY+Se3NFvHBXt3d4ew0w2jM2I7U1Cal8UaC8rHErGM=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=KYYIAucB7njxEo1PVsQFHRNpjRT84zx60wmJ2jyXxdzr2HwVkU3Puy51MsdOdplbq
-	 FjQKHbJq53lwP5/rQPLvhBfDpf/00XGy6KchM3kbsQC4tNKPV5Eb6aNnAcRXoESGFA
-	 lQbN2yILFPG3pCPLfzh6UubKjDpiuJOsx9aw6ozdYAM26auPhx3jr4KDCXAN8H9KaI
-	 iHRv41pwjGEmZMAf8U766RUvXfmMPhpa1qiXKOgMVwHA5UcCS9ZUYZjWfzOPrka0rh
-	 bOexCLacfoVsdVfkBHu6DXVxEgIAPjlgDxFfCIjVLgVMOmxiqf5cHwntA0mzkBw6YU
-	 xwh1+63zZsDcA==
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-79a4e5caad6so9451507b3.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 05:47:58 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWhYdAroqE3Fj3X5Dqv4cd6JSvoErlLIQ4k/Eu1/BwOwAUD+tWRU+EFkMRjySQm+LhrOMBsY9iDJcsQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzM964uH5KqITdGiu84OmwRfCH6crJIdvSXmSL6XsO6QuXjGk9T
-	EmlgCu15lROTZjhqdtb/VsOTHzRiKceMy84gdj017uvEqEZvZ1slL9lbNuDvkUJJeoyUbcixUXA
-	3xdVuW8+IyXmLOII/3ar4LIB2vHlIvdU=
-X-Received: by 2002:a05:690c:6610:b0:798:5951:f42b with SMTP id
- 00721157ae682-79a71c40194mr76142387b3.42.1773924477855; Thu, 19 Mar 2026
- 05:47:57 -0700 (PDT)
+	s=arc-20240116; t=1773924625; c=relaxed/simple;
+	bh=SHYByCBNiJ2JYWjyClCA5GddQx7gtnPawFIm9DTRTXs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=C12G8eJPSzqwH93jOKrAGtsEpBYYYd48tkue7Cc+e6zX/wLf6ZCadNiVf384F9SHGNXjrU++LQUjk5/UbqVx0CcsPGXWjMLy3dehfyWwCoZxS2UYJBOCOExgXSI2qxYmmC/Zq2zLx5icAXzNPDxSVnOdIMr46AVaIIVlmoxT6iw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=fDIadPVk; arc=none smtp.client-ip=188.40.3.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ew.tq-group.com; s=default2602; h=Content-Transfer-Encoding:MIME-Version:
+	Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=NF6w8t5jTyzsEb0m2tYRzroS6jTcRuQ0VrGUp+agBgo=; b=fDIadPVkdIF4vsB63JSmgVDn52
+	Yykz0b/gU2GEmYUS1TRRLGsBlf7B/+jkX14oHsBj0O7FYSX7h90KdIr2vi85xPND/zu6pH0IjbIVc
+	NBDMl1HMemTk4ha+XJPWdkn6nBuRPDnDWVXDiS/sMYU7RvKnRzOlAEjKzgpMV1WNRB56gN3WtGAVv
+	IPeI6gSw85VHKtuXgGHXPHelHVRjS5JA60LO/aa8+XPnA510SB26c5j698JXDXUwBB6KvMeivWgaE
+	JtoxPusg0D75ROfjdnDUMuv58RlZEjuBiI/qMAyV+yowQrOK2VsvOgTk1BRSK7pcx5PsrSoc1SsJ9
+	+CRSJUag==;
+Received: from sslproxy02.your-server.de ([78.47.166.47])
+	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1w3CpP-0009x4-2H;
+	Thu, 19 Mar 2026 13:50:19 +0100
+Received: from localhost ([127.0.0.1])
+	by sslproxy02.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1w3CpO-000MiA-2x;
+	Thu, 19 Mar 2026 13:50:19 +0100
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com
+Subject: [PATCH v2 0/3] TQMa93xx on MBa93xxLA-Mini support
+Date: Thu, 19 Mar 2026 13:50:07 +0100
+Message-ID: <20260319125013.2421621-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260318-expressatt_camera_flash-v2-0-5c2b9a623dcb@gmail.com> <20260318-expressatt_camera_flash-v2-2-5c2b9a623dcb@gmail.com>
-In-Reply-To: <20260318-expressatt_camera_flash-v2-2-5c2b9a623dcb@gmail.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Thu, 19 Mar 2026 13:47:47 +0100
-X-Gmail-Original-Message-ID: <CAD++jLmyYkxWmed+_TR90bQjOm80qOiFhy+ozO+oaStTCZgC6w@mail.gmail.com>
-X-Gm-Features: AaiRm505cPvbdwiTvmw3UtKWuDl2DXwZ-y3i9XjbmrEhtSPFBdQzKgyQpyb6AMc
-Message-ID: <CAD++jLmyYkxWmed+_TR90bQjOm80qOiFhy+ozO+oaStTCZgC6w@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] leds: flash: rt8515: Support single-GPIO flash ICs
- with vin supply
-To: guptarud@gmail.com, Mark Brown <broonie@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: Clear (ClamAV 1.4.3/27945/Thu Mar 19 07:24:38 2026)
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-277765-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-277766-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.855];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A80ED2CB55B
+	NEURAL_HAM(-0.00)[-0.981];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,tq-group.com:url,ew.tq-group.com:dkim,ew.tq-group.com:mid]
+X-Rspamd-Queue-Id: 9F4652CB6D3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Rudraksha,
+Hi all,
 
-this is a clear improvement! I like the directions this
-is going.
+this series adds support for TQMa93xxLA on MBa93xxLA-Mini [1],
+a single board computer board in small form factor.
+It has a reduced feature set compared to MBa93xxLA, with WiFi/Bluetooth and
+WWAN applicaitons in mind.
+An overlay for Ezurio WiFi module is added as well.
 
-Mark Brown needs to look at how you're using regulators
-here.
+Changes in v2:
+* Collected tags
+* Fixes commit message style
+* Remove unused display related DT nodes
+* Fix Ethernet PHY IRQ types
 
-On Wed, Mar 18, 2026 at 7:34=E2=80=AFPM Rudraksha Gupta via B4 Relay
-<devnull+guptarud.gmail.com@kernel.org> wrote:
+Best regards,
+Alexander
 
-> From: Rudraksha Gupta <guptarud@gmail.com>
->
-> Extend the RT8515 driver to support flash ICs that use only a single
-> GPIO for both flash and torch modes (no separate ENT pin), with an
-> optional vin regulator that gates power to the flash IC.
->
-> When vin-supply is provided, the driver enables the regulator before
-> activating the LED and disables it when turning off.
->
-> Make ent-gpios optional and validate at probe time that exactly one of
-> ent-gpios or vin-supply is provided. When ent-gpios is absent, the
-> driver uses enf-gpios for both flash and torch brightness control.
->
-> Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
+[1] https://www.tq-group.com/en/products/tq-embedded/arm-architecture/mba93xxla-mini/
 
-(...)
+Martin Schmiedel (3):
+  dt-bindings: arm: fsl: add MBa93xxLA-MINI
+  arm64: dts: freescale: add initial device tree for
+    TQMa93xx/MBa93xxLA-MINI
+  arm64: dts: freescale: imx93-tqma9352-mba93xxla-mini: Add WLAN/BT
+    overlay
 
->         struct regulator *reg;
-> +       bool reg_enabled;
+ .../devicetree/bindings/arm/fsl.yaml          |   3 +
+ arch/arm64/boot/dts/freescale/Makefile        |   5 +
+ ...3-tqma9352-mba93xxla-mini-ezurio-wlan.dtso |  35 +
+ .../imx93-tqma9352-mba93xxla-mini.dts         | 597 ++++++++++++++++++
+ 4 files changed, 640 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla-mini-ezurio-wlan.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla-mini.dts
 
-I think you can actually ask a regulator if it is enabled already,
-regulator_is_enabled().
+-- 
+2.43.0
 
-Also as long as you enable and disable it the same number of
-times it also contains an internal reference count, so this is
-often enough.
-
-> +       if (rt->reg && rt->reg_enabled) {
-> +               regulator_disable(rt->reg);
-> +               rt->reg_enabled =3D false;
-> +       }
-
-I don't think you need to NULL-check rt-reg but not sure.
-
-Can you use regulator_is_enabled() instead of the bool local?
-
-> +               /* Enable the vin regulator if needed */
-> +               if (rt->reg && !rt->reg_enabled) {
-
-Dito
-
-> +               /* Enable the vin regulator if needed */
-> +               if (rt->reg && !rt->reg_enabled) {
-> +                       ret =3D regulator_enable(rt->reg);
-
-Dito
-
->         if (state) {
-> +               /* Enable the vin regulator if needed */
-> +               if (rt->reg && !rt->reg_enabled) {
-
-Dito.
-
-> +       /* Optional VIN supply (e.g. GPIO-controlled fixed regulator) */
-> +       rt->reg =3D devm_regulator_get_optional(dev, "vin");
-> +       if (IS_ERR(rt->reg)) {
-> +               if (PTR_ERR(rt->reg) =3D=3D -ENODEV)
-> +                       rt->reg =3D NULL;
-
-I think the regulator callbacks are able to deal transparently
-with "regulators" that are -ENODEV, can you just let it pass?
-Anyway Mark knows what to do here.
-
-> +       /* Exactly one of ENT or VIN must be provided */
-> +       if (!rt->enable_torch =3D=3D !rt->reg)
-> +               return dev_err_probe(dev, -EINVAL,
-> +                                    "exactly one of ent-gpios or vin-sup=
-ply is required\n");
-
-Please drop this check.
-
-I think there can be systems using the torch but also define
-the regulator.
-
-Yours,
-Linus Walleij
 
