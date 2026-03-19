@@ -1,208 +1,382 @@
-Return-Path: <devicetree+bounces-277693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-277694-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mAf+IFfQu2k4owIAu9opvQ
-	(envelope-from <devicetree+bounces-277693-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:30:47 +0100
+	id eNNjMtDQu2k4owIAu9opvQ
+	(envelope-from <devicetree+bounces-277694-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:32:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D66542C97E7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:30:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B0F12C9837
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 11:32:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4B56430AB8FA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:29:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EB5D4300D695
+	for <lists+devicetree@lfdr.de>; Thu, 19 Mar 2026 10:32:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A850D374197;
-	Thu, 19 Mar 2026 10:29:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8A203AEF3E;
+	Thu, 19 Mar 2026 10:32:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="C7xqy6Xa"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="axCQwfod"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011055.outbound.protection.outlook.com [52.101.65.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE23734D383
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 10:29:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773916193; cv=none; b=f2USSTEvWom3VUYT7OE3Skl+8FrkrQovS6uli6cGDnDtc0k9TsEcfswVK1xGiBzwmLbKdPBn2Lzv7mnKU8hVO1jA2vqjtBZ8VxCklriT/1Gk8tH/vLSDaj38Bl/3PAe8U0ZwAtne0+fTiCXL44hU15XFEP2y55tuR2oPm0Hzc2w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773916193; c=relaxed/simple;
-	bh=DkSFWv460eF+SLnywqG+PsmtAxUHLUKrZGMYJd32AFA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=QZ3eQ30B277Y9zYV1tcyUbtnNndUxMqjPWAFmCaKg4T569bb6HpgUZBi6WVBTF/L6xise8N7zJICVl6S0L3YLmPw/Quha7FWfG201qIb3aO0fFd32y1wp/SMUVYtvnei2ct23mkTRqhYe3OcBTWZ9E/8XUpacbdRY+rRLv2GidQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=C7xqy6Xa; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20260319102948euoutp01b774214751e159d7f51420a839c67b0a~eN2AR1Ca20618706187euoutp01l
-	for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 10:29:48 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20260319102948euoutp01b774214751e159d7f51420a839c67b0a~eN2AR1Ca20618706187euoutp01l
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1773916189;
-	bh=uKAPmcA2X9Bm9pJ7T+wzs/NFBFfUIopHAZt+of0O0TE=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=C7xqy6XartaJebAc/mio76XJgysOea9Dhzs17asXEowNuhnl4+zZPcqEs2aitk7Dw
-	 rx9J3fgwC7hVscoeFHjVoqHtn7LNCEL6lP6m2NHLhc/iouWTgywbvvbRGo6O6wySyS
-	 ADC4nFYUa7UILv6G6+6jFPm9zHvZNkSXdkjjWl+8=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20260319102948eucas1p19b0586ca5935a60f9d5bcea3bbbccdac~eN1-1Tym32451224512eucas1p1g;
-	Thu, 19 Mar 2026 10:29:48 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20260319102947eusmtip1f9e65f8316f14e8d08a56aea54338db7~eN1_23p1d2191621916eusmtip1f;
-	Thu, 19 Mar 2026 10:29:47 +0000 (GMT)
-Message-ID: <c5ba58fb-50f1-4067-a099-97169ea81f68@samsung.com>
-Date: Thu, 19 Mar 2026 11:29:46 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D128F355F3B;
+	Thu, 19 Mar 2026 10:32:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.55
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773916334; cv=fail; b=eA3MYSJmzRBJGvIzxPTsgLF4WuxNad67gG7Vr7U1XJnARI5VVUR0uEzuu6p52spppt8MvENnehi8kIIOOwG8lAThMrBHIBQG4aFsltTxRNXS9ihbpJ66xivqM6PY7fyykcqKhfeCWeaD0ARUiZC800NmE+z9nUQ/Vyx3z8tCxQA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773916334; c=relaxed/simple;
+	bh=PE1DwflIBzYBergWQ9YclKR9Qr64aotJAxwpOWPeFzc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=C3CpXRFuLTB/pNiTq2Dsa1Ddkp9F+dYRDOFJ4ZhHJzcQAvo60NYb2iOYjiC063Z9DrVkz4KUjDnGvLgYKMOI3iTnqEWu2Ur5Vx4WuF5nnc8pUchVTbhWde5sud34K+gX6MYRaAwcMUnrf47diLRS8vOfThOM8tojsJLh6/4HwCQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=axCQwfod; arc=fail smtp.client-ip=52.101.65.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=C87/IlIQ/FEYUvXgJQBKweZw/0us3aYqyuXSaKVw1HJcEsm4G4TLm9hj+rYIPODcilYQ61EEt8uTfCJp9CTKPZ8I1m03ldWmPXI18DWvcu8osFQ5T8xDEOTAQ1XNuZva26pMbFmOHNzvgEIFyllTxbwRF5Z6+u5PBDK9uVCiXa+4yKJLO49DAQvgQoKZETI2YKLRuRKUsEqiIDX9RZlbC0Ah0HptNF842CttMt/qsGpyf1zejj9SscUT6kopTXjOev7ihREL3ziHtmifc/jvro1UllxC4TMRfamLUjWfEUsab8ebr+x9LvClvSOq+1PhiX+/aIk5eXHXfP609zeYDg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YHOAXXZ/eo+gGOneXEPPxRZItUraHv3c0j7lWTUMNnM=;
+ b=ntIlwI9A8xG+Rs9Fh5mSG5NBJVLFwdn7L0Innr3hkS+2ddQinpunFgIwnLRKbH9ZXkjnQbSHSZXblTkl9b7I0rLug4hBCoiVMwLvLLPqrplT5gMlenlog1c8PV6WXPeYv5KMdBLCK7brdJFl6+ZqK6n/JVuYpbAmXees+GlZoKlJb4pjxp7DDMCLzSBiUcdlEfTHlYRJ7qmMmocg+iAwXpIBG9xHOE1bs3AURVyw9ksM208skG7/vsvBv0aj2JiVUjMdIV8zQYBLcQq5a12Ubs/7fahLw26Sf0iZ9ba8zf36CHCXP1ZSyqD7/q5N62bK9NjbUQ6o8vx6BlVyoblL8A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.60) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YHOAXXZ/eo+gGOneXEPPxRZItUraHv3c0j7lWTUMNnM=;
+ b=axCQwfodDxLORO+5uFLO7+qUEDYS9GsBeN9XbMeqjYty9f7ep3Bea/QfQmJIN6dEzV2U2WOM+AubPUWYl1zKBfWLh7/3UBxYVdz3T9QX2GzfBF21k2ZH1zQndhRtpcQqxewfdALhubKWYaUagCgAjEisoEQW4LETZHEFTVilh6a/c0bTJZaadKivkMgt/iztjO7zn0/0eDWRQ3oSY2PIm3d7UWA4/lBTwhgzBbEL/wUqcO/yHgIYjqHXu5SQGBmgOy02IWQDt4VQZamJzgHRT52kVczyRVEZ15RT7VuXqQizAKXic7Im+Wz+o51lmVlV/9UNFbDW/tYvZpyVKMDWPw==
+Received: from DB9PR05CA0026.eurprd05.prod.outlook.com (2603:10a6:10:1da::31)
+ by DB8PR10MB3468.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:13f::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Thu, 19 Mar
+ 2026 10:32:07 +0000
+Received: from DU2PEPF0001E9C0.eurprd03.prod.outlook.com
+ (2603:10a6:10:1da:cafe::52) by DB9PR05CA0026.outlook.office365.com
+ (2603:10a6:10:1da::31) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.19 via Frontend Transport; Thu,
+ 19 Mar 2026 10:32:07 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.60)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.60; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.60) by
+ DU2PEPF0001E9C0.mail.protection.outlook.com (10.167.8.69) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9723.19 via Frontend Transport; Thu, 19 Mar 2026 10:32:07 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
+ (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Thu, 19 Mar
+ 2026 11:34:17 +0100
+Received: from [10.48.87.127] (10.48.87.127) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Thu, 19 Mar
+ 2026 11:31:57 +0100
+Message-ID: <420953af-6a12-4277-8c31-062db01f78cc@foss.st.com>
+Date: Thu, 19 Mar 2026 11:31:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Betterbird (Windows)
-Subject: Re: [PATCH v8 05/10] pmdomain: samsung: convert to using regmap
-To: Ulf Hansson <ulf.hansson@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?=
-	<andre.draszik@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar
-	<alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam
-	Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Peter
-	Griffin <peter.griffin@linaro.org>, Tudor Ambarus
-	<tudor.ambarus@linaro.org>, Juan Yescas <jyescas@google.com>, Will McVicker
-	<willmcvicker@google.com>, kernel-team@android.com,
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v21 2/6] dt-bindings: remoteproc: Add STM32 TEE-controlled
+ rproc binding
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
+	<mathieu.poirier@linaro.org>, Jens Wiklander <jens.wiklander@linaro.org>,
+	"Rob Herring" <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	"Conor Dooley" <conor+dt@kernel.org>, Sumit Garg <sumit.garg@kernel.org>,
+	<linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-remoteproc@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <op-tee@lists.trustedfirmware.org>,
+	<devicetree@vger.kernel.org>
+References: <20260317180329.1207625-1-arnaud.pouliquen@foss.st.com>
+ <20260317180329.1207625-3-arnaud.pouliquen@foss.st.com>
+ <20260319-glistening-ultramarine-ibis-1eb3d6@quoll>
 Content-Language: en-US
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <CAPDyKFrprMSLOBMB_BHbi=j6UXV4dXBn-H8M1BsqDWNSCJwvuA@mail.gmail.com>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20260319102948eucas1p19b0586ca5935a60f9d5bcea3bbbccdac
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20260319101424eucas1p2d5dca06240e8760046fb40507ffb3bba
-X-EPHeader: CA
-X-CMS-RootMailID: 20260319101424eucas1p2d5dca06240e8760046fb40507ffb3bba
-References: <20260318-gs101-pd-v8-0-241523460b10@linaro.org>
-	<20260318-gs101-pd-v8-5-241523460b10@linaro.org>
-	<CGME20260319101424eucas1p2d5dca06240e8760046fb40507ffb3bba@eucas1p2.samsung.com>
-	<CAPDyKFrprMSLOBMB_BHbi=j6UXV4dXBn-H8M1BsqDWNSCJwvuA@mail.gmail.com>
-X-Spamd-Result: default: False [-0.65 / 15.00];
+From: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+In-Reply-To: <20260319-glistening-ultramarine-ibis-1eb3d6@quoll>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PEPF0001E9C0:EE_|DB8PR10MB3468:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1873009d-6059-41e0-1583-08de85a2c532
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|376014|1800799024|36860700016|7416014|22082099003|56012099003|18002099003|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	QWve+BY+x6HpGenr6j1IPHEwbGyMsTXUTtmBtypDjBJORcN8rLudvsKqJV4yb9yc5UfyalqfHyMgieaRZjNmEQbbdu27LFv0DxxkYH353WFESUes9/m0apUhHAy8skVCFDHEwNleTENYKQf2S6GxOzm0VTfdRlbi2H7xcQLH+7ZP7OszlsilkhyQbnphhtK+QwIKlA04qql9dLxqqYyzeFPpXisN+OYakpJoaraD/+BIOxKj5VlDnitWWutXTCTcl5j4zk8DIKhjWouSd0wx6lgA/Bsc7XGV2nxUlACZKOGMuxzhw2zEBzhrTU9pGfjr6zsHPPyoiH8p49IBcM/mkUR64k/GVkDX+MwtvGeLaScGAsDttIeKE0T04M7fkpiLnoaBLKVS1yOAKjCk3DjKrMT1mUh7Iil7fSt38eq4CL2KGcnb6dsOV1nM13P28Deg8AQNFPfOdDPhatD3GzKCbYvk4DhiZ7dtrFxEgr9F9DhDKSZSo4EmVN1w4wHCmB56ceUX3dLr0cdtyefVPQU5bXW96NH90SFcVqUv2isa1y9343FYC6XJFa3E2u7ncsXTuviTGiUSbix1hxKhGVEQESeZC6kKQZPWoKSJ2QpiXuPrcchXukMn9wuwEbVPxa6LLJchQscimgFBL7yExkQVXbyAdp0QJGadmWrW/JzH/kfKZVMrxUjV0ri3NEyTqcP2ummuCeNewJStCozjP4CXIXH1IkAmF1a6h6pOMNwyHQg=
+X-Forefront-Antispam-Report:
+	CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(1800799024)(36860700016)(7416014)(22082099003)(56012099003)(18002099003)(13003099007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	25QiXcyWSsmb06IhMXt9SGF2GQvEYvbJ7X8KPPARfLYoL5bn5rqP4ITp/zfyHYiDK+tPUrxwxLvwc6XKxBvXI9J87TzJ1c5kqmX3cEyH17gHXiA1cW1M7AbvXk1PfhkldYM78W72/MhSt9XjnUq8ZHc2ly7hh4ds0UoaFzy4baA76c8MDK+9Ljr4CpOPrflg7Fe8/C0dFMe8xvGUtI7zAxQqoUvr/O395C7J4q97sKAHaR0cFYt2W1nTuReXYEsjFgSj1RKW1w9BSPvdnjxwdiny/kIsUhPzlqE35IjjmJ96LeeXZyy2/mUIdfmqVP0tV2QLlqyVCM/N0/CS0xDFyyUoBnZjZBPmXU2DfmMhEykN/Ho1nSEULt3+eovX0WzNtbLa6ekCXoYIfM9D5L2xxOa6gpm6WPqy49ixiq3xub69b4fF/Way1X3clFMEYCIQ
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2026 10:32:07.1602
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1873009d-6059-41e0-1583-08de85a2c532
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DU2PEPF0001E9C0.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR10MB3468
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[foss.st.com,none];
+	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	XM_UA_NO_VERSION(0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	TAGGED_FROM(0.00)[bounces-277693-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-277694-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,samsung.com,gmail.com,linaro.org,google.com,android.com,lists.infradead.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,0.0.0.0:email,lkml.org:url,st.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m.szyprowski@samsung.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[samsung.com:+];
-	NEURAL_HAM(-0.00)[-0.271];
+	FROM_NEQ_ENVFROM(0.00)[arnaud.pouliquen@foss.st.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[foss.st.com:+];
+	NEURAL_HAM(-0.00)[-0.994];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,samsung.com:dkim,samsung.com:email,samsung.com:mid]
-X-Rspamd-Queue-Id: D66542C97E7
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: 1B0F12C9837
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 19.03.2026 11:13, Ulf Hansson wrote:
-> On Wed, 18 Mar 2026 at 16:28, André Draszik <andre.draszik@linaro.org> wrote:
->> On platforms such as Google gs101, direct mmio register access to the
->> PMU registers doesn't necessarily work and access must happen via a
->> regmap created by the PMU driver instead.
+Hello Krzysztof,
+
+
+On 3/19/26 09:06, Krzysztof Kozlowski wrote:
+> On Tue, Mar 17, 2026 at 07:03:23PM +0100, Arnaud Pouliquen wrote:
+>> Add a Device Tree binding for the STM32 remote processor controlled
+>> via a Trusted Application running in OP-TEE.
+>> This binding describes the interface and properties required for STM32MP
+>> remoteproc instances managed by the TEE rproc service, including a
+>> linkage to the TEE backend through the property "rproc-tee-phandle".
 >>
->> In preparation for supporting such SoCs convert the existing mmio
->> accesses to using a regmap wrapper.
+>> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+>> ---
+>> V21 updates:
+>> - the m4 node is no more declared as a child of the optee-rproc node
+>> - "rproc-tee-phandle" property is introduced to reference the optee-rproc
+>> ---
+>>   .../remoteproc/st,stm32-rproc-tee.yaml        | 108 ++++++++++++++++++
+>>   1 file changed, 108 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/remoteproc/st,stm32-rproc-tee.yaml
 >>
->> With this change in place, a follow-up patch can update the driver to
->> optionally acquire the PMU-created regmap without having to change the
->> rest of the code.
->>
->> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
->> Signed-off-by: André Draszik <andre.draszik@linaro.org>
-> [...]
->
->> @@ -36,31 +35,42 @@ struct exynos_pm_domain {
->>   static int exynos_pd_power(struct generic_pm_domain *domain, bool power_on)
->>   {
->>          struct exynos_pm_domain *pd;
->> -       void __iomem *base;
->>          u32 timeout, pwr;
->> -       char *op;
->> +       int err;
->>
->>          pd = container_of(domain, struct exynos_pm_domain, pd);
->> -       base = pd->base;
->>
->>          pwr = power_on ? pd->local_pwr_cfg : 0;
->> -       writel_relaxed(pwr, base);
->> +       err = regmap_write(pd->regmap, 0, pwr);
->> +       if (err) {
->> +               pr_err("Regmap write for power domain %s %sable failed: %d\n",
->> +                      domain->name, power_on ? "en" : "dis", err);
->> +               return err;
->> +       }
->>
->>          /* Wait max 1ms */
->>          timeout = 10;
->> -
->> -       while ((readl_relaxed(base + 0x4) & pd->local_pwr_cfg) != pwr) {
->> -               if (!timeout) {
->> -                       op = (power_on) ? "enable" : "disable";
->> -                       pr_err("Power domain %s %s failed\n", domain->name, op);
->> -                       return -ETIMEDOUT;
->> +       while (timeout-- > 0) {
->> +               unsigned int val;
+>> diff --git a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc-tee.yaml b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc-tee.yaml
+>> new file mode 100644
+>> index 000000000000..ca4dd1c8e7b0
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc-tee.yaml
+>> @@ -0,0 +1,108 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/remoteproc/st,stm32-rproc-tee.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >> +
->> +               err = regmap_read(pd->regmap, 0x4, &val);
->> +               if (err || ((val & pd->local_pwr_cfg) != pwr)) {
->> +                       cpu_relax();
->> +                       usleep_range(80, 100);
->> +                       continue;
->>                  }
->> -               timeout--;
->> -               cpu_relax();
->> -               usleep_range(80, 100);
+>> +title: STMicroelectronics STM32 remote processor controlled via TEE
 >> +
->> +               break;
->>          }
->>
-> [...]
->
-> As a follow-up patch on top, please consider converting the open-coded
-> polling loop above into a readx_poll_timeout_atomic().
+>> +maintainers:
+>> +  - Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+>> +
+>> +description: |
+>> +  STM32MP remote processor controlled by a Trusted Application
+>> +  running in OP-TEE. This node is a child of the TEE remoteproc service
+>> +  (UUID 80a4c275-0a47-4905-8285-1486a9771a08) and exposes a remoteproc
+>> +  instance managed by the Linux remoteproc core via the TEE rproc service.
+>> +
+>> +  Firmware loading, authentication and remote processor start/stop are managed
+>> +  by the TEE application. The STM32-specific driver handles platform resources
+>> +  such as the mailboxes and reserved-memory.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: st,stm32mp1-m4-tee
+> 
+> Drop "tee", it suggests that compatible is tied to implementation of FW
+> you put there.
 
-This has been tried and it doesn't work in all cases required for power 
-domain driver:
+The "st,stm32mp1-m4" compatible string already exists in 
+drivers/remoteproc/stm32_rproc.c, and "st,stm32mp1-m4-tee" compatible is 
+upstreamed in OP-TEE.
 
-https://lore.kernel.org/all/5c19e4ef-c4fd-4bf5-88b3-46c86751b14e@samsung.com/
+Notice that I have also the stm32mp2 SoC to upstream expecting to have 
+similar compatible:
+- st,stm32mp1-m33
+- st,stm32mp2-m33-tee
 
-Probably a comment about that could be added directly to this code to 
-avoid such conversion and breakage in the future.
+Depending on the compatible string, the hardware behavior changes.
+With the "xxxx-tee" compatible, OP-TEE also manages the isolation of 
+remote processor resources (memory, clock reset, peripherals).
+Without the "xxxx-tee" compatible, OP-TEE have to ensure that the Linux
+has the good access right to manage the remote processor.
 
-> That said, the series looks ready to me, but I am awaiting an ack from
-> a DT maintainer on patch4 before applying.
+For instance if st,stm32mp1-m4-tee is set instead of st,stm32mp1-m4, on
+linux side
+- only memory regions used for IPC should be declared
+- memory regions containing the remote firmware must not be declared as 
+not accessible by the Linux ( managed by OP-TEE).
+- resets must not be declared ( managed by OP-TEE)
 
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+You probably don't remember, as it was a long time ago, but we already 
+discussed this point with Rob[1].
+[1] https://lkml.org/lkml/2024/1/18/100
+
+Do it still reasonable to you and Rob or should we find an alternative?
+
+
+Thanks and Regards,
+
+Arnaud
+
+> 
+>> +
+>> +  reg:
+>> +    description: |
+> 
+> Do not need '|' unless you need to preserve formatting.
+> 
+>> +      Remote processor identifier used by the TEE service. The <0> value
+>> +      in the example denotes a single instance with ID 0.
+>> +    maxItems: 1
+>> +
+>> +  mboxes:
+>> +    description: |
+>> +      Mailbox channels used for rpmsg/virtio functionality and processor
+>> +      shutdown.
+>> +    maxItems: 3
+>> +
+>> +  mbox-names:
+>> +    items:
+>> +      - const: vq0
+>> +      - const: vq1
+>> +      - const: shutdown
+>> +
+>> +  memory-region:
+>> +    description: |
+>> +      List of phandles to reserved-memory nodes describing the memory layout
+>> +      for the interprocessors communication.
+> 
+> Drop description. You miss maxItems, though.
+> 
+>> +
+>> +  interrupts:
+>> +    description: |
+> 
+> Same comments...
+> 
+>> +      Optional watchdog / status interrupt line used to detect crashes
+>> +      and optionally wake up the system.
+>> +    maxItems: 1
+>> +
+>> +  st,auto-boot:
+>> +    type: boolean
+>> +    description: |
+>> +      If present, the remote processor will be automatically started by
+>> +      the remoteproc core at boot.
+> 
+> That's policy, not DT property.
+> 
+>> +
+>> +  wakeup-source:
+>> +    type: boolean
+>> +    description: |
+>> +      Indicates that the watchdog interrupt can be used as a wakeup source.
+>> +
+>> +  rproc-tee-phandle:
+> 
+> Missing vendor prefix, drop phandle. You do not say that "st,auto-boot"
+> is "st,auto-boot-boolean"
+> 
+>> +    description: |
+>> +      Phandle to the remote processor backend node and its identifier. This property
+>> +      is used to link the TEE remoteproc service to the remote processor instance
+>> +      it controls. The value is a phandle reference to the remote processor node,
+>> +      followed by a cell specifying the remote processor identifier used by the TEE.
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> 
+> Missing constraints.
+> 
+> I also do not understand which bus node this is being child, if not
+> remote proc.
+> 
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - rproc-tee-phandle
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    firmware {
+>> +        tee_rproc: optee-rproc {
+>> +            compatible = "80a4c275-0a47-4905-8285-1486a9771a08";
+>> +        };
+>> +    };
+> 
+> Drop
+> 
+>> +
+>> +    m4: m4@0 {
+> 
+> Drop unused label.
+> 
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> If you cannot find a name matching your device, please check in kernel
+> sources for similar cases or you can grow the spec (via pull request to
+> DT spec repo).
+> 
+> e.g. mcu, because m4 feels like given model (Cortex M4?).
+> 
+>> +      compatible = "st,stm32mp1-m4-tee";
+>> +      reg = <0 0>;
+>> +
+>> +      mboxes = <&ipcc 0>, <&ipcc 1>, <&ipcc 2>;
+>> +      mbox-names = "vq0", "vq1", "shutdown";
+>> +
+>> +      memory-region = <&vdev0vring0>, <&m_ipc_shm>, <&mcuram2>,
+>> +                      <&vdev0vring1>, <&vdev0buffer>, <&retram>;
+>> +
+>> +      interrupt-parent = <&exti>;
+>> +      interrupts = <68 1>;
+>> +
+>> +      rproc-tee-phandle = <&tee_rproc 0>;
+>> +      st,auto-boot;
+>> +      wakeup-source;
+>> +
+>> +      status = "okay";
+> 
+> Drop
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
