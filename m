@@ -1,130 +1,175 @@
-Return-Path: <devicetree+bounces-278302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278303-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 9w9LDuhXvWnV9AIAu9opvQ
-	(envelope-from <devicetree+bounces-278302-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:21:28 +0100
+	id II1RED5ZvWkA9QIAu9opvQ
+	(envelope-from <devicetree+bounces-278303-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:27:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E468C2DBBC5
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:21:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB6212DBC93
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:27:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1AE67300FB43
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:21:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4EC843019B8D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:26:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6992D3C1404;
-	Fri, 20 Mar 2026 14:21:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD1603BA237;
+	Fri, 20 Mar 2026 14:26:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i1zICym7"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WmRGpYMb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 454683B19DC
-	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 14:21:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E6EF31F9B9;
+	Fri, 20 Mar 2026 14:26:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774016480; cv=none; b=FgucMonoS1/YQEbvuUiIQk4CYGcUSWrRZFIY1hKgeClR4pK8VKPihMsPi8CcskwS4RyvMKLa/hLVVB2+RQjmBfJ/YzN3Y6T3evyexZY9NAgH40+Ov3eg6RgLeVQSuDQF/uuZZ//t6QkqQiyJzfj/aO078tcesHNxV2PtZi9oLAU=
+	t=1774016807; cv=none; b=LYTKXGR94CsMrmENo6B8U7C4XrzfluJc3SQH9LVsfhRXrgb0cXp8oNbSQKngTMVqzO9ZPJL45vRst7edOHdEYUTxaxmG8srk9luhDzSQXmfM2BlhKGY53/+f6Vk11v2btoZlA99r9hMP++PML5l+W3l0RGDhzOsuCEglf/dKlPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774016480; c=relaxed/simple;
-	bh=SqM2AKs946P+FYY/eyn1mHQZcwnT+QeDlAmSMReOErk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UGFDeUn5vxdYEJs25kZcPHGujA+RkHGh4xmGC2BPGJ/7NMZ3rq6AAWob6Z1tvC4WfParbJd9rcLuKceVytf8WNfPSQOZZSwvp5SCW+V0Y5iRvAE58didI0DrMcLG4q1Nw73pxdJfosqsvSZgETW1XIClZmfTUzM8jpnE3941AME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i1zICym7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 058D7C2BCC9
-	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 14:21:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774016480;
-	bh=SqM2AKs946P+FYY/eyn1mHQZcwnT+QeDlAmSMReOErk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=i1zICym7fUQjh+a/G2tiFppLoSbOQLYgTbPUF5kogGE7AA1epD7RkClPWEqRbzBRg
-	 8COtuH5YKkcPMU6n/1IgKu7cp2SqSl9qPaLewylDLLcsm584AzbZ6yRxOM4RUIZpjG
-	 nd1UALaqhQGCmMFEnCf0gJomdfXJ4gK5cxqLSheZFwO0lffebHn0BPXmYOyRbThojT
-	 Iacqx5tJf6us+2248JJq8sTX2hCVKJTQ/LMdWlYmz5mcHtJEegVIj7S1A93rq3ILNs
-	 ge4f7dLpaDWIAZJwdTrlwNWq6wo+MpSTV0YmoD265To4fRYML2u/QAau/CxrlaMeco
-	 zsuzf+vk8xvtQ==
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-79801df3e42so28124007b3.0
-        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 07:21:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWRXmMKFViNamem0QfwoNVkt+5yjF7FPLdvDnuwISm5pYVJLLkeLOzEudV5fKIMyZUCjYzXKYkUXiL4@vger.kernel.org
-X-Gm-Message-State: AOJu0YyyMW8ym92fT78nwCsnLvu0c5L010FZwvTRvKCdvWpAuGZsMq42
-	lD7jAg7BlPpoJ6uj7CJ0HzUHdLhTqSoL0J3vR+no4aC0k2p2utoXVhxxQ0pkXjVpBmj7G9ndMDc
-	Orz+LCngq9WSnUFQ6PoIT5u4R55c7PHk=
-X-Received: by 2002:a05:690c:60c2:b0:797:d46b:e86e with SMTP id
- 00721157ae682-79a81a90a25mr75990057b3.14.1774016479055; Fri, 20 Mar 2026
- 07:21:19 -0700 (PDT)
+	s=arc-20240116; t=1774016807; c=relaxed/simple;
+	bh=y1KAz+Qo2KIAojrgIrwzWp+iq0iub9vjOkzH9qUQnOM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q3q0D0JKQnDOvzdyMbel4FFzgwte4GeK5TH8LK6g6JaimY3MevES0WgMoonxh3742NTkRJSOJEBfzxbVmUihU7z/Il3Uq57PaE66uvlgg5/eSsUAzoggi4Al1uZznplfrWyMbg4Ycfd3HIQH31Fbb/opazE3q68prkcdtJEorwI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WmRGpYMb; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1774016806; x=1805552806;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=y1KAz+Qo2KIAojrgIrwzWp+iq0iub9vjOkzH9qUQnOM=;
+  b=WmRGpYMbMstTFdcA+yhGvvIxilivrtr/AnegBdQI7eCnXJXvujKkdIZu
+   TQurrUTIfWkuRWfeS0RZPnUA9rvVaP+X10goEZdYItXXCfWfQZmYChgBx
+   TwJzD9vHlCMKTZOqxrQvEvWg0T9WdV7S6ZgeAAN/mZEQ5tLknE3FFwL7u
+   TxywCGnNuRHaiBm2x0Kmjn6PwPwVZvaTZw1QsLSlMsbsa3qvs1MNZ+ozz
+   fcHKCioTPihpYbPZwkfi1mz7cqcgavSCn9lxRtVmFREEMMX4dntbC3vRp
+   c2VZNRo9THdrmN6mWymD8c2MrTIa9y7ne56MfVseNofzM/2PdS9yiQV2u
+   Q==;
+X-CSE-ConnectionGUID: Cq+moa4qTDKELhmydS+0xQ==
+X-CSE-MsgGUID: BsT/CdmvTaOsB1EG1iPmUg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11735"; a="74994302"
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
+   d="scan'208";a="74994302"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 07:26:45 -0700
+X-CSE-ConnectionGUID: DJ9w2MqSQ0SB7oNoKNuhOg==
+X-CSE-MsgGUID: nldR9LigRtu7fAmhfFsyXg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
+   d="scan'208";a="222392533"
+Received: from lkp-server02.sh.intel.com (HELO a51c2a36b9df) ([10.239.97.151])
+  by orviesa006.jf.intel.com with ESMTP; 20 Mar 2026 07:26:39 -0700
+Received: from kbuild by a51c2a36b9df with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1w3ank-000000002Sz-0eKM;
+	Fri, 20 Mar 2026 14:26:14 +0000
+Date: Fri, 20 Mar 2026 22:23:29 +0800
+From: kernel test robot <lkp@intel.com>
+To: Nora Schiffer <nora.schiffer@ew.tq-group.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
+	Siddharth Vadapalli <s-vadapalli@ti.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com,
+	Nora Schiffer <nora.schiffer@ew.tq-group.com>
+Subject: Re: [PATCH 6/7] net: ethernet: ti: am65-cpsw: add support for J722S
+ SoC family
+Message-ID: <202603202224.XkGRjqgx-lkp@intel.com>
+References: <4cc3dd9fab460d35215c8f97496b9ae16c5bcb22.1773751309.git.nora.schiffer@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260320-apple-m3-initial-devicetrees-v1-0-5842e1e393a8@jannau.net>
- <20260320-apple-m3-initial-devicetrees-v1-5-5842e1e393a8@jannau.net>
-In-Reply-To: <20260320-apple-m3-initial-devicetrees-v1-5-5842e1e393a8@jannau.net>
-From: Linus Walleij <linusw@kernel.org>
-Date: Fri, 20 Mar 2026 15:21:07 +0100
-X-Gmail-Original-Message-ID: <CAD++jLm42TDQCMrrz+8jkBZnKc7-Kbo26Kp8RR+XZhhGyow0OQ@mail.gmail.com>
-X-Gm-Features: AaiRm51jFHpXl3P8yRKHiCPd9s1KCUcQyaH7BZV4EXHpuIPKoEs4F89iW4OvG24
-Message-ID: <CAD++jLm42TDQCMrrz+8jkBZnKc7-Kbo26Kp8RR+XZhhGyow0OQ@mail.gmail.com>
-Subject: Re: [PATCH 5/9] dt-bindings: pinctrl: apple,pinctrl: Add t8122 compatible
-To: Janne Grunau <j@jannau.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Sven Peter <sven@kernel.org>, Neal Gompa <neal@gompa.dev>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Mark Kettenis <kettenis@openbsd.org>, Andi Shyti <andi.shyti@kernel.org>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Sasha Finkelstein <fnkl.kernel@gmail.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, asahi@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-watchdog@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-pwm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4cc3dd9fab460d35215c8f97496b9ae16c5bcb22.1773751309.git.nora.schiffer@ew.tq-group.com>
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278302-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,gompa.dev,linux-watchdog.org,roeck-us.net,openbsd.org,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	TAGGED_FROM(0.00)[bounces-278303-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.955];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,jannau.net:email,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: E468C2DBBC5
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-0.971];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,git-scm.com:url]
+X-Rspamd-Queue-Id: DB6212DBC93
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 20, 2026 at 1:23=E2=80=AFPM Janne Grunau <j@jannau.net> wrote:
+Hi Nora,
 
-> The pin controller on the Apple silicon t8122 (M3) SoC is compatible
-> with the existing driver. Add "apple,t8122-pinctrl" as SoC specific
-> compatible under "apple,t8103-pinctrl" used by the driver.
->
-> Signed-off-by: Janne Grunau <j@jannau.net>
+kernel test robot noticed the following build errors:
 
-Looks good to me.
-Reviewed-by: Linus Walleij <linusw@kernel.org>
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on net-next/main net/main linus/master v7.0-rc4 next-20260319]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Yours,
-Linus Walleij
+url:    https://github.com/intel-lab-lkp/linux/commits/Nora-Schiffer/dt-bindings-phy-ti-phy-j721e-wiz-Add-ti-j722s-wiz-10g-compatible/20260320-033344
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/4cc3dd9fab460d35215c8f97496b9ae16c5bcb22.1773751309.git.nora.schiffer%40ew.tq-group.com
+patch subject: [PATCH 6/7] net: ethernet: ti: am65-cpsw: add support for J722S SoC family
+config: arm64-defconfig (https://download.01.org/0day-ci/archive/20260320/202603202224.XkGRjqgx-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 15.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260320/202603202224.XkGRjqgx-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603202224.XkGRjqgx-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/net/ethernet/ti/am65-cpsw-nuss.c:3470:54: error: 'AM64_CPSW_QUIRK_CUT_THRU' undeclared here (not in a function)
+    3470 |         .quirks = AM64_CPSW_QUIRK_DMA_RX_TDOWN_IRQ | AM64_CPSW_QUIRK_CUT_THRU,
+         |                                                      ^~~~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +/AM64_CPSW_QUIRK_CUT_THRU +3470 drivers/net/ethernet/ti/am65-cpsw-nuss.c
+
+  3468	
+  3469	static const struct am65_cpsw_pdata j722s_cpswxg_pdata = {
+> 3470		.quirks = AM64_CPSW_QUIRK_DMA_RX_TDOWN_IRQ | AM64_CPSW_QUIRK_CUT_THRU,
+  3471		.ale_dev_id = "am64-cpswxg",
+  3472		.fdqring_mode = K3_RINGACC_RING_MODE_RING,
+  3473		.extra_modes = BIT(PHY_INTERFACE_MODE_SGMII),
+  3474	};
+  3475	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
