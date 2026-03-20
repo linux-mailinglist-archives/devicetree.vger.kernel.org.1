@@ -1,195 +1,143 @@
-Return-Path: <devicetree+bounces-278242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278243-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kDawH380vWmI7QIAu9opvQ
-	(envelope-from <devicetree+bounces-278242-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:50:23 +0100
+	id kDgEC1g3vWkN7wIAu9opvQ
+	(envelope-from <devicetree+bounces-278243-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:02:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D48572D9D10
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:50:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD3F92D9E32
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:02:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 72CA93050D6E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:50:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8EC973044087
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:02:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 694B13AB26D;
-	Fri, 20 Mar 2026 11:50:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SMygCkNn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 204323128BE;
+	Fri, 20 Mar 2026 12:02:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CDF23AA517;
-	Fri, 20 Mar 2026 11:50:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48070264612
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 12:02:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774007420; cv=none; b=VtvMz9JYOkA7REgF+PSlliz3NaEmsn00Xwtzy2mkAGZdYdoP8/u/6gRKm/ZcuDKov0ISoENEx7ygwvRtLp8T7c0FolkM+vY/6JEd5VIBcmUray0VbFu3j5nLJMJ96cmhf9tOvH7Snfn0g1Dhnp681kTFSbm+aZTpK8+8jG9XzwM=
+	t=1774008145; cv=none; b=kMF8iPop6X9OpZQBB1T10u+u0xSf3Eav22iiZP/+Q7TFHd++bEyDcWqQWchVla/B2981lvezonLksmIWWoT6gPGsbn03YizJwHH5OQjLB7QdMQ0i6WY9qN2aSOa+LetLhfFXcb8hfn0ahQhoi+DTLJxPECW49tEfAyNfsnz/N6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774007420; c=relaxed/simple;
-	bh=k2Ux2aWImiPiBRYhz9t4krfISTTvT7OqcLHKH8Hgdiw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Mv2fnXFNdS0+GEp+iNzAco5iDcvYqb+uKVf8Rhs7L9FQtFjaWPHUnr1VrZbcWhxmCH/hJIdyRqEX6ld45YtWboWxSal1kZ2ZYRy9RwM9c/USbYjZ8yzXa9di7DlBmkRDDBAWke7YWuLslpoLIoruHacdyD8U1ArAlmquIi0qNy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SMygCkNn; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1774007417; x=1805543417;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=k2Ux2aWImiPiBRYhz9t4krfISTTvT7OqcLHKH8Hgdiw=;
-  b=SMygCkNnOkmRoZpExPl751ss2lpWAzJ7k/hShyRlxq6gY/McZOhKqDvA
-   7P43nVMQ6kw69732K5xTQRkq87YNaW/7C0SBK4Q/IVOjWrULmSn3B4Wlw
-   GaoQAqpJAkvZkyJ9uzdobdZDL4lv8z/BqZV4fkGONUh9gRUvQCicBNnH4
-   sI7eSXVCz92hJfUcCNuKUYd38n0nvGklcFFwZ2PvycXnKLER7wiXcugis
-   unxFprCglwInling/XntjZO+0zcbVLv+h+P/4V2K2QDNgOWiRDZMh4BeA
-   WlUg3Tzk0YzedN36vhlZCDjx33CMAJEKGXBDPtLoCv0iZHM3VawiYKKr8
-   Q==;
-X-CSE-ConnectionGUID: k5Aa0UIIQU2ACy6P9/ZCwA==
-X-CSE-MsgGUID: qM184sglSQiOBvQ/AVxxow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="100545430"
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
-   d="scan'208";a="100545430"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 04:50:16 -0700
-X-CSE-ConnectionGUID: 0MAUj6p9QX6QyMqzUYi6AQ==
-X-CSE-MsgGUID: PLxY4bP6Rjy831F3P4oHRA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
-   d="scan'208";a="261164313"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.40])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 04:50:13 -0700
-Date: Fri, 20 Mar 2026 13:50:10 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Andrew Morton <akpm@linux-foundation.org>
-Subject: Re: [PATCH v8 02/10] lib: kstrtox: add kstrntoull() helper
-Message-ID: <ab00clb7LL-bmJWe@ashevche-desk.local>
-References: <20260303-adf41513-iio-driver-v8-0-8dd2417cc465@analog.com>
- <20260303-adf41513-iio-driver-v8-2-8dd2417cc465@analog.com>
- <aabm23jCikXs1l6F@ashevche-desk.local>
- <qcloiwjlbehs4yyuttvrt46monh7isef4d5nzuwlaby6uxfael@j3trvc5jwosy>
- <4mtdzxfj656sjr66npabfvrr7yd7q26l2unhsihjtniz4ossfj@g3qnzonoary6>
- <rygken7oujyoupeanrdnl7r7smesa7js6sn3jsafbajc4sm3jh@adeslfqwwf3x>
+	s=arc-20240116; t=1774008145; c=relaxed/simple;
+	bh=f7W2gT+v5OvJG9E6+8EfEXnr3fEu44JM/8Zu34YpB2s=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=c9ZvJFDGsR8849eazeRiDQAtCG5rg0ApLEjiTbdCX3TED5qyQG7fz5nX4G2kI1O2HTBMTShXqyzbi1/ZKMBwoQPFePTfI8+Emi3qiEwAnN/QmpqJLIRl77ElkROrFbGdH22eXWvkZfClpehQA6c8ukIvrTzXStCdxAmAcU2xk6Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1w3YYH-0004n9-Uq; Fri, 20 Mar 2026 13:02:05 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1w3YYG-001Ecl-2s;
+	Fri, 20 Mar 2026 13:02:04 +0100
+Received: from pza by lupine with local (Exim 4.98.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1w3YYG-0000000085A-3NA2;
+	Fri, 20 Mar 2026 13:02:04 +0100
+Message-ID: <272ed19e2c0d8c9f53b6e621c01dc09f0635bf9d.camel@pengutronix.de>
+Subject: Re: [PATCH v5] reset: spacemit: k3: Decouple composite reset lines
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Yixun Lan <dlan@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Junzhong Pan <junzhong.pan@spacemit.com>, Guodong Xu
+ <guodong@riscstar.com>, 	devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, 	spacemit@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Date: Fri, 20 Mar 2026 13:02:04 +0100
+In-Reply-To: <20260320-01-k3-reset-usb-pci-v5-1-07f4a5ddd728@kernel.org>
+References: <20260320-01-k3-reset-usb-pci-v5-1-07f4a5ddd728@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <rygken7oujyoupeanrdnl7r7smesa7js6sn3jsafbajc4sm3jh@adeslfqwwf3x>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278242-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RSPAMD_EMAILBL_FAIL(0.00)[p.zabel.pengutronix.de:query timed out,dlan.kernel.org:query timed out];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-278243-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DMARC_NA(0.00)[pengutronix.de];
+	FROM_HAS_DN(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.991];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: D48572D9D10
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.786];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	R_DKIM_NA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: CD3F92D9E32
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 20, 2026 at 11:16:32AM +0000, Rodrigo Alencar wrote:
-> On 26/03/04 10:02AM, Rodrigo Alencar wrote:
-> > On 26/03/03 02:16PM, Rodrigo Alencar wrote:
-> > > On 26/03/03 03:49PM, Andy Shevchenko wrote:
-> > > > On Tue, Mar 03, 2026 at 01:27:07PM +0000, Rodrigo Alencar via B4 Relay wrote:
-> > > > 
-> > > > > Add kstrntoull() function, which converts a string to an ULL with a max
-> > > > > character limit. The function is an alternative integer parsing function
-> > > > > that does not require a null-terminated string. It becomes a better option
-> > > > 
-> > > > null -->  NUL
-> > > > 
-> > > > > over simple_strtoull() or kstrtoull() when parsing integers from a buffer
-> > > > > with custom delimiters without having to create temporary copies.
-> > > > > The function is consumed inside the implementation _kstrtoull(),
-> > > > > promoting reuse.
-> > > > 
-> > > > But this will not properly convert 0000000000000000000000000000000000000000100,
-> > > > for example, if the max_chars say set to 20.
-> > > 
-> > > Why would I want that? truncation will happen in the case and the value will
-> > > be zero. max_chars can be zet to INT_MAX/SIZE_MAX if you want to get 100.
-> > > 
-> > > > Also kstrto*() have a common idea behind to consume the only \n and allowed
-> > > > digits. This (naming) doesn't fit into the kstrto*() category.
-> > > 
-> > > mmm ok, but include/linux/kstrtox.h is the right place for this? how about just
-> > > strntoull()? I feel like a safe_ prefix does not make much sense if it is
-> > > only to differentiate from simple_strto*(), which should have been safe at
-> > > the first place.
-> > 
-> > Also kstrntoull() does not really match kstrto*(), as the 'n' is often used
-> > to indicate a stop condition on amount of characters, which would not need
-> > to require any termination character at all.
-> > The 'k' prefix was add to 'strntoull', mostly because the function is being
-> > added to the include/linux/kstrtox.h file. Other names I could think off:
-> > - bounded_strtoull()
-> > - bstrtoull() - 'b' for bounded
-> > - bstrntoull()
-> > - strtoull_bounded()
-> > - strtoull_limit()
-> > - safe_strntoull() - emphasizes overflow safety over simple_strtoull()
-> > 
-> > Extras considerations:
-> > - Single-letter prefixes (bstrntoull, lstrntoull, etc.) are too cryptic
-> > for a public API
-> > - safe_ prefix is subjective and doesn't describe the actual behavior
-> > 
-> > kstrntoull() is still my first candidate, other than that it would be
-> > bounded_strtoull().
-> 
-> could you provide more feedback here? Thanks!
+On Fr, 2026-03-20 at 11:06 +0000, Yixun Lan wrote:
+> Instead of grouping several different reset lines into one composite
+> reset, decouple them to individual ones which make it more aligned
+> with underlying hardware. And for DWC USB driver, it will match well
+> with the number of the reset property in the DT bindings.
+>=20
+> The DWC3 USB host controller in K3 SoC has three reset lines - AHB, VCC,
+> PHY. The PCIe controller also has three reset lines - DBI, Slave, Master.
+> Also three reset lines each for UCIE and RCPU block.
 
-I don't know what new I can add here.
+Although I can't validate correctness of the id-to-bit assignments, the
+changes look consistent.
 
-My suggestion was (and still is) to have something in *_strtoull() family
-with additional checks added, but no limitations on the input string (i.e.
-no max_chars).  If you look at the printf() code the max_chars was added
-solely for scanf() and has no use otherwise (yes, I know about and aware
-of initramfs case).
+I trust that the reason for the grouped reset lines was just
+convenience, and not some hardware limitation that requires them to be
+controlled at the same time.
 
--- 
-With Best Regards,
-Andy Shevchenko
+There are no patches using the USB/UCIE/RCPU/PCIE resets found on lore,
+so this is not an ABI break.
 
+> As an agreement with maintainer, the reset IDs has been rearranged as
+> contiguous number but keep most part unchanged to avoid break patches
+> which already sent to mailing list. The changes of DT binding header file
+> and reset driver are merged together as one single commit to avoid
+> git-bisect breakage.
+>=20
+> Fixes: 938ce3b16582 ("reset: spacemit: Add SpacemiT K3 reset driver")
+> Fixes: 216e0a5e98e5 ("dt-bindings: soc: spacemit: Add K3 reset support an=
+d IDs")
+> Signed-off-by: Yixun Lan <dlan@kernel.org>
 
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+
+If there are no objections, I'll pick this up into reset/fixes for
+v7.0-rc6.
+
+regards
+Philipp
 
