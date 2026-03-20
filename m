@@ -1,196 +1,188 @@
-Return-Path: <devicetree+bounces-278279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278280-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UG6IBNpHvWlr8gIAu9opvQ
-	(envelope-from <devicetree+bounces-278279-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:12:58 +0100
+	id cNFSAohHvWlr8gIAu9opvQ
+	(envelope-from <devicetree+bounces-278280-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:11:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 629502DAC50
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:12:57 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E83DC2DAC01
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:11:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 73533312A0FA
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:10:27 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C27A53011D60
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:11:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA9933B6377;
-	Fri, 20 Mar 2026 13:10:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A91453B8BB9;
+	Fri, 20 Mar 2026 13:11:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="NYXT4OKD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tAdB+dYK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 924443A4F35;
-	Fri, 20 Mar 2026 13:10:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 827B13A9DA4;
+	Fri, 20 Mar 2026 13:11:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774012226; cv=none; b=kVpryiflam+8YRT3ohYggFLDSn6y2cu22F7+lI2vBaF6H1P7HG0Cqo1Bk0MGrkThTR7XTICfxju6Tx6ZE5BJAyhg4oY+Iw6DTHgUEZ+nCsiRdnxy+sw2O9+ol5kZsDqqWtO/TDpGfwh/ZEMNw1XaLcuJHJmmiPSr5IiHarYeLsc=
+	t=1774012290; cv=none; b=noAhhebs8p50FZmnctHD19NcjgSS2NWyWBirmuLbIED927LT39j7WVT7gvG0oivoyK+uH/P1xF0Kef2vAiRi+m3tci8dxjTboldoy5Kb07EqY9FZNYobvnaKmsIYSS875QyV7XXFLW8+wSMndy5s6x/0hUsgCdRUwWCbH683ERA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774012226; c=relaxed/simple;
-	bh=ifATUcW7DWuBHecdArq6aT4AJccdVJ7KXJNjJs6AB/M=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=tJg3FCUJm8oHA5aiY9KVW/jYaB7E+EpViQdUCbd7rmekVG7a+k/oaIJtu8YV25JoFNaPUOUuvwwGugidKucYXAOuHLhj0yoG7ffas6MWb1/JIMOJNbFhJ4NU+VmYSlQf8PuiTnvLb/0GR18Yb0xqSJqC/5qiqwkRbb3ksk/S2bE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=NYXT4OKD; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1774012223;
-	bh=ifATUcW7DWuBHecdArq6aT4AJccdVJ7KXJNjJs6AB/M=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=NYXT4OKDxR71XnYfyMTBSqcjqtlVrKQU/gxxxeVDFU/pOAT797efWm2A3UmvCHbyy
-	 oitbB5r1aRUey51OdrvwfhhGIoNgB/QaOT5ThKHY/Bo1aXjkUePb0PpnO0RZHqWFa8
-	 j5krSyz9N0rogyqUsguBnwFLHi+1ZnuDoplaxAtCNs8+M+01G+7ULGMcEmJhycoaur
-	 Nsh/Vr34voZFlJjpl7UmlU70cDJMOq6/X8Al1VNQ24k0glZCTcn5Y+tJarMf0PmHlf
-	 UOG/NXTAZQH721kEtgRWZXk8Hv3xdRzYWhxrk0pH7Eoix3f5WGxaYS1gnbS4Koihsx
-	 DNbAQyW+8Mn0Q==
-Received: from [IPv6:2606:6d00:11:b76d::5ac] (unknown [IPv6:2606:6d00:11:b76d::5ac])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 38B0117E0280;
-	Fri, 20 Mar 2026 14:10:20 +0100 (CET)
-Message-ID: <38e0241fe56f9d3af2de57b6380368fdcf5acc64.camel@collabora.com>
-Subject: Re: [PATCH v8 0/9] Enable video decoder & encoder for MT8189
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Kyrie Wu <kyrie.wu@mediatek.com>, Yunfei Dong
- <yunfei.dong@mediatek.com>,  Irui Wang <irui.wang@mediatek.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz	
- <andrzejtp2010@gmail.com>, Yilong Zhou <yilong.zhou@mediatek.com>, Tiffany
- Lin	 <tiffany.lin@mediatek.com>, Andrew-CT Chen
- <andrew-ct.chen@mediatek.com>,  Mauro Carvalho Chehab	
- <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger	
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
- <angelogioacchino.delregno@collabora.com>, Hans Verkuil
- <hverkuil@xs4all.nl>,  Nathan Hebert <nhebert@chromium.org>, Arnd Bergmann
- <arnd@arndb.de>, George Sun <george.sun@mediatek.com>, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel	
- <linux-kernel@vger.kernel.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Date: Fri, 20 Mar 2026 09:10:17 -0400
-In-Reply-To: <20260320055940.15961-1-kyrie.wu@mediatek.com>
-References: <20260320055940.15961-1-kyrie.wu@mediatek.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-67RujEEiCsWXeIp1gjT6"
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+	s=arc-20240116; t=1774012290; c=relaxed/simple;
+	bh=mq7YN2lau4ykNu2Q1ODi0D8X+XpnTxCLSrwYPZUwSUw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e7XCdyee2uX98Bl8KKf4aSqCRrzkdZZqWJUj0xm7kU6d0LusH2qFJDF6QtfrtQWdAd0a4YpqummkGNx7Tr9KH16bWYWSgX1cULpxNk9Dr1+Q9i/dB18jXTA1Jv0Z8n8rpgVm+GIJxlhFoUclGovTHiKJJKC+KNa7Tmw/nRBYS6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tAdB+dYK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 209D3C4CEF7;
+	Fri, 20 Mar 2026 13:11:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774012290;
+	bh=mq7YN2lau4ykNu2Q1ODi0D8X+XpnTxCLSrwYPZUwSUw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tAdB+dYKQNbmctXNVCzF9WLTns9vqpmDFlyNonKwT/VEY2KPxYEduUtb5KDdIyjpI
+	 5MVsE9sdu2YKb8mz0D361kyq7r0G3u6eKE/Buluuo39VdrC9gB3nOjhLxDQLU+3A8l
+	 RUjxIwMcag3z1qpQepS7Le1x1J3b5ZRGq9LIkm/oGCxIh7mQhBh34BJj9+OeD8nSni
+	 MH2W1idtuO2K7xQaegieqXgbYYcFSkpkkmVx2+Rp6AVLHghfx1+vWackTcXC1pdRME
+	 fdv70Rg1bWbOBr8y5ghhdV3dIbRhgXTn7VBRP6SqKFCW3+FWynY/FQarbmRyy0N/Zk
+	 kkqVKrDzCR48Q==
+Message-ID: <3cfcf811-94f9-4ab4-af5c-d589d696f843@kernel.org>
+Date: Fri, 20 Mar 2026 14:11:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 7/8] dt-bindings: i2c: realtek,rtl9301-i2c: extend for
+ RTL9607C support
+To: Rustam Adilov <adilov@disroot.org>
+Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260319175753.32338-1-adilov@disroot.org>
+ <20260319175753.32338-8-adilov@disroot.org>
+ <20260320-serious-noisy-ladybug-bad92b@quoll>
+ <c87523f2741687c6037c4b7b54d72dba@disroot.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <c87523f2741687c6037c4b7b54d72dba@disroot.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[linaro.org,gmail.com,mediatek.com,kernel.org,collabora.com,xs4all.nl,chromium.org,arndb.de,vger.kernel.org,lists.infradead.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278279-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.dufresne@collabora.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278280-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.995];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.992];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 629502DAC50
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E83DC2DAC01
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On 20/03/2026 11:39, Rustam Adilov wrote:
+> On 2026-03-20 09:24, Krzysztof Kozlowski wrote:
+>> On Thu, Mar 19, 2026 at 10:57:52PM +0500, Rustam Adilov wrote:
+>>> Add the "realtek,rtl9607-i2c" compatible for i2c controller on the
+>>> RTL9607C SoC series.
+>>>
+>>> Add a clocks property to the properties since RTL9607C requires it
+>>> along with the realtek,scl. And because RTL9607C is the only one that
+>>
+>> My previous statement:
+>>
+>> "Other devices do not *have* any clock input?"
+>>
+>> And second one:
+>>
+>> "If devices *do not have* clock, you set it as false (see example schema
+>> and even line above!). Clue here is what I wrote "devices" and "do not
+>> have"."
+>>
+>> So why are you using completely different wording "require" with
+>> completely different implications?
+>>
+>> I did not leave any room for interpreation in my statement "If devices
+>> *do not have* clock, you set it as false".
+> 
+> I apologize. I was using "require" merely to relate with "required: - property" notation used in bindings.
+> 
+> Would changing the commit message to something similar in vein to [1] be better?
+> 
+> [1] - https://lore.kernel.org/linux-i2c/20250927101931.71575-9-jelonek.jonas@gmail.com/
 
---=-67RujEEiCsWXeIp1gjT6
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+It does not cover clocks and it does not answer whether devices have it
+or not.
 
-Kyrie, Yunfei, Irui,
+Decide first whether devices have the clock or not. I asked more than
+once last time.
 
-Le vendredi 20 mars 2026 =C3=A0 13:59 +0800, Kyrie Wu a =C3=A9crit=C2=A0:
->=20
-[...]
-> This series patches dependent on:
-> [1]
-> https://patchwork.linuxtv.org/project/linux-media/patch/20260211054149.27=
-249-2-yunfei.dong@mediatek.com/
-> [2]
-> https://patchwork.linuxtv.org/project/linux-media/patch/20260302035244.89=
-94-2-irui.wang@mediatek.com/
+Then write commit msg and code matching this.
 
-While this one is now ready, it still can't be merge, because the other ser=
-ies
-it depends one have not been updated to use the pdata properly. In fact, it=
-s
-quite likely that some of the patches in this serie must be moved up the ch=
-ain.
-This type of linked submission is making my life extremely difficult, and c=
-auses
-massive delays.
-
-Basically, in a chain of 3 series (and probably 4 since the first one does =
-not
-apply), the refactoring that causes all the series to not be accepted is
-happening in the third one. Angelo and I have been clear for weeks, if you =
-need
-a constant value for a platform, it goes in the platform data. Don't do swi=
-tch
-of strcmp at runtime, these are constants and we already did string matchin=
-g to
-in the probe to find this pdata. Once the missing data is added, simply mak=
-e a
-final patch adding the pdata structure for the platform. Use this v8 of the
-MT8189 support as reference, it is as I said ready, but it does not apply d=
-ue to
-broken dependencies.
-
-I can't easily fix this, so please work together, synchronize your submissi=
-ons
-so that we can get the MT8196 and MT8189 support finally merged.
-
-regards,
-Nicolas
-
---=-67RujEEiCsWXeIp1gjT6
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCab1HOQAKCRDZQZRRKWBy
-9FzIAP4oohtwocrtFhnn2WfKDHxvJ5uVcuOyFDF7hFnej0jx7wEAy97yTrE8Oj2B
-qJZbPwpS2fk4KcvWecW4UPbX07ZLIAE=
-=sleb
------END PGP SIGNATURE-----
-
---=-67RujEEiCsWXeIp1gjT6--
+Best regards,
+Krzysztof
 
