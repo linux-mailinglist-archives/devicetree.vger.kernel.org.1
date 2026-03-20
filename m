@@ -1,195 +1,260 @@
-Return-Path: <devicetree+bounces-278312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278313-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wLklGntgvWl09QIAu9opvQ
-	(envelope-from <devicetree+bounces-278312-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:58:03 +0100
+	id uET4HtxgvWl09QIAu9opvQ
+	(envelope-from <devicetree+bounces-278313-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:59:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53D172DC23E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:58:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED37F2DC2CE
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:59:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 282C43040128
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:49:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BB0583144757
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:49:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 506473C343C;
-	Fri, 20 Mar 2026 14:48:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F188359A9B;
+	Fri, 20 Mar 2026 14:49:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RE1+q819"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pRpS6UQo";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Sm/VP0HF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 575CD3C2779;
-	Fri, 20 Mar 2026 14:48:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B59C72FD69A
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 14:49:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774018124; cv=none; b=HaH6syYTd4EQuPN8ajgM7/aQYyJPwUF9MwoHrZ8r0iX4M6zv9ttf17QzDZy4BHBKBC1a+xCWdqzPTkM7VGoWM4dFaeMau405mrg0YJr0+mDquD5tVugObSifZO28CQ1I7v7GHiR0nOcwZPFPzANn+0ZVUm4dFKAkdLpOigCWJHY=
+	t=1774018166; cv=none; b=Qu/t8px7uvadSyPq0S59tlS0fvawyjwEo99dW775BsFFYR48XzePSJJWTKApdzQDZNrYhvtwyHouuZUZ0fqpKiB9vSUXRJMGgHGpZRJDrBgc7ucGCMhS2qeStiHM7HuYeY3fV+1nA1fB0swYoZ3mklQHYorgsO3hDl7y6fWIUes=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774018124; c=relaxed/simple;
-	bh=OG5ta8TNUJ0M6sD7PsAszRf+kOm3BqIKrdAoOVoMsOg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nr/hqQQU66AbGTZsRfDcCZ82Hizm+uy09Z0KkacC/y8lmnvjM0K8InzBFWPVSSSRx2qtKnTj4NxSnCss5xkzzuq2hZsoLGOEMFK7P5odSGCkoaJyo5SQEA43QV4WamubVjqKfOLa5B1QgzKVSi6/juJPjhq9oi9PbIzMiGXMOUc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RE1+q819; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1774018123; x=1805554123;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=OG5ta8TNUJ0M6sD7PsAszRf+kOm3BqIKrdAoOVoMsOg=;
-  b=RE1+q819pJM9v9i0UfSs4Y4+XKV+j1a65Ryt+BRLcKgM3g53rXHkzxC+
-   9vhWMfG2B3lUgKLDF016D1U0d5dgOX6+jduNclNSxH9RRXWwGbiDrWzy3
-   cdACvk92vsowG4PrEOoY8pj6d+kfpQKkLLA5x61iTmn+xYLB1xTR28XEI
-   LOCx902Ry/UGUBbUm6i6QJywcylTsPAevlaNXrKiYmZc01ZcEAlFdeHIT
-   FfjJKErEYiPjuaYz9NO6bKNnFpH5PoxWoQCCDD/yaCtSxr+Kh/0vz/KSv
-   NLDWy0YO6//TDqIlykZFx2edaukfGPQBazguqCAIBLrj8mam/om2drHzO
-   w==;
-X-CSE-ConnectionGUID: P3m7lOdDQ7quptQjkSMqtA==
-X-CSE-MsgGUID: L33SsF6gRYmpPOP5VThb9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11735"; a="97722946"
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
-   d="scan'208";a="97722946"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 07:48:42 -0700
-X-CSE-ConnectionGUID: VPKa9dnzTfKdyNT/LrgBCQ==
-X-CSE-MsgGUID: RgKf8xR4TReXVqrXyEcUqg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
-   d="scan'208";a="223327699"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.40])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 07:48:38 -0700
-Date: Fri, 20 Mar 2026 16:48:35 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Carlos Jones Jr <carlosjr.jones@analog.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Liam Beguin <liambeguin@gmail.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Tobias Sperling <tobias.sperling@softing.com>,
-	Jorge Marques <jorge.marques@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] iio: adc: ltc2309: add support for LTC2305
-Message-ID: <ab1eQ55b_8JiyAGA@ashevche-desk.local>
-References: <20260320140819.191700-1-carlosjr.jones@analog.com>
- <20260320140819.191700-4-carlosjr.jones@analog.com>
+	s=arc-20240116; t=1774018166; c=relaxed/simple;
+	bh=hD6HF04sKDv4rIGJk+KlMR2cpwt0FoJl0X+vwiWSCKw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=odn1ijXysJG2mUG6/wWUzJeVAcXblyyWEZhaTnDYGm11Gu/QjaCrKwjtIFWBmLZjic78vyDNN+0gVygwdMcMz6gC5bzzLuBeH9LeAUfR4EDzlWBCE1FwItoSTVQAdKAweqdd1LoRBH06FGwOKPd/rGb8G21s0NKGn+CT4QtHMTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pRpS6UQo; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Sm/VP0HF; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62KESi503653166
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 14:49:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=UUv8/7JIXKeIKMMv8oS4PrGEsqkwCwvKXJs
+	tPCJCiYQ=; b=pRpS6UQoKFwuFQGQnpSbtIvyijfLSkAJgVlnOEgtDVw1aIU/UvR
+	RYEl7zs9nGFtZs9v0r/7RccaNgSXjM7/tCkbfM4FrLVrSlgDadxntEx+zSnU3PsF
+	Jc2TWECkN4iBNZbP/YD9jNIr4sKHwboGSvK4Yl0uCoI2Duun1Xf5THaulU9iVqX+
+	oFgA3TK+/XZ3KGL7chGQi0LgKbGeVuWBIi40UIDyE2LzNT3cqX/TRCyHcerBqIaB
+	3CIrC/SYEhnlZP46Pk6ozV/wDhwJUI6rD5wjm87jfOh4PiGHnPG01R7C4SDxH8hI
+	ZVeBU3CYGAmSJ2W+8HZST94dBoHnfd41F+w==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d0s5d2apa-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 14:49:23 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-50920055f0aso102059661cf.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 07:49:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1774018163; x=1774622963; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UUv8/7JIXKeIKMMv8oS4PrGEsqkwCwvKXJstPCJCiYQ=;
+        b=Sm/VP0HFL4Uv7lv85/gMCBsQ8TxVEq6dcpIfxKnaUZb8pZNQIGfbKwdhLo0YwrlkzJ
+         nmGd4z71ifjxvCscpjVbPNOyQ6AcxUW8hpbXl2nBn+hiKAgnfK+10MKrM9StsZLQ8c+u
+         MkKjYAzfTT2Z60aNiNCQvjnUCr6qpNwN8NSVBxoVep6+12yVUZG9Bzyik5NTz4DrQcuj
+         y44hQu2yXZd6imF67QsW7rdHmbzQhm6gjnjE+sKcYa9CDGCq5dyky6CEyh6RwymvyShv
+         yeEVWjP9Rx9F+7dyCcfnRiipUk/tSUN/rLPMZc3fA1FP263Mns1bRMknWMpXAzPHfdHc
+         tlYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774018163; x=1774622963;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UUv8/7JIXKeIKMMv8oS4PrGEsqkwCwvKXJstPCJCiYQ=;
+        b=bCiBsfHo1KA3aY5MuIbjBjF+KodOcVVMzjYkOCmEMyb+JjYzOKSdbwfX8h4hzO/izD
+         XVW6WWKhK++PQ4cUQYRjDHimapZiI/550kFaEv7HrWQOnqBjUI4spg2bzfTeq9WGmDJ4
+         APgdjg1/3n7zKlhreXaJNiQnxNb3GnW5mpyQZjo9lCRJJYh0NEMaXps45pDcpPPSG8mn
+         7/NFdVpQCI/29U729str3WQgS4AMP2vPWbRbhuWNnyuZLC2g/qgofu2JUi7IYoAaDbNu
+         TVYDRBCINrN9YBhJBXzfGcbiIeB5TrjogzD4lsCy+6G9IRUHFZnJYhasUb0JYFRLXsiH
+         v+Tg==
+X-Forwarded-Encrypted: i=1; AJvYcCXydwyHvu74971/unycYNxpg4zIAsQE6Vvhtmgi3NBc9AxRwBcmC4JFuHEJZ+I3/5WF2kGk7SwWHqIg@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqQrVW9JQn9HEw3j+I2xzP9E8mFHpHq7FmOenptHZRWrAqpoB2
+	/ys+BPxAcyt28G+YwQstAXFUm3V6R9i+1RWbeo+G6olIdy5T5ZE5uSTKwgVUw4lQEVA/ymy5IRE
+	Xdk7CV95LwmAHlNNEehLu9J/S27a0nEAzryZBDasT7/Ol8QgWVRLUoF+/oJhMOXvQ
+X-Gm-Gg: ATEYQzy0zJBNa4KXZQzxrIAjASDrVM0Q8dzPZXl/93utfDehwQMz8fy1Zfxm4szPiOp
+	BZ2ZkeIvdkyR1MGWgjX0pKO4RQnWCGzRdTqWX0NeWI4MHy1zG/LFuvr3jNdhfKsjSvcLgoJ/fXe
+	JozV9CgS73+FGeY3+FHKZm+k6Dms/ytsQDkHJFfpC/1YzIkhiYyMNT9StbPbOvQ8q7cXal5lCts
+	V+YwzHS089Icc5MmBiov38BVtXv3xk44/9PAfRYlRqEwglMefVtAdzrWERt8THRjv3AK6kkcAUi
+	neExkKxP5E3FMt7ohxEguxywP1lB9omMWjxLxAprIVdKfqloe2g9VFYXd0fhu/dE2LW5Xwb4PHG
+	iPKk42xV8LrrBCjx9rdeSm7GbX9k9YqbD5z4HNR3QIYPVEa6nRWbiYhU=
+X-Received: by 2002:a05:622a:4f8e:b0:50b:28b9:b0a1 with SMTP id d75a77b69052e-50b374c7df4mr35419011cf.45.1774018162943;
+        Fri, 20 Mar 2026 07:49:22 -0700 (PDT)
+X-Received: by 2002:a05:622a:4f8e:b0:50b:28b9:b0a1 with SMTP id d75a77b69052e-50b374c7df4mr35418381cf.45.1774018162401;
+        Fri, 20 Mar 2026 07:49:22 -0700 (PDT)
+Received: from localhost.localdomain ([5.133.47.210])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486ff109b95sm47906825e9.1.2026.03.20.07.49.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Mar 2026 07:49:21 -0700 (PDT)
+From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+To: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org
+Cc: mohammad.rafi.shaik@oss.qualcomm.com, linux-sound@vger.kernel.org,
+        lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com, johan@kernel.org,
+        dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, srini@kernel.org, val@packett.cool,
+        mailingradian@gmail.com,
+        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Subject: [PATCH v6 00/13] ASoC: qcom: q6dsp: few fixes and enhancements
+Date: Fri, 20 Mar 2026 14:49:05 +0000
+Message-ID: <20260320144918.1685838-1-srinivas.kandagatla@oss.qualcomm.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260320140819.191700-4-carlosjr.jones@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Proofpoint-ORIG-GUID: 19cTTv0p_y2JeUDNGHbgd3NrWUhsxUCE
+X-Proofpoint-GUID: 19cTTv0p_y2JeUDNGHbgd3NrWUhsxUCE
+X-Authority-Analysis: v=2.4 cv=CqCys34D c=1 sm=1 tr=0 ts=69bd5e73 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
+ a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22 a=x8kTagw7d3iPfLn8lj8A:9
+ a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzIwMDExOCBTYWx0ZWRfX0S+9TWLmc5iN
+ b7dv7/24VWzRUelVevPlWZyWaeVxcggFkFmlUa7pgl2++IL/nyvtYLj6huUk/hHvbmehhfN5/LQ
+ lzAwcm5LwLmCAPEpg+2Db+jdhMyIxBosGyB2RQZ3HcaWWj/FJEUil3lfEH/XpWQXch9FKkyvpuu
+ CpfaDXLUVPcG1Dgl+Y2QZSma9HhuHiYiA3zaWma4ScL3J21JJd9/35Ho1Cz56R6s0Q2q5/9fgi0
+ WmIzu790bkdNq5lU2YkIqIJRdiqQxzL126Rn31UgiknpOeStFR1OIMwCkFxQ/m2O0vVEl31cpvh
+ k0HWhy/AcKo80fhCjFRHX2wCK51GnC85+6aBWnS0z28TxPGEQdMY3axZ6Q1IRGeNIxVsncVvyV6
+ 07200UKQdX6vUdczTOs0YbTh69FItxSNcd0r5hnJxPCVGgfdzyMpq3pOyhJHu9xSf65NmEoF+zC
+ dlo46troeuVQkrOQQJA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-20_02,2026-03-19_05,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 lowpriorityscore=0 bulkscore=0 malwarescore=0 suspectscore=0
+ impostorscore=0 phishscore=0 priorityscore=1501 adultscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603200118
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,metafoo.de,baylibre.com,analog.com,gmail.com,softing.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-278312-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,vger.kernel.org,gmail.com,perex.cz,suse.com,kernel.org,packett.cool];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278313-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[srinivas.kandagatla@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.986];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:dkim,ashevche-desk.local:mid]
-X-Rspamd-Queue-Id: 53D172DC23E
+	NEURAL_HAM(-0.00)[-0.963];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: ED37F2DC2CE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 20, 2026 at 10:08:19PM +0800, Carlos Jones Jr wrote:
-> The LTC2305 is a 2-channel, 12-bit, fast ADC with an I2C interface,
-> compatible with the LTC2309 (which has 8 channels).
-> 
-> This patch adds support for the LTC2305 by using the chip_info
-> structure to handle the different channel configurations between the
-> two variants. The LTC2305 exposes 2 single-ended channels and 2
-> differential combinations.
-> 
-> The LTC2305 requires a 1.6μs delay between I2C write and read
-> operations, which is implemented using chip-specific timing to avoid
-> affecting existing LTC2309 functionality.
+This patchset contains few fixes for the bugs hit during testing with
+Monza EVK platform
+- around array out of bounds access on dai ids which keep extending but
+  the drivers seems to have hardcoded some numbers, fix this and clean
+the mess up
+- fix few issues discovered while trying to shut down dsp.
+- flooding rpmsg with write requests due to not resetting queue pointer,
+  fix this resetting the pointer in trigger stop.
+- possible multiple graph opens which can result in open failures.
 
-...
+Apart from this few new enhancements to the dsp side
+- add new LPI MI2S and senary dai entries
+- handle pipewire and Displayport issues by moving graph start to
+  trigger level, which should fix outstanding pipewire and DP issues on
+Qualcomm SoCs.
+- remove some unnessary loops in hot path
+- support early memory map on DSP.
 
->  config LTC2309
-> -	tristate "Linear Technology LTC2309 ADC driver"
-> +	tristate "Linear Technology LTC2309 and similar ADC driver"
->  	depends on I2C
->  	help
-> -	  Say yes here to build support for Linear Technology LTC2309, a low
-> -	  noise, low power, 8-channel, 12-bit SAR ADC
-> +	  Say yes here to build support for Linear Technology LTC2309 and
-> +	  similar low noise, low power SAR ADCs.
+Tested this on top of linux-next on VENTUNO-Q platform.
 
-No, in Kconfig help text (and possibly title above) we have to be crystal
-clear for user what IPs (chips, SoCs, et cetera) are being supported by
-the driver. There is no go for 'and similar'.
+Thanks,
+Srini
 
-...
+Changes since v5:
+	- moved to using pcm_new/_free as rebased with linux-next
+	- fixed typo in q6apm_dai_pcm_free
+	- added changes from Val to q6afe_port_get_from_id
+Changes since v4:
+	- sob order changed for co-dev patch.
+	- update range check in common.c
 
-> -	ltc2309->chip_info = &ltc2309_chip_info;
-> +	ltc2309->chip_info = i2c_get_match_data(client);
+Changes since v3:
+	- squashed 2 dt-bindings patches as suggested at review
+	- updated yaml to reflect the new port supported
 
-Strictly speaking this change with the associated ID table changes should go
-in a separate patch.
+Changes since v2:
+	- removed non-dt header update in bindings patch.
+	- removed some leftover debug statements
+	- updated function to void where it did not make sense to
+	  return anything.
 
-...
+Changes since v1:
+	- removed LPASS MAX PORT define from bindings
+	- added few fixes found while testing dsp shutdown usecase on
+	  Monaco.
+	- replaced tab with space
+	- added port range check in place at runtime to catch array out
+	  of bounds in future.
 
->  static const struct of_device_id ltc2309_of_match[] = {
-> -	{ .compatible = "lltc,ltc2309" },
-> +	{ .compatible = "lltc,ltc2309", .data = &ltc2309_chip_info },
+Mohammad Rafi Shaik (1):
+  ASoC: qcom: q6dsp: Add Senary MI2S audio interface support
 
+Srinivas Kandagatla (12):
+  ASoC: qcom: q6apm: move component registration to unmanaged version
+  ASoC: qcom: q6apm: remove child devices when apm is removed
+  ASoC: qcom: qdsp6: topology: check widget type before accessing data
+  ASoC: qcom: q6apm-lpass-dai: Fix multiple graph opens
+  ASoC: qcom: q6apm-dai: reset queue ptr on trigger stop
+  ASoC: dt-bindings: qcom: add LPASS LPI MI2S dai ids
+  ASoC: qcom: qdsp6: lpass-ports: add support for LPASS LPI MI2S dais
+  ASoC: qcom: common: validate cpu dai id during parsing
+  ASoC: qcom: qdapm-lpass-dai: correct the error message
+  ASoC: qcom: q6apm-lpass-dai: move graph start to trigger
+  ASoC: qcom: qdsp6: remove search for module iid in hot path
+  ASoC: qcom: q6apm: Add support for early buffer mapping on DSP
 
-> +	{ .compatible = "lltc,ltc2305", .data = &ltc2305_chip_info },
-
-Keep it ordered by the value of compatible string.
-
->  	{ }
->  };
-
-...
-
->  static const struct i2c_device_id ltc2309_id[] = {
-> -	{ "ltc2309" },
-> +	{ "ltc2309", (kernel_ulong_t)&ltc2309_chip_info },
-> +	{ "ltc2305", (kernel_ulong_t)&ltc2305_chip_info },
->  	{ }
-
-In the similar way as above.
-
->  };
+ .../sound/qcom,q6dsp-lpass-ports.yaml         |   5 +-
+ .../sound/qcom,q6dsp-lpass-ports.h            |  12 ++
+ sound/soc/qcom/common.c                       |   6 +
+ sound/soc/qcom/common.h                       |   3 +
+ sound/soc/qcom/lpass.h                        |   3 +-
+ sound/soc/qcom/qdsp6/audioreach.c             |  60 ------
+ sound/soc/qcom/qdsp6/audioreach.h             |   5 +-
+ sound/soc/qcom/qdsp6/q6afe-dai.c              |   6 +
+ sound/soc/qcom/qdsp6/q6afe.c                  |   8 +
+ sound/soc/qcom/qdsp6/q6afe.h                  |   3 +-
+ sound/soc/qcom/qdsp6/q6apm-dai.c              | 114 +++++++++--
+ sound/soc/qcom/qdsp6/q6apm-lpass-dais.c       |  48 +++--
+ sound/soc/qcom/qdsp6/q6apm.c                  | 183 ++++++++++++------
+ sound/soc/qcom/qdsp6/q6apm.h                  |  21 +-
+ sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c      |  76 ++++++++
+ sound/soc/qcom/qdsp6/topology.c               |   8 +-
+ 16 files changed, 399 insertions(+), 162 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.47.3
 
 
