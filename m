@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-278206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278207-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0NN9JOolvWmr6wIAu9opvQ
-	(envelope-from <devicetree+bounces-278206-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:48:10 +0100
+	id gMeYEP4lvWmr6wIAu9opvQ
+	(envelope-from <devicetree+bounces-278207-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:48:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02FBD2D8FFE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:48:09 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CE8E2D901B
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:48:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C0E1C303299C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:47:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D3EAC304A5A2
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:47:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A593375AC3;
-	Fri, 20 Mar 2026 10:47:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C85231F994;
+	Fri, 20 Mar 2026 10:47:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YyDIv8/7"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="I4PzVzb1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0CF73806BE
-	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 10:47:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC75426ED3A
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 10:47:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774003661; cv=none; b=Tv1fpxS89Ga5+u21sc1MYjM9oi82E0Cp+zDeKXXDge6mRU001hQg/f4iy354yZSiB4Eb4QCVDSe7t/U3HAEQ7zlEntzNpQ1fAmeyvr2a5bHAkAAmnfyRLN5f3NYY7khBU9qret4MUFrVe2f+lx/olcZlDLcWVQ8ygW/DAKacZ+E=
+	t=1774003670; cv=none; b=jTKZVo4x4O0hfm1bAbsrhXiln79zsrTF3LzhpXZ7Dzk/ElMRKS0mNdP7zf/s2ONV+RU6ISA63JAxAu/4+M25+4y84OchRm0BPKYagEW9Jbc5+ETY+sLh1BFF+ZXTKsXAgwrGM9p6XWQZ5tyCvHKI1tZCklAYy/3qZhMLo5wCCfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774003661; c=relaxed/simple;
-	bh=ZZwn4L0ybODysxUKm03rAH4gUKFsaVf10PmNRRT4aEA=;
+	s=arc-20240116; t=1774003670; c=relaxed/simple;
+	bh=A3d2Wv3FocWHEgZVdbErxCV2J7dm1h/wPtvHIzxv0S0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=TTdbrR3wxYemCoPyNoFuhP6FoaEjK8A8iZu9TKZHK/dRdZJTL4giX+uxMmyG9my90lqV5BsMZDj7U8Ikh+s6ijMzwvmXkZg/Erxa2lsLVLvzZ4xfkV6oq7KC5RmkS5v9SYLw6pIPlB0e4Sf0w4Upr8NKg+Egkfi+8+J9zsf0qrw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YyDIv8/7; arc=none smtp.client-ip=185.246.85.4
+	 In-Reply-To:To:Cc; b=q6Yg1dEwzOJ9LCF7K9/DpGj8GyhtaWjN42cmtXxwZSmO6Ouv5v93f0a7zPJFUsCIq8GxnHC1Jn7rDuR7o5P1GHxrzyhQ/TzECYs9abnA8unbxkfgqFuFRwO/0KEWCdF0BkwrvMCTKvqk4e962cx3YdcqVZrd3TGBXTtMIeiK6dQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=I4PzVzb1; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 761CA4E42737;
-	Fri, 20 Mar 2026 10:47:38 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 752EF4E42741;
+	Fri, 20 Mar 2026 10:47:47 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 4697F600E0;
-	Fri, 20 Mar 2026 10:47:38 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DE56910450B7D;
-	Fri, 20 Mar 2026 11:47:25 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 47D23601A0;
+	Fri, 20 Mar 2026 10:47:47 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EBDD110450B97;
+	Fri, 20 Mar 2026 11:47:35 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1774003655; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1774003664; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=pETdlghxzqqCiEaPvqoDlYYapxYDufD9KCFbn4elZEk=;
-	b=YyDIv8/7bYdeDocu6CUlzpZGjMnkb4PjerL8Ig+ktu5K5fgHaHUFSkG5523JrwqPi1KXsR
-	jslev06n9xeaxJ+FEFr5Z9p9u28uuIpCRAjLlu2gQ9QXFW0m+YO0QiUp47fr9MzuizaVqu
-	IgYFjTDfLJqJkHrMjfNrT+5E5OLbX4y50tgdR1CA62DFk/hqaaycr8K2LvOcSmmQ9T32Zp
-	DfGoybuKtc1Luv3ACMFPEB8nPRCJTh5tbdsc1VPx3XcqqsWYaet4aRCKB1Yod4YeKCWJRE
-	Tc7ta9eaQHs/oM937/IGyw0d5CTg4kZaL92GvKauTB3rjTq/8mK585OFd0+LCg==
+	bh=5G7RwZVT0cLv89cnUOQqWhPwxDiqoXXImEAhtCM4UBQ=;
+	b=I4PzVzb13TLDpsWD86Xf1LnxDItNfPdLQqcchBZIAbf/l3V5OxBoR77gYCp4V2B4P3FtND
+	ZWYxY+XskZIi5SeicAOR/nzFqZfpS/E0X8G95OQ/Ai8EASpKYkvhVi4ssOGVmu0GHolmfI
+	D5o1XdhqpReZqi0FkxMpShiuVJaPcRKH12IBrTFKaoVW11FFtlyV7UTOaYYKZUYuiu7RA8
+	4+RkgUr/N+vH7pe9HZq0Jir6NnV9dwBifDl001om9VOffC+cZZdFTAh5jgqunzRXeOMjoc
+	8hQAkAfHmExObMYsjQja6trmZbIUseirbyfRGzOkHEs+GZ5wo3ZzvfXLqTku/Q==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Fri, 20 Mar 2026 11:46:17 +0100
-Subject: [PATCH 6/8] drm/bridge: dw-hdmi: move next_bridge lookup to attach
- time
+Date: Fri, 20 Mar 2026 11:46:18 +0100
+Subject: [PATCH 7/8] drm/bridge: imx8mp-hdmi-tx: add an hdmi-connector when
+ missing using a DT overlay at boot time
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +63,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260320-drm-lcdif-dbanc-v1-6-479a04133e70@bootlin.com>
+Message-Id: <20260320-drm-lcdif-dbanc-v1-7-479a04133e70@bootlin.com>
 References: <20260320-drm-lcdif-dbanc-v1-0-479a04133e70@bootlin.com>
 In-Reply-To: <20260320-drm-lcdif-dbanc-v1-0-479a04133e70@bootlin.com>
 To: Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>, 
@@ -115,13 +115,13 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[bootlin.com,gehealthcare.com,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,vger.kernel.org,gmail.com,ew.tq-group.com,nxp.com,linaro.org,ideasonboard.com,toradex.com,denx.de,kontron.de,solid-run.com,pengutronix.de,collabora.com,technexion.com];
-	TAGGED_FROM(0.00)[bounces-278206-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278207-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -129,7 +129,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[denx.de,agner.ch,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,nxp.com,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se];
 	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
@@ -137,111 +137,231 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCPT_COUNT_GT_50(0.00)[56];
 	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
+	NEURAL_HAM(-0.00)[-0.997];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,i.mx:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 02FBD2D8FFE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,i.mx:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,32c00000:email,bootlin.com:dkim,bootlin.com:mid,bootlin.com:email,bootlin.com:url,32fd8000:email,0.0.0.0:email]
+X-Rspamd-Queue-Id: 9CE8E2D901B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This driver looks up the next_bridge at probe time and stores it in
-hdmi->bridge.next_bridge, but only uses the stored value when attaching,
-and only in the DRM_BRIDGE_ATTACH_NO_CONNECTOR case.
+The imx8mp-hdmi-tx one of many drivers based on dw-hdmi. dw-hdmi in turn
+can operate in two different modes, depending on the platform data as set
+by the driver:
 
-This will be problematic with an upcoming change, adding an hdmi-connector
-using a device tree overlay when not present. That change is in turn
-necessary to migrate the i.MX LCDIF driver to the bridge-connector.
+ A. hdmi->plat_data->output_port = 0:
+    the HDMI output (port@1) in device tree is not used [0]
 
-The problem is that, adding the hdmi-connector via an overlay, devlink
-considers hdmi-connector a consumer of the dw-hdmi device, generating a
-chicken-egg problem:
+ B. hdmi->plat_data->output_port = 1:
+    the HDMI output (port@1) is parsed to find the next bridge
 
- * hdmi-connector probe won't be tried until dw-hdmi is probed (devlink)
- * dw-hdmi probe will defer until it finds the next_bridge (the
-   hdmi-connector wrapper bridge)
+The imx8mp-hdmi-tx driver falls in case A. This implies next_bridge will
+always be NULL, and so dw_hdmi_bridge_attach() [1] will always fail if
+called with the DRM_BRIDGE_ATTACH_NO_CONNECTOR flag.
 
-In preparation for those changes, move the next_bridge lookup from probe to
-attach, when it is actually used. This allows dw-hdmi to probe, so that the
-hdmi-connector can probe as well.
+In fact case A assumes that DRM_BRIDGE_ATTACH_NO_CONNECTOR is not set and
+in that case it adds the connector programmatically at bridge attach time.
 
-Also avoid storing the pointer in hdmi->bridge.next_bridge: the value is
-computed when needed, thus a local variable is enough.
+Support for DRM_BRIDGE_ATTACH_NO_CONNECTOR is implemented by dw-hdmi.c in
+case B. So, in preparation to support DRM_BRIDGE_ATTACH_NO_CONNECTOR in
+imx8mp-hdmi-tx, move to case B by setting hdmi->plat_data->output_port = 1.
 
-Finally, this also allows to slightly improve the code by not doing any DT
-lookup in the !DRM_BRIDGE_ATTACH_NO_CONNECTOR case.
+However this change requires that port@1 is connected to a "next
+bridge" DT node, typically the HDMI connector, because dw-hdmi won't add
+the connector when using DRM_BRIDGE_ATTACH_NO_CONNECTOR.
+
+Many dts files for imx8mp-based boards in the kernel have such a connector
+described and linked to port@1, so a connector is added by the
+display-connector driver along with a bridge wrapping it. Sadly some of
+those dts files don't have the connector described. Adding it would solve
+the problem easily, but this would break existing devices which do not
+update the dtb when upgrading to a newer kernel.
+
+To preserve backward compatibility for such devices, introduce a module
+adding the hdmi-connector node to the live device tree at init time. This
+allows the dw-hdmi code to find the next bridge (the one wrapping the
+hdmi-connector) and let the pipeline work as before.
+
+[0] https://elixir.bootlin.com/linux/v7.0-rc1/source/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c#L3310
+[1] https://elixir.bootlin.com/linux/v7.0-rc1/source/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c#L2907
 
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
----
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 41 +++++++++----------------------
- 1 file changed, 12 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index a668d66aeece..4ee865a1a6c8 100644
---- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -2914,9 +2914,18 @@ static int dw_hdmi_bridge_attach(struct drm_bridge *bridge,
- 	if (WARN_ON((flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR) && !hdmi->plat_data->output_port))
- 		return -EINVAL;
+---
+
+This patch is inspired by commit 0ff223d99147 ("drm/tilcdc: Convert legacy
+panel binding via DT overlay at boot time")
+---
+ drivers/gpu/drm/bridge/imx/Kconfig                 | 17 ++++++
+ drivers/gpu/drm/bridge/imx/Makefile                |  2 +
+ .../bridge/imx/imx8mp-hdmi-tx-connector-fixup.c    | 60 ++++++++++++++++++++++
+ .../bridge/imx/imx8mp-hdmi-tx-connector-fixup.dtso | 38 ++++++++++++++
+ drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c        |  1 +
+ 5 files changed, 118 insertions(+)
+
+diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/imx/Kconfig
+index b9028a5e5a06..b9ce140a93dc 100644
+--- a/drivers/gpu/drm/bridge/imx/Kconfig
++++ b/drivers/gpu/drm/bridge/imx/Kconfig
+@@ -25,6 +25,23 @@ config DRM_IMX8MP_DW_HDMI_BRIDGE
+ 	  Choose this to enable support for the internal HDMI encoder found
+ 	  on the i.MX8MP SoC.
  
--	if (flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)
--		return drm_bridge_attach(encoder, hdmi->bridge.next_bridge,
--					 bridge, flags);
-+	if (flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR) {
-+		struct device_node *remote __free(device_node) =
-+			of_graph_get_remote_node(hdmi->dev->of_node,
-+						 hdmi->plat_data->output_port, -1);
-+		if (!remote)
-+			return -EPROBE_DEFER;
++config DRM_IMX8MP_DW_HDMI_BRIDGE_CONNECTOR_FIXUP
++	bool "Support device tree blobs without an hdmi-connector node"
++	default y
++	depends on DRM_IMX8MP_DW_HDMI_BRIDGE
++	depends on OF
++	select OF_OVERLAY
++	select DRM_DISPLAY_CONNECTOR
++	help
++	  Modifies at early boot the live device tree of boards using the
++	  i.MX8MP fsl,imx8mp-hdmi-tx adding a hdmi-connector node linked to
++	  the htmi-tx. This is needed to support bridge-connector usage in
++	  the i.MX8MP LCDIF driver.
 +
-+		struct drm_bridge *next_bridge __free(drm_bridge_put) =
-+			of_drm_find_and_get_bridge(remote);
++	  You need this if you use the i.MX8MP HDMI output and your board
++	  device tree file does not have an hdmi-connector node connected
++	  to it.
 +
-+		return drm_bridge_attach(encoder, next_bridge, bridge, flags);
+ config DRM_IMX8MP_HDMI_PAI
+ 	tristate "Freescale i.MX8MP HDMI PAI bridge support"
+ 	depends on OF
+diff --git a/drivers/gpu/drm/bridge/imx/Makefile b/drivers/gpu/drm/bridge/imx/Makefile
+index 8d01fda25451..84499fe2e444 100644
+--- a/drivers/gpu/drm/bridge/imx/Makefile
++++ b/drivers/gpu/drm/bridge/imx/Makefile
+@@ -1,6 +1,8 @@
+ obj-$(CONFIG_DRM_IMX_LDB_HELPER) += imx-ldb-helper.o
+ obj-$(CONFIG_DRM_IMX_LEGACY_BRIDGE) += imx-legacy-bridge.o
+ obj-$(CONFIG_DRM_IMX8MP_DW_HDMI_BRIDGE) += imx8mp-hdmi-tx.o
++obj-$(CONFIG_DRM_IMX8MP_DW_HDMI_BRIDGE_CONNECTOR_FIXUP) += imx8mp-hdmi-tx-connector-fixup.o \
++							   imx8mp-hdmi-tx-connector-fixup.dtbo.o
+ obj-$(CONFIG_DRM_IMX8MP_HDMI_PAI) += imx8mp-hdmi-pai.o
+ obj-$(CONFIG_DRM_IMX8MP_HDMI_PVI) += imx8mp-hdmi-pvi.o
+ obj-$(CONFIG_DRM_IMX8QM_LDB) += imx8qm-ldb.o
+diff --git a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.c b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.c
+new file mode 100644
+index 000000000000..8c423b9bfa50
+--- /dev/null
++++ b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.c
+@@ -0,0 +1,60 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Add an hdmi-connector node to boards using the imx8mp hdmi_tx which
++ * don't have one. This is needed for the i.MX LCDIF to work with
++ * DRM_BRIDGE_ATTACH_NO_CONNECTOR.
++ *
++ * Copyright (C) 2026 GE HealthCare
++ * Author: Luca Ceresoli <luca.ceresoli@bootlin.com>
++ */
++
++#include <linux/kernel.h>
++#include <linux/of.h>
++#include <linux/of_fdt.h>
++#include <linux/slab.h>
++
++/* Embedded dtbo symbols created by cmd_wrap_S_dtb in scripts/Makefile.dtbs */
++extern char __dtbo_imx8mp_hdmi_tx_connector_fixup_begin[];
++extern char __dtbo_imx8mp_hdmi_tx_connector_fixup_end[];
++
++static int __init imx8mp_hdmi_tx_connector_fixup_init(void)
++{
++	struct device_node *hdmi_tx __free(device_node) = NULL;
++	struct device_node *endpoint __free(device_node) = NULL;
++	struct device_node *hdmi_conn __free(device_node) = NULL;
++	void *dtbo_start;
++	u32 dtbo_size;
++	int ovcs_id;
++	int err;
++
++	hdmi_tx = of_find_node_by_path("/soc@0/bus@32c00000/hdmi@32fd8000");
++	if (!of_device_is_available(hdmi_tx))
++		return 0;
++
++	/* If endpoint exists, assume an hdmi-connector exists already */
++	endpoint = of_find_node_by_path("/soc@0/bus@32c00000/hdmi@32fd8000/ports/port@1/endpoint");
++	if (endpoint)
++		return 0;
++
++	dtbo_start = __dtbo_imx8mp_hdmi_tx_connector_fixup_begin;
++	dtbo_size = __dtbo_imx8mp_hdmi_tx_connector_fixup_end -
++		    __dtbo_imx8mp_hdmi_tx_connector_fixup_begin;
++
++	err = of_overlay_fdt_apply(dtbo_start, dtbo_size, &ovcs_id, NULL);
++	if (err)
++		return err;
++
++	hdmi_conn = of_find_node_by_name(NULL, "fixup-hdmi-connector");
++	if (!hdmi_conn) {
++		err = -ENODEV;
++		goto overlay_remove;
 +	}
++
++	return 0;
++
++overlay_remove:
++	of_overlay_remove(&ovcs_id);
++	return err;
++}
++
++subsys_initcall(imx8mp_hdmi_tx_connector_fixup_init);
+diff --git a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.dtso b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.dtso
+new file mode 100644
+index 000000000000..ee718ca1b11b
+--- /dev/null
++++ b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.dtso
+@@ -0,0 +1,38 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * DTS overlay adding an hdmi-connector node to boards using the imx8mp hdmi_tx
++ *
++ * Copyright (C) 2026 GE HealthCare
++ * Author: Luca Ceresoli <luca.ceresoli@bootlin.com>
++ */
++
++/dts-v1/;
++/plugin/;
++
++&{/} {
++	fixup-hdmi-connector {
++		compatible = "hdmi-connector";
++		label = "HDMI";
++		type = "a";
++
++		port {
++			fixup_hdmi_connector_in: endpoint {
++				remote-endpoint = <&hdmi_tx_out>;
++			};
++		};
++	};
++
++	soc@0 {
++		bus@32c00000 {
++			hdmi@32fd8000 {
++				ports {
++					port@1 {
++						hdmi_tx_out: endpoint {
++							remote-endpoint = <&fixup_hdmi_connector_in>;
++						};
++					};
++				};
++			};
++		};
++	};
++};
+diff --git a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c
+index 32fd3554e267..8e8cfd66f23b 100644
+--- a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c
++++ b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c
+@@ -138,6 +138,7 @@ static int imx8mp_dw_hdmi_probe(struct platform_device *pdev)
+ 	plat_data->phy_name = "SAMSUNG HDMI TX PHY";
+ 	plat_data->priv_data = hdmi;
+ 	plat_data->phy_force_vendor = true;
++	plat_data->output_port = 1;
  
- 	return dw_hdmi_connector_create(hdmi);
- }
-@@ -3307,28 +3316,6 @@ static void dw_hdmi_init_hw(struct dw_hdmi *hdmi)
-  * Probe/remove API, used from platforms based on the DRM bridge API.
-  */
+ 	platform_set_drvdata(pdev, hdmi);
  
--static int dw_hdmi_parse_dt(struct dw_hdmi *hdmi)
--{
--	struct device_node *remote;
--
--	if (!hdmi->plat_data->output_port)
--		return 0;
--
--
--	remote = of_graph_get_remote_node(hdmi->dev->of_node,
--					  hdmi->plat_data->output_port,
--					  -1);
--	if (!remote)
--		return -ENODEV;
--
--	hdmi->bridge.next_bridge = of_drm_find_and_get_bridge(remote);
--	of_node_put(remote);
--	if (!hdmi->bridge.next_bridge)
--		return -EPROBE_DEFER;
--
--	return 0;
--}
--
- bool dw_hdmi_bus_fmt_is_420(struct dw_hdmi *hdmi)
- {
- 	return hdmi_bus_fmt_is_yuv420(hdmi->hdmi_data.enc_out_bus_format);
-@@ -3373,10 +3360,6 @@ struct dw_hdmi *dw_hdmi_probe(struct platform_device *pdev,
- 	mutex_init(&hdmi->cec_notifier_mutex);
- 	spin_lock_init(&hdmi->audio_lock);
- 
--	ret = dw_hdmi_parse_dt(hdmi);
--	if (ret < 0)
--		return ERR_PTR(ret);
--
- 	ddc_node = of_parse_phandle(np, "ddc-i2c-bus", 0);
- 	if (ddc_node) {
- 		hdmi->ddc = of_get_i2c_adapter_by_node(ddc_node);
 
 -- 
 2.53.0
