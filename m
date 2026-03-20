@@ -1,384 +1,164 @@
-Return-Path: <devicetree+bounces-278082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278083-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SIoiC/7zvGms4wIAu9opvQ
-	(envelope-from <devicetree+bounces-278082-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 08:15:10 +0100
+	id 0DOrBTH0vGms4wIAu9opvQ
+	(envelope-from <devicetree+bounces-278083-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 08:16:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FEED2D6769
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 08:15:09 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71A9B2D67A8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 08:16:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CB03B3031018
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 07:15:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2F0243069AEB
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 07:15:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0543C309EF2;
-	Fri, 20 Mar 2026 07:15:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77BEE23A984;
+	Fri, 20 Mar 2026 07:15:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="d1YFm8mH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RdG1rvtC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023109.outbound.protection.outlook.com [52.101.127.109])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9564328507E;
-	Fri, 20 Mar 2026 07:15:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.109
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773990905; cv=fail; b=B5FIBm/aQ10kGbStyaZ7GZOB1H2lUuN97Hr0n3UDMT2rL3UjTMGKfBX+E4ojZfAcxy8H5PYVOeOmPGvWNUY/lWl+mbLoSge85QdgdhPIE+Z+6yXIyN7Nk1GZ9GSOBbRRpopRpWc4Gw14e3RhmrL75JSYXL+amqu0QYnH4SAZDYI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773990905; c=relaxed/simple;
-	bh=C0rvmYyqaQ48rK72nw8oTKJpOC/zcbC74EmqPpLMeE8=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=T8ySMU3sTZU86G+V8AOLUXSt3PItDl/ch5eEqyz1F6PQKdUoSijnBsUfscmMYX23c+24GDWIOQrD8F2o0bjOR/SeA0ewUdsrOckJLtuxS8JWhMZPxxWGSyaVGY4A7dORjagz4m9pB+3L2SX8aZcMiNh3LMcEl0IpqHRGWf/+nJs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=d1YFm8mH; arc=fail smtp.client-ip=52.101.127.109
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yev4y3jMHc1fF5uHZ1JuJXdtH9IxN19l5TRQt1NtzXjXKE5LV5raChDsHo3iKj+6a0M/PZa7ShcT5sRhlxJLdKS4zWpybcFSUnXX9VbPEtbuCBoYBjgC+6DRTsytw5jsyfTTRr1F4go/vP0GjGGMRdS5Ssm03o376lT8HjuPPuba1gx7cxURo3hXLnazDgpuiZVPm8vflOAjz9VxjXUAM0jqAJ0tNsEYiIv6cRy++e8VuAcaCEMZ4FyD44v7dg3SeevwVpvWHK43kQvSYInnIWbmqwTmgWJztDmbEhR+giNovXXFGHWobN2jrNn1878iFSj8S/VbUpUxz5ewczLvXA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RFYhT+op7r1uuVGfqk/L96fvzJnE+/lErmqGUzlnw3A=;
- b=gY8PIHLA+MTNtOtqi8nOrIRgtxKJiFpXQqe7A4Jed5rGegZZ6o0fILFdnUdMyJ+nTN18OG4kdQYvaf7v0Aq0BBrpGroTNoM+9eqp4JpLJMqoUnAlg/NjJqYLgyDzMdWuDrrM6+bpP6jJfzUDCTrK5DAGhPpQ3qVTBWlnghcmZQgh9cVgp94oZAYAHjrMGrj4iIK+XrQ7JiIzXQgvB+qJI4ilr+VDtfElAb1bYMkf+W0O97HhN0nTZ3RYX1RU9LO0oBQoikPz6uMTKOAb4k/nr9dTsHY/rQhkUGy2bjhjODw9nxlJ33zknSlafow5HpiUDHXrfe0DU63as2+snMoZMg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RFYhT+op7r1uuVGfqk/L96fvzJnE+/lErmqGUzlnw3A=;
- b=d1YFm8mHnpAgs4lOfVdTxGEGOV6U33fsYhCwEkcXf49AQfjOkZYs/MlVt+HaBpVm5SkVN2E/V/KRTtegXh34i94VMSRM/yx9oREzm+iJiIEtAeWrwLvUjK33Uq+xYXtuyidR2JvsSaYh3fAItfRqgkeUiYKvkmLB5mIrubDWtDtg2SL+VQSUttBSOc86wBeoDDYO+aXu75MY0PLBZUwjV05yVLquTmFhB1CDIzCNyCM20Apii8l9n7KCwAw2zTQ4VBcghJeaMSjmkAxtxIXYbMb7T7ZsO/4XpHsbb0hRZhXbwNwRiLZvVcJ7YzLo99+9fLvZKrWXqsgmkePwQ2L+4A==
-Received: from OSQPR06MB7252.apcprd06.prod.outlook.com (2603:1096:604:29c::6)
- by SI3PR06MB8684.apcprd06.prod.outlook.com (2603:1096:4:2a6::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.23; Fri, 20 Mar
- 2026 07:15:00 +0000
-Received: from OSQPR06MB7252.apcprd06.prod.outlook.com
- ([fe80::92af:c9d9:8779:d19]) by OSQPR06MB7252.apcprd06.prod.outlook.com
- ([fe80::92af:c9d9:8779:d19%4]) with mapi id 15.20.9700.022; Fri, 20 Mar 2026
- 07:15:00 +0000
-From: Billy Tsai <billy_tsai@aspeedtech.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel
- Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, Linus
- Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Ryan Chen
-	<ryan_chen@aspeedtech.com>, Andrew Jeffery <andrew@aj.id.au>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "openbmc@lists.ozlabs.org"
-	<openbmc@lists.ozlabs.org>, "linux-gpio@vger.kernel.org"
-	<linux-gpio@vger.kernel.org>, "linux-clk@vger.kernel.org"
-	<linux-clk@vger.kernel.org>
-Subject: Re: [PATCH v4 2/3] dt-bindings: pinctrl: Add
- aspeed,ast2700-soc0-pinctrl
-Thread-Topic: [PATCH v4 2/3] dt-bindings: pinctrl: Add
- aspeed,ast2700-soc0-pinctrl
-Thread-Index: AQHcrWasfLNWtX5/y0SkB1cDA4lWiLWi5wYAgAkqVmqACwRrwg==
-Date: Fri, 20 Mar 2026 07:15:00 +0000
-Message-ID:
- <OSQPR06MB72522FADFC47F158B5E27AFE8B4CA@OSQPR06MB7252.apcprd06.prod.outlook.com>
-References: <20260306-upstream_pinctrl-v4-0-ad4e8ab8b489@aspeedtech.com>
- <20260306-upstream_pinctrl-v4-2-ad4e8ab8b489@aspeedtech.com>
- <20260307-weightless-quirky-spoonbill-dacd89@quoll>
- <OSQPR06MB72521BCD9B380D43E3E3590D8B45A@OSQPR06MB7252.apcprd06.prod.outlook.com>
-In-Reply-To:
- <OSQPR06MB72521BCD9B380D43E3E3590D8B45A@OSQPR06MB7252.apcprd06.prod.outlook.com>
-Accept-Language: en-US, zh-TW
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OSQPR06MB7252:EE_|SI3PR06MB8684:EE_
-x-ms-office365-filtering-correlation-id: 796fcd23-c4bf-4bcf-f8f5-08de8650666b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|366016|7416014|376014|18002099003|22082099003|56012099003|38070700021;
-x-microsoft-antispam-message-info:
- RxEz/qbO0Q07TvyYLX50DCy78iQx2pnhB8cJf21eym/x1qWda4UzUSNpAK0WvzScCia6KKv7SiZO+lrl+fAhGBm8jCUNDyfgiOmt1Hn700uNgByjQfk8My+SUAhonHAj/vU3eB+5vCfZKX3Bq3Ykn6OfVJPSuMlAF7O3WdBT6FXS4v3LuKG94Pf35OMiqMBtJD42ZBV/oaHHKOunJWPwxoLbbxLm2g+jacEe2P/Jp6V7R/RueQ2r+4VpVocB7RQB4EYqSMOAwICJxsvd9I6QY4q7NFKrUGe5q+iM2a/E1sIAoNNT8DMYRv7R2F6r82kHzLdiFYanRWFcH5AxbGwV//2mMivavGmpRYz4/nLAIBx4j5MP1rlDcFeyZb99OLXM9+DqOsns0wtTrqNSz/Haolo88Le9/4D+kOngYhrBuFZk9LjK6fIaKd1S60YI+9Lx8U8eWLYa18eDbuB8y/ZO+eOcWhspqL9bg8lqgl2tHBMp/KiYHCeM6BSOF2i0XPPFafwc4B+KriJnka9kl3ajZnm4EPHg9ir9uQrKR4wbNEE/a4obSb7BSmvg2bDEbAEsk6hTITOzxmv5sufIdu9kULHzBNuUsVMEEX/gMiVgDQGj5EAnSxcBXPgiPatZHFV3y9OoQpwinA7HVoO3oy/5CzTJ5h34fQLGCcat7RXqAGyosfLnQc+oPZqKU9SWrQz5GGbIBQC3Oo0qlNRf55qFwoq/ROAqxFKC0MP3HdPWVd5Bs4icxFzNpvBunhL8To+l2QwEg9FfwMNu2EnYxDj6YI3x3X1nfubSv1hvmlNirGI=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSQPR06MB7252.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(18002099003)(22082099003)(56012099003)(38070700021);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?HMByKg4jmUEpImdh0yjAdg7aKuEz2Prxg5wTXg3gUvWYH75iQj1wfgL4cA?=
- =?iso-8859-1?Q?7VhT6S6tVUffhTONgoCu2IkUi7OfaCRGdJf4+UPHw3zP803bkOki0NgMDl?=
- =?iso-8859-1?Q?ddbnZf3kicr9UWl7B+L5l+YGTFvqOUN7RjMw6TJGyX1Xsi9kTMX2p0OsaY?=
- =?iso-8859-1?Q?NqE/QU6iSCsYeOzzDHvsApzH0GUFmMFXBbLJsip9C6kd1vcC31HTBCtBzW?=
- =?iso-8859-1?Q?MQXxLiinztWXaj7sMF99mmrqK3I2eDvH7++QpTo7UyLvH5x28gbhJpPlOi?=
- =?iso-8859-1?Q?JalDl572KwlF7uzVFR9JrdGPxo1cPug9xYVvzLfzFfqjgVtcJD1CY0UA86?=
- =?iso-8859-1?Q?SM6iNjVL19+66QEEr39cN7365Lg8YIHbRXQ/2KEp3HwgyKKggMwnTkrOGT?=
- =?iso-8859-1?Q?b4noDY7Q5Mgg2ksqCBQdB1RJCa4HiRAaIyloskkYzCy7kXfOVQbgiTBIxX?=
- =?iso-8859-1?Q?N9KMhiRqrxklNQqFpZzGwBNBUmLayYYpA5eiRqcd0sidA9Vdxlvqk2Ewsv?=
- =?iso-8859-1?Q?uYHF6/VehMPsbrS6WMjQCqA9jy7IQtMhPWplt7fY+TWrKfdYUNRCdG+Yxm?=
- =?iso-8859-1?Q?6ntcrdH1Bu2PgqDCnyDnLuV0EZVjlWtO8qpmzgrFMnA8vybXAjf313UqIs?=
- =?iso-8859-1?Q?WXSTM0w6zLjKOcvyKmBlpvEoz+ptTrDbXmGDBkOrwbeJ0ZfgF5SRB8hKRz?=
- =?iso-8859-1?Q?DbvVsqJMgb73zTibmc5N4wrPI1UjxinlVELXYrTNzURjKMCSmuKchLBZN/?=
- =?iso-8859-1?Q?nxt1ICGcpxnpL0EdHfVAGGPm/CQ0ix67G/FhT1wJeaOXr8T1Oa4J244cGq?=
- =?iso-8859-1?Q?jbeAVMYRpJ5DPD/e8jSXE868dsO/SLZukR1/RYxOM6jqkQ8bIned/JZsU0?=
- =?iso-8859-1?Q?1tRLNOXf3Bbp3eVgkHUVOrn4vDMUwxzb1odaHQQbG99LVBoZGSY5SP/sbT?=
- =?iso-8859-1?Q?8QCbEaCJiY6byElpFTQt5tS+bST2PxpeoKJ24VFXwdJDsQhu9lg+U+AITv?=
- =?iso-8859-1?Q?GSuYQJIMchXUgT85B2oSVH9VjJdrw+m0m+X46LtNJzyhHp2XmDJ4r8aR2b?=
- =?iso-8859-1?Q?7waZDZY93SVVUK5YtvuxE0cvHhvhcgTdQCHT7AN4kryBkR4ySTMls1CSd0?=
- =?iso-8859-1?Q?kJ/Mx4tJbQGtHl4ohr1c+LcofyG/BVPrkVBz+FgWUDsI6spCtMiHxDwyTo?=
- =?iso-8859-1?Q?wBQaqgfIdWN8chjdJS9kitcr68vQSHzSqvODE1ZrPyO4YO1mrCzF0ULi0U?=
- =?iso-8859-1?Q?IMqRLv1n+5/oAgMEbaEIBWpdEOHbbgPEpdIs4+YMgDG3iNf4RfXSrxl2hh?=
- =?iso-8859-1?Q?qJ55P1psFJ0tmqAjlE4HnYf7QW2g7GZXoMByQKO9U0+8JWuTgt60CSNHrD?=
- =?iso-8859-1?Q?rOHNH1QI5q4ZYPB2bjVSTiv/aNteke9bFOrE3T4Gr9jJqVajjC47JTeGup?=
- =?iso-8859-1?Q?aQ91i8Jzw75cDH67v7IpdnY+zSUWepRNsVBk37iAmmFB3xpevZXOmDPX8P?=
- =?iso-8859-1?Q?57rd7lkL6uAbcpDVVAdS47ijxDFsYCI0tGgEge17CilnubrMcHdtu6CBJR?=
- =?iso-8859-1?Q?1XpmVYoCxkSr2f/DqzNTe1DFeV8wm4wKfTU1rFg9myKzcTUGQr7sBf4Bxl?=
- =?iso-8859-1?Q?fGRqW/zdPcJIaZ2T1Gjsz2usFvP9Qb1fRifQMnGXTyhantSMjeczfcOomw?=
- =?iso-8859-1?Q?AxTfzJs7K8ph5cZa9IFnXU0DB7p+fNvWOvbfkR6CTE0cnCSwy+HcoZnd6N?=
- =?iso-8859-1?Q?JyUN4wTWLwh2a6kAVoKvKaTBjin6y5EoxhsvqlS+8ZoPiMlgba528iEXhf?=
- =?iso-8859-1?Q?qeBnNFMplQ=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51CF91DDE5;
+	Fri, 20 Mar 2026 07:15:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773990958; cv=none; b=ivfBOuc1U9gTTwkrVp4gheYM5w9NHiy8dad9LmAanqzrhFEHUr58SPbdfeJLQmECpBTyh6Doy1vcEpWiDF7Q05mUstuJJ2G/m6kzGAu1fiH6/1S9nbEa9e6XSe/a8Bwx1j6iBv4xiq8yAZWsM9jDUqZVhxWvB7Cd+Mays99JfBk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773990958; c=relaxed/simple;
+	bh=zTJ7d5VKVBxYx9G690v21pJXq9vZUEBvG2Pesuk1GXs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=HARTcOjzF+tDm7nkIaRzBp9mwFK55A+WtDooTXD29C53EJ90kuaV3x8e7E0TPJqoIuevV5OTx8OGx8olDssP8kpp5Qs5bmirHhHprlLHppl9qD0RnHVECVhYQrE0detOh1mnXPLW/Sox9V38DMrgba6lTzm1uIeiqgCxxyLRLhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RdG1rvtC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DEC9C4CEF7;
+	Fri, 20 Mar 2026 07:15:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773990958;
+	bh=zTJ7d5VKVBxYx9G690v21pJXq9vZUEBvG2Pesuk1GXs=;
+	h=From:Subject:Date:To:Cc:From;
+	b=RdG1rvtCuMkHgoidJUY9NR1ArsoOYkW0gbTXHlENyloo3JbjAiuX0MLW7tGNGtQa9
+	 6mkYEVpZaV+zCHp8ylcOqyQdVRdA6fMYZGAShAW9NubKfCmzzTG++xUFHVolevxmm4
+	 ZnSjXg+3W8pYH+rkTDg2GLQw8/3VrQ9n8q587DMKof5Bq65gkGW+HguTY0r8Ecjy75
+	 VgOgCxZrdT+9+KhCEzX77W0WwMz3cUGHwBhJ8AtvrgIbLrOe+37DoT900XsNvhQX7e
+	 fiUsSSvCYsJ9zR6pSn9U9Nvw4KBCo/6qrrJHr/EUNl6NrmQmsHaVMDrRHMvuvb0Gmk
+	 AHnh+GnGnU+kA==
+From: Yixun Lan <dlan@kernel.org>
+Subject: [PATCH v2 0/2] usb: spacemit: k3: Add USB2.0 support
+Date: Fri, 20 Mar 2026 07:15:36 +0000
+Message-Id: <20260320-02-k3-usb20-support-v2-0-308ea0e44038@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OSQPR06MB7252.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 796fcd23-c4bf-4bcf-f8f5-08de8650666b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Mar 2026 07:15:00.6909
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: SLu8g6XYOrbY/yEI/6b22UGmDakFO6ZRFtBvovZdieXmCsSqlVgWsVU39MEuFXGTmC7GqDLxn6CypX+SYEsy+mkLG4sfogKTx15APSwIY6Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI3PR06MB8684
-X-Spamd-Result: default: False [1.34 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABj0vGkC/22NQQ6CMBBFr0Jm7Zh2EKSuvIdhgXaABkPJFIiG9
+ O5WEncu30v++xsEFscBLtkGwqsLzo8J6JDBo2/GjtHZxECKSpVrQkU45LiEOykMyzR5mdE0ujJ
+ 5WRRsLKTlJNy611691Yl7F2Yv7/1k1V/7653/9laNCm1l2sKokhp7ug4sIz+PXjqoY4wf7XOid
+ LcAAAA=
+X-Change-ID: 20260312-02-k3-usb20-support-9a1893655e9d
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Ze Huang <huang.ze@linux.dev>, 
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: Emil Renner Berthing <kernel@esmil.dk>, 
+ Junzhong Pan <junzhong.pan@spacemit.com>, 
+ Inochi Amaoto <inochiama@gmail.com>, spacemit@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ Yixun Lan <dlan@kernel.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1690; i=dlan@kernel.org;
+ h=from:subject:message-id; bh=zTJ7d5VKVBxYx9G690v21pJXq9vZUEBvG2Pesuk1GXs=;
+ b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpvPQgdaNu3Wa3jbP9tc8E4mFIqS1Z9+wxy0fb+
+ pfbXdHleMqJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCabz0IBsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
+ maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
+ QACgkQMarqR1lNu+22zA/8Du+QshMhDvSF73PJ2xQzzcYyWaDWdOsRNSOBQQT0+XOff2NAyKsgm
+ WZiXcs+DVp6R2/IX10Zp+agZvjKL2CLI1nvPf5moSAo3XreicjYxU0E5TbSg6qp2hXXc9dukh2U
+ Nz82/6/iuFBA1ZOA1ADHgDYLXmq5U7VwarPp5vlLKCmvrHMTAKxHHevaJcsViLvZITnkOP6RzJo
+ t51ZmY0jBv93PUy0wg8Ikz1pKSs2HyR+immJAsw9zT5yJTCY9W+XbFmgns/gDyLlUcDkNbYdalF
+ EVPjcD35qtsS2t8R2yYKm6U6kgoApmEiMXoXqXJ0/kRn9pbBwbsckfiFqxdGLl612RYPstqUguK
+ 59QwSud86A3GzG/RlSGlKq9lH4SADz6885Lij1fWQ/l7YsIDKSN9GYfGSGs3bwnuPvdS7JLIni+
+ MwNhv+Qjy0YNQhFXXVoQalRZvbPtVPvNYGE6HF2bb1Cf2uP3aKwUFe3909YA4EU8AcR3l+2SwYS
+ LQry7auFnvJApWr60hST/D4O/C2AVoZrclIWPSpjT+MDeodinyXMQRxAzHRQbNWUafuG6g2HDgn
+ rLwmRspLQFTAI8j0HH7A9iKjSBPCGHJ46qqvTO35S/2l5cese5giYKFnByUXCcwLiJ5Z+oq0PwU
+ /aao8112dM0NPxo18jb4m0d9Tn8mJc=
+X-Developer-Key: i=dlan@kernel.org; a=openpgp;
+ fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[aspeedtech.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[aspeedtech.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278082-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[aspeedtech.com:+];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[billy_tsai@aspeedtech.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[esmil.dk,spacemit.com,gmail.com,lists.linux.dev,vger.kernel.org,lists.infradead.org,kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-278083-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.990];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.958];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 9FEED2D6769
+X-Rspamd-Queue-Id: 71A9B2D67A8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-...=0A=
-=0A=
-> What remains unclear is how best to model the secondary and tertiary=0A=
-> service processor control blocks (SSP/TSP) and the PCI control region.=0A=
-> The SSP and TSP controls consume reserved memory regions used to=0A=
-> configure the processors' address spaces, while the PCI control region=0A=
-> contains the VGA scratch registers used to communicate host display=0A=
-> ownership.=0A=
-=0A=
-> The p2a and smp-ram features are supported on earlier generations=0A=
-> but are not present on AST2700, and should be disabled in the binding=0A=
-> for the AST2700 as you suggested.=0A=
-=0A=
-Hi Krzysztof,=0A=
-=0A=
-Following up on my previous email, I've reworked the AST2700 SCU0=0A=
-binding to better reflect the hardware capabilities and address the=0A=
-issues discussed.=0A=
-=0A=
-In particular:=0A=
-- Restrict p2a-control and smp-memram for AST2700, as these features=0A=
-  are not present.=0A=
-- Add SSP/TSP address mapping support using memory-region and=0A=
-  memory-region-names.=0A=
-- Rework the example so it reflects the AST2700 SCU0 layout and validates=
-=0A=
-  against the binding schema.=0A=
-=0A=
-I wanted to share the current binding update for feedback.=0A=
-=0A=
-Below is the current SCU0 binding diff:=0A=
-=0A=
-diff --git a/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml =
-b/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml=0A=
-index a87f31fce019..86e560876cf2 100644=0A=
---- a/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml=0A=
-+++ b/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml=0A=
-@@ -46,6 +46,9 @@ properties:=0A=
-   '#reset-cells':=0A=
-     const: 1=0A=
- =0A=
-+  memory-region: true=0A=
-+  memory-region-names: true=0A=
-+=0A=
- patternProperties:=0A=
-   '^p2a-control@[0-9a-f]+$':=0A=
-     description: >=0A=
-@@ -87,6 +90,7 @@ patternProperties:=0A=
-             - aspeed,ast2400-pinctrl=0A=
-             - aspeed,ast2500-pinctrl=0A=
-             - aspeed,ast2600-pinctrl=0A=
-+            - aspeed,ast2700-soc0-pinctrl=0A=
- =0A=
-     required:=0A=
-       - compatible=0A=
-@@ -156,6 +160,42 @@ required:=0A=
-   - '#clock-cells'=0A=
-   - '#reset-cells'=0A=
- =0A=
-+allOf:=0A=
-+  - if:=0A=
-+      properties:=0A=
-+        compatible:=0A=
-+          contains:=0A=
-+            anyOf:=0A=
-+              - const: aspeed,ast2700-scu0=0A=
-+              - const: aspeed,ast2700-scu1=0A=
-+    then:=0A=
-+      patternProperties:=0A=
-+        '^p2a-control@[0-9a-f]+$': false=0A=
-+        '^smp-memram@[0-9a-f]+$': false=0A=
-+=0A=
-+  - if:=0A=
-+      properties:=0A=
-+        compatible:=0A=
-+          contains:=0A=
-+            const: aspeed,ast2700-scu0=0A=
-+    then:=0A=
-+      properties:=0A=
-+        memory-region:=0A=
-+          items:=0A=
-+            - description: Region mapped through the first SSP address win=
-dow.=0A=
-+            - description: Region mapped through the second SSP address wi=
-ndow.=0A=
-+            - description: Region mapped through the TSP address window.=
-=0A=
-+=0A=
-+        memory-region-names:=0A=
-+          items:=0A=
-+            - const: ssp-0=0A=
-+            - const: ssp-1=0A=
-+            - const: tsp=0A=
-+    else:=0A=
-+      properties:=0A=
-+        memory-region: false=0A=
-+        memory-region-names: false=0A=
-+=0A=
- additionalProperties: false=0A=
- =0A=
- examples:=0A=
-@@ -180,4 +220,81 @@ examples:=0A=
-             reg =3D <0x7c 0x4>, <0x150 0x8>;=0A=
-         };=0A=
-     };=0A=
-+=0A=
-+  - |=0A=
-+    / {=0A=
-+        #address-cells =3D <2>;=0A=
-+        #size-cells =3D <2>;=0A=
-+=0A=
-+        reserved-memory {=0A=
-+            #address-cells =3D <2>;=0A=
-+            #size-cells =3D <2>;=0A=
-+            ranges;=0A=
-+=0A=
-+            ssp_region_0: memory@90000000 {=0A=
-+                reg =3D <0x4 0x00000000 0x0 0x01000000>;=0A=
-+                no-map;=0A=
-+            };=0A=
-+=0A=
-+            ssp_region_1: memory@91000000 {=0A=
-+                reg =3D <0x4 0x01000000 0x0 0x01000000>;=0A=
-+                no-map;=0A=
-+            };=0A=
-+=0A=
-+            tsp_region: memory@92000000 {=0A=
-+                reg =3D <0x4 0x02000000 0x0 0x01000000>;=0A=
-+                no-map;=0A=
-+            };=0A=
-+        };=0A=
-+=0A=
-+        bus {=0A=
-+            #address-cells =3D <2>;=0A=
-+            #size-cells =3D <2>;=0A=
-+=0A=
-+            syscon@12c02000 {=0A=
-+                compatible =3D "aspeed,ast2700-scu0", "syscon", "simple-mf=
-d";=0A=
-+                reg =3D <0 0x12c02000 0 0x1000>;=0A=
-+                ranges =3D <0x0 0x0 0x12c02000 0x1000>;=0A=
-+                #address-cells =3D <1>;=0A=
-+                #size-cells =3D <1>;=0A=
-+                #clock-cells =3D <1>;=0A=
-+                #reset-cells =3D <1>;=0A=
-+=0A=
-+                memory-region =3D <&ssp_region_0>, <&ssp_region_1>,=0A=
-+                                <&tsp_region>;=0A=
-+                memory-region-names =3D "ssp-0", "ssp-1", "tsp";=0A=
-+=0A=
-+                silicon-id@0 {=0A=
-+                    compatible =3D "aspeed,ast2700-silicon-id", "aspeed,si=
-licon-id";=0A=
-+                    reg =3D <0x0 0x4>;=0A=
-+                };=0A=
-+=0A=
-+                interrupt-controller@1b0 {=0A=
-+                    compatible =3D "aspeed,ast2700-scu-ic0";=0A=
-+                    reg =3D <0x1b0 0x4>;=0A=
-+                    #interrupt-cells =3D <1>;=0A=
-+                    interrupts-extended =3D <&intc0 97>;=0A=
-+                    interrupt-controller;=0A=
-+                };=0A=
-+=0A=
-+                interrupt-controller@1e0 {=0A=
-+                    compatible =3D "aspeed,ast2700-scu-ic1";=0A=
-+                    reg =3D <0x1e0 0x4>;=0A=
-+                    #interrupt-cells =3D <1>;=0A=
-+                    interrupts-extended =3D <&intc0 98>;=0A=
-+                    interrupt-controller;=0A=
-+                };=0A=
-+=0A=
-+                pinctrl@400 {=0A=
-+                    compatible =3D "aspeed,ast2700-soc0-pinctrl";=0A=
-+                    reg =3D <0x400 0x318>;=0A=
-+                    emmc-state {=0A=
-+                        function =3D "EMMC";=0A=
-+                        groups =3D "EMMCG1";=0A=
-+                    };=0A=
-+                };=0A=
-+            };=0A=
-+        };=0A=
-+    };=0A=
-+=0A=
- ...=0A=
-=0A=
-One additional question regarding the example: Since the AST2700 SCU0=0A=
-node is not significantly different from previous generations and the=0A=
-example mostly uses standard properties, do you think keeping this=0A=
-additional example is useful, or would you prefer to keep the binding=0A=
-minimal?=0A=
-=0A=
-Thanks=0A=
-Billy Tsai=0A=
+There is one USB2.0 host in K3 SoC which actually use DWC3 IP but only 
+provide USB2.0 functionality, and with only one USB2 PHY connected.
+
+This series try to add USB2.0 support for SpacemiT K3 SoC, and will
+enable it for Pico-ITX board in a separate patch. There is a run-time
+dependency on USB phy[1], Hub[2] and reset[3] patches, but each series
+should be quite independent, so I intend to not add prerequisite id
+for the dependency here.
+
+For people who interested, I've collected all patches and put a complete
+branch here[4].
+
+Link: https://lore.kernel.org/r/20260305-11-k3-usb2-phy-v4-0-15554fb933bc@kernel.org [1]
+Link: https://lore.kernel.org/r/20260317-03-usb-hub-fe1-v1-0-71ec3989f5be@kernel.org [2]
+Link: https://lore.kernel.org/r/20260314-01-k3-reset-usb-pci-v2-1-9dc0976d524e@kernel.org [3]
+Link: https://github.com/spacemit-com/linux/tree/WIP/k3/usb2 [4]
+
+Signed-off-by: Yixun Lan <dlan@kernel.org>
+---
+Changes in v2:
+- separate DT patch out, will send in another series
+- document for K1 about why also work with one PHY
+- collect tags
+- Link to v1: https://lore.kernel.org/r/20260317-02-k3-usb20-support-v1-0-d89f59062ad4@kernel.org
+
+---
+Yixun Lan (2):
+      dt-bindings: usb: dwc3: spacemit: add support for K3 SoC
+      usb: dwc3: dwc3-generic-plat: spacemit: add support for K3 SoC
+
+ Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml | 6 +++++-
+ drivers/usb/dwc3/dwc3-generic-plat.c                        | 1 +
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+---
+base-commit: c4c6e209dcf903ada6ddb4a0baca01ce8459a379
+change-id: 20260312-02-k3-usb20-support-9a1893655e9d
+
+Best regards,
+-- 
+Yixun Lan <dlan@kernel.org>
+
 
