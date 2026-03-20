@@ -1,238 +1,204 @@
-Return-Path: <devicetree+bounces-278163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278165-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MMBOJawVvWnG6QIAu9opvQ
-	(envelope-from <devicetree+bounces-278163-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:38:52 +0100
+	id MDbhOloWvWnG6QIAu9opvQ
+	(envelope-from <devicetree+bounces-278165-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:41:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2F272D8229
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:38:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98E822D82B0
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:41:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DD629300C9A3
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:38:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4548E30ACB6F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:40:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE90E378D7E;
-	Fri, 20 Mar 2026 09:38:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78152382F2F;
+	Fri, 20 Mar 2026 09:40:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bnoEx+VR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022138.outbound.protection.outlook.com [52.101.126.138])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 105722E8B64;
-	Fri, 20 Mar 2026 09:38:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.138
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773999529; cv=fail; b=F3UiSKmk4sE8UnHGJB66fVAJ9Iq5ycPhs8icenS2sKfWAM146gcAYvuYMMr2Gtl2Wncw9jsu5aLv0c0E7TMtiTKNAYHZN549mT++6hBXk1HYiwBN7pEogZAk7IH0U6nCso4XfseQijixTiJKAuEdLbNa5/nSu1LT2y/rYxEqt1A=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773999529; c=relaxed/simple;
-	bh=O6YrVg/VA+FzzFiDnFW4Dab0L+QK2bOoRqWg+A1o1iA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lCiaSWrpLl7txLWcKgxZojswTBp+m5N/wxAl0HzyYiDf3QkpqLydtQnxTk/IyvHwbzzr7ItTf8gB+IcNE+nuXqGtC5xKYj4HcFT4d3tBe5Ink6uJal/7yLPnrWtetrzDksxkzaxzafAOovWTUZX4H8JiSnAFaEWNbxaLFFfJ0I4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aZL2a9/Z8uZyLXfzADx7aoqIkP6uBI3nV5weg4RjXaT0CARaPvjsQ6kyatjfScylsObmqsa0pWER/cEAWTa9Hxay9ygpa/gT4eVW4J4cdKEUMbcSZDoYtSutnlo8D3suerhcnEBnCD0ZEGU1bWjXMdP2hM6y4x+h8nXHNVwEH5rUvqFpW1rf9sWXyE1sKfX1x2WrP9cQ6/CzGnnyg1mQIwtEc9pTt+rY/oxG9PUEtXTowC0UAdvVGAUlpwy+hmGDhQHTbNX7LS0I2gJxYjhZ4QXskXqlaqeXiFRoGYHqLt/Cqb+/ErepwCGg4AANnHn28F3iuWjfYluzMuQ8BIZJVw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A+tMuQ6+ijkmWkAGrmAOavH6O40L35Xsog9Lz1Jw6Bk=;
- b=r6zmc9R4vA2DQSVklY75z+gsSwEv08gnlC5QtdRatamff/0u+3DgexDi/b6acSRJpUgEJEsk+2kr3QFJ61RDm+XPsCUDVSuDiBT/zB4fhk7RVcUAj+6cMQgqZzoZDI5qc7UTvdTBpIOwuXX2KTCv6v+vfmHAihozzUrmVns75m5nm0v1c8d7eVl52oxm4bAfLVaVkfbNVnyJL1N4rBHrbW05Iaj8llEb6FPn3p5uyEVr/3ovLgFEJCBU1wPmTK71vbAqJjY850RZPzaDEKkspT3aJNldPe0OfxkVsO/qbhf3FidiQTuUDv2iJM1m4Oef7jWbS0l5c/QR3Cj3hv/UDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SG2P153CA0025.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c7::12) by
- PUZPR06MB5556.apcprd06.prod.outlook.com (2603:1096:301:e9::10) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.22; Fri, 20 Mar 2026 09:38:44 +0000
-Received: from SG2PEPF000B66CD.apcprd03.prod.outlook.com
- (2603:1096:4:c7:cafe::22) by SG2P153CA0025.outlook.office365.com
- (2603:1096:4:c7::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9745.13 via Frontend Transport; Fri,
- 20 Mar 2026 09:38:43 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG2PEPF000B66CD.mail.protection.outlook.com (10.167.240.27) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9723.19 via Frontend Transport; Fri, 20 Mar 2026 09:38:42 +0000
-Received: from nchen-desktop (unknown [172.16.64.25])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 5B5814126F83;
-	Fri, 20 Mar 2026 17:38:42 +0800 (CST)
-Date: Fri, 20 Mar 2026 17:38:41 +0800
-From: Peter Chen <peter.chen@cixtech.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jun Guo <jun.guo@cixtech.com>, fugang.duan@cixtech.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
-	ychuang3@nuvoton.com, schung@nuvoton.com, robin.murphy@arm.com,
-	Frank.Li@kernel.org, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	cix-kernel-upstream@cixtech.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: dma: arm-dma350: document generic
- and combined IRQ topologies
-Message-ID: <ab0VoTut0u4f7EVr@nchen-desktop>
-References: <20260319101723.246539-1-jun.guo@cixtech.com>
- <20260319101723.246539-2-jun.guo@cixtech.com>
- <20260320-vengeful-violet-cockle-382580@quoll>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5579B375F96;
+	Fri, 20 Mar 2026 09:40:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773999612; cv=none; b=StCwJX/j/LPfW0nwsfSEg4hlQHt/aG/chpspgPKq3G+A/2r5jckS56Avo/OKWL1fvqZCL34JO7FwkC7n+lp44E2OAJTTnxdIfZ6I8nx0LKR/Kc9DruvUyXNosK/Bjc0PdNkFuWQvdy4MODuGWQPzKfd4iylZMmwvE6k6vc8lSoE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773999612; c=relaxed/simple;
+	bh=azSiGaSSxlTDuQCny00ji++6MuquKojsYdW19YTW/1A=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=F/GSgMMIerGztgsws8xL9/B2w7S1E7b0URbnsE34IoNTBAnapLloMMPDzv3FPwS51SQDVB8r/c5tZCl1VuFJ3PzQdrWdw1tIF8QX6UrjfEBpFlR8ZDDHPfE2WGgSUDKWAM3/T9JZ6QQN9ZwZHZRjTL3K4vgiPmpy6BBKMhgN3p4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bnoEx+VR; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 132A8C415A4;
+	Fri, 20 Mar 2026 09:40:34 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id ABACB600E0;
+	Fri, 20 Mar 2026 09:40:08 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 14D5710450B5E;
+	Fri, 20 Mar 2026 10:40:02 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1773999607; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=qI1QX1Pvfy/14Qd8e/7scqtIpDkafI6tjAKrp8F3d1w=;
+	b=bnoEx+VR+uXmYPQTrhnA+Cn8SXQekQrAIPi5w+sB7ftOWRhnHg9yWThlxdRxUiW6hSLuN+
+	cLbUYn24K0qpkPctbdGTSsBAQq78Dz6hRA+cVic+TTXo236RM0Or+R+3+cw/RS6qzlfhQh
+	zJn2Gv1sloLx1f3pxtwNCQ2i6KU6r4wuA2jlaaFZ5pCZyHm1fT/yKB8qW//PeHf4qc5NDK
+	kfAEdDQcLWKuai1We2OG16gLk7Jv+KPlYX78fUHKpNBCJWt7L2wRZg6Y6dQoly2I2BroRM
+	YdyMKbMUUsKOdq4MJkqS3n9DmHDIMWAU94isUGqhmAGFN0McydxWRGH8p32Z7g==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+ Mark Brown <broonie@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH net-next 2/2] net: sfp: manage receiver and transmitter regulators
+Date: Fri, 20 Mar 2026 10:39:10 +0100
+Message-ID: <6022954.DvuYhMxLoT@fw-rgant>
+In-Reply-To: <aaspCUWel9k_ls4i@sirena.co.uk>
+References:
+ <20260303-sfp-regulators-v1-0-7101ae34cb84@bootlin.com>
+ <aacpVFhH8eV7dxHV@shell.armlinux.org.uk> <aaspCUWel9k_ls4i@sirena.co.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260320-vengeful-violet-cockle-382580@quoll>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CD:EE_|PUZPR06MB5556:EE_
-X-MS-Office365-Filtering-Correlation-Id: dc518283-91c1-4f85-5a2f-08de866479eb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700016|82310400026|376014|7416014|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	OgHYZwojVLXi5GrMG5iwRvMU31kbnXqjNv14ij9OxMCjg+Tg2TV/PTEOav9Sxt0fU1Y6xSHXN28uwtRTxi7THGeDlk3DKNvVXPsuI2dk05YUo4dSfhQTI47LGwsNjbnfTdVqO4iSXz30oIfSgK1V5zy57gCiApdWqQ81DsxXMGf0M4A2t1Qdw8LL3rkN4aR4rpSkonQI9Y3lSXrVvBUy+oKT+KbULQ7Yb3JIvVmMb2qchWhBg9sZ7J/6Yv2pT8s6jc1Tt2JkGMKy69Sk89aF0c0OKguoFJswoYk1yYeWBN5EWSlc+WZIYyUO8CxNJ6hteP7CLTaHvxxL3tlMggcod7aWH0BYWR40tuJILjPT40m/1FJrW9CEj5gxZjX4bl8Ao993hL1ExR3z316XHJQTD6h8prDCs5KchqYfJAEP9k/eZATh10SuTo2X7Mz/DPR2uHSOgQoezs79OI2DabPMnoxEq1NyH6WCXhXSsHQfOn/ha7uha2jT+Hm0mgw1oMfeO7VGCNXqpe2IIGZ0q7WUsOBKS1w6k0BpQXIEy5IB70o9q33QLN3mEW4gGTliieXgMX4+ZBFOpm1JENOkHzLuYKM4u40eNWrnnX5SMDGAPqRjgDL/Mp78cKAgez1ygeFGNJ3LBxlCZ3RYbyQfcJ6SPwo3AA5aq1gdtYbVy7upm+b89BLaM6Wsr1fkEQ+YNycB5E5sgtfkIDjuMvnh2XJtF02PCP0GBsKUx8DZzuLdZg68djPbX/t8Gf8F//mfQTF83UWbPkcBZk2XaxDvMzULPg==
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700016)(82310400026)(376014)(7416014)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	uTudb2ZJsafzrlw6fFZ5JtRo/biQTGgJCqsOKo8HcWR6eoULSaW17TgLG6zBYedSfhkaK/lMrHYpWkwcY2Qf7Jd8xs3M/10Egpx3Z9ycQ25kt7ESY5O7MkVt7IzfmYg8TzGOkALM7LZG7dXInSog9ZHnCy+Prx/4AnoYPZhquu2JVyndxbWordGjZ/aWCrSNveR7EVv+YhzBHDmm1aor27GgaviJf3tXMuFsb/k3YmMN1qKxpd9vhCwF3i1LCnVnw60p7DUjtr1PppED8jZ5+Os/xWrWcPTQulAHPQ7685CSLVMe5zoUXZ7uQIrGxz+QtS5sxnkUte25lXE/DKCiR1CGmnNdH1C3Ee7PzhuNbj45tGwpU/42NTRMAZkcGeytfuUh/Ock6ufZ3SQAZe2Z7aEks+kp+vK6x6q3jwKbg3dPSwcZu33sJuXttCqrdtGT
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2026 09:38:42.9806
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc518283-91c1-4f85-5a2f-08de866479eb
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SG2PEPF000B66CD.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR06MB5556
-X-Spamd-Result: default: False [2.54 / 15.00];
+Content-Type: multipart/signed; boundary="nextPart6296369.lOV4Wx5bFT";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278163-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7];
-	DMARC_NA(0.00)[cixtech.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-278165-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,bootlin.com,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peter.chen@cixtech.com,devicetree@vger.kernel.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	NEURAL_SPAM(0.00)[0.166];
-	R_DKIM_NA(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[romain.gantois@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	NEURAL_HAM(-0.00)[-0.979];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[cixtech.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,checkpatch.pl:url]
-X-Rspamd-Queue-Id: E2F272D8229
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 98E822D82B0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 26-03-20 10:12:53, Krzysztof Kozlowski wrote:
-> EXTERNAL EMAIL
-> 
-> On Thu, Mar 19, 2026 at 06:17:21PM +0800, Jun Guo wrote:
-> > Update the DMA-350 DT binding to match the current driver behavior.
-> >
-> > Allow both:
-> > - "arm,dma-350" as the generic compatible, and
-> > - "cix,sky1-dma-350", "arm,dma-350" for SoC-specific fallback usage.
-> >
-> > Also document interrupt topology variants supported by hardware
-> > integration:
-> > - one combined interrupt for all channels, or
-> > - one interrupt per channel (up to 8 channels).
-> >
-> > This patch is Assisted-by: Cursor: GPT-5.3 Codex.
-> 
-> Wrong tag, please read carefully the guideline before using LLM tools.
-> 
+--nextPart6296369.lOV4Wx5bFT
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+Date: Fri, 20 Mar 2026 10:39:10 +0100
+Message-ID: <6022954.DvuYhMxLoT@fw-rgant>
+In-Reply-To: <aaspCUWel9k_ls4i@sirena.co.uk>
+MIME-Version: 1.0
 
-Hi Krzysztof,
+Hello Mark,
 
-It is the trade off for coding-assistants.rst suggestion and
-passing checkpatch.pl. Currently, checkpatch.pl reports the
-error for tag without email address. So we choose to add tag
-description at patch context.
+On Friday, 6 March 2026 20:20:41 CET Mark Brown wrote:
+> On Tue, Mar 03, 2026 at 06:32:52PM +0000, Russell King (Oracle) wrote:
+> > On Tue, Mar 03, 2026 at 05:31:36PM +0000, Mark Brown wrote:
+...
+> 
+> > Now, if you're going to say "ah, so it has power pins, you need to
+> > describe them using a regulator" then I would say to you, when are
+> > we introducing regulators for every device we describe in DT such
+> > as LEDs, switches, GPIO pins, RAM, etc? Every device needs to have a
+> > source of power after all.
+> 
+> It sounds from the cover letter for this series like there's some demand
+> for power control of SFP cages, the cover letter isn't terribly specific
+> about what circumstances though.  Possibly there's some UI for this on
+> the system, or the hardware has some mechanism for detecting physical
+> insertion to the SFP cage (hopefully well in advance of the electrical
+> contacts being made)?  Romain, are you able to share more specifics on
+> the use case here?
 
-Peter
+It seems like my upstreaming strategy was incorrect. The series that I sent is 
+a subset of my original use case, but in hindsight I should've just presented 
+the original one in the first place, that would've been clearer, sorry about 
+that.
 
-> >
-> > Signed-off-by: Jun Guo <jun.guo@cixtech.com>
-> > Link: https://lore.kernel.org/r/20251216123026.3519923-2-jun.guo@cixtech.com
-> 
-> What does this express? Changelog link? Then keep it in the changelog
-> --- part.
-> 
-> 
-> > ---
-> >  .../devicetree/bindings/dma/arm,dma-350.yaml  | 31 +++++++++++++------
-> >  1 file changed, 21 insertions(+), 10 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/dma/arm,dma-350.yaml b/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
-> > index 429f682f15d8..3639ce0d5054 100644
-> > --- a/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
-> > +++ b/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
-> > @@ -14,7 +14,11 @@ allOf:
-> >
-> >  properties:
-> >    compatible:
-> > -    const: arm,dma-350
-> > +    oneOf:
-> > +      - const: arm,dma-350
-> > +      - items:
-> > +          - const: cix,sky1-dma-350
-> > +          - const: arm,dma-350
-> >
-> >    reg:
-> >      items:
-> > @@ -22,15 +26,22 @@ properties:
-> >
-> >    interrupts:
-> >      minItems: 1
-> > -    items:
-> > -      - description: Channel 0 interrupt
-> > -      - description: Channel 1 interrupt
-> > -      - description: Channel 2 interrupt
-> > -      - description: Channel 3 interrupt
-> > -      - description: Channel 4 interrupt
-> > -      - description: Channel 5 interrupt
-> > -      - description: Channel 6 interrupt
-> > -      - description: Channel 7 interrupt
-> > +    maxItems: 8
-> > +    description: |
-> > +      The DMA controller may be configured with separate interrupts for each channel,
-> > +      or with a single combined interrupt for all channels, depending on the SoC integration.
-> 
-> And more important - you must review the LLM microslop output before
-> posting and adjust it to Linux kernel coding style. Don't send
-> unredacted tool output.
-> 
-> Best regards,
-> Krzysztof
-> 
+Originally, I implemented a runtime PM support in the SFP core. This allowed 
+to cut power to the cages when the attached network interface was down, 
+thereby saving power. This is interesting since I'm dealing with a battery-
+powered system which has SFP cages. However, an upstream version of this would 
+require some kind of new userspace interface to signal indifference to module 
+detection when the upstream network interface is down. Otherwise it could 
+break existing userspace applications which expect to detect and interact with 
+SFP modules (e.g. read EEPROMs, read temperature sensors) even when their 
+upper network interfaces are down.
+
+Aside from this, what Russell told me in this message:
+
+https://lore.kernel.org/all/aacYGTBobbfJgZpp@shell.armlinux.org.uk/
+
+suggests that cutting power to SFP cages could lead to unspecified behavior 
+with some modules, so for example unloading the SFP core kernel module while 
+an SFP module was inserted could have unintended consequences... This problem 
+requires some more investigation on my side before I can submit a proper 
+runtime PM solution.
+
+Thanks,
 
 -- 
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-Best regards,
-Peter
+--nextPart6296369.lOV4Wx5bFT
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmm9Fb4ACgkQKCYAIARz
+eA6U8hAAmaKuJRvVRCLsakTmqj521w8k7ueuC0H3tuNH6bhQ2grt1arXAJ9At9UJ
+jlgjlecqDosz10ORSIKTxDHcb+Vvy9yWhp+CVYr6bMCsp7YpFBz5vGZWVM9+GYiq
+njAC44bgcNgQ9qQdUDszfx+A7tQB6nxav+jkcfXf++c8yaOH0T4SUuz1H9WR1yHQ
+A/Tf4ppvSAN9pjGxsbVjMyv6mb0VFxfT3UgU52qECqgpAet3fdvQ+xQLavzZjddG
+9zrjbuXTykR00Hkxcn4m+jdlXOP13DsqqkAe31QoLvNGyroUVlEBv/yR0BcmngdN
+SIM6NNKY1EiTabvfqsshGt1kqW9FDFn0qe+AWkF/vxZPZTqAyxtGc2KFcGUZguW7
+W20PACrkYFNwDW8cp3kjKLP4jpLeUQ2CgM3Eix7Tg7uTvBat9ROlzdj69kSodzs9
+HjK35igIvg57um0rnTq+R2cevprOI7n+b/h08qgyWL6IB9CBPvA2yLdp2YXxzZa2
+Un1J+bADDD8d1VsCVM/LMZRSmisphJzzRoN4VdQNwnIy7NDqIPjZbvBj0JgdSPdR
+UA15BVPznAARtugBYGefqdGzHpBBlUwt1icrFsPnPyoquZSRx/eFV2usna2CfEZq
+F+0TFlRrQAfQtmZxupOwzz6bbhOLsgjw0nlLz+RohnXZuzJ2zcI=
+=JdXL
+-----END PGP SIGNATURE-----
+
+--nextPart6296369.lOV4Wx5bFT--
+
+
+
 
