@@ -1,78 +1,75 @@
-Return-Path: <devicetree+bounces-278395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278396-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wJM9HgeAvWk4+gIAu9opvQ
-	(envelope-from <devicetree+bounces-278395-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:12:39 +0100
+	id gMCKFhSAvWk4+gIAu9opvQ
+	(envelope-from <devicetree+bounces-278396-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:12:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 201512DE5DF
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:12:38 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58CD82DE5F4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:12:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6F96B30594FA
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:03:40 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 32C09309B0F1
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:03:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 908AA3CF03C;
-	Fri, 20 Mar 2026 17:03:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 823A73CCFBD;
+	Fri, 20 Mar 2026 17:03:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="WDGzkNJ8"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="rJFQTNjB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com [91.218.175.188])
+Received: from out-178.mta1.migadu.com (out-178.mta1.migadu.com [95.215.58.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E7733CE4B7
-	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 17:03:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.188
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D016364951
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 17:03:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774026197; cv=none; b=du4ABopiwGHh5FXgdOix6q87WGzfuq883Wo6JFDBSC53qzEH6zYsZQf4WFbnIizG3hjujZBBdWVxFf0GTKrio9gl9wK2UY3wPhq8faPzQewd4+4zU9IO6+ebgxKYExRO8yJu/C8Ood13xAsWcF+GX5VPPJug/agIwkJTe/3TVmk=
+	t=1774026229; cv=none; b=kTw271qNhI56Tina7rXoJ5i5VYZs0Vd1OQKaNPWmNaQnacG/13cWv+GK0IUH4LpdA6vY6vjh0w9HDKK8wwhdEKIcFSdaT0qOojbLU2t/sOByiN7fKh5+2ikjG3+GDi9XD5yruNj+u0CbbWK1PkBU5iHhkX9Y2yNKgw9KBNsPaRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774026197; c=relaxed/simple;
-	bh=R9agQqu5tkXPYNVu0v9e5fQs7jHig/EoRGj3+oCKDy4=;
+	s=arc-20240116; t=1774026229; c=relaxed/simple;
+	bh=Gj1vtuwQXHR8UoUYcOrYnXzY7Cxk5iL7v70NyDYKxaU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oGvMFVrUQj/rTsvQXizB6Z6XcLw2QThyOy/P6dbGJjz7Ia6AsY135wsHGr57QohcOWh4429GMvhbVTbtIFAvhHaNeSLSl9ki/zCGciJQlcesIIaGm0C5SALIzewzQhPyDRlrND1JCdKVHjJ5dP/lQI4Zzh26EUyGrdj33va/7Og=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=WDGzkNJ8; arc=none smtp.client-ip=91.218.175.188
+	 In-Reply-To:Content-Type; b=bxJfp5wvUMYS44gTpUGe3FRvwawlkYmbFvRmgPlPRk9u1M1usOjehRn4wiuisRGlkuKYhEWq0zRd9xeu3lT2l847v3EssZrpkW9eWFZEotn4fmbpJH5sqIvULigSo5jsRd+gHO4VFehRzVgJ/rwK3uay3EmfZd2rCBCA5PkClLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=rJFQTNjB; arc=none smtp.client-ip=95.215.58.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
-Message-ID: <55dab1d8-87af-4285-9ab1-924bf392c78d@postmarketos.org>
+Message-ID: <4bbbebef-8a3c-4320-a2d8-f5187db2d850@postmarketos.org>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1774026192;
+	s=key1; t=1774026216;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=6pufWPdNgCwGbYkgjf8omMA/m8gPnG3IRMg4mH8sWk4=;
-	b=WDGzkNJ8By5Y6tAKDPv3fbGbSbNJqnFLw1phIB0Azz1YGK7bjjneXFleqtBflMOI5pB2Fz
-	UNjG3QBrjQIEoxtnua0WRb4O/RPGquLUYKYaJPKpxoga8rcmDjgVhszWag/m/VNCmM/Ftd
-	wD6JuHFUMqHMhyV5+5M2J0oPJu37wNVITe0a4ApkjhC9hgsCS/nQAGyZjEmWZVgem38j7F
-	bKW/pnNzXIWJkDhr8wKYmUdEBvuuIkdK0G1A1LRfHTKYmeBlwgck/a9r79Z+Ba19gX8sMT
-	CS8U/8z1zoIO1X7SxiLZegtw2Eu+BFaIMlrJe21HKDJ8ZaEH/esh31iHR010Dw==
-Date: Fri, 20 Mar 2026 18:03:07 +0100
+	bh=DwecroZVjODs6pTedN26ECdEviq+g/i3AiPwlkMDrIw=;
+	b=rJFQTNjBLoAdYfxmBhtJdesTK73gwyqAgh8WorG1RwYbp4p63tRkPFhaDnsTpQ8Uq/xNXO
+	M9h6HzURzCpuCgfivuf2aIdjMSb8NXbGXc92NhPky5bhnE3MQSsQPxkr94Ki20a5kCFonv
+	AqeRP+TzacYwJoFnqNPKbSYvM0Lf3N0zpUaHarqpmRTa6L1+Fai27FZnbudaxSDXf5DMSa
+	LEhvbaiBDZZko8kHYpkqsTAajB0qpD27SkfpTrTkTPcFcnTz0PXbN9b78M+xIzrhyWbGyZ
+	uVMHRVtLGyHo0OPtcFzn5Ngt+YEd0VIO2TR7DNG98vnlI/KNc6rkle5Nsh4Rew==
+Date: Fri, 20 Mar 2026 18:03:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v7 2/7] Input: synaptics-rmi4 - handle duplicate/unknown
- PDT entries
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: sdm845-shift-axolotl: Enable sdcard
 Content-Language: en-US
-To: David Heidelberg <david@ixit.cz>,
- Kaustabh Chakraborty <kauschluss@disroot.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
+To: David Heidelberg <david@ixit.cz>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
- Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
- Vincent Huang <vincent.huang@tw.synaptics.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org
-References: <20260320-synaptics-rmi4-v7-0-379360de18d0@ixit.cz>
- <20260320-synaptics-rmi4-v7-2-379360de18d0@ixit.cz>
- <fba73d66-4300-4c4d-9bf6-4b38a4e847d7@postmarketos.org>
- <3dca0fc0-fe1c-4f84-b336-856f55a6e3da@ixit.cz>
+ <conor+dt@kernel.org>, Dylan Van Assche <me@dylanvanassche.be>
+Cc: linux-arm-msm@vger.kernel.org, Petr Hodina <phodina@protonmail.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ phone-devel@vger.kernel.org
+References: <20260320-axolotl-misc-p1-v1-0-89c9b5ecb26e@ixit.cz>
+ <20260320-axolotl-misc-p1-v1-1-89c9b5ecb26e@ixit.cz>
+ <8abf3f78-c994-4d05-81ea-ef54dd380109@postmarketos.org>
+ <51f16009-5df8-4c3a-8fb9-28af73b8c04d@ixit.cz>
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 From: Casey Connolly <kcxt@postmarketos.org>
-In-Reply-To: <3dca0fc0-fe1c-4f84-b336-856f55a6e3da@ixit.cz>
+In-Reply-To: <51f16009-5df8-4c3a-8fb9-28af73b8c04d@ixit.cz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
@@ -81,178 +78,66 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[postmarketos.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[postmarketos.org:s=key1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278395-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[ixit.cz,disroot.org,gmail.com,kernel.org,zx2c4.com,ew.tq-group.com,tw.synaptics.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278396-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,protonmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.981];
+	NEURAL_HAM(-0.00)[-0.963];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[kcxt@postmarketos.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[postmarketos.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[postmarketos.org:dkim,postmarketos.org:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 201512DE5DF
+X-Rspamd-Queue-Id: 58CD82DE5F4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
 
-On 20/03/2026 17:54, David Heidelberg wrote:
-> On 20/03/2026 17:49, Casey Connolly wrote:
->> Hi David,
->>
->> Nice timing with the series, I hit an OOB access (found it when I
->> enabled UBSAN) with this patch the other day.
->>
->> The pdt_scan_state->pdts array should actually be of size
->> (RMI_PDT_MAX+1).
->>
->> Additionally, I think rmi_pdt_entry_is_valid() is missing a bounds check.
->>
->> Kind regards,
+On 20/03/2026 18:02, David Heidelberg wrote:
+> On 20/03/2026 17:56, Casey Connolly wrote:
 > 
+> [...]
 > 
-> Thanks a lot for catching this and for the detailed notes — that’s very
-> helpful.
+>>> +    sdc2_card_det_n: sd-card-det-n-state {
+>>> +        pins = "gpio126";
+>>> +        function = "gpio";
+>>> +        bias-pull-up;
+>>
+>> This can probably be bias-disable I guess, not that it likely matters in
+>> practise.
 > 
-> Since you’re the original author of the commit, I’m completely fine with
-> you taking over the b4 series if you’d prefer. Alternatively, if it’s
-> easier, feel free to just send me a fixed patch and I can incorporate it.
+> We could save few uA by just disabling the bias, as the card-det pin is
+> useless anyway? Do I get it right?
+
+Yeah basically
 > 
-
-Uh sure, not sure this will apply cleanly I just edited inline it's a
-3-line delta. Also figured we can drop pdt_count since it's unused.
-
----
-
-diff --git a/drivers/input/rmi4/rmi_driver.c
-b/drivers/input/rmi4/rmi_driver.c
-index ccd9338a44dbe..c7d2f68e65487 100644
---- a/drivers/input/rmi4/rmi_driver.c
-+++ b/drivers/input/rmi4/rmi_driver.c
-@@ -494,12 +494,39 @@ static void rmi_driver_copy_pdt_to_fd(const struct
-pdt_entry *pdt,
- 	fd->function_version = pdt->function_version;
- }
-
-+static bool rmi_pdt_entry_is_valid(struct rmi_device *rmi_dev,
-+				   struct pdt_scan_state *state, u8 fn)
-+{
-+	if (fn > RMI_PDT_MAX)
-+		return false;
-+
-+	switch (fn) {
-+	case 0x01:
-+	case 0x03:
-+	case 0x11:
-+	case 0x12:
-+	case 0x30:
-+	case 0x34:
-+	case 0x3a:
-+	case 0x54:
-+	case 0x55:
-+		if (state->pdts[fn] == true)
-+			return false;
-+		break;
-+	default:
-+		rmi_dbg(RMI_DEBUG_CORE, &rmi_dev->dev,
-+			"PDT has unknown function number %#02x\n", fn);
-+		return false;
-+	}
-+
-+	state->pdts[fn] = true;
-+	return true;
-+}
-+
- #define RMI_SCAN_CONTINUE	0
- #define RMI_SCAN_DONE		1
-
- static int rmi_scan_pdt_page(struct rmi_device *rmi_dev,
- 			     int page,
--			     int *empty_pages,
-+			     struct pdt_scan_state *state,
- 			     void *ctx,
- 			     int (*callback)(struct rmi_device *rmi_dev,
- 					     void *ctx,
-@@ -522,6 +549,9 @@ static int rmi_scan_pdt_page(struct rmi_device *rmi_dev,
- 		if (RMI4_END_OF_PDT(pdt_entry.function_number))
- 			break;
-
-+		if (!rmi_pdt_entry_is_valid(rmi_dev, state, pdt_entry.function_number))
-+			continue;
-+
- 		retval = callback(rmi_dev, ctx, &pdt_entry);
- 		if (retval != RMI_SCAN_CONTINUE)
- 			return retval;
-@@ -532,11 +562,11 @@ static int rmi_scan_pdt_page(struct rmi_device
-*rmi_dev,
- 	 * or more is found, stop scanning.
- 	 */
- 	if (addr == pdt_start)
--		++*empty_pages;
-+		++state->empty_pages;
- 	else
--		*empty_pages = 0;
-+		state->empty_pages = 0;
-
--	return (data->bootloader_mode || *empty_pages >= 2) ?
-+	return (data->bootloader_mode || state->empty_pages >= 2) ?
- 					RMI_SCAN_DONE : RMI_SCAN_CONTINUE;
- }
-
-@@ -545,11 +575,11 @@ int rmi_scan_pdt(struct rmi_device *rmi_dev, void
-*ctx,
- 		 void *ctx, const struct pdt_entry *entry))
- {
- 	int page;
--	int empty_pages = 0;
-+	struct pdt_scan_state state = {0, {0}};
- 	int retval = RMI_SCAN_DONE;
-
- 	for (page = 0; page <= RMI4_MAX_PAGE; page++) {
--		retval = rmi_scan_pdt_page(rmi_dev, page, &empty_pages,
-+		retval = rmi_scan_pdt_page(rmi_dev, page, &state,
- 					   ctx, callback);
- 		if (retval != RMI_SCAN_CONTINUE)
- 			break;
-diff --git a/drivers/input/rmi4/rmi_driver.h
-b/drivers/input/rmi4/rmi_driver.h
-index e84495caab151..a4ae2af93ce3a 100644
---- a/drivers/input/rmi4/rmi_driver.h
-+++ b/drivers/input/rmi4/rmi_driver.h
-@@ -46,6 +46,14 @@ struct pdt_entry {
- 	u8 function_number;
- };
-
-+#define RMI_PDT_MAX 0x55
-+
-+struct pdt_scan_state {
-+	u8 empty_pages;
-+	bool pdts[RMI_PDT_MAX + 1];
-+};
-+
- #define RMI_REG_DESC_PRESENSE_BITS	(32 * BITS_PER_BYTE)
- #define RMI_REG_DESC_SUBPACKET_BITS	(37 * BITS_PER_BYTE)
-
-
--- 
-2.53.0
-
-
-
+> If yes, I'll switch it.
+> 
+> David
+> 
+>>
+>>> +    };
+>>> +
+>>>       sde_dsi_active: sde-dsi-active-state {
+>>>           pins = "gpio6", "gpio11";
+>>>           function = "gpio";
+>>>
+>>
+> 
 
 -- 
 // Casey (she/her)
