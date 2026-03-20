@@ -1,383 +1,410 @@
-Return-Path: <devicetree+bounces-278239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278240-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uDdiJtowvWmI7QIAu9opvQ
-	(envelope-from <devicetree+bounces-278239-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:34:50 +0100
+	id +NF7FBAyvWmI7QIAu9opvQ
+	(envelope-from <devicetree+bounces-278240-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:40:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B95C22D9A86
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:34:49 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B67642D9B7D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:39:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D9664315893D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:32:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D815F306839C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:35:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D46A93AB26A;
-	Fri, 20 Mar 2026 11:31:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63DB537B40B;
+	Fri, 20 Mar 2026 11:35:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UauRbZ6G"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OejlkLEO";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hieLHwhR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58EAA38A72C;
-	Fri, 20 Mar 2026 11:31:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=192.198.163.7
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774006314; cv=fail; b=nrE3F5nCdF3op/WmsV7BdW7pgU52+/AnGFHJw3iG7R9qBmxr/wzUZzOCIx+5eUCSq1vn1Cf9mzqhi6SGVOM1RtDF7n9Q+8oCm9PBn8cPuS0ur6zosNM6yVK8gFy8mpKZUewZzqtkpdCEohTPQL08vjtF4L0BDFkH/6Culx2oybU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774006314; c=relaxed/simple;
-	bh=ndgGIqAH84ZXr/mq/UypJkNxl8ubE0sX5c74iO0DsK8=;
-	h=Message-ID:Date:Subject:To:CC:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=J5wIxr64CajEv1KdvrjG0ibz4BEjlWXSovVBGZ5IqduqjA6zPYdx5jTvqdPKojReU4CyAd0d8v7y1nz111UdZI7OH8qZAg1FCp3ecVnIyagHi22pql/faMDVJC6BjWthF5mncjbCAA1hTCEdHPz2ZHZkxFW4H/E4827mGQcGbhI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UauRbZ6G; arc=fail smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1774006311; x=1805542311;
-  h=message-id:date:subject:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=ndgGIqAH84ZXr/mq/UypJkNxl8ubE0sX5c74iO0DsK8=;
-  b=UauRbZ6G08GVB+WCa66EHAfqgJEFK/Say907uUvRK0e9mf0Rg7mUNv1x
-   WB3ddVL0TvRHh+SbDYW2EJ9cXnn2ReHpOw6Q+Q+zvQirNHTsQ8uWlUMCZ
-   vkhGdA2ehC0QVf49JnLannYLogPZVQXypyTRn+yNRJvE3sRkbTeP0akW1
-   MSu359bQoiAgSYqSLLKKFcVl3TQwOcz5soEqKPms3htORMFB+mmnV5TEW
-   iCbp202Qj5Ad/gjg1/IRWrBgKvo0EdLRYYpkDBb4CEwRKWjBgoMaYZmBU
-   UL873mTnHdwLHdjnyag16Y0uYOeFpVmS7cqmOaUlfc/92rl7QNkByqDM0
-   g==;
-X-CSE-ConnectionGUID: WDdy7g/pRuGcIyDX1VTyjA==
-X-CSE-MsgGUID: PuuTBy6OSd2etBMpob0o0g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="100544191"
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
-   d="scan'208";a="100544191"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 04:31:50 -0700
-X-CSE-ConnectionGUID: APToZZz8QyqUltB7Gd0c8A==
-X-CSE-MsgGUID: OgdToWsJTv6B1ZVsePRD+g==
-X-ExtLoop1: 1
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
-  by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 04:31:49 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 20 Mar 2026 04:31:48 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 20 Mar 2026 04:31:48 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.31) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 20 Mar 2026 04:31:48 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fPSLyeccWvkADe38U/Cl4ZB/ldPYwtTvyQFRFqMiDpjnpyth+ig1SyZR4xrLUT+lMeBkf4k60APvpUJp2v5Kt+6rnzaZ07yrqclnV3dy/RHDMATL2pjlTGh25svpLqLweJK2vd2IKL/xU/V3HtA5Jj7jqxHX/hZ74+qr2mGx4Tpt+bRWNHviga7zDy09OGla1/rel6xlPv0GnbPxrZ2Zmhd97Kg0BA3M+jZV53Ex0tsFXM4lDjN7ooR4B8DuZxAbOuqfGqcO/TZUBnrLRXVe/8Dk6ACKJSGkyR1ZpdkBXxGkMmknxyXt0bu+omA2OVxlqYbRQyFryaPMpDuSf5kxbQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wTOks4Ib7foLu1ZFwpthfHLnMJHNKh2PhDSf7HWbgEU=;
- b=YkuxoPzxDwekZwEC1HIlwtdeV+Jk36A9o8j3SfYvlXoIlDLa+7AAu2Mu8EuXExMhBbnQalmNHwjymI2+lcz2Fam9uwAmorB8P0QM5P0PO1m6VRjyZDPAmK03uIzEUR4gUi7lpwkaU4adP8xrELdwwOcHmbA/o2WmxyHOsCzrDOPbNNlkaDgNjc9VXIKfY5necxs/nWiYWRYsFh6d8Zn1cSGsdIPZIdxqCVog0DjzYZGnKvSH+S7FeZRL8a0Anobd8TjFWD6XlqlG+bmpbgsj7OHMX6msODPQ7fxP/kLRJLfQSF5Emrd/EGCGhK/l0py47q1rK94aXXXCab4Glyuf8w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA1PR11MB7198.namprd11.prod.outlook.com (2603:10b6:208:419::15)
- by SA3PR11MB7584.namprd11.prod.outlook.com (2603:10b6:806:305::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.13; Fri, 20 Mar
- 2026 11:31:40 +0000
-Received: from IA1PR11MB7198.namprd11.prod.outlook.com
- ([fe80::2c4e:e92a:4fa:a456]) by IA1PR11MB7198.namprd11.prod.outlook.com
- ([fe80::2c4e:e92a:4fa:a456%6]) with mapi id 15.20.9745.007; Fri, 20 Mar 2026
- 11:31:40 +0000
-Message-ID: <d3e54adc-46b4-4ece-ad75-fc184f0b111d@intel.com>
-Date: Fri, 20 Mar 2026 13:31:33 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/7] mmc: sdhci-of-k1: add regulator and pinctrl
- voltage switching support
-To: Iker Pedrosa <ikerpedrosam@gmail.com>
-CC: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, "Albert
- Ou" <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan
-	<dlan@kernel.org>, Michael Opdenacker <michael.opdenacker@rootcommit.com>,
-	Javier Martinez Canillas <javierm@redhat.com>, <linux-mmc@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-	<spacemit@lists.linux.dev>, <linux-kernel@vger.kernel.org>, Anand Moon
-	<linux.amoon@gmail.com>
-References: <20260316-orangepi-sd-card-uhs-v3-0-aefd3b7832df@gmail.com>
- <20260316-orangepi-sd-card-uhs-v3-2-aefd3b7832df@gmail.com>
- <182321ef-f01e-4bc8-8f23-aa85b4c70860@intel.com>
- <CABdCQ=ODJyeC4Lb_XFxHaxQpem0F3v=tw+5CipCHFU8T5zr8Ww@mail.gmail.com>
-Content-Language: en-US
-From: Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: c/o Alberga Business Park,
- 6 krs, Bertel Jungin Aukio 5, 02600 Espoo, Business Identity Code: 0357606 -
- 4, Domiciled in Helsinki
-In-Reply-To: <CABdCQ=ODJyeC4Lb_XFxHaxQpem0F3v=tw+5CipCHFU8T5zr8Ww@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: DUZPR01CA0120.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:4bc::18) To IA1PR11MB7198.namprd11.prod.outlook.com
- (2603:10b6:208:419::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E723F38D016
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 11:35:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774006511; cv=none; b=MJ+VWkoYAEWEQTEBjdgcO2hUSrUFrxADmtstn/5F7Nn09ZY0G3JHYvAOkcNKe8JTkD1ztNGdP8gJ2AFj0px1CDCi+5IAMrt2jOEjsAl8seU6FDMFYg2i4JBMFlw9pWVZUe3bBCvF3XT8rRFe1OQZDiCfiSBc2/BHCERiJOFtFgg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774006511; c=relaxed/simple;
+	bh=BYH8hix/PsgS5oaEWYzymqik9ata0LWNfM+riCtsDJM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=H16zHPvhKtruT/IpVulhDAYucVY7A/GhN3xfKmF8njfT0mOrI0N/OWXY+Q7BAm5hLAYyrdKZP/LXfnO9YGpLX5w/KlXqYJv3GRHetcqxvmT02O9E/AHsQLBQlgudZqu8GnWhJ6NWjppjKVYPrXFmtWhytX+6k0w9aVm6dWvmmOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OejlkLEO; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hieLHwhR; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62K2XnGk989544
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 11:35:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=MqNikmF23O6v9Ecpgxhnmj
+	jzFcBwmZzu87q/sy1ZNsw=; b=OejlkLEOJ1w049xX8BbcrfzfYCJbyEy65heZWy
+	Rc0tAsOxeUreHyNdXvqQfhwccwD/vXjZNnLZdG1Fs5Q6Ze6YddlWxTNgIYCPZhZ1
+	uuckyzBlZUGxx6N39dNM82nX5F2ggvj0LF8zl+uiMIP6iIItmdf7uctSE/2tXk1A
+	PrPDz4YCV/FYQMG5J5tHuh+JrPudbZMoSdRj0VLxd6PI8OxMWn2Kg0+BfLOdX5m/
+	iljHRJ8Mhx8JHJab+xOvY43sMWeVz0oVdMF94YwYXaZQpbmmls6b6ZRqfTiCTVcz
+	Cvm8E11/NeXngFwMkxhTPh4J4iCXwqVotKDxSg2k3aKHJf6A==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d0k0vb794-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 11:35:08 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-5090cc6a7d2so42596701cf.2
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 04:35:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1774006508; x=1774611308; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MqNikmF23O6v9EcpgxhnmjjzFcBwmZzu87q/sy1ZNsw=;
+        b=hieLHwhRHzeCEr9oUXsOM3q/W7K+ZzUvAXinNlY7WMPr7QwQT8ewNryEuePgffB7jE
+         qQjLlmgh4ntE+LhsZ8wr6w8WhIyXiPqZlVBVEfBA5svudo06RVLiXjxD4ZdMRW0m7ufq
+         qe6sYgk7Is+EG4HshUmBNCfyWSil5psCx4u1DhhIMsNaJazzTaqRZ+xBebayi7FMuX61
+         A4ixkwHokNWZsuplMn5F0Y/4Jp3+aYq2FQ1/Gh6C77HxkDEcSkqyk3GSP4wCCqDhIJOd
+         jpeBbhRvQq+5xaROQ+xGN4mLmqbp5W5iMD0FPPuRkFvh7KPmUoNX3ukarnHaaf+smKHV
+         psRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774006508; x=1774611308;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MqNikmF23O6v9EcpgxhnmjjzFcBwmZzu87q/sy1ZNsw=;
+        b=UEDHzry8/lqXmiG+IxW9hSPb+P2MrXFiHT46HZ8JnPhijeq66b0YZMFHuIXlBaefyT
+         0g2rr4uvq0H1hWhLFn/jgCnduTua4ftga858jOjyUg6ik6/E9E2A8+69i3+VSlEjCTxz
+         DB0AesxNm7dKD9EPz0Fa8pHJITlllnGWi83EF5gXCUVCa0Ty8m5X1Al4lzKnbJV0+5PZ
+         4lvoYnggnuh8M6aYGQWY0YfAsKdn8fUPo8T8VuZoUab9rG33xqWWcRJBk+NkrHmEWn+2
+         ktCP5PR2qhKgPYyucbSPXUdn+P9WJGO/PLO3+gaiit1Y/IzSoXVFTiaN6CqW1EpuuZgk
+         Sjow==
+X-Forwarded-Encrypted: i=1; AJvYcCXxzBCxkZwgU8krBeZ4S5NE2a0EJR1y0QyurmKYnPcJ7RmHJEzaTpUQGgBea7Vfepk43dTruuVZT+0v@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAM/Wk1UcMuLf+gNAowPonkPsgYXQ9yg6yGNYxtGZR+YmtHYV1
+	Gb4i4vOCqqieca0JbxxL13La+pkcthjwpG0v2EHpQ4lBlSjX18NWHvtK1ICEc8UtctaSHS1BH75
+	nBbmB1Z6TvgAz9a/nNDV+28KQ4kSK/xP8GlJMkpqrISic65cEZdF1LXp2sNpxtose
+X-Gm-Gg: ATEYQzzDPPRgCB8TVkXnRBy1RGcFyvi6z7N0VZcQyhO5ODTAXZK1IkLImNbeC0bP7ZY
+	e8uDkAsye71Yoh2e1Q/32M1uCcrM8Oy/XlS8eNMz6S2zptGDxPmV0OzgotqOHqUXcTcvFjwNy6J
+	CUedb03FGoFvItk/sCC0KIqEI/8gQdZceUY1ImbUWWrbR27Iv/U5DYJ/8DEJKDap7iyGtWWPrng
+	41hEM7LhANzcR+je5eFb5Wtn/oUPDTEEhr7wIroBI65liRb1e4sZ8IWvZJc/k4DDBEPETAywniq
+	hCcgCLkCDZO/BwLM6CPIyOlL+IT9NwSgm6tyHLdNul5Zqva2FzHYDLi6CeW+9rmafUT3lIbfK9P
+	T4ss5pKU9Mtj18n0nalLrMtXVyh4=
+X-Received: by 2002:a05:622a:5c7:b0:509:2d50:9796 with SMTP id d75a77b69052e-50b37449039mr36972691cf.20.1774006507832;
+        Fri, 20 Mar 2026 04:35:07 -0700 (PDT)
+X-Received: by 2002:a05:622a:5c7:b0:509:2d50:9796 with SMTP id d75a77b69052e-50b37449039mr36971961cf.20.1774006506998;
+        Fri, 20 Mar 2026 04:35:06 -0700 (PDT)
+Received: from hackbox.lan ([82.79.95.133])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486fe7d6c54sm138162485e9.4.2026.03.20.04.35.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Mar 2026 04:35:05 -0700 (PDT)
+From: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Date: Fri, 20 Mar 2026 13:35:03 +0200
+Subject: [PATCH v6] arm64: dts: qcom: glymur-crd: Enable keyboard, trackpad
+ and touchscreen
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR11MB7198:EE_|SA3PR11MB7584:EE_
-X-MS-Office365-Filtering-Correlation-Id: cb0dcfaf-25d9-4e11-a83c-08de8674412b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024|18002099003|56012099003|22082099003|7053199007;
-X-Microsoft-Antispam-Message-Info: ylxGBb6sbFxYkPnVnwoCt1yf//bqiQmEbl9CA8qT7lCT2MxRxSn1Cri+XgOIgPDQom5hpQCk29t8hcWG9/ckV66rpC0JqlAPdxLp1iF1W9bCE+0Y0zS1GeV08TTglMqAbtO//kKaOV6QDMIIHVPLJDFHVzUfqlv+6R4btokYqxwTSrumXz9HvRRktFKYrlm2Ajmq6s62eeoq62PuLRlQEy3Xuhfr3kyZJk27k2VQaZjbDiA2lNsQRFHSv7mTa4iPsQGh9ELJA9mHPLHJLYWlM79lMMcFAI8qbq/Mcqx2zBhL8iFibA/aw8p//Qv1bBdh89jLGujEkZI19TWN5mfcYiWyaj3kCzDQ1AQ+WrVb1IOnt+ZYyg2wEz9hcX4OPO/NZfNIBfXvH5Ay0h5LGoCnnSBF/TOuZ+BEd3n9FxfFLBdqbGTYKtax1h/fI1oHokGvtxevUzGwRH1nJuuQh8s5WXUubCr3HcZNG9DT48Dk3CPBsPmT5eKeQQXYOEvwhxWkZrgJ6goVkIleNW188UDfyaURsmQAw3lRK5GY9UP7Ks2lPimfuhoUlWLcbcvkS78aS+1fa/0f4ZAJXLqOvIijy/5AvmwY0wd8zZ1ZSySBcyPPbS+AsYi6L47jIncrinZqqKn4mtM99HRtf1eVxfk7ECG0++Ei8MSfOkryOQPOxU6KaNOKUr/p0FNzvK2NqMyXgTrSrQ2iTNjKLs/sqkq7tXCwOBdpcqcMbK4Vyc8SphE0SDF08/Mff/UZhNa/kvGN
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR11MB7198.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(18002099003)(56012099003)(22082099003)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SkRrb242WG1oTVNpUmttanFyVWxYY2Zpc05EOFV4dEV4VnhsYkZNbk1zN0Uv?=
- =?utf-8?B?WXlxOHBIQUh3cm56RnNaWEp5dUtObnNtazNTSzAzS3RYeDZMaVNRUVZZMC8y?=
- =?utf-8?B?c0tXYktXUkg2OXYyR2dJekFoS1U2eHdBMlVvTTJoZzRWOFVBZnNoQlZjTExk?=
- =?utf-8?B?bWRSNTJuLzRKSW5YMVd0cHpINlhCNGVlbUVscWNNVXkxelplanYyYTNOS3NF?=
- =?utf-8?B?UVBVNURpdDlNUGtMWlEweFhHSHlzUWNES1N6TUtuNDlNRWhobmwvamtoQVBB?=
- =?utf-8?B?alpERUZCSHVLS28zSVhzUU5jdWdlZUd4ZTJqMWg1Y2xmTzRVVE5ZeVNPYkFH?=
- =?utf-8?B?ZzlXazBxOFhzeld1S3RPSU1WMDRNWkFxS3dNemtiU2xrYTkrNk10VDl0eUtC?=
- =?utf-8?B?YXUycXgyRVRnOTdrMkg0NlloSFdscWpreGVZcitDQ01vSzRzbW9QdUlCc3ZM?=
- =?utf-8?B?cDI0TTMwcDBmZ0svUlNCY0ZKR3VMemt0aG9yT1R1TTNNdFQ3WkdEUlAwaGRu?=
- =?utf-8?B?cmwvTnVvM0Jqa2FFT3hzUGxBNnZidTdRaDdQclEzS2IreFNLOTBXUUhkVkdl?=
- =?utf-8?B?RXpvelRxdG94WEIxYWdzeUdMOXhTSm9WellaZzVIVzYxOUFyT1NkS1pHeHJw?=
- =?utf-8?B?Z1RNVFJjbW9rc2Q0UFJkb3dxcEhwUFJTMVJCbmNZdmtwcFhoeGZjYXNoUjFl?=
- =?utf-8?B?YzkyZEltbnlld3NqTFpkanZ4Rk9vRkdxeW9UWi9UQTZiajhZYVFNaXM4dUtK?=
- =?utf-8?B?ekFuV2NxL3Y1eUlKSTQ1Y0lnVFRrWm84eXdFeXdRYTBqRElGaVFQaitqVE9V?=
- =?utf-8?B?OHNEemFQRlVGcUMrS1pBM2VyTTFwaDVLYm02VWk3a2Ryb3RRSVZQeUNlVHVz?=
- =?utf-8?B?SUFONEZXdTY2K3hwZS91WGx0MlVjWmVka2EyWVAvVXdiQUdIdlVKK1l4Wk9l?=
- =?utf-8?B?RHFHYXEwZmJiRkdoUFFyazJSRnR0akZtRXZHeVRZY2xiUU9rVzJjQndnZW1C?=
- =?utf-8?B?dGNxOVNkMUZWWDlTTEM1aWppd1dNdGhHd1lsWnRCNUJqQVRRNUg1ZmJvL0Ja?=
- =?utf-8?B?blNIczZQR0ZQRDB1R0lsLzBDeXY5T28wK210WTFTRis3ZkU2WWhMbzUyd1Nl?=
- =?utf-8?B?V21FdXdUUmtPQ2NzVkJ2eGZjSjRxbE5rdWNsdG1xVGFaS20wR3NxT0oyS1hM?=
- =?utf-8?B?RXg5VGNvRVVqNjVIU3lYVE9meTZ6dEcvWjFtUHpMNy82djM3aXFSSkJTZEls?=
- =?utf-8?B?WGZmVzhBOG5HNVJQTEJXakdSckxZYXZXU2VYZ1RCSWZQVDVuamNPK2xtK01h?=
- =?utf-8?B?L3dXUFB1M0hHQkV5bTJvZjZ1SGpKdmVoaDU3c0FsbmVFVUx0cGVwZVpWRjla?=
- =?utf-8?B?Ukc4L3M2RUF6eDVwU29NV2YzRDVJVmZwQmNWWm9lakpLRzhXOEdKUHU1VCsv?=
- =?utf-8?B?OTFVTmFLc2ZweFgyL3ZZZ1htUUJDTVF6L3JSL1Zmbno3ZTQraWU3djhNVnN1?=
- =?utf-8?B?VGt4aXl3dmlUMU83Z1RWWHAxNUd2UUp3aXpKYWRuNVNnSkpGdDNEZWJickhX?=
- =?utf-8?B?Q2xnRk9rTjQwRnFKU3JtOFRBa1ROWVptV0h1SUdlSVpMQldtY01ocXowdjlM?=
- =?utf-8?B?R1orekpNZVlMcTRhNHVCTzM0OHB6djhmYlVmVzlFTmRxbmVhZUZrSHNzajBF?=
- =?utf-8?B?bXBMNXRod2tPRUh3LzZNMk4zQVFyN3VLL25XZDJUdTMvTWdsZHh0cEQ3VExM?=
- =?utf-8?B?bHVkNTZsbnJwanVadVF2cWx2bE4zek1XdmhwOWpqU3JRVlo3Z2lCWVk1T3hs?=
- =?utf-8?B?Y3RETTk2ZkRLNXNnWjRLeUcxWWhsRXRUdkVWZ2k4UkJGM0xHaVhxdHZrcmxy?=
- =?utf-8?B?b1FmdmpVNUxRWU1JSG95L3VtNkVWNm5yZTFqL0tuck95eHR2NFhKbVM3WDYr?=
- =?utf-8?B?dXJ4b0NGdjRTdkVkNnVxNGxlcnlQaDA1L3ErVjAweWE5cm5iQWhuamdjVTJn?=
- =?utf-8?B?TnNSQnprNmczTkpsS2RnTHVGdTdjRkx3ZHI0cGxDK2Qrd1dsbUxRRnhPMDFr?=
- =?utf-8?B?YXZoL0NWcXk0cDkwT1lwdHFxQ0RNcnJoYUFPNk9pUFdtTllQOUcramhCWjlt?=
- =?utf-8?B?ZUN3aFpRWlFzWVRaL0FmWjcyemFrVkp3UXNyS0d6OFNaMkgyRXhMT0NqcW5I?=
- =?utf-8?B?TWxDYVpkVkpHankyWStPU3U3YmRFOXdMM29WNlRLMzNxQXhlcG5zTFAyVTJm?=
- =?utf-8?B?RGNOa1p3OUFXb2lyRVhxeWh6SmhQTzZyb0ZMNktvVVZ0WVdlWm1NRnUxc0Zu?=
- =?utf-8?B?Z3EvcFF5S1lmTlVhYmVuQXJla1NDaVlPYVRYM2NybG5HK3ZEYmh4bHh4Q2JR?=
- =?utf-8?Q?tkSesuhZWunFBt1g=3D?=
-X-Exchange-RoutingPolicyChecked: mcb0/angYaPirLtz+dROTSa8O8J/wvWOUKDa1D3Zn6X3YtfePh1gfMm4DHP7JrephYDKZz/3xwLiZuSUDwoAHy1tpz3kU2OoHYUd2YVFHVcmzZ98QhQQBc2yblJXqFrVticnfiFpLAe6/ZFwjR+ZZomgIu8Gy4ul0ziyiA5ZZ/PBAy5LPDoWtD2X22KM6cUI0PXUyw/8yxCWkrVdgz4YdLzSHicPb7hLV3qrYG9hlV0mdCg48X0iPYazzQlAMFTG+VCvRcdQ9x4JQ0o8ChEfmzDmkYfOUMuhwh01NrxT5TvXb3FYgQh0JMe3978wrFRKj9n7H3XVnf3fZhSGiyjS8w==
-X-MS-Exchange-CrossTenant-Network-Message-Id: cb0dcfaf-25d9-4e11-a83c-08de8674412b
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB7198.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2026 11:31:40.3955
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: erVSyPFZaZccr0OTUtKnqkLx8P+1+16Ar93BrFHM/2IK6wnjTKZavZzItM2Pr+8q2T4i1T++Y7rQQeu+ykPZxg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7584
-X-OriginatorOrg: intel.com
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260320-glymur-dts-crd-enable-kbd-tp-ts-v6-1-626d008534d9@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAOYwvWkC/5XQS27DIBAG4KtYrDsRBgzBq96j6oLHJHGb2A5gK
+ 1GUuxecVsqiUdONxSD8zT9zIRFDh5G01YUEnLvYDX0u5EtF3M70W4TO55owyiTlVMN2fz5MAXy
+ K4IIH7I3dI3xaD2mEcrmmjjqr1lpQkpUx4KY7LR3e3m91nOwHulTY7xcBj1NunW7PiDURwQ2HQ
+ 5faqsdTglv7WpP7XG21XNc5VYlzzH/8xDPewxQtxGkch5BA1spKrz3lzLWzepYpExYK/QiUb2g
+ +o1YNLUQZZtfFNITzsr25XrI/vai5hhoaidlVUhslX4cYV8fJ7Mvkq/xZWszsjq3Z3yzLLGNKW
+ UThGikesPye5X+zPLNSusb7DeYd+AesuGefWILIbBalMjUXWj9aQvNPtsmsMELQRgsu1vYX9nq
+ 9fgHtSyMj/gIAAA==
+X-Change-ID: 20260309-glymur-dts-crd-enable-kbd-tp-ts-c80c0cb78940
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Abel Vesa <abel.vesa@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-7ae85
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6116;
+ i=abel.vesa@oss.qualcomm.com; h=from:subject:message-id;
+ bh=BYH8hix/PsgS5oaEWYzymqik9ata0LWNfM+riCtsDJM=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBpvTDnahA+0v2W6dQsDeIZFQpPxvAoD/xEF7FVW
+ S9sb0M/iVSJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCab0w5wAKCRAbX0TJAJUV
+ VoVHD/9x0CEvVp7Dm6UwvvoLlgooqLPSAL5xgLEMnR2/GtnKFmPbhQ9HnLdfI7Cb+ukKg6XT7eb
+ 6TbkQe+/nE2ZBQoZlrRAETRULXB4wM/bxooHRpNfDDBdPKst+TL8/NhwuWXZ8TuJ/lBT7foTL1h
+ UbCL9DR8iGUvotrXayJAEcxKsf2DBIXbPxulAGcWiLPwIroHVjvAhyZLMvAtoXhlLHpewU1MdqT
+ GJkBE9zxN/qd5rFUQobeMuldH1g0Pz91l4otj1Z5xRAqYAiDGWkAUOQx1XBxc7k6PFBj8lRqnQZ
+ d4zKQ5P6ADHexbtSNeQ9tKRHLYwTMZaRJpnlmw/6qLQNg4OAJJuZKuxzuiasj2A6U+WuUwBQf4Z
+ fGap0opKkBEIU7C74EZAbXYJrvdfZIoOU40Xxw5M8//8rea31G6ikyk2+UM8D3jjIF3y8XDUUg0
+ Rv6SKEUqj5AVCN2vlEiYt6dQ4j3RuJF2iyQnQvVap8hSIj4WyRepCKs0wDgDbXLuNc8xIDvJ1Jy
+ jNaBIPkJihlnI/eYWHJ/dO5IPOwLShHCIW+5/IH674Ca/e8ne4JM9wBEohmteIQEhjas+w1HnNG
+ 3BLbPm23BgZ1TvCgP+UtiBKCEmO4/vBrFD6n7mQeB4vN+I0g/9WZkvwJYD1HXyUTTYlosFQPFp6
+ eQkCn67k6Ym7zaA==
+X-Developer-Key: i=abel.vesa@oss.qualcomm.com; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+X-Proofpoint-ORIG-GUID: Ou4oTZV_pkcxSB_IAgEM9AwUWJpJ7Hq4
+X-Authority-Analysis: v=2.4 cv=EcjFgfmC c=1 sm=1 tr=0 ts=69bd30ec cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=iKs3dpp2RB4k51ZqCjcyjQ==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=bC-a23v3AAAA:8 a=EUspDBNiAAAA:8 a=Z8kwFSI80t0WQLcuoGMA:9 a=QEXdDO2ut3YA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22 a=FO4_E8m0qiDe52t0p3_H:22
+X-Proofpoint-GUID: Ou4oTZV_pkcxSB_IAgEM9AwUWJpJ7Hq4
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzIwMDA5MCBTYWx0ZWRfXwCOKnNQaarrp
+ YDMoAyDjpfz+FlSJCsSECJNGLz2lG43T6/sIwfefT7ljWt0fe7q4cWr8E6lun7ymxeJQmC/FbBO
+ DRGqKyfbnSPLxLP+Qkd69GjGvEfrA+Sl11sJrQx8u3kyU13BPfqArFsAg/bDj3sJx7Cx+oeFZOc
+ t6bKWcarYakyL0x40oq3ErQRDmdIH5w/RNFkfTbxDBGBg21fXUjN94PPY64E0elobkJFUVAdNEq
+ b651Nlc54K2XesgtsRL6IpHTz/uuH2C9hHF3OIV8mmG2gFemMar55NMwg7qYXug1bDSreOCAMtw
+ AMPEdE1GkIZUiMwx+i9VGhVmVDKar2gcoybMY0CCQNFhxfAB7gb3WNHYb7Wd/O7iwIgQzQIgVWq
+ GXKTxhxRc923uvPNdUpMFyyMTqv+qD8QzFDZ17HPm5auhorDB15b6+paC3/ziO+l3X7h9o7Ob03
+ vzs+znO8u1v7YmPK3GA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-20_02,2026-03-19_05,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 bulkscore=0 malwarescore=0 lowpriorityscore=0 adultscore=0
+ clxscore=1015 suspectscore=0 impostorscore=0 spamscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603200090
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278239-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[adrian.hunter@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-278240-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.994];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: B95C22D9A86
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: B67642D9B7D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 20/03/2026 11:17, Iker Pedrosa wrote:
-> El mar, 17 mar 2026 a las 12:28, Adrian Hunter
-> (<adrian.hunter@intel.com>) escribió:
->>
->> On 16/03/2026 16:03, Iker Pedrosa wrote:
->>> Add voltage switching infrastructure for UHS-I modes by integrating both
->>> regulator framework (for supply voltage control) and pinctrl state
->>> switching (for pin drive strength optimization).
->>>
->>> - Add regulator supply parsing and voltage switching callback
->>> - Add optional pinctrl state switching between "default" (3.3V) and
->>>   "state_uhs" (1.8V) configurations
->>> - Enable coordinated voltage and pin configuration changes for UHS modes
->>>
->>> This provides complete voltage switching support while maintaining
->>> backward compatibility when pinctrl states are not defined.
->>>
->>> Tested-by: Anand Moon <linux.amoon@gmail.com>
->>> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
->>> ---
->>>  drivers/mmc/host/sdhci-of-k1.c | 58 ++++++++++++++++++++++++++++++++++++++++++
->>>  1 file changed, 58 insertions(+)
->>>
->>> diff --git a/drivers/mmc/host/sdhci-of-k1.c b/drivers/mmc/host/sdhci-of-k1.c
->>> index 0dd06fc19b8574ae1b00f7e5d09b7d4c87d06770..01afdadcf70796704b272ee5a31543afd5e01188 100644
->>> --- a/drivers/mmc/host/sdhci-of-k1.c
->>> +++ b/drivers/mmc/host/sdhci-of-k1.c
->>> @@ -16,6 +16,7 @@
->>>  #include <linux/of.h>
->>>  #include <linux/of_device.h>
->>>  #include <linux/reset.h>
->>> +#include <linux/pinctrl/consumer.h>
->>>  #include <linux/platform_device.h>
->>>
->>>  #include "sdhci.h"
->>> @@ -71,6 +72,9 @@
->>>  struct spacemit_sdhci_host {
->>>       struct clk *clk_core;
->>>       struct clk *clk_io;
->>> +     struct pinctrl *pinctrl;
->>> +     struct pinctrl_state *pinctrl_default;
->>> +     struct pinctrl_state *pinctrl_uhs;
->>>  };
->>>
->>>  /* All helper functions will update clr/set while preserve rest bits */
->>> @@ -219,6 +223,33 @@ static void spacemit_sdhci_pre_hs400_to_hs200(struct mmc_host *mmc)
->>>                              SPACEMIT_SDHC_PHY_CTRL_REG);
->>>  }
->>>
->>> +static void spacemit_sdhci_voltage_switch(struct sdhci_host *host)
->>> +{
->>> +     struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
->>> +     struct spacemit_sdhci_host *sdhst = sdhci_pltfm_priv(pltfm_host);
->>> +     struct mmc_ios *ios = &host->mmc->ios;
->>> +     int ret;
->>> +
->>> +     if (!sdhst->pinctrl)
->>> +             return;
->>> +
->>> +     if (ios->signal_voltage != MMC_SIGNAL_VOLTAGE_180) {
->>> +             dev_warn(mmc_dev(host->mmc), "unsupported voltage %d\n",
->>> +                      ios->signal_voltage);
->>> +             return;
->>> +     }
->>
->> In V2, I put "->voltage_switch() is called only for
->> ios->signal_voltage == MMC_SIGNAL_VOLTAGE_180" by
->> which I meant that it does not allow the driver to
->> switch pin state back for 3.3V.
->>
->> So you probably need an approach similar to the original
->> spacemit_sdhci_start_signal_voltage_switch() in:
->>
->>         https://lore.kernel.org/linux-mmc/20260302-orangepi-sd-card-uhs-v1-4-89c219973c0c@gmail.com/
-> 
-> Thank you for the feedback. I want to make sure I understand this
-> point correctly to avoid going in circles.
-> 
-> In the v2 feedback , you mentioned that "->voltage_switch() is called
-> only for ios->signal_voltage == MMC_SIGNAL_VOLTAGE_180", which I
-> understood to mean that this callback only needs to handle switching
-> to 1.8V. This meant that the changes I introduced for v3 don't manage
-> the switching to 3.3V.
-> 
-> Can you clarify if I should I revert to implementing
-> "->start_signal_voltage_switch()" instead, which would handle both
-> 1.8V and 3.3V cases? 
+On CRD, the keyboard, trackpad and touchscreen are connected over I2C
+and all share a 3.3V regulator.
 
-Yes
+So describe the regulator and each input device along with their
+pinctrl states.
 
-Or is there a way to make the
-> "->voltage_switch()" approach work properly for both directions?
-> 
->>
->>> +
->>> +     if (sdhst->pinctrl_uhs) {
->>> +             ret = pinctrl_select_state(sdhst->pinctrl, sdhst->pinctrl_uhs);
->>> +             if (ret) {
->>> +                     dev_warn(mmc_dev(host->mmc),
->>> +                              "failed to select UHS pinctrl state: %d\n", ret);
->>> +                     return;
->>> +             }
->>> +             dev_dbg(mmc_dev(host->mmc), "switched to UHS pinctrl state\n");
->>> +     }
->>> +}
->>> +
->>>  static inline int spacemit_sdhci_get_clocks(struct device *dev,
->>>                                           struct sdhci_pltfm_host *pltfm_host)
->>>  {
->>> @@ -252,12 +283,37 @@ static inline int spacemit_sdhci_get_resets(struct device *dev)
->>>       return 0;
->>>  }
->>>
->>> +static inline void spacemit_sdhci_get_pins(struct device *dev,
->>> +                                         struct sdhci_pltfm_host *pltfm_host)
->>> +{
->>> +     struct spacemit_sdhci_host *sdhst = sdhci_pltfm_priv(pltfm_host);
->>> +
->>> +     sdhst->pinctrl = devm_pinctrl_get(dev);
->>> +     if (IS_ERR(sdhst->pinctrl)) {
->>> +             sdhst->pinctrl = NULL;
->>> +             dev_dbg(dev, "pinctrl not available, voltage switching will work without it\n");
->>> +             return;
->>> +     }
->>> +
->>> +     sdhst->pinctrl_default = pinctrl_lookup_state(sdhst->pinctrl, "default");
->>> +     if (IS_ERR(sdhst->pinctrl_default))
->>> +             sdhst->pinctrl_default = NULL;
->>> +
->>> +     sdhst->pinctrl_uhs = pinctrl_lookup_state(sdhst->pinctrl, "state_uhs");
->>> +     if (IS_ERR(sdhst->pinctrl_uhs))
->>> +             sdhst->pinctrl_uhs = NULL;
->>> +
->>> +     dev_dbg(dev, "pinctrl setup: default=%p, uhs=%p\n",
->>> +             sdhst->pinctrl_default, sdhst->pinctrl_uhs);
->>> +}
->>> +
->>>  static const struct sdhci_ops spacemit_sdhci_ops = {
->>>       .get_max_clock          = spacemit_sdhci_clk_get_max_clock,
->>>       .reset                  = spacemit_sdhci_reset,
->>>       .set_bus_width          = sdhci_set_bus_width,
->>>       .set_clock              = spacemit_sdhci_set_clock,
->>>       .set_uhs_signaling      = spacemit_sdhci_set_uhs_signaling,
->>> +     .voltage_switch         = spacemit_sdhci_voltage_switch,
->>>  };
->>>
->>>  static const struct sdhci_pltfm_data spacemit_sdhci_k1_pdata = {
->>> @@ -324,6 +380,8 @@ static int spacemit_sdhci_probe(struct platform_device *pdev)
->>>
->>>       host->mmc->caps |= MMC_CAP_NEED_RSP_BUSY;
->>>
->>> +     spacemit_sdhci_get_pins(dev, pltfm_host);
->>> +
->>>       ret = spacemit_sdhci_get_clocks(dev, pltfm_host);
->>>       if (ret)
->>>               goto err_pltfm;
->>>
->>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+---
+Changes in v6:
+- Rebased on next-20260319.
+- Dropped the always-on property from the vreg.
+- Dropped extra whitespace from before vreg compatible property.
+- As with the dependencies patchsets, instead of adding the support
+  to the common glymur-crd.dtsi, I kept them in the dts as this has
+  only been tested on Glymur CRD. If Mahua CRD upstreaming effort
+  deems it necessary, it can be moved to the dtsi later on.
+- Link to v5: https://patch.msgid.link/20260319-glymur-dts-crd-enable-kbd-tp-ts-v5-1-4a440594348b@oss.qualcomm.com
+
+Changes in v5:
+- Since this depends on Displat DT patchset and since that one
+  had to be respun in order to drop the non-merging phy patch
+  dependency, this one had to be respun as well so that the dependency
+  tree is correct.
+- Link to v4: https://patch.msgid.link/20260319-glymur-dts-crd-enable-kbd-tp-ts-v4-1-dfe67a134996@oss.qualcomm.com
+
+Changes in v4:
+- Rebased on next-20260318.
+- Dropped all dependencies except the USB DT and Display DT patchesets,
+  which are needed for this one to apply cleanly.
+- Link to v3: https://patch.msgid.link/20260313-glymur-dts-crd-enable-kbd-tp-ts-v3-1-66c5ddfee97d@oss.qualcomm.com
+
+Changes in v3:
+- Picked up Dmitry's and Konrad's R-b tags.
+- Drop the output-high and add bias-disable to the reset pin of the
+  touchscreen default state.
+- Link to v2: https://patch.msgid.link/20260312-glymur-dts-crd-enable-kbd-tp-ts-v2-1-2277bee4c564@oss.qualcomm.com
+
+Changes in v2:
+- Rebased on next-20260311
+- Re-ordered pinctrl properties in vreg_misc_3p3, as Konrad suggested.
+- Dropped next level dependency patchset.
+- Link to v1: https://patch.msgid.link/20260309-glymur-dts-crd-enable-kbd-tp-ts-v1-1-56e03f769a76@oss.qualcomm.com
+---
+ arch/arm64/boot/dts/qcom/glymur-crd.dts | 116 ++++++++++++++++++++++++++++++++
+ 1 file changed, 116 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/glymur-crd.dts b/arch/arm64/boot/dts/qcom/glymur-crd.dts
+index 09a532822787..51ea23a49b9e 100644
+--- a/arch/arm64/boot/dts/qcom/glymur-crd.dts
++++ b/arch/arm64/boot/dts/qcom/glymur-crd.dts
+@@ -8,6 +8,8 @@
+ #include "glymur.dtsi"
+ #include "glymur-crd.dtsi"
+ 
++#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
++
+ / {
+ 	model = "Qualcomm Technologies, Inc. Glymur CRD";
+ 	compatible = "qcom,glymur-crd", "qcom,glymur";
+@@ -90,6 +92,80 @@ vreg_edp_3p3: regulator-edp-3p3 {
+ 
+ 		regulator-boot-on;
+ 	};
++
++	vreg_misc_3p3: regulator-misc-3p3 {
++		compatible = "regulator-fixed";
++
++		regulator-name = "VREG_MISC_3P3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++
++		gpio = <&pmh0110_f_e0_gpios 6 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++
++		pinctrl-0 = <&misc_3p3_reg_en>;
++		pinctrl-names = "default";
++
++		regulator-boot-on;
++	};
++};
++
++&i2c0 {
++	clock-frequency = <400000>;
++
++	status = "okay";
++
++	touchpad@2c {
++		compatible = "hid-over-i2c";
++		reg = <0x2c>;
++
++		hid-descr-addr = <0x20>;
++		interrupts-extended = <&tlmm 3 IRQ_TYPE_LEVEL_LOW>;
++
++		vdd-supply = <&vreg_misc_3p3>;
++		vddl-supply = <&vreg_l15b_e0_1p8>;
++
++		pinctrl-0 = <&tpad_default>;
++		pinctrl-names = "default";
++
++		wakeup-source;
++	};
++
++	keyboard@3a {
++		compatible = "hid-over-i2c";
++		reg = <0x3a>;
++
++		hid-descr-addr = <0x1>;
++		interrupts-extended = <&tlmm 67 IRQ_TYPE_LEVEL_LOW>;
++
++		vdd-supply = <&vreg_misc_3p3>;
++		vddl-supply = <&vreg_l15b_e0_1p8>;
++
++		pinctrl-0 = <&kybd_default>;
++		pinctrl-names = "default";
++
++		wakeup-source;
++	};
++};
++
++&i2c8 {
++	clock-frequency = <400000>;
++
++	status = "okay";
++
++	touchscreen@38 {
++		compatible = "hid-over-i2c";
++		reg = <0x38>;
++
++		hid-descr-addr = <0x1>;
++		interrupts-extended = <&tlmm 51 IRQ_TYPE_LEVEL_LOW>;
++
++		vdd-supply = <&vreg_misc_3p3>;
++		vddl-supply = <&vreg_l15b_e0_1p8>;
++
++		pinctrl-0 = <&ts0_default>;
++		pinctrl-names = "default";
++	};
+ };
+ 
+ &i2c5 {
+@@ -163,6 +239,19 @@ &mdss_dp3_phy {
+ 	status = "okay";
+ };
+ 
++&pmh0110_f_e0_gpios {
++	misc_3p3_reg_en: misc-3p3-reg-en-state {
++		pins = "gpio6";
++		function = "normal";
++		bias-disable;
++		input-disable;
++		output-enable;
++		drive-push-pull;
++		power-source = <1>; /* 1.8 V */
++		qcom,drive-strength = <PMIC_GPIO_STRENGTH_LOW>;
++	};
++};
++
+ &smb2370_j_e2_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l15b_e0_1p8>;
+ 	vdd3-supply = <&vreg_l7b_e0_2p79>;
+@@ -187,6 +276,33 @@ edp_reg_en: edp-reg-en-state {
+ 		drive-strength = <16>;
+ 		bias-disable;
+ 	};
++
++	kybd_default: kybd-default-state {
++		pins = "gpio67";
++		function = "gpio";
++		bias-disable;
++	};
++
++	tpad_default: tpad-default-state {
++		pins = "gpio3";
++		function = "gpio";
++		bias-disable;
++	};
++
++	ts0_default: ts0-default-state {
++		int-n-pins {
++			pins = "gpio51";
++			function = "gpio";
++			bias-disable;
++		};
++
++		reset-n-pins {
++			pins = "gpio48";
++			function = "gpio";
++			drive-strength = <16>;
++			bias-disable;
++		};
++	};
+ };
+ 
+ &usb_0 {
+
+---
+base-commit: f6eb9ae8b9fc13c3971e4a6d1e8442f253001f36
+change-id: 20260309-glymur-dts-crd-enable-kbd-tp-ts-c80c0cb78940
+prerequisite-change-id: 20260109-dts-qcom-glymur-add-usb-support-617b6d9d032c:v7
+prerequisite-patch-id: 7ec5f802a334d96421d8f95d4d9e9773655cc947
+prerequisite-patch-id: 8d240ee207afc875f46f640c6e72042cf5bfb61b
+prerequisite-change-id: 20260109-dts-qcom-glymur-crd-add-edp-03f0adde9750:v7
+prerequisite-patch-id: 7ec5f802a334d96421d8f95d4d9e9773655cc947
+prerequisite-patch-id: 8d240ee207afc875f46f640c6e72042cf5bfb61b
+prerequisite-patch-id: 346f2db0933c551a039f63b945f989a5c8320657
+prerequisite-patch-id: 8bf1870491095593aec382514f041364ffecced4
+
+Best regards,
+--  
+Abel Vesa <abel.vesa@oss.qualcomm.com>
 
 
