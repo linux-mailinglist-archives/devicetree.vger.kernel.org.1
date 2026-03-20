@@ -1,55 +1,51 @@
-Return-Path: <devicetree+bounces-278227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278228-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qILNEa8pvWkG7QIAu9opvQ
-	(envelope-from <devicetree+bounces-278227-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:04:15 +0100
+	id MCSLNIEqvWkG7QIAu9opvQ
+	(envelope-from <devicetree+bounces-278228-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:07:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32B642D93EF
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:04:14 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DA742D94D0
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:07:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A73B3300C3A2
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:04:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1BA133017392
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:06:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C1A439A7FB;
-	Fri, 20 Mar 2026 11:04:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81BD83921E9;
+	Fri, 20 Mar 2026 11:06:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uO1t5oGH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m+Bh1C2P"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8257396D1E;
-	Fri, 20 Mar 2026 11:03:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E12F2E4274;
+	Fri, 20 Mar 2026 11:06:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774004639; cv=none; b=MXxjsc8D2YpcslVdHGDl2cj7qN6AAdSfL8u2sbWMHG9xbl73bge/UYIHeWxE+uH+kX8WKdyKCHxuUPq8FjRw0H+BghDgkJMprD77QsxgATHxWebI8GoG9ZpD9XRxbGJBFZq4uPvrmqZdKlahN4NNHbFJbiURZH+Wx2HBVtRZOmA=
+	t=1774004792; cv=none; b=Ji5QSBlgd1R7Qke+LKyVXBC/iat/yv8SwjMGL/k/koiIvSWbV/9DggDxZUTzkh3ObrKHuwjkKsoP1eVYzyHWFeIMyFv5LR5wo9IJifu5Ig3fet02eDJZjNSoIkKDlXAwC4Sbbl7LN1NQWCnBU74suEGChbeB05RKnxGGAnWY/ww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774004639; c=relaxed/simple;
-	bh=d0/ZPw94aFPTAExgWJwi5bY5yasqhO+dLDXzto1Lo0I=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=UNWTHGioKJgZ2cF6aClFdRrwIHBFq1fzJgI7zs5uJj05iJlccZW8jp+Kix73zFkdUbK/98yZFOwCq9ZK4LQIUSKq3z9uCwPDDb31Kuir8xXnvmQglnOwiCNkbds16Sg71Nh3Dq9Bhvk2xTm2IuvU/+GSJ+BQ2XykxBvI4fo54a4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uO1t5oGH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A686EC2BCC9;
-	Fri, 20 Mar 2026 11:03:59 +0000 (UTC)
+	s=arc-20240116; t=1774004792; c=relaxed/simple;
+	bh=WrHj/b8deWiGuar8cbaJPGBckgcFXuxHBpTnu7n5cRY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ChbnEnEv/em25QzrA6LG423XIZ7wEydRZV37Ce44uEp1fPXRXIsCRvTLMx9t9TgjOsbJzKgnVNvOQpFKw1k2Zyn/jRoANrxVEdWlslwLijz0faE6ysLBnVfHzNCVxljNr4joudB5Ixmi1Uiu0wukepFK7HLi2GTHkgjyunjirbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m+Bh1C2P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E8E5C4CEF7;
+	Fri, 20 Mar 2026 11:06:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774004639;
-	bh=d0/ZPw94aFPTAExgWJwi5bY5yasqhO+dLDXzto1Lo0I=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=uO1t5oGHTLwEEpWQTiqm5IgBe2Wm6sxyN09lfz/SccPgTzXAM+teVqBI2Zum64m6l
-	 z/+/o8PgslLWDCVP2+ju5YgiWRFblvtnpU+UeiDNzTj5oJdpAgbAPBNdu1MjFzmh9Y
-	 kCpzRSRnHHEo4rwCFfwe8GgyTbziMDhYjIkhbgk4Ql/vr1IHm92KQ541gcYX5dlcio
-	 /Pv/qno0BlHX7FszpzY3/29FoBNokDZfMDjA7z+Ine+cF3f0Ingc6fH7DXJzhFEMug
-	 GXAF/3gK0r2fSX67LDmMN/RbO1SSbnZlWtjAIbgJkJn+K6GKWyIM2G/Fh4Rilflh3Z
-	 UBIxFUowS3DqA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9CA5C108B8F3;
-	Fri, 20 Mar 2026 11:03:59 +0000 (UTC)
-From: Radu Sabau via B4 Relay <devnull+radu.sabau.analog.com@kernel.org>
-Date: Fri, 20 Mar 2026 13:03:58 +0200
-Subject: [PATCH v4 4/4] iio: adc: ad4691: add SPI offload support
+	s=k20201202; t=1774004792;
+	bh=WrHj/b8deWiGuar8cbaJPGBckgcFXuxHBpTnu7n5cRY=;
+	h=From:Date:Subject:To:Cc:From;
+	b=m+Bh1C2PTGcRjR5raKoibOrhkA6A7B8mUwamLcEwR24j8hwnmY8xC377b+c356uEY
+	 9lBerJRdLlflRG82pjQv6FPT7HzaieCmVyIJdYori21A3krqomfEtNP5hfnBmKo5Rw
+	 K8aa+tIHiqAK974fUxsawVzcJCpnR7KnMtzH3T6enQH86wVsIQ7JYpSlrjX/zDTpQz
+	 JpdicJDDmNlOKxbv9s4lODnzJJWJV8VeMX41m4WnQOG8ceeU3ReXR5/QFMrdXJV+EH
+	 4Nc/bJAEGQHZ6XG5ELpzOdUZyaic794RdnW491xmsfTIquoJkv4ouwSImFH3mRzUih
+	 /madpIkY47GVQ==
+From: Yixun Lan <dlan@kernel.org>
+Date: Fri, 20 Mar 2026 11:06:17 +0000
+Subject: [PATCH v5] reset: spacemit: k3: Decouple composite reset lines
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,779 +53,304 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260320-ad4692-multichannel-sar-adc-driver-v4-4-052c1050507a@analog.com>
-References: <20260320-ad4692-multichannel-sar-adc-driver-v4-0-052c1050507a@analog.com>
-In-Reply-To: <20260320-ad4692-multichannel-sar-adc-driver-v4-0-052c1050507a@analog.com>
-To: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260320-01-k3-reset-usb-pci-v5-1-07f4a5ddd728@kernel.org>
+X-B4-Tracking: v=1; b=H4sIACgqvWkC/33NTWrDMBCG4asErTtlNBpZuKvco2Shn3EiUuwgp
+ SYl+O5VsnKJ6fL9YJ65qyolS1Ufu7sqMueap7GFfdupePLjUSCn1oqQOjSaADWcDRSpcoXvGuA
+ SM6SE6AfvbKe9apeXIkO+PdXPQ+tTrtep/DyfzPqx/u/NGhCQKBAHZxiH/VnKKF/vUzmqBzjTG
+ uFthEBDnyL2rkuWWF4Qs0bcNmIaIhx6zya6xPYF4RVCuI1wQ1zg3mLUqRf6gyzL8guJO5L0hgE
+ AAA==
+X-Change-ID: 20260312-01-k3-reset-usb-pci-dd00afa7561a
+To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
- linux-gpio@vger.kernel.org, Radu Sabau <radu.sabau@analog.com>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Junzhong Pan <junzhong.pan@spacemit.com>, 
+ Guodong Xu <guodong@riscstar.com>, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Yixun Lan <dlan@kernel.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1774004636; l=23384;
- i=radu.sabau@analog.com; s=20260220; h=from:subject:message-id;
- bh=CcNob1GhOWpVfV4i05s0F2XBUXGCckdQbVMCSNH+1Go=;
- b=SU5pnU+A0aTeL95IAt11cS9Hto61a/gS2bAyFQPWD9pTz9yx/9zTQKalqarf/6KK2pfIE3613
- eqtsffDXqGaC/EHonsjqb0Y7nnTyMxvAfNW06j5iD8S9LbvtQkBh6YV
-X-Developer-Key: i=radu.sabau@analog.com; a=ed25519;
- pk=lDPQHgn9jTdt0vo58Na9lLxLaE2mb330if71Cn+EvFU=
-X-Endpoint-Received: by B4 Relay for radu.sabau@analog.com/20260220 with
- auth_id=642
-X-Original-From: Radu Sabau <radu.sabau@analog.com>
-Reply-To: radu.sabau@analog.com
+X-Developer-Signature: v=1; a=openpgp-sha256; l=11894; i=dlan@kernel.org;
+ h=from:subject:message-id; bh=WrHj/b8deWiGuar8cbaJPGBckgcFXuxHBpTnu7n5cRY=;
+ b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpvSow0FrXTNV49qZWKb4S4N0RUKbukUy+hVo4d
+ 7Nj9IqzYIuJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCab0qMBsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
+ maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
+ QACgkQMarqR1lNu+1QTg//bN5yrW53KzKN987sAL6H5EgwH8Kk+xjfUdA2oTNhx8jdNcTrjhkmP
+ BSF8+VyCU3lCMS7NKmPDevxLL848tKEsdC+yODv31GXoTNZIU3uXJF0tr1D1sCviW6s09WKwlmD
+ LY2Sd+u3zCB2wGhXZAcc48mXXcPaXaOjNNx5hxtPt84Qq92ObIlJTnATKjzEWACd0nncr4NSRyA
+ z1xl3P8GV5Ko+zyNvER351q4vG3yNQFS4ravdKJeUq/pwCkPhCUQKxovpkR9K95yfPldLInu9/n
+ niaEzynV2FZJf3yztXtdZdNJJavXawI9N8hZQnJML/WhN2LpsVAgDmZ+5WBm96v/f7i9eKTu5Rc
+ gl/gdbbB0dqP+jl/p6ny2gdpVSqslQAsr+LJPQU5inMyommhTHuH17FfW6de6sLv5kgjEY76RZX
+ eG3c1UTPBixXEzdqj/rTtH2q/Z4IqSCR4lwEbJRCs9ka0vhoNpLb94r6H6uwGeUJZjLqxFhq2hr
+ narr4CwYRNllG4ZgntweR0HtxD7zZ3Dw7qHCowaILMD8ZjtyZ6AGse8znhid/Wl+waXI1nKRtUa
+ aaSuhQxq3xKtt9foz7UXzUY+eaiS7B1P30AIKMpK1i16VvUU8uiBOPdEAVuGxwiWUjECutC3AQX
+ Y2IlMSWsMkUAtoECzSgAHuQo/BC4d4=
+X-Developer-Key: i=dlan@kernel.org; a=openpgp;
+ fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278227-lists,devicetree=lfdr.de,radu.sabau.analog.com];
+	TAGGED_FROM(0.00)[bounces-278228-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[metafoo.de,analog.com,kernel.org,baylibre.com,gmail.com,pengutronix.de];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[radu.sabau@analog.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,analog.com:email,analog.com:replyto,analog.com:mid]
-X-Rspamd-Queue-Id: 32B642D93EF
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	NEURAL_HAM(-0.00)[-0.993];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 4DA742D94D0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Radu Sabau <radu.sabau@analog.com>
+Instead of grouping several different reset lines into one composite
+reset, decouple them to individual ones which make it more aligned
+with underlying hardware. And for DWC USB driver, it will match well
+with the number of the reset property in the DT bindings.
 
-Add SPI offload support to enable DMA-based, CPU-independent data
-acquisition using the SPI Engine offload framework.
+The DWC3 USB host controller in K3 SoC has three reset lines - AHB, VCC,
+PHY. The PCIe controller also has three reset lines - DBI, Slave, Master.
+Also three reset lines each for UCIE and RCPU block.
 
-When an SPI offload is available (devm_spi_offload_get() succeeds),
-the driver registers a DMA engine IIO buffer and uses dedicated buffer
-setup operations. If no offload is available the existing software
-triggered buffer path is used unchanged.
+As an agreement with maintainer, the reset IDs has been rearranged as
+contiguous number but keep most part unchanged to avoid break patches
+which already sent to mailing list. The changes of DT binding header file
+and reset driver are merged together as one single commit to avoid
+git-bisect breakage.
 
-Both CNV Burst Mode and Manual Mode support offload, but use different
-trigger mechanisms:
-
-CNV Burst Mode: the SPI Engine is triggered by the ADC's DATA_READY
-signal on the GP pin specified by the trigger-source consumer reference
-in the device tree (one cell = GP pin number 0-3). For this mode the
-driver acts as both an SPI offload consumer (DMA RX stream, message
-optimization) and a trigger source provider: it registers the
-GP/DATA_READY output via devm_spi_offload_trigger_register() so the
-offload framework can match the '#trigger-source-cells' phandle and
-automatically fire the SPI Engine DMA transfer at end-of-conversion.
-
-Manual Mode: the SPI Engine is triggered by a periodic trigger at
-the configured sampling frequency. The pre-built SPI message uses
-the pipelined CNV-on-CS protocol: N+1 4-byte transfers are issued
-for N active channels (the first result is discarded as garbage from
-the pipeline flush) and the remaining N results are captured by DMA.
-
-All offload transfers use 32-bit frames (bits_per_word=32, len=4) for
-DMA word alignment. This patch promotes the channel scan_type from
-storagebits=16 (triggered-buffer path) to storagebits=32 to match the
-DMA word size; the triggered-buffer paths are updated to the same layout
-for consistency. CNV Burst Mode channel data arrives in the lower 16
-bits of the 32-bit word (shift=0); Manual Mode data arrives in the upper
-16 bits (shift=16), matching the 4-byte SPI transfer layout
-[data_hi, data_lo, 0, 0]. A separate ad4691_manual_channels[] array
-encodes the shift=16 scan type for manual mode.
-
-Kconfig gains a dependency on IIO_BUFFER_DMAENGINE.
-
-Signed-off-by: Radu Sabau <radu.sabau@analog.com>
+Fixes: 938ce3b16582 ("reset: spacemit: Add SpacemiT K3 reset driver")
+Fixes: 216e0a5e98e5 ("dt-bindings: soc: spacemit: Add K3 reset support and IDs")
+Signed-off-by: Yixun Lan <dlan@kernel.org>
 ---
- drivers/iio/adc/Kconfig  |   1 +
- drivers/iio/adc/ad4691.c | 470 +++++++++++++++++++++++++++++++++++++++++++----
- 2 files changed, 435 insertions(+), 36 deletions(-)
+Previously, the reset of The USB and PCIe was submited as a composite
+reset, try to decouple them in this series.
 
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index d498f16c0816..93f090e9a562 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -144,6 +144,7 @@ config AD4691
- 	depends on SPI
- 	select IIO_BUFFER
- 	select IIO_TRIGGERED_BUFFER
-+	select IIO_BUFFER_DMAENGINE
- 	select REGMAP
- 	help
- 	  Say yes here to build support for Analog Devices AD4691 Family MuxSAR
-diff --git a/drivers/iio/adc/ad4691.c b/drivers/iio/adc/ad4691.c
-index db776de32846..5e0fe993c17d 100644
---- a/drivers/iio/adc/ad4691.c
-+++ b/drivers/iio/adc/ad4691.c
-@@ -8,6 +8,7 @@
- #include <linux/cleanup.h>
- #include <linux/delay.h>
- #include <linux/device.h>
-+#include <linux/dmaengine.h>
- #include <linux/err.h>
- #include <linux/interrupt.h>
- #include <linux/math.h>
-@@ -19,10 +20,14 @@
- #include <linux/regulator/consumer.h>
- #include <linux/reset.h>
- #include <linux/spi/spi.h>
-+#include <linux/spi/offload/consumer.h>
-+#include <linux/spi/offload/provider.h>
- #include <linux/units.h>
- #include <linux/unaligned.h>
- 
- #include <linux/iio/buffer.h>
-+#include <linux/iio/buffer-dma.h>
-+#include <linux/iio/buffer-dmaengine.h>
- #include <linux/iio/iio.h>
- #include <linux/iio/sysfs.h>
- #include <linux/iio/trigger.h>
-@@ -37,6 +42,7 @@
- #define AD4691_VREF_4P096_uV_MAX		4500000
- 
- #define AD4691_CNV_DUTY_CYCLE_NS		380
-+#define AD4691_CNV_HIGH_TIME_NS			430
- 
- #define AD4691_SPI_CONFIG_A_REG			0x000
- #define AD4691_SW_RESET				(BIT(7) | BIT(0))
-@@ -89,6 +95,12 @@
- #define AD4691_ACC_IN(n)			(0x252 + (3 * (n)))
- #define AD4691_ACC_STS_DATA(n)			(0x283 + (4 * (n)))
- 
-+/* SPI offload 32-bit word field masks (transmitted MSB first) */
-+#define AD4691_OFFLOAD_BITS_PER_WORD		32
-+#define AD4691_MSG_ADDR_HI			GENMASK(31, 24)
-+#define AD4691_MSG_ADDR_LO			GENMASK(23, 16)
-+#define AD4691_MSG_DATA				GENMASK(15, 8)
-+
- enum ad4691_ref_ctrl {
- 	AD4691_VREF_2P5   = 0,
- 	AD4691_VREF_3P0   = 1,
-@@ -99,12 +111,22 @@ enum ad4691_ref_ctrl {
- 
- struct ad4691_chip_info {
- 	const struct iio_chan_spec *channels;
-+	const struct iio_chan_spec *manual_channels;
- 	const char *name;
- 	unsigned int num_channels;
- 	unsigned int max_rate;
- };
- 
--#define AD4691_CHANNEL(ch)						\
-+/*
-+ * 16-bit ADC data is stored in 32-bit slots to match the SPI offload DMA
-+ * word size (32 bits per transfer). The shift reflects the data position
-+ * within the 32-bit word:
-+ *   CNV_BURST: RX = [dummy, dummy, data_hi, data_lo] -> shift = 0
-+ *   MANUAL:    RX = [data_hi, data_lo, dummy, dummy] -> shift = 16
-+ * The triggered-buffer paths store data in the same position for consistency.
-+ * Do not "fix" storagebits to 16.
-+ */
-+#define AD4691_CHANNEL(ch, _shift)					\
- 	{								\
- 		.type = IIO_VOLTAGE,					\
- 		.indexed = 1,						\
-@@ -118,40 +140,72 @@ struct ad4691_chip_info {
- 		.scan_type = {						\
- 			.sign = 'u',					\
- 			.realbits = 16,					\
--			.storagebits = 16,				\
--			.shift = 0,					\
-+			.storagebits = 32,				\
-+			.shift = _shift,				\
- 		},							\
- 	}
- 
- static const struct iio_chan_spec ad4691_channels[] = {
--	AD4691_CHANNEL(0),
--	AD4691_CHANNEL(1),
--	AD4691_CHANNEL(2),
--	AD4691_CHANNEL(3),
--	AD4691_CHANNEL(4),
--	AD4691_CHANNEL(5),
--	AD4691_CHANNEL(6),
--	AD4691_CHANNEL(7),
--	AD4691_CHANNEL(8),
--	AD4691_CHANNEL(9),
--	AD4691_CHANNEL(10),
--	AD4691_CHANNEL(11),
--	AD4691_CHANNEL(12),
--	AD4691_CHANNEL(13),
--	AD4691_CHANNEL(14),
--	AD4691_CHANNEL(15),
-+	AD4691_CHANNEL(0, 0),
-+	AD4691_CHANNEL(1, 0),
-+	AD4691_CHANNEL(2, 0),
-+	AD4691_CHANNEL(3, 0),
-+	AD4691_CHANNEL(4, 0),
-+	AD4691_CHANNEL(5, 0),
-+	AD4691_CHANNEL(6, 0),
-+	AD4691_CHANNEL(7, 0),
-+	AD4691_CHANNEL(8, 0),
-+	AD4691_CHANNEL(9, 0),
-+	AD4691_CHANNEL(10, 0),
-+	AD4691_CHANNEL(11, 0),
-+	AD4691_CHANNEL(12, 0),
-+	AD4691_CHANNEL(13, 0),
-+	AD4691_CHANNEL(14, 0),
-+	AD4691_CHANNEL(15, 0),
-+	IIO_CHAN_SOFT_TIMESTAMP(16),
-+};
-+
-+static const struct iio_chan_spec ad4691_manual_channels[] = {
-+	AD4691_CHANNEL(0, 16),
-+	AD4691_CHANNEL(1, 16),
-+	AD4691_CHANNEL(2, 16),
-+	AD4691_CHANNEL(3, 16),
-+	AD4691_CHANNEL(4, 16),
-+	AD4691_CHANNEL(5, 16),
-+	AD4691_CHANNEL(6, 16),
-+	AD4691_CHANNEL(7, 16),
-+	AD4691_CHANNEL(8, 16),
-+	AD4691_CHANNEL(9, 16),
-+	AD4691_CHANNEL(10, 16),
-+	AD4691_CHANNEL(11, 16),
-+	AD4691_CHANNEL(12, 16),
-+	AD4691_CHANNEL(13, 16),
-+	AD4691_CHANNEL(14, 16),
-+	AD4691_CHANNEL(15, 16),
- 	IIO_CHAN_SOFT_TIMESTAMP(16),
- };
- 
- static const struct iio_chan_spec ad4693_channels[] = {
--	AD4691_CHANNEL(0),
--	AD4691_CHANNEL(1),
--	AD4691_CHANNEL(2),
--	AD4691_CHANNEL(3),
--	AD4691_CHANNEL(4),
--	AD4691_CHANNEL(5),
--	AD4691_CHANNEL(6),
--	AD4691_CHANNEL(7),
-+	AD4691_CHANNEL(0, 0),
-+	AD4691_CHANNEL(1, 0),
-+	AD4691_CHANNEL(2, 0),
-+	AD4691_CHANNEL(3, 0),
-+	AD4691_CHANNEL(4, 0),
-+	AD4691_CHANNEL(5, 0),
-+	AD4691_CHANNEL(6, 0),
-+	AD4691_CHANNEL(7, 0),
-+	IIO_CHAN_SOFT_TIMESTAMP(16),
-+};
-+
-+static const struct iio_chan_spec ad4693_manual_channels[] = {
-+	AD4691_CHANNEL(0, 16),
-+	AD4691_CHANNEL(1, 16),
-+	AD4691_CHANNEL(2, 16),
-+	AD4691_CHANNEL(3, 16),
-+	AD4691_CHANNEL(4, 16),
-+	AD4691_CHANNEL(5, 16),
-+	AD4691_CHANNEL(6, 16),
-+	AD4691_CHANNEL(7, 16),
- 	IIO_CHAN_SOFT_TIMESTAMP(16),
- };
- 
-@@ -181,6 +235,7 @@ static const unsigned int ad4691_osc_freqs[] = {
- 
- static const struct ad4691_chip_info ad4691_chip_info = {
- 	.channels = ad4691_channels,
-+	.manual_channels = ad4691_manual_channels,
- 	.name = "ad4691",
- 	.num_channels = ARRAY_SIZE(ad4691_channels),
- 	.max_rate = 500 * HZ_PER_KHZ,
-@@ -188,6 +243,7 @@ static const struct ad4691_chip_info ad4691_chip_info = {
- 
- static const struct ad4691_chip_info ad4692_chip_info = {
- 	.channels = ad4691_channels,
-+	.manual_channels = ad4691_manual_channels,
- 	.name = "ad4692",
- 	.num_channels = ARRAY_SIZE(ad4691_channels),
- 	.max_rate = 1 * HZ_PER_MHZ,
-@@ -195,6 +251,7 @@ static const struct ad4691_chip_info ad4692_chip_info = {
- 
- static const struct ad4691_chip_info ad4693_chip_info = {
- 	.channels = ad4693_channels,
-+	.manual_channels = ad4693_manual_channels,
- 	.name = "ad4693",
- 	.num_channels = ARRAY_SIZE(ad4693_channels),
- 	.max_rate = 500 * HZ_PER_KHZ,
-@@ -202,6 +259,7 @@ static const struct ad4691_chip_info ad4693_chip_info = {
- 
- static const struct ad4691_chip_info ad4694_chip_info = {
- 	.channels = ad4693_channels,
-+	.manual_channels = ad4693_manual_channels,
- 	.name = "ad4694",
- 	.num_channels = ARRAY_SIZE(ad4693_channels),
- 	.max_rate = 1 * HZ_PER_MHZ,
-@@ -227,9 +285,9 @@ struct ad4691_state {
- 	 */
- 	struct mutex			lock;
- 	/*
--	 * Per-buffer-enabl ree lifetimesources:
--	 * Manual Mode - a pre-built SPI message that clocks out N+1
--	 *		 transfers in one go.
-+	 * Per-buffer-enable lifetime resources (triggered-buffer paths):
-+	 * Manual Mode    - a pre-built SPI message that clocks out N+1
-+	 *		    transfers in one go.
- 	 * CNV Burst Mode - a pre-built SPI message that clocks out 2*N
- 	 *		    transfers in one go.
- 	 */
-@@ -238,9 +296,19 @@ struct ad4691_state {
- 	struct spi_transfer		*scan_xfers;
- 	__be16				*scan_tx;
- 	__be16				*scan_rx;
--	/* Scan buffer: one slot per channel (u16) plus timestamp */
-+	/* SPI offload DMA path resources */
-+	struct spi_offload		*offload;
-+	/* SPI offload trigger - periodic (MANUAL) or DATA_READY (CNV_BURST) */
-+	struct spi_offload_trigger	*offload_trigger;
-+	u64				offload_trigger_hz;
-+	struct spi_message		offload_msg;
-+	/* Max 16 channel xfers + 1 state-reset or NOOP */
-+	struct spi_transfer		offload_xfer[17];
-+	u32				offload_tx_cmd[17];
-+	u32				offload_tx_reset;
-+	/* Scan buffer: one slot per channel (u32) plus timestamp */
- 	struct {
--		u16 vals[16];
-+		u32 vals[16];
- 		s64 ts __aligned(8);
- 	} scan __aligned(IIO_DMA_MINALIGN);
- };
-@@ -260,6 +328,46 @@ static int ad4691_gpio_setup(struct ad4691_state *st, unsigned int gp_num)
- 				  AD4691_GP_MODE_DATA_READY << shift);
- }
- 
-+static const struct spi_offload_config ad4691_offload_config = {
-+	.capability_flags = SPI_OFFLOAD_CAP_TRIGGER |
-+			    SPI_OFFLOAD_CAP_RX_STREAM_DMA,
-+};
-+
-+static bool ad4691_offload_trigger_match(struct spi_offload_trigger *trigger,
-+					 enum spi_offload_trigger_type type,
-+					 u64 *args, u32 nargs)
-+{
-+	return type == SPI_OFFLOAD_TRIGGER_DATA_READY &&
-+	       nargs == 1 && args[0] <= 3;
-+}
-+
-+static int ad4691_offload_trigger_request(struct spi_offload_trigger *trigger,
-+					  enum spi_offload_trigger_type type,
-+					  u64 *args, u32 nargs)
-+{
-+	struct ad4691_state *st = spi_offload_trigger_get_priv(trigger);
-+
-+	if (nargs != 1)
-+		return -EINVAL;
-+
-+	return ad4691_gpio_setup(st, (unsigned int)args[0]);
-+}
-+
-+static int ad4691_offload_trigger_validate(struct spi_offload_trigger *trigger,
-+					   struct spi_offload_trigger_config *config)
-+{
-+	if (config->type != SPI_OFFLOAD_TRIGGER_DATA_READY)
-+		return -EINVAL;
-+
-+	return 0;
-+}
-+
-+static const struct spi_offload_trigger_ops ad4691_offload_trigger_ops = {
-+	.match    = ad4691_offload_trigger_match,
-+	.request  = ad4691_offload_trigger_request,
-+	.validate = ad4691_offload_trigger_validate,
-+};
-+
- static void ad4691_disable_pwm(void *data)
- {
- 	struct pwm_state state = { .enabled = false };
-@@ -817,6 +925,206 @@ static const struct iio_buffer_setup_ops ad4691_cnv_burst_buffer_setup_ops = {
- 	.postdisable = &ad4691_cnv_burst_buffer_postdisable,
- };
- 
-+static int ad4691_manual_offload_buffer_postenable(struct iio_dev *indio_dev)
-+{
-+	struct ad4691_state *st = iio_priv(indio_dev);
-+	struct device *dev = regmap_get_device(st->regmap);
-+	struct spi_device *spi = to_spi_device(dev);
-+	struct spi_offload_trigger_config config = {
-+		.type = SPI_OFFLOAD_TRIGGER_PERIODIC,
-+	};
-+	unsigned int bit, k;
-+	int ret;
-+
-+	ret = ad4691_enter_conversion_mode(st);
-+	if (ret)
-+		return ret;
-+
-+	memset(st->offload_xfer, 0, sizeof(st->offload_xfer));
-+
-+	/*
-+	 * N+1 transfers for N channels. Each CS-low period triggers
-+	 * a conversion AND returns the previous result (pipelined).
-+	 *   TX: [AD4691_ADC_CHAN(n), 0x00, 0x00, 0x00]
-+	 *   RX: [data_hi, data_lo, 0x00, 0x00]   (shift=16)
-+	 * Transfer 0 RX is garbage; transfers 1..N carry real data.
-+	 */
-+	k = 0;
-+	iio_for_each_active_channel(indio_dev, bit) {
-+		st->offload_tx_cmd[k] =
-+			cpu_to_be32(FIELD_PREP(AD4691_MSG_ADDR_HI,
-+					       AD4691_ADC_CHAN(bit)));
-+		st->offload_xfer[k].tx_buf = &st->offload_tx_cmd[k];
-+		st->offload_xfer[k].len = sizeof(u32);
-+		st->offload_xfer[k].bits_per_word = AD4691_OFFLOAD_BITS_PER_WORD;
-+		st->offload_xfer[k].cs_change = 1;
-+		st->offload_xfer[k].cs_change_delay.value = AD4691_CNV_HIGH_TIME_NS;
-+		st->offload_xfer[k].cs_change_delay.unit = SPI_DELAY_UNIT_NSECS;
-+		/* First transfer RX is garbage — skip it. */
-+		if (k > 0)
-+			st->offload_xfer[k].offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
-+		k++;
-+	}
-+
-+	/* Final NOOP to flush pipeline and capture last channel. */
-+	st->offload_tx_cmd[k] =
-+		cpu_to_be32(FIELD_PREP(AD4691_MSG_ADDR_HI, AD4691_NOOP));
-+	st->offload_xfer[k].tx_buf = &st->offload_tx_cmd[k];
-+	st->offload_xfer[k].len = sizeof(u32);
-+	st->offload_xfer[k].bits_per_word = AD4691_OFFLOAD_BITS_PER_WORD;
-+	st->offload_xfer[k].offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
-+	k++;
-+
-+	spi_message_init_with_transfers(&st->offload_msg, st->offload_xfer, k);
-+	st->offload_msg.offload = st->offload;
-+
-+	ret = spi_optimize_message(spi, &st->offload_msg);
-+	if (ret)
-+		goto err_exit_conversion;
-+
-+	config.periodic.frequency_hz = st->offload_trigger_hz;
-+	ret = spi_offload_trigger_enable(st->offload, st->offload_trigger, &config);
-+	if (ret)
-+		goto err_unoptimize;
-+
-+	return 0;
-+
-+err_unoptimize:
-+	spi_unoptimize_message(&st->offload_msg);
-+err_exit_conversion:
-+	ad4691_exit_conversion_mode(st);
-+	return ret;
-+}
-+
-+static int ad4691_manual_offload_buffer_predisable(struct iio_dev *indio_dev)
-+{
-+	struct ad4691_state *st = iio_priv(indio_dev);
-+
-+	spi_offload_trigger_disable(st->offload, st->offload_trigger);
-+	spi_unoptimize_message(&st->offload_msg);
-+
-+	return ad4691_exit_conversion_mode(st);
-+}
-+
-+static const struct iio_buffer_setup_ops ad4691_manual_offload_buffer_setup_ops = {
-+	.postenable = &ad4691_manual_offload_buffer_postenable,
-+	.predisable = &ad4691_manual_offload_buffer_predisable,
-+};
-+
-+static int ad4691_cnv_burst_offload_buffer_postenable(struct iio_dev *indio_dev)
-+{
-+	struct ad4691_state *st = iio_priv(indio_dev);
-+	struct device *dev = regmap_get_device(st->regmap);
-+	struct spi_device *spi = to_spi_device(dev);
-+	struct spi_offload_trigger_config config = {
-+		.type = SPI_OFFLOAD_TRIGGER_DATA_READY,
-+	};
-+	unsigned int n_active = hweight_long(*indio_dev->active_scan_mask);
-+	unsigned int bit, k;
-+	int ret;
-+
-+	ret = regmap_write(st->regmap, AD4691_ACC_MASK_REG,
-+			   (u16)~(*indio_dev->active_scan_mask));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(st->regmap, AD4691_STD_SEQ_CONFIG,
-+			   *indio_dev->active_scan_mask);
-+	if (ret)
-+		return ret;
-+
-+	iio_for_each_active_channel(indio_dev, bit) {
-+		ret = regmap_write(st->regmap, AD4691_ACC_COUNT_LIMIT(bit),
-+				   AD4691_ACC_COUNT_VAL);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	ret = ad4691_enter_conversion_mode(st);
-+	if (ret)
-+		return ret;
-+
-+	memset(st->offload_xfer, 0, sizeof(st->offload_xfer));
-+
-+	/*
-+	 * N transfers to read N AVG_IN registers plus one state-reset
-+	 * transfer (no RX) to re-arm DATA_READY.
-+	 *   TX: [reg_hi | 0x80, reg_lo, 0x00, 0x00]
-+	 *   RX: [0x00, 0x00, data_hi, data_lo]   (shift=0)
-+	 */
-+	k = 0;
-+	iio_for_each_active_channel(indio_dev, bit) {
-+		unsigned int reg = AD4691_AVG_IN(bit);
-+
-+		st->offload_tx_cmd[k] =
-+			cpu_to_be32(((reg >> 8 | 0x80) << 24) |
-+				    ((reg & 0xFF) << 16));
-+		st->offload_xfer[k].tx_buf = &st->offload_tx_cmd[k];
-+		st->offload_xfer[k].len = sizeof(u32);
-+		st->offload_xfer[k].bits_per_word = AD4691_OFFLOAD_BITS_PER_WORD;
-+		st->offload_xfer[k].offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
-+		if (k < n_active - 1)
-+			st->offload_xfer[k].cs_change = 1;
-+		k++;
-+	}
-+
-+	/* State reset to re-arm DATA_READY for the next scan. */
-+	st->offload_tx_reset =
-+		cpu_to_be32(((AD4691_STATE_RESET_REG >> 8) << 24) |
-+			    ((AD4691_STATE_RESET_REG & 0xFF) << 16) |
-+			    (AD4691_STATE_RESET_ALL << 8));
-+	st->offload_xfer[k].tx_buf = &st->offload_tx_reset;
-+	st->offload_xfer[k].len = sizeof(u32);
-+	st->offload_xfer[k].bits_per_word = AD4691_OFFLOAD_BITS_PER_WORD;
-+	k++;
-+
-+	spi_message_init_with_transfers(&st->offload_msg, st->offload_xfer, k);
-+	st->offload_msg.offload = st->offload;
-+
-+	ret = spi_optimize_message(spi, &st->offload_msg);
-+	if (ret)
-+		goto err_exit_conversion;
-+
-+	ret = ad4691_sampling_enable(st, true);
-+	if (ret)
-+		goto err_unoptimize;
-+
-+	ret = spi_offload_trigger_enable(st->offload, st->offload_trigger, &config);
-+	if (ret)
-+		goto err_sampling_disable;
-+
-+	return 0;
-+
-+err_sampling_disable:
-+	ad4691_sampling_enable(st, false);
-+err_unoptimize:
-+	spi_unoptimize_message(&st->offload_msg);
-+err_exit_conversion:
-+	ad4691_exit_conversion_mode(st);
-+	return ret;
-+}
-+
-+static int ad4691_cnv_burst_offload_buffer_predisable(struct iio_dev *indio_dev)
-+{
-+	struct ad4691_state *st = iio_priv(indio_dev);
-+	int ret;
-+
-+	spi_offload_trigger_disable(st->offload, st->offload_trigger);
-+
-+	ret = ad4691_sampling_enable(st, false);
-+	if (ret)
-+		return ret;
-+
-+	spi_unoptimize_message(&st->offload_msg);
-+
-+	return ad4691_exit_conversion_mode(st);
-+}
-+
-+static const struct iio_buffer_setup_ops ad4691_cnv_burst_offload_buffer_setup_ops = {
-+	.postenable = &ad4691_cnv_burst_offload_buffer_postenable,
-+	.predisable = &ad4691_cnv_burst_offload_buffer_predisable,
-+};
-+
- static ssize_t sampling_frequency_show(struct device *dev,
- 					struct device_attribute *attr,
- 					char *buf)
-@@ -824,6 +1132,9 @@ static ssize_t sampling_frequency_show(struct device *dev,
- 	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
- 	struct ad4691_state *st = iio_priv(indio_dev);
- 
-+	if (st->manual_mode && st->offload)
-+		return sysfs_emit(buf, "%llu\n", st->offload_trigger_hz);
-+
- 	if (st->manual_mode)
- 		return -ENODEV;
- 
-@@ -838,7 +1149,7 @@ static ssize_t sampling_frequency_store(struct device *dev,
- 	struct ad4691_state *st = iio_priv(indio_dev);
- 	int freq, ret;
- 
--	if (st->manual_mode)
-+	if (st->manual_mode && !st->offload)
- 		return -ENODEV;
- 
- 	ret = kstrtoint(buf, 10, &freq);
-@@ -847,6 +1158,20 @@ static ssize_t sampling_frequency_store(struct device *dev,
- 
- 	guard(mutex)(&st->lock);
- 
-+	if (st->manual_mode) {
-+		struct spi_offload_trigger_config config = {
-+			.type = SPI_OFFLOAD_TRIGGER_PERIODIC,
-+			.periodic = { .frequency_hz = freq },
-+		};
-+
-+		ret = spi_offload_trigger_validate(st->offload_trigger, &config);
-+		if (ret)
-+			return ret;
-+
-+		st->offload_trigger_hz = config.periodic.frequency_hz;
-+		return len;
-+	}
-+
- 	ret = ad4691_set_pwm_freq(st, freq);
- 	if (ret)
- 		return ret;
-@@ -900,7 +1225,7 @@ static irqreturn_t ad4691_trigger_handler(int irq, void *p)
- 
- 	if (st->manual_mode) {
- 		iio_for_each_active_channel(indio_dev, i) {
--			st->scan.vals[i] = be16_to_cpu(st->scan_rx[k + 1]);
-+			st->scan.vals[i] = (u32)be16_to_cpu(st->scan_rx[k + 1]) << 16;
- 			k++;
- 		}
- 	} else {
-@@ -1088,6 +1413,15 @@ static int ad4691_config(struct ad4691_state *st, u32 max_speed_hz)
- 	if (st->manual_mode)
- 		return 0;
- 
-+	/*
-+	 * In the offload CNV Burst path the GP pin is supplied by the trigger
-+	 * consumer via #trigger-source-cells; gpio_setup is called from
-+	 * ad4691_offload_trigger_request() instead. For the non-offload path
-+	 * derive the pin from the first interrupt-names entry (e.g. "gp0").
-+	 */
-+	if (device_property_present(dev, "#trigger-source-cells"))
-+		return 0;
-+
- 	ret = device_property_read_string_array(dev, "interrupt-names",
- 						&irq_name, 1);
- 	if (ret < 0)
-@@ -1158,6 +1492,56 @@ static int ad4691_setup_triggered_buffer(struct iio_dev *indio_dev,
- 					       &ad4691_manual_buffer_setup_ops);
- }
- 
-+static int ad4691_setup_offload(struct iio_dev *indio_dev,
-+				struct ad4691_state *st)
-+{
-+	struct device *dev = regmap_get_device(st->regmap);
-+	struct dma_chan *rx_dma;
-+	int ret;
-+
-+	if (st->manual_mode) {
-+		st->offload_trigger =
-+			devm_spi_offload_trigger_get(dev, st->offload,
-+						     SPI_OFFLOAD_TRIGGER_PERIODIC);
-+		if (IS_ERR(st->offload_trigger))
-+			return dev_err_probe(dev, PTR_ERR(st->offload_trigger),
-+					     "Failed to get periodic offload trigger\n");
-+
-+		st->offload_trigger_hz = st->info->max_rate;
-+	} else {
-+		struct spi_offload_trigger_info trigger_info = {
-+			.fwnode = dev_fwnode(dev),
-+			.ops    = &ad4691_offload_trigger_ops,
-+			.priv   = st,
-+		};
-+
-+		ret = devm_spi_offload_trigger_register(dev, &trigger_info);
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					     "Failed to register offload trigger\n");
-+
-+		st->offload_trigger =
-+			devm_spi_offload_trigger_get(dev, st->offload,
-+						     SPI_OFFLOAD_TRIGGER_DATA_READY);
-+		if (IS_ERR(st->offload_trigger))
-+			return dev_err_probe(dev, PTR_ERR(st->offload_trigger),
-+					     "Failed to get DATA_READY offload trigger\n");
-+	}
-+
-+	rx_dma = devm_spi_offload_rx_stream_request_dma_chan(dev, st->offload);
-+	if (IS_ERR(rx_dma))
-+		return dev_err_probe(dev, PTR_ERR(rx_dma),
-+				     "Failed to get offload RX DMA channel\n");
-+
-+	if (st->manual_mode)
-+		indio_dev->setup_ops = &ad4691_manual_offload_buffer_setup_ops;
-+	else
-+		indio_dev->setup_ops = &ad4691_cnv_burst_offload_buffer_setup_ops;
-+
-+	return devm_iio_dmaengine_buffer_setup_with_handle(dev, indio_dev, rx_dma,
-+							   IIO_BUFFER_DIRECTION_IN);
-+}
-+
- static int ad4691_probe(struct spi_device *spi)
- {
- 	struct device *dev = &spi->dev;
-@@ -1193,14 +1577,27 @@ static int ad4691_probe(struct spi_device *spi)
- 	if (ret)
- 		return ret;
- 
-+	st->offload = devm_spi_offload_get(dev, spi, &ad4691_offload_config);
-+	ret = PTR_ERR_OR_ZERO(st->offload);
-+	if (ret == -ENODEV)
-+		st->offload = NULL;
-+	else if (ret)
-+		return dev_err_probe(dev, ret, "Failed to get SPI offload\n");
-+
- 	indio_dev->name = st->info->name;
- 	indio_dev->info = &ad4691_info;
- 	indio_dev->modes = INDIO_DIRECT_MODE;
- 
--	indio_dev->channels = st->info->channels;
-+	if (st->manual_mode)
-+		indio_dev->channels = st->info->manual_channels;
-+	else
-+		indio_dev->channels = st->info->channels;
- 	indio_dev->num_channels = st->info->num_channels;
- 
--	ret = ad4691_setup_triggered_buffer(indio_dev, st);
-+	if (st->offload)
-+		ret = ad4691_setup_offload(indio_dev, st);
-+	else
-+		ret = ad4691_setup_triggered_buffer(indio_dev, st);
- 	if (ret)
- 		return ret;
- 
-@@ -1238,3 +1635,4 @@ module_spi_driver(ad4691_driver);
- MODULE_AUTHOR("Radu Sabau <radu.sabau@analog.com>");
- MODULE_DESCRIPTION("Analog Devices AD4691 Family ADC Driver");
- MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("IIO_DMA_BUFFER");
+The motivation behind is that it will will make the result more aligned
+with the hardware which describe them as different reset lines, and also
+match with the K3 dwc3 DT binding which request different reset, 
+K1 and K3 SoC share same topology of the reset line design.
 
+See the reset part info in binding doc
+Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml
+
+In V2, I've visited through whole reset driver and decouple more resets,
+which include the block - UCIE and RPCU. Also add an explanation of why
+rearrange the reset IDs as contiguous number.
+
+In V4, I've rearranged all reset IDs to keep them linear(no hole), while
+keep EMAC part IDs unchanged, this still bring lots changes to ID number,
+let me know if it's ok.
+
+In V5, keep most reset IDs that don't have to split unchanged, also fill
+the gap, leave no hole.
+---
+Changes in v5:
+- keep IDs don't have to split unchanged
+- Link to v4: https://lore.kernel.org/r/20260320-01-k3-reset-usb-pci-v4-1-7b4950c1d9e2@kernel.org
+
+Changes in v4:
+- rearrange IDs but keep EMAC part unchanged
+- Link to v3: https://lore.kernel.org/r/20260317-01-k3-reset-usb-pci-v3-1-e4b9a43c7d45@kernel.org
+
+Changes in v3:
+- fix checkpatch.pl warning due to missing double quotes in Fixes tag
+- Link to v2: https://lore.kernel.org/r/20260314-01-k3-reset-usb-pci-v2-1-9dc0976d524e@kernel.org
+
+Changes in v2:
+- squash the two patches to avoid git-biset breakage
+- rearrange the ID to make it contiguous
+- also decouple more reset IDs - UCIE and RPCU block
+- add Fixes tag explicitly
+- Link to v1: https://lore.kernel.org/r/20260312-01-k3-reset-usb-pci-v1-0-022b24b7340f@kernel.org
+---
+ drivers/reset/spacemit/reset-spacemit-k3.c     | 60 +++++++++++++++-----------
+ include/dt-bindings/reset/spacemit,k3-resets.h | 48 +++++++++++++++------
+ 2 files changed, 72 insertions(+), 36 deletions(-)
+
+diff --git a/drivers/reset/spacemit/reset-spacemit-k3.c b/drivers/reset/spacemit/reset-spacemit-k3.c
+index e9e32e4c1ba5..9841f5e057b2 100644
+--- a/drivers/reset/spacemit/reset-spacemit-k3.c
++++ b/drivers/reset/spacemit/reset-spacemit-k3.c
+@@ -112,16 +112,21 @@ static const struct ccu_reset_data k3_apmu_resets[] = {
+ 	[RESET_APMU_SDH0]	= RESET_DATA(APMU_SDH0_CLK_RES_CTRL,	0, BIT(1)),
+ 	[RESET_APMU_SDH1]	= RESET_DATA(APMU_SDH1_CLK_RES_CTRL,	0, BIT(1)),
+ 	[RESET_APMU_SDH2]	= RESET_DATA(APMU_SDH2_CLK_RES_CTRL,	0, BIT(1)),
+-	[RESET_APMU_USB2]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
+-				BIT(1)|BIT(2)|BIT(3)),
+-	[RESET_APMU_USB3_PORTA]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
+-				BIT(5)|BIT(6)|BIT(7)),
+-	[RESET_APMU_USB3_PORTB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
+-				BIT(9)|BIT(10)|BIT(11)),
+-	[RESET_APMU_USB3_PORTC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
+-				BIT(13)|BIT(14)|BIT(15)),
+-	[RESET_APMU_USB3_PORTD]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
+-				BIT(17)|BIT(18)|BIT(19)),
++	[RESET_APMU_USB2_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(1)),
++	[RESET_APMU_USB2_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(2)),
++	[RESET_APMU_USB2_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(3)),
++	[RESET_APMU_USB3_A_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(5)),
++	[RESET_APMU_USB3_A_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(6)),
++	[RESET_APMU_USB3_A_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(7)),
++	[RESET_APMU_USB3_B_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(9)),
++	[RESET_APMU_USB3_B_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(10)),
++	[RESET_APMU_USB3_B_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(11)),
++	[RESET_APMU_USB3_C_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(13)),
++	[RESET_APMU_USB3_C_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(14)),
++	[RESET_APMU_USB3_C_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(15)),
++	[RESET_APMU_USB3_D_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(17)),
++	[RESET_APMU_USB3_D_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(18)),
++	[RESET_APMU_USB3_D_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(19)),
+ 	[RESET_APMU_QSPI]	= RESET_DATA(APMU_QSPI_CLK_RES_CTRL,	0, BIT(1)),
+ 	[RESET_APMU_QSPI_BUS]	= RESET_DATA(APMU_QSPI_CLK_RES_CTRL,	0, BIT(0)),
+ 	[RESET_APMU_DMA]	= RESET_DATA(APMU_DMA_CLK_RES_CTRL,	0, BIT(0)),
+@@ -151,10 +156,12 @@ static const struct ccu_reset_data k3_apmu_resets[] = {
+ 	[RESET_APMU_CPU7_SW]	= RESET_DATA(APMU_PMU_CC2_AP,		BIT(26), 0),
+ 	[RESET_APMU_C1_MPSUB_SW]	= RESET_DATA(APMU_PMU_CC2_AP,	BIT(28), 0),
+ 	[RESET_APMU_MPSUB_DBG]	= RESET_DATA(APMU_PMU_CC2_AP,		BIT(29), 0),
+-	[RESET_APMU_UCIE]	= RESET_DATA(APMU_UCIE_CTRL,
+-				BIT(1) | BIT(2) | BIT(3), 0),
+-	[RESET_APMU_RCPU]	= RESET_DATA(APMU_RCPU_CLK_RES_CTRL,	0,
+-				BIT(3) | BIT(2) | BIT(0)),
++	[RESET_APMU_UCIE_IP]	= RESET_DATA(APMU_UCIE_CTRL,		BIT(1),  0),
++	[RESET_APMU_UCIE_HOT]	= RESET_DATA(APMU_UCIE_CTRL,		BIT(2),  0),
++	[RESET_APMU_UCIE_MON]	= RESET_DATA(APMU_UCIE_CTRL,		BIT(3),  0),
++	[RESET_APMU_RCPU_AUDIO_SYS]	= RESET_DATA(APMU_RCPU_CLK_RES_CTRL,	0, BIT(0)),
++	[RESET_APMU_RCPU_MCU_CORE]	= RESET_DATA(APMU_RCPU_CLK_RES_CTRL,	0, BIT(2)),
++	[RESET_APMU_RCPU_AUDIO_APMU]	= RESET_DATA(APMU_RCPU_CLK_RES_CTRL,	0, BIT(3)),
+ 	[RESET_APMU_DSI4LN2_ESCCLK]	= RESET_DATA(APMU_LCD_CLK_RES_CTRL3,	0, BIT(3)),
+ 	[RESET_APMU_DSI4LN2_LCD_SW]	= RESET_DATA(APMU_LCD_CLK_RES_CTRL3,	0, BIT(4)),
+ 	[RESET_APMU_DSI4LN2_LCD_MCLK]	= RESET_DATA(APMU_LCD_CLK_RES_CTRL4,	0, BIT(9)),
+@@ -164,16 +171,21 @@ static const struct ccu_reset_data k3_apmu_resets[] = {
+ 	[RESET_APMU_UFS_ACLK]	= RESET_DATA(APMU_UFS_CLK_RES_CTRL,	0, BIT(0)),
+ 	[RESET_APMU_EDP0]	= RESET_DATA(APMU_LCD_EDP_CTRL,		0, BIT(0)),
+ 	[RESET_APMU_EDP1]	= RESET_DATA(APMU_LCD_EDP_CTRL,		0, BIT(16)),
+-	[RESET_APMU_PCIE_PORTA]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0,
+-				BIT(5) | BIT(4) | BIT(3)),
+-	[RESET_APMU_PCIE_PORTB]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0,
+-				BIT(5) | BIT(4) | BIT(3)),
+-	[RESET_APMU_PCIE_PORTC]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0,
+-				BIT(5) | BIT(4) | BIT(3)),
+-	[RESET_APMU_PCIE_PORTD]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0,
+-				BIT(5) | BIT(4) | BIT(3)),
+-	[RESET_APMU_PCIE_PORTE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0,
+-				BIT(5) | BIT(4) | BIT(3)),
++	[RESET_APMU_PCIE_A_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0, BIT(3)),
++	[RESET_APMU_PCIE_A_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0, BIT(4)),
++	[RESET_APMU_PCIE_A_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0, BIT(5)),
++	[RESET_APMU_PCIE_B_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0, BIT(3)),
++	[RESET_APMU_PCIE_B_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0, BIT(4)),
++	[RESET_APMU_PCIE_B_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0, BIT(5)),
++	[RESET_APMU_PCIE_C_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0, BIT(3)),
++	[RESET_APMU_PCIE_C_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0, BIT(4)),
++	[RESET_APMU_PCIE_C_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0, BIT(5)),
++	[RESET_APMU_PCIE_D_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0, BIT(3)),
++	[RESET_APMU_PCIE_D_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0, BIT(4)),
++	[RESET_APMU_PCIE_D_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0, BIT(5)),
++	[RESET_APMU_PCIE_E_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0, BIT(3)),
++	[RESET_APMU_PCIE_E_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0, BIT(4)),
++	[RESET_APMU_PCIE_E_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0, BIT(5)),
+ 	[RESET_APMU_EMAC0]	= RESET_DATA(APMU_EMAC0_CLK_RES_CTRL,	0, BIT(1)),
+ 	[RESET_APMU_EMAC1]	= RESET_DATA(APMU_EMAC1_CLK_RES_CTRL,	0, BIT(1)),
+ 	[RESET_APMU_EMAC2]	= RESET_DATA(APMU_EMAC2_CLK_RES_CTRL,	0, BIT(1)),
+diff --git a/include/dt-bindings/reset/spacemit,k3-resets.h b/include/dt-bindings/reset/spacemit,k3-resets.h
+index 79ac1c22b7b5..dc1ef009ba79 100644
+--- a/include/dt-bindings/reset/spacemit,k3-resets.h
++++ b/include/dt-bindings/reset/spacemit,k3-resets.h
+@@ -97,11 +97,11 @@
+ #define RESET_APMU_SDH0          13
+ #define RESET_APMU_SDH1          14
+ #define RESET_APMU_SDH2          15
+-#define RESET_APMU_USB2          16
+-#define RESET_APMU_USB3_PORTA    17
+-#define RESET_APMU_USB3_PORTB    18
+-#define RESET_APMU_USB3_PORTC    19
+-#define RESET_APMU_USB3_PORTD    20
++#define RESET_APMU_USB2_AHB      16
++#define RESET_APMU_USB2_VCC      17
++#define RESET_APMU_USB2_PHY      18
++#define RESET_APMU_USB3_A_AHB    19
++#define RESET_APMU_USB3_A_VCC    20
+ #define RESET_APMU_QSPI          21
+ #define RESET_APMU_QSPI_BUS      22
+ #define RESET_APMU_DMA           23
+@@ -132,8 +132,8 @@
+ #define RESET_APMU_CPU7_SW       48
+ #define RESET_APMU_C1_MPSUB_SW   49
+ #define RESET_APMU_MPSUB_DBG     50
+-#define RESET_APMU_UCIE          51
+-#define RESET_APMU_RCPU          52
++#define RESET_APMU_USB3_A_PHY    51	/* USB3 A */
++#define RESET_APMU_USB3_B_AHB    52
+ #define RESET_APMU_DSI4LN2_ESCCLK     53
+ #define RESET_APMU_DSI4LN2_LCD_SW     54
+ #define RESET_APMU_DSI4LN2_LCD_MCLK   55
+@@ -143,16 +143,40 @@
+ #define RESET_APMU_UFS_ACLK      59
+ #define RESET_APMU_EDP0          60
+ #define RESET_APMU_EDP1          61
+-#define RESET_APMU_PCIE_PORTA    62
+-#define RESET_APMU_PCIE_PORTB    63
+-#define RESET_APMU_PCIE_PORTC    64
+-#define RESET_APMU_PCIE_PORTD    65
+-#define RESET_APMU_PCIE_PORTE    66
++#define RESET_APMU_USB3_B_VCC    62	/* USB3 B */
++#define RESET_APMU_USB3_B_PHY    63
++#define RESET_APMU_USB3_C_AHB    64
++#define RESET_APMU_USB3_C_VCC    65
++#define RESET_APMU_USB3_C_PHY    66
+ #define RESET_APMU_EMAC0         67
+ #define RESET_APMU_EMAC1         68
+ #define RESET_APMU_EMAC2         69
+ #define RESET_APMU_ESPI_MCLK     70
+ #define RESET_APMU_ESPI_SCLK     71
++#define RESET_APMU_USB3_D_AHB    72	/* USB3 D */
++#define RESET_APMU_USB3_D_VCC    73
++#define RESET_APMU_USB3_D_PHY    74
++#define RESET_APMU_UCIE_IP       75
++#define RESET_APMU_UCIE_HOT      76
++#define RESET_APMU_UCIE_MON      77
++#define RESET_APMU_RCPU_AUDIO_SYS     78
++#define RESET_APMU_RCPU_MCU_CORE      79
++#define RESET_APMU_RCPU_AUDIO_APMU    80
++#define RESET_APMU_PCIE_A_DBI    81
++#define RESET_APMU_PCIE_A_SLAVE  82
++#define RESET_APMU_PCIE_A_MASTER 83
++#define RESET_APMU_PCIE_B_DBI    84
++#define RESET_APMU_PCIE_B_SLAVE  85
++#define RESET_APMU_PCIE_B_MASTER 86
++#define RESET_APMU_PCIE_C_DBI    87
++#define RESET_APMU_PCIE_C_SLAVE  88
++#define RESET_APMU_PCIE_C_MASTER 89
++#define RESET_APMU_PCIE_D_DBI    90
++#define RESET_APMU_PCIE_D_SLAVE  91
++#define RESET_APMU_PCIE_D_MASTER 92
++#define RESET_APMU_PCIE_E_DBI    93
++#define RESET_APMU_PCIE_E_SLAVE  94
++#define RESET_APMU_PCIE_E_MASTER 95
+ 
+ /* DCIU resets*/
+ #define RESET_DCIU_HDMA          0
+
+---
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+change-id: 20260312-01-k3-reset-usb-pci-dd00afa7561a
+
+Best regards,
 -- 
-2.43.0
-
+Yixun Lan <dlan@kernel.org>
 
 
