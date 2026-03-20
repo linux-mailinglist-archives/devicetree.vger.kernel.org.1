@@ -1,211 +1,179 @@
-Return-Path: <devicetree+bounces-278295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278297-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UN1BLN5VvWme9AIAu9opvQ
-	(envelope-from <devicetree+bounces-278295-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:12:46 +0100
+	id sAxUCFhVvWlr8gIAu9opvQ
+	(envelope-from <devicetree+bounces-278297-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:10:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F57A2DBA5A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:12:46 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F00D2DB9BD
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:10:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D873C307C893
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:06:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A763B302CD1B
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:09:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A433A2DF138;
-	Fri, 20 Mar 2026 14:06:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E73783A6EEC;
+	Fri, 20 Mar 2026 14:09:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b="PvQmJThl"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="vU36Wj79"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C17940DFC2;
-	Fri, 20 Mar 2026 14:06:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774015609; cv=pass; b=iOLpcmMcMk/NAEZojz9VnYIQLGJlo/gQz+XRS8wZ3RhzYjyRwYObCNqQvNEQ2MXLiIeBFDW5104gSpo1heWlVzBB2WT628vfRPyC4fEnm/jnne0zenWdViL+9aLpQswu+n/UplCjYEVcaUDtDFO1nddl5BgvhSHIxafWJRdUd5M=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774015609; c=relaxed/simple;
-	bh=kke4U8is/52QuT/XsXOqDRBpfoVeEqcEtpPGmuuttaw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=R3CjiFocWfXSWPNOY0/Ct1AaWe8OnaaRaNalN/jDAkAIvECx/lNyPDl/uFWEXofa3sDLGscdW1ylE7CuVZlTUY1b4d+5GzSjhSiSQhUlaXUxOUzZneFzjG/5mvKxiz1URwiStMxiL66wzsBywPIPOX9+CW0fmImtV4Qu3p4/ohU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b=PvQmJThl; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1774015588; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Wr9FbiYdbxLUWCL9K7rYZTrOQKOpu9kK+amZrXcg3V/3dA7MhRwi4q1dMjrnhbO9vp/iDphZtG4QPo4ZSFQ4WPedmabCfwULB+KEu29IwZimOWorIWFqFBOgI/YbAxrtwFi4jbqkkkoTPkor7e+mZh90+AS548pTVG0fSxpeqCE=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1774015588; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=hWgkyHieI+lx6uZjlbxnNfikaImkXlaHPtGyHRNFVhw=; 
-	b=Up3hbl2VH50Vli4WhIUpalEprB++a4eLM18qmYa2MNfb03rVZHHVoaHqRh2nB9m688S1QWByjhR0Chot7vWBAsSgY9mjFFE54Yh+B9qXwUVTLrmjW6JPovTRxnAWX2w+JhoNW+GOYAN4KDthE5y5Y39OoStSjxsqh/TCYpCdVKQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=louisalexis.eyraud@collabora.com;
-	dmarc=pass header.from=<louisalexis.eyraud@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774015588;
-	s=zohomail; d=collabora.com; i=louisalexis.eyraud@collabora.com;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=hWgkyHieI+lx6uZjlbxnNfikaImkXlaHPtGyHRNFVhw=;
-	b=PvQmJThlSKXxXoG1gYCgwyJkw7EO+zihVPm2ShJ1cr5TIwG4J9X+MS8i7xC+VXJe
-	Rysi6qqqX55sU2Ko0WlJB5cz8Bp/TsX2GEYn76k7suOZ476X9SvrRVi981QUk5Ue/B8
-	XUVEz+j0SttDunBcKfkhFVt1iZq4hWEt00ubfBBU=
-Received: by mx.zohomail.com with SMTPS id 1774015585746684.6715664799156;
-	Fri, 20 Mar 2026 07:06:25 -0700 (PDT)
-Message-ID: <32a03f60a50fc0fc3e9a3b5bfb2c06ce694054cf.camel@collabora.com>
-Subject: Re: [PATCH 3/4] arm64: dts: mediatek: add device-tree for Genio
- 720-EVK board
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-To: David Lechner <dlechner@baylibre.com>, Greg Kroah-Hartman	
- <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Rob
- Herring	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley	 <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Sean
- Wang <sean.wang@mediatek.com>
-Cc: kernel@collabora.com, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Date: Fri, 20 Mar 2026 15:06:20 +0100
-In-Reply-To: <23778b52-9aa2-49fc-946b-e858b99fc3c9@baylibre.com>
-References: 
-	<20251203-add-mediatek-genio-520-720-evk-v1-0-df794b2a30ae@collabora.com>
-	 <20251203-add-mediatek-genio-520-720-evk-v1-3-df794b2a30ae@collabora.com>
-	 <23778b52-9aa2-49fc-946b-e858b99fc3c9@baylibre.com>
-Organization: Collabora Ltd
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91C1231327A;
+	Fri, 20 Mar 2026 14:09:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774015762; cv=none; b=Vgwehvag+nRlUtfvMKGp0/YajGxCg8Tikj/FBgnZgvgWIS3e+rXWYrWYhdNdC8ysnir6MLQy5GwpWksMdL2Uhw/+kY91CubuTO8GprO/YC+dI89EK/Li/AP+is5uWeauHtB1wM+/8myn4TRa7eRZPJ+mBLsxfVYmZt7dj8QdOK8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774015762; c=relaxed/simple;
+	bh=exl5CoshFuYp5IHYNswbkmiiarT2hONEf0lIyLtcSYc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=AspIpRvkSJbArl/EgNzK2GuxO6+ArJCowOy9lULh7NICmgQMIoOd6/bC5fiZ/hbN2eSQ87qL1Z/8UTzpGjj5ch7FUeMwgHgAVFLqJUC9FzpzcSmvoERHa200a1bnsRgHICfiWd9Mj/WiVr4CkJ8FxfsK9dNCPYxCImnHwPyQhYQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=vU36Wj79; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62K7nNGa4040894;
+	Fri, 20 Mar 2026 10:08:50 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=x8pMKx/ibAHlc092QlyIJ06JAEh
+	x1/RO2CNJ067Iu5E=; b=vU36Wj79a7BWlr2GxGyX2gUR7M3w0j75AmC1zocDSWr
+	fWmVQ9cL2gbw1uoM+dzJRi7xVU3aGqjM/Xygx0acxNmc9a9rW+bEvn19hM3PJ24d
+	3xg+GZFnAXP8Qw8lB9MbKx6vaosk4C5Xfmx63iQvIkHgvES9k6TvPEahUJ3kbVIi
+	lJetjMIDJRZFLtV83p9SsJ96AZVBf3REMsI87aV9lQpFKYistSIB2+gr43KZy9fV
+	2YExyGklQ7McADJ/jgzLd2yohyiieDhjmeV4XcMWDAl1qX1wzstTxuwfuJdgJQZd
+	CtdaD3hgS05agQ2rw3s0oPybc7vo5VgqO6ptonLm1XQ==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4cyjet4rnt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Mar 2026 10:08:50 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 62KE8niJ055448
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 20 Mar 2026 10:08:49 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Fri, 20 Mar 2026 10:08:49 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Fri, 20 Mar 2026 10:08:49 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Fri, 20 Mar 2026 10:08:49 -0400
+Received: from CJONES7-T01.ad.analog.com (CJONES7-T01.ad.analog.com [10.116.223.230])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 62KE8V9J014859;
+	Fri, 20 Mar 2026 10:08:33 -0400
+From: Carlos Jones Jr <carlosjr.jones@analog.com>
+To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        David Lechner <dlechner@baylibre.com>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Liam Beguin
+	<liambeguin@gmail.com>,
+        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+        "Andy Shevchenko" <andy@kernel.org>,
+        Tobias Sperling
+	<tobias.sperling@softing.com>,
+        Jorge Marques <jorge.marques@analog.com>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/3] Add support for LTC2305
+Date: Fri, 20 Mar 2026 22:08:16 +0800
+Message-ID: <20260320140819.191700-1-carlosjr.jones@analog.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Authority-Analysis: v=2.4 cv=SpWdKfO0 c=1 sm=1 tr=0 ts=69bd54f2 cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=0sLvza09kfJOxVLZPwjg:22 a=uXIjobp8t2wMuQ0fPvqm:22 a=NTfBsKdksxzgad0j2OgA:9
+ a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: QtT8RzuoUUOgvW-CzahsaJtVnn77AHmK
+X-Proofpoint-ORIG-GUID: QtT8RzuoUUOgvW-CzahsaJtVnn77AHmK
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzIwMDExMiBTYWx0ZWRfXw5dSOGXLMCOw
+ y2aMJLvx3cXLlvXEyE5MtYl/6SitIR6TusmyezkbiZKqd4TFAecnLToKcw0vo8aqa+kOJAsdhnj
+ TCikTiGvaPNqgTnWg6XwCnbaJZkxCg3fNfDBIqzGtqahofwB0onvyw2NAKbThFeEWNdL5YTKuha
+ Flv6dXzBpi2/RYBXK4hJlt9G//9Gm9THsS4FSu7ygZ6bBRCd/dcHFZ+dJZg+GSb92i6MqzHtQoI
+ Yh+YToEKnUoTCgzAnHGlCAJUKPEcaPxRQTo3cxHLZlsUw5ujbnk6wGRHvfxTDIAwRvUo3FU48uH
+ pNaMpA5fr3t9v7R6cXtNDOAnDPvMa057PvsFnox27RshpjnK2kOk0l/4grpvHbJmDWgRAqCst3H
+ rYy+Zw99WbkLvjD10OgA4Bd4T25VPB/r99vF0b8P0xrYkr/QCJ0WYqZfhv0CBwN/fKHtzHlMt9q
+ rz/soGJpISNqy5tMiiQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-20_02,2026-03-19_05,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 malwarescore=0 spamscore=0 clxscore=1011 priorityscore=1501
+ lowpriorityscore=0 adultscore=0 phishscore=0 suspectscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603200112
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-278297-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278295-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[baylibre.com,linuxfoundation.org,kernel.org,gmail.com,collabora.com,mediatek.com];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_TO(0.00)[kernel.org,metafoo.de,baylibre.com,analog.com,gmail.com,softing.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,analog.com:dkim,analog.com:mid];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[louisalexis.eyraud@collabora.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[carlosjr.jones@analog.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	NEURAL_HAM(-0.00)[-0.998];
+	DKIM_TRACE(0.00)[analog.com:+];
+	PRECEDENCE_BULK(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:dkim,collabora.com:email,collabora.com:mid]
-X-Rspamd-Queue-Id: 1F57A2DBA5A
+	NEURAL_HAM(-0.00)[-0.996];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 8F00D2DB9BD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi David,
+The LTC2305 is a 2-channel, 12-bit, fast ADC with an I2C interface,
+compatible with the LTC2309 (which has 8 channels).
 
-On Thu, 2026-02-19 at 18:09 -0600, David Lechner wrote:
-> On 12/3/25 7:59 AM, Louis-Alexis Eyraud wrote:
-> > Add support for MediaTek MT8189 SoC and its variants, and a device-
-> > tree
-> > for the basic hardware enablement of the Genio 720-EVK board, based
-> > on
-> > MT8391 SoC.
-> >=20
-> > MT8391 SoC is a variant of MT8189 SoC with a difference for the Arm
-> > Cortex-A78 CPU core maximum frequency (2.6 Ghz for MT8391, 3 Ghz
-> > for
-> > MT8189). MT8391 hardware register maps are identical to MT8189.
-> >=20
-> > The Genio 720-EVK board has following features:
-> > =C2=A0 - MT8391 SoC
-> > =C2=A0 - MT6365 PMIC
->=20
-> Is MT6365 PMIC ...
->=20
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8391-genio-common.dtsi
-> > b/arch/arm64/boot/dts/mediatek/mt8391-genio-common.dtsi
-> > new file mode 100644
-> > index
-> > 0000000000000000000000000000000000000000..744641916952111a4b389cf6a
-> > dbd27c429b6eff2
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8391-genio-common.dtsi
-> > @@ -0,0 +1,555 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > +/*
-> > + * Copyright (c) 2025 Collabora Ltd.
-> > + * Author: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-> > + */
-> > +
-> > +#include "mt6359.dtsi"
->=20
-> ... really 100% identical to MT6359 PMIC?
->=20
-I did not find any info in the LKML archives if this topic was
-discussed in the past.
+This patch adds support for the LTC2305 by introducing a chip_info
+structure to handle the different channel configurations between the two
+variants. The LTC2305 exposes 2 single-ended channels and 2 differential
+combinations.
 
-The MT6365 PMIC seems to be more a rebranded MT6359P.
-They have the exact same buck converter and LDOs, and features.
+Also updates the device tree bindings to include the lltc,ltc2305
+compatible string and documents it in the Kconfig.
 
-There are several boards based on MT8370, MT8390 and MT8395 SoC that
-integrate the MT6365 PMIC and whose devicetree, present in upstream,
-use the mt6359.dtsi for this PMIC support:
- - Mediatek Genio 1200 EVK
- - Mediatek Genio 700 EVK
- - Mediatek Genio 510 EVK
- - Radxa NIO-12L
-Probably a couple more.
+Carlos Jones Jr (3):
+  iio: adc: ltc2309: introduce chip_info structure
+  dt-bindings: iio: adc: lltc,ltc2497: add LTC2305 support
+  iio: adc: ltc2309: add support for LTC2305
 
-The Genio 1200 EVK board devicetree was the first one that used
-"mediatek,mt6359" compatible for this PMIC.
+ .../bindings/iio/adc/lltc,ltc2497.yaml        |  9 +++-
+ drivers/iio/adc/Kconfig                       |  6 +--
+ drivers/iio/adc/ltc2309.c                     | 45 ++++++++++++++++---
+ 3 files changed, 51 insertions(+), 9 deletions(-)
 
-As far as I know, there is no known compatibility issue.
-The MT6359 regulator kernel driver, in particular, does recognise it as
-MT6359P (same identifier) and the MT6365 datasheet shows it has the
-same register layout from what I compared for the buck and ldos.
 
-So 100% identical? I cannot say it for sure but I don't have any info
-telling otherwise.
+base-commit: ff0843ceb1fb11a6b73e0e77b932ef7967aecd4b
+-- 
+2.43.0
 
-> Asking because I'm working on this in U-Boot and would be helpful
-> to know that this is correct. Would probably be a good idea to
-> mention
-> it in the commit message too to show this is intentional.
->=20
->=20
-> And I wonder if it would be a good idea to add a compatible with
-> fallback
-> just to be sure.
->=20
-> &pmic {
-> 	compatible =3D "mediatek,mt6365", "mediatek,mt6359";
-> };
-
-You're right.=C2=A0
-That's make sense to document a proper compatibility in the dt-bindings
-and use it the devicetree, not only for pmic node but also but its
-subdevices (auxadc, codec, regulator, rtc, pmic-keys).
-
-As the Genio 720 EVK is not the only board concerned,=C2=A0it would be
-better that I send another series to do such cleanup, for instance one
-that adds a new mt6365.dtsi before using it (instead of mt6359.dtsi) in
-the Genio 720 EVK devicetree.
-
-Regards,
-Louis-Alexis
 
