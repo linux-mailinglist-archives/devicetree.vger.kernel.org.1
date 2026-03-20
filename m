@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-278271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278272-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mC7WMC9BvWn28AIAu9opvQ
-	(envelope-from <devicetree+bounces-278271-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:44:31 +0100
+	id KGntHLdBvWn28AIAu9opvQ
+	(envelope-from <devicetree+bounces-278272-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:46:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9BC42DA71D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:44:30 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33E7B2DA798
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:46:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D1C24300D4F9
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:44:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 309753009B32
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:46:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E70FC3B2FCA;
-	Fri, 20 Mar 2026 12:44:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B2091DE4E0;
+	Fri, 20 Mar 2026 12:46:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qpqGIy7X"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gSULDal+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C218248873;
-	Fri, 20 Mar 2026 12:44:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 678E7194A6C;
+	Fri, 20 Mar 2026 12:46:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774010664; cv=none; b=PWX5VpGV2NofgXIXZ2Wqy+M5yv96YicwxFfsKJbh3zYfDSbXw8+mITEXWzcIUCYi3oiJ7jFdsEvaW89LeHKs5X3bEq0ixU/djAfsnRcmieA6Xv5B2OlkyMalutf9mTj1FC5RbGTplnSotQwhqPMKrb831uIELJUB2YOLkgiJyfg=
+	t=1774010803; cv=none; b=FA0JCfZVCOw2VAhd0j+zJeJtVbuiUqqxKMrR0TO1ILEGcfvkJHr1cDhuBeyrnNKg6+RR1bxxLJ4QzFeie7tmiwEzmWjrzTiUjtzamMi7uHzCkPdjaxwunXkECRxd6zsdeL6kjM17/tOHGZDpmm6Y4u20XmcXmmwgtt7bwK06QMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774010664; c=relaxed/simple;
-	bh=LoqdrQ7kBF4E0wfY++rLiGxX3UeGD37vcOsdzMjZ9CI=;
+	s=arc-20240116; t=1774010803; c=relaxed/simple;
+	bh=ikDZCto24lsL/kZUvfs3csyLpMtu/YD2NBPxKQNRa/8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iLnXpoAo2cKKu6vWwFErbtbRf++FtT0DqKeavXcMERDX+Gh2NeUym865XJTs3fTUAbcu3j6dHRSEkwQRs3/tAsNn/o4jNtkxu/qSIIW3TSlXAQJPNJJv4EDU20gkUBQdyS5fW+nv8y8+QlOFgvY4mRyJRG1SmP+m8YojsLgqpG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qpqGIy7X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EA7BC4CEF7;
-	Fri, 20 Mar 2026 12:44:21 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=j/4mxklr8czihrNvw8Qmal7cwrTpLfgcYTsm8FXgKsl6r7AmFZeUzM0/KkpIW8WqVfbm4/MYLUfUroAfdElaI1IAfePFDwNMWScvJl98qq4hhEGxLOqT4JmUuHyoSbkrPUJqjz4A2okFPbdpAe+y3BClc+K11N1sXbpnjn74AKg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gSULDal+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CA05C4CEF7;
+	Fri, 20 Mar 2026 12:46:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774010663;
-	bh=LoqdrQ7kBF4E0wfY++rLiGxX3UeGD37vcOsdzMjZ9CI=;
+	s=k20201202; t=1774010803;
+	bh=ikDZCto24lsL/kZUvfs3csyLpMtu/YD2NBPxKQNRa/8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qpqGIy7XBVOcu3vsr58F3yIyse1BmYa3hqWqvuQowBnpH9/gofxtqTDBsto+oE9Al
-	 /Bcc6I1RlNTlVoM92ONB7CaN/fQUTPmDrm6rucfxQZbX3VyDDdws3Y4u6on3ff0zjH
-	 g/U6MJ82uqewn7sDzrmH08jmam8YGr+rJzeEoy3pYncwNHsEPNwiyNa/irK3jhQ7Gm
-	 l4ZWs8m5D4Xcl45cQi8woKhwk/UShLHtfrsWexuG9ywM9yhsBzgGUj3r6UgT38eBP2
-	 zPllo7BGik6nA2d9JTe9HZ7m0k7NIMp1s97iYdI7ANzfUeM4fuFdDXQtcB/M0qVxvg
-	 feF/wKKru6yQQ==
-Message-ID: <24bdf87c-1246-46a3-a84a-c1392a82a6bd@kernel.org>
-Date: Fri, 20 Mar 2026 13:44:19 +0100
+	b=gSULDal+44TVNt2Ua6eIYQOvHuoQYMDC8PcVV8P+PEKI7JjLXzdKpkWTYNqEDR5dc
+	 tiDk2YTa8/XvTwcC55zLh42Ef4bedycBvvAWw5Y7YsHPvszIf4zEo7vZ9ZaR59LQap
+	 ulAsZ+bUYcveM+NBPs1AMhYeKALxThvaL6UtEO+6le9Kk2/xfx/76AaowH9WjggbKV
+	 4WlkVdRlHTy2fHxo+D4RnDyiiclu6okf5ZhGu8Ax25Ng0h9Bbx6wXqeI1KcJiOvXqz
+	 IN5SFHzqT6GXuXKTrUzChzfQ98FWnTn7gTVQtsaKT/wkSi3IoI9IovIfA5PBnGxTOI
+	 n5FJuEteyDjkw==
+Message-ID: <f0699320-fc92-4d49-9ce7-871b3acc49a8@kernel.org>
+Date: Fri, 20 Mar 2026 13:46:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,16 +53,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: iio: proximity: add ST VL53L1X ToF
- sensor
-To: Sirat <email@sirat.me>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, jic23@kernel.org,
- dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org
-References: <20260319190738.151614-1-email@sirat.me>
- <20260319190738.151614-2-email@sirat.me>
- <c71a7cbb-d313-4d42-a487-b5f194d4e9bf@kernel.org>
- <CANn+LWLWiyAo8_+V0EtPyie9AsNZdo+pU2MBhZ1c7im5XhagBA@mail.gmail.com>
+Subject: Re: [PATCH 1/5] soc/tegra: Update BPMP ABI header
+To: Thierry Reding <thierry.reding@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jon Hunter <jonathanh@nvidia.com>,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+References: <20260319160110.2131954-1-thierry.reding@kernel.org>
+ <20260319160110.2131954-2-thierry.reding@kernel.org>
+ <435095b4-ce29-4c8a-9f63-300ff94e419a@kernel.org> <ab0T_0Pyio2SYrzq@orome>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,70 +111,64 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CANn+LWLWiyAo8_+V0EtPyie9AsNZdo+pU2MBhZ1c7im5XhagBA@mail.gmail.com>
+In-Reply-To: <ab0T_0Pyio2SYrzq@orome>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278272-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278271-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.993];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.996];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sirat.me:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C9BC42DA71D
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 33E7B2DA798
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 20/03/2026 13:10, Sirat wrote:
-> On Fri, Mar 20, 2026 at 3:05 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On 20/03/2026 10:34, Thierry Reding wrote:
+>>> diff --git a/include/soc/tegra/bpmp-abi.h b/include/soc/tegra/bpmp-abi.h
+>>> index 39bb3f87e28d..6cf6442395f1 100644
+>>> --- a/include/soc/tegra/bpmp-abi.h
+>>> +++ b/include/soc/tegra/bpmp-abi.h
+>>> @@ -1,6 +1,6 @@
+>>> -/* SPDX-License-Identifier: GPL-2.0-only */
+>>> +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
+>>>  /*
+>>> - * Copyright (c) 2014-2022, NVIDIA CORPORATION.  All rights reserved.
+>>> + * SPDX-FileCopyrightText: Copyright (c) 2014-2025, NVIDIA CORPORATION.  All rights reserved.
 >>
->> On 19/03/2026 20:07, Siratul Islam wrote:
->>> Add device tree binding documentation for the STMicroelectronics
->>> VL53L1X Time-of-Flight ranging sensor connected via I2C.
->>>
->>> Signed-off-by: Siratul Islam <email@sirat.me>
->>> ---
->>>  .../bindings/iio/proximity/st,vl53l0x.yaml      | 17 +++++++++++++----
->>>  MAINTAINERS                                     |  6 ++++++
->>>  2 files changed, 19 insertions(+), 4 deletions(-)
->>>
->>
->> Please read:
->> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
->>
->> If a tag was not added on purpose, please state why and what changed.
->>
->> Best regards,
->> Krzysztof
->>
+>> You just replaced correct syntax with discouraged (as in not welcomed
+>> upstream) SPDX tag.
 > 
-> Hi!
-> 
-> The vdd-supply requirement and the pin descriptions changed.
-> I was not sure if it was a substantial change or not so I did not add
-> the tag on purpose.
+> Fair enough, I'm dropping the tag. I didn't know it was actively
+> discouraged and I don't see this documented anywhere. I suppose I should
+> go and drop similar tags from various other sources. Looks like we've
+> been introducing this recently for Tegra.
 
-And this must be stated clearly. I linked a document, please read it.
+Just now Greg took my patch, so the tag is officially allowed. :)
+
+Whether is preferred, depends whom you ask, so feel free to ignore my
+feedback to replace it.
 
 Best regards,
 Krzysztof
