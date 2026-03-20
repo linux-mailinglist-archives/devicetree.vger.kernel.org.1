@@ -1,209 +1,326 @@
-Return-Path: <devicetree+bounces-278331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278337-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cL6dOJRkvWlF9gIAu9opvQ
-	(envelope-from <devicetree+bounces-278331-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:15:32 +0100
+	id YCZmLJFnvWnL9gIAu9opvQ
+	(envelope-from <devicetree+bounces-278337-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:28:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 839612DC751
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:15:32 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DA0E2DCA93
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:28:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ED62630CCC00
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:10:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D95A230D738A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:16:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24BA93C73ED;
-	Fri, 20 Mar 2026 15:10:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E3703C7DE0;
+	Fri, 20 Mar 2026 15:16:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pupin.rs header.i=@pupin.rs header.b="IaGHTAs+"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TCNCaFvl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.imp.bg.ac.rs (mail.imp.bg.ac.rs [147.91.50.100])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA4EF3B2FD0;
-	Fri, 20 Mar 2026 15:10:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=147.91.50.100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC686301704;
+	Fri, 20 Mar 2026 15:16:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774019443; cv=none; b=AH5JGn/diOhiC1nkpt1Glr80MqIw/oCCsqdDtqrd5pCS8UOPvWNumLUA9S1yJpkD3ZOdiLixPZ9N6oFGkOFVhKAZ56XNvbBxxBcJ/gVsEvt5pzMfMHWSvxXtmciaDwu64BDZb2HRIOpJsFjiVqDvhzZRFMVXNarOEQo0/PJJMNQ=
+	t=1774019793; cv=none; b=FwIiAo/qEHEI/SJAvZE2Fwfi+uCtpyTwYE4K+mN3xguOcZTt07TG76jIusVpBjlGBN0gu6smyAKL9Y0uwupDdKQjU2x5CWIpSxP4Hjz3vLFtHQrfZRsAkDXSzEaih2p/u/v+Z4p/dIE8gLZ1x7ug/PvJPkLysJw9nosVieV+ZZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774019443; c=relaxed/simple;
-	bh=hCJ+AHmWpfZCrU3ML4oPjNxFOeanN0Y4tp1/4FOvi14=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Aac4avpvdHSSAUBmOVdIQoRjUSvvxqxqz/WGq2RH1SnCgi6ptO6e0e4S9fmzxDXHHUYbFbyr24zSz413X63AbZyZyz22nENS5mTW+l6wG62YgMAPEag4518TEuvGQGbH7DX8QjkRslU2KcGP99kp0Caw/l83QmMBTTDLLJ15sys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=pupin.rs; spf=pass smtp.mailfrom=pupin.rs; dkim=pass (1024-bit key) header.d=pupin.rs header.i=@pupin.rs header.b=IaGHTAs+; arc=none smtp.client-ip=147.91.50.100
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=pupin.rs
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pupin.rs
-Received: from localhost (localhost [127.0.0.1])
-	by mail.imp.bg.ac.rs (Postfix) with ESMTP id 0B882140C272C;
-	Fri, 20 Mar 2026 16:10:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pupin.rs; h=
-	content-transfer-encoding:mime-version:references:in-reply-to
-	:x-mailer:message-id:date:date:subject:subject:from:from
-	:received:received; s=dkim20260301; t=1774019433; bh=hCJ+AHmWpfZ
-	CrU3ML4oPjNxFOeanN0Y4tp1/4FOvi14=; b=IaGHTAs+tW4VbNZIeuDNJe+N9Gl
-	+bquk7lHfsthQxvbn1n9USYiz+p2gXbDgNBGNn3nBB6RzFcsW9ebVFNLuiIRC4j4
-	7uw6pe2+zdLeNX2x9dMbcWS8rKqARtR3bDxV7CVBU2lvezwoKtNlIYUZbpMPoew9
-	G6qjWlrji15MYlRk=
-X-Virus-Scanned: amavis at imp.bg.ac.rs
-Received: from mail.imp.bg.ac.rs ([127.0.0.1])
- by localhost (mail.imp.bg.ac.rs [127.0.0.1]) (amavis, port 10024) with LMTP
- id ayhsENQ94VqJ; Fri, 20 Mar 2026 16:10:33 +0100 (CET)
-X-Comment: SPF check N/A for local connections - client-ip=147.91.52.78; helo=phyvm-virtualbox; envelope-from=david.marinovic@pupin.rs; receiver=jic23@kernel.org 
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.imp.bg.ac.rs CA70A140C2700
-Received: from phyvm-VirtualBox (unknown [147.91.52.78])
-	by mail.imp.bg.ac.rs (Postfix) with ESMTPS id CA70A140C2700;
-	Fri, 20 Mar 2026 16:10:33 +0100 (CET)
-From: =?UTF-8?q?David=20Marinovi=C4=87?= <david.marinovic@pupin.rs>
-To: jic23@kernel.org
-Cc: andriy.shevchenko@intel.com,
-	dlechner@baylibre.com,
-	nuno.sa@analog.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	michael.hennerich@analog.com,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	David Marinovic <david.marinovic@pupin.rs>
-Subject: [PATCH v3 3/3] iio: dac: ltc2632: add support for LTC2654 DAC family
-Date: Fri, 20 Mar 2026 16:09:48 +0100
-Message-ID: <20260320150957.105571-4-david.marinovic@pupin.rs>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260320150957.105571-1-david.marinovic@pupin.rs>
-References: <20260318135736.91564-1-david.marinovic@pupin.rs>
- <20260320150957.105571-1-david.marinovic@pupin.rs>
+	s=arc-20240116; t=1774019793; c=relaxed/simple;
+	bh=GkNDdaVsOUqNwYWo7W4428KaeYtWZrqhStkpVFxO/AU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FGEloPiMjbsub9HFyDIHY4OLpb9Eyo5P1jayhPd9VKYDGxgB/CSET+8KhXCDUPIK03vLb5oxKt6g6FqRZQLx6f3kfNQV/e8I82z1YZDLKA8BGP8x3VVd+Rn5FwcFJIuv9G3hJEHCVjbixE6k2PS9SUKAnNgp3i9gzMgnzhQubKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TCNCaFvl; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1774019792; x=1805555792;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=GkNDdaVsOUqNwYWo7W4428KaeYtWZrqhStkpVFxO/AU=;
+  b=TCNCaFvlRG5La3Dzhh8PPJ5x+ImD2ZAB52D1wUq0gRIRlN4xeupsTzWs
+   0Gk9BroU+/7xAw1MJZZBiIdNB1kNvmmSxNdsLXcSW3DG1bCuo8ZaqwNbF
+   HZNJSjLHaG6jabimuwuker2mB5fM6w8pqevnNrUndvXk0686yxLraS4nr
+   oB/FICRb3LMXjABkIllhglP9To5NsLyl431st26CbA/3+dByjFhZx57CJ
+   2dHUtl/P8QwHTt8DEi6fMoP+aalfwDG5NKQmeeqQZ4t9bxiXPwm7oJo9k
+   l4UMOBt9QH+4I8wCwr6+x+PyVCWAYam5mijA+/Z9Rk3iUFTJumG2cvo0w
+   A==;
+X-CSE-ConnectionGUID: DhxsN5BJTfKwZg80GygFdg==
+X-CSE-MsgGUID: hjLw8A6qRROV8bR7PQzrSw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11735"; a="97725588"
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
+   d="scan'208";a="97725588"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 08:16:31 -0700
+X-CSE-ConnectionGUID: LJIG37obSneLj5G8pQfLWg==
+X-CSE-MsgGUID: VxaY5xfiQSyjNDsBM6s/ZA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
+   d="scan'208";a="223300291"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.40])
+  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 08:16:27 -0700
+Date: Fri, 20 Mar 2026 17:16:24 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: radu.sabau@analog.com
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v4 2/4] iio: adc: ad4691: add initial driver for AD4691
+ family
+Message-ID: <ab1kyFPyrkxJLw2Z@ashevche-desk.local>
+References: <20260320-ad4692-multichannel-sar-adc-driver-v4-0-052c1050507a@analog.com>
+ <20260320-ad4692-multichannel-sar-adc-driver-v4-2-052c1050507a@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260320-ad4692-multichannel-sar-adc-driver-v4-2-052c1050507a@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[pupin.rs,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[pupin.rs:s=dkim20260301];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278331-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[metafoo.de,analog.com,kernel.org,baylibre.com,gmail.com,pengutronix.de,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-278337-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[david.marinovic@pupin.rs,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[pupin.rs:+];
-	RCVD_COUNT_FIVE(0.00)[6];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.973];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pupin.rs:dkim,pupin.rs:email,pupin.rs:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 839612DC751
+	NEURAL_HAM(-0.00)[-0.979];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:dkim]
+X-Rspamd-Queue-Id: 5DA0E2DCA93
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: David Marinovic <david.marinovic@pupin.rs>
+On Fri, Mar 20, 2026 at 01:03:56PM +0200, Radu Sabau via B4 Relay wrote:
 
-Add support for the Linear Technology LTC2654 quad DAC family.
+> Add support for the Analog Devices AD4691 family of high-speed,
+> low-power multichannel SAR ADCs: AD4691 (16-ch, 500 kSPS),
+> AD4692 (16-ch, 1 MSPS), AD4693 (8-ch, 500 kSPS) and
+> AD4694 (8-ch, 1 MSPS).
+> 
+> The driver implements a custom regmap layer over raw SPI to handle the
+> device's mixed 1/2/3/4-byte register widths and uses the standard IIO
+> read_raw/write_raw interface for single-channel reads.
+> 
+> The chip idles in Autonomous Mode so that single-shot read_raw can use
+> the internal oscillator without disturbing the hardware configuration.
+> 
+> Three voltage supply domains are managed: avdd (required), vio, and a
+> reference supply on either the REF pin (ref-supply, external buffer)
+> or the REFIN pin (refin-supply, uses the on-chip reference buffer;
+> REFBUF_EN is set accordingly). Hardware reset is performed via
+> the reset controller framework; a software reset through SPI_CONFIG_A
+> is used as fallback when no hardware reset is available.
+> 
+> Accumulator channel masking for single-shot reads uses ACC_MASK_REG via
+> an ADDR_DESCENDING SPI write, which covers both mask bytes in a single
+> 16-bit transfer.
 
-The LTC2654 is a 4-channel, 16-/12-bit DAC with SPI interface,
-sharing the same 24-bit SPI protocol as the existing LTC2632/
-LTC2634/LTC2636 devices supported by this driver.
+...
 
-The 12-bit variants of LTC2654 reuse existing LTC2634 chip_info
-structs as they are register-compatible.
+> +static int ad4691_reg_read(void *context, unsigned int reg, unsigned int *val)
+> +{
+> +	struct spi_device *spi = context;
+> +	u8 tx[2], rx[4];
+> +	int ret;
 
-Add support for the following variants:
-- LTC2654L-16: 16-bit, 2.5V internal reference
-- LTC2654L-12: 12-bit, 2.5V internal reference
-- LTC2654H-16: 16-bit, 4.096V internal reference
-- LTC2654H-12: 12-bit, 4.096V internal reference
+> +	put_unaligned_be16(0x8000 | reg, tx);
 
-Signed-off-by: David Marinovic <david.marinovic@pupin.rs>
----
- drivers/iio/dac/ltc2632.c | 26 +++++++++++++++++++++++---
- 1 file changed, 23 insertions(+), 3 deletions(-)
+I would expect that the config will have read_flag_mask set and here you just
+use it. But it's fine like now, just add a comment
 
-diff --git a/drivers/iio/dac/ltc2632.c b/drivers/iio/dac/ltc2632.c
-index ca0b88285ce5..33b8ff78c6e3 100644
---- a/drivers/iio/dac/ltc2632.c
-+++ b/drivers/iio/dac/ltc2632.c
-@@ -58,8 +58,9 @@ static int ltc2632_spi_write(struct spi_device *spi,
- 	 * The input shift register is 24 bits wide.
- 	 * The next four are the command bits, C3 to C0,
- 	 * followed by the 4-bit DAC address, A3 to A0, and then the
--	 * 12-, 10-, 8-bit data-word. The data-word comprises the 12-,
--	 * 10-, 8-bit input code followed by 4, 6, or 8 don't care bits.
-+	 * 16-, 12-, 10-, 8-bit data-word. The data-word comprises the
-+	 * 16-, 12-, 10-, 8-bit input code followed by 0, 4, 6, or 8
-+	 * don't care bits.
- 	 */
- 	data = (cmd << 20) | (addr << 16) | (val << shift);
- 	put_unaligned_be24(data, &msg[0]);
-@@ -185,6 +186,7 @@ static const struct iio_chan_spec_ext_info ltc2632_ext_info[] = {
- 		LTC2632_CHANNEL(7, _bits), \
- 	}
- 
-+static DECLARE_LTC2632_CHANNELS(ltc2632x16, 16);
- static DECLARE_LTC2632_CHANNELS(ltc2632x12, 12);
- static DECLARE_LTC2632_CHANNELS(ltc2632x10, 10);
- static DECLARE_LTC2632_CHANNELS(ltc2632x8, 8);
-@@ -297,6 +299,18 @@ static const struct ltc2632_chip_info ltc2636h8_chip_info = {
- 	.vref_mv	= 4096,
- };
- 
-+static const struct ltc2632_chip_info ltc2654l16_chip_info = {
-+	.channels	= ltc2632x16_channels,
-+	.num_channels	= 4,
-+	.vref_mv	= 2500,
-+};
-+
-+static const struct ltc2632_chip_info ltc2654h16_chip_info = {
-+	.channels	= ltc2632x16_channels,
-+	.num_channels	= 4,
-+	.vref_mv	= 4096,
-+};
-+
- static int ltc2632_probe(struct spi_device *spi)
- {
- 	struct ltc2632_state *st;
-@@ -366,6 +380,10 @@ static const struct spi_device_id ltc2632_id[] = {
- 	{ "ltc2636-h12", (kernel_ulong_t)&ltc2636h12_chip_info },
- 	{ "ltc2636-h10", (kernel_ulong_t)&ltc2636h10_chip_info },
- 	{ "ltc2636-h8",  (kernel_ulong_t)&ltc2636h8_chip_info  },
-+	{ "ltc2654-l16", (kernel_ulong_t)&ltc2654l16_chip_info },
-+	{ "ltc2654-l12", (kernel_ulong_t)&ltc2634l12_chip_info },
-+	{ "ltc2654-h16", (kernel_ulong_t)&ltc2654h16_chip_info },
-+	{ "ltc2654-h12", (kernel_ulong_t)&ltc2634h12_chip_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(spi, ltc2632_id);
-@@ -389,6 +407,8 @@ static const struct of_device_id ltc2632_of_match[] = {
- 	{ .compatible = "lltc,ltc2636-h12", .data = &ltc2636h12_chip_info },
- 	{ .compatible = "lltc,ltc2636-h10", .data = &ltc2636h10_chip_info },
- 	{ .compatible = "lltc,ltc2636-h8",  .data = &ltc2636h8_chip_info  },
-+	{ .compatible = "lltc,ltc2654-l16", .data = &ltc2654l16_chip_info },
-+	{ .compatible = "lltc,ltc2654-h16", .data = &ltc2654h16_chip_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, ltc2632_of_match);
-@@ -404,5 +424,5 @@ static struct spi_driver ltc2632_driver = {
- module_spi_driver(ltc2632_driver);
- 
- MODULE_AUTHOR("Maxime Roussin-Belanger <maxime.roussinbelanger@gmail.com>");
--MODULE_DESCRIPTION("LTC2632 DAC SPI driver");
-+MODULE_DESCRIPTION("LTC2632/LTC2654 DAC SPI driver");
- MODULE_LICENSE("GPL v2");
+	/* Set bit 15 to mark the operation READ */
+
+or something similar.
+
+> +	switch (reg) {
+> +	case 0 ... AD4691_OSC_FREQ_REG:
+> +	case AD4691_SPARE_CONTROL ... AD4691_ACC_SAT_OVR_REG(15):
+> +		ret = spi_write_then_read(spi, tx, 2, rx, 1);
+> +		if (ret)
+> +			return ret;
+> +		*val = rx[0];
+> +		return 0;
+> +	case AD4691_STD_SEQ_CONFIG:
+> +	case AD4691_AVG_IN(0) ... AD4691_AVG_IN(15):
+> +		ret = spi_write_then_read(spi, tx, 2, rx, 2);
+> +		if (ret)
+> +			return ret;
+> +		*val = get_unaligned_be16(rx);
+> +		return 0;
+> +	case AD4691_AVG_STS_IN(0) ... AD4691_AVG_STS_IN(15):
+> +	case AD4691_ACC_IN(0) ... AD4691_ACC_IN(15):
+> +		ret = spi_write_then_read(spi, tx, 2, rx, 3);
+> +		if (ret)
+> +			return ret;
+> +		*val = get_unaligned_be24(rx);
+> +		return 0;
+> +	case AD4691_ACC_STS_DATA(0) ... AD4691_ACC_STS_DATA(15):
+> +		ret = spi_write_then_read(spi, tx, 2, rx, 4);
+> +		if (ret)
+> +			return ret;
+> +		*val = get_unaligned_be32(rx);
+> +		return 0;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+
+...
+
+> +static int ad4691_regulator_setup(struct ad4691_state *st)
+> +{
+> +	struct device *dev = regmap_get_device(st->regmap);
+> +	int ret;
+> +
+> +	ret = devm_regulator_get_enable(dev, "avdd");
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to get and enable AVDD\n");
+
+> +	ret = devm_regulator_get_enable(dev, "ldo-in");
+> +	if (ret && ret != -ENODEV)
+> +		return dev_err_probe(dev, ret, "Failed to get and enable LDO-IN\n");
+> +	st->ldo_en = (ret == -ENODEV);
+
+You can use the approach from below
+
+	ret = devm_regulator_get_enable(dev, "ldo-in");
+	if (ret == -ENODEV)
+		st->ldo_en = true;
+	else if (ret)
+		return dev_err_probe(dev, ret, "Failed to get and enable LDO-IN\n");
+	// no other branches assuming ldo_en = false due to kzalloc():ed memory.
+
+
+> +	ret = devm_regulator_get_enable(dev, "vio");
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to get and enable VIO\n");
+> +
+> +	st->vref_uV = devm_regulator_get_enable_read_voltage(dev, "ref");
+
+> +	if (st->vref_uV >= 0) {
+> +		st->refbuf_en = false;
+
+Do you need this? Isn't 'st' allocated with kzalloc() or alike?
+
+> +	} else if (st->vref_uV == -ENODEV) {
+> +		st->vref_uV = devm_regulator_get_enable_read_voltage(dev, "refin");
+> +		st->refbuf_en = true;
+
+> +	}
+> +	if (st->vref_uV < 0)
+> +		return dev_err_probe(dev, st->vref_uV,
+> +				     "Failed to get reference supply\n");
+
+> +	if (st->vref_uV < AD4691_VREF_uV_MIN || st->vref_uV > AD4691_VREF_uV_MAX)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "vref(%d) must be in the range [%u...%u]\n",
+> +				     st->vref_uV, AD4691_VREF_uV_MIN,
+> +				     AD4691_VREF_uV_MAX);
+> +
+> +	return 0;
+> +}
+
+...
+
+> +	if (!rst)
+
+It's not an error check, so I would invert the condition.
+
+> +		/* No hardware reset available, fall back to software reset. */
+> +		return regmap_write(st->regmap, AD4691_SPI_CONFIG_A_REG,
+> +				    AD4691_SW_RESET);
+> +
+> +	reset_control_assert(rst);
+> +	/* Reset delay required. See datasheet Table 5. */
+> +	fsleep(300);
+> +	reset_control_deassert(rst);
+
+	if (rst) {
+		reset_control_assert(rst);
+		/* Reset delay required. See datasheet Table 5. */
+		fsleep(300);
+		reset_control_deassert(rst);
+
+		return 0;
+	}
+
+	/* No hardware reset available, fall back to software reset. */
+	return regmap_write(st->regmap, AD4691_SPI_CONFIG_A_REG, AD4691_SW_RESET);
+
+
+...
+
+> +	ret = regmap_write(st->regmap, AD4691_REF_CTRL,
+> +			   FIELD_PREP(AD4691_REF_CTRL_MASK, ref_val) |
+> +			   (st->refbuf_en ? AD4691_REFBUF_EN : 0));
+
+regmap_update_bits()?
+regmap_assign_bits()?
+
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to write REF_CTRL\n");
+> +
+> +	ret = regmap_write(st->regmap, AD4691_DEVICE_SETUP,
+> +			   st->ldo_en ? AD4691_LDO_EN : 0);
+
+Ditto.
+
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to write DEVICE_SETUP\n");
+> +
+> +	/*
+> +	 * Set the internal oscillator to the highest valid rate for this chip.
+> +	 * Index 0 (1 MHz) is valid only for AD4692/AD4694; AD4691/AD4693 start
+> +	 * at index 1 (500 kHz).
+> +	 */
+> +	ret = regmap_write(st->regmap, AD4691_OSC_FREQ_REG,
+> +			   (st->info->max_rate == HZ_PER_MHZ) ? 0 : 1);
+
+Ditto.
+
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to write OSC_FREQ\n");
+
 -- 
-2.50.1
+With Best Regards,
+Andy Shevchenko
+
 
 
