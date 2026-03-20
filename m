@@ -1,143 +1,134 @@
-Return-Path: <devicetree+bounces-278287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278288-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SJFNFcVMvWlr8gIAu9opvQ
-	(envelope-from <devicetree+bounces-278287-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:33:57 +0100
+	id WEM+OkVNvWlr8gIAu9opvQ
+	(envelope-from <devicetree+bounces-278288-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:36:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ABC02DB095
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:33:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99CEF2DB0CC
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:36:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 136EE301CAAE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:30:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C305D306C531
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:35:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B418B22A817;
-	Fri, 20 Mar 2026 13:30:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F021D280CF6;
+	Fri, 20 Mar 2026 13:35:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="fLm+T28Z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kv9wfpWp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06270218ADD;
-	Fri, 20 Mar 2026 13:30:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 898CD28D8F1
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 13:35:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774013418; cv=none; b=Q3C1yBtXeTbsVR3ZlZGL/DBT2Ebl2Xoht7kCQcRNDtJhJvZv5dIEQIuRetcHug9ZAxaJcBkCezNvgKlB4U0zDKnhqctwI9Z0D05dThe4KySRQscAk6l4OWDJZT6z6I3XPwFlESakfIxeoF050yhmML1ERbudqWml79oP/yPBaTg=
+	t=1774013752; cv=none; b=lE3iFqPBwGTvF27jh/xp9upWlpP1t1HdcrYcmGdXRE1MYd6w+VhXmLwdp0vCZscyKXjtJ9MIAr282V63+FJ4C6K6TtYqngvu2BEYjw4C6ISSOLBGbFFVP2BjUTfKG0jm3qp44WhbCRZVvqaEqc6OXeBiOeecAhbChXIjq/Vf7Jo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774013418; c=relaxed/simple;
-	bh=9r9gw5R9AHSl87yaT04zB6hs5VlEcDyQ7zCIOorfEpQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lujxtt+8Q91BI5vMWj2UTo31HT5xxa5kAEficxCsB+KWgeoyT5cWtpvsZVAiXxWFzyqBq77azjhMyUC9rSXIVqCrrhIdZwZLCkPJ0lX6Zk4IOoRl0ywgoC7jn8EpO2QpON73GAoWhYhXGzegepOUCwoyLzN3znXzlGTexCY/tKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=fLm+T28Z; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=KPEmOBrzJQ5lJjApNclCXD+tVOjngOyNohE76noQaxY=; b=fLm+T28ZNDiK0i9piqLnCiMh7t
-	Jh/tkhITAG24PpexF47gsPCC+d17/moI3bicAbShxZZvlE3bWbqVprDNLBBa++Qo+vMXPPpQ7ICvt
-	Y2EAKSa94KAGnKgS9fp0ezD/6FPxushXDUNoAyXlrK5eQ8nda9pN+jrFxwI63/aEHQU8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1w3ZvS-00CYvA-49; Fri, 20 Mar 2026 14:30:06 +0100
-Date: Fri, 20 Mar 2026 14:30:06 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: Joy Zou <joy.zou@nxp.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Ye Li <ye.li@nxp.com>,
-	Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] arm64: dts: freescale: add i.MX91 9x9 QSB basic
- support
-Message-ID: <43d91381-4f11-47b6-b37d-7c624402af5b@lunn.ch>
-References: <20260319-b4-imx91-qsb-dts-v1-0-2eedc01d8af0@nxp.com>
- <20260319-b4-imx91-qsb-dts-v1-2-2eedc01d8af0@nxp.com>
- <4124e5ae-52a2-405c-a02d-7a1f48aa2b57@lunn.ch>
- <abzmpBHDRrsd/Mvr@shlinux89>
+	s=arc-20240116; t=1774013752; c=relaxed/simple;
+	bh=x+Q+mpwKpWdfkCJjdjeyoSi32p/Cj9EkuzDU7dEgYwY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Sf7LJJdKmFtZ4MdY7EvLqvPCkY0zkX+Ea03KvSTz/eZPt/LARVtOvD4hGqGiiqIIksleBMuGkpsWx2J4mgCuGIIK2+x7LxW1hr6WgYKE1bKeNtnaLb9vj9GmShJrWIBxzsX+HNawAAfgMLjoy+VsoIJrsJgkrrZ4kAwcIT6ZB4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kv9wfpWp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5CADC2BCB3
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 13:35:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774013751;
+	bh=x+Q+mpwKpWdfkCJjdjeyoSi32p/Cj9EkuzDU7dEgYwY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Kv9wfpWphRuHPSu8UiKQ7LF9JUNZ/yg9w+WDHavCnTO/Vpnzva5ZY9bFUS7m9nCHq
+	 3Uvs0eg7Y8GIh1/8w7vy7/Tmdb/DDI96VL4FNSz7p82lMD3IeP/dqXFQQ7O1MBEHT5
+	 PUIPw5e/lsP/hXlT8GtV8RGmP30PPW08etwdWNY4/bkcO5Ik1k5Y2v7Fu4F99mFcSY
+	 kLYdYHzUNJqNg1FPJKCkEmbs8ICPhlQzd9dj9Vbw3YqmXEH9OjdbogJ4nuydZVCUAP
+	 EtKT7uPWQKv1btnY82ThTR34KJ7BoZTqNRRRckMVVSI7iTFnz8PwLD26D/v/MK/T95
+	 uB1etS3MJ+B/A==
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-7986e0553bdso20459907b3.2
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 06:35:51 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW18MQC35dMAiY02V/H3P5xQEEstmU2eJHk1UXVEUD8hEBGnoQYPnCT4G/vNR8AJG3UjCldECSfzAia@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZ7hUI0MHeHz5C33uwePOa0GX9AXPeyLncSMnE4iFWbvzazTRb
+	XlgSjtvZ7tC4wCYCg0A7kNHlnsuOGyKwR//FmNk1jgvzmAlVWlGvEMOj3s+h21p9gBbbwYPPskr
+	oAWUC+h5kMEhOkxB6GzpZOwv2Wkn2+mc=
+X-Received: by 2002:a05:690c:6d81:b0:794:6fa2:a037 with SMTP id
+ 00721157ae682-79a90a92a96mr28577437b3.8.1774013751143; Fri, 20 Mar 2026
+ 06:35:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <abzmpBHDRrsd/Mvr@shlinux89>
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+References: <20260319141515.2053556-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20260319141515.2053556-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20260319141515.2053556-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Fri, 20 Mar 2026 14:35:40 +0100
+X-Gmail-Original-Message-ID: <CAD++jL=5HyZ-Z18iJPzrQY70dYq==z-nofx+O=wfTxYrfynZWQ@mail.gmail.com>
+X-Gm-Features: AaiRm51wCIQ4YFUApl9fDukQ-YQ0efzADwWtEvQ8dtpStZjJJL077i4VFyJ5keU
+Message-ID: <CAD++jL=5HyZ-Z18iJPzrQY70dYq==z-nofx+O=wfTxYrfynZWQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] pinctrl: renesas: rzt2h: Add pin configuration support
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278287-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[nxp.com,kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.953];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_CC(0.00)[glider.be,kernel.org,gmail.com,vger.kernel.org,bp.renesas.com,renesas.com];
+	TAGGED_FROM(0.00)[bounces-278288-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,lunn.ch:dkim,lunn.ch:mid]
-X-Rspamd-Queue-Id: 5ABC02DB095
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.988];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 99CEF2DB0CC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 20, 2026 at 02:18:31PM +0800, Peng Fan wrote:
-> On Thu, Mar 19, 2026 at 04:43:40PM +0100, Andrew Lunn wrote:
-> >> +&eqos {
-> >> +	phy-handle = <&ethphy1>;
-> >> +	phy-mode = "rgmii-id";
-> >> +	pinctrl-0 = <&pinctrl_eqos>;
-> >> +	pinctrl-names = "default";
-> >> +	status = "okay";
-> >> +
-> >> +	mdio {
-> >> +		compatible = "snps,dwmac-mdio";
-> >> +		#address-cells = <1>;
-> >> +		#size-cells = <0>;
-> >> +		clock-frequency = <5000000>;
-> >
-> >Is that a valid property for "snps,dwmac-mdio"?
-> 
-> It is a valid property in 
-> Documentation/devicetree/bindings/net/mdio.yaml
+On Thu, Mar 19, 2026 at 3:15=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
 
-Yes, it is in general a valid property. But does snps,dwmac-mdio
-actually implement it?
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add pin configuration support for the Renesas RZ/T2H SoC. The RZ/T2H SoC
+> allows configuring several electrical characteristics through the DRCTLm
+> (I/O Buffer Function Switching) registers. These registers control bias
+> configuration, Schmitt trigger input, output slew rate, and drive
+> strength.
+>
+> Implement pinconf_ops to allow reading and updating these properties
+> through the generic pin configuration framework. The implementation
+> supports bias-disable, bias-pull-up, bias-pull-down,
+> input-schmitt-enable, slew-rate, and drive-strength-microamp.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-The danger here is, it is currently ignored, and the MDIO bus is
-clocked at 2.5MHz, and your board works. But sometime in the future,
-somebody actually implements it, your board jumps to 5MHz, and stops
-working.
+Reviewed-by: Linus Walleij <linusw@kernel.org>
 
-That is not the usual definition of a regression, so i guess we will
-leave your board broken.
-
-So you need to accept the risk. Or remove the property. Or actually
-implement the property.
-
-   Andrew
+Yours,
+Linus Walleij
 
