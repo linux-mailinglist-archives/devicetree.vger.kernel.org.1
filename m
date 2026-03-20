@@ -1,247 +1,194 @@
-Return-Path: <devicetree+bounces-278172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278175-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AIOpN9MXvWnG6QIAu9opvQ
-	(envelope-from <devicetree+bounces-278172-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:48:03 +0100
+	id 6AGUGBUZvWnG6QIAu9opvQ
+	(envelope-from <devicetree+bounces-278175-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:53:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DB2B2D840D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:48:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF85A2D84E5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:53:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D7F61300FED7
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:44:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 29A5F30125EE
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:49:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 282813876B7;
-	Fri, 20 Mar 2026 09:44:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FB552EC0AE;
+	Fri, 20 Mar 2026 09:49:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="CtAW1rrp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SxvssoXi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013066.outbound.protection.outlook.com [40.107.162.66])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EEE23876CE;
-	Fri, 20 Mar 2026 09:44:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.66
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773999845; cv=fail; b=eeuaZ2OBJnDF1X0/GJrjuzacIKxUxjV8rDqYZNsqmV4WOYGiYKXbUa1JP2vZ3h+oQif2X55CD0ANjr7UKwaVdatREo1UHhFo489TpPYbJxKDstEQsEkiuxfVSZ/Vmu3Oz2+PvrlvH5TDOAW5IG7sVA7F5AQc+pdGtjiBDYlBisk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773999845; c=relaxed/simple;
-	bh=YjhOWkKO0Uuz8iCD9BlybzbBs5DzJxNxwTfLB5iEDEI=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=GIFqZ+kDyGZEFEaxYQ4Qrb8FZYDi/NhIIX2C5A622x9ZnS7Sh7at0j2yqCxRZm7y50L/mzXGF77cmUqk0XzVpc5CJ/0uoc7MyrBCF6cnW0JYkhEfA1XGG/LUmzuA4jRQQopDKjl1Bq8BG+JXN3tOQC85fU5rqjzxp24hX+j2E/M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=CtAW1rrp; arc=fail smtp.client-ip=40.107.162.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JI4bVDxe4pD5BMhQzQJqXH5QS9MfeKdF8ppJ/GNso64/G5wC+WSj19FpQOofyuPt2oXQxphYVYGNgxDpT8nM2yiGkyQZZkFFasMyJCgdlyplO14guf7D2GdD2GO8KyajUlSBK36GTfWbG2gw1EpPodP5KltLlAjuLcdFd42UmTyXOMw6VyDsffh3qEmuLT9BxXSjkFwHYl0z0ojRTxO45Ilk13vtC/x/RC81UXB9nn6mndOEWdq18Us0yrHtEzgKfXM1Xg1xCF/+zuq3WgrT4dZr6DA66hd+zU6ij9jdUpkp1M9QH/5Gt78naV3+cfjIpBB2KWh/bHtvW3eesQ0Xkw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Iy63dmoltGmUwNx2nY0NtZLZomMmc30YoMrmVvfdb00=;
- b=MlvTSGQNP/ZVG/dSWddZEewwe9eHlBlWFCBikzuQ5tlyC+g0EAibnw7Bk7q/BZ+M1UN9b9ILYT+uq3xJDQ2hHPPGOkIhl1MG9e9K9z03LkvYLEOoCtSLzKhCquE9hewM3FKFvDFaV1lWe/9XmMjrupQC3Wr60aPq+wJg3kdboFX4zfJD2wrqstffT+2PLJ3xRd6/707JuGtzrSaZ275NEkDGCYazTW8eO2iDZnQ3re7Q6ne88hoxuMi/LPNqmaeR1E5IJ8qB5H29AGy/UQXphq2JUSMk6obvSxQasqIqqWHr/VHPGJSueP3V9ylcPXQs6YeUFo2FQNeKbguoo+7HTg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Iy63dmoltGmUwNx2nY0NtZLZomMmc30YoMrmVvfdb00=;
- b=CtAW1rrpTh6VMhLRgL9ub9Lc5AKD7gk3Vgume3rxFlGzGBUAmCQD6iyiIIZaVZGLWnpViqLlHsXiV39gQ7Amh+jwakw0tjziwdDsCluz40IMtqCfcFNVkxqaVF3nLdDpcS7FhUb/1y6wEokLD5i2H6PwlnbcN7nUwHv+7C/TiRddCGp4335/UN0v9CTpxEsVqm1W6EtMutUYdktmyTu7tN8WqYliE5PPc64dw7mAYMDdjiL4Ut7d74IKUHSkNcKXLHgvOjFWxF6hOBhFHRo5n/Xh8BlW3LXlaj76GP0nuFn2xr2ijmSDNPS1VKQxANWhiai3I7QEC/IcR5q3wb4nCg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from GVXPR04MB12316.eurprd04.prod.outlook.com (2603:10a6:150:2c6::8)
- by DB8PR04MB6827.eurprd04.prod.outlook.com (2603:10a6:10:f8::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.22; Fri, 20 Mar
- 2026 09:43:46 +0000
-Received: from GVXPR04MB12316.eurprd04.prod.outlook.com
- ([fe80::fc6e:ca22:f065:def4]) by GVXPR04MB12316.eurprd04.prod.outlook.com
- ([fe80::fc6e:ca22:f065:def4%6]) with mapi id 15.20.9723.018; Fri, 20 Mar 2026
- 09:43:55 +0000
-Message-ID: <3e1a3f07-8c0c-4757-afd2-b9e6574a6274@oss.nxp.com>
-Date: Fri, 20 Mar 2026 11:46:53 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: remoteproc: imx-rproc: Introduce
- fsl,reset-vector-mask
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-References: <20260312-imx943-rproc-v1-0-3e66596592a8@nxp.com>
- <20260312-imx943-rproc-v1-1-3e66596592a8@nxp.com>
-Content-Language: en-US
-From: Daniel Baluta <daniel.baluta@oss.nxp.com>
-In-Reply-To: <20260312-imx943-rproc-v1-1-3e66596592a8@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0013.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:c8::6) To GVXPR04MB12316.eurprd04.prod.outlook.com
- (2603:10a6:150:2c6::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C192361DB2;
+	Fri, 20 Mar 2026 09:49:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774000188; cv=none; b=JShwizMdLF21LTGMZFhTw9upJksmrvPfk56QWt2Qkf5BWZQTgiVTAIMf3wZZW7ZKFDSafAiz6sNuUCGREItGNOTAGxcTaU7UrPZBJytR3NMo4aiAoEfr1ELr2PbSKTMXfC3hpLH4Thbu2Axcu6Fmtqko8IbtNQWzlQ0xKDiBXhU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774000188; c=relaxed/simple;
+	bh=/xlFgt29IWXWdp6cPa+Deh2J6xoN/Ur1ogGJgzj3LUo=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=UaajYRFlrPYFEus5Dibwhx3dDnpEO0Hb5RcL/m9u+GPagAwY57SCwRtiwsBiQGWWbLui42O1i/ljK4f91zhJHJ+6m+Pt2MNs9RGMbjMp5uBOKlObCJ+L9pEGgRJIqc5lye/RVkhdA13LUtGB8lVFgtbJAiDIfq5jaVy91FstMbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SxvssoXi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46902C4CEF7;
+	Fri, 20 Mar 2026 09:49:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774000187;
+	bh=/xlFgt29IWXWdp6cPa+Deh2J6xoN/Ur1ogGJgzj3LUo=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=SxvssoXiT+PQifzXrWliQURLhwUMT8FAjsOIRMOP+wqdJx1MGOUEP+eVDwrCFHarE
+	 xItClGnSFmSVzROIFuy79U7kCEV8alatSL7rRJCpPHv1Qsg1nBvzuOdamFQsDwiur4
+	 nJrMyQvZ7DYin3KApJr40rjfpTVbTru9mrIy5qh4MxGiRHKn05u4DnHlLHuTLuH7Dp
+	 Udp1yrvsH08U6InkzGYedaeR6bhMiMxf473Vl54SbPVCNm5b984jpOZYAveF3jc8Eb
+	 B1r+U1e4vuyN9p8VFm8XOwN7C6glMJPJW8j7zIracPSJQ1ZQf9XQtOdKlHsFBbML2K
+	 kHE7cFO6Vs82A==
+Message-ID: <e238644c-132a-43fc-b735-70f04ef3f212@kernel.org>
+Date: Fri, 20 Mar 2026 10:49:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GVXPR04MB12316:EE_|DB8PR04MB6827:EE_
-X-MS-Office365-Filtering-Correlation-Id: b3e90384-bbc7-49d4-7510-08de86653385
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|1800799024|19092799006|366016|921020|22082099003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info:
-	OkUs+KqbDKsFFV5pjDiudbvE/aTQMoQMioJUEPveN5rvr/v7RKyD0ixuX/YavnwGsXFfvfmv5HJCmRl/cLZEidfldg+1CWfnzhb85QyXc9UlCRZcDlh31CUVm/eKoxhgEhVkbPj5bjdII8w+SVkKxqGIcOQVojjMBVW0dLte9ZZxGW9Jx9/dN93dbNcZ3aEkARrXIE5CMytR2DbO1mUtU+sCUQ8PlUjugtUhVAkb+5JwKLg0wNRuoKa5Fd4T8gsRwxd1LcB5tSPxiAGtD6zSe8xHotIb6NpNfBU1z/FtuXTJl8szZBLwRHqSvBlMmcGlqmWQ0GPgYkOdcafVwZAJMYGInCfNBEiXOezJ9/VW4T/8Eo+L23LBUDJucSL105+N/GuagGuPxeF/Jq0Rcbeitm48/5/jiT5c897v26ClzQM4iFrO83NtqtQjpJcgRIhCocrmw8XXTPf2+TDOg7ENf9D8Y1ZNn9Q9zMwPRHddNrA9mNrVZ0Ym8B7/ZWAvElnIEvqSApSSPH6osX5TPnOC7+ORr7kLcmKYsONpscw/MnIQjCeNXxoE+huycZn1fJQiPmTkkrViejSlvgojypjkkkinZWlBK2mHL+3YhJFo7xCfRAE3FpeSEeTyK8qIVpi7qbKW+oRSTu3va7Xe+3GG62eYlksKmhuphcfLKfAbcs9vHy60+2y7KnyAxyFTwiEiYANui5mW2zZVRGDJ8YDgeajHhZvM4yq90zgJhh/SZ03pvJe6QAKaS6SA33bTuqbAzLpvrsMNwXs/zGdxkShnSw==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12316.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(19092799006)(366016)(921020)(22082099003)(56012099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?cTI4TS94bzRoU0xHcVEwSjRDNkd3Myt4N3RpKzhVajc2MFhkY2hCYlZwRWw3?=
- =?utf-8?B?T2xxWndHbHpiMDlVS05CUW9jOStsYVU3eFRjeEkzcU5DTVNJK21ZSGl0bzBV?=
- =?utf-8?B?R2gvVWRzRGxYbFFxSE1PWFBsTTVyeFNuQ2lJUm92dEJsSGtJdWQ0TEUxRWZ6?=
- =?utf-8?B?V1NuVFBEd1E1MW12QVVrd3NncXYrR292bjFicW1aZFhUTFgvVzBObHp4WEVz?=
- =?utf-8?B?WlY2UU5TRGJRSVVnOFFCdVcyYXU2dEtwUVJYRnNVNzN3Qnl0NTFxanBybmFl?=
- =?utf-8?B?dDZzRk5qUjdZeUJ6bzVvREU5TVJaNDNQRXc2NUVDSmJTZFErd2hUV1huVS9C?=
- =?utf-8?B?Z21HOXRCRHd0eG53WlFaelRzdC9ZWG94RXN2ZFZCdElicEEySnRHUWZ0N21M?=
- =?utf-8?B?aENaQmVGbHBtdmhVQ01KMHdTUmk0L0c5dDBmVFZpdGlNSXNGTDVKRitEbDZY?=
- =?utf-8?B?Tnd4ZENndlVmb08xQlF6dms1TGxyQXNTYzkzZGwva1MxNEVZenhxcEhRb2xD?=
- =?utf-8?B?SHNPTXNtdU5zNWVCNDk2UUZaSnl0T0NGSVBJcW1KcDVFRzF0eUtURDZQQnBI?=
- =?utf-8?B?SU5jMVppNzh0TXFITWNrbWtqMkExMWd4Y2x5cWN4RGFCazR0ak1hdDJBbk11?=
- =?utf-8?B?MlF4dFNyS2lVZU1BbWxoQ0IyNTFEQUZUUTBudzUwZnMxR1dEMWlFWVNJbTdX?=
- =?utf-8?B?cnVtRnYzeDdTeHpDdThVMnY3K0ZjOVJFQ2d5Zzk2L0o3a3JnUGUraE1OQXhR?=
- =?utf-8?B?TnAzMDJmK05kR1RSRnpBUDhKTVdwcktjVUEwRHNJMVJDdC84VGFlUUwvSk53?=
- =?utf-8?B?L3h5cTIybTY4dzVxdVFBVi9zZ3FrbFNkdUg3TWV5NDdROGU5RVQ1Q1lHWXU4?=
- =?utf-8?B?UVd0SWVyVFFPMXhnZFlNY1JiOTdGSUJrUC9nYTZPY3c5UjU0RWIxdnc0T0Jl?=
- =?utf-8?B?WXpRUG13NHI2dUo0TE5paEd1MkhDTEdjd1RzMFM2empNWmU2eGhmZE9VTE94?=
- =?utf-8?B?c1MrcVdDT29LNkc1SWh2Y2dDSW5SY3ppdEMzSHlyd2g1aGE1VkJhbkQ4ZGc2?=
- =?utf-8?B?N3BOdDAvNFhIbWhBcnJWSnlZOTVkb2c2aENMc1pueTUwcklGa2F0bFhHMlFS?=
- =?utf-8?B?djNSK3E1VkczSXdyRzM2bHpOcEN5STJGVHJyUjByeVRYNFRFVXJhYVFRVGE0?=
- =?utf-8?B?eEl2akNYcW1ZelkxTVhPNnpNbnNlUGJhM0xycTNxajBieGRZbm5KMnM0K1pj?=
- =?utf-8?B?VkhjT0NtdmhaNzZYWU5EWFkvdEZNdHV4MnhKNkJXSkllOVdLV3NwekdhbWlJ?=
- =?utf-8?B?VkkreXRmUVovQWpCRkFtOVBXdFZ5SjhlZVBFdTJmOU45UHlWSmlGK1djNmgv?=
- =?utf-8?B?c2o4dmg0ektQblpWRGptT09RUE81aGhmRjlBQU9xVTF1UzM1SGhIaE5ZUFRU?=
- =?utf-8?B?ekFYT0xLTm9NMWVTTnd2Yld6elMrcTRkSlBUSStnVXVMaURHODlwL3NsakFq?=
- =?utf-8?B?ZzBQVVJFcVVIMVZGSzk5Uk5mcVJMSjl2eHR3ZVk4ZStYeHd5d3hWb1kzNFVa?=
- =?utf-8?B?elJtREFoY0xheEUrOG9jNmh0RmRoc1RlcDQzYnJlZjlEL3pWVW4rbm5HSjJy?=
- =?utf-8?B?Q2cyT1hhUHRJbHgyMzJyN3hnN2dVa250LzJlREp0azRISGNCOHBUdVNPcjg5?=
- =?utf-8?B?NnBWMVFGQVU3Vk44NWczL0Q0K0xUU2Z4SE1tMW5CRW0yU25DSVdXVzlzemVp?=
- =?utf-8?B?VUx5bURFVDE2aHJKT1RNNWZUVm4rQVBtQVowajJLdGovUENjZ2JKTmdqZUZF?=
- =?utf-8?B?OWp0TGtBaDM2WFM1ZklXR044em5UVjNVQStGS3hDbHlwek1tYURqRk5veG4x?=
- =?utf-8?B?ZnhJNTdNdXFnZllCbjdta1RXbGpySDJreEpXNVVVS3cwUzExdjlDTUM1UzlW?=
- =?utf-8?B?VmJqY0FrQVJWUjNaUHV2M3ZuZnpQbFVOU3QwQjZYYWtYK0lPaWlKYWtleFpv?=
- =?utf-8?B?Y2VqNmh1Nk9yRk9tb0ZLYVNjZkVIeUdvMjZBOTl1a3NyWXFnZndwbjFubnpQ?=
- =?utf-8?B?TitUMVVHdTMva2tWRzc5VC9wMmVDREVwY0tudGJLWS96YkJxR0FLNGJCU2Iz?=
- =?utf-8?B?QjVjRlBQMW9OVnRNMnppTHZuQzVTcmZQNkFGNzlwOVFqWWxvelU1RWJmdFJW?=
- =?utf-8?B?YnhpT1p0OTRXMG1YWnkzanlZcitSUW83YzNIRjQxNld2azUrSG1UaUk0bm43?=
- =?utf-8?B?Uk5hb1Y0NEVQRjBmTWNEUmFPcGpJZklQSXFJK2V0TDdNMzc0OEJCRWdnVTJt?=
- =?utf-8?B?ckpqY2x1T2xLaEdmamVOQXdRcmQySmpsK2JOWkIrZzc3bjlHRHVjZz09?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b3e90384-bbc7-49d4-7510-08de86653385
-X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB12316.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2026 09:43:54.9890
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3bHqDE/7PM5JwrSfIIUX20jUaTZr0wkuz8Xznj7uzAaSBinaqC6bAqCPkqYSJNS5b/fJKPGXu6Aqo80N+WQF+A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6827
-X-Spamd-Result: default: False [1.94 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] soc/tegra: Update BPMP ABI header
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Thierry Reding <thierry.reding@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jon Hunter <jonathanh@nvidia.com>,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+References: <20260319160110.2131954-1-thierry.reding@kernel.org>
+ <20260319160110.2131954-2-thierry.reding@kernel.org>
+ <435095b4-ce29-4c8a-9f63-300ff94e419a@kernel.org> <ab0T_0Pyio2SYrzq@orome>
+ <1357d59f-7c38-4de0-9cc8-b40be3d7ce5b@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <1357d59f-7c38-4de0-9cc8-b40be3d7ce5b@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278172-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[oss.nxp.com,kernel.org,linaro.org,nxp.com,pengutronix.de,gmail.com];
+	TAGGED_FROM(0.00)[bounces-278175-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.994];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel.baluta@oss.nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
-	NEURAL_HAM(-0.00)[-0.995];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,NXP1.onmicrosoft.com:dkim,nxp.com:email]
-X-Rspamd-Queue-Id: 7DB2B2D840D
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BF85A2D84E5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/12/26 14:36, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
->
-> Cortex-M[7,33] processors use a fixed reset vector table format:
->
->   0x00  Initial SP value
->   0x04  Reset vector
->   0x08  NMI
->   0x0C  ...
->   ...
->   IRQ[n]
->
-> In ELF images, the corresponding layout is:
->
-> reset_vectors:  --> hardware reset address
->         .word __stack_end__
->         .word Reset_Handler
->         .word NMI_Handler
->         .word HardFault_Handler
->         ...
->         .word UART_IRQHandler
->         .word SPI_IRQHandler
->         ...
->
-> Reset_Handler:  --> ELF entry point address
->         ...
->
-> The hardware fetches the first two words from reset_vectors and populates
-> SP with __stack_end__ and PC with Reset_Handler. Execution proceeds from
-> Reset_Handler.
->
-> However, the ELF entry point does not always match the hardware reset
-> address. For example, on i.MX94 CM33S:
->
->   ELF entry point:           0x0ffc211d
->   CM33S hardware reset base: 0x0ffc0000
->
-> To derive the correct hardware reset address, the unused lower bits must
-> be masked off. The boot code should apply a SoC‑specific mask before
-> programming the reset address registers, e.g.:
->
->   reset_address = entry & reset-vector-mask
+On 20/03/2026 10:44, Krzysztof Kozlowski wrote:
+> On 20/03/2026 10:34, Thierry Reding wrote:
+>> On Thu, Mar 19, 2026 at 05:15:56PM +0100, Krzysztof Kozlowski wrote:
+>>> On 19/03/2026 17:01, Thierry Reding wrote:
+>>>> From: Thierry Reding <treding@nvidia.com>
+>>>>
+>>>> This update primarily adds various new commands and MRQs for Tegra264,
+>>>> but also contains a few new annotations and fixes.
+>>>>
+>>>> Signed-off-by: Thierry Reding <treding@nvidia.com>
+>>>> ---
+>>>>  include/soc/tegra/bpmp-abi.h | 4565 +++++++++++++++++++++++++++-------
+>>>>  1 file changed, 3671 insertions(+), 894 deletions(-)
+>>>>
+>>>> diff --git a/include/soc/tegra/bpmp-abi.h b/include/soc/tegra/bpmp-abi.h
+>>>> index 39bb3f87e28d..6cf6442395f1 100644
+>>>> --- a/include/soc/tegra/bpmp-abi.h
+>>>> +++ b/include/soc/tegra/bpmp-abi.h
+>>>> @@ -1,6 +1,6 @@
+>>>> -/* SPDX-License-Identifier: GPL-2.0-only */
+>>>> +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
 
+I missed this part here - that's license change. This has like 10
+different authors, so you must be explicit about it in commit msg and
+you must get their acks.
 
-What do you think about this idea:
+>>>>  /*
+>>>> - * Copyright (c) 2014-2022, NVIDIA CORPORATION.  All rights reserved.
+>>>> + * SPDX-FileCopyrightText: Copyright (c) 2014-2025, NVIDIA CORPORATION.  All rights reserved.
+>>>
+>>> You just replaced correct syntax with discouraged (as in not welcomed
+>>> upstream) SPDX tag.
+>>
+>> Fair enough, I'm dropping the tag. I didn't know it was actively
+>> discouraged and I don't see this documented anywhere. I suppose I should
+> 
+> I am trying to get it somehow documented as permissive, v4 is waiting
+> for some time.
+> 
 
-Use fsl,reset-vector-base instead of a mask. It could happen that for example
+... feel free to encourage/review my change to get the tag officially
+supported.
 
-a CM7 instance has explicit requirements to boot from TCM but the entry point is in DRAM.
-Then masking won't help.
-
-fsl,reset-vector-base is always fixed hardware integration dependent and you can always
-
-specify it in DT.
-
-
+Best regards,
+Krzysztof
 
