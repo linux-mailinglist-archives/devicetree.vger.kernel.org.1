@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-278084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278085-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0A58O0/0vGms4wIAu9opvQ
-	(envelope-from <devicetree+bounces-278084-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 08:16:31 +0100
+	id 4HkTGkr0vGms4wIAu9opvQ
+	(envelope-from <devicetree+bounces-278085-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 08:16:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C6032D67EB
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 08:16:31 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F1472D67DD
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 08:16:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5CF113075E9F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 07:16:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8BA7D3014A0F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 07:16:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11FCA27BF7C;
-	Fri, 20 Mar 2026 07:16:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A52B27BF7C;
+	Fri, 20 Mar 2026 07:16:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o1g81gHo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FrEpdPEP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E13D01EB9E3;
-	Fri, 20 Mar 2026 07:16:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05EAE1DDE5;
+	Fri, 20 Mar 2026 07:16:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773990962; cv=none; b=tfOc4Pn6EtkhqKjJ5VKWCL5BigvfIK0Y6cSLKpiprxnjXAIjhdlEBiJ1dAiGmQwf7HB5Ga2JuHkdpAdtgGI4rhT1w0R9L50CBth2Yj+4L28HuxNHIdjYFnjK/YQChVXSgumfhoC0a5LlYuvYVEWzpQGVNE2aW27Jg9a4FORR+w8=
+	t=1773990969; cv=none; b=r1lHWC6cFGNp1p7RdzZ+CME3PepVZN0tafAso+OvOUtipxH3BgW/fdKb8TX1n/DuMHcUoGU94NzW8SbFtrvc2ojj1OUfVNKLTEF3tK5H13u7WGXEFE+8VUSit62+IlIwA/kybew2bLXLrGOgPkIPLCwfDbuxp+SMsGIFs5jadhQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773990962; c=relaxed/simple;
-	bh=pA8rjgITY9/9C4neWkUKLPha7/LUfe12GHoN3SZqXs0=;
+	s=arc-20240116; t=1773990969; c=relaxed/simple;
+	bh=uwZVnODgMG45JU6Yv5E76ubyYRFZJjdJgmzpPJ0euLY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=a5/T7KSUEdQ8X/1NnYkp209mQLmkhLb1Rl0jJYSxJq3Gh7rbzV5QLjX/QGIT3TU3C46UgVtg//6yR6smqFsvGtMOnNC8GskIEp6HHNh8Rlmu2ucKR3hVJcQ2+CJVk9TW+3rXXmevJMzcIhggNHNZ3gb5xmmO1i3LJYOP+sLYlag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o1g81gHo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63326C2BCB0;
-	Fri, 20 Mar 2026 07:15:58 +0000 (UTC)
+	 In-Reply-To:To:Cc; b=BWq+KfodfQvTmh665E5ioPTpybUS5xZZTMCtwj8OlTyO9an5HsSwf52FxiV70mmI+N02/5sByCGQvPAzqf3TB23nIxx/H5j5X3TL/LI79lBk0KM0fRVibUguGfd82QQboV5GqBE+9O4spIFmQXDJ/uIg8wDF6tBBmyR5gLTgR9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FrEpdPEP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EED3BC4CEF7;
+	Fri, 20 Mar 2026 07:16:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773990961;
-	bh=pA8rjgITY9/9C4neWkUKLPha7/LUfe12GHoN3SZqXs0=;
+	s=k20201202; t=1773990966;
+	bh=uwZVnODgMG45JU6Yv5E76ubyYRFZJjdJgmzpPJ0euLY=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=o1g81gHoiHzofIfC3yPIXtZDvAX2QXZyeTZDcqULDe+OBlSZ7XDTNZHAB8N8YFi6t
-	 Kex7wxdRW9JpojPqoD3IcXZRHeP4gmUhiPRzbZTOuiD1srY3+4TAsz8bjsFC591Pc8
-	 OKsT2EBcy6gjGJIlaCWTc44BtfGQhhLjsI90snap8s6gIRvB9GfnZPRgVDRXf5TgkB
-	 PbQLBqu1CQtqSDJvUBERTP8X/KbUQSFmvfC3y2TRPM5Ev/D31Mr+FMYdCewX4c7WR+
-	 YgWt+n73xbYvGdXXagSDat/WAD3rnKJM1cWSDhVsapRSCtEIPLIUai6GAtGpVDJum6
-	 6EKVUcApuL7lw==
+	b=FrEpdPEPxtsF8JUFp3ia71jsEcAY+IG4zPq1h1lqRay6yZTm4wGwlloaTkaXCua3V
+	 3XCMNMue8hHcM9dUblSeaw878aDsjLtEDCIuCgTZvz5tlpOSpiBQnnHDE9Yg4GhHPT
+	 AY9EjwZyyQ6cE/orONktioJ9Th/t6tG5tkGvnC4wP9MZ5+FDj/26NlVr/pq6uJwVCZ
+	 sZg9bvfXVshLJrQC4LqoaMigvgJY2vMfCHKCn79XH3DK2XligSOx6AyyZdvDp62dzT
+	 /9PsaPlSshKZO7JjmAeZNFWattR6gaLnQ/4+sunIlZHu6f5xkwNfVXR9H6KXZRDuUE
+	 S44nkhZCBAtUg==
 From: Yixun Lan <dlan@kernel.org>
-Date: Fri, 20 Mar 2026 07:15:37 +0000
-Subject: [PATCH v2 1/2] dt-bindings: usb: dwc3: spacemit: add support for
- K3 SoC
+Date: Fri, 20 Mar 2026 07:15:38 +0000
+Subject: [PATCH v2 2/2] usb: dwc3: dwc3-generic-plat: spacemit: add support
+ for K3 SoC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,7 +56,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260320-02-k3-usb20-support-v2-1-308ea0e44038@kernel.org>
+Message-Id: <20260320-02-k3-usb20-support-v2-2-308ea0e44038@kernel.org>
 References: <20260320-02-k3-usb20-support-v2-0-308ea0e44038@kernel.org>
 In-Reply-To: <20260320-02-k3-usb20-support-v2-0-308ea0e44038@kernel.org>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
@@ -70,29 +70,29 @@ Cc: Emil Renner Berthing <kernel@esmil.dk>,
  devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
  Yixun Lan <dlan@kernel.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1549; i=dlan@kernel.org;
- h=from:subject:message-id; bh=pA8rjgITY9/9C4neWkUKLPha7/LUfe12GHoN3SZqXs0=;
- b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpvPQj2CwDTa2cSJE0SlNPoppwzSPhGvbE/P3SB
- zYCBslWtiOJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCabz0IxsUgAAAAAAEAA5t
+X-Developer-Signature: v=1; a=openpgp-sha256; l=856; i=dlan@kernel.org;
+ h=from:subject:message-id; bh=uwZVnODgMG45JU6Yv5E76ubyYRFZJjdJgmzpPJ0euLY=;
+ b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpvPQmOFxwzZBI8PVNThFFbSRrHn3UyFMGboiFj
+ AR+sHudp3SJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCabz0JhsUgAAAAAAEAA5t
  YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
  maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
- QACgkQMarqR1lNu+1E5hAAnNT98A/L7MqTpI6ZGi3laPlQZ1v5XiSkHQNYs/DSSOsvuAc0l8Mak
- Sq9REYaAlrxbPx94ARjGAQYaXUHvv0asvDnoEU5+EfIAXMIYzUpY4loxoryA+19bxBqCN+OCOQE
- G/Vxko/I68bG8w5KjRov68L7JPjUoQnRbBimVCsGlI3L/+nrBaGnMurCCnn7aK51ojgCJtO5SAF
- zjaG2R185V4tM/DBmDM//lRetOEbrt5spCCfr48Fxc0qFNjKAj1iwz1Cc8NgDptcpiWV6DRXONc
- LlPgBE93ip8Xs3WZ5oAh+eVEVxJ0LyPX+5pUVj5P8WJA158mmbhGAs8S2E00+cHJgxwGqTgCP35
- kuIBuQKMQb7KLLpJxIF6sr0KtmducDocAL0J5J+wjb9aV6wKOzsVbn6BMQnqeOfr0vk6sypO8e/
- JJYtshlHOo66BR3XkUaMP1RZlM6pqN92o/coiQgAF9jb6PRBpsaduru0UzisRnqQiLNtaAPG3rV
- UXHhCzbMbKOBaqnlmAwl+VS5oG5P+/YydEP1Lm00iZumv+DTh68HqX80Q1P/czuSU/h1HM+dROT
- QNp1ljWjNV9c3ZpSrHhvAbMp+LCqFmBbLV3zAltqnsSz2py6CQbOvqDuddJKsWczJMFWKknUx7I
- Dqzi1jWFu1sQJg1kon2GXTunGoIewI=
+ QACgkQMarqR1lNu+1b3A//V9yooInUPnDEnA9zUVopFpPUygIVe8+FyIpuVffaXUyiG6thQzjTF
+ M7SPaVRMCXvvaqHfrFWYy5Zi4nenPOKJ45eCnsW6V6S57K+cd50fZ1qddb19qmmt5CUR2rJ/TIh
+ 7mY+IANnbVA69jJMCGRRe8Sz006SbDtxnqCLc6kgRXIA8B2K0de8Fs4JXWC4PamqSdzOLrlEhO6
+ 5HrESGXvQEGQYTibjLouk6+3Ihslfg1AoJxXwKEKV7E2gr7A4mKGga1YJ7XjF5eopzwi7pm2/ip
+ Iiqoy/3KVZXzQj2fPmjZclfe1x460PGnQbcgeaO5Wzsz6EPG/yeIOdH7fj1bwT+1Tc+QTD/77wy
+ SQSRRMNKhO43SpI/fwm2OWqC3hFXdJLqj4HDuc8WqzEWp0jiymiymEMAUbUUFJ1+4Jv9zuiLgp0
+ bno5aaJFUhU45v86mwNG/4OpJEb9uxH0LEbAtHvtPWWfGsIdmnWzv2bFmFMbWXBVlsjFh4Vtd3O
+ bZjeN4AXaPOGLvhPQtXx9S/l00z4vLcXDQKgSD9vyhAScZ/TMIJ6bWx0bwmZQUyzABzV2wrhLK0
+ 4ycu1wrrmCfRK0pWMJsE7gwhPxcz4DN3iuE1O6Efey0e8sRVDI2J4qbtjq01baU48WEOH7M0uHS
+ oyO7ZqiuE3z3oRe62apCd/BAqrpEs8=
 X-Developer-Key: i=dlan@kernel.org; a=openpgp;
  fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -102,11 +102,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FREEMAIL_CC(0.00)[esmil.dk,spacemit.com,gmail.com,lists.linux.dev,vger.kernel.org,lists.infradead.org,kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-278084-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278085-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.988];
+	NEURAL_HAM(-0.00)[-0.993];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
@@ -115,55 +115,30 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 5C6032D67EB
+X-Rspamd-Queue-Id: 6F1472D67DD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add compatible string for DWC3 USB controller found in SpacemiT K3 SoC.
+Add support for the DWC3 USB controller which found in SpacemiT K3 SoC.
 
-The USB2.0 host controller in K3 SoC actually use DWC3 IP but only support
-USB2.0 functionality, thus in the hardware layer, it has only one USB2 PHY.
-While in K1 SoC, the USB controller has both USB2 and USB3 Combo PHY
-connected, but able to work in a reduced USB2.0 mode which requres only
-one USB2 PHY, leaves the USB3 Combo PHY to PCIe controller. So both K1
-and K3 SoC are able to work in the USB2.0 mode which requires one PHY.
-
-Explicitly reduce number of phy property to minimal one.
-
+Acked-by: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
 Signed-off-by: Yixun Lan <dlan@kernel.org>
 ---
- Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ drivers/usb/dwc3/dwc3-generic-plat.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml b/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml
-index 0f0b5e061ca1..cc27b363ca79 100644
---- a/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml
-@@ -27,7 +27,9 @@ allOf:
+diff --git a/drivers/usb/dwc3/dwc3-generic-plat.c b/drivers/usb/dwc3/dwc3-generic-plat.c
+index e846844e0023..28219968b8b0 100644
+--- a/drivers/usb/dwc3/dwc3-generic-plat.c
++++ b/drivers/usb/dwc3/dwc3-generic-plat.c
+@@ -212,6 +212,7 @@ static const struct dwc3_generic_config eic7700_dwc3 =  {
  
- properties:
-   compatible:
--    const: spacemit,k1-dwc3
-+    enum:
-+      - spacemit,k1-dwc3
-+      - spacemit,k3-dwc3
- 
-   reg:
-     maxItems: 1
-@@ -42,11 +44,13 @@ properties:
-     maxItems: 1
- 
-   phys:
-+    minItems: 1
-     items:
-       - description: phandle to USB2/HS PHY
-       - description: phandle to USB3/SS PHY
- 
-   phy-names:
-+    minItems: 1
-     items:
-       - const: usb2-phy
-       - const: usb3-phy
+ static const struct of_device_id dwc3_generic_of_match[] = {
+ 	{ .compatible = "spacemit,k1-dwc3", },
++	{ .compatible = "spacemit,k3-dwc3", },
+ 	{ .compatible = "fsl,ls1028a-dwc3", &fsl_ls1028_dwc3},
+ 	{ .compatible = "eswin,eic7700-dwc3", &eic7700_dwc3},
+ 	{ /* sentinel */ }
 
 -- 
 2.53.0
