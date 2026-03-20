@@ -1,209 +1,216 @@
-Return-Path: <devicetree+bounces-278182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278183-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SL0cFd4avWnG6QIAu9opvQ
-	(envelope-from <devicetree+bounces-278182-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:01:02 +0100
+	id kEX4HfgbvWnG6QIAu9opvQ
+	(envelope-from <devicetree+bounces-278183-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:05:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADE6E2D8683
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:01:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC4812D8751
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:05:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5C32E301D30A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:59:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BF107300BC8D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:03:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 093BB38B12E;
-	Fri, 20 Mar 2026 09:59:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 208A335C199;
+	Fri, 20 Mar 2026 10:03:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DQKfhaOc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022126.outbound.protection.outlook.com [52.101.126.126])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AE8138B12D;
-	Fri, 20 Mar 2026 09:59:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.126
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774000745; cv=fail; b=acIcWK+QjJ6/PmQHodLVal6LHowxxquRKYu4/R9VdrlJx1Vn1E2wvq5TyPKgif7m4NVpdAM++yYZUb8q4SfYFWcSYJwLz2kerw/VBizSvNi1CJPYP20oocS5KYlk+pxGmh15YeePGlW/EAv165l5TD8RmtsOyiPQfc5ym8pv5y4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774000745; c=relaxed/simple;
-	bh=uUbOo5KtAg+8DK9Ca1uoORAPs91QSjzCMGjKJaAqp1U=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F20F73563F0;
+	Fri, 20 Mar 2026 10:03:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774000993; cv=none; b=HhLrzGuTcEQgjY61FUSl0XrjU/Dbd64xI6+AGLnhETSHhQNHtcbRCq8hsn+PA5gAu3wAVkNzeGDJsDCb/arEOFxuSKf4MxTz7Av5jL9Nzj62eRyFG3FIhv2mpRz2aYqfqzYG6PBX/zzG4ck+D7nWU+yvOVw/FHKYpBE6kr0JXCM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774000993; c=relaxed/simple;
+	bh=7ScUjOk9W/drDXblkhRsDrw/vCcn0HfJ2wuKW5dR+Lg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qiqYba6XLCfVHtMM3VLlcHZg/DrFJBYxIIuB2B64xMbtm+3gwcmBIVZuKGQY9tnnbwQA5vscuIbB3DKFxSCOrkFn/7N7c1LpEENE3kEYVthhtKaleSCIPwy4dQoh736wxLMBXlV259k0OGTCHSmGqwUcAVXafy2eLs/fzqoEXGI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.126
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=k7lFuMFykPjRf5jUe1GvkDrpaDziCRDqfbs0ajm5pdvmxhdBq97rZupFe2/nrYwquuOfEpfTGCNPNbjv+/mZgwgK688ZYgXYY29CtZNZk2cXZhkJGHQVrar7xyGq4GoDPkXjBENL9CENNQ3a53ZQq0YIOxrgAYViCdGLz3vHvK/6iWtKsyGEE/jbHgJ7eWNIdpd/7gx9IC6b/EGq2qvH+UzFGyLZ//wzKUp2TWzHsOAtf3VgQTgw4Wp+Kc/EjoyKL6ne8/686ej3d4pc3BddFqyIKX4C+JeaMQvhFG4J7rG7GwpGWkA5YZ0O0810+Ig0HlQMLC5TVu8B8Oub6Jhrtg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8GZbaPzqXlxKLuDM+TfBjyOaeC/Soh7/jpxS1F9Ls3o=;
- b=kytiDITFhR1K6bxoz0Dfz3ZpbzUph4CzqF4h8ZElANNOvZ02IWb6lMInGQDMIU1AZ6xjfRLhMHYhYlfFeGqqHAQx5+8ogplY/A+1UNFRXfiBb1wGB1MtHzow7++yVY9bRFPsR5xJ0yNyHYNQ4zDRk+1FHHYYiOt/tmuL+dCaAH2O15/xvX4W8h+cROBCA7TqAPmhXsZxvKzrLEzuS9IX/2pBTlrS6X+iNMWUU+Uy7lklUJAi7fqKG786L8pnTKdOByM4kJC+uB7wPEFjvt2uBvKFOQAtHLihztZkNt5LIffSoHQMpPnMsnEz9u8Yk94AoO+FwKgez5XiN2BCLrvpWw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from PS2PR01CA0005.apcprd01.prod.exchangelabs.com
- (2603:1096:300:2d::17) by TY0PR06MB5609.apcprd06.prod.outlook.com
- (2603:1096:400:31e::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.23; Fri, 20 Mar
- 2026 09:59:00 +0000
-Received: from TY2PEPF0000AB84.apcprd03.prod.outlook.com
- (2603:1096:300:2d:cafe::53) by PS2PR01CA0005.outlook.office365.com
- (2603:1096:300:2d::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.23 via Frontend Transport; Fri,
- 20 Mar 2026 09:59:00 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- TY2PEPF0000AB84.mail.protection.outlook.com (10.167.253.9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9723.19 via Frontend Transport; Fri, 20 Mar 2026 09:58:59 +0000
-Received: from nchen-desktop (unknown [172.16.64.25])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id DC4FC4126F92;
-	Fri, 20 Mar 2026 17:58:58 +0800 (CST)
-Date: Fri, 20 Mar 2026 17:58:57 +0800
-From: Peter Chen <peter.chen@cixtech.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jun Guo <jun.guo@cixtech.com>, fugang.duan@cixtech.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
-	ychuang3@nuvoton.com, schung@nuvoton.com, robin.murphy@arm.com,
-	Frank.Li@kernel.org, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	cix-kernel-upstream@cixtech.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: dma: arm-dma350: document generic
- and combined IRQ topologies
-Message-ID: <ab0aYUK1NlUV3riG@nchen-desktop>
-References: <20260319101723.246539-1-jun.guo@cixtech.com>
- <20260319101723.246539-2-jun.guo@cixtech.com>
- <20260320-vengeful-violet-cockle-382580@quoll>
- <ab0VoTut0u4f7EVr@nchen-desktop>
- <41254f6c-3ce3-4566-acf4-f0bf764565f3@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=m5SCvWzVwT0zH82ZQINYL6EKXjgE4LtOKFyxCnFpe0Efk/bIOkwRCt0OwLqdbiTUK7eXQirGovH8I0GLPcbs7wYOkRdxMGwmK13keFSuKNRDD3DOatzXolJ27o7mFEr4X6ObUi9fNg3geAtompUSyVp9BaI4tgmK2/p5sS9urf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DQKfhaOc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F12BC4CEF7;
+	Fri, 20 Mar 2026 10:03:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774000992;
+	bh=7ScUjOk9W/drDXblkhRsDrw/vCcn0HfJ2wuKW5dR+Lg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DQKfhaOcKUyBteWvcd88d6C1/eBUYyjEFdUiVlaBVbuxfqWZJsR0e+y3huVojBi7A
+	 a0lY1Bfa6R8NU5Drgp5BjpafaIXdGQBu9BY7r8AKvNJsNiR26tF8JCSUUL8dR0PEzo
+	 IjtcNQlrr25dk1wZwppBxFpu0nkl+Q4RQHuRZ3F7f8UhdWZeYOfpt2YBOAjE7bBeF/
+	 EA0C0B3+Mvi9QPKAfdKBPfsNr6D9mecKq4zU+012O6c6Ywuj2mXtkhy0yNV2ACzP0T
+	 1ni/3ahX/3wzML6dXkyUjk1cUoZU3uy/laTkTgxsmMIUGN45oxJWrtceMDzFhzOxVg
+	 VOkXOo1m3EFSQ==
+Date: Fri, 20 Mar 2026 18:03:09 +0800
+From: Yixun Lan <dlan@kernel.org>
+To: Samuel Holland <samuel.holland@sifive.com>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Subject: Re: [PATCH 1/4] riscv: dts: spacemit: k3: add clock tree
+Message-ID: <20260320100309-GKC525649@kernel.org>
+References: <20260304-01-dts-uart-full-v1-0-50a0aa53a245@kernel.org>
+ <20260304-01-dts-uart-full-v1-1-50a0aa53a245@kernel.org>
+ <fecadd41-ee3e-4452-bf25-4a70eaeb5f3f@sifive.com>
+ <20260314085252-GKB415778@kernel.org>
+ <b885158f-3859-4bfa-96b0-39c274a856cf@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <41254f6c-3ce3-4566-acf4-f0bf764565f3@kernel.org>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB84:EE_|TY0PR06MB5609:EE_
-X-MS-Office365-Filtering-Correlation-Id: 521018a9-86ed-4f16-35c3-08de86674f0a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|36860700016|376014|7416014|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	0J2RDivcqm7xKMmYd3XScnLfMkAOs4emr3OoHAYHQ6Z+F8QMOX+PljmruP8okbqQWtfMXzLjEBzmYpVIlmnNOwAD4vcKWbjVsEW5ydVjLdJO4Qku/9RryCyYuBbDiLPl5kHADunmrAQ8/JjFcOSA88YbsJ1O9wqaLq8nWDJo2cshUVD8XfKymexh+10GrPXx5OndYbZ5vvKSxGoufITYy1XoxpWpOOj1eQbafZeMsHJuYTTJQZQaWgRiwjKN+jywIcuQTgMANZkmbVyxmoqFp3xCXqnxnElBTQnieV4pWtdwWTDZDRO9S1yJnsD5AbdoTdA8POC7UUf9Vb4239RZytUCQ/SzEOMGGSpjLush8N7+/7GBIlcSXE5weaebAS/gbnxxAJqaLz34ZQhVhowknI1HUnJbK30i0wJWYjMFP2JIKsEt0WJZRKGgTNHZWoNO3DQ4nIkwhyCXm9o+jJqZ9+d3MbgUQ59316UFlcu7qk5uA7VLOH2QAHJbwIrHEvUp0nST5xe/X3jb1GPT1LdkhIE+JA/PlprdZSxpIPJpFYQ3PT7nwojBSxtj9wMFXw2MiUFO9lEF46B8rxF3LU38YRBaIIbzQiGIoOEKteYqLQpkeg6GN2WfSiR6j19w1v4PsS+10RgDVFdSX23/ep923A29CqMeq1lZi093LTGpwwnBR1mDHU32uF8rNe7rqrPoNTS4+u79vDwTZK/JVG4/+GD7Nj4vBmXHDImLSRhR/I2Stx3yPEFTKM7uLFhSnGvU414oCyVi0nrQ01HFM0BqVg==
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700016)(376014)(7416014)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	h8pPphuYHh5klIs0ADkMWTKFH9oKeC0+iHnTDeUux470SOmZul1RSAlisIlS1EKZKj6T/dJAF8Q3N0x2imtoPAg1KZfHBke3MWb3NO3R0QmJXg8ebPM59Xh3ZWdeRjHQrN2ZqGjYCZqOLlIGIkl7c5RLGl7Iw7UgNlzLwX5MEIeE+FAFCJC9nnFlLz+iAOQjMu62Tv0dRnEpiXRbOGVR9rM8pW3imCnqr9KrIGv4+KFThOo8avl0yUJ1IF6T5daNpyTCCSV1RLh7fQlm4XoAUzPex5WX8q+84F9aPyFrQkDkMbVWv0k2HZILnHJ3Rjuu8sXX3fm1iZZgUwVOm9tVmqM3BNqWEgKoBBMBQzak2ym21f/T3dObCepDrtYf+qaoEbcf0zjbejE1bWhhWgSZpL9XwGtLs5D8dOELZE4Fsk6UDY8IOVGZ2AYb1NUIbVf6
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2026 09:58:59.6943
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 521018a9-86ed-4f16-35c3-08de86674f0a
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	TY2PEPF0000AB84.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR06MB5609
-X-Spamd-Result: default: False [2.54 / 15.00];
+In-Reply-To: <b885158f-3859-4bfa-96b0-39c274a856cf@sifive.com>
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278182-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278183-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7];
-	DMARC_NA(0.00)[cixtech.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.946];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peter.chen@cixtech.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	NEURAL_SPAM(0.00)[0.190];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[checkpatch.pl:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: ADE6E2D8683
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: EC4812D8751
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 26-03-20 10:43:10, Krzysztof Kozlowski wrote:
-> EXTERNAL EMAIL
+Hi Samuel,
+
+On 09:13 Sat 14 Mar     , Samuel Holland wrote:
+> Hi Yixun,
 > 
-> On 20/03/2026 10:38, Peter Chen wrote:
-> > On 26-03-20 10:12:53, Krzysztof Kozlowski wrote:
-> >> EXTERNAL EMAIL
-> >>
-> >> On Thu, Mar 19, 2026 at 06:17:21PM +0800, Jun Guo wrote:
-> >>> Update the DMA-350 DT binding to match the current driver behavior.
+> On 2026-03-14 3:52 AM, Yixun Lan wrote:
+> > On 20:44 Fri 13 Mar     , Samuel Holland wrote:
+> >> On 2026-03-04 1:36 AM, Yixun Lan wrote:
+> >>> Add clock support to SpacemiT K3 SoC, the clock tree consist of several
+> >>> blocks which are APBC, APMU, DCIU, MPUM.
 > >>>
-> >>> Allow both:
-> >>> - "arm,dma-350" as the generic compatible, and
-> >>> - "cix,sky1-dma-350", "arm,dma-350" for SoC-specific fallback usage.
+> >>> Signed-off-by: Yixun Lan <dlan@kernel.org>
+> >>> ---
+> >>>  arch/riscv/boot/dts/spacemit/k3.dtsi | 75 ++++++++++++++++++++++++++++++++++++
+> >>>  1 file changed, 75 insertions(+)
 > >>>
-> >>> Also document interrupt topology variants supported by hardware
-> >>> integration:
-> >>> - one combined interrupt for all channels, or
-> >>> - one interrupt per channel (up to 8 channels).
-> >>>
-> >>> This patch is Assisted-by: Cursor: GPT-5.3 Codex.
+> >>> diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/spacemit/k3.dtsi
+> >>> index b69cf81b5d55..e3d7f3102fd5 100644
+> >>> --- a/arch/riscv/boot/dts/spacemit/k3.dtsi
+> >>> +++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
+> >>> @@ -4,6 +4,7 @@
+> >>>   * Copyright (c) 2026 Guodong Xu <guodong@riscstar.com>
+> >>>   */
+> >>>  
+> >>> +#include <dt-bindings/clock/spacemit,k3-clocks.h>
+> >>>  #include <dt-bindings/interrupt-controller/irq.h>
+> >>>  
+> >>>  /dts-v1/;
+> >>> @@ -398,6 +399,36 @@ core3 {
+> >>>  		};
+> >>>  	};
+> >>>  
+> >>> +	clocks {
+> >>> +		vctcxo_1m: clock-1m {
+> >>> +			compatible = "fixed-clock";
+> >>> +			clock-frequency = <1000000>;
+> >>> +			clock-output-names = "vctcxo_1m";
+> >>> +			#clock-cells = <0>;
+> >>> +		};
+> >>> +
+> >>> +		vctcxo_24m: clock-24m {
+> >>> +			compatible = "fixed-clock";
+> >>> +			clock-frequency = <24000000>;
+> >>> +			clock-output-names = "vctcxo_24m";
+> >>> +			#clock-cells = <0>;
+> >>> +		};
+> >>> +
+> >>> +		vctcxo_3m: clock-3m {
+> >>> +			compatible = "fixed-clock";
+> >>> +			clock-frequency = <3000000>;
+> >>> +			clock-output-names = "vctcxo_3m";
+> >>> +			#clock-cells = <0>;
+> >>> +		};
+> >>> +
+> >>> +		osc_32k: clock-32k {
+> >>> +			compatible = "fixed-clock";
+> >>> +			clock-frequency = <32000>;
+> >>> +			clock-output-names = "osc_32k";
+> >>> +			#clock-cells = <0>;
+> >>> +		};
 > >>
-> >> Wrong tag, please read carefully the guideline before using LLM tools.
+> >> Are these clocks provided by SoC or by the board? Usually there's a crystal
+> >> external to the SoC that provides the root of the clock tree. If these clocks
+> >> are provided by the board, they (or at least the clock-frequency property)
+> >> should be in the board DT, not the SoC dtsi.
 > >>
-> >
-> > Hi Krzysztof,
-> >
-> > It is the trade off for coding-assistants.rst suggestion and
-> > passing checkpatch.pl. Currently, checkpatch.pl reports the
-> > error for tag without email address. So we choose to add tag
-> > description at patch context.
+> > It's true, as a quick check, osc_32k provided by P1 PMU, while vctcxo_24m is
+> > a crystal, vctcxo_1m and vctcxo_3m are also marked as external in the clock
+> > tree, but I would confirm them later..
 > 
-> You still have to use correct tag.
-
-You mean even checkpatch.pl reports below error, we still add it
-"Assisted-by: Cursor: GPT-5.3 Codex" as tag?
-
-WARNING: Non-standard signature: Assisted-by:
-#14:
-Assisted-by: Cursor: GPT-5.3 Codex
-
-ERROR: Unrecognized email address: 'Cursor: GPT-5.3 Codex'
-#14:
-Assisted-by: Cursor: GPT-5.3 Codex
-
-> You ignored rest of the email
-> message, so I assume you agree that you should not send LLM microslop?
+> In that case, osc_32k should ideally be a reference to the P1 PMU clock
+> provider, not a fixed-clock. But this may be infeasible if it creates dependency
+> loops (PMU depends on I2C, I2C depends on clocks, clocks depend on PMU).
 > 
+Yes, in an ideal case, not only there is dependency loop, but need to
+implement a clock tree for P1..
 
-I am not the patch author, Jun will reply it.
-I come in to discuss this patch duo to I suggested Jun adding LLM tag
-at patch context.
+Currently, I'd leave it as fixed-clock as is, since the 32k clock is
+always on from P1 since power up
+
+Also, for vctcxo_1m and vctcxo_3m, they are clocks derived from vctcxo_24m which
+unable to be gate off, so I think it's ok to leave them as fixed-clock.
+
+> > I agree to move them out of SoC dtsi file - k3.dtsi, while due to all boards share
+> > the same clock topology, what if I creating a k3-clock.dtsi and making it shared 
+> > between all board dts file? to avoid massive DTS duplication
+> 
+> Yes, it is common practice to create a .dtsi file for things shared among
+> several boards for a SoC (for example if they are all based on a reference
+> platform). You may want to name it something more generic if more than just
+> clocks can be shared (like k3-common.dtsi, compare jh7110-common.dtsi).
+> 
+k3-common.dtsi sounds good to me
+
+> >> Also, the /clocks node is out of order.
+> >>
+> > I will move osc_32k before vtccxo_1m, assuming it's the problem you
+> > refered to?
+> 
+> I mean that /clocks sorts alphabetically before /cpus. Your ordering of the
+> fixed-clocks nodes themselves is fine.
+> 
+ok, I got
+
+> Regards,
+> Samuel
+> 
+> 
 
 -- 
-
-Best regards,
-Peter
+Yixun Lan (dlan)
 
