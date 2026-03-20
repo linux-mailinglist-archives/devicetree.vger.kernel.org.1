@@ -1,273 +1,181 @@
-Return-Path: <devicetree+bounces-278164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278166-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QCGANz0WvWnG6QIAu9opvQ
-	(envelope-from <devicetree+bounces-278164-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:41:17 +0100
+	id SF5xBu8WvWnG6QIAu9opvQ
+	(envelope-from <devicetree+bounces-278166-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:44:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D4832D8282
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:41:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90CDB2D831B
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:44:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ED5EA305C8ED
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:39:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D68B330A906F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:41:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 842E63815D5;
-	Fri, 20 Mar 2026 09:39:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89D9238735F;
+	Fri, 20 Mar 2026 09:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="stetC2bp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ivCdHj3n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 603FC35F60C;
-	Fri, 20 Mar 2026 09:39:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6487B386C28;
+	Fri, 20 Mar 2026 09:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773999595; cv=none; b=nltwG/lJhj+DFPYj5eNzJGWW7hhpbLsP0NctxtREwPp2J6LinKQfWxlYCTBnAzBcGOHxK7GCYd9lBvEPprhsfuOc8e7Hi5vJYShNhQSRdYHGr6b04FPZMZx725j2tKgGZz/lzZLnI/xCypntIafcW5wP2PLscOwSOanJaQU0izs=
+	t=1773999718; cv=none; b=c/KUwQjFdPeErGzddxvSk1nlZXbo/VvcAd4a4g9wSdH5j1bScGKFSfvKSDnpB9FIOKMDMNj8zdumERrMAGlTvNkfHbxzZ5h0eDQupwlAJVofJYM9o/nXle7kyN+WvgIOhlozYHPq6gIae9KviZ885dwCed74OU8wCuLbFR9Gdjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773999595; c=relaxed/simple;
-	bh=i+pP4V+ABRrU7y+KipWHLhEUf1H6LxI4Ze7TYBfD/lI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qu5tnHkKYvFq1rwVRy8PESZXVAQIZ4g1z/KNghpTcTeY22ekSnNa+eLwyGE2+Ro82OPr4lIJQ79oInXfllcSPmS7DvlXmrNt70SX9sZ1FfbpRnhdbMJDsmyi18Y1vDlMosNpxWGgtI/5m7EJOCkIpC7iFmJIAU8xAsBuCMTxex4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=stetC2bp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 852BCC4CEF7;
-	Fri, 20 Mar 2026 09:39:54 +0000 (UTC)
+	s=arc-20240116; t=1773999718; c=relaxed/simple;
+	bh=ckWzpMVeCGxXo30SWMHFDxsehsfkK1rEaxq5cxMVKcg=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=ai3minxDvW209XawUXmylkWpBA3KNcjkR3yRjGYM2LQmZ0YlK93QcltmI9MLHk8phVI7pQEXnF/lwOT3pPKMk7iOP36eLOWKDdN4LDvqVjU1UN5g3Bto5nrY/Sw1czzuf+pWmINtua/VZkz0HFQomFWlj3zYnrD1HJ4Vke6a8xs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ivCdHj3n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEF1CC4CEF7;
+	Fri, 20 Mar 2026 09:41:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773999595;
-	bh=i+pP4V+ABRrU7y+KipWHLhEUf1H6LxI4Ze7TYBfD/lI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=stetC2bpfEX8FvAm4oFQOc4VRxBmexeeFL8Ie45Tt4g9Vp4efZkF87YFB4x2k/5o5
-	 3CdD8EjOBim1rw1aZWJsp8n7kyYeOGTNj9U5XAnoISaPaxkd3WVjdX1boKf6qMIzJj
-	 GoVn9kYZOybFKPPDvEd0pF3cBu4wGm8WMp2PGwG9eEKbMhQT7TJrCB/1Hm3apSyp0b
-	 W2vBTYxaFg6u7ebj3r2g1lNFlUgvK3bssbNXZLdXsUUDU5uc4Mf8OQp8IOLiE6VwoS
-	 tiL+bP+14uaPKD0kRiOwhRGSscI4YamZDeq254EEmh/xp21cIKEP4PIzUUXjLJzxlR
-	 vx9qewFftGPxA==
-Date: Fri, 20 Mar 2026 10:39:52 +0100
-From: Thierry Reding <thierry.reding@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jon Hunter <jonathanh@nvidia.com>, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 3/5] dt-bindings: pci: Document the NVIDIA Tegra264 PCIe
- controller
-Message-ID: <ab0U5bfZ2hwp-GST@orome>
-References: <20260319160110.2131954-1-thierry.reding@kernel.org>
- <20260319160110.2131954-4-thierry.reding@kernel.org>
- <CAL_Jsq+smyMYE_oexRc9wEJgMxdUxSwg7p8Bex8q6J6PrwZZ+Q@mail.gmail.com>
+	s=k20201202; t=1773999718;
+	bh=ckWzpMVeCGxXo30SWMHFDxsehsfkK1rEaxq5cxMVKcg=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=ivCdHj3ntFH+Sac9HPqm5LR0LjZGK2HSPNqEV9O9bLGHfodlv/vZ32LNGEh1Jv9cb
+	 4henxpgrf5U1tN/UdnHbHqwdVs5YWrfyfzFeYCvRyjWmDlE2guUYCN+nQMgk9AJarR
+	 V3nOoe090NgVPa4A631abWxSYMUX3GP0oVd3mtjdMxEpXSrpzXHFec7sUL6gxVgncj
+	 b4aMx7JO7CXqFogW8C8Bx6p/dAaVwfr9UWeGMO87A8u03APwbTOF/aTQy9Yn6zi4Mb
+	 qMywdLrLBcQfbgQlYwa9nTLTrtAEzK9RalXKPNLTQboHZ52pZQvFI0OZAwSptufcYs
+	 19INlCSyhCOcQ==
+Message-ID: <311d143b-cc78-465e-9be2-0a9a0a33ea0b@kernel.org>
+Date: Fri, 20 Mar 2026 10:41:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xadlc4yvs4q6exe6"
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+smyMYE_oexRc9wEJgMxdUxSwg7p8Bex8q6J6PrwZZ+Q@mail.gmail.com>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/9] dt-bindings: display: rockchip: analogix-dp:
+ Expand clock-names "hclk" for the third clock
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Damon Ding <damon.ding@rock-chips.com>
+Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, nicolas.frattaroli@collabora.com,
+ alchark@gmail.com, cristian.ciocaltea@collabora.com,
+ sebastian.reichel@collabora.com, kever.yang@rock-chips.com,
+ heiko.stuebner@cherry.de, tomeu@tomeuvizoso.net, amadeus@jmu.edu.cn,
+ michael.riesch@collabora.com, didi.debian@cknow.org,
+ dmitry.baryshkov@oss.qualcomm.com, luca.ceresoli@bootlin.com,
+ dianders@chromium.org, m.szyprowski@samsung.com,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20260319104031.1986946-1-damon.ding@rock-chips.com>
+ <20260319104031.1986946-2-damon.ding@rock-chips.com>
+ <20260320-amusing-magnetic-harrier-20cc40@quoll>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260320-amusing-magnetic-harrier-20cc40@quoll>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278164-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-278166-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.889];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thierry.reding@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,cherry.de,tomeuvizoso.net,jmu.edu.cn,cknow.org,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[37];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.992];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 8D4832D8282
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 90CDB2D831B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On 20/03/2026 10:19, Krzysztof Kozlowski wrote:
+> On Thu, Mar 19, 2026 at 06:40:23PM +0800, Damon Ding wrote:
+>> The RK3588 eDP controller needs the video datapath clock "hclk" to work
+>> well. Previously, it works without explicitly adding this clock because
+>> the 'rockchip,vo-grf = <&vo1_grf>' property implicitly enables HCLK_VO1.
+>>
+>> Fixes: f855146263b1 ("dt-bindings: display: rockchip: analogix-dp: Add support for RK3588")
+>> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+>> ---
 
---xadlc4yvs4q6exe6
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 3/5] dt-bindings: pci: Document the NVIDIA Tegra264 PCIe
- controller
-MIME-Version: 1.0
+BTW, all your patches (this and previous set... actually, everything you
+ever sent IIRC) end up marked as spam. I don't see anything in the
+headers pointing to the issue. There is no score assigned and
+DMARC+SPF+DKIM pass.
 
-On Thu, Mar 19, 2026 at 04:26:31PM -0500, Rob Herring wrote:
-> On Thu, Mar 19, 2026 at 11:01=E2=80=AFAM Thierry Reding
-> <thierry.reding@kernel.org> wrote:
-> >
-> > From: Thierry Reding <treding@nvidia.com>
-> >
-> > The six PCIe controllers found on Tegra264 are of two types: one is used
-> > for the internal GPU and therefore is not connected to a UPHY and the
-> > remaining five controllers are typically routed to a PCI slot and have
-> > additional controls for the physical link.
-> >
-> > While these controllers can be switched into endpoint mode, this binding
-> > describes the root complex mode only.
-> >
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> >  .../bindings/pci/nvidia,tegra264-pcie.yaml    | 92 +++++++++++++++++++
-> >  1 file changed, 92 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra2=
-64-pcie.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra264-pcie=
-=2Eyaml b/Documentation/devicetree/bindings/pci/nvidia,tegra264-pcie.yaml
-> > new file mode 100644
-> > index 000000000000..56d69de2788b
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra264-pcie.yaml
-> > @@ -0,0 +1,92 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pci/nvidia,tegra264-pcie.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: NVIDIA Tegra264 PCIe controller
-> > +
-> > +maintainers:
-> > +  - Thierry Reding <thierry.reding@gmail.com>
-> > +  - Jon Hunter <jonathanh@nvidia.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: nvidia,tegra264-pcie
-> > +
-> > +  reg:
-> > +    minItems: 4
-> > +    maxItems: 5
-> > +
-> > +  reg-names:
-> > +    minItems: 4
-> > +    maxItems: 5
-> > +
-> > +  interrupts:
-> > +    minItems: 1
-> > +    maxItems: 4
-> > +
-> > +  dma-coherent: true
-> > +
-> > +  nvidia,bpmp:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    description: |
-> > +      Must contain a pair of phandle (to the BPMP controller node) and
-> > +      controller ID. The following are the controller IDs for each con=
-troller:
-> > +
-> > +      0: C0
-> > +      1: C1
-> > +      2: C2
-> > +      3: C3
-> > +      4: C4
-> > +      5: C5
-> > +    items:
-> > +      - items:
-> > +          - description: phandle to the BPMP controller node
-> > +          - description: PCIe controller ID
-> > +            maximum: 5
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +required:
-> > +  - interrupt-map
-> > +  - interrupt-map-mask
-> > +  - iommu-map
-> > +  - msi-map
-> > +  - nvidia,bpmp
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/pci/pci-host-bridge.yaml#
-> > +  - oneOf:
-> > +    - description: C0 controller (no UPHY)
-> > +      properties:
-> > +        reg:
-> > +          items:
-> > +            - description: application layer registers
-> > +            - description: transaction layer registers
-> > +            - description: privileged transaction layer registers
-> > +            - description: ECAM-compatible configuration space
-> > +
-> > +        reg-names:
-> > +          items:
-> > +            - const: xal
-> > +            - const: xtl
-> > +            - const: xtl-pri
-> > +            - const: ecam
-> > +
-> > +    - description: C1-C5 controllers (with UPHY)
-> > +      properties:
-> > +        reg:
-> > +          items:
-> > +            - description: application layer registers
-> > +            - description: transaction layer registers
-> > +            - description: privileged transaction layer registers
-> > +            - description: data link/physical layer registers
-> > +            - description: ECAM-compatible configuration space
-> > +
-> > +      items:
-> > +        - const: xal
-> > +        - const: xtl
-> > +        - const: xtl-pri
-> > +        - const: xpl
->=20
-> Put this entry last since it is the optional one. Then you can move
-> all of this to the top-level and get rid of the duplication.
+However it seems you are using @rock-chips.com and SMTP server 163.com,
+so maybe that difference. Or maybe it is rock-chips lack of DMARC policy
+(p=none dis=none)?
 
-I understand this concern and was actually on the fence about this
-myself. The reason why I ultimately went with this variant is for two
-reasons:
+Regardless of the reason, if you do not ever receive answers from
+people, it is likely that is the reason.
 
-  1. XPL does not exist for controller 0, the variant above makes that
-     very explicit. It explicitly documents that controller 0 is used
-     for internal purposes and cannot be connected to an external port
-     like the other five controllers.
-
-  2. The ECAM region is part of a memory region specifically reserved
-     for configuration space, whereas all of the other regions are
-     from the controller's MMIO region. I find the DT hard to read if
-     the two are interleaved.
-
-Thierry
-
---xadlc4yvs4q6exe6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmm9FegACgkQ3SOs138+
-s6EIWQ//ckQncs/jfQ2lie639+yWQaYKqj+f3mfXRhxT8cmiO+3YU6I/9F1Sjxwu
-w29ijDgXiM3/DdkEXbzS0mtdBMwh1V4Zl2sDsgFD+6heyw5mFCmh2wGo2E9WWxyN
-4OTcuA+30wWJZvmh49BDnvcDnvDw7v4ENaaU4dyvePj/Vj8X4ekGslv1Ihv9Ao8y
-NG/KGJ6nsDwhIpHwsOoL88ADKrltkSsqTgxhunnqKVu+v7bGzXRIlX2+uXteRvGx
-QYU9cHLa8h589ZDZUHgylJt3Eqnew8G6tLVBvc4jMni2OdorzQQ7zyMtQRLQSvaY
-NQIzfdwuK7l/+vO5DboxCvffkWP4wHI2EDFBMHK8q2zSh+Q44Gts4sG53ITXQVlS
-l0OEZmguQ4RQDeytMv2EdkGmJYICW5qE/1CunjIQU3zBqxOMstY1sm1CdZkkx8sS
-/dF+4JF9i9ETWl3UC5T3VpWfWAfI7ADTZEU318bREXTDtpkPwHdodlSWBZFq22gK
-wmy+hjD7wG/I9fy1yJL+DhxSJBgFiDEwswvMe4pbGR34xkQjJQFcMGlSBg2YYO/N
-r1nJaa0G58QMN+MGtfA62q3u0yugRfHjtTF2gy2iwJXBELawhgGPJzzEhRwNGSBI
-I6RHRcxjnD9NkjSsPM0DTHJmoOaeclfetpFCgS0QUohaC6rGQQA=
-=2I0I
------END PGP SIGNATURE-----
-
---xadlc4yvs4q6exe6--
+Best regards,
+Krzysztof
 
