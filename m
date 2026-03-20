@@ -1,439 +1,258 @@
-Return-Path: <devicetree+bounces-278061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278063-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IP0xLpe9vGlb2gIAu9opvQ
-	(envelope-from <devicetree+bounces-278061-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 04:23:03 +0100
+	id YI+aFi3LvGnT2wIAu9opvQ
+	(envelope-from <devicetree+bounces-278063-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 05:21:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EB212D58AF
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 04:23:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E44F2D5C23
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 05:21:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C2AED315475C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 03:21:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 77514300C82E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 04:20:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2AA22E1EF4;
-	Fri, 20 Mar 2026 03:21:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C18342DF13F;
+	Fri, 20 Mar 2026 04:20:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="C1F5f+F0"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L5LaXyqU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D1232D7DDF;
-	Fri, 20 Mar 2026 03:21:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09B7C2C0298;
+	Fri, 20 Mar 2026 04:20:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773976869; cv=none; b=hIIg0hxi7PcxEZI8VuIEztiSXT/wagUO1MS07xh1d9q6bkqF6RjzRB806tBhfTqp2ELPli3WfzNamQZdwcVR0dSXmxYKHZJD3T/nY1aq3mq1s+3rVPMwDF95JC/5cBAjSHKsIYPzHRYbgvhUMYaagQymguu2RKsRwhbtYarzqik=
+	t=1773980458; cv=none; b=Brcnzvv7iTn6K7dCdt87HEbdHDyHbMRI58kJAKaxoha/dM7Ppw0z5DRCJre66jnM8+PUm23gczGh0nfKs3iO3jnjzQfU9UcLMy0ifNvW136Sar8LTZTBW+9/oKhXSi8jf+EyiHRI0XCONnZQBjT0oHzkdoGQQbNNtZojdo01ZII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773976869; c=relaxed/simple;
-	bh=5Kjv1xZrlCL2RSuD9we39UBT+jWIgSkOV2REQ/wxDos=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=t3jXGgmnKHxjv0BeYkJWSSWh+EYRkcb0knZEz+WsMHiommIzgCluNDT7X8uFx6PGpIi+39gWNwJicGjco7jqKZoJplHOZV5cPFFeFN2LeyOd23WrqpFo95ca4ABydMDbdXo3uKqaN7/GsgVNC78u2WvtTtOxyW/aerriYAZj84Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=C1F5f+F0; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: d0c0c7ac240b11f1a39cd589f645bc18-20260320
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=NT4VoMEkut88E7L5xM3Nk57RkG041neRyZ4yAKpbst8=;
-	b=C1F5f+F0KrYlp/bLJrHyq9W41F6j9AM+EuBOEOr1sSpvWKUZqtmQ8aEb+dIoLe+d0u39ZqTAbC6Dk33Q1Us8p+p0SkhyYntMlh+ysU3YWniZdns/WLx0kPrMtAJVNyXGGVefD9tPWJNO8aw/3MiAxN5rShajikYOIi0oONVbFko=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.12,REQID:f885be67-a248-4928-94eb-07142eced660,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:e7bac3a,CLOUDID:1b8fe916-aa6b-4b2e-be76-373ef1a42b04,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|836|888|898,TC:-5,Content:
-	0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:-1,COL:0,OSI
-	:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: d0c0c7ac240b11f1a39cd589f645bc18-20260320
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-	(envelope-from <xiangzhi.tang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1301549450; Fri, 20 Mar 2026 11:20:59 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Fri, 20 Mar 2026 11:20:57 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.29 via Frontend Transport; Fri, 20 Mar 2026 11:20:56 +0800
-From: Xiangzhi Tang <xiangzhi.tang@mediatek.com>
-To: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
-	<mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias
- Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Xiangzhi Tang
-	<Xiangzhi.Tang@mediatek.com>
-CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Hailong Fan
-	<Hailong.Fan@mediatek.com>, Huayu Zong <huayu.Zong@mediatek.com>, Xiangzhi
- Tang <xiangzhi.tang@mediatek.com>
-Subject: [PATCH v3 6/6] remoterpoc: mediatek: vcp: Add vcp suspned and resume feature
-Date: Fri, 20 Mar 2026 11:18:08 +0800
-Message-ID: <20260320032014.13608-7-xiangzhi.tang@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20260320032014.13608-1-xiangzhi.tang@mediatek.com>
-References: <20260320032014.13608-1-xiangzhi.tang@mediatek.com>
+	s=arc-20240116; t=1773980458; c=relaxed/simple;
+	bh=OHnX7uZBV92R01nqYlUueQh+SwiiSpGawFPFVc+X9Ac=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CrjUJvI+uuS8NW7xy1tQ9/k6KVuXxfxqCVQJ5By81UCvOqsgdhOwQkihuivtaGfXKDqneG9xh3GQ8t2A6KdyB2FjigkYR/Ng4wVXikUYYFY7ym5RPJZ8WPDGBOpb0J27knsK2krf7blGsZdSpX8wTaZCWfpus46SG2fi5XIZG5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=L5LaXyqU; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773980457; x=1805516457;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=OHnX7uZBV92R01nqYlUueQh+SwiiSpGawFPFVc+X9Ac=;
+  b=L5LaXyqUQuSe9rdSxkrQ/fc2MQGDqU5dOM72R0hr5sA2UrBzFxYzwSGJ
+   H/ur1e4kexj//aCB29nGwoxmD3UxjrWUwYpj5/hh8/zAhTxtTfIqhCaDP
+   id25clAsc3MlDgsk8oijH9RxevA4r5wmRCy87oouzK7wgWliDAGs9gNQU
+   UR0HweJyPXQhr23ae8CkqA1OhXQbe/NwO/2q2bOHXGb+vwXoma8+nUBbK
+   XDBLkdYdC5460QIcFJa98Hc5EsJredJKtvC2LTJL4fT5BsSzXfkiljoLK
+   V5lQhNiZuDe2Otq0EvmbyxKXVc2ZPWAkO8zfYIKEeWDfZhEa9lIGlUpfI
+   Q==;
+X-CSE-ConnectionGUID: OVPjBsIYR+afVhH8+cmjBw==
+X-CSE-MsgGUID: JbWpUPoNSGGhxREDwJ1Kvg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="77670266"
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
+   d="scan'208";a="77670266"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2026 21:20:56 -0700
+X-CSE-ConnectionGUID: f2vicg65TU+omWmZ32VWkg==
+X-CSE-MsgGUID: Kgb03j0VRrWGSeCxQZ27jw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
+   d="scan'208";a="220549657"
+Received: from lkp-server02.sh.intel.com (HELO a51c2a36b9df) ([10.239.97.151])
+  by fmviesa008.fm.intel.com with ESMTP; 19 Mar 2026 21:20:53 -0700
+Received: from kbuild by a51c2a36b9df with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1w3RLn-000000001wf-2k5k;
+	Fri, 20 Mar 2026 04:20:45 +0000
+Date: Fri, 20 Mar 2026 12:19:52 +0800
+From: kernel test robot <lkp@intel.com>
+To: aspeedyh <yh_chung@aspeedtech.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Ryan Chen <ryan_chen@aspeedtech.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	openbmc@lists.ozlabs.org, maciej.lawniczak@intel.com,
+	aspeedyh <yh_chung@aspeedtech.com>
+Subject: Re: [PATCH 5/7] soc: aspeed: Add eSPI flash channel support
+Message-ID: <202603201234.n0spXcAN-lkp@intel.com>
+References: <20260313-upstream_espi-v1-5-9504428e1f43@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260313-upstream_espi-v1-5-9504428e1f43@aspeedtech.com>
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-278063-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[17];
-	TAGGED_FROM(0.00)[bounces-278061-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,linaro.org,gmail.com,collabora.com,mediatek.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xiangzhi.tang@mediatek.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[mediatek.com:+];
 	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-0.963];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.967];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 1EB212D58AF
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,01.org:url]
+X-Rspamd-Queue-Id: 7E44F2D5C23
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-1.Add vcp suspend and resume callback
+Hi aspeedyh,
 
-Signed-off-by: Xiangzhi Tang <xiangzhi.tang@mediatek.com>
----
- drivers/remoteproc/mtk_vcp_common.c       | 114 ++++++++++++++++++++++
- drivers/remoteproc/mtk_vcp_common.h       |   6 ++
- drivers/remoteproc/mtk_vcp_rproc.c        |  59 +++++++++++
- drivers/remoteproc/mtk_vcp_rproc.h        |   2 +
- include/linux/remoteproc/mtk_vcp_public.h |   1 +
- 5 files changed, 182 insertions(+)
+kernel test robot noticed the following build errors:
 
-diff --git a/drivers/remoteproc/mtk_vcp_common.c b/drivers/remoteproc/mtk_vcp_common.c
-index f3b506034e95..f4952fbace3c 100644
---- a/drivers/remoteproc/mtk_vcp_common.c
-+++ b/drivers/remoteproc/mtk_vcp_common.c
-@@ -190,6 +190,11 @@ bool is_vcp_ready(struct mtk_vcp_device *vcp,
- 	return vcp_is_core_ready(vcp, core_id);
- }
- 
-+bool is_vcp_suspending(struct mtk_vcp_device *vcp)
-+{
-+	return vcp->vcp_cluster->is_suspending ? true : false;
-+}
-+
- int wait_core_hart_shutdown(struct mtk_vcp_device *vcp,
- 			    enum vcp_core_id core_id)
- {
-@@ -252,6 +257,95 @@ int wait_core_hart_shutdown(struct mtk_vcp_device *vcp,
- 	return ret;
- }
- 
-+void vcp_wait_core_stop(struct mtk_vcp_device *vcp, enum vcp_core_id core_id)
-+{
-+	u32 status;
-+	u32 stop_ctrl;
-+	int ret;
-+
-+	stop_ctrl = (vcp->vcp_cluster->twohart[core_id] ?
-+		     (B_CORE_GATED | B_HART0_HALT | B_HART1_HALT | B_CORE_AXIS_BUSY) :
-+		     (B_CORE_GATED | B_HART0_HALT | B_CORE_AXIS_BUSY));
-+
-+	switch (core_id) {
-+	case VCP_ID:
-+		ret = readl_poll_timeout(vcp->vcp_cluster->cfg + R_CORE0_STATUS,
-+					 status,
-+					 (status & stop_ctrl) == (stop_ctrl & ~B_CORE_AXIS_BUSY),
-+					 USEC_PER_MSEC,
-+					 CORE_HART_SHUTDOWN_TIMEOUT_MS * USEC_PER_MSEC);
-+		if (ret) {
-+			dev_err(vcp->dev, "wait [%s] core stop timeout, current status 0x%x\n",
-+				core_id ? "MMUP_ID" : "VCP_ID", status);
-+			return;
-+		}
-+		break;
-+	case MMUP_ID:
-+		ret = readl_poll_timeout(vcp->vcp_cluster->cfg + R_CORE1_STATUS,
-+					 status,
-+					 (status & stop_ctrl) == (stop_ctrl & ~B_CORE_AXIS_BUSY),
-+					 USEC_PER_MSEC,
-+					 CORE_HART_SHUTDOWN_TIMEOUT_MS * USEC_PER_MSEC);
-+		if (ret) {
-+			dev_err(vcp->dev, "wait [%s] core stop timeout, current status 0x%x\n",
-+				core_id ? "MMUP_ID" : "VCP_ID", status);
-+			return;
-+		}
-+		break;
-+	default:
-+		dev_err(vcp->dev, "%s(), No Support core id\n", __func__);
-+		break;
-+	}
-+}
-+
-+static bool vcp_get_suspend_resume_status(struct mtk_vcp_device *vcp)
-+{
-+	if (vcp->vcp_cluster->core_nums > MMUP_ID)
-+		return !!(readl(vcp->vcp_cluster->cfg_sec + R_GPR3_SEC) & VCP_AP_SUSPEND) &&
-+		       !!(readl(vcp->vcp_cluster->cfg_sec + R_GPR2_SEC) & MMUP_AP_SUSPEND);
-+
-+	return !!(readl(vcp->vcp_cluster->cfg_sec + R_GPR3_SEC) & VCP_AP_SUSPEND);
-+}
-+
-+void vcp_wait_suspend_resume(struct mtk_vcp_device *vcp, bool suspend)
-+{
-+	bool status;
-+	int ret;
-+
-+	if (suspend) {
-+		writel(B_CORE0_SUSPEND, vcp->vcp_cluster->cfg_core + AP_R_GPR2);
-+		writel(SUSPEND_MAGIC, vcp->vcp_cluster->cfg + VCP_C0_GPR0_SUSPEND_RESUME);
-+		if (vcp->vcp_cluster->core_nums > MMUP_ID) {
-+			writel(B_CORE1_SUSPEND, vcp->vcp_cluster->cfg_core + AP_R_GPR3);
-+			writel(SUSPEND_MAGIC, vcp->vcp_cluster->cfg + VCP_C1_GPR0_SUSPEND_RESUME);
-+		}
-+	} else {
-+		writel(B_CORE0_RESUME, vcp->vcp_cluster->cfg_core + AP_R_GPR2);
-+		writel(RESUME_MAGIC, vcp->vcp_cluster->cfg + VCP_C0_GPR0_SUSPEND_RESUME);
-+		if (vcp->vcp_cluster->core_nums > MMUP_ID) {
-+			writel(B_CORE1_RESUME, vcp->vcp_cluster->cfg_core + AP_R_GPR3);
-+			writel(RESUME_MAGIC, vcp->vcp_cluster->cfg + VCP_C1_GPR0_SUSPEND_RESUME);
-+		}
-+	}
-+
-+	writel(B_GIPC4_SETCLR_3, vcp->vcp_cluster->cfg_core + R_GIPC_IN_SET);
-+
-+	ret = read_poll_timeout(vcp_get_suspend_resume_status,
-+				status, (status == suspend),
-+				USEC_PER_MSEC,
-+				SUSPEND_WAIT_TIMEOUT_MS * USEC_PER_MSEC,
-+				false, vcp);
-+	if (ret)
-+		dev_err(vcp->dev, "vcp %s timeout GPIC 0x%x 0x%x 0x%x 0x%x flag 0x%x 0x%x\n",
-+			suspend ? "suspend" : "resume",
-+			readl(vcp->vcp_cluster->cfg_core + R_GIPC_IN_SET),
-+			readl(vcp->vcp_cluster->cfg_core + R_GIPC_IN_CLR),
-+			readl(vcp->vcp_cluster->cfg_core + AP_R_GPR2),
-+			readl(vcp->vcp_cluster->cfg_core + AP_R_GPR3),
-+			readl(vcp->vcp_cluster->cfg_sec + R_GPR2_SEC),
-+			readl(vcp->vcp_cluster->cfg_sec + R_GPR3_SEC));
-+}
-+
- void vcp_A_register_notify(struct mtk_vcp_device *vcp,
- 			   enum vcp_feature_id id,
- 			   struct notifier_block *nb)
-@@ -416,6 +510,16 @@ static int vcp_enable_pm_clk(struct mtk_vcp_device *vcp, enum vcp_feature_id id)
- 	bool suspend_status;
- 	int ret;
- 
-+	ret = read_poll_timeout(is_vcp_suspending,
-+				suspend_status, !suspend_status,
-+				USEC_PER_MSEC,
-+				SUSPEND_WAIT_TIMEOUT_MS * USEC_PER_MSEC,
-+				false, vcp);
-+	if (ret) {
-+		dev_err(vcp->dev, "%s blocked by vcp suspend\n", __func__);
-+		return ret;
-+	}
-+
- 	if (vcp->vcp_cluster->feature_enable[id]) {
- 		dev_err(vcp->dev, "%s feature(id=%d) already enabled\n",
- 			__func__, id);
-@@ -443,6 +547,16 @@ static int vcp_disable_pm_clk(struct mtk_vcp_device *vcp, enum vcp_feature_id id
- 	bool suspend_status;
- 	int ret;
- 
-+	ret = read_poll_timeout(is_vcp_suspending,
-+				suspend_status, !suspend_status,
-+				USEC_PER_MSEC,
-+				SUSPEND_WAIT_TIMEOUT_MS * USEC_PER_MSEC,
-+				false, vcp);
-+	if (ret) {
-+		dev_err(vcp->dev, "%s blocked by vcp suspend\n", __func__);
-+		return ret;
-+	}
-+
- 	if (!vcp->vcp_cluster->feature_enable[id]) {
- 		dev_err(vcp->dev, "%s feature(id=%d) already disabled\n",
- 			__func__, id);
-diff --git a/drivers/remoteproc/mtk_vcp_common.h b/drivers/remoteproc/mtk_vcp_common.h
-index 8b19fcb78a79..eff2199c7610 100644
---- a/drivers/remoteproc/mtk_vcp_common.h
-+++ b/drivers/remoteproc/mtk_vcp_common.h
-@@ -16,9 +16,12 @@
- #define VCP_READY_TIMEOUT_MS 3000
- #define VCP_IPI_DEV_READY_TIMEOUT 1000
- #define CORE_HART_SHUTDOWN_TIMEOUT_MS 10
-+#define SUSPEND_WAIT_TIMEOUT_MS 100
- 
- /* VCP platform definition */
- #define DMA_MAX_MASK_BIT 33
-+#define RESUME_MAGIC 0x12345678
-+#define SUSPEND_MAGIC 0x87654321
- #define PIN_OUT_C_SIZE_SLEEP_0 2
- 
- /* VCP load image definition */
-@@ -269,5 +272,8 @@ int vcp_A_register_feature(struct mtk_vcp_device *vcp,
- int vcp_A_deregister_feature(struct mtk_vcp_device *vcp,
- 			     enum vcp_feature_id id);
- 
-+bool is_vcp_suspending(struct mtk_vcp_device *vcp);
- int wait_core_hart_shutdown(struct mtk_vcp_device *vcp, enum vcp_core_id core_id);
-+void vcp_wait_core_stop(struct mtk_vcp_device *vcp, enum vcp_core_id core_id);
-+void vcp_wait_suspend_resume(struct mtk_vcp_device *vcp, bool suspend);
- #endif
-diff --git a/drivers/remoteproc/mtk_vcp_rproc.c b/drivers/remoteproc/mtk_vcp_rproc.c
-index 833a0dc69d9c..a44a8081e7a3 100644
---- a/drivers/remoteproc/mtk_vcp_rproc.c
-+++ b/drivers/remoteproc/mtk_vcp_rproc.c
-@@ -11,6 +11,7 @@
- #include <linux/of_platform.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
-+#include <linux/suspend.h>
- #include <linux/remoteproc.h>
- 
- #include "mtk_vcp_common.h"
-@@ -67,6 +68,57 @@ struct mtk_ipi_device *vcp_get_ipidev(struct mtk_vcp_device *vcp)
- }
- EXPORT_SYMBOL_GPL(vcp_get_ipidev);
- 
-+static int mtk_vcp_suspend(struct device *dev)
-+{
-+	struct mtk_vcp_device *vcp = platform_get_drvdata(to_platform_device(dev));
-+
-+	vcp_extern_notify(VCP_ID, VCP_EVENT_SUSPEND);
-+	vcp_extern_notify(MMUP_ID, VCP_EVENT_SUSPEND);
-+
-+	for (u32 id = RTOS_FEATURE_ID + 1; id < NUM_FEATURE_ID; id++) {
-+		if (vcp->vcp_cluster->feature_enable[id]) {
-+			dev_err(vcp->dev, "%s Check feature(id=%d) statue(%d)\n",
-+				__func__, id,
-+				vcp->vcp_cluster->feature_enable[id]);
-+			return -EINVAL;
-+		}
-+	}
-+
-+	if (!vcp->vcp_cluster->is_suspending) {
-+		vcp->vcp_cluster->is_suspending = true;
-+		vcp->vcp_cluster->vcp_ready[VCP_ID] = false;
-+		vcp->vcp_cluster->vcp_ready[MMUP_ID] = false;
-+
-+		flush_workqueue(vcp->vcp_cluster->vcp_workqueue);
-+
-+		vcp_wait_suspend_resume(vcp, true);
-+		vcp_wait_core_stop(vcp, VCP_ID);
-+		vcp_wait_core_stop(vcp, MMUP_ID);
-+
-+		pm_runtime_put_sync(dev);
-+	}
-+	vcp->vcp_cluster->is_suspending = true;
-+
-+	return 0;
-+}
-+
-+static int mtk_vcp_resume(struct device *dev)
-+{
-+	struct mtk_vcp_device *vcp = platform_get_drvdata(to_platform_device(dev));
-+
-+	if (vcp->vcp_cluster->is_suspending) {
-+		pm_runtime_get_sync(dev);
-+
-+		vcp_wait_suspend_resume(vcp, false);
-+	}
-+	vcp->vcp_cluster->is_suspending = false;
-+
-+	vcp_extern_notify(MMUP_ID, VCP_EVENT_RESUME);
-+	vcp_extern_notify(VCP_ID, VCP_EVENT_RESUME);
-+
-+	return 0;
-+}
-+
- static int mtk_vcp_start(struct rproc *rproc)
- {
- 	struct mtk_vcp_device *vcp = (struct mtk_vcp_device *)rproc->priv;
-@@ -436,6 +488,7 @@ static struct mtk_vcp_ipi_ops mt8196_vcp_ipi_ops = {
- static const struct mtk_vcp_of_data mt8196_of_data = {
- 	.ops = {
- 		.vcp_is_ready = is_vcp_ready,
-+		.vcp_is_suspending = is_vcp_suspending,
- 		.vcp_register_feature = vcp_A_register_feature,
- 		.vcp_deregister_feature = vcp_A_deregister_feature,
- 		.vcp_register_notify = vcp_A_register_notify,
-@@ -458,6 +511,11 @@ static const struct mtk_vcp_of_data mt8196_of_data = {
- 	},
- };
- 
-+static const struct dev_pm_ops mtk_vcp_rproc_pm_ops = {
-+	.suspend_noirq = mtk_vcp_suspend,
-+	.resume_noirq = mtk_vcp_resume,
-+};
-+
- static const struct of_device_id mtk_vcp_of_match[] = {
- 	{ .compatible = "mediatek,mt8196-vcp", .data = &mt8196_of_data},
- 	{}
-@@ -471,6 +529,7 @@ static struct platform_driver mtk_vcp_device = {
- 	.driver = {
- 		.name = "mtk-vcp",
- 		.of_match_table = mtk_vcp_of_match,
-+		.pm = pm_ptr(&mtk_vcp_rproc_pm_ops),
- 	},
- };
- 
-diff --git a/drivers/remoteproc/mtk_vcp_rproc.h b/drivers/remoteproc/mtk_vcp_rproc.h
-index 600715b77124..e3a76e368fd7 100644
---- a/drivers/remoteproc/mtk_vcp_rproc.h
-+++ b/drivers/remoteproc/mtk_vcp_rproc.h
-@@ -23,6 +23,7 @@
-  * @msg_vcp_ready1: core1 ready ipi msg data
-  * @slp_ipi_ack_data: sleep ipi msg data
-  * @feature_enable: feature status count data
-+ * @is_suspending: suspend status flag
-  * @vcp_ready: vcp core status flag
-  * @share_mem_iova: shared memory iova base
-  * @share_mem_size: shared memory size
-@@ -46,6 +47,7 @@ struct mtk_vcp_of_cluster {
- 	u32 msg_vcp_ready1;
- 	u32 slp_ipi_ack_data;
- 	bool feature_enable[NUM_FEATURE_ID];
-+	bool is_suspending;
- 	bool vcp_ready[VCP_CORE_TOTAL];
- 	dma_addr_t share_mem_iova;
- 	size_t share_mem_size;
-diff --git a/include/linux/remoteproc/mtk_vcp_public.h b/include/linux/remoteproc/mtk_vcp_public.h
-index b9e1d86685fd..dbdcf5aa0f99 100644
---- a/include/linux/remoteproc/mtk_vcp_public.h
-+++ b/include/linux/remoteproc/mtk_vcp_public.h
-@@ -100,6 +100,7 @@ struct mtk_vcp_ipi_ops {
- };
- 
- struct mtk_vcp_ops {
-+	bool (*vcp_is_suspending)(struct mtk_vcp_device *vcp);
- 	bool (*vcp_is_ready)(struct mtk_vcp_device *vcp,
- 			     enum vcp_feature_id id);
- 	int (*vcp_register_feature)(struct mtk_vcp_device *vcp,
+[auto build test ERROR on 0257f64bdac7fdca30fa3cae0df8b9ecbec7733a]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/aspeedyh/dt-bindings-soc-aspeed-Add-AST2600-eSPI-controller/20260315-101647
+base:   0257f64bdac7fdca30fa3cae0df8b9ecbec7733a
+patch link:    https://lore.kernel.org/r/20260313-upstream_espi-v1-5-9504428e1f43%40aspeedtech.com
+patch subject: [PATCH 5/7] soc: aspeed: Add eSPI flash channel support
+config: riscv-allyesconfig (https://download.01.org/0day-ci/archive/20260320/202603201234.n0spXcAN-lkp@intel.com/config)
+compiler: clang version 16.0.6 (https://github.com/llvm/llvm-project 7cbf1a2591520c2491aa35339f227775f4d3adf6)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260320/202603201234.n0spXcAN-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603201234.n0spXcAN-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/soc/aspeed/espi/ast2600-espi.c:137:9: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+           reg |= FIELD_PREP(ESPI_CTRL_FLASH_TAFS_MODE, flash->tafs.mode);
+                  ^
+   drivers/soc/aspeed/espi/ast2600-espi.c:172:28: warning: variable 'flash' set but not used [-Wunused-but-set-variable]
+           struct aspeed_espi_flash *flash;
+                                     ^
+>> drivers/soc/aspeed/espi/ast2600-espi.c:194:13: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+           hdr->cyc = FIELD_GET(ESPI_FLASH_RX_CTRL_CYC, reg);
+                      ^
+   drivers/soc/aspeed/espi/ast2600-espi.c:243:8: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+           reg = FIELD_PREP(ESPI_FLASH_TX_CTRL_CYC, cyc) |
+                 ^
+   1 warning and 3 errors generated.
+
+
+vim +/FIELD_PREP +137 drivers/soc/aspeed/espi/ast2600-espi.c
+
+   111	
+   112	static void ast2600_espi_flash_reset(struct aspeed_espi *espi)
+   113	{
+   114		struct aspeed_espi_flash *flash;
+   115		u32 reg;
+   116	
+   117		flash = &espi->flash;
+   118	
+   119		writel(ESPI_INT_EN_FLASH, espi->regs + ESPI_INT_EN_CLR);
+   120		writel(ESPI_INT_STS_FLASH, espi->regs + ESPI_INT_STS);
+   121	
+   122		reg = readl(espi->regs + ESPI_CTRL);
+   123		reg &= ~(ESPI_CTRL_FLASH_TX_SW_RST
+   124			 | ESPI_CTRL_FLASH_RX_SW_RST
+   125			 | ESPI_CTRL_FLASH_TX_DMA_EN
+   126			 | ESPI_CTRL_FLASH_RX_DMA_EN
+   127			 | ESPI_CTRL_FLASH_SW_RDY);
+   128		writel(reg, espi->regs + ESPI_CTRL);
+   129	
+   130		udelay(1);
+   131	
+   132		reg |= (ESPI_CTRL_FLASH_TX_SW_RST | ESPI_CTRL_FLASH_RX_SW_RST);
+   133		writel(reg, espi->regs + ESPI_CTRL);
+   134	
+   135		flash->tafs.mode = TAFS_MODE_SW;
+   136		reg = readl(espi->regs + ESPI_CTRL) & ~ESPI_CTRL_FLASH_TAFS_MODE;
+ > 137		reg |= FIELD_PREP(ESPI_CTRL_FLASH_TAFS_MODE, flash->tafs.mode);
+   138		writel(reg, espi->regs + ESPI_CTRL);
+   139	
+   140		if (flash->dma.enable) {
+   141			writel(flash->dma.tx_addr, espi->regs + ESPI_FLASH_TX_DMA);
+   142			writel(flash->dma.rx_addr, espi->regs + ESPI_FLASH_RX_DMA);
+   143	
+   144			reg = readl(espi->regs + ESPI_CTRL)
+   145			      | ESPI_CTRL_FLASH_TX_DMA_EN
+   146			      | ESPI_CTRL_FLASH_RX_DMA_EN;
+   147			writel(reg, espi->regs + ESPI_CTRL);
+   148		}
+   149	
+   150		writel(ESPI_INT_EN_FLASH_RX_CMPLT, espi->regs + ESPI_INT_EN);
+   151	
+   152		reg = readl(espi->regs + ESPI_CTRL) | ESPI_CTRL_FLASH_SW_RDY;
+   153		writel(reg, espi->regs + ESPI_CTRL);
+   154	}
+   155	
+   156	int ast2600_espi_flash_probe(struct aspeed_espi *espi)
+   157	{
+   158		u32 regs;
+   159	
+   160		regs = readl(espi->regs + ESPI_STS);
+   161		if (regs & (ESPI_STS_FLASH_TX_BUSY | ESPI_STS_FLASH_RX_BUSY)) {
+   162			dev_warn(espi->dev, "eSPI flash channel is busy, deferring...\n");
+   163			return -EPROBE_DEFER;
+   164		}
+   165	
+   166		ast2600_espi_flash_reset(espi);
+   167		return 0;
+   168	}
+   169	
+   170	int ast2600_espi_flash_remove(struct aspeed_espi *espi)
+   171	{
+   172		struct aspeed_espi_flash *flash;
+   173		u32 reg;
+   174	
+   175		flash = &espi->flash;
+   176	
+   177		writel(ESPI_INT_EN_FLASH, espi->regs + ESPI_INT_EN_CLR);
+   178	
+   179		reg = readl(espi->regs + ESPI_CTRL);
+   180		reg &= ~(ESPI_CTRL_FLASH_TX_DMA_EN
+   181			 | ESPI_CTRL_FLASH_RX_DMA_EN
+   182			 | ESPI_CTRL_FLASH_SW_RDY);
+   183		writel(reg, espi->regs + ESPI_CTRL);
+   184	
+   185		return 0;
+   186	}
+   187	
+   188	int ast2600_espi_flash_get_hdr(struct aspeed_espi *espi,
+   189				       struct espi_comm_hdr *hdr)
+   190	{
+   191		u32 reg, len;
+   192	
+   193		reg = readl(espi->regs + ESPI_FLASH_RX_CTRL);
+ > 194		hdr->cyc = FIELD_GET(ESPI_FLASH_RX_CTRL_CYC, reg);
+   195		hdr->tag = FIELD_GET(ESPI_FLASH_RX_CTRL_TAG, reg);
+   196		len = FIELD_GET(ESPI_FLASH_RX_CTRL_LEN, reg);
+   197		hdr->len_h = (len >> 8) & 0xff;
+   198		hdr->len_l = len & 0xff;
+   199	
+   200		return 0;
+   201	}
+   202	
+
 -- 
-2.46.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
