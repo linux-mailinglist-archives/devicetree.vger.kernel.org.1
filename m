@@ -1,356 +1,267 @@
-Return-Path: <devicetree+bounces-278228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278229-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MCSLNIEqvWkG7QIAu9opvQ
-	(envelope-from <devicetree+bounces-278228-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:07:45 +0100
+	id 0OlbMGAqvWkG7QIAu9opvQ
+	(envelope-from <devicetree+bounces-278229-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:07:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DA742D94D0
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:07:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5EA22D94AB
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:07:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1BA133017392
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:06:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A76F430580A2
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:07:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81BD83921E9;
-	Fri, 20 Mar 2026 11:06:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF9AC396D29;
+	Fri, 20 Mar 2026 11:07:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m+Bh1C2P"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="C+GKJHgY";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LkMaIp++"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E12F2E4274;
-	Fri, 20 Mar 2026 11:06:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C0B438B7B0
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 11:07:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774004792; cv=none; b=Ji5QSBlgd1R7Qke+LKyVXBC/iat/yv8SwjMGL/k/koiIvSWbV/9DggDxZUTzkh3ObrKHuwjkKsoP1eVYzyHWFeIMyFv5LR5wo9IJifu5Ig3fet02eDJZjNSoIkKDlXAwC4Sbbl7LN1NQWCnBU74suEGChbeB05RKnxGGAnWY/ww=
+	t=1774004829; cv=none; b=E4WksRm5K3/x5nMVDJFKfYUxt9P9gU/FHrpgspW9G+MDOTQnDImR3+q/KgmosLL4BNpCjgJe620sp7CMWwcpY3OEh3rdpfJYjztjz69hGlX6WAGqbRtlk235iRaoRkQOZmZ0AWA74SW5ab+wGAuHtGnCgKkCASqVfysDR/Nwydc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774004792; c=relaxed/simple;
-	bh=WrHj/b8deWiGuar8cbaJPGBckgcFXuxHBpTnu7n5cRY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ChbnEnEv/em25QzrA6LG423XIZ7wEydRZV37Ce44uEp1fPXRXIsCRvTLMx9t9TgjOsbJzKgnVNvOQpFKw1k2Zyn/jRoANrxVEdWlslwLijz0faE6ysLBnVfHzNCVxljNr4joudB5Ixmi1Uiu0wukepFK7HLi2GTHkgjyunjirbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m+Bh1C2P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E8E5C4CEF7;
-	Fri, 20 Mar 2026 11:06:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774004792;
-	bh=WrHj/b8deWiGuar8cbaJPGBckgcFXuxHBpTnu7n5cRY=;
-	h=From:Date:Subject:To:Cc:From;
-	b=m+Bh1C2PTGcRjR5raKoibOrhkA6A7B8mUwamLcEwR24j8hwnmY8xC377b+c356uEY
-	 9lBerJRdLlflRG82pjQv6FPT7HzaieCmVyIJdYori21A3krqomfEtNP5hfnBmKo5Rw
-	 K8aa+tIHiqAK974fUxsawVzcJCpnR7KnMtzH3T6enQH86wVsIQ7JYpSlrjX/zDTpQz
-	 JpdicJDDmNlOKxbv9s4lODnzJJWJV8VeMX41m4WnQOG8ceeU3ReXR5/QFMrdXJV+EH
-	 4Nc/bJAEGQHZ6XG5ELpzOdUZyaic794RdnW491xmsfTIquoJkv4ouwSImFH3mRzUih
-	 /madpIkY47GVQ==
-From: Yixun Lan <dlan@kernel.org>
-Date: Fri, 20 Mar 2026 11:06:17 +0000
-Subject: [PATCH v5] reset: spacemit: k3: Decouple composite reset lines
+	s=arc-20240116; t=1774004829; c=relaxed/simple;
+	bh=B55hUfkFveMT32Ta80Cl8dAPy1ySrGpel4O4Bo+6YkI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=acqkH7r+S40qwgP2yJAkiM14iFWhPmURS7g+Noa2ySg2fKZRUB79Qat/YGRMG+j9Wkz8XgQbfdXm32qaJW8HcIVONMLM6nIn6u+mqyJ9epIDVFyD/ClwKx2rLSo/vZ2XiRw1j4ljQZKVJyUGK5/0PWzsYyQopPB6pbNFOjpiMiU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=C+GKJHgY; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LkMaIp++; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62K94V70700901
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 11:07:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	7xvazqXNDyIbT1hLpYtPJSBPiuK8QomKnXv/8SY/5TM=; b=C+GKJHgY1InXzQ4i
+	Dilt54RZIqkiFcFgrQCqcd+7JttxpnTHO62IVgQPCaJelvyf2s7dgQUhz5j2i9OW
+	HBlHv5rPxhJkylWnvIjorNJtL88oHOHtgn/CVo3XyoAATrWAYpYaA4QjfTePLGWH
+	ZZwu0Uj0cX+gj+Y10rUkvJfXho3kvEd2svVBlqBXOYYwyv3ffP5BQuVhxRQyzLvU
+	4Ta4R8ApzHJP7gv5Yiltl+tln2bMhFzA/Se9bwTLu1aq4y4BQIb8GiOI1sZ5TedE
+	YsATdZZ15U+fSV6lWHtKh2QJH1R2r/jPkVJF0BFDu+9OgUMWFmK9qZ4TC5Lj2bFm
+	zfU0fg==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d139q0944-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 11:07:07 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-82a0686edbcso1070635b3a.3
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 04:07:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1774004826; x=1774609626; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7xvazqXNDyIbT1hLpYtPJSBPiuK8QomKnXv/8SY/5TM=;
+        b=LkMaIp++G/MD9Ex43cVKR5ByhOPNn4FWwSISpam241xLbA2v29n4oouWx75YGJDcyL
+         OohWF92NQLQryYPYVqyl5MuiiTCUNjXdB1xj2+IwgDMp43l449tFn+Cx6Ub5PZdse23x
+         caOzMGCofbi51RSrBP6lzRPJwu3/hv8K6gVZE4LYsIObstxOXCL5l4Zu9/Co3jDgJ0QS
+         yBabh51zxu0ovZxa/4FEXSH1USKKqmy4DwynBm7TF/b+4PlPBvm1HdcOm372KL5OhxHD
+         BPg1+Np6O26GUAFaS/ImY9ktIKnbMXIKcZ7aG6CGI4OBQtqMzNCK06qp2w+eDHCLCugI
+         JHWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774004826; x=1774609626;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7xvazqXNDyIbT1hLpYtPJSBPiuK8QomKnXv/8SY/5TM=;
+        b=myq+lxyc+vbrydzIbMk1iKA/qIyjyVvMgib1JlU38le2e2+fS5EXsAG+9BgWte75Em
+         eYY03hAn/Kqp7DoIP4/UQN9/k8Pfm9DGWo8agTv3p/HrDdt1hIONk15hwTnm6KmJL4r8
+         A6EZU66DRsD4RyBQK8H+KZZo/qlb0b/X4A0EUVwXGG6i2HiyGy/O1qYsmNOQBofSVb8B
+         n4TnZWHWk+aGD2X9Vluqhz5C97pk6aDJIbJz0S/YfVyt6QeSuvpA8NQ9JjRpZtm+SSVy
+         YCV66riWoH0DHdHJu6/352ToDGnX/7aYURL8nAhgngqWJH1H23+c4Y71RhglYx77pbx7
+         nSpg==
+X-Forwarded-Encrypted: i=1; AJvYcCUGCXTiIbE3yay4kY8y++gaBNOWG9Sh5tzM6nhB0zFt2Vsu/ai8P6wO3qYrnk7yXyTgdw0myl7CdwUU@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoFTqhZ1bgRrDwN32nqTE3Anta4/Hxv/wYEMo/zN33PTiN+jxj
+	46kFpKKngPUuMsChLeQfco1srios2h32UhD1kHMnvtysSKd68yayhKBtX+qQbM86nk/Od9OMeLs
+	Jw4H5jAjwhggNSiNBvpDnRbfJVgnYqPpxOo1fTCsnl5KgV1qo+5PGicq8ipkDsptF
+X-Gm-Gg: ATEYQzxjbyzw7npjaMLmOjG8mnjPFN1QciQGZTH/mMiMk4A99xhJzPsGx6QSefCi/oy
+	At1y/IzrWOXUaJeMvXkZ0L+HCKS46+KfWgdxT0bV6zBbARBizfrMx8tz+rqZ2nO2qn5bb/+lLLa
+	992Tap0ddZqmZ277a/+gi5vpNT+dt6VPDRRuHKCDXbTT/PfBJzCFpam+zqWsIyxBOhU/HhkxxKK
+	5BdrtdleQuXD5yJNL5Rdqy4/Kodsz7IINCoM/Rmu/hiq4/sEVAFXrlJXkdJzubz1KLOQcCIlbwF
+	c/iN13Inf96FpKYbDrrB6rR0gvQiIiOiO34rgsUB2SX9SjOG+XilyD1b6GFKiiIeAeYf80tBhCy
+	LUQI15xmQVgRC5NLSsb5WjIofy7e1Fms9CUoICUkDmfwpSl2lfkga3IuS
+X-Received: by 2002:a05:6a00:3017:b0:82a:5ef0:210b with SMTP id d2e1a72fcca58-82a8c278b4amr1939138b3a.15.1774004826517;
+        Fri, 20 Mar 2026 04:07:06 -0700 (PDT)
+X-Received: by 2002:a05:6a00:3017:b0:82a:5ef0:210b with SMTP id d2e1a72fcca58-82a8c278b4amr1939116b3a.15.1774004825817;
+        Fri, 20 Mar 2026 04:07:05 -0700 (PDT)
+Received: from [192.168.1.8] ([106.222.229.133])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82b0410b1bdsm2258389b3a.57.2026.03.20.04.07.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Mar 2026 04:07:05 -0700 (PDT)
+Message-ID: <aaeda234-3f14-4007-b0af-e876c064796e@oss.qualcomm.com>
+Date: Fri, 20 Mar 2026 16:36:59 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] can: mcp251xfd: add support for XSTBYEN
+ transceiver standby control
+To: Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: mani@kernel.org, thomas.kopp@microchip.com, mailhol@kernel.org,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        andersson@kernel.org, konradybcio@kernel.org,
+        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        mukesh.savaliya@oss.qualcomm.com, anup.kulkarni@oss.qualcomm.com
+References: <20260316131950.859748-1-viken.dadhaniya@oss.qualcomm.com>
+ <20260316131950.859748-3-viken.dadhaniya@oss.qualcomm.com>
+ <20260316-fossa-of-extreme-cookies-9c5c40-mkl@pengutronix.de>
+Content-Language: en-US
+From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+In-Reply-To: <20260316-fossa-of-extreme-cookies-9c5c40-mkl@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260320-01-k3-reset-usb-pci-v5-1-07f4a5ddd728@kernel.org>
-X-B4-Tracking: v=1; b=H4sIACgqvWkC/33NTWrDMBCG4asErTtlNBpZuKvco2Shn3EiUuwgp
- SYl+O5VsnKJ6fL9YJ65qyolS1Ufu7sqMueap7GFfdupePLjUSCn1oqQOjSaADWcDRSpcoXvGuA
- SM6SE6AfvbKe9apeXIkO+PdXPQ+tTrtep/DyfzPqx/u/NGhCQKBAHZxiH/VnKKF/vUzmqBzjTG
- uFthEBDnyL2rkuWWF4Qs0bcNmIaIhx6zya6xPYF4RVCuI1wQ1zg3mLUqRf6gyzL8guJO5L0hgE
- AAA==
-X-Change-ID: 20260312-01-k3-reset-usb-pci-dd00afa7561a
-To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Junzhong Pan <junzhong.pan@spacemit.com>, 
- Guodong Xu <guodong@riscstar.com>, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Yixun Lan <dlan@kernel.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=11894; i=dlan@kernel.org;
- h=from:subject:message-id; bh=WrHj/b8deWiGuar8cbaJPGBckgcFXuxHBpTnu7n5cRY=;
- b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpvSow0FrXTNV49qZWKb4S4N0RUKbukUy+hVo4d
- 7Nj9IqzYIuJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCab0qMBsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
- maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
- QACgkQMarqR1lNu+1QTg//bN5yrW53KzKN987sAL6H5EgwH8Kk+xjfUdA2oTNhx8jdNcTrjhkmP
- BSF8+VyCU3lCMS7NKmPDevxLL848tKEsdC+yODv31GXoTNZIU3uXJF0tr1D1sCviW6s09WKwlmD
- LY2Sd+u3zCB2wGhXZAcc48mXXcPaXaOjNNx5hxtPt84Qq92ObIlJTnATKjzEWACd0nncr4NSRyA
- z1xl3P8GV5Ko+zyNvER351q4vG3yNQFS4ravdKJeUq/pwCkPhCUQKxovpkR9K95yfPldLInu9/n
- niaEzynV2FZJf3yztXtdZdNJJavXawI9N8hZQnJML/WhN2LpsVAgDmZ+5WBm96v/f7i9eKTu5Rc
- gl/gdbbB0dqP+jl/p6ny2gdpVSqslQAsr+LJPQU5inMyommhTHuH17FfW6de6sLv5kgjEY76RZX
- eG3c1UTPBixXEzdqj/rTtH2q/Z4IqSCR4lwEbJRCs9ka0vhoNpLb94r6H6uwGeUJZjLqxFhq2hr
- narr4CwYRNllG4ZgntweR0HtxD7zZ3Dw7qHCowaILMD8ZjtyZ6AGse8znhid/Wl+waXI1nKRtUa
- aaSuhQxq3xKtt9foz7UXzUY+eaiS7B1P30AIKMpK1i16VvUU8uiBOPdEAVuGxwiWUjECutC3AQX
- Y2IlMSWsMkUAtoECzSgAHuQo/BC4d4=
-X-Developer-Key: i=dlan@kernel.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzIwMDA4NSBTYWx0ZWRfX6gStFH9eV+c9
+ 70MQW2JG446FQDdJRgB8jlzBWGmNA1mzDhJzJEzNaqLUbQKcLA9afiAI6iUmPJT1Z6eKFIqtly3
+ O0zUAyQNolQh77Yu1tMrSb+c0vOsFAbCZCwLmcIR8WDNMCIZELMrETmQJEnfymrEyG+h0uWSsny
+ MLqcGxxMdl0Px4aU+zsoeDx24y6dAEeBmaJ0tUG2r4x5L/uCAiCIMFEKDn3fjswTjpBwXH9YWOP
+ c0OHgQfWqT/ydHGB+0YtxN+yu40HM3kwQOkuFWzJzNLRv/ShWB0oieVnoS2/teVxAm2xF4v800k
+ Kfj6QgdanKzKViebLBrcH7IRah58iczNjTAjgN/iagTuhNaRSyVZHRyXkNv2TeoHUq28fi29kee
+ 7j0WKBA7Oa8A8X65fAJA9X6HElM9/hfWqbg+/aYHkRlgH+lbldhClRjpO4JMWLAUMMMQxqeWVcl
+ CnQvsIq3lPucx0dAm4g==
+X-Authority-Analysis: v=2.4 cv=FOAWBuos c=1 sm=1 tr=0 ts=69bd2a5b cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=cGBE/nqsz5+qsjWdF/9VHQ==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
+ a=EUspDBNiAAAA:8 a=lHJVDBzvP0N_sG6QPz0A:9 a=QEXdDO2ut3YA:10
+ a=zc0IvFSfCIW2DFIPzwfm:22
+X-Proofpoint-GUID: CfXU_9H3AkMbRkiXOSeqsRSIwZCMKk4e
+X-Proofpoint-ORIG-GUID: CfXU_9H3AkMbRkiXOSeqsRSIwZCMKk4e
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-20_02,2026-03-19_05,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 bulkscore=0 clxscore=1011 adultscore=0 impostorscore=0
+ priorityscore=1501 spamscore=0 lowpriorityscore=0 phishscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603200085
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278228-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278229-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	NEURAL_HAM(-0.00)[-0.993];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[viken.dadhaniya@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.995];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 4DA742D94D0
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: E5EA22D94AB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Instead of grouping several different reset lines into one composite
-reset, decouple them to individual ones which make it more aligned
-with underlying hardware. And for DWC USB driver, it will match well
-with the number of the reset property in the DT bindings.
 
-The DWC3 USB host controller in K3 SoC has three reset lines - AHB, VCC,
-PHY. The PCIe controller also has three reset lines - DBI, Slave, Master.
-Also three reset lines each for UCIE and RCPU block.
 
-As an agreement with maintainer, the reset IDs has been rearranged as
-contiguous number but keep most part unchanged to avoid break patches
-which already sent to mailing list. The changes of DT binding header file
-and reset driver are merged together as one single commit to avoid
-git-bisect breakage.
+On 3/16/2026 7:21 PM, Marc Kleine-Budde wrote:
+> On 16.03.2026 18:49:49, Viken Dadhaniya wrote:
+>> The MCP251xFD has a dedicated transceiver standby control function on
+>> the INT0/GPIO0/XSTBY pin, controlled by the XSTBYEN bit in IOCON.
+> 
+> Please add a check to mcp251xfd_gpio_request() that GPIO0 cannot be used
+> with xstbyen.
 
-Fixes: 938ce3b16582 ("reset: spacemit: Add SpacemiT K3 reset driver")
-Fixes: 216e0a5e98e5 ("dt-bindings: soc: spacemit: Add K3 reset support and IDs")
-Signed-off-by: Yixun Lan <dlan@kernel.org>
----
-Previously, the reset of The USB and PCIe was submited as a composite
-reset, try to decouple them in this series.
+Sure, Will update in next patch.
 
-The motivation behind is that it will will make the result more aligned
-with the hardware which describe them as different reset lines, and also
-match with the K3 dwc3 DT binding which request different reset, 
-K1 and K3 SoC share same topology of the reset line design.
+> 
+>> When enabled, the hardware automatically manages the transceiver
+>> standby state: the pin is driven low when the controller is active
+>> and high when it enters Sleep mode.
+>>
+>> Enable this feature when the 'microchip,xstbyen' device tree property
+>> is present.
+>>
+>> Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+>> ---
+>>  .../net/can/spi/mcp251xfd/mcp251xfd-core.c    | 30 +++++++++++++++++++
+>>  drivers/net/can/spi/mcp251xfd/mcp251xfd.h     |  1 +
+>>  2 files changed, 31 insertions(+)
+>>
+>> diff --git a/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c b/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c
+>> index 9c86df08c2c5..7a152acf4931 100644
+>> --- a/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c
+>> +++ b/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c
+>> @@ -764,6 +764,29 @@ static void mcp251xfd_chip_stop(struct mcp251xfd_priv *priv,
+>>  	mcp251xfd_chip_set_mode(priv, MCP251XFD_REG_CON_MODE_CONFIG);
+>>  }
+>>
+>> +static int mcp251xfd_chip_xstbyen_enable(const struct mcp251xfd_priv *priv)
+>> +{
+>> +	/* Configure the INT0/GPIO0/XSTBY pin as transceiver standby control:
+>> +	 *
+>> +	 * - XSTBYEN=1: route the pin to the transceiver standby function
+>> +	 * - TRIS0=0:   set output direction; the reset default is 1 (input),
+>> +	 *              which leaves the pin floating HIGH and keeps the
+>> +	 *              transceiver in standby regardless of XSTBYEN
+>> +	 * - LAT0=0:    drive pin LOW => transceiver active (not in standby)
+>> +	 *
+>> +	 * All three bits are included in the mask; only XSTBYEN is set in
+>> +	 * val, so TRIS0 and LAT0 are cleared to 0 atomically.
+>> +	 *
+>> +	 * Once configured, the hardware automatically drives the pin HIGH
+>> +	 * on Sleep mode entry and LOW on Sleep mode exit.
+>> +	 */
+> 
+> What does the pin do in Config mode?
 
-See the reset part info in binding doc
-Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml
+In Config mode, the pin is controlled by LAT0. Since we set LAT0=0,
+the pin is LOW (transceiver active), ensuring the transceiver is
+ready before entering Normal mode.
 
-In V2, I've visited through whole reset driver and decouple more resets,
-which include the block - UCIE and RPCU. Also add an explanation of why
-rearrange the reset IDs as contiguous number.
+> 
+>> +	return regmap_update_bits(priv->map_reg, MCP251XFD_REG_IOCON,
+>> +				  MCP251XFD_REG_IOCON_XSTBYEN |
+>> +				  MCP251XFD_REG_IOCON_TRIS0 |
+>> +				  MCP251XFD_REG_IOCON_LAT0,
+>> +				  MCP251XFD_REG_IOCON_XSTBYEN);
+>> +}
+>> +
+>>  static int mcp251xfd_chip_start(struct mcp251xfd_priv *priv)
+>>  {
+>>  	int err;
+>> @@ -800,6 +823,12 @@ static int mcp251xfd_chip_start(struct mcp251xfd_priv *priv)
+>>  	if (err)
+>>  		goto out_chip_stop;
+>>
+>> +	if (priv->xstbyen) {
+>> +		err = mcp251xfd_chip_xstbyen_enable(priv);
+>> +		if (err)
+>> +			goto out_chip_stop;
+>> +	}
+>> +
+> 
+> You should configure the pin before bringing the controller into normale mode.
 
-In V4, I've rearranged all reset IDs to keep them linear(no hole), while
-keep EMAC part IDs unchanged, this still bring lots changes to ID number,
-let me know if it's ok.
+Sure, Will update in next patch.
 
-In V5, keep most reset IDs that don't have to split unchanged, also fill
-the gap, leave no hole.
----
-Changes in v5:
-- keep IDs don't have to split unchanged
-- Link to v4: https://lore.kernel.org/r/20260320-01-k3-reset-usb-pci-v4-1-7b4950c1d9e2@kernel.org
-
-Changes in v4:
-- rearrange IDs but keep EMAC part unchanged
-- Link to v3: https://lore.kernel.org/r/20260317-01-k3-reset-usb-pci-v3-1-e4b9a43c7d45@kernel.org
-
-Changes in v3:
-- fix checkpatch.pl warning due to missing double quotes in Fixes tag
-- Link to v2: https://lore.kernel.org/r/20260314-01-k3-reset-usb-pci-v2-1-9dc0976d524e@kernel.org
-
-Changes in v2:
-- squash the two patches to avoid git-biset breakage
-- rearrange the ID to make it contiguous
-- also decouple more reset IDs - UCIE and RPCU block
-- add Fixes tag explicitly
-- Link to v1: https://lore.kernel.org/r/20260312-01-k3-reset-usb-pci-v1-0-022b24b7340f@kernel.org
----
- drivers/reset/spacemit/reset-spacemit-k3.c     | 60 +++++++++++++++-----------
- include/dt-bindings/reset/spacemit,k3-resets.h | 48 +++++++++++++++------
- 2 files changed, 72 insertions(+), 36 deletions(-)
-
-diff --git a/drivers/reset/spacemit/reset-spacemit-k3.c b/drivers/reset/spacemit/reset-spacemit-k3.c
-index e9e32e4c1ba5..9841f5e057b2 100644
---- a/drivers/reset/spacemit/reset-spacemit-k3.c
-+++ b/drivers/reset/spacemit/reset-spacemit-k3.c
-@@ -112,16 +112,21 @@ static const struct ccu_reset_data k3_apmu_resets[] = {
- 	[RESET_APMU_SDH0]	= RESET_DATA(APMU_SDH0_CLK_RES_CTRL,	0, BIT(1)),
- 	[RESET_APMU_SDH1]	= RESET_DATA(APMU_SDH1_CLK_RES_CTRL,	0, BIT(1)),
- 	[RESET_APMU_SDH2]	= RESET_DATA(APMU_SDH2_CLK_RES_CTRL,	0, BIT(1)),
--	[RESET_APMU_USB2]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
--				BIT(1)|BIT(2)|BIT(3)),
--	[RESET_APMU_USB3_PORTA]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
--				BIT(5)|BIT(6)|BIT(7)),
--	[RESET_APMU_USB3_PORTB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
--				BIT(9)|BIT(10)|BIT(11)),
--	[RESET_APMU_USB3_PORTC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
--				BIT(13)|BIT(14)|BIT(15)),
--	[RESET_APMU_USB3_PORTD]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0,
--				BIT(17)|BIT(18)|BIT(19)),
-+	[RESET_APMU_USB2_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(1)),
-+	[RESET_APMU_USB2_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(2)),
-+	[RESET_APMU_USB2_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(3)),
-+	[RESET_APMU_USB3_A_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(5)),
-+	[RESET_APMU_USB3_A_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(6)),
-+	[RESET_APMU_USB3_A_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(7)),
-+	[RESET_APMU_USB3_B_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(9)),
-+	[RESET_APMU_USB3_B_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(10)),
-+	[RESET_APMU_USB3_B_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(11)),
-+	[RESET_APMU_USB3_C_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(13)),
-+	[RESET_APMU_USB3_C_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(14)),
-+	[RESET_APMU_USB3_C_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(15)),
-+	[RESET_APMU_USB3_D_AHB]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(17)),
-+	[RESET_APMU_USB3_D_VCC]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(18)),
-+	[RESET_APMU_USB3_D_PHY]	= RESET_DATA(APMU_USB_CLK_RES_CTRL,	0, BIT(19)),
- 	[RESET_APMU_QSPI]	= RESET_DATA(APMU_QSPI_CLK_RES_CTRL,	0, BIT(1)),
- 	[RESET_APMU_QSPI_BUS]	= RESET_DATA(APMU_QSPI_CLK_RES_CTRL,	0, BIT(0)),
- 	[RESET_APMU_DMA]	= RESET_DATA(APMU_DMA_CLK_RES_CTRL,	0, BIT(0)),
-@@ -151,10 +156,12 @@ static const struct ccu_reset_data k3_apmu_resets[] = {
- 	[RESET_APMU_CPU7_SW]	= RESET_DATA(APMU_PMU_CC2_AP,		BIT(26), 0),
- 	[RESET_APMU_C1_MPSUB_SW]	= RESET_DATA(APMU_PMU_CC2_AP,	BIT(28), 0),
- 	[RESET_APMU_MPSUB_DBG]	= RESET_DATA(APMU_PMU_CC2_AP,		BIT(29), 0),
--	[RESET_APMU_UCIE]	= RESET_DATA(APMU_UCIE_CTRL,
--				BIT(1) | BIT(2) | BIT(3), 0),
--	[RESET_APMU_RCPU]	= RESET_DATA(APMU_RCPU_CLK_RES_CTRL,	0,
--				BIT(3) | BIT(2) | BIT(0)),
-+	[RESET_APMU_UCIE_IP]	= RESET_DATA(APMU_UCIE_CTRL,		BIT(1),  0),
-+	[RESET_APMU_UCIE_HOT]	= RESET_DATA(APMU_UCIE_CTRL,		BIT(2),  0),
-+	[RESET_APMU_UCIE_MON]	= RESET_DATA(APMU_UCIE_CTRL,		BIT(3),  0),
-+	[RESET_APMU_RCPU_AUDIO_SYS]	= RESET_DATA(APMU_RCPU_CLK_RES_CTRL,	0, BIT(0)),
-+	[RESET_APMU_RCPU_MCU_CORE]	= RESET_DATA(APMU_RCPU_CLK_RES_CTRL,	0, BIT(2)),
-+	[RESET_APMU_RCPU_AUDIO_APMU]	= RESET_DATA(APMU_RCPU_CLK_RES_CTRL,	0, BIT(3)),
- 	[RESET_APMU_DSI4LN2_ESCCLK]	= RESET_DATA(APMU_LCD_CLK_RES_CTRL3,	0, BIT(3)),
- 	[RESET_APMU_DSI4LN2_LCD_SW]	= RESET_DATA(APMU_LCD_CLK_RES_CTRL3,	0, BIT(4)),
- 	[RESET_APMU_DSI4LN2_LCD_MCLK]	= RESET_DATA(APMU_LCD_CLK_RES_CTRL4,	0, BIT(9)),
-@@ -164,16 +171,21 @@ static const struct ccu_reset_data k3_apmu_resets[] = {
- 	[RESET_APMU_UFS_ACLK]	= RESET_DATA(APMU_UFS_CLK_RES_CTRL,	0, BIT(0)),
- 	[RESET_APMU_EDP0]	= RESET_DATA(APMU_LCD_EDP_CTRL,		0, BIT(0)),
- 	[RESET_APMU_EDP1]	= RESET_DATA(APMU_LCD_EDP_CTRL,		0, BIT(16)),
--	[RESET_APMU_PCIE_PORTA]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0,
--				BIT(5) | BIT(4) | BIT(3)),
--	[RESET_APMU_PCIE_PORTB]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0,
--				BIT(5) | BIT(4) | BIT(3)),
--	[RESET_APMU_PCIE_PORTC]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0,
--				BIT(5) | BIT(4) | BIT(3)),
--	[RESET_APMU_PCIE_PORTD]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0,
--				BIT(5) | BIT(4) | BIT(3)),
--	[RESET_APMU_PCIE_PORTE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0,
--				BIT(5) | BIT(4) | BIT(3)),
-+	[RESET_APMU_PCIE_A_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0, BIT(3)),
-+	[RESET_APMU_PCIE_A_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0, BIT(4)),
-+	[RESET_APMU_PCIE_A_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_A,	0, BIT(5)),
-+	[RESET_APMU_PCIE_B_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0, BIT(3)),
-+	[RESET_APMU_PCIE_B_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0, BIT(4)),
-+	[RESET_APMU_PCIE_B_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_B,	0, BIT(5)),
-+	[RESET_APMU_PCIE_C_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0, BIT(3)),
-+	[RESET_APMU_PCIE_C_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0, BIT(4)),
-+	[RESET_APMU_PCIE_C_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_C,	0, BIT(5)),
-+	[RESET_APMU_PCIE_D_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0, BIT(3)),
-+	[RESET_APMU_PCIE_D_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0, BIT(4)),
-+	[RESET_APMU_PCIE_D_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_D,	0, BIT(5)),
-+	[RESET_APMU_PCIE_E_DBI]		= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0, BIT(3)),
-+	[RESET_APMU_PCIE_E_SLAVE]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0, BIT(4)),
-+	[RESET_APMU_PCIE_E_MASTER]	= RESET_DATA(APMU_PCIE_CLK_RES_CTRL_E,	0, BIT(5)),
- 	[RESET_APMU_EMAC0]	= RESET_DATA(APMU_EMAC0_CLK_RES_CTRL,	0, BIT(1)),
- 	[RESET_APMU_EMAC1]	= RESET_DATA(APMU_EMAC1_CLK_RES_CTRL,	0, BIT(1)),
- 	[RESET_APMU_EMAC2]	= RESET_DATA(APMU_EMAC2_CLK_RES_CTRL,	0, BIT(1)),
-diff --git a/include/dt-bindings/reset/spacemit,k3-resets.h b/include/dt-bindings/reset/spacemit,k3-resets.h
-index 79ac1c22b7b5..dc1ef009ba79 100644
---- a/include/dt-bindings/reset/spacemit,k3-resets.h
-+++ b/include/dt-bindings/reset/spacemit,k3-resets.h
-@@ -97,11 +97,11 @@
- #define RESET_APMU_SDH0          13
- #define RESET_APMU_SDH1          14
- #define RESET_APMU_SDH2          15
--#define RESET_APMU_USB2          16
--#define RESET_APMU_USB3_PORTA    17
--#define RESET_APMU_USB3_PORTB    18
--#define RESET_APMU_USB3_PORTC    19
--#define RESET_APMU_USB3_PORTD    20
-+#define RESET_APMU_USB2_AHB      16
-+#define RESET_APMU_USB2_VCC      17
-+#define RESET_APMU_USB2_PHY      18
-+#define RESET_APMU_USB3_A_AHB    19
-+#define RESET_APMU_USB3_A_VCC    20
- #define RESET_APMU_QSPI          21
- #define RESET_APMU_QSPI_BUS      22
- #define RESET_APMU_DMA           23
-@@ -132,8 +132,8 @@
- #define RESET_APMU_CPU7_SW       48
- #define RESET_APMU_C1_MPSUB_SW   49
- #define RESET_APMU_MPSUB_DBG     50
--#define RESET_APMU_UCIE          51
--#define RESET_APMU_RCPU          52
-+#define RESET_APMU_USB3_A_PHY    51	/* USB3 A */
-+#define RESET_APMU_USB3_B_AHB    52
- #define RESET_APMU_DSI4LN2_ESCCLK     53
- #define RESET_APMU_DSI4LN2_LCD_SW     54
- #define RESET_APMU_DSI4LN2_LCD_MCLK   55
-@@ -143,16 +143,40 @@
- #define RESET_APMU_UFS_ACLK      59
- #define RESET_APMU_EDP0          60
- #define RESET_APMU_EDP1          61
--#define RESET_APMU_PCIE_PORTA    62
--#define RESET_APMU_PCIE_PORTB    63
--#define RESET_APMU_PCIE_PORTC    64
--#define RESET_APMU_PCIE_PORTD    65
--#define RESET_APMU_PCIE_PORTE    66
-+#define RESET_APMU_USB3_B_VCC    62	/* USB3 B */
-+#define RESET_APMU_USB3_B_PHY    63
-+#define RESET_APMU_USB3_C_AHB    64
-+#define RESET_APMU_USB3_C_VCC    65
-+#define RESET_APMU_USB3_C_PHY    66
- #define RESET_APMU_EMAC0         67
- #define RESET_APMU_EMAC1         68
- #define RESET_APMU_EMAC2         69
- #define RESET_APMU_ESPI_MCLK     70
- #define RESET_APMU_ESPI_SCLK     71
-+#define RESET_APMU_USB3_D_AHB    72	/* USB3 D */
-+#define RESET_APMU_USB3_D_VCC    73
-+#define RESET_APMU_USB3_D_PHY    74
-+#define RESET_APMU_UCIE_IP       75
-+#define RESET_APMU_UCIE_HOT      76
-+#define RESET_APMU_UCIE_MON      77
-+#define RESET_APMU_RCPU_AUDIO_SYS     78
-+#define RESET_APMU_RCPU_MCU_CORE      79
-+#define RESET_APMU_RCPU_AUDIO_APMU    80
-+#define RESET_APMU_PCIE_A_DBI    81
-+#define RESET_APMU_PCIE_A_SLAVE  82
-+#define RESET_APMU_PCIE_A_MASTER 83
-+#define RESET_APMU_PCIE_B_DBI    84
-+#define RESET_APMU_PCIE_B_SLAVE  85
-+#define RESET_APMU_PCIE_B_MASTER 86
-+#define RESET_APMU_PCIE_C_DBI    87
-+#define RESET_APMU_PCIE_C_SLAVE  88
-+#define RESET_APMU_PCIE_C_MASTER 89
-+#define RESET_APMU_PCIE_D_DBI    90
-+#define RESET_APMU_PCIE_D_SLAVE  91
-+#define RESET_APMU_PCIE_D_MASTER 92
-+#define RESET_APMU_PCIE_E_DBI    93
-+#define RESET_APMU_PCIE_E_SLAVE  94
-+#define RESET_APMU_PCIE_E_MASTER 95
- 
- /* DCIU resets*/
- #define RESET_DCIU_HDMA          0
-
----
-base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
-change-id: 20260312-01-k3-reset-usb-pci-dd00afa7561a
-
-Best regards,
--- 
-Yixun Lan <dlan@kernel.org>
-
+> 
+> regards,
+> Marc
+> 
 
