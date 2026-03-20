@@ -1,68 +1,62 @@
-Return-Path: <devicetree+bounces-278158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278159-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gHOmEK8TvWnG6QIAu9opvQ
-	(envelope-from <devicetree+bounces-278158-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:30:23 +0100
+	id GLyAD2IUvWnG6QIAu9opvQ
+	(envelope-from <devicetree+bounces-278159-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:33:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79C432D8092
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:30:22 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id BED4E2D8147
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:33:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 648133007292
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:29:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F34C33009F39
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:32:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26F3E346A00;
-	Fri, 20 Mar 2026 09:29:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5774F3803DC;
+	Fri, 20 Mar 2026 09:32:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="btdOSa/R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gEOhjXMF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02B772E2850;
-	Fri, 20 Mar 2026 09:29:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3ADC36D4E4
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 09:32:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773998993; cv=none; b=psDYThbVxBMyLcAWD3QnocY6rTCDX7VOObkFfC3JY6k3qMkTW+1pkoVIfntNUCHADdVxLMWV5mJTBZcpQO1LTun1fr+oAnrgWVEi7+ghWcqlOcULCmECrvWqQN0j2PykIWOJ8ajg4+o2yYiDNxbZ7+oxic42+0jH1UMVxJWr9pY=
+	t=1773999144; cv=none; b=K5+InF6Ou95N+2ou/WBpn5nwQkIhr1Z+p6WXNlEwr0eOJjSGb/2CMkek3U8dDmRzdIWQ+64jOEpZ6pwsbscw5XR/DL+/bmZoTgE+Rbd/TgGfl1YwKX6D6gUNaLg0MJ7E88hIn5rDWZaul4dZAHIHKnqXaR374dM3VYHIATXYgZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773998993; c=relaxed/simple;
-	bh=LfFmVCPsvjpc+MzWiP7Uv1vwUKJcyLzLQ4f89tdstFY=;
+	s=arc-20240116; t=1773999144; c=relaxed/simple;
+	bh=VUjusfcWNiioomQAMpt7H/sMIh5fMEuv5eVS+PwYWq4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M7Bf65HgPUVmktLlCienPUEmGaGqA9xaVyjBQTzmW8cliWWTBxDFgGoFsTprOXD/bncMNSxux2boRZrfzxLKMSCtkiNbBQjSgAAj+nhkaQltX7bJU7KN8byDZasOfIU29GQ83UUoJIWQdD0FJfQqxrBsTsI5DjF/HBB2I3co7QE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=btdOSa/R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DD9AC4CEF7;
-	Fri, 20 Mar 2026 09:29:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=r3sR6alTh/xAkqHARDb2K0UL/xr34ccdNFoUq7ceuR6hvydF5dDAfjdoPPleiJztHMCPcUFhEcdiuhsd7FTFLC85Y8N+J4BMvyTND0oJxCyT7b2j5pwjkinMaIy4zJX47xyYtVGQmbUfr37wOqJo2SARwYz+90IVr3fRr/4xvbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gEOhjXMF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49D63C2BCAF;
+	Fri, 20 Mar 2026 09:32:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773998992;
-	bh=LfFmVCPsvjpc+MzWiP7Uv1vwUKJcyLzLQ4f89tdstFY=;
+	s=k20201202; t=1773999142;
+	bh=VUjusfcWNiioomQAMpt7H/sMIh5fMEuv5eVS+PwYWq4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=btdOSa/RRTxID46FD+SM3Vu5F71uwvI4JsAhBN97H9RFqrroiS9Te5NeZv+Suce7g
-	 FDqdgqs8SeJyLBQW2/0htwGiOcOcw0eHb9JmJvf6o2q9S/NKZ2MrHT6cufR6+HyMU7
-	 5olUllZ40xuvL5/RYXTt2a4+HXmrcDMySr9SruCaiLDV8qvIBTVWcPElWFXWkgHDyC
-	 qb7W/xXf4fEiXv08Fs49cdCl6CSpaaJWijiy3A5PtecB/vYGCiE/YEFD4bbNLT5p5s
-	 DkS4hF1/cqMAxvd2CPsSiYq7am/6A8eSZeUTWMiyQMHjqp+rJCcshrD2X5P+2PspMz
-	 y4xPC+IAxfrHw==
-Date: Fri, 20 Mar 2026 10:29:50 +0100
+	b=gEOhjXMFIf3NChhI6op7n7IJf161dj7gEQyIVIByBCzBOc5B8gMj6GUrRCNkqKPXP
+	 OeS8S4cvr+rpFtXSEDrBDL1JeAjT2SJ9QEVyHmGze0VTBYJVvC/i2l5Ri6gXoaLDVt
+	 EsQCPr1hnkpP/0LIH9WM5eQoqid52bCzzcpcxUuF8unIVJEBrqtn052N6yxALFWtZn
+	 6r6SLoxsq0LHZLEoNK8j+jpNX53Qqpn7HAyfdnMP3LLNaITUugc0kgfcXCs+dDyPK5
+	 01m1EWaDKJXX+9zqa3bknfLdpnoNTXlRSDL0fnoSVKyl+HbSV0u6gxHiTbtr8318BG
+	 7HYozUeS8ByOg==
+Date: Fri, 20 Mar 2026 10:32:20 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Vinod Koul <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>, 
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	Thomas Gleixner <tglx@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, John Madieu <john.madieu@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org, linux-sound@vger.kernel.org
-Subject: Re: [PATCH 07/22] ASoC: dt-bindings: renesas,rsnd: Add RZ/G3E support
-Message-ID: <20260320-peculiar-cat-of-acumen-c6f6b3@quoll>
-References: <20260319155334.51278-1-john.madieu.xa@bp.renesas.com>
- <20260319155334.51278-8-john.madieu.xa@bp.renesas.com>
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/5] regulator: dt-bindings: mt6359: Drop regulator-name
+ pattern restrictions
+Message-ID: <20260320-fresh-sloth-of-chemistry-ec938f@quoll>
+References: <20260320072440.2403318-1-wenst@chromium.org>
+ <20260320072440.2403318-2-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,127 +65,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260319155334.51278-8-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20260320072440.2403318-2-wenst@chromium.org>
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278158-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[28];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[glider.be,renesas.com,kernel.org,baylibre.com,gmail.com,perex.cz,suse.com,pengutronix.de,tuxon.dev,bp.renesas.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-278159-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,collabora.com,lists.infradead.org,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.944];
+	NEURAL_HAM(-0.00)[-0.954];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 79C432D8092
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BED4E2D8147
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 19, 2026 at 04:53:19PM +0100, John Madieu wrote:
-> Add support for the RZ/G3E (R9A09G047) SoC audio subsystem.
-> 
-> RZ/G3E has a different audio architecture from R-Car Gen2/Gen3/Gen4,
-> with additional clocks and resets:
-> - Per-SSI ADG clocks (adg.ssi.0-9)
-> - SCU related clocks (scu, scu_x2, scu_supply)
-> - SSIF supply clock
-> - AUDMAC peri-peri clock
-> - ADG clock
-> - Additional resets for SCU, ADG, and AUDMAC peri-peri
-> 
-> RZ/G3E has 5 DMA controllers that can all be used by audio peripherals.
-> To allow the DMA core to distribute channels across all available
-> controllers, increase the maximum number of DMA entries in DVC, SRC,
-> and SSIU sub-nodes so that multiple providers can be listed with
-> repeated channel names.
-> 
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> ---
->  .../bindings/sound/renesas,rsnd.yaml          | 169 +++++++++++++++---
->  1 file changed, 148 insertions(+), 21 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> index e8a2acb92646..bc8885c4fa24 100644
-> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> @@ -58,6 +58,7 @@ properties:
->            - renesas,rcar_sound-gen2
->            - renesas,rcar_sound-gen3
->            - renesas,rcar_sound-gen4
-> +          - renesas,rcar_sound-r9a09g047     # RZ/G3E
+On Fri, Mar 20, 2026 at 03:24:34PM +0800, Chen-Yu Tsai wrote:
+>    "^ldo_v(aud|io|aux|rf|m)18$":
+>      type: object
+>      $ref: regulator.yaml#
+> -
+> -    properties:
+> -      regulator-name:
+> -        pattern: "^v(aud|io|aux|rf|m)18$"
+> -
+>      unevaluatedProperties: false
+>  
+>    "^ldo_vsim[12]$":
 
-Do not use underscores in compatibles. Previously used wrong style is
-not the excuse here, just like previously poor code, mistakes, bugs,
-unreadable approches is not justification to repeat the same.
+With this, the contents of all of the patternProperties is the same, so
+you could as well combine few of them into 2-3 groups to make it smaller.
 
->  
->    reg:
->      minItems: 1
-> @@ -97,20 +98,22 @@ properties:
->  
->    resets:
->      minItems: 1
-> -    maxItems: 11
-> +    maxItems: 14
->  
->    reset-names:
->      minItems: 1
-> -    maxItems: 11
-> +    maxItems: 14
->  
->    clocks:
->      description: References to SSI/SRC/MIX/CTU/DVC/AUDIO_CLK clocks.
->      minItems: 1
-> -    maxItems: 31
-> +    maxItems: 47
->  
->    clock-names:
->      description: List of necessary clock names.
->      # details are defined below
-> +    minItems: 1
-> +    maxItems: 47
->  
->    # ports is below
->    port:
-> @@ -136,9 +139,17 @@ properties:
->  
->          properties:
->            dmas:
-> -            maxItems: 1
-> +            description:
-> +              Must contain unique DMA specifiers, one per available
-> +              DMAC. On RZ/G3E, up to 5 for transmission.
-> +            minItems: 1
-> +            maxItems: 5
->            dma-names:
-> -            const: tx
-> +            minItems: 1
-> +            maxItems: 5
-> +            items:
-> +              enum:
-> +                - tx
+But I am fine with this as is.
 
-Multiple levels, multiple if:then: (further) - I don't find this binding
-manageable/readable. You should split it, with common binding defining
-common part of hardware or interface if there is such.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
