@@ -1,493 +1,239 @@
-Return-Path: <devicetree+bounces-278346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278349-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AK+iMLBzvWmt9wIAu9opvQ
-	(envelope-from <devicetree+bounces-278346-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:20:00 +0100
+	id oCYFAqZ2vWmt9wIAu9opvQ
+	(envelope-from <devicetree+bounces-278349-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:32:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39E3E2DD32F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:20:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B248C2DD6D6
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:32:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 21A8C305F480
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:14:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3139430B69F6
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:27:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 830D53CF039;
-	Fri, 20 Mar 2026 16:14:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3F6A3D16E7;
+	Fri, 20 Mar 2026 16:27:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UMqYIClU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RIht41pc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E9E436D4EF;
-	Fri, 20 Mar 2026 16:14:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5D903D0905;
+	Fri, 20 Mar 2026 16:27:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774023265; cv=none; b=DttxKQLrHmqz6BYKvj779h32lxpT4D5QD+QmOEzg2vfNn5TOU+oWABYuGo14ThauVE9dlfuGKePc7I6BdWNF5p+oB2mBEpJbyT2AoGEI8NjcqChoY3pGmoaPJUJSimDRxBmtKGZPx0oqYQT2g9xYYxO1vuOlSYl3E10fjEvsrak=
+	t=1774024052; cv=none; b=ILo0K0Wg32iw5Ql32e8qaWTyxqqM+ytG/bvktdaQkwNGnVwG03go1rng6rY2jB9ChEGvNjX9d2wlyFv6WMfhZPFClniVf3gvYFSIg7ValPnnL7fdbV7yIDvm99g9Uphyf1sdqeSm4322+bvXqSDxxlaLu6XMZxY3iSDOlvLWsLs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774023265; c=relaxed/simple;
-	bh=oCjp9fNqO49kOcDsM9y3a/3J81KLgMC8XgNaSXrWpeU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r/k5NBBCUcZt9n3X+KDEjPKGR1/wdXm6zidTkaox0zFTdIkVaOWKppcXa4lyubOG7DaYf4n5mQvJpdVBVYAHJIYhxnVyasPI3Py01UzTlBRWltp2K0K8/UdpgHqdK5YVyUX1dXpCKzPtNnY3ef1ktAajPR3+SnFW7Cl0iVpq+l4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UMqYIClU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79CB8C2BC87;
-	Fri, 20 Mar 2026 16:14:24 +0000 (UTC)
+	s=arc-20240116; t=1774024052; c=relaxed/simple;
+	bh=7PGIryYli88ssy+n8crCjrycDy/14UXhmOzk3wM6AR0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QvhVLBudidMHuo4l9qTdF6bAE/M/NyVGX5pxNPJGhI8SFxf8Bu68S2x/s2z5Un09b9H2/bTjpzB5iIe1ZX6lrCZ+Z4MdAjHKg2sF9+WA4a6jjKRUh3r6CJZmB87ORf9ZEtvBELBQPGqa1bJi0GXvtX6917H9W7r9vxlIOTFvnuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RIht41pc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6D985C4CEF7;
+	Fri, 20 Mar 2026 16:27:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774023265;
-	bh=oCjp9fNqO49kOcDsM9y3a/3J81KLgMC8XgNaSXrWpeU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UMqYIClUYAgxuyBbhy1Bm79bXnN/ypDkr0R5ZA7hgygOPDDIL/2FhDtFuZtIw50FJ
-	 jP5+MdrPdurH8q5fGawAAnODhSK5+lwM4qxHlTF0ExrhDlj8fFQkWFFiHIXoOUwdkI
-	 hnMLT9AvnxqPcVk7jYlbNEBA0Egjgk0dZodE1VI+Ss7r61edzmspGUm4tFV4zckBiu
-	 9Gv9o4c53paO3+uC0yDZBnZ0G6ONyvJKhhnfuaAuk3GUsNzjeEAZ4TmX2hr8EJitmI
-	 DbJRBCRsAc8Pgk57qScpXE0aFMnCklkbKlColbdQmRTnPOfel6U1FhgUD8CEXciHUS
-	 vhjhD97BOnQ1g==
-Date: Fri, 20 Mar 2026 17:14:21 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: radu.sabau@analog.com
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v4 3/4] iio: adc: ad4691: add triggered buffer support
-Message-ID: <ab1gyXK8oH5sWiiL@monoceros>
-References: <20260320-ad4692-multichannel-sar-adc-driver-v4-0-052c1050507a@analog.com>
- <20260320-ad4692-multichannel-sar-adc-driver-v4-3-052c1050507a@analog.com>
+	s=k20201202; t=1774024052;
+	bh=7PGIryYli88ssy+n8crCjrycDy/14UXhmOzk3wM6AR0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=RIht41pc0fWi6hNhgyoNTcBLL/jU3FKeNIi//YZZgAnoeENlKsFHgtg2zA3jrmlaJ
+	 hfe0ScJsquNbAdibs0J9Ovu3d6Jg18Xv8sDBF22g4/op1jVOK2npPlElxe6xOV4XXb
+	 NxSukz+rILobSl/plmzGBby/JD4JT1aMJgyW5WfCGNV27JyiaDiSoBVPTLNAXkRzmF
+	 +mmM+/WrhBKo0xk5hJ1FBcPN0+HlEHI+6kNeP/AP1m7ZX4dPC7AQlMZYP4Lm+aR2f1
+	 lhbeqhhMV013N/CHqI1kcg00LAcp2ghgzHmU/5GGYC+dHZddxxDkGe7foYZy9L7vVX
+	 VbZvHUAoRrBdw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 633D1109879B;
+	Fri, 20 Mar 2026 16:27:32 +0000 (UTC)
+From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
+Subject: [PATCH v9 0/9] ADF41513/ADF41510 PLL frequency synthesizers
+Date: Fri, 20 Mar 2026 16:27:25 +0000
+Message-Id: <20260320-adf41513-iio-driver-v9-0-132f0d076374@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wgo2gndxfr4kv5yn"
-Content-Disposition: inline
-In-Reply-To: <20260320-ad4692-multichannel-sar-adc-driver-v4-3-052c1050507a@analog.com>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAG11vWkC/33QTU7DMBAF4KtUXmPkGf9NWHEPxMLxjFtL0KAER
+ aCqd8ephFqUlOWzPJ8976QmGatM6ml3UqPMdarDsYXuYafyIR33oiu3rNCgBwCjExcHHqyuddA
+ 81llGnVJOlGIhQ6La5McopX5d1JfXlg91+hzG78sjMyyn/3szaKORC/ViCucgz+mY3ob9Yx7e1
+ QLOeEUQum0EG9ILdoks+9jZFWJ/kWDA0DZil59YBhshSXG0QtwNAmEbcQ3hvo8cIiFCXCH+BkG
+ 7jfhLJ1kIMCFzWiHhBrF3ig0NycUFtF271+cVEq8I3lsnLsUaYUsx9d53K4SuiDV31qGGEDM6i
+ Dm74P8g5/P5B0BN18eaAgAA
+X-Change-ID: 20251110-adf41513-iio-driver-aaca8a7f808e
+To: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Andrew Morton <akpm@linux-foundation.org>, Petr Mladek <pmladek@suse.com>, 
+ Steven Rostedt <rostedt@goodmis.org>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>, 
+ Sergey Senozhatsky <senozhatsky@chromium.org>, 
+ Shuah Khan <skhan@linuxfoundation.org>, 
+ Rodrigo Alencar <rodrigo.alencar@analog.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Andy Shevchenko <andriy.shevchenko@intel.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774024051; l=5107;
+ i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
+ bh=7PGIryYli88ssy+n8crCjrycDy/14UXhmOzk3wM6AR0=;
+ b=vJyPzLkgVuaYdYsSmqSVbWXZDqDB3xMBz7fVKY1kSrVdHCnt9QWM0cvpnz0tHAsbpGyPzlZkR
+ mI79zMXVa+cDaQFTZh8Kf5dtxAcB2uxN4mkTe/x+K9yD16UJcFr/mJn
+X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
+ pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
+X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
+ with auth_id=561
+X-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Reply-To: rodrigo.alencar@analog.com
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278346-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278349-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_CC(0.00)[metafoo.de,analog.com,kernel.org,baylibre.com,gmail.com,pengutronix.de,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.891];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[rodrigo.alencar@analog.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ukleinek@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.995];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,analog.com:email]
-X-Rspamd-Queue-Id: 39E3E2DD32F
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,analog.com:email,analog.com:replyto,analog.com:mid]
+X-Rspamd-Queue-Id: B248C2DD6D6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+This patch series adds support for the Analog Devices ADF41513 and ADF41510
+ultralow noise PLL frequency synthesizers. These devices are designed for
+implementing local oscillators (LOs) in high-frequency applications.
+The ADF41513 covers frequencies from 1 GHz to 26.5 GHz, while the ADF41510
+operates from 1 GHz to 10 GHz.
 
---wgo2gndxfr4kv5yn
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v4 3/4] iio: adc: ad4691: add triggered buffer support
-MIME-Version: 1.0
+Key features supported by this driver:
+- Integer-N and fractional-N operation modes
+- High maximum PFD frequency (250 MHz integer-N, 125 MHz fractional-N)
+- 25-bit fixed modulus or 49-bit variable modulus fractional modes
+- Digital lock detect functionality
+- Phase resync capability for consistent output phase
+- Load Enable vs Reference signal syncronization
 
-On Fri, Mar 20, 2026 at 01:03:57PM +0200, Radu Sabau via B4 Relay wrote:
-> From: Radu Sabau <radu.sabau@analog.com>
->=20
-> Add buffered capture support using the IIO triggered buffer framework.
->=20
-> CNV Burst Mode: the GP pin identified by interrupt-names in the device
-> tree is configured as DATA_READY output. The IRQ handler stops
-> conversions and fires the IIO trigger; the trigger handler executes a
-> pre-built SPI message that reads all active channels from the AVG_IN
-> accumulator registers and then resets accumulator state and restarts
-> conversions for the next cycle.
->=20
-> Manual Mode: CNV is tied to SPI CS so each transfer simultaneously
-> reads the previous result and starts the next conversion (pipelined
-> N+1 scheme). At preenable time a pre-built, optimised SPI message of
-> N+1 transfers is constructed (N channel reads plus one NOOP to drain
-> the pipeline). The trigger handler executes the message in a single
-> spi_sync() call and collects the results. An external trigger (e.g.
-> iio-trig-hrtimer) is required to drive the trigger at the desired
-> sample rate.
->=20
-> Both modes share the same trigger handler and push a complete scan =E2=80=
-=94
-> one u16 slot per channel at its scan_index position, followed by a
-> timestamp =E2=80=94 to the IIO buffer via iio_push_to_buffers_with_ts().
->=20
-> The CNV Burst Mode sampling frequency (PWM period) is exposed as a
-> buffer-level attribute via IIO_DEVICE_ATTR.
->=20
-> Signed-off-by: Radu Sabau <radu.sabau@analog.com>
-> ---
->  drivers/iio/adc/Kconfig  |   2 +
->  drivers/iio/adc/ad4691.c | 584 +++++++++++++++++++++++++++++++++++++++++=
-++++--
->  2 files changed, 571 insertions(+), 15 deletions(-)
->=20
-> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> index 3685a03aa8dc..d498f16c0816 100644
-> --- a/drivers/iio/adc/Kconfig
-> +++ b/drivers/iio/adc/Kconfig
-> @@ -142,6 +142,8 @@ config AD4170_4
->  config AD4691
->  	tristate "Analog Devices AD4691 Family ADC Driver"
->  	depends on SPI
-> +	select IIO_BUFFER
-> +	select IIO_TRIGGERED_BUFFER
->  	select REGMAP
->  	help
->  	  Say yes here to build support for Analog Devices AD4691 Family MuxSAR
-> diff --git a/drivers/iio/adc/ad4691.c b/drivers/iio/adc/ad4691.c
-> index 5e02eb44ca44..db776de32846 100644
-> --- a/drivers/iio/adc/ad4691.c
-> +++ b/drivers/iio/adc/ad4691.c
-> @@ -9,9 +9,12 @@
->  #include <linux/delay.h>
->  #include <linux/device.h>
->  #include <linux/err.h>
-> +#include <linux/interrupt.h>
->  #include <linux/math.h>
->  #include <linux/module.h>
->  #include <linux/mod_devicetable.h>
-> +#include <linux/property.h>
-> +#include <linux/pwm.h>
->  #include <linux/regmap.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/reset.h>
-> @@ -19,7 +22,12 @@
->  #include <linux/units.h>
->  #include <linux/unaligned.h>
-> =20
-> +#include <linux/iio/buffer.h>
->  #include <linux/iio/iio.h>
-> +#include <linux/iio/sysfs.h>
-> +#include <linux/iio/trigger.h>
-> +#include <linux/iio/triggered_buffer.h>
-> +#include <linux/iio/trigger_consumer.h>
-> =20
->  #define AD4691_VREF_uV_MIN			2400000
->  #define AD4691_VREF_uV_MAX			5250000
-> @@ -28,6 +36,8 @@
->  #define AD4691_VREF_3P3_uV_MAX			3750000
->  #define AD4691_VREF_4P096_uV_MAX		4500000
-> =20
-> +#define AD4691_CNV_DUTY_CYCLE_NS		380
-> +
->  #define AD4691_SPI_CONFIG_A_REG			0x000
->  #define AD4691_SW_RESET				(BIT(7) | BIT(0))
-> =20
-> @@ -35,6 +45,7 @@
->  #define AD4691_CLAMP_STATUS1_REG		0x01A
->  #define AD4691_CLAMP_STATUS2_REG		0x01B
->  #define AD4691_DEVICE_SETUP			0x020
-> +#define AD4691_MANUAL_MODE			BIT(2)
->  #define AD4691_LDO_EN				BIT(4)
->  #define AD4691_REF_CTRL				0x021
->  #define AD4691_REF_CTRL_MASK			GENMASK(4, 2)
-> @@ -42,21 +53,29 @@
->  #define AD4691_OSC_FREQ_REG			0x023
->  #define AD4691_OSC_FREQ_MASK			GENMASK(3, 0)
->  #define AD4691_STD_SEQ_CONFIG			0x025
-> +#define AD4691_SEQ_ALL_CHANNELS_OFF		0x00
->  #define AD4691_SPARE_CONTROL			0x02A
-> =20
-> +#define AD4691_NOOP				0x00
-> +#define AD4691_ADC_CHAN(ch)			((0x10 + (ch)) << 3)
-> +
->  #define AD4691_OSC_EN_REG			0x180
->  #define AD4691_STATE_RESET_REG			0x181
->  #define AD4691_STATE_RESET_ALL			0x01
->  #define AD4691_ADC_SETUP			0x182
-> -#define AD4691_AUTONOMOUS_MODE_VAL		0x02
-> +#define AD4691_CNV_BURST_MODE			0x01
-> +#define AD4691_AUTONOMOUS_MODE			0x02
->  /*
->   * ACC_MASK_REG covers both mask bytes via ADDR_DESCENDING SPI: writing a
->   * 16-bit BE value to 0x185 auto-decrements to 0x184 for the second byte.
->   */
->  #define AD4691_ACC_MASK_REG			0x185
->  #define AD4691_ACC_COUNT_LIMIT(n)		(0x186 + (n))
-> +#define AD4691_ACC_COUNT_VAL			0x1
->  #define AD4691_GPIO_MODE1_REG			0x196
->  #define AD4691_GPIO_MODE2_REG			0x197
-> +#define AD4691_GP_MODE_MASK			GENMASK(3, 0)
-> +#define AD4691_GP_MODE_DATA_READY		0x06
->  #define AD4691_GPIO_READ			0x1A0
->  #define AD4691_ACC_STATUS_FULL1_REG		0x1B0
->  #define AD4691_ACC_STATUS_FULL2_REG		0x1B1
-> @@ -121,6 +140,7 @@ static const struct iio_chan_spec ad4691_channels[] =
-=3D {
->  	AD4691_CHANNEL(13),
->  	AD4691_CHANNEL(14),
->  	AD4691_CHANNEL(15),
-> +	IIO_CHAN_SOFT_TIMESTAMP(16),
->  };
-> =20
->  static const struct iio_chan_spec ad4693_channels[] =3D {
-> @@ -132,6 +152,7 @@ static const struct iio_chan_spec ad4693_channels[] =
-=3D {
->  	AD4691_CHANNEL(5),
->  	AD4691_CHANNEL(6),
->  	AD4691_CHANNEL(7),
-> +	IIO_CHAN_SOFT_TIMESTAMP(16),
->  };
-> =20
->  /*
-> @@ -189,16 +210,63 @@ static const struct ad4691_chip_info ad4694_chip_in=
-fo =3D {
->  struct ad4691_state {
->  	const struct ad4691_chip_info	*info;
->  	struct regmap			*regmap;
-> +
-> +	struct pwm_device		*conv_trigger;
-> +	struct iio_trigger		*trig;
-> +	int				irq;
-> +
-> +	bool				manual_mode;
-> +
->  	int				vref_uV;
->  	bool				refbuf_en;
->  	bool				ldo_en;
-> +	u32				cnv_period_ns;
->  	/*
->  	 * Synchronize access to members of the driver state, and ensure
->  	 * atomicity of consecutive SPI operations.
->  	 */
->  	struct mutex			lock;
-> +	/*
-> +	 * Per-buffer-enabl ree lifetimesources:
-> +	 * Manual Mode - a pre-built SPI message that clocks out N+1
-> +	 *		 transfers in one go.
-> +	 * CNV Burst Mode - a pre-built SPI message that clocks out 2*N
-> +	 *		    transfers in one go.
-> +	 */
-> +	void				*scan_devm_group;
-> +	struct spi_message		scan_msg;
-> +	struct spi_transfer		*scan_xfers;
-> +	__be16				*scan_tx;
-> +	__be16				*scan_rx;
-> +	/* Scan buffer: one slot per channel (u16) plus timestamp */
-> +	struct {
-> +		u16 vals[16];
-> +		s64 ts __aligned(8);
-> +	} scan __aligned(IIO_DMA_MINALIGN);
->  };
-> =20
-> +/*
-> + * Configure the given GP pin (0-3) as DATA_READY output.
-> + * GP0/GP1 =E2=86=92 GPIO_MODE1_REG, GP2/GP3 =E2=86=92 GPIO_MODE2_REG.
-> + * Even pins occupy bits [3:0], odd pins bits [7:4].
-> + */
-> +static int ad4691_gpio_setup(struct ad4691_state *st, unsigned int gp_nu=
-m)
-> +{
-> +	unsigned int shift =3D 4 * (gp_num % 2);
-> +
-> +	return regmap_update_bits(st->regmap,
-> +				  AD4691_GPIO_MODE1_REG + gp_num / 2,
-> +				  AD4691_GP_MODE_MASK << shift,
-> +				  AD4691_GP_MODE_DATA_READY << shift);
-> +}
-> +
-> +static void ad4691_disable_pwm(void *data)
-> +{
-> +	struct pwm_state state =3D { .enabled =3D false };
-> +
-> +	pwm_apply_might_sleep(data, &state);
-> +}
-> +
->  static int ad4691_reg_read(void *context, unsigned int reg, unsigned int=
- *val)
->  {
->  	struct spi_device *spi =3D context;
-> @@ -341,14 +409,16 @@ static int ad4691_get_sampling_freq(struct ad4691_s=
-tate *st, int *val)
->  static int ad4691_set_sampling_freq(struct iio_dev *indio_dev, int freq)
->  {
->  	struct ad4691_state *st =3D iio_priv(indio_dev);
-> -	unsigned int start =3D (st->info->max_rate =3D=3D HZ_PER_MHZ) ? 0 : 1;
->  	unsigned int i;
-> =20
-> +	if (freq > st->info->max_rate)
-> +		return -EINVAL;
-> +
->  	IIO_DEV_ACQUIRE_DIRECT_MODE(indio_dev, claim);
->  	if (IIO_DEV_ACQUIRE_FAILED(claim))
->  		return -EBUSY;
-> =20
-> -	for (i =3D start; i < ARRAY_SIZE(ad4691_osc_freqs); i++) {
-> +	for (i =3D 0; i < ARRAY_SIZE(ad4691_osc_freqs); i++) {
->  		if ((int)ad4691_osc_freqs[i] =3D=3D freq)
->  			return regmap_update_bits(st->regmap, AD4691_OSC_FREQ_REG,
->  						  AD4691_OSC_FREQ_MASK, i);
-> @@ -363,7 +433,10 @@ static int ad4691_read_avail(struct iio_dev *indio_d=
-ev,
->  			     int *length, long mask)
->  {
->  	struct ad4691_state *st =3D iio_priv(indio_dev);
-> -	unsigned int start =3D (st->info->max_rate =3D=3D HZ_PER_MHZ) ? 0 : 1;
-> +	unsigned int start;
-> +
-> +	/* Skip frequencies that exceed this chip's maximum rate. */
-> +	start =3D (ad4691_osc_freqs[0] > st->info->max_rate) ? 1 : 0;
-> =20
->  	switch (mask) {
->  	case IIO_CHAN_INFO_SAMP_FREQ:
-> @@ -386,8 +459,7 @@ static int ad4691_single_shot_read(struct iio_dev *in=
-dio_dev,
->  	guard(mutex)(&st->lock);
-> =20
->  	/*
-> -	 * Use AUTONOMOUS mode for single-shot reads. The chip always
-> -	 * operates in AUTONOMOUS mode in this driver revision.
-> +	 * Use AUTONOMOUS mode for single-shot reads.
->  	 */
->  	ret =3D regmap_write(st->regmap, AD4691_STATE_RESET_REG,
->  			   AD4691_STATE_RESET_ALL);
-> @@ -417,8 +489,7 @@ static int ad4691_single_shot_read(struct iio_dev *in=
-dio_dev,
->  	 * conversion to complete.
->  	 */
->  	fsleep(DIV_ROUND_UP(2 * USEC_PER_SEC,
-> -			    ad4691_osc_freqs[FIELD_GET(AD4691_OSC_FREQ_MASK,
-> -						       reg_val)]));
-> +		ad4691_osc_freqs[FIELD_GET(AD4691_OSC_FREQ_MASK, reg_val)]));
-> =20
->  	ret =3D regmap_write(st->regmap, AD4691_OSC_EN_REG, 0);
->  	if (ret)
-> @@ -488,6 +559,374 @@ static int ad4691_reg_access(struct iio_dev *indio_=
-dev, unsigned int reg,
->  	return regmap_write(st->regmap, reg, writeval);
->  }
-> =20
-> +static int ad4691_set_pwm_freq(struct ad4691_state *st, int freq)
-> +{
-> +	if (!freq)
-> +		return -EINVAL;
-> +
-> +	st->cnv_period_ns =3D DIV_ROUND_CLOSEST(NSEC_PER_SEC, freq);
+The series includes:
+1. PLL driver implementation
+2. Device tree bindings documentation
+3. IIO ABI documentation
 
-I wrote something about divisions in an earlier revision already.
-Ideally there was a iio-specific policy how to convert a frequency to a
-period.
+Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+---
+Changes in v9:
+- Expose simple_strntoull() in a safer prototype instead of new kstrntoull()
+- Link to v8: https://lore.kernel.org/r/20260303-adf41513-iio-driver-v8-0-8dd2417cc465@analog.com
 
-Until such a policy exists (maybe even with a helper function), let me
-point out that if you want to pick the period that is nearest to 1/freq,
-most of the time
+Changes in v8:
+- Add new function kstrntoull() to lib/kstrtox.c and tests to lib/test-kstrtox.c.
+- Drop custom iio u64 parser, replacing it for kstrntoull().
+- Dedicated MAINTAINERS entry for drivers/iio/test/iio-test-fixpoint-parse.c.
+- Link to v7: https://lore.kernel.org/r/20260216-adf41513-iio-driver-v7-0-b0ed387ab559@analog.com
 
-	st->cnv_period_ns =3D DIV_ROUND_UP(NSEC_PER_SEC, freq);
+Changes in v7:
+- Addressed minor suggestions.
+- frequency_resolution ABI for AD4350 removed in favor of generic one.
+- Link to v6: https://lore.kernel.org/r/20260130-adf41513-iio-driver-v6-0-cf46239026bc@analog.com
 
-is the better value to use. And in the remaining cases this is still a
-very good value.
+Changes in v6:
+- Drop usage of simple_strtoull().
+- Implement better overflow checks with iio_safe_strntou64().
+- Link to v5: https://lore.kernel.org/r/20260123-adf41513-iio-driver-v5-0-2dce812a2dda@analog.com
 
-The analysis goes as follows:
+Changes in v5:
+- Drop local parsing of 64-bit plus fractional parts
+- Add iio_str_to_fixpoint64() to iio core with parsing tests
+- Add DT property dependency for adi,charge-pump-resistor-ohms
+- Add local definition for ADF41513_HZ_PER_GHZ and drop units.h patch
+- Link to v4: https://lore.kernel.org/r/20260116-adf41513-iio-driver-v4-0-dbb7d6782217@analog.com
 
-Let =CE=A0 be the function mapping an integer period request to the actually
-implemented period (a rational number in general).
+Changes in v4:
+- Proper usage of units.h macros
+- Simplifications to DT property parsing
+- Adjustments to return value handling
+- Drop of simple DT property node example
+- Link to v3: https://lore.kernel.org/r/20260108-adf41513-iio-driver-v3-0-23d1371aef48@analog.com
 
-Let P :=3D DIV_ROUND_DOWN(NSEC_PER_SEC, freq) and =CE=B5 :=3D P - =CE=A0(P).
-With =CE=A0(x) =E2=89=A4 x, we have =CE=B5 =E2=89=A5 0.
+Changes in v3:
+- Use FIELD_MODIFY macro in driver implementation
+- Drop refin_frequency iio attribute
+- Drop muxout-select property from dt-bindings (and rename logic-level property)
+- Use -mhz suffix in power-up frequency property
+- Address documentation issues
+- Link to v2: https://lore.kernel.org/r/20251219-adf41513-iio-driver-v2-0-be29a83d5793@analog.com
 
-The analysis is moot if DIV_ROUND_CLOSEST() and DIV_ROUND_UP() yield the
-same value, so we can assume
+Changes in v2:
+- separate driver implementation from extra features and improve commit messages
+- use macros from units.h
+- explanation of custom parse function: adf41513_parse_uhz
+- reorganize driver data structures
+- drop clock framework support for now
+- reorganize documentation
+- Link to v1: https://lore.kernel.org/r/20251110-adf41513-iio-driver-v1-0-2df8be0fdc6e@analog.com
 
-	(P + =E1=BA=9F) * freq =3D NSEC_PER_SEC
+---
+Rodrigo Alencar (9):
+      dt-bindings: iio: frequency: add adf41513
+      lib: vsprintf: export simple_strntoull() in a safe prototype
+      iio: core: add fixed point parsing with 64-bit parts
+      iio: test: add kunit test for fixed-point parsing
+      iio: frequency: adf41513: driver implementation
+      iio: frequency: adf41513: handle LE synchronization feature
+      iio: frequency: adf41513: features on frequency change
+      docs: iio: add documentation for adf41513 driver
+      Documentation: ABI: testing: add common ABI file for iio/frequency
 
-with 0 < =E1=BA=9F < 0.5. The values to consider are =CE=A0(P) and =CE=A0(P=
-+1).
+ Documentation/ABI/testing/sysfs-bus-iio-frequency  |   11 +
+ .../ABI/testing/sysfs-bus-iio-frequency-adf4350    |   10 -
+ .../bindings/iio/frequency/adi,adf41513.yaml       |  215 ++++
+ Documentation/iio/adf41513.rst                     |  199 ++++
+ Documentation/iio/index.rst                        |    1 +
+ MAINTAINERS                                        |   15 +
+ drivers/iio/frequency/Kconfig                      |   10 +
+ drivers/iio/frequency/Makefile                     |    1 +
+ drivers/iio/frequency/adf41513.c                   | 1240 ++++++++++++++++++++
+ drivers/iio/industrialio-core.c                    |  165 ++-
+ drivers/iio/test/Kconfig                           |   12 +
+ drivers/iio/test/Makefile                          |    1 +
+ drivers/iio/test/iio-test-fixpoint-parse.c         |  470 ++++++++
+ include/linux/iio/iio.h                            |    2 +
+ include/linux/kstrtox.h                            |    4 +
+ lib/vsprintf.c                                     |   59 +-
+ 16 files changed, 2346 insertions(+), 69 deletions(-)
+---
+base-commit: ff0843ceb1fb11a6b73e0e77b932ef7967aecd4b
+change-id: 20251110-adf41513-iio-driver-aaca8a7f808e
 
-The former is the better value if:
+Best regards,
+-- 
+Rodrigo Alencar <rodrigo.alencar@analog.com>
 
-	  abs(P + =E1=BA=9F - =CE=A0(P)) < abs(P + =E1=BA=9F - =CE=A0(P+1))
-	=E2=9F=BA =E1=BA=9F + =CE=B5 < abs(P + =E1=BA=9F - =CE=A0(P+1))
 
-With =CE=A0(x + 1) =E2=89=A5 =CE=A0(x) this can only hold if
-
-	  =CE=A0(P+1) > P + 2=E1=BA=9F + =CE=B5
-	=E2=9F=B9 1 > 2=E1=BA=9F + =CE=B5
-
-So we'd need that =CE=B5 =3D P - =CE=A0(P) < 1, that is a possible period q=
-uite near
-to P and another possible period value in the interval ]P + 2=E1=BA=9F + =
-=CE=B5; P + 1].
-
-In that case =CE=A0(P+1) is a worse value than =CE=A0(P), but still
-
-	abs(P + =E1=BA=9F - =CE=A0(P+1)) < 1
-
-, so even in this unlikely situation using P+1 is quite good.
-
-Another advantage of DIV_ROUND_UP(NSEC_PER_SEC, freq) over
-DIV_ROUND_CLOSEST(NSEC_PER_SEC, freq) is that it yields a sensible
-period for freq > 2*NSEC_PER_SEC.
-
-> +	return 0;
-> +}
-> +
-> +static int ad4691_sampling_enable(struct ad4691_state *st, bool enable)
-> +{
-> +	struct pwm_state conv_state =3D { };
-> +
-> +	conv_state.period =3D st->cnv_period_ns;
-> +	conv_state.duty_cycle =3D AD4691_CNV_DUTY_CYCLE_NS;
-> +	conv_state.polarity =3D PWM_POLARITY_NORMAL;
-> +	conv_state.enabled =3D enable;
-
-this can be written as:
-
-	static int ad4691_sampling_enable(struct ad4691_state *st, bool enable)
-	{
-		struct pwm_state conv_state =3D {
-			.period =3D st->cnv_period_ns;
-			.duty_cycle =3D AD4691_CNV_DUTY_CYCLE_NS;
-			.polarity =3D PWM_POLARITY_NORMAL;
-			.enabled =3D enable;
-		};
-		...
-
-	}
-
-Best regards
-Uwe
-
---wgo2gndxfr4kv5yn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmm9clsACgkQj4D7WH0S
-/k5OCAgAhak+zsKWlSXMaSLPtOH55w6NuOJxCFH+hq4WBunFXkVxaxstTwoSp7nD
-qBXWRHc15lkOgRaPED3TQzhCAxr6EU5Gf8yprpkq2iXTmORhC8RcDoB2FuY/PgNf
-b9bvBJ4n9fn2CN/vv2rtdqUBLsSgHRJ79B/lyT4uzyMu3x1+QbGTp/f+TdcpwAlM
-LyY1Yk1nJowN7bILBGDTQPrNXMpwQDnMS9WoV5EZ3cixfXKeiXjt+ZQptGFARRyt
-zypJ5k/wOtYLP5nVuz9I7cwl3S6TFvoQ6idkET2sxUOmFOwfmEZ+O4B3oKz7CpY2
-NG7gOiF+sVWgE+FHXlgslujW9OLZMA==
-=CE6B
------END PGP SIGNATURE-----
-
---wgo2gndxfr4kv5yn--
 
