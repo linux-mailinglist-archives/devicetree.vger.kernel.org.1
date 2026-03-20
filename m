@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-278357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278358-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eH1/Dax1vWmD+AIAu9opvQ
-	(envelope-from <devicetree+bounces-278357-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:28:28 +0100
+	id ONCaL+J3vWmt9wIAu9opvQ
+	(envelope-from <devicetree+bounces-278358-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:37:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1B912DD5F3
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:28:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 224082DD8B5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:37:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 624173026AB9
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:28:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 300C7319B978
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:32:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD173D330C;
-	Fri, 20 Mar 2026 16:27:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 376ED3D47B6;
+	Fri, 20 Mar 2026 16:29:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CgfXYUtv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vpqz1yrO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64E1A3D1CB5;
-	Fri, 20 Mar 2026 16:27:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A18833CFF56;
+	Fri, 20 Mar 2026 16:29:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774024053; cv=none; b=gP/8fBW4vq95CtsEYE9i22+vki7TF0GoAbTAYNkrphZNsl9lB8tvWlgrTIQhCUtU5+lgE6JSC+czQw83aa/yYQhGmZZAt++C7Ruaz5iLpQDwD8C64G5ToqepQtIy1ZQz4d4guf6drZ0uyUIP7seqt1S1ZdkB1uGRfVwf1vyixAY=
+	t=1774024147; cv=none; b=oOdkh6xO0edJHLadATtSaHPf5d2yzVzjW+O1EebY0a+IkboNeccbisSRM1oXsawDzGgIwyC+2LxAyaaQfBrHNS+KWrVrhkbP2OZt9JyU0FrmWRo2YxJ6WRtDUS+mO97nJ0KWMdraafRf8NFZ0wEoms3Fer58g86sg8dK79WNS40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774024053; c=relaxed/simple;
-	bh=9B+csSwynGBtD47HQVlSlvUhKYSoSrYkjk2oqbGoZOQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=im1Jr46YVAq3JlNCsv/NGIEe39y9ZTr0MFt5FaXczUdSWuVA2Zt1pisKWDn1UROqCNrX+3btIwX2ciZKi0Cm6d20vmqe6j6+cVHqRTMoJOJjl+ynNio5Lf+q28OilPLrk9FeeMDODFuFQVucmxgsKbnztjmFsk8lox6ytW/uQGE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CgfXYUtv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4533CC2BCB8;
-	Fri, 20 Mar 2026 16:27:33 +0000 (UTC)
+	s=arc-20240116; t=1774024147; c=relaxed/simple;
+	bh=Ug1ZlH1itHQlZdElqdeD1isP56arF+w6CXvCerFsyC8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LFRhFYt9vv6Bj+TAPFOcuoEkRg5wv3C04TpbgrYkvqf0ONj55bkdj1ijAYDvqzTnRVygruiDbRi/87lyL4VIZO0G+/V7IQqO8P2Rikv8EQWJ92baYSGPgp94S2yzDclCvevKsNv/496YqAYLomZLciRq4Ypw1IPiBRQAAvhLu0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vpqz1yrO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6620CC19425;
+	Fri, 20 Mar 2026 16:29:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774024053;
-	bh=9B+csSwynGBtD47HQVlSlvUhKYSoSrYkjk2oqbGoZOQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=CgfXYUtvYDcCTyQaxmRu1/fkAhl0fRRp58SpIl4fK9p38QB3acojKEkCbrna6zrfx
-	 Nn1rrF8wQnitmq0TugPqPhwNy6KT+nMBaBY3CPiZwbgIoXM+DnDKGfcypCtENlabV/
-	 wa+WErplX3t44i+c5DdkVdlHGaXbTBOfDBqdShZYmQr2wETWnpIqo3GjEfD4TJ8Tpz
-	 U/DPUuC5yyTjyqQ3BICIQAyq8QNhxDVPwmKYTmt4UbqAsIPkdwLwQ+Jp9LObJNS5j3
-	 N9Fwl5Noy/I8/6kPU7dQAciX3YjBBoJ+9uvn4YIF2mcCFeLJkIPCJTg0MqVmtUeIF6
-	 FROb+Xojr4V7w==
+	s=k20201202; t=1774024147;
+	bh=Ug1ZlH1itHQlZdElqdeD1isP56arF+w6CXvCerFsyC8=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=Vpqz1yrOZnMcMSKzkAYL7BSJ7ZTEKmofGGXW96HX22KmctM5V8GVHzQc9NgrrOOB7
+	 W5JBMf/uaNE8eIFMakjdcr6F0j+3cHJzsVCZsjEuZihTQd4+ngiJTrba9KG9/YoceB
+	 YCRCjBpP0oZV+u3Av1JWQttmoOj47jHZtfuYa4+Z21d9fJpGTeSJBCtYoY8eL/TjjV
+	 zJaxek7xGunOzGP2+hcxJ9zKrgqxpeiM2PIvBvIHaAeXucFJtu3iVl0BY6oYpQoPfD
+	 kOLu64Jel4Ov1HWMyo7dOHxN7kEBLvKTzYgs6O5Ea5IfuU45cnezAWgROprpwIyaK7
+	 Y91uL+RW4DzMg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C3BD10987A4;
-	Fri, 20 Mar 2026 16:27:33 +0000 (UTC)
-From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
-Date: Fri, 20 Mar 2026 16:27:34 +0000
-Subject: [PATCH v9 9/9] Documentation: ABI: testing: add common ABI file
- for iio/frequency
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C23F10987A6;
+	Fri, 20 Mar 2026 16:29:07 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Subject: [PATCH 0/3] SHIFT 6MQ SD-card support, improved responsivness of
+ touchscreen, and codec
+Date: Fri, 20 Mar 2026 17:29:04 +0100
+Message-Id: <20260320-axolotl-misc-p1-v1-0-89c9b5ecb26e@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,117 +59,95 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260320-adf41513-iio-driver-v9-9-132f0d076374@analog.com>
-References: <20260320-adf41513-iio-driver-v9-0-132f0d076374@analog.com>
-In-Reply-To: <20260320-adf41513-iio-driver-v9-0-132f0d076374@analog.com>
-To: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Cc: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
- Andrew Morton <akpm@linux-foundation.org>, Petr Mladek <pmladek@suse.com>, 
- Steven Rostedt <rostedt@goodmis.org>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, 
- Sergey Senozhatsky <senozhatsky@chromium.org>, 
- Shuah Khan <skhan@linuxfoundation.org>, 
- Rodrigo Alencar <rodrigo.alencar@analog.com>
+X-B4-Tracking: v=1; b=H4sIANB1vWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDYyMD3cSK/Jz8khzd3MziZN0CQ10zA8MUEwuDZCPTlDQloK6CotS0zAq
+ widGxtbUA1dZ+emEAAAA=
+X-Change-ID: 20260320-axolotl-misc-p1-601d480c25df
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Dylan Van Assche <me@dylanvanassche.be>
+Cc: linux-arm-msm@vger.kernel.org, Petr Hodina <phodina@protonmail.com>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ phone-devel@vger.kernel.org, David Heidelberg <david@ixit.cz>, 
+ Casey Connolly <casey.connolly@linaro.org>, 
+ Alexander Martinz <amartinz@shiftphones.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1774024051; l=2210;
- i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
- bh=OhPLAamt4hmbeCatH+/iPHehi/HIntujTnWeOacWI/A=;
- b=gLzhWryg6m+oV9bqr+TQj+jLfDlPUCot3iUaeFycI+CTtIlhW7ks7pcWSG3gL4t6xdeJqnGG4
- msaFVCqE+P4AXpivuIPtTbe/wHf49VyvzsRmkdSEuvU+xqw7+nsUbP5
-X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
- pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
-X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
- with auth_id=561
-X-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-Reply-To: rodrigo.alencar@analog.com
+X-Developer-Signature: v=1; a=openpgp-sha256; l=752; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=Ug1ZlH1itHQlZdElqdeD1isP56arF+w6CXvCerFsyC8=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpvXXRcxjb8S5LRW8Pns7ES1MQJV59xBIt3G5V3
+ POW24oXwmqJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCab110QAKCRBgAj/E00kg
+ cuItEADFkkuZYtDhkdxfwf8AQjLxixHSPDF3FM9seYuJhTVHXMluvFfmDf4X6oWjpYhPv6GYrkq
+ VhltG5hH+UNFpER1sE4gjnsiOJYepgWeh1HgswxMskYdOJQSlgicrnKhUjrCcfqMvuy3tnxWQmt
+ cWcb1vHq5TJLnfNyPkLYjSW9UHt23uC2VpEB+Zw2eMN2zq8/NtJJWjpy2Ehc7XoLTKL+6LU8w/p
+ 69uHcBZPpjn+XmHTfssVC7a27p1UgrwCsB++JBkE2WusuWdIg3BtPPg3uDcOVrbV7iMMoIBuFdh
+ y21wzDVmYCwZsfZ7osQKHGTpLvgXCbFqpffxhBeQqxNHQI5UxkWQu40wUiVVAgFMiuuPLDf1H/K
+ 3lWHVNmc8uTILEXvLkv12GXqUnrQnQYI3YIFcZ7jm3zU2PLoBxr2M8ZGWKkc/DmtG0trKEtqqyj
+ rmqvBCuSkG7ej9C/DCLZ4fiswBO9r/37udralxgat0XSRjso9ugGMD3pgePaTBvVlgnIetH0YEd
+ yRO3KrnAJpcYDgwiTMLL+2N+hNPGBAjY8c0kJ89xXXJ5zrD6w/zBjAdraUxVkWszgo17ylp0OkN
+ GNWOUXmEkNeS4hhnu7lRmtsEDu+19DW3Qt0xlfctSYEARyWeVxtqQU0E5OcZ+0Dbj5vRDYI0I7O
+ WX8dqDAq30gaVVw==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278357-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
+	TAGGED_FROM(0.00)[bounces-278358-lists,devicetree=lfdr.de,david.ixit.cz];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,protonmail.com,ixit.cz,linaro.org,shiftphones.com];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[rodrigo.alencar@analog.com];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.997];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.995];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_REPLYTO(0.00)[david@ixit.cz];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,analog.com:email,analog.com:replyto,analog.com:mid]
-X-Rspamd-Queue-Id: F1B912DD5F3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ixit.cz:email,ixit.cz:replyto,ixit.cz:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 224082DD8B5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+I've tested that SD card and touchscreen works well, the codec does too,
+but for complete enablement needs soundcard support which isn't fully
+finished.
 
-Add ABI documentation file for PLL/DDS devices with frequency_resolution
-sysfs entry attribute used by both ADF4350 and ADF41513.
-
-Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Signed-off-by: David Heidelberg <david@ixit.cz>
 ---
- Documentation/ABI/testing/sysfs-bus-iio-frequency         | 11 +++++++++++
- Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4350 | 10 ----------
- 2 files changed, 11 insertions(+), 10 deletions(-)
+Alexander Martinz (1):
+      arm64: dts: qcom: sdm845-shift-axolotl: Enable TFA9890 codec
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio-frequency b/Documentation/ABI/testing/sysfs-bus-iio-frequency
-new file mode 100644
-index 000000000000..1ce8ae578fd6
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-bus-iio-frequency
-@@ -0,0 +1,11 @@
-+What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_frequency_resolution
-+KernelVersion:	6.20
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Stores channel Y frequency resolution/channel spacing in Hz for PLL
-+		devices. The given value directly influences the operating mode when
-+		fractional-N synthesis is required, as it derives values for
-+		configurable modulus parameters used in the calculation of the output
-+		frequency. It is assumed that the algorithm that is used to compute
-+		the various dividers, is able to generate proper values for multiples
-+		of channel spacing.
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4350 b/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4350
-index 1254457a726e..76987a119feb 100644
---- a/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4350
-+++ b/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4350
-@@ -1,13 +1,3 @@
--What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_frequency_resolution
--KernelVersion:	3.4.0
--Contact:	linux-iio@vger.kernel.org
--Description:
--		Stores channel Y frequency resolution/channel spacing in Hz.
--		The value given directly influences the MODULUS used by
--		the fractional-N PLL. It is assumed that the algorithm
--		that is used to compute the various dividers, is able to
--		generate proper values for multiples of channel spacing.
--
- What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_refin_frequency
- KernelVersion:	3.4.0
- Contact:	linux-iio@vger.kernel.org
+Casey Connolly (2):
+      arm64: dts: qcom: sdm845-shift-axolotl: Enable sdcard
+      arm64: dts: qcom: sdm845-shift-axolotl: Set higher touchscreen i2c clock
 
+ arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts | 58 +++++++++++++++++++++++
+ 1 file changed, 58 insertions(+)
+---
+base-commit: 785f0eb2f85decbe7c1ef9ae922931f0194ffc2e
+change-id: 20260320-axolotl-misc-p1-601d480c25df
+
+Best regards,
 -- 
-2.43.0
+David Heidelberg <david@ixit.cz>
 
 
 
