@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-278170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278173-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gIrZNJcXvWnG6QIAu9opvQ
-	(envelope-from <devicetree+bounces-278170-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:47:03 +0100
+	id UJ71LwoXvWnG6QIAu9opvQ
+	(envelope-from <devicetree+bounces-278173-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:44:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8170A2D83D7
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:47:03 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E59D2D8332
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:44:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0DA35301A936
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:43:17 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 27019300AD89
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:44:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 853D738644E;
-	Fri, 20 Mar 2026 09:43:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC8FE38A71F;
+	Fri, 20 Mar 2026 09:44:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FDMm4Oo2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h855VlJ0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6012B383C9F;
-	Fri, 20 Mar 2026 09:43:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1483238A709;
+	Fri, 20 Mar 2026 09:44:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773999795; cv=none; b=ks9T4KwZ9t1jLXeQXaHmHm23gMcbiPtq8nVMkxdGB9KyJpd9sbqxbkXrdKM2kswisMzz/IMgFADYoGJIlWQaEohiTL314xHepLTuD/n/ZQ76rdzsV7Qg7U3UhdzOXMb6wc71S6cCaZZG5CByrtqFPdyZCoikvuAepVj6NOgw8+s=
+	t=1773999876; cv=none; b=qfUmcteXLLoOhMc4Rr7iXTaWm00eCuhLriAAmKNZbcLfhcHBJbuYPx6ZXezUID+Y58KmuB1ndsKTyiHLE4ydkTnsC2+HGRszGw5sleSw1fVFUVeJAibVu0SQE0iRqXSQ+kjdUSSdXQ/se0KCErWckfZ2oKZkLR55sAAe8sTbLn4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773999795; c=relaxed/simple;
-	bh=LGaR6GPOk5SailN1wRqWinD2lG2BGyV7O5WycxM4hV4=;
+	s=arc-20240116; t=1773999876; c=relaxed/simple;
+	bh=8A/4J/jRX9iTgUQDB99p0STWK1Tp8RA/6uoEXltzqQ8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SxQhhv/tynPfhQEadHiPqBR6F35+gil+Sn3qNXql+sxvn9r1CBDqV2hOKvdGnswWZ7xEEq1iIdMY3MilcgNRJi9roKa7ht9mSIN9UyEYS5DSerLOWcLB4NmAjeWen7rN4Yz7h369QaNdKVzJbAUfcRi+V/2OBBQAqGelnJ6Nw28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FDMm4Oo2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1637C4CEF7;
-	Fri, 20 Mar 2026 09:43:11 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=fGAVIo+cFnTEQRaD3KGjObxT113syn1KlflKAKECm82OQQF5YpXmBvFz3EV6fMjEKVn5HUncFZ9epkOP+m8abUWeB/QaCy46hwCZRPl84wjtEcUEDeph1R8RbYLK9ZaylZxrxbuHpjMEox1uRvJCPzBAUZy19WGYoLwB9QPMlRw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h855VlJ0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0737DC4CEF7;
+	Fri, 20 Mar 2026 09:44:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773999795;
-	bh=LGaR6GPOk5SailN1wRqWinD2lG2BGyV7O5WycxM4hV4=;
+	s=k20201202; t=1773999875;
+	bh=8A/4J/jRX9iTgUQDB99p0STWK1Tp8RA/6uoEXltzqQ8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FDMm4Oo2V+4znzOH/u6VbAtqPM30WwQ0sz+mVb9r5rFUx7S5MWDHAZo/EckB624gJ
-	 AWTNeIjNR23R54w3eOu78OB3s+lDQUB9E3qGdspf5mCPL7WghGTgiYGan6mj6QRGN5
-	 rDByZoSTU1rdIcF8oVyQyof+VpLcw263LJdwG5wMWzUc4/oDhmkBvAbGprY0YUPjtf
-	 yuzDYswieQay26OmA4AjC19npBmjYvxtEdxc24yU0tZdBRgJ8qactntLBaBcXnBiaC
-	 onOkHI33ubm6Q+i56JXpeIa5VQ5GfoNewIW8/EjEEKMyHqu7XG6CNVMQc9HbiucnI0
-	 hAKYC0mrSwQsw==
-Message-ID: <41254f6c-3ce3-4566-acf4-f0bf764565f3@kernel.org>
-Date: Fri, 20 Mar 2026 10:43:10 +0100
+	b=h855VlJ0pYb54h/igTLtuUjGVEZyOx0KVPMONMDYJjNt4BiHFz8xvJ+oZqPEmizSj
+	 JX4+fSoCaO5UFCpXMv68/Nzh3fofvuD873ZY1wwyEw1awRNSZJahOHFV19NRAxZSac
+	 hv75rvpWGeLGpHXlSfTsYNa3YLWV8XE4TahMSPtMZNz76Hb4ureZpMc8uBvu1iL+Xd
+	 N7z1/fvk7b2pTvt+RtqPO/wXa1m44lMhihfjxyxhRYDMEVunYnfdPE/DTZdYtuH4qX
+	 M1aSaOcTfcaPMNxe4nThg8PkIuqig99A2UhwIfEZm4iidvt51oPCO23lIBU5xSTu5L
+	 WGbTXgmBF+Diw==
+Message-ID: <1357d59f-7c38-4de0-9cc8-b40be3d7ce5b@kernel.org>
+Date: Fri, 20 Mar 2026 10:44:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,19 +53,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: dma: arm-dma350: document generic and
- combined IRQ topologies
-To: Peter Chen <peter.chen@cixtech.com>
-Cc: Jun Guo <jun.guo@cixtech.com>, fugang.duan@cixtech.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
- ychuang3@nuvoton.com, schung@nuvoton.com, robin.murphy@arm.com,
- Frank.Li@kernel.org, dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
- linux-arm-kernel@lists.infradead.org
-References: <20260319101723.246539-1-jun.guo@cixtech.com>
- <20260319101723.246539-2-jun.guo@cixtech.com>
- <20260320-vengeful-violet-cockle-382580@quoll>
- <ab0VoTut0u4f7EVr@nchen-desktop>
+Subject: Re: [PATCH 1/5] soc/tegra: Update BPMP ABI header
+To: Thierry Reding <thierry.reding@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jon Hunter <jonathanh@nvidia.com>,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+References: <20260319160110.2131954-1-thierry.reding@kernel.org>
+ <20260319160110.2131954-2-thierry.reding@kernel.org>
+ <435095b4-ce29-4c8a-9f63-300ff94e419a@kernel.org> <ab0T_0Pyio2SYrzq@orome>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,7 +111,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <ab0VoTut0u4f7EVr@nchen-desktop>
+In-Reply-To: <ab0T_0Pyio2SYrzq@orome>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -119,20 +119,20 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278170-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278173-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.994];
+	NEURAL_HAM(-0.00)[-0.996];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
@@ -140,41 +140,49 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,checkpatch.pl:url]
-X-Rspamd-Queue-Id: 8170A2D83D7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0E59D2D8332
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 20/03/2026 10:38, Peter Chen wrote:
-> On 26-03-20 10:12:53, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL
->>
->> On Thu, Mar 19, 2026 at 06:17:21PM +0800, Jun Guo wrote:
->>> Update the DMA-350 DT binding to match the current driver behavior.
+On 20/03/2026 10:34, Thierry Reding wrote:
+> On Thu, Mar 19, 2026 at 05:15:56PM +0100, Krzysztof Kozlowski wrote:
+>> On 19/03/2026 17:01, Thierry Reding wrote:
+>>> From: Thierry Reding <treding@nvidia.com>
 >>>
->>> Allow both:
->>> - "arm,dma-350" as the generic compatible, and
->>> - "cix,sky1-dma-350", "arm,dma-350" for SoC-specific fallback usage.
+>>> This update primarily adds various new commands and MRQs for Tegra264,
+>>> but also contains a few new annotations and fixes.
 >>>
->>> Also document interrupt topology variants supported by hardware
->>> integration:
->>> - one combined interrupt for all channels, or
->>> - one interrupt per channel (up to 8 channels).
+>>> Signed-off-by: Thierry Reding <treding@nvidia.com>
+>>> ---
+>>>  include/soc/tegra/bpmp-abi.h | 4565 +++++++++++++++++++++++++++-------
+>>>  1 file changed, 3671 insertions(+), 894 deletions(-)
 >>>
->>> This patch is Assisted-by: Cursor: GPT-5.3 Codex.
+>>> diff --git a/include/soc/tegra/bpmp-abi.h b/include/soc/tegra/bpmp-abi.h
+>>> index 39bb3f87e28d..6cf6442395f1 100644
+>>> --- a/include/soc/tegra/bpmp-abi.h
+>>> +++ b/include/soc/tegra/bpmp-abi.h
+>>> @@ -1,6 +1,6 @@
+>>> -/* SPDX-License-Identifier: GPL-2.0-only */
+>>> +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
+>>>  /*
+>>> - * Copyright (c) 2014-2022, NVIDIA CORPORATION.  All rights reserved.
+>>> + * SPDX-FileCopyrightText: Copyright (c) 2014-2025, NVIDIA CORPORATION.  All rights reserved.
 >>
->> Wrong tag, please read carefully the guideline before using LLM tools.
->>
+>> You just replaced correct syntax with discouraged (as in not welcomed
+>> upstream) SPDX tag.
 > 
-> Hi Krzysztof,
-> 
-> It is the trade off for coding-assistants.rst suggestion and
-> passing checkpatch.pl. Currently, checkpatch.pl reports the
-> error for tag without email address. So we choose to add tag
-> description at patch context.
+> Fair enough, I'm dropping the tag. I didn't know it was actively
+> discouraged and I don't see this documented anywhere. I suppose I should
 
-You still have to use correct tag. You ignored rest of the email
-message, so I assume you agree that you should not send LLM microslop?
+I am trying to get it somehow documented as permissive, v4 is waiting
+for some time.
+
+> go and drop similar tags from various other sources. Looks like we've
+> been introducing this recently for Tegra.
+
+I do not have opinion whether we should replace the tags, it does not
+matter for me, but I would simply not use it in new code.
 
 Best regards,
 Krzysztof
