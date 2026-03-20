@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-278333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278331-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8N6SEapkvWlF9gIAu9opvQ
-	(envelope-from <devicetree+bounces-278333-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:15:54 +0100
+	id cL6dOJRkvWlF9gIAu9opvQ
+	(envelope-from <devicetree+bounces-278331-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:15:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BE642DC78B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:15:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 839612DC751
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:15:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9898530DEECF
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:11:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ED62630CCC00
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:10:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 613413C9420;
-	Fri, 20 Mar 2026 15:10:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24BA93C73ED;
+	Fri, 20 Mar 2026 15:10:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pupin.rs header.i=@pupin.rs header.b="DKZp2UGS"
+	dkim=pass (1024-bit key) header.d=pupin.rs header.i=@pupin.rs header.b="IaGHTAs+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.imp.bg.ac.rs (mail.imp.bg.ac.rs [147.91.50.100])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9A68386C30;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA4EF3B2FD0;
 	Fri, 20 Mar 2026 15:10:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=147.91.50.100
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774019445; cv=none; b=pQuh/nWlrK+uDZjJf1+ivH5qq1Fe3GNnBF/QvdC/5D2bLeBPyrc1OwbvYWS4bxOYG4AtrbQ6R0ufHUN965i580EhBc2vjHxI613p1gL9Xo7vUZJaNfHD82UsPvW7t3/+YE+u7yyxdiQpTvT6/j9ydpXFqUcGDj9E6pFMNgXoxqc=
+	t=1774019443; cv=none; b=AH5JGn/diOhiC1nkpt1Glr80MqIw/oCCsqdDtqrd5pCS8UOPvWNumLUA9S1yJpkD3ZOdiLixPZ9N6oFGkOFVhKAZ56XNvbBxxBcJ/gVsEvt5pzMfMHWSvxXtmciaDwu64BDZb2HRIOpJsFjiVqDvhzZRFMVXNarOEQo0/PJJMNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774019445; c=relaxed/simple;
-	bh=zPYILTzsqjxa//iTx4+AhMkuBkF1RuazYPCTxYCHD98=;
+	s=arc-20240116; t=1774019443; c=relaxed/simple;
+	bh=hCJ+AHmWpfZCrU3ML4oPjNxFOeanN0Y4tp1/4FOvi14=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TdmEbB6QkcuGp82ELfbhEzx7gkToBdISl8sRM6775Mns3fmUemJBXlD150He6OMU76h0+XATA9uz3su2rdu9KZDJw4+KtudLYj+gt6+EOAeIT1Y7SGaNWvSAla2MmdfBIyzL3XxjNvGlv+u7tHqk/bAQuo83KlNosds78rcZVaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=pupin.rs; spf=pass smtp.mailfrom=pupin.rs; dkim=pass (1024-bit key) header.d=pupin.rs header.i=@pupin.rs header.b=DKZp2UGS; arc=none smtp.client-ip=147.91.50.100
+	 MIME-Version; b=Aac4avpvdHSSAUBmOVdIQoRjUSvvxqxqz/WGq2RH1SnCgi6ptO6e0e4S9fmzxDXHHUYbFbyr24zSz413X63AbZyZyz22nENS5mTW+l6wG62YgMAPEag4518TEuvGQGbH7DX8QjkRslU2KcGP99kp0Caw/l83QmMBTTDLLJ15sys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=pupin.rs; spf=pass smtp.mailfrom=pupin.rs; dkim=pass (1024-bit key) header.d=pupin.rs header.i=@pupin.rs header.b=IaGHTAs+; arc=none smtp.client-ip=147.91.50.100
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=pupin.rs
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pupin.rs
 Received: from localhost (localhost [127.0.0.1])
-	by mail.imp.bg.ac.rs (Postfix) with ESMTP id DF0B3140C678A;
-	Fri, 20 Mar 2026 16:10:33 +0100 (CET)
+	by mail.imp.bg.ac.rs (Postfix) with ESMTP id 0B882140C272C;
+	Fri, 20 Mar 2026 16:10:34 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pupin.rs; h=
 	content-transfer-encoding:mime-version:references:in-reply-to
 	:x-mailer:message-id:date:date:subject:subject:from:from
-	:received:received; s=dkim20260301; t=1774019433; bh=zPYILTzsqjx
-	a//iTx4+AhMkuBkF1RuazYPCTxYCHD98=; b=DKZp2UGSQ0ISsxpXQyJRgUtyKRU
-	atDP4nTbw4UYg5ZQdHIKLdb+19RFWZ17IDQiQLHlMFy8VFaMC/yqMEw9gyF1q5D9
-	mPR6BtSqSjRUzQECocWJ1Hh9gWcOoO1KUxQjeBEU8pWNe/HBb/THys3SEjA1zfBD
-	VLnzgjUtX6BhACeQ=
+	:received:received; s=dkim20260301; t=1774019433; bh=hCJ+AHmWpfZ
+	CrU3ML4oPjNxFOeanN0Y4tp1/4FOvi14=; b=IaGHTAs+tW4VbNZIeuDNJe+N9Gl
+	+bquk7lHfsthQxvbn1n9USYiz+p2gXbDgNBGNn3nBB6RzFcsW9ebVFNLuiIRC4j4
+	7uw6pe2+zdLeNX2x9dMbcWS8rKqARtR3bDxV7CVBU2lvezwoKtNlIYUZbpMPoew9
+	G6qjWlrji15MYlRk=
 X-Virus-Scanned: amavis at imp.bg.ac.rs
 Received: from mail.imp.bg.ac.rs ([127.0.0.1])
  by localhost (mail.imp.bg.ac.rs [127.0.0.1]) (amavis, port 10024) with LMTP
- id T2JmcpXxCL6z; Fri, 20 Mar 2026 16:10:33 +0100 (CET)
+ id ayhsENQ94VqJ; Fri, 20 Mar 2026 16:10:33 +0100 (CET)
 X-Comment: SPF check N/A for local connections - client-ip=147.91.52.78; helo=phyvm-virtualbox; envelope-from=david.marinovic@pupin.rs; receiver=jic23@kernel.org 
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.imp.bg.ac.rs B131F140C272C
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.imp.bg.ac.rs CA70A140C2700
 Received: from phyvm-VirtualBox (unknown [147.91.52.78])
-	by mail.imp.bg.ac.rs (Postfix) with ESMTPS id B131F140C272C;
+	by mail.imp.bg.ac.rs (Postfix) with ESMTPS id CA70A140C2700;
 	Fri, 20 Mar 2026 16:10:33 +0100 (CET)
 From: =?UTF-8?q?David=20Marinovi=C4=87?= <david.marinovic@pupin.rs>
 To: jic23@kernel.org
@@ -65,9 +65,9 @@ Cc: andriy.shevchenko@intel.com,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	David Marinovic <david.marinovic@pupin.rs>
-Subject: [PATCH v3 2/3] dt-bindings: iio: dac: ltc2632: add LTC2654 compatible strings
-Date: Fri, 20 Mar 2026 16:09:47 +0100
-Message-ID: <20260320150957.105571-3-david.marinovic@pupin.rs>
+Subject: [PATCH v3 3/3] iio: dac: ltc2632: add support for LTC2654 DAC family
+Date: Fri, 20 Mar 2026 16:09:48 +0100
+Message-ID: <20260320150957.105571-4-david.marinovic@pupin.rs>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260320150957.105571-1-david.marinovic@pupin.rs>
 References: <20260318135736.91564-1-david.marinovic@pupin.rs>
@@ -93,7 +93,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278333-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278331-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -104,116 +104,105 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[pupin.rs:+];
 	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.970];
+	NEURAL_HAM(-0.00)[-0.973];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,pupin.rs:dkim,pupin.rs:email,pupin.rs:mid,analog.com:email,analog.com:url]
-X-Rspamd-Queue-Id: 9BE642DC78B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pupin.rs:dkim,pupin.rs:email,pupin.rs:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 839612DC751
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: David Marinovic <david.marinovic@pupin.rs>
 
-Add compatible strings for the LTC2654 quad-channel DAC family.
+Add support for the Linear Technology LTC2654 quad DAC family.
 
-The LTC2654 devices are 4-channel, 16-/12-bit DACs with an internal
-reference and SPI interface. They use the same 24-bit SPI command
-format as the LTC2632/2634/2636 family.
+The LTC2654 is a 4-channel, 16-/12-bit DAC with SPI interface,
+sharing the same 24-bit SPI protocol as the existing LTC2632/
+LTC2634/LTC2636 devices supported by this driver.
 
-The 16-bit variants (LTC2654-L16 and LTC2654-H16) require new
-compatible strings, as no existing compatibles support 16-bit
-resolution.
+The 12-bit variants of LTC2654 reuse existing LTC2634 chip_info
+structs as they are register-compatible.
 
-The 12-bit variants (LTC2654-L12 and LTC2654-H12) are register-
-compatible with LTC2634-L12 and LTC2634-H12 respectively, and can
-use them as fallback compatibles.
-
-Changes added for:
-- lltc,ltc2654-l16: 16-bit, 2.5V internal reference
-- lltc,ltc2654-l12: 12-bit, 2.5V internal reference (fallback to lltc,ltc2634-l12)
-- lltc,ltc2654-h16: 16-bit, 4.096V internal reference
-- lltc,ltc2654-h12: 12-bit, 4.096V internal reference (fallback to lltc,ltc2634-h12)
+Add support for the following variants:
+- LTC2654L-16: 16-bit, 2.5V internal reference
+- LTC2654L-12: 12-bit, 2.5V internal reference
+- LTC2654H-16: 16-bit, 4.096V internal reference
+- LTC2654H-12: 12-bit, 4.096V internal reference
 
 Signed-off-by: David Marinovic <david.marinovic@pupin.rs>
 ---
- .../bindings/iio/dac/lltc,ltc2632.yaml        | 57 ++++++++++++-------
- 1 file changed, 35 insertions(+), 22 deletions(-)
+ drivers/iio/dac/ltc2632.c | 26 +++++++++++++++++++++++---
+ 1 file changed, 23 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml b/Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml
-index 733edc7d6d17..50a9cbb44e36 100644
---- a/Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml
-+++ b/Documentation/devicetree/bindings/iio/dac/lltc,ltc2632.yaml
-@@ -4,36 +4,49 @@
- $id: http://devicetree.org/schemas/iio/dac/lltc,ltc2632.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/iio/dac/ltc2632.c b/drivers/iio/dac/ltc2632.c
+index ca0b88285ce5..33b8ff78c6e3 100644
+--- a/drivers/iio/dac/ltc2632.c
++++ b/drivers/iio/dac/ltc2632.c
+@@ -58,8 +58,9 @@ static int ltc2632_spi_write(struct spi_device *spi,
+ 	 * The input shift register is 24 bits wide.
+ 	 * The next four are the command bits, C3 to C0,
+ 	 * followed by the 4-bit DAC address, A3 to A0, and then the
+-	 * 12-, 10-, 8-bit data-word. The data-word comprises the 12-,
+-	 * 10-, 8-bit input code followed by 4, 6, or 8 don't care bits.
++	 * 16-, 12-, 10-, 8-bit data-word. The data-word comprises the
++	 * 16-, 12-, 10-, 8-bit input code followed by 0, 4, 6, or 8
++	 * don't care bits.
+ 	 */
+ 	data = (cmd << 20) | (addr << 16) | (val << shift);
+ 	put_unaligned_be24(data, &msg[0]);
+@@ -185,6 +186,7 @@ static const struct iio_chan_spec_ext_info ltc2632_ext_info[] = {
+ 		LTC2632_CHANNEL(7, _bits), \
+ 	}
  
--title: Linear Technology LTC263x 12-/10-/8-Bit Rail-to-Rail DAC
-+title: Linear Technology LTC263x and LTC2654 Rail-to-Rail DAC
++static DECLARE_LTC2632_CHANNELS(ltc2632x16, 16);
+ static DECLARE_LTC2632_CHANNELS(ltc2632x12, 12);
+ static DECLARE_LTC2632_CHANNELS(ltc2632x10, 10);
+ static DECLARE_LTC2632_CHANNELS(ltc2632x8, 8);
+@@ -297,6 +299,18 @@ static const struct ltc2632_chip_info ltc2636h8_chip_info = {
+ 	.vref_mv	= 4096,
+ };
  
- maintainers:
-   - Michael Hennerich <michael.hennerich@analog.com>
++static const struct ltc2632_chip_info ltc2654l16_chip_info = {
++	.channels	= ltc2632x16_channels,
++	.num_channels	= 4,
++	.vref_mv	= 2500,
++};
++
++static const struct ltc2632_chip_info ltc2654h16_chip_info = {
++	.channels	= ltc2632x16_channels,
++	.num_channels	= 4,
++	.vref_mv	= 4096,
++};
++
+ static int ltc2632_probe(struct spi_device *spi)
+ {
+ 	struct ltc2632_state *st;
+@@ -366,6 +380,10 @@ static const struct spi_device_id ltc2632_id[] = {
+ 	{ "ltc2636-h12", (kernel_ulong_t)&ltc2636h12_chip_info },
+ 	{ "ltc2636-h10", (kernel_ulong_t)&ltc2636h10_chip_info },
+ 	{ "ltc2636-h8",  (kernel_ulong_t)&ltc2636h8_chip_info  },
++	{ "ltc2654-l16", (kernel_ulong_t)&ltc2654l16_chip_info },
++	{ "ltc2654-l12", (kernel_ulong_t)&ltc2634l12_chip_info },
++	{ "ltc2654-h16", (kernel_ulong_t)&ltc2654h16_chip_info },
++	{ "ltc2654-h12", (kernel_ulong_t)&ltc2634h12_chip_info },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(spi, ltc2632_id);
+@@ -389,6 +407,8 @@ static const struct of_device_id ltc2632_of_match[] = {
+ 	{ .compatible = "lltc,ltc2636-h12", .data = &ltc2636h12_chip_info },
+ 	{ .compatible = "lltc,ltc2636-h10", .data = &ltc2636h10_chip_info },
+ 	{ .compatible = "lltc,ltc2636-h8",  .data = &ltc2636h8_chip_info  },
++	{ .compatible = "lltc,ltc2654-l16", .data = &ltc2654l16_chip_info },
++	{ .compatible = "lltc,ltc2654-h16", .data = &ltc2654h16_chip_info },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, ltc2632_of_match);
+@@ -404,5 +424,5 @@ static struct spi_driver ltc2632_driver = {
+ module_spi_driver(ltc2632_driver);
  
- description: |
--  Bindings for the Linear Technology LTC2632/2634/2636 DAC
--  Datasheet can be found here: https://www.analog.com/media/en/technical-documentation/data-sheets/LTC263[246].pdf
-+  Bindings for the Linear Technology LTC2632/2634/2636/2654 DAC
-+  Datasheet can be found here:
-+    https://www.analog.com/media/en/technical-documentation/data-sheets/LTC263[246].pdf
-+    https://www.analog.com/media/en/technical-documentation/data-sheets/2654f.pdf
- 
- properties:
-   compatible:
--    enum:
--      - lltc,ltc2632-l12
--      - lltc,ltc2632-l10
--      - lltc,ltc2632-l8
--      - lltc,ltc2632-h12
--      - lltc,ltc2632-h10
--      - lltc,ltc2632-h8
--      - lltc,ltc2634-l12
--      - lltc,ltc2634-l10
--      - lltc,ltc2634-l8
--      - lltc,ltc2634-h12
--      - lltc,ltc2634-h10
--      - lltc,ltc2634-h8
--      - lltc,ltc2636-l12
--      - lltc,ltc2636-l10
--      - lltc,ltc2636-l8
--      - lltc,ltc2636-h12
--      - lltc,ltc2636-h10
--      - lltc,ltc2636-h8
-+    oneOf:
-+      - enum:
-+          - lltc,ltc2632-l12
-+          - lltc,ltc2632-l10
-+          - lltc,ltc2632-l8
-+          - lltc,ltc2632-h12
-+          - lltc,ltc2632-h10
-+          - lltc,ltc2632-h8
-+          - lltc,ltc2634-l12
-+          - lltc,ltc2634-l10
-+          - lltc,ltc2634-l8
-+          - lltc,ltc2634-h12
-+          - lltc,ltc2634-h10
-+          - lltc,ltc2634-h8
-+          - lltc,ltc2636-l12
-+          - lltc,ltc2636-l10
-+          - lltc,ltc2636-l8
-+          - lltc,ltc2636-h12
-+          - lltc,ltc2636-h10
-+          - lltc,ltc2636-h8
-+          - lltc,ltc2654-l16
-+          - lltc,ltc2654-h16
-+      - items:
-+          - enum:
-+              - lltc,ltc2654-l12
-+          - const: lltc,ltc2634-l12
-+      - items:
-+          - enum:
-+              - lltc,ltc2654-h12
-+          - const: lltc,ltc2634-h12
- 
-   reg:
-     maxItems: 1
+ MODULE_AUTHOR("Maxime Roussin-Belanger <maxime.roussinbelanger@gmail.com>");
+-MODULE_DESCRIPTION("LTC2632 DAC SPI driver");
++MODULE_DESCRIPTION("LTC2632/LTC2654 DAC SPI driver");
+ MODULE_LICENSE("GPL v2");
 -- 
 2.50.1
 
