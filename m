@@ -1,185 +1,170 @@
-Return-Path: <devicetree+bounces-278258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278261-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IKp+ILc8vWkH8AIAu9opvQ
-	(envelope-from <devicetree+bounces-278258-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:25:27 +0100
+	id GLpzLQk9vWkH8AIAu9opvQ
+	(envelope-from <devicetree+bounces-278261-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:26:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4295E2DA266
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:25:27 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC9C32DA2D0
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:26:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B544D3023178
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:24:46 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CA85B301F5B7
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:26:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A67483AD536;
-	Fri, 20 Mar 2026 12:24:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 046263ACEEE;
+	Fri, 20 Mar 2026 12:26:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="V6CoI4TP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e2Th899H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDC4F3ACF1A;
-	Fri, 20 Mar 2026 12:24:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D283F3AC0D6;
+	Fri, 20 Mar 2026 12:26:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774009456; cv=none; b=mHTNzjCe4RR/1bxkE5cBqw+PMMCGhO9o5dUWVX1GZLkAWz/MOMzLWqveLPM1PJbFgfNcGrXHDD0BmDNywWQqeS97TNdXbAI2xH/G8CEmRVQuXpMZkRG96RlzCE2IjK4vmCtDtFrK1lzIUHD+ggF39gutcwNgZxOoSwGkdQ3bj+8=
+	t=1774009593; cv=none; b=u6q6zu7MBDI1SoP63fCaMxDM77CMdZTKY6BSnx2CXOK14mxOpru11NgvSdBawySVSADiIl08U4yfULgDLGz48GjFFnsmmTsX/X1QweJLyLcpsZRH3f2sIossSU0Le5fgus/tE81Z4cJ51hQ6gyogW2+g21HafTrj6KpBPxRwRcE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774009456; c=relaxed/simple;
-	bh=kXdtIQsgXEinGhMSEwdoG3L66k14q9FpQSx3NwhGOos=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tusIpciC0wyOmpl/t+51OkOEYP7Cxt7GAgT1w5fEVz/b+LSMi4qA3DEcn3NaCwfdgrlXq4COnJk96J3qlVxJEgd4kSz91YKpso57RQGR6a2EmtJybnh0oBw2rlGbGB1AuNQOJG1lpBRF6FjhHwjSHQsLPycH1wkmD6DvTgP6Ppw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=V6CoI4TP; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1774009454; x=1805545454;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=kXdtIQsgXEinGhMSEwdoG3L66k14q9FpQSx3NwhGOos=;
-  b=V6CoI4TPTdPlQZhH5T1jClXnfS9ije2zeaC+pLsMl/WmB6CAxY4nolsO
-   zTZZJ7EQ6/2h5/8DHlGzCdYRFfJ7pYWYU7R49WS0wMDSY5qvRiKLACyub
-   Di7kLRf6ZZ7/dH3Nql8s/penywLo08K4q3+yxdeL76SdQgx9SwyWKNhjL
-   Urun4BIzFHZdrOs36F5yCg5Uel434pOHu/71+SaNjcFQIj5fqWjfvLosL
-   tGGOS0ZUAKZ+o116g4+H3lT8yBy2FM9WpmUkEy+JHZUxYgGxoMYIthJnN
-   d7OfYExudYkP4U6vCsLJ/Mmj8n0uTnPGSQgs0NXv8Cl/etSK9OVEsHVlw
-   Q==;
-X-CSE-ConnectionGUID: qvioHfjOQhyrXHTbWHc4hg==
-X-CSE-MsgGUID: LgiHtUK1RtKsPO0NMIp7fA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11735"; a="75002228"
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
-   d="scan'208";a="75002228"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 05:24:14 -0700
-X-CSE-ConnectionGUID: MB/c61LnQYiDQ4mVhpUG1Q==
-X-CSE-MsgGUID: m+GeijHTS0634HJNhaVxIQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
-   d="scan'208";a="218632505"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.40])
-  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 05:24:10 -0700
-Date: Fri, 20 Mar 2026 14:24:08 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Andrew Morton <akpm@linux-foundation.org>
-Subject: Re: [PATCH v8 02/10] lib: kstrtox: add kstrntoull() helper
-Message-ID: <ab08aHbudFWEtLi8@ashevche-desk.local>
-References: <20260303-adf41513-iio-driver-v8-0-8dd2417cc465@analog.com>
- <20260303-adf41513-iio-driver-v8-2-8dd2417cc465@analog.com>
- <aabm23jCikXs1l6F@ashevche-desk.local>
- <qcloiwjlbehs4yyuttvrt46monh7isef4d5nzuwlaby6uxfael@j3trvc5jwosy>
- <4mtdzxfj656sjr66npabfvrr7yd7q26l2unhsihjtniz4ossfj@g3qnzonoary6>
- <rygken7oujyoupeanrdnl7r7smesa7js6sn3jsafbajc4sm3jh@adeslfqwwf3x>
- <ab00clb7LL-bmJWe@ashevche-desk.local>
- <ixvzb5mni2lhz733f4fvvzhozmpezkx5s2q7sash3wv3u2g7ov@pgs6pve6kxrq>
+	s=arc-20240116; t=1774009593; c=relaxed/simple;
+	bh=jXcv2Q8Am/1SMQ2s+Xp0fxNypJnSSzleE88TmjASg0k=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=UOymc6yn35WMUSXewwc1GnOxltcp0VTu7jEiVBVDaILl/LCoBQXauTCa/SY3KXhEE8yykHnxRq6rw3VZniCyJ8Jf/QWnh/n3iPu13pMVT72gJQ2pabXXWSAgLiv93GiW9/GOEr8nLjt1vKPTSo40M3G1UAt58pSouojZrS+BFH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e2Th899H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64B27C2BC9E;
+	Fri, 20 Mar 2026 12:26:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774009593;
+	bh=jXcv2Q8Am/1SMQ2s+Xp0fxNypJnSSzleE88TmjASg0k=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=e2Th899HS6X6sMPqmj0y9cPTOq1+ApmVoSWjGf4o5VYHEwCvk3Mo8gnLtX7DgIh1v
+	 b573/r1Zivh9xUTcrZJ/EevSYGq7B+O637knEHr+2vKQhDCkFjctmFYQjicuQJVuVg
+	 8w+vn5hsr2ifloAmK4uVvlzhzjw52xgvJeuNHlzgF4mxWUFhWuLmkDrSHFWZ6oQFaa
+	 YjTi8hvVeW/sApU31OLvfBp0/Sv7RX77Ri7HO2tzw4h5VEJias5s+wbIZWBjn4EzEz
+	 E/uHPQyUPGeaEKXQV7xTbUCPOKQbPubzApsiZGWV0agRrlw7wAZ2j+qTrNcHrSoz2a
+	 YesLKAdRTX6rg==
+Date: Fri, 20 Mar 2026 07:26:32 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ixvzb5mni2lhz733f4fvvzhozmpezkx5s2q7sash3wv3u2g7ov@pgs6pve6kxrq>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.66 / 15.00];
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ linux-iio@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, 
+ linux-pwm@vger.kernel.org, David Lechner <dlechner@baylibre.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ Jonathan Cameron <jic23@kernel.org>, Linus Walleij <linusw@kernel.org>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Bartosz Golaszewski <brgl@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>
+To: Radu Sabau <radu.sabau@analog.com>
+In-Reply-To: <20260320-ad4692-multichannel-sar-adc-driver-v4-1-052c1050507a@analog.com>
+References: <20260320-ad4692-multichannel-sar-adc-driver-v4-0-052c1050507a@analog.com>
+ <20260320-ad4692-multichannel-sar-adc-driver-v4-1-052c1050507a@analog.com>
+Message-Id: <177400959255.943880.4128073323297765287.robh@kernel.org>
+Subject: Re: [PATCH v4 1/4] dt-bindings: iio: adc: add AD4691 family
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278258-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[kernel.org,metafoo.de,vger.kernel.org,baylibre.com,analog.com,pengutronix.de,gmail.com];
+	TAGGED_FROM(0.00)[bounces-278261-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.859];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.994];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,ashevche-desk.local:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: 4295E2DA266
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,devicetree.org:url]
+X-Rspamd-Queue-Id: EC9C32DA2D0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 20, 2026 at 12:08:41PM +0000, Rodrigo Alencar wrote:
-> On 26/03/20 01:50PM, Andy Shevchenko wrote:
-> > On Fri, Mar 20, 2026 at 11:16:32AM +0000, Rodrigo Alencar wrote:
-> > > On 26/03/04 10:02AM, Rodrigo Alencar wrote:
 
-...
-
-> > > could you provide more feedback here? Thanks!
-> > 
-> > I don't know what new I can add here.
-> > 
-> > My suggestion was (and still is) to have something in *_strtoull() family
-> > with additional checks added, but no limitations on the input string (i.e.
-> > no max_chars).  If you look at the printf() code the max_chars was added
-> > solely for scanf() and has no use otherwise (yes, I know about and aware
-> > of initramfs case).
+On Fri, 20 Mar 2026 13:03:55 +0200, Radu Sabau wrote:
+> Add DT bindings for the Analog Devices AD4691 family of multichannel
+> SAR ADCs (AD4691, AD4692, AD4693, AD4694).
 > 
-> but is it include/linux/kstrtox.h the right place for this?
+> The binding describes the hardware connections:
+> 
+> - Power domains: avdd-supply (required), vio-supply, ref-supply or
+>   refin-supply (external reference; the REFIN path enables the
+>   internal reference buffer), and an optional ldo-in-supply, that if
+>   absent, means the on-chip internal LDO will be used.
+> 
+> - Optional PWM on the CNV pin selects CNV Burst Mode; when absent,
+>   Manual Mode is assumed with CNV tied to SPI CS.
+> 
+> - An optional reset GPIO (reset-gpios) for hardware reset.
+> 
+> - Up to four GP pins (gp0..gp3) usable as interrupt sources,
+>   identified in firmware via interrupt-names "gp0".."gp3".
+> 
+> - gpio-controller with #gpio-cells = <2> for GP pin GPIO usage.
+> 
+> - #trigger-source-cells = <1>: one cell selecting the GP pin number
+>   (0-3) used as the SPI offload trigger source.
+> 
+> Two binding examples are provided: CNV Burst Mode with SPI offload
+> (DMA data acquisition driven by DATA_READY on a GP pin), and Manual
+> Mode for CPU-driven triggered-buffer or single-shot capture.
+> 
+> Signed-off-by: Radu Sabau <radu.sabau@analog.com>
+> ---
+>  .../devicetree/bindings/iio/adc/adi,ad4691.yaml    | 173 +++++++++++++++++++++
+>  MAINTAINERS                                        |   7 +
+>  2 files changed, 180 insertions(+)
+> 
 
-Seems so, there simple_strto*() are declared.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> *_strtoull familly... then can we just expose simple_strntoull(), which is
-> private to lib/vsprintf.c, by changing its prototype to expose a error return?
+yamllint warnings/errors:
 
-Why do you need that? I'm lost, sorry, I don't understand this big desire of
-having that max_chars parameter.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad4691.yaml: properties:interrupt-names: {'description': 'Names of the interrupt lines, matching the GP pin names.', 'minItems': 1, 'maxItems': 4, 'items': [{'const': 'gp0'}, {'const': 'gp1'}, {'const': 'gp2'}, {'const': 'gp3'}]} should not be valid under {'required': ['maxItems']}
+	hint: "maxItems" is not needed with an "items" list
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml
 
-> In my case the limitation on the input string is useful for the truncation of
-> decimal places when parsing the fixed point value. It would avoid a 64-bit
-> division.
+doc reference errors (make refcheckdocs):
 
-How is it better than checking the returned end pointer? Just treat anything
-that parses too many digits after dot as invalid input?
+See https://patchwork.kernel.org/project/devicetree/patch/20260320-ad4692-multichannel-sar-adc-driver-v4-1-052c1050507a@analog.com
 
-	ret = ..._strtoull(..., &end, &result);
-	if (ret)
-		return ret; // overflow!
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-	if (end - start > $YOUR_LIMIT)
-		return -EINVAL; // bad input
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-	...process result...
+pip3 install dtschema --upgrade
 
-...
-
-Some (stupid) thoughts loudly. IIUC even if we implement '%g' in scanf(), it
-wont help you as you want to have more precise values. Do I get it correct?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
