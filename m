@@ -1,197 +1,219 @@
-Return-Path: <devicetree+bounces-278390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278391-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6HDwEB5/vWnH+QIAu9opvQ
-	(envelope-from <devicetree+bounces-278390-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:08:46 +0100
+	id kNbLHdl+vWnH+QIAu9opvQ
+	(envelope-from <devicetree+bounces-278391-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:07:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7B062DE4A9
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:08:45 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F31E2DE423
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:07:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BFD0030B1947
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:56:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3414730DB385
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:57:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 449472D3739;
-	Fri, 20 Mar 2026 16:54:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78EB6387347;
+	Fri, 20 Mar 2026 16:56:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="KHCgkjIb"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LXfzJLw+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ixit.cz [185.100.197.86])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2FF73C3443;
-	Fri, 20 Mar 2026 16:54:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.100.197.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A74352DC791;
+	Fri, 20 Mar 2026 16:55:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774025655; cv=none; b=oGoCOZ+yAI0jNW0M57vcj4rU5jZWgo1nYMw4oXmJCC9+BIGpECyKY3bAvxa5p5UUrmdk68HnfD3ZUsr++yO/WX68nHobqOpUiJZo30iVhJFqcbe4fxyrrL1OLZB64jTD5ahfTh/hDMeK0K+jM7eHnycmvsaNQm0y1Szw/f8VRDU=
+	t=1774025761; cv=none; b=O9fmaw82fw0zUqoqkAw5SkeozWi74xAT7Ts5nNXUWzOH/IdOIKoorVNa3t0mkuT0LRwj0XBdzm34K1RZG20F/P/WXqffYrO8XMRIKbOkP3H8p5cH+pfVZFCwl3nzUpajV16XOrmw4pNhQCbx2UIZA5gp6l9MBC52m6VycnwFlPo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774025655; c=relaxed/simple;
-	bh=60d7WIdSmA3cCe7CxAIGDn85UnE6LofaY1MGdVQyCp0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XcBxh3aHnQYRfiXkb/BE4v6Wmviwerc11pGwNIcHrXiBJr7evFxKCTsun4mNg9Aj5ETRk2eS6MiWZivYJOOqMKV4C6jVgBncwqRRlOLhBum0X1i7BxU2mfSff4w+UmZ+9ZI6PGsbeR5wlfFYMOLV32IU4o652pPGcPpKzDK5iNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=KHCgkjIb; arc=none smtp.client-ip=185.100.197.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [IPV6:2a02:f000:10bd:e301::1d7] (unknown [IPv6:2a02:f000:10bd:e301::1d7])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id EE23F53406A0;
-	Fri, 20 Mar 2026 17:54:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1774025648;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=LUG/xxFV1TBn0LikY4kU+r4ovK+4BkPVfC4GvfWSInY=;
-	b=KHCgkjIbq/UHbjh0guBuSWlTy+1Ryx8Z6UO7zFOQkyFu91nEeAzpif0hkoa/3xyvcE05th
-	YdiLHjy+gFRO1li+QbIBrGxsuzQqtzn25kovI7sFC7zrJz50DVLv2cLngEFkYNcGXh57pC
-	i+CHO3odXYtLZpdmfHUivG7UztoXO8k=
-Message-ID: <3dca0fc0-fe1c-4f84-b336-856f55a6e3da@ixit.cz>
-Date: Fri, 20 Mar 2026 17:54:07 +0100
+	s=arc-20240116; t=1774025761; c=relaxed/simple;
+	bh=JOsQO3st7WILZVBsC8f9R41Jc6elrwJYkP5l/BvD1+0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gu9pf6ngCDGII4jH85Dd9A5kRAQg3lQs/Or9oeMtrEZGzDd662TXQTUO2FIDmo+bg8+GY3hauIpWmUDagy29yQw2GHZ0v78JD3tjk+1g2Kdha99DDncER9ZSn9bXyrdmNx4ND+oiM6t47UYAoeOcDQMFmTeg/Eoz3Qw+LpqCFbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LXfzJLw+; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1774025759; x=1805561759;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=JOsQO3st7WILZVBsC8f9R41Jc6elrwJYkP5l/BvD1+0=;
+  b=LXfzJLw+DbmoIVkJssuGGca+WTGY9J5tbTUn73fJLyUWc1V09J17TxtD
+   CVNBiq4UqEAoxppi4izdBXj7ljDYSfCrUoU2RcPWjJ1PitCuKH2Dl8NZi
+   O0qlM/dmnz67SxGgguqRlK3T7NKUO5GugpjQZh2m6RgpXxt/mRdmv47Mi
+   zdTXY/ddp7G0rCVFl5sz4xDNholIgwZYusQ+pKdmc/Rm/kwYmwH7Of6w6
+   WyMLBdNTNUuIe8hkb/4rD3JRFsNt7kJalXbcFaAjSvus4kAPECdP6zSGV
+   HRrUS/PCOkGRF2Nd3HG/O1rVzEY1D0hOP1rcSehmhP+yKFQcDKaMN9MwN
+   A==;
+X-CSE-ConnectionGUID: n8ZnWW3QT/+L8XxEObOLMA==
+X-CSE-MsgGUID: pXJMl3njRDCn5pIS8qiirw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11735"; a="86590450"
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
+   d="scan'208";a="86590450"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 09:55:54 -0700
+X-CSE-ConnectionGUID: yzTcZ5yzTPSLzbwc1yJQiw==
+X-CSE-MsgGUID: HN+kDXFUToSBAd28oBPRcw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
+   d="scan'208";a="222569042"
+Received: from lkp-server01.sh.intel.com (HELO ba623fe84fe1) ([10.239.97.150])
+  by orviesa010.jf.intel.com with ESMTP; 20 Mar 2026 09:55:48 -0700
+Received: from kbuild by ba623fe84fe1 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1w3d8T-000000000Ar-30MX;
+	Fri, 20 Mar 2026 16:55:45 +0000
+Date: Sat, 21 Mar 2026 00:55:14 +0800
+From: kernel test robot <lkp@intel.com>
+To: Chris Morgan <macroalpha82@gmail.com>, linux-iio@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, andy@kernel.org, nuno.sa@analog.com,
+	dlechner@baylibre.com, jic23@kernel.org,
+	jean-baptiste.maneyrol@tdk.com, linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org,
+	krzk+dt@kernel.org, robh@kernel.org, andriy.shevchenko@intel.com,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V2 4/5] iio: imu: inv_icm42600: Add support for icm42607
+Message-ID: <202603210032.xLBroWQu-lkp@intel.com>
+References: <20260319182956.146976-5-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/7] Input: synaptics-rmi4 - handle duplicate/unknown
- PDT entries
-To: Casey Connolly <kcxt@postmarketos.org>,
- Kaustabh Chakraborty <kauschluss@disroot.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
- Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
- Vincent Huang <vincent.huang@tw.synaptics.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org
-References: <20260320-synaptics-rmi4-v7-0-379360de18d0@ixit.cz>
- <20260320-synaptics-rmi4-v7-2-379360de18d0@ixit.cz>
- <fba73d66-4300-4c4d-9bf6-4b38a4e847d7@postmarketos.org>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <fba73d66-4300-4c4d-9bf6-4b38a4e847d7@postmarketos.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260319182956.146976-5-macroalpha82@gmail.com>
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
-	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[lists.linux.dev,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,vger.kernel.org,sntech.de,intel.com,hotmail.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-278391-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278390-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[postmarketos.org,disroot.org,gmail.com,kernel.org,zx2c4.com,ew.tq-group.com,tw.synaptics.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ixit.cz:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-0.956];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:email,ixit.cz:dkim,ixit.cz:email,ixit.cz:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email]
-X-Rspamd-Queue-Id: B7B062DE4A9
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[git-scm.com:url,intel.com:dkim,intel.com:email,intel.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,01.org:url]
+X-Rspamd-Queue-Id: 1F31E2DE423
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 20/03/2026 17:49, Casey Connolly wrote:
-> Hi David,
-> 
-> Nice timing with the series, I hit an OOB access (found it when I
-> enabled UBSAN) with this patch the other day.
-> 
-> The pdt_scan_state->pdts array should actually be of size (RMI_PDT_MAX+1).
-> 
-> Additionally, I think rmi_pdt_entry_is_valid() is missing a bounds check.
-> 
-> Kind regards,
+Hi Chris,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on rockchip/for-next]
+[also build test WARNING on linus/master v7.0-rc4 next-20260320]
+[cannot apply to jic23-iio/togreg]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Chris-Morgan/dt-bindings-iio-imu-add-icm42607/20260320-061927
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
+patch link:    https://lore.kernel.org/r/20260319182956.146976-5-macroalpha82%40gmail.com
+patch subject: [PATCH V2 4/5] iio: imu: inv_icm42600: Add support for icm42607
+config: i386-randconfig-r134-20260320 (https://download.01.org/0day-ci/archive/20260321/202603210032.xLBroWQu-lkp@intel.com/config)
+compiler: gcc-13 (Debian 13.3.0-16) 13.3.0
+sparse: v0.6.5-rc1
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260321/202603210032.xLBroWQu-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603210032.xLBroWQu-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/iio/imu/inv_icm42600/inv_icm42600_core.c: In function 'inv_icm42607_hw_suspend':
+>> drivers/iio/imu/inv_icm42600/inv_icm42600_core.c:1150:13: warning: variable 'accel_conf' set but not used [-Wunused-but-set-variable]
+    1150 |         int accel_conf;
+         |             ^~~~~~~~~~
+--
+>> drivers/iio/imu/inv_icm42600/inv_icm42600_accel.c:108:18: warning: 'inv_icm42607_accel_filter_values' defined but not used [-Wunused-const-variable=]
+     108 | static const int inv_icm42607_accel_filter_values[] = {
+         |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-Thanks a lot for catching this and for the detailed notes — that’s very helpful.
+vim +/accel_conf +1150 drivers/iio/imu/inv_icm42600/inv_icm42600_core.c
 
-Since you’re the original author of the commit, I’m completely fine with you 
-taking over the b4 series if you’d prefer. Alternatively, if it’s easier, feel 
-free to just send me a fixed patch and I can incorporate it.
+  1144	
+  1145	static int inv_icm42607_hw_suspend(struct device *dev)
+  1146	{
+  1147		struct inv_icm42600_state *st = dev_get_drvdata(dev);
+  1148		struct device *accel_dev;
+  1149		bool wakeup;
+> 1150		int accel_conf;
+  1151		int ret = 0;
+  1152	
+  1153		guard(mutex)(&st->lock);
+  1154	
+  1155		st->suspended.gyro = st->conf.gyro.mode;
+  1156		st->suspended.accel = st->conf.accel.mode;
+  1157		st->suspended.temp = st->conf.temp_en;
+  1158		if (pm_runtime_suspended(dev))
+  1159			return 0;
+  1160	
+  1161		if (st->fifo.on) {
+  1162			ret = regmap_write(st->map, INV_ICM42607_REG_FIFO_CONFIG1,
+  1163					   INV_ICM42607_FIFO_CONFIG1_BYPASS);
+  1164			if (ret)
+  1165				return ret;
+  1166		}
+  1167	
+  1168		/* keep chip on and wake-up capable if APEX and wakeup on */
+  1169		accel_dev = &st->indio_accel->dev;
+  1170		wakeup = st->apex.on && device_may_wakeup(accel_dev);
+  1171		if (wakeup) {
+  1172			/* keep accel on and setup irq for wakeup */
+  1173			accel_conf = st->conf.accel.mode;
+  1174			enable_irq_wake(st->irq);
+  1175			disable_irq(st->irq);
+  1176		} else {
+  1177			/* disable APEX features and accel if wakeup disabled */
+  1178			if (st->apex.wom.enable) {
+  1179				ret = inv_icm42607_disable_wom(st);
+  1180				if (ret)
+  1181					return ret;
+  1182			}
+  1183			accel_conf = INV_ICM42600_SENSOR_MODE_OFF;
+  1184		}
+  1185	
+  1186		ret = inv_icm42607_set_pwr_mgmt0(st, INV_ICM42600_SENSOR_MODE_OFF,
+  1187						 INV_ICM42600_SENSOR_MODE_OFF, false,
+  1188						 NULL);
+  1189		if (ret)
+  1190			return ret;
+  1191	
+  1192		if (!wakeup)
+  1193			regulator_disable(st->vddio_supply);
+  1194	
+  1195		return 0;
+  1196	}
+  1197	
 
-Whichever works best for you.
-
-David>
-> On 20/03/2026 17:44, David Heidelberg via B4 Relay wrote:
->> From: Casey Connolly <casey.connolly@linaro.org>
->>
->> Some third party rmi4-compatible ICs don't expose their PDT entries
->> very well. Add a few checks to skip duplicate entries as well as entries
->> for unsupported functions.
->>
->> This is required to support some phones with third party displays.
->>
->> Validated on a stock OnePlus 6T (original parts):
->> manufacturer: Synaptics, product: S3706B, fw id: 2852315
->>
->> Co-developed-by: Kaustabh Chakraborty <kauschluss@disroot.org>
->> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
->> Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
->> Co-developed-by: David Heidelberg <david@ixit.cz>
->> Signed-off-by: David Heidelberg <david@ixit.cz>
-
-[...]
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
