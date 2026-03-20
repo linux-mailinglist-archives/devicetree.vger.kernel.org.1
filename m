@@ -1,216 +1,207 @@
-Return-Path: <devicetree+bounces-278183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278184-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kEX4HfgbvWnG6QIAu9opvQ
-	(envelope-from <devicetree+bounces-278183-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:05:44 +0100
+	id CIACLyccvWnG6QIAu9opvQ
+	(envelope-from <devicetree+bounces-278184-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:06:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC4812D8751
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:05:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A1B52D876E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:06:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BF107300BC8D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:03:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F1A1D30210CF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:03:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 208A335C199;
-	Fri, 20 Mar 2026 10:03:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D97E03603C8;
+	Fri, 20 Mar 2026 10:03:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DQKfhaOc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NBS2DpqK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F20F73563F0;
-	Fri, 20 Mar 2026 10:03:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61EAC355F3E
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 10:03:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774000993; cv=none; b=HhLrzGuTcEQgjY61FUSl0XrjU/Dbd64xI6+AGLnhETSHhQNHtcbRCq8hsn+PA5gAu3wAVkNzeGDJsDCb/arEOFxuSKf4MxTz7Av5jL9Nzj62eRyFG3FIhv2mpRz2aYqfqzYG6PBX/zzG4ck+D7nWU+yvOVw/FHKYpBE6kr0JXCM=
+	t=1774001026; cv=none; b=pyPgrKB30u1SecT6TXCRcMg3wwdun2BWssPh3619PqlTzO6pnpQqIJWvST73pmMpB+dWbCzaFEYPE9GJPK6IjH8yn3aqm3tNOLaBl9NFsMQ3kt51wPkiaOPmdN4vPlFPuxVvxqpF97GuSfYCcnHmwuh4GLjH6EX4MIvJEVhQjaY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774000993; c=relaxed/simple;
-	bh=7ScUjOk9W/drDXblkhRsDrw/vCcn0HfJ2wuKW5dR+Lg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m5SCvWzVwT0zH82ZQINYL6EKXjgE4LtOKFyxCnFpe0Efk/bIOkwRCt0OwLqdbiTUK7eXQirGovH8I0GLPcbs7wYOkRdxMGwmK13keFSuKNRDD3DOatzXolJ27o7mFEr4X6ObUi9fNg3geAtompUSyVp9BaI4tgmK2/p5sS9urf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DQKfhaOc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F12BC4CEF7;
-	Fri, 20 Mar 2026 10:03:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774000992;
-	bh=7ScUjOk9W/drDXblkhRsDrw/vCcn0HfJ2wuKW5dR+Lg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DQKfhaOcKUyBteWvcd88d6C1/eBUYyjEFdUiVlaBVbuxfqWZJsR0e+y3huVojBi7A
-	 a0lY1Bfa6R8NU5Drgp5BjpafaIXdGQBu9BY7r8AKvNJsNiR26tF8JCSUUL8dR0PEzo
-	 IjtcNQlrr25dk1wZwppBxFpu0nkl+Q4RQHuRZ3F7f8UhdWZeYOfpt2YBOAjE7bBeF/
-	 EA0C0B3+Mvi9QPKAfdKBPfsNr6D9mecKq4zU+012O6c6Ywuj2mXtkhy0yNV2ACzP0T
-	 1ni/3ahX/3wzML6dXkyUjk1cUoZU3uy/laTkTgxsmMIUGN45oxJWrtceMDzFhzOxVg
-	 VOkXOo1m3EFSQ==
-Date: Fri, 20 Mar 2026 18:03:09 +0800
-From: Yixun Lan <dlan@kernel.org>
-To: Samuel Holland <samuel.holland@sifive.com>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Subject: Re: [PATCH 1/4] riscv: dts: spacemit: k3: add clock tree
-Message-ID: <20260320100309-GKC525649@kernel.org>
-References: <20260304-01-dts-uart-full-v1-0-50a0aa53a245@kernel.org>
- <20260304-01-dts-uart-full-v1-1-50a0aa53a245@kernel.org>
- <fecadd41-ee3e-4452-bf25-4a70eaeb5f3f@sifive.com>
- <20260314085252-GKB415778@kernel.org>
- <b885158f-3859-4bfa-96b0-39c274a856cf@sifive.com>
+	s=arc-20240116; t=1774001026; c=relaxed/simple;
+	bh=56ptuFV6vKuqQtRYvbY1Sa1x02snZLdIibVK2WtkLD4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XhePaZMQ+nbEKNAZXDhU3fNpqc+UczcSUiUVs6QBLwC3S8S3nJMe4656EQ8h8nwR0M9oWqZJpc7/K9Nok810nAMUeSCBaES5FmAOwopaeyeKIC0Js6ZxlvqVLzcO1958twkO457hyNOR1CFwHciXMjqHWGgE6xbR1suOJBilp4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NBS2DpqK; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-486507134e4so21908155e9.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 03:03:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1774001024; x=1774605824; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8PECkdzxQUdMWnA4pDWLZe22ZFUxdMUPX+0kBZcNa+Q=;
+        b=NBS2DpqKvwzvDrt/G6WWQ2lEzIu/q2rwtTeY+WusxH0Q5Yc/U1iW0+chUHILsKfKXw
+         t/e0PLsYPq+JxEsRUA6n0Zqce4X3Jjml+T85PkAS+RUL9uqZ4gzm8bseM+DHnB/OD/3F
+         eYgAR3VtvgFCWB28xj6euUxfFNyJl4Poe00CWU+NTf+8kIqXU9VNKrEmQTw++eg5f0nI
+         h/iY2RhpYyjbIETT7CJJg8ONMC9OVQt+OEjeuxoP7kAY6N83Difz6cFu629BFDEDEoDa
+         +iFLRJMNOzr05Bo/cYSah1DIRMU4KthZy23N5fYarUIGzdSCIOaLEeYxYH6ZPoR+EIgR
+         fVsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774001024; x=1774605824;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8PECkdzxQUdMWnA4pDWLZe22ZFUxdMUPX+0kBZcNa+Q=;
+        b=CX2XkaqB6FtuR3x7jPIE1+qwr0SJKTTnxA4fKo9xaDWVK3RGG+cRaJWUSglI1DvFSt
+         UQNi3AXyyjiwKn40P+i8UoB0TfGzlbH4wEjiOgQWwhulTUvlVwmtYhcGvcVbbWRGagdH
+         Lby2w2jGWPaT+cfNW705o1WIoRMqdS81OOPWB+im1d+dJSQckWgw9x/ITLaHbm7Uhss7
+         BLz1tD5bby3+4H7zzLvL+og2gV17ff3DAaEGs4HfjnnHiiWqwPlmqC3uf35YhoCHW6H1
+         mkZzhZ6ZpVQPbY81hFWCxqUm63QOd6z7+/Af/vbkg3NBWak70ZS+g70xONDI65WY46Ww
+         t0Hw==
+X-Forwarded-Encrypted: i=1; AJvYcCXGAv5CfCUsr+NKEC3A4qQpI0Qk3d1DYTTVBg9K+YLIFT//X6erADNB3ZBgrjM7Zo5Whol4Z6S8J21H@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/ayP3uvIA8IAjaCTqvqMo8Q31EzMPZ97jzYJCM1SshGL9qR6k
+	hbPj+aG2vzXIz6FJwiCojujqvGdrGXlLervUTY1kFn69mT0qOlLRSEtp1tM6ngent/U=
+X-Gm-Gg: ATEYQzzJm9OYECSrjNSr3gSrORXppOdYd6vhffqTd+p4FRKBTf6JaMrqXcdg1mOpMPG
+	mLaTI4Y0KGdb2BQrv99rlW7IthpA0ddgpmkzkLIyZJFoEMQ/+d4AgzFP8K1SpEli4KbapphU1xE
+	wlXmVhC93j3QfrnELtgkTeYlWVpvAbWDlKaFMR4hhZq2OePy6i8nVy2qwy06v+PmnPRzGHXcVHs
+	qkWDYw4DNdbdfmuOVAhVVQ3bB51d6+TIwDwnuIgUDP9ANdQUplf+0KbOdwL4oWOgaPGA79aQ/eH
+	HHfs56gQrc76yn4HVmxobN6Iw9ROvr6DvjBuQhoQcGK+duKDvK+meM4GoNq4JlKGyaHa4dRzzbC
+	ryUUsmkcVkiQ2KcnyYhBaWP3o+93Kc+R8BVGT5FSE9cVapbiGZxEBCqzj+MKea+tFZ99lNDjlgO
+	7/rIMIxAbfvSY+hczRK8T9zof6uz+uSpLB4k0d
+X-Received: by 2002:a05:600c:820e:b0:483:7903:c3b1 with SMTP id 5b1f17b1804b1-486fee12c91mr37811065e9.20.1774001023684;
+        Fri, 20 Mar 2026 03:03:43 -0700 (PDT)
+Received: from [192.168.0.167] ([109.76.207.215])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486ff1db4aesm15557435e9.7.2026.03.20.03.03.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Mar 2026 03:03:42 -0700 (PDT)
+Message-ID: <90dc434a-42a7-4719-8006-0b141d281ac7@linaro.org>
+Date: Fri, 20 Mar 2026 10:03:41 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b885158f-3859-4bfa-96b0-39c274a856cf@sifive.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] usb: typec: qcom: Add support for per port VBUS
+ detection
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Alexander Koskovich <akoskovich@pm.me>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260312-qcom-typec-shared-vbus-v2-1-99ed9e500947@pm.me>
+ <1fd9048c-b0c0-451a-a6f7-e5474352d118@oss.qualcomm.com>
+ <pvmxnx7fmcdli5qoanmo62mmoxd2vslh2ujbka4cfmxyo4hxl6@dueec5hukqi5>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <pvmxnx7fmcdli5qoanmo62mmoxd2vslh2ujbka4cfmxyo4hxl6@dueec5hukqi5>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278183-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.946];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278184-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.990];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: EC4812D8751
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,pm.me:email]
+X-Rspamd-Queue-Id: 2A1B52D876E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Samuel,
-
-On 09:13 Sat 14 Mar     , Samuel Holland wrote:
-> Hi Yixun,
+On 19/03/2026 19:57, Dmitry Baryshkov wrote:
+> On Thu, Mar 19, 2026 at 02:26:00PM +0100, Konrad Dybcio wrote:
+>> On 3/12/26 7:16 AM, Alexander Koskovich wrote:
+>>> This is required for devices (e.g. ASUS ROG Phone 3) where more than
+>>> one USB port can act as a sink and both share a single USBIN input on
+>>> the PMIC.
+>>>
+>>> Because the PM8150B uses USBIN to determine VBUS presence, a charger
+>>> connected to one port causes the PMIC to falsely detect VBUS on the
+>>> other port, preventing it from entering source mode.
+>>>
+>>> For example, plugging a charger into one port prevents using the other
+>>> port for a flash drive.
+>>>
+>>> Fix this by adding support for the vbus-gpios connector binding so the
+>>> driver can use an external GPIO for per-port VBUS presence detection
+>>> instead of the shared USBIN register.
+>>>
+>>> Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
+>>> ---
+>>> Changes in v2:
+>>> - Dropped RFC prefix
+>>> - Remove redundant vbus-detect-gpios, instead use existing vbus-gpios from usb-connector (Dmitry)
+>>> - Updated cover to better describe scenario where this change is relevant
+>>> - Update comment for EN_TRY_SRC to make more sense
+>>> - Skip vSafe5V poll too not just vSafe0V
+>>> - return gpiod_get_value_cansleep (Konrad)
+>>> - regmap_update_bits -> regmap_set_bits (Konrad)
+>>> - Get vbus-gpios per connector (Konrad)
+>>> - Add bracket to if (IS_ERR(pmic_typec_port->vbus_detect_gpio)) (Bryan)
+>>> - Link to v1: https://lore.kernel.org/r/20260308-qcom-typec-shared-vbus-v1-0-7d574b91052a@pm.me
+>>> ---
+>>>   drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c | 53 +++++++++++++++++++++-
+>>>   1 file changed, 52 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c
+>>> index 8051eaa46991..a8f6687a3522 100644
+>>> --- a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c
+>>> +++ b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c
+>>> @@ -5,6 +5,7 @@
+>>>   
+>>>   #include <linux/delay.h>
+>>>   #include <linux/err.h>
+>>> +#include <linux/gpio/consumer.h>
+>>>   #include <linux/interrupt.h>
+>>>   #include <linux/kernel.h>
+>>>   #include <linux/mod_devicetable.h>
+>>> @@ -176,6 +177,8 @@ struct pmic_typec_port {
+>>>   	bool				vbus_enabled;
+>>>   	struct mutex			vbus_lock;		/* VBUS state serialization */
+>>>   
+>>> +	struct gpio_desc		*vbus_detect_gpio;
+>>
+>> I'd like for this to include the word 'secondary', since it's not obvious
+>> that if an external GPIO is at play, we have two ports connected in this
+>> uhh non-standard fashion
+>>
+>> perhaps just secondary_vbus_detect_gpio
 > 
-> On 2026-03-14 3:52 AM, Yixun Lan wrote:
-> > On 20:44 Fri 13 Mar     , Samuel Holland wrote:
-> >> On 2026-03-04 1:36 AM, Yixun Lan wrote:
-> >>> Add clock support to SpacemiT K3 SoC, the clock tree consist of several
-> >>> blocks which are APBC, APMU, DCIU, MPUM.
-> >>>
-> >>> Signed-off-by: Yixun Lan <dlan@kernel.org>
-> >>> ---
-> >>>  arch/riscv/boot/dts/spacemit/k3.dtsi | 75 ++++++++++++++++++++++++++++++++++++
-> >>>  1 file changed, 75 insertions(+)
-> >>>
-> >>> diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/spacemit/k3.dtsi
-> >>> index b69cf81b5d55..e3d7f3102fd5 100644
-> >>> --- a/arch/riscv/boot/dts/spacemit/k3.dtsi
-> >>> +++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
-> >>> @@ -4,6 +4,7 @@
-> >>>   * Copyright (c) 2026 Guodong Xu <guodong@riscstar.com>
-> >>>   */
-> >>>  
-> >>> +#include <dt-bindings/clock/spacemit,k3-clocks.h>
-> >>>  #include <dt-bindings/interrupt-controller/irq.h>
-> >>>  
-> >>>  /dts-v1/;
-> >>> @@ -398,6 +399,36 @@ core3 {
-> >>>  		};
-> >>>  	};
-> >>>  
-> >>> +	clocks {
-> >>> +		vctcxo_1m: clock-1m {
-> >>> +			compatible = "fixed-clock";
-> >>> +			clock-frequency = <1000000>;
-> >>> +			clock-output-names = "vctcxo_1m";
-> >>> +			#clock-cells = <0>;
-> >>> +		};
-> >>> +
-> >>> +		vctcxo_24m: clock-24m {
-> >>> +			compatible = "fixed-clock";
-> >>> +			clock-frequency = <24000000>;
-> >>> +			clock-output-names = "vctcxo_24m";
-> >>> +			#clock-cells = <0>;
-> >>> +		};
-> >>> +
-> >>> +		vctcxo_3m: clock-3m {
-> >>> +			compatible = "fixed-clock";
-> >>> +			clock-frequency = <3000000>;
-> >>> +			clock-output-names = "vctcxo_3m";
-> >>> +			#clock-cells = <0>;
-> >>> +		};
-> >>> +
-> >>> +		osc_32k: clock-32k {
-> >>> +			compatible = "fixed-clock";
-> >>> +			clock-frequency = <32000>;
-> >>> +			clock-output-names = "osc_32k";
-> >>> +			#clock-cells = <0>;
-> >>> +		};
-> >>
-> >> Are these clocks provided by SoC or by the board? Usually there's a crystal
-> >> external to the SoC that provides the root of the clock tree. If these clocks
-> >> are provided by the board, they (or at least the clock-frequency property)
-> >> should be in the board DT, not the SoC dtsi.
-> >>
-> > It's true, as a quick check, osc_32k provided by P1 PMU, while vctcxo_24m is
-> > a crystal, vctcxo_1m and vctcxo_3m are also marked as external in the clock
-> > tree, but I would confirm them later..
-> 
-> In that case, osc_32k should ideally be a reference to the P1 PMU clock
-> provider, not a fixed-clock. But this may be infeasible if it creates dependency
-> loops (PMU depends on I2C, I2C depends on clocks, clocks depend on PMU).
-> 
-Yes, in an ideal case, not only there is dependency loop, but need to
-implement a clock tree for P1..
-
-Currently, I'd leave it as fixed-clock as is, since the 32k clock is
-always on from P1 since power up
-
-Also, for vctcxo_1m and vctcxo_3m, they are clocks derived from vctcxo_24m which
-unable to be gate off, so I think it's ok to leave them as fixed-clock.
-
-> > I agree to move them out of SoC dtsi file - k3.dtsi, while due to all boards share
-> > the same clock topology, what if I creating a k3-clock.dtsi and making it shared 
-> > between all board dts file? to avoid massive DTS duplication
-> 
-> Yes, it is common practice to create a .dtsi file for things shared among
-> several boards for a SoC (for example if they are all based on a reference
-> platform). You may want to name it something more generic if more than just
-> clocks can be shared (like k3-common.dtsi, compare jh7110-common.dtsi).
-> 
-k3-common.dtsi sounds good to me
-
-> >> Also, the /clocks node is out of order.
-> >>
-> > I will move osc_32k before vtccxo_1m, assuming it's the problem you
-> > refered to?
-> 
-> I mean that /clocks sorts alphabetically before /cpus. Your ordering of the
-> fixed-clocks nodes themselves is fine.
-> 
-ok, I got
-
-> Regards,
-> Samuel
-> 
+> In theory it can be used even if we have one port.
 > 
 
--- 
-Yixun Lan (dlan)
+That's true.
+
+Its quite common in OTG devices to have VBUS detect GPIOs.
+
+---
+bod
 
