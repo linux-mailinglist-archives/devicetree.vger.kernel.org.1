@@ -1,160 +1,199 @@
-Return-Path: <devicetree+bounces-278117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278118-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OF4aCRYIvWkO5gIAu9opvQ
-	(envelope-from <devicetree+bounces-278117-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:40:54 +0100
+	id IH1kMBMKvWkO5gIAu9opvQ
+	(envelope-from <devicetree+bounces-278118-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:49:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61F902D74FF
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:40:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E68B2D776D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:49:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 37D7E304A173
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 08:38:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C36BF304415B
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 08:44:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E43E364935;
-	Fri, 20 Mar 2026 08:38:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7005337417F;
+	Fri, 20 Mar 2026 08:44:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nPF8vxH3"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Ii4AbQp0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 415FD2C21F2;
-	Fri, 20 Mar 2026 08:38:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 266A9371072
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 08:44:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773995923; cv=none; b=kKICttoOnfDIOI+n5eMNJ8gbeehxIDIiLb372+Q38bvHYzvya8UEy43mFrmEUw5mNbAsdK6FQDpgfziUZP03F6j4XJOvGpUojuBgZQJQedgwh/m8ImG7ELgOixA0FcTcEX6cR5XgKai4gACfvxR3oR7Ri4LdFI8gvupnPAbiB6k=
+	t=1773996241; cv=none; b=Az+dxTIxsROB8rgbAJrCE1jLPH3fC0/k6ZKvqmniW/5q8KLgMmWWadYm5Kt+r3Sv629WEKHKwDIQ/LqAzjLLzSnG1CnIcaU8Xeq2w9dcY6L3soU9b96u8PMWz5VR97VRv7cdN8xBWvEGxRiXGo1jRxe2hs+zOTvD40sABAOtUgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773995923; c=relaxed/simple;
-	bh=WzQki4esm2bSXcPacYWgW0MMcozufKN02uhnhwpB4vc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FvBEh8i0G5+ubojJ39M7FmoDZ33YSlCdocn1A4E3/BiO2OcjG1eDv9YMHDfW/vcEcFY1k5sNmd6ROGapp4yS6YoknSwiA0omie6fSSH/v9HVNCRoA6CEKsjHd+cwWgmLqO7tO0GmRpZTKOLl3SzTi8YksqRLcE/NUuqFQhiIakU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nPF8vxH3; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773995921; x=1805531921;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=WzQki4esm2bSXcPacYWgW0MMcozufKN02uhnhwpB4vc=;
-  b=nPF8vxH39Z0trXh9pSgiXMF+CXiCpplI+Rt/0SeoEf8A68ewQcucshd/
-   pn3qImhfUg378nbIwYSsV+zziGOtc+LZVlEGailIjTzwuPZCIAMM+a8F8
-   +F7GBHSiPqQvePOLDgt4kVzFe9TV4wk0APVmb8DxF9v61XibzaIvf3CWK
-   jmY7EwkPLxpEY4txTpSrroO1RprmAg9t9sNX4YppyUNG0cGTZjUMp2ZCR
-   zLRXyCBwv+Xu/ZkgjtNpjN6dqwDa2o3VxiAthadgvB5jFv7JvRFF7PrdU
-   mHa5RsX1pbsHmUM+dotCOlXcBCDR28f0AP9WO5QWI9dANA6Sa3ATSadHV
-   w==;
-X-CSE-ConnectionGUID: 8wz/hyeHTpq6i8DhbzArSQ==
-X-CSE-MsgGUID: 0zrvcw3RT8Snl2tF2OQUsQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="74093212"
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
-   d="scan'208";a="74093212"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 01:38:40 -0700
-X-CSE-ConnectionGUID: NX3SEgrkQMSw5lEDIzEd3w==
-X-CSE-MsgGUID: 9WEYMAoVSjqSdbJlw4b+fw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
-   d="scan'208";a="219051799"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.40])
-  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 01:38:38 -0700
-Date: Fri, 20 Mar 2026 10:38:35 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Siratul Islam <email@sirat.me>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, jic23@kernel.org,
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	s=arc-20240116; t=1773996241; c=relaxed/simple;
+	bh=ZB5VH3FplpepEZU/xeRmZriCO1K5P4Fq+M5g4lOboZM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hUoXwDlRqdVlZQQcCz5qUVWExPn8LX11kmj56LHCgij3FF2/dAqq+Y2L4crVuQPSQ+VPqlmkAnlFcVdkSG0+JbsUf4DJ7CLgJS6bXhEgfiuU1vAwrjU6uXZ0KkC3R+MfZvMvS/hmOzinIUPRPCyqukPOMevPr1Nc3OuYj+3k5i8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Ii4AbQp0; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2b04b4974abso16414795ad.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 01:44:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1773996239; x=1774601039; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XLA7+O4naI3deHzrbL/7xXnsE7GTOurmxvnrea6kDcM=;
+        b=Ii4AbQp0wMg+HL6c3FRtr2/xrTTZZMTLMPexI8YSObHBsM29LfhiPuimjleBiWS1lO
+         8+dM7pIsmg+H7a0rcrgLKIow7ZlfwJd+XQKKxeX2MT4H6KWBUaXP3IVZQa3/+vS4Uccj
+         LK9eCHnyZkutyfJCoYYuar7ejorUG0dcPeZQ0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773996239; x=1774601039;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XLA7+O4naI3deHzrbL/7xXnsE7GTOurmxvnrea6kDcM=;
+        b=SBn/CPt+MleW4M8McrKAy3tG/kM/lWkx9nF8+4/61C+nztMj6qWrGovjB/HRd3g+xO
+         l/V8EvlbAbGHrmXQdr7YOTujgXpn+zU0wTdEJBgJhpPYaGiNGC3tyaYvUuhHTlzWB4ka
+         aca/L41eUwQ5oNp7LRHqMz4LU2g5kfW4zTn13TK9HHrKkmYwotVmh4RSyClH/5vkLb8S
+         ldH7/TL2R40Ki3nuZVHBSlIgOAxIER9ynv8gavmJnWu9XFnoJHXQ4n+Qtb1GKEmW+wUS
+         8WsF0ElNdAAYNbHqD3wF4wco08WpGMaE6BbuD08TtpHqTwIb1QUBdHXiMRPWo0Ff/fgm
+         E8yg==
+X-Forwarded-Encrypted: i=1; AJvYcCXUceDNSBWIolKB8ucrBa8Gcbkbei7B4Q9x2uKzMPK4Akn+g052Zc3oYKjhMrDfpOl4wHHZ9GD9UU7E@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFE2Tcmox0dFvkszZxqY/5nuhNnw0xvkCKQ0Kf7CBIGm0wMINW
+	ZiZADbOSMzPDS8fCPwAd/N1mP7TFHgmFHr0oIr8xg/G3YBrcM7J8W2MHvnRxmu+H6Q==
+X-Gm-Gg: ATEYQzyRb9b7TRPTsyRrgZZsi91QbZx464mWhjlnFu2y8+dBvTnI7+U81kdD6JlSEDU
+	dbkA4zvFDwDc6VTA2SsCWAzcIU7ztsm3sq9pC/eNlHAN6hI1J5sQvayrXWLSw62VstHtBCLSLKO
+	bJknKkD+CFEWmirORgpUIeEFENO2TXOQNKxhVJohldiMcHm5J9NzTPjKmY2Ngw4NI1DY3dJjL2l
+	xz4SSx38hPpXvn9hwCKyBTOw8Otetti+vazq4Ly/b3mYy0MjOSTfXfEdz5Yk7O4vw5yeDZDb5sW
+	7uDNVn7UiV8VC2CUZHKJ+jVA28pUZOkBXxnhMKP4YGC2miHAW23KevK0p2COxTp4sYk7bYHBWQL
+	7qzxjUDjdPI1pirII3mH3UPEzP1y7t1FKzTaj51Kx3R+Oo5+CZzJWdxWHnr4C2xKxvhUofUjwCU
+	CxmPwbK76WehZPNXsSSr9KZmJHpSC3lO/dXDUqn4bDcTm6XSFu/qENqdfrHcCPVALAq9F18Cbb8
+	EX8wB2S
+X-Received: by 2002:a17:902:d541:b0:2b0:5cb3:e4bc with SMTP id d9443c01a7336-2b0826f6b0dmr20672295ad.16.1773996239541;
+        Fri, 20 Mar 2026 01:43:59 -0700 (PDT)
+Received: from wenstp920.tpe.corp.google.com ([2a00:79e0:201d:8:9cdf:e932:6f2f:c654])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b0836a3066sm14917905ad.75.2026.03.20.01.43.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Mar 2026 01:43:59 -0700 (PDT)
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+	linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] iio: proximity: add driver for ST VL53L1X ToF
- sensor
-Message-ID: <ab0HiyZcjuLr8kFw@ashevche-desk.local>
-References: <20260319190738.151614-1-email@sirat.me>
- <20260319190738.151614-3-email@sirat.me>
+Subject: arm64: dts: mediatek: Regulator cleanup for Chromebooks
+Date: Fri, 20 Mar 2026 16:43:32 +0800
+Message-ID: <20260320084351.2461060-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.53.0.959.g497ff81fa9-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260319190738.151614-3-email@sirat.me>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278117-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,collabora.com];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278118-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[chromium.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.988];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ashevche-desk.local:mid]
-X-Rspamd-Queue-Id: 61F902D74FF
+	NEURAL_HAM(-0.00)[-0.916];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 4E68B2D776D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 20, 2026 at 01:07:14AM +0600, Siratul Islam wrote:
-> Add support for the STMicroelectronics VL53L1X Time-of-Flight
-> ranging sensor with I2C interface.
+Hi,
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+This series contains the device tree bits for the collection of regulator
+related cleanups for MediaTek Chromebooks. The device tree binding and
+driver changes are:
 
-A couple of small style amendments below, but no need to resend
-only for addressing them — Jonathan can tweak if he agrees on that.
+MT6315
+- https://lore.kernel.org/all/20260320072302.2402489-1-wenst@chromium.org/
+MT6359
+- https://lore.kernel.org/all/20260320072440.2403318-1-wenst@chromium.org/
+cros-ec-regulator
+- https://lore.kernel.org/all/20260320083135.2455444-1-wenst@chromium.org/
 
-...
+The goal is to complete the regulator tree so that there are no orphan
+regulators, and there are no devices that are missing supplies.
 
-> +static const struct regmap_range vl53l1x_wr_only_ranges[] = {
-> +	regmap_reg_range(VL53L1X_SOFT_RESET, VL53L1X_SOFT_RESET),
-> +	regmap_reg_range(VL53L1X_SYSTEM__INTERRUPT_CLEAR,
-> +			 VL53L1X_SYSTEM__MODE_START),
-> +};
-> +
-> +static const struct regmap_access_table vl53l1x_readable_table = {
-> +	.no_ranges = vl53l1x_wr_only_ranges,
+Patch 1 drops the bogus regulators from the mt6359 dtsi file.
 
-I would spell 'write' in full in the name of the array variable.
+Patch 2 adds a label for the mt6359 regulator sub-node. This is used in
+subsequent patches.
 
-> +	.n_no_ranges = ARRAY_SIZE(vl53l1x_wr_only_ranges),
-> +};
+Patch 3, 9, and 12 add supplies for the MT6359 PMIC in various
+Chromebook designs.
 
-...
+Patch 4 and 10 add supplies for the MT6315 PMIC in various Chromebook
+designs.
 
-> +	ret = regmap_write(data->regmap, VL53L1X_SYSTEM__INTERRUPT_CONFIG_GPIO,
-> +			   VL53L1X_INT_NEW_SAMPLE_READY);
-> +	if (ret)
+Patch 5 adds supplies for the ChromeOS EC controlled regulators in the
+Asurada design.
 
-> +		return dev_err_probe(dev, ret,
-> +				     "failed to configure IRQ\n");
+Patch 6 and 13 add power supplies for the CPU cores.
 
-It's perfectly one line.
+Patch 7 adds the power supply for the SPI NOR flash chip in the Asurada
+design.
+
+Patch 8 and 11 fix up load switch descriptions.
+
+Obviously the 3 dependency series need to be merged before this series,
+or we will get a bunch of new DT validation errors.
+
+Please have a look.
+
+
+Thanks
+ChenYu
+
+
+Chen-Yu Tsai (13):
+  arm64: dts: mediatek: mt6359: Drop ldo_vcn33_[12]_wifi regulators
+  arm64: dts: mediatek: mt6359: Add label for regulator sub-node
+  arm64: dts: mediatek: mt8192-asurada: Add MT6359 PMIC supplies
+  arm64: dts: mediatek: mt8192-asurada: Add MT6315 PMIC supplies
+  arm64: dts: mediatek: mt8192-asurada: Add supplies for ChromeOS EC
+    regulators
+  arm64: dts: mediatek: mt8192-asurada: Add CPU power supplies
+  arm64: dts: mediatek: mt8192-asurada: Add SPI NOR flash power supply
+  arm64: dts: mediatek: mt8192-asurada: Fix WiFi regulator description
+  arm64: dts: mediatek: mt8195-cherry: Add MT6359 PMIC supplies
+  arm64: dts: mediatek: mt8195-cherry: Add MT6315 PMIC supplies
+  arm64: dts: mediatek: mt8195-cherry: Fix VBUS regulator description
+  arm64: dts: mediatek: mt8188-geralt: Add MT6359 PMIC supplies
+  arm64: dts: mediatek: mt8188-geralt: Add little core CPU power
+    supplies
+
+ arch/arm64/boot/dts/mediatek/mt6359.dtsi      | 12 +--
+ .../boot/dts/mediatek/mt8188-geralt.dtsi      | 45 +++++++++++
+ .../boot/dts/mediatek/mt8192-asurada.dtsi     | 75 ++++++++++++++++++-
+ .../boot/dts/mediatek/mt8195-cherry.dtsi      | 28 ++++++-
+ 4 files changed, 145 insertions(+), 15 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.53.0.959.g497ff81fa9-goog
 
 
