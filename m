@@ -1,232 +1,276 @@
-Return-Path: <devicetree+bounces-278222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278223-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4G64JXcovWkG7QIAu9opvQ
-	(envelope-from <devicetree+bounces-278222-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:59:03 +0100
+	id EEyhNLEpvWkG7QIAu9opvQ
+	(envelope-from <devicetree+bounces-278223-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:04:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE3802D92DC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:59:02 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 937BE2D940D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:04:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 662FD3008E3A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:58:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 807E2300D90C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:04:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83339398905;
-	Fri, 20 Mar 2026 10:58:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B618639182B;
+	Fri, 20 Mar 2026 11:03:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AvvYm3Ig"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YzNErErr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A4F52C21E8
-	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 10:58:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91C8B375AB5;
+	Fri, 20 Mar 2026 11:03:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774004322; cv=none; b=tft2fV9D4rEllUCHTuBVdjZ+5+ladM4RTnGxeW+jkGxhAaNywXrteiQ4EZLzswZIE66cCzIHCN6R0y0Lu7WxoKUy7IFkDFPpgCJ5IspuYEPaHoYDAf1Ro2uOaWc4VrT7hKPQ7arPNzqcUxRxtIg7ml5S3STMvHbM0QU0wQSGJCc=
+	t=1774004639; cv=none; b=RlEEslTUtETiXtO+h8pIp1CrDsuM+al4rNsb+yVI0O5AeI3l0MLnao1I6peVaRxmhTAGAJ3IEB4Df9ajXCBo7FqAPOSulXVmQr7k3QTyKcreNfZAITEgFIInnTydBwvhuii4sJZjbD0TGZObA2VX4cd68yUlI5Rdt/FHzXpUwhA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774004322; c=relaxed/simple;
-	bh=1WDWI/kLqrRGMsmpIa4gXjVUYGr0oVZNGcakVNZs+Tk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=CVAVdLdR3n0vIBpkxwwFCi1xv7ds546oLXuBD5ZC2D7tXW4CzDR0N74NpFA1a5BzBd4rMj4dghVrof2ykneLFtb2YUl+P06eYmI6irGPuCG2d0s9/xai+tUxUOgmfWaew2wqe/Lz3bK7WDqKrrrqqBPB0+KXa3kCVimnZfBzPKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AvvYm3Ig; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2b04d051664so14820215ad.0
-        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 03:58:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1774004320; x=1774609120; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hR/3Iy9Wlowf1KzCMFQLQDZRWz2rtZK8yylHv0B+bZY=;
-        b=AvvYm3IgIDlRJvJIpzhKCHc2lrZzKq1Q14C2kIk+qJFz6TQ1NFThIBnzSNZgsoga7q
-         gq8KlG8iZEwHCCMrKE/I0Z3NKu5++fGCmoOkiaWPp9mbs91+jLjpE6oT6YHKiVJsL75M
-         1Z/fwvMfiFJ5GadzCYB5w2JWXETgDgbFREFL4wNFopkfchYeYZMbu6pS1vKLsqD6ci6U
-         uQg3fc3u3uSMRuzk/pRqJtw7Mrh9I2YJxZucKgSgkoJU5z09vwin+M4IQoWRhCu0YzVp
-         QF9vJnvWMnb+imDMLyykBrtF/eYR0FHMZO1zFIKJy/Yd8qxmfh6oKem+VEQ2a43YzdsK
-         O57w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774004320; x=1774609120;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=hR/3Iy9Wlowf1KzCMFQLQDZRWz2rtZK8yylHv0B+bZY=;
-        b=K0vLnRGYIQQ+N4uug+sAkflSvsyDSqP8sB0RqwGZcht2Kyw2smXGQGBXSo3XzWOyK/
-         /MPCFD/tsegwuVw4pYfghAFaHES11PBp6PQz49Z9CfAlHl1H658fh7CHeWVcp3zlg6jh
-         DEBT6RsTr1ZZZRhu9LwNB6xnfFppfeG88OkCXbdhyrNBoJ8xG7akkYI+/JLYZ3ILXgBu
-         XCBTLTzsq4VbPZzB5pzHIUycI+eKie2qfINshlLTj7AXdC2DM+T2I5Ki4UQC9dQoWIFG
-         LYLWFBXqID7dAjFN+kp2w5/W++7Dk6SwyFaNe1QKV/TBYH+KRIlEEQqhtAD7jBipCyo2
-         yXtA==
-X-Gm-Message-State: AOJu0YwHgPLO3+r9NmV16MTq6Onkr2X6Zm6tY3zit2v6mE9UcUtri05Q
-	G7ggoHW0SWQTrO3kPLImPv/TcOnyye9foK0Ufr7A1MkBfHeLttEn0FwZ
-X-Gm-Gg: ATEYQzy3pxvj7aUlR96akLXtLDQJVOjAb+VbF/dicmNoVmqfYpm62PiQ5fU180TFHkH
-	3M/2dOVvp3KTUoF/LAX23O0TOs1S8/YaQ+B8qPDpgEbVDyMQ3LBtuRsRCYXqEeuOxAaJt3t1hTN
-	FyPXBkSMjUeY19H++yuvlgy9mANvNrQTlt+9qv7lQ/2xb+EO8mxotMQy2XyJY9Lg9PsP0Iz1wEl
-	IKFfoNh2Iu9T53Jb1YjhiFZG17X+sdgag7FmUgO2Y5paIRWG6FW3lB9ksaTLn7TMjVpQZMjztUw
-	Ir4W50XpVu7woKzboBeDE3H3tXBKROhZT6KtAYu7EaB3jW12f1yH+6ZTubGssNzLR0gks6EPlil
-	4/6CwJdEwjqOAHUaVWX6rLe4vCVulgIgblujrRTB2Ohuk6nckvHN7EuFmeu9FX5DdaQDitqxbiv
-	Xg37k/WSP1FcVlWLhBp4pd30WKT+1WnAL0W46SMT3/+myhBMRwwnxV4Cdoh3aO2Z9mr8e2yebRf
-	aNmRco=
-X-Received: by 2002:a17:902:c950:b0:2b0:60f1:de58 with SMTP id d9443c01a7336-2b0827d1a18mr23865375ad.45.1774004319672;
-        Fri, 20 Mar 2026 03:58:39 -0700 (PDT)
-Received: from buffalo-ssd.taila54753.ts.net (M014013071096.v4.enabler.ne.jp. [14.13.71.96])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b083516eacsm25636405ad.15.2026.03.20.03.58.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Mar 2026 03:58:39 -0700 (PDT)
-From: Akari Tsuyukusa <akkun11.open@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	sean.wang@mediatek.com
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Akari Tsuyukusa <akkun11.open@gmail.com>
-Subject: [PATCH v3 2/2] arm: dts: mediatek: mt6589: add basic support for Lenovo B8000-F
-Date: Fri, 20 Mar 2026 19:58:22 +0900
-Message-ID: <20260320105822.447337-3-akkun11.open@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260320105822.447337-1-akkun11.open@gmail.com>
-References: <20260320105822.447337-1-akkun11.open@gmail.com>
+	s=arc-20240116; t=1774004639; c=relaxed/simple;
+	bh=L2DyslcxuuFf7iElJ54ONbiTYAIR9Qi8A8oX8s5e1HI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=G3VzYZaZNVGxZMKO8FUjqzc2ufkAZ/fMny43YimnCi+EGMzdbfua9faXb+KrmTIkJJzi8qVbV5xJ6UgbWI5W7drUgrx0bH2MmBHmxZ+rUWNL7deKNiqCYb/SkyNVlllk3F2fqMgqiv+JKwX/xY/6cDjVIPTBszfmWbsJ+JeAIhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YzNErErr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 67941C4CEF7;
+	Fri, 20 Mar 2026 11:03:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774004639;
+	bh=L2DyslcxuuFf7iElJ54ONbiTYAIR9Qi8A8oX8s5e1HI=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=YzNErErrvG900RKIp8aZiac4EeGUh2DnDwF0tW5gbZIxt2XChzrJb9+NTz3hWTUKA
+	 rqmqLFUqMfhtnKUBEDlVlME+be1nOMKtEOnrm4X/zuU2GhXHUUMEqzHIAE8Q973nGR
+	 DarjpqYmZ345y1y/slnTsRPNC5hby+IZTU5MrlE3De8I0KVLnYez/yeDB3/cflcpse
+	 Z3PvB9au8uRqqzk7BKGsYRamjSa0utlNHcv31A7ju2DpwOF05K25YDrCHB+0qzUaXM
+	 mQhE2+b/BZsJgcPav/PQOAB9tI8zMTCPZhNiyfB/rE3IsmnheP6YA0D4p722yDExIW
+	 HlPxekbMy/uRA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 56BDE108B8F5;
+	Fri, 20 Mar 2026 11:03:59 +0000 (UTC)
+From: Radu Sabau via B4 Relay <devnull+radu.sabau.analog.com@kernel.org>
+Subject: [PATCH v4 0/4] iio: adc: ad4691: add driver for AD4691
+ multichannel SAR ADC family
+Date: Fri, 20 Mar 2026 13:03:54 +0200
+Message-Id: <20260320-ad4692-multichannel-sar-adc-driver-v4-0-052c1050507a@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-B4-Tracking: v=1; b=H4sIAJopvWkC/43NQQrCMBQE0KtI1kaSn1hTV95DXCT5Xw3UVpIal
+ NK7mxYExU2XMwxvBpYoBkpsvxpYpBxS6NoS9HrF/NW2F+IBS2YgoBJKALeoqxr47dH0YVq01PB
+ kY+k9xxgyRb4zpFFrBO2AFege6Rye88nxVPI1pL6Lr/kzy6n98NslfJZccKUqgNoa9H53sK1tu
+ svGdzc2+Rm+TCkWmVBMrJ0zltyW5L+pvk21yFTFdBqlRiOtNPLHHMfxDfclFzZ9AQAA
+X-Change-ID: 20260302-ad4692-multichannel-sar-adc-driver-78e4d44d24b2
+To: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, Radu Sabau <radu.sabau@analog.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774004636; l=8011;
+ i=radu.sabau@analog.com; s=20260220; h=from:subject:message-id;
+ bh=L2DyslcxuuFf7iElJ54ONbiTYAIR9Qi8A8oX8s5e1HI=;
+ b=33DNg90fJB06nH6J4RZuCy8EuVUVMfiPeIezUxxesYdRzps9wgXTjW69cpc5gQM+AyJnxPZ5N
+ iYTljzlT6TODvsvzxsVljV+UldiRPG9XRw/yrWlk/qjZlvlxMs6zyTI
+X-Developer-Key: i=radu.sabau@analog.com; a=ed25519;
+ pk=lDPQHgn9jTdt0vo58Na9lLxLaE2mb330if71Cn+EvFU=
+X-Endpoint-Received: by B4 Relay for radu.sabau@analog.com/20260220 with
+ auth_id=642
+X-Original-From: Radu Sabau <radu.sabau@analog.com>
+Reply-To: radu.sabau@analog.com
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278222-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com,mediatek.com];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-278223-lists,devicetree=lfdr.de,radu.sabau.analog.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[metafoo.de,analog.com,kernel.org,baylibre.com,gmail.com,pengutronix.de];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[akkun11open@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.831];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.991];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: EE3802D92DC
+	HAS_REPLYTO(0.00)[radu.sabau@analog.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,analog.com:email,analog.com:mid,analog.com:replyto,analog.com:url]
+X-Rspamd-Queue-Id: 937BE2D940D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Lenovo YOGA Tablet 10 (Wi-Fi) - B8000-F is a tablet from the "blade"
-product family. It is powered by MediaTek MT8125 SoC, (a tablet variant
-of MT6589), and features 1GB of RAM.
+This series adds support for the Analog Devices AD4691 family of
+high-speed, low-power multichannel successive approximation register
+(SAR) ADCs with an SPI-compatible serial interface.
 
-The "blade" family consists of several variants based on screen size
-and connectivity:
-- YOGA Tablet 8 (8"): B6000-F (Wi-Fi), B6000-H/HV (3G)
-- YOGA Tablet 10 (10"): B8000-F (Wi-Fi), B8000-H (3G)
+The family includes:
+  - AD4691: 16-channel, 500 kSPS
+  - AD4692: 16-channel, 1 MSPS
+  - AD4693: 8-channel, 500 kSPS
+  - AD4694: 8-channel, 1 MSPS
 
-This patch adds basic support, including a simple-framebuffer that
-uses the panel already initialized by the bootloader.
+The devices support two operating modes, auto-detected from the device
+tree:
+  - CNV Burst Mode: external PWM drives CNV independently of SPI;
+                    DATA_READY on a GP pin signals end of conversion
+  - Manual Mode: CNV tied to SPI CS; each SPI transfer reads
+                 the previous conversion result and starts the
+                 next (pipelined N+1 scheme)
 
-While many parts of this Device Tree are expected to be common across
-other "blade" family boards, they are kept within the B8000-F specific
-file for now as it is the only supported device.
+A new driver is warranted rather than extending ad4695: the AD4691
+data path uses an accumulator-register model — results are read from
+AVG_IN registers, with ACC_MASK, ADC_SETUP, DEVICE_SETUP, and
+GPIO_MODE registers controlling the sequencer — none of which exist
+in AD4695. CNV Burst Mode (PWM drives CNV independently of SPI) and
+Manual Mode (pipelined N+1 transfers) also have no equivalent in
+AD4695's command-embedded single-cycle protocol.
 
-Signed-off-by: Akari Tsuyukusa <akkun11.open@gmail.com>
+The series is structured as follows:
+  1/4 - DT bindings (YAML schema) and MAINTAINERS entry
+  2/4 - Initial driver: register map via custom regmap callbacks,
+        IIO read_raw/write_raw, both operating modes, single-channel
+        reads via internal oscillator (Autonomous Mode)
+  3/4 - Triggered buffer support: IRQ-driven (DATA_READY on a GP pin
+        selected via interrupt-names) for CNV Burst Mode; external IIO
+        trigger for Manual Mode to handle the pipelined N+1 SPI protocol
+  4/4 - SPI Engine offload support: DMA-backed high-throughput
+        capture path using the SPI offload subsystem
+
+Datasheets:
+  https://www.analog.com/en/products/ad4691.html
+  https://www.analog.com/en/products/ad4692.html
+  https://www.analog.com/en/products/ad4693.html
+  https://www.analog.com/en/products/ad4694.html
+
+Signed-off-by: Radu Sabau <radu.sabau@analog.com>
 ---
-Changes in v3
-- Drop UART node
-  It was probably correct, but I'm not sure and haven't tested it
-  so I removed it.
-- Remove "mt6589-lenovo-blade.dtsi"
-  There are currently no plans to add support for variants other
-  than b8000-f, and the Device Tree is also small and there is no point
-  in dividing it, so I deleted it and merged it
-  into "mt6589-lenovo-b8000-f.dts"
+Changes in v4:
+- dt-bindings: add avdd-supply (required) and ldo-in-supply (optional);
+  rename vref-supply → ref-supply, vrefin-supply → refin-supply;
+  corrected reset-gpios polarity (active-high → active-low); remove
+  clocks and pwm-names; extend interrupts to up to 4 GP pins with
+  interrupt-names "gp0".."gp3"; reduce #trigger-source-cells to
+  const: 1 (GP pin number); add gpio-controller / #gpio-cells = <2>;
+  drop adi,ad4691.h header; update binding examples
+- driver: rename CNV Clock Mode → CNV Burst Mode throughout
+- driver: add avdd-supply (required) and ldo-in-supply; track ref vs.
+  refin supply for REFBUF_EN; set LDO_EN in DEVICE_SETUP when ldo-in
+  is present; add software reset fallback via SPI_CONFIG_A register
+- driver: merge ACC_MASK1_REG / ACC_MASK2_REG into ACC_MASK_REG with
+  a single ADDR_DESCENDING 16-bit SPI write
+- driver: remove clocks usage; set PWM rate directly without ref clock
+- driver: rename chip info structs (ad4691_chip_info etc.); rename
+  *chip → *info in state struct; replace adc_mode enum with manual_mode
+  bool; replace ktime sampling_period with u32 cnv_period_ns
+- driver: move IIO_CHAN_INFO_SAMP_FREQ to info_mask_separate with an
+  available list for the internal oscillator frequency
+- driver: use regcache MAPLE instead of RBTREE
+- triggered buffer: derive DATA_READY GP pin from interrupt-names in
+  firmware ("gp0".."gp3") instead of assuming GP0
+- triggered buffer: use regmap_update_bits for DEVICE_SETUP mode toggle
+  to avoid clobbering LDO_EN when toggling MANUAL_MODE bit
+- triggered buffer: split buffer setup ops into separate Manual and
+  CNV Burst variants (mirrors offload path structure)
+- SPI offload: promote channel storagebits from 16 to 32 to match DMA
+  word size; introduce ad4691_manual_channels[] with shift=16 (data in
+  upper 16 bits of the 32-bit word); update triggered-buffer paths to
+  the same layout for consistency
+- SPI offload: derive GP pin from trigger-source args[0] instead of
+  hardcoding GP0; split offload buffer setup ops per mode
+- replace put_unaligned_be32() + FIELD_PREP() with cpu_to_be32() and
+  plain bit-shift ops for SPI offload message construction
+- multiple reviewer-requested code style and correctness fixes
+  (Andy Shevchenko, Nuno Sá, Uwe Kleine-König, David Lechner)
+- Link to v3: https://lore.kernel.org/r/20260313-ad4692-multichannel-sar-adc-driver-v3-0-b4d14d81a181@analog.com
 
- arch/arm/boot/dts/mediatek/Makefile           |  1 +
- .../dts/mediatek/mt6589-lenovo-b8000-f.dts    | 40 +++++++++++++++++++
- 2 files changed, 41 insertions(+)
- create mode 100644 arch/arm/boot/dts/mediatek/mt6589-lenovo-b8000-f.dts
+Changes in v3:
+- Replace GPIO reset handling with reset controller framework
+- Replace two regmap_write() calls for ACC_MASK1/ACC_MASK2 with regmap_bulk_write()
+- Move conv_us declaration closer to its first use
+- Derive spi_device/dev from regmap instead of storing st->spi
+- ad4691_trigger_handler(): use guard(mutex)() and iio_for_each_active_channel()
+- ad4691_setup_triggered_buffer(): return -ENOMEM/-ENOENT directly instead of
+  wrapping in dev_err_probe(); fix fwnode_irq_get() check (irq <= 0 → irq < 0)
+- Add GENMASK defines for SPI offload 32-bit message layout; replace manual
+  bit-shifts with put_unaligned_be32() + FIELD_PREP()
+- Use DIV_ROUND_CLOSEST_ULL() instead of div64_u64()
+- ad4691_set_sampling_freq(): fix indentation; drop unnecessary else after return
+- ad4691_probe(): use PTR_ERR_OR_ZERO() for devm_spi_offload_get()
+- Link to v2: https://lore.kernel.org/r/20260310-ad4692-multichannel-sar-adc-driver-v2-0-d9bb8aeb5e17@analog.com
 
-diff --git a/arch/arm/boot/dts/mediatek/Makefile b/arch/arm/boot/dts/mediatek/Makefile
-index 37c4cded0eae..b67b94b7cbd0 100644
---- a/arch/arm/boot/dts/mediatek/Makefile
-+++ b/arch/arm/boot/dts/mediatek/Makefile
-@@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += \
- 	mt6582-prestigio-pmt5008-3g.dtb \
- 	mt6589-aquaris5.dtb \
- 	mt6589-fairphone-fp1.dtb \
-+	mt6589-lenovo-b8000-f.dtb \
- 	mt6592-evb.dtb \
- 	mt7623a-rfb-emmc.dtb \
- 	mt7623a-rfb-nand.dtb \
-diff --git a/arch/arm/boot/dts/mediatek/mt6589-lenovo-b8000-f.dts b/arch/arm/boot/dts/mediatek/mt6589-lenovo-b8000-f.dts
-new file mode 100644
-index 000000000000..b1f622ecf6fd
---- /dev/null
-+++ b/arch/arm/boot/dts/mediatek/mt6589-lenovo-b8000-f.dts
-@@ -0,0 +1,40 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Copyright (c) 2026 Akari Tsuyukusa <akkun11.open@gmail.com>
-+ */
-+
-+/dts-v1/;
-+#include "mt6589.dtsi"
-+
-+/ {
-+	model = "Lenovo YOGA Tablet 10 (Wi-Fi)";
-+	compatible = "lenovo,b8000-f", "mediatek,mt6589";
-+
-+	chosen {
-+		framebuffer0: framebuffer@bf600000 {
-+			compatible = "simple-framebuffer";
-+			memory-region = <&framebuffer_reserved>;
-+			width = <1280>;
-+			height = <800>;
-+			stride = <(1280 * 2)>;
-+			format = "r5g6b5";
-+		};
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x80000000 0x40000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+
-+		ranges;
-+
-+		framebuffer_reserved: memory@bf600000{
-+			reg = <0xbf600000 0xa00000>;
-+			no-map;
-+		};
-+	};
-+};
+Changes in v2:
+- Drop adi,spi-mode DT property; operating mode now auto-detected
+  from pwms presence (CNV Clock Mode if present, Manual Mode if not)
+- Reduce from 5 operating modes to 2 (CNV Clock Mode, Manual Mode);
+  Autonomous, SPI Burst and CNV Burst modes removed as user-selectable
+  modes; Autonomous Mode is now the internal idle/single-shot state
+- Single-shot read_raw always uses internal oscillator (Autonomous
+  Mode), independent of the configured buffer mode
+- Replace bulk regulator API with devm_regulator_get_enable() and
+  devm_regulator_get_enable_read_voltage()
+- Use guard(mutex) and IIO_DEV_ACQUIRE_DIRECT_MODE scoped helpers
+- Replace enum + indexed chip_info array with named chip_info structs
+- Remove product_id field and hardware ID check from probe
+- Factor IIO_CHAN_INFO_RAW body into ad4691_single_shot_read() helper
+- Use fwnode_irq_get(dev_fwnode(dev), 0); drop interrupt-names from
+  DT binding
+- Use devm_clk_get_enabled(dev, NULL); drop clock-names from DT
+  binding
+- Use spi_write_then_read() for DMA-safe register writes
+- Use put_unaligned_be16() for SPI header construction
+- fsleep() instead of usleep_range() in single-shot path
+- storagebits 24->32 for manual-mode channels (uniform DMA layout)
+- Collect full scan into vals[16], single iio_push_to_buffers_with_ts()
+- Use pf->timestamp instead of iio_get_time_ns() in trigger handler
+- Remove IRQF_TRIGGER_FALLING (comes from firmware/DT)
+- Fix offload xfer array size ([17]: N channels + 1 state reset)
+- Drop third DT binding example per reviewer request
+- Link to v1: https://lore.kernel.org/r/20260305-ad4692-multichannel-sar-adc-driver-v1-0-336229a8dcc7@analog.com
+
+---
+Radu Sabau (4):
+      dt-bindings: iio: adc: add AD4691 family
+      iio: adc: ad4691: add initial driver for AD4691 family
+      iio: adc: ad4691: add triggered buffer support
+      iio: adc: ad4691: add SPI offload support
+
+ .../devicetree/bindings/iio/adc/adi,ad4691.yaml    |  173 +++
+ MAINTAINERS                                        |    8 +
+ drivers/iio/adc/Kconfig                            |   14 +
+ drivers/iio/adc/Makefile                           |    1 +
+ drivers/iio/adc/ad4691.c                           | 1638 ++++++++++++++++++++
+ 5 files changed, 1834 insertions(+)
+---
+base-commit: 11439c4635edd669ae435eec308f4ab8a0804808
+change-id: 20260302-ad4692-multichannel-sar-adc-driver-78e4d44d24b2
+
+Best regards,
 -- 
-2.53.0
+Radu Sabau <radu.sabau@analog.com>
+
 
 
