@@ -1,240 +1,300 @@
-Return-Path: <devicetree+bounces-278198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278199-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GMbKM0olvWmr6wIAu9opvQ
-	(envelope-from <devicetree+bounces-278198-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:45:30 +0100
+	id QIsjDJglvWlp7AIAu9opvQ
+	(envelope-from <devicetree+bounces-278199-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:46:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C6E92D8F36
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:45:30 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D8E52D8F63
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:46:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 27E8C3030D1C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:42:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 459CA300D9DF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:46:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17C86395D86;
-	Fri, 20 Mar 2026 10:42:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8E0B31F994;
+	Fri, 20 Mar 2026 10:46:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="JWxHvtpv"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="szKV0qzc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023132.outbound.protection.outlook.com [40.107.44.132])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E81439182B;
-	Fri, 20 Mar 2026 10:42:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.132
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774003344; cv=fail; b=rbTlP7h9TbazPBdV0dDfoMdX5PwJT3mPeB/oxeL/WwV/oRAc1mUfo/6IGcfU++/rmoZ7oMmAfdRCeyQ0jox1ip+BQsEtYuyGgV3A6811GS2DxK9naY8UjSqM3YdbR2nrC/RlKHrAZVX7GkTUbeT1oNmsbOVi4IE0eeO7ieqs4bs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774003344; c=relaxed/simple;
-	bh=AcuBKYbSuXz4CkzBmfQZcP7majfQ1hHrhSaQ9uncF18=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=oTEaHivp40QVW9cIs9Kf3n8k+Pht+xXvdNye1JD1MjOCYbqgiNrS+UwoG/NQhp/n7LwicbDdnCnOLjqH95c31Xz9FG3dIiixDONiUMZFKD6RxyC/WdcKSZ8SbsAf9DW9K2yRlMgh1wRtkLPEWyjPhZwjFAYkCihdCpwT3oCSz+M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=JWxHvtpv; arc=fail smtp.client-ip=40.107.44.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KVIyd4EgmgBTMPpKQ1IMftMSxxQd3p2MGxAhSFcuKoziSD/w2qa6fHru0C+ydMOB62rjTtsjpKa9+lLPqKv87a/GXB0+1nsxww2Yl1v2ifGKIXIPBUhxvJ1rGszmMkryVJTeNpJVh52SWK2+et8Bn0Cnk9jQw7JIvFBlIiYVzuZZkrBbllI2nYBCgXnKPsMOBDGDYuu/am5Ak7Vo8De2vL8JJwhpTDCJLkKHT9p3dwgkHhJN7NXTz5e+pOXZlmL5Wkc34Jnfqqvql7ThpuSjtDs+hbI2KRG0Lh1h+VYZ5PLd37WykaIqadXMZc1i2Y58CS9WEQMLiwvZc/qqWIP60A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=z6XuWjcI3nmt56P4Z/OlHY2F06Tk6ESEFAsK10+/ZxY=;
- b=lFSPadsiba/YU2X2LTWRJfQPDOp8q7kLGb+cHhkSFQUzTLln0Bth10dKlA7ce0C6C9qZ/xsxwed+5l0Ogh4zRvlrPN/kE3K9aeMntSy7AcepHwpk6MUshS3fW3Kloi+hHQB4CUwmdsP/hK/sfk996EnLlnQ1/t2zJJQbzHOxh6hmOEobtx6Fd9SJLJbLpzrGB5yA4sUAxDuUVpd8CuuBGIxSxkXfzqcAqlJUX5BWnzZ0yeg8rXaYk4gOZvm2WW7XjbZcBmxjxalmWjRyn99X2+Kq5BwEr0nDhSd/qMmxYtQZapdFsL0/1HZjYdKetGN6Dg1UHghkfJeQGMfFS8tNyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=z6XuWjcI3nmt56P4Z/OlHY2F06Tk6ESEFAsK10+/ZxY=;
- b=JWxHvtpvsd6pYnr/HIbBYcT51mtBSywvXNIsHsBL1XIXe/r7Mj4JBgqfVr+LPFFnG39B5Uv0zbcI99XRvGIaHyO0bXvIbRXo4YhGQbT6vlRTZ6UCE3jE+cwyfpEFmgyQ31Y0n6iuR5BJVeJKLkofK7gp6tJjRa/2BNaEhEJ4LgqaPARLgon3l3Ii2JQPK2PDc38XlgfVNZ5J2W8tMvqkGak2/0SJW7CsZGQfJVv+Cow9Q8ZLfIIPQKghNX2GHnj0esd9O2pOl1UK8eqB66uMWY9XVPfr8Lwkudb2o0P2nBAdKQ14M5sBrijXL/mPvGBpEvdPqE546jkqMBWOcgZu0w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB5778.apcprd03.prod.outlook.com (2603:1096:820:6d::13)
- by SEYPR03MB9756.apcprd03.prod.outlook.com (2603:1096:101:304::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Fri, 20 Mar
- 2026 10:42:19 +0000
-Received: from KL1PR03MB5778.apcprd03.prod.outlook.com
- ([fe80::e1e:5c95:a889:828e]) by KL1PR03MB5778.apcprd03.prod.outlook.com
- ([fe80::e1e:5c95:a889:828e%5]) with mapi id 15.20.9723.019; Fri, 20 Mar 2026
- 10:42:19 +0000
-Message-ID: <86e2c106-1e58-4e1d-bdc0-ab1252f70489@amlogic.com>
-Date: Fri, 20 Mar 2026 18:42:23 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/8] clk: amlogic: Add A5 clock peripherals controller
- driver
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Xianwei Zhao <xianwei.zhao@amlogic.com>, Kevin Hilman
- <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-References: <20260108-a5-clk-v5-0-9a69fc1ef00a@amlogic.com>
- <20260108-a5-clk-v5-5-9a69fc1ef00a@amlogic.com>
- <1jecnsr1eg.fsf@starbuckisacylon.baylibre.com>
- <ea7e209d-cd30-4d93-9deb-104aaf7c92eb@amlogic.com>
- <1jbjipviky.fsf@starbuckisacylon.baylibre.com>
-From: Chuan Liu <chuan.liu@amlogic.com>
-In-Reply-To: <1jbjipviky.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SG2PR01CA0154.apcprd01.prod.exchangelabs.com
- (2603:1096:4:8f::34) To KL1PR03MB5778.apcprd03.prod.outlook.com
- (2603:1096:820:6d::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63C41386C23
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 10:46:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774003600; cv=none; b=aRrlB3+lctO1hd1dqL556dvNjEBdUoxzGI+5/o4Z6VNAavNbnIFPu/GosG956jrtfZuDWjxCwbCi0PZTEgm9fhso7lyljA8k3FfXn8+LZBnnm3fTekm7VPAZZgG6uiMPaiiAP5gq1h2iiAUTXz4oKreXUVrSKoI0KigtO4CtSLg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774003600; c=relaxed/simple;
+	bh=NXMn88NLUE3dFw6IF9cyRWp5D+zmfi3XX/AR7EeU2Iw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=uDUKNabXwTKHMX1mEy9VI8o+UAbHdFPhIu9yWrpZPpbtc3Hcgbq5eYY6P2ev5TCcMCTV921l05uCPXy1l+FYyKhqy7UaMUnJZlF+xK5vD7LYWl7p03atJVZwAPNMuYJHRhEAVBy2tDaiPXgqPwy5Y3p0oZ9ygkQGcjCjLAUWLpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=szKV0qzc; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id A2C1A1A2F11;
+	Fri, 20 Mar 2026 10:46:36 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 6C063600E0;
+	Fri, 20 Mar 2026 10:46:36 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4A7BA10450AE3;
+	Fri, 20 Mar 2026 11:46:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1774003593; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=/AWRA5bKTOqbMorqJFOmykP8MITCV91C8Jm80re4aFA=;
+	b=szKV0qzcOay/Hol/lQkfqVJ0H5wdi/0+gUjtvcsstE8x82Iwq+qlggayZ+LjGNI/gnthTY
+	eTk3PtM3UBNvLGYh6JBsgq+ESNxWfjSK3FqYf+ovdfaVMufrXP+mv3cFazC6AyfnGpebnK
+	bTl/NqdKzrsrru5h4RvabXKNZBL8S6bUipSP/08M1uWMfNOblxNk5HXYaUD0ZUHz/VsbT3
+	U9H4K2Y7hmb0FA7jv2+DfRxTPi84EyyeRSo7mQU40AMAPjy4dSJfkvnHkbKmcm1szje5IH
+	0T8ZqCKLGe7gkQkvMxDPty3uZF8UE29bxVtiA7c9ZD9VGx7TT6Ima9mYoO1NtA==
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Subject: [PATCH 0/8] drm/mxsfb/lcdif: use DRM_BRIDGE_ATTACH_NO_CONNECTOR
+ and the bridge-connector
+Date: Fri, 20 Mar 2026 11:46:11 +0100
+Message-Id: <20260320-drm-lcdif-dbanc-v1-0-479a04133e70@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB5778:EE_|SEYPR03MB9756:EE_
-X-MS-Office365-Filtering-Correlation-Id: 20c4b0a4-7485-4b85-404c-08de866d5c6b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|7416014|376014|1800799024|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info:
-	p8mH9a8twS/csM4B/46hzPyfSnOsYao0NTrrqhRp+HAsXGIGqZ/YUmLeWyAPlAgJXNZFYAnwQz1uT+Ko0C1Yjf4nRF5LLkqTEn8PHOtoEltb7ClBiWpXw2zs8238qwpYqSU/XGShl6glWbvmnEAmu3sGuEGhqtsyoDQj2pfQ7IUUeOi3DRandOevdRO3LgSX1L0Lmtw5jIjflHrACd/Z/PY4drOP6MvO9cV4v+vqMNMeJcazeHD99+0kWw23Q6DOby8wfvbcNJQVP3I45D9TY5uKwhOPI4J5JOZensvwFtYh5gKzeZAHr5oPIJRxETNQuRB6whE2/F/2Q5Ktmj747LmcJncq8NEbmppMYyU0BmLKNH12PVpMSAj3e7gdYhjOLJtHEpSR2l934FH7imdZ6GfwJy+m7Cvu0dZdpJ/hhz9nEUg8d8DwBhGB36hkWD0klhIR1e0AkCo0x1QG98FAM7c+Y831TM3Nr5SsVvcvhE91cI96ohgM450uI9v1cJN3CF+Ojx3T0KRHDfBvGHWCywb0FeDrgGRqLdIGrqI5EbIvCsyXwsmyyVDT1/ak22K2wMHqsXoW+myGIWx2e++ScbKvHewhk2Kx7zL34+Va2rVS8j4voLjJD2l9sB/uoWvRxSIq0XklvVO2AcZXDYY+BOzr2AFAmch9aGnlrIhaIswQIOySTUUBQS804h0g0ZgEGEUJ/LC2h/g4xzMMKSCixa6aqQ2pmfJ8S/RmMPL6ZVkVerzZMqV3Tumjy1b1jHWf
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5778.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?bmRsV2NNVXBETUE4RWpLcDFrNGIvci9oNUx5bmZvaG4yTkk2UzFVZUtNVUxU?=
- =?utf-8?B?eDIyZzhya1ZnUjJVOExBVnYyczVyaDN4bUVZVEVHZ3RiSUV3RXdLYUxQODJR?=
- =?utf-8?B?cjhFUWlEWVBkajlqV0NtWi90UDhmSEw5WlhVNzRLNXFDR2xsRnBxL2t0eHN3?=
- =?utf-8?B?TjdZZS9nOUdDSVVrcnVJYkwrMm45dHo5anQvWUVTTHFHUmJ0U2hzcnRFR0ls?=
- =?utf-8?B?eFFZWXIzUGx5S21mNnhtN1pUbzAxWDQremlid292SU54cE5WWGExODE4aXNU?=
- =?utf-8?B?U2dxaURteU9oSmMrSlJQL0JkVXMzc2VrWlY3RzF6Nno1bGpkOVl0dEtQN0ly?=
- =?utf-8?B?UE5JSEpsY2cvVytOT1QvclJGN2pLRjFFSmQyNWt6OWF1NFF4OFZFZEt2LzNp?=
- =?utf-8?B?Uk9GWGt4WWhrcGZ1dHhXc1RrQmlsaXBRWUlFaXVUWU1WNXFZcWNMd24vWDBN?=
- =?utf-8?B?T3dBUUw2c0krdXlNemdrMWNBdVdDNU9FZW1sakdlQ3k1azFWc2hNTkoyT3lX?=
- =?utf-8?B?aUVLcU9DZllHYVlFV1dIek9ERW9WWnBNZ2ZzWFBpL2o2ZWJ1NzYzZ004MklF?=
- =?utf-8?B?NGNQdFBTM2VaOXg2M0lwYWV1QkRXaGh6WGZwRFRadDBrcFRGUmVYV2hsK0Mr?=
- =?utf-8?B?VFdIK0lXNWx0MmxudTE0ZUpqMTAvSDlLU0RWRFlTS09LamREcTFBN3orejBq?=
- =?utf-8?B?LzQ0NUpMZ2laS2hIb0M3Njhuc21IWHZleHRxaWxlSmJIUjQwaXNjRVVVUVRD?=
- =?utf-8?B?ZjhqZGNqZU1kUFB6djQ2dk1JRzM3Y2tSKzBpbmYvRTZaT1BEMlhLeXgrN3M5?=
- =?utf-8?B?anVZMHJRKzN1ZENUSTdIVmZLUG5Oczk4Z2tvemlCVVpVQm5iRmJ6bHVyeUdW?=
- =?utf-8?B?UTdhSDlKd3d2OGt3WUNTREdyWFRUZW5yK1FyT1liUlVpYUV3K3gvOEFEeUxR?=
- =?utf-8?B?clhBYmV3YWNwbEtRV2VYN3ozWksvbUNyQ3JNOEp0VXd6Vk1LeXBqbFZMMUw0?=
- =?utf-8?B?Z2Y5TGNSODlYMVg0d2dKZ1pBTTdXS3BsV3pCN1JROERjTGxyWnJmdGlWM284?=
- =?utf-8?B?ZUZaOUVmUjRNQXdlY2hYT2o4elI3WFBqY1VPWGpyQUU3MDFvaktqdHZTWC9a?=
- =?utf-8?B?OWdrbklzYUxKY1NKUzFWUW9sSCtjYVl2VzJwZ3RNL1JVN1ZMNStGSmlqNGVG?=
- =?utf-8?B?WjQ4RUgyRUh6bDZwSnBTRFhXOEJ0djdPQytFV0UwOTNrQW9XZTNWMlBkakgz?=
- =?utf-8?B?Mm05dk5nQmJUMTEyeTN4dk1WYUZWSTd0NG0wd056UFNXN2FSQlptVXVEdDlz?=
- =?utf-8?B?ZjFzUW8zTHZ3aDltK1pRb0dIRTErNWc2K1RpUnkvRHlKN3hHM2R2c2NaRXNB?=
- =?utf-8?B?d3dlSHlPN0VBYkc1TitEcFNwZmRvQmVsVTdNTjZtZ0ZGU2QwQmdocWM5RlNt?=
- =?utf-8?B?VHBoa3dEM1lnd3gxSmJvMzROWGhjcnN3TWFKOEtTcEs5WWZpb051SzJaT3Fp?=
- =?utf-8?B?SGUvQlU2YlUzS0ZFd0VqdldZbEZTQVlSOG9YdHF1NUJwUlo5M080RkkzWlIv?=
- =?utf-8?B?L3A4aVJhcUIwODdLRC9kT2hrNVNSemF0QVRoYytDR3VnelRtc05DcGxHKzFq?=
- =?utf-8?B?enA0RE02Qm9QMFZza1FOcmMwdHJsaGlDMVdqUEVvaU5ia0V4ZGNjOTZzb2hm?=
- =?utf-8?B?Wk5Ta0VuZUZrelFLMTkxQkQ5SVIzalFVS3BNUGlPM2dSeXBWV0JraWEzZHRF?=
- =?utf-8?B?VEM0N1RCbUtNaEJGcGZqbElTMXY5V2tLK0JLRlRVREcvbzFUdHo5dlp1YitY?=
- =?utf-8?B?UTNUMFUrUnJINXZETlZoSWYySjVrYzVWeTBIckVibGE0cDRtcko3VVBxR3Y2?=
- =?utf-8?B?QUFETXd6akEvZWxYN0tXRGNjeFJIUGtPOTVsWXJTN01uZjdSK1VGQ2diN2tW?=
- =?utf-8?B?Y1RWRmFpQmxFSWYzZC84bjJoeCtWZjNpR0lobWNQTTFUZGVXV3h3eU5jMTZV?=
- =?utf-8?B?RW02SXdLYkgyY01HcWV0UE9QSnNBdjRET0FaYzNyOHI1eGVsVisrbVh1UTRQ?=
- =?utf-8?B?c1JsWmVFMVhEQkRtZ3d6MkNKdHpyL3dTT082RVdFb2pqNjNFSkFxY0V1cmlW?=
- =?utf-8?B?TXYzNk9GMHgxaEtHZkpNcEVJcmR2VmtqanFOQU9hMnM3MFBkeTlSeDJVeUMy?=
- =?utf-8?B?NWk0SDJSSkY4a1pKamQ4QXJjSUhEZTQxUnliZDV3aGpxM1dNYXhxWGNTNjdu?=
- =?utf-8?B?R3ZzK2ZkOGh6ZjBjV0hEVWZLZWJKRVBJWnJNaTE0bk1Ybk5seTdMcWRwWVF2?=
- =?utf-8?B?ZndNZklBbDVHNkFydkUxbzJtSW9pUlhIYndSbGp3YUdLYkxtcDg0QT09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20c4b0a4-7485-4b85-404c-08de866d5c6b
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5778.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2026 10:42:19.4588
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xkHo5XNznPg9+sFo2ILbA2/L7UyA8iCtW1iASQRAwctE8ccZnKLvtrbD0H1ejYlYw+W7k4JuTXvU+LHEvqo8DQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB9756
-X-Spamd-Result: default: False [1.34 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAHMlvWkC/x3MTQqAIBBA4avErBswjf6uEi3MGWugLBQiiO6et
+ PwW7z2QOAonGIoHIl+S5AgZVVmAW21YGIWyQSvdKKMapLjj5kg80myDw84Q9XVndEsMuToje7n
+ /4zi97wckFFCPYQAAAA==
+X-Change-ID: 20260306-drm-lcdif-dbanc-83dd948327de
+To: Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Liu Ying <victor.liu@nxp.com>, Rob Herring <robh@kernel.org>, 
+ Saravana Kannan <saravanak@kernel.org>
+Cc: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>, 
+ =?utf-8?q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
+ Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ dri-devel@lists.freedesktop.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Adam Ford <aford173@gmail.com>, 
+ Alexander Stein <alexander.stein@ew.tq-group.com>, 
+ Anson Huang <Anson.Huang@nxp.com>, 
+ Christopher Obbard <christopher.obbard@linaro.org>, 
+ Daniel Scally <dan.scally@ideasonboard.com>, 
+ Emanuele Ghidoli <emanuele.ghidoli@toradex.com>, 
+ Fabio Estevam <festevam@denx.de>, 
+ Francesco Dolcini <francesco.dolcini@toradex.com>, 
+ Frieder Schrempf <frieder.schrempf@kontron.de>, 
+ Gilles Talis <gilles.talis@gmail.com>, 
+ =?utf-8?q?Goran_Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>, 
+ Heiko Schocher <hs@denx.de>, 
+ Joao Paulo Goncalves <joao.goncalves@toradex.com>, 
+ Josua Mayer <josua@solid-run.com>, 
+ =?utf-8?q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>, 
+ Kieran Bingham <kieran.bingham@ideasonboard.com>, 
+ Marco Felsch <m.felsch@pengutronix.de>, 
+ Martyn Welch <martyn.welch@collabora.com>, 
+ Oleksij Rempel <o.rempel@pengutronix.de>, Peng Fan <peng.fan@nxp.com>, 
+ Philippe Schenker <philippe.schenker@toradex.com>, 
+ Richard Hu <richard.hu@technexion.com>, 
+ Shengjiu Wang <shengjiu.wang@nxp.com>, 
+ Stefan Eichenberger <stefan.eichenberger@toradex.com>, 
+ Vitor Soares <vitor.soares@toradex.com>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[amlogic.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amlogic.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_TO(0.00)[denx.de,agner.ch,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,nxp.com,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,linaro.org,amlogic.com,googlemail.com,vger.kernel.org,lists.infradead.org];
+	FREEMAIL_CC(0.00)[bootlin.com,gehealthcare.com,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,vger.kernel.org,gmail.com,ew.tq-group.com,nxp.com,linaro.org,ideasonboard.com,toradex.com,denx.de,kontron.de,solid-run.com,pengutronix.de,collabora.com,technexion.com];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278198-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278199-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chuan.liu@amlogic.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[amlogic.com:+];
-	NEURAL_HAM(-0.00)[-0.978];
-	TAGGED_RCPT(0.00)[devicetree,chuan.liu.amlogic.com,dt];
+	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_GT_50(0.00)[56];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-0.997];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 6C6E92D8F36
+X-Rspamd-Queue-Id: 9D8E52D8F63
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Jerome,
+This series modernizes the i.mx8mp LCDIF driver to use the
+bridge-connector, which is the current best practice in DRM.
 
+== Call for testing on i.MX8MP boards (especially those using HDMI)!
 
->>>> +#define A5_COMP_SEL(_name, _reg, _shift, _mask, _pdata, _table) \
->>>> +     MESON_COMP_SEL(a5_, _name, _reg, _shift, _mask, _pdata, _table, 0, 0)
->>>> +
->>>> +#define A5_COMP_DIV(_name, _reg, _shift, _width) \
->>>> +     MESON_COMP_DIV(a5_, _name, _reg, _shift, _width, 0, CLK_SET_RATE_PARENT)
->>>> +
->>>> +#define A5_COMP_GATE(_name, _reg, _bit, _iflags) \
->>>> +     MESON_COMP_GATE(a5_, _name, _reg, _bit, CLK_SET_RATE_PARENT | (_iflags))
->>>> +
->>> At the top. like C3 and T7
->>
->> Except for A5_COMP_SEL, which differs slightly from T7 due to the
->> additional "_table" parameter, the other macros are consistent with T7.
->>
->> I also asked for your feedback on this in V4 and received your
->> confirmation. Is there anything here that still needs to be updated?
-> 
-> Reviewing these long patches takes time. I tend to stop reviewing when I
-> noticed some feedback was ignored, especially when it is recurrent
-> problem. I've told you that already. It is up to you to make sure you are
-> not missing anything before re-submitting if you don't want to waste time.
-> 
+This series applies changes to how video output devices are probed on
+i.MX8MP, especially those using HDMI. Even though I have put care in not
+breaking anything, there could potentially be pitfalls I haven't realized,
+causing regressions on existing boards.
 
-It has been nearly two months since I sent out the V6 version [1], and I 
-haven't received your feedback. I'm not sure whether this is because you 
-still have concerns about this part of the change?
+I have thus added in Cc all developers which appeared active on dts files
+for imx8mp boards involving video. I would appreciate testing on as many
+boards as possible, along with a Tested-by tag, or a report about any
+issues encountered.
 
-This approach was already confirmed by you in V4 [2], and I also 
-explained it there. There has been no change to this part in V6 compared 
-to V5.
+Thanks in advance to all testers!
 
-This email is not intended to rush you, but just to confirm. If there 
-are no objections, please feel free to ignore this message. If you do 
-have any concerns, please let me know.
+== Review recommendation
 
-[1] 
-https://lore.kernel.org/all/20260123-a5-clk-v6-0-6d3bbf0ec1ea@amlogic.com/
-[2] 
-https://lore.kernel.org/all/1jldice808.fsf@starbuckisacylon.baylibre.com/
+I recommend reviewing patches in this order to be understood more
+effectively:
 
->>
->> [...]
-> 
-> --
-> Jerome
+ * Cover letter
+ * Patches 1-5 are small preliminary cleanups/improvements
+ * Patch 8 is the goal of this series, but would not work alone
+ * Patch 7 this lets patch 8 work; but in turn it can't work alone
+ * Patch 6 lets patch 7 work
+
+== Series description
+
+This series is not strictly related to DRM bridge hotplug, it is rather a
+preparation step. Introducing hotplug would need two different approaches:
+one for the new way, for drivers using bridge-connector and
+DRM_BRIDGE_ATTACH_NO_CONNECTOR, another for drivers using the "old, legacy
+way" where the last bridge is supposed to instantiate the
+drm_connector. Hotplug is complicated enough in one case, so it makes sense
+to only support the new way.
+
+The hardware I'm working on is an i.MX8MP, whose LCDIF driver is still
+using the old way. So this series converts to the new way as a preparation
+step.
+
+Patch 8 does the conversion, which is simple. However this would introduce
+a regression on some boards. Here's why:
+
+There are 3 instances of the LCDIF in i.MX8MP:
+
+ * LCDIF1, driving the DSI output
+ * LCDIF2, driving the LVDS output
+ * LCDIF3, driving the HDMI output
+
+The device drivers of peripherals connected to LCDIF1 and LCDIF2 already
+support the DRM_BRIDGE_ATTACH_NO_CONNECTOR flag. So far so good.
+
+LCDIF3 is more tricky. The HDMI pipeline is:
+
+  LCDIF3 -> fsl,imx8mp-hdmi-pvi -> fsl,imx8mp-hdmi-tx -> HDMI connector
+
+The fsl,imx8mp-hdmi-tx (hdmi-tx) component supports both cases (with or
+without DRM_BRIDGE_ATTACH_NO_CONNECTOR), but in the
+DRM_BRIDGE_ATTACH_NO_CONNECTOR case it does not create a drm_connector,
+thus preventing the creation of the pipeline. To make it work a connector
+must be created, and the way to do so is describing the connector in the
+device tree (compatible = "hdmi-connector"), so the display-driver will add
+the connector along with a wrapping bridge.
+
+Unfortunately not all device trees in mainline have an hdmi-connector
+node. Adding one is easy, but would break existing hardware upgrading to a
+newer kernel without upgrading the device tree blob. This is addressed by
+patch 7 reusing an existing approach to add such a node to the live device
+tree at init time using a device tree overlay for boards which don't have
+one.
+
+Finally, patch 7 cannot work alone because of a bad interaction between
+devlink and device tree overlays. Patch 6 solves that.
+
+== Grand plan
+
+This is part of the work to support hotplug of DRM bridges. The grand plan
+was discussed in [0].
+
+Here's the work breakdown (➜ marks the current series):
+
+ 1. … add refcounting to DRM bridges struct drm_bridge,
+      based on devm_drm_bridge_alloc()
+    A. ✔ add new alloc API and refcounting (v6.16)
+    B. ✔ convert all bridge drivers to new API (v6.17)
+    C. ✔ kunit tests (v6.17)
+    D. ✔ add get/put to drm_bridge_add/remove() + attach/detach()
+         and warn on old allocation pattern (v6.17)
+    E. … add get/put on drm_bridge accessors
+       1. ✔ drm_bridge_chain_get_first_bridge(), add cleanup action (v6.18)
+       2. ✔ drm_bridge_get_prev_bridge() (v6.18)
+       3. ✔ drm_bridge_get_next_bridge() (v6.19)
+       4. ✔ drm_for_each_bridge_in_chain() (v6.19)
+       5. ✔ drm_bridge_connector_init (v6.19)
+       6. … protect encoder bridge chain with a mutex
+       7. … of_drm_find_bridge
+          a. ✔ add of_drm_get_bridge() (v7.0),
+	       convert basic direct users (v7.0-v7.1)
+	  b. ✔ convert direct of_drm_get_bridge() users, part 2 (v7.0)
+	  c. ✔ convert direct of_drm_get_bridge() users, part 3 (v7.0)
+	  d. ✔… convert direct of_drm_get_bridge() users, part 4
+	        (some v7.1, some pending)
+	  e.   convert bridge-only drm_of_find_panel_or_bridge() users
+       8. drm_of_find_panel_or_bridge, *_of_get_bridge
+       9. ✔ enforce drm_bridge_add before drm_bridge_attach (v6.19)
+    F. ✔ debugfs improvements
+       1. ✔ add top-level 'bridges' file (v6.16)
+       2. ✔ show refcount and list lingering bridges (v6.19)
+ 2. … handle gracefully atomic updates during bridge removal
+    A. ✔ Add drm_bridge_enter/exit() to protect device resources (v7.0)
+    B. … protect private_obj removal from list
+    C. ✔ Add drm_bridge_clear_and_put() (v7.1)
+ 3. … DSI host-device driver interaction
+ 4. ✔ removing the need for the "always-disconnected" connector
+ 5. ➜ Migrate i.MX LCDIF driver to bridge-connector
+ 6.   DRM bridge hotplug
+    A.   Bridge hotplug management in the DRM core
+    B.   Device tree description
+
+[0] https://lore.kernel.org/lkml/20250206-hotplug-drm-bridge-v6-0-9d6f2c9c3058@bootlin.com/#t
+
+Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+---
+Luca Ceresoli (8):
+      drm/mxsfb/lcdif: simplify remote pointer management using __free
+      drm/mxsfb/lcdif: don't unnecessarily loop over ports
+      drm/mxsfb/lcdif: use dev_err_probe() consistently in lcdif_attach_bridge
+      drm/bridge: dw-hdmi: document the output_port field
+      drm/bridge: dw-hdmi: warn on unsupported attach combination
+      drm/bridge: dw-hdmi: move next_bridge lookup to attach time
+      drm/bridge: imx8mp-hdmi-tx: add an hdmi-connector when missing using a DT overlay at boot time
+      drm/mxsfb/lcdif: use DRM_BRIDGE_ATTACH_NO_CONNECTOR and the bridge-connector
+
+ drivers/gpu/drm/bridge/imx/Kconfig                 | 17 +++++
+ drivers/gpu/drm/bridge/imx/Makefile                |  2 +
+ .../bridge/imx/imx8mp-hdmi-tx-connector-fixup.c    | 60 +++++++++++++++
+ .../bridge/imx/imx8mp-hdmi-tx-connector-fixup.dtso | 38 ++++++++++
+ drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c        |  1 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          | 45 ++++-------
+ drivers/gpu/drm/mxsfb/Kconfig                      |  1 +
+ drivers/gpu/drm/mxsfb/lcdif_drv.c                  | 88 +++++++++-------------
+ include/drm/bridge/dw_hdmi.h                       |  5 ++
+ 9 files changed, 174 insertions(+), 83 deletions(-)
+---
+base-commit: 8402cf4fc8f8d5756dc81cf9fda1dccdb3622634
+change-id: 20260306-drm-lcdif-dbanc-83dd948327de
+
+Best regards,
+-- 
+Luca Ceresoli <luca.ceresoli@bootlin.com>
 
 
