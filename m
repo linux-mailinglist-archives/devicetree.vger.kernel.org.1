@@ -1,189 +1,230 @@
-Return-Path: <devicetree+bounces-278173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278171-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UJ71LwoXvWnG6QIAu9opvQ
-	(envelope-from <devicetree+bounces-278173-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:44:42 +0100
+	id 2NwQEssXvWnG6QIAu9opvQ
+	(envelope-from <devicetree+bounces-278171-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:47:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E59D2D8332
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:44:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4F112D83F7
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:47:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 27019300AD89
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:44:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6A0283058BA7
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:43:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC8FE38A71F;
-	Fri, 20 Mar 2026 09:44:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8A3E388E5B;
+	Fri, 20 Mar 2026 09:43:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h855VlJ0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m3qFhW2d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1483238A709;
-	Fri, 20 Mar 2026 09:44:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E26F387369
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 09:43:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773999876; cv=none; b=qfUmcteXLLoOhMc4Rr7iXTaWm00eCuhLriAAmKNZbcLfhcHBJbuYPx6ZXezUID+Y58KmuB1ndsKTyiHLE4ydkTnsC2+HGRszGw5sleSw1fVFUVeJAibVu0SQE0iRqXSQ+kjdUSSdXQ/se0KCErWckfZ2oKZkLR55sAAe8sTbLn4=
+	t=1773999808; cv=none; b=kkGJf/hTva+cWyvKPxb7m3axu8freGSfGNvryebHBcgsK3DE62k/fUbr/Jzwhm5rJHaB9o9dJlpSWX4LCI8cyR/LlZjmOG5FCgQOB8QqiAKaihR9CXaKzUilv985TfjrKxm8BLdDD1E3OIfUYYP8kis9VJrA9DeO8M++cxU2bYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773999876; c=relaxed/simple;
-	bh=8A/4J/jRX9iTgUQDB99p0STWK1Tp8RA/6uoEXltzqQ8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fGAVIo+cFnTEQRaD3KGjObxT113syn1KlflKAKECm82OQQF5YpXmBvFz3EV6fMjEKVn5HUncFZ9epkOP+m8abUWeB/QaCy46hwCZRPl84wjtEcUEDeph1R8RbYLK9ZaylZxrxbuHpjMEox1uRvJCPzBAUZy19WGYoLwB9QPMlRw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h855VlJ0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0737DC4CEF7;
-	Fri, 20 Mar 2026 09:44:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773999875;
-	bh=8A/4J/jRX9iTgUQDB99p0STWK1Tp8RA/6uoEXltzqQ8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=h855VlJ0pYb54h/igTLtuUjGVEZyOx0KVPMONMDYJjNt4BiHFz8xvJ+oZqPEmizSj
-	 JX4+fSoCaO5UFCpXMv68/Nzh3fofvuD873ZY1wwyEw1awRNSZJahOHFV19NRAxZSac
-	 hv75rvpWGeLGpHXlSfTsYNa3YLWV8XE4TahMSPtMZNz76Hb4ureZpMc8uBvu1iL+Xd
-	 N7z1/fvk7b2pTvt+RtqPO/wXa1m44lMhihfjxyxhRYDMEVunYnfdPE/DTZdYtuH4qX
-	 M1aSaOcTfcaPMNxe4nThg8PkIuqig99A2UhwIfEZm4iidvt51oPCO23lIBU5xSTu5L
-	 WGbTXgmBF+Diw==
-Message-ID: <1357d59f-7c38-4de0-9cc8-b40be3d7ce5b@kernel.org>
-Date: Fri, 20 Mar 2026 10:44:31 +0100
+	s=arc-20240116; t=1773999808; c=relaxed/simple;
+	bh=DTT5xPrRd5BhW2zCX9cjQC93CsiCWorH9lwGiIG+Fik=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=ikrjp8T9D9xw995gOqYTtL5ODh34w0TM8zdiIXdepQIR/n5V8Sj3h11Hi91JUx8GC9z5A7SJdFmd3llOeVF4BZRsZpFhMq6+KXkO6+dPEfkQgPLeZwQ5akKRo9fzTBTmVBPi1q1wx/NTHbCH97Z+mYFMUBQK8XznZCppjSNza3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m3qFhW2d; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-48700b1ba53so2877285e9.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 02:43:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773999806; x=1774604606; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WGLNtDekxRKXdox7mzxK6y/EsZgDuny9HQCCHc8BUNw=;
+        b=m3qFhW2d6h48pCmbMnLlVe+R/Gb/m9pZTD1y7HnAtbQdLZk6O7zNrTd2y5zZKW2PgD
+         EOOzBFKqpwfmIlz6uM0dS9TR+n7pmpdCdicTKZTY9bYdzPdQ4+nrMihVuI3PXlRns3k0
+         ZIS5XhldNSnC6wuFcHJL1HCDpZS6CeQYWR//RTkpeUCMtiZc7kVXOCyloAKx0+DkPwyz
+         l/uWlaLk+zDrz+nGjdmCZ0fe0af7EatsRFtmPhJg/7s04cYhZbwbGwotslYEBGZLWJt6
+         /fSn6kpYEy1Tyev7kOtrnyKzcrFzIXv4AyNXGlTUjEHwTnAvOJa/ezhU53o1KAoVgQ+J
+         BtXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773999806; x=1774604606;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=WGLNtDekxRKXdox7mzxK6y/EsZgDuny9HQCCHc8BUNw=;
+        b=ceFGpu/k8xUyMmIFJUozzsS9h9Sxq8LpjBG9ewajRHzf9Tx458bYwxHcfeVwheVt5O
+         cylUSyqiHpRjNHFYaKEmVEoS/rXtExCOXoyFfCI575ih0x211/IwQKgdX6U+oj0zXieX
+         deOqAxFmUTvE2VUv345dgPBrmtOZ6jVkE5q7qgaCh22zy1xSFFfafTyAogLpPfOaCsIu
+         91cxU+72ayEWX8bfIFE2rATwsue7lLJAJZRLcBJUkFcL61/YTvY5Xf1ZWAsJS2o2qHrK
+         G6RbWmK2FT+CYZO6wLFxivKa+SSJn+Jy10gXItn2cZUWGXFHhdN42pQ1xgPqFwmm7WaH
+         AVAA==
+X-Forwarded-Encrypted: i=1; AJvYcCXxInXF8V9X4Atnyf8PXd9kR6nXUTzMe/xZehPIu8j3Bvz+wFWI3lWT4QjXz/TEBId2y9iQfOiefV6S@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6l47gpavjwpUtXScvjS6fLE1GZ+G414XA+9bSMhoYy8aFjRpq
+	aFtkacQfdLJY061YYJRCjYYAui0k8oewJZQOfh8sSYGK+j8eXjbFwE4s
+X-Gm-Gg: ATEYQzxaegrH/jRxnG2Czp967wBGuY5LplvCE/7MwK6p0W7zCujHZX1D9EevGqFwA2X
+	3kSVyZrb8ud3qG+c910h67u29A4DhoR/kykccTiv0QK4rdJwYPpOe1bZCxxT3bMGAFLYabgyjeU
+	LANM0mjePx8/ScpatK6OuUQ+U2RnkWn7oii0DR3E/+fNfPv4CUeg/OIIIlYvK+Klyf1DKT+gCY2
+	xu2cl+YLr07q4U+X0cXcNGYVA0Lys71fSz4CnPv47fQEwhTd0iT6DoxyWyJpl9nGlYjzel4XwN2
+	Ab9W4yA3ywlpVi2NpQrQB6A1iCwBxfPdWFZ385jI0Tl4Z2ZMmQZ46/pn/WWfcTNgO1FEMdDJLZA
+	2zNOu8rTq4BlbdMeeIgMRTSElhyONRZpfNluKhpKt/69KIYmnP4vF+R+5g5HlTXCw0BbzaKg6GD
+	DTGJ7PTmLYexJD1EA1P9ePcWZY4Y0Zb35EZcydnQ==
+X-Received: by 2002:a05:600c:1c0a:b0:486:fbc8:8dee with SMTP id 5b1f17b1804b1-486fee2dc56mr30563635e9.33.1773999805228;
+        Fri, 20 Mar 2026 02:43:25 -0700 (PDT)
+Received: from debian.levillagebyca.com ([213.152.28.84])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486fd9845a2sm114372145e9.6.2026.03.20.02.43.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Mar 2026 02:43:24 -0700 (PDT)
+From: MidG971 <midgy971@gmail.com>
+To: linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de,
+	shawn.lin@rock-chips.com,
+	jonas@kwiboo.se,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Midgy BALON <midgy971@gmail.com>
+Subject: [PATCH v5] arm64: dts: rockchip: rock-3b: Model PI6C20100 as
+ gated-fixed-clock
+Date: Fri, 20 Mar 2026 10:44:41 +0100
+Message-Id: <20260320094441.128263-1-midgy971@gmail.com>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <2053182.usQuhbGJ8B@phil>
+References: <2053182.usQuhbGJ8B@phil>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] soc/tegra: Update BPMP ABI header
-To: Thierry Reding <thierry.reding@kernel.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jon Hunter <jonathanh@nvidia.com>,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org
-References: <20260319160110.2131954-1-thierry.reding@kernel.org>
- <20260319160110.2131954-2-thierry.reding@kernel.org>
- <435095b4-ce29-4c8a-9f63-300ff94e419a@kernel.org> <ab0T_0Pyio2SYrzq@orome>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <ab0T_0Pyio2SYrzq@orome>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278173-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[sntech.de,rock-chips.com,kwiboo.se,lists.infradead.org,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-278171-lists,devicetree=lfdr.de];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0E59D2D8332
+	FROM_NEQ_ENVFROM(0.00)[midgy971@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	NEURAL_HAM(-0.00)[-0.942];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_RCPT(0.00)[devicetree];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A4F112D83F7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 20/03/2026 10:34, Thierry Reding wrote:
-> On Thu, Mar 19, 2026 at 05:15:56PM +0100, Krzysztof Kozlowski wrote:
->> On 19/03/2026 17:01, Thierry Reding wrote:
->>> From: Thierry Reding <treding@nvidia.com>
->>>
->>> This update primarily adds various new commands and MRQs for Tegra264,
->>> but also contains a few new annotations and fixes.
->>>
->>> Signed-off-by: Thierry Reding <treding@nvidia.com>
->>> ---
->>>  include/soc/tegra/bpmp-abi.h | 4565 +++++++++++++++++++++++++++-------
->>>  1 file changed, 3671 insertions(+), 894 deletions(-)
->>>
->>> diff --git a/include/soc/tegra/bpmp-abi.h b/include/soc/tegra/bpmp-abi.h
->>> index 39bb3f87e28d..6cf6442395f1 100644
->>> --- a/include/soc/tegra/bpmp-abi.h
->>> +++ b/include/soc/tegra/bpmp-abi.h
->>> @@ -1,6 +1,6 @@
->>> -/* SPDX-License-Identifier: GPL-2.0-only */
->>> +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
->>>  /*
->>> - * Copyright (c) 2014-2022, NVIDIA CORPORATION.  All rights reserved.
->>> + * SPDX-FileCopyrightText: Copyright (c) 2014-2025, NVIDIA CORPORATION.  All rights reserved.
->>
->> You just replaced correct syntax with discouraged (as in not welcomed
->> upstream) SPDX tag.
-> 
-> Fair enough, I'm dropping the tag. I didn't know it was actively
-> discouraged and I don't see this documented anywhere. I suppose I should
+From: Midgy BALON <midgy971@gmail.com>=0D
 
-I am trying to get it somehow documented as permissive, v4 is waiting
-for some time.
-
-> go and drop similar tags from various other sources. Looks like we've
-> been introducing this recently for Tegra.
-
-I do not have opinion whether we should replace the tags, it does not
-matter for me, but I would simply not use it in new code.
-
-Best regards,
-Krzysztof
+The Radxa ROCK 3B uses a PI6C20100 PCIe reference clock buffer to=0D
+provide a 100MHz reference clock to the PCIe 3.0 PHY and controllers.=0D
+This chip is currently modeled only as a fixed regulator=0D
+(vcc3v3_pi6c_03), with no clock output representation.=0D
+=0D
+The PI6C20100 is a clock generator, not a power supply. Model it=0D
+properly as a gated-fixed-clock, following the pattern established=0D
+for the Rock 5 ITX and other boards with similar PCIe clock buffer=0D
+chips.=0D
+=0D
+The regulator node is kept as-is since it controls the power supply=0D
+to the PI6C20100 chip via GPIO0_D4. The new gated-fixed-clock node=0D
+references this regulator as its vdd-supply and provides a proper=0D
+100MHz clock output. The pcie3x2 node is updated to include the=0D
+pipe and reference clocks, matching the approach used in=0D
+rk3588-rock-5-itx.dts.=0D
+=0D
+Assisted-by: Claude:claude-3-opus=0D
+Reviewed-by: Shawn Lin <shawn.lin@rock-chips.com>=0D
+Signed-off-by: Midgy BALON <midgy971@gmail.com>=0D
+---=0D
+=0D
+Changes since v4:=0D
+ - Fix From: line to match Signed-off-by (Heiko)=0D
+=0D
+Changes since v3 [1]:=0D
+ - Add Reviewed-by from Shawn Lin=0D
+=0D
+Changes since v2 [2]:=0D
+ - Fix AI attribution: use Assisted-by tag instead of Signed-off-by (Shawn)=
+=0D
+ - Add missing pipe clock (CLK_PCIE30X2_PIPE_DFT) to pcie3x2 clocks=0D
+   override (Shawn, referencing David's patch [3])=0D
+=0D
+Changes since v1 [4]:=0D
+ - Drop phy-supply approach entirely (Jonas, Shawn)=0D
+ - Model PI6C20100 as gated-fixed-clock instead=0D
+ - Wire reference clock to pcie3x2 controller=0D
+ - Follow pattern from rk3588-rock-5-itx.dts=0D
+=0D
+[1] https://lore.kernel.org/linux-rockchip/20260304132957.684616-1-midgy971=
+@gmail.com/=0D
+[2] https://lore.kernel.org/linux-rockchip/20260304132957.684616-1-midgy971=
+@gmail.com/=0D
+[3] https://lore.kernel.org/linux-rockchip/d981fa84-bd05-ac9d-98ca-89ee4717=
+7829@rock-chips.com/T/#m6a8289609e6a60691d3c06358b6322c7aa5e43d1=0D
+[4] https://lore.kernel.org/linux-rockchip/20260213151452.535527-1-midgy971=
+@gmail.com/=0D
+=0D
+ arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 21 ++++++++++++++++++++-=
+=0D
+ 1 file changed, 20 insertions(+), 1 deletion(-)=0D
+=0D
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/arm64/b=
+oot/dts/rockchip/rk3568-rock-3b.dts=0D
+index c5f67dd6dfd9..1a2b3c4d5e6f 100644=0D
+--- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts=0D
++++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts=0D
+@@ -56,7 +56,16 @@=0D
+ 		};=0D
+ 	};=0D
+=0D
+-	/* pi6c pcie clock generator */=0D
++	/* PI6C20100 PCIe reference clock buffer (100MHz) */=0D
++	pcie30_refclk: pcie-clock-generator {=0D
++		compatible =3D "gated-fixed-clock";=0D
++		#clock-cells =3D <0>;=0D
++		clock-frequency =3D <100000000>;=0D
++		clock-output-names =3D "pcie30_refclk";=0D
++		vdd-supply =3D <&vcc3v3_pi6c_03>;=0D
++	};=0D
++=0D
++	/* PI6C20100 power supply - active-high GPIO0_D4 */=0D
+ 	vcc3v3_pi6c_03: regulator-3v3-vcc-pi6c-03 {=0D
+ 		compatible =3D "regulator-fixed";=0D
+ 		enable-active-high;=0D
+@@ -553,6 +562,15 @@=0D
+ };=0D
+=0D
+ &pcie3x2 {=0D
++	clocks =3D <&cru ACLK_PCIE30X2_MST>, <&cru ACLK_PCIE30X2_SLV>,=0D
++		 <&cru ACLK_PCIE30X2_DBI>, <&cru PCLK_PCIE30X2>,=0D
++		 <&cru CLK_PCIE30X2_AUX_NDFT>,=0D
++		 <&cru CLK_PCIE30X2_PIPE_DFT>,=0D
++		 <&pcie30_refclk>;=0D
++	clock-names =3D "aclk_mst", "aclk_slv",=0D
++		      "aclk_dbi", "pclk", "aux",=0D
++		      "pipe", "ref";=0D
+ 	pinctrl-names =3D "default";=0D
+ 	pinctrl-0 =3D <&pcie30x2m1_pins>;=0D
+ 	reset-gpios =3D <&gpio2 RK_PD6 GPIO_ACTIVE_HIGH>;=0D
+--=0D
+2.39.5=0D
+=0D
 
