@@ -1,147 +1,170 @@
-Return-Path: <devicetree+bounces-278142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278143-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iJXQNDgPvWkz6QIAu9opvQ
-	(envelope-from <devicetree+bounces-278142-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:11:20 +0100
+	id INoiLuoPvWlf6QIAu9opvQ
+	(envelope-from <devicetree+bounces-278143-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:14:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 604A12D7CA1
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:11:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 647072D7D37
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:14:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 58934300C808
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:11:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5459F3017C17
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:12:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9D3128468E;
-	Fri, 20 Mar 2026 09:11:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D25D52D0C8F;
+	Fri, 20 Mar 2026 09:12:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="E10iuiHj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PT+O+ydk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 516B037E2E6
-	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 09:11:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17D9930B50A;
+	Fri, 20 Mar 2026 09:12:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773997877; cv=none; b=sFU+xQpUa6rKXVGeoMxhOHa/QOg3f3jowAhlQ03UgL5sfOOKI9vFhA94jt7Fcn8BU0WIv7DotbS4yXEHSGR7r8YpaUahP023SToF0cPF+OCOchO3MSgXijrgAjS8ZyKZo4DgJ8VWReeAMUkQ/uVd5C52+sXcuEBVp2BTI5myDYc=
+	t=1773997976; cv=none; b=OcNzDE2xI04Zu1s5BhNIKVjL7Yi17r8/YUUxtwUoyQgBhN13jswzPXMQvwcQvgY7hfxwXtmtcKtb04QBeNUgqvwFRQVnXteBS7iTVy0MhC+YlVWP9QMBuzhNN3JE3Dj1p9SfV9BAKeXL4k+K6x+rDaSMV25K9bHdK4ZEaREfz64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773997877; c=relaxed/simple;
-	bh=osPuVGUm/UzZnnch36LBSX5ZBydiJ3syEDW7/rP0ehg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U2jJLqlx340teMNgkdYpK2lIPHEU/KLiQ4Bjlh3cq8SkzdaWc+5MhTC5Xdi+5OwvAAUUSTIRF9EL8TtVXHoTYu/ETEOOlCA9kCiPjZdzy6dOXuQb2u9KKhYozaj4cUPbE7/klXdxutxY3zT9wOgbRaeDSrUI61BMF+9stw6Ymz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=E10iuiHj; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-485410a0a8aso2854745e9.2
-        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 02:11:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1773997870; x=1774602670; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lnvpWrvuYkXuiKq1OQLuzrMxSlnrYn7ohrRGMt5HMQU=;
-        b=E10iuiHjIszaS2WGaFn7yUugVwA2m8d+5Ic7sUjvPMClbXlGxOb5+03kYWeCY4DLIJ
-         wAnQY/Di5k6ghnD9rzz3LNUz0L1CAgzzvi/T9XeIKvKabO5+jj/EFVcHM/43k4nsVHu8
-         llxcjCC8K5XarROMaaT33EGRCRTmFvpGew95d971JOdI3aGGmrhG0zrMf/tzFTtvlRxR
-         oeexdmTCS6W+PtY99Ab8i80vpd82rzJlHKZvAiJmsq82H05lnGSFSR0EA3rizJE9E+lv
-         SKzmMLmY+v0cYR4aAfVd03IspAzfYyruSQe+lYjwYfwzSH/JHmFpA1JlO2BZkrplbuSB
-         eZWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773997870; x=1774602670;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lnvpWrvuYkXuiKq1OQLuzrMxSlnrYn7ohrRGMt5HMQU=;
-        b=jzhiIutlsPk49ic0q1m00l/xwVpnQuez6NIXtKnZis9nMwolqmIDbyViD6wRRtDLl/
-         0LqkMcW+bbis48ZHxSjhzF84t3NueqK/lfdnwN0O7uum81y3FiYIVn43CFTcl8ew9NUs
-         XK3efWer2cnLaBSzRjWTn+6CEqqUG64wYfutje8ISacguHTW/YDqfoAOcoPYl2MR4NzC
-         Bgf1akMX/Sh2jAs0Ybeop+E8VX0q6coWpyWsb/JcHYtwLQg1zCwe+vkRlumQEB5XimOG
-         g5BLpFAqUxKyodRT3TVkzwB8T88yu9zy0a4Hkc4iLfxlOv8vXH5rN9ty5j5aHDsQYggR
-         YEBg==
-X-Forwarded-Encrypted: i=1; AJvYcCVokHhwtn+aa8g8uHV7tjSZsjt4r4ijh41yw8hja5arxbTurJXtQ3V3T4GF9scUxmPo0XynGdj/0pqo@vger.kernel.org
-X-Gm-Message-State: AOJu0YxDao8aXm0hEdFJYL47he/BVCYYZ2jCppP9iHR8tRWh5LI9Mafy
-	qhsC8kIQC0vnX8i0MyPTyETdyQZ/QjSDNqWMoG5xM2pwuum+WI5FLcWLaV635zt0xuA=
-X-Gm-Gg: ATEYQzwihpgBheypUh9ENr/Cg+9TY8E2t6SXr+ViZeF4P9fk5ZSAGjnW2wyB3ceqLju
-	/M/k1Kv8S8Eu79Y7Qiv4djE0wT4aa/wFvCg9fWKRqobL+0RsoC+NKsqlU2GksXAY32FpiD+F6cV
-	s+9a0O4nr6kv06jJ0ixTuX4bDAM4f+dkW2FJC2BRQE/TyAcqAlUfxjG18igqGoFF5nCYfA6gerf
-	UV94E/Ty0rMc6iGRuxDV9hWNiU6MvH3s8KX4EaRMuQm2lwXAPU3hD/xwABSEVXW1Zql7wLoEGwA
-	MPhpxoydiJl1I0uAg8iBGdICgNKU3votS79LQIae9IdqTwqR7t5i0mG07xW+i8wEEWdCzwDZt6z
-	ifUSiPA69MjA4GVGtey6hLNKxzuCQxX4UsfijiVcur7KyW+TrjSfpTyyTbqL8PbHmkcNAGHxz97
-	y/tn+lOclJWyNtNgrDMy11XkgpTUrVBAU=
-X-Received: by 2002:a05:600c:1f86:b0:483:1403:c47f with SMTP id 5b1f17b1804b1-486febbc653mr33123025e9.6.1773997870011;
-        Fri, 20 Mar 2026 02:11:10 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.216])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486ff118bb4sm18208155e9.2.2026.03.20.02.11.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Mar 2026 02:11:09 -0700 (PDT)
-Message-ID: <1f684500-6c06-4abd-984a-4cf889acfcc2@tuxon.dev>
-Date: Fri, 20 Mar 2026 11:11:07 +0200
+	s=arc-20240116; t=1773997976; c=relaxed/simple;
+	bh=eCK0dEmHKu71hb3Dx847pAiVP184hX3MEz6AOGBp5mQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jqCHRB6uBx+lZJNWGH7kada8H1L96yE0L/h/BqFuJDXoJDEkuojWkqGsGYybmllWgknve1cOHIPIQvpBqsonjKuOHDCkuwzxl1/cHS+GDjlmYWztb3LCysTL/BXT4jMGW/xOirAe1a42Tyhiihq41M6ui7oc1aZcizk/6LlAmQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PT+O+ydk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02516C4CEF7;
+	Fri, 20 Mar 2026 09:12:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773997975;
+	bh=eCK0dEmHKu71hb3Dx847pAiVP184hX3MEz6AOGBp5mQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PT+O+ydkF5j+137rY6WJz4keuhBPTfc0t6ixXD+/1zrq9NEbi2tyARuqViWybHPcN
+	 NBgzqaW4GERsWeEpcYEhw9x65T6wiiFK3wNQzF+GZ2xeOZXsvnMoCc/Y7Ml/eS2BTb
+	 Q/PL3L+zYlQ2S7b3ytyp0zc175a4R0QcmmacBIEjB17ov+A6r637aUlrFUgJG/iUXq
+	 UF62WWdmuOS5Kkfd6GIoSnJove6T2j/SNMPMms5fSVSmMkb+f+zueNUOyqNi6eaoao
+	 6eZKz610mHNbIORhOZkE+u3w2NjMljrw2zngu5wMrhBNereJeOQ+D6+s+nePRUwEVA
+	 3Q9qMM+EvPpTA==
+Date: Fri, 20 Mar 2026 10:12:53 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jun Guo <jun.guo@cixtech.com>
+Cc: peter.chen@cixtech.com, fugang.duan@cixtech.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org, ychuang3@nuvoton.com, 
+	schung@nuvoton.com, robin.murphy@arm.com, Frank.Li@kernel.org, 
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	cix-kernel-upstream@cixtech.com, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: dma: arm-dma350: document generic
+ and combined IRQ topologies
+Message-ID: <20260320-vengeful-violet-cockle-382580@quoll>
+References: <20260319101723.246539-1-jun.guo@cixtech.com>
+ <20260319101723.246539-2-jun.guo@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/6] Add support for Microchip LAN969x
-To: Robert Marko <robert.marko@sartura.hr>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, olivia@selenic.com,
- herbert@gondor.apana.org.au, radu_nicolae.pirea@upb.ro,
- richard.genoud@bootlin.com, gregkh@linuxfoundation.org,
- jirislaby@kernel.org, horatiu.vultur@microchip.com,
- Ryan.Wanner@microchip.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-crypto@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-serial@vger.kernel.org, daniel.machon@microchip.com
-Cc: luka.perkov@sartura.hr
-References: <20260302112153.464422-1-robert.marko@sartura.hr>
-Content-Language: en-US
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20260302112153.464422-1-robert.marko@sartura.hr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260319101723.246539-2-jun.guo@cixtech.com>
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[tuxon.dev:s=google];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-278142-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[tuxon.dev];
+	TAGGED_FROM(0.00)[bounces-278143-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[tuxon.dev:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.962];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[claudiu.beznea@tuxon.dev,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.996];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 604A12D7CA1
+X-Rspamd-Queue-Id: 647072D7D37
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Thu, Mar 19, 2026 at 06:17:21PM +0800, Jun Guo wrote:
+> Update the DMA-350 DT binding to match the current driver behavior.
+> 
+> Allow both:
+> - "arm,dma-350" as the generic compatible, and
+> - "cix,sky1-dma-350", "arm,dma-350" for SoC-specific fallback usage.
+> 
+> Also document interrupt topology variants supported by hardware
+> integration:
+> - one combined interrupt for all channels, or
+> - one interrupt per channel (up to 8 channels).
+> 
+> This patch is Assisted-by: Cursor: GPT-5.3 Codex.
+
+Wrong tag, please read carefully the guideline before using LLM tools.
+
+> 
+> Signed-off-by: Jun Guo <jun.guo@cixtech.com>
+> Link: https://lore.kernel.org/r/20251216123026.3519923-2-jun.guo@cixtech.com
+
+What does this express? Changelog link? Then keep it in the changelog
+--- part.
 
 
-On 3/2/26 13:20, Robert Marko wrote:
-> Robert Marko (6):
->    arm64: dts: microchip: add LAN969x clock header file
->    arm64: dts: microchip: add LAN969x support
->    dt-bindings: arm: AT91: document EV23X71A board
->    arm64: dts: microchip: add EV23X71A board
+> ---
+>  .../devicetree/bindings/dma/arm,dma-350.yaml  | 31 +++++++++++++------
+>  1 file changed, 21 insertions(+), 10 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/arm,dma-350.yaml b/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
+> index 429f682f15d8..3639ce0d5054 100644
+> --- a/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
+> +++ b/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
+> @@ -14,7 +14,11 @@ allOf:
+>  
+>  properties:
+>    compatible:
+> -    const: arm,dma-350
+> +    oneOf:
+> +      - const: arm,dma-350
+> +      - items:
+> +          - const: cix,sky1-dma-350
+> +          - const: arm,dma-350
+>  
+>    reg:
+>      items:
+> @@ -22,15 +26,22 @@ properties:
+>  
+>    interrupts:
+>      minItems: 1
+> -    items:
+> -      - description: Channel 0 interrupt
+> -      - description: Channel 1 interrupt
+> -      - description: Channel 2 interrupt
+> -      - description: Channel 3 interrupt
+> -      - description: Channel 4 interrupt
+> -      - description: Channel 5 interrupt
+> -      - description: Channel 6 interrupt
+> -      - description: Channel 7 interrupt
+> +    maxItems: 8
+> +    description: |
+> +      The DMA controller may be configured with separate interrupts for each channel,
+> +      or with a single combined interrupt for all channels, depending on the SoC integration.
 
-Applied to microchip-dt64, thanks!
+And more important - you must review the LLM microslop output before
+posting and adjust it to Linux kernel coding style. Don't send
+unredacted tool output.
+
+Best regards,
+Krzysztof
+
 
