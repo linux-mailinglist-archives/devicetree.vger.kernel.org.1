@@ -1,282 +1,243 @@
-Return-Path: <devicetree+bounces-278188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278189-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mJw7KyEivWmr6wIAu9opvQ
-	(envelope-from <devicetree+bounces-278188-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:32:01 +0100
+	id +AVWC14hvWmr6wIAu9opvQ
+	(envelope-from <devicetree+bounces-278189-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:28:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E9F12D8B74
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:32:01 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BB8A2D8AED
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:28:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EEE26305B0BA
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:27:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D9AFA3006B74
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:28:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 769BE3603C5;
-	Fri, 20 Mar 2026 10:27:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PpLBHWNl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4453361DCD;
+	Fri, 20 Mar 2026 10:28:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023114.outbound.protection.outlook.com [40.107.44.114])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD2A3224B1E
-	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 10:27:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21F59314D1A;
+	Fri, 20 Mar 2026 10:28:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.114
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774002426; cv=pass; b=X4gxyCNGrGniWp/ru7Qy/rJfs+6CXXbJMWyuu7x8RBX3mIFGdXpP+bvNjJGmAJ8f1RTBqdiOmXb/ChMwB68M4f6kjG7FXChl8qPzfZAyUzhTWISu6UcRTGracqUeZJaOqZVaktedNMnk9r/npmWnt6LPaefSxKHaGDCX/7Ye+ag=
+	t=1774002523; cv=fail; b=MP0bJHrt4NOKxdjDB8koSuNin6rtjFKdDkanyyW09hHykrD72Iff0Ov5J8VfsdCJeCEcvfnjUk2yNUziLGGgdDad5wnuwTSCWU+2bI0rlHQTjU+XlTxtrQKISJVHC7toEJs1zAlyC+EwKeAHzsC8sM4KsHf+omWVDF9JNd52keU=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774002426; c=relaxed/simple;
-	bh=ELyoKRyizz66seXcv2qeoC8f+kwqZGUSISPj2I4t0W4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=V0GoIpqSYOOu7X4RM5ftd4B8xrU0nNXspnbnbCpQBU3sqRGVoYle/wycrDV2MFr8+azzLys6Q0grGRpZE6+xaiJG/tx5kaoJplSzpyCmDtq+w6lXXClguECcb1h6lBm53kGFbpSoTiMBg0K/FSjzI1HsQWcENbTCMPYYBhl++H0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PpLBHWNl; arc=pass smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b932fe2e1a7so231843066b.1
-        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 03:27:04 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774002423; cv=none;
-        d=google.com; s=arc-20240605;
-        b=K2gZIu7y9OLWPuFyHVg/etlD5EF5Hups6+/hozRUM6nxsTfUUrQW1jI+fh4spLkAmS
-         +uOsFsuh75lWXdVQgnxeW7AVOldHfoRKj9cnekn5CFscg4LT5u63Xs1WI/6Y58lQglxA
-         ecoWNexucChqCTZUUi0gMNkBIOR8mDmNz60B51ZfVBkb+L056gYAP812DszrH77dDqTd
-         cC1BhPuZvB9JXoTIdo3f1IdUdlk19FRA6uTS+ZtZpPoxDxLs6nz1S3r3U+nso9HmR4sa
-         Py+NTZMMXp29P3DBD6WyU+0wQc7as0+wSZOAHF94UgB4TxJXSCHGlPk9WBBReDPCXr2P
-         qcwQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=Of1GTO29+yjjKMoSpTK0dYyRr27IYqJgiYG8Z21ueZY=;
-        fh=MPDvWcXN3LjA0wYd1d7mHNh8t9j0bztxwaO/SYkzxaM=;
-        b=Hylp83K2j2+15GOztEXKMtHawbm283EavSJhsme2PhY9U7R1rzC9v1AiBaO8FmVIC9
-         PVjkFQwPizBnKRdM7RmHDl88zYpXyzBwbr80EbIuuEf7mM3JMta2nNKg45bk6q6tiIoS
-         Dw2y3pMSlOV9XI4H2y0shK+MdiL5cxjso2ppBBbUGLclGJgGnswMQuv64WbNXEoD04H0
-         qW53Ipo/k4KUXGo/RMZvVR1YUG3/vuw+sbNzHQHr9iKiACtvdupKi9NVUSV6Vq/ikAz9
-         Lof6i19YNcKR9JmyxMH+Zb4xAHEeT395AkWJAB74YUFw0UFwr4BIKW232pNZGmskh+Dc
-         tDOg==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1774002423; x=1774607223; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Of1GTO29+yjjKMoSpTK0dYyRr27IYqJgiYG8Z21ueZY=;
-        b=PpLBHWNlE40z8Kv/I7M1foYQp30ZhtvWblk7k1chMD3BBJtnJ45RAO4RH5DXTOuvRW
-         z4fRADW+r5aozHj55fkiV+rpfZAI8Rgsip5VblSUo/nlGvw1Z3nUYL5/vhh1SziqVcVj
-         UbzbtRHixoWbE2QlYiq70Yo71h5JNYkXX6K/j0jJ2JKU+IFnHR+NwrkJN/l0gGOQjwnz
-         M8Fhi4yQjleELYkzF2yPvE+zkTwJnGl8HCTgsgclEC5N62+ucC/bn0LKFoTSBeRP+Ym3
-         je3//nGpo+b/jYY+my9bYeNH3WYWAKnEuk5g+wWsKGjovwYCz4zf9nWEyR/zmHeW0Qw/
-         niSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774002423; x=1774607223;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Of1GTO29+yjjKMoSpTK0dYyRr27IYqJgiYG8Z21ueZY=;
-        b=aY/Xsj4HdKgP62x1ekRSJ4RFykogwdQp6cZ8THR+LnonR8T68gjJkHPe+1huiQIjl7
-         AqehBJaidvNv7XFgt4QPasN2jYZsQjWFtuvGoQoiw5xP+avc1a4shF+SyfPTXccd/6xC
-         72qPdBpBIVbG/dp8GSfFIGQ3RS3AzkxVFYkWlBurpLlgpHRHYwEllxdFIBYUyVn49SR/
-         lnr++QYxf8eIDGZO1vB4d+yD+AjRAgviXcjKDEJZwdAtrrLn5wX2eNPy8gw9jKpUYski
-         p5OHu/OGihQD/71JumYX+hzl+ncEpNLUxtrL/EjhC2mdtNhho10eD9ELZtHHxIw9LEqb
-         t4ww==
-X-Forwarded-Encrypted: i=1; AJvYcCWziXlZ9YSGs46rH4+iGWN8Vpa2i8gcke6lEbwGKkz67kFErsQxLbcNk9cUA17Ei2A6mOWHXyyAWxUj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy91jZGjr2O1iA549PXOZ2eV83h+mz+PnTU4mcWcfDSBCAjnQNH
-	6vStAyED28pwrKzpsk6/2/ivVnOuL5a8Jfw1Ka0ZKSr5zxI1iHfE87QyWoeRK19/l8C4FC4qSD5
-	HJZPXqTNvTsaFviCjU22KsMXYy7PAXYo=
-X-Gm-Gg: ATEYQzyoUYSTBmtq0PoDMjHxZd0hn+L87y5NL9o8JP66yH02O5Mpi6iSZIAUeYADa7u
-	YcIfQ1KdAOfdA2pQefFwzeFzLRgTlKD4rGuQkYkV0kfd1guyr20mXnsW5ndrRdVnLvV5iJG/4KV
-	+zl8In5ZT63rgf789LcayzzwSu6zBC1kM9+YH8UzWUzwH7WNRwHiu+wE/QsDrMuBJsN61+CV20O
-	3J9W+hqvVKdkawUH7K8r2IN8igaE9xWtUgJv2M4Hcgo4mAb2vlSEf2/NrS6XD0hXSg1fcAyQSKx
-	5Z9BIRw=
-X-Received: by 2002:a17:906:2746:b0:b83:95c8:15d0 with SMTP id
- a640c23a62f3a-b982f4eca0fmr137601766b.52.1774002422707; Fri, 20 Mar 2026
- 03:27:02 -0700 (PDT)
+	s=arc-20240116; t=1774002523; c=relaxed/simple;
+	bh=+IoiRkmfcNSqTWGpX/L1q/PVQ6oP11i24FvsPgLbGBI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Y9aBZTKKklMPhFa6jar0U941Cw/aEoHgON9WeOD7xari9zbMi+GpWOpl9RyhPio7Sm5dSmmhAS7L2/SdO82swbi7MG4VwZROiQGjaYlE+GBlvBOMlaBlftrewZbEqPdjilUxO7dzL0cGBlZpJJ2S/AgWwJM0jK6Nu5KeooPdkKs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.44.114
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TM0A8LpiCf99z9wijj/+OvjPRbLzpXKriqKlNUDDOKssDbNI/vKOA3kpGe/MV1w68f5xkkOP9vX2Z70+LeZrfIYBgHh3Dkb0HStox29999I43Z0gLTxNOrTY8x+nrf2GgKNrK3QZUJLorfeJjyDW6kEIyMGDCEBverpa3fXmL5tzwMjTnKSDgkzJRxeuzIK0xbox8nvc08I0nXTdm51Pqpifq0zvYpLD7vrmg7/jqf9HyzIaYDSfXMDMt1AnbDfwD4jZEA7UriUrjwNySlNLSKPAif2IjgWMHQSvszjd3Zc6U+s/fV+qcgXvYoHaOj0gKQmQj1Jwl558/dHNxYhRGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Jdq6kd2e/QetCN5+0KvkNKA9+Xu9sw78ttZMSbDkXn0=;
+ b=FSLbhg9z3AwZL2/l0piHGMl0EBtXjnq3DA2/18VCY7yzuaqTxuTxULRi8rowAu27QAwJPoFjBBvh/jeZ3NvVuAK3U+2X6TV/mBM0uMnD6smPVeZ93UbdGQbKY4p14mf4OtuwdfOHzT8xeZq+y2ywn2MHCY2oqkunw0NvXZuvL2SQw9BCcB39leVib8Xo+AIhSfuFNeE7J7H3JGEfaGsbctUMWARLdow0wsfN0XKxfooGBjt6JM1mGUIUi2ZbUrkATI9NjxMd0C1SXhE7rDqqYXEvmeeB885hY8v6nAsjC7DXw3dZfuamD/4a4brjXrY9pVmfV9r1Iz6RYxlkkSUQDA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SI2PR02CA0017.apcprd02.prod.outlook.com (2603:1096:4:194::17)
+ by TY2PPF5221563AF.apcprd06.prod.outlook.com (2603:1096:408::78e) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Fri, 20 Mar
+ 2026 10:28:36 +0000
+Received: from SG2PEPF000B66CB.apcprd03.prod.outlook.com
+ (2603:1096:4:194:cafe::e6) by SI2PR02CA0017.outlook.office365.com
+ (2603:1096:4:194::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.27 via Frontend Transport; Fri,
+ 20 Mar 2026 10:28:36 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ SG2PEPF000B66CB.mail.protection.outlook.com (10.167.240.24) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9723.19 via Frontend Transport; Fri, 20 Mar 2026 10:28:35 +0000
+Received: from [172.20.96.43] (unknown [172.20.96.43])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 747374126F82;
+	Fri, 20 Mar 2026 18:28:34 +0800 (CST)
+Message-ID: <40fc5cb7-a5f2-4b86-8dba-1b39e1ea0da4@cixtech.com>
+Date: Fri, 20 Mar 2026 18:28:34 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260304132957.684616-1-midgy971@gmail.com> <20260319145120.99833-1-midgy971@gmail.com>
- <2053182.usQuhbGJ8B@phil>
-In-Reply-To: <2053182.usQuhbGJ8B@phil>
-From: Midgy Balon <midgy971@gmail.com>
-Date: Fri, 20 Mar 2026 11:28:30 +0100
-X-Gm-Features: AaiRm50aoIyNWdgdoBKg1CMZ-LC4yDu8KW38iE0PNSuQDdq7oh2keNG7d0JnC3k
-Message-ID: <CA+GS1Y0CZA1sbLhoz5LM-dFCCRuWQOr-bYQUVGV4uotKUmy96A@mail.gmail.com>
-Subject: Re: [PATCH v4] arm64: dts: rockchip: rock-3b: Model PI6C20100 as gated-fixed-clock
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: linux-rockchip@lists.infradead.org, shawn.lin@rock-chips.com, 
-	jonas@kwiboo.se, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: dma: arm-dma350: document generic and
+ combined IRQ topologies
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: peter.chen@cixtech.com, fugang.duan@cixtech.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
+ ychuang3@nuvoton.com, schung@nuvoton.com, robin.murphy@arm.com,
+ Frank.Li@kernel.org, dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20260319101723.246539-1-jun.guo@cixtech.com>
+ <20260319101723.246539-2-jun.guo@cixtech.com>
+ <20260320-vengeful-violet-cockle-382580@quoll>
+Content-Language: en-US
+From: Jun Guo <jun.guo@cixtech.com>
+In-Reply-To: <20260320-vengeful-violet-cockle-382580@quoll>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CB:EE_|TY2PPF5221563AF:EE_
+X-MS-Office365-Filtering-Correlation-Id: c10e4ae6-3009-4e9f-f4c5-08de866b71aa
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|7416014|376014|82310400026|36860700016|18002099003|56012099003|22082099003;
+X-Microsoft-Antispam-Message-Info:
+	r8sFFwBC6ObsQSPen90pyXg8xIQGpKGIkl7aquw4le+dsEl7JPKMcJW4UcKHfWarzwb2EqyADmskws9IVrRqD4JM9se6NV2Ibn9+xsrYMF9eMKBozaqWaZ/p8l//31ExE/ASyymSWfx9DQAB5vTgv8/qHKOQ5hw63GEECAZIVYnLHQapbHh5u5DjRHqquAXL/OkmumDvaD8XZ6bwA2Pf4gZQ9R+fI4vI/J/iqvq+FRf48qGLjj19WbDLhrd0u1h2/0LtE3yG982Q5uikP139+n+2/tmreRmKza1BBDvz4FeZQfbRskIDAUoqbsXfTJKmwXDXtS+9IeIey0LHXHcYG+xab1YAwPjSYa/fzfqUFBsYAqphSjtpYlFCs/FGoiSCLlcb8Z+xnTqs1m418oNrg1rzCUkbIivLltEDyskqEnniYnAQKYM+6RYmgr5F9A90GvVSHa3cRSpPdYhRLlPj870F1YJepmzya1fVtcRbBSUosLiMzOZxog4ScN8yK5hsKUulkAyTHFxPd3koWozIAN13ONkD0w6QFue/aLmSDJsV+XAjL8N1YxWqgqAFbZ5YRHkPcxCdqzqJELcVNdyfLe66LO1sgxdrOxohVGlAwyUA1ARL0ggmalpdIg909hzjWUs8PHvOUAxsl1qWqR7jF9Ho6bjkYDD5nAS8zgNvVwHinEU5fNFEOArRN6/fSGGRCJFO4mrC9YS3UeIKfw3WGgMeT35kvW/gpuLVKanXR21DFJHfQ5ZPWsJRu2HFpt+HmXd0GqDEnuRaNbkk48a0mg==
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(82310400026)(36860700016)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	E6l3c1EjVdaJIuCi15i5a6s7o1qEdRuzJQClsUjlDLIdOFesxZIWCZoHwxKmFhOCb0YgcjerF1aX9schm6gMuIzjXq+eHcoYxEGWeCAfio+gvf0dwHQeU+bITRN1nNbo+bgOH++yg3DudUI9rnpayl7ii2EzpGaekiUk+7VvKhD7MqIOrff8BoVBcrltf3aHHa1H7/MVnCQ5csVxy1TZDJOOlB3pfiQNEmg5En9WZVS+1K8zSYJk30Atjvrq6gun0F3oLvjI/UL/6oEWZOZw6QKvKk5Fo5FjucdRN59+tpW1+ITbhcbtuGTuxpUDC16KkoosgncX7Q+rx4NfjiY+4V5CgyT8D7V1pr0JRNN/rHlw4/xsINyWMWg5KLdZ4KxHT0I553okHfIiCRUULOWq+wHFzUk+17R8CRPus0HDoguda3PU0pchDaFTOtqTJTrp
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2026 10:28:35.8137
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c10e4ae6-3009-4e9f-f4c5-08de866b71aa
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG2PEPF000B66CB.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PPF5221563AF
+X-Spamd-Result: default: False [2.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-278189-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_COUNT_SEVEN(0.00)[7];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[cixtech.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-278188-lists,devicetree=lfdr.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.858];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[midgy971@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCPT_COUNT_FIVE(0.00)[6];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,rock-chips.com:email,sntech.de:email]
-X-Rspamd-Queue-Id: 2E9F12D8B74
+	FROM_NEQ_ENVFROM(0.00)[jun.guo@cixtech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.407];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8BB8A2D8AED
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello Heiko
-  > Sorry for having to bring up the process again,
-  but the patch
-  > author should match the Signed-off-by line.
-
-  Apologies for the inconsistency. I'll fix that in v5.
-
-  > Also is the last name always "UPPER CASE" in your
-   region?
-
-  Yes it is standard practice in France to write family names in all
-capitals to distinguish them from given names, especially when the
-family name could be confused with a given name, not my case but I
-comply.
-
-  v5 sent separately.
-
-  Best regards,
-  Midgy BALON
 
 
-Le ven. 20 mars 2026 =C3=A0 09:48, Heiko Stuebner <heiko@sntech.de> a =C3=
-=A9crit :
->
-> Am Donnerstag, 19. M=C3=A4rz 2026, 15:51:20 Mitteleurop=C3=A4ische Normal=
-zeit schrieb MidG971:
-> > The Radxa ROCK 3B uses a PI6C20100 PCIe reference clock buffer to
-> > provide a 100MHz reference clock to the PCIe 3.0 PHY and controllers.
-> > This chip is currently modeled only as a fixed regulator
-> > (vcc3v3_pi6c_03), with no clock output representation.
-> >
-> > The PI6C20100 is a clock generator, not a power supply. Model it
-> > properly as a gated-fixed-clock, following the pattern established
-> > for the Rock 5 ITX and other boards with similar PCIe clock buffer
-> > chips.
-> >
-> > The regulator node is kept as-is since it controls the power supply
-> > to the PI6C20100 chip via GPIO0_D4. The new gated-fixed-clock node
-> > references this regulator as its vdd-supply and provides a proper
-> > 100MHz clock output. The pcie3x2 node is updated to include the
-> > pipe and reference clocks, matching the approach used in
-> > rk3588-rock-5-itx.dts.
-> >
-> > Assisted-by: Claude:claude-3-opus
-> > Reviewed-by: Shawn Lin <shawn.lin@rock-chips.com>
-> > Signed-off-by: Midgy BALON <midgy971@gmail.com>
->
-> Sorry for having to bring up the process again, but the patch
-> author should match the Signed-off-by line.
->
-> You can update the patch author with something like:
->   git commit --author=3D"Midgy BALON <midgy971@gmail.com>" --amend
->
-> Also is the last name always "UPPER CASE" in your region?
->
-> Thanks a lot for staying on this
-> Heiko
->
->
-> > ---
-> >
-> > Changes since v3 [1]:
-> >  - Add Reviewed-by from Shawn Lin
-> >
-> > Changes since v2 [2]:
-> >  - Fix AI attribution: use Assisted-by tag instead of Signed-off-by (Sh=
-awn)
-> >  - Add missing pipe clock (CLK_PCIE30X2_PIPE_DFT) to pcie3x2 clocks
-> >    override (Shawn, referencing David's patch [3])
-> >
-> > Changes since v1 [4]:
-> >  - Drop phy-supply approach entirely (Jonas, Shawn)
-> >  - Model PI6C20100 as gated-fixed-clock instead
-> >  - Wire reference clock to pcie3x2 controller
-> >  - Follow pattern from rk3588-rock-5-itx.dts
-> >
-> > [1] https://lore.kernel.org/linux-rockchip/20260304132957.684616-1-midg=
-y971@gmail.com/
-> > [2] https://lore.kernel.org/linux-rockchip/20260304132957.684616-1-midg=
-y971@gmail.com/
-> > [3] https://lore.kernel.org/linux-rockchip/d981fa84-bd05-ac9d-98ca-89ee=
-47177829@rock-chips.com/T/#m6a8289609e6a60691d3c06358b6322c7aa5e43d1
-> > [4] https://lore.kernel.org/linux-rockchip/20260213151452.535527-1-midg=
-y971@gmail.com/
-> >
-> >  arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 21 +++++++++++++++++=
-+++-
-> >  1 file changed, 20 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/arm=
-64/boot/dts/rockchip/rk3568-rock-3b.dts
-> > index c5f67dd6dfd9..1a2b3c4d5e6f 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-> > @@ -56,7 +56,16 @@
-> >               };
-> >       };
-> >
-> > -     /* pi6c pcie clock generator */
-> > +     /* PI6C20100 PCIe reference clock buffer (100MHz) */
-> > +     pcie30_refclk: pcie-clock-generator {
-> > +             compatible =3D "gated-fixed-clock";
-> > +             #clock-cells =3D <0>;
-> > +             clock-frequency =3D <100000000>;
-> > +             clock-output-names =3D "pcie30_refclk";
-> > +             vdd-supply =3D <&vcc3v3_pi6c_03>;
-> > +     };
-> > +
-> > +     /* PI6C20100 power supply - active-high GPIO0_D4 */
-> >       vcc3v3_pi6c_03: regulator-3v3-vcc-pi6c-03 {
-> >               compatible =3D "regulator-fixed";
-> >               enable-active-high;
-> > @@ -553,6 +562,15 @@
-> >  };
-> >
-> >  &pcie3x2 {
-> > +     clocks =3D <&cru ACLK_PCIE30X2_MST>, <&cru ACLK_PCIE30X2_SLV>,
-> > +              <&cru ACLK_PCIE30X2_DBI>, <&cru PCLK_PCIE30X2>,
-> > +              <&cru CLK_PCIE30X2_AUX_NDFT>,
-> > +              <&cru CLK_PCIE30X2_PIPE_DFT>,
-> > +              <&pcie30_refclk>;
-> > +     clock-names =3D "aclk_mst", "aclk_slv",
-> > +                   "aclk_dbi", "pclk", "aux",
-> > +                   "pipe", "ref";
-> >       pinctrl-names =3D "default";
-> >       pinctrl-0 =3D <&pcie30x2m1_pins>;
-> >       reset-gpios =3D <&gpio2 RK_PD6 GPIO_ACTIVE_HIGH>;
-> > --
-> > 2.39.5
-> >
-> >
->
->
->
->
+On 3/20/2026 5:12 PM, Krzysztof Kozlowski wrote:
+> EXTERNAL EMAIL
+> 
+> On Thu, Mar 19, 2026 at 06:17:21PM +0800, Jun Guo wrote:
+>> Update the DMA-350 DT binding to match the current driver behavior.
+>>
+>> Allow both:
+>> - "arm,dma-350" as the generic compatible, and
+>> - "cix,sky1-dma-350", "arm,dma-350" for SoC-specific fallback usage.
+>>
+>> Also document interrupt topology variants supported by hardware
+>> integration:
+>> - one combined interrupt for all channels, or
+>> - one interrupt per channel (up to 8 channels).
+>>
+>> This patch is Assisted-by: Cursor: GPT-5.3 Codex.
+> 
+> Wrong tag, please read carefully the guideline before using LLM tools.
+Okay. I will temporarily disregard the check patch warnings in the next 
+version and correct the format of the AI-generated tag.
+
+> 
+>>
+>> Signed-off-by: Jun Guo <jun.guo@cixtech.com>
+>> Link: https://lore.kernel.org/r/20251216123026.3519923-2-jun.guo@cixtech.com
+> 
+> What does this express? Changelog link? Then keep it in the changelog
+> --- part.
+Okay, I'll address this in the next version of the patch.
+
+> 
+> 
+>> ---
+>>   .../devicetree/bindings/dma/arm,dma-350.yaml  | 31 +++++++++++++------
+>>   1 file changed, 21 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/dma/arm,dma-350.yaml b/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
+>> index 429f682f15d8..3639ce0d5054 100644
+>> --- a/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
+>> +++ b/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
+>> @@ -14,7 +14,11 @@ allOf:
+>>
+>>   properties:
+>>     compatible:
+>> -    const: arm,dma-350
+>> +    oneOf:
+>> +      - const: arm,dma-350
+>> +      - items:
+>> +          - const: cix,sky1-dma-350
+>> +          - const: arm,dma-350
+>>
+>>     reg:
+>>       items:
+>> @@ -22,15 +26,22 @@ properties:
+>>
+>>     interrupts:
+>>       minItems: 1
+>> -    items:
+>> -      - description: Channel 0 interrupt
+>> -      - description: Channel 1 interrupt
+>> -      - description: Channel 2 interrupt
+>> -      - description: Channel 3 interrupt
+>> -      - description: Channel 4 interrupt
+>> -      - description: Channel 5 interrupt
+>> -      - description: Channel 6 interrupt
+>> -      - description: Channel 7 interrupt
+>> +    maxItems: 8
+>> +    description: |
+>> +      The DMA controller may be configured with separate interrupts for each channel,
+>> +      or with a single combined interrupt for all channels, depending on the SoC integration.
+> 
+> And more important - you must review the LLM microslop output before
+> posting and adjust it to Linux kernel coding style. Don't send
+> unredacted tool output.
+> 
+Actually, this part of the description was not AI-generated. However, 
+I’d like to confirm the issue you mentioned: are you saying that this 
+description is written too verbosely?
+Then, do you think there are still issues with the revised version?
+   interrupts:
+     minItems: 1
+     maxItems: 8
+     description:
+       Either one interrupt per channel (8 interrupts), or one
+       combined interrupt for all channels.
+
+> Best regards,
+> Krzysztof
+> 
+
 
