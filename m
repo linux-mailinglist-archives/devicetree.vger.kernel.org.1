@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-278280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278281-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cNFSAohHvWlr8gIAu9opvQ
-	(envelope-from <devicetree+bounces-278280-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:11:36 +0100
+	id EHqlOX5IvWlr8gIAu9opvQ
+	(envelope-from <devicetree+bounces-278281-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:15:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E83DC2DAC01
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:11:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 917772DACAD
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:15:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C27A53011D60
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:11:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9A32E30DEECF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:12:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A91453B8BB9;
-	Fri, 20 Mar 2026 13:11:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F4003B8BB9;
+	Fri, 20 Mar 2026 13:12:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tAdB+dYK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fyy2/Ky2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 827B13A9DA4;
-	Fri, 20 Mar 2026 13:11:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF6183A9DA4;
+	Fri, 20 Mar 2026 13:12:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774012290; cv=none; b=noAhhebs8p50FZmnctHD19NcjgSS2NWyWBirmuLbIED927LT39j7WVT7gvG0oivoyK+uH/P1xF0Kef2vAiRi+m3tci8dxjTboldoy5Kb07EqY9FZNYobvnaKmsIYSS875QyV7XXFLW8+wSMndy5s6x/0hUsgCdRUwWCbH683ERA=
+	t=1774012357; cv=none; b=d12uVr+vVE9b6pBxw2RzYjWUTeo+6kmJ9WXG8Qn+uxqGIyB/rtLmKS0cSCQ2AyDvNZ1nRw0akJF/uOOym3ytuR/apXENLefdjz4KRE2MbTxzqCOtbjPMMjhO5I1melpBUiScQSow/j5tQPO2AetuKBFTlhUvmmfo8JXBdPIIYQs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774012290; c=relaxed/simple;
-	bh=mq7YN2lau4ykNu2Q1ODi0D8X+XpnTxCLSrwYPZUwSUw=;
+	s=arc-20240116; t=1774012357; c=relaxed/simple;
+	bh=BQrrSqpfQC+fHq9hcnPDqiLAeM80XfBs/NvJMvamCB4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e7XCdyee2uX98Bl8KKf4aSqCRrzkdZZqWJUj0xm7kU6d0LusH2qFJDF6QtfrtQWdAd0a4YpqummkGNx7Tr9KH16bWYWSgX1cULpxNk9Dr1+Q9i/dB18jXTA1Jv0Z8n8rpgVm+GIJxlhFoUclGovTHiKJJKC+KNa7Tmw/nRBYS6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tAdB+dYK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 209D3C4CEF7;
-	Fri, 20 Mar 2026 13:11:26 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=n3e+jV6NHrMQlG2/l+c6r+VFtZ6y+OAheb1rUWsUsN9qnaLddE8QKLTR4d55ibBIakeq2pJ036qyePgpwUfzzOg/+zHlBiqaWdRf+LP3/hlIeyCUdSsPUKGv7LodA0bG7GsLU88tf1mE1L/sb167kKljpeifMJOxPHzEMqLIsBg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fyy2/Ky2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2E89C4CEF7;
+	Fri, 20 Mar 2026 13:12:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774012290;
-	bh=mq7YN2lau4ykNu2Q1ODi0D8X+XpnTxCLSrwYPZUwSUw=;
+	s=k20201202; t=1774012357;
+	bh=BQrrSqpfQC+fHq9hcnPDqiLAeM80XfBs/NvJMvamCB4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tAdB+dYKQNbmctXNVCzF9WLTns9vqpmDFlyNonKwT/VEY2KPxYEduUtb5KDdIyjpI
-	 5MVsE9sdu2YKb8mz0D361kyq7r0G3u6eKE/Buluuo39VdrC9gB3nOjhLxDQLU+3A8l
-	 RUjxIwMcag3z1qpQepS7Le1x1J3b5ZRGq9LIkm/oGCxIh7mQhBh34BJj9+OeD8nSni
-	 MH2W1idtuO2K7xQaegieqXgbYYcFSkpkkmVx2+Rp6AVLHghfx1+vWackTcXC1pdRME
-	 fdv70Rg1bWbOBr8y5ghhdV3dIbRhgXTn7VBRP6SqKFCW3+FWynY/FQarbmRyy0N/Zk
-	 kkqVKrDzCR48Q==
-Message-ID: <3cfcf811-94f9-4ab4-af5c-d589d696f843@kernel.org>
-Date: Fri, 20 Mar 2026 14:11:21 +0100
+	b=Fyy2/Ky2LAr3RA2uT9/EFp8QzZSW3o9Hk04TjT8zETDne6iUiZ2epbcH8SagVb4gB
+	 siEj5W9SGml5ZxOTUgG9AK3tze/k+Idy/XRYu6gD0BF9LedEySFzDtRokRZEHadIyA
+	 o5GgMfo6wnX+ZHnXdQgAD8QFD/pYFGDAvqR1t5BqYNKejfdX0hkPfq3EIIO5VKFmJn
+	 bCbIrv/HZNwg/HgyVstdWVN+igiTizAomNpoKldRcXTvJFn9uyAmT79HvhToBpF0xB
+	 8VrEFQXm/uifOVTAPa9dL5GM70dIogDiMUzAQsI6aTgPVB1o+NIf6Rj/d7b1m3pnzP
+	 ukWSKqK0FFayA==
+Message-ID: <21ef18ef-a6e8-41a1-8280-73ee058fdc74@kernel.org>
+Date: Fri, 20 Mar 2026 14:12:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,18 +53,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 7/8] dt-bindings: i2c: realtek,rtl9301-i2c: extend for
- RTL9607C support
-To: Rustam Adilov <adilov@disroot.org>
-Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260319175753.32338-1-adilov@disroot.org>
- <20260319175753.32338-8-adilov@disroot.org>
- <20260320-serious-noisy-ladybug-bad92b@quoll>
- <c87523f2741687c6037c4b7b54d72dba@disroot.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: dma: arm-dma350: document generic and
+ combined IRQ topologies
+To: Jun Guo <jun.guo@cixtech.com>
+Cc: peter.chen@cixtech.com, fugang.duan@cixtech.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
+ ychuang3@nuvoton.com, schung@nuvoton.com, robin.murphy@arm.com,
+ Frank.Li@kernel.org, dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20260319101723.246539-1-jun.guo@cixtech.com>
+ <20260319101723.246539-2-jun.guo@cixtech.com>
+ <20260320-vengeful-violet-cockle-382580@quoll>
+ <40fc5cb7-a5f2-4b86-8dba-1b39e1ea0da4@cixtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,78 +111,65 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <c87523f2741687c6037c4b7b54d72dba@disroot.org>
+In-Reply-To: <40fc5cb7-a5f2-4b86-8dba-1b39e1ea0da4@cixtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278281-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278280-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.992];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.996];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E83DC2DAC01
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 917772DACAD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 20/03/2026 11:39, Rustam Adilov wrote:
-> On 2026-03-20 09:24, Krzysztof Kozlowski wrote:
->> On Thu, Mar 19, 2026 at 10:57:52PM +0500, Rustam Adilov wrote:
->>> Add the "realtek,rtl9607-i2c" compatible for i2c controller on the
->>> RTL9607C SoC series.
->>>
->>> Add a clocks property to the properties since RTL9607C requires it
->>> along with the realtek,scl. And because RTL9607C is the only one that
+On 20/03/2026 11:28, Jun Guo wrote:
+>>> +    description: |
+>>> +      The DMA controller may be configured with separate interrupts for each channel,
+>>> +      or with a single combined interrupt for all channels, depending on the SoC integration.
 >>
->> My previous statement:
+>> And more important - you must review the LLM microslop output before
+>> posting and adjust it to Linux kernel coding style. Don't send
+>> unredacted tool output.
 >>
->> "Other devices do not *have* any clock input?"
->>
->> And second one:
->>
->> "If devices *do not have* clock, you set it as false (see example schema
->> and even line above!). Clue here is what I wrote "devices" and "do not
->> have"."
->>
->> So why are you using completely different wording "require" with
->> completely different implications?
->>
->> I did not leave any room for interpreation in my statement "If devices
->> *do not have* clock, you set it as false".
-> 
-> I apologize. I was using "require" merely to relate with "required: - property" notation used in bindings.
-> 
-> Would changing the commit message to something similar in vein to [1] be better?
-> 
-> [1] - https://lore.kernel.org/linux-i2c/20250927101931.71575-9-jelonek.jonas@gmail.com/
+> Actually, this part of the description was not AI-generated. However, 
+> I’d like to confirm the issue you mentioned: are you saying that this 
+> description is written too verbosely?
+> Then, do you think there are still issues with the revised version?
+>    interrupts:
+>      minItems: 1
+>      maxItems: 8
+>      description:
+>        Either one interrupt per channel (8 interrupts), or one
+>        combined interrupt for all channels.
 
-It does not cover clocks and it does not answer whether devices have it
-or not.
+No, it is not wrapped according to Linux coding style.
 
-Decide first whether devices have the clock or not. I asked more than
-once last time.
-
-Then write commit msg and code matching this.
+Please wrap code according to the preferred limit expressed in Kernel
+coding style (checkpatch is not a coding style description, but only a
+tool).  However don't wrap blindly (see Kernel coding style).
 
 Best regards,
 Krzysztof
