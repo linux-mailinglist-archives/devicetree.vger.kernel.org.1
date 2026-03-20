@@ -1,167 +1,188 @@
-Return-Path: <devicetree+bounces-278160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278162-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wHGEIZAUvWnG6QIAu9opvQ
-	(envelope-from <devicetree+bounces-278160-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:34:08 +0100
+	id +AMzA2MVvWnG6QIAu9opvQ
+	(envelope-from <devicetree+bounces-278162-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:37:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 045392D815E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:34:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72CD42D81FC
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:37:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B7E0830398A0
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:34:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 37553300E250
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:37:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72784382360;
-	Fri, 20 Mar 2026 09:34:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A57A43859E1;
+	Fri, 20 Mar 2026 09:37:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tkjECuPH"
+	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="jLzX9JB7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEF84324707;
-	Fri, 20 Mar 2026 09:34:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from ultrarisc.com (unknown [218.76.62.146])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AF6B384250;
+	Fri, 20 Mar 2026 09:37:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=218.76.62.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773999245; cv=none; b=lJkzFHQBbhSDq01lDXnXjKiSllYo8HCG+5P+ii7Bf2KQMcaN/uQ85D8Mpt+lkmjebmOqPGoEFe+VrWw67pT+9k0gmolMJGX/S7goi4tZNrCoZevwLGlV7n7iSZIoArfOJ1knhTz051NJYyxrIgAw39mbUoRRLLPRIkMXljGL8n0=
+	t=1773999455; cv=none; b=tk24kV2ozLz6Qv713/bKVyRviyfm28j6d9H6UwlfC3its1wcH+7iMLQPp7FZs+RXA6/GsVZ/XyHlJpMoTVWfx1sOGaiCPUTQBKxE2xi5j8/5OOfric2O+08lZo63qVyisdQNb7QtukS47i8W1IITI3+ZPgOIDkZAjvqpTzjWixI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773999245; c=relaxed/simple;
-	bh=ZqkdnmTr1RZKGIn9zMFMXeAOkaFBOBOUV0NLFYqppZ8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gMl9fPYb/kErDM9N2M8+iM9OiMFLar0m4ymvs6+RUPjMqT76IqIDx3V8GmzL34AYAV9OvoU1eBxhKG2Bn0OMSBgBDTzKJtGtiQs3qqrpUBCIV14NC3wh6x1SyEPIJmPTsKFByoUDeXJJL3T7BMl4riKobAfgLTLDK31LSR4PXF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tkjECuPH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD606C4CEF7;
-	Fri, 20 Mar 2026 09:34:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773999244;
-	bh=ZqkdnmTr1RZKGIn9zMFMXeAOkaFBOBOUV0NLFYqppZ8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tkjECuPHSOpDPaarB14JUOSxmgPZ8aX3os78DzPr0Uva4fDvHhYYP0NIJhJsDk7RQ
-	 7msxtgW216AoTLDQ8JJ02j2HPNzeVBhjAtUsThrF/gYwrAQ255jozPVUHcXdUt9RxE
-	 ax0a9HpwNfvVAH4ALHU3BhUKc/CNX05YBGu3RSOLFVPKMnJ8uTDegmfOibOWDvko73
-	 r8EuqwYYwvsVE9o5lZ33MY0NvC3wP+eC0z7Yq3ykAe3efujQy8RP/XJvUKs1Df3eo7
-	 HTZ6uGHtyqTxJr27oQjdyU9Wf7jVSK1IjGdxw9oOagDdK1bpm6kTgtkcaIWVBU65wV
-	 pzQI1JAUu3FMA==
-Date: Fri, 20 Mar 2026 10:34:01 +0100
-From: Thierry Reding <thierry.reding@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jon Hunter <jonathanh@nvidia.com>, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 1/5] soc/tegra: Update BPMP ABI header
-Message-ID: <ab0T_0Pyio2SYrzq@orome>
-References: <20260319160110.2131954-1-thierry.reding@kernel.org>
- <20260319160110.2131954-2-thierry.reding@kernel.org>
- <435095b4-ce29-4c8a-9f63-300ff94e419a@kernel.org>
+	s=arc-20240116; t=1773999455; c=relaxed/simple;
+	bh=NdeAJwHndxZkVbweWJXMxDVFBvgZ0d6ruaeJgL3U5Xk=;
+	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
+	 References:Date:Message-Id; b=ktC2MriORxqfN/InEGiqQ8pWXIjwFkwGgN1Jh9j8Ztu4s4kclLCSHekxEL9Jc5eaexmEeMjsiXwQFYPX3WiKC0RQmQaE+R6OSZAAZi/dKc9zywxwVqB+MZCOiLOWS0H/cJcPehnQ1EOn85VcVlme1OvJGjkIfRgSXTT2zVXeLw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=none smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=jLzX9JB7; arc=none smtp.client-ip=218.76.62.146
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ultrarisc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=ultrarisc.com; s=dkim; h=Received:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Subject:From:To:Cc:In-Reply-To:
+	References:Date:Message-Id; bh=UoqLelab2uRRhZMugZLNRzB4MZHfmrDGO
+	eiZef67Q1I=; b=jLzX9JB7jUNIu1uG3QqxeTDTZKX2EnOd2aX/t33Z+IyL0e31F
+	sTpFimzgwnHklUEVzp69u/esjFUA7VPKvzbwdSIJg+2vyWUMsQd4xsxA+thRGEyk
+	7Ff9qDEfj6SWwAfdMxgjgjHbYtxfnbYGg+VSdhR/i7MxvEVwQnTc9I4kwM=
+Received: from [127.0.0.1] (unknown [192.168.100.1])
+	by localhost.localdomain (Coremail) with SMTP id AQAAfwAXxSR+Fb1pMbQBAA--.1433S2;
+	Fri, 20 Mar 2026 17:38:06 +0800 (CST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7kxa3sapo22qfnnf"
-Content-Disposition: inline
-In-Reply-To: <435095b4-ce29-4c8a-9f63-300ff94e419a@kernel.org>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH 4/4] PCI: dwc: Add UltraRISC DP1000 PCIe rc driver
+From: Jia Wang <wangjia@ultrarisc.com>
+To: Yao Zi <me@ziyao.cc>
+Cc: wangjia@ultrarisc.com, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>, 
+ Xincheng Zhang <zhangxincheng@ultrarisc.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-riscv@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+ devicetree@vger.kernel.org
+In-Reply-To: <abjnhn5sqnJv1fYY@pie>
+References: <20260316-ultrarisc-pcie-v1-0-ef2946ede698@ultrarisc.com>
+ <20260316-ultrarisc-pcie-v1-4-ef2946ede698@ultrarisc.com>
+ <abjnhn5sqnJv1fYY@pie>
+Date: Fri, 20 Mar 2026 17:37:17 +0800
+Message-Id: <177399943728.868832.12341696974887547910.b4-reply@b4>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773999437; l=2134;
+ i=wangjia@ultrarisc.com; s=20260309; h=from:subject:message-id;
+ bh=NdeAJwHndxZkVbweWJXMxDVFBvgZ0d6ruaeJgL3U5Xk=;
+ b=Ae3Yhm2tB/fH01LoOqHKG2gik5SQv29ZG22KRTceRvFfRgS0vkU/5bOpjsF+st3uMWsqHgmUv
+ HTNjzNkf+XbAh9je0AgaIs6VJADl0SS9/KvDWYasLrpzgDQuq/TqfDT
+X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
+ pk=XvYkrelqJIIzobY7j+nIg8rsfv5kzaOzuc1UPhd087U=
+X-CM-TRANSID:AQAAfwAXxSR+Fb1pMbQBAA--.1433S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7CF1UKFykJr1rAw4DZF4ktFb_yoW8Zw45pa
+	yUKa1akF1xJF4aka1Sva48Ca43Jan7JrWDG39rGw13XF9xC34DW3srt3yFgF97Xr40vr1a
+	k3WYg3W7GF43Aa7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9G14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJV
+	WxJr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wrylc2xSY4AK6svPMxAIw28IcxkI7VAKI48JMx
+	C20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAF
+	wI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20x
+	vE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v2
+	0xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxV
+	W8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7sREPrc3UUUUU==
+X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAMEWm844oAIgACsA
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
+	R_DKIM_ALLOW(-0.20)[ultrarisc.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278160-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-278162-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.950];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thierry.reding@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nvidia.com:email]
-X-Rspamd-Queue-Id: 045392D815E
+	NEURAL_HAM(-0.00)[-0.985];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[ultrarisc.com,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,google.com,gmail.com,lists.infradead.org,vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DKIM_TRACE(0.00)[ultrarisc.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ultrarisc.com:dkim,ultrarisc.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 72CD42D81FC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
---7kxa3sapo22qfnnf
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 1/5] soc/tegra: Update BPMP ABI header
-MIME-Version: 1.0
-
-On Thu, Mar 19, 2026 at 05:15:56PM +0100, Krzysztof Kozlowski wrote:
-> On 19/03/2026 17:01, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > This update primarily adds various new commands and MRQs for Tegra264,
-> > but also contains a few new annotations and fixes.
-> >=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+On 2026-03-17 05:32 +0000, Yao Zi wrote:
+> On Mon, Mar 16, 2026 at 03:07:00PM +0800, Jia Wang via B4 Relay wrote:
+> > From: Xincheng Zhang <zhangxincheng@ultrarisc.com>
+> > 
+> > Add DP1000 soc PCIe rc driver.
+> > 
+> > Signed-off-by: Xincheng Zhang <zhangxincheng@ultrarisc.com>
+> > Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
 > > ---
-> >  include/soc/tegra/bpmp-abi.h | 4565 +++++++++++++++++++++++++++-------
-> >  1 file changed, 3671 insertions(+), 894 deletions(-)
-> >=20
-> > diff --git a/include/soc/tegra/bpmp-abi.h b/include/soc/tegra/bpmp-abi.h
-> > index 39bb3f87e28d..6cf6442395f1 100644
-> > --- a/include/soc/tegra/bpmp-abi.h
-> > +++ b/include/soc/tegra/bpmp-abi.h
-> > @@ -1,6 +1,6 @@
-> > -/* SPDX-License-Identifier: GPL-2.0-only */
-> > +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
-> >  /*
-> > - * Copyright (c) 2014-2022, NVIDIA CORPORATION.  All rights reserved.
-> > + * SPDX-FileCopyrightText: Copyright (c) 2014-2025, NVIDIA CORPORATION=
-=2E  All rights reserved.
->=20
-> You just replaced correct syntax with discouraged (as in not welcomed
-> upstream) SPDX tag.
+> >  drivers/pci/controller/dwc/Kconfig           |  15 ++
+> >  drivers/pci/controller/dwc/Makefile          |   1 +
+> >  drivers/pci/controller/dwc/pcie-designware.h |  22 +++
+> >  drivers/pci/controller/dwc/pcie-ultrarisc.c  | 202 +++++++++++++++++++++++++++
+> >  4 files changed, 240 insertions(+)
+> > 
+> > diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
+> > index d0aa031397fa..0a33891bf7ef 100644
+> > --- a/drivers/pci/controller/dwc/Kconfig
+> > +++ b/drivers/pci/controller/dwc/Kconfig
+> > @@ -548,4 +548,19 @@ config PCIE_VISCONTI_HOST
+> >  	  Say Y here if you want PCIe controller support on Toshiba Visconti SoC.
+> >  	  This driver supports TMPV7708 SoC.
+> >  
+> > +config PCIE_ULTRARISC
+> > +	bool "UltraRISC PCIe host controller"
+> 
+> Is there any reason preventing the driver being built as a module? If
+> no, it would be better to change it to "tristate", to allow distribution
+> to customize the configuration for image sizes, etc.
+>
 
-Fair enough, I'm dropping the tag. I didn't know it was actively
-discouraged and I don't see this documented anywhere. I suppose I should
-go and drop similar tags from various other sources. Looks like we've
-been introducing this recently for Tegra.
+Thanks for the suggestion. I will update PCIE_ULTRARISC to tristate.
+ 
+> > +	depends on ARCH_ULTRARISC || COMPILE_TEST
+> > +	select PCIE_DW_HOST
+> > +	select PCI_MSI
+> > +	default y if ARCH_ULTRARISC
+> > +	help
+> > +	  Enables support for the PCIe controller in the UltraRISC SoC.
+> > +	  This driver supports UR-DP1000 SoC. When selected, it automatically
+> > +	  enables both `PCIE_DW_HOST` and `PCI_MSI`, ensuring proper support
+> > +	  for MSI-based interrupt handling in the PCIe controller.
+> > +	  By default, this symbol is enabled when `ARCH_ULTRARISC` is active,
+> > +	  requiring no further configuration on that platform.
+> > +
+> > +
+> >  endmenu
+> >  #define PORT_LOGIC_LTSSM_STATE_L0	0x11
+> 
+> Best regards,
+> Yao Zi
+>
 
-Thierry
+Best regards,
+Jia 
 
---7kxa3sapo22qfnnf
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmm9FIUACgkQ3SOs138+
-s6EYsA//SNNKlRe3t3SUPX3spNqirFTfAQhpfnmouSK5Aw36bpy3uwHdQn6nuuPB
-20T7Q7bM32A3yvXhg+r+3T+oN/cxlNR8k0sge1KJJzF0SQ5+nMcseeqTa/6K8a0a
-y20jWBXRYOb88BmdK4prkqwIk6s9hgiiBrTvqZ4ULuOsplWH0BfiqNvLCZ8aTWZL
-uqiqGNGaPN2b0G/g4HOsB898aC6LOwvTwKKDgxYLsHCxUlGzdHKgbGODEC3XBguu
-/qHx0Ca33yT0CZa+s2pJUzc4lEOi0jIMZ482ioGuPrRFJ3+SA67dUyPxyzAK+wz9
-7WlD0psL8gHmMrjAa+PXFnR/xy5AfbFJG3e/eD+jQnliQDgGbakI0OkctcGIryAq
-vqjASYw6r7krihG3m0nT+Wc8e4pe/0/HiHVIBibaNZdYJ7wiRts6gHOp1HuapH+z
-S/JHbf6O7s1hh37c9+7vzKQ5wDJhVlS/QEvDrlBGfNpVkEDFrVZbAbZCH+cVdi8E
-Z9rMCI7BT/f5JINh2aQkNHHELUfmq8BVfVSYc6UB6Ttk/IIOAW6s5VCJ0LRPWnzp
-p/oypDG0ZFeCCFDUZfKWqf3fVei9YaUtOaSPrE2R9A+DVbPwMThNu5SvsPRm3BiJ
-FEMTJ/2m5kmWquwGni5fnsNdZ5CZiRYIKsRDwScH1dLqDv5Pv+A=
-=SVZO
------END PGP SIGNATURE-----
-
---7kxa3sapo22qfnnf--
 
