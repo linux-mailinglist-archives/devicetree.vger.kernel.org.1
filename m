@@ -1,57 +1,68 @@
-Return-Path: <devicetree+bounces-278157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278158-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AAs0OXETvWnG6QIAu9opvQ
-	(envelope-from <devicetree+bounces-278157-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:29:21 +0100
+	id gHOmEK8TvWnG6QIAu9opvQ
+	(envelope-from <devicetree+bounces-278158-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:30:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C00C2D8047
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:29:21 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79C432D8092
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:30:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E9B32300C03F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:29:20 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 648133007292
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:29:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 780C136EAB4;
-	Fri, 20 Mar 2026 09:29:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26F3E346A00;
+	Fri, 20 Mar 2026 09:29:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b="f0ea2NsU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="btdOSa/R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-4325.protonmail.ch (mail-4325.protonmail.ch [185.70.43.25])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8232367F23;
-	Fri, 20 Mar 2026 09:29:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02B772E2850;
+	Fri, 20 Mar 2026 09:29:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773998955; cv=none; b=fohfdvc3nYMK7JW44PEb4kVcGNBn9gRrqrM8jZ7Sj6tZhnKUb+hDiox2Uj+eDGM/YD3w6V3EKAitP3GLoQo9iv19fnpiyYRI3+Unxn/ozPahKhlrt/i6NH/+uOHktt6remK/h5lwrvFRM077V/WOZ3GHP/TaS0/VocN/nPMYAGw=
+	t=1773998993; cv=none; b=psDYThbVxBMyLcAWD3QnocY6rTCDX7VOObkFfC3JY6k3qMkTW+1pkoVIfntNUCHADdVxLMWV5mJTBZcpQO1LTun1fr+oAnrgWVEi7+ghWcqlOcULCmECrvWqQN0j2PykIWOJ8ajg4+o2yYiDNxbZ7+oxic42+0jH1UMVxJWr9pY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773998955; c=relaxed/simple;
-	bh=v2KZVPipi6XWMmI7yyy1VlOzd+eNcHMfmFPUdEqS8do=;
-	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=fdyouExreUVV7IKM1OYOF2x3E0X4atx3VRzOARcBESS3GBszzQb8KLO31F38+4rO05b3hz089ZYUc+tBk6JmwYUIlnqlrQfIUviUi0MRek/2zUimaiDyRxwetIwadmkJ1zhFEo5N0IuMXFG3QN04wGLJMKe6jDHj+l1Vs81mwqc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=f0ea2NsU; arc=none smtp.client-ip=185.70.43.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
-	s=protonmail; t=1773998951; x=1774258151;
-	bh=v2KZVPipi6XWMmI7yyy1VlOzd+eNcHMfmFPUdEqS8do=;
-	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=f0ea2NsUqDxMiJbpeugzgTblbtdKBuecehJF/MUoNAs/m5z/1vPOpP0EynBLVpPLS
-	 sU5l4ntLZkHi0JFdLDGqQI9KVw0/cENG8rPn8jpFpGkR3sSNJZFQkbOMs/jVm8jLoD
-	 MXmJu+c29kpqq3EX/HFWmq3IdAlymy7AcL1LFdKj+LeCpEBDSua23XPlJcdqTesOls
-	 wKwyl7w2LLg7A6QpfuTFW7tyL5eDwQrS8MyiSjgPVrh2TsspH+E8k/Fa91GvsBhxLt
-	 tqlOzwA8KsR22JHoAQeiceUsfgf573X5zkhCjY4OFb9/yI3YjCkvHQYndqV0DQRCt5
-	 ws5b3MhIt4ocg==
-Date: Fri, 20 Mar 2026 09:29:08 +0000
-To: Arec Kao <arec.kao@intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-From: Antoine Bernard <zalnir@proton.me>
-Cc: "~postmarketos/upstreaming@lists.sr.ht" <~postmarketos/upstreaming@lists.sr.ht>
-Subject: [PATCH 3/3] MAINTAINERS: Add dt-bindings documentation for OV13B10
-Message-ID: <c7p2BBO_oMbyIRGS1nO-ktWtvrUeq5YONHR64JhJ6EXKX0n-elheAn8mlPbyvuKa0lJxaG9Bghi8_NlaXucj3_G6cU1JRIPh29X_bk0xZOE=@proton.me>
-Feedback-ID: 152853527:user:proton
-X-Pm-Message-ID: 5317540aff25d7eac338d83bc09b862164ca0d6d
+	s=arc-20240116; t=1773998993; c=relaxed/simple;
+	bh=LfFmVCPsvjpc+MzWiP7Uv1vwUKJcyLzLQ4f89tdstFY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M7Bf65HgPUVmktLlCienPUEmGaGqA9xaVyjBQTzmW8cliWWTBxDFgGoFsTprOXD/bncMNSxux2boRZrfzxLKMSCtkiNbBQjSgAAj+nhkaQltX7bJU7KN8byDZasOfIU29GQ83UUoJIWQdD0FJfQqxrBsTsI5DjF/HBB2I3co7QE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=btdOSa/R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DD9AC4CEF7;
+	Fri, 20 Mar 2026 09:29:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773998992;
+	bh=LfFmVCPsvjpc+MzWiP7Uv1vwUKJcyLzLQ4f89tdstFY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=btdOSa/RRTxID46FD+SM3Vu5F71uwvI4JsAhBN97H9RFqrroiS9Te5NeZv+Suce7g
+	 FDqdgqs8SeJyLBQW2/0htwGiOcOcw0eHb9JmJvf6o2q9S/NKZ2MrHT6cufR6+HyMU7
+	 5olUllZ40xuvL5/RYXTt2a4+HXmrcDMySr9SruCaiLDV8qvIBTVWcPElWFXWkgHDyC
+	 qb7W/xXf4fEiXv08Fs49cdCl6CSpaaJWijiy3A5PtecB/vYGCiE/YEFD4bbNLT5p5s
+	 DkS4hF1/cqMAxvd2CPsSiYq7am/6A8eSZeUTWMiyQMHjqp+rJCcshrD2X5P+2PspMz
+	 y4xPC+IAxfrHw==
+Date: Fri, 20 Mar 2026 10:29:50 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Vinod Koul <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	Thomas Gleixner <tglx@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, John Madieu <john.madieu@gmail.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org, linux-sound@vger.kernel.org
+Subject: Re: [PATCH 07/22] ASoC: dt-bindings: renesas,rsnd: Add RZ/G3E support
+Message-ID: <20260320-peculiar-cat-of-acumen-c6f6b3@quoll>
+References: <20260319155334.51278-1-john.madieu.xa@bp.renesas.com>
+ <20260319155334.51278-8-john.madieu.xa@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,64 +70,130 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Disposition: inline
+In-Reply-To: <20260319155334.51278-8-john.madieu.xa@bp.renesas.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[proton.me,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[proton.me:s=protonmail];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-278158-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278157-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[intel.com,kernel.org,linux.intel.com,gmail.com,vger.kernel.org];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zalnir@proton.me,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[proton.me:+];
-	NEURAL_HAM(-0.00)[-0.972];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[glider.be,renesas.com,kernel.org,baylibre.com,gmail.com,perex.cz,suse.com,pengutronix.de,tuxon.dev,bp.renesas.com,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[proton.me:dkim,proton.me:email,proton.me:mid,intel.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8C00C2D8047
+	NEURAL_HAM(-0.00)[-0.944];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 79C432D8092
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Antoine Bernard <zalnir@proton.me>
+On Thu, Mar 19, 2026 at 04:53:19PM +0100, John Madieu wrote:
+> Add support for the RZ/G3E (R9A09G047) SoC audio subsystem.
+> 
+> RZ/G3E has a different audio architecture from R-Car Gen2/Gen3/Gen4,
+> with additional clocks and resets:
+> - Per-SSI ADG clocks (adg.ssi.0-9)
+> - SCU related clocks (scu, scu_x2, scu_supply)
+> - SSIF supply clock
+> - AUDMAC peri-peri clock
+> - ADG clock
+> - Additional resets for SCU, ADG, and AUDMAC peri-peri
+> 
+> RZ/G3E has 5 DMA controllers that can all be used by audio peripherals.
+> To allow the DMA core to distribute channels across all available
+> controllers, increase the maximum number of DMA entries in DVC, SRC,
+> and SSIU sub-nodes so that multiple providers can be listed with
+> repeated channel names.
+> 
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+> ---
+>  .../bindings/sound/renesas,rsnd.yaml          | 169 +++++++++++++++---
+>  1 file changed, 148 insertions(+), 21 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> index e8a2acb92646..bc8885c4fa24 100644
+> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> @@ -58,6 +58,7 @@ properties:
+>            - renesas,rcar_sound-gen2
+>            - renesas,rcar_sound-gen3
+>            - renesas,rcar_sound-gen4
+> +          - renesas,rcar_sound-r9a09g047     # RZ/G3E
 
-Add the device tree bindings documentation file for the OmniVision
-OV13B10 image sensor inside MAINTAINERS.
+Do not use underscores in compatibles. Previously used wrong style is
+not the excuse here, just like previously poor code, mistakes, bugs,
+unreadable approches is not justification to repeat the same.
 
-Signed-off-by: Antoine Bernard <zalnir@proton.me>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+>  
+>    reg:
+>      minItems: 1
+> @@ -97,20 +98,22 @@ properties:
+>  
+>    resets:
+>      minItems: 1
+> -    maxItems: 11
+> +    maxItems: 14
+>  
+>    reset-names:
+>      minItems: 1
+> -    maxItems: 11
+> +    maxItems: 14
+>  
+>    clocks:
+>      description: References to SSI/SRC/MIX/CTU/DVC/AUDIO_CLK clocks.
+>      minItems: 1
+> -    maxItems: 31
+> +    maxItems: 47
+>  
+>    clock-names:
+>      description: List of necessary clock names.
+>      # details are defined below
+> +    minItems: 1
+> +    maxItems: 47
+>  
+>    # ports is below
+>    port:
+> @@ -136,9 +139,17 @@ properties:
+>  
+>          properties:
+>            dmas:
+> -            maxItems: 1
+> +            description:
+> +              Must contain unique DMA specifiers, one per available
+> +              DMAC. On RZ/G3E, up to 5 for transmission.
+> +            minItems: 1
+> +            maxItems: 5
+>            dma-names:
+> -            const: tx
+> +            minItems: 1
+> +            maxItems: 5
+> +            items:
+> +              enum:
+> +                - tx
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e08767323763..4576a55437fe 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19309,6 +19309,7 @@ M:=09Arec Kao <arec.kao@intel.com>
- L:=09linux-media@vger.kernel.org
- S:=09Maintained
- T:=09git git://linuxtv.org/media.git
-+F:=09Documentation/devicetree/bindings/media/i2c/ovti,ov13b10.yaml
- F:=09drivers/media/i2c/ov13b10.c
-=20
- OMNIVISION OV2680 SENSOR DRIVER
---=20
-2.52.0
+Multiple levels, multiple if:then: (further) - I don't find this binding
+manageable/readable. You should split it, with common binding defining
+common part of hardware or interface if there is such.
 
+Best regards,
+Krzysztof
 
 
