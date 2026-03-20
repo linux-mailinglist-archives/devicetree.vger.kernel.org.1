@@ -1,181 +1,149 @@
-Return-Path: <devicetree+bounces-278166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278167-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SF5xBu8WvWnG6QIAu9opvQ
-	(envelope-from <devicetree+bounces-278166-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:44:15 +0100
+	id eLKFDhMXvWnG6QIAu9opvQ
+	(envelope-from <devicetree+bounces-278167-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:44:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90CDB2D831B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:44:14 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A0C42D834E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:44:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D68B330A906F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:41:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 007EE30C78FB
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:42:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89D9238735F;
-	Fri, 20 Mar 2026 09:41:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B1CF383C9F;
+	Fri, 20 Mar 2026 09:42:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ivCdHj3n"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="kIr8YWm4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6487B386C28;
-	Fri, 20 Mar 2026 09:41:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E4CE346A00;
+	Fri, 20 Mar 2026 09:42:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773999718; cv=none; b=c/KUwQjFdPeErGzddxvSk1nlZXbo/VvcAd4a4g9wSdH5j1bScGKFSfvKSDnpB9FIOKMDMNj8zdumERrMAGlTvNkfHbxzZ5h0eDQupwlAJVofJYM9o/nXle7kyN+WvgIOhlozYHPq6gIae9KviZ885dwCed74OU8wCuLbFR9Gdjk=
+	t=1773999753; cv=none; b=K2iHUyDUKRjOl4EMaGZEcFrcLFjEpuftnTG+9pnjNdeLsp1ruR0m0sG/c88l7wDteWJP6mN3xtntNsTbCOcPaLOEBltMLyWBhjm4/c1rpPzE3nFLPIZbKcpaUvMt+zTqyd6vlShJE4PUsuUTpoujWo4RRNW+soKAbbD7ZEoWd+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773999718; c=relaxed/simple;
-	bh=ckWzpMVeCGxXo30SWMHFDxsehsfkK1rEaxq5cxMVKcg=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ai3minxDvW209XawUXmylkWpBA3KNcjkR3yRjGYM2LQmZ0YlK93QcltmI9MLHk8phVI7pQEXnF/lwOT3pPKMk7iOP36eLOWKDdN4LDvqVjU1UN5g3Bto5nrY/Sw1czzuf+pWmINtua/VZkz0HFQomFWlj3zYnrD1HJ4Vke6a8xs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ivCdHj3n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEF1CC4CEF7;
-	Fri, 20 Mar 2026 09:41:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773999718;
-	bh=ckWzpMVeCGxXo30SWMHFDxsehsfkK1rEaxq5cxMVKcg=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=ivCdHj3ntFH+Sac9HPqm5LR0LjZGK2HSPNqEV9O9bLGHfodlv/vZ32LNGEh1Jv9cb
-	 4henxpgrf5U1tN/UdnHbHqwdVs5YWrfyfzFeYCvRyjWmDlE2guUYCN+nQMgk9AJarR
-	 V3nOoe090NgVPa4A631abWxSYMUX3GP0oVd3mtjdMxEpXSrpzXHFec7sUL6gxVgncj
-	 b4aMx7JO7CXqFogW8C8Bx6p/dAaVwfr9UWeGMO87A8u03APwbTOF/aTQy9Yn6zi4Mb
-	 qMywdLrLBcQfbgQlYwa9nTLTrtAEzK9RalXKPNLTQboHZ52pZQvFI0OZAwSptufcYs
-	 19INlCSyhCOcQ==
-Message-ID: <311d143b-cc78-465e-9be2-0a9a0a33ea0b@kernel.org>
-Date: Fri, 20 Mar 2026 10:41:48 +0100
+	s=arc-20240116; t=1773999753; c=relaxed/simple;
+	bh=NsAeI/tJVp0o3XoadyYFRyR2ZSjxg6gmOIW5x4tBLmg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LNu3R+C9snYDWN7yqK+gCN7Ux1SXFRBILDVkS5NM8XvGlc2bSTxuunOS92ma9XdTnPaqnhmqIL5NrMUzPC/Qwskbf3I+anTkH1a/XqpCizVmuhLR5nBUnJ9K8EjN0Ab7pPk7AYUoiR50KIOBiX72Ds4JMU/ZcQBcSLrHr4JaHz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=kIr8YWm4; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2085B360308;
+	Fri, 20 Mar 2026 10:42:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1773999743; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=A/j3iAJkz4+vJeSH2EikPAPD06j5Xk+pcUsj1+dSTNw=;
+	b=kIr8YWm4e/n+GCCbeIGTzpHtBJmn8iFZ2U3DnCwJ9+ZIEcAH3w2gMcEVQMW3wPGjtLzrC6
+	FpiJuv3ReG7IMwWI+Are3ZFCThI6Fej4FjXfe7I03goggrDywINwcsn6HEA6djLDRA/+Ct
+	ePOmM0lwH5VHszF7aIrZAJShhFtUlk8LGEceP3AoEBv2Nou/aeR0w6bG405vvsdEzeu4Pt
+	3BZfF1+l9KKkXOculDmv6MaLCuy6MNxdZ3Xl6qFkJVhjiIPNIDmV32iE676gaIYYO+LWps
+	siWhk5I3w1WsojPU9mcEDB6DgBE3dFdaD9pFHNPhEUvq+3GnXV1/nCZ3lYBBdA==
+From: Caleb James DeLisle <cjd@cjdns.fr>
+To: linux-pci@vger.kernel.org
+Cc: linux-mips@vger.kernel.org,
+	naseefkm@gmail.com,
+	ryder.lee@mediatek.com,
+	bhelgaas@google.com,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	ansuelsmth@gmail.com,
+	linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Caleb James DeLisle <cjd@cjdns.fr>
+Subject: [PATCH v3 0/2] PCI: mediatek: Add support for EcoNet SoCs
+Date: Fri, 20 Mar 2026 09:42:10 +0000
+Message-Id: <20260320094212.696671-1-cjd@cjdns.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/9] dt-bindings: display: rockchip: analogix-dp:
- Expand clock-names "hclk" for the third clock
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Damon Ding <damon.ding@rock-chips.com>
-Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
- rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, nicolas.frattaroli@collabora.com,
- alchark@gmail.com, cristian.ciocaltea@collabora.com,
- sebastian.reichel@collabora.com, kever.yang@rock-chips.com,
- heiko.stuebner@cherry.de, tomeu@tomeuvizoso.net, amadeus@jmu.edu.cn,
- michael.riesch@collabora.com, didi.debian@cknow.org,
- dmitry.baryshkov@oss.qualcomm.com, luca.ceresoli@bootlin.com,
- dianders@chromium.org, m.szyprowski@samsung.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20260319104031.1986946-1-damon.ding@rock-chips.com>
- <20260319104031.1986946-2-damon.ding@rock-chips.com>
- <20260320-amusing-magnetic-harrier-20cc40@quoll>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260320-amusing-magnetic-harrier-20cc40@quoll>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278166-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,cherry.de,tomeuvizoso.net,jmu.edu.cn,cknow.org,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[37];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,mediatek.com,google.com,kernel.org,collabora.com,lists.infradead.org,cjdns.fr];
+	TAGGED_FROM(0.00)[bounces-278167-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.992];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[cjdns.fr:+];
+	NEURAL_HAM(-0.00)[-0.875];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 90CDB2D831B
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cjdns.fr:dkim,cjdns.fr:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8A0C42D834E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 20/03/2026 10:19, Krzysztof Kozlowski wrote:
-> On Thu, Mar 19, 2026 at 06:40:23PM +0800, Damon Ding wrote:
->> The RK3588 eDP controller needs the video datapath clock "hclk" to work
->> well. Previously, it works without explicitly adding this clock because
->> the 'rockchip,vo-grf = <&vo1_grf>' property implicitly enables HCLK_VO1.
->>
->> Fixes: f855146263b1 ("dt-bindings: display: rockchip: analogix-dp: Add support for RK3588")
->> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
->> ---
+Add EcoNet EN7528 (and EN751221) PCIe support.
 
-BTW, all your patches (this and previous set... actually, everything you
-ever sent IIRC) end up marked as spam. I don't see anything in the
-headers pointing to the issue. There is no score assigned and
-DMARC+SPF+DKIM pass.
+Changes from v2:
+* mediatek-pcie.yaml -> s/power-domain/power-domains/ and drop example
+* Patch 3 dropped as it has been applied (Thanks!)
+* v2: https://lore.kernel.org/linux-mips/20260316155157.679533-1-cjd@cjdns.fr/
 
-However it seems you are using @rock-chips.com and SMTP server 163.com,
-so maybe that difference. Or maybe it is rock-chips lack of DMARC policy
-(p=none dis=none)?
+Changes from v1:
+* mediatek-pcie.yaml slot0 needs device-type = "pci", fix dt_binding_check
+Link: https://lore.kernel.org/linux-mips/177334026016.3889069.9474337544951486443.robh@kernel.org
+* v1: https://lore.kernel.org/linux-mips/20260312165332.569772-1-cjd@cjdns.fr/
 
-Regardless of the reason, if you do not ever receive answers from
-people, it is likely that is the reason.
+This was split from a larger PCIe patchset which crossed multiple
+subsystems. I'm not labeling this a v3 because it's a new patchset, but
+I'm keeping the historical record anyway.
 
-Best regards,
-Krzysztof
+Changes from econet-pcie v2:
+* mediatek-pcie.yaml add missing constraints to PCI node properties
+* econet-pcie v2: https://lore.kernel.org/linux-mips/20260309131818.74467-1-cjd@cjdns.fr
+
+Changes from econet-pcie v1:
+* pcie-mediatek.c Exclude pcie_retrain_link() when building as a module
+* econet-pcie v1: https://lore.kernel.org/linux-mips/20260303190948.694783-1-cjd@cjdns.fr/
+
+Caleb James DeLisle (2):
+  dt-bindings: PCI: mediatek: Add support for EcoNet EN7528
+  PCI: mediatek: Add support for EcoNet EN7528 SoC
+
+ .../bindings/pci/mediatek-pcie.yaml           |  26 ++++
+ drivers/pci/controller/Kconfig                |   2 +-
+ drivers/pci/controller/pcie-mediatek.c        | 118 ++++++++++++++++++
+ 3 files changed, 145 insertions(+), 1 deletion(-)
+
+
+base-commit: 3fa5e5702a82d259897bd7e209469bc06368bf31
+-- 
+2.39.5
+
 
