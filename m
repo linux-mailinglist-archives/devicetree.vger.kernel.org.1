@@ -1,183 +1,145 @@
-Return-Path: <devicetree+bounces-278230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278231-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aMSFAncrvWmI7QIAu9opvQ
-	(envelope-from <devicetree+bounces-278230-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:11:51 +0100
+	id cPRhAgotvWmI7QIAu9opvQ
+	(envelope-from <devicetree+bounces-278231-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:18:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FF4D2D95A1
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:11:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5756C2D9698
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:18:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F27EF30466BF
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:11:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AE4A1317FC17
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:14:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F9DE39FCAE;
-	Fri, 20 Mar 2026 11:11:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="yNrwKTG6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 847D33A1682;
+	Fri, 20 Mar 2026 11:14:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com [209.85.217.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65FA43A1682
-	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 11:11:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDC4539DBCA
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 11:14:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774005097; cv=none; b=ZjFUbxkOzKPAaJfRe+Kgh/UxbsPV/fSFXPgxFEIPzFXHL+eDe4HfPxjmltEnktdm3nL+II8LFieDyhHHdPMGnicTXTNXpFmPPb0BWPJ+Gfddg6YcxTr16HI/J1Vb+RYCi8OsNsIyLZGRXvQFB3HtBBTLcTWB3jGpm43U9EUdYzA=
+	t=1774005298; cv=none; b=sRuFdJUipQNKlDdCHtyny6lUk1M1wu27090v24ZJgnkVZmuoSGV5tdVvvVulKYo1BaAk+NSS0HyUlKBlf+RYhRMoVyqxSx12ttJvMM3kvFFIUlQtnEh3qqxnhjnqpGPa57h5hoWxgFfJP8uhqFlvnR28pXKAxoCFG0QYAOMOj3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774005097; c=relaxed/simple;
-	bh=SqGdlcRvy5fmyJEhp9QLngdtzZOVrTojv6F8bBn9Ceg=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
-	 References:In-Reply-To; b=Hah55lHPqoS/Pv9ddOCugTmf8yXXsHb+YMy8ibpoSwoy7ondEf+1DeyrCOMTRV2MTgsZR6C3G+grki0tDkNn7Qq2FKHWq+OWkmTgxjuDvs1M03vgNEcKw7Yug9T+2vRkhtA9mhpI39nE1tBWatmUjpO6gmWYnwyQ2/O3jp7DsvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=yNrwKTG6; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 2D4C8C415B5;
-	Fri, 20 Mar 2026 11:11:59 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id A6B25600E0;
-	Fri, 20 Mar 2026 11:11:33 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 86B5410450BAE;
-	Fri, 20 Mar 2026 12:11:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1774005091; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=OgCLycKADg8WapEoALnr45EN8oOjbM/c3hEclAHzFQA=;
-	b=yNrwKTG67Wfi/l6/Cx6JLjhzRR66Q6F9KbZdHALz92gFHiJ903UlF3jJnclHpJfIXNAv76
-	gEccg/auQ56Dw7hAkprTo3+lpIXUBHLIN5DrQJPSHKVtz/Wet1c8DG9c3rK8T/43o/ZuOi
-	xPydDpkCfh2ECLycX5Eeq9uuS34aOv+sCFhedLnSlqul76QFADCHSHYCZ9x+Qf4Uox7x5T
-	xAOcUxV/ciAkAPwFD5P7aNA9Gje3+1Bz1cxASeOTuzdeDBaQY/J0hrN+M4xz5ROWnuUCFw
-	U8KauHG0D8vWQbHcvGtAyGAI6FmR8hU59zMvkMbyJjc+3UzzkhjIgh5vmwnsOg==
+	s=arc-20240116; t=1774005298; c=relaxed/simple;
+	bh=9ieM0PKneLc9XAFn1kgI0QbNwUio1Qq6fWkxlV5z1Fc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=icPJhCezoMV7JS+73bTq5I9BwGrJwDhjpS5iIyve6SuaOhL6vyGOgAJaUhjQ5r8uqwshQDzH40cTxKGfy/2BS5N3YwswQaucjQdc8bvERyLRhbrnqACaWO/rUyrZ/Ab3HC+fwNma8BUWdTFsQudAxzorchJuGh17TXppRGmsBTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-6028bb29cc9so948809137.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 04:14:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774005296; x=1774610096;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QM2QQuood2CIqMt6ghdF4q02+bVScicBaTi5mQcy40E=;
+        b=TL+KSa86/wGdwn8stFU4duh7Ju/xuSzCgQ+J1uuHOeoT6AornBxjo7Y2cRBn+BHguq
+         So+FxsJhrb9Vxsh1lg12NPmxs9smxI7YnoudCIjj7qSapQI1nUlS203s9BVnVXQvNZXX
+         eSKMBae9dPQ++kiyNGGfnWKEzWeSmDts5bLDhc8lU97gBrLkXmkmBTW1O0/6Y3tjMRLH
+         K1u1wnJVb6GSER3QsiLvmMtFMXXzk+AnDWm9RwlWJzFtslq8IQ2ubmYbOHr+/caGfo5D
+         JHxCrMg+qD/DhZiGihn1rER6RQJs8nK+u9oAEIY4tlIq3IKTWdc+dZHP3qI/PKpiyip6
+         drJw==
+X-Forwarded-Encrypted: i=1; AJvYcCV4QgsS0vJoAc7lacewn19qv1oM8rKyi8niIMeNtppZQZE8R1YmGIFF6I0QOkYJY+Y0Xnh94uidHqij@vger.kernel.org
+X-Gm-Message-State: AOJu0YyBeKm3JOwvYnSP0up2cffc4uDI6/dmVYO0MiIy2jtMVrVn7lZ6
+	UZvqhqNKfkfG9SckBMfBaeSkkkfTj2vhwbl5YuwlJLXHsxCGaHHVxvyGY6swhHSmvDw=
+X-Gm-Gg: ATEYQzyh8/MX+8CAYtpKZK9bdZx36/4DRW8Q+iKLP0LvayOk8dUHHAOgfF2JpzKhDFo
+	o7/66UyRDGX4Y9f0x9nh2vBs4ykG7hM9QVgy7psI98Kd0cLzPVY7fskWU2UCTVRzTsQgumtvbRu
+	7TZauAD69NXxChuJMmJ9VdTElX7Fe5Zai1qFYNMTeAlXFnFD8WyhIV1fUCnu40tDVi8G2pauaa1
+	iKoTF2fT8Q9KLKr14XhfS54k3tHpIeXv4Tt459e+ChQHm9Q0157zoU17Uo9lxb4KJxBWawapNZw
+	y3TBwCatPyMeqVMPr0mt+vVs2m1MDDoDwMGcg+cpuYj4ZogqV1HftvXulDCLgUWyBwTstDrwKGf
+	PNbBXVI5mgdgwOqY3hqfOEw6k7vAMptTppHvPxAofZWH1qaVMNNF2WGiPJynQ0tETBmlhHDds49
+	+IGhmemFDJT5tLUxwfH4myUlyqPNWt8ltl2sL/cMKL5mO9lgT8RUKIEgTujvOp
+X-Received: by 2002:a05:6102:8016:b0:600:a2:1397 with SMTP id ada2fe7eead31-602aed2335bmr1324556137.25.1774005295796;
+        Fri, 20 Mar 2026 04:14:55 -0700 (PDT)
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-95136c4e2a3sm791206241.7.2026.03.20.04.14.54
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Mar 2026 04:14:55 -0700 (PDT)
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-5ffa277c115so1102856137.3
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 04:14:54 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV6yFGfQ927HNH0OKhzGyzu2Xk+F8JPqYN/y/hZCgRcR/Y1BthmP61bzep9oEsZn1SiXgzR6lsSafnl@vger.kernel.org
+X-Received: by 2002:a05:6102:3713:b0:602:9228:34a3 with SMTP id
+ ada2fe7eead31-602ae79cdfamr1587306137.0.1774005294541; Fri, 20 Mar 2026
+ 04:14:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 20 Mar 2026 12:11:17 +0100
-Message-Id: <DH7KBDWAGOHC.39HCC46YG53PN@bootlin.com>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-Subject: Re: [PATCH 1/8] drm/mxsfb/lcdif: simplify remote pointer management
- using __free
-Cc: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>,
- =?utf-8?q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, "Hui Pu"
- <Hui.Pu@gehealthcare.com>, "Ian Ray" <ian.ray@gehealthcare.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>,
- <dri-devel@lists.freedesktop.org>, <imx@lists.linux.dev>,
- <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>, "Adam Ford" <aford173@gmail.com>, "Alexander
- Stein" <alexander.stein@ew.tq-group.com>, "Anson Huang"
- <Anson.Huang@nxp.com>, "Christopher Obbard"
- <christopher.obbard@linaro.org>, "Daniel Scally"
- <dan.scally@ideasonboard.com>, "Emanuele Ghidoli"
- <emanuele.ghidoli@toradex.com>, "Fabio Estevam" <festevam@denx.de>,
- "Francesco Dolcini" <francesco.dolcini@toradex.com>, "Frieder Schrempf"
- <frieder.schrempf@kontron.de>, "Gilles Talis" <gilles.talis@gmail.com>,
- =?utf-8?q?Goran_Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>, "Heiko
- Schocher" <hs@denx.de>, "Joao Paulo Goncalves"
- <joao.goncalves@toradex.com>, "Josua Mayer" <josua@solid-run.com>, "Kieran
- Bingham" <kieran.bingham@ideasonboard.com>, "Marco Felsch"
- <m.felsch@pengutronix.de>, "Martyn Welch" <martyn.welch@collabora.com>,
- "Oleksij Rempel" <o.rempel@pengutronix.de>, "Peng Fan" <peng.fan@nxp.com>,
- "Philippe Schenker" <philippe.schenker@toradex.com>, "Richard Hu"
- <richard.hu@technexion.com>, "Shengjiu Wang" <shengjiu.wang@nxp.com>,
- "Stefan Eichenberger" <stefan.eichenberger@toradex.com>, "Vitor Soares"
- <vitor.soares@toradex.com>
-To: "Luca Ceresoli" <luca.ceresoli@bootlin.com>, "Marek Vasut"
- <marex@denx.de>, "Stefan Agner" <stefan@agner.ch>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Frank Li"
- <Frank.Li@nxp.com>, "Sascha Hauer" <s.hauer@pengutronix.de>, "Pengutronix
- Kernel Team" <kernel@pengutronix.de>, "Fabio Estevam" <festevam@gmail.com>,
- "Andrzej Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
- <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Laurent
- Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
- <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Liu Ying"
- <victor.liu@nxp.com>, "Rob Herring" <robh@kernel.org>, "Saravana Kannan"
- <saravanak@kernel.org>
-X-Mailer: aerc 0.20.1
-References: <20260320-drm-lcdif-dbanc-v1-0-479a04133e70@bootlin.com>
- <20260320-drm-lcdif-dbanc-v1-1-479a04133e70@bootlin.com>
-In-Reply-To: <20260320-drm-lcdif-dbanc-v1-1-479a04133e70@bootlin.com>
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-0.16 / 15.00];
+MIME-Version: 1.0
+References: <cover.1771344527.git.tommaso.merciai.xr@bp.renesas.com> <c8df5202caf4e36ee5beafe78ad0940643edcbb6.1771344527.git.tommaso.merciai.xr@bp.renesas.com>
+In-Reply-To: <c8df5202caf4e36ee5beafe78ad0940643edcbb6.1771344527.git.tommaso.merciai.xr@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 20 Mar 2026 12:14:43 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWTOPYxC7r0ztuPc72T5xeDgcfo6CUi8sRcupjiJbRLGg@mail.gmail.com>
+X-Gm-Features: AaiRm506QxR9HoC6NaRd9ZijJZ6-iF5Bj8kjApAjQvVWwUbRpOpkLxT5Tya6COA
+Message-ID: <CAMuHMdWTOPYxC7r0ztuPc72T5xeDgcfo6CUi8sRcupjiJbRLGg@mail.gmail.com>
+Subject: Re: [PATCH 4/5] arm64: dts: renesas: r9a09g047: Add RSPI nodes
+To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org, 
+	biju.das.jz@bp.renesas.com, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[bootlin.com,gehealthcare.com,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,vger.kernel.org,gmail.com,ew.tq-group.com,nxp.com,linaro.org,ideasonboard.com,toradex.com,denx.de,kontron.de,solid-run.com,pengutronix.de,collabora.com,technexion.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[bootlin.com,denx.de,agner.ch,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,nxp.com,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se];
-	TAGGED_FROM(0.00)[bounces-278230-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278231-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,bp.renesas.com,renesas.com,kernel.org,baylibre.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_GT_50(0.00)[55];
-	NEURAL_HAM(-0.00)[-0.980];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	NEURAL_SPAM(0.00)[0.483];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 9FF4D2D95A1
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux-m68k.org:email,renesas.com:email,glider.be:email]
+X-Rspamd-Queue-Id: 5756C2D9698
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello,
-
-On Fri Mar 20, 2026 at 11:46 AM CET, Luca Ceresoli wrote:
-> Putting the remote device_node reference requires a of_node_put(ep) in bo=
-th
-> error return points. Use a cleanup action to simplify the code.
+On Tue, 17 Feb 2026 at 17:25, Tommaso Merciai
+<tommaso.merciai.xr@bp.renesas.com> wrote:
+> Add nodes for the RSPI IPs found in the Renesas RZ/G3E SoC.
 >
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> ---
->  drivers/gpu/drm/mxsfb/lcdif_drv.c | 9 +++------
->  1 file changed, 3 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mxsfb/lcdif_drv.c b/drivers/gpu/drm/mxsfb/lc=
-dif_drv.c
-> index 47da1d9336b9..756ca96373c8 100644
-> --- a/drivers/gpu/drm/mxsfb/lcdif_drv.c
-> +++ b/drivers/gpu/drm/mxsfb/lcdif_drv.c
-> @@ -53,16 +53,13 @@ static int lcdif_attach_bridge(struct lcdif_drm_priva=
-te *lcdif)
->  	int ret;
->
->  	for_each_endpoint_of_node(dev->of_node, ep) {
-> -		struct device_node *remote;
-> +		struct device_node *remote __free(drm_bridge_put) =3D
-                                                  ^^^^^^^^^^^^^^
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
 
-I just realized there's a mistake here, this should be
-__free(device_node). However this does not prevent testing the series in
-its entirety because patch 2 fixes this mistake.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v7.1.
 
-Will be fixed in v2.
+Gr{oetje,eeting}s,
 
-Sorry about the noise, did too many rebases today!
+                        Geert
 
-Luca
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
