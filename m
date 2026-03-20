@@ -1,171 +1,115 @@
-Return-Path: <devicetree+bounces-278151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278152-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +KXPI34RvWlf6QIAu9opvQ
-	(envelope-from <devicetree+bounces-278151-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:21:02 +0100
+	id uO2YEfYRvWlf6QIAu9opvQ
+	(envelope-from <devicetree+bounces-278152-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:23:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E14D12D7E8F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:21:01 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B391B2D7ECE
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:23:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 981AB3039EC5
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:19:39 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 854CF3009F29
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:23:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE8E935AC1A;
-	Fri, 20 Mar 2026 09:19:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2568135AC1A;
+	Fri, 20 Mar 2026 09:22:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p2SHTXDw"
+	dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b="aeWALAkB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-4325.protonmail.ch (mail-4325.protonmail.ch [185.70.43.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA93F3431FD;
-	Fri, 20 Mar 2026 09:19:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDF0131B11E;
+	Fri, 20 Mar 2026 09:22:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773998378; cv=none; b=EeQVGo2XFgBQmR1TGkjNtj9RETc+mUdWAZqoNKQcc0fMIGlti8ICLizWv51PZdyue2lDORij1x+1fbVbQmXMWBxgoe/2Bcsh3c9mXXlPcLzNCw2xJvsquZHXKhJ5f31r6X09PFwG/T6xenDq7bg7MQbIegJjMVHCjTGaAftxEh4=
+	t=1773998579; cv=none; b=hCafBPVVzS9oMPfrAIraF2MflsD1rnZKQlaSTF3Fxaakk6TGdCLMsYUBahSTe7MPd4e4HbHC8h0BUVtUhYqRJZV5mVigWJkirX5bcv9ZzREK3VY9/8RwVYAZFzAZ99s0A7y4JS6UxbxbL6mr8FxFKfOKyB8Q1QzIyeasDmH5kWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773998378; c=relaxed/simple;
-	bh=ykmhVLHFaVW6VL0kFqfY/5bJbeu59kIBa0Np560J1r0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZKz1Yf47zTNSApCWjvjimg+iWEno+ThPwOxJIrrYnptQjdEPwrV2ydT42miB51q4EJxTZ77CVkK7RsPdtJJ10N/9yvmCCjZ/mO29kUfXnz8WMSDTunfIAPNXrVaM7y1XjClpsxTWDWZ6e+fM0uQ975KHYjNNoO2367ysvccg/RM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p2SHTXDw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0FB6C4CEF7;
-	Fri, 20 Mar 2026 09:19:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773998378;
-	bh=ykmhVLHFaVW6VL0kFqfY/5bJbeu59kIBa0Np560J1r0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=p2SHTXDwJKQk8EgpT/xYlgQiw6SSOEC+/0hqE1VfRxsyolPrXWYSA7fJLnwKgeBOk
-	 WNp1M+cbScGMlEMqpRBDjfEK9oydKmJCJG9PPCJ0VivFv8d+m3Nwc5hl0ePDlJdqen
-	 h22qg1Y5Q5VXjmesk+Pkih5XnhLxUy7XisXEowHuwdkV4iRy0xvTsBmGtqQU42dra2
-	 CM+poPsSMg4QPsekNX8P1PlsMZbzusk4kEUcRuEYouZ+zzh0jSzAxtMHCtK+wtlkin
-	 AcHLL0iFnNViYUa6GBLfHlA+spDUVK0z2cz1V5Av1nGQ9WfkRbMbkV62NEtxW4F8g7
-	 YXBmPsMJZc00Q==
-Date: Fri, 20 Mar 2026 17:19:36 +0800
-From: Yixun Lan <dlan@kernel.org>
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] riscv: dts: spacemit: Add PDMA controller node for K3 SoC
-Message-ID: <20260320091936-GKB525649@kernel.org>
-References: <20260317-k3-pdma-v1-1-f39d3e97b53a@linux.spacemit.com>
+	s=arc-20240116; t=1773998579; c=relaxed/simple;
+	bh=uvt7eL4Jq19faM7egA1KrphuuIDdpSBt1JSRf3YV6Sk=;
+	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=B2zmfRUUxDeqDPtQIdN1vNXum+M90DLJ4a5jDAbqtWjmjVs2NAHIa8AHs1Cmn+6U7se6nSMTT5I6QNOUZrOKHjcTLVuvT7OJkYQiSRdoF/xrvJyfI+s1FOGlZJmTj5kyp6MT/RdlCqd6VvMDdBT40mx2ruSjrHruKskTQqLBrWA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=aeWALAkB; arc=none smtp.client-ip=185.70.43.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+	s=protonmail; t=1773998570; x=1774257770;
+	bh=1+6+OuqLNU5W3FgsGLC7SVKlN36q2Rny0bniN4QvqU4=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=aeWALAkB2CHElJQXEFqvE5TiSepDXTUAQOkfhqQdiIp44Y5fq/8mfMQXQv4pDliYW
+	 h3Ub2xZpdC9K5RRyTTz+TX1pOLJKIHAaGddjyXtfV+J/+GGsShLddGmyHiX1ZJuuF7
+	 v/S7+bpxqhPR6Wbz1AutK2ETVc/NG4BvvQKdhARoxOTOmF+nKBrAEgNghfFvkU47ic
+	 kYoUT4f17jEjMh89LVc+0/nBWDfahyBPdINftbqCGyL9uRdCo9P2Jz9jE4a3vDCdcp
+	 n6lyrQ/+RHIzMuEkMyQRk0E6LCoZFT7ouWm4n2FtE1NIOjjuW4baOmy+E75TtkOIOc
+	 PIvWQUtFGvSbg==
+Date: Fri, 20 Mar 2026 09:22:45 +0000
+To: Arec Kao <arec.kao@intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+From: Antoine Bernard <zalnir@proton.me>
+Cc: "~postmarketos/upstreaming@lists.sr.ht" <~postmarketos/upstreaming@lists.sr.ht>
+Subject: [PATCH 0/3] Add dvdd, dovdd and dt support to OV13B10
+Message-ID: <S-aTRAGCAJIG5fKj0dhR7YI1RgL2Q1sbAiLQFKciU4yNuGHwUcukxDGjYilT43Bs1VXFTvi9NSb3W9z-raiOscEYSshOTEr5MvA3TxICHlw=@proton.me>
+Feedback-ID: 152853527:user:proton
+X-Pm-Message-ID: 5efd933e43521df97088a077b927d5f8b895ee5c
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260317-k3-pdma-v1-1-f39d3e97b53a@linux.spacemit.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[proton.me,quarantine];
+	R_DKIM_ALLOW(-0.20)[proton.me:s=protonmail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278151-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-278152-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[intel.com,kernel.org,linux.intel.com,gmail.com,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	DKIM_TRACE(0.00)[proton.me:+];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.945];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[zalnir@proton.me,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-0.974];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[d4000000:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,spacemit.com:email,d4015000:email]
-X-Rspamd-Queue-Id: E14D12D7E8F
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: B391B2D7ECE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Troy,
+This series add support for the dvdd/dovdd voltage regulators
+and introduce devicetree bindings for the OV13B10 image sensor.
 
-On 15:55 Tue 17 Mar     , Troy Mitchell wrote:
-> Add the Peripheral DMA (PDMA) controller node for the SpacemiT K3 SoC.
-> The PDMA controller provides general-purpose DMA capabilities for various
-> peripheral devices across the system to offload CPU data transfers.
-> 
-> Unlike the previous K1 SoC, where some DMA masters had memory addressing
-> limitations (e.g. restricted to the 0-4GB space) requiring a dedicated dma-bus
-> with dma-ranges to restrict memory allocations, the K3 DMA masters have
-> full memory addressing capabilities. Therefore, the PDMA node is now
-> instantiated directly under the main soc bus.
-> 
-..
-> This configuration defines the essential hardware properties:
-> - Register base address and size
-> - High-level triggered interrupt
-> - Associated APMU clock and reset controls
-> - 16 hardware DMA channels
-> 
-> The node is disabled by default and should be enabled by specific
-> board device trees as needed.
-I would suggest to drop above, as they are quite obvious, and easy for 
-people to grab from the code..
-> 
-> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-> ---
->  arch/riscv/boot/dts/spacemit/k3.dtsi | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/spacemit/k3.dtsi
-> index a3a8ceddabec..f90d34a81be0 100644
-> --- a/arch/riscv/boot/dts/spacemit/k3.dtsi
-> +++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
-> @@ -438,6 +438,17 @@ soc: soc {
->  		dma-noncoherent;
->  		ranges;
->  
-> +		pdma: dma-controller@d4000000 {
-> +			compatible = "spacemit,k1-pdma";
-I think here we should introduce a new compatible for K3 SoC,
-it would avoid ABI breakage if something different with K1?
-cases exist even same PDMA IP integrated into different SoC..
+Signed-off-by: Antoine Bernard <zalnir@proton.me>
+---
+Antoine Bernard (3):
+  media: i2c: ov13b10: Add dvdd, dovdd and device tree support
+  media: dt-bindings: Add OmniVision OV13B10
+  MAINTAINERS: Add dt-bindings documentation for OV13B10
 
-The commit message tells some difference, although no code changes
-introduced so far..
+ .../bindings/media/i2c/ovti,ov13b10.yaml      | 99 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ drivers/media/i2c/ov13b10.c                   | 53 ++++++++++
+ 3 files changed, 153 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov13b1=
+0.yaml
 
-> +			reg = <0x0 0xd4000000 0x0 0x4000>;
-> +			clocks = <&syscon_apmu CLK_APMU_DMA>;
-> +			resets = <&syscon_apmu RESET_APMU_DMA>;
-> +			interrupts = <72 IRQ_TYPE_LEVEL_HIGH>;
-> +			dma-channels = <16>;
-> +			#dma-cells = <1>;
-> +			status = "disabled";
-> +		};
-> +
->  		syscon_apbc: system-controller@d4015000 {
->  			compatible = "spacemit,k3-syscon-apbc";
->  			reg = <0x0 0xd4015000 0x0 0x1000>;
-> 
-> ---
-> base-commit: 95c541ddfb0815a0ea8477af778bb13bb075079a
-> change-id: 20260317-k3-pdma-7c1734431436
-> 
-> Best regards,
-> -- 
-> Troy Mitchell <troy.mitchell@linux.spacemit.com>
-> 
+--=20
+2.52.0
 
--- 
-Yixun Lan (dlan)
 
