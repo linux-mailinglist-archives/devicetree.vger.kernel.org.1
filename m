@@ -1,148 +1,152 @@
-Return-Path: <devicetree+bounces-278327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278328-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OFmaGrVivWlh9gIAu9opvQ
-	(envelope-from <devicetree+bounces-278327-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:07:33 +0100
+	id UAMOA+BhvWlF9gIAu9opvQ
+	(envelope-from <devicetree+bounces-278328-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:04:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D06DB2DC50C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:07:32 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CD942DC418
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:03:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2ED1F31DDDB7
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:52:46 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A9B0130888FD
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:53:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA07E3C4569;
-	Fri, 20 Mar 2026 14:50:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1892D3C73F0;
+	Fri, 20 Mar 2026 14:50:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Yjh45Y1e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X8PyEklX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 887903B9DAF;
-	Fri, 20 Mar 2026 14:50:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E54273C73D9;
+	Fri, 20 Mar 2026 14:50:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774018223; cv=none; b=hjwTlCRXSj9/CedY1AgoXiXh4xH6f/QDgS5WwHZK+6xyHq52DI6GExUYSGIOpZvu1xOFO6OmXywyJ7kBHLs7C7PbF6TvchmOEXdT8VaUMDtn3faw/WX873T+nakK3lOvlqp6I3dGxh7gOpL50RbJq8V9fBx/HGt48vjlNhHO/B0=
+	t=1774018228; cv=none; b=YkaApWpyNErZUvZFHnc4hQCwtb7X9k0dUxz6IVmW9QdKWXxgwiFRBEQW7qejIBwk0y9MOd9h7/eXug2XYboF/ch+tBheDPJgF0FO0+NDdZtyZx1KihDeyc4B9F3+d2b20szNRfw83BZcKWDx7C9l9BhGd3HlSVuim6cIfzcM1os=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774018223; c=relaxed/simple;
-	bh=xK3qG/TLGU2GFNXvpT85sAxbQaQWkuukTLryj8aLIWU=;
+	s=arc-20240116; t=1774018228; c=relaxed/simple;
+	bh=xEq0lkHiWlfzRjTk9tAbY2BUU4eS/9QAmtJ8rJpta60=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dRq7F08M+gaIvT/+75ixMqL59pHKGxsz0KVDJXTbsWf4SGTrDrkv0ukB0fPLOPK2OlxvZgkv1k6eRLb297P6gB8T/uWEkxHNXVy3SdwJ0Q9ZJ5klXSnajGqU0uXHgt+nP/CllT1P7zK9FtOiPRHmz1LWu0Qc3BdasFLwzjrD/y8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Yjh45Y1e; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1774018222; x=1805554222;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=xK3qG/TLGU2GFNXvpT85sAxbQaQWkuukTLryj8aLIWU=;
-  b=Yjh45Y1eHrdoEG7iitHckx5Mhz+qaOmrHF8Sq5SjykzIEBqQ5HsuYO+x
-   g/Iq+MaSJyXtoi3oTWfXDoqgbKxJPRxWyWOy49AyRV3BAigQibILslTMj
-   CihQrroxVWSdKB0GJKfVlbkuvr63O1ML0JwSsWHv0hfq8ybhKQGM8MGWO
-   0NgoBxVxVZD1sus9aa6IKy1bKF9QTt90O646aJ/jrwl4OCKhfe2wqJonJ
-   KSvlEevYNIQvCS7pXkcuGBx5BzeXS3zqFD1xebi6Icn4AixEXdELwKNu+
-   JWgRooDe5asqdj1w99a75JEzAWl9oCQPSgFo9HOW5KTAM4OzvpUd6gMKr
-   A==;
-X-CSE-ConnectionGUID: vSJaRCIYQHWdtWtJEJnEzg==
-X-CSE-MsgGUID: RhJp+8y2RViqDvh8GhFU4w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11735"; a="86578978"
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
-   d="scan'208";a="86578978"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 07:50:22 -0700
-X-CSE-ConnectionGUID: 5DxZA+XdRlSLDN4qW92YfQ==
-X-CSE-MsgGUID: R6+ETSCJRWWp40eYmYWGog==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
-   d="scan'208";a="222399229"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.40])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 07:50:19 -0700
-Date: Fri, 20 Mar 2026 16:50:16 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Carlos Jones Jr <carlosjr.jones@analog.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Liam Beguin <liambeguin@gmail.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Tobias Sperling <tobias.sperling@softing.com>,
-	Jorge Marques <jorge.marques@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] Add support for LTC2305
-Message-ID: <ab1eqIXaav4sVucJ@ashevche-desk.local>
-References: <20260320140819.191700-1-carlosjr.jones@analog.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ho83ocKaPVOW6sTICrI+fQjeL1xCvyL6nMMUos8WO9+gGLYIaugt/NHOozipZhP+860xTRHQejtcuURFlB8xlPMPOIKtBVXXdtDVTfU+vW6VNZEjJv80WHR7V+hvLqFYhYo6Z9fjej2CDoIDMDC4s7gHJUSJUJImIJ4ho81qQkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X8PyEklX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3FC3C19425;
+	Fri, 20 Mar 2026 14:50:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774018227;
+	bh=xEq0lkHiWlfzRjTk9tAbY2BUU4eS/9QAmtJ8rJpta60=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=X8PyEklXlRJu+UqDu9GCKeEZJfQdaZQ3fRzearO8/+biLOD5xVHtfvWxJ83UTPeTm
+	 e3vfw/zpLxQpWpcuCfR/Ot1WDWP6YV6P0j3HqTUX9hXJDnxljg+GIn6pFEgBlqPe8i
+	 GMJJKLqjV2etuZF+CCXEUaMFnWJKgxzzldDO9rHQdo0vESuUDXw8L/GJAGpYHk44bO
+	 v+KchtE9yiJAOELCm8qR2BhmbUSSPoviK0FF2OWgY2BSP9ciCloM3FwE+nPW9lzSdZ
+	 x/jvOIcgKEl/RfsbNMEDvoNAJ3xRPleQRcLWO2w2X9XMw0kVjdrM4NhhMMcXvtgYAV
+	 VoCq4zNKjnF3Q==
+Date: Fri, 20 Mar 2026 15:50:24 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Janne Grunau <j@jannau.net>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Sven Peter <sven@kernel.org>, Neal Gompa <neal@gompa.dev>, 
+	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
+	Linus Walleij <linusw@kernel.org>, Mark Kettenis <kettenis@openbsd.org>, 
+	Andi Shyti <andi.shyti@kernel.org>, Sasha Finkelstein <fnkl.kernel@gmail.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, asahi@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-watchdog@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH 7/9] dt-bindings: pwm: apple,s5l-fpwm: Add t8122
+ compatible
+Message-ID: <ab1d82Y9dGzstkgy@monoceros>
+References: <20260320-apple-m3-initial-devicetrees-v1-0-5842e1e393a8@jannau.net>
+ <20260320-apple-m3-initial-devicetrees-v1-7-5842e1e393a8@jannau.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="pshe747cvhfvjhsk"
 Content-Disposition: inline
-In-Reply-To: <20260320140819.191700-1-carlosjr.jones@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.66 / 15.00];
+In-Reply-To: <20260320-apple-m3-initial-devicetrees-v1-7-5842e1e393a8@jannau.net>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,metafoo.de,baylibre.com,analog.com,gmail.com,softing.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-278327-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-278328-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[kernel.org,gompa.dev,linux-watchdog.org,roeck-us.net,openbsd.org,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.967];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ukleinek@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.987];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:dkim]
-X-Rspamd-Queue-Id: D06DB2DC50C
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,jannau.net:email]
+X-Rspamd-Queue-Id: 9CD942DC418
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 20, 2026 at 10:08:16PM +0800, Carlos Jones Jr wrote:
-> The LTC2305 is a 2-channel, 12-bit, fast ADC with an I2C interface,
-> compatible with the LTC2309 (which has 8 channels).
-> 
-> This patch adds support for the LTC2305 by introducing a chip_info
-> structure to handle the different channel configurations between the two
-> variants. The LTC2305 exposes 2 single-ended channels and 2 differential
-> combinations.
-> 
-> Also updates the device tree bindings to include the lltc,ltc2305
-> compatible string and documents it in the Kconfig.
 
-There is nothing bad with the series, but hey, ADI, again telling you, deploy
-the internal Wiki and put there most of the typical problems with the code
-submitted by ADI! This series could be done just in one round, if you do this
-and prevent wasting reviewers' time!
+--pshe747cvhfvjhsk
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 7/9] dt-bindings: pwm: apple,s5l-fpwm: Add t8122
+ compatible
+MIME-Version: 1.0
 
+Hello,
 
--- 
-With Best Regards,
-Andy Shevchenko
+On Fri, Mar 20, 2026 at 01:23:25PM +0100, Janne Grunau wrote:
+> The PWM controller on the Apple silicon t8122 (M3) SoC is compatible
+> with the existing driver. Add "apple,t8122-fpwm" as SoC specific
+> compatible under "apple,s5l-fpwm" used by the driver.
+>=20
+> Signed-off-by: Janne Grunau <j@jannau.net>
 
+You didn't say what the merge plan is here. I assume they should all go
+in together via arm-soc?
 
+If so:
+
+Acked-by: Uwe Kleine-K=F6nig <ukleinek@kernel.org>
+
+Best regards
+Uwe
+
+--pshe747cvhfvjhsk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmm9Xq4ACgkQj4D7WH0S
+/k7iZQf/VTQKMp3e1OfZ1SAfsbTIm7E2kaGDHWHFtIVuX45NMEsa5s60N6D2/j0T
+nwX7JnD1CLlsDCLGR9s3H/iTHHlfdmptcfT2+I8ViUMDZ5driYxpysuUMnyDfzMe
+aQbUtV3SRsRzD35HLuiLV06UIUXEiwt1aeBCZRlzfmWsi14Or0IPcHY/D1lPnVvT
+bLrFxHXIfECSWwXcuFekr+Iu7h5iM5EuUiJ7JcaPW4G/K0a+mL8s5LbV69kGF9Lb
+2y+ow+PAdQbmSY9swQuO17set/frraA/XfgUV5DmB+QDwXZ/r927lMNIbdsfTPuk
+woJH3T+AOnP7z2Su0xKexD40E0FiBA==
+=kFFv
+-----END PGP SIGNATURE-----
+
+--pshe747cvhfvjhsk--
 
