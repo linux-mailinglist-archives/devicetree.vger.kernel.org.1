@@ -1,219 +1,189 @@
-Return-Path: <devicetree+bounces-278391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278392-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kNbLHdl+vWnH+QIAu9opvQ
-	(envelope-from <devicetree+bounces-278391-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:07:37 +0100
+	id 8C//HOd+vWnH+QIAu9opvQ
+	(envelope-from <devicetree+bounces-278392-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:07:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F31E2DE423
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:07:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A10B2DE440
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:07:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3414730DB385
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:57:00 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C990A3046953
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:57:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78EB6387347;
-	Fri, 20 Mar 2026 16:56:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 553343C1977;
+	Fri, 20 Mar 2026 16:56:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LXfzJLw+"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="rG5Nk+gH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A74352DC791;
-	Fri, 20 Mar 2026 16:55:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C35E364951
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 16:56:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774025761; cv=none; b=O9fmaw82fw0zUqoqkAw5SkeozWi74xAT7Ts5nNXUWzOH/IdOIKoorVNa3t0mkuT0LRwj0XBdzm34K1RZG20F/P/WXqffYrO8XMRIKbOkP3H8p5cH+pfVZFCwl3nzUpajV16XOrmw4pNhQCbx2UIZA5gp6l9MBC52m6VycnwFlPo=
+	t=1774025804; cv=none; b=KLTsRIDPxxoybzX4XHiDxN9i5c7nALJdovFYr2Bt1Emc7MNd1qEikxBq80otIv52sZHEjL9T9sXHQ36oZXqa8xY4uq2B5x5/TynArex86PPU5GJWUfcSqo4OmoN/0uLe1FYvhWXAXP5YMXPehInJ8akcyrEiq54vqGf9B/d1YW0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774025761; c=relaxed/simple;
-	bh=JOsQO3st7WILZVBsC8f9R41Jc6elrwJYkP5l/BvD1+0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gu9pf6ngCDGII4jH85Dd9A5kRAQg3lQs/Or9oeMtrEZGzDd662TXQTUO2FIDmo+bg8+GY3hauIpWmUDagy29yQw2GHZ0v78JD3tjk+1g2Kdha99DDncER9ZSn9bXyrdmNx4ND+oiM6t47UYAoeOcDQMFmTeg/Eoz3Qw+LpqCFbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LXfzJLw+; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1774025759; x=1805561759;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JOsQO3st7WILZVBsC8f9R41Jc6elrwJYkP5l/BvD1+0=;
-  b=LXfzJLw+DbmoIVkJssuGGca+WTGY9J5tbTUn73fJLyUWc1V09J17TxtD
-   CVNBiq4UqEAoxppi4izdBXj7ljDYSfCrUoU2RcPWjJ1PitCuKH2Dl8NZi
-   O0qlM/dmnz67SxGgguqRlK3T7NKUO5GugpjQZh2m6RgpXxt/mRdmv47Mi
-   zdTXY/ddp7G0rCVFl5sz4xDNholIgwZYusQ+pKdmc/Rm/kwYmwH7Of6w6
-   WyMLBdNTNUuIe8hkb/4rD3JRFsNt7kJalXbcFaAjSvus4kAPECdP6zSGV
-   HRrUS/PCOkGRF2Nd3HG/O1rVzEY1D0hOP1rcSehmhP+yKFQcDKaMN9MwN
-   A==;
-X-CSE-ConnectionGUID: n8ZnWW3QT/+L8XxEObOLMA==
-X-CSE-MsgGUID: pXJMl3njRDCn5pIS8qiirw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11735"; a="86590450"
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
-   d="scan'208";a="86590450"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 09:55:54 -0700
-X-CSE-ConnectionGUID: yzTcZ5yzTPSLzbwc1yJQiw==
-X-CSE-MsgGUID: HN+kDXFUToSBAd28oBPRcw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
-   d="scan'208";a="222569042"
-Received: from lkp-server01.sh.intel.com (HELO ba623fe84fe1) ([10.239.97.150])
-  by orviesa010.jf.intel.com with ESMTP; 20 Mar 2026 09:55:48 -0700
-Received: from kbuild by ba623fe84fe1 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1w3d8T-000000000Ar-30MX;
-	Fri, 20 Mar 2026 16:55:45 +0000
-Date: Sat, 21 Mar 2026 00:55:14 +0800
-From: kernel test robot <lkp@intel.com>
-To: Chris Morgan <macroalpha82@gmail.com>, linux-iio@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, andy@kernel.org, nuno.sa@analog.com,
-	dlechner@baylibre.com, jic23@kernel.org,
-	jean-baptiste.maneyrol@tdk.com, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org,
-	krzk+dt@kernel.org, robh@kernel.org, andriy.shevchenko@intel.com,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH V2 4/5] iio: imu: inv_icm42600: Add support for icm42607
-Message-ID: <202603210032.xLBroWQu-lkp@intel.com>
-References: <20260319182956.146976-5-macroalpha82@gmail.com>
+	s=arc-20240116; t=1774025804; c=relaxed/simple;
+	bh=TgRsU3EeG41egoh/DnnAYXLwdSdRrnSL7ykX8hN7pvg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=L40LP0yd9B4SWbDYQJC+PpQBrtFrdIqoYgDsvAHoeYmdThcJQmTVqRGxv5WznbEFICDy9S3z58gIsjZlwb74ljpbUlSpQek6sSzFc6/Ro7lVkgHtVvxTd2Y1EUiEbd2dHbPdipr8NnSRnN6rn9LptkRLabRuoymphM/crPiQ0u0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=rG5Nk+gH; arc=none smtp.client-ip=91.218.175.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+Message-ID: <8abf3f78-c994-4d05-81ea-ef54dd380109@postmarketos.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1774025799;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ynnEc+hm4gdxANcP0Y8J16RiNP4eFgHWE6RBfPScq9s=;
+	b=rG5Nk+gHWi2SOAX1V0yK90pwRtv4kn2Y4Q4YfVyeJUyJYPBB0M7dUJgM+I7IPKdctY3GcO
+	t15m9CPP68Y/KmMqxWHsBF3FJWTbGV53HdN6R9IrHv1gUkWEmLK9BK0mr6+kYuCCPux28u
+	GmpaIEGNE2XypBl20DTRWlKm/S3qXxggLq35D5LgXwH1UeMWJGttWTy+kTbYfDahNvOLt+
+	N7NA50EogO6Y3XvRpheiV0/qCt6UQW5JnX7p0TquNKo5rGR6MwF9JNJ6zUeXBYQRG4/tz0
+	gFHBTcm6SDZEWb7uFiEJuE8e3bRSHwXai9mc2SjbRuR/qJTIyFVxnhzhdfhe8A==
+Date: Fri, 20 Mar 2026 17:56:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260319182956.146976-5-macroalpha82@gmail.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: sdm845-shift-axolotl: Enable sdcard
+Content-Language: en-US
+To: david@ixit.cz, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dylan Van Assche <me@dylanvanassche.be>
+Cc: linux-arm-msm@vger.kernel.org, Petr Hodina <phodina@protonmail.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ phone-devel@vger.kernel.org
+References: <20260320-axolotl-misc-p1-v1-0-89c9b5ecb26e@ixit.cz>
+ <20260320-axolotl-misc-p1-v1-1-89c9b5ecb26e@ixit.cz>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Casey Connolly <kcxt@postmarketos.org>
+In-Reply-To: <20260320-axolotl-misc-p1-v1-1-89c9b5ecb26e@ixit.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[postmarketos.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[postmarketos.org:s=key1];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.linux.dev,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,vger.kernel.org,sntech.de,intel.com,hotmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TAGGED_FROM(0.00)[bounces-278391-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278392-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,protonmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-0.962];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.956];
+	FROM_NEQ_ENVFROM(0.00)[kcxt@postmarketos.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[postmarketos.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[git-scm.com:url,intel.com:dkim,intel.com:email,intel.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,01.org:url]
-X-Rspamd-Queue-Id: 1F31E2DE423
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,postmarketos.org:dkim,postmarketos.org:mid,ixit.cz:email]
+X-Rspamd-Queue-Id: 1A10B2DE440
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Chris,
+Hi David,
 
-kernel test robot noticed the following build warnings:
+On 20/03/2026 17:29, David Heidelberg via B4 Relay wrote:
+> From: Casey Connolly <casey.connolly@linaro.org>
+> 
+> The SHIFT6mq features an sdcard slot, add it.
+> 
+> Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts | 43 +++++++++++++++++++++++
+>  1 file changed, 43 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+> index 51b041f91d3e2..1f21da310b762 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+> @@ -600,6 +600,23 @@ &qupv3_id_1 {
+>  	status = "okay";
+>  };
+>  
+> +&sdhc_2 {
+> +	status = "okay";
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&sdc2_default_state &sdc2_card_det_n>;
+> +
+> +	vmmc-supply = <&vreg_l21a_2p95>;
+> +	vqmmc-supply = <&vreg_l13a_2p95>;
+> +
+> +	bus-width = <4>;
+> +	/* card detection is broken, but because the battery must be removed
+> +	 * to insert the card, we use this rather than the broken-cd property
+> +	 * which would just waste CPU cycles polling.
+> +	 */
+> +	non-removable;
+> +};
+> +
+>  &slpi_pas {
+>  	firmware-name = "qcom/sdm845/SHIFT/axolotl/slpi.mbn";
+>  
+> @@ -609,6 +626,32 @@ &slpi_pas {
+>  &tlmm {
+>  	gpio-reserved-ranges = <0 4>, <81 4>;
+>  
+> +	sdc2_default_state: sdc2-default-state {
+> +		clk-pins {
+> +			pins = "sdc2_clk";
+> +			bias-disable;
+> +			drive-strength = <16>;
+> +		};
+> +
+> +		cmd-pins {
+> +			pins = "sdc2_cmd";
+> +			bias-pull-up;
+> +			drive-strength = <10>;
+> +		};
+> +
+> +		data-pins {
+> +			pins = "sdc2_data";
+> +			bias-pull-up;
+> +			drive-strength = <10>;
+> +		};
+> +	};
+> +
+> +	sdc2_card_det_n: sd-card-det-n-state {
+> +		pins = "gpio126";
+> +		function = "gpio";
+> +		bias-pull-up;
 
-[auto build test WARNING on rockchip/for-next]
-[also build test WARNING on linus/master v7.0-rc4 next-20260320]
-[cannot apply to jic23-iio/togreg]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+This can probably be bias-disable I guess, not that it likely matters in
+practise.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Chris-Morgan/dt-bindings-iio-imu-add-icm42607/20260320-061927
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
-patch link:    https://lore.kernel.org/r/20260319182956.146976-5-macroalpha82%40gmail.com
-patch subject: [PATCH V2 4/5] iio: imu: inv_icm42600: Add support for icm42607
-config: i386-randconfig-r134-20260320 (https://download.01.org/0day-ci/archive/20260321/202603210032.xLBroWQu-lkp@intel.com/config)
-compiler: gcc-13 (Debian 13.3.0-16) 13.3.0
-sparse: v0.6.5-rc1
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260321/202603210032.xLBroWQu-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603210032.xLBroWQu-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/iio/imu/inv_icm42600/inv_icm42600_core.c: In function 'inv_icm42607_hw_suspend':
->> drivers/iio/imu/inv_icm42600/inv_icm42600_core.c:1150:13: warning: variable 'accel_conf' set but not used [-Wunused-but-set-variable]
-    1150 |         int accel_conf;
-         |             ^~~~~~~~~~
---
->> drivers/iio/imu/inv_icm42600/inv_icm42600_accel.c:108:18: warning: 'inv_icm42607_accel_filter_values' defined but not used [-Wunused-const-variable=]
-     108 | static const int inv_icm42607_accel_filter_values[] = {
-         |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +/accel_conf +1150 drivers/iio/imu/inv_icm42600/inv_icm42600_core.c
-
-  1144	
-  1145	static int inv_icm42607_hw_suspend(struct device *dev)
-  1146	{
-  1147		struct inv_icm42600_state *st = dev_get_drvdata(dev);
-  1148		struct device *accel_dev;
-  1149		bool wakeup;
-> 1150		int accel_conf;
-  1151		int ret = 0;
-  1152	
-  1153		guard(mutex)(&st->lock);
-  1154	
-  1155		st->suspended.gyro = st->conf.gyro.mode;
-  1156		st->suspended.accel = st->conf.accel.mode;
-  1157		st->suspended.temp = st->conf.temp_en;
-  1158		if (pm_runtime_suspended(dev))
-  1159			return 0;
-  1160	
-  1161		if (st->fifo.on) {
-  1162			ret = regmap_write(st->map, INV_ICM42607_REG_FIFO_CONFIG1,
-  1163					   INV_ICM42607_FIFO_CONFIG1_BYPASS);
-  1164			if (ret)
-  1165				return ret;
-  1166		}
-  1167	
-  1168		/* keep chip on and wake-up capable if APEX and wakeup on */
-  1169		accel_dev = &st->indio_accel->dev;
-  1170		wakeup = st->apex.on && device_may_wakeup(accel_dev);
-  1171		if (wakeup) {
-  1172			/* keep accel on and setup irq for wakeup */
-  1173			accel_conf = st->conf.accel.mode;
-  1174			enable_irq_wake(st->irq);
-  1175			disable_irq(st->irq);
-  1176		} else {
-  1177			/* disable APEX features and accel if wakeup disabled */
-  1178			if (st->apex.wom.enable) {
-  1179				ret = inv_icm42607_disable_wom(st);
-  1180				if (ret)
-  1181					return ret;
-  1182			}
-  1183			accel_conf = INV_ICM42600_SENSOR_MODE_OFF;
-  1184		}
-  1185	
-  1186		ret = inv_icm42607_set_pwr_mgmt0(st, INV_ICM42600_SENSOR_MODE_OFF,
-  1187						 INV_ICM42600_SENSOR_MODE_OFF, false,
-  1188						 NULL);
-  1189		if (ret)
-  1190			return ret;
-  1191	
-  1192		if (!wakeup)
-  1193			regulator_disable(st->vddio_supply);
-  1194	
-  1195		return 0;
-  1196	}
-  1197	
+> +	};
+> +
+>  	sde_dsi_active: sde-dsi-active-state {
+>  		pins = "gpio6", "gpio11";
+>  		function = "gpio";
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+// Casey (she/her)
+
 
