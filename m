@@ -1,188 +1,238 @@
-Return-Path: <devicetree+bounces-278162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278163-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +AMzA2MVvWnG6QIAu9opvQ
-	(envelope-from <devicetree+bounces-278162-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:37:39 +0100
+	id MMBOJawVvWnG6QIAu9opvQ
+	(envelope-from <devicetree+bounces-278163-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:38:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72CD42D81FC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:37:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2F272D8229
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:38:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 37553300E250
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:37:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DD629300C9A3
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:38:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A57A43859E1;
-	Fri, 20 Mar 2026 09:37:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b="jLzX9JB7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE90E378D7E;
+	Fri, 20 Mar 2026 09:38:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from ultrarisc.com (unknown [218.76.62.146])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AF6B384250;
-	Fri, 20 Mar 2026 09:37:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=218.76.62.146
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773999455; cv=none; b=tk24kV2ozLz6Qv713/bKVyRviyfm28j6d9H6UwlfC3its1wcH+7iMLQPp7FZs+RXA6/GsVZ/XyHlJpMoTVWfx1sOGaiCPUTQBKxE2xi5j8/5OOfric2O+08lZo63qVyisdQNb7QtukS47i8W1IITI3+ZPgOIDkZAjvqpTzjWixI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773999455; c=relaxed/simple;
-	bh=NdeAJwHndxZkVbweWJXMxDVFBvgZ0d6ruaeJgL3U5Xk=;
-	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
-	 References:Date:Message-Id; b=ktC2MriORxqfN/InEGiqQ8pWXIjwFkwGgN1Jh9j8Ztu4s4kclLCSHekxEL9Jc5eaexmEeMjsiXwQFYPX3WiKC0RQmQaE+R6OSZAAZi/dKc9zywxwVqB+MZCOiLOWS0H/cJcPehnQ1EOn85VcVlme1OvJGjkIfRgSXTT2zVXeLw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=none smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=jLzX9JB7; arc=none smtp.client-ip=218.76.62.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ultrarisc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ultrarisc.com; s=dkim; h=Received:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Subject:From:To:Cc:In-Reply-To:
-	References:Date:Message-Id; bh=UoqLelab2uRRhZMugZLNRzB4MZHfmrDGO
-	eiZef67Q1I=; b=jLzX9JB7jUNIu1uG3QqxeTDTZKX2EnOd2aX/t33Z+IyL0e31F
-	sTpFimzgwnHklUEVzp69u/esjFUA7VPKvzbwdSIJg+2vyWUMsQd4xsxA+thRGEyk
-	7Ff9qDEfj6SWwAfdMxgjgjHbYtxfnbYGg+VSdhR/i7MxvEVwQnTc9I4kwM=
-Received: from [127.0.0.1] (unknown [192.168.100.1])
-	by localhost.localdomain (Coremail) with SMTP id AQAAfwAXxSR+Fb1pMbQBAA--.1433S2;
-	Fri, 20 Mar 2026 17:38:06 +0800 (CST)
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022138.outbound.protection.outlook.com [52.101.126.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 105722E8B64;
+	Fri, 20 Mar 2026 09:38:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.138
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773999529; cv=fail; b=F3UiSKmk4sE8UnHGJB66fVAJ9Iq5ycPhs8icenS2sKfWAM146gcAYvuYMMr2Gtl2Wncw9jsu5aLv0c0E7TMtiTKNAYHZN549mT++6hBXk1HYiwBN7pEogZAk7IH0U6nCso4XfseQijixTiJKAuEdLbNa5/nSu1LT2y/rYxEqt1A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773999529; c=relaxed/simple;
+	bh=O6YrVg/VA+FzzFiDnFW4Dab0L+QK2bOoRqWg+A1o1iA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lCiaSWrpLl7txLWcKgxZojswTBp+m5N/wxAl0HzyYiDf3QkpqLydtQnxTk/IyvHwbzzr7ItTf8gB+IcNE+nuXqGtC5xKYj4HcFT4d3tBe5Ink6uJal/7yLPnrWtetrzDksxkzaxzafAOovWTUZX4H8JiSnAFaEWNbxaLFFfJ0I4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=aZL2a9/Z8uZyLXfzADx7aoqIkP6uBI3nV5weg4RjXaT0CARaPvjsQ6kyatjfScylsObmqsa0pWER/cEAWTa9Hxay9ygpa/gT4eVW4J4cdKEUMbcSZDoYtSutnlo8D3suerhcnEBnCD0ZEGU1bWjXMdP2hM6y4x+h8nXHNVwEH5rUvqFpW1rf9sWXyE1sKfX1x2WrP9cQ6/CzGnnyg1mQIwtEc9pTt+rY/oxG9PUEtXTowC0UAdvVGAUlpwy+hmGDhQHTbNX7LS0I2gJxYjhZ4QXskXqlaqeXiFRoGYHqLt/Cqb+/ErepwCGg4AANnHn28F3iuWjfYluzMuQ8BIZJVw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=A+tMuQ6+ijkmWkAGrmAOavH6O40L35Xsog9Lz1Jw6Bk=;
+ b=r6zmc9R4vA2DQSVklY75z+gsSwEv08gnlC5QtdRatamff/0u+3DgexDi/b6acSRJpUgEJEsk+2kr3QFJ61RDm+XPsCUDVSuDiBT/zB4fhk7RVcUAj+6cMQgqZzoZDI5qc7UTvdTBpIOwuXX2KTCv6v+vfmHAihozzUrmVns75m5nm0v1c8d7eVl52oxm4bAfLVaVkfbNVnyJL1N4rBHrbW05Iaj8llEb6FPn3p5uyEVr/3ovLgFEJCBU1wPmTK71vbAqJjY850RZPzaDEKkspT3aJNldPe0OfxkVsO/qbhf3FidiQTuUDv2iJM1m4Oef7jWbS0l5c/QR3Cj3hv/UDA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SG2P153CA0025.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c7::12) by
+ PUZPR06MB5556.apcprd06.prod.outlook.com (2603:1096:301:e9::10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9700.22; Fri, 20 Mar 2026 09:38:44 +0000
+Received: from SG2PEPF000B66CD.apcprd03.prod.outlook.com
+ (2603:1096:4:c7:cafe::22) by SG2P153CA0025.outlook.office365.com
+ (2603:1096:4:c7::12) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9745.13 via Frontend Transport; Fri,
+ 20 Mar 2026 09:38:43 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ SG2PEPF000B66CD.mail.protection.outlook.com (10.167.240.27) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9723.19 via Frontend Transport; Fri, 20 Mar 2026 09:38:42 +0000
+Received: from nchen-desktop (unknown [172.16.64.25])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 5B5814126F83;
+	Fri, 20 Mar 2026 17:38:42 +0800 (CST)
+Date: Fri, 20 Mar 2026 17:38:41 +0800
+From: Peter Chen <peter.chen@cixtech.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jun Guo <jun.guo@cixtech.com>, fugang.duan@cixtech.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
+	ychuang3@nuvoton.com, schung@nuvoton.com, robin.murphy@arm.com,
+	Frank.Li@kernel.org, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	cix-kernel-upstream@cixtech.com,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: dma: arm-dma350: document generic
+ and combined IRQ topologies
+Message-ID: <ab0VoTut0u4f7EVr@nchen-desktop>
+References: <20260319101723.246539-1-jun.guo@cixtech.com>
+ <20260319101723.246539-2-jun.guo@cixtech.com>
+ <20260320-vengeful-violet-cockle-382580@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH 4/4] PCI: dwc: Add UltraRISC DP1000 PCIe rc driver
-From: Jia Wang <wangjia@ultrarisc.com>
-To: Yao Zi <me@ziyao.cc>
-Cc: wangjia@ultrarisc.com, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>, 
- Xincheng Zhang <zhangxincheng@ultrarisc.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-riscv@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
- devicetree@vger.kernel.org
-In-Reply-To: <abjnhn5sqnJv1fYY@pie>
-References: <20260316-ultrarisc-pcie-v1-0-ef2946ede698@ultrarisc.com>
- <20260316-ultrarisc-pcie-v1-4-ef2946ede698@ultrarisc.com>
- <abjnhn5sqnJv1fYY@pie>
-Date: Fri, 20 Mar 2026 17:37:17 +0800
-Message-Id: <177399943728.868832.12341696974887547910.b4-reply@b4>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773999437; l=2134;
- i=wangjia@ultrarisc.com; s=20260309; h=from:subject:message-id;
- bh=NdeAJwHndxZkVbweWJXMxDVFBvgZ0d6ruaeJgL3U5Xk=;
- b=Ae3Yhm2tB/fH01LoOqHKG2gik5SQv29ZG22KRTceRvFfRgS0vkU/5bOpjsF+st3uMWsqHgmUv
- HTNjzNkf+XbAh9je0AgaIs6VJADl0SS9/KvDWYasLrpzgDQuq/TqfDT
-X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
- pk=XvYkrelqJIIzobY7j+nIg8rsfv5kzaOzuc1UPhd087U=
-X-CM-TRANSID:AQAAfwAXxSR+Fb1pMbQBAA--.1433S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7CF1UKFykJr1rAw4DZF4ktFb_yoW8Zw45pa
-	yUKa1akF1xJF4aka1Sva48Ca43Jan7JrWDG39rGw13XF9xC34DW3srt3yFgF97Xr40vr1a
-	k3WYg3W7GF43Aa7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUU9G14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
-	6F4UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJV
-	WxJr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wrylc2xSY4AK6svPMxAIw28IcxkI7VAKI48JMx
-	C20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAF
-	wI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20x
-	vE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v2
-	0xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxV
-	W8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7sREPrc3UUUUU==
-X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAMEWm844oAIgACsA
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260320-vengeful-violet-cockle-382580@quoll>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CD:EE_|PUZPR06MB5556:EE_
+X-MS-Office365-Filtering-Correlation-Id: dc518283-91c1-4f85-5a2f-08de866479eb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|36860700016|82310400026|376014|7416014|22082099003|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	OgHYZwojVLXi5GrMG5iwRvMU31kbnXqjNv14ij9OxMCjg+Tg2TV/PTEOav9Sxt0fU1Y6xSHXN28uwtRTxi7THGeDlk3DKNvVXPsuI2dk05YUo4dSfhQTI47LGwsNjbnfTdVqO4iSXz30oIfSgK1V5zy57gCiApdWqQ81DsxXMGf0M4A2t1Qdw8LL3rkN4aR4rpSkonQI9Y3lSXrVvBUy+oKT+KbULQ7Yb3JIvVmMb2qchWhBg9sZ7J/6Yv2pT8s6jc1Tt2JkGMKy69Sk89aF0c0OKguoFJswoYk1yYeWBN5EWSlc+WZIYyUO8CxNJ6hteP7CLTaHvxxL3tlMggcod7aWH0BYWR40tuJILjPT40m/1FJrW9CEj5gxZjX4bl8Ao993hL1ExR3z316XHJQTD6h8prDCs5KchqYfJAEP9k/eZATh10SuTo2X7Mz/DPR2uHSOgQoezs79OI2DabPMnoxEq1NyH6WCXhXSsHQfOn/ha7uha2jT+Hm0mgw1oMfeO7VGCNXqpe2IIGZ0q7WUsOBKS1w6k0BpQXIEy5IB70o9q33QLN3mEW4gGTliieXgMX4+ZBFOpm1JENOkHzLuYKM4u40eNWrnnX5SMDGAPqRjgDL/Mp78cKAgez1ygeFGNJ3LBxlCZ3RYbyQfcJ6SPwo3AA5aq1gdtYbVy7upm+b89BLaM6Wsr1fkEQ+YNycB5E5sgtfkIDjuMvnh2XJtF02PCP0GBsKUx8DZzuLdZg68djPbX/t8Gf8F//mfQTF83UWbPkcBZk2XaxDvMzULPg==
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700016)(82310400026)(376014)(7416014)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	uTudb2ZJsafzrlw6fFZ5JtRo/biQTGgJCqsOKo8HcWR6eoULSaW17TgLG6zBYedSfhkaK/lMrHYpWkwcY2Qf7Jd8xs3M/10Egpx3Z9ycQ25kt7ESY5O7MkVt7IzfmYg8TzGOkALM7LZG7dXInSog9ZHnCy+Prx/4AnoYPZhquu2JVyndxbWordGjZ/aWCrSNveR7EVv+YhzBHDmm1aor27GgaviJf3tXMuFsb/k3YmMN1qKxpd9vhCwF3i1LCnVnw60p7DUjtr1PppED8jZ5+Os/xWrWcPTQulAHPQ7685CSLVMe5zoUXZ7uQIrGxz+QtS5sxnkUte25lXE/DKCiR1CGmnNdH1C3Ee7PzhuNbj45tGwpU/42NTRMAZkcGeytfuUh/Ock6ufZ3SQAZe2Z7aEks+kp+vK6x6q3jwKbg3dPSwcZu33sJuXttCqrdtGT
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2026 09:38:42.9806
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc518283-91c1-4f85-5a2f-08de866479eb
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG2PEPF000B66CD.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR06MB5556
+X-Spamd-Result: default: False [2.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
-	R_DKIM_ALLOW(-0.20)[ultrarisc.com:s=dkim];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-278163-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_COUNT_SEVEN(0.00)[7];
+	DMARC_NA(0.00)[cixtech.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-278162-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.985];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[ultrarisc.com,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,google.com,gmail.com,lists.infradead.org,vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[peter.chen@cixtech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	NEURAL_SPAM(0.00)[0.166];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DKIM_TRACE(0.00)[ultrarisc.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ultrarisc.com:dkim,ultrarisc.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 72CD42D81FC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cixtech.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,checkpatch.pl:url]
+X-Rspamd-Queue-Id: E2F272D8229
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 2026-03-17 05:32 +0000, Yao Zi wrote:
-> On Mon, Mar 16, 2026 at 03:07:00PM +0800, Jia Wang via B4 Relay wrote:
-> > From: Xincheng Zhang <zhangxincheng@ultrarisc.com>
-> > 
-> > Add DP1000 soc PCIe rc driver.
-> > 
-> > Signed-off-by: Xincheng Zhang <zhangxincheng@ultrarisc.com>
-> > Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
-> > ---
-> >  drivers/pci/controller/dwc/Kconfig           |  15 ++
-> >  drivers/pci/controller/dwc/Makefile          |   1 +
-> >  drivers/pci/controller/dwc/pcie-designware.h |  22 +++
-> >  drivers/pci/controller/dwc/pcie-ultrarisc.c  | 202 +++++++++++++++++++++++++++
-> >  4 files changed, 240 insertions(+)
-> > 
-> > diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> > index d0aa031397fa..0a33891bf7ef 100644
-> > --- a/drivers/pci/controller/dwc/Kconfig
-> > +++ b/drivers/pci/controller/dwc/Kconfig
-> > @@ -548,4 +548,19 @@ config PCIE_VISCONTI_HOST
-> >  	  Say Y here if you want PCIe controller support on Toshiba Visconti SoC.
-> >  	  This driver supports TMPV7708 SoC.
-> >  
-> > +config PCIE_ULTRARISC
-> > +	bool "UltraRISC PCIe host controller"
+On 26-03-20 10:12:53, Krzysztof Kozlowski wrote:
+> EXTERNAL EMAIL
 > 
-> Is there any reason preventing the driver being built as a module? If
-> no, it would be better to change it to "tristate", to allow distribution
-> to customize the configuration for image sizes, etc.
->
+> On Thu, Mar 19, 2026 at 06:17:21PM +0800, Jun Guo wrote:
+> > Update the DMA-350 DT binding to match the current driver behavior.
+> >
+> > Allow both:
+> > - "arm,dma-350" as the generic compatible, and
+> > - "cix,sky1-dma-350", "arm,dma-350" for SoC-specific fallback usage.
+> >
+> > Also document interrupt topology variants supported by hardware
+> > integration:
+> > - one combined interrupt for all channels, or
+> > - one interrupt per channel (up to 8 channels).
+> >
+> > This patch is Assisted-by: Cursor: GPT-5.3 Codex.
+> 
+> Wrong tag, please read carefully the guideline before using LLM tools.
+> 
 
-Thanks for the suggestion. I will update PCIE_ULTRARISC to tristate.
- 
-> > +	depends on ARCH_ULTRARISC || COMPILE_TEST
-> > +	select PCIE_DW_HOST
-> > +	select PCI_MSI
-> > +	default y if ARCH_ULTRARISC
-> > +	help
-> > +	  Enables support for the PCIe controller in the UltraRISC SoC.
-> > +	  This driver supports UR-DP1000 SoC. When selected, it automatically
-> > +	  enables both `PCIE_DW_HOST` and `PCI_MSI`, ensuring proper support
-> > +	  for MSI-based interrupt handling in the PCIe controller.
-> > +	  By default, this symbol is enabled when `ARCH_ULTRARISC` is active,
-> > +	  requiring no further configuration on that platform.
-> > +
-> > +
-> >  endmenu
-> >  #define PORT_LOGIC_LTSSM_STATE_L0	0x11
+Hi Krzysztof,
+
+It is the trade off for coding-assistants.rst suggestion and
+passing checkpatch.pl. Currently, checkpatch.pl reports the
+error for tag without email address. So we choose to add tag
+description at patch context.
+
+Peter
+
+> >
+> > Signed-off-by: Jun Guo <jun.guo@cixtech.com>
+> > Link: https://lore.kernel.org/r/20251216123026.3519923-2-jun.guo@cixtech.com
+> 
+> What does this express? Changelog link? Then keep it in the changelog
+> --- part.
+> 
+> 
+> > ---
+> >  .../devicetree/bindings/dma/arm,dma-350.yaml  | 31 +++++++++++++------
+> >  1 file changed, 21 insertions(+), 10 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/dma/arm,dma-350.yaml b/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
+> > index 429f682f15d8..3639ce0d5054 100644
+> > --- a/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
+> > +++ b/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
+> > @@ -14,7 +14,11 @@ allOf:
+> >
+> >  properties:
+> >    compatible:
+> > -    const: arm,dma-350
+> > +    oneOf:
+> > +      - const: arm,dma-350
+> > +      - items:
+> > +          - const: cix,sky1-dma-350
+> > +          - const: arm,dma-350
+> >
+> >    reg:
+> >      items:
+> > @@ -22,15 +26,22 @@ properties:
+> >
+> >    interrupts:
+> >      minItems: 1
+> > -    items:
+> > -      - description: Channel 0 interrupt
+> > -      - description: Channel 1 interrupt
+> > -      - description: Channel 2 interrupt
+> > -      - description: Channel 3 interrupt
+> > -      - description: Channel 4 interrupt
+> > -      - description: Channel 5 interrupt
+> > -      - description: Channel 6 interrupt
+> > -      - description: Channel 7 interrupt
+> > +    maxItems: 8
+> > +    description: |
+> > +      The DMA controller may be configured with separate interrupts for each channel,
+> > +      or with a single combined interrupt for all channels, depending on the SoC integration.
+> 
+> And more important - you must review the LLM microslop output before
+> posting and adjust it to Linux kernel coding style. Don't send
+> unredacted tool output.
 > 
 > Best regards,
-> Yao Zi
->
+> Krzysztof
+> 
+
+-- 
 
 Best regards,
-Jia 
-
-
+Peter
 
