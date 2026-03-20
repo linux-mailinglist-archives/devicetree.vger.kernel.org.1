@@ -1,146 +1,137 @@
-Return-Path: <devicetree+bounces-278085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278086-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4HkTGkr0vGms4wIAu9opvQ
-	(envelope-from <devicetree+bounces-278085-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 08:16:26 +0100
+	id 0NSYHDL1vGms4wIAu9opvQ
+	(envelope-from <devicetree+bounces-278086-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 08:20:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F1472D67DD
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 08:16:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D335C2D6864
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 08:20:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8BA7D3014A0F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 07:16:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C80C630B2678
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 07:19:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A52B27BF7C;
-	Fri, 20 Mar 2026 07:16:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96DBD2DFA25;
+	Fri, 20 Mar 2026 07:19:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FrEpdPEP"
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="INtXjfTu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-24429.protonmail.ch (mail-24429.protonmail.ch [109.224.244.29])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05EAE1DDE5;
-	Fri, 20 Mar 2026 07:16:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAABA2F3C3D;
+	Fri, 20 Mar 2026 07:19:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.29
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773990969; cv=none; b=r1lHWC6cFGNp1p7RdzZ+CME3PepVZN0tafAso+OvOUtipxH3BgW/fdKb8TX1n/DuMHcUoGU94NzW8SbFtrvc2ojj1OUfVNKLTEF3tK5H13u7WGXEFE+8VUSit62+IlIwA/kybew2bLXLrGOgPkIPLCwfDbuxp+SMsGIFs5jadhQ=
+	t=1773991163; cv=none; b=lfxOvpNFBut8l1WR43w0khGHSE2ELQ3AHC1kS+GhXEp+tjty9Y2wmZ4OtclggRTNOTU2yNLCsmD8gs8Ph269Wpy15ZCL72fweT7b+GjqtGb86yfeRjC29IxZABEgAtN3yTKetVmwL4Rv1o8VCwIewGvarDCJWKPjOpoTNn8PVmE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773990969; c=relaxed/simple;
-	bh=uwZVnODgMG45JU6Yv5E76ubyYRFZJjdJgmzpPJ0euLY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=BWq+KfodfQvTmh665E5ioPTpybUS5xZZTMCtwj8OlTyO9an5HsSwf52FxiV70mmI+N02/5sByCGQvPAzqf3TB23nIxx/H5j5X3TL/LI79lBk0KM0fRVibUguGfd82QQboV5GqBE+9O4spIFmQXDJ/uIg8wDF6tBBmyR5gLTgR9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FrEpdPEP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EED3BC4CEF7;
-	Fri, 20 Mar 2026 07:16:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773990966;
-	bh=uwZVnODgMG45JU6Yv5E76ubyYRFZJjdJgmzpPJ0euLY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=FrEpdPEPxtsF8JUFp3ia71jsEcAY+IG4zPq1h1lqRay6yZTm4wGwlloaTkaXCua3V
-	 3XCMNMue8hHcM9dUblSeaw878aDsjLtEDCIuCgTZvz5tlpOSpiBQnnHDE9Yg4GhHPT
-	 AY9EjwZyyQ6cE/orONktioJ9Th/t6tG5tkGvnC4wP9MZ5+FDj/26NlVr/pq6uJwVCZ
-	 sZg9bvfXVshLJrQC4LqoaMigvgJY2vMfCHKCn79XH3DK2XligSOx6AyyZdvDp62dzT
-	 /9PsaPlSshKZO7JjmAeZNFWattR6gaLnQ/4+sunIlZHu6f5xkwNfVXR9H6KXZRDuUE
-	 S44nkhZCBAtUg==
-From: Yixun Lan <dlan@kernel.org>
-Date: Fri, 20 Mar 2026 07:15:38 +0000
-Subject: [PATCH v2 2/2] usb: dwc3: dwc3-generic-plat: spacemit: add support
- for K3 SoC
+	s=arc-20240116; t=1773991163; c=relaxed/simple;
+	bh=d8KZnHOUKc9aPKh5RRZ2INy5sMjFQ1N3a3BA8s1oSug=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=D37doaWDNfg2ZpS9IRlL7AFL85WHhU4T0xh6OxIJrI+zdYplyKM70ayULoYkdrG0+Gz06S9WYoGbzA92rFC6H9kqlFe06azR4yVrRwXwrBKpKX5S5p0VX5RTbB9iqpAwFVWCTxGeiEts0dQikubUREeqLTEi5yKLwkV0vKQALLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=INtXjfTu; arc=none smtp.client-ip=109.224.244.29
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1773991152; x=1774250352;
+	bh=+XRuUNY/hs84dNZVuW3v8EtYOa8xUIu2OLZAs6swl6w=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=INtXjfTu6Poa+7BLNGkevsDHl+W/CESmy3XD2c0ApIVLVTfB1dl3NAHSHycLrhB37
+	 pDl5OrqL5hvo9v5jGvj+mJlv5ilzhi6ojB2QP5tsb2hofVvFv7iGLSQ/16bhmCa8T4
+	 YIMp3KHJh7TSMk8DjhV1ViFJS1cWdhVrTBvI75iA35m77nK2coApTkGldgrGQdYLZ+
+	 pQXhJz9JBNs5HrqpjHHRZCDy/AM/RWUdyMh+sciT73woXxu0hV4exDkzQRF5TPffU1
+	 j/GmX/XxRySCCqHxzmSzoiIyLcLO0DJsnDpF5UbitXeIpswtKaoyneUK4BkCXpc8RF
+	 c3C7hAK+H2A2A==
+Date: Fri, 20 Mar 2026 07:19:06 +0000
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+From: cristian_ci <cristian_ci@protonmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v2 2/6] drm/panel: Add driver for Novatek NT35532
+Message-ID: <4f3qSm2N-iqHmdKAzp6YslvLGtZbaeYJhV9pae3gtww5xiIUDM3Xov9wdCCumhINDMaHeFaJPMf23RqvZZkDQlE8D6hObDFaCd1vZjUHUoA=@protonmail.com>
+In-Reply-To: <byxrw5g4t23vivbt4xxpyfcsbrmlaju4lqqwsc75iqizoqmt4n@ltuwlggbitye>
+References: <20260318-rimob-new-features-v2-0-c1bf8917449e@protonmail.com> <20260318-rimob-new-features-v2-2-c1bf8917449e@protonmail.com> <byxrw5g4t23vivbt4xxpyfcsbrmlaju4lqqwsc75iqizoqmt4n@ltuwlggbitye>
+Feedback-ID: 27475468:user:proton
+X-Pm-Message-ID: 73aca8d40c90d8b6aa8bf437ae557b39d9b0cefe
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260320-02-k3-usb20-support-v2-2-308ea0e44038@kernel.org>
-References: <20260320-02-k3-usb20-support-v2-0-308ea0e44038@kernel.org>
-In-Reply-To: <20260320-02-k3-usb20-support-v2-0-308ea0e44038@kernel.org>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Ze Huang <huang.ze@linux.dev>, 
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc: Emil Renner Berthing <kernel@esmil.dk>, 
- Junzhong Pan <junzhong.pan@spacemit.com>, 
- Inochi Amaoto <inochiama@gmail.com>, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- Yixun Lan <dlan@kernel.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=856; i=dlan@kernel.org;
- h=from:subject:message-id; bh=uwZVnODgMG45JU6Yv5E76ubyYRFZJjdJgmzpPJ0euLY=;
- b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpvPQmOFxwzZBI8PVNThFFbSRrHn3UyFMGboiFj
- AR+sHudp3SJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCabz0JhsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
- maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
- QACgkQMarqR1lNu+1b3A//V9yooInUPnDEnA9zUVopFpPUygIVe8+FyIpuVffaXUyiG6thQzjTF
- M7SPaVRMCXvvaqHfrFWYy5Zi4nenPOKJ45eCnsW6V6S57K+cd50fZ1qddb19qmmt5CUR2rJ/TIh
- 7mY+IANnbVA69jJMCGRRe8Sz006SbDtxnqCLc6kgRXIA8B2K0de8Fs4JXWC4PamqSdzOLrlEhO6
- 5HrESGXvQEGQYTibjLouk6+3Ihslfg1AoJxXwKEKV7E2gr7A4mKGga1YJ7XjF5eopzwi7pm2/ip
- Iiqoy/3KVZXzQj2fPmjZclfe1x460PGnQbcgeaO5Wzsz6EPG/yeIOdH7fj1bwT+1Tc+QTD/77wy
- SQSRRMNKhO43SpI/fwm2OWqC3hFXdJLqj4HDuc8WqzEWp0jiymiymEMAUbUUFJ1+4Jv9zuiLgp0
- bno5aaJFUhU45v86mwNG/4OpJEb9uxH0LEbAtHvtPWWfGsIdmnWzv2bFmFMbWXBVlsjFh4Vtd3O
- bZjeN4AXaPOGLvhPQtXx9S/l00z4vLcXDQKgSD9vyhAScZ/TMIJ6bWx0bwmZQUyzABzV2wrhLK0
- 4ycu1wrrmCfRK0pWMJsE7gwhPxcz4DN3iuE1O6Efey0e8sRVDI2J4qbtjq01baU48WEOH7M0uHS
- oyO7ZqiuE3z3oRe62apCd/BAqrpEs8=
-X-Developer-Key: i=dlan@kernel.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[protonmail.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[protonmail.com:s=protonmail3];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[esmil.dk,spacemit.com,gmail.com,lists.linux.dev,vger.kernel.org,lists.infradead.org,kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-278085-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278086-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[protonmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org,lists.sr.ht];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.993];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.546];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[cristian_ci@protonmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[protonmail.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 6F1472D67DD
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,protonmail.com:dkim,protonmail.com:email,protonmail.com:mid]
+X-Rspamd-Queue-Id: D335C2D6864
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for the DWC3 USB controller which found in SpacemiT K3 SoC.
+On Thursday, March 19th, 2026 at 03:27, Dmitry Baryshkov <dmitry.baryshkov@=
+oss.qualcomm.com> wrote:
 
-Acked-by: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Signed-off-by: Yixun Lan <dlan@kernel.org>
----
- drivers/usb/dwc3/dwc3-generic-plat.c | 1 +
- 1 file changed, 1 insertion(+)
+> On Wed, Mar 18, 2026 at 11:28:10PM +0100, Cristian Cozzolino via B4 Relay=
+ wrote:
+> > From: Cristian Cozzolino <cristian_ci@protonmail.com>
+> >
+> > Add support for Novatek NT35532-based 1080p video mode DSI panel.
+> >
+> > Signed-off-by: Cristian Cozzolino <cristian_ci@protonmail.com>
+> > ---
+> >  MAINTAINERS                                   |   1 +
+> >  drivers/gpu/drm/panel/Kconfig                 |  11 +
+> >  drivers/gpu/drm/panel/Makefile                |   1 +
+> >  drivers/gpu/drm/panel/panel-novatek-nt35532.c | 779 ++++++++++++++++++=
+++++++++
+> >  4 files changed, 792 insertions(+)
+> >
+>=20
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-diff --git a/drivers/usb/dwc3/dwc3-generic-plat.c b/drivers/usb/dwc3/dwc3-generic-plat.c
-index e846844e0023..28219968b8b0 100644
---- a/drivers/usb/dwc3/dwc3-generic-plat.c
-+++ b/drivers/usb/dwc3/dwc3-generic-plat.c
-@@ -212,6 +212,7 @@ static const struct dwc3_generic_config eic7700_dwc3 =  {
- 
- static const struct of_device_id dwc3_generic_of_match[] = {
- 	{ .compatible = "spacemit,k1-dwc3", },
-+	{ .compatible = "spacemit,k3-dwc3", },
- 	{ .compatible = "fsl,ls1028a-dwc3", &fsl_ls1028_dwc3},
- 	{ .compatible = "eswin,eic7700-dwc3", &eic7700_dwc3},
- 	{ /* sentinel */ }
+I'm doing a test: since I'm not sure if:
 
--- 
-2.53.0
+=09select VIDEOMODE_HELPERS
 
+is actually needed in Kconfig nt35532 entry, I've temporarily=20
+removed that select line and regenerated .config file. Though,=20
+I've noticed CONFIG_VIDEOMODE_HELPERS was still set to 'y'=20
+nevetheless, so I decided to not going forward since that=20
+code would have been built anyway so that there was no=20
+point for doing that. I wonder: is that select line really=20
+necessary, at this point?
+
+> --
+> With best wishes
+> Dmitry
+> 
 
