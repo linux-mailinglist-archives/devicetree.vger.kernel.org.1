@@ -1,204 +1,273 @@
-Return-Path: <devicetree+bounces-278165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278164-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MDbhOloWvWnG6QIAu9opvQ
-	(envelope-from <devicetree+bounces-278165-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:41:46 +0100
+	id QCGANz0WvWnG6QIAu9opvQ
+	(envelope-from <devicetree+bounces-278164-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:41:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98E822D82B0
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:41:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D4832D8282
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:41:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4548E30ACB6F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:40:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ED5EA305C8ED
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:39:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78152382F2F;
-	Fri, 20 Mar 2026 09:40:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 842E63815D5;
+	Fri, 20 Mar 2026 09:39:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bnoEx+VR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="stetC2bp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5579B375F96;
-	Fri, 20 Mar 2026 09:40:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 603FC35F60C;
+	Fri, 20 Mar 2026 09:39:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773999612; cv=none; b=StCwJX/j/LPfW0nwsfSEg4hlQHt/aG/chpspgPKq3G+A/2r5jckS56Avo/OKWL1fvqZCL34JO7FwkC7n+lp44E2OAJTTnxdIfZ6I8nx0LKR/Kc9DruvUyXNosK/Bjc0PdNkFuWQvdy4MODuGWQPzKfd4iylZMmwvE6k6vc8lSoE=
+	t=1773999595; cv=none; b=nltwG/lJhj+DFPYj5eNzJGWW7hhpbLsP0NctxtREwPp2J6LinKQfWxlYCTBnAzBcGOHxK7GCYd9lBvEPprhsfuOc8e7Hi5vJYShNhQSRdYHGr6b04FPZMZx725j2tKgGZz/lzZLnI/xCypntIafcW5wP2PLscOwSOanJaQU0izs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773999612; c=relaxed/simple;
-	bh=azSiGaSSxlTDuQCny00ji++6MuquKojsYdW19YTW/1A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=F/GSgMMIerGztgsws8xL9/B2w7S1E7b0URbnsE34IoNTBAnapLloMMPDzv3FPwS51SQDVB8r/c5tZCl1VuFJ3PzQdrWdw1tIF8QX6UrjfEBpFlR8ZDDHPfE2WGgSUDKWAM3/T9JZ6QQN9ZwZHZRjTL3K4vgiPmpy6BBKMhgN3p4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bnoEx+VR; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 132A8C415A4;
-	Fri, 20 Mar 2026 09:40:34 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id ABACB600E0;
-	Fri, 20 Mar 2026 09:40:08 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 14D5710450B5E;
-	Fri, 20 Mar 2026 10:40:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1773999607; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=qI1QX1Pvfy/14Qd8e/7scqtIpDkafI6tjAKrp8F3d1w=;
-	b=bnoEx+VR+uXmYPQTrhnA+Cn8SXQekQrAIPi5w+sB7ftOWRhnHg9yWThlxdRxUiW6hSLuN+
-	cLbUYn24K0qpkPctbdGTSsBAQq78Dz6hRA+cVic+TTXo236RM0Or+R+3+cw/RS6qzlfhQh
-	zJn2Gv1sloLx1f3pxtwNCQ2i6KU6r4wuA2jlaaFZ5pCZyHm1fT/yKB8qW//PeHf4qc5NDK
-	kfAEdDQcLWKuai1We2OG16gLk7Jv+KPlYX78fUHKpNBCJWt7L2wRZg6Y6dQoly2I2BroRM
-	YdyMKbMUUsKOdq4MJkqS3n9DmHDIMWAU94isUGqhmAGFN0McydxWRGH8p32Z7g==
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>,
- Mark Brown <broonie@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH net-next 2/2] net: sfp: manage receiver and transmitter regulators
-Date: Fri, 20 Mar 2026 10:39:10 +0100
-Message-ID: <6022954.DvuYhMxLoT@fw-rgant>
-In-Reply-To: <aaspCUWel9k_ls4i@sirena.co.uk>
-References:
- <20260303-sfp-regulators-v1-0-7101ae34cb84@bootlin.com>
- <aacpVFhH8eV7dxHV@shell.armlinux.org.uk> <aaspCUWel9k_ls4i@sirena.co.uk>
+	s=arc-20240116; t=1773999595; c=relaxed/simple;
+	bh=i+pP4V+ABRrU7y+KipWHLhEUf1H6LxI4Ze7TYBfD/lI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qu5tnHkKYvFq1rwVRy8PESZXVAQIZ4g1z/KNghpTcTeY22ekSnNa+eLwyGE2+Ro82OPr4lIJQ79oInXfllcSPmS7DvlXmrNt70SX9sZ1FfbpRnhdbMJDsmyi18Y1vDlMosNpxWGgtI/5m7EJOCkIpC7iFmJIAU8xAsBuCMTxex4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=stetC2bp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 852BCC4CEF7;
+	Fri, 20 Mar 2026 09:39:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773999595;
+	bh=i+pP4V+ABRrU7y+KipWHLhEUf1H6LxI4Ze7TYBfD/lI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=stetC2bpfEX8FvAm4oFQOc4VRxBmexeeFL8Ie45Tt4g9Vp4efZkF87YFB4x2k/5o5
+	 3CdD8EjOBim1rw1aZWJsp8n7kyYeOGTNj9U5XAnoISaPaxkd3WVjdX1boKf6qMIzJj
+	 GoVn9kYZOybFKPPDvEd0pF3cBu4wGm8WMp2PGwG9eEKbMhQT7TJrCB/1Hm3apSyp0b
+	 W2vBTYxaFg6u7ebj3r2g1lNFlUgvK3bssbNXZLdXsUUDU5uc4Mf8OQp8IOLiE6VwoS
+	 tiL+bP+14uaPKD0kRiOwhRGSscI4YamZDeq254EEmh/xp21cIKEP4PIzUUXjLJzxlR
+	 vx9qewFftGPxA==
+Date: Fri, 20 Mar 2026 10:39:52 +0100
+From: Thierry Reding <thierry.reding@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jon Hunter <jonathanh@nvidia.com>, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 3/5] dt-bindings: pci: Document the NVIDIA Tegra264 PCIe
+ controller
+Message-ID: <ab0U5bfZ2hwp-GST@orome>
+References: <20260319160110.2131954-1-thierry.reding@kernel.org>
+ <20260319160110.2131954-4-thierry.reding@kernel.org>
+ <CAL_Jsq+smyMYE_oexRc9wEJgMxdUxSwg7p8Bex8q6J6PrwZZ+Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart6296369.lOV4Wx5bFT";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="xadlc4yvs4q6exe6"
+Content-Disposition: inline
+In-Reply-To: <CAL_Jsq+smyMYE_oexRc9wEJgMxdUxSwg7p8Bex8q6J6PrwZZ+Q@mail.gmail.com>
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278165-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,bootlin.com,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278164-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-0.889];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[romain.gantois@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	NEURAL_HAM(-0.00)[-0.979];
+	FROM_NEQ_ENVFROM(0.00)[thierry.reding@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 98E822D82B0
+X-Rspamd-Queue-Id: 8D4832D8282
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---nextPart6296369.lOV4Wx5bFT
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
-From: Romain Gantois <romain.gantois@bootlin.com>
-Date: Fri, 20 Mar 2026 10:39:10 +0100
-Message-ID: <6022954.DvuYhMxLoT@fw-rgant>
-In-Reply-To: <aaspCUWel9k_ls4i@sirena.co.uk>
+
+--xadlc4yvs4q6exe6
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 3/5] dt-bindings: pci: Document the NVIDIA Tegra264 PCIe
+ controller
 MIME-Version: 1.0
 
-Hello Mark,
+On Thu, Mar 19, 2026 at 04:26:31PM -0500, Rob Herring wrote:
+> On Thu, Mar 19, 2026 at 11:01=E2=80=AFAM Thierry Reding
+> <thierry.reding@kernel.org> wrote:
+> >
+> > From: Thierry Reding <treding@nvidia.com>
+> >
+> > The six PCIe controllers found on Tegra264 are of two types: one is used
+> > for the internal GPU and therefore is not connected to a UPHY and the
+> > remaining five controllers are typically routed to a PCI slot and have
+> > additional controls for the physical link.
+> >
+> > While these controllers can be switched into endpoint mode, this binding
+> > describes the root complex mode only.
+> >
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> >  .../bindings/pci/nvidia,tegra264-pcie.yaml    | 92 +++++++++++++++++++
+> >  1 file changed, 92 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra2=
+64-pcie.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra264-pcie=
+=2Eyaml b/Documentation/devicetree/bindings/pci/nvidia,tegra264-pcie.yaml
+> > new file mode 100644
+> > index 000000000000..56d69de2788b
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra264-pcie.yaml
+> > @@ -0,0 +1,92 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pci/nvidia,tegra264-pcie.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NVIDIA Tegra264 PCIe controller
+> > +
+> > +maintainers:
+> > +  - Thierry Reding <thierry.reding@gmail.com>
+> > +  - Jon Hunter <jonathanh@nvidia.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: nvidia,tegra264-pcie
+> > +
+> > +  reg:
+> > +    minItems: 4
+> > +    maxItems: 5
+> > +
+> > +  reg-names:
+> > +    minItems: 4
+> > +    maxItems: 5
+> > +
+> > +  interrupts:
+> > +    minItems: 1
+> > +    maxItems: 4
+> > +
+> > +  dma-coherent: true
+> > +
+> > +  nvidia,bpmp:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +    description: |
+> > +      Must contain a pair of phandle (to the BPMP controller node) and
+> > +      controller ID. The following are the controller IDs for each con=
+troller:
+> > +
+> > +      0: C0
+> > +      1: C1
+> > +      2: C2
+> > +      3: C3
+> > +      4: C4
+> > +      5: C5
+> > +    items:
+> > +      - items:
+> > +          - description: phandle to the BPMP controller node
+> > +          - description: PCIe controller ID
+> > +            maximum: 5
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +required:
+> > +  - interrupt-map
+> > +  - interrupt-map-mask
+> > +  - iommu-map
+> > +  - msi-map
+> > +  - nvidia,bpmp
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/pci/pci-host-bridge.yaml#
+> > +  - oneOf:
+> > +    - description: C0 controller (no UPHY)
+> > +      properties:
+> > +        reg:
+> > +          items:
+> > +            - description: application layer registers
+> > +            - description: transaction layer registers
+> > +            - description: privileged transaction layer registers
+> > +            - description: ECAM-compatible configuration space
+> > +
+> > +        reg-names:
+> > +          items:
+> > +            - const: xal
+> > +            - const: xtl
+> > +            - const: xtl-pri
+> > +            - const: ecam
+> > +
+> > +    - description: C1-C5 controllers (with UPHY)
+> > +      properties:
+> > +        reg:
+> > +          items:
+> > +            - description: application layer registers
+> > +            - description: transaction layer registers
+> > +            - description: privileged transaction layer registers
+> > +            - description: data link/physical layer registers
+> > +            - description: ECAM-compatible configuration space
+> > +
+> > +      items:
+> > +        - const: xal
+> > +        - const: xtl
+> > +        - const: xtl-pri
+> > +        - const: xpl
+>=20
+> Put this entry last since it is the optional one. Then you can move
+> all of this to the top-level and get rid of the duplication.
 
-On Friday, 6 March 2026 20:20:41 CET Mark Brown wrote:
-> On Tue, Mar 03, 2026 at 06:32:52PM +0000, Russell King (Oracle) wrote:
-> > On Tue, Mar 03, 2026 at 05:31:36PM +0000, Mark Brown wrote:
-...
-> 
-> > Now, if you're going to say "ah, so it has power pins, you need to
-> > describe them using a regulator" then I would say to you, when are
-> > we introducing regulators for every device we describe in DT such
-> > as LEDs, switches, GPIO pins, RAM, etc? Every device needs to have a
-> > source of power after all.
-> 
-> It sounds from the cover letter for this series like there's some demand
-> for power control of SFP cages, the cover letter isn't terribly specific
-> about what circumstances though.  Possibly there's some UI for this on
-> the system, or the hardware has some mechanism for detecting physical
-> insertion to the SFP cage (hopefully well in advance of the electrical
-> contacts being made)?  Romain, are you able to share more specifics on
-> the use case here?
+I understand this concern and was actually on the fence about this
+myself. The reason why I ultimately went with this variant is for two
+reasons:
 
-It seems like my upstreaming strategy was incorrect. The series that I sent is 
-a subset of my original use case, but in hindsight I should've just presented 
-the original one in the first place, that would've been clearer, sorry about 
-that.
+  1. XPL does not exist for controller 0, the variant above makes that
+     very explicit. It explicitly documents that controller 0 is used
+     for internal purposes and cannot be connected to an external port
+     like the other five controllers.
 
-Originally, I implemented a runtime PM support in the SFP core. This allowed 
-to cut power to the cages when the attached network interface was down, 
-thereby saving power. This is interesting since I'm dealing with a battery-
-powered system which has SFP cages. However, an upstream version of this would 
-require some kind of new userspace interface to signal indifference to module 
-detection when the upstream network interface is down. Otherwise it could 
-break existing userspace applications which expect to detect and interact with 
-SFP modules (e.g. read EEPROMs, read temperature sensors) even when their 
-upper network interfaces are down.
+  2. The ECAM region is part of a memory region specifically reserved
+     for configuration space, whereas all of the other regions are
+     from the controller's MMIO region. I find the DT hard to read if
+     the two are interleaved.
 
-Aside from this, what Russell told me in this message:
+Thierry
 
-https://lore.kernel.org/all/aacYGTBobbfJgZpp@shell.armlinux.org.uk/
-
-suggests that cutting power to SFP cages could lead to unspecified behavior 
-with some modules, so for example unloading the SFP core kernel module while 
-an SFP module was inserted could have unintended consequences... This problem 
-requires some more investigation on my side before I can submit a proper 
-runtime PM solution.
-
-Thanks,
-
--- 
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---nextPart6296369.lOV4Wx5bFT
+--xadlc4yvs4q6exe6
 Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmm9Fb4ACgkQKCYAIARz
-eA6U8hAAmaKuJRvVRCLsakTmqj521w8k7ueuC0H3tuNH6bhQ2grt1arXAJ9At9UJ
-jlgjlecqDosz10ORSIKTxDHcb+Vvy9yWhp+CVYr6bMCsp7YpFBz5vGZWVM9+GYiq
-njAC44bgcNgQ9qQdUDszfx+A7tQB6nxav+jkcfXf++c8yaOH0T4SUuz1H9WR1yHQ
-A/Tf4ppvSAN9pjGxsbVjMyv6mb0VFxfT3UgU52qECqgpAet3fdvQ+xQLavzZjddG
-9zrjbuXTykR00Hkxcn4m+jdlXOP13DsqqkAe31QoLvNGyroUVlEBv/yR0BcmngdN
-SIM6NNKY1EiTabvfqsshGt1kqW9FDFn0qe+AWkF/vxZPZTqAyxtGc2KFcGUZguW7
-W20PACrkYFNwDW8cp3kjKLP4jpLeUQ2CgM3Eix7Tg7uTvBat9ROlzdj69kSodzs9
-HjK35igIvg57um0rnTq+R2cevprOI7n+b/h08qgyWL6IB9CBPvA2yLdp2YXxzZa2
-Un1J+bADDD8d1VsCVM/LMZRSmisphJzzRoN4VdQNwnIy7NDqIPjZbvBj0JgdSPdR
-UA15BVPznAARtugBYGefqdGzHpBBlUwt1icrFsPnPyoquZSRx/eFV2usna2CfEZq
-F+0TFlRrQAfQtmZxupOwzz6bbhOLsgjw0nlLz+RohnXZuzJ2zcI=
-=JdXL
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmm9FegACgkQ3SOs138+
+s6EIWQ//ckQncs/jfQ2lie639+yWQaYKqj+f3mfXRhxT8cmiO+3YU6I/9F1Sjxwu
+w29ijDgXiM3/DdkEXbzS0mtdBMwh1V4Zl2sDsgFD+6heyw5mFCmh2wGo2E9WWxyN
+4OTcuA+30wWJZvmh49BDnvcDnvDw7v4ENaaU4dyvePj/Vj8X4ekGslv1Ihv9Ao8y
+NG/KGJ6nsDwhIpHwsOoL88ADKrltkSsqTgxhunnqKVu+v7bGzXRIlX2+uXteRvGx
+QYU9cHLa8h589ZDZUHgylJt3Eqnew8G6tLVBvc4jMni2OdorzQQ7zyMtQRLQSvaY
+NQIzfdwuK7l/+vO5DboxCvffkWP4wHI2EDFBMHK8q2zSh+Q44Gts4sG53ITXQVlS
+l0OEZmguQ4RQDeytMv2EdkGmJYICW5qE/1CunjIQU3zBqxOMstY1sm1CdZkkx8sS
+/dF+4JF9i9ETWl3UC5T3VpWfWAfI7ADTZEU318bREXTDtpkPwHdodlSWBZFq22gK
+wmy+hjD7wG/I9fy1yJL+DhxSJBgFiDEwswvMe4pbGR34xkQjJQFcMGlSBg2YYO/N
+r1nJaa0G58QMN+MGtfA62q3u0yugRfHjtTF2gy2iwJXBELawhgGPJzzEhRwNGSBI
+I6RHRcxjnD9NkjSsPM0DTHJmoOaeclfetpFCgS0QUohaC6rGQQA=
+=2I0I
 -----END PGP SIGNATURE-----
 
---nextPart6296369.lOV4Wx5bFT--
-
-
-
+--xadlc4yvs4q6exe6--
 
