@@ -1,298 +1,218 @@
-Return-Path: <devicetree+bounces-278269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278270-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +FjNIro/vWmJ8AIAu9opvQ
-	(envelope-from <devicetree+bounces-278269-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:38:18 +0100
+	id KLnOGF1BvWn28AIAu9opvQ
+	(envelope-from <devicetree+bounces-278270-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:45:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 916792DA5EE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:38:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C52A32DA769
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:45:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id ABF4030138F1
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:38:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 40FC9301DAD1
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:42:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09C4E3B19BE;
-	Fri, 20 Mar 2026 12:38:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45D0638AC66;
+	Fri, 20 Mar 2026 12:42:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b="RMZiiDIu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iCbCxIz2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91E4E395DB5;
-	Fri, 20 Mar 2026 12:38:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774010292; cv=pass; b=XpQQasN+q5/iaQmUyHlzUENaRSVH4FdPIKNsmuRbWnF7WwtxXutQQR7fdDLEtHKmk2cv3sVCKjpOO2tBn0/EoLPfqEnmrJEb5LlRx9Atmuer0AwM6QzCvQoO2BFHyL1W1ZmpnSV2xhnbPfdMu6Ihwxf9C6XixpWqLC2eGhPT/Ow=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774010292; c=relaxed/simple;
-	bh=wV2XOk1Kz9d3NznBjwLCj2478PRXmrJLh622XGggBls=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=t2RIBBHnK/QKJR5QBSfWd/UokJeRW65xhUXmY8RT+bMEJGoNR2M/qr1csshNNfGyp5vFoGm7PndNkSOJfY2GbvHzy3IPu82hXfe6zGDEZVTWp3j7ED4H9kLZ7hJTcH7a5s9LFnJO+1we4kvWq+J7G818mGQqflwJQYQ8Qx7FL7Y=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b=RMZiiDIu; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1774010260; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=IT1X9lb4WgUGJ3f4XpNl+vAjgAOPfWmZtyaaQKBpOo2bNLHnO9li7xmwGPEbed71lTevrox//bZlixs9FBN984eFZczlLYEM4WIULVmra1p5kiJbeAzfeyaR3+9EpM0+dc1mexIHEIAzsE50Y8+8xHLrb5luj3cIqEG8eGjs9mI=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1774010260; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=eqvJd/tLOchy3iTRcrdUAE7UOOBzOUBXPqr7730FrsU=; 
-	b=Tsh96p4MSAWs8lU7Vew0vYe69xpMVDUqTfLNPkQxKXS7edfUihiwAkVxJsh6V2PjjTIFmHWRckkaLg3KPfr2zN/wj6TGiLnVmVVE3OEwGJpeGVr0bM3yUl2z+AMzLlmilxMkVicIdJ8D63CkdTyYkufWFK4xto01O3+6AAcgmkY=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=louisalexis.eyraud@collabora.com;
-	dmarc=pass header.from=<louisalexis.eyraud@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774010260;
-	s=zohomail; d=collabora.com; i=louisalexis.eyraud@collabora.com;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=eqvJd/tLOchy3iTRcrdUAE7UOOBzOUBXPqr7730FrsU=;
-	b=RMZiiDIujKB48XWmRkT8/L3xbYeJXdVQivCo4d7Qs0QuywxwSHnMQR7y/b0N3xrR
-	b9y6YbIP2cjgyLxJurJpjJI/qT5PPCyiSKM9WMUe5/C1Pp8JlZ7laavjWFqnWiFkAab
-	CZPFmG7wrmgmXQjUjPqdC844jhQy+mmiq2f4tV/s=
-Received: by mx.zohomail.com with SMTPS id 1774010258810384.6051275065198;
-	Fri, 20 Mar 2026 05:37:38 -0700 (PDT)
-Message-ID: <7d1e52c0b9c3a6d30e9db617b9bcfa23ed9046b5.camel@collabora.com>
-Subject: Re: [PATCH 3/4] arm64: dts: mediatek: add device-tree for Genio
- 720-EVK board
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-To: David Lechner <dlechner@baylibre.com>, Greg Kroah-Hartman	
- <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Rob
- Herring	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley	 <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Sean
- Wang <sean.wang@mediatek.com>
-Cc: kernel@collabora.com, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Date: Fri, 20 Mar 2026 13:37:33 +0100
-In-Reply-To: <c2618423-2466-47bb-a8cf-7c849e7e231e@baylibre.com>
-References: 
-	<20251203-add-mediatek-genio-520-720-evk-v1-0-df794b2a30ae@collabora.com>
-	 <20251203-add-mediatek-genio-520-720-evk-v1-3-df794b2a30ae@collabora.com>
-	 <c2618423-2466-47bb-a8cf-7c849e7e231e@baylibre.com>
-Organization: Collabora Ltd
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E1F73A960A
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 12:42:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774010528; cv=none; b=i/wgXxoZkJ+hzCnkKYkwV/4n6XhQPPYaQn49HEtp52PL5zF8TPA6ce6gdlC/2IaR6Z+jEnGGh0acvD9HJbk5efsA0JPTU6AmS9Pkxtvu9kMeUzuzxkaZhKWU/iviYDcVkgNL/uCjmKHidL2ofuezrwhki5dHMGT3dM0rYvPEIOU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774010528; c=relaxed/simple;
+	bh=HwklMMHuEmJBZfQL8IwNWcmQV8JTcDfhhxmPJKLQWgQ=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JrvUVmlvUllrXExDFuFMLi7l8cFaG3Jpf9mRZmb6Tr8Ppewr3BdXBt0xLH6taPE5uMmbGS/c7oxNOHQ3cpt1qmIuw12cZJEgabCJMnDtAQVfm+APw/b1hprIBFcSYP7I3rNBtmmK+LF9VZaX8L+xvqEd2ulIHohTwM4Urmn5v6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iCbCxIz2; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-482f454be5bso29077885e9.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 05:42:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1774010524; x=1774615324; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=H8a7jdeYcOkG74XhQy98mbwT2qyiDyYFpNk1yDSPbdw=;
+        b=iCbCxIz2ggk6SLCwTUp2KwLgTQ+oi5S9X2nsaciGSn9BkxQO1Vrf997OhE8b7/eBFH
+         dhuNaUOgT8gOu7gcPU7BnB64wf3AnS6mm5tifXuf+zNbcYE1DTvUJuB2YlTWrkdXpL/K
+         0392kVJ909X9Lib3v8lgUPhTElIcMofKz1r7D7B9yg4LDt9IBf+eMLQJBm47OW+CNxzU
+         rpwaDS5+MQDcNwjLUOJluR2YtX0/4ul9GrMo+ITt49B/Hsc1/XbVQ9atZjQIDqkzy3Jm
+         R7SkIeRqWeRzN+NnIqTdu5rFGJRgx+QgcW6m3RyRSW0ru75epx9H9rnScQ6hhmeEdr3q
+         CWEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774010524; x=1774615324;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=H8a7jdeYcOkG74XhQy98mbwT2qyiDyYFpNk1yDSPbdw=;
+        b=kInmvOGMc+cWloQnYJkMk+VtOMWcTOZ5/0Z/KsyQyn7EkpGdy3/7BpHamC602ei4YX
+         hV9SyR04SitviR1t1xpygNkdQHZu8a5a434EYhswZrLSOhzcyT/SvXp9RigGLFSaYcbO
+         lIMr4QH9SzKXB1zZKjBtvxPqqjOJm80jLaiG9H410i//H+nExjVzyDHKqZ3LJ+ieN+sC
+         yYHCAVII9vDb7aELXR0Oq7D1a1+vfaNQi9RxRtmYN17lGixLmplSpGq2qQ9ey7m2Skxv
+         LyZkmEmhtP0liKspN6ljdkoQC0g+C4b17uTE26ZctQMfvinjVIBgvXaE/6yAGWGNfv2M
+         WTpw==
+X-Forwarded-Encrypted: i=1; AJvYcCVnzBFqBEfm8/9jecJMqIVz4bhXF3F9wONR0BxFrXOoBL2/XJwx1K8vLdcVPWKd8IE75/6zC0vKCGo1@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDkq5YzK1mEy7LJDJdaZowL8X3SG3/G4HKFbv49gkssfZsOplC
+	pL+FnuRQybLIsZ8AZldplg6VHyaUVLd/6IUQLkmNS3yLpVsH+SjiDUiT
+X-Gm-Gg: ATEYQzzATqcZTO2LdvAQITIX9PMqFENDIX35lxHOI7RFQsOLi0oeNDpFal5sXKahKNh
+	zpAU3tjBsuUrrCIPzmzNUJO+eH5nfkN9l40qoDL12C39VbLt6Dp2l9nzh4qJXY3b2N+OXAXmWtj
+	mYXVJ06hqmxTmd66lR7EGVijxZJ9ZTyPXuSTDMr4xEo6HxsQUySG9Bi1whQloAVvg8/ruO4QzrE
+	rHwBLrQbOTBr3aILy6QpDQP0IhSPIyfbXXgzomn1iZXEFvJ/3/hhE1bgvW8n9rTBweBolYoB+dZ
+	y6Fat1/wUkc28QJ0UPrmSUU9D0tGDoiYfOPPtCrWUzZz7s+z4NjsID1kKlz60MclEF6WG0AhJg0
+	uLZNB5eey9jIDkcajhIYvqnn930+37uDcEZgVObKPauI3BeBMSdmS+TMXKslwc16g0rNeGfGc5c
+	q3SFvFkNCOOrnaMTiyHqM41qaCPhrYXOi53AbZaQw+NWGftnduduCvMqCYNe3/OBaUybANcTTbD
+	EvBssMaiEeF0oz2jSTP/Zp7SZrMCfcmbIwj7SMW5uyHW3MCHQE=
+X-Received: by 2002:a05:600d:8449:b0:477:9890:9ab8 with SMTP id 5b1f17b1804b1-486fe8a2bafmr39506145e9.3.1774010523562;
+        Fri, 20 Mar 2026 05:42:03 -0700 (PDT)
+Received: from RDEALENC-L01.ad.analog.com (24.206.116.103.netskope-rdns.com. [24.206.116.103])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486fe7e2665sm67966935e9.6.2026.03.20.05.42.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Mar 2026 05:42:02 -0700 (PDT)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Fri, 20 Mar 2026 12:41:57 +0000
+To: Andy Shevchenko <andriy.shevchenko@intel.com>, 
+	Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Andrew Morton <akpm@linux-foundation.org>
+Subject: Re: [PATCH v8 02/10] lib: kstrtox: add kstrntoull() helper
+Message-ID: <qsquhriyrepndxwexox35oi5i7v4klb64lajuk3j3pfozkjiew@fp55l4znck4o>
+References: <20260303-adf41513-iio-driver-v8-0-8dd2417cc465@analog.com>
+ <20260303-adf41513-iio-driver-v8-2-8dd2417cc465@analog.com>
+ <aabm23jCikXs1l6F@ashevche-desk.local>
+ <qcloiwjlbehs4yyuttvrt46monh7isef4d5nzuwlaby6uxfael@j3trvc5jwosy>
+ <4mtdzxfj656sjr66npabfvrr7yd7q26l2unhsihjtniz4ossfj@g3qnzonoary6>
+ <rygken7oujyoupeanrdnl7r7smesa7js6sn3jsafbajc4sm3jh@adeslfqwwf3x>
+ <ab00clb7LL-bmJWe@ashevche-desk.local>
+ <ixvzb5mni2lhz733f4fvvzhozmpezkx5s2q7sash3wv3u2g7ov@pgs6pve6kxrq>
+ <ab08aHbudFWEtLi8@ashevche-desk.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ab08aHbudFWEtLi8@ashevche-desk.local>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278269-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[baylibre.com,linuxfoundation.org,kernel.org,gmail.com,collabora.com,mediatek.com];
+	TAGGED_FROM(0.00)[bounces-278270-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[intel.com,gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[louisalexis.eyraud@collabora.com,devicetree@vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	NEURAL_HAM(-0.00)[-0.998];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.924];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 916792DA5EE
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C52A32DA769
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi David,
-
-On Thu, 2026-03-12 at 19:26 -0500, David Lechner wrote:
-> On 12/3/25 7:59 AM, Louis-Alexis Eyraud wrote:
-> > Add support for MediaTek MT8189 SoC and its variants, and a device-
-> > tree
-> > for the basic hardware enablement of the Genio 720-EVK board, based
-> > on
-> > MT8391 SoC.
-> >=20
->=20
+On 26/03/20 02:24PM, Andy Shevchenko wrote:
+> On Fri, Mar 20, 2026 at 12:08:41PM +0000, Rodrigo Alencar wrote:
+> > On 26/03/20 01:50PM, Andy Shevchenko wrote:
+> > > On Fri, Mar 20, 2026 at 11:16:32AM +0000, Rodrigo Alencar wrote:
+> > > > On 26/03/04 10:02AM, Rodrigo Alencar wrote:
+> 
 > ...
->=20
-> > +	mmc0_default_pins: mmc0-default-pins {
-> > +		pins-clk {
-> > +			pinmux =3D <PINMUX_GPIO162__FUNC_MSDC0_CLK>;
-> > +			drive-strength =3D <6>;
-> > +			bias-pull-down =3D <MTK_PUPD_SET_R1R0_10>;
-> > +		};
-> > +
-> > +		pins-cmd-dat {
-> > +			pinmux =3D
-> > <PINMUX_GPIO166__FUNC_MSDC0_DAT0>,
-> > +			=09
-> > <PINMUX_GPIO165__FUNC_MSDC0_DAT1>,
-> > +			=09
-> > <PINMUX_GPIO164__FUNC_MSDC0_DAT2>,
-> > +			=09
-> > <PINMUX_GPIO163__FUNC_MSDC0_DAT3>,
-> > +			=09
-> > <PINMUX_GPIO159__FUNC_MSDC0_DAT4>,
-> > +			=09
-> > <PINMUX_GPIO158__FUNC_MSDC0_DAT5>,
-> > +			=09
-> > <PINMUX_GPIO157__FUNC_MSDC0_DAT6>,
-> > +			=09
-> > <PINMUX_GPIO156__FUNC_MSDC0_DAT7>,
-> > +				 <PINMUX_GPIO161__FUNC_MSDC0_CMD>;
-> > +			input-enable;
-> > +			drive-strength =3D <6>;
-> > +			bias-pull-up =3D <MTK_PUPD_SET_R1R0_01>;
-> > +		};
->=20
-> Should we also have pins-ds here to match mmc0-uhs-pins?
->=20
-The data strobe pin is only used for the HS modes, that is why it is
-only declared for uhs state.
-No other mediatek board devicetrees have it for default state too, so I
-don't think it is needed here.
+> 
+> > > > could you provide more feedback here? Thanks!
+> > > 
+> > > I don't know what new I can add here.
+> > > 
+> > > My suggestion was (and still is) to have something in *_strtoull() family
+> > > with additional checks added, but no limitations on the input string (i.e.
+> > > no max_chars).  If you look at the printf() code the max_chars was added
+> > > solely for scanf() and has no use otherwise (yes, I know about and aware
+> > > of initramfs case).
+> > 
+> > but is it include/linux/kstrtox.h the right place for this?
+> 
+> Seems so, there simple_strto*() are declared.
+> 
+> > *_strtoull familly... then can we just expose simple_strntoull(), which is
+> > private to lib/vsprintf.c, by changing its prototype to expose a error return?
+> 
+> Why do you need that? I'm lost, sorry, I don't understand this big desire of
+> having that max_chars parameter.
+> 
+> > In my case the limitation on the input string is useful for the truncation of
+> > decimal places when parsing the fixed point value. It would avoid a 64-bit
+> > division.
+> 
+> How is it better than checking the returned end pointer? Just treat anything
+> that parses too many digits after dot as invalid input?
+> 
+> 	ret = ..._strtoull(..., &end, &result);
 
-> > +
-> > +		pins-rst {
-> > +			pinmux =3D
-> > <PINMUX_GPIO160__FUNC_MSDC0_RSTB>;
-> > +			drive-strength =3D <6>;
-> > +			bias-pull-up =3D <MTK_PUPD_SET_R1R0_00>;
-> > +		};
-> > +	};
-> > +
-> > +	mmc0_uhs_pins: mmc0-uhs-pins {
-> > +		pins-clk {
-> > +			pinmux =3D <PINMUX_GPIO162__FUNC_MSDC0_CLK>;
-> > +			drive-strength =3D <8>;
-> > +			bias-pull-down =3D <MTK_PUPD_SET_R1R0_10>;
-> > +		};
-> > +
-> > +		pins-cmd-dat {
-> > +			pinmux =3D
-> > <PINMUX_GPIO166__FUNC_MSDC0_DAT0>,
-> > +			=09
-> > <PINMUX_GPIO165__FUNC_MSDC0_DAT1>,
-> > +			=09
-> > <PINMUX_GPIO164__FUNC_MSDC0_DAT2>,
-> > +			=09
-> > <PINMUX_GPIO163__FUNC_MSDC0_DAT3>,
-> > +			=09
-> > <PINMUX_GPIO159__FUNC_MSDC0_DAT4>,
-> > +			=09
-> > <PINMUX_GPIO158__FUNC_MSDC0_DAT5>,
-> > +			=09
-> > <PINMUX_GPIO157__FUNC_MSDC0_DAT6>,
-> > +			=09
-> > <PINMUX_GPIO156__FUNC_MSDC0_DAT7>,
-> > +				 <PINMUX_GPIO161__FUNC_MSDC0_CMD>;
-> > +			input-enable;
-> > +			drive-strength =3D <8>;
-> > +			bias-pull-up =3D <MTK_PUPD_SET_R1R0_01>;
-> > +		};
-> > +
-> > +		pins-ds {
-> > +			pinmux =3D <PINMUX_GPIO167__FUNC_MSDC0_DSL>;
-> > +			drive-strength =3D <8>;
-> > +			bias-pull-down =3D <MTK_PUPD_SET_R1R0_10>;
-> > +		};
-> > +
-> > +		pins-rst {
-> > +			pinmux =3D
-> > <PINMUX_GPIO160__FUNC_MSDC0_RSTB>;
-> > +			bias-pull-up =3D <MTK_PUPD_SET_R1R0_00>;
-> > +		};
-> > +	};
-> > +
-> > +	mmc1_default_pins: mmc1-default-pins {
-> > +		pins-clk {
-> > +			pinmux =3D <PINMUX_GPIO169__FUNC_MSDC1_CLK>;
-> > +			drive-strength =3D <6>;
-> > +			bias-pull-down =3D <MTK_PUPD_SET_R1R0_10>;
-> > +		};
-> > +
-> > +		pins-cmd-dat {
-> > +			pinmux =3D
-> > <PINMUX_GPIO170__FUNC_MSDC1_DAT0>,
-> > +			=09
-> > <PINMUX_GPIO171__FUNC_MSDC1_DAT1>,
-> > +			=09
-> > <PINMUX_GPIO172__FUNC_MSDC1_DAT2>,
-> > +			=09
-> > <PINMUX_GPIO173__FUNC_MSDC1_DAT3>,
-> > +				 <PINMUX_GPIO168__FUNC_MSDC1_CMD>;
-> > +			input-enable;
-> > +			drive-strength =3D <6>;
-> > +			bias-pull-up =3D <MTK_PUPD_SET_R1R0_01>;
-> > +		};
-> > +
-> > +		pins-insert {
-> > +			pinmux =3D <PINMUX_GPIO2__FUNC_GPIO2>;
-> > +			bias-pull-up;
-> > +		};
-> > +	};
-> > +
-> > +	mmc1_uhs_pins: mmc1-uhs-pins {
-> > +		pins-clk {
-> > +			pinmux =3D <PINMUX_GPIO169__FUNC_MSDC1_CLK>;
-> > +			drive-strength =3D <8>;
-> > +			bias-pull-down =3D <MTK_PUPD_SET_R1R0_10>;
-> > +		};
-> > +
-> > +		pins-cmd-dat {
-> > +			pinmux =3D
-> > <PINMUX_GPIO170__FUNC_MSDC1_DAT0>,
-> > +			=09
-> > <PINMUX_GPIO171__FUNC_MSDC1_DAT1>,
-> > +			=09
-> > <PINMUX_GPIO172__FUNC_MSDC1_DAT2>,
-> > +			=09
-> > <PINMUX_GPIO173__FUNC_MSDC1_DAT3>,
-> > +				 <PINMUX_GPIO168__FUNC_MSDC1_CMD>;
-> > +			input-enable;
-> > +			drive-strength =3D <8>;
-> > +			bias-pull-up =3D <MTK_PUPD_SET_R1R0_01>;
-> > +		};
->=20
-> Don't we also need pins-insert here? (to match mmc1-default-pins)
->=20
-From what I've found, it was done this way for other board devicetrees
-to avoid possible reconfiguration happen for the card detection pin
-while switching to UHS and causing a switch failure.
-Also, what you declare in pinmux nodes is how the pin configuration
-should change in a specific mode and you declare only what changes, and
-not what stay the same.
+here I would want to pass max_chars as the precision of the fixed point parsing
 
-> I was having trouble with the CD input pin not working in U-Boot
-> until I added it.
-I checked and debugged this on my board and did not get that kind of
-issue, whether this pin config is not present for uhs state or if I add
-it.=20
-When inserting my sd card or when I boot with it already inserted, the
-mtk-sd driver first sets the pinctrl state to default before switching
-to ufs. The GPIO02 pin config is also OK in both states.
-The mt8189 pinctrl driver seems to apply a default config for this pin
-that is the same as the one that is set here.
+> 	if (ret)
+> 		return ret; // overflow!
+> 
+> 	if (end - start > $YOUR_LIMIT)
+> 		return -EINVAL; // bad input
+> 
+> 	...process result...
 
-There might be u-boot particularities that could explain it fixes your
-issue.
+otherwise, here I would need to check the amount of parsed characters and
+perform a 64-bit division if it goes beyond the desired precision.
+Also, having max_chars allows for more flexible usage of the parsing function.
 
-Regards,
-Louis-Alexis
->=20
-> > +	};
-> > +
+this is the prototype of simple_strntoull() that would be thinking on expose:
+
+int simple_strntoull(const char *startp, char **endp,
+		     unsigned long long *res, unsigned int base,
+		     size_t max_chars)
+
+that would also allow to drop the existing FIXME in simple_strntoull().
+
+> Some (stupid) thoughts loudly. IIUC even if we implement '%g' in scanf(), it
+> wont help you as you want to have more precise values. Do I get it correct?
+
+If I am parsing 3.14159265359 with 6 decimal precision I want to stop at:
+
+frac = 141592
+int = 3
+
+and ignore the rest.
+
+-- 
+Kind regards,
+
+Rodrigo Alencar
 
