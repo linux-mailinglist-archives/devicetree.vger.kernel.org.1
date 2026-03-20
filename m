@@ -1,196 +1,184 @@
-Return-Path: <devicetree+bounces-278045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278046-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id VNsfCtyWvGni0wIAu9opvQ
-	(envelope-from <devicetree+bounces-278045-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 01:37:48 +0100
+	id GIGvL22cvGnW1QIAu9opvQ
+	(envelope-from <devicetree+bounces-278046-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 02:01:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 734492D4788
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 01:37:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A23912D48A5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 02:01:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F0E2A306CC3A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 00:37:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4177E30A87BA
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 01:01:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75B5921D585;
-	Fri, 20 Mar 2026 00:37:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9781A175A66;
+	Fri, 20 Mar 2026 01:01:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TX4SIBhg"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="A94g5DAx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m49220.qiye.163.com (mail-m49220.qiye.163.com [45.254.49.220])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AB1E21256C
-	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 00:37:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9941B288D0;
+	Fri, 20 Mar 2026 01:01:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.220
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773967065; cv=none; b=X8+YO9VFyuUbuHiIblqnd6n4z3pwaazFbn+8LbhqoqCyUE5pqVS1YR7sHabljSsfwgm8kkZyviiYjUJFu4vDWlOF2ljvCqHX79tMMCyvuLQN79nnFnyk7cn6c1uKaqdFTkMBhCZsldz5L54EfLHU0dtHTWh/Q95h5foEY+4yKvw=
+	t=1773968490; cv=none; b=LmTTqPyrEhhSXZ8F3elQOks89HBZTA25zmGaHZS0F6865CpUrQA3oWN/T6bx4fey11SvCswiCM41RdTGCTv5IxMqS3Ep62HrAVW/NKYTr3FfKeXonZAHdoc4pmLPyNfNk4CqjoE1UqQOHja+J6pp2Q6iDkQki2VIeyk/wCyJ41g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773967065; c=relaxed/simple;
-	bh=F+lvgD2ubQQWQe9EW0DdQluM6ova1XjKWBNtVNvRmFQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X53V5ZuEiF/Jx/JbUCT5knbtwOLB5YZqsffvsJi/PJOFNHnaKdqIkNj1KXNwNuhLhzOBD/Pma85NBRB1zoxXh1bndM6UxdmjY8ORS/iYw6dGLaDRRYF1hpuExrXnHqaHmri4cmv3KrmDcwaMjXjblNFmcTbt0qUAv3wEpREcRsQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TX4SIBhg; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-38a2e23e209so1178171fa.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Mar 2026 17:37:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773967062; x=1774571862; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pemwfzPMjVzwk3ZmFBYOgrrlysIkLu8Wo12oBjLmwB4=;
-        b=TX4SIBhgrSeh4lDHY49XS8EcA0mTu+ILqAmfo2xbP2z/o+NsshDdRSdMIY7f1J3NHP
-         gupqU1jtuUF6sNLJZTuSUlCJINGuLYQHckHmIt2o5eVa6qYXRKJyK/dPl+WFXM5OEtcy
-         hf+T+kdKQ+dHJPy0u7Yx0EeOq4PZu7i/VrM5DV2xIHXmJ2566nl9xMDNXGWg1HkbDmpV
-         jCunkDWoVtj5q1KMR7trCV5oODDc0maxXfKRgt4E5IazrSIA/brY0BV7ts4dU8aZY18f
-         rMXmZ5XKg4ARONA/LCaI7nJLzCkcjdYyq7OWlEoy7QiYlMpoBlx2LW7i36Cla4xq2Mq4
-         6Bug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773967062; x=1774571862;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pemwfzPMjVzwk3ZmFBYOgrrlysIkLu8Wo12oBjLmwB4=;
-        b=cU05yaGmg+NwNeItT5ioX+Ce8SwvDbJRW8/ChL2jfgNJ0cPuvRc/KSeeZ+3DcLUSmd
-         G+GGmG3eQTcLBaB9Kru4lhfiDdwq9LprN94qTukt3CxpZIJY35HXsc5GmXZ/qG1y1iFk
-         VJcgqDvjlagB3s43xCryYTWwFbWmj8miWJCJNDf/vVvvqVG4pvoJtVeHmbN6/hgoLOOi
-         wBgKtDrHuTBXSXx+pn65t35xU6gKOwoG4b5940z0EB6OEA7NduIjFCkLEejujs1aFmJn
-         nwSV+SgxJJmmHK2LWBKMBTfYnrdylYdd55dOFYGTil7eJKu+TJqKnDbq/lbWb7jItDmo
-         kIxg==
-X-Forwarded-Encrypted: i=1; AJvYcCUEPibtW/SLuFyN5eTlg/sx09+TgI0MxbC4RaKpWDpnqT9AA7nm4eVc0J23nNsm5LY+GoEPAl0yHc0A@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw2fw+pUiczIwz4qCjPaPE7GGwbUP8J9rY/gKjmQ+jOMMjjRaNd
-	BIzd8mnsB5rzPIb4WkWx9eAkA+cY+2WKh5Js7+oZuRikbML6B5JdaRqCnzlWK1B/GjQ=
-X-Gm-Gg: ATEYQzylgzFygMg3bSy4lgqDx5XwbSlOVb1c9UKlLlf65O1PVJm0BpaD7BQ31A3Iqbn
-	6qRmZ9NUswlA3zRk1rK2lLUY5J5xtK9tSVD+bRnzUAdFEVmi76YuvQUf/Wh+OJoyOJExGZQm/py
-	CKqzZ35T9ZMfVistjroKXPSCum1gQdiXyUl0nbl1uIlU/hV50SNrXx/8C0jBEAuI/OL7Za5YHJa
-	1dZKH6gexrBVp/SLRnt0VJJ2CANeioNImjajQT/FmZiuzFrlT8JB5jaCuYnikLRAoMf6d7TPpB5
-	IzwX1zvZoUSUW9mh64GRCfHLCR9mfKZu2mQmV96ct0GbdE0Y8KMouvMsTxhf/FABkwLwzbWP/QT
-	8dbKT3sRFL8I+wT8zq7h4fiaMB3h8RpY1cvyjG2iMcCQ5uQbRHt0psy/yXRsoxULohIaxFwBB6b
-	85baOKJNg3VzGx2wOAizN1Zmy58OwK7dP7IzD5FivQ0vl2ag7Z2BrEs64eok4+9FvcKElrX9EMX
-	oH4vg==
-X-Received: by 2002:a05:6512:1290:b0:5a1:3e50:423a with SMTP id 2adb3069b0e04-5a285b4fc27mr205134e87.4.1773967061957;
-        Thu, 19 Mar 2026 17:37:41 -0700 (PDT)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a2851ae39dsm212218e87.36.2026.03.19.17.37.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Mar 2026 17:37:41 -0700 (PDT)
-Message-ID: <5b23408d-c996-4785-8294-233d79168a1b@linaro.org>
-Date: Fri, 20 Mar 2026 02:37:40 +0200
+	s=arc-20240116; t=1773968490; c=relaxed/simple;
+	bh=LosE6yu1LY6fPi9OlYna8xPZNn8W9/lpmGyOAC8BnnE=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=cTI1Zi74uR0d+hkroT/8c+MR5ik6vABQ2o+0/XG449g1OKDt5Tf7L0mf9CKXLtjkBGhXy9oUgYtNhyJ7ETeB/6Wj4elLF/+rXrFMilIrEL0r1mmuy9WxPtN8jMMzYHBcye118J2XHwkdM/tuDyM65R3gfjraJeRnfPLBTqDiick=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=A94g5DAx; arc=none smtp.client-ip=45.254.49.220
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 379fb6a1c;
+	Fri, 20 Mar 2026 08:46:03 +0800 (GMT+08:00)
+From: Damon Ding <damon.ding@rock-chips.com>
+To: hjc@rock-chips.com,
+	heiko@sntech.de,
+	andy.yan@rock-chips.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org
+Cc: Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	nicolas.frattaroli@collabora.com,
+	alchark@gmail.com,
+	cristian.ciocaltea@collabora.com,
+	sebastian.reichel@collabora.com,
+	kever.yang@rock-chips.com,
+	heiko.stuebner@cherry.de,
+	tomeu@tomeuvizoso.net,
+	amadeus@jmu.edu.cn,
+	michael.riesch@collabora.com,
+	didi.debian@cknow.org,
+	dmitry.baryshkov@oss.qualcomm.com,
+	luca.ceresoli@bootlin.com,
+	dianders@chromium.org,
+	m.szyprowski@samsung.com,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Damon Ding <damon.ding@rock-chips.com>
+Subject: [PATCH v2 9/9] drm/rockchip: analogix_dp: Add support for RK3576
+Date: Fri, 20 Mar 2026 08:45:54 +0800
+Message-Id: <20260320004554.2006299-1-damon.ding@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260319104031.1986946-1-damon.ding@rock-chips.com>
+References: <20260319104031.1986946-1-damon.ding@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] phy: qcom-mipi-csi2: Add a CSI2 MIPI DPHY driver
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Bryan O'Donoghue <bod@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260315-x1e-csi2-phy-v4-0-90c09203888d@linaro.org>
- <20260315-x1e-csi2-phy-v4-2-90c09203888d@linaro.org>
- <3f11de22-b729-4d06-b6c8-18e649e1979c@linaro.org>
- <80ddc2b4-d6f8-4e8d-a45e-69c05d100aa2@linaro.org>
- <16b10f17-ecd3-4cdd-ac3f-f64127d60ace@linaro.org>
- <ulenfus552ggobis4gmi7eh27tikdaxbgm2oj63b5l2vemlfxc@ib5f2xaqurj6>
- <26XTdUyQTB41Oc4D5HnMtSm_QpZRjlkljQRJVw-u1Zp3Ltn9s4LVU-LQkP6drdl3Z3GGssLCCbsVYPFEqssHcQ==@protonmail.internalid>
- <65e06b2e-eeb9-45af-97ac-4ae60f652361@linaro.org>
- <9578400d-30ac-4d8c-9295-ee4ec8af3b2c@kernel.org>
- <d6616fc0-75fb-47e2-96cd-ae81fa1a8e82@linaro.org>
- <f3c62284-ac78-42c6-a4f0-cd984b7124cd@linaro.org>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <f3c62284-ac78-42c6-a4f0-cd984b7124cd@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9d08b4d9b503a3kunm0869f81f3ef49d
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGU1MHVYeSR1PTRpKQkgdTE9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpKQk
+	1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=A94g5DAxzpP3dS+mdrwytDwBYvZ+mejK16StuGK02aOmMF1VmDWCK5HDsW844X+0brlaSH5lmMsmC30LtTSsuZB2HP2RHiQEtFK/dRp6csdvJESft+d8gmM/wOi2s/fXhEqhsVwR/vKK0oXQxdf3E8Kv3Olgb9U1cdKIniL+1NE=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=BJlZGGB+Kf+oU3WoaFWMxzkg+k35aMYCOGXErlkC5Sg=;
+	h=date:mime-version:subject:message-id:from;
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278045-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	TAGGED_FROM(0.00)[bounces-278046-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[37];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,collabora.com,rock-chips.com,cherry.de,tomeuvizoso.net,jmu.edu.cn,cknow.org,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	NEURAL_HAM(-0.00)[-0.955];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.993];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 734492D4788
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,rock-chips.com:dkim,rock-chips.com:email,rock-chips.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,60hz:email]
+X-Rspamd-Queue-Id: A23912D48A5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/19/26 17:18, Bryan O'Donoghue wrote:
-> On 19/03/2026 14:56, Vladimir Zapolskiy wrote:
->>> There's no reason to remove that from CAMSS - it would be an ABI break
->>> in user-space anyway.
->>
->> If technically CAMSS CSIPHY could be excluded from the list of CAMSS media
->> subdevices, then for the sake of simplification it should be done for all
->> supported platforms in advance, such a change will be independent from this
->> particular phy series, and vice versa, this CAMSS only driver change will
->> prepare a ground for media-less CAMSS CSIPHY device drivers, hence it shall
->> precede this particular CAMSS CSIPHY series.
->>
->> For backward compatibility with userspace a noop stub will be good enough,
->> it's not an issue at all.
-> 
-> The standalone PHY driver doesn't require removing the CSIPHY media
-> entity from CAMSS. They serve different purposes and coexist - its
-> important to have a NOP from user-space perspective for legacy and
-> indeed for new implementations.
-> 
+RK3576 integrates the Analogix eDP 1.3 TX controller IP and the HDMI/eDP
+TX Combo PHY based on a Samsung IP block - both of which are the same as
+those on RK3588.
 
-There should be no two CAMSS CSIPHY device (or subdevice) drivers, where
-one chop of CAMSS CSIPHY device driver remains to sit under media, and
-another one is under phy subsystem, since it's a further degradation from
-the current already pretty awful state of the CAMSS driver, but at least
-CSIPHY is not scattered over different subsystems today.
+The patch currently adds only the basic support, specifically RGB output
+up to 4K@60Hz, without the tests for audio, PSR and other eDP 1.3 specific
+features.
 
-It might be fine to move device driver parts related to CAMSS CSIPHY
-driver from media subsystem to phy subsystem, however if only a partial
-transition is planned, and CSIPHY device support is split into two device
-(sub-)drivers, then it merely exposes a quite severe design flaw.
+Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+Reviewed-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-It looks like it's still undecided, if CAMSS CSIPHY IP is a phy or media
-device, it can not be both at the same time.
+-----
 
-> How the PHY gets represented in the kernel is of zero interest to
-> user-sapce.
-> 
-> That said, stubbing out the media entity is independent work that can
-> happen in any order and IMO is a separate debate. Whether or not CSIPHY
-> init sequences live inside of a monolithic CAMSS driver or live inside
-> off a discrete csiphy driver is not related to the media graph.
-> 
-> Happy to have that debate - and if indicated, carefully apply patches
-> separately.
-> 
+Changes in v2:
+- Split out a separate patch to enable the "hclk" clock.
+- Add Reviewed-by tag.
+---
+ drivers/gpu/drm/rockchip/analogix_dp-rockchip.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
+diff --git a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+index aa01ede4945e..942f81edddfa 100644
+--- a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
++++ b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+@@ -520,6 +520,14 @@ static const struct rockchip_dp_chip_data rk3288_dp[] = {
+ 	{ /* sentinel */ }
+ };
+ 
++static const struct rockchip_dp_chip_data rk3576_edp[] = {
++	{
++		.chip_type = RK3576_EDP,
++		.reg = 0x27dc0000,
++	},
++	{ /* sentinel */ }
++};
++
+ static const struct rockchip_dp_chip_data rk3588_edp[] = {
+ 	{
+ 		.edp_mode = GRF_REG_FIELD(0x0000, 0, 0),
+@@ -537,6 +545,7 @@ static const struct rockchip_dp_chip_data rk3588_edp[] = {
+ static const struct of_device_id rockchip_dp_dt_ids[] = {
+ 	{.compatible = "rockchip,rk3288-dp", .data = &rk3288_dp },
+ 	{.compatible = "rockchip,rk3399-edp", .data = &rk3399_edp },
++	{.compatible = "rockchip,rk3576-edp", .data = &rk3576_edp },
+ 	{.compatible = "rockchip,rk3588-edp", .data = &rk3588_edp },
+ 	{}
+ };
 -- 
-Best wishes,
-Vladimir
+2.34.1
+
 
