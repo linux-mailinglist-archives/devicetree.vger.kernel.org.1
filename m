@@ -1,81 +1,83 @@
-Return-Path: <devicetree+bounces-278054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278055-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qIYODr22vGmU2QIAu9opvQ
-	(envelope-from <devicetree+bounces-278054-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 03:53:49 +0100
+	id v82LJRu9vGlz2gIAu9opvQ
+	(envelope-from <devicetree+bounces-278055-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 04:20:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E0072D53F8
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 03:53:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 036A32D57A3
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 04:20:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 28D00303E480
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 02:53:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B8B1E307AA28
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 03:20:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57CFF28507E;
-	Fri, 20 Mar 2026 02:53:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC9D8283FE3;
+	Fri, 20 Mar 2026 03:20:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="X3yzj5Ma";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="gbaOHn8G"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="S5xekfv/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0D1819DF6A;
-	Fri, 20 Mar 2026 02:53:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5F6B13959D;
+	Fri, 20 Mar 2026 03:20:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773975226; cv=none; b=MWT/3BulyiRDj4R9bX+FWyFDE/QnYY4i6BbDFyZnxZRByciRhPqQlkaPKydTYWTBk+rLhGriwsr7RgMX2TUFPAVTxpudAvGc+vB6Exhm2If+nSJUnq7YjR9jCb/d5zKZefDpcmpRAM+7f/N5Frg7/QbhZTzC5bweGJ5APrDN8bI=
+	t=1773976856; cv=none; b=tqomO2o1txT+Sh+Df4SJNmDrOz7fFlpVOwFNOzKiudOT1crxAoOQwn/UnCoPyeGi1wLiNWlUh4vJdYcK0jPvYNKpUEkVXzC10yVMEKcCYaZbhPW2IiNKwTHwsqB7Rg8acSfeo8I5MCjkYIzptsNAC0hU3GHvx9t5uYIiyOSnVRE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773975226; c=relaxed/simple;
-	bh=FSsNdEyFnwi3BirjJJdMIilHqXdQGnPsdS3Pn2WHrFs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EQF/qIZemGeixwi3dV2xVQngZrLGURnvnzwgpZuWYu7FBd/WwXf7CbKFArx2NfCmeV+WYmk1KMQX851jbzqIL6U1H3a0zrcknGulgvb52g7lzk59al0GsSsCWFmyLJpKlw7aulp0a6QYR0eaSGVqBQWdLstNVa4cTjH1utUCUnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=X3yzj5Ma; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=gbaOHn8G; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4fcRvz2gbdz9ss3;
-	Fri, 20 Mar 2026 03:53:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1773975215;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=wMCO4+v8DqcOSCfe4vtyKw5oSMUcn+2yn/EtWBir/Ck=;
-	b=X3yzj5MaBvsKAI+Oi70dIy4kDjtl8bqtuUvK+LN4Nz4JCK9UAKXltMx29vA00+lUKqX2uV
-	9yaDTpbyBSuubNpZFnNNwFzqIOTi8j8B0CvtTDRo5s3xcGo6aHnJPpfMonl+O8C4KlljKg
-	A9/F9wXA9fDPTdL8Cx66Swa8v1PdSyG4DHJPbLwpHSm/qzTXlQuIm9a5nOLzfRmMVf8dkp
-	T7mc48/e134+Q+23E+wz5q3uVHqU+ccmhpuTkUPa0hUbCgdxqO5+iPzO2SGgYRAZoL39pu
-	cS6akPmldZ0McmVDkpR0dq6lafWah9cu+1DgxcMQ4QCPW1+hh2p3JAw5VIlxVQ==
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1773975213;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=wMCO4+v8DqcOSCfe4vtyKw5oSMUcn+2yn/EtWBir/Ck=;
-	b=gbaOHn8GWHHwl1PFSIqVyIWOF23N+owSDtcnRJWo8X23Rvd1zzT71hnTySXSRC09CUOmr9
-	zDkEf0yLXc/H31CuCyEwd8yW5lM5lGoaxWUP+gUmF8YHH4pCzoy+bpMLsLJVR3m0cUN7rZ
-	QucSwdmnqGPc0dEyqBNDIpsZGTJ5BTt6Nat1Pot5KznRX4lC5eY3An1ZzHu0ko6R151FtO
-	0e0ejv/+nMlrv073bwGXV8EQvU1AkWbZsVdohrwomL46tf4H6lnu8qbxpEnWLNqgCqpAYi
-	rErx4uzXshtuaAhQS2lGa27pDyt31734g4C22st5LUpDCzKUVOSWYwCZ5KxFUw==
-To: linux-arm-kernel@lists.infradead.org
-Cc: Scott Murray <scott.murray@konsulko.com>,
-	Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH] arm64: dts: renesas: sparrow-hawk: Add overlay for Olimex MIPI-HDMI adapter
-Date: Fri, 20 Mar 2026 03:52:57 +0100
-Message-ID: <20260320025328.509003-1-marek.vasut+renesas@mailbox.org>
+	s=arc-20240116; t=1773976856; c=relaxed/simple;
+	bh=szKYI83weKaXqPwTWfwyi4XDV6R99x8dRNHaibChJZ8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=sh+gN84AZVpjjOzuNKB/MdIt9fVIbTVB9LoHZ/yN0Dtt32nn+EYN9hmPiPgyLCYK10rHCcYXT3vEzyG3tS2gZOsUnt6JSkK0VeGJgCyRPsBs+FT4t1db+cBDbbyk9kqzC0NIE1Za+T+pKV7X9gc678yGeTJEzkItxudqK+LdT9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=S5xekfv/; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: c49c497e240b11f1a39cd589f645bc18-20260320
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=mP0wrA9XEI65mNtyVEuwgccgjZcyoSlyRxpMG9DjBwA=;
+	b=S5xekfv/eXne+h150pLhqYZy0uXUjbHxidFis+tY+f9jnsv10TQ9ezTf8AeJSePDW8hWF9zaTAm/aCRsOG2YF/QDPajh6jRlG7BzTXHC79uNPcbpTilhUn9Ypncp7qHpIzTJmXzQBnjGRJ/44R+xYIvo99FFmYAVv06nifugvT8=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.12,REQID:d3795bbb-5418-4230-a637-949b35d87036,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:e7bac3a,CLOUDID:411ab54c-9183-487b-8624-e74f2dd98990,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|102|836|888|898,TC:-5,Content:0|1
+	5|50,EDM:-3,IP:nil,URL:99|1,File:130,RT:0,Bulk:nil,QS:nil,BEC:-1,COL:0,OSI
+	:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: c49c497e240b11f1a39cd589f645bc18-20260320
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+	(envelope-from <xiangzhi.tang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 824155755; Fri, 20 Mar 2026 11:20:38 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Fri, 20 Mar 2026 11:20:37 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.2562.29 via Frontend Transport; Fri, 20 Mar 2026 11:20:36 +0800
+From: Xiangzhi Tang <xiangzhi.tang@mediatek.com>
+To: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
+	<mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias
+ Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Xiangzhi Tang
+	<Xiangzhi.Tang@mediatek.com>
+CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Hailong Fan
+	<Hailong.Fan@mediatek.com>, Huayu Zong <huayu.Zong@mediatek.com>, Xiangzhi
+ Tang <xiangzhi.tang@mediatek.com>
+Subject: [PATCH v3 0/6] ASoC: mediatek: Add VCP driver on Mediatek MT8196 SoC
+Date: Fri, 20 Mar 2026 11:18:02 +0800
+Message-ID: <20260320032014.13608-1-xiangzhi.tang@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,181 +85,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: 269d16c30b3fa8e3270
-X-MBO-RS-META: yrbg1mpq4p78qc6fxzidjxwxaogxj7mj
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[konsulko.com,mailbox.org,kernel.org,glider.be,gmail.com,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[kernel.org,linaro.org,gmail.com,collabora.com,mediatek.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278054-lists,devicetree=lfdr.de,renesas];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278055-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.761];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.0:email,0.0.0.48:email]
-X-Rspamd-Queue-Id: 8E0072D53F8
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[xiangzhi.tang@mediatek.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mediatek.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.961];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mediatek.com:dkim,mediatek.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 036A32D57A3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Scott Murray <scott.murray@konsulko.com>
+Add support MediaTek's Video Companion Processor(VCP) host driver to
+control the MediaTek VCP Risc-V coprocessor.
 
-Add a DT overlay to bind the Olimex MIPI-HDMI dual-lane DSI-to-HDMI adapter
-on the Retronix R-Car V4H Sparrow Hawk board.
+> This series is based on linux-next, tag: next-20260319.
+>
+> Changes in v3:
+> - Fix probe path driver to using dev_err_probe error printf
+> - Eliminate the use of global variables
+> - Using readl_poll_timeout instead of "For" poll and "while" poll
+> - Add VCP IPC layer driver   
+> - Fix reviewer's comments
+> This series patches dependent on:
+> [1]
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20250623120154.109429-2-angelogioacchino.delregno@collabora.com/
+> [2]
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20250822021217.1598-3-jjian.zhou@mediatek.com/
 
-Current device link is at https://www.olimex.com/Products/IoT/ESP32-P4/MIPI-HDMI/open-source-hardware
+Xiangzhi Tang (6):
+  dt-bindings: remoteproc: Add VCP support for mt8196
+  remoteproc: Mediatek: Add VCP remoteproc driver
+  firmware: mediatek: Add VCP IPC protocol interfaces driver
+  remoteproc: mediatek: Add VCP ipi-mbox init driver
+  remoteproc: mediatek: Add VCP ipi communication sync mechanism
+  remoterpoc: mediatek: vcp: Add vcp suspned and resume feature
 
-Signed-off-by: Scott Murray <scott.murray@konsulko.com>
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Magnus Damm <magnus.damm@gmail.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Scott Murray <scott.murray@konsulko.com>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-renesas-soc@vger.kernel.org
----
- arch/arm64/boot/dts/renesas/Makefile          |  3 +
- ...r8a779g3-sparrow-hawk-olimex-dsi-hdmi.dtso | 94 +++++++++++++++++++
- 2 files changed, 97 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-olimex-dsi-hdmi.dtso
+ .../remoteproc/mediatek,mt8196-vcp.yaml       | 161 ++++
+ drivers/firmware/Kconfig                      |   9 +
+ drivers/firmware/Makefile                     |   1 +
+ drivers/firmware/mtk-vcp-ipc.c                | 481 ++++++++++
+ drivers/remoteproc/Kconfig                    |  12 +
+ drivers/remoteproc/Makefile                   |   3 +
+ drivers/remoteproc/mtk_vcp_common.c           | 854 ++++++++++++++++++
+ drivers/remoteproc/mtk_vcp_common.h           | 279 ++++++
+ drivers/remoteproc/mtk_vcp_rproc.c            | 540 +++++++++++
+ drivers/remoteproc/mtk_vcp_rproc.h            |  95 ++
+ include/linux/firmware/mediatek/mtk-vcp-ipc.h | 151 ++++
+ include/linux/remoteproc/mtk_vcp_public.h     | 146 +++
+ include/linux/soc/mediatek/mtk_sip_svc.h      |   2 +
+ 13 files changed, 2734 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/mediatek,mt8196-vcp.yaml
+ create mode 100644 drivers/firmware/mtk-vcp-ipc.c
+ create mode 100644 drivers/remoteproc/mtk_vcp_common.c
+ create mode 100644 drivers/remoteproc/mtk_vcp_common.h
+ create mode 100644 drivers/remoteproc/mtk_vcp_rproc.c
+ create mode 100644 drivers/remoteproc/mtk_vcp_rproc.h
+ create mode 100644 include/linux/firmware/mediatek/mtk-vcp-ipc.h
+ create mode 100644 include/linux/remoteproc/mtk_vcp_public.h
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index bca532eb67b44..65df431adeb6b 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -114,6 +114,9 @@ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-argon40.dtb
- dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-pwm.dtbo
- r8a779g3-sparrow-hawk-fan-pwm-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-fan-pwm.dtbo
- dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-pwm.dtb
-+dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-olimex-dsi-hdmi.dtbo
-+r8a779g3-sparrow-hawk-olimex-dsi-hdmi-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-olimex-dsi-hdmi.dtbo
-+dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-olimex-dsi-hdmi.dtb
- dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-rpi-display-2-5in.dtbo
- r8a779g3-sparrow-hawk-rpi-display-2-5in-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-rpi-display-2-5in.dtbo
- dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-rpi-display-2-5in.dtb
-diff --git a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-olimex-dsi-hdmi.dtso b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-olimex-dsi-hdmi.dtso
-new file mode 100644
-index 0000000000000..dde4122221133
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-olimex-dsi-hdmi.dtso
-@@ -0,0 +1,94 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Overlay for Olimex MIPI-HDMI adapter connected to J4:DSI
-+ * on R-Car V4H ES3.0 Sparrow Hawk board
-+ *
-+ * Copyright (C) 2026 Scott Murray <scott.murray@konsulko.com>
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+&{/} {
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		label = "HDMI1";
-+		type = "a";
-+		ddc-i2c-bus = <&i2c0_mux3>;
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&lt8912b_out>;
-+			};
-+		};
-+	};
-+
-+	reg_vr1: regulator-vr1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VR1-1.8V";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+		vin-supply = <&reg_3p3v>;
-+	};
-+};
-+
-+&i2c0_mux3 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	hdmi-bridge@48 {
-+		compatible = "lontium,lt8912b";
-+		reg = <0x48>;
-+		vcchdmipll-supply = <&reg_vr1>;
-+		vcchdmitx-supply = <&reg_vr1>;
-+		vcclvdspll-supply = <&reg_vr1>;
-+		vcclvdstx-supply = <&reg_vr1>;
-+		vccmipirx-supply = <&reg_vr1>;
-+		vccsysclk-supply = <&reg_vr1>;
-+		vdd-supply = <&reg_vr1>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				hdmi_out_in: endpoint {
-+					data-lanes = <1 2>;
-+					remote-endpoint = <&dsi0_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				lt8912b_out: endpoint {
-+					remote-endpoint = <&hdmi_connector_in>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&dsi0 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			dsi0_out: endpoint {
-+				remote-endpoint = <&hdmi_out_in>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+	};
-+};
 -- 
-2.51.0
+2.46.0
 
 
