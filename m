@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-278368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278365-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KLDTDfh+vWnH+QIAu9opvQ
-	(envelope-from <devicetree+bounces-278368-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:08:08 +0100
+	id OAw/Ew5+vWnH+QIAu9opvQ
+	(envelope-from <devicetree+bounces-278365-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:04:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB68E2DE46C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:08:07 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 589B82DE33F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:04:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4A0BF30970CD
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:48:30 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 252D830B6909
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:48:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E01E3D1CD0;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47E363D1CAD;
 	Fri, 20 Mar 2026 16:44:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nf1DQRKO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XmZFsZVI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E8A83CF69A;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E7233CD8C3;
 	Fri, 20 Mar 2026 16:44:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774025085; cv=none; b=FSGzIOEN7F38BBBEa+sG2BRTTImAwoAPNm8ctUCQOBOPnVp+z/LQFqMj27czvfjcdTcAXODXXVcip8HdDz6sjU75mbRbs44GC/QZt0sCi7AMvZrooHLG+TR38I6Y0XlrUJ1XsUBmGDNAMskif33l7upF+TMPoQ4T39XBlSuWxu4=
+	t=1774025085; cv=none; b=u6JMvQixEIvyoqGyT7iz83ycF6it/WKQaAl9ZMiGoYEYM2QmqXs3Bt+E8qtvo5gCUtSSSPQF2oBTFHL5qKuWeR27QeJNEZ8jma2ct6yA7NOuvK6kN3WDh8UpPaShYAl/FIpn6rtjiReW5K9vmK2pSQj/PDBb/Wn1tSs+y2VeRT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1774025085; c=relaxed/simple;
-	bh=yBJmkZpufPY1WUXDSv28YDsjQl6uOA45y0Ghb+/k38o=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CAYYDGkpHNdq3/VXL5IKw6e4MbkqFPTTSfMMPm+dYfC6eEZHdRz8wjHaKJP/sRF33bWAH6WYa55bwfcGMkqkUSDSnaYCyBeEj11D6vB7Sq1RWNaKi9Wze45IgtUTGJDc4mKUwhvTGeSKx9l25Fxy6PYxOMrxv8lEpFTdf+YzysM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nf1DQRKO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B6EE1C19425;
+	bh=oBgPDt/LJlibW8Hgm1a/bsT5ObHlCxGW++DUgK9IrHg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=CXBtaKv99Y4D2OyAd72RSzQOsOmQxYRnFhB6U0FAWeuy4L8IVzeJDbZSL0Juu8ydPvYFktwFN1RzBm0Jz0I9NCumnjCWnjYIfAejZfzgVoCU9KezjG2PeJv5xp8SmqUekrqtIdBbruYeb+ehli9F/Vn0w0wx50sp7bS1IcEINeE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XmZFsZVI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C4E2FC4CEF7;
 	Fri, 20 Mar 2026 16:44:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1774025084;
-	bh=yBJmkZpufPY1WUXDSv28YDsjQl6uOA45y0Ghb+/k38o=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=nf1DQRKO7yjcCHG7OX9uNPguRBl7A+27BBZmI6WnhcQtmmELJy07oD+c+iXme9Fad
-	 A3TVsdzN4WFf04G944A0KqX5N1AZXPUV2SuuTpjlobWaR5R75EpEEJDudzdB2TDh/W
-	 2aXPniRsycdo0hqv+ZnKbzXH2Ln4GNdO1cX3MkxW+klrr6VBQb6UEcvGoBFcL4j5ef
-	 JR53UFjhK4NJKPUzRg9ngTYqXsZeCz4QFnCLqUQm6zCo4MmZeWK06vCmRsESivpvVq
-	 6V66GKbQ6uNyje7dD4/QoFKSCOa6+kWC8hChtwd9cLHG8pbX9EneP3W+3L58fBdTdR
-	 G5PodXYujUbmg==
+	bh=oBgPDt/LJlibW8Hgm1a/bsT5ObHlCxGW++DUgK9IrHg=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=XmZFsZVI+31jraRImDi6OMYMDGs3HACVonHW6gpFSwDKSRelODQp7FB0ixUoL3xnK
+	 7QLu7beD+FYvXXDXndzhAp0Y6aDCxBjMQv5500XIcO6YxaDR85fAguEVgBtxr6mKfp
+	 Trlytaj0Uh6Fo3P7coKTDwxB2uRlo+ABwRT8VJrl6iVWnXuCB/Nk0K3V2VbbKJHyi3
+	 hsDNW5eg/m8uHhsB1wnvV76USrPGRucCvRptvrB+rTEpZXzKqrWj8rcgxKjQ4xDZMo
+	 RiQhbTY1gRK0ArR+mby8Lu1NtCPA18ZNomqRtZ6Rv1uiDhaE8dEr6xY2yG/F87p67g
+	 zCDFHxGCEn26w==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ACA1310987A6;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BC36210987B0;
 	Fri, 20 Mar 2026 16:44:44 +0000 (UTC)
 From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Subject: [PATCH v7 0/7] Input: synaptics-rmi4 - add quirks for third party
- touchscreen controllers
-Date: Fri, 20 Mar 2026 17:44:41 +0100
-Message-Id: <20260320-synaptics-rmi4-v7-0-379360de18d0@ixit.cz>
+Date: Fri, 20 Mar 2026 17:44:42 +0100
+Subject: [PATCH v7 1/7] dt-bindings: input: syna,rmi4: Document
+ syna,rmi4-s3706b
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,11 +59,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAHl5vWkC/3XMTQ6CMBCG4auYrq3pLxRX3sO4aEuRWQikJQ1Iu
- LuFhUiImdU3yfNOKDgPLqDraULeRQjQNmnk5xOytW6eDkOZNmKEScKJwmFsdNeDDdi/QGCrODO
- syrl1BiXUeVfBsAbvj7RrCH3rx7Uf+fL9m4ocE8yoLLnLmSo0u8EA/cW+0RKKYsOCsAMWCVNjC
- pnOyUzssfzBlBywTNiIhZMqV6bY4+yLKaX8gLOEy0LxTFfaKEI3PM/zBzBHWIRhAQAA
-X-Change-ID: 20250308-synaptics-rmi4-c832b2f73ceb
+Message-Id: <20260320-synaptics-rmi4-v7-1-379360de18d0@ixit.cz>
+References: <20260320-synaptics-rmi4-v7-0-379360de18d0@ixit.cz>
+In-Reply-To: <20260320-synaptics-rmi4-v7-0-379360de18d0@ixit.cz>
 To: Kaustabh Chakraborty <kauschluss@disroot.org>, 
  Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -75,21 +73,21 @@ Cc: David Heidelberg <david@ixit.cz>, linux-input@vger.kernel.org,
  Casey Connolly <casey.connolly@linaro.org>, phone-devel@vger.kernel.org, 
  Krzysztof Kozlowski <krzk@kernel.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4592; i=david@ixit.cz;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1250; i=david@ixit.cz;
  h=from:subject:message-id;
- bh=yBJmkZpufPY1WUXDSv28YDsjQl6uOA45y0Ghb+/k38o=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpvXl6E7Z+KQX8x6VprwyucrHr33T69lho7oguE
- VI2bpl/z4qJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCab15egAKCRBgAj/E00kg
- cjB9D/90e02X2vcwXhyA4nff9zMHOaGM5vwijheP0UV+2by6Klm4pqmIw6CebjwJNN7sEG5pwDT
- O5fSetYtvoTBl+RTREvHa4hr1qa57l8Y3x9Co3Y6j231glebB2w6swENcnmetIf0iRacfAyFNja
- GkmvEjWr+uTl/vvfS+raMulT0ETqLGepr1D+92Fb2mzS9iHCLichhtcUz6a4QELQQqrMn1hBbXV
- rRZgV2aYT0ASTHnYV3TsCx9KuJyrH9rXUKR+gnQ8gNopHUwkbUX6j12WKe5Ne5Uc1CEfeGcCc7Z
- OwZY2Z26l13aXNAXfoIO1rZzCVd5r6/gtOT8tUc2ycvqF0pDOiw0mxcZsx4kiJymeiuiNKLc39+
- ugos44XbAIvmQSFKC2UU+oBjakyY/ox/35ocfRvCSX4eW5qKXu5vvHU3AOC7LvAl4qbqcfU+Z6o
- fs6qcAJOPiqTfrkqezuuOsb7MHn4mVMQXD0niO+qeiAryr9ygLnOAt+kxQ3rR24HCgQU/1qK3ou
- DQnqudBVRE25t0rmpJzNr2koU0ut9EXNxBBJDFC54aT7fV5V563VXlQzaw/tugWsN4SOxmQg2Ri
- WkTspqpa5qbBPPTFZQcd74XKIxv7XhIDWoCF4bJbXC9L/Yp3cFaamyI1iU+IXHwImxXqnE8xFzC
- n2Z7AJ8L+YBQIew==
+ bh=sEfAUOYzG1M4zvx/Xv8wME49V12PqhPhJ6Tk21Hc6yo=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpvXl6DQoVjnt6AUjpK6l5YSqeNhZzWp2I7/L/S
+ gRrU92ruVuJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCab15egAKCRBgAj/E00kg
+ cnlaD/9GRWZMPIKiTohJQYNue8Ey+/mhCM0p030duqBy4yVAV+yGqsT+DJuI/79njzgOVVfJ0nR
+ 87MSeH6uER7+Oco7eXBYx+izh2vaSkhUS9GYPftdMl6n1Me/bl344FtY/y5Z8CC3aiNsmrgdk/4
+ yY9CkWYZYZk3hTEGeKv5Y+F/RWb2ge8LIpMjzU5OcdbGfKTzXFlYKRsepAxA9fdtQC+A9A7L0PL
+ Dc0677JIuV5Wg918OCtKqkfcPWXcPyaUdBY5+fS2UEyymCL/b86MbkzPZpzIoLeM4phAF1MUBy+
+ /HCG4KU15EckBLE5/Q9Y8m0BrzxcxKuE+TdVjDRwzPE22I9cJXNKXXxi/G2h6B/a+hft8ACRMJ3
+ LU9qP4YD8SK1E1P97PNYl7ORnf2fDvmgMvhbaOthu6omZNAmvh7K1yHi4oWMfgg1NhCS5MGBmGT
+ orZZrUYT7HMw6pX5LpsEN+2Zi2rQ3RAQjYD401A6aVO+NRI70gxA50c+VMOIJfNtctRxzIodhxH
+ oIM2lo6J8LH21SQreek3IJhrZHutHgJe6LgcrTfGroi/5d1F5qC39lpORJ7dXyUS+9iswzzRJcW
+ hh73xvCA/8FJIXGphU98uF+CqU9W8aUFUYgYrCzZyaptzTWxw23fIuZZ5CsMnyO2E4By6Xjhaoo
+ 6mfHIDH0TMXzboQ==
 X-Developer-Key: i=david@ixit.cz; a=openpgp;
  fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
 X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
@@ -100,12 +98,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278368-lists,devicetree=lfdr.de,david.ixit.cz];
+	TAGGED_FROM(0.00)[bounces-278365-lists,devicetree=lfdr.de,david.ixit.cz];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[disroot.org,gmail.com,kernel.org,zx2c4.com,ew.tq-group.com,tw.synaptics.com];
@@ -119,112 +117,55 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	NEURAL_HAM(-0.00)[-0.997];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	HAS_REPLYTO(0.00)[david@ixit.cz];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,gitlab.com:url,ixit.cz:email,ixit.cz:replyto,ixit.cz:mid,disroot.org:email,tuta.io:email]
-X-Rspamd-Queue-Id: BB68E2DE46C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,linaro.org:email,ixit.cz:email,ixit.cz:replyto,ixit.cz:mid]
+X-Rspamd-Queue-Id: 589B82DE33F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-With the growing popularity of running upstream Linux on mobile devices,
-we're beginning to run into more and more edgecases. The OnePlus 6 is a
-fairly well supported 2018 era smartphone, selling over a million units
-in it's first 22 days. With this level of popularity, it's almost
-inevitable that we get third party replacement displays, and as a
-result, replacement touchscreen controllers.
+From: David Heidelberg <david@ixit.cz>
 
-The OnePlus 6 shipped with an extremely usecase specific touchscreen
-driver, it implemented only the bare minimum parts of the highly generic
-rmi4 protocol, instead hardcoding most of the register addresses.
-  
-As a result, the third party touchscreen controllers that are often
-found in replacement screens, implement only the registers that the 
-downstream driver reads from. They additionally have other restrictions
-such as heavy penalties on unaligned reads.
+Mostly irrelevant for authentic Synaptics touchscreens, but very important
+for applying workarounds to cheap TS knockoffs.
+
+These knockoffs work well with the downstream driver, and since the user
+has no way to distinguish them, later in this patch set, we introduce
+workarounds to ensure they function as well as possible.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ Documentation/devicetree/bindings/input/syna,rmi4.yaml | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/input/syna,rmi4.yaml b/Documentation/devicetree/bindings/input/syna,rmi4.yaml
+index 8685ef4481f4a..fb4804ac3544d 100644
+--- a/Documentation/devicetree/bindings/input/syna,rmi4.yaml
++++ b/Documentation/devicetree/bindings/input/syna,rmi4.yaml
+@@ -18,9 +18,14 @@ description: |
  
-This series attempts to implement the necessary workaround to support  
-some of these chips with the rmi4 driver. Although it's worth noting
-that at the time of writing there are other unofficial controllers in
-the wild that don't work even with these patches.
+ properties:
+   compatible:
+-    enum:
+-      - syna,rmi4-i2c
+-      - syna,rmi4-spi
++    oneOf:
++      - enum:
++          - syna,rmi4-i2c
++          - syna,rmi4-spi
++      - items:
++          - enum:
++              - syna,rmi4-s3706b  # OnePlus 6/6T
++          - const: syna,rmi4-i2c
  
-We have been shipping these patches in postmarketOS for the last several
-years, and they are known to not cause any regressions on the OnePlus
-6/6T (with the official Synaptics controller), however I don't own any
-other rmi4 hardware to further validate this.
+   reg:
+     maxItems: 1
 
-The series is also available (until merged) at
-  https://gitlab.com/sdm845/sdm845-next/-/commits/b4/synaptics-rmi4
-
----
-Changes in v7:
-- Rebased on top of next-20260320, no other changes.
-- Link to v6: https://lore.kernel.org/r/20251113-synaptics-rmi4-v6-0-d9836afab801@ixit.cz
-
-Changes in v6:
-- Rebased on top of next-20251113.
-- No other change since the Rob Herring comment.
-- Link to v5: https://lore.kernel.org/r/20250410-synaptics-rmi4-v5-0-b41bb90f78b9@ixit.cz
-
-Changes in v5:
-- Removed -i2c suffix from rmi4-s3706b-i2c (Krzysztof).
-- Link to v4: https://lore.kernel.org/r/20250402-synaptics-rmi4-v4-0-1bb95959e564@ixit.cz
-
-Changes in v4:
-- Replaced patch "dt-bindings: input: syna,rmi4: document syna,pdt-fallback-desc"
-  with patch documenting specific touchscreen model used in OnePlus 6 and 6T.
-- Fixed zero electrode return code (Dmitry).
-- Switched the duplicate detection algo to bitmap (Dmitry).
-- Optimized rmi_device_platform_data struct to avoid unnecessary
-  padding.
-- Changed fallback_size from int to unsigned int.
-- Changed SoB from nickname and old address (methanal <baclofen@tuta.io>) to
-  Kaustabh Chakraborty <kauschluss@disroot.org>.
-  Verified ownership through the sdm845 chatroom on Matrix.
-- Link to v3: https://lore.kernel.org/r/20250308-synaptics-rmi4-v3-0-215d3e7289a2@ixit.cz
-
-Changes in v3:
-- reworded dt-bindings property description
-- fixed the rmi_driver_of_probe definition for non device-tree builds.
-- fixed some indentation issues reported by checkpatch
-- change rmi_pdt_entry_is_valid() variable to unsigned 
-- Link to v2: https://lore.kernel.org/all/20230929-caleb-rmi4-quirks-v2-0-b227ac498d88@linaro.org
-
-Changes in v2:
-- Improve dt-bindings patch (thanks Rob)
-- Add missing cast in patch 5 to fix the pointer arithmetic
-- Link to v1: https://lore.kernel.org/r/20230929-caleb-rmi4-quirks-v1-0-cc3c703f022d@linaro.org
-
----
-Casey Connolly (1):
-      Input: synaptics-rmi4 - handle duplicate/unknown PDT entries
-
-David Heidelberg (1):
-      dt-bindings: input: syna,rmi4: Document syna,rmi4-s3706b
-
-Kaustabh Chakraborty (5):
-      Input: synaptics-rmi4 - f12: use hardcoded values for aftermarket touch ICs
-      Input: synaptics-rmi4 - f55: handle zero electrode count
-      Input: synaptics-rmi4 - don't do unaligned reads in IRQ context
-      Input: synaptics-rmi4 - read product ID on aftermarket touch ICs
-      Input: synaptics-rmi4 - support fallback values for PDT descriptor bytes
-
- .../devicetree/bindings/input/syna,rmi4.yaml       |  11 +-
- drivers/input/rmi4/rmi_driver.c                    | 124 +++++++++++++++++----
- drivers/input/rmi4/rmi_driver.h                    |  10 ++
- drivers/input/rmi4/rmi_f01.c                       |  14 +++
- drivers/input/rmi4/rmi_f12.c                       | 117 ++++++++++++++-----
- drivers/input/rmi4/rmi_f55.c                       |   5 +
- include/linux/rmi.h                                |   3 +
- 7 files changed, 234 insertions(+), 50 deletions(-)
----
-base-commit: 785f0eb2f85decbe7c1ef9ae922931f0194ffc2e
-change-id: 20250308-synaptics-rmi4-c832b2f73ceb
-
-Best regards,
 -- 
-David Heidelberg <david@ixit.cz>
+2.53.0
 
 
 
