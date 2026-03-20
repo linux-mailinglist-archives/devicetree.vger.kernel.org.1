@@ -1,252 +1,143 @@
-Return-Path: <devicetree+bounces-278147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278150-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8GthC4oQvWlf6QIAu9opvQ
-	(envelope-from <devicetree+bounces-278147-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:16:58 +0100
+	id yPrQOToRvWlf6QIAu9opvQ
+	(envelope-from <devicetree+bounces-278150-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:19:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5F462D7DD5
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:16:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DBBA2D7E6E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:19:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A40A13025E69
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:16:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 051B9302C5D9
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:19:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B6FF33C513;
-	Fri, 20 Mar 2026 09:16:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FF0D340A6A;
+	Fri, 20 Mar 2026 09:19:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="htdGtCtz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XxsQxNPg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010025.outbound.protection.outlook.com [52.101.84.25])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2707E33D501;
-	Fri, 20 Mar 2026 09:16:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.25
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773998177; cv=fail; b=q6eGMPtgyUX4uAOICxRgjuTQGKucaflt0vJNqHbo3GAsDOCM3RmuodnDtw70hxEkbmT0+ttUvfrKAD7iKsnUNJW/OdzdhGpfTqWqhvb7K4GrJvPLZxM2ERSg0Cg+Pe9kQ7bKX5cLZ9DbTCc5j6q1t768H/Eu+KRNifik4sUDDHM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773998177; c=relaxed/simple;
-	bh=vQZKjEQMQq+aSgwrln06Tm1oaEz2ZSoUGlfWy7VhMec=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=gEihI0rWvRsYy5WbDODJCAwLw04imQqjLVXWv+fvjARBCsVqVSl4CcHeZW2SBGRxgccdLk2AUfBgghx0Za844a9fpebOPBIauVV/ZS0nDLrjA2krg1mYm/Cfg2MJr+hzkA58M2ALCQ6nEF9hDABhYjIV+wSo2EHgP/E379PAJrY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=htdGtCtz; arc=fail smtp.client-ip=52.101.84.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fi0YXjn2NJJi6tV1hvwiuTfzqiWVHNYwBoOpsRPQO9dsYGX53Dx/XjL5bwWnTfJ1O+zKhe9m1T7x/ZS/EBCsJz1MZEc6OCWQDPfKQ3IAoZXhz2T2WYuHVHlUjHc9jp1G7hmmGXUJ19ai8yuQodxmViehZ96AURenspywucEiQZkR23fFWjHxhQ5lURxmDIR9BLjg5aysj3dWe2n/iwNaqwTiA6efJGGoWaEtrRKOV9hM3D1Q+xzctIZLFPLY6CMyjkjJPf68mR73LaqRUTWLV1ZdgDeXGqk1rBWKNLUT//HLW5W08XV6DXMLmYAI3hyBxg3Jzxaz67TTf66Yfm3W0g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FXuauTC/G3kPnbbZEfgc7s5YpTpz/iP+l3gSYOtKaM8=;
- b=pPVDvvGflfFxQkQC3p1ZUhXdrcqHNEsi31ISzaeZ1KvYYI7Uvcs6rZhePI0+2BmwMI/7o+uSVf3S//Coa3n6eCMhrDbRTfE12MuyVKNurvzVhL5sz5aOiRKCVo/CObjaZDwq7YSzyeXafODvOUxYYUW1nTefKt+uOtQ9SWGzJgqjg4TgOYKZTdPFnK148Yu/ZbNsx+EE5dXUYVhxW8xZ6pMku9XWzwPe8B7MyQ191Vz4OXDl2DTxMWta29L056tvueBzmvMybRJ9+ALOHqcWnTFbWdyjKsCblieKIUHGs3oMGWJPPYGo+BCqVGPSl8bGIihujv9m0poHvi8hG8+2cA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FXuauTC/G3kPnbbZEfgc7s5YpTpz/iP+l3gSYOtKaM8=;
- b=htdGtCtz1oChggfCVMpLXiBMdTBykNo+SW8YoOxuDAAk+J8iKRluNUXuvUQFkDFVHDJr3mwikwkLtFaLf7CVvZly1AisVLOKU2TdKXE/y5cBihBur5DhgDxM5UOOfbNkFT0C/RZ8ATEnROF9wN4T3OnKefOb+xepf8m9NV/LVgDrCYLGwNnh9yEy1H2UAejzrei1W7pJFcVmFM4hPd7vC/ODS9XaC2D/xnThAJNcE0WfGOOBf2h6CPH4d5jt28voW7RnGg+QpqAuStM3W5edTX9YRwuwtAVsDgBxzSXWMgXkFQAU/EKzFrxD0Wp+AMlzvIBS5kr9vawI3cRMbvC2hw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from GVXPR04MB12316.eurprd04.prod.outlook.com (2603:10a6:150:2c6::8)
- by GVXPR04MB10756.eurprd04.prod.outlook.com (2603:10a6:150:226::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Fri, 20 Mar
- 2026 09:16:01 +0000
-Received: from GVXPR04MB12316.eurprd04.prod.outlook.com
- ([fe80::fc6e:ca22:f065:def4]) by GVXPR04MB12316.eurprd04.prod.outlook.com
- ([fe80::fc6e:ca22:f065:def4%6]) with mapi id 15.20.9723.018; Fri, 20 Mar 2026
- 09:16:08 +0000
-Message-ID: <b5e05fe6-97c4-40cd-b7cc-b417d8717aec@oss.nxp.com>
-Date: Fri, 20 Mar 2026 11:19:06 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] Add i.MX94 remoteproc support and reset vector
- handling improvements
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-References: <20260312-imx943-rproc-v1-0-3e66596592a8@nxp.com>
-Content-Language: en-US
-From: Daniel Baluta <daniel.baluta@oss.nxp.com>
-In-Reply-To: <20260312-imx943-rproc-v1-0-3e66596592a8@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AM8P190CA0011.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:219::16) To GVXPR04MB12316.eurprd04.prod.outlook.com
- (2603:10a6:150:2c6::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B74E31B839;
+	Fri, 20 Mar 2026 09:19:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773998348; cv=none; b=trJYjxneZLp0saWfME+uqsuvKv8QtsiCyxeALdCtPGypIqVwrG8DgY8WzHkwSvgwQUub7XjFPDIepWigmVHboXoNToVqIDTS4LQqXxzZyb2Ssy7dJf2lpuW4SQbbPRe4hmxiIuhJm0kGkdoDBW/01rweekJefc6fYy82X71DTBQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773998348; c=relaxed/simple;
+	bh=LaFfclQJNpW8j4z2NNQXpLUkD7/mL0945GUUmdgcNYI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=D7Eq8CVPkk/KL828EvLpwUBE0pZpmjQJG+DtuiSMydT+8Ag2O6aQw9YmsvKpMgbIuP3SlUm963H8qUtCv1ZK6LfjazQ4Fj3ZfYBI1Uj5dXCtxkYT3hFJUrs1o+f60yvnEJF3leS+8XC4q3V72sAZ90lSA6ljdjMa6x+SU7tHIcM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XxsQxNPg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C66ADC2BC9E;
+	Fri, 20 Mar 2026 09:19:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773998348;
+	bh=LaFfclQJNpW8j4z2NNQXpLUkD7/mL0945GUUmdgcNYI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XxsQxNPgDUJHJqSei+eyT3/4wLXRMZEqzks3G36VQLFcfu9JWqwnY0mOg0MTOi1Ro
+	 0xNBxOt4FxheBLRQZkCyILhWO4riIZOPSIilhvRCJqaqqdY6/5HF3hQPztctn6ucIX
+	 1OKBg5jQrZDwH3wIHVCRAqYFJbjGKxwstlRNVQJe9i0P6mwq/PHNiGhZVoaXjuAI5d
+	 muiNrzaa0qk78JgPptsfReDFcKvx/Swv28NN4rw22m1qkBYrrXH64UWHgS8AKL1EqF
+	 sZayDTa+oC8LyGAjhTAcjJ2yxaJIEWbh77k+fYRJoB/Sn4EYeME3yGNRmV8G2OIOBE
+	 oEPtO3LUNwjSg==
+Date: Fri, 20 Mar 2026 10:19:06 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Damon Ding <damon.ding@rock-chips.com>
+Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
+	simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
+	nicolas.frattaroli@collabora.com, alchark@gmail.com, cristian.ciocaltea@collabora.com, 
+	sebastian.reichel@collabora.com, kever.yang@rock-chips.com, heiko.stuebner@cherry.de, 
+	tomeu@tomeuvizoso.net, amadeus@jmu.edu.cn, michael.riesch@collabora.com, 
+	didi.debian@cknow.org, dmitry.baryshkov@oss.qualcomm.com, luca.ceresoli@bootlin.com, 
+	dianders@chromium.org, m.szyprowski@samsung.com, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/9] dt-bindings: display: rockchip: analogix-dp:
+ Expand clock-names "hclk" for the third clock
+Message-ID: <20260320-amusing-magnetic-harrier-20cc40@quoll>
+References: <20260319104031.1986946-1-damon.ding@rock-chips.com>
+ <20260319104031.1986946-2-damon.ding@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GVXPR04MB12316:EE_|GVXPR04MB10756:EE_
-X-MS-Office365-Filtering-Correlation-Id: b2aa2230-e637-4d66-c0b8-08de8661522f
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|19092799006|376014|7416014|921020|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info:
-	SCI71QGRovmyyN9OyacI4gLBledvTiLaPR4Ejlb986S+ZqQMmyUIOTGNcCRxXyG7Os2wcqjFPogiGjHNn5hDKdO8HhEEgNx9RzzxHKndnmVZE7/oadK5eYEjQGDNRZ/VoQOsJSNJ+cFdYr0J4Ho8p5fsC6pBARVMTVP+pT73NQ01k439BYUegvLoNOyE2RkGBC6SmM6sjJyFjw0/9EpeN5hhSejdzCM+uXMD96CLI3Dc3p5VyUJFuN0ORgcy9c+pFi9VT6zwRuFKCD6EKKCWKGpM0r5Eg4JH2WbUJq7C5e3SVEm66fJAIWYwUhHSV7hwFwi0wepc6/wK7vW3TVZAczxy+0pnbQx77BFGsrP981adNmGJ/Uv7V47gutjeLMtMoy+s0VgqByY0UKSgYUSZCngq+LIdf/A+e3LAlOmnPwWz6t09W//SWDRQVKWaMYo9HuOkyVOQqqd5z6zp2uLmKuRvlD924NVR+98FZmps3jumA63nwO/2HK/lW2Ya8r+x11ZAE/YAcYJgM2Mh1OY8WY5aiD3RdRpmOp6tw1WaXP1KDPT29DHL4EZnlnNZ/UVePhFTKPxBavyNQYQe+SWwruHJEpn9FUIUjjxmzbSHhEof5rCGaCYuMVocdurXnNzb4RkSWtjUwCofB7B81i8/ya3FIuNUCcP47pRWiGeMHrIE7nXm+a6T0fJyLduBrjTMBxdv/OmOKyQgEvCInr4/07nSUq6dLJ3Tmpc1i8QFDJ5af0hTbGKt2mXfeambejRiaFpAdfqrQQmZNAikdgndpw==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12316.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(19092799006)(376014)(7416014)(921020)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?M2RQRjBGMFZ2ZTdnOWtNeG1samlia1Awb3hBdTc4N0NOUmxESVZIVjdBREMy?=
- =?utf-8?B?WldHNUt6YmwvYUVnejlGWDUrenRXbmg3QWR3WlJOK1g1TlhTdFZKSDA2aUJJ?=
- =?utf-8?B?bEczTit2MlNyVVp6RlVQdVNNTElsc05RdjB4cEVYdTFJN25ydDJVY2s0N2JR?=
- =?utf-8?B?dFdyS1RqWlFpOEw4aHVuUFJjRHMxNmxCc0FnU2h3SHVrbEFuTDZkejlZNTIr?=
- =?utf-8?B?M0J0WWlDdkZFTlIvekQwdmJURTZPOTdMV2RoeXJrSDI1SnR4WDBITk1oeGgx?=
- =?utf-8?B?UExhenVDamFhMVBpN0VTNWVmWTA0UXJoWjBPR1dVZisvWmEvd0dpbWxBUWNZ?=
- =?utf-8?B?K3B2c0lSMTFUcERkUEZTVGJIaWlodmtxcDVwTXd5U3hmUGhyb3JRUWJla2Rq?=
- =?utf-8?B?RE82eXp2ZzdENWw5VnFHZFozU21ob1NkOTg1TWswY25VeTZITTRwZEk3anVT?=
- =?utf-8?B?cUlwTUVoVGhZRExVSE1oWEdUbG9MZzN5R1hrdmVrTHpUY1Bsd2QwV2FJSmJl?=
- =?utf-8?B?K2tjb3l5OGhlcnY1Rk40dFpnWXVDS21PdHNLbS9QcFN3RkNPSmVydWZ5MEJP?=
- =?utf-8?B?ZnhPaVRIcW45dGF3UzJNZDJxaEx6UGxJZUdPYVRDQkFqREUyV2ZsV0xLcnY1?=
- =?utf-8?B?Y3RDaThlNjltTVVKWTVhVE1BZVljWlpmMHhTQnljK016STdrQVJpb3BUNFBL?=
- =?utf-8?B?VjlodWlZcFRBMTBFQUhXNFhucG5tWDVxa1BZM2pMTURWZ3l1OG1Ha0xXQ2ww?=
- =?utf-8?B?K2Y0OFZCbHg5TDRXczBrS3BPVnFXMGlkZTUzMG1jeXY1RmlRU2gxMGFXY1cw?=
- =?utf-8?B?K0hnTjRQOXpGRlZ4MGZ4MnRDREg0YnZ4RWNHeUpCY0Y5cHlyQVErbjBRYjFz?=
- =?utf-8?B?cHVWeVV6dDRVeEtxcXY5SWl3UU1DVVM5c2tWeTQxNytneGI1cXpKb1NVRCtN?=
- =?utf-8?B?aThPVHpnUVZMSHB1UVpic1dBVWYzZFdqcDhua3huZW1rR1RUSEdrOEFXcGdm?=
- =?utf-8?B?RjB6Rnh6VnJaVTdhNHRlRWFGd3Jpb01TSkhTOGUvY3ZRbkxQajdTdDlib3lH?=
- =?utf-8?B?ZXhDZ015a1dER0MwUHRZNStzL2dUN3Z5RG1UZ2RjM1pVZ1YySlVHbmFpZEhO?=
- =?utf-8?B?blhNNDBOQTlSZGkvMXliclJLbkNpeVBIaG13QUptNVg0YkIvRHRxd2plckRt?=
- =?utf-8?B?dzV1QVdVWFhDTm9zWlNvbkNKcXVIeTdzZVN1NjBMczhINS96VHZjTWYvZ0ty?=
- =?utf-8?B?cWVDUDNRVWNHbm9yZktCTDdYMU94aWNTTlJJRTVnL1NVVUZxaXhFTm5nbENV?=
- =?utf-8?B?N2VicVVkVmdTZlJyaGJDQ0FXN3M1RjgvemwzWkNqeExOMDJxQmpRS3VqUzRr?=
- =?utf-8?B?eUlHM05UYlNYZ1cwL3VuWEdPRkVMNitDUHc0dTdVcWxoN2Iyc3FtWWkzOXIz?=
- =?utf-8?B?cTl2Y2Z5dmwxTnZsTDk5UEF5YTQ4WGx4aWsvWk90Qko3NitDRDMycVJQZTE5?=
- =?utf-8?B?VEdJVWZhUDVEMHNZMHFwZVU0Um5rMVZPaHo1SDlkandUdW0zN2RtVWtxZXhB?=
- =?utf-8?B?clZUeFMzZlIyQW1WSGhNRzB6QkZjd1BRU3VjcFBoYVV4alg2bE5nTGJYbEVs?=
- =?utf-8?B?aU5Kbkt5cG5DQWV5a2E4YzBMaWF2Wk0xeWpoOTJyVmxQa0p0U2xpUGtGUFNZ?=
- =?utf-8?B?amo2UWtwN2VTRlQvL2svWU0xT0dTb2ZSVktaRU53R1VYWGVqM0RDOCtrUVBz?=
- =?utf-8?B?b0s2VDJpb1dWZVREbWh4TTJEeGp5RFB0ekRKdTRxUXZNUDBLU0Zsa1E2ajZB?=
- =?utf-8?B?ZTNnSitDSjlBYXB1WjkweDR6MG1Ud3RCRUlZWVVUSlppOXJoK1JscjVzQ0li?=
- =?utf-8?B?cHl5RmZBeU1iK1E2Q2oyUEpuRG9McERTM2xFVm0vMTFReGZMbStUNTl6QnBV?=
- =?utf-8?B?bzYvZmlrN0tES2JVVnJnVkMvWWFOL1JjYUd4YTZpWG5DOElQTXFHSlBaUHN3?=
- =?utf-8?B?RGxQN0NnTXN2eVlYaVZHZnNMWTZmQUJQa2xYZVp2K0xDRTlTMmJTNXdwb2Zw?=
- =?utf-8?B?N1JHUUQ0TFUxQkZXZTMzbW5ZZkR3YSs2ZEROd1puY3kvMCtuL3JuNGhYNVh3?=
- =?utf-8?B?aStiZDFQKzQ3OVlnLzJFTk94N3ljeWdSL2JCbENJb21FWEJQeHUzSzhTOXhi?=
- =?utf-8?B?UmRaL3lwNkJzcWFVbE5FVEhxd3V2eG9pd0pObDZmV1lCSldMY3F5YWkzL1lv?=
- =?utf-8?B?UWh1NWJJV211REtQR0hvbUoyL1hYV0JiOWMrREVFdzZLZFlKT0JFMTdGUUVE?=
- =?utf-8?B?LzlyTmtIcXdlWWp6SDJHMjgzVXRFUnRydktPaVh2MEY4RmxlOEdPZz09?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b2aa2230-e637-4d66-c0b8-08de8661522f
-X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB12316.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2026 09:16:08.4125
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ec4r3WYy68mqbZU17fUc5CbB9mgVFVJcYqtoKXBjPUgORE7uNZ+o5X6J19K2iY6G4uHisluxWjx2MPbgv9hA7g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10756
-X-Spamd-Result: default: False [1.94 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260319104031.1986946-2-damon.ding@rock-chips.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-278150-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278147-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[oss.nxp.com,kernel.org,linaro.org,nxp.com,pengutronix.de,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[37];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,cherry.de,tomeuvizoso.net,jmu.edu.cn,cknow.org,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.892];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel.baluta@oss.nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
-	NEURAL_HAM(-0.00)[-0.995];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:email,NXP1.onmicrosoft.com:dkim]
-X-Rspamd-Queue-Id: A5F462D7DD5
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,rock-chips.com:email]
+X-Rspamd-Queue-Id: 6DBBA2D7E6E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/12/26 14:36, Peng Fan (OSS) wrote:
-> This series adds remoteproc support for the i.MX94 family, including the
-> CM70, CM71, and CM33S cores, and introduces a new device‑tree property to
-> correctly derive the hardware reset vector for Cortex‑M processors whose
-> ELF entry point does not directly correspond to the actual reset address.
->
-> Background:
-> Cortex‑M processors fetch their initial SP and PC from a fixed reset vector
-> table. While ELF images embed the entry point (e_entry), this value is
-> not always aligned to the hardware reset address. On platforms such as
-> i.MX94 CM33S, masking is required to compute the correct reset vector
-> address before programming the SoC reset registers.
-
-What happens if the reset vector is at 0 and the e_entry point is at 0x800...?
-
-In this case masking will no longer work! Can we implement a generic approach?
-
-
->
-> Similarly, on i.MX95, the existing implementation always programs a reset
-> vector of 0x0, which only works when executing entirely from TCM. When
-> firmware is loaded into DDR, the driver must pass the correct reset vector
-> to the SM CPU/LMM interfaces.
->
-> This series addresses these issues and provides the necessary DT bindings
-> and driver support.
->
-> Summary of patches:
-> [1]dt-bindings: remoteproc: imx-rproc: Introduce fsl,reset-vector-mask
-> Adds a new DT property allowing SoCs to specify a mask for deriving the
-> hardware reset vector from the ELF entry point.
->
-> [2]dt-bindings: remoteproc: imx-rproc: Support i.MX9[4,52]
-> Adds compatible strings for i.MX94 CM70, CM71, and CM33S processors.
->
-> [3]remoteproc: imx_rproc: Pass bootaddr to SM CPU/LMM reset vector
-> Ensures the correct reset vector is passed to SM APIs by introducing a
-> driver‑level helper (imx_rproc_get_boot_addr()) that applies the
-> reset‑vector mask.
->
-> [4]remoteproc: imx_rproc: Add support for i.MX94 remoteproc
-> Adds address translation tables and configuration data for CM70, CM71,
-> and CM33S, enabling full remoteproc operation on i.MX94.
->
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+On Thu, Mar 19, 2026 at 06:40:23PM +0800, Damon Ding wrote:
+> The RK3588 eDP controller needs the video datapath clock "hclk" to work
+> well. Previously, it works without explicitly adding this clock because
+> the 'rockchip,vo-grf = <&vo1_grf>' property implicitly enables HCLK_VO1.
+> 
+> Fixes: f855146263b1 ("dt-bindings: display: rockchip: analogix-dp: Add support for RK3588")
+> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
 > ---
-> Peng Fan (4):
->       dt-bindings: remoteproc: imx-rproc: Introduce fsl,reset-vector-mask
->       dt-bindings: remoteproc: imx-rproc: Support i.MX94
->       remoteproc: imx_rproc: Pass bootaddr to SM CPU/LMM reset vector
->       remoteproc: imx_rproc: Add support for i.MX94
->
->  .../bindings/remoteproc/fsl,imx-rproc.yaml         |  9 +++
->  drivers/remoteproc/imx_rproc.c                     | 85 +++++++++++++++++++++-
->  2 files changed, 91 insertions(+), 3 deletions(-)
-> ---
-> base-commit: 7109a2155340cc7b21f27e832ece6df03592f2e8
-> change-id: 20260311-imx943-rproc-2050e00b65f7
->
-> Best regards,
+>  .../bindings/display/rockchip/rockchip,analogix-dp.yaml       | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+> index d99b23b88cc5..d2bc8636b626 100644
+> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+> @@ -26,7 +26,9 @@ properties:
+>      items:
+>        - const: dp
+>        - const: pclk
+> -      - const: grf
+> +      - enum:
+> +          - grf
+> +          - hclk
 
+You just told me it is the same clock, no? I asked that and you
+confirmed? Or you replied with an answer not relevant to the question?
+
+If this device takes reference to grf, why does it also take grf clock?
+Devices MUST NOT take clocks on behalf of other devices, so please
+answer with a list of all clock inputs according to datasheet/manual.
+
+Best regards,
+Krzysztof
 
 
