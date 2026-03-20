@@ -1,100 +1,100 @@
-Return-Path: <devicetree+bounces-278324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278325-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2El9OAhhvWl09QIAu9opvQ
-	(envelope-from <devicetree+bounces-278324-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:00:24 +0100
+	id CE8yFw5ivWlF9gIAu9opvQ
+	(envelope-from <devicetree+bounces-278325-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:04:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A1322DC2FC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:00:24 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C8B82DC44D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:04:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4167231077D5
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:52:03 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3733330E7596
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:52:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4FEA3CE4AB;
-	Fri, 20 Mar 2026 14:49:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3E2A3CEBB2;
+	Fri, 20 Mar 2026 14:49:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IqWS0ATE";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LjBZHLKy"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PIf+Gxh6";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="eTO1L5oB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 407FE3CD8DA
-	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 14:49:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F02C23CE4BF
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 14:49:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774018185; cv=none; b=Dt5L6NasEXgbhX2/w/GdsPhOEKkMuICqiGnZoXvRPX/kwHFCmi1z/QiPj1GYIp3d4osnCvQS5QM+2h9KUXniCJQV9XbaEEK4d703jKX7pVpBmEhV71TTp8OdkF6sHX/bWPqHu6OVy9kzz66cVU69MhfuUCelz+ni78AE7Z5IOV4=
+	t=1774018188; cv=none; b=Gchk0bDbmMQKMjkA1TXz+w7GwEoriex08xKX/j5slH1W2/QObIlNI8gLhSUL6QqhOC8eH8myC/oJVbO2DjTjNLsHSN4Vtc8OQn9KtbNgoFp0H3IxL0LOLzBoSfn9B+69OEdqxrYKxYYz8yK39PYS0Wy7KjOIsTDzebHcc2U6uIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774018185; c=relaxed/simple;
-	bh=HcBUaG07YHPkjw7AtCbbPauazCJLhtW0eS3T+3u2Oe8=;
+	s=arc-20240116; t=1774018188; c=relaxed/simple;
+	bh=PuJFamBh81bE/Zj8ZHvJy/U5gL5zjKCwi4dfSJ851vE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UMR163WhQZAoIeNRt/4YSjKeAu0zCxVXcxxaWjSTTh30+2Wy1eEEDsrmay8MZ8cI6NrBr/I6cwMcJTowqpddm4GAnlLFMhMGg3sXAPhn1UczjFqLsaYIvaBDWIMnzioscZcf6ABU31aLpTxoWqfwdIbZL4+ScKoQ3cRsc/74BPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IqWS0ATE; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LjBZHLKy; arc=none smtp.client-ip=205.220.180.131
+	 MIME-Version; b=TC2fBweVVpTFOI3xm+S2QME3FJk82dt/mcUHss4Jl0KW/qCeVMxui2Gfi3J/HyFSuo8pR/NgTHqw0tkdWyIpNvBBV+sRT5Qp6o91wtXD3rSu4gjudAUaOGDJPf1n1uNIv43znojY/MwHHuVjTm+G88c2Xqu1XBbVKcRYIskY6/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PIf+Gxh6; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=eTO1L5oB; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62K94UPe700888
-	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 14:49:43 GMT
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62KEbLBd398385
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 14:49:45 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=K2FJHPPcvdd
-	DuyFi5b9Enk3oj2KWR4s1Mi0JeIXu8dk=; b=IqWS0ATE2IIUT2Zo0bm+ufMAxEQ
-	LYTadGvd493j/mY/tSJSsFolB6nnJyftoJ7wTBSqTDfViClsUL76F7s4Yc58Ulb2
-	YKpRkjIYaDXS7UUavG4liHS+YF+Ng0E25y9DE71WD/sEqn7ng29brVKlRo1WbecD
-	tT2J87vn1G07V4gaK8wD/zAhgUgvuUJsNQb9TidLocP64WEDwOF8UdWlqCkQwwym
-	9ZIVTdMciP1/EAcEsk2USL3SRkA8dezPPo+lNF28EIspcJYlcbQK8PtlqHTR/07s
-	vW6QekB0NsL3n/ESOM4WgZ8MoEBmroxuhrU+jYcxxO3RS33lb8otZeB+stA==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d139q0sxt-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=fSPCBd3T5A0
+	bZHkS+KsyEWqVlhqEkiuzb7wl/h6xEi0=; b=PIf+Gxh6gReVtKCx/XaMei+cyOk
+	LJsr9T65zMiFuTVilv11nxNflIQB/S+xoMTnH1s7SVGLjvv3pEJ0qpcOcLoXJjrp
+	ozt1eDEWaS4ciOIIvE5YtmS4ENiTpoLHVYhYg3/ruZfV1NCBVeth3pwjhLty9elm
+	2lPhfd9tdN/+89mJOBlQSJh/nnDCXIncEDp2LgDDDhggrJ3YH/oHjn5treRfyFkq
+	XU8p/X1iWkv60/w6p7sDkcFpfNzeAw7XIzmTVekPdUZMjilEydb1QX8SOeMM9Ib8
+	ZL4aFqcBzigQgDGknyXijPoDlfjbGEsdBjkE9gSequHbyxivfF2PbWb3eLA==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d0k083pcd-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 14:49:42 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-89a0684d05dso214375206d6.1
-        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 07:49:42 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 14:49:44 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-50925fed647so153626971cf.3
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 07:49:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1774018182; x=1774622982; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1774018184; x=1774622984; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=K2FJHPPcvddDuyFi5b9Enk3oj2KWR4s1Mi0JeIXu8dk=;
-        b=LjBZHLKyDqZgsyViT1jNc51noRRYu0dyAPHO337bYPG36bMlplkcs6KdOtglIxTB8i
-         MKct4lo5BeAi9rPsqY+ZmtG3UYx8nVYK5c9uEu1ki1uiIFP057mlwFemK2lsxXDKF3XD
-         fVPXO2zqKIMy/X5BM3BaW/0M6e7TD8ElbsrjZht6GwZCNGROTOSHo8oZT9wr+8PG/H/Y
-         sh5+9TTZprMR1wehH4gLaSXgrfBVcGQ1+IVFGxaZ0KEnVBfFippocLUXlC3FIUM/pjyG
-         Tidqwgc09e/tkshJCPqHPcwl5+h8IJTN49jHWkqNu0FNnSXnQ0Hgd+Cj6p4PvEDYBmll
-         RmCg==
+        bh=fSPCBd3T5A0bZHkS+KsyEWqVlhqEkiuzb7wl/h6xEi0=;
+        b=eTO1L5oBU5VlS79m9WxCcqTnF45y6Gbg5a0cQdSECq3ZX8pbyUq7dXFjdex6KG1ylP
+         9NkJwf2ADxz119p2W419UhevvX1TelcIcz70tXrBiYZtmvR71YSE0tzk7z7HnZn/wLdS
+         KumlYylQTm6aMKpjzixDf24SaJU9AiOVgWc1gRpNkFE/Yj83Jij8ajro+d9ridXkZ1Da
+         fPApmAAA7Z/2kyp6/jqkGvfhwoEgIRjzdhZc9N+KEmK33F29PwM84oikr3lsIzIuP8pC
+         BzsJJ7roRwNPpamPgftDZELqktn4ep0dj1rXtHp4n0JwWjkIxui69c7dWNyra+8goMqO
+         O6Zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774018182; x=1774622982;
+        d=1e100.net; s=20251104; t=1774018184; x=1774622984;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=K2FJHPPcvddDuyFi5b9Enk3oj2KWR4s1Mi0JeIXu8dk=;
-        b=jOJSV+K0jN2ZYDst4gkDuioCoFVptFMoeS1sSxlofP+GLjUUHIGYPK4x1pEWcekTHN
-         i5ZNdRpkxhogWawuwqt6oD31bLdg8X1lRNYkKnulW8ZHcSxEoVYdzVtQ41Yhabuqk0vT
-         EVWKSIeJH/zm1mk5ue19jL1cF2JFdQuBvt4WK9aL88O57PDR+v/rWx2xWOFnTLUnif9U
-         n1EHoMFEg+zmOs/iTRJwkWan3sh+m6/Wio4A+cmrQG15d3M0sCIiWa1LI+IEASzXU8fB
-         7nYHfdxFXIyRDTrzdzhiP/GL4DqmI5Kp4AOoHLlklCzreI7baZ1zIZtfYS937SOXyR1y
-         FYSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWyllblJAlkUXSzfKJuNQPZ3qdLmMCPLFivVzVX9HM61pOLzA86CBkep4wEJ99BGTFnbZ6Dh4YR1zoM@vger.kernel.org
-X-Gm-Message-State: AOJu0YzlYXN0dnLv3UVC/rdvyz5+hcfoRPfKDUuC2D3bq+mw0sMcWK2u
-	jkL8Dr7zxKeZLlTyWICkS/a/FRM8IpMKsfN8XwwWlZiPP4cdqMcmor9nvma+TmRgzxJw1Mvuznv
-	FPtTFoXp4Zr59potUy0xl90sgoV28sTql1GBnlgcaBTFrwu+modqhI2VolE/3dQNd
-X-Gm-Gg: ATEYQzxDNEVkuQ3kZGeKZe2nzHYzU3Juu415t9IK9dky/8PsQmxGKpvGMRutbGvAYhM
-	BpXop7ixrougeqNcJBPC6oWHvrFBXGV8BPCuQAOJs06KEGQhZ4Pge9jEVLDCgVyVHpRyKLRQcGO
-	Z/Bc3wJGiH37z293WN/rce6dM7NUODsDrM6V1ykaVw9ApVjO/aXCD8DpxXGAcncGoDEaP+/Yi1x
-	gl4QxnS3NvLWxpFzfIO5jVvijsRqWBoypNP1S1synyfLN7oWYJoW9aJqlthENJ9K1EalXTjgHMb
-	fvnAHj+/acUWezEKC4uHQPjcDiWygJZBxuqyiEWlzSyMwrpD9i77ACVodhQatwoF2I69OPdzdhQ
-	Fjy3nS3Fu/z1XX0DKMuLtUU63z6ArSNIi20o4bdVfMLOjXVOo6R6u+kA=
-X-Received: by 2002:a05:622a:130c:b0:509:202f:f03 with SMTP id d75a77b69052e-50b247ad184mr105792101cf.38.1774018182313;
-        Fri, 20 Mar 2026 07:49:42 -0700 (PDT)
-X-Received: by 2002:a05:622a:130c:b0:509:202f:f03 with SMTP id d75a77b69052e-50b247ad184mr105791611cf.38.1774018181640;
-        Fri, 20 Mar 2026 07:49:41 -0700 (PDT)
+        bh=fSPCBd3T5A0bZHkS+KsyEWqVlhqEkiuzb7wl/h6xEi0=;
+        b=D5kFciv6Ua7GxiLndzUtMC8h1It08R8hbrlGAC8MRBuCiP5pusJsJldFqCrfB+KsEu
+         zcUyDEtk6PhlIu77QtPLwM3DNtRRD73+vszSRMOicQHIFlv8jjbW+NCQwkObsinqbcG2
+         TRg/NSaXhtQ3x/ur8ZG53rJE7FILLbANUiDxCcOH6Nz1/tNWuebJc5zmowuwPE+iLr59
+         XXGcuwns83+omoDKgOBTWlWLx+S70HA5zn/6LhCp+Rygpc75uDM3sODFx/l6yBGVTDuL
+         ttDuXd0yv0aZWQmBYLBP/Rl/ln3xtlnhfC/MpkzRTxB2udB3vWx4pzJGbjFBQ9srY2fG
+         Xl/g==
+X-Forwarded-Encrypted: i=1; AJvYcCU1sNmEagoI49cYr5DSKQlej4jIuEMBsyEaukG5/UqBahEZDd+6HyCXJS2/mn5WYFITWnrioJ9UW2Tt@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIqPQANJUuTR2DYq5VImGMOjy7+8USfTrwdYh7qXCTZseFeGNR
+	3GYWez9iTelJjqnNiQjsMCofMb3ziVgjcQE3q8L+4NnRHzEEr8rnyzJyYqWUZgH+8HIAYQqPKd3
+	zTQJBTJZbkkbm71E98kTzZ4btmgpNGeo8eCm3NVLCRtv0ledfLx8IKBYegYZiEejB
+X-Gm-Gg: ATEYQzzPqMMpo5AAWFoX9Pjo5W7CBdcHe31ri9A4EH9o0MTQQdEV8Xswaa6IcxACIMK
+	VWTX3rbu5Gu4yXHQISNRSAK1Aye2urB1RNaAZR169VL5Gc0dK6Nzp439pp4KqTjGvSFFnFEXOlN
+	Aepy+XmQ++s6KtBX7kEgcigVptYHDMVu5QDzbPSwsKfLxRA/pbONnCN4M1nBreLddy/O+BkdJmR
+	a9nTpX6sWjZ3nfQu+6u26n5etx1aq+J9XjxnZo+uDk7FgxuYB4jPgsrnc4QBEDEqTaHvovCdf/r
+	2zd5qB2qgr2EETjO/TE6CmWEUhKqiX33+34cArTnQoxbjM+Cd0j95lcEUCEUdUkFGLLYVAwhOlq
+	PW4yTSKt9fVHEu+xoH3VMvqMpQsxGqGz6qDuwZXiYpMTb58jMOwAvug8=
+X-Received: by 2002:ac8:5a8b:0:b0:509:2997:b929 with SMTP id d75a77b69052e-50b375b02ccmr43326101cf.67.1774018184285;
+        Fri, 20 Mar 2026 07:49:44 -0700 (PDT)
+X-Received: by 2002:ac8:5a8b:0:b0:509:2997:b929 with SMTP id d75a77b69052e-50b375b02ccmr43325601cf.67.1774018183772;
+        Fri, 20 Mar 2026 07:49:43 -0700 (PDT)
 Received: from localhost.localdomain ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486ff109b95sm47906825e9.1.2026.03.20.07.49.39
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-486ff109b95sm47906825e9.1.2026.03.20.07.49.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Mar 2026 07:49:40 -0700 (PDT)
+        Fri, 20 Mar 2026 07:49:42 -0700 (PDT)
 From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
 To: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
         conor+dt@kernel.org
@@ -105,9 +105,9 @@ Cc: mohammad.rafi.shaik@oss.qualcomm.com, linux-sound@vger.kernel.org,
         linux-kernel@vger.kernel.org, srini@kernel.org, val@packett.cool,
         mailingradian@gmail.com,
         Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Subject: [PATCH v6 11/13] ASoC: qcom: q6apm-lpass-dai: move graph start to trigger
-Date: Fri, 20 Mar 2026 14:49:16 +0000
-Message-ID: <20260320144918.1685838-12-srinivas.kandagatla@oss.qualcomm.com>
+Subject: [PATCH v6 12/13] ASoC: qcom: qdsp6: remove search for module iid in hot path
+Date: Fri, 20 Mar 2026 14:49:17 +0000
+Message-ID: <20260320144918.1685838-13-srinivas.kandagatla@oss.qualcomm.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260320144918.1685838-1-srinivas.kandagatla@oss.qualcomm.com>
 References: <20260320144918.1685838-1-srinivas.kandagatla@oss.qualcomm.com>
@@ -118,27 +118,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzIwMDExOCBTYWx0ZWRfXwE72Y63lUImm
- gv4abH7+OZxdTwbUBcVN9uOtI41icsd8dnCDHLcvAlYnAS7OFFJ0kBs5ISCB7k2HvKcfRYySfQ2
- kZT6llcOedRl133ITNWY+TwqnXY8O8rfMJFW4laqIVGC5nWwhxd0bA10LniKykU+WaEeQxbdwiT
- RDkVLJofIN6YptfyyooPXojYKQkfMkWgFqljZ/w9nAXrmi+6Y8LaTHyBSaYscgxrbt0TUzKiWyU
- orQLTrwedTMPkdjJMPMAFoa+M4iQFAywN8r2+gKquSIGLyRPT/LawOEK05iRIWHrOX4vC4ATflf
- +EjbsrzJmqCIfsF7S6x72WLD1s4AzdQMmRdOOYXYTEl76OAKf/dcvTl6sqyJUdep6m18E5bZQEX
- ELfy/h3RcioL5x+75JUEuEquxtMxvIvRU4lyBSOavViLhDZ7pYMIThDhtD7o9BuYpqIcv1RGBq3
- lV/mkMKoNVDXgAgpPhg==
-X-Authority-Analysis: v=2.4 cv=FOAWBuos c=1 sm=1 tr=0 ts=69bd5e87 cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
+X-Authority-Analysis: v=2.4 cv=MYhhep/f c=1 sm=1 tr=0 ts=69bd5e89 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
  a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22 a=EUspDBNiAAAA:8
- a=8udmP7N65bQo3KbB_RsA:9 a=OIgjcC2v60KrkQgK7BGD:22
-X-Proofpoint-GUID: u_VdOn9g_3-cfyqQSYukC_DgfX9DJhdv
-X-Proofpoint-ORIG-GUID: u_VdOn9g_3-cfyqQSYukC_DgfX9DJhdv
+ a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=EUspDBNiAAAA:8
+ a=Ll4dbTg5roZnn8cDlSAA:9 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-ORIG-GUID: lNDvZX35uJC0CoVDQu0jaaTdY3Jd4Qjf
+X-Proofpoint-GUID: lNDvZX35uJC0CoVDQu0jaaTdY3Jd4Qjf
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzIwMDExOCBTYWx0ZWRfX0zp2M4XKAjgK
+ yKiad1oBewDE4Pfm2Dtg8PHpSocci6aTebXLgUrUus4x+rwV4wEiJPLIkUSK4LRCgPWeG9lnDzl
+ FPI2Xno4vXMAkEcuyNXkmNHTopYAIX9dMEBsMuWb0u90xNsnqfX23j6XEUqU1deV2lJuCveOnYT
+ YIk98H9KkOOfJ1ycB9V+v0VJwDyNMcMdKvnBflbvpxkQWLiqGrCn87EJL2Xc4o/obTj38jS+AFA
+ 2YN0/yCGq7TuYZC+wj8MRCbnohUaXCo3lT6fG35xQtTGK5JYZZ5ppVgA8ojJvNJbMmIVBF/njKD
+ opCl7Vx12G6x54D137Ryt0d8CfAONc4zb1+a+Vt6jfCydu1VpnJurjezXpzOJk81n/IMoZmK6sE
+ kteEkKjXA2sO69pX4VDMzEWBzsIrV7g2ncRW06bndzxn4qbVEUfUK2UvZ6zLVYmZOQWqcZotIgQ
+ bIKedF9OJ8X5+j4BJMg==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-03-20_02,2026-03-19_05,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 bulkscore=0 clxscore=1015 adultscore=0 impostorscore=0
- priorityscore=1501 spamscore=0 lowpriorityscore=0 phishscore=0 suspectscore=0
+ clxscore=1015 spamscore=0 suspectscore=0 phishscore=0 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 impostorscore=0 adultscore=0 bulkscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603200118
 X-Spamd-Result: default: False [0.84 / 15.00];
@@ -147,7 +147,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -155,121 +155,159 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_CC(0.00)[oss.qualcomm.com,vger.kernel.org,gmail.com,perex.cz,suse.com,kernel.org,packett.cool];
 	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-278324-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278325-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[srinivas.kandagatla@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.971];
+	NEURAL_HAM(-0.00)[-0.970];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 8A1322DC2FC
+X-Rspamd-Queue-Id: 5C8B82DC44D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Start the graph at trigger callback. Staring the graph at prepare does
-not make sense as there is no data transfer at this point.
-Moving this to trigger will also help cope situation where pipewire
-is not happy if display port is not connected during start.
+Remove searching for Shared Memory module instance id on every
+read/write call, this is un-necessary if we can cache the shared
+memory module instance id per PCM graph.
+
+Add new member to graph struct to store shared memory module
+instance id to avoid searching for this in hot path.
 
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
 ---
- sound/soc/qcom/qdsp6/q6apm-lpass-dais.c | 40 +++++++++++++++++--------
- 1 file changed, 28 insertions(+), 12 deletions(-)
+ sound/soc/qcom/qdsp6/q6apm-dai.c        |  5 +++--
+ sound/soc/qcom/qdsp6/q6apm-lpass-dais.c |  4 ++--
+ sound/soc/qcom/qdsp6/q6apm.c            | 14 +++++++++-----
+ sound/soc/qcom/qdsp6/q6apm.h            |  3 ++-
+ 4 files changed, 16 insertions(+), 10 deletions(-)
 
+diff --git a/sound/soc/qcom/qdsp6/q6apm-dai.c b/sound/soc/qcom/qdsp6/q6apm-dai.c
+index 292be457764f..86d6438bd9fd 100644
+--- a/sound/soc/qcom/qdsp6/q6apm-dai.c
++++ b/sound/soc/qcom/qdsp6/q6apm-dai.c
+@@ -355,7 +355,7 @@ static int q6apm_dai_open(struct snd_soc_component *component,
+ 
+ 	spin_lock_init(&prtd->lock);
+ 	prtd->substream = substream;
+-	prtd->graph = q6apm_graph_open(dev, event_handler, prtd, graph_id);
++	prtd->graph = q6apm_graph_open(dev, event_handler, prtd, graph_id, substream->stream);
+ 	if (IS_ERR(prtd->graph)) {
+ 		dev_err(dev, "%s: Could not allocate memory\n", __func__);
+ 		ret = PTR_ERR(prtd->graph);
+@@ -496,7 +496,8 @@ static int q6apm_dai_compr_open(struct snd_soc_component *component,
+ 		return -ENOMEM;
+ 
+ 	prtd->cstream = stream;
+-	prtd->graph = q6apm_graph_open(dev, event_handler_compr, prtd, graph_id);
++	prtd->graph = q6apm_graph_open(dev, event_handler_compr, prtd, graph_id,
++					SNDRV_PCM_STREAM_PLAYBACK);
+ 	if (IS_ERR(prtd->graph)) {
+ 		ret = PTR_ERR(prtd->graph);
+ 		kfree(prtd);
 diff --git a/sound/soc/qcom/qdsp6/q6apm-lpass-dais.c b/sound/soc/qcom/qdsp6/q6apm-lpass-dais.c
-index 87f6db12003e..e904066484d5 100644
+index e904066484d5..006b283484d9 100644
 --- a/sound/soc/qcom/qdsp6/q6apm-lpass-dais.c
 +++ b/sound/soc/qcom/qdsp6/q6apm-lpass-dais.c
-@@ -159,6 +159,31 @@ static void q6apm_lpass_dai_shutdown(struct snd_pcm_substream *substream, struct
- 	}
+@@ -203,7 +203,7 @@ static int q6apm_lpass_dai_prepare(struct snd_pcm_substream *substream, struct s
+ 	 * graph, so sequence for playback and capture will be different
+ 	 */
+ 	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK && dai_data->graph[dai->id] == NULL) {
+-		graph = q6apm_graph_open(dai->dev, NULL, dai->dev, graph_id);
++		graph = q6apm_graph_open(dai->dev, NULL, dai->dev, graph_id, substream->stream);
+ 		if (IS_ERR(graph)) {
+ 			dev_err(dai->dev, "Failed to open graph (%d)\n", graph_id);
+ 			rc = PTR_ERR(graph);
+@@ -240,7 +240,7 @@ static int q6apm_lpass_dai_startup(struct snd_pcm_substream *substream, struct s
+ 	int graph_id = dai->id;
+ 
+ 	if (substream->stream == SNDRV_PCM_STREAM_CAPTURE) {
+-		graph = q6apm_graph_open(dai->dev, NULL, dai->dev, graph_id);
++		graph = q6apm_graph_open(dai->dev, NULL, dai->dev, graph_id, substream->stream);
+ 		if (IS_ERR(graph)) {
+ 			dev_err(dai->dev, "Failed to open graph (%d)\n", graph_id);
+ 			return PTR_ERR(graph);
+diff --git a/sound/soc/qcom/qdsp6/q6apm.c b/sound/soc/qcom/qdsp6/q6apm.c
+index 9d4cbe29cf94..c874dae53163 100644
+--- a/sound/soc/qcom/qdsp6/q6apm.c
++++ b/sound/soc/qcom/qdsp6/q6apm.c
+@@ -411,12 +411,11 @@ int q6apm_write_async(struct q6apm_graph *graph, uint32_t len, uint32_t msw_ts,
+ {
+ 	struct apm_data_cmd_wr_sh_mem_ep_data_buffer_v2 *write_buffer;
+ 	struct audio_buffer *ab;
+-	int iid = q6apm_graph_get_rx_shmem_module_iid(graph);
+ 
+ 	struct gpr_pkt *pkt __free(kfree) = audioreach_alloc_pkt(sizeof(*write_buffer),
+ 					DATA_CMD_WR_SH_MEM_EP_DATA_BUFFER_V2,
+ 					graph->rx_data.dsp_buf | (len << APM_WRITE_TOKEN_LEN_SHIFT),
+-					graph->port->id, iid);
++					graph->port->id, graph->shm_iid);
+ 	if (IS_ERR(pkt))
+ 		return PTR_ERR(pkt);
+ 
+@@ -449,11 +448,10 @@ int q6apm_read(struct q6apm_graph *graph)
+ 	struct data_cmd_rd_sh_mem_ep_data_buffer_v2 *read_buffer;
+ 	struct audioreach_graph_data *port;
+ 	struct audio_buffer *ab;
+-	int iid = q6apm_graph_get_tx_shmem_module_iid(graph);
+ 
+ 	struct gpr_pkt *pkt __free(kfree) = audioreach_alloc_pkt(sizeof(*read_buffer),
+ 					DATA_CMD_RD_SH_MEM_EP_DATA_BUFFER_V2,
+-					graph->tx_data.dsp_buf, graph->port->id, iid);
++					graph->tx_data.dsp_buf, graph->port->id, graph->shm_iid);
+ 	if (IS_ERR(pkt))
+ 		return PTR_ERR(pkt);
+ 
+@@ -604,7 +602,7 @@ static int graph_callback(const struct gpr_resp_pkt *data, void *priv, int op)
  }
  
-+static int q6apm_lpass_dai_trigger(struct snd_pcm_substream *substream, int cmd,
-+				   struct snd_soc_dai *dai)
-+{
-+	struct q6apm_lpass_dai_data *dai_data = dev_get_drvdata(dai->dev);
-+	int ret = 0;
-+
-+	switch (cmd) {
-+	case SNDRV_PCM_TRIGGER_START:
-+	case SNDRV_PCM_TRIGGER_RESUME:
-+	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
-+		if (!dai_data->is_port_started[dai->id]) {
-+			ret = q6apm_graph_start(dai_data->graph[dai->id]);
-+			if (ret < 0)
-+				dev_err(dai->dev, "Failed to start APM port %d\n", dai->id);
-+			else
-+				dai_data->is_port_started[dai->id] = true;
-+		}
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	return ret;
-+}
-+
- static int q6apm_lpass_dai_prepare(struct snd_pcm_substream *substream, struct snd_soc_dai *dai)
+ struct q6apm_graph *q6apm_graph_open(struct device *dev, q6apm_cb cb,
+-				     void *priv, int graph_id)
++				     void *priv, int graph_id, int dir)
  {
- 	struct q6apm_lpass_dai_data *dai_data = dev_get_drvdata(dai->dev);
-@@ -171,10 +196,6 @@ static int q6apm_lpass_dai_prepare(struct snd_pcm_substream *substream, struct s
- 		q6apm_graph_stop(dai_data->graph[dai->id]);
- 		dai_data->is_port_started[dai->id] = false;
+ 	struct q6apm *apm = dev_get_drvdata(dev->parent);
+ 	struct audioreach_graph *ar_graph;
+@@ -631,6 +629,12 @@ struct q6apm_graph *q6apm_graph_open(struct device *dev, q6apm_cb cb,
+ 	graph->id = ar_graph->id;
+ 	graph->dev = dev;
  
--		if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
--			q6apm_graph_close(dai_data->graph[dai->id]);
--			dai_data->graph[dai->id] = NULL;
--		}
- 	}
++	if (dir == SNDRV_PCM_STREAM_PLAYBACK)
++		graph->shm_iid = q6apm_graph_get_rx_shmem_module_iid(graph);
++	else
++		graph->shm_iid = q6apm_graph_get_tx_shmem_module_iid(graph);
++
++
+ 	mutex_init(&graph->lock);
+ 	init_waitqueue_head(&graph->cmd_wait);
  
- 	/**
-@@ -203,14 +224,6 @@ static int q6apm_lpass_dai_prepare(struct snd_pcm_substream *substream, struct s
- 		dev_err(dai->dev, "Failed to prepare Graph %d\n", rc);
- 		goto err;
- 	}
--
--	rc = q6apm_graph_start(dai_data->graph[dai->id]);
--	if (rc < 0) {
--		dev_err(dai->dev, "Failed to start APM port %d\n", dai->id);
--		goto err;
--	}
--	dai_data->is_port_started[dai->id] = true;
--
- 	return 0;
- err:
- 	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
-@@ -254,6 +267,7 @@ static const struct snd_soc_dai_ops q6dma_ops = {
- 	.shutdown	= q6apm_lpass_dai_shutdown,
- 	.set_channel_map  = q6dma_set_channel_map,
- 	.hw_params        = q6dma_hw_params,
-+	.trigger	= q6apm_lpass_dai_trigger,
- };
+diff --git a/sound/soc/qcom/qdsp6/q6apm.h b/sound/soc/qcom/qdsp6/q6apm.h
+index 5cf538397841..7c646ffcf956 100644
+--- a/sound/soc/qcom/qdsp6/q6apm.h
++++ b/sound/soc/qcom/qdsp6/q6apm.h
+@@ -99,6 +99,7 @@ struct q6apm_graph {
+ 	void *priv;
+ 	q6apm_cb cb;
+ 	uint32_t id;
++	uint32_t shm_iid;
+ 	struct device *dev;
+ 	struct q6apm *apm;
+ 	gpr_port_t *port;
+@@ -113,7 +114,7 @@ struct q6apm_graph {
  
- static const struct snd_soc_dai_ops q6i2s_ops = {
-@@ -263,6 +277,7 @@ static const struct snd_soc_dai_ops q6i2s_ops = {
- 	.set_channel_map  = q6dma_set_channel_map,
- 	.hw_params        = q6dma_hw_params,
- 	.set_fmt	= q6i2s_set_fmt,
-+	.trigger	= q6apm_lpass_dai_trigger,
- };
- 
- static const struct snd_soc_dai_ops q6hdmi_ops = {
-@@ -271,6 +286,7 @@ static const struct snd_soc_dai_ops q6hdmi_ops = {
- 	.shutdown	= q6apm_lpass_dai_shutdown,
- 	.hw_params	= q6hdmi_hw_params,
- 	.set_fmt	= q6i2s_set_fmt,
-+	.trigger	= q6apm_lpass_dai_trigger,
- };
- 
- static const struct snd_soc_component_driver q6apm_lpass_dai_component = {
+ /* Graph Operations */
+ struct q6apm_graph *q6apm_graph_open(struct device *dev, q6apm_cb cb,
+-				     void *priv, int graph_id);
++				     void *priv, int graph_id, int dir);
+ int q6apm_graph_close(struct q6apm_graph *graph);
+ int q6apm_graph_prepare(struct q6apm_graph *graph);
+ int q6apm_graph_start(struct q6apm_graph *graph);
 -- 
 2.47.3
 
