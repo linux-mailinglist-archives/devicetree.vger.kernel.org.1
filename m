@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-278272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278273-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KGntHLdBvWn28AIAu9opvQ
-	(envelope-from <devicetree+bounces-278272-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:46:47 +0100
+	id AKEbOR1DvWlq8QIAu9opvQ
+	(envelope-from <devicetree+bounces-278273-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:52:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33E7B2DA798
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:46:47 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A07312DA854
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 13:52:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 309753009B32
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:46:46 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 85511304030A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 12:52:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B2091DE4E0;
-	Fri, 20 Mar 2026 12:46:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C03783B6BF1;
+	Fri, 20 Mar 2026 12:52:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gSULDal+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qOeJFEgo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 678E7194A6C;
-	Fri, 20 Mar 2026 12:46:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94CD03ACA48;
+	Fri, 20 Mar 2026 12:52:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774010803; cv=none; b=FA0JCfZVCOw2VAhd0j+zJeJtVbuiUqqxKMrR0TO1ILEGcfvkJHr1cDhuBeyrnNKg6+RR1bxxLJ4QzFeie7tmiwEzmWjrzTiUjtzamMi7uHzCkPdjaxwunXkECRxd6zsdeL6kjM17/tOHGZDpmm6Y4u20XmcXmmwgtt7bwK06QMQ=
+	t=1774011151; cv=none; b=WcWhkPJa7QuUxijojJtiXct1CuadD5pPRfAn/xFChXNRUB7aVb0+E91BSHCBL607i5TbtZEOeTdjsHIFQMy8eyCTEsvNwd7Q4FarvP3h3t+HEAm3HKMvuOJydNJ9ovJ5McHtpbvTYL9wOtY6Bek67goVz3kn/OMPAamrrqYa76w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774010803; c=relaxed/simple;
-	bh=ikDZCto24lsL/kZUvfs3csyLpMtu/YD2NBPxKQNRa/8=;
+	s=arc-20240116; t=1774011151; c=relaxed/simple;
+	bh=Ex4ujutl+FEv6zew8/ovQA1P6gAGYLxsCZSRi1Cf6oI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j/4mxklr8czihrNvw8Qmal7cwrTpLfgcYTsm8FXgKsl6r7AmFZeUzM0/KkpIW8WqVfbm4/MYLUfUroAfdElaI1IAfePFDwNMWScvJl98qq4hhEGxLOqT4JmUuHyoSbkrPUJqjz4A2okFPbdpAe+y3BClc+K11N1sXbpnjn74AKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gSULDal+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CA05C4CEF7;
-	Fri, 20 Mar 2026 12:46:40 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=sqYwGN6Qi6PAKtuaJj/zeOlJM8agYpdle9LKA2XcJMbgzZ855fxM3kgwbhh00k9oNJskg3MX9sdS68HDOk5zBNRzgH3OZ1UB9hkBxXCAeu13Q+oy0xtdoVhFSykoKMFUQS1B5NSyN/cCsH/PVHTT4YeBWiP8u10m6Nb44OT2yjc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qOeJFEgo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A19FC4CEF7;
+	Fri, 20 Mar 2026 12:52:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774010803;
-	bh=ikDZCto24lsL/kZUvfs3csyLpMtu/YD2NBPxKQNRa/8=;
+	s=k20201202; t=1774011151;
+	bh=Ex4ujutl+FEv6zew8/ovQA1P6gAGYLxsCZSRi1Cf6oI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gSULDal+44TVNt2Ua6eIYQOvHuoQYMDC8PcVV8P+PEKI7JjLXzdKpkWTYNqEDR5dc
-	 tiDk2YTa8/XvTwcC55zLh42Ef4bedycBvvAWw5Y7YsHPvszIf4zEo7vZ9ZaR59LQap
-	 ulAsZ+bUYcveM+NBPs1AMhYeKALxThvaL6UtEO+6le9Kk2/xfx/76AaowH9WjggbKV
-	 4WlkVdRlHTy2fHxo+D4RnDyiiclu6okf5ZhGu8Ax25Ng0h9Bbx6wXqeI1KcJiOvXqz
-	 IN5SFHzqT6GXuXKTrUzChzfQ98FWnTn7gTVQtsaKT/wkSi3IoI9IovIfA5PBnGxTOI
-	 n5FJuEteyDjkw==
-Message-ID: <f0699320-fc92-4d49-9ce7-871b3acc49a8@kernel.org>
-Date: Fri, 20 Mar 2026 13:46:38 +0100
+	b=qOeJFEgouL3xTUmxvPrW24YGNehiC6K1E50HFa+pomuY1aye7e5oO3AO5w2GT8FaL
+	 6PoYCbfG388VGGbAoYneY9uvek5g8Z4ks8mhIupiE5L3JhQDG7IUvlXWFAWqdgd38E
+	 nIWdPxj3FZzyeDbJAL83izPed66TLlLwIV8PjEmjJveO2nof7/ZoKIWaNxb3Vphons
+	 0qms7V6bGHJzEg2BzYdSEnoJPH64OaJM7YaNpXytzFH995fG0bqSEwn7vFiDCHUiu6
+	 nXSiMCCtvAcIjcFxxWXxhTSALoI9XFbJ1SSwWrauo8Nq5887cmqZEsfxm7ForKoCvh
+	 kToDbHp0RnIoQ==
+Message-ID: <c59cfc77-b49a-48c4-b975-026ccd3be31a@kernel.org>
+Date: Fri, 20 Mar 2026 13:52:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,19 +53,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] soc/tegra: Update BPMP ABI header
-To: Thierry Reding <thierry.reding@kernel.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jon Hunter <jonathanh@nvidia.com>,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org
-References: <20260319160110.2131954-1-thierry.reding@kernel.org>
- <20260319160110.2131954-2-thierry.reding@kernel.org>
- <435095b4-ce29-4c8a-9f63-300ff94e419a@kernel.org> <ab0T_0Pyio2SYrzq@orome>
+Subject: Re: [PATCH v6 1/2] dt-bindings: iio: proximity: add ST VL53L1X ToF
+ sensor
+To: Siratul Islam <email@sirat.me>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+ andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260319190738.151614-1-email@sirat.me>
+ <20260319190738.151614-2-email@sirat.me>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,64 +107,74 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <ab0T_0Pyio2SYrzq@orome>
+In-Reply-To: <20260319190738.151614-2-email@sirat.me>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278272-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_FROM(0.00)[bounces-278273-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 33E7B2DA798
+X-Rspamd-Queue-Id: A07312DA854
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 20/03/2026 10:34, Thierry Reding wrote:
->>> diff --git a/include/soc/tegra/bpmp-abi.h b/include/soc/tegra/bpmp-abi.h
->>> index 39bb3f87e28d..6cf6442395f1 100644
->>> --- a/include/soc/tegra/bpmp-abi.h
->>> +++ b/include/soc/tegra/bpmp-abi.h
->>> @@ -1,6 +1,6 @@
->>> -/* SPDX-License-Identifier: GPL-2.0-only */
->>> +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
->>>  /*
->>> - * Copyright (c) 2014-2022, NVIDIA CORPORATION.  All rights reserved.
->>> + * SPDX-FileCopyrightText: Copyright (c) 2014-2025, NVIDIA CORPORATION.  All rights reserved.
->>
->> You just replaced correct syntax with discouraged (as in not welcomed
->> upstream) SPDX tag.
-> 
-> Fair enough, I'm dropping the tag. I didn't know it was actively
-> discouraged and I don't see this documented anywhere. I suppose I should
-> go and drop similar tags from various other sources. Looks like we've
-> been introducing this recently for Tegra.
+On 19/03/2026 20:07, Siratul Islam wrote:
+>  
+>  properties:
+>    compatible:
+> -    const: st,vl53l0x
+> +    enum:
+> +      - st,vl53l0x
+> +      - st,vl53l1x
+>  
+>    reg:
+>      maxItems: 1
+> @@ -21,12 +24,17 @@ properties:
+>  
+>    reset-gpios:
+>      maxItems: 1
+> +    description:
+> +      Phandle to the XSHUT GPIO. Used for hardware reset.
+>  
+> -  vdd-supply: true
+> +  vdd-supply:
+> +    description:
+> +      Phandle to the vdd input voltage. This is physically required for operation.
 
-Just now Greg took my patch, so the tag is officially allowed. :)
+Drop the description. Schema tells that.
 
-Whether is preferred, depends whom you ask, so feel free to ignore my
-feedback to replace it.
+>  
+>  required:
+>    - compatible
+>    - reg
+> +  - vdd-supply
+
+That's an ABI break and nothing in commit msg explains why. You need
+rationale for this, but most likely everything was working fine before,
+so supply should not be required.
 
 Best regards,
 Krzysztof
