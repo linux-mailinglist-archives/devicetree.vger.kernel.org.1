@@ -1,135 +1,195 @@
-Return-Path: <devicetree+bounces-278311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278312-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0EAoF7VfvWl09QIAu9opvQ
-	(envelope-from <devicetree+bounces-278311-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:54:45 +0100
+	id wLklGntgvWl09QIAu9opvQ
+	(envelope-from <devicetree+bounces-278312-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:58:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C5832DC1A7
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:54:44 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53D172DC23E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:58:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0961C30B11E1
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:47:19 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 282C43040128
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:49:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6F423C13F0;
-	Fri, 20 Mar 2026 14:45:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 506473C343C;
+	Fri, 20 Mar 2026 14:48:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="YMu2+JTF"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RE1+q819"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC1423C4569;
-	Fri, 20 Mar 2026 14:45:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 575CD3C2779;
+	Fri, 20 Mar 2026 14:48:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774017948; cv=none; b=VnmWYNyTqotaB0rmSH1RqU6DCx0myF6j+qifxPly38KxqcyOsHsaiwKlHuPS7b9uUMZecbvxVYgJoRYj8c7uQalLHHekO0NwgTW1eSIHGKb2hyhvPDeWVfBgkDqcmmMnn7xKoynSkcCxauoDnLZ8njZnHML2BjqZIxB7As0XYgg=
+	t=1774018124; cv=none; b=HaH6syYTd4EQuPN8ajgM7/aQYyJPwUF9MwoHrZ8r0iX4M6zv9ttf17QzDZy4BHBKBC1a+xCWdqzPTkM7VGoWM4dFaeMau405mrg0YJr0+mDquD5tVugObSifZO28CQ1I7v7GHiR0nOcwZPFPzANn+0ZVUm4dFKAkdLpOigCWJHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774017948; c=relaxed/simple;
-	bh=qBa55GlxA29pRQ/jYvrAaZksNOPxLN72XF9M10MlWlI=;
+	s=arc-20240116; t=1774018124; c=relaxed/simple;
+	bh=OG5ta8TNUJ0M6sD7PsAszRf+kOm3BqIKrdAoOVoMsOg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mEW7z1uStFE0TFQusQW6O6bKYs95IIn5M96iuroww9dKhbdTOGljneEUQ+opo0fEriq01XQvrt472F+ZArkF1qxC8e0EG+4Rg3fxkUIdMngssUzyTCeaYrPflEwjWsdT8TbI6q2EPnsQqTDW+RWBmteUMXZfc2oYUvkLMoj2WJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=YMu2+JTF; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=zkkFxBKoL0Oafe+OXBoXrA0rys94DPf2mbkJ030SJKA=; b=YMu2+JTFYiwkNNmfXzc5QT0AFa
-	XgHEjMBV4PyHyZYCYYimrHXoPH5HutN5pvlG5GFh9WtULnU5K6Sjh4ZLOvPV33aU5/5eqUtR3KxA4
-	LP3G++TTfL6i+CTJ6e6F9GvR6nIkhuUM/qltvLCM/3VAvka8h2G2zmYcXYUXxN15GjCPMKoxreOjf
-	JIVtG6a1w3ugStzWc/uP0j7euB0NYniAbwD84RZmTuan6wwv6oTEN8CitXSVigmsQJHSRFF81v5ke
-	4SRrimN/19kavH+E84ye0sg/hH9ratpJ0n+K085WeOPqW5FHdN57ZyexR16pysJ2v+KCBoCozwQ6s
-	7VSKMScQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:46618)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1w3b6U-000000006AJ-15Xu;
-	Fri, 20 Mar 2026 14:45:34 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1w3b6R-000000000u4-2REG;
-	Fri, 20 Mar 2026 14:45:31 +0000
-Date: Fri, 20 Mar 2026 14:45:31 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Mark Brown <broonie@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Nr/hqQQU66AbGTZsRfDcCZ82Hizm+uy09Z0KkacC/y8lmnvjM0K8InzBFWPVSSSRx2qtKnTj4NxSnCss5xkzzuq2hZsoLGOEMFK7P5odSGCkoaJyo5SQEA43QV4WamubVjqKfOLa5B1QgzKVSi6/juJPjhq9oi9PbIzMiGXMOUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RE1+q819; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1774018123; x=1805554123;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=OG5ta8TNUJ0M6sD7PsAszRf+kOm3BqIKrdAoOVoMsOg=;
+  b=RE1+q819pJM9v9i0UfSs4Y4+XKV+j1a65Ryt+BRLcKgM3g53rXHkzxC+
+   9vhWMfG2B3lUgKLDF016D1U0d5dgOX6+jduNclNSxH9RRXWwGbiDrWzy3
+   cdACvk92vsowG4PrEOoY8pj6d+kfpQKkLLA5x61iTmn+xYLB1xTR28XEI
+   LOCx902Ry/UGUBbUm6i6QJywcylTsPAevlaNXrKiYmZc01ZcEAlFdeHIT
+   FfjJKErEYiPjuaYz9NO6bKNnFpH5PoxWoQCCDD/yaCtSxr+Kh/0vz/KSv
+   NLDWy0YO6//TDqIlykZFx2edaukfGPQBazguqCAIBLrj8mam/om2drHzO
+   w==;
+X-CSE-ConnectionGUID: P3m7lOdDQ7quptQjkSMqtA==
+X-CSE-MsgGUID: L33SsF6gRYmpPOP5VThb9A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11735"; a="97722946"
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
+   d="scan'208";a="97722946"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 07:48:42 -0700
+X-CSE-ConnectionGUID: VPKa9dnzTfKdyNT/LrgBCQ==
+X-CSE-MsgGUID: RgKf8xR4TReXVqrXyEcUqg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
+   d="scan'208";a="223327699"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.40])
+  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 07:48:38 -0700
+Date: Fri, 20 Mar 2026 16:48:35 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Carlos Jones Jr <carlosjr.jones@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] net: sfp: manage receiver and transmitter
- regulators
-Message-ID: <ab1diwlayiWMsBIx@shell.armlinux.org.uk>
-References: <20260303-sfp-regulators-v1-0-7101ae34cb84@bootlin.com>
- <aacpVFhH8eV7dxHV@shell.armlinux.org.uk>
- <aaspCUWel9k_ls4i@sirena.co.uk>
- <6022954.DvuYhMxLoT@fw-rgant>
+	Conor Dooley <conor+dt@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Liam Beguin <liambeguin@gmail.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Tobias Sperling <tobias.sperling@softing.com>,
+	Jorge Marques <jorge.marques@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] iio: adc: ltc2309: add support for LTC2305
+Message-ID: <ab1eQ55b_8JiyAGA@ashevche-desk.local>
+References: <20260320140819.191700-1-carlosjr.jones@analog.com>
+ <20260320140819.191700-4-carlosjr.jones@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <6022954.DvuYhMxLoT@fw-rgant>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spamd-Result: default: False [1.14 / 15.00];
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260320140819.191700-4-carlosjr.jones@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278311-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,lunn.ch,davemloft.net,google.com,redhat.com,gmail.com,bootlin.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,metafoo.de,baylibre.com,analog.com,gmail.com,softing.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-278312-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[armlinux.org.uk:-];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_SPAM(0.00)[0.804];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[shell.armlinux.org.uk:mid,armlinux.org.uk:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1C5832DC1A7
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.986];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:dkim,ashevche-desk.local:mid]
+X-Rspamd-Queue-Id: 53D172DC23E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 20, 2026 at 10:39:10AM +0100, Romain Gantois wrote:
-> Originally, I implemented a runtime PM support in the SFP core. This allowed 
-> to cut power to the cages when the attached network interface was down, 
-> thereby saving power.
+On Fri, Mar 20, 2026 at 10:08:19PM +0800, Carlos Jones Jr wrote:
+> The LTC2305 is a 2-channel, 12-bit, fast ADC with an I2C interface,
+> compatible with the LTC2309 (which has 8 channels).
+> 
+> This patch adds support for the LTC2305 by using the chip_info
+> structure to handle the different channel configurations between the
+> two variants. The LTC2305 exposes 2 single-ended channels and 2
+> differential combinations.
+> 
+> The LTC2305 requires a 1.6μs delay between I2C write and read
+> operations, which is implemented using chip-specific timing to avoid
+> affecting existing LTC2309 functionality.
 
-Have you measured how much power is saved by this?
+...
+
+>  config LTC2309
+> -	tristate "Linear Technology LTC2309 ADC driver"
+> +	tristate "Linear Technology LTC2309 and similar ADC driver"
+>  	depends on I2C
+>  	help
+> -	  Say yes here to build support for Linear Technology LTC2309, a low
+> -	  noise, low power, 8-channel, 12-bit SAR ADC
+> +	  Say yes here to build support for Linear Technology LTC2309 and
+> +	  similar low noise, low power SAR ADCs.
+
+No, in Kconfig help text (and possibly title above) we have to be crystal
+clear for user what IPs (chips, SoCs, et cetera) are being supported by
+the driver. There is no go for 'and similar'.
+
+...
+
+> -	ltc2309->chip_info = &ltc2309_chip_info;
+> +	ltc2309->chip_info = i2c_get_match_data(client);
+
+Strictly speaking this change with the associated ID table changes should go
+in a separate patch.
+
+...
+
+>  static const struct of_device_id ltc2309_of_match[] = {
+> -	{ .compatible = "lltc,ltc2309" },
+> +	{ .compatible = "lltc,ltc2309", .data = &ltc2309_chip_info },
+
+
+> +	{ .compatible = "lltc,ltc2305", .data = &ltc2305_chip_info },
+
+Keep it ordered by the value of compatible string.
+
+>  	{ }
+>  };
+
+...
+
+>  static const struct i2c_device_id ltc2309_id[] = {
+> -	{ "ltc2309" },
+> +	{ "ltc2309", (kernel_ulong_t)&ltc2309_chip_info },
+> +	{ "ltc2305", (kernel_ulong_t)&ltc2305_chip_info },
+>  	{ }
+
+In the similar way as above.
+
+>  };
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+With Best Regards,
+Andy Shevchenko
+
+
 
