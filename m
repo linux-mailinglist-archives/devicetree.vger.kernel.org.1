@@ -1,247 +1,205 @@
-Return-Path: <devicetree+bounces-278178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278177-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yMXRItYZvWnG6QIAu9opvQ
-	(envelope-from <devicetree+bounces-278178-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:56:38 +0100
+	id AKquAb4ZvWnG6QIAu9opvQ
+	(envelope-from <devicetree+bounces-278177-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:56:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B2332D8586
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:56:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67F372D856F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:56:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 91DA1300DF71
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:56:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4085B3023340
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:55:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0F7E37FF5D;
-	Fri, 20 Mar 2026 09:56:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E69538AC6E;
+	Fri, 20 Mar 2026 09:55:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="VwYWx9Vd"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="zM1zNc1l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 342F737B006;
-	Fri, 20 Mar 2026 09:56:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774000594; cv=pass; b=pdEhtXpj4KgphD1SCrNsNhwygUEQE9HHcxl/k7qRg8aYo0VqiHYUzI8ADMX29OYQXa8cyMgnC+AbDxcPKmvUdVEurYPoLufTMcUVk5COUkrGesXU73zl786hvbEJPs4UczawfnvOBR/tASlSj+p1sK+qFa3mti68mcz+Bk9Kyhg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774000594; c=relaxed/simple;
-	bh=/ogwfcwdTz5+amWJEOLe9aINzduR0YqZP6zHY3zkx3Q=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C68B3876B8;
+	Fri, 20 Mar 2026 09:55:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774000545; cv=none; b=ksXTTskOSpFWh0kLRwkRXIw9UzgbrSsP45EhELMtv5edktC0w2t4DmMsBS3a7eIR9pPxut/p8ASoT8vqIunP0M2jhSNetl8Ul/atJjpjg6jDkNV8SoB4OzZYyLTtdWrh9VOenjYqmGTM5KTrqAhodx0xDRSljc7UD5vPiG5FyGA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774000545; c=relaxed/simple;
+	bh=P1LaCrDKF5mAQkFpO57G8wLOnUQBabpmktP3SW4QsDE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Fu8ifNYWQpp1P8CWm4nGuSLP41x36amPdjzTPiti3twc3WC2QaE4rxf/EZNsPf0VlnQCELn26g37qFOgJehyv24IQPiR3vvY9TQppAx5W0npVCVCf1uHdvBuwWCB7sCW5IS1A6o28fPKYXF+kKKsASkIol2SJ4b8rish2eqD6eI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=VwYWx9Vd; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1774000532; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=h0DSz51kEzkzD5GQxFGjqVlpS7fRuOcz1+18dOsFoqbVpm7PlH2mXWGefkUqCKuf/pqkpEX4b2ggBz+JP2V+rA3RDLnMpN5DrAPIuh9SzyiT+x+OC1dR73Yl8kCatmD6idBMGxENVF9TcXRrcurP+NmW5uOd7ZRr+D1J4EzmVuA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1774000532; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=AbW1WgDaf1eCMvjrjt561imFtuF6LeXvYMAHw1qjH7Y=; 
-	b=ZUgxzLriiYGd0y9C/QTADSzZgOphs0UJ4BTTMPMWqmHsYw6xdKFqnMoVkDNuNMLmwhcdjINU7WlU7Xp2WrdkKdhoD4zrKkedad4CC6oq23ys/XcXsjp05NFUmg/MPp7jwJGFcfGuBWQeNX41ZDGoRNEwyUfAFe07nKF3IWuCWx0=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774000532;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=AbW1WgDaf1eCMvjrjt561imFtuF6LeXvYMAHw1qjH7Y=;
-	b=VwYWx9VdOLZfpfhEf+y7/F2ogA5hJJwee0qc8vmzx6LXP5NZffrOUNZXFmPI0W4d
-	KkNKXUbZfdzNjuUagWEACMZTe2CVHR1wy+TmhJkyeyN9nhwEu/FYKwfynGSxUebbGqf
-	0+FZEkaPc9V8Hlgx8i7dScQin7/hLFCjqvDX2gCE=
-Received: by mx.zohomail.com with SMTPS id 1774000531385803.538354463539;
-	Fri, 20 Mar 2026 02:55:31 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Daniele Briguglio <hello@superkali.me>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Daniele Briguglio <hello@superkali.me>,
- kernel test robot <lkp@intel.com>
+	 MIME-Version:Content-Type; b=uMzLAVBOZvNnS0bEhokh0K7XIJO0N62qyhuL9RK5QTEKTeB5F5VUHuN45kb5AHGbI8nDFYW1Gl+ZzEJQ3um/OulFmVG4Ql065lMELCbt+DRFhBqg3ih4LDpiwDy0tKWs+CuDOM0T+zQhVK5YIFshxbIuemN/H1DyZx3eGJUywDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=zM1zNc1l; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id E7C0F4E42706;
+	Fri, 20 Mar 2026 09:55:37 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 9CBE3600E0;
+	Fri, 20 Mar 2026 09:55:37 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C5FDA104509C7;
+	Fri, 20 Mar 2026 10:55:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1774000536; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=FKggk34JAwVkoWj/rOgIcb9X6jIPbe5HuMQWES8/RXg=;
+	b=zM1zNc1l4MGxsg7TSv0b0CpkviG5wVVKdpkPwbi6nQx/RR32wPebq07IA4Ec1S5F1xsRyH
+	xQ3UY16AzGu8jirkDz/Y2tl8yb1QbOa8M5Bm9lXUvlQTjJ8ZAMW/HibntBZdyTc055e9mk
+	5RRCAeu78oh8fChJTW4TmSiZnJTJ9bOGADiSTW16SRmMr3iedP0wIY2VlXGO/OeS/rQFqr
+	Kl5mfWKWoZdNZ0m71HRd3AnmtHwBPXWFSauWy+/jbUKv/F3suW71KuxJsqEPV/5pBP9TO2
+	NNvDUeQLnN57f0/sE4HP5fsF0l/1AvsZBBKWFa4EOHTp0UYmHbZnAY2i/X53ug==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+ Mark Brown <broonie@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Subject:
- Re: [PATCH v2 3/3] clk: rockchip: rk3588: add GATE_GRF clocks for I2S MCLK
- output to IO
-Date: Fri, 20 Mar 2026 10:55:26 +0100
-Message-ID: <6947155.31r3eYUQgx@workhorse>
-In-Reply-To: <20260319-rk3588-mclk-gate-grf-v2-3-c4c8daab0762@superkali.me>
+ Re: [PATCH net-next 2/2] net: sfp: manage receiver and transmitter regulators
+Date: Fri, 20 Mar 2026 10:55:27 +0100
+Message-ID: <2824900.mvXUDI8C0e@fw-rgant>
+In-Reply-To: <aaspCUWel9k_ls4i@sirena.co.uk>
 References:
- <20260319-rk3588-mclk-gate-grf-v2-0-c4c8daab0762@superkali.me>
- <20260319-rk3588-mclk-gate-grf-v2-3-c4c8daab0762@superkali.me>
+ <20260303-sfp-regulators-v1-0-7101ae34cb84@bootlin.com>
+ <aacpVFhH8eV7dxHV@shell.armlinux.org.uk> <aaspCUWel9k_ls4i@sirena.co.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-Spamd-Result: default: False [0.34 / 15.00];
+Content-Type: multipart/signed; boundary="nextPart12859626.O9o76ZdvQC";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	CTE_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-278178-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278177-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,bootlin.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	NEURAL_HAM(-0.00)[-0.973];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,superkali.me:email,collabora.com:dkim,collabora.com:email]
-X-Rspamd-Queue-Id: 4B2332D8586
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[romain.gantois@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	NEURAL_HAM(-0.00)[-0.976];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:url]
+X-Rspamd-Queue-Id: 67F372D856F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thursday, 19 March 2026 08:34:01 Central European Standard Time Daniele Briguglio wrote:
-> The I2S MCLK outputs on RK3588 are gated by bits in the SYS_GRF
-> register SOC_CON6 (offset 0x318). These gates control whether the
-> internal CRU MCLK signals reach the external IO pins connected to
-> audio codecs.
-> 
-> The kernel should explicitly manage these gates so that audio
-> functionality does not depend on bootloader register state. This is
-> analogous to what was done for RK3576 SAI MCLK outputs [1].
-> 
-> Register the SYS_GRF as an auxiliary GRF with grf_type_sys in the
-> early clock init, and add GATE_GRF entries for all four I2S MCLK
-> output gates:
-> 
->   - I2S0_8CH_MCLKOUT_TO_IO (bit 0)
->   - I2S1_8CH_MCLKOUT_TO_IO (bit 1)
->   - I2S2_2CH_MCLKOUT_TO_IO (bit 2)
->   - I2S3_2CH_MCLKOUT_TO_IO (bit 7)
-> 
-> Board DTS files that need MCLK on an IO pin can reference these
-> clocks, e.g.:
-> 
->     clocks = <&cru I2S0_8CH_MCLKOUT_TO_IO>;
-> 
-> Tested on the Youyeetoo YY3588 (RK3588) with an ES8388 codec on I2S0.
-> 
-> [1] https://lore.kernel.org/r/20250305-rk3576-sai-v1-2-64e6cf863e9a@collabora.com/
-> 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202603191419.MH6EuPga-lkp@intel.com/
+--nextPart12859626.O9o76ZdvQC
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+Date: Fri, 20 Mar 2026 10:55:27 +0100
+Message-ID: <2824900.mvXUDI8C0e@fw-rgant>
+In-Reply-To: <aaspCUWel9k_ls4i@sirena.co.uk>
+MIME-Version: 1.0
 
-I think you can drop these two tags, the patch wasn't merged yet.
+Hello Mark,
 
-> Signed-off-by: Daniele Briguglio <hello@superkali.me>
-> ---
->  drivers/clk/rockchip/clk-rk3588.c | 23 +++++++++++++++++++++++
->  1 file changed, 23 insertions(+)
+On Friday, 6 March 2026 20:20:41 CET Mark Brown wrote:
+> On Tue, Mar 03, 2026 at 06:32:52PM +0000, Russell King (Oracle) wrote:
+> > On Tue, Mar 03, 2026 at 05:31:36PM +0000, Mark Brown wrote:
+...
 > 
-> diff --git a/drivers/clk/rockchip/clk-rk3588.c b/drivers/clk/rockchip/clk-rk3588.c
-> index 1694223f4f84..4611b6ce8217 100644
-> --- a/drivers/clk/rockchip/clk-rk3588.c
-> +++ b/drivers/clk/rockchip/clk-rk3588.c
-> @@ -5,7 +5,9 @@
->   */
->  
->  #include <linux/clk-provider.h>
-> +#include <linux/mfd/syscon.h>
->  #include <linux/of.h>
-> +#include <linux/slab.h>
->  #include <linux/of_address.h>
->  #include <linux/platform_device.h>
->  #include <linux/syscore_ops.h>
-> @@ -892,6 +894,8 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
->  			RK3588_CLKGATE_CON(8), 0, GFLAGS),
->  	MUX(I2S2_2CH_MCLKOUT, "i2s2_2ch_mclkout", i2s2_2ch_mclkout_p, CLK_SET_RATE_PARENT,
->  			RK3588_CLKSEL_CON(30), 2, 1, MFLAGS),
-> +	GATE_GRF(I2S2_2CH_MCLKOUT_TO_IO, "i2s2_2ch_mclkout_to_io", "i2s2_2ch_mclkout",
-> +			0, 0x0318, 2, GFLAGS, grf_type_sys),
-
-For the register offset, please add another patch which adds a
-#define RK3588_SYSGRF_SOC_CON6 0x318
-to `include/soc/rockchip/rk3588_grf.h`, and then use that name
-here by including that header. Alternatively, just define it
-in this file (though it's up to Heiko to decide what he prefers.)
-
->  
->  	COMPOSITE(CLK_I2S3_2CH_SRC, "clk_i2s3_2ch_src", gpll_aupll_p, 0,
->  			RK3588_CLKSEL_CON(30), 8, 1, MFLAGS, 3, 5, DFLAGS,
-> @@ -907,6 +911,8 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
->  			RK3588_CLKGATE_CON(8), 4, GFLAGS),
->  	MUX(I2S3_2CH_MCLKOUT, "i2s3_2ch_mclkout", i2s3_2ch_mclkout_p, CLK_SET_RATE_PARENT,
->  			RK3588_CLKSEL_CON(32), 2, 1, MFLAGS),
-> +	GATE_GRF(I2S3_2CH_MCLKOUT_TO_IO, "i2s3_2ch_mclkout_to_io", "i2s3_2ch_mclkout",
-> +			0, 0x0318, 7, GFLAGS, grf_type_sys),
->  	GATE(PCLK_ACDCDIG, "pclk_acdcdig", "pclk_audio_root", 0,
->  			RK3588_CLKGATE_CON(7), 11, GFLAGS),
->  	GATE(HCLK_I2S0_8CH, "hclk_i2s0_8ch", "hclk_audio_root", 0,
-> @@ -935,6 +941,8 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
->  			RK3588_CLKGATE_CON(7), 10, GFLAGS),
->  	MUX(I2S0_8CH_MCLKOUT, "i2s0_8ch_mclkout", i2s0_8ch_mclkout_p, CLK_SET_RATE_PARENT,
->  			RK3588_CLKSEL_CON(28), 2, 2, MFLAGS),
-> +	GATE_GRF(I2S0_8CH_MCLKOUT_TO_IO, "i2s0_8ch_mclkout_to_io", "i2s0_8ch_mclkout",
-> +			0, 0x0318, 0, GFLAGS, grf_type_sys),
->  
->  	GATE(HCLK_PDM1, "hclk_pdm1", "hclk_audio_root", 0,
->  			RK3588_CLKGATE_CON(9), 6, GFLAGS),
-> @@ -2220,6 +2228,8 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
->  			RK3588_PMU_CLKGATE_CON(2), 13, GFLAGS),
->  	MUX(I2S1_8CH_MCLKOUT, "i2s1_8ch_mclkout", i2s1_8ch_mclkout_p, CLK_SET_RATE_PARENT,
->  			RK3588_PMU_CLKSEL_CON(9), 2, 2, MFLAGS),
-> +	GATE_GRF(I2S1_8CH_MCLKOUT_TO_IO, "i2s1_8ch_mclkout_to_io", "i2s1_8ch_mclkout",
-> +			0, 0x0318, 1, GFLAGS, grf_type_sys),
->  	GATE(PCLK_PMU1, "pclk_pmu1", "pclk_pmu0_root", CLK_IS_CRITICAL,
->  			RK3588_PMU_CLKGATE_CON(1), 0, GFLAGS),
->  	GATE(CLK_DDR_FAIL_SAFE, "clk_ddr_fail_safe", "clk_pmu0", CLK_IGNORE_UNUSED,
-> @@ -2439,6 +2449,8 @@ static struct rockchip_clk_branch rk3588_clk_branches[] = {
->  static void __init rk3588_clk_early_init(struct device_node *np)
->  {
->  	struct rockchip_clk_provider *ctx;
-> +	struct rockchip_aux_grf *sys_grf_e;
-> +	struct regmap *sys_grf;
->  	unsigned long clk_nr_clks, max_clk_id1, max_clk_id2;
->  	void __iomem *reg_base;
->  
-> @@ -2479,6 +2491,17 @@ static void __init rk3588_clk_early_init(struct device_node *np)
->  			&rk3588_cpub1clk_data, rk3588_cpub1clk_rates,
->  			ARRAY_SIZE(rk3588_cpub1clk_rates));
->  
-> +	/* Register SYS_GRF for I2S MCLK output to IO gate clocks */
-> +	sys_grf = syscon_regmap_lookup_by_compatible("rockchip,rk3588-sys-grf");
-> +	if (!IS_ERR(sys_grf)) {
-> +		sys_grf_e = kzalloc_obj(*sys_grf_e);
-> +		if (sys_grf_e) {
-> +			sys_grf_e->grf = sys_grf;
-> +			sys_grf_e->type = grf_type_sys;
-> +			hash_add(ctx->aux_grf_table, &sys_grf_e->node, grf_type_sys);
-> +		}
-> +	}
-> +
->  	rockchip_clk_register_branches(ctx, rk3588_early_clk_branches,
->  				       ARRAY_SIZE(rk3588_early_clk_branches));
->  
+> > Now, if you're going to say "ah, so it has power pins, you need to
+> > describe them using a regulator" then I would say to you, when are
+> > we introducing regulators for every device we describe in DT such
+> > as LEDs, switches, GPIO pins, RAM, etc? Every device needs to have a
+> > source of power after all.
 > 
-> 
+> It sounds from the cover letter for this series like there's some demand
+> for power control of SFP cages, the cover letter isn't terribly specific
+> about what circumstances though.  Possibly there's some UI for this on
+> the system, or the hardware has some mechanism for detecting physical
+> insertion to the SFP cage (hopefully well in advance of the electrical
+> contacts being made)?  Romain, are you able to share more specifics on
+> the use case here?
 
-With that addressed, you can add a
-Reviewed-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+It seems like my upstreaming strategy was incorrect. The series that I sent is 
+a subset of my original use case, but in hindsight I should've just presented 
+the original one in the first place, that would've been clearer, sorry about 
+that.
 
-Kind regards,
-Nicolas Frattaroli
+Originally, I implemented a runtime PM support in the SFP core. This allowed 
+to cut power to the cages when the attached network interface was down, 
+thereby saving power. This is interesting since I'm dealing with a battery-
+powered system which has SFP cages. However, an upstream version of this would 
+require some kind of new userspace interface to signal indifference to module 
+detection when the upstream network interface is down. Otherwise it could 
+break existing userspace applications which expect to detect and interact with 
+SFP modules (e.g. read EEPROMs, read temperature sensors) even when their 
+upper network interfaces are down.
+
+Aside from this, what Russell told me in this message:
+
+https://lore.kernel.org/all/aacYGTBobbfJgZpp@shell.armlinux.org.uk/
+
+suggests that cutting power to SFP cages could lead to unspecified behavior 
+with some modules, so for example unloading the SFP core kernel module while 
+an SFP module was inserted could have unintended consequences... This problem 
+requires some more investigation on my side before I can submit a proper 
+runtime PM solution.
+
+Thanks,
+
+-- 
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--nextPart12859626.O9o76ZdvQC
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmm9GY8ACgkQKCYAIARz
+eA7Mbg/9FpHtkwjk65/eUWGbZFGAd2T2L4+u12D1dKOUlzXib59yk6oOSamw0OTx
+SlK8/m3KbtdxkDVe2OUe3fpYhaHJFNEekURDg4WhBGiHkcqMuHa4cm1g3jsxdmFm
+6Xqxo9WQAdRemLWdKSHxBM94Kkvp3iBUOly5+BkWlfyHqxt1oA9mkmkiL0iSJv47
++LAX4Xdmu6cOs4bgxuWJAnnS01mjOOP7oBJ6/gabjPN5oD3vwADbc6la/jvIED/8
+Hn4wwX6GRLNaXr0wkRYon9W7Nor485+sl2DPdn/KtEdw/G8AsiWCK/d+BUpWjYW0
+2x5K9oc/pYLf21rofr0ldRkvuvh9Lj3LSMt+F8E9sm5j79Bg9QNI1c0BrQ04TasK
+1aJ3shvOPHWnLBGqAxOfG+xJg2JBr4PZAVmiHHibPVN26jwUHo7/IIYv2K/o0ga8
+9SibuOo9wCFVp+0EvHtxJnyCY0+nkbqH7fbY2VSMYEPzDdPZceHebvrBgsfCvQ/Z
+cqvx1SoqKDlSUtX0Bh8TrJG2L+r88dId3th18hFUSEuwsfIjE5NxClmRpZN+9p4E
+loL1m3ggJUgPjqV6IPoS+wNnkI1HSbcEwL+Ak46ANaeqFPQpa6iDJO3jpF8bsAm6
+bB2oeZlJ9vp+7tOUXPmzT+AQ1ruty/rtnIXwbNzaeNegjjR2NHM=
+=6Xda
+-----END PGP SIGNATURE-----
+
+--nextPart12859626.O9o76ZdvQC--
+
 
 
 
