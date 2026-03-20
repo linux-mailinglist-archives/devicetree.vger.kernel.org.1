@@ -1,56 +1,83 @@
-Return-Path: <devicetree+bounces-278370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278374-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gFO9FO17vWmt9wIAu9opvQ
-	(envelope-from <devicetree+bounces-278370-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:55:09 +0100
+	id SIS9G6p/vWnH+QIAu9opvQ
+	(envelope-from <devicetree+bounces-278374-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:11:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5A9D2DE0EE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:55:08 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08A552DE565
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:11:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2E3CC3028B1A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:48:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E22BA30C1916
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:51:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADC243D567F;
-	Fri, 20 Mar 2026 16:44:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B55693D810D;
+	Fri, 20 Mar 2026 16:45:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="svRE+y0z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="StnmV3E2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 538003D1CC9;
-	Fri, 20 Mar 2026 16:44:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30AF03B961D
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 16:45:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774025085; cv=none; b=OsgQGjD/MY/2G5ytrA3m0RBoieeIBOl1xu8n9/XTL7RZfj0TB0s1MYG48QRbJNxmwW2vfIYHyLrWFmxKRhW2NT+T1bq4otpVZz28ZK2dJMr+5L+5J7uJItfA1/xLpClucEQCoU9F3j0udrviviWQAKI8LYf0H3U0r1dFAiBvFmY=
+	t=1774025146; cv=none; b=QSG/p1WJ0DLScX604Uqk1WLGN+Gny68dNUf1SpxJMJvVrSAg+dtxCBUzh4CbGU7qC/RWg2q/88tWENp4m1/Q5rGn2cg+o/iNOhbTR7EMVmnrtayUX5XIa+04qDbMeKUhvesU4omgzHACKfW/EuLs5oyedM4aR5hsfCPO2KoPkLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774025085; c=relaxed/simple;
-	bh=3JqlcwNzqVml1mGtEsepM1GlRvW7I4xqcXmLf3QfRQ0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lARJw+5QgW0t/zSZ+1Ls7QlyviYFnJOwvzHqK2qM+koZkx1ej9CH1/PTK8pPtgz/81EshKtw8Vi/LppAxInhbHVtYaISXBefLAKo9FMYuuW+26Fvysqvihe4L7b/atNga9owpWsQpnjUEn5gtIUKS4IcVgcEzos2+UqL1dS2Y3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=svRE+y0z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 27325C2BCB8;
-	Fri, 20 Mar 2026 16:44:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774025085;
-	bh=3JqlcwNzqVml1mGtEsepM1GlRvW7I4xqcXmLf3QfRQ0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=svRE+y0zcTmYVS0Kvmam0dyXyke8zgbA7qsFFjxANjUT5Gk6LrZJ/+R4cnInj3JIx
-	 /2ch+qCdxr/3Bv+ZLakY+XqHFjqE38e70/oe7GIK6wd3iNhsq39ZVn8/mfkC7hGd5c
-	 WRMZW5WsQT/bESvN0LVvgfDvIS7v85kN4RBsSH0FLuY4oXQmw5qXnsbMO/Ifv/nRh1
-	 V1Govt8otQi2/+Pa9BisFK+zwef6oeg06xd/FJHePLGaJ/rXRyURHN7i5zagCfpLcJ
-	 OK6te09y2qZqHozIjzPam0ELW6VUtda8BJhnGV/Tb0Yd4dXtQPJhAHv89Yyq2mwakB
-	 h+asLOFmKMshg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1E76A10987B5;
-	Fri, 20 Mar 2026 16:44:45 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Fri, 20 Mar 2026 17:44:48 +0100
-Subject: [PATCH v7 7/7] Input: synaptics-rmi4 - support fallback values for
- PDT descriptor bytes
+	s=arc-20240116; t=1774025146; c=relaxed/simple;
+	bh=ln7S5W6Uf/xuAne/wiJa+l0b61/Ti+nERWCBB1m2EuY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NVpcC8yYb1R6wl+I5tSbftqIC5rgANjf8Igv55Pnr/Id8BQhc/3+mEZWtzSoL2ZvEfHnAapMIgJWV9x6kGokx1nZpSBOfXwEpDCB0/49cf1J3xsiqU4CfEJQmHV7Voi0o0fX+ubbwJCZD2Fbn9nLYYDnGEaIFrFraFDuwZwOjjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=StnmV3E2; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b93698bb57aso439542966b.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 09:45:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1774025143; x=1774629943; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=APS5boRfm0PmBR504YJDOGG69WFYNxRuX26D7Uz2WEc=;
+        b=StnmV3E2Dd7DSLQWAV6l914/BiWkPGYzMp/tgyhbw2OCXGYjVwBOBlXIsAdRZ8SvJE
+         C/8gsgZgqxUnAsIXRJkSEnL6etxfLKrsNTNR/rSu3L1BC3O3IFPfZTJyUmqcLWX4pK8T
+         qRNzsLdTWsfr1anO7MUs8mY1lmhSjy4RVJ6z2tDUNBGyLqrN9VWndjljUCMjI69HKhil
+         FXk73B/lZ4Io+ltW1G7lFqhYNKMAgH79CPtamthMKjzLrTdYtRzmn3FD7gK+v79bccdT
+         u7nJDzphZCgCsFz3VziEkHQZKl+3WjS4QIOcFZlz3U1BiXgwSqKloHUzXXkNJrcs9pBC
+         JOJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774025143; x=1774629943;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=APS5boRfm0PmBR504YJDOGG69WFYNxRuX26D7Uz2WEc=;
+        b=GnNEjLE1TJaxWSObcbnnbzfjQBi/zlyPJp/bEglHHAY73RC1sUPoK3GspwetP5xYDC
+         eMm6OfKGk6JKCVAkJRevT1hs3gJXJQ4sngLWt6tZTQnAN8sUvu6d1As8dnuJ1DINo4I2
+         LBBxVILvW0M4dKJwNhcf45Oi0SLuXxaOHHhdyp6UIdgFsI3b/1vaARZ6uw0i3l5S24l6
+         h2wE6OFt+Rx2qkboj9FoZKjvTUXPsd4aNfT/UbkXVlYpYTiA4m1Oyw6xMTO70cQlO6wf
+         kbZtZNZkDhsKYXnvNg7XUMhlM61VtYyahQyQi8SXVcngcstf+M/cq3ogiwtTFAzhcB87
+         McTA==
+X-Forwarded-Encrypted: i=1; AJvYcCXbbziRgb0abVK8tD2/6TgRPTaxAd+zEL8cU8+Unnq/q9rQl5zheeTzpp1NIoevJxlayTuFrUwv2Cd6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZUBCAXU+p/VaqRU8MkkQdO/ncwf2AXbr8VERZoPjHzYgQp+K4
+	0RFss+cotXoo9o4I8Z4PhVHVXxIKpbGdX9p6sjafZtOYrihALPxZQdQh
+X-Gm-Gg: ATEYQzwPDYSiaeQBdo0XEsAzzAf7tG7XJioosFM+dPNWnkTLC1oUBvCmNiyyr94eRfs
+	wYUWMtOTAEWtz5ReehFixjqkMNB1bbOZ2ZemaiEa8x3v+WU9nxGmjPG9stfa1//wt8vKDaZstd/
+	PFC1bwL3UXUqd/42vxwXSku5EjTyshLvXQYPKiTFl69QWV9fln1uODdPzO7tecr869CCbuokx40
+	u3lsAyaMrWRm6EuH3qRZPbM6cOk/bxaFXSgSMKDRFNb/x4xi2tflKRkpmtVYTPti1CMWw3WNR4I
+	Z+2nrUJKoqaR+b/kTBa1tUgfvni6KLhoWJfIDs+LriEAOadr0+/J+A/kP/2K50AJMHUut8KQxhz
+	c8GAAS6YJE56YyWoZJXP3Ch/FDj2LWydE1dTjM3C/BgO8VD64umMZP2tFwC95+3HQkvB+lIJPqu
+	2miXkv6KSqgh1ssVVmTgylycsOeg==
+X-Received: by 2002:a17:907:398c:b0:b97:a4b1:51b4 with SMTP id a640c23a62f3a-b982f59564cmr236548466b.17.1774025143256;
+        Fri, 20 Mar 2026 09:45:43 -0700 (PDT)
+Received: from [192.168.0.39] ([79.133.247.80])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b98335f1747sm176730466b.33.2026.03.20.09.45.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Mar 2026 09:45:42 -0700 (PDT)
+From: Erikas Bitovtas <xerikasxx@gmail.com>
+Subject: [PATCH v6 0/8] iio: light: vcnl4000: add regulator support
+Date: Fri, 20 Mar 2026 18:45:35 +0200
+Message-Id: <20260320-vcnl4000-regulators-v6-0-0d24d20b1a5b@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,237 +86,131 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260320-synaptics-rmi4-v7-7-379360de18d0@ixit.cz>
-References: <20260320-synaptics-rmi4-v7-0-379360de18d0@ixit.cz>
-In-Reply-To: <20260320-synaptics-rmi4-v7-0-379360de18d0@ixit.cz>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/23NTWrDMBAF4KsErasw+o2aVe5RupDksSNw7CC1o
+ iX47p0ECsJo+Yb3vnmwgjlhYefDg2WsqaR1oWDfDixe/TIhTwNlJkFaUAJ4jcusAYBnnL5n/7X
+ mwkMcRXAeRETLaHnPOKafl/rxSfmaCvV+X0+qeF7/PdH1quDArQ3UcBGNVZfp5tN8jOuNPb0qW
+ 0P2DUmGDAOGEEMwzu8N1Rq6bygyVNReu0GBPdm9oVvD9g1NhjN6jBL9aHTYG6Y13vuGIcODNIN
+ SSjowrbFt2x/lV57gxgEAAA==
+X-Change-ID: 20260310-vcnl4000-regulators-bcf1b8a01ce6
+To: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>, 
- Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, 
- Vincent Huang <vincent.huang@tw.synaptics.com>
-Cc: David Heidelberg <david@ixit.cz>, linux-input@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Casey Connolly <casey.connolly@linaro.org>, phone-devel@vger.kernel.org
+ Conor Dooley <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ phone-devel@vger.kernel.org, Erikas Bitovtas <xerikasxx@gmail.com>, 
+ Raymond Hackley <raymondhackley@protonmail.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5650; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=QMO1uzX1oG+qWT4REjO5yGwZjOwaRzQblxJ3S0B14zU=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpvXl7Q9U4PfdLwey2srzJGevl8h0ui7MAH+72Q
- qcqBZmvDheJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCab15ewAKCRBgAj/E00kg
- clvrD/9diJd5zIoKHMycuW8cwdpYvPIbOPmI1d9P9zCktRm+AoYEdCRGN3rQ8iWb4uS3mh6mLPH
- nd7V1IN2f4shG/5O9nF8qRfn/QAGQn2DQzkWdKnnrbMhB7QNYI1m1VNr+U/FS5jRNrs6fmUSL/M
- YBd2E4od79C9D40X2Jrrr6pSbocRf3aiCov3F0vZo8QGdtPBpeRWPEnc8O2RYDPoOHxEksmi8aw
- tyuxrvlT1EVryWOP1uL06L52h4laLAqoXXX+c0hGK4ZFIlJPHtqFl0kgjWSl5pW5Y88H/RGkMM2
- WEwjmpJdkL4L+QuXX7CkxFjDAbaT4g6j1EltdwYEzAD/OwPr43IXoDVqM+PApKlbzd5Z6R8eabr
- Y32kY3h25vKjEwBUSYiiG7zaXfE4TqE8aBzSl0BlWLNENIGFfBEBnLduP6sWTBugN9e+Br+RdNo
- VtyfxA6SgpbO2qWtXFffbtcRhhS9asc6huLQOrZQ9zdeZmBlvyBUWFqupm503lCAMKoIsJQluxA
- gBclZ0Qukqmy6lM10CCVcswWlX7sv8iVFI8lF7OuVxC8iLUUM48Jl5e4VVPpjNM5r04D5VJ2hpD
- b0c0p8h8NcaLUtKBNi5PHdu7SlnXD/8WNuQyREmGHqtn+nSpaLP7Xenr4UFmNligUY/FjiARsgP
- jOtxnlDdGPMh9lw==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-278374-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278370-lists,devicetree=lfdr.de,david.ixit.cz];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[disroot.org,gmail.com,kernel.org,zx2c4.com,ew.tq-group.com,tw.synaptics.com];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,gmail.com,protonmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.968];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[david@ixit.cz];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,ixit.cz:email,ixit.cz:replyto,ixit.cz:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,disroot.org:email]
-X-Rspamd-Queue-Id: E5A9D2DE0EE
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 08A552DE565
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
+This patch series introduces support for voltage supply, I2C and cathode
+regulators. This fixes an issue where if a regulator is shared between
+the proximity sensor and some other device, and the other device is
+powered off, the proximity sensor would be powered off as well.
 
-Some replacement displays include third-party touch ICs which do not
-expose the function number and the interrupt status in its PDT entries.
+One of the commits includes a Reported-by: tag without a Closes: tag -
+the report was done outside in a Matrix channel. A link to access the
+report requires sign-in, therefore it was left out.
 
-OnePlus 6 (original touch IC)
-  rmi4_i2c 12-0020: read 6 bytes at 0x00e3: 0 (2b 22 0d 06 01 01)
-
-OnePlus 6 (aftermarket touch IC)
-  rmi4_i2c 12-0020: read 6 bytes at 0x00e3: 0 (2c 23 0d 06 00 00)
-
-Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-[codeflow adjustments, checkpatch fixes, wording]
-Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
-Co-developed-by: David Heidelberg <david@ixit.cz>
-Signed-off-by: David Heidelberg <david@ixit.cz>
+Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
 ---
- drivers/input/rmi4/rmi_driver.c | 62 +++++++++++++++++++++++++++++++++++------
- drivers/input/rmi4/rmi_driver.h |  2 ++
- include/linux/rmi.h             |  3 ++
- 3 files changed, 59 insertions(+), 8 deletions(-)
+Changes in v6:
+- Added descriptions to the regulators in the binding.
+- Fixed the dt_binding_check bug in the example.
+- Link to v5: https://lore.kernel.org/r/20260319-vcnl4000-regulators-v5-0-a025d3332805@gmail.com
 
-diff --git a/drivers/input/rmi4/rmi_driver.c b/drivers/input/rmi4/rmi_driver.c
-index 93a190e333c66..bb1db5bbb3abb 100644
---- a/drivers/input/rmi4/rmi_driver.c
-+++ b/drivers/input/rmi4/rmi_driver.c
-@@ -462,9 +462,10 @@ static int rmi_driver_reset_handler(struct rmi_device *rmi_dev)
- 	return 0;
- }
- 
--static int rmi_read_pdt_entry(struct rmi_device *rmi_dev,
--			      struct pdt_entry *entry, u16 pdt_address)
-+static int rmi_read_pdt_entry(struct rmi_device *rmi_dev, struct pdt_entry *entry,
-+			      struct pdt_scan_state *state, u16 pdt_address)
- {
-+	const struct rmi_device_platform_data *pdata = rmi_get_platform_data(rmi_dev);
- 	u8 buf[RMI_PDT_ENTRY_SIZE];
- 	int error;
- 
-@@ -475,6 +476,21 @@ static int rmi_read_pdt_entry(struct rmi_device *rmi_dev,
- 		return error;
- 	}
- 
-+	if (pdata->pdt_fallback_size > state->pdt_count * RMI_OF_PDT_DESC_CELLS + 1) {
-+		/* Use the description bytes from the driver */
-+		buf[5] = pdata->pdt_fallback_desc[state->pdt_count * RMI_OF_PDT_DESC_CELLS];
-+		buf[4] = pdata->pdt_fallback_desc[state->pdt_count * RMI_OF_PDT_DESC_CELLS + 1];
-+
-+		error = rmi_read_block(rmi_dev, pdt_address, buf,
-+				RMI_PDT_ENTRY_SIZE - 2);
-+		if (error) {
-+			dev_err(&rmi_dev->dev,
-+					"Read PDT entry at %#06x failed, code: %d.\n",
-+					pdt_address, error);
-+			return error;
-+		}
-+	}
-+
- 	entry->page_start = pdt_address & RMI4_PAGE_MASK;
- 	entry->query_base_addr = buf[0];
- 	entry->command_base_addr = buf[1];
-@@ -547,7 +563,7 @@ static int rmi_scan_pdt_page(struct rmi_device *rmi_dev,
- 	int retval;
- 
- 	for (addr = pdt_start; addr >= pdt_end; addr -= RMI_PDT_ENTRY_SIZE) {
--		error = rmi_read_pdt_entry(rmi_dev, &pdt_entry, addr);
-+		error = rmi_read_pdt_entry(rmi_dev, &pdt_entry, state, addr);
- 		if (error)
- 			return error;
- 
-@@ -1024,9 +1040,13 @@ static int rmi_driver_remove(struct device *dev)
- }
- 
- #ifdef CONFIG_OF
--static int rmi_driver_of_probe(struct device *dev,
--				struct rmi_device_platform_data *pdata)
-+static const u8 rmi_s3706_fallback_pdt[] = {34, 41, 01, 01, 12, 01};
-+
-+static int rmi_driver_of_probe(struct rmi_device *rmi_dev,
-+			       struct rmi_device_platform_data *pdata)
- {
-+	struct device *dev = rmi_dev->xport->dev;
-+	u8 buf[RMI_PDT_ENTRY_SIZE];
- 	int retval;
- 
- 	retval = rmi_of_property_read_u32(dev, &pdata->reset_delay_ms,
-@@ -1034,11 +1054,37 @@ static int rmi_driver_of_probe(struct device *dev,
- 	if (retval)
- 		return retval;
- 
-+	/*
-+	 * In some aftermerket touch ICs, the first PDT entry is empty and
-+	 * the function number register is 0. If so, the driver
-+	 * may have provide backup PDT entries.
-+	 */
-+
-+	retval = rmi_read_block(rmi_dev, PDT_START_SCAN_LOCATION,
-+			buf, RMI_PDT_ENTRY_SIZE);
-+	if (retval) {
-+		dev_err(dev, "Read PDT entry at %#06x failed, code: %d.\n",
-+			PDT_START_SCAN_LOCATION, retval);
-+		return retval;
-+	}
-+
-+	if (!RMI4_END_OF_PDT(buf[5]))
-+		return 0;
-+
-+	/* List of known PDT entries per compatible. */
-+	if (of_device_is_compatible(dev->of_node, "syna,rmi4-s3706b")) {
-+		pdata->pdt_fallback_desc = rmi_s3706_fallback_pdt;
-+		pdata->pdt_fallback_size = ARRAY_SIZE(rmi_s3706_fallback_pdt);
-+	} else {
-+		dev_err(dev, "First PDT entry is empty and no backup values provided.\n");
-+		return -EINVAL;
-+	}
-+
- 	return 0;
- }
- #else
--static inline int rmi_driver_of_probe(struct device *dev,
--					struct rmi_device_platform_data *pdata)
-+static inline int rmi_driver_of_probe(struct rmi_device *rmi_dev,
-+				      struct rmi_device_platform_data *pdata)
- {
- 	return -ENODEV;
- }
-@@ -1159,7 +1205,7 @@ static int rmi_driver_probe(struct device *dev)
- 	pdata = rmi_get_platform_data(rmi_dev);
- 
- 	if (rmi_dev->xport->dev->of_node) {
--		retval = rmi_driver_of_probe(rmi_dev->xport->dev, pdata);
-+		retval = rmi_driver_of_probe(rmi_dev, pdata);
- 		if (retval)
- 			return retval;
- 	}
-diff --git a/drivers/input/rmi4/rmi_driver.h b/drivers/input/rmi4/rmi_driver.h
-index a4ae2af93ce3a..b931f428713bf 100644
---- a/drivers/input/rmi4/rmi_driver.h
-+++ b/drivers/input/rmi4/rmi_driver.h
-@@ -31,6 +31,8 @@
- #define RMI_PDT_FUNCTION_VERSION_MASK   0x60
- #define RMI_PDT_INT_SOURCE_COUNT_MASK   0x07
- 
-+#define RMI_OF_PDT_DESC_CELLS 2
-+
- #define PDT_START_SCAN_LOCATION 0x00e9
- #define PDT_END_SCAN_LOCATION	0x0005
- #define RMI4_END_OF_PDT(id) ((id) == 0x00 || (id) == 0xff)
-diff --git a/include/linux/rmi.h b/include/linux/rmi.h
-index ab7eea01ab427..4ba2cefac8558 100644
---- a/include/linux/rmi.h
-+++ b/include/linux/rmi.h
-@@ -214,6 +214,9 @@ struct rmi_device_platform_data {
- 	int reset_delay_ms;
- 	int irq;
- 
-+	unsigned int pdt_fallback_size;
-+	const u8 *pdt_fallback_desc;
-+
- 	struct rmi_device_platform_data_spi spi_data;
- 
- 	/* function handler pdata */
+Changes in v5:
+- Renamed vddio-supply to vio-supply.
+- Added parentheses to function calls in a variable usage commit message.
+- Moved the redundant "proximity-near-level" check removal into its own
+  patch.
+- Link to v4: https://lore.kernel.org/r/20260316-vcnl4000-regulators-v4-0-854fc2eaf54b@gmail.com
 
+Changes in v4:
+- Reworded device tree bindings commit into imperative mood and
+  clarified where do supplies come from.
+- Moved data->chip_spec->set_power_state() calls from init functions to
+  probe.
+- Removed explicit less than 0 checks for ret where unnecessary.
+- Moved the patch that adds regulators to the end of the series.
+- Added an explanation for removing duplicate prints in probe.
+- Fixed indentation for devm_regulator_bulk_get_enable() and i2c_smbus
+  writes in vcnl4200_init().
+- Removed a redundant check for "proximity-near-level" device property.
+- Link to v3: https://lore.kernel.org/r/20260314-vcnl4000-regulators-v3-0-3c4a48d30676@gmail.com
+
+Changes in v3:
+- Added a more detailed description for supplies in the dt-bindings commit.
+- Separated sorting includes into a commit of its own.
+- Replaced all occurrences of mutex_init with its device-managed
+  counterpart.
+- Moved client->dev variable declaration into a commit for adding
+  regulators.
+- Removed redundant dev_err messages in probe function.
+- Replaced all direct usages of client->dev and data->client into usages
+  by variable.
+- Link to v2: https://lore.kernel.org/r/20260312-vcnl4000-regulators-v2-0-2bdebbcbb58a@gmail.com
+
+Changes in v2:
+- Removed double quotes in includes.
+- Reordered includes alphabetically.
+- Enabled regulators before the mutex is initialized.
+- Replaced direct usage of &client->dev with a variable.
+- Link to v1: https://lore.kernel.org/r/20260311-vcnl4000-regulators-v1-0-66b6038ce563@gmail.com
+
+---
+Erikas Bitovtas (8):
+      dt-bindings: iio: light: vcnl4000: add regulators
+      iio: light: vcnl4000: sort includes by their name
+      iio: light: vcnl4000: move power enablement from init to probe
+      iio: light: vcnl4000: replace mutex_init() with devm_mutex_init()
+      iio: light: vcnl4000: remove error messages for trigger and irq
+      iio: light: vcnl4000: use variables for I2C client and device instances
+      iio: light: vcnl4000: remove redundant check for proximity-near-level
+      iio: light: vcnl4000: add support for regulators
+
+ .../bindings/iio/light/vishay,vcnl4000.yaml        | 14 ++++
+ drivers/iio/light/vcnl4000.c                       | 90 ++++++++++++----------
+ 2 files changed, 63 insertions(+), 41 deletions(-)
+---
+base-commit: 785f0eb2f85decbe7c1ef9ae922931f0194ffc2e
+change-id: 20260310-vcnl4000-regulators-bcf1b8a01ce6
+
+Best regards,
 -- 
-2.53.0
-
+Erikas Bitovtas <xerikasxx@gmail.com>
 
 
