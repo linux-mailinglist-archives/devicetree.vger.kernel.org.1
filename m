@@ -1,597 +1,282 @@
-Return-Path: <devicetree+bounces-278187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278188-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8FScKLQevWnG6QIAu9opvQ
-	(envelope-from <devicetree+bounces-278187-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:17:24 +0100
+	id mJw7KyEivWmr6wIAu9opvQ
+	(envelope-from <devicetree+bounces-278188-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:32:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17AD12D892D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:17:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E9F12D8B74
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:32:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 10E96301E9AE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:17:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EEE26305B0BA
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:27:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59278363C49;
-	Fri, 20 Mar 2026 10:17:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 769BE3603C5;
+	Fri, 20 Mar 2026 10:27:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ni/slink"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PpLBHWNl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52C8E2DFF3F;
-	Fri, 20 Mar 2026 10:17:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD2A3224B1E
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 10:27:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.218.53
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774001842; cv=fail; b=fnLktMb+EuUwjI/Idm5sviTBf61tDhVsUMNpfK6CxvJW1n9PQvQYvAQTalIADOJ6GoegBCfSmuJ4hjbxfigM/gvILOE1aK5Agoe0FP6jeZtzwz+DZ8r6xXqcnplgDIHAfe0bz/1oykiY7v36t6w4jYhJhIeaJ9iyqkulJy5V3gU=
+	t=1774002426; cv=pass; b=X4gxyCNGrGniWp/ru7Qy/rJfs+6CXXbJMWyuu7x8RBX3mIFGdXpP+bvNjJGmAJ8f1RTBqdiOmXb/ChMwB68M4f6kjG7FXChl8qPzfZAyUzhTWISu6UcRTGracqUeZJaOqZVaktedNMnk9r/npmWnt6LPaefSxKHaGDCX/7Ye+ag=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774001842; c=relaxed/simple;
-	bh=O5p7tnLZ6hhDudaCqTGNul27BRjfFJ5qoVUZ2AzrH/E=;
-	h=Message-ID:Date:Subject:To:CC:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=RKO8MAJQvpKe7Tt/TR8+2hXgfal6QtUNqMfTyuAwcj3FFtnUuR0IVWremuzf533L23MQM5JpSjTJ86bkgu2rFxj3XuY2gmruLL14Sex6/s+5WwDw9btyK5X1m4fRWXcy16k+CsGEm+/6fxm6mXamQ8QpCGxaz41YDiTr3++mPx8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ni/slink; arc=fail smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1774001841; x=1805537841;
-  h=message-id:date:subject:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=O5p7tnLZ6hhDudaCqTGNul27BRjfFJ5qoVUZ2AzrH/E=;
-  b=ni/slink/RPcxBuoXqLEOZv9eSqmuf7bWQRqhdjpPkATCE6c5rmSjH84
-   zNEfR+1FtDSz3icFjY/P32+LIm81Ml+bS/mV2YTIsBxfFbcmL0rFIeRT1
-   hZSA7MFIj1071VYwfRvS9hnYVcoJp6MslDSA4SI3gS4V0a9jKtCuYkwJx
-   71W0A+wDqp+c3ysLEtnyCGgFBKRey85kgKuBA+kK6myRIbSW0WHED1BAr
-   A9mWLmDJf1LL9fSW2f8xcYfP19gEoP8gFIBqTqh2JLgQDEyeRFkn0KZxB
-   aKPZwqS8mReaj1flW+Dn4CLABAhlLPglsLb8d0PJBk/Cw+uWQcBalHSlM
-   A==;
-X-CSE-ConnectionGUID: gP5vYdWWTPOwfmAAhmpEiw==
-X-CSE-MsgGUID: iHOgwkD7Sa+otI+RXXiCtg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="74100301"
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
-   d="scan'208";a="74100301"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 03:17:20 -0700
-X-CSE-ConnectionGUID: kzbbJxfjS52u/S0SqFLa+A==
-X-CSE-MsgGUID: VCe8rk1TShOVe1+LMErHeg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; 
-   d="scan'208";a="246273397"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
-  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2026 03:17:19 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 20 Mar 2026 03:17:18 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 20 Mar 2026 03:17:18 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.10) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 20 Mar 2026 03:17:16 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BQjTiy+t7HE2c2h56YAZ4jDUDTNAFpOnBS4+mzAqRnYTyzIuAo7sqWexZ9RbYfBrOEs0Ns7mWPuQ07hbZkuwck9Bn3RY/CXpAmpJJVot2zTrku/MnTTkMF2QRT+rYmOx2d/LbHRIoCvH21dynVANTJQ1iwZ1tqfEk2MAMCBxZbYsI51/uSw53k318R/KYvHMM3rBxxNaaADlrJT3oeae83mZrsLoQGxrCqQLkNArcDRdy5m9fEP9OFo2gsCuIwjoZwmSsq3wg/EUB66sFewCzIUumVzoF4aQzyoc+7KEe9YvX5eB66EpZuADndUTL0O0Zml4+UVdRXy8BrPjYq4qPQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0IyxI/36udl7nqqnOmPVLrwytkINw1koZHm+53CCl5E=;
- b=DudHkx4/xhfxkL+YJUuw+U68Iyniy6q+mqYipf8it2y1hka8ql8JGWPF3uoR74dmlQcL6mO5SAjNzeZkAnSxdgn28LLBPuQHHiWe333G/dyb+/CrlVCZKf1DnYui8HIwTqKLm5UbTVo5+gxEZbRKTqn07c9FsiuIY7eX+zb0opENGgwD78umD0XaNqIfTlROJwUJ94MPbBUdB6+3/ZAC8Zi1nBMYm6I4IUgYy6q49qx7XTg1wtUuRR1UqLFO5Wr3p9i/PuZMhpM/PE+MGlYiXECidU0fWbQHXubuOUplzbfG84OlWI1bmFBtu+Xwvm5LlFjAj3q1O/6f/pkrj8PEhQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA1PR11MB7198.namprd11.prod.outlook.com (2603:10b6:208:419::15)
- by DM3PR11MB8758.namprd11.prod.outlook.com (2603:10b6:0:47::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.13; Fri, 20 Mar
- 2026 10:17:12 +0000
-Received: from IA1PR11MB7198.namprd11.prod.outlook.com
- ([fe80::2c4e:e92a:4fa:a456]) by IA1PR11MB7198.namprd11.prod.outlook.com
- ([fe80::2c4e:e92a:4fa:a456%6]) with mapi id 15.20.9745.007; Fri, 20 Mar 2026
- 10:17:12 +0000
-Message-ID: <8e96dc15-a0de-4711-b6ab-b2b08484a502@intel.com>
-Date: Fri, 20 Mar 2026 12:17:06 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] mmc: sdhci-dwcmshc: Add Canaan K230 DWCMSHC
- controller support
-To: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>, <krzk@kernel.org>,
-	<ulf.hansson@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <pjw@kernel.org>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
-	<linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<gaohan@iscas.ac.cn>, <me@ziyao.cc>, Junhui Liu <junhui.liu@pigmoral.tech>
-References: <20260319140705.123502-1-jiayu.riscv@isrc.iscas.ac.cn>
- <20260319140705.123502-3-jiayu.riscv@isrc.iscas.ac.cn>
-Content-Language: en-US
-From: Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: c/o Alberga Business Park,
- 6 krs, Bertel Jungin Aukio 5, 02600 Espoo, Business Identity Code: 0357606 -
- 4, Domiciled in Helsinki
-In-Reply-To: <20260319140705.123502-3-jiayu.riscv@isrc.iscas.ac.cn>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: DU2PR04CA0339.eurprd04.prod.outlook.com
- (2603:10a6:10:2b4::18) To IA1PR11MB7198.namprd11.prod.outlook.com
- (2603:10b6:208:419::15)
+	s=arc-20240116; t=1774002426; c=relaxed/simple;
+	bh=ELyoKRyizz66seXcv2qeoC8f+kwqZGUSISPj2I4t0W4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=V0GoIpqSYOOu7X4RM5ftd4B8xrU0nNXspnbnbCpQBU3sqRGVoYle/wycrDV2MFr8+azzLys6Q0grGRpZE6+xaiJG/tx5kaoJplSzpyCmDtq+w6lXXClguECcb1h6lBm53kGFbpSoTiMBg0K/FSjzI1HsQWcENbTCMPYYBhl++H0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PpLBHWNl; arc=pass smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b932fe2e1a7so231843066b.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 03:27:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774002423; cv=none;
+        d=google.com; s=arc-20240605;
+        b=K2gZIu7y9OLWPuFyHVg/etlD5EF5Hups6+/hozRUM6nxsTfUUrQW1jI+fh4spLkAmS
+         +uOsFsuh75lWXdVQgnxeW7AVOldHfoRKj9cnekn5CFscg4LT5u63Xs1WI/6Y58lQglxA
+         ecoWNexucChqCTZUUi0gMNkBIOR8mDmNz60B51ZfVBkb+L056gYAP812DszrH77dDqTd
+         cC1BhPuZvB9JXoTIdo3f1IdUdlk19FRA6uTS+ZtZpPoxDxLs6nz1S3r3U+nso9HmR4sa
+         Py+NTZMMXp29P3DBD6WyU+0wQc7as0+wSZOAHF94UgB4TxJXSCHGlPk9WBBReDPCXr2P
+         qcwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=Of1GTO29+yjjKMoSpTK0dYyRr27IYqJgiYG8Z21ueZY=;
+        fh=MPDvWcXN3LjA0wYd1d7mHNh8t9j0bztxwaO/SYkzxaM=;
+        b=Hylp83K2j2+15GOztEXKMtHawbm283EavSJhsme2PhY9U7R1rzC9v1AiBaO8FmVIC9
+         PVjkFQwPizBnKRdM7RmHDl88zYpXyzBwbr80EbIuuEf7mM3JMta2nNKg45bk6q6tiIoS
+         Dw2y3pMSlOV9XI4H2y0shK+MdiL5cxjso2ppBBbUGLclGJgGnswMQuv64WbNXEoD04H0
+         qW53Ipo/k4KUXGo/RMZvVR1YUG3/vuw+sbNzHQHr9iKiACtvdupKi9NVUSV6Vq/ikAz9
+         Lof6i19YNcKR9JmyxMH+Zb4xAHEeT395AkWJAB74YUFw0UFwr4BIKW232pNZGmskh+Dc
+         tDOg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1774002423; x=1774607223; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Of1GTO29+yjjKMoSpTK0dYyRr27IYqJgiYG8Z21ueZY=;
+        b=PpLBHWNlE40z8Kv/I7M1foYQp30ZhtvWblk7k1chMD3BBJtnJ45RAO4RH5DXTOuvRW
+         z4fRADW+r5aozHj55fkiV+rpfZAI8Rgsip5VblSUo/nlGvw1Z3nUYL5/vhh1SziqVcVj
+         UbzbtRHixoWbE2QlYiq70Yo71h5JNYkXX6K/j0jJ2JKU+IFnHR+NwrkJN/l0gGOQjwnz
+         M8Fhi4yQjleELYkzF2yPvE+zkTwJnGl8HCTgsgclEC5N62+ucC/bn0LKFoTSBeRP+Ym3
+         je3//nGpo+b/jYY+my9bYeNH3WYWAKnEuk5g+wWsKGjovwYCz4zf9nWEyR/zmHeW0Qw/
+         niSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774002423; x=1774607223;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Of1GTO29+yjjKMoSpTK0dYyRr27IYqJgiYG8Z21ueZY=;
+        b=aY/Xsj4HdKgP62x1ekRSJ4RFykogwdQp6cZ8THR+LnonR8T68gjJkHPe+1huiQIjl7
+         AqehBJaidvNv7XFgt4QPasN2jYZsQjWFtuvGoQoiw5xP+avc1a4shF+SyfPTXccd/6xC
+         72qPdBpBIVbG/dp8GSfFIGQ3RS3AzkxVFYkWlBurpLlgpHRHYwEllxdFIBYUyVn49SR/
+         lnr++QYxf8eIDGZO1vB4d+yD+AjRAgviXcjKDEJZwdAtrrLn5wX2eNPy8gw9jKpUYski
+         p5OHu/OGihQD/71JumYX+hzl+ncEpNLUxtrL/EjhC2mdtNhho10eD9ELZtHHxIw9LEqb
+         t4ww==
+X-Forwarded-Encrypted: i=1; AJvYcCWziXlZ9YSGs46rH4+iGWN8Vpa2i8gcke6lEbwGKkz67kFErsQxLbcNk9cUA17Ei2A6mOWHXyyAWxUj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy91jZGjr2O1iA549PXOZ2eV83h+mz+PnTU4mcWcfDSBCAjnQNH
+	6vStAyED28pwrKzpsk6/2/ivVnOuL5a8Jfw1Ka0ZKSr5zxI1iHfE87QyWoeRK19/l8C4FC4qSD5
+	HJZPXqTNvTsaFviCjU22KsMXYy7PAXYo=
+X-Gm-Gg: ATEYQzyoUYSTBmtq0PoDMjHxZd0hn+L87y5NL9o8JP66yH02O5Mpi6iSZIAUeYADa7u
+	YcIfQ1KdAOfdA2pQefFwzeFzLRgTlKD4rGuQkYkV0kfd1guyr20mXnsW5ndrRdVnLvV5iJG/4KV
+	+zl8In5ZT63rgf789LcayzzwSu6zBC1kM9+YH8UzWUzwH7WNRwHiu+wE/QsDrMuBJsN61+CV20O
+	3J9W+hqvVKdkawUH7K8r2IN8igaE9xWtUgJv2M4Hcgo4mAb2vlSEf2/NrS6XD0hXSg1fcAyQSKx
+	5Z9BIRw=
+X-Received: by 2002:a17:906:2746:b0:b83:95c8:15d0 with SMTP id
+ a640c23a62f3a-b982f4eca0fmr137601766b.52.1774002422707; Fri, 20 Mar 2026
+ 03:27:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR11MB7198:EE_|DM3PR11MB8758:EE_
-X-MS-Office365-Filtering-Correlation-Id: 22eedfe1-f97d-4798-1374-08de8669da51
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024|56012099003|22082099003|18002099003|7053199007;
-X-Microsoft-Antispam-Message-Info: tqxH498j5WZegIdm23qvJszeuw41jmwGMmd/xGQb7Fe+ERgPIn9CZGAvz4+LFg8JMz+NMv2B/mIetUxYpsjFSERljRMfNvIdoED6LBztU0EXyRuV59umiXx5yVypFpimvCbhwTIh+2gnAVeQeGort8EPBaAzclP2Um2/4oTmKejfCik3T5yqPR2pcFAp0Gx9F9yUlJ/hhsNAgAP2fe1j/v4pbrkpGEYbpJowuO0vMkhB1d/C7LLbYQKiiKQLzKAIxbUsj7jqxD/27aSLWoIp3ObF1ldsryDxhxw/efJpPfGgCgQl+IEs5P7GxK66XnVWcMyfQVPY80GHpoY1+cAq0PqaVbpFK5itD6IuFHMfAxsu5hHG3oXnFjstaCuv9idR6bPglG82oQDK95LpD3t6zBYBWZ+HuqZVSxLROprfCV71iP9OanP7B5I0Xx0XNqRALd/hI/qozF3prOUj/1gvlg+T4T9bGmO7po2CoLFdYuoQzp7VGQXhsIw9D7slzfkcNUUpmT2DByj/PVNcZ+xH6z03IXKuKM6DlcAnjBO4RMxl4mKKENqPBuvuykcszxj3bb7iCfSMvY2useHoz5YAmBeQfjrQOeoThdMfnA9MG2HcLTdQEbr2zs64f6tov/pRtFs0tC+QF8ANDVcKaWcY76/txwFXGQnl3bKyzWR9j2Y6VGhEKmc0tWhLIBHZR2pxV0RVGqFBwQRbvSr8CTKHSkdz+jNJJq86BjP/0rdMXnw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR11MB7198.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(56012099003)(22082099003)(18002099003)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N0R0c2QwNXVOb0dwdVpXVkY2dVEvSGVNS1JnMXErblN1TTNZSVFLUlhJZjdr?=
- =?utf-8?B?N0o3RzZGU25JNXFJUm5CTlBKcmRQUUxzelRjc3hPajdmMHB2c25qQzVwVTAy?=
- =?utf-8?B?emlaVjR5S3ZHSjdjZjA4STFtTHF5Q2Nubmx1Vzh0cjc1dkdSZWFpc2psYnJ1?=
- =?utf-8?B?QnI2cVFVMWYwbDJmeXN2U3NsZ3pjRU5MM0hQRE0vWEZSUVdJMkdoQ3NubXp5?=
- =?utf-8?B?R1ZHUnB1SUZHcmJzMHU3NHNIdXRNS2NCQXppYnNvYmxJQVRLUkNzNThoWHJq?=
- =?utf-8?B?QkxnYTliUUNybUlUWHZoNXVuOEwrKy9vSXNjaG03YU5xdTVDa0lIbDJOdVZL?=
- =?utf-8?B?VHdweGp0OWZyQWlLeGxDQmNKa3NhOVFPNGtZbGczYlYyOUdDbW9hanJNYXNG?=
- =?utf-8?B?a3RvQlBBamZla3Exa0dTVEM2WHhiVTI5cC9va0tZa3BpMnN3Nm53dkpHTWFR?=
- =?utf-8?B?WEhUYmt3ei9rdjhLeGdXWmpDS00yWFc0Tkx5OG4vZzNucEYxQjhQZVB2cUpS?=
- =?utf-8?B?UldJaTkrRmJYcnZjU0J2WEN4UDNPRVdhUWxYZTRUckVOWDRpM1FLNlJBcGJO?=
- =?utf-8?B?NlI3bnNSc2pOcXVwaTlTQXlBcVNZenlxOEdpdW5mOEJncjRJMXlZNGtKSWFs?=
- =?utf-8?B?UVFGc0lmOGN6amxLS3d2cmFuSDFSQThsbHJlbGE0OUYyVU11YlRXd0Y4K3B5?=
- =?utf-8?B?dm9KOHVGRWZveEVybXdRdjA2cWE1V0t1NXFEVUpXT1d2SnByamJlN2dMeXZY?=
- =?utf-8?B?cU5sMjlQNXdYKzNPd1VHTGpXMkV1M1NEUTlpK2xvL0haMFpxQS9kSHFPdFhO?=
- =?utf-8?B?aXZsaHpZYzc4SVJQb1pYd1c2UzNGalRHNXBoWEN4aVNIL3B2YytLVUJoWWc5?=
- =?utf-8?B?emkwL2JtQnRFUFNoazROM2hFU2dtQWtNNUt0dnkzMlUwZ0lITlRmMzFvdyt5?=
- =?utf-8?B?VFBPTVZvV0grU1VhaU5QWWdSUWJ4b2tUT29tby9PcmlLcE9QSklkcHJxeE84?=
- =?utf-8?B?dy9KQmFXZ3UyM1oxSVVYZUtHc3F6OHY1Y1FnUEJpK3NpMVBSclh5d2dlOU5v?=
- =?utf-8?B?QTJGL1pyL1FINHFvUEFVUEpkZVc2emR2UmluVThxTnI5TUZCZUpQaldUampF?=
- =?utf-8?B?ZGdwSUE4bGllWmF6V2NwZUx3U28wRU1jeWRpcEVYTG44Q1BBQUtFeDZ4ZGNz?=
- =?utf-8?B?bjFQNm4zaStyb09FWHJuU0dmbGl2TWVnNm0zeEJkVGFKVnhpODNNMXVMRm95?=
- =?utf-8?B?Z2xMbXc5ek1rdFRCUndSQTVwcTBPa0JRcWl4cGxDdlZKWHVZeU1Ic1YveEhQ?=
- =?utf-8?B?UEdnVXhBNWJRZVo2NTAybTNMWUpCUHNhbkZBNE04ZFJFSVEwZExRNi82bE1S?=
- =?utf-8?B?NnhRdHd4NnhremsxaGI2RmlSeVkzVFVLdk9hSnQrbkhURERtR1hMOGIrbHd1?=
- =?utf-8?B?RHlyZTFtQjdNUHVhN1NVS0ZjeGdmWFkzRkFVNnEwcHNHS1Z2SkN1dlBlQmEv?=
- =?utf-8?B?Lzd0S0FPbm5UUkV6Ri9sVFpieVQxL0RDTTh0dWVORmh1UkJjSGtnRzRQaFRO?=
- =?utf-8?B?YmtoVDhhdjBqclAyQU1IZU1RVEUyVWVkR3ljM29HSHJINlNpYkROc2FqZFZ1?=
- =?utf-8?B?cWNTZmFadGZuV3lqYzJvWSs3WkQ3UmEzdVZiZUNWNG5pYWJUNmZ0V1RmTENa?=
- =?utf-8?B?NTA4UHRkcXBnbzZyeVNHemNFdW9rK1JLV2hDNEFrUktaQTRHUmRqdk0rcVE3?=
- =?utf-8?B?ZG5oR0JiWGdZeFc2WUZxY25BQUQ5N2hiTGZaU3ZjMkxXSDZQT0ErdGtobHRn?=
- =?utf-8?B?ZTBONGFBeE1CUkVmUUFMNlJCbkxNZHRGNWJSZXpYWWVDMGxGN1VqaTRtdTIv?=
- =?utf-8?B?dDlFeENaWG15UGV6UmNXWGtRMldwMWNBL3FzYzVyQWNoNkJIRDZiVG5MenNs?=
- =?utf-8?B?dmQxV3U2MFp0dFMxeFBkaDR5dDduL3ZERTNZSDVyczk5UTdFbWVkZzdDQmJ2?=
- =?utf-8?B?U2FPenRxRnFqTVZxWmx5b3FBTnFqdDZHclhiaTVYakp2d3ZLZkRFM2tWbjcx?=
- =?utf-8?B?YWFHcXI3dVhoZEJ2aUgyY2gvcG5rdmlWWGxRRGpvK3B6VU5ZUjVGeDBxSHlk?=
- =?utf-8?B?NzRqbEhsa096QkxXNW5UQjQwUDlZbDNpNE1nK1F0RFpYRzk4dXlMbHc5Z2ZJ?=
- =?utf-8?B?bTh5V2pYMUw0czFlTmdqcHdEMnU1U2R2dHozNlBFZG9QTmFUNHVuUnVFS2RT?=
- =?utf-8?B?RzdJelVZYlY4T0phQ3VDdjZsMCtJNVFvS1laTGVhQnlRQk5sT2pBT2lGVnRV?=
- =?utf-8?B?MXk4YTB0dFQ2OG9vR1phN3VJUnpVNXJ4RGtSdVcyZjY3QkVFWkVvTEgzUU8r?=
- =?utf-8?Q?KmecxpbcXfMN+PBQ=3D?=
-X-Exchange-RoutingPolicyChecked: anrWkqHn5halaWiLSktNHhMeL7Fl+AwDw77iZ9bbg0IeFI45dXoKU/Yc7dr41nNvqieNI7OzKqceu6ZPKrUFAzRC0RKjoStjiS7wRknHevNWZatJ2G9uacEgrIsR7zC0IW2OEi2TN8tOnd1RcXBF5McAsAi6rS3c7ClavF2+jrYyNuTmzQsXd6KocO8sLYGN+VGoMWb9LKNQXKc69OrI3TilyNk8RY0xqBXEk7BvWscJeK3qJOUQxgUjyXowCdGK26bKsdLGHMNwYHM1z10aQvXnl3yT2sqTi+w3skr6ndwj+SLpGdOC1DK0BJiBwq7rWvqI8DhCNWBtKVip1YZ5FA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 22eedfe1-f97d-4798-1374-08de8669da51
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB7198.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2026 10:17:12.7418
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qHg4iXf0u7mSlGGHSWKsaJ+7HB/kPf9qz3L7Hd5x3XjNcASMVf3AwE4JRNfJQP7bITQDV/r3sEuVw7RRTKKykQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR11MB8758
-X-OriginatorOrg: intel.com
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+References: <20260304132957.684616-1-midgy971@gmail.com> <20260319145120.99833-1-midgy971@gmail.com>
+ <2053182.usQuhbGJ8B@phil>
+In-Reply-To: <2053182.usQuhbGJ8B@phil>
+From: Midgy Balon <midgy971@gmail.com>
+Date: Fri, 20 Mar 2026 11:28:30 +0100
+X-Gm-Features: AaiRm50aoIyNWdgdoBKg1CMZ-LC4yDu8KW38iE0PNSuQDdq7oh2keNG7d0JnC3k
+Message-ID: <CA+GS1Y0CZA1sbLhoz5LM-dFCCRuWQOr-bYQUVGV4uotKUmy96A@mail.gmail.com>
+Subject: Re: [PATCH v4] arm64: dts: rockchip: rock-3b: Model PI6C20100 as gated-fixed-clock
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: linux-rockchip@lists.infradead.org, shawn.lin@rock-chips.com, 
+	jonas@kwiboo.se, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278187-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,iscas.ac.cn:email,pigmoral.tech:email];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[adrian.hunter@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 17AD12D892D
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-278188-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.858];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[midgy971@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_FIVE(0.00)[6];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,rock-chips.com:email,sntech.de:email]
+X-Rspamd-Queue-Id: 2E9F12D8B74
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 19/03/2026 16:07, Jiayu Du wrote:
-> Add SDHCI controller driver for Canaan k230 SoC. Implement custom
-> sdhci_ops for set_clock, phy init, init and reset.
-> 
-> Tested-by: Junhui Liu <junhui.liu@pigmoral.tech>
-> Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+Hello Heiko
+  > Sorry for having to bring up the process again,
+  but the patch
+  > author should match the Signed-off-by line.
 
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+  Apologies for the inconsistency. I'll fix that in v5.
 
-> ---
->  drivers/mmc/host/sdhci-of-dwcmshc.c | 260 ++++++++++++++++++++++++++++
->  1 file changed, 260 insertions(+)
-> 
-> diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> index 2b75a36c096b..2b34444b8608 100644
-> --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
-> +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> @@ -128,9 +128,11 @@
->  #define PHY_CNFG_PHY_PWRGOOD_MASK	BIT_MASK(1) /* bit [1] */
->  #define PHY_CNFG_PAD_SP_MASK		GENMASK(19, 16) /* bits [19:16] */
->  #define PHY_CNFG_PAD_SP			0x0c /* PMOS TX drive strength */
-> +#define PHY_CNFG_PAD_SP_k230		0x09 /* PMOS TX drive strength for k230 */
->  #define PHY_CNFG_PAD_SP_SG2042		0x09 /* PMOS TX drive strength for SG2042 */
->  #define PHY_CNFG_PAD_SN_MASK		GENMASK(23, 20) /* bits [23:20] */
->  #define PHY_CNFG_PAD_SN			0x0c /* NMOS TX drive strength */
-> +#define PHY_CNFG_PAD_SN_k230		0x08 /* NMOS TX drive strength for k230 */
->  #define PHY_CNFG_PAD_SN_SG2042		0x08 /* NMOS TX drive strength for SG2042 */
->  
->  /* PHY command/response pad settings */
-> @@ -153,14 +155,21 @@
->  #define PHY_PAD_RXSEL_3V3		0x2 /* Receiver type select for 3.3V */
->  
->  #define PHY_PAD_WEAKPULL_MASK		GENMASK(4, 3) /* bits [4:3] */
-> +#define PHY_PAD_WEAKPULL_DISABLED	0x0 /* Weak pull up and pull down disabled */
->  #define PHY_PAD_WEAKPULL_PULLUP		0x1 /* Weak pull up enabled */
->  #define PHY_PAD_WEAKPULL_PULLDOWN	0x2 /* Weak pull down enabled */
->  
->  #define PHY_PAD_TXSLEW_CTRL_P_MASK	GENMASK(8, 5) /* bits [8:5] */
->  #define PHY_PAD_TXSLEW_CTRL_P		0x3 /* Slew control for P-Type pad TX */
-> +#define PHY_PAD_TXSLEW_CTRL_P_k230	0x2 /* Slew control for P-Type pad TX for k230 */
->  #define PHY_PAD_TXSLEW_CTRL_N_MASK	GENMASK(12, 9) /* bits [12:9] */
->  #define PHY_PAD_TXSLEW_CTRL_N		0x3 /* Slew control for N-Type pad TX */
->  #define PHY_PAD_TXSLEW_CTRL_N_SG2042	0x2 /* Slew control for N-Type pad TX for SG2042 */
-> +#define PHY_PAD_TXSLEW_CTRL_N_k230	0x2 /* Slew control for N-Type pad TX for k230 */
-> +
-> +/* PHY Common DelayLine config settings */
-> +#define PHY_COMMDL_CNFG			(DWC_MSHC_PTR_PHY_R + 0x1c)
-> +#define PHY_COMMDL_CNFG_DLSTEP_SEL	BIT(0) /* DelayLine outputs on PAD enabled */
->  
->  /* PHY CLK delay line settings */
->  #define PHY_SDCLKDL_CNFG_R		(DWC_MSHC_PTR_PHY_R + 0x1d)
-> @@ -174,7 +183,10 @@
->  #define PHY_SDCLKDL_DC_HS400		0x18 /* delay code for HS400 mode */
->  
->  #define PHY_SMPLDL_CNFG_R		(DWC_MSHC_PTR_PHY_R + 0x20)
-> +#define PHY_SMPLDL_CNFG_EXTDLY_EN	BIT(0)
->  #define PHY_SMPLDL_CNFG_BYPASS_EN	BIT(1)
-> +#define PHY_SMPLDL_CNFG_INPSEL_MASK	GENMASK(3, 2) /* bits [3:2] */
-> +#define PHY_SMPLDL_CNFG_INPSEL		0x3 /* delay line input source */
->  
->  /* PHY drift_cclk_rx delay line configuration setting */
->  #define PHY_ATDL_CNFG_R			(DWC_MSHC_PTR_PHY_R + 0x21)
-> @@ -224,9 +236,20 @@
->  					 SDHCI_TRNS_BLK_CNT_EN | \
->  					 SDHCI_TRNS_DMA)
->  
-> +#define to_pltfm_data(priv, name) \
-> +	container_of((priv)->dwcmshc_pdata, struct name##_pltfm_data, dwcmshc_pdata)
-> +
->  /* SMC call for BlueField-3 eMMC RST_N */
->  #define BLUEFIELD_SMC_SET_EMMC_RST_N	0x82000007
->  
-> +/* Canaan specific Registers */
-> +#define SD0_CTRL			0x00
-> +#define SD0_HOST_REG_VOL_STABLE		BIT(4)
-> +#define SD0_CARD_WRITE_PROT		BIT(6)
-> +#define SD1_CTRL			0x08
-> +#define SD1_HOST_REG_VOL_STABLE		BIT(0)
-> +#define SD1_CARD_WRITE_PROT		BIT(2)
-> +
->  /* Eswin specific Registers */
->  #define EIC7700_CARD_CLK_STABLE		BIT(28)
->  #define EIC7700_INT_BCLK_STABLE		BIT(16)
-> @@ -268,6 +291,11 @@ struct eic7700_priv {
->  	unsigned int drive_impedance;
->  };
->  
-> +struct k230_priv  {
-> +	/* Canaan k230 specific */
-> +	struct regmap *hi_sys_regmap;
-> +};
-> +
->  #define DWCMSHC_MAX_OTHER_CLKS 3
->  
->  struct dwcmshc_priv {
-> @@ -278,6 +306,7 @@ struct dwcmshc_priv {
->  	int num_other_clks;
->  	struct clk_bulk_data other_clks[DWCMSHC_MAX_OTHER_CLKS];
->  
-> +	const struct dwcmshc_pltfm_data *dwcmshc_pdata;
->  	void *priv; /* pointer to SoC private stuff */
->  	u16 delay_line;
->  	u16 flags;
-> @@ -290,6 +319,14 @@ struct dwcmshc_pltfm_data {
->  	void (*postinit)(struct sdhci_host *host, struct dwcmshc_priv *dwc_priv);
->  };
->  
-> +struct k230_pltfm_data {
-> +	struct dwcmshc_pltfm_data dwcmshc_pdata;
-> +	bool is_emmc;
-> +	u32 ctrl_reg;
-> +	u32 vol_stable_bit;
-> +	u32 write_prot_bit;
-> +};
-> +
->  static void dwcmshc_enable_card_clk(struct sdhci_host *host)
->  {
->  	u16 ctrl;
-> @@ -1656,6 +1693,181 @@ static int eic7700_init(struct device *dev, struct sdhci_host *host, struct dwcm
->  	return 0;
->  }
->  
-> +static void dwcmshc_k230_sdhci_set_clock(struct sdhci_host *host, unsigned int clock)
-> +{
-> +	u16 clk;
-> +
-> +	sdhci_set_clock(host, clock);
-> +
-> +	clk = sdhci_readw(host, SDHCI_CLOCK_CONTROL);
-> +	/*
-> +	 * It is necessary to enable SDHCI_PROG_CLOCK_MODE. This is a
-> +	 * vendor-specific quirk. If this is not done, the eMMC will be
-> +	 * unable to read or write.
-> +	 */
-> +	clk |= SDHCI_PROG_CLOCK_MODE;
-> +	sdhci_writew(host, clk, SDHCI_CLOCK_CONTROL);
-> +}
-> +
-> +static void sdhci_k230_config_phy_delay(struct sdhci_host *host)
-> +{
-> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +	struct dwcmshc_priv *dwc_priv = sdhci_pltfm_priv(pltfm_host);
-> +	u32 val;
-> +
-> +	sdhci_writeb(host, PHY_COMMDL_CNFG_DLSTEP_SEL, PHY_COMMDL_CNFG);
-> +	sdhci_writeb(host, 0x0, PHY_SDCLKDL_CNFG_R);
-> +	sdhci_writeb(host, PHY_SDCLKDL_DC_INITIAL, PHY_SDCLKDL_DC_R);
-> +
-> +	val = PHY_SMPLDL_CNFG_EXTDLY_EN;
-> +	val |= FIELD_PREP(PHY_SMPLDL_CNFG_INPSEL_MASK, PHY_SMPLDL_CNFG_INPSEL);
-> +	sdhci_writeb(host, val, PHY_SMPLDL_CNFG_R);
-> +
-> +	sdhci_writeb(host, FIELD_PREP(PHY_ATDL_CNFG_INPSEL_MASK, PHY_ATDL_CNFG_INPSEL),
-> +		     PHY_ATDL_CNFG_R);
-> +
-> +	val = sdhci_readl(host, dwc_priv->vendor_specific_area1 + DWCMSHC_EMMC_ATCTRL);
-> +	val |= AT_CTRL_TUNE_CLK_STOP_EN;
-> +	val |= FIELD_PREP(AT_CTRL_PRE_CHANGE_DLY_MASK, AT_CTRL_PRE_CHANGE_DLY);
-> +	val |= FIELD_PREP(AT_CTRL_POST_CHANGE_DLY_MASK, AT_CTRL_POST_CHANGE_DLY);
-> +	sdhci_writel(host, val, dwc_priv->vendor_specific_area1 + DWCMSHC_EMMC_ATCTRL);
-> +	sdhci_writel(host, 0x0, dwc_priv->vendor_specific_area1 + DWCMSHC_AT_STAT);
-> +}
-> +
-> +static int dwcmshc_k230_phy_init(struct sdhci_host *host)
-> +{
-> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +	struct dwcmshc_priv *dwc_priv = sdhci_pltfm_priv(pltfm_host);
-> +	u32 rxsel;
-> +	u32 val;
-> +	u32 reg;
-> +	int ret;
-> +
-> +	/* reset phy */
-> +	sdhci_writew(host, 0, PHY_CNFG_R);
-> +
-> +	/* Disable the clock */
-> +	sdhci_writew(host, 0, SDHCI_CLOCK_CONTROL);
-> +
-> +	rxsel = dwc_priv->flags & FLAG_IO_FIXED_1V8 ? PHY_PAD_RXSEL_1V8 : PHY_PAD_RXSEL_3V3;
-> +
-> +	val = rxsel;
-> +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_P_MASK, PHY_PAD_TXSLEW_CTRL_P_k230);
-> +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_N_MASK, PHY_PAD_TXSLEW_CTRL_N_k230);
-> +	val |= FIELD_PREP(PHY_PAD_WEAKPULL_MASK, PHY_PAD_WEAKPULL_PULLUP);
-> +
-> +	sdhci_writew(host, val, PHY_CMDPAD_CNFG_R);
-> +	sdhci_writew(host, val, PHY_DATAPAD_CNFG_R);
-> +	sdhci_writew(host, val, PHY_RSTNPAD_CNFG_R);
-> +
-> +	val = rxsel;
-> +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_P_MASK, PHY_PAD_TXSLEW_CTRL_P_k230);
-> +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_N_MASK, PHY_PAD_TXSLEW_CTRL_N_k230);
-> +	sdhci_writew(host, val, PHY_CLKPAD_CNFG_R);
-> +
-> +	val = rxsel;
-> +	val |= FIELD_PREP(PHY_PAD_WEAKPULL_MASK, PHY_PAD_WEAKPULL_PULLDOWN);
-> +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_P_MASK, PHY_PAD_TXSLEW_CTRL_P_k230);
-> +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_N_MASK, PHY_PAD_TXSLEW_CTRL_N_k230);
-> +	sdhci_writew(host, val, PHY_STBPAD_CNFG_R);
-> +
-> +	sdhci_k230_config_phy_delay(host);
-> +
-> +	/* Wait max 150 ms */
-> +	ret = read_poll_timeout(sdhci_readl, reg,
-> +				(reg & FIELD_PREP(PHY_CNFG_PHY_PWRGOOD_MASK, 1)),
-> +				10, 150000, false, host, PHY_CNFG_R);
-> +	if (ret) {
-> +		dev_err(mmc_dev(host->mmc), "READ PHY PWRGOOD timeout!\n");
-> +		return -ETIMEDOUT;
-> +	}
-> +
-> +	reg = FIELD_PREP(PHY_CNFG_PAD_SN_MASK, PHY_CNFG_PAD_SN_k230) |
-> +	      FIELD_PREP(PHY_CNFG_PAD_SP_MASK, PHY_CNFG_PAD_SP_k230);
-> +	sdhci_writel(host, reg, PHY_CNFG_R);
-> +
-> +	/* de-assert the phy */
-> +	reg |= PHY_CNFG_RSTN_DEASSERT;
-> +	sdhci_writel(host, reg, PHY_CNFG_R);
-> +
-> +	return 0;
-> +}
-> +
-> +static void dwcmshc_k230_sdhci_reset(struct sdhci_host *host, u8 mask)
-> +{
-> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +	struct dwcmshc_priv *dwc_priv = sdhci_pltfm_priv(pltfm_host);
-> +	const struct k230_pltfm_data *k230_pdata = to_pltfm_data(dwc_priv, k230);
-> +	u8 emmc_ctrl;
-> +
-> +	dwcmshc_reset(host, mask);
-> +
-> +	if (mask != SDHCI_RESET_ALL)
-> +		return;
-> +
-> +	emmc_ctrl = sdhci_readw(host, dwc_priv->vendor_specific_area1 + DWCMSHC_EMMC_CONTROL);
-> +	sdhci_writeb(host, emmc_ctrl, dwc_priv->vendor_specific_area1 + DWCMSHC_EMMC_CONTROL);
-> +
-> +	if (k230_pdata->is_emmc)
-> +		dwcmshc_k230_phy_init(host);
-> +	else
-> +		sdhci_writel(host, 0x0, dwc_priv->vendor_specific_area1 + DWCMSHC_HOST_CTRL3);
-> +}
-> +
-> +static int dwcmshc_k230_init(struct device *dev, struct sdhci_host *host,
-> +			     struct dwcmshc_priv *dwc_priv)
-> +{
-> +	const struct k230_pltfm_data *k230_pdata = to_pltfm_data(dwc_priv, k230);
-> +	static const char * const clk_ids[] = {"block", "timer", "axi"};
-> +	struct device_node *usb_phy_node;
-> +	struct k230_priv *k230_priv;
-> +	u32 data;
-> +	int ret;
-> +
-> +	k230_priv = devm_kzalloc(dev, sizeof(struct k230_priv), GFP_KERNEL);
-> +	if (!k230_priv)
-> +		return -ENOMEM;
-> +
-> +	dwc_priv->priv = k230_priv;
-> +
-> +	usb_phy_node = of_parse_phandle(dev->of_node, "canaan,usb-phy", 0);
-> +	if (!usb_phy_node)
-> +		return dev_err_probe(dev, -ENODEV, "Failed to find canaan,usb-phy phandle\n");
-> +
-> +	k230_priv->hi_sys_regmap = device_node_to_regmap(usb_phy_node);
-> +	of_node_put(usb_phy_node);
-> +
-> +	if (IS_ERR(k230_priv->hi_sys_regmap))
-> +		return dev_err_probe(dev, PTR_ERR(k230_priv->hi_sys_regmap),
-> +				     "Failed to get k230-usb-phy regmap\n");
-> +
-> +	ret = dwcmshc_get_enable_other_clks(mmc_dev(host->mmc), dwc_priv,
-> +					    ARRAY_SIZE(clk_ids), clk_ids);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to get/enable k230 mmc other clocks\n");
-> +
-> +	if (k230_pdata->is_emmc) {
-> +		host->flags &= ~SDHCI_SIGNALING_330;
-> +		dwc_priv->flags |= FLAG_IO_FIXED_1V8;
-> +	} else {
-> +		host->mmc->caps |= MMC_CAP_SD_HIGHSPEED;
-> +		host->quirks2 |= SDHCI_QUIRK2_NO_1_8_V;
-> +	}
-> +
-> +	ret = regmap_read(k230_priv->hi_sys_regmap, k230_pdata->ctrl_reg, &data);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to read control reg 0x%x\n",
-> +				     k230_pdata->ctrl_reg);
-> +
-> +	data |= k230_pdata->write_prot_bit | k230_pdata->vol_stable_bit;
-> +	ret = regmap_write(k230_priv->hi_sys_regmap, k230_pdata->ctrl_reg, data);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to write control reg 0x%x\n",
-> +				     k230_pdata->ctrl_reg);
-> +
-> +	return 0;
-> +}
-> +
->  static const struct sdhci_ops sdhci_dwcmshc_ops = {
->  	.set_clock		= sdhci_set_clock,
->  	.set_bus_width		= sdhci_set_bus_width,
-> @@ -1743,6 +1955,15 @@ static const struct sdhci_ops sdhci_dwcmshc_eic7700_ops = {
->  	.platform_execute_tuning = sdhci_eic7700_executing_tuning,
->  };
->  
-> +static const struct sdhci_ops sdhci_dwcmshc_k230_ops = {
-> +	.set_clock = dwcmshc_k230_sdhci_set_clock,
-> +	.set_bus_width = sdhci_set_bus_width,
-> +	.set_uhs_signaling = dwcmshc_set_uhs_signaling,
-> +	.get_max_clock = sdhci_pltfm_clk_get_max_clock,
-> +	.reset = dwcmshc_k230_sdhci_reset,
-> +	.adma_write_desc = dwcmshc_adma_write_desc,
-> +};
-> +
->  static const struct dwcmshc_pltfm_data sdhci_dwcmshc_pdata = {
->  	.pdata = {
->  		.ops = &sdhci_dwcmshc_ops,
-> @@ -1834,6 +2055,36 @@ static const struct dwcmshc_pltfm_data sdhci_dwcmshc_eic7700_pdata = {
->  	.init = eic7700_init,
->  };
->  
-> +static const struct k230_pltfm_data k230_emmc_data = {
-> +	.dwcmshc_pdata = {
-> +		.pdata = {
-> +			.ops = &sdhci_dwcmshc_k230_ops,
-> +			.quirks = SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN |
-> +				  SDHCI_QUIRK_MULTIBLOCK_READ_ACMD12,
-> +		},
-> +		.init = dwcmshc_k230_init,
-> +	},
-> +	.is_emmc = true,
-> +	.ctrl_reg = SD0_CTRL,
-> +	.vol_stable_bit = SD0_HOST_REG_VOL_STABLE,
-> +	.write_prot_bit = SD0_CARD_WRITE_PROT,
-> +};
-> +
-> +static const struct k230_pltfm_data k230_sdio_data = {
-> +	.dwcmshc_pdata = {
-> +		.pdata = {
-> +			.ops = &sdhci_dwcmshc_k230_ops,
-> +			.quirks = SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN |
-> +				  SDHCI_QUIRK_MULTIBLOCK_READ_ACMD12,
-> +		},
-> +		.init = dwcmshc_k230_init,
-> +	},
-> +	.is_emmc = false,
-> +	.ctrl_reg = SD1_CTRL,
-> +	.vol_stable_bit = SD1_HOST_REG_VOL_STABLE,
-> +	.write_prot_bit = SD1_CARD_WRITE_PROT,
-> +};
-> +
->  static const struct cqhci_host_ops dwcmshc_cqhci_ops = {
->  	.enable		= dwcmshc_sdhci_cqe_enable,
->  	.disable	= sdhci_cqe_disable,
-> @@ -1906,6 +2157,14 @@ static void dwcmshc_cqhci_init(struct sdhci_host *host, struct platform_device *
->  }
->  
->  static const struct of_device_id sdhci_dwcmshc_dt_ids[] = {
-> +	{
-> +		.compatible = "canaan,k230-emmc",
-> +		.data = &k230_emmc_data.dwcmshc_pdata,
-> +	},
-> +	{
-> +		.compatible = "canaan,k230-sdio",
-> +		.data = &k230_sdio_data.dwcmshc_pdata,
-> +	},
->  	{
->  		.compatible = "rockchip,rk3588-dwcmshc",
->  		.data = &sdhci_dwcmshc_rk35xx_pdata,
-> @@ -1988,6 +2247,7 @@ static int dwcmshc_probe(struct platform_device *pdev)
->  
->  	pltfm_host = sdhci_priv(host);
->  	priv = sdhci_pltfm_priv(pltfm_host);
-> +	priv->dwcmshc_pdata = pltfm_data;
->  
->  	if (dev->of_node) {
->  		pltfm_host->clk = devm_clk_get(dev, "core");
+  > Also is the last name always "UPPER CASE" in your
+   region?
 
+  Yes it is standard practice in France to write family names in all
+capitals to distinguish them from given names, especially when the
+family name could be confused with a given name, not my case but I
+comply.
+
+  v5 sent separately.
+
+  Best regards,
+  Midgy BALON
+
+
+Le ven. 20 mars 2026 =C3=A0 09:48, Heiko Stuebner <heiko@sntech.de> a =C3=
+=A9crit :
+>
+> Am Donnerstag, 19. M=C3=A4rz 2026, 15:51:20 Mitteleurop=C3=A4ische Normal=
+zeit schrieb MidG971:
+> > The Radxa ROCK 3B uses a PI6C20100 PCIe reference clock buffer to
+> > provide a 100MHz reference clock to the PCIe 3.0 PHY and controllers.
+> > This chip is currently modeled only as a fixed regulator
+> > (vcc3v3_pi6c_03), with no clock output representation.
+> >
+> > The PI6C20100 is a clock generator, not a power supply. Model it
+> > properly as a gated-fixed-clock, following the pattern established
+> > for the Rock 5 ITX and other boards with similar PCIe clock buffer
+> > chips.
+> >
+> > The regulator node is kept as-is since it controls the power supply
+> > to the PI6C20100 chip via GPIO0_D4. The new gated-fixed-clock node
+> > references this regulator as its vdd-supply and provides a proper
+> > 100MHz clock output. The pcie3x2 node is updated to include the
+> > pipe and reference clocks, matching the approach used in
+> > rk3588-rock-5-itx.dts.
+> >
+> > Assisted-by: Claude:claude-3-opus
+> > Reviewed-by: Shawn Lin <shawn.lin@rock-chips.com>
+> > Signed-off-by: Midgy BALON <midgy971@gmail.com>
+>
+> Sorry for having to bring up the process again, but the patch
+> author should match the Signed-off-by line.
+>
+> You can update the patch author with something like:
+>   git commit --author=3D"Midgy BALON <midgy971@gmail.com>" --amend
+>
+> Also is the last name always "UPPER CASE" in your region?
+>
+> Thanks a lot for staying on this
+> Heiko
+>
+>
+> > ---
+> >
+> > Changes since v3 [1]:
+> >  - Add Reviewed-by from Shawn Lin
+> >
+> > Changes since v2 [2]:
+> >  - Fix AI attribution: use Assisted-by tag instead of Signed-off-by (Sh=
+awn)
+> >  - Add missing pipe clock (CLK_PCIE30X2_PIPE_DFT) to pcie3x2 clocks
+> >    override (Shawn, referencing David's patch [3])
+> >
+> > Changes since v1 [4]:
+> >  - Drop phy-supply approach entirely (Jonas, Shawn)
+> >  - Model PI6C20100 as gated-fixed-clock instead
+> >  - Wire reference clock to pcie3x2 controller
+> >  - Follow pattern from rk3588-rock-5-itx.dts
+> >
+> > [1] https://lore.kernel.org/linux-rockchip/20260304132957.684616-1-midg=
+y971@gmail.com/
+> > [2] https://lore.kernel.org/linux-rockchip/20260304132957.684616-1-midg=
+y971@gmail.com/
+> > [3] https://lore.kernel.org/linux-rockchip/d981fa84-bd05-ac9d-98ca-89ee=
+47177829@rock-chips.com/T/#m6a8289609e6a60691d3c06358b6322c7aa5e43d1
+> > [4] https://lore.kernel.org/linux-rockchip/20260213151452.535527-1-midg=
+y971@gmail.com/
+> >
+> >  arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 21 +++++++++++++++++=
++++-
+> >  1 file changed, 20 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/arm=
+64/boot/dts/rockchip/rk3568-rock-3b.dts
+> > index c5f67dd6dfd9..1a2b3c4d5e6f 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+> > @@ -56,7 +56,16 @@
+> >               };
+> >       };
+> >
+> > -     /* pi6c pcie clock generator */
+> > +     /* PI6C20100 PCIe reference clock buffer (100MHz) */
+> > +     pcie30_refclk: pcie-clock-generator {
+> > +             compatible =3D "gated-fixed-clock";
+> > +             #clock-cells =3D <0>;
+> > +             clock-frequency =3D <100000000>;
+> > +             clock-output-names =3D "pcie30_refclk";
+> > +             vdd-supply =3D <&vcc3v3_pi6c_03>;
+> > +     };
+> > +
+> > +     /* PI6C20100 power supply - active-high GPIO0_D4 */
+> >       vcc3v3_pi6c_03: regulator-3v3-vcc-pi6c-03 {
+> >               compatible =3D "regulator-fixed";
+> >               enable-active-high;
+> > @@ -553,6 +562,15 @@
+> >  };
+> >
+> >  &pcie3x2 {
+> > +     clocks =3D <&cru ACLK_PCIE30X2_MST>, <&cru ACLK_PCIE30X2_SLV>,
+> > +              <&cru ACLK_PCIE30X2_DBI>, <&cru PCLK_PCIE30X2>,
+> > +              <&cru CLK_PCIE30X2_AUX_NDFT>,
+> > +              <&cru CLK_PCIE30X2_PIPE_DFT>,
+> > +              <&pcie30_refclk>;
+> > +     clock-names =3D "aclk_mst", "aclk_slv",
+> > +                   "aclk_dbi", "pclk", "aux",
+> > +                   "pipe", "ref";
+> >       pinctrl-names =3D "default";
+> >       pinctrl-0 =3D <&pcie30x2m1_pins>;
+> >       reset-gpios =3D <&gpio2 RK_PD6 GPIO_ACTIVE_HIGH>;
+> > --
+> > 2.39.5
+> >
+> >
+>
+>
+>
+>
 
