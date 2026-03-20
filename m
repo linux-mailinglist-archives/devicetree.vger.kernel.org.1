@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-278377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278378-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MAghAd98vWmt9wIAu9opvQ
-	(envelope-from <devicetree+bounces-278377-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:59:11 +0100
+	id gHSXD657vWmt9wIAu9opvQ
+	(envelope-from <devicetree+bounces-278378-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:54:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFFCD2DE206
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:59:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15AE62DE0B4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:54:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E5DCB3049331
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:51:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3CCF7304E0FB
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:51:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 694FD3DEFED;
-	Fri, 20 Mar 2026 16:45:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBCCF3D811B;
+	Fri, 20 Mar 2026 16:45:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KEqnn9hf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AeW33kT1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E50B53DE442
-	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 16:45:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24D743DEFE1
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 16:45:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774025150; cv=none; b=jARQ2mRSjwsTBWXEacPuf/Gap21DSg3n2hakPZaG5ZPwlIroIYJUVNEpPc2lpWMHo4AJtpOzkf+6hnpQkouBiyU2DACp0jSvYuK5cCcXOiw+6Hv1tdlDQIX9iJSuq/Pa6sFb/peqXaJbwTz9gg2lxMm0tyrfniVDd+Xuwc6jlcI=
+	t=1774025151; cv=none; b=h/+x+rYc7shvP/krahU3+PMXrXkdmoj7og3D/oj5m6MICn9uN9sXooyFxIh2OahMZH3kyYEIFL5+s68jqIagYKyurEmZ/B5s+tq2rKhdpot0GhJa8EHjw6GchDBV/WQfA3fgIk8mOheN8RNVQx52wwYRnCAxgoJphFmb22psosI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774025150; c=relaxed/simple;
-	bh=ZojnK09Mc+1usbeK5j9s42nV+91No9sdCY+jKtF7KAg=;
+	s=arc-20240116; t=1774025151; c=relaxed/simple;
+	bh=o9yuL6PRLokAleeSzTGeuD72GREI4YTgIHEt7F+oLcQ=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Bz5Yyt4IdR+smHj9eiB+V4U8R18s5/s03NvboRq1AEX0j5eej9T9fS0evGY6YSmjj5r9IGy/CwQadaxMpoO9lAldIFHNfzK9K/kp4/5ANzfWdYiRl3ULq9vCyANPaaWDB/QW1vCw+ITrXG+Ezfr/pwOyEYwGHNTUyefKctm1c5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KEqnn9hf; arc=none smtp.client-ip=209.85.218.43
+	 In-Reply-To:To:Cc; b=iC98n+owoxqSAGXjDppWBtsZBuleakTxPJOW01Y75QEUXTu6ndiWL6MlPf+QUhb3CXxattnTUz1StONNeR2DQZMeei72TtX1Gh4zfm3zpvfpk3CvFyouECm3942njrlyW49FT25xdBtFrHZ2ULaNGSCp0uXZpCS38v/hKKIqIrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AeW33kT1; arc=none smtp.client-ip=209.85.218.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b98133bdc4bso258713266b.0
-        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 09:45:48 -0700 (PDT)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b9358bc9c50so275656966b.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 09:45:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1774025147; x=1774629947; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1774025148; x=1774629948; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=2Jvo2/D8IcbrXgv/nfUWpfBkPNW+8ec4futg+Nh84xo=;
-        b=KEqnn9hfl/Zx5D98fCEqYbBoxP0HUxhsAXydwTMC7QqJgUsBy0Y48E6fzXH8gGjRho
-         wND/w/918KEvsiSHDcH8iPtfmuj243HFANSLLP/3Qkfffy4Iq871eoaHIEzvQLQWuKef
-         5jj+R/2vzHRlSimnLj2AdKLjZBDHWG09OldGKzB752QH3QwgjioV6Os9+tzuR8eX650u
-         oY+Ou84mlZ/HP+dJk1Z24UMYfGetSd7sn6GGJtTqzKqZPoeLACyODFxSuSb4KqlKJrNT
-         xRyW9wSe51C/TYJxRVx30e2O1BN/G1Vw6TFXnTXEf6sUpUtcs+H+1kAGezMkGV/ZXs6A
-         VyuQ==
+        bh=u9tF8LrahXLfIcW+pium+UIUX/witzxrg1SajUiru84=;
+        b=AeW33kT1roubZ8TdDxaMMszZGe4awa5fx0oQ1VEsE9y+2dCdEEA8c6faqnU1He6Psm
+         ngxlm5VOdojvVIGqkhErHR08mzddnZjcTnf66EFU/wOxfNDEuMxWJDl3XsZJYH7B/3Z8
+         vthmZQdnaE0YaUZqFqWnnrJaqcEeXBBoM4rgFFyi/C6KnFGPZW6y8uoLMbLbdK8zdFc2
+         T4ir5dtRBIj2ay7yzi/X7oVNaUKZyiqg3jBrpBJ9lszua/WYoD2xO4HLSd/6ICcfXS8e
+         7CKLvbemsIlUDjbAHXXgSiNET9TAm+VUrGtbudAezzpt8oLcb6qiawcnGbW/DCJdHYDD
+         wtDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774025147; x=1774629947;
+        d=1e100.net; s=20251104; t=1774025148; x=1774629948;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=2Jvo2/D8IcbrXgv/nfUWpfBkPNW+8ec4futg+Nh84xo=;
-        b=XEx4r3Fa7YMzGik4vlkrR1cF/8Zvn0P/gMcZQ4IIwXtW3rh4YQZvOiXtiaf2CGjGFU
-         uL1+NWBcjQX4K1RPkLcHvYtqSrq58GBrtW5ytEAYbLDr61eaeEw1j8LSdYltxkrIF62n
-         VZBuux+Ou4as/GZqfJrsXfTjkUTv0gS2kEBS8xcsIRt4tyW3MrPivD0Y2c5LE89CVn3A
-         3ViEsfa4Z1bPqeHuYB4gy9bSEPxSi6zGPR79KZiwZI0nm3TFwQbY7Rvhal8BBeYkUhTH
-         DiUAEiIVHtU6Bse8dckFKT2se0aMmCF0+FguWzDol7T4mnADlFe88ihZXTjVnQ8yFpp6
-         UzzA==
-X-Forwarded-Encrypted: i=1; AJvYcCVR7fV4wY85VL6mUp0hzCA53Ok4clEeNBcV9IxUmzCHDxOK+a5ohaapjlK+FtUXDjuPMDx7cy0qRU9v@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyh4SQVKMupKgeafMv2bBXHvgG3Gy0ckFtkboCveCh8RJ6mdS1r
-	nNdlXh2kwHcmsmATTlTJpX0MhT4ppJym5JUUv0S2eyFOtgwOsizmWKwA
-X-Gm-Gg: ATEYQzxrcexDOu+ZrXFL0M8bC98reinOUfAnyhOLawJSV4gvX2qafFjcgoUae/z7TEZ
-	zUH15BKBZHlmQYgBIjynG8YUvLIffeVK/wdT8b4amzcxNUkWDQVJPlQQ42sK5h6lkKEzw4odOxA
-	rkfYaeirLC6SsI9HtxoqUQnTNiZ3CDmbGETc7zgb37SA73FJVS9bICdgywdn7zD7PFeO/wnJIC3
-	A74jwTRZssYAqPIP0a6z3H29NnqZFXqt1Dkx+tWEbrbjS72T9/smgOfDRGF7mM25Cx1lzWlc8Qm
-	g2nzl9oPtFMNGqt36nPRbqXyDe9oivDHed1N3PyZdBWpWxQMYHh8XZtF6jFikvOwwKiBxQVoYOC
-	Q+guItSjmsAoycQL33UnBewYrXrBCIpbY4ECEVD5ioQfNZe7pwlSfCpIEYSy4FNN4iskAgXCG3d
-	adauGPGQAiFYtsQsZeGvzxOpLjJQ==
-X-Received: by 2002:a17:907:e107:b0:b97:bc30:1bd with SMTP id a640c23a62f3a-b982f1ff0eamr149690066b.21.1774025147086;
-        Fri, 20 Mar 2026 09:45:47 -0700 (PDT)
+        bh=u9tF8LrahXLfIcW+pium+UIUX/witzxrg1SajUiru84=;
+        b=MdbSLYWCOKf//4lUMY6RXYQdFmAzkRXzHDezd0VxCDiV1A2XgM0MQBT/annx3W2/aq
+         vwASg11K8qcnquBiLtrI6IsOhnXZ+/6vas8SqO7et81aYiDPY15Xud2aXzMnWzw/Bfol
+         LEXXsyFOkK0erdf52bVDTsMhYk58DKoFhtEcd3Yqch4ZFEV7Qd4P4sNpuHiprI/PxslO
+         xFd6SjzHocI6PXEYqiWG9e+PywcdlqvWIzPezWMV8clTCtPwL+tnCOC36QnG/YWEU7nG
+         GdyxoU47SW/r0coKMF612gnob30dHlrwicqxApaR7r2Zlcfkfah8lH4aWMvgfKYwBg+4
+         eCOw==
+X-Forwarded-Encrypted: i=1; AJvYcCUxTPwUuILm0L+sTKgWPEE3JvyA9/D6dk/jt34/aFXFtjChm0VR7D0DFGJjvWqxT3vgvrVpz9Vuoi+L@vger.kernel.org
+X-Gm-Message-State: AOJu0YykpX6M5fSTEGbX18EkXa3W8sjo7jQOx7dsI4yjFFRpLwagvLHr
+	AM98wZo3//ibSx5WQhCHtr9Klme/nywhTcfpFsjwITIcbaQc6isaScy7
+X-Gm-Gg: ATEYQzx89qyPjRM+cDASPeXhrhKbuRuic16xKlHE4SFJABYhttvbrgTiNRGriRzRL4M
+	YHDLYnArM81YCeSIWoKo7ZPbkVq5ttyspaxI1rYjcCdr0Zgz1lS0PieNDn/SZVNkVg0CQ1TyTiU
+	C2oSxs4Tt+JC+6BGg9FaMlxu/NSbKcNmRpuq3R8YU/BYRLwM8LRPqISasiFsGo4J4GrbtKoqAB7
+	HsDrS9erxeOnK/NT/hvcS6pdlmk2LVv2wJg+Oxp4Bp5AhOyJscpvy7qt1tjjemYD/lkhq2CHbio
+	LOwSRoT47Im83yZ2rtvYDVVnWvsjpFPg4UK739aAT6vnqV3Rv2hLNpCTuS5ZjV4Rza64A+tP5/e
+	wD03iENKbuRb3ClCG6IO5y5xqGC+hM4WjqMDqrFu6XwUeci7uDSqYWqGk9kLr7dVPs3Qp23tny5
+	Wmb/Zk2IIx4U+2ld85Qrs8QtKhqA==
+X-Received: by 2002:a17:907:170c:b0:b97:9139:738 with SMTP id a640c23a62f3a-b982f2f0c72mr221017566b.33.1774025148287;
+        Fri, 20 Mar 2026 09:45:48 -0700 (PDT)
 Received: from [192.168.0.39] ([79.133.247.80])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b98335f1747sm176730466b.33.2026.03.20.09.45.46
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b98335f1747sm176730466b.33.2026.03.20.09.45.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Mar 2026 09:45:46 -0700 (PDT)
+        Fri, 20 Mar 2026 09:45:47 -0700 (PDT)
 From: Erikas Bitovtas <xerikasxx@gmail.com>
-Date: Fri, 20 Mar 2026 18:45:38 +0200
-Subject: [PATCH v6 3/8] iio: light: vcnl4000: move power enablement from
- init to probe
+Date: Fri, 20 Mar 2026 18:45:39 +0200
+Subject: [PATCH v6 4/8] iio: light: vcnl4000: replace mutex_init() with
+ devm_mutex_init()
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,7 +88,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260320-vcnl4000-regulators-v6-3-0d24d20b1a5b@gmail.com>
+Message-Id: <20260320-vcnl4000-regulators-v6-4-0d24d20b1a5b@gmail.com>
 References: <20260320-vcnl4000-regulators-v6-0-0d24d20b1a5b@gmail.com>
 In-Reply-To: <20260320-vcnl4000-regulators-v6-0-0d24d20b1a5b@gmail.com>
 To: Jonathan Cameron <jic23@kernel.org>, 
@@ -106,11 +106,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278377-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278378-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -118,68 +118,80 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.972];
+	NEURAL_HAM(-0.00)[-0.973];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,baylibre.com:email]
-X-Rspamd-Queue-Id: DFFCD2DE206
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre.com:email]
+X-Rspamd-Queue-Id: 15AE62DE0B4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Given both vcnl4000_init() and vcnl4200_init() end with
-dev->chip_spec->set_power_state(), they can be called once from the
-probe to enable the sensors. Move the set_power_state function from init
-and call it after init function in probe.
+Replace mutex_init() used across the driver with its device-managed
+counterpart, so all assigned mutexes get destroyed.
 
 Reviewed-by: David Lechner <dlechner@baylibre.com>
 Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
 ---
- drivers/iio/light/vcnl4000.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/iio/light/vcnl4000.c | 17 ++++++++++++++---
+ 1 file changed, 14 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/iio/light/vcnl4000.c b/drivers/iio/light/vcnl4000.c
-index 939ff2d65105..287ccd89cfb2 100644
+index 287ccd89cfb2..cd7e6ee42cc5 100644
 --- a/drivers/iio/light/vcnl4000.c
 +++ b/drivers/iio/light/vcnl4000.c
-@@ -280,7 +280,7 @@ static int vcnl4000_init(struct vcnl4000_data *data)
- 	data->rev = ret & 0xf;
- 	data->al_scale = 250000;
+@@ -356,6 +356,8 @@ static int vcnl4200_set_power_state(struct vcnl4000_data *data, bool on)
  
--	return data->chip_spec->set_power_state(data, true);
-+	return 0;
- };
+ static int vcnl4200_init(struct vcnl4000_data *data)
+ {
++	struct i2c_client *client = data->client;
++	struct device *dev = &client->dev;
+ 	int ret, id;
+ 	u16 regval;
  
- static ssize_t vcnl4000_write_als_enable(struct vcnl4000_data *data, bool en)
-@@ -425,10 +425,6 @@ static int vcnl4200_init(struct vcnl4000_data *data)
- 	if (ret < 0)
- 		return ret;
- 
--	ret = data->chip_spec->set_power_state(data, true);
--	if (ret < 0)
--		return ret;
--
- 	return 0;
- };
- 
-@@ -2003,6 +1999,10 @@ static int vcnl4000_probe(struct i2c_client *client)
- 	if (ret < 0)
- 		return ret;
- 
-+	ret = data->chip_spec->set_power_state(data, true);
+@@ -400,8 +402,14 @@ static int vcnl4200_init(struct vcnl4000_data *data)
+ 	}
+ 	data->al_scale = data->chip_spec->ulux_step;
+ 	data->ps_scale = 16;
+-	mutex_init(&data->vcnl4200_al.lock);
+-	mutex_init(&data->vcnl4200_ps.lock);
++
++	ret = devm_mutex_init(dev, &data->vcnl4200_al.lock);
 +	if (ret)
 +		return ret;
 +
- 	dev_dbg(&client->dev, "%s Ambient light/proximity sensor, Rev: %02x\n",
- 		data->chip_spec->prod, data->rev);
++	ret = devm_mutex_init(dev, &data->vcnl4200_ps.lock);
++	if (ret)
++		return ret;
  
+ 	/* Use 16 bits proximity sensor readings */
+ 	ret = i2c_smbus_read_word_data(data->client, VCNL4200_PS_CONF1);
+@@ -1979,6 +1987,7 @@ static int vcnl4010_probe_trigger(struct iio_dev *indio_dev)
+ static int vcnl4000_probe(struct i2c_client *client)
+ {
+ 	const struct i2c_device_id *id = i2c_client_get_device_id(client);
++	struct device *dev = &client->dev;
+ 	struct vcnl4000_data *data;
+ 	struct iio_dev *indio_dev;
+ 	int ret;
+@@ -1993,7 +2002,9 @@ static int vcnl4000_probe(struct i2c_client *client)
+ 	data->id = id->driver_data;
+ 	data->chip_spec = &vcnl4000_chip_spec_cfg[data->id];
+ 
+-	mutex_init(&data->vcnl4000_lock);
++	ret = devm_mutex_init(dev, &data->vcnl4000_lock);
++	if (ret)
++		return ret;
+ 
+ 	ret = data->chip_spec->init(data);
+ 	if (ret < 0)
 
 -- 
 2.53.0
