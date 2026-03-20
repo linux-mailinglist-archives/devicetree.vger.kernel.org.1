@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-278408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278409-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uD26LF6EvWnQ+gIAu9opvQ
-	(envelope-from <devicetree+bounces-278408-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:31:10 +0100
+	id YFYpIKmEvWnQ+gIAu9opvQ
+	(envelope-from <devicetree+bounces-278409-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:32:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19F112DEAA4
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:31:09 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41FFA2DEAE7
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:32:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6CC37315E25C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:26:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 673FB3091A9E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:26:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8768B3D3D16;
-	Fri, 20 Mar 2026 17:26:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE1D3D47A5;
+	Fri, 20 Mar 2026 17:26:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="kY1QRwQ3"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="oXN5TWgG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.166.228])
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.166.231])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 806083D3304;
-	Fri, 20 Mar 2026 17:26:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.166.228
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81F7B3D410C;
+	Fri, 20 Mar 2026 17:26:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.166.231
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774027575; cv=none; b=t9uILsFoY8FXI1rnFJ46uF8L5SarwND3KvltKp4IWaDDqIxguChy4cVSCQx52WbKQ0/+XBZykUMZ69djCOLI2lJaTxqRIs2b1jYiGqL/BA4EXkEsH7yzJeRKVdJmFxmV1yV6RuWaWKVZWAwvy+oy9g1PG9oO42796Tiw6LXl80s=
+	t=1774027586; cv=none; b=nyjEA3bm24KI87N/8c8vzc6WWXRxigzhibxWywDo7svdLbJoHNG765E7MhXUmhmmKQqJaE18VtseV/gf17KbuUbEGMTSWNZhkF0K06AXHVeDHP3KxfDXGmC2B4rjW5RKTi7KLnfgCWNtC7JzOONYp/Z5beAxo88bRJRRfBhDMD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774027575; c=relaxed/simple;
-	bh=6eBNpMAGRD93SmpD5k3GaFuop0ER4TJWzSaFC1cwH8o=;
+	s=arc-20240116; t=1774027586; c=relaxed/simple;
+	bh=zUA6Zz4yV8SPxqQ56DVLw5sDxp3oorgKmfkr1wknfMY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dLQ/IcTaarfXA1om7DKqL4wy9ssYCH5WQ8FvFt0hbuaab2aNZNOlhyJ1fb7m4+JvG7V17JxbuIUMYjFEiQkKm0DjkaTMMCfKqx8dwYnk7FoTSEJyfNFE6cnLIzkHoA7tlFPYXgXJCcyevwUWwqZ7Nk6QJ2scXQohbgP1bTR9A6M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=kY1QRwQ3; arc=none smtp.client-ip=192.19.166.228
+	 MIME-Version; b=kHqWmmLn0RxrLwJ8hPzFdWh17QsnO0QMIxDtPpj6Ft0yTbEA73Do4WNtmDlYKxBys+tvHrB6GW4gnFJmHsK0gmDRe/wFv7hQMV94q7oG1bDuXQ3/lfep6Tolo0DoLVwuyMaXvtUHZs6icLVnrFafZbD+YjDOv2I8KwS6SejWNuM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=oXN5TWgG; arc=none smtp.client-ip=192.19.166.231
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
 Received: from mail-lvn-it-01.broadcom.com (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 8B1DEC0000E0;
-	Fri, 20 Mar 2026 10:26:06 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 8B1DEC0000E0
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id E8E9CC000521;
+	Fri, 20 Mar 2026 10:26:15 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com E8E9CC000521
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1774027566;
-	bh=6eBNpMAGRD93SmpD5k3GaFuop0ER4TJWzSaFC1cwH8o=;
+	s=dkimrelay; t=1774027576;
+	bh=zUA6Zz4yV8SPxqQ56DVLw5sDxp3oorgKmfkr1wknfMY=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=kY1QRwQ3w5muBNVhyvtPfAB5OFosGF8i56QPvclc957xvUY3Zhj2bqack9JrjXdNZ
-	 LkUZ/vr7SsteZt6ETfSly8fwNuvlgcJ9hna5LEZTHWjl/qOj4SveCbZChGhwXyN5Lf
-	 th+uYNilDRqSS62ohJcA3aDUxDq4C2kOGpzibkEY=
+	b=oXN5TWgGDEmucw3n5TdZQlQj6VrZ4gcPKnCLdpH4aqu2SoqHmQoLJ3sO8kN9TyazK
+	 Fn0IJPKGBr0aN4nwyGZoXqxO2g2z2sU6SXsSEKd6ueszaqBifArto9feXVZrpg7EEi
+	 UtxLuv1Ds3ToJRbGhARvQoeCmhVcQVvZshBMrDQg=
 Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id 61C92A83;
-	Fri, 20 Mar 2026 10:26:06 -0700 (PDT)
+	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id BF504A83;
+	Fri, 20 Mar 2026 10:26:15 -0700 (PDT)
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 To: bcm-kernel-feedback-list@broadcom.com,
 	Rosen Penev <rosenp@gmail.com>,
@@ -63,12 +63,12 @@ Cc: Florian Fainelli <f.fainelli@gmail.com>,
 	Conor Dooley <conor+dt@kernel.org>,
 	"moderated list:BROADCOM BCM5301X ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
 	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/6] ARM: dts: BCM5301X: EA9200: add USB GPIOs
-Date: Fri, 20 Mar 2026 10:26:06 -0700
-Message-ID: <20260320172606.3071957-1-florian.fainelli@broadcom.com>
+Subject: Re: [PATCH 3/6] ARM: dts: BCM5301X: EA9200: add LEDs
+Date: Fri, 20 Mar 2026 10:26:15 -0700
+Message-ID: <20260320172615.3072049-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260319035324.269905-3-rosenp@gmail.com>
-References: <20260319035324.269905-1-rosenp@gmail.com> <20260319035324.269905-3-rosenp@gmail.com>
+In-Reply-To: <20260319035324.269905-4-rosenp@gmail.com>
+References: <20260319035324.269905-1-rosenp@gmail.com> <20260319035324.269905-4-rosenp@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,7 +82,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[broadcom.com,reject];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[broadcom.com:s=dkimrelay];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -90,11 +90,11 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_CC(0.00)[gmail.com,hauke-m.de,kernel.org,lists.infradead.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_TO(0.00)[broadcom.com,gmail.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-278408-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278409-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[broadcom.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[florian.fainelli@broadcom.com,devicetree@vger.kernel.org];
@@ -102,18 +102,18 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	RCPT_COUNT_SEVEN(0.00)[11];
-	NEURAL_HAM(-0.00)[-0.949];
+	NEURAL_HAM(-0.00)[-0.954];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[broadcom.com:dkim,broadcom.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 19F112DEAA4
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,broadcom.com:dkim,broadcom.com:mid]
+X-Rspamd-Queue-Id: 41FFA2DEAE7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Wed, 18 Mar 2026 20:53:20 -0700, Rosen Penev <rosenp@gmail.com> wrote:
-> Allows at least halt to turn the USB ports off.
+On Wed, 18 Mar 2026 20:53:21 -0700, Rosen Penev <rosenp@gmail.com> wrote:
+> Allows control and configuration of device LEDs.
 > 
 > Signed-off-by: Rosen Penev <rosenp@gmail.com>
 > ---
