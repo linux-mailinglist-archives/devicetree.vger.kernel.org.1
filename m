@@ -1,226 +1,200 @@
-Return-Path: <devicetree+bounces-278214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278215-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iLoaOaUmvWmr6wIAu9opvQ
-	(envelope-from <devicetree+bounces-278214-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:51:17 +0100
+	id mP2HLQ0nvWmr6wIAu9opvQ
+	(envelope-from <devicetree+bounces-278215-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:53:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DA4A2D9141
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:51:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20DC02D91E1
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:53:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E10F5301938E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:50:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 696723031CD4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:52:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 550F839C011;
-	Fri, 20 Mar 2026 10:50:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B565438736C;
+	Fri, 20 Mar 2026 10:52:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N3pQwizO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tavyppr4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD983399366
-	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 10:50:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 904E731F994;
+	Fri, 20 Mar 2026 10:52:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774003805; cv=none; b=e2LWoW0jC4xpKAXfldNfwQRolwDM/BESrTY3o3Vo0pY9Tro+rBJBm4oObF67c1ZyJP39eyhobMU6aqWmQEEUk5z17b4eXj+D60pFm4lvb3vzGC5rk90kYQqjcfo+P/cCscqQ7NJRfZEgQ6tIro/HbpFva3bTG6DwSHh2E1jKEMk=
+	t=1774003940; cv=none; b=XhULFf6aWCHPhVnbVuiv4KiHg/ARwNYIB5UurbyzthenOJDeH3MH1EckQDvyeFs4e+6Zl+5Qln4P+nLHuVIr7sBhqsvmeK8kmu53TdSnle65ILyHqWwJspGeisvvfou0/V/a04GABaq0GpL/0vw+MZRBdFyfP4yVEgmigpphS78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774003805; c=relaxed/simple;
-	bh=PNKTzdrtAWiBT6BvQVGM2hId5XOrWv5D1PEL2Jf3qck=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=FHexJBr+niQkraPt0pX1QKfqVxxWaHk3HAbaSZrGWVfwU9HY6f5gilUeQziH1DOHmg+fm96CoT1hhj4LXYGViHI705zJ3gssGiQNC6y41+GJ93zu+OkSmEc4xkK4XiqJW7xwYWk59SDwwcHoV3VHGLb3V1RCbKDAV7nbz59fDxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N3pQwizO; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-439bcec8613so319940f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 03:50:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1774003799; x=1774608599; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FU589jD2JKROuFlCbIY16RQahML1VqnyV6oSI6Eb8AE=;
-        b=N3pQwizOLgI+1bSWCvEj/dB0+4tbHwFq6hjBx9d6/cOn5Finm1hPBegzUmOkgVf6/3
-         klH6/pKzlJlfM6p13+pqk7iriQpsf2CKicBU4It25V2xinNJHGa5ep4Zd0wL2p26P8tj
-         OCByMeb7L6pgYNkNsuXDbMfqcF/OCQufryja3RT1bOhfsYJcQvUma1kMOGtZcsStiwXE
-         X3Dar/PDl1ZKTBlpYygTQ6ZOvUz08O06c9M+FOFzDHmzfA+uo5kXotvuXDs9ICaTMuJp
-         CknJCm+PmogK5eAdwqmzoZ+WpdHOg9/YiNWSokalHEtqJA1I2YEpJ8ZHWFZmyhsrrDw7
-         NxCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774003799; x=1774608599;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=FU589jD2JKROuFlCbIY16RQahML1VqnyV6oSI6Eb8AE=;
-        b=F/Gq7rFX7NtIlAF+EUszGyVioKS3+B4z8UCCPw2W8ZmgNOoDrXVyO0GK/ab89G0rbE
-         2bNpYnn76gymK7prKzkiUYFnkxc5L8xyvOXXXgUMW2V2npTjhB2tjIO6JrwzFIj4CN9B
-         qDKEKKPEU/e7uSXFizTFa6ARYTNARD6mLEieBKYLAf3bgWOfV3D9IjzruaQ4gQj5cL0x
-         NBVhHOMuM8zjGAY3ATLB2Je1XTnMRBagJ5XMCVJs+G+2GILiIjKuxunEK9WhdTRp+dBO
-         Fdl7r2vtUZbxPrVh3Qj79k9lEk7tT0TjLDSAtBEk3EVY8Jqei2rq7deUFyBQhtafHdt5
-         1+4w==
-X-Forwarded-Encrypted: i=1; AJvYcCVQSUd9kuV/FC8WuAec9N9mPIvlRBexcDIf1d5klMssi/XkjH7ocV7OaMQdlqdzbH7YamZYQ5b/Do5U@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywfqm9b9MvHQyEzY3hTfd7AY1vcInLMscoq79WVZqFK/iRzEQe8
-	ODhLUWqaWiCy2462rCYT9sP+q30j8AUKHblQzlR+7gqKjQd8+wQcDgkF
-X-Gm-Gg: ATEYQzwPsXp6of446eVWJOJlA0JyHJwZe4UgiRi1yH2p26G4jxBD3Pczpo5qon4dBkQ
-	VDDBqeM5LfQ1zuHYAMoNUw0TpKAzx1pv2hblM+9n7rS2oqiaUcJhNTnnbi4QVy0JSpm4AmNdrAH
-	/u3OrOigtTOsyFFGR35pPfzcih6HMsmF/YGcLY3mzGsEAsmj7dWNp6igmPkZ26foTpf8d9ulmtx
-	exeGuWjkfT9AT8e7FfLsWSgCvTzRt2asIuzovHgScIYKNinuLOq6XpVz+eBOT79dIVJhk7riKnP
-	R6L1GVo5mh6DekNovejb2kCPE8JZihzKEm/EPBjzNhDStRnc06f5uy+MSGB6vP43xHwliSdx9PB
-	xXcDsYyYf9dk9IraQEE0OXLDBPtC0mAwOFuQjlOsy1B+PC3gK/R1VnASCtbe77flWa7EaLyAIcK
-	P6mq3ye4//qWBR6uExL02fGSuk3yf1q98=
-X-Received: by 2002:a05:6000:290d:b0:439:d242:e8fe with SMTP id ffacd0b85a97d-43b64242fddmr4539113f8f.11.1774003798606;
-        Fri, 20 Mar 2026 03:49:58 -0700 (PDT)
-Received: from biju.lan ([2a00:23c4:a758:8a01:5b93:d2b1:bc5c:9231])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b644ae619sm6203062f8f.5.2026.03.20.03.49.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Mar 2026 03:49:58 -0700 (PDT)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v7 10/10] arm64: dts: renesas: Add initial device tree for RZ/G3L SMARC EVK board
-Date: Fri, 20 Mar 2026 10:49:44 +0000
-Message-ID: <20260320104950.42220-11-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260320104950.42220-1-biju.das.jz@bp.renesas.com>
-References: <20260320104950.42220-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1774003940; c=relaxed/simple;
+	bh=nWnGcx4oZnKCFiRxJG4rnPGbEnFPVvJfKZJowNAm2nw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZYgoNVRZSOQjDD/ShFU6W5vGQrtQ3/6bh3MpgBIFVqR35v0tpbcW2xVGRQVeYrFRfJ+M2qMBE+g0uGjRFf99hxO92+62zkPn+fuXn31AUECgT6+1UBK59o9nQm3j+DCBvjxthRBqjOSbSDDpR/uHs0qkYJnsqFbOfjR1jcGUWZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tavyppr4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2836C4CEF7;
+	Fri, 20 Mar 2026 10:52:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774003940;
+	bh=nWnGcx4oZnKCFiRxJG4rnPGbEnFPVvJfKZJowNAm2nw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tavyppr4S4D6vcQiDqcUZ4Nby0+YRCYfYd1t63E9f3gq7wQad7gCb2Fo+Kdu9qojg
+	 hSVOLpaSCxPJr/mprYMcgPOWC0D6fouOMxHWnaQ/O9YhsdAciShgtJXnZfovtUCGwp
+	 AkIgAF2AqM4+Cw5dffHEN3hhBvs6YL2ZzZrnN2KUEB3EY/FFv9/1w9gJZMTx4cpQ05
+	 nQHPPrskUGOgPPs5xdREPg2IoVUjq8t9xdtKJLIOP+0CbxK41QLy7jraucEcNrgz/K
+	 urrhQIu5+JTcRTQB07fgEmWSEqDug3yqRyLPt/wrCmkz9HRnLp6jl1kRhU0MWWhDHI
+	 rBhcdYVUHoFyw==
+Date: Fri, 20 Mar 2026 11:52:17 +0100
+From: Thierry Reding <thierry.reding@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jon Hunter <jonathanh@nvidia.com>, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 1/5] soc/tegra: Update BPMP ABI header
+Message-ID: <ab0kVVacojo8SLfw@orome>
+References: <20260319160110.2131954-1-thierry.reding@kernel.org>
+ <20260319160110.2131954-2-thierry.reding@kernel.org>
+ <435095b4-ce29-4c8a-9f63-300ff94e419a@kernel.org>
+ <ab0T_0Pyio2SYrzq@orome>
+ <1357d59f-7c38-4de0-9cc8-b40be3d7ce5b@kernel.org>
+ <e238644c-132a-43fc-b735-70f04ef3f212@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-1.66 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="u2g6mysymwufbfqc"
+Content-Disposition: inline
+In-Reply-To: <e238644c-132a-43fc-b735-70f04ef3f212@kernel.org>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278214-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278215-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
-	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	NEURAL_HAM(-0.00)[-0.958];
-	RCVD_COUNT_FIVE(0.00)[5];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	NEURAL_HAM(-0.00)[-0.917];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[thierry.reding@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[glider.be:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,renesas.com:email,bp.renesas.com:mid]
-X-Rspamd-Queue-Id: 1DA4A2D9141
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 20DC02D91E1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
 
-Add the initial device tree for the Renesas RZ/G3L SMARC EVK board.
+--u2g6mysymwufbfqc
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 1/5] soc/tegra: Update BPMP ABI header
+MIME-Version: 1.0
 
-Added placeholders to avoid compilation error with the common code in
-renesas-smarc2.dtsi.
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On Fri, Mar 20, 2026 at 10:49:43AM +0100, Krzysztof Kozlowski wrote:
+> On 20/03/2026 10:44, Krzysztof Kozlowski wrote:
+> > On 20/03/2026 10:34, Thierry Reding wrote:
+> >> On Thu, Mar 19, 2026 at 05:15:56PM +0100, Krzysztof Kozlowski wrote:
+> >>> On 19/03/2026 17:01, Thierry Reding wrote:
+> >>>> From: Thierry Reding <treding@nvidia.com>
+> >>>>
+> >>>> This update primarily adds various new commands and MRQs for Tegra26=
+4,
+> >>>> but also contains a few new annotations and fixes.
+> >>>>
+> >>>> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> >>>> ---
+> >>>>  include/soc/tegra/bpmp-abi.h | 4565 +++++++++++++++++++++++++++----=
 ---
-v6->v7:
- * No change
-v5->v6:
- * No change
-v4->v5:
- * No change
-v3->v4:
- * Collected the tag
-v2->v3:
- * No change.
-v1->v2:
- * Dropped scif node as it is already included in common platform
-   file.
----
- arch/arm64/boot/dts/renesas/Makefile          |  2 +
- .../boot/dts/renesas/r9a08g046l48-smarc.dts   | 37 +++++++++++++++++++
- 2 files changed, 39 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
+> >>>>  1 file changed, 3671 insertions(+), 894 deletions(-)
+> >>>>
+> >>>> diff --git a/include/soc/tegra/bpmp-abi.h b/include/soc/tegra/bpmp-a=
+bi.h
+> >>>> index 39bb3f87e28d..6cf6442395f1 100644
+> >>>> --- a/include/soc/tegra/bpmp-abi.h
+> >>>> +++ b/include/soc/tegra/bpmp-abi.h
+> >>>> @@ -1,6 +1,6 @@
+> >>>> -/* SPDX-License-Identifier: GPL-2.0-only */
+> >>>> +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
+>=20
+> I missed this part here - that's license change. This has like 10
+> different authors, so you must be explicit about it in commit msg and
+> you must get their acks.
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index d4dfb7fd973b..76df20d2fd29 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -179,6 +179,8 @@ dtb-$(CONFIG_ARCH_R9A08G045) += r9a08g045s33-smarc-pmod1-type-3a.dtbo
- r9a08g045s33-smarc-pmod1-type-3a-dtbs := r9a08g045s33-smarc.dtb r9a08g045s33-smarc-pmod1-type-3a.dtbo
- dtb-$(CONFIG_ARCH_R9A08G045) += r9a08g045s33-smarc-pmod1-type-3a.dtb
- 
-+dtb-$(CONFIG_ARCH_R9A08G046) += r9a08g046l48-smarc.dtb
-+
- dtb-$(CONFIG_ARCH_R9A09G011) += r9a09g011-v2mevk2.dtb
- 
- dtb-$(CONFIG_ARCH_R9A09G047) += r9a09g047e57-smarc.dtb
-diff --git a/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts b/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
-new file mode 100644
-index 000000000000..86db86335d5e
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r9a08g046l48-smarc.dts
-@@ -0,0 +1,37 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Source for the RZ/G3L SMARC EVK board
-+ *
-+ * Copyright (C) 2026 Renesas Electronics Corp.
-+ */
-+
-+/dts-v1/;
-+
-+/* Add place holder to avoid compilation error with renesas-smarc2.dtsi */
-+#define KEY_1_GPIO		1
-+#define KEY_2_GPIO		2
-+#define KEY_3_GPIO		3
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include "r9a08g046l48.dtsi"
-+#include "rzg3l-smarc-som.dtsi"
-+#include "renesas-smarc2.dtsi"
-+
-+/ {
-+	model = "Renesas SMARC EVK version 2 based on r9a08g046l48";
-+	compatible = "renesas,smarc2-evk", "renesas,rzg3l-smarcm",
-+		     "renesas,r9a08g046l48", "renesas,r9a08g046";
-+
-+	aliases {
-+		serial3 = &scif0;
-+	};
-+};
-+
-+&keys {
-+	status = "disabled";
-+
-+	/delete-node/ key-1;
-+	/delete-node/ key-2;
-+	/delete-node/ key-3;
-+};
--- 
-2.43.0
+I'm not a lawyer, but any non-NVIDIA contributions to this file were a
+license header changes by Thomas and typofixes by a random assortment of
+people. I don't think any of those changes qualify as copyrightable or
+licensable.
 
+> >>>>  /*
+> >>>> - * Copyright (c) 2014-2022, NVIDIA CORPORATION.  All rights reserve=
+d.
+> >>>> + * SPDX-FileCopyrightText: Copyright (c) 2014-2025, NVIDIA CORPORAT=
+ION.  All rights reserved.
+> >>>
+> >>> You just replaced correct syntax with discouraged (as in not welcomed
+> >>> upstream) SPDX tag.
+> >>
+> >> Fair enough, I'm dropping the tag. I didn't know it was actively
+> >> discouraged and I don't see this documented anywhere. I suppose I shou=
+ld
+> >=20
+> > I am trying to get it somehow documented as permissive, v4 is waiting
+> > for some time.
+> >=20
+>=20
+> ... feel free to encourage/review my change to get the tag officially
+> supported.
+
+I've never thought about it much, but now that I have I almost prefer
+the variant without the tag. I guess if there were a usecase where
+people wanted to extract the copyright from kernel sources for some
+reason it might make some sense, though given the state of the kernel
+that would require an awful lot of churn and it'd probably be easier
+to just extract the data using regular expressions.
+
+Thierry
+
+--u2g6mysymwufbfqc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmm9Jt4ACgkQ3SOs138+
+s6HXbRAAtrPOD82LCq07sw+Q1GXYfZtRDw7vInR2rPZX50qjyTEBVTcSKQz3UceZ
+aFcEjI7l2tQ0IwDsW9VOAzjvob46Rik4NVVczCmwjsJcReXXmqQ6NLLWU6wG48QF
+CuRhOFtnIDJ/UrY2c5AaCsi8XL4Upw6FizGy9Bte6Z+6iA5YTIRqnnrvzu37fcO6
+FA+zZti7M+wnM8uHqlzceG+mz3vZff2yNm/WLnm1JOrd8CNKMEiuznw+bB+DQW1+
+08I39eBhdHrpxLMfkfdI99TcgzJSGxtwcGwh4UgoeE52mnvG3eea41E75u9EJDbS
+/32wM0BlrxRJvIJPb1TFNWke2jD28oV+rEnILi+mLXUs2WaRrunTIFPRh2c+1PeI
+P1LE/cbsSwJr9CrroE1V2dMN0HfLhkasN6EaZ+vO031b9vTsDRITmFJwLr3cgrWy
+OHmQ8BYtwYV0cLvVv5abXP22q4oFi2mf3B6Q7cmVI5fVDGR5pKBLHTOXEdlofKAe
+DS+NmDDDJ2O9l0SHcIVBOmuBFQNs+7bRhIuHJaWNyJScQsElpgXB7SZ9Kn/KX63y
+/lkaHFZYDTRoCsa/pLo9fQjc4ouTUaOCy3KZyzKZ+BN1/yQg1lSdUZoEllsfvQ19
+nZJL+vzVVRV6u5ZRFcna+AgH0U33dZ5KdtSZplAINhscuS1tlHM=
+=wYkc
+-----END PGP SIGNATURE-----
+
+--u2g6mysymwufbfqc--
 
