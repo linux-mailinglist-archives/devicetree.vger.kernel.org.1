@@ -1,215 +1,276 @@
-Return-Path: <devicetree+bounces-278343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278344-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8LofOlZsvWnL9gIAu9opvQ
-	(envelope-from <devicetree+bounces-278343-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:48:38 +0100
+	id cNEiCuJuvWnL9gIAu9opvQ
+	(envelope-from <devicetree+bounces-278344-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:59:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4949B2DCDC9
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:48:38 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 935122DCFC2
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:59:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9F21E30672C4
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:48:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 31BC6301475F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:58:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9BF13CCFDE;
-	Fri, 20 Mar 2026 15:48:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE9CB3CD8BC;
+	Fri, 20 Mar 2026 15:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RkeiQZXc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sJiwwkWq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96CE83CCFC8;
-	Fri, 20 Mar 2026 15:48:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B95263CCFD7
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 15:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774021693; cv=none; b=BCFV0wnYlrjJ+reF56CBTEx9fKtjEUG6L+GVolvl8ynPZho4Cf9vplYy3gHFa5aDXl/6JDJ+Ttr2CYPVltPhrkDOxcbQHZCCqNeL3+0fV/U1H8lThbzwli8rSawXayYAJtOfUwrBQS7AK5qWnIV9Ugg6j4o+4DzVyaZiYpalP2w=
+	t=1774022327; cv=none; b=VYKS3X/7tllbfvmV8NKhlcvIWjLv8MLZGkr7KMwkmca6sv5AFM8JMhmXfheESCHiQUgv7iwHRJHRAXXnHmya8SQrPacn6llzdKqulyfAXSaNHpqad8NyxsYjixsusMorCjCoYcOPe//5hMkNOLcRe7WZMDnaR67xmrXr0b24mLw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774021693; c=relaxed/simple;
-	bh=mEc+1uLjL9dycMUaTvmDCS4x7VxVivEN3IIYODxbeDQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AruXTf5zXrJtR9QeL3w7ltPZEq2k2qThM6SAkIAsVdW6l7cncz1CmQnOO863GbgspPu9CRK6F65TXx8ckyKC92DQ1VpaXnk5T9clAhx2efZfwzukG9DruECvE1s+iRjHmO/qlw1Uv8gUhJFgHcMnKlkDarRyOAwNSRMs1Gkv0NI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RkeiQZXc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3109FC4CEF7;
-	Fri, 20 Mar 2026 15:48:13 +0000 (UTC)
+	s=arc-20240116; t=1774022327; c=relaxed/simple;
+	bh=aiSd5OVBVjs+5Lqgol+Wge7MnZFB8HU1UxEFicnTJsA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fsc75D3WOCEdLM9yjwq01lN/ZFnBxAuLVUnm3R5f+Ov8SOfYkZxLx7YiNgodS/XI1wGzlHBsdCSPL5MCFQVoMKG0E6agEA2BcvBEXa2kXJ1a/6UuEhS1rN5YMGkaxRevLEqIqnmhGMzdhrowKz4VNkRyBes4lMvbAGG1FcqzhaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sJiwwkWq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88672C2BCAF
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 15:58:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774021693;
-	bh=mEc+1uLjL9dycMUaTvmDCS4x7VxVivEN3IIYODxbeDQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=RkeiQZXch+Ei5Sa2wzijtHOrnF2ndvL+HxYvQtJB2GoEW5X1c0wUQc2t/+SD38u50
-	 zD9dQxiBvQyvKLbsotmMbRL1aw/qdaYStWhUH+Z4ABLJZ2JOyK2MXXFybODkvj6r0R
-	 9gd6cuUJT9KHytCa9J778lCdlRXBVNB38wWHHEVOFghDgZH4HJACEQSSfz1Io+UKjX
-	 s6c8xn4p/eeU/3OOr0l6TA6soA5k+m4fJdbcQyxwgQlncidFEi617kdJdXazCgKHHU
-	 oB/u6IMa5ixasMduLy7f82Mk3PaWYgQN+eMu6p+vfZcoVxrxmtpWCIvoRBRaME5jbd
-	 biqVlrqsQuxpA==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: dts: broadcom: bcm2712: Move non simple-bus nodes to root level
-Date: Fri, 20 Mar 2026 10:48:07 -0500
-Message-ID: <20260320154809.1246064-2-robh@kernel.org>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260320154809.1246064-1-robh@kernel.org>
-References: <20260320154809.1246064-1-robh@kernel.org>
+	s=k20201202; t=1774022327;
+	bh=aiSd5OVBVjs+5Lqgol+Wge7MnZFB8HU1UxEFicnTJsA=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=sJiwwkWqsGD9uI3P7tI08I1OFNcFBuZrkZq/6h0a5aQZ/JJotn4uYeEC9maFNwo6H
+	 LpoacLh7JeCIuplmpZJg09lODgjvLhPSg/GovK3jOPsRVOdMjKL4tEzwU6+mE2HRba
+	 ion9X+xu3H/tf/M+hO9cVrPRwyHJtlaGRGKVYbYhMgw8NK/6Ny15jIDEo8/Xt5O/LH
+	 hBX9uh1Ol5v4g3yMrxu+aHxh6OsZwGvYGzPc6N6PXWoQ4HRz7UVwPFjY/73d+2KDEU
+	 8/E2W3YQoAIviNyd1QA+8kqePAJUekZGB6t3OvMNLAUzJYa7IgdnuajH6Tidmmk1wf
+	 X67JWILRtMz0g==
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-6652452d94aso4291209a12.3
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 08:58:47 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVHQwqB6vfOHc0mmJvBoqnr3vRRqeUxXgPaRtNA3pBWUghLtCsy1+9iSO1cx3vXhyPjq9wU2Ols8zFo@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0dy+7q455DRauNNw23K6/FiBOZB2XsCp5Ext7hK7N6Cl8gDZ0
+	2tqFsPTd1UfUBTxRvnTE9GdqVgvTo0jvLWRMBJ3q+b6SYxmviz7F5RIA86WLr5Fg3wH53sCt+oF
+	hd9GZaTk8G+OBE0GdIuCTbdxIkhkI2Q==
+X-Received: by 2002:a05:6402:50cf:b0:668:6e22:3e10 with SMTP id
+ 4fb4d7f45d1cf-668c84f299fmr3104507a12.0.1774022325958; Fri, 20 Mar 2026
+ 08:58:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+References: <20260319160110.2131954-1-thierry.reding@kernel.org>
+ <20260319160110.2131954-4-thierry.reding@kernel.org> <CAL_Jsq+smyMYE_oexRc9wEJgMxdUxSwg7p8Bex8q6J6PrwZZ+Q@mail.gmail.com>
+ <ab0U5bfZ2hwp-GST@orome> <CAL_JsqJuoOiBGKW=H=u9AQ=XgY+-iXS+UP7iEw5z6p57Yk_AVw@mail.gmail.com>
+ <ab1Ik3HbOQsDsG-K@orome>
+In-Reply-To: <ab1Ik3HbOQsDsG-K@orome>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 20 Mar 2026 10:58:34 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLWLCyV0j5pe_EtH-393zL2Bqrz-xFBydm7pECi_8iN0A@mail.gmail.com>
+X-Gm-Features: AaiRm538DnCHUjf50GK5tgq6RwltBjLP6uKu6msBMEA6dCdN5XqSvWmjN2Y_lR8
+Message-ID: <CAL_JsqLWLCyV0j5pe_EtH-393zL2Bqrz-xFBydm7pECi_8iN0A@mail.gmail.com>
+Subject: Re: [PATCH 3/5] dt-bindings: pci: Document the NVIDIA Tegra264 PCIe controller
+To: Thierry Reding <thierry.reding@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jon Hunter <jonathanh@nvidia.com>, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278343-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DBL_PROHIBIT(0.00)[59.156.80.160:email];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	NEURAL_HAM(-0.00)[-0.705];
-	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_FROM(0.00)[bounces-278344-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.960];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.1:email,59.156.201.184:email]
-X-Rspamd-Queue-Id: 4949B2DCDC9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid,devicetree.org:url]
+X-Rspamd-Queue-Id: 935122DCFC2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The 'gpu' and 'firmware' nodes are not MMIO devices, so they should not
-be under a 'simple-bus', but at the root level.
+On Fri, Mar 20, 2026 at 8:48=E2=80=AFAM Thierry Reding
+<thierry.reding@kernel.org> wrote:
+>
+> On Fri, Mar 20, 2026 at 08:06:26AM -0500, Rob Herring wrote:
+> > On Fri, Mar 20, 2026 at 4:39=E2=80=AFAM Thierry Reding
+> > <thierry.reding@kernel.org> wrote:
+> > >
+> > > On Thu, Mar 19, 2026 at 04:26:31PM -0500, Rob Herring wrote:
+> > > > On Thu, Mar 19, 2026 at 11:01=E2=80=AFAM Thierry Reding
+> > > > <thierry.reding@kernel.org> wrote:
+> > > > >
+> > > > > From: Thierry Reding <treding@nvidia.com>
+> > > > >
+> > > > > The six PCIe controllers found on Tegra264 are of two types: one =
+is used
+> > > > > for the internal GPU and therefore is not connected to a UPHY and=
+ the
+> > > > > remaining five controllers are typically routed to a PCI slot and=
+ have
+> > > > > additional controls for the physical link.
+> > > > >
+> > > > > While these controllers can be switched into endpoint mode, this =
+binding
+> > > > > describes the root complex mode only.
+> > > > >
+> > > > > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > > > > ---
+> > > > >  .../bindings/pci/nvidia,tegra264-pcie.yaml    | 92 +++++++++++++=
+++++++
+> > > > >  1 file changed, 92 insertions(+)
+> > > > >  create mode 100644 Documentation/devicetree/bindings/pci/nvidia,=
+tegra264-pcie.yaml
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra26=
+4-pcie.yaml b/Documentation/devicetree/bindings/pci/nvidia,tegra264-pcie.ya=
+ml
+> > > > > new file mode 100644
+> > > > > index 000000000000..56d69de2788b
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra264-pcie.=
+yaml
+> > > > > @@ -0,0 +1,92 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/pci/nvidia,tegra264-pcie.yaml=
+#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: NVIDIA Tegra264 PCIe controller
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Thierry Reding <thierry.reding@gmail.com>
+> > > > > +  - Jon Hunter <jonathanh@nvidia.com>
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    const: nvidia,tegra264-pcie
+> > > > > +
+> > > > > +  reg:
+> > > > > +    minItems: 4
+> > > > > +    maxItems: 5
+> > > > > +
+> > > > > +  reg-names:
+> > > > > +    minItems: 4
+> > > > > +    maxItems: 5
+> > > > > +
+> > > > > +  interrupts:
+> > > > > +    minItems: 1
+> > > > > +    maxItems: 4
+> > > > > +
+> > > > > +  dma-coherent: true
+> > > > > +
+> > > > > +  nvidia,bpmp:
+> > > > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > > > > +    description: |
+> > > > > +      Must contain a pair of phandle (to the BPMP controller nod=
+e) and
+> > > > > +      controller ID. The following are the controller IDs for ea=
+ch controller:
+> > > > > +
+> > > > > +      0: C0
+> > > > > +      1: C1
+> > > > > +      2: C2
+> > > > > +      3: C3
+> > > > > +      4: C4
+> > > > > +      5: C5
+> > > > > +    items:
+> > > > > +      - items:
+> > > > > +          - description: phandle to the BPMP controller node
+> > > > > +          - description: PCIe controller ID
+> > > > > +            maximum: 5
+> > > > > +
+> > > > > +unevaluatedProperties: false
+> > > > > +
+> > > > > +required:
+> > > > > +  - interrupt-map
+> > > > > +  - interrupt-map-mask
+> > > > > +  - iommu-map
+> > > > > +  - msi-map
+> > > > > +  - nvidia,bpmp
+> > > > > +
+> > > > > +allOf:
+> > > > > +  - $ref: /schemas/pci/pci-host-bridge.yaml#
+> > > > > +  - oneOf:
+> > > > > +    - description: C0 controller (no UPHY)
+> > > > > +      properties:
+> > > > > +        reg:
+> > > > > +          items:
+> > > > > +            - description: application layer registers
+> > > > > +            - description: transaction layer registers
+> > > > > +            - description: privileged transaction layer register=
+s
+> > > > > +            - description: ECAM-compatible configuration space
+> > > > > +
+> > > > > +        reg-names:
+> > > > > +          items:
+> > > > > +            - const: xal
+> > > > > +            - const: xtl
+> > > > > +            - const: xtl-pri
+> > > > > +            - const: ecam
+> > > > > +
+> > > > > +    - description: C1-C5 controllers (with UPHY)
+> > > > > +      properties:
+> > > > > +        reg:
+> > > > > +          items:
+> > > > > +            - description: application layer registers
+> > > > > +            - description: transaction layer registers
+> > > > > +            - description: privileged transaction layer register=
+s
+> > > > > +            - description: data link/physical layer registers
+> > > > > +            - description: ECAM-compatible configuration space
+> > > > > +
+> > > > > +      items:
+> > > > > +        - const: xal
+> > > > > +        - const: xtl
+> > > > > +        - const: xtl-pri
+> > > > > +        - const: xpl
+> > > >
+> > > > Put this entry last since it is the optional one. Then you can move
+> > > > all of this to the top-level and get rid of the duplication.
+> > >
+> > > I understand this concern and was actually on the fence about this
+> > > myself. The reason why I ultimately went with this variant is for two
+> > > reasons:
+> > >
+> > >   1. XPL does not exist for controller 0, the variant above makes tha=
+t
+> > >      very explicit. It explicitly documents that controller 0 is used
+> > >      for internal purposes and cannot be connected to an external por=
+t
+> > >      like the other five controllers.
+> >
+> > That doesn't really matter to the schema because it can never check
+> > that unless you have 2 different compatibles (and you shouldn't).
+>
+> I know that, the documentation would be more for developers/users rather
+> than the validation tools.
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
-v2:
- - Rebase on v7.0-rc1
- - Move "raspberrypi,bcm2835-firmware" to a child node under /firmware
----
- .../dts/broadcom/bcm2712-rpi-5-b-base.dtsi    | 51 +++++++++----------
- arch/arm64/boot/dts/broadcom/bcm2712.dtsi     |  8 +--
- 2 files changed, 28 insertions(+), 31 deletions(-)
+You can add whatever documentation you want to express that without
+needlessly complicating the schema for no validation purpose. Arguably
+if the schema is shorter, that documentation will be easier to see.
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
-index 04738bf281eb..d0b7137e07d2 100644
---- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
-@@ -44,6 +44,30 @@ power_button: power-button {
- 		};
- 	};
- 
-+	firmware {
-+		firmware: rpi-firmware {
-+			compatible = "raspberrypi,bcm2835-firmware", "simple-mfd";
-+
-+			mboxes = <&mailbox>;
-+
-+			firmware_clocks: clocks {
-+				compatible = "raspberrypi,firmware-clocks";
-+				#clock-cells = <1>;
-+			};
-+
-+			reset: reset {
-+				compatible = "raspberrypi,firmware-reset";
-+				#reset-cells = <1>;
-+			};
-+
-+			power: power {
-+				compatible = "raspberrypi,bcm2835-power";
-+				firmware = <&firmware>;
-+				#power-domain-cells = <1>;
-+			};
-+		};
-+	};
-+
- 	sd_io_1v8_reg: sd-io-1v8-reg {
- 		compatible = "regulator-gpio";
- 		regulator-name = "vdd-sd-io";
-@@ -189,33 +213,6 @@ wifi: wifi@1 {
- 	};
- };
- 
--&soc {
--	firmware: firmware {
--		compatible = "raspberrypi,bcm2835-firmware", "simple-mfd";
--		#address-cells = <1>;
--		#size-cells = <1>;
--
--		mboxes = <&mailbox>;
--		dma-ranges;
--
--		firmware_clocks: clocks {
--			compatible = "raspberrypi,firmware-clocks";
--			#clock-cells = <1>;
--		};
--
--		reset: reset {
--			compatible = "raspberrypi,firmware-reset";
--			#reset-cells = <1>;
--		};
--	};
--
--	power: power {
--		compatible = "raspberrypi,bcm2835-power";
--		firmware = <&firmware>;
--		#power-domain-cells = <1>;
--	};
--};
--
- /* uarta communicates with the BT module */
- &uarta {
- 	uart-has-rtscts;
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-index d57a9b1bff70..330a121ebfcb 100644
---- a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-@@ -508,10 +508,6 @@ axi: axi {
- 			     <0x18 0x00000000  0x18 0x00000000  0x04 0x00000000>,
- 			     <0x1c 0x00000000  0x1c 0x00000000  0x04 0x00000000>;
- 
--		vc4: gpu {
--			compatible = "brcm,bcm2712-vc6";
--		};
--
- 		pcie0: pcie@1000100000 {
- 			compatible = "brcm,bcm2712-pcie";
- 			reg = <0x10 0x00100000 0x00 0x9310>;
-@@ -648,6 +644,10 @@ mip1: msi-controller@1000131000 {
- 		};
- 	};
- 
-+	vc4: gpu {
-+		compatible = "brcm,bcm2712-vc6";
-+	};
-+
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) |
--- 
-2.51.0
-
+Rob
 
