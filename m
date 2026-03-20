@@ -1,244 +1,249 @@
-Return-Path: <devicetree+bounces-278388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278389-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6OisGFx9vWmt9wIAu9opvQ
-	(envelope-from <devicetree+bounces-278388-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:01:16 +0100
+	id SC2sAbt9vWmt9wIAu9opvQ
+	(envelope-from <devicetree+bounces-278389-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:02:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE1F22DE2B2
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:01:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 450942DE2FC
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:02:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8191E31383D0
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:54:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D0E1C31C25A4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:55:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF6663D904B;
-	Fri, 20 Mar 2026 16:47:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE1283D1CB3;
+	Fri, 20 Mar 2026 16:50:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E96bmnpf"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="Jia/FKXU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-181.mta0.migadu.com (out-181.mta0.migadu.com [91.218.175.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A3F53D902B;
-	Fri, 20 Mar 2026 16:47:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B56603D3309
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 16:50:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774025260; cv=none; b=GchYv4uMib7s8Lcmc168+GjocKvsW97Zo5eX4IfEm0rjd8M1XFS23CB+mayrjsGa77Eq62/1mQ1zHT0lGMp00tJg3RDJkr0Iq6HvJ72y9XTe4+p984gXTS/1CU+7sHUaLvmkpAh0WmtJL+b7Ax515JHp/nTxLZORPSIyBQbcGeA=
+	t=1774025416; cv=none; b=WJJD4A4H/3JmbLIckwV5i2vA5aj5eGH7MNd68bXSgcNspygMp6JY6R9VzdwnbwYGCvVTJgqcpvzlV81s96Bu4dKWn7TitHqU1NHHfAgsilMnHxqU0UWz3DsaRQllCAKO3zSwN72Cx30+Rbgk6NHnLEK8UsKZEJRgq/WaCasUejs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774025260; c=relaxed/simple;
-	bh=+jSC2BcOr5bTFiGTzqJGWVjWkhUc4jNiP7GFwpFjfWs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nG6l/2pT4GHgPE4WGuJbZJMb5G5SdpboFZlQH0qd+rGfSUBEIhDarbPKTUvv+fqOMhhLqqogkGfE1Oo01P7xIrUx+6clf48/oFoTQbZjkm9O5Blyc+kym6XnMF4hOunV8G+stp8bEDlHc2PV+6DblImbYs9GDCBDkeRbucEMyfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E96bmnpf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8372C4CEF7;
-	Fri, 20 Mar 2026 16:47:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774025260;
-	bh=+jSC2BcOr5bTFiGTzqJGWVjWkhUc4jNiP7GFwpFjfWs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=E96bmnpfmHgxHqt2Jnj7OMb8dMAA7xDxsiR2OZLPBhUKCaJVA55ysug/aHl7DoFK9
-	 4LgEqs4ZbThdc9M1y/zRpGMV4mumK7L4hmMtnS+RFJ2yWZpLAaRSrIs1aG3Wbrxls7
-	 Flkb1fkPm4srpes/8FVDPN9yVja8QZSZ4+i6tancyVPg+wjDzbntznboIN6skpvxaj
-	 kZ7i8OEv3yZGGjd1IRFRNW9RBEXrlGH/uFYNylE2FVuICOKXyVNmSeQlXsaqkFWchZ
-	 UHkFmTuQv42HlT12WlLJaKr4GloKp+dVRMQ0zZ9z5Gq/p7GaOD8qP/w4e5z0OClH/U
-	 P3+qWdojv7/xQ==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Date: Fri, 20 Mar 2026 11:47:18 -0500
-Subject: [PATCH 5/5] arm64: dts: arm/corstone1000: Add corstone-1000-a320
+	s=arc-20240116; t=1774025416; c=relaxed/simple;
+	bh=xaNqb8s2ITjZtbwQOP6iKpPiVZIAh/080hNsZsFxz1A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BjAqMbTfhEHirkfukv0/2pzCPi3cSVUj1TT2AFTm0Ruox0KeyBhy+SD/P9Wh5Dzun7YNyPVlQZoywTOOIiDnglz2Y5IvFLzbekihPAiG+Th5g83MO+ihC02zpqq19XeutM9GJXBfOzdlFnCZPdRSoiEPZah9084G8iWACGgNRh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=Jia/FKXU; arc=none smtp.client-ip=91.218.175.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+Message-ID: <fba73d66-4300-4c4d-9bf6-4b38a4e847d7@postmarketos.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1774025402;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=iCZYLV/+DCUVIj9UGHH4YA7j8PeZx6YVsK1QQDmt8AU=;
+	b=Jia/FKXUdZ6sDqgOgntxAJS+rIl78Z9FIwOGkWmHdxvvwCo36s6WSfC4MntwO5GcNFTnPD
+	dbW0PHFNys850hxj2bS9WtFPxhlKwUgrVcjw7a95/UQw82qeP45Li8+tEhhG+X4LM3rmoE
+	cb/P74FBzHf1Pvop2JUSBsw8KfAwk6dq9riMhIGIkKtNB5ra/4OMvPxsMnPAOi2iIMVENc
+	ldziJpjjVmEC+OSuURkf7ieK0juVavZOEqIfJytE3QFA2PnEkhFGple8iEqZWyEjo6bDoC
+	lwsyMdFWMFtFOaE8MaFXpRGHvW2++E/+q3xsfupYzqZlS3cD+GNHzG0djShQLQ==
+Date: Fri, 20 Mar 2026 17:49:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Subject: Re: [PATCH v7 2/7] Input: synaptics-rmi4 - handle duplicate/unknown
+ PDT entries
+Content-Language: en-US
+To: david@ixit.cz, Kaustabh Chakraborty <kauschluss@disroot.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
+ Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+ Vincent Huang <vincent.huang@tw.synaptics.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org
+References: <20260320-synaptics-rmi4-v7-0-379360de18d0@ixit.cz>
+ <20260320-synaptics-rmi4-v7-2-379360de18d0@ixit.cz>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Casey Connolly <kcxt@postmarketos.org>
+In-Reply-To: <20260320-synaptics-rmi4-v7-2-379360de18d0@ixit.cz>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260320-dt-corstone1000-a320-v1-5-a549dfcfe8da@kernel.org>
-References: <20260320-dt-corstone1000-a320-v1-0-a549dfcfe8da@kernel.org>
-In-Reply-To: <20260320-dt-corstone1000-a320-v1-0-a549dfcfe8da@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>, 
- Sudeep Holla <sudeep.holla@kernel.org>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Frazer Carsley <frazer.carsley@arm.com>, 
- Hugues Kamba Mpiana <hugues.kambampiana@arm.com>, 
- Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org
-X-Mailer: b4 0.15-dev
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Migadu-Flow: FLOW_OUT
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[postmarketos.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[postmarketos.org:s=key1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_FROM(0.00)[bounces-278388-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-278389-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[ixit.cz,disroot.org,gmail.com,kernel.org,zx2c4.com,ew.tq-group.com,tw.synaptics.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.36.159.0:email,0.0.1.44:email];
+	NEURAL_HAM(-0.00)[-0.983];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[kcxt@postmarketos.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[postmarketos.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.200:email,0.0.0.100:email,0.0.0.0:email,1a050000:email,1c000000:email]
-X-Rspamd-Queue-Id: CE1F22DE2B2
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ixit.cz:email,disroot.org:email,linaro.org:email]
+X-Rspamd-Queue-Id: 450942DE2FC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Corstone-1000-a320 is a Corstone-1000 derivative with Cortex-A320 cores,
-GIC-600, and Ethos-U85 NPU.
+Hi David,
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- arch/arm64/boot/dts/arm/Makefile                  |  1 +
- arch/arm64/boot/dts/arm/corstone1000-a320-fvp.dts | 15 ++++
- arch/arm64/boot/dts/arm/corstone1000-a320.dtsi    | 91 +++++++++++++++++++++++
- 3 files changed, 107 insertions(+)
+Nice timing with the series, I hit an OOB access (found it when I
+enabled UBSAN) with this patch the other day.
 
-diff --git a/arch/arm64/boot/dts/arm/Makefile b/arch/arm64/boot/dts/arm/Makefile
-index f30ee045dc95..fa035c68991a 100644
---- a/arch/arm64/boot/dts/arm/Makefile
-+++ b/arch/arm64/boot/dts/arm/Makefile
-@@ -7,4 +7,5 @@ dtb-$(CONFIG_ARCH_VEXPRESS) += rtsm_ve-aemv8a.dtb
- dtb-$(CONFIG_ARCH_VEXPRESS) += vexpress-v2f-1xv7-ca53x2.dtb
- dtb-$(CONFIG_ARCH_VEXPRESS) += fvp-base-revc.dtb
- dtb-$(CONFIG_ARCH_VEXPRESS) += corstone1000-fvp.dtb corstone1000-mps3.dtb
-+dtb-$(CONFIG_ARCH_VEXPRESS) += corstone1000-a320-fvp.dtb
- dtb-$(CONFIG_ARCH_VEXPRESS) += morello-sdp.dtb morello-fvp.dtb
-diff --git a/arch/arm64/boot/dts/arm/corstone1000-a320-fvp.dts b/arch/arm64/boot/dts/arm/corstone1000-a320-fvp.dts
-new file mode 100644
-index 000000000000..0f72af78b5e1
---- /dev/null
-+++ b/arch/arm64/boot/dts/arm/corstone1000-a320-fvp.dts
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (c) 2026, Arm Limited. All rights reserved.
-+ *
-+ */
-+
-+/dts-v1/;
-+
-+#include "corstone1000-a320.dtsi"
-+#include "corstone1000-fvp.dtsi"
-+
-+/ {
-+	model = "ARM Corstone1000-A320 FVP (Fixed Virtual Platform)";
-+	compatible = "arm,corstone1000-a320-fvp";
-+};
-diff --git a/arch/arm64/boot/dts/arm/corstone1000-a320.dtsi b/arch/arm64/boot/dts/arm/corstone1000-a320.dtsi
-new file mode 100644
-index 000000000000..f0937914350c
---- /dev/null
-+++ b/arch/arm64/boot/dts/arm/corstone1000-a320.dtsi
-@@ -0,0 +1,91 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (c) 2026, Arm Limited. All rights reserved.
-+ *
-+ */
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+#include "corstone1000.dtsi"
-+
-+/ {
-+	interrupt-parent = <&gic>;
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	cpus: cpus {
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+
-+		cpu: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a320";
-+			reg = <0 0>;
-+			enable-method = "psci";
-+			next-level-cache = <&L2_0>;
-+		};
-+
-+		cpu1: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a320";
-+			reg = <0 0x100>;
-+			enable-method = "psci";
-+			next-level-cache = <&L2_0>;
-+		};
-+
-+		cpu2: cpu@200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a320";
-+			reg = <0 0x200>;
-+			enable-method = "psci";
-+			next-level-cache = <&L2_0>;
-+		};
-+
-+		cpu3: cpu@300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a320";
-+			reg = <0 0x300>;
-+			enable-method = "psci";
-+			next-level-cache = <&L2_0>;
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	sram: sram@2400000 {
-+		compatible = "mmio-sram";
-+		reg = <0x02400000 0x200000>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+	};
-+
-+	gic: interrupt-controller@1c000000 {
-+		compatible = "arm,gic-v3";
-+		#interrupt-cells = <3>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		interrupt-controller;
-+		reg = <0x1c000000 0x10000>,
-+		      <0x1c040000 0x80000>;
-+		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+
-+	soc {
-+		npu@1a050000 {
-+			compatible = "arm,corstone1000-ethos-u85", "arm,ethos-u85";
-+			reg = <0x1a050000 0x1400>;
-+			interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&refclk100mhz>, <&refclk100mhz>;
-+			clock-names = "core", "apb";
-+			sram = <&sram>;
-+		};
-+	};
-+};
+The pdt_scan_state->pdts array should actually be of size (RMI_PDT_MAX+1).
+
+Additionally, I think rmi_pdt_entry_is_valid() is missing a bounds check.
+
+Kind regards,
+
+On 20/03/2026 17:44, David Heidelberg via B4 Relay wrote:
+> From: Casey Connolly <casey.connolly@linaro.org>
+> 
+> Some third party rmi4-compatible ICs don't expose their PDT entries
+> very well. Add a few checks to skip duplicate entries as well as entries
+> for unsupported functions.
+> 
+> This is required to support some phones with third party displays.
+> 
+> Validated on a stock OnePlus 6T (original parts):
+> manufacturer: Synaptics, product: S3706B, fw id: 2852315
+> 
+> Co-developed-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
+> Co-developed-by: David Heidelberg <david@ixit.cz>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+>  drivers/input/rmi4/rmi_driver.c | 42 +++++++++++++++++++++++++++++++++++------
+>  drivers/input/rmi4/rmi_driver.h |  8 ++++++++
+>  2 files changed, 44 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/input/rmi4/rmi_driver.c b/drivers/input/rmi4/rmi_driver.c
+> index ccd9338a44dbe..c7d2f68e65487 100644
+> --- a/drivers/input/rmi4/rmi_driver.c
+> +++ b/drivers/input/rmi4/rmi_driver.c
+> @@ -494,12 +494,39 @@ static void rmi_driver_copy_pdt_to_fd(const struct pdt_entry *pdt,
+>  	fd->function_version = pdt->function_version;
+>  }
+>  
+> +static bool rmi_pdt_entry_is_valid(struct rmi_device *rmi_dev,
+> +				   struct pdt_scan_state *state, u8 fn)
+> +{
+> +	switch (fn) {
+> +	case 0x01:
+> +	case 0x03:
+> +	case 0x11:
+> +	case 0x12:
+> +	case 0x30:
+> +	case 0x34:
+> +	case 0x3a:
+> +	case 0x54:
+> +	case 0x55:
+> +		if (state->pdts[fn] == true)
+> +			return false;
+> +		break;
+> +	default:
+> +		rmi_dbg(RMI_DEBUG_CORE, &rmi_dev->dev,
+> +			"PDT has unknown function number %#02x\n", fn);
+> +		return false;
+> +	}
+> +
+> +	state->pdts[fn] = true;
+> +	state->pdt_count++;
+> +	return true;
+> +}
+> +
+>  #define RMI_SCAN_CONTINUE	0
+>  #define RMI_SCAN_DONE		1
+>  
+>  static int rmi_scan_pdt_page(struct rmi_device *rmi_dev,
+>  			     int page,
+> -			     int *empty_pages,
+> +			     struct pdt_scan_state *state,
+>  			     void *ctx,
+>  			     int (*callback)(struct rmi_device *rmi_dev,
+>  					     void *ctx,
+> @@ -522,6 +549,9 @@ static int rmi_scan_pdt_page(struct rmi_device *rmi_dev,
+>  		if (RMI4_END_OF_PDT(pdt_entry.function_number))
+>  			break;
+>  
+> +		if (!rmi_pdt_entry_is_valid(rmi_dev, state, pdt_entry.function_number))
+> +			continue;
+> +
+>  		retval = callback(rmi_dev, ctx, &pdt_entry);
+>  		if (retval != RMI_SCAN_CONTINUE)
+>  			return retval;
+> @@ -532,11 +562,11 @@ static int rmi_scan_pdt_page(struct rmi_device *rmi_dev,
+>  	 * or more is found, stop scanning.
+>  	 */
+>  	if (addr == pdt_start)
+> -		++*empty_pages;
+> +		++state->empty_pages;
+>  	else
+> -		*empty_pages = 0;
+> +		state->empty_pages = 0;
+>  
+> -	return (data->bootloader_mode || *empty_pages >= 2) ?
+> +	return (data->bootloader_mode || state->empty_pages >= 2) ?
+>  					RMI_SCAN_DONE : RMI_SCAN_CONTINUE;
+>  }
+>  
+> @@ -545,11 +575,11 @@ int rmi_scan_pdt(struct rmi_device *rmi_dev, void *ctx,
+>  		 void *ctx, const struct pdt_entry *entry))
+>  {
+>  	int page;
+> -	int empty_pages = 0;
+> +	struct pdt_scan_state state = {0, 0, {0}};
+>  	int retval = RMI_SCAN_DONE;
+>  
+>  	for (page = 0; page <= RMI4_MAX_PAGE; page++) {
+> -		retval = rmi_scan_pdt_page(rmi_dev, page, &empty_pages,
+> +		retval = rmi_scan_pdt_page(rmi_dev, page, &state,
+>  					   ctx, callback);
+>  		if (retval != RMI_SCAN_CONTINUE)
+>  			break;
+> diff --git a/drivers/input/rmi4/rmi_driver.h b/drivers/input/rmi4/rmi_driver.h
+> index e84495caab151..a4ae2af93ce3a 100644
+> --- a/drivers/input/rmi4/rmi_driver.h
+> +++ b/drivers/input/rmi4/rmi_driver.h
+> @@ -46,6 +46,14 @@ struct pdt_entry {
+>  	u8 function_number;
+>  };
+>  
+> +#define RMI_PDT_MAX 0x55
+> +
+> +struct pdt_scan_state {
+> +	u8 empty_pages;
+> +	u8 pdt_count;
+> +	bool pdts[RMI_PDT_MAX];
+> +};
+> +
+>  #define RMI_REG_DESC_PRESENSE_BITS	(32 * BITS_PER_BYTE)
+>  #define RMI_REG_DESC_SUBPACKET_BITS	(37 * BITS_PER_BYTE)
+>  
+> 
 
 -- 
-2.51.0
+// Casey (she/her)
 
 
