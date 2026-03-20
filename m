@@ -1,214 +1,228 @@
-Return-Path: <devicetree+bounces-278208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278202-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OLy3CB4mvWmr6wIAu9opvQ
-	(envelope-from <devicetree+bounces-278208-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:49:02 +0100
+	id IM78CtwlvWmr6wIAu9opvQ
+	(envelope-from <devicetree+bounces-278202-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:47:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FABF2D903F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:49:01 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 988AF2D8FF0
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 11:47:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 42A0B307AA14
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:48:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 86252301F16E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:47:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0568386C0F;
-	Fri, 20 Mar 2026 10:48:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B0FC30594F;
+	Fri, 20 Mar 2026 10:47:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="b4Mgr3wJ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gawJDuI2";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Q6gi3ZPO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D0522EAD1C
-	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 10:47:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C12CB387589
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 10:47:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774003680; cv=none; b=S9c581MGgqzdyjGDl7+r4oFB/4cSLI2YqwLgRIEvsrA3CkaXX61v9BXUYe8ywID/lfFp5EBMhgVwuFW221KvvINvUVcg401xuz2Q4Dopd2FdDDRMkGowPu2ov48AaE5ogXEMOpK4HdDJWbQJMS/N1wX1op619s4GBcRriT+iyl4=
+	t=1774003623; cv=none; b=BuCK4C7MclRopYl2mbv0T1/2I5PaF+opCf1as49vXtqKfv4lcTbuEQ5+KSFlWlzEjW+KNvKNni2kmUSSSCVlEfxGnzzorBQn2w0Mv9vQKHZh3ik8C9tqwPsIzTgf+NTxNTDAUgrFD7W/o6Hzw/9EvRC2mLNPd/sgXP8pNhZ1g2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774003680; c=relaxed/simple;
-	bh=8yY00GLq7/QZCFWK0+7e9KfD4HG+wxOWqbZcKAHdVJE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=D1ZY+l5PxJtoGpwz/4HQrlWWIBMCZeT2XA1sHBwG+LFWzLNm6H9MTGd7PH905aqhCve9xQC7kO1/uYLmqtxHFVOoZN3rNJUtX+x6qrSMhhLalDUA2MeuLeLQu0IZoGMB6r5ZWX8ZdXe9NV6DeUMHIYUb3pW1XhQUWVJp9Au36nM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=b4Mgr3wJ; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 89212C40435;
-	Fri, 20 Mar 2026 10:48:22 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 284F0601A0;
-	Fri, 20 Mar 2026 10:47:57 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7DF5310450A35;
-	Fri, 20 Mar 2026 11:47:45 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1774003674; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=4T4axWR8ozOJ/Xi7kzHVRqa4a+zl3Ng+9KLl2BPnmnU=;
-	b=b4Mgr3wJeBvoLayCkTLc8I0Qd/rCXnaK7pKNSXwumkcaoUPp6XZ8y7WZBak34cq4+ovggZ
-	Zzus/vja8EuoI+KEcrFbmYn471Wv6wW1qEXGhcnRv7Lq8anVpAUmYuod/6HkKv6RPBDDCF
-	Z6iE412IJ40rF7IrMJbBy93lRazXIwP+PHknq+tP5+k8JBchMqpOJggDQs1jD8eoPuu6P/
-	rEWgFa3XJt7668IvDIfYOZdO1WPUXJCG7QYNs668QlUDVZaXThmB5s9v+s3uMfkgof5YlK
-	0mYmHWg9BIzIcCct8iB1XXicjpafjEI9QsVMWkaX2T6oI0CO9ZlSDGJTZOEmhw==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Fri, 20 Mar 2026 11:46:19 +0100
-Subject: [PATCH 8/8] drm/mxsfb/lcdif: use DRM_BRIDGE_ATTACH_NO_CONNECTOR
- and the bridge-connector
+	s=arc-20240116; t=1774003623; c=relaxed/simple;
+	bh=WWB+h35ua9nB3OJoDSz9HuoHu171PsrTQDFCtxhPi0c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=f8EVeYh9+zne0Dj/nbjzxGoPDcDS4GA2DbRGD3FB3YjjNn4BuDq3UjGWKy+ubCJ/cMtceDRt0cyZ4hpQvhCrUTJO52DtXuROYj8WwIq35IuJ2nglmJWmq8H0oT40R3xVhrWRXYH/SLG/Yxq6N22Vr/X6/XxZT/pDcwV+1/UVaho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gawJDuI2; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Q6gi3ZPO; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62K2XlCo2253897
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 10:46:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	OfGl7Fmz0LDuQajMkoFQWosA+adFGbSTETK37xVpUaU=; b=gawJDuI2FIPDWtdP
+	344l/Wt8DrAPLHYjBfvh7GHOb8RUGo0msfjbQ34LjlqCEGPSCQr4lgZIlKYykLo7
+	xJCfeFm6f/o3XW1wX4eod99WcEmLRcrbIRt+ZFAIk3wI53TOeSOdd7JaXVCf/MFg
+	M4Mp6qjBWRkFs+oS0IahaqqiQjcdD0/0Hoohfy3MXM1L6RB+iINP0BAll1grBjyd
+	CuIFDUPSL6ca9B8sLvuWkW09cDK1wezP9sgIfIpTBR3/eT7AY8srVuw2wCQSGsi9
+	luplZkxAumNOLKVNotK7lDapvkLyO1X4UMQU47yRFcGk84MWhzSA//881llUk4+Y
+	fqA2XQ==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d0mcmasc2-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 10:46:55 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-8230d6d54a5so2396232b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 03:46:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1774003614; x=1774608414; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OfGl7Fmz0LDuQajMkoFQWosA+adFGbSTETK37xVpUaU=;
+        b=Q6gi3ZPOZiYd9TFQ7fMCM5XLfkEm8tUOy/4RnyzO67/cUEcQbk8t5FU592uab2FTfR
+         te4MPxK43WF41nWzYpg+X8OpHlbjmqfRx8Ir/Fp2BAlTz98MYhu/0dQorPGvrVmN77hW
+         ye3Y6XxLy+bkTJMQ7GC2NUqpIngX48I8By/VgV8qOw1U6tJoni9/ewn8Xj8QWm0ezexI
+         DMcHij6ZK3RxkLYGx0t4uJ5GCwbIPnwPRUyE1O14DKEFxemOuqaU7VH2pZ6RPtl3jmAU
+         iw6xxws4BVKNGtLO1GzS4Z5QTifucfq4vpu+K477n6a+6/pQSHBqgiQ536E9lTD2fOO9
+         Z5Yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774003614; x=1774608414;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OfGl7Fmz0LDuQajMkoFQWosA+adFGbSTETK37xVpUaU=;
+        b=LL8BgyRDVXVBv4NRg45p3d3uPg9N6rnYCldThfHjrz1pyQqcJ7+wD/CbCZOHYi0M6g
+         QQgj+3LURTV77rW1ZblpTx3b/BxRULyO1t7DrQdnCGqKqNmlHAmvemz/DMo5BjWT4I6E
+         Z7NkjEmMf94IvHzgk905LnLFFG6E0NUvpzUgVso66yQwjQiopmuGzL1wisBi6/GqJ5g9
+         s9EcVjw/m7tC39y4b/cwD6+s1S9jFMfldV8lybNADDk5Plfp7rLCJXzezTxVRZ11bUET
+         D92hcOlbHvxU3QnUpzEY9olrPpmn7ggjRvTjcilVxXAT1JpZkCqODhgPip7NXwl9K/aR
+         phVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXW8c/gz3mH9MwpRRlFdNzDKgwoefajxot7PiSXL4tvKkl9/iWnb6JmuTBxu7iPPAhRiPVlDFGOUyA5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBv3l71/nJGySQXcPyJ+tvIq5F/Y40vI1zlU3CqGqZQ460owqN
+	/w0zNqTR9PQeAQZ+LKd8AFrgZX/j9QX1KbzBHYV3VWzv489A7OZCRfbCtoOUloUKueGJaZXzZlF
+	FTHGUcFU/MsAFLymLfzHjKVyMZdGtRfKfZ+dC0iZU5PbaASwl5bjeuGv5m3xMlJMm
+X-Gm-Gg: ATEYQzzI/28XZbEw43EWtXzHCx5+LAfCGxLZAiKb5XeULx6gbAC11veTesZfd2C33xQ
+	hRB6GvTZg59zrhhw7OmnJUhA4/KwcWvKttWlS87FAz4HMsOrrbTA5kf+6qbYWqPXXUl6yWc5DwW
+	OLcnr9ymjsVCeSaPfO7eQZQmzX8E21/oduRRaeeCYS6y1WdUA58rQUHk3iHmkbE58Z/Lxmpv3yG
+	arbKi8h9XMjpZixX4QK1HK8Grf+7vrtBvIrj8ctMR8Dvp4YN45vW0rT90pb9zhTxv7CelF9Or14
+	dNYChfaiPzLG5ppKEFk+6bhKtMFJ3vsVBTMq8GAK/xPil73tYdY6MMK4gWcoHrF49AkRdx9cTs0
+	HHitggR2qn5lKNBmOMjkb21d0BX3lJ0/Wfx26e5/1G4aiu0/FRuyu4safjq+cT8aUQdLosJRgbx
+	wghaO2n6M36uI=
+X-Received: by 2002:a05:6a00:a90:b0:829:f777:dad4 with SMTP id d2e1a72fcca58-82a8c434a65mr2054040b3a.29.1774003614321;
+        Fri, 20 Mar 2026 03:46:54 -0700 (PDT)
+X-Received: by 2002:a05:6a00:a90:b0:829:f777:dad4 with SMTP id d2e1a72fcca58-82a8c434a65mr2054007b3a.29.1774003613832;
+        Fri, 20 Mar 2026 03:46:53 -0700 (PDT)
+Received: from [10.133.33.163] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82b0409c11asm1583505b3a.30.2026.03.20.03.46.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Mar 2026 03:46:53 -0700 (PDT)
+Message-ID: <f32ad04f-450d-49b7-8652-b8357accb6a1@oss.qualcomm.com>
+Date: Fri, 20 Mar 2026 18:46:45 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260320-drm-lcdif-dbanc-v1-8-479a04133e70@bootlin.com>
-References: <20260320-drm-lcdif-dbanc-v1-0-479a04133e70@bootlin.com>
-In-Reply-To: <20260320-drm-lcdif-dbanc-v1-0-479a04133e70@bootlin.com>
-To: Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Liu Ying <victor.liu@nxp.com>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@kernel.org>
-Cc: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>, 
- =?utf-8?q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
- Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- dri-devel@lists.freedesktop.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Adam Ford <aford173@gmail.com>, 
- Alexander Stein <alexander.stein@ew.tq-group.com>, 
- Anson Huang <Anson.Huang@nxp.com>, 
- Christopher Obbard <christopher.obbard@linaro.org>, 
- Daniel Scally <dan.scally@ideasonboard.com>, 
- Emanuele Ghidoli <emanuele.ghidoli@toradex.com>, 
- Fabio Estevam <festevam@denx.de>, 
- Francesco Dolcini <francesco.dolcini@toradex.com>, 
- Frieder Schrempf <frieder.schrempf@kontron.de>, 
- Gilles Talis <gilles.talis@gmail.com>, 
- =?utf-8?q?Goran_Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>, 
- Heiko Schocher <hs@denx.de>, 
- Joao Paulo Goncalves <joao.goncalves@toradex.com>, 
- Josua Mayer <josua@solid-run.com>, 
- =?utf-8?q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>, 
- Kieran Bingham <kieran.bingham@ideasonboard.com>, 
- Marco Felsch <m.felsch@pengutronix.de>, 
- Martyn Welch <martyn.welch@collabora.com>, 
- Oleksij Rempel <o.rempel@pengutronix.de>, Peng Fan <peng.fan@nxp.com>, 
- Philippe Schenker <philippe.schenker@toradex.com>, 
- Richard Hu <richard.hu@technexion.com>, 
- Shengjiu Wang <shengjiu.wang@nxp.com>, 
- Stefan Eichenberger <stefan.eichenberger@toradex.com>, 
- Vitor Soares <vitor.soares@toradex.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: remove the disabled replicator
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20260316-clean-up-failed-devices-v1-1-f22fc9b072ab@oss.qualcomm.com>
+ <85050b04-c67a-47f5-b562-ad890a8cb1b1@kernel.org>
+ <2ad93fb5-849f-4fae-b64e-8f296b408366@oss.qualcomm.com>
+ <aaf4d504-432e-407a-8b6f-08401a25f680@kernel.org>
+Content-Language: en-US
+From: Jie Gan <jie.gan@oss.qualcomm.com>
+In-Reply-To: <aaf4d504-432e-407a-8b6f-08401a25f680@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: 4KucOuRuZf8PA9j5spRP6YArkQXPX9_h
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzIwMDA4MyBTYWx0ZWRfX/zyuUWy1OwW4
+ S+tJwFYrNQK73sMTbjM0LbZyoN2uCqeYR8vd8MlJwbv5S0Kcys8wstPeZWhGhoMPCN/hMX1end6
+ MOx+/TQAHqD5725xA4TJVECCr2YcySxg9jg9LnCnIqDdHTzjbBxe1iC/Oknj9eYlOUF0Qo0v08k
+ 79jz5V5aFKmeLTqSi/goUNiyQoyE7t0hTu0Ohb36rXqm7IrasIc9oWP9o8wMKfh0GbYzXuP4yDZ
+ JTNnJ5sXBoFHPwRjZUej4sIGdckGjdyJgXS37HRZOfekhmiPriZsbRfkDmEV/OQy2IMZ+226Xv/
+ NKbmS0i4MVfSOfTKIc/LKmNeCEGMx3JGnjtQK5VP1NAADjANsqaUbAcqOIkmbEtXyH2LnoYPdo2
+ nSiNH6HZzx7Y5lJjmfpoB5xTCfAmp67eg8ZXIvJz3QMKCVMvSE3dVngJQn30AwxStaTgp/UTp2K
+ wNR3nZDPNRKkjPPigbg==
+X-Authority-Analysis: v=2.4 cv=BdLVE7t2 c=1 sm=1 tr=0 ts=69bd259f cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=LGUaL2YE3l8aayJFi6QA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-ORIG-GUID: 4KucOuRuZf8PA9j5spRP6YArkQXPX9_h
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-20_02,2026-03-19_05,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 priorityscore=1501 impostorscore=0 bulkscore=0 phishscore=0
+ lowpriorityscore=0 spamscore=0 adultscore=0 malwarescore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603200083
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[bootlin.com,gehealthcare.com,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,vger.kernel.org,gmail.com,ew.tq-group.com,nxp.com,linaro.org,ideasonboard.com,toradex.com,denx.de,kontron.de,solid-run.com,pengutronix.de,collabora.com,technexion.com];
-	TAGGED_FROM(0.00)[bounces-278208-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[denx.de,agner.ch,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,nxp.com,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[56];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
+	TAGGED_FROM(0.00)[bounces-278202-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,i.mx:url]
-X-Rspamd-Queue-Id: 7FABF2D903F
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[jie.gan@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 988AF2D8FF0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Convert this driver to DRM_BRIDGE_ATTACH_NO_CONNECTOR and to the
-drm_bridge_connector framework which is the current DRM bridge best
-practice.
 
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
----
- drivers/gpu/drm/mxsfb/Kconfig     |  1 +
- drivers/gpu/drm/mxsfb/lcdif_drv.c | 12 +++++++++++-
- 2 files changed, 12 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/mxsfb/Kconfig b/drivers/gpu/drm/mxsfb/Kconfig
-index 264e74f45554..1a8a5d1ba8c0 100644
---- a/drivers/gpu/drm/mxsfb/Kconfig
-+++ b/drivers/gpu/drm/mxsfb/Kconfig
-@@ -33,6 +33,7 @@ config DRM_IMX_LCDIF
- 	select DRM_GEM_DMA_HELPER
- 	select DRM_PANEL
- 	select DRM_PANEL_BRIDGE
-+	select DRM_BRIDGE_CONNECTOR
- 	help
- 	  Choose this option if you have an LCDIFv3 LCD controller.
- 	  Those devices are found in various i.MX SoC (i.MX8MP,
-diff --git a/drivers/gpu/drm/mxsfb/lcdif_drv.c b/drivers/gpu/drm/mxsfb/lcdif_drv.c
-index e40253ad607b..3388d959c93d 100644
---- a/drivers/gpu/drm/mxsfb/lcdif_drv.c
-+++ b/drivers/gpu/drm/mxsfb/lcdif_drv.c
-@@ -17,6 +17,7 @@
- #include <drm/clients/drm_client_setup.h>
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
-+#include <drm/drm_bridge_connector.h>
- #include <drm/drm_drv.h>
- #include <drm/drm_encoder.h>
- #include <drm/drm_fbdev_dma.h>
-@@ -50,6 +51,7 @@ static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
- 	struct device *dev = lcdif->drm->dev;
- 	struct drm_encoder *encoder;
- 	struct drm_bridge *bridge;
-+	struct drm_connector *connector;
- 	int ret;
- 
- 	struct device_node *remote __free(device_node) =
-@@ -72,10 +74,18 @@ static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
- 	if (ret)
- 		return dev_err_probe(dev, ret, "Failed to initialize encoder\n");
- 
--	ret = drm_bridge_attach(encoder, bridge, NULL, 0);
-+	ret = drm_bridge_attach(encoder, bridge, NULL, DRM_BRIDGE_ATTACH_NO_CONNECTOR);
- 	if (ret)
- 		return dev_err_probe(dev, ret, "Failed to attach bridge\n");
- 
-+	connector = drm_bridge_connector_init(lcdif->drm, encoder);
-+	if (IS_ERR(connector))
-+		return dev_err_probe(dev, PTR_ERR(connector), "Failed to init bridge_connector\n");
-+
-+	ret = drm_connector_attach_encoder(connector, encoder);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to attach connector\n");
-+
- 	return 0;
- }
- 
+On 3/16/2026 6:15 PM, Krzysztof Kozlowski wrote:
+> On 16/03/2026 10:33, Jie Gan wrote:
+>>
+>>
+>> On 3/16/2026 3:14 PM, Krzysztof Kozlowski wrote:
+>>> On 16/03/2026 06:31, Jie Gan wrote:
+>>>> Remove the disabled device that blocks probing of the connected
+>>>> replicator, as the replicator driver validates all connected
+>>>> devices during probe.
+>>>>
+>>>> kernel log:
+>>>> [   18.540971] platform 6046000.replicator: deferred probe pending: (reason unknown)
+>>>
+>>> No, that's not a reason to remove a device. The device is there, right?
+>>> So fix Linux drivers if they cannot handle it properly.
+>>
+>> CoreSight devices build a path from source to sink and defer probing if
+>> any device in the path is unavailable so the deferred‑probe behavior is
+>> expected.
+>>
+>> We could add logic to fix it in driver but it's much easier to address
+>> it in DT because we are knowing the device is disabled/Failed in DT.
+> 
+> Nope. You got comment already. DTS represents the hardware, not your
+> current Linux driver status.
+> 
 
--- 
-2.53.0
+Thanks for the patience to explain it, I have submitted a driver patch 
+to address it.
+
+Thanks,
+Jie
+
+>>
+>> It's my fault I didnt remove this disabled replicator device in previous
+>> fix.
+>>
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
 
 
