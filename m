@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-278367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278369-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eI0bOTx9vWmt9wIAu9opvQ
-	(envelope-from <devicetree+bounces-278367-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:00:44 +0100
+	id WE/7LzB8vWmt9wIAu9opvQ
+	(envelope-from <devicetree+bounces-278369-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:56:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E64D42DE27E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 18:00:43 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CC3C2DE149
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 17:56:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 34FB230B58F4
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:48:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1EBB0319A3C1
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:48:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FD2E3D1CB2;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 660513D2FF7;
 	Fri, 20 Mar 2026 16:44:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sv9obyGM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RxgLClzM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E7B53CF663;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27F1E3CFF61;
 	Fri, 20 Mar 2026 16:44:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774025085; cv=none; b=XpQa9GrmN5vLWUpsr+KOcJnjk9fDwartdHie00E6FON0MsgenATrZ0Wq3+FxigezC+y58gMS+JcopnuzJM5HCEoSPzkv38pMw7K/gJWwlQLD28/nHa3V5AaM/fkFxhDa1OuHEfgQOomvpf48WOnJjt9Mnp2x8T5e8Zo6x0+2QVY=
+	t=1774025085; cv=none; b=feYlMcdgnhE+aNlPh74QKzQw6q8/4Z+VkR+8ouWKDRMzLntqmF5IIosYVpujfqytP+1CRpP6l1fGsJpoGa0rJ5ZGVh8wFzZ3xClwsnkMAsjV3xCkjUVZ3+Pm8mnmNOFdrPMwMqhVpXKQ6ODI7euechy7CBCf2yP9N3shyXI3i48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1774025085; c=relaxed/simple;
-	bh=2qx54d071209ocyGH7nQIwEVJpZqWrRVUMn+5JIxUn4=;
+	bh=BU6kdVo0x4D70Au3+d7B1+eMYVpO0+uLzE4YH6wdmWA=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=oxDCf72jX8yEoqCAdzRIgbpRNknwAltNc8vYmVKWOTNd6psiKzuZycfawXb1bfBmk2t5eG3n8G0lpkYfBDWC2uwecRP9ru9wQYzT2DYo2/3a8agi+BUOdgmmCtalzkSHRdSDnE1lZfpDeE1ZT9FyJw/VH3qVB5vYCiIkckDYxPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sv9obyGM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E20CEC2BCB1;
+	 In-Reply-To:To:Cc; b=P3tRjLPs8Y83o51PpQLP3paDtMU63Q6sXAoarpnuk1DDHEDyM3oFhBeu6sVtIrUbaVXj1/crsJiH+JQ/bJPuAsNQ8Djf3UBxdzdz2EYFonEs07rMsKRJWF/C0vL+Izb/SURweL1riYq7g5PhOcAzDs4HWaeLlIUYxCl0Bd76Rv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RxgLClzM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id F0615C2BCB0;
 	Fri, 20 Mar 2026 16:44:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1774025085;
-	bh=2qx54d071209ocyGH7nQIwEVJpZqWrRVUMn+5JIxUn4=;
+	bh=BU6kdVo0x4D70Au3+d7B1+eMYVpO0+uLzE4YH6wdmWA=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Sv9obyGMUWlporr3rgXvyWCTzj7MgyUPpEbmmWsXqSkXvKCfX4aY0x5g2FpSf3xXO
-	 eI8YkbpCKZ7dEJjqX6zRnM6gh0BkiBDbhnpsZYNZKTnh302her+TMyhKMW8r4626f3
-	 BXxVc82M0zTMc+My67HGkPiUaK2x+T4cP4TbEEjvlfo2CuSzsOvvn3yZfuejXClZhs
-	 PlzIDXegq0/fGc1PR/Pcyk0QNsFOsW5Jv1SRcQ/feJLThcuZrpfA3IrUtusDHvdGG5
-	 RtmE9mxLQp4Vqnizw2mMleCLegI7QqHLmTVuLsM4Y/11V2LBlHOVIWOBwF6gDnsHS1
-	 hZzrc3Xb8swJw==
+	b=RxgLClzMp1rr8GwMcLP049NK9cYWyZTO04tfXAwUPr1ApfmRDVfsitquHuJqQeaTn
+	 oi8gQxSas0GvNZ5Fo0SrZa579ERm3PTrFr8sPeiPfYHTrMm7h+VCRCmxGstHId4JaZ
+	 /+iUPt8+j/8F4/yBOp/R54kTAnqBa3H8UkIZN6KLTLrcnc3oI/0/rme91nAsrjcJ88
+	 1u2C0LpCL24lhDDroI5D5EUam8AJHQY6oLuTOx0lPQFHHig2oz69ldNlNeTg8ZwvaI
+	 VNGdBTTM5zhxFIkDrtA/dHqZ9qqzRzd8jWYfQ5IdjT1TERVApZuQF9Dn10OUrBkrOo
+	 fEI2zTjcd+htw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DA25D10987B5;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E85F310987B7;
 	Fri, 20 Mar 2026 16:44:44 +0000 (UTC)
 From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Fri, 20 Mar 2026 17:44:44 +0100
-Subject: [PATCH v7 3/7] Input: synaptics-rmi4 - f12: use hardcoded values
- for aftermarket touch ICs
+Date: Fri, 20 Mar 2026 17:44:45 +0100
+Subject: [PATCH v7 4/7] Input: synaptics-rmi4 - f55: handle zero electrode
+ count
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,7 +59,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260320-synaptics-rmi4-v7-3-379360de18d0@ixit.cz>
+Message-Id: <20260320-synaptics-rmi4-v7-4-379360de18d0@ixit.cz>
 References: <20260320-synaptics-rmi4-v7-0-379360de18d0@ixit.cz>
 In-Reply-To: <20260320-synaptics-rmi4-v7-0-379360de18d0@ixit.cz>
 To: Kaustabh Chakraborty <kauschluss@disroot.org>, 
@@ -72,21 +72,21 @@ Cc: David Heidelberg <david@ixit.cz>, linux-input@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Casey Connolly <casey.connolly@linaro.org>, phone-devel@vger.kernel.org
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6187; i=david@ixit.cz;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1139; i=david@ixit.cz;
  h=from:subject:message-id;
- bh=uIVBzoVvoT9cC0FlMrh8EX/REdV+nI9MyoZTwpNDSos=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpvXl7GSgwspf4fym8Www61d0rWJ1969SVB34st
- rHnnZ4UqhqJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCab15ewAKCRBgAj/E00kg
- csg1D/40/AEYnuVZXC1NZxp9XrYJkWLYPq542ApAPwFA+gD3XKjdn7hWhpMlqPF7UsDDWNxe8Jo
- f2EjxDXYc1EonGb1mK/0gZ57qLdBe1QJgtChzd7DhBjR8qs6VJEEKSFc5nRMdx7K/bfwM0HVgCF
- QNYD0wmqhw/SI7ZiMNJ/1Z8kDQshyNT9UKpPWeBVVaDwdGkiBgxeYaTP2K6W77fmHrhgR+iIQYm
- lLe5OAvwI/yiysZrWmU+zjx0cVET04wWOctEjBjGyjO57yURDbk8H2y7d9/Qm3xsT9aWLex7vLw
- g+KCe8Y5H/vlm3Ad6OGlZR11R+eDJdi9zrk3UIiB1D1DEpTeaDpKJwK698de0LCUb6bSitNZ1cv
- RbRS0dygfdr9YVybK4FIKDDd6nirZsscHLbyXHsia/sbXxLNiaGWf7z+DUmH9kSIENrCtP5E/V6
- NleAc2OJYvoUJ7Vh/+sUMQOUIcjoKVeAsl3ND5AJxTvukj70VD5RmMmFuto2N9FgqO435Czmd1s
- ZRk4tzhSi+PNhfYdjXfiNhoRs00m4yAldpxKLRP77Isc7vubnJNz+eVfIuqmYVbK+DW3utP7hQW
- /WMkup0mm1eLm8unvH5AQ8K8qUcY5aZizkJxN/xnZcgBvYQH8BKRexCfvq270VzqY9iQ7fS2pE0
- oRnNGlqFamHeK1A==
+ bh=AmUwE6dlCCX02pALY0B7wBasdQMVqYZC32vlnsSfL44=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpvXl7/pqB1jbTnOT25HQzbiHjSJxghiXVEFt6P
+ c+AXX9sjEeJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCab15ewAKCRBgAj/E00kg
+ crFUD/9KPBitTbe3GmT0dwbYVEkdnHvBGVEUT0z8TTB3Ovk+dE4my9X33BijUL52X53vWXx1ek0
+ 1VUAFpg95Uo0piNjuG/jplIoTHISeQhOjVriFgmyWvsQdqnNYhle+JBDRy2DNKJMo5enxRJcMrL
+ gSkG6v+H6NIE0mDPTrWnDlcgNs/Q/coU/4mDojlN64/OtnqnvQWDrAghJKwO044lbWFmN4YhNu1
+ fcQf67s9d02FVp4Wb6BoVKVFu4NvrNUcrxV1l8PojD+XTkDkhUiJ//1DUKexFYc4ffQsh+vBxMn
+ TvmYjAhDKSWa9fFV3CvRma7GGsYmc3+VJF0smo4GJiBGt5E2axaOvauGNSDqOb0nWEWD9C3mFT5
+ d6NvdgKqphchrYP/FcneYLjeg6cLZJZ4Plb3M1Ze6+OHy95GlaGpAem53TZdhQeReK8/p6bhJDd
+ EgA1T3nxcPiltag+Vg2hQt/KxFiCnAlelhHX6mU5YmKENS8hI3YpcM+HeuGA8hjX8E+rruwJwLQ
+ AFQ+GlEJ9TR/2S/rp3++ONjZG6C7/x3dv7dVTKWPP5e/M0ysepBFZjGp1P3+B5vAQXEzdCQS8Jg
+ Cvdmm4fyVmOcMwJQSp2sG3nDMtDYs2weEVb19mcgj0D+Ny7lhkSu7gsoZRNuCBy5errnB9G1iU/
+ x+xt48fBeaZTJkA==
 X-Developer-Key: i=david@ixit.cz; a=openpgp;
  fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
 X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
@@ -97,12 +97,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278367-lists,devicetree=lfdr.de,david.ixit.cz];
+	TAGGED_FROM(0.00)[bounces-278369-lists,devicetree=lfdr.de,david.ixit.cz];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[disroot.org,gmail.com,kernel.org,zx2c4.com,ew.tq-group.com,tw.synaptics.com];
@@ -116,210 +116,45 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	NEURAL_HAM(-0.00)[-0.997];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	HAS_REPLYTO(0.00)[david@ixit.cz];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,ixit.cz:email,ixit.cz:replyto,ixit.cz:mid,disroot.org:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E64D42DE27E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,disroot.org:email,linaro.org:email,ixit.cz:email,ixit.cz:replyto,ixit.cz:mid]
+X-Rspamd-Queue-Id: 7CC3C2DE149
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Kaustabh Chakraborty <kauschluss@disroot.org>
 
-Some replacement displays include third-party touch ICs which are
-devoid of register descriptors. Create a fake data register descriptor
-for such ICs and provide hardcoded default values.
-
-It isn't possible to reliably determine if the touch IC is original or
-not, so these fallback values are offered as an alternative to the error
-path when register descriptors aren't available.
+Some third party ICs claim to support f55 but report an electrode count
+of 0. Catch this and bail out early so that we don't confuse the i2c bus
+with 0 sized reads.
 
 Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-[changes for readability / codeflow, checkpatch fixes]
+[simplify code, adjust wording]
 Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
 Signed-off-by: David Heidelberg <david@ixit.cz>
 ---
- drivers/input/rmi4/rmi_f12.c | 117 +++++++++++++++++++++++++++++++++----------
- 1 file changed, 91 insertions(+), 26 deletions(-)
+ drivers/input/rmi4/rmi_f55.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/input/rmi4/rmi_f12.c b/drivers/input/rmi4/rmi_f12.c
-index 8246fe77114bb..1a103cc5f2235 100644
---- a/drivers/input/rmi4/rmi_f12.c
-+++ b/drivers/input/rmi4/rmi_f12.c
-@@ -218,6 +218,41 @@ static void rmi_f12_process_objects(struct f12_data *f12, u8 *data1, int size)
- 		rmi_2d_sensor_abs_report(sensor, &sensor->objs[i], i);
- }
+diff --git a/drivers/input/rmi4/rmi_f55.c b/drivers/input/rmi4/rmi_f55.c
+index 488adaca4dd00..776c915b82e72 100644
+--- a/drivers/input/rmi4/rmi_f55.c
++++ b/drivers/input/rmi4/rmi_f55.c
+@@ -52,6 +52,11 @@ static int rmi_f55_detect(struct rmi_function *fn)
  
-+static void rmi_f12_set_hardcoded_desc(struct rmi_function *fn, struct f12_data *f12)
-+{
-+	struct rmi_2d_sensor *sensor = &f12->sensor;
-+	struct rmi_register_desc_item *reg_desc;
-+
-+	/* We have no f12->data_reg_desc, so the pkt_size is 0, override it with
-+	 * a somewhat sensible default (this corresponds to 10 fingers).
-+	 */
-+	sensor->pkt_size = 88;
-+
-+	/*
-+	 * There are no register descriptors to get these values from.
-+	 * We set them to high values to either be overwritten by the clip
-+	 * properties from devicetree, or to just not get in the way.
-+	 */
-+	sensor->max_x = 65535;
-+	sensor->max_y = 65535;
-+
-+	/*
-+	 * Create the Data1 register descriptor so that touch events
-+	 * can work properly.
-+	 */
-+	reg_desc = devm_kcalloc(&fn->dev, 1,
-+			sizeof(struct rmi_register_desc_item), GFP_KERNEL);
-+	reg_desc->reg = 1;
-+	reg_desc->reg_size = 80;
-+	reg_desc->num_subpackets = 10;
-+
-+	f12->data1 = reg_desc;
-+	f12->data1_offset = 0;
-+	sensor->nbr_fingers = reg_desc->num_subpackets;
-+	sensor->report_abs = 1;
-+	sensor->attn_size += reg_desc->reg_size;
-+}
-+
- static irqreturn_t rmi_f12_attention(int irq, void *ctx)
- {
- 	int retval;
-@@ -338,6 +373,40 @@ static int rmi_f12_config(struct rmi_function *fn)
- 	return 0;
- }
- 
-+static int rmi_f12_sensor_init(struct rmi_function *fn, struct f12_data *f12)
-+{
-+	struct rmi_2d_sensor *sensor = &f12->sensor;
-+
-+	sensor->fn = fn;
-+	f12->data_addr = fn->fd.data_base_addr;
-+
-+	/* On quirky devices that don't have a data_reg_desc we hardcode the packet
-+	 * in rmi_f12_set_hardcoded_desc(). Make sure not to set it to 0 here.
-+	 */
-+	if (!sensor->pkt_size)
-+		sensor->pkt_size = rmi_register_desc_calc_size(&f12->data_reg_desc);
-+
-+	sensor->axis_align =
-+		f12->sensor_pdata.axis_align;
-+
-+	sensor->x_mm = f12->sensor_pdata.x_mm;
-+	sensor->y_mm = f12->sensor_pdata.y_mm;
-+	sensor->dribble = f12->sensor_pdata.dribble;
-+
-+	if (sensor->sensor_type == rmi_sensor_default)
-+		sensor->sensor_type =
-+			f12->sensor_pdata.sensor_type;
-+
-+	rmi_dbg(RMI_DEBUG_FN, &fn->dev, "%s: data packet size: %d\n", __func__,
-+		sensor->pkt_size);
-+
-+	sensor->data_pkt = devm_kzalloc(&fn->dev, sensor->pkt_size, GFP_KERNEL);
-+	if (!sensor->data_pkt)
-+		return -ENOMEM;
-+
-+	return 0;
-+}
-+
- static int rmi_f12_probe(struct rmi_function *fn)
- {
- 	struct f12_data *f12;
-@@ -351,6 +420,7 @@ static int rmi_f12_probe(struct rmi_function *fn)
- 	struct rmi_driver_data *drvdata = dev_get_drvdata(&rmi_dev->dev);
- 	u16 data_offset = 0;
- 	int mask_size;
-+	bool hardcoded_desc_quirk = false;
- 
- 	rmi_dbg(RMI_DEBUG_FN, &fn->dev, "%s\n", __func__);
- 
-@@ -365,9 +435,9 @@ static int rmi_f12_probe(struct rmi_function *fn)
- 	++query_addr;
- 
- 	if (!(buf & BIT(0))) {
--		dev_err(&fn->dev,
--			"Behavior of F12 without register descriptors is undefined.\n");
--		return -ENODEV;
-+		rmi_dbg(RMI_DEBUG_FN, &fn->dev,
-+			"No register descriptors defined for F12, using fallback\n");
-+		hardcoded_desc_quirk = true;
- 	}
- 
- 	f12 = devm_kzalloc(&fn->dev, sizeof(struct f12_data) + mask_size * 2,
-@@ -375,6 +445,8 @@ static int rmi_f12_probe(struct rmi_function *fn)
- 	if (!f12)
- 		return -ENOMEM;
- 
-+	dev_set_drvdata(&fn->dev, f12);
-+
- 	f12->abs_mask = (unsigned long *)((char *)f12
- 			+ sizeof(struct f12_data));
- 	f12->rel_mask = (unsigned long *)((char *)f12
-@@ -393,6 +465,18 @@ static int rmi_f12_probe(struct rmi_function *fn)
- 		f12->sensor_pdata = pdata->sensor_pdata;
- 	}
- 
-+	sensor = &f12->sensor;
-+
-+	if (hardcoded_desc_quirk) {
-+		rmi_f12_set_hardcoded_desc(fn, f12);
-+
-+		ret = rmi_f12_sensor_init(fn, f12);
-+		if (ret)
-+			return ret;
-+
-+		goto skip_register_desc;
+ 	f55->num_rx_electrodes = f55->qry[F55_NUM_RX_OFFSET];
+ 	f55->num_tx_electrodes = f55->qry[F55_NUM_TX_OFFSET];
++	if (!f55->num_rx_electrodes || !f55->num_tx_electrodes) {
++		dev_err(&fn->dev, "%s: F55 query returned no electrodes, giving up\n",
++			__func__);
++		return -EINVAL;
 +	}
-+
- 	ret = rmi_read_register_desc(rmi_dev, query_addr,
- 					&f12->query_reg_desc);
- 	if (ret) {
-@@ -423,29 +507,9 @@ static int rmi_f12_probe(struct rmi_function *fn)
- 	}
- 	query_addr += 3;
  
--	sensor = &f12->sensor;
--	sensor->fn = fn;
--	f12->data_addr = fn->fd.data_base_addr;
--	sensor->pkt_size = rmi_register_desc_calc_size(&f12->data_reg_desc);
--
--	sensor->axis_align =
--		f12->sensor_pdata.axis_align;
--
--	sensor->x_mm = f12->sensor_pdata.x_mm;
--	sensor->y_mm = f12->sensor_pdata.y_mm;
--	sensor->dribble = f12->sensor_pdata.dribble;
--
--	if (sensor->sensor_type == rmi_sensor_default)
--		sensor->sensor_type =
--			f12->sensor_pdata.sensor_type;
--
--	rmi_dbg(RMI_DEBUG_FN, &fn->dev, "%s: data packet size: %d\n", __func__,
--		sensor->pkt_size);
--	sensor->data_pkt = devm_kzalloc(&fn->dev, sensor->pkt_size, GFP_KERNEL);
--	if (!sensor->data_pkt)
--		return -ENOMEM;
--
--	dev_set_drvdata(&fn->dev, f12);
-+	ret = rmi_f12_sensor_init(fn, f12);
-+	if (ret)
-+		return ret;
- 
- 	ret = rmi_f12_read_sensor_tuning(f12);
- 	if (ret)
-@@ -543,6 +607,7 @@ static int rmi_f12_probe(struct rmi_function *fn)
- 		data_offset += item->reg_size;
- 	}
- 
-+skip_register_desc:
- 	/* allocate the in-kernel tracking buffers */
- 	sensor->tracking_pos = devm_kcalloc(&fn->dev,
- 			sensor->nbr_fingers, sizeof(struct input_mt_pos),
+ 	f55->cfg_num_rx_electrodes = f55->num_rx_electrodes;
+ 	f55->cfg_num_tx_electrodes = f55->num_rx_electrodes;
 
 -- 
 2.53.0
