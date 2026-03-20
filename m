@@ -1,278 +1,182 @@
-Return-Path: <devicetree+bounces-278339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278340-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8LUZDqhmvWlF9gIAu9opvQ
-	(envelope-from <devicetree+bounces-278339-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:24:24 +0100
+	id iIxHF3povWnL9gIAu9opvQ
+	(envelope-from <devicetree+bounces-278340-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:32:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FD232DC9FC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:24:24 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6B6B2DCB34
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 16:32:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 73AEC302C291
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:22:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E7BAD3052703
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:24:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BB5C3C063B;
-	Fri, 20 Mar 2026 15:22:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84C933C7DE0;
+	Fri, 20 Mar 2026 15:24:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="etb/22JS"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="jQuHNc6k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f44.google.com (mail-dl1-f44.google.com [74.125.82.44])
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56C223B6C1E
-	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 15:22:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A89138F957
+	for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 15:24:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774020143; cv=none; b=h/jZtb8H1Q+t/FAYTZky25jM4x6fvcsm+uww5P5iAhiSQXyfv16B2fH0iz4JkX+oQxCNgfnPzRXbND4DK6TxKVbKtyrpECmpn/Z/KKEh6h5xSq9uVJu1nGrLS7fQBH5MX42Rqh1p6cH2O+EU6aAQRuMABYKqgRvF5Y18GvBOV64=
+	t=1774020296; cv=none; b=LFHabVKnja6yA5JOP2FyimsG/udU6De1eF1MbDFiD7gRkLQmggoAkdFhCO8Aot5LrdsBLWe2p45e1Btax9FuLO3uhxpAW+xBqAr+Kh3H2nUaR3EcXdCNQno0paQU29EyPfxZuH6i47Z/3BzN28tX33IiSPNMhrOYmxtjsZjitac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774020143; c=relaxed/simple;
-	bh=UgR6Ndg9uIN+GlcSMo5nrbnxzdPyRtxdyxaRymn3PjU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m2cGdigJyXlfU4EBRBjQ5NTjvdlfk5yZVc3SWu8HsHLDQVaojTCv+9iFJbu+Be0MnLGsAm3FUSt+ICdM+Z1IC8D9W6kzg5/vOMt3MdtUDJslw282ImPvGasLVs+AG+KUzikfyEq5SaCp1gfxkxOtzr6TZVnABWEnkOqcw8GB0ME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=etb/22JS; arc=none smtp.client-ip=74.125.82.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f44.google.com with SMTP id a92af1059eb24-1279eced0b9so1061002c88.0
-        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 08:22:21 -0700 (PDT)
+	s=arc-20240116; t=1774020296; c=relaxed/simple;
+	bh=wvM1Mb8L3lXrPVGeB7qlgN2B9gXnD+an+/HNQrLfJLk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=m+0Qx0pKlV1XHrE50+SIuqNSVZugvov/9m8/d3QQsnSTdSttlGC64vgw7x0k3HwObrZssP30kXpz+FMc3gvAmIZJ0BEX90MrSkbOkep7BVx6tst6V+nT3P2eWv/ptPL1aK3C7vcqfVhWlYcz9Veq/tzpeIBxD7OA/I57huaZz+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=jQuHNc6k; arc=none smtp.client-ip=209.85.221.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-56b890d1687so1671070e0c.3
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 08:24:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1774020140; x=1774624940; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=wLivAihLgNnoUtQTgzoVTgm03POcgTePUmAJyh0fy7M=;
-        b=etb/22JSbN7fvE0ycHXItKMqS+dhcRAYlzUA12l+sUaRynrkmLiqlrxOuARf8LP1IG
-         xQK2Y7vYLXOie0loa6jTRlLiAwESQpNv4iv+/lJNoiWmtJkZS5//Rq/aIN4xoQ9g78wJ
-         4LeNsFLMFX5eoaaUxWXFx0bxyjlscdAeKKF10GutRwGpXpNmicIZRe/z8nvKjJ9Y7IF/
-         WZX1jM6sfUoJlZCgyKbqvt24/E4JeBf90cpEHiOtyVI3C1XHkZFAvTcaNPcLm6fx/Xto
-         mjpNKNtXZX6lk0uenkalRzsKvhvTF7ODaD8GU35CppRI6hNgSL1LNGrwH4aYttvQb5KT
-         kSyg==
+        d=chromium.org; s=google; t=1774020294; x=1774625094; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XLXcqIVzc+TE7/RYP3TxhjZkuh5oaQY94C3LjN7BMto=;
+        b=jQuHNc6kdVYCTEtffpoRB/qr8bP14vYCXg6flg+oJhj61kJbqBtAJe1vxXODSHkLqU
+         kYtiDgoLUkeFGq09fPKe0LYvZmiFmZ8eexd0UfCXnutA7/MZxmvdlj4EJrQcApmkKpOk
+         6ECtllI30Npj3EY0tgW8KSns60WxCAsV8SFek=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774020140; x=1774624940;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wLivAihLgNnoUtQTgzoVTgm03POcgTePUmAJyh0fy7M=;
-        b=PBssOVl1ke4MYypg5KyFZTLOSrEz3ZAl1avUViyKth/Cwgy/iTOWx6l9whhT3Uo1OM
-         SPSTlPefwQddAbWZYUfAhFHRPniVnLKN+AgV3+sEKGOUlCPQWBWd8/DHJXH/mG8b2en3
-         OqGlDrYswDgrkBiZNcOKDmqDm+P9+OnD5aAQ8kNtc9tvD9MhvJpRYXz7ZmdIRayuL52L
-         0ro3Ms5LeA2fMlLI0wldaWlVXoLZItzx4P/kX+v73MP2j/IO3dF0AvrYHau8BhAw4kLH
-         xeBPnH4MRIS0IB9js60UncJfoivBdVw6exLBjLZHZ794LdZXGt+4e+bvTTm36xpotXtS
-         54cQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUOVbky3t1kfOhNq4Gmi5RWLKoo/zd0TxytbmdzTj7GiStpfhaWJbrjvsLKum9GFU+wUu8emd5AuWDO@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCXdRAZpvtWOOC/lC49S9lqWVNS3KzQVVwZF0sel/u7g2r7spe
-	jclajzQ6wmM9XTmq1KAQ7wVAl5AcolCePC81UtTW7I1Hr45Sh8qSYPMi
-X-Gm-Gg: ATEYQzzyzKTBSV2zl28s9DoaSusS6ZubIWSZB7GOn4QMjLWLZNLKf8O2bNZCrbNHObH
-	sgtdSFXvITWIHP4GSGrORJddzpecdkEwY52VWCbZe4hX2UsGOFZGdU48SIbemFmcrf0n0T2L48E
-	AodlqmMrU3TRU2b9nCVqaDjaXhHhwspN5RoQsc4py8AP0RQkc4fHSvZ5m8k405ooytEEYnm1Ms8
-	UfHDGBd3alNJwIaDmJkWW3jrL9q5kaHDfKpZ/CDAThkj/8iKMPIGPcGPXsOIGQ9LF3ke8muyXu1
-	BzSHHpPvBzVBJ3i9SgqyZT6ssnUQ2jyGTG813Oq0VUR72XQdGEpBk6lz335r5fiDYK7PbBNk/me
-	FHubIoxknOGYdqTB9wPd4gGKtP+jTd5SXIsvh2+tE6EBK1r2+oaQZxHElmi3fFJivhldAc/ioa9
-	AoRx3M8zmLcUeTWNnkH+Pr0Oa+LZv5jCYmeFcbm4FwAUasYvsVyE1/tssw1LbDdH1dvmKK3iK0
-X-Received: by 2002:a05:693c:300b:b0:2be:1f56:ed21 with SMTP id 5a478bee46e88-2c109563b70mr1476492eec.7.1774020140180;
-        Fri, 20 Mar 2026 08:22:20 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2c10aefd778sm4707452eec.0.2026.03.20.08.22.18
+        d=1e100.net; s=20251104; t=1774020294; x=1774625094;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=XLXcqIVzc+TE7/RYP3TxhjZkuh5oaQY94C3LjN7BMto=;
+        b=VG9cQ40xEDVelDKcHWIMahCNpvxtdxk4RU3zAvTHvEjRVDCWrx7iritR9BvHot+AA3
+         dD66BhyIhs0ojmWaazSZiq0gjGWFbpIw8lRK8tEwlzNyGsJsaCbPbP3AtLFQT98bSmHN
+         snpW3Zc1uiZpO0YKqteng9L8uS6WSpGRSLRn3HsMFpW3J84oLleHUvtpLs5it/F4UxVO
+         6Kk4/rAEAQnQAG2bwbJkAwcRnIWf8olnFxFtz2Ywo3wOKZ4AozwV2M0aZ3g7/QQgw/tU
+         74DQ54/FhTWfv3Kyc4pu9pxvLcOKDtXyflNUuu8eCz0qr7iFOAYXvtG6m2eKp6F5iphe
+         jfKw==
+X-Forwarded-Encrypted: i=1; AJvYcCWdVqoNxtEJ10wFElnE+/ynnjBtBi77OZnbeWfTX93ZwGsvsV74bfxqBtQ/WrYjT8e5hUqhAjGwVDVe@vger.kernel.org
+X-Gm-Message-State: AOJu0YwV1UIEoOD6OZYxHeA3lGotTz68AH0nuu/Pvbnoj0n6qNnNuA7+
+	KkFr1SZXGYLXKnsyniFB4XUT98Vvrf8Y+aWSzcRqBTWi2L2cFJg8enbkvNRs4BHcls3drVIMeaQ
+	bP+w=
+X-Gm-Gg: ATEYQzwA3le9I/4YveQB4aoVnr+Ta/6U5K7UnLKSDB/HaT1anxtmuWUWSQZ6bAZDoM8
+	9HhCV4UGc0B4qC4IY+xmd5AdFzHIe2Sn+WsKRd+GAzJUvkMyJkqYgvE+txVcXhtObefRsxcQPxG
+	UXW/eJ+f10CzNTRHMYPLONua1J0VKR1tv3qCpmJDfbRFUvFFKwWXdlyTFpO412pGvxUGwNtke+C
+	bXARrxyp/dRJ6msL8MUliajO/LDQuSaa5doH+urL+1Ab44enW/1KjOQW/HzPSAAkZ05yqNTAAIT
+	CAgXN/XLA3CVe8pQQGZHCtEF4PtOT5VgdPybwKj0/oRKjTC5wErUBXmngDOE864FXWe3mRpi++n
+	0YkuNaQGPi//4rQxaglGZ6ZW8Ch30Gv4NTANuHCuFcuMZ3ssGWjUhBmvGhkR4DYr0QwVmjgCpbv
+	EjsUyDeEmfC8EpqDpdiVSfeX9eiDK10/j8D37yfq8wO9fh4S5oKFwH+rckfv63WlBv9leM+njf
+X-Received: by 2002:a05:6122:4f93:b0:56c:1508:ed68 with SMTP id 71dfb90a1353d-56cde496dafmr1705629e0c.10.1774020293719;
+        Fri, 20 Mar 2026 08:24:53 -0700 (PDT)
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com. [209.85.221.179])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56cddcb1179sm1677920e0c.14.2026.03.20.08.24.53
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Mar 2026 08:22:19 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <a922cf55-ebe7-4256-b3bb-cc732e45e1ff@roeck-us.net>
-Date: Fri, 20 Mar 2026 08:22:17 -0700
+        Fri, 20 Mar 2026 08:24:53 -0700 (PDT)
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-56ce1384618so470384e0c.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Mar 2026 08:24:53 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWnKhn7E1K+2nunyYr8s/BYjd/qd9Teml5EUIk34NmXofhiiGrFguBqybbbCJYuwU35e82s5F7KfLR0@vger.kernel.org
+X-Received: by 2002:a05:6102:2927:b0:5ef:a8da:8b26 with SMTP id
+ ada2fe7eead31-602aed346fbmr1801022137.27.1774020292428; Fri, 20 Mar 2026
+ 08:24:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] hwmon: Add Qualcomm PMIC BCL hardware monitor driver
-To: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>,
- Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, amit.kucheria@oss.qualcomm.com,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>, linux-hwmon@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260206-qcom-bcl-hwmon-v1-0-7b426f0b77a1@oss.qualcomm.com>
- <20260206-qcom-bcl-hwmon-v1-2-7b426f0b77a1@oss.qualcomm.com>
- <ab1fSWx7pqlSANph@mai.linaro.org>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <ab1fSWx7pqlSANph@mai.linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-1.66 / 15.00];
+References: <20260320084351.2461060-1-wenst@chromium.org> <20260320084351.2461060-5-wenst@chromium.org>
+In-Reply-To: <20260320084351.2461060-5-wenst@chromium.org>
+From: Fei Shao <fshao@chromium.org>
+Date: Fri, 20 Mar 2026 23:24:16 +0800
+X-Gmail-Original-Message-ID: <CAC=S1nhBnhE2XJRaGfSOSutZGJXfHQujOd1rMbhOfAwGQa0ZrA@mail.gmail.com>
+X-Gm-Features: AaiRm52mZwCR4AEeTV_75B0alA5w3n6BBFefcUDCvgduPyrlTgwEFUngOeWKn9E
+Message-ID: <CAC=S1nhBnhE2XJRaGfSOSutZGJXfHQujOd1rMbhOfAwGQa0ZrA@mail.gmail.com>
+Subject: Re: [PATCH 04/13] arm64: dts: mediatek: mt8192-asurada: Add MT6315
+ PMIC supplies
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-278339-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DMARC_NA(0.00)[roeck-us.net];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,collabora.com,lists.infradead.org,vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[chromium.org:+];
+	TAGGED_FROM(0.00)[bounces-278340-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[fshao@chromium.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.946];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,roeck-us.net:mid]
-X-Rspamd-Queue-Id: 1FD232DC9FC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: C6B6B2DCB34
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/20/26 07:52, Daniel Lezcano wrote:
-> Hi Manaf,
-> 
-> On Fri, Feb 06, 2026 at 02:44:06AM +0530, Manaf Meethalavalappu Pallikunhi wrote:
->> Add support for Qualcomm PMIC Battery Current Limiting (BCL) hardware
->> monitor driver. The BCL peripheral is present in Qualcomm PMICs and
->> provides real-time monitoring and protection against battery
->> overcurrent and under voltage conditions.
->>
->> The driver monitors:
->> - Battery voltage with configurable low voltage thresholds
->> - Battery current with configurable high current thresholds
->> - Two limit alarm interrupts (max/min, critical)
-> 
-> Can you describe the behavior of the alarm ?
-> 
-> I assume the alarm is raised when a threshold is crossed from normal
-> to anormal condition leading to a hwmon event.
-> 
->   * Does the BCL trigger an interrupt when going back to the normal condition ?
-> 
->   * When is the alarm flag reset ?
-> 
->   * Can we have a flood of events if the current / voltage is wavering
->     around the thresholds ?
-> 
-> Overall, the driver is too big, so hard to review. It is better to
-> provide a simplified version with one version supported.
-> 
->> The driver integrates with the Linux hwmon subsystem and provides
->> standard hwmon attributes for monitoring battery conditions.
->>
->> Signed-off-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
->> ---
->>   MAINTAINERS                    |   9 +
->>   drivers/hwmon/Kconfig          |   9 +
->>   drivers/hwmon/Makefile         |   1 +
->>   drivers/hwmon/qcom-bcl-hwmon.c | 982 +++++++++++++++++++++++++++++++++++++++++
->>   drivers/hwmon/qcom-bcl-hwmon.h | 311 +++++++++++++
->>   5 files changed, 1312 insertions(+)
-> 
-> [ ... ]
-> 
->> diff --git a/drivers/hwmon/qcom-bcl-hwmon.c b/drivers/hwmon/qcom-bcl-hwmon.c
->> new file mode 100644
->> index 000000000000..a7e3b865de5c
->> --- /dev/null
->> +++ b/drivers/hwmon/qcom-bcl-hwmon.c
->> @@ -0,0 +1,982 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Qualcomm pmic BCL hardware driver for battery overcurrent and
->> + * battery or system under voltage monitor
->> + *
->> + * Copyright (c) 2026, Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
-> 
-> Old copyright format
-> 
->> +#include <linux/devm-helpers.h>
->> +#include <linux/err.h>
->> +#include <linux/hwmon.h>
->> +#include <linux/interrupt.h>
->> +#include <linux/kernel.h>
->> +#include <linux/module.h>
->> +#include <linux/mod_devicetable.h>
->> +#include <linux/mutex.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/property.h>
->> +#include <linux/regmap.h>
->> +#include <linux/workqueue.h>
->> +
->> +#include "qcom-bcl-hwmon.h"
->> +
->> +ADD_BCL_HWMON_ALARM_MAPS(in, min, lcrit);
->> +ADD_BCL_HWMON_ALARM_MAPS(curr, max, crit);
->> +
->> +/* Interrupt names for each alarm level */
->> +static const char * const bcl_int_names[ALARM_MAX] = {
->> +	[LVL0] = "bcl-max-min",
->> +	[LVL1] = "bcl-critical",
->> +};
-> 
-> IIUC there are three levels of alarms but the hwmon only has max/min
-> and critical. Would it make sense to do adaptative min / max ? So when
+On Fri, Mar 20, 2026 at 4:44=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> w=
+rote:
+>
+> There are two MT6315 PMICs in the MT8192 Asurada design. One has two
+> outputs ganged together and two outputs unused. The other has three
+> outputs ganged together, and one left independent.
+>
+> Add supplies for all the used regulators. In the case of ganged outputs,
+> add the supply for just the first output.
+>
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm6=
+4/boot/dts/mediatek/mt8192-asurada.dtsi
+> index d16634e9f342..318903b112a3 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> @@ -175,6 +175,17 @@ pp3300_wlan: regulator-3v3-wlan {
+>                 gpio =3D <&pio 143 GPIO_ACTIVE_HIGH>;
+>         };
+>
+> +       /* system wide switching 4.2V power rail */
+> +       pp4200_g: regulator-4v2-g {
+> +               compatible =3D "regulator-fixed";
+> +               regulator-name =3D "pp5000_a";
 
-hwmon has lcrit, min, max, and crit alarms for all sensor types, plus
-an additional _cap_alarm for power attributes and _emergency_alarm
-for temperature attributes. There is also a generic _alarm attribute
-for each sensor, which is supposed to be used if the specific alarm
-type is not known.
+This should be pp4200_g.
 
-What exactly are the three levels of alarms ?
+Regards,
+Fei
 
-Thanks,
-Guenter
-
+> +               regulator-always-on;
+> +               regulator-boot-on;
+> +               regulator-min-microvolt =3D <4200000>;
+> +               regulator-max-microvolt =3D <4200000>;
+> +               vin-supply =3D <&ppvar_sys>;
+> +       };
+> +
+>         /* system wide switching 5.0V power rail */
+>         pp5000_a: regulator-5v0-a {
+>                 compatible =3D "regulator-fixed";
 
