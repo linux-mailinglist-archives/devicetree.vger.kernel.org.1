@@ -1,206 +1,211 @@
-Return-Path: <devicetree+bounces-278294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278295-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wN87OANUvWlr8gIAu9opvQ
-	(envelope-from <devicetree+bounces-278294-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:04:51 +0100
+	id UN1BLN5VvWme9AIAu9opvQ
+	(envelope-from <devicetree+bounces-278295-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:12:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AA8C2DB8C2
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:04:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F57A2DBA5A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 15:12:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 133C9303A6EF
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:00:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D873C307C893
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 14:06:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EA9B3BD63F;
-	Fri, 20 Mar 2026 14:00:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A433A2DF138;
+	Fri, 20 Mar 2026 14:06:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="tIdwWyqx"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b="PvQmJThl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com (mail-eastusazon11012011.outbound.protection.outlook.com [52.101.53.11])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 425DB3BB9E3;
-	Fri, 20 Mar 2026 14:00:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.53.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C17940DFC2;
+	Fri, 20 Mar 2026 14:06:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774015245; cv=fail; b=bFZ4sjjCj/Wi2Wjzc7wBq+pYxLXUBkmX9/yhOlTADfWZzPe1dSXENFORFLc4pQkoyGScNpPedRwXLFgLAajN6Ro4BE1TuwB2MNMLG9fSTpRsp4w/07mAH985fcGHLh9HEOfVRYzHO1Nnca4GUG07kNOa2/eMpZqEO8mHf37iaxM=
+	t=1774015609; cv=pass; b=iOLpcmMcMk/NAEZojz9VnYIQLGJlo/gQz+XRS8wZ3RhzYjyRwYObCNqQvNEQ2MXLiIeBFDW5104gSpo1heWlVzBB2WT628vfRPyC4fEnm/jnne0zenWdViL+9aLpQswu+n/UplCjYEVcaUDtDFO1nddl5BgvhSHIxafWJRdUd5M=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774015245; c=relaxed/simple;
-	bh=o74KVk4asF0kkS/MZS6+RzF43OvSo0mJrBNoUgUVg8M=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=ByXBjEJwR31ViIquYd+HWwTGPEJwJaRDBC8wWd9Gds0t1guau9SOb4imwFlCoWFd0S+MV7WyQ0pAxSRtI+LJYJr+gvwime3aGEPERKzK8C2k1tVAO23ytaoK28Ng0U0iDk6nH5lqkk1Q1BUrn3eK9475LEbB1r9X6E7TbeDdxZE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=tIdwWyqx; arc=fail smtp.client-ip=52.101.53.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WzclmC2U8RjdaZjoYPvJC2LKFT0dS31/Ul1kKDbu6ck++zFGiV+RZVXqwvtFFAcMIO9cbBvyr9S+t5Zgo7HcWGiZz55SkAnOq47vk3Fw5xXVYBTuOuj/4gTaWm3BiGOcjeyU+n/PtNbpUHIsZ4nFL0iK1/0deiXcTOp5RW3y4rQhtGzGfPymPNF8eAkPNuN5I4JYfD/daPldmYpz+0kustW49p3C5pbp6Hyz7hlw6E4yBnGSfDq4I3Pyg4E32+yPkS6W3VTmma6zy/LtKlkuCl3GB45aoviWy0JS86ouWz5LFwgVTc92Hfz3u0eYmWDYvrCZWofbsC67pxoYQYQ9rQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=o74KVk4asF0kkS/MZS6+RzF43OvSo0mJrBNoUgUVg8M=;
- b=OxbS/WdQOGh3jSlu4e9TNZdvzngMozxv6mkUz2bF6IrL5sQVTZfZzu/LTmz4xxKkzi33vFqVgn15H10FULp8PwtJSaR7f+bFTIo5J0kDwScjn0cAmwVy1IyblXXtcEuiQXgpDOg6EDj7Ws168LvnqMqMcO8hYxjr6RMHWRZtFF0u7vr1/wx9lHylq2aI6/JQWJz+lqZFESC8I32l8FrzxIYOgAEe1QBpZ1zW2w/jR5UFW1Jd56SFkgvCiNVVD56zkG0B+WIlCW2bSSoJd7rd0oJaPWGAkswZvpxu4UMohaLAEyzmLbmBA8Je1U4akjixDXrkDwhBzOQ7rybjzgrR8A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=o74KVk4asF0kkS/MZS6+RzF43OvSo0mJrBNoUgUVg8M=;
- b=tIdwWyqxXBMtSWZCGWPmsEvuJlIauT9g7HtGPUFh24clvg9Ybay4vn9pTD+HIWfSzv6DH39i62S81y3Oi+/ZiyVOGpBBrJmPoB8tsWnSdXF+ztR2U5gAuw/imSSztj3qgQANrcwejSUfDKSroFC1gW39ws8occ+Y2j6PsR4yfggnbZAxGJkjxfGwlBHMZKF4QqSevzK+kYj0apZQjH46Jk0Z8ttcT4/G8rfi6W6Wlh4aMNCMxF4xNGxIju/bYtHoX5cLuAdE60lyywnNG2KSE2hXSTNRHH13T5CaSmO790JPK3PXUWFOi7dsmpUZOozTrP1NFFuTWO6UMerDl6WpPw==
-Received: from BYAPR11MB2950.namprd11.prod.outlook.com (2603:10b6:a03:8f::29)
- by CY8PR11MB7875.namprd11.prod.outlook.com (2603:10b6:930:6c::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.9; Fri, 20 Mar
- 2026 14:00:37 +0000
-Received: from BYAPR11MB2950.namprd11.prod.outlook.com
- ([fe80::57bd:815c:82ad:9b77]) by BYAPR11MB2950.namprd11.prod.outlook.com
- ([fe80::57bd:815c:82ad:9b77%5]) with mapi id 15.20.9745.007; Fri, 20 Mar 2026
- 14:00:37 +0000
-From: <Conor.Dooley@microchip.com>
-To: <455.rodrigo.alencar@gmail.com>, <conor@kernel.org>,
-	<rodrigo.alencar@analog.com>
-CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-	<lars@metafoo.de>, <Michael.Hennerich@analog.com>, <jic23@kernel.org>,
-	<dlechner@baylibre.com>, <andy@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <p.zabel@pengutronix.de>,
-	<corbet@lwn.net>, <skhan@linuxfoundation.org>
-Subject: Re: [PATCH RFC v2 1/9] dt-bindings: iio: frequency: add ad9910
-Thread-Topic: [PATCH RFC v2 1/9] dt-bindings: iio: frequency: add ad9910
-Thread-Index: AQHctwCHbT1bLKt6z0CWlkYzoWzha7W2HLuAgAEssoCAACxSgA==
-Date: Fri, 20 Mar 2026 14:00:37 +0000
-Message-ID: <f38d913a-486d-493e-b871-17238d8ca5f8@microchip.com>
-References: <20260318-ad9910-iio-driver-v2-0-e79f93becf11@analog.com>
- <20260318-ad9910-iio-driver-v2-1-e79f93becf11@analog.com>
- <20260319-annex-varying-afbddcb825b7@spud>
- <zi7ifl45h5fu76rlbdubkeq7wa7gtve5wsdruo574gzj5qbfu6@fl6rh3soaj74>
-In-Reply-To: <zi7ifl45h5fu76rlbdubkeq7wa7gtve5wsdruo574gzj5qbfu6@fl6rh3soaj74>
-Accept-Language: en-IE, en-US
-Content-Language: en-IE
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-user-agent: Mozilla Thunderbird
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BYAPR11MB2950:EE_|CY8PR11MB7875:EE_
-x-ms-office365-filtering-correlation-id: 5e64547b-cef9-472b-9991-08de86891075
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|7416014|376014|366016|1800799024|18002099003|56012099003|22082099003|38070700021;
-x-microsoft-antispam-message-info:
- zNmmJYlk6mqOqxUm3x6CGUmzMMKmR3DlfcbkQclMpMGV4KSx9quKiC8h6TeJuGqtsv+jJYLqTUnhHie3jcnHZpfXqaHnK2P/UJHb/eIsC/piuL+FwKzmhGiUz09yX4xYd0mRzCexd3y3L3wZ0RvdP6Yd2hbH997qnzVn7cLIRgbkPAGA0TuU/6mmzHAgbtWMZykOWx4yYOy5+VWTdF949BA5LVlMt4nx1fqylvuFTkX8Aszow+n8e1oRvocq25x3q+nPX4DlmdnqxTtDDLeI0myJSx7Noypv0KAb55zlEXqyN/eUkiS/HjZoPVMNSC+hBwTYNIHDeQrlYKAf5rhvnci+bQzhV2mUGYcoc10BE3RvtgGv1uezQeA1dvDh31B6JJzeB5U+H7Se/PwyfMttH8d31AdIBO092UzClaenxIQZJzMKZssl0jjMEDJcENjBCel+UTc9m2THG7bFbeU8YDpeQkoa1nQrxFy2TjvWLdjNrddn8YAdUKoWqZJcDo5vxN5FNZUs/3shVVrwJjS/BdBRmpbdo0CnZbAUKt9jsLGdNdT9n/3GOpVEecrCMV2CDW8hwOBci6+a8jv54fWC731FmnLDRGuE7GwO3ciJEXhZLRzs5FXX3y8womJ7OB2yMzaxmeft6zG117sJ+WawXRjvR66SR6tz9/DkHDeQKudFQVS6CSmQsS9a1COIqOBGCQHcAC27FtIQNlrzSJF66mW585KyNWVaemc2bkcMaef6qQPDvMpHWEjFS+vxaEO6B79WlK/b+hCKD3oex1RwzGhI+7C1/KpF1rrzBpQW5rU=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB2950.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024)(18002099003)(56012099003)(22082099003)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?RDJiVVp2ZWRudlJyc3ZmYjJRZExtR2RERllzbXZWZWhBT2hMaGtQeDd5aWNL?=
- =?utf-8?B?Tk83Z3h1bm5KSmVQN2J4bHNiTnhFWHhWYlExNGR5VE02SExxVmM3R1pVeEpR?=
- =?utf-8?B?Znd0d0JtNVByeFpuNVBHNDhTcmpNSWh2QWNKM3dJVElUU1ZBOG0rZ2VVVlo1?=
- =?utf-8?B?SEJkZks3RFVLek51eGpQMGpUZnJOZzhsanR2U2swWDU1SlR1TmxsM0VjQndO?=
- =?utf-8?B?ZHNFSHByTUNLTmZ0MG03T1RxNWgrZUE3Z2t5cWkwb2x1NUYrenlydTVBOHdG?=
- =?utf-8?B?Q2d1QmxuR0ExZ0xkWG1EZWVLakYvLy9EanlSeDg3M09qY0xZRGJ1bndBa2NG?=
- =?utf-8?B?QU1MVHZ1VlppY083UCtOcTRQWnZaWTdlZjJ3QTdJQVk3ekhybDhiTmxPSkZ6?=
- =?utf-8?B?d1grVVRRTHdsYlhDRVFjUTFaajdXQThMbno1elZCRTIwU2NMZHN1T3JyWHh2?=
- =?utf-8?B?SkJ6a29EZ29jbGNSVVZJZmJIc2taZ0lsajd3TGZTOUFVa1l0YlNRVUx6WnF0?=
- =?utf-8?B?VnJSU3ZhUHJtOGNNTFBSYjZKVnZNMTl6SHROMlBWdEhJTDdBMUhzcldndWJR?=
- =?utf-8?B?bjJCWUszTTVuYzhYODNJbFowc0wvdld4djdJRXJwbSt3TmtlSmoyVWVpeTZY?=
- =?utf-8?B?TCt5bWNNdHdveFo0RG9pUndMMk5nKzMvRVQ0SmtPT1hLR3BGUFNOSDJRSEhp?=
- =?utf-8?B?eXJPeHhwSUVFZUN0YUpVcjJZamhLTmszQzMwNVBwWXZLNEdDazlZNFBlM3M2?=
- =?utf-8?B?cHd5eGI1eTB5SEN3VFc5WEx6QzY1ZS9pUHFxZE81WHF6ZXUvclowMWViUDRw?=
- =?utf-8?B?YTRQcTV3aGUrMTZmWUZYTVlkSTZQSUNzdml6b0R6YzVEMm5TSmcwQjU1NDlF?=
- =?utf-8?B?eFZiYWtDQjdGOWV0RDEwVG1QZ082Y3ZVU1ZTRUJtcGhsd04zNkp5bTVMN1VH?=
- =?utf-8?B?aGJwVS9sZzJXV0dpK2d4czVNb3NZMVRlamxLWmd2azNXZ01MRUpmRHZuY3Fn?=
- =?utf-8?B?VUNDc2dZV1dZMnBoM0N3aUdvcFBCaXQ3eGQrb2I3MktUR1ptdm1kOElJWFQ1?=
- =?utf-8?B?MGJBcVZocVFoT0JNYjlMc3FWQmt5ZisvV0psSWtkVFhNelBWSUx1Q1E1bXQ0?=
- =?utf-8?B?S1RIVFdvVXhabVNOcUVYRWtnUE96Z0Y1M3kxZ0ZNY1dMVlRReG5PenN0T3I2?=
- =?utf-8?B?Qmp3eGExajkyRzRLN0xUQXBwaW9uVWNIeHVPOG5lR3kyRWN0QktGM3d1eVBY?=
- =?utf-8?B?YWd5V1RaTENNYW9Ca0Q4RFNxSXZ1TWNLcGlPK3g5ZVRHYysvU1ZvOEVPNnNo?=
- =?utf-8?B?UWtkbCtrS1pnTGN1SHJ0SWN5UVhqZkgyTGZzdVNCZHlocCtzbnBkeGdrSWJq?=
- =?utf-8?B?L1N4L0xBYWdsZFlBZEJsdnZ5OU5adFZOMnp0cWRzSlNJaitVSTlwYWNlelJw?=
- =?utf-8?B?UTI4UzhJTCtIWDQzNGkvNTdqWFdwZkJCYnJpekRpaVQ1TTB5Z1NmeWVkcE1R?=
- =?utf-8?B?MzRxNkI0NXZZczJkVmZoa2svOW43RE8rdHRTZ1FiS3B2bnV1SzR2K0hObTJT?=
- =?utf-8?B?QVZVazNpdHhiVFlZQTdQcm1jSjJZcCtyMGR0WTdXTE9EVGpWd3lNTkxBL2k2?=
- =?utf-8?B?eWoxa3l5SUE0cVAzM00xZm94ZGdBRVo2VGdQNGpYQitHMzg2cnQ2WGY2Z29x?=
- =?utf-8?B?RkFWeUtkaDZDeFlLUHdIZXpibURuUlExYkhucGlSV0NWNlhEdXlPUUhpS1BK?=
- =?utf-8?B?Sm5EZFlHMVAxMDZ2anZhT2g0Qjd2QnNaTDZQdW5GaFc2ak84NnZWakFnbG9W?=
- =?utf-8?B?eEhmeFFtQ0lDbDA3Umtsd25NbGtTZWZNcm55dVk3ZjRZeExRZERhWllBOWpB?=
- =?utf-8?B?UXBsc1VYVWRwanRHY0FVMGhac2tDcmlrZnRENFdVMVFZcjdESjFnOFhsdkF6?=
- =?utf-8?B?VU1CQkJxUzZjVVZyRnI4UHF6TG8xQXluNmlZUXNmSkVYRng4SVN0cUltcVhZ?=
- =?utf-8?B?ME12ekw4QkVPK3phS2RKMTdjUkQxODZIbzRsdkpLN29DaUxWaEo4MkFkOERv?=
- =?utf-8?B?eFdacGRMQ21Sb29XS1haT2M0WEtXMWRiZTY0WURkM2xqS05wWDFjNno0UFNZ?=
- =?utf-8?B?KzYzMkptYlBBa1BzcXpxTENid2N1czMzdlRucmtGUE1CZ3l1ZSsrS0gvQ1Az?=
- =?utf-8?B?Yjh0NWgzUUJxRmUzUHpIK3pEUmdzcEE3UGhFS2t6bTUxbm1vYzF0bUs2UWhy?=
- =?utf-8?B?a3Vocks1dit6NW9LMlhGVkJaeDlMMGpTbVdKSEQySlVBKzF0WlRlOEtscEVm?=
- =?utf-8?B?d3prOGdWb2c4TEY3K2w1b0s3cURzSEpCTktvYzAxZUpPK1NDK3NiZz09?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <9E4F483336717B40AF7F9845F8A56979@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1774015609; c=relaxed/simple;
+	bh=kke4U8is/52QuT/XsXOqDRBpfoVeEqcEtpPGmuuttaw=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=R3CjiFocWfXSWPNOY0/Ct1AaWe8OnaaRaNalN/jDAkAIvECx/lNyPDl/uFWEXofa3sDLGscdW1ylE7CuVZlTUY1b4d+5GzSjhSiSQhUlaXUxOUzZneFzjG/5mvKxiz1URwiStMxiL66wzsBywPIPOX9+CW0fmImtV4Qu3p4/ohU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b=PvQmJThl; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1774015588; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Wr9FbiYdbxLUWCL9K7rYZTrOQKOpu9kK+amZrXcg3V/3dA7MhRwi4q1dMjrnhbO9vp/iDphZtG4QPo4ZSFQ4WPedmabCfwULB+KEu29IwZimOWorIWFqFBOgI/YbAxrtwFi4jbqkkkoTPkor7e+mZh90+AS548pTVG0fSxpeqCE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1774015588; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=hWgkyHieI+lx6uZjlbxnNfikaImkXlaHPtGyHRNFVhw=; 
+	b=Up3hbl2VH50Vli4WhIUpalEprB++a4eLM18qmYa2MNfb03rVZHHVoaHqRh2nB9m688S1QWByjhR0Chot7vWBAsSgY9mjFFE54Yh+B9qXwUVTLrmjW6JPovTRxnAWX2w+JhoNW+GOYAN4KDthE5y5Y39OoStSjxsqh/TCYpCdVKQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=louisalexis.eyraud@collabora.com;
+	dmarc=pass header.from=<louisalexis.eyraud@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774015588;
+	s=zohomail; d=collabora.com; i=louisalexis.eyraud@collabora.com;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=hWgkyHieI+lx6uZjlbxnNfikaImkXlaHPtGyHRNFVhw=;
+	b=PvQmJThlSKXxXoG1gYCgwyJkw7EO+zihVPm2ShJ1cr5TIwG4J9X+MS8i7xC+VXJe
+	Rysi6qqqX55sU2Ko0WlJB5cz8Bp/TsX2GEYn76k7suOZ476X9SvrRVi981QUk5Ue/B8
+	XUVEz+j0SttDunBcKfkhFVt1iZq4hWEt00ubfBBU=
+Received: by mx.zohomail.com with SMTPS id 1774015585746684.6715664799156;
+	Fri, 20 Mar 2026 07:06:25 -0700 (PDT)
+Message-ID: <32a03f60a50fc0fc3e9a3b5bfb2c06ce694054cf.camel@collabora.com>
+Subject: Re: [PATCH 3/4] arm64: dts: mediatek: add device-tree for Genio
+ 720-EVK board
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+To: David Lechner <dlechner@baylibre.com>, Greg Kroah-Hartman	
+ <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Rob
+ Herring	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley	 <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Sean
+ Wang <sean.wang@mediatek.com>
+Cc: kernel@collabora.com, linux-kernel@vger.kernel.org, 
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Date: Fri, 20 Mar 2026 15:06:20 +0100
+In-Reply-To: <23778b52-9aa2-49fc-946b-e858b99fc3c9@baylibre.com>
+References: 
+	<20251203-add-mediatek-genio-520-720-evk-v1-0-df794b2a30ae@collabora.com>
+	 <20251203-add-mediatek-genio-520-720-evk-v1-3-df794b2a30ae@collabora.com>
+	 <23778b52-9aa2-49fc-946b-e858b99fc3c9@baylibre.com>
+Organization: Collabora Ltd
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: microchip.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2950.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5e64547b-cef9-472b-9991-08de86891075
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Mar 2026 14:00:37.7899
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: aa/eXTTGw5t7iYG65i+v7n7lZ82huvoZ8DA+pZ2qGzJz/9mZeleMIMNhtvhku95wXDNhDyacBZK8M5fe8/jfwDcvmZIqayQ20TwJn22HhYk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7875
-X-Spamd-Result: default: False [2.44 / 15.00];
+X-ZohoMailClient: External
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-278294-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,analog.com];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Conor.Dooley@microchip.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-278295-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[baylibre.com,linuxfoundation.org,kernel.org,gmail.com,collabora.com,mediatek.com];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	TO_DN_NONE(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	NEURAL_HAM(-0.00)[-0.995];
+	FROM_NEQ_ENVFROM(0.00)[louisalexis.eyraud@collabora.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	NEURAL_HAM(-0.00)[-0.998];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	FROM_NO_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4AA8C2DB8C2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:dkim,collabora.com:email,collabora.com:mid]
+X-Rspamd-Queue-Id: 1F57A2DBA5A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-T24gMjAvMDMvMjAyNiAxMToyMSwgUm9kcmlnbyBBbGVuY2FyIHdyb3RlOg0KDQo+Pj4gK2RlcGVu
-ZGVuY2llczoNCj4+PiArICBhZGksY2hhcmdlLXB1bXAtY3VycmVudC1taWNyb2FtcDogWyAnYWRp
-LHBsbC1lbmFibGUnIF0NCj4+PiArICBhZGkscmVmY2xrLW91dC1kcml2ZS1zdHJlbmd0aDogWyAn
-YWRpLHBsbC1lbmFibGUnIF0NCj4+PiArICBpbnRlcnJ1cHRzOiBbIGludGVycnVwdC1uYW1lcyBd
-DQo+Pj4gKyAgY2xvY2tzOiBbIGNsb2NrLW5hbWVzIF0NCj4+PiArICAnI2Nsb2NrLWNlbGxzJzog
-WyBjbG9jay1vdXRwdXQtbmFtZXMgXQ0KPj4+ICsNCj4+PiArcmVxdWlyZWQ6DQo+Pj4gKyAgLSBj
-b21wYXRpYmxlDQo+Pj4gKyAgLSByZWcNCj4+PiArICAtIGNsb2Nrcw0KPj4NCj4+IFdvcnRoIHBv
-aW50aW5nIG91dCwgeW91IGhhdmVuJ3QgbWFkZSBlaXRoZXIgY2xvY2stbmFtZXMgb3INCj4+IGlu
-dGVycnVwdC1uYW1lcyAod2hlbiBpbnRlcnJ1cHRzIGFyZSB1c2VkKSBtYW5kYXRvcnksIHNvIHRo
-ZSBwcm9wZXJ0aWVzDQo+PiBjYW5ub3QgYmUgdXNlZCBieSBhIGRyaXZlci4gSSBzdWdnZXN0IHlv
-dSBtYWtlIGNsb2NrLW5hbWVzIG1hbmRhdG9yeSBhbmQNCj4+IGludGVycnVwdHMgZGVwZW5kIG9u
-IGludGVycnVwdC1uYW1lcy4NCj4gDQo+IHRoZSBkZXBlbmRlY2llcyBpcyBub3QgZW5vdWdodCBt
-YWtlIHRoZW0gcmVxdWlyZWQgdGhlbj8gdW5kZXJzdG9vZCENCg0KbG9sLCBjbGVhcmx5IEkgYW0g
-YmxpbmQuDQo=
+Hi David,
+
+On Thu, 2026-02-19 at 18:09 -0600, David Lechner wrote:
+> On 12/3/25 7:59 AM, Louis-Alexis Eyraud wrote:
+> > Add support for MediaTek MT8189 SoC and its variants, and a device-
+> > tree
+> > for the basic hardware enablement of the Genio 720-EVK board, based
+> > on
+> > MT8391 SoC.
+> >=20
+> > MT8391 SoC is a variant of MT8189 SoC with a difference for the Arm
+> > Cortex-A78 CPU core maximum frequency (2.6 Ghz for MT8391, 3 Ghz
+> > for
+> > MT8189). MT8391 hardware register maps are identical to MT8189.
+> >=20
+> > The Genio 720-EVK board has following features:
+> > =C2=A0 - MT8391 SoC
+> > =C2=A0 - MT6365 PMIC
+>=20
+> Is MT6365 PMIC ...
+>=20
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8391-genio-common.dtsi
+> > b/arch/arm64/boot/dts/mediatek/mt8391-genio-common.dtsi
+> > new file mode 100644
+> > index
+> > 0000000000000000000000000000000000000000..744641916952111a4b389cf6a
+> > dbd27c429b6eff2
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8391-genio-common.dtsi
+> > @@ -0,0 +1,555 @@
+> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > +/*
+> > + * Copyright (c) 2025 Collabora Ltd.
+> > + * Author: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+> > + */
+> > +
+> > +#include "mt6359.dtsi"
+>=20
+> ... really 100% identical to MT6359 PMIC?
+>=20
+I did not find any info in the LKML archives if this topic was
+discussed in the past.
+
+The MT6365 PMIC seems to be more a rebranded MT6359P.
+They have the exact same buck converter and LDOs, and features.
+
+There are several boards based on MT8370, MT8390 and MT8395 SoC that
+integrate the MT6365 PMIC and whose devicetree, present in upstream,
+use the mt6359.dtsi for this PMIC support:
+ - Mediatek Genio 1200 EVK
+ - Mediatek Genio 700 EVK
+ - Mediatek Genio 510 EVK
+ - Radxa NIO-12L
+Probably a couple more.
+
+The Genio 1200 EVK board devicetree was the first one that used
+"mediatek,mt6359" compatible for this PMIC.
+
+As far as I know, there is no known compatibility issue.
+The MT6359 regulator kernel driver, in particular, does recognise it as
+MT6359P (same identifier) and the MT6365 datasheet shows it has the
+same register layout from what I compared for the buck and ldos.
+
+So 100% identical? I cannot say it for sure but I don't have any info
+telling otherwise.
+
+> Asking because I'm working on this in U-Boot and would be helpful
+> to know that this is correct. Would probably be a good idea to
+> mention
+> it in the commit message too to show this is intentional.
+>=20
+>=20
+> And I wonder if it would be a good idea to add a compatible with
+> fallback
+> just to be sure.
+>=20
+> &pmic {
+> 	compatible =3D "mediatek,mt6365", "mediatek,mt6359";
+> };
+
+You're right.=C2=A0
+That's make sense to document a proper compatibility in the dt-bindings
+and use it the devicetree, not only for pmic node but also but its
+subdevices (auxadc, codec, regulator, rtc, pmic-keys).
+
+As the Genio 720 EVK is not the only board concerned,=C2=A0it would be
+better that I send another series to do such cleanup, for instance one
+that adds a new mt6365.dtsi before using it (instead of mt6359.dtsi) in
+the Genio 720 EVK devicetree.
+
+Regards,
+Louis-Alexis
 
