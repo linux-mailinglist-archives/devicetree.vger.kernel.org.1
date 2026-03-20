@@ -1,205 +1,203 @@
-Return-Path: <devicetree+bounces-278177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278179-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AKquAb4ZvWnG6QIAu9opvQ
-	(envelope-from <devicetree+bounces-278177-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:56:14 +0100
+	id QB3mNOMZvWnG6QIAu9opvQ
+	(envelope-from <devicetree+bounces-278179-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:56:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67F372D856F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:56:13 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F85D2D8594
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 10:56:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4085B3023340
-	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:55:47 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C2ECC300E589
+	for <lists+devicetree@lfdr.de>; Fri, 20 Mar 2026 09:56:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E69538AC6E;
-	Fri, 20 Mar 2026 09:55:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 572C038AC89;
+	Fri, 20 Mar 2026 09:56:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="zM1zNc1l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uyHPrjR3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C68B3876B8;
-	Fri, 20 Mar 2026 09:55:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCBB9383C6B;
+	Fri, 20 Mar 2026 09:56:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774000545; cv=none; b=ksXTTskOSpFWh0kLRwkRXIw9UzgbrSsP45EhELMtv5edktC0w2t4DmMsBS3a7eIR9pPxut/p8ASoT8vqIunP0M2jhSNetl8Ul/atJjpjg6jDkNV8SoB4OzZYyLTtdWrh9VOenjYqmGTM5KTrqAhodx0xDRSljc7UD5vPiG5FyGA=
+	t=1774000606; cv=none; b=W7lanbxKW757+HF0tErp1G5yD6kD80vxYXuEgjQNJ+XqfjZnBuyQifYFlYIPh4fWKCv1HmmW803rg5DlUy/jWbd3zgM8Vu9mCphxBQAsZfbLgolNNcVYDxOE1by6XyuMPMn2smFuh8Sj9faQhWvZ8DPfkaMM1GcuoL3wNxU0wyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774000545; c=relaxed/simple;
-	bh=P1LaCrDKF5mAQkFpO57G8wLOnUQBabpmktP3SW4QsDE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uMzLAVBOZvNnS0bEhokh0K7XIJO0N62qyhuL9RK5QTEKTeB5F5VUHuN45kb5AHGbI8nDFYW1Gl+ZzEJQ3um/OulFmVG4Ql065lMELCbt+DRFhBqg3ih4LDpiwDy0tKWs+CuDOM0T+zQhVK5YIFshxbIuemN/H1DyZx3eGJUywDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=zM1zNc1l; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id E7C0F4E42706;
-	Fri, 20 Mar 2026 09:55:37 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 9CBE3600E0;
-	Fri, 20 Mar 2026 09:55:37 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C5FDA104509C7;
-	Fri, 20 Mar 2026 10:55:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1774000536; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=FKggk34JAwVkoWj/rOgIcb9X6jIPbe5HuMQWES8/RXg=;
-	b=zM1zNc1l4MGxsg7TSv0b0CpkviG5wVVKdpkPwbi6nQx/RR32wPebq07IA4Ec1S5F1xsRyH
-	xQ3UY16AzGu8jirkDz/Y2tl8yb1QbOa8M5Bm9lXUvlQTjJ8ZAMW/HibntBZdyTc055e9mk
-	5RRCAeu78oh8fChJTW4TmSiZnJTJ9bOGADiSTW16SRmMr3iedP0wIY2VlXGO/OeS/rQFqr
-	Kl5mfWKWoZdNZ0m71HRd3AnmtHwBPXWFSauWy+/jbUKv/F3suW71KuxJsqEPV/5pBP9TO2
-	NNvDUeQLnN57f0/sE4HP5fsF0l/1AvsZBBKWFa4EOHTp0UYmHbZnAY2i/X53ug==
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>,
- Mark Brown <broonie@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH net-next 2/2] net: sfp: manage receiver and transmitter regulators
-Date: Fri, 20 Mar 2026 10:55:27 +0100
-Message-ID: <2824900.mvXUDI8C0e@fw-rgant>
-In-Reply-To: <aaspCUWel9k_ls4i@sirena.co.uk>
-References:
- <20260303-sfp-regulators-v1-0-7101ae34cb84@bootlin.com>
- <aacpVFhH8eV7dxHV@shell.armlinux.org.uk> <aaspCUWel9k_ls4i@sirena.co.uk>
+	s=arc-20240116; t=1774000606; c=relaxed/simple;
+	bh=SzI5t4N0FZ4IAeW8BhjweNtPA/RkXoLwNTDxzHATD1w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rb99M5QwMzFuHS158er7KteQjocqE9HMkAoTuN8xh5Lipez1xYBHo6ExL9hssvP/SJUU/5rhnpMZBg9CVb1jwFkHOgb6pZaRGQjqREZFQNYca3oKp8m2DmEi1u+CK2AQB4X2vY43IitI1NMN+i9f5cumkSAL3utJ2s074NZP6BU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uyHPrjR3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 693F6C2BC9E;
+	Fri, 20 Mar 2026 09:56:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774000605;
+	bh=SzI5t4N0FZ4IAeW8BhjweNtPA/RkXoLwNTDxzHATD1w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=uyHPrjR3+YS3hIv+Vg1KVooBJPWYvxp1ylXz+0wufQwK1BQVCzZIbAJICGq8c8aLU
+	 ujGVye+HQSFndavhlxf5a+Wy4kZbDcYd6SKofNhSlbj7ZfR+jmncjmjcjVvntwSm+V
+	 38V7PmAe03PHEmnctKKezxxClyuk3hzAbr0ueemSrb5dJIiyc5dogFS8tGvd9h/5A9
+	 u99QwDSwRY3H0p2hn0dNwnoyTw7tU73QZxLgjADKjirEJ3B3Z3IvjEbx3OjHC54V3K
+	 WWlfyOdfp2lyf3WxQuJgF7sArvhva/cDiq4NhlH0RR/2/J0LffmgfO0BEFIbVI9OcS
+	 z0PkN5gGfKqNg==
+Message-ID: <369229e0-06fd-4a22-b6d8-6dfebb5ca3b2@kernel.org>
+Date: Fri, 20 Mar 2026 09:56:40 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart12859626.O9o76ZdvQC";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] phy: qcom-mipi-csi2: Add a CSI2 MIPI DPHY driver
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260315-x1e-csi2-phy-v4-0-90c09203888d@linaro.org>
+ <20260315-x1e-csi2-phy-v4-2-90c09203888d@linaro.org>
+ <3f11de22-b729-4d06-b6c8-18e649e1979c@linaro.org>
+ <80ddc2b4-d6f8-4e8d-a45e-69c05d100aa2@linaro.org>
+ <16b10f17-ecd3-4cdd-ac3f-f64127d60ace@linaro.org>
+ <ulenfus552ggobis4gmi7eh27tikdaxbgm2oj63b5l2vemlfxc@ib5f2xaqurj6>
+ <26XTdUyQTB41Oc4D5HnMtSm_QpZRjlkljQRJVw-u1Zp3Ltn9s4LVU-LQkP6drdl3Z3GGssLCCbsVYPFEqssHcQ==@protonmail.internalid>
+ <65e06b2e-eeb9-45af-97ac-4ae60f652361@linaro.org>
+ <9578400d-30ac-4d8c-9295-ee4ec8af3b2c@kernel.org>
+ <d6616fc0-75fb-47e2-96cd-ae81fa1a8e82@linaro.org>
+ <f3c62284-ac78-42c6-a4f0-cd984b7124cd@linaro.org>
+ <oULvLfFEPeTlWNrZF9lVwMEK-bN53nncdYFGaOgjvBQAtxaUS_SrfFhorc49TcxiPQK3CIOk46vbnkXZQ24Nfg==@protonmail.internalid>
+ <5b23408d-c996-4785-8294-233d79168a1b@linaro.org>
+From: Bryan O'Donoghue <bod@kernel.org>
+Content-Language: en-US
+In-Reply-To: <5b23408d-c996-4785-8294-233d79168a1b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278177-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278179-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,bootlin.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-0.996];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[romain.gantois@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	NEURAL_HAM(-0.00)[-0.976];
+	FROM_NEQ_ENVFROM(0.00)[bod@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:url]
-X-Rspamd-Queue-Id: 67F372D856F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7F85D2D8594
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---nextPart12859626.O9o76ZdvQC
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
-From: Romain Gantois <romain.gantois@bootlin.com>
-Date: Fri, 20 Mar 2026 10:55:27 +0100
-Message-ID: <2824900.mvXUDI8C0e@fw-rgant>
-In-Reply-To: <aaspCUWel9k_ls4i@sirena.co.uk>
-MIME-Version: 1.0
-
-Hello Mark,
-
-On Friday, 6 March 2026 20:20:41 CET Mark Brown wrote:
-> On Tue, Mar 03, 2026 at 06:32:52PM +0000, Russell King (Oracle) wrote:
-> > On Tue, Mar 03, 2026 at 05:31:36PM +0000, Mark Brown wrote:
-...
+On 20/03/2026 00:37, Vladimir Zapolskiy wrote:
+> On 3/19/26 17:18, Bryan O'Donoghue wrote:
+>> On 19/03/2026 14:56, Vladimir Zapolskiy wrote:
+>>>> There's no reason to remove that from CAMSS - it would be an ABI break
+>>>> in user-space anyway.
+>>> If technically CAMSS CSIPHY could be excluded from the list of CAMSS media
+>>> subdevices, then for the sake of simplification it should be done for all
+>>> supported platforms in advance, such a change will be independent from this
+>>> particular phy series, and vice versa, this CAMSS only driver change will
+>>> prepare a ground for media-less CAMSS CSIPHY device drivers, hence it shall
+>>> precede this particular CAMSS CSIPHY series.
+>>>
+>>> For backward compatibility with userspace a noop stub will be good enough,
+>>> it's not an issue at all.
+>> The standalone PHY driver doesn't require removing the CSIPHY media
+>> entity from CAMSS. They serve different purposes and coexist - its
+>> important to have a NOP from user-space perspective for legacy and
+>> indeed for new implementations.
+>>
+> There should be no two CAMSS CSIPHY device (or subdevice) drivers, where
+> one chop of CAMSS CSIPHY device driver remains to sit under media, and
+> another one is under phy subsystem, since it's a further degradation from
+> the current already pretty awful state of the CAMSS driver, but at least
+> CSIPHY is not scattered over different subsystems today.
 > 
-> > Now, if you're going to say "ah, so it has power pins, you need to
-> > describe them using a regulator" then I would say to you, when are
-> > we introducing regulators for every device we describe in DT such
-> > as LEDs, switches, GPIO pins, RAM, etc? Every device needs to have a
-> > source of power after all.
-> 
-> It sounds from the cover letter for this series like there's some demand
-> for power control of SFP cages, the cover letter isn't terribly specific
-> about what circumstances though.  Possibly there's some UI for this on
-> the system, or the hardware has some mechanism for detecting physical
-> insertion to the SFP cage (hopefully well in advance of the electrical
-> contacts being made)?  Romain, are you able to share more specifics on
-> the use case here?
+> It might be fine to move device driver parts related to CAMSS CSIPHY
+> driver from media subsystem to phy subsystem, however if only a partial
+> transition is planned, and CSIPHY device support is split into two device
+> (sub-)drivers, then it merely exposes a quite severe design flaw.
 
-It seems like my upstreaming strategy was incorrect. The series that I sent is 
-a subset of my original use case, but in hindsight I should've just presented 
-the original one in the first place, that would've been clearer, sorry about 
-that.
+It's not two drivers for the same device. It's two layers:
 
-Originally, I implemented a runtime PM support in the SFP core. This allowed 
-to cut power to the cages when the attached network interface was down, 
-thereby saving power. This is interesting since I'm dealing with a battery-
-powered system which has SFP cages. However, an upstream version of this would 
-require some kind of new userspace interface to signal indifference to module 
-detection when the upstream network interface is down. Otherwise it could 
-break existing userspace applications which expect to detect and interact with 
-SFP modules (e.g. read EEPROMs, read temperature sensors) even when their 
-upper network interfaces are down.
+- The media entity in CAMSS is a pipeline routing abstraction.
+   It validates formats and connects pads. It does not program
+   CSIPHY hardware directly.
 
-Aside from this, what Russell told me in this message:
+- The PHY driver programs the hardware — registers, clocks,
+   regulators, power domains.
 
-https://lore.kernel.org/all/aacYGTBobbfJgZpp@shell.armlinux.org.uk/
+This is the same layering as rkisp1 (media pipeline) +
+phy-rockchip-inno-csidphy (electrical config). The ISP's media
+entities and the standalone PHY coexist in different subsystems
+without conflict.
 
-suggests that cutting power to SFP cages could lead to unspecified behavior 
-with some modules, so for example unloading the SFP core kernel module while 
-an SFP module was inserted could have unintended consequences... This problem 
-requires some more investigation on my side before I can submit a proper 
-runtime PM solution.
-
-Thanks,
-
--- 
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---nextPart12859626.O9o76ZdvQC
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmm9GY8ACgkQKCYAIARz
-eA7Mbg/9FpHtkwjk65/eUWGbZFGAd2T2L4+u12D1dKOUlzXib59yk6oOSamw0OTx
-SlK8/m3KbtdxkDVe2OUe3fpYhaHJFNEekURDg4WhBGiHkcqMuHa4cm1g3jsxdmFm
-6Xqxo9WQAdRemLWdKSHxBM94Kkvp3iBUOly5+BkWlfyHqxt1oA9mkmkiL0iSJv47
-+LAX4Xdmu6cOs4bgxuWJAnnS01mjOOP7oBJ6/gabjPN5oD3vwADbc6la/jvIED/8
-Hn4wwX6GRLNaXr0wkRYon9W7Nor485+sl2DPdn/KtEdw/G8AsiWCK/d+BUpWjYW0
-2x5K9oc/pYLf21rofr0ldRkvuvh9Lj3LSMt+F8E9sm5j79Bg9QNI1c0BrQ04TasK
-1aJ3shvOPHWnLBGqAxOfG+xJg2JBr4PZAVmiHHibPVN26jwUHo7/IIYv2K/o0ga8
-9SibuOo9wCFVp+0EvHtxJnyCY0+nkbqH7fbY2VSMYEPzDdPZceHebvrBgsfCvQ/Z
-cqvx1SoqKDlSUtX0Bh8TrJG2L+r88dId3th18hFUSEuwsfIjE5NxClmRpZN+9p4E
-loL1m3ggJUgPjqV6IPoS+wNnkI1HSbcEwL+Ak46ANaeqFPQpa6iDJO3jpF8bsAm6
-bB2oeZlJ9vp+7tOUXPmzT+AQ1ruty/rtnIXwbNzaeNegjjR2NHM=
-=6Xda
------END PGP SIGNATURE-----
-
---nextPart12859626.O9o76ZdvQC--
+No CSIPHY functionality is duplicated across subsystems. This segmenting 
+of concepts and functionality isn't even unique. We see this constantly 
+with USB (where the MAC lives in drivers/usb/ and the electricals in 
+drivers/phy/) and Display/DSI.
 
 
+> It looks like it's still undecided, if CAMSS CSIPHY IP is a phy or media
+> device, it can not be both at the same time.
 
+We are maintaining the existing user-space setup which presents a 
+msm_csiphyX v4l2-media device, whilst moving the PHY component out into 
+drivers/phy where it belongs - completely transparently to user-space. 
+So we already have a dependency in user-space which needs to be maintained.
+
+The concrete hardware benefits, as I alluded to Neil, are:
+
+- Per-PHY voltage rails
+- Per-PHY power domains
+- Per-PHY operating points (OPPs)
+
+Those are real-world hardware fixes which "just work" as a result of 
+dedicated device nodes and a driver specifically written to relieve the 
+technical debt we've been accruing with the existing model, for years.
+
+Having been educated - brought to the realisation on OPPS, Power-domains 
+and yes voltage rails it is amazing to me this whole legacy system 
+hasn't exploded before now but, its certainly way past time to fix it.
+
+We should proceed with moving init sequences, voltages, PDs and OPPs to 
+drivers/phy.
+
+I'm happy to have a debate about the status of the PHY media device 
+after, however I have to say I'm skeptical about removing the media 
+device - something we could do whether the init sequences live in 
+drivers/media/qcom/camss or in drivers/phy BTW - I'm skeptical about 
+removing that v4l2 node specifically because we've had it in user-space 
+for a long time and I do therefore think that constitutes an ABI.
+
+As I've said already though `rm -rf /dev/v4l2-subdev::msm_csiphy*" is 
+basically an entirely separate debate.
+
+---
+bod
 
