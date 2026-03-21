@@ -1,197 +1,247 @@
-Return-Path: <devicetree+bounces-278517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278519-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uZ9LNUNXvmmVNAMAu9opvQ
-	(envelope-from <devicetree+bounces-278517-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 09:30:59 +0100
+	id cC7tBTRevmnxNgMAu9opvQ
+	(envelope-from <devicetree+bounces-278519-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 10:00:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 242A02E42C6
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 09:30:59 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id A085F2E44A7
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 10:00:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ABD9D30179C3
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 08:30:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 154A83016AF0
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 09:00:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E1B72BE056;
-	Sat, 21 Mar 2026 08:30:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D8FE3254A5;
+	Sat, 21 Mar 2026 09:00:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o6D9y3+I"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="QwcXmStO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 189FF175A64;
-	Sat, 21 Mar 2026 08:30:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774081857; cv=none; b=DLvMfaFVXjG/3Dm2WNLTsY05wcX4WRUEYPv/9LEzszYn9U2C2bt7mVwVrjZyeFPRn0NEmL5iih+gvUyAwVONsiC1rAKmlW9aDv2ILK6kOAM6nfeY1zQr/BO5DKjq2G6omeQDk8ddgI36dixlkG+ulkOgQoTltb828tzjAhhKTI8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774081857; c=relaxed/simple;
-	bh=ESX47VcEhSvMtNbBzdjxGkC/XXaxoEtS+Iky1KFzZig=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=bL7w4WOsMYwBWrzXwHmCdDNJ6TJR2XDnlTMGC97Q76C9aWZ1ilXXqWRv2GPr1pjd3g3v1rNpB4h6mBtSwgdlx3rNXMuws1RJoCHjHe8/sti9WvaY29ftZraYoUXl5f17cLYPbVgFsyd8dbGTMvAvW5mpxI4Q+cDXVYPlHpZCxaA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o6D9y3+I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3DAAC19421;
-	Sat, 21 Mar 2026 08:30:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774081856;
-	bh=ESX47VcEhSvMtNbBzdjxGkC/XXaxoEtS+Iky1KFzZig=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=o6D9y3+IdSVdKdvD01vXn1Ek4LkXiFG93xXd9aocsHltiqiuNySlXfeAUmFSMtI+1
-	 e2BJfGQTSeyfgPqJP8NUWSXhdJzw6SGlCbXuYj6qJcrWWQQ3NTQ6zJticoZFjWRzz7
-	 5H6cjNwPKhzpogiaKD0r1/aeH/9KAVpPtmaXfeMbMzkkeI7abW9BOR/+LBoxHGD2Nt
-	 ql2pvVEjsuz0NL2j968OgYLyHvINDGLXRM82WdaL0GPHjhMlyZG0IIiqVb2+tG8vtV
-	 PDNsv23RCHBMdOpvKKibnJ+MNE/LDUod0t281xA94lnenLpmuaApDTrxGXUdtBk2iY
-	 LGcJAOc2a7GpQ==
-Date: Sat, 21 Mar 2026 03:30:55 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A1DA2DF13F;
+	Sat, 21 Mar 2026 09:00:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774083632; cv=pass; b=Sf1cqxkOaOzadnKCawHlB0WahDtj/3IoZ/IzH/Y8rG1Z/yNbVJAf+rPgkivdKHZ2vxn6sBMsDPQ8OTpfZIBijUDeqJ+UfZJfWkU6bme8yM4D2r17gliABoucEogtkJhTLU8gccg+ChY6pdlCMjKXDVe3PEdy4m3HwkEdXRDllJo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774083632; c=relaxed/simple;
+	bh=rTcWNakVaJJVbrHqXnf7QiogK0qrtyXNTagfHigTJwM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=TgYNa1h01vDk9ylVuov9QO7apGEOlWh4ggB5AZ+3hJDnLDXGE3ZHbNqWAic1xo88yJ5KR55l7fBXLO26Z3h267VpV4QOnNv6pjmASK6zzeiDuo2SpfLBUZUlncn6oUD2KNVSBHBNnVouSASIqCVFWjsnXU7ny40LfFCnYyDNu0g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=QwcXmStO; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1774083607; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=BNqT/XkZh6XrdTFjCOM1Ip0a/2pnil1DBZMirBSAHdchN3iSjkTrK6HpW4ir6i8zM2Eoi+mVL6jfMcKKYdCLj3f1Znci4+2ATQB9niLtHDzYMFluwANZxQ6VvQrYnVVlExicsCp7DMjOHrVxXsCRuH7g7VF8vmtvFDKVZg5/vmw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1774083607; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=w5SjMy6b6bimW70XjXDfCDcAfH3Ea5Tq2LlOvJguidc=; 
+	b=Ct4Tbk3jDFaFdmPACWQGj7dPHDCy04S7c94qLvC+57VAwVgRynSIedvSrI24SuZHqdOd2qckZhuHKUPccgAz9JYae8utFwx+6e+6m2uooWqA2pKlk2KbJN/N/MbPihVFrzfk7zzpvnvVYJICFpACdflFyhldHfnQvBzU+CsS8Y4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774083607;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=w5SjMy6b6bimW70XjXDfCDcAfH3Ea5Tq2LlOvJguidc=;
+	b=QwcXmStOyA3+Z6Fi46gNc4yzgffM3hehYUwynkJok4P3+okKbA/BPCPQfKyQMZ2E
+	Vo1dlVGjqkeazOrueegpAG60/0gci1GDKJNm/xipKvXO+dEm1uA4OxsdltU/6smBEcs
+	SXCELmxCDsx/+yMIAD1Zmq/Vqs6kQbBhtBqjkSLesYF8Oudz6FpOmFDY36YkXMbpD7o
+	R7xcSyu9vRhNbPYGnMue5UBHh6Of5eotTslc+kn2scFPANw3bur14XZ2uO4yeK/M6Xm
+	FFqSpn89vrYLofAPOJSdEGzEWgZlw/qVOSHarYfecR9HT07lJs1vuBmHVGpevTdQYWH
+	0yqteChmTw==
+Received: by mx.zohomail.com with SMTPS id 1774083604413447.2192070793784;
+	Sat, 21 Mar 2026 02:00:04 -0700 (PDT)
+Message-ID: <87f24e166c931d0040e7b838785e7b360cbc7c6a.camel@icenowy.me>
+Subject: Re: [PATCH v3 0/8] Add support for LS7A LPC IRQ for MIPS Loongson
+ systems
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Huacai Chen <chenhuacai@kernel.org>
+Cc: Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, WANG Xuerui	 <kernel@xen0n.name>, Thomas
+ Bogendoerfer <tsbogend@alpha.franken.de>, Jiaxun Yang
+ <jiaxun.yang@flygoat.com>, Yao Zi <me@ziyao.cc>,
+ linux-kernel@vger.kernel.org, 	devicetree@vger.kernel.org,
+ loongarch@lists.linux.dev, 	linux-mips@vger.kernel.org
+Date: Sat, 21 Mar 2026 16:59:55 +0800
+In-Reply-To: <CAAhV-H4OYVB21jH3PSzOi4GPU+t4LY664Yp=CeDhjFRKf9V07Q@mail.gmail.com>
+References: <20260314162828.1055188-1-zhengxingda@iscas.ac.cn>
+	 <CAAhV-H4OYVB21jH3PSzOi4GPU+t4LY664Yp=CeDhjFRKf9V07Q@mail.gmail.com>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- David Jander <david@protonic.nl>, Linus Walleij <linusw@kernel.org>, 
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
- devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>, 
- kernel@pengutronix.de, Guenter Roeck <linux@roeck-us.net>, 
- linux-hwmon@vger.kernel.org, Peter Rosin <peda@axentia.se>, 
- Conor Dooley <conor+dt@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-In-Reply-To: <20260321065146.3918882-2-o.rempel@pengutronix.de>
-References: <20260321065146.3918882-1-o.rempel@pengutronix.de>
- <20260321065146.3918882-2-o.rempel@pengutronix.de>
-Message-Id: <177408185570.3340992.12755175638326368170.robh@kernel.org>
-Subject: Re: [PATCH v6 1/7] dt-bindings: pinctrl: add NXP MC33978/MC34978
- MSDI
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-ZohoMailClient: External
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[icenowy.me,none];
+	R_DKIM_ALLOW(-0.20)[icenowy.me:s=zmail2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278517-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278519-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.0:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[uwu@icenowy.me,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[icenowy.me:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url]
-X-Rspamd-Queue-Id: 242A02E42C6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A085F2E44A7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+=E5=9C=A8 2026-03-18=E4=B8=89=E7=9A=84 21:57 +0800=EF=BC=8CHuacai Chen=E5=
+=86=99=E9=81=93=EF=BC=9A
+> Hi, Icenowy,
+>=20
+> On Sun, Mar 15, 2026 at 12:28=E2=80=AFAM Icenowy Zheng
+> <zhengxingda@iscas.ac.cn> wrote:
+> >=20
+> > This patchset tries to add support for Loongson 7A1000 PCH's LPC
+> > interrupt controller to MIPS-based Loongson systems.
+> >=20
+> > LPC, from software's perspective of view, is just ISA, so the
+> > interrupts
+> > should be handled as legacy ones occupying the lowest 0-15 IRQ
+> > numbers.
+> > Despite the current PCH LPC driver for ACPI-based LoongArch
+> > Loongson
+> > machines handled it, the setup is fragile and depends on its
+> > specific
+> > setup sequence (allocating the LPC IRQs first, and then allocate
+> > the
+> > parent IRQ at PCH PIC). The refactor of extracting parent IRQ
+> > allocation
+> > breaks this fragile sequence, so the first two commits is created
+> > to
+> > address this issue (by reserving ISA interrupts from the dynamic
+> > allocation space).
+> >=20
+> > Then the remaining commits are just adding OF(DT) based
+> > initialization
+> > of PCH LPC interrupt controller, like what happened on PCH PIC.
+> >=20
+> > Tested on a Haier Boyue G51 system with legacy i8042 keyboard/mouse
+> > as
+> > integrated ones.
+> >=20
+> > Changes in v3:
+> > - Override arch_dynirq_lower_bound() in MIPS Loongson64 / LoongArch
+> > =C2=A0 instead of modifying the global version of function.
+> > - Added Rob's R-b to the binding patch.
+> >=20
+> > Changes in v2:
+> > - Rebased on top of `irq-drivers-2026-02-09` tag.
+> > - Compatible changed to `loongson,ls7a-lpc` .
+> > - Merged the patch for conditionally build of ACPI code to the
+> > patch
+> > =C2=A0 introducing OF code.
+> > - Sorted function variable definitions.
+> > - Reworded some commit messages as Thomas Glexiner suggests.
+> > - Added __init to the LPC irqchip OF initialization code to prevent
+> > =C2=A0 section mismatch.
+> >=20
+> > Icenowy Zheng (8):
+> > =C2=A0 MIPS: loongson64: Override arch_dynirq_lower_bound to reserve LP=
+C
+> > IRQs
+> > =C2=A0 LoongArch: Override arch_dynirq_lower_bound to reserve LPC IRQs
+> Use upper case for the first word, which means....
 
-On Sat, 21 Mar 2026 07:51:40 +0100, Oleksij Rempel wrote:
-> Add device tree binding documentation for the NXP MC33978 and MC34978
-> Multiple Switch Detection Interface (MSDI) devices.
-> 
-> The MC33978 and MC34978 differ primarily in their operating temperature
-> ranges. While not software-detectable, providing specific compatible
-> strings allows the hwmon subsystem to correctly interpret thermal
-> thresholds and hardware faults.
-> 
-> These ICs monitor up to 22 mechanical switch contacts in automotive and
-> industrial environments. They provide configurable wetting currents to
-> break through contact oxidation and feature extensive hardware
-> protection against thermal overload and voltage transients (load
-> dumps/brown-outs).
-> 
-> The device interfaces via SPI. While it provides multiple functions, its
-> primary hardware purpose is pin/switch control. To accurately represent
-> the hardware as a single physical integrated circuit without unnecessary
-> DT overhead, all functions are flattened into a single pinctrl node:
-> - pinctrl: Exposing the 22 switch inputs (SG/SP pins) as a GPIO controller
->   and managing their pin configurations.
-> - hwmon: Exposing critical hardware faults (OT, OV, UV) and static
->   voltage/temperature thresholds.
-> - mux: Controlling the 24-to-1 analog multiplexer to route pin voltages,
->   internal temperature, or battery voltage to an external SoC ADC.
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Reviewed-by: Linus Walleij <linusw@kernel.org>
-> ---
-> changes v6:
-> - add Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> - add Reviewed-by: Linus Walleij <linusw@kernel.org>
-> changes v5:
-> - Commit Message: Added justification for distinct compatible strings
->   based on temperature ranges.
-> - Restricted pins property to an explicit enum of valid hardware pins
-> changes v4:
-> - Drop the standalone mfd/nxp,mc33978.yaml schema entirely.
-> - Move the unified device binding to bindings/pinctrl/nxp,mc33978.yaml,
-> - Remove the dedicated child node compatible strings (nxp,mc33978-pinctrl).
-> - Flatten the pinctrl/gpio properties directly into the main SPI device
->   node.
-> changes v3:
-> - Drop regular expression pattern from pinctrl child node and define
->   it as a standard property
-> - Reorder required properties list in MFD binding
-> - Remove stray blank line from the MFD binding devicetree example
-> - Replace unevaluatedProperties with additionalProperties in the pinctrl
->   binding
-> changes v2:
-> - Squashed MFD, pinctrl, hwmon, and mux bindings into a single patch
-> - Removed the empty hwmon child node
-> - Folded the mux-controller node into the parent MFD node
-> - Added vbatp-supply and vddq-supply to the required properties block
-> - Changed the example node name from mc33978@0 to gpio@0
-> - Removed unnecessary literal block scalars (|) from descriptions
-> - Documented SG, SP, and SB pin acronyms in the pinctrl description
-> - Added consumer polarity guidance (GPIO_ACTIVE_LOW/HIGH) for SG/SB
->   inputs, with a note on output circuit dependency
-> - Updated commit message
-> ---
->  .../bindings/pinctrl/nxp,mc33978.yaml         | 153 ++++++++++++++++++
->  1 file changed, 153 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/nxp,mc33978.yaml
-> 
+I'm going to change this for your preference, but please note that
+there's no requirement of using upper case for `summary phrase` in the
+Documentation/process/submitting-patches.rst document.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+The examples in that document even include both examples with first
+words being either upper case and lower case, which indicates both
+should be acceptable:
 
-yamllint warnings/errors:
+```
+Here are some good example Subjects::
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/nxp,mc33978.example.dtb: gpio@0 (nxp,mc33978): $nodename:0: 'gpio@0' does not match '^mux-controller(@.*|-([0-9]|[1-9][0-9]+))?$'
-	from schema $id: http://devicetree.org/schemas/mux/mux-controller.yaml
+    Subject: [PATCH 2/5] ext2: improve scalability of bitmap searching
+    Subject: [PATCH v2 01/27] x86: fix eflags tracking
+    Subject: [PATCH v2] sub/sys: Condensed patch summary
+    Subject: [PATCH v2 M/N] sub/sys: Condensed patch summary
+```
 
-doc reference errors (make refcheckdocs):
+Thanks,
+Icenowy
 
-See https://patchwork.kernel.org/project/devicetree/patch/20260321065146.3918882-2-o.rempel@pengutronix.de
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+>=20
+> > =C2=A0 dt-bindings: interrupt-controller: add LS7A PCH LPC
+> s/add/Add/g
+>=20
+> > =C2=A0 irqchip/loongson-pch-lpc: extract non-ACPI-related code from ACP=
+I
+> > init
+> s/extract/Extract/g
+>=20
+> > =C2=A0 irqchip/loongson-pch-lpc: add OF init code
+> s/add/Add/g
+>=20
+> > =C2=A0 irqchip/loongson-pch-lpc: enable building on MIPS Loongson64
+> s/enable/Enable/g
+>=20
+> > =C2=A0 MIPS: Loongson64: dts: sort nodes
+> s/sort/Sort/g
+>=20
+> > =C2=A0 MIPS: Loongson64: dts: add node for LS7A PCH LPC
+> s/add/Add/g
+>=20
+> In addition, I think the last two patches should be in another series
+> because they won't go to the irqchip tree.
+>=20
+> Huacai
+>=20
+> >=20
+> > =C2=A0.../loongson,pch-lpc.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 52 +++++++++++
+> > =C2=A0arch/loongarch/kernel/irq.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 6 ++
+> > =C2=A0arch/mips/boot/dts/loongson/ls7a-pch.dtsi=C2=A0=C2=A0=C2=A0=C2=A0=
+ | 17 +++-
+> > =C2=A0arch/mips/loongson64/init.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 6 ++
+> > =C2=A0drivers/irqchip/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 1 -
+> > =C2=A0drivers/irqchip/irq-loongson-pch-lpc.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 87 ++++++++++++++-
+> > ----
+> > =C2=A06 files changed, 144 insertions(+), 25 deletions(-)
+> > =C2=A0create mode 100644 Documentation/devicetree/bindings/interrupt-
+> > controller/loongson,pch-lpc.yaml
+> >=20
+> > --
+> > 2.52.0
+> >=20
 
