@@ -1,114 +1,104 @@
-Return-Path: <devicetree+bounces-278658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278631-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QMlwNZVlv2lJ4QMAu9opvQ
-	(envelope-from <devicetree+bounces-278658-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 04:44:21 +0100
+	id 8AW0AJzqvmnzjQMAu9opvQ
+	(envelope-from <devicetree+bounces-278631-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 19:59:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8253D2E828A
-	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 04:44:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CBC52E6E14
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 19:59:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 80EE23011F21
-	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 03:44:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 01323300C029
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 18:59:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1CB337FF41;
-	Sun, 22 Mar 2026 03:44:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 473DC2FA0C7;
+	Sat, 21 Mar 2026 18:59:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="RySlusss";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="yhFUUf3K"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="meaJgqlb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7FC837F8D8;
-	Sun, 22 Mar 2026 03:44:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD73230D0F;
+	Sat, 21 Mar 2026 18:59:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774151049; cv=none; b=j0wXO2+iiwu+OzNrIVTMbYNW+UzgO/A8+qIbESAhTaHbOJrrpdS0eLtg8uQy6SBOwvvL/qN9JKnvgQKG3VWYAcvdBsOJdVIQ97Qn4w5p9g9G0jq1BFW4MNcAcqApgooMEWv4K2l9dDHubZWu4W5i4hFuVYr8ZGJPRjJp7PrL6MI=
+	t=1774119575; cv=none; b=O8cQTkVfehCmFyWZ3kE7sGQWJnn3pal9VD7MPFYXtclHLvawoEJBjwysumYbb342wkj1eNVygwq6lEw5bv6Pf+J3H4iwRN6T9zPXE+2HH347irh/KYBYa8O9lU17RZjfasLUWgbM7x18cposagKMAa3q9MeBccKs54PW7Jc0hKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774151049; c=relaxed/simple;
-	bh=y5zq2D3lOiI0Qw3PR34/ItRcvLMn+HjX7/inOrvLOHk=;
+	s=arc-20240116; t=1774119575; c=relaxed/simple;
+	bh=EM6B7KnMN6pN6Wls9p1SUSWPPyrTsIdsGAx/ocLn7HQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TXEvCdq46iENX3GSIlLnECot6Z7jUHnnElmmAEXCZDFHznKyDzJEf1CZ8XlRL8LYN0M9gecqZKRRtUL2boIk2UAhC9tyjVMueWAS/qLj7NNH8ejl4b6LNrEOKjOlXxQHo1KgGvmbaHELrzXP4t6tXQlSesRBl0cVHtu7+68lCX4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=RySlusss; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=yhFUUf3K; arc=none smtp.client-ip=80.241.56.172
+	 In-Reply-To:Content-Type; b=Jbv/1RJWHEj9k8WqB9+LUZoxALNkqZmBVTGmngjsvc/E1wgfl2FhcT9j3AgxdeUKIohqTFVFcR6IPkIFvEukEh6jh4LvU+9Zl6CIq+YL3kYZT/RowPuA2pn4I48+41LPtWpu3N0TYKWAwzAjPSTmCsIKHnQmVEOLxFcjiDlFbQ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=meaJgqlb; arc=none smtp.client-ip=80.241.56.151
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4fdhxD1Cvqz9tn7;
-	Sun, 22 Mar 2026 04:44:00 +0100 (CET)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4fdTJ145HPz9tGC;
+	Sat, 21 Mar 2026 19:59:29 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1774151040;
+	t=1774119569;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=7pPmmUr2rdYksgu0/4NHiyOVIMPthGnBqroydjCMUJA=;
-	b=RySlusss3CTCUBE78BS8aXqfbboUE1Z1SicgUIk2VKxEJ2DWD0wwsa6GlRv1KfKJRQMys+
-	8sSYPF4MqxtaZkSvsZOI4lGIpJQRJYVVx6Ntg9HYd9HzHzQ6r4yqi86gO3iKBSxYsUE0WW
-	OU8WawIEdLlA665CNn+OFwmfWRIaAU3UqtvAbP4uyFHZPaz8xPe82zF1/VhPNE9ftsXOS0
-	T0CBDb1LpUxCYM7IX5rmzSd6sIvKUdVx4OiEkMRuLmep+rbSqj9YHJRLOSOo6vBSxk+MAL
-	lWrZC/eyC3lmHhtz5Af1FoBdzR2qZJIFiibopUN68O24t8nPYOk8BKestlk41A==
-Message-ID: <78d477a1-9f02-49e1-802e-4108b63141eb@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1774151038;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7pPmmUr2rdYksgu0/4NHiyOVIMPthGnBqroydjCMUJA=;
-	b=yhFUUf3K1QVHAVbFAXyB66CAuhcs55jnwqqzHajoRG3esaKpWUMboXmW04Ypp3C6fATRot
-	LE+X7Bsd21XRQq6U1Nmx5eETTYi+gt2U836HcZ2AaVesGftQFQA/FjYNLvH151Pb/Qc3X4
-	Yu7pQ2OJiGHNTDrerqWANrCTbVLDGtWFOK86Fv4qpV9C4DsWUCrdtrd5tPd2C1AT6YpJxo
-	4+hW2d9ZB1FZEHQWAhcg+h0OaLlw/F38anRmtKmC0ZX5AD+3anLwdiMUt/TVoBwrEiy/uw
-	D9wWYXDfezVNcEObz2WcQQciVlFEa2v1FNbLvLLBvRmsmS1zTB8279UUSGMj+g==
-Date: Sat, 21 Mar 2026 19:52:57 +0100
+	bh=0xwK9Zdkdfh44gOBfUOaVfMU+aaMqtJrGLBYJa23K74=;
+	b=meaJgqlbolEuvmHGIHra8HUWlrSHpaxTFAEadGnZoxHDBoApLWSanP2pVNXhlqSotsmjL9
+	a3o2Xi/sdGP4ZNIM9NSYYY75NMvAj/uIdbsr3gPWqPvWoqo+ddNz6sP86qR67guQAMo7R6
+	Znk8tEVfyl07N9Fv2YSlwOZwmRlCZySlYNjHLnD91q1bl8T/tktq+xSf0Iz/mIHLadBMNr
+	4OifFDilDDEfzN30Uh1gJmBQsqsbWx7cTZtv5JipXl3P8BH3kvuWWqGn6Vb+9vcNdWy3W9
+	qNd7x+0waoi5vCsukAy668kuG4WxLwBzyH64PCdBZHYj6ZPIbwZVXfAaPHOLng==
+Message-ID: <b47b7fb0-4859-41f7-810d-b9ad59934db2@mailbox.org>
+Date: Sat, 21 Mar 2026 19:59:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH] dt-bindings: usb: document the Renesas
- UPD720201/UPD720202 USB 3.0 xHCI Host Controller
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- Marek Vasut <marek.vasut+renesas@mailbox.org>
-References: <20260319-topic-sm8650-ayaneo-pocket-s2-upd-bindings-v1-1-84e4ef564022@linaro.org>
- <CAMuHMdUACGC4rdXfvO-N-cgNAEzhczB0VYbMoxZMyazSAp6jWg@mail.gmail.com>
- <c8d878e2-8ce8-4526-9dbc-96e4f42be4cf@mailbox.org>
- <6c3829c4-3e1e-41ee-b969-820948d10611@linaro.org>
+Subject: Re: [net-next,PATCH v3 3/3] net: phy: realtek: Add property to enable
+ SSC
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+ Aleksander Jan Bajkowski <olek2@wp.pl>, Andrew Lunn <andrew@lunn.ch>,
+ Conor Dooley <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Ivan Galkin <ivan.galkin@axis.com>,
+ Jakub Kicinski <kuba@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Michael Klein <michael@fossekall.de>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ devicetree@vger.kernel.org
+References: <20251218173718.12878-1-marek.vasut@mailbox.org>
+ <20251218173718.12878-3-marek.vasut@mailbox.org>
+ <a37be87a-e1aa-443a-9005-da62e4f51d63@mailbox.org>
+ <d6c83860-85ba-4a99-b2ab-486ad040ea55@mailbox.org>
+ <20260228110257.bowskqkl3ujv3ri6@skbuf>
 Content-Language: en-US
 From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <6c3829c4-3e1e-41ee-b969-820948d10611@linaro.org>
+In-Reply-To: <20260228110257.bowskqkl3ujv3ri6@skbuf>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: 9f572a9e99c9b97cc2c
-X-MBO-RS-META: 9nomey8gwtghgdcywd5hib1z1ngije3q
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 4474442b20a2512b3a0
+X-MBO-RS-META: hhy8us7hhfn4jt5yn413w67cefm4p7jz
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
 	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278658-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278631-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,gmail.com,vger.kernel.org,mailbox.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_CC(0.00)[vger.kernel.org,davemloft.net,wp.pl,lunn.ch,kernel.org,google.com,gmail.com,axis.com,fossekall.de,redhat.com,armlinux.org.uk];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -118,25 +108,39 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[mailbox.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:dkim,mailbox.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8253D2E828A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:dkim,mailbox.org:email,mailbox.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 5CBC52E6E14
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/21/26 10:26 AM, Neil Armstrong wrote:
-> Le 21/03/2026 à 02:36, Marek Vasut a écrit :
->> On 3/19/26 10:22 AM, Geert Uytterhoeven wrote:
->>> CC Marek (for Sparrow Hawk)
+On 2/28/26 12:02 PM, Vladimir Oltean wrote:
+> On Sat, Feb 28, 2026 at 04:57:25AM +0100, Marek Vasut wrote:
+>> On 2/4/26 3:25 PM, Marek Vasut wrote:
+>>> On 12/18/25 6:36 PM, Marek Vasut wrote:
+>>>> Add support for spread spectrum clocking (SSC) on RTL8211F(D)(I)-CG,
+>>>> RTL8211FS(I)(-VS)-CG, RTL8211FG(I)(-VS)-CG PHYs. The implementation
+>>>> follows EMI improvement application note Rev. 1.2 for these PHYs.
+>>>>
+>>>> The current implementation enables SSC for both RXC and SYSCLK clock
+>>>> signals. Introduce DT properties 'realtek,clkout-ssc-enable',
+>>>> 'realtek,rxc-ssc-enable' and 'realtek,sysclk-ssc-enable' which control
+>>>> CLKOUT, RXC and SYSCLK SSC spread spectrum clocking enablement on these
+>>>> signals.
+>>>>
+>>>> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
+>>> Is there anything that should be adjusted in these patches ?
 >>
->> The upstream supplies to which the USB controller on SH would attach 
->> are not described in SH DT yet, and they are always on, so I don't 
->> think we need to describe the controller in SH DT yet, do we ?
+>> How can we proceed here ?
 > 
-> Indeed, not necessarily, describing it would be required for power 
-> control and eventually to describe usb hubs as subnodes if they also 
-> need reset and power control.
-ACK, thank you for clarifying !
+> The state in Patchwork is Deferred. You were told that you submitted the
+> series in the merge window.
+> https://patchwork.kernel.org/project/netdevbpf/patch/20251218173718.12878-1-marek.vasut@mailbox.org/
+> 
+> It won't be applied as is (needs to be build-tested again on v7.0-rc...),
+> so please resend.
+
+I now sent V4.
 
