@@ -1,137 +1,160 @@
-Return-Path: <devicetree+bounces-278491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278493-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AHAuEZQAvmn1FAMAu9opvQ
-	(envelope-from <devicetree+bounces-278491-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 03:21:08 +0100
+	id FA1DGkUFvmlYFgMAu9opvQ
+	(envelope-from <devicetree+bounces-278493-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 03:41:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B5622E2E48
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 03:21:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7C012E2F03
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 03:41:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 33A8D30484CE
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 02:20:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6050C3031838
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 02:41:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AB10299923;
-	Sat, 21 Mar 2026 02:20:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 102D32C3768;
+	Sat, 21 Mar 2026 02:41:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pDboCm0c"
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="UOymTUMy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65F78221F1C;
-	Sat, 21 Mar 2026 02:20:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A98A2701D1;
+	Sat, 21 Mar 2026 02:40:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774059629; cv=none; b=KGDn5iq14qkjnJ3pb0YcN2i5r3ZYzo2kmuqg0zQmPNfnd6ncuaA3UBNUOsrIFQZ/Q8lFzRP/DJGgngtQTW0Xbt7krm69VmYx2Gv+CGqTiGZu4a3xH1MHpKfjhR7D3C4ZoeVat9YhR2ZLHz2XZUJPpyQuvk6pd2ocj4PDQ2cXKho=
+	t=1774060860; cv=none; b=L6nZbg6GncFrs4Dp41qwzVH0UdoLrkEFay3HupRTlIQ1Vh9wAiAxXItiP8IRIdZ/Zi467mWkXpbsp8JZLyDVN86hHVlbwpBzxfXv+VfDWIHhRv3jVR/CYwDwLw5Co2uTp6Il6+JJ3vElUoMrKXunCMlBjEaVTGYYs+DulEcNbXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774059629; c=relaxed/simple;
-	bh=ZgW2pQzRfqcFCAc0KPMvKjbsg2ZOe5531/y8EAVV2SY=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=Jj1T/GSb5RJ9yqkqpsk3jc4/JiQSAFipBMGTqhXdi/1K4RO5AY7w0XnUHJaFuZMunyawNvJ8K/Lw/dXmsPeHXOFGjlOM8fjbJl/p+6z7BwXbc5ok1cNCibZ0TWB/qEa5CUh4/Vut1NrJCkxLVnUZ1VnTZxzMkjZdhj2irYwFQ58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pDboCm0c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDA75C4CEF7;
-	Sat, 21 Mar 2026 02:20:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774059628;
-	bh=ZgW2pQzRfqcFCAc0KPMvKjbsg2ZOe5531/y8EAVV2SY=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=pDboCm0cLiJKPWeX62pjE8FBJ1dTmc7v6xPGvprrlPrjwr+k6se/JMsherA0p80gf
-	 YpbiUH2HDIWyv5GLg0stak93c7/QgbeHkCxgIkEVeBXaqm3BxJrezwuAii5MmEa0uE
-	 mtQvGQxidir8frPnLSWOnC7Wy405GDlf5wA1/pkfgZy0iUash1LQ2ohMoqe5w9r8BU
-	 LQ5WO0dTXyBIU18kdz7X6PItE0OVDr+hcVWJBFV3CQwYbYfuRm/pCPlZVwhxSh6fcn
-	 K0mxBsd/XvdH72EtGN36gBTfr9E2NOomsILw12U0C3aM27/ijlLyZOUGoe0xwaaiFa
-	 2ryb8AZo7a/iA==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 02FD03808200;
-	Sat, 21 Mar 2026 02:20:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1774060860; c=relaxed/simple;
+	bh=WezwR6yjqKcLmYq3VUS1stQABvjTHClX/MXCYcU9iuA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fbkwESVxyySEtRwKdAeYKRSnWqr6yo0XxIZtN3Lx9GGjBQHa1teGef2iY6l/V49Y1N7wWJi01dtpLeylgCfBQ8WoSoiunGqrvTOHjn0EWlvDP71AFltX6k/CkAAMo3avCD2PlyMYebBRUYasTRH88jCshSwykeP7byJV5XVUScw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=UOymTUMy; arc=none smtp.client-ip=178.251.229.89
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3AF90108FD3;
+	Sat, 21 Mar 2026 03:40:52 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
+	s=dkim; t=1774060855;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=kCrISU8qUqhXPQFXdM70vx2YEH0Zd5UhU/XwvPSjs8E=;
+	b=UOymTUMyyQajREmRrKK96xJmXuv1p2B/7ypsxU+yvZOqmNQu7D7Uy746nt9UaVHFKJ9Xbt
+	KgWCTYxpqf66Hi63yJZZklSAWUDNScESYl9YZ4WGtgUhtsU1ZNHxuIaeU+bOJHPZeZidE3
+	QLG22x4lLAoeXkJCO8htwfA8O9z02zfkHMWfG6BKC6bjE5PvcJtIDZjskwNastBvbay6L+
+	pOENrRmQ/ocNH1PXqLb8p0XOL3Z3kzeLXAOU+CR8YdFg56bNKmUeWC+wPnmGaVje87zzjk
+	445qYaSYfHhhm93YPNA1bWRStREPhBx6n3ITd+BPjk5shE+WQo2mNXdbd6sLjQ==
+Message-ID: <4e75f1d3-29ff-46a2-adb5-78a08f781834@nabladev.com>
+Date: Sat, 21 Mar 2026 03:37:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v9 0/4] net: phy: realtek: pair order and
- polarity
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <177405961878.2725242.11633577639146483232.git-patchwork-notify@kernel.org>
-Date: Sat, 21 Mar 2026 02:20:18 +0000
-References: <20260318215502.106528-1-dam.dejean@gmail.com>
-In-Reply-To: <20260318215502.106528-1-dam.dejean@gmail.com>
-To: Damien Dejean <dam.dejean@gmail.com>
-Cc: andrew@lunn.ch, krzk+dt@kernel.org, robh@kernel.org, kuba@kernel.org,
- maxime.chevallier@bootlin.com, pabeni@redhat.com, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- edumazet@google.com, davem@davemloft.net, hkallweit1@gmail.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 1/9] dt-bindings: display: fsl,ldb: Add i.MX94 LDB
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Liu Ying <victor.liu@nxp.com>, imx@lists.linux.dev,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+ dri-devel@lists.freedesktop.org, Frank Li <Frank.Li@nxp.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260304-dcif-upstreaming-v8-0-bec5c047edd4@oss.nxp.com>
+ <20260304-dcif-upstreaming-v8-1-bec5c047edd4@oss.nxp.com>
+ <b7968f1a-c4bc-4bad-bcf8-407ff2d8db27@nxp.com>
+ <dmqbmmpyi3ssvq67iqwbt6ww7tsaik7ifi5dnupmuhep7u5saz@ads5g7ette3y>
+ <mx6b5svmvlonil4efuiaxcmtygn7lld3nj7gcxnnauaryt2yed@gohjshakc2g6>
+ <40b3d1c8-0cf2-470d-8223-751240061735@nabladev.com>
+ <xqy67fmh42k26iagl7wqrh2dbsn7c5fytwbkcksfzagefp327j@s5hg4lpuvy3q>
+Content-Language: en-US
+From: Marek Vasut <marex@nabladev.com>
+In-Reply-To: <xqy67fmh42k26iagl7wqrh2dbsn7c5fytwbkcksfzagefp327j@s5hg4lpuvy3q>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[nabladev.com,reject];
+	R_DKIM_ALLOW(-0.20)[nabladev.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278491-lists,devicetree=lfdr.de,netdevbpf];
-	FREEMAIL_CC(0.00)[lunn.ch,kernel.org,bootlin.com,redhat.com,vger.kernel.org,google.com,davemloft.net,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[patchwork-bot@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-278493-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_CC(0.00)[oss.nxp.com,nxp.com,lists.linux.dev,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,denx.de,lists.freedesktop.org,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marex@nabladev.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nabladev.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8B5622E2E48
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[32ec0000:email,5c:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B7C012E2F03
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello:
+On 3/20/26 9:23 AM, Marco Felsch wrote:
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+Hello Marco,
 
-On Wed, 18 Mar 2026 22:54:57 +0100 you wrote:
-> The RTL8224 PHY gives the manufacturer some flexbility with the pair
-> order and polarity to ease the wiring on the PCB. Then the correct pair
-> order and pair polarity must be provided to the PHY to function
-> properly. This series adds the support to configure the pair order and
-> the pair polarity to the Realtek PHY driver.
+>> The LDB driver was always written with parsing 'reg' out of the DT, so
 > 
-> Signed-off-by: Damien Dejean <dam.dejean@gmail.com>
+> Not sure what you mean by always.
+
+By always, I mean since the very beginning.
+
+> I re-checked the imx6qdl.dtsi which
+> uses the ipuv3/imx-ldb.c driver. These platforms don't use the 'reg'
+> property either.
+
+Which is a different driver, although for a similar IP. We are however 
+currently talking about drivers/gpu/drm/bridge/fsl-ldb.c , right ?
+
+>> encoding the register offsets into the driver was a mistake. The LDB
+>> controls two registers, which can be comfortably described in DT.
 > 
-> [...]
+> Sorry but I have to disagree on this. It's no about if it's possible,
+> it's about if the abstraction is correct and IMHO the LDB is just one
+> subdevice of the syscon. For i.MX6SX the syscon is the iomuxc-gpr for
+> the i.MX8M and i.MX9 this is now a blkctrl.
 
-Here is the summary with links:
-  - [net-next,v9,1/4] dt-bindings: net: ethernet-phy: add property enet-phy-pair-order
-    https://git.kernel.org/netdev/net-next/c/c1887257a81b
-  - [net-next,v9,2/4] net: phy: realtek: add RTL8224 pair order support
-    https://git.kernel.org/netdev/net-next/c/330296ea9e15
-  - [net-next,v9,3/4] dt-bindings: net: ethernet-phy: add property enet-phy-pair-polarity
-    https://git.kernel.org/netdev/net-next/c/58ffb5910f32
-  - [net-next,v9,4/4] net: phy: realtek: add RTL8224 polarity support
-    https://git.kernel.org/netdev/net-next/c/beed9c0e9b53
+Right, and the "reg" DT property specifies at which offsets are the LDB 
+control registers from the start of that blkctrl. What is the problem 
+with that ?
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Look at e.g. imx8mp.dtsi as an example with blkctrl and LDB as a subnode 
+with "reg" DT properties:
 
-
+1938                         media_blk_ctrl: blk-ctrl@32ec0000 {
+1939                                 compatible = 
+"fsl,imx8mp-media-blk-ctrl",
+1940                                              "syscon";
+...
+2003                                 lvds_bridge: bridge@5c {
+2004                                         compatible = "fsl,imx8mp-ldb";
+2005                                         reg = <0x5c 0x4>, <0x128 0x4>;
+2006                                         reg-names = "ldb", "lvds";
 
