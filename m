@@ -1,351 +1,142 @@
-Return-Path: <devicetree+bounces-278629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278658-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IDzYGybovmnIiwMAu9opvQ
-	(envelope-from <devicetree+bounces-278629-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 19:49:10 +0100
+	id QMlwNZVlv2lJ4QMAu9opvQ
+	(envelope-from <devicetree+bounces-278658-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 04:44:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17DC62E6D98
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 19:49:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8253D2E828A
+	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 04:44:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E53BA301AD18
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 18:48:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 80EE23011F21
+	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 03:44:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76B7F2E0B58;
-	Sat, 21 Mar 2026 18:48:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1CB337FF41;
+	Sun, 22 Mar 2026 03:44:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="FYn7oRDE";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="ay72O8SH"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="RySlusss";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="yhFUUf3K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADB4A23B62C;
-	Sat, 21 Mar 2026 18:48:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7FC837F8D8;
+	Sun, 22 Mar 2026 03:44:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774118922; cv=none; b=ahypEsJIHzVPRazRS25Yb0CHLCz0TJHLfdGaIot8ahuXyJ3x5/4KZxITT+Oh8ju3lFGZDcWxCXa3BHQDx6mcOR13VyNIf4KPio3VDiU3ozG2uFrLg1mBsit5GzCoFCBJurvroLyg+9XQslAu5czlxynxkyp2UhUus5CiioN+8q8=
+	t=1774151049; cv=none; b=j0wXO2+iiwu+OzNrIVTMbYNW+UzgO/A8+qIbESAhTaHbOJrrpdS0eLtg8uQy6SBOwvvL/qN9JKnvgQKG3VWYAcvdBsOJdVIQ97Qn4w5p9g9G0jq1BFW4MNcAcqApgooMEWv4K2l9dDHubZWu4W5i4hFuVYr8ZGJPRjJp7PrL6MI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774118922; c=relaxed/simple;
-	bh=0KqYfsYZSrdbkM8KdcIEsgjriIC0RDC3XteXsTKk2Hw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=GIfqyyxUyzK2O2gcsGczlTi1vAxI+4BmTrbkFV/553uGBV7EaIbmkxGBSi8oslN2CSFvsnUtBU7UEkrZYUCCGnI7CS3x06h/sVQQSYM05ETmrWtsZCakTfmGZkLcyjgifV+nUus21NnpAGB+XbJsdZNz7MaH53Ty5RWcR7lcUec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=FYn7oRDE; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=ay72O8SH; arc=none smtp.client-ip=80.241.56.151
+	s=arc-20240116; t=1774151049; c=relaxed/simple;
+	bh=y5zq2D3lOiI0Qw3PR34/ItRcvLMn+HjX7/inOrvLOHk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TXEvCdq46iENX3GSIlLnECot6Z7jUHnnElmmAEXCZDFHznKyDzJEf1CZ8XlRL8LYN0M9gecqZKRRtUL2boIk2UAhC9tyjVMueWAS/qLj7NNH8ejl4b6LNrEOKjOlXxQHo1KgGvmbaHELrzXP4t6tXQlSesRBl0cVHtu7+68lCX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=RySlusss; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=yhFUUf3K; arc=none smtp.client-ip=80.241.56.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4fdT3N6G5vz9tPq;
-	Sat, 21 Mar 2026 19:48:32 +0100 (CET)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4fdhxD1Cvqz9tn7;
+	Sun, 22 Mar 2026 04:44:00 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1774118912;
+	t=1774151040;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=/y1qDyLVTzAAF3kBioTqKGFvG6BxKpsgBu/bq6pJODo=;
-	b=FYn7oRDEBCwrYZkrCRWYpAJI1xuLZ6U7BfoHrfkXLZm3aRlBTw6YLG1TPKmD/C+GmT7t/t
-	kWAAdurt7tMRfM/Q6W7h/LdCrbVso0iyA/L1SbcjUi9HmvZHLHBkB2E30ohvyww0eEyVmR
-	7sFyQPlh793LiiddXEgaFGFBPNW/wU1soTGyWqAUVrZjVQv8SH+vKq3IfDAu73gX2O5wUN
-	MOIpEyc6AYAaH8pbBk1cVEiFXfqyi+JrP9R8RUO/wtuIKWPvWkElBmD7T9huXBqTJLUFjI
-	YEtVmcLOl8VC6PBCP7EKZ5h40wLpw9lqAO+drlNPBdrsn5SlID0bb4SYg3tR4g==
-From: Marek Vasut <marek.vasut@mailbox.org>
+	bh=7pPmmUr2rdYksgu0/4NHiyOVIMPthGnBqroydjCMUJA=;
+	b=RySlusss3CTCUBE78BS8aXqfbboUE1Z1SicgUIk2VKxEJ2DWD0wwsa6GlRv1KfKJRQMys+
+	8sSYPF4MqxtaZkSvsZOI4lGIpJQRJYVVx6Ntg9HYd9HzHzQ6r4yqi86gO3iKBSxYsUE0WW
+	OU8WawIEdLlA665CNn+OFwmfWRIaAU3UqtvAbP4uyFHZPaz8xPe82zF1/VhPNE9ftsXOS0
+	T0CBDb1LpUxCYM7IX5rmzSd6sIvKUdVx4OiEkMRuLmep+rbSqj9YHJRLOSOo6vBSxk+MAL
+	lWrZC/eyC3lmHhtz5Af1FoBdzR2qZJIFiibopUN68O24t8nPYOk8BKestlk41A==
+Message-ID: <78d477a1-9f02-49e1-802e-4108b63141eb@mailbox.org>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1774118911;
+	t=1774151038;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=/y1qDyLVTzAAF3kBioTqKGFvG6BxKpsgBu/bq6pJODo=;
-	b=ay72O8SHxz2ggpealUy2CYNSWSPOvCWAJ8T9BLdkQnEKStakI0x4QOD3AISK5RH9DpeocC
-	BhP0e0jvrgKvZ9zP4hgBBq2yI1X8Kym/LkIAigWGyrq+Q0NiEcxhH5RuoNPyxj8j8+mrwX
-	sRCZxHOjBzKtve0V64shok34zrwrnd4CGnq5pWME3WEeEJK+4CRI+VGUKwF5ICFUCBO+kC
-	YeGxRM1bDBLNixuFLLYGYYOO7+76ffzXLLBV5wzH6kKRF910P4xag5mn+uVovw/g7ez2DG
-	2PusE3ln+SU7u4urFuVdF3/fpjcv7bnoB3SiFFozIxFoIvleQf76Yt6mrivy2Q==
-To: netdev@vger.kernel.org
-Cc: Marek Vasut <marek.vasut@mailbox.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Aleksander Jan Bajkowski <olek2@wp.pl>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Eric Dumazet <edumazet@google.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Ivan Galkin <ivan.galkin@axis.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michael Klein <michael@fossekall.de>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	devicetree@vger.kernel.org
-Subject: [net-next,PATCH v4 3/3] net: phy: realtek: Add property to enable SSC
-Date: Sat, 21 Mar 2026 19:47:43 +0100
-Message-ID: <20260321184815.148485-3-marek.vasut@mailbox.org>
-In-Reply-To: <20260321184815.148485-1-marek.vasut@mailbox.org>
-References: <20260321184815.148485-1-marek.vasut@mailbox.org>
+	bh=7pPmmUr2rdYksgu0/4NHiyOVIMPthGnBqroydjCMUJA=;
+	b=yhFUUf3K1QVHAVbFAXyB66CAuhcs55jnwqqzHajoRG3esaKpWUMboXmW04Ypp3C6fATRot
+	LE+X7Bsd21XRQq6U1Nmx5eETTYi+gt2U836HcZ2AaVesGftQFQA/FjYNLvH151Pb/Qc3X4
+	Yu7pQ2OJiGHNTDrerqWANrCTbVLDGtWFOK86Fv4qpV9C4DsWUCrdtrd5tPd2C1AT6YpJxo
+	4+hW2d9ZB1FZEHQWAhcg+h0OaLlw/F38anRmtKmC0ZX5AD+3anLwdiMUt/TVoBwrEiy/uw
+	D9wWYXDfezVNcEObz2WcQQciVlFEa2v1FNbLvLLBvRmsmS1zTB8279UUSGMj+g==
+Date: Sat, 21 Mar 2026 19:52:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Subject: Re: [PATCH] dt-bindings: usb: document the Renesas
+ UPD720201/UPD720202 USB 3.0 xHCI Host Controller
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ Marek Vasut <marek.vasut+renesas@mailbox.org>
+References: <20260319-topic-sm8650-ayaneo-pocket-s2-upd-bindings-v1-1-84e4ef564022@linaro.org>
+ <CAMuHMdUACGC4rdXfvO-N-cgNAEzhczB0VYbMoxZMyazSAp6jWg@mail.gmail.com>
+ <c8d878e2-8ce8-4526-9dbc-96e4f42be4cf@mailbox.org>
+ <6c3829c4-3e1e-41ee-b969-820948d10611@linaro.org>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <6c3829c4-3e1e-41ee-b969-820948d10611@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: 5ef24e033605f00af06
-X-MBO-RS-META: zu9h4i8taxc54bc9i8ptdxeer5m79fjq
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-MBO-RS-ID: 9f572a9e99c9b97cc2c
+X-MBO-RS-META: 9nomey8gwtghgdcywd5hib1z1ngije3q
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[mailbox.org,davemloft.net,wp.pl,lunn.ch,kernel.org,google.com,gmail.com,axis.com,fossekall.de,redhat.com,armlinux.org.uk,nxp.com,vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	TAGGED_FROM(0.00)[bounces-278629-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278658-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,gmail.com,vger.kernel.org,mailbox.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[mailbox.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 17DC62E6D98
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:dkim,mailbox.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8253D2E828A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for spread spectrum clocking (SSC) on RTL8211F(D)(I)-CG,
-RTL8211FS(I)(-VS)-CG, RTL8211FG(I)(-VS)-CG PHYs. The implementation
-follows EMI improvement application note Rev. 1.2 for these PHYs.
-
-The current implementation enables SSC for both RXC and SYSCLK clock
-signals. Introduce DT properties 'realtek,clkout-ssc-enable',
-'realtek,rxc-ssc-enable' and 'realtek,sysclk-ssc-enable' which control
-CLKOUT, RXC and SYSCLK SSC spread spectrum clocking enablement on these
-signals.
-
-Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
----
-Cc: "David S. Miller" <davem@davemloft.net>
-Cc: Aleksander Jan Bajkowski <olek2@wp.pl>
-Cc: Andrew Lunn <andrew@lunn.ch>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Eric Dumazet <edumazet@google.com>
-Cc: Florian Fainelli <f.fainelli@gmail.com>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Ivan Galkin <ivan.galkin@axis.com>
-Cc: Jakub Kicinski <kuba@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Michael Klein <michael@fossekall.de>
-Cc: Paolo Abeni <pabeni@redhat.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Russell King <linux@armlinux.org.uk>
-Cc: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: devicetree@vger.kernel.org
-Cc: netdev@vger.kernel.org
----
-V2: Split SSC clock control for each CLKOUT, RXC, SYSCLK signal
-V3: Update RTL8211FVD PHYCR2 comment to state this PHY has PHYCR2 register,
-    but SSC configuration is not supported due to different layout.
-V4: - Perform all SSC configuration before disabling CLKOUT
-    - Perform all SSC configuration in the same order as in the SSC appnote
-    - Rebase on current next, retest using spectrum analyzer again
----
- drivers/net/phy/realtek/realtek_main.c | 131 +++++++++++++++++++++++++
- 1 file changed, 131 insertions(+)
-
-diff --git a/drivers/net/phy/realtek/realtek_main.c b/drivers/net/phy/realtek/realtek_main.c
-index 530b4e26d16ef..1dc64bf2ec73d 100644
---- a/drivers/net/phy/realtek/realtek_main.c
-+++ b/drivers/net/phy/realtek/realtek_main.c
-@@ -75,10 +75,18 @@
- 
- #define RTL8211F_PHYCR2				0x19
- #define RTL8211F_CLKOUT_EN			BIT(0)
-+#define RTL8211F_SYSCLK_SSC_EN			BIT(3)
- #define RTL8211F_PHYCR2_PHY_EEE_ENABLE		BIT(5)
-+#define RTL8211F_CLKOUT_SSC_EN			BIT(7)
- 
- #define RTL8211F_INSR				0x1d
- 
-+/* RTL8211F SSC settings */
-+#define RTL8211F_SSC_PAGE			0xc44
-+#define RTL8211F_SSC_RXC			0x13
-+#define RTL8211F_SSC_SYSCLK			0x17
-+#define RTL8211F_SSC_CLKOUT			0x19
-+
- /* RTL8211F LED configuration */
- #define RTL8211F_LEDCR_PAGE			0xd04
- #define RTL8211F_LEDCR				0x10
-@@ -212,6 +220,9 @@ MODULE_LICENSE("GPL");
- struct rtl821x_priv {
- 	bool enable_aldps;
- 	bool disable_clk_out;
-+	bool enable_clkout_ssc;
-+	bool enable_rxc_ssc;
-+	bool enable_sysclk_ssc;
- 	struct clk *clk;
- 	/* rtl8211f */
- 	u16 iner;
-@@ -275,6 +286,12 @@ static int rtl821x_probe(struct phy_device *phydev)
- 						   "realtek,aldps-enable");
- 	priv->disable_clk_out = of_property_read_bool(dev->of_node,
- 						      "realtek,clkout-disable");
-+	priv->enable_clkout_ssc = of_property_read_bool(dev->of_node,
-+							"realtek,clkout-ssc-enable");
-+	priv->enable_rxc_ssc = of_property_read_bool(dev->of_node,
-+						     "realtek,rxc-ssc-enable");
-+	priv->enable_sysclk_ssc = of_property_read_bool(dev->of_node,
-+							"realtek,sysclk-ssc-enable");
- 
- 	phydev->priv = priv;
- 
-@@ -704,6 +721,108 @@ static int rtl8211f_config_phy_eee(struct phy_device *phydev)
- 			  RTL8211F_PHYCR2_PHY_EEE_ENABLE, 0);
- }
- 
-+static int rtl8211f_config_clkout_ssc(struct phy_device *phydev)
-+{
-+	struct rtl821x_priv *priv = phydev->priv;
-+	struct device *dev = &phydev->mdio.dev;
-+	int ret;
-+
-+	/* The value is preserved if the device tree property is absent */
-+	if (!priv->enable_clkout_ssc)
-+		return 0;
-+
-+	/* RTL8211FVD has PHYCR2 register, but configuration of CLKOUT SSC
-+	 * is not currently supported by this driver due to different bit
-+	 * layout.
-+	 */
-+	if (phydev->drv->phy_id == RTL_8211FVD_PHYID)
-+		return 0;
-+
-+	/* Unnamed registers from EMI improvement parameters application note 1.2 */
-+	ret = phy_write_paged(phydev, 0xd09, 0x10, 0xcf00);
-+	if (ret < 0) {
-+		dev_err(dev, "CLKOUT SCC initialization failed: %pe\n", ERR_PTR(ret));
-+		return ret;
-+	}
-+
-+	ret = phy_write(phydev, RTL8211F_SSC_CLKOUT, 0x38c3);
-+	if (ret < 0) {
-+		dev_err(dev, "CLKOUT SCC configuration failed: %pe\n", ERR_PTR(ret));
-+		return ret;
-+	}
-+
-+	/*
-+	 * Enable CLKOUT SSC using PHYCR2 bit 7 , this step is missing from the
-+	 * EMI improvement parameters application note 1.2 section 2.3
-+	 */
-+	ret = phy_set_bits(phydev, RTL8211F_PHYCR2, RTL8211F_CLKOUT_SSC_EN);
-+	if (ret < 0) {
-+		dev_err(dev, "CLKOUT SCC enable failed: %pe\n", ERR_PTR(ret));
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int rtl8211f_config_rxc_ssc(struct phy_device *phydev)
-+{
-+	struct rtl821x_priv *priv = phydev->priv;
-+	struct device *dev = &phydev->mdio.dev;
-+	int ret;
-+
-+	/* The value is preserved if the device tree property is absent */
-+	if (!priv->enable_rxc_ssc)
-+		return 0;
-+
-+	/* RTL8211FVD has PHYCR2 register, but configuration of RXC SSC
-+	 * is not currently supported by this driver due to different bit
-+	 * layout.
-+	 */
-+	if (phydev->drv->phy_id == RTL_8211FVD_PHYID)
-+		return 0;
-+
-+	ret = phy_write_paged(phydev, RTL8211F_SSC_PAGE, RTL8211F_SSC_RXC, 0x5f00);
-+	if (ret < 0) {
-+		dev_err(dev, "RXC SCC configuration failed: %pe\n", ERR_PTR(ret));
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int rtl8211f_config_sysclk_ssc(struct phy_device *phydev)
-+{
-+	struct rtl821x_priv *priv = phydev->priv;
-+	struct device *dev = &phydev->mdio.dev;
-+	int ret;
-+
-+	/* The value is preserved if the device tree property is absent */
-+	if (!priv->enable_sysclk_ssc)
-+		return 0;
-+
-+	/* RTL8211FVD has PHYCR2 register, but configuration of SYSCLK SSC
-+	 * is not currently supported by this driver due to different bit
-+	 * layout.
-+	 */
-+	if (phydev->drv->phy_id == RTL_8211FVD_PHYID)
-+		return 0;
-+
-+	ret = phy_write_paged(phydev, RTL8211F_SSC_PAGE, RTL8211F_SSC_SYSCLK, 0x4f00);
-+	if (ret < 0) {
-+		dev_err(dev, "SYSCLK SCC configuration failed: %pe\n", ERR_PTR(ret));
-+		return ret;
-+	}
-+
-+	/* Enable SSC */
-+	ret = phy_set_bits(phydev, RTL8211F_PHYCR2, RTL8211F_SYSCLK_SSC_EN);
-+	if (ret < 0) {
-+		dev_err(dev, "SYSCLK SCC enable failed: %pe\n", ERR_PTR(ret));
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static int rtl8211f_config_init(struct phy_device *phydev)
- {
- 	struct device *dev = &phydev->mdio.dev;
-@@ -720,6 +839,18 @@ static int rtl8211f_config_init(struct phy_device *phydev)
- 	if (ret)
- 		return ret;
- 
-+	ret = rtl8211f_config_rxc_ssc(phydev);
-+	if (ret)
-+		return ret;
-+
-+	ret = rtl8211f_config_sysclk_ssc(phydev);
-+	if (ret)
-+		return ret;
-+
-+	ret = rtl8211f_config_clkout_ssc(phydev);
-+	if (ret)
-+		return ret;
-+
- 	ret = rtl8211f_config_clk_out(phydev);
- 	if (ret) {
- 		dev_err(dev, "clkout configuration failed: %pe\n",
--- 
-2.53.0
-
+On 3/21/26 10:26 AM, Neil Armstrong wrote:
+> Le 21/03/2026 à 02:36, Marek Vasut a écrit :
+>> On 3/19/26 10:22 AM, Geert Uytterhoeven wrote:
+>>> CC Marek (for Sparrow Hawk)
+>>
+>> The upstream supplies to which the USB controller on SH would attach 
+>> are not described in SH DT yet, and they are always on, so I don't 
+>> think we need to describe the controller in SH DT yet, do we ?
+> 
+> Indeed, not necessarily, describing it would be required for power 
+> control and eventually to describe usb hubs as subnodes if they also 
+> need reset and power control.
+ACK, thank you for clarifying !
 
