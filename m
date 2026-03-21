@@ -1,326 +1,186 @@
-Return-Path: <devicetree+bounces-278627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278630-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 5zYQG9nlvmk9igMAu9opvQ
-	(envelope-from <devicetree+bounces-278627-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 19:39:21 +0100
+	id WMkpHoTpvmkFjQMAu9opvQ
+	(envelope-from <devicetree+bounces-278630-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 19:55:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5C5E2E6CFD
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 19:39:20 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFC362E6DF0
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 19:54:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4AC843009CDC
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 18:39:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D6B8630082A8
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 18:54:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B937F33BBCD;
-	Sat, 21 Mar 2026 18:39:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7A5730C343;
+	Sat, 21 Mar 2026 18:54:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BuAtl9o5"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="B9ySxL+x";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="TEzKBDnw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92DAC2E5B21;
-	Sat, 21 Mar 2026 18:39:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 120543016FB;
+	Sat, 21 Mar 2026 18:54:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774118358; cv=none; b=uQTJPUdUqqMNbXu7ZbP3Ao5E2jY63HUB7+/7ypNdctxjlcN7BXmMYSdHoAbR74RlFvHtVFaZaguL3jtpFxz2+Krj6X1dqL6FnU8NWovrbRoLGvTmZvswrMzQjD9WUzBr3wxE+ykFYLeNHBMU/sa+EoefCWee1qhRX3dtOGpCUWI=
+	t=1774119297; cv=none; b=Bdthe+iYiq2UUWrIldpwOHGjp/Us/Vi/xauM2zVRkz9S4B0MAh9CLCso8Pfo4z587zljT5GF4PL2XPWeuY6LDDlHKrbFi1oWQxbwxX9oyb13ZNfh1UALHeEH5eySW6iIMfi3wNkggMWrQaBdloe6xau4DydJYyQfC6Cw6y4T+Ng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774118358; c=relaxed/simple;
-	bh=AKvPHB6/e4oPBMB57bEGs3+OhYV7XS1yw/q0PLUIB3s=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Hx8VUKSEqR0mf7uddqPkkom8zZaBZ6kOzPRGo+/sNAx3omfVoAIiJeIH1X2LKZW3xbzB+keEofIUGPwA3aoBxs4CEtM6jSvkE+AvtsXEeSGCNFnBl3Qi+vMXgFJ/C/cMrneQStNjME91PGYFjgGehOJKMkjsf9xey0dGHjcrYxs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BuAtl9o5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF58FC19421;
-	Sat, 21 Mar 2026 18:39:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774118358;
-	bh=AKvPHB6/e4oPBMB57bEGs3+OhYV7XS1yw/q0PLUIB3s=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=BuAtl9o59uQ2hGX99UH5v2q4hdSNSXCXUeqgMHITzvVQNbfiHq/3HFbcXuf0iNSTw
-	 GCCta+pUbWq9Rde47r3dgpZj9ZWRmqUbDjDo9Q2ufzzIlSyMInrZXPG02837E324eD
-	 hvClY22fAGY5czLqWTsd6x8uuf8Mc9CemE4OhChpuUCIunzqq+TNnxuxpZZOIftMQP
-	 uJ8nMiUMd9ra+lQsJ5LrO7gUMuZkH5hdNmOYuoKHyKud4NCryTARPNhRqHOkp1E+Kx
-	 BqdZYLg5nAx7E6ORYEG05HqZgiF+fGtiEEJP61Vn3Y2k4T63ZYVOnfvZ4zOMcD5h9H
-	 eAb3MXOM/86bw==
-Date: Sat, 21 Mar 2026 18:39:09 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, "David Lechner" <dlechner@baylibre.com>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko
- <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] iio: dac: ad5706r: Add support for AD5706R DAC
-Message-ID: <20260321183909.45761710@jic23-huawei>
-In-Reply-To: <20260318-dev_ad5706r-v3-2-5d078f41e988@analog.com>
-References: <20260318-dev_ad5706r-v3-0-5d078f41e988@analog.com>
-	<20260318-dev_ad5706r-v3-2-5d078f41e988@analog.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1774119297; c=relaxed/simple;
+	bh=lcUjA2tOXH6xrPM+MteHiFBZw46mc+U013QORqy5ogs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ef8ph9vzLbBHdx2Vxl1gwrsodPxlFtzNSDiAutDUpWcecvx4JGhsRQPYmxkFZGdGpgqdpqGQbgce41OAts9pG+MPsOC9I3zoePFylPblA2qn7XARqt0Er58FcrKyPhrXl/7bAK4Zz6BHDHXt06Lk/QONBozlIIJAT0kD+yht4Fs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=B9ySxL+x; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=TEzKBDnw; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4fdT3F3BY4z9vDH;
+	Sat, 21 Mar 2026 19:48:25 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1774118905;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=xaB175QEGmnw0RID6ZBF0oUHABZ4Kfsd8JaellT99Zs=;
+	b=B9ySxL+xQrypQhLjspzbMqPpdiixyaMfXFKFobJgPQGridPkTkdhk2j6d6u8DU2SvT0H1n
+	UpXbcEML83x2kiskGdJK0qHKdKxanaqU99rQYfZU19uMymIgErxBCKvMGDJDyDj9dKsbpL
+	h2TWwCbi7OixULibBmxUVXhHdzyq2dTtyvdHFv1WOJiCAgqQADbcr877IDBQqgh1btyxAZ
+	DHHlpIp6NzuuJOXeiChfaF2/0kb8KDwnlyxHHgNyTaAwk+tYNuydfM2jMWkljkigtH8a/m
+	QkM1yzqCeLy3fjtw+0s4CKdgyHzLZ71m+msHnNjVLdoB7ZbDes+aVNpnSpTmDg==
+From: Marek Vasut <marek.vasut@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1774118903;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=xaB175QEGmnw0RID6ZBF0oUHABZ4Kfsd8JaellT99Zs=;
+	b=TEzKBDnwxJmsWvVaMwHRu9vKmPkUXgBmRnWuBbnGGWhiQsA0RbNKVB7Y5Grs37+4SYQNn4
+	2BTPtVzE+SA8RbzCf2re3TCCzwvypzOvy9bT0gyk3lDTE5WNukdY/YYR+Zv0zCcbo9UwXM
+	HlELhgNBHVSeemzOYgf1p7RuTgq4zXYa/wG/39MGVpPPXijyGxirXfKgcgrwZhNU8A+ptx
+	ADdEVeOMnBTCv00vbQwmbziiMXeThxrq3Q08IQq0OmshSW5Ru6n8++AF9ULrIiVnfvH0Wd
+	BGBHTOLnlxiIV0blgQ8+z1s3vwKU49mGMlhZfk05+PfhoEl5DDpOLggt9q2H/w==
+To: netdev@vger.kernel.org
+Cc: Marek Vasut <marek.vasut@mailbox.org>,
+	"Rob Herring (Arm)" <robh@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Aleksander Jan Bajkowski <olek2@wp.pl>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Eric Dumazet <edumazet@google.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Ivan Galkin <ivan.galkin@axis.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Klein <michael@fossekall.de>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	devicetree@vger.kernel.org
+Subject: [net-next,PATCH v4 1/3] dt-bindings: net: realtek,rtl82xx: Keep property list sorted
+Date: Sat, 21 Mar 2026 19:47:41 +0100
+Message-ID: <20260321184815.148485-1-marek.vasut@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: 4tcst1quwihjhkgp4krxphrq9r4jokzq
+X-MBO-RS-ID: f76902603a2f2e71159
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278627-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[mailbox.org,kernel.org,davemloft.net,wp.pl,lunn.ch,google.com,gmail.com,axis.com,fossekall.de,redhat.com,armlinux.org.uk,nxp.com,vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-278630-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mailbox.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email]
-X-Rspamd-Queue-Id: B5C5E2E6CFD
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DFC362E6DF0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 18 Mar 2026 13:13:36 +0800
-Alexis Czezar Torreno <alexisczezar.torreno@analog.com> wrote:
+Sort the documented properties alphabetically, no functional change.
 
-> Add support for the Analog Devices AD5706R, a 4-channel 16-bit
-> current output digital-to-analog converter with SPI interface.
-> 
-> Features:
->   - 4 independent DAC channels
->   - Hardware and software LDAC trigger
->   - Configurable output range
->   - PWM-based LDAC control
->   - Dither and toggle modes
->   - Dynamically configurable SPI speed
-> 
-> Signed-off-by: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-> 
-> ---
-> Changes since v1:
->   - Removed PWM, GPIO, clock generator, debugfs, regmap, IIO_BUFFER
->   - Removed all custom ext_info sysfs attributes
->   - Simplified to basic raw read/write and read-only scale
->   - SPI read/write can handle multibyte registers
-Hi Alexis,
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
+---
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Aleksander Jan Bajkowski <olek2@wp.pl>
+Cc: Andrew Lunn <andrew@lunn.ch>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Eric Dumazet <edumazet@google.com>
+Cc: Florian Fainelli <f.fainelli@gmail.com>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Ivan Galkin <ivan.galkin@axis.com>
+Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Michael Klein <michael@fossekall.de>
+Cc: Paolo Abeni <pabeni@redhat.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Russell King <linux@armlinux.org.uk>
+Cc: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: devicetree@vger.kernel.org
+Cc: netdev@vger.kernel.org
+---
+V2: No change
+V3: No change
+V4: Add AB from Rob
+---
+ .../devicetree/bindings/net/realtek,rtl82xx.yaml          | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-I've tried not to overlap too much with other feedback.
-
-Some comments inline.
-
-Thanks,
-
-Jonathan
-
-> diff --git a/drivers/iio/dac/ad5706r.c b/drivers/iio/dac/ad5706r.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..840ee7b6db2e05ea35b27ff776f0c5c8a961d9c1
-> --- /dev/null
-> +++ b/drivers/iio/dac/ad5706r.c
-
-> +
-> +struct ad5706r_state {
-> +	struct spi_device *spi;
-> +	struct mutex lock; /* Protects SPI transfers */
-I assume it actually protects the buffers below. Where possible talk
-about what 'data' is being protected. It's easier to reason about than
-transfers which will be protected anyway by internal bus driver locking.
-
-> +
-> +	u8 tx_buf[4] __aligned(ARCH_DMA_MINALIGN);
-> +	u8 rx_buf[2];
-> +};
-> +
-> +static int ad5706r_reg_len(unsigned int reg)
-> +{
-> +	if (reg >= AD5706R_MULTIBYTE_REG_START && reg <= AD5706R_MULTIBYTE_REG_END)
-> +		return AD5706R_DOUBLE_BYTE_LEN;
-> +
-> +	return AD5706R_SINGLE_BYTE_LEN;
-> +}
-> +
-> +static int ad5706r_spi_write(struct ad5706r_state *st, u16 reg, u16 val)
-> +{
-> +	unsigned int num_bytes = ad5706r_reg_len(reg);
-> +	struct spi_transfer xfer = {
-> +		.tx_buf = st->tx_buf,
-> +		.len = num_bytes + 2,
-> +	};
-> +
-> +	put_unaligned_be16(reg, &st->tx_buf[0]);
-> +
-> +	if (num_bytes == 1)
-> +		st->tx_buf[2] = val;
-> +	else if (num_bytes == 2)
-> +		put_unaligned_be16(val, &st->tx_buf[2]);
-> +	else
-> +		return -EINVAL;
-> +
-> +	return spi_sync_transfer(st->spi, &xfer, 1);
-
-Even though you are writing only, consider using spi_write_then_read() here
-as well. Might end up simpler and it works fine with an rx size of 0 and
-NULL buffer for rx
-
-> +}
-> +
-> +static int ad5706r_spi_read(struct ad5706r_state *st, u16 reg, u16 *val)
-> +{
-> +	unsigned int num_bytes = ad5706r_reg_len(reg);
-> +	u16 cmd;
-> +	int ret;
-> +
-> +	struct spi_transfer xfer[] = {
-> +		{
-> +			.tx_buf = st->tx_buf,
-> +			.len = 2,
-> +		},
-> +		{
-> +			.rx_buf = st->rx_buf,
-> +			.len = num_bytes,
-> +		},
-> +	};
-> +
-> +	cmd = AD5706R_RD_MASK | (reg & AD5706R_ADDR_MASK);
-> +	put_unaligned_be16(cmd, &st->tx_buf[0]);
-> +
-> +	ret = spi_sync_transfer(st->spi, xfer, ARRAY_SIZE(xfer));
-
-Can you use spi_write_the_read()?
-Has the added advantage that it bounces the data so doesn't need DMA safe.
-Can also use more meaningful types like 
-__be16 tx;
-__be16 rx16;
-u8 rx8;
-
-
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (num_bytes == 1)
-> +		*val = st->rx_buf[0];
-> +	else if (num_bytes == 2)
-> +		*val = get_unaligned_be16(st->rx_buf);
-> +	else
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
-> +
-> +static int ad5706r_read_raw(struct iio_dev *indio_dev,
-> +			    struct iio_chan_spec const *chan, int *val,
-> +			    int *val2, long mask)
-> +{
-> +	struct ad5706r_state *st = iio_priv(indio_dev);
-> +	u16 reg_val;
-> +	int ret;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		scoped_guard(mutex, &st->lock) {
-Why?
-
-	case IIO_CHAN_INFO_RAW: {
-		guard(mutex)(&st->lock);
-
-		ret = ....
-
-		return IIO_VAL_INT;
-	}
-
-is easier to read and reduces the huge indent.
-
-Only use scoped_guard() when you can't do it in a more readable fashion.
-
-> +			ret = ad5706r_spi_read(st, AD5706R_REG_DAC_DATA_READBACK_CH(chan->channel),
-> +					       &reg_val);
-> +
-> +			if (ret)
-> +				return ret;
-> +
-> +			*val = reg_val;
-> +		}
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_SCALE:
-> +		*val = 50;
-> +		*val2 = AD5706R_DAC_RESOLUTION;
-> +		return IIO_VAL_FRACTIONAL_LOG2;
-> +	}
-> +
-I'd prefer an explicit
-	defualt:
-		return -EINVAL;
-	}
-to end the switch statement and make it clear within the switch that all other options
-are errors.
-
-> +	return -EINVAL;
-> +}
-> +
-> +static int ad5706r_write_raw(struct iio_dev *indio_dev,
-> +			     struct iio_chan_spec const *chan, int val,
-> +			     int val2, long mask)
-> +{
-> +	struct ad5706r_state *st = iio_priv(indio_dev);
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		if (val < 0 || val >= AD5706R_DAC_MAX_CODE)
-> +			return -EINVAL;
-> +
-> +		guard(mutex)(&st->lock);
-
-What's the scope? add {} to the case block to make it clearly defined.
-
-
-> +		return ad5706r_spi_write(st,
-> +					 AD5706R_REG_DAC_INPUT_A_CH(chan->channel),
-> +					 val);
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-
-> +static const struct of_device_id ad5706r_of_match[] = {
-> +	{ .compatible = "adi,ad5706r" },
-> +	{}
-
-As below.
-
-> +};
-> +MODULE_DEVICE_TABLE(of, ad5706r_of_match);
-> +
-> +static const struct spi_device_id ad5706r_id[] = {
-> +	{ "ad5706r" },
-> +	{}
-
-Trivial style thing, but we've standardized on
-	{ }
-for IIO.  Had to pick one of the two choices and that one looked
-nicer to me ;)
-
-> +};
-> +MODULE_DEVICE_TABLE(spi, ad5706r_id);
-
+diff --git a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
+index 2b5697bd7c5df..eafcc2f3e3d66 100644
+--- a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
++++ b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
+@@ -40,15 +40,15 @@ properties:
+ 
+   leds: true
+ 
+-  realtek,clkout-disable:
++  realtek,aldps-enable:
+     type: boolean
+     description:
+-      Disable CLKOUT clock, CLKOUT clock default is enabled after hardware reset.
++      Enable ALDPS mode, ALDPS mode default is disabled after hardware reset.
+ 
+-  realtek,aldps-enable:
++  realtek,clkout-disable:
+     type: boolean
+     description:
+-      Enable ALDPS mode, ALDPS mode default is disabled after hardware reset.
++      Disable CLKOUT clock, CLKOUT clock default is enabled after hardware reset.
+ 
+   wakeup-source:
+     type: boolean
+-- 
+2.53.0
 
 
