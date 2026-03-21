@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-278543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278544-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eGOzDOBtvml1PQMAu9opvQ
-	(envelope-from <devicetree+bounces-278543-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 11:07:28 +0100
+	id yGHRCahtvml1PQMAu9opvQ
+	(envelope-from <devicetree+bounces-278544-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 11:06:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84C372E49B6
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 11:07:27 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3027D2E49A7
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 11:06:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D5B153004F52
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 10:05:59 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5CD033001F96
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 10:06:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 397FC2C21F6;
-	Sat, 21 Mar 2026 10:05:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FFAE2FD1AA;
+	Sat, 21 Mar 2026 10:06:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OC58XMi2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C9EX2WiZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 149582BDC2C;
-	Sat, 21 Mar 2026 10:05:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5083B2E0938;
+	Sat, 21 Mar 2026 10:06:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774087559; cv=none; b=C1v6QGJ6IbZNW/VtW9mp5KO4agPATSMp0Y6K9Hy4rOGNYVhZ7BepcLpUrfLTADU+z104+omkF81It041yWx+xxthiC3IOg29hs1hCoGBqt7WLmlHKQTOCEIn+lLjg+WgzCue87vwrMh2HOQv7ERMLTpZ5Ezs0Ey84DkUTC/X9pE=
+	t=1774087574; cv=none; b=lNYqBTG28JqxVeY1Qu7vZO5M8aZ5y+E/CH2TadhFag8uJ0j9XtWdJIEDVWv2up6XuOosfg0feRiA8TDPcCEGRmbcAhlD9DQwKGlUdF6uCUpN63xOfgP5/yJQWUgDLQ3Z6q1Op8+IIJji72CYAVmXR+2XSel9gBKFlnA4paI2ME0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774087559; c=relaxed/simple;
-	bh=YVbOa1et//kxg6sD6c1cEVHkFutOAJ7fD03qPnyBHGU=;
+	s=arc-20240116; t=1774087574; c=relaxed/simple;
+	bh=1JiRAkky77EAuKJsymXB57qFuCw8Hldvj3a0B0xUn04=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ttCSbRq+IpCCiqvq3eRbHBdmwJf4mBebIIDVaQGB+hXIQlblDqY2mKAdI3Ami/ilJ/VX1Q01009a1TqtkFIS7ICln7o7057URmzoWMALcClYWaOuEYT58k+v/4CTaeAuBMBNVM2M/bePx07bVjBDJrXiz8uuWbPRML/Ur/kLF8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OC58XMi2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D269C19421;
-	Sat, 21 Mar 2026 10:05:55 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=GEjV0a5WI0FR+rMjMzxXXeT0tHxRJy9RfouSDwS0hd85MScsAquAQBJekmIPxTPRxwdTjTJJ6l1tW5xXc01hUA60JmyYpoACa296Mo1FCRFkNzFzxedenBrZP6LZvPkXHIzoGWJFrbg+zUvF/hCsGZ6pw3+j6+DqEUiOC/Ahe8o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C9EX2WiZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDB79C19421;
+	Sat, 21 Mar 2026 10:06:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774087559;
-	bh=YVbOa1et//kxg6sD6c1cEVHkFutOAJ7fD03qPnyBHGU=;
+	s=k20201202; t=1774087574;
+	bh=1JiRAkky77EAuKJsymXB57qFuCw8Hldvj3a0B0xUn04=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OC58XMi2JkU8GKfpLgzwTl1loQcwGihE955dS8PNXAiziYm2uhT+NBRgmj9mBIM5C
-	 aO4pYExW+/CZt443E3gCwamnWICF33UPin8oXDfysOlsZiSxWjhFlFI3Nw98TDcXG4
-	 DtqEpat0SJdHQLPoelCKESXoBB7bvOgJNA4qQUFMTMrGnjlzhkqlGV8UgcAw+3yPMF
-	 zCBPjZmKTY2cJevX25C2x0I2o2qGkvQhXU2LBO/JY2htUm6ec+CfeGoTzYyIXXLFIT
-	 ttDAyTQkx+XEGIOgwi62yLA+qi+Ba1HUP6oHM2OIvQ+KKZpBOYNPwdXF0oqnhH6g5k
-	 pSoCWPpCDXgwg==
-Message-ID: <9b375cb4-7446-40e2-99ce-84ea54e6e8ec@kernel.org>
-Date: Sat, 21 Mar 2026 11:05:52 +0100
+	b=C9EX2WiZJ9GsJZNVK1nZTpqU4oaNjCBYhxOp+V6yfhRHwwMRSqAdbghLNXeEIIbVN
+	 Gv1Nx0mJOLdwpyNCzVlwWtBkulijDRTBIO2EjVlBwZdEPmE6UH4+uwPiM3JIFaK+0+
+	 aWpUllwJeJ9baGXJAAHPdOTLM9lmE0A1cCFVyX4aLUMDtU6p7SrQPxKFiXstcHeUGK
+	 HUcIytOVxeOO7lCwyJcnQGPh9ilY0EijAzMwXH3sHgWKAUkhqFT1u+3vp1vfx6T+Fc
+	 ywcUt87AX6Jfys7n0LXu7gcKGzmJ1Lb8vEzRxmRG/Xn5uOYy/VVMEGtDPRkYPPM1ER
+	 NH4jQfqV8u2zg==
+Message-ID: <8e561d9f-a382-41d0-9771-417441b58ca1@kernel.org>
+Date: Sat, 21 Mar 2026 11:06:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,8 +53,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: arm,corstone1000: Add
- "arm,corstone1000-a320-fvp"
+Subject: Re: [PATCH 2/5] dt-bindings: npu: arm,ethos: Add
+ "arm,corstone1000-ethos-u85"
 To: "Rob Herring (Arm)" <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
@@ -66,7 +66,7 @@ Cc: Frazer Carsley <frazer.carsley@arm.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
 References: <20260320-dt-corstone1000-a320-v1-0-a549dfcfe8da@kernel.org>
- <20260320-dt-corstone1000-a320-v1-1-a549dfcfe8da@kernel.org>
+ <20260320-dt-corstone1000-a320-v1-2-a549dfcfe8da@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,26 +112,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260320-dt-corstone1000-a320-v1-1-a549dfcfe8da@kernel.org>
+In-Reply-To: <20260320-dt-corstone1000-a320-v1-2-a549dfcfe8da@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278543-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278544-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
@@ -140,20 +140,19 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,arm.com:url]
-X-Rspamd-Queue-Id: 84C372E49B6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email]
+X-Rspamd-Queue-Id: 3027D2E49A7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On 20/03/2026 17:47, Rob Herring (Arm) wrote:
-> The Arm Corstone1000-A320 is a variation of the Corstone1000 with
-> Cortex-A320 cores and an Ethos-U85 NPU. An FVP for the platform is
-> available here[1].
-> 
-> [1] https://developer.arm.com/Tools%20and%20Software/Fixed%20Virtual%20Platforms/IoT%20FVPs
+> The Corstone-1000-A320 platform contains an Ethos-U85 NPU. Add a
+> specific compatible for it.
 > 
 > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
+>  Documentation/devicetree/bindings/npu/arm,ethos.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
