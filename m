@@ -1,277 +1,278 @@
-Return-Path: <devicetree+bounces-278518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278520-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MChtKzpevmnxNgMAu9opvQ
-	(envelope-from <devicetree+bounces-278518-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 10:00:42 +0100
+	id oGppJ2devmnxNgMAu9opvQ
+	(envelope-from <devicetree+bounces-278520-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 10:01:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 175E92E44B4
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 10:00:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 451EF2E44D5
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 10:01:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 57CA2300C916
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 09:00:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 43FF33016ECD
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 09:01:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89D0A3491CD;
-	Sat, 21 Mar 2026 09:00:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC09432C94B;
+	Sat, 21 Mar 2026 09:01:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gUdZfbSL";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="T0QiCZYO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pfeIMgfQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 234C9346AD5
-	for <devicetree@vger.kernel.org>; Sat, 21 Mar 2026 09:00:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98A8429B8CF;
+	Sat, 21 Mar 2026 09:01:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774083612; cv=none; b=egDomW5CkLsZdOUWUHBjzY4lPl5/pEhoYdxLD2QfGlfV/0/2E7mJlleWA1s7OYmXA1WDSu2bOUv3S9Hp1WGS6GH0qDU6wGh3n7Q15sry0J8myySa2HofYHXv+wDXzIzTqS9li+paQM06ZdrsS7JjyfadexIKZvZn44Uaswg/s5k=
+	t=1774083673; cv=none; b=fPIA5hvUeiT8DPsDVWsT+oobqIhU1c2vPo5hXOUOwtEUitREtcfuxgLK+8L0DWYovvJQ5FnHWKx2V50mGzsJRjAlBBS5cEkTbdhXsg00j+wpXtkwSS6qyeD1Vm5h7jIk0MfmK+w/AVj9XFpdJz9Abjp5wVRTO+lUtTG4u25C/IM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774083612; c=relaxed/simple;
-	bh=ylu7NqMDeMx/JHQQFLZXEW4YdEUTwvdchMZ1Oz4UImo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lhMfLPLWRT2iJFcHReBHd3GpFKtQ4mEucAW/vHQ9/rFkIUtZfOhmEcS9HiMeXRCbSBjl1r69FvjtCXsRZgMVgj4E9uVSbPvdHZUGmirlmkewv0qbdI5f4MTNtA5+F3iVCIMSJyiUheyxVUE+e4vM/xJSg+OGRxbiAKMmDn5oVMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gUdZfbSL; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=T0QiCZYO; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62L4ej15579083
-	for <devicetree@vger.kernel.org>; Sat, 21 Mar 2026 09:00:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	EKA5nf4m4Lv8C6dJv7c3bacMygnhmgc20n1v0daYaPg=; b=gUdZfbSL2Uw0GSWg
-	6wBJzA9AJ8PjMWbqmXbmfEUVrFRp4vX/iEYDB/gc1etwyXLMcFoDDrej1H4HTHzj
-	R8k3gOjs2f/NUPhiGAD484B0YINg+TXs6SbvLb+muaQMCUaOUbrXaxybzIVkZKHu
-	27VMs2cZKsc4b1uwHJ0pAA2j3T7JBi0a4tq28h6W7byZw0QjebZoFR0Rfsl1Gkjp
-	6f9svYMpf/zhLGvD29A4vLnTqLDRvcxYvwrvc1fKJ4Lj/MG9Eo2g2B/XCtsBHzsz
-	yMZ/nefOpAxLpAhQv4g9ttuLLaHoayPxBrrsV/bn0kI6GP/KooJK1OYLm5cr5T7E
-	ntRqSQ==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d1mgh89n9-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 21 Mar 2026 09:00:10 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-5091327215dso163664901cf.1
-        for <devicetree@vger.kernel.org>; Sat, 21 Mar 2026 02:00:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1774083609; x=1774688409; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EKA5nf4m4Lv8C6dJv7c3bacMygnhmgc20n1v0daYaPg=;
-        b=T0QiCZYOrCTnqblgwHw68fBCdUuOuXc7RcZpcusUJrVY1AxYFhkbKM+lTUdrHDclIz
-         4Dlc9yBFByjDfWmENRDdP5x5mWeV6V95wtFiJ8MPzeFwNVmYcCzawk4Q1XlvuWboQlA1
-         pi39pQw/uWQtZ9+CZS/6SJ9sTsoU/8cW8wJIXEoW2WrzTMfkR8qZGCTVM2DgOaFbsDq8
-         xgu5Jn/jZJ/+OXDNyqzv19OdDvT0UGfawGHmsJ6LNcUhpptMNDvI2l1d372WZJoUzHiy
-         xU7KuY5PwtRYJuy29e/gXoWOO2EJ8zRVg9okYl2su0dbwwNEyGxs9KmIIQjdmTKiCXD1
-         aP7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774083609; x=1774688409;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EKA5nf4m4Lv8C6dJv7c3bacMygnhmgc20n1v0daYaPg=;
-        b=MCeHMcqPG6CbrVQ/zvSRYPD1C+QHUv59vPs4cL2+7QWw8FED53/HhZRF414nbkbF+B
-         uHqrbo/oIkn1iwefwL9sNmBWZrCj4IbFA3y9Qi5mw18G9Yy2AGWP94Fz2UGQXmVidym1
-         QlcdozXJda2TiRuo670GPgPYS8cICU2WTazjAvsd4aeBG7t7UeOs0O6wMZW8QRNdME5/
-         rRhsnR28vFxdVKsMi9W50VdmmbzNOPBOeerpUj7funmHu36Qro2CB2gn2l92d9QZYu+/
-         /2UAYBo4yrt33JsYg+s9KPj1+p2CcBZxpmESTBksrGPf3SuiZ5u6rCmZ9lBheWSfcq/A
-         eJ/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWoWC/bLBZQALEINwz4p/NL2w0ubRNsBKwW2CBLqtMAWBwDrxd4V5UdMO25UiPfK+alL5/hRRhpD7w7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzw/GpzWoSgKuKZ1SfHPtKcwfQ77YXBthdHV4eQ6mq9t5n8Escd
-	xNpO49Cb+pYLQdyGv5Dj1iwTB1e8rNe9DHWBA3QsFSghvPtLeo/m+qR8RVi6AuHkAmo21oErz2Z
-	kwsGTnrQ80aVHJLoJrPh02YWG6AIOn8KMrdMrGnaa+TqYpNiDI5L6IAl3rbZxk1X8
-X-Gm-Gg: ATEYQzx3bjzqHDwE5o0kV2dvn/C4fGhGukU68shshbQwqS6PTn9dmPW8J0swUcWZA9Y
-	z3Ml7F1N26F9UB9TUsptCH9CfOtg2v9+IE5J7bATJLAtVvX2vkPUa76gyGGigI07QFgvvGqbqyJ
-	wOUz/yalDMSfXTNJAO34vMYzx5Ygdjn/yrEK3lU1OJGcEP/eVC8VrvjJshj0+GyHJTreErI3w/3
-	lYitFJwkQm1uOGYj0jfzi3hvAfHbDnz7LUxOk2c3/Zzju4ns+HzQUAz2fb9PygBhIgql2YJ0C+2
-	fuIoCByX2/0S1e1qydRQjD9Z2N6GB6bAo1LmBsLbAONR7A/B4l1MjVGsMFdG9lGBngKWyfUJVii
-	e2riGOPIwn3aVkfiNpmQl8NMBxwrhx+ZdfnFG0ODUIFkbvQcV3Mpk0IKomWvUUbtUnE2na5l1UX
-	TeD3k24zaQ
-X-Received: by 2002:ac8:5a4a:0:b0:509:2d05:6977 with SMTP id d75a77b69052e-50b374359a6mr87068031cf.16.1774083609399;
-        Sat, 21 Mar 2026 02:00:09 -0700 (PDT)
-X-Received: by 2002:ac8:5a4a:0:b0:509:2d05:6977 with SMTP id d75a77b69052e-50b374359a6mr87067321cf.16.1774083608907;
-        Sat, 21 Mar 2026 02:00:08 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:ae20:597c:99b8:d161? ([2a05:6e02:1041:c10:ae20:597c:99b8:d161])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43b64703343sm12446577f8f.19.2026.03.21.02.00.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 21 Mar 2026 02:00:08 -0700 (PDT)
-Message-ID: <909009ab-53fe-4b20-ad2c-bc8eac9e8bc1@oss.qualcomm.com>
-Date: Sat, 21 Mar 2026 10:00:07 +0100
+	s=arc-20240116; t=1774083673; c=relaxed/simple;
+	bh=yq1YAGY2UruGSfEn5o9hxDZtsgkjliW89pvcn719i5Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jvQR5/sfXebYKGUTBS8RWhf/kuMPVwyAQmH/texJcEdHBi/gwNv4rm8q+4mQgC1fl/tte33rt3ziEsCBahDmFDcrxhAAeeBzTi7FcbbV33+K8K1wgBS7lBctjpnm2gdsQmlAFYVgii0qFtXCdcZzqH4N5XkSTrgWBhMzj5Brc8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pfeIMgfQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82628C2BCB0;
+	Sat, 21 Mar 2026 09:01:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774083673;
+	bh=yq1YAGY2UruGSfEn5o9hxDZtsgkjliW89pvcn719i5Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pfeIMgfQBU6k9ErtWwulQ6xKqEEfL0Qixm2mr970aMjMh5xwayttRa1KJtq0OWTYE
+	 FvLXj5MIL3cCjOm+/qI2hf5yaU57akBP5ZB2zHGca1qQsnZR7NO72p8IU7fSU5ZKeO
+	 Crtr+d/9LxAkO3yUGf7a0EWPHE5FK94QooCSmyPRrD+5kp/aiJydeJniDhgIpQvM9/
+	 uCiA1lRjlAYz5yTq5n7gTkUn9WIH46cJoBwy9g2CZphyDjyxupZfWy4r5sty1ts4/T
+	 PD1dS+k1LKTsKvuFRrkL/Dl6VaItbfppq03XoYg43xGlPWTbD13gnSlMGRoDTtrjuX
+	 tzdfIx2jj3eoQ==
+Date: Sat, 21 Mar 2026 09:01:08 +0000
+From: Simon Horman <horms@kernel.org>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: devicetree@vger.kernel.org, vadim.fedorenko@linux.dev, jiri@resnulli.us,
+	netdev@vger.kernel.org, pvaanane@redhat.com,
+	arkadiusz.kubalewski@intel.com, robh@kernel.org,
+	linux-kernel@vger.kernel.org, conor+dt@kernel.org,
+	krzk+dt@kernel.org, Prathosh.Satish@microchip.com,
+	mschmidt@redhat.com, poros@redhat.com
+Subject: Re: [PATCH net-next 1/5] dpll: zl3073x: clean up esync get/set and
+ use zl3073x_out_is_ndiv()
+Message-ID: <20260321090108.GP74886@horms.kernel.org>
+References: <20260319174826.7623-2-ivecera@redhat.com>
+ <20260320171725.112558-1-horms@kernel.org>
+ <ffa7b3a5-a381-435e-b170-24341962b6d1@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/8] dt-bindings: thermal: Add qcom,qmi-cooling yaml
- bindings
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc: andersson@kernel.org, mathieu.poirier@linaro.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, rui.zhang@intel.com,
-        lukasz.luba@arm.com, konradybcio@kernel.org, mani@kernel.org,
-        casey.connolly@linaro.org, amit.kucheria@oss.qualcomm.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        manaf.pallikunhi@oss.qualcomm.com
-References: <20260127155722.2797783-3-gaurav.kohli@oss.qualcomm.com>
- <20260128-whispering-caracal-of-respect-a26638@quoll>
- <36706481-2549-4716-8e6d-0e4db42591a2@oss.qualcomm.com>
- <546faeda-d896-403c-a449-5c9b0cd7159e@kernel.org>
- <17474333-bb82-49d7-bc04-45ab21095c38@oss.qualcomm.com>
- <ae4c1f7e-8f4c-4ce0-a6b8-bab29984e693@kernel.org>
- <c6136314-5bdf-466b-b19e-43062fb11150@oss.qualcomm.com>
- <e6679f94-2648-4d35-80cf-d3f823f9dad3@kernel.org>
- <4f815a0f-a815-4b77-a4cf-a4b18e776eab@oss.qualcomm.com>
- <95142608-b5b1-43a4-b8b6-38e658275f30@kernel.org>
- <abhgxF1RcAJD-cK9@mai.linaro.org>
- <3922012f-25e6-4b75-9183-f9277ef5d040@oss.qualcomm.com>
- <74f59ef0-ead7-483f-a80e-a3da2f6ebcdb@oss.qualcomm.com>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
-In-Reply-To: <74f59ef0-ead7-483f-a80e-a3da2f6ebcdb@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=HI7O14tv c=1 sm=1 tr=0 ts=69be5e1a cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22 a=FQBcWiJ5rebsmBwV6QgA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-ORIG-GUID: ZQ29a6jftKk99w0kWI0nm-g-tYJEBnyp
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzIxMDA3MiBTYWx0ZWRfXw1yG8Z6/+V3v
- vGoKhdd0G9Ju8UWQyWI9DRYbVKKhuNiLY9ePpDF9+gdROMjdOkfNxLw5f7rY1/aeS3cEAx0VfhO
- TDtmsAUw24OrNNAs3PKzb/ZZ7mTjLc79bcHvxOmggDewXcXDhLHk4UYnA5K1AyPBBWRkYdgu+os
- uNXjnJuxwxTzN+lfv7wfrh5tIBe3qDkeft+EInhQxzCnSVhfSrVqDrx1xdGncyfZ5KRrdE9irGM
- nSRYJr102bdcw/mPC0cl8qvQ9llVAJvr9HW9YynaseL9lGXUJUxE1rugNMbDhgAnLRbGyAqDhLm
- 3xIhvNmZG6Ml1hIORpU1irUZ5sZ/kww+XzWy7QQmxFVNXoSL0d7gNkPAMuEUgFJAxq6pMbCBi7m
- J2I4VNyFR0J08M3vouIejd4/U7te5Qebk6MKAH8cEJOVIVRg17EZRVLiVicfKjlKIVRZfj9/68x
- v1CIL4O4nqLhcmvYmyw==
-X-Proofpoint-GUID: ZQ29a6jftKk99w0kWI0nm-g-tYJEBnyp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-21_03,2026-03-20_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 clxscore=1015 phishscore=0 malwarescore=0 bulkscore=0
- impostorscore=0 suspectscore=0 spamscore=0 adultscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603210072
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ffa7b3a5-a381-435e-b170-24341962b6d1@redhat.com>
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278518-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[cafebabe:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel.lezcano@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_FROM(0.00)[bounces-278520-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[horms@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 175E92E44B4
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux.dev:url,horms.kernel.org:mid]
+X-Rspamd-Queue-Id: 451EF2E44D5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
-Hi Konrad,
-
-On 3/19/26 10:51, Konrad Dybcio wrote:
-> On 3/18/26 11:17 AM, Gaurav Kohli wrote:
->>
->>
->> On 3/17/2026 1:27 AM, Daniel Lezcano wrote:
->>> On Tue, Feb 24, 2026 at 01:17:22PM +0100, Krzysztof Kozlowski wrote:
->>>> On 24/02/2026 13:09, Gaurav Kohli wrote:
->>>
->>> [ ... ]
->>>
->>>>>>> As a result, each core requires its own cooling device, which must be
->>>>>>> linked to its TSENS thermal zone. Because of this, we introduced
->>>>>>> multiple child nodes—one for each cooling device.
->>>>>>
->>>>>> So you have one device with cooling cells=1+2, no?
->>>>>>
->>>>>
->>>>> This will be a bigger framework change which is not supported, i can see
->>>>
->>>> I don't think that changing open source frameworks is "not supported". I
->>>> am pretty sure that changing is not only supported, but actually desired.
->>>
->>> Yes, IMO it could make sense. There are the thermal zones with phandle
->>> to a sensor and a sensor id. We can have the same with a phandle to a
->>> cooling device and a cooling device id.
->>>
->>> (... or several ids because the thermal sensor can also have multiple
->>> ids ?)
->>>
->>> May be an array of names corresponding to the TMD names at the 'id'
->>> position ?
->>>
->>
->> I am using dt node like below to use with cooling-cells = <3> approach, will post new patches with that.
->>
->> cdsp_tmd: cdsp-tmd {
->>      compatible = "qcom,qmi-cooling-cdsp";
->>      tmd-names = "cdsp_sw", "cdsp_hw";
->>      #cooling-cells = <3>;
->> };
->>
->> please let me know, if you are expecting something like this only.
+On Fri, Mar 20, 2026 at 06:31:36PM +0100, Ivan Vecera wrote:
+> Hi Simon,
 > 
-> My question about the need of a separate node still remains, i.e.
-> why can't this be:
+> On 3/20/26 6:17 PM, Simon Horman wrote:
+> > This is an AI-generated review of your patch. The human sending this
+> > email has considered the AI review valid, or at least plausible.
+> > 
+> > For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
+> > ---
+> > dpll: zl3073x: clean up esync get/set and use zl3073x_out_is_ndiv()
+> > 
+> > Return -EOPNOTSUPP early in esync_get callbacks when esync is not
+> > supported instead of conditionally populating the range at the end.
+> > This simplifies the control flow by removing the finish label/goto
+> > in the output variant and the conditional range assignment in both
+> > input and output variants.
+> > 
+> > Replace open-coded N-div signal format switch statements with
+> > zl3073x_out_is_ndiv() helper in esync_get, esync_set and
+> > frequency_set callbacks.
+> > 
+> > > diff --git a/drivers/dpll/zl3073x/dpll.c b/drivers/dpll/zl3073x/dpll.c
+> > > index a29f606318f6..79ef62d69a32 100644
+> > > --- a/drivers/dpll/zl3073x/dpll.c
+> > > +++ b/drivers/dpll/zl3073x/dpll.c
+> > > @@ -131,6 +131,12 @@ zl3073x_dpll_input_pin_esync_get(const struct dpll_pin *dpll_pin,
+> > >   	ref_id = zl3073x_input_pin_ref_get(pin->id);
+> > >   	ref = zl3073x_ref_state_get(zldev, ref_id);
+> > > 
+> > > +	if (!pin->esync_control || zl3073x_ref_freq_get(ref) == 1)
+> > > +		return -EOPNOTSUPP;
+> > > +
+> > > +	esync->range = esync_freq_ranges;
+> > > +	esync->range_num = ARRAY_SIZE(esync_freq_ranges);
+> > > +
+> > >   	switch (FIELD_GET(ZL_REF_SYNC_CTRL_MODE, ref->sync_ctrl)) {
+> > >   	case ZL_REF_SYNC_CTRL_MODE_50_50_ESYNC_25_75:
+> > >   		esync->freq = ref->esync_n_div == ZL_REF_ESYNC_DIV_1HZ ? 1 : 0;
+> > > @@ -142,17 +148,6 @@ zl3073x_dpll_input_pin_esync_get(const struct dpll_pin *dpll_pin,
+> > >   		break;
+> > >   	}
+> > > 
+> > > -	/* If the pin supports esync control expose its range but only
+> > > -	 * if the current reference frequency is > 1 Hz.
+> > > -	 */
+> > > -	if (pin->esync_control && zl3073x_ref_freq_get(ref) > 1) {
+> > > -		esync->range = esync_freq_ranges;
+> > > -		esync->range_num = ARRAY_SIZE(esync_freq_ranges);
+> > > -	} else {
+> > > -		esync->range = NULL;
+> > > -		esync->range_num = 0;
+> > > -	}
+> > > -
+> > >   	return 0;
+> > >   }
+> > 
+> > The refactoring changes the behavior when the reference frequency is 0 Hz.
+> > 
+> > The old code checked 'zl3073x_ref_freq_get(ref) > 1' which excluded both
+> > freq==0 and freq==1 from having the esync range exposed. The new code checks
+> > 'zl3073x_ref_freq_get(ref) == 1' which only excludes freq==1.
+> > 
+> > When freq==0 (which can happen when freq_base, freq_mult, or freq_ratio_m
+> > is 0), the old code would return 0 with esync->range=NULL and
+> > esync->range_num=0, while the new code returns 0 with
+> > esync->range=esync_freq_ranges and esync->range_num=1.
+> > 
+> > The removed comment documented the original intent: "if the current reference
+> > frequency is > 1 Hz". Should the new check be 'zl3073x_ref_freq_get(ref) <= 1'
+> > to preserve the original behavior for 0 Hz frequencies?
+> > 
+> > > 
+> > > @@ -582,8 +577,8 @@ zl3073x_dpll_output_pin_esync_get(const struct dpll_pin *dpll_pin,
+> > >   	struct zl3073x_dpll_pin *pin = pin_priv;
+> > >   	const struct zl3073x_synth *synth;
+> > >   	const struct zl3073x_out *out;
+> > > +	u32 synth_freq, out_freq;
+> > >   	u8 clock_type, out_id;
+> > > -	u32 synth_freq;
+> > > 
+> > >   	out_id = zl3073x_output_pin_out_get(pin->id);
+> > >   	out = zl3073x_out_state_get(zldev, out_id);
+> > > @@ -592,17 +587,19 @@ zl3073x_dpll_output_pin_esync_get(const struct dpll_pin *dpll_pin,
+> > >   	 * for N-division is also used for the esync divider so both cannot
+> > >   	 * be used.
+> > >   	 */
+> > > -	switch (zl3073x_out_signal_format_get(out)) {
+> > > -	case ZL_OUTPUT_MODE_SIGNAL_FORMAT_2_NDIV:
+> > > -	case ZL_OUTPUT_MODE_SIGNAL_FORMAT_2_NDIV_INV:
+> > > +	if (zl3073x_out_is_ndiv(out))
+> > >   		return -EOPNOTSUPP;
+> > > -	default:
+> > > -		break;
+> > > -	}
+> > > 
+> > >   	/* Get attached synth frequency */
+> > >   	synth = zl3073x_synth_state_get(zldev, zl3073x_out_synth_get(out));
+> > >   	synth_freq = zl3073x_synth_freq_get(synth);
+> > > +	out_freq = synth_freq / out->div;
+> > > +
+> > > +	if (!pin->esync_control || out_freq == 1)
+> > > +		return -EOPNOTSUPP;
+> > > +
+> > > +	esync->range = esync_freq_ranges;
+> > > +	esync->range_num = ARRAY_SIZE(esync_freq_ranges);
+> > > 
+> > >   	clock_type = FIELD_GET(ZL_OUTPUT_MODE_CLOCK_TYPE, out->mode);
+> > >   	if (clock_type != ZL_OUTPUT_MODE_CLOCK_TYPE_ESYNC) {
+> > > @@ -610,11 +607,11 @@ zl3073x_dpll_output_pin_esync_get(const struct dpll_pin *dpll_pin,
+> > >   		esync->freq = 0;
+> > >   		esync->pulse = 0;
+> > > 
+> > > -		goto finish;
+> > > +		return 0;
+> > >   	}
+> > > 
+> > >   	/* Compute esync frequency */
+> > > -	esync->freq = synth_freq / out->div / out->esync_n_period;
+> > > +	esync->freq = out_freq / out->esync_n_period;
+> > > 
+> > >   	/* By comparing the esync_pulse_width to the half of the pulse width
+> > >   	 * the esync pulse percentage can be determined.
+> > > @@ -623,18 +620,6 @@ zl3073x_dpll_output_pin_esync_get(const struct dpll_pin *dpll_pin,
+> > >   	 */
+> > >   	esync->pulse = (50 * out->esync_n_width) / out->div;
+> > > 
+> > > -finish:
+> > > -	/* Set supported esync ranges if the pin supports esync control and
+> > > -	 * if the output frequency is > 1 Hz.
+> > > -	 */
+> > > -	if (pin->esync_control && (synth_freq / out->div) > 1) {
+> > > -		esync->range = esync_freq_ranges;
+> > > -		esync->range_num = ARRAY_SIZE(esync_freq_ranges);
+> > > -	} else {
+> > > -		esync->range = NULL;
+> > > -		esync->range_num = 0;
+> > > -	}
+> > > -
+> > >   	return 0;
+> > >   }
+> > 
+> > Similar to the input variant, this changes the behavior for 0 Hz output
+> > frequencies.
+> > 
+> > The old code used '(synth_freq / out->div) > 1' to decide whether to expose
+> > the esync range, which excluded both out_freq==0 and out_freq==1. The new
+> > code uses 'out_freq == 1' for the early -EOPNOTSUPP return, only excluding
+> > out_freq==1.
+> > 
+> > When out_freq==0 (which can happen when synth_freq is 0 or synth_freq <
+> > out->div), the old code returned 0 with esync->range=NULL and
+> > esync->range_num=0, while the new code returns 0 with
+> > esync->range=esync_freq_ranges and esync->range_num=1.
+> > 
+> > The removed comment documented the intent: "if the output frequency is > 1
+> > Hz". Should this also use 'out_freq <= 1' to maintain consistency with the
+> > original behavior?
+> > 
+> > [ ... ]
+> > 
 > 
-> remoteproc_cdsp: remoteproc@cafebabe {
-> 	compatible = "qcom,foo-cdsp"
+> The frequency for both input and output pins cannot be zero... Cannot be
+> set to 0 and device never returns configured frequency to be 0.
 > 
-> 	...
+> I can modify the lines to be:
 > 
-> 	tmd-names = "abc", "xyz";
-> 	#cooling-cells = <3>;
-> };
+> if (!pin->esync_control || out_freq <= 1)
+> 	return -EOPNOTSUPP;
 > 
-> 
-> 
-> foo-thermal {
-> 	cooling-maps {
-> 		map0 {
-> 			cooling-device = <&remoteproc_cdsp CDSP_COOLING_XYZ
-> 					  THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> 		};
-> 	};
-> };
-> 
-> where you'd presumably call something like qmi_cooling_register(...) from
-> the remoteproc driver, making your added code essentially a library, not a
-> separate platform device
+> but it is needless - but let me know.
 
-I'm not sure to get your question. My understanding of the 3 
-cooling-cells is exactly what you described. The second argument of the 
-cooling-device map is an index corresponding to the id of the TMD. BTW I 
-prefer also the compatible name like 'qcom,foo-cdsp'
+Thanks Ivan,
 
-
-
-
-
-
+If it is needless then there is no need to handle it in the code.
+Sorry for not understanding that before forwarding on the AI generated review.
 
