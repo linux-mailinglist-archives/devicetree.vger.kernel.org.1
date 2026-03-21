@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-278557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278558-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id DR1eD5d2vml3QQMAu9opvQ
-	(envelope-from <devicetree+bounces-278557-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 11:44:39 +0100
+	id 0PkNBQh3vml3QQMAu9opvQ
+	(envelope-from <devicetree+bounces-278558-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 11:46:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0E852E4CE7
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 11:44:38 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D3F42E4D19
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 11:46:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 73443301E9B0
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 10:44:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 63FD6301F48A
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 10:46:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C41835E951;
-	Sat, 21 Mar 2026 10:44:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F7C036606E;
+	Sat, 21 Mar 2026 10:46:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VuOGAJB0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z3NjxvTu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3703F3176E0;
-	Sat, 21 Mar 2026 10:44:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B441231836;
+	Sat, 21 Mar 2026 10:46:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774089876; cv=none; b=pTcWo/K8JAVCIMuT2JAMAzkVYWrhPH5VoAjgBYDvfqvj6P9K3vxynj9hTMl2KErQZof2bt2s1o+hK+XwnPmXDv/MuFsiLuj2Etl2S0xoThaUO2zRk2F2/vN57eRE0UpKAumm0daElGnkrQ5pnFSptkkxqtoDkUMFsBflE28RGc8=
+	t=1774089989; cv=none; b=JeT3CrVkhIDQXUXZ/y0vwMM48AXQsqPvm0UZULLK6l6EyqrvW/hZ2ESOuCQGlgDIPucbYwwuw9smakmpFqt702LygCcDHy1jgbWLXiOgtHklIipVTOwlquqpN9ALvCKIFApJ5sgwH4LPiuGKXBcffoPYSFy3hPpDePyax7UchZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774089876; c=relaxed/simple;
-	bh=M9as8yUXW+U1s7wVMlwZOyhJYgE1gI5CZxx7KjO7IyU=;
+	s=arc-20240116; t=1774089989; c=relaxed/simple;
+	bh=Wykzu+6xT93IcxOk/c/OYiUHQuODHm7jFyIJmovcjM0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e1pPi8C2HfOdMQozXD4JTFmxZVdphmptWKE8VKhFc6ohCbA6nAmJGVd/+yOK9XHh0Gz9PK1l0IdhSvRynbbF7hg7ecpd8SiCjZaWSWtkccL6gZi+g6zAT5jdKhbS6QVwOHaq1+dLPC8z5V+gtTZC+n4EGl0Tc353WPwZQh5E6iE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VuOGAJB0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36A95C19421;
-	Sat, 21 Mar 2026 10:44:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=e46Y/G0YdjF90IIpX+eCf/SFIvo3ScHA1aO8FH3k8kQQs3pJH7Wv2WC0vzXFwZQzvqPxHHk++bGVs4G4npC4rWbIHG79liXX24kcpDxcwEZI9SB84PSCF3hBFW0pFcvUGk+tq9iC0nyW7TY0ZAPeTuWSIDQhIx2KtYaSKAlsg7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z3NjxvTu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7520CC19421;
+	Sat, 21 Mar 2026 10:46:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774089875;
-	bh=M9as8yUXW+U1s7wVMlwZOyhJYgE1gI5CZxx7KjO7IyU=;
+	s=k20201202; t=1774089988;
+	bh=Wykzu+6xT93IcxOk/c/OYiUHQuODHm7jFyIJmovcjM0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VuOGAJB0xPJFqXaIPyKKG9O/8ynVmBv7ltnq4TzkPKBcI4DLDvwaNuTPol5567gOP
-	 WTdz3/Vzc1fPesS5H4alScfSe5kUO4u6OWdjuU62ojG/zg7Ih66XgflCGmt3WnZA04
-	 GbQMagq/rOuFWW5GIm/+9In6szVSU3uIPBRtojsbFFJ2kHklo3nLsoNQ60kQcsedhs
-	 mUAo1yla7VKCb3zgU6257Nn8EQvtVYeDhqZP9XGjC4seW4OLfrN6LfKftNN/y7du84
-	 HsgEBWlEugI6rxeaZbgw/6lwmBa2Lm/AVTO8lkfPrUNHyEKEwMNxzx5iTXjiccTIn3
-	 apXUp/j8sCqiQ==
-Date: Sat, 21 Mar 2026 11:44:33 +0100
+	b=Z3NjxvTueCzmrpQrkmbYHtcpthJO5rlzzz7hFft+4t7szbJFtaO/FNqo3MjelNDuw
+	 aWoqj37nG+5y+2ip5jRLQddvY9PhqeVhGu1Yeb3QbH0dO49uDIYnt4tV9otvDyysHp
+	 m3BHn6kHja+lrTHxQx6KYbYmz8/Od5JLHGApthOLOHoRG9YO45bG2qae6Lpd/ihB89
+	 T+/SCDn3hAhl1O7YgrigF8GdYYNnV9I+mExF3r+RQRx7rwJPZRJ3KXCpwpD3dug3Cv
+	 esouKziMDg38lO4DIK9l+7EWqXG0d/QrdxotbXxZMUERTt2SbSW+4+ud6EVzSqhro9
+	 FGL2f3uDYGdHQ==
+Date: Sat, 21 Mar 2026 11:46:26 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Alexey Klimov <alexey.klimov@linaro.org>
 Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>, 
@@ -56,9 +56,11 @@ Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>,
 	Peter Griffin <peter.griffin@linaro.org>, linux-samsung-soc@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/5] Exynos850 APM-to-AP mailbox support
-Message-ID: <20260321-beautiful-garnet-magpie-de4fbd@quoll>
+Subject: Re: [PATCH 3/5] dt-bindings: mailbox: google,gs101-mbox: Add
+ samsung,exynos850-mbox
+Message-ID: <20260321-first-exuberant-angelfish-bd9ca8@quoll>
 References: <20260320-exynos850-ap2apm-mailbox-v1-0-983eb3f296fc@linaro.org>
+ <20260320-exynos850-ap2apm-mailbox-v1-3-983eb3f296fc@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,18 +69,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260320-exynos850-ap2apm-mailbox-v1-0-983eb3f296fc@linaro.org>
+In-Reply-To: <20260320-exynos850-ap2apm-mailbox-v1-3-983eb3f296fc@linaro.org>
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278557-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278558-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -93,37 +95,23 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A0E852E4CE7
+X-Rspamd-Queue-Id: 7D3F42E4D19
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 20, 2026 at 09:15:12PM +0000, Alexey Klimov wrote:
-> Hi all,
-> 
-> This patch series introduces support for the APM-to-AP mailbox on the 
-> Exynos850 SoC. This mailbox is required for communicating with the APM 
-> co-processor using ACPM.
-> 
-> The Exynos850 mailbox operates similarly to the existing gs101 
-> implementation, but the register offsets and IRQ mask bits differ. 
-> This series abstracts these differences into platform-specific data 
-> structures matched via the device tree.
-> 
-> Also, it requires APM-to-AP mailbox clock in CMU_APM block.
-> 
-> In theory this can be split into two series with correct dependecies:
-> device tree node requires clock changes to be merged. The suggestion
-> is to let this go through Samsung SoC tree with corresponding acks
-> if it is okay.
+On Fri, Mar 20, 2026 at 09:15:15PM +0000, Alexey Klimov wrote:
+> Document support for a mailbox present on Exynos850-based platforms.
 
-I don't understand why this cannot be split into two seris
-*practically*. What is exactly the dependency between mailbox and DTS,
-that it had to be combined here?
+Here you explain the hardware, e.g. that they are not compatible.
 
+> While at this, convert the compatibles selection to enum.
+
+This part is redundant and obvious, can you do it without any sort of
+conversion? Not really.
 
 Best regards,
 Krzysztof
