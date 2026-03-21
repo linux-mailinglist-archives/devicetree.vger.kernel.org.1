@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-278625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278626-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QIdqIxTavmnZfgMAu9opvQ
-	(envelope-from <devicetree+bounces-278625-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 18:49:08 +0100
+	id wIwSFHnavmnZfgMAu9opvQ
+	(envelope-from <devicetree+bounces-278626-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 18:50:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0676C2E697C
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 18:49:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6CB42E6993
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 18:50:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D721B3014515
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 17:49:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 615D7300E382
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 17:50:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 342EA2E62C6;
-	Sat, 21 Mar 2026 17:49:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89253318B83;
+	Sat, 21 Mar 2026 17:50:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N++0AVCj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KfBmtXwK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F70219C566;
-	Sat, 21 Mar 2026 17:49:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6767A2DE6F1;
+	Sat, 21 Mar 2026 17:50:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774115344; cv=none; b=r2m9LDxqQuwbk8END8XUp9U/EO9cKqxbEA67cAMZTsUqLOxpQQZ+rCZ8Uhg/Dcfl0VtfnB7J9fxO1OLCR6IjSpC50/RzXH5riFP2VDzxlsbxp+lZxigLAXiwXJqj6vNy+UBGkoivap/H11He7zCo2MznknidOMwE5nUYq8at+v4=
+	t=1774115446; cv=none; b=jaQ0c0VrAVtjOi4mbZI02CSBl2gCdBzCfrdxTp5YjijDmMBMQTIPBiuNOCi293l03t6MDpDsOjUJxJ9IxFUNq17Biqag6UE2E5eGPcHb0oCs5Azt4CV53UVaqwFTrj7b0NdreMFQOElARxr9AtIXqbfgMVP+Daan5D+XNIgbCAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774115344; c=relaxed/simple;
-	bh=XDefJK4ZU67yoy1mnx1Llq5tKyJ/lXBgdgxNHq/5KzI=;
+	s=arc-20240116; t=1774115446; c=relaxed/simple;
+	bh=WlpfjXMa/ChNrQGYBFa320G/kg7Eakf+zjKpza9XjK8=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tsJNIxLicmyHIlp9kkuBhvh9urc08lvjqwjwvlL6UyNVtUtS0GHpRCPw9VublX17c+Bk1bOcSX6vZe6yGNrhQ3KD1UTRKwzK4J+GixMrztN4jRbewlPe5GYEeYzF7Jd7O5ASapnbO04JcG6s6bGKt+JbtgkJqYUD7B8iuYL1o08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N++0AVCj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4602EC19421;
-	Sat, 21 Mar 2026 17:48:58 +0000 (UTC)
+	 MIME-Version:Content-Type; b=uGAq1Oc+Vr5R0bHr8oE4EgwnQ77PCaBw6BycySNnSam3VRO8C1nW7dCBsyb2bnzbjP550rxFA2nfc4n9YSp1xSNbG6es8V8wobD0uXap7zbEk+F+dLMEv8noBL2RS5RX1Q9lyumb2Z98/AQxyDkB5EYrDUJH93Q0WHOgfmk/JIw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KfBmtXwK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1203DC19421;
+	Sat, 21 Mar 2026 17:50:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774115343;
-	bh=XDefJK4ZU67yoy1mnx1Llq5tKyJ/lXBgdgxNHq/5KzI=;
+	s=k20201202; t=1774115446;
+	bh=WlpfjXMa/ChNrQGYBFa320G/kg7Eakf+zjKpza9XjK8=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=N++0AVCj38F8FY3k48BIN8EmtnenDCWn+iMEPWSQeLaczOV9YM1vqXiHUJqSCrcI6
-	 SXMZvh1KKurLBR4PFHDe3syZGHE+HEFaWdKQlJX1TQZ0eT7Rg2bmERmi5xTHit6W2G
-	 6CuAk4l4BG+iZbjMbiv79iyspqBUJQuS4thHS3d2+Rbk3w+dBLcZzACaCxZ270OUpN
-	 yY+Ha+OPv73AGbL7EUXI+LF1A3Lt0l7aqKkIbI9cYmwh68yTHMptZd/b2PKgg9IJ2V
-	 lVQR73k7n1HfT9x8eL/lt5Uw2XCnLc+M69NEZ7Hm01FWztEc6xEphpQpfl2J9wKDGx
-	 MKos2j4vJG8bg==
-Date: Sat, 21 Mar 2026 17:48:53 +0000
+	b=KfBmtXwKANmSjP+03gkIx0drmQPmqoFWSfqh5v2dldKaysB+9Th/3/cIGboh1llZj
+	 W7BWswiQdlntgjS2nfzidLAhgN+Z9YY6jzFzCrCoB8DDhWvo3B6R6f8FpV0trVF9Dd
+	 w7dOB1T+cJbDbiROqx0fxxlpN2fy04q5bW20pnkoNwwVZksYZFurh8ecib1jA4/tgm
+	 zWwCu3hE7VqbCFqcpn2nBPKK1vvnlMg2VpBn+4WK9GB2j8gDE7l8RKS38yByDlLr7O
+	 Xb+oGRbrNVlq0EABMNruJ6lDZXz2aqc9i4tRY+4T5a0tz2cOnvYUv75hViMq2aAUlp
+	 6xTtKT5G64jQg==
+Date: Sat, 21 Mar 2026 17:50:36 +0000
 From: Jonathan Cameron <jic23@kernel.org>
 To: Chris Morgan <macroalpha82@gmail.com>
 Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
@@ -52,11 +52,12 @@ Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
  linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
  heiko@sntech.de, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
  andriy.shevchenko@intel.com, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH V2 4/5] iio: imu: inv_icm42600: Add support for icm42607
-Message-ID: <20260321174853.643cca6f@jic23-huawei>
-In-Reply-To: <20260319182956.146976-5-macroalpha82@gmail.com>
+Subject: Re: [PATCH V2 2/5] iio: imu: inv_icm42600: Add support for using
+ alternate registers
+Message-ID: <20260321175036.50c6a29f@jic23-huawei>
+In-Reply-To: <20260319182956.146976-3-macroalpha82@gmail.com>
 References: <20260319182956.146976-1-macroalpha82@gmail.com>
-	<20260319182956.146976-5-macroalpha82@gmail.com>
+	<20260319182956.146976-3-macroalpha82@gmail.com>
 X-Mailer: Claws Mail 4.4.0 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -72,7 +73,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -80,7 +81,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278625-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278626-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_TO(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
@@ -91,324 +92,40 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,intel.com,hotmail.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0676C2E697C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B6CB42E6993
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 19 Mar 2026 13:29:40 -0500
+On Thu, 19 Mar 2026 13:29:38 -0500
 Chris Morgan <macroalpha82@gmail.com> wrote:
 
 > From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Add support for the icm42607 and icm42607p over both I2C and SPI.
-> Note that at this time only the icm42607 over i2c has been tested.
-> 
-> This driver was updated based on the existing icm42600 along with
-> the datasheet from Invensense and out-of-tree sources included
-> in the LineageOS kernels [1] and Rockchip kernels [2], both derived
-> from sources provided by Invensense.
-> 
-> [1] https://github.com/LineageOS/android_kernel_nvidia_kernel-nx/tree/lineage-23.0/drivers/iio/imu/inv_icm42607x
-> [2] https://github.com/rockchip-linux/kernel/tree/develop-6.6/drivers/iio/imu/inv_icm42670
+> Add support to the existing inv_icm42600 to support similar hardware
+> with slightly different register layouts. For example the icm42607
+> and icm42607p has most of the same functionality and even many of
+> the same registers, but the addresses for indiviual registers differ.
 > 
 > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Hi Chris,
 
-Just a quick look to see what was here.
-
-A few comments inline but the big question is clearly whether or not it makes sense
-to share the driver at all.
-
-Thanks,
-
-Jonathan
-
->  int inv_icm42600_accel_init(struct inv_icm42600_state *st, struct iio_dev *indio_dev)
->  {
->  	struct device *dev = regmap_get_device(st->map);
-> @@ -1202,6 +1610,62 @@ int inv_icm42600_accel_init(struct inv_icm42600_state *st, struct iio_dev *indio
->  	return 0;
->  }
->  
-> +int inv_icm42607_accel_init(struct inv_icm42600_state *st, struct iio_dev *indio_dev)
-> +{
-
-> +	/* accel events are wakeup capable */
-> +	ret = devm_device_init_wakeup(&indio_dev->dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-
-return devm_device_init_wakeup();
-
-> +}
-
-
-> diff --git a/drivers/iio/imu/inv_icm42600/inv_icm42600_core.c b/drivers/iio/imu/inv_icm42600/inv_icm42600_core.c
-> index 29c8c1871e06..949dbf9c2cd3 100644
-> --- a/drivers/iio/imu/inv_icm42600/inv_icm42600_core.c
-> +++ b/drivers/iio/imu/inv_icm42600/inv_icm42600_core.c
-
->  	.gyro = {
->  		.mode = INV_ICM42600_SENSOR_MODE_OFF,
-> @@ -157,6 +193,16 @@ static const struct inv_icm42600_hw inv_icm42600_hw[INV_CHIP_NB] = {
->  		.name = "icm42605",
->  		.conf = &inv_icm42600_default_conf,
->  	},
-> +	[INV_CHIP_ICM42607] = {
-
-If this goes ahead, we'd probably want to break up the structure arrays, drop
-the enum and instead have extern lines for each individual names structure in the header.
-
-The aim is both give more readable handling using the generic functions to get
-the data from whatever firmware is in use and ensure all control is via 'data' in
-the chip type specific structures.
-
-We used to do the enum thing a lot but it proved to be a not particularly
-good idea and we've been slowly ripping it out again in recent years!
-
-
-> +		.whoami = INV_ICM42607_WHOAMI,
-> +		.name = "icm42607",
-> +		.conf = &inv_icm42607_default_conf,
-> +	},
-> +	[INV_CHIP_ICM42607P] = {
-> +		.whoami = INV_ICM42607P_WHOAMI,
-> +		.name = "icm42607p",
-> +		.conf = &inv_icm42607_default_conf,
-> +	},
-
-> +/**
-> + *  inv_icm42607_setup() - check and setup chip
-> + *  @st:	driver internal state
-> + *  @bus_setup:	callback for setting up bus specific registers
-> + *
-> + *  Returns 0 on success, a negative error code otherwise.
-> + */
-> +static int inv_icm42607_setup(struct inv_icm42600_state *st,
-> +			      inv_icm42600_bus_setup bus_setup)
-> +{
-> +	const struct inv_icm42600_hw *hw = &inv_icm42600_hw[st->chip];
-> +	const struct device *dev = regmap_get_device(st->map);
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	ret = regmap_read(st->map, INV_ICM42607_REG_WHOAMI, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (val != hw->whoami)
-
-I guess the driver is doing this for other devices.  That's a historical
-thing.  For new code (+ slowly fixing up drivers) we always accept the
-dt binding value even if there is a whoami match failure because that enables
-fallback compatibles.  That is newer devices can be supported by older
-kernels without requiring code changes.
-
-Instead just print an info message as it might help with debugging.
-
-> +		return dev_err_probe(dev, -ENODEV,
-> +				     "invalid whoami %#02x expected %#02x (%s)\n",
-> +				     val, hw->whoami, hw->name);
-> +
 > diff --git a/drivers/iio/imu/inv_icm42600/inv_icm42600_gyro.c b/drivers/iio/imu/inv_icm42600/inv_icm42600_gyro.c
-> index 32aa2e52df2e..eb590eb4f397 100644
+> index 11339ddf1da3..32aa2e52df2e 100644
 > --- a/drivers/iio/imu/inv_icm42600/inv_icm42600_gyro.c
 > +++ b/drivers/iio/imu/inv_icm42600/inv_icm42600_gyro.c
 
->  static int inv_icm42600_gyro_read_sensor(struct inv_icm42600_state *st,
->  					 struct iio_chan_spec const *chan,
->  					 s16 *val)
-> @@ -188,6 +265,58 @@ static int inv_icm42600_gyro_read_sensor(struct inv_icm42600_state *st,
->  	return ret;
->  }
->  
-> +static int inv_icm42607_gyro_read_sensor(struct inv_icm42600_state *st,
-> +					 struct iio_chan_spec const *chan,
-> +					 s16 *val)
-> +{
-...
-
-> +	conf.mode = INV_ICM42600_SENSOR_MODE_LOW_NOISE;
-> +	ret = inv_icm42607_set_gyro_conf(st, &conf, NULL);
-> +	if (ret)
+> @@ -775,13 +774,13 @@ struct iio_dev *inv_icm42600_gyro_init(struct inv_icm42600_state *st)
+>  	ret = devm_iio_kfifo_buffer_setup(dev, indio_dev,
+>  					  &inv_icm42600_buffer_ops);
+>  	if (ret)
+> -		return ERR_PTR(ret);
 > +		return ret;
-> +
-> +	/* read gyro register data */
-> +	data = (__be16 *)&st->buffer[0];
-
-Similar to below, I'd be use the buffer directly in the call and
-an unaligned get to reduce alignment assumptions. 
-And sizeof(__be16) given then there won't be a local variable to use.
-
-> +	ret = regmap_bulk_read(st->map, reg, data, sizeof(*data));
-> +	if (ret)
-> +		return ret;
-> +
-> +	*val = (s16)be16_to_cpup(data);
-> +	if (*val == INV_ICM42607_DATA_INVALID)
-> +		ret = -EINVAL;
-		return -EINVAL;
-
-	return 0;
-> +
-> +	return ret;
-> +}
-
 >  
->  static int inv_icm42600_gyro_read_scale(struct iio_dev *indio_dev,
->  					int *val, int *val2)
-> @@ -276,12 +419,21 @@ static int inv_icm42600_gyro_write_scale(struct iio_dev *indio_dev,
->  
->  	conf.fs = idx / 2;
->  
-> -	pm_runtime_get_sync(dev);
-> -
-> -	scoped_guard(mutex, &st->lock)
-> -		ret = inv_icm42600_set_gyro_conf(st, &conf, NULL);
-> +	PM_RUNTIME_ACQUIRE_AUTOSUSPEND(dev, pm);
-> +	if (PM_RUNTIME_ACQUIRE_ERR(&pm))
-> +		return -ENXIO;
->  
-> -	pm_runtime_put_autosuspend(dev);
+>  	ret = devm_iio_device_register(dev, indio_dev);
 
-Do this in a precursor patch, not buried in here.
-
-> +	switch (st->chip) {
-> +	case INV_CHIP_ICM42607:
-> +	case INV_CHIP_ICM42607P:
-> +		scoped_guard(mutex, &st->lock)
-> +			ret = inv_icm42607_set_gyro_conf(st, &conf, NULL);
-> +		break;
-> +	default:
-> +		scoped_guard(mutex, &st->lock)
-> +			ret = inv_icm42600_set_gyro_conf(st, &conf, NULL);
-> +		break;
-> +	}
->  
->  	return ret;
->  }
-
-
-
-> @@ -783,6 +1089,56 @@ int inv_icm42600_gyro_init(struct inv_icm42600_state *st, struct iio_dev *indio_
->  	return 0;
->  }
->  
-> +int inv_icm42607_gyro_init(struct inv_icm42600_state *st, struct iio_dev *indio_dev)
-> +{
-...
-
-> +
-> +	ret = devm_iio_device_register(dev, indio_dev);
-> +	if (ret)
-> +		return ret;
-
-	return devm_iio_device_register();
-
-> +
-> +	return 0;
-> +}
-
-
-> diff --git a/drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c b/drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c
-> index 13e2e7d38638..6bfd5598b262 100644
-> --- a/drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c
-> +++ b/drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c
-
->  static int inv_icm42600_probe(struct spi_device *spi)
->  {
->  	const void *match;
-> @@ -59,12 +88,22 @@ static int inv_icm42600_probe(struct spi_device *spi)
->  		return -EINVAL;
->  	chip = (uintptr_t)match;
->  
-> -	/* use SPI specific regmap */
-> -	regmap = devm_regmap_init_spi(spi, &inv_icm42600_spi_regmap_config);
-> -	if (IS_ERR(regmap))
-> -		return PTR_ERR(regmap);
-> -
-> -	return inv_icm42600_core_probe(regmap, chip, inv_icm42600_spi_bus_setup);
-> +	switch (chip) {
-> +	case INV_CHIP_ICM42607:
-> +	case INV_CHIP_ICM42607P:
-> +		regmap = devm_regmap_init_spi(spi, &inv_icm42607_regmap_config);
-> +		if (IS_ERR(regmap))
-> +			return PTR_ERR(regmap);
-> +		return inv_icm42600_core_probe(regmap, chip,
-> +					       inv_icm42607_spi_bus_setup);
-> +	default:
-> +		/* use SPI specific regmap */
-
-This comment is a bit odd given the above is also an SPI specific regmap
-and the naming makes it obvious.  Drop the comment.
-
-> +		regmap = devm_regmap_init_spi(spi, &inv_icm42600_spi_regmap_config);
-> +		if (IS_ERR(regmap))
-> +			return PTR_ERR(regmap);
-> +		return inv_icm42600_core_probe(regmap, chip,
-> +					       inv_icm42600_spi_bus_setup);
-> +	}
->  }
-
-> diff --git a/drivers/iio/imu/inv_icm42600/inv_icm42600_temp.c b/drivers/iio/imu/inv_icm42600/inv_icm42600_temp.c
-> index 727b03d541a5..fdda555dbd16 100644
-> --- a/drivers/iio/imu/inv_icm42600/inv_icm42600_temp.c
-> +++ b/drivers/iio/imu/inv_icm42600/inv_icm42600_temp.c
-> @@ -46,6 +46,34 @@ static int inv_icm42600_temp_read(struct inv_icm42600_state *st, s16 *temp)
->  	return ret;
->  }
->  
-> +static int inv_icm42607_temp_read(struct inv_icm42600_state *st, s16 *temp)
-> +{
-> +	struct device *dev = regmap_get_device(st->map);
-> +	__be16 *raw;
-> +	int ret;
-> +
-> +	PM_RUNTIME_ACQUIRE_AUTOSUSPEND(dev, pm);
-> +	if (PM_RUNTIME_ACQUIRE_ERR(&pm))
-> +		return -ENXIO;
-
-No problem with this in general as it makes the code cleaner, but I'd kind
-of expect to ensure consistent local style by updating other places in a
-precursor patch.
-
-> +
-> +	guard(mutex)(&st->lock);
-> +
-> +	ret = inv_icm42607_set_temp_conf(st, true, NULL);
-> +	if (ret)
-> +		return ret;
-> +
-> +	raw = (__be16 *)&st->buffer[0];
-
-Whilst existing code does this, I'm not sure why we'd pass cast to __be16 * before
-passing it to a function taking a void *
-
-> +	ret = regmap_bulk_read(st->map, INV_ICM42607_REG_TEMP_DATA1, raw, sizeof(*raw));
-> +	if (ret)
-> +		return ret;
-> +
-> +	*temp = (s16)be16_to_cpup(raw);
-
-Also true in existing code, but this is making a strong assumption about continued
-behaviour of IIO_DMA_MINALIGN and that being at least 2.
-I'd be tempted to use an unaligned get just to avoid that assumption.
-
-
-> +	if (*temp == INV_ICM42600_DATA_INVALID)
-> +		ret = -EINVAL;
-
-		return -EINVAL;  ? 
-No point in setting it otherwise.
-
-> +
-> +	return 0;
-> +}
+return devm_iio_device_register() now make sense.
 
 
