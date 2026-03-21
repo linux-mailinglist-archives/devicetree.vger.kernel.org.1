@@ -1,63 +1,65 @@
-Return-Path: <devicetree+bounces-278609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278610-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kKqXGcW7vmlIZAMAu9opvQ
-	(envelope-from <devicetree+bounces-278609-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 16:39:49 +0100
+	id sIRMBry7vmlIZAMAu9opvQ
+	(envelope-from <devicetree+bounces-278610-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 16:39:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCA1B2E627B
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 16:39:48 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 829C92E6265
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 16:39:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2F80E30071FA
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 15:38:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 560F8301C11F
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 15:39:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 928F538C42B;
-	Sat, 21 Mar 2026 15:38:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6079538F64A;
+	Sat, 21 Mar 2026 15:39:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IwZQvMcA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r5GTTUAa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CC8819005E;
-	Sat, 21 Mar 2026 15:38:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CE721D61B7;
+	Sat, 21 Mar 2026 15:39:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774107496; cv=none; b=sao4MDX5hF/hikUSnV0anX+Al2YPlj7eDGoo2NBnYbjJ/p5tg2qXaDw+MQr7rrP2KzqILRI3/65Dtrl5l7M4HhsJk99xqERomojv5+ruOQdm0HDM1AxfM0RL8dLeR3NG73einw89M0Ol/rXq7ZQO4GvD5fifZXT3fHn6UnnEZu4=
+	t=1774107577; cv=none; b=b9vzos7iQwLyn5Vp0pDO2+1wK/35usQNrsLV6q7TDmIR/Qtxh8V8ERaLAw43bUnCcfbmKKlcFBnjtKxlAN3vy0QRu6c/5GfWiBNhmBG/IEUlgyJb891xKlNmqmKC9TymZw9UcRMltsJfl2uvZYvHke3oFZJtC/B3o22y/G3I0yo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774107496; c=relaxed/simple;
-	bh=htmyQNJXrIsXj9ow67w+TR5cXjp4psuVQ12Q5uCufCc=;
+	s=arc-20240116; t=1774107577; c=relaxed/simple;
+	bh=YdEVlxJWegfkCY1bhv5Wf2qdNZ9WLCnJprixhPrXtrk=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rKspcx0AuIm8gKKGgqIrodnSXj80lvFkGIZc/K40KJ/qFFhw/9c2YaaMtZo6ry4690SCRl/rxC+8yRPBG4zI7kswUVqSIU9Ga5k8CBIccG+xmqSaJWXsdWkqrQOxbgNUP5tSIKAbm8a0+A20cE+iBEYP5fUsZwcXNXoFMImHsX8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IwZQvMcA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE8FDC19421;
-	Sat, 21 Mar 2026 15:38:11 +0000 (UTC)
+	 MIME-Version:Content-Type; b=jbmEr6Dpf5uDFAwrESPHPGQbr5l/Cuqhi6rNd3X2pjxk6dJpXSBGHiyvWF5KJztUwEd4PeO/3eFVH+H4Ixaxm6Je6Q0sZ84coqnF6VzQk7FTCyaFHX71+YLazuB54oQrQpZV2a2qoyMnA2Zeq5p7KIshhGIVV2kh/BNiZfzLoFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r5GTTUAa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47118C19421;
+	Sat, 21 Mar 2026 15:39:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774107496;
-	bh=htmyQNJXrIsXj9ow67w+TR5cXjp4psuVQ12Q5uCufCc=;
+	s=k20201202; t=1774107576;
+	bh=YdEVlxJWegfkCY1bhv5Wf2qdNZ9WLCnJprixhPrXtrk=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=IwZQvMcACgq+cX1szXhZ/jaZPiYWBjbEgLlCXZbiflwOzBpZT2KzldKgFKI23kqju
-	 M0oG6NvSxX3vayV94LvQ/Rj1bpseOG83fAG7gNn72XEl822z2n2QR7fqGPVjDzQXae
-	 nEJZvKi7/YtVGB82IeJuzFaV//HD/yOBSQiC6RPo9czDZt7mshWh0dzeRxoF3sGHZR
-	 wDGGUmjmHPebTVGfF2tDizUM+I0o3owU7WdiuQiXdkgjxcz9kFeKaOIGtRiVRwzXSs
-	 TPrenq5Tx0uaTI50io4287VSZYD9TCzueGYCNBqaqxtssX5m2UoQYZueZ1vJcXmCL4
-	 KcYFexSxhxK8A==
-Date: Sat, 21 Mar 2026 15:38:06 +0000
+	b=r5GTTUAaGk7D55zYZB7zDqwCneLqVyvIZUnpJZ7pM5o1rklCtiM9VluvweszUvyoC
+	 Ej7O1kFrhtTWWvXQ+KxHUeX3IgYoZWyDFN/MQyJaLv48UAiaQPBMo3KDJPQvMJbYdb
+	 g4zWEtTIXV6zGdZj/fU0OIp3Q5uBiwFmVcKm70nSb8UoR9SApDmP1uY2j+gi4zitMi
+	 wxgJTFCVHfJIvTvy1gXJM3GsKVvKm4JZAxdZ8BoVbCzyisCtZv5NZ9jyn/cSZjdrDW
+	 SaxYM/Q1rUXLSbHXDuIV/AlgAJJOGq7WF+5NLuwdEb4rWEJEt7hqtwktJwa4l5Eilf
+	 g+3mzlEJZeMZQ==
+Date: Sat, 21 Mar 2026 15:39:26 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: David =?UTF-8?B?TWFyaW5vdmnEhw==?= <david.marinovic@pupin.rs>
-Cc: andriy.shevchenko@intel.com, dlechner@baylibre.com, nuno.sa@analog.com,
+To: Conor Dooley <conor@kernel.org>
+Cc: David =?UTF-8?B?TWFyaW5vdmnEhw==?= <david.marinovic@pupin.rs>,
+ andriy.shevchenko@intel.com, dlechner@baylibre.com, nuno.sa@analog.com,
  robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  michael.hennerich@analog.com, linux-iio@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] iio: dac: ltc2632: add support for LTC2654 DAC
- family
-Message-ID: <20260321153806.1ff27073@jic23-huawei>
-In-Reply-To: <20260320150957.105571-4-david.marinovic@pupin.rs>
+Subject: Re: [PATCH v3 2/3] dt-bindings: iio: dac: ltc2632: add LTC2654
+ compatible strings
+Message-ID: <20260321153926.6dc635d0@jic23-huawei>
+In-Reply-To: <20260320-doorway-rack-75f58f141999@spud>
 References: <20260318135736.91564-1-david.marinovic@pupin.rs>
 	<20260320150957.105571-1-david.marinovic@pupin.rs>
-	<20260320150957.105571-4-david.marinovic@pupin.rs>
+	<20260320150957.105571-3-david.marinovic@pupin.rs>
+	<20260320-doorway-rack-75f58f141999@spud>
 X-Mailer: Claws Mail 4.4.0 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -72,67 +74,72 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278609-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278610-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pupin.rs:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BCA1B2E627B
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,pupin.rs:email]
+X-Rspamd-Queue-Id: 829C92E6265
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 20 Mar 2026 16:09:48 +0100
-David Marinovi=C4=87 <david.marinovic@pupin.rs> wrote:
+On Fri, 20 Mar 2026 17:20:28 +0000
+Conor Dooley <conor@kernel.org> wrote:
 
-> From: David Marinovic <david.marinovic@pupin.rs>
+> On Fri, Mar 20, 2026 at 04:09:47PM +0100, David Marinovi=C4=87 wrote:
+> > From: David Marinovic <david.marinovic@pupin.rs>
+> >=20
+> > Add compatible strings for the LTC2654 quad-channel DAC family.
+> >=20
+> > The LTC2654 devices are 4-channel, 16-/12-bit DACs with an internal
+> > reference and SPI interface. They use the same 24-bit SPI command
+> > format as the LTC2632/2634/2636 family.
+> >=20
+> > The 16-bit variants (LTC2654-L16 and LTC2654-H16) require new
+> > compatible strings, as no existing compatibles support 16-bit
+> > resolution.
+> >=20
+> > The 12-bit variants (LTC2654-L12 and LTC2654-H12) are register-
+> > compatible with LTC2634-L12 and LTC2634-H12 respectively, and can
+> > use them as fallback compatibles.
+> >  =20
 >=20
-> Add support for the Linear Technology LTC2654 quad DAC family.
+> > Changes added for:
+> > - lltc,ltc2654-l16: 16-bit, 2.5V internal reference
+> > - lltc,ltc2654-l12: 12-bit, 2.5V internal reference (fallback to lltc,l=
+tc2634-l12)
+> > - lltc,ltc2654-h16: 16-bit, 4.096V internal reference
+> > - lltc,ltc2654-h12: 12-bit, 4.096V internal reference (fallback to lltc=
+,ltc2634-h12) =20
 >=20
-> The LTC2654 is a 4-channel, 16-/12-bit DAC with SPI interface,
-> sharing the same 24-bit SPI protocol as the existing LTC2632/
-> LTC2634/LTC2636 devices supported by this driver.
->=20
-> The 12-bit variants of LTC2654 reuse existing LTC2634 chip_info
-> structs as they are register-compatible.
->=20
-> Add support for the following variants:
-> - LTC2654L-16: 16-bit, 2.5V internal reference
-> - LTC2654L-12: 12-bit, 2.5V internal reference
-> - LTC2654H-16: 16-bit, 4.096V internal reference
-> - LTC2654H-12: 12-bit, 4.096V internal reference
->=20
-> Signed-off-by: David Marinovic <david.marinovic@pupin.rs>
+> No idea what this section is doing, could probably cull it if there's
+> another version.
+I dropped that section whilst applying.
 
-
->  MODULE_DEVICE_TABLE(of, ltc2632_of_match);
-> @@ -404,5 +424,5 @@ static struct spi_driver ltc2632_driver =3D {
->  module_spi_driver(ltc2632_driver);
-> =20
->  MODULE_AUTHOR("Maxime Roussin-Belanger <maxime.roussinbelanger@gmail.com=
->");
-> -MODULE_DESCRIPTION("LTC2632 DAC SPI driver");
-> +MODULE_DESCRIPTION("LTC2632/LTC2654 DAC SPI driver");
-I'm going to tweak this to=20
-		  "LTC2632 and similar DAC SPI driver" because there are already
-other parts not listed here.  E.g. LTC2634 parts
-
->  MODULE_LICENSE("GPL v2");
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> pw-bot: not-applicable
+>=20
+> btw, please don't send new versions in reply to old ones, can cause you
+> to get buried in people's mailboxes.
+>=20
+> Cheers,
+> Conor.
 
 
