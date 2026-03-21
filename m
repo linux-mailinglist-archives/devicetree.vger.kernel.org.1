@@ -1,121 +1,177 @@
-Return-Path: <devicetree+bounces-278612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278613-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6PX1COPBvmlRagMAu9opvQ
-	(envelope-from <devicetree+bounces-278612-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 17:05:55 +0100
+	id QCBiATDDvmkKawMAu9opvQ
+	(envelope-from <devicetree+bounces-278613-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 17:11:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C9382E6421
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 17:05:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F9732E6454
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 17:11:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CD2FA300E714
-	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 16:05:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 701EC300F5F2
+	for <lists+devicetree@lfdr.de>; Sat, 21 Mar 2026 16:11:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFE95282F2B;
-	Sat, 21 Mar 2026 16:05:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B9CC309DDB;
+	Sat, 21 Mar 2026 16:11:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="BWh1uIUt"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="t7FfDnxv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F06B319E992;
-	Sat, 21 Mar 2026 16:05:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 588682EACF2
+	for <devicetree@vger.kernel.org>; Sat, 21 Mar 2026 16:11:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774109150; cv=none; b=o6Rgw4M3Tt2KvhSbb1pbljs0AEjO9UgCzNIR7YkDxvC7a6lFtaIwUmvPBlpxv0wvQbBEHhlGcIpdUUsmeYzwH++7y+Xn3yD0ftJnnSCxfG65WJAbjmUCGY53FPpaEdjyxdxA0umCBpin78cfjo8snkMz3J4pB8161cdJMAuOwZw=
+	t=1774109482; cv=none; b=QJPg4h3V0YAEtRhxUhfMX1KvZMi+1JlEmnqEaCKDeTgg7nUH8nye7BZoKgnQAcYtJDMeS1YSNHSutnNUKNdEcjpQcZ5oYJSbWivj84BFDIInxKwKvuHpxShMv9tkZTsH8W2aKOaBRXHhq+4bsdnPzZz/7HKjz5RPoeASkUaq2yo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774109150; c=relaxed/simple;
-	bh=gyLPzHFjpcZvY5yUbkGLDxlWa/8E3W4swHcKJUzvh/4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Mol2nLvleJcK+v5ZaRK90CVCFth+6wcgZemn3Eh+D1HSdUNkqh5EyT6+Y12aVNVoLQyqO6YWnK1qBBynqOe0OL7AkR0O3m00nQ95ClxciUrCvtnNofceClHkYpbduWxlLtjOfgeTJ+40tRi7PiskJxGncit1wE2gFdAaV5h8yMQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=BWh1uIUt; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (xcpe-178-82-120-96.dyn.res.sunrise.net [178.82.120.96])
-	by mail11.truemail.it (Postfix) with ESMTPA id 28CC91F9AE;
-	Sat, 21 Mar 2026 17:05:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1774109139;
-	bh=gyLPzHFjpcZvY5yUbkGLDxlWa/8E3W4swHcKJUzvh/4=; h=From:To:Subject;
-	b=BWh1uIUtTNVHairbLOoWq2TpO/GD603aoSYt0EJD0EEFiM5TkQ5xAMLNNVA0zWnjn
-	 5z3eYZylaqjpKA6kk/zl87ICTt+UJHdVXBF02vm7YE3FNP+EleJC/dQzrryzsxO+Ud
-	 XEI62VQJ67EU6dxy5k94g1kFm/sLT1edfRpXvqG4SJ9MNx/dnTKmHYSR3mbA0O/AUs
-	 hVWNmjvQT+ioEPgx27JBW7tuQvLR9AKh+rbm9xt/C0pUcZSHrZfoGS7pPIXd9/BvU1
-	 qtBnJWPWe2ojsMbzsQ7VSAHxWGKvXZmTPkCqhlwHSesIvaViCqPvq+danB+PM1wRMY
-	 fCxIAeNqj3PqQ==
-Date: Sat, 21 Mar 2026 17:05:34 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
-	Martin Schmiedel <Martin.Schmiedel@tq-group.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux@ew.tq-group.com
-Subject: Re: [PATCH 2/3] arm64: dts: freescale: add initial device tree for
- TQMa93xx/MBa93xxLA-MINI
-Message-ID: <20260321160534.GA6345@francesco-nb>
-References: <20260317111704.1075938-1-alexander.stein@ew.tq-group.com>
- <20260317111704.1075938-3-alexander.stein@ew.tq-group.com>
- <abwBoB29cns28PWl@lizhi-Precision-Tower-5810>
- <3410122.44csPzL39Z@steina-w>
+	s=arc-20240116; t=1774109482; c=relaxed/simple;
+	bh=Rf5h3AQOLeWbNsSTZIKH+4HXwvmOWLUEZ4Elupi7TOU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GcN6jM1XUNjjVMFFvJQ71oDCycjVqjdP5OU8sSXSu5wyHhi8vBQUDdIM7FaPkv9+/MV8fddCE4IwDz46eTaxu1e9guMSRNrKK/HxCBgEg470bWT2BXu5PQeoU/nOV5BxpnhYt0lJBV4ZZSS/CqgRqkAiINz5+Svn/NoUF9bD0ZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=t7FfDnxv; arc=none smtp.client-ip=209.85.160.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-40946982a78so900889fac.2
+        for <devicetree@vger.kernel.org>; Sat, 21 Mar 2026 09:11:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1774109479; x=1774714279; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ePBnLY2HsewubhlIjuJ77dk8XdKtMQwZQ4cBTDjuGuM=;
+        b=t7FfDnxv18XmM8nw3xqghoKvm7duSLaIJdcSHDcs5SVo2t5CzdnoABMUmhdUE1gp/N
+         tSL0SU55VVq1YUwl8mqbtYjAyDJMiHeuTMTuBDCyf0jy8cv5BvWOeXwWL7Nr+bp/RIYc
+         lu/mNg6i4GLVXCQ6LGmh3GD5cvnb15Zh779RX260mGhPTR/fN1hCb1nWOXUyNRBFC+X9
+         rx483XCPDzt119oiZoY6xfdyDzmm4T4KGuJ+wt3wUiWoEank+s01xFp+CY5vaAqCQSex
+         SdlCV35eYe7csjL49IakP0Fh52qs3b0F4lFjhIEBI+G2ak7gEJyuXaEP+/5imoogQXKj
+         i5/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774109479; x=1774714279;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ePBnLY2HsewubhlIjuJ77dk8XdKtMQwZQ4cBTDjuGuM=;
+        b=iCXVxPlOVsFh71gQcGtYcntFRI6ZeURJMHjooZZXJ19fo2OKslQigyTydOhoh7EcMR
+         bW8AFcunU9IMa9esg4jr0Jjd25oUjRvT5+FGcC95plWNA4nCPw5GHhqEB90tMMYFZwp0
+         7tcviHCUR2fF2NyYXNndjhNVPSnzkMgWf/jnmK2RQr1DRxgcFKNXH/o/EzArblFPTs71
+         oNHPWbDGL5QF2hJ8tiJM50vVTtE66o0tJ7rj1n9OLADaBxiG8rVAVVSaGqvkaGmDfxBR
+         LJhZWOloogZJr1ikXig+3cixHUDg+V/jfYOnB8l8Ogl8laq2aPBTm/3xOM8+uQZKCjse
+         nd1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXVxWQHn73/4wuNnUIX+M2gWfB1wRfb+bMwa/eFg1lO94fv7mdJxUKKuvQAhJyt8BqJnjvwCeCQREUp@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvQ2KAiaF4UNM1jvOf494m4S9g/MgH3wT7WZ7tS6XQgdRI7cGV
+	CFd46yb0iHgKWLx+WAJBnTQ2mn0y/8DALC/WqgP2MYpafgaq8b6J7ypgqX3bJDfe1oU=
+X-Gm-Gg: ATEYQzy6znXHA8gTAdWz2mRwX2p6L7np/qbN4XvMs4tGpP1yvmBfUIhuMOpYVYB8Idc
+	oPrubbLWQ6XtoYVj4jcRMyYr2WZRyAChTCyN6aOqhG71vjh6ocBMfrcmbzT5F2QKFOOyYsz4K5W
+	xU0J9pc2VVMUPSACzv64NEHrc4nyQ5nSvp55CrBAH/DyZEaM85zY7DfiQtTlxasI/vbT3yhorMR
+	R2dPsPHW/T5Ic8MeMiNZgdMFwXdmyScWt5pGyXQdCuL4DatGh7gvkAjx8RAGtkAtyFar2t6KRBQ
+	w7ZIfj39r5GSp/gaRAJyy3k8bI95nQAL68HbrI+IDsPxtWwUEqGdceJe/sGVOlUl1cVV7Pi0Nwn
+	WvpDsiQhvBc3XH64GNC6KVK/ZuR9fvJLt4HLTadqFT31WsJU88IcRZZBxTQOxa9mmGl0YGCsxZM
+	mxM9f3+btnIc1TT250En58rLiTjNPdiklqSoUalFbvDJgHDXgmoV7k3WB7eL5j3+YfjcDQJ1FUP
+	Q==
+X-Received: by 2002:a05:6871:80d:b0:41c:1036:84b with SMTP id 586e51a60fabf-41c112440femr4336750fac.39.1774109479055;
+        Sat, 21 Mar 2026 09:11:19 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:8e89:f58e:e4e6:5567? ([2600:8803:e7e4:500:8e89:f58e:e4e6:5567])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-41c149103b0sm4635730fac.5.2026.03.21.09.11.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 21 Mar 2026 09:11:17 -0700 (PDT)
+Message-ID: <486fe1c2-3734-43ea-b7cd-7bbba2eeb891@baylibre.com>
+Date: Sat, 21 Mar 2026 11:11:16 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3410122.44csPzL39Z@steina-w>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/4] dt-bindings: iio: adc: add AD4691 family
+To: radu.sabau@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>,
+ Bartosz Golaszewski <brgl@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+References: <20260320-ad4692-multichannel-sar-adc-driver-v4-0-052c1050507a@analog.com>
+ <20260320-ad4692-multichannel-sar-adc-driver-v4-1-052c1050507a@analog.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20260320-ad4692-multichannel-sar-adc-driver-v4-1-052c1050507a@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[dolcini.it,none];
-	R_DKIM_ALLOW(-0.20)[dolcini.it:s=default];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278612-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278613-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[analog.com,metafoo.de,kernel.org,gmail.com,pengutronix.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	DMARC_NA(0.00)[baylibre.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,tq-group.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,ew.tq-group.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[francesco@dolcini.it,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[dolcini.it:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dolcini.it:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6C9382E6421
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre-com.20230601.gappssmtp.com:dkim,analog.com:email]
+X-Rspamd-Queue-Id: 5F9732E6454
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 19, 2026 at 03:20:30PM +0100, Alexander Stein wrote:
-> Am Donnerstag, 19. März 2026, 15:01:04 CET schrieb Frank Li:
-> > iomux is not necessary at last one.
-> AFAIK iomux being the last node is/was a common pattern for imx based platforms.
+On 3/20/26 6:03 AM, Radu Sabau via B4 Relay wrote:
+> From: Radu Sabau <radu.sabau@analog.com>
+> 
+> Add DT bindings for the Analog Devices AD4691 family of multichannel
+> SAR ADCs (AD4691, AD4692, AD4693, AD4694).
+> 
 
-Correct, same understanding here.
+...
 
-Francesco
+> +allOf:
+> +  # ref-supply and refin-supply are mutually exclusive, one is required
+> +  - oneOf:
+> +      - required:
+> +          - ref-supply
+> +      - required:
+> +          - refin-supply
+> +
+> +  # CNV Burst Mode (pwms present) without SPI offload requires a DRDY interrupt.
+> +  # Offload configurations expose '#trigger-source-cells' instead.
 
+This sounds like a current driver limitation, not a wiring limitation.
+So doesn't belong in the devicetree.
+
+A driver could use e.g. timer wait for the conversion instead of an interrupt.
+
+> +  - if:
+> +      required:
+> +        - pwms
+> +      not:
+> +        required:
+> +          - '#trigger-source-cells'
+> +    then:
+> +      required:
+> +        - interrupts
+> +
 
