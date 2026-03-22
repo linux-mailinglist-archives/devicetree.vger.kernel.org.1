@@ -1,185 +1,159 @@
-Return-Path: <devicetree+bounces-278766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278759-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oIkVB6NSwGkxGQQAu9opvQ
-	(envelope-from <devicetree+bounces-278766-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 21:35:47 +0100
+	id GNB7MhVRwGm3GAQAu9opvQ
+	(envelope-from <devicetree+bounces-278759-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 21:29:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97DD52EABED
-	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 21:35:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46C6B2EAB20
+	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 21:29:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0FCEB3024297
-	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 20:34:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A3BDC3006B26
+	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 20:28:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 896043803F8;
-	Sun, 22 Mar 2026 20:34:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94FC137DEB6;
+	Sun, 22 Mar 2026 20:28:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="z2FEIz/a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HJaQ/EOK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from hall.aurel32.net (hall.aurel32.net [195.154.119.183])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2990737F74D;
-	Sun, 22 Mar 2026 20:34:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.154.119.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F14C37268A;
+	Sun, 22 Mar 2026 20:28:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774211656; cv=none; b=dnCQkPMaQQUorScfHPjEbkeCUx1GeAXVYOGFYTZSmWgq/Al2yWTX8cIILzUdp3/stKxUOUJsjo7QTfUDdUbjYAOvx49vDKldFtTxdERYMNNZmdBQLq1i9EzYMZIJOQuuj3U2WwDzYvxz8MmYOHTdZCfxNQTqfhugFay6rl4nADU=
+	t=1774211337; cv=none; b=ubV58UU9OxPeqEsL+e52MRV+LaRQnkgOaezlEeEHVpxUaH1Q6RPKH3mXyLxx1NjLUGXY67kelx7SR42AqFFyKJNAtI2whFfYUX9TJHW85nZPvueDhkyEJhGxyBhPW2rO84tA/kBJ8HizyxtWqYyc2G7B4q5yb4puZ/nvYYE/4Ig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774211656; c=relaxed/simple;
-	bh=hXtOE/S/BD2vKjhdLlu+s5UL9v4tk7IWjKSM57AF9c8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BCaNeYJ90TgrIBmQPgAKrPUiuPuxPdS4g1+x3B0xEnwGKC03k1hdJUTDJGTrnRMklBAIYm+xv/KJWXrbiC92Z33HS+KDHLU1x2RV6mrVP6UUCY9DBLjYBaegkVicKHhRsstcfPhBMvPCDO5pnE/KVXLHQqNnqPE0kUnluy9C5PY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=z2FEIz/a; arc=none smtp.client-ip=195.154.119.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aurel32.net
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
-	; s=202004.hall; h=Content-Transfer-Encoding:MIME-Version:References:
-	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Content-Type:From:Reply-To:
-	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
-	bh=h2XgC87QhZKmEL4LkPO3nDr8p/ZxtRxNQZuSqKpeYJM=; b=z2FEIz/aZkvVPsY+4chklYQSqG
-	1zReuu4agcLAYpOn3ZCy5IuZfOtmhvYyPv8UUUb+JZK0Zk5cBfuwczkp9pF5C5I/ARmp0n+zvRVR/
-	CeeMZOLEI5svyOAqG1/z9B8ULt7LUMykz41/+MRiMJTJ+M8liim3bZAzrgQLnLVOcyVfWs/WdofEv
-	c2FVVC5YOl5xOg1n84N8holWP03pE+9an5satwv8n/sNkiSHXqtfuOSH+QkEzjzTam1ELTnmoXYs+
-	7bs9pH+eENW1clTkVdq7Z6QExVIvrd/cyyqxCOf8lTVLIp3SeMcVsUxZndipaDMdcvRume/MKp1z1
-	eN/lSsgA==;
-Received: from authenticated user
-	by hall.aurel32.net with esmtpsa  (TLS1.3)  tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <aurelien@aurel32.net>)
-	id 1w4PUz-0000000AsfJ-2PHS;
-	Sun, 22 Mar 2026 21:34:13 +0100
-From: Aurelien Jarno <aurelien@aurel32.net>
-To: linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yixun Lan <dlan@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>
-Cc: Aurelien Jarno <aurelien@aurel32.net>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-riscv@lists.infradead.org (open list:RISC-V SPACEMIT SoC Support),
-	spacemit@lists.linux.dev (open list:RISC-V SPACEMIT SoC Support)
-Subject: [PATCH 6/6] riscv: dts: spacemit: enable PCIe ports on Milk-V Jupiter
-Date: Sun, 22 Mar 2026 21:28:37 +0100
-Message-ID: <20260322203356.2206927-7-aurelien@aurel32.net>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260322203356.2206927-1-aurelien@aurel32.net>
-References: <20260322203356.2206927-1-aurelien@aurel32.net>
+	s=arc-20240116; t=1774211337; c=relaxed/simple;
+	bh=a8u3d+2Q9SN390gmXGFefZ1g6XSCEiZIqnbCBwRZtLg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tVVbgp7l0zUXShTmKe+aI1M++mNpBdQviLGAuK3drCR2Ei3JJ/CqHRWZUbjYs32nMMliA2/AlwC4vwPxqppZpgODc5J2X2vOukRh3SDOWqopo2zBotH2ZQIhblgd0AFk4IFnrt39d8Z6FP6CUb2NlIHjjHLTi+rNm1NTf02z3oQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HJaQ/EOK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4ADF8C19424;
+	Sun, 22 Mar 2026 20:28:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774211337;
+	bh=a8u3d+2Q9SN390gmXGFefZ1g6XSCEiZIqnbCBwRZtLg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HJaQ/EOKa1foteW/PfBk9A4jVDk0OmdmJERJi1sG1mGmUmp+wfaEjjGFB/Sqo/flM
+	 XLRLfUn/RybHLh64Ep375hQsUsrJrl5j7MKs4CsEjobzjevieAuNoxApOWgYCSEnQC
+	 O3h69wb9m+X8AdVoPboWscJGQ8OHyxip/Ov+aYurU54tnSbd80azn55HtB1PfPWliU
+	 Frxbb87iGA47+aloiufWd04L1jNL+5S4zoNzblhhEuwaeG8C0mfSJkzZK+qvfySHGe
+	 23eVLxfqipIsYH2yqNvDuIzKCM1fk+KvinopVJiKh7lBl9FXVRtkqRhW1StFg+QLwf
+	 nEzmXYdLIIUuA==
+Message-ID: <acaf9cb6-842c-44d0-a20f-fe3880130de2@kernel.org>
+Date: Sun, 22 Mar 2026 21:28:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: loongson,ls2k: Add ls2k1000
+ compatible and deprecate legacy
+To: wjjsn <wjjsn@qq.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, chenhuacai@kernel.org, zhuyinbo@loongson.cn,
+ mturquette@baylibre.com, sboyd@kernel.org
+Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ loongarch@lists.linux.dev, kernel@xen0n.name, devicetree@vger.kernel.org
+References: <20260322150836.55196-1-wjjsn@qq.com>
+ <tencent_C35FFFD2C601DB54E967312ED852DDA70F09@qq.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <tencent_C35FFFD2C601DB54E967312ED852DDA70F09@qq.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[aurel32.net,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[aurel32.net:s=202004.hall];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-278766-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-278759-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[qq.com,kernel.org,loongson.cn,baylibre.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[aurelien@aurel32.net,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[aurel32.net:+];
-	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,aurel32.net:dkim,aurel32.net:email,aurel32.net:mid]
-X-Rspamd-Queue-Id: 97DD52EABED
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 46C6B2EAB20
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Enable the two PCIe controller along with and their associated PHY. They
-are routed to the M.2 M-key connector and to the the PCIe x8 slot.
+On 22/03/2026 16:08, wjjsn wrote:
+> Add a SoC-specific compatible string "loongson,ls2k1000-clk" for
+> Loongson-2K1000.
+> 
+> Mark the legacy "loongson,ls2k-clk" compatible as deprecated using
+> the structured "deprecated: true" property instead of relying on
+> textual description.
+> 
+> Update the example to use the new compatible.
 
-Add an always-on regulator sourcing 3.3V from the DC-IN input, to power
-the PCIe ports.
+NAK, for reasons already explained in other threads.
 
-Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
----
- .../boot/dts/spacemit/k1-milkv-jupiter.dts    | 42 +++++++++++++++++++
- 1 file changed, 42 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-index 4432f8287eb5c..d59dea4149ae7 100644
---- a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-@@ -40,6 +40,16 @@ led2 {
- 		};
- 	};
- 
-+	pcie_vcc_3v3: regulator-pcie-vcc3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pcie_vcc3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+		vin-supply = <&reg_dc_in>;
-+	};
-+
- 	reg_dc_in: regulator-dc-in-12v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "dc_in_12v";
-@@ -291,6 +301,38 @@ dldo7 {
- 	};
- };
- 
-+&pcie1_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie1_3_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie1_port {
-+	phys = <&pcie1_phy>;
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+};
-+
-+&pcie1 {
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+	status = "okay";
-+};
-+
-+&pcie2_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie2_4_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie2_port {
-+	phys = <&pcie2_phy>;
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+};
-+
-+&pcie2 {
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+	status = "okay";
-+};
-+
- &qspi {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&qspi_cfg>;
--- 
-2.51.0
-
+Best regards,
+Krzysztof
 
