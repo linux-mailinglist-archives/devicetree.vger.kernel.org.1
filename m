@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-278680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278681-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yOK+E3Ktv2kh7gMAu9opvQ
-	(envelope-from <devicetree+bounces-278680-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 09:50:58 +0100
+	id Gd8QL/Wtv2lO7gMAu9opvQ
+	(envelope-from <devicetree+bounces-278681-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 09:53:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BD9F2E8A71
-	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 09:50:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 109B32E8A8A
+	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 09:53:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 44016300E27D
-	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 08:50:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9F38A300FC4B
+	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 08:53:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78EE3310655;
-	Sun, 22 Mar 2026 08:50:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98A7E3126DF;
+	Sun, 22 Mar 2026 08:53:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sBWaxjmW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jDN16Wj+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54CF72E0925;
-	Sun, 22 Mar 2026 08:50:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 739A7281525;
+	Sun, 22 Mar 2026 08:53:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774169455; cv=none; b=YTqOHUQgqTf1Mf2SnW5fEVkXzJbpdinmZIESqQIPkIHmWVHJxX5UELnxrGCov+f09SbpajRlyUQ2jTsG3P4TJ5OuZBQEmnZr3arjBcLYrPv3DbxMjtdTjd7o7otam+TiuIglztFctCdO1kbTum2fCINzOf8Hgj8BZ2s/fo0BuLk=
+	t=1774169586; cv=none; b=RNYX3Xr5yO21wp6M/pE53xdY54BplaCl9Kzwkr4bALMck6hvGIPvvwfflqJtoV8MvWxvSm4J0fOWuDhw3NlMY9eaLlRbugusVJ98OaVbLPtz1FHsIrLNZ6xUmTwBrYpLgJ9qP0HIwGN/kpcfFGBLNJHLJwsZfAwBXtDJCD3RWyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774169455; c=relaxed/simple;
-	bh=Tn+oaAJkd+1LfElxz971/rTEapiAlsQZ4IcUOpFg2Pw=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=VGfuVoTm4n+DKkmB7926/TbJlHeNOPJ5YxrQQ4W6c784mprBLG7w3mKVuZWdHpA76Fx6cINSUHzjs5pusnMht+WznEvmQSYjhnTaJQKmEXlqDdrrNl05PzZPMI4hIdqRM/vQFvb6YkW4a1GvH1/dVe2m/Xq0suWPQgt5bn5O6Lo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sBWaxjmW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C873DC19424;
-	Sun, 22 Mar 2026 08:50:52 +0000 (UTC)
+	s=arc-20240116; t=1774169586; c=relaxed/simple;
+	bh=Va0U52DqCKKaVRH0WESCP+nzlnU8n221flnex2Rx3pg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dmsqTj0BzA6GVUxG+4UtPXw+SOosX+zMR4LH163AFsvNI/9RhFJwxewkE0PlwV75UbpJFt6+f6iiaQMAOqVJIBoiDkFbd0+lT6/219hsqQ0kt3lZfJfmDIYpjYSc407kqwo08JgYtxFslpqk6CItbCJGPu71gBljpBT1VeGG04Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jDN16Wj+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3A03C19424;
+	Sun, 22 Mar 2026 08:53:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774169455;
-	bh=Tn+oaAJkd+1LfElxz971/rTEapiAlsQZ4IcUOpFg2Pw=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=sBWaxjmWkin2WwQVvJ1Y+vpe9G3EJQ43cneaudJqI0sAgKKwJ3kwrbtIbs9cUo2Ds
-	 c74a8CPILcf6hzF/+iyaLksOsVTQB+EEBL0nngfrnia/ppTLwHTkQOv7dypmRT7Mh+
-	 +Gxf9BsO11MYeu39MwPv2/aMy6von636h8l3PeG0Y+0UESUnkVpzY3wMb3q3vU8hI7
-	 jEBDoT/7HSj6LuWsxoDWq/m99Z+fgM42M3oujdSaOxmET8J3Z2q1HjummFuzSYyPTm
-	 e81K6c432DlxzL0pAMTtk8llcqDn2+Mlp0Cf/e0Ln7hzV79WRLX2VvkOzRtQrOTsiU
-	 srCnYt/PYc01g==
-Message-ID: <c8ffbdde-a01c-4793-b7ad-c056983b231c@kernel.org>
-Date: Sun, 22 Mar 2026 09:50:50 +0100
+	s=k20201202; t=1774169586;
+	bh=Va0U52DqCKKaVRH0WESCP+nzlnU8n221flnex2Rx3pg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jDN16Wj+2W8NKjCk+fuquGOTFFAiBzJaBv/evcnEZDYzHKz/xmWgf9eT92YMk+5OR
+	 Ob2hPkM/aPOowiTDhJiWiqn9Cc75fg6B+S9jvkPVKhVFdvQNLAA0d60yanJftyLYfY
+	 k3/5UNZIzhogNYN5JxyWn3ddhBVTc2dYonB0jD7v+M8Hk1+5Y7kbajyi2hyKoGH5UP
+	 E+NNKbOr9UI/31xFtqkEXHk8XVMZomoZga2wp+AHUFGjRP2SZsu2RLrBvYfiivVErX
+	 F9dzngGPw6h3fJGklv4s3WnZY34HeAaOqEi7KuSJcXLAI1TEU095i2yh5wD8ozA9/1
+	 khr3tYHYzZBeQ==
+Message-ID: <c26f35ce-6d15-4f6d-8ac9-e52a0aa0b44f@kernel.org>
+Date: Sun, 22 Mar 2026 09:53:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,18 +53,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: qcom,ids: Add SoC ID for SA8650P
+Subject: Re: [PATCH v5 2/2] loongarch: boot: dts: Add Loongson-2K0300 support
+To: wjjsn <wjjsn@qq.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, chenhuacai@kernel.org
+Cc: kernel@xen0n.name, devicetree@vger.kernel.org, loongarch@lists.linux.dev,
+ linux-kernel@vger.kernel.org, wjjsn <2858482031@qq.com>
+References: <20260322071316.1537953-1-wjjsn@qq.com>
+ <tencent_6C692FE25219A76D5F73D250006D543B6709@qq.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Radu Rendec <rrendec@redhat.com>, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc: Lei wang <quic_leiwan@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20260321152307.9131-1-rrendec@redhat.com>
- <20260321152307.9131-2-rrendec@redhat.com>
- <a7144f45-cfb6-47ac-8f32-c97a7eef9e97@kernel.org>
- <6a1260a8-8988-4839-a7a3-edb9a1bf71fa@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -109,7 +105,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <6a1260a8-8988-4839-a7a3-edb9a1bf71fa@kernel.org>
+In-Reply-To: <tencent_6C692FE25219A76D5F73D250006D543B6709@qq.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -121,50 +117,102 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278680-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-278681-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[qq.com,kernel.org];
+	FREEMAIL_CC(0.00)[xen0n.name,vger.kernel.org,lists.linux.dev,qq.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[10];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9BD9F2E8A71
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qq.com:email,0.3.13.64:email]
+X-Rspamd-Queue-Id: 109B32E8A8A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 21/03/2026 20:33, Krzysztof Kozlowski wrote:
-> On 21/03/2026 20:29, Krzysztof Kozlowski wrote:
->> On 21/03/2026 16:23, Radu Rendec wrote:
->>> From: Lei wang <quic_leiwan@quicinc.com>
->>>
->>> Add unique ID for Qualcomm SA8650P SoC.
->>>
->>> Signed-off-by: Lei wang <quic_leiwan@quicinc.com>
->>> Signed-off-by: Radu Rendec <rrendec@redhat.com>
->>> ---
->>
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
->>
->> <form letter>
->> This is a friendly reminder during the review process.
->>
+On 22/03/2026 08:13, wjjsn wrote:
+> From: wjjsn <2858482031@qq.com>
 > 
-> And I read now answer to v1, so the DCO and patch provenance still needs
-> clarifications.
+> Signed-off-by: wjjsn <2858482031@qq.com>
 
-It's fine, SoB now matches original patch.
+I don't understand what is happening here. You sent bunch of unthreaded
+patches, empty commit msgs, some are being duplicated (seems at least?)...
+
+> ---
+>  arch/loongarch/boot/dts/Makefile              |  2 +-
+>  .../boot/dts/loongson-2k0300-ref.dts          | 34 +++++++
+>  arch/loongarch/boot/dts/loongson-2k0300.dtsi  | 94 +++++++++++++++++++
+>  3 files changed, 129 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/loongarch/boot/dts/loongson-2k0300-ref.dts
+>  create mode 100644 arch/loongarch/boot/dts/loongson-2k0300.dtsi
+> 
+> diff --git a/arch/loongarch/boot/dts/Makefile b/arch/loongarch/boot/dts/Makefile
+> index 15d5e14fe418..4a096608cfad 100644
+> --- a/arch/loongarch/boot/dts/Makefile
+> +++ b/arch/loongarch/boot/dts/Makefile
+> @@ -1,3 +1,3 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  
+> -dtb-y = loongson-2k0500-ref.dtb loongson-2k1000-ref.dtb loongson-2k2000-ref.dtb
+> +dtb-y = loongson-2k0300-ref.dtb loongson-2k0500-ref.dtb loongson-2k1000-ref.dtb loongson-2k2000-ref.dtb
+> diff --git a/arch/loongarch/boot/dts/loongson-2k0300-ref.dts b/arch/loongarch/boot/dts/loongson-2k0300-ref.dts
+> new file mode 100644
+> index 000000000000..f85d2caa94b0
+> --- /dev/null
+> +++ b/arch/loongarch/boot/dts/loongson-2k0300-ref.dts
+> @@ -0,0 +1,34 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2023 Loongson Technology Corporation Limited
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "loongson-2k0300.dtsi"
+> +
+> +/ {
+> +	compatible = "loongson,ls2k0300-ref", "loongson,ls2k0300";
+> +	model = "Loongson-2K0300 Reference Board";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory@200000 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x00200000 0x0 0x0ee00000>,
+> +			  <0x0 0x90000000 0x0 0x10000000>;
+> +	};
+> +
+> +};
+> +
+> +
+
+This code has many white space issues. Please clean it up everywhere.
+
+> +&uart0 {
+> +	status = "okay";
+> +};
+> +
+
+And here
+
+
 
 Best regards,
 Krzysztof
