@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-278684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278685-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SCQOJqauv2lO7gMAu9opvQ
-	(envelope-from <devicetree+bounces-278684-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 09:56:06 +0100
+	id YK6oOaavv2mE7gMAu9opvQ
+	(envelope-from <devicetree+bounces-278685-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 10:00:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 582142E8AC7
-	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 09:56:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66E8D2E8AF4
+	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 10:00:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1242A3011C70
-	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 08:56:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9030B3010526
+	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 09:00:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF77531717F;
-	Sun, 22 Mar 2026 08:56:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E26A030E0ED;
+	Sun, 22 Mar 2026 09:00:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ehNjcrWD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mbHZzHVu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D9AF315D40;
-	Sun, 22 Mar 2026 08:56:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDD6D2594B9;
+	Sun, 22 Mar 2026 09:00:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774169761; cv=none; b=MPnUuu2Pr7ha6VDv35xZwhsDS1sKZ/+xeU2CnSiZBbzKfqNfhL/3umMlkaBssqmENL+CLDcB56EuTecafeQiYGbNQVkWIevT739gTTP1AY5RlLXlxCrG4iHlGL8ZimGUdYHtMFs51JfgVQEjmCjhsSbtM/vCTIFG+xYGQRF8hno=
+	t=1774170005; cv=none; b=bWUxcUDvlcENZl/ayJQW3tcWX0SjNf8hj+cwS7RV4S3et842w2cXYhOjZDYfDJhQXzTNk0SPEbTAs+e4A+a+PxpTl3UDGNj3PY0KIm2BbtM66W0xEgosaqjQqjZPwu3d1ThbZZarBdaqqPYV3d07hU+of4sPa/X1rmc/jUsQ84g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774169761; c=relaxed/simple;
-	bh=JWiopU5eFXEHu3hWpvxX9xIvAtEbnl/MvHCjf8rcp6Q=;
+	s=arc-20240116; t=1774170005; c=relaxed/simple;
+	bh=SnmUdKkB2W9Yg7w0rcJUsmUGz6wXGel8HeV1+vdvJI8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aEVTn6/7uxEhgu+mkdjs4m1d8Pa6YISdP/eJIHhZ+oqSzG/Ir43JM7E19jEkKo219TkfQwHvYjpyIbDrSKy7BBQAip2CvnqWjLp4hhTBmfmzxyYwq5MYUP6iwfe+lQdoBKIR49sImOm+XSP0N5txlpplB/leAa2n/VitWTEFY4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ehNjcrWD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5275CC19424;
-	Sun, 22 Mar 2026 08:55:58 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=iHSv/2VSsp4OJmUy4VWTUfIb/wsBqwtEpJsULCdhsp59dkFc+5i/PiyoyBJ2fURa5u8t96EBejpaPy00K8J9TAZXIfHYVM9IuaBzw6S5F9pKqIX0bOPHErvE24kQW92ucJd7+KqePlFFW/H2Av+LkC4FsgnCDwbdzAp9CEhYyNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mbHZzHVu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BE27C19424;
+	Sun, 22 Mar 2026 09:00:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774169761;
-	bh=JWiopU5eFXEHu3hWpvxX9xIvAtEbnl/MvHCjf8rcp6Q=;
+	s=k20201202; t=1774170005;
+	bh=SnmUdKkB2W9Yg7w0rcJUsmUGz6wXGel8HeV1+vdvJI8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ehNjcrWD0w9vpHxp2UpcdDpbLmIDCmN1CkSq6erafErbHMF12HbFRz4iukCPYU5/5
-	 jwpAuqhr3C1n9Sn1Rxa/L9W7jC7Djfg4aEaKpUDzb0wB1qDUXcrVaxuglNsJIjFub8
-	 oc9/LyytnDlaUwcUa5vKU13sAQua0YCGVcoZGorFUroQoyAgbZ1HFDdIGngTeq20JV
-	 xeXT28skDEk0R2oPuaDqlI4Fe1VpUmU+OnwGmWXnt8A23imVmBVUpD6KTSQAquQIQf
-	 cSZ081WckWb1Qg/RD7nJqKqrIFdKstPUDfywCgsc2fd13hP0sU0RRY0vnjzKuSEerj
-	 iouydyzlX+3wQ==
-Message-ID: <d96ff9e5-899c-472c-939a-5e8df66ae0da@kernel.org>
-Date: Sun, 22 Mar 2026 09:55:56 +0100
+	b=mbHZzHVuw6rEsjNYhArVJ7nZrfSX2boo1iZPSkwM7XIxnRz5GYbCc56zZaxWQEUOs
+	 J3jjV1mXmTk/ktSXTgoK2Rr6XE2fUA3wTUZ3iAdFNhc7kQBWrmc1MOYEPhhVHEn4q4
+	 Uy42Q77rpySMK4Ie2l36tGkai6pJWVUpwyvImPWEL1Q4n6JKib7Q+9pPaLhj28z3BW
+	 wfUygy5l7uKkHUmNNZljmogaHRWxXqkn8pt5qqYNpvyS4Vh1o0LzcB7nGC0EVIrsRG
+	 4Mvokkj7d+2tBVdnv5iO5XccmavhdDIgAejbeC7SHcVmTnpZXsotoYCwS83hS9vnRw
+	 IlUcXifNSKpOQ==
+Message-ID: <dc7a2041-50a4-482e-9930-566bb3fd1e72@kernel.org>
+Date: Sun, 22 Mar 2026 10:00:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,16 +53,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: clock: loongson,ls2k: add ls2k1000
- compatible
-To: wjjsn <wjjsn@qq.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, chenhuacai@kernel.org, zhuyinbo@loongson.cn,
- mturquette@baylibre.com, sboyd@kernel.org
-Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
- loongarch@lists.linux.dev, kernel@xen0n.name, devicetree@vger.kernel.org,
- wjjsn <2858482031@qq.com>
-References: <20260322080327.1606799-1-wjjsn@qq.com>
- <tencent_09D5E459F58BDE54BD6998D7FC346A403407@qq.com>
+Subject: Re: [PATCH] mailbox: dt-bindings: mailbox: Convert to DT-SCHEMA
+To: Atharv Dubey <atharvd440@gmail.com>, Jassi Brar
+ <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Jassi Brar <jaswinder.singh@linaro.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20260322-mailbox-v1-1-c6251f18187c@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,78 +105,68 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <tencent_09D5E459F58BDE54BD6998D7FC346A403407@qq.com>
+In-Reply-To: <20260322-mailbox-v1-1-c6251f18187c@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-278685-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278684-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[qq.com,kernel.org,loongson.cn,baylibre.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.linux.dev,xen0n.name,qq.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qq.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 582142E8AC7
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 66E8D2E8AF4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 22/03/2026 09:03, wjjsn wrote:
-> From: wjjsn <2858482031@qq.com>
+On 21/03/2026 22:20, Atharv Dubey wrote:
+> Convert the Generic Mailbox Controller and Client
+> binding from text format to DT schema format.
 > 
-> Add a SoC-specific "loongson,ls2k1000-clk" compatible.
-
-Why?
-
-> Retain the existing "loongson,ls2k-clk" as a deprecated fallback
-> for backward compatibility.
-> 
-> Signed-off-by: wjjsn <wjjsn@qq.com>
+> Signed-off-by: Atharv Dubey <atharvd440@gmail.com>
 > ---
->  .../devicetree/bindings/clock/loongson,ls2k-clk.yaml        | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> index c07ad1f85857..4d70bc4e7a13 100644
-> --- a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> +++ b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> @@ -13,12 +13,16 @@ description: |
->    Loongson-2 SoC clock control module is an integrated clock controller, which
->    generates and supplies to all modules.
->  
-> +  The "loongson,ls2k1000-clk" string should be used for Loongson-2K1000.
-> +  The "loongson,ls2k-clk" string is kept as a fallback for backward compatibility for Loongson-2K1000.
+>  .../devicetree/bindings/mailbox/mailbox.txt        | 60 -----------------
+>  .../devicetree/bindings/mailbox/mailbox.yaml       | 78 ++++++++++++++++++++++
+>  2 files changed, 78 insertions(+), 60 deletions(-)
+
+Isn't the binding in general already converted in dtschema?
+
+...
 > +
->  properties:
->    compatible:
->      enum:
->        - loongson,ls2k0300-clk
->        - loongson,ls2k0500-clk
-> -      - loongson,ls2k-clk  # This is for Loongson-2K1000
-> +      - loongson,ls2k-clk
+> +maintainers:
+> +  - Jassi Brar <jaswinder.singh@linaro.org>
+> +
+> +description:
+> +  Generic binding to provide a way for Mailbox controller drivers to
+> +  assign appropriate mailbox channel to client drivers.
+> +
+> +select: false
 
-Naaah, never tested.
+What is the point in such case? This patch makes little sense. If there
+is useful text, it should be moved to dtschema. Unless it is already
+there. And only after getting acks for relicensing.
 
+But I cannot find anything useful here, so this file should stay only
+for the purpose of providing context.
 
 Best regards,
 Krzysztof
