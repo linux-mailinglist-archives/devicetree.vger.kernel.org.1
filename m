@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-278728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278727-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SG+nADMJwGnxDAQAu9opvQ
-	(envelope-from <devicetree+bounces-278728-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 16:22:27 +0100
+	id IIDSKCAJwGnxDAQAu9opvQ
+	(envelope-from <devicetree+bounces-278727-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 16:22:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53F242E9C97
-	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 16:22:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4318C2E9C8F
+	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 16:22:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D490C302FA8E
-	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 15:20:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D40E2302B3BA
+	for <lists+devicetree@lfdr.de>; Sun, 22 Mar 2026 15:20:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E243136681E;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E23636680E;
 	Sun, 22 Mar 2026 15:20:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="ksCpJ16N"
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="Nmk9AyqW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out162-62-58-216.mail.qq.com (out162-62-58-216.mail.qq.com [162.62.58.216])
+Received: from out203-205-221-221.mail.qq.com (out203-205-221-221.mail.qq.com [203.205.221.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B063367F59
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ECF535F162
 	for <devicetree@vger.kernel.org>; Sun, 22 Mar 2026 15:20:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.58.216
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.221.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774192842; cv=none; b=PkM0t8fDY1D/GHl80peS2izTNUucSOXVafiDnK5W2oBm/23WcvbX2uuGBLNQcEOe5Afe+8U2/cbNvk0AQuJ0JfzXq0Lqdj9qtm7tU9htLb3dtE7RF82QC7qC1YD+86F2RPjD9NBYDli3f7hD1xnsp3kUicQHJx/2m4l27RfXsvA=
+	t=1774192842; cv=none; b=WWLvhxYnuyb53PK0aU4PHXtpoTR74PTySkPeGG0yQiLCttgSwuj850ZvCEQkVG2/6g9xN/AyVgLUB/Q6U53vpu3Te6V0FEPqLB5iSi2cJVTpvBXte/FFVfGCZn4Zw7SoqqmyLIaSaAyfhF4Bs9suz6uv9vdISCjgv8WYAXIcdzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1774192842; c=relaxed/simple;
-	bh=cls8doY6FMHuYzYhNkcMpXWFBl3PhyiUg7+F+EhHP4g=;
+	bh=Pl/kyTY93KfYPXj8ZDJfn1oFFZXVs6wAzLptKrLJRoA=;
 	h=Message-ID:From:To:Cc:Subject:Date:In-Reply-To:References:
-	 MIME-Version; b=Z6oEJkBVE3HH+dOhC9PUdaRLNHr5x08QxpUh4Pd5UrOVStKzmXfmiN14YQJl2kns7XU2LVHucpkH1khpiZdoiaG9vTF6A8sHWtXsob/jtWO0jdFti0UgQGTN8jHdwQxrRElmK+i4mhiEeMvmSpDGisFuB4Yt3u5vUMdbry/BmVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com; spf=pass smtp.mailfrom=qq.com; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=ksCpJ16N; arc=none smtp.client-ip=162.62.58.216
+	 MIME-Version; b=A19AzmLcFnUSmiX6r2ypPliutKxt9bY9WXB58844yk4d/pNVakbaNNwkFph44hNhvLSCH63k01ry8vRUrz0aP9SDS10vpCVuQIg48kM4dZkMAdL6g/Doz0qv2fvyTSw79HGhWZQP4HYBgtuPHZ/P95Y+nXuBpk1jiY/zq0waO/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com; spf=pass smtp.mailfrom=qq.com; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=Nmk9AyqW; arc=none smtp.client-ip=203.205.221.221
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qq.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1774192836; bh=11RYZrnd+R+xAKxcT2ifOg/oO8QJFkt3BN/QwdD92DE=;
+	t=1774192838; bh=rMmegBW1amz+M/3CmjvRObPa3qIIxBCigPF0d3EAryg=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=ksCpJ16N5CBr6dajlQBAaRvzR4TFd0cgtxjbQq3LI+pnlansB4qUu/j2Aqdn+CmOE
-	 racKY729oGhhE7MIAy7PAqjkQbF6G+biIO7yE1zesZ30upWq1G6bzena7GpNSN6EJQ
-	 oMir2K++sZC67/sS4FFB0XN/fG9Zpxj6UlkWKQFY=
+	b=Nmk9AyqWYK2i9NSFVvcVJTwPjy1QQol4Y9BI8zyY/jg2gZDEoFV1wvIND0OfeYGw7
+	 z9CfcHmKuVBKC9DYZK4IuaC6d904mz06SLybo8j7uLeOwhLn1uJuxJpRDhBqpcNqdS
+	 8L5ICZl4ttmp/T2b8Aqe7rjWEKsP6MB0sraipX+k=
 Received: from MYJGMC.lan ([122.195.139.226])
 	by newxmesmtplogicsvrszc56-0.qq.com (NewEsmtp) with SMTP
 	id 51F9320C; Sun, 22 Mar 2026 23:20:31 +0800
-X-QQ-mid: xmsmtpt1774192833td37rvjuu
-Message-ID: <tencent_98546566F32FCE5313A7355EF1D288011909@qq.com>
-X-QQ-XMAILINFO: MIkGUgXRKijCWHCAz+tHjP4pZOK3mYejNAzjeYegGJDsVUdM5veKGxYpgp/Edm
-	 wd4m16ULYsatOnr4RQ/LkWFlYwF1j4BUT9tHfOWEHbamPwBCPfvGTMFEj5R1lJ3uHkJlF2cqwT7Q
-	 xkOt1GUMFJtZHZc7I9EFdUcGmPUAZtJ3BMwRD/LzKDzgltJdDTjB/ZZ7JV57ymbnBLoB0PJU7uQK
-	 Oyj4sXT1hOLY8YwyVoMzHMFzWrHkbNbbMDiItoh7lnjFORcO+eVQKMaFSf5w4p0+0oJkZpyyfQBA
-	 qubPJXzfzYmGtVEesqflaWZHIbQh6n8Bse4tO+VzWjqzi30SgzscWLRVu/4bCaxoJKPUgawjJ9sW
-	 VoNJSf/fci5usuKkzCovPATa/1Gm2T+V//OE21jzUPtBQ44wrYfJuOa1ocoWnEkKh5hZZhJ0re1c
-	 /GXc6qlNHMftm7s50yIbxDQ3/PaMh0ZAH5GLTnYuxY47w6ymH/ziebKqS3Ejex4pzwQDmr6kSUU0
-	 G62mB8IQCVnzq8yKL5p5c3BDHh3mcLkw1prfEX5jTZOK0jCjY7qsfbliPtejHrt1b4k+TOMG6j1o
-	 V9mN6rWwaKF1ASk0+lxHPUoSWnPxG1jqvYxNMl/yVL6eKeSBOjcqIpxzdT9BEv0OVgYwkUcmiVFn
-	 /s/Tpy3I21p/fA2tF3L0Ioh94SrbBtFLgo5F22V3IThorLnuGzi4Qal/4VebTUDextP28P3lRTwu
-	 w4K66dyywTs3vdMy04vcCfLeyfHEZnYH1DALegimRrMEFxgn7yPxUfBAcVh9yZ+Nli3tNSfEa6Wx
-	 DI+agMxCk/Q3e0aG7SJormB/PgTyJM66BpTNWiRIpq8lh2+JnbdErVb+4vmEgvf9fd4Ezpv7+Fic
-	 P3wm3fgVigvr/6VKwWDxiWuhVZp0RYiKgTVoE9Ehvk0y8A3x1Nwn6ubMKuMF58Lxt3HfBEVRsWI3
-	 DywOrBq9hJ1H43T1jOVVAnyGscN7EW9SycTNnO/WHnNdIZLnhKvUpM1YihJzkLfITiSyaTXHbG60
-	 KHZJgeqhVbDxrUyfsZqGx9f+0JiIhDLo+MhyJGpoXq1YvgukC0qVoe01V4ysV40nxUSJnzhFbcyL
-	 rAlyUBMk7jMifqVWwZTc3iGTj/wWrl8s7PJ5fcLzP3ikcdAUHrTHblgG03YQ==
-X-QQ-XMRINFO: Mp0Kj//9VHAxzExpfF+O8yhSrljjwrznVg==
+X-QQ-mid: xmsmtpt1774192835t55bo2o5j
+Message-ID: <tencent_2BD9BD0B9BD4A0698E57C1340E402ED5AC07@qq.com>
+X-QQ-XMAILINFO: MT62wbyzuzqmtmPpOXYlCg9isr72tHrr/c9q4ki1AuqPeHI+jK0bb8FJSQXkmx
+	 X9sS6Eu4Axy1vlfbzz2CYy4Yw/71E53U3sqpfRS+3+FIRXC5KysBvLS0e+hHBfmI80VPsHeNByVt
+	 ItzZQMSZ5pAu+qBZFJ1+bDvz51t5Odr7R04gdPuJP+jaNYCiIPaK5qOSPnx4NfGgCtTuF6M7/0hK
+	 yuRPiHOWtk6BXzmr6AtLJarfFkKacz04wuKFASRy7tpcwEzQTjCExnnbkISlnn/XqFobXx2t5HqR
+	 jlTNFOVblRumZVdoCCgF+nWQ9Zxa21rZ8oV+z0pqqh31ejqzvHJU0HdSybwrRAMwobKlzubBzN+M
+	 dpb5VREfTCIp4ieqWreu0rwwII6puq8+hSyKaWNuI4xZINS/gSPG0fFmFZO8ukdio0myEkoFV9L9
+	 /NOZC+6BZRB1ky26Rm+mPx66yfT2B8S9AHlq+PG7aNPk7h88XskNTEJGlE0t1JIKnBtgXhazbPAh
+	 Y83jlmumeI7gP+teQpFMxH9Ev3EqFuUy+2xGb2jlu0AG9bddRMQRlAZjI6eMzN+Ti9pEjs8McqJO
+	 7M5OFHANhh07CRBsrF7Ap/oku+yRNaaxlzX8LXzwU3wKDhoaAcVPFm+s5zQn2i6DfBrIerjbMOhW
+	 u9SIflEWb+mDB5CflnR3+4V6PrYAeEj42Ksi7f1pmdeeMGkX+bd74wnV8Z6die9athLZjxKx/gl5
+	 zZ+OAHe26xuowccMrReuySosnwfbkmbfS1p4IC9zHTvx/E7iDTpcjk6Mo+90RpqVoqCb/lipWMKv
+	 BkLNjpHk/yohsJunYI5VusnNuiq45wwCNN4w9KrexhaF6vdgWyzt77EuuZSmxHOBFRmjB4spNe4o
+	 1ZnNeIESkUMlkc/tvU2Zgn5KniwHjFxcOs7/wGA7QkHc42D6IXIoQn6/ycS1GIjpbnV3iZ+GE6Ou
+	 95kKSfAY+eCGDsO8kUgFxFDZJdsQWVQFw4D74RCyRaLFvANdvw+94MOD3NQ3ScNmiYljU5OOuJwf
+	 nH4GLzqRSLd79YtpU7XHBG//o3R+Wq3HLEAW9g6VjBEhBQsalq0tkWZ+h4Su5koD0QOH/NBkeoId
+	 S1TwoT82Levem3gFZdZ7b5zlbm6RGE6Ucm6vvjL5v9F5TqlPpfAyKFZpP1RA==
+X-QQ-XMRINFO: NS+P29fieYNwqS3WCnRCOn9D1NpZuCnCRA==
 From: wjjsn <wjjsn@qq.com>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -76,9 +76,9 @@ Cc: linux-clk@vger.kernel.org,
 	kernel@xen0n.name,
 	devicetree@vger.kernel.org,
 	wjjsn <wjjsn@qq.com>
-Subject: [PATCH v3 1/2] dt-bindings: clock: loongson,ls2k: Add ls2k1000 compatible and deprecate legacy
-Date: Sun, 22 Mar 2026 23:20:29 +0800
-X-OQ-MSGID: <20260322152030.60257-2-wjjsn@qq.com>
+Subject: [PATCH v3 2/2] clk: loongson2: Add ls2k1000 compatible
+Date: Sun, 22 Mar 2026 23:20:30 +0800
+X-OQ-MSGID: <20260322152030.60257-3-wjjsn@qq.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260322152030.60257-1-wjjsn@qq.com>
 References: <20260322152030.60257-1-wjjsn@qq.com>
@@ -99,7 +99,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-278728-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278727-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -117,57 +117,55 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 53F242E9C97
+X-Rspamd-Queue-Id: 4318C2E9C8F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Add a SoC-specific compatible string "loongson,ls2k1000-clk" for
 Loongson-2K1000.
 
-Mark the legacy "loongson,ls2k-clk" compatible as deprecated using
-the structured "deprecated: true" property instead of relying on
-textual description.
+Update the clock controller in DTS and driver:
 
-Update the example to use the new compatible.
+- DTS: compatible changed from "loongson,ls2k-clk" to
+    "loongson,ls2k1000-clk"
+- Driver: add { .compatible = "loongson,ls2k1000-clk" } 
+	to of_device_id table while retaining the legacy 
+	"loongson,ls2k-clk" for backward compatibility.
 
 Signed-off-by: wjjsn <wjjsn@qq.com>
 ---
- .../bindings/clock/loongson,ls2k-clk.yaml         | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
+ arch/loongarch/boot/dts/loongson-2k1000.dtsi | 2 +-
+ drivers/clk/clk-loongson2.c                  | 3 ++-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-index c07ad1f85857..b0ef5cd5af32 100644
---- a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-+++ b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-@@ -15,11 +15,14 @@ description: |
+diff --git a/arch/loongarch/boot/dts/loongson-2k1000.dtsi b/arch/loongarch/boot/dts/loongson-2k1000.dtsi
+index ab6a55937e9e..6dff7eacf3f3 100644
+--- a/arch/loongarch/boot/dts/loongson-2k1000.dtsi
++++ b/arch/loongarch/boot/dts/loongson-2k1000.dtsi
+@@ -156,7 +156,7 @@ pctrl: pinctrl@1fe00420 {
+ 		};
  
- properties:
-   compatible:
--    enum:
--      - loongson,ls2k0300-clk
--      - loongson,ls2k0500-clk
--      - loongson,ls2k-clk  # This is for Loongson-2K1000
--      - loongson,ls2k2000-clk
-+    oneOf:
-+      - enum:
-+          - loongson,ls2k0300-clk
-+          - loongson,ls2k0500-clk
-+          - loongson,ls2k1000-clk
-+          - loongson,ls2k2000-clk
-+      - const: loongson,ls2k-clk
-+        deprecated: true
- 
-   reg:
-     maxItems: 1
-@@ -69,7 +72,7 @@ examples:
-     };
- 
-     clk: clock-controller@1fe00480 {
--        compatible = "loongson,ls2k-clk";
-+        compatible = "loongson,ls2k1000-clk";
-         reg = <0x1fe00480 0x58>;
-         #clock-cells = <1>;
-         clocks = <&ref_100m>;
+ 		clk: clock-controller@1fe00480 {
+-			compatible = "loongson,ls2k-clk";
++			compatible = "loongson,ls2k1000-clk";
+ 			reg = <0x0 0x1fe00480 0x0 0x58>;
+ 			#clock-cells = <1>;
+ 			clocks = <&ref_100m>;
+diff --git a/drivers/clk/clk-loongson2.c b/drivers/clk/clk-loongson2.c
+index 9c4c6c99db3e..ac075e970699 100644
+--- a/drivers/clk/clk-loongson2.c
++++ b/drivers/clk/clk-loongson2.c
+@@ -440,8 +440,9 @@ static int loongson2_clk_probe(struct platform_device *pdev)
+ static const struct of_device_id loongson2_clk_match_table[] = {
+ 	{ .compatible = "loongson,ls2k0300-clk", .data = &ls2k0300_clks },
+ 	{ .compatible = "loongson,ls2k0500-clk", .data = &ls2k0500_clks },
+-	{ .compatible = "loongson,ls2k-clk", .data = &ls2k1000_clks },
++	{ .compatible = "loongson,ls2k1000-clk", .data = &ls2k1000_clks },
+ 	{ .compatible = "loongson,ls2k2000-clk", .data = &ls2k2000_clks },
++	{ .compatible = "loongson,ls2k-clk", .data = &ls2k1000_clks },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, loongson2_clk_match_table);
 -- 
 2.43.0
 
