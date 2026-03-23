@@ -1,185 +1,129 @@
-Return-Path: <devicetree+bounces-279296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279297-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yN6/DC54wWkQTQQAu9opvQ
-	(envelope-from <devicetree+bounces-279296-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 18:28:14 +0100
+	id eC9yOyCEwWnTTgQAu9opvQ
+	(envelope-from <devicetree+bounces-279297-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 19:19:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A575B2F9ECB
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 18:28:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 649472FB274
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 19:19:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8CA2B30911FE
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 16:52:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BC3AD339C7B9
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 16:56:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2B0D3BED29;
-	Mon, 23 Mar 2026 16:52:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 968EE3C343B;
+	Mon, 23 Mar 2026 16:55:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QJtVj+ex"
+	dkim=pass (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="qgGXTep1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B9E53B2FC6;
-	Mon, 23 Mar 2026 16:52:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C633C0622;
+	Mon, 23 Mar 2026 16:55:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774284771; cv=none; b=dnLBBXgZgCATGWnhdhQTtDbKDMlglcLJtFBXQXD/fjLnqAK9Q9nRa9JwDPRbtAjCxxcBlOsxsPApAsduICEIXUUr9zWrl9p/YC3JT9XHjNA2cPZZKNci4lKkgRsHMmCXvxzz/iGyiB3Ifvjs5UIC9xpQyeqPy/VspvAQmU+oWpw=
+	t=1774284951; cv=none; b=bKY+J6G7TPsJnh0hRGzZiUE9os3S9I6jy1ejYJPYOxB/KbOmELyEivPL06LaIxvDPggaKPsblyB8VpndGZ0GO6RjRmTDrQOSll5edwQjX4jG6SP7iXx9TsD0q0PxevnvgZNYZXXuezVQEt9ixgUDKfNs0CCD43Y7e/bAbWa0vm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774284771; c=relaxed/simple;
-	bh=Yuk6wk3lZC7gbzp4H6SpZqqgdfs+eRo7k0tXxPzD45k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aaGC7iZtIt8x6+lUsHPOmhgMa2TueyPhF7QAbMV2uwEGS6x7VCz6DWZwy9TvED1NLSEjiTAZ79pmEJ/LJrKvY4n0K09XG1JoHPUMR4OytgQBNhlBsikSNBzPQu6ChrF6SPg0/FYpd8J8FaTpoA9FHkPFJl+Iy+c1aPlCZ9eP2s0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QJtVj+ex; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AE87C4CEF7;
-	Mon, 23 Mar 2026 16:52:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774284771;
-	bh=Yuk6wk3lZC7gbzp4H6SpZqqgdfs+eRo7k0tXxPzD45k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QJtVj+exPIBXiYtXCPaaLfcL7P97OgaSLNzI6lkB+NBESgVd7U+/6I7M0GqxSKchh
-	 z7SX8PSb/fBTY5bISNd7HVk4DCVKIYrv5sTtQJUWirx4ymxSBb7okLUGuMwyo/oCjk
-	 lQXlD6xmOsc4+IayQpxZjNvNIH6+sPKM/oU0n+ysK/z62IW2+5U3knnrF13M1FRJRd
-	 rGSvfsQ/FxANOT2I/vedMjC6zCMRS6iJtdJroPeAatGs4rbp/cRc3hXMEZrqsdcCU+
-	 HRBJrYec2VnfYFBuO1aIosea9vq/Dv+UnUtyZFp61SnVncNmBWSaBQGPZ3xwOv4pUs
-	 VLpIY9BJfOOww==
-Date: Mon, 23 Mar 2026 22:22:33 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
-	Nicolas Schier <nicolas.schier@linux.dev>, Hans de Goede <hansg@kernel.org>, 
-	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Mark Pearson <mpearson-lenovo@squebb.ca>, 
-	"Derek J. Clark" <derekjohn.clark@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Bartosz Golaszewski <brgl@kernel.org>, 
-	linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, 
-	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org, 
-	Stephan Gerhold <stephan.gerhold@linaro.org>, linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v6 6/9] dt-bindings: connector: m2: Add M.2 1620 LGA
- soldered down connector
-Message-ID: <m44mupdmg7kgco62n4evcviagqo7wwgyt3gybugbxwesd4ekjz@o24r6v4tpezc>
-References: <20260317-pci-m2-e-v6-0-9c898f108d3d@oss.qualcomm.com>
- <20260317-pci-m2-e-v6-6-9c898f108d3d@oss.qualcomm.com>
- <20260322233713.GA98177-robh@kernel.org>
- <to2mrizprc3hjufqbiplpqyek7f4uutqtn4hx4gkmdgv2rykbc@ybwwjhdec4nm>
- <CAL_JsqJXrHCJt770bJkMmAUhirSF3kHjYwSzkG7cXp7-eys8Rg@mail.gmail.com>
- <6aef3xxjjd4nbgrfx6jc6jt6rpqmttoui6hil5zqgdpas2j6gj@ie6j72orenou>
- <fsvmmgoe5wslmxebhrrwmdg2ldcmhzvj53gjkdfnfg2m2rz2lw@dcfboaakz7ae>
- <bguhzabwryayyqkv4ilzwr3ixwv6bzxncblo3ircz2wm3fs52k@66zvcrfcb4oe>
- <blhm4csjyw6r667cleljgzd6rpwagttjo5rau7wjrlnjakq2qm@ekyhc4jvwmwf>
+	s=arc-20240116; t=1774284951; c=relaxed/simple;
+	bh=0LuJYoTQTDvWV9NTWOPFuNPtv2UN3kOMEh+jhXWnc2s=;
+	h=Date:From:To:Cc:Subject:Message-Id:In-Reply-To:References:
+	 Mime-Version:Content-Type; b=p1PF/ywELsynI3c5BcuLLm81rzOaq/lc+qmjFPvPT0P5Z3sGlr5EhzO0X7bpvkHTmeP6/NX7FqpEkpy8GbqZnv4G/QI6aG76LuXBy+DFmU3O466nJbp+X9ItwaZpUprzTZjNzjyItOw3zDrcp25z0GClQVwuAIZRRBgayfVeMqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.b=qgGXTep1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28F2FC2BC9E;
+	Mon, 23 Mar 2026 16:55:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
+	s=korg; t=1774284951;
+	bh=0LuJYoTQTDvWV9NTWOPFuNPtv2UN3kOMEh+jhXWnc2s=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=qgGXTep1YmJrPSvqa0ycQRzl2NPgm4AaiOcjYyoeytss6axGtvgS0EzKKZIBsxxsA
+	 V6fyRWqr/ZIWLg5r94g6isrv7Lul5Ery6vKJi/XjccJ0tkvgqlQUYmdi/KPsKX+oSy
+	 WOcrfjFCALXA7q5Zf2q/7NKZNQeM2jvJT0tXbqY8=
+Date: Mon, 23 Mar 2026 09:55:48 -0700
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Jinjie Ruan <ruanjinjie@huawei.com>
+Cc: <corbet@lwn.net>, <skhan@linuxfoundation.org>,
+ <catalin.marinas@arm.com>, <will@kernel.org>, <chenhuacai@kernel.org>,
+ <kernel@xen0n.name>, <maddy@linux.ibm.com>, <mpe@ellerman.id.au>,
+ <npiggin@gmail.com>, <chleroy@kernel.org>, <pjw@kernel.org>,
+ <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>, <alex@ghiti.fr>,
+ <tglx@kernel.org>, <mingo@redhat.com>, <bp@alien8.de>,
+ <dave.hansen@linux.intel.com>, <hpa@zytor.com>, <robh@kernel.org>,
+ <saravanak@kernel.org>, <bhe@redhat.com>, <vgoyal@redhat.com>,
+ <dyoung@redhat.com>, <rdunlap@infradead.org>, <peterz@infradead.org>,
+ <feng.tang@linux.alibaba.com>, <pawan.kumar.gupta@linux.intel.com>,
+ <dapeng1.mi@linux.intel.com>, <kees@kernel.org>, <elver@google.com>,
+ <paulmck@kernel.org>, <lirongqing@baidu.com>, <safinaskar@gmail.com>,
+ <rppt@kernel.org>, <ardb@kernel.org>, <leitao@debian.org>,
+ <jbohac@suse.cz>, <cfsworks@gmail.com>, <osandov@fb.com>,
+ <tangyouling@kylinos.cn>, <sourabhjain@linux.ibm.com>,
+ <ritesh.list@gmail.com>, <eajames@linux.ibm.com>,
+ <songshuaishuai@tinylab.org>, <kevin.brodsky@arm.com>,
+ <samuel.holland@sifive.com>, <vishal.moola@gmail.com>,
+ <junhui.liu@pigmoral.tech>, <coxu@redhat.com>, <liaoyuanhong@vivo.com>,
+ <fuqiang.wang@easystack.cn>, <x86@kernel.org>, <linux-doc@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <loongarch@lists.linux.dev>, <linuxppc-dev@lists.ozlabs.org>,
+ <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ <kexec@lists.infradead.org>
+Subject: Re: [PATCH v9 0/5] arm64/riscv: Add support for crashkernel CMA
+ reservation
+Message-Id: <20260323095548.fa4e13d6e8ae5005ae585e13@linux-foundation.org>
+In-Reply-To: <20260323072745.2481719-1-ruanjinjie@huawei.com>
+References: <20260323072745.2481719-1-ruanjinjie@huawei.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <blhm4csjyw6r667cleljgzd6rpwagttjo5rau7wjrlnjakq2qm@ekyhc4jvwmwf>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[linux-foundation.org:s=korg];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-279296-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[29];
+	TAGGED_FROM(0.00)[bounces-279297-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,linuxfoundation.org,linux.dev,linux.intel.com,squebb.ca,gmail.com,holtmann.org,bgdev.pl,vger.kernel.org,linaro.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_CC(0.00)[lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,infradead.org,linux.alibaba.com,google.com,baidu.com,debian.org,suse.cz,fb.com,kylinos.cn,tinylab.org,sifive.com,pigmoral.tech,vivo.com,easystack.cn,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
+	DMARC_NA(0.00)[linux-foundation.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[linux-foundation.org:+];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_GT_50(0.00)[62];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[akpm@linux-foundation.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A575B2F9ECB
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,huawei.com:email,linux-foundation.org:dkim,linux-foundation.org:mid]
+X-Rspamd-Queue-Id: 649472FB274
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 23, 2026 at 06:45:15PM +0200, Dmitry Baryshkov wrote:
-> On Mon, Mar 23, 2026 at 09:26:04PM +0530, Manivannan Sadhasivam wrote:
-> > On Mon, Mar 23, 2026 at 05:14:30PM +0200, Dmitry Baryshkov wrote:
-> > > On Mon, Mar 23, 2026 at 07:14:25PM +0530, Manivannan Sadhasivam wrote:
-> > > > On Mon, Mar 23, 2026 at 08:39:55AM -0500, Rob Herring wrote:
-> > > > > On Mon, Mar 23, 2026 at 7:16 AM Manivannan Sadhasivam <mani@kernel.org> wrote:
-> > > > > >
-> > > > > > On Sun, Mar 22, 2026 at 06:37:13PM -0500, Rob Herring wrote:
-> > > > > > > On Tue, Mar 17, 2026 at 09:59:56AM +0530, Manivannan Sadhasivam wrote:
-> > > > > > > > Lenovo Thinkpad T14s is found to have a soldered down version of M.2 1620
-> > > > > > > > LGA connector. Though, there is no 1620 LGA form factor defined in the M.2
-> > > > > > > > spec, it looks very similar to the M.2 Key E connector. So add the
-> > > > > > > > "pcie-m2-1620-lga-connector" compatible with "pcie-m2-e-connector" fallback
-> > > > > > > > to reuse the Key E binding.
-> > > > > > >
-> > > > > > > What is LGA?
-> > > > > > >
-> > > > > >
-> > > > > > Land Grid Array
-> > > > > >
-> > > > > > > If not in the spec, is it really something generic?
-> > > > > > >
-> > > > > >
-> > > > > > Good question. Yes and No! LGA is not something that Lenovo only uses. Other
-> > > > > > vendors may also use this form factor. PCIe connectors are full of innovation as
-> > > > > > the spec gives room for hardware designers to be as innovative as possible to
-> > > > > > save the BOM cost.
-> > > > > 
-> > > > > innovation == incompatible changes
-> > > > > 
-> > > > 
-> > > > Yes, I was trying to sound nice :)
-> > > > 
-> > > > > > This is why I do not want to make it Lenovo specific. But if you prefer that, I
-> > > > > > can name it as "lenovo,pcie-m2-1620-lga-connector".
-> > > > > 
-> > > > > Depends if you think that s/w needs to know the differences. Hard to
-> > > > > say with a sample size of 1.
-> > > > > 
-> > > > 
-> > > > Sure. Will add the 'lenovo' prefix then.
-> > > 
-> > > Is it really Lenovo? Or is it some other module vendor, whose LGAs are
-> > > being used by Lenovo?
-> > > 
-> > > I remember that DB820c also used some kind of a module for the WiFi card
-> > > (which might be M.2 compatible or might not, I can't find exact docs at
-> > > this point).
-> > > 
-> > 
-> > I don't know. These kind of designs might be reused by several vendors. But
-> > considering that we should not make it generic, I'd go with Lenovo as that's
-> > the only vendor we know as of now.
+On Mon, 23 Mar 2026 15:27:40 +0800 Jinjie Ruan <ruanjinjie@huawei.com> wrote:
+
+> The crash memory allocation, and the exclude of crashk_res, crashk_low_res
+> and crashk_cma memory are almost identical across different architectures,
+> This patch set handle them in crash core in a general way, which eliminate
+> a lot of duplication code.
 > 
-> ... and later we learn that other vendors use the same idea /pinout,
-> then nothing stops us from still telling that it's a
-> "lenovo,pcie-m2-something-lga". 
-> 
+> And add support for crashkernel CMA reservation for arm64 and riscv.
 
-How do you possibly know whether a single vendor has introduced this form factor
-or reused by multiple ones? Atleast, I don't have access to such a source to
-confirm.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+Thanks.  AI review has completed and it asks questions:
+	https://sashiko.dev/#/patchset/20260323072745.2481719-1-ruanjinjie@huawei.com
 
