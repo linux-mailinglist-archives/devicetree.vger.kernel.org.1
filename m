@@ -1,173 +1,149 @@
-Return-Path: <devicetree+bounces-279074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279079-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YPSRLcQdwWmTQwQAu9opvQ
-	(envelope-from <devicetree+bounces-279074-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 12:02:28 +0100
+	id +DYgJKIfwWmTQwQAu9opvQ
+	(envelope-from <devicetree+bounces-279079-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 12:10:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 553A32F0BFB
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 12:02:27 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1008E2F0EAE
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 12:10:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 246A83012846
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 11:02:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6E74B30EF3B7
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 11:02:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D6F9394461;
-	Mon, 23 Mar 2026 11:01:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XeAdb1vR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C5CC397682;
+	Mon, 23 Mar 2026 11:02:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 439E93914F1;
-	Mon, 23 Mar 2026 11:01:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA68E3976A2;
+	Mon, 23 Mar 2026 11:02:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774263717; cv=none; b=YdugTMRzdeIEsVjT60KXju2V4Tw3qFWp39rj5D2cbIaoywkN//9GJ5PrqgS+KEZAqPr17Qpz+mK2IXWvAcoPnEcp58luEK/TC4LQj/l2mtDTpCE1hnxoGfS6cbCc71lLakuLMiHe2vKUOl1rOx7wUdfNuaRtTcXuOaQKPwOvQEM=
+	t=1774263730; cv=none; b=NkQ1yovAn/jBS9iWOgmOslhRIpUnPoi6BYPZSLir1nOiyHXW5g6K+Axt1yTSYbA0Va8XBlxvDppraYGEhxOS9CJTuPaddDL52kvtzirznNzUEnEmxR3TjQSupRPemF8ygFqEoYcEGH6NaUtyZDq2DdphD9/DOb6xnUQUnrp+g6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774263717; c=relaxed/simple;
-	bh=SixAnDle0LreyAXKXJ8mU0e3A8ALj9jmQCKRkUjzzJc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fjvNbo/85fCBU5lwpkqm2RTYfI2JZNTXVsO1zzUGAFFN5YCtov3u6AI88WVplzf4iWDxuOAQTZndunkWRmea3eEPpgHJt8X99gr/YRxDfAK4HSv+2fB/OQqRvJK58uNFj+c9qFDGGSlStt4IIfUyxErLh6JY92h9+9YwLpSnJV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XeAdb1vR; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1774263715; x=1805799715;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SixAnDle0LreyAXKXJ8mU0e3A8ALj9jmQCKRkUjzzJc=;
-  b=XeAdb1vR/ro+JLyX/MpeuVV+lyb7HDjOy1ZqVNIol22kABxLVeussfqI
-   GHAXMwKulLRGsUYFaNdIwE53JH9r2pJk71KIZNX+pqFPBmz4v66qiI8+e
-   TjsiWz5PESpf+w7EOsmTl9Wv0hFx/PCYlq+7eO8z6Zl5P02PPP+b2xbcS
-   wgNAOMsoUqiYcRpAyNLjs/MdReiMgXXAx2G2dCfr4BVhIqxAO2Cjj5+6E
-   5hx5T1TDFuM6W/AHRgoLkdgwG7T4CLMUkpxbZiH0r4Zyo4fcqQuJPxigm
-   4Z2r+T2JSGFK63bto8GK88fTboZQEbnsixHOzS+kSeBqQenniz4kpwRYe
-   w==;
-X-CSE-ConnectionGUID: 31adrb+YRVqF97kpUdVyrg==
-X-CSE-MsgGUID: 4/BdPNe3TjOlN4UqZwVFiQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11737"; a="74967153"
-X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; 
-   d="scan'208";a="74967153"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2026 04:01:55 -0700
-X-CSE-ConnectionGUID: 4PAZ1anTSkaWoofQBwnFtg==
-X-CSE-MsgGUID: LcPykfcWShKRhHEtyvY0tA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; 
-   d="scan'208";a="219639289"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.22])
-  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2026 04:01:51 -0700
-Date: Mon, 23 Mar 2026 13:01:48 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: rodrigo.alencar@analog.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1774263730; c=relaxed/simple;
+	bh=g52Al9YWCGtwUmdi2nk9qV8gQKZV5m7STqJ7l17xicE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=CHhpU7hv8XmWP7ihZ0m2ZChjFUjw4E1WkqNzPkL7cbHHjM6AzamFCT6Fy+/+PU/IuisDAc1RRVInXh7Tp9wQpfDkN4m8HXeGH1gwKSTujDGw2erqPtLY3Mgcss+IT9K5mNmWJzqoU3jZMPgPbfpy/F8WE+jQBLvlUiJfsVUuAFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 665FF1692;
+	Mon, 23 Mar 2026 04:02:02 -0700 (PDT)
+Received: from e142021.fritz.box (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C37453F73B;
+	Mon, 23 Mar 2026 04:02:05 -0700 (PDT)
+From: Andre Przywara <andre.przywara@arm.com>
+To: Linus Walleij <linusw@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>
-Subject: Re: [PATCH RFC v2 3/9] iio: frequency: ad9910: add simple parallel
- port mode support
-Message-ID: <acEdnC9MC2fiirO3@ashevche-desk.local>
-References: <20260318-ad9910-iio-driver-v2-0-e79f93becf11@analog.com>
- <20260318-ad9910-iio-driver-v2-3-e79f93becf11@analog.com>
- <abru0mNtpJSPSJux@ashevche-desk.local>
- <oqspz57p3xgzeq2lvcvhgihu3yeucufdjxurwc3dpuvj6dfu6j@kv23vp6xxud3>
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>
+Cc: Michal Piekos <michal.piekos@mmpsystems.pl>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 3/5] dt-bindings: pinctrl: sun55i-a523: increase IRQ bank number
+Date: Mon, 23 Mar 2026 12:01:49 +0100
+Message-ID: <20260323110151.2352832-4-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260323110151.2352832-1-andre.przywara@arm.com>
+References: <20260323110151.2352832-1-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <oqspz57p3xgzeq2lvcvhgihu3yeucufdjxurwc3dpuvj6dfu6j@kv23vp6xxud3>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [1.64 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-279074-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,csie.org,gmail.com,sholland.org];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-279079-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:dkim,ashevche-desk.local:mid]
-X-Rspamd-Queue-Id: 553A32F0BFB
+	FROM_NEQ_ENVFROM(0.00)[andre.przywara@arm.com,devicetree@vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,arm.com:email,arm.com:mid]
+X-Rspamd-Queue-Id: 1008E2F0EAE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 23, 2026 at 10:39:06AM +0000, Rodrigo Alencar wrote:
-> On 26/03/18 08:28PM, Andy Shevchenko wrote:
-> > On Wed, Mar 18, 2026 at 05:56:03PM +0000, Rodrigo Alencar via B4 Relay wrote:
-> > 
-> > > Add parallel port channel with frequency scale, frequency offset, phase
-> > > offset, and amplitude offset extended attributes for configuring the
-> > > parallel data path.
+The Allwinner A523 SoC implements 10 GPIO banks in the first pinctrl
+instance, but it skips the first bank (PortA), so their index goes from
+1 to 10. The same is actually true for the IRQ banks: there are registers
+for 11 banks, though the first bank is not implemented (RAZ/WI).
+In contrast to previous SoCs, the count of the IRQ banks starts with this
+first unimplemented bank, so we need to provide an interrupt for it.
+And indeed the A523 user manual lists an interrupt number for PortA, so we
+need to increase the maximum number of interrupts per pin controller to 11,
+to be able to assign the correct interrupt number for each bank.
 
-...
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+---
+ .../bindings/pinctrl/allwinner,sun55i-a523-pinctrl.yaml   | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-> > > +	case IIO_CHAN_INFO_ENABLE:
-> > > +		val = !!val;
-> > 
-> > Only used once, why do we need this...
-> 
-> Next patches introduce more channels here, so the additions are easier to review.
-
-Yeah, but  shouldn't be better to put this in each FIELD_PREP() as it will
-immediately show the correctness and the value range without looking backwards
-in the code?
-
-> > > +		switch (chan->channel) {
-> > > +		case AD9910_CHANNEL_PARALLEL_PORT:
-> > > +			tmp32 = FIELD_PREP(AD9910_CFR2_PARALLEL_DATA_PORT_EN_MSK, val);
-> > 
-> > ...and not just here?
-> > 
-> > > +			return ad9910_reg32_update(st, AD9910_REG_CFR2,
-> > > +						   AD9910_CFR2_PARALLEL_DATA_PORT_EN_MSK,
-> > > +						   tmp32, true);
-> > > +		default:
-> > > +			return -EINVAL;
-> > > +		}
-> 
-> -- 
-> Kind regards,
-> 
-> Rodrigo Alencar
-
+diff --git a/Documentation/devicetree/bindings/pinctrl/allwinner,sun55i-a523-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/allwinner,sun55i-a523-pinctrl.yaml
+index 154e03da8ce9..f87b8274cc37 100644
+--- a/Documentation/devicetree/bindings/pinctrl/allwinner,sun55i-a523-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/allwinner,sun55i-a523-pinctrl.yaml
+@@ -34,7 +34,7 @@ properties:
+ 
+   interrupts:
+     minItems: 2
+-    maxItems: 10
++    maxItems: 11
+     description:
+       One interrupt per external interrupt bank supported on the
+       controller, sorted by bank number ascending order.
+@@ -61,7 +61,7 @@ properties:
+       bank found in the controller
+     $ref: /schemas/types.yaml#/definitions/uint32-array
+     minItems: 2
+-    maxItems: 10
++    maxItems: 11
+ 
+ patternProperties:
+   # It's pretty scary, but the basic idea is that:
+@@ -130,8 +130,8 @@ allOf:
+     then:
+       properties:
+         interrupts:
+-          minItems: 10
+-          maxItems: 10
++          minItems: 11
++          maxItems: 11
+ 
+   - if:
+       properties:
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.43.0
 
 
