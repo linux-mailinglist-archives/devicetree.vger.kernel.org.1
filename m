@@ -1,141 +1,189 @@
-Return-Path: <devicetree+bounces-279274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279280-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kD5zIi5swWlMTAQAu9opvQ
-	(envelope-from <devicetree+bounces-279274-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 17:37:02 +0100
+	id 4KlRONdvwWnmTAQAu9opvQ
+	(envelope-from <devicetree+bounces-279280-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 17:52:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9AC22F871D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 17:37:01 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 838D82F8FA5
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 17:52:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 82A0F3182498
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 16:15:30 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C85E831803D9
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 16:24:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6D973BD25E;
-	Mon, 23 Mar 2026 16:15:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D32DA3BD22F;
+	Mon, 23 Mar 2026 16:23:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="X8I0za+0"
+	dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="SwGLjMrK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC2BE3AF662
-	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 16:15:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B6273BB9F6;
+	Mon, 23 Mar 2026 16:23:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774282515; cv=none; b=iS2ZixcS82co4AfB44PgW9M9dx8jYdJhxQ1UhoD8HVthWgMCXgIi14sf9VQo3rWqjTdrP9pKtUQD6qTRuROMfsjqp1jbxXLwUEJJp+7EkonkLSw2lg79u5inj5C/Cq+Dd0prwyVrC2vYigGRAo1JjHcc7WXUZonG6bHeuWXphtI=
+	t=1774283029; cv=none; b=Ei9sy74AW0xNAOzunvYVD7TDfe6hWaayzJPc1mPOzq9NTbZvhSJl+CW4JZ0ov6dbfrNV2Q7/jfDnB8r7Twz1Av8EKsVsQnP5N4cNuVD0I3Yh8BbznN+/GDSmYQkORXLYnrlNDV3KUEFpNWTuVvFLfeYDFZ47I7h/E6hOSn7UxaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774282515; c=relaxed/simple;
-	bh=wz/qy3mOqhyoOYrk4BYNUG4XnoW1wVBR5GPWBTYta+k=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=Q/DnlTtLBLc05USdMhgWYl0Bfn06Zr/SRm5Gr0W6OvFPMYH3xcFgnWhK2Gua4MooXx+0zQoGxaj0OL6CbPjz5AefyMmeXx77EowDKlMywoElS2JnpLCF0X8bwSrDKG25DuzrkVwT9F+AHTZdBMZdika2G/eQWRKw/xBdsH2YI/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=X8I0za+0; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 53191C58082;
-	Mon, 23 Mar 2026 16:15:37 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 6D9685FEF6;
-	Mon, 23 Mar 2026 16:15:10 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8EEEA10450FE0;
-	Mon, 23 Mar 2026 17:14:57 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1774282506; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=wz/qy3mOqhyoOYrk4BYNUG4XnoW1wVBR5GPWBTYta+k=;
-	b=X8I0za+0DuH7Uricdi22M/uTCib/0T6dlZjRnidNjg5yq5jTJSBptkLD5BFMEGHu1c1Urv
-	P/GlNk2/IOpNJyvIR6JFZdujnZRu/xEZn0nCpRkF313SELDqqdkb5FCR3SVckFMYEY90M9
-	18vd1rwE2UFRQ3oazskYokOSUhwBLGeV0mwfPDVnZ72AuXrT6Z658yNUKugz058xy3LsuP
-	ea5Ak61T2Qprayj5sy69Bh9wCks/IfLxiWrh1wKR4kT4++lr6BqaeOG7H5EFZVVsLCdGEP
-	UY1R8QPgy+z09dqXUxNhPNfwhGA/TNJ7W8AAQmmc/tUg5TwCV91sJYyb5djeiQ==
+	s=arc-20240116; t=1774283029; c=relaxed/simple;
+	bh=AiYR3m9OPMS94EYaKPIpJW6EJB1OAUUOLjUwhjl9HPw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=M7glgbpiy/WVb4t6sGriqxfNK17JOjzLGGRUgd7QWzWulxjNGew6gUlPKEiKgFiO5/K9/3lvKaFDfzk3bAoxZLSdkd2A5jUnBHV6mWcB+LmBdqYlyIOYHUQKFRTXKUn8zfnVZInNAdxnNHbtA4b3srAS+Xwd28h3rIOYa6DlclI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=SwGLjMrK; arc=none smtp.client-ip=193.136.128.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id C350E600882A;
+	Mon, 23 Mar 2026 16:15:46 +0000 (WET)
+X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+ by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
+ with LMTP id 126tTdIN8NTm; Mon, 23 Mar 2026 16:15:44 +0000 (WET)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id E2AB36008813;
+	Mon, 23 Mar 2026 16:15:42 +0000 (WET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
+	s=mail2; t=1774282543;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=oxX+OUc3xAG2hwZFdRqs0R//MKXMT1i1SmwKlI7QCUU=;
+	b=SwGLjMrK9ln3TcNEAy+X0mypZiqlB9obo5qLLYD5EBTUgUj81QnjKt4tNkkCO/mjjfLHo2
+	Y3PEOU09sIAODUjaPNDpqo8otBGKVMH1F3dMorf4JQkK59Kd9t8gDl0REdd3ML2ISfa8Nz
+	xrmRUHJjFZk015wqZPQfQEY+5UCcGar+nTkVXv5d0H7/JE04N/KYuScurMaSJD+96Gidfo
+	dZjlL3FAbJq76/l/qMwZIXalTwJLtpmVI+NFuV0B5AIO8SCGPyqLBrFoIElXWbMarS1Zka
+	u4xxGAi8SdMWEwhWRMzTd2WgoTDOZ6Z04F/vuH6KRUMU+VLL9EJCGdzVPKcEYw==
+Received: from [IPV6:2001:8a0:57db:f00:3ee2:38aa:e2c9:7dde] (unknown [IPv6:2001:8a0:57db:f00:3ee2:38aa:e2c9:7dde])
+	(Authenticated sender: ist187313)
+	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 767D33601AC;
+	Mon, 23 Mar 2026 16:15:41 +0000 (WET)
+Message-ID: <54167943-deac-40ec-be86-7ddc6b015c2d@tecnico.ulisboa.pt>
+Date: Mon, 23 Mar 2026 16:15:24 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 23 Mar 2026 17:14:56 +0100
-Message-Id: <DHAANIKVU6BV.20W1GS0MWT55E@bootlin.com>
-Subject: Re: [PATCH v2 9/9] drm/rockchip: analogix_dp: Add support for
- RK3576
-Cc: <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
- <jernej.skrabec@gmail.com>, <nicolas.frattaroli@collabora.com>,
- <alchark@gmail.com>, <cristian.ciocaltea@collabora.com>,
- <sebastian.reichel@collabora.com>, <kever.yang@rock-chips.com>,
- <heiko.stuebner@cherry.de>, <tomeu@tomeuvizoso.net>, <amadeus@jmu.edu.cn>,
- <michael.riesch@collabora.com>, <didi.debian@cknow.org>,
- <dmitry.baryshkov@oss.qualcomm.com>, <dianders@chromium.org>,
- <m.szyprowski@samsung.com>, <dri-devel@lists.freedesktop.org>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-To: "Damon Ding" <damon.ding@rock-chips.com>, <hjc@rock-chips.com>,
- <heiko@sntech.de>, <andy.yan@rock-chips.com>,
- <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
- <tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-X-Mailer: aerc 0.20.1
-References: <20260319104031.1986946-1-damon.ding@rock-chips.com>
- <20260320004554.2006299-1-damon.ding@rock-chips.com>
-In-Reply-To: <20260320004554.2006299-1-damon.ding@rock-chips.com>
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-0.16 / 15.00];
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/6] Fixes to Tegra USB role switching and phy handling
+To: Mathias Nyman <mathias.nyman@intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, JC Kuo <jckuo@nvidia.com>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-usb@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, stable@vger.kernel.org
+References: <20260127-diogo-tegra_phy-v2-0-787b9eed3ed5@tecnico.ulisboa.pt>
+Content-Language: en-US
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+In-Reply-To: <20260127-diogo-tegra_phy-v2-0-787b9eed3ed5@tecnico.ulisboa.pt>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[tecnico.ulisboa.pt,quarantine];
+	R_DKIM_ALLOW(-0.20)[tecnico.ulisboa.pt:s=mail2];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-279274-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org];
-	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,collabora.com,rock-chips.com,cherry.de,tomeuvizoso.net,jmu.edu.cn,cknow.org,oss.qualcomm.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-279280-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[intel.com,linuxfoundation.org,gmail.com,nvidia.com,kernel.org,linaro.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_TWELVE(0.00)[36];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[diogo.ivo@tecnico.ulisboa.pt,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[tecnico.ulisboa.pt:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: A9AC22F871D
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 838D82F8FA5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri Mar 20, 2026 at 1:45 AM CET, Damon Ding wrote:
-> RK3576 integrates the Analogix eDP 1.3 TX controller IP and the HDMI/eDP
-> TX Combo PHY based on a Samsung IP block - both of which are the same as
-> those on RK3588.
->
-> The patch currently adds only the basic support, specifically RGB output
-> up to 4K@60Hz, without the tests for audio, PSR and other eDP 1.3 specifi=
-c
-> features.
->
-> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
-> Reviewed-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Hello,
 
-Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Ping on this series as it has been quite a while since this was sent out
+originally.
 
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Best regards,
+
+Diogo
+
+On 1/27/26 15:11, Diogo Ivo wrote:
+> Hello,
+> 
+> This patch series contains fixes/improvements for USB role switching on the
+> Tegra210 and Tegra186 SoCs.
+> 
+> The first patch addresses a wrong check on the logic that disables the
+> VBUS regulator.
+> 
+> The second patch removes a redundant mutex lock when setting the PHY
+> mode.
+> 
+> The third patch guarantees proper ordering of events when switching PHY
+> roles.
+> 
+> The remaining patches are included to standardize the PHY .set_mode()
+> callback between Tegra186 and Tegra210.
+> 
+> With this patch series this feature can only be controlled from userspace,
+> by writing the desired role to sysfs as
+> 
+> echo "role" > /sys/class/usb_role/usb2-0-role-switch/role
+> 
+> with role being one of {device, host, none}.
+> 
+> Further patches will enable automatic role switching via the 'cros_ec_typec'
+> driver which is currently broken on Smaug.
+> 
+> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+> ---
+> Changes in v2:
+> - Remove DT patches already taken to be upstreamed
+> - Add standardization between Tegra210 and Tegra186
+> - Address review comments from v1, detailed descriptions in each patch
+> - Link to v1: https://lore.kernel.org/r/20251204-diogo-tegra_phy-v1-0-51a2016d0be8@tecnico.ulisboa.pt
+> 
+> ---
+> Diogo Ivo (6):
+>        phy: tegra: xusb: Fix USB2 port regulator disable logic
+>        usb: xhci: tegra: Remove redundant mutex when setting phy mode
+>        phy: tegra: xusb: Fix ordering issue when switching roles on USB2 ports
+>        phy: tegra: xusb: Add ID override support to padctl
+>        phy: tegra: xusb: Move .set_mode() to a shared location
+>        phy: tegra: xusb: Move T186 .set_mode() to common implementation
+> 
+>   drivers/phy/tegra/xusb-tegra186.c   | 73 +++++----------------------------
+>   drivers/phy/tegra/xusb-tegra210.c   | 42 +------------------
+>   drivers/phy/tegra/xusb.c            | 80 +++++++++++++++++++++++++++++++++++++
+>   drivers/phy/tegra/xusb.h            |  4 ++
+>   drivers/usb/gadget/udc/tegra-xudc.c |  4 ++
+>   drivers/usb/host/xhci-tegra.c       | 14 ++++---
+>   include/linux/phy/tegra/xusb.h      |  3 ++
+>   7 files changed, 111 insertions(+), 109 deletions(-)
+> ---
+> base-commit: b02a5530af8abe0d3cd4852ba48990716e962934
+> change-id: 20251201-diogo-tegra_phy-86c89cab7377
+> 
+> Best regards,
 
