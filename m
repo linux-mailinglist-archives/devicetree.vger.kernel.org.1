@@ -1,228 +1,236 @@
-Return-Path: <devicetree+bounces-278891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278894-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wAgVLJ/rwGl0OgQAu9opvQ
-	(envelope-from <devicetree+bounces-278891-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 08:28:31 +0100
+	id 8BDRKCzuwGm3OgQAu9opvQ
+	(envelope-from <devicetree+bounces-278894-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 08:39:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B28BF2ED984
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 08:28:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 060A92EDADF
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 08:39:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 261703015173
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 07:27:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 206393031810
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 07:36:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5631935DA63;
-	Mon, 23 Mar 2026 07:26:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A00F35FF50;
+	Mon, 23 Mar 2026 07:36:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="K5XnaPIN"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FWTZeROD";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="CirH1nMX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from canpmsgout02.his.huawei.com (canpmsgout02.his.huawei.com [113.46.200.217])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D752A35F8A8;
-	Mon, 23 Mar 2026 07:26:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=113.46.200.217
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774250800; cv=none; b=lYpnVRDzd9vm6tW0hdcIppa+2kzRwSiZlR//gnwYVdRPVU7db4RWtxtXdhENBU3SOw5QTKMRBS2TrAxGlxhw11I4jz3ySofPK+2cMbxzdRTtFh1Z7qVcJkX8fj4CLzMnwAPHkwHP01AoHhOKmvwSaD+6ocG0QdvY9/yEygPD5kY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774250800; c=relaxed/simple;
-	bh=hIi6DD+877ucbNVlKPiYlVSj/ctUMCgrhI2/Ysp0q98=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tpyNU3AoUm7j+7ATJCAh/FE8fO6duFGrXmgpVYnoXpKCciSJyaAhWL9f0rFXyAuhSYnQBlEMWdb36IfX8ef+ZrF1Lgldz27SSkTKbYXLEXyitZMhsKi0u6Y8ildE/y2hY8Vp3f6UkcQJmRB5hPFslrI13NtfOpQyskIXRtddDg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=K5XnaPIN; arc=none smtp.client-ip=113.46.200.217
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=fRs26x5PVFIXD+ndJGiOsEX2kERkgkUkq8NjmEwgyMw=;
-	b=K5XnaPINDD2o4cwI2CzPN/3antiUjOJ9GTRYvR9saJoMo39kBwx/DIkA6CffxwFpXpF03Ol0/
-	QfYyujmTFtysip2gyKZKJABUZ2jCJofC88zwmwln5TQkhCX7DL/hNW2TIGt+S8lctGttzRQTn/F
-	1N9spQ6ViUJRzVXHaCM7hL4=
-Received: from mail.maildlp.com (unknown [172.19.163.104])
-	by canpmsgout02.his.huawei.com (SkyGuard) with ESMTPS id 4ffPhn4Xsyzcb44;
-	Mon, 23 Mar 2026 15:20:41 +0800 (CST)
-Received: from dggpemf500011.china.huawei.com (unknown [7.185.36.131])
-	by mail.maildlp.com (Postfix) with ESMTPS id A2E8C4056A;
-	Mon, 23 Mar 2026 15:26:29 +0800 (CST)
-Received: from huawei.com (10.90.53.73) by dggpemf500011.china.huawei.com
- (7.185.36.131) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Mon, 23 Mar
- 2026 15:26:27 +0800
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-To: <corbet@lwn.net>, <skhan@linuxfoundation.org>, <catalin.marinas@arm.com>,
-	<will@kernel.org>, <chenhuacai@kernel.org>, <kernel@xen0n.name>,
-	<maddy@linux.ibm.com>, <mpe@ellerman.id.au>, <npiggin@gmail.com>,
-	<chleroy@kernel.org>, <pjw@kernel.org>, <palmer@dabbelt.com>,
-	<aou@eecs.berkeley.edu>, <alex@ghiti.fr>, <tglx@kernel.org>,
-	<mingo@redhat.com>, <bp@alien8.de>, <dave.hansen@linux.intel.com>,
-	<hpa@zytor.com>, <robh@kernel.org>, <saravanak@kernel.org>,
-	<akpm@linux-foundation.org>, <bhe@redhat.com>, <vgoyal@redhat.com>,
-	<dyoung@redhat.com>, <rdunlap@infradead.org>, <peterz@infradead.org>,
-	<feng.tang@linux.alibaba.com>, <pawan.kumar.gupta@linux.intel.com>,
-	<dapeng1.mi@linux.intel.com>, <kees@kernel.org>, <elver@google.com>,
-	<paulmck@kernel.org>, <lirongqing@baidu.com>, <ruanjinjie@huawei.com>,
-	<safinaskar@gmail.com>, <rppt@kernel.org>, <ardb@kernel.org>,
-	<leitao@debian.org>, <jbohac@suse.cz>, <cfsworks@gmail.com>,
-	<osandov@fb.com>, <tangyouling@kylinos.cn>, <sourabhjain@linux.ibm.com>,
-	<ritesh.list@gmail.com>, <eajames@linux.ibm.com>,
-	<songshuaishuai@tinylab.org>, <kevin.brodsky@arm.com>,
-	<samuel.holland@sifive.com>, <vishal.moola@gmail.com>,
-	<junhui.liu@pigmoral.tech>, <coxu@redhat.com>, <liaoyuanhong@vivo.com>,
-	<fuqiang.wang@easystack.cn>, <x86@kernel.org>, <linux-doc@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<loongarch@lists.linux.dev>, <linuxppc-dev@lists.ozlabs.org>,
-	<linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<kexec@lists.infradead.org>
-Subject: [PATCH v9 5/5] riscv: kexec: Add support for crashkernel CMA reservation
-Date: Mon, 23 Mar 2026 15:27:45 +0800
-Message-ID: <20260323072745.2481719-6-ruanjinjie@huawei.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260323072745.2481719-1-ruanjinjie@huawei.com>
-References: <20260323072745.2481719-1-ruanjinjie@huawei.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7773233C53F
+	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 07:36:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=205.220.168.131
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774251411; cv=pass; b=r30G1+Su2HJ4eFXhLb0gxp2JqmTDrQoCcwdI6hIsezAAyd3dYAZUUvLRYQOmMXQ4FqAD5pVqG7kSWRLV9PGLByDIAw9pJZ3SNtsU7pupGChr/PVM5upW4TwRDsDAlynCDuqGW5XtAcH4bBHOE2L9nsROed+0iwHjPCyvjxfpo34=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774251411; c=relaxed/simple;
+	bh=dE3eHD/xH3GbKQZD3wXfKMDB+XRJOlJRRKpaBH+I6gg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=H6mEsX6sU0ShGjuBCXzchkYdKJRR4z+2nbovdqOJEEKo+XKLi79Gljzn4lIkb9SliFBLXr0h1/fmmYvqI4DBp05XmfFzi0d9lQzPMbjFqk4ufG7dHtavl9+NhnuHX14kZaIdCJ5zDl1Z5OWtZI3KG0Md64YZl2PyiCxBtJlCdFs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FWTZeROD; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=CirH1nMX; arc=pass smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62N4wupT423463
+	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 07:36:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	dE3eHD/xH3GbKQZD3wXfKMDB+XRJOlJRRKpaBH+I6gg=; b=FWTZeRODWjifBRIm
+	Qt7LIqjlby6QBv7fVstfT7yzb/FCwWNXnDBzEHoTkXmMzz5bS7hZECFF2Oyqf9JC
+	TpW4xcJB7J64UXQDwIuVbWWQLh6TKLYzUZELLsLsFB1CN7ZrWud8wUN+ruWiXndZ
+	ddiwhvGKv5euag37IWPj2vc1/KAL8oPTgzftbUZSkHcyAAlQFh9M+tnvxV8wsPGq
+	LECKqFyk2o8ZsREkUM9sGFoQS2PNmVuJLxC2u7RZawBE5JwAR83f0i3QN+L32Yxa
+	/fLf6Jm91hhxD6V5iUgRh/plBiqO1M5xN/zT4tgWGr0WMA95LsvfvrYGQutj92pT
+	I0BhRw==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d1m3cv6e3-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 07:36:49 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-89c514077a6so255057076d6.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 00:36:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774251409; cv=none;
+        d=google.com; s=arc-20240605;
+        b=BprIFZNCYUxs7/LS8gBwR8h7m2q8/qEKgZp2KbqI54w5PH2STTHk2/jN5W/RadB9lx
+         ZR3nC2rk0tSsw7BxisKeRdnfM1bRCUtTG+nhisiRXnbwz53yzux2zbTjLmhlZBx2Smmv
+         IYCUL7Ek3bUETcpdP2JOoQ6W//nvAFLOojPcRsRdqGN21Rn/0DTF7gh9sQMfNRylLEBr
+         yx/4ClqmyzR07r1LnPSZFO1Vlk55BR58yIuH2E2y5TZnMJvUSRezNYikedXkwShPKnrh
+         g1pZAaSCb766j8V2NxB4uvdxI0CxlOGIeHvI39+L/8D8IlefIK3Uh5hS/OAUHp2AayCW
+         5z7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=dE3eHD/xH3GbKQZD3wXfKMDB+XRJOlJRRKpaBH+I6gg=;
+        fh=4PRnXs3sGjX+dhrcuQ2xamSQTN281ZISZDCEQTX7o9o=;
+        b=Lx0IhDWvqC3GePO9RC4Ixfac1p9D5zIZeixpOOvoGNIte1AtlFzm/DXna4jFE8VJdg
+         cUBSMm9JCprJcepOVpHZNoZL5+iY2zj601YBRK2mktP9VUDoeovoBqv7wCAQlfyQAKSv
+         5N3taAkssfqqWK27oSo5NhLeFFq2b50iPxlJjxUw+0XbxNFsARVVpSIXoAmw7NhZxHlh
+         oJypv+EZSv4RZoGdXQHI+6EiwLtGC1RQfhqpF31fENcsCIG5hd7So7EfEWt82d9KWFAy
+         wafz2gJ/c0Hde7XZXZAsqj+QpP1T0UJhdBXlVYCGcc5Yz290TcTWzSQHVlVqlva2MPdX
+         qlTw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1774251409; x=1774856209; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dE3eHD/xH3GbKQZD3wXfKMDB+XRJOlJRRKpaBH+I6gg=;
+        b=CirH1nMXtnzg2jAONlFvQDjpggNuKvyE+jS94pZOzkG6g6kzP+sFJp8CjtIxnLe5li
+         yN+MbrJcjuDzwBG2t8BN/HbBk5mM0lLtO6gCe0NdBtd0508zT+DcxKbFM32iXSuI47XA
+         hB1jzAMNDuzJFt2bhaUsS/dUzzZlrS4DFzW9QCZ9zQs94p+IvNleXg34R9AMIS5jQBd1
+         qTBoXBvB9pztqMo5ZFT7nR1AOesxJmnFnqFavX1KDX7kqw1ru/IY2Y+zTijiGqzggfUq
+         MB6wYCcqazH9sRr4KTEVY5dLcx88i8hvDjmEBYyZJ44urY+e875Wrdj7cjdAvR+eTQoi
+         lBDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774251409; x=1774856209;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=dE3eHD/xH3GbKQZD3wXfKMDB+XRJOlJRRKpaBH+I6gg=;
+        b=DwqOMAFb48n7136aaG1alJFodjLz1U6Wo/kyD/03CUlzaEblEVLu6rr0nOQIiW8PqL
+         CA5FEhEGNcJ0KLWUsg1jztzXbQO8kEdk6iD9W2iDXwWr18LoAdPmq9sKrKCeDUiIA/CD
+         Kdo68oZu+rqjKmTFze4DBgWwzaI8lsGl1vbEJS+zPf3zF+yLHIXQBMFAOFTDVYt17KBA
+         unevV+w2L7VZdaWFwmUrPyyJbWkaimPGSU2bBrAZiGgXhMYD5Vvbh7SPXvY3M84wmrF+
+         OziREFGWbs9+flh0XlL0Hf/76xow7dblVrE3h8Hy5GblgovPNy0vPyW9jJb451NOw7zR
+         cRVg==
+X-Forwarded-Encrypted: i=1; AJvYcCXKbK/bXYgsKss3CajmCAwG55XFAI8PvbRvigSn+0GsQ24JjsK/EzvOl7HwuYPu7c1jVUju4NmQzkXK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxw17FAeeBfeXGH48awcJethfGFgVTG1XpOKLvCqQEMjJm3ajGI
+	AF3HdJrpljKOjKkem8sgpNXUyjYaKEbb/EmnnbrPlaANiQ0vTlAYLdtwgzefugo4IjbxjLHeqjx
+	im+3nsW9FOMUN8k7z4fM221nEeimvyac/SfhMwdOOu/RD5cYvm+U+uq+PxK4viMVmeUifi9l9Jf
+	VbYGaQlet3dI55dJYowPJktCAWQPpbuDXC73EBLG0=
+X-Gm-Gg: ATEYQzxqDVB0S8sh1Hx2uFyTvMp0YxSxIAooPBG/Sfd9pOzV8kO0H+vCGOaysNJcUXV
+	B7sfipGTz6WdxRBw/sxz73z+LHOyfokLMS1py2KAoK/ItlWK0RQoRK4ZZCLuggWXAT6osH/kbm1
+	q2cubHUra+sjhzwdTaN8JrGttzpUlCU/6BtNLXkszjxvJCaNBFsR19FaV/Mm9D8DiDQ28O967tp
+	f4QAuY=
+X-Received: by 2002:a05:6214:5984:b0:89c:5f6e:451a with SMTP id 6a1803df08f44-89c859e9734mr188298236d6.21.1774251408769;
+        Mon, 23 Mar 2026 00:36:48 -0700 (PDT)
+X-Received: by 2002:a05:6214:5984:b0:89c:5f6e:451a with SMTP id
+ 6a1803df08f44-89c859e9734mr188297976d6.21.1774251408357; Mon, 23 Mar 2026
+ 00:36:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: kwepems500002.china.huawei.com (7.221.188.17) To
- dggpemf500011.china.huawei.com (7.185.36.131)
-X-Spamd-Result: default: False [0.84 / 15.00];
+References: <20260318040644.3591478-1-swati.agarwal@oss.qualcomm.com> <20260318-neon-vigorous-prawn-dce7f3@quoll>
+In-Reply-To: <20260318-neon-vigorous-prawn-dce7f3@quoll>
+From: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
+Date: Mon, 23 Mar 2026 13:06:36 +0530
+X-Gm-Features: AaiRm52HLt66wHK0FqCRZAm7RWW-bc3MWhfzPCBrm6w6z19W9eTDZ_q3Njv0RbQ
+Message-ID: <CAHz4bYvs9mnDwfkfjkebucZSQpugEqr6+sFf1-hgzNO8SodzQA@mail.gmail.com>
+Subject: Re: [PATCH v6 0/4] Enable secondary USB controller in host mode
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Pin-yen Lin <treapking@chromium.org>,
+        Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+        =?UTF-8?B?SiAuIE5ldXNjaMOkZmVy?= <j.ne@posteo.net>,
+        Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-GUID: HJNnYaQ0NNdID8KkVV807glJCUP8kKtv
+X-Authority-Analysis: v=2.4 cv=Z5rh3XRA c=1 sm=1 tr=0 ts=69c0ed91 cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
+ a=_K5XuSEh1TEqbUxoQ0s3:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=pPiH1uhGe7me3s5KK7EA:9 a=QEXdDO2ut3YA:10 a=1HOtulTD9v-eNWfpl4qZ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzIzMDA1NyBTYWx0ZWRfX3+A+gdOptf1p
+ AE/0ikQ30GxkCgXn1ZA0Q1lzRJeTT6q0FOmjjV6MXLeMgAf01ExepuRnsBypmDByZRnEyEiB2lA
+ QyjKlITVs/FLByGqxTxvqyhL0pD6gDAkrrpJgdpOC8nUbAq5up4b1OGGd1Pb6RCV0pj9mSYa3cr
+ Ie2fOneUk2EfSBj4XFArr4StazSvFMuwxgoZmTf32fRtZgi3rMtD7YURN3aWSaAhj7QyGtOjWzq
+ TIqw2+uPxfDUlH35oCgNMTfxf39NCaPSQpNq645sKT/Oz5XV72+mUNeLpcQepKASTdNOJGo6h5K
+ kKXiOnEfQB2RtR9HjMRgAw83Rtx1IdLW6TLVVEUaZjItm4ev7UcgC4CMTmAzThuqwZATHE9U3Le
+ t5UWYgEM+7oStNZNTjZFhR3FttkyRJHri/BhaHwKvSjv2fW0w2Zqibh5meYXfao+sygdzDOBd1A
+ akw3beei2ff9+7RkYqA==
+X-Proofpoint-ORIG-GUID: HJNnYaQ0NNdID8KkVV807glJCUP8kKtv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-23_02,2026-03-20_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 malwarescore=0 bulkscore=0 suspectscore=0 clxscore=1015
+ spamscore=0 impostorscore=0 adultscore=0 phishscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603230057
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[huawei.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[ruanjinjie@huawei.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-278891-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[63];
+	TAGGED_FROM(0.00)[bounces-278894-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,infradead.org,linux.alibaba.com,google.com,baidu.com,huawei.com,debian.org,suse.cz,fb.com,kylinos.cn,tinylab.org,sifive.com,pigmoral.tech,vivo.com,easystack.cn,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[huawei.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: B28BF2ED984
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[swati.agarwal@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,oss.qualcomm.com:dkim,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 060A92EDADF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Commit 35c18f2933c5 ("Add a new optional ",cma" suffix to the
-crashkernel= command line option") and commit ab475510e042 ("kdump:
-implement reserve_crashkernel_cma") added CMA support for kdump
-crashkernel reservation. This allows the kernel to dynamically allocate
-contiguous memory for crash dumping when needed, rather than permanently
-reserving a fixed region at boot time.
+On Wed, Mar 18, 2026 at 12:33=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On Wed, Mar 18, 2026 at 09:36:40AM +0530, Swati Agarwal wrote:
+> > Enable secondary USB controller in host mode.
+> >
+> > This patch depends on:
+> > https://lore.kernel.org/all/20260306091355.1178333-1-swati.agarwal@oss.=
+qualcomm.com/
+>
+> Honestly? No. Drivers cannot depend on DTS.
+Hi Krysztof,
 
-So extend crashkernel CMA reservation support to riscv. The following
-changes are made to enable CMA reservation:
+Here what i meant by dependency is that I have rebase this patch
+series over below patch series. Below patch series is related to USB2
+micro USB controller support on lemans EVK.
+https://lore.kernel.org/all/20260306091355.1178333-1-swati.agarwal@oss.qual=
+comm.com/
 
-- Parse and obtain the CMA reservation size along with other crashkernel
-  parameters.
-- Call reserve_crashkernel_cma() to allocate the CMA region for kdump.
-- Include the CMA-reserved ranges for kdump kernel to use, which was
-  already done in of_kexec_alloc_and_setup_fdt().
-- Exclude the CMA-reserved ranges from the crash kernel memory to
-  prevent them from being exported through /proc/vmcore, which was
-  already done in the crash core.
+There is no dependency of drivers on DT.
 
-Update kernel-parameters.txt to document CMA support for crashkernel on
-riscv architecture.
+>
+> Also, combining here USB is a no-go. Do not combine independent
+> patchsets into one patchset.
+>
+> I also do not see how you addressed my comments from previous version.
+> You never bothered to respond and I do not see them implemented.
 
-Acked-by: Baoquan He <bhe@redhat.com>
-Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-Acked-by: Paul Walmsley <pjw@kernel.org> # arch/riscv
-Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
----
- Documentation/admin-guide/kernel-parameters.txt | 16 ++++++++--------
- arch/riscv/kernel/machine_kexec_file.c          |  2 +-
- arch/riscv/mm/init.c                            |  5 +++--
- 3 files changed, 12 insertions(+), 11 deletions(-)
+Apologies if i missed replying any comments.
+Regarding your comment on v3 series below:- GL3590 hub used in lemans
+EVK requires only 1.2V and 3.3V supplies for operation, confirmes the
+same from our internal HW team and update the same in thereafter patch
+sets.
+https://lore.kernel.org/all/20251220-economic-gay-firefly-1873a9@quoll/
 
-diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-index afb3112510f7..3fe5724d6e39 100644
---- a/Documentation/admin-guide/kernel-parameters.txt
-+++ b/Documentation/admin-guide/kernel-parameters.txt
-@@ -1121,14 +1121,14 @@ Kernel parameters
- 			It will be ignored when crashkernel=X,high is not used
- 			or memory reserved is below 4G.
- 	crashkernel=size[KMG],cma
--			[KNL, X86, ARM64, PPC] Reserve additional crash kernel memory from
--			CMA. This reservation is usable by the first system's
--			userspace memory and kernel movable allocations (memory
--			balloon, zswap). Pages allocated from this memory range
--			will not be included in the vmcore so this should not
--			be used if dumping of userspace memory is intended and
--			it has to be expected that some movable kernel pages
--			may be missing from the dump.
-+			[KNL, X86, ARM64, RISCV, PPC] Reserve additional crash
-+			kernel memory from CMA. This reservation is usable by
-+			the first system's userspace memory and kernel movable
-+			allocations (memory balloon, zswap). Pages allocated
-+			from this memory range will not be included in the vmcore
-+			so this should not be used if dumping of userspace memory
-+			is intended and it has to be expected that some movable
-+			kernel pages may be missing from the dump.
- 
- 			A standard crashkernel reservation, as described above,
- 			is still needed to hold the crash kernel and initrd.
-diff --git a/arch/riscv/kernel/machine_kexec_file.c b/arch/riscv/kernel/machine_kexec_file.c
-index d0e331d87155..297b910e4116 100644
---- a/arch/riscv/kernel/machine_kexec_file.c
-+++ b/arch/riscv/kernel/machine_kexec_file.c
-@@ -46,7 +46,7 @@ static int get_nr_ram_ranges_callback(struct resource *res, void *arg)
- 
- unsigned int arch_get_system_nr_ranges(void)
- {
--	unsigned int nr_ranges = 1; /* For exclusion of crashkernel region */
-+	unsigned int nr_ranges = 1 + crashk_cma_cnt; /* For exclusion of crashkernel region */
- 
- 	walk_system_ram_res(0, -1, &nr_ranges, get_nr_ram_ranges_callback);
- 
-diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-index 811e03786c56..4cd49afa9077 100644
---- a/arch/riscv/mm/init.c
-+++ b/arch/riscv/mm/init.c
-@@ -1398,7 +1398,7 @@ static inline void setup_vm_final(void)
-  */
- static void __init arch_reserve_crashkernel(void)
- {
--	unsigned long long low_size = 0;
-+	unsigned long long low_size = 0, cma_size = 0;
- 	unsigned long long crash_base, crash_size;
- 	bool high = false;
- 	int ret;
-@@ -1408,11 +1408,12 @@ static void __init arch_reserve_crashkernel(void)
- 
- 	ret = parse_crashkernel(boot_command_line, memblock_phys_mem_size(),
- 				&crash_size, &crash_base,
--				&low_size, NULL, &high);
-+				&low_size, &cma_size, &high);
- 	if (ret)
- 		return;
- 
- 	reserve_crashkernel_generic(crash_size, crash_base, low_size, high);
-+	reserve_crashkernel_cma(cma_size);
- }
- 
- void __init paging_init(void)
--- 
-2.34.1
-
+Regards,
+Swati
 
