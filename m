@@ -1,199 +1,173 @@
-Return-Path: <devicetree+bounces-279078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279074-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iNRZEgwewWlaQwQAu9opvQ
-	(envelope-from <devicetree+bounces-279078-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 12:03:40 +0100
+	id YPSRLcQdwWmTQwQAu9opvQ
+	(envelope-from <devicetree+bounces-279074-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 12:02:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E27D82F0C49
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 12:03:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 553A32F0BFB
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 12:02:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2CEB9301F38E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 11:02:43 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 246A83012846
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 11:02:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A438396B90;
-	Mon, 23 Mar 2026 11:02:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D6F9394461;
+	Mon, 23 Mar 2026 11:01:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XeAdb1vR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED07A396B7F;
-	Mon, 23 Mar 2026 11:02:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 439E93914F1;
+	Mon, 23 Mar 2026 11:01:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774263727; cv=none; b=PvpDKFOyHEhymusCKePCvPYXJPZ0Ab0geXzfW/xgyhI8khCyeWHROG3O1Qc0NhgAMEYrnXUKBdllPkzzx+NsMU0nay0pII12+6VgBXlHlSDkewWKT4QdamhF9FzwlRE2LAj4k0SNFz9LBj5bKtqtAHgviu8UW2xosqdiuWEo/Sg=
+	t=1774263717; cv=none; b=YdugTMRzdeIEsVjT60KXju2V4Tw3qFWp39rj5D2cbIaoywkN//9GJ5PrqgS+KEZAqPr17Qpz+mK2IXWvAcoPnEcp58luEK/TC4LQj/l2mtDTpCE1hnxoGfS6cbCc71lLakuLMiHe2vKUOl1rOx7wUdfNuaRtTcXuOaQKPwOvQEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774263727; c=relaxed/simple;
-	bh=6LQoW6kQOfbEsfzMM/F1yWmTZlzQ6I3tofZzfSVmVy0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VBR3PQHGmzmZFRIQzXkywM2XqouCg010FzZz+opZcEEPb2uV2oqL6+Wr6gaVq1VlIh9WdbM6YKaF68D1GQ3r5tgkM78MZts+/CbspFb6ktUBwh9hBljcoktdtuchSErBpGQxy4Pp73Rt5xrRqJaJZIqxJUAERvKjqGUUE5gcXG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 67EE31688;
-	Mon, 23 Mar 2026 04:01:59 -0700 (PDT)
-Received: from e142021.fritz.box (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C69DD3F73B;
-	Mon, 23 Mar 2026 04:02:02 -0700 (PDT)
-From: Andre Przywara <andre.przywara@arm.com>
-To: Linus Walleij <linusw@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1774263717; c=relaxed/simple;
+	bh=SixAnDle0LreyAXKXJ8mU0e3A8ALj9jmQCKRkUjzzJc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fjvNbo/85fCBU5lwpkqm2RTYfI2JZNTXVsO1zzUGAFFN5YCtov3u6AI88WVplzf4iWDxuOAQTZndunkWRmea3eEPpgHJt8X99gr/YRxDfAK4HSv+2fB/OQqRvJK58uNFj+c9qFDGGSlStt4IIfUyxErLh6JY92h9+9YwLpSnJV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XeAdb1vR; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1774263715; x=1805799715;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=SixAnDle0LreyAXKXJ8mU0e3A8ALj9jmQCKRkUjzzJc=;
+  b=XeAdb1vR/ro+JLyX/MpeuVV+lyb7HDjOy1ZqVNIol22kABxLVeussfqI
+   GHAXMwKulLRGsUYFaNdIwE53JH9r2pJk71KIZNX+pqFPBmz4v66qiI8+e
+   TjsiWz5PESpf+w7EOsmTl9Wv0hFx/PCYlq+7eO8z6Zl5P02PPP+b2xbcS
+   wgNAOMsoUqiYcRpAyNLjs/MdReiMgXXAx2G2dCfr4BVhIqxAO2Cjj5+6E
+   5hx5T1TDFuM6W/AHRgoLkdgwG7T4CLMUkpxbZiH0r4Zyo4fcqQuJPxigm
+   4Z2r+T2JSGFK63bto8GK88fTboZQEbnsixHOzS+kSeBqQenniz4kpwRYe
+   w==;
+X-CSE-ConnectionGUID: 31adrb+YRVqF97kpUdVyrg==
+X-CSE-MsgGUID: 4/BdPNe3TjOlN4UqZwVFiQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11737"; a="74967153"
+X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; 
+   d="scan'208";a="74967153"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2026 04:01:55 -0700
+X-CSE-ConnectionGUID: 4PAZ1anTSkaWoofQBwnFtg==
+X-CSE-MsgGUID: LcPykfcWShKRhHEtyvY0tA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; 
+   d="scan'208";a="219639289"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.22])
+  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2026 04:01:51 -0700
+Date: Mon, 23 Mar 2026 13:01:48 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: rodrigo.alencar@analog.com, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: Michal Piekos <michal.piekos@mmpsystems.pl>,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/5] pinctrl: sunxi: Remove unneeded IRQ remuxing for some SoCs
-Date: Mon, 23 Mar 2026 12:01:48 +0100
-Message-ID: <20260323110151.2352832-3-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260323110151.2352832-1-andre.przywara@arm.com>
-References: <20260323110151.2352832-1-andre.przywara@arm.com>
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>
+Subject: Re: [PATCH RFC v2 3/9] iio: frequency: ad9910: add simple parallel
+ port mode support
+Message-ID: <acEdnC9MC2fiirO3@ashevche-desk.local>
+References: <20260318-ad9910-iio-driver-v2-0-e79f93becf11@analog.com>
+ <20260318-ad9910-iio-driver-v2-3-e79f93becf11@analog.com>
+ <abru0mNtpJSPSJux@ashevche-desk.local>
+ <oqspz57p3xgzeq2lvcvhgihu3yeucufdjxurwc3dpuvj6dfu6j@kv23vp6xxud3>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [1.64 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <oqspz57p3xgzeq2lvcvhgihu3yeucufdjxurwc3dpuvj6dfu6j@kv23vp6xxud3>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-279074-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,csie.org,gmail.com,sholland.org];
-	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-279078-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[andre.przywara@arm.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,arm.com:email,arm.com:mid]
-X-Rspamd-Queue-Id: E27D82F0C49
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:dkim,ashevche-desk.local:mid]
+X-Rspamd-Queue-Id: 553A32F0BFB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Allwinner A10 and H3 SoCs cannot read the state of a GPIO line when
-that line is muxed for IRQ triggering (muxval 6), but only if it's
-explicitly muxed for GPIO input (muxval 0). Other SoCs do not show this
-behaviour, so we added a optional workaround, triggered by a quirk bit,
-which triggers remuxing the pin when it's configured for IRQ, while we
-need to read its value.
+On Mon, Mar 23, 2026 at 10:39:06AM +0000, Rodrigo Alencar wrote:
+> On 26/03/18 08:28PM, Andy Shevchenko wrote:
+> > On Wed, Mar 18, 2026 at 05:56:03PM +0000, Rodrigo Alencar via B4 Relay wrote:
+> > 
+> > > Add parallel port channel with frequency scale, frequency offset, phase
+> > > offset, and amplitude offset extended attributes for configuring the
+> > > parallel data path.
 
-For some reasons this quirk flag was copied over to newer SoCs, even
-though they don't show this behaviour, and the GPIO data register
-reflects the true GPIO state even with a pin configured to muxval 6
-(IRQ). The workaround is just more costly, but doesn't break otherwise,
-so this was probably never noticed by anyone.
-Experiments confirm that the H5, H6, H616 and A523 do not need this
-workaround, they show the GPIO line value with both muxval 0 and 6.
+...
 
-Remove the unneeded quirk from those SoC's pinctrl driver description.
-This should have no obvious effect on the H5, H6, H616 (other than
-being more efficient), but the workaround is broken for the A523, so
-it fixes (one part of the) interrupt operation there.
+> > > +	case IIO_CHAN_INFO_ENABLE:
+> > > +		val = !!val;
+> > 
+> > Only used once, why do we need this...
+> 
+> Next patches introduce more channels here, so the additions are easier to review.
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-Fixes: b8a51e95b376 ("pinctrl: sunxi: Add support for the secondary A523 GPIO ports")
----
- drivers/pinctrl/sunxi/pinctrl-sun50i-h5.c     | 2 --
- drivers/pinctrl/sunxi/pinctrl-sun50i-h6.c     | 1 -
- drivers/pinctrl/sunxi/pinctrl-sun50i-h616.c   | 1 -
- drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c | 1 -
- drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c   | 1 -
- 5 files changed, 6 deletions(-)
+Yeah, but  shouldn't be better to put this in each FIELD_PREP() as it will
+immediately show the correctness and the value range without looking backwards
+in the code?
 
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sun50i-h5.c b/drivers/pinctrl/sunxi/pinctrl-sun50i-h5.c
-index 669793c6578e..56ce0f78d4ba 100644
---- a/drivers/pinctrl/sunxi/pinctrl-sun50i-h5.c
-+++ b/drivers/pinctrl/sunxi/pinctrl-sun50i-h5.c
-@@ -533,7 +533,6 @@ static const struct sunxi_pinctrl_desc sun50i_h5_pinctrl_data_broken = {
- 	.pins = sun50i_h5_pins,
- 	.npins = ARRAY_SIZE(sun50i_h5_pins),
- 	.irq_banks = 2,
--	.irq_read_needs_mux = true,
- 	.disable_strict_mode = true,
- };
- 
-@@ -541,7 +540,6 @@ static const struct sunxi_pinctrl_desc sun50i_h5_pinctrl_data = {
- 	.pins = sun50i_h5_pins,
- 	.npins = ARRAY_SIZE(sun50i_h5_pins),
- 	.irq_banks = 3,
--	.irq_read_needs_mux = true,
- 	.disable_strict_mode = true,
- };
- 
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sun50i-h6.c b/drivers/pinctrl/sunxi/pinctrl-sun50i-h6.c
-index 517118341316..22f3d3875316 100644
---- a/drivers/pinctrl/sunxi/pinctrl-sun50i-h6.c
-+++ b/drivers/pinctrl/sunxi/pinctrl-sun50i-h6.c
-@@ -589,7 +589,6 @@ static const struct sunxi_pinctrl_desc h6_pinctrl_data = {
- 	.npins = ARRAY_SIZE(h6_pins),
- 	.irq_banks = 4,
- 	.irq_bank_map = h6_irq_bank_map,
--	.irq_read_needs_mux = true,
- 	.io_bias_cfg_variant = BIAS_VOLTAGE_PIO_POW_MODE_SEL,
- };
- 
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sun50i-h616.c b/drivers/pinctrl/sunxi/pinctrl-sun50i-h616.c
-index ecf6d2438e21..48cf114505e0 100644
---- a/drivers/pinctrl/sunxi/pinctrl-sun50i-h616.c
-+++ b/drivers/pinctrl/sunxi/pinctrl-sun50i-h616.c
-@@ -875,7 +875,6 @@ static const struct sunxi_pinctrl_desc h616_pinctrl_data = {
- 	.npins = ARRAY_SIZE(h616_pins),
- 	.irq_banks = ARRAY_SIZE(h616_irq_bank_map),
- 	.irq_bank_map = h616_irq_bank_map,
--	.irq_read_needs_mux = true,
- 	.io_bias_cfg_variant = BIAS_VOLTAGE_PIO_POW_MODE_CTL,
- };
- 
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
-index 69cd2b4ebd7d..462aa1c4a5fa 100644
---- a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
-+++ b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
-@@ -26,7 +26,6 @@ static const u8 a523_r_irq_bank_muxes[SUNXI_PINCTRL_MAX_BANKS] =
- static struct sunxi_pinctrl_desc a523_r_pinctrl_data = {
- 	.irq_banks = ARRAY_SIZE(a523_r_irq_bank_map),
- 	.irq_bank_map = a523_r_irq_bank_map,
--	.irq_read_needs_mux = true,
- 	.io_bias_cfg_variant = BIAS_VOLTAGE_PIO_POW_MODE_SEL,
- 	.pin_base = PL_BASE,
- };
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c
-index 7d2308c37d29..b6f78f1f30ac 100644
---- a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c
-+++ b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c
-@@ -26,7 +26,6 @@ static const u8 a523_irq_bank_muxes[SUNXI_PINCTRL_MAX_BANKS] =
- static struct sunxi_pinctrl_desc a523_pinctrl_data = {
- 	.irq_banks = ARRAY_SIZE(a523_irq_bank_map),
- 	.irq_bank_map = a523_irq_bank_map,
--	.irq_read_needs_mux = true,
- 	.io_bias_cfg_variant = BIAS_VOLTAGE_PIO_POW_MODE_SEL,
- };
- 
+> > > +		switch (chan->channel) {
+> > > +		case AD9910_CHANNEL_PARALLEL_PORT:
+> > > +			tmp32 = FIELD_PREP(AD9910_CFR2_PARALLEL_DATA_PORT_EN_MSK, val);
+> > 
+> > ...and not just here?
+> > 
+> > > +			return ad9910_reg32_update(st, AD9910_REG_CFR2,
+> > > +						   AD9910_CFR2_PARALLEL_DATA_PORT_EN_MSK,
+> > > +						   tmp32, true);
+> > > +		default:
+> > > +			return -EINVAL;
+> > > +		}
+> 
+> -- 
+> Kind regards,
+> 
+> Rodrigo Alencar
+
 -- 
-2.43.0
+With Best Regards,
+Andy Shevchenko
+
 
 
