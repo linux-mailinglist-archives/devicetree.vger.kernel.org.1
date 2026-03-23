@@ -1,158 +1,177 @@
-Return-Path: <devicetree+bounces-279303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279305-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +EqxLnB4wWkQTQQAu9opvQ
-	(envelope-from <devicetree+bounces-279303-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 18:29:20 +0100
+	id UDcKHimAwWl2TgQAu9opvQ
+	(envelope-from <devicetree+bounces-279305-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 19:02:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9821D2F9F2D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 18:29:20 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5216B2FACDD
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 19:02:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BB818304FE63
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 17:08:05 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 20F3E30F20A1
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 17:08:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6807F3C5530;
-	Mon, 23 Mar 2026 17:07:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 720213C3C18;
+	Mon, 23 Mar 2026 17:08:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TERubTVO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6A323C1402
-	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 17:07:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EC143C13F5;
+	Mon, 23 Mar 2026 17:08:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774285670; cv=none; b=QOLrkub+PiZ82g0OsxD2Z3st1tG26D5eY45ltyMXUPWpRTvJe6wOtLHF30tFktb7M+kzqA5ZTmjKT08azcpivkaundJftMWwcfhR8Pp+rBRQK+dEDoVB+6MlmlbUP5MViOL+fdm9LYcliYMSwDTtIlL9gDC3D+59CxZTlcslMDQ=
+	t=1774285719; cv=none; b=Tl37TLLvXoLKW0mUKvYYvHylbFuwvm+s4/EgzmrTQqpcX4jWedyv6VXoqx92hPWq0csPNOqxC7//IhtwWhC+lrwhhxGEJ9hhqPtA3qJHwinKNvCjXNIomTBnEnCVhr3knEIA0RCcpDMGOXXCDPbpPgnp78YtKIV5elAl0wEDC5w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774285670; c=relaxed/simple;
-	bh=9w/05BIl6C5UPAlKrmDSRzbmSzN+L5hTClA52vqlcgI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dC9jiU1R0RENwKgJPd2EDCja8NZJrsHINjIdqhDExfkSppawZd12qyu5rayixnw1uv+wIjlT+BpuDe4w5uBP7o4K46XMbuhq8JscDHA5WUh7nS6aRunzCrei2ao0uyQWi7gcfhIdjUSFK/FMx/KMZEm93BWtdKtWUU9U7Y2YEoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5a27c021b58so398984e87.2
-        for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 10:07:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774285664; x=1774890464;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9w/05BIl6C5UPAlKrmDSRzbmSzN+L5hTClA52vqlcgI=;
-        b=mZthpQOPnXXwFoJB08lZpQZpJNhaM9zJeShHdDXARh7riA54ourCvVleD0bGDBPphd
-         2mXKkPOWu3AwwxZkBIAYeA3B9aL1iJ2D9maxZBI4jrcVmTrkravX5FDUPoQ/dqsh/SLT
-         No61Y0OWL38TLjmnviiHTKeJ6BitTImJyehUAAzPc/Dk72rdQTZtwCqljgSNKMdda031
-         5rD8sgkfOidkGgD33kgKK4nNTxr/nUUsJGtt/8Mk3nLr3NBOUIabwPk6smUB3ZmkGhb8
-         hJR1p5Aj/h8ioHIZ8vYtk6ZfFAUwlYAnBF/GU/+9S73w/87xOiPMOwtl9BFoD/d1feM9
-         8/hQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXpC9gnBzkMrP0opbeoyonpIYF+qSCl48Wgq9vB4ndyfzTUrt5uMXqbz2PQ5oApSFs+gFZqR260Ii32@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9Q6xNs+01rep3gGyQ6eCu+1U7cJT9ym7Kr0X+GiW6IwL1MP/G
-	UMpuBz9uz+ZxUA46w7pqjbeNFW3Cs3sO+nJ0nXlIc8FUtTl1QUvbxb4dmhObJBft
-X-Gm-Gg: ATEYQzzdJc7Nz7685m4+9eDpaO/hfUgjtOe2fPi/Owy2US/42+fD6gDdO5dzP5o2bDa
-	UKkfNY4E9Bxwzegc7hcIQ3j9f8w80Ph5O2M6DjBRAP2ERcv5ZE3hgEOX/YcDQ6dqHmXzTOHgckK
-	Gnp8eozeXtH5q1Jx1uXNGs4wM+7ljRLZ+QRkGLboYil462dnvYrr62HdyP0BzGCbdrpv5gYrM86
-	dMWd+243ctawWMjM7a8vuY53GRXWpPAemBS5E4wmzh8IqmOFjWziPC7lXV6lG4htnHJbywDuDGj
-	38ClPkHMgUio2TFHSawRmL3r7EWb/JTNHt58MH4+nUy7BDeXs5LWS48/v6PzolFQiuGVD3Q6QmG
-	SuFZFRxusjcd3masMsogEwSgL8Q2iyVDlEk021OYJYPnRXP9q8HnHz7tLuGmF2xA6HUak2A4qCm
-	LLNOK76J2N2MOnNhME4cBCmLUqqqO5iukIVwsFGbIFI2AdrR6HxTsH0wa/F+eXAI+JrQ==
-X-Received: by 2002:a05:6512:31d5:b0:5a1:5762:4cfa with SMTP id 2adb3069b0e04-5a285b3fd17mr4383637e87.21.1774285663993;
-        Mon, 23 Mar 2026 10:07:43 -0700 (PDT)
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com. [209.85.208.179])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a28519f958sm2593394e87.19.2026.03.23.10.07.42
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Mar 2026 10:07:43 -0700 (PDT)
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-38a723b2b29so2905211fa.2
-        for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 10:07:42 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV4dvERE805sveWvRgW1fJUflXpvUYlDKpppHzh5+n3pHHYInExNz0z2MsfCouHp7otyd+1zD5TmPQW@vger.kernel.org
-X-Received: by 2002:a2e:9bd2:0:b0:38b:f0f0:e3c0 with SMTP id
- 38308e7fff4ca-38bf963ddd7mr33026081fa.9.1774285662722; Mon, 23 Mar 2026
- 10:07:42 -0700 (PDT)
+	s=arc-20240116; t=1774285719; c=relaxed/simple;
+	bh=dPmDSxkVnarJ68kZsni6DorU2/7rZzSUc1e9Nw0R/e8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=iVLSYzB9x5AnY93XI32xd6mMHHQ/V43ITi3HbdmE+fPXDDcbUSd3NjV+8f/Laf4bAfUuFSSaXag4OkdYzL+kiekVV4kV8CES4QXuuP9zNKOgckRzex9fXRErk1SA5x6DJdAV0meuGmH1BzBKpgihRmdCC57vTStNoRDxovpc7Ac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TERubTVO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DEBD5C4CEF7;
+	Mon, 23 Mar 2026 17:08:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774285718;
+	bh=dPmDSxkVnarJ68kZsni6DorU2/7rZzSUc1e9Nw0R/e8=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=TERubTVOquOh9RtVj2AYAWQjz24ue1gwdlNJFJsstaVo6X0QXvRAV75XEweUtL3TE
+	 jKT2nUxp3mewLu1SqyiIY5c890pZ9IilWcCK/ZZ+2ClZ27IBSNjUwJYAGvI/8NHGKB
+	 wJ5Ms02/LsJIdziCgg8CFzREWD3lvW3wpwduz5yTQ4qKK9X5zMxGPI1LJq8AxsjCT1
+	 1ml7CxkvbOM/pEIXxlghWLnv4g8YuGJzkykIbQKZJ8qpK3425rVLgsfATgHU7Ca2Yi
+	 zUA1rOdhHisQQdF6J7BJ2AefT7L9PyXDfv8X8ePKs7prMgUjJvVFM2uEfMDX1Go/xi
+	 MbAeb1M5ngfPA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C8BB6F483D5;
+	Mon, 23 Mar 2026 17:08:38 +0000 (UTC)
+From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
+Subject: [PATCH v3 0/2] drm/panel: Add panel driver for ChipWealth CH13726A
+ based panels
+Date: Mon, 23 Mar 2026 12:08:31 -0500
+Message-Id: <20260323-ch13726a-v3-0-e28b6f97fe80@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260323110151.2352832-1-andre.przywara@arm.com> <20260323110151.2352832-3-andre.przywara@arm.com>
-In-Reply-To: <20260323110151.2352832-3-andre.przywara@arm.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Tue, 24 Mar 2026 01:07:30 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65RBGK4Tb0=2D=8_37AQDt2GL_kEwd1OjqQ6ziRWqy4tQ@mail.gmail.com>
-X-Gm-Features: AQROBzA5T8F1z2ogDDbAkrNKbAgfLdiandHWSkKdFT2S7GO1Ch51csLHtutzo-M
-Message-ID: <CAGb2v65RBGK4Tb0=2D=8_37AQDt2GL_kEwd1OjqQ6ziRWqy4tQ@mail.gmail.com>
-Subject: Re: [PATCH 2/5] pinctrl: sunxi: Remove unneeded IRQ remuxing for some SoCs
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Michal Piekos <michal.piekos@mmpsystems.pl>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [0.14 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/02Py26DMBBFfwV5XVfjMX7Aqv9RZWHscbBUoMEUJ
+ Yr497pQiSzvaM59PFmmOVFmbfVkM60pp2ksQr5VzPduvBJPoWiGgBoQgfteSIPacdV4rY0NSgb
+ Lyvv3TDHdd6vPy6Fnuv0Ux+U4ss5l4n4ahrS0lbEqAnUYrQrkOzJeUGwcNYiNFBFEU8fokdhrk
+ 7Y6egjD3WPkN5+tUsCF9mA6LQOhbtea/cX3KS/T/NiHrWLP/9+A54ZVcOCkQARjSYByH9fBpa/
+ 3UnI3WfEEZQk9QSwgWudq3fmgA7yC27b9Aqa0rxNYAQAA
+X-Change-ID: 20260220-ch13726a-59c6678d53d8
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Teguh Sobirin <teguh@sobir.in>, 
+ Aaron Kling <webgeek1234@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774285718; l=2117;
+ i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
+ bh=dPmDSxkVnarJ68kZsni6DorU2/7rZzSUc1e9Nw0R/e8=;
+ b=jqAv7KMVuVgfPPR3QtSR2+udFYVwvNa+Tlci/MAv13jRE4tuiboaeD7hwdiTr3s4s/1gzgagU
+ rLBFSn+LWUiBmAHoKUwEzHy+lp1D9x/CKGh0sOLeQ0EnkZRkWOSTGo0
+X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
+ pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
+X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
+ auth_id=342
+X-Original-From: Aaron Kling <webgeek1234@gmail.com>
+Reply-To: webgeek1234@gmail.com
+X-Spamd-Result: default: False [1.34 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[csie.org : SPF not aligned (relaxed), No valid DKIM,quarantine,sampled_out];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org,mmpsystems.pl,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	TAGGED_FROM(0.00)[bounces-279303-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-279305-lists,devicetree=lfdr.de,webgeek1234.gmail.com];
+	FREEMAIL_TO(0.00)[linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	HAS_REPLYTO(0.00)[wens@csie.org];
-	RCVD_COUNT_FIVE(0.00)[6];
-	REPLYTO_ADDR_EQ_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wens@csie.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_REPLYTO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[webgeek1234@gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,sobir.in,gmail.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:email,mail.gmail.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9821D2F9F2D
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 5216B2FACDD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Mar 23, 2026 at 7:02=E2=80=AFPM Andre Przywara <andre.przywara@arm.=
-com> wrote:
->
-> The Allwinner A10 and H3 SoCs cannot read the state of a GPIO line when
-> that line is muxed for IRQ triggering (muxval 6), but only if it's
-> explicitly muxed for GPIO input (muxval 0). Other SoCs do not show this
-> behaviour, so we added a optional workaround, triggered by a quirk bit,
-> which triggers remuxing the pin when it's configured for IRQ, while we
-> need to read its value.
->
-> For some reasons this quirk flag was copied over to newer SoCs, even
-> though they don't show this behaviour, and the GPIO data register
-> reflects the true GPIO state even with a pin configured to muxval 6
-> (IRQ). The workaround is just more costly, but doesn't break otherwise,
-> so this was probably never noticed by anyone.
-> Experiments confirm that the H5, H6, H616 and A523 do not need this
-> workaround, they show the GPIO line value with both muxval 0 and 6.
->
-> Remove the unneeded quirk from those SoC's pinctrl driver description.
-> This should have no obvious effect on the H5, H6, H616 (other than
-> being more efficient), but the workaround is broken for the A523, so
-> it fixes (one part of the) interrupt operation there.
->
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> Fixes: b8a51e95b376 ("pinctrl: sunxi: Add support for the secondary A523 =
-GPIO ports")
+This driver is based on the one by Teguh Sobirin [0], cut down to only
+support the AYN Thor bottom panel.
 
-Acked-by: Chen-Yu Tsai <wens@kernel.org>
+Due to [1], the AYN vendor description patch has been folded into the
+AYN QCS8550 dt series. Which means this series now depends on said
+series and it must be picked up before this.
+
+[0] https://github.com/AYNTechnologies/linux/commit/d0ff75b09e66023c5f88992706dee4601aa7a437
+[1] https://lore.kernel.org/linux-arm-msm/c7fb3f89-6574-4761-9ef2-2fdf6d4801b5@kernel.org
+
+Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+---
+Changes in v3:
+- Reword patch 1 commit message for clarity
+- Order properties properly in patch 1
+- Track vendor description dependency series change
+- Link to v2: https://lore.kernel.org/r/20260317-ch13726a-v2-0-28aa46bcd6d0@gmail.com
+
+Changes in v2:
+- Add Neil Armstrong to binding maintainer list
+- Add 120hz mode, which required a minor restructure of the driver
+- Link to v1: https://lore.kernel.org/r/20260222-ch13726a-v1-0-e501d78e105a@gmail.com
+
+---
+Aaron Kling (1):
+      dt-bindings: display: panel: Add ChipWealth CH13726A AMOLED driver
+
+Teguh Sobirin (1):
+      drm/panel: Add panel driver for ChipWealth CH13726A based panels
+
+ .../display/panel/chipwealth,ch13726a.yaml         |  65 ++++
+ drivers/gpu/drm/panel/Kconfig                      |  11 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-chipwealth-ch13726a.c  | 339 +++++++++++++++++++++
+ 4 files changed, 416 insertions(+)
+---
+base-commit: 785f0eb2f85decbe7c1ef9ae922931f0194ffc2e
+change-id: 20260220-ch13726a-59c6678d53d8
+prerequisite-change-id: 20260217-ayn-qcs8550-16c07b63de26:v4
+prerequisite-patch-id: 042cab8f04748207ba5395dd0f23c445955aaa2b
+prerequisite-patch-id: 4e13275bfaa4f838a627fe8dfa3d4cb8972fc5b4
+prerequisite-patch-id: 16c130bcfd7c787b91e828b8e600bd0d740f937e
+prerequisite-patch-id: 4b7e6b017349c386f54e221790da4392fe066ff3
+prerequisite-patch-id: 3844bef2eda3cf59031b1d131eb6ba9295629bb4
+prerequisite-patch-id: bcb261e40f0386b91a09eb4080cbdf74d21f3df2
+
+Best regards,
+-- 
+Aaron Kling <webgeek1234@gmail.com>
+
+
 
