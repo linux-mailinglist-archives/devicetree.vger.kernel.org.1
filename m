@@ -1,212 +1,192 @@
-Return-Path: <devicetree+bounces-279081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279076-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eJA4ADgewWmTQwQAu9opvQ
-	(envelope-from <devicetree+bounces-279081-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 12:04:24 +0100
+	id yBD4JOMdwWlaQwQAu9opvQ
+	(envelope-from <devicetree+bounces-279076-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 12:02:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1F592F0C8B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 12:04:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 410D42F0C28
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 12:02:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C65FD3026AAC
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 11:03:07 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 42ACD30117EA
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 11:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55C4B3947AD;
-	Mon, 23 Mar 2026 11:02:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4FD6395D85;
+	Mon, 23 Mar 2026 11:02:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Q8EQxF/q";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="J5nDWRqC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D0F338838A;
-	Mon, 23 Mar 2026 11:02:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 845A2394796
+	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 11:02:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774263737; cv=none; b=RN6q2m5yB0xUDOfMKi1viU/cXc+5amvQfwFbyJ+N6hznSmTLdsdc5BDBH01fN8ZPYRF/449nOvhAZLPUJtxnYPwPxCszpN3M5sOO1laBsT2aU7LrZGtuIUVWAhXm9GHViJJAtPEruip4Ay9bp3+6dlZuwKgONSgxKIziox7BU5Y=
+	t=1774263722; cv=none; b=Ecu9HtxE8L6Ez/jN1VqSPVkngZivS+cVTr6dTa5ZfpOA6BUXbGmy9zjpsp7p1lwgRvvTXLTSOZQHtd450T8QB4tcSen1RyJmcNB7nxrX0KIbcYZiRP31Th2qoSWQkLMS87u7EPsi5WvcgQEFhmxfh/OhAvPfKD8ct8G1Dmr6TaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774263737; c=relaxed/simple;
-	bh=BdcEra9FbAB3SE5ZyznxdSUBQYhHbt1CSIJp0DdTRCo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MON7eXG8tG0y33k4kINdSplsr1mHYy0SiSBpnMZLEVvKTT38bf9fwYX28jHWHqcnrmw2bcgea9M0ePLMe7rVSOE5WGd+XDV57LRgmSi6nRajwef/NCk1NSQyAWEDTLbeYZu/XvbmfiXNJAltrzsYNpv3pwBv5uEhbEehJVd+gJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A37F6169E;
-	Mon, 23 Mar 2026 04:02:08 -0700 (PDT)
-Received: from e142021.fritz.box (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C4FD23F73B;
-	Mon, 23 Mar 2026 04:02:11 -0700 (PDT)
-From: Andre Przywara <andre.przywara@arm.com>
-To: Linus Walleij <linusw@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: Michal Piekos <michal.piekos@mmpsystems.pl>,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 5/5] pinctrl: sunxi: a523: add missing IRQ bank (plus old DT workaround)
-Date: Mon, 23 Mar 2026 12:01:51 +0100
-Message-ID: <20260323110151.2352832-6-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260323110151.2352832-1-andre.przywara@arm.com>
-References: <20260323110151.2352832-1-andre.przywara@arm.com>
+	s=arc-20240116; t=1774263722; c=relaxed/simple;
+	bh=Qf/SN4zw2xWU8ye0fNf7azjg6g0yfcgHYpQ+XwHTqHY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oLfDSNeENj1Cp+e/0MbdydL3UJtGN4iwpJlItSgWf6K8JHuvr69qZUlYtPtStr4N+HfeD5P1CS3kIHp9cKOf85W5EWB48aJd5ivyDrv7ozNcEk+VM4pfLu8rNbL8/N4I1JEnSqTLtHsA/wkrdGAyEEyyrA47WqbEBAurIRVEEBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Q8EQxF/q; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=J5nDWRqC; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62N7LuGK1195938
+	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 11:02:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	oV1y3FgGmR39hQDlhY9NIDlejN9+NoS7s32ITXTMSSg=; b=Q8EQxF/q2qBn/1+7
+	VhjIRX7UMnc+FO1L4p+Bn4FV0B7xwfwPs28PCP8u5tCT3iGdzqIZzleFXAnMb+MU
+	O/gV3Vf47lz4amtpZ8+9qgf6jIM6Z2VtQgd0GEKW1o74XzeDXOGQMzbbCs0hqzn2
+	moX7hBbt2hRaR1KrqklgeOueVJgmwFjrdT7l6WcZdIOJarKKltNzumekZIN+eJpg
+	C7hDElY9W0Prq/FXy3qaNtW1E4QwAQ2ppNNs0O4c2L3wpX2hKWFlpiHov91ne0aV
+	s8aTcRqmIokZ2srBDO/9Ai22t9jpO93cwS1TkfPjDPrhYJQL7hpxDAkcJqleGksy
+	wPZSFg==
+Received: from mail-vk1-f197.google.com (mail-vk1-f197.google.com [209.85.221.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d1kq5w266-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 11:02:00 +0000 (GMT)
+Received: by mail-vk1-f197.google.com with SMTP id 71dfb90a1353d-56c9dc1e280so803027e0c.0
+        for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 04:02:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1774263719; x=1774868519; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oV1y3FgGmR39hQDlhY9NIDlejN9+NoS7s32ITXTMSSg=;
+        b=J5nDWRqCAdNl5Pf0SofklmEu/l52i9jhA/MOJoBlIGyrAY0WQBtYY3/jT0Kslim/Bj
+         aR0wv3S7XrSBvXYA1EaRUbizdixIX+6BMlTpbBPtbeYJwKPK6wqVM0XqCdZQbxJw+T/k
+         mp6Tm+WHR4BgpaI65n2+JckZBWhdBb16iwK+Gg7OWnRNabls/m4Fn2r+wISDoz9dFbiH
+         y8ldK9uY7hLro5hzGXSiZ0H/zBLk7cyWq5+dZ67jaj1b5tvFatUC3ChOeOyeViRqBUfI
+         w060ZwIJvpMiFxgDCE1xbk05LLYs+eWciKGEhTpFk+0CUrJNjcEUcx6W9RG7BOjAHhm1
+         aFkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774263719; x=1774868519;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oV1y3FgGmR39hQDlhY9NIDlejN9+NoS7s32ITXTMSSg=;
+        b=a3NsTsqXVgz8FNwUKDaPvPGbewOx61C+8v9iI7D3fr1wUxy54vEG3cJPtPg/EUshwc
+         7UwcP9qmkMM3BeWVRwgiQe7VKodAxEiDdmQE8ip2lwwLuGg4ex8Rknq0NT+09bk+jCGT
+         j0bexCY61MiV57feH+EnTP441oQ1DSaaB+78yyTQVpo5n9RqZkMQyh4Kr8CUDxRGYMLM
+         XpxCSN3PHOmr49vNak4HTGoBBvk8ExsbTCrCQHCrthdFd/UrQW4hR5GSPFML+Palu/ls
+         8cSR/WoWU60FIq7xlXVF5qF+IGwRQ8fme+BFwfP0cZbWR8l450+wr0sHZWI61/j2oy8n
+         iTGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX6dK5UcG/1+31myspY1gVPFf3KboElVcnfg7M223IeepO+a0sntKk4nYUSh8Fsth5CKrKQBYMxtnBZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzTtfn0IObVx0asNatgheF05BmPqsKcmGigoU3f8dcg0U8nOiAk
+	mwsodCDypQ2EORzriPiwEN/+p33ubrUB7kWHl5UuFTq38PQjRWmBwLyiRCJvVdu8KonyZaQMoJU
+	3HCJVMqZ0M2vIzLWl7iGKqS1RLDwyawhOZQWwYnNpzymfd3FbLelSionOsgivs6KZ
+X-Gm-Gg: ATEYQzxXGeB5BFKOFeNB/ZcFGaa8Nlhp3ftS9pA/QBA/iPKUurZ7oTz80G3itCX4qoP
+	Kfyw/YAjmuG1JxD3Q2cXYJdYZCS9GICulT0yjBijJVYhHvxc+dw0CHXzHcfA8ODvBw0UN+u7qIi
+	3ISvH+rMQ9v4clXZTTH8cPOFIucfZ907ILhf2KtFXGBMyLosl4SLnnXQopmMODFdb2upH89hdqC
+	KVYn73ke7GWo7lhGmkyYPlgxeyQPgE5BbQyKEMzqM5XcTEx/5PqSBMGCq3RrjMOzZlwVMe2lVLu
+	uCJsnzTu5ECmYNIqzP9OhZxKAladthI71QqA9OdJ6+5RptTnTMu6WCfh3c8hbbC2fApY+K+RUl6
+	g/CR3MLb3eirxGCHQDD4TCggZ2s7i61aBdLgv0In9Oqc6kH976mo7uF5M02CPTuQWIGogD9QpYb
+	vD7iU=
+X-Received: by 2002:ac5:c0cf:0:b0:56c:ce6a:90c7 with SMTP id 71dfb90a1353d-56cde437c76mr2186003e0c.3.1774263719479;
+        Mon, 23 Mar 2026 04:01:59 -0700 (PDT)
+X-Received: by 2002:ac5:c0cf:0:b0:56c:ce6a:90c7 with SMTP id 71dfb90a1353d-56cde437c76mr2185959e0c.3.1774263718977;
+        Mon, 23 Mar 2026 04:01:58 -0700 (PDT)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b98335de182sm473308566b.38.2026.03.23.04.01.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Mar 2026 04:01:58 -0700 (PDT)
+Message-ID: <e5a8c3d0-7f7f-420f-a5fa-cb177d321112@oss.qualcomm.com>
+Date: Mon, 23 Mar 2026 12:01:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [1.64 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/5] dt-bindings: usb: qcom,snps-dwc3: Add constraints
+ for SM4250
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260323-dt-bindings-snps-qcom-dwc3-cleanup-v2-0-3bcd37c0a5b5@oss.qualcomm.com>
+ <20260323-dt-bindings-snps-qcom-dwc3-cleanup-v2-4-3bcd37c0a5b5@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260323-dt-bindings-snps-qcom-dwc3-cleanup-v2-4-3bcd37c0a5b5@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=GNoF0+NK c=1 sm=1 tr=0 ts=69c11da8 cx=c_pps
+ a=JIY1xp/sjQ9K5JH4t62bdg==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=5GD08sD1clYvvWNuh_EA:9 a=QEXdDO2ut3YA:10 a=tNoRWFLymzeba-QzToBc:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzIzMDA4NSBTYWx0ZWRfX7zTDUlwWHWeU
+ gV31SgJxJ93/Y6pU6HIOTn2Bs26z8R/bn26Mz+qsQ+VOn5hPnQc7lgm+lTIFimyXP8y+VROcF+w
+ w67qA23+tmBlrB4WMIjLID0kDrq3hxXSp6q2n1HLjzISVBjTPg6Iovsq65k2gBx08hSEv+WbV9H
+ DfW57AMmL1LH48fFaR6KW5Bdn63PME+GGjFRz3s0ajLspGTNSqvas8OW5nmcaP5vRFiGm9IWIGW
+ rAuD9BJTmNEXbr2eGj1ACfsEyROK5ikZ0byjMT0NvDjXUPF8Zaz6sZtFXppmwIacMDk46u5ZE/f
+ RLRZLNpFfFQ1rFYgo/qj3mCvdNlzvzzdWf83xgVgLil1aLatoB3zGoI8Y9uhMoqbW0bfn1SNXZ5
+ W3hI+SslRWT0+L2XA3hQOT+GQvW5jYZTO4KRzgvarkgNBrWfoeSqPojL4xvaaK1koqsBfUsVzl0
+ PASl2lPPnG6AUEG4I3g==
+X-Proofpoint-ORIG-GUID: 89kuO9qhH32g6KS-QTv-iYqMA-BgwXxd
+X-Proofpoint-GUID: 89kuO9qhH32g6KS-QTv-iYqMA-BgwXxd
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-23_03,2026-03-20_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 lowpriorityscore=0 clxscore=1015 suspectscore=0
+ spamscore=0 adultscore=0 bulkscore=0 phishscore=0 impostorscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
+ definitions=main-2603230085
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,csie.org,gmail.com,sholland.org];
-	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-279076-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-279081-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[andre.przywara@arm.com,devicetree@vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:email,arm.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B1F592F0C8B
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 410D42F0C28
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Allwinner A532 SoC implements 10 GPIO banks, each of which is
-interrupt capable. However the first bank (PortA) is skipped, so the
-indicies of those banks range from 1 to 10, not 0 to 9.
-We described the skipped bank correctly, but missed that for the IRQ
-banks, where we rely on the IRQ bank index to be aligned with the MMIO
-register offset, starting at 0x200.
+On 3/23/26 9:54 AM, Krzysztof Kozlowski wrote:
+> The qcom,sm4250-dwc3 is already documented in top level part, but it
+> misses specific constraints for clocks.  The SoC is derivative of SM6115
+> (or vice versa), so the interrupts part is incorrectly placed and should
+> be same as for SM6115.
 
-Correct that by increasing the number of IRQ banks to 11, to cover both
-the first skipped one, but also the last one (PortK). This fixes a bug
-where the interrupt numbers would be off-by-one, due to that
-mis-enumeration.
-The big caveat is that now old DTs break the kernel, since they only
-provide 10 interrupts, and the driver bails out entirely due to the last
-missing one. So add a workaround for this particular case, where we
-detect the requirement for 11 banks, but only 10 interrupts provided,
-and continue with 10 IRQs, albeit emitting a warning about a DT update.
-This would still be broken in terms of interrupt assignment, but it was
-broken the whole time before, so it's not a regression.
+They're the same SoC with a different speedbin fuse value for the CPU/GPU,
+I'd say drop this binding altogether
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c |  2 +-
- drivers/pinctrl/sunxi/pinctrl-sunxi.c       | 22 +++++++++++++--------
- 2 files changed, 15 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c
-index b6f78f1f30ac..a1d157de53d2 100644
---- a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c
-+++ b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c
-@@ -17,7 +17,7 @@ static const u8 a523_nr_bank_pins[SUNXI_PINCTRL_MAX_BANKS] =
- /*	  PA  PB  PC  PD  PE  PF  PG  PH  PI  PJ  PK */
- 	{  0, 15, 17, 24, 16,  7, 15, 20, 17, 28, 24 };
- 
--static const unsigned int a523_irq_bank_map[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-+static const unsigned int a523_irq_bank_map[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
- 
- static const u8 a523_irq_bank_muxes[SUNXI_PINCTRL_MAX_BANKS] =
- /*	  PA  PB  PC  PD  PE  PF  PG  PH  PI  PJ  PK */
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.c b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-index 6a86b7989b25..ffee79397590 100644
---- a/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-+++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-@@ -19,6 +19,7 @@
- #include <linux/irqdomain.h>
- #include <linux/of.h>
- #include <linux/of_clk.h>
-+#include <linux/of_irq.h>
- #include <linux/platform_device.h>
- #include <linux/regulator/consumer.h>
- #include <linux/slab.h>
-@@ -1582,6 +1583,7 @@ int sunxi_pinctrl_init_with_flags(struct platform_device *pdev,
- 	struct sunxi_pinctrl *pctl;
- 	struct pinmux_ops *pmxops;
- 	int i, ret, last_pin, pin_idx;
-+	int num_irq_banks;
- 	struct clk *clk;
- 
- 	pctl = devm_kzalloc(&pdev->dev, sizeof(*pctl), GFP_KERNEL);
-@@ -1715,16 +1717,20 @@ int sunxi_pinctrl_init_with_flags(struct platform_device *pdev,
- 		goto gpiochip_error;
- 	}
- 
--	pctl->irq = devm_kcalloc(&pdev->dev,
--				 pctl->desc->irq_banks,
--				 sizeof(*pctl->irq),
--				 GFP_KERNEL);
-+	num_irq_banks = pctl->desc->irq_banks;
-+	/* Workaround for old A523 DT, exposing one less interrupt. */
-+	if (num_irq_banks == 11 && of_irq_count(node) < 11) {
-+		num_irq_banks = 10;
-+		pr_warn("Not enough PIO interrupts, please update your DT!\n");
-+	}
-+	pctl->irq = devm_kcalloc(&pdev->dev, num_irq_banks,
-+				 sizeof(*pctl->irq), GFP_KERNEL);
- 	if (!pctl->irq) {
- 		ret = -ENOMEM;
- 		goto gpiochip_error;
- 	}
- 
--	for (i = 0; i < pctl->desc->irq_banks; i++) {
-+	for (i = 0; i < num_irq_banks; i++) {
- 		pctl->irq[i] = platform_get_irq(pdev, i);
- 		if (pctl->irq[i] < 0) {
- 			ret = pctl->irq[i];
-@@ -1733,7 +1739,7 @@ int sunxi_pinctrl_init_with_flags(struct platform_device *pdev,
- 	}
- 
- 	pctl->domain = irq_domain_create_linear(dev_fwnode(&pdev->dev),
--						pctl->desc->irq_banks * IRQ_PER_BANK,
-+						num_irq_banks * IRQ_PER_BANK,
- 						&sunxi_pinctrl_irq_domain_ops, pctl);
- 	if (!pctl->domain) {
- 		dev_err(&pdev->dev, "Couldn't register IRQ domain\n");
-@@ -1741,7 +1747,7 @@ int sunxi_pinctrl_init_with_flags(struct platform_device *pdev,
- 		goto gpiochip_error;
- 	}
- 
--	for (i = 0; i < (pctl->desc->irq_banks * IRQ_PER_BANK); i++) {
-+	for (i = 0; i < (num_irq_banks * IRQ_PER_BANK); i++) {
- 		int irqno = irq_create_mapping(pctl->domain, i);
- 
- 		irq_set_lockdep_class(irqno, &sunxi_pinctrl_irq_lock_class,
-@@ -1751,7 +1757,7 @@ int sunxi_pinctrl_init_with_flags(struct platform_device *pdev,
- 		irq_set_chip_data(irqno, pctl);
- 	}
- 
--	for (i = 0; i < pctl->desc->irq_banks; i++) {
-+	for (i = 0; i < num_irq_banks; i++) {
- 		/* Mask and clear all IRQs before registering a handler */
- 		writel(0, pctl->membase +
- 			  sunxi_irq_ctrl_reg_from_bank(pctl->desc, i));
--- 
-2.43.0
-
+Konrad
 
