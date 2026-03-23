@@ -1,387 +1,193 @@
-Return-Path: <devicetree+bounces-279386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279388-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qGk4Ltq4wWm/UwQAu9opvQ
-	(envelope-from <devicetree+bounces-279386-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 23:04:10 +0100
+	id CBrvNGy7wWm/UwQAu9opvQ
+	(envelope-from <devicetree+bounces-279388-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 23:15:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 339D82FE0A6
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 23:04:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8239F2FE254
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 23:15:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3800A3048119
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 22:03:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5DF7B3050D5B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 22:12:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53F1382F1D;
-	Mon, 23 Mar 2026 22:03:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E76A03822BB;
+	Mon, 23 Mar 2026 22:12:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="P0mJSMDS"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IpaDkzgE";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gINTp707"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB14A38229A;
-	Mon, 23 Mar 2026 22:03:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4DC5382299
+	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 22:12:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774303417; cv=none; b=WWMSe582GhfbPm6sWrE2nbtbDgYXVLeMgUWsC/2cuLkt+beRFkSZGb5cSbKTulGOOhCpAar/AP1CIMO2WfHjrMcLKzoXozwjBjRk2004iPinChu9n/2x3mjWxQZQfUQI4yMy61nnYtUtaIy8b1BY63v2kY4H5nDILST+VLtXQqM=
+	t=1774303933; cv=none; b=PZDBmjzXmh4STh4Z4XfcuB8ZWeaoq55J5JnGMt2Z4J1rbehSDIgsLdKH61YfjakAvSWzree2TDe1THBssy0VQx4RkVJLMtS8nf+u2lQ1xAxphSuIkZS6KAbbaEs26rJ2ku/1Uql18FLLTIprQUIRMsfdiPNPlUCdoUDj3difPiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774303417; c=relaxed/simple;
-	bh=UZjeVFStTf/acSEHei47GjGfs3cX+oD/NFp0EeNBCM8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=c0tlo09jorjA/lE2E54wPfe3teZYO/knJ8pbSnUL43NgxDGE1QdjsgBGySYCoFQkzB+Lc1hAs+aKHWm+25nM2qsX91Y9zbA99mb15t4+QJzSGljIdlCq758C0KbJ7p09WMpyGKVdfgQXi4YO+FVamGo+BrzpbYBwHDtjewCzVgs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=P0mJSMDS; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1774303414; x=1805839414;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=UZjeVFStTf/acSEHei47GjGfs3cX+oD/NFp0EeNBCM8=;
-  b=P0mJSMDScqNDLBWSuJRsmeUOBS5ENZJY+Vjd7iKv7jOqt/xjXfiK15w3
-   C4/tfMIjUh8SuUwL7ufMM0kg5c1lT1OpWvMdFhapz5hCtY3wKdF6zr7K1
-   Zk08gKW7DDNcLeXlOHb6YJNI0eb4ovKEskuInXvoATsSWwrfmlosVKsif
-   NN0NOLTmjYqarOn7CsaM0ikj+jtG4Tj6ajCe6dPaOEGwn2Cc+lhydrq2B
-   q7CjPa3xWq+DTDguLlJzWTefbgTq1yllZCzFKcOlUUNIIo1AiuiHKDyBd
-   ajhg8KrpQmG7XboexN/U5hvV9FVDmkuHSs4SsSP3rQo5nhf0g16UmzXBM
-   Q==;
-X-CSE-ConnectionGUID: sn68fJ6gSty0fdZcGeqDMQ==
-X-CSE-MsgGUID: 4O6L8eGfR16+4O0pwi7Q0g==
-X-IronPort-AV: E=Sophos;i="6.23,138,1770620400"; 
-   d="scan'208";a="222348045"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2026 15:03:28 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.87.151) by
- chn-vm-ex3.mchp-main.com (10.10.87.32) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.35; Mon, 23 Mar 2026 15:03:13 -0700
-Received: from bby-cbu-swbuild03.eng.microchip.com (10.10.85.11) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Mon, 23 Mar 2026 15:03:12 -0700
-From: Charles Perry <charles.perry@microchip.com>
-To: <netdev@vger.kernel.org>
-CC: Charles Perry <charles.perry@microchip.com>, Maxime Chevallier
-	<maxime.chevallier@bootlin.com>, Andrew Lunn <andrew+netdev@lunn.ch>, "David
- S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
- Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King
-	<linux@armlinux.org.uk>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH net-next v2 2/2] net: mdio: add a driver for PIC64-HPSC/HX MDIO controller
-Date: Mon, 23 Mar 2026 15:02:54 -0700
-Message-ID: <20260323220254.3822444-3-charles.perry@microchip.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260323220254.3822444-1-charles.perry@microchip.com>
-References: <20260323220254.3822444-1-charles.perry@microchip.com>
+	s=arc-20240116; t=1774303933; c=relaxed/simple;
+	bh=vdlFe59wdG71Wr0TcIgUqavN/rxp2PP2ViuW4n0a7Bw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fw1JVU/ciqIoI71DtyeP5uj7K2ZbVV8meaA5Sz6xCUvQNTMYyvTbFVVUhAFznct8sTTGfsLhsUq8zRVQYYvUHvyjy6SIPmsomvmDZ4PWszWrYoHwlQz7dI48NhRwA/tl3zNM2tQmHWc5MLPqosY2vrH2CdrLd9g4UZO44OTct4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IpaDkzgE; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gINTp707; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62NHqcb13170733
+	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 22:12:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=VULlbFstwJLC9xQhGYSDQ6Ek
+	53wDkhr/lXAneX8+L4Q=; b=IpaDkzgEuuaeoDQbRmeCrx96kOPGELC4AwiXDijy
+	WNC19KXhTsvM3P/ApdYLE5gri1WU2Pa6g9fAsNSe3zzpN0gBdqY8HXntabmsFQBT
+	wfLCFNM/hzr4kTg9PaS7tvoajQFMCADFMpufJFUlXPIR5Jg+USVabHZZobys9dmi
+	9QkB1XJrBtKhZrVF2XQ0cl7L1SRTHc9MqDgLUH8r0idz+mPXCtVfWwBE7ouCfSfE
+	+maEH8oIz0VChNDsRLxE5qg/F9LqKK01CsrsQu5JGnpiNecX3PBpdr7QWVa+6iN9
+	4t604olHqWXvqSddY52DPWhkWI3pBOveoi0TLxNibO0gEQ==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d35r21vt7-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 22:12:11 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-5090bc4823cso164182911cf.3
+        for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 15:12:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1774303931; x=1774908731; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=VULlbFstwJLC9xQhGYSDQ6Ek53wDkhr/lXAneX8+L4Q=;
+        b=gINTp7079NWpgiT+YMzRMfRX2j19b6MWwFePh9sU++6/tG5aCkUQIf9+bk5UHGibUw
+         s019IcyyhBIAqWgOBOn7lD3Gm8XhKu1WpymZnJEpFPBZOW5vn7Vyy+ElwbDno2B/ySkf
+         ioyHcNx01TgTDbIx7gFKEmwmIdPJmgA381jK/ClzB2mAWljOybtjKu5M8CXeuks/Zn1T
+         icdcjjfFwvC+MTe+4iYszHGO583Cl6SuRBib+AUiReVJaxuLbOoYdUNTGxUSeRz3shle
+         4AmKFBTLskzTltZM4fFz38QmE2ABvGaf9Z1OFqx5yFciX0fgCjyy6SOyI/iU/rKd9aO1
+         FHcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774303931; x=1774908731;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VULlbFstwJLC9xQhGYSDQ6Ek53wDkhr/lXAneX8+L4Q=;
+        b=SxSOwqQWrwdu4MmR5ITMKNaxQuPhXB5Gp89DREPlwnBdxckYu5E+/NHVIR/ae7mqjn
+         g40Q8llgFe0I4LLSaJUIo0PwakKPKjTU47cJFX6pdyhdNVKOWGL4Fozu1QK02sNXwGK8
+         mFQXXW6z103d26380yA8dbhtpyDydWeFw300Z2xoR+Yx/TpDf8/wd49dhPzSy6hACfcr
+         pDq+sCZ0tcBdZfSQxJBpUcsvuesE9TdjGEyoNZ1yPLsUhXOnO820UZwZ96FqXB/AXPx/
+         JPu1P4dZhrbtFKXZYyqLxUFT5iPKJtO3sRWYDAQS7O2MIhjXzxalwGSqDl0cLWeT7pSw
+         9yTA==
+X-Forwarded-Encrypted: i=1; AJvYcCWXjDwEe/vnryQMkjOOfJSVj1PA8/7jPjUTKrbnffkJFBz0z71hbA12ViRN/bI6DuQZV1snpR3NNpi8@vger.kernel.org
+X-Gm-Message-State: AOJu0YzH0oj1orOPs7iQvUPQuW3k/4QGnfrj5pSp61fM4NZjZ5xRDxnm
+	jivDmlHr53skjMwVvgmjiBBKLgvYC9I1K4I73+fe6TSnp8eTFZECl6B/POc4lR9S6dfRWwwKLKt
+	YTO9H9Fksi2ywRzgPuYry9dWlv9RocLTSFKVcHNjOjHACmUQw1WtzHgAG/WbFjeha
+X-Gm-Gg: ATEYQzxjwUUiuGlYH2RNfpjJYgCjMibAYPNgFje0Nq+O+ukKVVB0PQU2aU3QJCQYjiY
+	NvmHpoHTHS0SnEvjbP1xFgn/JDyBj4mPdKhp2q+paIow4dcgIwEngZYF6Ami+I/ZOAT2RsTGwmG
+	f3PlahuweBiPtF8awbuB93042JhqbAlP0J3HgZXtZkCB96cAgUVUm463Sw1mYSuiLddHftQDLe8
+	IGFOjAkFunMf42kdvB82L1mQuoWtHZNd02klPrhFXci9vIodZQa06hE6h5CKEBjPbaZrEop17P1
+	M1v6x4dZbJD/X488favFLeErVoQRMNRHa037xz+jj5BtvBQKbr0RzkqmyliFOxkLBSPIcQOy8ZB
+	QBDx9XL86Yh8gvfC1i8i/SknVm3+Fltd0xfRqG9MaS7VUA0ERRRoIQ5YRnV4piMOMhba1iFbs8V
+	brhy72BsHqNIOupATGKstrW/fB/wYkkY6PvTQ=
+X-Received: by 2002:a05:622a:5590:b0:50b:5183:f1b4 with SMTP id d75a77b69052e-50b5183f2f6mr132415231cf.3.1774303930999;
+        Mon, 23 Mar 2026 15:12:10 -0700 (PDT)
+X-Received: by 2002:a05:622a:5590:b0:50b:5183:f1b4 with SMTP id d75a77b69052e-50b5183f2f6mr132414871cf.3.1774303930511;
+        Mon, 23 Mar 2026 15:12:10 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38bf9982a6csm27994131fa.25.2026.03.23.15.12.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Mar 2026 15:12:08 -0700 (PDT)
+Date: Tue, 24 Mar 2026 00:12:05 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Ayushi Makhija <quic_amakhija@quicinc.com>
+Cc: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        dmitry.baryshkov@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, quic_rajeevny@quicinc.com,
+        quic_vproddut@quicinc.com
+Subject: Re: [PATCH] arm64: dts: qcom: sm8750-mtp: Set sufficient voltage for
+ panel nt37801
+Message-ID: <zr65bat2eaegpuudoy7okmtazgfkubhg2w74aeomi7gxjfhtmy@bsnjg2ykiyyc>
+References: <20260323102229.1546504-1-quic_amakhija@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260323102229.1546504-1-quic_amakhija@quicinc.com>
+X-Authority-Analysis: v=2.4 cv=VvUuwu2n c=1 sm=1 tr=0 ts=69c1babb cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=COk6AnOGAAAA:8
+ a=EUspDBNiAAAA:8 a=WnUHuuy95XYsLch6RvQA:9 a=CjuIK1q_8ugA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: qTYkE_ghcSirJsEXZdaxWdnmEdC0EFEM
+X-Proofpoint-ORIG-GUID: qTYkE_ghcSirJsEXZdaxWdnmEdC0EFEM
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzIzMDE2MyBTYWx0ZWRfX1St4vQMGQjt7
+ cKTRkBTHaZgK5MkF66a9XPzqAPP7cQrxcLs79lhaqwkkXC+mAgsf6Tu9cgx1fHus3R2WWO0XiE5
+ ouVrf9zcAEOeC3IHINZz5HMVZS1ubYh+hZ9Wep4cCu8BRBiEqMOCjTrF1/bU0hvYmdPbL/IKNG/
+ KroTjgr1b9d3+hd5mqae7PAdfkEt7Ej0jT+svwKJtwL7o9sfMj00sId5a4WweuKHAdzHmV+nwkR
+ +3rB8fjPp/fFYQxD/rjDsB/RYvw5xFUxhSZbIGKXV/Wl9pX3lITBzkLmZpGcok1fBkh19dlyzrG
+ R6fKfvjWXzEvlM2wra+JzYbppB9UQzvPpHUpxwlvMsruptrv+f0BM58U7F1fo10FQU5lyN5J5ro
+ u1M0ME0HGK3EtsRqT9WC9El6UpyDx5gX5OFBCzvB77Ck0wkHcqXgaq+mKgXNGauSU89+oHlJx44
+ +22Kx6ZAlaEfYvo4WNw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-23_06,2026-03-23_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 malwarescore=0 spamscore=0 adultscore=0 lowpriorityscore=0
+ impostorscore=0 bulkscore=0 clxscore=1015 priorityscore=1501 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603230163
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[microchip.com,bootlin.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-279386-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-279388-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[charles.perry@microchip.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:dkim,microchip.com:email,microchip.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 339D82FE0A6
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 8239F2FE254
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This adds an MDIO driver for PIC64-HPSC/HX. The hardware supports C22
-and C45 but only C22 is implemented in this commit.
+On Mon, Mar 23, 2026 at 03:52:29PM +0530, Ayushi Makhija wrote:
+> The NT37801 Sepc V1.0 chapter "5.7.1 Power On Sequence" states
+> VDDI=1.65V~1.95V, so set sufficient voltage for panel nt37801.
+> 
+> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
 
-This MDIO hardware is based on a Microsemi design supported in Linux by
-mdio-mscc-miim.c. However, The register interface is completely
-different with pic64hpsc, hence the need for a separate driver.
+Please switch to oss.qualcomm.com
 
-The documentation recommends an input clock of 156.25MHz and a prescaler
-of 39, which yields an MDIO clock of 1.95MHz.
+Other than that:
 
-The hardware supports an interrupt pin or a "TRIGGER" bit that can be
-polled to signal transaction completion. This commit uses polling.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-This was tested on Microchip HB1301 evalkit with a VSC8574 and a
-VSC8541.
 
-Signed-off-by: Charles Perry <charles.perry@microchip.com>
-Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
----
 
-Notes:
-    Changes in v2:
-      - Remove #define for unused registers (Maxime)
-      - Add "c22" to clause 22 read/write ops (Maxime)
-      - Remove the call to platform_set_drvdata() (Andrew)
-      - Make the clock mandatory (Andrew)
-      - Use 2.5MHz if no clock-frequency was specified (Andrew)
-      - Change the error message for bad clock-frequency (Andrew)
-      - Fix a use without initialization on bus_freq (Andrew)
-
- drivers/net/mdio/Kconfig          |   7 ++
- drivers/net/mdio/Makefile         |   1 +
- drivers/net/mdio/mdio-pic64hpsc.c | 192 ++++++++++++++++++++++++++++++
- 3 files changed, 200 insertions(+)
- create mode 100644 drivers/net/mdio/mdio-pic64hpsc.c
-
-diff --git a/drivers/net/mdio/Kconfig b/drivers/net/mdio/Kconfig
-index 44380378911b..7bdba8c3ddef 100644
---- a/drivers/net/mdio/Kconfig
-+++ b/drivers/net/mdio/Kconfig
-@@ -146,6 +146,13 @@ config MDIO_OCTEON
- 	  buses. It is required by the Octeon and ThunderX ethernet device
- 	  drivers on some systems.
- 
-+config MDIO_PIC64HPSC
-+	tristate "PIC64-HPSC/HX MDIO interface support"
-+	depends on HAS_IOMEM && OF_MDIO
-+	help
-+	  This driver supports the MDIO interface found on the PIC64-HPSC/HX
-+	  SoCs.
-+
- config MDIO_IPQ4019
- 	tristate "Qualcomm IPQ4019 MDIO interface support"
- 	depends on HAS_IOMEM && OF_MDIO
-diff --git a/drivers/net/mdio/Makefile b/drivers/net/mdio/Makefile
-index fbec636700e7..048586746026 100644
---- a/drivers/net/mdio/Makefile
-+++ b/drivers/net/mdio/Makefile
-@@ -20,6 +20,7 @@ obj-$(CONFIG_MDIO_MOXART)		+= mdio-moxart.o
- obj-$(CONFIG_MDIO_MSCC_MIIM)		+= mdio-mscc-miim.o
- obj-$(CONFIG_MDIO_MVUSB)		+= mdio-mvusb.o
- obj-$(CONFIG_MDIO_OCTEON)		+= mdio-octeon.o
-+obj-$(CONFIG_MDIO_PIC64HPSC)		+= mdio-pic64hpsc.o
- obj-$(CONFIG_MDIO_REALTEK_RTL9300)	+= mdio-realtek-rtl9300.o
- obj-$(CONFIG_MDIO_REGMAP)		+= mdio-regmap.o
- obj-$(CONFIG_MDIO_SUN4I)		+= mdio-sun4i.o
-diff --git a/drivers/net/mdio/mdio-pic64hpsc.c b/drivers/net/mdio/mdio-pic64hpsc.c
-new file mode 100644
-index 000000000000..0ca6f5af5396
---- /dev/null
-+++ b/drivers/net/mdio/mdio-pic64hpsc.c
-@@ -0,0 +1,192 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/* Microchip PIC64-HPSC/HX MDIO controller driver
-+ *
-+ * Copyright (c) 2026 Microchip Technology Inc. and its subsidiaries.
-+ */
-+
-+#include <linux/bitops.h>
-+#include <linux/clk.h>
-+#include <linux/io.h>
-+#include <linux/iopoll.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of_mdio.h>
-+#include <linux/platform_device.h>
-+
-+#define MDIO_REG_PRESCALER     0x20
-+#define MDIO_CFG_PRESCALE_MASK GENMASK(7, 0)
-+
-+#define MDIO_REG_FRAME_CFG_1 0x24
-+#define MDIO_WDATA_MASK	     GENMASK(15, 0)
-+
-+#define MDIO_REG_FRAME_CFG_2	 0x28
-+#define MDIO_TRIGGER_BIT	 BIT(31)
-+#define MDIO_REG_DEV_ADDR_MASK	 GENMASK(20, 16)
-+#define MDIO_PHY_PRT_ADDR_MASK	 GENMASK(8, 4)
-+#define MDIO_OPERATION_MASK	 GENMASK(3, 2)
-+#define MDIO_START_OF_FRAME_MASK GENMASK(1, 0)
-+
-+/* Possible value of MDIO_OPERATION_MASK */
-+#define MDIO_OPERATION_WRITE BIT(0)
-+#define MDIO_OPERATION_READ  BIT(1)
-+
-+#define MDIO_REG_FRAME_STATUS 0x2C
-+#define MDIO_READOK_BIT	      BIT(24)
-+#define MDIO_RDATA_MASK	      GENMASK(15, 0)
-+
-+struct pic64hpsc_mdio_dev {
-+	void __iomem *regs;
-+};
-+
-+static int pic64hpsc_mdio_wait_trigger(struct mii_bus *bus)
-+{
-+	struct pic64hpsc_mdio_dev *priv = bus->priv;
-+	u32 val;
-+	int ret;
-+
-+	/* The MDIO_TRIGGER bit returns 0 when a transaction has completed. */
-+	ret = readl_poll_timeout(priv->regs + MDIO_REG_FRAME_CFG_2, val,
-+				 !(val & MDIO_TRIGGER_BIT), 50, 10000);
-+
-+	if (ret < 0)
-+		dev_dbg(&bus->dev, "TRIGGER bit timeout: %x\n", val);
-+
-+	return ret;
-+}
-+
-+static int pic64hpsc_mdio_c22_read(struct mii_bus *bus, int mii_id, int regnum)
-+{
-+	struct pic64hpsc_mdio_dev *priv = bus->priv;
-+	u32 val;
-+	int ret;
-+
-+	ret = pic64hpsc_mdio_wait_trigger(bus);
-+	if (ret)
-+		return ret;
-+
-+	writel(MDIO_TRIGGER_BIT | FIELD_PREP(MDIO_REG_DEV_ADDR_MASK, regnum) |
-+		       FIELD_PREP(MDIO_PHY_PRT_ADDR_MASK, mii_id) |
-+		       FIELD_PREP(MDIO_OPERATION_MASK, MDIO_OPERATION_READ) |
-+		       FIELD_PREP(MDIO_START_OF_FRAME_MASK, 1),
-+	       priv->regs + MDIO_REG_FRAME_CFG_2);
-+
-+	ret = pic64hpsc_mdio_wait_trigger(bus);
-+	if (ret)
-+		return ret;
-+
-+	val = readl(priv->regs + MDIO_REG_FRAME_STATUS);
-+
-+	/* The MDIO_READOK is a 1-bit value reflecting the inverse of the MDIO
-+	 * bus value captured during the 2nd TA cycle. A PHY/Port should drive
-+	 * the MDIO bus with a logic 0 on the 2nd TA cycle, however, the
-+	 * PHY/Port could optionally drive a logic 1, to communicate a read
-+	 * failure. This feature is optional, not defined by the 802.3 standard
-+	 * and not supported in standard external PHYs.
-+	 */
-+	if (!(bus->phy_ignore_ta_mask & 1 << mii_id) &&
-+	    !FIELD_GET(MDIO_READOK_BIT, val)) {
-+		dev_dbg(&bus->dev, "READOK bit cleared\n");
-+		return -EIO;
-+	}
-+
-+	ret = FIELD_GET(MDIO_RDATA_MASK, val);
-+
-+	return ret;
-+}
-+
-+static int pic64hpsc_mdio_c22_write(struct mii_bus *bus, int mii_id, int regnum,
-+				    u16 value)
-+{
-+	struct pic64hpsc_mdio_dev *priv = bus->priv;
-+	int ret;
-+
-+	ret = pic64hpsc_mdio_wait_trigger(bus);
-+	if (ret < 0)
-+		return ret;
-+
-+	writel(FIELD_PREP(MDIO_WDATA_MASK, value),
-+	       priv->regs + MDIO_REG_FRAME_CFG_1);
-+
-+	writel(MDIO_TRIGGER_BIT | FIELD_PREP(MDIO_REG_DEV_ADDR_MASK, regnum) |
-+		       FIELD_PREP(MDIO_PHY_PRT_ADDR_MASK, mii_id) |
-+		       FIELD_PREP(MDIO_OPERATION_MASK, MDIO_OPERATION_WRITE) |
-+		       FIELD_PREP(MDIO_START_OF_FRAME_MASK, 1),
-+	       priv->regs + MDIO_REG_FRAME_CFG_2);
-+
-+	return 0;
-+}
-+
-+static int pic64hpsc_mdio_probe(struct platform_device *pdev)
-+{
-+	struct device_node *np = pdev->dev.of_node;
-+	struct device *dev = &pdev->dev;
-+	struct pic64hpsc_mdio_dev *priv;
-+	struct mii_bus *bus;
-+	unsigned long rate;
-+	struct clk *clk;
-+	u32 bus_freq;
-+	u32 div;
-+	int ret;
-+
-+	bus = devm_mdiobus_alloc_size(dev, sizeof(*priv));
-+	if (!bus)
-+		return -ENOMEM;
-+
-+	priv = bus->priv;
-+
-+	priv->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(priv->regs))
-+		return PTR_ERR(priv->regs);
-+
-+	bus->name = KBUILD_MODNAME;
-+	bus->read = pic64hpsc_mdio_c22_read;
-+	bus->write = pic64hpsc_mdio_c22_write;
-+	snprintf(bus->id, MII_BUS_ID_SIZE, "%s", dev_name(dev));
-+	bus->parent = dev;
-+
-+	clk = devm_clk_get_enabled(dev, NULL);
-+	if (IS_ERR(clk))
-+		return PTR_ERR(clk);
-+
-+	if (of_property_read_u32(np, "clock-frequency", &bus_freq))
-+		bus_freq = 2500000;
-+
-+	rate = clk_get_rate(clk);
-+
-+	div = DIV_ROUND_UP(rate, 2 * bus_freq) - 1;
-+	if (div == 0 || div & ~MDIO_CFG_PRESCALE_MASK) {
-+		dev_err(dev, "MDIO clock-frequency out of range\n");
-+		return -EINVAL;
-+	}
-+
-+	dev_dbg(dev, "rate=%lu bus_freq=%u real_bus_freq=%lu div=%u\n", rate,
-+		bus_freq, rate / (2 * (1 + div)), div);
-+	writel(div, priv->regs + MDIO_REG_PRESCALER);
-+
-+	ret = devm_of_mdiobus_register(dev, bus, np);
-+	if (ret) {
-+		dev_err(dev, "Cannot register MDIO bus (%d)\n", ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id pic64hpsc_mdio_match[] = {
-+	{ .compatible = "microchip,pic64hpsc-mdio" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, pic64hpsc_mdio_match);
-+
-+static struct platform_driver pic64hpsc_mdio_driver = {
-+	.probe = pic64hpsc_mdio_probe,
-+	.driver = {
-+		.name = KBUILD_MODNAME,
-+		.of_match_table = pic64hpsc_mdio_match,
-+	},
-+};
-+module_platform_driver(pic64hpsc_mdio_driver);
-+
-+MODULE_AUTHOR("Charles Perry <charles.perry@microchip.com>");
-+MODULE_DESCRIPTION("Microchip PIC64-HPSC/HX MDIO driver");
-+MODULE_LICENSE("GPL");
 -- 
-2.47.3
-
+With best wishes
+Dmitry
 
