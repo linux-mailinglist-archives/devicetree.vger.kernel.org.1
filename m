@@ -1,219 +1,319 @@
-Return-Path: <devicetree+bounces-278996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278998-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0BX8IpUQwWk7QQQAu9opvQ
-	(envelope-from <devicetree+bounces-278996-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 11:06:13 +0100
+	id 2JKSL8gQwWk7QQQAu9opvQ
+	(envelope-from <devicetree+bounces-278998-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 11:07:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 170B12EFA69
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 11:06:13 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E4A72EFAD4
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 11:07:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 65581303A932
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 09:59:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5F8A33025E57
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 10:01:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D1C9385507;
-	Mon, 23 Mar 2026 09:59:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="QaDPqk5+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B826388E5F;
+	Mon, 23 Mar 2026 10:01:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973191.qiye.163.com (mail-m1973191.qiye.163.com [220.197.31.91])
+Received: from eu-smtp-delivery-101.mimecast.com (eu-smtp-delivery-101.mimecast.com [185.58.85.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDB3A1FE44A;
-	Mon, 23 Mar 2026 09:59:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03FCF386553
+	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 10:01:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.58.85.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774259982; cv=none; b=XjCOViNRBfZjwynLpWGG672229Uj/Jp3C4sdmMHnhb1+nu6TfsnA7sFV3GoswBIrqmb+aC6z8l31TfZKCgFxixMWXErwybj3Bn6D79XSqX7yad1PDC/0M3M5oo89b2cHmUBDMYYaMJt3X0PLNJ5v5af2lOK4pxgEAf2SinxnC6o=
+	t=1774260076; cv=none; b=YBorrJ9RRgP0REIq5+cvZbianW4IPSvUoMnUubrT6zHIN1pO+twzKgUHQPYs5NrkVKgXkpODp2HrMHISId6BdcQUM8Jg0b8tuDDOYgExXfbt7pF2cWKozwYdNMKmnMMR4kA1udh0ErXvTmzwePccW4tmLkl2f01BrxvgLcUC65Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774259982; c=relaxed/simple;
-	bh=Ry8iFfSmPrCCYBYZESemNcNTwzBT+eLPC8d0/oGAxNU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y91Hn2emBiX1MX9BvMa5Q+7xxrG5xCf+vgnutFnpN8hX/RpKml3Wjv5MyG1da6XQZOUa1KSu+tL3Ok+CCys5ueY4Akua1quL13tpOiSWcBu8SCYmYWGTqw/f1WXI8Vp0moG493urNMB8S75RndyAIGG7V0LCgWABoa+49tOMu5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=QaDPqk5+; arc=none smtp.client-ip=220.197.31.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.43] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 37f125092;
-	Mon, 23 Mar 2026 17:59:11 +0800 (GMT+08:00)
-Message-ID: <c349eaf2-5852-4bb6-9dac-f7240e1c8098@rock-chips.com>
-Date: Mon, 23 Mar 2026 17:59:11 +0800
+	s=arc-20240116; t=1774260076; c=relaxed/simple;
+	bh=fblUXtGyjojUlB8YF5BX6/FMzzxplNqHYwA4cyo9zvE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:In-Reply-To:
+	 MIME-Version:Content-Type:Content-Disposition; b=Si5Qb885WF1xQeMmXUs/OCSJkDdIYYRCiuNzd8zR31PEQpgczBPHcFdnRiBWKJ3LDd4YBznqO/j3QChG3PQT29I8Vb0W7jKCYnqixvDGh+/uJynooLQJiNKclXXAps6HMWotZeRcW8EylyoDxqFhKGOF/DGEbGLApk0PojhJRys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=touchnetix.com; spf=pass smtp.mailfrom=touchnetix.com; arc=none smtp.client-ip=185.58.85.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=touchnetix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=touchnetix.com
+Received: from LO0P265CU003.outbound.protection.outlook.com
+ (mail-uksouthazon11022092.outbound.protection.outlook.com [52.101.96.92])
+ by relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id uk-mta-284-1KMkuASuNHSCHy5-_9abLQ-1; Mon,
+ 23 Mar 2026 10:00:00 +0000
+X-MC-Unique: 1KMkuASuNHSCHy5-_9abLQ-1
+X-Mimecast-MFC-AGG-ID: 1KMkuASuNHSCHy5-_9abLQ_1774260000
+Received: from LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:e9::9) by
+ LOYP123MB3247.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:e7::15) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9723.31; Mon, 23 Mar 2026 09:59:31 +0000
+Received: from LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::72a0:d7fe:5595:514b]) by LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::72a0:d7fe:5595:514b%2]) with mapi id 15.20.9723.030; Mon, 23 Mar 2026
+ 09:59:35 +0000
+Date: Mon, 23 Mar 2026 09:59:48 +0000
+From: Andrew Thomas <andrew.thomas@touchnetix.com>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: Luis Chamberlain <mcgrof@kernel.org>, 
+	Russ Weight <russ.weight@linux.dev>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Kamel Bouhara <kamel.bouhara@bootlin.com>, Marco Felsch <kernel@pengutronix.de>, 
+	Henrik Rydberg <rydberg@bitmath.org>, Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org
+Subject: Re: [PATCH v6 4/4] Input: Add TouchNetix aXiom I2C Touchscreen
+ support
+Message-ID: <hxa6vfro5jirigd4jqm37wqlyslphy4yqctbbaeraz4sfcx366@qklnqawxb4t6>
+References: <20260303-v6-10-topic-touchscreen-axiom-v6-4-8ac755add12b@pengutronix.de>
+ <rnbwxsdiwjojk7354c6k4us6xxl3qpbyt2lrbhgqz77avrdwga@tqb6voucuysi>
+ <enyz3io3i7mzoaquexpkbsjtxmcuib7lxj334ii2yqvdgpvajb@aspqccwo7vnf>
+In-Reply-To: <enyz3io3i7mzoaquexpkbsjtxmcuib7lxj334ii2yqvdgpvajb@aspqccwo7vnf>
+X-ClientProxiedBy: FR2P281CA0173.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:9f::8) To LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:e9::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/9] dt-bindings: display: rockchip: analogix-dp:
- Expand clock-names "hclk" for the third clock
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
- rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, nicolas.frattaroli@collabora.com,
- alchark@gmail.com, cristian.ciocaltea@collabora.com,
- sebastian.reichel@collabora.com, kever.yang@rock-chips.com,
- heiko.stuebner@cherry.de, tomeu@tomeuvizoso.net, amadeus@jmu.edu.cn,
- michael.riesch@collabora.com, didi.debian@cknow.org,
- dmitry.baryshkov@oss.qualcomm.com, luca.ceresoli@bootlin.com,
- dianders@chromium.org, m.szyprowski@samsung.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20260319104031.1986946-1-damon.ding@rock-chips.com>
- <20260319104031.1986946-2-damon.ding@rock-chips.com>
- <20260320-amusing-magnetic-harrier-20cc40@quoll>
- <6bf2b3c9-4af0-4c3a-a34f-ebe881d4827b@rock-chips.com>
- <904ad60f-82d6-4ad9-baa1-4d5196c57c76@kernel.org>
-Content-Language: en-US
-From: Damon Ding <damon.ding@rock-chips.com>
-In-Reply-To: <904ad60f-82d6-4ad9-baa1-4d5196c57c76@kernel.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LOYP123MB2701:EE_|LOYP123MB3247:EE_
+X-MS-Office365-Filtering-Correlation-Id: 245341b3-af5c-44a0-fc72-08de88c2e2ec
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|376014|366016|7053199007|56012099003|18002099003|22082099003
+X-Microsoft-Antispam-Message-Info: lq2E1RzSNQXunLAjjsQtHdEK4aFWJKG71qnZa/pxE4lRZbzT80bdWtSkkVJo9PRyVvyKDDU51rPEJzSPKfpVUAPKTNnow+mJ4qzf/1yivqAFGy4QoVZMgt1rPaeKQeVAl5K3OtqWpwUlel4DatLmlw/Nqgsge9qfBvO9o7UnPS6ov1xzVe0p4i4fSxfy+VOzETGSz/cvYLudkzGh/r5wSnGVbcHWIfLcksHL+ZpzXhni6I7eI4EJtMA3zZ7TBAXdcfO8rjxCihyPue1DhTfvBrKrT8gT7tK98FZ/sZsxEutGoRmKC4D3RTeqCJHcC0kvX7diUewoxxeB4b+ioJYcdX5DtOTJ163nC+B/k5eNIv1vAVlXo08nv7o5QX2jyq0ERBOxbc6vuf6AmGHTgrw9A2yAYtex+Ldbg38fcRe7O4d0t7XoiJZWM7719ozAL5pSVK+5/WmP9LAAaVc9mEO9akIterf5bI5wMA/OKF4iIDss4zOY4uXdprgrVmoK1ZSHBv1BkD2Mr52EjOLcfGgPfXidbmi64vxX81A4UbA7n0CtWYKvreHiZOuym/ymGVxxyFlc67Uv5HUivtQBL50sj3n4p2vGSwwlqZqiRz5++jvWUACUsNpdjz4iJ4pZwzqWcaH1e4AAnl9860+Xbx3L5xzLPxm+zsNUHYyDrruW6pbypFkgsTKgALeXh3wvAlOguiVWA4cNvaRLzk7hGi1jSJQkrzIAMxmaRhvHyqVHt+w=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(7053199007)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1102
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QU4vTG8rZDJmbXZsUUNEcHVtT1hOOFI2bUxRWk9aWDJWZlhNMmRUUGREd2RO?=
+ =?utf-8?B?Y2U4d1FzWWs1cmpvVTlrcTkzSTdZY1c2ajdydUJFMEVmTjVhMjQvUmtjcWpy?=
+ =?utf-8?B?S3QzVlcrOEhLb1loOGlZRTlqNzR5Ly9uKzRHOVk5K21IQnFWWjBZZXVocWZS?=
+ =?utf-8?B?TW5qZCtNOVJaMnp2ZWZzUVI3K3UyS0hQWGpXTDJSWDdsU3dRZzh0ejkzWlQv?=
+ =?utf-8?B?d2Q2SWtsZ1ZWZEprZjBOL092aktDMTM3WFJ4cXovSnBLUjdDcFdycTdTZm5C?=
+ =?utf-8?B?SnZYZ2lUalRxaXBkcHo1Q3JVRUxGT0ZVR0hjSzBMMnlBQk1DcXdmZ2JRS3du?=
+ =?utf-8?B?OFJpVG8vcFozaGRtTmkxMkVSck5WeGdoaXlObzJ5MVBJb1ZrenQ4M2dvT1ds?=
+ =?utf-8?B?cGZ3cThHNjl6SG4rT2NGMENtUUQ1Q0UxOWszZThzQ2pYdFgxajFyQTdUQTB3?=
+ =?utf-8?B?MnRLZ2ttNmFrcDF4LzhId05seS9wbE11U0liMkMxdWlnaXE3SGNjLytrbmFU?=
+ =?utf-8?B?OVU1YmxOWiszZHpTdDRIeDdUV1VqT2NtVTJ6YTl0bVowRGNrZ3oycWlSbzVS?=
+ =?utf-8?B?bFhwU05KREJhdDBhcEdyS1orWHF4VjB5R0c3NHE0THQ1YmNzMDhxUlNONmZM?=
+ =?utf-8?B?U0YvVnQwNnRoejdWZ0Zua3dxYXBKVjJPM2E2VVc1TTNGS21DcXBBRlk2MVhZ?=
+ =?utf-8?B?YzBBaDhMcUlINWY0dVlqcDh5WDlzQnV5NkFHY1hucVFXYzhsV01jNnhuQ294?=
+ =?utf-8?B?R1hvN3dPNzEzem9LQWdkbkpjMEIvelM4cy96RW1xTGtFUzhqVkZHRDFkaDlZ?=
+ =?utf-8?B?c05LVmVESkV0UUEwMi9xK3J4SjUzSGdocTUyUEdwQUl5c0VvZ2tUVFptT25W?=
+ =?utf-8?B?SW5mQnJTTEViNVBUdkpRODVZclFqRWhqRnl4dWhBNnJEbkxOTHoyaThZeXBJ?=
+ =?utf-8?B?dW4raTZwekhWajFQRkhySXFzZ3ZEV1BINU1jWWpoZEhzWDBSTWRsZDY2KzFm?=
+ =?utf-8?B?QitGcEZKRHZnb2ZKNXFhM1FxVFJsd3dNMGJwdi8yTWk5VUhxS0FDbkZzbEox?=
+ =?utf-8?B?NTl1dzYwN1FzNjFMUGdSa1BmR2FCUlp6cllQdHF0K3g5WUNsRmxmZjdtdERu?=
+ =?utf-8?B?SXBLeTVFcXU5YWVHWVppV2tyUUZMSXc4RTFRdmo3SkhEWGNpMVczRjdENjhv?=
+ =?utf-8?B?YWdaOTZUcElINDZtMDJjaUhkUnhlSVlKa1B3MThtMklXQXVKdkJRdTZOajIz?=
+ =?utf-8?B?c2JCblArd0tyQVRzeENBUy9JLzF1T1NMQU1mZ2RETWd2dndNM3d4MXl2MUp2?=
+ =?utf-8?B?OFZaQlVtdE9aQzk0RFlpYTZJam1UZXdqeWJ6d2ZPdHV4L0tTNzc1TjRjZFdu?=
+ =?utf-8?B?MDdndnl6ako4a3kvRjJ5NFJRR05MNWJVbUhuKzNNL1NVU2p1MU5wdm1oKzF2?=
+ =?utf-8?B?dEhScXVTL09KNFBLcjRDUlB6QkxkeVNINHU1VW5tak9GempUY3VvMW5iUGpB?=
+ =?utf-8?B?TzlPZUJPZDJ3eG45UWhsTUU1cmFxMTNGVHd2K1NQWW00MzR5V0d0bC9VWWR3?=
+ =?utf-8?B?aWR6Qjg1elA4cVljeVlFS3Z4L1oxdm1oMVYreFpvN0VJTFY5Zk01YVZnaFR2?=
+ =?utf-8?B?ODJEUEJQSisvaEQ1MG0xMzhwSGpzRUlFeTY4U2h5N0NHRlBnL0hPR3MvSjdq?=
+ =?utf-8?B?UE5Rd1YwVVpYak9RL1BQbnlTWHJpcStPSTNxUUhZN3ZLait1cHN5VFlpcS9m?=
+ =?utf-8?B?RkYzOE01dk8zdTNDUWRUN0RpR3FjWGNUOGVPcStUbXRscU0rc3RIbmZBSzRX?=
+ =?utf-8?B?L0VXN1BDdzFuQU9TbVRNNytiSDdGVGJlc1hOcGdrbVF3dlhMczlXTkQzZTlu?=
+ =?utf-8?B?TXpLVG1HQkVaQUJFcmFyaHVLZTBMcnE5SEQ2Mk04Q3VPVWhBOHlYTG9rV2ZL?=
+ =?utf-8?B?azhCbWgrMllnUDR3UkRSWGJady9XRlBlTWhmMnBobjVXdzdqUThsMXF5L2Q4?=
+ =?utf-8?B?N2s1enI1VUd4QUZ0Q2VYakhwdTgwSHQ1L0pMNFhrZk9RL2NkSEhxWUNDYW91?=
+ =?utf-8?B?ekloQUc1L3N1QzMydlVWcUNHaFZCZmRjZE5Zb1UwZ3Rqc0c2NnF1b1I5djJQ?=
+ =?utf-8?B?WENoaURxVFFZME85bzQ4TDZ3OXZMTGdSUkw2d2ZDS0hMYjgwKytLZTBDZnQ5?=
+ =?utf-8?B?RHRKRGJKMWwzb2VqODBrZjNoMGlsbzIwL2tFQkJJM1NWN0FlNllTY2dzQmJx?=
+ =?utf-8?B?WnZPZ05iSDFESVpsSEMrL3ZHN0VURS9aZlpzY1RHYWh6K1o1Z044TDl2ajdP?=
+ =?utf-8?B?VVFLQmpiaW42ZEtTc0FNaGNvVWJTcU4reE9OSTZZU3c2YktldW0yTmQvSEJ6?=
+ =?utf-8?Q?g9JgTSqBLfT98ZLI=3D?=
+X-Exchange-RoutingPolicyChecked: ZPLRj345MFJblBvRpuE7e3jizdOgqCmC48zUqgUBI5S1GeEg56w/txuhNXCfZvRPAWc0kY9HnvV7X78q5I/+8Rh71nu4inEvR5RAWQpxsL6Sb2+py3glWcWa9CMpqtS2GTzf4EI11H/pDacP1mJ5Sahn2n/HfoCBmdzu1+aRT5/O88DO1EC/1PhnHLH62hx6WN/Tgvo82yHpLHG+T/fLFoITYWNW2dGvk7evoCHacJMqEjOY+qbDAqkC006kzRFXOrBXZVelZ/mprchZgFHuQQdrTwgpidBK1VyXZvJ5GD1ckNxmjBdMKT/TyM038weZUJbredaSEoMOi3pGHe2x8g==
+X-OriginatorOrg: touchnetix.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 245341b3-af5c-44a0-fc72-08de88c2e2ec
+X-MS-Exchange-CrossTenant-AuthSource: LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2026 09:59:34.9700
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 120474da-7cc3-44b9-aff9-438a33341070
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ReHscVVVB1D6zQ4L060Yen6Yi6KES8wMtMt86EGVhNxwFWRg//GZW/iEiXSoapzBLEmL5N7Ojfk6nwPKJUBztLoYL/xbdRy/59bxnCInTQ0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LOYP123MB3247
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: -G_2ogdeT2RApvxqFXG999W-VMsCLCSx5de-yplByuo_1774260000
+X-Mimecast-Originator: touchnetix.com
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9d1a22577503a3kunm5765aa83592746
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQx9CHlZLHklLQxpDGkwYGU5WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpKQk
-	1VSktLVUpCWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=QaDPqk5+K33rWGC+Sk5tDLChlbDsO/bfMYXaEULZkUQCERH77KlcWVFsyhSlXZR2Y46pQUsNpqfFa2U9iWQ3stkbwgtTG9J4/E012AU6aaPKYYdzVm+wR1iSAoKDsvA+OzjKs14O7GOkHTuwPdAlURjPYGWeJq297DIxSi/RtRQ=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=Ma+sCIU/amVun6wDil2mNjR94in5yy/hwcmilDBpqY4=;
-	h=date:mime-version:subject:message-id:from;
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
-	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-278996-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-278998-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[touchnetix.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[37];
-	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,cherry.de,tomeuvizoso.net,jmu.edu.cn,cknow.org,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_CC(0.00)[kernel.org,linux.dev,linuxfoundation.org,linux-foundation.org,gmail.com,bootlin.com,pengutronix.de,bitmath.org,vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[rock-chips.com:+];
+	FROM_NEQ_ENVFROM(0.00)[andrew.thomas@touchnetix.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,rock-chips.com:dkim,rock-chips.com:mid]
-X-Rspamd-Queue-Id: 170B12EFA69
+	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,pengutronix.de:email,pengutronix.de:url]
+X-Rspamd-Queue-Id: 3E4A72EFAD4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/23/2026 5:24 PM, Krzysztof Kozlowski wrote:
-> On 23/03/2026 09:49, Damon Ding wrote:
->>>> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
->>>> index d99b23b88cc5..d2bc8636b626 100644
->>>> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
->>>> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
->>>> @@ -26,7 +26,9 @@ properties:
->>>>        items:
->>>>          - const: dp
->>>>          - const: pclk
->>>> -      - const: grf
->>>> +      - enum:
->>>> +          - grf
->>>> +          - hclk
->>>
->>> You just told me it is the same clock, no? I asked that and you
->>> confirmed? Or you replied with an answer not relevant to the question?
->>>
+On Fri, Mar 13, 2026 at 08:50:05PM +0100, Marco Felsch wrote:
+>Hi Andrew,
+>
+>thanks for your feedback! Please see below.
+>
+>On 26-03-13, Andrew Thomas wrote:
+>> On Tue, Mar 03, 2026 at 11:41:22PM +0100, Marco Felsch wrote:
+>> >This adds the initial support for the TouchNetix AX54A touchcontroller
+>> >which is part of TouchNetix's aXiom touchscreen controller family.
+>> >
+>> >The TouchNetix aXiom family provides two physical interfaces: SPI and
+>> >I2C. This patch covers only the I2C interface.
+>> >
+>> >Apart the input event handling the driver supports firmware updates too=
+.
+>> >One firmware interface handles the touchcontroller firmware (AXFW)
+>> >update the other handles the touchcontroller configuration (TH2CFGBIN)
+>> >update.
+>> >
+>> >Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+>> >---
+>
+>...
+>
+>> >+static int axiom_u02_enter_bootloader(struct axiom_data *ts)
+>> >+{
+>> >+=09struct axiom_u02_rev1_system_manager_msg msg =3D { };
+>> >+=09struct device *dev =3D ts->dev;
+>> >+=09unsigned int val;
+>> >+=09int error;
+>> >+
+>> >+=09if (!axiom_driver_supports_usage(ts, AXIOM_U02))
+>> >+=09=09return -EINVAL;
+>> >+
+>> >+=09/*
+>> >+=09 * Enter the bootloader mode requires 3 consecutive messages so we =
+can't
+>> >+=09 * check for the response.
+>> >+=09 * TODO: Check if it's required to add a delay between the consecut=
+ive
+>> >+=09 * CMD_ENTERBOOTLOADER cmds.
+>> >+=09 */
+>> >+=09msg.command =3D cpu_to_le16(AXIOM_U02_REV1_CMD_ENTERBOOTLOADER);
+>> >+=09msg.parameters[0] =3D cpu_to_le16(AXIOM_U02_REV1_PARAM0_ENTERBOOLOA=
+DER_KEY1);
+>> >+=09error =3D axiom_u02_send_msg(ts, &msg, false);
 >>
->> Aha, I may have misunderstood your earlier advice as meaning that since
->> the RK3576 and RK3588 platforms share the same design, their clock
->> dependencies should also be identical.
+>> As mentioned before the delay between commands is too short and the
+>> next command is sent before u02 is ready, which means the driver fails
+>> to put axiom into the bootloader.
+>
+>Please see my comment [1].
+>
+>> Have you tested with an i2c speed of 400KHz?
+>
+>Yes, my target platform is based on a i.MX8MP.
+>
+>> All you need is to put true in above to wait for the bootloader command.
+>> error =3D axiom_u02_send_msg(ts, &msg, true);
+>
+>Please see my comment [1].
+>
+>> Just dont do it for the last command.
+>
+>Please see my comment [1].
+>
+>> I am not too sure why you are having issues with this, this is how we
+>> do it for all our devices.
+>
+>Please see my comment [1].
+>
+>On what platform do you perform the tests?
+>
+>> >+=09if (error) {
+>> >+=09=09dev_err(dev, "Failed to send bootloader-key1: %d\n", error);
+>> >+=09=09return error;
+>> >+=09}
+>> >+
+>> >+=09msg.parameters[0] =3D cpu_to_le16(AXIOM_U02_REV1_PARAM0_ENTERBOOLOA=
+DER_KEY2);
+>> >+=09error =3D axiom_u02_send_msg(ts, &msg, false);
 >>
->> The 'grf' clock and 'hclk' clock are different.
->> On RK3399, the GRF clock is for accessing VIO GRF registers.
-> 
-> OK
-> 
->> On RK3588/RK3576, the eDP 'hclk' is required as it is the parent clock
->> of 'pclk' in the AHB bus topology.
-> 
-> Heh, device takes pclk, so you do not need to take its parent.
-
-Emm, my explanation may not have been clear enough. At the clock tree 
-level, the hclk and pclk are two separate clocks, while pclk's parent 
-clock is hclk in the NOC design, as illustrated below:
-(Take the NOC design of RK3576 as example)
-
-PD_VOP
-   hclk_vop
-     ├─ PD_VO1/hclk_vo1
-     │    ├─ hclk_vo1_s (VO1 AHBS)
-     │    └─ pclk_vo1_s (VO1 APB)
-     └─ PD_VO0/hclk_vo0
-          ├─ hclk_vo0_s (VO0 AHB)
-          ├─ pclk_vo0   (VO0 AHBS)
-          └─ pclk_vo0_s (VO0 APBS)
-
-Then, the clock tree design is:
-
-hclk_vo0_root (200M)
-├─ hclk_spdifrx2_en
-│    └─ hclk_spdifrx2 (200M)
-├─ hclk_spdif2_en
-│    └─ hclk_spdif2 (200M)
-├─ hclk_sai6_8ch_en
-│    └─ hclk_sai6_8ch (200M)
-├─ hclk_hdcp0_en
-│    └─ hclk_hdcp0 (200M)
-├─ hclk_vo0_biu_en
-│    └─ hclk_vo0_biu (200M)
-└─ hclk_sai5_8ch_en
-      └─ hclk_sai5_8ch (200M)
-
-pclk_vo0_root (150M)
-├─ pclk_hdmitx0_en
-│    └─ pclk_hdmitx0 (150M)
-├─ pclk_vo0_grf_en
-│    └─ pclk_vo0_grf (150M)
-├─ pclk_edp0_en
-│    └─ pclk_edp0 (150M)
-├─ pclk_dsihost0_en
-│    └─ pclk_dsihost0 (150M)
-├─ pclk_hdcp0_en
-│    └─ pclk_hdcp0 (150M)
-└─ pclk_vo0_biu_en
-      └─ pclk_vo0_biu (150M)
-
-Therefore, we need take 'hclk' as reference clock.
-
-> 
+>> Here also.
+>
+>Please see my comment [1].
+>
+>> >+=09if (error) {
+>> >+=09=09dev_err(dev, "Failed to send bootloader-key2: %d\n", error);
+>> >+=09=09return error;
+>> >+=09}
+>> >+
+>> >+=09msg.parameters[0] =3D cpu_to_le16(AXIOM_U02_REV1_PARAM0_ENTERBOOLOA=
+DER_KEY3);
+>> >+=09error =3D axiom_u02_send_msg(ts, &msg, false);
+>> >+=09if (error) {
+>> >+=09=09dev_err(dev, "Failed to send bootloader-key3: %d\n", error);
+>> >+=09=09return error;
+>> >+=09}
+>> >+
+>> >+=09/* Sleep before the first read to give the device time */
+>> >+=09fsleep(250 * USEC_PER_MSEC);
+>> >+
+>> >+=09/* Wait till the device reports it is in bootloader mode */
+>> >+=09error =3D regmap_read_poll_timeout(ts->regmap,
+>> >+=09=09=09=09=09 AXIOM_U31_REV1_DEVICE_ID_HIGH_REG, val,
+>> >+=09=09=09=09=09 FIELD_GET(AXIOM_U31_REV1_MODE_MASK, val) =3D=3D
+>> >+=09=09=09=09=09=09AXIOM_U31_REV1_MODE_BLP,
+>> >+=09=09=09=09=09 250 * USEC_PER_MSEC, USEC_PER_SEC);
+>> >+=09if (error)
+>> >+=09=09return error;
+>> >+
+>> >+=09return 0;
+>> >+}
+>> >+
 >>
->>> If this device takes reference to grf, why does it also take grf clock?
->>> Devices MUST NOT take clocks on behalf of other devices, so please
->>> answer with a list of all clock inputs according to datasheet/manual.
->>>
+>> ...
 >>
->> On earlier platforms, the GRF was not partitioned into separate
->> functional small GRF units as on newer designs. Therefore, the 'grf'
->> clock was designed as the clock dependency for all relevant modules.
 >>
->> For RK3588/RK3576 eDP module, the list of all clock inputs is:
->>
->> CLK_EDP0_24M: Reference clock.
->> PCLK_EDP0: AHB clock.
->> HCLK_VO1/HCLK_VO0_ROOT: Video datapath clock.
-> 
+>> Other than the above comments I have no issues with the driver.
+>
+>If you're fine with the patch you could add your acked-by [2] :)
+>
+>> We can support more usages in a later patch.
+>
+>Sure :)
+>
+>[1] https://lore.kernel.org/all/4x3dnedfzf3rqzsy3wjdoj6yaxmy6kop37xhxeao4v=
+jer7ifdi@35ux42ztq3eb
+>[2] https://docs.kernel.org/process/submitting-patches.html#when-to-use-ac=
+ked-by-cc-and-co-developed-by
+>
+>Regards,
+>  Marco
+>--=20
+>#gernperDu
+>#CallMeByMyFirstName
+>
+>Pengutronix e.K.                           |                             |
+>Steuerwalder Str. 21                       | https://www.pengutronix.de |
+>31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+>Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
-Best regards,
-Damon
+Acked-by: Andrew Thomas <andrew.thomas@touchnetix.com>
 
 
