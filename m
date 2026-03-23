@@ -1,250 +1,268 @@
-Return-Path: <devicetree+bounces-279014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279017-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mN3DFpsRwWk7QQQAu9opvQ
-	(envelope-from <devicetree+bounces-279014-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 11:10:35 +0100
+	id +NeLJisUwWnkQQQAu9opvQ
+	(envelope-from <devicetree+bounces-279017-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 11:21:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC2452EFBFC
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 11:10:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF3A52EFE95
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 11:21:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4F87D3012534
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 10:10:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 035483046BB2
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 10:11:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 622DF38C2B4;
-	Mon, 23 Mar 2026 10:09:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28DE338A734;
+	Mon, 23 Mar 2026 10:11:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="CKfa4HmP"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Qf5aIl4G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8484638BF7A
-	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 10:09:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B890F386C31;
+	Mon, 23 Mar 2026 10:11:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774260561; cv=none; b=BBx4EFyk2zJ9o7jy9n6J7WmV3M4mhtSzdw/3boKg2ep4PfRAcX75sE7STDwpNKZgxFgmm4dubYBcdAf3TQ763tXzjTnKia6d+TOjoNmdo+JTAmfwPBh5bPA3mdjflpXsEEhFAxoS/lOV8ggavAuhlImA0o5qAU2e9fGA34+rm5k=
+	t=1774260717; cv=none; b=om+aFB0SBv/J1EpKBlDSiPfofaPdjhPE8aNk9/9DVpOARadWoCu6P4YtdQW4YnKOCDD63G0yLMQv2ZKLjGbMu3txMZ8jQAZxSMXsTW/BSWe1W0R4+AjmsidIbTXSxo5pmFs8OL9sNRIVmKKMXcHEtLjxy/R38AZDLn1IuNWjpd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774260561; c=relaxed/simple;
-	bh=iByLlERWMi84pzf4bnyBGpGXQxAdR8qksLE2GMzDhr0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=Im0+JLnPtbTvFS4uO3nYwZEk9Qct/ALwljKgh+v9iNCE47/taDDZXJ70ttsbOq3sMIgkUmBMr3QzF0h7iJxKJZwO9qWEnlR05TXAIZNyZU7SGHcTn+CBS5AMZzvGoyqeZY6DUs3ks/MaBUaNVx/x5RlhJ5Hg9+DhRcn/nbRIIOA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=CKfa4HmP; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20260323100914euoutp01e3b80427274ba5b31c3c3e87854ef6b1~fcJLS4nkr1424914249euoutp01q
-	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 10:09:14 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20260323100914euoutp01e3b80427274ba5b31c3c3e87854ef6b1~fcJLS4nkr1424914249euoutp01q
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1774260554;
-	bh=Zbv558l0JXbA/evotEn7j2Yp5sFsNk7kEVzz156NoGI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=CKfa4HmPLdhrTKj9GAspBvrBdZaibIjlc7dUnoD561qJf5/RTtdU/sTy1rczsDI+R
-	 Leqf8l2WKtGdnQCymPl7H89+cf2fGRfVc0Gmp3a0BMoo+7dWtguHdJUZNBPTcI/aLJ
-	 tTYxSkfX/ofWAYEZFiLJlVPLmphBJ7jgJdRScHiY=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20260323100912eucas1p1aadb718d2c0eea3404aa5be379ae21c1~fcJKGQmYG2578125781eucas1p1t;
-	Mon, 23 Mar 2026 10:09:12 +0000 (GMT)
-Received: from AMDC4653.digital.local (unknown [106.120.51.32]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20260323100912eusmtip20108a44eb532b22a6560aefbc89b4f9a~fcJJjxuTO0899908999eusmtip2j;
-	Mon, 23 Mar 2026 10:09:12 +0000 (GMT)
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-To: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-mm@kvack.org, iommu@lists.linux.dev
-Cc: Marek Szyprowski <m.szyprowski@samsung.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Oreoluwa Babatunde
-	<oreoluwa.babatunde@oss.qualcomm.com>, Saravana Kannan
-	<saravanak@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, Robin
-	Murphy <robin.murphy@arm.com>
-Subject: [PATCH v2 7/7] of: reserved_mem: rework
- fdt_init_reserved_mem_node()
-Date: Mon, 23 Mar 2026 11:09:01 +0100
-Message-Id: <20260323100901.4079171-8-m.szyprowski@samsung.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260323100901.4079171-1-m.szyprowski@samsung.com>
+	s=arc-20240116; t=1774260717; c=relaxed/simple;
+	bh=Ug5VHRdcq3NS/itD3XFI2srxI8A5Wt5+5mM2wgat0Cw=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Ozk+NIO6AlfgEhIEDYzkdwWYxzm20wif4RAo8OYePesMKiLoZGpt7zRgMJbjZOKdt9jOOckRw1hZNgMttyI4gMWtnojb3UJ7qJAeLeJZ77k2z1fJPCNxZxKhPEwjAkXOY9KjP/CURX7lDH6ND6j2+gbJoyuIcXdDTg0m5sTFtyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Qf5aIl4G; arc=none smtp.client-ip=188.40.3.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ew.tq-group.com; s=default2602; h=MIME-Version:Content-Transfer-Encoding:
+	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=W6keZ0J8bp8XaUyK9YS2ONZrB864NUMZU0QHXs1cWj4=; b=Qf5aIl4GVdq+PVzn9w/hvh7DOX
+	FCCUAW7ftXAsDzHJNPTVjt7mwFKnUwy03aE9Xs7W/wrZ1IZ36xE2uXOt+E/SU8cGgCzyZq3ezpmn1
+	99UmOCXZ0oTFgxS/00h14C2XCgPvHsTEwAypDJy6TRq30NfdCPXSfeh66zklbOg0ehoOExCyJffSF
+	kb/bp9qhyQ8oVg1MxcQnCrDW1VI4Frxa4NcgDzKb7Nqy5zbETXlZfsdzxokLbdjblfxSdFZzUhTTc
+	ct4yKgRDo/i5WvBZUWM6SRR4gzIo5X/ZFUuB1Mt7A6nwO2kS5r52kTaxvUNF35OCuRejf3EsIoigK
+	2qoF9H4Q==;
+Received: from sslproxy08.your-server.de ([78.47.166.52])
+	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <nora.schiffer@ew.tq-group.com>)
+	id 1w4cGF-000MKb-02;
+	Mon, 23 Mar 2026 11:11:51 +0100
+Received: from localhost ([127.0.0.1])
+	by sslproxy08.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <nora.schiffer@ew.tq-group.com>)
+	id 1w4cGD-0009hO-2R;
+	Mon, 23 Mar 2026 11:11:50 +0100
+Message-ID: <9e5367c6dfba0708578cda69fc48531b3749b5e8.camel@ew.tq-group.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j722s: Add main_i2c4 device node
+From: Nora Schiffer <nora.schiffer@ew.tq-group.com>
+To: Aniket Limaye <a-limaye@ti.com>, Nishanth Menon <nm@ti.com>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, u-kumar1@ti.com, Jared McArthur
+ <j-mcarthur@ti.com>
+Date: Mon, 23 Mar 2026 11:11:49 +0100
+In-Reply-To: <20260304-j722s-main-i2c4-dt-v1-1-03f79f0cdf97@ti.com>
+References: <20260304-j722s-main-i2c4-dt-v1-1-03f79f0cdf97@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.3-0ubuntu1.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20260323100912eucas1p1aadb718d2c0eea3404aa5be379ae21c1
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20260323100912eucas1p1aadb718d2c0eea3404aa5be379ae21c1
-X-EPHeader: CA
-X-CMS-RootMailID: 20260323100912eucas1p1aadb718d2c0eea3404aa5be379ae21c1
-References: <20260323100901.4079171-1-m.szyprowski@samsung.com>
-	<CGME20260323100912eucas1p1aadb718d2c0eea3404aa5be379ae21c1@eucas1p1.samsung.com>
-X-Spamd-Result: default: False [-1.16 / 15.00];
+X-Virus-Scanned: Clear (ClamAV 1.4.3/27949/Mon Mar 23 07:24:47 2026)
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
-	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[samsung.com:+];
+	TAGGED_FROM(0.00)[bounces-279017-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-279014-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m.szyprowski@samsung.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[nora.schiffer@ew.tq-group.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:dkim,samsung.com:email,samsung.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: EC2452EFBFC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BF3A52EFE95
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Move the content of fdt_reserved_mem_save_node() to
-fdt_init_reserved_mem_node() function. Initialization is no longer
-performed in two steps as it was initially, so fdt_reserved_mem_save_node()
-name is a bit misleading and that function now performs full initialization
-of the reserved memory region.
+On Wed, 2026-03-04 at 14:41 +0530, Aniket Limaye wrote:
+> Add missing device tree node for main_i2c4, and the corresponding ranges
+> in cbass_main. Interrupt for this i2c controller is routed through the
+> Main GPIOMUX Router.
+> Base address, Interrupt IDs are taken from J722S TRM [0].
+> Device, Clock IDs are taken from TISCI docs [1].
+>=20
+> Additionally, the I2C4 is the only interrupt source to the GPIOMUX INTR
+> router that generates level interrupts, while all other sources generate
+> edge interrupts. Due to this, the router needs to handle interrupt-type
+> on a per-line basis. Modify the router node and its consumers to
+> specify the interrupt type corresponding to each interrupt line.
+>=20
+> [0]: https://www.ti.com/lit/zip/sprujb3
+> [1]:
+> https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/index.html#j722s
+>=20
+> Signed-off-by: Jared McArthur <j-mcarthur@ti.com>
+> Signed-off-by: Aniket Limaye <a-limaye@ti.com>
+> ---
+> Note:
+> Support for per-line interrupt-types was added through a recent series
+> [2], which was already merged in.
+>=20
+> Testing:
+> - Enable I2C4 (additional DT patch) on j722s-evm and run i2cdetect [3].
+> - Add testcode to ignore the NACK interrupt, which results in an irq
+>   storm -> showing that GIC is actually receiving level interrupt from
+>   the INTR [4].
 
-Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
----
- drivers/of/of_reserved_mem.c | 60 ++++++++++++++++--------------------
- 1 file changed, 26 insertions(+), 34 deletions(-)
+I ran a basic test on our MBa67xx board based on current linux-next with th=
+is
+patch applied. Probe and configuration of a RPi DSI camera module (IMX219)
+connected to I2C4 is working as expected.
 
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index 801451d034fa..661116034692 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -102,36 +102,13 @@ static void __init alloc_reserved_mem_array(void)
- 	reserved_mem = new_array;
- }
- 
--static void __init fdt_init_reserved_mem_node(struct reserved_mem *rmem,
--					      unsigned long node);
-+static void fdt_init_reserved_mem_node(unsigned long node, const char *uname,
-+				       phys_addr_t base, phys_addr_t size);
- static int fdt_validate_reserved_mem_node(unsigned long node,
- 					  phys_addr_t *align);
- static int fdt_fixup_reserved_mem_node(unsigned long node,
- 				       phys_addr_t base, phys_addr_t size);
- 
--/*
-- * fdt_reserved_mem_save_node() - save fdt node for second pass initialization
-- */
--static void __init fdt_reserved_mem_save_node(unsigned long node, const char *uname,
--					      phys_addr_t base, phys_addr_t size)
--{
--	struct reserved_mem *rmem = &reserved_mem[reserved_mem_count];
--
--	if (reserved_mem_count == total_reserved_mem_cnt) {
--		pr_err("not enough space for all defined regions.\n");
--		return;
--	}
--
--	rmem->name = uname;
--	rmem->base = base;
--	rmem->size = size;
--
--	/* Call the region specific initialization function */
--	fdt_init_reserved_mem_node(rmem, node);
--
--	reserved_mem_count++;
--}
--
- static int __init early_init_dt_reserve_memory(phys_addr_t base,
- 					       phys_addr_t size, bool nomap)
- {
-@@ -316,7 +293,7 @@ void __init fdt_scan_reserved_mem_late(void)
- 
- 		if (size) {
- 			uname = fdt_get_name(fdt, child, NULL);
--			fdt_reserved_mem_save_node(child, uname, base, size);
-+			fdt_init_reserved_mem_node(child, uname, base, size);
- 		}
- 	}
- 
-@@ -515,9 +492,8 @@ static int __init __reserved_mem_alloc_size(unsigned long node, const char *unam
- 	}
- 
- 	fdt_fixup_reserved_mem_node(node, base, size);
-+	fdt_init_reserved_mem_node(node, uname, base, size);
- 
--	/* Save region in the reserved_mem array */
--	fdt_reserved_mem_save_node(node, uname, base, size);
- 	return 0;
- }
- 
-@@ -619,21 +595,34 @@ static int __init __reserved_mem_init_node(struct reserved_mem *rmem,
- 	return ret;
- }
- 
--
- /**
-  * fdt_init_reserved_mem_node() - Initialize a reserved memory region
-- * @rmem: reserved_mem struct of the memory region to be initialized.
-  * @node: fdt node of the initialized region
-+ * @uname: name of the reserved memory node
-+ * @base: base address of the reserved memory region
-+ * @size: size of the reserved memory region
-  *
-- * This function is used to call the region specific initialization
-- * function for a reserved memory region.
-+ * This function calls the region-specific initialization function for a
-+ * reserved memory region and saves all region-specific data to the
-+ * reserved_mem array to allow of_reserved_mem_lookup() to find it.
-  */
--static void __init fdt_init_reserved_mem_node(struct reserved_mem *rmem,
--					      unsigned long node)
-+static void __init fdt_init_reserved_mem_node(unsigned long node, const char *uname,
-+					      phys_addr_t base, phys_addr_t size)
- {
- 	int err = 0;
- 	bool nomap;
- 
-+	struct reserved_mem *rmem = &reserved_mem[reserved_mem_count];
-+
-+	if (reserved_mem_count == total_reserved_mem_cnt) {
-+		pr_err("not enough space for all defined regions.\n");
-+		return;
-+	}
-+
-+	rmem->name = uname;
-+	rmem->base = base;
-+	rmem->size = size;
-+
- 	nomap = of_get_flat_dt_prop(node, "no-map", NULL) != NULL;
- 
- 	err = __reserved_mem_init_node(rmem, node);
-@@ -643,6 +632,7 @@ static void __init fdt_init_reserved_mem_node(struct reserved_mem *rmem,
- 			memblock_clear_nomap(rmem->base, rmem->size);
- 		else
- 			memblock_phys_free(rmem->base, rmem->size);
-+		return;
- 	} else {
- 		phys_addr_t end = rmem->base + rmem->size - 1;
- 		bool reusable =
-@@ -654,6 +644,8 @@ static void __init fdt_init_reserved_mem_node(struct reserved_mem *rmem,
- 			reusable ? "reusable" : "non-reusable",
- 			rmem->name ? rmem->name : "unknown");
- 	}
-+
-+	reserved_mem_count++;
- }
- 
- struct rmem_assigned_device {
--- 
-2.34.1
+Tested-by: Nora Schiffer <nora.schiffer@ew.tq-group.com>
 
+
+
+>=20
+> [2]: https://lore.kernel.org/all/20260123-ul-driver-i2c-j722s-v4-0-b08625=
+c487d5@ti.com/
+> [3]: https://gist.github.com/aniket-l/844925345316adf9f65f04c8cdedd62d#fi=
+le-j722s-evm-main-i2c4-working-logs-txt
+> [4]: https://gist.github.com/aniket-l/844925345316adf9f65f04c8cdedd62d#fi=
+le-j722s-evm-main-i2c4-irqstorm-logs-txt
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 13 +++++++-----=
+-
+>  arch/arm64/boot/dts/ti/k3-j722s-main.dtsi              | 13 ++++++++++++=
++
+>  arch/arm64/boot/dts/ti/k3-j722s.dtsi                   |  3 ++-
+>  3 files changed, 22 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi b/arc=
+h/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> index 0e1af2a69ca2..f130c7cb998d 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> @@ -543,10 +543,9 @@ main_spi2: spi@20120000 {
+>  	main_gpio_intr: interrupt-controller@a00000 {
+>  		compatible =3D "ti,sci-intr";
+>  		reg =3D <0x00 0x00a00000 0x00 0x800>;
+> -		ti,intr-trigger-type =3D <1>;
+>  		interrupt-controller;
+>  		interrupt-parent =3D <&gic500>;
+> -		#interrupt-cells =3D <1>;
+> +		#interrupt-cells =3D <2>;
+>  		ti,sci =3D <&dmsc>;
+>  		ti,sci-dev-id =3D <3>;
+>  		ti,interrupt-ranges =3D <0 32 16>;
+> @@ -558,8 +557,9 @@ main_gpio0: gpio@600000 {
+>  		gpio-controller;
+>  		#gpio-cells =3D <2>;
+>  		interrupt-parent =3D <&main_gpio_intr>;
+> -		interrupts =3D <190>, <191>, <192>,
+> -			     <193>, <194>, <195>;
+> +		interrupts =3D <190 IRQ_TYPE_EDGE_RISING>, <191 IRQ_TYPE_EDGE_RISING>,
+> +			     <192 IRQ_TYPE_EDGE_RISING>, <193 IRQ_TYPE_EDGE_RISING>,
+> +			     <194 IRQ_TYPE_EDGE_RISING>, <195 IRQ_TYPE_EDGE_RISING>;
+>  		interrupt-controller;
+>  		#interrupt-cells =3D <2>;
+>  		ti,davinci-gpio-unbanked =3D <0>;
+> @@ -574,8 +574,9 @@ main_gpio1: gpio@601000 {
+>  		gpio-controller;
+>  		#gpio-cells =3D <2>;
+>  		interrupt-parent =3D <&main_gpio_intr>;
+> -		interrupts =3D <180>, <181>, <182>,
+> -			     <183>, <184>, <185>;
+> +		interrupts =3D <180 IRQ_TYPE_EDGE_RISING>, <181 IRQ_TYPE_EDGE_RISING>,
+> +			     <182 IRQ_TYPE_EDGE_RISING>, <183 IRQ_TYPE_EDGE_RISING>,
+> +			     <184 IRQ_TYPE_EDGE_RISING>, <185 IRQ_TYPE_EDGE_RISING>;
+>  		interrupt-controller;
+>  		#interrupt-cells =3D <2>;
+>  		ti,davinci-gpio-unbanked =3D <0>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/=
+dts/ti/k3-j722s-main.dtsi
+> index 9ee5d0c8ffd1..ddf20e44f0ea 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+> @@ -154,6 +154,19 @@ usb1: usb@31200000 {
+>  		};
+>  	};
+> =20
+> +	main_i2c4: i2c@fe80000 {
+> +		compatible =3D "ti,am64-i2c", "ti,omap4-i2c";
+> +		reg =3D <0x00 0x0fe80000 0x00 0x100>;
+> +		interrupt-parent =3D <&main_gpio_intr>;
+> +		interrupts =3D <178 IRQ_TYPE_LEVEL_HIGH>;
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +		power-domains =3D <&k3_pds 257 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks =3D <&k3_clks 257 2>;
+> +		clock-names =3D "fck";
+> +		status =3D "disabled";
+> +	};
+> +
+>  	ti_csi2rx1: ticsi2rx@30122000 {
+>  		compatible =3D "ti,j721e-csi2rx-shim";
+>  		reg =3D <0x00 0x30122000 0x00 0x1000>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j722s.dtsi b/arch/arm64/boot/dts/t=
+i/k3-j722s.dtsi
+> index 059c65ece183..1b36dcf37925 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j722s.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
+> @@ -160,7 +160,8 @@ cbass_main: bus@f0000 {
+>  			 <0x00 0x0fd80000 0x00 0x0fd80000 0x00 0x00080000>, /* GPU */
+>  			 <0x00 0x0fd20000 0x00 0x0fd20000 0x00 0x00000100>, /* JPEGENC0_CORE =
+*/
+>  			 <0x00 0x0fd20200 0x00 0x0fd20200 0x00 0x00000200>, /* JPEGENC0_CORE_=
+MMU */
+> -			 <0x00 0x20000000 0x00 0x20000000 0x00 0x0a008000>, /* Third peripher=
+al window */
+> +			 <0x00 0x0fe00000 0x00 0x0fe00000 0x00 0x000f0400>, /* Third peripher=
+al window */
+> +			 <0x00 0x20000000 0x00 0x20000000 0x00 0x0a008000>, /* Fourth periphe=
+ral window */
+>  			 <0x00 0x30040000 0x00 0x30040000 0x00 0x00080000>, /* PRUSS-M */
+>  			 <0x00 0x301c0000 0x00 0x301c0000 0x00 0x00001000>, /* DPHY-TX */
+>  			 <0x00 0x30101000 0x00 0x30101000 0x00 0x00080100>, /* CSI window */
+>=20
+> ---
+> base-commit: d517cb8cea012f43b069617fc8179b45404f8018
+> change-id: 20260303-j722s-main-i2c4-dt-8a1344d04ffe
+>=20
+> Best regards,
+
+--=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+https://www.tq-group.com/
 
