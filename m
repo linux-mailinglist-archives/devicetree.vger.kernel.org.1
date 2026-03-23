@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-279234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279236-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aJPpCxxYwWnbSQQAu9opvQ
-	(envelope-from <devicetree+bounces-279234-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 16:11:24 +0100
+	id IDHuKTVewWlZSgQAu9opvQ
+	(envelope-from <devicetree+bounces-279236-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 16:37:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEB732F5EF0
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 16:11:23 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 922B42F696B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 16:37:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6E8E4306C652
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 15:04:14 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 43A10312022F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 15:04:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30FC03AD527;
-	Mon, 23 Mar 2026 15:03:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B53943B19C6;
+	Mon, 23 Mar 2026 15:03:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="O1SegjN1"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="pmOmFRo/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5331383C7C
-	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 15:02:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A68E3A963B
+	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 15:02:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774278180; cv=none; b=oRNB1dPDzMXl2Oq9P0HzY1/FB/tNqNRwlAhloSvjrPGdsp5Gy2EiTkO3YdHirEbuHr4AYmyfOjZZJhztiMTllGnUdshaCkuNMyfLg4LJhMAn0lnGoJ2mHS5Hd6XdbHY54WuMKzPvh0odmdkK+h9fpL35NJTOheOyap1A5EJAHzs=
+	t=1774278181; cv=none; b=TRiypH8SPlrAs1NBcy6Y+N3HjStBOTBrVViqOmuvTxRoTtympr/3GltM1qcMuHZkF5VymSoIm0oofhySfYitV5K2Spd9IKZq7IxzuJhJ2opB8zXpZrhQZz9sr4oNemYRgwb60vQLAm9buUjhZ49txydEKiZLkDKESd/3ALZGiLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774278180; c=relaxed/simple;
-	bh=0O4TBdZ9JeIZhQVsh4ZaCpriAX2OdR1rhbqhuVxZ1ps=;
+	s=arc-20240116; t=1774278181; c=relaxed/simple;
+	bh=SNBxAyWvlbMQrJWj5T5wU/4LhKzcMaoZk2JRIEOETlE=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=O6QE4NLQ/M/ayJlNwHtDL7IiCJPEbE78sDsMvc43LJnQxZ684sYLsJndZJGnvFxaz9HvB+5I2Wqw5kBweWjjQ6wsppEsKCybPhOncF6v0Z1UWRGRhVuwkMeYPuziMmNLJhNZmimyCObMh67U6kZL+zfuu7a1br/El7jgwzqjiMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=O1SegjN1; arc=none smtp.client-ip=185.246.84.56
+	 In-Reply-To:To:Cc; b=RDYUTWyyqWKOpiIbRHMWcSLTrrqUMZ/4FgfA8f9l/20VohKP8lRxJuET0GASzC+o6/JWE3ZLwwm3wGYgZZ1DHvYHIPHGnHq37VL7k5qwF8T7BJs+JLlOkA1A9ngPdSsBBwjum2bXhn2kAxkNqHY83WZf6mzNUfxC/hcoP+PEx+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=pmOmFRo/; arc=none smtp.client-ip=185.171.202.116
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 867041A2FA2;
-	Mon, 23 Mar 2026 15:02:57 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id A220FC58085;
+	Mon, 23 Mar 2026 15:03:25 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 554405FEF6;
-	Mon, 23 Mar 2026 15:02:57 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 04E6B10450FE4;
-	Mon, 23 Mar 2026 16:02:54 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id C56715FEF6;
+	Mon, 23 Mar 2026 15:02:58 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C19BA10450FFB;
+	Mon, 23 Mar 2026 16:02:56 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1774278176; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1774278177; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=s7ieGxUorH5vEoclzdFlJzFlL8c4gOCHik9ITpDwHlE=;
-	b=O1SegjN1pZ3JtKr06ywQW66Y8aNGXNiUT1vFYKH34ry43kFmpcAGKqP2Rq1KFeWqQ25lQA
-	wdhZEYQByuyCkukSs6pNZ0m9um/e0hihsJ/TreZuQWCj+16FeaaorDdswwT0ldQAsWNHUi
-	fTbLdGVjrNKCMo1tEvishTWJcb1OykpUiWNpTV0Zwf/ghWexSsNbci/pTU1jhbxtsfi+pm
-	FCaYvojKkPljbqGHP5AnorY4d3EFYWDtBTvI0zhx9LZ3vUgAxZDu0RKJk+v8gnxnyH2t7U
-	blf/uFgbDtQ2dO9Tx5AFPAvISe6COt50SN5XWOTedXZpXwxgzwADfyzSgSs/8g==
+	bh=oz2H0XLN3AH8WWxUIwmA2AJxtlH1SW2FIDqDP+bCqtQ=;
+	b=pmOmFRo/o8H23SQfKGnLfOZIFvfUv01uLjr+1EPWeMTJ77CdTbTXknT64+jls/0YOirXni
+	LyHI3r2cl9Ouk2xIzrtcOBCYdiWiUk4VEibzBIlaPCACKP0K/OnDXjgvEQjYlJTiTuJSP6
+	JSxUFO9S8zJPhc17xJu6v3r71gsVUs2aA36GMSYbEyfMTwTpF62LQ4RFunwh2wQgRYCkAa
+	Jfqhl6jrW/jjXISGVRvnRpNvEkXQSXYbGSZ8zwFaAhOdkTZrYUVEIJt16J7eTIKaDGvf9s
+	MFE8UprTLmsfE7QnOAyTYmuNPgbVmWCnB+e+HRq+dXceMzREHX8boYTxMyftPQ==
 From: Thomas Richard <thomas.richard@bootlin.com>
-Date: Mon, 23 Mar 2026 16:02:43 +0100
-Subject: [PATCH 2/8] ARM: dts: ti: omap4: Add pbias SIM regulator
+Date: Mon, 23 Mar 2026 16:02:44 +0100
+Subject: [PATCH 3/8] mfd: omap-usb-host: Cleanup header includes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +62,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260323-omap4-fix-usb-support-v1-2-b668132124ac@bootlin.com>
+Message-Id: <20260323-omap4-fix-usb-support-v1-3-b668132124ac@bootlin.com>
 References: <20260323-omap4-fix-usb-support-v1-0-b668132124ac@bootlin.com>
 In-Reply-To: <20260323-omap4-fix-usb-support-v1-0-b668132124ac@bootlin.com>
 To: Aaro Koskinen <aaro.koskinen@iki.fi>, 
@@ -81,11 +81,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-279234-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-279236-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FREEMAIL_TO(0.00)[iki.fi,kemnade.info,baylibre.com,kernel.org,atomide.com,gmail.com];
@@ -93,7 +93,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
@@ -104,34 +104,45 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: CEB732F5EF0
+X-Rspamd-Queue-Id: 922B42F696B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add the pbias SIM regulator node for OMAP4.
+Remove unused includes (linux/kernel.h, linux/types.h and linux/delay.h).
+Sort the remaining ones alphabetically.
 
 Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
 ---
- arch/arm/boot/dts/ti/omap/omap4-l4.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/mfd/omap-usb-host.c | 10 +++-------
+ 1 file changed, 3 insertions(+), 7 deletions(-)
 
-diff --git a/arch/arm/boot/dts/ti/omap/omap4-l4.dtsi b/arch/arm/boot/dts/ti/omap/omap4-l4.dtsi
-index 4881dd6743930dee65eaeab802d1e3766f480ce0..6904a84a1700527443cee19f62870904082eb48a 100644
---- a/arch/arm/boot/dts/ti/omap/omap4-l4.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/omap4-l4.dtsi
-@@ -697,6 +697,12 @@ pbias_mmc_reg: pbias_mmc_omap4 {
- 						regulator-min-microvolt = <1800000>;
- 						regulator-max-microvolt = <3000000>;
- 					};
-+
-+					pbias_sim_reg: pbias_sim_omap4 {
-+						regulator-name = "pbias_sim_omap4";
-+						regulator-min-microvolt = <1800000>;
-+						regulator-max-microvolt = <3000000>;
-+					};
- 				};
- 			};
- 		};
+diff --git a/drivers/mfd/omap-usb-host.c b/drivers/mfd/omap-usb-host.c
+index 4d29a6e2ed87abf2a0f6d5a704525baaa6f0cbcb..4e066a17cef0400edbfcb3012a16ceee06e52140 100644
+--- a/drivers/mfd/omap-usb-host.c
++++ b/drivers/mfd/omap-usb-host.c
+@@ -6,19 +6,15 @@
+  * Author: Keshava Munegowda <keshava_mgowda@ti.com>
+  * Author: Roger Quadros <rogerq@ti.com>
+  */
+-#include <linux/kernel.h>
+-#include <linux/module.h>
+-#include <linux/types.h>
+-#include <linux/slab.h>
+-#include <linux/delay.h>
+ #include <linux/clk.h>
+ #include <linux/dma-mapping.h>
+-#include <linux/platform_device.h>
++#include <linux/err.h>
++#include <linux/module.h>
+ #include <linux/platform_data/usb-omap.h>
++#include <linux/platform_device.h>
+ #include <linux/pm_runtime.h>
+ #include <linux/of.h>
+ #include <linux/of_platform.h>
+-#include <linux/err.h>
+ 
+ #include "omap-usb.h"
+ 
 
 -- 
 2.53.0
