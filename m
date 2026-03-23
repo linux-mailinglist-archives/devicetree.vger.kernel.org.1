@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-278886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278893-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0KQjHBnrwGl6OQQAu9opvQ
-	(envelope-from <devicetree+bounces-278886-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 08:26:17 +0100
+	id SLH0G7TrwGmROgQAu9opvQ
+	(envelope-from <devicetree+bounces-278893-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 08:28:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E02EB2ED87F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 08:26:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9C502ED9BA
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 08:28:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 43AE6303CC33
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 07:23:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5ED2B3014697
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 07:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F0035CB61;
-	Mon, 23 Mar 2026 07:23:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB35A35F600;
+	Mon, 23 Mar 2026 07:27:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gZTP10K9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tv4lUu4U"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF74233D6ED;
-	Mon, 23 Mar 2026 07:23:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B481735F5EF;
+	Mon, 23 Mar 2026 07:27:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774250585; cv=none; b=bDgNORBDIQ1cM4P2hbiJl14q3XlnI/LQzBx01mR9xbgs5Yc5oD/lmoMceOqG6KqpC0nUt7mObuvPyH00Wxe390P+dkrfV2HKEQo2tldmwJWrzSNHeG3z8EazRfiODvePgz2l3TzsJ+X+rsmfMR3U78Y4naReFD/9DzYt7HqrxAY=
+	t=1774250825; cv=none; b=rXbPc67VVSvVrJC0AKwuRh7rgoC1NYd4O4bU1KScEFXGryc4kS7kMrFP6Bj5t9KSTBbsd56u7LQIN4VtlTmabdEAYqimL8CFpua/vOjmnHP3kgjfg5uF05xrRIh93XDlhxhRFRU0znvh35YJLriHtPSHfIByzjWn6u6oi5GshvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774250585; c=relaxed/simple;
-	bh=NOr4/whM/6DDCxsSFLkoWn7h9JIHXCKtrxrgkH7C44s=;
+	s=arc-20240116; t=1774250825; c=relaxed/simple;
+	bh=4mvaC2L/czadecXkPXHTgYIe/GrhSr50cNbfUGrNwdk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HLtk3PZzxm+phC8acuTJN43xg5rDYKJHnMsNOIt5dCAJC0RRybGjsc3uuuS/nz40RH7jxdsxN4zkQBi4JTY+JeO408AS7vcm9mIJAGZkIJ+lE8UhYFb5z7Xpirbxlh16QFjKpKVnYkweyZiC8oKNs541Y94hXIPhzBDurH5UQMQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gZTP10K9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B31FAC4CEF7;
-	Mon, 23 Mar 2026 07:23:03 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=HNHrrxIGwEaoh6FjzD5HbP2SUdTVDhyRrBpkJly3wcT6BUrk6qIvj/gyp9cJHCJK4ZE5LImCbVtpbx1c+aG1L03ntvDuygjEIkWdkLjHgfzvyVLnxS+XB2l2vJOqNV0kAtA86wQ5HauzGsTSgh0x23bIDIoE8uCF4XhiYovMxMo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tv4lUu4U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08364C2BCB0;
+	Mon, 23 Mar 2026 07:27:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774250585;
-	bh=NOr4/whM/6DDCxsSFLkoWn7h9JIHXCKtrxrgkH7C44s=;
+	s=k20201202; t=1774250825;
+	bh=4mvaC2L/czadecXkPXHTgYIe/GrhSr50cNbfUGrNwdk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gZTP10K9D8nt+7+Nd5uivDLdc6Uy0Uvl6+WXZDN4PX+mZFbSPwPBTAB/NzHeS86ZE
-	 q6kZlExQq96cNwCMiaNPEfLqGEla6hOALCp5/mRvgCBUfjzUPDQPccwnY3mDOJpgvG
-	 oC2XhNq8rR9ow3e/ZyvyqF2l+qnGKRmwW97uNoM97SH3Wbx6jMhk642mjtps8WP+ON
-	 MzZe/me7GOl5tj1y/2pg+MqGOMN8nUt8DWPDJoYZQqkIkezeF2w8ztcIJM06SkwO5h
-	 MiWC4D8wYucQY0HCVP+2G4lhszXwmq9txnYmOvxBA1uIA8r0vOhvMAZWx3WurfUN5P
-	 bVxPny6r6Sa5w==
-Message-ID: <d3ca4cd0-c343-4885-ba97-814aeaf80fac@kernel.org>
-Date: Mon, 23 Mar 2026 08:23:02 +0100
+	b=Tv4lUu4U9WYwUQur7DH/tDx+7A7KXe23f4O4Y2Lo+BNMV7JDeX5lSybiNGKe+4+FT
+	 Xo7yNr28uJ6oIreAhok8CtZz6NIc+5ssy63ZKycvThFGtmLVp9nBjubVJufgq6En7N
+	 oA+t8+23BZIYH8QoiS0UgHNcAb24JljaGPJkEQK4N6/Zi6D3oLSaOf83+V2cYVvjP+
+	 uO1u0b6P91Pjrifjds03fi9AIYkbAvIIK6OoLi0FL+uxsmYT+/Vo8uPqYFMs0ywWiq
+	 IR3SJa6MmbzbT4IxyjdXkzogDQX0tCTg0nGCGLAZuIgnUa/33nov/vlLjwgOmNOUWu
+	 qzLLNuI4dawBg==
+Message-ID: <7967caff-101a-461a-bc61-aeb8fc8f04b1@kernel.org>
+Date: Mon, 23 Mar 2026 08:27:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,16 +53,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: Document Tegra194 and Tegra264
- controllers
-To: Mikko Perttunen <mperttunen@nvidia.com>,
- Thierry Reding <thierry.reding@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jon Hunter <jonathanh@nvidia.com>,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20260320234056.2579010-1-thierry.reding@kernel.org>
- <20260321-lurking-courageous-centipede-5e82cb@quoll>
- <8611828.LvFx2qVVIh@senjougahara>
+Subject: Re: [PATCH v3 1/3] dt-bindings: dma: arm-dma350: document generic and
+ combined IRQ topologies
+To: Jun Guo <jun.guo@cixtech.com>, Peter Chen <peter.chen@cixtech.com>
+Cc: fugang.duan@cixtech.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, vkoul@kernel.org, ychuang3@nuvoton.com,
+ schung@nuvoton.com, robin.murphy@arm.com, Frank.Li@kernel.org,
+ dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20260319101723.246539-1-jun.guo@cixtech.com>
+ <20260319101723.246539-2-jun.guo@cixtech.com>
+ <20260320-vengeful-violet-cockle-382580@quoll>
+ <ab0VoTut0u4f7EVr@nchen-desktop>
+ <41254f6c-3ce3-4566-acf4-f0bf764565f3@kernel.org>
+ <ab0aYUK1NlUV3riG@nchen-desktop>
+ <45bb547e-8a9a-41ef-a5d3-417dc4f35746@kernel.org>
+ <dd6ee455-7bba-4734-be84-a7db097754c6@cixtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,65 +115,93 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <8611828.LvFx2qVVIh@senjougahara>
+In-Reply-To: <dd6ee455-7bba-4734-be84-a7db097754c6@cixtech.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_FROM(0.00)[bounces-278886-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278893-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: E02EB2ED87F
+X-Rspamd-Queue-Id: E9C502ED9BA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 23/03/2026 03:45, Mikko Perttunen wrote:
-> On Saturday, March 21, 2026 7:49 PM Krzysztof Kozlowski wrote:
->> On Sat, Mar 21, 2026 at 12:40:55AM +0100, Thierry Reding wrote:
->>> From: Thierry Reding <treding@nvidia.com>
->>>
->>> The PWM controller found on Tegra264 is largely compatible with the one
->>> on prior generations, but it comes with some extra features, hence a new
->>> compatible string is needed.
->>>
->>> Signed-off-by: Thierry Reding <treding@nvidia.com>
->>> ---
->>>
->>>  Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.yaml | 2 ++
->>>  1 file changed, 2 insertions(+)
->>
->> Where is the driver patch? Why this is not being part of driver
->> submission (see also submitting bindings DT in description how patches
->> should be sent)?
->>
->> Best regards,
->> Krzysztof
+On 23/03/2026 03:09, Jun Guo wrote:
+> Hi Krzysztof,
 > 
-> Just posted: https://lore.kernel.org/linux-tegra/20260323-t264-pwm-v1-0-4c4ff743050f@nvidia.com/T/#mfb40392e07d7ac9cedbaf853442eed822da7671e
+> On 3/20/2026 6:04 PM, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL
+>>
+>> On 20/03/2026 10:58, Peter Chen wrote:
+>>> On 26-03-20 10:43:10, Krzysztof Kozlowski wrote:
+>>>> EXTERNAL EMAIL
+>>>>
+>>>> On 20/03/2026 10:38, Peter Chen wrote:
+>>>>> On 26-03-20 10:12:53, Krzysztof Kozlowski wrote:
+>>>>>> EXTERNAL EMAIL
+>>>>>>
+>>>>>> On Thu, Mar 19, 2026 at 06:17:21PM +0800, Jun Guo wrote:
+>>>>>>> Update the DMA-350 DT binding to match the current driver behavior.
+>>>>>>>
+>>>>>>> Allow both:
+>>>>>>> - "arm,dma-350" as the generic compatible, and
+>>>>>>> - "cix,sky1-dma-350", "arm,dma-350" for SoC-specific fallback usage.
+>>>>>>>
+>>>>>>> Also document interrupt topology variants supported by hardware
+>>>>>>> integration:
+>>>>>>> - one combined interrupt for all channels, or
+>>>>>>> - one interrupt per channel (up to 8 channels).
+>>>>>>>
+>>>>>>> This patch is Assisted-by: Cursor: GPT-5.3 Codex.
+>>>>>>
+>>>>>> Wrong tag, please read carefully the guideline before using LLM tools.
+>>>>>>
+>>>>>
+>>>>> Hi Krzysztof,
+>>>>>
+>>>>> It is the trade off for coding-assistants.rst suggestion and
+>>>>> passing checkpatch.pl. Currently, checkpatch.pl reports the
+>>>>> error for tag without email address. So we choose to add tag
+>>>>> description at patch context.
+>>>>
+>>>> You still have to use correct tag.
+>>>
+>>> You mean even checkpatch.pl reports below error, we still add it
+>>> "Assisted-by: Cursor: GPT-5.3 Codex" as tag?
+>>
+>> Yes, after fixing the contents (that's not entirely correct format I
+>> think). Hopefully someone will fix checkpatch one day...
+> I cannot find any commit records referencing AI via "Co-developed-by" in 
+> the latest kernel GitHub repository, and I also cannot locate any text 
+> describing the correct way to cite AI in the submitting-patches.rst 
+> file. In this case, how can I confirm the current correct format?
 
-so this is completely misplaced. Please read submitting patches in DT
-dir and follow standard style of sending patches upstream. Just like
-every other contributor. You don't get any exceptions here.
+If you do not want to read coding with assistant guideline and follow
+its words, then please don't send code created with such tools. Do you
+even have full copyrights to send it here? What license was used by the
+tool to generate you this code?
 
 Best regards,
 Krzysztof
