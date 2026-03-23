@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-278809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278810-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EBh7IBqhwGmLJQQAu9opvQ
-	(envelope-from <devicetree+bounces-278809-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 03:10:34 +0100
+	id gK6IAjahwGmLJQQAu9opvQ
+	(envelope-from <devicetree+bounces-278810-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 03:11:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8E822EBDD5
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 03:10:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B93B2EBDE5
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 03:11:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E35263035D7D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 02:07:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0C418304D962
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 02:07:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5560E1F418F;
-	Mon, 23 Mar 2026 02:07:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 174ED225791;
+	Mon, 23 Mar 2026 02:07:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15AA5212542;
-	Mon, 23 Mar 2026 02:07:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7420421B191;
+	Mon, 23 Mar 2026 02:07:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774231641; cv=none; b=lIRH+kQcxro/2KpVtcPkUhdNBZSPE4jTSPkZgV62pjXrnBE0sA94+5fRilO/gpq0C1aXGm8ijSthxpJ8Z3Lghs+o4CCh5OiPtTqMRz5mYpnbxgRIQxOu0R8LoWMoP4ADCmTVI491b8eRvIGjaossBq+xwFDS09x27V2oqnpYHmI=
+	t=1774231643; cv=none; b=GHdkNBf/3gkKfF9ChVJnr7V8C6wT9fGASk+YFGxKMONJFFQkmN3UejyMzwqJeE766JlsvPjKPOFPUgD8RPnx3Ls824BT6k3h1OLadIQ8zeI6tyqUwxc5UcY8D4COzHwSdropUYwxCxFR0jEBs1XcTEC3g2IYtm+HQ0ELGCyXsl0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774231641; c=relaxed/simple;
-	bh=jdzbRuodmDOa4Rz8PKWhhJ6GdFCSrpEzLrR1LcRWhN8=;
+	s=arc-20240116; t=1774231643; c=relaxed/simple;
+	bh=DSoqlna8u7OCuF3/5m/l2C6jTM9r0dUx3ka7UV6Fe8A=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=tHV1KS+FTqV0RSS79ByjTnC/GE5Wfi+jXo8ZM8lMXqR4xC9+O5zjDbH467MBFG7sjbjgpsYd+Qd2dNnBYwRJhCU44WaV/kDbWngp2DGhCftbcGUQs++AAizjx8Y2o8WbQwqJZCMAoelf0uMSF3r6u9dlgWT+bFA3wCVeiqx/iOQ=
+	 In-Reply-To:To:CC; b=nY1b9GTGYvik7nhw5fuozB/zuek6gKTJoXv+HZ/nUJcVIMufFJlv/dpmudI0dgKrEfF0+D/W5qQfpKcFd+9bfsS+/PAvtu0wT4SB6EoTR4U1a/DU4lcZd1WYGWE7XaAakz56NHFUW9gk7yIHuj6zlb2XmIoUJJTYBOLE2ZgtICo=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
 Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
  (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 23 Mar
- 2026 10:07:07 +0800
+ 2026 10:07:08 +0800
 Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
  (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Mon, 23 Mar 2026 10:07:07 +0800
+ Transport; Mon, 23 Mar 2026 10:07:08 +0800
 From: Ryan Chen <ryan_chen@aspeedtech.com>
-Date: Mon, 23 Mar 2026 10:07:07 +0800
-Subject: [PATCH v3 1/2] dt-bindings: mmc: sdhci-of-aspeed: Add AST2700
- compatible
+Date: Mon, 23 Mar 2026 10:07:08 +0800
+Subject: [PATCH v3 2/2] mmc: sdhci-of-aspeed: Handle optional controller
+ reset
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,7 +51,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20260323-sdhci-v3-1-93555b8f6411@aspeedtech.com>
+Message-ID: <20260323-sdhci-v3-2-93555b8f6411@aspeedtech.com>
 References: <20260323-sdhci-v3-0-93555b8f6411@aspeedtech.com>
 In-Reply-To: <20260323-sdhci-v3-0-93555b8f6411@aspeedtech.com>
 To: Andrew Jeffery <andrew@codeconstruct.com.au>, Ulf Hansson
@@ -64,23 +64,23 @@ CC: Andrew Jeffery <andrew@aj.id.au>, <linux-aspeed@lists.ozlabs.org>,
 	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, Ryan Chen <ryan_chen@aspeedtech.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1774231627; l=2522;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774231627; l=1614;
  i=ryan_chen@aspeedtech.com; s=20251126; h=from:subject:message-id;
- bh=jdzbRuodmDOa4Rz8PKWhhJ6GdFCSrpEzLrR1LcRWhN8=;
- b=4EdN1Pbm/olA1ehS/4Wg9tcediCzCAre0wopiJ6/Evw3ha8JJDuq5b3h4PViy9ycjeuR6a3Vz
- GsYzhSmUJOODuCKoj/UEitmcX4oEa5jTgoMztAoRXA5HFR6FJnNk5zz
+ bh=DSoqlna8u7OCuF3/5m/l2C6jTM9r0dUx3ka7UV6Fe8A=;
+ b=2NOHNRMbWSjIf/Q/IGPuiAKn1Vu1+RK6ULNl8RyuYHEoNAv7haKXCiQvAHzYZcUQ3tQiauXL/
+ l/4s4jb0FsODeF4YQjLp1AJ3x4lXXyFKlTC9oyYeNVjOoky+husJTOm
 X-Developer-Key: i=ryan_chen@aspeedtech.com; a=ed25519;
  pk=Xe73xY6tcnkuRjjbVAB/oU30KdB3FvG4nuJuILj7ZVc=
 X-Spamd-Result: default: False [1.54 / 15.00];
 	DMARC_POLICY_QUARANTINE(1.50)[aspeedtech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCPT_COUNT_TWELVE(0.00)[17];
-	TAGGED_FROM(0.00)[bounces-278809-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-278810-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_TO(0.00)[codeconstruct.com.au,linaro.org,kernel.org,jms.id.au,gmail.com,intel.com,pengutronix.de];
 	MIME_TRACE(0.00)[0:+];
@@ -91,106 +91,63 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[ryan_chen@aspeedtech.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	MID_RHS_MATCH_FROM(0.00)[];
 	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[aspeedtech.com:email,aspeedtech.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E8E822EBDD5
+X-Rspamd-Queue-Id: 6B93B2EBDE5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-AST2700 SDHCI controller is fully compatible with AST2600.
+Get the optional reset line for the ASPEED SD controller during probe by
+using devm_reset_control_get_optional_exclusive_deasserted().
 
-However, it is necessary to take the AST2700 SD controller out of
-reset, so require the 'resets' property.
+This allows platforms such as AST2700, which require the SD controller
+to be taken out of reset before use, to work with the existing driver.
 
 Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
 ---
-Changes in v3:
-- Add items list const for ast2700 ast2600 compatible
-- Move if/then/else block after required: (per example-schema)
 Changes in v2:
-- add missing blank line
-- modify ast2700 compatible items const
+- use devm_reset_control_get_optional_exclusive_deasserted replace
+  reset_control_get_optional_exclusive.
+- add include reset.h
 ---
- .../devicetree/bindings/mmc/aspeed,sdhci.yaml      | 41 +++++++++++++++++-----
- 1 file changed, 33 insertions(+), 8 deletions(-)
+ drivers/mmc/host/sdhci-of-aspeed.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-index d24950ccea95..e4a9c2810893 100644
---- a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-+++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-@@ -22,10 +22,15 @@ description: |+
+diff --git a/drivers/mmc/host/sdhci-of-aspeed.c b/drivers/mmc/host/sdhci-of-aspeed.c
+index ca97b01996b1..8f638ffb55ae 100644
+--- a/drivers/mmc/host/sdhci-of-aspeed.c
++++ b/drivers/mmc/host/sdhci-of-aspeed.c
+@@ -13,6 +13,7 @@
+ #include <linux/of.h>
+ #include <linux/of_platform.h>
+ #include <linux/platform_device.h>
++#include <linux/reset.h>
+ #include <linux/spinlock.h>
  
- properties:
-   compatible:
--    enum:
--      - aspeed,ast2400-sd-controller
--      - aspeed,ast2500-sd-controller
--      - aspeed,ast2600-sd-controller
-+    oneOf:
-+      - enum:
-+          - aspeed,ast2400-sd-controller
-+          - aspeed,ast2500-sd-controller
-+          - aspeed,ast2600-sd-controller
-+      - items:
-+          - const: aspeed,ast2700-sd-controller
-+          - const: aspeed,ast2600-sd-controller
-+
-   reg:
-     maxItems: 1
-     description: Common configuration registers
-@@ -38,6 +43,9 @@ properties:
-     maxItems: 1
-     description: The SD/SDIO controller clock gate
+ #include "sdhci-pltfm.h"
+@@ -520,6 +521,7 @@ static int aspeed_sdc_probe(struct platform_device *pdev)
  
-+  resets:
-+    maxItems: 1
-+
- patternProperties:
-   "^sdhci@[0-9a-f]+$":
-     type: object
-@@ -46,10 +54,15 @@ patternProperties:
+ {
+ 	struct device_node *parent, *child;
++	struct reset_control *reset;
+ 	struct aspeed_sdc *sdc;
+ 	int ret;
  
-     properties:
-       compatible:
--        enum:
--          - aspeed,ast2400-sdhci
--          - aspeed,ast2500-sdhci
--          - aspeed,ast2600-sdhci
-+        oneOf:
-+          - enum:
-+              - aspeed,ast2400-sdhci
-+              - aspeed,ast2500-sdhci
-+              - aspeed,ast2600-sdhci
-+          - items:
-+              - const: aspeed,ast2700-sdhci
-+              - const: aspeed,ast2600-sdhci
-+
-       reg:
-         maxItems: 1
-         description: The SDHCI registers
-@@ -78,6 +91,18 @@ required:
-   - ranges
-   - clocks
+@@ -529,6 +531,10 @@ static int aspeed_sdc_probe(struct platform_device *pdev)
  
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: aspeed,ast2700-sd-controller
-+then:
-+  required:
-+    - resets
-+else:
-+  properties:
-+    resets: false
+ 	spin_lock_init(&sdc->lock);
+ 
++	reset = devm_reset_control_get_optional_exclusive_deasserted(&pdev->dev, NULL);
++	if (IS_ERR(reset))
++		return dev_err_probe(&pdev->dev, PTR_ERR(reset), "unable to acquire reset\n");
 +
- examples:
-   - |
-     #include <dt-bindings/clock/aspeed-clock.h>
+ 	sdc->clk = devm_clk_get(&pdev->dev, NULL);
+ 	if (IS_ERR(sdc->clk))
+ 		return PTR_ERR(sdc->clk);
 
 -- 
 2.34.1
