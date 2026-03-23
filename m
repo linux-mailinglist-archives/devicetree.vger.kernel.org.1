@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-279233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279235-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SNFUGQ5awWnbSQQAu9opvQ
-	(envelope-from <devicetree+bounces-279233-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 16:19:42 +0100
+	id KNeTIdFZwWnbSQQAu9opvQ
+	(envelope-from <devicetree+bounces-279235-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 16:18:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04F762F6275
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 16:19:41 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 889712F620D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 16:18:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DF14832A6A38
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 15:04:03 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6268A3031D5E
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 15:04:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B1A9285C8B;
-	Mon, 23 Mar 2026 15:02:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48FB13AE6F2;
+	Mon, 23 Mar 2026 15:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Hhv/vIZK"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="cHLe6CVF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA32B25393B;
-	Mon, 23 Mar 2026 15:02:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EB78248F6F;
+	Mon, 23 Mar 2026 15:02:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774278178; cv=none; b=plnbY9EZoSnF6fW02HvsdItqAEx2Tun4WkgPWmzCfkF1mxIL0G36RsUIsICh28izKAdZ91v1bCpoQZDSrZPWuENbJnfS6JOABH04efhZxw9UmZfwsomx41higSoBAggGYURmteG/ES0zA28tSLJ4DJ9T/60bzJNsh/IFyljxN64=
+	t=1774278180; cv=none; b=az9qIrgBvUQj9Dwur2oWUiEMXEKYzzX0G0X2IJk7KCB3lirPeE4a5yp/pDkAlo/A9FRI+0L4pef5zQzVrOnrD0ZTHcQIYw2jSyURZJr8HwoIa7e1usYuhdklzBLpHp73mBpHWVyjJZ/xcBiF0dyRG9iB320QHcvaHvaqISmfx3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774278178; c=relaxed/simple;
-	bh=SLYqpmDIV+f9bzTuf9T3OkQYZPNxGp6TyMFrpw6oF2Y=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Yh+lAJARCR0NRO8/s6XV9NVu3HYhH5mjAhxGR/5nizCy5jSh/I8tzDOatSmsQMdYBOnLRKdNUC7yg/R0SnAg3AmK8wKpGUWxki/Dp/vc9BT9215Qt9d8qpmnY9inrp4sBlZzkrIronFW/RXV3h7L8zmSc4h3X15cmHnCPXCnf4M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Hhv/vIZK; arc=none smtp.client-ip=185.171.202.116
+	s=arc-20240116; t=1774278180; c=relaxed/simple;
+	bh=RZ05fnOTL36RbaEJ7PXDwSaGMbnBPKVWLVV46u9AL7s=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=g/oZdE7R6hajSyQgwxvKNlyubz5vZ9k3wEdq/6va/woYvSUaeWmhiq2d+zWz2ioXoKk7JrO8KJz6UtHKSb5Y92WTgcreHLQRSD04efCOisNFSN+90Q9yeFfapHjQP6pT1kuC/ksktIIJnugr/0rOShnE50vDn9DHCNuB0kRwzXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=cHLe6CVF; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 17983C58080;
-	Mon, 23 Mar 2026 15:03:21 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id BB59C4E427B1;
+	Mon, 23 Mar 2026 15:02:55 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 387835FEF6;
-	Mon, 23 Mar 2026 15:02:54 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1F9E410450FFD;
-	Mon, 23 Mar 2026 16:02:47 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 93B0D5FEF6;
+	Mon, 23 Mar 2026 15:02:55 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6F1DB10450FC6;
+	Mon, 23 Mar 2026 16:02:53 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1774278172; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding; bh=YwzArtu2KzPlcOy9KTAZG6fMEMJKoN02L1UiMbwFVKY=;
-	b=Hhv/vIZKshZXlrG2Ou9sF19aKIXAO88ELD9yXG4xqDNREpFZGwdcNIr5Va/WtHFtM89Lu4
-	z9IZw5KTrsfthaf5yv9+2uJKNEBSqRj471iTcQPUwBbElsVCtZjx2Pz/ZgXgr+t8FWsE4n
-	LxWpS5E+J+gA7hxn6FM0kfA1AeEaZWa6wld/0xVquEhnB6/gwec944CtYRzSrdQfuYJJXf
-	2oU7eQHrpRFy5WvMzLKokbiyb/mG8LIlwD1b1T8eOdLrh/8DU2+RHxLX4WqqGqv9ivKLbF
-	BUUB6+COmcbaYOjfwRsThJ2RLJO3xdVsy7oCGezn5xpDlerdpqaRGlmwBml6oQ==
+	t=1774278174; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=D6IKIdRvwM2R3lKzRFHKfHPihb9IxMVhpD6K+aGvwec=;
+	b=cHLe6CVFn8B4vtUTT9G5iXO6l9rxYJD6AyrSeaXaaBGXf4FQ5FKqesbCPiI/KmxXBGt3Fc
+	wrgu5Yryh1mxFFp/Oc4JGr7eR2AE2j7PhhxBRp1jwdL1/KrTQczGG4aSE8igHYcby8R0pQ
+	A0c3AEj6QDp5GtaADqxXrljJGMXH/1x8+RYJrq3+m5ifFXtzVmNf3VieA2PFLzx1hp3exL
+	9YkDpm8jDWveFK/fzVJFBx7xhym0xckVCFrnJZQnva/ww/mkisUz3nl00i/SXdWcUhTVCL
+	dKKmlYSTpu9LBpCXaqYF/+7MfeFD97dWS7hx7PhpbMwlMhHZP4nY1p/k1XDhiQ==
 From: Thomas Richard <thomas.richard@bootlin.com>
-Subject: [PATCH 0/8] Add SIM pbias regulator support for USB on OMAP4
-Date: Mon, 23 Mar 2026 16:02:41 +0100
-Message-Id: <20260323-omap4-fix-usb-support-v1-0-b668132124ac@bootlin.com>
+Date: Mon, 23 Mar 2026 16:02:42 +0100
+Subject: [PATCH 1/8] regulator: pbias: Add pbias SIM regulator for OMAP4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,10 +62,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIABFWwWkC/x2Myw5AMBAAf0X2bJN6RPEr4lC12ANtuioS8e8ax
- 0lm5gGhwCTQZw8EuljYHQmKPAO7mWMl5DkxlKpsVFVodLvxNS58Y5QJJXrvwol2Nm1ltdLdpCG
- 1PlBS/u8wvu8HnZeDxWcAAAA=
-X-Change-ID: 20260317-omap4-fix-usb-support-cda83c7079b7
+Message-Id: <20260323-omap4-fix-usb-support-v1-1-b668132124ac@bootlin.com>
+References: <20260323-omap4-fix-usb-support-v1-0-b668132124ac@bootlin.com>
+In-Reply-To: <20260323-omap4-fix-usb-support-v1-0-b668132124ac@bootlin.com>
 To: Aaro Koskinen <aaro.koskinen@iki.fi>, 
  Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
  Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, 
@@ -81,11 +81,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-279233-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-279235-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FREEMAIL_TO(0.00)[iki.fi,kemnade.info,baylibre.com,kernel.org,atomide.com,gmail.com];
@@ -93,7 +93,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
@@ -104,48 +104,48 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 04F762F6275
+X-Rspamd-Queue-Id: 889712F620D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-To get USB working on OMAP4, pbias shall be configured to enable
-SIM_VDDS and unlock I/O cells. Until now this was done by the bootloader.
-
-The goal of this series is to add SIM pbias support to handle this in the
-kernel ensuring correct operation regardless of the bootloader. The
-vsim_pbias regulator (defined in pbias-regulator driver) will be handled by
-the omap-usb-host driver.
-
-Also I took the opportunity to do a bit of cleanup in the omap-usb-host
-driver, and to convert the OMAP HS USB Host binding to DT schema.
-
-This series has been tested on VAR-SOM-OM44.
+Add support for the pbias SIM regulator found on OMAP4 (for USB I/O cell).
 
 Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
 ---
-Thomas Richard (8):
-      regulator: pbias: Add pbias SIM regulator for OMAP4
-      ARM: dts: ti: omap4: Add pbias SIM regulator
-      mfd: omap-usb-host: Cleanup header includes
-      mfd: omap-usb-host: Sanitize error path in the probe()
-      dt-bindings: mfd: ti,omap-usb-host: Convert to DT schema
-      dt-bindings: mfd: ti,omap-usb-host: Add 'pbias-supply' property
-      mfd: omap-usb-host: Add pbias regulator support
-      ARM: dts: ti: omap4: Add pbias regulator to the HS USB Host
+ drivers/regulator/pbias-regulator.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
- .../devicetree/bindings/mfd/omap-usb-host.txt      | 103 ----------------
- .../devicetree/bindings/mfd/ti,omap-usb-host.yaml  | 136 +++++++++++++++++++++
- MAINTAINERS                                        |   1 +
- arch/arm/boot/dts/ti/omap/omap4-l4.dtsi            |   7 ++
- drivers/mfd/omap-usb-host.c                        | 132 +++++++++++---------
- drivers/regulator/pbias-regulator.c                |  11 ++
- 6 files changed, 232 insertions(+), 158 deletions(-)
----
-base-commit: c369299895a591d96745d6492d4888259b004a9e
-change-id: 20260317-omap4-fix-usb-support-cda83c7079b7
+diff --git a/drivers/regulator/pbias-regulator.c b/drivers/regulator/pbias-regulator.c
+index cd5a0d7e44555f04d1e44470036c6e3d9feb7be6..10c4940e73635293bebd26bf99a9067eb6e39107 100644
+--- a/drivers/regulator/pbias-regulator.c
++++ b/drivers/regulator/pbias-regulator.c
+@@ -81,6 +81,16 @@ static const struct pbias_reg_info pbias_sim_omap3 = {
+ 	.name = "pbias_sim_omap3"
+ };
+ 
++static const struct pbias_reg_info pbias_sim_omap4 = {
++	.enable = BIT(28) |  BIT(20),
++	.enable_mask = BIT(31) | BIT(28) | BIT(20),
++	.vmode = BIT(31),
++	.enable_time = 100,
++	.pbias_volt_table = pbias_volt_table_3_0V,
++	.n_voltages = 2,
++	.name = "pbias_sim_omap4"
++};
++
+ static const struct pbias_reg_info pbias_mmc_omap4 = {
+ 	.enable = BIT(26) | BIT(22),
+ 	.enable_mask = BIT(26) | BIT(25) | BIT(22),
+@@ -108,6 +118,7 @@ static struct of_regulator_match pbias_matches[] = {
+ 	{ .name = "pbias_sim_omap3", .driver_data = (void *)&pbias_sim_omap3},
+ 	{ .name = "pbias_mmc_omap4", .driver_data = (void *)&pbias_mmc_omap4},
+ 	{ .name = "pbias_mmc_omap5", .driver_data = (void *)&pbias_mmc_omap5},
++	{ .name = "pbias_sim_omap4", .driver_data = (void *)&pbias_sim_omap4},
+ };
+ #define PBIAS_NUM_REGS	ARRAY_SIZE(pbias_matches)
+ 
 
-Best regards,
 -- 
-Thomas Richard <thomas.richard@bootlin.com>
+2.53.0
 
 
