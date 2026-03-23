@@ -1,179 +1,176 @@
-Return-Path: <devicetree+bounces-278931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-278938-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +KlMFlv+wGmiPQQAu9opvQ
-	(envelope-from <devicetree+bounces-278931-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 09:48:27 +0100
+	id WN2iLKABwWlUPgQAu9opvQ
+	(envelope-from <devicetree+bounces-278938-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 10:02:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE2F82EE72C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 09:48:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E6252EE9BD
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 10:02:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 608313007508
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 08:48:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 631D13002743
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 08:55:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 073AE378D64;
-	Mon, 23 Mar 2026 08:48:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6DF238642E;
+	Mon, 23 Mar 2026 08:54:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WFnCvu1h"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="g2PMVctn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m32105.qiye.163.com (mail-m32105.qiye.163.com [220.197.32.105])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F77A37E308
-	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 08:48:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFA11382F06;
+	Mon, 23 Mar 2026 08:54:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774255703; cv=none; b=OX0EBouu8yc+grJc92TJ4BXpikpnLsdAx71dJZ7d8muR+cjml5875Y7gD+dUN22Srwj26ZJ+L1r8kvJGV9irjUeSN4HJ0p2GhIiGvYwJU3bdapVOitH1GsWyelmmP9SypSkAOgZchWnfeNIOLDJoZOZjGDrCOs/8nCrfSVWm+cs=
+	t=1774256091; cv=none; b=N8wZnJ0l/bCRSge/jo7Vwah+X9EnAebXh2WCspIyOIftX19PA+ruOcsjRfsN3AkQYI9LFpwlUHscqqNPIZS4zIMojEomHcpOQ6NMPduEjT2MU9gtrbCBg5HMQ1qmjvRAWfGPPD2fEkUQRKISZTiygpwFKmJBrLvjcUH7wgFJR5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774255703; c=relaxed/simple;
-	bh=bmimCA8H2hEtE2aKOouwiZmcnAiFz588K3Xf0CNXDqM=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=XfRmiR1AopkdM4FKzZTCcj6ryGwGEBwri8YN+in5EB2Xgbl6qTlkVYn/5LI3RrVYDa8lDpQ+8O+7eT0i5w4w+OhXNMsq5P65Zk78avB6bFWy2spGCi4FLIhjeWoMfiAIkrrxSnQpWYyD0DXhu7Lpp6f1beQ0+rWz9BAZ+bvgAw4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WFnCvu1h; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-48700b1ba53so22332285e9.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 01:48:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1774255701; x=1774860501; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+QzNDirO+Pun9y4cnI/mvQSADsIoA51wg/5R1jcim0I=;
-        b=WFnCvu1heq4PUytdtxiBRWjHCpiPK+VjUSmTtQHNEr0wq870lhalNOwsC+xhBvvZeL
-         Wb+8V2Phudo9GepywZrp4HLJHjSz0e4uhIcIMDkslE9Wy0FnBv056eQCDsMwJP14EAKq
-         giTYEvpKcWvre3cKKrKJ+bqV6DUuWfFTbzarD9VhCLkJbF/iT1YKPbiTzQW1BhZSxgol
-         rbisDRGUaLl+N4FTkrmyICOHX79AhtnbzHzfkvbRdMOIHxY/pJApBT5Qystbv7QSmqaC
-         GQ11lqZO+ZBbOOX7+rIyKN34WgAfP2NvNMCp9fVkVOZE+n4ejF/dQdADEMSrl0UjNGuC
-         Ujqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774255701; x=1774860501;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=+QzNDirO+Pun9y4cnI/mvQSADsIoA51wg/5R1jcim0I=;
-        b=paOYUGWDdXidLxSE1dYzTxMdYG4ZC6QtRGeTU6bwoKNzyeMvIR0szh6m2EIOSktv7o
-         iIR+FmluJJRx4AmoCpEJZKiKn8UVWWUAQIac/fLm5jOY6oknH2EiRIGg10e7ZSokUB3m
-         //WErcQnhNkcIt5iXADUdk81o6o6/gKJjxnyxlZxEsOrECAX1oKwjMucKEfcr9Y3kKTr
-         Bg3qaP7WrNzfr6s2/ei3M6QOtfJBR0qLRmKKz+Khhc21OWFgCzPfs7YBUL3iVRAX6uvc
-         xReOg+z3qpbZskcF+OdyI2P40WDaW+0GBfJyL/jjWlnz6yR4W7XI1PmXHUk9utnxF9WA
-         wMqA==
-X-Forwarded-Encrypted: i=1; AJvYcCVa5FkBLqb+KWIiyjSSsiLOk4JVrHXi/l+6Ptlh2Hyoi3i+nWVi3e88IIfRaWzsejWtrcl7Y9OYDmT1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyxyfy/AuTaThVnTgrGcLGDWcdOmWkoPW8FIJeUM+UjDacxiMAa
-	uzXiNLKpVLToocZ265GCWoBkp30Uc+Qf2IvtgCcX0PW3uFqswfCmjj+H
-X-Gm-Gg: ATEYQzzn4vnJnM4y04r8Fu6nI7V03+iMYcazzm59mLocsC+Lc382Q6SsByMhQbtQTU7
-	48gzAPNoVndamrqV6owr/4Sjsq/7MQaPIXGtoFpsUl1foi8x0XhEHI5C3wACkUNJeEs+BI5qsRF
-	m/1Nqdujns+edJpSCAv3zAT8OeOrJUjZJT+WbljUOpIOJoseJ5KdHIG3+Tsf3irPpLC4K2pdq6A
-	a8lhYFV0E3umzz8VF3zBmyeb4s3vt1xtTRvYSlD4QsNiBEK7cpVGUY/CN4VLkWFswM5XmixOfwX
-	nYAe1JNiaL/ulZY0Q0XK+1KJsAG62nolR4IK+pcwM1gUxMGbZ+0YkCPTxjEH0P79/5BAwREHjZ4
-	Smwqn8BeIRYNbu52KzH8Eaz4iT9blPWm9FmFbfY2Xt2tJxowVa/y7LFENzEK7aKMhTusuYtH7UI
-	TVZ9eIuwtFBiEH
-X-Received: by 2002:a05:600c:3b10:b0:485:3f72:3230 with SMTP id 5b1f17b1804b1-486fedcc4d3mr161337325e9.15.1774255700647;
-        Mon, 23 Mar 2026 01:48:20 -0700 (PDT)
-Received: from fedora ([82.77.79.23])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-486fe8367d8sm316822715e9.14.2026.03.23.01.48.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Mar 2026 01:48:20 -0700 (PDT)
-From: Eduard Bostina <egbostina@gmail.com>
-To: daniel.baluta@nxp.com,
-	simona.toaca@nxp.com,
-	egbostina@gmail.com,
-	d-gole@ti.com,
-	m-chawdhry@ti.com,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/2] ARM: dts: nxp: imx51-ts4800: Rename wdt node to watchdog
-Date: Mon, 23 Mar 2026 10:46:13 +0200
-Message-ID: <20260323084616.10469-3-egbostina@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260323084616.10469-1-egbostina@gmail.com>
-References: <20260323084616.10469-1-egbostina@gmail.com>
+	s=arc-20240116; t=1774256091; c=relaxed/simple;
+	bh=XqEcQ5qu5J8RP12/dZgidiu1Ea39jfaYPY1FA5JyaYM=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=o4IJtk8FCZHEbBkfbpUkYKXRSYAnhtes8uAAX1jnriaY0gcRhZBv2Y/m1mnPc5OXKy/i9QFrPNDufL9c27n7Vtsd8J4KWayPlsBWOYSSGdr4gFO6CSIXNJ3jn5HiIeHSoRhTkfg1z+6+zawRYwIOnPNld3dKY7o6hrTmsCurTgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=g2PMVctn; arc=none smtp.client-ip=220.197.32.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.43] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 37ee42d36;
+	Mon, 23 Mar 2026 16:49:17 +0800 (GMT+08:00)
+Message-ID: <6bf2b3c9-4af0-4c3a-a34f-ebe881d4827b@rock-chips.com>
+Date: Mon, 23 Mar 2026 16:49:17 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+User-Agent: Mozilla Thunderbird
+From: Damon Ding <damon.ding@rock-chips.com>
+Subject: Re: [PATCH v2 1/9] dt-bindings: display: rockchip: analogix-dp:
+ Expand clock-names "hclk" for the third clock
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, nicolas.frattaroli@collabora.com,
+ alchark@gmail.com, cristian.ciocaltea@collabora.com,
+ sebastian.reichel@collabora.com, kever.yang@rock-chips.com,
+ heiko.stuebner@cherry.de, tomeu@tomeuvizoso.net, amadeus@jmu.edu.cn,
+ michael.riesch@collabora.com, didi.debian@cknow.org,
+ dmitry.baryshkov@oss.qualcomm.com, luca.ceresoli@bootlin.com,
+ dianders@chromium.org, m.szyprowski@samsung.com,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20260319104031.1986946-1-damon.ding@rock-chips.com>
+ <20260319104031.1986946-2-damon.ding@rock-chips.com>
+ <20260320-amusing-magnetic-harrier-20cc40@quoll>
+Content-Language: en-US
+In-Reply-To: <20260320-amusing-magnetic-harrier-20cc40@quoll>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9d19e2599003a3kunm591f097f5835d6
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQhpNHlYYQkNMGBhCTk8dTR1WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpKQk
+	1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=g2PMVctni+Tmi1H13vX7/jpuctiAQOf9jIaWSgTfnOYJqHwPB9HoWdBuyJLBQ6dIQ8CEIuDajcV//mZDKrb1T3pFZBYBR0LVLWovKpqvDMWK6z/LFlUVxrCoPINCdPXEbMd+SONHAoVmxQ7HG9fdGKjnUPgqgmfBZ5D8KucIOO4=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=Z7sLiwhoVXpTk/aVRfpLSAb5QwlvL/VqB3G80sqReiU=;
+	h=date:mime-version:subject:message-id:from;
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_TO(0.00)[nxp.com,gmail.com,ti.com,linux-watchdog.org,roeck-us.net,kernel.org,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-278931-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[egbostina@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-278938-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	DBL_PROHIBIT(0.00)[0.0.39.16:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[37];
+	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,cherry.de,tomeuvizoso.net,jmu.edu.cn,cknow.org,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: EE2F82EE72C
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,rock-chips.com:dkim,rock-chips.com:email,rock-chips.com:mid]
+X-Rspamd-Queue-Id: 7E6252EE9BD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Technologic Systems TS-4800 watchdog node was previously named 'wdt',
-which violates the core watchdog.yaml schema expecting generic node names.
+Hi Krzysztof,
 
-Rename the node to 'watchdog' to fix the following dtbs_check warning:
-'wdt' does not match '^(pmic|timer|watchdog)(@.*|-([0-9]|[1-9][0-9]+))?$'
+On 3/20/2026 5:19 PM, Krzysztof Kozlowski wrote:
+> On Thu, Mar 19, 2026 at 06:40:23PM +0800, Damon Ding wrote:
+>> The RK3588 eDP controller needs the video datapath clock "hclk" to work
+>> well. Previously, it works without explicitly adding this clock because
+>> the 'rockchip,vo-grf = <&vo1_grf>' property implicitly enables HCLK_VO1.
+>>
+>> Fixes: f855146263b1 ("dt-bindings: display: rockchip: analogix-dp: Add support for RK3588")
+>> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+>> ---
+>>   .../bindings/display/rockchip/rockchip,analogix-dp.yaml       | 4 +++-
+>>   1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+>> index d99b23b88cc5..d2bc8636b626 100644
+>> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+>> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+>> @@ -26,7 +26,9 @@ properties:
+>>       items:
+>>         - const: dp
+>>         - const: pclk
+>> -      - const: grf
+>> +      - enum:
+>> +          - grf
+>> +          - hclk
+> 
+> You just told me it is the same clock, no? I asked that and you
+> confirmed? Or you replied with an answer not relevant to the question?
+> 
 
-Signed-off-by: Eduard Bostina <egbostina@gmail.com>
----
-Note:
-* This patch is part of the GSoC2026 application process for device tree bindings conversions
-* https://github.com/LinuxFoundationGSoC/ProjectIdeas/wiki/GSoC-2026-Device-Tree-Bindings
+Aha, I may have misunderstood your earlier advice as meaning that since 
+the RK3576 and RK3588 platforms share the same design, their clock 
+dependencies should also be identical.
 
- arch/arm/boot/dts/nxp/imx/imx51-ts4800.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The 'grf' clock and 'hclk' clock are different.
+On RK3399, the GRF clock is for accessing VIO GRF registers.
+On RK3588/RK3576, the eDP 'hclk' is required as it is the parent clock 
+of 'pclk' in the AHB bus topology.
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx51-ts4800.dts b/arch/arm/boot/dts/nxp/imx/imx51-ts4800.dts
-index 5118a68db..3610ce395 100644
---- a/arch/arm/boot/dts/nxp/imx/imx51-ts4800.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx51-ts4800.dts
-@@ -155,7 +155,7 @@ syscon: syscon@10000 {
- 			reg = <0x10000 0x3d>;
- 			reg-io-width = <2>;
- 
--			wdt {
-+			watchdog {
- 				compatible = "technologic,ts4800-wdt";
- 				syscon = <&syscon 0xe>;
- 			};
--- 
-2.53.0
+> If this device takes reference to grf, why does it also take grf clock?
+> Devices MUST NOT take clocks on behalf of other devices, so please
+> answer with a list of all clock inputs according to datasheet/manual.
+> 
 
+On earlier platforms, the GRF was not partitioned into separate 
+functional small GRF units as on newer designs. Therefore, the 'grf' 
+clock was designed as the clock dependency for all relevant modules.
+
+For RK3588/RK3576 eDP module, the list of all clock inputs is:
+
+CLK_EDP0_24M: Reference clock.
+PCLK_EDP0: AHB clock.
+HCLK_VO1/HCLK_VO0_ROOT: Video datapath clock.
+
+It would be better to add above comments as the descriptions of these 
+clocks in yaml.
+
+Best regards,
+Damon
 
