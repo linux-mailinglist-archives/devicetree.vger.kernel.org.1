@@ -1,181 +1,257 @@
-Return-Path: <devicetree+bounces-279279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279281-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QA0BKsxvwWnmTAQAu9opvQ
-	(envelope-from <devicetree+bounces-279279-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 17:52:28 +0100
+	id ANYuI+V8wWknTgQAu9opvQ
+	(envelope-from <devicetree+bounces-279281-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 18:48:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B9682F8F80
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 17:52:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F07372FA6D3
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 18:48:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 55C4230ECF5B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 16:23:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6C1BA3220313
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 16:27:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AE9A3B9D85;
-	Mon, 23 Mar 2026 16:23:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 882A33BADB2;
+	Mon, 23 Mar 2026 16:27:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e2pazn/u"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TXowK2Ek"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB0413B38A4
-	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 16:23:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E2B3B95F8;
+	Mon, 23 Mar 2026 16:27:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774283024; cv=none; b=QNF4fdWkxyArJC0uTJ48mXN50ZaUK6GIJqSiqX2+z8ct1HOOUXpdbUEbP4I+0SVEA7ItEs+j2zK/A05miGDDgFMH755SkGuQ/qcg60fgG2yJLTBmIZ8hcm0eQ6n0Uh/TLvikfcSuJ7XYZ3RCYx9whVvTOTVj/EPGAPYxBVQJrik=
+	t=1774283237; cv=none; b=q7eK95o2P8yKkuQ3iRV47qJXUDW6fTNjelhgoX9NLg05gwIlTOuc7pEZTwE+ZrzwaUZW4Q1x7K3K4jcrY+FITo0hPpvKrcQogPZyBhvZ5HHC5Ri+c5gzAZ/4RAyzuZ1I1mbjjD2hvJKdTyjvQwt15fB7dFdVjCeluVfTYq7vdec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774283024; c=relaxed/simple;
-	bh=ap0TrLyjgL2sHrt4HcatBHHq+Od3Rz+PN6mfF8vT6OQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o9uxxU+9/fqjByvnE+OnMRgOydx+KK8ZubhfYhUiWc2w7Rrki74MPfkjFJLqp0w4XRSjktCh7yqrzQGwwA+niP9YSIsE7WDHMzWXQVLssKE72h17sKlU/F+WeInPSR1Xg09ND3CtRm8yYFGH0MzWlBnbtRDSx8Yz08kTQP8dYHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e2pazn/u; arc=none smtp.client-ip=209.85.215.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-c742882d2a4so1262622a12.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 09:23:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1774283022; x=1774887822; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6Yg9JRwDdYyi8Z4scqEAFpoKv7+Tyn3lIsspw1t1xcA=;
-        b=e2pazn/uNF5OhsY7oG3bS0ui08UWYHaza9ImGghm7v2B/+x37H5dEpYDrqVa5LDxis
-         0NbI8d/Ryd9Q3VKx85OOVLkbwwSSTy2RE/QJSB/b5PPt+eUR3FX+Qw3AGrIjUcwAH8qU
-         1tHEBdamFJBjUza2xe+XsZ2N5rpJa/cUuWHobXVsraTPlhXvXMXf3oKLfhQ/+ambIGo3
-         sk9IDt3jT8zWNC7kKLt39Vw19QT3M0tOonK+29+UwQgUCa5UW/a3PStOgOM+E/V+8hwz
-         NUUB0/o+Z/smqW21cLhEVp13eY+2kIAnoloh8CnGxdMwNf6s7uLsKFHs6W9KjeYY9vPq
-         aKYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774283022; x=1774887822;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=6Yg9JRwDdYyi8Z4scqEAFpoKv7+Tyn3lIsspw1t1xcA=;
-        b=P0+cR7DoXfMUlpF1s+1Iy0182t0H33VaOt1f5wN5O/I7OruXsyqZb/MZZbVTAVw5ek
-         UYHzcKZKJrRSjBvdROKmpYmYf7mT+9rVW5ATnoN2p4M3nE615sIok4Z57mbwq4dZMEL9
-         7nl7m3Wun/GyzPNwogySOnXG2baQrIpABwysPlzuJXDuXxUPCAqu6UMLPCBYbzskNnJA
-         vf21skbCgHMEap9nR1gIkF8xFRUJUlKBt42r51uf20pmxacVUOwB3wRj76BGnwbxbQUS
-         +SHQPPFnbVPQBJscnEuPq2RMw5AjJyMqEuKUkj+1GU++AkmW6fU7uZEufyQw+wOyBL0K
-         avMg==
-X-Forwarded-Encrypted: i=1; AJvYcCWyPiut488H5Role2tN8WY7JXeXneMc9b6sIr6mAX+960xzmbqs+OiGMMtLlnW3rpe3rhX9F4UuCZCQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2ROUlVof5DiIES2lTDhkVaJcRT+lqwuhG/5On+AEjZl1HSKC4
-	w5O2k1y82jCZ2mqAhhQtbdmJqoXhfRzlTsSzev+3MX2/Zjyhz/MSveEL
-X-Gm-Gg: ATEYQzw3kElcs4QYo7Dw/+w0UadklaG1Vr8cscJuRW+Z7TTkfPYtP3xrLs/fMgSy9t8
-	p3GOqNmoNZDeU79V1RQ+fgS55ngXNSt19mslBLOoJdI69qb0hjQrTM8XB3SKYuNnqsb7Ur/Lrjt
-	VCoO70XxgeLAKdoxfduoUpCja1EcjTLytBZLiElyaM6H3opKR9+Xm7ZSo6yRZRSicEvkOfHr4Yv
-	v9hB7+aWuHxz7/W435J0mfOSxC4Hs3g4+jdWQG7X0eEYfj0VXhA1QmHRgEsDz6ECo8/Le55hTAJ
-	Bunisl8kYrHe/OI6DntSp8b66FzJBhD5rxt214clIQUVsGGGop52I0buzAzoqwwU6PN+3R7Xiry
-	avW+D0b6WRVgxm08DY49tw7/5DO6JHbfJALmBFxMq0XFEjkXOSmiYGWThCUhi2NQxL8EBxs0Sm7
-	50bKdJHEgRYRSVwzerqqnSOWElKr3/viX50DIs+7lwzr42Zzzg2O/rXLgSoVCRH9welD72GVt+2
-	lXu/jYFOrBA/Wwlkq/ikU4Dz/j0Lh1RqgRd1EUc5l2Yi2gSPsdC
-X-Received: by 2002:a17:902:e54a:b0:2ae:825b:49a5 with SMTP id d9443c01a7336-2b0825bf592mr123540375ad.0.1774283022083;
-        Mon, 23 Mar 2026 09:23:42 -0700 (PDT)
-Received: from lakshay-piplani-HP-Pavilion-Laptop-14-dv0xxx.. ([2401:4900:81e1:cdf2:5b00:592f:5488:918f])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2b083516cb9sm118477755ad.2.2026.03.23.09.23.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Mar 2026 09:23:40 -0700 (PDT)
-From: Anshika Gupta <guptaanshika.ag@gmail.com>
-To: linux@roeck-us.net,
-	corbet@lwn.net,
-	skhan@linuxfoundation.org,
-	linux-hwmon@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org
-Cc: lakshaypiplani77@gmail.com,
-	Anshika Gupta <guptaanshika.ag@gmail.com>
-Subject: [PATCH 3/3] hwmon: (tmp108) Add support for NXP P3T1084UK
-Date: Mon, 23 Mar 2026 21:52:52 +0530
-Message-ID: <20260323162252.15508-3-guptaanshika.ag@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260323162252.15508-1-guptaanshika.ag@gmail.com>
-References: <20260323162252.15508-1-guptaanshika.ag@gmail.com>
+	s=arc-20240116; t=1774283237; c=relaxed/simple;
+	bh=negpr9ymqdcFH8ARZ0fVPTcU/bLZrgK4U2z5BTwZzQI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=u76wcyKxlEUJxL9XQY76BAWcdbUjzQh61fk1bnlmae73ctGLpV740B28jTYqJyLtnAc9B40mqgdfW7PIpSptTpd+jXcll5y/bNIjpTTWaKV+n3zFqSXpU9NFyFKSgbFl2dFM9ErwsevEfseCUgF1SD86hcfSe7ll08SYzSWAhW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TXowK2Ek; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id E1E994E42392;
+	Mon, 23 Mar 2026 16:27:13 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B55FA5FEF6;
+	Mon, 23 Mar 2026 16:27:13 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9E6CE10450D30;
+	Mon, 23 Mar 2026 17:27:08 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1774283232; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=rNB46l86KhEE2SPNXttKfCE0ClL7ezUhxWzUZSM4r9U=;
+	b=TXowK2EkL0zs85jOe3inW1IcVG7tXjhR3+1Xx8pd1rwRB0Pvka2AW6OGjwybZLXNw4YxLr
+	2kfDMnsPnl06UmYne/mLGaxTNDdIo/D/QxDsDMuR3mrBm9vhAF3nNIS3dlOjN34a4wLFg5
+	QItJ4JvuZ7k2USxBHlnPEV9Ac8+BTYAsVaAqHEJOQ0zeErFQF3+Rk+CWBZYbzZ2Ucaypyi
+	d0vlXkSTYbmlPaGd0Qe8GsyRsjuluHjsvLlnJoOaFXHCsPjHv1340FR9Nv8zp1s1mTDE1f
+	zc7wxTzTjYtHknt4bpQ2BbllBHvwnE2iti57YAJeXR+zOknZaFI1eR4JsiFjtg==
+Message-ID: <b47801f9-3828-4c68-992c-e85373576f3d@bootlin.com>
+Date: Mon, 23 Mar 2026 17:27:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/4] Introduce Allwinner H616 PWM controller
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Paul Kocialkowski <paulk@sys-base.io>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ John Stultz <jstultz@google.com>, Joao Schim <joao@schimsalabim.eu>,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20260305091959.2530374-1-richard.genoud@bootlin.com>
+From: Richard GENOUD <richard.genoud@bootlin.com>
+Content-Language: en-US, fr
+Organization: Bootlin
+In-Reply-To: <20260305091959.2530374-1-richard.genoud@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-279279-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-279281-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[baylibre.com,kernel.org,csie.org,gmail.com,sholland.org,pengutronix.de];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[guptaanshikaag@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[richard.genoud@bootlin.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_FIVE(0.00)[6];
 	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 6B9682F8F80
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: F07372FA6D3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The NXP P3T1084UK is a ±0.4°C accurate digital temperature sensor with
-a 12-bit temperature register, configuration register, and alert
-functionality over I²C/I3C. Its register interface matches the TMP108
-programming model, so the existing tmp108 driver can bind it without
-functional changes.
+Le 05/03/2026 à 10:19, Richard Genoud a écrit :
+> Allwinner H616 PWM controller is quite different from the A10 one.
+> 
+> It can drive 6 PWM channels, and like for the A10, each channel has a
+> bypass that permits to output a clock, bypassing the PWM logic, when
+> enabled.
+> 
+> But, the channels are paired 2 by 2, sharing a first set of
+> MUX/prescaler/gate.
+> Then, for each channel, there's another prescaler (that will be bypassed
+> if the bypass is enabled for this channel).
+> 
+> It looks like that:
+>              _____      ______      ________
+> OSC24M --->|     |    |      |    |        |
+> APB1 ----->| Mux |--->| Gate |--->| /div_m |-----> PWM_clock_src_xy
+>             |_____|    |______|    |________|
+>                            ________
+>                           |        |
+>                        +->| /div_k |---> PWM_clock_x
+>                        |  |________|
+>                        |    ______
+>                        |   |      |
+>                        +-->| Gate |----> PWM_bypass_clock_x
+>                        |   |______|
+> PWM_clock_src_xy -----+   ________
+>                        |  |        |
+>                        +->| /div_k |---> PWM_clock_y
+>                        |  |________|
+>                        |    ______
+>                        |   |      |
+>                        +-->| Gate |----> PWM_bypass_clock_y
+>                            |______|
+> 
+> Where xy can be 0/1, 2/3, 4/5
+> 
+> PWM_clock_x/y serve for the PWM purpose.
+> PWM_bypass_clock_x/y serve for the clock-provider purpose.
+> The common clock framework has been used to manage those clocks.
+> 
+> This PWM driver serves as a clock-provider for PWM_bypass_clocks.
+> This is needed for example by the embedded AC300 PHY which clock comes
+> from PMW5 pin (PB12).
+> 
+> Usually, to get a clock from a PWM driver, we use the pwm-clock driver
+> so that the PWM driver doesn't need to be a clk-provider itself.
+> While this works in most cases, here it just doesn't.
+> That's because the pwm-clock request a period from the PWM driver,
+> without any clue that it actually wants a clock at a specific frequency,
+> and not a PWM signal with duty cycle capability.
+> So, the PWM driver doesn't know if it can use the bypass or not, it
+> doesn't even have the real accurate frequency information (23809524 Hz
+> instead of 24MHz) because PWM drivers only deal with periods.
+> 
+> With pwm-clock, we loose a precious information along the way (that we
+> actually want a clock and not a PWM signal).
+> That's ok with simple PWM drivers that don't have multiple input clocks,
+> but in this case, without this information, we can't know for sure which
+> clock to use.
+> And here, for instance, if we ask for a 24MHz clock, pwm-clock will
+> requests 42ns (assigned-clocks doesn't help for that matter). The logic
+> is to select the highest clock (100MHz) with no prescaler and a duty
+> cycle value of 2/4 => we have 25MHz instead of 24MHz.
+> And that's a perfectly fine choice for a PMW, because we still can
+> change the duty cycle in the range [0-4]/4.
+> But obviously for a clock, we don't care about the duty cycle, but more
+> about the clock accuracy.
+> 
+> And actually, this PWM is really a PWM AND a real clock when the bypass
+> is set.
+> 
+> This series is based onto v6.19-rc4
+> 
+> NB: checkpatch is not happy with patch 2, but it's a false positive.
+> It doesn't detect that PWM_XY_SRC_MUX/GATE/DIV are structures, but as
+> it's more readable like that, I prefer keeping it that way.
+> 
+> NB2: for geopolitical reasons, I didn't re-use the old series that Paul
+> was referring to.
+> 
 
-Add "nxp,p3t1084uk" to the OF match table and "p3t1084" to the I²C
-device-id table so the driver probes the device via both devicetree and
-board data.
+Hi Uwe, do you plan to grab this series or does it needs some further 
+reviews?
 
-Datasheet: https://www.nxp.com/part/P3T1084UK
-           https://www.nxp.com/docs/en/data-sheet/P3T1084UK.pdf
+Regards,
+Richard
 
-Signed-off-by: Lakshay Piplani <lakshaypiplani77@gmail.com>
-Signed-off-by: Anshika Gupta <guptaanshika.ag@gmail.com>
----
- drivers/hwmon/tmp108.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/hwmon/tmp108.c b/drivers/hwmon/tmp108.c
-index 3ea5f6485744..db46961a31d3 100644
---- a/drivers/hwmon/tmp108.c
-+++ b/drivers/hwmon/tmp108.c
-@@ -538,6 +538,7 @@ static DEFINE_SIMPLE_DEV_PM_OPS(tmp108_dev_pm_ops, tmp108_suspend, tmp108_resume
- 
- static const struct i2c_device_id tmp108_i2c_ids[] = {
- 	{ "p3t1035", (unsigned long)&p3t1035_data },
-+        { "p3t1084", (unsigned long)&tmp108_data },
- 	{ "p3t1085", (unsigned long)&tmp108_data },
- 	{ "tmp108", (unsigned long)&tmp108_data },
- 	{}
-@@ -546,6 +547,7 @@ MODULE_DEVICE_TABLE(i2c, tmp108_i2c_ids);
- 
- static const struct of_device_id tmp108_of_ids[] = {
- 	{ .compatible = "nxp,p3t1035", .data = &p3t1035_data },
-+	{ .compatible = "nxp,p3t1084", .data = &tmp108_data },
- 	{ .compatible = "nxp,p3t1085", .data = &tmp108_data },
- 	{ .compatible = "ti,tmp108", .data = &tmp108_data },
- 	{}
--- 
-2.34.1
+> Changes since v3:
+> - gather Acked-by/Tested-by
+> - fix cast from pointer to integer of different size (kernel test robot
+>    with arc platform)
+> - add devm_action for clk_hw_unregister_composite as suggested by Philipp
+> - remove now unused pwm_remove as suggested by Philipp
+> 
+> Changes since v2:
+> - use U32_MAX instead of defining UINT32_MAX
+> - add a comment on U32_MAX usage in clk_round_rate()
+> - change clk_table_div_m (use macros)
+> - fix formatting (double space, superfluous comma, extra line feed)
+> - fix the parent clock order
+> - simplify code by using scoped_guard()
+> - add missing const in to_h616_pwm_chip() and rename to
+> h616_pwm_from_chip()
+> - add/remove missing/superflous error messages
+> - rename cnt->period_ticks, duty_cnt->duty_ticks
+> - fix PWM_PERIOD_MAX
+> - add .remove() callback
+> - fix DIV_ROUND_CLOSEST_ULL->DIV_ROUND_UP_ULL
+> - add H616_ prefix
+> - protect _reg in macros
+> - switch to waveforms instead of apply/get_state
+> - shrink struct h616_pwm_channel
+> - rebase on v6.19-rc4
+> 
+> Changes since v1:
+> - rebase onto v6.19-rc1
+> - add missing headers
+> - remove MODULE_ALIAS (suggested by Krzysztof)
+> - use sun4i-pwm binding instead of creating a new one (suggested by Krzysztof)
+> - retrieve the parent clocks from the devicetree
+> - switch num_parents to unsigned int
+> 
+> Richard Genoud (4):
+>    dt-bindings: pwm: allwinner: add h616 pwm compatible
+>    pwm: sun50i: Add H616 PWM support
+>    arm64: dts: allwinner: h616: add PWM controller
+>    MAINTAINERS: Add entry on Allwinner H616 PWM driver
+> 
+>   .../bindings/pwm/allwinner,sun4i-a10-pwm.yaml |  19 +-
+>   MAINTAINERS                                   |   5 +
+>   .../arm64/boot/dts/allwinner/sun50i-h616.dtsi |  47 +
+>   drivers/pwm/Kconfig                           |  12 +
+>   drivers/pwm/Makefile                          |   1 +
+>   drivers/pwm/pwm-sun50i-h616.c                 | 936 ++++++++++++++++++
+>   6 files changed, 1019 insertions(+), 1 deletion(-)
+>   create mode 100644 drivers/pwm/pwm-sun50i-h616.c
+> 
+> 
+> base-commit: 11439c4635edd669ae435eec308f4ab8a0804808
 
 
