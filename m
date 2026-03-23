@@ -1,141 +1,274 @@
-Return-Path: <devicetree+bounces-279314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279315-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GOkVKkR+wWknTgQAu9opvQ
-	(envelope-from <devicetree+bounces-279314-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 18:54:12 +0100
+	id sM73Hw2GwWkSTwQAu9opvQ
+	(envelope-from <devicetree+bounces-279315-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 19:27:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2255E2FA974
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 18:54:12 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E26A2FB485
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 19:27:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9F8D73112FB7
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 17:30:05 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C30923022450
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 17:43:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A6CE3C8739;
-	Mon, 23 Mar 2026 17:29:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80F763CFF55;
+	Mon, 23 Mar 2026 17:41:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nPX3R5qo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hDSLPzY0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46A693C8715;
-	Mon, 23 Mar 2026 17:29:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 573EF3CFF45
+	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 17:41:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774286985; cv=none; b=Q/e6vgymhJiHz/Cb6xk9aIdRLNfaiR86Iuq0oMRrzgnOq+apPG7GMYKl7xlL8nbwHIgOEAXuwVlP7TTGbsTqyexPQEgF4w2VTclnQL7KhiphHiBxMX9BRN0//VSTtDAturVD4cMQws5PDpFfuq9OQF21RgS/cZAGm4tg9PMJiA4=
+	t=1774287681; cv=none; b=sJIouCdUE0pG7OyVoIvVkSX26nuqqHL6OwQxagqziXuKaTNpTb/bWq5gGYg3FJrHXEMM+stBK/URHnH0kJMLvxiArZes7NCq0rSsCjYAiiTtEuKfwqLoh64NoB+6ZSgJylayJbm6g/Z3gRUtGRCphCkeutg42TsXZ/7xEkxjSWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774286985; c=relaxed/simple;
-	bh=4ipWah4l1L4H99Gg1W2ON7iUdL7OjwQmg/qTlb4tpvA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pkquABCU3gKZzJuYwrSLNnwSXu6jL7+CeeLp8tv1B0T+BoEGKBzSB7AJSM44DVCbuldFdCoMxCbBzA5W3Q91r+uiN0Q21dr56u26HnRnuMw9UhpbisWG2sWrCqagY+RF+oBNJX2XKVrSxbb6nlmywIKtq2s5uYnLoeR2+nLhjvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nPX3R5qo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6ED1C2BC9E;
-	Mon, 23 Mar 2026 17:29:41 +0000 (UTC)
+	s=arc-20240116; t=1774287681; c=relaxed/simple;
+	bh=US9GCCid6v4HyHFoqm7MLXZb7skaUYoLT9/2dzLkQRo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hOLxlO9LnizbYtScAn1EiOZmdhK9QCROyt7Rel0eNwHLBzn/6WY1AmLdJg00jwjgjc8ftN0NWJ2s7v+UiadbHoJZegsvQcS2+6YWolsmmQsSXPsnzCZOvV0KvtxnnZl4/R9xQt9IkUZTH2QjFRrkbgDdhgsOp1dwtgRMre4qjTw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hDSLPzY0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EE8BC2BCB9
+	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 17:41:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774286984;
-	bh=4ipWah4l1L4H99Gg1W2ON7iUdL7OjwQmg/qTlb4tpvA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nPX3R5qo9XNPyW6KNDPO4r9cyh6vcbUGD69Agb5uSXgrUbXS5nOLa7UfTNGPImeDP
-	 xN3qZ7nDDIdB6nh1IpFnwQ4ZB1pM86S4SC8wSHH4/48cISJtJ+sGelT0Esm3iSa35j
-	 FDos5s5KAH97nwQpPGJjvjiCypDBupVMVQhI0dgIyU4l5by5cL2OhTRwOE5xXJxNzD
-	 Z3WTTYvzeDXAmVWwKSHfSO5WDCMvlzjUzXtl/Km+KA/s5BYSnszcP7H65cuM4aH+pq
-	 +rH4g0FBmJiB7sD8fi4m5tP+jpe3yISCkaQAj5ppNSUpjpFEcZ1ewX5rKjYQRj9juN
-	 YO/hzbMd6+aQg==
-Date: Mon, 23 Mar 2026 17:29:39 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Thomas Richard <thomas.richard@bootlin.com>
-Cc: Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/8] regulator: pbias: Add pbias SIM regulator for OMAP4
-Message-ID: <9d5a922b-3d38-45bf-bee0-50673a250489@sirena.org.uk>
-References: <20260323-omap4-fix-usb-support-v1-0-b668132124ac@bootlin.com>
- <20260323-omap4-fix-usb-support-v1-1-b668132124ac@bootlin.com>
+	s=k20201202; t=1774287681;
+	bh=US9GCCid6v4HyHFoqm7MLXZb7skaUYoLT9/2dzLkQRo=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=hDSLPzY0DC6l8WFdmVCPTHtrEhKtxUPN1Rv5keg02z/JXG7r0c2G70yu+iYPUh81m
+	 mKOh4NV9eFxKPnIzEsUeYkVydCVE+2bCThQYBes8JGxjnHbB++XZkMuTJIgNP9qP5c
+	 mQZ/JajVtmK/U2+6ZCfm5+MeOJ9EZFp6HoUA9wvsgJker/Cogl7DXLT8UvaIh86SkO
+	 uIel90J8nsTld2Y4Pvv1tb3IH2bN2Ug5r/c3G3kGseFaMFG4HnPOQjdHO41Cd4dXEe
+	 SxC+S6BSQL827BnuUl8uaFMUzCMFg0kIf8NyA1VxXf0XojNs8G1QYq7URqy8Sp3t3o
+	 OKd7KWUr6XSFA==
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-38bd3c6c502so21111561fa.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 10:41:21 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWLsq38zbIhIP27BxR9I23/9CfAkulzZr/s32XH+W8w5LNefye4syN2GHDotTfdE3JhvV176o6dmrR2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5n+Z5KF65LSf9MGv0H708DIY63ieorAl0xk3Pl4riwaDz1kKT
+	OCafu96z1bMecW8EoaUBsYESUbbv5YooubD7lKGl3siWVzCznPHRCrBBERuTDL84Oe9DMEX29u0
+	KjmudmXpQkYWEwovP+1as9Aq2QW86ksg=
+X-Received: by 2002:a2e:8a96:0:b0:37c:cf34:536c with SMTP id
+ 38308e7fff4ca-38bf95e8ad2mr42901711fa.3.1774287679365; Mon, 23 Mar 2026
+ 10:41:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Kx6/S7Rx19hzc491"
-Content-Disposition: inline
-In-Reply-To: <20260323-omap4-fix-usb-support-v1-1-b668132124ac@bootlin.com>
-X-Cookie: This is a good time to punt work.
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+References: <20260323110151.2352832-1-andre.przywara@arm.com> <20260323110151.2352832-6-andre.przywara@arm.com>
+In-Reply-To: <20260323110151.2352832-6-andre.przywara@arm.com>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Tue, 24 Mar 2026 01:41:06 +0800
+X-Gmail-Original-Message-ID: <CAGb2v648WLXK9KjXcCRKy_mQGMkn8mhxKHSukh-WC4i=sXZGbg@mail.gmail.com>
+X-Gm-Features: AQROBzCqD4rc3G7BUhX053yGDoWgA9I1BieDaebJcNf25nsrRp_pPWGt7aUxUjc
+Message-ID: <CAGb2v648WLXK9KjXcCRKy_mQGMkn8mhxKHSukh-WC4i=sXZGbg@mail.gmail.com>
+Subject: Re: [PATCH 5/5] pinctrl: sunxi: a523: add missing IRQ bank (plus old
+ DT workaround)
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Michal Piekos <michal.piekos@mmpsystems.pl>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-279315-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-279314-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[iki.fi,kemnade.info,baylibre.com,kernel.org,atomide.com,gmail.com,bootlin.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org,mmpsystems.pl,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	REPLYTO_ADDR_EQ_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sirena.org.uk:mid]
-X-Rspamd-Queue-Id: 2255E2FA974
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_REPLYTO(0.00)[wens@kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mail.gmail.com:mid,arm.com:email]
+X-Rspamd-Queue-Id: 7E26A2FB485
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Mon, Mar 23, 2026 at 7:02=E2=80=AFPM Andre Przywara <andre.przywara@arm.=
+com> wrote:
+>
+> The Allwinner A532 SoC implements 10 GPIO banks, each of which is
+> interrupt capable. However the first bank (PortA) is skipped, so the
+> indicies of those banks range from 1 to 10, not 0 to 9.
+> We described the skipped bank correctly, but missed that for the IRQ
+> banks, where we rely on the IRQ bank index to be aligned with the MMIO
+> register offset, starting at 0x200.
+>
+> Correct that by increasing the number of IRQ banks to 11, to cover both
+> the first skipped one, but also the last one (PortK). This fixes a bug
+> where the interrupt numbers would be off-by-one, due to that
+> mis-enumeration.
+> The big caveat is that now old DTs break the kernel, since they only
+> provide 10 interrupts, and the driver bails out entirely due to the last
+> missing one. So add a workaround for this particular case, where we
+> detect the requirement for 11 banks, but only 10 interrupts provided,
+> and continue with 10 IRQs, albeit emitting a warning about a DT update.
+> This would still be broken in terms of interrupt assignment, but it was
+> broken the whole time before, so it's not a regression.
+>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c |  2 +-
+>  drivers/pinctrl/sunxi/pinctrl-sunxi.c       | 22 +++++++++++++--------
+>  2 files changed, 15 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c b/drivers/pinctr=
+l/sunxi/pinctrl-sun55i-a523.c
+> index b6f78f1f30ac..a1d157de53d2 100644
+> --- a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c
+> +++ b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c
+> @@ -17,7 +17,7 @@ static const u8 a523_nr_bank_pins[SUNXI_PINCTRL_MAX_BAN=
+KS] =3D
+>  /*       PA  PB  PC  PD  PE  PF  PG  PH  PI  PJ  PK */
+>         {  0, 15, 17, 24, 16,  7, 15, 20, 17, 28, 24 };
+>
+> -static const unsigned int a523_irq_bank_map[] =3D { 0, 1, 2, 3, 4, 5, 6,=
+ 7, 8, 9 };
+> +static const unsigned int a523_irq_bank_map[] =3D { 0, 1, 2, 3, 4, 5, 6,=
+ 7, 8, 9, 10 };
 
---Kx6/S7Rx19hzc491
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Actually you don't even need this, since this is a linear mapping.
 
-On Mon, Mar 23, 2026 at 04:02:42PM +0100, Thomas Richard wrote:
-> Add support for the pbias SIM regulator found on OMAP4 (for USB I/O cell).
+From sunxi_irq_hw_bank_num():
 
-> @@ -108,6 +118,7 @@ static struct of_regulator_match pbias_matches[] = {
->  	{ .name = "pbias_sim_omap3", .driver_data = (void *)&pbias_sim_omap3},
->  	{ .name = "pbias_mmc_omap4", .driver_data = (void *)&pbias_mmc_omap4},
->  	{ .name = "pbias_mmc_omap5", .driver_data = (void *)&pbias_mmc_omap5},
-> +	{ .name = "pbias_sim_omap4", .driver_data = (void *)&pbias_sim_omap4},
->  };
+    if (!desc->irq_bank_map)
+            return bank;
+    else
+            return desc->irq_bank_map[bank];
 
-This is a new compatible, it needs bindings adding.
+>  static const u8 a523_irq_bank_muxes[SUNXI_PINCTRL_MAX_BANKS] =3D
+>  /*       PA  PB  PC  PD  PE  PF  PG  PH  PI  PJ  PK */
+> diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.c b/drivers/pinctrl/sunx=
+i/pinctrl-sunxi.c
+> index 6a86b7989b25..ffee79397590 100644
+> --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.c
+> +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
+> @@ -19,6 +19,7 @@
+>  #include <linux/irqdomain.h>
+>  #include <linux/of.h>
+>  #include <linux/of_clk.h>
+> +#include <linux/of_irq.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regulator/consumer.h>
+>  #include <linux/slab.h>
+> @@ -1582,6 +1583,7 @@ int sunxi_pinctrl_init_with_flags(struct platform_d=
+evice *pdev,
+>         struct sunxi_pinctrl *pctl;
+>         struct pinmux_ops *pmxops;
+>         int i, ret, last_pin, pin_idx;
+> +       int num_irq_banks;
+>         struct clk *clk;
+>
+>         pctl =3D devm_kzalloc(&pdev->dev, sizeof(*pctl), GFP_KERNEL);
+> @@ -1715,16 +1717,20 @@ int sunxi_pinctrl_init_with_flags(struct platform=
+_device *pdev,
+>                 goto gpiochip_error;
+>         }
+>
+> -       pctl->irq =3D devm_kcalloc(&pdev->dev,
+> -                                pctl->desc->irq_banks,
+> -                                sizeof(*pctl->irq),
+> -                                GFP_KERNEL);
+> +       num_irq_banks =3D pctl->desc->irq_banks;
+> +       /* Workaround for old A523 DT, exposing one less interrupt. */
+> +       if (num_irq_banks =3D=3D 11 && of_irq_count(node) < 11) {
+> +               num_irq_banks =3D 10;
+> +               pr_warn("Not enough PIO interrupts, please update your DT=
+!\n");
+> +       }
 
---Kx6/S7Rx19hzc491
-Content-Type: application/pgp-signature; name="signature.asc"
+I would probably make the check universal, and also use dev_warn().
 
------BEGIN PGP SIGNATURE-----
+    num_irq_banks =3D of_irq_count(node);
+    if (num_irq_banks !=3D pctrl->desc->irq_banks) {
+        dev_warn(&pdev->dev, "Incorrect number of PIO interrupts,
+please update your DT!\n");
+        num_irq_banks =3D min(num_irq_banks, pctrl->desc->irq_banks);
+    }
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmnBeIIACgkQJNaLcl1U
-h9BWAgf/Z+R7Meg189FFhgG54AxsMEXHl7o6PnVqNsVJHYOUvyvIPZx20QyCvjPi
-0qcsl95vNpCQR4w6jIqwhx6lFVdAA4pLHM3gYOkqZgutwVUNvDU753cBXBlhAIBt
-5W1R6KdBwqAq85yYT25nYdMBh4GZvsYRdTZ0UvzeDOexp/eJqg5l4/KL6axX+1eI
-4MbX4skaMTo5JbizI/esA484T9oCGY/DJEpRWJ/pshKWzKU7ZWXrrsPfPUuu8euK
-thjxWKBDbhC7b5wkbu0kYaHHXZBQGJwF86UJprSHDf3tEYlPli7f3j/m/4weyuBL
-a4eZqz2JBVAeG/oPBIvoUgvlqtx5PA==
-=RUMF
------END PGP SIGNATURE-----
+Otherwise,
 
---Kx6/S7Rx19hzc491--
+Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
+
+
+> +       pctl->irq =3D devm_kcalloc(&pdev->dev, num_irq_banks,
+> +                                sizeof(*pctl->irq), GFP_KERNEL);
+>         if (!pctl->irq) {
+>                 ret =3D -ENOMEM;
+>                 goto gpiochip_error;
+>         }
+>
+> -       for (i =3D 0; i < pctl->desc->irq_banks; i++) {
+> +       for (i =3D 0; i < num_irq_banks; i++) {
+>                 pctl->irq[i] =3D platform_get_irq(pdev, i);
+>                 if (pctl->irq[i] < 0) {
+>                         ret =3D pctl->irq[i];
+> @@ -1733,7 +1739,7 @@ int sunxi_pinctrl_init_with_flags(struct platform_d=
+evice *pdev,
+>         }
+>
+>         pctl->domain =3D irq_domain_create_linear(dev_fwnode(&pdev->dev),
+> -                                               pctl->desc->irq_banks * I=
+RQ_PER_BANK,
+> +                                               num_irq_banks * IRQ_PER_B=
+ANK,
+>                                                 &sunxi_pinctrl_irq_domain=
+_ops, pctl);
+>         if (!pctl->domain) {
+>                 dev_err(&pdev->dev, "Couldn't register IRQ domain\n");
+> @@ -1741,7 +1747,7 @@ int sunxi_pinctrl_init_with_flags(struct platform_d=
+evice *pdev,
+>                 goto gpiochip_error;
+>         }
+>
+> -       for (i =3D 0; i < (pctl->desc->irq_banks * IRQ_PER_BANK); i++) {
+> +       for (i =3D 0; i < (num_irq_banks * IRQ_PER_BANK); i++) {
+>                 int irqno =3D irq_create_mapping(pctl->domain, i);
+>
+>                 irq_set_lockdep_class(irqno, &sunxi_pinctrl_irq_lock_clas=
+s,
+> @@ -1751,7 +1757,7 @@ int sunxi_pinctrl_init_with_flags(struct platform_d=
+evice *pdev,
+>                 irq_set_chip_data(irqno, pctl);
+>         }
+>
+> -       for (i =3D 0; i < pctl->desc->irq_banks; i++) {
+> +       for (i =3D 0; i < num_irq_banks; i++) {
+>                 /* Mask and clear all IRQs before registering a handler *=
+/
+>                 writel(0, pctl->membase +
+>                           sunxi_irq_ctrl_reg_from_bank(pctl->desc, i));
+> --
+> 2.43.0
+>
+>
 
