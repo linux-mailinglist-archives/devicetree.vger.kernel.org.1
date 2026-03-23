@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-279304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279306-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UBToNXZ6wWkQTQQAu9opvQ
-	(envelope-from <devicetree+bounces-279304-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 18:37:58 +0100
+	id cGX3KCuAwWl2TgQAu9opvQ
+	(envelope-from <devicetree+bounces-279306-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 19:02:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F2CE2FA19D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 18:37:57 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC21F2FACF1
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 19:02:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3AB9F3030497
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 17:08:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 96FA230F319B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 17:08:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 444593BF684;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 725F83C4551;
 	Mon, 23 Mar 2026 17:08:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mC6Yq1N5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dRetuc+n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DCC83BD22C;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EB083C062C;
 	Mon, 23 Mar 2026 17:08:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774285719; cv=none; b=Iypn794SvMG7ZgXog4EE54vj7g9u0c2wgnrCjp36sIahJj4NEUadH5+5Y3nb2ic7wJYPgf2KDGQ64cX4euKhp3dkqMYl7IUQRT0jqR4PQADFbwFoA09JgZ+cR+6Dl6P3b1vFz7HT2gigibjG4iTZ8wTE1pZp2DNsC4KJ9EsiYs4=
+	t=1774285719; cv=none; b=t6sZLVCAAGyKZn5EVox2LJvvA3otXWDgzsI0QsvjBbGslyumH1Ea0UPjtscZEiXKj5KUorvbVTVu+Y7Hwc/Pdq5EiBk1y1cz0IJMk8h1Y7RD6fj6v5SCfzd55Vun91Wt+owqyxmnyGhuiMCxSruJPhGblBS3coS+bPKjIcohYcQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1774285719; c=relaxed/simple;
-	bh=9qexIOS+2Jxul6keX+xp+B+ZkzLLQx9RxmYp/GWG4tI=;
+	bh=pDwSdgt0K1S24oUY+MHSWthNddlsNbbc1I9i6GPqP8Q=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=THbUN59C78fyjSNsqyqAAdTu15NqzXd3+m31Hw2HWU6hjk7JD6fkMgaIl5n2F96rpA/BGxUMyxfhkXiVStb5yuojPaepVUICRNlHnYwYtLis4UexFZ+o+QR0okZtIzSL9osPW89OxShnZ8CR+nm/w8XG8GpVRYvFpJWr2/Ey6Xw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mC6Yq1N5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id EA4D1C2BC9E;
-	Mon, 23 Mar 2026 17:08:38 +0000 (UTC)
+	 In-Reply-To:To:Cc; b=VPPw15E384q0bnvZVS1Jkc4NTSCEJiKvxs03PbhYnwzKHWuagh47a4bBaKvAhcvCTxUGHlDeEb0X6TZsSi1Q2n8hFf6uT2LNyB9iAK5OGgTbukpe1vtoc3wTUIfqiGoAiRfDHeXyrLReZ777us9NUtKabdVjdAcgaJjZynyT+nA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dRetuc+n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 05F54C2BCB3;
+	Mon, 23 Mar 2026 17:08:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1774285719;
-	bh=9qexIOS+2Jxul6keX+xp+B+ZkzLLQx9RxmYp/GWG4tI=;
+	bh=pDwSdgt0K1S24oUY+MHSWthNddlsNbbc1I9i6GPqP8Q=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=mC6Yq1N5NjZUEf0l5IMsBmYgiWv5uFMgmrucjQKOAPvR8mexSr18eH3LI1AOZWSdJ
-	 XB8++uqFKs8TTkzcOIhT0S7mbx1LjKqk4HeIH+hpBZgLQCfZe4A6Lmu2L4OfYtvoZA
-	 719NIPH/5DE1BBtZZGcam+WHENt9ZOoU4HpWZaT5US+JE9+5v/BUwsv/vA00EA1MFQ
-	 N0j9QHWZWGPXrLALZALP2i9dIYylYWeUfae8tJiQCPkGDiVB9urdDBns1nTQTSlGuc
-	 +hhwdzCgBgDtdEPWpoAx1SNKXF7Hv/gzXs4C9e83o+nPHcnUdj3zE2OI7TOh1tXVJK
-	 wT6luvKaVbMuA==
+	b=dRetuc+ndNL8wRaQZg8vHH1R8xl2LDmEAkEMhywP+8UJhDtVNFD0awcTk0NFVEWFc
+	 4+TwVaGUseD6722baHvFERvQmafMAljE3Pv38x2IeTRa6AzQ8/8U1fnYEaHtgRnNF2
+	 u8AcQslSDSFzviMA3MRAnn29WvPb5J7TyvQbHvu26RrEf8YY4DRjIWL37jy1EZaWTd
+	 O1zXa3t0cu4EZiF5p5wL/gEmOSAA9X4FGrOSan9lPVySnsbFnCBuWk0rOkpEYSMhFP
+	 5BZmigdRmnrqcFCW1l7D0tGzECRjwKdXzJngzJceniXbW1hoyZEy3Qgf0cY88IRn/u
+	 e9EeUMC89IdcQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D95DEF483D7;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E9EDFF483D8;
 	Mon, 23 Mar 2026 17:08:38 +0000 (UTC)
 From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Date: Mon, 23 Mar 2026 12:08:32 -0500
-Subject: [PATCH v3 1/2] dt-bindings: display: panel: Add ChipWealth
- CH13726A AMOLED driver
+Date: Mon, 23 Mar 2026 12:08:33 -0500
+Subject: [PATCH v3 2/2] drm/panel: Add panel driver for ChipWealth CH13726A
+ based panels
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,7 +59,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260323-ch13726a-v3-1-e28b6f97fe80@gmail.com>
+Message-Id: <20260323-ch13726a-v3-2-e28b6f97fe80@gmail.com>
 References: <20260323-ch13726a-v3-0-e28b6f97fe80@gmail.com>
 In-Reply-To: <20260323-ch13726a-v3-0-e28b6f97fe80@gmail.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -73,11 +73,11 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, Teguh Sobirin <teguh@sobir.in>, 
  Aaron Kling <webgeek1234@gmail.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1774285718; l=2207;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1774285718; l=11523;
  i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=m1gbP9xlX+JfXna4d2g22onWt9FebTUXJRHPr06dAlg=;
- b=sdhUJhJWlSEI9XGJDcNBWzx1JjIDC9xcG8mbZBjG7AF2ed9UZL6GJ/K+VCHYU2lY0RXU623uC
- w7QKXDdGKmSDSUhEwJ1DfHXFFJuhSuCqIAroKxEaPPOchw1Qx7V4YIC
+ bh=PGS1htHub0KITyss9Eg2gXWt15DqDviEDfgDHc/FXP4=;
+ b=6B/gVD7gY6zgLUawSbcgaN4k38AkkYXgUViuoppZ+pdqWzUwQXSvs0WTnd/GNV7BD7isnL6pk
+ 5rZXEjs/bDKCU+BnuACMG0/pSqYQ4Y7qcu+TKnW+V3EvQ1J/9zYF3Ev
 X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
  pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
 X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
@@ -90,12 +90,12 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-279304-lists,devicetree=lfdr.de,webgeek1234.gmail.com];
+	TAGGED_FROM(0.00)[bounces-279306-lists,devicetree=lfdr.de,webgeek1234.gmail.com];
 	FREEMAIL_TO(0.00)[linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -112,95 +112,406 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,sobir.in,gmail.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,linaro.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email]
-X-Rspamd-Queue-Id: 0F2CE2FA19D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: CC21F2FACF1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Aaron Kling <webgeek1234@gmail.com>
+From: Teguh Sobirin <teguh@sobir.in>
 
-The Chip Wealth Technology CH13726A AMOLED driver is a single chip
-solution for MIPI-DSI. This is used for the AYN Thor bottom panel.
+This is used by the AYN Thor for the bottom panel.
 
+Signed-off-by: Teguh Sobirin <teguh@sobir.in>
+Co-developed-by: Aaron Kling <webgeek1234@gmail.com>
 Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
 ---
- .../display/panel/chipwealth,ch13726a.yaml         | 65 ++++++++++++++++++++++
- 1 file changed, 65 insertions(+)
+ drivers/gpu/drm/panel/Kconfig                     |  11 +
+ drivers/gpu/drm/panel/Makefile                    |   1 +
+ drivers/gpu/drm/panel/panel-chipwealth-ch13726a.c | 339 ++++++++++++++++++++++
+ 3 files changed, 351 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/chipwealth,ch13726a.yaml b/Documentation/devicetree/bindings/display/panel/chipwealth,ch13726a.yaml
+diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+index a99f2e2a49fe66a09c6f2d503f570b05a5e228b1..e953b61a819082866b93d0a453ee750a76d70c18 100644
+--- a/drivers/gpu/drm/panel/Kconfig
++++ b/drivers/gpu/drm/panel/Kconfig
+@@ -105,6 +105,17 @@ config DRM_PANEL_BOE_TV101WUM_LL2
+ 	  Say Y here if you want to support for BOE TV101WUM-LL2
+ 	  WUXGA PANEL DSI Video Mode panel
+ 
++config DRM_PANEL_CHIPWEALTH_CH13726A
++	tristate "CHIPWEALTH CH13726A-based DSI panel"
++	depends on OF
++	depends on DRM_MIPI_DSI
++	depends on BACKLIGHT_CLASS_DEVICE
++	select DRM_DISPLAY_DP_HELPER
++	select DRM_DISPLAY_HELPER
++	help
++	  Say Y here if you want to enable support for ChipWealth
++	  CH13726A-based display panels.
++
+ config DRM_PANEL_EBBG_FT8719
+ 	tristate "EBBG FT8719 panel driver"
+ 	depends on OF
+diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+index 3336a2c0cd86419b6a22f74dcde6df966a311da9..85da2eb5a5c664d4302837f52e7e10ec11da8966 100644
+--- a/drivers/gpu/drm/panel/Makefile
++++ b/drivers/gpu/drm/panel/Makefile
+@@ -9,6 +9,7 @@ obj-$(CONFIG_DRM_PANEL_BOE_TD4320) += panel-boe-td4320.o
+ obj-$(CONFIG_DRM_PANEL_BOE_TH101MB31UIG002_28A) += panel-boe-th101mb31ig002-28a.o
+ obj-$(CONFIG_DRM_PANEL_BOE_TV101WUM_LL2) += panel-boe-tv101wum-ll2.o
+ obj-$(CONFIG_DRM_PANEL_BOE_TV101WUM_NL6) += panel-boe-tv101wum-nl6.o
++obj-$(CONFIG_DRM_PANEL_CHIPWEALTH_CH13726A) += panel-chipwealth-ch13726a.o
+ obj-$(CONFIG_DRM_PANEL_DSI_CM) += panel-dsi-cm.o
+ obj-$(CONFIG_DRM_PANEL_LVDS) += panel-lvds.o
+ obj-$(CONFIG_DRM_PANEL_SIMPLE) += panel-simple.o
+diff --git a/drivers/gpu/drm/panel/panel-chipwealth-ch13726a.c b/drivers/gpu/drm/panel/panel-chipwealth-ch13726a.c
 new file mode 100644
-index 0000000000000000000000000000000000000000..5d964900795653401a871994bcf6403cdeaad64f
+index 0000000000000000000000000000000000000000..48a5e20e07c48748e073f8bb9147036c18c51caa
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/chipwealth,ch13726a.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/chipwealth,ch13726a.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/drivers/gpu/drm/panel/panel-chipwealth-ch13726a.c
+@@ -0,0 +1,339 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * ChipWealth CH13726A MIPI-DSI panel driver
++ * Copyright (c) 2024, Teguh Sobirin <teguh@sobir.in>.
++ */
 +
-+title: Chip Wealth Technology CH13726A AMOLED driver
++#include <linux/backlight.h>
++#include <linux/delay.h>
++#include <linux/gpio/consumer.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/regulator/consumer.h>
 +
-+maintainers:
-+  - Neil Armstrong <neil.armstrong@linaro.org>
++#include <drm/drm_mipi_dsi.h>
++#include <drm/drm_modes.h>
++#include <drm/drm_panel.h>
 +
-+description:
-+  Chip Wealth Technology CH13726A is a single-chip solution
-+  for AMOLED connected using a MIPI-DSI video interface.
++#include <video/mipi_display.h>
 +
-+allOf:
-+  - $ref: panel-common.yaml#
++struct ch13726a_panel {
++	struct drm_panel panel;
++	struct mipi_dsi_device *dsi;
++	struct regulator_bulk_data supplies[4];
++	struct gpio_desc *reset_gpio;
++	struct ch13726a_desc *desc;
++	enum drm_panel_orientation orientation;
++	bool prepared;
++};
 +
-+properties:
-+  compatible:
-+    const: ayntec,thor-panel-bottom
++struct ch13726a_desc {
++	unsigned int width_mm;
++	unsigned int height_mm;
++	unsigned int bpc;
 +
-+  reg:
-+    maxItems: 1
-+    description: DSI virtual channel
++	const struct drm_display_mode *modes;
++	unsigned int num_modes;
++};
 +
-+  vdd-supply: true
-+  vddio-supply: true
-+  vdd1v2-supply: true
-+  avdd-supply: true
++static inline struct ch13726a_panel *to_ch13726a_panel(struct drm_panel *panel)
++{
++	return container_of(panel, struct ch13726a_panel, panel);
++}
 +
-+  port: true
-+  reset-gpios: true
-+  rotation: true
++static void ch13726a_reset(struct ch13726a_panel *ctx)
++{
++	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
++	usleep_range(10000, 11000);
++	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
++	usleep_range(10000, 11000);
++	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
++	usleep_range(10000, 11000);
++}
 +
-+required:
-+  - compatible
-+  - reg
-+  - vdd-supply
-+  - vddio-supply
-+  - vdd1v2-supply
-+  - avdd-supply
-+  - reset-gpios
++static int ch13726a_on(struct ch13726a_panel *ctx)
++{
++	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi };
 +
-+additionalProperties: false
++	ctx->dsi->mode_flags |= MIPI_DSI_MODE_LPM;
 +
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
++	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xf0, 0x50);
++	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xb9, 0x00);
 +
-+    dsi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        panel@0 {
-+            compatible = "ayntec,thor-panel-bottom";
-+            reg = <0>;
-+            vdd1v2-supply = <&vreg_l11b_1p2>;
-+            vddio-supply = <&vdd_disp_1v8>;
-+            vdd-supply = <&vreg_l13b_3p0>;
-+            avdd-supply = <&vdd_disp2_2v8>;
-+            reset-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
-+        };
-+    };
++	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
 +
-+...
++	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
++
++	return dsi_ctx.accum_err;
++}
++
++static int ch13726a_disable(struct drm_panel *panel)
++{
++	struct ch13726a_panel *ctx = to_ch13726a_panel(panel);
++	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi };
++
++	ctx->dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
++
++	mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
++	mipi_dsi_msleep(&dsi_ctx, 50);
++	mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
++
++	return dsi_ctx.accum_err;
++}
++
++static int ch13726a_prepare(struct drm_panel *panel)
++{
++	struct ch13726a_panel *ctx = to_ch13726a_panel(panel);
++	struct device *dev = &ctx->dsi->dev;
++	int ret;
++
++	if (ctx->prepared)
++		return 0;
++
++	ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
++	if (ret < 0) {
++		dev_err(dev, "Failed to enable regulators: %d\n", ret);
++		return ret;
++	}
++
++	ch13726a_reset(ctx);
++
++	ret = ch13726a_on(ctx);
++	if (ret < 0) {
++		dev_err(dev, "Failed to initialize panel: %d\n", ret);
++		gpiod_set_value_cansleep(ctx->reset_gpio, 0);
++		regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
++		return ret;
++	}
++
++	msleep(28);
++
++	ctx->prepared = true;
++
++	return 0;
++}
++
++static int ch13726a_unprepare(struct drm_panel *panel)
++{
++	struct ch13726a_panel *ctx = to_ch13726a_panel(panel);
++
++	if (!ctx->prepared)
++		return 0;
++
++	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
++	regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
++
++	ctx->prepared = false;
++	return 0;
++}
++
++static const struct drm_display_mode thor_bottom_modes[] = {
++	{
++		/* 120Hz */
++		.clock = (1080 + 28 + 4 + 36) * (1240 + 16 + 4 + 8) * 120 / 1000,
++		.hdisplay = 1080,
++		.hsync_start = 1080 + 28,
++		.hsync_end = 1080 + 28 + 4,
++		.htotal = 1080 + 28 + 4 + 36,
++		.vdisplay = 1240,
++		.vsync_start = 1240 + 16,
++		.vsync_end = 1240 + 16 + 4,
++		.vtotal = 1240 + 16 + 4 + 8,
++	},
++	{
++		/* 60Hz */
++		.clock = (1080 + 28 + 4 + 36) * (1240 + 16 + 4 + 8) * 60 / 1000,
++		.hdisplay = 1080,
++		.hsync_start = 1080 + 28,
++		.hsync_end = 1080 + 28 + 4,
++		.htotal = 1080 + 28 + 4 + 36,
++		.vdisplay = 1240,
++		.vsync_start = 1240 + 16,
++		.vsync_end = 1240 + 16 + 4,
++		.vtotal = 1240 + 16 + 4 + 8,
++	}
++};
++
++static struct ch13726a_desc thor_bottom_desc = {
++	.modes = thor_bottom_modes,
++	.num_modes = ARRAY_SIZE(thor_bottom_modes),
++	.width_mm = 65,
++	.height_mm = 75,
++	.bpc = 8,
++};
++
++static int ch13726a_get_modes(struct drm_panel *panel,
++					struct drm_connector *connector)
++{
++	struct ch13726a_panel *ctx = to_ch13726a_panel(panel);
++
++	for (uint8_t i = 0; i < ctx->desc->num_modes; i++) {
++		const struct drm_display_mode *m = &ctx->desc->modes[i];
++		struct drm_display_mode *mode;
++
++		mode = drm_mode_duplicate(connector->dev, m);
++		if (!mode) {
++			dev_err(&ctx->dsi->dev, "failed to add mode %ux%u@%u\n",
++				m->hdisplay, m->vdisplay, drm_mode_vrefresh(m));
++			return -ENOMEM;
++		}
++
++		mode->type = DRM_MODE_TYPE_DRIVER;
++		if (i == 0)
++			mode->type |= DRM_MODE_TYPE_PREFERRED;
++
++		drm_mode_set_name(mode);
++		drm_mode_probed_add(connector, mode);
++	}
++
++	connector->display_info.width_mm = ctx->desc->width_mm;
++	connector->display_info.height_mm = ctx->desc->height_mm;
++	connector->display_info.bpc = ctx->desc->bpc;
++
++	return ctx->desc->num_modes;
++}
++
++static enum drm_panel_orientation ch13726a_get_orientation(struct drm_panel *panel)
++{
++	struct ch13726a_panel *ctx = to_ch13726a_panel(panel);
++
++	return ctx->orientation;
++}
++
++static const struct drm_panel_funcs ch13726a_panel_funcs = {
++	.prepare = ch13726a_prepare,
++	.unprepare = ch13726a_unprepare,
++	.disable = ch13726a_disable,
++	.get_modes = ch13726a_get_modes,
++	.get_orientation = ch13726a_get_orientation,
++};
++
++static int ch13726a_bl_update_status(struct backlight_device *bl)
++{
++	struct mipi_dsi_device *dsi = bl_get_data(bl);
++	u16 brightness = backlight_get_brightness(bl);
++	int ret;
++
++	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
++
++	ret = mipi_dsi_dcs_set_display_brightness(dsi, brightness);
++	if (ret < 0)
++		return ret;
++
++	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
++
++	return 0;
++}
++
++static const struct backlight_ops ch13726a_bl_ops = {
++	.update_status = ch13726a_bl_update_status,
++};
++
++static struct backlight_device *
++ch13726a_create_backlight(struct mipi_dsi_device *dsi)
++{
++	struct device *dev = &dsi->dev;
++	const struct backlight_properties props = {
++		.type = BACKLIGHT_RAW,
++		.brightness = 255,
++		.max_brightness = 255,
++	};
++
++	return devm_backlight_device_register(dev, dev_name(dev), dev, dsi,
++					      &ch13726a_bl_ops, &props);
++}
++
++static int ch13726a_probe(struct mipi_dsi_device *dsi)
++{
++	struct device *dev = &dsi->dev;
++	struct ch13726a_panel *ctx;
++	int ret;
++
++	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
++	if (!ctx)
++		return -ENOMEM;
++
++	ctx->desc = (struct ch13726a_desc *)of_device_get_match_data(dev);
++	if (!ctx->desc)
++		return -ENODEV;
++
++	ctx->supplies[0].supply = "vdd1v2";
++	ctx->supplies[1].supply = "vddio";
++	ctx->supplies[2].supply = "vdd";
++	ctx->supplies[3].supply = "avdd";
++
++	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(ctx->supplies),
++				      ctx->supplies);
++	if (ret < 0)
++		return dev_err_probe(dev, ret, "Failed to get regulators\n");
++
++	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
++	if (IS_ERR(ctx->reset_gpio))
++		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
++				     "Failed to get reset-gpios\n");
++
++	ret = of_drm_get_panel_orientation(dev->of_node, &ctx->orientation);
++	if (ret < 0) {
++		dev_err(dev, "%pOF: failed to get orientation %d\n", dev->of_node, ret);
++		return ret;
++	}
++
++	ctx->dsi = dsi;
++	mipi_dsi_set_drvdata(dsi, ctx);
++
++	dsi->lanes = 4;
++	dsi->format = MIPI_DSI_FMT_RGB888;
++	dsi->mode_flags = MIPI_DSI_MODE_VIDEO |
++			  MIPI_DSI_CLOCK_NON_CONTINUOUS;
++
++	drm_panel_init(&ctx->panel, dev, &ch13726a_panel_funcs,
++		       DRM_MODE_CONNECTOR_DSI);
++	ctx->panel.prepare_prev_first = true;
++
++	ctx->panel.backlight = ch13726a_create_backlight(dsi);
++	if (IS_ERR(ctx->panel.backlight))
++		return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
++				     "Failed to create backlight\n");
++
++	drm_panel_add(&ctx->panel);
++
++	ret = mipi_dsi_attach(dsi);
++	if (ret < 0) {
++		dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
++		drm_panel_remove(&ctx->panel);
++		return ret;
++	}
++
++	return 0;
++}
++
++static void ch13726a_remove(struct mipi_dsi_device *dsi)
++{
++	struct ch13726a_panel *ctx = mipi_dsi_get_drvdata(dsi);
++	int ret;
++
++	ret = mipi_dsi_detach(dsi);
++	if (ret < 0)
++		dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
++
++	drm_panel_remove(&ctx->panel);
++}
++
++static const struct of_device_id ch13726a_of_match[] = {
++	{ .compatible = "ayntec,thor-panel-bottom", .data = &thor_bottom_desc },
++	{ /* sentinel */ }
++};
++MODULE_DEVICE_TABLE(of, ch13726a_of_match);
++
++static struct mipi_dsi_driver ch13726a_driver = {
++	.probe = ch13726a_probe,
++	.remove = ch13726a_remove,
++	.driver = {
++		.name = "panel-ch13726a-amoled",
++		.of_match_table = ch13726a_of_match,
++	},
++};
++module_mipi_dsi_driver(ch13726a_driver);
++
++MODULE_DESCRIPTION("DRM driver for CH13726A DSI panels");
++MODULE_LICENSE("GPL");
 
 -- 
 2.53.0
