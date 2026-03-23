@@ -1,199 +1,511 @@
-Return-Path: <devicetree+bounces-279054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279058-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4EHKBA0bwWn5QQQAu9opvQ
-	(envelope-from <devicetree+bounces-279054-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 11:50:53 +0100
+	id OBHhJV4cwWlaQwQAu9opvQ
+	(envelope-from <devicetree+bounces-279058-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 11:56:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B37E2F0848
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 11:50:52 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A10C42F0A45
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 11:56:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 423FC30210ED
-	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 10:45:31 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E607630506EB
+	for <lists+devicetree@lfdr.de>; Mon, 23 Mar 2026 10:48:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA30239098E;
-	Mon, 23 Mar 2026 10:45:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A134F391E7C;
+	Mon, 23 Mar 2026 10:47:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Z69B7kUf";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="S8LTsdiz"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="T/zGzGdm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 946B837F723
-	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 10:45:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5415B391821;
+	Mon, 23 Mar 2026 10:47:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774262729; cv=none; b=NA7v5z7QvU0zXSp3HbJQrSnKhDThK8ds++Gk0rIGdO9gvEncEwZ2/Sy27qSRWaP2gA+N8owXWV3DQr1QdUUTVnFZPahyYbShRaEoKFU0sKOmXQzHId/2pcJGCVEOLarJAXIiKXdomUWIXIwmBaa5hr37ULQcnyIgwWPwn5rx9rU=
+	t=1774262857; cv=none; b=KKoSEdpKaVsFPUkZShCgNPNU6BqCxCdUwOoLDYocmHrVVlBorOy0LKnr3FmbYFvEMoDN1QAmW5Q2DXDD95knnYld4rgVrjqY7Xy1vJD2oKeQyxGUzekF5MYAhIB/Ick3fuyPAlowWnwhtOEpc7LxQcVuDcikh9/qA7aZpRdU37Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774262729; c=relaxed/simple;
-	bh=bJR3Kdjc1gGye6KW0sXyRoKoFmZCvahO2l+ajWc8zhM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QJWEeo2cyHmkDMhYyPVHwgvETgl8ODAMR0OWL3H7wL+PI+ndoq9REZonSd+RnHIUFGRcv2LhuxoA81mh+X4Mo8xIujZSbSUjlxkNfjYU+LWjAAW1OCgZbC7CtiNCeEYTaW88+3thsRGQFBzxt3xotQ3RjWDqyFq5o3RSQjNW6rg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Z69B7kUf; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=S8LTsdiz; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62N5l6R13769023
-	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 10:45:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4ZjakhbEwfLw9wMFFasNPzd9hrAyej6SVbhyTjALxjo=; b=Z69B7kUfynEEduX5
-	9IYnifSRg+Dz29Sb9lwj+PdKV6zxxFWjBK8z3vL8QFviCOo83aL1e/S14fowZOQN
-	s9ulyAKEKZ9jw31pyQhXCBDtaElx6EWM/qyGzcGIBYF51wwRviQYA36friTABnhN
-	M7GZBL3Eak/88pXzkcPhlfn1VrJ4hA9ocQ0emudIY6611HHqJuTrNkOfflX81MlR
-	jQT+v20Th4j+F8h6U9y6RdLETdzWMjT8kaq+fA5iQwCWFro51XWn3AG7mXp96TPM
-	3G3PawmF7iyA7U0iypY4aplDsctdj30Vp8ib85Ns6sdqJvnRsoUlSEM4EtT85GyI
-	E8Jbpw==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d1jwvn1q6-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 10:45:27 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-89a04e9d4faso33344686d6.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Mar 2026 03:45:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1774262727; x=1774867527; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4ZjakhbEwfLw9wMFFasNPzd9hrAyej6SVbhyTjALxjo=;
-        b=S8LTsdizo+Ls5rNMYU9aENgQN2rqXETcetHYPgcps8Mpsfrtg7hf+QS7gpDjll8BVr
-         TW4a0BrYahCbXjRvE42k0sK4uOYSSKkuVQ4WrFcuWCYcMT6Y5MEwjP4MbdFOAb6QG4eQ
-         ueOMO8YPsl/ouQpu4eyI0qTk9ey8mk//8bpe4CShjlbqUYjy7E+9CDAR/cELF3BBGFYJ
-         4T1oLrXzY7byglfeHRElLa8uYjzUSNiD5hgkb1eGwuJq0wpOZKNPJ719TTqxsiDSvu3I
-         F4jrd1sAOi7r6W2oi38I5HDK4Zs660KS+RHS9usv5Oia5XLdYWkeMcTUgxMrAoUbiiGg
-         RmyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774262727; x=1774867527;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4ZjakhbEwfLw9wMFFasNPzd9hrAyej6SVbhyTjALxjo=;
-        b=Ru2kVuTXPy+2QSSImp4otkVg914MxVehFe/c+Qk6TFXh+hausEvRtIsFwnw7jJPecq
-         0kJu+C7eIzMpDhN9SLyv9h037dPVhqdEXy2W2A7cX6ntq87+ET3ipPTfmXla65KKgTfP
-         RPCk9vOrQ1d5ceTO/jrdslyZk1q71XOuSn+Q7Z5rhYbHXNwCRiToRrVuCuVsxYg+/k4p
-         k3sjWtWZETBaw4CXccE8BqCydSQctQjamDYCVTznkJTtZTeswkkmPgy0edSv8ez0Ka8p
-         rBryf3wrg3h0lw3esrs5Q+T8jeLLol6nLn5Lzg0dD1r6sTljkoEJvYC0v+slWVZP/bhs
-         zeoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXI9hIGyFXJqwDrSGJn9lPlczbcVGrqNodFNnp+bJ2UgVb1UORZUnMNYTW02ONf2PvM7ushhD4Nnn5D@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+wnwGq0n2HgIJyjxkq2c06kVrS7Kooup9WeDkYpN0DO//bWde
-	EaV5n5fNNC1lPenC/kujxHmWl+YEtPVS2zmCHw2aqHyGc/sYMfWR0QHIudO2W2dyhaiGvTw1LdZ
-	PCrP7KiER9nTs7SNeuVNsNcAsvfP4UuASQord70F9yVYT/1R8SoXiyTiAehb/jvcE
-X-Gm-Gg: ATEYQzzaxOQew3aTlufuVdL3RxpLoall9c75NUC7XWKApOfuevcKQWuX6flHLWInnhU
-	hBpYvEqIFq+44VKKQjG8WULZRhEjosAEUhDRSqfE/P5ZSAprn9NbBPe88Inc+tTCaopmjUlX0Nl
-	GWE7f5QIxCuR06vEBPsaXHWXDIQkGbwdnohh8WBFysJNrMOVTLzzErYGh1lqR2U3+SIHeHFdmyF
-	tjnpGJHg3vI32Xas0TRg3pgROSzOy2WyjQuTO2iNxzg+OLkWjpYM86pj+uTJlseNcm+pFEEtuyg
-	xadAH7e4gdWDNPcpRIgAK1Qt9iSHAlG8YD7Xjti0zEniK8QxS6DCOwRrEbGwdUPJ/Z/lsM167pv
-	m3H64OUnWcBWk5f0Rtqv2Pjh9fMqOJhs78y1Wbso68KkMv7ygLwADWT1JpXZcY3O8jYcvg37hfF
-	lD258=
-X-Received: by 2002:ac8:5a04:0:b0:509:219f:8e34 with SMTP id d75a77b69052e-50b37233ff9mr136812421cf.0.1774262726868;
-        Mon, 23 Mar 2026 03:45:26 -0700 (PDT)
-X-Received: by 2002:ac8:5a04:0:b0:509:219f:8e34 with SMTP id d75a77b69052e-50b37233ff9mr136812151cf.0.1774262726318;
-        Mon, 23 Mar 2026 03:45:26 -0700 (PDT)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-668d2a4b390sm3567344a12.28.2026.03.23.03.45.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Mar 2026 03:45:24 -0700 (PDT)
-Message-ID: <b58ae1d0-d4c3-4b30-8bec-295ebf3b9380@oss.qualcomm.com>
-Date: Mon, 23 Mar 2026 11:45:22 +0100
+	s=arc-20240116; t=1774262857; c=relaxed/simple;
+	bh=FCKrt2gqpw9wh1RlH7VtYPIeF+zWONfzPOyem6I4+LE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d1vgXOtz8hk8uacK/GufM9RgTROfZNrk7rI5NoTZlzITfx9R7T3Sk3hgtzOOMdP8t+liXUeAGXo4WG0DEfFaNxDaJjGyLiJhEGjxqxhFSA4wFJhoHLKWmcecy7xqEzZmjcoqDlRYYRBusqioVjRKteedH9AVOvjVMus8yeEWYhU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=T/zGzGdm; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1774262855; x=1805798855;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=FCKrt2gqpw9wh1RlH7VtYPIeF+zWONfzPOyem6I4+LE=;
+  b=T/zGzGdmP6PKygTbbpur6MtYV7qogqYqvQiG8Iwq8YYjo9sR6UGI85tl
+   LFsBcaZkgwIteUwUgIKXopNraAmtPXaohq3H6UN84kcMGf2HqnTRQzUC5
+   bpRrRufM/SF7RZBB9s25F8t7FGOA6rmwi67otar8IOG6aOHlddmT5PLcH
+   d0TkFnUhaXTkmv+qMpzif1+wcGg739zFGWbjmdzsgh9lFZqkSa1VPnymn
+   1gWn3ikunSFDafXUVkDVkg6YERpkq3D+hrPcczWXt/gs604vEPrHWj4kI
+   HSMuaLS4tuG1uiblHT7LDWuTR5muQIbpn7bmuT23E4baUpuiKzROv3EDb
+   w==;
+X-CSE-ConnectionGUID: EiuWewCBSoOUSSDa3ZHIzQ==
+X-CSE-MsgGUID: 5RgM0IFFREq54DeB24FYLA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11737"; a="74435227"
+X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; 
+   d="scan'208";a="74435227"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2026 03:47:34 -0700
+X-CSE-ConnectionGUID: zmwPpgwsS2uL96bNKL++XA==
+X-CSE-MsgGUID: 6lGLvtiITI+5jDMaksciLg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; 
+   d="scan'208";a="223946511"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.22])
+  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2026 03:47:31 -0700
+Date: Mon, 23 Mar 2026 12:47:28 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, saikrishna12468@gmail.com,
+	git@amd.com
+Subject: Re: [PATCH v2 1/4] iio: adc: xilinx-xadc: Split driver into core and
+ platform files
+Message-ID: <acEaQLGOcI5mshsC@ashevche-desk.local>
+References: <20260323074505.3853353-1-sai.krishna.potthuri@amd.com>
+ <20260323074505.3853353-2-sai.krishna.potthuri@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/9] interconnect: qcom: msm8974: expand DEFINE_QNODE
- macros
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Georgi Djakov <djakov@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Luca Weiss
- <luca.weiss@fairphone.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Brian Masney <masneyb@onstation.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260323-msm8974-icc-v1-0-7892b8d5f2ea@oss.qualcomm.com>
- <20260323-msm8974-icc-v1-8-7892b8d5f2ea@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260323-msm8974-icc-v1-8-7892b8d5f2ea@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzIzMDA4MiBTYWx0ZWRfXzotcFj0IaJP/
- SvVrl5bTwyNEvqT6lQkpuD9HsvSdpXi6pdvzCahoReJ4/Y695m8tj4GaIvJvUALolaDrMrf8Lo3
- VXUkg1rbd5w9zZb1iK2rQFqmO4VtFdV5h5cWN4uyhoUS0ts1Pk6xm99Zm2PILunJ6vAwcMWVTK6
- f8zD6hvGKRnxsgi6BCPQV6kV4jcmkREhCFnhbywzphvqL/JyeMGhc0188SCYX0BO2i39WGgZ1eF
- ocW6phwgVf7ed2U6jaisy1ebB7EXl938BodFwFKAGia37AIILFwNKLczD01c0t3jvgzPb+Kp8Av
- JKoM7DNrJIZUYVssBhePlxPU3HE32VOv7IoVcgsVtgn7gDQFj8wedQyPKY1jMFjXsKngDpD724v
- E1EVCnp87QTuBz/vSypGukgMXb46+Weip0crWzox9W3vQFLG1w9pJBdPPq/LAifThR2LLayxndX
- TE4ilC4lcwNVFJuOJPg==
-X-Authority-Analysis: v=2.4 cv=bcdmkePB c=1 sm=1 tr=0 ts=69c119c7 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
- a=EUspDBNiAAAA:8 a=KdZTDNEmWR1w-4yzcOIA:9 a=QEXdDO2ut3YA:10 a=zgiPjhLxNE0A:10
- a=iYH6xdkBrDN1Jqds4HTS:22
-X-Proofpoint-ORIG-GUID: -J5x0LBavnjapwQQcFqdavL6vxu9_EkM
-X-Proofpoint-GUID: -J5x0LBavnjapwQQcFqdavL6vxu9_EkM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-23_03,2026-03-20_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 impostorscore=0 clxscore=1015 spamscore=0 lowpriorityscore=0
- priorityscore=1501 malwarescore=0 phishscore=0 adultscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603230082
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260323074505.3853353-2-sai.krishna.potthuri@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,amd.com,vger.kernel.org,lists.infradead.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-279058-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-279054-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 6B37E2F0848
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,intel.com:dkim,ashevche-desk.local:mid]
+X-Rspamd-Queue-Id: A10C42F0A45
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/23/26 2:17 AM, Dmitry Baryshkov wrote:
-> The rest of Qualcomm Interconnect drivers have stopped using
-> DEFINE_QNODE long ago for the sake of readability. Stop using it inside
-> the msm8974 interconnect driver too.
+On Mon, Mar 23, 2026 at 01:15:02PM +0530, Sai Krishna Potthuri wrote:
+> Split the xilinx-xadc-core.c into separate core and platform specific
+> files to prepare for I2C interface support.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
+> xilinx-xadc-core.c is reorganized as follows:
+> xilinx-xadc-core.c:
+>   - Platform-independent IIO/ADC operations
+>   - Channel definitions and management
+>   - Buffer and trigger management
+>   - Device tree parsing
+> 
+> xilinx-xadc-platform.c:
+>   - ZYNQ platform (FIFO-based) register access and interrupt handling
+>   - AXI platform (memory-mapped) register access and interrupt handling
+>   - Platform-specific setup and configuration
+>   - Platform device probe function
+> 
+> Update Kconfig to introduce XILINX_XADC_CORE as a helper module selected
+> by XILINX_XADC and update Makefile to build the split modules:
+>   - xilinx-xadc-common.o (core + events)
+>   - xilinx-xadc-platform.o (platform-specific)
+> 
+> Reorganized the code and No behavioral changes.
 
-I'm not checking that by hand..
+...
 
-Acked-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> +void xadc_write_reg(struct xadc *xadc, unsigned int reg, uint32_t val)
+>  {
+>  	writel(val, xadc->base + reg);
+>  }
+> +EXPORT_SYMBOL_GPL(xadc_write_reg);
+>  
+> -static void xadc_read_reg(struct xadc *xadc, unsigned int reg,
+> -	uint32_t *val)
+> +void xadc_read_reg(struct xadc *xadc, unsigned int reg, uint32_t *val)
+>  {
+>  	*val = readl(xadc->base + reg);
+>  }
+> +EXPORT_SYMBOL_GPL(xadc_read_reg);
 
-Konrad
+Use namespace.
+
+...
+
+> -static int _xadc_update_adc_reg(struct xadc *xadc, unsigned int reg,
+> -	uint16_t mask, uint16_t val)
+> +static int _xadc_update_adc_reg(struct xadc *xadc, unsigned int reg, u16 mask, u16 val)
+
+This is unrelated. Make it a separate change "Switch to use kernel types"
+or alike.
+
+...
+
+> -static int xadc_update_scan_mode(struct iio_dev *indio_dev,
+> -	const unsigned long *mask)
+> +static int xadc_update_scan_mode(struct iio_dev *indio_dev, const unsigned long *mask)
+
+This is unrelated indentation change. Either drop or move to a separate patch.
+
+...
+
+>  	struct xadc *xadc = iio_priv(indio_dev);
+> -	size_t n;
+>  	void *data;
+> +	size_t n;
+
+Ditto.
+
+...
+
+>  static int xadc_trigger_set_state(struct iio_trigger *trigger, bool state)
+>  {
+>  	struct xadc *xadc = iio_trigger_get_drvdata(trigger);
+> +	unsigned int convst, val;
+>  	unsigned long flags;
+> -	unsigned int convst;
+> -	unsigned int val;
+>  	int ret = 0;
+
+This shouldn't be done at all, one variable per line is fine and readable.
+
+...
+
+>  		ret = _xadc_update_adc_reg(xadc, XADC_REG_CONF1, XADC_CONF0_EC,
+> -					convst);
+> +					   convst);
+
+Separate patch for indentation.
+
+...
+
+> -static struct iio_trigger *xadc_alloc_trigger(struct iio_dev *indio_dev,
+> -	const char *name)
+> +static struct iio_trigger *xadc_alloc_trigger(struct iio_dev *indio_dev, const char *name)
+
+Ditto and anything similar should go to a separate patch.
+
+...
+
+
+> -static int xadc_postdisable(struct iio_dev *indio_dev)
+> +int xadc_postdisable(struct iio_dev *indio_dev)
+>  {
+>  	struct xadc *xadc = iio_priv(indio_dev);
+>  	unsigned long scan_mask;
+>  	int ret;
+
+> -	int i;
+> +	u32 i;
+
+Why?
+
+>  
+>  	scan_mask = 1; /* Run calibration as part of the sequence */
+>  	for (i = 0; i < indio_dev->num_channels; i++)
+
+...
+
+> +EXPORT_SYMBOL_GPL(xadc_postdisable);
+
+Add namespace.
+
+...
+
+> +EXPORT_SYMBOL_GPL(xadc_read_samplerate);
+
+Ditto and so on...
+
+...
+
+> -static int xadc_write_samplerate(struct xadc *xadc, int val)
+> +int xadc_setup_buffer_and_triggers(struct device *dev, struct iio_dev *indio_dev,
+> +				   struct xadc *xadc, int irq)
+
+At this time do you need all three first parameters? I think it may be two or
+even one.
+
+> +{
+> +	int ret;
+> +
+> +	if (!(xadc->ops->flags & XADC_FLAGS_BUFFERED))
+> +		return 0;
+> +
+> +	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
+> +					      &iio_pollfunc_store_time,
+> +					      &xadc_trigger_handler,
+> +					      &xadc_buffer_ops);
+> +	if (ret)
+> +		return ret;
+
+> +	if (irq > 0) {
+
+	/* The feature is optional */
+	if (irq < 0)
+		return 0;
+
+> +		xadc->convst_trigger = xadc_alloc_trigger(indio_dev, "convst");
+> +		if (IS_ERR(xadc->convst_trigger))
+> +			return PTR_ERR(xadc->convst_trigger);
+> +
+> +		xadc->samplerate_trigger = xadc_alloc_trigger(indio_dev,
+> +							      "samplerate");
+> +		if (IS_ERR(xadc->samplerate_trigger))
+> +			return PTR_ERR(xadc->samplerate_trigger);
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(xadc_setup_buffer_and_triggers);
+
+Namespace.
+
+...
+
+> -static const char * const xadc_type_names[] = {
+> +const char * const xadc_type_names[] = {
+>  	[XADC_TYPE_S7] = "xadc",
+>  	[XADC_TYPE_US] = "xilinx-system-monitor",
+>  };
+
+Why this change without export? Is it fine?
+
+...
+
+> +	*ops = device_get_match_data(dev);
+
+> +	if (!*ops)
+> +		return ERR_PTR(-ENODEV);
+
+Just drop it. we expect driver to have it.
+
+...
+
+> +#include <linux/clk.h>
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+
+> +#include <linux/kernel.h>
+
+No driver should use this header (there might be rare exceptions, but not
+here).
+
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+
+...
+
+> +static const unsigned int XADC_ZYNQ_UNMASK_TIMEOUT = 500;
+
+Unit suffix?
+
+...
+
+> +#define XADC_ZYNQ_CFG_CFIFOTH_MASK	(0xf << 20)
+
+> +#define XADC_ZYNQ_CFG_DFIFOTH_MASK	(0xf << 16)
+
+Yeah, these all _MASK (here and elsewhere) should use GENMASK().
+
+...
+
+> +static void xadc_zynq_write_fifo(struct xadc *xadc, uint32_t *cmd, unsigned int n)
+
+Why not u32?
+
+> +{
+> +	unsigned int i;
+> +
+> +	for (i = 0; i < n; i++)
+
+Can be
+
+	for (unsigned int i = 0; i < n; i++)
+
+> +		xadc_write_reg(xadc, XADC_ZYNQ_REG_CFIFO, cmd[i]);
+> +}
+
+...
+
+> +static void xadc_zynq_drain_fifo(struct xadc *xadc)
+> +{
+> +	u32 status, tmp;
+> +
+> +	xadc_read_reg(xadc, XADC_ZYNQ_REG_STATUS, &status);
+
+	/* Needs a comment explaining why there will be no infinite loop */
+
+> +	while (!(status & XADC_ZYNQ_STATUS_DFIFOE)) {
+> +		xadc_read_reg(xadc, XADC_ZYNQ_REG_DFIFO, &tmp);
+> +		xadc_read_reg(xadc, XADC_ZYNQ_REG_STATUS, &status);
+> +	}
+> +}
+
+...
+
+> +static void xadc_zynq_update_intmsk(struct xadc *xadc, unsigned int mask, unsigned int val)
+> +{
+> +	xadc->zynq_intmask &= ~mask;
+> +	xadc->zynq_intmask |= val;
+
+Standard pattern is to have it on a single line
+
+	xadc->zynq_intmask = (xadc->zynq_intmask & ~mask) | (val & mask);
+
+> +	xadc_write_reg(xadc, XADC_ZYNQ_REG_INTMSK, xadc->zynq_intmask | xadc->zynq_masked_alarm);
+> +}
+
+...
+
+> +static int xadc_zynq_write_adc_reg(struct xadc *xadc, unsigned int reg, uint16_t val)
+> +{
+> +	u32 cmd[1], tmp;
+> +	int ret;
+> +
+> +	spin_lock_irq(&xadc->lock);
+
+Are you going to use cleanup.h?
+
+> +	xadc_zynq_update_intmsk(xadc, XADC_ZYNQ_INT_DFIFO_GTH, XADC_ZYNQ_INT_DFIFO_GTH);
+> +
+> +	reinit_completion(&xadc->completion);
+> +
+> +	cmd[0] = XADC_ZYNQ_CMD(XADC_ZYNQ_CMD_WRITE, reg, val);
+> +	xadc_zynq_write_fifo(xadc, cmd, ARRAY_SIZE(cmd));
+> +	xadc_read_reg(xadc, XADC_ZYNQ_REG_CFG, &tmp);
+> +	tmp &= ~XADC_ZYNQ_CFG_DFIFOTH_MASK;
+> +	tmp |= 0 << XADC_ZYNQ_CFG_DFIFOTH_OFFSET;
+> +	xadc_write_reg(xadc, XADC_ZYNQ_REG_CFG, tmp);
+> +
+> +	xadc_zynq_update_intmsk(xadc, XADC_ZYNQ_INT_DFIFO_GTH, 0);
+> +	spin_unlock_irq(&xadc->lock);
+> +
+> +	ret = wait_for_completion_interruptible_timeout(&xadc->completion, HZ);
+> +	if (ret == 0)
+> +		ret = -EIO;
+> +	else
+
+> +		ret = 0;
+
+This seems quite wrong. If you use interruptible version, why ignoring the
+error codes?
+
+> +	xadc_read_reg(xadc, XADC_ZYNQ_REG_DFIFO, &tmp);
+> +
+> +	return ret;
+> +}
+> +
+> +static int xadc_zynq_read_adc_reg(struct xadc *xadc, unsigned int reg, uint16_t *val)
+
+u16
+
+> +{
+> +	u32 cmd[2], resp, tmp;
+> +	int ret;
+> +
+> +	cmd[0] = XADC_ZYNQ_CMD(XADC_ZYNQ_CMD_READ, reg, 0);
+> +	cmd[1] = XADC_ZYNQ_CMD(XADC_ZYNQ_CMD_NOP, 0, 0);
+> +
+> +	spin_lock_irq(&xadc->lock);
+> +	xadc_zynq_update_intmsk(xadc, XADC_ZYNQ_INT_DFIFO_GTH, XADC_ZYNQ_INT_DFIFO_GTH);
+> +	xadc_zynq_drain_fifo(xadc);
+> +	reinit_completion(&xadc->completion);
+> +
+> +	xadc_zynq_write_fifo(xadc, cmd, ARRAY_SIZE(cmd));
+> +	xadc_read_reg(xadc, XADC_ZYNQ_REG_CFG, &tmp);
+
+> +	tmp &= ~XADC_ZYNQ_CFG_DFIFOTH_MASK;
+> +	tmp |= 1 << XADC_ZYNQ_CFG_DFIFOTH_OFFSET;
+
+Are you going to use bitfield.h?
+
+> +	xadc_write_reg(xadc, XADC_ZYNQ_REG_CFG, tmp);
+> +
+> +	xadc_zynq_update_intmsk(xadc, XADC_ZYNQ_INT_DFIFO_GTH, 0);
+> +	spin_unlock_irq(&xadc->lock);
+> +	ret = wait_for_completion_interruptible_timeout(&xadc->completion, HZ);
+> +	if (ret == 0)
+> +		ret = -EIO;
+> +	if (ret < 0)
+> +		return ret;
+
+As per above.
+
+> +	xadc_read_reg(xadc, XADC_ZYNQ_REG_DFIFO, &resp);
+> +	xadc_read_reg(xadc, XADC_ZYNQ_REG_DFIFO, &resp);
+> +
+> +	*val = resp & 0xffff;
+
+Unneeded mask.
+
+> +	return 0;
+> +}
+
+> +static unsigned int xadc_zynq_transform_alarm(unsigned int alarm)
+> +{
+> +	return ((alarm & 0x80) >> 4) |
+> +		((alarm & 0x78) << 1) |
+> +		(alarm & 0x07);
+
+One line. Also add a comment explaining this (perhaps with a reference to
+datasheet).
+
+> +}
+
+...
+
+> +#define XADC_ZYNQ_TCK_RATE_MAX 50000000
+> +#define XADC_ZYNQ_IGAP_DEFAULT 20
+> +#define XADC_ZYNQ_PCAP_RATE_MAX 200000000
+
+Unit suffixes?
+
+...
+
+I stopped here. I think what you need is to clean up and modernize the driver
+first (see my comments above) and only when it's ready, start splitting it.
+The split itself can also be done in a few steps (you can try to prepare
+patches with `... -M -C --histogram ...` to see when it will look better).
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
