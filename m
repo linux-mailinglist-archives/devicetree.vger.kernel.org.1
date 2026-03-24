@@ -1,205 +1,227 @@
-Return-Path: <devicetree+bounces-279661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279663-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GKilOtxNwmnvbAQAu9opvQ
-	(envelope-from <devicetree+bounces-279661-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:39:56 +0100
+	id 0Lb9DPBLwmnvbAQAu9opvQ
+	(envelope-from <devicetree+bounces-279663-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:31:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9883D304CFD
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:39:56 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9968304A91
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:31:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8F012324CBCF
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:24:01 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 28AD93053990
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:25:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B2873D524E;
-	Tue, 24 Mar 2026 08:22:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B68C3CBE79;
+	Tue, 24 Mar 2026 08:23:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="BWIOhXbB"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="f98KC4CZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB7A5366550;
-	Tue, 24 Mar 2026 08:22:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB4CF314A83;
+	Tue, 24 Mar 2026 08:23:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774340553; cv=none; b=QNA4Aa4RSpWf4xpSmU+WbMinb3aTl9vxT2odVFzRr2cChgWHLkIRkBzxXzc3kpTsRDkW6ZFAtu8eMB99MfVuRn2LXFO2QXJiMp/td38z0pcRUy2sQcDtq3O/F4pCHYQDifJL8Egth+9hgThr5fgEzsFwLv3VCT+MDbsvYy2mAjU=
+	t=1774340626; cv=none; b=cxEhz9YFpyc/vnFgT/fqmkzHdVA0J3bIzv95WoIQYtEtCBYZ6dSpqGRkS9rTdHmmbOYNPlZTHYEYEwWWv1Vst0V9phuO0ISAfR8xv92CMJC+bXbBNUND5yezt+MXpDDJbmyv2n1cKx2BMOwlIMCeNO4XBSnP8mgW6eUFVOHxiQk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774340553; c=relaxed/simple;
-	bh=vjSbm41+VXbcrlBz893Nr6rR9IBSbzYVEHWMAbWJZKo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nH+VM71A0wnyT1/LJs2maUY1pt1/5FQqyF9EvUyiaV/HBZkbnyqRetk5ebUrVa9JCUpt0NWLvDB+ZvVlCPZJ6gKd/RiThpjmiyx28LbuVC6VmTua0dld3aJJjoI5FsIfxB7NyblwnrSm/iHbtnXiiglhs0DSKLqdPoACYXfEz/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=BWIOhXbB; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 9548cb64275a11f1a02d4725871ece0b-20260324
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=KqLtpebZVXxO7dnpwXLGqk+dMWnzOsFefW3H1xFY7m8=;
-	b=BWIOhXbBJqdqMiuTIfqyvPULKA6XyNAh7aPcyhZGWslx0k5YD2aIbC64dvgELxztuRgGN5A+ZcVhL+mMB9fUzbSnFgRXQ8pcomq03E/lNEy+Bfmq4hYeeDJC2O8lMxGnFzef5E9Gx4Za+1njfm49UKXWiiwYtx+bMjSM8J9qx+A=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.12,REQID:9f0ebaa7-177b-485b-adce-7a4283a3e124,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:e7bac3a,CLOUDID:706f2594-f8ef-4ca8-bea0-143568f9ca1d,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|836|888|898,TC:-5,Content:
-	0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:-1,COL:0,OSI
-	:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 9548cb64275a11f1a02d4725871ece0b-20260324
-Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw01.mediatek.com
-	(envelope-from <jianhua.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1267776765; Tue, 24 Mar 2026 16:22:23 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 24 Mar 2026 16:22:22 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.29 via Frontend Transport; Tue, 24 Mar 2026 16:22:21 +0800
-From: Jianhua Lin <jianhua.lin@mediatek.com>
-To: <nicolas@ndufresne.ca>, <mchehab@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <matthias.bgg@gmail.com>,
-	<angelogioacchino.delregno@collabora.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-media@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	<sirius.wang@mediatek.com>, <vince-wl.liu@mediatek.com>,
-	<jh.hsu@mediatek.com>, Jianhua Lin <jianhua.lin@mediatek.com>
-Subject: [PATCH v3 3/3] media: mediatek: jpeg: add compatible for MT8189 SoC
-Date: Tue, 24 Mar 2026 16:21:41 +0800
-Message-ID: <20260324082141.31292-4-jianhua.lin@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20260324082141.31292-1-jianhua.lin@mediatek.com>
-References: <20260324082141.31292-1-jianhua.lin@mediatek.com>
+	s=arc-20240116; t=1774340626; c=relaxed/simple;
+	bh=YW1oumcShmJdUX2bVPw92WTp71r+w0EzqGKv/olyY1o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YqvjX4uTCXpXg7yi1qNHk1D2vzcR4GQl7KN8+61nodQHyYdjTsvWyFFS1rye+vFxwOTEQCKXqP7kYTIAdlhnPm75hLmFByjJeImuWtGs/otKBqSOs2k8QgwvhxbcHSEgZjmSARnWrluJV0NwSUV2CTMZgzfI24jjYxbVu2tSB0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=f98KC4CZ; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1774340621; x=1805876621;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=YW1oumcShmJdUX2bVPw92WTp71r+w0EzqGKv/olyY1o=;
+  b=f98KC4CZaeyfxG72WM3q5bNculu5cr2oPVcqctGYfy2+RGPWoAJjKuYc
+   bapjY04kxd1XNghpd73P4tJGwnjvTyBa7EXb8I/E/VNTZeHB8q0Le1mCR
+   vFEo9ZsVTVfbQ86sy0+AQW+zVIwq/tsOk7WpwgLJCfdrMw1lCADbmX68F
+   dYkUDBj81E2egEg9Reg26QNnwUHva3MZyWG/TGhatvnZCaEj6qKrIZe2i
+   gyMqLM0aojP2Lh2xc3VtZh/Wjt8zL17aAx6GYZFz1alL3/RvgAiIKfuVj
+   j1ax8dwqkU1YqTcQtlH7SeKUY7UhmNFvA8t/0MQvYLMbczeFTTDLjgabZ
+   A==;
+X-CSE-ConnectionGUID: lhTINTyIQBGAVB3YCA1CPQ==
+X-CSE-MsgGUID: jCWPLS3ZSX2hrWhRxHKgVw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11738"; a="75321931"
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; 
+   d="scan'208";a="75321931"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Mar 2026 01:23:39 -0700
+X-CSE-ConnectionGUID: la5BPmR+SsCZF91N9qYV7w==
+X-CSE-MsgGUID: quziYg/kR1KJj/tuViZhjA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; 
+   d="scan'208";a="223500798"
+Received: from lkp-server01.sh.intel.com (HELO 3905d212be1b) ([10.239.97.150])
+  by orviesa010.jf.intel.com with ESMTP; 24 Mar 2026 01:23:35 -0700
+Received: from kbuild by 3905d212be1b with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1w4x2y-000000004DX-3E8K;
+	Tue, 24 Mar 2026 08:23:32 +0000
+Date: Tue, 24 Mar 2026 16:22:36 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thierry Reding <thierry.reding@kernel.org>,
+	Bjorn Helgaas <helgaas@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Jon Hunter <jonathanh@nvidia.com>,
+	Mikko Perttunen <mperttunen@nvidia.com>, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 4/5] PCI: tegra: Add Tegra264 support
+Message-ID: <202603241635.M39jGMQX-lkp@intel.com>
+References: <20260320225443.2571920-5-thierry.reding@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260320225443.2571920-5-thierry.reding@kernel.org>
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[ndufresne.ca,kernel.org,gmail.com,collabora.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-279661-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-279663-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jianhua.lin@mediatek.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[mediatek.com:+];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mediatek.com:dkim,mediatek.com:email,mediatek.com:mid]
-X-Rspamd-Queue-Id: 9883D304CFD
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,01.org:url,intel.com:dkim,intel.com:email,intel.com:mid]
+X-Rspamd-Queue-Id: E9968304A91
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Compared to the previous generation ICs, the MT8189 uses a 34-bit IOVA
-address space (16GB) and requires a single clock configuration.
+Hi Thierry,
 
-Therefore, add new compatible strings ("mediatek,mt8189-jpgenc" and
-"mediatek,mt8189-jpgdec") along with their specific driver data to
-support the JPEG encoder and decoder of the MT8189 SoC.
+kernel test robot noticed the following build errors:
 
-Signed-off-by: Jianhua Lin <jianhua.lin@mediatek.com>
----
- .../platform/mediatek/jpeg/mtk_jpeg_core.c    | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
+[auto build test ERROR on tegra/for-next]
+[also build test ERROR on next-20260323]
+[cannot apply to pci/next pci/for-linus drm-tegra/drm/tegra/for-next linus/master v7.0-rc5]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-index c01124a349f6..c6fc5d228e20 100644
---- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-+++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-@@ -1866,6 +1866,10 @@ static struct clk_bulk_data mt8173_jpeg_dec_clocks[] = {
- 	{ .id = "jpgdec" },
- };
- 
-+static struct clk_bulk_data mtk_jpeg_dec_clocks[] = {
-+	{ .id = "jpgdec" },
-+};
-+
- static const struct mtk_jpeg_variant mt8173_jpeg_drvdata = {
- 	.clks = mt8173_jpeg_dec_clocks,
- 	.num_clks = ARRAY_SIZE(mt8173_jpeg_dec_clocks),
-@@ -1897,6 +1901,38 @@ static const struct mtk_jpeg_variant mtk_jpeg_drvdata = {
- 	.multi_core = false,
- };
- 
-+static const struct mtk_jpeg_variant mtk8189_jpegenc_drvdata = {
-+	.clks = mtk_jpeg_clocks,
-+	.num_clks = ARRAY_SIZE(mtk_jpeg_clocks),
-+	.formats = mtk_jpeg_enc_formats,
-+	.num_formats = MTK_JPEG_ENC_NUM_FORMATS,
-+	.qops = &mtk_jpeg_enc_qops,
-+	.irq_handler = mtk_jpeg_enc_irq,
-+	.hw_reset = mtk_jpeg_enc_reset,
-+	.m2m_ops = &mtk_jpeg_enc_m2m_ops,
-+	.dev_name = "mtk-jpeg-enc",
-+	.ioctl_ops = &mtk_jpeg_enc_ioctl_ops,
-+	.out_q_default_fourcc = V4L2_PIX_FMT_YUYV,
-+	.cap_q_default_fourcc = V4L2_PIX_FMT_JPEG,
-+	.support_34bit = true,
-+};
-+
-+static const struct mtk_jpeg_variant mtk8189_jpegdec_drvdata = {
-+	.clks = mtk_jpeg_dec_clocks,
-+	.num_clks = ARRAY_SIZE(mtk_jpeg_dec_clocks),
-+	.formats = mtk_jpeg_dec_formats,
-+	.num_formats = MTK_JPEG_DEC_NUM_FORMATS,
-+	.qops = &mtk_jpeg_dec_qops,
-+	.irq_handler = mtk_jpeg_dec_irq,
-+	.hw_reset = mtk_jpeg_dec_reset,
-+	.m2m_ops = &mtk_jpeg_dec_m2m_ops,
-+	.dev_name = "mtk-jpeg-dec",
-+	.ioctl_ops = &mtk_jpeg_dec_ioctl_ops,
-+	.out_q_default_fourcc = V4L2_PIX_FMT_JPEG,
-+	.cap_q_default_fourcc = V4L2_PIX_FMT_YUV420M,
-+	.support_34bit = true,
-+};
-+
- static struct mtk_jpeg_variant mtk8195_jpegenc_drvdata = {
- 	.formats = mtk_jpeg_enc_formats,
- 	.num_formats = MTK_JPEG_ENC_NUM_FORMATS,
-@@ -1936,6 +1972,14 @@ static const struct of_device_id mtk_jpeg_match[] = {
- 		.compatible = "mediatek,mtk-jpgenc",
- 		.data = &mtk_jpeg_drvdata,
- 	},
-+	{
-+		.compatible = "mediatek,mt8189-jpgenc",
-+		.data = &mtk8189_jpegenc_drvdata,
-+	},
-+	{
-+		.compatible = "mediatek,mt8189-jpgdec",
-+		.data = &mtk8189_jpegdec_drvdata,
-+	},
- 	{
- 		.compatible = "mediatek,mt8195-jpgenc",
- 		.data = &mtk8195_jpegenc_drvdata,
+url:    https://github.com/intel-lab-lkp/linux/commits/Thierry-Reding/soc-tegra-Update-BPMP-ABI-header/20260323-093336
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/tegra/linux.git for-next
+patch link:    https://lore.kernel.org/r/20260320225443.2571920-5-thierry.reding%40kernel.org
+patch subject: [PATCH v2 4/5] PCI: tegra: Add Tegra264 support
+config: riscv-allyesconfig (https://download.01.org/0day-ci/archive/20260324/202603241635.M39jGMQX-lkp@intel.com/config)
+compiler: clang version 16.0.6 (https://github.com/llvm/llvm-project 7cbf1a2591520c2491aa35339f227775f4d3adf6)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260324/202603241635.M39jGMQX-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603241635.M39jGMQX-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/pci/controller/pcie-tegra264.c:302:16: error: use of undeclared identifier 'PCIE_LINK_WAIT_US_MIN'
+                   usleep_range(PCIE_LINK_WAIT_US_MIN, PCIE_LINK_WAIT_US_MAX);
+                                ^
+>> drivers/pci/controller/pcie-tegra264.c:302:39: error: use of undeclared identifier 'PCIE_LINK_WAIT_US_MAX'
+                   usleep_range(PCIE_LINK_WAIT_US_MIN, PCIE_LINK_WAIT_US_MAX);
+                                                       ^
+   drivers/pci/controller/pcie-tegra264.c:392:16: error: call to undeclared function 'tegra_bpmp_get_with_id'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+                   pcie->bpmp = tegra_bpmp_get_with_id(dev, &pcie->ctl_id);
+                                ^
+   drivers/pci/controller/pcie-tegra264.c:392:14: error: incompatible integer to pointer conversion assigning to 'struct tegra_bpmp *' from 'int' [-Wint-conversion]
+                   pcie->bpmp = tegra_bpmp_get_with_id(dev, &pcie->ctl_id);
+                              ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   4 errors generated.
+
+
+vim +/PCIE_LINK_WAIT_US_MIN +302 drivers/pci/controller/pcie-tegra264.c
+
+   278	
+   279	static void tegra264_pcie_init(struct tegra264_pcie *pcie)
+   280	{
+   281		enum pci_bus_speed speed;
+   282		unsigned int i;
+   283		u32 value;
+   284	
+   285		/* bring the link out of reset */
+   286		value = readl(pcie->xtl + XTL_RC_MGMT_PERST_CONTROL);
+   287		value |= XTL_RC_MGMT_PERST_CONTROL_PERST_O_N;
+   288		writel(value, pcie->xtl + XTL_RC_MGMT_PERST_CONTROL);
+   289	
+   290		if (!tegra_is_silicon()) {
+   291			dev_info(pcie->dev,
+   292				 "skipping link state for PCIe #%u in simulation\n",
+   293				 pcie->ctl_id);
+   294			pcie->link_up = true;
+   295			return;
+   296		}
+   297	
+   298		for (i = 0; i < PCIE_LINK_WAIT_MAX_RETRIES; i++) {
+   299			if (tegra264_pcie_link_up(pcie, NULL))
+   300				break;
+   301	
+ > 302			usleep_range(PCIE_LINK_WAIT_US_MIN, PCIE_LINK_WAIT_US_MAX);
+   303		}
+   304	
+   305		if (tegra264_pcie_link_up(pcie, &speed)) {
+   306			/* Per PCIe r5.0, 6.6.1 wait for 100ms after DLL up */
+   307			msleep(PCIE_RESET_CONFIG_WAIT_MS);
+   308	
+   309			dev_info(pcie->dev, "PCIe #%u link is up (speed: %s)\n",
+   310				 pcie->ctl_id, pci_speed_string(speed));
+   311			tegra264_pcie_icc_set(pcie);
+   312			pcie->link_up = true;
+   313		} else {
+   314			dev_info(pcie->dev, "PCIe #%u link is down\n", pcie->ctl_id);
+   315	
+   316			value = readl(pcie->xtl + XTL_RC_MGMT_CLOCK_CONTROL);
+   317	
+   318			/*
+   319			 * Set link state only when link fails and no hot-plug feature
+   320			 * is present.
+   321			 */
+   322			if ((value & XTL_RC_MGMT_CLOCK_CONTROL_PEX_CLKREQ_I_N_PIN_USE_CONV_TO_PRSNT) == 0) {
+   323				dev_info(pcie->dev,
+   324					 "PCIe #%u link is down and not hotplug-capable, turning off\n",
+   325					 pcie->ctl_id);
+   326				tegra264_pcie_bpmp_set_rp_state(pcie);
+   327				pcie->link_up = false;
+   328			} else {
+   329				pcie->link_up = true;
+   330			}
+   331		}
+   332	}
+   333	
+
 -- 
-2.45.2
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
