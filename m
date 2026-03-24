@@ -1,330 +1,189 @@
-Return-Path: <devicetree+bounces-279960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279962-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iOvbFPG+wmmjlQQAu9opvQ
-	(envelope-from <devicetree+bounces-279960-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 17:42:25 +0100
+	id mFHIIES9wmlflQQAu9opvQ
+	(envelope-from <devicetree+bounces-279962-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 17:35:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFD9D3193E0
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 17:42:24 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAA6D31915E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 17:35:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7769530EA93A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 16:26:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 34714304668F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 16:29:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 871953FAE13;
-	Tue, 24 Mar 2026 16:26:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19D0D3F54AA;
+	Tue, 24 Mar 2026 16:29:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="lGrH3waM"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="ktXrz/zN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8BE33F54D3
-	for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 16:26:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774369587; cv=none; b=XgNf6dGw+3YHyB45hCSjMrFbWNlAh5kBYYVvFhzl6avy9imqO/tq/c3S47X6ZcOGK8IVsy6rJI0WC6UcVSGfckcN2j5th/NjYs/j1VNekpbu1/z850T0ZQXC/UmFsIYFMBwkuHOkQTdiXYVkoau7mHvQH4zuhVU/7i+NGHXK/iU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774369587; c=relaxed/simple;
-	bh=pVUTaBu37BYx90oCxlbexCq4J36a+37O4snWHTnZVAo=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=aKWYaLmJnefXn8oSGuTNaHty1jryB3ktd6rxp4gTBpOcnSkwAoCsbXZLkmTgMUURKZsauvA00UaaKthfUgmHtNqg/SOeNXfwjNVwoge5vO5FSKbhK/d8m1fHl3CaB7jkHcJ6EAcRalpX/bdglo9S0LzxNpco52cazr1ybcxf5nI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=lGrH3waM; arc=none smtp.client-ip=185.67.36.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout02.posteo.de (Postfix) with ESMTPS id 15C2E240105
-	for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 17:26:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
-	t=1774369583; bh=wqgxFZDx8NKk35yL7sq848BORVfYKSYBLLwEcNFnzGs=;
-	h=Message-ID:Subject:From:To:Cc:Date:Autocrypt:Content-Type:
-	 MIME-Version:OpenPGP:From;
-	b=lGrH3waMH+eiUtfIrYZcEvOJtdAo7MF30he7DyEUToTxUjBeQUOpdXK1x6tmGige7
-	 DzWMBVFMTv31fXmJZ1Ea6mukG9WHR1icnSBrApue/NwAhSntxps60vbkugHHw/rQlb
-	 ZV50VJgSl1fKjtIOWvWDnhtXJF/fXgFxGVcP4d1PzHFlb8IzZMzWNc/995wAkcfuC4
-	 YwyIp92Ytau1qFSJamnuXK5utNOuMmWMniR4sUFak3TiVCTrUifabkDgEno3MepS0W
-	 9fT9SCoT3yTUrJgwEHp5unJQJ/lXVzzP4DzEzteh9zUk2IuUc96egCT9gNmuSO4dyp
-	 4aLQRnci/cjDg==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4fgFlt56SSz6tws;
-	Tue, 24 Mar 2026 17:26:18 +0100 (CET)
-Message-ID: <f32aba79b98b357487c44e1952e536051fcd7a51.camel@posteo.de>
-Subject: Re: [PATCH v3 3/7] acpi: add acpi_of_match_device_ids
-From: Markus Probst <markus.probst@posteo.de>
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Greg
- Kroah-Hartman	 <gregkh@linuxfoundation.org>, Miguel Ojeda
- <ojeda@kernel.org>, Boqun Feng	 <boqun@kernel.org>, Gary Guo
- <gary@garyguo.net>, =?ISO-8859-1?Q?Bj=F6rn?= Roy Baron
- <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>, Andreas
- Hindborg	 <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross	 <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Igor
- Korotin	 <igor.korotin.linux@gmail.com>, Daniel Almeida
- <daniel.almeida@collabora.com>,  Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof =?UTF-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Pavel
- Machek <pavel@kernel.org>, Len Brown <lenb@kernel.org>, Robert Moore
- <robert.moore@intel.com>, 	devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, 	rust-for-linux@vger.kernel.org,
- driver-core@lists.linux.dev, 	linux-pci@vger.kernel.org,
- linux-leds@vger.kernel.org, 	linux-acpi@vger.kernel.org,
- acpica-devel@lists.linux.dev
-Date: Tue, 24 Mar 2026 16:26:22 +0000
-In-Reply-To: <CAJZ5v0jHQ7sHJ8SV25p2gQugC-a8f9oVFarS17NXwPzGOJUD0Q@mail.gmail.com>
-References: <20260313-synology_microp_initial-v3-0-ad6ac463a201@posteo.de>
-	 <20260313-synology_microp_initial-v3-3-ad6ac463a201@posteo.de>
-	 <CAJZ5v0jxHO2EH5NeEsMkxGz5xqVL00tO-W1JpaVd=GhwgQ3T=A@mail.gmail.com>
-	 <e8ffc9902c0af24ce6fde2d8712ea588b36e9194.camel@posteo.de>
-	 <CAJZ5v0jHQ7sHJ8SV25p2gQugC-a8f9oVFarS17NXwPzGOJUD0Q@mail.gmail.com>
-Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
- keydata=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
- jfGillcaQOqFZ3WwVqyzG1BUfTow==
-Content-Type: multipart/signed; micalg="pgp-sha256";
-	protocol="application/pgp-signature"; boundary="=-4WIOjhy6PzINbUusth1I"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A60A939D6D2;
+	Tue, 24 Mar 2026 16:29:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1774369749; cv=pass; b=psLcpe4xQUxSmFoDXZjTlU0qe63SskyGnIau35HLFjUlHTRYVWNy0kreDo3VJX2H4nuydhhive4HG6gdgI5/BTtcAMtD+VLvRISl4pP6uxbSsGy5Az5KSf5QFgL3z3VYhX58RcXQmZ3xKR0T/8/zkJZ5q3SrkHTn1IRrxbbs6Ro=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1774369749; c=relaxed/simple;
+	bh=ecvPWdJIf11yJW5qL7+HunMgOS/3TYaaLwweMrzg/4A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Mb+UI3tvyNxJEevrGL6BfMZvgb6ZFiN2+AVqDOZH3Acy9aWhs2yIoyDu06ZjH26mqqEoXxFgGlkJa5Uka2Qjnsvei5lr3sMVFlxpvPHpG+eVGZ+MR4FBzm1j7a2ksH+9h+766NwoRBdyc8t7RmmjJQXtmqQR1Wnt+rFWCM3e2Sc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=ktXrz/zN; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1774369730; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=eI9dMyF9lyTBU47/dNjJX4pYrTLhKGPqdtY8yk6tX5oCIOG4y8LQU+Jizxu15GDLuqrY4uqt2WHUvati3yXIze5uBujqYGwtFBY5H5mHTLvxHm2zWW4fFZ6BDhA9i4bMKiDSsiV2EQe5c+2jbNO0zcqCWfGLVuBX/wvk/vOyep8=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1774369730; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=t5X3SqA0NrhU8AeVF5jet7aCXTAzqHe7Enn6xkPUCkU=; 
+	b=FxFfhtT6NX1Ud2ZwoYXinAAViGyyojNLA8ssB0d+eFn4Pzwezq1KrBA29ZZljWyPz1GJpa/xtOLRWk2X5ckIfSFNgKTSzfohcI84yQORpBeVr0+Mp7RIbXmNb/vee68LX6S0+8MiV3G1t3ws2N7aG34q+3JSmjFLZUFpaSkEF18=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
+	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774369730;
+	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=t5X3SqA0NrhU8AeVF5jet7aCXTAzqHe7Enn6xkPUCkU=;
+	b=ktXrz/zNw7uP6zfATbCvxvk+TSkFH+917YIv5Z8vAOMJP1mD9pejXujIsLd2f/wG
+	U9hj/gBTuad5HtS3WfWSZJYkecZNVQZh/fpypDRSoKDwXQswj0oLcxOQb+V+l5bF0qK
+	bIUZnFgrHbIgxYKBFxloim2OU3i+5tDxWK2YQUx4=
+Received: by mx.zohomail.com with SMTPS id 1774369728573435.9502112379421;
+	Tue, 24 Mar 2026 09:28:48 -0700 (PDT)
+Message-ID: <e083e933-2746-4b26-ac33-3b32d362b28e@collabora.com>
+Date: Tue, 24 Mar 2026 17:28:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v13 3/6] iommu: Add verisilicon IOMMU driver
+To: Will Deacon <will@kernel.org>
+Cc: joro@8bytes.org, robin.murphy@arm.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ nicolas.dufresne@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
+ iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org
+References: <20260216095144.107356-1-benjamin.gaignard@collabora.com>
+ <20260216095144.107356-4-benjamin.gaignard@collabora.com>
+ <acKxzGk1Z541yoZ4@willie-the-truck>
+Content-Language: en-US
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+In-Reply-To: <acKxzGk1Z541yoZ4@willie-the-truck>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,garyguo.net,protonmail.com,google.com,umich.edu,gmail.com,collabora.com,intel.com,vger.kernel.org,lists.linux.dev];
-	TAGGED_FROM(0.00)[bounces-279960-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[posteo.de:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-279962-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[benjamin.gaignard@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,posteo.de:dkim,posteo.de:email,posteo.de:mid]
-X-Rspamd-Queue-Id: DFD9D3193E0
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:dkim,collabora.com:email,collabora.com:mid]
+X-Rspamd-Queue-Id: EAA6D31915E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---=-4WIOjhy6PzINbUusth1I
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Le 24/03/2026 à 16:46, Will Deacon a écrit :
+> On Mon, Feb 16, 2026 at 10:51:35AM +0100, Benjamin Gaignard wrote:
+>> The Verisilicon IOMMU hardware block can be found in combination
+>> with Verisilicon hardware video codecs (encoders or decoders) on
+>> different SoCs.
+>> Enable it will allow us to use non contiguous memory allocators
+>> for Verisilicon video codecs.
+>> If both decoder and this iommu driver are compiled has modules
+>> there is undefined symboles issues so this iommu driver could
+>> only be compiled has built-in.
+>>
+>> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+>> ---
+>>   MAINTAINERS               |   8 +
+>>   drivers/iommu/Kconfig     |  11 +
+>>   drivers/iommu/Makefile    |   1 +
+>>   drivers/iommu/vsi-iommu.c | 794 ++++++++++++++++++++++++++++++++++++++
+>>   include/linux/vsi-iommu.h |  21 +
+>>   5 files changed, 835 insertions(+)
+>>   create mode 100644 drivers/iommu/vsi-iommu.c
+>>   create mode 100644 include/linux/vsi-iommu.h
+> [...]
+>
+>> +static size_t vsi_iommu_unmap(struct iommu_domain *domain, unsigned long _iova,
+>> +			      size_t size, size_t count, struct iommu_iotlb_gather *gather)
+>> +{
+>> +	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
+>> +	dma_addr_t pte_dma, iova = (dma_addr_t)_iova;
+>> +	unsigned long flags;
+>> +	phys_addr_t pt_phys;
+>> +	u32 dte;
+>> +	u32 *pte_addr;
+>> +	size_t unmap_size = 0;
+>> +
+>> +	spin_lock_irqsave(&vsi_domain->lock, flags);
+>> +
+>> +	dte = vsi_domain->dt[vsi_iova_dte_index(iova)];
+>> +	/* Just return 0 if iova is unmapped */
+>> +	if (!vsi_dte_is_pt_valid(dte))
+>> +		goto unlock;
+>> +
+>> +	pt_phys = vsi_dte_pt_address(dte);
+>> +	pte_addr = (u32 *)phys_to_virt(pt_phys) + vsi_iova_pte_index(iova);
+>> +	pte_dma = pt_phys + vsi_iova_pte_index(iova) * sizeof(u32);
+>> +	unmap_size = vsi_iommu_unmap_iova(vsi_domain, pte_addr, pte_dma, size);
+>> +
+>> +unlock:
+>> +	spin_unlock_irqrestore(&vsi_domain->lock, flags);
+>> +
+>> +	return unmap_size;
+>> +}
+> I still think you need TLB invalidation here.
+>
+> I looked at the downstream code that you linked to and it litters the
+> invalidation in the callers via mpp_iommu_flush_tlb(), which tend to
+> invalidate _before_ starting an operation. That's very likely buggy and
+> certainly not something we want upstream.
+>
+> The unmap routine should do the invalidation so that, when it returns,
+> the pages really are unmapped from the device (assuming strict mode).
+>
+> I know you said that you tried to add invalidation here and it "didn't
+> work", but that's not something I can really help you with.
 
-On Tue, 2026-03-24 at 17:01 +0100, Rafael J. Wysocki wrote:
-> On Tue, Mar 24, 2026 at 4:30=E2=80=AFPM Markus Probst <markus.probst@post=
-eo.de> wrote:
-> >=20
-> > On Mon, 2026-03-23 at 20:57 +0100, Rafael J. Wysocki wrote:
-> > > On Fri, Mar 13, 2026 at 8:03=E2=80=AFPM Markus Probst via B4 Relay
-> > > <devnull+markus.probst.posteo.de@kernel.org> wrote:
-> > > >=20
-> > > > From: Markus Probst <markus.probst@posteo.de>
-> > > >=20
-> > > > Add a function to match acpi devices against of_device_ids. This wi=
-ll be
-> > > > used in the following commit ("mfd: match acpi devices against PRP0=
-001")
-> > > > to match mfd sub-devices against a of compatible string.
-> > >=20
-> > > Please always spell ACPI in capitals in patch subjects, comments,
-> > > changelogs, etc.  It is not a regular word.
-> > Ok.
-> > >=20
-> > > > Signed-off-by: Markus Probst <markus.probst@posteo.de>
-> > > > ---
-> > > >  drivers/acpi/bus.c      | 7 +++++++
-> > > >  include/acpi/acpi_bus.h | 2 ++
-> > > >  2 files changed, 9 insertions(+)
-> > > >=20
-> > > > diff --git a/drivers/acpi/bus.c b/drivers/acpi/bus.c
-> > > > index f6707325f582..5ddcc56edc87 100644
-> > > > --- a/drivers/acpi/bus.c
-> > > > +++ b/drivers/acpi/bus.c
-> > > > @@ -1044,6 +1044,13 @@ int acpi_match_device_ids(struct acpi_device=
- *device,
-> > > >  }
-> > > >  EXPORT_SYMBOL(acpi_match_device_ids);
-> > > >=20
-> > >=20
-> > > Missing kerneldoc.
-> > The same amount of kerneldoc as `acpi_match_device_ids`, if I am not
-> > mistaken.
-> > >=20
-> > > > +int acpi_of_match_device_ids(struct acpi_device *device,
-> > > > +                         const struct of_device_id *ids)
-> > > > +{
-> > > > +       return __acpi_match_device(device, NULL, ids, NULL, NULL) ?=
- 0 : -ENOENT;
-> > > > +}
-> > > > +EXPORT_SYMBOL(acpi_of_match_device_ids);
-> > >=20
-> > > Are you aware of the consensus that using PRP0001 in production
-> > > platform firmware will be regarded as invalid?
-> > >=20
-> > > Because of that, it is not an option for a driver to avoid providing
-> > > ACPI match data on a platform that uses ACPI.
-> > First of all, the driver that would have made use of it has been
-> > restructed to not use mfd subdevices. It would not be affected anymore
-> > through this patch set.
->=20
-> So what exactly would be affected by it?
-I won't have a use for myself anymore, but I still think the patch is
-useful. Anyway,
+I know you expect the hardware to work like that but that isn't not the case.
+I spend quite long to try to found hidden bit(s) or an other way to do like
+you want but I can't find any solution.
+As you mention the downstream code suggest that the iommu can't invalidate
+TLB in unmap routine so I don't see how to progress.
+Maybe we should just admit that is how the hardware work.
+This v13 has fixed the documentation so I don't plan to spend more time on this driver.
 
-MFD Devices without an assigned ACPI ID, if they are present on devices
-with ACPI platform firmware.
+Benjamin
 
->=20
-> > Not sure if I should still send it as its own patch series though.
-That is why I asked this question (see 1. sentence in the paragraph
-above).
-
-> >=20
-> > The device of the driver has no ACPI ID allocated by the manufacturer,
-> > as it is only used on a proprietary Linux OS (with their own modified
-> > kernel).
->=20
-> Do I understand correctly that there is an ACPI platform firmware on
-> the board, but it doesn't enumerate the given device properly (that
-> is, as an ACPI device object with a specific device ID)?
-There is only a serial device in the ACPI platform firmware.
-The device connected to the bus isn't specified.
->=20
-> In which case there probably is a driver that can find that device
-> somehow (it has hardcoded resources or similar).
-Yes, that driver has `filp_open("/dev/ttyS1")` hardcoded.
->=20
-> > The driver would have only been useful via device tree or an ACPI
-> > Overlay.
->=20
-> Do you mean a custom SSDT loaded via configfs or something else?
-Yes, in my case via initrd.
-
->=20
-> > Obviously, I don't have a PNP or ACPI Vendor ID, so I can't
-> > assign one. The parent/main driver does only have a of compatible id.
-> > As it needs to use PRP0001 anyway on ACPI, I thought it makes more
-> > sense to also use PRP0001 there instead of matching it with a _ADR
-> > which is "a grey area in the ACPI specification".
->=20
-> You can't match a device with _ADR.  By itself, _ADR doesn't provide
-> you with any information on the device in question, it only helps to
-> connect it to some information that can be collected by other means.
-> The role of it, at least in principle, is to allow some device objects
-> in the ACPI hierarchy to be associated with devices enumerated by
-> other means (like on a PCI bus).
-This patch affects mfd devices. A bus device can via mfd register child
-devices and those child devices will be matched to a fwnode if
-available.
-
-According to commit 98a3be44ffa67b812de7aa7aed9f2331edcfb1a5, there is
-a board on the market with a sub-device that will be matched using _ADR
-[1].
-
-[1]
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
-id=3D98a3be44ffa67b812de7aa7aed9f2331edcfb1a5
-
->=20
-> The enumeration with the help of PRP0001 only works if there is a
-> device object in the ACPI hierarchy and its _HID is PRP0001 or its
-> _CID list contains PRP0001, there is a _DSD under it and a
-> "compatible" property is returned by that _DSD.  Who's going to
-> provide all of that for the given device?
-A ACPI Overlay would do that.
-
->=20
-> Moreover, if the device has some resources that the kernel needs to
-> know about, there should be a _CRS under the device object in question
-> and the resources should be listed there.  Or how are the resources
-> going to be found otherwise?
-Resources in mfd are usually handled by the parent device, not the mfd
-child device. But yes, it would be using _CRS if any.
-
-Thanks
-- Markus Probst
-
---=-4WIOjhy6PzINbUusth1I
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iQJPBAABCAA5FiEEgnQYxPSsWOdyMMRzNHYf+OetQ9IFAmnCuygbFIAAAAAABAAO
-bWFudTIsMi41KzEuMTEsMiwyAAoJEDR2H/jnrUPSFtwP/1LgDwm20IUO598xZFkV
-t4Mp7zD16XTW4IGjuI5P9vUJCsMy/HFAVv6lW8b0bOalqzmzYjG9Ygxs5SBt4FAT
-mu89voTYbjRdncUvN35nDbe/L0g7PTu3wMUd4rvOrbtFuNjhh9nX3C/DVfpEnBaH
-wqLkHQ9apa7hu7F8cb9RetQp/5MTFBOjAxFsY+wUhnnjtdVF+ZWaQ2wNHV++7YLE
-vSYzAa9GatYERBvUBmex1dssbl1rzzSojatgmbOXSL3+d7hBYfu1Flw9pdz7Fi1s
-jQmiR1QP3ogEhj12IDtv3kYbNgtaHLCLFyHu2N7HCw/raOj8NSrtwH3wxkJL55vg
-5dNY66UEYGtSh4g/5XY8fXY32AWfLzFn7OxqsGhp0fw7tMrz40orIWcN428tLp9N
-PMfmofgv/6DIPBEITMUq1NmW0olkTRtRgg1H3AcYHd+YUfSA9uiC6nfrnZ2cb+E0
-to803zAsfF7zXH51zNKrjB8zHP1F7WH7zwQk+4bNztZvpeze+QTxblEkl2s8I05k
-6mI5GPEAWOQJ3BUGplQF4H3FA01SA/vomcNCJdQxhEQ31K8dsUyLNIymncSKvNZn
-yTVwnEAGTohJ9Ln0EMf0N/7d3LwOGATawIqjjosQgEZuDaS3kiLrmRtmspT8qgLw
-lYR2j/I03tOeDL0m0AMnCYqa
-=0hMF
------END PGP SIGNATURE-----
-
---=-4WIOjhy6PzINbUusth1I--
+>
+> Will
 
