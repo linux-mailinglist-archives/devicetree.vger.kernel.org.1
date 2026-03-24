@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-279513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279516-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WL9rNkX+wWnqYgQAu9opvQ
-	(envelope-from <devicetree+bounces-279513-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 04:00:21 +0100
+	id gNYtF6n9wWnqYgQAu9opvQ
+	(envelope-from <devicetree+bounces-279516-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 03:57:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65AE030167A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 04:00:21 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC3393015E5
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 03:57:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 653F9303A11E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 02:56:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 86B7A303AF04
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 02:56:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE92F3890E4;
-	Tue, 24 Mar 2026 02:56:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0E30389458;
+	Tue, 24 Mar 2026 02:56:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="sv4YYUe7"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="r+LxHDO/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6ECE1FE44A;
-	Tue, 24 Mar 2026 02:56:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEAA6388E61;
+	Tue, 24 Mar 2026 02:56:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774321013; cv=none; b=tP7Mu9dO6jLKzwJAkew64liFJhKcJHRJZahoZajiRyLeFbxC6eETrm96lsOeGIiP+T89mUJtI/79RCKzBHyBRoycmBMoq+dHCVLp+otvuI3Ig/PV4QksVIo3iZp1OYqRkEBLQ8Oa4TzHA2btiJ5RhZyJVc2/DnVrL+4zPTRPAo4=
+	t=1774321014; cv=none; b=mkwK7/1jyi0JXWtIQn7aLQtVi5ohR9WC4T82dm0rbj2akmnohDSCxvKJPSLOdh30fXLY5w3g5k8v2EQXHe7BHiaiVNiaMZTdd6XExP7geaQObvHDrVSxrSDysCh2HoxtlMeVhlZh6ciyGQd8+avQdknw5ODAk6glG9VGnmeP528=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774321013; c=relaxed/simple;
-	bh=0kah365DbiYZI6c8KWPo7LoB4sSgMEbOVLMpUjxf4wY=;
+	s=arc-20240116; t=1774321014; c=relaxed/simple;
+	bh=CcVb3Tguk/PZXhCqzRz5Tt6oApD/JQ/Qtp50ova13e0=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=m7PPnrv29W2EQSm/NOWVbfinmfzp4gjWp86kP8xV216XwzRcx+lCgf2XV3sjwy94m7jrmbzmQJD+8vHHecdAT4ulfnZFpG+buzjDEoSrteXUgDt9v7PkFf+w8KARocUJmnjKlj72siKsEyE9FJMREg2mjSH9cw40u5upYowxX5s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=sv4YYUe7; arc=none smtp.client-ip=211.75.126.72
+	 MIME-Version:Content-Type; b=X/d5N7+EQWizw7yozuuIgkI4Y1jEhsHWQWsHdvJN3ZlyFVQASqCGgP2REmSUvjkyAAdKpJ3PpV3brmXk711/DAkVNt9hPrXjqQSl3BlpiLcm8xgBlUrcRNf8wz9BM7ADHKLuRWPDvmsirQ/usEw9+/1NbVEXPefAL1hX7akGwUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=r+LxHDO/; arc=none smtp.client-ip=211.75.126.72
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 62O2rXwK5278459, This message is accepted by code: ctloc85258
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 62O2rXOD1278461, This message is accepted by code: ctloc85258
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1774320813; bh=s+NBfkBtjjtc9IaZWRse743V27ZK/I4WahuYAx4/Jpk=;
+	t=1774320813; bh=4HSUiqfait0rTJDz0Y24hsytk9pmd+SHzaURZVWLgME=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
 	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=sv4YYUe7+BT66W+9PYYIXBHmQ+e2QwqO4p6nmyx3BylD0ZvvHqliSrEKaFlzfdTwl
-	 BhezTfePqON7ZICio2vLWKpbAZZQ2zPknePRqI86ChPXyJQdaLuFpPxfWrkeW4NVoT
-	 b2uDvmNj2XVp+9CD4BRUP5rZAl4A9394VAref3/aq7+rXpnyFu/1bxfSQgGGfqBfDH
-	 Mfod9xKQnMnMk8X8cGN+DX+Z5hw2Y85RcTqR6lvCxVV2ci2Aw743++qSsOJP++h3at
-	 hFLy8zAhuHAJL+gF6jRUR8+UtiRAWbFzg3NTVA/nez9bA+UaAqG6QdYNXZZ/6ClYnu
-	 Q+g1q9d3anh6w==
+	b=r+LxHDO/4f9ZgfAoNdTlqCH6Ajzeifwa73gLUXv+l/rHXuhsWXUVOjjt9AfSGxRSq
+	 9j/0EzomfOkGrqsRmJ0qBGRtqtXQH2czxfLbA9n6UEc8DKpyuYJ/Tks20++yUbg7h4
+	 l2J+05ntQ4iTJe9weSktg3PRhK+W0qQCFykB80hZTKE5SGTyz1TgMqhd59kfYKHmff
+	 4UwdCkqWlKq0bxOLbmzLOm5Dl4L+GHEJNEti8W9Lphp7Hhwz4cbUv/20xzAhM1rSJ1
+	 VuzdBt2I+VxcM6yOE6vYELk+b1oTNtZ/DTbTljjRsx0YgLeAPQtKUfPCc8cW0YRZWd
+	 clkf7M+ly4RPg==
 Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
-	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 62O2rXwK5278459
+	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 62O2rXOD1278461
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
 	Tue, 24 Mar 2026 10:53:33 +0800
 Received: from RTKEXHMBS01.realtek.com.tw (172.21.6.40) by
@@ -69,9 +69,9 @@ CC: <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
         <linux-realtek-soc@lists.infradead.org>, <james.tai@realtek.com>,
         <cy.huang@realtek.com>, <stanley_chang@realtek.com>,
         <eleanor.lin@realtek.com>
-Subject: [PATCH v5 04/10] clk: realtek: Introduce a common probe()
-Date: Tue, 24 Mar 2026 10:53:25 +0800
-Message-ID: <20260324025332.3416977-5-eleanor.lin@realtek.com>
+Subject: [PATCH v5 05/10] clk: realtek: Add support for phase locked loops (PLLs)
+Date: Tue, 24 Mar 2026 10:53:26 +0800
+Message-ID: <20260324025332.3416977-6-eleanor.lin@realtek.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260324025332.3416977-1-eleanor.lin@realtek.com>
 References: <20260324025332.3416977-1-eleanor.lin@realtek.com>
@@ -90,250 +90,348 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-279513-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-279516-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	DKIM_TRACE(0.00)[realtek.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,realtek.com:dkim,realtek.com:email,realtek.com:mid];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[realtek.com:dkim,realtek.com:email,realtek.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
 	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 65AE030167A
+X-Rspamd-Queue-Id: CC3393015E5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Cheng-Yu Lee <cylee12@realtek.com>
 
-Add rtk_clk_probe() to set up the shared regmap, register clock hardware,
-add the clock provider, and optionally register a reset controller when
-reset bank data is provided.
+Provide a full set of PLL operations for programmable PLLs and a read-only
+variant for fixed or hardware-managed PLLs.
 
 Signed-off-by: Cheng-Yu Lee <cylee12@realtek.com>
 Co-developed-by: Yu-Chun Lin <eleanor.lin@realtek.com>
 Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
 ---
 Changes in v5:
-- Synchronized with reset controller changes.
+- None.
 ---
- MAINTAINERS                  |  1 +
- drivers/clk/Kconfig          |  1 +
- drivers/clk/Makefile         |  1 +
- drivers/clk/realtek/Kconfig  | 28 +++++++++++++++++
- drivers/clk/realtek/Makefile |  4 +++
- drivers/clk/realtek/common.c | 59 ++++++++++++++++++++++++++++++++++++
- drivers/clk/realtek/common.h | 43 ++++++++++++++++++++++++++
- 7 files changed, 137 insertions(+)
- create mode 100644 drivers/clk/realtek/Kconfig
- create mode 100644 drivers/clk/realtek/Makefile
- create mode 100644 drivers/clk/realtek/common.c
- create mode 100644 drivers/clk/realtek/common.h
+ drivers/clk/realtek/Makefile     |   2 +
+ drivers/clk/realtek/clk-pll.c    | 156 +++++++++++++++++++++++++++++++
+ drivers/clk/realtek/clk-pll.h    |  47 ++++++++++
+ drivers/clk/realtek/freq_table.c |  35 +++++++
+ drivers/clk/realtek/freq_table.h |  23 +++++
+ 5 files changed, 263 insertions(+)
+ create mode 100644 drivers/clk/realtek/clk-pll.c
+ create mode 100644 drivers/clk/realtek/clk-pll.h
+ create mode 100644 drivers/clk/realtek/freq_table.c
+ create mode 100644 drivers/clk/realtek/freq_table.h
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9419b0497e0b..31f4a5a66394 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -22229,6 +22229,7 @@ L:	devicetree@vger.kernel.org
- L:	linux-clk@vger.kernel.org
- S:	Supported
- F:	Documentation/devicetree/bindings/clock/realtek*
-+F:      drivers/clk/realtek/*
- F:	drivers/reset/realtek/*
- F:	include/dt-bindings/clock/realtek*
- 
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 3d803b4cf5c1..d60f6415b0a3 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -519,6 +519,7 @@ source "drivers/clk/nuvoton/Kconfig"
- source "drivers/clk/pistachio/Kconfig"
- source "drivers/clk/qcom/Kconfig"
- source "drivers/clk/ralink/Kconfig"
-+source "drivers/clk/realtek/Kconfig"
- source "drivers/clk/renesas/Kconfig"
- source "drivers/clk/rockchip/Kconfig"
- source "drivers/clk/samsung/Kconfig"
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index f7bce3951a30..69b84d1e7bcc 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -140,6 +140,7 @@ obj-$(CONFIG_COMMON_CLK_PISTACHIO)	+= pistachio/
- obj-$(CONFIG_COMMON_CLK_PXA)		+= pxa/
- obj-$(CONFIG_COMMON_CLK_QCOM)		+= qcom/
- obj-y					+= ralink/
-+obj-$(CONFIG_COMMON_CLK_REALTEK)	+= realtek/
- obj-y					+= renesas/
- obj-$(CONFIG_ARCH_ROCKCHIP)		+= rockchip/
- obj-$(CONFIG_COMMON_CLK_SAMSUNG)	+= samsung/
-diff --git a/drivers/clk/realtek/Kconfig b/drivers/clk/realtek/Kconfig
-new file mode 100644
-index 000000000000..63eb3fb3e79a
---- /dev/null
-+++ b/drivers/clk/realtek/Kconfig
-@@ -0,0 +1,28 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+config COMMON_CLK_REALTEK
-+	bool "Clock driver for Realtek SoCs"
-+	depends on ARCH_REALTEK || COMPILE_TEST
-+	default y
-+	help
-+	  Enable the common clock framework infrastructure for Realtek
-+	  system-on-chip platforms.
-+
-+	  This provides the base support required by individual Realtek
-+	  clock controller drivers to expose clocks to peripheral devices.
-+
-+	  If you have a Realtek-based platform, say Y.
-+
-+if COMMON_CLK_REALTEK
-+
-+config RTK_CLK_COMMON
-+	tristate "Realtek Clock Common"
-+	depends on RESET_CONTROLLER
-+	select RESET_RTK_COMMON
-+	help
-+	  Common helper code shared by Realtek clock controller drivers.
-+
-+	  This provides utility functions and data structures used by
-+	  multiple Realtek clock implementations, and include integration
-+	  with reset controllers where required.
-+
-+endif
 diff --git a/drivers/clk/realtek/Makefile b/drivers/clk/realtek/Makefile
-new file mode 100644
-index 000000000000..377ec776ee47
---- /dev/null
+index 377ec776ee47..a89ad77993e9 100644
+--- a/drivers/clk/realtek/Makefile
 +++ b/drivers/clk/realtek/Makefile
-@@ -0,0 +1,4 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+obj-$(CONFIG_RTK_CLK_COMMON) += clk-rtk.o
-+
-+clk-rtk-y += common.o
-diff --git a/drivers/clk/realtek/common.c b/drivers/clk/realtek/common.c
+@@ -2,3 +2,5 @@
+ obj-$(CONFIG_RTK_CLK_COMMON) += clk-rtk.o
+ 
+ clk-rtk-y += common.o
++clk-rtk-y += clk-pll.o
++clk-rtk-y += freq_table.o
+diff --git a/drivers/clk/realtek/clk-pll.c b/drivers/clk/realtek/clk-pll.c
 new file mode 100644
-index 000000000000..18a0d82ded0c
+index 000000000000..6bb9084956b8
 --- /dev/null
-+++ b/drivers/clk/realtek/common.c
-@@ -0,0 +1,59 @@
++++ b/drivers/clk/realtek/clk-pll.c
+@@ -0,0 +1,156 @@
 +// SPDX-License-Identifier: GPL-2.0-only
 +/*
-+ * Copyright (C) 2019 Realtek Semiconductor Corporation
++ * Copyright (C) 2024 Realtek Semiconductor Corporation
 + * Author: Cheng-Yu Lee <cylee12@realtek.com>
 + */
 +
-+#include <linux/device.h>
-+#include <linux/module.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/platform_device.h>
-+#include "common.h"
++#include "clk-pll.h"
 +
-+int rtk_clk_probe(struct platform_device *pdev, const struct rtk_clk_desc *desc)
++#define TIMEOUT 2000
++
++static int wait_freq_ready(struct clk_pll *clkp)
 +{
-+	int i, ret;
-+	struct regmap *regmap;
-+	struct device *dev = &pdev->dev;
-+	struct rtk_reset_initdata reset_initdata = {0};
++	u32 pollval;
 +
-+	regmap = device_node_to_regmap(pdev->dev.of_node);
-+	if (IS_ERR(regmap))
-+		return dev_err_probe(dev, PTR_ERR(regmap), "failed to get regmap\n");
++	if (!clkp->freq_ready_valid)
++		return 0;
 +
-+	for (i = 0; i < desc->num_clks; i++)
-+		desc->clks[i]->regmap = regmap;
++	return regmap_read_poll_timeout_atomic(clkp->clkr.regmap, clkp->freq_ready_reg, pollval,
++						(pollval & clkp->freq_ready_mask)
++						== clkp->freq_ready_val, 0, TIMEOUT);
++}
 +
-+	for (i = 0; i < desc->clk_data->num; i++) {
-+		struct clk_hw *hw = desc->clk_data->hws[i];
++static bool is_power_on(struct clk_pll *clkp)
++{
++	u32 val;
 +
-+		if (!hw)
++	if (!clkp->power_reg)
++		return true;
++
++	if (regmap_read(clkp->clkr.regmap, clkp->power_reg, &val))
++		return true;
++
++	return (val & clkp->power_mask) == clkp->power_val_on;
++}
++
++static void clk_pll_disable(struct clk_hw *hw)
++{
++	struct clk_pll *clkp = to_clk_pll(hw);
++
++	if (!clkp->seq_power_off)
++		return;
++
++	regmap_multi_reg_write(clkp->clkr.regmap, clkp->seq_power_off,
++			       clkp->num_seq_power_off);
++}
++
++static int clk_pll_is_enabled(struct clk_hw *hw)
++{
++	struct clk_pll *clkp = to_clk_pll(hw);
++
++	return is_power_on(clkp);
++}
++
++static int clk_pll_determine_rate(struct clk_hw *hw,
++				  struct clk_rate_request *req)
++{
++	struct clk_pll *clkp = to_clk_pll(hw);
++	const struct freq_table *ftblv = NULL;
++
++	ftblv = ftbl_find_by_rate(clkp->freq_tbl, req->rate);
++	if (!ftblv)
++		return -EINVAL;
++
++	req->rate = ftblv->rate;
++	return 0;
++}
++
++static unsigned long clk_pll_recalc_rate(struct clk_hw *hw,
++					 unsigned long parent_rate)
++{
++	struct clk_pll *clkp = to_clk_pll(hw);
++	const struct freq_table *fv;
++	u32 freq_val;
++
++	if (regmap_read(clkp->clkr.regmap, clkp->freq_reg, &freq_val))
++		return 0;
++
++	freq_val &= clkp->freq_mask;
++
++	fv = ftbl_find_by_val_with_mask(clkp->freq_tbl, clkp->freq_mask,
++					freq_val);
++	return fv ? fv->rate : 0;
++}
++
++static int clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
++			    unsigned long parent_rate)
++{
++	struct clk_pll *clkp = to_clk_pll(hw);
++	const struct freq_table *fv;
++	int ret;
++
++	fv = ftbl_find_by_rate(clkp->freq_tbl, rate);
++	if (!fv || fv->rate != rate)
++		return -EINVAL;
++
++	if (clkp->seq_pre_set_freq) {
++		ret = regmap_multi_reg_write(clkp->clkr.regmap, clkp->seq_pre_set_freq,
++					     clkp->num_seq_pre_set_freq);
++		if (ret)
++			return ret;
++	}
++
++	ret = regmap_update_bits(clkp->clkr.regmap, clkp->freq_reg,
++				 clkp->freq_mask, fv->val);
++	if (ret)
++		return ret;
++
++	if (clkp->seq_post_set_freq) {
++		ret = regmap_multi_reg_write(clkp->clkr.regmap, clkp->seq_post_set_freq,
++					     clkp->num_seq_post_set_freq);
++		if (ret)
++			return ret;
++	}
++
++	if (is_power_on(clkp)) {
++		ret = wait_freq_ready(clkp);
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
++static int clk_pll_enable(struct clk_hw *hw)
++{
++	struct clk_pll *clkp = to_clk_pll(hw);
++	int ret;
++
++	if (!clkp->seq_power_on)
++		return 0;
++
++	if (is_power_on(clkp))
++		return 0;
++
++	ret = regmap_multi_reg_write(clkp->clkr.regmap, clkp->seq_power_on,
++				     clkp->num_seq_power_on);
++	if (ret)
++		return ret;
++
++	return wait_freq_ready(clkp);
++}
++
++const struct clk_ops rtk_clk_pll_ops = {
++	.enable         = clk_pll_enable,
++	.disable        = clk_pll_disable,
++	.is_enabled     = clk_pll_is_enabled,
++	.recalc_rate    = clk_pll_recalc_rate,
++	.determine_rate = clk_pll_determine_rate,
++	.set_rate       = clk_pll_set_rate,
++};
++EXPORT_SYMBOL_GPL(rtk_clk_pll_ops);
++
++const struct clk_ops rtk_clk_pll_ro_ops = {
++	.recalc_rate = clk_pll_recalc_rate,
++};
++EXPORT_SYMBOL_GPL(rtk_clk_pll_ro_ops);
+diff --git a/drivers/clk/realtek/clk-pll.h b/drivers/clk/realtek/clk-pll.h
+new file mode 100644
+index 000000000000..2d27a44a270c
+--- /dev/null
++++ b/drivers/clk/realtek/clk-pll.h
+@@ -0,0 +1,47 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright (C) 2017-2019 Realtek Semiconductor Corporation
++ * Author: Cheng-Yu Lee <cylee12@realtek.com>
++ */
++
++#ifndef __CLK_REALTEK_CLK_PLL_H
++#define __CLK_REALTEK_CLK_PLL_H
++
++#include "common.h"
++#include "freq_table.h"
++
++struct clk_pll {
++	struct clk_regmap clkr;
++	const struct reg_sequence *seq_power_on;
++	u32 num_seq_power_on;
++	const struct reg_sequence *seq_power_off;
++	u32 num_seq_power_off;
++	const struct reg_sequence *seq_pre_set_freq;
++	u32 num_seq_pre_set_freq;
++	const struct reg_sequence *seq_post_set_freq;
++	u32 num_seq_post_set_freq;
++	const struct freq_table *freq_tbl;
++	u32 freq_reg;
++	u32 freq_mask;
++	u32 freq_ready_valid;
++	u32 freq_ready_mask;
++	u32 freq_ready_reg;
++	u32 freq_ready_val;
++	u32 power_reg;
++	u32 power_mask;
++	u32 power_val_on;
++};
++
++#define __clk_pll_hw(_ptr)  __clk_regmap_hw(&(_ptr)->clkr)
++
++static inline struct clk_pll *to_clk_pll(struct clk_hw *hw)
++{
++	struct clk_regmap *clkr = to_clk_regmap(hw);
++
++	return container_of(clkr, struct clk_pll, clkr);
++}
++
++extern const struct clk_ops rtk_clk_pll_ops;
++extern const struct clk_ops rtk_clk_pll_ro_ops;
++
++#endif /* __CLK_REALTEK_CLK_PLL_H */
+diff --git a/drivers/clk/realtek/freq_table.c b/drivers/clk/realtek/freq_table.c
+new file mode 100644
+index 000000000000..26a0d2d3e851
+--- /dev/null
++++ b/drivers/clk/realtek/freq_table.c
+@@ -0,0 +1,35 @@
++// SPDX-License-Identifier: GPL-2.0-only
++
++#include "freq_table.h"
++
++const struct freq_table *ftbl_find_by_rate(const struct freq_table *ftbl,
++					   unsigned long rate)
++{
++	unsigned long best_rate = 0;
++	const struct freq_table *best = NULL;
++
++	for (; !IS_FREQ_TABLE_END(ftbl); ftbl++) {
++		if (ftbl->rate == rate)
++			return ftbl;
++
++		if (ftbl->rate > rate)
 +			continue;
 +
-+		ret = devm_clk_hw_register(dev, hw);
-+
-+		if (ret) {
-+			dev_warn(dev, "failed to register hw of clk%d: %d\n", i,
-+				 ret);
-+			desc->clk_data->hws[i] = NULL;
++		if (ftbl->rate > best_rate) {
++			best_rate = ftbl->rate;
++			best = ftbl;
 +		}
 +	}
 +
-+	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
-+					  desc->clk_data);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to add clock provider\n");
-+
-+	if (!desc->num_reset_descs)
-+		return 0;
-+
-+	reset_initdata.regmap = regmap;
-+	reset_initdata.num_descs = desc->num_reset_descs;
-+	reset_initdata.descs = desc->reset_descs;
-+
-+	return rtk_reset_controller_add(dev, &reset_initdata);
++	return best;
 +}
-+EXPORT_SYMBOL_GPL(rtk_clk_probe);
 +
-+MODULE_DESCRIPTION("Realtek clock infrastructure");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/clk/realtek/common.h b/drivers/clk/realtek/common.h
-new file mode 100644
-index 000000000000..9cf013f9ba2b
---- /dev/null
-+++ b/drivers/clk/realtek/common.h
-@@ -0,0 +1,43 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright (C) 2016-2019 Realtek Semiconductor Corporation
-+ * Author: Cheng-Yu Lee <cylee12@realtek.com>
-+ */
-+
-+#ifndef __CLK_REALTEK_COMMON_H
-+#define __CLK_REALTEK_COMMON_H
-+
-+#include <linux/clk-provider.h>
-+#include <linux/device.h>
-+#include <linux/io.h>
-+#include <linux/of.h>
-+#include <linux/regmap.h>
-+#include <linux/reset/realtek.h>
-+
-+#define __clk_regmap_hw(_p) ((_p)->hw)
-+
-+struct device;
-+struct platform_device;
-+
-+struct clk_regmap {
-+	struct clk_hw hw;
-+	struct regmap *regmap;
-+};
-+
-+struct rtk_clk_desc {
-+	struct clk_hw_onecell_data *clk_data;
-+	struct clk_regmap **clks;
-+	size_t num_clks;
-+	struct rtk_reset_desc *reset_descs;
-+	size_t num_reset_descs;
-+};
-+
-+static inline struct clk_regmap *to_clk_regmap(struct clk_hw *hw)
++const struct freq_table *
++ftbl_find_by_val_with_mask(const struct freq_table *ftbl, u32 mask, u32 value)
 +{
-+	return container_of(hw, struct clk_regmap, hw);
-+}
++	for (; !IS_FREQ_TABLE_END(ftbl); ftbl++) {
++		if ((ftbl->val & mask) == (value & mask))
++			return ftbl;
++	}
++	return NULL;
++};
+diff --git a/drivers/clk/realtek/freq_table.h b/drivers/clk/realtek/freq_table.h
+new file mode 100644
+index 000000000000..383ae939fd1e
+--- /dev/null
++++ b/drivers/clk/realtek/freq_table.h
+@@ -0,0 +1,23 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
 +
-+int rtk_clk_probe(struct platform_device *pdev,
-+		  const struct rtk_clk_desc *desc);
++#include <linux/bitops.h>
 +
-+#endif /* __CLK_REALTEK_COMMON_H */
++struct freq_table {
++	u32 val;
++	unsigned long rate;
++};
++
++/* ofs check */
++#define CLK_OFS_INVALID        -1
++#define CLK_OFS_IS_VALID(_ofs) ((_ofs) != CLK_OFS_INVALID)
++
++#define FREQ_TABLE_END    \
++	{                 \
++		.rate = 0 \
++	}
++#define IS_FREQ_TABLE_END(_f) ((_f)->rate == 0)
++
++const struct freq_table *ftbl_find_by_rate(const struct freq_table *ftbl,
++					   unsigned long rate);
++const struct freq_table *
++ftbl_find_by_val_with_mask(const struct freq_table *ftbl, u32 mask, u32 value);
 -- 
 2.34.1
 
