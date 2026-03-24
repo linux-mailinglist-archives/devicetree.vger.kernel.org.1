@@ -1,157 +1,186 @@
-Return-Path: <devicetree+bounces-279626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279636-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GAT4Dgo9wmmCagQAu9opvQ
-	(envelope-from <devicetree+bounces-279626-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:28:10 +0100
+	id SIGYAklAwmmCagQAu9opvQ
+	(envelope-from <devicetree+bounces-279636-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:42:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC244303F5A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:28:09 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A858304188
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:42:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2212931A33D6
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 07:10:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 15F5431B3642
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 07:32:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E70D039656F;
-	Tue, 24 Mar 2026 07:10:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C20D32F757;
+	Tue, 24 Mar 2026 07:32:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="0LCT7AiM"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b="aMHgH1lo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from lx20.hoststar.hosting (lx20.hoststar.hosting [168.119.41.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 889D631716F;
-	Tue, 24 Mar 2026 07:10:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 618EA33065D;
+	Tue, 24 Mar 2026 07:32:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.41.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774336213; cv=none; b=q7oG6aEHBM4ZUO0hmY9cgB7gGL+u4h825G1TjCIvvFvx81c1nKcdcUpXUV+f5gRh3Kfk3HMn7tGwQ/luDi26Lw+KvSSn+WKU+EA6jmOTLGc7nEPzbANB/sBcTlAc98vwX3RnJitnLMh061+TiZl9g7GJ3IfkfDmH/gs023a7nK4=
+	t=1774337548; cv=none; b=p4vG5n9u/iIzHPEhwG0DuBdySHnhX9C3grOKtRbxnMnrkEPUTqETCMlPUxc0LFxUQ1ptRN4fm0Jagpv09Qt1T4szEQukJKw0tVpfP1NB9/IFITqZ1RP6LTDgZ1kf7CojtoXrKXsGLjv/bz4VZQem9iZ8Xqv8iXfxx6W+HoulHC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774336213; c=relaxed/simple;
-	bh=Tn3pLiKyPA4NVXqBGDmX0bnIDFBEkAJy7bWlHRzOd/g=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ydfoc3IuvMWPu8ddHlQ9Gg8w2d3mEquuqBxSm7NLmGXdCyQtN3wiL/K/vcduvxYw7xGro6Z8TRmetUUPfECtNy1dfKqw1UmdTyB5D+kcfKO2mXxP9scK3digqEgT/58CvwGY49XuJTgtmdk3LLveq5tcb2uCuG6sew8qoYw50L4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=0LCT7AiM; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1774336203; x=1805872203;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Tn3pLiKyPA4NVXqBGDmX0bnIDFBEkAJy7bWlHRzOd/g=;
-  b=0LCT7AiMdiGpX9ZAvAs4wbpeh89447XsibQBRgVRdFvHQlN3muaR7fBy
-   FkUYIT7OUsVaGt6nn9QtTQXLA7JdXq70dmoL1xxmMagEscL01EIu51BI3
-   ECFYwEJvOeg+C7r+gb1QA/t/5ZpE/JgtBQgRDi2k/c7Z0ANfJ63XSRBUL
-   03l53ImWxAP7Qy3X9zqQfEC29ZThquCxRxyIpX4lnkoesDNkekJOpV9jL
-   858DHbCNg0okY1MQe4ZVsTn43maCGOvUB+VrM5YGX+y+/pI9uYphz2I55
-   jP1AMmnaPhdBEbUJuOuCguqOOFtI0A/AUTxJ7dSJHZBvwv18iDe8TnlQb
-   A==;
-X-CSE-ConnectionGUID: JHOMLq1tTaWBy+hZwmXKmw==
-X-CSE-MsgGUID: 96A9w8gMTHaCi5iuCoBLlQ==
-X-IronPort-AV: E=Sophos;i="6.23,138,1770620400"; 
-   d="scan'208";a="286479796"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 24 Mar 2026 00:10:01 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Tue, 24 Mar 2026 00:09:41 -0700
-Received: from archlinux.mchp-main.com (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Tue, 24 Mar 2026 00:09:38 -0700
-From: Mihai Sain <mihai.sain@microchip.com>
-To: <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Mihai Sain <mihai.sain@microchip.com>
-Subject: [PATCH v2 1/1] ARM: dts: microchip: sama7d65: add Cortex-A7 PMU node
-Date: Tue, 24 Mar 2026 09:09:27 +0200
-Message-ID: <20260324070927.1496-2-mihai.sain@microchip.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260324070927.1496-1-mihai.sain@microchip.com>
-References: <20260324070927.1496-1-mihai.sain@microchip.com>
+	s=arc-20240116; t=1774337548; c=relaxed/simple;
+	bh=DoySZJb+/dX4tX+SckY2cfiJpr62a6BkVboaZ+y3eVU=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=YN0IUT6FHTIa8D1vrhQrxSi+GVa88b+Byac4viJhzm+gYSORQYZJIOt6RHeU8KDMtKVoOsXfp0nhya+sQmfOuH3yUWlOv+fBvLqr62dmydrgFBTpatKggelPPuYDfXsqd2El0f4lN9vo3fHqF5vbxhoWPTQDIGeBidOQgiYfXjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=pass smtp.mailfrom=emfend.at; dkim=pass (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b=aMHgH1lo; arc=none smtp.client-ip=168.119.41.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=emfend.at
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=emfend.at;
+	 s=mail; h=Cc:To:Message-Id:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Subject:Date:From:Sender:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=KS6J46kYK+sVTlFskCuxSfFQijC3eqAgPVExn/P68gI=; b=aMHgH1locKZJ7MEsKcLzpSNyRr
+	utWm2qH8ZZDRLXPCY3lFQSAomDAKdhhiDdUgjf6rH4AUR8CU/N8e0zlASKii6LXm4Qs0MgxRladQZ
+	icDW7twLiONsVl1Y8qgb2G9EzhIQPabmPAgfPdpO4OgLHS8o/9opAZ3xbZBOduMho/Ng=;
+Received: from 194-208-208-245.tele.net ([194.208.208.245]:62112 helo=[127.0.1.1])
+	by lx20.hoststar.hosting with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.93)
+	(envelope-from <matthias.fend@emfend.at>)
+	id 1w4vvO-009jM8-AH; Tue, 24 Mar 2026 08:11:41 +0100
+From: Matthias Fend <matthias.fend@emfend.at>
+Date: Tue, 24 Mar 2026 08:11:25 +0100
+Subject: [PATCH RESEND v2] media: i2c: imx283: add support for
+ non-continuous MIPI clock mode
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260324-imx283-ext-v2-1-4931dbd46c95@emfend.at>
+To: Kieran Bingham <kieran.bingham@ideasonboard.com>, 
+ Umang Jain <uajain@igalia.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Matthias Fend <matthias.fend@emfend.at>
+X-Mailer: b4 0.14.2
+X-Spam-Score: 
+X-Spam-Bar: 
+X-Spam-Report: 
+X-Spamd-Result: default: False [1.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+	R_DKIM_REJECT(1.00)[emfend.at:s=mail];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[mihai.sain@microchip.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-279626-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-279636-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[microchip.com:+];
+	DMARC_NA(0.00)[emfend.at];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[emfend.at:-];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:dkim,microchip.com:email,microchip.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sama7d65:email]
-X-Rspamd-Queue-Id: AC244303F5A
+	NEURAL_HAM(-0.00)[-0.994];
+	FROM_NEQ_ENVFROM(0.00)[matthias.fend@emfend.at,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[emfend.at:email,emfend.at:mid,ideasonboard.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 5A858304188
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add the Performance Monitoring Unit (PMU) node with the appropriate
-compatible string and interrupt line so that perf and other
-PMU-based tooling can function correctly on this SoC.
+Add support for selecting between continuous and non-continuous MIPI clock
+mode.
 
-[root@SAMA7D65 ~]$ dmesg | grep -i pmu
-[    1.487869] hw-perfevents: enabled with armv7_cortex_a7 PMU driver, 5 (8000000f) counters available
+Previously, the CSI-2 non-continuous clock endpoint flag was ignored and
+the sensor was always configured for non-continuous clock mode. For
+existing device tree nodes that do not have this property enabled, this
+update will therefore change the actual clock mode.
 
-[root@SAMA7D65 ~]$ perf list hw
-List of pre-defined events (to be used in -e or -M):
-
-branch-instructions OR branches                    [Hardware event]
-branch-misses                                      [Hardware event]
-bus-cycles                                         [Hardware event]
-cache-misses                                       [Hardware event]
-cache-references                                   [Hardware event]
-cpu-cycles OR cycles                               [Hardware event]
-instructions                                       [Hardware event]
-
-Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
+Reviewed-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
 ---
- arch/arm/boot/dts/microchip/sama7d65.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+Add support for selecting the MIPI clock mode (continuous, non-continuous).
+---
+Changes in v2:
+- Drop '[PATCH 1/3] media: dt-bindings: imx283: add clock-noncontinuous' (Krzysztof)
+- Drop '[PATCH 3/3] media: i2c: imx283: implement {g,s}_register' (Dave)
+- Link to v1: https://lore.kernel.org/r/20251217-imx283-ext-v1-0-906a762f592d@emfend.at
+---
+ drivers/media/i2c/imx283.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/arch/arm/boot/dts/microchip/sama7d65.dtsi b/arch/arm/boot/dts/microchip/sama7d65.dtsi
-index e21556f46384..ed1ec952531c 100644
---- a/arch/arm/boot/dts/microchip/sama7d65.dtsi
-+++ b/arch/arm/boot/dts/microchip/sama7d65.dtsi
-@@ -45,6 +45,11 @@ L2: l2-cache {
- 		};
- 	};
+diff --git a/drivers/media/i2c/imx283.c b/drivers/media/i2c/imx283.c
+index 8ab63ad8f385f6e2a2d7432feff0af09a5356dc4..7a6ab2941ea985401b21d60163b58e980cf31ddc 100644
+--- a/drivers/media/i2c/imx283.c
++++ b/drivers/media/i2c/imx283.c
+@@ -149,6 +149,9 @@
+ #define IMX283_REG_PLSTMG02		CCI_REG8(0x36aa)
+ #define   IMX283_PLSTMG02_VAL		0x00
  
-+	pmu {
-+		compatible = "arm,cortex-a7-pmu";
-+		interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
-+	};
++#define IMX283_REG_MIPI_CLK		CCI_REG8(0x3a43)
++#define   IMX283_MIPI_CLK_NONCONTINUOUS	BIT(0)
 +
- 	clocks {
- 		main_xtal: clock-mainxtal {
- 			compatible = "fixed-clock";
+ #define IMX283_REG_EBD_X_OUT_SIZE	CCI_REG16_LE(0x3a54)
+ 
+ /* Test pattern generator */
+@@ -565,6 +568,7 @@ struct imx283 {
+ 	struct v4l2_ctrl *hblank;
+ 	struct v4l2_ctrl *vflip;
+ 
++	bool mipi_clk_noncontinuous;
+ 	unsigned long link_freq_bitmap;
+ 
+ 	u16 hmax;
+@@ -988,6 +992,7 @@ static int imx283_set_pad_format(struct v4l2_subdev *sd,
+ static int imx283_standby_cancel(struct imx283 *imx283)
+ {
+ 	unsigned int link_freq_idx;
++	u8 mipi_clk;
+ 	int ret = 0;
+ 
+ 	cci_write(imx283->cci, IMX283_REG_STANDBY,
+@@ -1007,6 +1012,10 @@ static int imx283_standby_cancel(struct imx283 *imx283)
+ 	/* Enable PLL */
+ 	cci_write(imx283->cci, IMX283_REG_STBPL, IMX283_STBPL_NORMAL, &ret);
+ 
++	/* Configure MIPI clock mode */
++	mipi_clk = imx283->mipi_clk_noncontinuous ? IMX283_MIPI_CLK_NONCONTINUOUS : 0;
++	cci_write(imx283->cci, IMX283_REG_MIPI_CLK, mipi_clk, &ret);
++
+ 	/* Configure the MIPI link speed */
+ 	link_freq_idx = __ffs(imx283->link_freq_bitmap);
+ 	cci_multi_reg_write(imx283->cci, link_freq_reglist[link_freq_idx].regs,
+@@ -1426,6 +1435,9 @@ static int imx283_parse_endpoint(struct imx283 *imx283)
+ 		goto done_endpoint_free;
+ 	}
+ 
++	imx283->mipi_clk_noncontinuous =
++		bus_cfg.bus.mipi_csi2.flags & V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK;
++
+ 	ret = v4l2_link_freq_to_bitmap(imx283->dev, bus_cfg.link_frequencies,
+ 				       bus_cfg.nr_of_link_frequencies,
+ 				       link_frequencies, ARRAY_SIZE(link_frequencies),
+
+---
+base-commit: 3aa9296a23ec41a8424e9a2346eea59fb6cb7d8c
+change-id: 20251216-imx283-ext-5968a658dbe6
+
+Best regards,
 -- 
-2.53.0
+Matthias Fend <matthias.fend@emfend.at>
 
 
