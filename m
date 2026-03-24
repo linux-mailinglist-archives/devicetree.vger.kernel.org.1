@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-279623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279624-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SDE/Gng8wmmCagQAu9opvQ
-	(envelope-from <devicetree+bounces-279623-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:25:44 +0100
+	id 4L1OMXo4wml+aQQAu9opvQ
+	(envelope-from <devicetree+bounces-279624-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:08:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFFEA303EE7
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:25:43 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62A0B303B53
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:08:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5B5CC30B519C
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 07:03:13 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 851ED3043003
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 07:07:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 269AC35FF5B;
-	Tue, 24 Mar 2026 07:03:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C57C43BF676;
+	Tue, 24 Mar 2026 07:07:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QKXoM5qF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VsBpJFqJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6255830596F;
-	Tue, 24 Mar 2026 07:03:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 262743BADA5;
+	Tue, 24 Mar 2026 07:07:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774335791; cv=none; b=gjRcu5OiAqoUMkbIL0Ai99u2AbhV1JUboMHfrN9QtQh0mJp4OPjMpqR5YMaE5+bowepqFTe4mvGgcPqSLiSboMOQa2pwfJFe+lc0AV7mkXSSydv5uW86JdmTJySRlYAPmN5i8jolGW1ZydpVmpAUjEMYsqpdGc2w43LaXdg0e9I=
+	t=1774336041; cv=none; b=qgMJwMgqIc/F1B43Gt5sKSmiow7Br4D1MeSXQ/xWsUFHzb5dD1ouWeXUWT1nCeIXqFeR9dra2o0Vf9brVhs/aSLDjKARm6VOOQcXIHhs59MzEXUKomu8mhaV9cr+ZMyg1KjXdTHEOBU6ctesXnns3q1nrDphynQHRcSC/76rgm0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774335791; c=relaxed/simple;
-	bh=CwXBK6fVm+gNvYaEfQdVjfhFcNHS1qZ73sst6qROjsA=;
+	s=arc-20240116; t=1774336041; c=relaxed/simple;
+	bh=A/r+FfTIdYd7bf32ZtnrhZhkNo/CNskrUBFMjphTyAY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TFA8x0PsOIycBK2treVYSJw3UKLJgjlSNAnsq3ZksdOBsqUE38CibsSPddRuGcuaN5pYgpoYb+ihwX4tcjhm0mFrNXjnlhBBkufhlLj9DNTmOE6MBK57pAORIbVM4cXHJzVkn2diwzFo/M2GVwShsmBCTiDuc6RHfva5FpE+rUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QKXoM5qF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF62CC19424;
-	Tue, 24 Mar 2026 07:03:06 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=VH/9h0nly8PZVuEg5CKA0B2IW4Te0Ba4meDbdzoeQVP7Igp83H+1uIvJTrwN+jWyVXsiHvH6Ua7OAQ+8xjTaphkHKZ0UVDRtegubEIcKihQqVBoglgFxUg7VoEJQAjokb2TUXPUhm8hRZTTS1xWNwp0p10HS9dsDPSN4lbF8rFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VsBpJFqJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EF82C19424;
+	Tue, 24 Mar 2026 07:07:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774335790;
-	bh=CwXBK6fVm+gNvYaEfQdVjfhFcNHS1qZ73sst6qROjsA=;
+	s=k20201202; t=1774336040;
+	bh=A/r+FfTIdYd7bf32ZtnrhZhkNo/CNskrUBFMjphTyAY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QKXoM5qFWcy7D9jlIR16E0wYDT8xOLTNS3vHlCGI1uz5yBpQGcyebz4ZRJ4WKllW6
-	 htDEexANY4c1zG6D5yHDNcKDJNc7qlOu2XBIWDCgzSKkwYxpdY+Kx4DWHMS1QjOQhI
-	 8dr5za75dvrC1CRJgYdtd2Wnxhc0FHAbFXvzu7qcBDQSnJQO+qs1q7dPOt7aSpBM4a
-	 XeJ9Z4gZlTOkpkpWW8mFyNC1++jmRz9+iMtbfdREUGJ1qe3uSBGNF1dcJDGr5PWUD+
-	 9Ir1gqNLl3TYpigGK4s+axQsEzGE/BiL6901KoBo3HUi2Q4hv9JPSLJV6KZEw0enr8
-	 BD6UxjciK8Q6w==
-Message-ID: <93505653-ab2c-4cff-905e-bd5379550019@kernel.org>
-Date: Tue, 24 Mar 2026 08:03:05 +0100
+	b=VsBpJFqJ1R+U+EjUVBYjnD1kfUopDa0s5nt9AO0t971Mz8l1KTqo4dVM+xEqy1twh
+	 WMAw7HPZ7TbPbYDcdv41auX+guyrGGFgG9600eMd/8lRBnTl9etI4Qu+UIhxISXWrv
+	 MHa0EkhRyFQqu8hEGOR9+iwqZ6zIdQGSuxHnAers1pSTTdT1QUV21G2Fm9Xxd6AVuY
+	 7w4R1b2WW2vRhtOBrB8up9WVLnCJcbFu7xeom9UbPrV/1jJjIfpaRpfuyWu4OFmEe8
+	 0GVtfjgGgn+DXonH3l+BKuJC6wcqJudFFWhZ6suuCNOKsmBYLrOdlZ99+4K2ogO9dV
+	 N5cR4Se6Cn4BA==
+Message-ID: <171e30f3-e294-40fb-8731-476fb51d5a3c@kernel.org>
+Date: Tue, 24 Mar 2026 08:07:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,18 +53,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: sdm845-oneplus: Enable NFC
-To: david@ixit.cz, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alexander Martinz <amartinz@shift.eco>
-Cc: Petr Hodina <petr.hodina@protonmail.com>,
- biemster <l.j.beemster@gmail.com>, netdev@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, oe-linux-nfc@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- phone-devel@vger.kernel.org
-References: <20260324-oneplus-nfc-v2-0-3eef052c9bc6@ixit.cz>
- <20260324-oneplus-nfc-v2-1-3eef052c9bc6@ixit.cz>
+Subject: Re: [PATCH v2 2/4] iio: adc: meson-saradc: add support for Meson S4
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Nick Xie <nick@khadas.com>, neil.armstrong@linaro.org,
+ khilman@baylibre.com, martin.blumenstingl@googlemail.com,
+ jbrunet@baylibre.com, dlechner@baylibre.com, andy@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+ linux-iio@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260323013408.429701-1-nick@khadas.com>
+ <20260323013408.429701-3-nick@khadas.com>
+ <20260323-quizzical-striped-husky-68e24e@quoll>
+ <20260323200501.6c116226@jic23-huawei>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,7 +111,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260324-oneplus-nfc-v2-1-3eef052c9bc6@ixit.cz>
+In-Reply-To: <20260323200501.6c116226@jic23-huawei>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -118,16 +119,16 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-279623-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-279624-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[protonmail.com,gmail.com,vger.kernel.org,lists.linux.dev];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[khadas.com,linaro.org,baylibre.com,googlemail.com,kernel.org,vger.kernel.org,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -139,21 +140,61 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CFFEA303EE7
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 62A0B303B53
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 24/03/2026 00:20, David Heidelberg via B4 Relay wrote:
-> From: biemster <l.j.beemster@gmail.com>
+On 23/03/2026 21:05, Jonathan Cameron wrote:
+> On Mon, 23 Mar 2026 08:54:21 +0100
+> Krzysztof Kozlowski <krzk@kernel.org> wrote:
 > 
-> Enable NFC controller NXP PN553, which is part of the package NXP NQ330
-> (NFC + eSE).
-> 
-> Signed-off-by: biemster <l.j.beemster@gmail.com>
+>> On Mon, Mar 23, 2026 at 09:34:06AM +0800, Nick Xie wrote:
+>>> Add support for the SARADC found on the Amlogic Meson S4 SoC.
+>>> According to the documentation and current testing, it is fully
+>>> compatible with the G12A parameter set, so we reuse
+>>> `meson_sar_adc_g12a_data` for this new compatible string.
+>>>
+>>> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>>> Signed-off-by: Nick Xie <nick@khadas.com>
+>>> ---
+>>>  drivers/iio/adc/meson_saradc.c | 8 ++++++++
+>>>  1 file changed, 8 insertions(+)
+>>>
+>>> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+>>> index 47cd350498a0d..3ac48b7842c4f 100644
+>>> --- a/drivers/iio/adc/meson_saradc.c
+>>> +++ b/drivers/iio/adc/meson_saradc.c
+>>> @@ -1313,6 +1313,11 @@ static const struct meson_sar_adc_data meson_sar_adc_g12a_data = {
+>>>  	.name = "meson-g12a-saradc",
+>>>  };
+>>>  
+>>> +static const struct meson_sar_adc_data meson_sar_adc_s4_data = {
+>>> +	.param = &meson_sar_adc_g12a_param,
+>>> +	.name = "meson-s4-saradc",
+>>> +};
+>>> +
+>>>  static const struct of_device_id meson_sar_adc_of_match[] = {
+>>>  	{
+>>>  		.compatible = "amlogic,meson8-saradc",
+>>> @@ -1341,6 +1346,9 @@ static const struct of_device_id meson_sar_adc_of_match[] = {
+>>>  	}, {
+>>>  		.compatible = "amlogic,meson-g12a-saradc",
+>>>  		.data = &meson_sar_adc_g12a_data,
+>>> +	}, {
+>>> +		.compatible = "amlogic,meson-s4-saradc",  
+>>
+>> The point of compatible devices is to not add such entries. Drop.
+> It's used for naming in the userspace ABI which is supposed to reflect the part number.
 
-Same comment as last time. We do not take anonymous contributions.
+Indeed, I saw this pattern in more places. Does userspace need it? There
+is no "compatible" entry shown?
+
+If there is no, then probably this could be automated by taking the name
+from compatible after ',', but that would be out of scope for this set,
+so here it is fine.
+
 
 Best regards,
 Krzysztof
