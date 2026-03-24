@@ -1,162 +1,149 @@
-Return-Path: <devicetree+bounces-279705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279706-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OPA1OJRdwml5cAQAu9opvQ
-	(envelope-from <devicetree+bounces-279705-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 10:47:00 +0100
+	id iL/cHHxewmmecAQAu9opvQ
+	(envelope-from <devicetree+bounces-279706-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 10:50:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E92D2305DA5
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 10:46:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E74E5305EA8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 10:50:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 81EA2305C0F7
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:39:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C5251313004F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:39:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D1483148DD;
-	Tue, 24 Mar 2026 09:39:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E303139098D;
+	Tue, 24 Mar 2026 09:39:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="WrHhV/w8"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bFdClbMp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A27637187C;
-	Tue, 24 Mar 2026 09:39:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA6FA38B7A6;
+	Tue, 24 Mar 2026 09:39:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774345143; cv=none; b=PnW5eEGkgovpQXJliPtYCpEBxPMYxNqtXH/hoonmbD8HMPH1gETEE9+M9xLfz/Plo6nwzkmYgWCSMs3Wlm/hxJdHIKjokiVh51jTHZR0NM/Vxye8hPaVZCg+vh/J/I8bbkvkTSBRu8HhmLuYRumliVWpa4kYyrCdH6sVuq6UHKk=
+	t=1774345190; cv=none; b=bsH2CZfI1UAqVd2U97weigPH64G8/MbU8R0ZRXNAjx/Yi6QJnov1q4/hK4GVgJLMEAKzb0MSftYRGLnHhbsgXtEWrD8pViOwVP/je+BW81xUAU8Rkd44B71Q3eEWrPqEb8wogvLpdrhOb+Hj2C4h8KDRfUl8l+xEsg7xT98+qt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774345143; c=relaxed/simple;
-	bh=TTPPThifz10UfsqhlGlvNt9t21lxMo7c1RkYUe/huN8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gri+H8uOIyRD3gRbgfPVBWol73FBgBEjwcmjMrvq4ltGX/3EybeOLWTRXTBZzTmdejdAjES+zPzqkRm2r+KVBhW2hsmETS2wcOps8Gog7W/4+FTpWndUisWzRFjpcRIGDFEucH5/yqTpeYOoRquDRteH3Y4uIzeyXQKhL9LPeAU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=WrHhV/w8; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from killaraus.ideasonboard.com (2001-14ba-703d-e500--2a1.rev.dnainternet.fi [IPv6:2001:14ba:703d:e500::2a1])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id B2858225;
-	Tue, 24 Mar 2026 10:37:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1774345054;
-	bh=TTPPThifz10UfsqhlGlvNt9t21lxMo7c1RkYUe/huN8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WrHhV/w89ce/JGcufnnEc3O5NAb+LNDf+08Cx4axQNens7oJanQZOHtm31Pgym1dX
-	 w3dPH5viujTqi6TLEDLKhSnodiE8mn8nv2WLT/yLl5L2H4cFcebENPimHq59kXBu6L
-	 GaeHDI9MKZ3iR2nZU8450z6rUGQH4R+eE2KVHloQ=
-Date: Tue, 24 Mar 2026 11:38:50 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	Daniel Scally <dan.scally@ideasonboard.com>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Stefan Klug <stefan.klug@ideasonboard.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp-debix-model-a: Correct PAD settings
- for pmicirqgrp
-Message-ID: <20260324093850.GA2351719@killaraus.ideasonboard.com>
-References: <20260324-imx8mp-dts-fix-v1-1-df0eb2f62543@nxp.com>
+	s=arc-20240116; t=1774345190; c=relaxed/simple;
+	bh=eSSk9S/a5tSlLPfTiNb1+UEgdM6nFwQoO2D8Z4eKudw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TE7sRuw4S0GyhUkETlJQ1UiedEprh0Um+lS9cGA5FYcsWluk/OR5757uBpr+2fp8y3YGTxgDOmjlvOzMBjQX1KfLLtQJlYDTUs043lYEj+zeg2f/8DbsAD5163tt99SJqsG98TaXT/SfhNuBjylzC59GAort7tYMHdTIJ653qfM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bFdClbMp; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 16AED1A2FC0;
+	Tue, 24 Mar 2026 09:39:47 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id C5AB86011D;
+	Tue, 24 Mar 2026 09:39:46 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E872210450D32;
+	Tue, 24 Mar 2026 10:39:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1774345185; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=nJpZfWii39Pl2CGVviW5wJECwhKEY7RXjU5Qjoc9wd4=;
+	b=bFdClbMpP0gfSu09EHQpPe4c6GMbqI3IOBKukCVmCXixiIZJUsNqewJjVmalDaJm0wc6DZ
+	kuseC3/48cPQJrKTyE7YkXMNWMaKDvhYHLLH8YGdRRtZSOikYnTfCgzrkx/OdtdREwZqZX
+	Z8cRKBE9KJzrfzJZXrbgQFLNV/yEXbmREH7lWa1YYC4jN19zOGbpTr+TLp9KinrlYmIpD1
+	CWKLER0zgVX2WSysrkvrCYXQtBvyCK8gcDzvaIK0+Q0RQO0CBkXwOP1fGBGRcRkRQaOSWm
+	5QpuBvSUQ9OjTBZOsITKHQ7yCP0VGFnWK28DEP/2FGGuZdkQA7DqeBSdmksgNA==
+Date: Tue, 24 Mar 2026 10:39:34 +0100
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Kevin Hilman <khilman@baylibre.com>
+Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade
+ <andreas@kemnade.info>, Roger Quadros <rogerq@kernel.org>, Tony Lindgren
+ <tony@atomide.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Russell King
+ <linux@armlinux.org.uk>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Bajjuri Praneeth <praneeth@ti.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Louis Chauvet
+ <louis.chauvet@bootlin.com>
+Subject: Re: [PATCH v2 1/3] ARM: dts: ti: Enable overlays for am335x
+ BeagleBoard devicetrees
+Message-ID: <20260324103934.7d259008@kmaincent-XPS-13-7390>
+In-Reply-To: <177275924369.1445909.1029086854461649971.b4-ty@baylibre.com>
+References: <20260216-feature_bbge-v2-1-22805cfdbf62@bootlin.com>
+	<177275924369.1445909.1029086854461649971.b4-ty@baylibre.com>
+Organization: bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260324-imx8mp-dts-fix-v1-1-df0eb2f62543@nxp.com>
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	TAGGED_FROM(0.00)[bounces-279706-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-279705-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,ideasonboard.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	HAS_ORG_HEADER(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[kory.maincent@bootlin.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,ideasonboard.com:dkim,ideasonboard.com:email]
-X-Rspamd-Queue-Id: E92D2305DA5
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:url,baylibre.com:email]
+X-Rspamd-Queue-Id: E74E5305EA8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Peng,
+Hello Kevin,
 
-Thank you for the patch.
+On Thu, 05 Mar 2026 17:07:23 -0800
+Kevin Hilman <khilman@baylibre.com> wrote:
 
-On Tue, Mar 24, 2026 at 11:16:13AM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> With commit 5d0efaf47ee90 ("regulator: pca9450: Correct interrupt type"),
-> there is interrupt storm for i.MX8MP DEBIX Model A. Per schematic, there
-> is no on board PULL-UP resistors for GPIO1_IO03, so need to set PAD
-> PUE and PU together to make pull up work properly.
-> 
-> Fixes: c86d350aae68e ("arm64: dts: Add device tree for the Debix Model A Board")
-> Reported-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Closes: https://lore.kernel.org/all/20260323105858.GA2185714@killaraus.ideasonboard.com/
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> On Mon, 16 Feb 2026 17:55:52 +0100, Kory Maincent (TI) wrote:
+> > Allow overlays to be applied to am335x BeagleBoard boards. This adds
+> > around ~40% to the total size of the DTB files on average.
+> >=20
+> >  =20
+>=20
+> Applied, thanks!
+>=20
+> [1/3] ARM: dts: ti: Enable overlays for am335x BeagleBoard devicetrees
+>       commit: 18161bb01ede109fed41c66efa2624a4c27377f7
+>=20
+> Best regards,
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Thanks for merging it.
+I see that you have merged patch 1 and 2 in your for-next branch.
+Is there a reason to not merge the patch 3? Are you waiting for a dts
+maintainer ack?
 
-Frank, would you be able to handle this as a v7.0 regression fix ?
+Maybe I can resend only the 3rd patch to ping the dts maintainers.
 
-I think the same is needed for imx8mp-debix-som-a.dtsi, but I can't
-confirm it as I don't have the schematics for the SoM, neither do I have
-access to the board.
-
-Dan, Kieran, Stefan, could one of you check if you get an interrupt
-storm from the PMIC on v7.0 ?
-
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> index 9422beee30b29c5a551b08476c80fbff96af3439..df7489587e48ed0c678f11291f6f2b77082ade95 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-> @@ -440,7 +440,7 @@ MX8MP_IOMUXC_SAI5_RXC__I2C6_SDA					0x400001c3
->  
->  	pinctrl_pmic: pmicirqgrp {
->  		fsl,pins = <
-> -			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03				0x41
-> +			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03				0x000001c0
->  		>;
->  	};
->  
-> 
-> ---
-> base-commit: 09c0f7f1bcdbc3c37a5a760cbec76bf18f278406
-> change-id: 20260324-imx8mp-dts-fix-512530fe4dcd
-
--- 
 Regards,
-
-Laurent Pinchart
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
