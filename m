@@ -1,254 +1,286 @@
-Return-Path: <devicetree+bounces-279654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-279658-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0PIdBoRLwmnvbAQAu9opvQ
-	(envelope-from <devicetree+bounces-279654-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:29:56 +0100
+	id +AE3M0NJwmnvbAQAu9opvQ
+	(envelope-from <devicetree+bounces-279658-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:20:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A303E304A11
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:29:55 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id D05413047B3
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 09:20:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 246133272A80
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:12:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D49B9301371E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 08:20:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF00B3D34BF;
-	Tue, 24 Mar 2026 08:11:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PZae4Bgf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FE4B35C181;
+	Tue, 24 Mar 2026 08:20:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from rmisp-mx-out1.tele.net (rmisp-mx-out1.tele.net [194.208.23.36])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0505C3D34B9;
-	Tue, 24 Mar 2026 08:11:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1B08315793;
+	Tue, 24 Mar 2026 08:20:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.208.23.36
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774339866; cv=none; b=ozFMUvAL7bc2lD89rTA97KmcYvMiJMh/2kwGUal0OHiHU4sjXmqoWzg0NntRzidwtb5h+dKjXvgPOnzBMRkml6C1S2VTdKHC1t+XnpGKoWMmqv1KetzwqGcFiYiFL22hW4X7au2jDzNQBk0/pkb1iJhyl8UxrNYwPKhflxDTYSs=
+	t=1774340411; cv=none; b=q2kz7OswlXjIMO+Zpmt9z0R7ehfKcI6qJ8WYrhmmsWp7lvIlqxt2HYmxSZW7vfmoyPRSnzezvg9qKc04eTHG4JbNiUw7XZ5ivh+qshpDIMi5s4Iu2MRBxxgQKENirNLrlR1Vtyx90v1UhBUzM5udJCyn2yHuOEhLd3azSuZ1HLw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774339866; c=relaxed/simple;
-	bh=4wYp2kvlTe7W4BVFdfA1zitcIB2NluJJLog6Tzdvkkk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qq05z2uIe/Zugis3gdsGLjue2+Ul6RXnX2p7hvRbl02ow7LBfz5N69CAYgWb10B0bKWD9gDd1HuIyNhIHUPyzs47oEA7h6mvNPcmaoxa6HvzRkqOIG+vvLptHfEnLOBBmHoRUqmrC1BO8y4anZp9s1AraJky3ck5fYRwhla3cC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PZae4Bgf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EF32C19424;
-	Tue, 24 Mar 2026 08:10:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774339865;
-	bh=4wYp2kvlTe7W4BVFdfA1zitcIB2NluJJLog6Tzdvkkk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PZae4BgfB4ekHL2AdGZahorV88dAVhJoMjOdIDN4kGnh2AtSx37oCw9mNW5drc5W3
-	 c5q8LipX2Wz/tPgcRJMLQ+c4fPeH2lWjIYh1d5rQxCmhgY30uJSkcalPtwMAVmPHS8
-	 4dg69Erqr1Q7OuSdpX39UeWojv7k3pNUSov7CZc1xmHknqXdZsJjeqaztUVQKJNQBj
-	 NyZYH58Zi5CfB2ejLmjdSH9I1JlGZv5aSYdp/uZ0FOYG8D7Xem52+fCYwDGBWhl0qv
-	 okDIDYpdEGrl9AvXte3SFyHxkfBXcyugJb05Y9dtw/mWicZcXuwzvH71570LBnllqJ
-	 Tpr+r8ov6Ho3A==
-Date: Tue, 24 Mar 2026 13:40:50 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	bhelgaas@google.com, frank.li@nxp.com, l.stach@pengutronix.de, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	festevam@gmail.com, linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 5/5] arm64: dts: imx943-evk: Add pcie[0,1] and
- pcie-ep[0,1] support
-Message-ID: <jd6n4ibrf734npaieshkvoejtreplkmkyc34qsr6rkdfpydkou@mjzdo6ygo2dy>
-References: <20260324023036.784466-1-hongxing.zhu@nxp.com>
- <20260324023036.784466-6-hongxing.zhu@nxp.com>
+	s=arc-20240116; t=1774340411; c=relaxed/simple;
+	bh=6Nj7K0puMLvdvQEy4b5/QBJf7rztEGJDx6sVVYANlq0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uOmP+iuAuTgU4lhDe8YNUl4ypkeI9Bbkw/pnkqn2+ZomdexwukoYnv3MsLBzu7oKr5wWTZoN787i9A4N4Qg8i4tze5/YXi9DK3rIqMBnG5VSUyXssNu/nkazqrFK8gJR+PgFShVWuiyIzue8BKL32i+VN39DnCPximmPlL237PQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=fail smtp.mailfrom=emfend.at; arc=none smtp.client-ip=194.208.23.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=emfend.at
+Received: from [192.168.0.207] (194-208-208-245.tele.net [194.208.208.245])
+	by rmisp-mx-out1.tele.net (Postfix) with ESMTPA id 3D9F110E3CAA;
+	Tue, 24 Mar 2026 09:12:40 +0100 (CET)
+Message-ID: <47cee08f-4500-48ee-aea6-afba5a611211@emfend.at>
+Date: Tue, 24 Mar 2026 09:12:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260324023036.784466-6-hongxing.zhu@nxp.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 8/9] media: i2c: ov08d10: add support for reset and
+ power management
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Jimmy Su <jimmy.su@intel.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, bsp-development.geo@leica-geosystems.com
+References: <20260309-ov08d10-v2-0-81f8b5d99984@emfend.at>
+ <20260309-ov08d10-v2-8-81f8b5d99984@emfend.at>
+ <abkUy5U-cwK-6_kz@kekkonen.localdomain>
+Content-Language: de-DE
+From: Matthias Fend <matthias.fend@emfend.at>
+In-Reply-To: <abkUy5U-cwK-6_kz@kekkonen.localdomain>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-279654-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,google.com,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-279658-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[emfend.at];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[matthias.fend@emfend.at,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:email]
-X-Rspamd-Queue-Id: A303E304A11
+	RCPT_COUNT_SEVEN(0.00)[11];
+	R_DKIM_NA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D05413047B3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 24, 2026 at 10:30:36AM +0800, Richard Zhu wrote:
-> Add pcie[0,1] and pcie-ep[0,1] support.
+Hi Sakari,
+
+Thanks for your comments.
+
+Am 17.03.2026 um 09:46 schrieb Sakari Ailus:
+> On Mon, Mar 09, 2026 at 06:07:10PM +0100, Matthias Fend wrote:
+>> Add support for the required power supplies as well as the control of an
+>> optional sensor reset.
+>>
+>> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
+>> ---
+>>   drivers/media/i2c/ov08d10.c | 93 ++++++++++++++++++++++++++++++++++++++++++++-
+>>   1 file changed, 92 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/media/i2c/ov08d10.c b/drivers/media/i2c/ov08d10.c
+>> index ce0fa30a86129302b5dda0b8796e44054fd77c88..19035991e8bb164d4fca5d87ee4551191974e8bb 100644
+>> --- a/drivers/media/i2c/ov08d10.c
+>> +++ b/drivers/media/i2c/ov08d10.c
+>> @@ -8,6 +8,7 @@
+>>   #include <linux/module.h>
+>>   #include <linux/pm_runtime.h>
+>>   #include <linux/regulator/consumer.h>
+>> +#include <linux/reset.h>
+>>   #include <media/v4l2-ctrls.h>
+>>   #include <media/v4l2-device.h>
+>>   #include <media/v4l2-fwnode.h>
+>> @@ -513,9 +514,17 @@ static const char * const ov08d10_test_pattern_menu[] = {
+>>   	"Standard Color Bar",
+>>   };
+>>   
+>> +static const char *const ov08d10_supply_names[] = {
+>> +	"dovdd",	/* Digital I/O power */
+>> +	"avdd",		/* Analog power */
+>> +	"dvdd",		/* Digital core power */
+>> +};
+>> +
+>>   struct ov08d10 {
+>>   	struct device *dev;
+>>   	struct clk *clk;
+>> +	struct reset_control *reset;
+>> +	struct regulator_bulk_data supplies[ARRAY_SIZE(ov08d10_supply_names)];
+>>   
+>>   	struct v4l2_subdev sd;
+>>   	struct media_pad pad;
+>> @@ -1265,6 +1274,56 @@ static const struct v4l2_subdev_internal_ops ov08d10_internal_ops = {
+>>   	.open = ov08d10_open,
+>>   };
+>>   
+>> +static int ov08d10_power_off(struct device *dev)
+>> +{
+>> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+>> +	struct ov08d10 *ov08d10 = to_ov08d10(sd);
+>> +
+>> +	reset_control_assert(ov08d10->reset);
+>> +
+>> +	regulator_bulk_disable(ARRAY_SIZE(ov08d10->supplies),
+>> +			       ov08d10->supplies);
+>> +
+>> +	clk_disable_unprepare(ov08d10->clk);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int ov08d10_power_on(struct device *dev)
+>> +{
+>> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+>> +	struct ov08d10 *ov08d10 = to_ov08d10(sd);
+>> +	int ret;
+>> +
+>> +	ret = regulator_bulk_enable(ARRAY_SIZE(ov08d10->supplies),
+>> +				    ov08d10->supplies);
+>> +	if (ret < 0) {
+>> +		dev_err(dev, "failed to enable regulators: %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	ret = clk_prepare_enable(ov08d10->clk);
+>> +	if (ret < 0) {
+>> +		regulator_bulk_disable(ARRAY_SIZE(ov08d10->supplies),
+>> +				       ov08d10->supplies);
+>> +
+>> +		dev_err(dev, "failed to enable imaging clock: %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	if (ov08d10->reset) {
+>> +		/* Delay from DVDD stable to sensor XSHUTDN pull up: 5ms */
+>> +		fsleep(5 * USEC_PER_MSEC);
+>> +
+>> +		reset_control_deassert(ov08d10->reset);
+>> +
+>> +		/* Delay from XSHUTDN pull up to SCCB start: 8ms */
+>> +		fsleep(8 * USEC_PER_MSEC);
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   static int ov08d10_identify_module(struct ov08d10 *ov08d10)
+>>   {
+>>   	struct i2c_client *client = v4l2_get_subdevdata(&ov08d10->sd);
+>> @@ -1371,6 +1430,10 @@ static void ov08d10_remove(struct i2c_client *client)
+>>   	media_entity_cleanup(&sd->entity);
+>>   	v4l2_ctrl_handler_free(sd->ctrl_handler);
+>>   	pm_runtime_disable(ov08d10->dev);
+>> +	if (!pm_runtime_status_suspended(ov08d10->dev)) {
+>> +		ov08d10_power_off(ov08d10->dev);
+>> +		pm_runtime_set_suspended(ov08d10->dev);
+>> +	}
+>>   	mutex_destroy(&ov08d10->mutex);
+>>   }
+>>   
+>> @@ -1378,6 +1441,7 @@ static int ov08d10_probe(struct i2c_client *client)
+>>   {
+>>   	struct ov08d10 *ov08d10;
+>>   	unsigned long freq;
+>> +	unsigned int i;
+>>   	int ret;
+>>   
+>>   	ov08d10 = devm_kzalloc(&client->dev, sizeof(*ov08d10), GFP_KERNEL);
+>> @@ -1403,12 +1467,32 @@ static int ov08d10_probe(struct i2c_client *client)
+>>   		return ret;
+>>   	}
+>>   
+>> +	ov08d10->reset = devm_reset_control_get_optional_exclusive(ov08d10->dev, NULL);
+>> +	if (IS_ERR(ov08d10->reset))
+>> +		return dev_err_probe(ov08d10->dev, PTR_ERR(ov08d10->reset),
+>> +				     "failed to get reset\n");
+>> +	reset_control_assert(ov08d10->reset);
+>> +
+>> +	for (i = 0; i < ARRAY_SIZE(ov08d10_supply_names); i++)
 > 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/Makefile       |  4 +
->  arch/arm64/boot/dts/freescale/imx943-evk.dts | 83 ++++++++++++++++++++
->  2 files changed, 87 insertions(+)
+> You can declare i here.
+
+Right. But since the variable will also be needed in other places in the 
+next commit, it would have to be moved again. Therefore, in the end, 
+might it be simpler to leave it where it is?
+
+Thanks
+  ~Matthias
+
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index bae24b53bce6..1366e25a9efd 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -465,6 +465,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk-sof.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx95-toradex-smarc-dev.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx95-tqma9596sa-mb-smarc-2.dtb
->  
-> +imx943-evk-pcie0-ep-dtbs += imx943-evk.dtb imx-pcie0-ep.dtbo
-> +imx943-evk-pcie1-ep-dtbs += imx943-evk.dtb imx-pcie1-ep.dtbo
-> +dtb-$(CONFIG_ARCH_MXC) += imx943-evk-pcie0-ep.dtb imx943-evk-pcie1-ep.dtb
-> +
->  imx95-15x15-evk-pcie0-ep-dtbs = imx95-15x15-evk.dtb imx-pcie0-ep.dtbo
->  dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk-pcie0-ep.dtb
->  imx95-19x19-evk-pcie0-ep-dtbs += imx95-19x19-evk.dtb imx-pcie0-ep.dtbo
-> diff --git a/arch/arm64/boot/dts/freescale/imx943-evk.dts b/arch/arm64/boot/dts/freescale/imx943-evk.dts
-> index 1d834379f602..ea0100b37d5c 100644
-> --- a/arch/arm64/boot/dts/freescale/imx943-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx943-evk.dts
-> @@ -51,6 +51,20 @@ chosen {
->  		stdout-path = &lpuart1;
->  	};
->  
-> +	pcie_ref_clk: clock-pcie-ref {
-> +		compatible = "gpio-gate-clock";
-> +		clocks = <&xtal25m>;
-> +		#clock-cells = <0>;
-> +		enable-gpios = <&pca9670_i2c3 7 GPIO_ACTIVE_LOW>;
-> +	};
-> +
-> +	xtal25m: clock-xtal25m {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <25000000>;
-> +		clock-output-names = "xtal_25MHz";
-> +	};
-> +
->  	dmic: dmic {
->  		compatible = "dmic-codec";
->  		#sound-dai-cells = <0>;
-> @@ -72,6 +86,15 @@ reg_m2_pwr: regulator-m2-pwr {
->  		startup-delay-us = <5000>;
->  	};
->  
-> +	reg_slot_pwr: regulator-slot-pwr {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "PCIe slot-power";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&pcal6416_i2c3_u46 0 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
->  	reg_m2_wlan: regulator-wlan {
->  		compatible = "regulator-fixed";
->  		regulator-name = "WLAN_EN";
-> @@ -704,6 +727,18 @@ IMX94_PAD_GPIO_IO28__LPI2C6_SCL		0x40000b9e
->  		>;
->  	};
->  
-> +	pinctrl_pcie0: pcie0grp {
-> +		fsl,pins = <
-> +			IMX94_PAD_GPIO_IO20__PCIE1_CLKREQ_B	0x4000031e
-> +		>;
-> +	};
-> +
-> +	pinctrl_pcie1: pcie1grp {
-> +		fsl,pins = <
-> +			IMX94_PAD_GPIO_IO23__PCIE2_CLKREQ_B	0x4000031e
-> +		>;
-> +	};
-> +
->  	pinctrl_pdm: pdmgrp {
->  		fsl,pins = <
->  			IMX94_PAD_PDM_CLK__PDM_CLK			0x31e
-> @@ -878,6 +913,54 @@ IMX94_PAD_XSPI1_DQS__XSPI1_A_DQS	0x3fe
->  	};
->  };
->  
-> +&pcie0 {
-> +	pinctrl-0 = <&pinctrl_pcie0>;
-> +	pinctrl-names = "default";
-> +	clocks = <&scmi_clk IMX94_CLK_HSIO>,
-> +		 <&scmi_clk IMX94_CLK_HSIOPLL>,
-> +		 <&scmi_clk IMX94_CLK_HSIOPLL_VCO>,
-> +		 <&scmi_clk IMX94_CLK_HSIOPCIEAUX>,
-> +		 <&hsio_blk_ctl 0>,
-> +		 <&pcie_ref_clk>;
-> +	clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux",
-> +		      "ref", "extref";
-> +	reset-gpio = <&pcal6416_i2c3_u46 3 GPIO_ACTIVE_LOW>;
-> +	vpcie3v3aux-supply = <&reg_m2_wlan>;
-> +	supports-clkreq;
-> +	status = "okay";
-> +};
-> +
-> +&pcie0_ep {
-> +	pinctrl-0 = <&pinctrl_pcie0>;
-> +	pinctrl-names = "default";
-> +	vpcie-supply = <&reg_m2_wlan>;
-> +	status = "disabled";
-> +};
-> +
-> +&pcie1 {
-> +	pinctrl-0 = <&pinctrl_pcie1>;
-> +	pinctrl-names = "default";
-> +	clocks = <&scmi_clk IMX94_CLK_HSIO>,
-> +		 <&scmi_clk IMX94_CLK_HSIOPLL>,
-> +		 <&scmi_clk IMX94_CLK_HSIOPLL_VCO>,
-> +		 <&scmi_clk IMX94_CLK_HSIOPCIEAUX>,
-> +		 <&hsio_blk_ctl 0>,
-> +		 <&pcie_ref_clk>;
-> +	clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux",
-> +		      "ref", "extref";
-> +	reset-gpio = <&pcal6416_i2c3_u46 1 GPIO_ACTIVE_LOW>;
-> +	vpcie3v3aux-supply = <&reg_slot_pwr>;
-
-I'd strongly recommend you to switch to Root Port binding and make use of
-PWRCTRL_GENERIC driver to handle this supply. But this can be done later.
-
-- Mani
-
-> +	supports-clkreq;
-> +	status = "okay";
-> +};
-> +
-> +&pcie1_ep {
-> +	pinctrl-0 = <&pinctrl_pcie1>;
-> +	pinctrl-names = "default";
-> +	vpcie-supply = <&reg_slot_pwr>;
-> +	status = "disabled";
-> +};
-> +
->  &usb2 {
->  	dr_mode = "otg";
->  	disable-over-current;
-> -- 
-> 2.37.1
+>> +		ov08d10->supplies[i].supply = ov08d10_supply_names[i];
+>> +
+>> +	ret = devm_regulator_bulk_get(ov08d10->dev,
+>> +				      ARRAY_SIZE(ov08d10->supplies),
+>> +				      ov08d10->supplies);
+>> +	if (ret)
+>> +		return dev_err_probe(ov08d10->dev, ret,
+>> +				     "failed to get regulators\n");
+>> +
+>>   	v4l2_i2c_subdev_init(&ov08d10->sd, client, &ov08d10_subdev_ops);
+>>   
+>> +	ret = ov08d10_power_on(ov08d10->dev);
+>> +	if (ret)
+>> +		return dev_err_probe(ov08d10->dev, ret, "failed to power on\n");
+>> +
+>>   	ret = ov08d10_identify_module(ov08d10);
+>>   	if (ret) {
+>>   		dev_err(ov08d10->dev, "failed to find sensor: %d\n", ret);
+>> -		return ret;
+>> +		goto probe_error_power_off;
+>>   	}
+>>   
+>>   	mutex_init(&ov08d10->mutex);
+>> @@ -1452,9 +1536,15 @@ static int ov08d10_probe(struct i2c_client *client)
+>>   	v4l2_ctrl_handler_free(ov08d10->sd.ctrl_handler);
+>>   	mutex_destroy(&ov08d10->mutex);
+>>   
+>> +probe_error_power_off:
+>> +	ov08d10_power_off(ov08d10->dev);
+>> +
+>>   	return ret;
+>>   }
+>>   
+>> +static DEFINE_RUNTIME_DEV_PM_OPS(ov08d10_pm_ops,
+>> +				 ov08d10_power_off, ov08d10_power_on, NULL);
+>> +
+>>   #ifdef CONFIG_ACPI
+>>   static const struct acpi_device_id ov08d10_acpi_ids[] = {
+>>   	{ "OVTI08D1" },
+>> @@ -1473,6 +1563,7 @@ MODULE_DEVICE_TABLE(of, ov08d10_of_match);
+>>   static struct i2c_driver ov08d10_i2c_driver = {
+>>   	.driver = {
+>>   		.name = "ov08d10",
+>> +		.pm = pm_ptr(&ov08d10_pm_ops),
+>>   		.acpi_match_table = ACPI_PTR(ov08d10_acpi_ids),
+>>   		.of_match_table = ov08d10_of_match,
+>>   	},
+>>
 > 
 
--- 
-மணிவண்ணன் சதாசிவம்
 
