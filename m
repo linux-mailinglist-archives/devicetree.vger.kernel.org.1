@@ -1,86 +1,115 @@
-Return-Path: <devicetree+bounces-280096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-280098-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oDI8N1AZw2kUoQQAu9opvQ
-	(envelope-from <devicetree+bounces-280096-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 00:08:00 +0100
+	id gAmZI6Maw2kuoQQAu9opvQ
+	(envelope-from <devicetree+bounces-280098-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 00:13:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8425C31DA18
-	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 00:08:00 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05E9631DA94
+	for <lists+devicetree@lfdr.de>; Wed, 25 Mar 2026 00:13:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8780B302A6AA
-	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 23:07:33 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C6330307099B
+	for <lists+devicetree@lfdr.de>; Tue, 24 Mar 2026 23:13:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C67A43C7DF6;
-	Tue, 24 Mar 2026 23:07:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 020E73CA492;
+	Tue, 24 Mar 2026 23:13:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aDSKXnum"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="A/XlBMu3";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DW+43oaU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1E83537E0;
-	Tue, 24 Mar 2026 23:07:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A687935A93C
+	for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 23:13:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1774393652; cv=none; b=aEJ/zaJU3OK0oHGmz7kBWQUPQ6CaHnkB1CKvfEZG5pV3QYntd4e83ga/4GZgzTsVnERiYS9bh7N0a94d+8YwOr8zIt5TOXQDjfKvOlTUCxNrug0BqawvsTyh6U9A0r5ecJcvUWm+ZThn/79zHTzuEgBQxU9k84WQnlAYXvRjlPs=
+	t=1774394016; cv=none; b=COzBfnkibQ1eaTacdl4SpqQbo8vIhIEHHY0yhflP3X/dTxJ7GKx3iy9V25sNJn2zw5DvCnyG9ZiFsuPIhKDPBOt55Ti3+H65G00aR1sg1Fz8FZPN0svH5NK6ZMq/gILDSvbCv+ZyyQWUgzKQbkHygvEzH00P6DMvY3QGaEi3pWE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1774393652; c=relaxed/simple;
-	bh=Fk4wnbWrvlRCpYY7EBpy23iVhDEFFSBBmhNUHDrnqG4=;
+	s=arc-20240116; t=1774394016; c=relaxed/simple;
+	bh=VnJEUpt8Pn7TMxFiZmKTIjn63h23uf996H0jDMY17m0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ed5j6OkGRw8KHNHJ8uSC6RxP5dGum19ypDJPEX2KC4yABHAcGtb7BAAXonQT2pCTxOu8rXo0cpg56oJ850cquyGpQIC8Tmqm+ETAXM4x/tlTThUwsaR7p2M/0qpVKCwgaSyst2CIgdhoZZSTC3qI8BmIZqPUuCC5t52WmimDDTQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aDSKXnum; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1774393651; x=1805929651;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Fk4wnbWrvlRCpYY7EBpy23iVhDEFFSBBmhNUHDrnqG4=;
-  b=aDSKXnumR8zhloF71Id+ISuPShHU6Dz1GIfvMd7DGvb+nnPSxTZjzchu
-   pYQvTt7VZFZnm3UJMpJTua5JBEc8alMW040s6PCzXEm4isgV2rpk//lfZ
-   ZFn94XPWhagmoJ8DDJH7IqsIkm4JOPz2maPxK9gn0fOg6nXUWf8B0gE9Z
-   jDjoVGmye5TqY/4b9B/4P4GyeI+KIGIgSEVh0y7EP7uuDH7sWRqsRvkjC
-   Jc7Zq9eVhueDhbb4N5ESaTHpHHnd7iIAc6xnteLj5Vbs4hCDd8K8O93Pm
-   EbISxbukq5vLX3wcAOmdP/a/9hSfPoKzrFdKfFddwNKMvFmuulMJj+xjN
-   w==;
-X-CSE-ConnectionGUID: +Eikmg69SaOmS+4uStbeXA==
-X-CSE-MsgGUID: yd1refesTlaNnzCsyOJLyg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75618051"
-X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; 
-   d="scan'208";a="75618051"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Mar 2026 16:07:31 -0700
-X-CSE-ConnectionGUID: SrpYwx6GQpubSXWUutx8/A==
-X-CSE-MsgGUID: wFIBomXZTwmmjw22K+0L0A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; 
-   d="scan'208";a="224511070"
-Received: from lkp-server01.sh.intel.com (HELO 3905d212be1b) ([10.239.97.150])
-  by orviesa008.jf.intel.com with ESMTP; 24 Mar 2026 16:07:26 -0700
-Received: from kbuild by 3905d212be1b with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1w5AqJ-000000005YH-1gIj;
-	Tue, 24 Mar 2026 23:07:23 +0000
-Date: Wed, 25 Mar 2026 07:06:56 +0800
-From: kernel test robot <lkp@intel.com>
-To: Yu-Chun Lin <eleanor.lin@realtek.com>, mturquette@baylibre.com,
-	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, p.zabel@pengutronix.de, cylee12@realtek.com,
-	afaerber@suse.com, jyanchou@realtek.com
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-realtek-soc@lists.infradead.org, james.tai@realtek.com,
-	cy.huang@realtek.com, stanley_chang@realtek.com,
-	eleanor.lin@realtek.com
-Subject: Re: [PATCH v5 09/10] clk: realtek: Add RTD1625-CRT clock controller
- driver
-Message-ID: <202603250636.b3J5aCGL-lkp@intel.com>
-References: <20260324025332.3416977-10-eleanor.lin@realtek.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=FegePoPjzr9auUGIOm3Bqwpg0M8pt5DKHryD2VGcchFGqPN+VscjSly131xSUuraBbS+jxNoJ0vGFbiM666Z65FiB/4bGKYVIlzhGq0/LItMAZogeGboTV9iAc1ADw65FstjJNk+JgujveFFff+5IbPRD4MSzhQSZ4OHp2xJYAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=A/XlBMu3; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DW+43oaU; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62OMg7CA2787794
+	for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 23:13:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=Ub388pzW/wDo7n70J6wJkQwd
+	yj2opG87yqZpV9tyaSU=; b=A/XlBMu3lQ61fKzjZB5JV81gDFvTy7BDXCA9vgLF
+	DiXRC81pwqkTbL6bHmGmgDLQaPY3KaX4DQ+FlpvST8F2hqjjQtJAgnXnZ5k1MsAA
+	4/W7BALdv4+CI+TWdI9swO2JAgn2J5dx/VE7Lw7M8vC+Rx7rnagu/D+6RYbghWbB
+	5BiBZJRFsfsxvXH1nrQRYQnwYhw4FHcxKi5GNPjDIT7nJtyYMkYtV/hecqUjjSbn
+	fzSqS6m6yDVo5xK4s0wKYlo0TJFTTsTAv5pTm1qifH79JKmZGGPhqLJnctrZG5W3
+	VWACeAjD3Htyw3BxGFg19pPA9Lz/aeFMfL/E6pf0QGrcJA==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4d3sw42j2d-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 23:13:34 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-50b274f94f8so13743531cf.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Mar 2026 16:13:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1774394014; x=1774998814; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ub388pzW/wDo7n70J6wJkQwdyj2opG87yqZpV9tyaSU=;
+        b=DW+43oaUrPT3pt3nZRbaKiM5IG38sFZARrFm+LILhtRBDiMYzD4cYdJMbqhRKNl0pH
+         IHv0rqZXXlMduIXPE7GcwDPOFN1q4nMvsPNZEh6NELfWRbr9PnRpGd+sDBuaf/99pERU
+         RqyNf0n1RX6VQbwSQr9yvALQWLJmMMnhLsPH1O9Tw8NIYdhY+pdVW2IGzstxKMJrDpj+
+         y8bmL239vni/xZ6r2BOs9XVzRbTlMJkU+AssuNanPzFo9/9SgndiM7XZUKpAo1CqPq5q
+         KZGSzSpmNmsX+tWeK33Txi/TStssdzIVwx+pzV4cRIxhoZTLRklQvbSbqGXFEoAgzsO/
+         cF+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774394014; x=1774998814;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ub388pzW/wDo7n70J6wJkQwdyj2opG87yqZpV9tyaSU=;
+        b=SbUwNSG1rVhouvqrWKopqMLiYttBvqEL576d6cLitq+EWlypLMMhx/bcBmppN8XaZp
+         V5rLCECEBw3Jg3/TEKacFDnrWoqhIRCY3Do72lLjFfoF5dtGQz1NXFrrWwwP4I1Nj1sD
+         D5aMgMooDRmH8XMIAdp9lGEydNMKzgL3Q20tmk2U1fdBRxdzDWHazTB8LxkOl10Ctl4U
+         rgp3AWVIrDOe2mWJJFvwencLqDZrhhOOvlrOn2fa2orOSdx5Ggq7adopCEwV7roABto1
+         HhFIKRzexCnLh+u0q607apJe8fC5EPTrqQ3f34ysJqfpw+BDlxnHpdzL1CiWV+SlGq4I
+         OSaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXEmbh0R7TKq6/hXDmvvkEoqVV+FfITmRHekKwx1daFyif3MJPh2JEzJ4JvCYn8kUW0DML4DMftzkpf@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWcHq0GXsw9bHgyWPWheZhn9bTFB9F6x02f9XSM2xu4xTApKgF
+	lgqMIVlB++1Ta99e85IUJWOvoBiYxhTgj8gKgT/6wuVbzJHtdt+vbN0p6n6zMWVZnvRNmsZZI3W
+	qcPWU7MNXk7soW7PfJhr7d007Uwp3RhTmcE38p11O3wI0DMRGsBJ1hlDptAz1JfEt3X46wfrc
+X-Gm-Gg: ATEYQzzreCFonz10EPuGtJ1nXZm8WfkLve2anYEfg2WJCYEi9KCzTiN57+FMjvDyp1p
+	KH9Dwxtxpannx8+clgMO4WvF9VwSQnujisW4LNETDQXAvCxNgdzv8UDZxf+x+RffwQzInyNLNE9
+	e3EjWGaB0M6ITrMBEMZzvFqGD+6yYvVu4s1mhhzSGX/fZk28mp9bxAhv3iNGJVGXDfYFni8P5mx
+	Fd8ktQi69/8G07IoK7POUXq2LzxkI58Gp5bVxJ8rnAbG/T3Zazdzbe6UwRzqxD1wkkSDb1KueS3
+	yknvai5ERwIDFda4nqT40Oi/v84JpB/zQ2OTLTLP4JioxoFYixxEuQAefIiaY3HTlu/ltm+Nnue
+	j+xHKfqOH5tb1jpvfTAO50vkSYsiZTddmo2pIl1igYjfPQ7djrdQ44lN4zziYyMZYRb5kbB4qtl
+	vbtHp5i3c8Pp2uk3j+RCOfUfPUoNJ/Nptybr8=
+X-Received: by 2002:ac8:7d90:0:b0:50b:47d4:a055 with SMTP id d75a77b69052e-50b6ee6aaebmr74622541cf.27.1774394013810;
+        Tue, 24 Mar 2026 16:13:33 -0700 (PDT)
+X-Received: by 2002:ac8:7d90:0:b0:50b:47d4:a055 with SMTP id d75a77b69052e-50b6ee6aaebmr74622131cf.27.1774394013368;
+        Tue, 24 Mar 2026 16:13:33 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a285192e93sm3462838e87.13.2026.03.24.16.13.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Mar 2026 16:13:30 -0700 (PDT)
+Date: Wed, 25 Mar 2026 01:13:28 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: purwa: deduplicate thermal sensors
+ with Hamoa
+Message-ID: <ftdzj5zcxs44zm3yyhv6hfwejkmxyfqb3w3snfeey2epmfuafz@qjl6ooz2gyzc>
+References: <20260320-purwa-drop-thermals-v1-1-2c9fe046cd02@oss.qualcomm.com>
+ <f25eb68c-3877-4ce7-b3cd-0910a00be30a@oss.qualcomm.com>
+ <xy2jzlamtkpqfpcpegoysyh6u2cnfubkz5233yvuuzfutzpxkf@w3inytibm3sq>
+ <7d13d449-17e5-4838-b4bf-f9ce14e1142e@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,125 +118,87 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260324025332.3416977-10-eleanor.lin@realtek.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+In-Reply-To: <7d13d449-17e5-4838-b4bf-f9ce14e1142e@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI0MDE3OSBTYWx0ZWRfX+ooHS2AsylPd
+ 1qAUNVuE45u2cCWHfg2SYvcFpzl1kHtGp2lAqXTdNHcaexq3msqNB8ar8g7u09IKPnC0vIaRC3T
+ 1AySM/aUMbZ7qjtlVaSZpxDTC5l+X3rJqBTl2wmzZFmcPuZ8o9rLYbDLwqlBa77CLCqcM+nVF86
+ EG+V0FIc/+p6PtFqRq4bDS62q7r7PfQIjIVPW8RQBK77Fbri6S/x6azEXZu5mvQwOqLT/KasCxH
+ 3pUlp3RhV/5llE5y+ck9Zg8MTsVaV7uA4pIMFHdVTEUcRLzTYTMRlum4fpSG6uDEZSuhlfCcbIO
+ Mrj213FycV9jsNd4DDUbhxud2pM/CVxpynuTDpFEZ+IjzlWjvDKN+csJBAnSLLRorSCyOMy2tP2
+ jNhBY1A8b32f+JDvor7UfnhnhP00+YP1X4dWvJ2qjnuVw6qwRhn4GnpMuHXZ5lU5VU5o7JkOdPn
+ ZVPW5KX8NpeWlLCo9CA==
+X-Proofpoint-GUID: ca8GrA-049LMr7il5ZY5FLCnv2r-kmk8
+X-Authority-Analysis: v=2.4 cv=bpVBxUai c=1 sm=1 tr=0 ts=69c31a9e cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=EUspDBNiAAAA:8
+ a=tETO4GxROsegJAF-TI0A:9 a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-ORIG-GUID: ca8GrA-049LMr7il5ZY5FLCnv2r-kmk8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-24_04,2026-03-24_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 clxscore=1015 priorityscore=1501 malwarescore=0 adultscore=0
+ bulkscore=0 spamscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603240179
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-280096-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-280098-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,01.org:url]
-X-Rspamd-Queue-Id: 8425C31DA18
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 05E9631DA94
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Yu-Chun,
+On Tue, Mar 24, 2026 at 10:25:30AM +0100, Konrad Dybcio wrote:
+> On 3/23/26 5:49 PM, Dmitry Baryshkov wrote:
+> > On Mon, Mar 23, 2026 at 04:21:00PM +0100, Konrad Dybcio wrote:
+> >> On 3/20/26 3:33 AM, Dmitry Baryshkov wrote:
+> >>> Hamoa and Purwa have pretty close thermal zones definitions. The major
+> >>> difference is that several zones are absent (because of the lack of the
+> >>> CPU cluster) and several zones use tsens2 instead of tsens3.
+> >>>
+> >>> Instead of completely duplicating thermal zones for Purwa, reuse themal
+> >>> zones from Hamoa, patching them where required.
+> >>>
+> >>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> >>> ---
+> >>
+> >> Slightly reluctantly:
+> > 
+> > Why? I'd really interested here.
+> 
+> I suppose my reluctance comes from the decreased readability, but then
+> I suppose the silicon is not going to change if we get it right once, so
+> it's not a real concern..
 
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on clk/clk-next]
-[also build test ERROR on robh/for-next linus/master v7.0-rc5 next-20260324]
-[cannot apply to pza/reset/next pza/imx-drm/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Yu-Chun-Lin/dt-bindings-clock-Add-Realtek-RTD1625-Clock-Reset-Controller/20260324-171912
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-patch link:    https://lore.kernel.org/r/20260324025332.3416977-10-eleanor.lin%40realtek.com
-patch subject: [PATCH v5 09/10] clk: realtek: Add RTD1625-CRT clock controller driver
-config: nios2-randconfig-001-20260325 (https://download.01.org/0day-ci/archive/20260325/202603250636.b3J5aCGL-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 8.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260325/202603250636.b3J5aCGL-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603250636.b3J5aCGL-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   nios2-linux-ld: drivers/clk/realtek/common.o: in function `rtk_clk_probe':
->> drivers/clk/realtek/common.c:54: undefined reference to `rtk_reset_controller_add'
->> drivers/clk/realtek/common.c:54:(.text+0x134): relocation truncated to fit: R_NIOS2_CALL26 against `rtk_reset_controller_add'
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for RTK_CLK_COMMON
-   Depends on [n]: COMMON_CLK [=y] && COMMON_CLK_REALTEK [=y] && RESET_CONTROLLER [=n]
-   Selected by [y]:
-   - COMMON_CLK_RTD1625 [=y] && COMMON_CLK [=y] && COMMON_CLK_REALTEK [=y]
-
-
-vim +54 drivers/clk/realtek/common.c
-
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  12  
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  13  int rtk_clk_probe(struct platform_device *pdev, const struct rtk_clk_desc *desc)
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  14  {
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  15  	int i, ret;
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  16  	struct regmap *regmap;
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  17  	struct device *dev = &pdev->dev;
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  18  	struct rtk_reset_initdata reset_initdata = {0};
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  19  
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  20  	regmap = device_node_to_regmap(pdev->dev.of_node);
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  21  	if (IS_ERR(regmap))
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  22  		return dev_err_probe(dev, PTR_ERR(regmap), "failed to get regmap\n");
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  23  
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  24  	for (i = 0; i < desc->num_clks; i++)
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  25  		desc->clks[i]->regmap = regmap;
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  26  
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  27  	for (i = 0; i < desc->clk_data->num; i++) {
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  28  		struct clk_hw *hw = desc->clk_data->hws[i];
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  29  
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  30  		if (!hw)
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  31  			continue;
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  32  
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  33  		ret = devm_clk_hw_register(dev, hw);
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  34  
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  35  		if (ret) {
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  36  			dev_warn(dev, "failed to register hw of clk%d: %d\n", i,
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  37  				 ret);
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  38  			desc->clk_data->hws[i] = NULL;
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  39  		}
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  40  	}
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  41  
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  42  	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  43  					  desc->clk_data);
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  44  	if (ret)
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  45  		return dev_err_probe(dev, ret, "failed to add clock provider\n");
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  46  
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  47  	if (!desc->num_reset_descs)
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  48  		return 0;
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  49  
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  50  	reset_initdata.regmap = regmap;
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  51  	reset_initdata.num_descs = desc->num_reset_descs;
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  52  	reset_initdata.descs = desc->reset_descs;
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  53  
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24 @54  	return rtk_reset_controller_add(dev, &reset_initdata);
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  55  }
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  56  EXPORT_SYMBOL_GPL(rtk_clk_probe);
-105a817ead5cd3 Cheng-Yu Lee 2026-03-24  57  
+I see. My usual concern is opposite: to make sure that we don't need to
+fix another DT if we fix something.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
